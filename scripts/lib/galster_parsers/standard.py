@@ -23,6 +23,18 @@ from pathlib import Path
 
 from .common import HR_SENTINEL, SPEC_PATTERNS
 
+# Forgery-year parenthetical: «(1508 er falsk)» — danskmoent.dk flags a
+# year whose only surviving specimens are forgeries (no genuine striking
+# in that year). The year MUST be excluded from year_label, else we'd
+# assert a legitimate striking the source explicitly denies. The
+# parenthetical must contain BOTH a 14xx-16xx year AND «falsk*»
+# (falsk / falske / falskmønt…) — a forgery note without a year, or a
+# year without «falsk», is left alone. The lookahead anchors «falsk»
+# anywhere inside the same paren so «(falsk 1508)» order also matches.
+_FORGERY_YEAR_PAREN_RE = re.compile(
+    r"\((?=[^)]*\bfalsk)[^)]*1[4-6]\d{2}[^)]*\)", re.IGNORECASE
+)
+
 
 def _parse_header_h1(text: str) -> dict:
     """The H1 line carries ruler + denomination + year + sometimes mint.
@@ -118,13 +130,18 @@ def _parse_header_h1(text: str) -> dict:
             rest = bl
             break
 
-    rest_clean = re.sub(r"\s*\([RU][RRSU]*\)", "", rest)
+    # Drop «(YYYY er falsk)» forgery-year parentheticals BEFORE year
+    # extraction so a year the source flags as a forgery never lands in
+    # year_label (e.g. Hans 1 Nobel «1496, 1502, (1508 er falsk)»).
+    rest_clean = _FORGERY_YEAR_PAREN_RE.sub("", rest)
+    rest_clean = re.sub(r"\s*\([RU][RRSU]*\)", "", rest_clean)
     rest_clean = re.sub(r"\s+", " ", rest_clean).strip()
 
-    year_tokens = re.findall(r"(?<!\d)1[5-6]\d{2}(?:[-–]\d{4})?(?!\d)", rest_clean)
+    year_tokens = re.findall(r"(?<!\d)1[4-6]\d{2}(?:[-–]\d{4})?(?!\d)", rest_clean)
     if not year_tokens:
-        body_clean = re.sub(r"\s*\([RU][RRSU]*\)", "", body_after)
-        year_tokens = re.findall(r"(?<!\d)1[5-6]\d{2}(?:[-–]\d{4})?(?!\d)", body_clean[:150])
+        body_clean = _FORGERY_YEAR_PAREN_RE.sub("", body_after)
+        body_clean = re.sub(r"\s*\([RU][RRSU]*\)", "", body_clean)
+        year_tokens = re.findall(r"(?<!\d)1[4-6]\d{2}(?:[-–]\d{4})?(?!\d)", body_clean[:150])
     if year_tokens:
         out["year_label"] = ", ".join(year_tokens)
         for yt in year_tokens:

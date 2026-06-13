@@ -328,6 +328,154 @@ def _dedup_values_ci(values: list) -> list:
     return [chosen[k] for k in order]
 
 
+# Any value that begins with the Aagaard label, in any of the three forms
+# producers emit: «Aagaard# 14.1 …», «Aagaard-14.1 …», «Aagaard 14.1».
+_AAGAARD_OTHERS_RE = re.compile(r"^\s*Aagaard\b\s*[#\-]?\s*(.+?)\s*$", re.IGNORECASE)
+# Leading catalogue number of an Aagaard value («14.1 (53-1/53.1)» → «14.1»,
+# truncated «14.1 (53-1» → «14.1»), used to group variant forms of one ref.
+_AAGAARD_NUM_RE = re.compile(r"^([\d]+(?:\.[\d]+)*)")
+
+
+def _canonicalise_aagaard(catalog: dict) -> int:
+    """Aagaard die-study refs live ONLY in `others`, as one «Aagaard# <value>»
+    token per distinct catalogue number. Idempotent.
+
+    Aagaard cites a die-combination in parens with an internal slash —
+    «14.1 (53-1/53.1)», «117.7 (69-GK4/69-GK10)». A typed catalogue field is
+    hostile to that shape: `normalise_catalog` step 1b AND the renderer both
+    slash-split scalar list-fields, which severs the die-pair («14.1 (53-1»),
+    and multiple producers additionally emit the ref both as a typed field AND
+    as an `others` token, rendering it twice. So Aagaard is never a typed field.
+
+    This gathers every Aagaard mention — a stray typed `aagaard` field plus
+    every `others` form («Aagaard# X» / «Aagaard-X» / «Aagaard X») — groups by
+    catalogue number, keeps the FULLEST form per number (balanced parens beat a
+    «/»-truncated remnant; then longest), dedups, and rewrites canonical
+    «Aagaard# <value>» tokens into `others`. Returns 1 if it mutated, else 0.
+    """
+    def _is_aagaard(tok) -> "re.Match | None":
+        return _AAGAARD_OTHERS_RE.match(str(tok)) if isinstance(tok, str) else None
+
+    raw_vals: list[str] = []
+
+    typed = catalog.pop("aagaard", None)
+    typed_present = typed is not None
+    if typed_present:
+        for v in (typed if isinstance(typed, list) else [typed]):
+            if v is not None and str(v).strip():
+                raw_vals.append(str(v).strip())
+
+    others = catalog.get("others")
+    others = others if isinstance(others, list) else []
+    found_in_others = False
+    for tok in others:
+        m = _is_aagaard(tok)
+        if m:
+            found_in_others = True
+            val = m.group(1).strip()
+            if val:
+                raw_vals.append(val)
+
+    if not raw_vals:
+        return 1 if typed_present else 0
+
+    # Group by catalogue number; keep the fullest representation per number.
+    best: dict[str, str] = {}
+    order: list[str] = []
+
+    def _score(v: str) -> tuple[bool, int]:
+        return (v.count("(") == v.count(")"), len(v))  # balanced first, then longest
+
+    for v in raw_vals:
+        nm = _AAGAARD_NUM_RE.match(v)
+        key = nm.group(1) if nm else v.lower()
+        if key not in best:
+            best[key] = v
+            order.append(key)
+        elif _score(v) > _score(best[key]):
+            best[key] = v
+
+    canonical = [f"Aagaard# {best[k]}" for k in order]
+
+    # Rebuild `others` preserving positions: the canonical Aagaard tokens take
+    # the slot of the FIRST Aagaard entry; non-Aagaard tokens stay in place;
+    # later Aagaard duplicates drop. When Aagaard came only from the typed
+    # field (no others token), append the canonical tokens at the end.
+    new_others: list = []
+    inserted = False
+    for tok in others:
+        if _is_aagaard(tok):
+            if not inserted:
+                new_others.extend(canonical)
+                inserted = True
+        else:
+            new_others.append(tok)
+    if not inserted:
+        new_others.extend(canonical)
+
+    if new_others:
+        catalog["others"] = new_others
+    else:
+        catalog.pop("others", None)
+
+    return 1 if (typed_present or found_in_others) else 0
+
+
+# Catalogue fields whose values are plain catalogue NUMBERS (ranges + sub-letter
+# suffixes + dotted sub-variants), where a coin's multi-source list should be
+# flattened, deduped, range-subsumed and numerically sorted. Excludes fields
+# with special value shapes: km (register-aware), dav/davenport (volume codes),
+# aagaard (die-pairs → others), numista (N# ordering is curator-set), and the
+# *_volume / *_id / bruun_lot helper fields.
+_NUMERIC_INDEX_FIELDS: set[str] = {
+    "schou", "sieg", "hede", "lange", "galster", "nmd", "fp", "fr", "mb",
+    "behrens", "schive", "skaare", "thomsen", "fiala", "gaedechens",
+    "hauberg", "jesse", "kreber", "welter", "bergsoe",
+}
+_PLAIN_RANGE_RE = re.compile(r"^(\d+)-(\d+)$")
+_PLAIN_INT_RE = re.compile(r"^(\d+)$")
+
+
+def _index_sort_key(tok: str) -> tuple:
+    """Sort a catalogue token by leading integer, then dotted sub-variant
+    («16.1» < «16.2»), then the raw string (so «16» < «16A» < «16.1»)."""
+    m = re.match(r"(\d+)", tok)
+    lead = int(m.group(1)) if m else 10**9
+    m2 = re.match(r"^(\d+)\.(\d+)", tok)
+    dec = int(m2.group(2)) if m2 else -1
+    return (lead, dec, tok)
+
+
+def normalise_numeric_index(value):
+    """Flatten a catalogue-number field (scalar or list) into one clean, sorted
+    list of atomic tokens. Splits comma/slash-joined multi-value strings
+    («6,9,7» → 6,9,7), dedups, drops a plain integer subsumed by a plain range
+    (9 and 10 inside «8-13» → dropped), and sorts numerically. Sub-letter
+    («16A»), dotted («16.1») and suffixed-range («39a-39d») tokens are preserved
+    verbatim (never subsumed). Returns a scalar when one token remains.
+    Idempotent."""
+    raw = value if isinstance(value, list) else [value]
+    toks: list[str] = []
+    for v in raw:
+        if v is None:
+            continue
+        for part in re.split(r"[,/]", str(v)):
+            part = part.strip()
+            if part:
+                toks.append(part)
+    seen: set[str] = set()
+    uniq = [t for t in toks if not (t in seen or seen.add(t))]
+    ranges = [(int(m.group(1)), int(m.group(2)))
+              for t in uniq if (m := _PLAIN_RANGE_RE.match(t))]
+
+    def _covered(t: str) -> bool:
+        m = _PLAIN_INT_RE.match(t)
+        return bool(m) and any(lo <= int(m.group(1)) <= hi for lo, hi in ranges)
+
+    kept = sorted((t for t in uniq if not _covered(t)), key=_index_sort_key)
+    return kept[0] if len(kept) == 1 else kept
+
+
 def normalise_catalog(catalog: dict) -> int:
     """In-place catalog hygiene. Idempotent. Returns count of mutations.
 
@@ -350,6 +498,14 @@ def normalise_catalog(catalog: dict) -> int:
     changes = 0
     schema_fields = schema_catalog_fields()
     list_fields = schema_list_catalog_fields()
+
+    # 0. AAGAARD — consolidate to a single «Aagaard# <value>» others token per
+    #    number BEFORE the typed-field passes run. Aagaard die-combinations
+    #    («14.1 (53-1/53.1)») are corrupted by the slash-split + rendered twice
+    #    when they leak into the typed `aagaard` field; keeping them solely in
+    #    `others` sidesteps both. Runs first so the popped typed field can't be
+    #    slash-split below.
+    changes += _canonicalise_aagaard(catalog)
 
     # 1. FOLD others → typed list-field
     others = catalog.get("others")
@@ -429,6 +585,40 @@ def normalise_catalog(catalog: dict) -> int:
             if collapsed != val:
                 catalog[field] = collapsed
                 changes += 1
+
+    # 2b. NUMERIC INDEX normalisation — plain catalogue-number fields accumulate
+    #     multi-source attestations that overlap («Schou 6,7,9» from one source +
+    #     «6,9,7» from another, or individuals «9, 10» beside a range «8-13»).
+    #     Flatten comma/slash-joined tokens, dedup, drop plain ints subsumed by a
+    #     plain range, and sort numerically so the field renders one clean list.
+    for field in _NUMERIC_INDEX_FIELDS:
+        val = catalog.get(field)
+        if val is None:
+            continue
+        new_val = normalise_numeric_index(val)
+        if new_val != val:
+            catalog[field] = new_val
+            changes += 1
+
+    # 2c. Drop a *_hede1971 old-edition number that leaked into its base list.
+    #     `sieg`/`schou` carry the MODERN reference; the `*_hede1971` companion
+    #     holds the (systematically differing) Hede-1971-edition number, which
+    #     the renderer surfaces as «(Hede-1971: X)». When a source also fed that
+    #     old number into the modern list it renders twice — «147, 141
+    #     (Hede-1971: 147)» — so strip it, leaving the modern reference only
+    #     («141 (Hede-1971: 147)»). Never empties the list (if the old number is
+    #     the sole entry, the companion would have nothing to annotate).
+    for base in ("sieg", "schou"):
+        old = catalog.get(f"{base}_hede1971")
+        val = catalog.get(base)
+        if old is None or val is None:
+            continue
+        old_s = str(old).strip()
+        vals = val if isinstance(val, list) else [val]
+        filtered = [v for v in vals if str(v).strip() != old_s]
+        if filtered and len(filtered) != len(vals):
+            catalog[base] = filtered[0] if len(filtered) == 1 else filtered
+            changes += 1
 
     # 3. KM hygiene (km is the KMRef-union field, not in list_fields, so
     #    handled explicitly): expand a slash-list scalar («683.1 / 683.2»)

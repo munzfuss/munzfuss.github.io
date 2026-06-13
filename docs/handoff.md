@@ -15,6 +15,203 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## Denmark gold-gylden Rhinsk/Ungersk reclassification — SHIPPED 2026-06-12, UNPUSHED (commit 682e5e5 + d4d7e3a + eefddf5)
+
+Discriminator between `rhinsk_gylden_fod` (Rhenish gylden, .75 / 18 Karat /
+72 per Cölln. mark — **academic source: Wilcke 1950 w7-2 p.184 «Rinske
+Gylden (18 Karat, 72 Stkr.)»**, ref `wilcke-rhinsk-gylden-1524-standard`) and
+`reichsdukatenfuss` (Ungersk/Dukat, .986) is FINENESS, not weight. Numista's
+generic "Goldgulden" label hides this → systematic misrouting. danskmoent/
+Galster classify each coin (Galster 27 = Rhinsk; Galster 46 / c2g-89 =
+Ungersk). Fixed so far:
+- Frederik I 1527 (Galster 59) → rhinsk_gylden_fod (commit eefddf5).
+- Hans ~1497 N#355730 (Galster 27, danskmoent hg27 «den ældste i
+  Skandinavien») → rhinsk_gylden_fod; now the EARLIEST Danish Rhinsk Gylden
+  (commit 682e5e5). reichsdukatenfuss de-facto anchor corrected 1481→1513
+  (Christian II Ungersk Galster c2g-89, already on the fuss) — the old prose
+  wrongly used the Hans Rhinsk coin as the .986 anchor.
+
+**OPEN follow-up (flagged, not done): ~58 seed_unsorted gold gylden/dukat
+coins** on danish_realm carry the same Numista-"Goldgulden" ambiguity (e.g.
+f2h7e Ungersk / f2h7g Rhinsk 1584, kmk-137161/2 Ungersk 1592, kmk-575432
+Frederik I 1531 Ungersk). A Rhinsk-vs-Ungersk classify sweep by
+danskmoent/Galster fineness is the next batch task. Mechanism reminder: a
+coin only renders on its bar if `phase` is defined for that fuss AND
+year_first is within the phase year-envelope (±1) — extend the phase/bar
+year_from when a coin predates it (build.py:1005-1023). Duplicates across
+sources merge via `promoted_to` + `composed_of` (Pass 1 skips promoted).
+
+## Fuss cross-reference system — SHIPPED 2026-06-11, UNPUSHED (commit 451d0f0; TODO §CT closed)
+
+Prose references a Müntzfuß by stable id now — `[fuss:KEY]` — not a
+hand-written `<code>Name</code>` span. Post-render resolver
+`scripts/lib/fuss_refs.py::process_html(html, lang, name_map)` (mirrors
+`refs_pool`, called at both build.py post-render sites) substitutes the
+EFFECTIVE name (per-location `fuss_periods[KEY].name` override layered
+over global `fuesse[KEY].name`) and links to `#fuss-KEY` when that card
+is on the page (plain `<code>` otherwise; unknown key → visible §0
+placeholder). build_landing gained a `fuesse` param for the global-name
+map. Migration `scripts/maintenance/migrate_fuss_xrefs.py` (idempotent)
+converted 168 refs across fuesse.yml + V1/V2 location yamls. Tests
+`tests/test_fuss_refs.py` 7/7. Payoff proven in render: same
+`[fuss:reichsdukatenfuss]` → «Rigsdukatfod» (linked) on Denmark,
+«Reichsdukatenfuß» (plain) on Hamburg. Cross-PAGE linking deferred (would
+need a key→owning-location map). Full spec + as-built:
+`docs/fuss_cross_refs_design.md`. **Next:** if a new fuss is referenced
+in prose, just write `[fuss:newkey]` — no name, no `<code>`. Optional
+follow-up noted in design doc: an `audit_prose.py` rule flagging NEW
+hand-written `<code>fuss-name</code>` spans to stop the convention
+eroding.
+
+Also this session (2026-06-11), earlier commits 4a86665 / 8428c9f /
+627c4a8: Nobel/Rosenobel prose polish — UK «сучасн-»→«тогочасн-» where
+period-relative; rosenobel «contemporary→earlier nobel_fod» factual fix;
+«Reichsdukat»→«Dukat» (Danish coin name) in the Nobelfod description.
+
+## KMM impossible-year guard — galster-hg-31 1581 fixed (2026-06-11) — SHIPPED, UNPUSHED (4 commits: d5eea8e/bc4a341 then revised fbc926c/d73819c)
+
+Closes the kmk-297794 «1513-1581» quirk surfaced by the Hans Galster-volume
+session. Root cause: 25 KMM (natmus) records carry a `creationEvent` with
+`yearFrom > yearTo` (raw inversion). The old `build_kmk_seed._year` only
+swapped, so an impossible value survived (Hans hvid 1581/1513 → 1513-1581;
+1581 is 68y after Hans †1513). New guard: swap when the implied span ≤ 20y
+(ordering slip — 7 records, all within reign), else DROP the event's year
+(year=None — 18 records, all impossible: truncated yearTo 152/58/675/…,
+post-reign yearFrom). Builder fix `d5eea8e`; data `bc4a341`.
+
+- **Materialised** by patching the in-seed records' year fields directly
+  (full `build_kmk_seed` re-run RE-INFLATES — thinning is a separate step;
+  danish_realm dry-run shows 32215 vs thinned 9630, so DON'T full-rebuild
+  to materialise a few rows — patch the thinned seed with the canonical
+  ruamel config `typ=rt, preserve_quotes, width=200, indent(2,4,2)` or the
+  whole file reformats) → re-merge + re-absorb danish_realm + danish_norway.
+  galster-hg-31 1 Hvid Hans now reads 1481-1513; page has 0 year-«1581».
+- **REVISED — null → reign-window anchor (`fbc926c` + `d73819c`).** The first
+  approach NULLED the year on dropped events. That removed the coin's ONLY
+  merger fallback signal, so 6 same-type museum specimens (Christian-IV
+  Hede-67 2-Skilling etc.) that share a type-level catalogue but carry no
+  fineness/mint stopped merging and surfaced as standalone seed_unsorted
+  finals — a regression. Fix: a dropped-all-year record now anchors to the
+  named ruler's reign window via `lib.ruler_reigns.reign_window`
+  (year_verified=False) — plausible-but-estimated, so the §9a multi-specimen
+  merge fires again without the garbage value. 191584 now re-merges into a
+  4-member Christian-IV group (year 1588-1648 unverified). Bare-«Hans»
+  (no ordinal) doesn't resolve a reign → stays year-None, harmless (merges
+  via Galster).
+- **❌ CORRECTED — the «KMM Arabic-vs-Roman ruler-scope gap» I flagged here
+  earlier DOES NOT EXIST.** I asserted it WITHOUT verifying (§0b lapse).
+  `merge_seeds_cross_source._normalise_ruler` ALREADY folds Arabic↔Roman:
+  `_normalise_ruler("Christian 4") == _normalise_ruler("Christian IV.") ==
+  "christian iv"` → same scope key. The real reason those specimens stood
+  alone was the year-null regression above (matcher requires primary +
+  ≥1 fallback; nulling the year left primary_true=4 / fallback=0 →
+  «insufficient signals» → no_match). Now fixed by the reign-window anchor.
+  NB: they still don't merge with the CURATED `c4h67` — but that's a genuine
+  metal disagreement (KMM silver vs curated billon), correctly blocked.
+
+## Numista discrete-year (year_list) harvest gap — 501 re-harvested (2026-06-10) — SHIPPED, 3 main + 1 submodule UNPUSHED
+
+User noticed Numista DOES give discrete struck years (1496, 1502) — in the
+«Manage my collection» date table — but our data showed the continuous
+range «1496-1502». Diagnosed: loss is at the HARVEST step, not the parser.
+The thin BO.1/chrome extractor (HARVEST_GUIDE) read only the «Years» range
+feature, never the `table.collection` date column, so 501 in-scope
+multi-year types had `year_first/last` but `year_list: null` →
+`build_numista_seed` fell back to a continuous `year_ranges`. The whole
+downstream was already discrete-ready (`parse_numista_chrome` consumes
+`year_list`; seed builder emits `[[y,y]]`; merger's `_union_year_ranges`
+prefers discretes). The v3 API does NOT help (`parse_numista_api` hardcodes
+`year_list=null`; discrete list needs the un-fetched `/types/{id}/issues`).
+
+- **Harvest (`submodule 93b0460d`, cache pointer `<bumped>`):** re-harvested
+  all 501 via Chrome MCP same-origin `fetch()` + DOMParser of
+  `table.collection` (≈30 NIDs/JS-call, 0.3 s pacing, 0 Cloudflare 403s).
+  **417 gained discrete years, 84 confirmed range-only** (kept, NOT
+  fabricated). year_list written to raw cache + parsed sidecars.
+- **HARVEST_GUIDE extractor upgraded** (`docs`) to capture `year_list` from
+  the date table — durable fix so future harvests + re-harvests get it.
+- **Materialised (`012fb9e`):** re-parse (surgical — deleted only the 501
+  sidecars, re-parsed WITHOUT --force to avoid surfacing 575 unrelated
+  newly-parseable types) → re-merge + re-absorb. **412 propagated** into
+  rendered finals across danish_norway + bremen_verden + oldenburg +
+  braunschweig_lueneburg + sachsen_lauenburg + osnabrueck (gapped labels
+  render). danish_norway −3 = lossless Hans-1-Hvid consolidation (the
+  prior Galster-volume fix reaching this entity; seed 3903/3903).
+- **Residual (entity-routing backlog, NOT this task):** 5 hanseatic_lubeck
+  + 144 `_unclassified`-final coins whose numista seed routes to
+  `_unclassified` (≠ their foundation's entity) — year_list is in cache +
+  `_unclassified` seed, propagates once they're classified. See SOURCES §13.1.
+- **Method gotcha for next time:** `parse_numista.py --force` re-parses the
+  WHOLE cache and surfaces newly-parseable types (575 → _unclassified, +
+  stray hamburg/danish_norway final churn). For a targeted re-parse, delete
+  only the target sidecars and run WITHOUT --force.
+
+## Hans Galster volume-scope fix — 1 Nobel year + 31 split-dup consolidations (2026-06-10) — SHIPPED, 2 main UNPUSHED
+
+User flagged: 1 Nobel Hans (Galster 24) rendered «1496-1502» (continuous)
+but sources attest discrete 1496 + 1502. Root cause was a **cross-source
+matcher gap**, not the year-merge rule (`_union_year_ranges` is correct):
+the coin was SPLIT across two finals — `unified-dk-bruun-3831`
+(Bruun+Numista+KMM; Numista's loose min/max `[[1496,1502]]` drove the
+year) and `unified-dk-galster-hg-24` (discrete `[[1496,1496],[1502,1502]]`).
+They never merged because `_catalog_refs` derives the Galster volume-scope
+from the ruler via a regex requiring a NUMERAL — **Hans has no ordinal**,
+so his refs stayed bare `galster` while the Galster-source entry sat in
+`galster/hg`; same Galster 24 → no catalog tie → `no_match`.
+
+- **Fix (`a37c821`):** make the ordinal optional in the volume-derivation
+  regex; map no-ordinal Hans → `hg`. Now bruun/kmk/numista Hans galster
+  refs scope to `/hg` and merge with Galster-source entries.
+- **Data (`bc6dc40`):** re-merge + re-absorb. 1 Nobel now ONE entry,
+  `year_label '1496, 1502'` (discrete wins — period not wider than
+  discrete min-max), galster source + Galster 24 + schou 2,3 all unified.
+  68 Hans bare-galster seed refs re-scoped; **31 stale Hans foundations
+  consolidated into peers** (1 Nobel/24, 1 Skilling/29, Goldgulden/27,
+  1 Hvid/31 +17 KMM specimens, …) — all same-galster-number same-type
+  (verified: every galster-31 member is Hans 1 Hvid; 0 wrong-ruler merge;
+  seed conservation 12819/12819, 0 loss).
+- **Surfaced (NOT fixed — pre-existing KMM quirk):** `kmk-297794` (Hans
+  1 Hvid, Galster 31) carries a loose KMM date «1513-1581», so the
+  consolidated `unified-dk-galster-hg-31` year_label widened to
+  «1481-1581» (1581 ≫ Hans †1513). A KMM date-field error on one
+  specimen, not a merge defect. Candidate for a KMM date-sanity pass.
+
+## Galster single-coin overview-page recovery: 2/3 Nobel danskmoent source (2026-06-10) — SHIPPED, 3 main + 1 submodule UNPUSHED
+
+User flagged that the danskmoent.dk source on **2 Nobel** (Hans 1502,
+N#428886) + **3 Nobel** (Hans 1496, N#428914) had vanished. Root cause:
+the Galster classifier (`scripts/lib/galster_parsers/classify.py` rule 3)
+routes any non-per-coin-filename page to the `reign_index` skip-parser as
+a redundant overview. `1nobel.htm` IS a genuine multi-reign overview, but
+`2nobel.htm` / `3nobel.htm` are **single-coin pages** (one catalogued
+type each → danskmoent never split a dedicated per-coin page), so they
+were silently dropped from the seed and never reached the coins.
+
+- **Fix (`c63779a`):** conservative content-based carve-out in rule 3 —
+  ruler-keyword H1 + exactly one Galster number + no overview markers
+  («Se også» / «ser således ud» / «Møntrækken» / reign-range header)
+  → route to `standard`. Dry-run over all 171 reign_index pages: exactly
+  4 flip (2nobel, 3nobel, 6penning, halvrhin), all genuine single-coin;
+  167 true overviews untouched. Also extended the galster year regex
+  `1[5-6]→1[4-6]` (standard.py + build_galster) so Hans-era 14xx years
+  parse — 3nobel's 1496 was being dropped (→ no seed). Blast radius:
+  only fr_hg24 (1 Nobel Hans) gains its genuine 1496 year. `_build_sources`
+  now falls back to catalog_refs.galster + omits empty volume parenthetical.
+- **Data (`99a1c69` + cache `bbad3177`):** re-parse → galster seed (+2
+  entries) → merge danish_realm → absorb. 2 Nobel gains catalog galster 26
+  + danskmoent/2nobel.htm; 3 Nobel gains schou 1 + danskmoent/3nobel.htm +
+  mint union [Kopenhagen, Malmö]. Both render on the Denmark page (verified).
+- **6penning** (Erik af Pommern, Åbo, pre-1481) + **halvrhin** (Hans ½
+  Rhinsk gylden, u.år) re-parse as single-coin but stay out of seed scope
+  (undated, no reign-volume anchor → builder drops them).
+- **Forgery-year drop (`3deea9d` + cache `afc092d`, data `e080583`).** Hans
+  1 Nobel (fr_hg24) carried 1508 — danskmoent flags «(1508 er falsk)»
+  (the only 1508-dated specimen is a forgery). Fixed via PARSER, not
+  errata (the source is correct, the parser mis-read it; errata is for
+  catalogue-index corrections). `_FORGERY_YEAR_PAREN_RE` strips a paren
+  with year+falsk before year extraction; cache-wide only `(1508 er falsk)`
+  matches → only fr_hg24 affected. year_label 1496,1502,1508 → 1496,1502.
+
 ## Source-quality + Schauenburg entity split (2026-06-10) — SHIPPED, all local/UNPUSHED (`git rev-list --count origin/main..HEAD` for the live count)
 
 Six discrete tasks this session, all committed locally, **0 pushed** (push

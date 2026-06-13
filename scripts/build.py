@@ -1350,6 +1350,22 @@ def build_location(
         _pool = _refs_pool_mod.load_refs_pool(DATA_DIR / "shared" / "refs_pool.yml")
         html = _refs_pool_mod.process_html(html, lang, _pool)
 
+        # Fuss cross-reference pass (introduced 2026-06-11, see
+        # scripts/lib/fuss_refs.py + docs/fuss_cross_refs_design.md).
+        # Resolves `[fuss:KEY]` prose markers to the effective display
+        # name for this page+lang — honouring per-location
+        # `fuss_periods[KEY].name` overrides (global «Reichsdukatenfuß»
+        # ↔ Denmark «Rigsdukatfod») — and links to the `#fuss-KEY` card
+        # anchor when that card is rendered on this page.
+        from lib import fuss_refs as _fuss_refs_mod
+        _fp_overrides = loc.fuss_periods or {}
+        _fuss_name_map = {}
+        for _fk, _fobj in fuesse.items():
+            _ov = _fp_overrides.get(_fk)
+            _nm = _ov.name if (_ov is not None and _ov.name) else _fobj.name
+            _fuss_name_map[_fk] = i18n.t(_nm, lang)
+        html = _fuss_refs_mod.process_html(html, lang, _fuss_name_map)
+
         # Hero «References» count fix (2026-05-27): the template's
         # `hero_refs = references.entries | length` only counts the
         # legacy `*-references.yml` entries — it doesn't see the
@@ -1381,6 +1397,7 @@ def build_landing(
     german_fuesse_references: dict | None = None,
     include_seed: bool = False,
     output_root: Path | None = None,
+    fuesse: dict | None = None,
 ) -> None:
     tmpl = env.get_template("landing.html.j2")
     generated_date = datetime.now().strftime("%Y-%m-%d")
@@ -1448,6 +1465,17 @@ def build_landing(
         from lib import refs_pool as _refs_pool_mod
         _pool = _refs_pool_mod.load_refs_pool(DATA_DIR / "shared" / "refs_pool.yml")
         html = _refs_pool_mod.process_html(html, lang, _pool)
+
+        # Fuss cross-reference pass (see scripts/lib/fuss_refs.py). The
+        # landing has no per-location override context — resolve markers
+        # against the GLOBAL fuss names only. `#fuss-KEY` anchors are not
+        # present on the landing, so refs render as plain <code>name</code>.
+        from lib import fuss_refs as _fuss_refs_mod
+        _fuss_name_map = (
+            {_fk: i18n.t(_fobj.name, lang) for _fk, _fobj in fuesse.items()}
+            if fuesse else {}
+        )
+        html = _fuss_refs_mod.process_html(html, lang, _fuss_name_map)
 
         root = output_root if output_root is not None else SITE_DIR
         out_dir = root / lang
@@ -1801,7 +1829,7 @@ def main():
                       contact_email=contact_email,
                       german_fuesse=german_fuesse,
                       german_fuesse_references=german_fuesse_refs,
-                      include_seed=include_seed)
+                      include_seed=include_seed, fuesse=fuesse)
 
         # V1 landing at site/v1/<lang>/index.html so V1 location pages'
         # home-link («../../index.html») has a target. Emitted only when
@@ -1812,7 +1840,7 @@ def main():
                           contact_email=contact_email,
                           german_fuesse=german_fuesse,
                           german_fuesse_references=german_fuesse_refs,
-                          include_seed=include_seed,
+                          include_seed=include_seed, fuesse=fuesse,
                           output_root=SITE_DIR / "v1")
 
     generate_assets(theme)

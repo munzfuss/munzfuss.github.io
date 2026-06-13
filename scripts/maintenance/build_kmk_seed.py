@@ -47,6 +47,7 @@ from lib.mint_registry import (  # noqa: E402
     classify_nation_to_entity, display_for_alias,
 )
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+from lib.ruler_reigns import reign_window  # noqa: E402
 
 # Non-coin / exonumia object types (§9.2 medals · jetons · tokens; §9.3
 # off-strikes; plus banknotes · dies · tools · misc). KMM's `workDescription`
@@ -167,14 +168,88 @@ def _split_place(src):
     return (canon or first or None), mintmaster
 
 
+# KMM data-quality: 25 cache records carry a creationEvent whose
+# `yearFrom` is LATER than `yearTo` (raw inversion). Two sub-patterns,
+# cleanly separated by the implied span:
+#   - ordering slip — both years plausible, just swapped (span ≤ ~10y:
+#     «1692/1682» → 1682-1692). Recover by swapping.
+#   - typo / impossible value — one year is garbage (span ≥ ~27y:
+#     Hans hvid «1581/1513» = 68y, since Hans †1513; truncated
+#     «1518/152» = 1366y). Swapping keeps the bad value, so DROP the
+#     event's year instead of propagating it (the specimen still merges
+#     and contributes weight/source per §9a; an undated specimen no
+#     longer widens a foundation's reign window — e.g. galster-hg-31).
+# Threshold 20 sits in the empty gap between the two clusters (max
+# ordering-slip span 10, min typo span 27).
+_INVERTED_EVENT_SWAP_MAX_SPAN = 20
+
+# KMM data-quality #2: a creationEvent year is occasionally a typo with an
+# extra (or missing) digit — «1613»→«16113», «1689»→«16890», «1813»→«11813»,
+# «1708»→«17089». The bad value is an impossible year; left in place it
+# widens the coin's span to e.g. 1613-16113, which the timeline clamps to
+# its right edge (1914), painting a spurious minting period across centuries
+# (caught 2026-06-12 on Denmark 9-/9¼-/18½-Thaler bars). Any endpoint
+# outside this window is treated as a typo and DROPPED (the plausible
+# endpoint still anchors the coin). The broad century estimates KMM uses for
+# undated coins — «1500-1750», «1600-1799», «1536-1869» — sit inside the
+# window AND always carry an empty/absent `authority`, so they are NOT
+# affected; they remain legitimate wide datings.
+_MIN_PLAUSIBLE_YEAR = 900
+_MAX_PLAUSIBLE_YEAR = 2025
+
+# Per-record year errata — KMM yearTo typos the magnitude guard CANNOT catch
+# because the bad value is itself a plausible 4-digit year (digit transposition
+# rather than an extra digit). Keyed by KMM object id (str); value is the
+# curator-confirmed (year_first, year_last). Each entry requires explicit user
+# confirmation of the true year before being added (see CLAUDE.md §4 spirit).
+_KMM_YEAR_ERRATA = {
+    # «1593-1953»: yearTo 1953 is a transposed-digit typo of 1593 (Johan Adolph
+    # of Gottorp, reign 1590-1616 — 1953 is impossible). KMM marks a single-year
+    # type as yearFrom==yearTo, so the true value is a single year 1593.
+    # Curator-confirmed 2026-06-12.
+    "687807": (1593, 1593),
+    # «1784-1874»: yearTo 1874 is a transposed-digit typo of 1784 (Christian VII,
+    # reign 1766-1808 — 1874 is impossible). The Hede sibling (c7h33c) attests
+    # 1784-1785; drop the typo → yearFrom 1784. Curator-confirmed 2026-06-12.
+    "122089": (1784, 1784),
+}
+
+
 def _year(src):
-    """creationEvents[].yearFrom/yearTo (strings) → (yf, yl)."""
+    """creationEvents[].yearFrom/yearTo (strings) → (yf, yl, year_verified).
+
+    When a malformed event's year is dropped and NO usable year remains,
+    fall back to the named ruler's reign window (year_verified=False)
+    rather than leaving the coin year-less: the merger needs a year as a
+    fallback signal to attach a museum specimen to its type (two same-Hede
+    specimens lacking any other fallback else fail to merge — caught
+    2026-06-11 on Christian-IV Hede-67 2-Skilling specimens). The reign
+    window is plausible-but-estimated, so it does not propagate the
+    garbage value while still letting §9a multi-specimen merges fire."""
+    erratum = _KMM_YEAR_ERRATA.get(str(src.get("id")))
+    if erratum is not None:
+        return erratum[0], erratum[1], True   # curator-confirmed correction
     evs = src.get("creationEvents") or []
     yfs, yls = [], []
+    malformed = False
     for e in evs:
         if not isinstance(e, dict):
             continue
         a, b = _int(e.get("yearFrom")), _int(e.get("yearTo"))
+        # Magnitude sanity: an endpoint outside [_MIN, _MAX] is a digit-typo
+        # («1613»→«16113»). Drop it so it cannot widen the coin's span to an
+        # impossible year; the plausible endpoint still anchors the coin.
+        if a is not None and not (_MIN_PLAUSIBLE_YEAR <= a <= _MAX_PLAUSIBLE_YEAR):
+            a, malformed = None, True
+        if b is not None and not (_MIN_PLAUSIBLE_YEAR <= b <= _MAX_PLAUSIBLE_YEAR):
+            b, malformed = None, True
+        # Per-event raw inversion (yearFrom > yearTo) is a KMM data error.
+        if a is not None and b is not None and a > b:
+            if a - b <= _INVERTED_EVENT_SWAP_MAX_SPAN:
+                a, b = b, a            # ordering slip → swap
+            else:
+                malformed = True
+                continue               # typo / impossible value → drop event
         if a is not None:
             yfs.append(a)
         if b is not None:
@@ -183,7 +258,11 @@ def _year(src):
     yl = max(yls) if yls else (yf if yf is not None else None)
     if yf is not None and yl is not None and yl < yf:
         yf, yl = yl, yf
-    return yf, yl
+    if yf is None and malformed:
+        reign = reign_window(src.get("authority"))
+        if reign:
+            return reign[0], reign[1], False   # reign-window estimate
+    return yf, yl, True
 
 
 def _weight(src):
@@ -255,15 +334,31 @@ _VNOTE = {
 }
 
 
+# Confirmed-noise museum tray specimens — KMM records with NO catalogue
+# index, NO denomination/material, a wrong/box-level ruler, and an artificial
+# broad creationEvent span (the whole denomination era, e.g. 1874-1945) that
+# does NOT represent a datable type. The real per-ruler Øre types these would
+# duplicate are already fully catalogued in the data (c9h18a/c9h19a/f8h7/… with
+# KM#). They carry no signal and only paint misleading wide mint-runs. Dropped
+# on curator confirmation 2026-06-12 (Frederik-VII-misattributed Øre orphans).
+_KMM_DROP_IDS = {
+    368856, 368870, 368884,   # 25 Øre «1904-1944», ruler «Frederik 7»
+    368904, 368950, 368995,   # 2 Øre  «1874-1945», ruler «Frederik 7»
+    368996, 369067, 369138,   # 1 Øre  «1882-1944», ruler «Frederik 7»
+}
+
+
 def build_entry(src) -> dict | None:
     if _is_exonumia_workdesc(src.get("workDescription")):
+        return None
+    if src.get("id") in _KMM_DROP_IDS or str(src.get("id")) in {str(x) for x in _KMM_DROP_IDS}:
         return None
     rid = src.get("id")
     if not (isinstance(rid, int) or (isinstance(rid, str) and str(rid).isdigit())):
         return None
     rid = int(rid)
 
-    yf, yl = _year(src)
+    yf, yl, year_verified = _year(src)
     # Era scope gate (mission lower bound 1481 / upper 1914). Undated kept —
     # finer dual-anchor (DK 1514 / German 1559) left to Phase 4.
     if yf is not None and (yf < 1481 or yf > 1914):
@@ -307,6 +402,9 @@ def build_entry(src) -> dict | None:
         "year_last": yl,
         "year_label": year_label,
         "year_ranges": [[yf, yl]] if yf is not None else None,
+        # Only emitted when False (reign-window estimate); renderer
+        # defaults to verified=true, so a normal dated coin stays clean.
+        "year_verified": False if not year_verified else None,
         "weight_rough_g": w,
         "weight_rough_verified": w is not None,
         "catalog": catalog or None,

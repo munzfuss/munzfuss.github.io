@@ -22,18 +22,18 @@ consumes_entities:
   - sonderburg_duchy
 fuss_order:
   - reichsdukatenfuss
+  - guldkrone
   - courantdukatenfuss
   - pistolenfuss
   - 9_thaler
-  - 9_25_thaler
   - kronemont_chr_iv
+  - 9_25_thaler
   - kronemont
   - kronemont_fine
-  - guldkrone
   - 11_333_thaler
   - 18_5_thaler
-  - 30_thaler
   - vereinsgoldmuenze
+  - 30_thaler
   - reichsgoldmuenzfuss
   - seed_unsorted
 timeline:
@@ -69,7 +69,7 @@ timeline:
           про монету 4 грудня 1871 (Reichsgoldmünzfuß / Goldmark) · в Австрії й досі карбують restrike-дукати
       color_class: g
     - id: courantdukatenfuss
-      order: 2
+      order: 3
       label:
         de: Courantdukatenfuß · Ducat Courant
         en: Courantdukatenfuß · Ducat Courant
@@ -92,7 +92,7 @@ timeline:
           зі зворотньо-датованими штемпелями 1785
       color_class: g
     - id: pistolenfuss
-      order: 3
+      order: 4
       label:
         de: Pistolen-Fuß · d'or
         en: Pistolen-Fuß · d'or
@@ -115,7 +115,7 @@ timeline:
           прусською анексією 1864/1867; у Копенгагені триває до 1870 (Christian IX)
       color_class: g
     - id: 9_thaler
-      order: 8
+      order: 5
       label:
         de: 9-Thaler-Fuß · Reichsthaler Species
         en: 9-Thaler-Fuß · Reichsthaler Species
@@ -141,7 +141,7 @@ timeline:
           любецький ювілейний Thaler 1730 / 1776 · у Гамбурзі та Любеку як банковий рахунок до 1875.'
       color_class: rt
     - id: 9_25_thaler
-      order: 9
+      order: 7
       label:
         de: 9¼-Thaler-Fuß · Thaler Species
         en: 9¼-Thaler-Fuß · Thaler Species
@@ -162,7 +162,7 @@ timeline:
           монета · з реформи Шіммельмана 1788 — єдина базова монета всіх гольштинських Courant-номіналів · у Гамбурзі/Любеку як банковий рахунок до 1875
       color_class: si
     - id: kronemont_chr_iv
-      order: 5
+      order: 6
       label:
         de: Christian IVs kroner · Tarifmünze
         en: Christian IV's kroner · tariff coin
@@ -189,12 +189,12 @@ timeline:
           IV 1618–1624/25 + продовження Фредеріка III 1651–1652 (Wikipedia DE «Corona Danica»: «<i>Friedrich III. lässt ab 1651... Kronen prägen, zunächst mit einem Feingehalt von 16,25 g Silber, dann von
           14,964 g</i>») · тарифна монета, початковий тариф 1½ Speciedaler, 1625 знижено до 1⅓ Speciedaler · спец-випуски 1665 «Pumphosenkrone» (Schou 39/40) і 1675 2-Krone (Schou 11–15) — Hede-класифіковані
           як Schaumünzen, а не продовження формули · у Гольштейні Krone не карбувалась — монети потрапляли в герцогства через дансько-норвезький грошовий обіг'
-      color_class: krm
+      color_class: si
       hide_layers:
         - scope: anywhere
           kind: circulation
     - id: kronemont
-      order: 6
+      order: 8
       label:
         de: 10½-Krone-Fuß · «Grobe Krone»
         en: 10½-Krone-Fuß · «Coarse Krone»
@@ -212,12 +212,12 @@ timeline:
           onward) · Norway 1649, Denmark 1652.
         uk: 10½-Krone-Fuß («Груба Крона») · тарифне карбування Krone у Glückstadt 1645 (Hebræermønt) → 1696 (останнє гольштинське карбування за Кристіана V) · тариф ⅔ Speciedaler (від Кристіана V, з 
           1670) · Норвегія 1649, Данія 1652.
-      color_class: krm
+      color_class: si
       hide_layers:
         - scope: anywhere
           kind: circulation
     - id: kronemont_fine
-      order: 7
+      order: 9
       label:
         de: 13-Krone-Fuß · «Feine Krone»
         en: 13-Krone-Fuß · «Fine Crown»
@@ -238,12 +238,12 @@ timeline:
         uk: 'Рескрипт 31 грудня 1692 (Кристіан V): 13 Specieskronen з 1 марки чистого срібла кельнської ваги (≈ 14,98 г чистого срібла на одну Krone) · карбувався виключно на Копенгагенському королівському
           монетному дворі 1693–1771; у герцогствах Schleswig-Holstein як Helstaten-монета лишався законним платіжним засобом — стандарт до 1771, в обігу до Schimmelmann-реформи 1788, однак без власних місцевих
           карбувань · хронологічно паралельний гольштинському 10½-Krone-Fuß (Glückstadt 1644–1696)'
-      color_class: krm
+      color_class: si
       hide_layers:
         - scope: anywhere
           kind: circulation
     - id: guldkrone
-      order: 4
+      order: 2
       label:
         de: Guldkrone-Fuß · Tarifmünze
         en: Guldkrone-Fuß · tariff coin
@@ -261,7 +261,7 @@ timeline:
           Schwieger); Copenhagen follow-up issue of 1668 (Hede ?, KM# 303) at a reduced tariff of 3 Specie · not continued under Christian V
         uk: Тарифне карбування Guldkrone за Фредеріка III · 1657 (запровадження в Glückstadt) → 1670 (припинення зі смертю Фредеріка III) · ґлюкштадтська фаза 1657–1660 (Hede 145B, монетмайстер Jacob 
           Schwieger); копенгагенський наступний випуск 1668 (Hede ?, KM# 303) зі зниженим тарифом 3 Specie · за Кристіана V не продовжено
-      color_class: rm
+      color_class: g
     - id: 11_333_thaler
       order: 10
       label:
