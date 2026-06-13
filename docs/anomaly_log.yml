@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-12T21:13:51Z'
+  last_updated_utc: '2026-06-13T04:13:32Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3604,4 +3604,35 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-12T21:13:51Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+  summary: 'BO.7 brunswick_wolfenbuttel_principality gap list contains an OOS pattern (KM# Pn15): N#312636
+    is a gold pattern strike (Type=''Patterns''), not a circulation coin.'
+  status: resolved
+  instance_first_seen: '2026-06-13T04:12:11.821219Z'
+  last_seen: '2026-06-13T04:12:11.821219Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312636
+  occurrences:
+  - run_utc: '2026-06-13T04:12:11.821219Z'
+    batch_label: RW
+    detail: 'Batch RW: N#312636 ''1 Pfennig Louis Rudolph 1734 (Gold pattern strike)'', Type=Patterns,
+      refs KM# Pn15 Welter# 2456, Gold (.986) 0.875g. classify_numista_scope → (False,''pattern''). Not
+      saved; remains uncached.'
+    full_context:
+      numista_batch: RW
+      kind: pattern
+      km: Pn15
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#312636
+    into oos_excluded_nids; refresh_audit_cached_counts then prunes it from in_scope_nids so the picker
+    never re-offers it.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-13T04:13:32Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
