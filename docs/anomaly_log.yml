@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-11T07:13:39Z'
+  last_updated_utc: '2026-06-13T05:12:44Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3464,4 +3464,234 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-11T07:13:39Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: doc_update_pending:doc=harvest_routine_md:section=2_2_2_3_b_year_list_backfill
+  type: doc_update_pending
+  key_dims:
+    doc: HARVEST_ROUTINE.md
+    section: §2.2/§2.3-B year_list backfill
+  summary: HARVEST_ROUTINE §2.3-B literal 'dash->null' year_list rule conflicts with the authoritative
+    struck-years widget (table.collection td.date); routine uses the widget, not the Years-field separator.
+  status: open
+  instance_first_seen: '2026-06-11T13:16:37.310890Z'
+  last_seen: '2026-06-11T22:16:42Z'
+  occurrence_count: 7
+  affected_ids:
+    numista:
+    - 115207
+    - 115216
+    - 115222
+    - 116009
+    - 55890
+    - 99204
+    - 99108
+    - 75266
+    - 99008
+    - 99196
+    - 99347
+    - 54204
+    - 82372
+    - 72027
+    - 110323
+    - 40310
+    - 99003
+    - 100214
+    - 420401
+    - 99011
+    - 420606
+    - 444416
+    - 81301
+    - 121758
+  occurrences:
+  - run_utc: '2026-06-11T13:16:37.310890Z'
+    batch_label: QX
+    detail: Re-read of 5 NIDs (115207/115216/115222/116009/55890, Christian IV NO Speciedaler 1629-1647
+      + Frederik V 24 Sk 1746-1763) shows Numista's summary 'Years' field displays a dash range (e.g.
+      '1629-1647') even when actual struck years are DISCRETE (real gaps at 1644-1645 / 1643). The cached
+      year_lists already hold the correct discrete years (verified against Numista's detailed per-year
+      issues section, exact match). Applying the literal §2.3-B 'dash -> null' rule would DESTROY this
+      correct discrete data — a §4 'source years immutable' regression in reverse. Backfill must compare
+      against the DETAILED issues section, not the summary field. The whole 102-entry remaining queue
+      likely shares this property (cached year_lists already correct) and may be closeable after a verification
+      sweep — user decision.
+    full_context:
+      queue_file: docs/handoff_numista_year_list_reharvest.yml
+      pending_after: 102
+  - run_utc: '2026-06-11T14:19:49Z'
+    batch_label: QX
+    detail: 'Re-read of 5 NIDs (99204/99108/75266/99008/99196). Numista summary ''Years'' shows dash ranges,
+      but the detailed table.collection per-year issues confirm: 99204 [1778-1795], 99108 [1700-1714],
+      75266 [1702-1715] truly continuous; 99008 [1700-1708,1710-1712] (1709 gap) and 99196 [1649-1658,1660-1661]
+      (1659 gap) DISCRETE. All 5 cached year_lists already match the detailed issues exactly — verified-correct,
+      drained from queue without cache mutation. Continued evidence the whole queue''s cached year_lists
+      are already correct; dash->null rule must NOT be applied.'
+    full_context:
+      queue_file: docs/handoff_numista_year_list_reharvest.yml
+      method: verified-correct drain
+  - run_utc: '2026-06-11T15:16:09Z'
+    batch_label: QX
+    detail: 'Batch QX (Priority 0): re-read 5 NIDs via Numista table.collection detailed issues. 99347
+      dated-discrete [1649-58,1660,1661] (1659 gap) matches cache; 54204/82372/72027 dated-continuous
+      full lists match; 110323 collection shows ND(1513-1523) UNDATED issues (Schive XV:7-9) -> empty
+      year_list CORRECT (a naive year-regex would wrongly emit discrete [1513,1523]). All 5 verified-correct,
+      no cache mutation.'
+    full_context:
+      queue_before: 97
+      queue_after: 92
+      method: table.collection per-row inspection
+  - run_utc: '2026-06-11T19:32:54.079689Z'
+    batch_label: year_list_backfill
+    detail: 'Run 2026-06-11: drained 5 from the Priority-0 backfill queue. Cache files carry _year_list_via=''chrome_date_table_*''
+      set by reading Numista''s per-year strike table, NOT the §2.3-B ''Years''-field shape. Concrete
+      cases where §2.3-B ''dash->null'' would be WRONG: N#40310 Years=''1800-1807'' (dash) but date table
+      omits 1806 -> correct year_list [1800-1805,1807]; N#99003 Years=''1675-1682'' (dash) but only [1675,1682]
+      struck. Literal dash->null re-introduces the §4 data-loss the backfill exists to fix. Doc §2.2/§2.3-B
+      should be updated to prescribe the date-table read as the canonical method.'
+    full_context:
+      queue_pending_after: 77
+      processed_this_run: 5
+  - run_utc: '2026-06-11T20:20:44Z'
+    batch_label: QX
+    detail: 'Batch QX (year_list backfill, 5 NIDs): N#100214 Years-cell ''1796-1803'' but struck = [1796..1801,1803]
+      (gap@1802) -> MUST stay discrete; N#420401 Years-cell ''1496-1502'' but struck = [1496,1502] (gap)
+      -> MUST stay discrete. Literal ''dash->null'' would have wiped both. Correct method: read td.date
+      cells, set year_list=null only when the struck set is a CONTIGUOUS run min..max, else keep the discrete
+      list. N#99111/152728/99000 were genuinely contiguous/empty -> null.'
+    full_context:
+      numista_batch: QX
+      method: table.collection td.date contiguity check
+  - run_utc: '2026-06-11T21:15:16Z'
+    batch_label: QX
+    detail: 'Batch QX (year_list backfill, 2026-06-12): N#99011 Years=''1643-1648'' (dash) but struck
+      years [1643,1644,1646,1647,1648] (gap@1645) → discrete; N#420606 Years=''1797-1802'' (dash) but
+      struck years [1797,1802] (gap) → discrete. Literal dash→null would have destroyed both. 99203/118976/118985
+      genuinely contiguous → null. Struck-years widget (table.collection td.date) is authoritative.'
+  - run_utc: '2026-06-11T22:16:42Z'
+    batch_label: year_list_backfill
+    detail: 'Batch year_list_backfill (this run): N#444416 (Years ''1525-1530'' dash, struck {1525,1526,1528,1530}
+      gap@1527,1529), N#121758 (Years ''1533-1537'' dash, struck {1533,1537}), N#81301 (Years ''1782-1786''
+      dash, struck {1782,1784,1785} gap@1783) all need discrete year_list despite dash-form Years field.
+      Literal §2.3-B would have nulled them. table.collection td.date is authoritative.'
+  proposed_fix: Update HARVEST_ROUTINE §2.3-B to key year_list encoding off the table.collection td.date
+    struck-years widget (contiguous->null, gapped->verbatim list), not the Years-field separator.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    query: brunswick_wolfenbuttel_principality
+  summary: BO.7 brunswick_wolfenbuttel_principality gap list contains OOS pattern N#264920 (KM# Pn10).
+  status: resolved
+  instance_first_seen: '2026-06-12T21:12:02.758785Z'
+  last_seen: '2026-06-12T21:12:02.758785Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 264920
+  occurrences:
+  - run_utc: '2026-06-12T21:12:02.758785Z'
+    batch_label: RP
+    detail: 'Batch RP: N#264920 ''1 Pfennig August William (Gold pattern)'' Type=''Patterns'' KM# Pn10
+      — OOS per §9.1 (pattern/trial strike). Not saved; folded into oos_excluded_nids.'
+    full_context:
+      kind: pattern
+      km: Pn10
+      type_field: Patterns
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#264920
+    into oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-12T21:13:51Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+  summary: 'BO.7 brunswick_wolfenbuttel_principality gap list contains an OOS pattern (KM# Pn15): N#312636
+    is a gold pattern strike (Type=''Patterns''), not a circulation coin.'
+  status: resolved
+  instance_first_seen: '2026-06-13T04:12:11.821219Z'
+  last_seen: '2026-06-13T04:12:11.821219Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312636
+  occurrences:
+  - run_utc: '2026-06-13T04:12:11.821219Z'
+    batch_label: RW
+    detail: 'Batch RW: N#312636 ''1 Pfennig Louis Rudolph 1734 (Gold pattern strike)'', Type=Patterns,
+      refs KM# Pn15 Welter# 2456, Gold (.986) 0.875g. classify_numista_scope → (False,''pattern''). Not
+      saved; remains uncached.'
+    full_context:
+      numista_batch: RW
+      kind: pattern
+      km: Pn15
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#312636
+    into oos_excluded_nids; refresh_audit_cached_counts then prunes it from in_scope_nids so the picker
+    never re-offers it.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-13T04:13:32Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:nid=312638:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+    nid: '312638'
+  summary: Numista N#312638 enumerated in-scope but is a Gold pattern strike (KM# Pn19) — OOS per §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-13T05:09:03Z'
+  last_seen: '2026-06-13T05:09:03Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312638
+  occurrences:
+  - run_utc: '2026-06-13T05:09:03Z'
+    batch_label: RX
+    detail: 'Batch RX: N#312638 ''2 Pfennigs - Ferdinand Albert II (Gold pattern strike)'', Type=''Patterns'',
+      Composition=Gold (.986), KM# Pn19. classify_numista_scope -> (False,''pattern''). Not saved; uncached
+      OOS.'
+    full_context:
+      reason: pattern
+      url: https://en.numista.com/312638
+      kind: pattern
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#312638
+    into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-13T05:12:44Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:nid=312643:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+    nid: '312643'
+  summary: Numista N#312643 enumerated in-scope but is a Gold pattern strike (KM# Pn20) — OOS per §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-13T05:11:28Z'
+  last_seen: '2026-06-13T05:11:28Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312643
+  occurrences:
+  - run_utc: '2026-06-13T05:11:28Z'
+    batch_label: RX
+    detail: 'Batch RX: N#312643 ''6 Pfennigs - Ferdinand Albert II'', Type=''Patterns'', Composition=Gold
+      (.986), KM# Pn20. Not saved; uncached OOS.'
+    full_context:
+      reason: pattern
+      url: https://en.numista.com/312643
+      kind: pattern
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#312643
+    into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-13T05:12:44Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
