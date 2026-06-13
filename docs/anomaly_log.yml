@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-13T10:14:59Z'
+  last_updated_utc: '2026-06-13T19:12:36Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3723,4 +3723,60 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-13T10:14:58Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:nid=578142:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+    nid: '578142'
+  summary: numista N#578142 enumerated in-scope in BO.7 brunswick_wolfenbuttel_principality but is a PATTERN
+    (Type='Patterns', KM# Pn31-Pn34, gold strike) — OOS per §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-13T19:11:12.112904Z'
+  last_seen: '2026-06-13T19:11:12.112904Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 578142
+  occurrences:
+  - run_utc: '2026-06-13T19:11:12.112904Z'
+    batch_label: SL
+    detail: 'Batch SL: sampled fresh NID during in-flight harvest; classify_numista_scope -> (False,''pattern'').
+      1 Pfennig gold pattern strike, Charles I, 1752-1754. Not saved to cache.'
+    full_context:
+      kind: pattern
+      references: KM# Pn31-Pn34
+  proposed_fix: Fold into BO.7 audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-13T19:11:18Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:nid=312649:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+    nid: '312649'
+  summary: numista N#312649 enumerated in-scope in BO.7 brunswick_wolfenbuttel_principality but is a PATTERN
+    (Type='Patterns', KM# Pn33, gold .986 strike) — OOS per §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-13T19:12:35.636793Z'
+  last_seen: '2026-06-13T19:12:35.636793Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312649
+  occurrences:
+  - run_utc: '2026-06-13T19:12:35.636793Z'
+    batch_label: SL
+    detail: 'Batch SL: Charles I 1 Pfennig gold pattern 1754; classify_numista_scope -> (False,''pattern'').
+      Not saved to cache.'
+    full_context:
+      kind: pattern
+      references: KM# Pn33
+  proposed_fix: Fold into BO.7 audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-13T19:12:36Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
