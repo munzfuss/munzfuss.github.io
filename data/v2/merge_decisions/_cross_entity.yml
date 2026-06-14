@@ -1,0 +1,39 @@
+# Cross-entity curator merges — GLOBAL (distinct from per-entity
+# merge_decisions/<entity>.yml). Each entry declares one physical coin whose
+# source seeds were bucketed into DIFFERENT entities, plus the entity it truly
+# belongs to.
+#
+# Applied by scripts/maintenance/merge_seeds_cross_source.py:
+#   _load_cross_entity_decisions() pre-scans this file (globally, before the
+#   per-entity loop). For each entry:
+#     • members are PULLED into `target_entity`'s processing set (from their
+#       home seed buckets) and force-unioned into ONE unified entry;
+#     • members are EXCLUDED from their source entity (no duplicate there);
+#     • the unified entry is stamped issuing_entity = target_entity.
+#   Members may name ids from any bucket; a Hede bare-id expands to sub-letters.
+#
+# Run the merger WITHOUT --entity (or over every affected entity) so the
+# source-side exclude applies too.
+#
+# Schema (per entry):
+#   target_entity  str       - V2 entity the merged coin belongs to
+#   members        [str]     - seed ids across any bucket (Hede bare-ids expand)
+#   reason         str       - curator justification
+
+merges:
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-c4h8a       # home: royal_holstein  (Hede 8A, Ungersk Gylden 1591-1592)
+      - dk-hede-c4h8b       # home: royal_holstein  (Hede 8B, Ungersk Gylden 1593)
+      - dk-bruun-4602       # home: danish_realm     (Goldgulden, Hede 8B, Bruun I lot 1012)
+      - dk-numista-142133   # home: danish_realm     (Goldgulden, N#142133)
+      - dk-tid-163398       # home: danish_realm     (1 Gulden, ucoin UC#12)
+    reason: |
+      One coin — Christian IV «Ungersk Gylden», Hede 8A/8B, minted at Haderslev
+      (royal Schleswig) 1591-1593. Hede catalogues the type as sub-variants 8A
+      (1591-92) and 8B (1593) of ONE coin. The Bruun/Numista/ucoin copies carry
+      no mint → the classifier defaulted them to danish_realm; the Hede copies
+      carry mint=Haderslev → royal_holstein (mint_registry: Haderslev = royal
+      Schleswig-Holstein bucket). True issuing entity = royal_holstein. The
+      «Goldgulden» label is Numista's generic name; Hede's «Ungersk Gylden»
+      (.986) is authoritative. Curator merge 2026-06-13 (Serhii).
