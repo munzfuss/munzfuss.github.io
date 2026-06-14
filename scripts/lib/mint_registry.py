@@ -67,11 +67,17 @@ _MINT_REGISTRY: dict[str, dict] = {
         # mojibake form «k�benhavn» (iso-8859 → utf-8 round-trip, distinct
         # from the «?»-mojibake «k?benhavn»), the «Kbh.» abbreviation, and
         # the OCR/typo variants surveyed in the seed inventory (all map to
-        # the one canonical «Kopenhagen»).
+        # the one canonical «Kopenhagen»). Also «Royal Danish Mint» (Den
+        # Kongelige Mønt) — Numista's mint name for the Copenhagen royal
+        # mint; the API field reads «Royal Danish Mint», which the seed
+        # writer's « Mint»-strip reduces to «Royal Danish» before this
+        # lookup, so both forms are listed (mint_text on the page:
+        # «Royal Danish Mint (Den Kongelige Mønt), Copenhagen, Denmark»).
         "aliases": {
             "kopenhagen", "copenhagen", "københavn", "kobenhavn",
             "kjøbenhavn", "kjobenhavn", "k?benhavn", "k�benhavn",
             "hafnia", "kbh", "kbh.",
+            "royal danish", "royal danish mint",
             # OCR/typo variants (low-count, from seed survey 2026-06-09)
             "københavb", "københanv", "københavhn", "københavnh",
             "københavbn", "købehavn", "københavn.",
