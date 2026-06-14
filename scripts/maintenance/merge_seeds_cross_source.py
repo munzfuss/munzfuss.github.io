@@ -3245,6 +3245,91 @@ def _load_seeds_for_entity(entity_id: str) -> list[dict]:
     return coins
 
 
+def _expand_member_against(mid: str, id_set) -> list[str]:
+    """Resolve a merge-decision member id against an arbitrary id set,
+    expanding a Hede bare-id («dk-hede-c4h112») to its sub-letter seeds
+    («…112a», «…112b»). Mirrors the per-entity `_expand_member` closure but
+    takes the id set explicitly so the global cross-entity pre-scan can resolve
+    members that live in OTHER buckets. Returns [] when nothing matches."""
+    if mid in id_set:
+        return [mid]
+    if re.search(r"\d$", mid):
+        subs = sorted(k for k in id_set
+                      if k.startswith(mid) and k[len(mid):].isalpha())
+        if subs:
+            return subs
+    return []
+
+
+def _load_all_seeds() -> tuple[dict[str, dict], dict[str, str]]:
+    """Global seed index across ALL buckets. Returns
+    ({id: coin}, {id: home_entity}). Used by the cross-entity pre-scan to
+    resolve + pull member ids that live in a different entity's seed files."""
+    by_id: dict[str, dict] = {}
+    home: dict[str, str] = {}
+    if not V2_SEED.exists():
+        return by_id, home
+    for src_dir in sorted(V2_SEED.iterdir()):
+        if not src_dir.is_dir():
+            continue
+        for path in sorted(src_dir.glob("*.yml")):
+            entity = path.stem
+            doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+            for c in doc.get("coins") or []:
+                if isinstance(c, dict) and c.get("id"):
+                    by_id[c["id"]] = c
+                    home[c["id"]] = entity
+    return by_id, home
+
+
+# Cross-entity curator merges live in ONE global file (target_entity explicit),
+# distinct from the per-entity merge_decisions/<entity>.yml. The «_» prefix
+# keeps it out of the entity namespace (`_all_entities` walks seed dirs only;
+# `_load_decisions` reads `<entity>.yml`, never this file).
+V2_CROSS_ENTITY_DECISIONS = V2_MERGE_DECISIONS / "_cross_entity.yml"
+
+
+def _load_cross_entity_decisions(
+    all_ids: set[str],
+) -> tuple[dict[str, list[list[str]]], dict[str, str]]:
+    """Pre-scan `data/v2/merge_decisions/_cross_entity.yml`. Each `merges` entry
+    carries an explicit `target_entity` + `members` (ids from ANY bucket).
+
+    Returns:
+      pull_groups:   {target_entity: [[member_id, ...], ...]}  — force-union groups
+      member_target: {member_id: target_entity}                — drives pull + exclude
+
+    Members are resolved (+ Hede sub-letter expansion) against the global id
+    set. A member absent from every bucket warns + is skipped; a member mapped
+    to two different targets is a curator error → hard assert."""
+    pull_groups: dict[str, list[list[str]]] = {}
+    member_target: dict[str, str] = {}
+    if not V2_CROSS_ENTITY_DECISIONS.exists():
+        return pull_groups, member_target
+    doc = yaml.safe_load(V2_CROSS_ENTITY_DECISIONS.read_text(encoding="utf-8")) or {}
+    for entry in doc.get("merges") or []:
+        target = entry.get("target_entity")
+        if not target:
+            print("  ⚠ cross-entity merge with no target_entity — skipped")
+            continue
+        expanded: list[str] = []
+        for m in (entry.get("members") or []):
+            exp = _expand_member_against(m, all_ids)
+            if not exp:
+                print(f"  ⚠ cross-entity member {m!r} absent from all seeds — skipped")
+                continue
+            expanded.extend(exp)
+        for mid in expanded:
+            prior = member_target.get(mid)
+            assert prior in (None, target), (
+                f"cross-entity member {mid!r} mapped to two targets: "
+                f"{prior!r} and {target!r}")
+            member_target[mid] = target
+        if len(expanded) >= 2:
+            pull_groups.setdefault(target, []).append(expanded)
+    return pull_groups, member_target
+
+
 # ---------------------------------------------------------------------------
 # Parallel PASS-1 workers
 # ---------------------------------------------------------------------------
@@ -3391,7 +3476,10 @@ def _pass1_eval_i(i: int):
 _PASS1_PARALLEL_THRESHOLD = int(os.environ.get("MERGE_PARALLEL_THRESHOLD", "4000"))
 
 
-def process_entity(entity_id: str) -> dict:
+def process_entity(entity_id: str,
+                   member_target: dict[str, str] | None = None,
+                   pull_groups: dict[str, list[list[str]]] | None = None,
+                   all_seeds_by_id: dict[str, dict] | None = None) -> dict:
     """Returns:
       {
         'entity_id': str,
@@ -3436,6 +3524,28 @@ def process_entity(entity_id: str) -> dict:
     pre_filter_count = len(seeds)
     seeds = [c for c in seeds if not _is_overview_page(c)]
     overview_dropped = pre_filter_count - len(seeds)
+
+    # Cross-entity curator merges (pull-at-processing-time). `member_target`
+    # maps a member id → the entity it was curator-declared to belong to.
+    #   EXCLUDE: drop own-bucket seeds curator-routed to ANOTHER entity, so this
+    #            entity doesn't also emit them as standalone unified entries.
+    #   PULL IN: add foreign seeds curator-routed to THIS entity, so the
+    #            force-union below + build_unified see them in one bucket.
+    member_target = member_target or {}
+    pull_groups = pull_groups or {}
+    all_seeds_by_id = all_seeds_by_id or {}
+    if member_target:
+        seeds = [c for c in seeds
+                 if member_target.get(c["id"], entity_id) == entity_id]
+        present = {c["id"] for c in seeds}
+        for mid, tgt in member_target.items():
+            if tgt == entity_id and mid not in present and mid in all_seeds_by_id:
+                seeds.append(all_seeds_by_id[mid])
+                present.add(mid)
+    # ids force-merged into THIS entity by a cross-entity decision (drives the
+    # issuing_entity stamp on the resulting unified class).
+    xentity_members_here: set[str] = {
+        mid for grp in pull_groups.get(entity_id, []) for mid in grp}
 
     decisions = _load_decisions(entity_id)
 
@@ -3793,6 +3903,22 @@ def process_entity(entity_id: str) -> dict:
                       f"— left separate")
         forced_merges.append(entry)
 
+    # 4b. Cross-entity curator merges. The members were pulled into this
+    #     entity's `seeds_by_id` above, so the union is the same force_union
+    #     path as a regular merge — it just spans coins whose home buckets
+    #     differ. The resulting unified class is stamped issuing_entity=this
+    #     entity in the build loop below.
+    for grp in pull_groups.get(entity_id, []):
+        present = [m for m in grp if m in seeds_by_id]
+        for i in range(1, len(present)):
+            ok, conflict = uf.force_union(present[0], present[i])
+            if not ok:
+                print(f"  ⚠ cross-entity merge {present[0]} + {present[i]} "
+                      f"conflicts with explicit no_merge {sorted(conflict)} "
+                      f"— left separate")
+        if len(present) >= 2:
+            forced_merges.append({"members": present, "cross_entity": True})
+
     # 4. Build unified entries from equivalence classes
     classes = uf.classes()
     unified_entries: list[dict] = []
@@ -3801,6 +3927,11 @@ def process_entity(entity_id: str) -> dict:
         member_coins = [seeds_by_id[mid] for mid in sorted(member_ids)]
         unified_id = _unified_id_for_class(member_coins)
         unified, conflicts = build_unified(member_coins, unified_id, entity_id)
+        # Cross-entity stamp: a class containing a member curator-pulled into
+        # this entity IS this entity's coin, regardless of the gap-fill's
+        # authority pick across the (mixed-home) members.
+        if xentity_members_here & set(member_ids):
+            unified["issuing_entity"] = entity_id
         unified_entries.append(unified)
         if conflicts and len(member_coins) > 1:
             merge_conflicts.append({
@@ -3933,11 +4064,26 @@ def main() -> int:
         print("No V2 seed files found under data/v2/seed/.")
         return 0
 
+    # Cross-entity curator merges: scan ONCE, globally, before the per-entity
+    # loop (a member's exclude from its source entity must agree with its pull
+    # into the target — both sides need the same map).
+    all_by_id, _home = _load_all_seeds()
+    pull_groups, member_target = _load_cross_entity_decisions(set(all_by_id))
+    if member_target and args.entity:
+        affected = {args.entity} | {member_target[m] for m in member_target}
+        if affected - {args.entity}:
+            print("  ⚠ --entity with active cross-entity merges: run WITHOUT "
+                  "--entity (or process every affected entity) so source-side "
+                  "excludes also apply — single-entity --apply can leave a "
+                  "duplicate in the un-processed bucket.\n")
+
     print(f"Processing {len(entities)} entit(y/ies)...\n")
 
     totals = Counter()
     for ent in entities:
-        result = process_entity(ent)
+        result = process_entity(ent, member_target=member_target,
+                                pull_groups=pull_groups,
+                                all_seeds_by_id=all_by_id)
         totals["seeds"] += result["seeds_count"]
         totals["unified"] += result["unified_count"]
         totals["confident_merges"] += len(result["confident_merges"])
