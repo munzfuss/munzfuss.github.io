@@ -9,6 +9,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from .schema import Coin, Fuss, Location, FieldValue
+from .catalog_codes import normalise_numeric_index, _NUMERIC_INDEX_FIELDS
 
 
 def normalise_field(v) -> list[tuple[float, str | None]]:
@@ -434,6 +435,14 @@ def _compute_catalog_groups(
         if field_name == "km":
             continue
         v = getattr(cat, field_name, None)
+        # Render-time numeric-index normalisation: flatten comma/slash-joined
+        # multi-source values, dedup, range-subsume, numeric sort. Idempotent,
+        # so already-normalised final entries are unaffected; this catches
+        # seed-pass coins rendered straight from data/v2/seed/ (which the
+        # data-level migration never touched) — same rule as the merger/absorb
+        # normalise_catalog, applied at the single render chokepoint.
+        if v is not None and field_name in _NUMERIC_INDEX_FIELDS:
+            v = normalise_numeric_index(v)
         if v:
             # Companion *_hede1971 field: if set AND differs from the
             # primary value, append "(Hede-1971: X)" to the rendered
@@ -520,10 +529,19 @@ def _compute_catalog_groups(
         out = []
         for tok in re.split(r"[./\-]", v):
             t = tok.strip()
-            try:
-                out.append((0, int(t)))
-            except (ValueError, TypeError):
-                out.append((1, t))
+            # A leading integer with an optional letter sub-variant suffix
+            # («1a», «93A», «2») sorts by that integer FIRST, then the suffix —
+            # so «1a» precedes «2» (not after every plain int, the bug that
+            # rendered «Schou# 2, 7, 1a» instead of «1a, 2, 7»). Pure non-numeric
+            # tokens (volume codes «EC II», «Tn6») rank last, as before.
+            m = re.match(r"^(\d+)([A-Za-z]*)$", t)
+            if m:
+                out.append((0, int(m.group(1)), m.group(2).lower()))
+            else:
+                try:
+                    out.append((0, int(t), ""))
+                except (ValueError, TypeError):
+                    out.append((1, 0, t.lower()))
         return out
 
     def collapse_runs(values: list[str]) -> list[str]:
