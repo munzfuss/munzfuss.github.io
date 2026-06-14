@@ -346,6 +346,20 @@ _FOUNDATION_IMMUTABLE_FIELDS = frozenset({
     "ruler", "mintmaster", "issuing_entity",
 })
 
+# Foundation-immutable fields that may be GAP-FILLED (never overridden) from a
+# composed_of member when the foundation value is None — the «non-None wins
+# over None» rule. The V1 bootstrap dropped descriptive attributes (ruler:
+# 67 entries, mintmaster: 258) that the V2 merger has since resolved on the
+# seed_unified bridge; without gap-fill the absorb step copies the None
+# verbatim and the resolved value never reaches the rendered final.
+#
+# fuss / phase / kind are DELIBERATELY excluded: a composed_of member carries
+# the seed-pass placeholder («seed_unsorted»), not the curated classification,
+# so its "non-None" is not an authoritative value — gap-filling them would
+# pull a placeholder into a curated slot. A NON-None foundation value is
+# never overridden for any field (V1 curation stays intact).
+_FOUNDATION_GAPFILL_FIELDS = _FOUNDATION_IMMUTABLE_FIELDS - {"fuss", "phase", "kind"}
+
 
 def _enrich_final_entry(final_entry: dict, members: list[dict],
                         entity_id: str | None) -> tuple[dict, list]:
@@ -362,6 +376,20 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     out = {k: v for k, v in final_entry.items()
            if k in _FOUNDATION_IMMUTABLE_FIELDS}
     out["id"] = final_entry["id"]
+
+    # «non-None wins over None» gap-fill: when a foundation descriptive field
+    # is None, adopt the first composed_of member's non-None value. Members are
+    # authority-sorted (foundation first), so members[1:] are the seed_unified
+    # entries whose values the merger already resolved (incl. its transition-
+    # year ruler-null rule). Never overrides a non-None foundation value;
+    # never touches fuss/phase/kind (see _FOUNDATION_GAPFILL_FIELDS).
+    for _fld in _FOUNDATION_GAPFILL_FIELDS:
+        if out.get(_fld) is None:
+            for _m in members[1:]:
+                _mv = _m.get(_fld)
+                if _mv not in (None, []):
+                    out[_fld] = _mv
+                    break
 
     # year_ranges UNION across members (D19), with a refresh path for
     # pure-absorbed foundations:
