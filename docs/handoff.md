@@ -15,6 +15,56 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-14 — KM render-leak fix + two pipeline fixes staged for the coordinated apply (UNPUSHED)
+
+10 commits unpushed (origin/main..HEAD). This session, in order of the user's reports:
+
+1. **KM str-repr corruption — FIXED + applied (commit 38f4f67).** 6 V2 final
+   entries carried a `catalog.km` list whose first element was a Python
+   str-repr of the real KMRef-list (`"['63', {'value':'103','register':'DK'}]"`),
+   a leftover from the 2026-05-31 «44-false-positive» `str(km_list)` bug
+   (the write path is long fixed; only the baked data remained). Repaired via
+   `scripts/maintenance/fix_corrupted_km_repr.py` (faithful explode+dedup, no
+   register re-adjudication). Trigger coin c5h121 now renders «KM-DK# 103 ‖
+   KM-SH# 63». seed_unified was already clean; only final changed. Verified:
+   0 leaks across schleswig_holstein + denmark, 3 langs.
+
+2. **2 Frederik D'or Hede 1B+1C merge — DECLARED, NOT applied (commit 17b4e69).**
+   User: «це одна монета». Diagnosed (empirically via `match_pair`): the
+   auto-matcher's §9a `_has_type_strong_agreement` gate uses RAW catalog
+   overlap, so sub-variants (Hede 1B vs 1C, KM 750.2 vs 750.3) don't overlap →
+   pair drops to low_confidence → never unites. Mint was NOT the blocker
+   (both carry Altona). Same cross-letter class as Ungersk Gylden 8A/8B.
+   Fix = per-entity `merge_decisions/royal_holstein.yml::merges` (9 source
+   seeds). Dry-run preview confirms one unified entry, no catalog conflicts.
+   Takes effect on the next merger+absorb apply.
+
+3. **Numista «Royal Danish» mint — registry fix DORMANT, NOT propagated (commit c9d9f8d).**
+   «Royal Danish» = «Royal Danish Mint» (Den Kongelige Mønt) = Kopenhagen,
+   verified via Numista cache (`mints[].name`, `mint_text`). The seed writer's
+   « Mint»-strip reduced the API name to «Royal Danish», absent from the
+   registry → surfaced as a bogus mint on 418 V2 entries (all sourced from
+   numista). Fixed at the single source of truth: added «royal danish» +
+   «royal danish mint» to the kopenhagen alias set in `mint_registry.py`.
+   Dormant for render (build reads final mint as-is). User chose to defer
+   propagation to the coordinated apply. **Caveat for that apply:** the 24
+   numista seeds carrying `['Altona','Royal Danish']` become
+   `['Altona','Kopenhagen']` → `classify_mint_to_entity` returns
+   `[danish_realm, royal_holstein]` (multi) instead of scalar `royal_holstein`
+   → review whether the spurious Numista Copenhagen on these Altona issues
+   should be authority-dropped (Hede/Bruun give Altona only) rather than kept.
+
+**→ The «coordinated full apply» now bundles 3 things** (all gated on the
+curation-loss audit, TODO #6 / parked task #4-#8): (a) Ungersk Gylden
+cross-entity merge (commit 431a18b, `_cross_entity.yml`); (b) Frederik D'or
+merge (17b4e69); (c) Royal Danish seed-rebuild (re-run `build_numista_seed.py`
+from cache — NO live API — then merger+absorb). Sequence: curation audit →
+re-run numista seed-builder → full merger `--apply` (no `--entity`, so the
+cross-entity source-side excludes apply) → absorb dry-run gate → absorb
+`--apply` → build `--include-v1` → verify. The merger/absorb REBUILD fresh
+from members, so stale «Royal Danish» is replaced (not appended) once the
+seed source is fixed — addresses the «additive-only» concern.
+
 ## Denmark gold-gylden Rhinsk/Ungersk reclassification — SHIPPED 2026-06-12, UNPUSHED (commit 682e5e5 + d4d7e3a + eefddf5)
 
 Discriminator between `rhinsk_gylden_fod` (Rhenish gylden, .75 / 18 Karat /
