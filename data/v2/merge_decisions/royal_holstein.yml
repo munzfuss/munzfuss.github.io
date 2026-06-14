@@ -62,6 +62,31 @@ merges:
       1 Speciedaler Christian VII, Hede 39 (39A + 39B/C), KM 138.1, Altona.
       One coin. danskmoent.dk/chr/c7h39.htm.
 
+  # --- (curator decision 2026-06-14, Serhii). 2 Frederik D'or, Frederik VII,
+  # Altona. Hede catalogues the type as Hede 1 with sub-variants 1B (1850-1863)
+  # and 1C (1856-1857, 1859). Both share Fr 291, Schou 1, Sieg 16, nominal,
+  # ruler, mint Altona, and KM base 750; they differ only by sub-variant
+  # (Hede 1B vs 1C, KM 750.2 vs 750.3, Sieg 16.2 vs 16.3). The auto-matcher's
+  # §9a type-strong gate uses RAW catalog overlap, so 1B/1C and 750.2/750.3 do
+  # not overlap → the pair drops to low_confidence and never unites (mint was
+  # NOT the blocker — 'Altona' agrees in both). Curator verdict: «це одна
+  # монета». KM 750/750.2/750.3, Sieg 16/16.2/16.3 accumulate per §9a. ---
+  - members:
+      - dk-hede-f7h1b
+      - dk-hede-f7h1c
+      - dk-bruun-8212
+      - dk-bruun-8216
+      - dk-bruun-8226
+      - dk-bruun-8261
+      - dk-numista-83075
+      - denmark-numismaster-66106
+      - denmark-numismaster-66107
+    reason: |
+      2 Frederik D'or, Frederik VII, Altona, Hede 1 (1B + 1C). One coin —
+      Hede splits 1B/1C as year/die sub-variants of a single type; KM
+      750.2/750.3 and Sieg 16.2/16.3 are sub-variant artefacts that do not
+      split the type. danskmoent.dk/frvii (Hede f7h1).
+
 no_merges:
   - members:
       - denmark-numismaster-145357
