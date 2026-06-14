@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-14T09:10:57Z'
+  last_updated_utc: '2026-06-14T10:12:13Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3836,4 +3836,62 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-14T09:10:57Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+  summary: 'BO.7 brunswick_wolfenbuttel_principality in_scope_nids contains an OOS pattern: N#312656 =
+    4 Pfennigs (Vierling) 1814 (Copper pattern strike), Type=Patterns — OOS per CLAUDE.md §9.1.'
+  status: resolved
+  instance_first_seen: '2026-06-14T10:10:35.576622Z'
+  last_seen: '2026-06-14T10:10:35.576622Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312656
+  occurrences:
+  - run_utc: '2026-06-14T10:10:35.576622Z'
+    batch_label: TA
+    detail: 'Batch TA: N#312656 fetched, Numista Type field = ''Patterns'', title ''(Copper pattern strike)''.
+      Not saved to cache. Should be folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies.'
+    full_context:
+      reason: pattern
+      url_tried: https://en.numista.com/312656
+      kind: pattern
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#312656
+    into the BO.7 audit oos_excluded_nids slot (kind=pattern).
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-14T10:10:45Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+  summary: 'BO.7 brunswick_wolfenbuttel_principality in_scope_nids contains an OOS pattern: N#312654 =
+    4 Pfennigs (Vierling) 1814 (Silver pattern strike), Type=Patterns, KM# Pn45 — OOS per CLAUDE.md §9.1.'
+  status: resolved
+  instance_first_seen: '2026-06-14T10:12:12.333532Z'
+  last_seen: '2026-06-14T10:12:12.333532Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312654
+  occurrences:
+  - run_utc: '2026-06-14T10:12:12.333532Z'
+    batch_label: TA
+    detail: 'Batch TA: N#312654 fetched, Numista Type field = ''Patterns'', title ''(Silver pattern strike)'',
+      ref KM# Pn45. Not saved to cache.'
+    full_context:
+      reason: pattern
+      url_tried: https://en.numista.com/312654
+      kind: pattern
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#312654
+    into the BO.7 audit oos_excluded_nids slot (kind=pattern).
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-14T10:12:12Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
