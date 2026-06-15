@@ -811,6 +811,21 @@ def _resolve_dict_fields_per_location(coin: dict, loc_id: str, km_register: str 
     return out
 
 
+# Per-page phase derivation (CLAUDE.md §7 «phases are location-local»; §8.2
+# «first year of issue determines phase»). For fusses in this set, a coin's
+# phase is COMPUTED per consumer page from `year_first` against THAT page's
+# phase windows for the fuss, rather than requiring the stored scalar `phase`
+# to match. This dissolves the cross-page granularity desync: the same coin
+# lands in whatever window EXISTS on each page (e.g. on the Denmark page the
+# 18½-Thaler has a single wide phase I[1813-1875], so every 18½ coin —
+# including SH-periodised stored-II/III dual-mint coins — derives to I and
+# renders; on the SH page it derives to the finer I/II/III/IV window of its
+# year). The stored phase is honoured as a tiebreaker only at a shared window
+# boundary (override). SCOPED rollout — start with 18½-Thaler so nothing else
+# changes; widen deliberately after per-fuss review (handoff 2026-06-15).
+_DERIVE_PHASE_FROM_YEAR: set[str] = {"18_5_thaler"}
+
+
 def _assemble_v2_location(loc_id: str, raw: dict) -> int:
     """Populate `raw['coins']` from V2 entity-keyed curated + seed files.
 
@@ -1007,6 +1022,26 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
             continue
         ph_defs = phases_map[fuss] or []
         ph_ids = {p.get("id") if isinstance(p, dict) else getattr(p, "id", None) for p in ph_defs}
+        # Per-page phase derivation (scoped, _DERIVE_PHASE_FROM_YEAR): compute
+        # the phase from year_first against THIS page's windows for the fuss;
+        # the stored phase wins only as a boundary tiebreaker (override). This
+        # re-buckets a coin into whatever window exists on this page (no drop,
+        # no manual re-tag) and is what synchronises the cross-page granularity
+        # desync. Falls through to the standard checks when no window matches.
+        if fuss in _DERIVE_PHASE_FROM_YEAR and _yf_coin is not None and ph_defs:
+            cands: list = []
+            for p in ph_defs:
+                pid = p.get("id") if isinstance(p, dict) else getattr(p, "id", None)
+                lo = p.get("year_from") if isinstance(p, dict) else getattr(p, "year_from", None)
+                hi = p.get("year_to") if isinstance(p, dict) else getattr(p, "year_to", None)
+                if lo is not None and hi is not None and lo <= _yf_coin <= hi:
+                    cands.append(pid)
+            if cands:
+                derived = phase if phase in cands else cands[0]
+                if derived != phase:
+                    c = {**c, "phase": derived}
+                kept.append(c)
+                continue
         if phase not in ph_ids:
             dropped.append((cid, f"phase '{phase}' not defined for fuss '{fuss}'"))
             continue
