@@ -3284,6 +3284,22 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 
 ---
 
+### CG. 🟢 Make `classify_mint_to_entity` issuer-aware (KM-register / denomination / ruler), not bare mint-location  *(opened 2026-06-15)* *(est: medium)* *(type: pipeline + decision)* *(do BEFORE seed-builders become authoritative / Phase 9 promotion)*
+
+**Problem.** `scripts/lib/v2_entity_classify.py::classify_mint_to_entity(mint, year)` maps a coin to a political entity from the **mint location alone**. That is the wrong criterion (curator decision 2026-06-15): a mint indicates the issuing entity / circulation **only when the issuer owned that mint**. Two failure modes proven in the data:
+- **Crown mints served multiple realms.** Altona was the royal *Danish* mint in Holstein and struck *Danish-realm* coinage (Rigsbankskilling, Skilling Dansk, Speciedaler, Frederiks D'or, …). Of 29 Altona/Glückstadt-struck `danish_realm` coins, **28 carry only the Danish (KM-DK) register + Danish denominations** — Danish issues, not Holstein. Bare-mint classification would wrongly tag them `royal_holstein`.
+- **Commission strikes / changing ownership.** Pre-1640 Altona belonged to Schaumburg-Pinneberg; Ernst-III-von-Schaumburg coins struck there are `schauenburg_pinneberg` (issuer), not `royal_holstein`. The 1848 Provisional Government and the Plön duke also struck at "royal Holstein" mints but are their own issuers.
+
+**Correct criterion** = issuer (ruler / legend) + circulation, with the **issuer-owns-mint guard**. Practical signals: **KM register** (KM-SH = Krause «German States — Schleswig-Holstein» volume → royal_holstein; KM-DK = Denmark volume → danish_realm), **denomination** (Holstein-Courant «Schilling Sch.-H. Courant» → duchies; Danish Rigsdaler/Speciedaler/Skilling Dansk → realm), **ruler**. The crown mint-realm union (`royal_holstein` for a Holstein-only strike; `[danish_realm, royal_holstein]` if struck at Copenhagen too — since royal_holstein ⊂ danish_realm politically) applies ONLY to crown coins.
+
+**Where it bites.** The RENDER layer is already correct — `build.py::_derive_issuing_entity` + `_CROWN_MINT_REALM` (commit bd9126b) recompute issuing_entity per page from the crown mint-realm union, scoped to `issuing_entity==danish_realm` (the guard). But `classify_mint_to_entity` (used by the seed-builders `v2_seed_writer` + `build_*_seed.py` and the merger `merge_seeds_cross_source.py`) still encodes bare-mint logic → when the seed-builders are re-run / promoted to authoritative, it would misclassify Altona-struck Danish *seeds* into `royal_holstein` buckets.
+
+**Fix.** Make `classify_mint_to_entity` issuer-aware — give it access to the coin's catalog (KM register) + nominal + ruler (change signature to take the coin/record, or add a sibling `classify_coin_to_entity`), reusing the `_CROWN_MINT_REALM` + issuer-owns-mint logic. Audit all callers (seed-writer, merger, the `scripts/maintenance/build_*_seed.py` builders). **Dry-run the seed-bucket reclassification** (how many seeds move) before applying.
+
+**Gate / why deferred.** Not blocking anything now (V1 is the verification anchor; seeds are not yet authoritative). Do it **before** the seed-builders are made authoritative (Phase 9 promotion), so the bucket classification is issuer-correct from the start. Reference: the render-layer precedent (bd9126b) + the criterion analysis (handoff 2026-06-15).
+
+---
+
 ## Low priority
 
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
