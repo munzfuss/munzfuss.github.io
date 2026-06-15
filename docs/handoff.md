@@ -15,7 +15,7 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
-## 2026-06-15 — SH 11⅓-Thaler phase collapse SHIPPED; 18½ phase-sync DEFERRED (UNPUSHED, commit dc24d7f)
+## 2026-06-15 — SH 11⅓ collapse + 18½ per-page phase derivation SHIPPED (UNPUSHED, dc24d7f + fcbf5fe)
 
 Phases are location-local generalisations over a global Müntzfuß (§7); a build
 drop fires when a coin's stored scalar `phase` isn't among the consumer page's
@@ -34,24 +34,29 @@ itself continued; refs_pool gained `wilcke-1788-speciebank-kurant` +
 `sh-speciesbank-1788`. Build: drops DECREASED (denmark 7652→7646, SH 991→986),
 citations resolve, no stale claims.
 
-**DEFERRED — 18½-Thaler synchronisation (needs a decision).** The approved
-plan's «add 1841/1854 phases to DK, no re-tag» is BROKEN: DK's 18½ coins are
-stored as a single phase I spanning 1813-1875; narrowing I to [1813,1841]
-drops the phase-I coins with years 1842+ (+52 regression, proven by build).
-Synchronising windows is impossible without touching coins. The fork (user to
-decide): **(a)** mass re-tag ~270 18½ coins' phase by `year_first` to a unified
-I/II/III scheme; **(b)** per-page phase derivation in the build (compute phase
-from year per page; stored phase → override) — no re-tag, fixes ALL granularity
-desyncs, implements «coins primary». Plan file:
-`~/.claude/plans/iterative-napping-oasis.md`. The 2 dormant refs
-`danskmoent-moentlove-1841` + `forordning-rigsdaler-rigsmont-1854` were prepared
-then removed (re-add with the 18½ work).
+**SHIPPED — 18½-Thaler via per-page phase derivation (commit fcbf5fe, option b).**
+The first-tried «add 1841/1854 phases to DK» was BROKEN (narrowing DK's single
+phase I[1813-1875] dropped its phase-I coins with years 1842+, +52 regression,
+proven by build → reverted). The fix is build-side: `build.py`
+`_DERIVE_PHASE_FROM_YEAR = {"18_5_thaler"}` — for that fuss the assembly COMPUTES
+each coin's phase per consumer page from `year_first` against THAT page's
+windows (stored phase wins only as a boundary tiebreaker). No phase-window
+edits, no coin re-tag, denmark.yml untouched. On the Denmark page 18½ keeps its
+single wide I[1813-1875] so every 18½ coin (incl. SH-periodised stored-II/III
+dual-mint coins) derives to I and renders; on the SH page each derives to its
+finer I/II/III/IV year-window. Verified: full V2 build clean; drops decreased
+(denmark 7646→7626, SH 986→985) and unchanged on every other location; km-721/
+760/761/683 render on BOTH pages.
 
-**Same granularity-desync class, also deferred (separate per-fuss reviews):**
-9¼, 9-Thaler, kronemont, reichsdukatenfuss, courantdukatenfuss, guldkrone,
-kronemont_chr_iv — each DK↔SH window pair differs; needs the same «realm-wide
-law vs political event» source check before any change. Per-page derivation (b)
-would resolve all of them at once.
+**Other granularity desyncs — widen `_DERIVE_PHASE_FROM_YEAR` per fuss after
+review:** 9¼, 9-Thaler, kronemont, reichsdukatenfuss, courantdukatenfuss,
+guldkrone, kronemont_chr_iv all have differing DK↔SH windows; adding each fuss
+key to the set resolves it the same way. Do a quick per-fuss «realm-wide law vs
+political event» sanity check + a build-drop diff before widening (deliberate,
+not blanket). The 2 refs `danskmoent-moentlove-1841` +
+`forordning-rigsdaler-rigsmont-1854` were prepared then removed — not needed by
+the derivation approach (no DK phase prose added); re-add only if the DK 18½
+prose is later expanded.
 
 ## 2026-06-14 — KM render-leak fix + two pipeline fixes staged for the coordinated apply (UNPUSHED)
 
