@@ -143,10 +143,22 @@ def audit_entity(entity_id: str) -> dict:
             if d:
                 rows["MEASURE-DROP"].append((i, f, sorted(map(str, d))))
 
-        # MINT scalar replace
+        # MINT change — scalar OR list-form. The Royal-Danish→Kopenhagen
+        # registry fold is the dominant case and is INTENDED (Numista's
+        # mint id 260 «Royal Danish Mint» = Den Kongelige Mønt, Copenhagen,
+        # verified against the live source 2026-06-15); flag anything else.
+        ROYAL = {"Royal Danish", "Royal Danish Mint"}
         am, bm = a.get("mint"), b.get("mint")
-        if isinstance(am, str) and isinstance(bm, str) and am != bm:
-            intended = am in ("Royal Danish", "Royal Danish Mint")
+        aset = set(am if isinstance(am, list) else ([am] if am else []))
+        bset = set(bm if isinstance(bm, list) else ([bm] if bm else []))
+        if aset != bset:
+            removed = aset - bset
+            added = bset - aset
+            # INTENDED iff the only removal is a Royal-Danish alias AND it
+            # folds into an already-present-or-added Kopenhagen (no other
+            # mint gained/lost).
+            intended = (removed <= ROYAL and not (added - {"Kopenhagen"})
+                        and ("Kopenhagen" in bset))
             rows["MINT"].append((i, am, bm, "INTENDED" if intended else "REVIEW"))
 
         # METAL scalar replace
