@@ -3302,7 +3302,18 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 
 ## Low priority
 
-_None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
+### CU. 🔵 Year-union should downweight reign-window placeholder members  *(opened 2026-06-15)* *(est: medium)* *(type: pipeline-rule + regression-test)*
+
+**Context.** `_enrich_final_entry` (absorb) derives a final's displayed year via `_union_year_ranges(members)` — a blind union of every composed member's `year_ranges`. When a member carries a loose full-reign span, the union widens the displayed minting year past what the coin was actually struck. Surfaced by the 2026-06-15 curation-loss field-diff gate (`scripts/maintenance/audit_curation_loss.py`): the ONLY 2 absorb-stage losses project-wide were both this pattern —
+
+- `unified-dk-bruun-3839` (1 Rhinsk Gylden, Hans): member `galster-hg-27` = 1481-1513 (`year_verified=false`, the `fbc926c` reign-window anchor) widened the curated 1497.
+- `km-795-1-chr-ix-1874` (10 Øre, Christian IX): member `hede-c9h16a` = 1863-1906 (`year_verified=None`, loose Hede sub-variant span) would back-date decimal Krone coinage struck only from 1874.
+
+**Stopgap shipped (commit cebf090).** Both protected per-case via `_curation_holds` + the year-hold semantics changed from union-preserve to OVERRIDE (a frozen year is now authoritative; member ranges no longer widen it). This fixes the 2 known cases and is the right behaviour for `_curation_holds`, but it requires a curator to NOTICE and FREEZE each case by hand.
+
+**The systemic fix (deferred).** A union rule that, when ≥1 member carries a tighter (non-reign-window) attestation, EXCLUDES full-reign-span members from the displayed range — self-healing all current + future cases without per-entry holds. **Why it's hard / not done yet:** the two pollution signatures differ — `galster-hg-27` is `year_verified=false` (the explicit reign-anchor mechanism), but `hede-c9h16a` is `year_verified=None` with a parser-supplied full-reign span. So `year_verified` alone is not a clean discriminator; detecting «this member's span == the ruler's full reign window» (via `lib.ruler_reigns.reign_window`) is needed, and that carries false-positive risk for coins genuinely struck across a full reign. Needs careful design + a regression pass (re-run the field-diff audit before/after; expect year-span shrinkage only on reign-window-polluted entries, 0 change elsewhere).
+
+**Done-when.** A merger/absorb rule downweights reign-window-span members in the year union; the 2 per-case `_curation_holds` on bruun-3839 + km-795 become redundant (can stay as belt-and-braces); `audit_curation_loss.py --losses-only` still reports `widen=0`; no other entity's displayed year changes.
 
 ## Done
 

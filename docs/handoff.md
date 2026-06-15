@@ -15,6 +15,48 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-15 — curation-loss field-diff GATE CLOSED (UNPUSHED, 4b466b2 + fce45f1 + cebf090)
+
+The pre-apply gate is now COMPLETE — supersedes the earlier «verified safe»
+caveat in the KM 631 entry below, which only covered entry-DROPS, not
+field-level overwrites. New tool `scripts/maintenance/audit_curation_loss.py`
+(pure compute via `process_entity`, never writes) diffs the would-be-written
+final against the current final on the RE-DERIVED loss-risk fields (year_*,
+mint, metal, catalog xsrc, fineness/weight/diameter), skipping
+`_curation_holds`-protected fields. Field-category map (from reading
+`_enrich_final_entry`): IMMUTABLE (fuss/phase/kind/fraction/nominal/ruler/
+mintmaster/issuing_entity) + GAP-FILL (note/verification_note/inscription_*) +
+UNION (sources/composed_of) are SAFE; only the RE-DERIVED set can lose curation.
+
+**Full-project result: exactly 2 absorb-stage losses**, both year-widening from
+a reign-window composed member — `unified-dk-bruun-3839` (galster-hg-27
+1481-1513 v=false widened curated 1497) + `km-795-1-chr-ix-1874` (hede-c9h16a
+1863-1906 would back-date the decimal 10 Øre, struck only from 1874). Both
+PROTECTED via dict-form `_curation_holds` (curator kept 1497 for bruun-3839).
+Everything else benign: 155 Royal-Danish→Kopenhagen mint folds (VERIFIED
+against the live Numista source N#18277 = «Royal Danish Mint (Den Kongelige
+Mønt), Copenhagen, Denmark (1739-date)» — harvester stored only the institution
+name `mints[].name`, registry recovers the city the source states; 121 are
+list-form where Kopenhagen is already present from a Hede/Bruun co-member) + 1
+benign Malmø→Malmö diacritic (bruun-3839) + 1 year-ADD enrichment. Post-fix
+audit: **REAL LOSS widen=0/cat-drop=0/measure-drop=0/metal=0**.
+
+**Mechanism fix shipped (cebf090):** `_curation_holds` on year was INSUFFICIENT
+— the held branch did `_union_year_ranges(members)`, folding foundation year
+INTO the member union, so it froze only the display label while year_first/last
+still leaked to the reign window (and year_first drives §8.2 phase). Changed to
+OVERRIDE: a frozen year is authoritative, member ranges don't widen it. Blast
+radius 0 (these 2 are the only year-hold entries).
+
+**Deferred systemic follow-up (TODO §CU):** the root cause is `_union_year_ranges`
+blindly unioning reign-window placeholder members (year_verified=false full-reign
+span like galster-hg-27; OR a loose Hede sub-variant span like c9h16a, v=None)
+with tighter same-type attestations. A clean systemic rule (downweight
+full-reign-span members when tighter attestations exist) would self-heal future
+cases without per-entry holds, but the two pollution signatures differ
+(v=false reign-anchor vs v=None loose-range) → needs careful design +
+regression testing. Per-case holds suffice for now.
+
 ## 2026-06-15 — KM 631 cross-entity merge decision DECLARED (UNPUSHED, 022a754)
 
 KM 631 (2 Skilling, Christian VII, Hede 33 with sub-variants 33A/33B/33C,
