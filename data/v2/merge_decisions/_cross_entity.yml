@@ -37,3 +37,40 @@ merges:
       Schleswig-Holstein bucket). True issuing entity = royal_holstein. The
       «Goldgulden» label is Numista's generic name; Hede's «Ungersk Gylden»
       (.986) is authoritative. Curator merge 2026-06-13 (Serhii).
+
+  - target_entity: danish_realm
+    members:
+      # home: danish_realm
+      - dk-hede-c7h33a            # Hede 33A
+      - dk-hede-c7h33b            # Hede 33B
+      - dk-hede-c7h33c            # Hede 33C
+      - kmk-122089                # KMM, Hede 33B
+      - kmk-122886                # KMM, Hede 33A
+      - kmk-159749                # KMM, Hede 33B
+      - kmk-340595                # KMM, Hede 33
+      - denmark-numismaster-58047 # KM 631.1 (Kopenhagen)
+      - km-631-chr-v-1778         # ucoin, KM 631
+      # home: royal_holstein
+      - denmark-numismaster-58048 # KM 631.2 (Altona)
+      - denmark-numismaster-58049 # KM 631.3 (Altona)
+      - dk-numista-42563          # numista N#42563, KM 631 (Altona + Kopenhagen)
+    reason: |
+      One coin — Christian VII «2 Skilling», Hede 33 (sub-variants 33A/33B/33C),
+      KM 631 (.1/.2/.3), struck 1778-1785 at Altona AND Kopenhagen. Currently
+      fragmented into THREE final rows: unified-dk-hede-c7h33a (Hede 33A, KM
+      631/631.1) + unified-dk-hede-c7h33c (Hede 33C, KM 631.3) in danish_realm,
+      and unified-denmark-numismaster-58049 (+ numista N#42563, no Hede) in
+      royal_holstein (seed_unsorted). The split is the same class as the
+      Frederik D'or (cross-letter Hede 33A/C the §9a gate won't unite on RAW
+      overlap) plus cross-entity (the numismaster/numista Altona copies bucketed
+      to royal_holstein by mint). KM 631.1/.2/.3 + Hede 33A/B/C are mint
+      sub-variants of ONE type → list-form accumulation per §9a.
+
+      target_entity = danish_realm: this is Danish-realm coinage (Hede c7h
+      volume, Christian VII, Danish denomination «Skilling»). The build's
+      issuing_entity derivation (_derive_issuing_entity, commit bd9126b) then
+      renders it joint [danish_realm, royal_holstein] — struck at Altona +
+      Kopenhagen, so it circulated in both the duchies and Denmark proper →
+      visible on BOTH pages. fuss/phase carry from the c7h33a/c7h33c foundation
+      (11⅓-Thaler-Fuß, phase I) + their classification_decisions assignments.
+      Curator merge 2026-06-15 (Serhii).
