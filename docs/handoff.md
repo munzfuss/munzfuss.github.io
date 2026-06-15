@@ -15,6 +15,38 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-15 — KM 631 cross-entity merge decision DECLARED (UNPUSHED, 022a754)
+
+KM 631 (2 Skilling, Christian VII, Hede 33 with sub-variants 33A/33B/33C,
+struck 1778-1785 at Altona AND Kopenhagen) was fragmented into 3 final rows:
+`unified-dk-hede-c7h33a` (Hede 33A, KM 631/631.1, danish_realm) +
+`unified-dk-hede-c7h33c` (Hede 33C, KM 631.3, danish_realm) +
+`unified-denmark-numismaster-58049` (+ numista N#42563, no Hede, royal_holstein,
+seed_unsorted). Split = cross-letter (Hede 33A/C, §9a gate won't unite on RAW
+overlap — same class as Frederik D'or) + cross-entity (Altona numismaster/numista
+copies bucketed to royal_holstein by mint). Fix = `_cross_entity.yml` force-union
+of all 12 seed members, **target_entity: danish_realm** (Danish-realm coinage, Hede
+c7h volume); the build's `_derive_issuing_entity` (bd9126b) then renders it joint
+[danish_realm, royal_holstein] via the Altona mint → both pages. Pre-scan verified:
+9 members home=danish_realm, 3 (numismaster-58048/58049, numista-42563)
+home=royal_holstein pulled+excluded. fuss/phase carry from the c7h33a/c7h33c
+foundation (11⅓-Thaler I) + their classification_decisions assignments.
+**Declarative — materialises on the global merger --apply.** Resolves the
+2026-06-14 «single royal_holstein» mis-model flagged in the Royal Danish entry.
+
+**Pre-apply curation-loss gate — VERIFIED SAFE (read-only absorb --dry-run).**
+danish_realm/royal_holstein/danish_norway all report «Stale finals dropped (no
+backing): 0» → absorb undoes NO curation; curator assignments apply (4+6+0, phase
+re-tags survive); net final deltas +22/+4/+1 are legitimate monotonic-guard
+re-promote + de-dup reconciliation (current final is behind the pipeline), NOT
+loss; 5 enrichment conflicts logged to match_uncertainty (surfaced, not lost). The
+km-repr fix survives (seed_unified already clean → absorb reconstructs clean km).
+**CAVEAT:** this dry-run reads CURRENT seed_unified, which does NOT yet carry the
+KM 631 / Frederik D'or merges — those materialise only after merger --apply. Full
+apply effect (new merges + Royal Danish→Kopenhagen rebuild) needs merger --apply
+first, then absorb, to be diffable end-to-end. Tree is clean → a verification apply
+is fully revertible via `git checkout`.
+
 ## 2026-06-15 — issuing_entity derivation for SH-struck crown coins SHIPPED (UNPUSHED, bd9126b)
 
 `build.py::_derive_issuing_entity` (+ `_CROWN_MINT_REALM`): at assembly, a coin
