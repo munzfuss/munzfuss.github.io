@@ -47,12 +47,23 @@
    numista). Fixed at the single source of truth: added «royal danish» +
    «royal danish mint» to the kopenhagen alias set in `mint_registry.py`.
    Dormant for render (build reads final mint as-is). User chose to defer
-   propagation to the coordinated apply. **Caveat for that apply:** the 24
-   numista seeds carrying `['Altona','Royal Danish']` become
-   `['Altona','Kopenhagen']` → `classify_mint_to_entity` returns
-   `[danish_realm, royal_holstein]` (multi) instead of scalar `royal_holstein`
-   → review whether the spurious Numista Copenhagen on these Altona issues
-   should be authority-dropped (Hede/Bruun give Altona only) rather than kept.
+   propagation to the coordinated apply. **At apply:** the 24 numista seeds
+   carrying `['Altona','Royal Danish']` become `['Altona','Kopenhagen']` →
+   `classify_mint_to_entity` returns `[danish_realm, royal_holstein]` (multi)
+   instead of scalar `royal_holstein`. **KEEP this — do NOT drop Copenhagen.**
+   §0b CORRECTION (2026-06-15): an earlier caveat here hypothesised the
+   Copenhagen was a «spurious Numista guess» to authority-drop. That was a
+   hypothesis-as-conclusion and was REFUTED on verification: for 19 of the 24,
+   Copenhagen is independently confirmed by Bruun and/or NumisMaster (and Hede
+   for KM 631) — they split the KM sub-variants by mint (.1=Kopenhagen,
+   .2=Altona, etc.). These are GENUINE multi-mint Altona+Copenhagen types, so
+   the `[danish_realm, royal_holstein]` joint classification is CORRECT (they
+   render natively on both pages). The other 5 (KM 600/651/767/763/958) have no
+   independent corroboration but no refutation either → keep per §0b. NOTE: KM
+   631 is therefore a genuine joint coin — the «single royal_holstein, denmark
+   consumes it» modeling chosen on 2026-06-14 was under the wrong premise;
+   joint `[danish_realm, royal_holstein]` is the accurate model (pending user
+   confirmation).
 
 **→ The «coordinated full apply» now bundles 3 things** (all gated on the
 curation-loss audit, TODO #6 / parked task #4-#8): (a) Ungersk Gylden
