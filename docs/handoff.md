@@ -15,6 +15,29 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-15 — issuing_entity derivation for SH-struck crown coins SHIPPED (UNPUSHED, bd9126b)
+
+`build.py::_derive_issuing_entity` (+ `_CROWN_MINT_REALM`): at assembly, a coin
+with `issuing_entity == danish_realm` struck at a crown-owned Holstein mint
+(Altona/Glückstadt) gets its issuing_entity recomputed as the union of mint-
+realms → **Holstein-only strike = royal_holstein; Altona+Kopenhagen = [danish_
+realm, royal_holstein]**. Criterion = issuer + circulation, NOT bare mint-
+location (curator decision): the issuer-owns-mint guard holds because the crown
+owned those mints, and `royal_holstein ⊂ danish_realm` politically so a duchy-
+only strike is PURE royal_holstein not joint. Scoped to danish_realm (Pass 1/2
+curated only; seed entries untouched) → commission strikes of other issuers at
+Altona (Schaumburg-Pinneberg pre-1640, Plön, 1848 Provisional Govt) keep their
+own entity. Applied in the two-pass: Pass-2 intersection tests the derived ie
+(SH page picks them up) + the resolved coin carries it. Render-only, durable
+(absorb's foundation-immutable ie never sees it). Effect: **29 coins (22 joint
++ 7 pure royal_holstein)** now render on BOTH Denmark + SH; km-743 (Copenhagen-
+only) stays danish_realm; 1126 Copenhagen-only realm coins unchanged. Verified:
+full build clean, ALL per-location drop counts unchanged (no regression).
+**Deep-analysis note:** `classify_mint_to_entity` itself encodes the flawed
+bare-mint criterion → it would misclassify Altona-struck Danish *seeds* as
+royal_holstein; make it issuer-aware (KM register / denomination / ruler) before
+the seed-builders become authoritative.
+
 ## 2026-06-15 — SH 11⅓ collapse + 18½ per-page phase derivation SHIPPED (UNPUSHED, dc24d7f + fcbf5fe)
 
 Phases are location-local generalisations over a global Müntzfuß (§7); a build
