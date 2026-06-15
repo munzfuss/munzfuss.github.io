@@ -440,8 +440,17 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
             holds_keys = set(holds.keys() if isinstance(holds, dict)
                              else (holds or []))
             if "year_ranges" in holds_keys or "year_first" in holds_keys:
-                # Curator explicitly froze year data — preserve via union
-                authoritative_yr = _union_year_ranges(members)
+                # Curator explicitly froze year data — OVERRIDE: the frozen
+                # foundation year is authoritative; member year-ranges
+                # (including loose reign-window placeholders) must NOT widen
+                # it. Was union-preserve until 2026-06-15 — the union let a
+                # galster reign-window member (1481-1513, year_verified=false)
+                # widen the curated 1497 on unified-dk-bruun-3839, so the hold
+                # only froze the display label while year_first/last still
+                # leaked to the reign window (and year_first drives §8.2 phase
+                # placement). Override blast radius: 0 existing coins — that
+                # entry is the only one carrying a year-hold.
+                authoritative_yr = _union_year_ranges([final_entry])
             else:
                 authoritative_yr = _union_year_ranges(seed_unified_members)
         else:
