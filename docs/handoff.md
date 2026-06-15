@@ -15,6 +15,44 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-15 — SH 11⅓-Thaler phase collapse SHIPPED; 18½ phase-sync DEFERRED (UNPUSHED, commit dc24d7f)
+
+Phases are location-local generalisations over a global Müntzfuß (§7); a build
+drop fires when a coin's stored scalar `phase` isn't among the consumer page's
+windows for that fuss (`build.py:1005-1023`), so cross-periodised coins vanish
+from one page. Source review (Wilcke `/wilcke/w3f1.htm`, danskmoent Møntlove)
+established the SH 11⅓ sub-phases 1773/1788 are political/institutional, NOT
+standard changes (kurant never abolished — «man hang stadig ved Kuranten»;
+Altona struck 11⅓ to 1812).
+
+**SHIPPED (dc24d7f):** SH `phases.11_333_thaler` collapsed 3→1 `I[1726-1813]`
+(matches DK); 6 coins re-tagged phase II→I (direct final edits + durable
+`classification_decisions` assignments); the «retired/only-until-1788» claim
+corrected on every surface (SH closing/timeline + DK phases/timeline/
+fuss_periods) → Speciedaler became Holstein's PRIMARY from 1788 but the kurant
+itself continued; refs_pool gained `wilcke-1788-speciebank-kurant` +
+`sh-speciesbank-1788`. Build: drops DECREASED (denmark 7652→7646, SH 991→986),
+citations resolve, no stale claims.
+
+**DEFERRED — 18½-Thaler synchronisation (needs a decision).** The approved
+plan's «add 1841/1854 phases to DK, no re-tag» is BROKEN: DK's 18½ coins are
+stored as a single phase I spanning 1813-1875; narrowing I to [1813,1841]
+drops the phase-I coins with years 1842+ (+52 regression, proven by build).
+Synchronising windows is impossible without touching coins. The fork (user to
+decide): **(a)** mass re-tag ~270 18½ coins' phase by `year_first` to a unified
+I/II/III scheme; **(b)** per-page phase derivation in the build (compute phase
+from year per page; stored phase → override) — no re-tag, fixes ALL granularity
+desyncs, implements «coins primary». Plan file:
+`~/.claude/plans/iterative-napping-oasis.md`. The 2 dormant refs
+`danskmoent-moentlove-1841` + `forordning-rigsdaler-rigsmont-1854` were prepared
+then removed (re-add with the 18½ work).
+
+**Same granularity-desync class, also deferred (separate per-fuss reviews):**
+9¼, 9-Thaler, kronemont, reichsdukatenfuss, courantdukatenfuss, guldkrone,
+kronemont_chr_iv — each DK↔SH window pair differs; needs the same «realm-wide
+law vs political event» source check before any change. Per-page derivation (b)
+would resolve all of them at once.
+
 ## 2026-06-14 — KM render-leak fix + two pipeline fixes staged for the coordinated apply (UNPUSHED)
 
 10 commits unpushed (origin/main..HEAD). This session, in order of the user's reports:
