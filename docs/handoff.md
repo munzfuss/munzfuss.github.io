@@ -80,6 +80,17 @@
 >   re-absorb royal_holstein (previously corrupted c7h13a + double-wrapped km-696)
 >   → **0 str-repr** (verified, then reverted to keep the §CW final; the only diff
 >   was a benign c7h13a km `{sh:[…]}`→bare-list normalisation).
+> - **§CU year-mute mechanism** — curator `year_demote` in `merge_decisions`.
+>   `process_entity` stamps `_year_demoted` on named reign-window members;
+>   `_union_year_ranges` (now `_collect()` + two-pass) holds them to a last-resort
+>   pass (span never widens, years not deleted); `build_unified` propagates the
+>   flag to wholly-muted unified entries. 3 culprits declared in
+>   `merge_decisions/danish_realm.yml` (galster-hg-27, numista-355730, kmk-279179).
+>   40 union tests pass; light-integration confirms bruun-3839→1496, c9h16a→1874-1905.
+>   MECHANISM committed; MATERIALISATION deferred to the coordinated re-flow (full
+>   bruun-3839 1496-1497 also needs the Bruun re-seed), and the per-case year-holds
+>   on bruun-3839 + km-795 stay until then (remove WITH the re-flow so they don't
+>   OVERRIDE the mute). §CU updated.
 >
 > **REMAINING (materialisation, NOT done):** re-seed numista → re-merge → re-absorb
 > the Danish-crown entities so discrete labels render. The km-str-repr blocker is
