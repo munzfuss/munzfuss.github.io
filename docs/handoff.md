@@ -48,6 +48,17 @@
 > re-flow) before re-harvesting the Albertsdaler's discrete years onto its OWN entry.
 > §0b: my earlier «KM-640 cross-register collision» hypothesis was WRONG (Hede 13A
 > has no KM at all; match fired on primary signals).
+>
+> **Numista year_list re-harvest gap ROOT-FOUND → new TODO §CX (UNPUSHED docs).**
+> Tracing «why no discrete years for 131730» revealed the 2026-06-10 «501-entry»
+> year_list re-harvest covered **danish_norway + 5 German entities only** — the
+> Danish-crown track was NEVER re-harvested: range-only-no-`year_list` counts
+> royal_holstein 102/154, danish_realm 248/516, gottorp 55/93 (control danish_norway
+> 4/365 ✅). ~400+ ungapped Danish-crown numista entries; 131730 is just one. The
+> machinery (extractor `d4d1ca8`, Priority-0 queue `handoff_numista_year_list_reharvest.yml`
+> now `pending: []`) all works — it just never ran on this entity track. Next:
+> build the candidate NID list → append to the Priority-0 queue (or focused Chrome
+> batch) → re-seed → re-flow. No API quota (Chrome session). Awaiting user go.
 
 ## 2026-06-16 — overlap-home architecture + merger stage of the global apply DONE; absorb DEFERRED (UNPUSHED, e8de501 + e414a0a + 8d882fe + 1a8097b)
 
