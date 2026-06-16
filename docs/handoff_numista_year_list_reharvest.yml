@@ -1,6 +1,17 @@
+# Numista year_list backfill queue (Priority 0 in HARVEST_ROUTINE §0).
+#
+# §CX batch (2026-06-16) — DRAINED in-session. The 2026-06-10 «501-entry»
+# re-harvest covered danish_norway + 5 German entities but NOT the Danish-crown
+# track. The 456 range-only-no-year_list NIDs there (royal_holstein 102 /
+# danish_realm 248 / gottorp 55 / schauenburg_pinneberg 31 / fuerstbisthum_luebeck
+# 10 / + tails) were re-harvested via Chrome MCP same-origin fetch (0.35s pacing,
+# 0 errors): 218 gained discrete year_list, 238 confirmed range-only. Caches
+# committed in submodule (2758b6d41). Materialisation (re-seed numista → re-merge
+# → re-absorb) is PENDING the coordinated re-flow (TODO §CX) — it bundles the
+# accumulated builder/cache drift, same as the parked apply.
 pending: []
-total: 92
-processed_count: 67
+total: 548
+processed_count: 523
 completed:
 - 119945
 - 119953

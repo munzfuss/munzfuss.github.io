@@ -55,10 +55,29 @@
 > Danish-crown track was NEVER re-harvested: range-only-no-`year_list` counts
 > royal_holstein 102/154, danish_realm 248/516, gottorp 55/93 (control danish_norway
 > 4/365 ✅). ~400+ ungapped Danish-crown numista entries; 131730 is just one. The
-> machinery (extractor `d4d1ca8`, Priority-0 queue `handoff_numista_year_list_reharvest.yml`
-> now `pending: []`) all works — it just never ran on this entity track. Next:
-> build the candidate NID list → append to the Priority-0 queue (or focused Chrome
-> batch) → re-seed → re-flow. No API quota (Chrome session). Awaiting user go.
+> machinery (extractor `d4d1ca8`, Priority-0 queue `handoff_numista_year_list_reharvest.yml`)
+> all works — it just never ran on this entity track.
+>
+> **✅ DONE THIS SESSION (UNPUSHED):**
+> - **§CW Albertsdaler split** — committed `2324dc9`. no_merges in
+>   merge_decisions/royal_holstein.yml + re-ran merger/absorb royal_holstein;
+>   c7h13a now domestic (dav EC III 1313, 0.875/28.893, hede 13A-D), Albertsdaler
+>   consolidated onto c7h22ab (km 640.1/640/640.2, Dav EC III 1310). Fixed the
+>   absorb's recurring km str-repr corruption on c7h13a + km-696 by hand (0 str-repr
+>   left). Build clean (denmark 2081 / SH 727), renders verified on both pages.
+> - **§CX harvest** — collected 456 Danish-crown range-only NIDs, queued, drained
+>   in-session via Chrome MCP (0.35s, 0 errors): 218 gained discrete `year_list`,
+>   238 range-only. Caches committed in submodule `2758b6d41`; queue drained.
+>   Cache→Downloads→disk transport (Blob `a.click()`) worked around the
+>   javascript_tool ~1.5KB result-truncation.
+>
+> **REMAINING (materialisation, NOT done):** re-seed numista → re-merge → re-absorb
+> the Danish-crown entities so discrete labels render. Deferred because the numista
+> seed regen bundles the same builder/cache drift as Bruun (`4465c1b`/`41efdf0`…)
+> AND the per-entity absorb re-corrupts register-keyed km (str-repr form #2) every
+> run — do the durable `catalog_codes.normalise_catalog` form-#2 fix FIRST, then the
+> coordinated re-flow (Bruun seed regen + numista re-seed + all-entity merge/absorb).
+> **Submodule `2758b6d41` is local-only — push it (PB-10) before/with the main push.**
 
 ## 2026-06-16 — overlap-home architecture + merger stage of the global apply DONE; absorb DEFERRED (UNPUSHED, e8de501 + e414a0a + 8d882fe + 1a8097b)
 
