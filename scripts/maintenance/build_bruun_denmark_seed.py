@@ -336,6 +336,46 @@ def parse_year(lot: dict) -> int | None:
     return None
 
 
+def parse_year_span(lot: dict) -> tuple[int, int, bool] | None:
+    """Capture an «ND (…)» *attributed* year-range, distinct from a dated strike.
+
+    Bruun marks undated coins «ND (<year(s)>)» — the year there is the
+    cataloguer's attribution, NOT an inscription on the coin. Both the upstream
+    parser and `parse_year` flatten such lots to a single lower-bound year
+    (`lot.year`), discarding three things: (a) the range, (b) an abbreviated
+    upper bound («ND (1607-11)» = 1607–1611, «ND (ca. 1496-97)» = 1496–1497),
+    and (c) the very fact the coin is undated / approximate. The result was an
+    «ND (ca. 1496-1497)» Goldgulden rendered as a confident single-year «1496»
+    strike (quirk logged 2026-06-16, `docs/SOURCES.md` §13.3).
+
+    Returns `(year_first, year_last, year_verified=False)` when the meta_line
+    carries an in-scope «ND (…)» attribution, else `None` (caller then uses the
+    plain single-year `parse_year` path for genuinely dated strikes). «ca.» is
+    honoured but does not change the result shape — every ND attribution is
+    unverified, so the renderer emits the «(?)» marker on the year column
+    (CLAUDE.md §4 / §3a: the year_label stays a clean decimal year/range, the
+    uncertainty lives in the per-field verified flag).
+    """
+    meta = lot.get("meta_line") or ""
+    # «ND (» + optional «ca.» + a 4-digit lower year + optional «-<upper>», where
+    # the upper bound may be abbreviated (1607-11 → 1611, 1496-97 → 1497).
+    # Medieval «ND (900-950)» / «ND (1100…)» never match: the lower-year class
+    # is 1[3-9]\d{2} (1300-1999), so pre-1300 lots fall through to None and are
+    # handled by parse_year's NDMED gate + the 1481-1914 scope filter.
+    m = re.search(r"\bND\s*\(\s*(?:ca\.?\s*)?(1[3-9]\d{2})(?:\s*[-–]\s*(\d{2,4}))?", meta)
+    if not m:
+        return None
+    yf = int(m.group(1))
+    if m.group(2):
+        frag = m.group(2)
+        yl = int(frag) if len(frag) == 4 else int(str(yf)[: 4 - len(frag)] + frag)
+    else:
+        yl = yf
+    if yl < yf:
+        yf, yl = yl, yf
+    return (yf, yl, False)
+
+
 def parse_ruler_from_meta(meta_line: str | None, body: str | None, ruler_hint: str | None) -> str | None:
     """Bruun parser sometimes mis-attributes a mintmaster name as `ruler`
     (e.g. "Hans Seyer" → ruler="Hans"). The meta_line carries the actual
@@ -726,16 +766,33 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
             return None
 
     cid = lot_id(part, lot)
+    # Year fields: an «ND (…)» attribution carries a range + the undated flag
+    # (year_verified=False → «(?)» marker); a dated strike keeps the plain
+    # single year. See parse_year_span / SOURCES.md §13.3.
+    span = parse_year_span(lot)
+    if span:
+        yf, yl, yv = span
+        year_fields: dict[str, Any] = {
+            "year_label": str(yf) if yf == yl else f"{yf}-{yl}",
+            "year_first": yf,
+            "year_last": yl,
+            "year_ranges": [[yf, yl]],
+            "year_verified": yv,
+        }
+    else:
+        year_fields = {
+            "year_label": str(year),
+            "year_first": year,
+            "year_last": year,
+            "year_ranges": [[year, year]],
+        }
     entry: dict[str, Any] = {
         "id": cid,
         "fuss": "seed_unsorted",
         "phase": "bruun",
         "kind": "kurant",
         "nominal": denom,
-        "year_label": str(year),
-        "year_first": year,
-        "year_last": year,
-        "year_ranges": [[year, year]],
+        **year_fields,
         "ruler": ruler,
         "mint": mint,
         "catalog": catalog,
