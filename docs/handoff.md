@@ -17,6 +17,36 @@
 
 ## 2026-06-16 — overlap-home architecture + merger stage of the global apply DONE; absorb DEFERRED (UNPUSHED, e8de501 + e414a0a + 8d882fe + 1a8097b)
 
+> **⚠ DEFINITIVE STATUS (end of 2026-06-16, after fully running the apply once + reverting):**
+> The merger stage is committed + correct (KM631/FrD'or united in seed_unified/
+> royal_holstein). The migration of the 8 curated re-homed finals dr→rh + KM631
+> year-hold was BUILT AND VERIFIED in-session (KM631 → one coin 11_333_thaler/I,
+> year held 1778-1785, ie joint, 12 members; 7 migrated no-duplicates; c7h33c
+> folded; c7h11c consolidated into dk-tid-79168 — all good). **The real blocker
+> is a PRE-EXISTING absorb km-merge CODE bug:** `absorb --apply` on the Danish
+> trio re-introduces km-repr corruption on 3 cross-register (SH+DK) coins —
+> **km-696-1-fr-vi-1826, unified-dk-hede-c5h121, unified-dk-hede-c7h13a** — emitting
+> a hybrid km dict `{'sh': [...], 'value': X, 'register': Y}` (register-keyed form
+> fused with KMRef form) that `v2_resolver.resolve_km_for_location` rejects →
+> build crashes. c5h121 is the SAME coin `fix_corrupted_km_repr.py` (38f4f67) data-
+> patched; the absorb re-corrupts it, so any absorb re-run breaks it — NOT a
+> regression from this session, a latent bug this session surfaced. The whole
+> apply (migration + absorb) was REVERTED to HEAD; build is clean (validate OK,
+> 33 commits, nothing pushed).
+>
+> **CORRECT ORDER for the focused continuation — CODE FIX FIRST:**
+> 1. Fix the absorb km-merge so combining a register-keyed km (`{'sh': [...]}`)
+>    with a KMRef km (`{'value':X,'register':Y}`) NORMALISES to one register-keyed
+>    dict (e.g. `{'sh':[...], 'dk':'706.1'}`), never the hybrid. Likely site: the
+>    catalog assembly in `absorb_seeds_into_final_v2._enrich_final_entry` +
+>    `lib/catalog_codes.normalise_catalog` (which should fold the hybrid but
+>    doesn't) + `merge_seeds_cross_source._merge_km_field`. Use
+>    `scripts/maintenance/fix_corrupted_km_repr.py` as the reference for the
+>    correct register-keyed shape. Add a guard/test: absorb of a coin with SH-km
+>    member + DK-km foundation → clean register-keyed dict, resolver-loadable.
+> 2. THEN migrate the 8 finals (below) + KM631 year-hold + `absorb --apply` (trio)
+>    + `build --include-v1` + verify + commit.
+
 **Architecture fix (the curator's home-file model).** A coin's `issuing_entity`
 may be a list (joint mint = circulation in several political entities); the
 VALUE keeps the full set, but the HOME FILE must be the overlap entity that
