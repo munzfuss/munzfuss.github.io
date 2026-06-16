@@ -224,6 +224,7 @@ def _normalise_metal(metal, fineness):
 from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices
 from lib.v2_seed_writer import _canonicalise_mint
+from lib.v2_entity_classify import classify_mint_to_entity
 
 
 def _normalise_nominal(nominal):
@@ -3928,10 +3929,19 @@ def process_entity(entity_id: str,
         unified_id = _unified_id_for_class(member_coins)
         unified, conflicts = build_unified(member_coins, unified_id, entity_id)
         # Cross-entity stamp: a class containing a member curator-pulled into
-        # this entity IS this entity's coin, regardless of the gap-fill's
-        # authority pick across the (mixed-home) members.
+        # this entity is a real coin of this jurisdiction. Derive its
+        # issuing_entity from the merged MINT (the circulation signal) rather
+        # than scalar-stamping `entity_id` — so a joint-mint coin (e.g. KM 631
+        # struck Altona+Kopenhagen) keeps its full VALUE
+        # `[danish_realm, royal_holstein]` and homes to the overlap file
+        # `royal_holstein.yml` (visible on both pages via Pass 1), instead of
+        # collapsing to scalar `danish_realm` and hiding from SH except via
+        # the fragile Pass-2 intersection. `entity_id` is the fallback when the
+        # merged coin has no resolvable mint (preserves the curator's pull
+        # target so we never drop the class to `_unclassified`).
         if xentity_members_here & set(member_ids):
-            unified["issuing_entity"] = entity_id
+            unified["issuing_entity"] = (
+                classify_mint_to_entity(unified.get("mint")) or entity_id)
         unified_entries.append(unified)
         if conflicts and len(member_coins) > 1:
             merge_conflicts.append({
