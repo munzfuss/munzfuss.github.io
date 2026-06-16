@@ -517,5 +517,66 @@ class TestFormatYearLabel(unittest.TestCase):
         )
 
 
+class TestYearDemoteMute(unittest.TestCase):
+    """§CU curator-mute: a `_year_demoted` member is held to a last-resort pass.
+
+    It contributes years ONLY when no non-muted member does (its years are
+    demoted, never deleted). Priority below a normal member, above no-data.
+    """
+
+    @staticmethod
+    def _muted(year_ranges):
+        m = _member(year_ranges=year_ranges)
+        m["_year_demoted"] = True
+        return m
+
+    def test_muted_reign_window_ignored_when_others_present(self):
+        """bruun-3839: bruun 1496-1497 (loose) + muted galster/numista reign
+        window 1481-1513 → muted ignored, union is the real strike window."""
+        members = [
+            _member(year_ranges=[[1496, 1497]]),       # bruun (non-muted)
+            self._muted([[1481, 1513]]),               # galster reign-window
+            self._muted([[1481, 1513]]),               # numista-355730 reign-window
+        ]
+        self.assertEqual(_union_year_ranges(members), [[1496, 1497]])
+
+    def test_muted_reign_window_ignored_discrete_case(self):
+        """km-795: discrete 1874-1905 attestations + muted kmk-279179 full reign
+        1863-1906 → muted ignored, union is the discrete envelope (no 1863/1906)."""
+        members = [
+            _member(year_ranges=[[1874, 1875], [1882, 1882], [1891, 1891]]),
+            _member(year_ranges=[[1894, 1894], [1903, 1905]]),
+            self._muted([[1863, 1906]]),               # kmk-279179 reign-window
+        ]
+        u = _union_year_ranges(members)
+        flat = [y for lo, hi in u for y in (lo, hi)]
+        self.assertEqual(min(flat), 1874)
+        self.assertEqual(max(flat), 1905)
+        self.assertNotIn(1863, [lo for lo, hi in u])
+
+    def test_muted_used_as_fallback_when_sole_source(self):
+        """A muted member is NOT deleted: if it is the only source of any year,
+        its years are used (last-resort fallback)."""
+        members = [self._muted([[1481, 1513]])]
+        self.assertEqual(_union_year_ranges(members), [[1481, 1513]])
+
+    def test_muted_fallback_when_non_muted_have_no_years(self):
+        """Non-muted members present but year-less → fall back to the muted one."""
+        members = [
+            {"id": "x"},                               # no year fields
+            self._muted([[1670, 1699]]),
+        ]
+        self.assertEqual(_union_year_ranges(members), [[1670, 1699]])
+
+    def test_no_demote_flag_behaves_as_before(self):
+        """Without `_year_demoted`, the reign span is KEPT (pre-mute behaviour):
+        discrete 1496-1497 does NOT span the loose 1481-1513 → loose retained."""
+        members = [
+            _member(year_ranges=[[1496, 1497]]),
+            _member(year_ranges=[[1481, 1513]]),       # NOT muted
+        ]
+        self.assertEqual(_union_year_ranges(members), [[1481, 1513]])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

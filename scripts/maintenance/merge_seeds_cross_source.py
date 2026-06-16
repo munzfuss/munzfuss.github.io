@@ -2870,51 +2870,65 @@ def _union_year_ranges(members: list[dict]) -> list[list[int]] | None:
     the discrete attestations don't reach (often a reign-window or a
     date-range field), so the loose envelope is retained.
     """
-    discrete_years: set[int] = set()
-    loose_ranges: list[tuple[int, int]] = []
-
-    for m in members:
-        yr = m.get("year_ranges")
-        source_pairs: list[tuple[int, int]] = []
-        if isinstance(yr, list) and yr:
-            for r in yr:
-                if isinstance(r, (list, tuple)) and len(r) == 2:
-                    try:
-                        a, b = int(r[0]), int(r[1])
-                    except (TypeError, ValueError):
-                        continue
+    def _collect(subset: list[dict]) -> tuple[set[int], list[tuple[int, int]]]:
+        """Classify a member subset into discrete years + loose ranges."""
+        discrete: set[int] = set()
+        loose: list[tuple[int, int]] = []
+        for m in subset:
+            yr = m.get("year_ranges")
+            source_pairs: list[tuple[int, int]] = []
+            if isinstance(yr, list) and yr:
+                for r in yr:
+                    if isinstance(r, (list, tuple)) and len(r) == 2:
+                        try:
+                            a, b = int(r[0]), int(r[1])
+                        except (TypeError, ValueError):
+                            continue
+                        if a > b:
+                            a, b = b, a
+                        source_pairs.append((a, b))
+            else:
+                yf, yl = m.get("year_first"), m.get("year_last")
+                if isinstance(yf, int):
+                    a = yf
+                    b = int(yl) if isinstance(yl, int) else yf
                     if a > b:
                         a, b = b, a
-                    source_pairs.append((a, b))
-        else:
-            yf, yl = m.get("year_first"), m.get("year_last")
-            if isinstance(yf, int):
-                a = yf
-                b = int(yl) if isinstance(yl, int) else yf
-                if a > b:
-                    a, b = b, a
-                source_pairs = [(a, b)]
+                    source_pairs = [(a, b)]
 
-        if not source_pairs:
-            continue
+            if not source_pairs:
+                continue
 
-        # Classify the member: LOOSE if it carries a single non-singleton
-        # range AND nothing else; DISCRETE otherwise (multi-entry list,
-        # single singleton, or multiple singletons).
-        is_loose = (
-            len(source_pairs) == 1
-            and source_pairs[0][0] < source_pairs[0][1]
-        )
-        if is_loose:
-            loose_ranges.append(source_pairs[0])
-        else:
-            # Explode every range into its year set (singleton ranges
-            # contribute just one year; multi-year ranges inside a
-            # multi-entry list contribute every year between lo and hi
-            # inclusive — they're discrete attestations of each year).
-            for lo, hi in source_pairs:
-                for y in range(lo, hi + 1):
-                    discrete_years.add(y)
+            # Classify: LOOSE if a single non-singleton range AND nothing else;
+            # DISCRETE otherwise (multi-entry list, single singleton, or multiple
+            # singletons).
+            is_loose = (
+                len(source_pairs) == 1
+                and source_pairs[0][0] < source_pairs[0][1]
+            )
+            if is_loose:
+                loose.append(source_pairs[0])
+            else:
+                # Explode every range into its year set (singleton ranges
+                # contribute just one year; multi-year ranges inside a
+                # multi-entry list contribute every year between lo and hi).
+                for lo, hi in source_pairs:
+                    for y in range(lo, hi + 1):
+                        discrete.add(y)
+        return discrete, loose
+
+    # Primary pass: NON-muted members only. A curator `year_demote`
+    # (merge_decisions::year_demote) stamps `_year_demoted` on reign-window
+    # placeholder members (a catalogue/museum record carrying the ruler's whole
+    # reign rather than the coin's strike years) so their loose span never
+    # widens the union. Last-resort fallback: muted members are consulted ONLY
+    # when no non-muted member contributes any year — their years are demoted,
+    # never deleted (§CU curator-mute; see docs/TODO.md).
+    discrete_years, loose_ranges = _collect(
+        [m for m in members if not m.get("_year_demoted")])
+    if not discrete_years and not loose_ranges:
+        discrete_years, loose_ranges = _collect(
+            [m for m in members if m.get("_year_demoted")])
 
     if not discrete_years and not loose_ranges:
         return None
@@ -3071,6 +3085,16 @@ def build_unified(members: list[dict], unified_id: str,
     if union_yr is not None:
         out["year_label"] = _format_year_label(union_yr)
 
+    # Propagate the year-demote flag when the WHOLE cluster is muted (a
+    # reign-window source that is the sole member of its own unified entry,
+    # e.g. dk-numista-355730 → unified-dk-numista-355730). The absorb-level
+    # union then demotes this seed_unified entry too, so it can't widen the
+    # final's year. `_`-prefixed → stripped before Coin validation, not
+    # rendered. Mixed clusters are NOT flagged: their non-muted members already
+    # carry the true years (§CU curator-mute).
+    if members and all(m.get("_year_demoted") for m in members):
+        out["_year_demoted"] = True
+
     # Other scalar text fields — gap-fill across members (log conflicts).
     # `ruler` uses _normalise_ruler equivalence to suppress pure-punctuation
     # variants («Frederik IV.» vs «Frederik IV») from the conflict log:
@@ -3217,14 +3241,19 @@ def _unified_id_for_class(members: list[dict]) -> str:
 
 def _load_decisions(entity_id: str) -> dict:
     """Load explicit merge_decisions/<entity>.yml if present.
-    Returns {merges: [{members, reason}], no_merges: [...]}"""
+    Returns {merges: [{members, reason}], no_merges: [...],
+    year_demote: [{member_id|members, reason}]} — year_demote names
+    reign-window placeholder members whose year span must not widen the union
+    (§CU curator-mute; applied in process_entity, honoured by
+    _union_year_ranges via the `_year_demoted` flag)."""
     path = V2_MERGE_DECISIONS / f"{entity_id}.yml"
     if not path.exists():
-        return {"merges": [], "no_merges": []}
+        return {"merges": [], "no_merges": [], "year_demote": []}
     doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
     return {
         "merges": doc.get("merges", []) or [],
         "no_merges": doc.get("no_merges", []) or [],
+        "year_demote": doc.get("year_demote", []) or [],
     }
 
 
@@ -3609,6 +3638,24 @@ def process_entity(entity_id: str,
                     for b in groups[gj]:
                         uf.add_no_merge(a, b, explicit=True)
         forced_no_merges.append(entry)
+
+    # 1b. Stamp `_year_demoted` on reign-window placeholder members named in
+    #     `year_demote` (§CU curator-mute). `_union_year_ranges` holds these
+    #     back to a last-resort pass so a member carrying the ruler's whole
+    #     reign (rather than the coin's strike years) never widens the merged
+    #     year. In-memory on the seed dicts (which ARE build_unified's
+    #     `members`); the decision file re-applies it every run, so nothing is
+    #     written to the seed YAML. `_expand_member` covers bare-Hede→sub-letter.
+    for entry in decisions.get("year_demote", []):
+        ids = entry.get("members") or (
+            [entry["member_id"]] if entry.get("member_id") else [])
+        for mid in ids:
+            exp = _expand_member(mid)
+            if not exp:
+                print(f"  ⚠ year_demote member {mid!r} absent from seed — skipped")
+                continue
+            for sid in exp:
+                seeds_by_id[sid]["_year_demoted"] = True
 
     # 2. PRE-PASS: run matcher on every pair, register no_match pairs in
     #    union-find BEFORE attempting any union. This guarantees that

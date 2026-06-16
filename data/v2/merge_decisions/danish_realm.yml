@@ -465,3 +465,25 @@ no_merges:
     reason: |
       Genuine 1 Skilling Hede 118 (silver) ≠ the billon contemporary forgery
       KMM 521.
+
+# §CU curator-mute. These members carry a RULER'S FULL REIGN window as the
+# year span (a catalogue / museum record tagged with the reign, not the coin's
+# strike years). `_year_demoted` holds them to a last-resort pass in
+# `_union_year_ranges` — their span never widens the merged year, but their
+# years are NOT deleted (used only if no other member attests any year).
+# Priority: below a normal member, above no-data.
+year_demote:
+  - member_id: dk-galster-hg-27
+    reason: |
+      Galster gives Hans's full reign 1481-1513 for the Rhinsk Gylden
+      (unified-dk-bruun-3839), not the coin's strike year (ca. 1496-1497).
+      Last-resort only.
+  - member_id: dk-numista-355730
+    reason: |
+      Numista N#355730 (Goldgulden, Hans) lists the full reign 1481-1513 —
+      reign-window placeholder, same coin as unified-dk-bruun-3839.
+  - member_id: kmk-279179
+    reason: |
+      KMM specimen FP 3528.265 (10 Øre, Christian IX) is tagged with the full
+      reign 1863-1906; the decimal 10 Øre was struck 1874-1905
+      (km-795-1-chr-ix-1874). Last-resort only.
