@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-06-10T12:26:00Z'
+generated_at: '2026-06-16T10:40:29Z'
 entity: royal_holstein
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -1647,8 +1647,8 @@ coins:
       numista: '154272'
       km: '26'
       lange:
-        - 51b
         - 51Ab
+        - 51b
     metal: silver
     fineness: 0.812
     weight_rough_g: 1.78
@@ -1687,7 +1687,9 @@ coins:
     catalog:
       numista: '306974'
       km: '40'
-      fr: 120,2
+      fr:
+        - '2'
+        - '120'
     metal: gold
     fineness: 0.917
     weight_rough_g: 5.996
@@ -2221,6 +2223,48 @@ coins:
       - type: literature
         url: https://en.numista.com/275958
         ref: Numista N#275958 — 1 Ducat - Christian V
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references
+        (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+  - id: dk-numista-22576
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Skilling
+    year_label: 1676-1681
+    year_first: 1676
+    year_last: 1681
+    year_ranges:
+      -   - 1676
+          - 1681
+    ruler: Christian V
+    mint:
+      - Glückstadt
+      - Kopenhagen
+    catalog:
+      numista: '22576'
+      km: '358'
+    metal: billon
+    fineness:
+    weight_rough_g: 1.32
+    diameter_mm: 19
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
+    verified: false
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    sources:
+      - type: literature
+        url: https://en.numista.com/22576
+        ref: Numista N#22576 — 2 Skilling Dansk - Christian V
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -3183,7 +3227,7 @@ coins:
     ruler: Frederick V
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '131337'
       km: '600'
@@ -3265,7 +3309,7 @@ coins:
     ruler: Christian VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '44799'
       km: '615'
@@ -3346,7 +3390,7 @@ coins:
     ruler: Christian VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '958'
       hede: '37'
@@ -3388,7 +3432,7 @@ coins:
     ruler: Christian VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '90574'
       km: '632'
@@ -3506,7 +3550,7 @@ coins:
     ruler: Christian VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '148504'
       km: '635'
@@ -3546,7 +3590,7 @@ coins:
     ruler: Christian VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '42563'
       km: '631'
@@ -3625,7 +3669,7 @@ coins:
     ruler: Christian VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '131778'
       km: '641'
@@ -4203,7 +4247,7 @@ coins:
     ruler: Christian VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '132002'
       km: '651'
@@ -4287,7 +4331,7 @@ coins:
     ruler: Christian VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '89153'
       km: '660'
@@ -4524,7 +4568,7 @@ coins:
     ruler: Frederick VI
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '22803'
       km: '683'
@@ -4729,7 +4773,7 @@ coins:
     ruler: Frederick VI
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '22190'
       km: '695'
@@ -4811,7 +4855,7 @@ coins:
     ruler: Frederick VI
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '152303'
       km: '696'
@@ -5100,7 +5144,7 @@ coins:
     ruler: Frederick VI
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '83070'
       km: '706'
@@ -5254,7 +5298,7 @@ coins:
     ruler: Christian VIII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '22116'
       km: '720'
@@ -5335,7 +5379,7 @@ coins:
     ruler: Christian VIII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '83072'
       km: '722'
@@ -5414,7 +5458,7 @@ coins:
     ruler: Christian VIII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '23857'
       km: '726'
@@ -5606,7 +5650,7 @@ coins:
     ruler: Christian VIII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '83073'
       km: '735'
@@ -5726,7 +5770,7 @@ coins:
     ruler: Frederick VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '83074'
       km: '744'
@@ -5854,7 +5898,7 @@ coins:
     ruler: Frederick VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '83075'
       km: '750'
@@ -5934,7 +5978,7 @@ coins:
     ruler: Frederick VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '10231'
       km: '758'
@@ -5974,7 +6018,7 @@ coins:
     ruler: Frederick VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '22121'
       km: '761'
@@ -6017,7 +6061,7 @@ coins:
     ruler: Frederick VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '22192'
       km: '760'
@@ -6057,7 +6101,7 @@ coins:
     ruler: Frederick VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '5210'
       km: '763'
@@ -6097,7 +6141,7 @@ coins:
     ruler: Frederick VII
     mint:
       - Altona
-      - Royal Danish
+      - Kopenhagen
     catalog:
       numista: '40131'
       km: '767'
