@@ -15,6 +15,40 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-16 (later) — Bruun ND-year parser fix (committed) + N#131730 over-merge root-diagnosed (§CW)
+
+> **Bruun «ND (…)» year parser FIXED — commit `2efdb80` (UNPUSHED).** New
+> `parse_year_span(lot)` in `build_bruun_denmark_seed.py`: an «ND (…)» attribution
+> now captures the full range (incl. abbreviated upper bound, `ND (1607-11)`→1611)
+> + sets `year_verified=False` → «(?)» marker; dated strikes keep the plain single
+> year. 84 in-scope ND lots affected (45 ranges / 33 single / 6 ca.). `year_label`
+> stays a clean decimal per §3a. Logged `docs/SOURCES.md` §13.3.
+> **Builder code ONLY — the V2 Bruun seeds are NOT regenerated.** Running the
+> builder revealed the seeds are STALE w.r.t. ~10 intervening builder/cache commits
+> (`41efdf0` Aagaard→`others`, `4465c1b` km cross-register, cache re-parses
+> `f5634abb`/`8af66ec` Aagaard die-combos + FP refs + one new lot dk-bruun-6435 +
+> a metal flip). A clean regen folds that catch-up in AND then needs a
+> `seed_unified`→`final` re-flow — so it's deliberately deferred to the next
+> *coordinated* Bruun regen (batch with the parked apply), not bundled into a
+> «year-fix» commit. Verified the fix produces correct ranges on the real cache
+> lots before reverting the contaminated regen.
+>
+> **N#131730 over-merge ROOT-DIAGNOSED → new TODO §CW (UNPUSHED docs).** The
+> «missing discrete years» question (user) led to: `unified-dk-hede-c7h13a` is a
+> **2+2 over-merge** of two distinct Christian-VII-Altona «1 Speciedaler» types —
+> **Hede 13** domestic Speciedaler (danskmoent verified: no KM/Dav, 1795-1801;
+> members dk-hede-c7h13a + c7h13b) + the **Albertsdaler** trade coin (KM 640/640.2,
+> Dav EC III 1310, 1781-1796; members dk-numista-131730 + denmark-numismaster-145357).
+> Merger matched on nominal+ruler+mint+metal; no trade-coin-vs-domestic discriminator.
+> **This REFINES the earlier handoff follow-up:** c7h13a's spurious-1781 widen is
+> the Albertsdaler over-merge (§CW), NOT a §CU reign-window member — the session's
+> year-hold (1795,1797,1799,1801) only MASKS the symptom; the over-merge persists
+> (c7h13a still carries dav EC III 1310 + km 640/640.2). The cache 131730.json has
+> only min/max (no discrete list) but that's moot — fix the over-merge (split +
+> re-flow) before re-harvesting the Albertsdaler's discrete years onto its OWN entry.
+> §0b: my earlier «KM-640 cross-register collision» hypothesis was WRONG (Hede 13A
+> has no KM at all; match fired on primary signals).
+
 ## 2026-06-16 — overlap-home architecture + merger stage of the global apply DONE; absorb DEFERRED (UNPUSHED, e8de501 + e414a0a + 8d882fe + 1a8097b)
 
 > **✅ FULL APPLY COMPLETE — ALL 22 ENTITIES (end of 2026-06-16, commit 2cf628d).**
