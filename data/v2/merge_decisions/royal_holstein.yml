@@ -99,3 +99,41 @@ no_merges:
       - dk-hede-c7h39b
     reason: |
       MC_145357 (KM 640.2, no Hede) ≠ Hede 39 / KM 138.1 (c7h39b).
+
+  # --- §CW (curator decision 2026-06-16, Serhii). The ALBERTSDALER trade coin
+  # (KM 640 / KM 640.2, Dav EC III 1310, "1 Albertsdaler Trade coinage",
+  # 1781-1796 — Numista N#131730 + NumisMaster MC_145357) is a SEPARATE TYPE
+  # from the domestic 1 Speciedaler Hede 13 (no KM, no Davenport, 1795-1801,
+  # sub-vars A-D — verified danskmoent.dk/chr/c7h13.htm 2026-06-16). The merger
+  # over-merged the four on matching nominal+ruler+mint+metal ("1 Speciedaler" ·
+  # Christian VII · Altona · silver), with no trade-coin-vs-domestic
+  # discriminator. A Davenport "European Crowns" number marks an export trade
+  # crown; a domestic Speciedaler is never in Davenport, and the Albertsdaler
+  # starts 1781 (14 years before Hede 13). Forbid both Albertsdaler records from
+  # both Hede 13 records so they cluster as their own unified entry. (MC_145357
+  # was already split from the Hede 39 cluster above; this extends the same
+  # verdict to Hede 13, the cluster it had actually drifted into.)
+  - members:
+      - dk-numista-131730
+      - dk-hede-c7h13a
+    reason: |
+      Albertsdaler (N#131730, KM 640, Dav EC III 1310, 1781-1796) ≠ domestic
+      Speciedaler Hede 13A (no KM/Dav, 1795-1801). §CW.
+  - members:
+      - dk-numista-131730
+      - dk-hede-c7h13b
+    reason: |
+      Albertsdaler (N#131730, KM 640, Dav EC III 1310) ≠ Speciedaler Hede 13B
+      (no KM/Dav, 1796-1797). §CW.
+  - members:
+      - denmark-numismaster-145357
+      - dk-hede-c7h13a
+    reason: |
+      Albertsdaler (MC_145357, KM 640.2, Dav 1310, 1796) ≠ domestic Speciedaler
+      Hede 13A (no KM/Dav, 1795-1801). §CW.
+  - members:
+      - denmark-numismaster-145357
+      - dk-hede-c7h13b
+    reason: |
+      Albertsdaler (MC_145357, KM 640.2, Dav 1310) ≠ Speciedaler Hede 13B
+      (no KM/Dav). §CW.

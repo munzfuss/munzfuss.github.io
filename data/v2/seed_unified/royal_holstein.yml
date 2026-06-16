@@ -6164,96 +6164,18 @@ coins:
   phase: hede
   kind: kurant
   nominal: 1 Speciedaler
-  year_first: 1781
-  year_last: 1801
-  year_ranges:
-  - - 1781
-    - 1797
-  - - 1801
-    - 1801
-  year_label: 1781-1797, 1801
-  ruler: Christian VII.
-  mint: Altona
-  catalog:
-    km:
-    - '640'
-    - '640.2'
-    hede:
-    - 13A
-    - 13B
-    hede_volume: c7h
-    schou:
-    - '1'
-    - 2-4
-    - 3-4
-    sieg:
-    - '33.1'
-    - '33.2'
-    numista: '131730'
-    dav: EC III 1310
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.868
-    source: numismaster
-  - value: 0.868
-    source: numista
-  - value: 0.875
-    source: hede
-  weight_rough_g:
-  - value: 28.063
-    source: numismaster
-  - value: 28.063
-    source: numista
-  - value: 28.893
-    source: hede
-  diameter_mm:
-  - value: 41.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_145357
-    ref: NumisMaster
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c7h13.htm
-    ref: danskmoent.dk (Hede c7h13A)
-  - type: literature
-    url: https://en.numista.com/131730
-    ref: Numista N#131730 — 1 Albertsdaler Trade coinage
-  verification_note:
-    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
-      danskmoent.dk.'
-    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  issuing_entity:
-  - danish_realm
-  - royal_holstein
-  hede_muentzfuss_yield:
-    value: 9.25
-    unit: speciedaler
-    basis: fin
-    unit_raw: speciedalere
-  composed_of:
-  - denmark-numismaster-145357
-  - dk-hede-c7h13a
-  - dk-hede-c7h13b
-  - dk-numista-131730
-- id: unified-dk-hede-c7h13c
-  fuss: seed_unsorted
-  phase: hede
-  kind: kurant
-  nominal: 1 Speciedaler
   year_first: 1795
   year_last: 1801
   year_ranges:
   - - 1795
+    - 1795
+  - - 1797
+    - 1797
+  - - 1799
+    - 1799
+  - - 1801
     - 1801
-  year_label: 1795-1801
+  year_label: 1795, 1797, 1799, 1801
   ruler: Christian VII.
   mint:
   - Altona
@@ -6261,11 +6183,18 @@ coins:
   catalog:
     km: '651'
     hede:
+    - 13A
+    - 13B
     - 13C
     - 13D
     hede_volume: c7h
-    schou: 1-2
+    schou:
+    - 1-2
+    - 2-4
+    - 3-4
     sieg:
+    - '33.1'
+    - '33.2'
     - '33.3'
     - '33.4'
     numista: '132002'
@@ -6296,7 +6225,7 @@ coins:
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h13.htm
-    ref: danskmoent.dk (Hede c7h13C)
+    ref: danskmoent.dk (Hede c7h13A)
   - type: literature
     url: https://en.numista.com/132002
     ref: Numista N#132002 — 1 Speciedaler - Christian VII (Bauert portrait)
@@ -6314,6 +6243,8 @@ coins:
     basis: fin
     unit_raw: speciedalere
   composed_of:
+  - dk-hede-c7h13a
+  - dk-hede-c7h13b
   - dk-hede-c7h13c
   - dk-hede-c7h13d
   - dk-numista-132002
@@ -13473,6 +13404,66 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-131337
+- id: unified-dk-numista-131730
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Speciedaler
+  year_first: 1781
+  year_last: 1796
+  year_ranges:
+  - - 1781
+    - 1796
+  year_label: 1781-1796
+  ruler: Christian VII
+  mint: Altona
+  catalog:
+    km:
+    - '640'
+    - '640.2'
+    numista: '131730'
+    dav: EC III 1310
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.868
+    source: numismaster
+  - value: 0.868
+    source: numista
+  weight_rough_g:
+  - value: 28.063
+    source: numismaster
+  - value: 28.063
+    source: numista
+  diameter_mm:
+  - value: 41.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_145357
+    ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/131730
+    ref: Numista N#131730 — 1 Albertsdaler Trade coinage
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: royal_holstein
+  composed_of:
+  - denmark-numismaster-145357
+  - dk-numista-131730
 - id: unified-dk-numista-142102
   fuss: seed_unsorted
   phase: numista

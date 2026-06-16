@@ -2044,8 +2044,7 @@ coins:
     unit: speciedaler
     basis: fin
     unit_raw: speciedalere
-  composed_of:
-  - unified-dk-hede-c7h13c
+  composed_of: []
   v1_home_location: schleswig_holstein
   _migration_note: auto-mapped from gesamtstaat
 - fuss: 18_5_thaler
@@ -2471,7 +2470,6 @@ coins:
   catalog:
     km:
       sh:
-      - '[''696.1'', ''696'']'
       - '696.1'
       - '696'
       dk: '706.1'
@@ -13383,7 +13381,10 @@ coins:
   - Altona
   - Poppenbüttel
   catalog:
-    km: '640.1'
+    km:
+    - '640.1'
+    - '640'
+    - '640.2'
     hede_volume: c7h
     hede:
     - 22B
@@ -13396,17 +13397,31 @@ coins:
     bruun_part: III
     bruun_lot_no: 11294
     bruun_page: 147
-    dav: '1310'
+    dav: EC III 1310
     fp: '34.2'
+    numista: '131730'
   metal: silver
   metal_verified: true
-  fineness_verified: false
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.868
+    source: numismaster
+  - value: 0.868
+    source: numista
   weight_rough_g:
   - value: 27.99
     source: bruun
+  - value: 28.063
+    source: numismaster
+  - value: 28.063
+    source: numista
+  diameter_mm:
+  - value: 41.0
+    source: numista
   sources:
   - type: literature
     url: https://www.danskmoent.dk/c7hede.htm
@@ -13417,6 +13432,12 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13242, p. 168
+  - type: literature
+    url: https://numismaster.com/MC_145357
+    ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/131730
+    ref: Numista N#131730 — 1 Albertsdaler Trade coinage
   note:
     de: Albertsdaler 1784, 1786 (KM-640.1 Hede-22B) · Altona/Poppenbüttel-Prägung Christians VII. zwei Bruun-Specimen unterschiedlicher
       Jahre (1784, 1786 ).
@@ -13439,6 +13460,7 @@ coins:
       1959 s.112»'
   composed_of:
   - unified-dk-hede-c7h22ab
+  - unified-dk-numista-131730
 - fuss: 18_5_thaler
   phase: II
   kind: scheide
@@ -34484,21 +34506,28 @@ coins:
       sh:
       - '651'
       - '651.1'
-      - '640'
-      - '640.2'
     hede:
     - 13A
     - 13B
+    - 13C
+    - 13D
     hede_volume: c7h
     sieg:
     - '33.1'
     - '33.2'
-    dav: EC III 1310
+    - '33.3'
+    - '33.4'
+    dav:
+    - EC III 1313
+    - EC IV 71
+    - ECT 71
     schou:
-    - '1'
+    - 1-2
     - 2-4
     - 3-4
-    numista: '131730'
+    numista:
+    - '131730'
+    - '132002'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -34507,21 +34536,17 @@ coins:
   mint_verified: true
   verified: false
   fineness:
-  - value: 0.868
-    source: numismaster
-  - value: 0.868
-    source: numista
   - value: 0.875
     source: hede
-  weight_rough_g:
-  - value: 28.063
-    source: numismaster
-  - value: 28.063
+  - value: 0.875
     source: numista
+  weight_rough_g:
   - value: 28.893
     source: hede
+  - value: 28.893
+    source: numista
   diameter_mm:
-  - value: 41.0
+  - value: 40.05
     source: numista
   sources:
   - type: literature
@@ -34545,6 +34570,9 @@ coins:
   - type: literature
     url: https://en.numista.com/131730
     ref: Numista N#131730 — 1 Albertsdaler Trade coinage
+  - type: literature
+    url: https://en.numista.com/132002
+    ref: Numista N#132002 — 1 Speciedaler - Christian VII (Bauert portrait)
   note:
     de: 'Speciedaler 1795-1801 · späte Christian-VII.-Speciedaler-Serie (Kopenhagen + Altona) · vier Stempelvarianten nach
       Hede 13A-D unter KM-654 zusammengefaßt: 13A 1795, 1797, 1801; 13B 1796-97; 13C 1798-99; 13D 1799 (Bruun-Specimen).'
@@ -34565,9 +34593,10 @@ coins:
   composed_of:
   - unified-dk-hede-c7h13a
   _curation_holds:
-    year_ranges: 'Hede 13A-D struck 1795-1801 (danskmoent: 13A 1795/1797/1801, 13B 1796-97, 13C 1798-99, 13D 1799). A seed
-      member carries a spurious 1781 widen (§CU reign-window class) that would drop the coin from the 9¼-Thaler-Fuß phase-III
-      window (1788-1813). Year-hold override (cebf090) restores the attested 1795-1801. Curator 2026-06-16 (Serhii).'
+    year_ranges: 'Hede 13A-D struck 1795-1801 (danskmoent: 13A 1795/1797/1801, 13B 1796-97, 13C 1798-99, 13D 1799). The spurious
+      1781 widen came from the Albertsdaler (KM 640 / 640.2, Dav EC III 1310, 1781-1796) over-merged into this cluster — now split
+      to its own Hede-22 entry (c7h22ab «Albertsdaler T34») per §CW (merge_decisions no_merges). Hold kept as belt-and-braces;
+      restores the attested 1795-1801 and keeps the coin in the 9¼-Thaler-Fuß phase-III window (1788-1813). Curator 2026-06-16 (Serhii).'
     year_label: null
 - fuss: 11_333_thaler
   phase: I
