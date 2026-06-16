@@ -71,12 +71,24 @@
 >   Cache→Downloads→disk transport (Blob `a.click()`) worked around the
 >   javascript_tool ~1.5KB result-truncation.
 >
+> - **km str-repr (form #2) durable fix** — committed `441b285`. Root:
+>   `_merge_km_field` (~2620) now iterates a list-valued register instead of
+>   `str()`-ing it whole. Heal: `normalise_catalog` explodes any str-repr element
+>   (both top-level-list and register-dict-internal shapes), runs on every
+>   absorb/merge/seed-write. `fix_corrupted_km_repr.py` shares the predicate; 0
+>   corrupted finals. 10 unit tests (`tests/test_km_str_repr_form2.py`). Integration:
+>   re-absorb royal_holstein (previously corrupted c7h13a + double-wrapped km-696)
+>   → **0 str-repr** (verified, then reverted to keep the §CW final; the only diff
+>   was a benign c7h13a km `{sh:[…]}`→bare-list normalisation).
+>
 > **REMAINING (materialisation, NOT done):** re-seed numista → re-merge → re-absorb
-> the Danish-crown entities so discrete labels render. Deferred because the numista
-> seed regen bundles the same builder/cache drift as Bruun (`4465c1b`/`41efdf0`…)
-> AND the per-entity absorb re-corrupts register-keyed km (str-repr form #2) every
-> run — do the durable `catalog_codes.normalise_catalog` form-#2 fix FIRST, then the
-> coordinated re-flow (Bruun seed regen + numista re-seed + all-entity merge/absorb).
+> the Danish-crown entities so discrete labels render. The km-str-repr blocker is
+> now CLEARED (`441b285`) — per-entity absorbs no longer corrupt register-keyed km.
+> Still deferred to a coordinated re-flow because the numista seed regen bundles the
+> same builder/cache drift as Bruun (`4465c1b`/`41efdf0`…); do it as one batch
+> (Bruun seed regen + numista re-seed + all-entity merge/absorb), each step gated by
+> `audit_curation_loss.py`. Expect benign km-shape normalisations (register-dict →
+> bare-list for single-register coins) across finals on the first post-fix absorb.
 > **Submodule `2758b6d41` is local-only — push it (PB-10) before/with the main push.**
 
 ## 2026-06-16 — overlap-home architecture + merger stage of the global apply DONE; absorb DEFERRED (UNPUSHED, e8de501 + e414a0a + 8d882fe + 1a8097b)
