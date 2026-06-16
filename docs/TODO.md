@@ -3315,6 +3315,18 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 
 **Done-when.** A merger/absorb rule downweights reign-window-span members in the year union; the 2 per-case `_curation_holds` on bruun-3839 + km-795 become redundant (can stay as belt-and-braces); `audit_curation_loss.py --losses-only` still reports `widen=0`; no other entity's displayed year changes.
 
+### CV. 🔵 Generalise `_home_entity` to consumes-map-driven overlap-priority  *(opened 2026-06-16)* *(est: medium)* *(type: pipeline-rule + migration)*
+
+**Context.** A coin's `issuing_entity` may be a list (joint mint = circulation in several political entities — e.g. Altona+Kopenhagen → `[danish_realm, royal_holstein]`). The VALUE keeps the full set; the HOME FILE (`data/v2/seed|final/<entity>.yml`) must be the entity that maximises page-coverage so the file-based Pass-1 assembly surfaces the coin on every page that shows any of its entities. The driving invariant (curator, 2026-06-16): «кожна фінальна сторінка має містити всі монети, у яких є entities, показані на цій сторінці».
+
+`royal_holstein` is the SH∩Denmark overlap (consumed by both `schleswig_holstein` and `denmark` pages); `schauenburg_pinneberg` is the holstein_schauenburg∩schleswig_holstein overlap. A joint coin homed to a NON-overlap member (e.g. `danish_realm.yml`, the alphabetical default `d < r`) only reaches the SH page via the fragile Pass-2 issuing_entity intersection — and only while the joint VALUE survives the merger (first-member) + absorb (foundation-immutable) pipeline.
+
+**Stopgap shipped (2026-06-16).** `_home_entity` (v2_seed_writer.py) hardcodes `royal_holstein`-priority: `if "royal_holstein" in ie → royal_holstein`. Covers the immediate Danish-crown Altona+Kopenhagen case. Does NOT cover `schauenburg_pinneberg` or any future overlap.
+
+**The general fix.** `_home_entity` should consult the location consumes-map (`data/v2/locations/*.yml::consumes_entities`) to compute, for each entity in the coin's set, the set of pages that consume it; pick the entity whose page-set is a superset of (or maximal among) the others'; tie-break alphabetical. This auto-handles `royal_holstein`, `schauenburg_pinneberg`, and any overlap added later, with zero hardcoding. Requires the seed writer to load the consumes-map (it currently doesn't). Then run the same misfiled-coin scan for `schauenburg_pinneberg` and migrate any hits the same way the royal_holstein 7 finals + 27 seeds were migrated 2026-06-16.
+
+**Done-when.** `_home_entity` is consumes-map-driven (no hardcoded entity name); a scan finds 0 coins with an overlap entity in their VALUE but homed to a non-overlap file, across seed + final; both consuming pages render every such coin via Pass 1.
+
 ## Done
 
 ### CE. ✅ Schauenburg NS-tradition migration + «1/24 Thaler» rule correction  *(opened 2026-05-27, closed 2026-05-29)* *(est: small)* *(type: data-audit + curator-fix + rule correction)*

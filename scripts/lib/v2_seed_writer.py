@@ -1229,15 +1229,33 @@ def _home_entity(coin: dict) -> str | None:
     """Return the home-file entity for a coin.
 
     - Scalar `issuing_entity`: that entity.
-    - List-form `issuing_entity` (joint mint): alphabetically-first
-      entity, per V2_PIPELINE.md §3.10.
+    - List-form `issuing_entity` (joint mint): the OVERLAP-priority entity
+      if present, else the alphabetically-first entity.
     - Missing / empty: None (caller routes to `_unclassified.yml`).
+
+    Overlap priority (hardcoded; general consumes-map-driven rule = TODO §CV):
+    `royal_holstein` is consumed by BOTH the `schleswig_holstein` and the
+    `denmark` location pages (it is the SH∩Denmark overlap entity). A coin
+    whose `issuing_entity` set contains `royal_holstein` must therefore home
+    to `royal_holstein.yml` so both pages pick it up via the file-based Pass 1
+    assembly. The plain alphabetical-first default would file an
+    `[danish_realm, royal_holstein]` coin under `danish_realm.yml` (d < r),
+    where the SH page only recovers it via the fragile Pass-2 issuing_entity
+    intersection — and only as long as the joint VALUE survives the
+    merger/absorb pipeline. The issuing_entity VALUE is left untouched (the
+    joint list is the coin's circulation signal); only the home file changes.
+    `schauenburg_pinneberg` is the other current overlap entity (holstein_
+    schauenburg ∩ schleswig_holstein) and needs the same treatment once the
+    general rule lands (TODO §CV).
     """
     ie = coin.get("issuing_entity")
     if isinstance(ie, str) and ie:
         return ie
     if isinstance(ie, list) and ie:
-        return sorted(str(e) for e in ie if e)[0]
+        names = [str(e) for e in ie if e]
+        if "royal_holstein" in names:
+            return "royal_holstein"
+        return sorted(names)[0] if names else None
     return None
 
 
