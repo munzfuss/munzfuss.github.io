@@ -15,6 +15,56 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-16 — overlap-home architecture + merger stage of the global apply DONE; absorb DEFERRED (UNPUSHED, e8de501 + e414a0a + 8d882fe + 1a8097b)
+
+**Architecture fix (the curator's home-file model).** A coin's `issuing_entity`
+may be a list (joint mint = circulation in several political entities); the
+VALUE keeps the full set, but the HOME FILE must be the overlap entity that
+maximises page-coverage. `royal_holstein` is the SH∩Denmark overlap (consumed
+by BOTH pages), so a coin with royal_holstein in its IE must home to
+`royal_holstein.yml` to render on both via Pass 1 (not the fragile Pass-2
+intersection). Shipped:
+- `_home_entity` royal_holstein-priority (e8de501) — was `sorted(ie)[0]`
+  (alphabetical → danish_realm). Migrated the 7 already-joint misfiled finals
+  (6 danish_realm + 1 danish_norway) → royal_holstein; verified 7/7 on both
+  pages. **General consumes-map-driven rule (also schauenburg_pinneberg) = TODO §CV.**
+- cross-entity stamp derives issuing_entity from MINT, not scalar target
+  (e414a0a) — so a joint cross-entity-merged coin keeps joint VALUE + homes to
+  the mint-derived overlap entity.
+- Re-seed numista (8d882fe) + hede (1a8097b): joint coins re-home to
+  royal_holstein. Critically — `_home_entity` is consulted ONLY at the seed
+  WRITE step; the merger writes seed_unified + absorb writes final BY
+  PROCESSING ENTITY, so raw seeds must re-home first (and a cross-entity
+  decision's target_entity IS its home file → KM631 target corrected
+  danish_realm→royal_holstein).
+
+**Merger stage DONE (1a8097b), scoped to the Danish trio** (danish_realm,
+royal_holstein, danish_norway — all affected members live there). Verified: KM631
+→ ONE coin `unified-dk-hede-c7h33a` in royal_holstein (joint VALUE, km
+[631,631.1,631.2,631.3], 12 members); Frederik D'or → ONE `unified-dk-hede-f7h1b`
+royal_holstein (9 members); fragments absorbed; 0 «absent» warnings.
+
+**Absorb DEFERRED — drift review needed first.** The full re-derive of the trio
+surfaced accumulated drift since the 2026-06-09 re-merge. The per-entity
+`audit_curation_loss.py` OVER-reports it (a re-homed coin reads as a danish_realm
+loss though it's gained in royal_holstein — verified f6h14/f6h17 keep full
+catalog+weights there). Genuine items to vet before `absorb --apply`:
+- **4 §CU reign-window year-widens** (km-695-4 →1820, f5h24 →1763, danish_norway
+  kmk-149434 →1643, kmk-194284 →1648) — same class as bruun-3839/km-795; need
+  per-case `_curation_holds` (the year-hold override cebf090 handles them) OR
+  the §CU systemic fix. (c4h8a Ungersk 8A+8B→1591-1593 is a LEGIT accumulation,
+  not pollution.)
+- **catalog/measurement drops** (kmk-149272 hede127; c7h29/c4h68/c5h74 weights/
+  fineness) — confirm drift-correction (stale re-grouped-member data) vs §9a
+  regression.
+- **3 metal flips** (dk-tid-71072/78931/79553 billon→silver; km-358 silver→billon)
+  — confirm verified-wins drift-correction vs regression.
+**Next:** vet the ~9 genuine items → add §CU holds for the real widens → `absorb
+--apply` (trio) → `build --include-v1` → verify KM631/FrD'or render as one coin
+on both pages + the 7 migrated finals intact + no regression → commit. seed_unified
+is committed (correct merge); final still old until absorb (KM631 renders
+fragmented until then). Everything revertible; nothing pushed (29 commits local).
+
 ## 2026-06-15 — curation-loss field-diff GATE CLOSED (UNPUSHED, 4b466b2 + fce45f1 + cebf090)
 
 The pre-apply gate is now COMPLETE — supersedes the earlier «verified safe»
