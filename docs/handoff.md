@@ -87,12 +87,34 @@ the 8 finals danish_realm→royal_holstein with ie→joint (like the 7 in e8de50
 The assignment route is cleaner. **This is a focused continuation — do NOT rush at
 turn-end.**
 
-### READY FIX BLOCK (pre-staged 2026-06-16 — ids resolved against post-re-home seed_unified/royal_holstein)
+### ⚠ APPROACH CORRECTED 2026-06-16 — the assignment route below was TESTED and is INSUFFICIENT; use MIGRATION
 
-Paste these **7** assignments into `data/v2/classification_decisions/royal_holstein.yml`
-under `assignments:` (the 8th — c7h33c — folded into c7h33a's KM631 union, so
-c7h33a's assignment covers it). Each coin_id was VERIFIED present in
-royal_holstein seed_unified, so the bulk-promote applies them:
+**Tested in-session (then reverted):** adding the 7 royal_holstein
+`classification_decisions` assignments + `absorb --apply` (trio) gave a PARTIAL,
+messy result — only 4 of 7 landed in royal_holstein (c7h33a/c7h26a/c7h11a/c7h11b);
+**c7h28 + c7h13a stayed in danish_realm** (their CURATED danish_realm finals are
+spared by the stale-final-drop, so they persist there and the rh assignment can't
+displace them); **c7h35 + c7h11c vanished** (sub-variant fold). Root cause: the
+assignment+bulk-promote route only works when the old curated final is dropped —
+but a curated final is SPARED, so it stays in danish_realm and the coin is NOT
+re-homed.
+
+**CORRECT route = MIGRATE the curated finals** danish_realm→royal_holstein with
+`issuing_entity → [danish_realm, royal_holstein]` (the same surgical move proven
+for the original 7 in e8de501, verified 7/7 on both pages), THEN absorb (the
+migrated rh final is the foundation the re-homed seed_unified enriches; the dr side
+loses backing → stale-drops cleanly). Migrate the danish_realm finals for:
+unified-dk-hede-c7h33a (KM631; c7h33c folded in) / c7h26 / c7h28, dk-tid-79553,
+unified-dk-hede-c7h13a, dk-tid-79166, dk-tid-79168. **Also:** KM631 (c7h33a)
+carries a PRE-EXISTING reign-window year 1766-1808 (member kmk-122886, Hede 33A,
+year_verified anchor) — it should be 1778-1785; add a §CU `_curation_holds:
+{year_ranges, year_label}` on the migrated KM631 final (year-hold override
+cebf090). And confirm the c7h11c/c7h35 sub-variant folds (Hede 11C / 35 — distinct
+rows or correct fold?). The fuss/phase/kind VALUES in the block below are still
+correct (reuse them for the migrated finals' fields, NOT as assignments):
+
+~~Paste these 7 assignments into classification_decisions/royal_holstein.yml~~
+(SUPERSEDED — values-reference only):
 
 ```yaml
 - coin_id: unified-dk-hede-c7h33a    # KM631 (was danish_realm c7h33a+c7h33c)
