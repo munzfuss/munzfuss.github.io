@@ -20,6 +20,7 @@ list-form is applied later by the seed merger), and append-dedup for `others`.
 """
 from __future__ import annotations
 
+import ast
 import re
 
 # Catalogue code (lower-case, whitespace-stripped) → CatalogRefs field name.
@@ -326,6 +327,35 @@ def _dedup_values_ci(values: list) -> list:
         elif _suffix_is_upper(s) and not _suffix_is_upper(chosen[k]):
             chosen[k] = s
     return [chosen[k] for k in order]
+
+
+def _is_str_repr_list(el) -> bool:
+    """True if `el` is a string that is the Python-repr of a list — the
+    «form-#2» km corruption, e.g. «['651', '651.1']» (a list-value `str()`'d
+    whole by a buggy merge path). Real catalogue tokens («651», «404.1») never
+    start with «[» and never literal-eval to a list, so they're untouched."""
+    if not isinstance(el, str) or not el.strip().startswith("["):
+        return False
+    try:
+        return isinstance(ast.literal_eval(el), list)
+    except (ValueError, SyntaxError):
+        return False
+
+
+def _flatten_str_repr_list(vals: list) -> list:
+    """Explode every form-#2 str-repr element of `vals` into its members,
+    preserving order. Idempotent; a list with no str-repr element returns a
+    shallow copy. Exploded members may be bare strings or KMRef dicts
+    ({'value':X,'register':Y}) — both are passed through verbatim for the
+    caller to dedup/bucket. (Shared with the one-shot repairer
+    scripts/maintenance/fix_corrupted_km_repr.py.)"""
+    out: list = []
+    for el in vals:
+        if _is_str_repr_list(el):
+            out.extend(ast.literal_eval(el))
+        else:
+            out.append(el)
+    return out
 
 
 # Any value that begins with the Aagaard label, in any of the three forms
@@ -654,22 +684,34 @@ def normalise_catalog(catalog: dict) -> int:
             changes += 1
         for _rk, _rv in list(km.items()):
             if isinstance(_rv, list):
-                _dd = _dedup_values_ci(_rv)
+                # form-#2 heal: explode any str-repr element inside a
+                # register's list value ({sh: ["['696.1', '696']", …]}) before
+                # the dedup, then dedup case-insensitively.
+                _dd = _dedup_values_ci(_flatten_str_repr_list(_rv))
                 _nv = _dd[0] if len(_dd) == 1 else _dd
                 if _nv != _rv:
                     km[_rk] = _nv
                     changes += 1
+            elif _is_str_repr_list(_rv):
+                # scalar register value that is itself a list-repr
+                _dd = _dedup_values_ci(ast.literal_eval(_rv))
+                km[_rk] = _dd[0] if len(_dd) == 1 else _dd
+                changes += 1
     elif km is not None:
+        # form-#2 heal: a scalar that is itself a list-repr, or a list carrying
+        # str-repr elements (the c7h13a-type top-level corruption) → explode
+        # before normalising. `km` stays the original for the change check.
+        work = ast.literal_eval(km) if _is_str_repr_list(km) else km
         raw: list = []
-        if isinstance(km, str):
-            for part in km.split("/"):
+        if isinstance(work, str):
+            for part in work.split("/"):
                 part = part.strip()
                 if part:
                     raw.append(part)
-        elif isinstance(km, list):
-            raw = list(km)
+        elif isinstance(work, list):
+            raw = _flatten_str_repr_list(list(work))
         else:
-            raw = [km]
+            raw = [work]
         norm: list = []
         seen: set = set()
         for v in raw:

@@ -2619,7 +2619,13 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
         for kv in km_vals:
             if isinstance(kv, dict):
                 for reg, val in kv.items():
-                    _add(by_register.setdefault(reg.lower(), []), str(val).strip())
+                    # A register value may itself be a list (multi-KM in one
+                    # register, e.g. {sh: ['651', '651.1']}). Iterate it —
+                    # `str(val)` on the whole list would emit the str-repr
+                    # «['651', '651.1']» (the form-#2 corruption). See
+                    # docs/SOURCES.md §13.x / catalog_codes._flatten_str_repr_list.
+                    for vv in (val if isinstance(val, list) else [val]):
+                        _add(by_register.setdefault(reg.lower(), []), str(vv).strip())
                 continue
             val_str = str(kv).strip()
             register = _ENTITY_TO_KM_REGISTER.get(entity_id or "")

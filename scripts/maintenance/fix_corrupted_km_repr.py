@@ -56,17 +56,12 @@ sys.path.insert(0, str(ROOT / "scripts" / "maintenance"))
 
 # Single source of truth for the entity → default Krause register map.
 from merge_seeds_cross_source import _ENTITY_TO_KM_REGISTER  # noqa: E402
+# Form-#2 str-repr detection now lives in the build-path hygiene module
+# (normalise_catalog heals it on every absorb/merge); share the predicate so
+# the one-shot repairer and the hygiene net never drift. See plan / §13.x.
+from lib.catalog_codes import _is_str_repr_list  # noqa: E402
 
 V2_FINAL = ROOT / "data" / "v2" / "final"
-
-
-def _is_str_repr_list(el) -> bool:
-    if not isinstance(el, str) or not el.strip().startswith("["):
-        return False
-    try:
-        return isinstance(ast.literal_eval(el), list)
-    except (ValueError, SyntaxError):
-        return False
 
 
 def _repair_km(km, default_register: str | None):
