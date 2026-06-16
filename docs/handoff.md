@@ -17,9 +17,26 @@
 
 ## 2026-06-16 — overlap-home architecture + merger stage of the global apply DONE; absorb DEFERRED (UNPUSHED, e8de501 + e414a0a + 8d882fe + 1a8097b)
 
-> **✅ APPLY COMPLETE (end of 2026-06-16) — the global apply for the Danish trio
-> is DONE, build clean, 36 commits, nothing pushed.** All goals materialised +
-> verified on BOTH denmark + schleswig_holstein pages:
+> **✅ FULL APPLY COMPLETE — ALL 22 ENTITIES (end of 2026-06-16, commit 2cf628d).**
+> The global apply was extended from the Danish trio to the whole corpus: full
+> merger --apply (26007 seeds → 16470 unified) + full absorb --apply, all 22
+> entities. Build clean, 38 commits, NOTHING PUSHED. The other 19 entities'
+> rendered SETS are unchanged (per-location assembled counts identical to
+> baseline — bremen 128, brunswick 524, gottorp/holstein_schauenburg/lubeck/
+> oldenburg/osnabrueck/hamburg/hesse/german_empire/lauenburg all stable); their
+> file diffs are field-level catalog-normalise + enrichment refresh, no coin
+> adds/drops. 0 km hybrids + 0 str-repr km across ALL finals.
+> **Follow-up (non-blocking): the migration×full-absorb interaction re-introduces
+> c7h13a's year-widen (spurious 1781) + a km str-repr on every full absorb — it
+> was data-fixed each time (year 1795-1801 + register-keyed km). The durable fix:
+> (a) add the str-repr-explosion (form #2, `fix_corrupted_km_repr.py` logic) to
+> `catalog_codes.normalise_catalog` alongside the form-#1 dict-fold; (b) close the
+> year-hold gap so the override freezes year_first/last (not just year_label) for
+> a migrated foundation. Both surfaced only on c7h13a (the one migrated coin with
+> a register-keyed SH km + a §CU reign-window member).**
+>
+> --- Danish-trio detail (still valid, now part of the full apply): ---
+> All goals materialised + verified on BOTH denmark + schleswig_holstein pages:
 > - **KM631** → ONE coin `unified-dk-hede-c7h33a` in royal_holstein:
 >   11_333_thaler/I, joint `[danish_realm, royal_holstein]`, km
 >   [631,631.1,631.2,631.3], year held 1778-1785 (§CU — the kmk-122886
