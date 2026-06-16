@@ -59,11 +59,37 @@ catalog+weights there). Genuine items to vet before `absorb --apply`:
   regression.
 - **3 metal flips** (dk-tid-71072/78931/79553 billon→silver; km-358 silver→billon)
   — confirm verified-wins drift-correction vs regression.
-**Next:** vet the ~9 genuine items → add §CU holds for the real widens → `absorb
---apply` (trio) → `build --include-v1` → verify KM631/FrD'or render as one coin
-on both pages + the 7 migrated finals intact + no regression → commit. seed_unified
-is committed (correct merge); final still old until absorb (KM631 renders
-fragmented until then). Everything revertible; nothing pushed (29 commits local).
+**Drift review DONE (2026-06-16) — all ~12 genuine items BENIGN.** Verified per-item:
+4 year-widens are legit type-spans/accumulation NOT reign-windows (no §CU holds
+needed); catalog drop (kmk-149272 hede127) is stale (no current member attests
+it); measure drops are rounding artifacts (c7h29 0.563→0.562) / re-grouped-member
+data (c4h68) / §9a thinning (c5h74); metal flips are §4 verified-wins corrections
+(billon→silver ×3 via Hede/NumisMaster verified) — and km-358 silver→billon is a
+CORRECTION (ucoin mislabelled silver but its own fineness 0.281 = billon). The
+per-entity audit over-reported re-homed coins as losses. NO §9a regression, NO §CU
+pollution.
+
+**BUT `absorb --apply` (trio) revealed a real CROSS-ENTITY CURATION-MIGRATION gap
+— reverted.** When a hede SEED re-homed danish_realm→royal_holstein (the 26-coin
+re-seed) but its CURATED final + classification stayed in danish_realm, the absorb
+drops the danish_realm final (backing gone) AND bulk-promotes a FRESH royal_holstein
+final WITHOUT the curation → fuss/phase LOST (KM631 c7h33a went 11_333_thaler/I →
+seed_unsorted; c7h11c vanished). The absorb finals + classification_decisions
+pending-regen were `git checkout`-reverted; back to the correct pre-absorb state.
+
+**8 curated re-homed coins need their curation to follow to royal_holstein BEFORE
+absorb:** unified-dk-hede-c7h33a/c7h33c/c7h26/c7h28 + dk-tid-79553 (11_333_thaler I),
+unified-dk-hede-c7h13a (9_25_thaler III), dk-tid-79166/79168 (9_25_thaler II). Fix
+= EITHER add royal_holstein `classification_decisions` assignments {coin_id, fuss,
+phase, kind} for each (the bulk-promote then applies them — established mechanism,
+but coin_id must match the royal_holstein seed_unified id post-re-home) OR migrate
+the 8 finals danish_realm→royal_holstein with ie→joint (like the 7 in e8de501).
+The assignment route is cleaner. **This is a focused continuation — do NOT rush at
+turn-end.** Sequence: add the 8 assignments → `absorb --apply` (trio) → verify
+KM631→one coin 11_333_thaler I royal_holstein both pages + c7h11c intact + the
+8 keep fuss + no regression → `build --include-v1` → commit. seed_unified is
+committed (correct merge, KM631/FrD'or united); finals are at the correct
+pre-absorb state. Everything revertible; nothing pushed (30 commits local).
 
 ## 2026-06-15 — curation-loss field-diff GATE CLOSED (UNPUSHED, 4b466b2 + fce45f1 + cebf090)
 
