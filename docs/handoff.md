@@ -85,11 +85,72 @@ phase, kind} for each (the bulk-promote then applies them — established mechan
 but coin_id must match the royal_holstein seed_unified id post-re-home) OR migrate
 the 8 finals danish_realm→royal_holstein with ie→joint (like the 7 in e8de501).
 The assignment route is cleaner. **This is a focused continuation — do NOT rush at
-turn-end.** Sequence: add the 8 assignments → `absorb --apply` (trio) → verify
-KM631→one coin 11_333_thaler I royal_holstein both pages + c7h11c intact + the
-8 keep fuss + no regression → `build --include-v1` → commit. seed_unified is
-committed (correct merge, KM631/FrD'or united); finals are at the correct
-pre-absorb state. Everything revertible; nothing pushed (30 commits local).
+turn-end.**
+
+### READY FIX BLOCK (pre-staged 2026-06-16 — ids resolved against post-re-home seed_unified/royal_holstein)
+
+Paste these **7** assignments into `data/v2/classification_decisions/royal_holstein.yml`
+under `assignments:` (the 8th — c7h33c — folded into c7h33a's KM631 union, so
+c7h33a's assignment covers it). Each coin_id was VERIFIED present in
+royal_holstein seed_unified, so the bulk-promote applies them:
+
+```yaml
+- coin_id: unified-dk-hede-c7h33a    # KM631 (was danish_realm c7h33a+c7h33c)
+  fuss: 11_333_thaler
+  phase: I
+  kind: scheide
+  reason: '11⅓-Thaler Kurantmøntfod scheide. Curation follows the hede SEED re-home danish_realm→royal_holstein 2026-06-16 (overlap-home rule e8de501); fuss/phase carried from the pre-re-home danish_realm final. KM631 2 Skilling Christian VII (Hede 33A/B/C).'
+- coin_id: unified-dk-hede-c7h26a    # was danish_realm unified-dk-hede-c7h26
+  fuss: 11_333_thaler
+  phase: I
+  kind: scheide
+  reason: '11⅓-Thaler scheide; curation follows hede SEED re-home 2026-06-16.'
+- coin_id: unified-dk-hede-c7h28
+  fuss: 11_333_thaler
+  phase: I
+  kind: scheide
+  reason: '11⅓-Thaler scheide; curation follows hede SEED re-home 2026-06-16.'
+- coin_id: unified-dk-hede-c7h35     # was danish_realm dk-tid-79553
+  fuss: 11_333_thaler
+  phase: I
+  kind: scheide
+  reason: '11⅓-Thaler scheide; curation follows hede SEED re-home 2026-06-16 (V1 dk-tid-79553 backing now in c7h35).'
+- coin_id: unified-dk-hede-c7h13a
+  fuss: 9_25_thaler
+  phase: III
+  kind: kurant
+  reason: '9¼-Thaler kurant; curation follows hede SEED re-home 2026-06-16.'
+- coin_id: unified-dk-hede-c7h11a    # was danish_realm dk-tid-79166
+  fuss: 9_25_thaler
+  phase: II
+  kind: kurant
+  reason: '9¼-Thaler kurant; curation follows hede SEED re-home 2026-06-16 (V1 dk-tid-79166 backing now in c7h11a).'
+- coin_id: unified-dk-hede-c7h11b    # was danish_realm dk-tid-79168
+  fuss: 9_25_thaler
+  phase: II
+  kind: kurant
+  reason: '9¼-Thaler kurant; curation follows hede SEED re-home 2026-06-16 (V1 dk-tid-79168 backing now in c7h11b).'
+```
+
+**CAVEATS to check during verify (not blockers, but confirm):**
+- **`unified-dk-hede-c7h11c`** (a migrated final, fuss 9_25_thaler) has NO backing in
+  royal_holstein seed_unified (the c7h11 seed_unified is a/b/**d**, no c · h11c — it
+  folded). On absorb it will consolidate into a c7h11 peer or orphan. CONFIRM whether
+  Hede 11C is genuinely a distinct sub-variant that should stay a separate row (then
+  it needs its own seed/handling) or correctly folds. The bad-absorb «c7h11c vanished»
+  was this fold.
+- **km-683/695/721/760/761** (migrated V1-curated finals, no seed backing) are
+  orphan-curated → absorb SPARES them (curated, not vanished-stale) → preserved. f6h15
+  has backing → preserved. Confirm all 7 migrated finals survive the absorb.
+
+**Sequence:** paste the 7 assignments → `absorb --apply` (danish_realm, royal_holstein,
+danish_norway) → `audit_curation_loss.py` (should now show 0 real loss beyond the
+benign re-homes) → `build --include-v1` → verify: KM631 → ONE coin
+`unified-dk-hede-c7h33a` 11_333_thaler/I royal_holstein on BOTH pages; the 7 c7h/f6
+assignments + migrated finals keep their fuss; FrD'or one coin; drop counts don't grow
+vs baseline (denmark 7626 / SH 985); spot-check the c7h11c fold → commit. seed_unified
+is committed (correct merge, KM631/FrD'or united); finals are at the correct
+pre-absorb state. Everything revertible; nothing pushed (31 commits local).
 
 ## 2026-06-15 — curation-loss field-diff GATE CLOSED (UNPUSHED, 4b466b2 + fce45f1 + cebf090)
 
