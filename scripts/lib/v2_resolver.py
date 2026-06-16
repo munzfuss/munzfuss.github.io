@@ -52,18 +52,28 @@ def resolve_km_for_location(km, km_register: str, coin_id: str | None = None):
     Scalar / list shapes → returned as-is (legacy V1 path, no register
         resolution; the existing KMRef machinery handles cross-volume
         cases for list-form).
-    Dict shape (V2) → case-insensitive lookup by register key. Returns
-        the resolved scalar KM; missing key raises ValueError.
+    Dict shape (V2) → case-insensitive lookup by register key. Returns the
+        resolved KM. When the page's register key is ABSENT, the coin's KM
+        exists only in another Krause volume (a legitimate single-register
+        coin shown on the other consumer page — e.g. an SH-only KM rendered on
+        the Denmark page when `denmark` consumes a royal_holstein coin); fall
+        back to the union of the available values rather than crashing.
     """
     if isinstance(km, dict):
         key_lc = (km_register or "").lower()
         for k, v in km.items():
             if k.lower() == key_lc:
                 return v
-        raise ValueError(
-            f"coin {coin_id!r}: km dict {km!r} has no entry for register "
-            f"{km_register!r}"
-        )
+        # Missing register → union of available values (graceful; the coin
+        # has a catalogue number, just not in this register).
+        vals: list = []
+        for v in km.values():
+            for x in (v if isinstance(v, list) else [v]):
+                if x not in (None, "", []) and x not in vals:
+                    vals.append(x)
+        if not vals:
+            return None
+        return vals[0] if len(vals) == 1 else vals
     return km
 
 

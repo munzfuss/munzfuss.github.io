@@ -620,15 +620,46 @@ def normalise_catalog(catalog: dict) -> int:
             catalog[base] = filtered[0] if len(filtered) == 1 else filtered
             changes += 1
 
-    # 3. KM hygiene (km is the KMRef-union field, not in list_fields, so
-    #    handled explicitly): expand a slash-list scalar («683.1 / 683.2»)
-    #    into members, normalise a European decimal-comma sub-variant
-    #    («404,1» → «404.1») so it matches the dotted form Numista uses
-    #    elsewhere, and de-dup case-insensitively. A bare comma-decimal is
-    #    ONE value — only «/» separates a multi-KM list. Dict-form
-    #    (register-keyed) km is left untouched.
+    # 3. KM hygiene. KM is the KMRef-union field (not in list_fields), handled
+    #    explicitly. Two shapes:
+    #    (a) DICT-form (register-keyed V2 cross-volume twin, e.g. {'dk':'722',
+    #        'sh':'155'}): fold any embedded KMRef ({'value':X,'register':Y})
+    #        that a cross-register merge FUSED into the dict — the absorb
+    #        km-accumulation can emit a hybrid {'sh':[...], 'value':X,
+    #        'register':Y} (register-keyed form spliced with KMRef form). Move
+    #        X under its register key Y.lower() (dedup), drop value/register.
+    #        Without this the hybrid survives and
+    #        v2_resolver.resolve_km_for_location rejects it (no register key for
+    #        Y) → build crash on cross-register coins (km-696 / c5h121 / c7h13a).
+    #        Then dedup each register value list.
+    #    (b) SCALAR / LIST: expand a slash-list scalar («683.1 / 683.2») into
+    #        members, normalise a European decimal-comma sub-variant («404,1» →
+    #        «404.1»), de-dup case-insensitively. A bare comma-decimal is ONE
+    #        value — only «/» separates a multi-KM list.
     km = catalog.get("km")
-    if km is not None and not isinstance(km, dict):
+    if isinstance(km, dict):
+        if "value" in km and "register" in km:
+            reg = str(km.pop("register") or "").lower()
+            val = km.pop("value")
+            if reg and val not in (None, "", []):
+                cur = km.get(reg)
+                if cur is None:
+                    km[reg] = val
+                else:
+                    cur_list = list(cur) if isinstance(cur, list) else [cur]
+                    for x in (val if isinstance(val, list) else [val]):
+                        if str(x).lower() not in {str(y).lower() for y in cur_list}:
+                            cur_list.append(x)
+                    km[reg] = cur_list[0] if len(cur_list) == 1 else cur_list
+            changes += 1
+        for _rk, _rv in list(km.items()):
+            if isinstance(_rv, list):
+                _dd = _dedup_values_ci(_rv)
+                _nv = _dd[0] if len(_dd) == 1 else _dd
+                if _nv != _rv:
+                    km[_rk] = _nv
+                    changes += 1
+    elif km is not None:
         raw: list = []
         if isinstance(km, str):
             for part in km.split("/"):
