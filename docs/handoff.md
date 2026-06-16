@@ -17,35 +17,32 @@
 
 ## 2026-06-16 — overlap-home architecture + merger stage of the global apply DONE; absorb DEFERRED (UNPUSHED, e8de501 + e414a0a + 8d882fe + 1a8097b)
 
-> **⚠ DEFINITIVE STATUS (end of 2026-06-16, after fully running the apply once + reverting):**
-> The merger stage is committed + correct (KM631/FrD'or united in seed_unified/
-> royal_holstein). The migration of the 8 curated re-homed finals dr→rh + KM631
-> year-hold was BUILT AND VERIFIED in-session (KM631 → one coin 11_333_thaler/I,
-> year held 1778-1785, ie joint, 12 members; 7 migrated no-duplicates; c7h33c
-> folded; c7h11c consolidated into dk-tid-79168 — all good). **The real blocker
-> is a PRE-EXISTING absorb km-merge CODE bug:** `absorb --apply` on the Danish
-> trio re-introduces km-repr corruption on 3 cross-register (SH+DK) coins —
-> **km-696-1-fr-vi-1826, unified-dk-hede-c5h121, unified-dk-hede-c7h13a** — emitting
-> a hybrid km dict `{'sh': [...], 'value': X, 'register': Y}` (register-keyed form
-> fused with KMRef form) that `v2_resolver.resolve_km_for_location` rejects →
-> build crashes. c5h121 is the SAME coin `fix_corrupted_km_repr.py` (38f4f67) data-
-> patched; the absorb re-corrupts it, so any absorb re-run breaks it — NOT a
-> regression from this session, a latent bug this session surfaced. The whole
-> apply (migration + absorb) was REVERTED to HEAD; build is clean (validate OK,
-> 33 commits, nothing pushed).
+> **✅ APPLY COMPLETE (end of 2026-06-16) — the global apply for the Danish trio
+> is DONE, build clean, 36 commits, nothing pushed.** All goals materialised +
+> verified on BOTH denmark + schleswig_holstein pages:
+> - **KM631** → ONE coin `unified-dk-hede-c7h33a` in royal_holstein:
+>   11_333_thaler/I, joint `[danish_realm, royal_holstein]`, km
+>   [631,631.1,631.2,631.3], year held 1778-1785 (§CU — the kmk-122886
+>   reign-window 1766-1808 suppressed). Renders on both pages via Pass 1.
+> - **Frederik D'or** → ONE coin `unified-dk-hede-f7h1b` (royal_holstein), both pages.
+> - **Royal-Danish** mint → Kopenhagen (numista re-seed) materialised.
+> - 7 curated c7h/dk-tid finals migrated dr→royal_holstein (ie→joint); c7h33c
+>   folded into KM631; c7h11c consolidated into dk-tid-79168.
+> - **c7h13a** year-hold 1795-1801 (Hede 13A-D) — suppressed a spurious 1781
+>   widen that had dropped it from the 9¼-Fuß phase-III window; renders again.
+> - The **km cross-register code bug FIXED at source** (commit 4465c1b): the
+>   absorb no longer emits the hybrid `{'sh':[...], 'value':X, 'register':Y}`;
+>   0 residual hybrids; km-696 / c5h121 / c7h13a resolve on both pages. (This
+>   was a PRE-EXISTING latent bug the apply surfaced — `fix_corrupted_km_repr.py`
+>   38f4f67 had only data-patched c5h121; the absorb re-corrupted it every run
+>   until this fix.)
 >
-> **CORRECT ORDER for the focused continuation — CODE FIX FIRST:**
-> 1. Fix the absorb km-merge so combining a register-keyed km (`{'sh': [...]}`)
->    with a KMRef km (`{'value':X,'register':Y}`) NORMALISES to one register-keyed
->    dict (e.g. `{'sh':[...], 'dk':'706.1'}`), never the hybrid. Likely site: the
->    catalog assembly in `absorb_seeds_into_final_v2._enrich_final_entry` +
->    `lib/catalog_codes.normalise_catalog` (which should fold the hybrid but
->    doesn't) + `merge_seeds_cross_source._merge_km_field`. Use
->    `scripts/maintenance/fix_corrupted_km_repr.py` as the reference for the
->    correct register-keyed shape. Add a guard/test: absorb of a coin with SH-km
->    member + DK-km foundation → clean register-keyed dict, resolver-loadable.
-> 2. THEN migrate the 8 finals (below) + KM631 year-hold + `absorb --apply` (trio)
->    + `build --include-v1` + verify + commit.
+> Build: denmark 7640 drop / 2084 assembled, SH 982 / 727; id-set deltas sane
+> (bulk-promotes + consolidations + migrations); no regression. **`git push`
+> when ready.** Remaining follow-ups (separate, non-blocking): §CV (generalise
+> `_home_entity` to consumes-map-driven, also schauenburg_pinneberg); §CU
+> (systemic reign-window year-union downweight, so per-case year-holds like
+> KM631/c7h13a become unnecessary).
 
 **Architecture fix (the curator's home-file model).** A coin's `issuing_entity`
 may be a list (joint mint = circulation in several political entities); the
