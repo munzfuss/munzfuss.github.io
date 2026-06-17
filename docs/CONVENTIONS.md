@@ -186,6 +186,30 @@ verification_note:
 
 For calculations, use midpoint or minimum with a `verification_note` explaining.
 
+## Timeline display anchor vs. standard start (pre-1514 Danish fusses)
+
+The Denmark timeline (`data/v2/locations/denmark.yml::timeline`) starts at the
+**1514 Christian-II-Lovkompleks anchor** — the first comprehensive
+Danish-Norwegian Møntordning. Some fusses we document have a *standard* that
+began **before** 1514 (e.g. `nobel_fod`, first struck 1496 under Hans). The
+convention for those:
+
+- **The timeline bar starts at 1514** (the bar's `year_from`), because the
+  shared timeline needs one realm-wide anchor and we cannot extend it below
+  ~1500 without pulling in a large body of still-unclassified pre-Reformation
+  silver coinage that would clutter the page.
+- **The fuss description, phase windows and coin specimens are NOT truncated
+  at 1514** — they cover the standard from its real start year (the nobel
+  description opens «1496–1532»; the phase `from_label` is 1496; the 1496/1502
+  Hans specimens render in the coin table). Only the *timeline visualisation*
+  is anchored at 1514.
+- **Framing of the 1514 Møntordning in prose:** it *de jure* formalised a
+  standard already struck *de facto* since 1496 — NOT a retroactive
+  application. (Wilcke 7-2 confirms the Summer-1514 Dienis-Blicher-Brev at
+  Malmø specifies the Nobel: «16 Stk. paa Marken, 23½ Karat».) The fineness of
+  the pre-1514 issues is not independently attested — mark those coin rows
+  `fineness_verified: false`.
+
 ## Unverified fields marker
 
 ```yaml

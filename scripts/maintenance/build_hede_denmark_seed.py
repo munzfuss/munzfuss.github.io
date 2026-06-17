@@ -1135,7 +1135,7 @@ def main() -> int:
             "Drop entries whose year_first is before this year. Default 1514 "
             "— Christian II Lovkompleks anchor (the four-act legal package per "
             "Wilcke 1950 p. 183-186 verbatim: Møntordning af Sommeren 1514 in "
-            "Copenhagen (Dienis Malmö mintmaster Brev, both metals: Nobler 23½ "
+            "Malmø (Dienis Malmö mintmaster Brev, both metals: Nobler 23½ "
             "Karat 16/Mark + Rhinsk Gylden 18 Karat 72/Mark) + Møntordning af "
             "3. August 1514 for Norge + Kvittering Paasketid 1515 + Sjælland "
             "åbent Brev af 24. August 1515). First comprehensive Danish-Norwegian "
