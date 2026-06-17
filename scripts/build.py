@@ -1630,6 +1630,26 @@ def generate_assets(theme: dict) -> None:
                 print(f"📎 Asset: site/assets/{src.name} ({dst.stat().st_size:,} bytes)")
 
 
+def copy_static_root() -> None:
+    """Copy verbatim root-level static files from /static → site/ root.
+
+    For files that must be served at the site root URL itself, not under
+    /assets/ — Google/Bing site-verification tokens, robots.txt, a
+    custom-domain CNAME, .well-known/, etc. GitHub Pages deploys the build
+    output `site/` (NOT the repo root), so a file dropped in the repo root
+    is never served; placing it in /static gets it copied to site/<name>
+    and thus served at https://<host>/<name>.
+    """
+    src_static = REPO_ROOT / "static"
+    if not src_static.is_dir():
+        return
+    for src in src_static.iterdir():
+        if src.is_file():
+            dst = SITE_DIR / src.name
+            shutil.copyfile(src, dst)
+            print(f"📄 Static-root: site/{src.name} ({dst.stat().st_size:,} bytes)")
+
+
 def _render_location_worker(loc_id: str, output_root_str: str, debug: bool,
                             repo_url: str, base_url: str,
                             location_filter: list[str] | None,
@@ -1939,7 +1959,8 @@ def main():
                           output_root=SITE_DIR / "v1")
 
     generate_assets(theme)
-    
+    copy_static_root()
+
     print()
     print(f"✅ Build complete: {SITE_DIR}/")
 
