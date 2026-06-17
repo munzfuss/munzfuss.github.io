@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-06-16 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-17 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 3902 per-source seed entries.
-# Output: 2137 unified entries (one per physical coin).
+# Output: 2135 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-06-16'
+generated_at: '2026-06-17'
 coins:
 - id: unified-denmark-numismaster-110619
   fuss: seed_unsorted
@@ -898,51 +898,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-122265
-- id: unified-denmark-numismaster-204386
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Ducat
-  year_first: 1670
-  year_last: 1670
-  year_label: '1670'
-  ruler: Frederick III
-  catalog:
-    km: A119
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  - value: 0.979
-    source: ucoin
-  weight_rough_g:
-  - value: 6.98
-    source: ucoin
-  - value: 6.99
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_204386
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-2-ducat-1670/?tid=145589
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-204386
-  - dk-tid-145589
 - id: unified-denmark-numismaster-86242
   fuss: seed_unsorted
   phase: numismaster
@@ -3376,18 +3331,16 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 2 Ducats
-  year_first: 1670
+  year_first: 1673
   year_last: 1679
   year_ranges:
-  - - 1670
-    - 1670
   - - 1673
     - 1673
   - - 1675
     - 1675
   - - 1679
     - 1679
-  year_label: 1670, 1673, 1675, 1679
+  year_label: 1673, 1675, 1679
   ruler: Christian V
   mint: Christiania
   catalog:
@@ -3411,6 +3364,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: numismaster
@@ -3549,14 +3503,12 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Ducat
-  year_first: 1670
+  year_first: 1673
   year_last: 1674
   year_ranges:
-  - - 1670
-    - 1670
   - - 1673
     - 1674
-  year_label: 1670, 1673-1674
+  year_label: 1673-1674
   ruler: Christian V
   mint: Christiania
   catalog:
@@ -3579,6 +3531,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: numismaster
@@ -3611,6 +3564,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-ducat-1673/?tid=145746
     ref: ucoin
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/122081
+    ref: KMM 122081 (Inv. GP 4551.53)
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -3628,19 +3584,15 @@ coins:
   - dk-bruun-10501
   - dk-numista-117119
   - dk-tid-145746
+  - kmk-122081
 - id: unified-dk-bruun-10509
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: ½ Ducat
-  year_first: 1670
+  year_first: 1674
   year_last: 1674
-  year_ranges:
-  - - 1670
-    - 1670
-  - - 1674
-    - 1674
-  year_label: 1670, 1674
+  year_label: '1674'
   ruler: Christian V
   mint: Christiania
   catalog:
@@ -3663,6 +3615,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: numista
@@ -4926,8 +4879,11 @@ coins:
   kind: kurant
   nominal: 2 Ducats
   year_first: 1669
-  year_last: 1669
-  year_label: '1669'
+  year_last: 1670
+  year_ranges:
+  - - 1669
+    - 1670
+  year_label: 1669-1670
   ruler: Frederik III
   mint: Christiania
   catalog:
@@ -4946,39 +4902,41 @@ coins:
     others:
     - Aagaard# 7.1
     - Aagaard# 7.5
-    - Thesen# 5A
-    numista: '460032'
     fr: 5b
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
-    source: numista
+    source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 6.55
     source: bruun
   - value: 6.81
     source: bruun
   - value: 6.98
-    source: numista
-  diameter_mm:
-  - value: 24.0
-    source: numista
+    source: ucoin
+  - value: 6.99
+    source: numismaster
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_204386
+    ref: NumisMaster
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13169, p. 124
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17085, p. 59
-  - type: literature
-    url: https://en.numista.com/460032
-    ref: Numista N#460032 — 2 Ducats - Frederik III - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-ducat-1670/?tid=145589
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -4992,17 +4950,21 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   issuing_entity: danish_norway
   composed_of:
+  - denmark-numismaster-204386
   - dk-bruun-6737
   - dk-bruun-6738
-  - dk-numista-460032
+  - dk-tid-145589
 - id: unified-dk-bruun-7235
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Gold Issue
   year_first: 1670
-  year_last: 1670
-  year_label: '1670'
+  year_last: 1680
+  year_ranges:
+  - - 1670
+    - 1680
+  year_label: 1670-1680
   ruler: Christian V
   mint: Christiania
   catalog:
@@ -5017,6 +4979,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 7.29
     source: bruun
@@ -5144,8 +5107,11 @@ coins:
   kind: kurant
   nominal: ½ Skilling
   year_first: 1481
-  year_last: 1481
-  year_label: '1481'
+  year_last: 1512
+  year_ranges:
+  - - 1481
+    - 1512
+  year_label: 1481-1512
   ruler: Hans
   mint: Bergen
   catalog:
@@ -5161,6 +5127,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 1.38
     source: bruun
@@ -5247,8 +5214,11 @@ coins:
   kind: kurant
   nominal: 1 Hvid
   year_first: 1505
-  year_last: 1505
-  year_label: '1505'
+  year_last: 1510
+  year_ranges:
+  - - 1505
+    - 1510
+  year_label: 1505-1510
   mint: Nidaros
   catalog:
     bruun_collection_id: '9243'
@@ -5263,6 +5233,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 0.8
     source: bruun
@@ -5290,8 +5261,11 @@ coins:
   kind: kurant
   nominal: 1 Hvid
   year_first: 1505
-  year_last: 1505
-  year_label: '1505'
+  year_last: 1510
+  year_ranges:
+  - - 1505
+    - 1510
+  year_label: 1505-1510
   mint: Nidaros
   catalog:
     bruun_collection_id: '9248'
@@ -5306,6 +5280,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 0.72
     source: bruun
@@ -5333,8 +5308,11 @@ coins:
   kind: kurant
   nominal: 1 Penny
   year_first: 1505
-  year_last: 1505
-  year_label: '1505'
+  year_last: 1510
+  year_ranges:
+  - - 1505
+    - 1510
+  year_label: 1505-1510
   mint: Nidaros
   catalog:
     bruun_collection_id: '9251'
@@ -5349,6 +5327,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 0.33
     source: bruun
@@ -5438,8 +5417,11 @@ coins:
   kind: kurant
   nominal: 1 Skilling
   year_first: 1510
-  year_last: 1510
-  year_label: '1510'
+  year_last: 1522
+  year_ranges:
+  - - 1510
+    - 1522
+  year_label: 1510-1522
   mint: Nidaros
   catalog:
     bruun_collection_id: '9259'
@@ -5454,6 +5436,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 1.95
     source: bruun
@@ -5481,8 +5464,11 @@ coins:
   kind: kurant
   nominal: 1 Skilling
   year_first: 1510
-  year_last: 1510
-  year_label: '1510'
+  year_last: 1522
+  year_ranges:
+  - - 1510
+    - 1522
+  year_label: 1510-1522
   mint: Nidaros
   catalog:
     bruun_collection_id: '9261'
@@ -5497,6 +5483,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 2.32
     source: bruun
@@ -5524,8 +5511,11 @@ coins:
   kind: kurant
   nominal: 1 Hvid
   year_first: 1510
-  year_last: 1510
-  year_label: '1510'
+  year_last: 1522
+  year_ranges:
+  - - 1510
+    - 1522
+  year_label: 1510-1522
   mint: Nidaros
   catalog:
     bruun_collection_id: '9262'
@@ -5540,6 +5530,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 0.64
     source: bruun
@@ -5567,8 +5558,11 @@ coins:
   kind: kurant
   nominal: 1 Double Hvid
   year_first: 1523
-  year_last: 1523
-  year_label: '1523'
+  year_last: 1524
+  year_ranges:
+  - - 1523
+    - 1524
+  year_label: 1523-1524
   ruler: Hans Mule
   mint: Christiania
   catalog:
@@ -5584,6 +5578,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 1.24
     source: bruun
@@ -5996,8 +5991,11 @@ coins:
   kind: kurant
   nominal: 1 Skilling
   year_first: 1522
-  year_last: 1522
-  year_label: '1522'
+  year_last: 1538
+  year_ranges:
+  - - 1522
+    - 1538
+  year_label: 1522-1538
   ruler: Christian III
   mintmaster: Jacob Schult
   mint: Nidaros
@@ -6013,6 +6011,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 1.49
     source: bruun
@@ -6086,9 +6085,14 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Skilling
-  year_first: 1537
+  year_first: 1533
   year_last: 1537
-  year_label: '1537'
+  year_ranges:
+  - - 1533
+    - 1533
+  - - 1537
+    - 1537
+  year_label: 1533, 1537
   ruler: Christian III
   mint: Bergen
   catalog:
@@ -7063,6 +7067,7 @@ coins:
     bruun_page: 201
     others:
     - Aagaard# 19.1 (49-3/49-16)
+    - Aagaard# 49-16)
     - Brekke# 12
     - Brekke# 13
     - Thesen# 16B
@@ -7159,6 +7164,7 @@ coins:
     bruun_page: 191
     others:
     - Aagaard# 15.1 (49-1/49.2)
+    - Aagaard# 49.2)
     - Brekke# 63
     - Thesen# 69B
     - Rønning# 43a
@@ -7236,7 +7242,9 @@ coins:
     bruun_page: 203
     others:
     - Aagaard# 21.3 (49-5/49.15)
+    - Aagaard# 49.15)
     - Aagaard# 21.4 (49-3/50-2)
+    - Aagaard# 50-2)
     dav: '3588'
   metal: silver
   metal_verified: false
@@ -7319,7 +7327,9 @@ coins:
     bruun_page: 204
     others:
     - Aagaard# 22.1 (49-2/49-2)
+    - Aagaard# 49-2)
     - Aagaard# 22.2 (49-3/50-1)
+    - Aagaard# 50-1)
     - Aagaard# 27.1
     - Aagaard# 34.1
     - Aagaard# 42.1
@@ -7549,7 +7559,9 @@ coins:
     bruun_page: 260
     others:
     - Aagaard# 32.1 (51-1/51-3)
+    - Aagaard# 51-3)
     - Aagaard# 37.1 (51-5/52-2)
+    - Aagaard# 52-2)
     - Brekke# 31
     - Brekke# 32
     - Thesen# 36
@@ -7742,6 +7754,7 @@ coins:
     bruun_page: 205
     others:
     - Aagaard# 44.1 (53-6/53-3)
+    - Aagaard# 53-3)
     - Aagaard# 44.4
     - Brekke# 34-37
     - Thesen# 39-42
@@ -7836,6 +7849,7 @@ coins:
     bruun_page: 196
     others:
     - Aagaard# 40.2 (53-2/53-2)
+    - Aagaard# 53-2)
     - Rønning# 38
     - Brekke# 33
     - Thesen# 38
@@ -7915,6 +7929,7 @@ coins:
     bruun_page: 208
     others:
     - Aagaard# 43.1 (53-7/54-1)
+    - Aagaard# 54-1)
     - Brekke# 17
     - Brekke# 18
     - Thesen# 21
@@ -8353,6 +8368,7 @@ coins:
     - Aagaard# 70.4
     - Aagaard# 70.6
     - Aagaard# 70.13 (60-1/61-3)
+    - Aagaard# 61-3)
     - Brekke# 83A
     - Thesen# 89A
     - Rønning# 45d-45f
@@ -9249,45 +9265,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-galster-c2g-172
-- id: unified-dk-galster-f1g-168
-  fuss: seed_unsorted
-  phase: galster
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1531
-  year_last: 1531
-  year_label: '1531'
-  mint: Christiania
-  catalog:
-    galster:
-    - '168'
-    - mangler hos
-    schou: '6'
-    jensen_skjoldager: N-15
-    galster_volume: f1g
-  metal: billon
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  year_verified: true
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/norge/nf1g168.htm
-    ref: Galster 168 (f1g) — danskmoent.dk norge_nf1g168.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-galster-f1g-168
 - id: unified-dk-galster-hg-149
   fuss: seed_unsorted
   phase: galster
@@ -18390,6 +18367,7 @@ coins:
     others:
     - Aagaard# 23.1
     - Aagaard# 23.5 (49-3/50-2)
+    - Aagaard# 50-2)
     - Brekke# 126-131
     - Thesen# 132-137
     - Rønning# 53
@@ -18503,7 +18481,9 @@ coins:
     bruun_page: 263
     others:
     - Aagaard# 41.1 (52-3/52-3)
+    - Aagaard# 52-3)
     - Aagaard# 41.4 (53-2/53-2)
+    - Aagaard# 53-2)
     numista: '55888'
     dav:
     - EC II 3590
@@ -18702,10 +18682,14 @@ coins:
     bruun_page: 206
     others:
     - Aagaard# 45.2 (53-4/53.3)
+    - Aagaard# 53.3)
     - Aagaard# 45.1 (53-6/53-3)
+    - Aagaard# 53-3)
     - Aagaard# 45.5 (54-3/54-2)
+    - Aagaard# 54-2)
     - Aagaard# 45.4 (54-2/54-2)
     - Aagaard# 45.7 (54-3/55-5)
+    - Aagaard# 55-5)
     - Aagaard# 45.8 (54-5/55-7)
     - Brekke# 69-71
     - Thesen# 75-77
@@ -18958,6 +18942,7 @@ coins:
     - Aagaard# 46.2
     - Aagaard# 46.3
     - Aagaard# 46.4 (53-3/55-1)
+    - Aagaard# 55-1)
     - Aagaard# 46.5
     - Brekke# 115-120
     - Thesen# 121-126
@@ -19092,7 +19077,9 @@ coins:
     bruun_page: 212
     others:
     - Aagaard# 50.2 (55-1/56-4)
+    - Aagaard# 56-4)
     - Aagaard# 50.8 (57-2/57-1)
+    - Aagaard# 57-1)
     - Brekke# 72
     - Brekke# 74
     - Thesen# 78
@@ -19211,6 +19198,7 @@ coins:
     bruun_page: 271
     others:
     - Aagaard# 49.3 (56-3/56-10)
+    - Aagaard# 56-10)
     - Aagaard# 49.4
     - Brekke# 38
     - Brekke# 39
@@ -20368,6 +20356,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.875
     source: hede
@@ -20457,6 +20446,7 @@ coins:
     bruun_page: 204
     others:
     - Aagaard# 79.1 (61-2/62-9)
+    - Aagaard# 62-9)
     - Aagaard# 79.4 (61-2/62-9)
     - Brekke# 87
     - Brekke# 89
@@ -20659,6 +20649,7 @@ coins:
     bruun_page: 286
     others:
     - Aagaard# 84.1 (62-3/62-2)
+    - Aagaard# 62-2)
     - Aagaard# 84.3 (62-4/62-9)
     - Aagaard# 93.7
     - Brekke# 92
@@ -21279,6 +21270,7 @@ coins:
     bruun_page: 222
     others:
     - Aagaard# 102.2 (64-7/65-6)
+    - Aagaard# 65-6)
     - Rønning# 48
     - Brekke# 103
     - Thesen# 109
@@ -21687,7 +21679,9 @@ coins:
     bruun_page: 224
     others:
     - Aagaard# 111.3 (67-4/67-9)
+    - Aagaard# 67-9)
     - Aagaard# 111.9 (68-1/68-7)
+    - Aagaard# 68-7)
     - Aagaard# 111.14
     - Aagaard# 111.17
     - Brekke# 107-109
@@ -23191,6 +23185,7 @@ coins:
     bruun_page: 203
     others:
     - Aagaard# 17.1 (49-2/49-9)
+    - Aagaard# 49-9)
     - AAJT# 63A
     - Rønning# 43
     - Thesen# 69A
@@ -23301,7 +23296,9 @@ coins:
     bruun_page: 202
     others:
     - Aagaard# 14.1 (49-1/49.1)
+    - Aagaard# 49.1)
     - Aagaard# 20.3 (49-3/50-11)
+    - Aagaard# 50-11)
     - Brekke# 29
     - Brekke# 30
     - Thesen# 34B
@@ -28793,7 +28790,12 @@ coins:
   mint: Christiania
   catalog:
     numista: '444429'
-    galster: '168'
+    galster:
+    - '168'
+    - mangler hos
+    schou: '6'
+    jensen_skjoldager: N-15
+    galster_volume: f1g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -28801,6 +28803,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.219
     source: numista
@@ -28811,6 +28814,9 @@ coins:
   - value: 24.0
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/norge/nf1g168.htm
+    ref: Galster 168 (f1g) — danskmoent.dk norge_nf1g168.htm
   - type: literature
     url: https://en.numista.com/444429
     ref: Numista N#444429 — 1 Skilling - Frederik I (Oslo)
@@ -28826,6 +28832,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   issuing_entity: danish_norway
   composed_of:
+  - dk-galster-f1g-168
   - dk-numista-444429
 - id: unified-dk-numista-444482
   fuss: seed_unsorted
@@ -29517,6 +29524,55 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-445607
+- id: unified-dk-numista-460032
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Ducats (ND, 1669)
+  year_first: 1669
+  year_last: 1669
+  year_label: '1669'
+  ruler: Frederick III (Frederik III)
+  catalog:
+    km: A119
+    numista: '460032'
+    hede: '39'
+    fr: 5b
+    others:
+    - Thesen# 5A
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.979
+    source: numista
+  weight_rough_g:
+  - value: 6.98
+    source: numista
+  diameter_mm:
+  - value: 24.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/460032
+    ref: Numista N#460032 — 2 Ducats - Frederik III - Norway
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-numista-460032
 - id: unified-dk-numista-463165
   fuss: seed_unsorted
   phase: numista
@@ -30568,8 +30624,12 @@ coins:
   year_last: 1788
   year_ranges:
   - - 1772
+    - 1775
+  - - 1783
+    - 1783
+  - - 1788
     - 1788
-  year_label: 1772-1788
+  year_label: 1772-1775, 1783, 1788
   ruler: Christian VII
   mint: Norwegian
   catalog:
@@ -30810,13 +30870,15 @@ coins:
   kind: kurant
   nominal: 1 Skilling
   year_first: 1771
-  year_last: 1786
+  year_last: 1785
   year_ranges:
   - - 1771
     - 1771
   - - 1782
-    - 1786
-  year_label: 1771, 1782-1786
+    - 1782
+  - - 1784
+    - 1785
+  year_label: 1771, 1782, 1784-1785
   ruler: Christian VII
   mint: Kongsberg
   catalog:
@@ -33622,29 +33684,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-122080
-- id: unified-kmk-122081
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Dukat
-  year_first: 1673
-  year_last: 1673
-  year_label: '1673'
-  ruler: Christian 5
-  catalog:
-    hede: '3'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/122081
-    ref: KMM 122081 (Inv. GP 4551.53)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-122081
 - id: unified-kmk-122082
   fuss: seed_unsorted
   phase: kmk

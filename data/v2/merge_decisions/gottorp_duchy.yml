@@ -1,0 +1,17 @@
+# Curator merge decisions — entity `gottorp_duchy`.
+#
+# Loaded by merge_seeds_cross_source.py::_load_decisions. Surfaces:
+#   merges:      force member-ids into one unified class
+#   no_merges:   forbid member pairs from uniting
+#   year_demote: hold reign-window / undated-specimen year ranges to a
+#                last-resort pass in _union_year_ranges (§CU year-mute).
+
+# §CU year-mute — UNDATED Bruun specimen whose broad attribution range would
+# swallow the dated discrete year of the SAME type. Surfaced by the 2026-06-17
+# coordinated re-flow curation-loss gate (ND-swallow class).
+year_demote:
+  - member_id: dk-bruun-14741
+    reason: |
+      Bruun II lot 14257, 1 Goldgulden Frederik I, ND (1523-1533). The dated
+      peer Galster 122 (1531, year_verified=true) drives the displayed year;
+      the undated Bruun range must not widen it to 1523-1533. Last-resort only.

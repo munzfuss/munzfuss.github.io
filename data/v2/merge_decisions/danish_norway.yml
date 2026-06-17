@@ -195,3 +195,23 @@ no_merges:
       SEPARATE physical type from NumisMaster's MC_86229 — different
       reign, different obverse portrait. NumisMaster's KM-224 rollup
       spans both reigns; Hede splits per ruler.
+
+# §CU year-mute — UNDATED Bruun specimens (year_verified=False) whose broad
+# attribution range «ND (1670-99)» = 1670-1699 would swallow the dated discrete
+# years of the SAME type contributed by NumisMaster / Numista / ucoin / KMM.
+# Demote so the dated attestations drive the displayed minting years; the Bruun
+# specimen's range is kept only as last-resort (no dated peer). Surfaced by the
+# 2026-06-17 coordinated re-flow curation-loss gate (ND-swallow class).
+year_demote:
+  - member_id: dk-bruun-10497
+    reason: |
+      Bruun I lot 1230, 2 Ducats Christian V, ND (1670-99). Dated peers
+      NumisMaster 1679 / Numista 1675 / Numista 1673 drive the years.
+  - member_id: dk-bruun-10501
+    reason: |
+      Bruun III lot 12121, 1 Ducat Christian V, ND (1670-99). Dated peers
+      NumisMaster 1673-1674 / Numista 1673 / ucoin 1673 / KMM 1673.
+  - member_id: dk-bruun-10509
+    reason: |
+      Bruun I lot 1231, ½ Ducat Christian V, ND (1670-99). Dated peers
+      Numista 1674 / ucoin 1674.
