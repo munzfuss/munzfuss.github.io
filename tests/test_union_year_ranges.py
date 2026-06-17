@@ -65,6 +65,20 @@ _spec = importlib.util.spec_from_file_location(
 _merger = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_merger)
 _union_year_ranges = _merger._union_year_ranges
+_format_year_label = _merger._format_year_label
+
+# Root-fix function under test: the Hede seed builder's year-field
+# constructor. The c7h13C «1798» drop originates here — consecutive
+# discrete years (a comma-separated source enumeration like «1798, 1799»)
+# must be emitted as singleton `year_ranges` (DISCRETE), NOT collapsed to a
+# loose year_first/year_last span that the cross-source merger can displace.
+_spec_hede = importlib.util.spec_from_file_location(
+    "build_hede_denmark_seed",
+    str(PROJECT_ROOT / "scripts" / "maintenance" / "build_hede_denmark_seed.py"),
+)
+_hede = importlib.util.module_from_spec(_spec_hede)
+_spec_hede.loader.exec_module(_hede)
+_build_year_fields = _hede._build_year_fields
 
 
 def _member(year_ranges=None, year_first=None, year_last=None):
@@ -77,6 +91,18 @@ def _member(year_ranges=None, year_first=None, year_last=None):
     if year_last is not None:
         m["year_last"] = year_last
     return m
+
+
+def _hede_member(years):
+    """A member built EXACTLY as the Hede seed builder emits it for a
+    sub-variant with the given attested years — runs the real
+    `_build_year_fields` so the union test exercises the true seed shape."""
+    f = _build_year_fields([{"year": y} for y in years])
+    return _member(
+        year_ranges=f.get("year_ranges"),
+        year_first=f.get("year_first"),
+        year_last=f.get("year_last"),
+    )
 
 
 class TestUnionYearRangesBasic(unittest.TestCase):
@@ -576,6 +602,101 @@ class TestYearDemoteMute(unittest.TestCase):
             _member(year_ranges=[[1481, 1513]]),       # NOT muted
         ]
         self.assertEqual(_union_year_ranges(members), [[1481, 1513]])
+
+
+class TestHedeDiscreteYearEnumeration(unittest.TestCase):
+    """Root-fix: a Hede sub-variant's year list is ALWAYS a discrete
+    enumeration of individually-struck years (comma-separated in the
+    source). `_build_year_fields` MUST emit them as singleton
+    `year_ranges` so the merger classifies them DISCRETE — never collapse
+    a consecutive run to a loose year_first/year_last span (which the
+    merger could displace, silently dropping an interior year).
+    """
+
+    def test_consecutive_pair_emits_discrete_singletons(self):
+        """«1798, 1799» (the c7h13C source line) → two singletons, NOT a
+        loose [[1798, 1799]] span and NOT bare year_first/year_last."""
+        out = _build_year_fields([{"year": 1798}, {"year": 1799}])
+        self.assertEqual(out.get("year_ranges"), [[1798, 1798], [1799, 1799]])
+
+    def test_longer_consecutive_run_emits_singletons(self):
+        """A 3-year consecutive run also stays discrete (one [y, y] each)."""
+        out = _build_year_fields([{"year": y} for y in (1795, 1796, 1797)])
+        self.assertEqual(
+            out.get("year_ranges"),
+            [[1795, 1795], [1796, 1796], [1797, 1797]],
+        )
+
+    def test_non_consecutive_years_unchanged(self):
+        """Years with gaps were already discrete — behaviour preserved."""
+        out = _build_year_fields([{"year": y} for y in (1795, 1797, 1801)])
+        self.assertEqual(
+            out.get("year_ranges"),
+            [[1795, 1795], [1797, 1797], [1801, 1801]],
+        )
+
+    def test_single_year_no_year_ranges(self):
+        """A one-year sub-variant needs no year_ranges (year_first suffices)."""
+        out = _build_year_fields([{"year": 1799}])
+        self.assertEqual(out.get("year_first"), 1799)
+        self.assertIsNone(out.get("year_ranges"))
+
+    def test_label_stays_compact_despite_singleton_storage(self):
+        """Storage is singleton; the human label compresses the run back."""
+        out = _build_year_fields([{"year": 1798}, {"year": 1799}])
+        self.assertEqual(out["year_label"], "1798–1799")
+
+
+class TestC7H13ASpeciedalerInteriorYear(unittest.TestCase):
+    """End-to-end regression for `unified-dk-hede-c7h13a` (1 Speciedaler,
+    Christian VII., Hede 13A-D + Numista N#132002).
+
+    Source — danskmoent.dk/chr/c7h13.htm — VERIFIES six struck years across
+    the four sub-variants:
+
+        13A (Altona)      1795, 1797, 1801
+        13B (København)   1796, 1797
+        13C (København)   1798, 1799     ← 1798 attested by two specimens
+        13D (København)   1799
+
+    plus Numista's collection table (1795, 1796, 1797, 1801). The verified
+    ground truth is therefore the SET {1795, 1796, 1797, 1798, 1799, 1801}.
+
+    Before the fix the union dropped 1798: 13C «1798, 1799» collapsed to a
+    loose span, the discrete envelope [1795, 1801] displaced it, and 1798 —
+    whose ONLY attestation was that loose range — vanished (1799 survived
+    via 13D's independent singleton). The members below are built through
+    the REAL `_build_year_fields`, so this test exercises the true seed→
+    merge chain and fails if either layer regresses.
+    """
+
+    def _members(self):
+        return [
+            _hede_member([1795, 1797, 1801]),        # 13A
+            _hede_member([1796, 1797]),              # 13B
+            _hede_member([1798, 1799]),              # 13C — carries 1798
+            _hede_member([1799]),                    # 13D
+            _hede_member([1795, 1796, 1797, 1801]),  # Numista N#132002
+        ]
+
+    def test_union_includes_1798_and_compresses(self):
+        """The merged year_ranges must be the verified truth, compressed:
+        1795-1799 consecutive + 1801 discrete."""
+        u = _union_year_ranges(self._members())
+        self.assertEqual(u, [[1795, 1799], [1801, 1801]])
+
+    def test_1798_present_in_year_set(self):
+        """Explicit guard: the interior year 1798 is NOT dropped."""
+        u = _union_year_ranges(self._members())
+        years = {y for lo, hi in u for y in range(lo, hi + 1)}
+        self.assertEqual(years, {1795, 1796, 1797, 1798, 1799, 1801})
+        self.assertIn(1798, years)
+
+    def test_rendered_label_is_1795_1799_1801(self):
+        """On the page «1795, 1796, 1797, 1798, 1799, 1801» must read as
+        «1795-1799, 1801» (consecutive run folded, 1801 separate)."""
+        u = _union_year_ranges(self._members())
+        self.assertEqual(_format_year_label(u), "1795-1799, 1801")
 
 
 if __name__ == "__main__":

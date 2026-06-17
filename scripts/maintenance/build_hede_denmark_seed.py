@@ -636,11 +636,21 @@ def _build_year_fields(years: list[dict]) -> dict:
     }
     if year_last != year_first:
         out["year_last"] = year_last
-    if len(ranges) > 1:
-        # Year_ranges only useful when sub-ranges exist (gaps in the
-        # struck year sequence). If continuous, year_first/year_last
-        # cover everything.
-        out["year_ranges"] = ranges
+    if len(yrs) > 1:
+        # A Hede sub-variant's year list is ALWAYS a discrete enumeration
+        # of individually-struck years (comma-separated in the source),
+        # never a continuous-mintage span. Emit ONE singleton [y, y] per
+        # attested year so the cross-source merger's `_union_year_ranges`
+        # classifier treats them as DISCRETE attestations. A consecutive
+        # run collapsed to a single multi-year range [[lo, hi]] would be
+        # mis-read as a LOOSE span and could be displaced by a wider
+        # discrete envelope, silently dropping an interior year (the
+        # c7h13C «1798» case: «1798, 1799» displaced by the cluster's
+        # [1795, 1801] envelope, 1798 lost). Render-time
+        # `_format_year_label` folds the singletons back into «1798-1799»
+        # for display, so storage stays honest while the label stays
+        # compact. (`ranges` above remains gap-grouped for the label only.)
+        out["year_ranges"] = [[y, y] for y in yrs]
     return out
 
 
