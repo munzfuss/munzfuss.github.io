@@ -92,15 +92,28 @@
 >   on bruun-3839 + km-795 stay until then (remove WITH the re-flow so they don't
 >   OVERRIDE the mute). §CU updated.
 >
-> **REMAINING (materialisation, NOT done):** re-seed numista → re-merge → re-absorb
-> the Danish-crown entities so discrete labels render. The km-str-repr blocker is
-> now CLEARED (`441b285`) — per-entity absorbs no longer corrupt register-keyed km.
-> Still deferred to a coordinated re-flow because the numista seed regen bundles the
-> same builder/cache drift as Bruun (`4465c1b`/`41efdf0`…); do it as one batch
-> (Bruun seed regen + numista re-seed + all-entity merge/absorb), each step gated by
-> `audit_curation_loss.py`. Expect benign km-shape normalisations (register-dict →
-> bare-list for single-register coins) across finals on the first post-fix absorb.
-> **Submodule `2758b6d41` is local-only — push it (PB-10) before/with the main push.**
+> - **✅ COORDINATED RE-FLOW DONE (2026-06-17)** — full pipeline re-run, all 22
+>   entities, materialising every deferred fix. Phases: submodule `c18232a7d`
+>   (numista parsed-sidecar year_list backfill — §CX Phase-2 that the harvest had
+>   skipped: build_numista_seed reads `numista/parsed/<NID>.json`, NOT the raw
+>   cache the §CX patch wrote) → `3486bf0` re-seed all sources → `68fae2f` merge
+>   (+ year_demote for 4 ND-swallow culprits) → `968af94` absorb (+ retired the
+>   bruun-3839/km-795/c7h13a holds). Build clean (denmark 2076 / SH 726 stable;
+>   German pages grew with the curator-approved ucoin +1136→+273 final). 0 str-repr.
+>   Verified: bruun-3839 → 1496-1497, km-795 → 1874-1905 discrete, Albertsdaler
+>   c7h22ab → 1781,1784,1786,1796, the 4 ND-swallow coins → their dated years.
+>   Gate widens (34) = Bruun-ND honest-range improvements (single→range, desired)
+>   + the 4 fixed swallows; metal bruun-3931 gold→silver = correction (Silver Gulden).
+>   **NEW class found + fixed (ND-swallow):** an UNDATED Bruun specimen's broad
+>   «ND (1670-99)» range (year_verified=False) was swallowing dated discretes of
+>   its merged cluster → demoted via year_demote (same §CU mechanism).
+>   **Edge case LEFT for curator (flagged):** `unified-dk-hede-c7h13a` shows
+>   1795,1796,1797,1799,1801 — missing **1798** (Hede 13C «1798-1799» is a LOOSE
+>   sub-range that discrete-displace drops when inside the discrete envelope; 1798
+>   not independently discrete). Pre-existing union behaviour, not the re-flow.
+>
+> **Push:** all UNPUSHED. Submodule `c18232a7d` is local-only — push it (PB-10)
+> before/with the main push (the §CX raw `2758b6d41` is its parent, also unpushed).
 
 ## 2026-06-16 — overlap-home architecture + merger stage of the global apply DONE; absorb DEFERRED (UNPUSHED, e8de501 + e414a0a + 8d882fe + 1a8097b)
 
