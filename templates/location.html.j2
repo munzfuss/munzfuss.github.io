@@ -876,7 +876,12 @@
       {% if pg.phase.id in ('single', 'only', 'einzige') %}
         {{ pg.phase.title|t(lang) }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }}
       {% else %}
-        {% if lang == 'de' %}Phase{% elif lang == 'en' %}Phase{% else %}Фаза{% endif %} {{ pg.phase.id }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang) }}
+        {# The template emits the phase marker «Phase/Фаза {id} ·» itself, so a
+           title that redundantly embeds the same prefix (e.g. «Фаза I · …»)
+           would double it. Strip a leading localized «Phase/Фаза {id} · » from
+           the title before appending — no-op for purely descriptive titles. #}
+        {%- set _pm = (('Phase ' if lang in ('de', 'en') else 'Фаза ') ~ pg.phase.id ~ ' · ') -%}
+        {% if lang == 'de' %}Phase{% elif lang == 'en' %}Phase{% else %}Фаза{% endif %} {{ pg.phase.id }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang) | replace(_pm, '', 1) }}
       {% endif %}
     </div>
     {% if pg.phase.description %}
