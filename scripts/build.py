@@ -1510,6 +1510,17 @@ def build_landing(
             print(f"🙈 Landing hides {len(seed_ids)} location(s) with unsorted "
                   f"seed entries: {', '.join(sorted(seed_ids))}")
 
+    # Hide locations with NO coins at all. `loc.coins` is the assembled set —
+    # seed_unsorted coins count the same as sorted ones, so a location with
+    # only seed entries still shows; only a truly-empty (0-coin) tab is hidden
+    # (e.g. a consumes_entities page whose every coin dropped on the phase
+    # filter). User direction 2026-06-17.
+    empty_ids = [loc.id for loc in visible_locations if not loc.coins]
+    if empty_ids:
+        visible_locations = [loc for loc in visible_locations if loc.coins]
+        print(f"🙈 Landing hides {len(empty_ids)} empty (0-coin) location(s): "
+              f"{', '.join(sorted(empty_ids))}")
+
     # Landing is generated per-language at /<lang>/index.html;
     # root / redirects to /de/ (or user's preferred language via JS — optional)
     for lang in languages:
