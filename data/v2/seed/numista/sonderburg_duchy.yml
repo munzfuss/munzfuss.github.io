@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-06-16T10:40:30Z'
+generated_at: '2026-06-16T22:39:58Z'
 entity: sonderburg_duchy
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -88,11 +88,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Schilling
-    year_label: 1618-1619
+    year_label: 1618, 1619
     year_first: 1618
     year_last: 1619
     year_ranges:
       -   - 1618
+          - 1618
+      -   - 1619
           - 1619
     ruler: John
     mint:
@@ -127,11 +129,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Schilling
-    year_label: 1619-1620
+    year_label: 1619, 1620
     year_first: 1619
     year_last: 1620
     year_ranges:
       -   - 1619
+          - 1619
+      -   - 1620
           - 1620
     ruler: John
     mint: Reinfeld
@@ -166,11 +170,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Schilling Lübisch
-    year_label: 1620-1625
+    year_label: 1620, 1621, 1623, 1625
     year_first: 1620
     year_last: 1625
     year_ranges:
       -   - 1620
+          - 1620
+      -   - 1621
+          - 1621
+      -   - 1623
+          - 1623
+      -   - 1625
           - 1625
     ruler: John
     mint:

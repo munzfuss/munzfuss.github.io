@@ -1,6 +1,6 @@
 status: seed
 source: ucoin (ucoin.net per-coin pages, harvested via Chrome MCP)
-generated_at: '2026-06-01T09:08:09Z'
+generated_at: '2026-06-16T22:40:12Z'
 entity: royal_holstein
 scope_note: 'ucoin V2 seed for entity `royal_holstein`. User-edited coin catalogue (ucoin.net), tier-equivalent to Numista per CLAUDE.md §5.6. Pulls from `scripts/cache/ucoin/<tid>.json` recent harvests
   plus V1 location-yaml carry-overs (pre-cache curator imports). Entity classification: V1 curator placement first; URL-country fallback for cache-only entries. Per-coin verification against primary sources
@@ -135,7 +135,9 @@ coins:
     mint:
     catalog:
       km: '10'
-      lange: 58, 59
+      lange:
+        - '58'
+        - '59'
       numista: '107814'
     metal: billon
     fineness: 0.312
@@ -467,7 +469,9 @@ coins:
     mint:
     catalog:
       km: '26.1'
-      lange: 48-51, 51A
+      lange:
+        - 48-51
+        - 51A
       numista: '109009'
     metal: silver
     fineness: 0.812
@@ -598,7 +602,9 @@ coins:
     mint:
     catalog:
       km: '26.2'
-      lange: 51Ab, 51b
+      lange:
+        - 51Ab
+        - 51b
       numista: '154272'
     metal: silver
     fineness: 0.812
@@ -1065,7 +1071,11 @@ coins:
     mint:
     catalog:
       km: '54'
-      lange: 69, 70a, 71a, 73a
+      lange:
+        - '69'
+        - 70a
+        - 71a
+        - 73a
       numista: '129062'
     metal: silver
     fineness: 0.812
@@ -1199,7 +1209,9 @@ coins:
     mint:
     catalog:
       km: '57'
-      lange: 70b, 71b
+      lange:
+        - 70b
+        - 71b
       numista: '144810'
     metal: silver
     fineness: 0.812
@@ -1600,7 +1612,9 @@ coins:
     catalog:
       km: '73'
       numista: '301630'
-      lange: 82, 82A
+      lange:
+        - '82'
+        - 82A
       sieg: '140'
       hede: '120'
       bruun_collection_id: '6987'
@@ -1647,9 +1661,15 @@ coins:
     mint:
     catalog:
       km: '77'
-      hede: 125A / 125B
-      sieg: 138.1 / 138.2
-      dav: 3679 / 3679A
+      hede:
+        - 125A
+        - 125B
+      sieg:
+        - '138.1'
+        - '138.2'
+      dav:
+        - '3679'
+        - 3679A
       numista: '108760'
       hede_volume: c5h
     metal: silver
@@ -1733,7 +1753,9 @@ coins:
       km: '79'
       numista: '87732'
       hede: '128'
-      schou: 66-74 (1693), 44-45 (1694)
+      schou:
+        - 44-45 (1694)
+        - 66-74 (1693)
       sieg: '131'
       hede_volume: c5h
     metal: billon
@@ -2067,8 +2089,6 @@ coins:
       numista: '108578'
     metal: billon
     fineness:
-      - value: 0.365
-        source: numista
     weight_rough_g: 1.1
     issuing_entity: royal_holstein
     verified: false
@@ -2563,7 +2583,11 @@ coins:
       bruun_part: II
       bruun_lot_no: 13246
       bruun_page: 169
-      schou: 9 (1787), 11-12 (1788), 6-7 (1789), 10 (1796)
+      schou:
+        - 6-7 (1789)
+        - 9 (1787)
+        - 10 (1796)
+        - 11-12 (1788)
       hede_volume: c7h
     metal: silver
     fineness: 0.687
@@ -2609,10 +2633,10 @@ coins:
       bruun_lot: '7870'
       lange: '135'
       numista: '60090'
-      sieg: '43'
+      sieg:
+        - '43'
+        - '43.1'
       hede_volume: c7h
-      others:
-        - Sieg# 43.1
     metal: silver
     fineness: 0.875
     weight_rough_g: 9.63
@@ -2653,8 +2677,12 @@ coins:
     catalog:
       km: '135'
       hede: 40A
-      schou: 5/6
-      bruun_lot: 7867/7869
+      schou:
+        - '5'
+        - '6'
+      bruun_lot:
+        - '7867'
+        - '7869'
       lange: '132'
       numista: '188236'
       sieg: '44'

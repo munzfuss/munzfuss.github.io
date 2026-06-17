@@ -1,6 +1,6 @@
 status: seed
 source: ucoin (ucoin.net per-coin pages, harvested via Chrome MCP)
-generated_at: '2026-06-01T09:08:08Z'
+generated_at: '2026-06-16T22:40:05Z'
 entity: danish_realm
 scope_note: 'ucoin V2 seed for entity `danish_realm`. User-edited coin catalogue (ucoin.net), tier-equivalent to Numista per CLAUDE.md §5.6. Pulls from `scripts/cache/ucoin/<tid>.json` recent harvests plus
   V1 location-yaml carry-overs (pre-cache curator imports). Entity classification: V1 curator placement first; URL-country fallback for cache-only entries. Per-coin verification against primary sources
@@ -4385,8 +4385,7 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '135'
-      hede:
-        - 59C
+      hede: 59C
       hede_volume: c4h
     metal: silver
     fineness: 0.88
@@ -16613,8 +16612,7 @@ coins:
       numista: '22803'
       hede_volume: f6h
       sieg: '26.1'
-      others:
-        - Bruun# 8025
+      bruun_collection_id: '8025'
     metal: silver
     fineness: 0.875
     weight_rough_g: 14.45
@@ -17857,7 +17855,9 @@ coins:
           - 1842
     ruler: Christian VIII
     ruler_verified: true
-    mint: Altona; Copenhagen
+    mint:
+      - Altona
+      - Kopenhagen
     catalog:
       km: '726'
       numista: '23857'

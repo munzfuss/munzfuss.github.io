@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-06-10T18:00:33Z'
+generated_at: '2026-06-16T22:36:17Z'
 entity: danish_realm
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -23,7 +23,9 @@ coins:
     mint: Visby
     catalog:
       galster: '141'
-      sieg: '[2015] 8, Hauberg 102'
+      sieg:
+        - Hauberg 102
+        - '[2015] 8'
       schou: '227'
       galster_volume: hg
     metal: billon
@@ -65,7 +67,7 @@ coins:
     ruler: Hans
     mint: Visby
     catalog:
-      galster: 142,
+      galster: '142'
       schou: 228-235
       galster_volume: hg
       others:
@@ -151,7 +153,11 @@ coins:
     mint: Stockholm
     catalog:
       schou: '4'
-      galster: 233, Hildebrand 715, Rasmusson ill. 17, Lagerqvist 4
+      galster:
+        - '233'
+        - Hildebrand 715
+        - Lagerqvist 4
+        - Rasmusson ill. 17
       galster_volume: hg
     metal: silver
     fineness:
@@ -188,7 +194,11 @@ coins:
     mint: Stockholm
     catalog:
       schou: 5-12
-      galster: 234, Hildebrand 716, Rasmusson ill. 16, Lagerqvist 5
+      galster:
+        - '234'
+        - Hildebrand 716
+        - Lagerqvist 5
+        - Rasmusson ill. 16
       galster_volume: hg
     metal: silver
     fineness:
@@ -225,7 +235,10 @@ coins:
     mint:
     catalog:
       schou: 17-18
-      galster: 236, Hildebrand 718, Lagerqvist 7
+      galster:
+        - '236'
+        - Hildebrand 718
+        - Lagerqvist 7
       galster_volume: hg
     metal: silver
     fineness:
@@ -266,7 +279,10 @@ coins:
     mint:
     catalog:
       schou: 31-40
-      galster: 238, Hildebrand 720, Lagerqvist 9a-f
+      galster:
+        - '238'
+        - Hildebrand 720
+        - Lagerqvist 9a-f
       galster_volume: hg
     metal: silver
     fineness:
@@ -1034,9 +1050,7 @@ coins:
     mint: Malmö
     catalog:
       galster: '38'
-      schou:
-        - '2'
-        - 1-5
+      schou: 1-5
       galster_volume: c2g
     metal: silver
     fineness: 0.875
@@ -1077,8 +1091,8 @@ coins:
     catalog:
       galster: '41'
       schou:
-        - 4-5
         - 1-9
+        - 4-5
       galster_volume: c2g
     metal: billon
     fineness: 0.375
@@ -2873,7 +2887,9 @@ coins:
     ruler: Christian III
     mint: Århus
     catalog:
-      schou: 48, 50
+      schou:
+        - '48'
+        - '50'
       sieg: '4'
       galster: 92B
       galster_volume: c3g
