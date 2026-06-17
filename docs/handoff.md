@@ -15,6 +15,34 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-17 (later) — CI build fix (ruamel) + Hede discrete-year root fix (c7h13a 1798)
+
+> **CI deploy was RED since ≥2026-06-11 — FIXED (commit `6f787bd`, UNPUSHED).**
+> Root: the build path top-level-imports `ruamel.yaml` (via `lib/v2_resolver.py`,
+> `lib/seed_merge.py`, `lib/v2_seed_writer.py`) but `requirements.txt` never listed
+> it — CI's `pip install -r requirements.txt` lacked it, so every push failed at
+> the «Validate data» step (`build.py --validate-only`) with `ModuleNotFoundError`
+> before any render. Local `.venv` has ruamel 0.19.1, which masked the gap. Fix:
+> added `ruamel.yaml>=0.17`. Verified: full `--include-v1` build + `--validate-only`
+> both exit 0 locally. **The push of this WILL turn CI green again.**
+>
+> **Hede discrete-year root fix + c7h13a 1798 RESOLVED (commits `8571258` code+tests
+> / `58bc460` data, UNPUSHED).** `build_hede_denmark_seed.py::_build_year_fields`
+> collapsed a consecutive year run into a loose `year_first/year_last` span (emitted
+> `year_ranges` only with gaps), so the merger could displace it under a wider
+> discrete envelope and drop an interior year — c7h13C «1798, 1799» lost 1798.
+> Fix: emit one singleton `[y,y]` per attested year (Hede lists are always discrete
+> enumerations); `_format_year_label` folds them back to «1795-1799, 1801» for
+> display. Materialised: re-seed hede (3 entities, year-only diff: 262 hdr + 1510
+> singletons, 0 drift) → re-merge → re-absorb (curation-loss gate REAL-LOSS=0, 4
+> benign year-add). Three bonus label corrections (nf3h69 1649-1668→discrete gaps,
+> c5h126a/c5h107 1693-1696→1693-1694,1696, c8h3a 1840-1848→discrete) — now-discrete
+> Hede years let the merger displace masking ucoin/Numista loose spans (§3a/§4).
+> 58 tests green; rendered + verified denmark + SH de/en/uk. Full §CX write-up in TODO.
+>
+> **Push state:** 3 commits UNPUSHED this turn — `6f787bd` (ruamel) `8571258` (Hede
+> fix+tests) `58bc460` (Hede data). No submodule change this turn. `git push` pending.
+
 ## 2026-06-16 (later) — Bruun ND-year parser fix (committed) + N#131730 over-merge root-diagnosed (§CW)
 
 > **Bruun «ND (…)» year parser FIXED — commit `2efdb80` (UNPUSHED).** New
@@ -107,13 +135,15 @@
 >   **NEW class found + fixed (ND-swallow):** an UNDATED Bruun specimen's broad
 >   «ND (1670-99)» range (year_verified=False) was swallowing dated discretes of
 >   its merged cluster → demoted via year_demote (same §CU mechanism).
->   **Edge case LEFT for curator (flagged):** `unified-dk-hede-c7h13a` shows
->   1795,1796,1797,1799,1801 — missing **1798** (Hede 13C «1798-1799» is a LOOSE
->   sub-range that discrete-displace drops when inside the discrete envelope; 1798
->   not independently discrete). Pre-existing union behaviour, not the re-flow.
+>   **Edge case (was flagged) — ✅ RESOLVED at the root 2026-06-17** (commits
+>   `8571258` fix+tests / `58bc460` data): c7h13a's missing 1798 was a Hede-seed
+>   bug, not a union one — `_build_year_fields` collapsed consecutive runs
+>   (13C «1798, 1799») to a loose span the merger could displace. Fix emits
+>   discrete singleton `year_ranges`; c7h13a now renders «1795-1799, 1801».
+>   See §CX in TODO.md for the full write-up.
 >
-> **Push:** all UNPUSHED. Submodule `c18232a7d` is local-only — push it (PB-10)
-> before/with the main push (the §CX raw `2758b6d41` is its parent, also unpushed).
+> **Push:** the re-flow commits (submodule `c18232a7d` + main through `968af94`)
+> were PUSHED 2026-06-17 (submodule `e5cd0b774`, main `d36a536` merging #17).
 
 ## 2026-06-16 — overlap-home architecture + merger stage of the global apply DONE; absorb DEFERRED (UNPUSHED, e8de501 + e414a0a + 8d882fe + 1a8097b)
 
