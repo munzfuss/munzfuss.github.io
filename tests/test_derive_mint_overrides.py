@@ -147,6 +147,15 @@ class TestTimelineWindowClamp(unittest.TestCase):
         # last clamps to 1914 — already in sync with the event, so no override
         self.assertNotIn("k", ov)
 
+    def test_lower_bound_before_window_preserved(self):
+        """A coin minted before year_from (rhinsk/nobel ~1496, window 1514)
+        keeps its real start — the lower bound is NOT clamped up to 1514."""
+        loc = denmark([coin("rh", 1496, 1632)])
+        fuesse = {"rh": fuss(fm_any=1536, lm_any=1632)}
+        ov = derive_mint_overrides(loc, fuesse)
+        self.assertEqual(ov["rh"].events.first_mint.anywhere, 1496)  # not 1514
+        self.assertEqual(ov["rh"].events.last_mint.anywhere, 1632)
+
     def test_coin_entirely_past_window_skipped(self):
         """A fuss whose only coin is past year_to contributes no override."""
         loc = denmark([coin("z", 2005, 2008)])

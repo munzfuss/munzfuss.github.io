@@ -140,17 +140,18 @@ def derive_mint_overrides(loc: Location, fuesse: dict) -> dict:
         if (fm is None or getattr(fm, scope) is None
                 or lm is None or getattr(lm, scope) is None):
             continue
-        # Clamp the derived span to the timeline's visible window. The bar
-        # cannot render beyond [year_from, year_to], so a tooltip year past
-        # the axis — a 1913-1931 straddle type, or a reign-window placeholder
-        # masking a post-1914 issue — would be misleading. Mirrors
-        # compute_coin_year_runs, which already filters markers to the window.
+        # Clamp only the UPPER bound to the timeline's right edge: a stripe
+        # cannot render past year_to, so a tooltip year beyond it — a
+        # 1913-1931 straddle type, or a reign-window placeholder masking a
+        # post-1914 issue — would be misleading. The LOWER bound is left
+        # alone: a coin minted before the window (nobel / rhinsk ~1496 while
+        # the Denmark axis starts 1514) must keep its real start year in the
+        # tooltip; compute_bar_layers already clamps the visual left edge.
         tl = loc.timeline
         if tl is not None:
-            cmin = max(cmin, tl.year_from)
             cmax = min(cmax, tl.year_to)
             if cmin > cmax:
-                continue  # this fuss's coins fall entirely outside the window
+                continue  # this fuss's coins fall entirely past the right edge
         # Data is authoritative for both endpoints — sync, don't merge.
         if cmin == getattr(fm, scope) and cmax == getattr(lm, scope):
             continue  # already in sync
