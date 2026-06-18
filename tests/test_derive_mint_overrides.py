@@ -57,11 +57,15 @@ def coin(fid, year_first, year_last=None):
 
 
 def denmark(coins):
-    return NS(id="denmark", timeline=NS(scope_mode="denmark_only"), coins=coins)
+    return NS(id="denmark",
+              timeline=NS(scope_mode="denmark_only", year_from=1514, year_to=1914),
+              coins=coins)
 
 
 def sh(coins):
-    return NS(id="schleswig_holstein", timeline=NS(scope_mode="dual"), coins=coins)
+    return NS(id="schleswig_holstein",
+              timeline=NS(scope_mode="dual", year_from=1559, year_to=1914),
+              coins=coins)
 
 
 class TestDenmarkAnywhereSync(unittest.TestCase):
@@ -123,6 +127,30 @@ class TestSchleswigHolsteinHolsteinSync(unittest.TestCase):
     def test_none_holstein_stays_none(self):
         loc = sh([coin("cph_only", 1644, 1696)])
         fuesse = {"cph_only": fuss(fm_any=1644, lm_any=1696, fm_hol=None, lm_hol=None)}
+        self.assertEqual(derive_mint_overrides(loc, fuesse), {})
+
+
+class TestTimelineWindowClamp(unittest.TestCase):
+    def test_last_clamped_to_timeline_year_to(self):
+        """A straddle type (1913-1931) clamps its mint last to year_to=1914."""
+        loc = denmark([coin("k", 1873, 1931)])
+        fuesse = {"k": fuss(fm_any=1873, lm_any=1875)}
+        ov = derive_mint_overrides(loc, fuesse)
+        self.assertEqual(ov["k"].events.first_mint.anywhere, 1873)
+        self.assertEqual(ov["k"].events.last_mint.anywhere, 1914)  # clamped from 1931
+
+    def test_reign_placeholder_clamped_not_1947(self):
+        """A reign-window placeholder (1912-1947) clamps to 1914, not 1947."""
+        loc = denmark([coin("k", 1873, 1914), coin("k", 1912, 1947)])
+        fuesse = {"k": fuss(fm_any=1873, lm_any=1914)}
+        ov = derive_mint_overrides(loc, fuesse)
+        # last clamps to 1914 — already in sync with the event, so no override
+        self.assertNotIn("k", ov)
+
+    def test_coin_entirely_past_window_skipped(self):
+        """A fuss whose only coin is past year_to contributes no override."""
+        loc = denmark([coin("z", 2005, 2008)])
+        fuesse = {"z": fuss(fm_any=1873, lm_any=1900)}
         self.assertEqual(derive_mint_overrides(loc, fuesse), {})
 
 
