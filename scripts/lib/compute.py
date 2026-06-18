@@ -68,10 +68,28 @@ class DisplayGroup:
     sources: list[str]          # ordered, deduped source labels
     is_unanimous: bool = False  # True when this is the SOLE group in its field
     delta_pct: float | None = None  # context for derived-value groups
-    display_decimals: int | None = None  # adaptive decimals when default rounding
-                                          # would collapse distinct groups into
-                                          # identical-looking text (None → use
-                                          # template-default precision)
+    display_decimals: int | None = None  # decimals to render this group's value
+                                          # at — set when the source reading
+                                          # carries more precision than the field
+                                          # default (e.g. 3.249 g at weight
+                                          # precision 2) or when distinct groups
+                                          # would otherwise collapse to identical
+                                          # text (None → use template-default
+                                          # precision)
+
+
+def _natural_decimals(value: float, lo: int, hi: int) -> int:
+    """Smallest decimals `d` in [lo, hi] for which `round(value, d) == value`
+    (within float tolerance); `hi` if none qualifies.
+
+    Lets a source reading display at its OWN precision instead of being
+    rounded down to the field default — e.g. a Hede weight of 3.249 g returns
+    3 (so it renders «3.249», not «3.25»), while 3.16 g returns 2. §3 «store /
+    show the source's literal value, never round»."""
+    for d in range(lo, hi + 1):
+        if abs(round(value, d) - value) < 1e-9:
+            return d
+    return hi
 
 
 def make_display_groups(
@@ -133,26 +151,22 @@ def make_display_groups(
         out.append(DisplayGroup(value=canonical, sources=srcs,
                                 is_unanimous=is_unanimous))
 
-    # Adaptive display-decimals: when groups are SEMANTICALLY distinct
-    # at the finer grouping precision but would collapse to identical
-    # text at the template's default decimals (e.g. 2.386 and 2.390
-    # both → «2.39» at decimals=2), bump per-group `display_decimals`
-    # to the lowest precision that distinguishes them. Otherwise the
-    # user sees two visually-identical spans and the source-divergence
-    # signal is lost on the rendered table (only the tooltip would
-    # carry the info, and tooltips are mouse-only).
-    if not is_unanimous and len(out) >= 2:
-        canonicals = [g.value for g in out]
-        # Find the smallest decimals p >= `precision` such that
-        # rounding all canonicals to p yields the same number of
-        # distinct values as the group count itself.
-        for p in range(precision, group_precision + 1):
-            rounded = [round(v, p) for v in canonicals]
-            if len(set(rounded)) == len(out):
-                if p > precision:
-                    for g in out:
-                        g.display_decimals = p
-                break
+    # Display-decimals (§3 — never round a source reading below its own
+    # precision). Show every value at the MAX natural precision across the
+    # groups: `fmt_num` strips trailing zeros per value, so a uniform
+    # `decimals = needed` renders each source value exactly (3.16 → «3.16»,
+    # 3.249 → «3.249») without padding noise, and floors at the field
+    # default `precision`. This also subsumes the old anti-collapse rule:
+    # two readings that round to identical text at `precision` (e.g. 2.386
+    # and 2.390 both → «2.39» at decimals=2) must differ in a sub-`precision`
+    # digit, so at least one has a higher natural precision → `needed` rises
+    # and the groups stay visually distinct. Applies to the unanimous case
+    # too (a lone 3.249 reading no longer rounds to 3.25).
+    needed = max((_natural_decimals(g.value, precision, group_precision)
+                  for g in out), default=precision)
+    if needed > precision:
+        for g in out:
+            g.display_decimals = needed
     return out
 
 
