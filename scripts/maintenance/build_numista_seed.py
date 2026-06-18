@@ -79,15 +79,27 @@ except Exception:  # pragma: no cover — defensive
     }
 
 
+# Numista labels Danish kings with their English exonyms; the project uses
+# the Danish form (e.g. «Hans», 217× canonical). Map the King-Hans exonyms
+# to the Danish canonical. (The systemic «Frederick» → «Frederik» divergence
+# is a broader, separate ruler-canonicalisation pass — not handled here yet.)
+_NUMISTA_RULER_CANON = {
+    "John I (Hans I)": "Hans",
+    "John I": "Hans",
+}
+
+
 def _resolve_ruler(kings: list[dict] | None) -> str | None:
     """Pick the most informative ruler name. Multi-ruler entries get
-    joined with « / » per pre_1541 builder convention."""
+    joined with « / » per pre_1541 builder convention. Danish exonyms are
+    mapped to the project's canonical Danish form via `_NUMISTA_RULER_CANON`."""
     if not kings:
         return None
     names = []
     for k in kings:
         if isinstance(k, dict) and k.get("name"):
-            names.append(str(k["name"]))
+            nm = str(k["name"])
+            names.append(_NUMISTA_RULER_CANON.get(nm, nm))
     if not names:
         return None
     if len(names) == 1:
