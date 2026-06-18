@@ -32,7 +32,7 @@ from lib.categorize import categorize
 from lib.timeline import (
     attach_visual_pieces,
     compute_bar_layers, compute_coin_year_runs,
-    compute_hover_zones, derive_holstein_mint_overrides,
+    compute_hover_zones, derive_mint_overrides,
 )
 from lib.compute import compute_location
 from lib.render import build_env, generate_css
@@ -1332,25 +1332,33 @@ def build_location(
     coin_years = {}
     hover_zones = {}
     if loc.timeline:
-        # Auto-sync `events.first_mint.holstein` / `last_mint.holstein`
-        # to the actual SH coin spans so a freshly-added Bruun-era
-        # Speciedaler 1859 instantly shifts the mint layer right, and a
-        # curator-set patent year (e.g. 10½-Krone-Fuß first_mint=1644
-        # while the first physical strike is 1645) reflects the data,
-        # not the decree. Other locations are no-ops.
-        mint_overrides = derive_holstein_mint_overrides(loc, fuesse)
+        # Auto-sync each Fuß's `events.first_mint.<scope>` /
+        # `last_mint.<scope>` to the actual coin spans on this page, where
+        # <scope> is the scope the page's own coins represent: `holstein`
+        # on the SH page, `anywhere` on the denmark_only-scope page. So a
+        # freshly-added Bruun-era Speciedaler 1859 instantly shifts the
+        # mint layer right, a curator-set patent year (e.g. 10½-Krone-Fuß
+        # first_mint=1644 while the first physical strike is 1645) reflects
+        # the data not the decree, and a coin moving between fusses re-fits
+        # both fusses' mint stripes + tooltips. Ephemeral per-render — the
+        # YAML is never written. Other locations are no-ops.
+        mint_overrides = derive_mint_overrides(loc, fuesse)
         if mint_overrides:
             fuesse_for_bars = {**fuesse, **mint_overrides}
             diffs = []
             for fid, new_f in mint_overrides.items():
-                old_lm = fuesse[fid].events.last_mint.holstein
-                new_lm = new_f.events.last_mint.holstein
-                old_fm = fuesse[fid].events.first_mint.holstein
-                new_fm = new_f.events.first_mint.holstein
-                if new_fm != old_fm or new_lm != old_lm:
-                    diffs.append(
-                        f"{fid}: {old_fm}–{old_lm} → {new_fm}–{new_lm}"
-                    )
+                old_ev, new_ev = fuesse[fid].events, new_f.events
+                # Report whichever scope actually changed (anywhere or
+                # holstein) — generic over the page's sync scope.
+                for scope in ("anywhere", "holstein"):
+                    old_fm = getattr(old_ev.first_mint, scope)
+                    new_fm = getattr(new_ev.first_mint, scope)
+                    old_lm = getattr(old_ev.last_mint, scope)
+                    new_lm = getattr(new_ev.last_mint, scope)
+                    if new_fm != old_fm or new_lm != old_lm:
+                        diffs.append(
+                            f"{fid} [{scope}]: {old_fm}–{old_lm} → {new_fm}–{new_lm}"
+                        )
             if diffs:
                 print(f"   📐 Mint-event auto-sync ({len(diffs)} fuesse): "
                       + "; ".join(diffs))

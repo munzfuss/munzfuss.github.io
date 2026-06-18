@@ -7,9 +7,12 @@ mintage markers, and hover-zone overlays.
 Four entry points (called from `scripts/build.py:build_location` —
 `categorize.py` no longer touches them):
 
-  * `derive_holstein_mint_overrides(loc, fuesse)` — auto-syncs the SH
-    page's `events.first_mint.holstein` / `last_mint.holstein` to the
-    actual Holstein-coin span. Returns a `{fuss_id -> Fuss}` overlay.
+  * `derive_mint_overrides(loc, fuesse)` — auto-syncs each Fuß's
+    `events.first_mint.<scope>` / `last_mint.<scope>` to the actual
+    coin span on this page, where `<scope>` is the scope that
+    represents the page's own coins: `holstein` on the SH page,
+    `anywhere` on a `denmark_only`-scope page (Denmark). Returns a
+    `{fuss_id -> Fuss}` overlay; other locations are no-ops.
 
   * `compute_bar_layers(bars, fuesse, year_from, year_to, scope_mode)` —
     derives the up-to-six (mint × {anywhere, holstein}, status × …,
@@ -51,44 +54,64 @@ from .schema import Location
 
 
 __all__ = [
-    "derive_holstein_mint_overrides",
+    "derive_mint_overrides",
     "compute_bar_layers",
     "compute_coin_year_runs",
     "compute_hover_zones",
 ]
 
 
-def derive_holstein_mint_overrides(loc: Location, fuesse: dict) -> dict:
-    """Auto-sync `events.first_mint.holstein` / `last_mint.holstein` per
-    Fuß to the actual coin span on a Holstein-scope page.
+def _mint_sync_scope(loc: Location) -> str | None:
+    """The mint-event scope that this page's own coins represent, or None
+    if this location has no data-driven mint axis.
+
+    * `denmark_only`-scope page (Denmark) → `anywhere`: the timeline shows
+      only the anywhere scope, scoped to the Kingdom of Denmark, so its
+      mint layer = the Denmark coins' span.
+    * Schleswig-Holstein → `holstein`: Schleswig + Holstein operated as one
+      monetary unit (the schema's `holstein` scope means this); the page's
+      `anywhere` layer is the Reich-wide curated span and is NOT data-driven.
+    * Any other location → None (no-op).
+    """
+    tl = getattr(loc, "timeline", None)
+    if tl is not None and getattr(tl, "scope_mode", None) == "denmark_only":
+        return "anywhere"
+    if loc.id == "schleswig_holstein":
+        return "holstein"
+    return None
+
+
+def derive_mint_overrides(loc: Location, fuesse: dict) -> dict:
+    """Auto-sync each Fuß's `events.first_mint.<scope>` / `last_mint.<scope>`
+    to the actual coin span on this page, where `<scope>` is the scope that
+    represents the page's own coins (see `_mint_sync_scope`): `holstein` on
+    the SH page, `anywhere` on a `denmark_only`-scope page (Denmark).
 
     Returns a NEW dict `{fuss_id -> Fuss-with-overridden-events}` — only
     Fuß systems whose synced span differs from the existing event range
     appear in the result; the rest of the global `fuesse` dict is left
     untouched. Callers should merge this dict over the original before
-    handing it to `compute_bar_layers`.
+    handing it to `compute_bar_layers`. The override is ephemeral (per
+    render) — `data/shared/fuesse.yml` is never written, so the curated
+    *global* `anywhere` values other surfaces rely on are unaffected.
 
     Rules
-      * Only locations whose mint scope coincides with the events'
-        `holstein` axis run through this — currently only
-        `schleswig_holstein` (Schleswig + Holstein operated as one
-        monetary unit; the schema's `holstein` scope means this).
       * **Full sync** — the data is authoritative. If our YAML's earliest
-        SH-coin under a Fuß is 1645 but `events.first_mint.holstein` was
-        set to 1644 (the patent year, before any physical strike), we
-        sync down to 1645. Curator-set values that conceptually predate
-        the first strike (decree / adoption year) belong in
-        `first_adoption.holstein`, not `first_mint.holstein`.
-      * Existing `None`s stay `None`. A Fuß whose curator explicitly
-        marked `holstein = None` ("never minted in Holstein") is
-        respected; we don't promote `None` to the data-derived range,
-        even if a coin slipped into the SH yaml. That keeps the curated
-        narrative authoritative. Stray cases surface elsewhere
+        coin under a Fuß is 1645 but `events.first_mint.<scope>` was set to
+        1644 (the patent year, before any physical strike), we sync down to
+        1645. Curator-set values that conceptually predate the first strike
+        (decree / adoption year) belong in `first_adoption.<scope>`, not
+        `first_mint.<scope>` — so status / circulation layers are untouched.
+      * Existing `None`s stay `None`. A Fuß whose curator explicitly marked
+        this scope's mint endpoint `None` ("never minted here") is respected;
+        we don't promote `None` to the data-derived range, even if a coin
+        slipped into the page's yaml. Stray cases surface elsewhere
         (audit_year_ranges etc.).
-      * `approx_holstein` clears when we override — the data is
-        empirical, not approximate.
+      * `approx_<scope>` clears when we override — the data is empirical,
+        not approximate.
     """
-    if loc.id != "schleswig_holstein":
+    scope = _mint_sync_scope(loc)
+    if scope is None:
         return {}
 
     spans: dict[str, list[int | None]] = {}
@@ -102,6 +125,7 @@ def derive_holstein_mint_overrides(loc: Location, fuesse: dict) -> dict:
         if yl > cur[1]:
             cur[1] = yl
 
+    approx_attr = f"approx_{scope}"
     overrides: dict = {}
     for fid, (cmin, cmax) in spans.items():
         f = fuesse.get(fid)
@@ -110,24 +134,24 @@ def derive_holstein_mint_overrides(loc: Location, fuesse: dict) -> dict:
         ev = f.events
         fm = ev.first_mint
         lm = ev.last_mint
-        # Skip Fuß systems whose Holstein-mint axis is curator-set None
-        # (e.g. Copenhagen-only kronemont_chr_iv / kronemont_fine).
-        if fm is None or fm.holstein is None or lm is None or lm.holstein is None:
+        # Skip Fuß systems whose mint axis for this scope is curator-set
+        # None (e.g. Copenhagen-only fusses have holstein=None; a fuss
+        # with no anywhere mint span would be anywhere=None).
+        if (fm is None or getattr(fm, scope) is None
+                or lm is None or getattr(lm, scope) is None):
             continue
         # Data is authoritative for both endpoints — sync, don't merge.
-        new_fm_h = cmin
-        new_lm_h = cmax
-        if new_fm_h == fm.holstein and new_lm_h == lm.holstein:
+        if cmin == getattr(fm, scope) and cmax == getattr(lm, scope):
             continue  # already in sync
         # Pydantic v2: model_copy(deep=True) on the whole Fuss is the
         # cleanest way to avoid mutating the global registry.
         new_f = f.model_copy(deep=True)
-        if new_f.events.first_mint.holstein != new_fm_h:
-            new_f.events.first_mint.holstein = new_fm_h
-            new_f.events.first_mint.approx_holstein = False
-        if new_f.events.last_mint.holstein != new_lm_h:
-            new_f.events.last_mint.holstein = new_lm_h
-            new_f.events.last_mint.approx_holstein = False
+        if getattr(new_f.events.first_mint, scope) != cmin:
+            setattr(new_f.events.first_mint, scope, cmin)
+            setattr(new_f.events.first_mint, approx_attr, False)
+        if getattr(new_f.events.last_mint, scope) != cmax:
+            setattr(new_f.events.last_mint, scope, cmax)
+            setattr(new_f.events.last_mint, approx_attr, False)
         overrides[fid] = new_f
     return overrides
 

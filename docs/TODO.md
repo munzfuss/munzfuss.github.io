@@ -1742,7 +1742,7 @@ Per PB-4 Δ-from-Soll comparison: all 11 entries computed to specimen-fein withi
 
 `km-105-chr-v-1683` (Christian V Glückstadt Krone). Two readings:
   - (a) The 1683 strike is mis-classified — it's actually `kronemont` not `9_thaler`. Likely; Glückstadt was minting under the post-Kipper Kronemønt by then.
-  - (b) Glückstadt continued 9-Fuß longer than Royal Danish mainland, and the 1683 strike is the actual Holstein-axis last_mint. Less likely but possible; the SH events block already has its own `last_mint.holstein = 1629` which the SH page auto-syncs (via `derive_holstein_mint_overrides`) to match real data.
+  - (b) Glückstadt continued 9-Fuß longer than Royal Danish mainland, and the 1683 strike is the actual Holstein-axis last_mint. Less likely but possible; the SH events block already has its own `last_mint.holstein = 1629` which the SH page auto-syncs (via `derive_mint_overrides`, holstein scope) to match real data.
 
 Fix: open `km-105-chr-v-1683`, verify against Hede / Bruun / Numista which Fuß it actually belongs to.
 
