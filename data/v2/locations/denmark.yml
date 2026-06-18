@@ -82,6 +82,12 @@ timeline:
         uk: 16-Nobelfod · дансько-норвезький золотий стандарт 1496-1532 · карбувальний період — три правителі (Hans 1496-1502, Christian II 1516-1518, Frederik I 1532) на трьох монетних дворах (Malmø,
           Копенгаген, Ribe недатоване) · після 1532 подальше карбування не задокументовано
       color_class: g
+      hide_layers:
+        - scope: anywhere
+          kind: status
+        - scope: anywhere
+          kind: circulation
+      mint_alpha_multiplier: 6   # mint-only stripe, 3x the denmark baseline (2)
     - id: rhinsk_gylden_fod
       order: 1
       label:
@@ -108,6 +114,12 @@ timeline:
           фінансування Імперсько-данської війни) · 96-річне задокументоване вікно · торгова монета для німецько-північнонімецького ринку, без формального тарифу до Speciedaler · самостійна 
           Müntzfuß-лінія (НЕ Reichsdukatenfuß, НЕ Guldkrone)
       color_class: g
+      hide_layers:
+        - scope: anywhere
+          kind: status
+        - scope: anywhere
+          kind: circulation
+      mint_alpha_multiplier: 6   # mint-only stripe, 3x the denmark baseline (2)
     - id: reichsdukatenfuss
       order: 2
       label:
