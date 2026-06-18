@@ -957,6 +957,25 @@ def _is_out_of_scope_nominal(nominal) -> bool:
     return any(tok in n for tok in _OUT_OF_SCOPE_NOMINAL_TOKENS)
 
 
+# Mission upper bound — the project documents the precious-metal anchor era
+# through 1914 (CLAUDE.md «Mission temporal scope»). A coin whose minting
+# STARTS after 1914 is out of scope for every entity/jurisdiction (e.g. a 2005
+# commemorative a source surfaced). The raw harvest cache keeps it; the seed /
+# unified / final layers drop it. Reign-window placeholders whose year_first is
+# a PRE-1914 reign start (e.g. a dateless Christian-X zinc coin defaulted to
+# 1912) are NOT caught here — those are dropped at the source builder by
+# composition (zinc = 20th-c base metal).
+_MISSION_YEAR_TO = 1914
+
+
+def _is_out_of_scope_year(year_first) -> bool:
+    """True when the coin's minting starts after the mission upper bound (1914)."""
+    try:
+        return year_first is not None and int(year_first) > _MISSION_YEAR_TO
+    except (TypeError, ValueError):
+        return False
+
+
 # Krause-catalog prefix tokens that mark an entry as exonumia /
 # non-circulation per CLAUDE.md §9.1: trial strikes / pattern strikes
 # («Pn*», «TS*»), essais («E*»). Tokens («Tn*») are NOT filtered here:
@@ -1021,6 +1040,7 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         "catalog_split": 0,
         "out_of_scope_filtered": 0,
         "out_of_scope_km_filtered": 0,
+        "out_of_scope_year_filtered": 0,
         "metal_verified_implied": 0,
     }
     kept: list[dict] = []
@@ -1034,6 +1054,9 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
             continue
         if _is_out_of_scope_catalog(c.get("catalog")):
             stats["out_of_scope_km_filtered"] += 1
+            continue
+        if _is_out_of_scope_year(c.get("year_first")):
+            stats["out_of_scope_year_filtered"] += 1
             continue
         # Extract embedded mint from nominal («4 Skilling, København»
         # → nominal=«4 Skilling», mint=«København») BEFORE the string-
@@ -1269,6 +1292,7 @@ def write_v2_seed(
     no_merge: bool = False,
     extra_top_level: dict | None = None,
     extra_curated_fields: frozenset = frozenset(),
+    exclude_ids: frozenset = frozenset(),
 ) -> dict:
     """Group `coins` by `issuing_entity` → write
     `data/v2/seed/<source_name>/<entity>.yml` per entity.
@@ -1384,6 +1408,16 @@ def write_v2_seed(
                     out_of_scope_dropped += 1
                     continue
                 if _is_out_of_scope_catalog(c.get("catalog")):
+                    out_of_scope_dropped += 1
+                    continue
+                if _is_out_of_scope_year(c.get("year_first")):
+                    out_of_scope_dropped += 1
+                    continue
+                # Builder-declared drops (e.g. Hede zinc pages — 20th-c,
+                # out of scope, but the stale entry's misparsed metal/year
+                # don't trip the generic filters above). Purges the orphan-
+                # preserved existing entry the builder no longer emits.
+                if c.get("id") in exclude_ids:
                     out_of_scope_dropped += 1
                     continue
                 cid = c.get("id")

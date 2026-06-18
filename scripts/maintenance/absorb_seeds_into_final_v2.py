@@ -67,6 +67,7 @@ from lib.seed_merge import merge_seed  # noqa: E402
 from lib.v2_seed_writer import (  # noqa: E402
     _is_out_of_scope_nominal,
     _is_out_of_scope_catalog,
+    _is_out_of_scope_year,
     _normalise_nominal,
     _canonicalise_mint,
     _normalise_catalog,
@@ -1241,6 +1242,7 @@ def process_entity(entity_id: str) -> dict:
         if isinstance(fe, dict) and (
             _is_out_of_scope_nominal(fe.get("nominal"))
             or _is_out_of_scope_catalog(fe.get("catalog"))
+            or _is_out_of_scope_year(fe.get("year_first"))
         ):
             out_of_scope_final_dropped += 1
             continue
@@ -2258,7 +2260,8 @@ def process_entity(entity_id: str) -> dict:
             stale_dropped_ids.add(str(fid))
             continue
         if (_is_out_of_scope_nominal(fc.get("nominal"))
-                or _is_out_of_scope_catalog(fc.get("catalog"))):
+                or _is_out_of_scope_catalog(fc.get("catalog"))
+                or _is_out_of_scope_year(fc.get("year_first"))):
             continue  # OOS — correctly dropped
         src_ids = {fid} | set(fc.get("composed_of") or [])
         if src_ids & new_repr_ids:

@@ -540,6 +540,25 @@ def _metal_from_text(parsed: dict) -> str | None:
     return None  # silent, or slots disagree → defer to heuristic
 
 
+_ZINC_RE = re.compile(r"(?:^|[.;,]\s*)Zink\b", re.IGNORECASE | re.MULTILINE)
+
+
+def _page_is_zinc(parsed: dict) -> bool:
+    """True when the danskmoent.dk page states the coin's composition is
+    zinc («Zink»). Danish zinc circulation coins are all 20th-c (interwar
+    aluminium-bronze era / 1941-45 WWII-occupation small change) — past
+    the 1914 mission bound — and «zinc» is not a schema metal. A dateless
+    zinc page (e.g. Hede c10h35, defaulted to the 1912-1947 Christian-X
+    reign window so the year-cap can't catch it) is therefore dropped from
+    the seed; the raw harvest cache keeps it. Restricted to the spec body
+    (pre-«Litteratur:») so a bibliographic title can't trip the match."""
+    raw = parsed.get("raw_text") or ""
+    if not raw:
+        return False
+    body = re.split(r"Litteratur:", raw, maxsplit=1)[0]
+    return bool(_ZINC_RE.search(body))
+
+
 def _infer_kind(metal: str, nominal: str, ruler: str | None, fineness: float | None) -> str:
     """Default = kurant. Lower-tier silver / billon Skilling drops to
     scheide. Christian IV Krone (Kronemont, 1618-1645) is tarif."""
@@ -1204,11 +1223,17 @@ def main() -> int:
         "skipped_no_nominal": 0,
         "skipped_multi_nominal_unparseable": 0,
         "skipped_out_of_scope_year": 0,
+        "skipped_zinc_20c": 0,
         "skipped_non_canonical": 0,
         "skipped_cross_reference_subhede": 0,
         "skipped_proof_pattern": 0,
     }
     skipped_mints: dict[str, int] = {}
+    # Seed-ids of zinc pages we skip — passed to write_v2_seed as
+    # exclude_ids so a previously-seeded stale entry (e.g. c10h35, whose
+    # misparsed metal=copper / placeholder year=1912 evade the generic
+    # filters) is purged from the existing seed, not orphan-preserved.
+    zinc_drop_ids: set[str] = set()
 
     for p in parsed_files:
         d = json.loads(p.read_text(encoding="utf-8"))
@@ -1254,6 +1279,14 @@ def main() -> int:
 
         hede_volume = d.get("ruler_volume") or ""
         if not hede_volume:
+            continue
+        # Zinc composition → 20th-c out-of-scope (past the 1914 bound);
+        # dropped here because a dateless zinc page is reign-window-
+        # placeholdered to the ruler's reign start, so the year-cap below
+        # can't catch it (e.g. c10h35 → 1912).
+        if _page_is_zinc(d):
+            stats["skipped_zinc_20c"] += 1
+            zinc_drop_ids.add(f"dk-hede-{d['id']}")
             continue
         specs = d.get("specs") or {}
 
@@ -1450,6 +1483,7 @@ def main() -> int:
             "scope_year_from": year_from,
             "scope_year_to": year_to,
         },
+        exclude_ids=frozenset(zinc_drop_ids),
     )
 
     print()
