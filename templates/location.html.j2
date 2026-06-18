@@ -615,7 +615,7 @@
             {%- for _piece in _pieces -%}
               {%- for _kind in _kinds -%}
                 <div class="tl-bar-layer {{ bar.color_class }} tl-bar-layer-{{ layer.kind }} tl-bar-layer-{{ layer.scope }}{% if _piece.show_fade_start %} tl-bar-layer-fade-start{% endif %}{% if _piece.show_fade_end %} tl-bar-layer-fade-end{% endif %}"
-                     style="left:{{ _piece.left_pct }}%;width:{{ _piece.width_pct }}%"
+                     style="left:{{ _piece.left_pct }}%;width:{{ _piece.width_pct }}%{% if bar.mint_alpha_multiplier and 'mint' in _kinds %};--layer-alpha-multiplier:{{ bar.mint_alpha_multiplier }}{% endif %}"
                      data-tt-part="{{ _tts.parts[_tt_idx] }}"
                      aria-hidden="true"></div>
               {%- endfor -%}

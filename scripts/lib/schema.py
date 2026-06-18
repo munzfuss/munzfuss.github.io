@@ -893,6 +893,13 @@ class TimelineBar(_StrictBase):
     setting `hide_layers: [{scope: anywhere, kind: circulation}]` on
     those bars suppresses just that one layer while leaving the
     anywhere-mint and anywhere-status layers intact."""
+    mint_alpha_multiplier: float | None = None
+    """Override `--layer-alpha-multiplier` for THIS bar's `mint` layer
+    only (default: inherit the page value — 2 on a `denmark_only` page,
+    1 elsewhere). Emphasises the «карбування» (mint) stripe, e.g. when
+    the status / circulation layers are hidden via `hide_layers` and the
+    lone mint stripe would otherwise render at the faint stacking alpha.
+    `6` = 3× the denmark-only baseline (2 × 0.1667 ≈ 0.33 → ≈ 1.0)."""
 
 
 class Timeline(_StrictBase):
