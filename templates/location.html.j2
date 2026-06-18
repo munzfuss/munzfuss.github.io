@@ -804,12 +804,20 @@
       {% endfor %}
     </div>
     {% endif %}
-    {% if gw.rechnungsfraktionen %}
+    {% if gw.rechnungsfraktionen or gw.aside %}
     <div class="gw-fr">
+      {% if gw.rechnungsfraktionen %}
       {% if gw.rechnungsfraktionen_label %}
       <span class="gw-fr-label">{{ gw.rechnungsfraktionen_label|t(lang) }}</span>
       {% endif %}
       {{ gw.rechnungsfraktionen|t(lang)|safe }}
+      {% endif %}
+      {% if gw.aside %}
+      <div class="gw-fr-aside">
+        {% if gw.aside_label %}<span class="gw-fr-label">{{ gw.aside_label|t(lang) }}</span>{% endif %}
+        {{ gw.aside|t(lang)|safe }}
+      </div>
+      {% endif %}
     </div>
     {% endif %}
   </div>

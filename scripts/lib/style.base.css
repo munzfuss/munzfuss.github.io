@@ -1571,6 +1571,20 @@ h2[style] {
   color: var(--accent);
   margin-bottom: 6px;
 }
+/* Optional 2nd right-column block (e.g. «Verhältnis zu anderen Füßen»):
+   sits below the Rechnungsfraktionen in the same .gw-fr box, separated by
+   a hairline. When it is the only content (no Rechnungsfraktionen), drop
+   the leading divider. */
+.gw-fr .gw-fr-aside {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: var(--hairline) dotted var(--border-soft);
+}
+.gw-fr .gw-fr-aside:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
 
 /* --- Metal-indicator badge inside .gw-head ------------------------------- */
 /* Rendered by the template as `<span class="bx {{ fuss.metal }}">…</span>`.

@@ -144,6 +144,10 @@ class Grundwerte(_StrictBase):
     rows: list[GrundwerteRow] = Field(default_factory=list)
     rechnungsfraktionen_label: I18nTextOptional | None = None
     rechnungsfraktionen: I18nText | None = None      # rich block, safe HTML
+    aside_label: I18nTextOptional | None = None       # optional 2nd right-column block
+    aside: I18nText | None = None                     # rich block (right column, below
+                                                      # rechnungsfraktionen) — e.g. a
+                                                      # «Verhältnis zu anderen Füßen» note
 
 
 class FussEvent(_StrictBase):
