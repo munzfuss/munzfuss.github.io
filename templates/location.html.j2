@@ -26,7 +26,7 @@
     {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
     {%- if not coin.raw.year_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
   {%- endif -%}</td>
-  <td>{{ coin.raw.ruler|ruler(lang) }}</td>
+  <td>{{ coin.raw.ruler|ruler(lang) }}{%- if not coin.raw.ruler_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}</td>
   <td class="c-km">
     {%- for prefix, vals, tooltip in coin.catalog_groups -%}
       {%- if prefix -%}
@@ -272,7 +272,7 @@
     {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
     {%- if not coin.raw.year_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
   {%- endif -%}</td>
-  <td>{{ coin.raw.ruler|ruler(lang) }}</td>
+  <td>{{ coin.raw.ruler|ruler(lang) }}{%- if not coin.raw.ruler_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}</td>
   <td class="c-km">
     {%- for prefix, vals, tooltip in coin.catalog_groups -%}
       {%- if prefix -%}
