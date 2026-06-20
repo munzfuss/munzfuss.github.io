@@ -201,6 +201,22 @@ merges:
       applied manually in final (composed_of + schou + sources) ahead of the
       next re-merge.
 
+  - members:
+      - dk-bruun-3839
+      - ikmk-18206592
+    reason: |
+      1 Rhinsk Gylden Hans (Johann) 1496-1497 — one coin. Bruun seed
+      dk-bruun-3839 (Galster 27, N#355730, the rhinsk_gylden_fod Phase 0
+      host) + IKMK ikmk-18206592 (KMM/IKMK Berlin 18206592, labelled
+      «1 Goldgulden», reign-window 1481-1513, inscriptions IOhS DEI GR -
+      REX DACIE / MONET - AVREA - REGNI - DACIE). Same Hans gold Rhinsk
+      Gylden type; the IKMK record carries a museum specimen (3.3 g, 23 mm)
+      + both legends, the auto-matcher can't unite them (IKMK has no
+      Hede/Galster index + only the reign window). Curator merge (Serhii,
+      by catalog, 2026-06-20). The IKMK specimen folds into dk-bruun-3839
+      per §9a; applied manually in final (composed_of + weight + diameter +
+      inscriptions + sources) ahead of the next re-merge.
+
 no_merges:
   # --- dk-tid-94338 disentanglement (curator decision 2026-05-31, Serhii).
   # 1 Dukat Frederik V 1747 — the merger fused FOUR distinct coins into one
@@ -494,6 +510,11 @@ year_demote:
     reason: |
       Numista N#355730 (Goldgulden, Hans) lists the full reign 1481-1513 —
       reign-window placeholder, same coin as unified-dk-bruun-3839.
+  - member_id: ikmk-18206592
+    reason: |
+      IKMK Berlin 18206592 (Goldgulden, Hans) is tagged with the full reign
+      1481-1513; the Rhinsk Gylden was struck ca. 1496-1497 — reign-window
+      placeholder, same coin as unified-dk-bruun-3839. Last-resort only.
   - member_id: kmk-279179
     reason: |
       KMM specimen FP 3528.265 (10 Øre, Christian IX) is tagged with the full
