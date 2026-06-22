@@ -986,8 +986,15 @@ def _nominal_genuinely_differs(a, b) -> bool:
     return True
 
 
+def _seed_of(uid: str) -> str:
+    """Strip the pipeline `unified-` prefix → the underlying seed id."""
+    return uid[len("unified-"):] if isinstance(uid, str) and uid.startswith(
+        "unified-") else uid
+
+
 def _revalidate_composed_of(
-    final_by_id: dict, unified_by_id: dict, entity_id: str
+    final_by_id: dict, unified_by_id: dict, entity_id: str,
+    force_merge_pairs=None
 ) -> dict[str, set]:
     """Re-validate existing composed_of membership; return per-host evict set.
 
@@ -1031,6 +1038,19 @@ def _revalidate_composed_of(
             m = unified_by_id.get(mid)
             if m is None:
                 continue  # raw-seed / unknown member — not a unified entry
+            # Curator-forced merge (merge_decisions::merges + _cross_entity::
+            # merges) is AUTHORITATIVE: never evict a member the curator
+            # explicitly merged, whatever the nominal / forgery / catalogue
+            # signals say. The absorb already honours the negative curator
+            # direction (no_merges below); this honours the positive one.
+            # Without it, a curator §9a merge of a museum specimen whose
+            # nominal differs from the host (e.g. «1 Dobbelt ungarsk gylden»
+            # into «2 Ungersk Gylden», «1 Goldgulden» into «1 Rhinsk Gylden»)
+            # is silently re-validate-evicted on the next absorb run — i.e.
+            # a re-absorb undoes the merge (caught 2026-06-20).
+            if force_merge_pairs and frozenset(
+                    {_seed_of(fid), _seed_of(mid)}) in force_merge_pairs:
+                continue
             # Forgery-asymmetry: a contemporary forgery / imitation is never
             # the same object as the genuine coin it copies, even sharing its
             # catalogue (it's catalogued BY what it imitates). Evict REGARDLESS
@@ -1733,7 +1753,20 @@ def process_entity(entity_id: str) -> dict:
     # dropped from composed_of, and force-promoted standalone so it re-homes
     # — the discriminator then blocks it re-absorbing (no type-level tie).
     if REVALIDATE_ENABLED:
-        revalid = _revalidate_composed_of(final_by_id, unified_by_id, entity_id)
+        # Curator-forced merges are authoritative — exempt their member pairs
+        # from re-validate eviction (positive direction of merge_decisions,
+        # mirroring the no_merges authority below). Sources: this entity's
+        # merge_decisions::merges + the global _cross_entity::merges.
+        _fm_pairs: set = set()
+        for _src in (V2_MERGE_DECISIONS / f"{entity_id}.yml",
+                     V2_MERGE_DECISIONS / "_cross_entity.yml"):
+            for _mg in (_load_yaml(_src).get("merges") or []):
+                _mem = [x for x in (_mg.get("members") or []) if x]
+                for _i in range(len(_mem)):
+                    for _j in range(_i + 1, len(_mem)):
+                        _fm_pairs.add(frozenset({_mem[_i], _mem[_j]}))
+        revalid = _revalidate_composed_of(
+            final_by_id, unified_by_id, entity_id, _fm_pairs)
         revalid_evicted = 0
         for host_id, evict_set in revalid.items():
             fc = final_by_id.get(host_id)
