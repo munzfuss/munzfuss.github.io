@@ -299,6 +299,18 @@ merges:
       per §9a; applied manually in final (composed_of + both museum sources).
 
 no_merges:
+  - members: [dk-bruun-7774, kmk-301777]
+    reason: |
+      1 Skilling 1771 (Christian VII) — curator decision 2026-06-22 (Serhii,
+      by image). The copper circulation coin (KM 616: ucoin, NumisMaster MC_85807,
+      Bruun III lot 11290, KMM 122887/122888/291444/295585/301841/301843/306353/
+      306745/308027/741048) is a DIFFERENT coin from the silver «1 Skilling (?)»
+      specimen group (KMM 301777 «1 skilling (?)» sølv + 408037 sølv + 578767/
+      578768/578769) — the museum itself flags 301777 «(?)». An earlier absorb run
+      over-merged the silver group into the copper coin, flipping the FINAL metal
+      to silver; the cross-source merger has since split them correctly. Keep apart
+      so re-validate never re-fuses them (nominal «1 Skilling» vs «1 Skilling (?)»
+      is not a genuine difference, so the nominal discriminator alone won't hold).
   # --- dk-tid-94338 disentanglement (curator decision 2026-05-31, Serhii).
   # 1 Dukat Frederik V 1747 — the merger fused FOUR distinct coins into one
   # because the bare-KM-564 sources (ucoin tid 94338, Numista 342563,
