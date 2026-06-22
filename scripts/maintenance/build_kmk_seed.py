@@ -345,6 +345,12 @@ _KMM_DROP_IDS = {
     368856, 368870, 368884,   # 25 Øre «1904-1944», ruler «Frederik 7»
     368904, 368950, 368995,   # 2 Øre  «1874-1945», ruler «Frederik 7»
     368996, 369067, 369138,   # 1 Øre  «1882-1944», ruler «Frederik 7»
+    175835,                   # §9.3 Sølvafslag: «1 Rigsbankskilling» 1813 in
+                              # «sølv» — silver off-strike of the COPPER coin
+                              # (Hede f6h17, KM 680). KMM tags it a coin «sølv»,
+                              # not «afslag», so the type-filter misses it.
+                              # Curator verdict 2026-06-22 (Serhii): treat as
+                              # Sølvafslag → skip from table.
 }
 
 

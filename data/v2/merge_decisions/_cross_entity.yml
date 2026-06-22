@@ -80,3 +80,21 @@ merges:
       c7h33a/c7h33c foundation (11⅓-Thaler-Fuß, phase I) + their
       classification_decisions assignments. Curator merge 2026-06-15, target
       corrected danish_realm→royal_holstein 2026-06-16 (Serhii).
+
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-f6h14   # home: royal_holstein (Hede 14, «3 Skilling» Frederik VI)
+      - kmk-131538      # home: danish_realm    (KMM FP 2519.130, «3 Skilling» 1812)
+    reason: |
+      Durability for the 2026-06-22 cross-entity-dup consolidation (Serhii). The
+      «3 Skilling» Frederik VI existed as TWO final rows sharing one id — a
+      royal_holstein copy (renders on SH + denmark<=1864 via Pass 1) and a STALE
+      danish_realm copy. The danish_realm copy was consolidated into royal_holstein
+      (metal copper; the danish_realm copy carried a wrong silver). Its composed_of
+      had folded the KMM specimen kmk-131538 (danish_realm seed). Deleting that
+      copy un-folds kmk-131538 -> a danish_realm re-absorb would PROMOTE it as a
+      standalone silver «3 Skilling» fragment on the denmark page (empirically
+      confirmed). Folding it into royal_holstein f6h14 here removes it from
+      danish_realm's standalone pool (no fragment) AND lands its data in the
+      royal_holstein seed_unified (durable). kmk-131538 carries no KMM material
+      tag (metal None) -> folds cleanly into the copper host, no metal conflict.
