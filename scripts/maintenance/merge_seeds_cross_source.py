@@ -2529,10 +2529,23 @@ def _collect_mints(members: list[dict]) -> str | list[str] | None:
 
 class MetalConflictError(Exception):
     """Raised when merged members carry >=2 distinct `metal_verified: True`
-    metals that are NOT the silver<->billon thin-line pair — a real divergence
+    metals that are NOT one of the thin-line alloy pairs — a real divergence
     the curator must resolve, not have the merger silently pick one. Shipped
     2026-06-20 after a KMM museum «soelv» (metal_verified:True) silently beat
     Hede «copper» (metal_verified:True) on unified-dk-hede-f6h17."""
+
+
+# Thin-line alloy pairs: a verified-vs-verified disagreement WITHIN one of
+# these is NOT a real conflict — it's the same metal under a looser-vs-tighter
+# label, so warn (pick by authority) instead of aborting. Each pair is checked
+# as a self-contained set: a conflict spanning two pairs (e.g. silver/copper)
+# is NOT in any single pair → still raises.
+#   {silver, billon}  — low-grade billon vs silver (user-set 2026-06-20)
+#   {bronze, copper}  — bronze IS a copper alloy (~95% Cu); museums tag a
+#                       bronze coin «kobber»/copper. The numismatic catalogue
+#                       (Hede/Numista/NumisMaster) carries the precise «bronze»;
+#                       authority resolves it (user-set 2026-06-22, c9h18b).
+_THIN_LINE_METAL_PAIRS = ({"silver", "billon"}, {"bronze", "copper"})
 
 
 def _collect_metal(members: list[dict]) -> str | None:
@@ -2570,25 +2583,29 @@ def _collect_metal(members: list[dict]) -> str | None:
         # both `metal_verified: True` but disagreeing on metal is a genuine
         # divergence the curator must resolve — silently picking by authority
         # once shipped a wrong metal (KMM museum «soelv» beat Hede «copper» on
-        # unified-dk-hede-f6h17). EXCEPTION: silver<->billon is a genuinely thin
-        # line (low-grade billon vs silver) — warn, don't abort. Any other
-        # disagreement (copper/silver, bronze/copper, gold/silver, …) raises so
-        # the run stops and the curator reviews + decides the metal.
+        # unified-dk-hede-f6h17). EXCEPTION: the thin-line alloy pairs
+        # (silver<->billon, bronze<->copper) are NOT real conflicts — same metal
+        # under looser-vs-tighter labels — so warn and let authority pick. Any
+        # other disagreement (copper/silver, gold/silver, …) raises so the run
+        # stops and the curator reviews + decides the metal.
         verified_metals = {m.get("metal") for _, m in verified}
         if len(verified_metals) >= 2:
             host = members[0].get("id") if members else "?"
             detail = ", ".join(f"{m.get('metal')}={m.get('id')}"
                                for _, m in verified)
-            if verified_metals <= {"silver", "billon"}:
-                print(f"  ⚠ metal-conflict silver<->billon (thin line — picking "
+            thin = next((p for p in _THIN_LINE_METAL_PAIRS
+                         if verified_metals <= p), None)
+            if thin is not None:
+                label = "<->".join(sorted(thin))
+                print(f"  ⚠ metal-conflict {label} (thin line — picking "
                       f"by authority) on {host}: {detail}", file=sys.stderr)
             else:
                 raise MetalConflictError(
                     f"verified-vs-verified metal conflict on {host}: {detail}. "
                     f"Two sources both metal_verified:True disagree on metal "
-                    f"(not the silver<->billon thin-line exception). The merger "
-                    f"must NOT silently pick one — resolve the wrong source's "
-                    f"metal (curator value / _source_errata) and re-run.")
+                    f"(not a thin-line alloy pair). The merger must NOT silently "
+                    f"pick one — resolve the wrong source's metal (curator value "
+                    f"/ _source_errata) and re-run.")
         verified_sorted = sorted(
             verified,
             key=lambda im: (-_authority_score(im[1].get("id", "")), -im[0]))

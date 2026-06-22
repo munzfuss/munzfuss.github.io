@@ -4,8 +4,9 @@ merge_seeds_cross_source._collect_metal (shipped 2026-06-20).
 Two members both `metal_verified: True` disagreeing on metal is a genuine
 divergence the curator must resolve — the merger must NOT silently pick one
 (it once shipped KMM museum «soelv» over Hede «copper» on f6h17). The guard:
-  - silver<->billon disagreement → WARN (thin line), pick by authority.
-  - any other (copper/silver, bronze/copper, …) → raise MetalConflictError.
+  - thin-line alloy pairs (silver<->billon, bronze<->copper) → WARN, pick by
+    authority (same metal under looser-vs-tighter labels).
+  - any other (copper/silver, gold/silver, …) → raise MetalConflictError.
 Unverified disagreements do NOT trip it (only one verified side wins normally).
 
 Run via:
@@ -46,9 +47,23 @@ class TestMetalConflictGuard(unittest.TestCase):
         with self.assertRaises(MetalConflictError):
             _collect_metal(members)
 
-    def test_bronze_vs_copper_raises(self):
+    def test_bronze_vs_copper_warns_picks_authority(self):
+        # bronze<->copper is a thin alloy line (bronze ≈ 95% Cu; museums tag a
+        # bronze coin «kobber»). c9h18b: Hede=bronze (auth 5) beats KMM=copper
+        # (auth 0) → warn, pick bronze. (Must NOT raise — user-set 2026-06-22.)
         members = [_m("dk-hede-c9h18b", "bronze", True),
                    _m("kmk-569264", "copper", True)]
+        err = io.StringIO()
+        with redirect_stderr(err):
+            out = _collect_metal(members)  # must NOT raise
+        self.assertEqual(out, "bronze")
+        self.assertIn("bronze<->copper", err.getvalue())
+
+    def test_copper_vs_gold_raises(self):
+        # A cross-pair conflict (copper in {bronze,copper}, gold in neither) is
+        # NOT within any single thin-line pair → still raises.
+        members = [_m("dk-hede-x", "copper", True),
+                   _m("kmk-y", "gold", True)]
         with self.assertRaises(MetalConflictError):
             _collect_metal(members)
 
@@ -59,7 +74,7 @@ class TestMetalConflictGuard(unittest.TestCase):
         with redirect_stderr(err):
             out = _collect_metal(members)  # must NOT raise
         self.assertIn(out, {"silver", "billon"})
-        self.assertIn("silver<->billon", err.getvalue())
+        self.assertIn("billon<->silver", err.getvalue())
 
     def test_same_metal_no_conflict(self):
         members = [_m("a", "copper", True), _m("b", "copper", True)]
