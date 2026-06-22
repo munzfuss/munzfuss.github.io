@@ -15,6 +15,45 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-22 — metal-conflict guard + bruun-7774 metal fix + 4 cross-entity-dup consolidation (durable)
+
+> **9 commits UNPUSHED.** All verified (build + tests + empirical re-flow). `git push` pending.
+>
+> **Metal-conflict guard in `_collect_metal`** (commits `f71601a` + `eb80d9b`).
+> When >=2 composed_of members are `metal_verified:True` but disagree on metal,
+> the merger/absorb now RAISE `MetalConflictError` (stop → curator decides) —
+> it once silently shipped KMM «sølv» over Hede «copper». EXCEPTION: thin-line
+> alloy pairs `{silver,billon}` + `{bronze,copper}` WARN + pick by authority
+> (bronze IS a copper alloy; museums tag bronze «kobber»). c9h18b «2 Øre» CIX
+> resolved this way → bronze (Hede auth 5 > KMM 0). `_THIN_LINE_METAL_PAIRS` is
+> the list; new pairs go there. Unit tests `tests/test_metal_conflict_guard.py`.
+>
+> **bruun-7774 «1 Skilling» 1771 silver→copper** (commit `4a86564`). The guard
+> exposed a stale-FINAL bug: the coin was silver but is COPPER (KM 616; ucoin +
+> NumisMaster×9 + KMM×4 + Bruun). Silver came from an old over-merge with a
+> silver «1 Skilling (?)» group (kmk-301777 et al., KMM-flagged «(?)»). Fix:
+> `no_merge` (dk-bruun-7774 ↔ kmk-301777) + metal→copper + drop the stale
+> composed_of link. The silver «(?)» group stays a separate seed_unified entry.
+>
+> **4 cross-entity-id dups consolidated into royal_holstein** (commit `c910fd0`).
+> c8h11a / f6h9 / f6h14 / f6h17 each had a stale danish_realm copy + a seed-backed
+> royal_holstein copy. Merged each into ONE royal_holstein entry (copper, joint-ie
+> → renders on denmark Pass-1 windowed ≤1864 + SH Pass-1; data unioned; clean Hede
+> token). **c8h11a is the project's FIRST per-location phase DICT**
+> `{denmark: I, schleswig_holstein: II}` (1842 ∈ denmark 18_5_thaler I but SH II).
+> One-off: `scripts/oneoff/consolidate_cross_entity_dups_20260622.py` (gitignored).
+>
+> **Durability — analysed + PROVEN** (the deletion un-folded 2 KMM specimens that
+> would PROMOTE as silver fragments on denmark; confirmed empirically). Fix:
+> kmk-131538 «3 Skilling» (metal None) → `_cross_entity.yml` fold into RH f6h14;
+> kmk-175835 «1 Rigsbankskilling» «sølv» → §9.3 Sølvafslag-exclude via
+> `build_kmk_seed.py::_KMM_DROP_IDS` (KMM tags it a coin «sølv», not «afslag» →
+> type-filter missed it) + removed from kmk seed / DR seed_unified / f6h17. Proven
+> via backed-up full re-flow: merger folds/excludes → danish_realm absorb 0
+> fragments; absorb `_enrich_final_entry` preserves all foundation enrichment 1:1.
+> New tooling-lesson in memory: «deleting a stale final copy that folded museum
+> specimens un-folds them → fragments».
+
 ## 2026-06-17 (later) — CI build fix (ruamel) + Hede discrete-year root fix (c7h13a 1798)
 
 > **CI deploy was RED since ≥2026-06-11 — FIXED (commit `6f787bd`, UNPUSHED).**
