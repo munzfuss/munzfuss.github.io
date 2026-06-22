@@ -9,6 +9,25 @@
 
 merges:
   - members:
+      - dk-hede-c3h14      # «1 Rhinsk Gylden» 1546 — Hede 14, Sieg 51, Schou 2
+      - dk-bruun-14770     # «1 Goldgulden» 1536/1546-47 — Sieg 23, Schou 4/1351, Galster 131, Lange 18, Fr 18, MB 42
+    reason: |
+      Curator decision 2026-06-22 (Serhii): ONE coin — Christian III «Rhinsk
+      Gylden» (.75 gold, ca. 1536-1547). Catalogued under two names: Hede calls
+      the .75 gold gulden «Rhinsk Gylden» (c3h14, Sieg 51, Schou 2); Bruun /
+      Galster / Friedberg call the same type «Goldgulden» (dk-bruun-14770: Sieg
+      23, Schou 4/1351, Galster 131, Lange 18, Fr 18, MB 42). Nominal conflict →
+      curator picks «1 Rhinsk Gylden» (Hede host wins by authority; the discarded
+      «1 Goldgulden» surfaces in match_uncertainty). The catalogue refs accumulate
+      list-form per §9a/data-accumulation — incl. the Sieg 23-vs-51 and Schou
+      2-vs-4/1351 discrepancies (a catalogue-edition divergence on ONE type, not a
+      split). Both already classified rhinsk_gylden_fod phase 0. The «Goldgulden»
+      vs «Rhinsk Gylden» nominal genuinely differs, so the absorb re-validate
+      would normally evict the Bruun member — the force-merge exemption (commit
+      d071b81) protects this exact shape. NOTE: a third copy, dk-numista-379084
+      (Galster 131 + Fr 18, «1 Goldgulden»), sits mis-bucketed in gottorp_duchy —
+      a cross-entity pull candidate, flagged but not yet merged.
+  - members:
       - dk-hede-c4h156
       - dk-bruun-5441
       - dk-bruun-5440
