@@ -9,6 +9,21 @@
 
 merges:
   - members:
+      - dk-hede-c5h27ab          # Hede 27 head (Christian V «2 Dukat», KM 416/416.1)
+      - denmark-numismaster-65882  # KM 416.2 «smaller bust» (NumisMaster MC_65882, 1691)
+    reason: |
+      Curator decision 2026-06-23 (Serhii, by image + Numista N#82690): KM 416.2
+      is Hede 27B, NOT Hede 56. Numista N#82690 catalogues KM 416.1 («wider bust»)
+      AND KM 416.2 («smaller bust») as the SAME type KM 416 / Fr 154 / Hede 27,
+      1691, mintmark CW; danskmoent gives Hede 27A=Sieg 99 (KM 416.1) + Hede 27B=
+      Sieg 101 (KM 416.2). The numismaster seed for 416.2 carries no Hede tag, so
+      an old over-merge mis-folded it onto the Hede-56 head c5h56 (Sieg 114, Fr 204
+      — a different type, KM 458). Fold it into the Hede 27 cluster so KM 416.2 +
+      MC_65882 accumulate on c5h27ab (§9a) and leave c5h56. The existing
+      no_merge [dk-hede-c5h56, dk-hede-c5h27ab] keeps 65882 out of c5h56
+      transitively (65882 matches c5h56 «confident» on metal+nominal+ruler in
+      isolation; the no_merge blocks the cross-class union).
+  - members:
       - dk-hede-c5h56      # Hede 56 head (Christian V «2 Dukat», KM 416.2)
       - dk-bruun-7243      # «Gold 2 Ducats» KM 458, Hede 56 (Bruun I lot 1122)
     reason: |
@@ -364,6 +379,25 @@ merges:
       per §9a; applied manually in final (composed_of + both museum sources).
 
 no_merges:
+  - members: [dk-hede-c5h58, denmark-numismaster-65882]
+    reason: |
+      Companion to [dk-hede-c5h56, denmark-numismaster-65882] + the merges entry
+      folding 65882 (KM 416.2, no Hede) into c5h27ab (Hede 27). 65882 matches
+      several Christian V «2 Dukat» heads «confident» (no catalog to disagree);
+      once blocked from c5h56 it gets grabbed into c5h58 instead, and the
+      force-merge into c5h27ab is then REFUSED by the pre-existing explicit
+      no_merge [c5h27ab, c5h58]. Block c5h58 too so 65882 stays a singleton until
+      the curator force-merge pulls it into c5h27ab.
+  - members: [dk-hede-c5h56, denmark-numismaster-65882]
+    reason: |
+      KM 416.2 (numismaster-65882, no Hede tag) is Hede 27B, NOT Hede 56 (see
+      the merges entry folding it into dk-hede-c5h27ab). It matches c5h56
+      «confident» on metal+nominal+ruler (catalog=None), so the confident pass
+      grabs it into c5h56's class BEFORE the curator force-merge runs — and
+      force_union then REFUSES (explicit no_merge [c5h56, c5h27ab] conflict),
+      stranding 65882 on c5h56. This no_merge blocks the confident grab so the
+      force-merge into c5h27ab succeeds. (Pattern for relocating a no-Hede KM
+      source: merges into the RIGHT head + no_merge from the WRONG head.)
   - members: [dk-hede-c5h56, dk-bruun-6808]
     reason: |
       Christian V «2 Dukat» — Hede 56 (c5h56: KM 416.2/458, Sieg 114, Schou 12,
