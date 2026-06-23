@@ -15,6 +15,50 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-23 — 4 mixed cross-source dups merged (c5h56, f2h8, f6h31, f7h8) — durable
+
+> **18 commits UNPUSHED** (this turn added `673bf03`). `git push` pending.
+>
+> **4 «mixed» dup candidates consolidated** (curator-confirmed by image). Distinct
+> from the stale-Hede-orphan pattern — these were fragmented across sources/entities
+> at the seed_unified level. Each merged into ONE host with §9a list-form catalog
+> accumulation, durable via `merge_decisions` (so a future re-flow reproduces them):
+> - **c5h56** Christian V «2 Dukat» Hede 56 → host `unified-dk-hede-c5h56`; km-458
+>   (KM 458, Bruun 7243) folded in; KM 416.2/458 accumulate.
+> - **f2h8** Frederik II «3 Mark» (≡ 1 Speciedaler) Hede 8/8A/8B → host
+>   `unified-dk-hede-f2h8`; manual f2h8b (Hede 8B, Bruun 4422 + Numista 142126) folded.
+> - **f6h31** Frederik VI «8 Rigsbankskilling» KM 152 Hede 31 → host
+>   `unified-dk-hede-f6h31`; 3 heads united (same Bruun lot 17159); metal silver→**billon**
+>   (0.375-fine = billon; fixed at the Hede SEED via `_curation_holds:{metal}` so the
+>   merger keeps billon — danskmoent's loose «sølv» was the silver source).
+> - **f7h8** Frederik VII «1 Rigsdaler» Rigsmønt 1854-55 KM 760.1/760.2 → CROSS-ENTITY
+>   merge (Kopenhagen danish_realm + Altona royal_holstein clusters) into ONE multi-mint
+>   `unified-dk-hede-f7h8` in **royal_holstein** (overlap-home per c7h33/c8h11a, renders
+>   on both pages); issuing_entity joint `[danish_realm, royal_holstein]`; phase DICT
+>   `{denmark: I, schleswig_holstein: III}` (curator). `_cross_entity.yml` pulls the
+>   Cph cluster out of danish_realm (no fragment there).
+>
+> **Method (NEW memory lesson):** these deletions removed finals that fold REAL
+> seed-backed heads → seed_unified must be made consistent (else fragments). A full
+> `merger+absorb` re-flow does that BUT also materialises every pending decision in the
+> entity (surfaced last-session items). Solution: re-flow to compute the hosts, then
+> **transplant** only the 4 hosts into a backup-restored committed state, judge by
+> **semantic-diff** (`scripts/oneoff/semantic_diff.py`) not the line diff — the line
+> churn is YAML-anchor renumbering (cosmetic). Semantic diff confirmed EXACTLY these
+> 4 coins changed. Build clean (denmark/SH); f7h8 renders on both pages, f6h31 billon,
+> c5h56 dup row gone.
+>
+> **TWO OPEN FOLLOW-UPS surfaced (not in this commit — need curator calls):**
+> 1. **c5h56 host carries KM 346, which is actually Hede 3** (`unified-dk-bruun-6808`
+>    «2 Ducats» 1673 — a SEPARATE type). Looks like a pre-existing Hede-3-into-56 leak
+>    from an older merge. NOT touched. → remove KM 346 from c5h56?
+> 2. **danish_realm has 2 pending fragments** from LAST session's decisions that a
+>    future coordinated re-flow WILL surface (a full `merger+absorb danish_realm`
+>    materialised them this session, then I transplanted them back to committed):
+>    `unified-kmk-301777` «1 Skilling» 1771 (bruun-7774 no_merge → correct separation,
+>    seed_unsorted) + `unified-kmk-175833` «3 Skilling» 1812 (f6h14-adjacent, seed_unsorted).
+>    Both need classification when the next danish_realm coordinated re-flow lands.
+
 ## 2026-06-22 — metal-conflict guard + bruun-7774 metal fix + 4 cross-entity-dup consolidation (durable)
 
 > **9 commits UNPUSHED.** All verified (build + tests + empirical re-flow). `git push` pending.
