@@ -364,6 +364,26 @@ merges:
       per §9a; applied manually in final (composed_of + both museum sources).
 
 no_merges:
+  - members: [dk-hede-c5h56, dk-bruun-6808]
+    reason: |
+      Christian V «2 Dukat» — Hede 56 (c5h56: KM 416.2/458, Sieg 114, Schou 12,
+      Fr 204, 1670-1699) is a DIFFERENT type from Hede 3 (bruun-6808: KM 346,
+      Sieg 118, Schou 7, Fr 198, 1673). An old absorb-era over-merge had leaked
+      KM 346 + the Hede-3 sources (ucoin tid-101249, Bruun lot 1102, MC_65875's
+      sibling) onto the c5h56 FINAL; the matcher has since split them into
+      separate seed_unified heads and the final was cleaned 2026-06-23 (Serhii,
+      by image). Keep apart: the un-cataloged ucoin tid-101249 (KM 346, no Hede)
+      matches c5h56 «confident» on metal+nominal+ruler in isolation, so without
+      this no_merge a future run could transitively bridge c5h56↔bruun-6808 via
+      it (the no_merge is transitive — blocks the cross-class union). Same
+      «2 Dukat» Christian V family as the existing c5h27ab / c5h58 no_merges.
+  - members: [dk-hede-c5h56, dk-hede-c5h8]
+    reason: |
+      Christian V «2 Dukat» — Hede 56 (c5h56) vs Hede 8 (c5h8: KM 347, Sieg 87,
+      Schou 6, Fr 191, 1675). The same old over-merge leaked the Hede-8 source
+      NumisMaster MC_65876 (KM 347) onto the c5h56 FINAL (removed 2026-06-23;
+      it already lives on km-347-chr-v-1675). Keep apart so neither the c5h8
+      cluster nor its bare-KM numismaster member re-bridges into c5h56.
   - members: [dk-bruun-7774, kmk-301777]
     reason: |
       1 Skilling 1771 (Christian VII) — curator decision 2026-06-22 (Serhii,
