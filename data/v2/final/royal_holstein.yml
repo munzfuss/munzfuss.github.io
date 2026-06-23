@@ -3417,13 +3417,18 @@ coins:
   v1_home_location: schleswig_holstein
   _migration_note: auto-mapped from gesamtstaat
 - fuss: 18_5_thaler
-  phase: III
+  phase:
+    denmark: I
+    schleswig_holstein: III
   kind: kurant
   fraction: '1'
   nominal: 1 Rigsdaler
   ruler: Frederik VII.
-  issuing_entity: royal_holstein
-  id: km-760-2-fr-vii-1855
+  issuing_entity:
+  - danish_realm
+  - royal_holstein
+  mintmaster: Georg Vilhelm Svendsen (VS)
+  id: unified-dk-hede-f7h8
   year_first: 1854
   year_last: 1855
   year_ranges:
@@ -3437,7 +3442,10 @@ coins:
     km:
     - '760.2'
     - '760'
-    bruun_collection_id: '8235'
+    - '760.1'
+    bruun_collection_id:
+    - '8235'
+    - '8230'
     bruun_part: IV
     bruun_lot_no: 17215
     bruun_page: 110
@@ -3450,6 +3458,7 @@ coins:
     - '5'
     hede:
     - '8'
+    - 8A
     - 8B
     numista: '22192'
   metal: silver
@@ -3460,6 +3469,8 @@ coins:
   mint_verified: true
   verified: false
   fineness:
+  - value: 0.5
+    source: ucoin
   - value: 0.875
     source: hede
   - value: 0.875
@@ -3467,17 +3478,23 @@ coins:
   - value: 0.875
     source: numista
   weight_rough_g:
+  - value: 14.42
+    source: bruun
   - value: 14.447
     source: hede
   - value: 14.447
     source: numismaster
   - value: 14.447
     source: numista
+  - value: 14.45
+    source: ucoin
   - value: 14.47
     source: bruun
   diameter_mm:
   - value: 30.5
     source: numista
+  - value: 32.5
+    source: ucoin
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -3491,6 +3508,18 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f7h8.htm
     ref: danskmoent.dk (Hede f7h8)
+  - type: literature
+    url: https://numismaster.com/MC_66065
+    ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17212, p. 109
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-rigsdaler-1854-1855/?tid=70691
+    ref: ucoin
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/349780
+    ref: KMM 349780 (Inv. FP 10230.5)
   note:
     de: Rigsdaler 1855 (KM-760.2) · Altonaer Prägung nach der Rigsmønt-Umbenennung 1854
     en: Rigsdaler 1855 (KM-760.2) · Altona issue after the 1854 Rigsmønt renaming
@@ -3508,7 +3537,6 @@ coins:
     basis: fin
   composed_of:
   - unified-dk-hede-f7h8
-  - unified-dk-numista-22192
   v1_home_location: schleswig_holstein
   _migration_note: auto-mapped from gesamtstaat
 - fuss: 9_25_thaler
@@ -5861,7 +5889,7 @@ coins:
   - type: literature
     url: https://en.numista.com/110606
     ref: Numista N#110606 — ½ Speciedaler - Christian VII
-  note: &id005
+  note: &id004
     de: ½ Speciedaler 1786 · Altonaer Prägung im Courantmøntfod
     en: ½ Speciedaler 1786 · Altona issue in the Courantmøntfod system
     uk: ½ Speciedaler 1786 · Альтонське карбування за Courantmøntfod
@@ -7368,7 +7396,7 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17159, p. 92
-  note: &id001
+  note:
     de: 'Reverse-Legende: <b>«*8* REICHS= BANK SCHILLING. [Jahr]. [MM]»</b>. Obverse: Gekröntes Schild mit Holstein-Wappen
       · Münzmeisterinitialen u.a. I.F.F. (Johann Friedrich Freund). · 8 RBS = 1/12 Rigsbankdaler = 2½ Sch.C. = 1/24 Thaler
       Species'
@@ -9287,7 +9315,7 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13206, p. 151
-  note: &id002
+  note: &id001
     de: '1 Dukat Friedrichs IV. (Glückstadt) · Obverse Panzerbüste mit Locken «FRID • IV • D • G • | DAN • N • V • G • REX
       •»; Reverse Krone und Devise «DOMINUS • MIHI • ADIUTOR • » («Der Herr ist mein Helfer») mit Glückstadt-Mzz. Zwei Untertypen:
       KM# 2.1 (Type 1, Datum unter Krone) und KM# 2.2 (Type 2, Panzerbüste kleiner mit Datum unter Büste). Glückstadter Praxisstandard
@@ -10397,7 +10425,7 @@ coins:
   - type: numista
     url: https://en.numista.com/275958
     ref: Numista
-  note: &id004
+  note: &id003
     de: 'Münzmeister <b>Johan(n) Woltereck</b> (IW, Glückstadt 1664–1679) · Variante mit «<i>even flan</i>» · Bruun-Lot 13178
       (Stack''s Bowers Zürich 2025) · Reverse-Legende: «·PIETATE· | · IUSTITIA · | 1674 . I ⚒ W». nennt für diesen Typ den
       nominellen Reichsdukatenfuß-Wert .986; unser angegebener Feingehalt <b>.979</b> stützt sich auf Hede c5h117-analoge
@@ -10779,7 +10807,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/575003
     ref: KMM 575003 (Inv. FP 11167.9)
     display: false
-  note: &id003
+  note: &id002
     de: «60 · SCHILLING · SCHLESW · HOLST · COURANT · 1 · SP ·» <br>(<b>SP</b> = Species = vollwertiger Thaler im 9¼-Fuß)
       · 1 Thaler Species = 25,28173 g fein · 60 Sch.C. = 1 Thaler Species = 25,28173 g ✓ (derselbe Müntzfuß)
     en: «60 · SCHILLING · SCHLESW · HOLST · COURANT · 1 · SP ·» <br>(<b>SP</b> = Species = full-value Thaler in the 9¼-Fuß)
@@ -11731,30 +11759,44 @@ coins:
 - fuss: 18_5_thaler
   phase: I
   kind: scheide
-  nominal: 8 Skilling
+  nominal: 8 Rigsbankskilling
   fraction: 1/12
   ruler: Frederik VI.
   issuing_entity: royal_holstein
+  mintmaster: Cajus Branth (CB)
   id: unified-dk-hede-f6h31
   year_first: 1816
-  year_last: 1816
-  year_label: '1816'
+  year_last: 1819
+  year_ranges:
+  - - 1816
+    - 1816
+  - - 1818
+    - 1819
+  year_label: 1816, 1818-1819
   mint: Altona
   catalog:
     km: '152'
-    hede: '31'
+    hede:
+    - '31'
+    - 31B
     hede_volume: f6h
     schou:
     - '2'
     - '3'
     - '4'
-    sieg: '22'
+    sieg:
+    - '22'
+    - '22.2'
     numista: '19531'
     bruun_collection_id: '8047'
     bruun_part: IV
     bruun_lot_no: 17159
     bruun_page: 92
-  metal: silver
+    lange: '160'
+    others:
+    - AKS# 10
+    - Jaeg 6 NWD# 12
+  metal: billon
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
@@ -11764,9 +11806,20 @@ coins:
   fineness:
   - value: 0.375
     source: hede
+  - value: 0.375
+    source: ucoin
   weight_rough_g:
   - value: 2.809
     source: hede
+  - value: 2.88
+    source: numista
+  - value: 2.88
+    source: ucoin
+  diameter_mm:
+  - value: 18.9
+    source: numista
+  - value: 18.9
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f6h31.htm
@@ -11780,7 +11833,19 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17159, p. 92
-  note: *id001
+  - type: literature
+    url: https://en.numista.com/19531
+    ref: Numista N#19531 — 8 Reichsbank Schilling - Frederik VI
+  note:
+    de: 'Reverse-Legende: <b>«*8* REICHS= BANK SCHILLING. [Jahr]. [MM]»</b>. Obverse: Gekröntes Schild mit Holstein-Wappen
+      · Münzmeisterinitialen u.a. I.F.F. (Johann Friedrich Freund). · 8 RBS = 1/12 Rigsbankdaler = 2½ Sch.C. = 1/24 Thaler
+      Species'
+    en: 'Reverse legend: <b>«*8* REICHS= BANK SCHILLING. [year]. [MM]»</b>. Obverse: a crowned shield with the Holstein arms
+      · mintmaster initials incl. I.F.F. (Johann Friedrich Freund). · 8 RBS = 1/12 Rigsbankdaler = 2½ Sch.C. = 1/24 Thaler
+      Species'
+    uk: 'Легенда реверса: <b>«*8* REICHS= BANK SCHILLING. [рік]. [MM]»</b>. Аверс: коронований щит із гольштинським гербом
+      · ініціали монетмайстера, серед них I.F.F. (Johann Friedrich Freund). · 8 RBS = 1/12 Rigsbankdaler = 2½ Sch.C. = 1/24
+      Thaler Species'
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -12801,7 +12866,7 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 11266, p. 136
-  note: *id002
+  note: *id001
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -12924,106 +12989,6 @@ coins:
   - unified-dk-bruun-7910
   _curation_holds:
     note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-dk-bruun-7910 (matched via seed-unified-bridge; V1→V2
-      bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
-- fuss: 18_5_thaler
-  phase: I
-  kind: scheide
-  nominal: 8 Rigsbankskilling
-  ruler: Frederik VI.
-  mintmaster: Cajus Branth (CB)
-  issuing_entity: royal_holstein
-  fraction: 1/12
-  id: unified-dk-bruun-8047
-  year_first: 1816
-  year_last: 1819
-  year_ranges:
-  - - 1816
-    - 1816
-  - - 1818
-    - 1819
-  year_label: 1816, 1818-1819
-  mint: Altona
-  catalog:
-    km: '152'
-    bruun_collection_id: '8047'
-    sieg:
-    - '22'
-    - '22.2'
-    schou: '4'
-    hede:
-    - '31'
-    - 31B
-    bruun_part: IV
-    bruun_lot_no: 17159
-    bruun_page: 92
-    numista: '19531'
-    lange: '160'
-    hede_volume: f6h
-    others:
-    - AKS# 10
-    - Jaeg 6 NWD# 12
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.375
-    source: ucoin
-  weight_rough_g:
-  - value: 2.88
-    source: numista
-  - value: 2.88
-    source: ucoin
-  diameter_mm:
-  - value: 18.9
-    source: numista
-  - value: 18.9
-    source: ucoin
-  sources:
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17159, p. 92
-  - type: ucoin
-    url: https://en.ucoin.net/coin/schleswig_holstein-8-schilling-1816-1819/?tid=90743
-    ref: ucoin
-  - type: numista
-    url: https://en.numista.com/catalogue/pieces19531.html
-    ref: Numista
-  - type: web
-    url: https://www.danskmoent.dk/fr/f6h31.htm
-    ref: Hede / danskmoent.dk
-  - type: literature
-    url: https://en.numista.com/19531
-    ref: Numista N#19531 — 8 Reichsbank Schilling - Frederik VI
-  note:
-    de: 'Reverse-Legende: <b>«*8* REICHS= BANK SCHILLING. [Jahr]. [MM]»</b>. Obverse: Gekröntes Schild mit Holstein-Wappen
-      · Münzmeisterinitialen u.a. I.F.F. (Johann Friedrich Freund). · 8 RBS = 1/12 Rigsbankdaler = 2½ Sch.C. = 1/24 Thaler
-      Species'
-    en: 'Reverse legend: <b>«*8* REICHS= BANK SCHILLING. [year]. [MM]»</b>. Obverse: a crowned shield with the Holstein arms
-      · mintmaster initials incl. I.F.F. (Johann Friedrich Freund). · 8 RBS = 1/12 Rigsbankdaler = 2½ Sch.C. = 1/24 Thaler
-      Species'
-    uk: 'Легенда реверса: <b>«*8* REICHS= BANK SCHILLING. [рік]. [MM]»</b>. Аверс: коронований щит із гольштинським гербом
-      · ініціали монетмайстера, серед них I.F.F. (Johann Friedrich Freund). · 8 RBS = 1/12 Rigsbankdaler = 2½ Sch.C. = 1/24
-      Thaler Species'
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-8047
-  - unified-dk-numista-19531
-  _curation_holds:
-    note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-dk-bruun-8047 (matched via seed-unified-bridge; V1→V2
       bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
 - fuss: pistolenfuss
   phase: I
@@ -13858,7 +13823,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/317583
     ref: KMM 317583 (Inv. FP 7044.7)
-  note: *id003
+  note: *id002
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -14530,7 +14495,7 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-ducat-1672-1676/?tid=163668
     ref: ucoin
-  note: *id004
+  note: *id003
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -14579,7 +14544,7 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17142, p. 89
-  note: *id005
+  note: *id004
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -17709,7 +17674,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/122399
     ref: KMM 122399 (Inv. FP 2668.21)
     display: false
-  verification_note: &id006
+  verification_note: &id005
     de: 'KMK-Seed: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk). Felder museumsbelegt;
       Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
     en: 'KMK seed: record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk). Fields museum-attested;
@@ -17739,7 +17704,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/122403
     ref: KMM 122403 (Inv. FP 2668.135)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-122403
 - fuss: seed_unsorted
@@ -17783,7 +17748,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/340752
     ref: KMM 340752 (Inv. FP 5609.3239)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-122580
 - fuss: seed_unsorted
@@ -17821,7 +17786,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/569947
     ref: KMM 569947 (Inv. FP 10912.24)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-123178
 - fuss: seed_unsorted
@@ -17849,7 +17814,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/131225
     ref: KMM 131225 (Inv. FP 2482.7)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-131224
 - fuss: seed_unsorted
@@ -17871,7 +17836,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/131480
     ref: KMM 131480 (Inv. FP 2519.71)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-131480
 - fuss: seed_unsorted
@@ -17893,7 +17858,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/131481
     ref: KMM 131481 (Inv. FP 2519.72)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-131481
 - fuss: seed_unsorted
@@ -17935,7 +17900,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/578755
     ref: KMM 578755 (Inv. FP 11505.5)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-131767
 - fuss: seed_unsorted
@@ -17993,7 +17958,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/736276
     ref: KMM 736276 (Inv. FP 12907.9)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-131768
 - fuss: seed_unsorted
@@ -18015,7 +17980,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/133294
     ref: KMM 133294 (Inv. FP 9374.35)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-133294
 - fuss: seed_unsorted
@@ -18034,7 +17999,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/133412
     ref: KMM 133412 (Inv. FP 9374.36)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-133412
 - fuss: seed_unsorted
@@ -18053,7 +18018,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/133413
     ref: KMM 133413 (Inv. FP 9374.37)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-133413
 - fuss: seed_unsorted
@@ -18075,7 +18040,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/139644
     ref: KMM 139644 (Inv. KP 1715.75)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-139644
 - fuss: seed_unsorted
@@ -18099,7 +18064,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/139651
     ref: KMM 139651 (Inv. KP 1715.68)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-139651
 - fuss: seed_unsorted
@@ -18123,7 +18088,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/139652
     ref: KMM 139652 (Inv. KP 1715.67)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-139652
 - fuss: seed_unsorted
@@ -18147,7 +18112,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/139653
     ref: KMM 139653 (Inv. KP 1715.66)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-139653
 - fuss: seed_unsorted
@@ -18171,7 +18136,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/139655
     ref: KMM 139655 (Inv. KP 1715.64)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-139655
 - fuss: seed_unsorted
@@ -18193,7 +18158,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/139673
     ref: KMM 139673 (Inv. KP 1715.46)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-139673
 - fuss: seed_unsorted
@@ -18217,7 +18182,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148154
     ref: KMM 148154 (Inv. KP 1656.2159)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148154
 - fuss: seed_unsorted
@@ -18239,7 +18204,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148155
     ref: KMM 148155 (Inv. KP 1656.2158)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148155
 - fuss: seed_unsorted
@@ -18263,7 +18228,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148156
     ref: KMM 148156 (Inv. KP 1656.2157)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148156
 - fuss: seed_unsorted
@@ -18287,7 +18252,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148160
     ref: KMM 148160 (Inv. KP 1656.2153)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148160
 - fuss: seed_unsorted
@@ -18311,7 +18276,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148161
     ref: KMM 148161 (Inv. KP 1656.2152)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148161
 - fuss: seed_unsorted
@@ -18335,7 +18300,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148162
     ref: KMM 148162 (Inv. KP 1656.2151)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148162
 - fuss: seed_unsorted
@@ -18359,7 +18324,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148165
     ref: KMM 148165 (Inv. KP 1656.2148)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148165
 - fuss: seed_unsorted
@@ -18383,7 +18348,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148166
     ref: KMM 148166 (Inv. KP 1656.2147)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148166
 - fuss: seed_unsorted
@@ -18407,7 +18372,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148169
     ref: KMM 148169 (Inv. KP 1656.2144)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148169
 - fuss: seed_unsorted
@@ -18431,7 +18396,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148171
     ref: KMM 148171 (Inv. KP 1656.2142)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148171
 - fuss: seed_unsorted
@@ -18455,7 +18420,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148172
     ref: KMM 148172 (Inv. KP 1656.2141)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148172
 - fuss: seed_unsorted
@@ -18479,7 +18444,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148173
     ref: KMM 148173 (Inv. KP 1656.2140)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148173
 - fuss: seed_unsorted
@@ -18503,7 +18468,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148174
     ref: KMM 148174 (Inv. KP 1656.2139)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148174
 - fuss: seed_unsorted
@@ -18527,7 +18492,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148175
     ref: KMM 148175 (Inv. KP 1656.2138)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148175
 - fuss: seed_unsorted
@@ -18551,7 +18516,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148179
     ref: KMM 148179 (Inv. KP 1656.2134)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148179
 - fuss: seed_unsorted
@@ -18575,7 +18540,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148180
     ref: KMM 148180 (Inv. KP 1656.2133)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148180
 - fuss: seed_unsorted
@@ -18599,7 +18564,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148182
     ref: KMM 148182 (Inv. KP 1656.2131)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148182
 - fuss: seed_unsorted
@@ -18623,7 +18588,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148186
     ref: KMM 148186 (Inv. KP 1656.2127)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148186
 - fuss: seed_unsorted
@@ -18647,7 +18612,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148187
     ref: KMM 148187 (Inv. KP 1656.2126)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148187
 - fuss: seed_unsorted
@@ -18675,7 +18640,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148190
     ref: KMM 148190 (Inv. KP 1656.2123)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148189
 - fuss: seed_unsorted
@@ -18699,7 +18664,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148192
     ref: KMM 148192 (Inv. KP 1656.2121)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148192
 - fuss: seed_unsorted
@@ -18723,7 +18688,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148194
     ref: KMM 148194 (Inv. KP 1656.2119)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148194
 - fuss: seed_unsorted
@@ -18747,7 +18712,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148195
     ref: KMM 148195 (Inv. KP 1656.2118)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148195
 - fuss: seed_unsorted
@@ -18771,7 +18736,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148209
     ref: KMM 148209 (Inv. KP 1656.2104)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148209
 - fuss: seed_unsorted
@@ -18795,7 +18760,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148210
     ref: KMM 148210 (Inv. KP 1656.2103)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148210
 - fuss: seed_unsorted
@@ -18819,7 +18784,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148368
     ref: KMM 148368 (Inv. KP 1656.1945)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148368
 - fuss: seed_unsorted
@@ -18843,7 +18808,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148369
     ref: KMM 148369 (Inv. KP 1656.1944)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148369
 - fuss: seed_unsorted
@@ -18867,7 +18832,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148374
     ref: KMM 148374 (Inv. KP 1656.1939)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148374
 - fuss: seed_unsorted
@@ -18895,7 +18860,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148379
     ref: KMM 148379 (Inv. KP 1656.1934)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148378
 - fuss: seed_unsorted
@@ -18919,7 +18884,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148382
     ref: KMM 148382 (Inv. KP 1656.1931)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148382
 - fuss: seed_unsorted
@@ -18943,7 +18908,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148383
     ref: KMM 148383 (Inv. KP 1656.1930)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148383
 - fuss: seed_unsorted
@@ -18967,7 +18932,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148384
     ref: KMM 148384 (Inv. KP 1656.1929)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148384
 - fuss: seed_unsorted
@@ -18991,7 +18956,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148385
     ref: KMM 148385 (Inv. KP 1656.1928)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148385
 - fuss: seed_unsorted
@@ -19015,7 +18980,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148388
     ref: KMM 148388 (Inv. KP 1656.1925)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148388
 - fuss: seed_unsorted
@@ -19039,7 +19004,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148389
     ref: KMM 148389 (Inv. KP 1656.1924)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148389
 - fuss: seed_unsorted
@@ -19067,7 +19032,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148391
     ref: KMM 148391 (Inv. KP 1656.1922)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148390
 - fuss: seed_unsorted
@@ -19091,7 +19056,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148395
     ref: KMM 148395 (Inv. KP 1656.1918)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148395
 - fuss: seed_unsorted
@@ -19115,7 +19080,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148396
     ref: KMM 148396 (Inv. KP 1656.1917)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148396
 - fuss: seed_unsorted
@@ -19139,7 +19104,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148397
     ref: KMM 148397 (Inv. KP 1656.1916)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148397
 - fuss: seed_unsorted
@@ -19163,7 +19128,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148398
     ref: KMM 148398 (Inv. KP 1656.1915)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148398
 - fuss: seed_unsorted
@@ -19187,7 +19152,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148399
     ref: KMM 148399 (Inv. KP 1656.1914)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148399
 - fuss: seed_unsorted
@@ -19211,7 +19176,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148400
     ref: KMM 148400 (Inv. KP 1656.1913)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148400
 - fuss: seed_unsorted
@@ -19235,7 +19200,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148414
     ref: KMM 148414 (Inv. KP 1656.1899)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148414
 - fuss: seed_unsorted
@@ -19259,7 +19224,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148423
     ref: KMM 148423 (Inv. KP 1656.1890)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148423
 - fuss: seed_unsorted
@@ -19283,7 +19248,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148429
     ref: KMM 148429 (Inv. KP 1656.1884)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148429
 - fuss: seed_unsorted
@@ -19311,7 +19276,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148431
     ref: KMM 148431 (Inv. KP 1656.1882)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148430
 - fuss: seed_unsorted
@@ -19339,7 +19304,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148433
     ref: KMM 148433 (Inv. KP 1656.1880)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148432
 - fuss: seed_unsorted
@@ -19367,7 +19332,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148464
     ref: KMM 148464 (Inv. KP 1656.1849)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148463
 - fuss: seed_unsorted
@@ -19391,7 +19356,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148465
     ref: KMM 148465 (Inv. KP 1656.1848)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148465
 - fuss: seed_unsorted
@@ -19415,7 +19380,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148466
     ref: KMM 148466 (Inv. KP 1656.1847)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148466
 - fuss: seed_unsorted
@@ -19437,7 +19402,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148467
     ref: KMM 148467 (Inv. KP 1656.1846)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148467
 - fuss: seed_unsorted
@@ -19461,7 +19426,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148478
     ref: KMM 148478 (Inv. KP 1656.1835)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148478
 - fuss: seed_unsorted
@@ -19485,7 +19450,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148479
     ref: KMM 148479 (Inv. KP 1656.1834)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148479
 - fuss: seed_unsorted
@@ -19509,7 +19474,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148483
     ref: KMM 148483 (Inv. KP 1656.1830)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148483
 - fuss: seed_unsorted
@@ -19533,7 +19498,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148484
     ref: KMM 148484 (Inv. KP 1656.1829)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148484
 - fuss: seed_unsorted
@@ -19561,7 +19526,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148487
     ref: KMM 148487 (Inv. KP 1656.1826)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148486
 - fuss: seed_unsorted
@@ -19585,7 +19550,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148507
     ref: KMM 148507 (Inv. KP 1656.1806)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148507
 - fuss: seed_unsorted
@@ -19609,7 +19574,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148513
     ref: KMM 148513 (Inv. KP 1656.1800)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148513
 - fuss: seed_unsorted
@@ -19637,7 +19602,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148515
     ref: KMM 148515 (Inv. KP 1656.1798)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148514
 - fuss: seed_unsorted
@@ -19665,7 +19630,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148520
     ref: KMM 148520 (Inv. KP 1656.1793)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148519
 - fuss: seed_unsorted
@@ -19693,7 +19658,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148527
     ref: KMM 148527 (Inv. KP 1656.1786)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148526
 - fuss: seed_unsorted
@@ -19717,7 +19682,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148528
     ref: KMM 148528 (Inv. KP 1656.1785)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148528
 - fuss: seed_unsorted
@@ -19741,7 +19706,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148530
     ref: KMM 148530 (Inv. KP 1656.1783)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148530
 - fuss: seed_unsorted
@@ -19773,7 +19738,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148533
     ref: KMM 148533 (Inv. KP 1656.1780)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148531
 - fuss: seed_unsorted
@@ -19801,7 +19766,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148539
     ref: KMM 148539 (Inv. KP 1656.1774)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148538
 - fuss: seed_unsorted
@@ -19825,7 +19790,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148541
     ref: KMM 148541 (Inv. KP 1656.1772)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148541
 - fuss: seed_unsorted
@@ -19849,7 +19814,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148542
     ref: KMM 148542 (Inv. KP 1656.1771)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148542
 - fuss: seed_unsorted
@@ -19873,7 +19838,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148543
     ref: KMM 148543 (Inv. KP 1656.1770)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148543
 - fuss: seed_unsorted
@@ -19901,7 +19866,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148545
     ref: KMM 148545 (Inv. KP 1656.1768)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148544
 - fuss: seed_unsorted
@@ -19925,7 +19890,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148546
     ref: KMM 148546 (Inv. KP 1656.1767)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148546
 - fuss: seed_unsorted
@@ -19949,7 +19914,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148551
     ref: KMM 148551 (Inv. KP 1656.1762)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148551
 - fuss: seed_unsorted
@@ -19973,7 +19938,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148552
     ref: KMM 148552 (Inv. KP 1656.1761)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148552
 - fuss: seed_unsorted
@@ -20009,7 +19974,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148556
     ref: KMM 148556 (Inv. KP 1656.1757)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148553
 - fuss: seed_unsorted
@@ -20033,7 +19998,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148796
     ref: KMM 148796 (Inv. KP 1656.1517)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148796
 - fuss: seed_unsorted
@@ -20057,7 +20022,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148797
     ref: KMM 148797 (Inv. KP 1656.1516)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148797
 - fuss: seed_unsorted
@@ -20081,7 +20046,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148798
     ref: KMM 148798 (Inv. KP 1656.1515)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148798
 - fuss: seed_unsorted
@@ -20105,7 +20070,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148799
     ref: KMM 148799 (Inv. KP 1656.1514)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148799
 - fuss: seed_unsorted
@@ -20129,7 +20094,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148800
     ref: KMM 148800 (Inv. KP 1656.1513)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148800
 - fuss: seed_unsorted
@@ -20153,7 +20118,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148826
     ref: KMM 148826 (Inv. KP 1656.1487)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148826
 - fuss: seed_unsorted
@@ -20177,7 +20142,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148827
     ref: KMM 148827 (Inv. KP 1656.1486)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148827
 - fuss: seed_unsorted
@@ -20201,7 +20166,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148828
     ref: KMM 148828 (Inv. KP 1656.1485)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148828
 - fuss: seed_unsorted
@@ -20225,7 +20190,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148829
     ref: KMM 148829 (Inv. KP 1656.1484)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148829
 - fuss: seed_unsorted
@@ -20249,7 +20214,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148875
     ref: KMM 148875 (Inv. KP 1656.1438)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148875
 - fuss: seed_unsorted
@@ -20273,7 +20238,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148876
     ref: KMM 148876 (Inv. KP 1656.1437)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148876
 - fuss: seed_unsorted
@@ -20297,7 +20262,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148877
     ref: KMM 148877 (Inv. KP 1656.1436)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148877
 - fuss: seed_unsorted
@@ -20321,7 +20286,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148878
     ref: KMM 148878 (Inv. KP 1656.1435)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148878
 - fuss: seed_unsorted
@@ -20345,7 +20310,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148879
     ref: KMM 148879 (Inv. KP 1656.1434)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148879
 - fuss: seed_unsorted
@@ -20369,7 +20334,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148880
     ref: KMM 148880 (Inv. KP 1656.1433)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148880
 - fuss: seed_unsorted
@@ -20393,7 +20358,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148881
     ref: KMM 148881 (Inv. KP 1656.1432)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148881
 - fuss: seed_unsorted
@@ -20417,7 +20382,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148882
     ref: KMM 148882 (Inv. KP 1656.1431)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148882
 - fuss: seed_unsorted
@@ -20441,7 +20406,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148883
     ref: KMM 148883 (Inv. KP 1656.1430)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148883
 - fuss: seed_unsorted
@@ -20465,7 +20430,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148884
     ref: KMM 148884 (Inv. KP 1656.1429)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148884
 - fuss: seed_unsorted
@@ -20489,7 +20454,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148908
     ref: KMM 148908 (Inv. KP 1656.1405)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148908
 - fuss: seed_unsorted
@@ -20513,7 +20478,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148909
     ref: KMM 148909 (Inv. KP 1656.1404)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148909
 - fuss: seed_unsorted
@@ -20537,7 +20502,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148910
     ref: KMM 148910 (Inv. KP 1656.1403)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148910
 - fuss: seed_unsorted
@@ -20565,7 +20530,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148912
     ref: KMM 148912 (Inv. KP 1656.1401)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148911
 - fuss: seed_unsorted
@@ -20589,7 +20554,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148913
     ref: KMM 148913 (Inv. KP 1656.1400)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148913
 - fuss: seed_unsorted
@@ -20613,7 +20578,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148914
     ref: KMM 148914 (Inv. KP 1656.1399)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148914
 - fuss: seed_unsorted
@@ -20637,7 +20602,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148915
     ref: KMM 148915 (Inv. KP 1656.1398)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148915
 - fuss: seed_unsorted
@@ -20661,7 +20626,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148916
     ref: KMM 148916 (Inv. KP 1656.1397)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148916
 - fuss: seed_unsorted
@@ -20685,7 +20650,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148917
     ref: KMM 148917 (Inv. KP 1656.1396)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148917
 - fuss: seed_unsorted
@@ -20709,7 +20674,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148918
     ref: KMM 148918 (Inv. KP 1656.1395)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148918
 - fuss: seed_unsorted
@@ -20733,7 +20698,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148919
     ref: KMM 148919 (Inv. KP 1656.1394)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148919
 - fuss: seed_unsorted
@@ -20757,7 +20722,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148920
     ref: KMM 148920 (Inv. KP 1656.1393)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148920
 - fuss: seed_unsorted
@@ -20781,7 +20746,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148921
     ref: KMM 148921 (Inv. KP 1656.1392)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148921
 - fuss: seed_unsorted
@@ -20805,7 +20770,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148922
     ref: KMM 148922 (Inv. KP 1656.1391)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148922
 - fuss: seed_unsorted
@@ -20829,7 +20794,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148923
     ref: KMM 148923 (Inv. KP 1656.1390)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148923
 - fuss: seed_unsorted
@@ -20853,7 +20818,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148924
     ref: KMM 148924 (Inv. KP 1656.1389)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148924
 - fuss: seed_unsorted
@@ -20877,7 +20842,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148925
     ref: KMM 148925 (Inv. KP 1656.1388)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148925
 - fuss: seed_unsorted
@@ -20901,7 +20866,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148926
     ref: KMM 148926 (Inv. KP 1656.1387)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148926
 - fuss: seed_unsorted
@@ -20925,7 +20890,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148927
     ref: KMM 148927 (Inv. KP 1656.1386)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148927
 - fuss: seed_unsorted
@@ -20949,7 +20914,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148982
     ref: KMM 148982 (Inv. KP 1656.1331)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148982
 - fuss: seed_unsorted
@@ -20973,7 +20938,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148983
     ref: KMM 148983 (Inv. KP 1656.1330)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148983
 - fuss: seed_unsorted
@@ -20997,7 +20962,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148984
     ref: KMM 148984 (Inv. KP 1656.1329)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148984
 - fuss: seed_unsorted
@@ -21021,7 +20986,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148985
     ref: KMM 148985 (Inv. KP 1656.1328)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148985
 - fuss: seed_unsorted
@@ -21045,7 +21010,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148986
     ref: KMM 148986 (Inv. KP 1656.1327)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148986
 - fuss: seed_unsorted
@@ -21069,7 +21034,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148987
     ref: KMM 148987 (Inv. KP 1656.1326)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148987
 - fuss: seed_unsorted
@@ -21093,7 +21058,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148988
     ref: KMM 148988 (Inv. KP 1656.1325)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148988
 - fuss: seed_unsorted
@@ -21117,7 +21082,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148989
     ref: KMM 148989 (Inv. KP 1656.1324)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148989
 - fuss: seed_unsorted
@@ -21141,7 +21106,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148990
     ref: KMM 148990 (Inv. KP 1656.1323)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148990
 - fuss: seed_unsorted
@@ -21165,7 +21130,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148991
     ref: KMM 148991 (Inv. KP 1656.1322)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-148991
 - fuss: seed_unsorted
@@ -21189,7 +21154,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149068
     ref: KMM 149068 (Inv. KP 1656.1245)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149068
 - fuss: seed_unsorted
@@ -21213,7 +21178,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149069
     ref: KMM 149069 (Inv. KP 1656.1244)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149069
 - fuss: seed_unsorted
@@ -21237,7 +21202,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149070
     ref: KMM 149070 (Inv. KP 1656.1243)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149070
 - fuss: seed_unsorted
@@ -21261,7 +21226,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149071
     ref: KMM 149071 (Inv. KP 1656.1242)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149071
 - fuss: seed_unsorted
@@ -21289,7 +21254,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/149091
     ref: KMM 149091 (Inv. KP 1656.1222)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149089
 - fuss: seed_unsorted
@@ -21313,7 +21278,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149090
     ref: KMM 149090 (Inv. KP 1656.1223)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149090
 - fuss: seed_unsorted
@@ -21337,7 +21302,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149092
     ref: KMM 149092 (Inv. KP 1656.1221)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149092
 - fuss: seed_unsorted
@@ -21361,7 +21326,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149100
     ref: KMM 149100 (Inv. KP 1656.1213)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149100
 - fuss: seed_unsorted
@@ -21385,7 +21350,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149101
     ref: KMM 149101 (Inv. KP 1656.1212)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149101
 - fuss: seed_unsorted
@@ -21409,7 +21374,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149102
     ref: KMM 149102 (Inv. KP 1656.1211)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149102
 - fuss: seed_unsorted
@@ -21433,7 +21398,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149103
     ref: KMM 149103 (Inv. KP 1656.1210)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149103
 - fuss: seed_unsorted
@@ -21457,7 +21422,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149115
     ref: KMM 149115 (Inv. KP 1656.1198)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149115
 - fuss: seed_unsorted
@@ -21481,7 +21446,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149116
     ref: KMM 149116 (Inv. KP 1656.1197)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149116
 - fuss: seed_unsorted
@@ -21505,7 +21470,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149125
     ref: KMM 149125 (Inv. KP 1656.1188)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149125
 - fuss: seed_unsorted
@@ -21529,7 +21494,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149126
     ref: KMM 149126 (Inv. KP 1656.1187)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149126
 - fuss: seed_unsorted
@@ -21553,7 +21518,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149127
     ref: KMM 149127 (Inv. KP 1656.1186)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149127
 - fuss: seed_unsorted
@@ -21577,7 +21542,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149128
     ref: KMM 149128 (Inv. KP 1656.1185)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149128
 - fuss: seed_unsorted
@@ -21601,7 +21566,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149129
     ref: KMM 149129 (Inv. KP 1656.1184)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149129
 - fuss: seed_unsorted
@@ -21629,7 +21594,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/149131
     ref: KMM 149131 (Inv. KP 1656.1182)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149130
 - fuss: seed_unsorted
@@ -21653,7 +21618,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149427
     ref: KMM 149427 (Inv. KP 1656.886)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149427
 - fuss: seed_unsorted
@@ -21677,7 +21642,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149428
     ref: KMM 149428 (Inv. KP 1656.885)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149428
 - fuss: seed_unsorted
@@ -21701,7 +21666,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149436
     ref: KMM 149436 (Inv. KP 1656.877)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149436
 - fuss: seed_unsorted
@@ -21725,7 +21690,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149437
     ref: KMM 149437 (Inv. KP 1656.876)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149437
 - fuss: seed_unsorted
@@ -21749,7 +21714,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149438
     ref: KMM 149438 (Inv. KP 1656.875)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149438
 - fuss: seed_unsorted
@@ -21773,7 +21738,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149439
     ref: KMM 149439 (Inv. KP 1656.874)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149439
 - fuss: seed_unsorted
@@ -21801,7 +21766,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/149441
     ref: KMM 149441 (Inv. KP 1656.872)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149440
 - fuss: seed_unsorted
@@ -21825,7 +21790,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149453
     ref: KMM 149453 (Inv. KP 1656.860)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149453
 - fuss: seed_unsorted
@@ -21849,7 +21814,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149454
     ref: KMM 149454 (Inv. KP 1656.859)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149454
 - fuss: seed_unsorted
@@ -21873,7 +21838,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149455
     ref: KMM 149455 (Inv. KP 1656.858)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149455
 - fuss: seed_unsorted
@@ -21897,7 +21862,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149456
     ref: KMM 149456 (Inv. KP 1656.857)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149456
 - fuss: seed_unsorted
@@ -21921,7 +21886,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149457
     ref: KMM 149457 (Inv. KP 1656.856)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149457
 - fuss: seed_unsorted
@@ -21945,7 +21910,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149483
     ref: KMM 149483 (Inv. KP 1656.830)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149483
 - fuss: seed_unsorted
@@ -21969,7 +21934,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149484
     ref: KMM 149484 (Inv. KP 1656.829)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149484
 - fuss: seed_unsorted
@@ -21997,7 +21962,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/149486
     ref: KMM 149486 (Inv. KP 1656.827)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149485
 - fuss: seed_unsorted
@@ -22021,7 +21986,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149502
     ref: KMM 149502 (Inv. KP 1656.811)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149502
 - fuss: seed_unsorted
@@ -22045,7 +22010,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149508
     ref: KMM 149508 (Inv. KP 1656.805)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149508
 - fuss: seed_unsorted
@@ -22069,7 +22034,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149509
     ref: KMM 149509 (Inv. KP 1656.804)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149509
 - fuss: seed_unsorted
@@ -22093,7 +22058,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149510
     ref: KMM 149510 (Inv. KP 1656.803)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149510
 - fuss: seed_unsorted
@@ -22117,7 +22082,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149511
     ref: KMM 149511 (Inv. KP 1656.802)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149511
 - fuss: seed_unsorted
@@ -22141,7 +22106,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149512
     ref: KMM 149512 (Inv. KP 1656.801)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149512
 - fuss: seed_unsorted
@@ -22165,7 +22130,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149513
     ref: KMM 149513 (Inv. KP 1656.800)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149513
 - fuss: seed_unsorted
@@ -22189,7 +22154,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149521
     ref: KMM 149521 (Inv. KP 1656.792)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149521
 - fuss: seed_unsorted
@@ -22213,7 +22178,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149526
     ref: KMM 149526 (Inv. KP 1656.787)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149526
 - fuss: seed_unsorted
@@ -22241,7 +22206,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/149528
     ref: KMM 149528 (Inv. KP 1656.785)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149527
 - fuss: seed_unsorted
@@ -22265,7 +22230,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149529
     ref: KMM 149529 (Inv. KP 1656.784)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149529
 - fuss: seed_unsorted
@@ -22289,7 +22254,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149530
     ref: KMM 149530 (Inv. KP 1656.783)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149530
 - fuss: seed_unsorted
@@ -22313,7 +22278,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149531
     ref: KMM 149531 (Inv. KP 1656.782)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149531
 - fuss: seed_unsorted
@@ -22337,7 +22302,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149532
     ref: KMM 149532 (Inv. KP 1656.781)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149532
 - fuss: seed_unsorted
@@ -22365,7 +22330,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149533
     ref: KMM 149533 (Inv. KP 1656.780)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149533
 - fuss: seed_unsorted
@@ -22389,7 +22354,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149534
     ref: KMM 149534 (Inv. KP 1656.779)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149534
 - fuss: seed_unsorted
@@ -22413,7 +22378,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149535
     ref: KMM 149535 (Inv. KP 1656.778)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149535
 - fuss: seed_unsorted
@@ -22437,7 +22402,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149536
     ref: KMM 149536 (Inv. KP 1656.777)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149536
 - fuss: seed_unsorted
@@ -22461,7 +22426,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149537
     ref: KMM 149537 (Inv. KP 1656.776)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149537
 - fuss: seed_unsorted
@@ -22485,7 +22450,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149538
     ref: KMM 149538 (Inv. KP 1656.775)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149538
 - fuss: seed_unsorted
@@ -22509,7 +22474,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149539
     ref: KMM 149539 (Inv. KP 1656.774)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149539
 - fuss: seed_unsorted
@@ -22533,7 +22498,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149540
     ref: KMM 149540 (Inv. KP 1656.773)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149540
 - fuss: seed_unsorted
@@ -22557,7 +22522,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149541
     ref: KMM 149541 (Inv. KP 1656.772)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149541
 - fuss: seed_unsorted
@@ -22581,7 +22546,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149542
     ref: KMM 149542 (Inv. KP 1656.771)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149542
 - fuss: seed_unsorted
@@ -22605,7 +22570,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149543
     ref: KMM 149543 (Inv. KP 1656.770)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149543
 - fuss: seed_unsorted
@@ -22629,7 +22594,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149544
     ref: KMM 149544 (Inv. KP 1656.769)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149544
 - fuss: seed_unsorted
@@ -22653,7 +22618,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149545
     ref: KMM 149545 (Inv. KP 1656.768)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149545
 - fuss: seed_unsorted
@@ -22677,7 +22642,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149546
     ref: KMM 149546 (Inv. KP 1656.767)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149546
 - fuss: seed_unsorted
@@ -22701,7 +22666,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149547
     ref: KMM 149547 (Inv. KP 1656.766)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149547
 - fuss: seed_unsorted
@@ -22725,7 +22690,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149548
     ref: KMM 149548 (Inv. KP 1656.765)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149548
 - fuss: seed_unsorted
@@ -22749,7 +22714,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149549
     ref: KMM 149549 (Inv. KP 1656.764)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149549
 - fuss: seed_unsorted
@@ -22773,7 +22738,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149550
     ref: KMM 149550 (Inv. KP 1656.763)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149550
 - fuss: seed_unsorted
@@ -22797,7 +22762,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149551
     ref: KMM 149551 (Inv. KP 1656.762)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149551
 - fuss: seed_unsorted
@@ -22821,7 +22786,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149555
     ref: KMM 149555 (Inv. KP 1656.758)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149555
 - fuss: seed_unsorted
@@ -22845,7 +22810,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149588
     ref: KMM 149588 (Inv. KP 1656.725)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149588
 - fuss: seed_unsorted
@@ -22869,7 +22834,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149590
     ref: KMM 149590 (Inv. KP 1656.723)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149590
 - fuss: seed_unsorted
@@ -22901,7 +22866,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/693132
     ref: KMM 693132 (Inv. FP 280.47)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149624
 - fuss: seed_unsorted
@@ -22925,7 +22890,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149625
     ref: KMM 149625 (Inv. KP 1656.688)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149625
 - fuss: seed_unsorted
@@ -22949,7 +22914,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149630
     ref: KMM 149630 (Inv. KP 1656.683)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149630
 - fuss: seed_unsorted
@@ -22973,7 +22938,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149631
     ref: KMM 149631 (Inv. KP 1656.682)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149631
 - fuss: seed_unsorted
@@ -22997,7 +22962,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149632
     ref: KMM 149632 (Inv. KP 1656.681)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149632
 - fuss: seed_unsorted
@@ -23021,7 +22986,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149633
     ref: KMM 149633 (Inv. KP 1656.680)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149633
 - fuss: seed_unsorted
@@ -23049,7 +23014,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/149641
     ref: KMM 149641 (Inv. KP 1656.672)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149640
 - fuss: seed_unsorted
@@ -23073,7 +23038,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149654
     ref: KMM 149654 (Inv. KP 1656.659)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149654
 - fuss: seed_unsorted
@@ -23097,7 +23062,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149655
     ref: KMM 149655 (Inv. KP 1656.658)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149655
 - fuss: seed_unsorted
@@ -23121,7 +23086,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149656
     ref: KMM 149656 (Inv. KP 1656.657)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149656
 - fuss: seed_unsorted
@@ -23145,7 +23110,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149657
     ref: KMM 149657 (Inv. KP 1656.656)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149657
 - fuss: seed_unsorted
@@ -23169,7 +23134,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149658
     ref: KMM 149658 (Inv. KP 1656.655)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149658
 - fuss: seed_unsorted
@@ -23193,7 +23158,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149659
     ref: KMM 149659 (Inv. KP 1656.654)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149659
 - fuss: seed_unsorted
@@ -23217,7 +23182,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149660
     ref: KMM 149660 (Inv. KP 1656.653)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149660
 - fuss: seed_unsorted
@@ -23241,7 +23206,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149661
     ref: KMM 149661 (Inv. KP 1656.652)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149661
 - fuss: seed_unsorted
@@ -23265,7 +23230,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149662
     ref: KMM 149662 (Inv. KP 1656.651)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149662
 - fuss: seed_unsorted
@@ -23289,7 +23254,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149663
     ref: KMM 149663 (Inv. KP 1656.650)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149663
 - fuss: seed_unsorted
@@ -23313,7 +23278,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149664
     ref: KMM 149664 (Inv. KP 1656.649)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149664
 - fuss: seed_unsorted
@@ -23341,7 +23306,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/149666
     ref: KMM 149666 (Inv. KP 1656.647)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149665
 - fuss: seed_unsorted
@@ -23365,7 +23330,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149667
     ref: KMM 149667 (Inv. KP 1656.646)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149667
 - fuss: seed_unsorted
@@ -23389,7 +23354,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149668
     ref: KMM 149668 (Inv. KP 1656.645)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149668
 - fuss: seed_unsorted
@@ -23413,7 +23378,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149669
     ref: KMM 149669 (Inv. KP 1656.644)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149669
 - fuss: seed_unsorted
@@ -23437,7 +23402,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149670
     ref: KMM 149670 (Inv. KP 1656.643)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149670
 - fuss: seed_unsorted
@@ -23461,7 +23426,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149671
     ref: KMM 149671 (Inv. KP 1656.642)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149671
 - fuss: seed_unsorted
@@ -23485,7 +23450,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149672
     ref: KMM 149672 (Inv. KP 1656.641)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149672
 - fuss: seed_unsorted
@@ -23509,7 +23474,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149673
     ref: KMM 149673 (Inv. KP 1656.640)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149673
 - fuss: seed_unsorted
@@ -23533,7 +23498,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149674
     ref: KMM 149674 (Inv. KP 1656.639)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149674
 - fuss: seed_unsorted
@@ -23557,7 +23522,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149675
     ref: KMM 149675 (Inv. KP 1656.638)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149675
 - fuss: seed_unsorted
@@ -23581,7 +23546,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149676
     ref: KMM 149676 (Inv. KP 1656.637)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149676
 - fuss: seed_unsorted
@@ -23605,7 +23570,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149677
     ref: KMM 149677 (Inv. KP 1656.636)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149677
 - fuss: seed_unsorted
@@ -23629,7 +23594,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149678
     ref: KMM 149678 (Inv. KP 1656.635)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149678
 - fuss: seed_unsorted
@@ -23653,7 +23618,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149679
     ref: KMM 149679 (Inv. KP 1656.634)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149679
 - fuss: seed_unsorted
@@ -23677,7 +23642,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149680
     ref: KMM 149680 (Inv. KP 1656.633)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149680
 - fuss: seed_unsorted
@@ -23701,7 +23666,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149681
     ref: KMM 149681 (Inv. KP 1656.632)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149681
 - fuss: seed_unsorted
@@ -23725,7 +23690,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149682
     ref: KMM 149682 (Inv. KP 1656.631)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149682
 - fuss: seed_unsorted
@@ -23749,7 +23714,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149683
     ref: KMM 149683 (Inv. KP 1656.630)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149683
 - fuss: seed_unsorted
@@ -23773,7 +23738,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149684
     ref: KMM 149684 (Inv. KP 1656.629)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149684
 - fuss: seed_unsorted
@@ -23797,7 +23762,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149685
     ref: KMM 149685 (Inv. KP 1656.628)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149685
 - fuss: seed_unsorted
@@ -23821,7 +23786,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149686
     ref: KMM 149686 (Inv. KP 1656.627)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149686
 - fuss: seed_unsorted
@@ -23845,7 +23810,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149687
     ref: KMM 149687 (Inv. KP 1656.626)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149687
 - fuss: seed_unsorted
@@ -23869,7 +23834,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149688
     ref: KMM 149688 (Inv. KP 1656.625)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149688
 - fuss: seed_unsorted
@@ -23893,7 +23858,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149691
     ref: KMM 149691 (Inv. KP 1656.622)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149691
 - fuss: seed_unsorted
@@ -23917,7 +23882,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149692
     ref: KMM 149692 (Inv. KP 1656.621)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149692
 - fuss: seed_unsorted
@@ -23941,7 +23906,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149693
     ref: KMM 149693 (Inv. KP 1656.620)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149693
 - fuss: seed_unsorted
@@ -23965,7 +23930,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149694
     ref: KMM 149694 (Inv. KP 1656.619)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149694
 - fuss: seed_unsorted
@@ -23989,7 +23954,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149695
     ref: KMM 149695 (Inv. KP 1656.618)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149695
 - fuss: seed_unsorted
@@ -24013,7 +23978,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149696
     ref: KMM 149696 (Inv. KP 1656.617)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149696
 - fuss: seed_unsorted
@@ -24037,7 +24002,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149697
     ref: KMM 149697 (Inv. KP 1656.616)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149697
 - fuss: seed_unsorted
@@ -24061,7 +24026,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149698
     ref: KMM 149698 (Inv. KP 1656.615)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149698
 - fuss: seed_unsorted
@@ -24085,7 +24050,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149699
     ref: KMM 149699 (Inv. KP 1656.614)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149699
 - fuss: seed_unsorted
@@ -24109,7 +24074,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149701
     ref: KMM 149701 (Inv. KP 1656.612)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149701
 - fuss: seed_unsorted
@@ -24133,7 +24098,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149702
     ref: KMM 149702 (Inv. KP 1656.611)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149702
 - fuss: seed_unsorted
@@ -24157,7 +24122,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149703
     ref: KMM 149703 (Inv. KP 1656.610)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149703
 - fuss: seed_unsorted
@@ -24181,7 +24146,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149704
     ref: KMM 149704 (Inv. KP 1656.609)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149704
 - fuss: seed_unsorted
@@ -24205,7 +24170,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149705
     ref: KMM 149705 (Inv. KP 1656.608)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149705
 - fuss: seed_unsorted
@@ -24229,7 +24194,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149706
     ref: KMM 149706 (Inv. KP 1656.607)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149706
 - fuss: seed_unsorted
@@ -24251,7 +24216,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149707
     ref: KMM 149707 (Inv. KP 1656.606)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149707
 - fuss: seed_unsorted
@@ -24275,7 +24240,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149708
     ref: KMM 149708 (Inv. KP 1656.605)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-149708
 - fuss: seed_unsorted
@@ -24306,7 +24271,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/578455
     ref: KMM 578455 (Inv. FP 11446.11)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-152263
 - fuss: seed_unsorted
@@ -24381,7 +24346,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-155180
 - fuss: seed_unsorted
@@ -24403,7 +24368,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/156517
     ref: KMM 156517 (Inv. FP 918.34)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-156517
 - fuss: seed_unsorted
@@ -24425,7 +24390,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/156523
     ref: KMM 156523 (Inv. FP 918.27)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-156523
 - fuss: seed_unsorted
@@ -24447,7 +24412,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/156525
     ref: KMM 156525 (Inv. FP 918.28)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-156525
 - fuss: seed_unsorted
@@ -24469,7 +24434,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/156545
     ref: KMM 156545 (Inv. FP 918.25)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-156545
 - fuss: seed_unsorted
@@ -24491,7 +24456,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/156555
     ref: KMM 156555 (Inv. FP 918.47)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-156555
 - fuss: seed_unsorted
@@ -24515,7 +24480,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/157060
     ref: KMM 157060 (Inv. FP 4518.238)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-157060
 - fuss: seed_unsorted
@@ -24554,7 +24519,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/275561
     ref: KMM 275561 (Inv. FP 4227.504)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-157957
 - fuss: 18_5_thaler
@@ -24577,7 +24542,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/160369
     ref: KMM 160369 (Inv. FP 6020.11)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-160369
 - fuss: seed_unsorted
@@ -24597,7 +24562,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/161122
     ref: KMM 161122 (Inv. FP 1533.280)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-161122
 - fuss: seed_unsorted
@@ -24620,7 +24585,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/161127
     ref: KMM 161127 (Inv. FP 1533.275)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-161127
 - fuss: seed_unsorted
@@ -24643,7 +24608,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/161130
     ref: KMM 161130 (Inv. FP 1533.272)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-161130
 - fuss: seed_unsorted
@@ -24666,7 +24631,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/161132
     ref: KMM 161132 (Inv. FP 1533.270)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-161132
 - fuss: seed_unsorted
@@ -24689,7 +24654,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/161133
     ref: KMM 161133 (Inv. FP 1533.269)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-161133
 - fuss: seed_unsorted
@@ -24712,7 +24677,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/161134
     ref: KMM 161134 (Inv. FP 1533.268)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-161134
 - fuss: seed_unsorted
@@ -24742,7 +24707,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/167296
     ref: KMM 167296 (Inv. FP 788.4.6)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-167262
 - fuss: seed_unsorted
@@ -24772,7 +24737,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624508
     ref: KMM 624508 (Inv. FP 788.5.22)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-167265
 - fuss: seed_unsorted
@@ -24806,7 +24771,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/167286
     ref: KMM 167286 (Inv. FP 788.3.2)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-167280
 - fuss: seed_unsorted
@@ -24828,7 +24793,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/167284
     ref: KMM 167284 (Inv. FP 788.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-167284
 - fuss: seed_unsorted
@@ -24850,7 +24815,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/167287
     ref: KMM 167287 (Inv. FP 788.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-167287
 - fuss: seed_unsorted
@@ -24870,7 +24835,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/167316
     ref: KMM 167316 (Inv. FP 1892.20)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-167316
 - fuss: seed_unsorted
@@ -24890,7 +24855,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/167317
     ref: KMM 167317 (Inv. FP 1892.19)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-167317
 - fuss: seed_unsorted
@@ -24914,7 +24879,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/167421
     ref: KMM 167421 (Inv. FP 4477.11)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-167421
 - fuss: seed_unsorted
@@ -24938,7 +24903,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/168013
     ref: KMM 168013 (Inv. FP 2366.4)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-168013
 - fuss: 18_5_thaler
@@ -24964,7 +24929,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/168061
     ref: KMM 168061 (Inv. FP 2448.27)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-168061
 - fuss: seed_unsorted
@@ -25002,7 +24967,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/492513
     ref: KMM 492513 (Inv. FP 10686.11)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-173053
 - fuss: seed_unsorted
@@ -25027,7 +24992,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/175832
     ref: KMM 175832 (Inv. FP 2374.67)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-175832
 - fuss: seed_unsorted
@@ -25051,7 +25016,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/175929
     ref: KMM 175929 (Inv. FP 2920.14)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-175929
 - fuss: seed_unsorted
@@ -25163,7 +25128,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/276867
     ref: KMM 276867 (Inv. FP 4227.502)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-189919
 - fuss: seed_unsorted
@@ -25187,7 +25152,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200868
     ref: KMM 200868 (Inv. FP 3108.11682)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200868
 - fuss: seed_unsorted
@@ -25211,7 +25176,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200869
     ref: KMM 200869 (Inv. FP 3108.11681)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200869
 - fuss: seed_unsorted
@@ -25235,7 +25200,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200870
     ref: KMM 200870 (Inv. FP 3108.11680)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200870
 - fuss: seed_unsorted
@@ -25263,7 +25228,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/200872
     ref: KMM 200872 (Inv. FP 3108.11678)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200871
 - fuss: seed_unsorted
@@ -25287,7 +25252,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200873
     ref: KMM 200873 (Inv. FP 3108.11677)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200873
 - fuss: seed_unsorted
@@ -25315,7 +25280,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/200875
     ref: KMM 200875 (Inv. FP 3108.11675)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200874
 - fuss: seed_unsorted
@@ -25347,7 +25312,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/200880
     ref: KMM 200880 (Inv. FP 3108.11670)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200876
 - fuss: seed_unsorted
@@ -25379,7 +25344,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/200886
     ref: KMM 200886 (Inv. FP 3108.11664)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200881
 - fuss: seed_unsorted
@@ -25403,7 +25368,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200887
     ref: KMM 200887 (Inv. FP 3108.11663)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200887
 - fuss: seed_unsorted
@@ -25427,7 +25392,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200888
     ref: KMM 200888 (Inv. FP 3108.11662)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200888
 - fuss: seed_unsorted
@@ -25455,7 +25420,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/200890
     ref: KMM 200890 (Inv. FP 3108.11660)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200889
 - fuss: seed_unsorted
@@ -25486,7 +25451,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/200892
     ref: KMM 200892 (Inv. FP 3108.11658)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200891
 - fuss: seed_unsorted
@@ -25518,7 +25483,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/200897
     ref: KMM 200897 (Inv. FP 3108.11653)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200893
 - fuss: seed_unsorted
@@ -25539,7 +25504,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200898
     ref: KMM 200898 (Inv. FP 3108.11652)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200898
 - fuss: seed_unsorted
@@ -25560,7 +25525,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200917
     ref: KMM 200917 (Inv. FP 3108.11633)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200917
 - fuss: seed_unsorted
@@ -25581,7 +25546,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200936
     ref: KMM 200936 (Inv. FP 3108.11614)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200936
 - fuss: seed_unsorted
@@ -25605,7 +25570,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200937
     ref: KMM 200937 (Inv. FP 3108.11613)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200937
 - fuss: seed_unsorted
@@ -25629,7 +25594,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200938
     ref: KMM 200938 (Inv. FP 3108.11612)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200938
 - fuss: seed_unsorted
@@ -25648,7 +25613,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200939
     ref: KMM 200939 (Inv. FP 3108.11611)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200939
 - fuss: seed_unsorted
@@ -25695,7 +25660,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/296098
     ref: KMM 296098 (Inv. FP 9040.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-200941
 - fuss: seed_unsorted
@@ -25719,7 +25684,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/201052
     ref: KMM 201052 (Inv. FP 3108.11498)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-201052
 - fuss: seed_unsorted
@@ -25743,7 +25708,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/201072
     ref: KMM 201072 (Inv. FP 3108.11478)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-201072
 - fuss: seed_unsorted
@@ -25764,7 +25729,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/201076
     ref: KMM 201076 (Inv. FP 3108.11474)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-201076
 - fuss: seed_unsorted
@@ -25785,7 +25750,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/201080
     ref: KMM 201080 (Inv. FP 3108.11470)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-201080
 - fuss: seed_unsorted
@@ -25821,7 +25786,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/276957
     ref: KMM 276957 (Inv. FP 4227.1359)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-276462
 - fuss: seed_unsorted
@@ -25843,7 +25808,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/295860
     ref: KMM 295860 (Inv. FP 9050.24)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-295860
 - fuss: seed_unsorted
@@ -25873,7 +25838,7 @@ coins:
     de: 4-dobbelt
     en: 4-dobbelt
     uk: 4-dobbelt
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-298423
 - fuss: seed_unsorted
@@ -25897,7 +25862,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/306392
     ref: KMM 306392 (Inv. FP 7836.4)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-306392
 - fuss: seed_unsorted
@@ -25926,7 +25891,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/391793
     ref: KMM 391793 (Inv. FP 4087.49)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-306915
 - fuss: seed_unsorted
@@ -25945,7 +25910,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/308285
     ref: KMM 308285 (Inv. FP 7549.11)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-308285
 - fuss: seed_unsorted
@@ -25969,7 +25934,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/308694
     ref: KMM 308694 (Inv. FP 7430.22)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-308694
 - fuss: seed_unsorted
@@ -25993,7 +25958,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/317569
     ref: KMM 317569 (Inv. FP 7044.21)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-317569
 - fuss: seed_unsorted
@@ -26017,7 +25982,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/317585
     ref: KMM 317585 (Inv. FP 7044.5)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-317585
 - fuss: seed_unsorted
@@ -26041,7 +26006,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/317586
     ref: KMM 317586 (Inv. FP 7044.4)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-317586
 - fuss: 18_5_thaler
@@ -26064,7 +26029,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/317711
     ref: KMM 317711 (Inv. FP 6779.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-317711
 - fuss: seed_unsorted
@@ -26086,7 +26051,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/318044
     ref: KMM 318044 (Inv. FP 6724.18)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-318044
 - fuss: seed_unsorted
@@ -26113,7 +26078,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/329739
     ref: KMM 329739 (Inv. KP 23.145)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-329739
 - fuss: seed_unsorted
@@ -26137,7 +26102,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/329754
     ref: KMM 329754 (Inv. FP 4545.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-329754
 - fuss: seed_unsorted
@@ -26164,7 +26129,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/329760
     ref: KMM 329760 (Inv. BP 483.3)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-329760
 - fuss: seed_unsorted
@@ -26191,7 +26156,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/329765
     ref: KMM 329765 (Inv. RP 894.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-329765
 - fuss: seed_unsorted
@@ -26218,7 +26183,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/329766
     ref: KMM 329766 (Inv. RP 895.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-329766
 - fuss: seed_unsorted
@@ -26245,7 +26210,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/329767
     ref: KMM 329767 (Inv. RP 896.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-329767
 - fuss: seed_unsorted
@@ -26273,7 +26238,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/371013
     ref: KMM 371013 (Inv. FP 6670.2)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-330866
 - fuss: seed_unsorted
@@ -26297,7 +26262,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/331189
     ref: KMM 331189 (Inv. FP 6200.72)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-331189
 - fuss: seed_unsorted
@@ -26318,7 +26283,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/331213
     ref: KMM 331213 (Inv. FP 6200.48)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-331213
 - fuss: seed_unsorted
@@ -26340,7 +26305,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/333736
     ref: KMM 333736 (Inv. FP 5835.3)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-333736
 - fuss: seed_unsorted
@@ -26362,7 +26327,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/333737
     ref: KMM 333737 (Inv. FP 5835.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-333737
 - fuss: seed_unsorted
@@ -26393,7 +26358,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/352291
     ref: KMM 352291 (Inv. FP 5149 5149.67)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-340437
 - fuss: seed_unsorted
@@ -26414,7 +26379,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/340543
     ref: KMM 340543 (Inv. FP 5622.11)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-340543
 - fuss: seed_unsorted
@@ -26438,7 +26403,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/340547
     ref: KMM 340547 (Inv. FP 5622.7)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-340547
 - fuss: seed_unsorted
@@ -26461,7 +26426,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/340561
     ref: KMM 340561 (Inv. FP 5620.3)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-340561
 - fuss: seed_unsorted
@@ -26487,7 +26452,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/340562
     ref: KMM 340562 (Inv. FP 5620.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-340562
 - fuss: seed_unsorted
@@ -26510,7 +26475,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/344194
     ref: KMM 344194 (Inv. FP 5580.5)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-344194
 - fuss: seed_unsorted
@@ -26533,7 +26498,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/344204
     ref: KMM 344204 (Inv. FP 5579.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-344204
 - fuss: seed_unsorted
@@ -26557,7 +26522,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/344461
     ref: KMM 344461 (Inv. FP 5514.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-344461
 - fuss: seed_unsorted
@@ -26588,7 +26553,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/345172
     ref: KMM 345172 (Inv. FP 10156.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-345172
 - fuss: seed_unsorted
@@ -26619,7 +26584,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/345232
     ref: KMM 345232 (Inv. FP 5487.2)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-345231
 - fuss: seed_unsorted
@@ -26640,7 +26605,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/345235
     ref: KMM 345235 (Inv. FP 5486.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-345235
 - fuss: seed_unsorted
@@ -26664,7 +26629,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/349270
     ref: KMM 349270 (Inv. FP 5332.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-349270
 - fuss: seed_unsorted
@@ -26688,7 +26653,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/349271
     ref: KMM 349271 (Inv. FP 5332.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-349271
 - fuss: seed_unsorted
@@ -26712,7 +26677,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/350172
     ref: KMM 350172 (Inv. FP 10247.24)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-350172
 - fuss: seed_unsorted
@@ -26740,7 +26705,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/352110
     ref: KMM 352110 (Inv. FP 5149 5149.248)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-352109
 - fuss: seed_unsorted
@@ -26776,7 +26741,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/352114
     ref: KMM 352114 (Inv. FP 5149 5149.244)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-352111
 - fuss: seed_unsorted
@@ -26808,7 +26773,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/352294
     ref: KMM 352294 (Inv. FP 5149 5149.64)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-352292
 - fuss: seed_unsorted
@@ -26832,7 +26797,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/352302
     ref: KMM 352302 (Inv. FP 5149 5149.56)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-352302
 - fuss: seed_unsorted
@@ -26864,7 +26829,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/352324
     ref: KMM 352324 (Inv. FP 5149 5149.34)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-352303
 - fuss: seed_unsorted
@@ -26890,7 +26855,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/353005
     ref: KMM 353005 (Inv. FP 5085.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-353005
 - fuss: seed_unsorted
@@ -26911,7 +26876,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/353456
     ref: KMM 353456 (Inv. FP 4974.4)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-353456
 - fuss: seed_unsorted
@@ -26935,7 +26900,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/354166
     ref: KMM 354166 (Inv. FP 4961.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-354166
 - fuss: seed_unsorted
@@ -26963,7 +26928,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/372980
     ref: KMM 372980 (Inv. FP 4250.3)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-355074
 - fuss: seed_unsorted
@@ -26982,7 +26947,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/355089
     ref: KMM 355089 (Inv. FP 4840.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-355089
 - fuss: seed_unsorted
@@ -27008,7 +26973,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/355264
     ref: KMM 355264 (Inv. FP 4827.53)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-355264
 - fuss: seed_unsorted
@@ -27028,7 +26993,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368432
     ref: KMM 368432 (Inv. KP 605.21)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368432
 - fuss: seed_unsorted
@@ -27048,7 +27013,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368434
     ref: KMM 368434 (Inv. KP 605.19)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368434
 - fuss: seed_unsorted
@@ -27068,7 +27033,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368435
     ref: KMM 368435 (Inv. KP 605.18)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368435
 - fuss: seed_unsorted
@@ -27088,7 +27053,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368436
     ref: KMM 368436 (Inv. KP 605.17)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368436
 - fuss: seed_unsorted
@@ -27108,7 +27073,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368437
     ref: KMM 368437 (Inv. KP 605.16)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368437
 - fuss: seed_unsorted
@@ -27128,7 +27093,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368438
     ref: KMM 368438 (Inv. KP 605.15)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368438
 - fuss: seed_unsorted
@@ -27148,7 +27113,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368439
     ref: KMM 368439 (Inv. KP 605.14)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368439
 - fuss: seed_unsorted
@@ -27168,7 +27133,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368440
     ref: KMM 368440 (Inv. KP 605.13)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368440
 - fuss: seed_unsorted
@@ -27188,7 +27153,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368441
     ref: KMM 368441 (Inv. KP 605.12)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368441
 - fuss: seed_unsorted
@@ -27215,7 +27180,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368442
     ref: KMM 368442 (Inv. KP 605.11)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368442
 - fuss: seed_unsorted
@@ -27235,7 +27200,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368453
     ref: KMM 368453 (Inv. KP 605.23)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368453
 - fuss: seed_unsorted
@@ -27259,7 +27224,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/368740
     ref: KMM 368740 (Inv. FP 4508.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-368740
 - fuss: seed_unsorted
@@ -27286,7 +27251,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/369169
     ref: KMM 369169 (Inv. FP 4499.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-369169
 - fuss: seed_unsorted
@@ -27310,7 +27275,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/370986
     ref: KMM 370986 (Inv. FP 6183.4)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-370986
 - fuss: seed_unsorted
@@ -27333,7 +27298,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/405951
     ref: KMM 405951 (Inv. FP 3318.3)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-405951
 - fuss: seed_unsorted
@@ -27358,7 +27323,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/411793
     ref: KMM 411793 (Inv. FP 2950.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-411793
 - fuss: seed_unsorted
@@ -27381,7 +27346,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/415744
     ref: KMM 415744 (Inv. FP 601.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-415744
 - fuss: seed_unsorted
@@ -27400,7 +27365,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/422297
     ref: KMM 422297 (Inv. FP 2427.30)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-422297
 - fuss: seed_unsorted
@@ -27422,7 +27387,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/422950
     ref: KMM 422950 (Inv. FP 2447.2132)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-422950
 - fuss: seed_unsorted
@@ -27444,7 +27409,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/422953
     ref: KMM 422953 (Inv. FP 2447.2129)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-422953
 - fuss: seed_unsorted
@@ -27466,7 +27431,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/422955
     ref: KMM 422955 (Inv. FP 2447.2127)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-422955
 - fuss: seed_unsorted
@@ -27488,7 +27453,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/422962
     ref: KMM 422962 (Inv. FP 2447.2120)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-422962
 - fuss: seed_unsorted
@@ -27510,7 +27475,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/422971
     ref: KMM 422971 (Inv. FP 2447.2111)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-422971
 - fuss: seed_unsorted
@@ -27532,7 +27497,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/422979
     ref: KMM 422979 (Inv. FP 2447.2103)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-422979
 - fuss: seed_unsorted
@@ -27554,7 +27519,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/423003
     ref: KMM 423003 (Inv. FP 2447.2079)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-423003
 - fuss: seed_unsorted
@@ -27576,7 +27541,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/423004
     ref: KMM 423004 (Inv. FP 2447.2078)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-423004
 - fuss: seed_unsorted
@@ -27598,7 +27563,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/423143
     ref: KMM 423143 (Inv. FP 2447.1939)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-423143
 - fuss: seed_unsorted
@@ -27620,7 +27585,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/423263
     ref: KMM 423263 (Inv. FP 2447.1819)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-423263
 - fuss: seed_unsorted
@@ -27642,7 +27607,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/423285
     ref: KMM 423285 (Inv. FP 2447.1797)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-423285
 - fuss: seed_unsorted
@@ -27664,7 +27629,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/423669
     ref: KMM 423669 (Inv. FP 2447.1413)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-423669
 - fuss: seed_unsorted
@@ -27686,7 +27651,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/423673
     ref: KMM 423673 (Inv. FP 2447.1409)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-423673
 - fuss: seed_unsorted
@@ -27704,7 +27669,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/428061
     ref: KMM 428061 (Inv. FP 1639.30)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-428061
 - fuss: seed_unsorted
@@ -27722,7 +27687,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/428062
     ref: KMM 428062 (Inv. FP 1639.29)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-428062
 - fuss: seed_unsorted
@@ -27744,7 +27709,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/430275
     ref: KMM 430275 (Inv. FP 994.23)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-430275
 - fuss: seed_unsorted
@@ -27766,7 +27731,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/430284
     ref: KMM 430284 (Inv. FP 994.14)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-430284
 - fuss: seed_unsorted
@@ -27787,7 +27752,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/441351
     ref: KMM 441351 (Inv. BP 363.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-441351
 - fuss: seed_unsorted
@@ -27821,7 +27786,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624453
     ref: KMM 624453 (Inv. FP 788.7.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-488161
 - fuss: seed_unsorted
@@ -27856,7 +27821,7 @@ coins:
     de: Albertsdaler
     en: Albertsdaler
     uk: Albertsdaler
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-492892
 - fuss: 18_5_thaler
@@ -27877,7 +27842,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/494652
     ref: KMM 494652 (Inv. KP 1480.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-494652
 - fuss: seed_unsorted
@@ -27898,7 +27863,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/494655
     ref: KMM 494655 (Inv. KP 1501.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-494655
 - fuss: seed_unsorted
@@ -27919,7 +27884,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/494684
     ref: KMM 494684 (Inv. KP 1501.7)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-494684
 - fuss: seed_unsorted
@@ -27941,7 +27906,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/504792
     ref: KMM 504792 (Inv. FP 10723.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-504792
 - fuss: seed_unsorted
@@ -27963,7 +27928,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/573485
     ref: KMM 573485 (Inv. FP 11042.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-573485
 - fuss: seed_unsorted
@@ -27993,7 +27958,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/575002
     ref: KMM 575002 (Inv. FP 11167.8)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-575001
 - fuss: seed_unsorted
@@ -28017,7 +27982,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/575005
     ref: KMM 575005 (Inv. FP 11167.11)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-575005
 - fuss: seed_unsorted
@@ -28041,7 +28006,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/575007
     ref: KMM 575007 (Inv. FP 11167.13)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-575007
 - fuss: seed_unsorted
@@ -28065,7 +28030,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/575008
     ref: KMM 575008 (Inv. FP 11167.14)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-575008
 - fuss: seed_unsorted
@@ -28087,7 +28052,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/575019
     ref: KMM 575019 (Inv. FP 11167.25)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-575019
 - fuss: seed_unsorted
@@ -28109,7 +28074,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/575020
     ref: KMM 575020 (Inv. FP 11167.26)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-575020
 - fuss: seed_unsorted
@@ -28140,7 +28105,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/575849
     ref: KMM 575849 (Inv. FP 533.61)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-575847
 - fuss: seed_unsorted
@@ -28163,7 +28128,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/575850
     ref: KMM 575850 (Inv. FP 533.60)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-575850
 - fuss: seed_unsorted
@@ -28181,7 +28146,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/584930
     ref: KMM 584930 (Inv. FP 1668.32)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-584930
 - fuss: seed_unsorted
@@ -28199,7 +28164,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/584933
     ref: KMM 584933 (Inv. FP 1668.30)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-584933
 - fuss: seed_unsorted
@@ -28217,7 +28182,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/584935
     ref: KMM 584935 (Inv. FP 1668.28)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-584935
 - fuss: seed_unsorted
@@ -28241,7 +28206,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/622119
     ref: KMM 622119 (Inv. FP 2533.32)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-622119
 - fuss: seed_unsorted
@@ -28263,7 +28228,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/624290
     ref: KMM 624290 (Inv. FP 788.21)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624290
 - fuss: seed_unsorted
@@ -28293,7 +28258,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624293
     ref: KMM 624293 (Inv. FP 788.20.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624291
 - fuss: seed_unsorted
@@ -28315,7 +28280,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/624294
     ref: KMM 624294 (Inv. FP 788.19)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624294
 - fuss: seed_unsorted
@@ -28334,7 +28299,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/624295
     ref: KMM 624295 (Inv. FP 788.18.4)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624295
 - fuss: seed_unsorted
@@ -28353,7 +28318,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/624296
     ref: KMM 624296 (Inv. FP 788.18.3)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624296
 - fuss: seed_unsorted
@@ -28372,7 +28337,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/624297
     ref: KMM 624297 (Inv. FP 788.18.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624297
 - fuss: seed_unsorted
@@ -28391,7 +28356,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/624298
     ref: KMM 624298 (Inv. FP 788.18.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624298
 - fuss: seed_unsorted
@@ -28417,7 +28382,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624300
     ref: KMM 624300 (Inv. FP 788.17.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624299
 - fuss: seed_unsorted
@@ -28439,7 +28404,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/624301
     ref: KMM 624301 (Inv. FP 788.16)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624301
 - fuss: seed_unsorted
@@ -28461,7 +28426,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/624302
     ref: KMM 624302 (Inv. FP 788.15)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624302
 - fuss: seed_unsorted
@@ -28487,7 +28452,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624304
     ref: KMM 624304 (Inv. FP 788.14.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624303
 - fuss: seed_unsorted
@@ -28517,7 +28482,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624317
     ref: KMM 624317 (Inv. FP 788.13.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624305
 - fuss: seed_unsorted
@@ -28547,7 +28512,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624360
     ref: KMM 624360 (Inv. FP 788.12.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624318
 - fuss: seed_unsorted
@@ -28577,7 +28542,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624375
     ref: KMM 624375 (Inv. FP 788.11.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624361
 - fuss: seed_unsorted
@@ -28607,7 +28572,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624383
     ref: KMM 624383 (Inv. FP 788.10.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624376
 - fuss: seed_unsorted
@@ -28637,7 +28602,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624397
     ref: KMM 624397 (Inv. FP 788.9.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624384
 - fuss: seed_unsorted
@@ -28667,7 +28632,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624432
     ref: KMM 624432 (Inv. FP 788.8.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624398
 - fuss: seed_unsorted
@@ -28697,7 +28662,7 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/624482
     ref: KMM 624482 (Inv. FP 788.6.1)
     display: false
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-624454
 - fuss: seed_unsorted
@@ -28722,7 +28687,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/627335
     ref: KMM 627335 (Inv. FP 881.3)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-627335
 - fuss: seed_unsorted
@@ -28742,7 +28707,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/639301
     ref: KMM 639301 (Inv. FP 1533.317)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-639301
 - fuss: seed_unsorted
@@ -28762,7 +28727,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/639302
     ref: KMM 639302 (Inv. FP 1533.316)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-639302
 - fuss: seed_unsorted
@@ -28782,7 +28747,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/639303
     ref: KMM 639303 (Inv. FP 1533.315)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-639303
 - fuss: seed_unsorted
@@ -28802,7 +28767,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/639304
     ref: KMM 639304 (Inv. FP 1533.314)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-639304
 - fuss: seed_unsorted
@@ -28822,7 +28787,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/639309
     ref: KMM 639309 (Inv. FP 1533.309)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-639309
 - fuss: seed_unsorted
@@ -28842,7 +28807,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/639314
     ref: KMM 639314 (Inv. FP 1533.304)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-639314
 - fuss: seed_unsorted
@@ -28862,7 +28827,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/639315
     ref: KMM 639315 (Inv. FP 1533.303)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-639315
 - fuss: seed_unsorted
@@ -28882,7 +28847,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/639324
     ref: KMM 639324 (Inv. FP 1533.294)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-639324
 - fuss: seed_unsorted
@@ -28902,7 +28867,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/639337
     ref: KMM 639337 (Inv. FP 1533.281)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-639337
 - fuss: seed_unsorted
@@ -28920,7 +28885,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/642111
     ref: KMM 642111 (Inv. BP 29.8)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-642111
 - fuss: seed_unsorted
@@ -28938,7 +28903,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/642115
     ref: KMM 642115 (Inv. BP 29.4)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-642115
 - fuss: seed_unsorted
@@ -28956,7 +28921,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/642118
     ref: KMM 642118 (Inv. BP 29.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-642118
 - fuss: seed_unsorted
@@ -28976,7 +28941,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/647298
     ref: KMM 647298 (Inv. BP 78.3)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-647298
 - fuss: seed_unsorted
@@ -28996,7 +28961,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/647299
     ref: KMM 647299 (Inv. BP 78.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-647299
 - fuss: seed_unsorted
@@ -29016,7 +28981,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/647300
     ref: KMM 647300 (Inv. BP 78.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-647300
 - fuss: seed_unsorted
@@ -29036,7 +29001,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/647324
     ref: KMM 647324 (Inv. BP 79.5)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-647324
 - fuss: seed_unsorted
@@ -29056,7 +29021,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/647325
     ref: KMM 647325 (Inv. BP 79.4)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-647325
 - fuss: seed_unsorted
@@ -29076,7 +29041,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/647326
     ref: KMM 647326 (Inv. BP 79.3)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-647326
 - fuss: seed_unsorted
@@ -29096,7 +29061,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/647327
     ref: KMM 647327 (Inv. BP 79.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-647327
 - fuss: seed_unsorted
@@ -29116,7 +29081,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/647328
     ref: KMM 647328 (Inv. BP 79.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-647328
 - fuss: seed_unsorted
@@ -29136,7 +29101,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/652835
     ref: KMM 652835 (Inv. BP 279.4)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-652835
 - fuss: seed_unsorted
@@ -29156,7 +29121,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/653206
     ref: KMM 653206 (Inv. BP 312.5)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-653206
 - fuss: seed_unsorted
@@ -29175,7 +29140,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/653505
     ref: KMM 653505 (Inv. FP 1156.4b)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-653505
 - fuss: seed_unsorted
@@ -29199,7 +29164,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/661832
     ref: KMM 661832 (Inv. FP 11978.4)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-661832
 - fuss: seed_unsorted
@@ -29220,7 +29185,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/670160
     ref: KMM 670160 (Inv. BP 775.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-670160
 - fuss: seed_unsorted
@@ -29242,7 +29207,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/676933
     ref: KMM 676933 (Inv. BP 907.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-676933
 - fuss: seed_unsorted
@@ -29264,7 +29229,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/676934
     ref: KMM 676934 (Inv. BP 907.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-676934
 - fuss: seed_unsorted
@@ -29285,7 +29250,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/679216
     ref: KMM 679216 (Inv. BP 964.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-679216
 - fuss: seed_unsorted
@@ -29303,7 +29268,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/679250
     ref: KMM 679250 (Inv. BP 968.9)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-679250
 - fuss: seed_unsorted
@@ -29324,7 +29289,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/679251
     ref: KMM 679251 (Inv. BP 968.8)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-679251
 - fuss: seed_unsorted
@@ -29345,7 +29310,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/679252
     ref: KMM 679252 (Inv. BP 968.7)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-679252
 - fuss: seed_unsorted
@@ -29363,7 +29328,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/679259
     ref: KMM 679259 (Inv. BP 968.10)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-679259
 - fuss: seed_unsorted
@@ -29388,7 +29353,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/682884
     ref: KMM 682884 (Inv. FP 12133.6)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-682884
 - fuss: seed_unsorted
@@ -29410,7 +29375,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/684781
     ref: KMM 684781 (Inv. FP 53.36)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-684781
 - fuss: seed_unsorted
@@ -29432,7 +29397,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/684782
     ref: KMM 684782 (Inv. FP 53.35)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-684782
 - fuss: seed_unsorted
@@ -29454,7 +29419,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/684786
     ref: KMM 684786 (Inv. FP 53.31)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-684786
 - fuss: seed_unsorted
@@ -29475,7 +29440,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/688436
     ref: KMM 688436 (Inv. BP 1249.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-688436
 - fuss: seed_unsorted
@@ -29503,7 +29468,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/693131
     ref: KMM 693131 (Inv. FP 280.48)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-693131
 - fuss: seed_unsorted
@@ -29525,7 +29490,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/699180
     ref: KMM 699180 (Inv. FP 326.12)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-699180
 - fuss: seed_unsorted
@@ -29552,7 +29517,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/714752
     ref: KMM 714752 (Inv. FP 12405.298)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714752
 - fuss: seed_unsorted
@@ -29584,7 +29549,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714753
 - fuss: seed_unsorted
@@ -29618,7 +29583,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714754
 - fuss: seed_unsorted
@@ -29652,7 +29617,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714762
 - fuss: seed_unsorted
@@ -29686,7 +29651,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714770
 - fuss: seed_unsorted
@@ -29725,7 +29690,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714771
 - fuss: seed_unsorted
@@ -29767,7 +29732,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714773
 - fuss: seed_unsorted
@@ -29803,7 +29768,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714778
 - fuss: seed_unsorted
@@ -29834,7 +29799,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714780
 - fuss: seed_unsorted
@@ -29861,7 +29826,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/714785
     ref: KMM 714785 (Inv. FP 12405.265)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714785
 - fuss: seed_unsorted
@@ -29895,7 +29860,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714786
 - fuss: seed_unsorted
@@ -29939,7 +29904,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714787
 - fuss: seed_unsorted
@@ -29978,7 +29943,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714790
 - fuss: seed_unsorted
@@ -30012,7 +29977,7 @@ coins:
     de: rytterpenning
     en: rytterpenning
     uk: rytterpenning
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-714793
 - fuss: seed_unsorted
@@ -30037,7 +30002,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/715366
     ref: KMM 715366 (Inv. FP 12431.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-715366
 - fuss: seed_unsorted
@@ -30061,7 +30026,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/716090
     ref: KMM 716090 (Inv. FP 12461.2)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-716090
 - fuss: seed_unsorted
@@ -30080,7 +30045,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81423
     ref: KMM 81423 (Inv. GP 888.1)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81423
 - fuss: seed_unsorted
@@ -30112,7 +30077,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81439
     ref: KMM 81439 (Inv. GP 888.17)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81439
 - fuss: seed_unsorted
@@ -30131,7 +30096,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81450
     ref: KMM 81450 (Inv. GP 888.28)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81450
 - fuss: seed_unsorted
@@ -30150,7 +30115,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81474
     ref: KMM 81474 (Inv. GP 888.52)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81474
 - fuss: seed_unsorted
@@ -30170,7 +30135,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81475
     ref: KMM 81475 (Inv. GP 888.53)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81475
 - fuss: seed_unsorted
@@ -30189,7 +30154,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81476
     ref: KMM 81476 (Inv. GP 888.54)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81476
 - fuss: seed_unsorted
@@ -30208,7 +30173,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81478
     ref: KMM 81478 (Inv. GP 888.56)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81478
 - fuss: seed_unsorted
@@ -30227,7 +30192,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81479
     ref: KMM 81479 (Inv. GP 888.57)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81479
 - fuss: seed_unsorted
@@ -30246,7 +30211,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81487
     ref: KMM 81487 (Inv. GP 888.65)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81487
 - fuss: seed_unsorted
@@ -30265,7 +30230,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81489
     ref: KMM 81489 (Inv. GP 888.67)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81489
 - fuss: seed_unsorted
@@ -30284,7 +30249,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81492
     ref: KMM 81492 (Inv. GP 888.70)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81492
 - fuss: seed_unsorted
@@ -30302,7 +30267,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81494
     ref: KMM 81494 (Inv. GP 888.72)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81494
 - fuss: seed_unsorted
@@ -30320,7 +30285,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81495
     ref: KMM 81495 (Inv. GP 888.73)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81495
 - fuss: seed_unsorted
@@ -30338,7 +30303,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81496
     ref: KMM 81496 (Inv. GP 888.74)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81496
 - fuss: seed_unsorted
@@ -30357,7 +30322,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81497
     ref: KMM 81497 (Inv. GP 888.75)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81497
 - fuss: seed_unsorted
@@ -30376,7 +30341,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81498
     ref: KMM 81498 (Inv. GP 888.76)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81498
 - fuss: seed_unsorted
@@ -30395,7 +30360,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81499
     ref: KMM 81499 (Inv. GP 888.77)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81499
 - fuss: seed_unsorted
@@ -30414,7 +30379,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81500
     ref: KMM 81500 (Inv. GP 888.78)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81500
 - fuss: seed_unsorted
@@ -30433,7 +30398,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81571
     ref: KMM 81571 (Inv. GP 888.149)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81571
 - fuss: seed_unsorted
@@ -30452,7 +30417,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81641
     ref: KMM 81641 (Inv. GP 888.219)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81641
 - fuss: seed_unsorted
@@ -30471,7 +30436,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81671
     ref: KMM 81671 (Inv. GP 888.249)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81671
 - fuss: seed_unsorted
@@ -30490,7 +30455,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81693
     ref: KMM 81693 (Inv. GP 888.271)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81693
 - fuss: seed_unsorted
@@ -30509,7 +30474,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81694
     ref: KMM 81694 (Inv. GP 888.272)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81694
 - fuss: seed_unsorted
@@ -30528,7 +30493,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81695
     ref: KMM 81695 (Inv. GP 888.273)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81695
 - fuss: seed_unsorted
@@ -30547,7 +30512,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81709
     ref: KMM 81709 (Inv. GP 888.287)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81709
 - fuss: seed_unsorted
@@ -30566,7 +30531,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81719
     ref: KMM 81719 (Inv. GP 888.297)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81719
 - fuss: seed_unsorted
@@ -30585,7 +30550,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81720
     ref: KMM 81720 (Inv. GP 888.298)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81720
 - fuss: seed_unsorted
@@ -30604,7 +30569,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81721
     ref: KMM 81721 (Inv. GP 888.299)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81721
 - fuss: seed_unsorted
@@ -30623,7 +30588,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81729
     ref: KMM 81729 (Inv. GP 888.307)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81729
 - fuss: seed_unsorted
@@ -30642,7 +30607,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81735
     ref: KMM 81735 (Inv. GP 888.313)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81735
 - fuss: seed_unsorted
@@ -30661,7 +30626,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81736
     ref: KMM 81736 (Inv. GP 888.314)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81736
 - fuss: seed_unsorted
@@ -30680,7 +30645,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81737
     ref: KMM 81737 (Inv. GP 888.315)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81737
 - fuss: seed_unsorted
@@ -30699,7 +30664,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81738
     ref: KMM 81738 (Inv. GP 888.316)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81738
 - fuss: seed_unsorted
@@ -30718,7 +30683,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81750
     ref: KMM 81750 (Inv. GP 888.328)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81750
 - fuss: seed_unsorted
@@ -30737,7 +30702,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81761
     ref: KMM 81761 (Inv. GP 888.339)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81761
 - fuss: seed_unsorted
@@ -30756,7 +30721,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81762
     ref: KMM 81762 (Inv. GP 888.340)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81762
 - fuss: seed_unsorted
@@ -30784,7 +30749,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81779
     ref: KMM 81779 (Inv. GP 888.357)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81779
 - fuss: seed_unsorted
@@ -30804,7 +30769,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81780
     ref: KMM 81780 (Inv. GP 888.358)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81780
 - fuss: seed_unsorted
@@ -30824,7 +30789,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81785
     ref: KMM 81785 (Inv. GP 888.363)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81785
 - fuss: seed_unsorted
@@ -30844,7 +30809,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81790
     ref: KMM 81790 (Inv. GP 888.368)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81790
 - fuss: seed_unsorted
@@ -30864,7 +30829,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81792
     ref: KMM 81792 (Inv. GP 888.370)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81792
 - fuss: seed_unsorted
@@ -30884,7 +30849,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81793
     ref: KMM 81793 (Inv. GP 888.371)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81793
 - fuss: seed_unsorted
@@ -30904,7 +30869,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81794
     ref: KMM 81794 (Inv. GP 888.372)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81794
 - fuss: seed_unsorted
@@ -30923,7 +30888,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81795
     ref: KMM 81795 (Inv. GP 888.373)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81795
 - fuss: seed_unsorted
@@ -30942,7 +30907,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81796
     ref: KMM 81796 (Inv. GP 888.374)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81796
 - fuss: seed_unsorted
@@ -30961,7 +30926,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81797
     ref: KMM 81797 (Inv. GP 888.375)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81797
 - fuss: seed_unsorted
@@ -30980,7 +30945,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81798
     ref: KMM 81798 (Inv. GP 888.376)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81798
 - fuss: seed_unsorted
@@ -30999,7 +30964,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81812
     ref: KMM 81812 (Inv. GP 888.390)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81812
 - fuss: seed_unsorted
@@ -31018,7 +30983,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81825
     ref: KMM 81825 (Inv. GP 888.403)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81825
 - fuss: seed_unsorted
@@ -31037,7 +31002,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81826
     ref: KMM 81826 (Inv. GP 888.404)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81826
 - fuss: seed_unsorted
@@ -31056,7 +31021,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81827
     ref: KMM 81827 (Inv. GP 888.405)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81827
 - fuss: seed_unsorted
@@ -31075,7 +31040,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81834
     ref: KMM 81834 (Inv. GP 888.412)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81834
 - fuss: seed_unsorted
@@ -31094,7 +31059,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81839
     ref: KMM 81839 (Inv. GP 888.417)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81839
 - fuss: seed_unsorted
@@ -31113,7 +31078,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81840
     ref: KMM 81840 (Inv. GP 888.418)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81840
 - fuss: seed_unsorted
@@ -31132,7 +31097,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81845
     ref: KMM 81845 (Inv. GP 888.423)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81845
 - fuss: seed_unsorted
@@ -31151,7 +31116,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81849
     ref: KMM 81849 (Inv. GP 888.427)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81849
 - fuss: seed_unsorted
@@ -31170,7 +31135,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81850
     ref: KMM 81850 (Inv. GP 888.428)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81850
 - fuss: seed_unsorted
@@ -31189,7 +31154,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81851
     ref: KMM 81851 (Inv. GP 888.429)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81851
 - fuss: seed_unsorted
@@ -31208,7 +31173,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81852
     ref: KMM 81852 (Inv. GP 888.430)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81852
 - fuss: seed_unsorted
@@ -31227,7 +31192,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81853
     ref: KMM 81853 (Inv. GP 888.431)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81853
 - fuss: seed_unsorted
@@ -31246,7 +31211,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81876
     ref: KMM 81876 (Inv. GP 888.454)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81876
 - fuss: seed_unsorted
@@ -31265,7 +31230,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81898
     ref: KMM 81898 (Inv. GP 888.476)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81898
 - fuss: seed_unsorted
@@ -31284,7 +31249,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81899
     ref: KMM 81899 (Inv. GP 888.477)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81899
 - fuss: seed_unsorted
@@ -31303,7 +31268,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81949
     ref: KMM 81949 (Inv. GP 888.527)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81949
 - fuss: seed_unsorted
@@ -31322,7 +31287,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/81999
     ref: KMM 81999 (Inv. GP 888.577)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-81999
 - fuss: seed_unsorted
@@ -31341,7 +31306,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/82000
     ref: KMM 82000 (Inv. GP 888.578)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-82000
 - fuss: seed_unsorted
@@ -31360,7 +31325,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/82010
     ref: KMM 82010 (Inv. GP 888.588)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-82010
 - fuss: seed_unsorted
@@ -31379,7 +31344,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/82019
     ref: KMM 82019 (Inv. GP 888.597)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-82019
 - fuss: seed_unsorted
@@ -31398,7 +31363,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/82020
     ref: KMM 82020 (Inv. GP 888.598)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-82020
 - fuss: seed_unsorted
@@ -31417,7 +31382,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/82021
     ref: KMM 82021 (Inv. GP 888.599)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-82021
 - fuss: seed_unsorted
@@ -31436,7 +31401,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/82022
     ref: KMM 82022 (Inv. GP 888.600)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-82022
 - fuss: seed_unsorted
@@ -31455,7 +31420,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/82023
     ref: KMM 82023 (Inv. GP 888.601)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-82023
 - fuss: seed_unsorted
@@ -31474,7 +31439,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/82024
     ref: KMM 82024 (Inv. GP 888.602)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-82024
 - fuss: seed_unsorted
@@ -31493,7 +31458,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/82025
     ref: KMM 82025 (Inv. GP 888.603)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-82025
 - fuss: seed_unsorted
@@ -31512,7 +31477,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/82026
     ref: KMM 82026 (Inv. GP 888.604)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-82026
 - fuss: seed_unsorted
@@ -31531,7 +31496,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/82027
     ref: KMM 82027 (Inv. GP 888.605)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-82027
 - fuss: seed_unsorted
@@ -31563,7 +31528,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83081
     ref: KMM 83081 (Inv. GP 982.105)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83081
 - fuss: seed_unsorted
@@ -31582,7 +31547,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83083
     ref: KMM 83083 (Inv. GP 982.107)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83083
 - fuss: seed_unsorted
@@ -31601,7 +31566,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83084
     ref: KMM 83084 (Inv. GP 982.108)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83084
 - fuss: seed_unsorted
@@ -31620,7 +31585,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83085
     ref: KMM 83085 (Inv. GP 982.109)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83085
 - fuss: seed_unsorted
@@ -31639,7 +31604,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83087
     ref: KMM 83087 (Inv. GP 982.111)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83087
 - fuss: seed_unsorted
@@ -31658,7 +31623,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83088
     ref: KMM 83088 (Inv. GP 982.112)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83088
 - fuss: seed_unsorted
@@ -31677,7 +31642,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83089
     ref: KMM 83089 (Inv. GP 982.113)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83089
 - fuss: seed_unsorted
@@ -31696,7 +31661,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83095
     ref: KMM 83095 (Inv. GP 982.119)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83095
 - fuss: seed_unsorted
@@ -31715,7 +31680,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83099
     ref: KMM 83099 (Inv. GP 982.123)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83099
 - fuss: seed_unsorted
@@ -31734,7 +31699,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83101
     ref: KMM 83101 (Inv. GP 982.125)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83101
 - fuss: seed_unsorted
@@ -31753,7 +31718,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83102
     ref: KMM 83102 (Inv. GP 982.126)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83102
 - fuss: seed_unsorted
@@ -31772,7 +31737,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83103
     ref: KMM 83103 (Inv. GP 982.127)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83103
 - fuss: seed_unsorted
@@ -31791,7 +31756,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83104
     ref: KMM 83104 (Inv. GP 982.128)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83104
 - fuss: seed_unsorted
@@ -31810,7 +31775,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83105
     ref: KMM 83105 (Inv. GP 982.129)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83105
 - fuss: seed_unsorted
@@ -31829,7 +31794,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83112
     ref: KMM 83112 (Inv. GP 982.136)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83112
 - fuss: seed_unsorted
@@ -31848,7 +31813,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83119
     ref: KMM 83119 (Inv. GP 982.143)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83119
 - fuss: seed_unsorted
@@ -31867,7 +31832,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83132
     ref: KMM 83132 (Inv. GP 982.156)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83132
 - fuss: seed_unsorted
@@ -31886,7 +31851,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83133
     ref: KMM 83133 (Inv. GP 982.157)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83133
 - fuss: seed_unsorted
@@ -31905,7 +31870,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83137
     ref: KMM 83137 (Inv. GP 982.161)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83137
 - fuss: seed_unsorted
@@ -31924,7 +31889,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83138
     ref: KMM 83138 (Inv. GP 982.162)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83138
 - fuss: seed_unsorted
@@ -31943,7 +31908,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83139
     ref: KMM 83139 (Inv. GP 982.163)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83139
 - fuss: seed_unsorted
@@ -31962,7 +31927,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83140
     ref: KMM 83140 (Inv. GP 982.164)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83140
 - fuss: seed_unsorted
@@ -31981,7 +31946,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83143
     ref: KMM 83143 (Inv. GP 982.167)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83143
 - fuss: seed_unsorted
@@ -32000,7 +31965,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83145
     ref: KMM 83145 (Inv. GP 982.169)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83145
 - fuss: seed_unsorted
@@ -32019,7 +31984,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83146
     ref: KMM 83146 (Inv. GP 982.170)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83146
 - fuss: seed_unsorted
@@ -32038,7 +32003,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83147
     ref: KMM 83147 (Inv. GP 982.171)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83147
 - fuss: seed_unsorted
@@ -32057,7 +32022,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83148
     ref: KMM 83148 (Inv. GP 982.172)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83148
 - fuss: seed_unsorted
@@ -32076,7 +32041,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83149
     ref: KMM 83149 (Inv. GP 982.173)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83149
 - fuss: seed_unsorted
@@ -32103,7 +32068,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83150
     ref: KMM 83150 (Inv. GP 982.174)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83150
 - fuss: seed_unsorted
@@ -32122,7 +32087,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83151
     ref: KMM 83151 (Inv. GP 982.175)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83151
 - fuss: seed_unsorted
@@ -32141,7 +32106,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83152
     ref: KMM 83152 (Inv. GP 982.176)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83152
 - fuss: seed_unsorted
@@ -32160,7 +32125,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83153
     ref: KMM 83153 (Inv. GP 982.177)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83153
 - fuss: seed_unsorted
@@ -32179,7 +32144,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83154
     ref: KMM 83154 (Inv. GP 982.178)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83154
 - fuss: seed_unsorted
@@ -32198,7 +32163,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83157
     ref: KMM 83157 (Inv. GP 982.181)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83157
 - fuss: seed_unsorted
@@ -32217,7 +32182,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83160
     ref: KMM 83160 (Inv. GP 982.184)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83160
 - fuss: seed_unsorted
@@ -32236,7 +32201,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83161
     ref: KMM 83161 (Inv. GP 982.185)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83161
 - fuss: seed_unsorted
@@ -32255,7 +32220,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83167
     ref: KMM 83167 (Inv. GP 982.191)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83167
 - fuss: seed_unsorted
@@ -32274,7 +32239,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83172
     ref: KMM 83172 (Inv. GP 982.196)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83172
 - fuss: seed_unsorted
@@ -32293,7 +32258,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83173
     ref: KMM 83173 (Inv. GP 982.197)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83173
 - fuss: seed_unsorted
@@ -32312,7 +32277,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83176
     ref: KMM 83176 (Inv. GP 982.200)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83176
 - fuss: seed_unsorted
@@ -32331,7 +32296,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83178
     ref: KMM 83178 (Inv. GP 982.202)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83178
 - fuss: seed_unsorted
@@ -32350,7 +32315,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83179
     ref: KMM 83179 (Inv. GP 982.203)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83179
 - fuss: seed_unsorted
@@ -32369,7 +32334,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83180
     ref: KMM 83180 (Inv. GP 982.204)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83180
 - fuss: seed_unsorted
@@ -32388,7 +32353,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83181
     ref: KMM 83181 (Inv. GP 982.205)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83181
 - fuss: seed_unsorted
@@ -32407,7 +32372,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83182
     ref: KMM 83182 (Inv. GP 982.206)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83182
 - fuss: seed_unsorted
@@ -32426,7 +32391,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83183
     ref: KMM 83183 (Inv. GP 982.207)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83183
 - fuss: seed_unsorted
@@ -32445,7 +32410,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83185
     ref: KMM 83185 (Inv. GP 982.209)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83185
 - fuss: seed_unsorted
@@ -32464,7 +32429,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83186
     ref: KMM 83186 (Inv. GP 982.210)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83186
 - fuss: seed_unsorted
@@ -32483,7 +32448,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83188
     ref: KMM 83188 (Inv. GP 982.212)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83188
 - fuss: seed_unsorted
@@ -32502,7 +32467,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83190
     ref: KMM 83190 (Inv. GP 982.214)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83190
 - fuss: seed_unsorted
@@ -32521,7 +32486,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83191
     ref: KMM 83191 (Inv. GP 982.215)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83191
 - fuss: seed_unsorted
@@ -32540,7 +32505,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83192
     ref: KMM 83192 (Inv. GP 982.216)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83192
 - fuss: seed_unsorted
@@ -32559,7 +32524,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83198
     ref: KMM 83198 (Inv. GP 982.222)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83198
 - fuss: seed_unsorted
@@ -32578,7 +32543,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83203
     ref: KMM 83203 (Inv. GP 982.227)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83203
 - fuss: seed_unsorted
@@ -32597,7 +32562,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83204
     ref: KMM 83204 (Inv. GP 982.228)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83204
 - fuss: seed_unsorted
@@ -32616,7 +32581,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83205
     ref: KMM 83205 (Inv. GP 982.229)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83205
 - fuss: seed_unsorted
@@ -32635,7 +32600,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83206
     ref: KMM 83206 (Inv. GP 982.230)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83206
 - fuss: seed_unsorted
@@ -32654,7 +32619,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83207
     ref: KMM 83207 (Inv. GP 982.231)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83207
 - fuss: seed_unsorted
@@ -32673,7 +32638,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83208
     ref: KMM 83208 (Inv. GP 982.232)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83208
 - fuss: seed_unsorted
@@ -32692,7 +32657,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83209
     ref: KMM 83209 (Inv. GP 982.233)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83209
 - fuss: seed_unsorted
@@ -32711,7 +32676,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/83210
     ref: KMM 83210 (Inv. GP 982.234)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-83210
 - fuss: seed_unsorted
@@ -32733,7 +32698,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/86266
     ref: KMM 86266 (Inv. GP 1373.31)
-  verification_note: *id006
+  verification_note: *id005
   composed_of:
   - unified-kmk-86266
 - fuss: reichsdukatenfuss
@@ -35166,7 +35131,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148208
     ref: KMM 148208 (Inv. KP 1656.2105)
-  verification_note: &id007
+  verification_note: &id006
     de: 'KMK-Seed: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk). Felder museumsbelegt;
       Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
     en: 'KMK seed: record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk). Fields museum-attested;
@@ -35196,7 +35161,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148407
     ref: KMM 148407 (Inv. KP 1656.1906)
-  verification_note: *id007
+  verification_note: *id006
   composed_of:
   - unified-kmk-148407
 - fuss: seed_unsorted
@@ -35220,7 +35185,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148477
     ref: KMM 148477 (Inv. KP 1656.1836)
-  verification_note: *id007
+  verification_note: *id006
   composed_of:
   - unified-kmk-148477
 - fuss: 18_5_thaler

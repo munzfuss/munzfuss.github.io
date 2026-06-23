@@ -1863,74 +1863,6 @@ coins:
   - dk-bruun-7913
   - dk-numista-83066
   - km-650-chr-v-1791
-- id: unified-dk-bruun-8047
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 8 Rigsbankskilling
-  year_first: 1816
-  year_last: 1819
-  year_ranges:
-  - - 1816
-    - 1819
-  year_label: 1816-1819
-  ruler: Frederik VI
-  mintmaster: Cajus Branth (CB)
-  mint: Altona
-  catalog:
-    km: '152'
-    bruun_collection_id: '8047'
-    sieg:
-    - '22'
-    - '22.2'
-    schou: '4'
-    hede:
-    - '31'
-    - 31B
-    bruun_part: IV
-    bruun_lot_no: 17159
-    bruun_page: 92
-    numista: '19531'
-    lange: '160'
-    hede_volume: f6h
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.375
-    source: ucoin
-  weight_rough_g:
-  - value: 2.88
-    source: ucoin
-  diameter_mm:
-  - value: 18.9
-    source: ucoin
-  sources:
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17159, p. 92
-  - type: ucoin
-    url: https://en.ucoin.net/coin/schleswig_holstein-8-schilling-1816-1819/?tid=90743
-    ref: ucoin
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-bruun-8047
-  - km-152-fr-vi-1816
 - id: unified-dk-bruun-8053
   fuss: seed_unsorted
   phase: bruun
@@ -11260,34 +11192,75 @@ coins:
   kind: scheide
   nominal: 8 Skilling
   year_first: 1816
-  year_last: 1816
-  year_label: '1816'
+  year_last: 1819
+  year_ranges:
+  - - 1816
+    - 1816
+  - - 1818
+    - 1819
+  year_label: 1816, 1818-1819
   ruler: Frederik VI.
+  mintmaster: Cajus Branth (CB)
   mint: Altona
   catalog:
-    hede: '31'
+    km: '152'
+    hede:
+    - '31'
+    - 31B
     hede_volume: f6h
     schou:
     - '2'
     - '3'
     - '4'
-    sieg: '22'
-  metal: silver
+    sieg:
+    - '22'
+    - '22.2'
+    bruun_collection_id: '8047'
+    bruun_part: IV
+    bruun_lot_no: 17159
+    bruun_page: 92
+    numista: '19531'
+    lange: '160'
+    others:
+    - AKS# 10
+    - Jaeg 6 NWD# 12
+  metal: billon
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.375
     source: hede
+  - value: 0.375
+    source: ucoin
   weight_rough_g:
   - value: 2.809
     source: hede
+  - value: 2.88
+    source: numista
+  - value: 2.88
+    source: ucoin
+  diameter_mm:
+  - value: 18.9
+    source: numista
+  - value: 18.9
+    source: ucoin
   sources:
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17159, p. 92
   - type: literature
     url: https://www.danskmoent.dk/fr/f6h31.htm
     ref: danskmoent.dk (Hede f6h31)
+  - type: literature
+    url: https://en.numista.com/19531
+    ref: Numista N#19531 — 8 Reichsbank Schilling - Frederik VI
+  - type: ucoin
+    url: https://en.ucoin.net/coin/schleswig_holstein-8-schilling-1816-1819/?tid=90743
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -11299,7 +11272,10 @@ coins:
     unit: rigsbankdaler
     basis: fin
   composed_of:
+  - dk-bruun-8047
   - dk-hede-f6h31
+  - dk-numista-19531
+  - km-152-fr-vi-1816
 - id: unified-dk-hede-f6h32
   fuss: seed_unsorted
   phase: hede
@@ -12282,13 +12258,18 @@ coins:
     - 1855
   year_label: 1854-1855
   ruler: Frederik VII.
+  mintmaster: Georg Vilhelm Svendsen (VS)
   mint:
   - Altona
   - Kopenhagen
   catalog:
-    km: '760.2'
+    km:
+    - '760.1'
+    - '760.2'
+    - '760'
     hede:
     - '8'
+    - 8A
     - 8B
     hede_volume: f7h
     schou:
@@ -12297,38 +12278,72 @@ coins:
     sieg:
     - '13.1'
     - '13.2'
-    bruun_collection_id: '8235'
+    bruun_collection_id:
+    - '8230'
+    - '8235'
     bruun_part: IV
-    bruun_lot_no: 17215
-    bruun_page: 110
+    bruun_lot_no: 17212
+    bruun_page: 109
+    numista: '22192'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
+  - value: 0.5
+    source: ucoin
   - value: 0.875
     source: hede
   - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: numista
   weight_rough_g:
+  - value: 14.42
+    source: bruun
   - value: 14.447
     source: hede
   - value: 14.447
     source: numismaster
+  - value: 14.447
+    source: numista
+  - value: 14.45
+    source: ucoin
   - value: 14.47
     source: bruun
+  diameter_mm:
+  - value: 30.5
+    source: numista
+  - value: 32.5
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_66065
+    ref: NumisMaster
   - type: literature
     url: https://numismaster.com/MC_66075
     ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17212, p. 109
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17215, p. 110
   - type: literature
     url: https://www.danskmoent.dk/fr/f7h8.htm
     ref: danskmoent.dk (Hede f7h8)
+  - type: literature
+    url: https://en.numista.com/22192
+    ref: Numista N#22192 — 1 Rigsdaler - Frederik VII
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-rigsdaler-1854-1855/?tid=70691
+    ref: ucoin
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/349780
+    ref: KMM 349780 (Inv. FP 10230.5)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -12342,9 +12357,14 @@ coins:
     unit: rigsbankdaler
     basis: fin
   composed_of:
+  - denmark-numismaster-66065
   - denmark-numismaster-66075
+  - dk-bruun-8230
   - dk-bruun-8235
   - dk-hede-f7h8
+  - dk-numista-22192
+  - dk-tid-70691
+  - kmk-349780
 - id: unified-dk-numismaster-167727
   fuss: seed_unsorted
   phase: numismaster
@@ -14150,60 +14170,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-19525
-- id: unified-dk-numista-19531
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 8 Reichsbank Schillings
-  year_first: 1816
-  year_last: 1819
-  year_ranges:
-  - - 1816
-    - 1816
-  - - 1818
-    - 1819
-  year_label: 1816, 1818-1819
-  ruler: Frederick IX
-  mint: Altona
-  catalog:
-    km: '152'
-    numista: '19531'
-    lange: '160'
-    sieg: '22'
-    hede: '31'
-    others:
-    - AKS# 10
-    - Jaeg 6 NWD# 12
-  metal: billon
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 2.88
-    source: numista
-  diameter_mm:
-  - value: 18.9
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/19531
-    ref: Numista N#19531 — 8 Reichsbank Schilling - Frederik VI
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-19531
 - id: unified-dk-numista-199146
   fuss: seed_unsorted
   phase: numista
@@ -14424,57 +14390,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-22121
-- id: unified-dk-numista-22192
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 6 Rigsdaler courant
-  year_first: 1854
-  year_last: 1855
-  year_ranges:
-  - - 1854
-    - 1855
-  year_label: 1854-1855
-  ruler: Frederick VII
-  mint:
-  - Altona
-  - Kopenhagen
-  catalog:
-    km: '760'
-    numista: '22192'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numista
-  weight_rough_g:
-  - value: 14.447
-    source: numista
-  diameter_mm:
-  - value: 30.5
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/22192
-    ref: Numista N#22192 — 1 Rigsdaler - Frederik VII
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-22192
 - id: unified-dk-numista-22576
   fuss: seed_unsorted
   phase: numista

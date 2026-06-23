@@ -9,6 +9,40 @@
 
 merges:
   - members:
+      - dk-hede-c5h56      # Hede 56 head (Christian V «2 Dukat», KM 416.2)
+      - dk-bruun-7243      # «Gold 2 Ducats» KM 458, Hede 56 (Bruun I lot 1122)
+    reason: |
+      Curator decision 2026-06-23 (Serhii, by image): ONE coin — Christian V
+      «2 Dukat», Hede 56, reichsdukatenfuss II, 1670-1699. Was a stale dup: the
+      Hede head unified-dk-hede-c5h56 (KM 416.2) + a no-seed final
+      km-458-chr-v-1670 (KM 458, folds dk-bruun-7243). Both Hede 56 + Sieg 114 +
+      Schou 12 → same type; the divergent KM 416.2/458 accumulates list-form per
+      §9a. The no-seed final folded dk-bruun-7243, so deleting it un-folds the
+      Bruun head (fragment) — this merge folds it into the Hede host instead.
+      Nominal on conflict → «2 Dukat» (Hede host wins; curator-chosen).
+      NOTE: deliberately does NOT touch unified-dk-bruun-6808 (KM 346, «2 Ducats»
+      1673) — that is Hede 3, a DIFFERENT type (verified by image 2026-06-23), not
+      Hede 56. The KM 346 sitting on the host's catalog is a SEPARATE pre-existing
+      question (looks like a Hede-3-into-56 leak) flagged to the curator, not
+      resolved here.
+  - members:
+      - dk-hede-f2h8       # Hede 8/8A head (Frederik II «3 Mark», 1560)
+      - dk-bruun-4422      # «Speciedaler / 3 Mark» Hede 8B, 1563 (Bruun II lot 13069, Numista N#142126)
+    reason: |
+      Curator decision 2026-06-23 (Serhii, by image): ONE coin — Frederik II
+      «3 Mark» (= 1 Speciedaler; legend «III MARCK DANSKE»), Hede 8 sub-variants
+      8/8A (1560) + 8B (1563). Was a stale dup: the seed-backed Hede head
+      unified-dk-hede-f2h8 (Hede 8/8A, «3 Mark») + a manual final
+      unified-dk-hede-f2h8b (Hede 8B, «1 Speciedaler», folds dk-bruun-4422 +
+      dk-numista-142126). Hede 8/8A/8B are sub-variants of ONE type; the
+      «3 Mark» / «1 Speciedaler» nominal split is two names for the same 3-Mark-
+      Daler (per Aagaard NNUM 2/2009 + Wilcke). The manual final folded
+      dk-bruun-4422, so this merge folds it (+ its Numista N#142126) into the Hede
+      host. Nominal stays «3 Mark» (Hede host). Hede 8B + Sieg F2-21 + Dav +
+      diameter accumulate list-form per §9a. The «3 Mark» vs «1 Speciedaler»
+      nominal genuinely differs, so the absorb re-validate would evict the Bruun
+      member — the force-merge exemption (d071b81) protects it.
+  - members:
       - dk-hede-c4h144a    # Hede 144 head (Christian IV «1 Skilling», KM 113.1) + its 11 KMM
       - kmk-131501         # loose KMM specimen of Hede 144 (latent fragment)
     reason: |

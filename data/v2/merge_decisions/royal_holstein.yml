@@ -9,6 +9,25 @@
 
 merges:
   - members:
+      - dk-hede-f6h31      # Hede 31 head (Frederik VI «8 Skilling», KM 152)
+      - dk-bruun-8047      # «8 Rigsbankskilling» KM 152, Hede 31B (Bruun IV lot 17159)
+      - dk-numista-19531   # «8 Reichsbank Schillings» KM 152, Hede 31 (Numista N#19531)
+    reason: |
+      Curator decision 2026-06-23 (Serhii, by image): ONE coin — Frederik VI
+      «8 Rigsbankskilling», KM 152, Hede 31, 18½-Thaler-Fuß I, scheide,
+      Altona 1816-1819. Was fragmented into THREE seed_unified heads sharing the
+      SAME Bruun lot 17159 + Numista N#19531: Hede head unified-dk-hede-f6h31
+      (Hede 31), Bruun head unified-dk-bruun-8047 (Hede 31B, + ucoin km-152-fr-vi-1816),
+      Numista head unified-dk-numista-19531. The auto-matcher kept them apart on
+      the metal split (Hede «silver» vs Bruun/Numista «billon») + the KM-on-Hede-only
+      gap; this force-merge unites them. Hede 31B + Sieg 22.2 + Lange 160 + AKS 10
+      accumulate list-form per §9a. Nominal → «8 Rigsbankskilling» (period-correct
+      for the post-1813 Rigsbankdaler subdivision). Metal → billon: the Hede seed's
+      «silver» is danskmoent.dk's loose «sølv» for a 0.375-fine alloy = billon
+      (fixed at the Hede seed via _curation_holds: {metal} so the re-seed + merger
+      keep billon). Host = unified-dk-hede-f6h31 (Hede authority); the bruun-8047
+      foundation final is deleted (its seed migrates into the Hede head).
+  - members:
       - dk-hede-c3h14      # «1 Rhinsk Gylden» 1546 — Hede 14, Sieg 51, Schou 2
       - dk-bruun-14770     # «1 Goldgulden» 1536/1546-47 — Sieg 23, Schou 4/1351, Galster 131, Lange 18, Fr 18, MB 42
     reason: |

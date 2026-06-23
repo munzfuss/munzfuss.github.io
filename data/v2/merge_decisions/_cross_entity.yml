@@ -116,3 +116,37 @@ merges:
       «Rhinsk Gylden» nominal genuinely differs, so the absorb re-validate would
       evict the Numista member — the force-merge exemption (d071b81) protects it
       (the exemption reads _cross_entity::merges too).
+
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-f7h8            # home: royal_holstein («1 Rigsdaler», Hede 8, mint Altona+Kbh)
+      - dk-bruun-8235          # home: royal_holstein (Altona, KM 760.2, Hede 8B, Bruun IV lot 17215)
+      - denmark-numismaster-66075  # home: royal_holstein (Altona, KM 760.2)
+      - dk-numista-22192       # home: royal_holstein (KM 760, N#22192)
+      - dk-bruun-8230          # home: danish_realm   (Kopenhagen, KM 760.1, Hede 8A, Bruun IV lot 17212)
+      - denmark-numismaster-66065  # home: danish_realm (Kopenhagen, KM 760.1)
+      - dk-tid-70691           # home: danish_realm   (ucoin, KM 760)
+      - kmk-349780             # home: danish_realm   (KMM FP 10230.5, Hede 8)
+    reason: |
+      Curator decision 2026-06-23 (Serhii, by image): ONE coin — Frederik VII
+      «1 Rigsdaler» Rigsmønt 1854-1855, struck at BOTH Kopenhagen (KM 760.1,
+      Hede 8A) and Altona (KM 760.2, Hede 8B). Was fragmented across two entities:
+      the Altona side lived in royal_holstein (head unified-dk-hede-f7h8 + a
+      separate numista head 22192), the Kopenhagen side in danish_realm (head
+      unified-dk-bruun-8230 → finals dk-tid-70691 AND a stale orphan
+      unified-dk-hede-f7h8 that duplicated it). Same Hede 8 + Sieg 13.1/13.2 +
+      Schou 4/5; KM 760.1/.2 + Hede 8A/8B are mint sub-variants of ONE type →
+      list-form accumulation per §9a.
+
+      target_entity = royal_holstein per the c7h33 / c8h11a precedent: a coin
+      struck at Altona+Kopenhagen is the SH∩Denmark overlap, so it must PROCESS in
+      royal_holstein (the overlap-home consumed by BOTH the denmark page — via
+      Pass 1, ≤1864 — and the SH page). The cross-entity stamp then derives
+      issuing_entity = joint [danish_realm, royal_holstein] from the merged mint
+      [Altona, Kopenhagen]. The Kopenhagen members are pulled out of danish_realm
+      (source-side exclude removes the danish dk-tid-70691 + stale orphan, so no
+      fragment there). Head = unified-dk-hede-f7h8 (Hede authority). phase is a
+      per-location dict {denmark: I, schleswig_holstein: III} (curator 2026-06-23)
+      — the two pages periodise the 18½-Thaler-Fuß differently. The royal manual
+      final km-760-2-fr-vii-1855 is renamed to the head id unified-dk-hede-f7h8 as
+      the foundation carrying that classification.
