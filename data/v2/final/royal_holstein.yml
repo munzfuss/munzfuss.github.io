@@ -32736,8 +32736,8 @@ coins:
   verification_note: *id006
   composed_of:
   - unified-kmk-86266
-- fuss: seed_unsorted
-  phase: hede
+- fuss: reichsdukatenfuss
+  phase: I
   kind: kurant
   nominal: 1 Portugaløser
   ruler: Christian IV.
@@ -32755,7 +32755,9 @@ coins:
     - 5A
     - 5B
     hede_volume: c4h
-    schou: '3'
+    schou:
+    - '3'
+    - '4'
     sieg: '8'
     fr: '62.1'
   metal: gold
@@ -32774,6 +32776,12 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h5.htm
     ref: danskmoent.dk (Hede c4h5A)
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c4h5.htm
+    ref: danskmoent.dk (Hede c4h5)
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13110, p. 83
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -32781,8 +32789,8 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-c4h5a
-- fuss: seed_unsorted
-  phase: hede
+- fuss: 9_25_thaler
+  phase: II
   kind: kurant
   nominal: ½ Speciedaler
   ruler: Christian VII.
@@ -32819,6 +32827,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h9.htm
     ref: danskmoent.dk (Hede c7h9A)
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c7h9.htm
+    ref: danskmoent.dk (Hede c7h9)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -32831,8 +32842,8 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-c7h9a
-- fuss: seed_unsorted
-  phase: hede
+- fuss: 9_thaler
+  phase: I
   kind: scheide
   nominal: 1 Søsling Lybsk
   ruler: Frederik II.
@@ -32856,6 +32867,8 @@ coins:
     - 14-26
     - '27'
     - '29'
+    - '16'
+    - '32'
     sieg:
     - '32.1'
     - '32.2'
@@ -32892,6 +32905,9 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/372297
     ref: KMM 372297 (Inv. FP 4325.1)
     display: false
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f2h31.htm
+    ref: danskmoent.dk (Hede f2h31)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -35274,181 +35290,3 @@ coins:
   _curation_holds:
     note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-sh-tid-90766 (matched via composed-of-unified; V1→V2
       bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 1 Portugaløser
-  fraction: '10'
-  ruler: Christian IV.
-  issuing_entity: royal_holstein
-  id: unified-dk-hede-c4h5
-  year_first: 1591
-  year_last: 1592
-  year_ranges:
-  - - 1591
-    - 1592
-  year_label: 1591-1592
-  mint: Haderslev
-  catalog:
-    hede: '5'
-    hede_volume: c4h
-    schou:
-    - '3'
-    - '4'
-    sieg: '8'
-    fr: '62.1'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 34.88
-    source: hede
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c4h5.htm
-    ref: danskmoent.dk (Hede c4h5)
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 13110, p. 83
-  - type: literature
-    url: https://numismaster.com/MC_65629
-    ref: NumisMaster
-  verification_note:
-    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.
-      Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss,
-      Anker 0.9861) auf den kanonischen Müntzfuß-Wert gesetzt; Δ -0.07% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen
-      Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.'
-    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
-      danskmoent.dk. Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value
-      for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -0.07% against the soll value
-      sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.'
-    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.
-      Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss,
-      якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -0.07% проти Soll лежить у смузі ±2 % допустимої
-      специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.'
-  composed_of:
-  - unified-dk-hede-c4h5
-- fuss: 9_25_thaler
-  phase: II
-  kind: kurant
-  nominal: ½ Speciedaler
-  fraction: 1/2
-  ruler: Christian VII.
-  issuing_entity: royal_holstein
-  id: unified-dk-hede-c7h9
-  year_first: 1769
-  year_last: 1769
-  year_label: '1769'
-  mint: Rethwisch
-  catalog:
-    hede: '9'
-    hede_volume: c7h
-    schou:
-    - '9'
-    - '10'
-    sieg:
-    - '2'
-    - '3'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: hede
-  weight_rough_g:
-  - value: 14.447
-    source: hede
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c7h9.htm
-    ref: danskmoent.dk (Hede c7h9)
-  verification_note:
-    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
-      danskmoent.dk.'
-    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  hede_muentzfuss_yield:
-    value: 9.25
-    unit: speciedaler
-    basis: fin
-    unit_raw: speciedalere
-  composed_of:
-  - unified-dk-hede-c7h9
-- fuss: 9_thaler
-  phase: I
-  kind: scheide
-  nominal: 1 Søsling Lybsk
-  fraction: 1/96
-  ruler: Frederik II.
-  issuing_entity: royal_holstein
-  id: unified-dk-hede-f2h31
-  year_first: 1559
-  year_last: 1588
-  year_ranges:
-  - - 1559
-    - 1588
-  year_label: 1559-1588
-  mint: Flensburg
-  catalog:
-    hede:
-    - '31'
-    - 31A
-    hede_volume: f2h
-    schou:
-    - '16'
-    - '27'
-    - '32'
-    sieg:
-    - '32.1'
-    - '32.2'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.328
-    source: hede
-  weight_rough_g:
-  - value: 1.124
-    source: hede
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f2h31.htm
-    ref: danskmoent.dk (Hede f2h31)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/155202
-    ref: KMM 155202 (Inv. FP 3115.5)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/203799
-    ref: KMM 203799 (Inv. FP 6588.2)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/279226
-    ref: KMM 279226 (Inv. FP 3528.218)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/348823
-    ref: KMM 348823 (Inv. FP 5394.4)
-    display: false
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/372297
-    ref: KMM 372297 (Inv. FP 4325.1)
-    display: false
-  verification_note:
-    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
-      danskmoent.dk.'
-    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  hede_muentzfuss_yield:
-    value: 10.237
-    unit: speciedaler
-    basis: fin
-    unit_raw: daler
-  composed_of:
-  - unified-dk-hede-f2h31
