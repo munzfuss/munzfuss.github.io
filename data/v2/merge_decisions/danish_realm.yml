@@ -9,6 +9,23 @@
 
 merges:
   - members:
+      - dk-hede-c4h144a    # Hede 144 head (Christian IV «1 Skilling», KM 113.1) + its 11 KMM
+      - kmk-131501         # loose KMM specimen of Hede 144 (latent fragment)
+    reason: |
+      Curator decision 2026-06-22 (Serhii, by image): KMM specimen kmk-131501 is
+      the same coin as Christian IV «1 Skilling» Hede 144 (KM 113.1, .875 silver,
+      1621-1648) but sat as a LOOSE standalone seed_unified head (no Hede tag in
+      its seed → the matcher left it un-folded → a latent fragment the absorb
+      promotes on every run). Fold it into the Hede head dk-hede-c4h144a.
+      NOTE: deliberately does NOT include kmk-158132 — that seed is the FINAL
+      foundation (unified-kmk-158132) for this coin; folding it into c4h144a would
+      migrate the foundation's own seed to a different head and drop the coin (the
+      head-switch trap, observed 2026-06-22). kmk-158132 stays a standalone head =
+      the foundation; it absorbs c4h144a (which now carries kmk-131501). The stale
+      base unified-dk-hede-c4h144 (no seed) that over-collected these is deleted;
+      its classification (9¼-Thaler-Fuß I, scheide — §8a Skilling residual) is
+      transferred to the foundation kmk-158132.
+  - members:
       - dk-bruun-6438      # KM 265.2, Hede 24B (Bruun II lot 13155)
       - dk-bruun-6439      # KM 265.1, Hede 24A (Bruun III lot 11227)
     reason: |
