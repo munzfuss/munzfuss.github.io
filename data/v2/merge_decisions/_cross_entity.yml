@@ -98,3 +98,21 @@ merges:
       danish_realm's standalone pool (no fragment) AND lands its data in the
       royal_holstein seed_unified (durable). kmk-131538 carries no KMM material
       tag (metal None) -> folds cleanly into the copper host, no metal conflict.
+
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-c3h14      # home: royal_holstein («1 Rhinsk Gylden», Hede 14)
+      - dk-numista-379084  # home: gottorp_duchy   («1 Goldgulden», Numista N#379084)
+    reason: |
+      Curator decision 2026-06-22 (Serhii, by image): third copy of the Christian
+      III «Rhinsk Gylden» / «Goldgulden» (.75 gold, ca. 1536-1547). dk-numista-379084
+      carries Galster 131 + Fr 18 — the SAME refs as the Bruun «Goldgulden» — but
+      no mint, so the classifier mis-bucketed it into gottorp_duchy + seed_unsorted.
+      It is the SAME coin as the royal_holstein c3h14 group (= the same-entity merge
+      `merge_decisions/royal_holstein.yml::merges [dk-hede-c3h14, dk-bruun-14770]`).
+      This cross-entity pull moves it into royal_holstein and force-unions it with
+      c3h14, so the three records (Hede c3h14 + Bruun 14770 + Numista 379084) form
+      ONE coin. Nominal stays «1 Rhinsk Gylden» (Hede host). The «Goldgulden» vs
+      «Rhinsk Gylden» nominal genuinely differs, so the absorb re-validate would
+      evict the Numista member — the force-merge exemption (d071b81) protects it
+      (the exemption reads _cross_entity::merges too).
