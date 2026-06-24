@@ -1,6 +1,13 @@
 """Thin out intra-sub-variant IKMK / Bruun specimens that contribute no
 distinguishing signal beyond min / middle / max.
 
+RETIRED (2026-06-24): operated on the V1 data/locations/<loc>.yml coin
+yamls (removed once V2 reached parity), applying 4 hardcoded SH IKMK
+drops from the 2026-05-09 audit — no longer runnable. The V2 §9a thinning
+for the museum sources lives in thin_kmk_seed.py (now integrated into
+build_kmk_seed.py); an equivalent ikmk-seed thinning is an open
+follow-up (see docs/handoff.md).
+
 Background. Several coin entries accumulated 5+ specimens from a single
 resource (most often IKMK Berlin) within a single Stempelvariante
 sub-group. After §9a multi-specimen merge, all of those weights live in

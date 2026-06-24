@@ -27,14 +27,26 @@
 > - **Empirical proof first**: re-ran ALL 10 V2 seed builders with `data/seed/`
 >   moved aside → each reproduced its committed coin-id set 1:1 from cache
 >   (`data/seed/` was V1-anchor, not a live input).
-> - **kmk-seed «staleness» was a FALSE alarm** (investigated 2026-06-24, §0b):
->   the committed `data/v2/seed/kmk/` (13796) is NOT stale — it's deliberately
->   curated. The bare builder emits ~41490 raw museum specimens; `822833d` thinned
->   it to the §9a weight-variance envelope (42182→14443, dropping duplicate
->   same-sub-variant specimens) and `a80019b` dropped 637 KMM exonumia. The
->   "+22583" a fresh re-seed shows is exactly that removed noise. The last
->   coordinated re-seed (`3486bf0`) deliberately excluded kmk for this reason.
->   **Do NOT `build_kmk_seed.py --write` blindly — it regresses the thinning.**
+> - **kmk-seed «staleness» was a FALSE alarm, now permanently fixed**
+>   (investigated 2026-06-24, §0b). The committed seed was never stale — it was
+>   deliberately curated: bare builder emits ~41490 raw museum specimens;
+>   `822833d` thinned to the §9a envelope, `a80019b` dropped exonumia. The
+>   thinning used to be a SEPARATE post-pass (`thin_kmk_seed.py`), so a bare
+>   `build_kmk_seed.py --write` regressed it — which is why the last coordinated
+>   re-seed (`3486bf0`) skipped kmk. **Fixed `12575db`**: `build_kmk_seed.py`
+>   now calls `thin_kmk_seed.thin()` itself (scope→exonumia→§9a in one run,
+>   idempotent, `--no-thin` escape). Seed resynced to the builder output
+>   (`d547bec`, 13796→13819, render-neutral). **Safe to `--write` now; re-seed =
+>   no-op.**
+> - **OPEN follow-up — ikmk over-samples too** (found 2026-06-24): the committed
+>   `data/v2/seed/ikmk/` (4354) is the BARE builder output — never thinned in V2
+>   (the V1 `thin_intra_subvariant_specimens.py` only touched 4 SH coins on the
+>   now-removed `data/locations/`). It carries 72 ≥5-specimen buckets, the biggest
+>   734 specimens of an UNCATALOGUED «1/24 Taler» 1619. Over-sampling reaches
+>   final (one coin has 63 weight readings). Same class as kmk but trickier:
+>   uncatalogued buckets may group genuinely-distinct coins, so blind §9a thinning
+>   could lose types. Decision pending — generalise thinning + apply to ikmk
+>   (+ audit other museum sources) vs. leave. NOT yet actioned.
 > - `366c9f4` reference/ HTML artifacts · `ba528a9` seed_v2_regroup.py +
 >   build_numista_pre1541_seed.py (no callers) · `1deb8ff` build.py V1 render path
 >   (−458 lines: load_locations, _merge_seeds_into_raw, --include-v1/--v1-only,
