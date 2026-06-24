@@ -15,6 +15,35 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-25 — night: galster foreign-catalogue reroute + catalogue-hygiene audit (§DA)
+
+> **All UNPUSHED** (this night added 4: `9558e85` docs → `1a03f3e`). `git push` pending.
+>
+> **Autonomous night work** (user: «лишаю тебе на night work, продовжуй доки не завершиш»).
+> Stayed inside guardrails: no push, no new errata beyond curator-approved, ambiguous
+> catalogue-semantics DOCUMENTED not guessed.
+>
+> **Galster foreign-catalogue reroute — FIXED** (`e2e3727` builder, `1a03f3e` data).
+> 5 Hans (hg-) Galster coins crammed foreign catalogues into `galster`/`sieg`:
+> hg-233/234/236/238 had galster «233, Hildebrand 715, Rasmusson ill. 17,
+> Lagerqvist 4» (danskmoent COMMA-JOINS cross-refs into the galster string);
+> hg-141 had sieg «Hauberg 102». These rendered as «Galster Lagerqvist 4» on the
+> denmark page. `build_galster_denmark_seed._reroute_foreign_catalogue_refs` splits
+> on comma + routes foreign-NAME-whitelist parts (Hildebrand/Lagerqvist/Rasmusson/
+> Hauberg) to `others`; real index stays typed, legit Sieg «[2015] 8» kept. Applied
+> surgically to the danish_realm seed (ruamel round-trip) — NOT via `--no-merge`,
+> which had a collateral `mint_verified:true→false` flip on a danish_norway coin.
+> Re-flowed danish_realm (merge+absorb, 0 stale dropped); rendered «Lagerqvist 4»
+> now a plain `others` entry. Verified end-to-end.
+>
+> **Broader finding → TODO §DA (`<this commit>` docs).** The scan that found the
+> galster issue surfaced **688 whitespace/foreign values** across ALL numeric
+> catalogue registers; 11 fixed (galster), **~677 documented for curator judgment**
+> (numista `dav` EC/BrSL/AAO prefixes = Davenport-or-foreign?, spaced sub-variants
+> «125 A»→«125A» de-space policy, lange «N var.» strip, ucoin «UC# N» misfile,
+> parser-garbage in bruun/galster). NOT bulk-fixed — each class needs a catalogue-
+> semantics decision (§0b/§4). Repro + full class breakdown in TODO §DA.
+
 ## 2026-06-24 (later) — §9a salvage + galster-key fix + full re-flow shipped
 
 > **All UNPUSHED** (30 ahead of origin; this session added 6: `c199b93`→`9e8b6f7`).
