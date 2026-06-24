@@ -26,9 +26,15 @@
 > piece. What was removed + how:
 > - **Empirical proof first**: re-ran ALL 10 V2 seed builders with `data/seed/`
 >   moved aside → each reproduced its committed coin-id set 1:1 from cache
->   (`data/seed/` was V1-anchor, not a live input). kmk seed is stale vs its
->   grown cache (+22583) — **separate, deferred** («kmk-сід на потім»), unrelated
->   to V1.
+>   (`data/seed/` was V1-anchor, not a live input).
+> - **kmk-seed «staleness» was a FALSE alarm** (investigated 2026-06-24, §0b):
+>   the committed `data/v2/seed/kmk/` (13796) is NOT stale — it's deliberately
+>   curated. The bare builder emits ~41490 raw museum specimens; `822833d` thinned
+>   it to the §9a weight-variance envelope (42182→14443, dropping duplicate
+>   same-sub-variant specimens) and `a80019b` dropped 637 KMM exonumia. The
+>   "+22583" a fresh re-seed shows is exactly that removed noise. The last
+>   coordinated re-seed (`3486bf0`) deliberately excluded kmk for this reason.
+>   **Do NOT `build_kmk_seed.py --write` blindly — it regresses the thinning.**
 > - `366c9f4` reference/ HTML artifacts · `ba528a9` seed_v2_regroup.py +
 >   build_numista_pre1541_seed.py (no callers) · `1deb8ff` build.py V1 render path
 >   (−458 lines: load_locations, _merge_seeds_into_raw, --include-v1/--v1-only,
