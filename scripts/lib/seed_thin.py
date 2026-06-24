@@ -12,13 +12,14 @@ Rule (CLAUDE.md §9a). A sub-variant bucket of ≥5 specimens from one source is
 thinned to ``min`` / position-``len//2`` middle / ``max`` (id-sorted
 representatives, deterministic + idempotent).
 
-Catalogued-only gate (curator direction 2026-06-24). A bucket is only eligible
-for thinning when it carries a real catalogue index (km / hede / lange / sieg /
-schou / fr / dav / galster). Uncatalogued buckets group by descriptive fields
-alone (nominal + ruler + year + mint + metal), which is NOT a confident type
-identity — they may group genuinely-distinct coins, and such coins stay
-``seed_unsorted`` downstream because there is no certainty they were correctly
-merged. Thinning them could silently drop types, so they are LEFT WHOLE.
+Optional catalogued-only gate. With ``catalogued_only=True`` a bucket is only
+eligible for thinning when it carries a real catalogue index (km / hede / lange
+/ sieg / schou / fr / dav / galster) — for sources where an uncatalogued
+descriptive grouping (nominal + ruler + year + mint + metal) is genuinely
+uncertain and might group distinct coins. The default is ``False`` (thin all
+≥5 buckets): for museum cabinets an uncatalogued record carries no
+distinguishing signal beyond the sub-variant key + weight, so dropping the
+redundant specimens loses nothing the data model can tell apart.
 
 Two entry points:
   * ``thin_coins(coins, ...)``  — pure; thin an in-memory coin list.
@@ -26,12 +27,11 @@ Two entry points:
     ``data/v2/seed/<source>/`` directory in place. Builders call this as a
     post-write step so a single ``--write`` is self-filtering + idempotent.
 
-Current users: IKMK (``build_ikmk_seed.py``, ``catalogued_only=True`` per
-curator direction 2026-06-24 — uncatalogued buckets, whose grouping is not a
-confident type identity and which stay seed_unsorted downstream, are left
-whole). KMK keeps its own ``thin_kmk_seed.py`` (no gate — its big buckets are
-uncatalogued-and-no-mint but reliably one type, and the cabinet's committed
-envelope was curated that way); it can migrate here later if desired.
+Current users (both ``catalogued_only=False`` — thin all ≥5; curator direction
+2026-06-24): IKMK via ``build_ikmk_seed.py`` (→ this module); KMK via its own
+``thin_kmk_seed.py`` (same min/middle/max logic, predates this module). The
+gate is kept as an opt-in for any future source with genuinely-uncertain
+uncatalogued grouping.
 """
 from __future__ import annotations
 

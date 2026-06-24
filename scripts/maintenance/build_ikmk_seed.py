@@ -347,15 +347,17 @@ def build_seed(dry_run: bool, no_merge: bool, limit: int | None,
         no_merge=no_merge,
     )
     # §9a thinning of over-sampled IKMK sub-variants. IKMK over-samples common
-    # types too (one uncatalogued «1/24 Taler» 1619 had 734 specimens). Only
-    # CATALOGUED buckets are thinned — uncatalogued buckets have uncertain type
-    # identity, stay seed_unsorted, and are left whole. Integrated here so a
-    # single --write is self-filtering + idempotent.
+    # types (one «1/24 Taler» 1619 sub-variant had 734 specimens). Thin ALL
+    # ≥5-specimen buckets to the min/middle/max envelope (catalogued_only=False
+    # per curator direction 2026-06-24): an uncatalogued museum record carries
+    # no distinguishing signal beyond the sub-variant key + weight, so dropping
+    # the redundant specimens loses nothing our data model can tell apart.
+    # Integrated here so a single --write is self-filtering + idempotent.
     if not dry_run and not no_thin:
         print("\n🪶 Thinning over-sampled sub-variants to §9a envelope...")
         from lib.seed_thin import thin_seed_dir
         seed_dir = Path(__file__).resolve().parents[2] / "data" / "v2" / "seed" / "ikmk"
-        thin_seed_dir(seed_dir, catalogued_only=True, dry_run=False)
+        thin_seed_dir(seed_dir, catalogued_only=False, dry_run=False)
     return 0
 
 
