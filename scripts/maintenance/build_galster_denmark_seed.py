@@ -310,6 +310,46 @@ def _build_sources(data: dict) -> list[dict]:
     ]
 
 
+# Foreign-catalogue NAMES that danskmoent lists as cross-references on a Galster
+# coin page (Hildebrand/Lagerqvist/Rasmusson = Swedish/Scanian medieval-coin
+# catalogues; Hauberg = Danish medieval). The page parser sometimes captures
+# these INTO the `galster`/`sieg` register (e.g. galster
+# ['233','Hildebrand 715','Lagerqvist 4']). They are NOT Galster/Sieg numbers —
+# reroute to `others` so the typed register holds only its own catalogue. Tight
+# NAME whitelist: a real Galster/Sieg index never starts with a catalogue name.
+# NOT touched (need curator judgment — see TODO §DA): bracketed Sieg yearbook
+# editions «[2018] 18», «mangler hos», «Ernst 1940 …», Jensen-Skjoldager ranges.
+_FOREIGN_CATALOGUE_RE = re.compile(r"^(hildebrand|lagerqvist|rasmusson|hauberg)\b", re.I)
+
+
+def _reroute_foreign_catalogue_refs(catalog: dict) -> None:
+    """Move foreign-catalogue cross-refs out of the `galster`/`sieg` registers
+    into `others` (verbatim). In place; idempotent.
+
+    The danskmoent cache COMMA-JOINS the cross-refs into one string
+    («233, Hildebrand 715, Rasmusson ill. 17, Lagerqvist 4»), so split on comma
+    first (a real Galster/Sieg index never contains a comma), then partition by
+    the foreign-NAME whitelist."""
+    for reg in ("galster", "sieg"):
+        val = catalog.get(reg)
+        if val is None:
+            continue
+        vals = val if isinstance(val, list) else [val]
+        parts = [p.strip() for v in vals for p in str(v).split(",") if p.strip()]
+        kept = [p for p in parts if not _FOREIGN_CATALOGUE_RE.match(p)]
+        moved = [p for p in parts if _FOREIGN_CATALOGUE_RE.match(p)]
+        if not moved:
+            continue
+        others = catalog.setdefault("others", [])
+        for m in moved:
+            if m not in others:
+                others.append(m)
+        if kept:
+            catalog[reg] = kept[0] if len(kept) == 1 else kept
+        else:
+            catalog.pop(reg, None)
+
+
 def build_entry(data: dict) -> dict | None:
     year_first, year_last = parse_year_range(data.get("year_label"))
     year_verified = True
@@ -334,6 +374,7 @@ def build_entry(data: dict) -> dict | None:
         catalog["galster"] = data["galster_number"]
     if data.get("ruler_volume"):
         catalog["galster_volume"] = data["ruler_volume"]
+    _reroute_foreign_catalogue_refs(catalog)
 
     specs = data.get("specs") or {}
     sub_realm = data.get("sub_realm")
