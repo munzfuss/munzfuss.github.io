@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """V2 Phase 1.2 — migrate V1 curated coins → entity-keyed V2 files.
 
+RETIRED (2026-06-24): this was the one-time V1→V2 bootstrap. The V1
+source it reads (`data/locations/<loc>.yml`) was removed once V2 reached
+parity, so this script can no longer run. Kept for the §3.1 decision-tree
+reference below, which documents how the V2 final files were derived.
+
 Reads every `data/locations/<loc>.yml`, applies the §3.1 decision tree
 from `docs/V2_PIPELINE.md`, and writes per-political-entity files to
 `data/v2/final/<entity>.yml`.

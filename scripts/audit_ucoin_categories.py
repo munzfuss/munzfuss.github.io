@@ -302,12 +302,13 @@ def main():
     with open(CACHE_UCOIN / "_url_index.json") as fp:
         ucoin = json.load(fp)
 
-    # Read ALL location files — the bulk-imported denmark/hamburg/lubeck
-    # seeds also count as «already in base», so any future ucoin re-fetch
+    # Read ALL V2 final entity files — the bulk-imported denmark/hamburg/
+    # lubeck coins count as «already in base», so any future ucoin re-fetch
     # of the same tid silently drops instead of re-bucketing as seed.
-    LOCATIONS_DIR = Path("data/locations")
+    # (_-prefixed synthetic buckets like _unclassified are skipped.)
+    LOCATIONS_DIR = Path("data/v2/final")
     location_paths = sorted(p for p in LOCATIONS_DIR.glob("*.yml")
-                            if not p.stem.endswith("-references"))
+                            if not p.stem.startswith("_"))
 
     base_by_km: dict[str, list[dict]] = {}
     # Reverse lookup tid → coin for entries already present in our base

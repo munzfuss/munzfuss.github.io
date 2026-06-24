@@ -43,8 +43,8 @@ ROUNDTRIP_CASES = [
     ("data/v2/final/rantzau_county.yml",        "pyyaml120",     5),
     ("data/v2/seed_unified/danish_realm.yml",   "pyyaml120",     5),
     ("data/v2/seed/bruun/danish_realm.yml",     "ruamel_seed",   40),
-    ("data/locations/denmark.yml",              "ruamel_loc",    20),
-    ("data/locations/schleswig_holstein.yml",   "ruamel_loc",    20),
+    ("data/locations/denmark-references.yml",            "ruamel_loc",  20),
+    ("data/locations/schleswig_holstein-references.yml", "ruamel_loc",  20),
     ("data/shared/fuesse.yml",                  "ruamel_shared", 80),
 ]
 

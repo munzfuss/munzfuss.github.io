@@ -2,7 +2,8 @@
 """Fetch coin references from Numista API v3 (replaces browser scraping).
 
 Strategy:
-- Reads `data/locations/schleswig_holstein.yml`, collects unique `catalog.numista` IDs.
+- Reads `data/v2/final/*.yml` (the curated V2 coin data), collects unique
+  `catalog.numista` IDs.
 - For each, looks up cached `scripts/cache/numista/<nid>.json`. If absent,
   fetches from the API and caches the full JSON response.
 - Compiles `scripts/numista_refs.json` — the input expected by
@@ -15,7 +16,7 @@ even when a future location batch pushes total volume higher.
 Usage:
     .venv/bin/python scripts/fetch_numista_api.py
     .venv/bin/python scripts/fetch_numista_api.py --force      # ignore cache
-    .venv/bin/python scripts/fetch_numista_api.py --location=schleswig
+    .venv/bin/python scripts/fetch_numista_api.py --entity=royal_holstein
 """
 from __future__ import annotations
 import argparse
@@ -73,14 +74,15 @@ def refs_to_strings(refs: list[dict]) -> list[str]:
     return out
 
 
-def collect_nids(yml_path: pathlib.Path) -> list[str]:
+def collect_nids(yml_paths: list[pathlib.Path]) -> list[str]:
     yaml = YAML()
-    data = yaml.load(yml_path.read_text())
     nids: set[str] = set()
-    for c in data.get("coins") or []:
-        nid = (c.get("catalog") or {}).get("numista")
-        if nid:
-            nids.add(str(nid))
+    for yml_path in yml_paths:
+        data = yaml.load(yml_path.read_text()) or {}
+        for c in data.get("coins") or []:
+            nid = (c.get("catalog") or {}).get("numista")
+            if nid:
+                nids.add(str(nid))
     return sorted(nids)
 
 
@@ -88,16 +90,23 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true",
                     help="Refetch even if cached (uses up API quota)")
-    ap.add_argument("--location", default="schleswig_holstein",
-                    help="Location YAML stem (default: schleswig)")
+    ap.add_argument("--entity", default=None,
+                    help="Restrict to one data/v2/final/<entity>.yml "
+                         "(default: all V2 final entities)")
     args = ap.parse_args()
 
     load_local_env()
     key = require("NUMISTA_API_KEY")
 
-    yml_path = pathlib.Path(f"data/locations/{args.location}.yml")
-    nids = collect_nids(yml_path)
-    print(f"Collected {len(nids)} unique Numista IDs from {yml_path.name}")
+    final_dir = pathlib.Path("data/v2/final")
+    if args.entity:
+        yml_paths = [final_dir / f"{args.entity}.yml"]
+    else:
+        yml_paths = sorted(p for p in final_dir.glob("*.yml")
+                           if not p.stem.startswith("_"))
+    nids = collect_nids(yml_paths)
+    print(f"Collected {len(nids)} unique Numista IDs from "
+          f"{len(yml_paths)} V2 final file(s)")
 
     all_refs: dict[str, list[str]] = {}
     live = 0

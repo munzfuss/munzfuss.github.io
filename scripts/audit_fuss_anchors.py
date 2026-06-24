@@ -93,13 +93,25 @@ def collect_years(coins: list[dict]) -> tuple[dict[str, list[int]], dict[str, li
     return by_fuss_holstein, by_fuss_all
 
 
-def audit(location: str) -> int:
+def audit() -> int:
     fuesse = load(ROOT / "data/shared/fuesse.yml")
-    loc = load(ROOT / f"data/locations/{location}.yml")
+    # Holstein coins span multiple V2 entity files (royal_holstein,
+    # gottorp_duchy, …); collect_years filters to HOLSTEIN_ENTITIES via
+    # issuing_entity, so gather every curated coin across data/v2/final/.
+    coins: list[dict] = []
+    for p in sorted((ROOT / "data/v2/final").glob("*.yml")):
+        if p.stem.startswith("_"):
+            continue
+        # The file IS the entity bucket; stamp it so collect_years can
+        # filter to HOLSTEIN_ENTITIES (a V2 coin's issuing_entity may be
+        # list-valued — the filename is the authoritative home entity).
+        for c in (load(p) or {}).get("coins") or []:
+            c["issuing_entity"] = p.stem
+            coins.append(c)
 
-    by_fuss, by_fuss_all = collect_years(loc.get("coins", []))
+    by_fuss, by_fuss_all = collect_years(coins)
 
-    print(f"Auditing fuss-anchor declarations against '{location}' coin data\n")
+    print("Auditing fuss-anchor declarations against V2 final coin data\n")
     print(f"{'fuss':<28} {'decl_first':>10} {'data_first':>10} {'decl_last':>10} {'data_last':>10}  status")
     print("-" * 100)
 
@@ -156,11 +168,8 @@ def audit(location: str) -> int:
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    p.add_argument("--location", default="schleswig_holstein",
-                   help="Location id under data/locations/ (default: schleswig)")
-    args = p.parse_args()
-    rc = audit(args.location)
+    argparse.ArgumentParser(description=__doc__.split("\n\n")[0]).parse_args()
+    rc = audit()
     raise SystemExit(0 if rc == 0 else 0)  # report-only, never fails CI for now
 
 
