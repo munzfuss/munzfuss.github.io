@@ -43,6 +43,13 @@
 > «125 A»→«125A» de-space policy, lange «N var.» strip, ucoin «UC# N» misfile,
 > parser-garbage in bruun/galster). NOT bulk-fixed — each class needs a catalogue-
 > semantics decision (§0b/§4). Repro + full class breakdown in TODO §DA.
+>
+> **2 stale royal_holstein assignments retargeted** (`60b7fcf`). The full re-flow's
+> «Curator assignments unmatched: 2» were c4h8b + bruun-14770 — coins that folded
+> into heads c4h8a (Ungersk Gylden) / c3h14 (Rhinsk Gylden); the assignments still
+> targeted the dead pre-fold ids. Classification was never at risk (curated finals
+> are guard-preserved), but retargeted c4h8b→c4h8a / bruun-14770→c3h14 to clear the
+> debt. Render-neutral (coin-id set unchanged); unmatched 2→0.
 
 ## 2026-06-24 (later) — §9a salvage + galster-key fix + full re-flow shipped
 
