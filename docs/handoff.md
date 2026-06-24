@@ -15,6 +15,64 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-24 (later) — §9a salvage + galster-key fix + full re-flow shipped
+
+> **All UNPUSHED** (30 ahead of origin; this session added 6: `c199b93`→`9e8b6f7`).
+> `git push` pending — no «пуш» yet.
+>
+> **§9a thinning now SALVAGES dropped specimens' distinguishing data** (`c199b93`
+> code+test). Before: thinning a ≥5 bucket to min/middle/max dropped every other
+> specimen wholesale, losing any distinct catalogue index (the `others`
+> sub-catalogue: schrötter#/olding#/dorfmann#/galster sub-variants) or fineness/
+> diameter the reps lacked. Now `_salvage_unique(reps, dropped)` (`lib/seed_thin.py`)
+> unions distinct catalogue indices onto reps[0] + fills fineness/diameter only when
+> reps lack it; redundant weight + per-specimen sources still shed. Wired into both
+> `thin_coins` + `thin_kmk_seed.thin`. 7 unit tests (`tests/test_seed_thin.py`).
+>
+> **galster-key fix (`66649db` code, `381f35a` seeds; kmk 13819→14003).** The salvage
+> exposed a latent bug: the thinning bucket key (`_subvariant_key` in both thinners)
+> OMITTED `galster` (a type-identity register, like km/hede/sieg/schou; thin_kmk_seed
+> also lacked `lange`). So distinct Galster types (57 Kbh-Søsling vs 63 Malmö-Søsling
+> vs 104 ChrIII-4Sk) shared one bucket → collapsed → salvage unioned their galster
+> onto one rep → f1g-57 bloated to [5,57,57A,57B,63,104,567B] → 7 transitive
+> over-merges. Added galster (+lange) to both keys → over-merge resolved (f1g-57 →
+> [57,57A,57B]), +184 distinct Galster types recovered. Verified vs danskmoent:
+> f1g57 = «Søsling 1524 København, Galster split into 57A/57B groups».
+> Plus two KMM `typeNumber` data fixes in `build_kmk_seed._catalog` (curator-approved):
+> galster sub-variant case-norm (57b→57B; scoped to galster — Hede/Lange/Schou case
+> convention NOT uniformly uppercase) + builder-level source errata for 3 malformed
+> strings (309770 «Galster 5 + B», 311330/311331 «G. 567B» → 57B; f1g5/f1g567 both
+> danskmoent-404). Errata in the BUILDER not data-`_source_errata` because these thin
+> into the 57B bucket and an entry-level carrier wouldn't survive the next rebuild.
+>
+> **TOOLING LESSON (merge carry-forward):** when a builder's catalog OUTPUT changes
+> (errata/case-norm/key change), a routine `--write` (merge) deep-merges the stale
+> on-disk catalog value with the fresh one → list-form bloat (e.g. galster ['5','57B']).
+> For a non-curated source (KMK/IKMK) flush with `--write --no-merge` once; then
+> routine `--write` is idempotent again. Verified: post-flush `--write` holds 14003,
+> 0 bloat.
+>
+> **denmark UK preamble** (`9df01d6`): «sjælland-ський åbent Brev» (Cyrillic-suffix
+> hybrid, §2 trap) → «зеландський відкритий лист» (descriptive, parallel to «норвезький
+> ордонанс»). DE/EN keep the Danish proper name. Only the preamble; the 5 other UK
+> occurrences already used clean «Sjælland åbent Brev».
+>
+> **FULL RE-FLOW DONE (`9e8b6f7`)** — merger+absorb all 22 entities, propagating the
+> thinning + galster fix to `final/`. Merger 24266 seeds → 15433 unified (8763
+> confident folds, 963 conflicts logged to match_uncertainty, no coin loss). Absorb
+> final 15152; **522 stale non-curated `seed_unsorted` stubs dropped** (their backing
+> specimens were §9a-thinned — EMPIRICALLY verified 0 curated entries in the drop set
+> via `_is_vanished_stale_final`'s `not _final_is_curated` guard; curated finals that
+> lost backing are RETAINED). Build clean; audit §9a = 0 remaining ≥5 buckets / 0
+> same-weight dups. The big line-diff (−82k) is the thinning finally reaching final/.
+>
+> **Minor open (out of scope, flagged not fixed):** `unified-dk-galster-hg-238` (Hans)
+> carries «Lagerqvist 9a-f» in its `catalog.galster` field — a Lagerqvist ref misfiled
+> into the galster register. Not touched.
+>
+> **Pre-existing backlog (NOT from this session):** audit_health shows 588 prose-lint
+> errors (§W cleanup) + 1 i18n error — coin-data re-flow doesn't touch prose surfaces.
+
 ## 2026-06-24 — V1 layer fully removed; all consumers migrated to V2
 
 > **Commits UNPUSHED** (this session added 9: `366c9f4` reference/ → `30a4718`
