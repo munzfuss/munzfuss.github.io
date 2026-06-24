@@ -405,6 +405,51 @@ def walk_references(doc: dict) -> Iterator[tuple[str, str, str]]:
                 yield from _emit_i18n(content, lang, f"entries[{i}({entry.get('id', '?')})].content")
 
 
+def walk_v2_location(doc: dict) -> Iterator[tuple[str, str, str]]:
+    """Yield role-3 prose from a `data/v2/locations/<loc>.yml` file: the
+    location summary, the per-fuss period prose, and timeline bar titles.
+    Fuß `name` / `historical_name` are identifiers (never translated) and
+    are deliberately skipped; `grundwerte` is structured data, not prose."""
+    for lang in LANGS:
+        yield from _emit_i18n(doc.get("summary") or {}, lang, "summary")
+    fuss_periods = doc.get("fuss_periods")
+    if isinstance(fuss_periods, dict):
+        for fk, period in fuss_periods.items():
+            if not isinstance(period, dict):
+                continue
+            for lang in LANGS:
+                yield from _emit_i18n(period.get("hintergrund") or {}, lang, f"fuss_periods.{fk}.hintergrund")
+                yield from _emit_i18n(period.get("closing") or {}, lang, f"fuss_periods.{fk}.closing")
+                yield from _emit_i18n(period.get("description") or {}, lang, f"fuss_periods.{fk}.description")
+                yield from _emit_i18n(period.get("details") or {}, lang, f"fuss_periods.{fk}.details")
+    timeline = doc.get("timeline")
+    if isinstance(timeline, dict):
+        for i, bar in enumerate(timeline.get("bars") or []):
+            if isinstance(bar, dict):
+                for lang in LANGS:
+                    yield from _emit_i18n(bar.get("bar_title") or {}, lang, f"timeline.bars[{i}].bar_title")
+
+
+def walk_v2_final(doc: dict) -> Iterator[tuple[str, str, str]]:
+    """Yield role-3 prose from a `data/v2/final/<entity>.yml` file — the
+    per-coin notes (where V2 coin prose actually lives)."""
+    for i, coin in enumerate(doc.get("coins") or []):
+        if not isinstance(coin, dict):
+            continue
+        # Skip un-triaged seed coins: their notes are raw catalogue data,
+        # not curated reader-facing prose (V1 parity — the V1 audit only saw
+        # curated coins, never the data/seed/ raw layer).
+        if coin.get("fuss") == "seed_unsorted":
+            continue
+        for lang in LANGS:
+            yield from _emit_i18n(coin.get("note") or {}, lang, f"coins[{i}].note")
+            yield from _emit_i18n(coin.get("verification_note") or {}, lang, f"coins[{i}].verification_note")
+        for j, fr in enumerate(coin.get("fuss_refs") or []):
+            if isinstance(fr, dict) and isinstance(fr.get("label"), dict):
+                for lang in LANGS:
+                    yield from _emit_i18n(fr["label"], lang, f"coins[{i}].fuss_refs[{j}].label")
+
+
 def walk_fuesse(doc: dict) -> Iterator[tuple[str, str, str]]:
     """Yield from data/shared/fuesse.yml or german_fuesse.yml — fuss-level prose."""
     for fuss_id, fuss in (doc or {}).items():
@@ -523,11 +568,24 @@ def collect_files(args) -> list[Path]:
         candidates = []
         if args.location:
             candidates.extend([
-                DATA / "locations" / f"{args.location}.yml",
+                DATA / "v2" / "locations" / f"{args.location}.yml",
                 DATA / "locations" / f"{args.location}-references.yml",
             ])
         else:
-            candidates.extend(sorted((DATA / "locations").glob("*.yml")))
+            # V2 prose surfaces: per-location display yamls + per-entity
+            # coin files. Coin prose lives in data/v2/final/; location +
+            # fuss-period prose lives in data/v2/locations/. Reference
+            # sidecars stay in data/locations/ (shared with V2).
+            candidates.extend(
+                p for p in sorted((DATA / "v2" / "locations").glob("*.yml"))
+                if not p.stem.endswith("-references"))
+            # Skip _-prefixed synthetic buckets (e.g. _unclassified.yml) —
+            # they're consumed by no location, so their coin notes are not
+            # reader-facing.
+            candidates.extend(
+                p for p in sorted((DATA / "v2" / "final").glob("*.yml"))
+                if not p.stem.startswith("_"))
+            candidates.extend(sorted((DATA / "locations").glob("*-references.yml")))
             candidates.append(DATA / "shared" / "fuesse.yml")
             candidates.append(DATA / "shared" / "german_fuesse.yml")
             candidates.append(DATA / "shared" / "german_fuesse-references.yml")
@@ -632,12 +690,20 @@ def main() -> int:
             continue
         rel = str(path.relative_to(ROOT))
 
-        if path.parent.name == "locations":
-            if path.stem.endswith("-references"):
-                walker = walk_references
-            else:
-                walker = walk_location
-        elif path.parent.name == "shared":
+        parent = path.parent.name
+        grand = path.parent.parent.name
+        if grand == "v2" and parent == "locations":
+            walker = walk_v2_location
+        elif grand == "v2" and parent == "final":
+            if path.stem.startswith("_"):
+                continue  # synthetic bucket (e.g. _unclassified) — not reader-facing
+            walker = walk_v2_final
+        elif parent == "locations":
+            # data/locations/ now holds only -references sidecars (V1 coin
+            # yamls removed); walk_location is kept for transitional / staged
+            # V1 files.
+            walker = walk_references if path.stem.endswith("-references") else walk_location
+        elif parent == "shared":
             if path.stem.endswith("-references"):
                 walker = walk_references
             else:

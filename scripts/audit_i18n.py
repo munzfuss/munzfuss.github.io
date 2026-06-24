@@ -140,6 +140,43 @@ def walk_fuesse_triples(doc: dict) -> Iterator[tuple[str, dict[str, str]]]:
                 yield from _triple(phase.get("label") or {}, f"{fuss_id}.phases[{i}].label")
 
 
+def walk_v2_location_triples(doc: dict) -> Iterator[tuple[str, dict[str, str]]]:
+    """Walk a data/v2/locations/<loc>.yml; yield (key_path, {de,en,uk}).
+    Fuß name / historical_name are identifiers (never translated) and
+    grundwerte is structured data — both skipped."""
+    yield from _triple(doc.get("summary") or {}, "summary")
+    fuss_periods = doc.get("fuss_periods")
+    if isinstance(fuss_periods, dict):
+        for fk, period in fuss_periods.items():
+            if not isinstance(period, dict):
+                continue
+            yield from _triple(period.get("hintergrund") or {}, f"fuss_periods.{fk}.hintergrund")
+            yield from _triple(period.get("closing") or {}, f"fuss_periods.{fk}.closing")
+            yield from _triple(period.get("description") or {}, f"fuss_periods.{fk}.description")
+            yield from _triple(period.get("details") or {}, f"fuss_periods.{fk}.details")
+    timeline = doc.get("timeline")
+    if isinstance(timeline, dict):
+        for i, bar in enumerate(timeline.get("bars") or []):
+            if isinstance(bar, dict):
+                yield from _triple(bar.get("bar_title") or {}, f"timeline.bars[{i}].bar_title")
+
+
+def walk_v2_final_triples(doc: dict) -> Iterator[tuple[str, dict[str, str]]]:
+    """Walk a data/v2/final/<entity>.yml; yield curated coin-note triples.
+    Un-triaged seed coins (fuss == seed_unsorted) are raw catalogue data,
+    not curated reader-facing prose — skipped (V1 parity)."""
+    for i, coin in enumerate(doc.get("coins") or []):
+        if not isinstance(coin, dict):
+            continue
+        if coin.get("fuss") == "seed_unsorted":
+            continue
+        yield from _triple(coin.get("note") or {}, f"coins[{i}].note")
+        yield from _triple(coin.get("verification_note") or {}, f"coins[{i}].verification_note")
+        for j, fr in enumerate(coin.get("fuss_refs") or []):
+            if isinstance(fr, dict):
+                yield from _triple(fr.get("label") or {}, f"coins[{i}].fuss_refs[{j}].label")
+
+
 # ----------------------------------------------------------------------------
 # Rule checks
 # ----------------------------------------------------------------------------
@@ -327,15 +364,22 @@ def check_triple(triple: dict[str, str], file_str: str, field: str,
 def collect_files(args) -> list[Path]:
     if args.location:
         return [p for p in [
-            DATA / "locations" / f"{args.location}.yml",
+            DATA / "v2" / "locations" / f"{args.location}.yml",
             DATA / "locations" / f"{args.location}-references.yml",
         ] if p.exists()]
-    files = list(sorted((DATA / "locations").glob("*.yml")))
+    # V2 prose surfaces: per-location display yamls + per-entity coin files
+    # (skip _-prefixed synthetic buckets like _unclassified — not reader-
+    # facing). Reference sidecars stay in data/locations/ (shared with V2).
+    files = [p for p in sorted((DATA / "v2" / "locations").glob("*.yml"))
+             if not p.stem.endswith("-references")]
+    files += [p for p in sorted((DATA / "v2" / "final").glob("*.yml"))
+              if not p.stem.startswith("_")]
+    files += sorted((DATA / "locations").glob("*-references.yml"))
     for name in ("fuesse.yml", "german_fuesse.yml", "german_fuesse-references.yml"):
         p = DATA / "shared" / name
         if p.exists():
             files.append(p)
-    return files
+    return [p for p in files if p.exists()]
 
 
 # ----------------------------------------------------------------------------
@@ -417,9 +461,17 @@ def main() -> int:
             continue
         rel = str(path.relative_to(ROOT))
 
-        if path.parent.name == "locations":
+        parent = path.parent.name
+        grand = path.parent.parent.name
+        if grand == "v2" and parent == "locations":
+            walker = walk_v2_location_triples
+        elif grand == "v2" and parent == "final":
+            if path.stem.startswith("_"):
+                continue  # synthetic bucket (e.g. _unclassified) — not reader-facing
+            walker = walk_v2_final_triples
+        elif parent == "locations":
             walker = walk_references_triples if path.stem.endswith("-references") else walk_location_triples
-        elif path.parent.name == "shared":
+        elif parent == "shared":
             walker = walk_references_triples if path.stem.endswith("-references") else walk_fuesse_triples
         else:
             continue
