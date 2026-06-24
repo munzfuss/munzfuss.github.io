@@ -7,7 +7,7 @@
 > `data/shared/fuesse.yml#kronemont_chr_iv | kronemont |
 > kronemont_fine | guldkrone` als auch die per-Location-Anwendungen
 > (`data/locations/denmark.yml`, `data/locations/schleswig_holstein.yml`).
-> Begleitdokument zu `docs/9_thalerfuss.md`.
+> Begleitdokument zu `docs/research/9_thalerfuss.md`.
 
 ## Kurzfassung
 
@@ -570,6 +570,6 @@ unsere Datenanker (`data/shared/fuesse.yml#guldkrone.fineness =
   — Per-Location-Anwendungen
 - `data/locations/schleswig_holstein.yml#fuss_periods |
   phases.kronemont_*` — Per-Location-Anwendungen Glückstadt-Phase
-- `docs/9_thalerfuss.md` — Begleitdokument zum Reichsmüntzfuß /
+- `docs/research/9_thalerfuss.md` — Begleitdokument zum Reichsmüntzfuß /
   9-Thaler-Fuß; die Krone-Familie läuft parallel dazu im
   dänisch-norwegischen Verbund

@@ -12,7 +12,7 @@
 > `reichsdukatenfuss` einsortiert) und für eventuell zu
 > ergänzende DK-Frederik-V-Coins (KM-586, KM-587).
 >
-> Schwesterdokument: `docs/pistolen_fuss.md` für die zweite, von
+> Schwesterdokument: `docs/research/pistolen_fuss.md` für die zweite, von
 > diesem strikt zu trennende, Goldlinie der dänischen Monarchie
 > (Christian d'or / Frederik d'or, 5-Speciedaler-Tarif, .903 Probe,
 > 6,03 g fein).
@@ -333,7 +333,7 @@ In den **deutschen Landen außerhalb des dänischen Gesamtstaats**
 Kurantdukat **nie** gesetzlichen Zahlungsmittelstatus erlangt —
 er war eine spezifisch dänische Lösung, der **deutsche
 Pendantmünze ist der Friedrich d'or / Pistolenfuß** (siehe
-`docs/pistolen_fuss.md`).
+`docs/research/pistolen_fuss.md`).
 
 ### Demonetisierung
 
@@ -368,12 +368,12 @@ parallelen Goldlinien**:
    nach Silberäquivalent, 3,44 g fein, .986 Probe.
 2. **Pistolen-Fuß** (Christian d'or, Altona ab 1771): 5-
    Speciedaler-Tarif, 6,03 g fein, .903 Probe — siehe
-   `docs/pistolen_fuss.md`.
+   `docs/research/pistolen_fuss.md`.
 3. **Courantdukat** (Altona 1771 — 1796): 12-Mark-Dansk-Tarif,
    2,728 g fein, .875 Probe — diese Karte.
 
 Numerische Diskriminatoren (siehe Vergleichstabelle in
-`docs/pistolen_fuss.md`):
+`docs/research/pistolen_fuss.md`):
 
 | | Reichsdukat | Christian d'or | Kurantdukat |
 |---|---:|---:|---:|
@@ -481,7 +481,7 @@ existierenden Pistolen-Fuß-Karte:
    .875) ist ein separater dänisch-tariffierter Goldfuß und gehört
    nicht hierher; siehe Karte Courantdukatenfuß.*»
 6. **Pistolen-Fuß-Karten-Hinweis** ergänzen:
-   `docs/pistolen_fuss.md` enthält bereits die Abgrenzung; bei der
+   `docs/research/pistolen_fuss.md` enthält bereits die Abgrenzung; bei der
    Karten-Implementierung in `data/shared/german_fuesse.yml#
    pistolenfuss` sollte ein expliziter Cross-Ref zur Courant­
    dukatenfuß-Karte aufgenommen werden.

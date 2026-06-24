@@ -212,7 +212,7 @@ echten Dukaten nicht erreicht*. CoinVarieties: «*although called
 'ducats courant' by the government, [the 12-Mark coin was]
 **too light and too low in fineness to qualify** as full ducats.*»
 Die zwei Linien (Pistole / Christian d'or vs. Courantdukat / 12
-Mark) sind separat zu führen — siehe `docs/courantdukatenfuss.md`
+Mark) sind separat zu führen — siehe `docs/research/courantdukatenfuss.md`
 (noch zu schreiben).
 
 ### Periodisierung der dänischen Pistolen-Prägung
@@ -357,4 +357,4 @@ Wenn die Pistolen-Fuß-Karte gebaut wird:
    «*Die d'or-Linie (Friedrich-, Christian-, Frederik d'or u. a.)
    gehört nicht hierher; siehe Karte Pistolen-Fuß.*»
 5. **Courantdukaten-Fuß** als separate, dritte Goldlinie analog
-   dokumentieren (`docs/courantdukatenfuss.md` noch zu schreiben).
+   dokumentieren (`docs/research/courantdukatenfuss.md` noch zu schreiben).

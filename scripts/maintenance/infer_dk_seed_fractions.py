@@ -183,7 +183,7 @@ RULES: dict[str, list[tuple[str, callable]]] = {
     # ------- Krone-fod (Skandinavisk Møntunion, 1873-1914) -------
     # Single Müntzfuß with hierarchical metal tiers (per the project's
     # «hierarchical metal tiers» convention — see
-    # docs/hierarchical_metal_tiers.md). One denomination ladder
+    # docs/research/hierarchical_metal_tiers.md). One denomination ladder
     # covers gold / silver Kurant / silver Scheide / bronze:
     #   5 / 10 / 20 Kroner = gold (.900)
     #   1 / 2 Kroner       = silver Kurant (.800)

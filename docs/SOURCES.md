@@ -554,10 +554,10 @@ These are **paper-only**, accessible only via specialist libraries:
 
 ## 12. Cross-references in this project
 
-- `docs/9_thalerfuss.md` — heavy use of Wikipedia DE Reichstaler / Speciestaler / Leipziger Fuß / Konventionstaler / Sächsische Münzgeschichte / Zinnaer / Augsburger; Bobzin; Meyers eLexikon; Künker; MGM «Species»; Hede (via danskmoent.dk)
-- `docs/krone_muentzfuesse.md` — heavy use of Hede NNUM articles (Kronemønten + F3 Guldkroner); Wikipedia DE «Corona Danica»; Aagaard 2004/2011/2022; Wilcke I/II; Bruun PDF Part II/III; danskmoent.dk c5h{N}.htm pages
-- `docs/hamburg.md` — Soetbeer 1869, Shaw 1896, Bindseil 2019, Bobzin, Wikipedia DE «Hamburger Bank»
-- `docs/altona.md` — Wikipedia DE «Königliche Münze zu Altona», Schleswig-Holsteinische Speciesbank
+- `docs/research/9_thalerfuss.md` — heavy use of Wikipedia DE Reichstaler / Speciestaler / Leipziger Fuß / Konventionstaler / Sächsische Münzgeschichte / Zinnaer / Augsburger; Bobzin; Meyers eLexikon; Künker; MGM «Species»; Hede (via danskmoent.dk)
+- `docs/research/krone_muentzfuesse.md` — heavy use of Hede NNUM articles (Kronemønten + F3 Guldkroner); Wikipedia DE «Corona Danica»; Aagaard 2004/2011/2022; Wilcke I/II; Bruun PDF Part II/III; danskmoent.dk c5h{N}.htm pages
+- `docs/research/hamburg.md` — Soetbeer 1869, Shaw 1896, Bindseil 2019, Bobzin, Wikipedia DE «Hamburger Bank»
+- `docs/research/altona.md` — Wikipedia DE «Königliche Münze zu Altona», Schleswig-Holsteinische Speciesbank
 - `data/locations/*-references.yml` and `data/shared/german_fuesse-references.yml` — bibliography slots for all of the above with verbatim quotes
 
 ---

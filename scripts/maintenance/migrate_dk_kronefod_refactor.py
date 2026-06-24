@@ -4,7 +4,7 @@ gold and `30_thaler` for silver/copper) onto the dedicated
 `kronefod` (gold) and `kronefod_silver` (auxiliaries) Müntzfüße
 added to `data/shared/fuesse.yml`.
 
-Per `docs/dk_kronefod_1873_research.md`. The German Reichsgold-
+Per `docs/research/dk_kronefod_1873_research.md`. The German Reichsgold-
 münzfuß (1871) and the Krone-fod (1873) are mathematically linked
 by the fixed 8 Kroner = 9 Mark gold parity, but legally and
 denomination-laddered they are distinct standards. Likewise the

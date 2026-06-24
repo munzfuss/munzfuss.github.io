@@ -7,7 +7,7 @@
 > die globale Definition in `data/shared/fuesse.yml#9_thaler`.
 > Per-location-Anwendungen (Schleswig-Holstein 1567–1622,
 > Hamburg/Lübeck Bank-Speciesthaler) liegen in den jeweiligen
-> Location-YAMLs, ergänzt durch `docs/hamburg.md` für die
+> Location-YAMLs, ergänzt durch `docs/research/hamburg.md` für die
 > Banco-Spezifika.
 
 ## Kurzfassung
@@ -510,7 +510,7 @@ In Reihenfolge der Verlässlichkeit für unsere Anwendung:
   als Hauptstandard (über 13⅓-Fuß-Equivalenz).
 - `data/locations/schleswig_holstein.yml` — Per-location-Anwendung
   1567–1622 (+1683 KM# 105 Solitär).
-- `data/locations/hamburg.yml` und `docs/hamburg.md` —
+- `data/locations/hamburg.yml` und `docs/research/hamburg.md` —
   Banco-Speciesthaler-Anwendung 1730–1764 sowie 9-Fuß-Bank-
   Recheneinheit biß 1875.
 - `data/locations/lubeck.yml` — Jubiläumsthaler 1730 / 1776.

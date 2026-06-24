@@ -11,9 +11,9 @@
 > bzw. der preußischen Annexion 1867 — eigene SH-Lokalprägungen
 > sind nicht dokumentiert (Altona-Münze schon 1863 geschlossen).
 >
-> Schwesterdokumente: `docs/pistolen_fuss.md` (Friedrich d'or /
-> Christian d'or), `docs/courantdukatenfuss.md` (12-Mark-
-> Goldstück), `docs/9_thalerfuss.md` (Reichsmüntzfuß-Familie).
+> Schwesterdokumente: `docs/research/pistolen_fuss.md` (Friedrich d'or /
+> Christian d'or), `docs/research/courantdukatenfuss.md` (12-Mark-
+> Goldstück), `docs/research/9_thalerfuss.md` (Reichsmüntzfuß-Familie).
 
 ## Kurzfassung
 

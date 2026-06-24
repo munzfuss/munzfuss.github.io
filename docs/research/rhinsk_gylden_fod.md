@@ -107,7 +107,7 @@ Reichsmünzordnung, 19 August 1559**.
 
 ## 6. Known stale references to fix
 
-- `docs/denomination_lineages.md` (≈L88-89, L143-155) still calls **Hans's
+- `docs/research/denomination_lineages.md` (≈L88-89, L143-155) still calls **Hans's
   1481-1513 gold "Ungersk Gylden (~3,49 g fein, .986)"** and uses it as the
   Goldgulden→Reichsdukat pattern exemplar. Per this dossier that is the
   **Rhinsk** coin (.75); the Ungersk exemplar should be Christian II 1513.

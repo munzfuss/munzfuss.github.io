@@ -171,9 +171,9 @@ hierarchical metal tiers when:
 - This convention codifies what's already in `data/shared/fuesse.yml`
   for the silver Fusses; the only new step in 2026-05 was extending
   it to the gold-anchored Krone-fod.
-- See `docs/dk_kronefod_unity_analysis.md` for the comparative
+- See `docs/research/dk_kronefod_unity_analysis.md` for the comparative
   analysis that led to the merge.
-- See `docs/dk_kronefod_1873_research.md` for the primary-source
+- See `docs/research/dk_kronefod_1873_research.md` for the primary-source
   documentation of the Krone-fod system.
 - Source schema: `scripts/lib/schema.py::Fuss` and
   `scripts/lib/schema.py::Fraction`.

@@ -252,7 +252,7 @@ User to pick:
 
 ## Bibliography (referenced from earlier research note)
 
-See `docs/dk_kronefod_1873_research.md` for the full bibliography
+See `docs/research/dk_kronefod_1873_research.md` for the full bibliography
 (refs 18-23 in `data/locations/denmark-references.yml`). Key
 sources for this analysis specifically:
 

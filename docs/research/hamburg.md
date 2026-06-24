@@ -266,7 +266,7 @@ Wikipedia EN «Bank of Hamburg» (parallel-text Bestätigung):
   dänischem Gesamtstaat (Schleswig-Holstein), die die
   Wechselkurse Mark Banco ↔ Speciedaler explizit regelten?
 - **«Hamburger Sieben-Bank-Crisis» 1857** — Bezug zum gleichzeitig
-  aufgekommenen Altona-Mint-Krise (siehe `docs/altona.md`).
+  aufgekommenen Altona-Mint-Krise (siehe `docs/research/altona.md`).
 - **Mark Lübisch ↔ Mark Hamburgisch ↔ Mark Banco** —
   begrifflich-historische Trennung. Die «Hamburger Mark» der
   vor-1619-Periode war eine Lübisch-Mark-Variante; die
@@ -287,7 +287,7 @@ Wikipedia EN «Bank of Hamburg» (parallel-text Bestätigung):
 | Bobzin, Münzverein wendisch (Banco-Fuß-Tabelle 1619–1777) | <https://www.hagen-bobzin.de/hobby/muenzverein_wendisch.html> |
 | Bobzin, Lübisches Münzsystem | <https://www.hagen-bobzin.de/hobby/muenzsystem_luebisch.html> |
 | Bankwesen und Bankpolitik in Preussen (Internet Archive, period source) | <https://archive.org> (Suche «Bankwesen Bankpolitik Preussen Altonaer Bankordnung») |
-| Altona-Schleswig-Holstein-Querverweise | siehe `docs/altona.md` |
+| Altona-Schleswig-Holstein-Querverweise | siehe `docs/research/altona.md` |
 
 **Bibliographie-Anker im Projekt:** die hier zitierten Quellen
 sind bisher nur indirekt über `data/locations/schleswig_holstein-references.yml`
@@ -297,6 +297,6 @@ einer Hamburg-Location nötig.
 
 ---
 
-*Forschungsnotizen-Stand: parallel zu `docs/altona.md`,
+*Forschungsnotizen-Stand: parallel zu `docs/research/altona.md`,
 basierend auf den Web-Recherchen aus der Sitzung um Commit 91fd395
 (Altonaer Bankfuß als Bank-Giral-Form des 9¼-Thaler-Fuß).*

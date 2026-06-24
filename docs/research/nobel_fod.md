@@ -6,7 +6,7 @@
 > 2026-06-05 from internal project sources (Wilcke 1950 transcript, danskmoent
 > deep-page cache) + web sources (Galster via danskmoent.dk, Numista, Stack's
 > Bowers/NumisBids, da.wikipedia). Supersedes nothing — complements the fuss card
-> `data/shared/fuesse.yml::nobel_fod` and the lineage note `docs/denomination_lineages.md`.
+> `data/shared/fuesse.yml::nobel_fod` and the lineage note `docs/research/denomination_lineages.md`.
 >
 > **One-line summary:** the Danish Nobel is a heavy gold *Pragtmünze* (prestige
 > coin, NOT circulation money) struck 1496–1532 by three kings, modelled — per
@@ -38,7 +38,7 @@ secondary København, Ribe):
 | Frederik I | u.år (undated) | Ribe | 69 | 1 | «unik»; known mainly through cast (sølv) copies |
 
 - Larger denominations exist for Hans: **2 Nobel** (Galster, Numista N#428886, 1502) and **3 Nobel** (Numista N#428914, 1496). No separate fineness is documented for the 2-/3-Nobel — they are weight multiples of the 1-Nobel (see §3). Source: Numista <https://en.numista.com/catalogue/danemark-1.html>.
-- After 1532 no further Nobel coinage is documented; Christian III did not continue the line. The name later shifts: **«Senere ændredes betegnelsen til Rosenobel»** ("later the designation was changed to Rosenobel") — danskmoent.dk/1nobel.htm. The Rosenobel (Frederik II 1584 + Christian IV 1611–1629) is a SEPARATE Müntzfuß (`rosenobel_fod`, fineness .833) — see `docs/research/danish_royal_gold_1560_1648.md` §3.4 and `docs/denomination_lineages.md`. Do NOT conflate.
+- After 1532 no further Nobel coinage is documented; Christian III did not continue the line. The name later shifts: **«Senere ændredes betegnelsen til Rosenobel»** ("later the designation was changed to Rosenobel") — danskmoent.dk/1nobel.htm. The Rosenobel (Frederik II 1584 + Christian IV 1611–1629) is a SEPARATE Müntzfuß (`rosenobel_fod`, fineness .833) — see `docs/research/danish_royal_gold_1560_1648.md` §3.4 and `docs/research/denomination_lineages.md`. Do NOT conflate.
 
 ---
 
@@ -184,7 +184,7 @@ specimen / ordinance figures), not the card's 14.41 g (which derived from .986).
 5. **Stack's Bowers / NumisBids — L. E. Bruun lot 1001** (Hans Noble 1496, NGC AU-55): «first gold coin struck by Denmark … first dated Danish coin … only ~20 survive … unique in private hands … Nationalmuseet + Hermitage … gift for foreign dignitaries». <https://www.numisbids.com/n.php?p=lot&sid=8347&lot=1001> ; <https://auctions.stacksbowers.com/lots/view/3-1AKQTF/> ; record-sale: <https://www.ngccoin.com/news/article/13205/bruun-realized-part-1/>.
 6. **da.wikipedia «Nobel (mønt)»** <https://da.wikipedia.org/wiki/Nobel_(m%C3%B8nt)> — general English-Noble background (the *name*'s origin); NOTE its «English model» framing is corrected by Galster (§2).
 7. **Kristeligt Dagblad** — Hans 1496 sale 8.9 M DKK: <https://www.kristeligt-dagblad.dk/kultur/guldmoent-fra-1496-blev-solgt-89-millioner-kroner>.
-8. **Internal cross-refs:** `data/shared/fuesse.yml::nobel_fod` (current card); `docs/denomination_lineages.md` (Nobel→Rosenobel family); `docs/research/danish_royal_gold_1560_1648.md` §3.4 (Rosenobel .833, distinct fuss); `docs/DECISIONS.md` (23K8G = Reichsdukat).
+8. **Internal cross-refs:** `data/shared/fuesse.yml::nobel_fod` (current card); `docs/research/denomination_lineages.md` (Nobel→Rosenobel family); `docs/research/danish_royal_gold_1560_1648.md` §3.4 (Rosenobel .833, distinct fuss); `docs/DECISIONS.md` (23K8G = Reichsdukat).
 
 ---
 

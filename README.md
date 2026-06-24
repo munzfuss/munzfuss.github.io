@@ -46,10 +46,8 @@ tracks the triage queue.)
 
 * Silver standards: 9-Thaler / 9¼-Thaler / 11⅓-Thaler / 18½-Thaler / 30-Thaler (Vereinsmüntzfuß) / Kronemont (Christian IV) / Kronemont (Christian V «Grobe») / Kronemont-fine (Frederik IV «Feine»)
 * Gold standards: Reichsdukatenfuß / Courantdukatenfuß / Pistolenfuß / Guldkrone / Vereinsgoldmüntze / Reichsgoldmüntzfuß
-* Hierarchical-metal standard: Krone-fod (gold anchor + silver Kurant + silver Scheide + bronze, per the [Scandinavian Monetary Union 1873](docs/dk_kronefod_unity_analysis.md))
+* Hierarchical-metal standard: Krone-fod (gold anchor + silver Kurant + silver Scheide + bronze, per the [Scandinavian Monetary Union 1873](docs/research/dk_kronefod_unity_analysis.md))
 * `seed_unsorted` — catch-all bucket for bulk-imported coins awaiting per-coin classification
-
-Locations whose coins are still bucketed under `seed_unsorted` are auto-hidden from the landing index. Their per-language pages still build and are reachable by direct URL — the card just disappears from the landing grid until the threshold is crossed (`docs/TODO.md` tracks the triage queue).
 
 ## Repository layout
 
@@ -135,7 +133,7 @@ You'll be prompted for GitHub credentials (the harvest submodule is **private**)
 The build pipeline (`scripts/build.py`) does NOT read `scripts/cache/`; it works only from `data/`, `templates/`, `config/`. So a clone without the submodule initialised is enough for:
 
 * Validating / building / previewing the site
-* Editing YAML in `data/locations/*.yml`
+* Editing YAML in `data/v2/` (or the `data/locations/<loc>-references.yml` bibliographies)
 * Running CI deploys (GitHub Actions `actions/checkout@v4` uses `submodules: false` by default — Pages deploys never need the harvest)
 
 The submodule is only needed for:
@@ -272,7 +270,7 @@ Non-negotiable (see `CLAUDE.md` for full treatment):
 | `docs/GLOSSARY.md` | DE/EN/UK terminology reference |
 | `docs/SOURCES.md` | Per-source notes (access policy, ToS, quirks) for Numista / ucoin / Hede / IKMK / Bruun |
 | `docs/IKMK_HARVEST.md` | Background on the IKMK Berlin harvest |
-| `docs/hierarchical_metal_tiers.md` | Multi-metal-tier Müntzfuß convention (Krone-fod) |
+| `docs/research/hierarchical_metal_tiers.md` | Multi-metal-tier Müntzfuß convention (Krone-fod) |
 | `docs/dk_kronefod_*` | Scandinavian Monetary Union research notes |
 
 ## License
