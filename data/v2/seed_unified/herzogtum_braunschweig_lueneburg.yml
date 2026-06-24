@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `herzogtum_braunschweig_lueneburg`.
-# Generated 2026-06-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/herzogtum_braunschweig_lueneburg.yml across all sources.
 #
 # Input: 1545 per-source seed entries.
-# Output: 1456 unified entries (one per physical coin).
+# Output: 1457 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: herzogtum_braunschweig_lueneburg
-generated_at: '2026-06-17'
+generated_at: '2026-06-24'
 coins:
 - id: unified-dk-numista-100475
   fuss: seed_unsorted
@@ -5661,8 +5661,6 @@ coins:
   weight_rough_g:
   - value: 28.2
     source: numista
-  - value: 28.4
-    source: kmk
   diameter_mm:
   - value: 41.0
     source: numista
@@ -5670,9 +5668,6 @@ coins:
   - type: literature
     url: https://en.numista.com/352614
     ref: Numista N#352614 — 1 Thaler - Eric II - Principality of Brunswick-Calenberg
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/714573
-    ref: KMM 714573 (Inv. FP 12405.477)
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -5686,7 +5681,6 @@ coins:
   issuing_entity: herzogtum_braunschweig_lueneburg
   composed_of:
   - dk-numista-352614
-  - kmk-714573
 - id: unified-dk-numista-352649
   fuss: seed_unsorted
   phase: numista
@@ -11096,8 +11090,8 @@ coins:
   mintmaster: Goslar
   mint: Zellerfeld
   catalog:
-    dav: '6307'
     fiala: IV
+    dav: '6307'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -11123,7 +11117,7 @@ coins:
   year_label: '1582'
   ruler: Julius
   catalog:
-    dav: '9063'
+    dav: '79'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: false
@@ -14156,6 +14150,33 @@ coins:
   composed_of:
   - kmk-714572
   - tid-tid-92267
+- id: unified-kmk-714573
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Daler
+  year_first: 1558
+  year_last: 1558
+  year_label: '1558'
+  ruler: Erich 2 af Braunschweig-Lüneburg
+  catalog:
+    dav: '8996'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.4
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/714573
+    ref: KMM 714573 (Inv. FP 12405.477)
+  verification_note: *id001
+  issuing_entity: herzogtum_braunschweig_lueneburg
+  composed_of:
+  - kmk-714573
 - id: unified-kmk-714574
   fuss: seed_unsorted
   phase: kmk

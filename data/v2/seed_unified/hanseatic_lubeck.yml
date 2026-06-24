@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_lubeck`.
-# Generated 2026-06-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
-# Input: 189 per-source seed entries.
-# Output: 185 unified entries (one per physical coin).
+# Input: 187 per-source seed entries.
+# Output: 187 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_lubeck
-generated_at: '2026-06-17'
+generated_at: '2026-06-24'
 coins:
 - id: unified-dk-bruun-12891
   fuss: seed_unsorted
@@ -757,20 +757,13 @@ coins:
   weight_rough_g:
   - value: 0.33
     source: ikmk
-  - value: 0.34
-    source: ikmk
   diameter_mm:
-  - value: 12.0
-    source: ikmk
   - value: 13.0
     source: ikmk
   sources:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18283283
     ref: IKMK Berlin 18283283
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18283303
-    ref: IKMK Berlin 18283303
   note:
     de: einseitig
     en: einseitig
@@ -779,40 +772,6 @@ coins:
   issuing_entity: hanseatic_lubeck
   composed_of:
   - ikmk-18283283
-  - ikmk-18283303
-- id: unified-ikmk-18283284
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Pfennig
-  year_first: 1621
-  year_last: 1621
-  year_label: '1621'
-  mintmaster: Heinrich von der Klähren
-  metal: copper
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 0.3
-    source: ikmk
-  diameter_mm:
-  - value: 12.0
-    source: ikmk
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18283284
-    ref: IKMK Berlin 18283284
-  note:
-    de: einseitig
-    en: einseitig
-    uk: einseitig
-  verification_note: *id001
-  issuing_entity: hanseatic_lubeck
-  composed_of:
-  - ikmk-18283284
 - id: unified-ikmk-18283285
   fuss: seed_unsorted
   phase: ikmk
@@ -1274,8 +1233,8 @@ coins:
   year_last: 1640
   year_label: '1640'
   catalog:
-    dav: '5449'
     behrens: '170'
+    dav: '5449'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -1299,10 +1258,35 @@ coins:
   year_first: 1637
   year_last: 1637
   year_label: '1637'
-  ruler: Ferdinand 2
   catalog:
-    dav: '5449'
     behrens: '167'
+    dav: '5449'
+  metal_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.93
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/184158
+    ref: KMM 184158 (Inv. FP 3427.247)
+  verification_note: *id002
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - kmk-184158
+- id: unified-kmk-184159
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Daler
+  year_first: 1637
+  year_last: 1637
+  year_label: '1637'
+  catalog:
+    behrens: '167'
+    dav: '5449'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -1310,26 +1294,14 @@ coins:
   weight_rough_g:
   - value: 27.81
     source: kmk
-  - value: 28.6
-    source: kmk
-  - value: 28.93
-    source: kmk
   sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/184158
-    ref: KMM 184158 (Inv. FP 3427.247)
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/184159
     ref: KMM 184159 (Inv. FP 3427.246)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/187987
-    ref: KMM 187987 (Inv. FP 4271.9)
   verification_note: *id002
   issuing_entity: hanseatic_lubeck
   composed_of:
-  - kmk-184158
   - kmk-184159
-  - kmk-187987
 - id: unified-kmk-184160
   fuss: seed_unsorted
   phase: kmk
@@ -1339,8 +1311,8 @@ coins:
   year_last: 1636
   year_label: '1636'
   catalog:
-    dav: '5449'
     behrens: '166'
+    dav: '5449'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -1365,8 +1337,8 @@ coins:
   year_last: 1631
   year_label: '1631'
   catalog:
-    dav: '5449'
     behrens: '161'
+    dav: '5449'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -1391,8 +1363,8 @@ coins:
   year_last: 1629
   year_label: '1629'
   catalog:
-    dav: '5449'
     behrens: '159'
+    dav: '5449'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -1417,8 +1389,8 @@ coins:
   year_last: 1628
   year_label: '1628'
   catalog:
-    dav: '5449'
     behrens: '158'
+    dav: '5449'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -1443,8 +1415,8 @@ coins:
   year_last: 1623
   year_label: '1623'
   catalog:
-    dav: '5449'
     behrens: '153'
+    dav: '5449'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -1468,10 +1440,9 @@ coins:
   year_first: 1621
   year_last: 1621
   year_label: '1621'
-  ruler: Ferdinand 2
   catalog:
-    dav: '5449'
     behrens: '151'
+    dav: '5449'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -1479,20 +1450,14 @@ coins:
   weight_rough_g:
   - value: 28.79
     source: kmk
-  - value: 28.99
-    source: kmk
   sources:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/184165
     ref: KMM 184165 (Inv. FP 3427.240)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/187988
-    ref: KMM 187988 (Inv. FP 4271.8)
   verification_note: *id002
   issuing_entity: hanseatic_lubeck
   composed_of:
   - kmk-184165
-  - kmk-187988
 - id: unified-kmk-184166
   fuss: seed_unsorted
   phase: kmk
@@ -1502,8 +1467,8 @@ coins:
   year_last: 1619
   year_label: '1619'
   catalog:
-    dav: '5447'
     behrens: '149'
+    dav: '5447'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -1594,6 +1559,58 @@ coins:
   issuing_entity: hanseatic_lubeck
   composed_of:
   - kmk-184169
+- id: unified-kmk-187987
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Daler
+  year_first: 1637
+  year_last: 1637
+  year_label: '1637'
+  ruler: Ferdinand 2
+  catalog:
+    dav: '67'
+  metal_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.6
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/187987
+    ref: KMM 187987 (Inv. FP 4271.9)
+  verification_note: *id002
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - kmk-187987
+- id: unified-kmk-187988
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Daler
+  year_first: 1621
+  year_last: 1621
+  year_label: '1621'
+  ruler: Ferdinand 2
+  catalog:
+    dav: '67'
+  metal_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.99
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/187988
+    ref: KMM 187988 (Inv. FP 4271.8)
+  verification_note: *id002
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - kmk-187988
 - id: unified-kmk-187989
   fuss: seed_unsorted
   phase: kmk
@@ -1603,7 +1620,7 @@ coins:
   year_last: 1559
   year_label: '1559'
   catalog:
-    dav: '9408'
+    dav: '79'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true

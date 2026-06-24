@@ -3560,6 +3560,7 @@ coins:
     hede_volume: c4h
     lange: '58'
     hede: '171'
+    schou: '67'
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3568,6 +3569,8 @@ coins:
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 0.45
+    source: kmk
   - value: 0.6
     source: kmk
   - value: 0.64
@@ -3582,6 +3585,9 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/693133
     ref: KMM 693133 (Inv. FP 280.46)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/693132
+    ref: KMM 693132 (Inv. FP 280.47)
   note:
     de: 1 Sechsling = 1/96 Thaler · Christian IV. (Kgr. Dänemark, Glückstadt), 1623-1625
     en: 1 Sechsling = 1/96 Thaler · Christian IV of Denmark (Glückstadt mint), 1623-1625
@@ -4744,14 +4750,21 @@ coins:
   id: unified-dk-hede-c3h14
   year_first: 1536
   year_last: 1547
+  year_ranges:
+  - - 1536
+    - 1536
+  - - 1546
+    - 1547
   year_label: 1536, 1546-1547
-  mint: Flensburg
+  mint:
+  - Flensburg
+  - Roskilde
   catalog:
     hede: '14'
     hede_volume: c3h
     sieg:
-    - '51'
     - '23'
+    - '51'
     schou:
     - '2'
     - '4'
@@ -4766,18 +4779,19 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   fineness:
   - value: 0.75
     source: hede
   weight_rough_g:
+  - value: 3.23
+    source: numista
   - value: 3.278
     source: hede
   - value: 3.37
     source: bruun
-  - value: 3.23
-    source: numista
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c3h15.htm
@@ -4791,6 +4805,10 @@ coins:
   - type: literature
     url: https://en.numista.com/379084
     ref: Numista N#379084 — 1 Goldgulden - Christian III
+  note:
+    de: Rhinsk Gulden
+    en: Rhinsk Gulden
+    uk: Rhinsk Gulden
   verification_note:
     de: Unikales Belegexemplar (Den Kgl. Mønt- og Medaillesamling, København), 1546 Flensborg — Zuschreibung nach dem Müntzzeichen
       Reynold Junges. Daten aus danskmoent.dk (Galster 130; NFM XII, S. 10).
@@ -4800,19 +4818,12 @@ coins:
       знаком Reynold Junge. Дані з danskmoent.dk (Galster 130; NFM XII, с. 10).
   composed_of:
   - unified-dk-hede-c3h14
-  - unified-dk-bruun-14770
-  - unified-dk-numista-379084
   _curation_holds:
     fuss: 'Gold Rhinsk Gylden (.75) — §8a metal-mismatch: cannot sit in the silver Flensborg-line 8_daler_lybsk_fod where
       the over-broad mint-anchor rule had placed it. Δ −1.7 % vs rhinsk_gylden_fod Phase-0 soll (2.501 g fein). Classifier
       metal-gate added so gold no longer auto-mis-routes.'
     phase: Phase 0 (Christian III early Rhinsk Gylden) — joins the 1536 Roskilde piece (galster-c3g-131); this is the 1546
       Flensborg pair (Hede c3h14/c3h15, Galster 130, NFM XII s.10).
-  year_ranges:
-  - - 1536
-    - 1536
-  - - 1546
-    - 1547
 - fuss: rhinsk_gylden_fod
   phase: '0'
   kind: kurant
@@ -10321,6 +10332,13 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/137162
     ref: KMM 137162 (Inv. RP 23.1, Schou 10)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/137161
+    ref: KMM 137161 (Inv. RP 22.1)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/137162
+    ref: KMM 137162 (Inv. RP 23.1)
+    display: false
   note:
     de: 'Goldgulden (Ungersk Gylden) 1591-1593 — ungarisch-stylisierter Goldgulden · zwei Rückseiten-Varianten nach Hede 8
       zusammengefaßt: 8A 1591 (Unik), 1592 (RRR) mit Slesvigs Wappen (Schou 7, 10-11, Sieg 1); 8B 1593 (RR) mit Oldenborg-
@@ -10338,8 +10356,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-c4h8a
-  - unified-kmk-137161
-  - unified-kmk-137162
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -22850,15 +22866,11 @@ coins:
   mint: Glückstadt
   catalog:
     schou: '67'
-    hede: '67'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
-  weight_rough_g:
-  - value: 0.45
-    source: kmk
   sources:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149624
@@ -24271,6 +24283,10 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/578455
     ref: KMM 578455 (Inv. FP 11446.11)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/345235
+    ref: KMM 345235 (Inv. FP 5486.2)
   verification_note: *id005
   composed_of:
   - unified-kmk-152263
@@ -25142,7 +25158,7 @@ coins:
   year_last: 1622
   year_label: '1622'
   catalog:
-    lange: '1'
+    lange: '2'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25166,7 +25182,7 @@ coins:
   year_last: 1621
   year_label: '1621'
   catalog:
-    lange: 354b
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25190,7 +25206,7 @@ coins:
   year_last: 1652
   year_label: '1652'
   catalog:
-    lange: '350'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25214,7 +25230,7 @@ coins:
   year_last: 1651
   year_label: '1651'
   catalog:
-    lange: '349'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25242,7 +25258,7 @@ coins:
   year_last: 1650
   year_label: '1650'
   catalog:
-    lange: '348'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25266,7 +25282,7 @@ coins:
   year_last: 1649
   year_label: '1649'
   catalog:
-    lange: '347'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25294,7 +25310,7 @@ coins:
   year_last: 1648
   year_label: '1648'
   catalog:
-    lange: '346'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25326,7 +25342,7 @@ coins:
   year_last: 1647
   year_label: '1647'
   catalog:
-    lange: '345'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25358,7 +25374,7 @@ coins:
   year_last: 1646
   year_label: '1646'
   catalog:
-    lange: '344'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25382,7 +25398,7 @@ coins:
   year_last: 1645
   year_label: '1645'
   catalog:
-    lange: '343'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25406,7 +25422,7 @@ coins:
   year_last: 1642
   year_label: '1642'
   catalog:
-    lange: '342'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25437,7 +25453,7 @@ coins:
     - 1629
   year_label: 1620-1629
   catalog:
-    lange: '341'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25451,30 +25467,10 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/200892
     ref: KMM 200892 (Inv. FP 3108.11658)
     display: false
-  verification_note: *id005
-  composed_of:
-  - unified-kmk-200891
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 3-skilling lybsk
-  ruler: Frederik 3 af Slesvig-Holsten-Gottorp
-  issuing_entity: royal_holstein
-  id: unified-kmk-200893
-  year_first: 1623
-  year_last: 1623
-  year_label: '1623'
-  catalog:
-    lange: '340'
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200893
     ref: KMM 200893 (Inv. FP 3108.11657)
+    display: false
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200895
     ref: KMM 200895 (Inv. FP 3108.11655)
@@ -25485,7 +25481,7 @@ coins:
     display: false
   verification_note: *id005
   composed_of:
-  - unified-kmk-200893
+  - unified-kmk-200891
 - fuss: seed_unsorted
   phase: kmk
   kind: kurant
@@ -25494,7 +25490,7 @@ coins:
   issuing_entity: royal_holstein
   id: unified-kmk-200898
   catalog:
-    lange: '359'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25560,7 +25556,7 @@ coins:
   year_last: 1627
   year_label: '1627'
   catalog:
-    lange: '332'
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25584,7 +25580,7 @@ coins:
   year_last: 1623
   year_label: '1623'
   catalog:
-    lange: 321b
+    lange: '1'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -25630,12 +25626,21 @@ coins:
     - 1629
   year_label: 1620-1629
   catalog:
-    lange: '542'
+    lange:
+    - '541'
+    - '542'
   metal: silver
   metal_verified: true
-  weight_rough_verified: false
+  weight_rough_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 0.9
+    source: kmk
+  - value: 0.946
+    source: kmk
+  - value: 1.0
+    source: kmk
   sources:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200941
@@ -25660,78 +25665,46 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/296098
     ref: KMM 296098 (Inv. FP 9040.1)
     display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200962
+    ref: KMM 200962 (Inv. FP 3108.11588)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200982
+    ref: KMM 200982 (Inv. FP 3108.11568)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200983
+    ref: KMM 200983 (Inv. FP 3108.11567)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200989
+    ref: KMM 200989 (Inv. FP 3108.11561)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200994
+    ref: KMM 200994 (Inv. FP 3108.11556)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/714773
+    ref: KMM 714773 (Inv. FP 12405.277)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/714777
+    ref: KMM 714777 (Inv. FP 12405.273)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/714784
+    ref: KMM 714784 (Inv. FP 12405.266)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/714780
+    ref: KMM 714780 (Inv. FP 12405.270)
+  note:
+    de: rytterpenning
+    en: rytterpenning
+    uk: rytterpenning
   verification_note: *id005
   composed_of:
   - unified-kmk-200941
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Skilling lybsk
-  ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
-  issuing_entity: royal_holstein
-  id: unified-kmk-201052
-  year_first: 1621
-  year_last: 1621
-  year_label: '1621'
-  catalog:
-    lange: '541'
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/201052
-    ref: KMM 201052 (Inv. FP 3108.11498)
-  verification_note: *id005
-  composed_of:
-  - unified-kmk-201052
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Skilling lybsk
-  ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
-  issuing_entity: royal_holstein
-  id: unified-kmk-201072
-  year_first: 1620
-  year_last: 1620
-  year_label: '1620'
-  catalog:
-    lange: '541'
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/201072
-    ref: KMM 201072 (Inv. FP 3108.11478)
-  verification_note: *id005
-  composed_of:
-  - unified-kmk-201072
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Skilling lybsk
-  ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
-  issuing_entity: royal_holstein
-  id: unified-kmk-201076
-  catalog:
-    lange: '540'
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/201076
-    ref: KMM 201076 (Inv. FP 3108.11474)
-  verification_note: *id005
-  composed_of:
-  - unified-kmk-201076
+  - unified-kmk-296097
 - fuss: seed_unsorted
   phase: kmk
   kind: kurant
@@ -25740,7 +25713,7 @@ coins:
   issuing_entity: royal_holstein
   id: unified-kmk-201080
   catalog:
-    lange: '540'
+    lange: '2'
   metal: silver
   metal_verified: true
   weight_rough_verified: false
@@ -26065,7 +26038,7 @@ coins:
   year_last: 1626
   year_label: '1626'
   catalog:
-    lange: '30'
+    lange: '558'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -26116,7 +26089,7 @@ coins:
   year_last: 1619
   year_label: '1619'
   catalog:
-    lange: '21'
+    lange: '538'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -26170,7 +26143,7 @@ coins:
   year_last: 1620
   year_label: '1620'
   catalog:
-    lange: 9a
+    lange: 537b
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -26197,7 +26170,7 @@ coins:
   year_last: 1620
   year_label: '1620'
   catalog:
-    lange: 9b
+    lange: 573c
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -26443,7 +26416,7 @@ coins:
     - 1599
   year_label: 1593-1599
   catalog:
-    lange: '10'
+    lange: '306'
   metal_verified: false
   weight_rough_verified: false
   mint_verified: false
@@ -26571,7 +26544,7 @@ coins:
   year_label: 1534-1559
   mint: Flensburg
   catalog:
-    hede: '24'
+    hede: '23'
   metal_verified: false
   weight_rough_verified: false
   mint_verified: true
@@ -26587,27 +26560,6 @@ coins:
   verification_note: *id005
   composed_of:
   - unified-kmk-345231
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Lybsk blaffert
-  ruler: Christian III.
-  issuing_entity: royal_holstein
-  id: unified-kmk-345235
-  mint: Flensburg
-  catalog:
-    hede: '24'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/345235
-    ref: KMM 345235 (Inv. FP 5486.2)
-  verification_note: *id005
-  composed_of:
-  - unified-kmk-345235
 - fuss: seed_unsorted
   phase: kmk
   kind: kurant
@@ -29504,7 +29456,7 @@ coins:
   year_last: 1622
   year_label: '1622'
   catalog:
-    lange: '3767'
+    lange: 948b
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -29566,19 +29518,24 @@ coins:
     - 1634
   year_label: 1607-1634
   catalog:
-    lange: '3825'
+    lange: '504'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 1.94
+    source: kmk
   - value: 1.98
     source: kmk
   sources:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/714754
     ref: KMM 714754 (Inv. FP 12405.296)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/714758
+    ref: KMM 714758 (Inv. FP 12405.292)
   note:
     de: rytterpenning
     en: rytterpenning
@@ -29600,7 +29557,7 @@ coins:
     - 1634
   year_label: 1607-1634
   catalog:
-    lange: '3826'
+    lange: '503'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -29609,10 +29566,15 @@ coins:
   weight_rough_g:
   - value: 1.94
     source: kmk
+  - value: 1.97
+    source: kmk
   sources:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/714762
     ref: KMM 714762 (Inv. FP 12405.288)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/714766
+    ref: KMM 714766 (Inv. FP 12405.284)
   note:
     de: rytterpenning
     en: rytterpenning
@@ -29634,7 +29596,7 @@ coins:
     - 1634
   year_label: 1607-1634
   catalog:
-    lange: '3826'
+    lange: '503'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -29668,7 +29630,7 @@ coins:
     - 1623
   year_label: 1564-1623
   catalog:
-    lange: '3629'
+    lange: '540'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -29699,54 +29661,12 @@ coins:
   nominal: 2 Skilling lybsk
   ruler: Hans den Yngre af Sl.-H. Sønderborg
   issuing_entity: royal_holstein
-  id: unified-kmk-714773
-  year_first: 1620
-  year_last: 1621
-  year_ranges:
-  - - 1620
-    - 1621
-  year_label: 1620-1621
-  catalog:
-    lange: '3631'
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 0.9
-    source: kmk
-  - value: 0.946
-    source: kmk
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/714773
-    ref: KMM 714773 (Inv. FP 12405.277)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/714777
-    ref: KMM 714777 (Inv. FP 12405.273)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/714784
-    ref: KMM 714784 (Inv. FP 12405.266)
-  note:
-    de: rytterpenning
-    en: rytterpenning
-    uk: rytterpenning
-  verification_note: *id005
-  composed_of:
-  - unified-kmk-714773
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Skilling lybsk
-  ruler: Hans den Yngre af Sl.-H. Sønderborg
-  issuing_entity: royal_holstein
   id: unified-kmk-714778
   year_first: 1623
   year_last: 1623
   year_label: '1623'
   catalog:
-    lange: '3631'
+    lange: '547'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -29774,37 +29694,6 @@ coins:
 - fuss: seed_unsorted
   phase: kmk
   kind: kurant
-  nominal: 2 Skilling lybsk
-  ruler: Hans den Yngre af Sl.-H. Sønderborg
-  issuing_entity: royal_holstein
-  id: unified-kmk-714780
-  year_first: 1621
-  year_last: 1621
-  year_label: '1621'
-  catalog:
-    lange: '3631'
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 1.0
-    source: kmk
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/714780
-    ref: KMM 714780 (Inv. FP 12405.270)
-  note:
-    de: rytterpenning
-    en: rytterpenning
-    uk: rytterpenning
-  verification_note: *id005
-  composed_of:
-  - unified-kmk-714780
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
   nominal: 1 Daler
   ruler: Hans den Yngre af Sl.-H. Sønderborg
   issuing_entity: royal_holstein
@@ -29813,7 +29702,7 @@ coins:
   year_last: 1622
   year_label: '1622'
   catalog:
-    lange: '3632'
+    lange: 529a
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -29843,7 +29732,7 @@ coins:
     - 1659
   year_label: 1616-1659
   catalog:
-    lange: '3488'
+    lange: '359'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -29877,7 +29766,7 @@ coins:
     - 1659
   year_label: 1616-1659
   catalog:
-    lange: '3488'
+    lange: '359'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -30736,7 +30625,7 @@ coins:
   year_label: '1625'
   mint: Plöen
   catalog:
-    lange: '34'
+    lange: '748'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -32055,7 +31944,7 @@ coins:
   year_last: 1625
   year_label: '1625'
   catalog:
-    lange: '35'
+    lange: '449'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -32720,9 +32609,7 @@ coins:
     - 5A
     - 5B
     hede_volume: c4h
-    schou:
-    - '3'
-    - '4'
+    schou: '3'
     sieg: '8'
     fr: '62.1'
   metal: gold
@@ -32741,9 +32628,6 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h5.htm
     ref: danskmoent.dk (Hede c4h5A)
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c4h5.htm
-    ref: danskmoent.dk (Hede c4h5)
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13110, p. 83
@@ -32754,6 +32638,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-c4h5a
+  fraction: '10'
 - fuss: 9_25_thaler
   phase: II
   kind: kurant
@@ -32792,9 +32677,6 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h9.htm
     ref: danskmoent.dk (Hede c7h9A)
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c7h9.htm
-    ref: danskmoent.dk (Hede c7h9)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -32807,6 +32689,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-c7h9a
+  fraction: 1/2
 - fuss: 9_thaler
   phase: I
   kind: scheide
@@ -32832,8 +32715,6 @@ coins:
     - 14-26
     - '27'
     - '29'
-    - '16'
-    - '32'
     sieg:
     - '32.1'
     - '32.2'
@@ -32870,9 +32751,6 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/372297
     ref: KMM 372297 (Inv. FP 4325.1)
     display: false
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f2h31.htm
-    ref: danskmoent.dk (Hede f2h31)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -32885,6 +32763,7 @@ coins:
     unit_raw: daler
   composed_of:
   - unified-dk-hede-f2h31a
+  fraction: 1/96
 - fuss: pistolenfuss
   phase: I
   kind: kurant
@@ -34775,7 +34654,7 @@ coins:
     - '726'
     - '726.1'
     - '726.2'
-    hede: 11A
+    hede: 11a
     hede_volume: c8h
     schou:
     - '10'
@@ -34932,7 +34811,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-f6h14
-  - unified-kmk-131538
 - fuss: 18_5_thaler
   phase: I
   kind: kurant
@@ -34941,6 +34819,7 @@ coins:
   issuing_entity:
   - danish_realm
   - royal_holstein
+  mintmaster: Ole Varberg
   id: unified-dk-hede-f6h17
   year_first: 1813
   year_last: 1813
@@ -35034,7 +34913,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-f6h17
-  mintmaster: Ole Varberg
+  fraction: 1/96
 - fuss: 11_333_thaler
   phase: I
   kind: scheide
@@ -35073,8 +34952,6 @@ coins:
   weight_rough_g:
   - value: 4.872
     source: hede
-  - value: 4.75
-    source: numista
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f6h9.htm
@@ -35110,6 +34987,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-f6h9
+  fraction: 1/48
 - fuss: seed_unsorted
   phase: kmk
   kind: kurant
@@ -35188,6 +35066,154 @@ coins:
   verification_note: *id006
   composed_of:
   - unified-kmk-148477
+- fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Skilling lybsk
+  ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
+  issuing_entity: royal_holstein
+  id: unified-kmk-200940
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200940
+    ref: KMM 200940 (Inv. FP 3108.11610)
+  verification_note: &id007
+    de: 'KMK-Seed: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk). Felder museumsbelegt;
+      Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+    en: 'KMK seed: record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk). Fields museum-attested;
+      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+    uk: 'KMK-сід: запис із Королівського мюнцкабінету (Nationalmuseet Копенгаген, api.natmus.dk). Поля музейно-засвідчені;
+      Müntzfuß/фаза некласифіковані (seed_unsorted) до Phase-4.'
+  composed_of:
+  - unified-kmk-200940
+- fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Skilling lybsk
+  ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
+  issuing_entity: royal_holstein
+  id: unified-kmk-200995
+  year_first: 1620
+  year_last: 1621
+  year_ranges:
+  - - 1620
+    - 1621
+  year_label: 1620-1621
+  catalog:
+    lange: '2'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200995
+    ref: KMM 200995 (Inv. FP 3108.11555)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/201020
+    ref: KMM 201020 (Inv. FP 3108.11530)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/201026
+    ref: KMM 201026 (Inv. FP 3108.11524)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/201039
+    ref: KMM 201039 (Inv. FP 3108.11511)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/201052
+    ref: KMM 201052 (Inv. FP 3108.11498)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/201072
+    ref: KMM 201072 (Inv. FP 3108.11478)
+    display: false
+  verification_note: *id007
+  composed_of:
+  - unified-kmk-200995
+- fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Skilling lybsk
+  ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
+  issuing_entity: royal_holstein
+  id: unified-kmk-201073
+  catalog:
+    lange: '2'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/201073
+    ref: KMM 201073 (Inv. FP 3108.11477)
+  verification_note: *id007
+  composed_of:
+  - unified-kmk-201073
+- fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Skilling lybsk
+  ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
+  issuing_entity: royal_holstein
+  id: unified-kmk-201077
+  catalog:
+    lange: '2'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/201077
+    ref: KMM 201077 (Inv. FP 3108.11473)
+  verification_note: *id007
+  composed_of:
+  - unified-kmk-201077
+- fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 4 Skilling lybsk
+  ruler: Johan Friedrich af Sl.-H.-Gottorp
+  issuing_entity: royal_holstein
+  id: unified-kmk-714761
+  year_first: 1607
+  year_last: 1634
+  year_ranges:
+  - - 1607
+    - 1634
+  year_label: 1607-1634
+  catalog:
+    lange: '504'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.72
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/714761
+    ref: KMM 714761 (Inv. FP 12405.289)
+  note:
+    de: rytterpenning
+    en: rytterpenning
+    uk: rytterpenning
+  verification_note: *id007
+  composed_of:
+  - unified-kmk-714761
 - fuss: 18_5_thaler
   phase: I
   kind: kurant

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `grafschaft_schaumburg`.
-# Generated 2026-06-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-24 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/grafschaft_schaumburg.yml across all sources.
 #
-# Input: 35 per-source seed entries.
-# Output: 28 unified entries (one per physical coin).
+# Input: 24 per-source seed entries.
+# Output: 24 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: grafschaft_schaumburg
-generated_at: '2026-06-17'
+generated_at: '2026-06-24'
 coins:
 - id: unified-dk-numista-137408
   fuss: seed_unsorted
@@ -148,32 +148,13 @@ coins:
   weight_rough_g:
   - value: 1.6
     source: ikmk
-  - value: 1.62
-    source: ikmk
-  - value: 1.66
-    source: ikmk
-  - value: 1.68
-    source: ikmk
   diameter_mm:
-  - value: 22.0
-    source: ikmk
-  - value: 23.0
-    source: ikmk
   - value: 25.0
     source: ikmk
   sources:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18285918
     ref: IKMK Berlin 18285918
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286202
-    ref: IKMK Berlin 18286202
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286205
-    ref: IKMK Berlin 18286205
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286207
-    ref: IKMK Berlin 18286207
   note:
     de: 1/16 Taler
     en: 1/16 Taler
@@ -188,107 +169,6 @@ coins:
   issuing_entity: grafschaft_schaumburg
   composed_of:
   - ikmk-18285918
-  - ikmk-18286202
-  - ikmk-18286205
-  - ikmk-18286207
-- id: unified-ikmk-18285924
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Doppelschilling
-  year_first: 1621
-  year_last: 1621
-  year_label: '1621'
-  ruler: Ernst III.
-  inscription_obv: ER PRI - ET C H S S
-  inscription_rev: FERDINAN D G R IM S A 6Z1
-  mint: Oldendorf
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.44
-    source: ikmk
-  - value: 1.47
-    source: ikmk
-  - value: 1.5
-    source: ikmk
-  diameter_mm:
-  - value: 22.0
-    source: ikmk
-  - value: 23.0
-    source: ikmk
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18285924
-    ref: IKMK Berlin 18285924
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286201
-    ref: IKMK Berlin 18286201
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286203
-    ref: IKMK Berlin 18286203
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286208
-    ref: IKMK Berlin 18286208
-  note:
-    de: 1/16 Taler
-    en: 1/16 Taler
-    uk: 1/16 Taler
-  verification_note: *id001
-  issuing_entity: grafschaft_schaumburg
-  composed_of:
-  - ikmk-18285924
-  - ikmk-18286201
-  - ikmk-18286203
-  - ikmk-18286208
-- id: unified-ikmk-18286204
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Doppelschilling
-  year_first: 1621
-  year_last: 1621
-  year_label: '1621'
-  ruler: Ernst III.
-  inscription_obv: ER PR E - C H S E S
-  inscription_rev: FERDINA D G R IM S A 6Z1
-  mint: Oldendorf
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.7
-    source: ikmk
-  - value: 1.72
-    source: ikmk
-  diameter_mm:
-  - value: 21.0
-    source: ikmk
-  - value: 22.0
-    source: ikmk
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286204
-    ref: IKMK Berlin 18286204
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286210
-    ref: IKMK Berlin 18286210
-  note:
-    de: 1/16 Taler
-    en: 1/16 Taler
-    uk: 1/16 Taler
-  verification_note: *id001
-  issuing_entity: grafschaft_schaumburg
-  composed_of:
-  - ikmk-18286204
-  - ikmk-18286210
 - id: unified-ikmk-18286206
   fuss: seed_unsorted
   phase: ikmk
@@ -325,78 +205,6 @@ coins:
   issuing_entity: grafschaft_schaumburg
   composed_of:
   - ikmk-18286206
-- id: unified-ikmk-18286209
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Doppelschilling
-  year_first: 1621
-  year_last: 1621
-  year_label: '1621'
-  ruler: Ernst III.
-  inscription_obv: ER PR C - H S E S
-  inscription_rev: FERDINAN D G R I S A 6Z1
-  mint: Oldendorf
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.35
-    source: ikmk
-  diameter_mm:
-  - value: 22.0
-    source: ikmk
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286209
-    ref: IKMK Berlin 18286209
-  note:
-    de: 1/16 Taler
-    en: 1/16 Taler
-    uk: 1/16 Taler
-  verification_note: *id001
-  issuing_entity: grafschaft_schaumburg
-  composed_of:
-  - ikmk-18286209
-- id: unified-ikmk-18286211
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Doppelschilling
-  year_first: 1621
-  year_last: 1621
-  year_label: '1621'
-  ruler: Ernst III.
-  inscription_obv: ER PR E - C H S E S
-  inscription_rev: FERDINAN D G R IM S A 6Z1
-  mint: Oldendorf
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.88
-    source: ikmk
-  diameter_mm:
-  - value: 22.0
-    source: ikmk
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286211
-    ref: IKMK Berlin 18286211
-  note:
-    de: 1/16 Taler
-    en: 1/16 Taler
-    uk: 1/16 Taler
-  verification_note: *id001
-  issuing_entity: grafschaft_schaumburg
-  composed_of:
-  - ikmk-18286211
 - id: unified-ikmk-18286674
   fuss: seed_unsorted
   phase: ikmk

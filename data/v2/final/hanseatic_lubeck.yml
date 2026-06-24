@@ -3665,11 +3665,7 @@ coins:
   weight_rough_g:
   - value: 0.33
     source: ikmk
-  - value: 0.34
-    source: ikmk
   diameter_mm:
-  - value: 12.0
-    source: ikmk
   - value: 13.0
     source: ikmk
   sources:
@@ -3686,39 +3682,6 @@ coins:
   verification_note: *id001
   composed_of:
   - unified-ikmk-18283283
-- fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Pfennig
-  mintmaster: Heinrich von der Klähren
-  issuing_entity: hanseatic_lubeck
-  id: unified-ikmk-18283284
-  year_first: 1621
-  year_last: 1621
-  year_label: '1621'
-  metal: copper
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 0.3
-    source: ikmk
-  diameter_mm:
-  - value: 12.0
-    source: ikmk
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18283284
-    ref: IKMK Berlin 18283284
-  note:
-    de: einseitig
-    en: einseitig
-    uk: einseitig
-  verification_note: *id001
-  composed_of:
-  - unified-ikmk-18283284
 - fuss: seed_unsorted
   phase: ikmk
   kind: kurant
@@ -4215,10 +4178,6 @@ coins:
   mint_verified: true
   verified: false
   weight_rough_g:
-  - value: 27.81
-    source: kmk
-  - value: 28.6
-    source: kmk
   - value: 28.93
     source: kmk
   sources:
@@ -4384,8 +4343,6 @@ coins:
   weight_rough_g:
   - value: 28.79
     source: kmk
-  - value: 28.99
-    source: kmk
   sources:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/184165
@@ -4507,7 +4464,7 @@ coins:
   year_last: 1559
   year_label: '1559'
   catalog:
-    dav: '9408'
+    dav: '79'
   metal_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -5475,3 +5432,120 @@ coins:
   verification_note: *id002
   composed_of:
   - unified-kmk-740898
+- fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Daler
+  issuing_entity: hanseatic_lubeck
+  id: unified-kmk-184159
+  year_first: 1637
+  year_last: 1637
+  year_label: '1637'
+  catalog:
+    behrens: '167'
+    dav: '5449'
+  metal_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 27.81
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/184159
+    ref: KMM 184159 (Inv. FP 3427.246)
+  verification_note: &id003
+    de: 'KMK-Seed: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk). Felder museumsbelegt;
+      Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+    en: 'KMK seed: record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk). Fields museum-attested;
+      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+    uk: 'KMK-сід: запис із Королівського мюнцкабінету (Nationalmuseet Копенгаген, api.natmus.dk). Поля музейно-засвідчені;
+      Müntzfuß/фаза некласифіковані (seed_unsorted) до Phase-4.'
+  composed_of:
+  - unified-kmk-184159
+- fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Daler
+  ruler: Ferdinand 2
+  issuing_entity: hanseatic_lubeck
+  id: unified-kmk-187987
+  year_first: 1637
+  year_last: 1637
+  year_label: '1637'
+  catalog:
+    dav: '67'
+  metal_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.6
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/187987
+    ref: KMM 187987 (Inv. FP 4271.9)
+  verification_note: *id003
+  composed_of:
+  - unified-kmk-187987
+- fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Daler
+  ruler: Ferdinand 2
+  issuing_entity: hanseatic_lubeck
+  id: unified-kmk-187988
+  year_first: 1621
+  year_last: 1621
+  year_label: '1621'
+  catalog:
+    dav: '67'
+  metal_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.99
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/187988
+    ref: KMM 187988 (Inv. FP 4271.8)
+  verification_note: *id003
+  composed_of:
+  - unified-kmk-187988
+- fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Pfennig
+  mintmaster: Heinrich von der Klähren
+  issuing_entity: hanseatic_lubeck
+  id: unified-ikmk-18283284
+  year_first: 1621
+  year_last: 1621
+  year_label: '1621'
+  metal: copper
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 0.3
+    source: ikmk
+  diameter_mm:
+  - value: 12.0
+    source: ikmk
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18283284
+    ref: IKMK Berlin 18283284
+  note:
+    de: einseitig
+    en: einseitig
+    uk: einseitig
+  verification_note: *id001
+  composed_of:
+  - unified-ikmk-18283284
