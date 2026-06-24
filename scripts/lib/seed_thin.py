@@ -55,13 +55,17 @@ def _is_catalogued(coin: dict) -> bool:
 
 def _subvariant_key(coin: dict) -> tuple:
     """Type identity for sub-variant grouping — the catalogue/type signals the
-    cross-source merger itself matches on."""
+    cross-source merger itself matches on. EVERY type-identity register the
+    merger keys on must appear here: omitting one (e.g. `galster`) lets
+    specimens of DIFFERENT types share a bucket and get collapsed together,
+    which both loses distinct types and — once thinning salvages refs onto the
+    reps — bloats the survivor's catalogue + drives transitive over-merges."""
     cat = coin.get("catalog") or {}
     return (
         str(cat.get("km")), str(cat.get("hede")), str(cat.get("sieg")),
-        str(cat.get("schou")), str(cat.get("lange")), coin.get("nominal"),
-        coin.get("ruler"), coin.get("year_first"), str(coin.get("mint")),
-        coin.get("metal"),
+        str(cat.get("schou")), str(cat.get("lange")), str(cat.get("galster")),
+        coin.get("nominal"), coin.get("ruler"), coin.get("year_first"),
+        str(coin.get("mint")), coin.get("metal"),
     )
 
 

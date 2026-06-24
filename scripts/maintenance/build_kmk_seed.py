@@ -282,6 +282,21 @@ def _weight(src):
 # «Fiala 4 nr. 325» → «4 nr. 325», not the volume «4»).
 _CAT_FULL_REMAINDER = {"aagaard", "fiala"}
 
+# §CN-equivalent source-index errata for KMM `typeNumber` Galster mis-prints,
+# applied HERE in the builder (not via the data-level `_source_errata` block):
+# all three records fold into the Galster-57 bucket and get thinned away, so a
+# data-level errata carrier would not survive the next rebuild — the builder map
+# re-applies from the immutable cache on every build. All three are København
+# 1524 Frederik I Søsling = the Galster-57 type, which Galster (1972) split into
+# the 57A/57B groups (danskmoent.dk/fr/f1g57.htm). f1g5 and f1g567 do NOT exist
+# in the catalogue (both HTTP 404) → the printed strings are malformed «57B».
+# Curator-approved 2026-06-24 (Serhii). {id: (printed typeNumber, correct)}.
+_KMM_GALSTER_ERRATA = {
+    309770: ("Galster 5 + B", "57B"),
+    311330: ("G. 567B", "57B"),
+    311331: ("G. 567B", "57B"),
+}
+
 
 def _catalog(src):
     """Parse `typeNumber` → {catalog_key: ref}. Handles multi-field colon/comma
@@ -306,6 +321,17 @@ def _catalog(src):
             val = nm.group(0) if nm else None
         if val:
             out[key] = val
+    # Galster sub-variant letters are uppercase in Galster's catalogue (the
+    # dk-galster source uses 57A/57B/39A/23B); KMM's typeNumber is inconsistent
+    # (57b/23a/39b). Canonicalise the suffix to uppercase so the same Galster
+    # sub-variant from KMM and the Galster source share a thinning bucket key +
+    # merge cleanly. Scoped to galster only — Hede/Lange/Schou sub-variant case
+    # convention is not uniformly uppercase, so those are left untouched.
+    errata = _KMM_GALSTER_ERRATA.get(src.get("id"))
+    if errata:
+        out["galster"] = errata[1]
+    elif out.get("galster"):
+        out["galster"] = out["galster"].upper()
     return out
 
 

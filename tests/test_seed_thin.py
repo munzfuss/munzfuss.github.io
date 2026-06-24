@@ -63,6 +63,22 @@ class TestSeedThinSalvage(unittest.TestCase):
         self.assertEqual(len(kept), 7)   # gate skips uncatalogued buckets
         self.assertEqual(stats["thinned_buckets"], 0)
 
+    def test_distinct_galster_not_collapsed(self):
+        # 5 specimens of galster A + 5 of galster B, otherwise identical
+        # (same km/nominal/ruler/year/mint/metal). galster is a type-identity
+        # register → they must form TWO buckets, each thinned independently to
+        # 3, and NO galster-B value may leak onto a galster-A rep.
+        bucket = _bucket(10)
+        for i, c in enumerate(bucket):
+            c["catalog"] = {"km": "100", "galster": "57" if i < 5 else "63"}
+        kept, stats = thin_coins(bucket)
+        self.assertEqual(stats["thinned_buckets"], 2)
+        self.assertEqual(len(kept), 6)              # 3 per galster bucket
+        for c in kept:
+            g = (c.get("catalog") or {}).get("galster")
+            vals = g if isinstance(g, list) else [g]
+            self.assertEqual(len(set(vals)), 1, f"galster bucket bled: {g}")
+
     def test_diameter_preserved_when_reps_lack_it(self):
         bucket = _bucket(7, with_diameter=True)
         # strip diameter from the 3 reps (x-00 / x-03 / x-06), keep on a dropped

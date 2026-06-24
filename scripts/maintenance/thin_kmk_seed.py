@@ -56,8 +56,9 @@ def _subvariant_key(coin: dict) -> tuple:
     cat = coin.get("catalog") or {}
     return (
         str(cat.get("km")), str(cat.get("hede")), str(cat.get("sieg")),
-        str(cat.get("schou")), coin.get("nominal"), coin.get("ruler"),
-        coin.get("year_first"), str(coin.get("mint")), coin.get("metal"),
+        str(cat.get("schou")), str(cat.get("lange")), str(cat.get("galster")),
+        coin.get("nominal"), coin.get("ruler"), coin.get("year_first"),
+        str(coin.get("mint")), coin.get("metal"),
     )
 
 
