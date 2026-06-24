@@ -886,9 +886,8 @@ For the **preview lifecycle (stop / restart) rule**, see «Preview lifecycle» a
 
 ## Prior work (context)
 
-This project began as iterative research in claude.ai chat. Three legacy HTML artifacts (Schleswig-Holstein, Pan-German Münzfüße overview, Lübeck coin catalog 1749–1810) preserve the analytical content from that phase. They are read-only references that the build pipeline does not consume directly; their data is progressively migrated into YAML.
+This project began as iterative research in claude.ai chat. Three legacy HTML artifacts (Schleswig-Holstein, Pan-German Münzfüße overview, Lübeck coin catalog 1749–1810) preserved the early analytical content; the build never consumed them directly. Their data has been fully migrated into the V2 YAML pipeline, so the `reference/` directory was removed during the V1 teardown (2026-06-24) once V2 reached parity.
 
-- **`reference/README.md`** — descriptions of the three artifacts, their schema, and migration status.
 - **`docs/DECISIONS.md`** — specific analytical decisions (e.g. why KM# 73 Stapelholmer Schanze is classified as 1698-reduced, why Bremen's 1840 silver Münzfuß reconstruction uses 71/72 fineness, etc.).
 - **`docs/GLOSSARY.md`** — German / Danish / Ukrainian numismatic term mappings.
 
