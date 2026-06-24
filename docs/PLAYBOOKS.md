@@ -32,6 +32,14 @@
 
 ## PB-1. Per-case Hede dedup merge
 
+> **SUPERSEDED (V2, 2026-06-24).** This is the V1 flow — folding a
+> `data/seed/hede/` entry into a curated `data/locations/<loc>.yml` coin.
+> V1 was removed; cross-source dedup is now the merger's job
+> (`merge_seeds_cross_source.py` → `data/v2/seed_unified/`), with per-case
+> curator confirmations in `data/v2/merge_decisions/<entity>.yml`
+> (force-merge / no-merge). The dedup *reasoning* below (metal-first filter,
+> KM-collision caveats) still applies; the file mechanics are V1.
+
 **When to use.** A Hede seed entry shares a Krause# (or potentially
 shares one) with a curated entry; we need to decide whether they're
 the same physical coin and, if so, fold them into one record per the
@@ -684,6 +692,15 @@ mistakes, Plakat-1782 not in Bruun, pdf-viewer-MCP unusable).
 
 ## PB-6. Adding a new location
 
+> **PARTLY SUPERSEDED (V2, 2026-06-24).** Steps that create
+> `data/locations/<loc>.yml` and add coins inline are V1. In V2 a display
+> location is `data/v2/locations/<loc>.yml` (declaring `consumes_entities`,
+> phases, prose); its coin table is assembled at render time from
+> `data/v2/final/<entity>.yml`, and coins arrive via the source pipeline
+> (seed builder → merger → absorb), not by hand. The prerequisites (register
+> the entity + mint) and the phase / prose modelling still apply. See
+> `docs/V2_PIPELINE.md` + README «Adding coins or a location».
+
 **When to use.** Bringing a new city / territory into the project
 (e.g. adding `oldenburg.yml` to the existing 12-location set). Rare
 but high-impact.
@@ -754,14 +771,13 @@ but high-impact.
    global. Phase metadata: `start_year`, `end_year`, `description`
    (DE/EN/UK), `kind: phase`.
 
-6. **Add first coin(s).** Either:
-   - Manual: build the curated entries from sources directly
-     (Bruun / Numista / ucoin / Hede), following CLAUDE.md §9
-     inclusion criteria.
-   - Seed-driven: if a Hede-seed for the location exists in
-     `data/seed/hede/<loc>.yml`, the build's `_merge_seeds_into_raw`
-     auto-populates them; curate the high-value entries to Pattern-B
-     consolidated form per PB-1.
+6. **Coins arrive via the pipeline (V2).** A display location declares
+   `consumes_entities`; its coin table is assembled at render time from the
+   relevant `data/v2/final/<entity>.yml` files. To bring a source's coins in,
+   run its native seed builder → `merge_seeds_cross_source.py` →
+   `absorb_seeds_into_final_v2.py` (see `docs/V2_PIPELINE.md`); confirm any
+   ambiguous merges / classifications via
+   `data/v2/{merge_decisions,classification_decisions}/`.
 
 7. **Build smoke check.**
    ```bash
