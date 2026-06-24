@@ -15,6 +15,46 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-24 — V1 layer fully removed; all consumers migrated to V2
+
+> **Commits UNPUSHED** (this session added 9: `366c9f4` reference/ → `30a4718`
+> docs). `git push` pending — no «пуш» yet.
+>
+> **V1 is gone.** V2 (`data/v2/{locations,final}/`) is the sole pipeline. Proven
+> empirically before each removal: a full default build is **byte-identical**
+> (44 HTML files, manifest sha1 `91357407…038a15`) with vs. without each removed
+> piece. What was removed + how:
+> - **Empirical proof first**: re-ran ALL 10 V2 seed builders with `data/seed/`
+>   moved aside → each reproduced its committed coin-id set 1:1 from cache
+>   (`data/seed/` was V1-anchor, not a live input). kmk seed is stale vs its
+>   grown cache (+22583) — **separate, deferred** («kmk-сід на потім»), unrelated
+>   to V1.
+> - `366c9f4` reference/ HTML artifacts · `ba528a9` seed_v2_regroup.py +
+>   build_numista_pre1541_seed.py (no callers) · `1deb8ff` build.py V1 render path
+>   (−458 lines: load_locations, _merge_seeds_into_raw, --include-v1/--v1-only,
+>   V1 cross_ref/render/landing; landing+worker now V2-only) · `adb3b34`
+>   `data/seed/` · `de7affd` the 12 `data/locations/<loc>.yml` coin yamls.
+> - **KEPT**: the 11 `data/locations/<loc>-references.yml` bibliography sidecars
+>   (shared with V2 via `load_v2_locations`).
+> - **Consumers migrated** (`4c8505d` + `b99d131`): audit_prose + audit_i18n
+>   (pre-commit) now scan `data/v2/locations/` + `data/v2/final/` (curated coins
+>   only — skip `_unclassified` + `seed_unsorted`; V1 parity ≈ V1 hit counts);
+>   audit_fuss_anchors + audit_ucoin_categories + fetch_numista_api + the
+>   yaml_io roundtrip test re-pointed to `data/v2/final/` (or `-references` for
+>   the ruamel_loc roundtrip case).
+> - **RETIRED notes** (`c855710` + bootstrap in `b99d131`): 8 V1-era one-time
+>   passes (enrich_*, dedupe_sources, classify_issuing_entity, ucoin_backfill_metal,
+>   bruun 04_cross_match, bootstrap_v2_final_from_v1) — kept for reference.
+> - **Docs** (`30a4718`): CLAUDE.md, ARCHITECTURE, V2_PIPELINE, HARVEST_GUIDE,
+>   build_numismaster docstring updated to «V1 removed / V2 sole pipeline / native
+>   builders». V2_DECISIONS (immutable journal) + TODO (curator list) left as-is.
+>
+> **Note**: `scripts/oneoff/` scratch scripts still reference `data/locations/`
+> coin yamls — that's fine (throwaway tier; breaking on removal is expected).
+> The prose/i18n audits surfaced a real **curated-prose backlog** (1238 hits)
+> they couldn't see while stuck on frozen V1 — that's a separate cleanup, not a
+> migration artifact.
+
 ## 2026-06-23 — 4 mixed cross-source dups merged (c5h56, f2h8, f6h31, f7h8) — durable
 
 > **18 commits UNPUSHED** (this turn added `673bf03`). `git push` pending.
