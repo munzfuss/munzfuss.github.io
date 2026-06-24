@@ -305,7 +305,8 @@ def build_entry(rec) -> dict | None:
     return {k: v for k, v in entry.items() if v is not None}
 
 
-def build_seed(dry_run: bool, no_merge: bool, limit: int | None) -> int:
+def build_seed(dry_run: bool, no_merge: bool, limit: int | None,
+               no_thin: bool = False) -> int:
     files = sorted(p for p in IKMK_CACHE.glob("*.json") if not p.stem.startswith("_"))
     entries: list[dict] = []
     scanned = skipped_noncoin = 0
@@ -345,6 +346,16 @@ def build_seed(dry_run: bool, no_merge: bool, limit: int | None) -> int:
         dry_run=dry_run,
         no_merge=no_merge,
     )
+    # §9a thinning of over-sampled IKMK sub-variants. IKMK over-samples common
+    # types too (one uncatalogued «1/24 Taler» 1619 had 734 specimens). Only
+    # CATALOGUED buckets are thinned — uncatalogued buckets have uncertain type
+    # identity, stay seed_unsorted, and are left whole. Integrated here so a
+    # single --write is self-filtering + idempotent.
+    if not dry_run and not no_thin:
+        print("\n🪶 Thinning over-sampled sub-variants to §9a envelope...")
+        from lib.seed_thin import thin_seed_dir
+        seed_dir = Path(__file__).resolve().parents[2] / "data" / "v2" / "seed" / "ikmk"
+        thin_seed_dir(seed_dir, catalogued_only=True, dry_run=False)
     return 0
 
 
@@ -355,8 +366,12 @@ def main() -> int:
     ap.add_argument("--no-merge", action="store_true",
                     help="wholesale overwrite (skip merge_seed curation preservation)")
     ap.add_argument("--limit", type=int, default=None, help="process only N cache files (subset test)")
+    ap.add_argument("--no-thin", action="store_true",
+                    help="skip the §9a over-sample thinning post-pass "
+                         "(emit the raw per-specimen seed)")
     args = ap.parse_args()
-    return build_seed(dry_run=not args.write, no_merge=args.no_merge, limit=args.limit)
+    return build_seed(dry_run=not args.write, no_merge=args.no_merge,
+                      limit=args.limit, no_thin=args.no_thin)
 
 
 if __name__ == "__main__":
