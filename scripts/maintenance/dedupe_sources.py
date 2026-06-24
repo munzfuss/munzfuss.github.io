@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """One-off: dedupe coin.sources entries that point to the same URL.
 
+RETIRED (2026-06-24): operated on the V1 data/locations/<loc>.yml coin
+yamls, removed once V2 reached parity. V2 enrichment / classification now
+runs through the merger + absorb pipeline and the native source builders.
+Kept for reference; no longer runnable.
+
 After cleanup_sources.py promoted `#refN` sources to direct URLs, some coins
 ended up with two entries linking to the same page — the original one plus
 the promoted one. In the rendered «Джерело» cell this shows up as a doubled

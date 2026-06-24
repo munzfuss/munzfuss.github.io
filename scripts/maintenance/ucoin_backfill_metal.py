@@ -1,5 +1,10 @@
 """Apply ucoin-sourced composition to coin records.
 
+RETIRED (2026-06-24): operated on the V1 data/locations/<loc>.yml coin
+yamls, removed once V2 reached parity. V2 enrichment / classification now
+runs through the merger + absorb pipeline and the native source builders.
+Kept for reference; no longer runnable.
+
 Reads `scripts/cache/ucoin/_composition.json` (the sidecar built by
 `ucoin_fetch_composition.py`) and for each coin that links to a tid
 present in the sidecar:

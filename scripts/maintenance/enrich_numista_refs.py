@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Phase-2 enrichment: merge Numista catalog references into each coin's catalog.
 
+RETIRED (2026-06-24): operated on the V1 data/locations/<loc>.yml coin
+yamls, removed once V2 reached parity. V2 enrichment / classification now
+runs through the merger + absorb pipeline and the native source builders.
+Kept for reference; no longer runnable.
+
 Reads scripts/numista_refs.json (output of Chrome batch fetch) — keyed by
 Numista piece-id, value = list of ref strings like "KM# 12", "Lange# 539".
 

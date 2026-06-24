@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Classify each coin in schleswig_holstein.yml by issuing political entity.
 
+RETIRED (2026-06-24): operated on the V1 data/locations/<loc>.yml coin
+yamls, removed once V2 reached parity. V2 enrichment / classification now
+runs through the merger + absorb pipeline and the native source builders.
+Kept for reference; no longer runnable.
+
 Heuristic rules (applied in order):
   1. Provisional Government 1850-1851 → 'provisional_govt'
   2. Gottorp ducal rulers (Adolf, John Adolphus, Frederick III v. Gottorp,

@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Extract Numista piece-id from each coin's source URL and store as catalog.numista.
 
+RETIRED (2026-06-24): operated on the V1 data/locations/<loc>.yml coin
+yamls, removed once V2 reached parity. V2 enrichment / classification now
+runs through the merger + absorb pipeline and the native source builders.
+Kept for reference; no longer runnable.
+
 Phase 1 of the enrichment plan: no network needed, just URL parsing.
 Phase 2 (separate script) fetches each Numista page and parses additional
 catalog references (Lange#, Hede#, Sieg#, MB#, Weinm#, etc.).

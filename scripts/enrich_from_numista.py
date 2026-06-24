@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 """Enrich coin.catalog with extra refs (Fr#, Lange#, Hede#, Sieg#, Schou#, Dav#, Galster#, Aagaard#)
+
+RETIRED (2026-06-24): operated on the V1 data/locations/<loc>.yml coin
+yamls, removed once V2 reached parity. V2 enrichment / classification now
+runs through the merger + absorb pipeline and the native source builders.
+Kept for reference; no longer runnable.
 pulled from Numista piece pages (metadata in scripts/numista_scratch.json).
 
 For each coin with a piece-level Numista URL:

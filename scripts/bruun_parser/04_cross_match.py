@@ -1,4 +1,9 @@
 """
+
+RETIRED (2026-06-24): operated on the V1 data/locations/<loc>.yml coin
+yamls, removed once V2 reached parity. V2 enrichment / classification now
+runs through the merger + absorb pipeline and the native source builders.
+Kept for reference; no longer runnable.
 Stage 4 — cross-match scope-classified Bruun lots against current YAML.
 
 Inputs:  scripts/cache/bruun/scope.json (from stage 03)
