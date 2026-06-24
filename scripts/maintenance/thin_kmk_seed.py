@@ -44,6 +44,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 from lib.seed_merge import _make_yaml_loader  # noqa: E402
+from lib.seed_thin import _salvage_unique  # noqa: E402
 
 KMK_SEED_DIR = ROOT / "data" / "v2" / "seed" / "kmk"
 
@@ -103,7 +104,14 @@ def thin(dry_run: bool) -> int:
             if len(members) >= 5:
                 members_sorted = sorted(members, key=lambda c: str(c.get("id")))
                 idx = sorted({0, len(members_sorted) // 2, len(members_sorted) - 1})
-                kept.extend(members_sorted[i] for i in idx)
+                reps = [members_sorted[i] for i in idx]
+                dropped = [members_sorted[i] for i in range(len(members_sorted))
+                           if i not in idx]
+                # §9a salvage: carry the dropped specimens' distinguishing
+                # catalogue indices (+ fineness/diameter the reps lack) onto the
+                # kept reps; shed only the redundant weight + per-specimen sources.
+                _salvage_unique(reps, dropped)
+                kept.extend(reps)
                 thinned_buckets += 1
             else:
                 kept.extend(members)

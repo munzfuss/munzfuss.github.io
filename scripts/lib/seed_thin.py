@@ -36,6 +36,7 @@ uncatalogued grouping.
 from __future__ import annotations
 
 import glob
+import re
 import sys
 from pathlib import Path
 
@@ -64,6 +65,98 @@ def _subvariant_key(coin: dict) -> tuple:
     )
 
 
+# Catalogue keys that identify a SPECIMEN (auction lot, museum part), not a
+# TYPE — these are intentionally NOT salvaged from dropped specimens (they're
+# the redundant per-specimen provenance the thinning is meant to shed).
+_PER_SPECIMEN_KEYS = ("bruun_lot_no", "bruun_collection_id", "bruun_part",
+                      "bruun_page")
+
+
+def _norm(x) -> str:
+    return re.sub(r"\s+", "", str(x)).lower()
+
+
+def _coin_catpairs(coin: dict):
+    """Yield (key, value) TYPE catalogue refs on a coin — every km/hede/…/
+    `others` sub-catalogue entry, flattening dict/list forms. Per-specimen
+    locators and *_volume/*_verified companions are excluded."""
+    cat = coin.get("catalog") or {}
+    out = []
+    for k, v in cat.items():
+        if k.endswith("_volume") or k.endswith("_verified") or k in _PER_SPECIMEN_KEYS:
+            continue
+        if isinstance(v, dict):
+            vals = [x for vv in v.values() for x in (vv if isinstance(vv, list) else [vv])]
+        elif isinstance(v, list):
+            vals = v
+        else:
+            vals = [v] if v not in (None, "") else []
+        for x in vals:
+            if x not in (None, ""):
+                out.append((k, x))
+    return out
+
+
+def _append_catalog_ref(coin: dict, key: str, value) -> None:
+    cat = coin.setdefault("catalog", {})
+    if not isinstance(cat, dict):
+        return
+    cur = cat.get(key)
+    if cur is None:
+        cat[key] = value
+    elif isinstance(cur, dict):
+        return                       # cross-volume dict-form — leave untouched
+    elif isinstance(cur, list):
+        if all(_norm(value) != _norm(e) for e in cur):
+            cur.append(value)
+    elif _norm(cur) != _norm(value):
+        cat[key] = [cur, value]
+
+
+def _measure_values(coin: dict, field: str) -> set:
+    v = coin.get(field)
+    if v is None:
+        return set()
+    seq = v if isinstance(v, list) else [v]
+    out = set()
+    for e in seq:
+        val = e.get("value") if isinstance(e, dict) else e
+        if isinstance(val, (int, float)):
+            out.add(round(float(val), 4))
+    return out
+
+
+def _salvage_unique(reps: list, dropped: list) -> None:
+    """Carry the dropped specimens' DISTINGUISHING data onto the kept reps so
+    the §9a thinning sheds only redundant readings, never unique information:
+
+      * every distinct catalogue index — incl. the `others` sub-catalogue
+        (dorfmann# / schrötter# / olding# / aagaard#) that is NOT in the
+        bucket key — is unioned onto reps[0];
+      * fineness / diameter_mm are preserved at the type level: the kept reps
+        already carry the type's reading(s); only when the reps lack the field
+        entirely is a dropped specimen's value salvaged (so the type never
+        loses a measurement it only had on a thinned specimen).
+
+    The dropped specimens' weight readings and per-specimen source URLs are
+    deliberately NOT carried — that redundancy is exactly what thinning sheds.
+    """
+    target = reps[0]
+    have_cat = {(k, _norm(x)) for r in reps for (k, x) in _coin_catpairs(r)}
+    for d in dropped:
+        for (k, x) in _coin_catpairs(d):
+            if (k, _norm(x)) not in have_cat:
+                have_cat.add((k, _norm(x)))
+                _append_catalog_ref(target, k, x)
+    for field in ("fineness", "diameter_mm"):
+        if any(_measure_values(r, field) for r in reps):
+            continue                 # reps already represent this measurement
+        for d in dropped:
+            if _measure_values(d, field):
+                target[field] = d[field]   # type's only reading — preserve it
+                break
+
+
 def thin_coins(coins: list, min_bucket: int = 5,
                catalogued_only: bool = True) -> tuple[list, dict]:
     """Return (kept_coins, stats). Thin each ≥``min_bucket`` sub-variant bucket
@@ -85,7 +178,10 @@ def thin_coins(coins: list, min_bucket: int = 5,
         if eligible:
             ms = sorted(members, key=lambda c: str(c.get("id")))
             idx = sorted({0, len(ms) // 2, len(ms) - 1})
-            kept.extend(ms[i] for i in idx)
+            reps = [ms[i] for i in idx]
+            dropped = [ms[i] for i in range(len(ms)) if i not in idx]
+            _salvage_unique(reps, dropped)
+            kept.extend(reps)
             thinned_buckets += 1
         else:
             kept.extend(members)
