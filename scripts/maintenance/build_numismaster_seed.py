@@ -1,23 +1,20 @@
 #!/usr/bin/env python3
-"""§BK NumisMaster Phase 5 — location-keyed seed builder.
+"""§BK NumisMaster — V2-native entity-keyed seed builder.
 
 Reads `scripts/cache/numismaster/<cache>/MC_<N>.parsed.json` files (output of
-`scripts/parse_numismaster.py`) and emits one seed file per project LOCATION
-under `data/seed/numismaster/<location>.yml`, with Coin-schema entries marked
-`fuss: seed_unsorted`, `phase: numismaster`.
+`scripts/parse_numismaster.py`), classifies each coin by issuing political
+entity, and writes one seed file per entity under
+`data/v2/seed/numismaster/<entity>.yml` (via `lib.v2_seed_writer.write_v2_seed`),
+with Coin-schema entries marked `fuss: seed_unsorted`, `phase: numismaster`.
 
-Locations and their cache composition (CACHE_WINDOW per cache + LOCATION_CACHES
-roll-up):
+Cache windows (CACHE_WINDOW per cache; all caches roll up, then the mint→entity
+classifier routes each coin to its political-entity file):
 
-  data/seed/numismaster/schleswig_holstein.yml
-    ← cache/numismaster/schleswig_holstein/ (1514-1864, SH Danish-jurisdiction)
-
-  data/seed/numismaster/denmark.yml
-    ← cache/numismaster/denmark/ (1514-1914, project upper bound)
-    ← cache/numismaster/norway/  (1608-1814, Norge under Danish rule only)
-       — both fold into denmark.yml because the Denmark-Norway realm is a
-         single coinage jurisdiction (Danish crown), same as how Hede 1971
-         covers both under «Danmarks og Norges mønter».
+  cache/numismaster/schleswig_holstein/ (1514-1864, SH Danish-jurisdiction)
+  cache/numismaster/denmark/            (1514-1914, project upper bound)
+  cache/numismaster/norway/             (1608-1814, Norge under Danish rule —
+       Denmark-Norway is a single coinage jurisdiction, same as how Hede 1971
+       covers both under «Danmarks og Norges mønter»).
 
 Sweden-Christian-II is 0 entries (§BI negative finding) — no seed emitted.
 

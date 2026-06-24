@@ -21,7 +21,7 @@ Phase 1 HARVEST                fetch_<src>.py        → scripts/cache/<src>/*.{
        ↓
 Phase 2 SYNTHESIS              parse_<src>.py        → scripts/cache/<src>/*.json
        ↓
-Phase 3.1 per-source SEED      seed_v2_regroup.py    → data/v2/seed/<src>/<entity>.yml
+Phase 3.1 per-source SEED      build_<src>_seed.py   → data/v2/seed/<src>/<entity>.yml
        ↓
 Phase 3.2 cross-source MERGE   merge_seeds_cross_    → data/v2/seed_unified/<entity>.yml
                                source.py               + data/v2/match_uncertainty/  (gitignored)
@@ -411,11 +411,22 @@ Locked in across previous planning rounds:
 
 ## 12. Implementation status
 
+> **Update 2026-06-24 — pipeline complete, V1 removed.** Every «Pending» and
+> «Deferred to Phase 9» item below has since landed: Phase 3.2
+> (`merge_seeds_cross_source.py` → `data/v2/seed_unified/`), Phase 4
+> (`absorb_seeds_into_final_v2.py` → `data/v2/final/`), native per-source
+> builders (`build_<src>_seed.py`, replacing the `seed_v2_regroup.py`
+> post-processor), and removal of the V1 render path (`data/locations/<loc>.yml`
+> coin yamls, `data/seed/`, `_merge_seeds_into_raw`, `--include-v1` / `--v1-only`
+> flags, `seed_v2_regroup.py`; `bootstrap_v2_final_from_v1.py` RETIRED). The
+> checklist below is the historical 2026-05-18 plan snapshot — see
+> `docs/ARCHITECTURE.md` §«Pipeline state» for the current shape.
+
 Landed:
 - [x] Phase 1, Phase 2 — unchanged from V1, shared
-- [x] Phase 3.1 (per-resource seed entity-keyed output) — via
-  `scripts/maintenance/seed_v2_regroup.py` post-processor over V1 seeds.
-  Native `--v2` builders post-Phase 9 will replace the post-processor.
+- [x] Phase 3.1 (per-resource seed entity-keyed output) — now via native
+  per-source builders (`build_<src>_seed.py` → `data/v2/seed/`, from parser
+  cache). Originally a `seed_v2_regroup.py` post-processor over V1 seeds.
 - [x] Schema extensions: list-form `issuing_entity`, dict-form `phase`
   and `catalog.km`, `composed_of` + `promoted_to`
 - [x] Build assembly: two-pass walk + per-coin phase pre-filter,

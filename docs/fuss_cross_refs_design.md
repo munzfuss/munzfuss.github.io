@@ -228,10 +228,10 @@ operating on `data/shared/fuesse.yml`, `data/v2/locations/*.yml`,
 3. **Do NOT touch** `<code>…</code>` spans whose content is not a fuss
    key/name (catalog refs, coin nominals, weights, etc.). Restrict the
    match to the enumerated key set + the 2 display names.
-4. After migration: `build.py --validate-only`, then full `build.py
-   --include-v1`, then grep the rendered `site/**` for any residual
-   literal `[fuss:` (= a key the resolver didn't recognise) and any
-   `[UNKNOWN FUSS:` placeholder (= a key absent from `fuesse`).
+4. After migration: `build.py --validate-only`, then a full `build.py`,
+   then grep the rendered `site/**` for any residual literal `[fuss:`
+   (= a key the resolver didn't recognise) and any `[UNKNOWN FUSS:`
+   placeholder (= a key absent from `fuesse`).
 
 ## Test plan
 

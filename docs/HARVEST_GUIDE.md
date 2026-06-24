@@ -40,7 +40,7 @@ For per-coin coverage of a new scope (location × period):
    - `parse_<source>_<scope>.py` — HTML → structured JSON sidecars
    - `maintenance/build_<source>_<scope>_seed.py` — JSON → seed YAML
 4. **Cache shape**: `scripts/cache/<source>/<scope>/` (submodule). Commit submodule first, then bump pointer in main repo (per PB-10).
-5. **Seed output**: `data/seed/<source>/<scope>.yml` for §BF promotion.
+5. **Seed output**: `data/v2/seed/<source>/<entity>.yml` (entity-keyed, written natively from cache via `lib/v2_seed_writer.write_v2_seed`), consumed by the Phase 3.2 cross-source merger.
 
 ## §AZ Tier matrix (Danish-realm 1514-1541 example)
 
@@ -885,7 +885,7 @@ fi
 
 `scripts/parse_numismaster.py` walks `scripts/cache/numismaster/<sub_scope>/MC_*.html` → sibling `MC_<N>.parsed.json` with structured field extraction (country / catalog_number / political_period / coinage_entity / denomination / year / ruler / mint / composition / mass / fineness / actual_weight / obverse / reverse + cross-refs Sch/L/Fr/KM/MB/Sieg/Hede/Bruun/Schive). Idempotent; `--force` re-parses already-parsed files.
 
-`scripts/maintenance/build_numismaster_seed.py --sub-scope <name>` reads parsed JSONs → emits `data/seed/numismaster/<sub_scope>.yml` with Coin-schema-clean entries (`fuss: seed_unsorted`, `phase: numismaster`). Per-sub-scope year window: SH 1514-1864, DK 1514-1914, Norway 1608-1814.
+`scripts/maintenance/build_numismaster_seed.py` reads parsed JSONs across all cache windows, classifies each coin by political entity, and emits `data/v2/seed/numismaster/<entity>.yml` (via `lib/v2_seed_writer.write_v2_seed`) with Coin-schema-clean entries (`fuss: seed_unsorted`, `phase: numismaster`). Cache year windows: SH 1514-1864, DK 1514-1914, Norway 1608-1814.
 
 **Schema-clean filtering**: NumisMaster's extra-vocabulary refs (mb / schive / numismaster_mc / Bruun-number) are preserved on `MC_<N>.parsed.json` but dropped from the seed YAML (Coin schema forbids them). Enrichment fields (political_period, obverse/reverse descriptions, general_note) live on the seed YAML under `_`-prefixed keys; `scripts/build.py`'s seed-merger strips them before validation, so they're visible to human curators without tripping the strict schema downstream.
 
@@ -1062,7 +1062,7 @@ These were identified during §AZ but deferred:
 
 - **NumisMaster full Schleswig-Holstein walk** — 600+ sub-territory IDs under Denmark hub; current §AZ Tier 4 captures only Holstein-Gottorp-Rendsborg sample. Future session: walk each leaf ID via Chrome MCP + harvest MC_NNNNN pages.
 - **ucoin.net resume** — §M tracking ~490 uncached URLs; resume when Cloudflare cooldown passes.
-- **Hans 1496-1513 + Erik VII 1397-1439 backfill** — pre-1514 outside §BI anchor but valuable research-doc context. Could be added as `data/seed/<source>/denmark_pre_1514_outliers.yml` for completeness.
+- **Hans 1496-1513 + Erik VII 1397-1439 backfill** — pre-1514 outside §BI anchor but valuable research-doc context. Could be added to the relevant `data/v2/seed/<source>/<entity>.yml` for completeness.
 - **Münzkabinett Berlin IKMK full Denmark walk** — IKMK has Christian II / Frederik I / Christian III specimens that would enrich photo + curator-spec data. Current `scripts/cache/ikmk/` has partial coverage.
 
 ## See also

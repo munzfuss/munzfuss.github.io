@@ -433,7 +433,7 @@ Phase 1 HARVEST                fetch_<src>.py        → scripts/cache/<src>/*.{
        ↓
 Phase 2 SYNTHESIS              parse_<src>.py        → scripts/cache/<src>/*.json
        ↓
-Phase 3.1 per-source SEED      seed_v2_regroup.py    → data/v2/seed/<src>/<entity>.yml
+Phase 3.1 per-source SEED      build_<src>_seed.py   → data/v2/seed/<src>/<entity>.yml
        ↓
 Phase 3.2 cross-source MERGE   merge_seeds_cross_    → data/v2/seed_unified/<entity>.yml
                                source.py               + data/v2/match_uncertainty/  (gitignored)
@@ -533,7 +533,7 @@ Shared mechanism: `lib/seed_merge.merge_seed()` (see §«Manual-override preserv
 - Applies field sanitisation + type coercion (drops non-schema fields with diagnostic; `bruun_part: 3 → 'III'`; null-nominal → '(?)' placeholder; etc.)
 - Writes all entries with `fuss: seed_unsorted` — Phase 4 assigns fuss
 
-**Transitional state (pre-Phase-9):** `scripts/maintenance/seed_v2_regroup.py` is the current driver — a **post-processor** over V1's location-keyed seed yamls. Post-Phase 9, each V1 builder gains a `--v2` flag (or sibling `build_<src>_seed_v2.py`) so V2 derives directly from parser cache.
+**Native per-source builders drive Phase 3.1:** each `scripts/maintenance/build_<src>_seed.py` reads the parser cache, classifies every coin by political entity, and writes `data/v2/seed/<src>/<entity>.yml` directly via `lib.v2_seed_writer.write_v2_seed`. (The earlier `seed_v2_regroup.py` post-processor — which regrouped V1's location-keyed seed yamls — was removed 2026-06-24 once the native builders reached parity and V1 was retired.)
 
 **3b. Cross-source merge to unified seed.** `scripts/maintenance/merge_seeds_cross_source.py` reads all `data/v2/seed/<source>/<entity>.yml` files for one entity and produces `data/v2/seed_unified/<entity>.yml` — one entry per physical coin, enriched from every source that catalogued it:
 
@@ -609,17 +609,25 @@ The `composed_of` ↔ `promoted_to` link encodes every merge that has happened:
 
 Phase 3.2 / Phase 4 scripts MUST produce hosts that pass this audit (no silent data loss). When a host fails the audit, either the script has a bug or the curator's merge decision was overly aggressive — either way the audit surfaces the regression on the next CI / pre-commit run.
 
-### Transitional state (pre-Phase 9)
+### Pipeline state (V1 removed 2026-06-24)
 
-Currently `data/v2/curated/` holds the bootstrap-migrated output (1317 V1 curated coins folded into entity-keyed files via `bootstrap_v2_final_from_v1.py` on 2026-05-18). Once Phase 3.2 + Phase 4 land + the first full-cycle reprocess passes the V1↔V2 diff, this directory renames to `data/v2/final/` and the bootstrap migrate script retires.
+The full automated pipeline is live: native per-source builders →
+`data/v2/seed/<src>/<entity>.yml`; `merge_seeds_cross_source.py` →
+`data/v2/seed_unified/<entity>.yml` (Phase 3.2); `absorb_seeds_into_final_v2.py`
+→ `data/v2/final/<entity>.yml` (Phase 4). The merge / idempotency / link-audit
+mechanics live in `lib/seed_merge.py` + `merge_seeds_cross_source.py`.
 
-Until then, `data/v2/curated/` serves as «Phase 4 equivalent» for V1-migrated coins, alongside `data/v2/seed/` which serves as «Phase 3.1 output» via the post-processor. The pipeline mechanics (merge, idempotency, link audit) are already in place; what remains is the explicit Phase 3.2 + Phase 4 scripts that derive `seed_unified/` and `final/` from upstream phases automatically.
+The legacy V1 path was removed once V2 reached parity (the rendered site is
+byte-identical without it):
+- `bootstrap_v2_final_from_v1.py` — RETIRED (one-time V1→V2 bootstrap that
+  produced the first `data/v2/final/` files; reads V1 by design, kept for its
+  §3.1 decision-tree reference)
+- `seed_v2_regroup.py` — removed (native builders replaced it)
+- `data/locations/<loc>.yml` coin yamls + the `data/seed/` seed-merge layer +
+  `_merge_seeds_into_raw` + the `--include-v1` / `--v1-only` build flags — removed
+- `data/locations/<loc>-references.yml` bibliography sidecars — KEPT (shared with V2)
 
-Post-Phase 9 (promotion):
-- Each V1 builder gains a `--v2` flag (or sibling V2 builder) so Phase 3.1 derives directly from parser cache without going through V1 seed yamls
-- `bootstrap_v2_final_from_v1.py` retires (V1 archives off to `data/_archive_v1_*/`)
-- `data/v2/*` → `data/*` (V2 becomes the primary)
-- `seed_v2_regroup.py` retires (replaced by native V2 builders)
+V2 data still lives under `data/v2/` (the `data/v2/* → data/*` rename was not done).
 
 ### Reference docs
 

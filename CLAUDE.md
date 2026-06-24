@@ -8,7 +8,7 @@
 >
 > **And read `docs/handoff.md` at session start.** Short-term session state — current focus, pending verifications awaiting user input, recently-changed surfaces, local-commit state. Distinct from `docs/TODO.md` (long-term audit items with full design context) and this file (stable conventions). Update at task / chapter boundaries; prune entries that no longer help the next session pick up cold. **Update `docs/handoff.md` at session end whenever there's something worth recording** — a changed focus, an open blocker awaiting the user, a rebuilt surface, a freshly-shipped mechanism, new local commits (user direction 2026-06-08: «записувати якщо є що писати, якщо це видається логічним»). That's almost every working session — use judgment: don't pad an entry when nothing meaningful changed, but don't skip when a real next-step / blocker / shipped change exists. See `docs/PLAYBOOKS.md` PB-8 § «Session end» step 3.
 >
-> **In-flight refactor: V2 entity-keyed pipeline — `docs/V2_PIPELINE.md` (plan) + `docs/V2_DECISIONS.md` (canonical journal of every architectural decision with rationale + code locations).** A multi-session refactor of the coin-data pipeline into a 4-phase fully-automated flow keyed by **political entity** (not display location). V1 (`data/locations/`, `data/seed/<src>/<loc>.yml`) is **FROZEN** after the 2026-05-18 bootstrap and serves as a **verification anchor** that V2's automated reprocessing of the same source data must reproduce ~1:1 before promotion. Display pages declare `consumes_entities: [...]` and the build assembles per-location from N entity files at render time. **Curator never edits coin fields by hand** — curator input is restricted to three decision surfaces: which entities the project supports (`data/i18n/issuing_entities.yml`), Phase 3 cross-source merge confirmations (`data/v2/merge_decisions/`), Phase 4 fuss/phase confirmations (`data/v2/classification_decisions/`). In every case the preferred path is updating script rules so the case becomes auto-handled. **Status (2026-05-18):** Phases 1, 2, 3.1 (per-resource entity-keyed seeds), supporting infrastructure (schema, build assembly, idempotent merge-aware regen via `lib/seed_merge.py`, bidirectional `composed_of` ↔ `promoted_to` link via `relink_promoted_v2.py`, mint→entity classifier) landed. **Pending:** Phase 3.2 (cross-source merger → `data/v2/seed_unified/`), Phase 4 (fuss auto-classifier → `data/v2/final/`), V1↔V2 diff tool for the first full-cycle verification, `audit_v2.py` (hard-block pre-commit per §7.4), explicit promotion gate (Phase 9). Read `docs/V2_PIPELINE.md` + `docs/ARCHITECTURE.md` §«V2 entity-keyed pipeline» before touching ANY of: V1 seed files (`data/seed/`), V1 location yamls (`data/locations/`), `_merge_seeds_into_raw`, the V2 `_assemble_v2_location()` assembly function (`scripts/build.py`), `lib/v2_resolver.py`, `lib/v2_entity_classify.py`, `lib/seed_merge.py`, the `scripts/maintenance/{migrate_curated_to_v2,init_v2_locations,seed_v2_regroup,relink_promoted_v2}.py` scripts, or anything that hard-codes the location-keyed assumption. Atomic-commit cadence applies per phase; V2 work lives on branch `feat/v2-pipeline`.
+> **V2 entity-keyed pipeline — the production coin-data pipeline.** Plan/reference: `docs/V2_PIPELINE.md`; canonical decision journal (every architectural decision with rationale + code locations): `docs/V2_DECISIONS.md`. A 4-phase fully-automated flow keyed by **political entity** (not display location): HARVEST → SYNTHESIS → SEED (`data/v2/seed/<src>/<entity>.yml`, written natively from parser cache via `lib/v2_seed_writer.write_v2_seed`) → cross-source merge (`data/v2/seed_unified/`) → fuss/phase classification (`data/v2/final/<entity>.yml`). Display pages declare `consumes_entities: [...]` and the build assembles per-location from N entity files at render time (`_assemble_v2_location()` in `scripts/build.py`). **Curator never edits coin fields by hand** — curator input is restricted to three decision surfaces: which entities the project supports (`data/i18n/issuing_entities.yml`), cross-source merge confirmations (`data/v2/merge_decisions/`), fuss/phase confirmations (`data/v2/classification_decisions/`). In every case the preferred path is updating script rules so the case becomes auto-handled. Read `docs/V2_PIPELINE.md` + `docs/ARCHITECTURE.md` §«V2 entity-keyed pipeline» before touching ANY of: `_assemble_v2_location()` (`scripts/build.py`), `lib/v2_resolver.py`, `lib/v2_entity_classify.py`, `lib/seed_merge.py`, `scripts/maintenance/merge_seeds_cross_source.py`, `relink_promoted_v2.py`, or any `data/v2/{seed,seed_unified,final,merge_decisions,classification_decisions}/` file. **V1 removed 2026-06-24:** the legacy render path — `data/locations/<loc>.yml` coin yamls, the `data/seed/` seed-merge layer, `_merge_seeds_into_raw`, `seed_v2_regroup.py`, the `--include-v1` / `--v1-only` build flags — was deleted once V2 reached parity (the rendered site was byte-identical without it). The `data/locations/<loc>-references.yml` bibliography sidecars REMAIN (shared with V2).
 
 ## Mission
 
@@ -588,8 +588,8 @@ Full pipeline (Layer A source → Layer B computed → Layer C categorised → L
 
   1. **HARVEST** — `scripts/fetch_<source>.py` → `scripts/cache/<source>/*.{htm,pdf,json}` (raw, widest data, submodule)
   2. **SYNTHESIS** — `scripts/parse_<source>.py` → `scripts/cache/<source>/*.json` typed sidecars + `_parsed_index.json` (one file per source entry, broader than project scope on purpose)
-  3. **SEED** — `scripts/maintenance/build_<source>_<location>_seed.py` → `data/seed/<source>/<location>.yml` (filtered to project scope, Coin-schema, renders as `seed_unsorted` on web)
-  4. **CURATED** — promote seed entries into real Müntzfuß + Phase in `data/locations/<location>.yml`, with §9a multi-specimen merge / §9.4 dedup against existing curated entries
+  3. **SEED** — `scripts/maintenance/build_<source>_seed.py` → `data/v2/seed/<source>/<entity>.yml` (entity-keyed, filtered to project scope, Coin-schema, written natively from cache via `lib/v2_seed_writer.write_v2_seed`)
+  4. **CURATED** — cross-source merge → `data/v2/seed_unified/<entity>.yml`, then fuss/phase classification → `data/v2/final/<entity>.yml`, with §9a multi-specimen merge / §9.4 dedup
 
 Scripts drive every phase transition. **Hand-typing data into a later phase without provenance from the earlier phase is forbidden — this is exactly the §0 «no invention» rule's bypass case.** The cache-backing audit recipe (`docs/ARCHITECTURE.md` §«PHASE_AUDIT») can verify any seed file traces 100% to Phase-1 cache provenance; when adding a new source, run the audit before declaring the seed «done».
 
@@ -646,8 +646,7 @@ The build pipeline is **`scripts/build.py`** + `scripts/lib/*` (read-only for no
 ## Build command
 
 ```bash
-python scripts/build.py                                            # V2 pages only (~40s; default)
-python scripts/build.py --include-v1                               # V1 + V2 — required for CI deploy (~67s)
+python scripts/build.py                                            # all pages (~40s; V2 is the only pipeline)
 python scripts/build.py --location schleswig_holstein              # single location, all languages
 python scripts/build.py --location denmark,schleswig_holstein,lubeck   # multi-location (comma-separated)
 python scripts/build.py --location schleswig_holstein --lang de    # single page
@@ -656,11 +655,11 @@ python scripts/build.py --validate-only                            # schema vali
 python scripts/build.py --jobs 4                                   # opt-in parallel renderer (rarely helps)
 ```
 
-Default mode skips the V1 render path because V1 is frozen post the
-2026-05-18 bootstrap (see the V1↔V2 split in `docs/V2_PIPELINE.md`).
-Pass `--include-v1` whenever V1 pages must be refreshed — production
-CI deploy (where `/v1/` is still live-served), template-wide refactors
-that change both trees, or rare V1 YAML edits.
+The build renders the V2 entity-keyed pipeline (`data/v2/{locations,final}/`)
+exclusively. The V1 render path (`--include-v1` / `--v1-only` flags, the
+`data/locations/<loc>.yml` coin yamls, the `data/seed/` seed-merge layer)
+was removed 2026-06-24 once V2 reached parity. CI deploys this same default
+build; there is no longer a `/v1/` tree.
 
 ### Build-time caches — scope and invalidation
 
