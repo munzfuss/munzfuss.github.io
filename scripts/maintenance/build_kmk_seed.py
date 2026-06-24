@@ -426,7 +426,8 @@ def build_entry(src) -> dict | None:
     return {k: v for k, v in entry.items() if v is not None}
 
 
-def build_seed(dry_run: bool, no_merge: bool, limit: int | None) -> int:
+def build_seed(dry_run: bool, no_merge: bool, limit: int | None,
+               no_thin: bool = False) -> int:
     files = sorted(p for p in KMK_CACHE.glob("[0-9]*.json"))
     entries: list[dict] = []
     scanned = skipped = 0
@@ -471,6 +472,16 @@ def build_seed(dry_run: bool, no_merge: bool, limit: int | None) -> int:
         dry_run=dry_run,
         no_merge=no_merge,
     )
+    # §9a weight-variance thinning of over-sampled KMM sub-variants. KMM
+    # over-samples common types (one Hede-17 1648 2-Skilling sub-variant had
+    # 302 specimens); the bare builder emits every museum object, so without
+    # this a re-seed re-inflates to ~41k and undoes the curated envelope.
+    # Integrated here so a single `--write` is idempotent + correctly filtered
+    # (no separate manual thinning pass to remember).
+    if not dry_run and not no_thin:
+        print("\n🪶 Thinning over-sampled sub-variants to §9a envelope...")
+        from thin_kmk_seed import thin as _thin_kmk_seed
+        _thin_kmk_seed(dry_run=False)
     return 0
 
 
@@ -482,8 +493,12 @@ def main() -> int:
                     help="wholesale overwrite (skip merge_seed curation preservation)")
     ap.add_argument("--limit", type=int, default=None,
                     help="process only N cache files (subset test)")
+    ap.add_argument("--no-thin", action="store_true",
+                    help="skip the §9a over-sample thinning post-pass "
+                         "(emit the raw per-specimen seed)")
     args = ap.parse_args()
-    return build_seed(dry_run=not args.write, no_merge=args.no_merge, limit=args.limit)
+    return build_seed(dry_run=not args.write, no_merge=args.no_merge,
+                      limit=args.limit, no_thin=args.no_thin)
 
 
 if __name__ == "__main__":
