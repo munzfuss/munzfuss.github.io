@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-06-01T17:17:01Z'
+generated_at: '2026-06-24T13:24:57Z'
 entity: danish_norway
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -23733,7 +23733,9 @@ coins:
           - 1663
     weight_rough_verified: false
     catalog:
-      hede: 71C
+      hede:
+        - 71C
+        - '1978'
     verified: false
     sources:
       - type: museum
@@ -23759,7 +23761,9 @@ coins:
           - 1670
     weight_rough_verified: false
     catalog:
-      hede: '70'
+      hede:
+        - '70'
+        - '1978'
     verified: false
     sources:
       - type: museum
@@ -23785,7 +23789,9 @@ coins:
           - 1664
     weight_rough_verified: false
     catalog:
-      hede: 71C
+      hede:
+        - 71C
+        - '1978'
     verified: false
     sources:
       - type: museum
@@ -23811,7 +23817,9 @@ coins:
           - 1648
     weight_rough_verified: false
     catalog:
-      hede: '18'
+      hede:
+        - '18'
+        - '1978'
     verified: false
     sources:
       - type: museum
@@ -23837,7 +23845,9 @@ coins:
           - 1649
     weight_rough_verified: false
     catalog:
-      hede: 71B
+      hede:
+        - 71B
+        - '1978'
     verified: false
     sources:
       - type: museum
@@ -33266,7 +33276,9 @@ coins:
           - 1512
     weight_rough_verified: false
     catalog:
-      galster: '86'
+      galster:
+        - '86'
+        - '153'
     verified: false
     sources:
       - type: museum
@@ -34779,6 +34791,31 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/308680
         ref: KMM 308680 (Inv. FP 7430.36)
+    verification_note: *id001
+  - id: kmk-308730
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: nation
+    nominal: 1-skilling
+    metal_verified: false
+    mint_verified: false
+    ruler: Christian 5
+    year_first: 1675
+    year_last: 1675
+    year_label: '1675'
+    year_ranges:
+      -   - 1675
+          - 1675
+    weight_rough_verified: false
+    catalog:
+      hede: '51'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/308730
+        ref: KMM 308730 (Inv. FP 7428.13)
     verification_note: *id001
   - id: kmk-308734
     fuss: seed_unsorted
@@ -42669,32 +42706,6 @@ coins:
     verification_note: *id001
     catalog:
       galster: '115'
-  - id: kmk-370950
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_norway
-    entity_classified_via: nation
-    nominal: 2 Skilling
-    metal_verified: false
-    mint: Kbh.
-    mint_verified: true
-    ruler: Christian 4
-    year_first: 1642
-    year_last: 1642
-    year_label: '1642'
-    year_ranges:
-      -   - 1642
-          - 1642
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/370950
-        ref: KMM 370950 (Inv. FP 5728.13)
-    verification_note: *id001
-    catalog:
-      hede: '16'
   - id: kmk-371071
     fuss: seed_unsorted
     phase: kmk

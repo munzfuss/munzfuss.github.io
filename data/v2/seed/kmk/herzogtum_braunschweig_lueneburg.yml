@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-06-01T17:18:22Z'
+generated_at: '2026-06-24T13:27:09Z'
 entity: herzogtum_braunschweig_lueneburg
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -518,7 +518,9 @@ coins:
     entity_classified_via: nation
     nominal: 1 Daler
     metal_verified: false
-    mint: Clausthal; Henning Schreiber
+    mint:
+      - Clausthal
+      - Henning Schreiber
     mint_verified: true
     ruler: Frederik Ulrik
     year_first: 1628
@@ -545,7 +547,9 @@ coins:
     entity_classified_via: nation
     nominal: 1 Daler
     metal_verified: false
-    mint: Clausthal; Henning Schreiber
+    mint:
+      - Clausthal
+      - Henning Schreiber
     mint_verified: true
     ruler: Frederik Ulrik
     year_first: 1628
@@ -792,7 +796,9 @@ coins:
     entity_classified_via: nation
     nominal: 1 Daler
     metal_verified: false
-    mint: Goslar; ikke Andreas Khüne)
+    mint:
+      - Goslar
+      - ikke Andreas Khüne)
     mint_verified: true
     ruler: Julius
     year_first: 1585
@@ -859,7 +865,9 @@ coins:
     weight_rough_g: 28.63
     weight_rough_verified: true
     catalog:
-      dav: '9063'
+      dav:
+        - '9063'
+        - '79'
     verified: false
     sources:
       - type: museum
@@ -4190,7 +4198,9 @@ coins:
     weight_rough_g: 28.4
     weight_rough_verified: true
     catalog:
-      dav: '8997'
+      dav:
+        - '8997'
+        - '8996'
     verified: false
     sources:
       - type: museum
