@@ -154,7 +154,6 @@ def load_german_fuesse_references() -> dict | None:
         return yaml.safe_load(f)
 
 
-SEEDS_DIR = DATA_DIR / "seed"
 
 
 def _hede_seed_id(hede_volume: str, hede_number: str) -> str:
@@ -304,307 +303,6 @@ def _patch_hero_refs_count(html: str) -> str:
         return m.group(0)
 
     return _HERO_REFS_GENERIC_RE.sub(_repl, html)
-
-
-def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
-    """Auto-merge `data/seed/<source>/<loc_id>.yml` coin lists into the
-    location's `raw['coins']` before schema validation.
-
-    Each top-level subdirectory under `data/seed/` represents a source
-    (e.g. `hede`, `bruun`); any *.yml file in that subdir whose stem
-    matches the location id is treated as a seed side-car for this
-    location and its `coins:` list is appended to the location's own
-    coins. The seed file is the canonical intermediate — scoping
-    (year cap, mint filter) happens at seed-generation time, not here;
-    the build trusts what the file contains.
-
-    Hede-seed auto-suppression
-    --------------------------
-    When a curated location coin already references a Hede catalog
-    entry (catalog.hede + catalog.hede_volume), the corresponding
-    seed coin produced by the Hede generator is REDUNDANT — its data
-    has already been folded into the curated entry's sources. The
-    merge filters those out automatically:
-
-      1. Walk raw['coins'] (the curated location's own coins). For
-         each coin with both `catalog.hede` and `catalog.hede_volume`,
-         compute the seed-id template and add to a covered set.
-      2. When merging the hede seed, skip every seed coin whose id
-         appears in the covered set.
-
-    Edge cases:
-    - A curated coin may carry multiple Hede refs (rare; via list
-      form in catalog.hede). Each entry contributes one suppression.
-    - Year-mismatch safety: if covered-seed and would-be-suppressed
-      seed have `year_first` differing by >10 years, the suppression
-      is skipped and the pair is flagged (likely different sub-type
-      that happens to share a catalog hede; would be an unusual
-      curation, but better to surface than silently drop).
-    - Bruun-seed and other future seed sources don't carry the
-      `dk-hede-` id prefix and are unaffected — only the Hede seed
-      is auto-suppressed against curated Hede refs.
-
-    Returns the list of (source_subdir_name, coin_count) tuples for
-    each merged file so the caller can print a one-line summary.
-    `coin_count` is the NET count after suppression.
-
-    Schema validation happens AFTER the merge (the assembled
-    `raw['coins']` is what gets passed to `Location(**raw)`), so id
-    collisions, missing fuss / phase references, and year-vs-phase
-    range mismatches are caught there in one shot — no separate
-    seed-validation pass needed.
-    """
-    if not SEEDS_DIR.exists():
-        return []
-    # Cross-location coverage: a Hede catalog entry may be curated in a
-    # DIFFERENT location yaml than the one whose seed it sits in.
-    # Concrete case: dk-hede-c4h178a/b (Glückstadt 1640-48 Søsling) sit
-    # in `data/seed/hede/denmark.yml` (seed builder is denmark-named)
-    # but the curated entry lives in `schleswig_holstein.yml` (per the
-    # «move Glückstadt issues to SH yaml» convention). Without cross-
-    # scan, those seed entries render as duplicates on the denmark
-    # page even though they're covered elsewhere.
-    #
-    # Build a unified coverage set by scanning ALL location yamls' coins
-    # for catalog.hede + catalog.hede_volume refs and adding the derived
-    # seed-id (plus bare-basename variant) to the suppression set,
-    # merged with the current location's own coverage.
-    extra_curated_for_coverage: list[dict] = []
-    locations_dir = DATA_DIR / "locations"
-    if locations_dir.exists():
-        for other_path in sorted(locations_dir.glob("*.yml")):
-            if other_path.stem.endswith("-references"):
-                continue
-            if other_path.stem == loc_id:
-                # Skip current location — its coverage comes from raw['coins'] below
-                continue
-            with open(other_path, encoding="utf-8") as of:
-                other_doc = yaml.safe_load(of) or {}
-            for oc in other_doc.get("coins") or []:
-                if isinstance(oc, dict):
-                    extra_curated_for_coverage.append(oc)
-
-    # Pre-compute the suppression set + year/metal map from the curated coins.
-    # We track the curated entry's metal because Hede refs frequently
-    # appear as «cf. silver companion» citations on gold Portugaloser /
-    # Ducat / Gold-Skilling entries — same Hede ref, different metal,
-    # different coin. The metal-match check below skips suppression
-    # whenever curated.metal differs from seed.metal, preventing those
-    # cf-citations from incorrectly hiding the actual silver Hede-page
-    # entry.
-    #
-    # We also derive a BARE-BASENAME variant (digits-only sub-num,
-    # trailing letters stripped) and add it to the suppression set.
-    # This catches the «parser bare-basename» artifact: Hede pages like
-    # c5h107 describe sub-letters 107A and 107B sharing one spec block;
-    # the parser emits one combined entry under the bare basename
-    # `dk-hede-c5h107` (no trailing letter), while curators record the
-    # actual sub-types as `hede: 107B` etc. The bare-basename seed
-    # entry is therefore redundant whenever ANY sub-letter is curated.
-    # Same metal + year guards apply.
-    curated_coins = (raw.get("coins") or []) + extra_curated_for_coverage
-    # Direct id-match suppression set — covers V1-curator entries that
-    # share the SAME id with a seed coin (e.g. dk-tid-XXX exists in V1
-    # location yaml AND the new ucoin seed builder carries it over with
-    # the same id). The Hede-catalog-ref suppression below is a
-    # superset that catches cross-id shape; this trivial id-match pass
-    # handles the dk-tid-* / km-x* / hb-tid-* / lu-tid-* cases where
-    # seed and curated agree on the literal id.
-    curated_ids = {
-        cc.get("id") for cc in curated_coins
-        if isinstance(cc, dict) and cc.get("id")
-    }
-    suppressed_ids: dict[str, dict] = {}  # seed_id → {year, metal, cur_id}
-    for cc in curated_coins:
-        if not isinstance(cc, dict):
-            continue
-        cat = cc.get("catalog") or {}
-        if not isinstance(cat, dict):
-            continue
-        hv = (cat.get("hede_volume") or "").strip()
-        hnum = cat.get("hede")
-        if not (hv and hnum):
-            continue
-        # Catalog.hede is typically a scalar string but tolerate list shape
-        hede_nums = hnum if isinstance(hnum, list) else [hnum]
-        info = {
-            "year_first": cc.get("year_first"),
-            "metal": cc.get("metal"),
-            "cur_id": cc.get("id"),
-            "weights": _weight_values(cc.get("weight_rough_g")),
-            "fineness": _weight_values(cc.get("fineness")),
-        }
-        for hn in hede_nums:
-            if not hn:
-                continue
-            hn_str = str(hn).strip()
-            seed_id = _hede_seed_id(hv, hn_str)
-            suppressed_ids[seed_id] = info
-            # Bare-basename variant: strip trailing letters from the
-            # Hede sub-number (e.g. «107B» → «107»). When the sub-num
-            # already has no letter suffix, no separate entry is added.
-            bare_num = re.sub(r"[A-Za-z]+$", "", hn_str)
-            if bare_num and bare_num != hn_str:
-                bare_seed_id = _hede_seed_id(hv, bare_num)
-                # Use setdefault so an explicit-letter entry's info
-                # wins over a sibling sub-letter that arrives later.
-                suppressed_ids.setdefault(bare_seed_id, info)
-
-    merged: list[tuple[str, int]] = []
-    for source_dir in sorted(p for p in SEEDS_DIR.iterdir() if p.is_dir()):
-        seed_path = source_dir / f"{loc_id}.yml"
-        if not seed_path.exists():
-            continue
-        with open(seed_path, encoding="utf-8") as sf:
-            seed_doc = yaml.safe_load(sf) or {}
-        seed_coins = seed_doc.get("coins") or []
-        if not seed_coins:
-            continue
-        # Strip generator-internal metadata fields that the seed
-        # toolchain uses but the Coin schema doesn't know about. The
-        # Coin schema is `extra="forbid"`, so unknown keys must be
-        # dropped before merge or validation fails. Currently only
-        # `_curation_holds` (see scripts/maintenance/build_*_seed.py),
-        # but any future underscore-prefixed seed-meta field follows
-        # the same convention.
-        for coin in seed_coins:
-            if isinstance(coin, dict):
-                for k in [k for k in coin if k.startswith("_")]:
-                    coin.pop(k, None)
-
-        # Auto-suppress seed coins whose Hede ref is already covered
-        # by a curated entry. Safety check: only suppress when years
-        # plausibly match (within 10 years) — large discrepancy means
-        # the curated entry probably describes a different sub-type
-        # that just happens to share a catalog hede number, and we
-        # want the dup to surface for manual review rather than
-        # silently merge.
-        #
-        # Exception: Hede pages occasionally describe yearless («u. å.»
-        # / «uden år») types whose canonical year is undefined on the
-        # coin itself. Seed entries inherit the parser's reign-range
-        # interpretation of u.år («u. å. (1670–1699)» → year_first
-        # 1670, year_last 1699), while curators attach a specific year
-        # from a Bruun specimen attribution. The year discrepancy is
-        # then an artefact of u.år interpretation, NOT evidence of
-        # different sub-types. When the seed's year_label opens with
-        # «u.» (Danish «uden»), the year-mismatch safety is bypassed
-        # and suppression proceeds.
-        kept: list[dict] = []
-        suppressed_count = 0
-        year_mismatch_count = 0
-        metal_mismatch_count = 0
-        weight_mismatch_count = 0
-        for coin in seed_coins:
-            cid = coin.get("id") if isinstance(coin, dict) else None
-            # Trivial duplicate: seed coin shares an id with an already-
-            # present curated coin. The curated entry is the canonical
-            # one (it carries the curator's fuss/phase assignment + may
-            # have multi-source enrichment); drop the seed copy.
-            if cid and cid in curated_ids:
-                suppressed_count += 1
-                continue
-            if cid and cid in suppressed_ids:
-                info = suppressed_ids[cid]
-                cur_year = info["year_first"]
-                cur_metal = info["metal"]
-                cur_weights = info["weights"]
-                seed_year = coin.get("year_first") if isinstance(coin, dict) else None
-                seed_metal = coin.get("metal") if isinstance(coin, dict) else None
-                seed_weights = _weight_values(coin.get("weight_rough_g") if isinstance(coin, dict) else None)
-                seed_label = (coin.get("year_label") or "").strip().lower() if isinstance(coin, dict) else ""
-                is_undated = seed_label.startswith("u.") or seed_label.startswith("u å")
-                # Metal-mismatch guard: when curated and seed disagree
-                # on metal, the Hede ref on the curated entry is almost
-                # certainly a «cf. companion» citation (e.g. a gold
-                # Portugaloser citing the silver Hede sub-type whose
-                # die design it shares). Do NOT suppress the silver
-                # Hede entry — it's a separate coin.
-                #
-                # Fineness-similarity escape hatch: when both entries
-                # publish fineness within ±2% of each other, the metal
-                # label disagreement is almost certainly a labelling
-                # artefact (e.g. seed builder defaults `metal: silver`
-                # for any non-gold non-bronze entry, while a curator
-                # correctly tags `metal: billon` for fineness 0.312).
-                # Same metal content = same physical coin regardless
-                # of label — suppression proceeds.
-                cur_fin = info["fineness"]
-                seed_fin = _weight_values(coin.get("fineness") if isinstance(coin, dict) else None)
-                fineness_match = False
-                if cur_fin and seed_fin:
-                    cur_lo, cur_hi = min(cur_fin), max(cur_fin)
-                    seed_lo, seed_hi = min(seed_fin), max(seed_fin)
-                    if cur_hi > 0 and seed_hi > 0:
-                        # Compare midpoints with relative tolerance
-                        cur_mid = (cur_lo + cur_hi) / 2
-                        seed_mid = (seed_lo + seed_hi) / 2
-                        if abs(cur_mid - seed_mid) / max(cur_mid, seed_mid) < 0.02:
-                            fineness_match = True
-                if (
-                    cur_metal
-                    and seed_metal
-                    and cur_metal != seed_metal
-                    and not fineness_match
-                ):
-                    metal_mismatch_count += 1
-                    kept.append(coin)
-                    continue
-                # Weight-mismatch guard: same Hede ref + same metal but
-                # weights differ by >25% indicates different denominations
-                # (e.g. ½ Speciedaler 14.4g vs 24 Skilling 9.17g — both
-                # claim hede sub-letter «12A» across Krause-Denmark /
-                # Krause-Norway register volumes, but they're physically
-                # different coins). Weight ratio min/max < 0.75 → skip.
-                if cur_weights and seed_weights:
-                    cur_lo, cur_hi = min(cur_weights), max(cur_weights)
-                    seed_lo, seed_hi = min(seed_weights), max(seed_weights)
-                    overall_min = min(cur_lo, seed_lo)
-                    overall_max = max(cur_hi, seed_hi)
-                    if overall_max > 0 and (overall_min / overall_max) < 0.75:
-                        weight_mismatch_count += 1
-                        kept.append(coin)
-                        continue
-                if (
-                    seed_year is not None
-                    and cur_year is not None
-                    and abs(seed_year - cur_year) > 10
-                    and not is_undated
-                ):
-                    year_mismatch_count += 1
-                    kept.append(coin)
-                    continue
-                suppressed_count += 1
-                continue
-            kept.append(coin)
-        if suppressed_count:
-            print(
-                f"   ⚙  {loc_id}: suppressed {suppressed_count} {source_dir.name} "
-                f"seed coin(s) covered by curated Hede refs"
-            )
-        if metal_mismatch_count:
-            print(
-                f"   ℹ  {loc_id}: {metal_mismatch_count} {source_dir.name} seed "
-                f"coin(s) share a curated Hede ref but differ on metal "
-                f"(cf-companion citation pattern; both kept)"
-            )
-        if weight_mismatch_count:
-            print(
-                f"   ℹ  {loc_id}: {weight_mismatch_count} {source_dir.name} seed "
-                f"coin(s) share a curated Hede ref but weights differ "
-                f">25% (cross-register KM clash or different denomination; "
-                f"both kept)"
-            )
-        if year_mismatch_count:
-            print(
-                f"   ⚠  {loc_id}: {year_mismatch_count} {source_dir.name} seed "
-                f"coin(s) match a curated Hede ref but with year_first "
-                f">10y apart — kept both for manual review"
-            )
-
-        raw.setdefault("coins", []).extend(kept)
-        merged.append((source_dir.name, len(kept)))
-    return merged
 
 
 # =============================================================================
@@ -833,9 +531,8 @@ def _resolve_dict_fields_per_location(coin: dict, loc_id: str, km_register: str 
         strip_v2_breadcrumbs,
     )
     out = strip_v2_breadcrumbs(coin)
-    # Strip underscore-prefixed seed-generator metadata fields. Coin
-    # schema is `extra='forbid'`; V1's `_merge_seeds_into_raw` applies
-    # the same strip at line ~347. V2 mirrors here for consistency.
+    # Strip underscore-prefixed seed-generator metadata fields so the
+    # assembled coin validates against the `extra='forbid'` coin schema.
     out = {k: v for k, v in out.items() if not k.startswith("_")}
     cid = out.get("id")
 
@@ -1165,66 +862,6 @@ def load_v2_locations(filter_id: str | list[str] | None = None) -> list[Location
             locations.append(loc)
         except ValidationError as e:
             print(f"❌ V2 schema errors in v2/{path.name}:")
-            print(e)
-            raise
-    return locations
-
-
-def load_locations(filter_id: str | list[str] | None = None,
-                   skip_seed_merge: bool = False) -> list[Location]:
-    """Load V1 locations from `data/locations/*.yml`.
-
-    `filter_id` — single id or list of ids; None = load all.
-
-    `skip_seed_merge` — when True, bypass `_merge_seeds_into_raw`.
-    Useful when V1 won't be rendered this run (the default-V2 fast
-    path), since the seed merge is the dominant cost of V1 load
-    (~28 s on a full build). The returned Location objects are
-    still schema-valid; their `coins` list just doesn't include
-    seed-only entries (which are only relevant to the V1 render).
-    """
-    # `filter_id` may be a single string (legacy single-location filter)
-    # or a list of ids (multi-location flag — `--location a,b,c` splits
-    # into a list before reaching us). Normalise to a set for O(1) lookup;
-    # `None` means «no filter, load everything».
-    filter_set: set[str] | None
-    if filter_id is None:
-        filter_set = None
-    elif isinstance(filter_id, str):
-        filter_set = {filter_id}
-    else:
-        filter_set = set(filter_id)
-
-    locations = []
-    for path in sorted((DATA_DIR / "locations").glob("*.yml")):
-        # Skip reference sidecar files
-        if path.stem.endswith("-references"):
-            continue
-        if filter_set is not None and path.stem not in filter_set:
-            continue
-        with open(path, encoding="utf-8") as f:
-            raw = yaml.safe_load(f)
-        if skip_seed_merge:
-            seed_merges = []
-        else:
-            seed_merges = _merge_seeds_into_raw(path.stem, raw)
-            if seed_merges:
-                parts = [f"{n} from {src}" for src, n in seed_merges]
-                print(f"   🌱 {path.stem}: merged {sum(n for _, n in seed_merges)} "
-                      f"seed coins ({', '.join(parts)})")
-        try:
-            loc = Location(**raw)
-            # Attach references sidecar if present
-            ref_path = path.parent / f"{path.stem}-references.yml"
-            if ref_path.exists():
-                with open(ref_path, encoding="utf-8") as rf:
-                    loc._references_data = yaml.safe_load(rf)
-            else:
-                loc._references_data = None
-            locations.append(loc)
-        except ValidationError as e:
-            print(f"❌ Schema errors in {path.name}"
-                  f"{' (incl. seed merges)' if seed_merges else ''}:")
             print(e)
             raise
     return locations
@@ -1685,17 +1322,11 @@ def _render_location_worker(loc_id: str, output_root_str: str, debug: bool,
     ui = load_ui()
     issuing_entities = load_issuing_entities()
 
-    # Locate the location: V1 path is data/locations/<id>.yml; V2 path is
-    # data/v2/locations/<id>.yml. Pick by output-root: V2 default tree
-    # uses V2 yamls, /v1/ tree uses V1 yamls.
-    is_v1 = output_root_str.endswith("/v1") or output_root_str.endswith("\\v1")
-    if is_v1:
-        loc_list = load_locations(filter_id=[loc_id])
-    else:
-        loc_list = load_v2_locations(filter_id=[loc_id])
+    # Locate the location in data/v2/locations/<id>.yml.
+    loc_list = load_v2_locations(filter_id=[loc_id])
     if not loc_list:
         raise RuntimeError(f"worker: location {loc_id!r} not found "
-                           f"(v1={is_v1}, output_root={output_root_str!r})")
+                           f"(output_root={output_root_str!r})")
     loc = loc_list[0]
 
     env = build_env(str(TEMPLATE_DIR))
@@ -1729,26 +1360,6 @@ def parse_args():
     p.add_argument("--no-include-seed", dest="include_seed", action="store_false",
                    help="Force-hide seed locations from the landing page even on local "
                         "builds (matches production behaviour).")
-    # V2 pipeline flags (per docs/V2_PIPELINE.md §4.1). Default behaviour
-    # post-2026-05-21 (D-fast-build): V2 ONLY by default, since V1 is frozen
-    # per CLAUDE.md «V1 is FROZEN after the 2026-05-18 bootstrap». Re-render
-    # V1 only when explicitly requested (CI deploy / template change / V1
-    # YAML edit). Cuts a typical local build from ~65 s to ~30 s.
-    p.add_argument("--v1-only", dest="v1_only", action="store_true",
-                   help="Suppress the V2 build path even when data/v2/locations/ "
-                        "is populated. V1 lands at site/v1/<loc>/<lang>/.")
-    p.add_argument("--include-v1", dest="include_v1", action="store_true",
-                   help="Build V1 pages alongside V2 (site/v1/<loc>/<lang>/). "
-                        "Required for production CI deploys (the /v1/ tree is "
-                        "still live-served). Local iteration usually doesn't "
-                        "need this — V1 is frozen.")
-    # `--v2-only` retained as an alias of the new default; kept for
-    # back-compatibility with existing shell scripts and CI tooling
-    # that might still pass it. Has no effect when --include-v1 is off
-    # (the default).
-    p.add_argument("--v2-only", dest="v2_only", action="store_true",
-                   help="(Alias of the new default — V2 only. Kept for "
-                        "back-compat; redundant unless overriding --include-v1.)")
     # Parallelism: ProcessPoolExecutor across locations. After the
     # A+B+C cache hoists the per-location render is fast (~0.05 s),
     # so worker startup + IPC overhead actually slows the full build
@@ -1810,33 +1421,14 @@ def main():
     if args.location:
         location_filter = [s.strip() for s in args.location.split(",") if s.strip()]
 
-    # Mode selection (V1 vs V2):
-    #   * default        — V2 ONLY (V1 is frozen per CLAUDE.md)
-    #   * --include-v1   — V1 + V2 (CI deploys / template-wide refactors)
-    #   * --v1-only      — V1 alone (rare: when validating V1 in isolation)
-    #   * --v2-only      — alias of default (kept for back-compat)
-    if args.v1_only and (args.v2_only or args.include_v1):
-        print("\n❌ --v1-only conflicts with --v2-only / --include-v1.")
-        sys.exit(1)
-    # Effective flags:
-    build_v1 = args.v1_only or args.include_v1
-    build_v2 = (not args.v1_only) and V2_LOCATIONS_DIR.exists() and any(V2_LOCATIONS_DIR.glob("*.yml"))
-
-    # V1 location load — the `_merge_seeds_into_raw` step alone walks
-    # ~28 MB of seed YAML and dominates load time (~28 s out of the
-    # original 191 s build). Skip the seed-merge step entirely when V1
-    # won't be rendered AND V2 carries its own coin assembly. In that
-    # case Location is still validated (Pydantic schema check) but its
-    # `coins` list is empty of seed-only entries — which is fine
-    # because we won't render those V1 pages this run.
-    v1_load_needs_seed_merge = build_v1
-    locations = load_locations(filter_id=location_filter,
-                               skip_seed_merge=not v1_load_needs_seed_merge)
-    print(f"   Locations: {len(locations)} ({', '.join(l.id for l in locations)})")
+    # V2 is the only build path (V1 was removed 2026-06-24 once the V2
+    # pipeline reached parity; data/v2/locations/ + data/v2/final/ are the
+    # source of truth). build_v2 is False only when data/v2/locations/ is
+    # empty — then the build is a no-op.
+    build_v2 = V2_LOCATIONS_DIR.exists() and any(V2_LOCATIONS_DIR.glob("*.yml"))
 
     v2_locations: list[Location] = []
     if build_v2:
-        print()
         print("📦 Loading V2 entity-keyed locations...")
         v2_locations = load_v2_locations(filter_id=location_filter)
         print(f"   V2 locations: {len(v2_locations)} "
@@ -1845,14 +1437,6 @@ def main():
 
     # Schema + cross-ref validation
     print("🔍 Validating cross-references...")
-    # V1 cross-ref check runs on the location list even when we won't
-    # render V1 — it's also the schema-integrity check for the underlying
-    # YAML, which V2 references via `consumes_entities`-driven coin
-    # assembly. Cheap relative to V2 work after the seed-merge caching.
-    if not cross_ref_check(locations, fuesse):
-        print("\n❌ V1 validation failed. Fix errors above and rerun.")
-        sys.exit(1)
-    print("   ✓ V1 cross-references OK")
     if build_v2 and v2_locations:
         if not cross_ref_check(v2_locations, fuesse):
             print("\n❌ V2 validation failed. Fix errors above and rerun.")
@@ -1910,24 +1494,13 @@ def main():
                 # Re-raise worker exceptions verbatim (with traceback).
                 fut.result()
 
-    # URL routing post-2026-05-20 (D44): V2 is the DEFAULT — V2 pages
-    # land at `site/<loc>/<lang>/index.html`. V1 pages, when explicitly
-    # included via --include-v1 (or --v1-only), land at
-    # `site/v1/<loc>/<lang>/index.html` so the /v1/ tree stays reachable
-    # for existing references.
-    if build_v1:
-        print(f"📦 Rendering V1 pages → {(SITE_DIR / 'v1').relative_to(REPO_ROOT)}/  "
-              f"({n_workers} worker{'s' if n_workers > 1 else ''})")
-        render_all(locations, SITE_DIR / "v1")
-
+    # V2 pages land at `site/<loc>/<lang>/index.html`.
     if build_v2 and v2_locations:
-        if build_v1:
-            print()
-        print(f"📦 Rendering V2 pages (default) → {SITE_DIR.relative_to(REPO_ROOT)}/  "
+        print(f"📦 Rendering V2 pages → {SITE_DIR.relative_to(REPO_ROOT)}/  "
               f"({n_workers} worker{'s' if n_workers > 1 else ''})")
         render_all(v2_locations, None)
 
-    if len(locations) > 1 or not args.location:
+    if v2_locations and (len(v2_locations) > 1 or not args.location):
         # Pull contact email from local.env (or process env). Falls back to
         # empty string → footer just hides the «Contact» link.
         from lib.env import load_local_env
@@ -1942,29 +1515,13 @@ def main():
         else:
             include_seed = args.include_seed
 
-        # Default landing → V2 location list (V2 is root after D44).
-        # Falls back to V1 location list when V2 is disabled / empty.
-        default_landing_locs = (
-            v2_locations if (build_v2 and v2_locations) else locations
-        )
-        build_landing(default_landing_locs, ui, theme, languages, env,
+        # Landing → V2 location list (V2 is root after D44).
+        build_landing(v2_locations, ui, theme, languages, env,
                       repo_url=args.repo_url, base_url=base_url,
                       contact_email=contact_email,
                       german_fuesse=german_fuesse,
                       german_fuesse_references=german_fuesse_refs,
                       include_seed=include_seed, fuesse=fuesse)
-
-        # V1 landing at site/v1/<lang>/index.html so V1 location pages'
-        # home-link («../../index.html») has a target. Emitted only when
-        # V1 was actually rendered in this run.
-        if build_v1:
-            build_landing(locations, ui, theme, languages, env,
-                          repo_url=args.repo_url, base_url=base_url,
-                          contact_email=contact_email,
-                          german_fuesse=german_fuesse,
-                          german_fuesse_references=german_fuesse_refs,
-                          include_seed=include_seed, fuesse=fuesse,
-                          output_root=SITE_DIR / "v1")
 
     generate_assets(theme)
     copy_static_root()
