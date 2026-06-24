@@ -38,15 +38,19 @@
 >   idempotent, `--no-thin` escape). Seed resynced to the builder output
 >   (`d547bec`, 13796→13819, render-neutral). **Safe to `--write` now; re-seed =
 >   no-op.**
-> - **OPEN follow-up — ikmk over-samples too** (found 2026-06-24): the committed
->   `data/v2/seed/ikmk/` (4354) is the BARE builder output — never thinned in V2
->   (the V1 `thin_intra_subvariant_specimens.py` only touched 4 SH coins on the
->   now-removed `data/locations/`). It carries 72 ≥5-specimen buckets, the biggest
->   734 specimens of an UNCATALOGUED «1/24 Taler» 1619. Over-sampling reaches
->   final (one coin has 63 weight readings). Same class as kmk but trickier:
->   uncatalogued buckets may group genuinely-distinct coins, so blind §9a thinning
->   could lose types. Decision pending — generalise thinning + apply to ikmk
->   (+ audit other museum sources) vs. leave. NOT yet actioned.
+> - **ikmk over-sampling — RESOLVED (catalogued-only)** (2026-06-24): ikmk also
+>   over-sampled (4354, biggest bucket 734 uncatalogued «1/24 Taler» 1619; reached
+>   final as a 63-weight coin). New shared `lib/seed_thin.py` (§9a min/middle/max,
+>   `catalogued_only` gate) wired into `build_ikmk_seed.py` (`17ce012`); ikmk seed
+>   thinned to **4328** (`f7c2787`). Curator call: thin only CATALOGUED buckets
+>   (confident type identity); uncatalogued buckets — uncertain merge, stay
+>   seed_unsorted — LEFT WHOLE (the 734-bucket stays). So ikmk thin is small (−26);
+>   that's by design, not a bug. KMK keeps its own no-gate `thin_kmk_seed.py`
+>   (its uncatalogued-no-mint buckets are reliably one type; committed envelope
+>   13819 preserved — a gated re-thin would re-bloat it +8903). Both builders are
+>   now self-filtering + content-idempotent (only the `generated_at` timestamp
+>   churns, as for every V2 seed). Remaining open: the uncatalogued ikmk/kmk
+>   bloat (734-bucket, 63-weight coins) is accepted for now — «розібрати окремо».
 > - `366c9f4` reference/ HTML artifacts · `ba528a9` seed_v2_regroup.py +
 >   build_numista_pre1541_seed.py (no callers) · `1deb8ff` build.py V1 render path
 >   (−458 lines: load_locations, _merge_seeds_into_raw, --include-v1/--v1-only,
