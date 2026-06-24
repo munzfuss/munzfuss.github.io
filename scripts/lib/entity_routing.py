@@ -31,7 +31,7 @@ Integration pattern (for seed builders):
       coin['_entity_routing_hint'] = hint
   ```
 
-Test fixtures: see `scripts/lib/test_entity_routing.py`.
+Test fixtures: see `tests/test_entity_routing.py`.
 """
 from __future__ import annotations
 
