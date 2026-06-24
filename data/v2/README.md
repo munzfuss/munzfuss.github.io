@@ -16,7 +16,8 @@ Phase 1 HARVEST                fetch_<src>.py        → scripts/cache/<src>/*.{
        ↓
 Phase 2 SYNTHESIS              parse_<src>.py        → scripts/cache/<src>/*.json
        ↓
-Phase 3.1 per-source SEED      seed_v2_regroup.py    → data/v2/seed/<src>/<entity>.yml
+Phase 3.1 per-source SEED      build_<src>_seed.py   → data/v2/seed/<src>/<entity>.yml
+                               (native, from cache)
        ↓
 Phase 3.2 cross-source MERGE   merge_seeds_cross_    → data/v2/seed_unified/<entity>.yml
                                source.py               + data/v2/match_uncertainty/  (gitignored)
@@ -27,16 +28,17 @@ Phase 4 absorb into FINAL      absorb_seeds_into_    → data/v2/final/<entity>.
 Phase 4b BIDIRECTIONAL LINK    relink_promoted_v2.py → data/v2/seed/<src>/<entity>.yml
                                                        (promoted_to set per seed entry)
        ↓
-Render                         build.py              → site/v2/<loc>/<lang>/index.html
+Render                         build.py              → site/<loc>/<lang>/index.html
 ```
 
-Bootstrap (one-shot, 2026-05-18, V1 frozen post-bootstrap):
+Origin (one-shot bootstrap, 2026-05-18 — both scripts now RETIRED):
 
 ```
 data/locations/<loc>.yml  ──[bootstrap_v2_final_from_v1.py]──▶  data/v2/final/<entity>.yml
 data/locations/<loc>.yml  ──[init_v2_locations.py]──────────▶  data/v2/locations/<loc>.yml
                                                                  (display-meta + consumes_entities)
 ```
+The V1 source these read was removed once V2 reached parity (2026-06-24); the scripts are kept for reference only.
 
 Every script is idempotent + merge-aware per D25; every transition preserves data per D17 «Data-accumulation principle». Audit (`scripts/audit_v2.py`) hard-blocks pre-commit on V2 path touches per D26.
 
@@ -45,21 +47,21 @@ Every script is idempotent + merge-aware per D25; every transition preserves dat
 ```
 data/v2/
 ├── seed/<source>/<entity>.yml         # Phase 3.1 — per-resource seed, entity-keyed
-├── seed_unified/<entity>.yml          # Phase 3.2 — cross-source merged per entity (TO-BE-BUILT)
-├── final/<entity>.yml                 # Phase 4 — fuss-distributed final state (currently `curated/`)
-├── merge_decisions/<entity>.yml       # curator's Phase 3 merge confirmations (TO-BE-BUILT)
-├── classification_decisions/<entity>.yml  # curator's Phase 4 fuss/phase confirmations (TO-BE-BUILT)
+├── seed_unified/<entity>.yml          # Phase 3.2 — cross-source merged per entity
+├── final/<entity>.yml                 # Phase 4 — fuss-distributed final state
+├── merge_decisions/<entity>.yml       # curator's Phase 3 merge confirmations
+├── classification_decisions/<entity>.yml  # curator's Phase 4 fuss/phase confirmations
 └── locations/<location>.yml           # Phase 5 inputs (display-meta + consumes_entities)
 ```
 
-**Current transitional state** (pre-Phase 9):
-- `seed/<source>/<entity>.yml` ← populated by `seed_v2_regroup.py` (post-processor over V1 seeds). Post-Phase 9, replaced by native V2 builders consuming parser cache directly.
-- `seed_unified/<entity>.yml` ← populated by `merge_seeds_cross_source.py`. One unified entry per physical coin, multi-source data accumulated.
-- `final/<entity>.yml` ← bootstrap-migrated from V1 curated on 2026-05-18 (via `bootstrap_v2_final_from_v1.py`). Subsequent enrichments arrive via `absorb_seeds_into_final_v2.py`.
+**How each directory is populated:**
+- `seed/<source>/<entity>.yml` ← native per-source builders (`build_<src>_seed.py`) consuming the parser cache directly. (Museum sources KMK/IKMK self-thin to the §9a weight-variance envelope via `lib/seed_thin.py`.)
+- `seed_unified/<entity>.yml` ← `merge_seeds_cross_source.py`. One unified entry per physical coin, multi-source data accumulated.
+- `final/<entity>.yml` ← `absorb_seeds_into_final_v2.py` (originally bootstrapped from V1 curated, now enriched from seed_unified).
 - `classification_decisions/<entity>.yml` ← created lazily by Phase 4 when an unmatched seed_unified entry needs curator action.
 - `match_uncertainty/<entity>.yml` ← gitignored diagnostic: same-class candidates that Phase 3.2 declined to merge (review-only).
 
-V1 (`data/locations/`, `data/seed/<src>/<loc>.yml`) is **frozen** post 2026-05-18 — it serves as a **verification anchor** that V2's reprocessing of the same source data must reproduce (~1:1) before promotion (Phase 9). It continues to render the live site at unchanged URLs until promotion.
+V1 (`data/locations/<loc>.yml` coin yamls + the `data/seed/` seed-merge layer) was **removed 2026-06-24** once V2 reached parity (the rendered site was byte-identical without it). The `data/locations/<loc>-references.yml` bibliography sidecars remain — shared with V2.
 
 ## Key conventions (recap of docs/V2_PIPELINE.md)
 

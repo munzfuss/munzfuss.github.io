@@ -20,22 +20,29 @@ It is **not** a coin catalogue. We register only types that document the working
 
 ## Current state
 
-| Location | Coins | Status | Years | Bibliography |
-|---|---|---|---|---|
-| `schleswig_holstein` | 324 | **curated** (full prose + per-coin verification + page-level audit) | 1567–1863 | 36 entries |
-| `denmark` | 706 | **curated** + ~550 Hede-seed entries auto-classified into existing Fusses | 1572–1914 | 23 entries |
-| `lubeck` | 80 | 1 curated + 79 seed | 1620–1801 | 4 entries |
-| `hamburg` | 80 | seed | 1713–1868 | — |
-| `holstein_schauenburg` | 105 | seed (IKMK ingest) | 1606–1622 | — |
-| `lubeck_bishopric` | 15 | seed | 1606–1776 | — |
-| `oldenburg` | 10 | seed | 1614–1667 | — |
-| `bremen_verden` | 6 | seed | 1622–1674 | — |
-| `brunswick_lueneburg` | 6 | seed | 1627 | — |
-| `hesse_kassel` | 2 | seed | 1737–1744 | — |
-| `osnabrueck` | 1 | seed | 1633 | — |
-| `lauenburg` | 1 | seed | 1830 | — |
+The **V2 entity-keyed pipeline** is the production data pipeline (the legacy V1
+render path was removed 2026-06-24). Coins are keyed by **political entity** in
+`data/v2/final/<entity>.yml`; each display page declares `consumes_entities` and
+the build assembles its coin table from the relevant entity files at render time.
 
-**16 Müntzfüße** defined globally in `data/shared/fuesse.yml`:
+**Curated** locations — full prose, per-coin verification, shown on the landing:
+
+| Location | Classified coins | Years | Bibliography |
+|---|---|---|---|
+| `denmark` | ~1 400 | 1572–1914 | 23 entries |
+| `schleswig_holstein` | ~375 | 1567–1863 | 36 entries |
+| `lubeck` | ~18 | 1620–1801 | 4 entries |
+
+The other locations — `hamburg`, `holstein_schauenburg`, `bremen_verden`,
+`brunswick_lueneburg`, `oldenburg`, `hesse_kassel`, `osnabrueck`, `lauenburg`,
+`lubeck_bishopric`, `german_empire` — exist but their coins are still bucketed
+under `seed_unsorted` (bulk-imported from the museum / catalogue harvest,
+awaiting per-coin Müntzfuß classification). They are **auto-hidden from the
+landing index** until triaged; their per-language pages still build and are
+reachable by direct URL. (Counts drift as the harvest re-seeds; `docs/TODO.md`
+tracks the triage queue.)
+
+**Müntzfüße** are defined globally in `data/shared/fuesse.yml`:
 
 * Silver standards: 9-Thaler / 9¼-Thaler / 11⅓-Thaler / 18½-Thaler / 30-Thaler (Vereinsmüntzfuß) / Kronemont (Christian IV) / Kronemont (Christian V «Grobe») / Kronemont-fine (Frederik IV «Feine»)
 * Gold standards: Reichsdukatenfuß / Courantdukatenfuß / Pistolenfuß / Guldkrone / Vereinsgoldmüntze / Reichsgoldmüntzfuß
@@ -48,40 +55,41 @@ Locations whose coins are still bucketed under `seed_unsorted` are auto-hidden f
 
 ```
 data/
+├── v2/                         The production pipeline (entity-keyed)
+│   ├── seed/<src>/<entity>.yml         Phase 3.1 — per-source seeds, native from cache
+│   ├── seed_unified/<entity>.yml       Phase 3.2 — cross-source merge (one entry per coin)
+│   ├── final/<entity>.yml              Phase 4 — fuss/phase-classified coins
+│   ├── locations/<loc>.yml             Display pages: consumes_entities + phases + timeline
+│   ├── merge_decisions/<entity>.yml    Curator confirmations for cross-source merges
+│   └── classification_decisions/…      Curator confirmations for fuss / phase
 ├── shared/
 │   ├── fuesse.yml              Mathematical definitions of Müntzfüße (global)
-│   └── mints.yml               Mint metadata (nomisma.org refs where available)
+│   ├── german_fuesse.yml       Landing-page Müntzfüße overview cards
+│   ├── mints.yml               Mint metadata (nomisma.org refs where available)
+│   └── refs_pool.yml           Stable-key inline-refs pool (shared citations)
 ├── locations/
-│   ├── <loc>.yml               Per-location: phases, coins, prose
-│   └── <loc>-references.yml    Bibliography sidecar (cited inline as <sup>[N]</sup>)
-├── i18n/
-│   ├── ui.yml                  UI strings (column headers, badges, etc.)
-│   └── issuing_entities.yml    Issuing-entity (kingdom / duchy / city-state) metadata
-└── seed/
-    └── hede/<loc>.yml          Generated Hede-seed entries auto-merged at build
+│   └── <loc>-references.yml    Bibliography sidecars (shared with V2; cited as <sup>[N]</sup>)
+└── i18n/
+    ├── ui.yml                  UI strings (column headers, badges, etc.)
+    └── issuing_entities.yml    Issuing-entity (kingdom / duchy / city-state) metadata
 
 config/theme.yml                Colors, typography
 templates/                      Jinja2 HTML templates
 assets/                         Runtime static assets (app.js)
 
 scripts/
-├── build.py                    Single entry point: data → site/
-├── lib/                        Schema (Pydantic), compute, categorize, timeline,
-│   ├── paths.py                Centralised filesystem paths (see HARVEST_ROOT)
-│   ├── env.py                  local.env loader
-│   └── …
-├── audit_*.py                  Idempotent audits (year ranges, ucoin, numista, …)
-├── fetch_numista_api.py        Cached Numista API v3 fetcher (200 calls/24h)
-├── fetch_hede.py / parse_hede.py    danskmoent.dk Hede catalogue ingest
-├── fetch_ikmk.py               IKMK Berlin object harvest
-├── build_ucoin_url_index.py    Rebuild the ucoin URL index from the local cache
+├── build.py                    Single entry point: data/v2/ → site/
+├── lib/                        Schema (Pydantic), V2 assembly/resolver, compute, timeline, …
+├── audit_*.py                  Idempotent audits (prose, i18n, year ranges, ucoin, …)
+├── fetch_*.py / parse_*.py     Per-source harvest + parse (Hede, IKMK, KMK, Numista, …)
+├── maintenance/                Lifecycle utilities: native seed builders (build_<src>_seed.py),
+│                               cross-source merger, absorb-into-final, audits (committed)
 ├── bruun_parser/               4-stage Bruun-PDF → JSON ingest
-├── maintenance/                Lifecycle-bound utilities (committed)
 ├── cache/                      ← Git submodule (munzfuss-harvest, private)
-└── oneoff/                     Gitignored — single-shot data migrations
+└── oneoff/                     Gitignored — single-shot data migrations / scratch
 
-.github/workflows/deploy.yml    Auto-deploy on push to main
-docs/                           Project context, decisions log, glossary
+.github/workflows/deploy.yml    Auto-deploy on push to main (V2 build)
+docs/                           Project context, V2 pipeline plan + decisions, glossary
 ```
 
 `scripts/cache/` is mounted as a **git submodule** pointing at a separate private repo, `munzfuss/munzfuss-harvest`. The submodule carries the regenerable artefacts of network fetches and PDF parses (Hede HTML+JSON, IKMK JSON, Numista JSON, Bruun parsed lots, ucoin URL index) — ~124 MB across ~9 200 files. The build pipeline doesn't read this cache; only fetchers, parsers, audits and maintenance scripts do. Keeping it out of the main repo keeps clones slim and prevents bulk re-parses from flooding review history.
@@ -150,53 +158,46 @@ The `scripts/lib/paths.py` resolver honours the override, and every fetcher / pa
 
 ## Editing workflow
 
-1. **Edit** a YAML file under `data/` (the only source of truth).
-2. **Validate**: `python scripts/build.py --validate-only`.
-3. **Preview**: `python scripts/build.py --location <loc> --lang de`.
-4. **Commit + push**. GitHub Actions rebuilds and deploys (~1 min).
+The curator does **not** hand-type coin rows. Coin data flows through the
+4-phase pipeline (HARVEST → SYNTHESIS → SEED → CURATED), driven by scripts;
+curator input is restricted to three decision surfaces:
+
+1. **Which entities the project supports** — `data/i18n/issuing_entities.yml`.
+2. **Cross-source merge confirmations** — `data/v2/merge_decisions/<entity>.yml`.
+3. **Fuß / phase confirmations** — `data/v2/classification_decisions/`.
+
+Editorial prose (location summaries, per-fuss backgrounds, the Müntzfuß cards)
+is hand-written in `data/v2/locations/<loc>.yml` and `data/shared/fuesse.yml`.
+After any change:
+
+1. **Validate**: `python scripts/build.py --validate-only`.
+2. **Preview**: `python scripts/build.py --location <loc> --lang de`.
+3. **Commit + push**. GitHub Actions rebuilds and deploys (~1 min).
 
 Do **not** edit anything under `site/` — it's regenerated on every build.
 
-## Adding a new coin
+## Adding coins or a location
 
-Find the relevant location file (e.g., `data/locations/schleswig_holstein.yml`), add a coin entry:
+Coins enter via the pipeline, not by hand:
 
-```yaml
-- id: km-200-chr-viii-1842
-  fuss: 18_5_thaler         # must exist in data/shared/fuesse.yml
-  phase: B                  # must exist in this location's phases[18_5_thaler]
-  kind: kurant              # kurant | scheide | tarif | gedenk
-  nominal: "1 Rigsbankdaler"   # literal inscription, not calculated equivalent
-  year_label: "1842"
-  year_first: 1842
-  ruler: "Christian VIII."
-  mint: "Altona"            # string for single-mint; list [..] for parallel-strike
-  catalog:
-    km: "721"
-    hede: "9A"
-  metal: silver
-  fineness: 0.875
-  weight_rough_g: 14.44670
-  fraction: "1"             # optional: lookup key in fuss.fractions
-  note:
-    de: "…"
-    en: null                # TODO: translate
-    uk: null
-  sources:
-    - type: numista
-      url: "https://en.numista.com/catalogue/pieces…"
-  verified: true
-```
+1. **Harvest + parse** the source (`scripts/fetch_<src>.py` → `scripts/parse_<src>.py`),
+   then build its entity-keyed seed (`scripts/maintenance/build_<src>_seed.py` →
+   `data/v2/seed/<src>/<entity>.yml`, written natively from the parser cache).
+2. **Merge** across sources (`merge_seeds_cross_source.py` → `data/v2/seed_unified/`)
+   and **absorb** into the curated layer (`absorb_seeds_into_final_v2.py` →
+   `data/v2/final/<entity>.yml`). Disagreements surface as decisions for the
+   curator to confirm in `data/v2/{merge_decisions,classification_decisions}/` —
+   the preferred fix is always a script rule, so the case becomes auto-handled.
 
-The build auto-computes `weight_fein_g`, `soll_fein_g`, `delta_g`, `delta_pct`, `implied_fuss`. For parallel-strike coins, set `mint` to a list — e.g. `["Altona", "Kopenhagen", "Kongsberg"]` for Christian VII's 1771 1 Skilling.
+To add a **display location**, create `data/v2/locations/<loc>.yml` declaring the
+political entities it `consumes_entities` (with optional year windows), its
+`phases` per Müntzfuß, and its prose. A new political entity goes in
+`data/i18n/issuing_entities.yml`; a new Müntzfuß goes once in
+`data/shared/fuesse.yml`. The page appears on the landing automatically once it
+has classified (non-`seed_unsorted`) coins.
 
-## Adding a new location
-
-1. Create `data/locations/<newloc>.yml`. Use **`schleswig_holstein.yml` as the template** (richest example with full structure).
-2. Define `phases` per Müntzfuß used at this location.
-3. Add coins. If the location uses a new political entity (kingdom / duchy / city-state), add it to `data/i18n/issuing_entities.yml` first.
-4. If the location uses a Müntzfuß not yet defined, add it to `data/shared/fuesse.yml` once. Subsequent locations can reference it.
-5. Build — `python scripts/build.py` — the new location appears on the landing page automatically (provided no coins are under `fuss: seed_unsorted`).
+Full step-by-step procedures live in `docs/PLAYBOOKS.md`; the pipeline design in
+`docs/V2_PIPELINE.md`.
 
 ## Harvest submodule workflow (advanced)
 
@@ -262,7 +263,10 @@ Non-negotiable (see `CLAUDE.md` for full treatment):
 | Document | What's in it |
 |---|---|
 | `CLAUDE.md` | Project principles, research conventions, anti-patterns. Read first on every session. |
-| `docs/ARCHITECTURE.md` | Pipeline design (A → B → C → HTML), schema, validation |
+| `docs/ARCHITECTURE.md` | Pipeline design, schema, build-script anatomy, the 4-phase data pipeline |
+| `docs/V2_PIPELINE.md` | The entity-keyed pipeline — 4-phase plan, phase scripts, promotion gate |
+| `docs/V2_DECISIONS.md` | Canonical journal of every V2 architectural decision + code locations |
+| `docs/PLAYBOOKS.md` | Step-by-step procedures for recurrent tasks (harvest, merge, classify) |
 | `docs/DECISIONS.md` | Log of analytical decisions with reasoning |
 | `docs/CONVENTIONS.md` | YAML writing rules (i18n strategy, number formatting, verification markers) |
 | `docs/GLOSSARY.md` | DE/EN/UK terminology reference |
