@@ -38,19 +38,19 @@
 >   idempotent, `--no-thin` escape). Seed resynced to the builder output
 >   (`d547bec`, 13796→13819, render-neutral). **Safe to `--write` now; re-seed =
 >   no-op.**
-> - **ikmk over-sampling — RESOLVED (catalogued-only)** (2026-06-24): ikmk also
+> - **ikmk over-sampling — RESOLVED (full §9a thin)** (2026-06-24): ikmk also
 >   over-sampled (4354, biggest bucket 734 uncatalogued «1/24 Taler» 1619; reached
 >   final as a 63-weight coin). New shared `lib/seed_thin.py` (§9a min/middle/max,
->   `catalogued_only` gate) wired into `build_ikmk_seed.py` (`17ce012`); ikmk seed
->   thinned to **4328** (`f7c2787`). Curator call: thin only CATALOGUED buckets
->   (confident type identity); uncatalogued buckets — uncertain merge, stay
->   seed_unsorted — LEFT WHOLE (the 734-bucket stays). So ikmk thin is small (−26);
->   that's by design, not a bug. KMK keeps its own no-gate `thin_kmk_seed.py`
->   (its uncatalogued-no-mint buckets are reliably one type; committed envelope
->   13819 preserved — a gated re-thin would re-bloat it +8903). Both builders are
->   now self-filtering + content-idempotent (only the `generated_at` timestamp
->   churns, as for every V2 seed). Remaining open: the uncatalogued ikmk/kmk
->   bloat (734-bucket, 63-weight coins) is accepted for now — «розібрати окремо».
+>   optional `catalogued_only` gate) wired into `build_ikmk_seed.py`. First pass
+>   used the catalogued-only gate (→ 4328, only −26 — the 734 uncatalogued bucket
+>   stayed); curator then chose the FULL thin (`catalogued_only=False`) since an
+>   uncatalogued museum record carries no distinguishing signal beyond the
+>   sub-variant key + weight. ikmk seed now **1273** (4354→1273, −3081; the
+>   734-bucket → ≤3 per mint-keyed sub-variant). KMK uses its own no-gate
+>   `thin_kmk_seed.py` (committed envelope 13819). Both builders self-filtering +
+>   content-idempotent (only `generated_at` churns, as for every V2 seed). All
+>   render-neutral (data/v2/final/ untouched; resyncs on next coordinated re-flow).
+>   The `catalogued_only` gate stays as an opt-in for future uncertain sources.
 > - `366c9f4` reference/ HTML artifacts · `ba528a9` seed_v2_regroup.py +
 >   build_numista_pre1541_seed.py (no callers) · `1deb8ff` build.py V1 render path
 >   (−458 lines: load_locations, _merge_seeds_into_raw, --include-v1/--v1-only,
