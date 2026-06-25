@@ -147,6 +147,59 @@ def _filter_catalog(refs: dict[str, str] | None) -> dict[str, str]:
     return {k: v for k, v in refs.items() if k in _ALLOWED_CATALOG}
 
 
+# Country-volume tag Numista appends to a KM when a coin is cross-listed across
+# Krause country volumes (§9.4): «479 (Denmark)» = Denmark-volume KM 479. Map
+# the country name → the project's short register code (must match
+# _ENTITY_TO_KM_REGISTER; «nor» NOT «no» — «no» is a YAML boolean). An UNKNOWN
+# parenthetical («505 (OM)» — OM is not a country) aborts the transform.
+_COUNTRY_TO_KM_REGISTER = {
+    "denmark": "dk",
+    "norway": "nor",
+    "sweden": "se",
+}
+
+
+def _apply_km_country_register(catalog: dict, entity) -> None:
+    """Fold Numista's «<km> (<Country>)» volume tags into the register-keyed dict
+    form ``{register: km}`` the schema uses for cross-volume KMs (KMRef). A bare
+    (untagged) value takes the coin's own entity register. In place; a no-op
+    unless some km value carries a parenthetical tag, and left untouched entirely
+    if any tag names a country we don't map (e.g. «(OM)») or a bare value has no
+    resolvable register."""
+    km = catalog.get("km")
+    if km is None:
+        return
+    vals = km if isinstance(km, list) else [km]
+    if not any("(" in str(v) for v in vals):
+        return
+    # _ENTITY_TO_KM_REGISTER is the single source of truth for entity→volume —
+    # imported lazily (only fires for the rare cross-listed coin).
+    import sys as _sys
+    _md = str(Path(__file__).resolve().parent)
+    if _md not in _sys.path:
+        _sys.path.insert(0, _md)
+    from merge_seeds_cross_source import _ENTITY_TO_KM_REGISTER
+    reg_entity = entity[0] if isinstance(entity, list) else entity
+    entity_reg = _ENTITY_TO_KM_REGISTER.get(reg_entity)
+    reg_dict: dict[str, list] = {}
+    for v in vals:
+        s = str(v).strip()
+        m = re.fullmatch(r"([\w.\-/]+)\s*\(([A-Za-z][\w ]*)\)", s)
+        if m:
+            num = m.group(1)
+            reg = _COUNTRY_TO_KM_REGISTER.get(m.group(2).strip().lower())
+            if reg is None:
+                return  # unknown parenthetical — not a volume tag, leave raw
+        else:
+            num, reg = s, entity_reg
+        if not reg:
+            return  # no register for a bare value → leave km untouched
+        reg_dict.setdefault(reg, [])
+        if num not in reg_dict[reg]:
+            reg_dict[reg].append(num)
+    catalog["km"] = {r: (vs[0] if len(vs) == 1 else vs) for r, vs in reg_dict.items()}
+
+
 def _strip_nominal(nominal: str | None) -> str | None:
     """Canonical-nominal hygiene — collapse whitespace + strip trailing
     Daler-fraction parenthetical (already done by canonical helpers but
@@ -288,6 +341,9 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
     entry["issuing_entity"] = routed_ent
     if hint is not None:
         entry["_entity_routing_hint"] = hint
+    # Fold any «<km> (<Country>)» Krause-volume tag into the register-keyed km
+    # form now that the entity (→ default register for bare values) is known.
+    _apply_km_country_register(entry["catalog"], routed_ent)
     return entry
 
 

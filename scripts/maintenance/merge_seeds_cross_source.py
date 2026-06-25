@@ -152,7 +152,11 @@ def _authority_score(coin_id: str) -> int:
 _ENTITY_TO_KM_REGISTER: dict[str, str] = {
     # Danish-realm tracks Krause's «Denmark» volume
     "danish_realm": "dk",
-    "danish_norway": "no",       # Krause has separate Norway volume
+    # Krause has a separate Norway volume. Code is «nor», NOT «no» — a register
+    # code written as a YAML mapping key («no: 260») round-trips to the BOOLEAN
+    # False, silently corrupting a register-keyed km dict. Never use a YAML-bool
+    # token (no/yes/true/false/on/off/n/y) as a register code.
+    "danish_norway": "nor",
     # SH territory — Krause «German States — Schleswig-Holstein»
     "royal_holstein": "sh",
     "gottorp_duchy": "sh",
@@ -2692,7 +2696,16 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
     #   - only bare-without-register input → scalar (1) or list (≥2)
     if by_register:
         if len(by_register) == 1:
-            return _shape(next(iter(by_register.values()))), conflicts
+            (only_reg, only_vals), = by_register.items()
+            # Collapse to bare ONLY when the register is the entity's own Krause
+            # volume — a bare KM renders + scopes to the entity default. A
+            # cross-register single KM (register != entity volume, e.g. a
+            # Denmark-volume «479 (Denmark)» on a Norway coin) MUST keep the
+            # dict-form, else the register is lost and the value mis-scopes to
+            # the entity default (re-opening the §9.4 cross-volume clash).
+            if only_reg == _ENTITY_TO_KM_REGISTER.get(entity_id or ""):
+                return _shape(only_vals), conflicts
+            return {only_reg: _shape(only_vals)}, conflicts
         return {reg: _shape(vals) for reg, vals in by_register.items()}, conflicts
     if bare_values:
         return _shape(bare_values), conflicts
