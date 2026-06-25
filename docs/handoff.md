@@ -76,12 +76,15 @@
 >   skip. Tests + full suite 382/382.
 >   (A3) `31393` sieg «SD# 44» → strip stray «#» → «SD 44»; `km-x000-fr-iii-1644` ucoin
 >   lange «280 ff.» = prose range-pointer → «280»+note.
-> - **Table B (7 coins, faithful to source, NOT errors):** `307035` hede «C4 80.C»
->   (reign-disambiguated, our convention `c4h80.C`); 6× numista lange «… var.»
->   (16b/271/28/331/358 C IV/399 A — legit variant citations, distinct from cf./
->   unlisted that D31 filters). Recommend leave as-is.
+> - **Table B:** `307035` hede «C4 80.C» (reign-disambiguated, our convention `c4h80.C`)
+>   — leave as-is. **6× numista lange «… var.» → STRIPPED (`555f5bd` code, `31d5245`
+>   data)**: user 2026-06-25 «var прибери, індекс уже достатньо» → `normalise_catalog`
+>   now drops a trailing «var.»/«variant» qualifier (new `_strip_variant_qualifier`,
+>   block 1b, all typed list-fields); 16b/271/28/331/358 C IV/399 A bared across
+>   seed/seed_unified/final (gottorp_duchy + royal_holstein). Distinct from cf./unlisted
+>   (those DROP the value). test_catalog_variant_strip (6 tests); 388/388.
 > - Next: user verdicts on A3 (sieg «SD# 44» → «SD 44»; ucoin lange «280 ff.» → «280»+note).
->   A1 + A2 (incl. batch-2 Portugaløser KEPT) done; Table B = leave-as-is.
+>   A1 + A2 (batch-2 Portugaløser KEPT / 468992 off-nominal dropped) + Table B var. done.
 
 ## 2026-06-25 — night: galster foreign-catalogue reroute + catalogue-hygiene audit (§DA)
 
