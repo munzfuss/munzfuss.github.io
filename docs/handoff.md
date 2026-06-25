@@ -15,21 +15,27 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
-## 2026-06-25 — catalogue slash-split range fix + §DA Table A/B (verdicts pending)
+## 2026-06-25 — catalogue tight-slash split fix + §DA Table A/B (verdicts pending)
 
-> **UNPUSHED** — `a32d944` (this fix) atop the night's batch. `git push` still pending.
+> **UNPUSHED** — `a32d944` fix → `b331683` handoff → `5a391e6` §0b reword. `git push` pending.
 >
-> **Slash-split range bug — FIXED (`a32d944`).** `_split_multi` (merger matching) +
-> `normalise_catalog` block 1b (write/display) both split a catalogue index on EVERY
-> «/», so a tight range like Jensen-Skjoldager «T-91/96» (= T-91…T-96) became the
-> matcher scope «96|T-91» (fabricated token «96» + destroyed range). Root cause: a
-> slash is a multi-value delimiter ONLY when whitespace-padded («683.1 / 683.2»,
-> «125A / 125B» — how ucoin/Numista pack sub-variants; data-proven across seeds +
-> caches). New shared helper `lib/catalog_codes.split_multi_ref` (spaced-only); both
-> surfaces delegate. km kept on its own unconditional split (bare-integer indices,
-> tight «14/15» = genuine multi-KM). No-op on current data (no typed catalogue field
+> **Tight-slash split bug — FIXED (`a32d944`, rationale corrected `5a391e6`).**
+> `_split_multi` (merger matching) + `normalise_catalog` block 1b (write/display) both
+> split a catalogue index on EVERY «/», so a tight Jensen-Skjoldager «T-91/96» became
+> the matcher scope «96|T-91» — a fabricated PREFIX-LESS token «96» («T-» is written
+> once; «96» is not a standalone index). Root cause: a slash is a multi-value
+> delimiter ONLY when whitespace-padded («683.1 / 683.2», «125A / 125B» — how
+> ucoin/Numista pack sub-variants; data-proven across seeds + caches). New shared
+> helper `lib/catalog_codes.split_multi_ref` (spaced-only); both surfaces delegate.
+> km kept on its own unconditional split (bare-integer indices, tight «14/15» =
+> genuine multi-KM). **§0b note:** I first labelled «T-91/96» a «range T-91…T-96»;
+> that was unverified — danskmoent uses a SPACED « - » for ranges («T-81 - T-88»,
+> «F-51 - F-58»), so «/» is a distinct notation whose meaning (range vs «and») is
+> unsettled without J-S «Tronraneren» (2021, paper). The fix is correct either way
+> (keep the source literal whole per §0; re-attaching the prefix to synth «T-96»
+> would be an unverified inference). No-op on current data (no typed catalogue field
 > holds a slash today); fixes the long-red `test_jensen_skjoldager_unchanged`; new
-> `tests/test_catalog_slash_range.py` (12 tests, both surfaces). Full suite 357/357.
+> `tests/test_catalog_slash_split.py` (12 tests, both surfaces). Full suite 357/357.
 >
 > **§DA remaining cases — re-investigated from source, awaiting verdicts.** Presented
 > two tables in chat (NOT yet acted on, no data touched):
