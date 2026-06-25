@@ -47,17 +47,13 @@ class TestMetalConflictGuard(unittest.TestCase):
         with self.assertRaises(MetalConflictError):
             _collect_metal(members)
 
-    def test_bronze_vs_copper_warns_picks_authority(self):
-        # bronze<->copper is a thin alloy line (bronze ≈ 95% Cu; museums tag a
-        # bronze coin «kobber»). c9h18b: Hede=bronze (auth 5) beats KMM=copper
-        # (auth 0) → warn, pick bronze. (Must NOT raise — user-set 2026-06-22.)
+    def test_bronze_vs_copper_consensus_picks_bronze(self):
+        # bronze<->copper thin line — resolved by consensus, NOT a warn/raise
+        # (curator 2026-06-25). c9h18b: Hede=bronze (precise) beats kmk=copper
+        # (loose) on the authority-weighted per-resource vote → bronze.
         members = [_m("dk-hede-c9h18b", "bronze", True),
                    _m("kmk-569264", "copper", True)]
-        err = io.StringIO()
-        with redirect_stderr(err):
-            out = _collect_metal(members)  # must NOT raise
-        self.assertEqual(out, "bronze")
-        self.assertIn("bronze<->copper", err.getvalue())
+        self.assertEqual(_collect_metal(members), "bronze")  # must NOT raise
 
     def test_copper_vs_gold_raises(self):
         # A cross-pair conflict (copper in {bronze,copper}, gold in neither) is
@@ -67,14 +63,12 @@ class TestMetalConflictGuard(unittest.TestCase):
         with self.assertRaises(MetalConflictError):
             _collect_metal(members)
 
-    def test_silver_vs_billon_warns_no_raise(self):
+    def test_silver_vs_billon_consensus_picks_precise(self):
+        # silver<->billon thin line — consensus, no raise. Hede (precise) silver
+        # outweighs kmk (loose) billon on the authority-weighted vote → silver.
         members = [_m("dk-hede-x", "silver", True),
                    _m("kmk-y", "billon", True)]
-        err = io.StringIO()
-        with redirect_stderr(err):
-            out = _collect_metal(members)  # must NOT raise
-        self.assertIn(out, {"silver", "billon"})
-        self.assertIn("billon<->silver", err.getvalue())
+        self.assertEqual(_collect_metal(members), "silver")  # must NOT raise
 
     def test_same_metal_no_conflict(self):
         members = [_m("a", "copper", True), _m("b", "copper", True)]

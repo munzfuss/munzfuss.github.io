@@ -2552,6 +2552,137 @@ class MetalConflictError(Exception):
 #                       authority resolves it (user-set 2026-06-22, c9h18b).
 _THIN_LINE_METAL_PAIRS = ({"silver", "billon"}, {"bronze", "copper"})
 
+# Sources whose METAL label is precise enough to DECIDE a thin-line ambiguity
+# (curator 2026-06-25). Hede/Numista/Bruun carry the precise alloy; Galster too.
+# numismaster/ucoin/kmk/ikmk routinely use the looser umbrella term («sølv» for
+# a low-grade billon, «kobber»/copper for a bronze) so they VOTE but cannot
+# DECIDE alone — at a tie or with no precise source the refinement wins.
+_AUTHORITATIVE_METAL_SOURCES = {"hede", "numista", "bruun", "galster"}
+
+# Populated by the ABSORB pass (absorb_seeds_into_final_v2) with {id: coin} for
+# every seed / seed_unified entry so a unified member's composed_of chain can be
+# flattened back to its leaf specimens for the per-resource metal vote. Stays
+# EMPTY in the merger run (build_unified passes leaf seed members directly), so
+# `_flatten_metal_leaves` is a no-op there.
+_LEAF_INDEX: dict[str, dict] = {}
+
+
+def _flatten_metal_leaves(members: list[dict]) -> list[dict]:
+    """Expand each member to its leaf specimens via `_LEAF_INDEX`. A member with
+    no composed_of (a leaf seed entry — the merger case) is returned as-is."""
+    if not _LEAF_INDEX:
+        return list(members)
+    out: list[dict] = []
+    seen: set = set()
+
+    def _rec(cid: str):
+        if cid in seen:
+            return
+        seen.add(cid)
+        c = _LEAF_INDEX.get(cid)
+        if c is None:
+            return
+        kids = [x for x in (c.get("composed_of") or []) if x != cid]
+        if kids:
+            for k in kids:
+                _rec(k)
+        else:
+            out.append(c)
+
+    for m in members:
+        # NB: do NOT strip a composed_of entry equal to m's own id — a FINAL
+        # entry lists its absorbed seed_unified entry (SAME id, different layer)
+        # in composed_of; that entry resolves via _LEAF_INDEX to the real leaf
+        # specimens. `seen` prevents true infinite loops.
+        kids = m.get("composed_of") or []
+        if kids:
+            before = len(out)
+            for k in kids:
+                _rec(k)
+            if len(out) == before:           # nothing resolved → keep member
+                out.append(m)
+        else:
+            out.append(m)
+    return out
+
+
+def _thin_line_fineness_floats(specimens: list[dict]) -> list[float]:
+    out: list[float] = []
+    for s in specimens:
+        fv = s.get("fineness")
+        for x in (fv if isinstance(fv, list) else [fv] if fv is not None else []):
+            v = x.get("value") if isinstance(x, dict) else x
+            try:
+                out.append(float(v))
+            except (TypeError, ValueError):
+                pass
+    return out
+
+
+def _thin_line_consensus_metal(specimens: list[dict], pair: set) -> str:
+    """Resolve a {silver,billon} or {bronze,copper} ambiguity by per-resource,
+    authority-weighted consensus (curator decision 2026-06-25):
+
+      1. HARD guard (silver/billon): fineness ≥ 0.50 → silver (billon is
+         physically impossible above the standard ~30% Danish billon line, and
+         certainly above 50%).
+      2. Per-resource collapsed vote (5 kmk specimens = ONE kmk vote = the
+         resource's internal verified-majority metal; internal tie → abstain),
+         weighted by `_authority_score` (Hede 5 > Bruun 4 > Numista 2 > Galster 1
+         > loose 1). Verified attestations preferred; unverified only if no
+         verified vote exists.
+      3. The vote DECIDES only if a precise source
+         (`_AUTHORITATIVE_METAL_SOURCES`) voted AND one metal has a strictly
+         higher weighted score.
+      4. Otherwise (no precise source, or weighted tie) → tiebreak: silver/billon
+         by fineness (< 0.30 → billon, ≥ 0.40 → silver, 0.30–0.40 or unknown →
+         billon); bronze/copper → bronze. Refinement (billon/bronze) is the
+         standing default because the looser umbrella label is the lossy one.
+    """
+    refine = "bronze" if pair == {"bronze", "copper"} else "billon"
+    gen = "copper" if pair == {"bronze", "copper"} else "silver"
+    fvals = _thin_line_fineness_floats(specimens)
+    if pair == {"silver", "billon"} and fvals and min(fvals) >= 0.50:
+        return "silver"
+
+    def _vote(verified_only: bool):
+        by_res: dict[str, dict] = {}
+        rep: dict[str, str] = {}
+        for s in specimens:
+            m = s.get("metal")
+            if m not in pair:
+                continue
+            if verified_only and not s.get("metal_verified"):
+                continue
+            r = _source_label_from_id(s.get("id"))
+            by_res.setdefault(r, {})[m] = by_res.setdefault(r, {}).get(m, 0) + 1
+            rep.setdefault(r, s.get("id") or "")
+        score: dict[str, int] = {}
+        has_auth = False
+        for r, counts in by_res.items():
+            ranked = sorted(counts.items(), key=lambda kv: -kv[1])
+            if len(ranked) == 1 or ranked[0][1] > ranked[1][1]:
+                w = max(1, _authority_score(rep[r]))
+                score[ranked[0][0]] = score.get(ranked[0][0], 0) + w
+                if r in _AUTHORITATIVE_METAL_SOURCES:
+                    has_auth = True
+        return score, has_auth
+
+    score, has_auth = _vote(True)
+    if not score:
+        score, has_auth = _vote(False)
+    if has_auth and score.get(gen, 0) != score.get(refine, 0):
+        return gen if score.get(gen, 0) > score.get(refine, 0) else refine
+    # tiebreak
+    if pair == {"silver", "billon"}:
+        if fvals:
+            if max(fvals) < 0.30:
+                return "billon"
+            if min(fvals) >= 0.40:
+                return "silver"
+        return "billon"
+    return "bronze"
+
 
 def _collect_metal(members: list[dict]) -> str | None:
     """Pick metal across unified members per verified-wins precedence.
@@ -2577,7 +2708,21 @@ def _collect_metal(members: list[dict]) -> str | None:
               → fall back to first non-None metal among the highest-
               authority-scored members
       Tier 3: No metal anywhere → None
+
+    THIN-LINE SHORT-CIRCUIT (curator 2026-06-25): a {silver,billon} or
+    {bronze,copper} spread is NOT a real conflict but an umbrella-vs-precise
+    labelling ambiguity — resolved by `_thin_line_consensus_metal` (per-resource
+    authority-weighted vote + fineness tiebreak) over the flattened leaf
+    specimens, BEFORE the verified-wins precedence below.
     """
+    # Thin-line short-circuit: resolve a pure silver/billon or bronze/copper
+    # spread by consensus over the leaf specimens (flattened via _LEAF_INDEX in
+    # the absorb run; identity in the merger run).
+    _specimens = _flatten_metal_leaves(members)
+    _distinct = {s.get("metal") for s in _specimens if s.get("metal")}
+    _thin = next((p for p in _THIN_LINE_METAL_PAIRS if _distinct == p), None)
+    if _thin is not None:
+        return _thin_line_consensus_metal(_specimens, _thin)
     # Tier 1: verified attestations. Sort key: (-authority, -insertion_index)
     # so high-authority wins; ties broken by later insertion (fresher).
     indexed = list(enumerate(members))

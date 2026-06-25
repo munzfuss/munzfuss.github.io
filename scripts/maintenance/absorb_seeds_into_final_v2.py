@@ -2440,6 +2440,23 @@ def main() -> int:
 
     print(f"Processing {len(entities)} entit(y/ies)...\n")
 
+    # Populate the merge module's leaf index so `_collect_metal`'s thin-line
+    # consensus can flatten a unified member's composed_of chain back to its leaf
+    # specimens for the per-resource metal vote (curator 2026-06-25). Covers ALL
+    # entities' seed + seed_unified entries — composed_of can reference any id.
+    import maintenance.merge_seeds_cross_source as _mgmod
+    _leaf_idx: dict[str, dict] = {}
+    for _sf in V2_SEED.rglob("*/*.yml"):
+        for _c in (_load_yaml(_sf).get("coins") or []):
+            if _c.get("id"):
+                _leaf_idx.setdefault(_c["id"], _c)
+    for _uf in V2_SEED_UNIFIED.glob("*.yml"):
+        for _c in (_load_yaml(_uf).get("coins") or []):
+            if _c.get("id"):
+                _leaf_idx.setdefault(_c["id"], _c)
+    _mgmod._LEAF_INDEX = _leaf_idx
+    print(f"  leaf index: {len(_leaf_idx)} entries (for thin-line metal consensus)\n")
+
     totals = Counter()
     for ent in entities:
         result = process_entity(ent)
