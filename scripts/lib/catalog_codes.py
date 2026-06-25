@@ -27,11 +27,18 @@ import re
 # A slash inside a catalogue index is a MULTI-VALUE delimiter ONLY when it
 # carries surrounding whitespace («683.1 / 683.2», «758.1 / 758.2», «125A /
 # 125B», «3679 / 3679A» — how ucoin/Numista pack sub-variants in ONE string).
-# A TIGHT slash «X/Y» belongs to ONE index: a RANGE («T-91/96» = Jensen-
-# Skjoldager T-91…T-96), a publisher abbreviation («Divo/S»), or a hierarchical
-# number («10.4.1/17»). Splitting a tight slash fabricates a garbage token
-# («96») and destroys the range — so we never split it. (Regression guard:
-# tests/test_catalog_refs_normalisation.py::test_jensen_skjoldager_unchanged.)
+# A TIGHT slash «X/Y» belongs to ONE citation token: the part after the slash is
+# a PREFIX-ABBREVIATED continuation that is meaningless on its own — Jensen-
+# Skjoldager «T-91/96» (danskmoent writes the «T-» once; «96» is not a standalone
+# index), a publisher abbreviation («Divo/S»), or a hierarchical number
+# («10.4.1/17»). A naive split fabricates the prefix-less garbage token «96», so
+# we never split a tight slash. (What «/» reads as — a range or an «and» of
+# T-91 + T-96 — is NOT settled: danskmoent uses a SPACED « - » for explicit
+# ranges, e.g. «T-81 - T-88» / «F-51 - F-58», so «/» is a distinct notation; but
+# BOTH readings make the tight-split wrong, and storing the source literal whole
+# is the faithful choice per §0 — splitting and re-attaching the prefix to get
+# «T-96» would itself be an unverified inference per §0b.) Regression guard:
+# tests/test_catalog_refs_normalisation.py::test_jensen_skjoldager_unchanged.
 # NB: km is intentionally NOT routed through this helper — KM numbers are bare
 # integers where a tight «14/15» is a genuine multi-KM list (per the «one Hede
 # type Krause-split across KM 14/15/20» merge_decision), so km keeps its own
@@ -608,8 +615,9 @@ def normalise_catalog(catalog: dict) -> int:
     #     — an unsplit «125A / 125B» equals neither «125A» nor «125B», silently
     #     blocking a cross-source merge of the same coin AND rendering an ugly
     #     joined string. Only a WHITESPACE-PADDED slash is a delimiter: a tight
-    #     «X/Y» is one index — a range («T-91/96») or compound («Divo/S») — and
-    #     `split_multi_ref` leaves it whole. km keeps its own decimal-comma-aware
+    #     «X/Y» is one citation token (after the slash a prefix-abbreviated
+    #     continuation «T-91/96», or a compound «Divo/S») — `split_multi_ref`
+    #     leaves it whole. km keeps its own decimal-comma-aware
     #     split below; this handles every other list-capable field. For `dav`,
     #     also strip the stray volume «#» («EC II# 3679» → «EC II 3679»).
     for field in list_fields:

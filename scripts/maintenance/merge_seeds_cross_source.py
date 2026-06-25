@@ -813,9 +813,10 @@ def _split_multi(val) -> list[str]:
 
     Delegates to catalog_codes.split_multi_ref, so the split rule is identical
     to the one applied at write/display time: only a WHITESPACE-PADDED slash is
-    a delimiter. A tight «X/Y» (a range like Jensen-Skjoldager «T-91/96», a
-    publisher abbreviation «Divo/S», a hierarchical number «10.4.1/17») stays
-    whole — splitting it would fabricate a garbage token and destroy the range.
+    a delimiter. A tight «X/Y» stays whole — the part after the slash is a
+    prefix-abbreviated continuation (Jensen-Skjoldager «T-91/96» — «96» is not a
+    standalone index), a publisher abbreviation («Divo/S»), or a hierarchical
+    number («10.4.1/17»); a naive split fabricates the prefix-less token «96».
     (km does NOT pass through here — it has its own join in _catalog_refs.)"""
     out: list[str] = []
     for v in (val if isinstance(val, list) else [val]):

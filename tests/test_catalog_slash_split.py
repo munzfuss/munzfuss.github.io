@@ -2,10 +2,14 @@
 
 A slash separates a multi-value sub-variant pack ONLY when it carries
 surrounding whitespace — «683.1 / 683.2», «125A / 125B», «3679 / 3679A» (how
-ucoin/Numista pack sub-variants). A TIGHT «X/Y» belongs to ONE index: a range
-(Jensen-Skjoldager «T-91/96» = T-91…T-96), a publisher abbreviation («Divo/S»),
-or a hierarchical number («10.4.1/17»). The pre-fix code split on every «/», so
-«T-91/96» became «96|T-91» (a fabricated token «96» + lost range).
+ucoin/Numista pack sub-variants). A TIGHT «X/Y» belongs to ONE citation token:
+the part after the slash is a prefix-abbreviated continuation that is
+meaningless on its own — Jensen-Skjoldager «T-91/96» (danskmoent writes the «T-»
+once; «96» is not a standalone index — whether «/» reads as a range or an «and»
+of T-91 + T-96 is unsettled, but danskmoent uses a SPACED « - » for explicit
+ranges, e.g. «T-81 - T-88»), a publisher abbreviation («Divo/S»), or a
+hierarchical number («10.4.1/17»). The pre-fix code split on every «/», so
+«T-91/96» became «96|T-91» (a fabricated prefix-less token «96»).
 
 Two surfaces, both must respect the spaced-only rule:
 
@@ -15,7 +19,7 @@ Two surfaces, both must respect the spaced-only rule:
   helper so a not-yet-renormalised seed still matches correctly).
 
 Run via:
-    .venv/bin/python -m unittest tests.test_catalog_slash_range -v
+    .venv/bin/python -m unittest tests.test_catalog_slash_split -v
 """
 from __future__ import annotations
 
@@ -40,7 +44,9 @@ _catalog_refs = _merger._catalog_refs
 
 
 class TestSplitMultiRefHelper(unittest.TestCase):
-    def test_tight_range_kept_whole(self):
+    def test_tight_prefix_abbreviated_kept_whole(self):
+        # «96» is a prefix-abbreviated continuation of «T-91», not a standalone
+        # index — keep the source literal whole rather than fabricate «96».
         self.assertEqual(split_multi_ref("T-91/96"), ["T-91/96"])
 
     def test_publisher_abbrev_kept_whole(self):
@@ -66,14 +72,14 @@ class TestSplitMultiRefHelper(unittest.TestCase):
 
 
 class TestNormaliseCatalogWriteSide(unittest.TestCase):
-    """`normalise_catalog` must preserve a tight-slash range in a typed field."""
+    """`normalise_catalog` must keep a tight-slash token whole in a typed field."""
 
-    def test_jensen_skjoldager_range_preserved(self):
+    def test_jensen_skjoldager_tight_slash_preserved(self):
         cat = {"jensen_skjoldager": "T-91/96"}
         normalise_catalog(cat)
         self.assertEqual(cat["jensen_skjoldager"], "T-91/96")
 
-    def test_schive_range_preserved(self):
+    def test_schive_dash_range_preserved(self):
         cat = {"schive": "XIV.32-33"}
         normalise_catalog(cat)
         self.assertEqual(cat["schive"], "XIV.32-33")
