@@ -65,11 +65,15 @@
 >     removed from 3 layers.
 >   Filter changes: (a) dropped the bare Krause «Pn» trigger (it conflates die-trials
 >   with full-value pieces) — keys on TITLE («pattern/trial strike»/«(Pattern)»/off-metal/
->   afslag) + «(OM)» KM; (b) added an OFF-NOMINAL rule — title leading segment exactly
->   «N Ducat(s)/Dukat» AND value.raw non-bullion. Verified: still catches all 10
+>   afslag) + «(OM)» KM; (b) added an OFF-NOMINAL rule (`32e485e`) — title leading segment
+>   exactly «N Ducat(s)/Dukat» AND value.raw non-bullion AND «Pn» in KM (the «Pn» gate per
+>   user — keeps overweight/tariff/bad-data out). Verified: still catches all 10
 >   already-removed strikes; catches exactly 468992 off-nominal; does NOT touch the 181
->   genuine Ducat coins, «¼ Ducat / 3 Mark» tariff coins, or the 3 Portugaløsers. Tests
->   + full suite 381/381.
+>   genuine Ducat coins, «¼ Ducat / 3 Mark» tariff coins, or the 3 Portugaløsers.
+>   **Class codified as CLAUDE.md §9 item 5 (`b387ab1`)** with all caveats (off-nominal =
+>   nominal≪metal; Scheidemünze is the opposite §6; not dual-denom/equivalent; not
+>   overweight/tariff/bad-data). Item 1 (patterns) refined: bare «Pn» not sufficient to
+>   skip. Tests + full suite 382/382.
 >   (A3) `31393` sieg «SD# 44» → strip stray «#» → «SD 44»; `km-x000-fr-iii-1644` ucoin
 >   lange «280 ff.» = prose range-pointer → «280»+note.
 > - **Table B (7 coins, faithful to source, NOT errors):** `307035` hede «C4 80.C»
