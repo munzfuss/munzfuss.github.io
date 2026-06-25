@@ -72,6 +72,14 @@ class TestOffNominalExclusion(unittest.TestCase):
                     {"km": "PnJ16"}, "1 Krone")
         self.assertTrue(r and "off-nominal" in r)
 
+    def test_off_nominal_requires_pn_gate(self):
+        # same shape but NO «Pn» in KM → kept (could be overweight / tariff / bad
+        # source data, not a confirmed presentation strike)
+        self.assertIsNone(
+            _reason("5 Ducats - Frederik III", {"km": "300"}, "1 Krone"))
+        self.assertIsNone(
+            _reason("5 Ducats - Frederik III", {}, "1 Krone"))
+
     def test_genuine_ducat_kept(self):
         # title ducat + value ducat → full-value, stays
         self.assertIsNone(_reason("1 Ducat - Christian V", {"km": "180"}, "1 Ducat"))

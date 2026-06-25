@@ -236,24 +236,33 @@ _TITLE_PATTERN_RE = re.compile(
     r"pattern strike|trial strike|\(pattern\)|\bprobe\b|\bessai\b|prøvemønt", re.I)
 _TITLE_OFFSTRIKE_RE = re.compile(
     r"off[- ]metal|guldafslag|sølvafslag|\bafslag\b", re.I)
-# §9 OFF-NOMINAL presentation strikes (curator decision 2026-06-25): a gold piece
-# titled PURELY by its bullion (ducat) weight — title leading segment is exactly
-# «N Ducat(s)/Dukat» — while its actual nominal (value.raw) is a DIFFERENT, lower
-# standard denomination (e.g. «5 Ducats» / value «1 Krone», KM PnJ16). Same metal
-# as the nominal (so not off-metal), but it would NOT circulate at its stamped
-# nominal — a presentation piece, out of scope. NOT a full-value gold show coin:
-# a Portugaløser (title «1 Portugaløser») or a genuine Ducat (value.raw «1 Ducat»)
-# has its bullion denomination AS the nominal and stays.
+# §9.5 OFF-NOMINAL presentation strikes (curator decision 2026-06-25; CLAUDE.md
+# §9 item 5): a piece whose stamped nominal is MUCH SMALLER than the intrinsic
+# value of its metal weight — e.g. a «1 Krone» struck on a 5-ducat gold planchet
+# (Numista titles it «5 Ducats», value.raw «1 Krone», KM PnJ16). Same metal as the
+# nominal (so NOT off-metal), but it would never circulate at its stamped face
+# value — a presentation piece, out of scope. Implemented as the detectable proxy
+# of that concept: title leading segment is exactly «N Ducat(s)/Dukat» (Numista
+# titles these by the bullion WEIGHT) AND value.raw is a non-bullion nominal AND
+# the KM index carries «Pn» (the necessary Krause pattern/presentation marker —
+# user: «сигнал це Pn в КМ індексі»). The «Pn» gate keeps the rule conservative:
+# a merely overweight specimen, a tariff coin or a bad source weight is NOT
+# off-nominal. KEPT (not off-nominal): full-value show coins whose nominal IS the
+# bullion denomination (Portugaløser, genuine Ducat — value.raw bullion); dual-
+# denomination / value-equivalent coins («¼ Ducat / 3 Mark» — the «/» is an
+# equivalence); Scheidemünze (the OPPOSITE — nominal > metal value, §6).
 _TITLE_SEG_DUCAT_RE = re.compile(r"^[\d¼½¾⅓⅔\s]+(ducats?|dukat)\s*$", re.I)
 _VALUE_BULLION_RE = re.compile(r"ducat|dukat|portugal", re.I)
+_KM_PN_RE = re.compile(r"^\s*Pn", re.I)                   # Krause pattern/presentation prefix
 
 
 def _excluded_strike_reason(title, references, value_raw=None) -> str | None:
     """Return a §9 exclusion reason when this Numista type is a trial/pattern
-    (§9.1), off-metal (§9.3) or off-nominal presentation strike (not struck for
-    circulation), else None. Keyed on the title + off-metal «(OM)» KM marker +
-    off-nominal value mismatch; the bare Krause «Pn» number is NOT a trigger (it
-    conflates die-trials with unique full-value pieces)."""
+    (§9.1), off-metal (§9.3) or off-nominal presentation strike (§9.5; not struck
+    for circulation), else None. Keyed on the title + off-metal «(OM)» KM marker.
+    The bare Krause «Pn» number is NOT a standalone trigger (it conflates die-
+    trials with full-value pieces); for §9.5 off-nominal it is a NECESSARY gate
+    combined with the ducat-weight title + non-bullion nominal."""
     km = (references or {}).get("km")
     km_vals: list = []
     if isinstance(km, dict):
@@ -272,8 +281,9 @@ def _excluded_strike_reason(title, references, value_raw=None) -> str | None:
         return "§9.3 off-metal strike (title)"
     seg = t.split(" - ")[0].strip()
     if (_TITLE_SEG_DUCAT_RE.match(seg) and value_raw
-            and not _VALUE_BULLION_RE.search(str(value_raw))):
-        return "§9 off-nominal gold strike (titled by ducat weight)"
+            and not _VALUE_BULLION_RE.search(str(value_raw))
+            and any(_KM_PN_RE.match(str(v)) for v in km_vals)):
+        return "§9.5 off-nominal strike (Pn, titled by ducat weight)"
     return None
 
 
