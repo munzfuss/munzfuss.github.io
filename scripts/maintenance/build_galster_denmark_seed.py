@@ -312,38 +312,65 @@ def _build_sources(data: dict) -> list[dict]:
 
 # Foreign-catalogue NAMES that danskmoent lists as cross-references on a Galster
 # coin page (Hildebrand/Lagerqvist/Rasmusson = Swedish/Scanian medieval-coin
-# catalogues; Hauberg = Danish medieval). The page parser sometimes captures
-# these INTO the `galster`/`sieg` register (e.g. galster
-# ['233','Hildebrand 715','Lagerqvist 4']). They are NOT Galster/Sieg numbers —
-# reroute to `others` so the typed register holds only its own catalogue. Tight
-# NAME whitelist: a real Galster/Sieg index never starts with a catalogue name.
-# NOT touched (need curator judgment — see TODO §DA): bracketed Sieg yearbook
-# editions «[2018] 18», «mangler hos», «Ernst 1940 …», Jensen-Skjoldager ranges.
-_FOREIGN_CATALOGUE_RE = re.compile(r"^(hildebrand|lagerqvist|rasmusson|hauberg)\b", re.I)
+# catalogues; Hauberg = Danish medieval; Ernst = Axel Ernst's Norwegian-coin
+# studies, e.g. «Ernst 1940 21»). The page parser sometimes captures these INTO a
+# Danish register (galster/sieg/schive — e.g. galster ['233','Hildebrand 715',
+# 'Lagerqvist 4'] or schive ['Ernst 1940 21','XIV.32-33']). They are NOT
+# Galster/Sieg/Schive numbers — reroute to `others`. Tight NAME whitelist: a real
+# Danish index never starts with a catalogue name.
+_FOREIGN_CATALOGUE_RE = re.compile(
+    r"^(hildebrand|lagerqvist|rasmusson|hauberg|ernst)\b", re.I)
+
+# Danish PROSE / negative markers danskmoent appends inside a catalogue cell —
+# never a real index: «mangler [hos X]» (absent from catalogue X), «adskillige
+# katalognumre» (several numbers), «se side N» (see page N), «unik» (unique —
+# a rarity note). Dropped, not routed.
+_PROSE_NOISE_RE = re.compile(
+    r"\b(mangler|adskillige|katalognumre|se\s+side|unik)\b", re.I)
+# «hhv. X og mangler» = "respectively X (year 1) and missing (year 2)" — a
+# two-year Galster row where only the first year is catalogued. Keep X.
+_HHV_RE = re.compile(r"^hhv\.\s*(.+?)\s+og\s+mangler", re.I)
 
 
-def _reroute_foreign_catalogue_refs(catalog: dict) -> None:
-    """Move foreign-catalogue cross-refs out of the `galster`/`sieg` registers
-    into `others` (verbatim). In place; idempotent.
-
-    The danskmoent cache COMMA-JOINS the cross-refs into one string
-    («233, Hildebrand 715, Rasmusson ill. 17, Lagerqvist 4»), so split on comma
-    first (a real Galster/Sieg index never contains a comma), then partition by
-    the foreign-NAME whitelist."""
-    for reg in ("galster", "sieg"):
+def _clean_catalogue_refs(catalog: dict) -> None:
+    """Clean danskmoent catalogue cells in the Danish registers, in place
+    (idempotent). The cache packs cross-refs, prose and rarity notes into one
+    cell, comma- or «;»-joined; a real Galster/Sieg/Schive/Schou/J-S index never
+    contains a comma, a semicolon, or a Danish word. So split first, then:
+      * «hhv. X og mangler» → X (keep the catalogued variant);
+      * foreign cross-refs (Hildebrand/Lagerqvist/Rasmusson/Hauberg/Ernst) → `others`;
+      * Danish prose / negative markers («mangler hos», «adskillige katalognumre,
+        se side …», «; unik») → dropped;
+      * a register left with no real index is removed."""
+    for reg in ("galster", "sieg", "schive", "schou", "jensen_skjoldager"):
         val = catalog.get(reg)
         if val is None:
             continue
         vals = val if isinstance(val, list) else [val]
-        parts = [p.strip() for v in vals for p in str(v).split(",") if p.strip()]
-        kept = [p for p in parts if not _FOREIGN_CATALOGUE_RE.match(p)]
-        moved = [p for p in parts if _FOREIGN_CATALOGUE_RE.match(p)]
-        if not moved:
-            continue
-        others = catalog.setdefault("others", [])
-        for m in moved:
-            if m not in others:
-                others.append(m)
+        parts: list[str] = []
+        for v in vals:
+            for p in re.split(r"[,;]", str(v)):
+                p = p.strip()
+                if not p:
+                    continue
+                m = _HHV_RE.match(p)
+                if m:
+                    p = m.group(1).strip()
+                parts.append(p)
+        kept: list[str] = []
+        moved: list[str] = []
+        for p in parts:
+            if _FOREIGN_CATALOGUE_RE.match(p):
+                moved.append(p)
+            elif _PROSE_NOISE_RE.search(p):
+                continue                      # drop prose / negative marker
+            else:
+                kept.append(p)
+        if moved:
+            others = catalog.setdefault("others", [])
+            for m in moved:
+                if m not in others:
+                    others.append(m)
         if kept:
             catalog[reg] = kept[0] if len(kept) == 1 else kept
         else:
@@ -374,7 +401,7 @@ def build_entry(data: dict) -> dict | None:
         catalog["galster"] = data["galster_number"]
     if data.get("ruler_volume"):
         catalog["galster_volume"] = data["ruler_volume"]
-    _reroute_foreign_catalogue_refs(catalog)
+    _clean_catalogue_refs(catalog)
 
     specs = data.get("specs") or {}
     sub_realm = data.get("sub_realm")
