@@ -303,13 +303,19 @@ def _parse_km_ref(refs_text: str | None, refs_list: list | None) -> dict:
         if not raw:
             continue
         for m in re.finditer(
-            r"\b(KM|Hede|Sieg|Lange|Fr|Schou|Dav)#?\s*([\w.\-/]+)",
+            r"\b(KM|Hede|Sieg|Lange|Fr|Schou|Dav|UC)#?\s*([\w.\-/]+)",
             str(raw),
             re.IGNORECASE,
         ):
             prefix = m.group(1).lower()
             val = m.group(2).rstrip(".,;")
-            if prefix == "km":
+            if prefix == "uc":
+                # ucoin's OWN catalogue number (the type has no Krause #) — keep
+                # it as an `others` locator, NEVER in `km`: «UC#» is not a Krause
+                # number. (Curator-approved 2026-06-25; the cross-source merger
+                # supplies the real KM/Hede from other sources.)
+                catalog.setdefault("others", []).append(f"ucoin# {val}")
+            elif prefix == "km":
                 catalog.setdefault("km", val)
             elif prefix == "hede":
                 catalog.setdefault("hede", val)
