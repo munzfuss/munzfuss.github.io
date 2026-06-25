@@ -215,6 +215,47 @@ def _strip_nominal(nominal: str | None) -> str | None:
     return s or None
 
 
+# §9.1 patterns + §9.3 off-metal/off-strikes — never struck for circulation;
+# CLAUDE.md §9 excludes them from the coin table. build_hede_denmark_seed filters
+# these structurally; the Numista builder had no such filter, so «Pn 30» (Bremen
+# ½ Groten gold pattern) and «505 (OM)» (Frederik IV 16 Skilling off-metal gold
+# strike of the silver KM#505) slipped into the seed — caught 2026-06-25. Signals:
+# the Krause marker on the KM ref («Pn N» = pattern, «N (OM)» = off-metal) and the
+# Numista title («(Gold pattern strike)», «off-metal», «…afslag»).
+_KM_PATTERN_RE = re.compile(r"^\s*Pn[\s\dA-Za-z]", re.I)  # KM «Pn 30» / «Pn19» / «PnA31»
+_KM_OFFMETAL_RE = re.compile(r"\(OM\)", re.I)             # KM «505 (OM)»
+_TITLE_PATTERN_RE = re.compile(
+    r"pattern strike|\(pattern\)|\bprobe\b|\bessai\b|prøvemønt", re.I)
+_TITLE_OFFSTRIKE_RE = re.compile(
+    r"off[- ]metal|guldafslag|sølvafslag|\bafslag\b", re.I)
+
+
+def _excluded_strike_reason(title, references) -> str | None:
+    """Return a §9.1/§9.3 exclusion reason when this Numista type is a pattern or
+    off-metal strike (not struck for circulation), else None."""
+    km = (references or {}).get("km")
+    km_vals: list = []
+    if isinstance(km, dict):
+        for v in km.values():
+            km_vals.extend(v if isinstance(v, list) else [v])
+    elif isinstance(km, list):
+        km_vals = km
+    elif km is not None:
+        km_vals = [km]
+    for v in km_vals:
+        s = str(v)
+        if _KM_PATTERN_RE.search(s):
+            return "§9.1 pattern (KM Pn)"
+        if _KM_OFFMETAL_RE.search(s):
+            return "§9.3 off-metal strike (KM OM)"
+    t = title or ""
+    if _TITLE_PATTERN_RE.search(t):
+        return "§9.1 pattern (title)"
+    if _TITLE_OFFSTRIKE_RE.search(t):
+        return "§9.3 off-metal strike (title)"
+    return None
+
+
 def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
     """Convert one canonical Phase 2 sidecar into a Coin-schema dict
     suitable for the seed builder.
@@ -358,6 +399,11 @@ def collect_entries() -> tuple[list[dict[str, Any]], Counter]:
         except json.JSONDecodeError:
             continue
         if not isinstance(canonical, dict):
+            continue
+        excl = _excluded_strike_reason(canonical.get("title"),
+                                       canonical.get("references"))
+        if excl is not None:
+            by_shape["skipped_strike"] += 1
             continue
         entry = build_coin_entry(canonical)
         if entry is None:
