@@ -36,13 +36,18 @@
 > Re-flowed danish_realm (merge+absorb, 0 stale dropped); rendered «Lagerqvist 4»
 > now a plain `others` entry. Verified end-to-end.
 >
-> **Broader finding → TODO §DA (`<this commit>` docs).** The scan that found the
-> galster issue surfaced **688 whitespace/foreign values** across ALL numeric
-> catalogue registers; 11 fixed (galster), **~677 documented for curator judgment**
-> (numista `dav` EC/BrSL/AAO prefixes = Davenport-or-foreign?, spaced sub-variants
-> «125 A»→«125A» de-space policy, lange «N var.» strip, ucoin «UC# N» misfile,
-> parser-garbage in bruun/galster). NOT bulk-fixed — each class needs a catalogue-
-> semantics decision (§0b/§4). Repro + full class breakdown in TODO §DA.
+> **Broader finding → TODO §DA — CORRECTED 2026-06-25 (§0b).** The whitespace scan
+> surfaced 688 values, which I FIRST mis-documented as «~677 need curator judgment».
+> On verification (when the user asked me to double-check) that was **~93% false-
+> positive**: ~640 are LEGITIMATE source notation — chiefly **569 Davenport
+> volume-series** (`dav` «EC II 3529» etc.; numista emits «Dav <series>» codes and
+> `numista_canonical.py:99-106` routes them to `dav` BY DESIGN) + 44 spaced
+> sub-variants (source's literal «762 b») + 16 year/range/yearbook annotations + 11
+> Galster-UU sub-series. The **genuine issues are only ~30**: ucoin `km` «UC# N»
+> (12, internal id misfiled), bare-dash empties (6), bruun/galster parser garbage
+> (~10), lange «N var.» (6, policy), «; unik» (2). Lesson: «contains whitespace» is
+> NOT a bad-index signal (Davenport volumes/sub-letters legitimately have spaces) —
+> verify the source mapping before flagging. Full corrected breakdown in TODO §DA.
 >
 > **2 stale royal_holstein assignments retargeted** (`60b7fcf`). The full re-flow's
 > «Curator assignments unmatched: 2» were c4h8b + bruun-14770 — coins that folded

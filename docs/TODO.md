@@ -1442,45 +1442,60 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 ## Normal priority
 
-### DA. 🟡 Catalogue-register hygiene — ~677 whitespace/foreign values in numeric catalogue fields (needs per-catalogue curator judgment)  *(opened 2026-06-25)* *(est: medium)* *(type: data-audit)*
+### DA. 🟡 Catalogue-register hygiene — ~30 genuine misfiles/garbage (the «688» scan was ~93% false-positive)  *(opened 2026-06-25, CORRECTED 2026-06-25)* *(est: small)* *(type: data-audit)*
 
-A project-wide scan (`catalog.{km,hede,sieg,schou,lange,galster,fr,dav,mb,…}`
-values containing internal whitespace or starting with a non-alnum) found **688
-values** across the V2 seeds. The unambiguous **galster-source foreign-catalogue
-cramming** (11 values: Hildebrand/Lagerqvist/Rasmusson in `galster`, Hauberg in
-`sieg`, Hans hg-coins) was **fixed 2026-06-25** (`e2e3727` builder reroute +
-`1a03f3e` danish_realm re-flow). The remaining **~677 need curator catalogue-
-semantics decisions** before any fix — DO NOT bulk-edit blind (§0b/§4). Classes:
+**CORRECTION (2026-06-25, §0b).** The original framing of this entry was WRONG.
+A whitespace-tripwire scan (`re.search(r'\s', v)` over numeric catalogue
+registers) flagged **688** values and I documented them as «~677 needing curator
+catalogue-semantics judgment». On verification that was a **bad heuristic**: a
+clean catalogue index CAN legitimately contain whitespace, so **~640 of the 688
+are LEGITIMATE source notation, not problems.** Verified breakdown:
 
-1. **numista `dav` (566)** — prefixed forms «EC IV 72», «BrSL 116», «AAO 410».
-   `EC` = Davenport *European Crowns* → these ARE Davenport (legit, just the
-   vol-prefixed form). `BrSL` / `AAO` = ? (confirm: Davenport sub-series → keep,
-   or separate catalogue → `others`). **Decision needed: which prefixes are
-   Davenport vs foreign.**
-2. **numista spaced sub-variants** — `hede` «125 A»=Hede 125A, `km` «A 12»=KM A12,
-   `lange` «20 a»=Lange 20a. Legit indices with a stray space. **Decision: auto
-   de-space (`125 A`→`125A`)?** Watch exceptions: `km` «479 (Denmark)» / «505 (OM)»
-   (country annotation → strip), `hede` «C4 80.C» (C4 prefix?).
-3. **numista `lange` «N var.» (6)** — editorial variant suffix (anti-pattern #5):
-   «16b var.», «271 var.», «358 C IV var.», «399 A var.». **Decision: strip to
-   base index (`16b`), or `others`?** «358 C IV»/«399 A» have extra annotation.
-4. **ucoin `km` «UC# N» (12)** — ucoin's OWN internal numbers misfiled into `km`.
-   → drop or `others` (UC# is not a Krause number).
-5. **numista `galster` «UU N»/«UU# N» (11)** — `UU` catalogue in `galster`. Confirm
-   what UU is → keep/others.
-6. **ucoin `schou` «N (YYYY)» (6)** — Schou with year annotation → strip year.
-7. **Parser garbage (clear, but needs a PARSER fix not a data edit):** bruun
-   `jensen_skjoldager` «, again leans towards 4 Skilling» (sentence fragment) +
-   bare «–» (en-dash); galster «mangler hos» / «adskillige katalognumre, se side
-   218ff» (Danish notes, not refs). These are capture bugs in the respective
-   parsers.
-8. **Legit (leave):** galster `jensen_skjoldager` «F-51 - F-58» / «T-81 - T-88»
-   (real J-S ranges), sieg «[2018] 18» (Sieg yearbook-edition form).
+- **Davenport volume-series — 569, LEGIT (by design).** `dav` «EC II 3529»,
+  «GT I 8982», «ST 6282», «SG 572», «CCT 5074», «ECT 71», «BrSL 136», «Lg 229»,
+  «AAO 409A». Numista emits Davenport's volume-tagged codes («Dav EC II», «Dav
+  GT I», «Dav SG», …) and `lib/numista_canonical.py` lines 99-106
+  (`_davenport_volume_ref`) INTENTIONALLY routes «Dav <series>» → `dav` field as
+  «<series> <number>». All are Davenport sub-series. **Do NOT touch** — «fixing»
+  these would corrupt correct citations.
+- **Spaced sub-variants/addenda — 44, LEGIT.** numista/ucoin emit the source's
+  literal number with a space: `lange` «762 b», `hede` «39 C», `km` «A 12».
+  Cosmetic de-spacing at most; NOT errors.
+- **Source year/range/yearbook annotations — 16, LEGIT.** ucoin `schou`
+  «44-45 (1694)», galster `jensen_skjoldager` «F-51 - F-58» / «T-81 - T-88»
+  ranges, galster `sieg` «[2018] 18» (Sieg yearbook edition). Leave.
+- **Galster UU sub-series — 11, MINOR.** numista `galster` «UU 167» / «UU# 165»:
+  «Galster UU» IS a Galster sub-series (some records correctly land it in
+  `others` as «Galster UU# 165», others in `galster`). A routing-consistency
+  tidy at most — NOT foreign.
 
-Repro scan: filter `re.search(r'\s', v) or re.match(r'^[^0-9A-Za-z]', v)` over
-every numeric catalogue register across `data/v2/seed/*/*.yml`. A clean index
-never contains internal whitespace, so the scan is a reliable tripwire — but the
-DISPOSITION per class is a catalogue-knowledge call, hence curator-gated.
+**The GENUINE issues (~30, the only actionable part):**
+
+1. **ucoin `km` «UC# N» (12)** — ucoin's OWN internal id misfiled into `km`
+   («UC# 1» is not a Krause number). → route to `others` or drop. Low-authority
+   source; low blast radius.
+2. **Bare-dash empties (6)** — hede `sieg` «-», bruun `schive`/`jensen_skjoldager`
+   «–». Drop (null markers, not refs). Parser should suppress.
+3. **bruun / galster parser garbage (~10, «OTHER review»)** — bruun
+   `jensen_skjoldager` «, again leans towards 4 Skilling» (sentence fragment);
+   galster `schive` «Ernst 1940 21» (confirm: is «Ernst» a Schive-related
+   catalogue or a stray author cite?), «hhv. XV.5 og mangler» / «mangler hos» /
+   «adskillige katalognumre, se side 218ff» (Danish notes, not refs); ucoin
+   `lange` «280 ff.» (= «Lange 280 following», a range pointer). These are
+   parser-capture bugs — fix in the respective parser, not a blind data edit.
+4. **«var.» suffix (6)** — numista `lange` «16b var.» / «271 var.» / «358 C IV
+   var.» / «399 A var.» (anti-pattern #5). Policy call: strip to base index, or
+   `others`? «358 C IV» / «399 A» carry extra annotation.
+5. **«; unik» annotation (2)** — galster `schou` «13; unik» / «3; unik» — strip
+   the «; unik» (unique) annotation, keep the Schou number.
+
+**LESSON (§0b, recorded so the trap isn't re-sprung):** «contains whitespace» is
+NOT a reliable «bad index» signal — Davenport volume codes, catalogue sub-letters,
+and range forms all legitimately contain spaces. Before flagging a scan's hits as
+a problem, VERIFY the source mapping (here: `numista_canonical.py` already
+documented the Davenport-volume handling). The repro scan is still useful as a
+tripwire, but each hit must be checked against the source-code mapping, not
+assumed suspect.
 
 ### CT. ✅ DONE 2026-06-11 — Fuss cross-reference system — author by id, resolve display name + clickable link at build time  *(opened + closed 2026-06-11)* *(est: medium)* *(type: feature)*
 
