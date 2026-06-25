@@ -15,6 +15,40 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-25 — catalogue slash-split range fix + §DA Table A/B (verdicts pending)
+
+> **UNPUSHED** — `a32d944` (this fix) atop the night's batch. `git push` still pending.
+>
+> **Slash-split range bug — FIXED (`a32d944`).** `_split_multi` (merger matching) +
+> `normalise_catalog` block 1b (write/display) both split a catalogue index on EVERY
+> «/», so a tight range like Jensen-Skjoldager «T-91/96» (= T-91…T-96) became the
+> matcher scope «96|T-91» (fabricated token «96» + destroyed range). Root cause: a
+> slash is a multi-value delimiter ONLY when whitespace-padded («683.1 / 683.2»,
+> «125A / 125B» — how ucoin/Numista pack sub-variants; data-proven across seeds +
+> caches). New shared helper `lib/catalog_codes.split_multi_ref` (spaced-only); both
+> surfaces delegate. km kept on its own unconditional split (bare-integer indices,
+> tight «14/15» = genuine multi-KM). No-op on current data (no typed catalogue field
+> holds a slash today); fixes the long-red `test_jensen_skjoldager_unchanged`; new
+> `tests/test_catalog_slash_range.py` (12 tests, both surfaces). Full suite 357/357.
+>
+> **§DA remaining cases — re-investigated from source, awaiting verdicts.** Presented
+> two tables in chat (NOT yet acted on, no data touched):
+> - **Table A (11 coins, real errors):** (A1) 7 galster coins where the parser
+>   captured Danish prose into the index — `mangler hos` (f1g-168), `adskillige
+>   katalognumre…` (f1g-49), `hhv. X og mangler` (c2g-172 schive+schou), `Ernst 1940
+>   N` foreign-cat (hg-155/hg-159 → route to `others`), `N; unik` (f1g-78/f1g-74);
+>   one fix in `build_galster_denmark_seed`. (A2) 2 numista exclusion-filter gaps —
+>   `345593` km «505 (OM)» = §9.3 OFF-METAL gold strike of silver KM#505 (comments
+>   field confirms; **in final/danish_realm, renders live**) → exclude; `314921` km
+>   «Pn 30» = §9.1 gold pattern strike (Bremen, _unclassified/dormant) → filter. (A3)
+>   `31393` sieg «SD# 44» → strip stray «#» → «SD 44»; `km-x000-fr-iii-1644` ucoin
+>   lange «280 ff.» = prose range-pointer → «280»+note.
+> - **Table B (7 coins, faithful to source, NOT errors):** `307035` hede «C4 80.C»
+>   (reign-disambiguated, our convention `c4h80.C`); 6× numista lange «… var.»
+>   (16b/271/28/331/358 C IV/399 A — legit variant citations, distinct from cf./
+>   unlisted that D31 filters). Recommend leave as-is.
+> - Next: user gives verdicts on Table A → galster parser fix + §9 exclusions.
+
 ## 2026-06-25 — night: galster foreign-catalogue reroute + catalogue-hygiene audit (§DA)
 
 > **All UNPUSHED** (this night added 4: `9558e85` docs → `1a03f3e`). `git push` pending.
