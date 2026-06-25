@@ -48,20 +48,40 @@ class TestPatternExclusion(unittest.TestCase):
 class TestBareKrausePnKept(unittest.TestCase):
     """Curator decision 2026-06-25: a bare Krause «Pn» without a title trial/
     pattern marker is NOT excluded — Krause numbers unique FULL-VALUE pieces «Pn»
-    too (Portugaløser, multi-Ducat gold) and those stay."""
+    too (Portugaløser) and those stay."""
 
     def test_portugaloeser_pn_kept(self):
+        # value.raw IS the bullion denomination → full-value show coin, stays.
         self.assertIsNone(
             _reason("1 Portugaløser - Frederik III (Type XXIII) - Norway",
-                    {"km": "PnD20"}))
-
-    def test_five_ducats_pn_kept(self):
+                    {"km": "PnD20"}, "1 Portugaløser"))
         self.assertIsNone(
-            _reason("5 Ducats - Frederik III Victory over Swedish army",
-                    {"km": "PnJ16"}))
+            _reason("1 Portugaløser - Frederik III (Victory)", {"km": "PnH16"},
+                    "10 Ducats"))
 
     def test_bare_pn_plain_title_kept(self):
-        self.assertIsNone(_reason("1 Schwaren - City of Bremen", {"km": "Pn19"}))
+        self.assertIsNone(_reason("1 Schwaren - City of Bremen", {"km": "Pn19"}, "1 Schwaren"))
+
+
+class TestOffNominalExclusion(unittest.TestCase):
+    """§9 off-nominal: titled purely by ducat weight, nominal is a different
+    standard denomination → presentation piece, excluded (curator 2026-06-25)."""
+
+    def test_ducat_titled_krone_nominal_excluded(self):
+        r = _reason("5 Ducats - Frederik III Victory over Swedish army",
+                    {"km": "PnJ16"}, "1 Krone")
+        self.assertTrue(r and "off-nominal" in r)
+
+    def test_genuine_ducat_kept(self):
+        # title ducat + value ducat → full-value, stays
+        self.assertIsNone(_reason("1 Ducat - Christian V", {"km": "180"}, "1 Ducat"))
+        self.assertIsNone(_reason("2 Ducats - Christian V", {"km": "200"}, "2 Ducats"))
+
+    def test_dual_denomination_tariff_kept(self):
+        # «¼ Ducat / 3 Mark» tariff coin — leading segment has «/ 3 Mark», not a
+        # pure ducat-weight title → kept
+        self.assertIsNone(
+            _reason("¼ Ducat / 3 Mark - Christian V", {"km": "X"}, "3 Mark"))
 
 
 class TestOffMetalExclusion(unittest.TestCase):

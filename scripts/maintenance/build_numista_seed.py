@@ -236,13 +236,24 @@ _TITLE_PATTERN_RE = re.compile(
     r"pattern strike|trial strike|\(pattern\)|\bprobe\b|\bessai\b|prøvemønt", re.I)
 _TITLE_OFFSTRIKE_RE = re.compile(
     r"off[- ]metal|guldafslag|sølvafslag|\bafslag\b", re.I)
+# §9 OFF-NOMINAL presentation strikes (curator decision 2026-06-25): a gold piece
+# titled PURELY by its bullion (ducat) weight — title leading segment is exactly
+# «N Ducat(s)/Dukat» — while its actual nominal (value.raw) is a DIFFERENT, lower
+# standard denomination (e.g. «5 Ducats» / value «1 Krone», KM PnJ16). Same metal
+# as the nominal (so not off-metal), but it would NOT circulate at its stamped
+# nominal — a presentation piece, out of scope. NOT a full-value gold show coin:
+# a Portugaløser (title «1 Portugaløser») or a genuine Ducat (value.raw «1 Ducat»)
+# has its bullion denomination AS the nominal and stays.
+_TITLE_SEG_DUCAT_RE = re.compile(r"^[\d¼½¾⅓⅔\s]+(ducats?|dukat)\s*$", re.I)
+_VALUE_BULLION_RE = re.compile(r"ducat|dukat|portugal", re.I)
 
 
-def _excluded_strike_reason(title, references) -> str | None:
-    """Return a §9.1/§9.3 exclusion reason when this Numista type is a trial/
-    pattern or off-metal strike (not struck for circulation), else None. Keyed on
-    the title + the off-metal «(OM)» KM marker; the bare Krause «Pn» number is NOT
-    a trigger (it conflates die-trials with unique full-value pieces)."""
+def _excluded_strike_reason(title, references, value_raw=None) -> str | None:
+    """Return a §9 exclusion reason when this Numista type is a trial/pattern
+    (§9.1), off-metal (§9.3) or off-nominal presentation strike (not struck for
+    circulation), else None. Keyed on the title + off-metal «(OM)» KM marker +
+    off-nominal value mismatch; the bare Krause «Pn» number is NOT a trigger (it
+    conflates die-trials with unique full-value pieces)."""
     km = (references or {}).get("km")
     km_vals: list = []
     if isinstance(km, dict):
@@ -259,6 +270,10 @@ def _excluded_strike_reason(title, references) -> str | None:
         return "§9.1 pattern (title)"
     if _TITLE_OFFSTRIKE_RE.search(t):
         return "§9.3 off-metal strike (title)"
+    seg = t.split(" - ")[0].strip()
+    if (_TITLE_SEG_DUCAT_RE.match(seg) and value_raw
+            and not _VALUE_BULLION_RE.search(str(value_raw))):
+        return "§9 off-nominal gold strike (titled by ducat weight)"
     return None
 
 
@@ -407,7 +422,8 @@ def collect_entries() -> tuple[list[dict[str, Any]], Counter]:
         if not isinstance(canonical, dict):
             continue
         excl = _excluded_strike_reason(canonical.get("title"),
-                                       canonical.get("references"))
+                                       canonical.get("references"),
+                                       (canonical.get("value") or {}).get("raw"))
         if excl is not None:
             by_shape["skipped_strike"] += 1
             continue
