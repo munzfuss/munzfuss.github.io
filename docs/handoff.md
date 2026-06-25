@@ -42,17 +42,29 @@
 >   captured Danish prose into the index — `mangler hos` (f1g-168), `adskillige
 >   katalognumre…` (f1g-49), `hhv. X og mangler` (c2g-172 schive+schou), `Ernst 1940
 >   N` foreign-cat (hg-155/hg-159 → route to `others`), `N; unik` (f1g-78/f1g-74);
->   one fix in `build_galster_denmark_seed`. (A2) 2 numista exclusion-filter gaps —
->   `345593` km «505 (OM)» = §9.3 OFF-METAL gold strike of silver KM#505 (comments
->   field confirms; **in final/danish_realm, renders live**) → exclude; `314921` km
->   «Pn 30» = §9.1 gold pattern strike (Bremen, _unclassified/dormant) → filter. (A3)
->   `31393` sieg «SD# 44» → strip stray «#» → «SD 44»; `km-x000-fr-iii-1644` ucoin
->   lange «280 ff.» = prose range-pointer → «280»+note.
+>   one fix in `build_galster_denmark_seed`. **(A2) DONE (`9bc6d09` filter, `18b3002`
+>   data).** build_numista_seed had NO §9 filter (build_hede does); added
+>   `_excluded_strike_reason` pre-screen (KM «Pn…»/«(OM)» + title «pattern/trial
+>   strike»/off-metal/afslag) — caught 34 numista sidecars, all verified genuine.
+>   Removed the 10 currently-seeded unambiguous ones (titles say pattern/trial/off-
+>   metal, all standalone): user-flagged 314921 + 345593 (was rendering on denmark),
+>   + 314933 (was rendering on oldenburg/german_empire), + 7 Bremen/Brunswick dormant.
+>   **HELD for curator decision:** 4 numista «Pn» Portugaløser / 5-Ducat Frederik III
+>   presentation pieces (387243/387448/427984/468992) — Krause numbers them «Pn»
+>   (pattern), BUT they are presentation Schaumünzen, and 387243 is cross-merged with
+>   2 REAL KMK museum Portugaløser specimens (kmk-279773 «Inv. RP 758.1», kmk-291973
+>   «Inv. RP 777.1», km=None). Removing the numista pattern must NOT orphan the KMK
+>   reals — needs either a re-seed+re-flow (merger re-emits the KMK pair standalone)
+>   or a surgical split, AND a policy call: are presentation Portugaløsers in scope?
+>   (kmk source has no §9 filter — separate follow-up.) (A3) `31393` sieg «SD# 44» →
+>   strip stray «#» → «SD 44»; `km-x000-fr-iii-1644` ucoin lange «280 ff.» = prose
+>   range-pointer → «280»+note.
 > - **Table B (7 coins, faithful to source, NOT errors):** `307035` hede «C4 80.C»
 >   (reign-disambiguated, our convention `c4h80.C`); 6× numista lange «… var.»
 >   (16b/271/28/331/358 C IV/399 A — legit variant citations, distinct from cf./
 >   unlisted that D31 filters). Recommend leave as-is.
-> - Next: user gives verdicts on Table A → galster parser fix + §9 exclusions.
+> - Next: user verdicts on Table A1 (galster parser) + A3 (sieg/ucoin normalise) + the
+>   HELD Portugaløser/5-Ducat batch-2 policy call.
 
 ## 2026-06-25 — night: galster foreign-catalogue reroute + catalogue-hygiene audit (§DA)
 
