@@ -23,6 +23,31 @@ from __future__ import annotations
 import ast
 import re
 
+# ── Multi-value slash split (shared by normalise_catalog + the seed merger) ──
+# A slash inside a catalogue index is a MULTI-VALUE delimiter ONLY when it
+# carries surrounding whitespace («683.1 / 683.2», «758.1 / 758.2», «125A /
+# 125B», «3679 / 3679A» — how ucoin/Numista pack sub-variants in ONE string).
+# A TIGHT slash «X/Y» belongs to ONE index: a RANGE («T-91/96» = Jensen-
+# Skjoldager T-91…T-96), a publisher abbreviation («Divo/S»), or a hierarchical
+# number («10.4.1/17»). Splitting a tight slash fabricates a garbage token
+# («96») and destroys the range — so we never split it. (Regression guard:
+# tests/test_catalog_refs_normalisation.py::test_jensen_skjoldager_unchanged.)
+# NB: km is intentionally NOT routed through this helper — KM numbers are bare
+# integers where a tight «14/15» is a genuine multi-KM list (per the «one Hede
+# type Krause-split across KM 14/15/20» merge_decision), so km keeps its own
+# unconditional split below.
+_MULTI_SLASH_RE = re.compile(r"\s+/\s*|\s*/\s+")
+
+
+def split_multi_ref(value) -> list[str]:
+    """Split a catalogue scalar into members on whitespace-padded slashes only.
+
+    A tight «X/Y» (no surrounding whitespace) stays one value. Returns the
+    stripped, non-empty parts; a value with no spaced slash returns
+    `[str(value).strip()]` (or `[]` when blank)."""
+    return [p.strip() for p in _MULTI_SLASH_RE.split(str(value)) if p.strip()]
+
+
 # Catalogue code (lower-case, whitespace-stripped) → CatalogRefs field name.
 # Covers every typed field the schema models + common code aliases. Extend
 # here (one place) when a NEW catalogue earns its own typed field; until then
@@ -582,9 +607,11 @@ def normalise_catalog(catalog: dict) -> int:
     #     138.2», «3679 / 3679A»). Left unsplit, the value matches NEITHER half
     #     — an unsplit «125A / 125B» equals neither «125A» nor «125B», silently
     #     blocking a cross-source merge of the same coin AND rendering an ugly
-    #     joined string. km keeps its own decimal-comma-aware split below; this
-    #     handles every other list-capable field. For `dav`, also strip the
-    #     stray volume «#» («EC II# 3679» → «EC II 3679») on every value.
+    #     joined string. Only a WHITESPACE-PADDED slash is a delimiter: a tight
+    #     «X/Y» is one index — a range («T-91/96») or compound («Divo/S») — and
+    #     `split_multi_ref` leaves it whole. km keeps its own decimal-comma-aware
+    #     split below; this handles every other list-capable field. For `dav`,
+    #     also strip the stray volume «#» («EC II# 3679» → «EC II 3679»).
     for field in list_fields:
         if field == "km":
             continue
@@ -595,8 +622,7 @@ def normalise_catalog(catalog: dict) -> int:
         out: list = []
         for v in raw:
             if isinstance(v, str):
-                for part in v.split("/"):
-                    part = part.strip()
+                for part in split_multi_ref(v):
                     if field == "dav":
                         part = _clean_dav_value(part)
                     if part:

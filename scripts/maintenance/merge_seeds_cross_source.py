@@ -227,6 +227,7 @@ def _normalise_metal(metal, fineness):
 # in this module.
 from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices
+from lib.catalog_codes import split_multi_ref as _split_multi_ref
 from lib.v2_seed_writer import _canonicalise_mint
 from lib.v2_entity_classify import classify_mint_to_entity
 
@@ -808,17 +809,17 @@ def _split_multi(val) -> list[str]:
     splitting an «A / B» slash-multi scalar into its members. ucoin / Numista
     pack sub-variants as «125A / 125B» / «3679 / 3679A» in ONE string; left
     whole that value equals NEITHER «125A» nor «125B», so the matcher misses
-    the overlap and a same-coin cross-source merge is silently blocked. (Same
-    normalisation catalog_codes.normalise_catalog applies at write/display
-    time — done here so matching is correct even on not-yet-renormalised
-    seeds.)"""
+    the overlap and a same-coin cross-source merge is silently blocked.
+
+    Delegates to catalog_codes.split_multi_ref, so the split rule is identical
+    to the one applied at write/display time: only a WHITESPACE-PADDED slash is
+    a delimiter. A tight «X/Y» (a range like Jensen-Skjoldager «T-91/96», a
+    publisher abbreviation «Divo/S», a hierarchical number «10.4.1/17») stays
+    whole — splitting it would fabricate a garbage token and destroy the range.
+    (km does NOT pass through here — it has its own join in _catalog_refs.)"""
     out: list[str] = []
     for v in (val if isinstance(val, list) else [val]):
-        s = str(v).strip()
-        if "/" in s:
-            out.extend(p.strip() for p in s.split("/") if p.strip())
-        elif s:
-            out.append(s)
+        out.extend(_split_multi_ref(v))
     return out
 
 
