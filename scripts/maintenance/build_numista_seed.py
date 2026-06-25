@@ -215,24 +215,34 @@ def _strip_nominal(nominal: str | None) -> str | None:
     return s or None
 
 
-# §9.1 patterns + §9.3 off-metal/off-strikes — never struck for circulation;
-# CLAUDE.md §9 excludes them from the coin table. build_hede_denmark_seed filters
-# these structurally; the Numista builder had no such filter, so «Pn 30» (Bremen
-# ½ Groten gold pattern) and «505 (OM)» (Frederik IV 16 Skilling off-metal gold
-# strike of the silver KM#505) slipped into the seed — caught 2026-06-25. Signals:
-# the Krause marker on the KM ref («Pn N» = pattern, «N (OM)» = off-metal) and the
-# Numista title («(Gold pattern strike)», «off-metal», «…afslag»).
-_KM_PATTERN_RE = re.compile(r"^\s*Pn[\s\dA-Za-z]", re.I)  # KM «Pn 30» / «Pn19» / «PnA31»
+# §9.1 trial/pattern strikes + §9.3 off-metal/off-strikes — never struck for
+# circulation; CLAUDE.md §9 excludes them from the coin table. build_hede_denmark_seed
+# filters these structurally; the Numista builder had no such filter, so a Bremen
+# «½ Groten (Gold pattern strike)» and a Frederik IV «16 Skilling (Gold, 2 ducat
+# equivalent)» off-metal strike (KM «505 (OM)») slipped into the seed — caught
+# 2026-06-25.
+#
+# We trigger on the Numista TITLE («(Gold pattern strike)», «trial strike»,
+# «(Pattern)», «off-metal», «…afslag») and the off-metal «(OM)» KM marker — NOT on
+# the bare Krause «Pn» catalogue number. Curator decision 2026-06-25: «Pn» is an
+# UNRELIABLE exclusion signal — Krause numbers BOTH genuine die-trials AND unique
+# FULL-VALUE pieces «Pn» (e.g. Frederik III Portugaløser «PnD20», 5 Ducats «PnJ16»).
+# The latter are not off-metal and not trial strikes — unique gold coins that could
+# have circulated at face value — so they stay (user: «нехай будуть у нас»). The
+# title is the reliable discriminator; every genuine trial in the cache says so in
+# its title.
 _KM_OFFMETAL_RE = re.compile(r"\(OM\)", re.I)             # KM «505 (OM)»
 _TITLE_PATTERN_RE = re.compile(
-    r"pattern strike|\(pattern\)|\bprobe\b|\bessai\b|prøvemønt", re.I)
+    r"pattern strike|trial strike|\(pattern\)|\bprobe\b|\bessai\b|prøvemønt", re.I)
 _TITLE_OFFSTRIKE_RE = re.compile(
     r"off[- ]metal|guldafslag|sølvafslag|\bafslag\b", re.I)
 
 
 def _excluded_strike_reason(title, references) -> str | None:
-    """Return a §9.1/§9.3 exclusion reason when this Numista type is a pattern or
-    off-metal strike (not struck for circulation), else None."""
+    """Return a §9.1/§9.3 exclusion reason when this Numista type is a trial/
+    pattern or off-metal strike (not struck for circulation), else None. Keyed on
+    the title + the off-metal «(OM)» KM marker; the bare Krause «Pn» number is NOT
+    a trigger (it conflates die-trials with unique full-value pieces)."""
     km = (references or {}).get("km")
     km_vals: list = []
     if isinstance(km, dict):
@@ -242,12 +252,8 @@ def _excluded_strike_reason(title, references) -> str | None:
         km_vals = km
     elif km is not None:
         km_vals = [km]
-    for v in km_vals:
-        s = str(v)
-        if _KM_PATTERN_RE.search(s):
-            return "§9.1 pattern (KM Pn)"
-        if _KM_OFFMETAL_RE.search(s):
-            return "§9.3 off-metal strike (KM OM)"
+    if any(_KM_OFFMETAL_RE.search(str(v)) for v in km_vals):
+        return "§9.3 off-metal strike (KM OM)"
     t = title or ""
     if _TITLE_PATTERN_RE.search(t):
         return "§9.1 pattern (title)"

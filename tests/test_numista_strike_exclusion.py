@@ -31,17 +31,37 @@ _reason = _bns._excluded_strike_reason
 
 
 class TestPatternExclusion(unittest.TestCase):
-    def test_km_pn_marker(self):
+    def test_title_pattern_strike_with_pn(self):
+        # title says «pattern strike» → excluded (the «Pn» KM is incidental).
         r = _reason("½ Groten (Gold pattern strike) - City of Bremen", {"km": "Pn 30"})
         self.assertTrue(r and r.startswith("§9.1"))
 
-    def test_km_pn_no_space(self):
-        r = _reason("1 Schwaren - City of Bremen", {"km": "Pn19"})
-        self.assertTrue(r and r.startswith("§9.1"))
-
-    def test_title_pattern_strike(self):
+    def test_title_pattern_parenthetical(self):
         r = _reason("1 Thaler - William (Pattern) - Duchy of Brunswick", {"km": "X1"})
         self.assertTrue(r and r.startswith("§9.1"))
+
+    def test_title_trial_strike(self):
+        r = _reason("1 Schwaren (Trial strike) - City of Bremen", {"km": "Pn32"})
+        self.assertTrue(r and r.startswith("§9.1"))
+
+
+class TestBareKrausePnKept(unittest.TestCase):
+    """Curator decision 2026-06-25: a bare Krause «Pn» without a title trial/
+    pattern marker is NOT excluded — Krause numbers unique FULL-VALUE pieces «Pn»
+    too (Portugaløser, multi-Ducat gold) and those stay."""
+
+    def test_portugaloeser_pn_kept(self):
+        self.assertIsNone(
+            _reason("1 Portugaløser - Frederik III (Type XXIII) - Norway",
+                    {"km": "PnD20"}))
+
+    def test_five_ducats_pn_kept(self):
+        self.assertIsNone(
+            _reason("5 Ducats - Frederik III Victory over Swedish army",
+                    {"km": "PnJ16"}))
+
+    def test_bare_pn_plain_title_kept(self):
+        self.assertIsNone(_reason("1 Schwaren - City of Bremen", {"km": "Pn19"}))
 
 
 class TestOffMetalExclusion(unittest.TestCase):
