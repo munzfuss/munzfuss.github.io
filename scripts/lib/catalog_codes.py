@@ -204,8 +204,12 @@ def catalog_from_ref_dict(
     out: dict = {}
 
     def _emit(field: str | None, label: str, value) -> None:
-        value = (str(value) if value is not None else "").strip().rstrip(",;")
-        if not value:
+        value = (str(value) if value is not None else "").strip().rstrip(",;").strip()
+        # A dash / placeholder a source prints for «no number in this catalogue»
+        # (Bruun lot «Schive: –», Hede «Sieg: -») is NOT a reference — skip it so
+        # it never lands in a catalog field as a phantom «–» index. Covers hyphen,
+        # en/em-dash, and minus-sign, single or repeated.
+        if not value or all(ch in "-–—−" for ch in value):
             return
         if field and field in schema_fields:
             if field not in out:
