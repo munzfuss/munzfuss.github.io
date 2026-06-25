@@ -53,22 +53,24 @@
 >   Removed the 10 currently-seeded unambiguous ones (titles say pattern/trial/off-
 >   metal, all standalone): user-flagged 314921 + 345593 (was rendering on denmark),
 >   + 314933 (was rendering on oldenburg/german_empire), + 7 Bremen/Brunswick dormant.
->   **HELD for curator decision:** 4 numista «Pn» Portugaløser / 5-Ducat Frederik III
->   presentation pieces (387243/387448/427984/468992) — Krause numbers them «Pn»
->   (pattern), BUT they are presentation Schaumünzen, and 387243 is cross-merged with
->   2 REAL KMK museum Portugaløser specimens (kmk-279773 «Inv. RP 758.1», kmk-291973
->   «Inv. RP 777.1», km=None). Removing the numista pattern must NOT orphan the KMK
->   reals — needs either a re-seed+re-flow (merger re-emits the KMK pair standalone)
->   or a surgical split, AND a policy call: are presentation Portugaløsers in scope?
->   (kmk source has no §9 filter — separate follow-up.) (A3) `31393` sieg «SD# 44» →
->   strip stray «#» → «SD 44»; `km-x000-fr-iii-1644` ucoin lange «280 ff.» = prose
->   range-pointer → «280»+note.
+>   **Batch-2 RESOLVED — KEPT (`5660be5`).** The 4 «Pn» Portugaløser / 1-Krone-in-
+>   5-ducat-gold pieces (387243/387448/427984/468992) are unique FULL-VALUE gold coins
+>   that could circulate at face value — not off-metal, not trial strikes (user
+>   2026-06-25: «нехай будуть у нас»). So the §9 filter was relaxed: it now keys on the
+>   TITLE («pattern strike»/«trial strike»/«(Pattern)»/off-metal/afslag) + «(OM)» KM
+>   marker, NOT the bare Krause «Pn» number (which conflates die-trials with unique
+>   full-value pieces). Verified this still catches all 10 already-removed strikes and
+>   frees the 4 (skipped_strike 34→20). The 4 were never removed (held); all present —
+>   387243/387448 standalone, 427984 merged in `unified-dk-bruun-6273`, 468992 standalone
+>   (nominal «1 Krone», 5-ducat gold weight). No data change; tests updated, 379/379.
+>   (A3) `31393` sieg «SD# 44» → strip stray «#» → «SD 44»; `km-x000-fr-iii-1644` ucoin
+>   lange «280 ff.» = prose range-pointer → «280»+note.
 > - **Table B (7 coins, faithful to source, NOT errors):** `307035` hede «C4 80.C»
 >   (reign-disambiguated, our convention `c4h80.C`); 6× numista lange «… var.»
 >   (16b/271/28/331/358 C IV/399 A — legit variant citations, distinct from cf./
 >   unlisted that D31 filters). Recommend leave as-is.
-> - Next: user verdicts on A3 (sieg «SD# 44» → «SD 44»; ucoin lange «280 ff.» → «280»+note)
->   + the HELD Portugaløser/5-Ducat batch-2 policy call. A1 + A2 done.
+> - Next: user verdicts on A3 (sieg «SD# 44» → «SD 44»; ucoin lange «280 ff.» → «280»+note).
+>   A1 + A2 (incl. batch-2 Portugaløser KEPT) done; Table B = leave-as-is.
 
 ## 2026-06-25 — night: galster foreign-catalogue reroute + catalogue-hygiene audit (§DA)
 
