@@ -337,6 +337,19 @@ def _clean_dav_value(v: str) -> str:
     return re.sub(r"\s+", " ", v.replace("#", " ")).strip()
 
 
+_VARIANT_SUFFIX_RE = re.compile(r"\s+var(?:\.|iant)?\s*$", re.I)
+
+
+def _strip_variant_qualifier(v: str) -> str:
+    """Drop a trailing «var.» / «variant» qualifier from a catalogue index —
+    «Lange 16b var.» → «16b», «358 C IV var.» → «358 C IV» (curator decision
+    2026-06-25: the «var.» merely flags a variant OF the index; the index itself
+    is sufficient). Distinct from cf./unlisted, which DROP the whole value — a
+    «cf.» points at a DIFFERENT coin, an «unlisted» is a negative claim, whereas a
+    «var.» IS this coin's own index with a redundant qualifier."""
+    return _VARIANT_SUFFIX_RE.sub("", str(v)).strip()
+
+
 def _dav_volume(v: str) -> str | None:
     """The volume prefix of a Davenport value («EC II 3679» → «EC II»), or
     None for a bare number («3679»). A value is volume-qualified when it has
@@ -639,7 +652,9 @@ def normalise_catalog(catalog: dict) -> int:
     #     [«T-91», «T-96»]), and leaves a non-number «/» whole («Divo/S»). km
     #     keeps its own decimal-comma-aware split below; this handles every other
     #     list-capable field. For `dav`, also strip the stray volume «#»
-    #     («EC II# 3679» → «EC II 3679»).
+    #     («EC II# 3679» → «EC II 3679»). Finally drop a trailing «var.» / «variant»
+    #     qualifier on every value («Lange 16b var.» → «16b») — the index alone
+    #     suffices (curator 2026-06-25); see `_strip_variant_qualifier`.
     for field in list_fields:
         if field == "km":
             continue
@@ -653,6 +668,7 @@ def normalise_catalog(catalog: dict) -> int:
                 for part in split_multi_ref(v):
                     if field == "dav":
                         part = _clean_dav_value(part)
+                    part = _strip_variant_qualifier(part)
                     if part:
                         out.append(part)
             else:
