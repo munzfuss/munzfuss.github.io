@@ -498,21 +498,35 @@ If sources do decide, follow §8.1 — this rule does not apply, and inventing a
 
 ### 9. Coin inclusion criteria (source-agnostic)
 
-When deciding whether a coin entry belongs in a location's coin table — regardless of where it was sourced (Numista, Bruun, IKMK Berlin, Lange, MGM, hand-typed from a museum visit) — apply these four exclusions, and only these:
+When deciding whether a coin entry belongs in a location's coin table — regardless of where it was sourced (Numista, Bruun, IKMK Berlin, Lange, MGM, hand-typed from a museum visit) — apply these five exclusions, and only these:
 
-1. **Patterns / trial strikes** — entries marked `Pn*`, `(Silver pattern strike)`, `(Gold pattern)`, "Probe", "Essai" etc. They were not struck for circulation. Skip.
+1. **Patterns / trial strikes** — entries whose title says `(Silver pattern strike)`, `(Gold pattern strike)`, `(Pattern)`, "Probe", "Essai", "trial strike" etc. They were not struck for circulation. Skip. **Caveat — the bare Krause `Pn*` catalogue number alone is NOT sufficient to skip:** Krause numbers unique FULL-VALUE show coins (Portugaløser, multi-Ducat gold) `Pn` too, and those stay. Rely on the title wording, not the `Pn` number; the `Pn` number is only a *gate* for the off-nominal test in item 5 (curator decision 2026-06-25).
 2. **Exonumia** — medals, jetons, commemorative tokens, Tin/White-metal pieces without a denomination. They belong to separate registers, not to coin tables.
 3. **Off-strike single specimens (off-metal strikes)** — `Guldafslag` (gold off-strike of a silver mother coin), `Sølvafslag` (silver off-strike of a gold mother coin), presentation strikes, off-metal proofs that share the silver mother coin's dies but were struck on a different planchet in tiny numbers (sometimes a single cabinet specimen). Hede / Bruun often catalogue these inline on the silver mother's page with a sub-Schou number («Schou 1a» beside the silver coin's «Schou 1»). They were NEVER intended for circulation; numismatically they belong to a presentation / Probekopf register, not the location's circulation-coin table. **The hallmark to recognise the case:** one (or very few) attested specimen + metal differs from the mother coin's circulation metal + appears inline on the mother coin's catalogue page rather than getting its own Hede/KM number. When this pattern fires, DO NOT add the off-strike as a separate `metal: gold` coin entry referencing the silver mother's Hede page — that's the c4h47 trap (caught 2026-05-13). The whole entry is skipped from our table; the mother silver coin stays.
 4. **Duplicates** — defined strictly by **catalog index**, primarily KM# (Krause-Mishler). Two entries sharing the same KM# (or the same Hede#, Sieg#, Lange# when KM# is absent) are duplicates. **Different catalog index = different type**, even if the denomination, ruler, mint, and year ranges overlap. Krause-Mishler assigns a separate KM# to each design / mint / mintmaster / fineness variant by design.
 
    **Caveat — same KM# across different issuers / catalogues is NOT automatically the same type.** Krause-Mishler numbering restarts within each country / region: `KM#75` in the «Denmark» Krause volume is an entirely different coin from `KM#75` in the «German States — Schleswig-Holstein» volume. Likewise for Hede (Danish), Sieg (Danish-Norwegian), Lange (Holstein), Behrens (Lübeck) — each catalogue's numbering is internal to that catalogue. Two entries colliding on a bare numeric `km`, `hede`, `lange` etc. are duplicates **only if** they refer to the SAME catalogue scope (same country/region in Krause; same author in the regional catalogues). When doing cross-location dedup or bulk import, always pre-screen by composition + nominal + ruler + year before declaring a KM-collision a duplicate; if those don't line up, the «same» KM is just a numeric coincidence between two unrelated catalogue volumes.
 
+5. **Off-nominal presentation strikes** (curator decision 2026-06-25) — a piece struck so that its **stamped nominal is *much smaller* than the intrinsic value of its metal weight** (e.g. a «1 Krone» struck on a 5-ducat gold planchet: Numista titles it «5 Ducats», `value.raw` «1 Krone», KM `PnJ16`). The metal can be the very one the nominal would normally use — so this is NOT an off-metal strike (item 3); the disqualifier is the **gross nominal-vs-bullion gap**: the coin would never circulate at its stamped face value because its metal is worth far more. A presentation / show piece, out of scope.
+
+   **Hallmark signal: «Pn» in the Krause (KM) index** — these sit under Krause pattern/presentation numbers. «Pn» is the *necessary gate* (not sufficient on its own) that, combined with the large nominal-vs-weight gap, flags the piece.
+
+   **Direction matters — off-nominal is STRICTLY «nominal ≪ metal value»:**
+   - **Scheidemünze is the OPPOSITE** — nominal **>** metal content (token small change, §6). That is normal sub-standard money and STAYS. Only the «nominal far below bullion value» direction is off-nominal.
+
+   **Do NOT confuse with — these are KEPT, not off-nominal:**
+   - **Full-value gold show coins** whose nominal IS the bullion denomination — a Portugaløser (nominal «1 Portugaløser» = 10 ducats of gold), a genuine Dukat (`value.raw` «1 Ducat»). Nominal ≈ metal value → keep.
+   - **Dual-denomination / value-equivalent coins** — «¼ Ducat / 3 Mark», «1 Krone (4 Mark)», «10 Schilling Courant / ⅙ Speciesthaler». The «/» or «(…)» records two names for the SAME value, not a nominal-vs-bullion mismatch → keep.
+   - **Overweight specimens, tariff coins, source-data errors** — a slightly-heavy specimen, a tariffed coin, or a wrong weight in the source is NOT off-nominal. The gap must be **large** AND the «Pn» marker present; when in doubt, keep and flag.
+
+   Implemented in `build_numista_seed._excluded_strike_reason` as: title leading segment exactly «N Ducat(s)/Dukat» (Numista titles these by the bullion weight) + `value.raw` non-bullion + «Pn» in KM. (First caught: numista 468992.)
+
 **Do NOT skip:**
 - Multiple coins of the same denomination per ruler if their catalog indices differ (each KM# = a distinct documented type with its own row).
 - Coins outside the currently-added time window if they fall within the location's overall historical scope. Extend the relevant phase to cover them rather than dropping the coin.
 - Coins where the source lacks fineness or weight — add them with `verified: false` and let `(?)` markers render. Under-documentation is preferable to omission.
 
-This rule was introduced after a manual import accidentally collapsed multiple KM# variants into single representatives ("one 1 Thaler John Adolphus per period"), losing typological coverage. A complete catalog ingest from any source should match that source 1:1 except for the four exclusions above.
+This rule was introduced after a manual import accidentally collapsed multiple KM# variants into single representatives ("one 1 Thaler John Adolphus per period"), losing typological coverage. A complete catalog ingest from any source should match that source 1:1 except for the five exclusions above.
 
 ### 9a. Multi-specimen merge — preserve all data, never collapse
 
