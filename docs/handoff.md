@@ -53,16 +53,23 @@
 >   Removed the 10 currently-seeded unambiguous ones (titles say pattern/trial/off-
 >   metal, all standalone): user-flagged 314921 + 345593 (was rendering on denmark),
 >   + 314933 (was rendering on oldenburg/german_empire), + 7 Bremen/Brunswick dormant.
->   **Batch-2 RESOLVED — KEPT (`5660be5`).** The 4 «Pn» Portugaløser / 1-Krone-in-
->   5-ducat-gold pieces (387243/387448/427984/468992) are unique FULL-VALUE gold coins
->   that could circulate at face value — not off-metal, not trial strikes (user
->   2026-06-25: «нехай будуть у нас»). So the §9 filter was relaxed: it now keys on the
->   TITLE («pattern strike»/«trial strike»/«(Pattern)»/off-metal/afslag) + «(OM)» KM
->   marker, NOT the bare Krause «Pn» number (which conflates die-trials with unique
->   full-value pieces). Verified this still catches all 10 already-removed strikes and
->   frees the 4 (skipped_strike 34→20). The 4 were never removed (held); all present —
->   387243/387448 standalone, 427984 merged in `unified-dk-bruun-6273`, 468992 standalone
->   (nominal «1 Krone», 5-ducat gold weight). No data change; tests updated, 379/379.
+>   **Batch-2 RESOLVED (`5660be5` + `43bbb7e`/`59d4c2b`).** Two sub-classes split by
+>   curator 2026-06-25:
+>   • **3 Portugaløsers KEPT** (387243/387448/427984) — unique FULL-VALUE gold show
+>     coins (nominal IS the bullion denomination; «1 Portugaløser» = 10 ducats), could
+>     circulate at face value (user: «нехай будуть у нас»). 387243/387448 standalone,
+>     427984 merged in `unified-dk-bruun-6273`.
+>   • **468992 EXCLUDED — §9 OFF-NOMINAL** — title «5 Ducats» (pure ducat weight) but
+>     value.raw «1 Krone» (KM PnJ16): a 1-Krone struck in 5-ducat gold; same metal (not
+>     off-metal) but would NOT circulate at its stamped nominal → out of scope. Standalone,
+>     removed from 3 layers.
+>   Filter changes: (a) dropped the bare Krause «Pn» trigger (it conflates die-trials
+>   with full-value pieces) — keys on TITLE («pattern/trial strike»/«(Pattern)»/off-metal/
+>   afslag) + «(OM)» KM; (b) added an OFF-NOMINAL rule — title leading segment exactly
+>   «N Ducat(s)/Dukat» AND value.raw non-bullion. Verified: still catches all 10
+>   already-removed strikes; catches exactly 468992 off-nominal; does NOT touch the 181
+>   genuine Ducat coins, «¼ Ducat / 3 Mark» tariff coins, or the 3 Portugaløsers. Tests
+>   + full suite 381/381.
 >   (A3) `31393` sieg «SD# 44» → strip stray «#» → «SD 44»; `km-x000-fr-iii-1644` ucoin
 >   lange «280 ff.» = prose range-pointer → «280»+note.
 > - **Table B (7 coins, faithful to source, NOT errors):** `307035` hede «C4 80.C»
