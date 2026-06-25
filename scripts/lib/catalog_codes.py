@@ -24,35 +24,56 @@ import ast
 import re
 
 # ── Multi-value slash split (shared by normalise_catalog + the seed merger) ──
-# A slash inside a catalogue index is a MULTI-VALUE delimiter ONLY when it
-# carries surrounding whitespace («683.1 / 683.2», «758.1 / 758.2», «125A /
-# 125B», «3679 / 3679A» — how ucoin/Numista pack sub-variants in ONE string).
-# A TIGHT slash «X/Y» belongs to ONE citation token: the part after the slash is
-# a PREFIX-ABBREVIATED continuation that is meaningless on its own — Jensen-
-# Skjoldager «T-91/96» (danskmoent writes the «T-» once; «96» is not a standalone
-# index), a publisher abbreviation («Divo/S»), or a hierarchical number
-# («10.4.1/17»). A naive split fabricates the prefix-less garbage token «96», so
-# we never split a tight slash. (What «/» reads as — a range or an «and» of
-# T-91 + T-96 — is NOT settled: danskmoent uses a SPACED « - » for explicit
-# ranges, e.g. «T-81 - T-88» / «F-51 - F-58», so «/» is a distinct notation; but
-# BOTH readings make the tight-split wrong, and storing the source literal whole
-# is the faithful choice per §0 — splitting and re-attaching the prefix to get
-# «T-96» would itself be an unverified inference per §0b.) Regression guard:
-# tests/test_catalog_refs_normalisation.py::test_jensen_skjoldager_unchanged.
+# A «/» inside a catalogue index reads as «and»: it separates two catalogue
+# NUMBERS (curator decision 2026-06-25 — «сприймемо це як 'та'»). Two shapes:
+#   * BOTH parts complete — ucoin/Numista pack sub-variants «683.1 / 683.2»,
+#     «125A / 125B», «3679 / 3679A» → split as-is.
+#   * SHARED PREFIX ABBREVIATED on the second — Jensen-Skjoldager «T-91/96»
+#     (danskmoent writes the «T-» once) = «T-91» AND «T-96». We RE-ATTACH the
+#     leading alpha prefix of the first member so «T-91/96» → [«T-91», «T-96»],
+#     never the prefix-less garbage «96».
+# A «/» that is NOT separating numbers — a publisher abbreviation «Divo/S»,
+# «Kahnt/Schön» (first part is a pure-alpha name) or a «Catalogue# n» label
+# carrying «#» — is left whole by the number-list guard. (Those live in `others`,
+# which is never routed through this helper, so the guard is belt-and-braces.)
+# A DASH range «T-81 - T-88» / «021-061» is a DIFFERENT notation (danskmoent uses
+# a dash for ranges) and is NOT a slash — it never enters here and stays whole.
 # NB: km is intentionally NOT routed through this helper — KM numbers are bare
 # integers where a tight «14/15» is a genuine multi-KM list (per the «one Hede
 # type Krause-split across KM 14/15/20» merge_decision), so km keeps its own
-# unconditional split below.
-_MULTI_SLASH_RE = re.compile(r"\s+/\s*|\s*/\s+")
+# unconditional split below. Regression guard: tests/test_catalog_slash_split.py.
+_MULTI_SLASH_RE = re.compile(r"\s*/\s*")
+_NUM_PREFIX_RE = re.compile(r"^([A-Za-z]{1,4}-?)\d")
 
 
 def split_multi_ref(value) -> list[str]:
-    """Split a catalogue scalar into members on whitespace-padded slashes only.
+    """Split a catalogue scalar into its members on «/» (read as «and»).
 
-    A tight «X/Y» (no surrounding whitespace) stays one value. Returns the
-    stripped, non-empty parts; a value with no spaced slash returns
+    Splits ONLY when the «/» separates catalogue NUMBERS: the first member must
+    contain a digit and no member may carry a «#» (else it is a publisher
+    abbreviation / «Catalogue# n» label and is returned whole). The leading
+    alpha prefix of the first member is re-attached to any bare-numeric
+    continuation, so «T-91/96» → [«T-91», «T-96»]. Returns the stripped,
+    non-empty parts; a value with no qualifying slash returns
     `[str(value).strip()]` (or `[]` when blank)."""
-    return [p.strip() for p in _MULTI_SLASH_RE.split(str(value)) if p.strip()]
+    s = str(value).strip()
+    if "/" not in s:
+        return [s] if s else []
+    parts = [p.strip() for p in _MULTI_SLASH_RE.split(s) if p.strip()]
+    if len(parts) < 2:
+        return [s] if s else []
+    # number-list guard: a name-shaped first part («Divo/S») or a «#»-labelled
+    # token («Müseler# 10.4.2 / 31») is one citation, not a number list.
+    if not any(ch.isdigit() for ch in parts[0]) or any("#" in p for p in parts):
+        return [s]
+    m = _NUM_PREFIX_RE.match(parts[0])
+    prefix = m.group(1) if m else ""
+    out = [parts[0]]
+    for p in parts[1:]:
+        if prefix and p[:1].isdigit():   # re-attach shared prefix to «96» → «T-96»
+            p = prefix + p
+        out.append(p)
+    return out
 
 
 # Catalogue code (lower-case, whitespace-stripped) → CatalogRefs field name.
@@ -609,17 +630,16 @@ def normalise_catalog(catalog: dict) -> int:
             catalog.pop("others", None)
 
     # 1b. SLASH-SPLIT multi-value scalars + clean Davenport «#» artefacts.
-    #     A scalar «A / B» in any list-capable catalogue field is two values
-    #     (ucoin / Numista pack sub-variants this way: «125A / 125B», «138.1 /
-    #     138.2», «3679 / 3679A»). Left unsplit, the value matches NEITHER half
-    #     — an unsplit «125A / 125B» equals neither «125A» nor «125B», silently
-    #     blocking a cross-source merge of the same coin AND rendering an ugly
-    #     joined string. Only a WHITESPACE-PADDED slash is a delimiter: a tight
-    #     «X/Y» is one citation token (after the slash a prefix-abbreviated
-    #     continuation «T-91/96», or a compound «Divo/S») — `split_multi_ref`
-    #     leaves it whole. km keeps its own decimal-comma-aware
-    #     split below; this handles every other list-capable field. For `dav`,
-    #     also strip the stray volume «#» («EC II# 3679» → «EC II 3679»).
+    #     A «/» in a list-capable catalogue field reads as «and» — two catalogue
+    #     numbers (ucoin/Numista pack sub-variants «125A / 125B», «138.1 / 138.2»,
+    #     «3679 / 3679A»; Jensen-Skjoldager «T-91/96» = «T-91» AND «T-96»). Left
+    #     unsplit the value matches NEITHER half, silently blocking a cross-source
+    #     merge AND rendering an ugly joined string. `split_multi_ref` splits on
+    #     «/», re-attaching a shared prefix to a bare continuation («T-91/96» →
+    #     [«T-91», «T-96»]), and leaves a non-number «/» whole («Divo/S»). km
+    #     keeps its own decimal-comma-aware split below; this handles every other
+    #     list-capable field. For `dav`, also strip the stray volume «#»
+    #     («EC II# 3679» → «EC II 3679»).
     for field in list_fields:
         if field == "km":
             continue

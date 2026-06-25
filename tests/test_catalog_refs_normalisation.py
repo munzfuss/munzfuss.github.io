@@ -135,10 +135,12 @@ class TestPreservedFields(unittest.TestCase):
                               entity_id="danish_realm")
         self.assertEqual(refs.get("bruun_collection_id"), "3831")
 
-    def test_jensen_skjoldager_unchanged(self):
+    def test_jensen_skjoldager_and_split(self):
+        # «/» reads as «and»: «T-91/96» = «T-91» + «T-96» (shared prefix re-
+        # attached to the bare «96»). See tests/test_catalog_slash_split.py.
         refs = _catalog_refs(coin({"jensen_skjoldager": "T-91/96"}),
                               entity_id="danish_realm")
-        self.assertEqual(refs.get("jensen_skjoldager"), "T-91/96")
+        self.assertEqual(refs.get("jensen_skjoldager"), "T-91|T-96")
 
     def test_list_value_joined_and_sorted(self):
         """List-valued catalog refs join on `|`, sorted."""

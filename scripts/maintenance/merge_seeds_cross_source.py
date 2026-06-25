@@ -812,12 +812,11 @@ def _split_multi(val) -> list[str]:
     the overlap and a same-coin cross-source merge is silently blocked.
 
     Delegates to catalog_codes.split_multi_ref, so the split rule is identical
-    to the one applied at write/display time: only a WHITESPACE-PADDED slash is
-    a delimiter. A tight «X/Y» stays whole — the part after the slash is a
-    prefix-abbreviated continuation (Jensen-Skjoldager «T-91/96» — «96» is not a
-    standalone index), a publisher abbreviation («Divo/S»), or a hierarchical
-    number («10.4.1/17»); a naive split fabricates the prefix-less token «96».
-    (km does NOT pass through here — it has its own join in _catalog_refs.)"""
+    to the one applied at write/display time: «/» reads as «and», re-attaching a
+    shared prefix to a bare continuation — Jensen-Skjoldager «T-91/96» → [«T-91»,
+    «T-96»] (not the prefix-less «96»). A non-number «/» (publisher abbreviation
+    «Divo/S») is left whole by the number-list guard. (km does NOT pass through
+    here — it has its own join in _catalog_refs.)"""
     out: list[str] = []
     for v in (val if isinstance(val, list) else [val]):
         out.extend(_split_multi_ref(v))
