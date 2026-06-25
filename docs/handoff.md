@@ -15,27 +15,26 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
-## 2026-06-25 — catalogue tight-slash split fix + §DA Table A/B (verdicts pending)
+## 2026-06-25 — catalogue «/»=«and» split fix + §DA Table A/B (verdicts pending)
 
-> **UNPUSHED** — `a32d944` fix → `b331683` handoff → `5a391e6` §0b reword. `git push` pending.
+> **UNPUSHED** — slash chain a32d944→5a391e6→97a0157→`5f8c2d1`→`8abf341`. `git push` pending.
 >
-> **Tight-slash split bug — FIXED (`a32d944`, rationale corrected `5a391e6`).**
-> `_split_multi` (merger matching) + `normalise_catalog` block 1b (write/display) both
-> split a catalogue index on EVERY «/», so a tight Jensen-Skjoldager «T-91/96» became
-> the matcher scope «96|T-91» — a fabricated PREFIX-LESS token «96» («T-» is written
-> once; «96» is not a standalone index). Root cause: a slash is a multi-value
-> delimiter ONLY when whitespace-padded («683.1 / 683.2», «125A / 125B» — how
-> ucoin/Numista pack sub-variants; data-proven across seeds + caches). New shared
-> helper `lib/catalog_codes.split_multi_ref` (spaced-only); both surfaces delegate.
-> km kept on its own unconditional split (bare-integer indices, tight «14/15» =
-> genuine multi-KM). **§0b note:** I first labelled «T-91/96» a «range T-91…T-96»;
-> that was unverified — danskmoent uses a SPACED « - » for ranges («T-81 - T-88»,
-> «F-51 - F-58»), so «/» is a distinct notation whose meaning (range vs «and») is
-> unsettled without J-S «Tronraneren» (2021, paper). The fix is correct either way
-> (keep the source literal whole per §0; re-attaching the prefix to synth «T-96»
-> would be an unverified inference). No-op on current data (no typed catalogue field
-> holds a slash today); fixes the long-red `test_jensen_skjoldager_unchanged`; new
-> `tests/test_catalog_slash_split.py` (12 tests, both surfaces). Full suite 357/357.
+> **Catalogue «/» = «and» split — FINAL (`5f8c2d1` code+tests, `8abf341` data heal).**
+> Evolution across the session: a32d944 split on EVERY «/» → produced prefix-less
+> «96|T-91»; I interim-fixed it to «keep tight slash whole» (a32d944) and corrected my
+> wrong «range» label (5a391e6/97a0157); **user then settled the semantics — «/» = «та»
+> (and)**, superseding keep-whole. Final rule in `lib/catalog_codes.split_multi_ref`
+> (both surfaces delegate): split on «/», RE-ATTACH the leading alpha prefix of the
+> first member to any bare-numeric continuation → Jensen-Skjoldager «T-91/96» = [«T-91»,
+> «T-96»]. Number-list guard keeps non-number «/» whole (publisher «Divo/S», «#»-labelled
+> tokens); dash «T-81 - T-88» is a separate range notation, untouched; km keeps its own
+> split. **Data heal (`8abf341`):** the old code had ALREADY split these into prefix-less
+> lists in the seeds — galster `['T-91','96']`/`['T-41','45']`/`['T-31','35']` + Bruun
+> `['T21','25']`/`['T-22','26']` — propagated to seed_unified + final. normalise_catalog
+> can't re-heal (the «/» is gone), so a one-time nearest-preceding-prefix heal via
+> `lib/yaml_io.py` fixed all 4 danish_realm layers (incl. the merged unified-dk-bruun-4056
+> `['T21','25','T-22','26']` → mixed dash styles preserved per §0). Blast radius = J-S
+> only, danish_realm only; 0 bare-continuation J-S left; build + validate + 357/357.
 >
 > **§DA remaining cases — re-investigated from source, awaiting verdicts.** Presented
 > two tables in chat (NOT yet acted on, no data touched):
