@@ -38,11 +38,15 @@
 >
 > **§DA remaining cases — re-investigated from source, awaiting verdicts.** Presented
 > two tables in chat (NOT yet acted on, no data touched):
-> - **Table A (11 coins, real errors):** (A1) 7 galster coins where the parser
->   captured Danish prose into the index — `mangler hos` (f1g-168), `adskillige
->   katalognumre…` (f1g-49), `hhv. X og mangler` (c2g-172 schive+schou), `Ernst 1940
->   N` foreign-cat (hg-155/hg-159 → route to `others`), `N; unik` (f1g-78/f1g-74);
->   one fix in `build_galster_denmark_seed`. **(A2) DONE (`9bc6d09` filter, `18b3002`
+> - **Table A (11 coins, real errors):** **(A1) DONE (`cec33b1` cleaner, `6845b0a`
+>   data).** `_reroute_foreign_catalogue_refs` → `_clean_catalogue_refs` (galster/
+>   sieg/schive/schou/J-S): drops Danish prose («mangler hos», «adskillige
+>   katalognumre, se side …», «; unik»), extracts «hhv. X og mangler»→X, routes
+>   Ernst (+ existing Hildebrand/Lagerqvist/Rasmusson/Hauberg)→others. Fixed all 7
+>   (f1g-168 galster→168, f1g-49 J-S dropped, c2g-172 schive→XV.5, hg-159/hg-155
+>   schive→XIV.* + Ernst→others, f1g-78/f1g-74 schou→13/3). Seed cleaned + re-merged
+>   (clean) + final patched SURGICALLY (a full re-absorb drifted an unrelated 10-Ducat
+>   1604 entry — avoided). test_galster_catalogue_clean (9 tests). **(A2) DONE (`9bc6d09` filter, `18b3002`
 >   data).** build_numista_seed had NO §9 filter (build_hede does); added
 >   `_excluded_strike_reason` pre-screen (KM «Pn…»/«(OM)» + title «pattern/trial
 >   strike»/off-metal/afslag) — caught 34 numista sidecars, all verified genuine.
@@ -63,8 +67,8 @@
 >   (reign-disambiguated, our convention `c4h80.C`); 6× numista lange «… var.»
 >   (16b/271/28/331/358 C IV/399 A — legit variant citations, distinct from cf./
 >   unlisted that D31 filters). Recommend leave as-is.
-> - Next: user verdicts on Table A1 (galster parser) + A3 (sieg/ucoin normalise) + the
->   HELD Portugaløser/5-Ducat batch-2 policy call.
+> - Next: user verdicts on A3 (sieg «SD# 44» → «SD 44»; ucoin lange «280 ff.» → «280»+note)
+>   + the HELD Portugaløser/5-Ducat batch-2 policy call. A1 + A2 done.
 
 ## 2026-06-25 — night: galster foreign-catalogue reroute + catalogue-hygiene audit (§DA)
 
