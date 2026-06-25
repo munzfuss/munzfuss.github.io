@@ -74,8 +74,24 @@
 >   nominal≪metal; Scheidemünze is the opposite §6; not dual-denom/equivalent; not
 >   overweight/tariff/bad-data). Item 1 (patterns) refined: bare «Pn» not sufficient to
 >   skip. Tests + full suite 382/382.
->   (A3) `31393` sieg «SD# 44» → strip stray «#» → «SD 44»; `km-x000-fr-iii-1644` ucoin
->   lange «280 ff.» = prose range-pointer → «280»+note.
+>   **(A3) DONE — both diagnoses corrected after deeper research.** `31393` (`6062832`):
+>   NOT «strip # → SD 44» — «SIEG SD» is a DISTINCT Saxe-Lauenburg/German Sieg catalogue
+>   (numista page confirms; 99 coins use Danish «SIEG#», only this 1 «SIEG SD#»). An old
+>   build mis-mapped it into the typed (Danish, reign-scoped) `sieg` field → false
+>   collision + mis-render. Dropped the typed dup; citation PRESERVED in `others` as
+>   «SIEG SD# 44». `km-x000-fr-iii-1644` lange «280 ff.» (`b2ddeca`): NOT a paper/manual
+>   value — a V1-bootstrap over-merge/mis-parse artifact. Per-coin identity audit
+>   confirmed it's the SOLE genuine lange mis-attribution (km A43 Frederik III 4 Mark vs
+>   the only «Lange 280» in harvest = «280-290» of Johann Adolf 1/16 Thaler KM 5). No
+>   harvest source gives this coin a Lange; dropped (coin stays ID'd by KM A43+Hede 153B
+>   +Sieg 153.2+Schou+Dav, all corroborated).
+>   **Provenance audit (user-requested «what do sources not give»):** (1) vague/malformed
+>   scan of ALL typed fields → «280 ff.» was the ONLY one. (2) per-coin identity audit
+>   (km-owner match) reliable for GLOBAL catalogues: lange = 1 (this), fr = 0. (3)
+>   REIGN-SCOPED catalogues (hede/sieg/schou) can't use km-owner match (numbering restarts
+>   per reign → false positives, e.g. documented KM-240/241 Hede-62A) — a reign-scoped
+>   (number+ruler→km) pass is an open FOLLOW-UP if we want to close that class. Thinning-
+>   salvaged indices trace to dropped-specimen cache records → not flagged.
 > - **Table B:** `307035` hede «C4 80.C» (reign-disambiguated, our convention `c4h80.C`)
 >   — leave as-is. **6× numista lange «… var.» → STRIPPED (`555f5bd` code, `31d5245`
 >   data)**: user 2026-06-25 «var прибери, індекс уже достатньо» → `normalise_catalog`
@@ -83,8 +99,11 @@
 >   block 1b, all typed list-fields); 16b/271/28/331/358 C IV/399 A bared across
 >   seed/seed_unified/final (gottorp_duchy + royal_holstein). Distinct from cf./unlisted
 >   (those DROP the value). test_catalog_variant_strip (6 tests); 388/388.
-> - Next: user verdicts on A3 (sieg «SD# 44» → «SD 44»; ucoin lange «280 ff.» → «280»+note).
->   A1 + A2 (batch-2 Portugaløser KEPT / 468992 off-nominal dropped) + Table B var. done.
+> - **§DA fully closed:** A1 (galster prose) + A2 (numista §9 patterns/off-metal/off-nominal,
+>   Portugaløser KEPT) + A3 (31393 sieg-dup, 280 ff. mis-attribution) + Table B (var. strip)
+>   all done. **Open follow-up:** reign-scoped hede/sieg/schou mis-attribution audit
+>   (number+ruler→km) — the only mis-attribution class not yet swept (km-owner method can't
+>   handle reign-restart).
 
 ## 2026-06-25 — night: galster foreign-catalogue reroute + catalogue-hygiene audit (§DA)
 
