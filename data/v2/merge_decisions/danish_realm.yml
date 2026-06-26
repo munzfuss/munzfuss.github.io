@@ -9,6 +9,14 @@
 
 merges:
   - members:
+      - denmark-numismaster-65043
+      - dk-hede-c4h117a
+    reason: 'Curator 2026-06-26: KM 80.2 = Hede 117 (NumisMaster MC_65043, no Hede tag; the «72 i oval = 1/72 krone» 2-Skilling 1620, Sieg 41, sibling of KM 80.1 already in c4h117a). Over-merge artifact, not a source error. Force into Hede 117; the companion no_merges below stop 65043 auto-joining the catalog-less Hede-116 records first (which would make this force cross the explicit 116↔117 no_merge and get refused «left separate»).'
+  - members:
+      - dk-hede-c4h116a
+      - dk-numista-197176
+    reason: 'Curator 2026-06-26: Hede 116 = KM 69 (Sieg 40). Once KM 80.2 leaves (above), the Hede-116 head unites with the KM-69 numista-197176 cluster into one entry.'
+  - members:
       - dk-bruun-5181    # 4 Kroneskilling 1620 Hede 115A (Bruun IV lot 17051, NGC MS-63)
       - dk-hede-c4h115a  # Hede 115 cluster (Christian IV «4 Kroneskilling», KM 81)
     reason: |
@@ -445,6 +453,22 @@ merges:
       per §9a; applied manually in final (composed_of + both museum sources).
 
 no_merges:
+  - members:
+      - denmark-numismaster-65043
+      - dk-hede-c4h116a
+    reason: Block 65043 (KM 80.2, no Hede) from the Hede-116A seed — it auto-matches «confident» (no KM to disagree) and would pull 65043 into the Hede-116 class, refusing the force into Hede 117.
+  - members:
+      - denmark-numismaster-65043
+      - dk-hede-c4h116b
+    reason: Companion — block 65043 from the Hede-116B seed (same reason).
+  - members:
+      - denmark-numismaster-65043
+      - kmk-195878
+    reason: Companion — block 65043 from the catalog-less Hede-116B museum specimen kmk-195878 (the one missed in earlier attempts; it kept dragging 65043 into the 116 class).
+  - members:
+      - denmark-numismaster-65043
+      - kmk-191584
+    reason: Block 65043 from the Hede-67 museum wanderer kmk-191584 so a stray «67» does not follow 65043 into the Hede-117 entry.
   - members: [denmark-numismaster-65907, dk-hede-f5h12ab]
     reason: |
       Companion to merges [65907, dk-hede-f5h10ab]. KM 567 (no Hede) matches the
