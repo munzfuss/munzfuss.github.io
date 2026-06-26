@@ -72,9 +72,13 @@ COMPONENTS = {
     # variant Krause numbers with NO Hede cross-ref in any source, scattered
     # by the merger into f5h12 (567), f5h10 (568), f5h14 (568.1) on a bare
     # nominal+year heuristic. Question: split the unsourced KMs out, or keep.
-    "10. 2 Dukat — Frederik V 1747 (Hede 10/12/14, KM 567-570)":
+    # RESOLVED 2026-06-26 (merge_decisions): KM 567 = Hede 10A (bust), KM 568.1 =
+    # Hede 10B (head) — design-attested, moved into Hede 10; f5h14 absorbed the
+    # KM 570 cluster (bruun-7612). Three clean entries now: Hede 10 (KM
+    # 567/568/568.1/568.2), Hede 12 (KM 569), Hede 14 (KM 570).
+    "10. 2 Dukat — Frederik V 1747 (Hede 10/12/14, KM 567-570) [resolved]":
         ["unified-dk-hede-f5h10ab", "unified-dk-hede-f5h12ab",
-         "unified-dk-hede-f5h14", "unified-dk-bruun-7612"],
+         "unified-dk-hede-f5h14"],
 }
 
 # Component numbers the curator has already worked through (verdicts recorded in
