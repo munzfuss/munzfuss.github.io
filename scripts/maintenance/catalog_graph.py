@@ -65,6 +65,13 @@ COMPONENTS = {
         ["unified-dk-hede-c5h27ab","unified-dk-hede-c5h56","unified-dk-hede-c5h58"],
     "9. 2 Dukat — Frederik V (Hede 10/14)":
         ["unified-dk-hede-f5h10ab","unified-dk-hede-f5h14"],
+    # 10 — the f5h12 over-merge under investigation (2026-06-26): the unified
+    # entry carries km [567,569] + hede [12AB,12B]. Question: does ANY source
+    # bind KM 567 to the Hede-12 cluster, or did the merger add it on a bare
+    # nominal+year heuristic? (KM 567/568.1/569 are three distinct NumisMaster
+    # designs — Bust / Head / robed-King — with NO Hede cross-ref.)
+    "10. 2 Dukat — Frederik V 1747 (Hede 12: KM 567/569)":
+        ["unified-dk-hede-f5h12ab"],
 }
 
 # Component numbers the curator has already worked through (verdicts recorded in
