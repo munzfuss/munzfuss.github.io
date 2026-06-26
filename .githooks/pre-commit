@@ -152,4 +152,29 @@ if [ -n "$V2_RELEVANT" ]; then
     echo "  ${C_GREEN}✓${C_RST} V2 invariants pass (I1, I2, I3, I5 in --quick mode)"
 fi
 
+# ---------------------------------------------------------------------------
+# Check 5: Curator decision-file integrity (hard block)
+# ---------------------------------------------------------------------------
+# A clobbered merge_decisions/<entity>.yml (duplicate key, or an entry that
+# lost its `members:` block) silently drops a force-merge — the merger applies
+# a WRONG grouping with no warning (caught 2026-06-26). Strict-load + structural
+# validate every decisions file whenever the commit touches one.
+
+DECISIONS_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/merge_decisions/.*\.yml$' || true)
+
+if [ -n "$DECISIONS_RELEVANT" ]; then
+    echo "▶ Decision-file integrity..."
+    DEC_LOG=$(mktemp -t precommit-decisions.XXXXXX)
+    if ! "$PYTHON" scripts/maintenance/validate_decisions.py --quiet > "$DEC_LOG" 2>&1; then
+        echo "${C_RED}✗ Decision-file integrity FAILED.${C_RST}"
+        cat "$DEC_LOG" | sed 's/^/    /'
+        echo
+        echo "A merge_decisions file is malformed (duplicate key or an entry"
+        echo "missing its 'members'). Fix it, or bypass with: git commit --no-verify"
+        exit 1
+    fi
+    rm -f "$DEC_LOG"
+    echo "  ${C_GREEN}✓${C_RST} decision files structurally valid"
+fi
+
 echo "${C_DIM}pre-commit: checks complete${C_RST}"

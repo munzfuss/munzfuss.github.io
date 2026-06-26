@@ -3446,17 +3446,102 @@ def _unified_id_for_class(members: list[dict]) -> str:
 # ---------------------------------------------------------------------------
 
 
+class DecisionsIntegrityError(ValueError):
+    """A merge_decisions/<entity>.yml (or _cross_entity.yml) is structurally
+    malformed — duplicate mapping key, or an entry missing its `members`.
+    Raised LOUDLY at merger load-time so a hand-edit that silently corrupts
+    the file (e.g. a clobbered `- members:` block leaving a duplicate `reason:`
+    key, caught 2026-06-26) can never again be ignored: PyYAML's default
+    loader keeps the LAST duplicate value, which silently drops the real
+    decision (a force-merge then never fires, with no warning)."""
+
+
+class _StrictDecisionsLoader(yaml.SafeLoader):
+    """SafeLoader that RAISES on a duplicate mapping key instead of silently
+    keeping the last value. Used only for the small curator-edited decisions
+    files — never for the large machine-generated seed/seed_unified files."""
+
+
+def _no_dup_mapping(loader, node, deep=False):
+    mapping = {}
+    for key_node, value_node in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        if key in mapping:
+            raise DecisionsIntegrityError(
+                f"duplicate key {key!r} at line {key_node.start_mark.line + 1} "
+                f"— a clobbered/merged entry?")
+        mapping[key] = loader.construct_object(value_node, deep=deep)
+    return mapping
+
+
+_StrictDecisionsLoader.add_constructor(
+    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _no_dup_mapping)
+
+
+def validate_decisions_doc(doc: dict, path) -> list[str]:
+    """Structural integrity check for a decisions document. Returns a list of
+    human-readable problems (empty = OK). Every `merges` / `no_merges` entry
+    MUST carry `members` = a list of >= 2 non-empty string ids; every
+    `year_demote` entry MUST carry `member_id` or `members`. This catches the
+    «members block clobbered» corruption that a duplicate-key check alone can
+    miss (e.g. an entry that lost its members but did NOT gain a duplicate key)."""
+    errs: list[str] = []
+    if not isinstance(doc, dict):
+        return [f"{path}: top-level is not a mapping"]
+    for key in ("merges", "no_merges"):
+        seq = doc.get(key) or []
+        if not isinstance(seq, list):
+            errs.append(f"{path}::{key} is not a list")
+            continue
+        for i, e in enumerate(seq):
+            if not isinstance(e, dict):
+                errs.append(f"{path}::{key}[{i}] is not a mapping")
+                continue
+            members = e.get("members")
+            if not isinstance(members, list) or len(members) < 2:
+                errs.append(
+                    f"{path}::{key}[{i}] 'members' must be a list of >=2 ids, "
+                    f"got {members!r}")
+            elif not all(isinstance(m, str) and m.strip() for m in members):
+                errs.append(
+                    f"{path}::{key}[{i}] members must be non-empty strings: "
+                    f"{members!r}")
+    for i, e in enumerate(doc.get("year_demote") or []):
+        if not isinstance(e, dict) or not (e.get("member_id") or e.get("members")):
+            errs.append(f"{path}::year_demote[{i}] needs 'member_id' or 'members'")
+    return errs
+
+
+def load_decisions_yaml(path) -> dict:
+    """Strict load (dup-key-raising) + structural validation of a decisions
+    file. Raises DecisionsIntegrityError on either failure. Shared by the
+    merger and the standalone validate_decisions.py (pre-commit)."""
+    from pathlib import Path as _P
+    path = _P(path)
+    doc = yaml.load(path.read_text(encoding="utf-8"), Loader=_StrictDecisionsLoader) or {}
+    errs = validate_decisions_doc(doc, path.name)
+    if errs:
+        raise DecisionsIntegrityError(
+            f"merge_decisions integrity check FAILED for {path}:\n  - "
+            + "\n  - ".join(errs))
+    return doc
+
+
 def _load_decisions(entity_id: str) -> dict:
     """Load explicit merge_decisions/<entity>.yml if present.
     Returns {merges: [{members, reason}], no_merges: [...],
     year_demote: [{member_id|members, reason}]} — year_demote names
     reign-window placeholder members whose year span must not widen the union
     (§CU curator-mute; applied in process_entity, honoured by
-    _union_year_ranges via the `_year_demoted` flag)."""
+    _union_year_ranges via the `_year_demoted` flag).
+
+    Strict-loads (dup-key-raising) + validates structure so a clobbered
+    decisions file fails the merger LOUDLY instead of silently dropping a
+    force-merge (see DecisionsIntegrityError)."""
     path = V2_MERGE_DECISIONS / f"{entity_id}.yml"
     if not path.exists():
         return {"merges": [], "no_merges": [], "year_demote": []}
-    doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    doc = load_decisions_yaml(path)
     return {
         "merges": doc.get("merges", []) or [],
         "no_merges": doc.get("no_merges", []) or [],
@@ -3549,7 +3634,10 @@ def _load_cross_entity_decisions(
     member_target: dict[str, str] = {}
     if not V2_CROSS_ENTITY_DECISIONS.exists():
         return pull_groups, member_target
-    doc = yaml.safe_load(V2_CROSS_ENTITY_DECISIONS.read_text(encoding="utf-8")) or {}
+    # Strict-load + structural validate (dup-key-raising) — same integrity gate
+    # as the per-entity merge_decisions, so a clobbered _cross_entity.yml fails
+    # loudly instead of silently dropping a cross-entity force-merge.
+    doc = load_decisions_yaml(V2_CROSS_ENTITY_DECISIONS)
     for entry in doc.get("merges") or []:
         target = entry.get("target_entity")
         if not target:
