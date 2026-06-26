@@ -9,6 +9,58 @@
 
 merges:
   - members:
+      - denmark-numismaster-65907   # KM 567 «Bust right» (1747 2-Dukat, no Hede tag)
+      - dk-hede-f5h10ab             # Hede 10 (Frederik V «2 Dukat», bust/head simple type)
+    reason: |
+      Curator decision 2026-06-26 (Serhii, design-match + Friedberg bridge):
+      KM 567 = Hede 10A. NumisMaster MC_65907 describes KM 567 as «Bust right»
+      + coat-of-arms reverse; danskmoent f5h10 + Schou Web Coins describe the
+      1747 2-Dukat simple type (Fr 260) as Hede 10A «kongens brystbillede» (bust)
+      / Hede 10B «kongens hoved» (head). Bust↔brystbillede is a 1:1 design match;
+      Friedberg bridges (Fr 260 = Hede 10; Bruun bruun-7615 = KM 568.2 / Hede 10B
+      / Fr 260, direct). NumisMaster/Numista carry no Hede and the Danish
+      catalogues carry no KM, so no single-record cross-ref exists — the binding
+      is design-attested. The seed has only KM 567 (no Hede), so the auto-matcher
+      mis-folded it onto the Hede-12 head f5h12ab (no catalog to disagree). Force
+      it into Hede 10; the no_merge [65907, dk-hede-f5h12ab] breaks the old path.
+  - members:
+      - denmark-numismaster-65908   # KM 568.1 «Head right» (1747 2-Dukat, no Hede tag)
+      - dk-hede-f5h10ab             # Hede 10 (head sub-variant 10B)
+    reason: |
+      Curator decision 2026-06-26 (Serhii, design-match): KM 568.1 = Hede 10B.
+      NumisMaster MC_65908 = «Head right» + arms reverse = Hede 10B «kongens hoved»
+      (head), sibling to Bruun's KM 568.2 = Hede 10B (bruun-7615, direct); same
+      Fr 260 simple type. The seed has only KM 568.1 (no Hede), so the auto-matcher
+      mis-folded it onto the Hede-14 danskmoent record f5h14 — which ALSO poisoned
+      that cluster's KM with 568.1 and blocked it from merging with the real KM 570
+      / Hede 14 (bruun-7612). Force 568.1 into Hede 10; the no_merge
+      [65908, dk-hede-f5h14] frees f5h14.
+  - members:
+      - kmk-332101       # KMM museum «1 Dobbeldukat» 1747, Schou 3 (= Hede 12B)
+      - dk-hede-f5h12ab  # Hede 12 head (Frederik V «2 Dukat»)
+    reason: |
+      Curator decision 2026-06-26 (Serhii): the KMM museum specimen kmk-332101
+      («1 Dobbeldukat» = 2 Dukat, Schou 3 only) is Hede 12B (Schou 3 = Hede 12B,
+      per bruun-7613). It belonged to the Hede-12 cluster pre-regroup, but the
+      nominal normaliser does not equate «1 Dobbeldukat» with «2 Dukat», so once
+      the no_merges pulled it off the catalog-less KM 567/568.1 path it fell out
+      to a singleton. Force it back into Hede 12. The absorb force-merge exemption
+      protects it from the nominal-mismatch re-validate eviction (Schou is not a
+      type-level catalogue). no_merges [kmk-332101, 65907/65908] keep it out of
+      Hede 10.
+  - members:
+      - dk-hede-f5h14    # Hede 14 (Frederik V «2 Dukat» Christiansborg, danskmoent)
+      - dk-bruun-7612    # KM 570 / Hede 14 / Fr 272 (Bruun + Numista 424620 + ucoin 94406)
+    reason: |
+      Curator decision 2026-06-26 (Serhii): ONE coin — Hede 14 = KM 570 = Fr 272
+      (Christiansborg/Guinea coronation type). danskmoent f5h14 (Hede 14, Sieg 35,
+      Schou 2) and the KM 570 cluster (bruun-7612 = KM 570 / Hede 14 / Fr 272 +
+      Numista 424620 + ucoin 94406) are the SAME type and SHOULD have auto-merged
+      (both cite Hede 14); they stayed split only because the mis-attached KM 568.1
+      (numismaster-65908) poisoned f5h14's KM, making the Hede-14 union catalog-
+      inconsistent (568.1 vs 570). With 568.1 moved out (above), make the Hede-14
+      union explicit.
+  - members:
       - dk-hede-c5h27ab          # Hede 27 head (Christian V «2 Dukat», KM 416/416.1)
       - denmark-numismaster-65882  # KM 416.2 «smaller bust» (NumisMaster MC_65882, 1691)
     reason: |
@@ -379,6 +431,41 @@ merges:
       per §9a; applied manually in final (composed_of + both museum sources).
 
 no_merges:
+  - members: [denmark-numismaster-65907, dk-hede-f5h12ab]
+    reason: |
+      Companion to merges [65907, dk-hede-f5h10ab]. KM 567 (no Hede) matches the
+      Hede-12 head f5h12ab «confident» on metal+nominal+ruler (no catalog to
+      disagree) — that is how it mis-landed in f5h12. Block it so the force-merge
+      into Hede 10 (10A, bust/brystbillede) holds.
+  - members: [denmark-numismaster-65908, dk-hede-f5h14]
+    reason: |
+      Companion to merges [65908, dk-hede-f5h10ab] + [dk-hede-f5h14, dk-bruun-7612].
+      KM 568.1 (no Hede) matched the Hede-14 danskmoent record «confident» and
+      mis-landed there, blocking the real Hede-14 / KM-570 merge. Block it so 568.1
+      stays in Hede 10 (10B, head/hoved) and f5h14 is free to merge with bruun-7612.
+  - members: [denmark-numismaster-65907, dk-hede-f5h14]
+    reason: |
+      Second companion to merges [65907, dk-hede-f5h10ab]. KM 567 (no Hede) ALSO
+      matches the Hede-14 danskmoent record «confident» (metal+nominal+ruler, no
+      catalog to disagree) — without this block the force-merge into Hede 10
+      transitively unites f5h10ab with f5h14, violating the pre-existing
+      no_merge [dk-hede-f5h10ab, dk-hede-f5h14] (Hede 10 ≠ 14 verdict) and the
+      forced merge is refused «left separate».
+  - members: [denmark-numismaster-65908, dk-hede-f5h12ab]
+    reason: |
+      Second companion to merges [65908, dk-hede-f5h10ab]. KM 568.1 (no Hede) also
+      matches the Hede-12 head f5h12ab «confident»; block it so it stays in Hede 10
+      and does not transitively bridge f5h10ab to f5h12ab.
+  - members: [kmk-332101, denmark-numismaster-65907]
+    reason: |
+      kmk-332101 (KMM museum «1 Dobbeldukat», Schou 3 only) is Hede 12B (Schou 3 =
+      Hede 12B per bruun-7613). Without this block it followed KM 567 (65907) into
+      Hede 10 on the catalog-less «confident» nominal+ruler match. Block both 65907
+      and 65908 so it re-homes to Hede 12 via its KM-569 confident match.
+  - members: [kmk-332101, denmark-numismaster-65908]
+    reason: |
+      Companion to [kmk-332101, denmark-numismaster-65907] — keep the Schou-3
+      Hede-12B museum specimen out of the Hede-10 cluster.
   - members: [dk-hede-c5h58, denmark-numismaster-65882]
     reason: |
       Companion to [dk-hede-c5h56, denmark-numismaster-65882] + the merges entry
