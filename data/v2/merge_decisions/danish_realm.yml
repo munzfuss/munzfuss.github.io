@@ -9,6 +9,20 @@
 
 merges:
   - members:
+      - dk-bruun-5181    # 4 Kroneskilling 1620 Hede 115A (Bruun IV lot 17051, NGC MS-63)
+      - dk-hede-c4h115a  # Hede 115 cluster (Christian IV «4 Kroneskilling», KM 81)
+    reason: |
+      Curator decision 2026-06-26 (Serhii): ONE coin — Christian IV «4 Kroneskilling»
+      1620, Hede 115A, KM 81. The Bruun lot 17051 (NGC MS-63) prints exactly the same
+      catalogue as the existing km-81 cluster: KM-81, Hede-115A, Sieg-45.1, Schou-143.
+      The weight-tier disambiguator kept dk-bruun-5181 separate because its ONLY
+      measurements come from NumisMaster MC_65095 (1.462 g / fineness 0.437), which
+      deviate sharply from the Type-II standard (~1.05 g / 0.859) — cause unclear
+      (heavy Type-I-range planchet, off-strike, or a NumisMaster recording anomaly;
+      the Bruun lot text itself gives no weight). Per §9a the divergent reading is
+      kept (list-form) and flagged in the coin note, NOT suppressed. Force-merge into
+      the Hede-115 cluster; the catalogue is identical, so this is a true duplicate.
+  - members:
       - denmark-numismaster-65907   # KM 567 «Bust right» (1747 2-Dukat, no Hede tag)
       - dk-hede-f5h10ab             # Hede 10 (Frederik V «2 Dukat», bust/head simple type)
     reason: |
