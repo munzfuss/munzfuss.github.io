@@ -11045,7 +11045,7 @@ coins:
       sieg: '80.1'
       schou: '11'
       davenport: '3547'
-      km: '240'
+      km: '241'
       hede: 62A
       bruun_part: IV
       bruun_lot_no: 17073
@@ -11073,6 +11073,19 @@ coins:
         це per-specimen значення; проба відсутня в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md)."
     mintmaster: Johann Stichmann (IS)
     metal_verified: false
+    _source_errata:
+      - field: km
+        printed: '240'
+        correct: '241'
+        reason: "Bruun Part IV, lot 17073, p.50 prints «KM-240» on this 1663 Copenhagen 2 Speciedaler (nominal «2 Speciedaler», 57.86 g; Dav-3547, Hede-62A, Sieg-80.1, Schou-11, Aagaard-96.2 — all 2-spd),
+          but KM-240 (Denmark) is the 1 Speciedaler (Hede 61, 28.775 g; ucoin tid 97363 + NumisMaster MC_65436 + our unified-dk-hede-f3h61, independently). Adjacent-KM cataloguer error (§13.3 — the canonical
+          KM-240 case, commit 37f5b6d): even the lot's own Dav-3547 = 2 spd = KM 241, contradicting its KM-240. Corrected to the attested 2-Speciedaler number KM 241 (NumisMaster MC_65559 + Numista 328513
+          + ucoin km-241), not invented per §0. 2026-06-26, curator approval in-chat."
+        curator: serg
+    _errata_applied:
+      - field: km
+        printed: '240'
+        correct: '241'
   - id: dk-bruun-6410
     fuss: seed_unsorted
     phase: bruun
