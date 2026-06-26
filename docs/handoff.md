@@ -15,6 +15,46 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-26 — thin-line metal consensus + Pattern-A dedup + 2-Dukat-1747 regroup
+
+> **UNPUSHED** — ~80 commits ahead of origin. `git push` pending user «пуш».
+>
+> **Thin-line metal consensus (`f41217d` code+tests, `078f66a` 19 data flips).**
+> `_collect_metal` now resolves {silver,billon}/{bronze,copper} via per-resource-
+> collapsed authority-weighted vote + fineness tiebreak (Hede billon boundary ~0.30,
+> NOT textbook 0.50). One-time 19-flip correction applied. Tests: `tests/
+> test_thin_line_metal_consensus.py` + updated `test_metal_conflict_guard.py`.
+>
+> **Pattern-A duplicate final-foundation fold (`69255e4`).** New `scripts/maintenance/
+> dedup_final_foundations.py` folds confirmed true-dup foundations (V1/curated entry
+> + its unified twin coexisting because absorb does NO final-vs-final dedup). 4 folded
+> via §9a (c4h105 km-61-1⊕hede-105a, f5h11 f5h12⊕f5h12ab, c7h13 c7h13a⊕km-651-1,
+> c9h13 c9h13a⊕km-798-1) — all identical-KM confirmed. Durable: twin pinned in
+> keeper.composed_of, revalidate keeps same-nominal members.
+> **SURFACED, not actioned (need user decision):**
+> - **c4h115** (km-81 / bruun-5181, both KM 81): bruun-5181 NumisMaster fineness
+>   0.437 + 1.462g contradicts 4-Skilling standard 0.859/1.051g (~2×) — bad record
+>   or different coin? EXCLUDED from fold (§0b).
+> - **f3h62** (bruun-6403 KM-240 / f3h62ab KM-241): bruun-6403 carries the documented
+>   Bruun KM-240 mis-print; same 2 Speciedaler — merge blocked by KM, needs §CN OK.
+> - KM-differ candidates needing Krause cross-check: **c4h116** (80.2 vs 69), **c5h57**
+>   (387 vs 455; Hede 57 is u.år but km-455 dated 1699 → maybe different), **c9h16**
+>   (bruun-8346 bad KM 195.1), **f6h27** (706 vs 696.2), **c4h59** (135/59C vs 100/59A).
+>
+> **2-Dukat Frederik V 1747 family regroup (`87ba864` data, `a0a5ea5` graph).**
+> Investigated via catalog_graph.py component 10 + danskmoent/Numista. The 3 genuine
+> Hede types (10/12/14) each Bruun-anchored to one KM (568.2/569/570); KM 567/568.1
+> carried no Hede so the matcher scattered them. Design-match + Friedberg bridge:
+> **KM 567 = Hede 10A** (bust/brystbillede), **KM 568.1 = Hede 10B** (head/hoved).
+> merge_decisions force them into Hede 10 + merge f5h14↔bruun-7612 (KM570) + keep
+> kmk-332101 (Schou 3) in Hede 12. Merger re-applied (seed_unified family-scoped);
+> final hand-reconciled to match seed_unified (avoids the entity-wide absorb re-flow
+> +18 stale-purge drift) — future absorb idempotent on the 3 entries. **Structural
+> fact (worth a SOURCES.md §13 note, NOT yet added):** no single-record KM↔Hede
+> cross-ref exists for Danish gold — Danish catalogues (danskmoent/Hede/Schou/Sieg)
+> carry no KM, Krause/NumisMaster/Numista carry no Hede; the only bridge is Friedberg
+> or design-description match. Don't waste a session hunting a direct cross-ref.
+
 ## 2026-06-25 — catalogue «/»=«and» split fix + §DA Table A/B (verdicts pending)
 
 > **UNPUSHED** — slash chain a32d944→5a391e6→97a0157→`5f8c2d1`→`8abf341`. `git push` pending.
