@@ -51,10 +51,27 @@
 > stripped; the 3 dedup-PAIRS pins need care (no seed_unified merge_decision → check
 > whether removing risks absorb resurrection, or whether the pin should target the
 > UNIFIED twin id rather than the final id it currently names — the final-id pin may be
-> ineffective for durability anyway). **These commits passed because the pre-commit hook
-> is NOT installed in this clone** (`core.hooksPath` = `.git/hooks`, not `.githooks`;
-> run `./scripts/install_hooks.sh` to activate). Decide: (a) clean the 5 pins +
-> install hook, or (b) bump an I2 tolerance for documented fold-pins. Awaiting user call.
+> ineffective for durability anyway).
+>
+> **RESOLVED — all 5 pins healed (`f8c2985`, audit_v2 I2 5→0).** Verified each
+> repair against absorb's OWN convergent state (`process_entity`, no `--apply` to
+> avoid the +21 stale-purge drift the session avoids): f6h27 dk-tid-70760 pin
+> RE-POINTED unified-dk-bruun-8093→unified-dk-hede-f6h27b (the live merged host);
+> c5h57 km-455 pin DROPPED→`[]` (Hede 57 already absorbed in dk-tid-97535); the 3
+> dedup orphans (drop composed_of=[], nothing to resurrect) pin DROPPED. KEY mechanic
+> learned: absorb's line-1670 "PURGE stale composed_of" strips any cid not in current
+> `unified_by_id` on EVERY run, BEFORE building already_absorbed — so the pin never
+> reached the resurrection guard; it was cosmetic. Isolated before/after build diff:
+> SH render-neutral; denmark removed 3 latent f6h27 "Bulk-Seed" phantom rows (broken
+> pin pointed at the dead bruun-8093 so its seeds were never suppressed) — ZERO data
+> loss, all values consolidated in keeper dk-tid-70760.
+>
+> **Hook STILL NOT installable** — `audit_v2 --quick` hard-blocks on ANY violation, and
+> 39 pre-existing **I1 home-file-rule** violations remain (dual-entity coins
+> `issuing_entity: [danish_realm, royal_holstein]` living in royal_holstein.yml; rule
+> wants alphabetical-first → danish_realm.yml). Separate curator decision: move 39
+> coins between entity files, OR relax I1 for dual-entity coins, OR give the hook an
+> I1 baseline. Until then `core.hooksPath` stays `.git/hooks` (project hook inactive).
 
 ## 2026-06-26 — thin-line metal consensus + Pattern-A dedup + 2-Dukat-1747 regroup
 
