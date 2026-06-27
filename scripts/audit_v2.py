@@ -6,9 +6,12 @@ a commit:
 
   I1. **Home-file rule** (D5 / D2): every coin in
       `data/v2/final/<entity>.yml` and `data/v2/seed_unified/<entity>.yml`
-      has `issuing_entity` whose alphabetically-first element
-      matches the filename. Multi-entity list-form must list all
-      tags as known entities.
+      lives in the file chosen by the pipeline's `_home_entity()` —
+      overlap-priority (an `issuing_entity` containing `royal_holstein`
+      homes to `royal_holstein.yml` so BOTH the SH and Denmark pages
+      pick it up via robust Pass-1 assembly), else alphabetically-first.
+      The audit imports `_home_entity` from `lib.v2_seed_writer` so it
+      can never drift from the seed-writer's placement logic.
 
   I2. **Bidirectional link integrity** (D9): every `promoted_to` on
       a seed entry points to a final/unified entry that exists AND
@@ -67,6 +70,16 @@ V2_MERGE_DECISIONS = ROOT / "data" / "v2" / "merge_decisions"
 V2_CLASSIFICATION_DECISIONS = ROOT / "data" / "v2" / "classification_decisions"
 I18N_ENTITIES = ROOT / "data" / "i18n" / "issuing_entities.yml"
 
+# Reuse the pipeline's OWN home-file logic so the audit and the seed-writer
+# can never drift. A coin's home file is _home_entity(coin): overlap-priority
+# (an issuing_entity containing royal_holstein — the SH∩Denmark overlap entity
+# — homes to royal_holstein.yml so BOTH location pages pick it up via robust
+# Pass-1 assembly), else alphabetically-first. The old hard-coded
+# alphabetical-first rule in this audit pre-dated that pipeline logic and
+# flagged correctly-placed coins; importing the live function fixes the drift.
+sys.path.insert(0, str(ROOT / "scripts"))
+from lib.v2_seed_writer import _home_entity  # noqa: E402
+
 
 def _load_yaml(p: Path) -> dict:
     if not p.exists():
@@ -119,8 +132,12 @@ def _all_v2_seed_coins() -> list[tuple[str, str, dict]]:
 
 def check_i1_home_file(coins: list[tuple[str, dict]], known_entities: set[str]
                        ) -> list[str]:
-    """I1 — home-file rule. Every coin in <entity>.yml has issuing_entity
-    whose alphabetically-first element = filename stem."""
+    """I1 — home-file rule. Every coin lives in the entity file chosen by the
+    pipeline's `_home_entity(coin)` (overlap-priority: an issuing_entity
+    containing `royal_holstein` homes to royal_holstein.yml so BOTH consuming
+    location pages pick it up via robust Pass-1 assembly; else alphabetically-
+    first). The function is imported from `lib.v2_seed_writer`, NOT
+    re-implemented, so the audit and the seed-writer can never drift."""
     errors: list[str] = []
     for entity_id, c in coins:
         if entity_id.startswith("_"):
@@ -131,26 +148,24 @@ def check_i1_home_file(coins: list[tuple[str, dict]], known_entities: set[str]
                 f"I1: coin {c.get('id')!r} in {entity_id}.yml has no issuing_entity"
             )
             continue
-        if isinstance(ie, list):
-            if not ie:
-                errors.append(
-                    f"I1: coin {c.get('id')!r} in {entity_id}.yml has empty "
-                    f"issuing_entity list"
-                )
-                continue
-            first = sorted(ie)[0]
-            if first != entity_id:
-                errors.append(
-                    f"I1: coin {c.get('id')!r} in {entity_id}.yml has list-form "
-                    f"issuing_entity {ie} — alphabetical-first is {first!r}, "
-                    f"home file should be {first}.yml"
-                )
-        else:
-            if ie != entity_id:
-                errors.append(
-                    f"I1: coin {c.get('id')!r} in {entity_id}.yml has scalar "
-                    f"issuing_entity {ie!r} — home file should be {ie}.yml"
-                )
+        if isinstance(ie, list) and not ie:
+            errors.append(
+                f"I1: coin {c.get('id')!r} in {entity_id}.yml has empty "
+                f"issuing_entity list"
+            )
+            continue
+        home = _home_entity(c)
+        if home is None:
+            errors.append(
+                f"I1: coin {c.get('id')!r} in {entity_id}.yml — cannot determine "
+                f"home entity from issuing_entity {ie!r}"
+            )
+            continue
+        if home != entity_id:
+            errors.append(
+                f"I1: coin {c.get('id')!r} in {entity_id}.yml — home file should "
+                f"be {home}.yml per _home_entity (issuing_entity {ie!r})"
+            )
     return errors
 
 
