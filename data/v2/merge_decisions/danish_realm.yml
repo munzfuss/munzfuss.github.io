@@ -9,6 +9,10 @@
 
 merges:
   - members:
+      - dk-hede-c5h57
+      - dk-bruun-7244
+    reason: 'Curator 2026-06-26: Hede 57 = KM 455, NOT KM 387. danskmoent c5h57 (1 Dukat, «monogram på pyramide / prospekt over København») = the pyramid+Copenhagen type = KM 455 (NumisMaster MC_65804 «without base on pyramid / motto in banner above city»; Bruun dk-bruun-7244 directly attests KM 455 + Hede 57 + Sieg 115, 1699). The catalog-less danskmoent Hede-57 record was mis-grouped onto KM 387 — a DIFFERENT 1687 coin (MC_65781 «bust / crowned arms in elephant order»). Over-merge artifact, not a source error. Move Hede 57 to its real cluster KM 455.'
+  - members:
       - denmark-numismaster-65043
       - dk-hede-c4h117a
     reason: 'Curator 2026-06-26: KM 80.2 = Hede 117 (NumisMaster MC_65043, no Hede tag; the «72 i oval = 1/72 krone» 2-Skilling 1620, Sieg 41, sibling of KM 80.1 already in c4h117a). Over-merge artifact, not a source error. Force into Hede 117; the companion no_merges below stop 65043 auto-joining the catalog-less Hede-116 records first (which would make this force cross the explicit 116↔117 no_merge and get refused «left separate»).'
@@ -453,6 +457,18 @@ merges:
       per §9a; applied manually in final (composed_of + both museum sources).
 
 no_merges:
+  - members:
+      - dk-hede-c5h57
+      - denmark-numismaster-65801
+    reason: Block Hede 57 from KM B445 (NumisMaster MC_65801) — a DIFFERENT 1696 Ducat («Christian V on horseback / crowned double monogram»), not the pyramid/Copenhagen Hede-57 type. It followed the catalog-less Hede-57 record into the KM-455 cluster via the nominal+ruler match. Companion to merge [dk-hede-c5h57, dk-bruun-7244].
+  - members:
+      - dk-hede-c5h57
+      - dk-tid-97535
+    reason: Block the catalog-less Hede-57 record from the KM-387 ucoin record (1687 bust, no Hede) it auto-matches, so it can't bridge KM 387 <-> KM 455. Companion to merge [dk-hede-c5h57, dk-bruun-7244].
+  - members:
+      - dk-hede-c5h57
+      - denmark-numismaster-65781
+    reason: Companion — block Hede 57 from the NumisMaster KM-387 record (1687 bust).
   - members:
       - denmark-numismaster-65043
       - dk-hede-c4h116a
