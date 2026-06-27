@@ -66,12 +66,19 @@
 > pin pointed at the dead bruun-8093 so its seeds were never suppressed) — ZERO data
 > loss, all values consolidated in keeper dk-tid-70760.
 >
-> **Hook STILL NOT installable** — `audit_v2 --quick` hard-blocks on ANY violation, and
-> 39 pre-existing **I1 home-file-rule** violations remain (dual-entity coins
-> `issuing_entity: [danish_realm, royal_holstein]` living in royal_holstein.yml; rule
-> wants alphabetical-first → danish_realm.yml). Separate curator decision: move 39
-> coins between entity files, OR relax I1 for dual-entity coins, OR give the hook an
-> I1 baseline. Until then `core.hooksPath` stays `.git/hooks` (project hook inactive).
+> **I1 home-file audit was STALE — fixed (`f66e800`, audit_v2 --quick 0).** The 39
+> "violations" were CORRECTLY-placed coins: the live seed-writer
+> `lib.v2_seed_writer._home_entity` homes any `issuing_entity` containing
+> `royal_holstein` (the SH∩Denmark overlap entity) to royal_holstein.yml so BOTH
+> pages pick it up via robust Pass-1 — but the audit still hard-coded the old
+> alphabetical-first rule (would want danish_realm.yml) and flagged them. User
+> confirmed royal_holstein placement is right. Fix: the audit now IMPORTS
+> `_home_entity` and checks `_home_entity(coin) == filename`, so audit + writer
+> share ONE function and can't drift. All 12254 live coins pass; regression test
+> `tests/test_i1_home_file.py`. **Hook now installable** — `audit_v2 --quick` (what
+> Check 4 runs) = 0 (I1/I2/I3/I5 clean). Pre-existing FULL-audit-only findings remain
+> (NOT hook-gated, --quick skips them): I4 schema 51 + I6 decision-refs 7 — separate
+> cleanup before a non-quick gate could go green.
 
 ## 2026-06-26 — thin-line metal consensus + Pattern-A dedup + 2-Dukat-1747 regroup
 
