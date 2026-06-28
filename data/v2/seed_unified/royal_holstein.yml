@@ -2,7 +2,7 @@
 # Generated 2026-06-28 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1664 per-source seed entries.
+# Input: 1669 per-source seed entries.
 # Output: 968 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -6165,8 +6165,11 @@ coins:
   - Altona
   - Kopenhagen
   catalog:
-    km: '651'
+    km:
+    - '654'
+    - '651'
     hede:
+    - '13'
     - 13A
     - 13B
     - 13C
@@ -6177,12 +6180,19 @@ coins:
     - 2-4
     - 3-4
     sieg:
+    - '25.4'
     - '33.1'
     - '33.2'
     - '33.3'
     - '33.4'
+    bruun_collection_id: '7940'
+    bruun_part: I
+    bruun_lot_no: 1155
+    bruun_page: 214
+    fp: '43.6'
     numista: '132002'
     dav:
+    - '1315'
     - EC III 1313
     - EC IV 71
     - ECT 71
@@ -6197,10 +6207,16 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
+    source: numismaster
+  - value: 0.875
     source: numista
   weight_rough_g:
+  - value: 28.83
+    source: bruun
   - value: 28.893
     source: hede
+  - value: 28.893
+    source: numismaster
   - value: 28.893
     source: numista
   diameter_mm:
@@ -6208,11 +6224,26 @@ coins:
     source: numista
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65508
+    ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+    ref: Bruun Part I, lot 1155, p. 214
+  - type: literature
     url: https://www.danskmoent.dk/chr/c7h13.htm
     ref: danskmoent.dk (Hede c7h13A)
   - type: literature
     url: https://en.numista.com/132002
     ref: Numista N#132002 — 1 Speciedaler - Christian VII (Bauert portrait)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/130612
+    ref: KMM 130612 (Inv. FP 7044.1)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/317587
+    ref: KMM 317587 (Inv. FP 7044.3)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/317588
+    ref: KMM 317588 (Inv. FP 7044.2)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -6227,11 +6258,16 @@ coins:
     basis: fin
     unit_raw: speciedalere
   composed_of:
+  - denmark-numismaster-65508
+  - dk-bruun-7940
   - dk-hede-c7h13a
   - dk-hede-c7h13b
   - dk-hede-c7h13c
   - dk-hede-c7h13d
   - dk-numista-132002
+  - kmk-130612
+  - kmk-317587
+  - kmk-317588
 - id: unified-dk-hede-c7h15
   fuss: seed_unsorted
   phase: hede
