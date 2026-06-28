@@ -468,6 +468,11 @@ merges:
       - dk-hede-c4h105a
       - km-61-chr-iv-1618
     reason: 'Curator 2026-06-28: Hede 105 (2 Krone Christian IV 1618-1619) is ONE type grouped by Hede — 105A «mit Stern» (KM 60, Kopenhagen) + 105B «ohne Stern» (KM 61, Helsingør, Mm. Johan Post). Krause splits by KM (60 vs 61); Hede + danskmoent c4h105 list both sub-variants under Hede 105. Curator direction: keep as one entity despite the different KM (same as c4h59). The Hede cluster unified-dk-hede-c4h105a (holds dk-hede-c4h105a + dk-hede-c4h105b + km-60) and the Bruun/km-61 cluster unified-dk-bruun-5040 (holds km-61 + Bruun 5040/5078 + Numista 109282) stayed separate only because of the 60≠61 catalogue conflict. Force-merge + accumulate KM [60, 61] per §9; the over-union of [105A,105B] across the two rows resolves naturally into one row carrying both letters.'
+  - members:
+      - dk-bruun-4705
+      - dk-hede-c4h92b
+      - dk-hede-c4h92a
+    reason: "Curator 2026-06-28: c4h92 «1 Mark» Christian IV — Hede 92 = KM 33 (Hede 92A 1606 + 92B 1607; danskmoent c4h92 + Hede authoritative). The Hede-catalogue seed dk-hede-c4h92a (Hede 92A, no KM) auto-merged into the KM-12a cluster (numismaster/numista-55302/ucoin) instead of the KM-33 cluster where Bruun's dk-bruun-4705 already attests KM 33.1 = Hede 92A. Force-merge dk-hede-c4h92a + the two KM-33 sub-clusters (unified-dk-bruun-4705 KM33.1/92A + unified-dk-hede-c4h92b KM33.2/92B) into one Hede-92 = KM-33 entity. KM 12a (Numista 55302, no Hede) is a SEPARATE Krause type per §9.4 and stays its own entity (see paired no_merges blocking dk-hede-c4h92a from the KM-12 records)."
 no_merges:
   - members:
       - dk-hede-c5h57
@@ -865,6 +870,26 @@ no_merges:
 # `_union_year_ranges` — their span never widens the merged year, but their
 # years are NOT deleted (used only if no other member attests any year).
 # Priority: below a normal member, above no-data.
+  - members:
+      - dk-hede-c4h92a
+      - dk-tid-163044
+    reason: 'c4h92: KM 12a (Numista 55302) is a distinct Krause type from KM 33/Hede 92; keep the Hede-92A seed out of the KM-12 cluster so force-merge routes it to KM-33 without bridging the two.'
+  - members:
+      - dk-hede-c4h92a
+      - denmark-numismaster-65152
+    reason: 'c4h92: KM 12a (Numista 55302) is a distinct Krause type from KM 33/Hede 92; keep the Hede-92A seed out of the KM-12 cluster so force-merge routes it to KM-33 without bridging the two.'
+  - members:
+      - dk-hede-c4h92a
+      - dk-numista-55302
+    reason: 'c4h92: KM 12a (Numista 55302) is a distinct Krause type from KM 33/Hede 92; keep the Hede-92A seed out of the KM-12 cluster so force-merge routes it to KM-33 without bridging the two.'
+  - members:
+      - dk-hede-c4h92a
+      - kmk-575889
+    reason: 'c4h92: KM 12a (Numista 55302) is a distinct Krause type from KM 33/Hede 92; keep the Hede-92A seed out of the KM-12 cluster so force-merge routes it to KM-33 without bridging the two.'
+  - members:
+      - dk-hede-c4h92a
+      - kmk-635323
+    reason: 'c4h92: KM 12a (Numista 55302) is a distinct Krause type from KM 33/Hede 92; keep the Hede-92A seed out of the KM-12 cluster so force-merge routes it to KM-33 without bridging the two.'
 year_demote:
   - member_id: dk-galster-hg-27
     reason: |
