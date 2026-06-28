@@ -61,7 +61,9 @@
 >   (user-flagged, record in SOURCES §13):** danskmoent c9h1.htm link correctly says
 >   Christian 9 but the description text erroneously says Christian 8 — don't let it
 >   mis-set the ruler.
-> - **c4h119** «1 Skilling» Chr IV (danish_realm) — NOT a simple over-union: KM 66 /
+> - **c4h119 — DONE** (`38c0275`): split KM 66/Hede 118 (1619) vs KM 67/Hede 119
+>   (1619-1623); no_merge+force split the mixed cluster, 6 year_demote stripped the
+>   museum reign-span years. [orig plan:] «1 Skilling» Chr IV (danish_realm) — NOT a simple over-union: KM 66 /
 >   Hede 118 (1619, oval... portrait) renders as TWO duplicate rows
 >   (`unified-dk-hede-c4h118` clean + `unified-dk-hede-c4h119a` messy). Plan
 >   (user-confirmed): (1) merge messy c4h119a into clean c4h118 → KM [66,66.1,66.2],
