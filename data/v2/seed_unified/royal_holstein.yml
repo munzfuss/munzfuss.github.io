@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-06-25 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-28 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1664 per-source seed entries.
-# Output: 973 unified entries (one per physical coin).
+# Output: 968 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-06-25'
+generated_at: '2026-06-28'
 coins:
 - id: unified-denmark-numismaster-65623
   fuss: seed_unsorted
@@ -5314,14 +5314,22 @@ coins:
   mint: Glückstadt
   catalog:
     km:
+    - '83'
     - '77'
+    - '108'
+    - '110'
+    - '114'
     - '77.1'
+    - '77.2'
     hede:
+    - 125 A
+    - 125 B
     - 125A
     - 125B
     - 125C
     hede_volume: c5h
     sieg:
+    - '138'
     - '138.1'
     - '138.2'
     - '139'
@@ -5332,10 +5340,17 @@ coins:
     - 30-32
     - 38-41
     - 42-44
-    numista: '108760'
+    numista:
+    - '108735'
+    - '108760'
+    - '313358'
+    - '313359'
+    - '313360'
     dav:
+    - EC II 3680
     - EC II 3679
     - EC II 3679A
+    lange: 82 A
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -5353,6 +5368,10 @@ coins:
   - value: 0.671
     source: ucoin
   weight_rough_g:
+  - value: 21.98
+    source: numista
+  - value: 22.24
+    source: numista
   - value: 22.27
     source: ucoin
   - value: 22.272
@@ -5361,8 +5380,12 @@ coins:
     source: numismaster
   - value: 22.272
     source: numista
+  - value: 22.3
+    source: numista
   diameter_mm:
   - value: 40.0
+    source: numista
+  - value: 40.44
     source: numista
   - value: 41.0
     source: ucoin
@@ -5371,13 +5394,31 @@ coins:
     url: https://www.danskmoent.dk/chr/c5h125.htm
     ref: danskmoent.dk (Hede c5h125A)
   - type: literature
+    url: https://en.numista.com/108735
+    ref: Numista N#108735 — 4 Mark Dansk - Christian V (Type II; laurel wreath)
+  - type: literature
     url: https://en.numista.com/108760
     ref: Numista N#108760 — 4 Mark Dansk - Christian V (Type II; palm leaves)
+  - type: literature
+    url: https://en.numista.com/313358
+    ref: Numista N#313358 — 1 Krone - Christian V
+  - type: literature
+    url: https://en.numista.com/313359
+    ref: Numista N#313359 — 1 Krone - Christian V
+  - type: literature
+    url: https://en.numista.com/313360
+    ref: Numista N#313360 — 1 Krone - Christian V
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1692-1694/?tid=163656
     ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1694-1696/?tid=163657
+    ref: ucoin
   - type: literature
     url: https://numismaster.com/MC_92997
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_92998
     ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
@@ -5394,9 +5435,15 @@ coins:
   - dk-hede-c5h125a
   - dk-hede-c5h125b
   - dk-hede-c5h125c
+  - dk-numista-108735
   - dk-numista-108760
+  - dk-numista-313358
+  - dk-numista-313359
+  - dk-numista-313360
   - km-77-1-chr-v-1686
+  - km-80-chr-v-1694
   - schleswig_holstein-numismaster-92997
+  - schleswig_holstein-numismaster-92998
 - id: unified-dk-hede-c5h126a
   fuss: seed_unsorted
   phase: hede
@@ -12885,69 +12932,6 @@ coins:
   composed_of:
   - dk-numista-108733
   - schleswig_holstein-numismaster-92995
-- id: unified-dk-numista-108735
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 4 Mark Danske
-  year_first: 1694
-  year_last: 1696
-  year_ranges:
-  - - 1694
-    - 1696
-  year_label: 1694-1696
-  ruler: Christian V
-  mint: Glückstadt
-  catalog:
-    km: '83'
-    numista: '108735'
-    dav: EC II 3680
-    hede: 125C
-    sieg: '139'
-    hede_volume: c5h
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.671
-    source: numista
-  - value: 0.671
-    source: ucoin
-  weight_rough_g:
-  - value: 22.24
-    source: numista
-  - value: 22.27
-    source: ucoin
-  diameter_mm:
-  - value: 40.44
-    source: numista
-  - value: 41.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://en.numista.com/108735
-    ref: Numista N#108735 — 4 Mark Dansk - Christian V (Type II; laurel wreath)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1694-1696/?tid=163657
-    ref: ucoin
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-108735
-  - km-80-chr-v-1694
 - id: unified-dk-numista-108979
   fuss: seed_unsorted
   phase: numista
@@ -15422,138 +15406,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-313357
-- id: unified-dk-numista-313358
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Krone
-  year_first: 1692
-  year_last: 1694
-  year_ranges:
-  - - 1692
-    - 1694
-  year_label: 1692-1694
-  ruler: Christian V
-  mint: Glückstadt
-  catalog:
-    km: '108'
-    numista: '313358'
-    lange: 82 A
-    sieg: '138'
-    hede: 125 A
-    dav: EC II 3679
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 22.3
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/313358
-    ref: Numista N#313358 — 1 Krone - Christian V
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-313358
-- id: unified-dk-numista-313359
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Krone
-  year_first: 1693
-  year_last: 1693
-  year_label: '1693'
-  ruler: Christian V
-  mint: Glückstadt
-  catalog:
-    km: '110'
-    numista: '313359'
-    sieg: '138.2'
-    hede: 125 B
-    dav: EC II 3679
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 21.98
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/313359
-    ref: Numista N#313359 — 1 Krone - Christian V
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-313359
-- id: unified-dk-numista-313360
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Krone
-  year_first: 1694
-  year_last: 1696
-  year_ranges:
-  - - 1694
-    - 1696
-  year_label: 1694-1696
-  ruler: Christian V
-  mint: Glückstadt
-  catalog:
-    km: '114'
-    numista: '313360'
-    hede: 125C
-    dav: EC II 3680
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://en.numista.com/313360
-    ref: Numista N#313360 — 1 Krone - Christian V
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-313360
 - id: unified-dk-numista-31393
   fuss: seed_unsorted
   phase: numista
@@ -34140,43 +33992,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-92986
-- id: unified-schleswig_holstein-numismaster-92998
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 4 Mark Danske
-  year_first: 1693
-  year_last: 1693
-  year_label: '1693'
-  ruler: Christian V
-  catalog:
-    km: '77.2'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.671
-    source: numismaster
-  weight_rough_g:
-  - value: 22.272
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_92998
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-92998
 - id: unified-schleswig_holstein-numismaster-92999
   fuss: seed_unsorted
   phase: numismaster
