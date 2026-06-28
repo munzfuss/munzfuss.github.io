@@ -488,6 +488,14 @@ merges:
       - dk-hede-c9h1b
       - dk-bruun-8290
     reason: "Curator 2026-06-28: c9h1 «2 Christian d'Or» — Hede index restarts per ruler, so Hede 1 exists for BOTH Christian VIII (c8h1 = KM 722, 1841-1847) and Christian IX (c9h1 = KM 773, 1866-1870). These are DIFFERENT coins. The Christian IX type (Hede 1A 1866-67 + 1B 1869-70, KM 773) was scattered across 4 clusters; the Hede seeds dk-hede-c9h1a/c9h1b are mis-ruled «Christian VIII» because the danskmoent c9h1.htm DESCRIPTION text erroneously says Christian 8 (the link/page is correctly Christian 9) — a source error (SOURCES §13). Merge the four Christian-IX clusters into one KM-773 entity; giving the Hede-1A/1B seeds a KM (773 via Bruun) also stops absorb over-merging them into the KM-722 Christian VIII final (KM mismatch now separates the reigns). Ruler corrected to Christian IX + years 1866-1870 at the final."
+  - members:
+      - denmark-numismaster-65013
+      - dk-hede-c4h118a
+    reason: 'c4h119: KM 66.2 (numismaster-65013) is a KM-66 sub-variant = Hede 118; pull it into the clean Hede-118 cluster (it was mis-grouped with Hede-119 seeds in the over-merged c4h119a).'
+  - members:
+      - dk-hede-c4h119a
+      - dk-hede-c4h119b
+    reason: 'c4h119: Hede 119A (dk-hede-c4h119a) belongs to KM 67 / Hede 119 (1619), not KM 66; merge it (and the 12 weightless Hede-119 KMM that follow) into the KM-67 cluster c4h119b.'
 no_merges:
   - members:
       - dk-hede-c5h57
@@ -905,6 +913,58 @@ no_merges:
       - dk-hede-c4h92a
       - kmk-635323
     reason: 'c4h92: KM 12a (Numista 55302) is a distinct Krause type from KM 33/Hede 92; keep the Hede-92A seed out of the KM-12 cluster so force-merge routes it to KM-33 without bridging the two.'
+  - members:
+      - denmark-numismaster-65013
+      - dk-hede-c4h119a
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-122404
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-203798
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-306282
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-306327
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-316561
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-317004
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-318181
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-318182
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-333715
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-340040
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-348041
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
+  - members:
+      - denmark-numismaster-65013
+      - kmk-351541
+    reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
 year_demote:
   - member_id: dk-galster-hg-27
     reason: |
@@ -925,3 +985,15 @@ year_demote:
       KMM specimen FP 3528.265 (10 Øre, Christian IX) is tagged with the full
       reign 1863-1906; the decimal 10 Øre was struck 1874-1905
       (km-795-1-chr-ix-1874). Last-resort only.
+  - member_id: kmk-203798
+    reason: "c4h119: natmus specimen dated to Christian IV's whole reign / over-broad span (1588-1648), not a coin-specific mint-year; demote from the Hede-119 (KM 67) year union — actual span is 1619-1623 per Hede c4h119 (119A 1619, 119B-D 1620-1623)."
+  - member_id: kmk-316561
+    reason: "c4h119: natmus specimen dated to Christian IV's whole reign / over-broad span (1588-1648), not a coin-specific mint-year; demote from the Hede-119 (KM 67) year union — actual span is 1619-1623 per Hede c4h119 (119A 1619, 119B-D 1620-1623)."
+  - member_id: kmk-317004
+    reason: "c4h119: natmus specimen dated to Christian IV's whole reign / over-broad span (1588-1648), not a coin-specific mint-year; demote from the Hede-119 (KM 67) year union — actual span is 1619-1623 per Hede c4h119 (119A 1619, 119B-D 1620-1623)."
+  - member_id: kmk-318181
+    reason: "c4h119: natmus specimen dated to Christian IV's whole reign / over-broad span (1588-1648), not a coin-specific mint-year; demote from the Hede-119 (KM 67) year union — actual span is 1619-1623 per Hede c4h119 (119A 1619, 119B-D 1620-1623)."
+  - member_id: kmk-318182
+    reason: "c4h119: natmus specimen dated to Christian IV's whole reign / over-broad span (1588-1648), not a coin-specific mint-year; demote from the Hede-119 (KM 67) year union — actual span is 1619-1623 per Hede c4h119 (119A 1619, 119B-D 1620-1623)."
+  - member_id: kmk-344187
+    reason: "c4h119: natmus specimen dated to Christian IV's whole reign / over-broad span (1620-1629), not a coin-specific mint-year; demote from the Hede-119 (KM 67) year union — actual span is 1619-1623 per Hede c4h119 (119A 1619, 119B-D 1620-1623)."
