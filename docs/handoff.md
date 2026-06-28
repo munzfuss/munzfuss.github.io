@@ -15,6 +15,60 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-28 — B1 over-union cleanup (group D / Pattern B), 4 of 6 done
+
+> **UNPUSHED** — pushing pending «пуш». New commits this session on top of the
+> 2026-06-27 batch: c4h105 `dce7296`, c4h92 `7a7534a`, c5h67+c5h31 `5dfee7e`
+> (+ the earlier c4h59 `f2a9291`, pin-heal `f8c2985`, I1-audit `f66e800`).
+>
+> **Context.** The over-union (Pattern B / group D) audit found 25 danskmoent-page
+> collision groups where distinct coins carry each other's Hede sub-letters in
+> `catalog.hede`. Sub-categories: B1 distinct-KM (8), B4 same-KM/diff-Sieg (9),
+> B2 specimen-fold (4), B3 cross-entity (3), B5 (1). Working through B1 (8) one by
+> one on user verdict. Pattern: most are NOT merges — they're genuinely distinct
+> types whose catalog.hede over-unioned; a few ARE one Hede type Krause split by KM.
+>
+> **DONE (committed):**
+> - **c4h105** (`dce7296`) — Hede 105 = one «2 Krone» Chr IV; merged KM 60 (105A mit
+>   Stern) + KM 61 (105B ohne Stern) into one entity, KM [60,61].
+> - **c4h92** (`7a7534a`) — TWO types, not over-union: Hede 92/KM 33 (portrait, Sieg
+>   72) vs Hede 77/KM 12 (oval shield, Sieg 71). dk-tid-163044 (KM 12a) was wrongly
+>   Hede 92A → re-identified as Hede **77C**, re-homed. merge [dk-bruun-4705,
+>   dk-hede-c4h92b, dk-hede-c4h92a] + 5 no_merges (Hede-92A out of KM-12). NB the
+>   KM-12 coin now belongs to the **c4h77/Hede-77 family** — a SEPARATE deferred
+>   cleanup (Numista 55303 = KM 12/Hede 77,77A 1602-1604 + floating natmus 77A/B/C).
+> - **c5h67** (`5dfee7e`) — Hede 67 «1 Krone» Chr V, KM 330(67A)+370(67B) → one row.
+> - **c5h31** (`5dfee7e`) — Hede 31 «1 Dukat» Chr V, KM 412+415.1+415.3 → one row.
+>
+> **REMAINING B1 (2), user-confirmed, plans ready:**
+> - **c5h125** «4 Marck Danske» Chr V (royal_holstein, Glückstadt) — all three are
+>   Hede 125; merge km-108 (125A) + km-110 (125B) + c5h125a (125A-C). Seeds:
+>   [dk-numista-313358, dk-numista-313359, dk-hede-c5h125a]. **Special:** the user
+>   wants Danish vs German KM kept DISTINGUISHABLE so future merges/searches don't
+>   mix them — KM 77, 83 = Danish (Numista 108760, 108735); KM 108, 110, 114 =
+>   German (Numista 313358, 313359, 313360). Use dict-form km_register
+>   `{dk: [77,83], sh: [108,110,114]}` (renders KM-DK# / KM-SH#, like f6h27).
+>   VERIFY KM 83 (N#108735) + KM 114 (N#313360) are captured before committing.
+> - **c4h119** «1 Skilling» Chr IV (danish_realm) — NOT a simple over-union: KM 66 /
+>   Hede 118 (1619, oval... portrait) renders as TWO duplicate rows
+>   (`unified-dk-hede-c4h118` clean + `unified-dk-hede-c4h119a` messy). Plan
+>   (user-confirmed): (1) merge messy c4h119a into clean c4h118 → KM [66,66.1,66.2],
+>   Hede [118A,118B], Sieg 31, Schou 142-143, year **1619** (strip the museum
+>   reign-span 1588-1648 that came from 5 natmus specimens dated to the whole Chr IV
+>   reign); (2) c4h119b (KM 67/Hede 119) keeps 119A-D, fix year_last 1629→**1623**
+>   (1629 came from natmus kmk-344187's over-broad date); restore Hede 119A (seed
+>   dk-hede-c4h119a) to c4h119b. Same split-mixed-cluster shape as c4h92 (no_merge
+>   + force-merge to route the Hede-119 seeds off the KM-66 cluster). The 12 KMM
+>   Hede-119 floaters in c4h119a are weightless (no measurement-data loss).
+>
+> **Reusable pattern for these (proven c4h59/c4h105/c4h92/c5h67/c5h31):** merge_decision
+> at seed_unified (durable) → `merge_seeds_cross_source --apply --entity X` → verify
+> seed_unified split → `process_entity` convergent check → dedup fold helper on finals
+> + set composed_of to convergent (NO pin) → fix notes/years → validate + audit_v2
+> (must stay 0) → build location → commit (hook ~3 min). For mixed-cluster splits use
+> the COMPLETE block-set no_merge (block the moved seed from ALL catalog-less members
+> of the wrong cluster — c4h116 lesson).
+
 ## 2026-06-27 — KM-differ candidates closed + dangling composed_of-pin finding
 
 > **UNPUSHED** — 4 commits ahead of origin (adeb443 c4h116, 48f49ee c5h57,
