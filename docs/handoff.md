@@ -15,7 +15,7 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
-## 2026-06-28 — B1 over-union cleanup (group D / Pattern B), 4 of 6 done
+## 2026-06-28 — B1 over-union cleanup (group D / Pattern B), 5 of 8 done
 
 > **UNPUSHED** — pushing pending «пуш». New commits this session on top of the
 > 2026-06-27 batch: c4h105 `dce7296`, c4h92 `7a7534a`, c5h67+c5h31 `5dfee7e`
@@ -40,15 +40,25 @@
 > - **c5h67** (`5dfee7e`) — Hede 67 «1 Krone» Chr V, KM 330(67A)+370(67B) → one row.
 > - **c5h31** (`5dfee7e`) — Hede 31 «1 Dukat» Chr V, KM 412+415.1+415.3 → one row.
 >
-> **REMAINING B1 (2), user-confirmed, plans ready:**
-> - **c5h125** «4 Marck Danske» Chr V (royal_holstein, Glückstadt) — all three are
->   Hede 125; merge km-108 (125A) + km-110 (125B) + c5h125a (125A-C). Seeds:
->   [dk-numista-313358, dk-numista-313359, dk-hede-c5h125a]. **Special:** the user
->   wants Danish vs German KM kept DISTINGUISHABLE so future merges/searches don't
->   mix them — KM 77, 83 = Danish (Numista 108760, 108735); KM 108, 110, 114 =
->   German (Numista 313358, 313359, 313360). Use dict-form km_register
->   `{dk: [77,83], sh: [108,110,114]}` (renders KM-DK# / KM-SH#, like f6h27).
->   VERIFY KM 83 (N#108735) + KM 114 (N#313360) are captured before committing.
+> **Also DONE (committed):**
+> - **c5h125** (`7f0bb41`) — «4 Marck Danske» Chr V Glückstadt, six clusters all Hede
+>   125 → one entity. Dual-volume KM kept distinct via dict-form km_register
+>   `{dk:[77,77.1,77.2,83], sh:[108,110,114]}` (KM-DK# on denmark, KM-SH# on SH; note
+>   documents both). Folded km-108/110/114 finals.
+>
+> **REMAINING B1 (3 — complex splits), user-confirmed, plans ready:**
+> - **c7h13** «1 Speciedaler» Chr VII 1795-1801 (royal_holstein) — Hede 13 = KM 651 +
+>   KM 654 (merge). BUT **Numista 131730 = KM 640 is a DIFFERENT coin (over-merge)**
+>   inside the c7h13a cluster — split it OUT to its own row. Split-mixed-cluster shape
+>   (no_merge + force-merge, c4h92 pattern).
+> - **c9h1** «2 Christian d'Or» (danish_realm) — TWO coins; the Hede-1 clash is because
+>   **Hede index restarts per ruler**: Hede 1 = KM 773 (Christian **IX**, 1866-1870)
+>   AND Hede 1 = KM 722 (Christian **VIII**, 1841-1847). dk-tid-130240 is over-merged
+>   ACROSS both reigns (KM 722 + years 1841-1847 AND 1866-1867). Split into Chr VIII/
+>   KM 722 + Chr IX/KM 773 — fix indices AND years AND rulers. **Source error
+>   (user-flagged, record in SOURCES §13):** danskmoent c9h1.htm link correctly says
+>   Christian 9 but the description text erroneously says Christian 8 — don't let it
+>   mis-set the ruler.
 > - **c4h119** «1 Skilling» Chr IV (danish_realm) — NOT a simple over-union: KM 66 /
 >   Hede 118 (1619, oval... portrait) renders as TWO duplicate rows
 >   (`unified-dk-hede-c4h118` clean + `unified-dk-hede-c4h119a` messy). Plan
