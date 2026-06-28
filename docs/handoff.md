@@ -15,6 +15,39 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-28 (later) — B2 specimen-fold (4 of 4) COMPLETE + §9.4 rule corrected
+
+> **UNPUSHED** — 30 commits ahead of origin; push pending «пуш». New this pass:
+> c7h25 `2773ab2`, §9.4 rule fix `d8df9d7`, B2 c7h39/f4h57/f3h40 `2a1c4d3`.
+>
+> **B2 «specimen ⊂ main» (4 candidates) all merged.** Each verified via the
+> index-graph procedure (build the graph of all catalogue indices across all
+> candidates; a unifying catalogue ⇒ one coin):
+> - **c7h25** «1 Kurantdaler» Chr VII 1788 — cross-entity merge (royal_holstein↔
+>   danish_realm), KM 645 + Hede 25. Sieg diverges by source: danskmoent «Sieg 26»
+>   vs Bruun lot 13248 «Sieg-19» — BOTH cache-verified → union `sieg:[19,26]`.
+> - **c7h39** «1 Speciedaler» Chr VII 1787-1808 — 5 finals → 1 (KM base 138 sub
+>   .1/.2/.3/.5, Hede 39A-39G). Intra royal_holstein.
+> - **f4h57** «1 Dukat» Fr IV 1705-1706 — 2 → 1 (KM 2/2.1/2.2, Hede 57A/57B). Intra rh.
+> - **f3h40** «¼ Dukat» Fr III 1665+1668 — 2 → 1 (KM 264/264.1/264.2, Hede 40A-40C). Intra danish_realm.
+>
+> **§9.4 rule corrected (`d8df9d7`).** The old «different catalog index = different
+> type» was too blunt — we tripped over it every B-group session. New rule:
+> sub-indices (138.1/138.2; 39A/39B; 102.1/102.3) are sub-variants of ONE coin;
+> decide same-coin-vs-distinct-type by building the GRAPH of all catalogue indices
+> and checking whether ANY catalogue unifies them under one base index. Distinct
+> types only when EVERY catalogue gives distinct base indices unified by none.
+> Synced the «Do NOT skip» bullet + the anti-pattern §4 fineness clause.
+>
+> **Remaining B-group fronts (not yet started):** B4 same-KM/diff-Sieg (9),
+> B3 cross-entity (3), B5 (1) — per the 2026-06-28 over-union audit below.
+>
+> **Minor known-quirk (not blocking):** ucoin seed `km-138-3-chr-vii-1787` carries
+> `catalog.hede: '39 C'` (whitespace) in `data/v2/seed/ucoin/royal_holstein.yml`.
+> Cleaned to «39C» in the c7h39a final render, but seed_unified re-introduces it on
+> the next merger pass (manual reconcile re-cleans). Durable fix = whitespace-strip
+> in `lib/catalog_codes.py` hede normalisation — deferred (one occurrence, low value).
+
 ## 2026-06-28 — B1 over-union cleanup (group D / Pattern B), 8 of 8 COMPLETE
 
 > **UNPUSHED** — pushing pending «пуш». New commits this session on top of the
