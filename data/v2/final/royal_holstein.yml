@@ -32405,26 +32405,40 @@ coins:
   kind: kurant
   nominal: 1 Skilling Rigsmønt
   ruler: Frederik VII.
-  issuing_entity: royal_holstein
+  mintmaster: null
+  issuing_entity:
+  - danish_realm
+  - royal_holstein
   fraction: 1/96
-  id: unified-dk-hede-f7h16b
+  id: unified-dk-hede-f7h16a
   year_first: 1856
   year_last: 1863
   year_ranges:
   - - 1856
+    - 1856
+  - - 1860
+    - 1860
+  - - 1863
     - 1863
-  year_label: 1856-1863
+  year_label: 1856, 1860, 1863
   mint:
   - Altona
   - Kopenhagen
   catalog:
     km: '763'
-    hede: 16B
+    hede:
+    - '16'
+    - 16A
+    - 16B
     hede_volume: f7h
     schou:
     - '1'
+    - '3'
+    - '6'
     - '7'
-    sieg: '9.2'
+    sieg:
+    - '9.1'
+    - '9.2'
     numista: '5210'
   metal: bronze
   metal_verified: true
@@ -32436,15 +32450,28 @@ coins:
   weight_rough_g:
   - value: 3.8
     source: numista
+  - value: 3.8
+    source: ucoin
   - value: 3.897
     source: hede
   diameter_mm:
   - value: 21.5
     source: numista
+  - value: 21.5
+    source: ucoin
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65998
+    ref: NumisMaster
+  - type: literature
     url: https://www.danskmoent.dk/fr/f7h16.htm
-    ref: danskmoent.dk (Hede f7h16B)
+    ref: danskmoent.dk (Hede f7h16A)
+  - type: literature
+    url: https://en.numista.com/5210
+    ref: Numista N#5210 — 1 Skilling Rigsmønt - Frederik VII
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-skilling-rigsmont-1856-1863/?tid=70685
+    ref: ucoin
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/159763
     ref: KMM 159763 (Inv. FP 3931.137)
@@ -32453,30 +32480,52 @@ coins:
     ref: KMM 159769 (Inv. FP 3931.138)
     display: false
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/159775
+    ref: KMM 159775 (Inv. FP 3931.135)
+    display: false
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/159777
     ref: KMM 159777 (Inv. FP 3931.136)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/161236
+    ref: KMM 161236 (Inv. FP 4406.2)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/298426
+    ref: KMM 298426 (Inv. FP 10291.9)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/334025
+    ref: KMM 334025 (Inv. GP 4581.9)
     display: false
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/429750
     ref: KMM 429750 (Inv. FP 10566.9)
     display: false
-  - type: literature
-    url: https://en.numista.com/5210
-    ref: Numista N#5210 — 1 Skilling Rigsmønt - Frederik VII
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/734529
+    ref: KMM 734529 (Inv. FP 12773.10)
+    display: false
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/746412
+    ref: KMM 746412 (Inv. FP 13025.55)
+    display: false
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
       danskmoent.dk.'
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
-  - unified-dk-hede-f7h16b
+  - unified-dk-hede-f7h16a
 - fuss: seed_unsorted
   phase: hede
   kind: kurant
   nominal: ½ Skilling Rigsmønt
   ruler: Frederik VII.
-  issuing_entity: royal_holstein
-  id: unified-dk-hede-f7h17b
+  issuing_entity:
+  - danish_realm
+  - royal_holstein
+  id: unified-dk-hede-f7h17a
   year_first: 1857
   year_last: 1857
   year_label: '1857'
@@ -32485,10 +32534,17 @@ coins:
   - Kopenhagen
   catalog:
     km: '767'
-    hede: 17B
+    hede:
+    - '17'
+    - 17A
+    - 17B
     hede_volume: f7h
-    schou: '6'
-    sieg: '8.2'
+    schou:
+    - '5'
+    - '6'
+    sieg:
+    - '8.1'
+    - '8.2'
     numista: '40131'
   metal: bronze
   metal_verified: true
@@ -32499,26 +32555,41 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.9
+    source: numismaster
+  - value: 1.9
     source: numista
+  - value: 1.9
+    source: ucoin
   - value: 1.949
     source: hede
   diameter_mm:
   - value: 15.6
     source: numista
+  - value: 15.6
+    source: ucoin
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65986
+    ref: NumisMaster
+  - type: literature
     url: https://www.danskmoent.dk/fr/f7h17.htm
-    ref: danskmoent.dk (Hede f7h17B)
+    ref: danskmoent.dk (Hede f7h17A)
   - type: literature
     url: https://en.numista.com/40131
     ref: Numista N#40131 — ½ Skilling Rigsmønt - Frederik VII
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-skilling-rigsmont-1857/?tid=70682
+    ref: ucoin
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/334026
+    ref: KMM 334026 (Inv. GP 4581.8)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
       danskmoent.dk.'
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
-  - unified-dk-hede-f7h17b
+  - unified-dk-hede-f7h17a
 - fuss: pistolenfuss
   phase: I
   kind: kurant

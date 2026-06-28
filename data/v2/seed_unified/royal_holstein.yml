@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-06-28 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-29 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1671 per-source seed entries.
+# Input: 1684 per-source seed entries.
 # Output: 960 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-06-28'
+generated_at: '2026-06-29'
 coins:
 - id: unified-denmark-numismaster-65623
   fuss: seed_unsorted
@@ -11734,7 +11734,7 @@ coins:
   - dk-bruun-8228
   - dk-hede-f7h11a
   - dk-numista-10231
-- id: unified-dk-hede-f7h16b
+- id: unified-dk-hede-f7h16a
   fuss: seed_unsorted
   phase: hede
   kind: kurant
@@ -11743,20 +11743,32 @@ coins:
   year_last: 1863
   year_ranges:
   - - 1856
+    - 1856
+  - - 1860
+    - 1860
+  - - 1863
     - 1863
-  year_label: 1856-1863
+  year_label: 1856, 1860, 1863
   ruler: Frederik VII.
+  mintmaster: Altona
   mint:
   - Altona
   - Kopenhagen
   catalog:
     km: '763'
-    hede: 16B
+    hede:
+    - '16'
+    - 16A
+    - 16B
     hede_volume: f7h
     schou:
     - '1'
+    - '3'
+    - '6'
     - '7'
-    sieg: '9.2'
+    sieg:
+    - '9.1'
+    - '9.2'
     numista: '5210'
   metal: bronze
   metal_verified: true
@@ -11768,18 +11780,28 @@ coins:
   weight_rough_g:
   - value: 3.8
     source: numista
+  - value: 3.8
+    source: ucoin
   - value: 3.897
     source: hede
   diameter_mm:
   - value: 21.5
     source: numista
+  - value: 21.5
+    source: ucoin
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65998
+    ref: NumisMaster
+  - type: literature
     url: https://www.danskmoent.dk/fr/f7h16.htm
-    ref: danskmoent.dk (Hede f7h16B)
+    ref: danskmoent.dk (Hede f7h16A)
   - type: literature
     url: https://en.numista.com/5210
     ref: Numista N#5210 — 1 Skilling Rigsmønt - Frederik VII
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-skilling-rigsmont-1856-1863/?tid=70685
+    ref: ucoin
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/159763
     ref: KMM 159763 (Inv. FP 3931.137)
@@ -11787,25 +11809,54 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/159769
     ref: KMM 159769 (Inv. FP 3931.138)
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/159775
+    ref: KMM 159775 (Inv. FP 3931.135)
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/159777
     ref: KMM 159777 (Inv. FP 3931.136)
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/161236
+    ref: KMM 161236 (Inv. FP 4406.2)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/298426
+    ref: KMM 298426 (Inv. FP 10291.9)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/334025
+    ref: KMM 334025 (Inv. GP 4581.9)
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/429750
     ref: KMM 429750 (Inv. FP 10566.9)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/734529
+    ref: KMM 734529 (Inv. FP 12773.10)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/746412
+    ref: KMM 746412 (Inv. FP 13025.55)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
       danskmoent.dk.'
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  issuing_entity: royal_holstein
+  issuing_entity:
+  - danish_realm
+  - royal_holstein
   composed_of:
+  - denmark-numismaster-65998
+  - dk-hede-f7h16a
   - dk-hede-f7h16b
   - dk-numista-5210
+  - dk-tid-70685
   - kmk-159763
   - kmk-159769
+  - kmk-159775
   - kmk-159777
+  - kmk-161236
+  - kmk-298426
+  - kmk-334025
   - kmk-429750
-- id: unified-dk-hede-f7h17b
+  - kmk-734529
+  - kmk-746412
+- id: unified-dk-hede-f7h17a
   fuss: seed_unsorted
   phase: hede
   kind: kurant
@@ -11819,10 +11870,17 @@ coins:
   - Kopenhagen
   catalog:
     km: '767'
-    hede: 17B
+    hede:
+    - '17'
+    - 17A
+    - 17B
     hede_volume: f7h
-    schou: '6'
-    sieg: '8.2'
+    schou:
+    - '5'
+    - '6'
+    sieg:
+    - '8.1'
+    - '8.2'
     numista: '40131'
   metal: bronze
   metal_verified: true
@@ -11833,28 +11891,49 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.9
+    source: numismaster
+  - value: 1.9
     source: numista
+  - value: 1.9
+    source: ucoin
   - value: 1.949
     source: hede
   diameter_mm:
   - value: 15.6
     source: numista
+  - value: 15.6
+    source: ucoin
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65986
+    ref: NumisMaster
+  - type: literature
     url: https://www.danskmoent.dk/fr/f7h17.htm
-    ref: danskmoent.dk (Hede f7h17B)
+    ref: danskmoent.dk (Hede f7h17A)
   - type: literature
     url: https://en.numista.com/40131
     ref: Numista N#40131 — ½ Skilling Rigsmønt - Frederik VII
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-skilling-rigsmont-1857/?tid=70682
+    ref: ucoin
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/334026
+    ref: KMM 334026 (Inv. GP 4581.8)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
       danskmoent.dk.'
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  issuing_entity: royal_holstein
+  issuing_entity:
+  - danish_realm
+  - royal_holstein
   composed_of:
+  - denmark-numismaster-65986
+  - dk-hede-f7h17a
   - dk-hede-f7h17b
   - dk-numista-40131
+  - dk-tid-70682
+  - kmk-334026
 - id: unified-dk-hede-f7h1b
   fuss: seed_unsorted
   phase: hede
