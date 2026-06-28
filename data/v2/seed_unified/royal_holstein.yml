@@ -2,7 +2,7 @@
 # Generated 2026-06-28 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1669 per-source seed entries.
+# Input: 1671 per-source seed entries.
 # Output: 968 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -6413,6 +6413,7 @@ coins:
   year_last: 1788
   year_label: '1788'
   ruler: Christian VII.
+  mintmaster: Michael Flor
   mint: Altona
   catalog:
     km: '645'
@@ -6421,8 +6422,15 @@ coins:
     schou:
     - '7'
     - 7a
-    sieg: '26'
+    sieg:
+    - '19'
+    - '26'
     fr: '6'
+    bruun_collection_id: '7893'
+    nmd: '1'
+    bruun_part: II
+    bruun_lot_no: 13248
+    bruun_page: 171
     numista: '325285'
     dav: EC III 1312
   metal: silver
@@ -6436,16 +6444,28 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
+    source: numismaster
+  - value: 0.875
     source: numista
   weight_rough_g:
+  - value: 23.58
+    source: bruun
   - value: 23.582
     source: hede
+  - value: 23.582
+    source: numismaster
   - value: 23.62
     source: numista
   diameter_mm:
   - value: 39.0
     source: numista
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65496
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13248, p. 171
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h25.htm
     ref: danskmoent.dk (Hede c7h25)
@@ -6464,6 +6484,8 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
+  - denmark-numismaster-65496
+  - dk-bruun-7893
   - dk-hede-c7h25
   - dk-numista-325285
 - id: unified-dk-hede-c7h26a

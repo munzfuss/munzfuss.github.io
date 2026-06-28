@@ -163,3 +163,9 @@ merges:
       - kmk-317587
       - kmk-317588
     reason: 'Curator 2026-06-28: c7h13 «1 Speciedaler» Christian VII 1795-1801 (Altona+Kopenhagen) is ONE coin = Hede 13, catalogued in two Krause volumes — KM 651 (Schleswig-Holstein/German volume, royal_holstein) and KM 654 (Denmark volume, danish_realm km-654/bruun-7940). The DK-volume cluster was bucketed into danish_realm; pull it into royal_holstein (the SH∩Denmark overlap home, so the coin renders on both pages) and union with the Hede-13 cluster. Final keeps the KM provenance split via dict-form km {sh:[651,651.1], dk:[654]} so the two Krause traditions are not conflated (as c5h125).'
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-c7h25
+      - denmark-numismaster-65496
+      - dk-bruun-7893
+    reason: "Curator 2026-06-28 (B2): c7h25 «1 Kurantdaler / 1 Rigsdaler Courant» Christian VII 1788, struck at Altona for Crown Prince Frederik's Norway travel — ONE coin = Hede 25 = KM 645, the same Bruun Part II lot 13248 and Numista N#325285 cited by both finals. Currently split as km-645 (royal_holstein, from the Hede seed) and unified-dk-bruun-7893 (danish_realm, bruun+numismaster). Pull the danish_realm pair into royal_holstein and force-union with the Hede-25 seed; mint=Altona alone derives issuing_entity=royal_holstein, the SH∩Denmark overlap home, so it renders on both pages (denmark consumes royal_holstein ≤1864). The two catalogues disagree on Sieg — danskmoent/Hede attests «Sieg 26», Stack's Bowers/Bruun lot 13248 attests «Sieg-19»; both are source-verified, so the union keeps sieg=[19, 26] per §9a (trust the sources)."

@@ -1641,7 +1641,9 @@ coins:
   catalog:
     km: '645'
     hede: '25'
-    sieg: '26'
+    sieg:
+    - '19'
+    - '26'
     numista: '325285'
     bruun_collection_id: '7893'
     bruun_part: II
@@ -1653,6 +1655,7 @@ coins:
     - 7a
     fr: '6'
     dav: EC III 1312
+    nmd: '1'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -1665,11 +1668,17 @@ coins:
     source: hede
   - value: 0.875
     source: numista
+  - value: 0.875
+    source: numismaster
   weight_rough_g:
   - value: 23.582
     source: hede
   - value: 23.62
     source: numista
+  - value: 23.58
+    source: bruun
+  - value: 23.582
+    source: numismaster
   diameter_mm:
   - value: 39.0
     source: numista
@@ -1683,6 +1692,9 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13248, p. 171
+  - type: literature
+    url: https://numismaster.com/MC_65496
+    ref: NumisMaster
   note:
     de: '«1 · RIGSDALER COUR: / 17 M·F 88» · Reverse norwegischer Löwe mit Hellebarde · Obverse «CHRISTIAN DEN VII · DANMARKS
       OG NORGES KONGE» · Münzmeister Michael Flor (MF) · Sonderprägung zur Royal Visit; reguläre Kurantdaler 1731–1788 wurden
