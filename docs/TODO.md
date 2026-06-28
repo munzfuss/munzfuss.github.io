@@ -3355,6 +3355,18 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 
 ---
 
+### CH. 🟢 Single-foundation re-absorb — re-derive ONE final's enriched fields via canonical union logic, no full-entity drift  *(opened 2026-06-28)* *(est: medium)* *(type: pipeline + tooling)*
+
+**Problem.** Manual final reconciliation after a merger run hand-copies fields from the seed_unified cluster (`final.sources = cluster.sources`, plus weights / catalog). That REPLACE path drops final-level citations the cluster doesn't re-attest — caught 2026-06-28: c7h13 lost the SOLE source for KM 651.1 (Bruun Part III, lot 11295); a project-wide sweep then healed 5 finals (`e7185b4`). Curators reach for hand-copy because the *correct* path — full-entity `absorb_seeds_into_final_v2.py --apply` — triggers the +20 stale-foundation-purge / monotonic-guard churn across OTHER entries, so it's deliberately avoided.
+
+**Root-cause fix.** A targeted **single-foundation re-absorb**: given one final foundation id, re-derive its union-able enriched fields (`sources`, `weight_rough_g`, `fineness`, `diameter_mm`, `catalog`, `year_ranges`) from its `composed_of` members using the SAME `_enrich_final_entry` / `_collect_sources` / `_collect_field_list` / `_deep_merge_catalog` logic the absorb already uses — WITHOUT running the full-entity pipeline (no stale-foundation purge, no self-foundation fold, no monotonic re-promote, no cross-entry churn). Then curators stop hand-writing `field = cluster.field` and invoke the canonical union path point-wise → the lost-citation class becomes structurally impossible, not merely caught after the fact.
+
+**Design considerations.** Extract the per-foundation enrich path out of `process_entity` in `scripts/maintenance/absorb_seeds_into_final_v2.py` (enrichment currently runs inside the full-entity loop interleaved with the purge / monotonic steps). The standalone entry must: (a) NOT fire stale-foundation purge / self-foundation fold / monotonic guard; (b) preserve curator-immutable fields (`fuss`/`phase`/`kind`/`nominal`/`ruler`/`note`) — only re-derive the union-able measurement/source/catalog fields; (c) honour `_curation_holds`. CLI shape e.g. `absorb_seeds_into_final_v2.py --reconcile-foundation <id>`. Pair it with a note in `docs/PLAYBOOKS.md` so the per-case merge/split procedures call it instead of hand-copying.
+
+**Gate / why deferred.** NOT blocking — the post-hoc guards already landed (`a90675d`): pre-commit Check 6 runs `audit_lost_citations.py` (hard-block on staged `data/v2/final/*.yml`), CLAUDE.md §9a carries the «reconciliation NEVER replaces sources — always UNION» rule, and the detector/healer ships as `scripts/maintenance/audit_lost_citations.py`. This entry is the **root-cause elimination** (turns «don't forget to union» into «can't not union»); build it when the per-case merge/split workflow is next touched. Reference: lost-citation 3-layer prevention analysis (handoff 2026-06-28).
+
+---
+
 ## Low priority
 
 ### CU. 🔵 Year-union should downweight reign-window placeholder members  *(opened 2026-06-15)* *(est: medium)* *(type: pipeline-rule + regression-test)*
