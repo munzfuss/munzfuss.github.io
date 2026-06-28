@@ -15,7 +15,7 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
-## 2026-06-28 — B1 over-union cleanup (group D / Pattern B), 5 of 8 done
+## 2026-06-28 — B1 over-union cleanup (group D / Pattern B), 6 of 8 done
 
 > **UNPUSHED** — pushing pending «пуш». New commits this session on top of the
 > 2026-06-27 batch: c4h105 `dce7296`, c4h92 `7a7534a`, c5h67+c5h31 `5dfee7e`
@@ -46,7 +46,9 @@
 >   `{dk:[77,77.1,77.2,83], sh:[108,110,114]}` (KM-DK# on denmark, KM-SH# on SH; note
 >   documents both). Folded km-108/110/114 finals.
 >
-> **REMAINING B1 (3 — complex splits), user-confirmed, plans ready:**
+> **DONE (committed):** c9h1 (`6058712`) — split «2 Christian d'Or» by reign: Chr VIII/KM 722/Hede c8h1 (1841-1847) vs Chr IX/KM 773/Hede c9h1 (1866-1870); ruler fixed (source error danskmoent c9h1.htm desc says Chr 8). NB Chr IX inherits phase I — review.
+>
+> **REMAINING B1 (2 — complex splits), user-confirmed, plans ready:**
 > - **c7h13** «1 Speciedaler» Chr VII 1795-1801 (royal_holstein) — Hede 13 = KM 651 +
 >   KM 654 (merge). BUT **Numista 131730 = KM 640 is a DIFFERENT coin (over-merge)**
 >   inside the c7h13a cluster — split it OUT to its own row. Split-mixed-cluster shape
