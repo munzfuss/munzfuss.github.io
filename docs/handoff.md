@@ -15,7 +15,7 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
-## 2026-06-28 — B1 over-union cleanup (group D / Pattern B), 6 of 8 done
+## 2026-06-28 — B1 over-union cleanup (group D / Pattern B), 8 of 8 COMPLETE
 
 > **UNPUSHED** — pushing pending «пуш». New commits this session on top of the
 > 2026-06-27 batch: c4h105 `dce7296`, c4h92 `7a7534a`, c5h67+c5h31 `5dfee7e`
