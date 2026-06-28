@@ -177,4 +177,31 @@ if [ -n "$DECISIONS_RELEVANT" ]; then
     echo "  ${C_GREEN}✓${C_RST} decision files structurally valid"
 fi
 
+# ---------------------------------------------------------------------------
+# Check 6: Lost-citation audit (hard block)
+# ---------------------------------------------------------------------------
+# A manual final reconciliation that sets `final.sources = cluster.sources`
+# (REPLACE) instead of unioning silently drops final-level citations the entry
+# carried from an earlier fold (caught 2026-06-28: c7h13 lost the SOLE source
+# for KM 651.1). The normal absorb path unions correctly; this guards the
+# hand-written path. Runs when the commit touches a final yaml.
+
+FINAL_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/final/.*\.yml$' || true)
+
+if [ -n "$FINAL_RELEVANT" ]; then
+    echo "▶ Lost-citation audit..."
+    CIT_LOG=$(mktemp -t precommit-citations.XXXXXX)
+    if ! "$PYTHON" scripts/maintenance/audit_lost_citations.py > "$CIT_LOG" 2>&1; then
+        echo "${C_RED}✗ Lost-citation audit FAILED — a final dropped member-source citations.${C_RST}"
+        tail -20 "$CIT_LOG" | sed 's/^/    /'
+        echo
+        echo "A reconciliation replaced sources instead of unioning. Heal with:"
+        echo "    $PYTHON scripts/maintenance/audit_lost_citations.py --apply"
+        echo "or bypass with: git commit --no-verify"
+        exit 1
+    fi
+    rm -f "$CIT_LOG"
+    echo "  ${C_GREEN}✓${C_RST} no lost source citations"
+fi
+
 echo "${C_DIM}pre-commit: checks complete${C_RST}"
