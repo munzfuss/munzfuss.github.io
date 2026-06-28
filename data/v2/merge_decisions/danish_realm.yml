@@ -473,6 +473,15 @@ merges:
       - dk-hede-c4h92b
       - dk-hede-c4h92a
     reason: "Curator 2026-06-28: c4h92 «1 Mark» Christian IV — Hede 92 = KM 33 (Hede 92A 1606 + 92B 1607; danskmoent c4h92 + Hede authoritative). The Hede-catalogue seed dk-hede-c4h92a (Hede 92A, no KM) auto-merged into the KM-12a cluster (numismaster/numista-55302/ucoin) instead of the KM-33 cluster where Bruun's dk-bruun-4705 already attests KM 33.1 = Hede 92A. Force-merge dk-hede-c4h92a + the two KM-33 sub-clusters (unified-dk-bruun-4705 KM33.1/92A + unified-dk-hede-c4h92b KM33.2/92B) into one Hede-92 = KM-33 entity. KM 12a (Numista 55302, no Hede) is a SEPARATE Krause type per §9.4 and stays its own entity (see paired no_merges blocking dk-hede-c4h92a from the KM-12 records)."
+  - members:
+      - dk-hede-c5h67a
+      - dk-hede-c5h67b
+    reason: 'Curator 2026-06-28: c5h67 «1 Krone» Christian V — Hede 67 is ONE type, two variants: 67A (KM 330, 1671-1680) + 67B (KM 370, 1681-1682). Hede groups both under 67 despite different KM. Merge + accumulate KM [330, 370] per §9.'
+  - members:
+      - dk-bruun-7061
+      - dk-bruun-7118
+      - dk-hede-c5h31a
+    reason: 'Curator 2026-06-28: c5h31 «1 Dukat» Christian V — Hede 31. KM 415 = Hede 31 (415.1=31A, 415.3=31C); KM 412 corresponds to a Hede-31 sub-variant (31A/31B). Merge the three clusters into one Hede-31 entity; accumulate KM [412, 415] per §9.'
 no_merges:
   - members:
       - dk-hede-c5h57
