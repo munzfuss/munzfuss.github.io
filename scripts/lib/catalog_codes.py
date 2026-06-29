@@ -458,12 +458,32 @@ def _canonicalise_aagaard(catalog: dict) -> int:
 
     raw_vals: list[str] = []
 
+    def _clean_aagaard_value(v) -> "str | None":
+        """Normalise one Aagaard value. Returns the cleaned value, or None to
+        DROP it. Two operations:
+          • drop a slash-truncated REMNANT — a value with more «)» than «(» is
+            the orphan tail of «62.1 (68-1/68-2)» severed by an earlier
+            «/»-as-«and» split («68-2)», «49.1)»); never a real catalogue ref.
+          • canonicalise the die-separator to a HYPHEN inside the parenthetical
+            only. «.» and «-» are interchangeable in Aagaard die refs (proven by
+            «62.1/63-1» mixing both within one ref); hyphen is the source-dominant
+            form. The LEADING catalogue number keeps its dot: «62.1 (68.1/68.1)»
+            → «62.1 (68-1/68-1)»."""
+        s = str(v).strip()
+        if not s or s.count(")") > s.count("("):
+            return None
+        return re.sub(
+            r"\(([^)]*)\)",
+            lambda m: "(" + re.sub(r"(\d)\.(\d)", r"\1-\2", m.group(1)) + ")",
+            s)
+
     typed = catalog.pop("aagaard", None)
     typed_present = typed is not None
     if typed_present:
         for v in (typed if isinstance(typed, list) else [typed]):
-            if v is not None and str(v).strip():
-                raw_vals.append(str(v).strip())
+            cv = _clean_aagaard_value(v)
+            if cv:
+                raw_vals.append(cv)
 
     others = catalog.get("others")
     others = others if isinstance(others, list) else []
@@ -472,12 +492,16 @@ def _canonicalise_aagaard(catalog: dict) -> int:
         m = _is_aagaard(tok)
         if m:
             found_in_others = True
-            val = m.group(1).strip()
-            if val:
-                raw_vals.append(val)
+            cv = _clean_aagaard_value(m.group(1))
+            if cv:
+                raw_vals.append(cv)
 
-    if not raw_vals:
-        return 1 if typed_present else 0
+    # Nothing Aagaard-shaped anywhere → no-op. If Aagaard tokens DID exist but
+    # all were slash-truncated remnants (raw_vals now empty), fall through to
+    # the rewrite so those remnant tokens are still stripped from `others`
+    # (`canonical` is empty → they just disappear).
+    if not (typed_present or found_in_others):
+        return 0
 
     # Group by catalogue number; keep the fullest representation per number.
     best: dict[str, str] = {}

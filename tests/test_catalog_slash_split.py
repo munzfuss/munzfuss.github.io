@@ -113,5 +113,52 @@ class TestMergerMatchingSide(unittest.TestCase):
         self.assertEqual(refs.get("sieg"), "125A|125B")
 
 
+class TestAagaardDieRefs(unittest.TestCase):
+    """Aagaard die-combination refs «62.1 (68-1/68-2)» — the «/» lives INSIDE a
+    parenthetical and must NOT be split into a typed field. `_canonicalise_aagaard`
+    keeps Aagaard solely in `others`, drops slash-truncated remnants, and
+    canonicalises the die separator to a hyphen (dot ≡ hyphen, hyphen dominant).
+    The leading catalogue number keeps its dot."""
+
+    def test_remnant_dropped_and_dies_hyphenated(self):
+        # The 18-Mark/Hede-46 real case: full token + «/»-split remnants.
+        cat = {"others": [
+            "Aagaard# 62.1 (68.1/68.1)", "Aagaard# 68.1)",
+            "Aagaard# 62.1 (68-1/68-2)", "Aagaard# 68-2)"]}
+        normalise_catalog(cat)
+        # one canonical token per catalogue number, hyphen dies, no remnants
+        self.assertEqual(cat.get("others"), ["Aagaard# 62.1 (68-1/68-1)"])
+        self.assertNotIn("aagaard", cat)
+
+    def test_dot_die_separator_canonicalised_to_hyphen(self):
+        cat = {"others": ["Aagaard# 62.1 (68.1/68.1)"]}
+        normalise_catalog(cat)
+        self.assertEqual(cat.get("others"), ["Aagaard# 62.1 (68-1/68-1)"])
+
+    def test_leading_catalogue_number_keeps_dot(self):
+        # mixed within one ref proves dot≡hyphen; only the parenthetical dies
+        # are hyphenated, the leading «97.2» catalogue number keeps its dot.
+        cat = {"others": ["Aagaard# 97.2 (62.1/63-1)"]}
+        normalise_catalog(cat)
+        self.assertEqual(cat.get("others"), ["Aagaard# 97.2 (62-1/63-1)"])
+
+    def test_remnant_only_is_dropped_entirely(self):
+        cat = {"others": ["Aagaard# 49.1)"]}
+        normalise_catalog(cat)
+        self.assertIsNone(cat.get("others"))
+
+    def test_non_aagaard_others_untouched(self):
+        cat = {"others": ["Pn# A12", "Lott# 5"]}
+        normalise_catalog(cat)
+        self.assertEqual(cat.get("others"), ["Pn# A12", "Lott# 5"])
+
+    def test_idempotent(self):
+        cat = {"others": ["Aagaard# 62.1 (68-1/68-2)"]}
+        normalise_catalog(cat)
+        once = [list(cat.get("others"))]
+        normalise_catalog(cat)
+        self.assertEqual(cat.get("others"), once[0])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
