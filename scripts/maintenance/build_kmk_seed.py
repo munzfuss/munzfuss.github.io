@@ -212,6 +212,13 @@ _KMM_YEAR_ERRATA = {
     # reign 1766-1808 — 1874 is impossible). The Hede sibling (c7h33c) attests
     # 1784-1785; drop the typo → yearFrom 1784. Curator-confirmed 2026-06-12.
     "122089": (1784, 1784),
+    # «1619»: yearFrom==yearTo==1619 is a KMM transcription error. This specimen
+    # is typeNumber «H114A» = Hede 114A (8 Kroneskilling, KM 82), and Hede 114A is
+    # dated 1620-1621 (danskmoent.dk/chr/c4h114.htm) — 1619 is impossible for the
+    # type. The 1619 8-Skilling is the visually-near Hede 110A (KM 71), a DIFFERENT
+    # coin. Curator read the specimen's reverse legend «16Z0» = 1620 → true year
+    # 1620. Curator-confirmed 2026-06-29 (Serhii).
+    "714958": (1620, 1620),
 }
 
 
