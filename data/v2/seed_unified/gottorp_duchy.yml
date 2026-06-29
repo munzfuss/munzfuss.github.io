@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 537 per-source seed entries.
-# Output: 380 unified entries (one per physical coin).
+# Output: 381 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -4696,29 +4696,19 @@ coins:
   kind: kurant
   nominal: 1 Thaler
   year_first: 1611
-  year_last: 1615
-  year_ranges:
-  - - 1611
-    - 1612
-  - - 1614
-    - 1615
-  year_label: 1611-1612, 1614-1615
+  year_last: 1611
+  year_label: '1611'
   ruler: John Adolphus
   mint: Steinbek
   catalog:
-    km:
-    - '35'
-    - '33'
+    km: '35'
     numista:
     - '313301'
     - '313303'
     lange:
     - '271'
     - 271d
-    - 274b
-    dav:
-    - EC II 3690
-    - EC II 3688
+    dav: EC II 3690
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -4727,8 +4717,6 @@ coins:
   mint_verified: true
   verified: false
   weight_rough_g:
-  - value: 28.76
-    source: kmk
   - value: 28.77
     source: numista
   sources:
@@ -4738,12 +4726,6 @@ coins:
   - type: literature
     url: https://en.numista.com/313303
     ref: Numista N#313303 — 1 Thaler - John Adolphus
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/348805
-    ref: KMM 348805 (Inv. FP 5396.5)
-  - type: literature
-    url: https://numismaster.com/MC_99444
-    ref: NumisMaster
   - type: literature
     url: https://numismaster.com/MC_99446
     ref: NumisMaster
@@ -4761,8 +4743,6 @@ coins:
   composed_of:
   - dk-numista-313301
   - dk-numista-313303
-  - kmk-348805
-  - schleswig_holstein-numismaster-99444
   - schleswig_holstein-numismaster-99446
 - id: unified-dk-numista-313340
   fuss: seed_unsorted
@@ -7362,6 +7342,40 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - kmk-348804
+- id: unified-kmk-348805
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Daler
+  year_first: 1614
+  year_last: 1614
+  year_label: '1614'
+  ruler: Hertug Johan Adolf
+  catalog:
+    km: '41'
+    lange: 274b
+    dav: '3692'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.76
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/348805
+    ref: KMM 348805 (Inv. FP 5396.5)
+  - type: literature
+    url: https://numismaster.com/MC_99448
+    ref: NumisMaster
+  verification_note: *id001
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - kmk-348805
+  - schleswig_holstein-numismaster-99448
 - id: unified-kmk-349193
   fuss: seed_unsorted
   phase: kmk
@@ -12197,6 +12211,43 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - schleswig_holstein-numismaster-99442
+- id: unified-schleswig_holstein-numismaster-99444
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1611
+  year_last: 1615
+  year_ranges:
+  - - 1611
+    - 1612
+  - - 1615
+    - 1615
+  year_label: 1611-1612, 1615
+  ruler: Johann Adolf
+  catalog:
+    km: '33'
+    dav: '3688'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_99444
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - schleswig_holstein-numismaster-99444
 - id: unified-schleswig_holstein-numismaster-99447
   fuss: seed_unsorted
   phase: numismaster
@@ -12229,38 +12280,6 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - schleswig_holstein-numismaster-99447
-- id: unified-schleswig_holstein-numismaster-99448
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1614
-  year_last: 1614
-  year_label: '1614'
-  ruler: Johann Adolf
-  catalog:
-    km: '41'
-    dav: '3692'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_99448
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: gottorp_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-99448
 - id: unified-schleswig_holstein-numismaster-99449
   fuss: seed_unsorted
   phase: numismaster

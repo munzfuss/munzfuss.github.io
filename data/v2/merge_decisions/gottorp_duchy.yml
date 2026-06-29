@@ -16,24 +16,21 @@ year_demote:
       peer Galster 122 (1531, year_verified=true) drives the displayed year;
       the undated Bruun range must not widen it to 1523-1533. Last-resort only.
 
-merges:
-  - members:
-      - dk-numista-313301              # KM 35, Lange 271, Dav EC II 3690 (1611)
-      - dk-numista-313303              # Lange 271d (1611) — no own KM/Dav
-      - schleswig_holstein-numismaster-99446  # KM 35, Dav 3690 (1611)
-      - schleswig_holstein-numismaster-99444  # KM 33, Dav 3688 (1611-1612, 1615)
-      - kmk-348805                     # KMM specimen, Lange 274b, 1 Daler (1614), 28.76 g
+no_merges:
+  # Gottorp John Adolphus / Frederik III Thaler cluster — THREE distinct coins
+  # (curator 2026-06-29, corrects an earlier over-merge that fused all three):
+  #   Coin 1: KM 35, Lange 271/271d, Dav EC II 3690 — {313301, 313303, 99446}
+  #   Coin 2: KM 33, Dav EC II 3688 (1611-1612, 1615) — {99444}
+  #   Coin 3: Lange 274b, 1 Daler Johan Adolf 1614 — {kmk-348805} (a Johan-Adolf
+  #           member of the Lange-274 series whose Frederik-III sibling 274e = KM 78).
+  # The auto-matcher separates Coin 1 from both others on catalogue conflict
+  # (KM 35≠33 / Dav 3690≠3688, and Lange 271≠274). It WRONGLY fused Coin 2 and
+  # Coin 3 because they share no overlapping index to disagree on (KM 33 / Dav
+  # 3688 vs Lange 274b). Block that single spurious edge:
+  - members: [schleswig_holstein-numismaster-99444, kmk-348805]
     reason: >-
-      Curator 2026-06-29: John Adolphus (Hertug Johan Adolf) 1 Thaler /
-      1 Daler, Steinbek — KM 35 and KM 33 are legitimately sub-types of ONE
-      coin (curator-confirmed). The five records share nominal (1 Thaler /
-      1 Daler), ruler (Johan Adolf), mint (Steinbek) and the ~28.77 g weight
-      band across 1611-1615; their catalogue indices accumulate list-form per
-      §9a: KM [33, 35], Lange [271, 271d, 274b], Dav [EC II 3690, 3688]. The
-      auto-matcher split them into two unified classes — {313301 + 313303 +
-      99446} keyed on Lange-base 271 / KM 35, and {kmk-348805 + 99444} keyed
-      on the KM-33 / Lange-274b group — because no single index spans both
-      sides (the KM-33 records carry no Lange-271 and the Lange-271 records
-      carry no KM 33; the Lange cross-refs are user-edited Numista/NumisMaster
-      data and mutually divergent, 271d vs 274b). Force the union per curator
-      direction: one John Adolphus Thaler type with KM/Lange/Dav sub-variants.
+      KM 33 / Dav EC II 3688 8-Skilling-weight Thaler (NumisMaster MC_99444,
+      1611-1612 + 1615) is NOT the Lange-274b 1 Daler of Johan Adolf 1614 (KMM
+      348805, Lange-274 series, Frederik-III sibling = KM 78 / Lange 274e). No
+      shared catalogue index spans them, so the matcher saw no conflict and
+      fused them — but they are two distinct Gottorp Thaler types. Keep apart.
