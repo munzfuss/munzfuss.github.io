@@ -3466,66 +3466,6 @@ coins:
     uk: 1 Sechsling = 1/96 Thaler · Фредерік III (король Данії, Глюкштадт), 1658-1660
   composed_of: []
   v1_home_location: schleswig_holstein
-- fuss: kronemont
-  phase: I
-  kind: tarif
-  fraction: '1'
-  nominal: 4 Marck Danske
-  ruler: Frederik III.
-  mintmaster: Jacob Schwieger (IS)
-  issuing_entity: royal_holstein
-  id: km-95-fr-iii-dk-1659
-  year_first: 1659
-  year_last: 1660
-  year_ranges:
-  - - 1659
-    - 1660
-  year_label: 1659-1660
-  mint: Glückstadt
-  catalog:
-    km: '95'
-    numista: '313341'
-    hede_volume: f3h
-    hede: 153 A
-    sieg: '153.1'
-    dav: EC II 3675
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 21.94
-    source: numista
-  sources:
-  - type: numista
-    url: https://en.numista.com/catalogue/pieces313341.html
-    ref: Numista
-  - type: web
-    url: https://www.danskmoent.dk/fr/f3h153.htm
-    ref: Hede / danskmoent.dk
-  - type: literature
-    url: https://en.numista.com/313341
-    ref: Numista N#313341 — 1 Krone - Frederick III
-  note:
-    de: 1 Krone = 4 Mark Danske · Frederik III. (Kgr. Dänemark, Glückstadt), 1659-1660
-    en: 1 Krone = 4 Mark Danske · Frederik III of Denmark (Glückstadt mint), 1659-1660
-    uk: 1 Krone = 4 Mark Danske · Фредерік III (король Данії, Глюкштадт), 1659-1660
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-313341
-  v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
   kind: scheide
@@ -11116,7 +11056,7 @@ coins:
       bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
 - fuss: kronemont
   phase: I
-  kind: kurant
+  kind: tarif
   nominal: 4 Mark
   fraction: '1'
   ruler: Frederik III.
@@ -11130,7 +11070,12 @@ coins:
   year_label: 1659-1660
   mint: Glückstadt
   catalog:
-    km: A43
+    km:
+      sh:
+      - '95'
+      dk:
+      - A43
+      - B43
     hede:
     - 153A
     - 153B
@@ -11138,8 +11083,13 @@ coins:
     sieg:
     - '153.1'
     - '153.2'
-    numista: '111284'
-    dav: EC II 3674
+    numista:
+    - '111284'
+    - '111285'
+    - '313341'
+    dav:
+    - EC II 3674
+    - EC II 3675
     schou:
     - 29-36
     - 37-41
@@ -11165,6 +11115,8 @@ coins:
   - value: 21.656
     source: kmk
     display: false
+  - value: 21.94
+    source: numista
   - value: 22.042
     source: kmk
     display: false
@@ -11191,6 +11143,8 @@ coins:
   - value: 22.94
     source: kmk
   diameter_mm:
+  - value: 41.95
+    source: numista
   - value: 42.0
     source: ucoin
   - value: 42.16
@@ -11250,6 +11204,24 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/276489
     ref: KMM 276489 (Inv. FP 4227.1330)
+  - type: literature
+    url: https://en.numista.com/111285
+    ref: Numista N#111285 — 4 Mark Dansk - Frederik III (Type II)
+  - type: literature
+    url: https://en.numista.com/313341
+    ref: Numista N#313341 — 1 Krone - Frederick III
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1659-1660/?tid=163654
+    ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_117987
+    ref: NumisMaster
+  - type: numista
+    url: https://en.numista.com/catalogue/pieces313341.html
+    ref: Numista
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-krone-1653-1661/?tid=97236
+    ref: ucoin tid 97236
   note:
     de: 'Type I (Numista) · «IS»-Initialen Jacob Schwieger (Münzpächter Glückstadt 1644–1660); Obverse großes Königsmonogramm,
       Reverse «IIII · MARCK · DANSKE»; Datum <b>am Schild</b> beidseitig (1 6 — 6 0), umlaufend «DOMINVS P · ROVIDEBIT» =
@@ -14650,118 +14622,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-109450
-- fuss: 9_25_thaler
-  phase: I
-  kind: kurant
-  nominal: 4 Mark Danske
-  ruler: Frederik III.
-  issuing_entity: royal_holstein
-  fraction: '1'
-  id: unified-dk-numista-111285
-  year_first: 1659
-  year_last: 1660
-  year_ranges:
-  - - 1659
-    - 1660
-  year_label: 1659-1660
-  mint: Glückstadt
-  catalog:
-    km: B43
-    numista: '111285'
-    hede: 153A
-    sieg: '153.1'
-    hede_volume: f3h
-    dav: EC II 3675
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.671
-    source: numista
-  - value: 0.671
-    source: ucoin
-  weight_rough_g:
-  - value: 22.27
-    source: ucoin
-  - value: 22.272
-    source: numista
-  diameter_mm:
-  - value: 41.95
-    source: numista
-  - value: 42.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://en.numista.com/111285
-    ref: Numista N#111285 — 4 Mark Dansk - Frederik III (Type II)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1659-1660/?tid=163654
-    ref: ucoin
-  - type: literature
-    url: https://numismaster.com/MC_117987
-    ref: NumisMaster
-  - type: numista
-    url: https://en.numista.com/313341
-    ref: Numista N#313341
-  - type: web
-    url: https://www.danskmoent.dk/1krone.htm
-    ref: danskmoent.dk
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-krone-1653-1661/?tid=97236
-    ref: ucoin tid 97236
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/276474
-    ref: KMM 276474 (Inv. FP 4227.1346)
-    display: false
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/276475
-    ref: KMM 276475 (Inv. FP 4227.1345)
-    display: false
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/276476
-    ref: KMM 276476 (Inv. FP 4227.1344)
-    display: false
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/276482
-    ref: KMM 276482 (Inv. FP 4227.1338)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/276489
-    ref: KMM 276489 (Inv. FP 4227.1330)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/276959
-    ref: KMM 276959 (Inv. FP 4227.1337)
-  note:
-    de: 'Type II (Numista) · weiterhin «IS»-Signatur Jacob Schwiegers; Obverse Königsmonogramm, Reverse «IIII · MARCK · DANSKE»;
-      Datum <b>am Ende der Umschrift</b> «DOMINVS P · ROVIDEBIT 1659» = <b>Hede 153A</b> (Sieg 153.1). Pendant zum Schwesterstück
-      km-x000 (Type I, Hede 153B, Datum am Schild). Numista führt einen weiteren parallelen Eintrag zur selben Davenport-Typologie
-      (Dav EC II# 3675): N#313341 unter «Schleswig-Holstein duchies» (KM# 95) — gleiche Münze, Numista-Duplikatnotierung.
-      Glückstadter Kronen-Fuß wie Type I.'
-    en: 'Type II (Numista) · still the «IS» signature of Jacob Schwieger; obverse a royal monogram, reverse «IIII · MARCK
-      · DANSKE»; date <b>at the end of the legend</b> «DOMINVS P · ROVIDEBIT 1659» = <b>Hede 153A</b> (Sieg 153.1). Sister-piece
-      is km-x000 (Type I, Hede 153B, date at the sides of the shield). Numista carries one further parallel entry for the
-      same Davenport type (Dav EC II# 3675): N#313341 under «Schleswig-Holstein duchies» (KM# 95) — same coin, Numista duplicate.
-      Glückstadt Kronen-Fuß as in Type I.'
-    uk: 'Type II (Numista) · досі підпис «IS» Jacob Schwieger; аверс — королівський монограм, реверс «IIII · MARCK · DANSKE»;
-      дата <b>в кінці легенди</b> «DOMINVS P · ROVIDEBIT 1659» = <b>Hede 153A</b> (Sieg 153.1). Парна монета — km-x000 (Type
-      I, Hede 153B, дата з боків щита). Numista має ще один паралельний запис для тієї самої Davenport-типології (Dav EC II#
-      3675): N#313341 під «Schleswig-Holstein duchies» (KM# 95) — одна монета, дубль у Numista. Ґлюкштатський Kronen-Fuß як
-      у Type I.'
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-111285
 - fuss: seed_unsorted
   phase: numista
   kind: kurant

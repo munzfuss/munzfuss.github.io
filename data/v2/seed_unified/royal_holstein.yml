@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1684 per-source seed entries.
-# Output: 960 unified entries (one per physical coin).
+# Output: 958 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -9673,8 +9673,12 @@ coins:
   ruler: Frederik III.
   mint: Glückstadt
   catalog:
-    km: A43
+    km:
+    - A43
+    - B43
+    - '95'
     hede:
+    - 153 A
     - 153A
     - 153B
     hede_volume: f3h
@@ -9686,8 +9690,13 @@ coins:
     - 37-41
     - 44-65
     - 66-67
-    numista: '111284'
-    dav: EC II 3674
+    numista:
+    - '111284'
+    - '111285'
+    - '313341'
+    dav:
+    - EC II 3674
+    - EC II 3675
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -9703,6 +9712,8 @@ coins:
   - value: 0.671
     source: ucoin
   weight_rough_g:
+  - value: 21.94
+    source: numista
   - value: 22.27
     source: ucoin
   - value: 22.272
@@ -9710,6 +9721,8 @@ coins:
   - value: 22.272
     source: numista
   diameter_mm:
+  - value: 41.95
+    source: numista
   - value: 42.0
     source: ucoin
   - value: 42.16
@@ -9721,14 +9734,26 @@ coins:
   - type: literature
     url: https://en.numista.com/111284
     ref: Numista N#111284 — 4 Mark Dansk - Frederik III (Type I)
+  - type: literature
+    url: https://en.numista.com/111285
+    ref: Numista N#111285 — 4 Mark Dansk - Frederik III (Type II)
+  - type: literature
+    url: https://en.numista.com/313341
+    ref: Numista N#313341 — 1 Krone - Frederick III
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1659-1660/?tid=163653
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1659-1660/?tid=163654
     ref: ucoin
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/156861
     ref: KMM 156861 (Inv. FP 4518.63)
   - type: literature
     url: https://numismaster.com/MC_117986
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_117987
     ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
@@ -9745,9 +9770,13 @@ coins:
   - dk-hede-f3h153a
   - dk-hede-f3h153b
   - dk-numista-111284
+  - dk-numista-111285
+  - dk-numista-313341
   - km-x000-fr-iii-1644
+  - km-x001-fr-iii-1659
   - kmk-156861
   - schleswig_holstein-numismaster-117986
+  - schleswig_holstein-numismaster-117987
 - id: unified-dk-hede-f4h57a
   fuss: seed_unsorted
   phase: hede
@@ -13227,73 +13256,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-109450
-- id: unified-dk-numista-111285
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 4 Mark Danske
-  year_first: 1659
-  year_last: 1660
-  year_ranges:
-  - - 1659
-    - 1660
-  year_label: 1659-1660
-  ruler: Frederick III
-  mint: Glückstadt
-  catalog:
-    km: B43
-    numista: '111285'
-    dav: EC II 3675
-    hede: 153A
-    sieg: '153.1'
-    hede_volume: f3h
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.671
-    source: numista
-  - value: 0.671
-    source: ucoin
-  weight_rough_g:
-  - value: 22.27
-    source: ucoin
-  - value: 22.272
-    source: numista
-  diameter_mm:
-  - value: 41.95
-    source: numista
-  - value: 42.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://en.numista.com/111285
-    ref: Numista N#111285 — 4 Mark Dansk - Frederik III (Type II)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1659-1660/?tid=163654
-    ref: ucoin
-  - type: literature
-    url: https://numismaster.com/MC_117987
-    ref: NumisMaster
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-111285
-  - km-x001-fr-iii-1659
-  - schleswig_holstein-numismaster-117987
 - id: unified-dk-numista-129062
   fuss: seed_unsorted
   phase: numista
@@ -15307,52 +15269,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-313339
-- id: unified-dk-numista-313341
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Krone
-  year_first: 1659
-  year_last: 1660
-  year_ranges:
-  - - 1659
-    - 1660
-  year_label: 1659-1660
-  ruler: Frederick III
-  mint: Glückstadt
-  catalog:
-    km: '95'
-    numista: '313341'
-    hede: 153 A
-    sieg: '153.1'
-    dav: EC II 3675
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 21.94
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/313341
-    ref: Numista N#313341 — 1 Krone - Frederick III
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-313341
 - id: unified-dk-numista-313357
   fuss: seed_unsorted
   phase: numista
