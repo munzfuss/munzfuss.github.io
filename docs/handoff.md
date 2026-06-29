@@ -15,6 +15,68 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-29 (night) — two skills + gottorp over-merge fixed + audit-expansion fix
+
+> **UNPUSHED — 53 commits ahead of origin; push pending «пуш».** Night-work session.
+>
+> **TWO project skills created (first `.claude/skills/`; `.gitignore` un-ignores it).**
+> They are the executable form of the merge/audit procedures — USE THEM going forward:
+> - **`v2-merge-coins`** (`b95cd4d`, corrected `1de7a4c`) — merge/split coins safely.
+>   `merge_helper.py {resolve,graph,audit,scan}`. Two guards: §9.4 over-merge gate
+>   (`graph` → «NO shared base index → STOP») + seed-id resolution (`resolve`). Both
+>   would have prevented this session's two errors. Executable PB-1.
+> - **`v2-audit`** (`1de7a4c`) — read-only pipeline health review; orchestrates
+>   member-resolution + over-merge `scan` + audit_v2 + lost-citation + audit_health.
+> - CLAUDE.md «## Skills» section + pre-commit description updated (this docs commit).
+>
+> **gottorp John-Adolphus Thaler over-merge — MY error, caught by user, fixed (`03acfd5`).**
+> I force-merged 5 seeds into one (`85ac423`) on the «KM 33 + KM 35 one coin» premise;
+> the user spotted it was really THREE coins (KM 35/Lange 271/Dav 3690 · KM 33/Dav 3688 ·
+> KM 41/Lange 274b/Dav 3692 — separated by Krause AND Davenport). Reverted: `no_merge
+> [99444, kmk-348805]`; coin 1 = `km-35-ja-1611` (9_thaler/I, foundation reset to
+> coin-1-only — it had been poisoned to km=[35,33] and was re-grabbing coin 2);
+> coin 2 + coin 3 land in pending (no regression — were pending pre-merge too). **Lesson
+> (now the skill's reason-for-being): an auto/force merge on ruler+nominal+year with NO
+> shared catalogue index is the recurring trap.** coin 3 (`kmk-348805`+`99448` = KM41 ≡
+> Lange 274b) is curator-approved («хай буде 3») but UN-RECORDED — the `scan` flags it;
+> optional cleanup = a force-`merges` decision to document it + stop re-flagging.
+>
+> **The «5 remaining orphans» were a FALSE POSITIVE — averted re-pointing them (`1de7a4c`,
+> `22d7ffc`).** My orphan audit checked exact `member in seed_ids`, so it flagged bare
+> Hede codes (`dk-hede-c4h112`×4, `dk-hede-f5h12`). But the MERGER deliberately expands
+> them (`_expand_member`: dk-hede-c4h112 → c4h112a/c4h112b, grouped so no_merge never
+> blocks the within-coin pair). Re-pointing them to a flat sub-variant list would have
+> BROKEN c4h112a-c4h112b. Fix: validate_decisions `--check-members`, merge_helper `audit`,
+> and audit_v2 I6 now all mirror `_expand_member_against`. **NEVER re-point a bare Hede code.**
+>
+> **Orphan backlog: 7 → 0 for merge-decisions.** `km-305-2-fr-iii-1669` + `km-596-fr-v-1763`
+> (folded V1 final-ids whose Bruun seeds were already members — verified data preserved in
+> f3h121a/f5h38a) DROPPED (`f8272ce`, no-op: merger was already skipping them). The other 5
+> were the false positive (now resolve). Pre-commit member-resolution guard PROMOTED to
+> HARD BLOCK (`22d7ffc`).
+>
+> **audit_v2 I6: 10 → 2.** Fixed false positives (bare-Hede merge members + km-645 which
+> resolves via FINAL-id, now accepted). **2 GENUINE stale classification refs remain
+> (deferred, not blocking — audit_v2 --quick skips I6):**
+> - `km-635-1-chr-vii-1778` (royal_holstein assignment) — no-op (c7h28 is scheide via
+>   foundation independently); re-point coin_id → `unified-dk-hede-c7h28` (zero-risk;
+>   also update the 3 sibling «see km-635» reason refs), OR drop. Needs re-absorb.
+> - `unified-dk-bruun-7893` (danish_realm assignment) — coin cross-entity-moved to
+>   royal_holstein c7h25 (km-645, kurant 11_333/I); DROP the stale danish_realm assignment.
+>   Needs re-absorb danish_realm.
+>
+> **Earlier this session (pre-night):**
+> - «oldest gold coin of Scandinavia» claim DROPPED for the Hans Rhinsk Gylden (`579aff6`)
+>   — Numista N#426966 (Erik of Pomerania gold, ~1396-1439) predates it; Hede didn't know.
+> - rhinsk_gylden_fod `pdate_label` collapsed to «~1497 → 1632 · 135 Jahre» (`21dcaa7`).
+> - **Full V2 re-flow catch-up (`1132f83`)** — `7680446` (Aagaard) had scrubbed 3 Danish
+>   finals via a targeted pass, NOT a full re-absorb, leaving them stale; a merger+absorber
+>   re-run synced danish_realm/royal_holstein/_unclassified/gottorp final (0 citation loss,
+>   audit_v2 unchanged). **Lesson: a targeted final scrub leaves final stale vs seed_unified —
+>   re-absorb after.**
+>
+> **STILL DEFERRED (older):** f7h7 (Prøvemønt tangle), c9h18 ~29 KMM museum rows.
+
 ## 2026-06-29 — B4 (9/9) + B5 (1/1) COMPLETE; whole over-union B-group done bar f7h7
 
 > **UNPUSHED** — 41 commits ahead of origin; push pending «пуш».
