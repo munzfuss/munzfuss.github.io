@@ -176,19 +176,23 @@ if [ -n "$DECISIONS_RELEVANT" ]; then
     rm -f "$DEC_LOG"
     echo "  ${C_GREEN}✓${C_RST} decision files structurally valid"
 
-    # Member-resolution (ADVISORY until the 7-orphan backlog is healed via the
-    # v2-merge-coins skill; then promote to HARD BLOCK by treating exit 1 below
-    # as a failure). Every merges/no_merges member must resolve to a current
-    # seed id — a non-resolving no_merges member is a SILENT over-merge gap.
+    # Member-resolution (HARD BLOCK since 2026-06-29 — backlog healed to 0).
+    # Every merges/no_merges member must resolve to a current seed id (with the
+    # merger's bare-Hede expansion). A non-resolving no_merges member is a SILENT
+    # over-merge gap; a non-resolving merge member is a folded/typo id. Heal via
+    # the v2-merge-coins skill (resolve → drop-if-redundant / fix), never by
+    # re-pointing a bare Hede code to a flat sub-variant list.
     MEMB_LOG=$(mktemp -t precommit-members.XXXXXX)
-    if "$PYTHON" scripts/maintenance/validate_decisions.py --check-members --quiet > "$MEMB_LOG" 2>&1; then
-        echo "  ${C_GREEN}✓${C_RST} all merge-decision members resolve to seed ids"
-    else
-        N=$(grep -c -E '^    \[' "$MEMB_LOG" 2>/dev/null || echo "?")
-        echo "  ${C_YELL}⚠${C_RST} $N non-resolving merge-decision member(s) — ADVISORY (heal via v2-merge-coins skill)"
-        echo "    (run \`$PYTHON scripts/maintenance/validate_decisions.py --check-members\` for detail)"
+    if ! "$PYTHON" scripts/maintenance/validate_decisions.py --check-members --quiet > "$MEMB_LOG" 2>&1; then
+        echo "${C_RED}✗ Merge-decision member-resolution FAILED.${C_RST}"
+        cat "$MEMB_LOG" | sed 's/^/    /'
+        echo
+        echo "A merges/no_merges member does not resolve to a seed id. Heal via the"
+        echo "v2-merge-coins skill (resolve → drop/fix), or bypass: git commit --no-verify"
+        exit 1
     fi
     rm -f "$MEMB_LOG"
+    echo "  ${C_GREEN}✓${C_RST} all merge-decision members resolve to seed ids"
 fi
 
 # ---------------------------------------------------------------------------

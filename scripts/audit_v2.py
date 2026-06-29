@@ -54,6 +54,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import warnings
 from collections import defaultdict
@@ -403,32 +404,59 @@ def check_i7_routing_conflicts(coins: list[tuple[str, dict]]
     return conflicts
 
 
+def _expands_to_seed(mid: str, seed_ids: set) -> bool:
+    """Mirror merge_seeds_cross_source._expand_member_against: a merge-decision
+    member resolves if it IS a seed id OR is a bare Hede code expanding to
+    sub-letter seeds (dk-hede-c4h112 -> c4h112a/c4h112b — the curator shorthand
+    the merger expands). Kept identical to the merger so the audit never drifts."""
+    if mid in seed_ids:
+        return True
+    if re.search(r"\d$", mid):
+        return any(k.startswith(mid) and k[len(mid):].isalpha() for k in seed_ids)
+    return False
+
+
 def check_i6_decision_refs(unified_coins: list[tuple[str, dict]],
-                            seed_coins: list[tuple[str, str, dict]]
+                            seed_coins: list[tuple[str, str, dict]],
+                            final_coins: list[tuple[str, dict]] | None = None
                             ) -> list[str]:
-    """I6 — merge_decisions members + classification_decisions coin_ids
-    resolve to real seed / unified entries."""
+    """I6 — merge_decisions members + classification_decisions coin_ids resolve.
+
+    Merge members resolve to a seed id (with bare-Hede expansion, per the
+    merger's `_expand_member`) or a unified id. Classification coin_ids resolve
+    the way the ABSORBER applies them — against a FINAL entry id OR a final
+    entry's composed_of member (a curated-foundation legacy id like
+    `km-645-chr-v-1788` is a valid target even though it is neither a seed nor a
+    seed_unified id)."""
     errors: list[str] = []
     seed_ids = {c["id"] for _, _, c in seed_coins if c.get("id")}
     unified_ids = {c["id"] for _, c in unified_coins if c.get("id")}
+    final_ids: set = set()
+    final_composed: set = set()
+    for _, c in (final_coins or []):
+        if c.get("id"):
+            final_ids.add(c["id"])
+        for m in c.get("composed_of") or []:
+            final_composed.add(m)
 
     if V2_MERGE_DECISIONS.exists():
         for p in V2_MERGE_DECISIONS.glob("*.yml"):
             d = _load_yaml(p)
             for entry in (d.get("merges") or []) + (d.get("no_merges") or []):
                 for mid in entry.get("members") or []:
-                    if mid not in seed_ids and mid not in unified_ids:
+                    if not _expands_to_seed(mid, seed_ids) and mid not in unified_ids:
                         errors.append(
                             f"I6: merge_decisions/{p.stem}.yml references "
                             f"unknown id {mid!r}"
                         )
 
     if V2_CLASSIFICATION_DECISIONS.exists():
+        resolvable = unified_ids | seed_ids | final_ids | final_composed
         for p in V2_CLASSIFICATION_DECISIONS.glob("*.yml"):
             d = _load_yaml(p)
             for entry in d.get("assignments") or []:
                 cid = entry.get("coin_id")
-                if cid and cid not in unified_ids and cid not in seed_ids:
+                if cid and cid not in resolvable:
                     errors.append(
                         f"I6: classification_decisions/{p.stem}.yml::assignments "
                         f"references unknown coin_id {cid!r}"
@@ -497,7 +525,7 @@ def main() -> int:
 
     if not args.quick:
         print("Running I6 (decision file refs)...")
-        results["I6"] = check_i6_decision_refs(unified_coins, seed_coins)
+        results["I6"] = check_i6_decision_refs(unified_coins, seed_coins, final_coins)
         print(f"  {len(results['I6'])} violation(s)")
     else:
         results["I6"] = []
