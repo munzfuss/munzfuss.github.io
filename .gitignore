@@ -23,9 +23,12 @@ venv/
 .DS_Store
 
 # Claude Code session metadata (local-only) — except the committed
-# permission ruleset the autonomous harvest routine relies on.
+# permission ruleset the autonomous harvest routine relies on and the
+# version-controlled project skills (shared procedures, e.g. v2-merge-coins).
 .claude/*
 !.claude/settings.json
+!.claude/skills/
+!.claude/skills/**
 
 # Environment / Secrets / API keys (NEVER commit)
 .env

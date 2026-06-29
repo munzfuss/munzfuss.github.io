@@ -175,6 +175,20 @@ if [ -n "$DECISIONS_RELEVANT" ]; then
     fi
     rm -f "$DEC_LOG"
     echo "  ${C_GREEN}✓${C_RST} decision files structurally valid"
+
+    # Member-resolution (ADVISORY until the 7-orphan backlog is healed via the
+    # v2-merge-coins skill; then promote to HARD BLOCK by treating exit 1 below
+    # as a failure). Every merges/no_merges member must resolve to a current
+    # seed id — a non-resolving no_merges member is a SILENT over-merge gap.
+    MEMB_LOG=$(mktemp -t precommit-members.XXXXXX)
+    if "$PYTHON" scripts/maintenance/validate_decisions.py --check-members --quiet > "$MEMB_LOG" 2>&1; then
+        echo "  ${C_GREEN}✓${C_RST} all merge-decision members resolve to seed ids"
+    else
+        N=$(grep -c -E '^    \[' "$MEMB_LOG" 2>/dev/null || echo "?")
+        echo "  ${C_YELL}⚠${C_RST} $N non-resolving merge-decision member(s) — ADVISORY (heal via v2-merge-coins skill)"
+        echo "    (run \`$PYTHON scripts/maintenance/validate_decisions.py --check-members\` for detail)"
+    fi
+    rm -f "$MEMB_LOG"
 fi
 
 # ---------------------------------------------------------------------------

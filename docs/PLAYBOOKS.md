@@ -32,6 +32,13 @@
 
 ## PB-1. Per-case Hede dedup merge
 
+> **EXECUTABLE FORM (2026-06-29):** the V2 merge/split flow is now the
+> **`v2-merge-coins` skill** (`.claude/skills/v2-merge-coins/SKILL.md` +
+> `merge_helper.py`). Invoke it for any merge/split/orphan-heal — it enforces
+> the §9.4 over-merge gate (`merge_helper.py graph`) and seed-id resolution
+> (`merge_helper.py resolve`) that the two recurring failures need. The
+> reasoning below is the source material; the skill is the procedure to run.
+
 > **SUPERSEDED (V2, 2026-06-24).** This is the V1 flow — folding a
 > `data/seed/hede/` entry into a curated `data/locations/<loc>.yml` coin.
 > V1 was removed; cross-source dedup is now the merger's job

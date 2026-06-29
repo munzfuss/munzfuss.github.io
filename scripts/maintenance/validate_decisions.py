@@ -37,6 +37,7 @@ _spec.loader.exec_module(_M)
 
 DECISIONS_DIR = ROOT / "data" / "v2" / "merge_decisions"
 CLASSIFY_DIR = ROOT / "data" / "v2" / "classification_decisions"
+SEED_DIR = ROOT / "data" / "v2" / "seed"
 
 
 def _decision_files() -> list[Path]:
@@ -46,10 +47,73 @@ def _decision_files() -> list[Path]:
     return files
 
 
+def _seed_ids(entity: str) -> set[str]:
+    import yaml
+    out: set[str] = set()
+    for f in sorted(SEED_DIR.glob(f"*/{entity}.yml")):
+        d = yaml.safe_load(f.read_text()) or {}
+        for c in (d.get("coins") if isinstance(d, dict) else d) or []:
+            if c.get("id"):
+                out.add(c["id"])
+    return out
+
+
+def check_member_resolution(entity_filter: set[str] | None = None) -> list[tuple]:
+    """Every merges/no_merges member MUST be a current SEED id. A non-resolving
+    member is an orphan: a `merges` orphan is usually a redundant final/foundation
+    id (its seed is already a member), but a `no_merges` orphan is an INACTIVE
+    block — a silent over-merge gap. Returns [(entity, key, member), …].
+
+    The fix is never to delete blindly: `resolve` the member to its seed id
+    (`.claude/skills/v2-merge-coins/merge_helper.py resolve <entity> <id>`),
+    re-point or drop, then re-merge + re-absorb. See the v2-merge-coins skill.
+    """
+    import yaml
+    orphans: list[tuple] = []
+    seeds_cache: dict[str, set[str]] = {}
+    for path in sorted(DECISIONS_DIR.glob("*.yml")):
+        ent = path.stem
+        if ent.startswith("_"):
+            continue  # _cross_entity members span entities — out of scope here
+        if entity_filter and ent not in entity_filter:
+            continue
+        if ent not in seeds_cache:
+            seeds_cache[ent] = _seed_ids(ent)
+        sids = seeds_cache[ent]
+        doc = yaml.safe_load(path.read_text()) or {}
+        for key in ("merges", "no_merges"):
+            for blk in (doc.get(key) or []):
+                for m in (blk.get("members") or []):
+                    if m not in sids:
+                        orphans.append((ent, key, m))
+    return orphans
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--check-members", action="store_true",
+                    help="also verify every merges/no_merges member resolves to "
+                         "a current seed id (orphan detector; exit 1 if any)")
+    ap.add_argument("--entity", help="restrict --check-members to this entity")
     args = ap.parse_args()
+
+    if args.check_members:
+        ef = {args.entity} if args.entity else None
+        orphans = check_member_resolution(ef)
+        if orphans:
+            print(f"⚠ {len(orphans)} non-resolving merge-decision member(s) "
+                  "(orphans):", file=sys.stderr)
+            for ent, key, m in orphans:
+                tag = "BLOCK-INACTIVE" if key == "no_merges" else "skipped"
+                print(f"    [{ent}] {key}: {m}   ({tag})", file=sys.stderr)
+            print("  Each must resolve to a SEED id. Re-point or drop via the "
+                  "v2-merge-coins skill;\n  a non-resolving no_merges member is a "
+                  "silent over-merge gap.", file=sys.stderr)
+            return 1
+        if not args.quiet:
+            print("✓ all merge-decision members resolve to seed ids.")
+        return 0
 
     files = _decision_files()
     failed = 0
