@@ -1552,6 +1552,7 @@ coins:
   ruler: Christian VII.
   issuing_entity: royal_holstein
   id: km-645-chr-v-1788
+  mintmaster: Michael Flor
   year_first: 1788
   year_last: 1788
   year_label: '1788'
@@ -1585,18 +1586,18 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: numista
-  - value: 0.875
     source: numismaster
-  weight_rough_g:
-  - value: 23.582
-    source: hede
-  - value: 23.62
+  - value: 0.875
     source: numista
+  weight_rough_g:
   - value: 23.58
     source: bruun
   - value: 23.582
+    source: hede
+  - value: 23.582
     source: numismaster
+  - value: 23.62
+    source: numista
   diameter_mm:
   - value: 39.0
     source: numista
@@ -5052,16 +5053,22 @@ coins:
       - '108'
       - '110'
       - '114'
+      - '83'
+      - '77'
+      - '77.1'
+      - '77.2'
     hede:
+    - 125 A
+    - 125 B
     - 125A
     - 125B
     - 125C
     hede_volume: c5h
     sieg:
+    - '138'
     - '138.1'
     - '138.2'
     - '139'
-    - '138'
     schou:
     - '17'
     - 28-29
@@ -8867,14 +8874,14 @@ coins:
     source: numista
   - value: 3.43
     source: bruun
+  - value: 3.45
+    source: bruun
   - value: 3.49
     source: hede
   - value: 3.49
     source: numismaster
   - value: 3.49
     source: ucoin
-  - value: 3.45
-    source: bruun
   diameter_mm:
   - value: 20.8
     source: numista
@@ -10337,9 +10344,10 @@ coins:
     - '138.5'
     hede:
     - '39'
-    - 39C
+    - 39 C
     - 39A
     - 39B
+    - 39C
     - 39D
     - 39E
     - 39F
@@ -10396,26 +10404,26 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: numista
-  - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: numista
   - value: 0.875
     source: ucoin
   weight_rough_g:
-  - value: 28.86
-    source: bruun
-  - value: 28.893
-    source: hede
-  - value: 28.893
-    source: numista
   - value: 28.85
+    source: bruun
+  - value: 28.86
     source: bruun
   - value: 28.88
     source: bruun
   - value: 28.89
     source: ucoin
   - value: 28.893
+    source: hede
+  - value: 28.893
     source: numismaster
+  - value: 28.893
+    source: numista
   diameter_mm:
   - value: 39.0
     source: numista
@@ -10437,6 +10445,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/317584
     ref: KMM 317584 (Inv. FP 7044.6)
+    display: false
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/575003
     ref: KMM 575003 (Inv. FP 11167.9)
@@ -10459,6 +10468,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_120090
     ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13247, p. 170
   note:
     de: «60 · SCHILLING · SCHLESW · HOLST · COURANT · 1 · SP ·» <br>(<b>SP</b> = Species = vollwertiger Thaler im 9¼-Fuß)
       · 1 Thaler Species = 25,28173 g fein · 60 Sch.C. = 1 Thaler Species = 25,28173 g ✓ (derselbe Müntzfuß)
@@ -11073,10 +11085,13 @@ coins:
     km:
       sh:
       - '95'
+      - A43
+      - B43
       dk:
       - A43
       - B43
     hede:
+    - 153 A
     - 153A
     - 153B
     hede_volume: f3h
@@ -32183,7 +32198,7 @@ coins:
   kind: kurant
   nominal: 1 Skilling Rigsmønt
   ruler: Frederik VII.
-  mintmaster: null
+  mintmaster: Altona
   issuing_entity:
   - danish_realm
   - royal_holstein
@@ -33630,17 +33645,21 @@ coins:
     - EC III 1313
     - EC IV 71
     - ECT 71
+    - '1315'
     schou:
     - 1-2
     - 2-4
     - 3-4
     numista: '132002'
-    bruun_collection_id: '7928'
+    bruun_collection_id:
+    - '7928'
+    - '7940'
     bruun_part: III
     bruun_lot_no: 11295
     bruun_page: 147
     others:
     - FP-42.3
+    fp: '43.6'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -33686,9 +33705,11 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/317587
     ref: KMM 317587 (Inv. FP 7044.3)
+    display: false
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/317588
     ref: KMM 317588 (Inv. FP 7044.2)
+    display: false
   - type: literature
     url: https://numismaster.com/MC_145357
     ref: NumisMaster

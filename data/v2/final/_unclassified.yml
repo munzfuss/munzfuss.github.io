@@ -36761,9 +36761,12 @@ coins:
   ruler: August
   mintmaster: Barthold Bartels
   id: unified-ikmk-18283589
-  year_first: 1621
+  year_first: 1619
   year_last: 1621
-  year_label: '1621'
+  year_ranges:
+  - - 1619
+    - 1621
+  year_label: 1619-1621
   mint: Lauenburg
   catalog:
     others:
@@ -36900,16 +36903,25 @@ coins:
   year_first: 1620
   year_last: 1620
   year_label: '1620'
+  mint: Hitzacker
   metal: silver
   metal_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 0.82
+    source: ikmk
+  - value: 0.83
+    source: ikmk
+  - value: 0.84
+    source: ikmk
   - value: 0.87
     source: ikmk
   diameter_mm:
+  - value: 16.0
+    source: ikmk
   - value: 17.0
     source: ikmk
   sources:
@@ -36997,6 +37009,18 @@ coins:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18299807
     ref: IKMK Berlin 18299807
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18286826
+    ref: IKMK Berlin 18286826
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18286841
+    ref: IKMK Berlin 18286841
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18299828
+    ref: IKMK Berlin 18299828
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18299831
+    ref: IKMK Berlin 18299831
   inscription_obv: DEUS PROUIDEB
   inscription_rev: Z0 FER D G R I S A
   note:
@@ -37006,6 +37030,7 @@ coins:
   verification_note: *id001
   composed_of:
   - unified-ikmk-18283601
+  - unified-ikmk-18286826
 - fuss: seed_unsorted
   phase: ikmk
   kind: kurant
@@ -39495,8 +39520,11 @@ coins:
   ruler: Ernst III.
   id: unified-ikmk-18286228
   year_first: 1618
-  year_last: 1618
-  year_label: '1618'
+  year_last: 1619
+  year_ranges:
+  - - 1618
+    - 1619
+  year_label: 1618-1619
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -44089,8 +44117,8 @@ coins:
   phase: ikmk
   kind: kurant
   nominal: 1 Doppelschilling
-  id: unified-ikmk-18296479
   ruler: August II.
+  id: unified-ikmk-18296479
   year_first: 1620
   year_last: 1620
   year_label: '1620'

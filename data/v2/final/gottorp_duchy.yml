@@ -3110,9 +3110,13 @@ coins:
   mint: Steinbek
   catalog:
     km: '35'
-    numista: '313301'
+    numista:
+    - '313301'
+    - '313303'
     dav: EC II 3690
-    lange: '271'
+    lange:
+    - '271'
+    - 271d
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3133,6 +3137,9 @@ coins:
   - type: literature
     url: https://en.numista.com/313301
     ref: Numista N#313301 — 1 Thaler - John Adolphus
+  - type: literature
+    url: https://en.numista.com/313303
+    ref: Numista N#313303 — 1 Thaler - John Adolphus
   note:
     de: 1 Thaler · Johann Adolf von Gottorp, 1611
     en: 1 Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1611
@@ -3823,13 +3830,20 @@ coins:
   year_last: 1628
   year_ranges:
   - - 1623
+    - 1623
+  - - 1626
     - 1628
-  year_label: 1623-1628
+  year_label: 1623, 1626-1628
   mint: Steinbek
   catalog:
     km: '71'
     numista: '301534'
-    lange: '331'
+    lange:
+    - '330'
+    - '331'
+    - 331b
+    - '332'
+    - 332A
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3844,6 +3858,9 @@ coins:
   - type: literature
     url: https://en.numista.com/301534
     ref: Numista N#301534 — ½ Thaler - Frederick III
+  - type: literature
+    url: https://numismaster.com/MC_167364
+    ref: NumisMaster
   note:
     de: ½ Thaler · Frederik III. von Gottorp, 1623-1628
     en: ½ Thaler · Frederick III, Duke of Schleswig-Holstein-Gottorp, 1623-1628
@@ -5305,47 +5322,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-167361
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ½ Thaler
-  ruler: Friedrich III
-  issuing_entity: gottorp_duchy
-  id: unified-schleswig_holstein-numismaster-167364
-  year_first: 1623
-  year_last: 1628
-  year_ranges:
-  - - 1623
-    - 1623
-  - - 1626
-    - 1628
-  year_label: 1623, 1626-1628
-  catalog:
-    km: '71'
-    lange:
-    - '330'
-    - 331b
-    - '332'
-    - 332A
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167364
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-167364
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
