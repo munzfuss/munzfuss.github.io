@@ -16,10 +16,16 @@ need:
   * AUDIT     — list all merge/no_merge members that do NOT resolve to a current
                 seed id (the standing orphan detector; also the pre-commit guard).
 
+  * SCAN      — read-only §9.4 over-merge detector: flag existing seed_unified
+                entries whose members carry catalogue indices but share NO base
+                (the gottorp class) — surfaces over-merges proactively instead
+                of by chance.
+
 Subcommands:
   merge_helper.py resolve <entity> <id> [<id> ...]
   merge_helper.py graph   <entity> <id> [<id> ...]      # ids resolved first
   merge_helper.py audit   [<entity>]                    # all entities if omitted; exit 1 if orphans
+  merge_helper.py scan    <entity>                      # §9.4 over-merge candidates; exit 1 if any
 """
 from __future__ import annotations
 import sys, glob, os, re
@@ -159,6 +165,19 @@ def cmd_graph(entity, ids):
     return 0
 
 
+def _merger_resolves(mid, sids):
+    """Mirror merge_seeds_cross_source._expand_member_against: a member resolves
+    if it IS a seed id OR is a bare Hede code expanding to sub-letter seeds
+    (dk-hede-c4h112 -> c4h112a/c4h112b — the intended curator shorthand the
+    merger expands + groups). Final/V1 ids that expand to nothing (km-305-2-…)
+    are real orphans. Keeping this identical to the merger stops audit drift."""
+    if mid in sids:
+        return True
+    if re.search(r"\d$", mid):
+        return any(k.startswith(mid) and k[len(mid):].isalpha() for k in sids)
+    return False
+
+
 def cmd_audit(entity):
     seeds_by_entity = {}
     entities = [entity] if entity else None
@@ -177,7 +196,7 @@ def cmd_audit(entity):
         for key in ("merges", "no_merges"):
             for blk in (doc.get(key) or []):
                 for m in (blk.get("members") or []):
-                    if m not in sids:
+                    if not _merger_resolves(m, sids):
                         orphans.append((ent, key, m))
     if orphans:
         print(f"  ⚠ {len(orphans)} non-resolving merge-decision member(s):")
@@ -193,6 +212,71 @@ def cmd_audit(entity):
     return 0
 
 
+def _base(k, v):
+    """Catalogue base: strip sub-letters/sub-decimals — 121A->121, 305.2->305,
+    271d->271, 'EC II 3690'->'EC II 3690' (kept; Dav has no sub-form here)."""
+    s = str(v)
+    m = re.match(r"^([A-Za-z ]*?\d+)", s)
+    return m.group(1) if m else s
+
+
+def cmd_scan(entity):
+    """§9.4 over-merge scan: flag every multi-member seed_unified entry where
+    >=2 members EACH carry a catalogue index but NO (catalogue, base) pair is
+    shared by >=2 members — i.e. the merge rests on ruler+nominal+year alone
+    (the gottorp KM33/KM35/Lange274b class). Distinct from a legit merge where
+    one catalogue gives a shared base (Hede 121A+121B, or numista+numismaster
+    both KM 305). Read-only; surfaces candidates for curator + the v2-merge-coins
+    split flow. Exit 1 if any flagged."""
+    from collections import Counter
+    seeds = load_seeds(entity)
+    unified = load_layer(entity, "seed_unified")
+    flagged = []
+    for uid, c in unified.items():
+        members = c.get("composed_of") or []
+        if len(members) < 2:
+            continue
+        per_key = {}  # key -> {member: set(bases)}
+        for mid in members:
+            cat = (seeds.get(mid, {}) or {}).get("catalog", {}) or {}
+            for k in ("km", "hede", "sieg", "lange", "dav"):
+                v = cat.get(k)
+                if v in (None, "", []):
+                    continue
+                vs = v if isinstance(v, list) else [v]
+                per_key.setdefault(k, {}).setdefault(mid, set()).update(
+                    _base(k, x) for x in vs)
+        indexed_members = {m for perm in per_key.values() for m in perm}
+        if len(indexed_members) < 2:
+            continue  # not enough indexed members to judge — leave it
+        unifier = None
+        for k, perm in per_key.items():
+            cnt = Counter()
+            for s in perm.values():
+                cnt.update(s)
+            if any(n >= 2 for n in cnt.values()):
+                unifier = k
+                break
+        if unifier is None:
+            detail = {k: {m: sorted(b) for m, b in perm.items()}
+                      for k, perm in per_key.items()}
+            flagged.append((uid, c.get("nominal"), c.get("ruler"), detail))
+    if flagged:
+        print(f"  ⚠ {len(flagged)} possible over-merge(s) in {entity} "
+              "(no shared catalogue base across members):")
+        for uid, nom, rul, detail in flagged:
+            print(f"    {uid}  ({nom} · {rul})")
+            for k, perm in detail.items():
+                print(f"        {k}: " + "  ".join(
+                    f"{m.split('-')[-1]}={'/'.join(b)}" for m, b in perm.items()))
+        print("\n  Review each: if §9.4 confirms distinct coins, split via the "
+              "v2-merge-coins skill.\n  False positives (legit no-index museum "
+              "specimens merged in) are possible — judge per case.")
+        return 1
+    print(f"  ✓ no no-shared-base over-merges in {entity}")
+    return 0
+
+
 def main():
     if len(sys.argv) < 2:
         print(__doc__); return 2
@@ -203,6 +287,8 @@ def main():
         return cmd_graph(sys.argv[2], sys.argv[3:])
     if cmd == "audit":
         return cmd_audit(sys.argv[2] if len(sys.argv) > 2 else None)
+    if cmd == "scan":
+        return cmd_scan(sys.argv[2])
     print(__doc__); return 2
 
 

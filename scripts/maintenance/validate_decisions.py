@@ -59,14 +59,19 @@ def _seed_ids(entity: str) -> set[str]:
 
 
 def check_member_resolution(entity_filter: set[str] | None = None) -> list[tuple]:
-    """Every merges/no_merges member MUST be a current SEED id. A non-resolving
-    member is an orphan: a `merges` orphan is usually a redundant final/foundation
-    id (its seed is already a member), but a `no_merges` orphan is an INACTIVE
-    block — a silent over-merge gap. Returns [(entity, key, member), …].
+    """Every merges/no_merges member must resolve to current SEED id(s). A
+    member resolves if it IS a seed id OR if it is a bare Hede code that the
+    merger's `_expand_member_against` expands to sub-letter seeds («dk-hede-
+    c4h112» → c4h112a/c4h112b — the intended curator shorthand: the decision is
+    made at the «whole Hede 112» level and the merger applies it to every
+    sub-variant, grouping them so a no_merge never blocks within one coin).
 
-    The fix is never to delete blindly: `resolve` the member to its seed id
-    (`.claude/skills/v2-merge-coins/merge_helper.py resolve <entity> <id>`),
-    re-point or drop, then re-merge + re-absorb. See the v2-merge-coins skill.
+    Using the merger's OWN resolver (`_M._expand_member_against`) keeps this gate
+    and the merger from ever drifting. A member that still resolves to nothing is
+    a real orphan: typically a folded final/V1 id (`km-305-2-fr-iii-1669`) whose
+    seed is already another member (redundant → drop), or a typo (re-point). NEVER
+    re-point a bare Hede code to a flat sub-variant list — that would make a
+    no_merge block the legitimate within-coin pair. Returns [(entity, key, member)].
     """
     import yaml
     orphans: list[tuple] = []
@@ -84,7 +89,7 @@ def check_member_resolution(entity_filter: set[str] | None = None) -> list[tuple
         for key in ("merges", "no_merges"):
             for blk in (doc.get(key) or []):
                 for m in (blk.get("members") or []):
-                    if m not in sids:
+                    if not _M._expand_member_against(m, sids):
                         orphans.append((ent, key, m))
     return orphans
 

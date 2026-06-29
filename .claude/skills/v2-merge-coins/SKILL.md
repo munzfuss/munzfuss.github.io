@@ -31,11 +31,16 @@ Helper: `python .claude/skills/v2-merge-coins/merge_helper.py {resolve|graph|aud
    auto-matcher fuses them; a curator force-merge fuses more. They are
    *different coins*. (Real: gottorp John Adolphus Thaler KM 33 / KM 41 /
    Lange 274b fused into KM 35 — caught + reverted 2026-06-29.)
-2. **Orphaned members.** A `merges:`/`no_merges:` member that is a final/
-   foundation id (`km-305-2-fr-iii-1669`) or a bare base code (`dk-hede-c4h112`)
-   instead of the SEED id. The merger silently skips it. A skipped *merge*
-   member is usually harmless (its seed is already a member); a skipped
-   **`no_merges` member is an INACTIVE block — a silent over-merge gap.**
+2. **Orphaned members.** A `merges:`/`no_merges:` member that resolves to NO
+   seed — a folded final / V1 id (`km-305-2-fr-iii-1669`) or a typo. The merger
+   silently skips it; the audit flags it.
+   **NOT an orphan — a bare Hede code (`dk-hede-c4h112`).** The merger's
+   `_expand_member` deliberately expands a bare Hede id to its sub-letter seeds
+   (`c4h112a`/`c4h112b`) and treats them as ONE group, so the curator can decide
+   at the «whole Hede 112» level. The audit mirrors this (`_expand_member_against`)
+   and does NOT flag it. NEVER re-point a bare Hede code to a flat sub-variant
+   list in a `no_merges` block — `[c4h112a, c4h112b, c4h116a]` would make the
+   block forbid the legitimate within-coin pair c4h112a–c4h112b.
 
 ## MERGE — procedure
 
@@ -135,22 +140,26 @@ When an existing entry bundles distinct coins (over-merge):
 python .claude/skills/v2-merge-coins/merge_helper.py audit [<entity>]   # exit 1 if any
 ```
 
-For each non-resolving member, `resolve` it and classify:
-- **redundant** (a former-final id whose seed is already a member of the same
-  block) → drop the line.
-- **rename** (`dk-hede-c4h112` → `[c4h112a, c4h112b]`) → re-point to the seed
-  id(s). For a `no_merges` block re-point ALL relevant sub-variants so the
-  block actually fires.
+The audit already honours `_expand_member` — a flagged member is a TRUE orphan
+(expands to no seed). `resolve` it and classify:
+- **redundant** (a former-final / V1 id whose underlying seed is already another
+  member of the same block, e.g. `km-305-2-fr-iii-1669` whose `dk-bruun-6712` is
+  in the merge) → drop the line. Verify the coin's data already lives in the
+  merged entry first (§9a). This is a no-op for the pipeline (the merger was
+  already skipping it) — confirm by a date-only seed_unified diff.
+- **typo / relocated** → fix to the correct seed id, or drop if the coin moved
+  entity (cross-entity merge already re-homed it).
 - **unknown** → do not touch; surface to the user.
 
-After re-pointing/​dropping, re-merge + re-absorb the entity and verify (Step 4).
-This is the only sanctioned way to clear the audit: every member ends resolving
-to a seed.
+Do NOT «re-point» a bare Hede code — it is the intended shorthand the merger
+expands; it is not flagged. After dropping/fixing, re-merge + re-absorb the
+entity and verify (Step 4). Goal: `audit` exits 0.
 
 ## Hard rules
 
-- merge_decision members are SEED ids. Never a final/foundation id, never a
-  bare base code, never a render id. `resolve` first, always.
+- merge_decision members are SEED ids OR a bare Hede code (the merger expands the
+  latter to its sub-variants). Never a final/foundation id, never a render id,
+  never a folded V1 km-id. `resolve` first, always.
 - No merge without the §9.4 `graph` gate. "Same ruler + same nominal + same
   year" is NOT a merge justification on its own.
 - A `no_merges` member that does not resolve is an inactive safeguard — treat
