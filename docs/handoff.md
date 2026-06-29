@@ -15,6 +15,49 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-06-29 — B4 (9/9) + B5 (1/1) COMPLETE; whole over-union B-group done bar f7h7
+
+> **UNPUSHED** — 41 commits ahead of origin; push pending «пуш».
+>
+> The 25-group over-union audit is now essentially CLOSED: B1 (8) ✓, B2 (4) ✓,
+> B3 (3): f7h16+f7h17 ✓ / **f7h7 deferred**, B4 (9) ✓, B5 (1: f3h153) ✓.
+>
+> **B4 (9/9)** — all re-evaluated under corrected §9.4 (Sieg sub-variants are
+> sub-variants of one coin). 8 merges + 1 clean:
+> - c4h106 (`bf8f2df`) Sieg 90.1-90.4; c4h107 (`0a55aa7`) Hede 107 — Sieg 79.3
+>   kept as a verified Bruun attestation (c7h25 shape); c9h18+f3h121 (`5f52a41`);
+>   f2h20 (`6c1ccf2`) foundation-fold; f5h34 (`d5b12b9`) KM 580/581; f5h38
+>   (`2dfca82`) KM 595/596/597 — render exposed a 3rd KM (597) the B4 table missed.
+> - **c4h114** (`f430c87`) — the lone CLEAN: kmk-714958 was a Hede-114A specimen
+>   mis-DATED 1619 by KMM (reverse reads «16Z0»=1620). Fixed via the established
+>   `_KMM_YEAR_ERRATA` map in build_kmk_seed.py (NOT a final note); the year fix
+>   auto-re-clustered it from Hede 110 (1619) to Hede 114 (1620-1621). The
+>   KMM-year-error practice = that builder map, curator-confirmed per entry.
+> - **c7h28/c7h29** (`814a9d7`) — NOT a merge: two distinct «24 Skilling» Chr VII
+>   (Hede 28/KM 635/Sieg 17 vs Hede 29/KM 643/Sieg 18, same 9.171 g). The bug was
+>   V1 cross-contamination of the KM lists; cleaned both (dropped each other's
+>   phantom KM + the orphan NumisMaster source). NO index source-error.
+>
+> **B5 f3h153** (`f27d6a7`) — «4 Mark Danske» (=1 Krone) Frederik III Glückstadt
+> 1659-1660 = Hede 153, Krause-split across TWO volumes. Merged 3 finals with
+> **volume-separated dict-form km** `{sh:[95], dk:[A43,B43]}` (KM 95 = German SH
+> volume → KM# 95 on SH page; A43/B43 = Danish volume → KM-DK# on denmark) so
+> German/Danish indices never conflate. Confirms dict-form km renders correctly
+> on BOTH pages for a royal_holstein coin (the c7h13 dict-form glitch does NOT
+> recur here). kind set to tarif (§6 Kronemønt).
+>
+> **OPEN / deferred:**
+> - **f7h7 (B3)** — NOT a clean cross-entity dup. danskmoent Hede 7 is a private
+>   **Prøvemønt** (pattern, §9.1-excludable); the «km-761» data is actually the
+>   f7h6 circulation «2 Rigsdaler» mis-tagged Hede 7. Tangled with f7h6. Awaiting
+>   curator decision (fold km-761 into f7h6 + fix Hede tag, or defer).
+> - **c9h18 «2 Øre»** — ~29 PRE-EXISTING un-absorbed KMM museum-specimen rows
+>   (weightless, fragmented across 19 seed_unified clusters). Separate
+>   museum-fragmentation / §9a-thinning issue, project-wide pattern. Not touched.
+> - Single-member cross-entity re-home infra (validator relax + xentity stamp
+>   fix) was developed for f7h7 then REVERTED when f7h7 deferred — re-add with the
+>   concrete use-case if a single-member re-home is needed.
+
 ## 2026-06-28 (later) — B2 specimen-fold (4 of 4) COMPLETE + §9.4 rule corrected
 
 > **UNPUSHED** — 30 commits ahead of origin; push pending «пуш». New this pass:
