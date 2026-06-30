@@ -65,8 +65,14 @@
 >   functional); the 3 sibling «see km-635» reason refs updated to «see unified-dk-hede-c7h28».
 > - `unified-dk-bruun-7893` (danish_realm) — DROPPED (coin cross-entity-moved to
 >   royal_holstein c7h25 = km-645, already kurant 11_333/I).
-> (Only I4=51 — kmk museum coins missing year_label — remains in audit_v2 full; pre-existing,
-> not addressed, audit_v2 --quick skips it.)
+> **audit_v2 I4: 51 → 8 (`55a04a3`).** The 43 naked KMM museum specimens (seed_unsorted,
+> no year, no KM) no longer fail schema — `year_label` / `year_first` are now optional for
+> `fuss == seed_unsorted` (a new `_check_year_required` model-validator keeps them mandatory
+> for every classified/rendered coin; +regression test). The remaining **8 are SEPARATE
+> pre-existing issues, NOT the year gap**: 3 cross-volume dict-form `km` coins the schema
+> doesn't model yet (`c5h125a` / `f3h153a` / `km-696-1` — would need `catalog.km` to accept
+> the `{sh:[…], dk:[…]}` shape), 2 out-of-scope metal-enum values, 1 `phase.str`. audit_v2
+> --quick (pre-commit) skips I4 regardless.
 >
 > **Earlier this session (pre-night):**
 > - «oldest gold coin of Scandinavia» claim DROPPED for the Hans Rhinsk Gylden (`579aff6`)
