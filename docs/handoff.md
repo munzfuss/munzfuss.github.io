@@ -17,7 +17,7 @@
 
 ## 2026-06-29 (night) — two skills + gottorp over-merge fixed + audit-expansion fix
 
-> **UNPUSHED — 53 commits ahead of origin; push pending «пуш».** Night-work session.
+> **UNPUSHED — 57 commits ahead of origin; push pending «пуш».** Night-work session.
 >
 > **TWO project skills created (first `.claude/skills/`; `.gitignore` un-ignores it).**
 > They are the executable form of the merge/audit procedures — USE THEM going forward:
@@ -38,8 +38,9 @@
 > coin 2 + coin 3 land in pending (no regression — were pending pre-merge too). **Lesson
 > (now the skill's reason-for-being): an auto/force merge on ruler+nominal+year with NO
 > shared catalogue index is the recurring trap.** coin 3 (`kmk-348805`+`99448` = KM41 ≡
-> Lange 274b) is curator-approved («хай буде 3») but UN-RECORDED — the `scan` flags it;
-> optional cleanup = a force-`merges` decision to document it + stop re-flagging.
+> Lange 274b, curator «хай буде 3») is now RECORDED as an explicit force-`merges`
+> (`ef2fc0e`); `merge_helper.py scan` skips any entry fully covered by a force-merge
+> group, so a curator-vetted no-shared-base identity no longer re-flags (gottorp 4→3).
 >
 > **The «5 remaining orphans» were a FALSE POSITIVE — averted re-pointing them (`1de7a4c`,
 > `22d7ffc`).** My orphan audit checked exact `member in seed_ids`, so it flagged bare
@@ -55,15 +56,17 @@
 > were the false positive (now resolve). Pre-commit member-resolution guard PROMOTED to
 > HARD BLOCK (`22d7ffc`).
 >
-> **audit_v2 I6: 10 → 2.** Fixed false positives (bare-Hede merge members + km-645 which
-> resolves via FINAL-id, now accepted). **2 GENUINE stale classification refs remain
-> (deferred, not blocking — audit_v2 --quick skips I6):**
-> - `km-635-1-chr-vii-1778` (royal_holstein assignment) — no-op (c7h28 is scheide via
->   foundation independently); re-point coin_id → `unified-dk-hede-c7h28` (zero-risk;
->   also update the 3 sibling «see km-635» reason refs), OR drop. Needs re-absorb.
-> - `unified-dk-bruun-7893` (danish_realm assignment) — coin cross-entity-moved to
->   royal_holstein c7h25 (km-645, kurant 11_333/I); DROP the stale danish_realm assignment.
->   Needs re-absorb danish_realm.
+> **audit_v2 I6: 10 → 0.** Fixed false positives (bare-Hede merge members + km-645 which
+> resolves via FINAL-id, now accepted — `22d7ffc`), then HEALED the 2 genuine stale
+> classification refs (`80818c3`, NO re-absorb — they resolve on the file edit alone, the
+> coins already carry the correct classification, so a re-absorb would only add drift risk):
+> - `km-635-1-chr-vii-1778` (royal_holstein) — RE-POINTED coin_id → `unified-dk-hede-c7h28`
+>   (the real coin, already 11_333/I/scheide as a foundation; no-op assignment made
+>   functional); the 3 sibling «see km-635» reason refs updated to «see unified-dk-hede-c7h28».
+> - `unified-dk-bruun-7893` (danish_realm) — DROPPED (coin cross-entity-moved to
+>   royal_holstein c7h25 = km-645, already kurant 11_333/I).
+> (Only I4=51 — kmk museum coins missing year_label — remains in audit_v2 full; pre-existing,
+> not addressed, audit_v2 --quick skips it.)
 >
 > **Earlier this session (pre-night):**
 > - «oldest gold coin of Scandinavia» claim DROPPED for the Hans Rhinsk Gylden (`579aff6`)
