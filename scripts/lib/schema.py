@@ -376,18 +376,21 @@ class CatalogRefs(_StrictBase):
     # `km` accepts four shapes:
     #   * scalar string (e.g. `'73'`) — single KM in the page's default
     #     register
-    #   * dict `{<register>: <km>}` (V2, per V2_PIPELINE.md §4) — explicit
-    #     per-register namespacing for a coin catalogued in multiple Krause
-    #     volumes. Build assembly's `resolve_km_for_location()` picks the
-    #     entry whose register matches the current display location. Keys
-    #     match `data/locations/<loc>.yml::km_register` casing (`'dk'`,
-    #     `'sh'`, …) — lookup is case-insensitive.
+    #   * dict `{<register>: <km> | [<km>, …]}` (V2, per V2_PIPELINE.md §4) —
+    #     explicit per-register namespacing for a coin catalogued in multiple
+    #     Krause volumes; each register's value is a single KM OR a list of KMs
+    #     (a coin may carry several KM numbers within one volume — e.g.
+    #     `{sh: ['108','110','114'], dk: ['77','77.1','77.2','83']}`). Build
+    #     assembly's `resolve_km_for_location()` picks the entry whose register
+    #     matches the current display location. Keys match
+    #     `data/locations/<loc>.yml::km_register` casing (`'dk'`, `'sh'`, …) —
+    #     lookup is case-insensitive.
     #   * list of strings — multi-KM (same coin in multiple Krause
     #     volumes), all rendered with page's default register
     #   * list of KMRef objects — multi-KM with per-entry register tags
     # See KMRef docstring for the cross-register rendering rules; see
     # V2_PIPELINE.md §4 for the dict-form rationale.
-    km: str | dict[str, str] | list[str | KMRef] | None = None
+    km: str | dict[str, str | list[str]] | list[str | KMRef] | None = None
     lange: str | list[str] | None = None
     # `hede` (and parallel `sieg` / `schou`) accept a list form when the
     # coin is a Krause-KM-canonical entry that spans multiple Hede sub-
