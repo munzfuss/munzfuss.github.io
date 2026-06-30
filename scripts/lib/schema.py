@@ -681,6 +681,21 @@ class Coin(_StrictBase):
         ),
     )
 
+    @field_validator("phase", mode="before")
+    @classmethod
+    def _coerce_phase_to_str(cls, v):
+        """A bare YAML integer phase (`phase: 0`) parses as a Python int and
+        fails the `str` type — the c3g-131 class (caught 2026-06-30). Coerce
+        int → str so `0` becomes '0'; also coerce int values inside the
+        per-location dict form `{loc_id: phase}`. `bool` (an int subclass) is
+        deliberately left to fail — `phase: true` is not a valid phase."""
+        if isinstance(v, int) and not isinstance(v, bool):
+            return str(v)
+        if isinstance(v, dict):
+            return {k: (str(val) if isinstance(val, int) and not isinstance(val, bool) else val)
+                    for k, val in v.items()}
+        return v
+
     @field_validator("fineness", mode="before")
     @classmethod
     def _validate_fineness_range(cls, v):
