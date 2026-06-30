@@ -65,14 +65,15 @@
 >   functional); the 3 sibling «see km-635» reason refs updated to «see unified-dk-hede-c7h28».
 > - `unified-dk-bruun-7893` (danish_realm) — DROPPED (coin cross-entity-moved to
 >   royal_holstein c7h25 = km-645, already kurant 11_333/I).
-> **audit_v2 I4: 51 → 8 (`55a04a3`).** The 43 naked KMM museum specimens (seed_unsorted,
-> no year, no KM) no longer fail schema — `year_label` / `year_first` are now optional for
-> `fuss == seed_unsorted` (a new `_check_year_required` model-validator keeps them mandatory
-> for every classified/rendered coin; +regression test). The remaining **8 are SEPARATE
-> pre-existing issues, NOT the year gap**: 3 cross-volume dict-form `km` coins the schema
-> doesn't model yet (`c5h125a` / `f3h153a` / `km-696-1` — would need `catalog.km` to accept
-> the `{sh:[…], dk:[…]}` shape), 2 out-of-scope metal-enum values, 1 `phase.str`. audit_v2
-> --quick (pre-commit) skips I4 regardless.
+> **audit_v2 I4: 51 → 5 (two schema fixes).** (1) `55a04a3` — the 43 naked KMM museum
+> specimens (seed_unsorted, no year, no KM) no longer fail: `year_label` / `year_first`
+> optional for `fuss == seed_unsorted` (new `_check_year_required` keeps them mandatory for
+> every classified/rendered coin). (2) `f720155` — the 3 cross-volume dict-form `km` coins
+> (`c5h125a` / `f3h153a` / `km-696-1`) now validate: `catalog.km` dict value is
+> `str | list[str]` (was `str`), modelling `{sh:['108','110'], dk:['77','77.1']}`. Both with
+> regression tests. The **5 remaining (3 distinct) are SEPARATE pre-existing issues**: 2
+> out-of-scope metal-enum values (`unified-dk-numista-422716` / `-342834`) + 1 `phase.str`
+> (`galster c3g-131`). audit_v2 --quick (pre-commit) skips I4 regardless.
 >
 > **Earlier this session (pre-night):**
 > - «oldest gold coin of Scandinavia» claim DROPPED for the Hans Rhinsk Gylden (`579aff6`)
