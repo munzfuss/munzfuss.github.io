@@ -255,14 +255,25 @@ _TITLE_SEG_DUCAT_RE = re.compile(r"^[\d¼½¾⅓⅔\s]+(ducats?|dukat)\s*$", re.
 _VALUE_BULLION_RE = re.compile(r"ducat|dukat|portugal", re.I)
 _KM_PN_RE = re.compile(r"^\s*Pn", re.I)                   # Krause pattern/presentation prefix
 
+# §9 OFF-SCOPE by metal — banknotes (paper) and white-metal / tin / pewter
+# exonumia (medals, jetons, tokens) are not precious/base-metal circulation
+# coinage. The Coin schema metal enum is {silver, gold, billon, copper, lead,
+# bronze}; anything in this set is off-scope and dropped at seed time. (A Bremen
+# exhibition «Medal» white-metal piece (N#422716) and a «Braunschweigische Bank»
+# paper banknote (N#342834) had slipped into the seed — caught 2026-06-30.)
+_OFFSCOPE_METALS = {"paper", "white-metal", "white metal", "tin", "pewter"}
 
-def _excluded_strike_reason(title, references, value_raw=None) -> str | None:
+
+def _excluded_strike_reason(title, references, value_raw=None, metal=None) -> str | None:
     """Return a §9 exclusion reason when this Numista type is a trial/pattern
     (§9.1), off-metal (§9.3) or off-nominal presentation strike (§9.5; not struck
-    for circulation), else None. Keyed on the title + off-metal «(OM)» KM marker.
-    The bare Krause «Pn» number is NOT a standalone trigger (it conflates die-
-    trials with full-value pieces); for §9.5 off-nominal it is a NECESSARY gate
-    combined with the ducat-weight title + non-bullion nominal."""
+    for circulation), OR off-scope by metal (banknote/exonumia — see
+    _OFFSCOPE_METALS), else None. Keyed on the title + off-metal «(OM)» KM marker
+    + composition metal. The bare Krause «Pn» number is NOT a standalone trigger
+    (it conflates die-trials with full-value pieces); for §9.5 off-nominal it is a
+    NECESSARY gate combined with the ducat-weight title + non-bullion nominal."""
+    if str(metal or "").strip().lower() in _OFFSCOPE_METALS:
+        return f"§9 off-scope metal ({str(metal).strip().lower()}): banknote/exonumia"
     km = (references or {}).get("km")
     km_vals: list = []
     if isinstance(km, dict):
@@ -433,7 +444,8 @@ def collect_entries() -> tuple[list[dict[str, Any]], Counter]:
             continue
         excl = _excluded_strike_reason(canonical.get("title"),
                                        canonical.get("references"),
-                                       (canonical.get("value") or {}).get("raw"))
+                                       (canonical.get("value") or {}).get("raw"),
+                                       (canonical.get("composition") or {}).get("metal"))
         if excl is not None:
             by_shape["skipped_strike"] += 1
             continue
