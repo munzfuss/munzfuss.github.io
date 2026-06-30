@@ -560,8 +560,11 @@ class Coin(_StrictBase):
     )
     kind: Literal["kurant", "scheide", "tarif", "tarif_subunit", "gedenk"]
     nominal: str = Field(..., description="Literal inscription or closest transcription")
-    year_label: str
-    year_first: int
+    # year_label / year_first are REQUIRED for classified coins, but OPTIONAL for
+    # `fuss == seed_unsorted` — undated KMM museum specimens (no year, no KM) are
+    # legitimately yearless and never render; enforced by `_check_year_required`.
+    year_label: str | None = None
+    year_first: int | None = None
     year_last: int | None = None
     year_verified: bool = Field(
         True,
@@ -809,6 +812,24 @@ class Coin(_StrictBase):
                 f"coin {self.id}: year_last ({self.year_last}) must equal "
                 f"max(year_ranges) ({rmax})"
             )
+        return self
+
+    @model_validator(mode="after")
+    def _check_year_required(self):
+        """`year_label` + `year_first` are mandatory for CLASSIFIED coins (every
+        coin that renders), but optional for `fuss == seed_unsorted` — an
+        unclassified KMM museum specimen may legitimately carry no year and no
+        catalogue number (undated, never rendered). This keeps the contract
+        strict where it matters and stops naked museum records from failing
+        schema validation (audit_v2 I4)."""
+        if self.fuss != "seed_unsorted":
+            missing = [f for f in ("year_label", "year_first")
+                       if getattr(self, f) is None]
+            if missing:
+                raise ValueError(
+                    f"coin {self.id}: {', '.join(missing)} required for a "
+                    f"classified coin (fuss={self.fuss!r})"
+                )
         return self
 
 
