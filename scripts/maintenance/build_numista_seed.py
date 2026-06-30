@@ -263,17 +263,28 @@ _KM_PN_RE = re.compile(r"^\s*Pn", re.I)                   # Krause pattern/prese
 # paper banknote (N#342834) had slipped into the seed — caught 2026-06-30.)
 _OFFSCOPE_METALS = {"paper", "white-metal", "white metal", "tin", "pewter"}
 
+# §9.2 exonumia — medals, tokens, jetons, plaquettes carry no circulating
+# denomination and are not coinage. Numista titles them «Medal - …»,
+# «Token - …», «Jeton - …» and gives value.raw «Medal». (N#422716 Bremen
+# exhibition Medal, N#391426 Oldenburg Gustav-Adolf-Festspiele Medal,
+# N#400480 Bremen Token — caught 2026-06-30.)
+_TITLE_EXONUMIA_RE = re.compile(
+    r"^\s*(medal|m[ée]daille|token|jeton|jetton|plaquette)\b", re.I)
+
 
 def _excluded_strike_reason(title, references, value_raw=None, metal=None) -> str | None:
     """Return a §9 exclusion reason when this Numista type is a trial/pattern
     (§9.1), off-metal (§9.3) or off-nominal presentation strike (§9.5; not struck
-    for circulation), OR off-scope by metal (banknote/exonumia — see
-    _OFFSCOPE_METALS), else None. Keyed on the title + off-metal «(OM)» KM marker
-    + composition metal. The bare Krause «Pn» number is NOT a standalone trigger
-    (it conflates die-trials with full-value pieces); for §9.5 off-nominal it is a
-    NECESSARY gate combined with the ducat-weight title + non-bullion nominal."""
+    for circulation), off-scope by metal (banknote/exonumia — see _OFFSCOPE_METALS),
+    or §9.2 exonumia (medal/token/jeton — see _TITLE_EXONUMIA_RE), else None. Keyed
+    on the title + off-metal «(OM)» KM marker + composition metal + value nominal.
+    The bare Krause «Pn» number is NOT a standalone trigger (it conflates die-trials
+    with full-value pieces); for §9.5 off-nominal it is a NECESSARY gate combined
+    with the ducat-weight title + non-bullion nominal."""
     if str(metal or "").strip().lower() in _OFFSCOPE_METALS:
         return f"§9 off-scope metal ({str(metal).strip().lower()}): banknote/exonumia"
+    if _TITLE_EXONUMIA_RE.match(title or "") or str(value_raw or "").strip().lower() == "medal":
+        return "§9.2 exonumia (medal/token/jeton — no circulating denomination)"
     km = (references or {}).get("km")
     km_vals: list = []
     if isinstance(km, dict):
