@@ -231,11 +231,31 @@ def cmd_scan(entity):
     from collections import Counter
     seeds = load_seeds(entity)
     unified = load_layer(entity, "seed_unified")
+    # Curator force-`merges` declare a vetted identity (e.g. KM 41 ≡ Lange 274b);
+    # those are intentional no-shared-base merges, not over-merges — skip an entry
+    # whose members are fully covered by one force-merge group (expand bare Hede).
+    force_groups = []
+    decp = os.path.join(ROOT, "merge_decisions", f"{entity}.yml")
+    if os.path.exists(decp):
+        ddoc = yaml.safe_load(open(decp)) or {}
+        for blk in (ddoc.get("merges") or []):
+            grp = set()
+            for m in (blk.get("members") or []):
+                if m in seeds:
+                    grp.add(m)
+                elif re.search(r"\d$", m):
+                    grp.update(k for k in seeds
+                               if k.startswith(m) and k[len(m):].isalpha())
+            if grp:
+                force_groups.append(grp)
     flagged = []
     for uid, c in unified.items():
         members = c.get("composed_of") or []
         if len(members) < 2:
             continue
+        mset = set(members)
+        if any(mset <= g for g in force_groups):
+            continue  # curator-vetted identity, not an over-merge
         per_key = {}  # key -> {member: set(bases)}
         for mid in members:
             cat = (seeds.get(mid, {}) or {}).get("catalog", {}) or {}

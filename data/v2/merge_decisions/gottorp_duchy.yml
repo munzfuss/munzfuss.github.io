@@ -34,3 +34,21 @@ no_merges:
       348805, Lange-274 series, Frederik-III sibling = KM 78 / Lange 274e). No
       shared catalogue index spans them, so the matcher saw no conflict and
       fused them — but they are two distinct Gottorp Thaler types. Keep apart.
+
+merges:
+  # Coin 3 of the cluster above — a curator-vetted cross-catalogue IDENTITY, not
+  # an over-merge. The auto-matcher already unites these two (ruler+nominal+year+
+  # weight), but they share NO catalogue base (KM 41 / Dav 3692 vs Lange 274b),
+  # so the §9.4 over-merge `scan` would flag it forever. Record the curator
+  # decision («хай буде 3», 2026-06-29) explicitly: it documents KM 41 ≡ Lange
+  # 274b ≡ Dav 3692 = ONE Johan-Adolf 1614 Gottorp Thaler, makes the union
+  # durable against future matcher changes, and tells `scan` it is intentional.
+  - members: [kmk-348805, schleswig_holstein-numismaster-99448]
+    reason: >-
+      1 Thaler / 1 Daler, Johan Adolf, 1614, Gottorp — KMM 348805 (Lange 274b,
+      28.76 g) and NumisMaster MC_99448 (KM 41, Dav EC II 3692) are the SAME
+      coin: same ruler, nominal, year and ~28.77 g weight. The Danish/museum
+      catalogue (Lange) and Krause/Davenport simply index it differently and
+      neither cross-references the other, so there is no shared base to confirm
+      the identity from data alone — curator-confirmed it is one coin. KM /
+      Lange / Dav accumulate list-form per §9a.
