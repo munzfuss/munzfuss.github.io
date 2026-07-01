@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-06-29 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-01 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1684 per-source seed entries.
-# Output: 958 unified entries (one per physical coin).
+# Input: 1692 per-source seed entries.
+# Output: 957 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-06-29'
+generated_at: '2026-07-01'
 coins:
 - id: unified-denmark-numismaster-65623
   fuss: seed_unsorted
@@ -12228,40 +12228,61 @@ coins:
   - dk-bruun-8205
   - dk-hede-f7h4b
   - dk-numista-83074
-- id: unified-dk-hede-f7h6b
+- id: unified-dk-hede-f7h6a
   fuss: seed_unsorted
   phase: hede
   kind: kurant
   nominal: 2 Rigsdaler
   year_first: 1854
-  year_last: 1856
+  year_last: 1863
   year_ranges:
   - - 1854
     - 1856
-  year_label: 1854-1856
+  - - 1863
+    - 1863
+  year_label: 1854-1856, 1863
   ruler: Frederik VII.
-  mintmaster: Johan Friedrich Freund (FF)
-  mint: Altona
+  mintmaster: Georg Vilhelm Svendsen (VS)
+  mint:
+  - Altona
+  - Kopenhagen
   catalog:
-    km: '761.1'
-    hede: 6B
+    km:
+    - '761.2'
+    - '761.1'
+    - '761.3'
+    - '761'
+    hede:
+    - 6A
+    - 6B
+    - 6C
     hede_volume: f7h
     schou:
     - '2'
     - '3'
     - '4'
-    sieg: '14.2'
+    sieg:
+    - '14.1'
+    - '14.2'
+    - '14.3'
     bruun_collection_id:
+    - '8220'
+    - '8229'
     - '8234'
     - '8249'
-    bruun_part: I
-    bruun_lot_no: 1167
-    bruun_page: 229
-    dav: '77'
+    - '8270'
+    bruun_part: IV
+    bruun_lot_no: 17203
+    bruun_page: 107
+    numista: '22121'
+    dav:
+    - EC IV 77
+    - ECT 77
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -12269,41 +12290,88 @@ coins:
     source: hede
   - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: numista
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
   - value: 28.78
     source: bruun
+  - value: 28.84
+    source: bruun
+  - value: 28.89
+    source: ucoin
   - value: 28.893
     source: hede
   - value: 28.893
     source: numismaster
+  - value: 28.893
+    source: numista
+  diameter_mm:
+  - value: 37.0
+    source: numista
+  - value: 37.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66089
     ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_66090
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_66091
+    ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17203, p. 107
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17211, p. 109
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
     ref: Bruun Part I, lot 1167, p. 229
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17219, p. 111
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17222, p. 112
   - type: literature
     url: https://www.danskmoent.dk/fr/f7h6.htm
-    ref: danskmoent.dk (Hede f7h6B)
+    ref: danskmoent.dk (Hede f7h6A)
+  - type: literature
+    url: https://en.numista.com/22121
+    ref: Numista N#22121 — 2 Rigsdaler - Frederik VII
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-rigsdaler-1854-1863/?tid=70693
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
       danskmoent.dk.'
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  issuing_entity: royal_holstein
+  issuing_entity:
+  - danish_realm
+  - royal_holstein
   hede_muentzfuss_yield:
     value: 18.5
     unit: rigsdaler
     basis: fin
   composed_of:
   - denmark-numismaster-66089
+  - denmark-numismaster-66090
+  - denmark-numismaster-66091
+  - dk-bruun-8220
+  - dk-bruun-8229
   - dk-bruun-8234
   - dk-bruun-8249
+  - dk-bruun-8270
+  - dk-hede-f7h6a
   - dk-hede-f7h6b
+  - dk-hede-f7h6c
+  - dk-numista-22121
+  - km-761-fr-vi-1854
 - id: unified-dk-hede-f7h8
   fuss: seed_unsorted
   phase: hede
@@ -14264,60 +14332,6 @@ coins:
   - dk-numista-204200
   - km-55-fr-iii-1665
   - schleswig_holstein-numismaster-93011
-- id: unified-dk-numista-22121
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 12 Rigsdaler courant
-  year_first: 1854
-  year_last: 1863
-  year_ranges:
-  - - 1854
-    - 1863
-  year_label: 1854-1863
-  ruler: Frederick VII
-  mint:
-  - Altona
-  - Kopenhagen
-  catalog:
-    km: '761'
-    numista: '22121'
-    dav:
-    - EC IV 77
-    - ECT 77
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numista
-  weight_rough_g:
-  - value: 28.893
-    source: numista
-  diameter_mm:
-  - value: 37.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/22121
-    ref: Numista N#22121 — 2 Rigsdaler - Frederik VII
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-22121
 - id: unified-dk-numista-22576
   fuss: seed_unsorted
   phase: numista

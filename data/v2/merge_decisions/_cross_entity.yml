@@ -196,3 +196,43 @@ merges:
       - dk-tid-70682
       - kmk-334026
     reason: 'Curator 2026-06-29 (B3): f7h17 «½ Skilling Rigsmønt» Frederik VII 1857 — ONE coin = KM 767, Hede base 17. Same pattern as f7h16: KM 767 unifies; Hede 17B = Altona (royal_holstein, dk-hede-f7h17b) vs 17/17A = Kopenhagen (danish_realm, dk-hede-f7h17a), Sieg 8.2 vs 8.1. Merge across entities; issuing_entity [danish_realm, royal_holstein], home royal_holstein. Sub-indices Hede [17,17A,17B] + Sieg [8.1,8.2] preserved list-form per §9a.'
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-f7h6a               # home: danish_realm   (Kopenhagen, KM 761.2, Hede 6A, 1854-1855)
+      - dk-hede-f7h6c               # home: danish_realm   (Kopenhagen, KM 761.3, Hede 6C, 1863)
+      - dk-hede-f7h6b               # home: royal_holstein (Altona,     KM 761.1, Hede 6B)
+      - km-761-fr-vi-1854           # home: danish_realm   (ucoin, KM 761, N#22121, no mint)
+      - dk-numista-22121            # home: royal_holstein (Numista N#22121, KM 761)
+      - denmark-numismaster-66090   # home: danish_realm   (Kopenhagen, KM 761.2, Hede 6A)
+      - denmark-numismaster-66091   # home: danish_realm   (Kopenhagen, KM 761.3, Hede 6C)
+      - denmark-numismaster-66089   # home: royal_holstein (Altona,     KM 761.1, Hede 6B)
+      - dk-bruun-8220               # home: danish_realm   (Kopenhagen, KM 761.2, Hede 6A, Bruun IV lot 17203)
+      - dk-bruun-8229               # home: danish_realm   (Kopenhagen, KM 761.2, Hede 6A, Bruun IV lot 17211)
+      - dk-bruun-8270               # home: danish_realm   (Kopenhagen, KM 761.3, Hede 6C, Bruun IV lot 17222)
+      - dk-bruun-8234               # home: royal_holstein (Altona,     KM 761.1, Hede 6B, Bruun I lot 1167)
+      - dk-bruun-8249               # home: royal_holstein (Altona,     KM 761.1, Hede 6B, Bruun IV lot 17219)
+    reason: |
+      Curator 2026-07-01 (Serhii, «так, це одна монета»): ONE coin — Frederik VII
+      «2 Rigsdaler» Rigsmønt 1854-1863, KM 761, struck at BOTH Kopenhagen (Hede 6A
+      1854-1855 + 6C 1863, KM 761.2/.3) and Altona (Hede 6B, KM 761.1). Exact
+      sibling of f7h8 (KM 760 «1 Rigsdaler») + f7h16/f7h17: KM 761 unifies per §9.4;
+      the Hede letters split by mint — 6B = Altona (royal_holstein) vs 6A/6C =
+      Kopenhagen (danish_realm), Sieg 14.2/14.1/14.3. Mint sub-variants of one type
+      → list-form accumulation per §9a. The ucoin km-761-fr-vi-1854 (KM 761 +
+      Numista 22121, no mint → classifier defaulted danish_realm; its V1 hede 7 /
+      dav 75 were wrong other-coin indices, removed in 1104f55) joins by the verified
+      cross-catalogue equivalence KM 761 (Numista N#22121) ≡ Hede 6 (danskmoent
+      f7h6.htm) — the 1854-1863 circulation 2 Rigsdaler.
+
+      target_entity = royal_holstein per the f7h8 precedent: a coin struck at
+      Altona+Kopenhagen is the SH∩Denmark overlap, so it must PROCESS in
+      royal_holstein (consumed by BOTH pages). The cross-entity stamp derives
+      issuing_entity = joint [danish_realm, royal_holstein] from the merged mint
+      [Altona, Kopenhagen]; the Kopenhagen members are pulled out of danish_realm
+      (source-side exclude → no fragment there). Head = the Hede-authority unified
+      id. fuss 18½-Thaler-Fuß, phase per-location dict {denmark: I,
+      schleswig_holstein: III} (same as f7h8, same era). The V1 foundation
+      km-761-fr-vi-1854 (royal_holstein final) is renamed to the head id as the
+      foundation carrying that classification. NB: the f7h6c seed carried a wrong
+      fuss=pistolenfuss (residue of the d'Or-note leak) — the 18_5_thaler head
+      classification supersedes it.
