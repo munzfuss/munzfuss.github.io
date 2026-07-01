@@ -1208,6 +1208,51 @@ def _is_vanished_stale_final(fe: dict, live_unified_ids: set, live_ids: set) -> 
     )
 
 
+def _cross_entity_relocated_out(entity_id: str) -> set:
+    """Member seed ids that `_cross_entity.yml` pulls OUT of `entity_id` into a
+    DIFFERENT target entity.
+
+    When the merger applies such a pull it EXCLUDES the member from
+    `entity_id`'s seed processing, so `entity_id`'s seed_unified no longer heads
+    it. But a stale source-side FINAL (the pre-move foundation) survives the
+    `_is_vanished_stale_final` gate whenever it carries curation (a real
+    `fuss`/`phase`), because the per-entity `seed_to_unified` map can't see that
+    the seed moved to ANOTHER entity's bucket. Those source-side finals are
+    relocation orphans — the coin now lives in the target and its curation moved
+    with it. Two shapes result: a same-id duplicate (audit_v2 I3 catches it) and
+    a folded orphan under a now-unique id (I3 does NOT — it would render as a
+    silent phantom row). Both are dropped by `_final_is_relocated`.
+
+    Members are matched as the explicit seed ids written in `_cross_entity.yml`
+    (every current entry lists sub-variant seeds explicitly; a bare Hede code
+    would need sub-letter expansion — add it when such a case appears)."""
+    doc = _load_yaml(V2_MERGE_DECISIONS / "_cross_entity.yml")
+    out: set = set()
+    for e in (doc.get("merges") or []):
+        if e.get("target_entity") == entity_id:
+            continue          # this entity IS the target — its members belong here
+        out.update(str(m) for m in (e.get("members") or []))
+    return out
+
+
+def _final_is_relocated(fe: dict, relocated_out: set) -> bool:
+    """True if this pipeline-promoted (`unified-*`) final's underlying seed was
+    pulled to a different entity via `_cross_entity.yml` — a stale source-side
+    copy, safe to drop even if curated (the curation lives on the target host).
+    Matches the head-seed (id minus the `unified-` prefix) and every
+    composed_of member (raw + `unified-`-stripped) against `relocated_out`."""
+    fid = str(fe.get("id") or "")
+    if not fid.startswith("unified-"):
+        return False
+    keys = {fid[len("unified-"):]}
+    for c in (fe.get("composed_of") or []):
+        cs = str(c)
+        keys.add(cs)
+        if cs.startswith("unified-"):
+            keys.add(cs[len("unified-"):])
+    return bool(keys & relocated_out)
+
+
 def process_entity(entity_id: str) -> dict:
     """Returns:
       {
@@ -1453,6 +1498,7 @@ def process_entity(entity_id: str) -> dict:
             existing[mkey] = ex_merge
         curator_migrations[new_host_fid] = existing
 
+    relocated_out = _cross_entity_relocated_out(entity_id)
     surviving_finals: list[dict] = []
     for fe in final_entries:
         fid = fe.get("id") if isinstance(fe, dict) else None
@@ -2315,6 +2361,23 @@ def process_entity(entity_id: str) -> dict:
               f"{len(monotonic_restored)} prior-final coin(s) a re-merge "
               f"would have de-promoted (verbatim, no merge): "
               f"{monotonic_restored[:8]}")
+
+    # Cross-entity relocation filter (FINAL, post-monotonic-guard): drop any
+    # source-side final whose seed was pulled to a DIFFERENT entity via
+    # _cross_entity.yml. This is the guaranteed-effective drop point — the
+    # stale-foundation purge alone doesn't stick because the monotonic guard
+    # re-promotes vanished prior-finals verbatim. Removes both the same-id dup
+    # (audit_v2 I3-visible) AND the folded orphan under a now-unique id
+    # (I3-invisible — otherwise a silent phantom row on the source page). The
+    # coin lives in the target entity; its curation moved with it. (2026-07-01,
+    # KM 761 «2 Rigsdaler» f7h6a/f7h6c danish_realm -> royal_holstein.)
+    _reloc_before = len(enriched_entries)
+    enriched_entries = [fc for fc in enriched_entries
+                        if not _final_is_relocated(fc, relocated_out)]
+    if len(enriched_entries) != _reloc_before:
+        print(f"  [{entity_id}] cross-entity relocation: dropped "
+              f"{_reloc_before - len(enriched_entries)} stale source-side "
+              f"final(s) (coin moved to its target entity)")
 
     return {
         "entity_id": entity_id,
