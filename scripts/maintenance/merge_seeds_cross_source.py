@@ -3661,6 +3661,78 @@ def _load_cross_entity_decisions(
     return pull_groups, member_target
 
 
+def _completeness_base_keys(coin: dict, entity_id: str | None) -> set:
+    """(scope_key, base) pairs for a coin, restricted to the PRIMARY identity
+    signals — KM (register-aware) + Hede (ruler-aware). Reuses `_catalog_refs`
+    so cross-volume KM / cross-ruler Hede collisions can't false-match; sub-
+    letters / sub-decimals are stripped (761.2 -> 761, 6A -> 6, 33 -> 33)."""
+    out: set = set()
+    for k, v in _catalog_refs(coin, entity_id).items():
+        if not (k.startswith("km") or k.startswith("hede")):
+            continue
+        for part in str(v).split("|"):
+            m = re.match(r"^([A-Za-z ]*?\d+)", part.strip())
+            b = m.group(1) if m else part.strip()
+            if b:
+                out.add((k, b))
+    return out
+
+
+def _norm_nominal_key(n) -> str:
+    """Normalise a nominal for loose equality — «2 Skilling» == «2skilling»
+    == «2-skilling»."""
+    import re as _re
+    return _re.sub(r"[\s\-.]", "", str(n or "").lower())
+
+
+def _check_cross_entity_completeness(all_by_id: dict, home: dict) -> list:
+    """Completeness guard (WARNING-level). For each `_cross_entity.yml` group,
+    find seeds that share a member's KM/Hede base AND nominal AND metal but
+    aren't listed (nor in the entry's `excludes:` escape-hatch) — a forgotten
+    member that would fragment / phantom in the source entity (the exact hole
+    the absorber's relocation filter cannot see, since an unlisted seed is not
+    in `relocated_out`). Per-case it is a curator call: add to `members` per
+    §9a, or list in `excludes` when it is genuinely a different coin (or an
+    out-of-scope weightless KMM fragment). Returns
+    (target, seed, shared_keys, nominal, metal, home) tuples."""
+    if not V2_CROSS_ENTITY_DECISIONS.exists():
+        return []
+    doc = load_decisions_yaml(V2_CROSS_ENTITY_DECISIONS)
+    all_ids = set(all_by_id)
+    index: dict = {}
+    for sid, coin in all_by_id.items():
+        for key in _completeness_base_keys(coin, home.get(sid)):
+            index.setdefault(key, set()).add(sid)
+    out: list = []
+    for entry in doc.get("merges") or []:
+        target = entry.get("target_entity")
+        members: set = set()
+        for m in (entry.get("members") or []):
+            members |= set(_expand_member_against(m, all_ids))
+        excludes: set = set()
+        for x in (entry.get("excludes") or []):
+            excludes |= set(_expand_member_against(x, all_ids))
+        member_metals = {all_by_id[m].get("metal") for m in members if m in all_by_id}
+        member_noms = {_norm_nominal_key(all_by_id[m].get("nominal"))
+                       for m in members if m in all_by_id}
+        keys: set = set()
+        for m in members:
+            if m in all_by_id:
+                keys |= _completeness_base_keys(all_by_id[m], home.get(m))
+        peers: set = set()
+        for k in keys:
+            peers |= index.get(k, set())
+        for p in sorted(peers - members - excludes):
+            c = all_by_id[p]
+            if c.get("metal") not in member_metals:
+                continue                      # metal pre-screen (drops off-metal)
+            if _norm_nominal_key(c.get("nominal")) not in member_noms:
+                continue                      # nominal pre-screen (drops KM/Hede base collisions)
+            shared = sorted(k for k in _completeness_base_keys(c, home.get(p)) if k in keys)
+            out.append((target, p, shared, c.get("nominal"), c.get("metal"), home.get(p)))
+    return out
+
+
 # ---------------------------------------------------------------------------
 # Parallel PASS-1 workers
 # ---------------------------------------------------------------------------
@@ -4434,6 +4506,17 @@ def main() -> int:
                   "--entity (or process every affected entity) so source-side "
                   "excludes also apply — single-entity --apply can leave a "
                   "duplicate in the un-processed bucket.\n")
+
+    _xe_incomplete = _check_cross_entity_completeness(all_by_id, _home)
+    if _xe_incomplete:
+        print(f"  ⚠ cross-entity COMPLETENESS: {len(_xe_incomplete)} seed(s) share a "
+              f"member's KM/Hede base + nominal + metal but are NOT listed — a "
+              f"forgotten member fragments/phantoms in its source entity. Add each "
+              f"to the group's `members` (per §9a) or to the entry's `excludes:` "
+              f"if it is a different coin / out-of-scope KMM fragment:")
+        for _t, _p, _sh, _nom, _met, _h in _xe_incomplete:
+            print(f"      [{_t}] {_p}  (home={_h}, {_met} «{_nom}»)  shares {_sh}")
+        print()
 
     print(f"Processing {len(entities)} entit(y/ies)...\n")
 
