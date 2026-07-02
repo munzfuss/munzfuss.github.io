@@ -68,6 +68,11 @@ merges:
       - denmark-numismaster-58048 # KM 631.2 (Altona)
       - denmark-numismaster-58049 # KM 631.3 (Altona)
       - dk-numista-42563          # numista N#42563, KM 631 (Altona + Kopenhagen)
+      - kmk-159885                # KMM, Hede 33B, 1782 (weight 0.82g)
+      - kmk-279194                # KMM, Hede 33B, 1779 (has image)
+      - kmk-294708                # KMM, Hede 33C, 1785, silver
+      - kmk-354428                # KMM, Hede 33B, 1783
+      - kmk-395198                # KMM, Hede 33, 1782
     reason: |
       One coin — Christian VII «2 Skilling», Hede 33 (sub-variants 33A/33B/33C),
       KM 631 (.1/.2/.3), struck 1778-1785 at Altona AND Kopenhagen. Was
@@ -96,6 +101,14 @@ merges:
     members:
       - dk-hede-f6h14   # home: royal_holstein (Hede 14, «3 Skilling» Frederik VI)
       - kmk-131538      # home: danish_realm    (KMM FP 2519.130, «3 Skilling» 1812)
+      - kmk-122889      # KMM, Hede 14, 1812
+      - kmk-122890      # KMM, Hede 14, 1814
+      - kmk-152089      # KMM, Hede 14, copper (has image)
+      - kmk-152090      # KMM, Hede 14, copper (has image)
+      - kmk-159742      # KMM, Hede 14, 1812
+      - kmk-354548      # KMM, Hede 14, copper, 1812
+      - kmk-405952      # KMM, Hede 14, 1812
+      - kmk-741023      # KMM, Hede 14, 1812
     reason: |
       Durability for the 2026-06-22 cross-entity-dup consolidation (Serhii). The
       «3 Skilling» Frederik VI existed as TWO final rows sharing one id — a
@@ -173,6 +186,9 @@ merges:
       - kmk-130612
       - kmk-317587
       - kmk-317588
+      - kmk-317570                # KMM, Hede 13, «1 Speciemønt»
+      - kmk-317573                # KMM, Hede 13, «1 Speciemønt»
+      - kmk-317575                # KMM, Hede 13, «1 Speciemønt»
     reason: 'Curator 2026-06-28: c7h13 «1 Speciedaler» Christian VII 1795-1801 (Altona+Kopenhagen) is ONE coin = Hede 13, catalogued in two Krause volumes — KM 651 (Schleswig-Holstein/German volume, royal_holstein) and KM 654 (Denmark volume, danish_realm km-654/bruun-7940). The DK-volume cluster was bucketed into danish_realm; pull it into royal_holstein (the SH∩Denmark overlap home, so the coin renders on both pages) and union with the Hede-13 cluster. Final keeps the KM provenance split via dict-form km {sh:[651,651.1], dk:[654]} so the two Krause traditions are not conflated (as c5h125).'
   - target_entity: royal_holstein
     members:

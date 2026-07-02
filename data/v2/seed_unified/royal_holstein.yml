@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-07-01 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-02 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1692 per-source seed entries.
+# Input: 1708 per-source seed entries.
 # Output: 957 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-07-01'
+generated_at: '2026-07-02'
 coins:
 - id: unified-denmark-numismaster-65623
   fuss: seed_unsorted
@@ -6049,6 +6049,7 @@ coins:
   mint:
   - Altona
   - Kopenhagen
+  - København ell. Altona
   catalog:
     km:
     - '654'
@@ -6124,6 +6125,15 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/130612
     ref: KMM 130612 (Inv. FP 7044.1)
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/317570
+    ref: KMM 317570 (Inv. FP 7044.20)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/317573
+    ref: KMM 317573 (Inv. FP 7044.17)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/317575
+    ref: KMM 317575 (Inv. FP 7044.15)
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/317587
     ref: KMM 317587 (Inv. FP 7044.3)
   - type: museum
@@ -6151,6 +6161,9 @@ coins:
   - dk-hede-c7h13d
   - dk-numista-132002
   - kmk-130612
+  - kmk-317570
+  - kmk-317573
+  - kmk-317575
   - kmk-317587
   - kmk-317588
 - id: unified-dk-hede-c7h15
@@ -6568,6 +6581,8 @@ coins:
   - value: 0.343
     source: ucoin
   weight_rough_g:
+  - value: 0.82
+    source: kmk
   - value: 1.18
     source: ucoin
   - value: 1.181
@@ -6610,8 +6625,23 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/159749
     ref: KMM 159749 (Inv. FP 3931.77)
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/159885
+    ref: KMM 159885 (Inv. FP 3545.1)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/279194
+    ref: KMM 279194 (Inv. FP 3528.250)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/294708
+    ref: KMM 294708 (Inv. GP 4573.9)
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/340595
     ref: KMM 340595 (Inv. FP 5612.14)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/354428
+    ref: KMM 354428 (Inv. FP 4929.84)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/395198
+    ref: KMM 395198 (Inv. FP 3800.9)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -6637,7 +6667,12 @@ coins:
   - kmk-122089
   - kmk-122886
   - kmk-159749
+  - kmk-159885
+  - kmk-279194
+  - kmk-294708
   - kmk-340595
+  - kmk-354428
+  - kmk-395198
 - id: unified-dk-hede-c7h35
   fuss: seed_unsorted
   phase: hede
@@ -10417,8 +10452,32 @@ coins:
     url: https://www.danskmoent.dk/fr/f6h14.htm
     ref: danskmoent.dk (Hede f6h14)
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/122889
+    ref: KMM 122889 (Inv. FP 3712.14)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/122890
+    ref: KMM 122890 (Inv. FP 3712.15)
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/131538
     ref: KMM 131538 (Inv. FP 2519.130)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/152089
+    ref: KMM 152089 (Inv. FP 3574.205)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/152090
+    ref: KMM 152090 (Inv. FP 3574.204)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/159742
+    ref: KMM 159742 (Inv. FP 3931.103)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/354548
+    ref: KMM 354548 (Inv. FP 4926.2)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/405952
+    ref: KMM 405952 (Inv. FP 3318.2)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/741023
+    ref: KMM 741023 (Inv. FP 3931.101a)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -10429,7 +10488,15 @@ coins:
   - royal_holstein
   composed_of:
   - dk-hede-f6h14
+  - kmk-122889
+  - kmk-122890
   - kmk-131538
+  - kmk-152089
+  - kmk-152090
+  - kmk-159742
+  - kmk-354548
+  - kmk-405952
+  - kmk-741023
 - id: unified-dk-hede-f6h15
   fuss: seed_unsorted
   phase: hede
