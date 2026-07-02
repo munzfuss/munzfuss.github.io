@@ -3686,10 +3686,10 @@ def _norm_nominal_key(n) -> str:
 
 
 def _check_cross_entity_completeness(all_by_id: dict, home: dict) -> list:
-    """Completeness guard (WARNING-level). For each `_cross_entity.yml` group,
-    find seeds that share a member's KM/Hede base AND nominal AND metal but
-    aren't listed (nor in the entry's `excludes:` escape-hatch) — a forgotten
-    member that would fragment / phantom in the source entity (the exact hole
+    """Completeness guard. For each `_cross_entity.yml` group, find seeds that
+    share a member's KM/Hede base AND nominal AND metal but aren't listed (nor
+    in the entry's `excludes:` escape-hatch) — a forgotten member that would
+    fragment / phantom in the source entity (the exact hole
     the absorber's relocation filter cannot see, since an unlisted seed is not
     in `relocated_out`). Per-case it is a curator call: add to `members` per
     §9a, or list in `excludes` when it is genuinely a different coin (or an
@@ -4509,14 +4509,15 @@ def main() -> int:
 
     _xe_incomplete = _check_cross_entity_completeness(all_by_id, _home)
     if _xe_incomplete:
-        print(f"  ⚠ cross-entity COMPLETENESS: {len(_xe_incomplete)} seed(s) share a "
-              f"member's KM/Hede base + nominal + metal but are NOT listed — a "
-              f"forgotten member fragments/phantoms in its source entity. Add each "
-              f"to the group's `members` (per §9a) or to the entry's `excludes:` "
-              f"if it is a different coin / out-of-scope KMM fragment:")
+        print(f"  ✗ cross-entity COMPLETENESS — BLOCKED: {len(_xe_incomplete)} "
+              f"forgotten member(s). A seed shares a group member's KM/Hede base + "
+              f"nominal + metal but is NOT listed; it would fragment/phantom in its "
+              f"source entity. Resolve EACH before the merge can proceed — add it "
+              f"to the group's `members` (§9a), or to the entry's `excludes:` if it "
+              f"is a different coin / out-of-scope KMM fragment:")
         for _t, _p, _sh, _nom, _met, _h in _xe_incomplete:
             print(f"      [{_t}] {_p}  (home={_h}, {_met} «{_nom}»)  shares {_sh}")
-        print()
+        sys.exit(1)
 
     print(f"Processing {len(entities)} entit(y/ies)...\n")
 

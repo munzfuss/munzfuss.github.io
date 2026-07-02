@@ -23,13 +23,14 @@
 #                              (share a member's KM/Hede base + nominal + metal)
 #                              but that are curator-confirmed NOT members — a
 #                              different coin, or an out-of-scope weightless KMM
-#                              fragment. Suppresses the warning for them.
+#                              fragment. Listing here unblocks the merge for them.
 #
-# Completeness guard (merger, WARNING): on every run the merger checks each
-# group for seeds that share a member's KM/Hede base + nominal + metal but are
-# neither listed nor excluded — a forgotten member would fragment/phantom in
-# its source entity (the absorber's relocation filter can't see an unlisted
-# seed). Resolve each: add to `members` (§9a) or to `excludes`.
+# Completeness guard (merger, HARD ERROR): on every run the merger ABORTS
+# (exit 1) if a group has a seed sharing a member's KM/Hede base + nominal +
+# metal that is neither listed nor excluded — a forgotten member would
+# fragment/phantom in its source entity (the absorber's relocation filter
+# can't see an unlisted seed). Resolve each: add to `members` (§9a) or to
+# `excludes`.
 
 merges:
   - target_entity: royal_holstein
