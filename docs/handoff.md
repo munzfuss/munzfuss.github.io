@@ -373,15 +373,16 @@
 > via §9a (c4h105 km-61-1⊕hede-105a, f5h11 f5h12⊕f5h12ab, c7h13 c7h13a⊕km-651-1,
 > c9h13 c9h13a⊕km-798-1) — all identical-KM confirmed. Durable: twin pinned in
 > keeper.composed_of, revalidate keeps same-nominal members.
-> **SURFACED, not actioned (need user decision):**
-> - **c4h115** (km-81 / bruun-5181, both KM 81): bruun-5181 NumisMaster fineness
->   0.437 + 1.462g contradicts 4-Skilling standard 0.859/1.051g (~2×) — bad record
->   or different coin? EXCLUDED from fold (§0b).
-> - **f3h62** (bruun-6403 KM-240 / f3h62ab KM-241): bruun-6403 carries the documented
->   Bruun KM-240 mis-print; same 2 Speciedaler — merge blocked by KM, needs §CN OK.
-> - KM-differ candidates needing Krause cross-check: **c4h116** (80.2 vs 69), **c5h57**
->   (387 vs 455; Hede 57 is u.år but km-455 dated 1699 → maybe different), **c9h16**
->   (bruun-8346 bad KM 195.1), **f6h27** (706 vs 696.2), **c4h59** (135/59C vs 100/59A).
+> **SURFACED then ALL RESOLVED 2026-06-26/27 — block closed** (was left mislabelled
+> «not actioned»; corrected 2026-07-02 after it kept re-surfacing as a false open item):
+> - **c4h115** (km-81 / bruun-5181) — ✅ folded `26d2a45` (curator «one coin»):
+>   bruun-5181 → km-81 via merge_decision [dk-bruun-5181, dk-hede-c4h115a]; the divergent
+>   1.462g / 0.437 NumisMaster reading kept §9a list-form + deviation note; standalone deleted.
+> - **f3h62** (bruun-6403 KM-240 / f3h62ab KM-241) — ✅ §CN errata `62e800a`
+>   (curator-approved km 240→241 on bruun-6403; the canonical KM-240 slip = 1 Speciedaler
+>   Hede 61, a genuine separate coin still at km-240); bruun-6403 folded into f3h62ab.
+> - KM-differ candidates — ✅ all closed 2026-06-27: **c4h116** `adeb443`, **c5h57**
+>   `48f49ee`, **c9h16** `21fbdcd` (§CN errata), **f6h27** `1287d4c`, **c4h59** `f2a9291`.
 >
 > **2-Dukat Frederik V 1747 family regroup (`87ba864` data, `a0a5ea5` graph).**
 > Investigated via catalog_graph.py component 10 + danskmoent/Numista. The 3 genuine
