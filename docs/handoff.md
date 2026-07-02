@@ -15,6 +15,67 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-02 — km-761 cross-entity consolidation + one-pass relocation + completeness guard (HARD ERROR)
+
+> **UNPUSHED — 73 commits ahead of origin; push pending «пуш».** origin/main = `21fbdcd`, HEAD = `73526f8`.
+>
+> **km-761 «2 Rigsdaler» 1854-1863 cleaned + consolidated into ONE cross-entity coin.**
+> The fragmented km-761 cluster (km-761 + f7h6a/b/c) had a FABRICATED note (§0 —
+> a garbled Christian IX golden-wedding coin) + wrong indices (hede 7 → Prøvemønt
+> f7h7; dav 75 → KM 742 Death-and-Accession). Cleaned each (`be91f25` drop stray
+> f7h7 source, `0763b4b` consolidate). Consolidated 13 members → `_cross_entity.yml`
+> target royal_holstein, head `unified-dk-hede-f7h6a` (fuss 18_5_thaler, phase
+> `{denmark: I, schleswig_holstein: III}`, km [761,761.1,761.2,761.3], hede
+> [6A,6B,6C]) — the f7h8/KM631 precedent. Used the existing `_home_entity` [DR,RH]→
+> royal_holstein routing (no new logic needed).
+>
+> **Absorber → ONE-PASS cross-entity relocation (`abfaa0d`).** Previously a
+> cross-entity merge needed TWO actions (merge + manual delete of the stale
+> source-side final). Added `_cross_entity_relocated_out(entity_id)` +
+> `_final_is_relocated(fe, relocated_out)` → the absorber now DROPS the stale
+> source-side final in the same pass (a FINAL filter on `enriched_entries`
+> AFTER the monotonic guard — placing it earlier didn't stick, the monotonic
+> guard re-promotes vanished prior-finals verbatim). Watch for `[<source>]
+> cross-entity relocation: dropped N stale source-side final(s)` in the absorb log.
+>
+> **Completeness guard: WARNING → resolve 16 → HARD ERROR (`8bd2d4c` → `01e5330`
+> → `f05f1c7`).** New `_check_cross_entity_completeness` in the merger: on every
+> run, if a `_cross_entity.yml` group has a seed sharing a member's KM/Hede base +
+> nominal + metal that is NEITHER in `members` NOR in the new `excludes:` field, it
+> is a forgotten member (would fragment/phantom in its source entity — the exact
+> hole `_final_is_relocated` can't see, an unlisted seed is never in
+> `relocated_out`). Shipped as WARNING first; it found **16 real pre-existing
+> forgotten KMM specimens** (c7h33 +5, f6h14 +8, c7h13 +3) → MERGED all 16 per §9a
+> (NOT excluded — they ARE the coin; `_suppress_weightless_museum_overcollection`
+> handles display, thinning does its job). THEN promoted to HARD ERROR (`sys.exit(1)`).
+> Verified: clean run rc=0 (completeness=0 proceeds), injection rc=1 (BLOCKED, names
+> the seed). The merger is manual-only (CI `deploy.yml` runs build.py, not the
+> merger) so the hard-error breaks no automation.
+>   - **KMM image signal** (learned): NOT the cache `drawingExists` flag (False for
+>     all, including specimens that DO have images). Real signal = `related.assets`
+>     with `type: "still"` in the ES `_source`. 3 of the 16 had images.
+>
+> **Two smaller guards this session:**
+> - **exonumia guard broadened** (`86c8c82`, `bd9faa5`) — `build_numista_seed
+>   ._excluded_strike_reason` now also drops off-scope metals (`_OFFSCOPE_METALS` =
+>   paper/white-metal/tin/pewter) + title-exonumia (`^(medal|médaille|token|jeton|
+>   jetton|plaquette)\b`). Cleared 2 of the 3 audit_v2 I4 failures.
+> - **phase int→str coercion** (`d88fb24`) — `schema.py::_coerce_phase_to_str`
+>   field_validator: an unquoted-YAML-int phase (`phase: 131`) coerces to str; dict
+>   int-values coerce too; bool still fails. Cleared the c3g-131 I4 failure. (str→int
+>   was analysed + rejected: per-location dict form + non-numeric phase ids like «III».)
+>
+> **`v2-merge-coins` skill — CROSS-ENTITY MERGE section added (`73526f8`).** Documents
+> the `_cross_entity.yml` GLOBAL path (target_entity + members + excludes), the merger
+> PULL/EXCLUDE/stamp mechanic, the one-pass relocation filter, and makes the HARD-ERROR
+> completeness guard's contract explicit (member enumeration mandatory; every KM/Hede-
+> base+nominal+metal sibling is a `member` or an `excludes`, no third option). Records
+> run-WITHOUT-`--entity`, absorb-both-entities, [DR,RH]→royal_holstein routing, and that
+> `merge_helper.py audit` skips `_cross_entity` by design.
+>
+> **Board CLEAR** — the whole km-761 / cross-entity / completeness-guard cycle is closed.
+> Full suite 444 OK; audit_lost_citations 0; audit_v2 0; build rc=0.
+
 ## 2026-06-29 (night) — two skills + gottorp over-merge fixed + audit-expansion fix
 
 > **UNPUSHED — 57 commits ahead of origin; push pending «пуш».** Night-work session.
