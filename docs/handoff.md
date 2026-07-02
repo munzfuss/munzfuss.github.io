@@ -75,6 +75,17 @@
 >
 > **Board CLEAR** — the whole km-761 / cross-entity / completeness-guard cycle is closed.
 > Full suite 444 OK; audit_lost_citations 0; audit_v2 0; build rc=0.
+>
+> **Later 2026-07-02 — «what's left» audit + two closures.** Re-verified the deferred
+> backlog against actual DATA (not the handoff scanner, which trusts stale markers):
+> **f3h62** + **c4h115** + **galster hg-238** + **audit_v2 I4** were ALL already
+> resolved — false-positives from un-updated «SURFACED, not actioned» bullets (closed
+> the stale block `abee66c`). GENUINELY open, data-verified: c9h18 (13 unabsorbed KMM
+> 2-Øre fragments), c4h77 (Hede-77 family unassembled), reign-scoped hede/sieg/schou
+> mis-attribution audit (never run), §W prose-lint (1203: 563 err/640 warn), i18n
+> guldkrone HEDE-25 (1 err/20 warn). Closed this session: **ucoin HARVEST_GUIDE**
+> «deferred»→ACTIVE (`5b43881`) + the **sub-letter-space** defect class (`67590f0` +
+> `296d051`, 109 values — see the 2026-06-28 «Minor known-quirk» entry, now RESOLVED).
 
 ## 2026-06-29 (night) — two skills + gottorp over-merge fixed + audit-expansion fix
 
@@ -218,11 +229,14 @@
 > **Remaining B-group fronts (not yet started):** B4 same-KM/diff-Sieg (9),
 > B3 cross-entity (3), B5 (1) — per the 2026-06-28 over-union audit below.
 >
-> **Minor known-quirk (not blocking):** ucoin seed `km-138-3-chr-vii-1787` carries
-> `catalog.hede: '39 C'` (whitespace) in `data/v2/seed/ucoin/royal_holstein.yml`.
-> Cleaned to «39C» in the c7h39a final render, but seed_unified re-introduces it on
-> the next merger pass (manual reconcile re-cleans). Durable fix = whitespace-strip
-> in `lib/catalog_codes.py` hede normalisation — deferred (one occurrence, low value).
+> **Minor known-quirk — RESOLVED 2026-07-02** (`67590f0` code, `296d051` data):
+> the `catalog.hede: '39 C'` whitespace was NOT one occurrence — a full scan found
+> **109** of the same Numista tab-split defect (lange 82 + hede 27) across 22 seed/
+> seed_unified/final files. Durable fix shipped: `normalise_numeric_index` collapses
+> a whole-token «number space sub-letter» via `_strip_subletter_space` (anchored so
+> Lange's reign-disamb «358 C IV» + dav volume codes stay intact), reaching the
+> render chokepoint + every merge/absorb/seed-writer pass; the 109 existing values
+> healed format-preserving (+109/-109, zero churn). test_catalog_subletter_space.
 
 ## 2026-06-28 — B1 over-union cleanup (group D / Pattern B), 8 of 8 COMPLETE
 
