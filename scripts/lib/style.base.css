@@ -1543,6 +1543,26 @@ h2[style] {
 }
 .gw-v b { color: var(--text-primary); font-weight: 600; }
 .gw-v em { color: var(--text-muted); font-style: italic; }
+/* Per-phase sub-sections inside one gw-v: the gw-k is the SECTION (e.g. «Probe»),
+   each .gw-phase is a SUB-section (e.g. «Phase I»). No hairline between phases —
+   the row's own border-bottom marks the section boundary; phases nest under the
+   section via a left accent-rule + indent. */
+.gw-v .gw-phase {
+  display: block;
+  padding-left: 9px;
+  border-left: 1.5px solid var(--border-soft);
+}
+.gw-v .gw-phase + .gw-phase { margin-top: 8px; }
+.gw-v .gw-phase-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
 
 /* Rechnungsfraktionen sub-card — sits in the right column of gw-body */
 .gw-fr {
