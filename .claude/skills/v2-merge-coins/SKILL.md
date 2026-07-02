@@ -7,9 +7,12 @@ description: >-
   (split/un-merge). Encodes the §9.4 over-merge gate and the seed-id resolution
   step that prevent the two recurring failures: (a) over-merging records that
   share only ruler+nominal+year with no common catalogue index, and (b)
-  leaving orphaned (non-resolving) members in merge_decisions. Trigger phrases:
-  "merge these coins", "split this over-merge", "роби мердж", "це over-merge",
-  "почисти orphan-и в merge-рішеннях".
+  leaving orphaned (non-resolving) members in merge_decisions. Also covers
+  CROSS-ENTITY merges (`_cross_entity.yml`) — one coin whose seeds span
+  different V2 entity buckets — with the HARD-ERROR completeness guard that
+  forbids forgetting a member. Trigger phrases: "merge these coins", "split
+  this over-merge", "cross-entity merge", "роби мердж", "це over-merge",
+  "об'єднай через сутності", "почисти orphan-и в merge-рішеннях".
 ---
 
 # v2-merge-coins — safe merge / split in the V2 pipeline
@@ -134,6 +137,75 @@ When an existing entry bundles distinct coins (over-merge):
 5. Verify (Step 4) + commit (Step 5). Be honest in history: a wrong-merge
    commit followed by a correction commit is the §0b trail.
 
+## CROSS-ENTITY MERGE — when a coin's seeds span DIFFERENT entities
+
+Sometimes one physical coin's source seeds land in DIFFERENT V2 entity buckets:
+a copy that carries a mint routes (via `classify_mint_to_entity`) to e.g.
+`royal_holstein`, while a copy with no mint defaults to `danish_realm`. That is
+NOT a per-entity `merge_decisions/<entity>.yml` edge — it is a GLOBAL relocation
+in **`data/v2/merge_decisions/_cross_entity.yml`**.
+
+**How it differs from a same-entity merge.** One entry declares:
+`target_entity` (where the coin truly belongs) + `members` (seed ids from ANY
+bucket; bare Hede ids expand) + optional `excludes`. On every run the merger
+(`_load_cross_entity_decisions`, global, before the per-entity loop): PULLS the
+members into `target_entity`, force-unions them into ONE entry, EXCLUDES them
+from their source buckets (no phantom left behind), and stamps
+`issuing_entity = target_entity`. The absorber then drops the stale source-side
+final in the SAME pass (`_final_is_relocated` against `relocated_out`) — one
+action, no manual delete (as of the one-pass relocation fix).
+
+**When to reach for it.** Step 0 `resolve` shows the candidates' seeds live in
+different entity buckets, or the copies get different `issuing_entity` because
+only some carry a mint. Run `resolve` against EACH id's home entity (cross-entity
+members span buckets — the `# home: X` comments in existing entries show which).
+
+**Procedure:**
+
+1. **§9.4 graph gate STILL applies.** `graph` each side in its own entity;
+   confirm a shared catalogue base (or Hede sub-letter unification) links them.
+   No shared base → not one coin → do NOT cross-merge.
+2. **Add the entry** to `_cross_entity.yml` under `merges:` — `target_entity` +
+   `members: [seed ids across buckets]` + `reason` (§9.4 justification + WHY the
+   target entity is authoritative, usually the mint-registry routing). Route a
+   `[danish_realm, royal_holstein]` joint-mint coin to **royal_holstein** (the
+   `_home_entity` rule — the SH∩Denmark overlap makes it render on BOTH the
+   Denmark and Schleswig-Holstein pages).
+3. **MANDATORY member enumeration — the completeness guard HARD-BLOCKS otherwise.**
+   Before running, enumerate EVERY seed that shares a member's KM/Hede base +
+   nominal + metal, across ALL source buckets. Each such seed belongs in EITHER
+   `members` OR `excludes` — there is no third option. The merger ABORTS (exit 1)
+   if even one is unlisted: a forgotten member would fragment / phantom in its
+   source entity (the exact hole the relocation filter cannot see — an unlisted
+   seed is never in `relocated_out`). Find them proactively by grepping the seeds
+   for the member's KM/Hede base (`data/v2/seed/*/*.yml`); the guard's own check
+   keys on metal + nominal + base. Real duplicates → `members` (§9a merge,
+   preserving every specimen); genuinely-different coins / out-of-scope weightless
+   KMM fragments → `excludes`.
+4. **Flow it — merger WITHOUT `--entity`** (the source-side exclude must apply too;
+   a single-entity `--apply` leaves a duplicate in the un-processed bucket, and
+   the merger prints a `⚠ --entity with active cross-entity merges` warning if you
+   try). Then absorb the affected entities (`--entity` is single-valued — run it
+   for source AND target, or omit `--entity` for all):
+
+   ```
+   python scripts/maintenance/merge_seeds_cross_source.py --apply
+   python scripts/maintenance/absorb_seeds_into_final_v2.py --entity <target> --apply
+   python scripts/maintenance/absorb_seeds_into_final_v2.py --entity <source> --apply
+   ```
+
+   Watch the absorb log for `[<source>] cross-entity relocation: dropped N stale
+   source-side final(s)` — that is the one-pass relocation working. If the merger
+   prints `✗ cross-entity COMPLETENESS — BLOCKED`, Step 3 is incomplete: resolve
+   EACH named seed (→ `members` or `excludes`) before re-running.
+5. **Verify (MERGE Step 4)** — the coin now lives ONLY in `target_entity`'s final
+   (no phantom in the source), carries every member's data list-form (§9a),
+   `audit_lost_citations` → 0, `build.py` → exit 0. Confirm the source-side final
+   is gone (the relocation filter dropped it — no manual delete).
+
+Precedents in the file: KM 631 / c7h33, Ungersk Gylden c4h8, f7h8, f7h16, f7h17,
+the km-761 2-Rigsdaler consolidation.
+
 ## ORPHAN audit / heal (standing maintenance)
 
 ```
@@ -166,3 +238,15 @@ entity and verify (Step 4). Goal: `audit` exits 0.
   audit exit 1 as a real defect, not noise.
 - Curator judgement decides ambiguous §9.4 cases (§8a). Surface the graph; do
   not guess.
+- **Cross-entity** merges go in `_cross_entity.yml` (GLOBAL), NEVER in a
+  per-entity `merge_decisions/<entity>.yml`. Run the merger WITHOUT `--entity`
+  (or over source AND target) so the source-side exclude applies — a target-only
+  run leaves a phantom in the un-processed bucket.
+- The cross-entity completeness guard is a HARD ERROR — member enumeration is
+  NOT skippable. Every KM/Hede-base + nominal + metal sibling of a member is
+  either a `member` or an `excludes`. No third option.
+- Route `[danish_realm, royal_holstein]` joint-mint coins to `royal_holstein`
+  (`_home_entity`); they render on both the Denmark and SH pages.
+- `merge_helper.py audit` skips `_cross_entity` by design — cross-entity members
+  are validated by the merger's completeness guard, not the per-entity orphan
+  audit.
