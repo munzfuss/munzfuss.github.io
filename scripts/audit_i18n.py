@@ -255,9 +255,14 @@ class Hit:
 
 
 def normalize_catref(s: str) -> str:
-    """Normalize KM-DK# 25 → KM-DK#25, Hede 79A → Hede79A — strip spaces
-    around the numeric so cross-language string-equality works."""
-    s = re.sub(r"\s+", "", s).upper()
+    """Normalize a catalogue ref to a separator-free upper token so the SAME
+    reference written with a space or a hyphen compares equal across languages:
+    «Hede 25» / «Hede-25» → «HEDE25», «KM-DK# 25» → «KMDK25». The hyphen and
+    space are pure formatting inside a catalogue ref (one language prints «Hede-25»
+    where another prints «Hede 25»); leaving the hyphen in produced spurious R3
+    cross-language mismatches (HEDE25 ≠ HEDE-25). Numbers still differ, so distinct
+    refs never collapse — only formatting variants of ONE number do."""
+    s = re.sub(r"[\s\-]+", "", s).upper()
     s = s.replace("#", "")
     return s
 
