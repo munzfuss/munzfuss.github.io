@@ -350,6 +350,26 @@ def _strip_variant_qualifier(v: str) -> str:
     return _VARIANT_SUFFIX_RE.sub("", str(v)).strip()
 
 
+# A single token that is JUST «<number><space><sub-letters>» — the space is a
+# spurious detachment of the sub-letter and must be closed. Anchored to the whole
+# token (post comma/slash-split) so a value with a SECOND space is never touched:
+# «358 C IV» (Lange, reign-disambiguated «C IV» = Christian IV) has two spaces →
+# no match → kept intact, while «39 C» / «62 AB» / «264 a» collapse.
+_SUBLETTER_SPACE_RE = re.compile(r"^(\d+)\s+([A-Za-zÆØÅæøåöü]+)$")
+
+
+def _strip_subletter_space(v: str) -> str:
+    """Close a spurious space between a catalogue number and its terminal
+    sub-letter — «39 C» → «39C», «62 AB» → «62AB», «264 a» → «264a». ucoin's
+    tab-split DOM occasionally detaches the sub-letter (SOURCES.md §13.2). Only a
+    token that is ENTIRELY number+space+letters collapses; anything with further
+    structure (a second space like Lange's reign-disambiguated «358 C IV», a range
+    «39 A-39 D», a roman «XV.5») is left untouched. Applied per-token inside
+    `normalise_numeric_index` (plain-number fields: hede/schou/sieg/lange/galster/
+    …); dav/davenport volume codes are NOT numeric-index fields, never seen here."""
+    return _SUBLETTER_SPACE_RE.sub(r"\1\2", str(v).strip())
+
+
 def _dav_volume(v: str) -> str | None:
     """The volume prefix of a Davenport value («EC II 3679» → «EC II»), or
     None for a bare number («3679»). A value is volume-qualified when it has
@@ -584,7 +604,7 @@ def normalise_numeric_index(value):
         if v is None:
             continue
         for part in re.split(r"[,/]", str(v)):
-            part = part.strip()
+            part = _strip_subletter_space(part.strip())
             if part:
                 toks.append(part)
     seen: set[str] = set()
