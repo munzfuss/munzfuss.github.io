@@ -584,6 +584,15 @@ merges:
       - dk-numista-308327
       - ikmk-18219564
     reason: 18 Marck Danske (= 1 Guldkrone = 3 Speciedaler) Frederik III 1668, gold, Hede 46 = KM 303 = Sieg 143 = Fr 92. ONE coin — a duplicate that escaped the matcher because the two finals carried DIFFERENT nominals («18 Mark» from Bruun/Numista vs «1 Guldkrone» from Hede/IKMK) AND one (unified-dk-bruun-6638) carried a WRONG danskmoent link (c5.htm = Christian V index, not the f3h46 page; a V1 phantom final-source, absent from all seeds). Curator-confirmed merge 2026-06-29 (Serhii). Reconcile drops the phantom c5.htm (not seed-attested) and keeps the correct fr/f3h46.htm from dk-hede-f3h46. Nominal kept «18 Mark» (coin legend «18 MARCK DANSKE»); Guldkrone/speciedaler equivalents go in note (§1).
+  - members:
+      - dk-tid-163044
+      - dk-numista-55303
+      - dk-numista-55302
+      - kmk-190242
+      - kmk-190244
+      - kmk-190245
+      - kmk-277003
+    reason: 'c4h77: 1 Mark Danske Christian IV 1602-1608 (København), Hede 77 = KM 12. ONE coin per §9.4 — the Hede sub-letters 77/77A/77B/77C are die/year sub-variants of the single base Hede 77, and KM 12 (12/12a) is its Krause number (the KM-12/Hede-77 type, established distinct from KM-33/Hede-92 by the c4h92 work 2026-06-28). The family was fragmented across 6 seed_unified clusters: the KM-12a foundation (Numista 55302 + ucoin 163044 + KMM 190242/149993, already 9_thaler/I) plus five unabsorbed Hede-sub-letter clusters — 55303 (Hede 77/77A, KM 12), 190242 (Hede 77C), 190244 (Hede 77B), 190245 (Hede 77A), 277003 (Hede 77). Force-merge unites them so every specimen folds under the one coin (§9a); KM list-form [12, 12a], Hede [77, 77A, 77B, 77C], years 1602-1608. Does NOT touch the c4h92 no_merges (those keep Hede-92A/KM-33 out of the KM-12 cluster; dk-hede-c4h92a is not a member here). Curator-confirmed 2026-07-02 (Serhii).'
 no_merges:
   - members:
       - dk-hede-c5h57
