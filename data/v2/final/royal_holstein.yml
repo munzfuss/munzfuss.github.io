@@ -21,7 +21,9 @@ coins:
     km:
     - '105'
     - '73'
-    numista: '301630'
+    numista:
+    - '301630'
+    - '308517'
     lange:
     - '82'
     - 82A
@@ -48,17 +50,23 @@ coins:
   - value: 0.888
     source: hede
   - value: 0.888
+    source: numista
+  - value: 0.888
     source: ucoin
   weight_rough_g:
   - value: 28.95
     source: bruun
   - value: 29.0
     source: ucoin
+  - value: 29.01
+    source: numista
   - value: 29.06
     source: numista
   - value: 29.232
     source: hede
   diameter_mm:
+  - value: 42.4
+    source: numista
   - value: 43.0
     source: ucoin
   sources:
@@ -4363,13 +4371,14 @@ coins:
   fraction: '1'
   id: unified-dk-hede-c3h14
   year_first: 1536
-  year_last: 1547
+  year_last: 1546
   year_ranges:
   - - 1536
     - 1536
   - - 1546
-    - 1547
-  year_label: 1536, 1546-1547
+    - 1546
+  year_label: 1536, 1546
+  year_verified: true
   mint:
   - Flensburg
   - Roskilde
@@ -4389,6 +4398,7 @@ coins:
     mb: '42'
     bruun_collection_id: '14770'
     numista: '379084'
+    galster_volume: c3g
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -4399,7 +4409,11 @@ coins:
   fineness:
   - value: 0.75
     source: hede
+  - value: 0.764
+    source: galster
   weight_rough_g:
+  - value: 3.19
+    source: galster
   - value: 3.23
     source: numista
   - value: 3.278
@@ -4419,6 +4433,9 @@ coins:
   - type: literature
     url: https://en.numista.com/379084
     ref: Numista N#379084 — 1 Goldgulden - Christian III
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g131.htm
+    ref: Galster 131 (c3g) — danskmoent.dk chr_c3g131.htm
   note:
     de: Rhinsk Gulden
     en: Rhinsk Gulden
@@ -4432,6 +4449,7 @@ coins:
       знаком Reynold Junge. Дані з danskmoent.dk (Galster 130; NFM XII, с. 10).
   composed_of:
   - unified-dk-hede-c3h14
+  - unified-schleswig_holstein-numismaster-167746
   _curation_holds:
     fuss: 'Gold Rhinsk Gylden (.75) — §8a metal-mismatch: cannot sit in the silver Flensborg-line 8_daler_lybsk_fod where
       the over-broad mint-anchor rule had placed it. Δ −1.7 % vs rhinsk_gylden_fod Phase-0 soll (2.501 g fein). Classifier
@@ -4561,26 +4579,39 @@ coins:
     hede: '19'
     hede_volume: c3h
     schou: 1-5
-    sieg: '50'
-    numista: '309416'
+    sieg:
+    - '50'
+    - C3-47
+    numista:
+    - '309416'
+    - '103794'
     mb: '54'
     dav: EC I 8237
-    lange: 20a
+    lange:
+    - '20'
+    - 20a
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: false
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.89
     source: hede
+  - value: 0.89
+    source: numista
   weight_rough_g:
   - value: 28.6
     source: numista
   - value: 29.232
     source: hede
+  - value: 29.232
+    source: numista
+  diameter_mm:
+  - value: 41.5
+    source: numista
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c3h19.htm
@@ -4588,6 +4619,9 @@ coins:
   - type: literature
     url: https://en.numista.com/309416
     ref: Numista N#309416 — 1 Thaler - Christian III
+  - type: literature
+    url: https://en.numista.com/103794
+    ref: Numista N#103794 — 1 Sølvgylden - Christian III (Flensborg)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -5058,8 +5092,6 @@ coins:
       - '77.1'
       - '77.2'
     hede:
-    - 125A
-    - 125B
     - 125A
     - 125B
     - 125C
@@ -10344,7 +10376,6 @@ coins:
     - '138.5'
     hede:
     - '39'
-    - 39C
     - 39A
     - 39B
     - 39C
@@ -10471,6 +10502,12 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13247, p. 170
+  - type: literature
+    url: https://en.numista.com/309993
+    ref: Numista N#309993 — 1 Speciesthaler / 60 Schilling Courant - Christian VII
+  - type: literature
+    url: https://numismaster.com/MC_120088
+    ref: NumisMaster
   note:
     de: «60 · SCHILLING · SCHLESW · HOLST · COURANT · 1 · SP ·» <br>(<b>SP</b> = Species = vollwertiger Thaler im 9¼-Fuß)
       · 1 Thaler Species = 25,28173 g fein · 60 Sch.C. = 1 Thaler Species = 25,28173 g ✓ (derselbe Müntzfuß)
@@ -10490,6 +10527,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-c7h39a
+  - unified-schleswig_holstein-numismaster-120088
 - fuss: 9_25_thaler
   phase: II
   kind: kurant
@@ -11092,7 +11130,6 @@ coins:
       - B43
     hede:
     - 153A
-    - 153A
     - 153B
     hede_volume: f3h
     sieg:
@@ -11262,7 +11299,6 @@ coins:
     unit_raw: daler
   composed_of:
   - unified-dk-hede-f3h153a
-  - unified-kmk-276474
   - unified-kmk-276489
   _curation_holds:
     note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-dk-hede-f3h153a (matched via seed-unified-bridge; V1→V2
@@ -14156,54 +14192,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-14783
-- fuss: 8_daler_fod
-  phase: A2
-  kind: kurant
-  nominal: 1 Gulden
-  issuing_entity: royal_holstein
-  fraction: '1'
-  id: unified-dk-numista-103794
-  year_first: 1547
-  year_last: 1547
-  year_label: '1547'
-  mint: Flensburg
-  catalog:
-    numista: '103794'
-    sieg: C3-47
-    dav: EC I 8237
-    lange: '20'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.89
-    source: numista
-  weight_rough_g:
-  - value: 29.232
-    source: numista
-  diameter_mm:
-  - value: 41.5
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/103794
-    ref: Numista N#103794 — 1 Sølvgylden - Christian III (Flensborg)
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-103794
 - fuss: seed_unsorted
   phase: numista
   kind: kurant
@@ -15485,54 +15473,6 @@ coins:
 - fuss: seed_unsorted
   phase: numista
   kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian V.
-  issuing_entity: royal_holstein
-  id: unified-dk-numista-308517
-  year_first: 1683
-  year_last: 1683
-  year_label: '1683'
-  mint: Glückstadt
-  catalog:
-    km: '73'
-    numista: '308517'
-    dav: EC II 3677
-    lange: 82A
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.888
-    source: numista
-  weight_rough_g:
-  - value: 29.01
-    source: numista
-  diameter_mm:
-  - value: 42.4
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/308517
-    ref: Numista N#308517 — 1 Speciedaler - Christian V
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-308517
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
   nominal: 1 Thaler
   ruler: Frederik I.
   issuing_entity: royal_holstein
@@ -15587,9 +15527,12 @@ coins:
   ruler: Frederik II.
   issuing_entity: royal_holstein
   id: unified-dk-numista-309419
-  year_first: 1565
-  year_last: 1565
-  year_label: '1565'
+  year_first: 1559
+  year_last: 1588
+  year_ranges:
+  - - 1559
+    - 1588
+  year_label: 1559-1588
   mint: Flensburg
   catalog:
     numista: '309419'
@@ -15604,12 +15547,17 @@ coins:
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 1.482
+    source: kmk
   - value: 1.59
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/309419
     ref: Numista N#309419 — 1 Schilling - Frederick II
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/345172
+    ref: KMM 345172 (Inv. FP 10156.1)
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -15622,61 +15570,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-309419
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Speciesthaler
-  ruler: Christian VII.
-  issuing_entity: royal_holstein
-  id: unified-dk-numista-309993
-  year_first: 1787
-  year_last: 1788
-  year_ranges:
-  - - 1787
-    - 1788
-  year_label: 1787-1788
-  mint: Altona
-  catalog:
-    km: '138.3'
-    numista: '309993'
-    hede: 39C
-    dav: EC III 1311
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  - value: 0.875
-    source: numista
-  weight_rough_g:
-  - value: 28.893
-    source: numismaster
-  - value: 28.893
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/309993
-    ref: Numista N#309993 — 1 Speciesthaler / 60 Schilling Courant - Christian VII
-  - type: literature
-    url: https://numismaster.com/MC_120088
-    ref: NumisMaster
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-309993
 - fuss: seed_unsorted
   phase: numista
   kind: kurant
@@ -25742,37 +25635,6 @@ coins:
   verification_note: *id003
   composed_of:
   - unified-kmk-344461
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Skilling lybsk
-  ruler: Frederik II.
-  issuing_entity: royal_holstein
-  id: unified-kmk-345172
-  year_first: 1559
-  year_last: 1588
-  year_ranges:
-  - - 1559
-    - 1588
-  year_label: 1559-1588
-  mint: Flensburg
-  catalog:
-    hede: 30A
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.482
-    source: kmk
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/345172
-    ref: KMM 345172 (Inv. FP 10156.1)
-  verification_note: *id003
-  composed_of:
-  - unified-kmk-345172
 - fuss: seed_unsorted
   phase: kmk
   kind: kurant
