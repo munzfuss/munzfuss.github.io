@@ -148,6 +148,9 @@ class Grundwerte(_StrictBase):
     aside: I18nText | None = None                     # rich block (right column, below
                                                       # rechnungsfraktionen) — e.g. a
                                                       # «Verhältnis zu anderen Füßen» note
+    aside2_label: I18nTextOptional | None = None      # optional 3rd right-column block,
+    aside2: I18nText | None = None                    # rendered below `aside` (e.g. a
+                                                      # «Tarif …» block moved off the rows)
 
 
 class FussEvent(_StrictBase):
