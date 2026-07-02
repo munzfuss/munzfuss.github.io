@@ -51,7 +51,7 @@ For per-coin coverage of a new scope (location × period):
 | 2 | danskmoent.dk Galster | urllib | 79 | Uniform HTML, easy regex parse |
 | 2 | Numista per-coin HTML | urllib + 30s pauses | 56 | NOT the v3 API — distinct route, no quota |
 | 3 | NumisMaster MC_NNNNN | urllib for `/MC_<N>` per-coin pages (public, no auth); **Chrome MCP + JS console required for enumeration** (filter state is client-JS in session cookies — see «Per-source playbook → NumisMaster» for corrected topology + canonical JS recipes) | 3 (§AZ pre-1541 sample) + ~1900 in-window text-dumped + 101 MC_IDs anchored in `mc_index.json` (Phase 1b 2-session run 2026-05-16) | All 4 sub-scopes inventoried: SH-cluster 562/562 ✅ / DK 1591-1914 ✅ / Norge 1608-1813 ✅ / Sweden Christian II = 0 entries (negative finding) ✅. Pre-Krause MB#/FR#/C# numbering schemes; URL+POST keyword filters server-IGNORED (only JS-sidebar AJAX filters); cookie state cross-contaminates without JS-console clear between walks |
-| ✗ | ucoin.net | Cloudflare-blocked anonymously | (deferred) | §M ucoin harvest tracks ~50-req/session limit |
+| 5 | ucoin.net | Chrome MCP via user session (31-60 s pacing); anonymous urllib/WebFetch/Apify still 403 | 563 fetched (BR batches 1-16) | ACTIVE — see «Per-source playbook → ucoin.net»; Chrome MCP bypasses both the 403 and the old ~50-req/session cap |
 
 Total §AZ harvest: **176 entries across 4 active sources**.
 
@@ -1061,7 +1061,7 @@ Document negative findings in the source survey for future-session reference —
 These were identified during §AZ but deferred:
 
 - **NumisMaster full Schleswig-Holstein walk** — 600+ sub-territory IDs under Denmark hub; current §AZ Tier 4 captures only Holstein-Gottorp-Rendsborg sample. Future session: walk each leaf ID via Chrome MCP + harvest MC_NNNNN pages.
-- **ucoin.net resume** — §M tracking ~490 uncached URLs; resume when Cloudflare cooldown passes.
+- **ucoin.net continuation** — the harvest is ACTIVE via Chrome MCP (user session, 31-60 s pacing; see «Per-source playbook → ucoin.net»); §M tracks the remaining uncached URLs. Not blocked on a Cloudflare cooldown — it's just remaining volume to walk in 40-TID batches. Anonymous routes (urllib/WebFetch/Apify) stay 403.
 - **Hans 1496-1513 + Erik VII 1397-1439 backfill** — pre-1514 outside §BI anchor but valuable research-doc context. Could be added to the relevant `data/v2/seed/<source>/<entity>.yml` for completeness.
 - **Münzkabinett Berlin IKMK full Denmark walk** — IKMK has Christian II / Frederik I / Christian III specimens that would enrich photo + curator-spec data. Current `scripts/cache/ikmk/` has partial coverage.
 
