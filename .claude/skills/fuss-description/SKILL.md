@@ -57,9 +57,16 @@ Helper (mechanical signal-scan, candidates not verdicts):
    Quellen nicht angegeben») — an honest gap beats a fabricated claim.
 6. **No specimen mentions (§7a).** No individual coin — no Bruun lot, single-piece
    weight or grade, «sole surviving» / «unique» specimen, cabinet provenance, or
-   one-issue mintmaster. Only the standard as a whole. (Catalogue TYPE numbers —
-   «Hede 39», «Galster 131» as attestation that a phase existed — are allowed;
-   an AUCTION LOT or a graded single piece is not.)
+   one-issue mintmaster. Only the standard as a whole. **Catalogue index numbers
+   written into the PROSE — «Hede f2h3», «Galster 131», «KM 138.2» — are also
+   specimen/issue-level and do NOT belong in a fuss description.** The attestation
+   travels via the `<sup>[ref:KEY]</sup>` citation (whose `refs_pool.yml` body MAY
+   name the catalogue number as a locator, §5a); the prose names only the standard,
+   the ruler, the period and the fineness step. A catalogue number in the description
+   text is a C6 hit; the same number inside a `[ref:KEY]` body is a correct citation,
+   not a hit. (Curator direction 2026-07-03 — this tightens §7a's older «catalogue
+   TYPE numbers are allowed» reading, which applied to coin-row attestation, not to
+   the system-level description prose.)
 
 ## Scoring rubric — 10 points
 
@@ -74,7 +81,7 @@ citations (cross-language count drift is `audit_i18n`'s job, not this rubric).
 | C3 | Phase differentiators | 1.5 | If phases exist: 1.0 = each phase's key differentiator named · 0.5 = the differentiating axis is explicit. **If NO phases: award the full 1.5** (N/A, not a penalty). |
 | C4 | No metric-fixation | 1.5 | Start 1.5; **−0.5** per weight/fineness/carat/piece number that is NOT a whole-standard, law-anchored defining value (i.e. duplicates Grundwerte). Floor 0. |
 | C5 | Every claim sourced (§0) | 2.0 | Start 2.0; **−0.5** per load-bearing claim (founding fact, motivation, role claim, «first/only») with no citation. **Hard cap: any INVENTED claim** (unsourced motive/mintage/singularity) → C5 ≤ 1.0. Unresolved `[ref:KEY]` → −0.5 each. |
-| C6 | No specimen mentions | 1.0 | Start 1.0; **−0.5** per specimen-level intrusion (auction lot, single-piece measure/grade, unique-specimen claim, one-issue mintmaster, provenance). Floor 0. |
+| C6 | No specimen mentions | 1.0 | Start 1.0; **−0.5** per specimen-level intrusion in the PROSE (auction lot, single-piece measure/grade, unique-specimen claim, one-issue mintmaster, provenance, **or a catalogue index number — «Hede f2h3», «Galster 131», «KM 138.2»**). A catalogue number inside a `[ref:KEY]` body is NOT a hit. Floor 0. |
 
 **Threshold: ship at ≥ 8.0.** Below 8: the description has a real gap in founding,
 role, sourcing, or scope — fix and re-score. A 10 means all six fully met with no
@@ -100,7 +107,8 @@ gap; 8-9 means substantively complete with only minor polish left.
    decide if it's genuinely unsourced. Do NOT award C5 on faith.
 4. Apply the rubric → emit the score block (format below). Signals from the helper
    are candidates: a flagged bare metric that IS law-anchored keeps its C4 point; a
-   flagged «Hede 39» that is TYPE attestation is not a C6 hit.
+   catalogue number the helper finds only inside a `[ref:KEY]` body (never in the
+   prose) is a citation, not a C6 hit — but a catalogue number in the prose text IS.
 
 **EDIT mode** — «напиши/перепиши/покращ опис»:
 1. SCORE first (get the baseline + gap list).
@@ -152,9 +160,10 @@ CEILING NOTE: <only if a gap is genuinely unsourceable — name it>
 - **Web fact → `refs_pool.yml` entry + inline `<sup>[ref:KEY]</sup>` in the same
   change (§5b).** A claim added without its citation is a §0 regression the next
   session can't distinguish from invention.
-- **System-level only (§7a).** No specimens; no weight/fineness numbers except a
-  named-law whole-standard value; the description documents the STANDARD, the coin
-  rows document the pieces.
+- **System-level only (§7a).** No specimens; no catalogue index numbers in the prose
+  (they belong on the coin row — cite via `[ref:KEY]` instead); no weight/fineness
+  numbers except a named-law whole-standard value; the description documents the
+  STANDARD, the coin rows document the pieces.
 - **Reader voice (§0z / §0a).** No «our card», «this artefact», «we classify»,
   «Phase B of our periodisation», project-meta, or `data/...yml` paths in the
   prose. A numismatist reading the page must understand every sentence with no

@@ -41,6 +41,17 @@ SPECIMEN = (r"\bBruun[- ]?\d|Bruun coll|Bruun lot|\blot \d|Lot \d|Auktion|auctio
             r"\bunik\b|einzige[sr]?\b|sole surviving|only known|unique specimen|"
             r"einziges? bekannt|Kabinettst[üu]ck|cabinet|провенанс|provenance|"
             r"aukc|унікальн|єдиний відом|цабінет")
+# catalogue-index mentions IN THE PROSE (§7a / user-2026-07-03): naming a specific
+# catalogue number — «Hede f2h3», «Galster 131», «KM 138.2» — is specimen/issue-level
+# detail that belongs on the coin ROW, not in a system-level fuss description. The
+# attestation still travels via <sup>[ref:KEY]</sup> (stripped before this scan), so
+# a prose hit here is a real C6 intrusion, not a citation. Requires a catalogue-name
+# prefix, so «Frederik II» / «72 Stück» / «18 Karat» do NOT match.
+CATALOGUE = (r"\b(?:Hede|Galster|Sieg|Schou|Lange|Behrens|Bendixen|Gaedechens|"
+             r"Jesse|Davenport|Dav|Friedberg|Fr|KM|N#)[\s-]?[a-z]?\d[\w./+-]*")
+# one-issue mintmaster attribution (§7a: mintmaster initials/name = specimen-level)
+MINTMASTER = (r"Mzm\.?\s*[A-ZÆØÅ]|[Mm]intmaster\s+[A-ZÆØÅ]|"
+              r"монетмейстер\s+[A-ZÀ-ÿ]|M[üu]nzmeister\s+[A-ZÆØÅ]")
 # bare-metric numbers (C4) — flagged, agent checks if law-anchored / whole-standard
 METRIC = (r"\d+[.,]\d+\s*g\b|\d+[.,]?\d*\s*‰|(?<![\d.])\.\d{3}\b|"
           r"\d+[½¼¾]?\s*Karat|\d+[.,]\d+\s*г\b|\d+[.,]\d+\s*grain")
@@ -95,6 +106,8 @@ def scan_lang(desc, refkeys):
     # C6 — specimen intrusions. Scan the ref/tag-STRIPPED text: a citation KEY like
     # [ref:stacksbowers-bruun-1496-nobel] names a source, not a specimen in the prose.
     hits["c6_specimens"] = sorted(set(re.findall(SPECIMEN, plain, re.I)))
+    hits["c6_catalogue"] = sorted(set(re.findall(CATALOGUE, plain)))
+    hits["c6_mintmasters"] = sorted(set(re.findall(MINTMASTER, plain)))
     # C5 — citations + uncited claim sentences
     keys, legacy = cited_keys(desc)
     unresolved = [k for k in keys if k not in refkeys]
@@ -166,8 +179,13 @@ def main():
             print(f"     candidate UNCITED claim sentences (C5/§0 — source or cut):")
             for s in h["c5_uncited_claim_sentences"][:8]:
                 print(f"       · {s[:110]}")
-        print(f"  C6 specimen flags   : {h['c6_specimens'] or 'none (good)'}   "
-              f"<- auction/lot/grade/unique = §7a violation; catalogue TYPE refs (Hede 39) are OK")
+        c6all = h['c6_specimens'] + h['c6_catalogue'] + h['c6_mintmasters']
+        print(f"  C6 specimen flags   : {c6all or 'none (good)'}")
+        if h['c6_catalogue'] or h['c6_mintmasters']:
+            print(f"     catalogue-in-prose: {h['c6_catalogue'] or '—'}   "
+                  f"mintmaster: {h['c6_mintmasters'] or '—'}")
+        print(f"     <- auction/lot/grade/unique + catalogue-number-in-prose (Hede f2h3, Galster 131) "
+              f"+ one-issue mintmaster ALL count as §7a C6 intrusions in a fuss description")
         print()
     print("Apply the SKILL.md rubric to finalise X/10. Signals are candidates, not verdicts —"
           " verify sources (§0b) before deducting or awarding C5.")
