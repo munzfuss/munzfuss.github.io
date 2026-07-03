@@ -86,6 +86,28 @@
 > guldkrone HEDE-25 (1 err/20 warn). Closed this session: **ucoin HARVEST_GUIDE**
 > «deferred»→ACTIVE (`5b43881`) + the **sub-letter-space** defect class (`67590f0` +
 > `296d051`, 109 values — see the 2026-06-28 «Minor known-quirk» entry, now RESOLVED).
+>
+> **Later still 2026-07-02 — pushed to origin, then continued.** Pushed `21fbdcd..ec16333`
+> (85 commits) then kept working; **origin behind again** (local commits after the push await
+> the next «пуш»). Shipped after the push:
+> - **NEW skill `fuss-description`** (`aaeef69`) — writes/revises/SCORES a fuss `description`
+>   against a 6-criterion rubric → X/10 (founding · role · per-phase differentiator · no
+>   metric-fixation · every claim sourced · no specimens), loopable to a threshold (default
+>   8+). Helper `describe_helper.py <fuss>`. Executable form of §7a+§0+§5+§0z. Registered in
+>   CLAUDE.md §Skills + §7a pointer + PLAYBOOKS PB-3. Demo score: rhinsk_gylden_fod ~8.5/10
+>   (8.0 = ship-bar, 9.0 = excellent). **NEVER invent to raise the score.**
+> - **c4h77** «1 Mark Danske» Chr IV consolidated — 6 seed_unified clusters → one coin, KM 12 =
+>   Hede 77 (`cbd23ad`; bundled 4 benign «2 Skilling» §9a folds per curator OK).
+> - **i18n backlog 21 → 0** (`da2332e` normalize_catref hyphen-strip clears 20 spurious R3 +
+>   `ac58500` gottorp km-46 missing-DE note).
+> - **72-Guldgyldenfod card** (= rhinsk_gylden_fod) reworked: atomic nobel-style Grundwerte rows,
+>   per-phase sub-sections (`.gw-phase` CSS, no divider between phases), carats as fractions
+>   (18 / 18¼ / 18½), aside block, uk «королівсько-монетний» German-calque → «королівський».
+>   Commits 10ea0ec…c103f33.
+> - **Cross-entity c3g-131** folded into c3h14 (`ef1a441`) — 4th Galster-131 «1 Rhinsk gylden»
+>   (DK standalone) merged into RH; both finenesses [.750, .764] preserved §9a. NOTE: the
+>   completeness guard did NOT catch it (keys on km/hede; c3g-131 carries only `galster`) — a
+>   known guard blind-spot for galster-only seeds.
 
 ## 2026-06-29 (night) — two skills + gottorp over-merge fixed + audit-expansion fix
 

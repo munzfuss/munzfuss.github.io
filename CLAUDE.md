@@ -462,6 +462,8 @@ In `coin.kind`: one of `kurant | scheide | tarif | gedenk`. Build script renders
 
 This rule complements §0 (no invention) and §0a (reader voice vs analyst voice): §0 forbids unsourced facts; §0a forbids project-meta language; §7a draws the line between *standard-level prose* (the Müntzfuß card) and *specimen-level prose* (the coin row). Together they keep the Müntzfuß cards as concise system-level documentation, not as galleries of celebrated cabinet pieces.
 
+**Tool.** The **`fuss-description` skill** (`.claude/skills/fuss-description/`) is the executable form of this rule: it scores a fuss's `description` field against a 6-criterion rubric (founding · role · per-phase differentiator · no metric-fixation · every claim sourced · no specimens) → X/10, loopable until it clears a threshold (default 8+). Use it when writing or auditing any Müntzfuß description; run `describe_helper.py <fuss>` for the mechanical signal-scan. See «## Skills».
+
 ### 8. Coin placement rules (audit checklist)
 
 Every coin must be in:

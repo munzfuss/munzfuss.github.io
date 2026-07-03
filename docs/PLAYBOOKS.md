@@ -405,6 +405,14 @@ glossary entry) comes from a web lookup — Wikipedia / danskmoent.dk /
 Numista / Wikisource / archive.org / institutional pages / Wilcke
 HTML.
 
+> **For a Müntzfuß `description` specifically**, use the **`fuss-description`
+> skill** (`.claude/skills/fuss-description/`) — it scores the whole field
+> against a 6-criterion rubric (founding · role · per-phase differentiator ·
+> no metric-fixation · **every claim sourced** · no specimens) → X/10, loopable
+> until it clears a threshold (default 8+). This citation cycle is the C5
+> («every claim sourced») half of that rubric; the skill enforces it plus §7a
+> scope for the description field. See CLAUDE.md §7a + «## Skills».
+
 **Hard rule (CLAUDE.md §5, repeated for emphasis).** Both steps in
 the SAME change while the source is open in your context:
 
