@@ -92,8 +92,9 @@ def scan_lang(desc, refkeys):
         if not near_decree(desc, m.span()):
             bare.append(m.group(0))
     hits["c4_bare_metrics"] = bare
-    # C6 — specimen intrusions
-    hits["c6_specimens"] = sorted(set(re.findall(SPECIMEN, desc, re.I)))
+    # C6 — specimen intrusions. Scan the ref/tag-STRIPPED text: a citation KEY like
+    # [ref:stacksbowers-bruun-1496-nobel] names a source, not a specimen in the prose.
+    hits["c6_specimens"] = sorted(set(re.findall(SPECIMEN, plain, re.I)))
     # C5 — citations + uncited claim sentences
     keys, legacy = cited_keys(desc)
     unresolved = [k for k in keys if k not in refkeys]

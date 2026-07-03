@@ -7,8 +7,10 @@ description: >-
   existing one, or auditing whether a description meets the project's §7a (system-not-specimens),
   §0 (no invention), §5 (sourcing) and §0z (reader-voice) standards. The rubric checks: founding
   (how/why/by whom), role/function, per-phase distinguishing feature, no metric-fixation, every
-  claim sourced, no specimen mentions. Trigger phrases: "score the fuss description", "оціни опис
-  стопи", "напиши/перепиши опис стопи", "покращ опис стопи до 8+", "describe this fuss", "rate the
+  claim sourced, no specimen mentions. SCORING is a standalone READ-ONLY operation — a bare
+  «оціни / score / rate» request returns just the X/10 + gap list and changes nothing; editing
+  is a separate opt-in mode. Trigger phrases: "score the fuss description", "оціни опис стопи",
+  "напиши/перепиши опис стопи", "покращ опис стопи до 8+", "describe this fuss", "rate the
   Müntzfuß description".
 ---
 
@@ -80,7 +82,16 @@ gap; 8-9 means substantively complete with only minor polish left.
 
 ## Workflow
 
-**SCORE mode** — «оціни опис стопи X»:
+**Two independent modes — pick by what the user asked, do NOT auto-chain them.**
+- **SCORE** is the default for a rating request («оціни опис стопи», «score / rate the
+  description», «яка оцінка опису X»). It is **strictly READ-ONLY — it reads and reports
+  X/10 + the gap list, and changes NOTHING**. Stop after emitting the score; do not open
+  an editor, do not «fix» anything, do not build. A bare score request ends at the score.
+- **EDIT** runs ONLY when the user asks to write / revise / improve / raise the score
+  («напиши / перепиши / покращ опис до 8+»). It internally SCOREs first, then edits.
+- When unsure which the user wants, SCORE (read-only) and ask before editing.
+
+**SCORE mode** — «оціни опис стопи X» (READ-ONLY, no edits, no build):
 1. `describe_helper.py <fuss>` — read the mechanical signals (bare metrics,
    specimen flags, citation coverage, founding/role/phase presence, unresolved refs).
 2. Read the actual `description.{de,en,uk}` in `fuesse.yml`.
