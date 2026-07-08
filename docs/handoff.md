@@ -15,6 +15,59 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-09 — Part A (Bruun mint meta-priority) COMPLETE + crown-map from registry + 2 deferred design decisions
+
+> **UNPUSHED — push pending «пуш».** This session's commits (newest first):
+> `8811169` re-merge+re-absorb propagation · `2f1967e` pin curated coins +
+> km-645 completeness · `8b531f7` re-seed · `7a647a0` cache pointer (submodule
+> `9b0f11246`) · `963a885` parser meta-priority + registry adds · `6cfbf1f`
+> crown-map from registry · `afda3b1` year_verified on undated Bruun · `1e6115e`
+> drop 3 OOS undated Bruun + NDMED gate. Working tree clean, build + all audits pass.
+
+**Bruun mint meta-priority (Part A) — SHIPPED end-to-end.** Parser now extracts
+the mint from the cataloguer's meta-line («… Næstved Mint. …») over the
+whole-body MINT_RE search (which grabbed unrelated prose mints). Recovered **203
+in-scope mints** (mint=None → correct); dual-mint capture («Altona /
+Poppenbüttel», «Malmö or Copenhagen») + `/`-split in `classify_mint_to_entity`.
+Registry +5 mints (steinbeck→gottorp, jever→oldenburg, reinfeld→sonderburg,
+osnabrueck→osnabrueck, aalborg→danish_realm) + gimsøy alias. Full re-flow
+(re-parse → re-seed → merge → absorb): **16 mint-driven re-homings** (14
+royal_holstein + 2 bremen_verden) + 1 rescue (Karl XI 1686 Stade Taler). 0
+duplicate finals, audit_lost_citations 0.
+
+**Crown-map now sourced from the registry** (`mint_registry._CROWN_OWNED` →
+`CROWN_MINT_REALM`/`HOLSTEIN_CROWN_MINTS`, build.py imports them). Added the 6
+missing royal-Holstein crown mints (Haderslev/Flensburg/Rendsburg/Rethwisch/
+Husum/Poppenbüttel) so danish_realm crown coins there widen onto the SH page.
+Fixed the wrong Rethwisch registry comment (Plön until 1761, Copenhagen branch
+1769-70, NOT «royal Holstein after 1640»).
+
+**Re-homing PRINCIPLE established: auto-re-home only UNCURATED (seed_unsorted)
+lots.** Re-homing a coin already curated in another entity strands its curated
+final (absorb keeps it + emits a fresh uncurated one → duplicate + lost
+citation). `build_bruun_denmark_seed._ENTITY_PIN` pins the 9 curated Bruun coins
+that would have wrongly re-homed (Haderslev Portugaløser 4595/4597/4598/4601;
+Rethwisch Speciedaler 7748/7749/7753/7754/10781) back to danish_realm; their
+mint still surfaces them on SH via the crown-map render-widening.
+
+**TWO DEFERRED design decisions (both awaiting curator):**
+1. **Phase-filter «coins define phase years» (NOT started).** Curator ruling
+   2026-07-09: coins define phase year-boundaries; only the page research-window
+   (consumes_window) + location status-changes clip — NOT the phase windows.
+   Current `_assemble_v2_location` phase pre-filter DROPS 128 in-scope coins whose
+   year falls outside a phase window (condition #6 `year_first outside phase`;
+   the 9006 «phase not defined» drops are legit seed_unsorted). Fix = generalise
+   `_DERIVE_PHASE_FROM_YEAR` (currently 18_5_thaler only) to all fusses +
+   clamp-to-nearest (expand, don't drop). 4 open sub-decisions (in chat
+   2026-07-09): clamp-to-nearest confirm · phase DISPLAY-range expand? ·
+   status-change exception marker (flag vs consumes-window) · rollout scope.
+   This is what still blocks the Haderslev 1591-93 coins from SH (their
+   reichsdukatenfuss is phase-blocked by SH Phase-I=1600).
+2. **Strict mint→entity for the 9 pinned coins?** They're pinned to danish_realm
+   respecting existing curation; to instead honour strict mint→entity, migrate
+   each coin's fuss/phase to the mint entity via a classification_decision and
+   drop it from `_ENTITY_PIN`.
+
 ## 2026-07-02 — km-761 cross-entity consolidation + one-pass relocation + completeness guard (HARD ERROR)
 
 > **UNPUSHED — 73 commits ahead of origin; push pending «пуш».** origin/main = `21fbdcd`, HEAD = `73526f8`.
