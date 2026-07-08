@@ -193,6 +193,9 @@ class ComputedAlt:
     delta_pct: float | None = None
     within_remedium: bool | None = None
     implied_fuss: float | None = None
+    # Tooltip label naming BOTH sources used for the derived Feingewicht
+    # (weight source + the fineness source actually used, own or fallback).
+    derived_source: str | None = None
 
 
 @dataclass
@@ -638,35 +641,74 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     cc.primary_diameter_mm     = primary_d
     cc.primary_diameter_source = diameter_pairs[0][1] if diameter_pairs else None
 
-    # Source label for derived primary Feingewicht/delta. Critically,
-    # these are COMPUTED values (weight × fineness), NOT directly cited
-    # from any source — the source(s) supply the inputs, not the
-    # derived number. The label makes that explicit ("обчислено з …")
-    # so a reader hovering doesn't think e.g. Numista published .979 ×
-    # 3.48 = 3.40692; Numista only published 3.48 g and .979 fineness;
-    # the multiplication is ours.
-    if cc.primary_weight_source and cc.primary_fineness_source:
-        if cc.primary_weight_source == cc.primary_fineness_source:
-            cc.primary_derived_source = (f"Обчислено з вагою × пробою з:\n"
-                                         f"{cc.primary_weight_source}")
-        else:
-            cc.primary_derived_source = (f"Обчислено з вагою з:\n"
-                                         f"{cc.primary_weight_source}\n"
-                                         f"з пробою з:\n"
-                                         f"{cc.primary_fineness_source}")
-    elif cc.primary_weight_source:
-        cc.primary_derived_source = f"Обчислено з вагою з:\n{cc.primary_weight_source}"
-    elif cc.primary_fineness_source:
-        cc.primary_derived_source = f"Обчислено з пробою з:\n{cc.primary_fineness_source}"
+    # --- Source-coherent (weight, fineness) pairing -------------------
+    # A source publishing BOTH a weight and a fineness is one coherent
+    # reading: its weight pairs with ITS OWN fineness, never another
+    # source's (FieldValue docstring: "never mixing weight from one
+    # source with fineness from another"). A weight source with NO
+    # fineness of its own falls back to the first-listed fineness as a
+    # representative (Phase-2 will make this year-aware / all-variants).
+    # This removes the spurious cross-source Feingewicht that the naive
+    # weight[0]×fineness[0] primary produced when weight[0]'s source had
+    # its own fineness (e.g. galster-weight wrongly × hede-fineness).
+    def _toks(src):
+        return {t.strip() for t in (src or "").split("\n") if t.strip()}
+
+    def _fineness_for(w_src):
+        wt = _toks(w_src)
+        if wt:
+            for fv, fsrc in fineness_pairs:
+                if fsrc and wt & _toks(fsrc):
+                    return fv, fsrc
+        return None, None
+
+    def _weight_for(f_src):
+        ft = _toks(f_src)
+        if ft:
+            for wv, wsrc in weight_pairs:
+                if wsrc and ft & _toks(wsrc):
+                    return wv, wsrc
+        return None, None
+
+    fallback_f     = fineness_pairs[0][0] if fineness_pairs else None
+    fallback_f_src = fineness_pairs[0][1] if fineness_pairs else None
+    _own_pf, _own_pf_src = _fineness_for(cc.primary_weight_source)
+    if _own_pf is not None:
+        primary_f_used, primary_f_used_src = _own_pf, _own_pf_src
+    else:
+        primary_f_used, primary_f_used_src = fallback_f, fallback_f_src
+
+    # Source label for a derived Feingewicht/delta. These are COMPUTED
+    # values (weight × fineness), NOT cited from a source — the label
+    # says «обчислено з …» and names BOTH inputs' sources. When one
+    # source supplied both (own-pair) it collapses to a single «вагою ×
+    # пробою з: X»; when the weight source published no fineness of its
+    # own, the fallback fineness source is STILL named so the reader can
+    # trace which fineness the multiplication actually used (e.g. weight
+    # from bruun, fineness from hede).
+    def _derived_label(w_src, f_src):
+        if w_src and f_src:
+            if _toks(w_src) & _toks(f_src):
+                return f"Обчислено з вагою × пробою з:\n{w_src}"
+            return (f"Обчислено з вагою з:\n{w_src}\n"
+                    f"з пробою з:\n{f_src}")
+        if w_src:
+            return f"Обчислено з вагою з:\n{w_src}"
+        if f_src:
+            return f"Обчислено з пробою з:\n{f_src}"
+        return None
+
+    cc.primary_derived_source = _derived_label(cc.primary_weight_source,
+                                               primary_f_used_src)
 
     # Propagate the unverified marker: any derived metric is only as solid as
     # its inputs. If the rough weight or fineness is unverified, mark all
     # downstream computations the same way.
     cc.derived_unverified = (not coin.weight_rough_verified) or (not coin.fineness_verified)
 
-    # weight_fein from primary rough × fineness
-    if primary_w is not None and primary_f is not None:
-        cc.weight_fein_g = round(primary_w * primary_f, 5)
+    # weight_fein from primary rough × its source-coherent fineness
+    if primary_w is not None and primary_f_used is not None:
+        cc.weight_fein_g = round(primary_w * primary_f_used, 5)
 
     # soll values from fuss fractions
     if coin.fraction and coin.fraction in fuss.fractions:
@@ -711,57 +753,25 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
             cc.has_manual_implied = True
             break
 
-    # Per-source alt computations: when measurement fields are list-form
-    # (multiple sources), each non-primary source gets its own
-    # Feingewicht / delta / implied_fuss derived from THAT source's
-    # weight + fineness pair. Source labels can be COMBINED (newline-
-    # separated, e.g. "ucoin tid X\nNumista N#Y" when one value is
-    # confirmed by multiple sources). We pair by checking if any TOKEN
-    # of an alt source matches any token of weight/fineness source —
-    # so a combined-label fineness entry still pairs cleanly with a
-    # specific-label weight entry from the same source. Otherwise a
-    # cross-source product (primary-weight × alt-fineness with no
-    # token match) would surface as an "extra" derived value the user
-    # can't trace to any single coherent source reading.
-    def _tokens(src: str) -> list[str]:
-        return [t.strip() for t in (src or "").split("\n") if t.strip()]
-
-    def _value_for_source(pairs: list[tuple[float, str | None]],
-                          source_tokens: set[str],
-                          exclude_primary: bool = True) -> float | None:
-        """Find a NON-PRIMARY entry whose source label shares ANY token
-        with source_tokens. Primary entry (index 0) excluded by default
-        — its value is shown by the primary render path; including it
-        here would surface as a duplicate alt."""
-        candidates = pairs[1:] if exclude_primary else pairs
-        for v, s in candidates:
-            if s and source_tokens & set(_tokens(s)):
-                return v
+    # Per-source alt computations, built source-coherently. Each
+    # NON-primary weight reading pairs with the fineness FROM ITS OWN
+    # SOURCE (own-pair) — or the representative fallback fineness when
+    # its source published none (Phase-2 will make the weight-only case
+    # year-aware / all-variants). A source that published ONLY a fineness
+    # (no weight of its own) pairs with the primary weight; a diameter-
+    # only source carries its diameter alone. `seen_f_srcs` guards a
+    # source with both weight and fineness from surfacing twice — once as
+    # its own-pair, once as a phantom fineness-only alt. Combined labels
+    # ("hede\nnumista") still match via token overlap in the helpers.
+    def _diameter_for(src):
+        st = _toks(src)
+        if st:
+            for dv, dsrc in diameter_pairs[1:]:
+                if dsrc and st & _toks(dsrc):
+                    return dv
         return None
 
-    # Collect all unique INDIVIDUAL source tokens that appear in any
-    # non-primary position. NOTE: we do NOT exclude tokens present in
-    # primary entries — a token like "ucoin tid X" can be part of a
-    # combined-label primary diameter ("Hede X\nucoin tid X") while
-    # still being a distinct alt source for weight/fineness. Excluding
-    # it would silently drop that source's alt in the other field.
-    alt_tokens: list[str] = []
-    for pairs in (weight_pairs[1:], fineness_pairs[1:], diameter_pairs[1:]):
-        for _, src in pairs:
-            for tok in _tokens(src):
-                if tok not in alt_tokens:
-                    alt_tokens.append(tok)
-
-    for tok in alt_tokens:
-        toks = {tok}
-        ca = ComputedAlt(source=tok)
-        # For each field: pick value whose source label includes this token
-        ca.weight_rough_g = _value_for_source(weight_pairs,   toks)
-        ca.fineness       = _value_for_source(fineness_pairs, toks)
-        ca.diameter_mm    = _value_for_source(diameter_pairs, toks)
-
-        w = ca.weight_rough_g if ca.weight_rough_g is not None else primary_w
-        f = ca.fineness       if ca.fineness       is not None else primary_f
+    def _fill_alt_derived(ca, w, f):
         if w is not None and f is not None:
             ca.weight_fein_g = round(w * f, 5)
         if ca.weight_fein_g is not None and cc.soll_fein_g is not None:
@@ -783,7 +793,58 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
                 full_unit = metal_g / k
                 if full_unit > 0:
                     ca.implied_fuss = round(fuss.grid_unit_g / full_unit, 2)
+
+    seen_f_srcs: set[str] = set()
+    if primary_f_used_src:
+        seen_f_srcs.add(primary_f_used_src)
+    seen_alt_srcs: set[str] = set()
+
+    # (a) non-primary weight readings — own-source fineness or fallback
+    for w, w_src in weight_pairs[1:]:
+        ca = ComputedAlt(source=w_src or "")
+        ca.weight_rough_g = w
+        own_f, own_f_src = _fineness_for(w_src)
+        if own_f is not None:
+            ca.fineness = own_f
+            f_used, f_used_src = own_f, own_f_src
+            if own_f_src:
+                seen_f_srcs.add(own_f_src)
+        else:
+            f_used, f_used_src = fallback_f, fallback_f_src
+        ca.diameter_mm = _diameter_for(w_src)
+        _fill_alt_derived(ca, w, f_used)
+        ca.derived_source = _derived_label(w_src, f_used_src)
         cc.alts.append(ca)
+        if w_src:
+            seen_alt_srcs.add(w_src)
+
+    # (b) fineness-only sources — published a fineness but NO weight of
+    #     their own, and not already consumed by an own-pair above →
+    #     pair with the primary weight (a genuine cross-source reading).
+    for fv, f_src in fineness_pairs:
+        if not f_src or f_src in seen_f_srcs:
+            continue
+        if _weight_for(f_src)[0] is not None:
+            continue
+        ca = ComputedAlt(source=f_src)
+        ca.fineness = fv
+        ca.diameter_mm = _diameter_for(f_src)
+        _fill_alt_derived(ca, primary_w, fv)
+        ca.derived_source = _derived_label(cc.primary_weight_source, f_src)
+        cc.alts.append(ca)
+        seen_alt_srcs.add(f_src)
+
+    # (c) diameter-only sources — carry the diameter for debug/audit
+    #     parity; they contribute no Feingewicht (skipped in fein_pairs).
+    for dv, d_src in diameter_pairs[1:]:
+        if not d_src or d_src in seen_alt_srcs:
+            continue
+        if _weight_for(d_src)[0] is not None or _fineness_for(d_src)[0] is not None:
+            continue
+        ca = ComputedAlt(source=d_src)
+        ca.diameter_mm = dv
+        cc.alts.append(ca)
+        seen_alt_srcs.add(d_src)
 
     # ---- Display-level grouping by rounded value ----
     # For each measurement field, build "groups" the renderer iterates.
@@ -809,23 +870,13 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     for ca in cc.alts:
         if not (ca.weight_rough_g or ca.fineness):
             continue
-        # Mirror the primary-derived-source prefix logic: pick the
-        # prefix that reflects WHICH input(s) this alt actually
-        # overrides (weight only / fineness only / both). Without this
-        # alignment, alts that supply only a different weight reading
-        # (with fineness inherited from the scalar primary) would
-        # render under the «× пробою» prefix and visually duplicate
-        # the primary's «з вагою з:» prefix in the same tooltip after
-        # multi-source weight entries are split per source.
-        if ca.weight_rough_g is not None and ca.fineness is not None:
-            alt_label = f"Обчислено з вагою × пробою з:\n{ca.source}"
-        elif ca.weight_rough_g is not None:
-            alt_label = f"Обчислено з вагою з:\n{ca.source}"
-        elif ca.fineness is not None:
-            alt_label = f"Обчислено з пробою з:\n{ca.source}"
-        else:
-            # both inherited from primary — alt only overrides diameter
-            # or another non-derivation field; nothing to label here.
+        # The alt's derived-source label was built at computation time
+        # and names BOTH inputs' sources — the weight source AND the
+        # fineness source actually used (own-pair collapses to one; a
+        # weight-only source names its fallback fineness source too, so
+        # «weight from bruun × fineness from hede» is fully traceable).
+        alt_label = ca.derived_source
+        if not alt_label:
             continue
         if ca.weight_fein_g is not None:
             fein_pairs.append((ca.weight_fein_g, alt_label))
