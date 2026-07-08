@@ -364,12 +364,17 @@ def parse_year_span(lot: dict) -> tuple[int, int, bool] | None:
     uncertainty lives in the per-field verified flag).
     """
     meta = lot.get("meta_line") or ""
-    # «ND (» + optional «ca.» + a 4-digit lower year + optional «-<upper>», where
-    # the upper bound may be abbreviated (1607-11 → 1611, 1496-97 → 1497).
+    # «ND (» + optional circa marker + a 4-digit lower year + optional «-<upper>»,
+    # where the upper bound may be abbreviated (1607-11 → 1611, 1496-97 → 1497).
+    # The circa marker covers «c.», «ca.», «circa» — Bruun writes both «ND (ca.
+    # 1496-97)» AND «ND (c. 1400)»; the earlier `ca\.?`-only form missed the
+    # bare «c.» spelling, so a «ND (c. YYYY)» lot fell through to parse_year and
+    # rendered its estimate as a CONFIDENT year (no «(?)» marker) — the exact
+    # case this per-field flag exists to prevent (CLAUDE.md §3a / §4).
     # Medieval «ND (900-950)» / «ND (1100…)» never match: the lower-year class
     # is 1[3-9]\d{2} (1300-1999), so pre-1300 lots fall through to None and are
     # handled by parse_year's NDMED gate + the 1481-1914 scope filter.
-    m = re.search(r"\bND\s*\(\s*(?:ca\.?\s*)?(1[3-9]\d{2})(?:\s*[-–]\s*(\d{2,4}))?", meta)
+    m = re.search(r"\bND\s*\(\s*(?:c(?:a|irca)?\.?\s*)?(1[3-9]\d{2})(?:\s*[-–]\s*(\d{2,4}))?", meta)
     if not m:
         return None
     yf = int(m.group(1))
@@ -793,6 +798,16 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
             "year_last": year,
             "year_ranges": [[year, year]],
         }
+        # An «ND» lot that parse_year_span could not resolve to a range is still
+        # undated: its year is a dated-by-ruler / body-prose attribution, not an
+        # inscription («NORWAY. Skilling, ND. Nidaros Mint. Olav Engelbrektsson»
+        # → year from the ruler's reign; «2 Ducat, ND. Christiania. Christian V»).
+        # Flag it unverified so the renderer emits «(?)» — otherwise the schema
+        # default (year_verified=True) makes the estimate render as a confident
+        # year (CLAUDE.md §3a / §4). A dated merge partner (catalogue-attested
+        # year) still wins per verified-wins; this only sets the bruun member.
+        if re.search(r"\bND\b", meta):
+            year_fields["year_verified"] = False
     entry: dict[str, Any] = {
         "id": cid,
         "fuss": "seed_unsorted",
