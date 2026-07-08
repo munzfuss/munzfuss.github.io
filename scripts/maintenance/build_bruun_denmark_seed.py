@@ -711,6 +711,38 @@ def lot_id(part: int, lot: dict) -> str:
 
 # Build coin entry ----------------------------------------------------
 
+# Coins already curated in a specific entity (a real fuss/phase assigned in the
+# final) whose recovered mint would auto-re-home them to a DIFFERENT entity —
+# pinned here to respect the existing curation. Auto-re-homing by mint (the
+# mint→entity convention) is intended for UNCURATED (seed_unsorted) lots;
+# re-homing a CURATED coin duplicates it (absorb preserves the curated final AND
+# emits a fresh uncurated one in the mint's entity) and orphans the curation.
+# The crown-map render-widening (`_derive_issuing_entity`) still surfaces such a
+# coin on the mint's page without moving the seed, so no visibility is lost. To
+# adopt strict mint→entity for a pinned coin instead, migrate its fuss/phase to
+# the target entity via a classification_decision and drop it from this map.
+_ENTITY_PIN: dict[str, str] = {
+    # The complete set of coins curated in danish_realm (a real fuss/phase
+    # assigned in the final) whose recovered mint would auto-re-home them to
+    # royal_holstein — pinned back to danish_realm to respect the curation
+    # (2026-07-08 audit). Their mint still surfaces them on the SH page via the
+    # crown-map render-widening (`_derive_issuing_entity`); pinning only stops
+    # the SEED from moving, which otherwise strands the curated final and
+    # duplicates / orphans it. (Verified: the Rethwisch Speciedalers 10781/
+    # 7749/7754 already rendered on SH from danish_realm before Part A.)
+    #   • Haderslev ½/¼ Portugaløser 1591-93, Christian IV — reichsdukatenfuss:
+    "dk-bruun-4595": "danish_realm",
+    "dk-bruun-4597": "danish_realm",
+    "dk-bruun-4598": "danish_realm",
+    "dk-bruun-4601": "danish_realm",
+    #   • Rethwisch / Kopenhagen Speciedaler 1769, Christian VII — 9¼-Thaler:
+    "dk-bruun-7748": "danish_realm",
+    "dk-bruun-7749": "danish_realm",
+    "dk-bruun-7753": "danish_realm",
+    "dk-bruun-7754": "danish_realm",
+    "dk-bruun-10781": "danish_realm",
+}
+
 
 def build_coin_entry(part: int, lot: dict) -> dict | None:
     year = parse_year(lot)
@@ -822,7 +854,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         "metal_verified": metal_verified,
         "fineness": None,  # not in Bruun lot data; comes from spec tables (Wilcke)
         "weight_rough_g": lot.get("weight_g"),
-        "issuing_entity": _classify_entity(mint, is_norway, meta_line=meta, year=year),
+        "issuing_entity": _ENTITY_PIN.get(cid) or _classify_entity(mint, is_norway, meta_line=meta, year=year),
         "verified": False,
         "fineness_verified": False,
         "weight_rough_verified": bool(lot.get("weight_g")),
