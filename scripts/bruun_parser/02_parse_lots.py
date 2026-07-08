@@ -200,6 +200,21 @@ META_LINE_RE = re.compile(
     r"^([A-ZÆØÅÜÖ][A-ZÆØÅÜÖ ,\-\(\)']+?)\.\s*(.+?)$"
 )
 MINT_RE = re.compile(r"\b((?:Copenhagen|Glückstadt|Glueckstadt|Glykstad|Altona|Christiania|Kongsberg|Berlin|Aarhus|Odense|Lund|Malmo|Stockholm|Uppsala|Frankfurt|Hamburg|Lübeck|Schleswig|Husum|Helsingør|Hanover|Riga|Reval)\s+Mint)\b", re.IGNORECASE)
+# Mint named in the cataloguer's structured meta-line, positioned after the
+# denomination/year segment («… Næstved Mint. …», «… Copenhagen Mint. …»).
+# Preferred over the body search (MINT_RE), which scans the whole prose and
+# mis-grabs an unrelated mint mentioned in the historical discussion when the
+# coin's own mint is absent from MINT_RE's hardcoded list (real case Bruun-3725
+# Witten: meta «Næstved Mint» — Næstved unlisted — but the body discussion said
+# «Lund» → wrong `mint: Lund Mint`). Anchored on the «. » segment boundary; the
+# captured token may be a dual mint («Altona / Poppenbüttel», «Malmö or
+# Copenhagen») preserved verbatim (the entity classifier splits on «/ or »).
+# A truncated line-break meta («Copen-») carries no « Mint» token and correctly
+# falls through to the body reassembly.
+META_MINT_RE = re.compile(
+    r"\.\s*([A-ZÆØÅ][A-Za-zæøåüö]+"
+    r"(?:(?:\s*/\s*|\s+or\s+|\s+and\s+)[A-ZÆØÅ][A-Za-zæøåüö]+)?)\s+Mint\b"
+)
 
 
 def split_pages(slug: str) -> list[tuple[int, str]]:
@@ -322,11 +337,20 @@ def parse_part(slug: str) -> list[dict]:
             rarity = rmatch.group(1).upper()
         # Pattern flag
         is_pattern = bool(PATTERN_RE.search(body_match))
-        # Mint
+        # Mint — prefer the cataloguer's structured meta-line «<X> Mint»
+        # (authoritative, positioned right after the year); fall back to the
+        # body search only when the meta names no mint or is truncated mid-word
+        # («Copen-» across a line break). The body-only search mis-fires on lots
+        # whose own mint is absent from MINT_RE's list — see META_MINT_RE.
         mint = None
-        mmint = MINT_RE.search(body_match)
-        if mmint:
-            mint = mmint.group(1)
+        if meta_line:
+            mm_meta = META_MINT_RE.search(meta_line)
+            if mm_meta:
+                mint = mm_meta.group(1).strip() + " Mint"
+        if mint is None:
+            mmint = MINT_RE.search(body_match)
+            if mmint:
+                mint = mmint.group(1)
         # Ruler — heuristic: look for KING_NAME inside body, before
         # mintmaster/engraver/provenance annotations. The pre-Mintmaster
         # cut is critical: Bruun lots routinely include lines like

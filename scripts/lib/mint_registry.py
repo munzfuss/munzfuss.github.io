@@ -145,6 +145,14 @@ _MINT_REGISTRY: dict[str, dict] = {
         "display": "Lund",
         "entity": "danish_realm",
     },
+    "aalborg": {
+        # Aalborg / Ålborg — Danish royal mint. In-scope Hans / Christian II
+        # coinage 1481-1525 (22 KMM / Numista types) classifies danish_realm
+        # via nation; the mint entry keeps mint-driven classification aligned.
+        "aliases": {"aalborg", "ålborg", "?lborg"},
+        "display": "Aalborg",
+        "entity": "danish_realm",
+    },
 
     # ────────────────────────── Royal Holstein ─────────────────────────
     "altona": {
@@ -248,6 +256,17 @@ _MINT_REGISTRY: dict[str, dict] = {
         "display": "Kiel",
         "entity": "gottorp_duchy",
     },
+    "steinbeck": {
+        # Steinbeck (Steinbek nr. Reinbek) — Johann Adolf von Holstein-Gottorp's
+        # ducal mint (Reichstaler 1606-07, MP/IG). Territory = Gottorp. Johann
+        # Adolf was ALSO administrator of the Bishopric of Lübeck (1586-1607),
+        # so his 1606 «Lübeck (Bishopric)» issue struck here seeds to
+        # fuerstbisthum_luebeck by its ISSUER annotation — the mint entity is a
+        # Gottorp-territory fallback, not the issuer of every Steinbeck coin.
+        "aliases": {"steinbeck", "steinbek"},
+        "display": "Steinbeck",
+        "entity": "gottorp_duchy",
+    },
 
     # ───────────────────────── Danish-Norway ───────────────────────────
     "christiania": {
@@ -269,7 +288,9 @@ _MINT_REGISTRY: dict[str, dict] = {
         "entity": "danish_norway",
     },
     "gimsoe": {
-        "aliases": {"gimsø", "gimsoe", "gims?"},
+        # Gimsø / Gimsøy — the Christian III Norwegian mint (1545-46). Bruun
+        # writes «Gimsøy Mint»; the trailing «-y» form was missing here.
+        "aliases": {"gimsø", "gimsoe", "gimsøy", "gims?"},
         "display": "Gimsø",
         "entity": "danish_norway",
     },
@@ -372,10 +393,35 @@ _MINT_REGISTRY: dict[str, dict] = {
         "display": "Sønderborg",
         "entity": "sonderburg_duchy",
     },
+    "reinfeld": {
+        # Reinfeld — Johann d.J. von Schleswig-Holstein-Sonderburg's mint
+        # (Taler 1622). Reinfeld Abbey lay in the Sonderburg possessions.
+        "aliases": {"reinfeld"},
+        "display": "Reinfeld",
+        "entity": "sonderburg_duchy",
+    },
     "ploen": {
         "aliases": {"plön", "ploen", "plon", "pl?n"},
         "display": "Plön",
         "entity": "norburg_plon_duchy",
+    },
+
+    # ─────────────────────── Grafschaft Oldenburg ──────────────────────
+    "jever": {
+        # Jever — Anton Günther von Oldenburg held the Lordship of Jever and
+        # struck his Taler/Ducat coinage there (1614-1667).
+        "aliases": {"jever"},
+        "display": "Jever",
+        "entity": "grafschaft_oldenburg",
+    },
+
+    # ─────────────────────── Hochstift Osnabrück ───────────────────────
+    "osnabrueck": {
+        # Osnabrück — the Prince-Bishopric's mint (Franz Wilhelm von
+        # Wartenberg, Taler Klippe 1633).
+        "aliases": {"osnabrück", "osnabrueck", "osnabruck", "osnabr?ck"},
+        "display": "Osnabrück",
+        "entity": "hochstift_osnabrueck",
     },
 
     # ──────────────── Out-of-scope (foreign mints) ─────────────────────

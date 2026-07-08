@@ -111,7 +111,7 @@ def classify_mint_to_entity(mint, year: int | None = None
         #   - "København eller Malmø" — 'eller' = 'or' = enumerate alternatives
         #   - "Kopenhagen,Altona" — comma-joined multi-mint (parser sometimes
         #     emits a list as a single comma-string)
-        segments = re.split(r"\s+(?:eller|or)\s+|\s*,\s*", m, flags=re.IGNORECASE)
+        segments = re.split(r"\s+(?:eller|or)\s+|\s*/\s*|\s*,\s*", m, flags=re.IGNORECASE)
         for seg in segments:
             seg = seg.strip().strip(",")
             if not seg:
@@ -152,7 +152,7 @@ def classify_mint_diagnostics(mint) -> dict:
         if not isinstance(m, str):
             out["unknown_raw"].append(m)
             continue
-        segments = re.split(r"\s+(?:eller|or)\s+|\s*,\s*", m, flags=re.IGNORECASE)
+        segments = re.split(r"\s+(?:eller|or)\s+|\s*/\s*|\s*,\s*", m, flags=re.IGNORECASE)
         for seg in segments:
             seg = seg.strip().strip(",")
             if not seg:
