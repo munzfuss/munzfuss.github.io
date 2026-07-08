@@ -710,10 +710,15 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     if primary_w is not None and primary_f_used is not None:
         cc.weight_fein_g = round(primary_w * primary_f_used, 5)
 
-    # soll values from fuss fractions
+    # soll values from fuss fractions — per-phase override of the delta
+    # target when the fuss's de-jure fineness varies by phase
+    # (rhinsk_gylden_fod), else the single fuss-wide soll_fein_g.
     if coin.fraction and coin.fraction in fuss.fractions:
         frac = fuss.fractions[coin.fraction]
-        cc.soll_fein_g = frac.soll_fein_g
+        if frac.soll_fein_by_phase and coin.phase in frac.soll_fein_by_phase:
+            cc.soll_fein_g = frac.soll_fein_by_phase[coin.phase]
+        else:
+            cc.soll_fein_g = frac.soll_fein_g
         cc.soll_rau_g = frac.soll_rau_g
 
     # delta

@@ -128,6 +128,14 @@ class Fraction(_StrictBase):
     """A single denominational fraction of a fuss."""
     soll_fein_g: float
     soll_rau_g: float | None = None  # only for gold fuesse (optional)
+    # Optional per-phase override of the delta target (soll_fein_g). Used
+    # when a fuss's DE-JURE fineness varies by phase (e.g. rhinsk_gylden_fod:
+    # Phase 0 .750, Phase I .77, Phase II .76) so each phase's coins are
+    # measured against their OWN standard fine weight, not a single fuss-wide
+    # value. Keyed by phase id (must match coin.phase + Location.phases[fuss]
+    # .id — a cross-check validator enforces this). Absent → all phases use
+    # the scalar soll_fein_g. soll_rau_g stays phase-constant (grid ÷ stops).
+    soll_fein_by_phase: dict[str, float] | None = None
 
 
 class GrundwerteRow(_StrictBase):
@@ -1042,7 +1050,21 @@ class Location(_StrictBase):
                     f"'{coin.fuss}' (available: {list(phase_map)})"
                 )
                 continue
-            
+
+            # Phase-ID coupling: a fraction's per-phase soll target must key
+            # only on phase ids this fuss actually defines here — a typo'd key
+            # would silently fall back to the scalar soll_fein_g.
+            if coin.fraction and coin.fuss != "seed_unsorted":
+                _frac = fuesse[coin.fuss].fractions.get(coin.fraction)
+                if _frac and _frac.soll_fein_by_phase:
+                    _bad = set(_frac.soll_fein_by_phase) - set(phase_map)
+                    if _bad:
+                        _msg = (f"fuss '{coin.fuss}'.fractions['{coin.fraction}']"
+                                f".soll_fein_by_phase has unknown phase id(s) "
+                                f"{sorted(_bad)} (defined: {list(phase_map)})")
+                        if _msg not in errors:
+                            errors.append(_msg)
+
             # Check chronology — allow slight leeway for coins dated just before the phase starts
             # (e.g., 1787 coin in a 1788 phase — these dates represent "issued for" the reform)
             ph = phase_map[coin.phase]

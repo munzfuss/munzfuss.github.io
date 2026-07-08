@@ -104,9 +104,45 @@ def test_single_source_scalar_unchanged():
     assert len(g) == 1 and 3.39184 in g, sorted(g)
 
 
+# ---- per-phase soll target (rhinsk-style phase-varying de-jure fineness) ----
+def _fuss_phased():
+    return Fuss.model_validate({
+        "name": {"de": "T", "en": "T", "uk": "T"},
+        "metal": "gold",
+        "grid_unit_g": 233.856,
+        "grid_stops": 72,
+        "fineness_standard": 0.77,
+        "fractions": {"1": {"soll_rau_g": 3.248, "soll_fein_g": 2.501,
+                            "soll_fein_by_phase": {"0": 2.436, "I": 2.501, "II": 2.469}}},
+    })
+
+
+def _phased_coin(phase):
+    return Coin.model_validate({
+        "id": f"test-ph-{phase}", "fuss": "test", "phase": phase, "kind": "kurant",
+        "nominal": "1 Rhinsk Gylden", "year_label": "1536", "year_first": 1536,
+        "fraction": "1",
+        "weight_rough_g": [{"value": 3.248, "source": "hede"}],
+        "fineness": [{"value": 0.75, "source": "hede"}],
+    })
+
+
+def test_per_phase_soll_target():
+    assert compute._compute_coin(_phased_coin("0"), _fuss_phased()).soll_fein_g == 2.436
+    assert compute._compute_coin(_phased_coin("I"), _fuss_phased()).soll_fein_g == 2.501
+    assert compute._compute_coin(_phased_coin("II"), _fuss_phased()).soll_fein_g == 2.469
+
+
+def test_unknown_phase_falls_back_to_scalar_soll():
+    # a phase absent from soll_fein_by_phase → the scalar soll_fein_g
+    assert compute._compute_coin(_phased_coin("Z"), _fuss_phased()).soll_fein_g == 2.501
+
+
 if __name__ == "__main__":
     test_own_pair_no_cross_mix()
     test_tooltip_own_pair_single_source()
     test_tooltip_weight_only_names_both_sources()
     test_single_source_scalar_unchanged()
-    print("all pairing tests passed ✓")
+    test_per_phase_soll_target()
+    test_unknown_phase_falls_back_to_scalar_soll()
+    print("all pairing + per-phase-soll tests passed ✓")
