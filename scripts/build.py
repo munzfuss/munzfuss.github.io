@@ -38,6 +38,10 @@ from lib.compute import compute_location
 from lib.render import build_env, generate_css
 from lib.schema import Location, Fuss, I18nText, Coin
 from lib.v2_seed_writer import normalise_nominal_display
+from lib.mint_registry import (
+    CROWN_MINT_REALM as _CROWN_MINT_REALM,
+    HOLSTEIN_CROWN_MINTS as _HOLSTEIN_CROWN_MINTS,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -480,21 +484,22 @@ def _normalise_ie_to_list(ie) -> list[str]:
 # Crown-owned mint → realm where the coin actually circulated. The issuer-owns-
 # mint guard (curator decision 2026-06-15): a coin's mint indicates circulation
 # ONLY when the issuer owned that mint. Scoped below to `issuing_entity ==
-# danish_realm` (Danish-crown realm coinage), and the crown owned Altona +
-# Glückstadt (royal Holstein mints, from 1617/1640), Kopenhagen (Denmark
-# proper) and Kongsberg (Norway). So a crown coin struck at a Holstein mint
-# circulated in the duchies → royal_holstein; struck at Copenhagen too →
-# danish_realm too. royal_holstein is politically WITHIN danish_realm, so a
-# Holstein-ONLY strike is pure royal_holstein (NOT joint). Commission strikes
-# of OTHER issuers at Altona (Schaumburg-Pinneberg pre-1640, Plön, the 1848
-# Provisional Government) keep their own entity — they are not danish_realm, so
-# the scoping excludes them. See CLAUDE.md §7.
-_CROWN_MINT_REALM: dict[str, str] = {
-    "Altona": "royal_holstein", "Glückstadt": "royal_holstein", "Gluckstadt": "royal_holstein",
-    "Kopenhagen": "danish_realm", "Royal Danish": "danish_realm", "Copenhagen": "danish_realm",
-    "Kongsberg": "danish_norway",
-}
-_HOLSTEIN_CROWN_MINTS = {"Altona", "Glückstadt", "Gluckstadt"}
+# danish_realm` (Danish-crown realm coinage): a crown coin struck at a Holstein
+# crown mint circulated in the duchies → royal_holstein; struck at Copenhagen
+# too → danish_realm too. royal_holstein is politically WITHIN danish_realm, so
+# a Holstein-ONLY strike is pure royal_holstein (NOT joint). Commission strikes
+# of OTHER issuers at these mints (Schaumburg-Pinneberg pre-1640, Plön,
+# Lübeck-bishopric, Lauenburg, the 1848 Provisional Government) keep their own
+# entity — they are not danish_realm, so the scoping excludes them. See
+# CLAUDE.md §7.
+#
+# `_CROWN_MINT_REALM` (display → realm) + `_HOLSTEIN_CROWN_MINTS` (the royal-
+# Holstein gate subset) are imported from `lib.mint_registry` — the single
+# source of truth for the crown-owned set (`_CROWN_OWNED`). This closes the
+# 2026-07-08 gap where the hardcoded map covered only Altona + Glückstadt and
+# silently dropped the other royal-Holstein crown mints (Haderslev / Flensburg
+# / Rendsburg / Rethwisch / Husum / Poppenbüttel), so danish_realm crown coins
+# struck there never widened onto the SH page. See mint_registry `_CROWN_OWNED`.
 
 
 def _derive_issuing_entity(coin: dict):

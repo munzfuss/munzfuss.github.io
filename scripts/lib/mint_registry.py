@@ -213,7 +213,14 @@ _MINT_REGISTRY: dict[str, dict] = {
         "entity": "royal_holstein",
     },
     "rethwisch": {
-        # Rethwisch lay in royal Holstein after 1640.
+        # Rethwisch was a Holstein-Plön mint until the Plön line died out in
+        # 1761, when castle + mint passed to the Danish crown by treaty; it then
+        # ran as a BRANCH of the Copenhagen mint 1769-70 (Christian VII
+        # Speciedaler). So the flat `royal_holstein` default reflects only the
+        # POST-1761 crown coinage; the 1761 Plön issue (Friedrich Karl) seeds by
+        # ITS issuer → norburg_plon_duchy and never relies on this mint entity.
+        # (Corrected 2026-07-08 — was wrongly «royal Holstein after 1640».)
+        # Source: de.wikipedia.org/wiki/Münze_zu_Rethwisch.
         "aliases": {"rethwisch"},
         "display": "Rethwisch",
         "entity": "royal_holstein",
@@ -414,6 +421,38 @@ CANON_TO_YEAR_OVERRIDES: dict[str, list[dict]] = {
     canon: (spec.get("year_overrides") or [])
     for canon, spec in _MINT_REGISTRY.items()
 }
+
+
+# ─────────────────────── Crown-owned mints (render layer) ──────────────
+# Single source of truth for build.py `_derive_issuing_entity` — the render-
+# time realm widening of Danish-crown coinage. A mint is «crown-owned» when the
+# Danish crown owned it and struck REALM coinage there: Kopenhagen (Denmark),
+# Kongsberg (Norway), and the royal-Holstein mints (Altona / Glückstadt from
+# 1617/1640; Husum / Haderslev / Flensburg / Rendsburg royal-Schleswig;
+# Poppenbüttel by Altona; Rethwisch a Copenhagen branch 1769-70). This is a
+# DIFFERENT concept from a mint's territory `entity` (used at SEED time to
+# classify a coin BY its mint) — hence an explicit crown set rather than
+# «every royal_holstein mint». build.py scopes the widening to
+# `issuing_entity == danish_realm`, so commission strikes of OTHER issuers
+# (Plön / Lübeck-bishopric / Lauenburg) struck at a crown mint are NOT widened
+# — they keep their commissioning entity. Derived maps below key on the
+# project-canonical DISPLAY form (mint fields are canonicalised to it).
+_CROWN_OWNED: frozenset[str] = frozenset({
+    "kopenhagen", "kongsberg",
+    "altona", "glueckstadt", "poppenbuettel", "husum",
+    "haderslev", "flensburg", "rendsburg", "rethwisch",
+})
+
+# display form → realm entity (for a crown coin struck there)
+CROWN_MINT_REALM: dict[str, str] = {
+    _MINT_REGISTRY[c]["display"]: _MINT_REGISTRY[c]["entity"] for c in _CROWN_OWNED
+}
+# the royal-Holstein subset — the gate: widening only fires when a crown coin
+# is struck at one of these (a Holstein mint).
+HOLSTEIN_CROWN_MINTS: frozenset[str] = frozenset(
+    _MINT_REGISTRY[c]["display"] for c in _CROWN_OWNED
+    if _MINT_REGISTRY[c]["entity"] == "royal_holstein"
+)
 
 
 def entity_for_canon_year(canon: str, year: int | None) -> str | None:
