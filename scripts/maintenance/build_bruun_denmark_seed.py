@@ -306,13 +306,20 @@ def parse_year(lot: dict) -> int | None:
     """
     meta = lot.get("meta_line") or ""
     body = lot.get("body_excerpt") or ""
-    # Reject ND-ranges that explicitly mark a pre-1300 medieval lot
-    # («ND (1100)» / «ND (1234)» / «ND (1289)»). The previous regex
-    # `[01]?[01]\d\d` was greedy: «[01]?» + «[01]» backtrack-matched
-    # ANY 1-prefixed 4-digit token, so «ND (1440)», «ND (1496)»,
-    # «ND (1396)» etc. all got silently rejected. Tightened to
-    # `1[012]\d{2}` so only true 10xx/11xx/12xx ranges trip the gate.
-    NDMED = r"ND\s*\(1[012]\d{2}"
+    # Reject ND-ranges that explicitly mark a pre-1300 medieval/ancient lot
+    # («ND (1100)» / «ND (1234)» / «ND (1289)» / «ND (500-550)»). The previous
+    # regex `[01]?[01]\d\d` was greedy: «[01]?» + «[01]» backtrack-matched
+    # ANY 1-prefixed 4-digit token, so «ND (1440)», «ND (1496)», «ND (1396)»
+    # etc. all got silently rejected. Tightened to `1[012]\d{2}` so only true
+    # 10xx/11xx/12xx ranges trip the gate. Two gaps closed 2026-07-08 (Bruun
+    # audit): (a) the hyphenated «ND-(1018-1035)» form (Cnut penny B-1322 —
+    # `\s*` after ND only matched space, so the gate missed the hyphen and the
+    # lot slipped in dated «1615» from a body catalogue-ref fragment
+    # «Malmer-14.601.1615»); (b) pre-1000 three-digit ranges «ND (500-550)»
+    # (Migration bracteate B-1180 — `[5-9]\d{2}` now catches 500-999). In-scope
+    # undated ranges «ND (14xx/15xx…)» and undated-by-ruler lots («ND. Nidaros.
+    # Olav Engelbrektsson») still pass (no pre-1300 numeric range to match).
+    NDMED = r"ND[\s-]*\(\s*(?:[5-9]\d{2}|1[012]\d{2})"
     if re.search(NDMED, meta) or re.search(NDMED, body[:200]):
         return None
     y = lot.get("year")
