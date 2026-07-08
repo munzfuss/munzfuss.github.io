@@ -109,7 +109,7 @@ _MINT_REGISTRY: dict[str, dict] = {
         # Danish until Treaty of Roskilde 1658, then Swedish.
         # Project anchors as Danish-era (medieval coinage subject).
         "aliases": {"malmö", "malmø", "malmo", "malmoe", "malm?"},
-        "display": "Malmö",
+        "display": "Malmø",
         "entity": "danish_realm",
     },
     "helsingor": {
