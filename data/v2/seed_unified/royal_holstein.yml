@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-07-02 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-09 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1709 per-source seed entries.
-# Output: 954 unified entries (one per physical coin).
+# Input: 1721 per-source seed entries.
+# Output: 955 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-07-02'
+generated_at: '2026-07-09'
 coins:
 - id: unified-denmark-numismaster-65623
   fuss: seed_unsorted
@@ -127,40 +127,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - denmark-numismaster-65625
-- id: unified-denmark-numismaster-65628
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ½ Portugaløser
-  year_first: 1592
-  year_last: 1593
-  year_ranges:
-  - - 1592
-    - 1593
-  year_label: 1592-1593
-  mint: Haderslev
-  catalog:
-    fr: '63.2'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65628
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - denmark-numismaster-65628
 - id: unified-denmark-numismaster-65630
   fuss: seed_unsorted
   phase: numismaster
@@ -399,6 +365,63 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-bruun-14783
+- id: unified-dk-bruun-4600
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: ½ Portugaløser
+  year_first: 1592
+  year_last: 1593
+  year_ranges:
+  - - 1592
+    - 1593
+  year_label: 1592-1593
+  ruler: Christian IV
+  mintmaster: Andreas Metzner
+  mint: Haderslev
+  catalog:
+    hede: '6'
+    sieg: '160'
+    bruun_collection_id: '4600'
+    schou: '1'
+    fr:
+    - '63'
+    - '63.2'
+  metal: gold
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 17.32
+    source: bruun
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_65628
+    ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 11174, p. 92
+  note:
+    de: 5 Ducats
+    en: 5 Ducats
+    uk: 5 Ducats
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: royal_holstein
+  composed_of:
+  - denmark-numismaster-65628
+  - dk-bruun-4600
 - id: unified-dk-bruun-5326
   fuss: seed_unsorted
   phase: bruun
@@ -1591,6 +1614,51 @@ coins:
   - kmk-578752
   - kmk-578753
   - kmk-578754
+- id: unified-dk-bruun-7894
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 20 Ducats
+  year_first: 1788
+  year_last: 1788
+  year_label: '1788'
+  ruler: Christian VII
+  mintmaster: Michael Flor
+  mint:
+  - Altona
+  - Poppenbüttel
+  catalog:
+    hede: '25'
+    sieg: '19'
+    bruun_collection_id: '7894'
+    schou: 7a
+  metal: gold
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 69.22
+    source: bruun
+  sources:
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13249, p. 172
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: royal_holstein
+  composed_of:
+  - dk-bruun-7894
 - id: unified-dk-bruun-7910
   fuss: seed_unsorted
   phase: bruun
@@ -2552,6 +2620,7 @@ coins:
   year_last: 1545
   year_label: '1545'
   ruler: Christian III.
+  mintmaster: Jørgen Degener
   mint: Flensburg
   catalog:
     hede: '16'
@@ -2560,6 +2629,9 @@ coins:
     sieg:
     - '46'
     - '49'
+    bruun_collection_id:
+    - '4299'
+    - '4300'
     numista: '468485'
     mb: '48'
     dav: EC I 8236
@@ -2574,11 +2646,21 @@ coins:
   - value: 0.89
     source: hede
   weight_rough_g:
+  - value: 28.49
+    source: bruun
+  - value: 28.69
+    source: bruun
   - value: 28.69
     source: numista
   - value: 29.232
     source: hede
   sources:
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+    ref: Bruun Part I, lot 1006, p. 37
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13063, p. 57
   - type: literature
     url: https://www.danskmoent.dk/chr/c3h16.htm
     ref: danskmoent.dk (Hede c3h16)
@@ -2597,6 +2679,8 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
+  - dk-bruun-4299
+  - dk-bruun-4300
   - dk-hede-c3h16
   - dk-numista-468485
 - id: unified-dk-hede-c3h17ab
@@ -2608,16 +2692,31 @@ coins:
   year_last: 1545
   year_label: '1545'
   ruler: Christian III.
+  mintmaster: Jørgen Degener
   mint: Flensburg
   catalog:
-    hede: 17ab
+    hede:
+    - 17A
+    - 17ab
     hede_volume: c3h
-    sieg: 47.1-2
+    sieg:
+    - '44.1'
+    - 47.1-2
+    bruun_collection_id: '4301'
+    schou: '3'
   metal: silver
   metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 14.5
+    source: bruun
   sources:
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13064, p. 58
   - type: literature
     url: https://www.danskmoent.dk/c3hede.htm
     ref: danskmoent.dk overview c3hede (Hede c3h17ab — Tiefenseite fehlt)
@@ -2633,6 +2732,7 @@ coins:
       1965). Коментар з індексу: «17B: bs. uden krone over skjoldet»'
   issuing_entity: royal_holstein
   composed_of:
+  - dk-bruun-4301
   - dk-hede-c3h17ab
 - id: unified-dk-hede-c3h18
   fuss: seed_unsorted
@@ -2687,21 +2787,26 @@ coins:
   year_last: 1547
   year_label: '1547'
   ruler: Christian III.
+  mintmaster: Jørgen Kock, the younger
   mint: Flensburg
   catalog:
     hede: '19'
     hede_volume: c3h
     schou: 1-5
     sieg:
+    - '47'
     - '50'
     - C3-47
+    lange:
+    - '20'
+    - 20a
+    bruun_collection_id:
+    - '4319'
+    - '4320'
     numista:
     - '103794'
     - '309416'
     dav: EC I 8237
-    lange:
-    - '20'
-    - 20a
     mb: '54'
   metal: silver
   metal_verified: true
@@ -2716,8 +2821,12 @@ coins:
   - value: 0.89
     source: numista
   weight_rough_g:
+  - value: 28.37
+    source: bruun
   - value: 28.6
     source: numista
+  - value: 28.62
+    source: bruun
   - value: 29.232
     source: hede
   - value: 29.232
@@ -2726,6 +2835,12 @@ coins:
   - value: 41.5
     source: numista
   sources:
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+    ref: Bruun Part I, lot 1007, p. 38
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13065, p. 59
   - type: literature
     url: https://www.danskmoent.dk/chr/c3h19.htm
     ref: danskmoent.dk (Hede c3h19)
@@ -2747,6 +2862,8 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
+  - dk-bruun-4319
+  - dk-bruun-4320
   - dk-hede-c3h19
   - dk-numista-103794
   - dk-numista-309416
@@ -2759,12 +2876,16 @@ coins:
   year_last: 1547
   year_label: '1547'
   ruler: Christian III.
+  mintmaster: Jørgen Kock, the younger
   mint: Flensburg
   catalog:
     hede: '20'
     hede_volume: c3h
     schou: 6-8
-    sieg: '48'
+    sieg:
+    - '45'
+    - '48'
+    bruun_collection_id: '4323'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -2775,9 +2896,14 @@ coins:
   - value: 0.89
     source: hede
   weight_rough_g:
+  - value: 14.15
+    source: bruun
   - value: 14.616
     source: hede
   sources:
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13066, p. 59
   - type: literature
     url: https://www.danskmoent.dk/chr/c3h20.htm
     ref: danskmoent.dk (Hede c3h20)
@@ -2793,6 +2919,7 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
+  - dk-bruun-4323
   - dk-hede-c3h20
 - id: unified-dk-hede-c3h21a
   fuss: seed_unsorted
@@ -4557,9 +4684,6 @@ coins:
     - '7'
     - 10-11
     bruun_collection_id: '4602'
-    bruun_part: I
-    bruun_lot_no: 1012
-    bruun_page: 46
     numista: '142133'
     fr: '32'
     others:
@@ -4613,10 +4737,6 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/137162
     ref: KMM 137162 (Inv. RP 23.1)
-  note:
-    de: Ungersk Gylden
-    en: Ungersk Gylden
-    uk: Ungersk Gylden
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -6294,7 +6414,9 @@ coins:
     sieg:
     - '18.2'
     - '22A: 18.1 22B: 18.2'
-    bruun_collection_id: '7851'
+    bruun_collection_id:
+    - '7851'
+    - '7863'
     schou: '1'
     bruun_part: III
     bruun_lot_no: 11294
@@ -6310,10 +6432,15 @@ coins:
   weight_rough_g:
   - value: 27.99
     source: bruun
+  - value: 28.02
+    source: bruun
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 11294, p. 147
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13242, p. 168
   - type: literature
     url: https://www.danskmoent.dk/c7hede.htm
     ref: danskmoent.dk overview c7hede (Hede c7h22ab — Tiefenseite fehlt)
@@ -6333,6 +6460,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-bruun-7851
+  - dk-bruun-7863
   - dk-hede-c7h22ab
 - id: unified-dk-hede-c7h25
   fuss: seed_unsorted
@@ -6344,7 +6472,9 @@ coins:
   year_label: '1788'
   ruler: Christian VII.
   mintmaster: Michael Flor
-  mint: Altona
+  mint:
+  - Altona
+  - Poppenbüttel
   catalog:
     km: '645'
     hede: '25'
@@ -6358,9 +6488,6 @@ coins:
     fr: '6'
     bruun_collection_id: '7893'
     nmd: '1'
-    bruun_part: II
-    bruun_lot_no: 13248
-    bruun_page: 171
     numista: '325285'
     dav: EC III 1312
   metal: silver
@@ -6944,7 +7071,9 @@ coins:
   year_label: 1787-1791, 1794-1796, 1799-1801, 1804-1805, 1807-1808
   ruler: Christian VII.
   mintmaster: Michael Flor
-  mint: Altona
+  mint:
+  - Altona
+  - Poppenbüttel
   catalog:
     km:
     - '138.1'
@@ -8037,13 +8166,60 @@ coins:
   ruler: Christian VII.
   mint: Rethwisch
   catalog:
-    km: '608'
     hede: '7'
     hede_volume: c7h
     schou: '1'
     sieg: '6'
-    dav: '1306'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.875
+    source: hede
+  weight_rough_g:
+  - value: 28.893
+    source: hede
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c7h7.htm
+    ref: danskmoent.dk (Hede c7h7)
+  verification_note:
+    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
+      danskmoent.dk.'
+    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  issuing_entity: royal_holstein
+  hede_muentzfuss_yield:
+    value: 9.25
+    unit: speciedaler
+    basis: fin
+    unit_raw: speciedalere
+  composed_of:
+  - dk-hede-c7h7
+- id: unified-dk-hede-c7h8
+  fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: 1 Speciedaler
+  year_first: 1769
+  year_last: 1769
+  year_label: '1769'
+  ruler: Christian VII.
+  mintmaster: Hans Schievern Knoph (HSK)
+  mint: Rethwisch
+  catalog:
+    km: '608'
+    hede: '8'
+    hede_volume: c7h
+    schou: 2-6
+    sieg:
+    - '5'
+    - '36.1'
     bruun_collection_id: '7750'
+    dav: '1306'
     bruun_part: IV
     bruun_lot_no: 17138
     bruun_page: 87
@@ -8063,6 +8239,8 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 28.89
+    source: bruun
+  - value: 28.89
     source: ucoin
   - value: 28.893
     source: hede
@@ -8075,9 +8253,12 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_65489
     ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17138, p. 87
   - type: literature
-    url: https://www.danskmoent.dk/chr/c7h7.htm
-    ref: danskmoent.dk (Hede c7h7)
+    url: https://www.danskmoent.dk/chr/c7h8.htm
+    ref: danskmoent.dk (Hede c7h8)
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1769/?tid=79165
     ref: ucoin
@@ -8094,52 +8275,9 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - denmark-numismaster-65489
-  - dk-hede-c7h7
-  - dk-tid-79165
-- id: unified-dk-hede-c7h8
-  fuss: seed_unsorted
-  phase: hede
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1769
-  year_last: 1769
-  year_label: '1769'
-  ruler: Christian VII.
-  mint: Rethwisch
-  catalog:
-    hede: '8'
-    hede_volume: c7h
-    schou: 2-6
-    sieg: '5'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: hede
-  weight_rough_g:
-  - value: 28.893
-    source: hede
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c7h8.htm
-    ref: danskmoent.dk (Hede c7h8)
-  verification_note:
-    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
-      danskmoent.dk.'
-    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  issuing_entity: royal_holstein
-  hede_muentzfuss_yield:
-    value: 9.25
-    unit: speciedaler
-    basis: fin
-    unit_raw: speciedalere
-  composed_of:
+  - dk-bruun-7750
   - dk-hede-c7h8
+  - dk-tid-79165
 - id: unified-dk-hede-c7h9a
   fuss: seed_unsorted
   phase: hede
@@ -8149,8 +8287,10 @@ coins:
   year_last: 1769
   year_label: '1769'
   ruler: Christian VII.
+  mintmaster: Hans Schievern Knoph
   mint: Rethwisch
   catalog:
+    km: '606'
     hede:
     - 9A
     - 9B
@@ -8161,6 +8301,8 @@ coins:
     sieg:
     - '2'
     - '3'
+    - '33'
+    bruun_collection_id: '7752'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -8171,9 +8313,14 @@ coins:
   - value: 0.875
     source: hede
   weight_rough_g:
+  - value: 14.42
+    source: bruun
   - value: 14.447
     source: hede
   sources:
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13233, p. 164
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h9.htm
     ref: danskmoent.dk (Hede c7h9A)
@@ -8189,6 +8336,7 @@ coins:
     basis: fin
     unit_raw: speciedalere
   composed_of:
+  - dk-bruun-7752
   - dk-hede-c7h9a
   - dk-hede-c7h9b
 - id: unified-dk-hede-c8h11a
@@ -10213,10 +10361,13 @@ coins:
     hede_volume: f4h
     schou: '1'
     sieg: '61'
-    bruun_collection_id: '7465'
+    bruun_collection_id:
+    - '7465'
+    - '7481'
     bruun_part: II
     bruun_lot_no: 13211
     bruun_page: 154
+    lange: '100'
     fr: '226'
   metal: gold
   metal_verified: true
@@ -10230,6 +10381,8 @@ coins:
   - value: 0.979
     source: ucoin
   weight_rough_g:
+  - value: 3.43
+    source: bruun
   - value: 3.44
     source: bruun
   - value: 3.49
@@ -10240,6 +10393,9 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13211, p. 154
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17115, p. 76
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h60.htm
     ref: danskmoent.dk (Hede f4h60)
@@ -10254,6 +10410,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-bruun-7465
+  - dk-bruun-7481
   - dk-hede-f4h60
   - km-x012-fr-iv-1718
 - id: unified-dk-hede-f4h61

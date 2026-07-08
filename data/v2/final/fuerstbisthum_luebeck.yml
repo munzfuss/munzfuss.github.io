@@ -427,10 +427,14 @@ coins:
     - 1599
   year_label: 1593-1599
   catalog:
-    numista: '276012'
+    numista:
+    - '276012'
+    - '276015'
     mb: '16'
     fr: '1503'
-    lange: 262a
+    lange:
+    - 262a
+    - 262b
     others:
     - Behr# 848 b
   metal: gold
@@ -444,54 +448,14 @@ coins:
   - value: 0.986
     source: numista
   weight_rough_g:
+  - value: 17.21
+    source: numista
   - value: 17.49
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/276012
     ref: Numista N#276012 — ½ Portugalöser
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-276012
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 5 Ducats
-  issuing_entity: fuerstbisthum_luebeck
-  id: unified-dk-numista-276015
-  year_first: 1593
-  year_last: 1599
-  year_ranges:
-  - - 1593
-    - 1599
-  year_label: 1593-1599
-  catalog:
-    numista: '276015'
-    fr: '1503'
-    lange: 262b
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.986
-    source: numista
-  weight_rough_g:
-  - value: 17.21
-    source: numista
-  sources:
   - type: literature
     url: https://en.numista.com/276015
     ref: Numista N#276015 — ½ Portugalöser - John Adolphus
@@ -506,7 +470,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
-  - unified-dk-numista-276015
+  - unified-dk-numista-276012
 - fuss: seed_unsorted
   phase: numista
   kind: kurant

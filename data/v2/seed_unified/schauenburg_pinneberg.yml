@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `schauenburg_pinneberg`.
-# Generated 2026-06-24 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-09 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
 # Input: 252 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: schauenburg_pinneberg
-generated_at: '2026-06-24'
+generated_at: '2026-07-09'
 coins:
 - id: unified-dk-bruun-14788
   fuss: seed_unsorted
@@ -3406,10 +3406,15 @@ coins:
   ruler: Ernest
   catalog:
     km: '102'
-    numista: '278288'
-    lange: '920'
+    numista:
+    - '278288'
+    - '278301'
+    lange:
+    - '920'
+    - 920A
     others:
     - Weinm# 159
+    - Weinm# 158
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3418,12 +3423,17 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 13.61
+    source: numista
   - value: 13.8
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/278288
     ref: Numista N#278288 — ½ Thaler - Ernest III
+  - type: literature
+    url: https://en.numista.com/278301
+    ref: Numista N#278301 — 1/2 Thaler - Ernest III - HS-Pinneberg 1620
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -3437,6 +3447,7 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - dk-numista-278288
+  - dk-numista-278301
 - id: unified-dk-numista-278289
   fuss: seed_unsorted
   phase: numista
@@ -3848,54 +3859,6 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - dk-numista-278300
-- id: unified-dk-numista-278301
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: ½ Thaler
-  year_first: 1620
-  year_last: 1620
-  year_label: '1620'
-  ruler: Ernst III
-  catalog:
-    km: '102'
-    numista: '278301'
-    lange: 920A
-    others:
-    - Weinm# 158
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 13.61
-    source: numista
-  - value: 14.2
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://en.numista.com/278301
-    ref: Numista N#278301 — 1/2 Thaler - Ernest III - HS-Pinneberg 1620
-  - type: literature
-    url: https://numismaster.com/MC_96109
-    ref: NumisMaster
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: schauenburg_pinneberg
-  composed_of:
-  - dk-numista-278301
-  - schleswig_holstein-numismaster-96109
 - id: unified-dk-numista-278302
   fuss: seed_unsorted
   phase: numista
@@ -6492,6 +6455,40 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - schleswig_holstein-numismaster-96108
+- id: unified-schleswig_holstein-numismaster-96109
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: ½ Thaler
+  year_first: 1620
+  year_last: 1620
+  year_label: '1620'
+  ruler: Ernst III
+  catalog:
+    km: '102'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 14.2
+    source: numismaster
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_96109
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - schleswig_holstein-numismaster-96109
 - id: unified-schleswig_holstein-numismaster-96110
   fuss: seed_unsorted
   phase: numismaster

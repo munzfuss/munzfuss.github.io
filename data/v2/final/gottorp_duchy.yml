@@ -201,18 +201,24 @@ coins:
   year_first: 1672
   year_last: 1672
   year_label: '1672'
+  mint: Gottorp
   catalog:
     km: '115'
     numista: '301744'
-    lange: 376a
+    lange:
+    - '376'
+    - 376a
     dav: SG 573
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: false
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 21.731
+    source: kmk
   sources:
   - type: literature
     url: https://numismaster.com/MC_99433
@@ -223,6 +229,9 @@ coins:
   - type: literature
     url: https://en.numista.com/301744
     ref: Numista N#301744 — ⅔ Thaler - Christian Albert
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/394024
+    ref: KMM 394024 (Inv. FP 4227.1698)
   note:
     de: ⅔ Thaler · Christian Albrecht von Gottorp, 1672
     en: ⅔ Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1672
@@ -2655,8 +2664,12 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 1.0
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167326
@@ -2664,6 +2677,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301150.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/301150
+    ref: Numista N#301150 — 1⁄48 Thaler - Charles Frederick
   note:
     de: 1/48 Thaler · Karl Friedrich von Gottorp, 1703
     en: 1/48 Thaler · Charles Frederick, Duke of Schleswig-Holstein-Gottorp, 1703
@@ -2676,7 +2692,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
-  - unified-schleswig_holstein-numismaster-167326
+  - unified-dk-numista-301150
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -2745,7 +2761,6 @@ coins:
     - '65'
     - '66'
     numista: '313441'
-    lange: 320a
     dav:
     - '3697'
     - 3698A
@@ -2757,9 +2772,6 @@ coins:
   diameter_mm_verified: false
   mint_verified: true
   verified: false
-  weight_rough_g:
-  - value: 28.96
-    source: numista
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces313441.html
@@ -2791,7 +2803,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
-  - unified-dk-numista-313441
+  - unified-schleswig_holstein-numismaster-99452
   - unified-schleswig_holstein-numismaster-99454
   - unified-schleswig_holstein-numismaster-99455
   v1_home_location: schleswig_holstein
@@ -3107,7 +3119,7 @@ coins:
   year_first: 1611
   year_last: 1611
   year_label: '1611'
-  mint: Steinbek
+  mint: Steinbeck
   catalog:
     km: '35'
     numista:
@@ -3837,7 +3849,7 @@ coins:
   - - 1626
     - 1628
   year_label: 1623, 1626-1628
-  mint: Steinbek
+  mint: Steinbeck
   catalog:
     km: '71'
     numista: '301534'
@@ -4152,7 +4164,7 @@ coins:
   - - 1636
     - 1637
   year_label: 1634, 1636-1637
-  mint: Steinbek
+  mint: Steinbeck
   catalog:
     km: '83'
     numista: '313686'
@@ -7036,15 +7048,25 @@ coins:
     km: '64'
     bruun_collection_id: '14175'
     sieg: '11.5'
-    lange: 320c
-    dav: '3698'
+    lange:
+    - 320a
+    - 320c
+    dav: EC II 3698
+    numista:
+    - '278266'
+    - '313441'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 28.85
+    source: numista
+  - value: 28.96
+    source: numista
   - value: 29.02
     source: bruun
   sources:
@@ -7057,6 +7079,12 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces278266.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/278266
+    ref: Numista N#278266 — 1 Thaler - Frederick III
+  - type: literature
+    url: https://en.numista.com/313441
+    ref: Numista N#313441 — 1 Thaler - Frederick III (Mule)
   note:
     de: 1 Thaler · Frederik III. von Gottorp, 1622-1626
     en: 1 Thaler · Frederick III, Duke of Schleswig-Holstein-Gottorp, 1622-1626
@@ -8148,47 +8176,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-276168
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1⁄48 Thaler
-  ruler: Charles Frederick
-  issuing_entity: gottorp_duchy
-  id: unified-dk-numista-301150
-  year_first: 1703
-  year_last: 1703
-  year_label: '1703'
-  mint: Tönning
-  catalog:
-    km: '186'
-    numista: '301150'
-    lange: 463A
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/301150
-    ref: Numista N#301150 — 1⁄48 Thaler - Charles Frederick
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-301150
 - fuss: seed_unsorted
   phase: numista
   kind: kurant
