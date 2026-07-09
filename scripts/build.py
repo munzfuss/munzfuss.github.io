@@ -569,6 +569,15 @@ def _resolve_dict_fields_per_location(coin: dict, loc_id: str, km_register: str 
 # changes; widen deliberately after per-fuss review (handoff 2026-06-15).
 _DERIVE_PHASE_FROM_YEAR: set[str] = {"18_5_thaler"}
 
+# Advisory sanity tolerance (years) for the phase year-window. A coin lives in
+# its STORED phase regardless of that phase's declared year window — coin
+# membership is NEVER filtered by year (curator direction 2026-07-09: «потрапляння
+# монети в стопу не повинно фільтруватись роком»). But when a coin's year falls
+# grossly outside its phase window — beyond this many years — we log a warning so
+# a data-error year, or a periodisation gap that should get its own phase, stays
+# visible. The coin is kept either way. Tunable; 25y ≈ a phase-generation of slack.
+_PHASE_YEAR_SANITY_TOLERANCE = 25
+
 
 def _assemble_v2_location(loc_id: str, raw: dict) -> int:
     """Populate `raw['coins']` from V2 entity-keyed curated + seed files.
@@ -723,21 +732,28 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
         assembled.append(_resolve_dict_fields_per_location(c, loc_id, km_register))
         seen_ids.add(cid)
 
-    # ---- Per-coin pre-filter: phase definition must exist on this page ----
-    # An entity file may legitimately carry coins whose `fuss` or `phase` is
-    # not defined on this consumer's location yaml — e.g. Christian-IV
-    # Haderslev coins (reichsdukatenfuss Phase I 1591-1593) live in
-    # royal_holstein.yml; DK page accommodates them via wide Phase-I range,
-    # but the SH page's reichsdukatenfuss Phase I starts at 1600. Rather
-    # than hard-fail the whole V2 build on this mismatch, we drop the coin
-    # from this specific assembly with a one-line summary. The coin is NOT
-    # lost — it surfaces on the OTHER consumer pages whose phase definitions
-    # do accommodate it. Users iterating in Phase 8 can either widen this
-    # page's phase ranges OR re-tag the coin's phase as dict-form
-    # `{denmark: I, schleswig_holstein: II}` per V2_PIPELINE.md §5.
+    # ---- Per-coin pre-filter: phase definition must EXIST on this page ----
+    # An entity file may legitimately carry coins whose `fuss` or `phase`-id is
+    # not *defined* on this consumer's location yaml (a phase this page's
+    # periodisation doesn't declare). Rather than hard-fail the whole V2 build
+    # on that mismatch, we drop the coin from this specific assembly with a
+    # one-line summary. The coin is NOT lost — it surfaces on the OTHER
+    # consumer pages whose phase definitions do accommodate it.
+    #
+    # A coin is NEVER dropped by *year* (curator direction 2026-07-09:
+    # «потрапляння монети в стопу не повинно фільтруватись роком»). A coin whose
+    # year falls outside its phase's declared window still renders in that
+    # phase — e.g. the Christian-IV Haderslev reichsdukatenfuss coins (1591-1593)
+    # render on BOTH the DK page and the SH page even though the SH
+    # reichsdukatenfuss Phase I window opens at 1600. The only per-coin drops
+    # here are structural: an out-of-scope metal, the per-entity consume-window
+    # (a page-scope jurisdiction cap, not a fuss/phase gate), a fuss absent from
+    # this page, or a phase-id this page does not define. Gross year/phase
+    # mismatches are surfaced as an advisory warning (see year_warn), never a drop.
     phases_map = raw.get("phases") or {}
     kept: list[dict] = []
     dropped: list[tuple[str, str]] = []
+    year_warn: list[tuple[str, str]] = []
     for c in assembled:
         fuss = c.get("fuss")
         phase = c.get("phase")  # already scalar after _resolve_dict_fields
@@ -796,7 +812,13 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
         if phase not in ph_ids:
             dropped.append((cid, f"phase '{phase}' not defined for fuss '{fuss}'"))
             continue
-        # Year-range sanity: phase entry has year_from/year_to envelope.
+        # Year-range sanity (ADVISORY ONLY — a coin is NEVER filtered by year).
+        # The coin lives in its stored phase regardless of the phase's declared
+        # year window; the window is a display/data hint, not a membership gate
+        # (curator direction 2026-07-09). When year_first falls grossly outside
+        # the window — beyond _PHASE_YEAR_SANITY_TOLERANCE — log a warning so a
+        # data-error year (or a periodisation gap that should get its own phase)
+        # stays visible, but keep the coin either way.
         year_first = c.get("year_first")
         if year_first is not None:
             match = next((p for p in ph_defs
@@ -804,9 +826,10 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
             if match is not None:
                 yf = match.get("year_from") if isinstance(match, dict) else getattr(match, "year_from", None)
                 yt = match.get("year_to") if isinstance(match, dict) else getattr(match, "year_to", None)
-                if yf is not None and yt is not None and (year_first < yf - 1 or year_first > yt + 1):
-                    dropped.append((cid, f"year_first {year_first} outside phase {phase} [{yf}, {yt}]"))
-                    continue
+                if yf is not None and yt is not None:
+                    dev = (yf - year_first) if year_first < yf else (year_first - yt if year_first > yt else 0)
+                    if dev > _PHASE_YEAR_SANITY_TOLERANCE:
+                        year_warn.append((cid, f"year_first {year_first} is {dev}y outside phase {phase} [{yf}, {yt}]"))
         kept.append(c)
 
     if dropped:
@@ -817,6 +840,15 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
         if len(dropped) > 5:
             print(f"      • ... and {len(dropped) - 5} more (use phase dict-form per "
                   f"V2_PIPELINE.md §5 to render on both DK + SH)")
+
+    if year_warn:
+        print(f"   ℹ  v2/{loc_id}: {len(year_warn)} coin(s) kept but dated >"
+              f"{_PHASE_YEAR_SANITY_TOLERANCE}y outside their phase window "
+              f"(check for a data-error year or a missing phase):")
+        for cid, why in year_warn[:5]:
+            print(f"      • {cid}: {why}")
+        if len(year_warn) > 5:
+            print(f"      • ... and {len(year_warn) - 5} more")
 
     raw["coins"] = kept
     # consumes_entities was a V2-only sidecar field — `Location` allows

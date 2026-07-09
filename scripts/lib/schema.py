@@ -1065,13 +1065,13 @@ class Location(_StrictBase):
                         if _msg not in errors:
                             errors.append(_msg)
 
-            # Check chronology — allow slight leeway for coins dated just before the phase starts
-            # (e.g., 1787 coin in a 1788 phase — these dates represent "issued for" the reform)
-            ph = phase_map[coin.phase]
-            if coin.year_first < ph.year_from - 1 or coin.year_first > ph.year_to + 1:
-                errors.append(
-                    f"coin {coin.id}: year_first={coin.year_first} outside phase "
-                    f"{coin.phase} range [{ph.year_from}, {ph.year_to}]"
-                )
-        
+            # Chronology is NOT validated against the phase year-window. A coin
+            # lives in its stored phase regardless of that phase's declared year
+            # range — membership is never gated by year (curator direction
+            # 2026-07-09: «потрапляння монети в стопу не повинно фільтруватись
+            # роком»). A gross year/phase mismatch is surfaced as an advisory
+            # warning at assembly time (build._assemble_v2_location → year_warn),
+            # not a validation error. phase.year_from / year_to survive only as
+            # the data bounds the display-side outer-span expansion reads (Change 2).
+
         return errors
