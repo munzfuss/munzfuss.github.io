@@ -507,6 +507,11 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         if (_rw is not None and len(authoritative_yr) == 1
                 and list(authoritative_yr[0]) == [_rw[0], _rw[1]]):
             out["year_verified"] = False
+            # Flag WHICH kind of unverified this is: a reign-placeholder, not an
+            # imprecise estimate (schema.year_is_reign_span). Data-only — render
+            # + expansion already key on year_verified=False; the flag lets an
+            # audit tell «1588-1648 reign» apart from «1496-1497 approximate».
+            out["year_is_reign_span"] = True
 
     # Ambiguity-split sweep across members: any member with a scalar
     # mint containing «eller / oder / or / /» indicators (Hede/Galster

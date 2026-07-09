@@ -596,6 +596,26 @@ class Coin(_StrictBase):
             "flag, NOT by inlining «(?)» / «ca.» / «ND» into the label."
         ),
     )
+    year_is_reign_span: bool = Field(
+        False,
+        description=(
+            "Distinguishes the TWO reasons a year can be unverified "
+            "(year_verified=False), which the (?) marker alone conflates "
+            "(curator direction 2026-07-09). False (default) — the year is "
+            "an approximate-but-narrow estimate (e.g. «1496-1497» for a Hans "
+            "Rhinsk Gylden: the true year is close but not pinned). True — the "
+            "year range is the RULER'S REIGN window, used only because no "
+            "narrower window is recorded (e.g. «1588-1648» = Christian IV's "
+            "whole reign, the cataloguer tagged the piece with the reign, not "
+            "a mint year). Purely a DATA distinction: the render layer treats "
+            "both the same (both are year_verified=False → both show the (?) "
+            "marker), and both are excluded from phase outer-span expansion. "
+            "The flag exists so audits / queries / future curation can tell an "
+            "imprecise-year coin from a reign-placeholder coin. Set "
+            "automatically by the absorb reign-span override when the resolved "
+            "year range == the ruler's reign (lib.ruler_reigns)."
+        ),
+    )
     year_ranges: list[list[int]] | None = Field(
         None,
         description=(
