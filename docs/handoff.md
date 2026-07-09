@@ -63,10 +63,31 @@ this session I mis-read «Frederik III» as the Danish king (§0b) — on this p
 nuance (not blocking): is a 1616 Gottorp Scheidemünze correctly in 9¼-Thaler-Fuß (label
 1622)? — a classification question.
 
-**Separate surface NOT touched:** the timeline mint-event auto-sync (`📐` log, timeline.py)
-coin-expands the mint layer using ALL coins incl. reign-span years (9_25 mint-events show
-1588-1854 from Chr.IV reign-span coins) — the timeline's own pre-existing expansion,
-independent of the phase outer-span fix.
+**Change 3 (timeline) — DONE.** The timeline mint-event auto-sync (`📐` log,
+`timeline.derive_mint_overrides`) coin-expanded the mint stripe from ALL coins,
+ignoring year_verified — so it showed 9_25 mint from 1588 (a reign-span Chr.IV
+Skilling) while the phase header, correctly, starts 1622. Added the SAME year_verified
+guard Change 2 uses (skip `year_verified: false`); the 1914 cap was already there. The
+timeline mint stripe now matches the phase outer-span (9_25 1588→1622, 9_thaler
+1559→1566, reichsdukatenfuss[holstein] →1591 Haderslev, 11_333 1700→1725).
+
+**Coin-cleanup tail (all drivers the mechanism surfaced) — FULLY CONVERGED.** The last
+SH 9¼-Thaler drivers: km-44 (Gottorp reign-window 1616 → reign-flag), 96114 (stale
+source-less 1618 → 1622), bruun-14906/N#278300 (2nd over-merge — Sterbetaler vs
+portrait Thaler — split), 120994 (NumisMaster «ND(1618-22)» parser bug → range-start
+read as a mint year; corrected to 1622 per Numista N#151529). Only remaining SH shift
+= reichsdukatenfuss→1591 (Haderslev, curator-confirmed OK).
+
+**Systemic FOLLOW-UPS (recorded, not done):**
+1. **NumisMaster «ND(YYYY-YY)» parser bug** — reads the range START as a specific mint
+   year (120994 «ND(1618-22)» → 1618). Should emit a range + `year_verified: false`.
+   Potentially affects many NumisMaster coins. The 120994 fix is NOT re-absorb-durable
+   until this is fixed (120994 flows through the absorb seed_member branch which ignores
+   `_curation_holds`).
+2. `normalise_ruler_name` returns None for all NON-Danish rulers → German dukes/counts
+   never get the auto reign-flag (km-44 marked by hand + kept via _FOUNDATION_IMMUTABLE_FIELDS).
+3. N#278300 (Ernst III portrait Thaler) promoted to seed_unsorted after the split — needs
+   classification.
 
 ## 2026-07-09 — Part A (Bruun mint meta-priority) COMPLETE + crown-map from registry + 2 deferred design decisions
 
