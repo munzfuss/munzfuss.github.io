@@ -427,22 +427,19 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Taler
-  year_first: 1601
+  year_first: 1620
   year_last: 1622
   year_ranges:
-  - - 1601
+  - - 1620
     - 1622
-  year_label: 1601-1622
+  year_label: 1620-1622
   ruler: Ernest
   mintmaster: Thomas Eisenbein
   mint: Altona
   catalog:
     km: '130'
     bruun_collection_id: '14906'
-    numista: '137419'
-    lange: '837'
-    others:
-    - Weinm# 152
+    numista: '278300'
     dav: 3746var
   metal: silver
   metal_verified: true
@@ -452,7 +449,7 @@ coins:
   mint_verified: true
   verified: false
   weight_rough_g:
-  - value: 28.76
+  - value: 28.5
     source: numista
   - value: 28.93
     source: bruun
@@ -461,8 +458,8 @@ coins:
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12218, p. 265
   - type: literature
-    url: https://en.numista.com/137419
-    ref: Numista N#137419 — 1 Thaler - Ernest III (Biblischer Taler)
+    url: https://en.numista.com/278300
+    ref: Numista N#278300 — 1 Thaler - Ernest III
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -477,7 +474,7 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - dk-bruun-14906
-  - dk-numista-137419
+  - dk-numista-278300
 - id: unified-dk-bruun-14907
   fuss: seed_unsorted
   phase: bruun
@@ -2622,6 +2619,50 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - dk-numista-137417
+- id: unified-dk-numista-137419
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1601
+  year_last: 1622
+  year_ranges:
+  - - 1601
+    - 1622
+  year_label: 1601-1622
+  ruler: Ernest
+  catalog:
+    numista: '137419'
+    lange: '837'
+    others:
+    - Weinm# 152
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.76
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/137419
+    ref: Numista N#137419 — 1 Thaler - Ernest III (Biblischer Taler)
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - dk-numista-137419
 - id: unified-dk-numista-143279
   fuss: seed_unsorted
   phase: numista
@@ -3818,47 +3859,6 @@ coins:
   composed_of:
   - dk-numista-278299
   - schleswig_holstein-numismaster-96148
-- id: unified-dk-numista-278300
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1620
-  year_last: 1622
-  year_ranges:
-  - - 1620
-    - 1622
-  year_label: 1620-1622
-  ruler: Ernest
-  catalog:
-    numista: '278300'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 28.5
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/278300
-    ref: Numista N#278300 — 1 Thaler - Ernest III
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: schauenburg_pinneberg
-  composed_of:
-  - dk-numista-278300
 - id: unified-dk-numista-278302
   fuss: seed_unsorted
   phase: numista

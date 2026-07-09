@@ -594,6 +594,28 @@ merges:
       - kmk-277003
     reason: 'c4h77: 1 Mark Danske Christian IV 1602-1608 (København), Hede 77 = KM 12. ONE coin per §9.4 — the Hede sub-letters 77/77A/77B/77C are die/year sub-variants of the single base Hede 77, and KM 12 (12/12a) is its Krause number (the KM-12/Hede-77 type, established distinct from KM-33/Hede-92 by the c4h92 work 2026-06-28). The family was fragmented across 6 seed_unified clusters: the KM-12a foundation (Numista 55302 + ucoin 163044 + KMM 190242/149993, already 9_thaler/I) plus five unabsorbed Hede-sub-letter clusters — 55303 (Hede 77/77A, KM 12), 190242 (Hede 77C), 190244 (Hede 77B), 190245 (Hede 77A), 277003 (Hede 77). Force-merge unites them so every specimen folds under the one coin (§9a); KM list-form [12, 12a], Hede [77, 77A, 77B, 77C], years 1602-1608. Does NOT touch the c4h92 no_merges (those keep Hede-92A/KM-33 out of the KM-12 cluster; dk-hede-c4h92a is not a member here). Curator-confirmed 2026-07-02 (Serhii).'
 no_merges:
+  # Split 4 outliers out of the Hede-144 core (Christian IV 1 Skilling, 1629).
+  # Index graph: the legit core = Hede 144/144A/144B <-> Schou 57/58 <-> KM 113.1
+  # <-> Sieg 34, all dated 1629 (14 members). These 4 followed it in on
+  # nominal+ruler+metal+year-overlap ALONE, with no shared catalogue index.
+  # Curator decision 2026-07-09 (Serhii). They were widening the coin's year to
+  # 1621-1648 and driving the 9¼-Thaler phase-I outer-span to 1621.
+  - members:
+      - kmk-693134
+      - dk-hede-c4h144a
+    reason: KMM 693134 (FP 280.45) is an UNATTRIBUTED 1 Skilling — no typeNumber / no catalogue index in the museum record — dated to the broad span 1621-1648 (museum did not pin the year). No index link to the Hede-144 (1629) type; over-merged on nominal+ruler+metal. Split out.
+  - members:
+      - kmk-693135
+      - dk-hede-c4h144a
+    reason: KMM 693135 (FP 280.44) — same as 693134 — UNATTRIBUTED 1 Skilling, no catalogue index, broad 1621-1648 date. No index link to Hede-144 (1629). Split out.
+  - members:
+      - kmk-348022
+      - dk-hede-c4h144a
+    reason: KMM 348022 (FP 1322.5) — UNATTRIBUTED 1 Skilling, no catalogue index, dated 1623 (a DIFFERENT year from the Hede-144 1629 type). Over-merged; split out.
+  - members:
+      - kmk-158132
+      - dk-hede-c4h144a
+    reason: KMM 158132 (FP 2579.10) carries typeNumber «Schou 58» but is dated 1643 — yet Schou 58 = Hede 144B = 1629 (attested by dk-hede-c4h144b + 3 kmk peers). The 1643 attribution conflicts with the Schou-58 type year; curator decision 2026-07-09 (Serhii) to split it out of the 1629 core rather than let its 1643 widen the coin.
   - members:
       - dk-hede-c5h57
       - denmark-numismaster-65801

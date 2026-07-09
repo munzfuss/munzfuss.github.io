@@ -1,0 +1,22 @@
+# Merge decisions for schauenburg_pinneberg (Holstein-Schaumburg-Pinneberg).
+#
+#   • merges:    unconditionally unite these member classes
+#   • no_merges: forbid these member pairs from ever uniting
+#
+# IDs reference V2 seed-layer entries (data/v2/seed/<src>/<entity>.yml).
+# Loaded by merge_seeds_cross_source.py::_load_decisions on every Phase 3.2 run.
+
+no_merges:
+- members:
+  - dk-bruun-14906
+  - dk-numista-137419
+  reason: 'Curator decision 2026-07-09 (Serhii). Two DISTINCT Ernst III von
+    Holstein-Schaumburg-Pinneberg Taler types with ZERO shared catalogue index
+    — over-merged on nominal + ruler + metal alone. dk-bruun-14906 (Bruun Part III
+    lot 12218, p. 265) = the STERBETALER/Death Taler struck on Ernst III''s death
+    17 Jan 1622: KM 130, Davenport 3746var, Weinmaster 153, Lange-Cf 944a
+    (cf, not its own index). dk-numista-137419 (Numista N#137419) = the BIBLISCHER
+    TALER: Lange 837, Weinmaster 152, dated to the reign 1601-1622 (no mint year).
+    No index overlaps: KM 130 + Dav 3746var sit ONLY on the Bruun member; Lange 837
+    + Weinm 152 ONLY on the Numista member; Weinmaster (the Schaumburg specialist
+    catalogue) splits them 152 vs 153. Distinct types → keep separate.'
