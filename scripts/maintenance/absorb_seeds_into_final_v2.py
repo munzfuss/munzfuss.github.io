@@ -102,6 +102,10 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     _normalise_nominal as _mg_normalise_nominal,
 )
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices  # noqa: E402
+from lib.ruler_reigns import (  # noqa: E402
+    reign_window as _reign_window,
+    normalise_ruler_name as _norm_ruler,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -488,6 +492,21 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     yv = _or_merge_verified(members, "year_verified")
     if yv is not None:
         out["year_verified"] = yv
+
+    # Reign-span override (curator direction 2026-07-09). When the resolved
+    # year range is EXACTLY a ruler's reign window — «Christian IV 1588-1648»,
+    # «Frederik I 1523-1533» — the year is not an attested mint date but a
+    # placeholder for an unknown one (the cataloguer tagged the piece with the
+    # reign). Force year_verified: false so the renderer shows «(?)» AND the
+    # coin never drives phase outer-span expansion (build._expand_outer_phase_span),
+    # regardless of what any source «attested». Reign windows come from the
+    # central `lib.ruler_reigns` table. Skipped when the curator has frozen
+    # year_verified via `_curation_holds` — an explicit curator flag wins.
+    if "year_verified" not in holds_keys and authoritative_yr is not None:
+        _rw = _reign_window(_norm_ruler(out.get("ruler")))
+        if (_rw is not None and len(authoritative_yr) == 1
+                and list(authoritative_yr[0]) == [_rw[0], _rw[1]]):
+            out["year_verified"] = False
 
     # Ambiguity-split sweep across members: any member with a scalar
     # mint containing «eller / oder / or / /» indicators (Hede/Galster
