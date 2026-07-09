@@ -579,6 +579,112 @@ _DERIVE_PHASE_FROM_YEAR: set[str] = {"18_5_thaler"}
 _PHASE_YEAR_SANITY_TOLERANCE = 25
 
 
+# Hard mission upper bound (curator direction 2026-07-09: «1914 рік це строге
+# обмеження, все що після 1914 у нас не розглядається»). Outer-span expansion
+# never moves an anchor past it — a coin whose year_last runs into the 1920s-30s
+# (e.g. a Christian X 20-Kroner minted 1913-1931) contributes at most 1914.
+_MISSION_YEAR_MAX = 1914
+
+
+def _is_dated_anchor_label(label) -> bool:
+    """True when a phase's outer label already names an explicit 4-digit year —
+    i.e. a curated ordinance / cessation anchor such as «30. Mai 1566»,
+    «15./31. Juli 1726», «2. Aug. 1914 (Goldkonvertibilität ausgesetzt)». Such a
+    label is a deliberate §7a founding/closing decree anchor and is PINNED: a
+    stray coin never overwrites it. A BARE year («1622») or a year-less label
+    («17. Jh.») is NOT a dated anchor → it is coin-driven (auto-generated)."""
+    if not label:
+        return False
+    s = str(label).strip()
+    if re.fullmatch(r"\d{3,4}", s):   # bare year — coin-driven, not a curated anchor
+        return False
+    return bool(re.search(r"\d{4}", s))   # names an explicit year → curated dated anchor
+
+
+def _expand_outer_phase_span(loc_id: str, raw: dict) -> None:
+    """Coin-driven outer-span expansion (Change 2, curator direction 2026-07-09).
+
+    «монети визначають роки фаз, а не фази обрізають стопу по роках» — a fuss's
+    displayed span is anchored by two OUTER points: its earliest phase's start
+    (year_from / from_label) and its latest phase's end (year_to / to_label).
+    Those two anchors shift OUTWARD to cover a coin of the fuss whose year falls
+    beyond them; interior phase boundaries are never touched. The moved anchor's
+    label is auto-generated from the coin year (labels follow the ints).
+
+    Three guards keep the shift honest (all curator direction 2026-07-09):
+
+      • VERIFIED-ONLY — a coin with `year_verified: false` never moves an anchor.
+        A ruler-reign span dated «1588-1648» (true mint date unknown) or a
+        data-error year is not a reliable boundary signal (§4). Default (flag
+        unset) = verified. Data-error years are surfaced by the assembly
+        advisory (year_warn) so the curator notices and fixes them via errata;
+        once fixed they stop driving the span.
+      • 1914 CAP — a coin's year_last contributes at most _MISSION_YEAR_MAX; the
+        realm's precious-metal era ends 1914 and nothing after it is in scope.
+      • DATED-ANCHOR PIN — a phase whose outer label already names an explicit
+        year (an ordinance / cessation date, `_is_dated_anchor_label`) is left
+        untouched, int and label both, since the curator anchored it to a decree.
+        Only bare-year («1622») and year-less («17. Jh.») anchors are coin-driven.
+
+    Every shift is LOGGED with the coin that drove it (curator direction
+    2026-07-09: «механізм повинен реагувати» на них) so a suspect driver — a
+    ruler-span still lacking `year_verified: false`, say — is visible and can be
+    corrected; once corrected it stops moving the anchor.
+
+    seed_unsorted is skipped — its «phases» are synthetic source-name buckets,
+    not real periods. Mutates `raw['phases']` in place; `raw` is a fresh
+    per-location parse (never a shared cache) and this runs once, after
+    `raw['coins']` is finalised and before `Location(**raw)`.
+    """
+    phases_map = raw.get("phases") or {}
+    coins = raw.get("coins") or []
+    # (year, driver_id) so a shift can name the coin that caused it
+    fuss_min: dict[str, tuple[int, str]] = {}
+    fuss_max: dict[str, tuple[int, str]] = {}
+    for c in coins:
+        fuss = c.get("fuss")
+        if not fuss or fuss == "seed_unsorted":
+            continue
+        if c.get("year_verified") is False:   # unverified year → not a boundary signal
+            continue
+        cid = c.get("id") or "?"
+        yf = c.get("year_first")
+        yl = c.get("year_last") or yf
+        if yf is not None and (fuss not in fuss_min or yf < fuss_min[fuss][0]):
+            fuss_min[fuss] = (yf, cid)
+        if yl is not None:
+            yl = min(yl, _MISSION_YEAR_MAX)   # 1914 hard cap
+            if fuss not in fuss_max or yl > fuss_max[fuss][0]:
+                fuss_max[fuss] = (yl, cid)
+
+    shifts: list[str] = []
+    for fuss, ph_defs in phases_map.items():
+        if fuss == "seed_unsorted" or not ph_defs:
+            continue
+        with_from = [p for p in ph_defs if p.get("year_from") is not None]
+        with_to = [p for p in ph_defs if p.get("year_to") is not None]
+        if with_from and fuss in fuss_min:
+            earliest = min(with_from, key=lambda p: p["year_from"])
+            new_from, drv = fuss_min[fuss]
+            if new_from < earliest["year_from"] and not _is_dated_anchor_label(earliest.get("from_label")):
+                shifts.append(f"{fuss}/{earliest.get('id')} start {earliest['year_from']} → {new_from} (driver {drv})")
+                earliest["year_from"] = new_from
+                earliest["from_label"] = str(new_from)
+        if with_to and fuss in fuss_max:
+            latest = max(with_to, key=lambda p: p["year_to"])
+            new_to, drv = fuss_max[fuss]
+            if new_to > latest["year_to"] and not _is_dated_anchor_label(latest.get("to_label")):
+                shifts.append(f"{fuss}/{latest.get('id')} end {latest['year_to']} → {new_to} (driver {drv})")
+                latest["year_to"] = new_to
+                latest["to_label"] = str(new_to)
+
+    if shifts:
+        print(f"   ⇄  v2/{loc_id}: {len(shifts)} outer-span shift(s) from coins "
+              f"(verify each driver's year before trusting the new anchor):")
+        for s in shifts:
+            print(f"      • {s}")
+
+
 def _assemble_v2_location(loc_id: str, raw: dict) -> int:
     """Populate `raw['coins']` from V2 entity-keyed curated + seed files.
 
@@ -851,6 +957,10 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
             print(f"      • ... and {len(year_warn) - 5} more")
 
     raw["coins"] = kept
+    # Change 2 — shift the two OUTER year-anchors of each fuss outward to cover
+    # coins that fall beyond them (interior boundaries untouched). Runs after
+    # the kept set is final so the extents reflect exactly what renders here.
+    _expand_outer_phase_span(loc_id, raw)
     # consumes_entities was a V2-only sidecar field — `Location` allows
     # extras (`model_config.extra='allow'`), so it survives the
     # instantiation as `_consumes_entities`-style metadata. No strip needed.
