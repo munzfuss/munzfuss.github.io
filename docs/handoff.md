@@ -15,6 +15,59 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-09 (later) — Phase-filter fix SHIPPED + reign-span model + coin cleanup
+
+> **UNPUSHED — push pending «пуш».** This session's commits (newest first):
+> foundation-reset kmk-158132 · `ca0400e` split 2 over-merges (bruun-14906 +
+> kmk-158132) · `24b3297` f3h91 die-error 1633→1653 · `abf915f` year_is_reign_span
+> flag · `be01d87` reign-span verified:false (113) · `77df690` Change 2 outer-span
+> expansion · `102301d` Change 1 year-filter removal. Working tree clean, build exit 0.
+
+**Phase-filter fix (Part A deferred #1) — DONE, but NOT via the
+`_DERIVE_PHASE_FROM_YEAR` generalisation the Part A note guessed.** Final curator
+model: **(Change 1)** NO year-filter of coin membership — deleted build.py #6
+«year-range sanity» drop + the schema.py chronology validator; a coin lives in its
+STORED phase regardless of year. **(Change 2)** `_expand_outer_phase_span` (build.py)
+shifts only the TWO OUTER anchors of a fuss (earliest phase year_from/from_label,
+latest phase year_to/to_label) outward to cover coins; interior boundaries untouched;
+labels auto-generated from coin years. Three guards: `year_verified:false` excluded ·
+1914 hard cap (`_MISSION_YEAR_MAX`) · dated-anchor pin (a from/to_label already naming
+an explicit year — «30. Mai 1566» — is never overwritten). Self-surfacing: every shift
+LOGS its driver coin (⇄ lines). The 4 Haderslev now render on SH.
+
+**Reign-span model — NEW field `Coin.year_is_reign_span`.** A year that IS a ruler's
+reign window (placeholder, exact mint year unknown, «1588-1648» Chr.IV) is DISTINCT
+from an imprecise estimate («1496-1497»). BOTH are `year_verified:false` (both show
+«(?)», both excluded from expansion); the new flag distinguishes them in DATA only (no
+render/expansion change). Set by the absorb reign-span override (`_enrich_final_entry`)
+when resolved year_ranges == the ruler's reign (`lib.ruler_reigns`) — 159 coins across
+danish_realm/royal_holstein/danish_norway/gottorp_duchy. **LIMITATION:**
+`normalise_ruler_name` returns None for all NON-Danish rulers, so German dukes/counts
+(Ernst III von Gottorp etc.) never get the auto reign-flag — not yet addressed.
+
+**Coin cleanup (drivers the mechanism surfaced):** `f3h91` die-error 1633 (a
+NumisMaster-documented «error date for 1653») dropped via _curation_holds; `bruun-14906`
+over-merge split (Ernst III Sterbetaler Weinm-153 vs Biblischer Taler Weinm-152, zero
+shared index → no_merges); `kmk-158132` over-merge split (4 outliers off the Hede-144
+/1629 core via no_merges) + **foundation-reset** (renamed the curated final's id onto
+the core `unified-dk-hede-c4h144a` so the 1643 Schou-58 specimen promotes as its own
+seed_unsorted final; the foundation-reset trap — a curated final's stored composed_of
+re-grabs a split member on the next absorb).
+
+**Whack-a-mole CONVERGED — remaining drivers are legitimate, not errors.** The mechanism
+now surfaces `km-44-fr-iii-1655 → 1616` on SH 9_25 — but that is **Frederik III von
+GOTTORP** (Duke, reigned 1616-1659; NOT the Danish king), and NumisMaster MC_167284
+attests a real 1616 KM-44 «Reuterpfennig». So the 1616 shift is LEGITIMATE, no fix. Twice
+this session I mis-read «Frederik III» as the Danish king (§0b) — on this project a bare
+«Frederik III» / «Ernst III» is often a Holstein duke/count, NOT the Danish king. OPEN
+nuance (not blocking): is a 1616 Gottorp Scheidemünze correctly in 9¼-Thaler-Fuß (label
+1622)? — a classification question.
+
+**Separate surface NOT touched:** the timeline mint-event auto-sync (`📐` log, timeline.py)
+coin-expands the mint layer using ALL coins incl. reign-span years (9_25 mint-events show
+1588-1854 from Chr.IV reign-span coins) — the timeline's own pre-existing expansion,
+independent of the phase outer-span fix.
+
 ## 2026-07-09 — Part A (Bruun mint meta-priority) COMPLETE + crown-map from registry + 2 deferred design decisions
 
 > **UNPUSHED — push pending «пуш».** This session's commits (newest first):
@@ -51,7 +104,7 @@ Rethwisch Speciedaler 7748/7749/7753/7754/10781) back to danish_realm; their
 mint still surfaces them on SH via the crown-map render-widening.
 
 **TWO DEFERRED design decisions (both awaiting curator):**
-1. **Phase-filter «coins define phase years» (NOT started).** Curator ruling
+1. **Phase-filter «coins define phase years» — ✅ DONE (see 2026-07-09 (later) entry above; the final model differs from this note's guess).** Curator ruling
    2026-07-09: coins define phase year-boundaries; only the page research-window
    (consumes_window) + location status-changes clip — NOT the phase windows.
    Current `_assemble_v2_location` phase pre-filter DROPS 128 in-scope coins whose
