@@ -349,6 +349,11 @@ def _suppress_weightless_museum_overcollection(coin: dict) -> int:
 _FOUNDATION_IMMUTABLE_FIELDS = frozenset({
     "fuss", "phase", "kind", "fraction", "nominal",
     "ruler", "mintmaster", "issuing_entity",
+    # A hand-set reign-span flag survives regen (the auto override below re-sets
+    # it for Danish rulers; for German dukes/counts, whose ruler names
+    # normalise_ruler_name can't resolve, this verbatim copy is the only way the
+    # curator's flag persists — e.g. km-44 Frederik III von Gottorp).
+    "year_is_reign_span",
 })
 
 # Foundation-immutable fields that may be GAP-FILLED (never overridden) from a

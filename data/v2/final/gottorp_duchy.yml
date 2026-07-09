@@ -3226,6 +3226,7 @@ coins:
   nominal: 4 Schilling Lübisch
   ruler: Frederik III. von Gottorp
   issuing_entity: gottorp_duchy
+  year_is_reign_span: true
   id: km-44-fr-iii-1655
   year_first: 1616
   year_last: 1655
@@ -3235,6 +3236,7 @@ coins:
   - - 1655
     - 1655
   year_label: 1616, 1655
+  year_verified: false
   catalog:
     km: '44'
     numista: '313342'
@@ -3276,6 +3278,13 @@ coins:
   composed_of:
   - unified-dk-numista-313342
   v1_home_location: schleswig_holstein
+  _curation_holds:
+    year_verified: 'The «1616» is NOT a confirmed strike — it is NumisMaster MC_167284''s reign-window dating (date_raw «1616-1659»
+      = the full reign of Frederik III von Gottorp; the true mint year is not recorded). Only «1655» (Numista N#313342) is
+      a specifically-attested issue. Curator direction 2026-07-09 (Serhii): reign-attribution → year_verified:false so the
+      reign-derived 1616 does not drive the 9¼-Thaler outer-span expansion.'
+    year_is_reign_span: Reign-anchored dating (Frederik III von Gottorp, 1616-1659); the auto reign-span detector cannot fire
+      — normalise_ruler_name returns None for non-Danish rulers — so the flag is set by hand.
 - fuss: 9_thaler
   phase: I
   kind: scheide
@@ -7494,6 +7503,7 @@ coins:
   nominal: 1 Blaffert lybsk
   ruler: Frederik I
   issuing_entity: gottorp_duchy
+  year_is_reign_span: true
   id: unified-dk-galster-f1g-128
   year_first: 1523
   year_last: 1533
@@ -7502,7 +7512,6 @@ coins:
     - 1533
   year_label: 1523-1533
   year_verified: false
-  year_is_reign_span: true
   mint: Gottorp
   catalog:
     galster: '128'
@@ -7534,6 +7543,7 @@ coins:
   nominal: 1 Hulpenning
   ruler: Frederik I
   issuing_entity: gottorp_duchy
+  year_is_reign_span: true
   id: unified-dk-galster-f1g-129
   year_first: 1523
   year_last: 1533
@@ -7542,7 +7552,6 @@ coins:
     - 1533
   year_label: 1523-1533
   year_verified: false
-  year_is_reign_span: true
   mint: Gottorp
   catalog:
     galster: '129'
@@ -7574,6 +7583,7 @@ coins:
   nominal: 1 Hulpenning; Blaffert
   ruler: Frederik I
   issuing_entity: gottorp_duchy
+  year_is_reign_span: true
   id: unified-dk-galster-f1g-79
   year_first: 1523
   year_last: 1533
@@ -7582,7 +7592,6 @@ coins:
     - 1533
   year_label: 1523-1533
   year_verified: false
-  year_is_reign_span: true
   mint: Gottorp
   catalog:
     galster: '79'
@@ -7679,6 +7688,7 @@ coins:
   nominal: 1 Skilling
   ruler: Frederik I
   issuing_entity: gottorp_duchy
+  year_is_reign_span: true
   id: unified-dk-galster-f1g-125
   year_first: 1523
   year_last: 1533
@@ -7687,7 +7697,6 @@ coins:
     - 1533
   year_label: 1523-1533
   year_verified: false
-  year_is_reign_span: true
   mint: Gottorp
   catalog:
     galster: '125'
@@ -11032,6 +11041,7 @@ coins:
   nominal: 1 Søsling
   ruler: Christian 3
   issuing_entity: gottorp_duchy
+  year_is_reign_span: true
   id: unified-kmk-497176
   year_first: 1534
   year_last: 1559
@@ -11040,7 +11050,6 @@ coins:
     - 1559
   year_label: 1534-1559
   year_verified: false
-  year_is_reign_span: true
   mint: Gottorp
   catalog:
     galster: '133'
@@ -12104,6 +12113,7 @@ coins:
   nominal: (?)
   ruler: Frederik I
   issuing_entity: gottorp_duchy
+  year_is_reign_span: true
   id: unified-dk-galster-f1g-123
   year_first: 1523
   year_last: 1533
@@ -12112,7 +12122,6 @@ coins:
     - 1533
   year_label: 1523-1533
   year_verified: false
-  year_is_reign_span: true
   mint: Gottorp
   catalog:
     galster: '123'
