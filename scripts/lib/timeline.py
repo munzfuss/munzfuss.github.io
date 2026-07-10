@@ -74,7 +74,7 @@ def _mint_sync_scope(loc: Location) -> str | None:
     * Any other location → None (no-op).
     """
     tl = getattr(loc, "timeline", None)
-    if tl is not None and getattr(tl, "scope_mode", None) == "denmark_only":
+    if tl is not None and getattr(tl, "scope_mode", None) in ("denmark_only", "anywhere_only"):
         return "anywhere"
     if loc.id == "schleswig_holstein":
         return "holstein"
@@ -316,10 +316,11 @@ def compute_bar_layers(
         # the same bar (e.g. 9-Fuß: mint+status=1667, circulation=1700).
         trunc_any_by_kind = getattr(bar, "truncate_anywhere_after_by_kind", None) or {}
 
-        # `scope_mode` = "denmark_only": iterate only the anywhere scope and
-        # suppress holstein-scope layers entirely (Denmark page where
-        # Holstein is not a separate sub-track). Default "dual": both scopes.
-        active_scopes = ("anywhere",) if scope_mode == "denmark_only" else ("anywhere", "holstein")
+        # `scope_mode` "denmark_only" / "anywhere_only": iterate only the
+        # anywhere scope and suppress holstein-scope layers entirely (a single-
+        # jurisdiction page — Denmark, or the German Empire — where Holstein is
+        # not a separate sub-track). Default "dual": both scopes.
+        active_scopes = ("anywhere",) if scope_mode in ("denmark_only", "anywhere_only") else ("anywhere", "holstein")
 
         # Per-bar `hide_anywhere`: drop the anywhere scope from this bar
         # only (e.g. on the Holstein page, the 9-Thaler-Fuß bar — its

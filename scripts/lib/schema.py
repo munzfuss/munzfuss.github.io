@@ -1001,13 +1001,16 @@ class Timeline(_StrictBase):
     year_to: int
     axis_step: int = 50
     bars: list[TimelineBar] = Field(default_factory=list)
-    scope_mode: Literal["dual", "denmark_only"] = "dual"
+    scope_mode: Literal["dual", "denmark_only", "anywhere_only"] = "dual"
     """`dual` (default): emit both `anywhere` and `holstein` scope layers per
     bar — this is the Holstein-page model where the Reich/Helstaten span
     is the broader context and the Holstein-territorial span is the focused
-    sub-track. `denmark_only`: emit only `anywhere` scope layers; suppress
-    every holstein-scope layer entirely. Used on the Denmark page where
-    Holstein is not a separate track — anywhere = the Royal Danish view."""
+    sub-track. `denmark_only` / `anywhere_only`: emit only `anywhere` scope
+    layers; suppress every holstein-scope layer entirely. The two are
+    behaviourally identical — `denmark_only` is the Denmark-page name (anywhere
+    = the Royal Danish view), `anywhere_only` the generic name for any
+    single-jurisdiction page whose «anywhere» scope IS the whole subject (e.g.
+    the German Empire page, where there is no Holstein sub-track)."""
 
     @model_validator(mode="after")
     def _sort_bars_by_order(self):

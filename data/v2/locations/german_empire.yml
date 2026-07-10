@@ -21,6 +21,34 @@ consumes_entities:
   - entity: herzogtum_braunschweig_lueneburg
     year_from: 1871
     year_to: 1914
+timeline:
+  title:
+    de: 'Zeitleiste · Reichswährung 1871–1914'
+    en: 'Timeline · Reich currency 1871–1914'
+    uk: 'Часова шкала · Імперська валюта 1871–1914'
+  year_from: 1871
+  year_to: 1914
+  axis_step: 10
+  scope_mode: anywhere_only
+  bars:
+    - id: reichsgoldmuenzfuss
+      order: 1
+      label:
+        de: Reichsgoldmünzfuß · Goldmark
+        en: Reichsgoldmünzfuß · Goldmark
+        uk: Reichsgoldmünzfuß · Goldmark
+      small:
+        de: 0,358 g fein · Gold
+        en: 0.358 g fine · gold
+        uk: 0,358 г чистого · золото
+      year_from: 1871
+      year_to: 1914
+      color_class: g
+      truncate_anywhere_after: 1914
+      bar_title:
+        de: 'Goldmark nach Münzgesetz 4. Dezember 1871: aus 1 Pfund (500 g) Feingold werden 139½ Zehnmarkstücke = 1395 Mark ausgeprägt, Feingehalt 900 ‰ · gemeinsamer Goldstandard des Deutschen Kaiserreichs mit der Reichsgründung 1871 · Goldnominale zu 5, 10 und 20 Mark (Kurant), Silber 2/3/5 Mark und Kupfer-Nickel als Scheidemünze · geprägt an acht Reichsmünzstätten (Berlin A, Hamburg J u. a.) · gilt biß zur Reichsbank-Goldsuspendierung 4. August 1914 zu Kriegsbeginn · formal abgelöst 1924 durch Reichsmark / Rentenmark'
+        en: 'Goldmark under the Coinage Act of 4 December 1871: 139½ ten-Mark pieces = 1,395 Mark are struck from 1 Pfund (500 g) of fine gold at 900 ‰ · the common gold standard of the German Empire from the 1871 unification · gold 5, 10 and 20 Mark (Kurant), silver 2/3/5 Mark and copper-nickel as Scheidemünze · struck at eight imperial mints (Berlin A, Hamburg J and others) · in force until the Reichsbank gold-redemption suspension on 4 August 1914 at the start of the war · formally replaced in 1924 by the Reichsmark / Rentenmark'
+        uk: 'Goldmark за Законом про монету 4 грудня 1871 р.: з 1 фунта (500 г) чистого золота карбують 139½ 10-Mark-Stück = 1395 Mark, проба 900 ‰ · спільний золотий стандарт Німецької імперії від обʼєднання 1871 р. · золото 5, 10 і 20 Mark (Kurant), срібло 2/3/5 Mark і мідно-нікель як Scheidemünze · карбування у восьми імперських монетних дворах (Берлін A, Гамбург J та ін.) · діє до призупинення Reichsbank золотого розміну 4 серпня 1914 р. на початку війни · формально замінено 1924 р. Reichsmark / Rentenmark'
 fuss_order:
   - reichsgoldmuenzfuss
   - seed_unsorted
