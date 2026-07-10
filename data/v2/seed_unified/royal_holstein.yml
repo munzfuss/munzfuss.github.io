@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-07-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1721 per-source seed entries.
+# Input: 1718 per-source seed entries.
 # Output: 955 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-07-09'
+generated_at: '2026-07-10'
 coins:
 - id: unified-denmark-numismaster-65623
   fuss: seed_unsorted
@@ -12797,136 +12797,6 @@ coins:
   - dk-numista-22192
   - dk-tid-70691
   - kmk-349780
-- id: unified-dk-numismaster-167727
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 6 Pfennig
-  year_first: 1534
-  year_last: 1554
-  year_ranges:
-  - - 1534
-    - 1534
-  - - 1545
-    - 1546
-  - - 1554
-    - 1554
-  year_label: 1534, 1545-1546, 1554
-  ruler: Christian III
-  mint: Flensburg
-  catalog:
-    mb: '33'
-    schou: '1357'
-    lange:
-    - '23'
-    - 23AB
-    numista: '309411'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.0
-    source: numismaster
-  - value: 1.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167727
-    ref: NumisMaster MC_167727 — SCHLESWIG-HOLSTEIN MB# 33 6 Pfennig 1534 - 1554
-  - type: literature
-    url: https://en.numista.com/309411
-    ref: Numista N#309411 — 1 Sechsling - Christian III
-  verification_note:
-    de: 'NumisMaster-Seed (§AZ Tier 4): Krause-Mishler-basiertes kommerzielles Katalog. Pre-1604 KM-Nummerierung sparse —
-      die meisten Pre-1541 Schleswig-Holstein-Herzogthum-Münzen kommen mit «MB#»-Nummerierung (Madai-Bach, vor-Krause). Per-Münze-Verifikation
-      gegen Primärquellen vor §BF-Promotion.'
-    en: 'NumisMaster seed (§AZ Tier 4): Krause-Mishler-based commercial catalogue. Pre-1604 KM numbering sparse — most pre-1541
-      Schleswig-Holstein duchy coins come with «MB#» numbering (Madai-Bach, pre-Krause). Per-coin verification against primary
-      sources before §BF promotion.'
-    uk: 'NumisMaster-seed (§AZ Tier 4): Krause-Mishler-базований комерційний каталог. Pre-1604 KM-нумерація розріджена — більшість
-      pre-1541 Schleswig-Holstein-герцогських монет мають «MB#»-нумерацію (Madai-Bach, до-Krause). Покоінна верифікація проти
-      первинних джерел перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numismaster-167727
-  - dk-numista-309411
-  - schleswig_holstein-numismaster-167727
-- id: unified-dk-numismaster-167729
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Witten
-  year_first: 1516
-  year_last: 1516
-  year_label: '1516'
-  ruler: Friedrich I
-  catalog:
-    mb: '22'
-    schou: '1344'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167729
-    ref: NumisMaster MC_167729 — SCHLESWIG-HOLSTEIN MB# 22 Witten 1516 - 1516
-  verification_note:
-    de: 'NumisMaster-Seed (§AZ Tier 4): Krause-Mishler-basiertes kommerzielles Katalog. Pre-1604 KM-Nummerierung sparse —
-      die meisten Pre-1541 Schleswig-Holstein-Herzogthum-Münzen kommen mit «MB#»-Nummerierung (Madai-Bach, vor-Krause). Per-Münze-Verifikation
-      gegen Primärquellen vor §BF-Promotion.'
-    en: 'NumisMaster seed (§AZ Tier 4): Krause-Mishler-based commercial catalogue. Pre-1604 KM numbering sparse — most pre-1541
-      Schleswig-Holstein duchy coins come with «MB#» numbering (Madai-Bach, pre-Krause). Per-coin verification against primary
-      sources before §BF promotion.'
-    uk: 'NumisMaster-seed (§AZ Tier 4): Krause-Mishler-базований комерційний каталог. Pre-1604 KM-нумерація розріджена — більшість
-      pre-1541 Schleswig-Holstein-герцогських монет мають «MB#»-нумерацію (Madai-Bach, до-Krause). Покоінна верифікація проти
-      первинних джерел перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numismaster-167729
-  - schleswig_holstein-numismaster-167729
-- id: unified-dk-numismaster-167745
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Goldgulden
-  year_first: 1535
-  year_last: 1535
-  year_label: '1535'
-  ruler: Christian III
-  catalog:
-    mb: '39'
-    fr: '16'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167745
-    ref: NumisMaster MC_167745 — SCHLESWIG-HOLSTEIN MB# 39 Goldgulden 1535 - 1535
-  verification_note:
-    de: 'NumisMaster-Seed (§AZ Tier 4): Krause-Mishler-basiertes kommerzielles Katalog. Pre-1604 KM-Nummerierung sparse —
-      die meisten Pre-1541 Schleswig-Holstein-Herzogthum-Münzen kommen mit «MB#»-Nummerierung (Madai-Bach, vor-Krause). Per-Münze-Verifikation
-      gegen Primärquellen vor §BF-Promotion.'
-    en: 'NumisMaster seed (§AZ Tier 4): Krause-Mishler-based commercial catalogue. Pre-1604 KM numbering sparse — most pre-1541
-      Schleswig-Holstein duchy coins come with «MB#» numbering (Madai-Bach, pre-Krause). Per-coin verification against primary
-      sources before §BF promotion.'
-    uk: 'NumisMaster-seed (§AZ Tier 4): Krause-Mishler-базований комерційний каталог. Pre-1604 KM-нумерація розріджена — більшість
-      pre-1541 Schleswig-Holstein-герцогських монет мають «MB#»-нумерацію (Madai-Bach, до-Krause). Покоінна верифікація проти
-      первинних джерел перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numismaster-167745
-  - schleswig_holstein-numismaster-167745
 - id: unified-dk-numista-107814
   fuss: seed_unsorted
   phase: numista
@@ -15117,6 +14987,63 @@ coins:
   composed_of:
   - dk-numista-309409
   - schleswig_holstein-numismaster-167739
+- id: unified-dk-numista-309411
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Sechsling
+  year_first: 1534
+  year_last: 1554
+  year_ranges:
+  - - 1534
+    - 1534
+  - - 1545
+    - 1546
+  - - 1554
+    - 1554
+  year_label: 1534, 1545-1546, 1554
+  ruler: Christian III
+  mint: Flensburg
+  catalog:
+    numista: '309411'
+    mb: '33'
+    lange:
+    - '23'
+    - 23AB
+    schou: '1357'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.0
+    source: numismaster
+  - value: 1.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/309411
+    ref: Numista N#309411 — 1 Sechsling - Christian III
+  - type: literature
+    url: https://numismaster.com/MC_167727
+    ref: NumisMaster
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: royal_holstein
+  composed_of:
+  - dk-numista-309411
+  - schleswig_holstein-numismaster-167727
 - id: unified-dk-numista-309418
   fuss: seed_unsorted
   phase: numista
@@ -32839,6 +32766,38 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-167728
+- id: unified-schleswig_holstein-numismaster-167729
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1 Witten
+  year_first: 1516
+  year_last: 1516
+  year_label: '1516'
+  ruler: Friedrich I
+  catalog:
+    mb: '22'
+    schou: '1344'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_167729
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: royal_holstein
+  composed_of:
+  - schleswig_holstein-numismaster-167729
 - id: unified-schleswig_holstein-numismaster-167731
   fuss: seed_unsorted
   phase: numismaster
@@ -33126,6 +33085,38 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-167742
+- id: unified-schleswig_holstein-numismaster-167745
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1 Goldgulden
+  year_first: 1535
+  year_last: 1535
+  year_label: '1535'
+  ruler: Christian III
+  catalog:
+    mb: '39'
+    fr: '16'
+  metal: gold
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_167745
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: royal_holstein
+  composed_of:
+  - schleswig_holstein-numismaster-167745
 - id: unified-schleswig_holstein-numismaster-167746
   fuss: seed_unsorted
   phase: numismaster
