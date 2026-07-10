@@ -683,6 +683,36 @@ python scripts/build.py --validate-only                            # schema vali
 python scripts/build.py --jobs 4                                   # opt-in parallel renderer (rarely helps)
 ```
 
+### Run (re)builds and hook-bearing commits in the background — never block on them
+
+> **Rule (user direction 2026-07-10): every full `scripts/build.py` (re)build,
+> and every `git commit` whose pre-commit hook runs `build --validate-only`,
+> MUST be launched with `run_in_background: true` — do NOT sit in a synchronous
+> foreground wait.** A full build is ~40 s–2 min; a hook-bearing commit adds
+> another ~2–3 min for the HARD-BLOCK `build --validate-only`. Foreground waiting
+> wastes the session AND the foreground ~2-min Bash timeout kills the command
+> mid-run (this repeatedly aborted commits before the rule existed).
+
+`run_in_background: true` detaches the command: it keeps running across turns and
+re-invokes you with a `<task-notification>` when it exits. So:
+
+- **Build for verification** — launch it in the background; when the completion
+  notification arrives, read its output file and do the verification then. Don't
+  block in between.
+- **End-of-turn preview auto-build (PB-11)** — launch in the background and end
+  the turn; it finishes detached. The later notification is harmless.
+- **Commit with the slow hook** — run `git commit <pathspec> -m …` with
+  `run_in_background: true` too. Every hook protection still applies (a failed
+  HARD-BLOCK check still aborts the commit). Do NOT tell the user it landed until
+  the completion notification confirms it, and run only ONE background git op at a
+  time — wait for its notification before the next (the shared-index race in the
+  «Surgical staging» Git-safety protocol still applies).
+
+Foreground (synchronous) Bash is fine only for genuinely fast commands
+(`--validate-only` alone when you need its result now, a single-page build
+spot-check, `git status`/`git log`, the audit scripts). The moment a command is a
+FULL build or a hook-bearing commit, background it.
+
 The build renders the V2 entity-keyed pipeline (`data/v2/{locations,final}/`)
 exclusively. The V1 render path (`--include-v1` / `--v1-only` flags, the
 `data/locations/<loc>.yml` coin yamls, the `data/seed/` seed-merge layer)
