@@ -100,6 +100,38 @@
       {%- endfor -%}
     {%- else -%}—{%- endif -%}
   </td>
+  <td class="c-soll">
+    {%- if coin.soll_fein_g -%}
+      {{ fmt_num(coin.soll_fein_g, decimals=5, unit='') }}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-delta">
+    {%- if coin.delta_groups -%}
+      {# 4-state Δ palette: under-deep (<-1%), under-mild (-1% … 0),
+         over-mild (0 … +1%), over-strong (>+1%). Each unique Δ value
+         renders as one badge; sources that produced the same value
+         collapse into one entry with a combined tooltip. When ALL
+         sources yield the same Δ (single group), drop both the
+         alt-source styling AND the tooltip — same convention as the
+         weight / fineness columns above (consensus = plain badge). #}
+      {%- set _qmark -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- for g in coin.delta_groups -%}
+        {%- set dp = g.delta_pct if g.delta_pct is not none else 0 -%}
+        {%- if dp < -1.0 -%}{%- set sd_cls = 'under-deep' -%}
+        {%- elif dp < 0   -%}{%- set sd_cls = 'under-mild' -%}
+        {%- elif dp <= 1.0 -%}{%- set sd_cls = 'over-mild' -%}
+        {%- else -%}{%- set sd_cls = 'over-strong' -%}
+        {%- endif -%}
+        {%- if g.is_unanimous or not g.sources -%}
+          <span class="sd {{ sd_cls }}">{{ fmt_delta(g.value, dp)|safe }}{{ _qmark|safe }}</span>
+        {%- else -%}
+          <span class="sd {{ sd_cls }} alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ fmt_delta(g.value, dp)|safe }}{{ _qmark|safe }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- elif coin.raw.metal == 'copper' -%}
+      <span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>
+    {%- else -%}—{%- endif -%}
+  </td>
   <td class="c-d">
     {%- if coin.diameter_groups -%}
       {%- set _qmark -%}{%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
@@ -138,38 +170,6 @@
     {%- endif -%}
   </td>
   <td class="c-note">{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
-  <td class="c-soll">
-    {%- if coin.soll_fein_g -%}
-      {{ fmt_num(coin.soll_fein_g, decimals=5, unit='') }}
-    {%- else -%}—{%- endif -%}
-  </td>
-  <td class="c-delta">
-    {%- if coin.delta_groups -%}
-      {# 4-state Δ palette: under-deep (<-1%), under-mild (-1% … 0),
-         over-mild (0 … +1%), over-strong (>+1%). Each unique Δ value
-         renders as one badge; sources that produced the same value
-         collapse into one entry with a combined tooltip. When ALL
-         sources yield the same Δ (single group), drop both the
-         alt-source styling AND the tooltip — same convention as the
-         weight / fineness columns above (consensus = plain badge). #}
-      {%- set _qmark -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
-      {%- for g in coin.delta_groups -%}
-        {%- set dp = g.delta_pct if g.delta_pct is not none else 0 -%}
-        {%- if dp < -1.0 -%}{%- set sd_cls = 'under-deep' -%}
-        {%- elif dp < 0   -%}{%- set sd_cls = 'under-mild' -%}
-        {%- elif dp <= 1.0 -%}{%- set sd_cls = 'over-mild' -%}
-        {%- else -%}{%- set sd_cls = 'over-strong' -%}
-        {%- endif -%}
-        {%- if g.is_unanimous or not g.sources -%}
-          <span class="sd {{ sd_cls }}">{{ fmt_delta(g.value, dp)|safe }}{{ _qmark|safe }}</span>
-        {%- else -%}
-          <span class="sd {{ sd_cls }} alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ fmt_delta(g.value, dp)|safe }}{{ _qmark|safe }}</span>
-        {%- endif -%}
-      {%- endfor -%}
-    {%- elif coin.raw.metal == 'copper' -%}
-      <span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>
-    {%- else -%}—{%- endif -%}
-  </td>
   <td class="c-fuss">
     {# When the coin has no computable fein weight (no fineness or no rough weight),
        collapse the Stopa column to a single plain rendering of the fuss name. The
@@ -246,12 +246,12 @@
       <th>{{ ui_get('col.metal_fineness') }}</th>
       <th>{{ ui_get('col.rough') }}</th>
       <th>{{ ui_get('col.fine') }}</th>
+      <th data-tooltip="{{ ui_get('col.soll_tooltip') }}">{{ ui_get('col.soll') }}</th>
+      <th data-tooltip="{{ ui_get('col.delta_tooltip') }}">{{ ui_get('col.delta') }}</th>
       <th>{{ ui_get('col.diameter') }}</th>
       <th>{{ ui_get('col.mint') }}</th>
       <th data-tooltip="{{ ui_get('col.entity_tooltip') }}">{{ ui_get('col.entity') }}</th>
       <th>{{ ui_get('col.note') }}</th>
-      <th data-tooltip="{{ ui_get('col.soll_tooltip') }}">{{ ui_get('col.soll') }}</th>
-      <th data-tooltip="{{ ui_get('col.delta_tooltip') }}">{{ ui_get('col.delta') }}</th>
       <th data-tooltip="{{ ui_get('col.fuss_tooltip') }}">{{ ui_get('col.fuss') }}</th>
       <th>{{ ui_get('col.source') }}</th>
     </tr>
