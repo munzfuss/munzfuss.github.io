@@ -360,10 +360,10 @@ The reason: curation is expensive (multi-session research, source-verification r
 - ✓ `build_hede_denmark_seed.py` — full 4-mechanism merge (reference implementation)
 - ✗ `build_bruun_denmark_seed.py` — wholesale write (acceptable today: no curation has occurred yet; all entries still `fuss: seed_unsorted`)
 - ✗ `build_galster_denmark_seed.py` — same
-- ✗ `build_numismaster_pre1541_seed.py` — same
-- ✗ `build_numista_pre1541_seed.py` — same
+- ✓ `build_numismaster_seed.py` — merge-aware via `write_v2_seed` (the `_pre1541` builder was retired 2026-07-10, its scope folded here)
+- ✓ `build_numista_seed.py` — merge-aware via `write_v2_seed` (the `_pre1541` builder was retired, its scope folded here)
 
-**Upgrade trigger:** any of the 4 wholesale-write seeds must be promoted to merge-aware BEFORE the curator starts assigning fuss/phase to entries in it. Failure to upgrade in time = loss of curation on the next regen. The reference implementation in `build_hede_denmark_seed.py` is ~150 lines (the `_merge_one` + `_merge_seed` functions + the four constants); porting to a sibling builder is mostly mechanical.
+**Upgrade trigger:** any of the 2 remaining wholesale-write seeds (`build_bruun_denmark_seed.py` / `build_galster_denmark_seed.py`) must be promoted to merge-aware BEFORE the curator starts assigning fuss/phase to entries in it. Failure to upgrade in time = loss of curation on the next regen. The reference implementation in `build_hede_denmark_seed.py` is ~150 lines (the `_merge_one` + `_merge_seed` functions + the four constants); porting to a sibling builder is mostly mechanical.
 
 **For Phase-4 batch promotion scripts** (`scripts/oneoff/*.py`): when modifying existing entries in `data/locations/<loc>.yml`, use ruamel.yaml's round-trip mode (`YAML(typ='rt')`) to preserve comments + key order + ONLY touch the fields the script's intent dictates. Never serialise-and-rewrite the whole entry — that pattern is what destroys manual customisations.
 

@@ -100,7 +100,7 @@ def cache_footprint() -> dict:
 
     # numismaster — per-country subdirs of MC record files
     nm = 0
-    for sub in ("denmark", "norway", "schleswig_holstein", "denmark_pre_1541"):
+    for sub in ("denmark", "norway", "schleswig_holstein"):
         d = CACHE / "numismaster" / sub
         if d.exists():
             nm += sum(1 for p in d.glob("*.json") if p.name != "mc_index.json")

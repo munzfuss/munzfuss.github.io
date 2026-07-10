@@ -219,16 +219,15 @@ Pre-floor era (e.g. Christian II 1513-1523 Danish, Frederik I 1523-1533 Danish, 
 
 **Use as:** comprehensive cross-reference for **MB#/FR# pre-Krause 1514-1604 Danish-realm + SH-duchy coins** + **KM# 1604-1914 Danish/Norge coinage** when validating Bruun/Hede/Galster attributions. Phase-1b two-session walk (2026-05-16) inventoried 562 SH + ~1000 DK + ~340 Norge entries in the cache; ~101 MC_IDs anchored in `mc_index.json` for Phase-4 urllib bulk fetch, ~1800 remaining text-dumped (KM/MB/FR/C# + denom + year + country_label captured but MC_NNNNN anchor extraction deferred).
 
-**Project scripts (legacy §AZ — slated for Phase-5 rename → generalised parser):**
-- `scripts/parse_numismaster_pre1541.py` — MC_<N>.html → JSON sidecar (uses `lib.paths.NUMISMASTER_CACHE`)
-- `scripts/maintenance/build_numismaster_pre1541_seed.py` — JSON → seed YAML
+**Project scripts:**
+- `scripts/parse_numismaster.py` — sub-scope-aware parser: MC_<N>.html → `MC_<N>.parsed.json` sidecar (uses `lib.paths.NUMISMASTER_CACHE`)
+- `scripts/maintenance/build_numismaster_seed.py` — parsed sidecars → entity-keyed seed YAML (merge-aware via `write_v2_seed`; the `_pre1541` builder was retired 2026-07-10, its 3 MB# coins fold into the `schleswig_holstein` sub-scope)
 - **Cache root**: `lib.paths.NUMISMASTER_CACHE` = `scripts/cache/numismaster/`. Subdirectories:
-  - `denmark_pre_1541/MC_<N>.{html,json}` — legacy §AZ subdir (3 entries: MB# 22 / MB# 33 / MB# 39)
+  - `{schleswig_holstein,denmark,norway}/MC_<N>.{html,meta.json}` + `.parsed.json` — one subdir per sub-scope: harvest pages + parsed sidecars
   - `_walks/leaf_*.txt` — raw Chrome-MCP page-text dumps per filtered search-result page (Phase-1b output; provenance for `mc_index.json`)
   - `_walks/hub_*.txt` — geographic hub snapshots (documentation only)
   - `_walks/_phase_*.md` — process documentation (topology findings, session handoffs, final summary)
   - `mc_index.json` — consolidated MC_NNNNN inventory per country filter; the Phase-4 urllib fetch input
-  - **Phase-4 planned**: `{schleswig_holstein,denmark,norway}/MC_<N>.{html,meta.json}` — bulk-fetch output, one subdir per sub-scope
 
 ---
 

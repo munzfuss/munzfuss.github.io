@@ -609,11 +609,11 @@ For pre-catalog-floor coverage use other sources: `Bruun PDFs`, `Galster pages o
 
 ```
 scripts/
-├── parse_numismaster_pre1541.py            # parser (per §AZ); rename → parse_numismaster.py at Phase 5
-├── maintenance/build_numismaster_pre1541_seed.py   # seed builder (per §AZ); rename → build_numismaster_seed.py at Phase 5
+├── parse_numismaster.py                     # sub-scope-aware parser (generalised from §AZ parse_numismaster_pre1541.py)
+├── maintenance/build_numismaster_seed.py    # merge-aware seed builder (the _pre1541 builder was retired 2026-07-10)
 └── cache/numismaster/                       # submodule
     ├── mc_index.json                        # 101 MC_IDs (HG-Rendsborg + GLÜCKSTADT); pending ~1800 more
-    ├── denmark_pre_1541/                    # legacy §AZ subdir (3 MC_<N>.html)
+    ├── {schleswig_holstein,denmark,norway}/ # one subdir per sub-scope: MC_<N>.{html,meta.json} + .parsed.json
     └── _walks/                              # raw page-text dumps per Chrome-MCP-walked page
         ├── _phase_1a_findings.md            # topology + failed-probes log
         ├── _phase_1b_FINAL_complete.md      # final coverage summary
@@ -1020,7 +1020,7 @@ Optional source-specific enrichment fields (carry through if present):
 
 1. **Survey**: write `docs/research/<location>_<period>_source_survey.md` first
 2. **Tier candidate sources**: 14-source matrix in `denmark_pre_1541_source_survey.md` is a template
-3. **Pick most similar existing harvester as template** (the four added in §AZ — `fetch_galster.py`, `fetch_numista_pre1541.py`, `parse_numismaster_pre1541.py` plus the existing `fetch_hede.py` cover all major patterns)
+3. **Pick most similar existing harvester as template** (the fetchers added in §AZ — `fetch_galster.py`, `fetch_numista_pre1541.py`, the sub-scope-aware `parse_numismaster.py` plus the existing `fetch_hede.py` cover all major patterns)
 4. **Copy + adapt** fetch/parse/build_seed scripts. Source-specific data-shape changes mostly live in the parser.
 5. **Test on a sample** (5-10 pages) before full harvest
 6. **Submodule commit pattern** per PB-10

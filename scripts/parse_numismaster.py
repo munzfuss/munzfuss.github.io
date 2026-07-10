@@ -9,7 +9,6 @@ Sub-scope directories:
   schleswig_holstein/   — §BJ SH cluster (~561 MCs, all in mission scope)
   denmark/              — §BJ Denmark (~987 MCs ≤ 1914)
   norway/               — §BJ Norway (~344 MCs ≤ 1814 Danish-rule era)
-  denmark_pre_1541/     — §AZ legacy (3 MCs); kept for backwards compat
 
 Output schema per `MC_<N>.parsed.json`:
   - source_file, numismaster_id, url, sub_scope
@@ -54,7 +53,6 @@ KNOWN_SUB_SCOPES = (
     "schleswig_holstein",
     "denmark",
     "norway",
-    "denmark_pre_1541",   # §AZ legacy
 )
 
 _TAG_RE = re.compile(r"<[^>]+>")
