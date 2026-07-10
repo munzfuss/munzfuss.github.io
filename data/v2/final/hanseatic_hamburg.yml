@@ -3408,9 +3408,9 @@ coins:
   verification_note: *id001
   composed_of:
   - unified-ikmk-18202372
-- fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
+- fuss: reichsgoldmuenzfuss
+  phase: I
+  kind: scheide
   nominal: 2 Mark
   issuing_entity: hanseatic_hamburg
   id: unified-ikmk-18203932
@@ -3443,9 +3443,9 @@ coins:
   verification_note: *id001
   composed_of:
   - unified-ikmk-18203932
-- fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
+- fuss: reichsgoldmuenzfuss
+  phase: I
+  kind: scheide
   nominal: 25 Pfennig
   ruler: Wilhelm II.
   issuing_entity: hanseatic_hamburg
@@ -3483,7 +3483,6 @@ coins:
   nominal: 20 Lei
   ruler: Karl
   issuing_entity: romania
-  entity_classified_via: manual
   id: unified-ikmk-18222024
   year_first: 1883
   year_last: 1883
@@ -3510,22 +3509,21 @@ coins:
     ref: IKMK Berlin 18222024
   inscription_obv: CAROL I REGE AL ROMANIEI
   verification_note: *id001
-  _curation_holds:
-    issuing_entity: "Auftragsprägung (contract minting). The obverse legend «CAROL
-      I REGE AL ROMANIEI» attributes this 20-Lei gold to the Kingdom of Romania;
-      Hamburg was only the mint. Entity reassigned romania (was hanseatic_hamburg).
-      The coin STAYS in this file on purpose — romania is out-of-scope with no
-      romania.yml (out_of_scope: true in issuing_entities.yml, audit I1 exempt);
-      the assembly's issuing-entity intersection filter keeps it off the German
-      pages. Do NOT let regen re-key it to hanseatic_hamburg from the seed."
-    entity_classified_via: "manual — curator-assigned per the Romanian obverse legend."
   composed_of:
   - unified-ikmk-18222024
-- fuss: seed_unsorted
-  phase: ikmk
+  _curation_holds:
+    issuing_entity: 'Auftragsprägung (contract minting). The obverse legend «CAROL I REGE AL ROMANIEI» attributes this 20-Lei
+      gold to the Kingdom of Romania; Hamburg was only the mint. Entity reassigned romania (was hanseatic_hamburg). The coin
+      STAYS in this file on purpose — romania is out-of-scope with no romania.yml (out_of_scope: true in issuing_entities.yml,
+      audit I1 exempt); the assembly''s issuing-entity intersection filter keeps it off the German pages. Do NOT let regen
+      re-key it to hanseatic_hamburg from the seed.'
+    entity_classified_via: manual — curator-assigned per the Romanian obverse legend.
+- fuss: reichsgoldmuenzfuss
+  phase: I
   kind: kurant
   nominal: 10 Mark
   issuing_entity: hanseatic_hamburg
+  fraction: '10'
   id: unified-ikmk-18224429
   year_first: 1875
   year_last: 1875
@@ -3650,9 +3648,9 @@ coins:
   verification_note: *id001
   composed_of:
   - unified-ikmk-18265652
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
+- fuss: reichsgoldmuenzfuss
+  phase: I
+  kind: scheide
   nominal: 2 Marks
   issuing_entity: hanseatic_hamburg
   id: unified-dk-numista-20410
@@ -5141,3 +5139,43 @@ coins:
   verification_note: *id002
   composed_of:
   - unified-kmk-740903
+- fuss: reichsgoldmuenzfuss
+  phase: I
+  kind: kurant
+  nominal: 10 Mark
+  issuing_entity: hanseatic_hamburg
+  id: unified-ikmk-18311418
+  year_first: 1907
+  year_last: 1907
+  year_label: '1907'
+  catalog:
+    others:
+    - Jaeger# 204
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 3.98
+    source: ikmk
+  diameter_mm:
+  - value: 19.5
+    source: ikmk
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18311418
+    ref: IKMK Berlin 18311418
+  inscription_obv: FREIE HANSESTADT BREMEN
+  inscription_rev: DEUTSCHES - REICH 1907 // 10 MARK
+  verification_note:
+    de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder
+      museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+    en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested;
+      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+    uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза
+      некласифіковані (seed_unsorted) до Phase-4.'
+  composed_of:
+  - unified-ikmk-18311418
+  fraction: '10'

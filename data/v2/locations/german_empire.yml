@@ -22,8 +22,33 @@ consumes_entities:
     year_from: 1871
     year_to: 1914
 fuss_order:
+  - reichsgoldmuenzfuss
   - seed_unsorted
+fuss_periods:
+  reichsgoldmuenzfuss:
+    pdate_label:
+      de: 'Reichswährung 4. Dez. 1871 → 4. Aug. 1914 · Gold (5/10/20 Mark) Kurant, Silber (2/3/5 Mark) und Scheidemünze'
+      en: 'Reich currency 4 Dec. 1871 → 4 Aug. 1914 · gold (5/10/20 Mark) Kurant, silver (2/3/5 Mark) and base coin Scheidemünze'
+      uk: 'Імперська валюта 4 грудня 1871 → 4 серпня 1914 · золото (5/10/20 Mark) Kurant, срібло (2/3/5 Mark) і розмінна монета Scheidemünze'
+    hintergrund:
+      de: 'Mit dem Münzgesetz vom 4. Dezember 1871<sup>[ref:wikipedia-de-goldmark]</sup> tritt das Deutsche Reich auf den Goldstandard: aus einem Zollpfund (500 g) Feingold werden 139½ Zehnmarkstücke = 1395 Mark zu 900 ‰ ausgeprägt. Die Goldnominale zu 5, 10 und 20 Mark sind vollwertige Kurantmünzen. Die silbernen 2-, 3- und 5-Mark-Stücke sind demgegenüber Scheidemünzen — ihr Metallwert liegt unter dem Nennwert, und sie waren nur bis zum Betrag von 20 Mark gesetzliches Zahlungsmittel<sup>[ref:wikipedia-de-goldmark-scheidemuenzen]</sup>; ebenso die kleineren Kupfer-Nickel-Werte. Die Reichs-Goldmünzen sind gemeinsame Reichstypen, territorial nicht unterscheidbar; die Silbermünzen tragen ab 1873 die Wappen der Einzelstaaten. Die Goldsuspendierung der Reichsbank am 4. August 1914 beendet die praktische Goldwährung.'
+      en: 'With the Coinage Act of 4 December 1871<sup>[ref:wikipedia-de-goldmark]</sup> the German Empire moves onto the gold standard: from one Zollpfund (500 g) of fine gold, 139½ ten-Mark pieces = 1,395 Mark are struck at 900‰. The gold denominations of 5, 10 and 20 Mark are full-value Kurant coins. The silver 2-, 3- and 5-Mark pieces, by contrast, are Scheidemünzen — their metal value lies below the face value, and they were legal tender only up to 20 Mark<sup>[ref:wikipedia-de-goldmark-scheidemuenzen]</sup>; likewise the smaller copper-nickel values. The Reich gold coins are common imperial types, not territorially distinguishable; the silver coins carry the arms of the individual states from 1873. The Reichsbank''s suspension of gold redemption on 4 August 1914 ends the practical gold currency.'
+      uk: 'Із Законом про монету від 4 грудня 1871<sup>[ref:wikipedia-de-goldmark]</sup> Німецька імперія переходить на золотий стандарт: з одного цольфунта (500 г) чистого золота карбують 139½ десятимаркових монет = 1395 Mark за пробою 900 ‰. Золоті номінали 5, 10 і 20 Mark — повновагові Kurant-монети. Натомість срібні 2-, 3- та 5-Mark — це Scheidemünze: їхня металева вартість нижча за номінал, і вони були законним платіжним засобом лише до суми 20 Mark<sup>[ref:wikipedia-de-goldmark-scheidemuenzen]</sup>; так само й менші мідно-нікелеві номінали. Золоті імперські монети — спільні загальноімперські типи, територіально нерозрізнювані; срібні від 1873 несуть герби окремих держав. Призупинення Reichsbank-ом золотого розміну 4 серпня 1914 завершує фактичну золоту валюту.'
 phases:
+  reichsgoldmuenzfuss:
+    - id: I
+      year_from: 1871
+      year_to: 1914
+      from_label: '1871'
+      to_label: '1914'
+      title:
+        de: 'Reichswährung 1871–1914'
+        en: 'Reich currency 1871–1914'
+        uk: 'Імперська валюта 1871–1914'
+      description:
+        de: 'Reichseinheitliche Mark-Währung: Gold 5/10/20 Mark als Kurant nach dem Reichsgoldmünzfuß, Silber 2/3/5 Mark und Kupfer-Nickel als Scheidemünze. Geltung bis zur Goldsuspendierung 1914.'
+        en: 'Reich-wide Mark currency: gold 5/10/20 Mark as Kurant on the Reichsgoldmünzfuß, silver 2/3/5 Mark and copper-nickel as Scheidemünze. In force until the gold suspension of 1914.'
+        uk: 'Загальноімперська марка: золото 5/10/20 Mark як Kurant за Reichsgoldmünzfuß, срібло 2/3/5 Mark і мідно-нікель як Scheidemünze. Чинна до призупинення золота 1914.'
   seed_unsorted:
     - id: ucoin
       year_from: 1871
