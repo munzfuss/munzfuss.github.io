@@ -1563,6 +1563,15 @@ h2[style] {
   color: var(--accent);
   margin-bottom: 2px;
 }
+/* Specimen / exception annotation inside a gw-v — a muted footnote on its own
+   line (single-piece outlier data etc.), set apart from the standard values. */
+.gw-v .gw-note {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.gw-v .gw-note b { color: var(--text-muted); font-weight: 600; }
 
 /* Rechnungsfraktionen sub-card — sits in the right column of gw-body */
 .gw-fr {
