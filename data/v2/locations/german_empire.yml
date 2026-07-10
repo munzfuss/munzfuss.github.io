@@ -66,6 +66,7 @@ timeline:
       year_from: 1871
       year_to: 1907
       color_class: vt
+      truncate_anywhere_before: 1871
       hide_layers:
         - {scope: anywhere, kind: mint}
         - {scope: anywhere, kind: status}
@@ -87,6 +88,7 @@ timeline:
       year_from: 1871
       year_to: 1874
       color_class: g
+      truncate_anywhere_before: 1871
       hide_layers:
         - {scope: anywhere, kind: mint}
         - {scope: anywhere, kind: status}
@@ -95,6 +97,58 @@ timeline:
         de: 'Vereinsgoldmünze / Krone (Wiener Münzvertrag 1857): das Vereins-Goldstück zirkuliert nach 1871 kurz neben der Goldmark weiter, demonetisiert 1874'
         en: 'Vereinsgoldmünze / Krone (Vienna Coinage Treaty 1857): the union gold piece briefly keeps circulating alongside the Goldmark after 1871, demonetised in 1874'
         uk: 'Vereinsgoldmünze / Krone (Віденський монетний договір 1857): союзна золота монета недовго циркулює після 1871 поряд із Goldmark, демонетизована 1874'
+    - id: reichsdukatenfuss
+      order: 4
+      label:
+        de: Reichsdukatenfuß · Ducat
+        en: Reichsdukatenfuß · Ducat
+        uk: Reichsdukatenfuß · Ducat
+      small:
+        de: 3,44 g fein · Gold
+        en: 3.44 g fine · gold
+        uk: 3,44 г чистого · золото
+      year_from: 1871
+      year_to: 1876
+      color_class: g
+      truncate_anywhere_before: 1871
+      anywhere_label:
+        de: Deutsches Kaiserreich
+        en: German Empire
+        uk: Німецька імперія
+      hide_layers:
+        - {scope: anywhere, kind: mint}
+        - {scope: anywhere, kind: status}
+        - {scope: anywhere, kind: sole}
+      bar_title:
+        de: 'Reichsdukat: der alte reichsweite Goldstandard läuft mit dem Münzgesetz 1871 aus; die Dukaten bleiben biß zur Demonetisierung 1876 gültig'
+        en: 'Reichsdukat: the old Reich-wide gold standard lapses with the Coinage Act of 1871; the ducats stay valid until demonetisation in 1876'
+        uk: 'Reichsdukat: старий загальноімперський золотий стандарт згасає із Законом про монету 1871; дукати лишаються дійсними до демонетизації 1876'
+    - id: pistolenfuss
+      order: 5
+      label:
+        de: Pistolen-Fuß · d'or
+        en: Pistolen-Fuß · d'or
+        uk: Pistolen-Fuß · d'or
+      small:
+        de: 6,03 g fein · Gold
+        en: 6.03 g fine · gold
+        uk: 6,03 г чистого · золото
+      year_from: 1871
+      year_to: 1876
+      color_class: g
+      truncate_anywhere_before: 1871
+      anywhere_label:
+        de: Deutsches Kaiserreich
+        en: German Empire
+        uk: Німецька імперія
+      hide_layers:
+        - {scope: anywhere, kind: mint}
+        - {scope: anywhere, kind: status}
+        - {scope: anywhere, kind: sole}
+      bar_title:
+        de: 'Pistole / Friedrichsd''or (Pistolen-Fuß): das preußisch-norddeutsche Goldstück wird von der Goldmark abgelöst, gültig biß zur Demonetisierung 1876'
+        en: 'Pistole / Friedrichs d''or (Pistolen-Fuß): the Prussian / North-German gold piece is superseded by the Goldmark, valid until demonetisation in 1876'
+        uk: 'Pistole / Friedrichsd''or (Pistolen-Fuß): прусько-північнонімецька золота монета заміщується Goldmark, дійсна до демонетизації 1876'
 fuss_order:
   - reichsgoldmuenzfuss
   - seed_unsorted

@@ -965,6 +965,23 @@ class TimelineBar(_StrictBase):
     Pivot, Reich-wide mass-minting end) but extend circulation to ~1700
     (Hauptumlaufmünze functional end per Wikipedia DE «Speciestaler»);
     a single `truncate_anywhere_after` cannot express that asymmetry."""
+    truncate_anywhere_before: int | None = None
+    """Mirror of `truncate_anywhere_after` for the LEFT edge: raise the
+    `anywhere` scope's `first` year for this bar up to this value; drop the
+    layer entirely when its `last` year is already before the cutoff. Use
+    case: a context bar for a standard that circulated long BEFORE this
+    page's axis (e.g. the Reichsdukat, circulation 1513—1876, shown on the
+    German-Empire 1871—1914 timeline) — set `truncate_anywhere_before: 1871`
+    so the circulation tooltip reads «1871—1876» instead of the pre-axis
+    «1513—1876». Holstein-scope layers are untouched."""
+    anywhere_label: I18nText | None = None
+    """Per-bar override of the `anywhere`-scope tooltip label. Normally the
+    label comes from the Fuß's `events.anywhere_label` (a GLOBAL value shared
+    across every page). Set this to re-word the circulation-scope label for
+    THIS bar only — e.g. a pan-imperial standard whose global label names
+    «Heiliges Römisches Reich + Königreich Dänemark und Norwegen» reads as
+    out-of-place on the German-Empire page, so the German-Empire bar overrides
+    it to a Germany-only phrasing. The underlying events are untouched."""
     hide_anywhere: bool = False
     """When `true`, suppress all anywhere-scope layers (mint, status,
     circulation, sole) for this bar — render only the holstein-scope

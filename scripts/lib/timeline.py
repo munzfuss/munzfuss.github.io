@@ -302,7 +302,11 @@ def compute_bar_layers(
         scope_label_key = "tl.scope.schleswig_holstein"
 
         layers: list[dict] = []
-        anywhere_label = getattr(events, "anywhere_label", None)
+        # Per-bar `anywhere_label` override wins over the Fuß's GLOBAL
+        # events.anywhere_label — lets a single page re-word the circulation-
+        # scope tooltip (e.g. drop a Denmark mention that is out-of-place on
+        # the German-Empire timeline) without touching data/shared/fuesse.yml.
+        anywhere_label = getattr(bar, "anywhere_label", None) or getattr(events, "anywhere_label", None)
 
         # Per-bar `truncate_anywhere_after` (e.g. 1866 for Danish-Helstaten
         # stopes on the Holstein page) — sharply caps the anywhere-scope's
@@ -315,6 +319,11 @@ def compute_bar_layers(
         # mint/status/circulation/sole each have its own cutoff year on
         # the same bar (e.g. 9-Fuß: mint+status=1667, circulation=1700).
         trunc_any_by_kind = getattr(bar, "truncate_anywhere_after_by_kind", None) or {}
+        # Per-bar `truncate_anywhere_before` — mirror for the LEFT edge: raise
+        # the anywhere-scope's `first` up to this year, dropping layers whose
+        # `last` is already before it. Used for context bars of standards whose
+        # circulation predates this page's axis (Reichsdukat on the GE timeline).
+        trunc_before = getattr(bar, "truncate_anywhere_before", None)
 
         # `scope_mode` "denmark_only" / "anywhere_only": iterate only the
         # anywhere scope and suppress holstein-scope layers entirely (a single-
@@ -359,6 +368,12 @@ def compute_bar_layers(
                 if last > effective_trunc:
                     last = effective_trunc
                     last_approx = False
+            if scope == "anywhere" and trunc_before is not None:
+                if last < trunc_before:
+                    return  # layer entirely before the cutoff — drop
+                if first < trunc_before:
+                    first = trunc_before
+                    first_approx = False
             # Mission-scope visibility clip: if the actual start year is BEFORE
             # the timeline's left edge, the visible left edge of the layer is
             # the clip line (sharp cutoff), NOT the underlying uncertain year
