@@ -613,12 +613,16 @@ def _expand_outer_phase_span(loc_id: str, raw: dict) -> None:
 
     Three guards keep the shift honest (all curator direction 2026-07-09):
 
-      • VERIFIED-ONLY — a coin with `year_verified: false` never moves an anchor.
-        A ruler-reign span dated «1588-1648» (true mint date unknown) or a
-        data-error year is not a reliable boundary signal (§4). Default (flag
-        unset) = verified. Data-error years are surfaced by the assembly
-        advisory (year_warn) so the curator notices and fixes them via errata;
-        once fixed they stop driving the span.
+      • REIGN-SPAN EXCLUDED — a coin whose year IS a ruler's reign window
+        (`year_is_reign_span: true`, e.g. «1588-1648» Christian IV) never moves an
+        anchor: the exact mint year is unknown, so it's not a boundary signal.
+        But an imprecise-but-NARROW estimate (`year_verified: false` WITHOUT the
+        reign-span flag — e.g. a Hans Rhinsk-Gylden «1496-1497 (?)») DOES move the
+        anchor: it's a genuine narrow mint-date estimate, so the fuss span reaches
+        it (curator direction 2026-07-10 — corrects the earlier verified-only guard
+        that wrongly excluded such estimates). A data-error year (not reign-span)
+        must therefore be FIXED at the source (errata / year correction), not left
+        as `year_verified: false` — the log below surfaces it.
       • 1914 CAP — a coin's year_last contributes at most _MISSION_YEAR_MAX; the
         realm's precious-metal era ends 1914 and nothing after it is in scope.
       • DATED-ANCHOR PIN — a phase whose outer label already names an explicit
@@ -645,7 +649,7 @@ def _expand_outer_phase_span(loc_id: str, raw: dict) -> None:
         fuss = c.get("fuss")
         if not fuss or fuss == "seed_unsorted":
             continue
-        if c.get("year_verified") is False:   # unverified year → not a boundary signal
+        if c.get("year_is_reign_span") is True:   # reign-placeholder → not a boundary signal
             continue
         cid = c.get("id") or "?"
         yf = c.get("year_first")

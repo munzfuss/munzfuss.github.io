@@ -118,14 +118,16 @@ def derive_mint_overrides(loc: Location, fuesse: dict) -> dict:
     for c in loc.coins:
         if c.year_first is None:
             continue
-        # Change 3 (curator direction 2026-07-09): the timeline mint-event stripe
-        # is coin-driven the same way the phase outer-span is (build._expand_outer_
-        # phase_span), so it must honour the SAME guard — a coin with year_verified:
-        # false (an imprecise estimate OR a reign-placeholder like «1588-1648»
-        # Christian IV) does NOT define a mint endpoint. Without this the stripe
-        # showed e.g. 9¼-Thaler mint from 1588 (a reign-span Skilling) while the
+        # Change 3 (curator direction 2026-07-09, refined 2026-07-10): the timeline
+        # mint-event stripe is coin-driven the same way the phase outer-span is
+        # (build._expand_outer_phase_span), so it honours the SAME guard — a coin
+        # whose year IS a ruler's reign window (year_is_reign_span, «1588-1648»
+        # Christian IV, exact mint year unknown) does NOT define a mint endpoint.
+        # An imprecise-but-narrow year_verified:false estimate («1496-1497 (?)»)
+        # DOES (a real narrow mint-date estimate). Without the reign guard the
+        # stripe showed 9¼-Thaler mint from 1588 (a reign-span Skilling) while the
         # phase header, correctly, starts at 1622.
-        if getattr(c, "year_verified", True) is False:
+        if getattr(c, "year_is_reign_span", False) is True:
             continue
         yl = c.year_last if c.year_last is not None else c.year_first
         cur = spans.setdefault(c.fuss, [c.year_first, yl])
