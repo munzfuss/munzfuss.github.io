@@ -33,6 +33,7 @@ from lib.timeline import (
     attach_visual_pieces,
     compute_bar_layers, compute_coin_year_runs,
     compute_hover_zones, derive_mint_overrides,
+    founding_mint_start,
 )
 from lib.compute import compute_location
 from lib.render import build_env, generate_css
@@ -317,6 +318,17 @@ _V2_FINAL_CACHE: dict[str, list[dict]] | None = None
 _V2_SEED_CACHE: list[dict] | None = None
 _V2_UNIFIED_CACHE: list[dict] | None = None
 _V2_ABSORBED_SEED_IDS_CACHE: set[str] | None = None
+# Global Fuß registry, parsed once — read by `_expand_outer_phase_span` for
+# the founding-era `first_adoption` anchor + its `firm_<scope>` flag. Process-
+# scoped like the V2 caches; a fresh `python scripts/build.py` re-parses.
+_FUESSE_CACHE: dict[str, Fuss] | None = None
+
+
+def _load_fuesse_cached() -> dict[str, Fuss]:
+    global _FUESSE_CACHE
+    if _FUESSE_CACHE is None:
+        _FUESSE_CACHE = load_fuesse()
+    return _FUESSE_CACHE
 
 # Schema fields valid on the Coin model — derived once from the
 # Pydantic model class. Used to strip seed-side raw extras at
@@ -642,18 +654,34 @@ def _expand_outer_phase_span(loc_id: str, raw: dict) -> None:
     """
     phases_map = raw.get("phases") or {}
     coins = raw.get("coins") or []
-    # (year, driver_id) so a shift can name the coin that caused it
+    # Scope for the founding-era START rule (mirrors timeline._mint_sync_scope):
+    # anywhere on a denmark_only page, holstein on SH, else no data-driven axis.
+    _tl = raw.get("timeline") or {}
+    if _tl.get("scope_mode") == "denmark_only":
+        _scope = "anywhere"
+    elif loc_id == "schleswig_holstein":
+        _scope = "holstein"
+    else:
+        _scope = None
+    _fuesse = _load_fuesse_cached() if _scope is not None else {}
+    # (year, driver_id) so a shift can name the coin that caused it. reign_min
+    # holds the earliest reign-window placeholder per fuss — it feeds only the
+    # founding-era START (via timeline.founding_mint_start), never the END.
     fuss_min: dict[str, tuple[int, str]] = {}
     fuss_max: dict[str, tuple[int, str]] = {}
+    reign_min: dict[str, tuple[int, str]] = {}
     for c in coins:
         fuss = c.get("fuss")
         if not fuss or fuss == "seed_unsorted":
             continue
-        if c.get("year_is_reign_span") is True:   # reign-placeholder → not a boundary signal
-            continue
         cid = c.get("id") or "?"
         yf = c.get("year_first")
         yl = c.get("year_last") or yf
+        if c.get("year_is_reign_span") is True:
+            # reign placeholder: feeds the founding-era START rule only.
+            if yf is not None and (fuss not in reign_min or yf < reign_min[fuss][0]):
+                reign_min[fuss] = (yf, cid)
+            continue
         if yf is not None and (fuss not in fuss_min or yf < fuss_min[fuss][0]):
             fuss_min[fuss] = (yf, cid)
         if yl is not None:
@@ -667,13 +695,36 @@ def _expand_outer_phase_span(loc_id: str, raw: dict) -> None:
             continue
         with_from = [p for p in ph_defs if p.get("year_from") is not None]
         with_to = [p for p in ph_defs if p.get("year_to") is not None]
-        if with_from and fuss in fuss_min:
-            earliest = min(with_from, key=lambda p: p["year_from"])
-            new_from, drv = fuss_min[fuss]
-            if new_from < earliest["year_from"] and not _is_dated_anchor_label(earliest.get("from_label")):
-                shifts.append(f"{fuss}/{earliest.get('id')} start {earliest['year_from']} → {new_from} (driver {drv})")
-                earliest["year_from"] = new_from
-                earliest["from_label"] = str(new_from)
+        if with_from and (fuss in fuss_min or fuss in reign_min):
+            # Founding-era START — resolve dated + reign coins via the SAME rule
+            # the timeline mint stripe uses (timeline.founding_mint_start). The
+            # phase table has no fade, so the returned approx flag is ignored;
+            # only the start YEAR is applied. A fuss with no reign placeholder
+            # earlier than its dated coin resolves to the dated start (no-op).
+            dated_min = fuss_min[fuss][0] if fuss in fuss_min else None
+            rmin = reign_min[fuss][0] if fuss in reign_min else None
+            adoption_year, firm = None, True
+            _f = _fuesse.get(fuss) if _scope is not None else None
+            _fa = getattr(_f.events, "first_adoption", None) if (_f and _f.events) else None
+            if _fa is not None:
+                adoption_year = getattr(_fa, _scope, None)
+                firm = getattr(_fa, f"firm_{_scope}", True)
+            new_from, _approx = founding_mint_start(rmin, dated_min, adoption_year, firm)
+            if new_from is not None:
+                earliest = min(with_from, key=lambda p: p["year_from"])
+                if (new_from < earliest["year_from"]
+                        and not _is_dated_anchor_label(earliest.get("from_label"))):
+                    # name what actually set new_from: the reign placeholder
+                    # (Rule 2), a dated coin, or the firm founding year (Rule 1).
+                    if rmin is not None and new_from == rmin:
+                        drv = reign_min[fuss][1]
+                    elif dated_min is not None and new_from == dated_min:
+                        drv = fuss_min[fuss][1]
+                    else:
+                        drv = f"founding {new_from}"
+                    shifts.append(f"{fuss}/{earliest.get('id')} start {earliest['year_from']} → {new_from} (driver {drv})")
+                    earliest["year_from"] = new_from
+                    earliest["from_label"] = str(new_from)
         if with_to and fuss in fuss_max:
             latest = max(with_to, key=lambda p: p["year_to"])
             new_to, drv = fuss_max[fuss]

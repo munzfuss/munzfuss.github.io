@@ -81,6 +81,55 @@ def _mint_sync_scope(loc: Location) -> str | None:
     return None
 
 
+def founding_mint_start(
+    reign_min: int | None,
+    dated_min: int | None,
+    adoption_year: int | None,
+    firm: bool,
+) -> tuple[int | None, bool]:
+    """Founding-era mint/phase START rule (curator direction 2026-07-10).
+
+    A standard whose earliest coin carries a reign-window placeholder year
+    (`year_is_reign_span` — exact mint year unknown, only the ruler's reign)
+    must not silently start at the nearest DATED coin, ignoring that the reign
+    coin was demonstrably struck earlier. Two sub-rules, keyed on whether the
+    founding anchor (`first_adoption`) is FIRM:
+
+      * firm (a dated ordinance / Møntordning, or a curator-certain de-facto
+        start) → HARD-clip the start to the founding year: the reign coin's
+        spill before it is cut off and the edge is sharp (no fade), the
+        founding decree giving legal certainty.  → (founding_year, approx=False)
+      * not firm (uncertain de-facto estimate) → start from the reign coin's
+        OWN earliest year WITH the uncertainty fade: it was struck around then,
+        just not exactly when.                    → (reign_year, approx=True)
+
+    Returns `(start_year, approx)`. When no reign-span coin is earlier than the
+    earliest dated coin the dated start is returned unchanged (approx=False) —
+    the rule is a no-op for the common case. Shared by `derive_mint_overrides`
+    (the timeline mint stripe) and `build._expand_outer_phase_span` (the phase
+    table) so both surfaces resolve a founding-era start identically.
+
+    Args
+      reign_min     earliest `year_is_reign_span` coin year_first (or None)
+      dated_min     earliest NON-reign coin year_first (None if all reign-span)
+      adoption_year `first_adoption.<scope>` — the founding anchor (or None)
+      firm          `first_adoption.firm_<scope>` — True → hard clip, False → fade
+    """
+    if reign_min is None:
+        return dated_min, False
+    if dated_min is not None and reign_min >= dated_min:
+        return dated_min, False   # a dated coin is at/before the reign coin — no-op
+    if firm and adoption_year is not None:
+        start = max(reign_min, adoption_year)          # Rule 1 — clip reign spill to founding
+        if dated_min is not None:
+            start = min(dated_min, start)
+        return start, False                            # hard edge
+    start = reign_min                                  # Rule 2 — fade from the reign coin
+    if dated_min is not None:
+        start = min(dated_min, start)
+    return start, True
+
+
 def derive_mint_overrides(loc: Location, fuesse: dict) -> dict:
     """Auto-sync each Fuß's `events.first_mint.<scope>` / `last_mint.<scope>`
     to the actual coin span on this page, where `<scope>` is the scope that
@@ -114,20 +163,24 @@ def derive_mint_overrides(loc: Location, fuesse: dict) -> dict:
     if scope is None:
         return {}
 
-    spans: dict[str, list[int | None]] = {}
+    spans: dict[str, list[int | None]] = {}   # fuss -> [dated_cmin, cmax]  (non-reign)
+    reign_min: dict[str, int] = {}            # fuss -> earliest reign-span coin year_first
     for c in loc.coins:
         if c.year_first is None:
             continue
-        # Change 3 (curator direction 2026-07-09, refined 2026-07-10): the timeline
-        # mint-event stripe is coin-driven the same way the phase outer-span is
-        # (build._expand_outer_phase_span), so it honours the SAME guard — a coin
-        # whose year IS a ruler's reign window (year_is_reign_span, «1588-1648»
-        # Christian IV, exact mint year unknown) does NOT define a mint endpoint.
-        # An imprecise-but-narrow year_verified:false estimate («1496-1497 (?)»)
-        # DOES (a real narrow mint-date estimate). Without the reign guard the
-        # stripe showed 9¼-Thaler mint from 1588 (a reign-span Skilling) while the
-        # phase header, correctly, starts at 1622.
+        # A coin whose year IS a ruler's reign window (year_is_reign_span,
+        # «1588-1648» Christian IV — exact mint year unknown) does NOT define a
+        # physical-mint END (year_last is a reign bound, not a strike) nor the
+        # non-reign start. But its year_first DOES feed the founding-era START
+        # rule (founding_mint_start below): so a founding-era standard whose
+        # earliest coin is a reign placeholder isn't silently pulled forward to
+        # the nearest dated coin (curator direction 2026-07-10). An imprecise-
+        # but-narrow year_verified:false estimate («1496-1497 (?)») is NOT a
+        # reign span and flows through the normal `spans` path.
         if getattr(c, "year_is_reign_span", False) is True:
+            rm = reign_min.get(c.fuss)
+            if rm is None or c.year_first < rm:
+                reign_min[c.fuss] = c.year_first
             continue
         yl = c.year_last if c.year_last is not None else c.year_first
         cur = spans.setdefault(c.fuss, [c.year_first, yl])
@@ -137,20 +190,32 @@ def derive_mint_overrides(loc: Location, fuesse: dict) -> dict:
             cur[1] = yl
 
     approx_attr = f"approx_{scope}"
+    firm_attr = f"firm_{scope}"
     overrides: dict = {}
-    for fid, (cmin, cmax) in spans.items():
+    for fid, (dated_cmin, cmax) in spans.items():
         f = fuesse.get(fid)
         if f is None or f.events is None:
             continue
         ev = f.events
         fm = ev.first_mint
         lm = ev.last_mint
+        fa = ev.first_adoption
         # Skip Fuß systems whose mint axis for this scope is curator-set
         # None (e.g. Copenhagen-only fusses have holstein=None; a fuss
         # with no anywhere mint span would be anywhere=None).
         if (fm is None or getattr(fm, scope) is None
                 or lm is None or getattr(lm, scope) is None):
             continue
+        # Founding-era reign-span START rule (2026-07-10). When the earliest
+        # coin under this fuss is a reign-window placeholder earlier than any
+        # dated coin, `founding_mint_start` resolves the start: a FIRM founding
+        # hard-clips to the adoption year (no fade), a non-firm de-facto one
+        # starts from the reign coin's year WITH the fade. Otherwise it returns
+        # `dated_cmin` unchanged.
+        adoption_year = getattr(fa, scope) if fa is not None else None
+        firm = getattr(fa, firm_attr, True) if fa is not None else True
+        cmin, cmin_approx = founding_mint_start(
+            reign_min.get(fid), dated_cmin, adoption_year, firm)
         # Clamp only the UPPER bound to the timeline's right edge: a stripe
         # cannot render past year_to, so a tooltip year beyond it — a
         # 1913-1931 straddle type, or a reign-window placeholder masking a
@@ -161,17 +226,21 @@ def derive_mint_overrides(loc: Location, fuesse: dict) -> dict:
         tl = loc.timeline
         if tl is not None:
             cmax = min(cmax, tl.year_to)
-            if cmin > cmax:
+            if cmin is None or cmin > cmax:
                 continue  # this fuss's coins fall entirely past the right edge
-        # Data is authoritative for both endpoints — sync, don't merge.
-        if cmin == getattr(fm, scope) and cmax == getattr(lm, scope):
+        # Data is authoritative for both endpoints — sync, don't merge. The
+        # start's approx flag (fade) is part of the sync: a founding-era Rule 2
+        # start renders faded, Rule 1 / a dated start renders sharp.
+        if (cmin == getattr(fm, scope) and cmax == getattr(lm, scope)
+                and cmin_approx == getattr(fm, approx_attr)):
             continue  # already in sync
         # Pydantic v2: model_copy(deep=True) on the whole Fuss is the
         # cleanest way to avoid mutating the global registry.
         new_f = f.model_copy(deep=True)
-        if getattr(new_f.events.first_mint, scope) != cmin:
+        if (getattr(new_f.events.first_mint, scope) != cmin
+                or getattr(new_f.events.first_mint, approx_attr) != cmin_approx):
             setattr(new_f.events.first_mint, scope, cmin)
-            setattr(new_f.events.first_mint, approx_attr, False)
+            setattr(new_f.events.first_mint, approx_attr, cmin_approx)
         if getattr(new_f.events.last_mint, scope) != cmax:
             setattr(new_f.events.last_mint, scope, cmax)
             setattr(new_f.events.last_mint, approx_attr, False)

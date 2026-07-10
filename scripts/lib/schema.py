@@ -175,6 +175,23 @@ class FussEvent(_StrictBase):
     `approx_anywhere` / `approx_holstein` flag uncertain dates (rendered
     elsewhere as `~YYYY`; the int is still stored verbatim).
 
+    `firm_anywhere` / `firm_holstein` — read ONLY on `first_adoption` — mark
+    whether the standard's founding year for that scope is a FIRM anchor (a
+    dated ordinance/Møntordning, or a curator-certain de-facto start) versus
+    an UNCERTAIN de-facto estimate. This drives the founding-era mint/phase
+    START rule (`timeline.founding_mint_start`): when the earliest coin under
+    the fuss carries a reign-window placeholder year (`year_is_reign_span`)
+    that predates the earliest *dated* coin, a `firm` founding HARD-clips the
+    mint stripe / phase start to the founding year (no fade), while a NON-firm
+    (uncertain) founding starts the stripe from the reign coin's own year WITH
+    the uncertainty fade. Deliberately a SEPARATE field from `approx_*` (curator
+    direction 2026-07-10) so editing the display-approximation flag never
+    silently changes the span rule. Default `True` (firm) — the field only
+    matters for the handful of founding-era fusses whose earliest coin is a
+    reign-window placeholder; set it `False` on a `first_adoption` scope whose
+    founding is a genuinely uncertain de-facto estimate (e.g. the Danish
+    Reichsdukatenfuß anywhere-scope, a Hans-era de-facto Goldgulden start).
+
     `note` is a brief plain-text explanation — typically *why* the year
     is approximate, or which forordning / Reichsabschied marks the date.
     """
@@ -182,6 +199,8 @@ class FussEvent(_StrictBase):
     holstein: int | None = None
     approx_anywhere: bool = False
     approx_holstein: bool = False
+    firm_anywhere: bool = True
+    firm_holstein: bool = True
     note: str | None = None
 
 
