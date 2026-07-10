@@ -101,12 +101,18 @@ def ruler_for_lang(name: str | None, lang: str) -> str:
     """
     if not name:
         return "—"
+    import re
+    # NBSP-glue the space before a Roman-numeral ordinal (Christian III,
+    # Friedrich III. von Gottorp) so the numeral never wraps onto its own line
+    # away from the name in the narrow Ruler column.   is a literal NBSP
+    # char — the ruler cell renders WITHOUT |safe, so an &nbsp; entity would be
+    # escaped, but the char is not. Roman numerals: I, V, X combos (1..30 —
+    # sufficient for monarchs); trailing period optional, token-boundary anchored.
+    name = re.sub(r"\s+([IVX]+\.?)(?=\s|$)", " \\1", name)
     if lang == "de":
         return name
-    import re
-    # Match a space + Roman numeral + literal period; drop the period.
-    # Roman numerals: combinations of I, V, X (for 1..30 — sufficient for monarchs).
-    return re.sub(r"(\s[IVX]+)\.", r"\1", name)
+    # en/uk: Roman-numeral ordinals don't carry the German trailing period.
+    return re.sub(r"( [IVX]+)\.", r"\1", name)
 
 
 def first_sentence(html_text: str) -> str:
