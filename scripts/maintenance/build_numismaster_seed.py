@@ -349,6 +349,10 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
     #      «1628 - 1628» → «1628» (else the rendered «1628 - 1628» reads
     #      as a 1-year range, which is incorrect for what is actually a
     #      single dated coin).
+    # Undated («ND(YYYY-YY)») coins: the parser has already put the ND-marker range
+    # into yf/yl and cleared dates_explicit; here we flag the year as attribution-
+    # only (year_verified: false, §4) below.
+    undated = bool(data.get("undated"))
     dates_explicit = data.get("dates_explicit") or []
     if dates_explicit:
         # dates_explicit is the per-coin attested year list from the
@@ -372,6 +376,11 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
         # Single-year collapse: «1628 - 1628» → «1628»
         if yf is not None and yl is not None and yf == yl:
             year_label = str(yf)
+        elif undated and yf is not None and yl is not None:
+            # UNDATED coin: yf/yl come from the «ND(YYYY-YY)» marker (parser), NOT
+            # from date_raw — date_raw is the stale collapsed structured field
+            # («1618 - 1618»), so build the label from the ND range instead.
+            year_label = _format_year_label([[yf, yl]])
         else:
             year_label = data.get("date_raw")
         year_ranges = [[yf, yl if yl is not None else yf]]
@@ -433,6 +442,12 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
             ),
         },
     }
+    # UNDATED coin: the year is the «ND(…)» attribution range, not a struck date —
+    # flag year_verified: false so the renderer shows «(?)» AND the coin is excluded
+    # from phase/timeline outer-span expansion (build._expand_outer_phase_span,
+    # timeline.derive_mint_overrides). Curator direction 2026-07-09 (Serhii).
+    if undated:
+        entry["year_verified"] = False
     # Enrichment fields not in Coin schema — prefix with `_` so build.py's
     # seed-merger strips them at validation time (line 343 in build.py). The
     # canonical raw record lives in MC_<N>.parsed.json; these `_`-keys keep

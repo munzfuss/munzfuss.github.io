@@ -142,6 +142,69 @@ def _normalise_year_string(s: str) -> str:
     return s
 
 
+def _complete_abbrev_year(start: int, abbrev: str) -> int:
+    """Complete an abbreviated range-END ('22' in «ND(1618-22)») to a full year,
+    anchored to the START's century — 1618-22 → 1622, 1566-68 → 1568.
+
+    RAISES ValueError when the completed end lands BEFORE the start. That happens
+    at a century boundary («1698-02» naively → 1602) or on a malformed range. We
+    deliberately do NOT auto-roll «1698-02» to 1702: a silent guess could be wrong,
+    so the re-flow HALTS on it and a human decides (curator direction 2026-07-09).
+    """
+    a = abbrev.strip()
+    if len(a) >= 4:
+        end = int(a)
+    elif len(a) in (1, 2) and a.isdigit():
+        end = (start // 100) * 100 + int(a)
+    else:
+        raise ValueError(f"unexpected abbreviated year-end {abbrev!r} (start {start})")
+    if end < start:
+        raise ValueError(
+            f"abbreviated range {start}-{abbrev} completes to {end} < start {start} "
+            f"— century-boundary (e.g. 1698-02 → 1702) OR malformed; verify by hand, "
+            f"do NOT auto-roll")
+    return end
+
+
+# «ND(1618-22)» abbreviated-range and «ND(1622)» / «ND(ca1622)» single-year markers.
+_ND_RANGE_RE = re.compile(r"\bND\(\s*(\d{4})\s*-\s*(\d{1,4})\s*\)")
+_ND_SINGLE_RE = re.compile(r"\bND\(\s*(?:ca\.?\s*|circa\s*|c\.?\s*)?(\d{4})\s*\)", re.I)
+
+
+def extract_nd_range(text: str | None) -> tuple[int, int] | None:
+    """Read the «ND(YYYY-YY)» / «ND(YYYY)» display marker → (year_first, year_last),
+    or None when no ND marker is present.
+
+    NumisMaster's STRUCTURED «Date» field unreliably collapses these markers
+    («ND(1618-22)» → «1618 - 1618», or worse «1604 - 1604»), so the ND(…) marker
+    is authoritative for an undated coin. Scoped to the header region ABOVE the
+    «Value information» price table so a «Related coins» sidebar ND marker of an
+    UNRELATED coin can't bleed in. Propagates _complete_abbrev_year's ValueError
+    on a malformed abbreviated end.
+    """
+    if not text:
+        return None
+    # The ND(…) marker sits in the «Value information» price-table Date column
+    # (NOT the header). Scope to that table — from «Value information» to the
+    # «Related coins» sidebar — the SAME bounds parse_dates_table uses, so a
+    # related-coin's ND marker in the sidebar can't bleed in.
+    m_vi = re.search(r"\bValue information\b", text)
+    start_pos = m_vi.end() if m_vi else 0
+    m_end = re.search(
+        r"\b(?:Related coins|Notes|Subscription|Back to|Permalink|"
+        r"Tilbage til|Copyright|Connect with us|About Us)\b", text[start_pos:])
+    scope = text[start_pos:start_pos + m_end.start()] if m_end else text[start_pos:]
+    m = _ND_RANGE_RE.search(scope)
+    if m:
+        start = int(m.group(1))
+        return start, _complete_abbrev_year(start, m.group(2))
+    m = _ND_SINGLE_RE.search(scope)
+    if m:
+        y = int(m.group(1))
+        return y, y
+    return None
+
+
 def parse_year_range(date_str: str | None) -> tuple[int | None, int | None]:
     if not date_str:
         return None, None
@@ -378,6 +441,14 @@ def parse_page(html_path: Path, sub_scope: str) -> dict:
                 pass
 
     yf, yl = parse_year_range(date_raw)
+    # An «ND(YYYY-YY)» display marker is AUTHORITATIVE over the structured «Date»
+    # field, which NumisMaster unreliably collapses (ND(1618-22) → «1618 - 1618»,
+    # or «1604 - 1604»). When present, it also flags the coin as UNDATED so the
+    # seed builder can set year_verified: false (§4). Curator direction 2026-07-09.
+    nd = extract_nd_range(text)
+    undated = nd is not None
+    if nd is not None:
+        yf, yl = nd
     ruler = _clean_ruler(ruler_raw)
     mint = _clean_mint(mint_raw)
 
@@ -392,8 +463,11 @@ def parse_page(html_path: Path, sub_scope: str) -> dict:
     ref_corpus_parts = [s for s in (general_note, catalog_no) if s]
     refs = parse_references("\n".join(ref_corpus_parts)) if ref_corpus_parts else {}
 
-    # «Value information» Date table — per-year list (finer than the date range)
-    dates_explicit = parse_dates_table(text, date_raw=date_raw)
+    # «Value information» Date table — per-year list (finer than the date range).
+    # For an UNDATED («ND») coin the price-table dates are the SAME collapsed
+    # attribution as the structured Date field (not real struck years), so we drop
+    # them — the ND(…) marker's range (yf, yl) is the whole truth.
+    dates_explicit = [] if undated else parse_dates_table(text, date_raw=date_raw)
 
     return {
         "source_file": html_path.name,
@@ -408,6 +482,7 @@ def parse_page(html_path: Path, sub_scope: str) -> dict:
         "date_raw": date_raw,
         "year_first": yf,
         "year_last": yl,
+        "undated": undated,
         "dates_explicit": dates_explicit,
         "ruler": ruler,
         "mint": mint,
