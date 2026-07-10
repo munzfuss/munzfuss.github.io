@@ -15,6 +15,54 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-10 (later) — founding-era reign-span mint/phase START rule
+
+> **UNPUSHED — push pending «пуш».** Commit `8d4d305` (was cf3aede pre message-amend).
+> Full build exit 0, preview (port 3000) rebuilt, 10 new unit tests pass.
+
+**Problem.** A standard whose EARLIEST coin is a reign-window placeholder
+(`year_is_reign_span` — «1513-1523» Christian II, exact mint year unknown) was
+starting its **карбування (mint) stripe** + phase at the nearest DATED coin,
+ignoring that the reign coin was struck earlier. On Dukatfod (reichsdukatenfuss)
+the mint stripe indented to 1531 while the standard's founding is 1513/1481.
+
+**Fix — 2-rule policy (curator direction), shared by BOTH surfaces.** New helper
+`timeline.founding_mint_start(reign_min, dated_min, adoption_year, firm)` →
+`(start, approx)`, driving the timeline mint stripe (`derive_mint_overrides`) AND
+the phase table (`build._expand_outer_phase_span`, now fed the fuss
+`first_adoption` via a cached `_load_fuesse_cached()`):
+- **Rule 1 firm** (dated ordinance / curator-certain de-facto start): HARD-clip
+  the start to the founding year, no fade. Reign spill before it is cut.
+- **Rule 2 non-firm** (uncertain de-facto): start from the reign coin's own year
+  WITH the uncertainty fade.
+
+**Discriminator = NEW per-scope field `FussEvent.firm_<scope>` (default True),
+read only on `first_adoption`.** Deliberately SEPARATE from `approx_<scope>` (user
+choice «окреме поле») so editing the display-approx flag never changes the span
+rule. **Keying on FIRMNESS, not literally «has a decree», is what protects the
+accepted 9¼-Thaler 1622** — its 1622 is de-facto-but-firm (Friedrich III first
+strike, no Møntordning), so `firm=True` hard-clips the 1588 reign coin up to 1622,
+no regression. Only `reichsdukatenfuss` `first_adoption.firm_anywhere: false` set
+in data (its anywhere 1481/1513 is a genuine de-facto estimate); everything else
+defaults firm=True.
+
+**Effect (denmark only):** reichsdukatenfuss/Dukatfod mint 1531→1513 (fade,
+clipped at the 1514 timeline left edge so the fade is off-screen — the stripe just
+reaches the edge now) + phase I 1514→1513; 8_5_gylden_fod mint 1516→1514 (Rule 1,
+Møntordning Sommeren 1514). 9¼-Thaler (1622) + 9-Thaler (1566) + all SH-scope
+reichsdukatenfuss UNCHANGED (SH has no Danish Christian II reign coin; its 1591
+shift is the pre-existing dated-coin c4h8a expansion). `last_mint` / the phase
+to-anchor still exclude reign placeholders — this rule is START-only.
+
+**Scope note.** Only 4 fusses ever had a reign-span-earliest coin (scan:
+reichsdukatenfuss, 8_5_gylden_fod, 9_thaler, 9_25_thaler); the helper is a no-op
+for every other fuss (no reign coin earlier than its dated coins → dated start).
+
+**Unrelated pre-existing failure noticed:** `tests/test_mint_ambiguity_split.py`
+has 4 failing tests (Malmø ø → Malmö ö normalisation in the mint-name splitter) —
+confirmed present at clean HEAD before this change (stash-verified). Not caused
+here; flagged as a separate task.
+
 ## 2026-07-10 — denmark_pre_1541 unification (NumisMaster _pre1541 pipeline retired)
 
 > **UNPUSHED — push pending «пуш».** Commits (newest first): `c760e4f` cache
