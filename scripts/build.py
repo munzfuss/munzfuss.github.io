@@ -1702,7 +1702,15 @@ def main():
               f"({n_workers} worker{'s' if n_workers > 1 else ''})")
         render_all(v2_locations, None)
 
-    if v2_locations and (len(v2_locations) > 1 or not args.location):
+    # The landing lists EVERY location, so it must NEVER be re-rendered from a
+    # partial `--location` subset — doing so dropped the un-built locations from
+    # the landing grid (the classic partial-build footgun: `--location a,b`
+    # rebuilt a landing showing only a + b). Rebuild it ONLY on a full build; any
+    # `--location` run leaves the existing complete landing untouched. CI always
+    # does a full build, so production is unaffected. (Previously the guard was
+    # `len>1 or not --location`, which let MULTI-location partial builds clobber
+    # the landing with just that subset.)
+    if v2_locations and not location_filter:
         # Pull contact email from local.env (or process env). Falls back to
         # empty string → footer just hides the «Contact» link.
         from lib.env import load_local_env
@@ -1724,6 +1732,12 @@ def main():
                       german_fuesse=german_fuesse,
                       german_fuesse_references=german_fuesse_refs,
                       include_seed=include_seed, fuesse=fuesse)
+    elif v2_locations and location_filter:
+        print(f"   ⏭  Landing NOT rebuilt (partial --location build of "
+              f"{', '.join(location_filter)}) — the existing complete "
+              f"site/<lang>/index.html is preserved so no location vanishes "
+              f"from the grid. Run a full `python scripts/build.py` to refresh "
+              f"the landing.")
 
     generate_assets(theme)
     copy_static_root()
