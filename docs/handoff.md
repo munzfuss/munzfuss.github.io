@@ -79,11 +79,21 @@ read as a mint year; corrected to 1622 per Numista N#151529). Only remaining SH 
 = reichsdukatenfuss→1591 (Haderslev, curator-confirmed OK).
 
 **Systemic FOLLOW-UPS (recorded, not done):**
-1. **NumisMaster «ND(YYYY-YY)» parser bug** — reads the range START as a specific mint
-   year (120994 «ND(1618-22)» → 1618). Should emit a range + `year_verified: false`.
-   Potentially affects many NumisMaster coins. The 120994 fix is NOT re-absorb-durable
-   until this is fixed (120994 flows through the absorb seed_member branch which ignores
-   `_curation_holds`).
+1. **NumisMaster «ND(YYYY-YY)» parser — CODE FIXED, re-flow DEFERRED.** The parser bug
+   (reads the range START as a mint year: «ND(1618-22)» → 1618, because the structured
+   Date field collapses it AND parse_year_range drops the 2-digit end) is FIXED:
+   `parse_numismaster.extract_nd_range()` reads the ND(…) marker + `_complete_abbrev_year()`
+   completes the end (raising on a century-boundary rather than guessing), seed builder
+   sets `year_verified: false` for `undated` coins. 13 unit tests
+   (`tests/test_numismaster_nd_range.py`). Cache re-parsed → 45 ND records fixed
+   (submodule commit `8f9b0adaf`; 23 with corrected years incl. MC_101370's 14-year error).
+   **NOT re-flowed into seeds/finals** — the numismaster seeds are stale (2026-06-16), so
+   a re-seed bundles the 45-coin fix with ~3 weeks of builder drift (scope_note, nominal,
+   catalog) + a main-vs-pre1541 two-builder overlap (royal_holstein: 8502-line diff, only
+   43 of which are ND). A surgical ruamel patch reformats the whole file (serialization ≠
+   v2_seed_writer). NEXT: a COORDINATED numismaster re-seed (review the full drift +
+   reconcile the two builders) materialises the fix into seeds/finals. The one ND coin that
+   drove a fuss span (120994) is already fixed by hand.
 2. `normalise_ruler_name` returns None for all NON-Danish rulers → German dukes/counts
    never get the auto reign-flag (km-44 marked by hand + kept via _FOUNDATION_IMMUTABLE_FIELDS).
 3. N#278300 (Ernst III portrait Thaler) promoted to seed_unsorted after the split — needs
