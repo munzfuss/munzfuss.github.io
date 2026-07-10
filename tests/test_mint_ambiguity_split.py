@@ -4,16 +4,16 @@ Function under test (indirectly):
     scripts/lib/v2_seed_writer.py :: _apply_pre_write_hygiene
 
 When a seed source documents uncertainty between candidate mints via
-language markers («København eller Malmö», «Copenhagen or Malmö»,
+language markers («København eller Malmø», «Copenhagen or Malmø»,
 «Hamburg/Altona», «Berlin oder Frankfurt»), the seed builder should:
   1. Split the mint string into list-form
   2. Canonicalise each token (Copenhagen → Kopenhagen etc.)
   3. Set mint_verified=False so the (?) marker renders
 
 Real case: dk-galster-f1g-45 (Frederik I Nobel 1532) — Galster
-documents «København eller Malmö» (cataloguer uncertain between two
+documents «København eller Malmø» (cataloguer uncertain between two
 mints). Pre-fix: scalar string stored verbatim, rendered as raw text.
-Post-fix: list-form ['Kopenhagen', 'Malmö'] + mint_verified=False →
+Post-fix: list-form ['Kopenhagen', 'Malmø'] + mint_verified=False →
 (?) marker renders in table.
 
 Run via:
@@ -58,7 +58,7 @@ class TestDanishEllerMarker(unittest.TestCase):
         result, _ = _apply_pre_write_hygiene([c])
         self.assertIsInstance(result[0]["mint"], list)
         self.assertIn("Kopenhagen", result[0]["mint"])
-        self.assertIn("Malmö", result[0]["mint"])
+        self.assertIn("Malmø", result[0]["mint"])
         self.assertFalse(result[0]["mint_verified"],
                          "Ambiguous source mint must set mint_verified=False")
 
@@ -77,7 +77,7 @@ class TestEnglishOrMarker(unittest.TestCase):
     def test_copenhagen_or_malmo(self):
         c = coin(mint="Copenhagen or Malmø")
         result, _ = _apply_pre_write_hygiene([c])
-        self.assertEqual(set(result[0]["mint"]), {"Kopenhagen", "Malmö"})
+        self.assertEqual(set(result[0]["mint"]), {"Kopenhagen", "Malmø"})
         self.assertFalse(result[0]["mint_verified"])
 
     def test_copenhagen_mint_or_malmo(self):
@@ -86,7 +86,7 @@ class TestEnglishOrMarker(unittest.TestCase):
         result, _ = _apply_pre_write_hygiene([c])
         # Canonical form drops «Mint» suffix
         self.assertEqual(set(result[0]["mint"]),
-                         {"Kopenhagen", "Malmö"})
+                         {"Kopenhagen", "Malmø"})
         self.assertFalse(result[0]["mint_verified"])
 
 
@@ -107,7 +107,7 @@ class TestSlashSeparator(unittest.TestCase):
     def test_kobenhavn_slash_malmo(self):
         c = coin(mint="København/Malmø")
         result, _ = _apply_pre_write_hygiene([c])
-        self.assertEqual(set(result[0]["mint"]), {"Kopenhagen", "Malmö"})
+        self.assertEqual(set(result[0]["mint"]), {"Kopenhagen", "Malmø"})
         self.assertFalse(result[0]["mint_verified"])
 
     def test_glykstad_slash_altona(self):
