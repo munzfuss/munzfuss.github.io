@@ -49,6 +49,52 @@ timeline:
         de: 'Goldmark nach Münzgesetz 4. Dezember 1871: aus 1 Pfund (500 g) Feingold werden 139½ Zehnmarkstücke = 1395 Mark ausgeprägt, Feingehalt 900 ‰ · gemeinsamer Goldstandard des Deutschen Kaiserreichs mit der Reichsgründung 1871 · Goldnominale zu 5, 10 und 20 Mark (Kurant), Silber 2/3/5 Mark und Kupfer-Nickel als Scheidemünze · geprägt an acht Reichsmünzstätten (Berlin A, Hamburg J u. a.) · gilt biß zur Reichsbank-Goldsuspendierung 4. August 1914 zu Kriegsbeginn · formal abgelöst 1924 durch Reichsmark / Rentenmark'
         en: 'Goldmark under the Coinage Act of 4 December 1871: 139½ ten-Mark pieces = 1,395 Mark are struck from 1 Pfund (500 g) of fine gold at 900 ‰ · the common gold standard of the German Empire from the 1871 unification · gold 5, 10 and 20 Mark (Kurant), silver 2/3/5 Mark and copper-nickel as Scheidemünze · struck at eight imperial mints (Berlin A, Hamburg J and others) · in force until the Reichsbank gold-redemption suspension on 4 August 1914 at the start of the war · formally replaced in 1924 by the Reichsmark / Rentenmark'
         uk: 'Goldmark за Законом про монету 4 грудня 1871 р.: з 1 фунта (500 г) чистого золота карбують 139½ 10-Mark-Stück = 1395 Mark, проба 900 ‰ · спільний золотий стандарт Німецької імперії від обʼєднання 1871 р. · золото 5, 10 і 20 Mark (Kurant), срібло 2/3/5 Mark і мідно-нікель як Scheidemünze · карбування у восьми імперських монетних дворах (Берлін A, Гамбург J та ін.) · діє до призупинення Reichsbank золотого розміну 4 серпня 1914 р. на початку війни · формально замінено 1924 р. Reichsmark / Rentenmark'
+    # Context bars — German standards still IN CIRCULATION alongside the Goldmark
+    # after 1871, shown timeline-only (their fuss ids are NOT in fuss_order, so no
+    # coin-table section renders below). Only the circulation layer is shown
+    # (mint/status/sole hidden — these were no longer the official foot after 1871).
+    - id: 30_thaler
+      order: 2
+      label:
+        de: 30-Thaler-Fuß · Vereinsthaler
+        en: 30-Thaler-Fuß · Vereinsthaler
+        uk: 30-Thaler-Fuß · Vereinsthaler
+      small:
+        de: 16,67 g fein · Silber
+        en: 16.67 g fine · silver
+        uk: 16,67 г чистого · срібло
+      year_from: 1871
+      year_to: 1907
+      color_class: vt
+      hide_layers:
+        - {scope: anywhere, kind: mint}
+        - {scope: anywhere, kind: status}
+        - {scope: anywhere, kind: sole}
+      bar_title:
+        de: 'Vereinsthaler (30-Thaler-Fuß, Wiener Münzvertrag 1857): das silberne Kurantstück läuft nach der Reichsgründung neben der Goldmark weiter — der Einzelthaler zu 3 Mark bleibt gesetzliches Zahlungsmittel biß zur Demonetisierung durch das Bankgesetz 1907'
+        en: 'Vereinsthaler (30-Thaler-Fuß, Vienna Coinage Treaty 1857): the silver Kurant piece keeps circulating alongside the Goldmark after 1871 — the single Thaler at 3 Mark stays legal tender until demonetisation by the Bank Act of 1907'
+        uk: 'Vereinsthaler (30-Thaler-Fuß, Віденський монетний договір 1857): срібне повновагове карбування циркулює після заснування імперії поряд із Goldmark — одиничний талер = 3 Mark лишається законним платіжним засобом до демонетизації Bankgesetz 1907'
+    - id: vereinsgoldmuenze
+      order: 3
+      label:
+        de: Vereinsgoldmünze · Krone
+        en: Vereinsgoldmünze · Krone
+        uk: Vereinsgoldmünze · Krone
+      small:
+        de: 10,00 g fein · Gold
+        en: 10.00 g fine · gold
+        uk: 10,00 г чистого · золото
+      year_from: 1871
+      year_to: 1874
+      color_class: g
+      hide_layers:
+        - {scope: anywhere, kind: mint}
+        - {scope: anywhere, kind: status}
+        - {scope: anywhere, kind: sole}
+      bar_title:
+        de: 'Vereinsgoldmünze / Krone (Wiener Münzvertrag 1857): das Vereins-Goldstück zirkuliert nach 1871 kurz neben der Goldmark weiter, demonetisiert 1874'
+        en: 'Vereinsgoldmünze / Krone (Vienna Coinage Treaty 1857): the union gold piece briefly keeps circulating alongside the Goldmark after 1871, demonetised in 1874'
+        uk: 'Vereinsgoldmünze / Krone (Віденський монетний договір 1857): союзна золота монета недовго циркулює після 1871 поряд із Goldmark, демонетизована 1874'
 fuss_order:
   - reichsgoldmuenzfuss
   - seed_unsorted
