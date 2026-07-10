@@ -401,6 +401,26 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                     out[_fld] = _mv
                     break
 
+    # issuing_entity — subset-scalar → joint upgrade (2026-07-10). A foundation
+    # freezes issuing_entity verbatim (it is in _FOUNDATION_IMMUTABLE_FIELDS), so
+    # a foundation-reset final can carry a STALE SCALAR left over from before the
+    # coin's second mint / cross-entity joint was resolved. When that scalar is a
+    # SUBSET of a composed_of member's list-form (joint) issuing_entity — the
+    # merger's mint-derived value on the seed_unified bridge, which is
+    # authoritative AND strictly richer — adopt the joint. Fires ONLY for the
+    # subset case (S ∈ L, len(L) > 1), so a genuine commission strike (issuer ≠
+    # mint, S ∉ L) is left untouched; an explicit `issuing_entity` curation-hold
+    # also opts out. Fixes joint-mint finals whose immutable scalar hid the joint
+    # badge — c3h14 (Flensburg+Roskilde), c8h4a / c8h8ba / c8h8bb (Altona+Kbh).
+    _ie = out.get("issuing_entity")
+    _ie_holds = set(final_entry.get("_curation_holds") or [])
+    if isinstance(_ie, str) and "issuing_entity" not in _ie_holds:
+        for _m in members[1:]:
+            _mie = _m.get("issuing_entity")
+            if isinstance(_mie, list) and len(_mie) > 1 and _ie in _mie:
+                out["issuing_entity"] = list(_mie)
+                break
+
     # year_ranges UNION across members (D19), with a refresh path for
     # pure-absorbed foundations:
     # When `final_entry` is itself a `unified-*` foundation whose
