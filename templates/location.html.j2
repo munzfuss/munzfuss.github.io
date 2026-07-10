@@ -8,6 +8,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ tree.location.name|t(lang) }} · Müntzfüße</title>
+{# SEO: each language version of this location is self-canonical; hreflang
+   clusters the three (x-default → the English version). No redirects. #}
+<link rel="canonical" href="{{ base_url }}/{{ tree.location.id }}/{{ lang }}/">
+<link rel="alternate" hreflang="x-default" href="{{ base_url }}/{{ tree.location.id }}/en/">
+{% for l in languages -%}
+<link rel="alternate" hreflang="{{ l }}" href="{{ base_url }}/{{ tree.location.id }}/{{ l }}/">
+{% endfor -%}
 <link rel="icon" href="{{ base_url }}/assets/favicon.ico" sizes="any">
 <link rel="icon" href="{{ base_url }}/assets/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="{{ base_url }}/assets/favicon-192.png" type="image/png" sizes="192x192">
@@ -383,7 +390,7 @@
 
 
 <nav class="nav">
-  <a href="../../index.html">{{ ui_get('nav.home') }}</a>
+  <a href="{{ base_url }}/{% if lang != 'en' %}{{ lang }}/{% endif %}">{{ ui_get('nav.home') }}</a>
   <span style="color: var(--text-muted);">/</span>
   <strong>{{ tree.location.name|t(lang) }}</strong>
   <div class="switchers">

@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ ui_get('landing.title') }}</title>
+{# SEO: English is the default and lives at the site root («/»). The root and
+   «/en/» render identically and both canonicalise to «/»; «/de/» and «/uk/»
+   are self-canonical. hreflang clusters the four URLs (x-default + en → root). #}
+<link rel="canonical" href="{{ base_url }}/{% if lang != 'en' %}{{ lang }}/{% endif %}">
+<link rel="alternate" hreflang="x-default" href="{{ base_url }}/">
+{% for l in languages -%}
+<link rel="alternate" hreflang="{{ l }}" href="{{ base_url }}/{% if l != 'en' %}{{ l }}/{% endif %}">
+{% endfor -%}
 <link rel="icon" href="{{ base_url }}/assets/favicon.ico" sizes="any">
 <link rel="icon" href="{{ base_url }}/assets/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="{{ base_url }}/assets/favicon-192.png" type="image/png" sizes="192x192">
@@ -36,7 +44,7 @@
         {%- if l == lang -%}
           <a class="active">{{ l|upper }}</a>
         {%- else -%}
-          <a href="../{{ l }}/">{{ l|upper }}</a>
+          <a href="{{ base_url }}/{% if l != 'en' %}{{ l }}/{% endif %}">{{ l|upper }}</a>
         {%- endif -%}
       {%- endfor %}
     </div>
@@ -53,7 +61,7 @@
 <div class="loc-grid">
   {% for loc in locations %}
   {% set is_seed = (seed_ids is defined) and (loc.id in seed_ids) %}
-  <a class="loc-card{% if is_seed %} loc-card--seed{% endif %}" href="../../{{ loc.id }}/{{ lang }}/">
+  <a class="loc-card{% if is_seed %} loc-card--seed{% endif %}" href="{{ base_url }}/{{ loc.id }}/{{ lang }}/">
     <h3>{{ loc.name|t(lang) }}</h3>
     {% if is_seed %}<span class="loc-seed-tag">{{ ui_get('landing.seed_tag') }}</span>{% endif %}
     <p>{{ loc.summary|t(lang) }}</p>

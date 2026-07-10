@@ -1443,38 +1443,23 @@ def build_landing(
         with open(out_dir / "index.html", "w", encoding="utf-8") as f:
             f.write(html)
         print(f"🏠 Landing: {out_dir.relative_to(REPO_ROOT)}/index.html")
+        # English is the site default and ALSO lives at the root «/» — served
+        # directly, NOT via a redirect (a redirect from «/» is bad for a googled
+        # resource: the root URL never accumulates ranking and bots see a bounce
+        # instead of content). The English landing render is path-independent
+        # (base_url-absolute links) and canonicalises to «/», so the SAME HTML is
+        # written byte-identical to «/en/» and «/». «/en/» stays as a canonical
+        # duplicate (→ «/») so existing /en/ links never 404. See landing.html.j2.
+        if lang == "en":
+            with open(root / "index.html", "w", encoding="utf-8") as f:
+                f.write(html)
+            print(f"🏠 Landing (root default): {(root / 'index.html').relative_to(REPO_ROOT)}")
 
-    # Root index.html — language redirect.
-    # Priority: 1) lang cookie set by app.js on previous visit
-    #           2) browser preference (navigator.language)
-    #           3) fallback to 'en'
-    # The redirect-base prefix is `(base_url + output_root-suffix)`:
-    # for the V2 default landing root=SITE_DIR → empty suffix; for the
-    # V1 landing root=SITE_DIR/v1 → suffix «/v1». Tooltip on each click
-    # in app.js still works because output is per-tree.
-    root = output_root if output_root is not None else SITE_DIR
-    rel_root_suffix = ""
-    if output_root is not None and output_root != SITE_DIR:
-        rel_root_suffix = "/" + output_root.relative_to(SITE_DIR).as_posix()
-    redirect_base = base_url + rel_root_suffix
-    root_html = f"""<!DOCTYPE html><html><head>
-<meta charset="UTF-8">
-<title>Müntzfüße</title>
-<script>
-const base = {redirect_base!r};
-const langs = ['de', 'en', 'uk'];
-const m = document.cookie.match(/(?:^|;\\s*)lang=([a-z]{{2}})/);
-const cookieLang = m ? m[1] : null;
-const browserLang = (navigator.language || 'en').slice(0, 2).toLowerCase();
-let target = 'en';
-if (langs.includes(cookieLang)) target = cookieLang;
-else if (langs.includes(browserLang)) target = browserLang;
-window.location.replace(base + '/' + target + '/');
-</script>
-<noscript><meta http-equiv="refresh" content="0; url={redirect_base}/en/"></noscript>
-</head><body><p>Loading… <a href="{redirect_base}/en/">English</a> · <a href="{redirect_base}/de/">Deutsch</a> · <a href="{redirect_base}/uk/">Українська</a></p></body></html>"""
-    with open(root / "index.html", "w", encoding="utf-8") as f:
-        f.write(root_html)
+    # No language-redirect page at «/». The root «/index.html» IS the English
+    # landing, written directly in the per-language loop above (root default =
+    # en). Serving content at «/» instead of bouncing is better for SEO; the
+    # canonical + hreflang tags (landing.html.j2) cluster the language versions
+    # and consolidate «/en/» → «/».
 
 
 def generate_assets(theme: dict) -> None:
