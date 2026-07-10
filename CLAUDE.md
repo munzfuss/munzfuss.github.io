@@ -91,7 +91,7 @@ This rule complements §0 (no invention). §0 forbids unsourced claims in the re
 
 2. **The user (Serhii).** Audience for: chat replies in this conversation, questions about ambiguous data, choice-points where direction is needed. The user is an expert numismatist and the project's principal researcher; he decides what is investigated and what gets shipped. He sees this chat only — never the AI-internal scaffolding, never the rendered artefact (those are separate channels). When writing to him: be direct, propose options when there's genuine choice, surface findings concisely, and never narrate effort («let me search…», «I'll now…»). Ukrainian, ти-form, expert register.
 
-3. **The end-reader.** Audience for: every byte that lands inside `data/locations/*.yml`, `data/shared/*.yml`, `data/i18n/*.yml`, the rendered HTML on the per-location pages and landing, the references files. This is a numismatist or historian using the artefact as a finished reference work. **They never see the chat, never see the commits, never see the project's internal classification decisions.** Their experience is exclusively the rendered page. They want a polished encyclopaedic article: facts, sourced; mathematics, verified; period-correct typography; no mention of «we», «our taxonomy», «our card», «this artefact», «classification pending», or any other process artefact.
+3. **The end-reader.** Audience for: every byte that lands inside `data/v2/final/*.yml`, `data/v2/locations/*.yml`, `data/shared/*.yml`, `data/i18n/*.yml`, `data/locations/*-references.yml`, the rendered HTML on the per-location pages and landing, the references files. This is a numismatist or historian using the artefact as a finished reference work. **They never see the chat, never see the commits, never see the project's internal classification decisions.** Their experience is exclusively the rendered page. They want a polished encyclopaedic article: facts, sourced; mathematics, verified; period-correct typography; no mention of «we», «our taxonomy», «our card», «this artefact», «classification pending», or any other process artefact.
 
 **The most common mis-targeting failure on this project:** project-internal rationale or analyst-deliberation written into role-3 surfaces (the rendered artefact). Examples that have actually slipped through and had to be cleaned up:
 
@@ -375,7 +375,7 @@ Forms accepted (use whichever fits the underlying work's pagination scheme):
 - Marketing / institutional fluff («the world's largest collection insured for 500 m DKK»).
 
 **Numbering and migration:**
-- Existing `ref{N}` ids are stable. When splitting a bundled ref into atomic sources, keep the lowest existing number with the dominant source and **append the new atomic refs at the end of the file** (next free `ref{N+1}`, `ref{N+2}`, …). Never renumber existing entries — every inline `<sup><a href="#ref{N}">` in `data/locations/*.yml` and `data/shared/fuesse.yml` would silently break.
+- Existing `ref{N}` ids are stable. When splitting a bundled ref into atomic sources, keep the lowest existing number with the dominant source and **append the new atomic refs at the end of the file** (next free `ref{N+1}`, `ref{N+2}`, …). Never renumber existing entries — every inline `<sup><a href="#ref{N}">` in `data/v2/**` prose (`final/`, `locations/`) and `data/shared/fuesse.yml` would silently break.
 - When you split a bundle, update the inline citation in the prose to a stack of the new atomic refs at the same position: a single `<sup>[35]</sup>` becomes e.g. `<sup>[35][39][40]</sup>`.
 - When you trim analysis out of a ref body, the analysis usually already exists in the prose that cites the ref (the ref body was a duplicate). If it doesn't, move the analysis into the citing prose; never leave it in the ref slot.
 
@@ -412,7 +412,7 @@ The build's post-render pass (`scripts/lib/refs_pool.py::process_html`):
 - Pulling display number from key (e.g. `ref:42` is forbidden) — confusing; use semantic key.
 - Inlining a single ref under multiple keys — one source = one key.
 
-**Migration status (as of 2026-05-25):** 18 cites migrated (entire `fuesse.yml::courantdukatenfuss` block + V1 + V2 `denmark.yml::fuss_periods.courantdukatenfuss.hintergrund`). Remaining ~164 cites in fuesse.yml + N location-yml cites stay on legacy `<sup>[N]</sup>` system until incrementally migrated. Both systems coexist on the rendered page (legacy refs numbered 1..max, pool refs numbered max+1..max+M).
+**Migration status (as of 2026-05-25):** 18 cites migrated (entire `fuesse.yml::courantdukatenfuss` block + `data/v2/locations/denmark.yml::fuss_periods.courantdukatenfuss.hintergrund`). Remaining ~164 cites in fuesse.yml + N location-yml cites stay on legacy `<sup>[N]</sup>` system until incrementally migrated. Both systems coexist on the rendered page (legacy refs numbered 1..max, pool refs numbered max+1..max+M).
 
 ### 6. Kurantmünze vs. Scheidemünze distinction
 
@@ -430,7 +430,7 @@ In `coin.kind`: one of `kurant | scheide | tarif | gedenk`. Build script renders
 
 ### 7a. Münzfuß description scope — SYSTEM, not specimens
 
-> **A Müntzfuß description (or phase background, timeline bar_title, closing prose, hintergrund) documents the monetary standard as a system — never individual physical coins.** This applies to every prose surface that names the Müntzfuß: `data/shared/fuesse.yml::<fuss>.description / .closing / .pdate_label`, and the per-location `fuss_periods.<fuss>.hintergrund / .closing / .bar_title` blocks in `data/v2/locations/<loc>.yml` and `data/locations/<loc>.yml`.
+> **A Müntzfuß description (or phase background, timeline bar_title, closing prose, hintergrund) documents the monetary standard as a system — never individual physical coins.** This applies to every prose surface that names the Müntzfuß: `data/shared/fuesse.yml::<fuss>.description / .closing / .pdate_label`, and the per-location `fuss_periods.<fuss>.hintergrund / .closing / .bar_title` blocks in `data/v2/locations/<loc>.yml`.
 
 **The four canonical pillars of a Fuß description:**
 
@@ -658,14 +658,23 @@ Reference implementations:
 What a session edits by hand:
 
 ```
-data/shared/fuesse.yml            # Münzfüße definitions (global)
-data/locations/<loc>.yml          # Per-location: phases + coins (inline i18n)
-data/locations/<loc>-references.yml   # Bibliography sidecar
-data/i18n/{ui,issuing_entities}.yml   # UI strings + entity metadata
+data/shared/fuesse.yml               # Münzfüße definitions (global)
+data/v2/locations/<loc>.yml          # Per-location DISPLAY: phases + fuss_periods + timeline
+                                     #   (NO coins — those are assembled from entity files at build time)
+data/v2/merge_decisions/<entity>.yml         # Curator surface: cross-source coin merges / splits
+data/v2/classification_decisions/<entity>.yml # Curator surface: fuss / phase / kind assignments
+data/locations/<loc>-references.yml  # Bibliography sidecar (legacy <sup>[N]</sup> refs; shared with V2)
+data/shared/refs_pool.yml            # Inline-refs pool (stable-key <sup>[ref:KEY]</sup> cites)
+data/i18n/{ui,issuing_entities}.yml  # UI strings + entity metadata
 
-config/theme.yml                  # Colors, typography, dimensions
-templates/{landing,location}.html.j2  # Jinja2 templates
+config/theme.yml                     # Colors, typography, dimensions
+templates/{landing,location}.html.j2 # Jinja2 templates
 ```
+
+Coin fields are **not** hand-edited — the V2 pipeline assembles coins from
+`data/v2/{seed,seed_unified,final}/<entity>.yml`; curator input is the three
+decision surfaces above (+ `data/i18n/issuing_entities.yml`). See the V2
+pipeline note at the top of this file.
 
 The build pipeline is **`scripts/build.py`** + `scripts/lib/*` (read-only for normal data edits — see ARCHITECTURE.md §«Build script» if you need to modify). **`scripts/cache/`** is a git submodule (`munzfuss-harvest` private repo) holding raw + parsed fetches; the build does NOT read it — only fetchers / parsers / audits / maintenance scripts do (see «Harvest cache» below). **`site/`** is gitignored build output — never hand-edit; fixes belong in templates or data.
 
@@ -869,11 +878,21 @@ Three tiers under `scripts/` picked by recurrence pattern (active build path / l
 
 ## Data editing workflow
 
-1. Edit the relevant YAML file (e.g., add a coin to `data/locations/schleswig_holstein.yml`)
-2. Run `python scripts/build.py --validate-only` locally to catch schema errors
-3. Optionally `python scripts/build.py --location schleswig_holstein --lang de` to preview
-4. Commit + push
-5. GitHub Actions rebuilds and deploys (~1 min)
+Coins are not hand-added — they flow through the V2 pipeline (harvest → seed →
+merge → classify). A typical edit is one of:
+  - **Display / prose**: `data/v2/locations/<loc>.yml` (phases, fuss_periods, timeline)
+    or `data/shared/fuesse.yml` (Müntzfuß definitions).
+  - **A coin's fuss / phase / kind**: an assignment in
+    `data/v2/classification_decisions/<entity>.yml`, then
+    `scripts/maintenance/absorb_seeds_into_final_v2.py --entity <e> --apply`.
+  - **A cross-source merge / split**: a decision in
+    `data/v2/merge_decisions/<entity>.yml`, then the merger + absorb re-run.
+
+Then:
+1. `python scripts/build.py --validate-only` locally to catch schema errors
+2. Optionally `python scripts/build.py --location schleswig_holstein --lang de` to preview
+3. Commit (atomic, pathspec per the Git-safety protocol)
+4. GitHub Actions rebuilds and deploys (~1 min) on push
 
 ## i18n policy
 
