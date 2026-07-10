@@ -3482,7 +3482,8 @@ coins:
   kind: kurant
   nominal: 20 Lei
   ruler: Karl
-  issuing_entity: hanseatic_hamburg
+  issuing_entity: romania
+  entity_classified_via: manual
   id: unified-ikmk-18222024
   year_first: 1883
   year_last: 1883
@@ -3509,6 +3510,15 @@ coins:
     ref: IKMK Berlin 18222024
   inscription_obv: CAROL I REGE AL ROMANIEI
   verification_note: *id001
+  _curation_holds:
+    issuing_entity: "Auftragsprägung (contract minting). The obverse legend «CAROL
+      I REGE AL ROMANIEI» attributes this 20-Lei gold to the Kingdom of Romania;
+      Hamburg was only the mint. Entity reassigned romania (was hanseatic_hamburg).
+      The coin STAYS in this file on purpose — romania is out-of-scope with no
+      romania.yml (out_of_scope: true in issuing_entities.yml, audit I1 exempt);
+      the assembly's issuing-entity intersection filter keeps it off the German
+      pages. Do NOT let regen re-key it to hanseatic_hamburg from the seed."
+    entity_classified_via: "manual — curator-assigned per the Romanian obverse legend."
   composed_of:
   - unified-ikmk-18222024
 - fuss: seed_unsorted

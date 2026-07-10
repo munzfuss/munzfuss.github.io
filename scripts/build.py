@@ -809,6 +809,24 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
                 continue
             if coin.get("promoted_to"):
                 continue
+            # Foreign-issuer guard: a coin filed in this entity's file whose OWN
+            # issuing_entity does not intersect the page's consumed entities does
+            # NOT belong on this page — e.g. a Romanian 20-Lei struck on contract
+            # (Auftragsprägung) in Hamburg (issuing_entity: romania) sits in
+            # hanseatic_hamburg.yml by mint but is issued by Romania, which no
+            # German page consumes. This applies the same issuing-entity
+            # intersection rule Pass 2 + the seed pass already enforce (lines
+            # below), using the RAW issuing_entity — NOT the mint-realm-derived
+            # one: the derivation only WIDENS danish_realm crown coins onto the
+            # SH page (Pass 2) and must never NARROW a file-resident coin off its
+            # own entity's page. A coin with no issuing_entity is kept (can't
+            # decide → keep). Zero-regression by construction: every coin living
+            # in file `ent` has `ent` in its raw issuing_entity, and `ent` is in
+            # consumes_set, so the intersection is non-empty for all but genuinely
+            # foreign contract-mintings.
+            raw_ie = set(_normalise_ie_to_list(coin.get("issuing_entity")))
+            if raw_ie and not (raw_ie & consumes_set):
+                continue
             rc = _resolve_dict_fields_per_location(coin, loc_id, km_register)
             rc["issuing_entity"] = _derive_issuing_entity(rc)
             assembled.append(rc)

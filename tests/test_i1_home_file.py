@@ -69,12 +69,29 @@ class TestOverlapPriority(unittest.TestCase):
         self.assertTrue(_A.check_i1_home_file(
             [("danish_realm", {"id": "x", "issuing_entity": []})], set()))
 
+    def test_out_of_scope_entity_exempt(self):
+        # A foreign contract-minting (issuing_entity 'romania') filed in the
+        # German mint's entity file is a violation UNLESS romania is passed as
+        # out-of-scope (no romania.yml by design — see issuing_entities.yml
+        # `out_of_scope: true`). Then the home-file rule does not apply.
+        coin = {"id": "x", "issuing_entity": "romania"}
+        self.assertTrue(_A.check_i1_home_file([("hanseatic_hamburg", coin)], set()))
+        self.assertEqual(
+            _A.check_i1_home_file([("hanseatic_hamburg", coin)], set(), {"romania"}), [])
+
+
+def _live_out_of_scope():
+    registry = _A._load_yaml(_A.I18N_ENTITIES)
+    return {k for k, v in registry.items()
+            if isinstance(v, dict) and v.get("out_of_scope")}
+
 
 class TestLiveDataConformant(unittest.TestCase):
     def test_all_live_coins_pass_i1(self):
         coins = _A._all_v2_final_coins() + _A._all_v2_unified_coins()
         self.assertTrue(coins, "no V2 coins loaded")
-        errs = _A.check_i1_home_file(coins, set())
+        # Mirror main(): exempt out-of-scope fileless entities (romania etc.).
+        errs = _A.check_i1_home_file(coins, set(), _live_out_of_scope())
         self.assertEqual(errs, [], f"{len(errs)} I1 violations: {errs[:5]}")
 
 

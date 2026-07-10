@@ -354,3 +354,26 @@ grafschaft_schaumburg:
     de: 'Niedersächsische Stammgrafschaft der Schauenburger Linie (heute Landkreis Schaumburg) mit den Müntzstätten Stadthagen, Bückeburg, Rinteln und Oldendorf. Geprägt wurde in der Tradition des Niedersächsischen Reichskreises zu 36 Mariengroschen auf den Reichsthaler — Mariengroschen, Fürstengroschen und Arendschilling. Die holsteinische Hälfte der Schauenburger Lande (Grafschaft Pinneberg) bildet die eigene Grafschaft Holstein-Schaumburg-Pinneberg; beide Teile wurden 1601-1622 unter Ernst III. gemeinsam regiert, die Linie erlosch 1640 mit Otto V.'
     en: 'Lower Saxon ancestral county of the Schauenburg line (today Landkreis Schaumburg) with the mints at Stadthagen, Bückeburg, Rinteln and Oldendorf. Coinage followed the Lower Saxon Imperial Circle''s tradition of 36 Mariengroschen to the Reichsthaler — Mariengroschen, Fürstengroschen and Arendschilling. The Holstein half of the Schauenburg lands (County of Pinneberg) forms the separate County of Holstein-Schauenburg-Pinneberg; both parts were ruled jointly by Ernst III in 1601-1622, the line dying out in 1640 with Otto V.'
     uk: 'Нижньосаксонське родове графство династії Шауенбург (сучасний Landkreis Шаумбург) з монетними дворами Stadthagen, Bückeburg, Rinteln та Oldendorf. Карбування велося за традицією Нижньосаксонського імперського округу — 36 Mariengroschen на Reichsthaler: Mariengroschen, Fürstengroschen та Arendschilling. Гольштейнська половина шауенбурзьких земель (графство Піннеберг) утворює окреме графство Гольштейн-Шауенбург-Піннеберг; обидві частини правилися спільно Ернстом III у 1601-1622 рр., лінія згасла 1640 р. з Отто V.'
+
+# ---------------------------------------------------------------------------
+# Out-of-scope foreign issuers. A coin struck in a German mint on contract
+# (Auftragsprägung) but ISSUED by a foreign state is attributed to its real
+# issuer here, so the assembly's issuing-entity intersection guard keeps it
+# off the German location pages. These entities have no location page of their
+# own — nothing `consumes` them, so their coins render nowhere.
+# ---------------------------------------------------------------------------
+romania:
+  out_of_scope: true   # foreign issuer, no romania.yml by design (audit I1 exempt)
+  abbrev: RO
+  name:
+    de: Königreich Rumänien
+    en: Kingdom of Romania
+    uk: Королівство Румунія
+  short:
+    de: Rumänien
+    en: Romania
+    uk: Румунія
+  description:
+    de: Königreich Rumänien (ab 1881). Die 20-Lei-Goldmünze Carols I. wurde 1883 in Hamburg geschlagen.
+    en: Kingdom of Romania (from 1881). The 20-Lei gold coin of Carol I was struck in Hamburg in 1883.
+    uk: Королівство Румунія (від 1881). Золоту монету 20 леїв Кароля I карбовано в Гамбурзі 1883 року.

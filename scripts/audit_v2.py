@@ -131,14 +131,22 @@ def _all_v2_seed_coins() -> list[tuple[str, str, dict]]:
 # ---------------------------------------------------------------------------
 
 
-def check_i1_home_file(coins: list[tuple[str, dict]], known_entities: set[str]
+def check_i1_home_file(coins: list[tuple[str, dict]], known_entities: set[str],
+                       out_of_scope: frozenset[str] | set[str] = frozenset()
                        ) -> list[str]:
     """I1 — home-file rule. Every coin lives in the entity file chosen by the
     pipeline's `_home_entity(coin)` (overlap-priority: an issuing_entity
     containing `royal_holstein` homes to royal_holstein.yml so BOTH consuming
     location pages pick it up via robust Pass-1 assembly; else alphabetically-
     first). The function is imported from `lib.v2_seed_writer`, NOT
-    re-implemented, so the audit and the seed-writer can never drift."""
+    re-implemented, so the audit and the seed-writer can never drift.
+
+    `out_of_scope` — entity tags flagged `out_of_scope: true` in
+    issuing_entities.yml (foreign issuers with no `<entity>.yml` by design, e.g.
+    romania). A coin whose home resolves to one of these is EXEMPT from the
+    rule: it stays in the German mint's entity file and is filtered off the
+    German pages by the assembly's issuing-entity intersection, so requiring a
+    (deliberately absent) home file would be wrong."""
     errors: list[str] = []
     for entity_id, c in coins:
         if entity_id.startswith("_"):
@@ -161,6 +169,12 @@ def check_i1_home_file(coins: list[tuple[str, dict]], known_entities: set[str]
                 f"I1: coin {c.get('id')!r} in {entity_id}.yml — cannot determine "
                 f"home entity from issuing_entity {ie!r}"
             )
+            continue
+        if home in out_of_scope:
+            # Out-of-scope foreign issuer (romania etc.): no <home>.yml exists by
+            # design. The coin — a contract-minting struck in a German mint —
+            # stays in the mint's entity file and is kept off the German pages by
+            # the assembly's issuing-entity intersection filter. Home-file rule N/A.
             continue
         if home != entity_id:
             errors.append(
@@ -488,7 +502,10 @@ def main() -> int:
     final_coins = _all_v2_final_coins()
     unified_coins = _all_v2_unified_coins()
     seed_coins = _all_v2_seed_coins()
-    known_entities = set(_load_yaml(I18N_ENTITIES).keys())
+    _ent_registry = _load_yaml(I18N_ENTITIES)
+    known_entities = set(_ent_registry.keys())
+    out_of_scope = {k for k, v in _ent_registry.items()
+                    if isinstance(v, dict) and v.get("out_of_scope")}
 
     print(f"Inputs:")
     print(f"  V2 final coins:    {len(final_coins)}")
@@ -500,7 +517,7 @@ def main() -> int:
     results: dict[str, list[str]] = {}
 
     print("Running I1 (home-file rule)...")
-    results["I1"] = check_i1_home_file(final_coins + unified_coins, known_entities)
+    results["I1"] = check_i1_home_file(final_coins + unified_coins, known_entities, out_of_scope)
     print(f"  {len(results['I1'])} violation(s)")
 
     print("Running I2 (bidirectional link integrity)...")
