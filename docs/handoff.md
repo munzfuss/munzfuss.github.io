@@ -15,6 +15,47 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-10 — denmark_pre_1541 unification (NumisMaster _pre1541 pipeline retired)
+
+> **UNPUSHED — push pending «пуш».** Commits (newest first): `c760e4f` cache
+> pointer bump · `6638351` data re-flow · `c9220e9` code+docs retirement. Plus
+> a submodule commit `1b00a12` (cache scope deletion). Working tree clean,
+> full build exit 0, preview (port 3000) rebuilt.
+
+**What.** `denmark_pre_1541` was never an entity/location/issuing_entity — only
+a legacy NumisMaster harvest **sub-scope** (3 MCs) with its own parser+builder,
+which duplicated coins the MAIN sub-scope already covers. Retired it:
+- Deleted `scripts/parse_numismaster_pre1541.py` +
+  `scripts/maintenance/build_numismaster_pre1541_seed.py` (both generalised long
+  ago into the sub-scope-aware `parse_numismaster.py` + merge-aware
+  `build_numismaster_seed.py`); dropped `denmark_pre_1541` from
+  `parse_numismaster.py` KNOWN_SUB_SCOPES + the `harvest_coverage.py` numismaster loop.
+- Removed the 3 `dk-numismaster-167727/167729/167745` seed entries from
+  `data/v2/seed/numismaster/royal_holstein.yml` + refreshed its stale §AZ header
+  to the §BK main-builder scope_note (dropped `scope_year_from/to` — the pre1541
+  fingerprint). Deleted the `scripts/cache/numismaster/denmark_pre_1541/` scope
+  (submodule; the 3 MCs live in `schleswig_holstein/` with raw .html + parsed).
+- Re-merged + re-absorbed royal_holstein: the 3 unified clusters lost the dk
+  member and re-keyed onto the main-scope head (167727 → `unified-dk-numista-309411`
+  [+ sh-numismaster-167727]; 167729/167745 → `unified-schleswig_holstein-numismaster-*`).
+  All 3 stayed seed_unsorted → 0 curation lost; final 903→903 (exact 3-for-3 re-key,
+  verified by id-diff; cross-entity pulls intact; sh-167745 gained Fr 16).
+
+**This ALSO closed the «two-builder overlap» half of systemic follow-up #1**
+(NumisMaster ND re-flow): royal_holstein no longer has a main-vs-pre1541 builder
+clash — only ONE numismaster builder writes it now. The coordinated re-seed still
+needs to review ~3 weeks of builder drift, but no longer has to reconcile two builders.
+
+**LEFT for a user decision (reported in chat).** The **numista** `denmark_pre_1541`
+is a DIFFERENT thing and is ALREADY data-unified: `build_numista_seed.py` reads a
+flat `scripts/cache/numista/parsed/*.json` dir (not a per-scope bucket) and seeds
+those 56 coins to their proper entities — there is NO numista data split. Only dormant
+scaffolding remains: `scripts/fetch_numista_pre1541.py` + `scripts/parse_numista_pre1541.py`
++ the raw cache dir `scripts/cache/numista/denmark_pre_1541/` (56 coins, harvest
+provenance). Not touched — lower value, higher risk (deleting the raw dir loses
+harvest provenance for coins whose parsed sidecars are still consumed). Ask the user
+whether to also retire that dormant numista scaffolding.
+
 ## 2026-07-09 (later) — Phase-filter fix SHIPPED + reign-span model + coin cleanup
 
 > **UNPUSHED — push pending «пуш».** This session's commits (newest first):
@@ -89,8 +130,9 @@ read as a mint year; corrected to 1622 per Numista N#151529). Only remaining SH 
    (submodule commit `8f9b0adaf`; 23 with corrected years incl. MC_101370's 14-year error).
    **NOT re-flowed into seeds/finals** — the numismaster seeds are stale (2026-06-16), so
    a re-seed bundles the 45-coin fix with ~3 weeks of builder drift (scope_note, nominal,
-   catalog) + a main-vs-pre1541 two-builder overlap (royal_holstein: 8502-line diff, only
-   43 of which are ND). A surgical ruamel patch reformats the whole file (serialization ≠
+   catalog). (The main-vs-pre1541 two-builder overlap that made this worse was RESOLVED
+   2026-07-10 — the pre1541 builder is retired; only one numismaster builder writes
+   royal_holstein now.) A surgical ruamel patch reformats the whole file (serialization ≠
    v2_seed_writer). NEXT: a COORDINATED numismaster re-seed (review the full drift +
    reconcile the two builders) materialises the fix into seeds/finals. The one ND coin that
    drove a fuss span (120994) is already fixed by hand.
