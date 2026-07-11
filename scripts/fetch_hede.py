@@ -83,10 +83,16 @@ def _try_fetch(opener, url: str, timeout: int = 30) -> str | None:
     """Fetch URL; return text on 200, None on 404 / errors."""
     try:
         body = opener.open(url, timeout=timeout).read()
+        # danskmoent.dk serves ISO-8859-1 with no declared charset. Decode
+        # strict UTF-8 first (a genuinely-UTF-8 page round-trips cleanly); on
+        # the first non-UTF-8 byte fall back to Latin-1. NEVER decode with
+        # errors="replace" before saving — "replace" silently bakes U+FFFD
+        # over every raw æ/ø/å byte (0xE6/0xF8/0xE5) and destroys it, so the
+        # cached .htm can no longer be re-parsed back to the correct letter.
         try:
-            return body.decode("utf-8", "replace")
-        except Exception:
-            return body.decode("iso-8859-1", "replace")
+            return body.decode("utf-8")
+        except UnicodeDecodeError:
+            return body.decode("iso-8859-1")
     except urllib.error.HTTPError as exc:
         if exc.code == 404:
             return None

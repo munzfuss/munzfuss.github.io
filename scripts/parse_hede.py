@@ -1164,11 +1164,12 @@ def _parse_header(html: str) -> dict:
         # «u. år (YYYY)» fragment from the nominal so the nominal
         # comes out clean.
         line = parts[1]
-        # Normalise the U+FFFD mojibake that appears when the cached
-        # HTML has a non-UTF-8 byte (real cases: «3 Dukat U. �r
-        # (1699)» on f4h1). The å-char never survives the round-trip
-        # of an iso-8859-1 page decoded as utf-8, leaving �.
-        line = line.replace("�", "å")
+        # (Former U+FFFD→å band-aid removed 2026-07-11: it wrongly guessed
+        # EVERY mojibake was å — the corruption also hit æ/ø — and it only
+        # covered the nominal line, never description/raw_text. Root-fixed at
+        # source: fetch_hede now decodes ISO-8859-1 strictly instead of
+        # utf-8+replace, so the cache no longer bakes U+FFFD. Re-harvest the
+        # 272 affected pages after this change.)
         undated = re.search(r"\bu\.?\s*å?r\.?\s*\(\s*(\d{4})\s*\)", line, re.IGNORECASE)
         if undated:
             out.setdefault("years", _extract_years(undated.group(1)))
