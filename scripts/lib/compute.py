@@ -76,6 +76,19 @@ class DisplayGroup:
                                           # would otherwise collapse to identical
                                           # text (None → use template-default
                                           # precision)
+    anchor_key: str | None = None  # GROUNDWORK (not yet rendered): a stable
+                                   # per-specimen join key = the WEIGHT source(s)
+                                   # this reading is anchored to. For the weight
+                                   # column it is the weight source itself; for
+                                   # the DERIVED columns (weight_fein, delta) it
+                                   # is the SAME weight source the value was
+                                   # computed from — NOT the combined
+                                   # «weight×fineness» derived_source label — so
+                                   # a future renderer can align weight ↔ chiста
+                                   # ↔ Δ into correlated sub-rows by matching
+                                   # anchor_key instead of relying on list
+                                   # position. «|»-joined + sorted when a group
+                                   # merges several deduped readings.
 
 
 def _natural_decimals(value: float, lo: int, hi: int) -> int:
@@ -124,16 +137,23 @@ def make_display_groups(
     # fineness (precision=3) → grouped at 5; diameter (precision=1)
     # → grouped at 3.
     group_precision = precision + 2
-    groups: dict[float, list[tuple[float, str | None]]] = {}
+    # Members carry (value, source, anchor). `pairs` may be 2-tuples
+    # (value, source) — then the anchor defaults to the reading's own
+    # source — or 3-tuples (value, source, anchor) where the caller
+    # supplies a distinct join anchor (the DERIVED columns pass the
+    # WEIGHT source here so weight ↔ derived columns share one key).
+    groups: dict[float, list[tuple[float, str | None, str | None]]] = {}
     order: list[float] = []
-    for v, src in pairs:
+    for p in pairs:
+        v, src = p[0], p[1]
+        anchor = p[2] if len(p) > 2 else src
         if v is None:
             continue
         key = round(v, group_precision)
         if key not in groups:
             groups[key] = []
             order.append(key)
-        groups[key].append((v, src))
+        groups[key].append((v, src, anchor))
 
     is_unanimous = len(order) == 1
     out: list[DisplayGroup] = []
@@ -141,15 +161,21 @@ def make_display_groups(
         members = groups[key]
         canonical = members[0][0]
         srcs: list[str] = []
-        for _, src in members:
-            if not src:
-                continue
-            for tok in src.split("\n"):
-                tok = tok.strip()
-                if tok and tok not in srcs:
-                    srcs.append(tok)
+        anchors: list[str] = []
+        for _, src, anch in members:
+            if src:
+                for tok in src.split("\n"):
+                    tok = tok.strip()
+                    if tok and tok not in srcs:
+                        srcs.append(tok)
+            if anch:
+                for tok in anch.split("\n"):
+                    tok = tok.strip()
+                    if tok and tok not in anchors:
+                        anchors.append(tok)
         out.append(DisplayGroup(value=canonical, sources=srcs,
-                                is_unanimous=is_unanimous))
+                                is_unanimous=is_unanimous,
+                                anchor_key=("|".join(sorted(anchors)) or None)))
 
     # Display-decimals (§3 — never round a source reading below its own
     # precision). Show every value at the MAX natural precision across the
@@ -862,13 +888,16 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
 
     # Derived Feingewicht groups: build (value, source) pairs from
     # primary + per-source alts, then group at 5-decimal precision.
-    fein_pairs: list[tuple[float, str | None]] = []
-    delta_pairs: list[tuple[float, str | None]] = []
+    # (value, derived_source_label, anchor_weight_source) — the 3rd element is
+    # the WEIGHT source the derived value is anchored to (== the join key that
+    # matches the weight column's own source), NOT the combined derived label.
+    fein_pairs: list[tuple[float, str | None, str | None]] = []
+    delta_pairs: list[tuple[float, str | None, str | None]] = []
     impl_pairs: list[tuple[float, str | None, float]] = []  # (value, src, delta_pct)
     if cc.weight_fein_g is not None:
-        fein_pairs.append((cc.weight_fein_g, cc.primary_derived_source))
+        fein_pairs.append((cc.weight_fein_g, cc.primary_derived_source, cc.primary_weight_source))
     if cc.delta_g is not None:
-        delta_pairs.append((cc.delta_g, cc.primary_derived_source))
+        delta_pairs.append((cc.delta_g, cc.primary_derived_source, cc.primary_weight_source))
     if (cc.implied_fuss is not None and cc.delta_pct is not None
             and abs(cc.delta_pct) > 2):
         impl_pairs.append((cc.implied_fuss, cc.primary_derived_source, cc.delta_pct))
@@ -883,10 +912,15 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         alt_label = ca.derived_source
         if not alt_label:
             continue
+        # Anchor = the WEIGHT source behind this derived value: a weight-alt
+        # (own reading, ca.weight_rough_g set) anchors to its own source; a
+        # fineness-only alt derives from the PRIMARY weight, so it anchors to
+        # the primary weight source.
+        alt_anchor = ca.source if ca.weight_rough_g is not None else cc.primary_weight_source
         if ca.weight_fein_g is not None:
-            fein_pairs.append((ca.weight_fein_g, alt_label))
+            fein_pairs.append((ca.weight_fein_g, alt_label, alt_anchor))
         if ca.delta_g is not None:
-            delta_pairs.append((ca.delta_g, alt_label))
+            delta_pairs.append((ca.delta_g, alt_label, alt_anchor))
         if (ca.implied_fuss is not None and ca.delta_pct is not None
                 and abs(ca.delta_pct) > 2):
             impl_pairs.append((ca.implied_fuss, alt_label, ca.delta_pct))
