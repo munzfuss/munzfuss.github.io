@@ -107,11 +107,6 @@
       {%- endfor -%}
     {%- else -%}—{%- endif -%}
   </td>
-  <td class="c-soll">
-    {%- if coin.soll_fein_g -%}
-      {{ fmt_num(coin.soll_fein_g, decimals=5, unit='') }}
-    {%- else -%}—{%- endif -%}
-  </td>
   <td class="c-delta">
     {%- if coin.delta_groups -%}
       {# 4-state Δ palette: under-deep (<-1%), under-mild (-1% … 0),
@@ -137,6 +132,11 @@
       {%- endfor -%}
     {%- elif coin.raw.metal == 'copper' -%}
       <span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-soll">
+    {%- if coin.soll_fein_g -%}
+      {{ fmt_num(coin.soll_fein_g, decimals=5, unit='') }}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-d">
@@ -253,8 +253,8 @@
       <th>{{ ui_get('col.metal_fineness') }}</th>
       <th>{{ ui_get('col.rough') }}</th>
       <th>{{ ui_get('col.fine') }}</th>
-      <th data-tooltip="{{ ui_get('col.soll_tooltip') }}">{{ ui_get('col.soll') }}</th>
       <th data-tooltip="{{ ui_get('col.delta_tooltip') }}">{{ ui_get('col.delta') }}</th>
+      <th data-tooltip="{{ ui_get('col.soll_tooltip') }}">{{ ui_get('col.soll') }}</th>
       <th>{{ ui_get('col.diameter') }}</th>
       <th>{{ ui_get('col.mint') }}</th>
       <th data-tooltip="{{ ui_get('col.entity_tooltip') }}">{{ ui_get('col.entity') }}</th>
