@@ -137,6 +137,18 @@ timeline:
         en: 'Dukatfod (Danish-Norwegian surface of the Hungarian-Venetian Dukat tradition) · de facto 1513 (Christian II Ungersk Gylden, Galster c2g-89), metrically like the German Reichsdukatenfuß (Augsburg Imperial Coinage Ordinance 1559, not binding the Kingdom of Denmark) · 67 ducats per Cologne mark rough at 23 carats 8 grains (.986), 3.49 g rough / 3.44 g fine · named Ungersk Gylden / Portugaløser to 1629, then Dukat'
         uk: 'Dukatfod (дансько-норвезький surface традиції Hungarian-Venetian Dukat) · де факто 1513 (Christian II Ungersk Gylden, Galster c2g-89), метрично як німецький Reichsdukatenfuß (Авґсбурзький монетний ордонанс 1559, не звʼязує Королівство Данію) · 67 дукатів з повної кельнської марки за 23 карати 8 гран (.986), 3,49 г повної / 3,44 г чистого · назва Ungersk Gylden / Portugaløser до 1629, далі Dukat'
       color_class: g
+      # Denmark-only overrides (per-bar — global events + the SH bar are untouched):
+      # drop «Heiliges Römisches Reich» from the scope label (this is the Danish
+      # Dukatfod, not the Reich foot); the gold-ducat OFFICIAL standard ends 1813
+      # (Rigsbankdaler silver standard supersedes it — sharp), and the coins fade
+      # OUT of domestic circulation ~1833 (danskmoent.dk / Galster). Mint stays
+      # data-driven (1513–1802, last Danish dukat).
+      anywhere_label:
+        de: Königreich Dänemark und Norwegen
+        en: Royal Danish-Norwegian Realm
+        uk: Королівство Данії і Норвегії
+      truncate_anywhere_after_by_kind: {status: 1813, sole: 1813}
+      fade_anywhere_after_by_kind: {circulation: 1833}
     - id: f2_guldkrone_fod
       order: 3
       label:
@@ -217,6 +229,12 @@ timeline:
           скликано на переплав) · реформа Frederik V 1757 (75 з марки, 2,728 г чистого, проба .875; тариф 12 Mark відновлено) · масове карбування 1757–1765 (≈ 3,03 млн шт., 8,3 т чистого золота) · 
           головна фаза Christian VII Альтона + Копенгаген 1781–1796 (≈ 237 000 шт.) · останнє карбування 1796 зі штемпелями 1785 · фактична демонетизація 1873 (Скандинавська монетна унія)
       color_class: g
+      # Denmark-only overrides (per-bar; global events + SH bar untouched). The
+      # Kurantdukat's OFFICIAL standard ends 1813 (Rigsbankdaler silver standard) —
+      # sharp; the coins fade OUT of domestic circulation ~1833 (danskmoent.dk /
+      # Galster). Scope label already carries no «Heiliges Römisches Reich».
+      truncate_anywhere_after_by_kind: {status: 1813, sole: 1813}
+      fade_anywhere_after_by_kind: {circulation: 1833}
     - id: pistolenfuss
       order: 7
       label:

@@ -324,6 +324,10 @@ def compute_bar_layers(
         # `last` is already before it. Used for context bars of standards whose
         # circulation predates this page's axis (Reichsdukat on the GE timeline).
         trunc_before = getattr(bar, "truncate_anywhere_before", None)
+        # Per-kind FADED cap (mirror of trunc_any_by_kind but last_approx=True):
+        # cap the anywhere-scope kind's `last` at the year WITH an uncertainty
+        # fade instead of the sharp truncate cutoff.
+        fade_any_by_kind = getattr(bar, "fade_anywhere_after_by_kind", None) or {}
 
         # `scope_mode` "denmark_only" / "anywhere_only": iterate only the
         # anywhere scope and suppress holstein-scope layers entirely (a single-
@@ -374,6 +378,13 @@ def compute_bar_layers(
                 if first < trunc_before:
                     first = trunc_before
                     first_approx = False
+            if scope == "anywhere" and kind in fade_any_by_kind:
+                _fade_yr = fade_any_by_kind[kind]
+                if first > _fade_yr:
+                    return  # layer entirely past the faded cutoff — drop
+                if last > _fade_yr:
+                    last = _fade_yr
+                    last_approx = True   # FADE-out (vs truncate's sharp cutoff)
             # Mission-scope visibility clip: if the actual start year is BEFORE
             # the timeline's left edge, the visible left edge of the layer is
             # the clip line (sharp cutoff), NOT the underlying uncertain year

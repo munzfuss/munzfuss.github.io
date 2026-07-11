@@ -965,6 +965,16 @@ class TimelineBar(_StrictBase):
     Pivot, Reich-wide mass-minting end) but extend circulation to ~1700
     (Hauptumlaufmünze functional end per Wikipedia DE «Speciestaler»);
     a single `truncate_anywhere_after` cannot express that asymmetry."""
+    fade_anywhere_after_by_kind: dict[str, int] | None = None
+    """Like `truncate_anywhere_after_by_kind`, but the cap renders as a FADE-out
+    (`last_approx = True`) instead of the sharp cutoff `truncate` applies. Per-kind
+    anywhere-scope map {kind: year}: cap that kind's `last` at the year with an
+    uncertainty fade (drop the layer if its `first` is already past it). Use case:
+    a standard whose OFFICIAL foot ended on a firm date (sharp `truncate` on
+    `status`) but whose coins drifted OUT of circulation over an approximate later
+    year — the Danish gold-ducat lines on the Denmark page: status hard-clipped at
+    1813 (Rigsbankdaler adoption), circulation faded at ~1833 (domestic disappearance
+    per danskmoent.dk). Holstein-scope layers untouched."""
     truncate_anywhere_before: int | None = None
     """Mirror of `truncate_anywhere_after` for the LEFT edge: raise the
     `anywhere` scope's `first` year for this bar up to this value; drop the
