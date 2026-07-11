@@ -790,6 +790,7 @@ The Claude Preview MCP serves a live preview against the rendered output. Two op
 - **Feature branches** for larger changes (new location, template rework).
 - **Commit messages**: conventional prefixes — `data:` (YAML changes), `schema:` (model changes), `template:` (render changes), `build:` (script logic), `docs:`, `fix:`.
 - **Commit messages MUST be in English only** (subject + body), regardless of the language used in the chat conversation. Project communication may be in Ukrainian, but git history is English-only.
+- **A commit message with backticks / `$` / apostrophes → write it to a file and use `git commit <pathspec> -F <msgfile>`, never `-m "…"`.** The harness eval-runs Bash, so zsh command-substitutes backticks (`` `id` ``) and `$(…)` / `$VAR` inside a double-quoted `-m` string; a body that wraps a code identifier in backticks aborts the commit with `(eval): parse error` and leaves the tree dirty — and a `… | tail` pipe hides the failure behind `tail`'s exit 0. Writing the message to a scratchpad file and committing with `-F` reads it verbatim (no shell parsing), and also handles apostrophes (`d'or`, `Stack's`) + newlines. `-m '…'` (single quotes) fixes backticks but breaks on those apostrophes, so it is NOT the general fix. Reserve `-m "…"` for short, metacharacter-free one-liners. After ANY backgrounded commit, confirm it landed via `git log -1` / `git status`, not the piped exit code.
 - Commit small, commit often. YAML diffs are readable.
 
 ### Commit cadence + push permission (operational rule)
