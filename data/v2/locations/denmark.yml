@@ -221,13 +221,13 @@ timeline:
       bar_title:
         de: Courantdukatenfuß (Kurantdukatfod) · spezifisch dänische tarif-tragende Goldlinie · Frederik IV. 1714–1717 (81½/Mark, 2,511 g fein, 12 Mark Tarif; 1727 auf 11 Mark gesenkt; 1757 zur 
           Einschmelzung eingezogen) · Frederik-V-Reform 1757 (75/Mark, 2,728 g fein, .875 Probe; 12-Mark-Tarif zurück) · Massenprägung 1757–1765 (≈ 3,03 Mio. Stück, 8,3 t Feingold) · Christian VII. 
-          Hauptphase Altona + Kopenhagen 1781–1796 (≈ 237 000 Stück) · letzte Prägung 1796 mit 1785-Datum · faktische Demonetisierung 1873 (Skandinavische Münzunion)
+          Hauptphase Altona + Kopenhagen 1781–1796 (≈ 237 000 Stück) · letzte Prägung 1796 mit 1785-Datum · als amtlicher Fuß 1813 vom Rigsbankdaler abgelöst, um ~1833 aus dem inländischen Umlauf verschwunden · formal erst 1873 durch die Krone der Skandinavischen Münzunion ersetzt
         en: Courantdukatenfuß (Kurantdukatfod) · a specifically Danish tariff-bearing gold line · Frederik IV 1714–1717 (81½ per Mark, 2.511 g fine, 12-Mark tariff; reduced to 11 Mark in 1727; called 
           in for melting in 1757) · Frederik V reform 1757 (75 per Mark, 2.728 g fine, .875 fineness; 12-Mark tariff restored) · mass coinage 1757–1765 (≈ 3.03 million pieces, 8.3 t fine gold) · 
-          Christian VII main phase Altona + Copenhagen 1781–1796 (≈ 237,000 pieces) · last issue 1796 with 1785 dies · factual demonetisation 1873 (Scandinavian Monetary Union)
+          Christian VII main phase Altona + Copenhagen 1781–1796 (≈ 237,000 pieces) · last issue 1796 with 1785 dies · superseded as the official foot by the Rigsbankdaler in 1813, gone from domestic circulation by ~1833 · formally replaced only in 1873 by the Krone of the Scandinavian Monetary Union
         uk: Courantdukatenfuß (Kurantdukatfod) · специфічно данська тариф-несуча золота лінія · Frederik IV 1714–1717 (81½ з марки, 2,511 г чистого, тариф 12 Mark; 1727 знижено до 11 Mark; 1757 
           скликано на переплав) · реформа Frederik V 1757 (75 з марки, 2,728 г чистого, проба .875; тариф 12 Mark відновлено) · масове карбування 1757–1765 (≈ 3,03 млн шт., 8,3 т чистого золота) · 
-          головна фаза Christian VII Альтона + Копенгаген 1781–1796 (≈ 237 000 шт.) · останнє карбування 1796 зі штемпелями 1785 · фактична демонетизація 1873 (Скандинавська монетна унія)
+          головна фаза Christian VII Альтона + Копенгаген 1781–1796 (≈ 237 000 шт.) · останнє карбування 1796 зі штемпелями 1785 · як офіційний фут витіснений Rigsbankdaler-ом 1813, з внутрішнього обігу зник близько ~1833 · формально замінений лише 1873 монетою Krone Скандинавської монетної унії
       color_class: g
       # Denmark-only overrides (per-bar; global events + SH bar untouched). The
       # Kurantdukat's OFFICIAL standard ends 1813 (Rigsbankdaler silver standard) —
@@ -258,6 +258,13 @@ timeline:
           Louis d'or) · продовжено за Frederik VI / Christian VIII / Frederik VII / Christian IX (Frederik d'or, 2 Christian d'or, 2 Frederik d'or) до останньої емісії 1870 · замінено Krone 
           Скандинавської монетної унії (Закон про монету 1873)
       color_class: g
+      # Denmark-only: drop «Heiliges Römisches Reich» from the scope label (global
+      # events + SH bar untouched); on the Danish page the Pistole is the crown's
+      # gold trade coin, not a Reich foot.
+      anywhere_label:
+        de: Königreich Dänemark und Norwegen
+        en: Royal Danish-Norwegian Realm
+        uk: Королівство Данії і Норвегії
     - id: guldkrone
       order: 5
       label:
@@ -510,6 +517,13 @@ timeline:
         uk: Авґсбурзький імперський монетний декрет 30 травня 1566 · імперський Speciedaler-стандарт, практично тотожний дансько-норвезькому Speciedaler (25,98 г чистого) · у Копенгагені охоплює ранню
           фазу данського великосрібного карбування до утвердження легшого 9¼-Fuß з 1622 · у Гамбурзі/Любеку як Bank-Mark і Speciemark — розрахункові одиниці до імперської монетної реформи 1875
       color_class: rt
+      # Denmark-only: replace the HRR-only scope label with the Danish realm (global
+      # events + SH bar untouched); on the Danish page the 9-Thaler-/Speciesfuß is the
+      # Danish-Norwegian species standard, not «Reichsmünzfuß im Heiligen Römischen Reich».
+      anywhere_label:
+        de: Königreich Dänemark und Norwegen
+        en: Royal Danish-Norwegian Realm
+        uk: Королівство Данії і Норвегії
     - id: 9_25_thaler
       order: 14
       label:
