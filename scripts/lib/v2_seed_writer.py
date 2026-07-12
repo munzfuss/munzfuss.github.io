@@ -354,6 +354,39 @@ def _should_prepend_one(s: str) -> bool:
     return True
 
 
+# Danish multiplier prefix → arabic count. Sources (esp. KMM / Nationalmuseet)
+# spell a multiple-denomination coin with a leading Danish multiplier word or
+# «N-dobbelt» form instead of a digit: «dobbelt Portugaløser» = 2 Portugaløser,
+# «4-dobbelt Portugaløser» = 4 Portugaløser, «tredobbelt Dukat» = 3 Dukat.
+# Without this the count is lost — the bare denomination gets an implicit «1 »
+# («1 Dobbelt portugaløser» / «1 Portugaløser»). Applied ONLY to a leading
+# multiplier followed by a SPACE + denomination: compound single-word coin names
+# («dobbelthvid», «firehvid») are period-attested denominations (NOT «2 hvid» /
+# «4 hvid») and have no trailing space, so the `\s+` guard leaves them intact.
+_DANISH_MULTIPLIER_WORD: dict[str, str] = {
+    "dobbelt": "2", "dobbel": "2",
+    "tredobbelt": "3", "tredobbel": "3",
+    "firdobbelt": "4", "firedobbelt": "4", "firdobbel": "4",
+    "femdobbelt": "5", "seksdobbelt": "6", "syvdobbelt": "7",
+    "ottedobbelt": "8", "nidobbelt": "9", "tidobbelt": "10",
+}
+# Longer alternatives first so «dobbelt» wins over «dobbel» (else «dobbelt X»
+# would match «dobbel» and leave a stray «t X»).
+_DANISH_MULTIPLIER_RE = re.compile(
+    r"^(?:(\d+)\s*-\s*dobbelt|("
+    + "|".join(sorted(_DANISH_MULTIPLIER_WORD, key=len, reverse=True))
+    + r"))\s+(?=\S)",
+    re.IGNORECASE,
+)
+
+
+def _apply_danish_multiplier(s: str) -> str:
+    """«dobbelt Portugaløser» → «2 Portugaløser»; «4-dobbelt X» → «4 X»."""
+    def _sub(m):
+        return f"{m.group(1)} " if m.group(1) else f"{_DANISH_MULTIPLIER_WORD[m.group(2).lower()]} "
+    return _DANISH_MULTIPLIER_RE.sub(_sub, s, count=1)
+
+
 def _normalise_nominal(raw):
     """Normalise a nominal string: mojibake fix + fraction typography +
     consistent capitalization of the denomination noun. Preserves the
@@ -491,6 +524,9 @@ def _normalise_nominal(raw):
     # Runs BEFORE the implicit-«1 » step so «Noble» → «Nobel» → «1 Nobel».
     for pattern, replacement in _NOMINAL_DISPLAY_SPELLING:
         s = re.sub(pattern, replacement, s, flags=re.IGNORECASE)
+    # Danish multiplier prefix → arabic count («dobbelt Portugaløser» → «2
+    # Portugaløser») — BEFORE the implicit «1 » so the real count isn't lost.
+    s = _apply_danish_multiplier(s)
     # Add an implicit leading «1 » when the nominal is a bare denomination
     # with no explicit count. Guard-based — see `_should_prepend_one`.
     #   «Penning» → «1 Penning», «Skilling Rigsmønt» → «1 Skilling Rigsmønt»,
