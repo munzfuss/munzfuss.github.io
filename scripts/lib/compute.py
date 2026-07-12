@@ -330,10 +330,14 @@ def _build_measurement_rows(cc, fineness_pairs) -> None:
         else:
             r["_k"] = k
             deduped.append(r)
-    # Descending weight (the natural specimen order the reader expects); a
-    # fineness variant that correlates with weight then clusters contiguously
-    # so the проба run-length merges stay clean.
-    deduped.sort(key=lambda r: (-(r["rough"] or 0.0), -(r["fineness"] or 0.0)))
+    # Sort by fineness FIRST, then weight — проба is the primary grouping axis
+    # (curator: «сортування проб пріоритетніше за сортування ваг»). Rows sharing
+    # a fineness stay CONTIGUOUS so the проба run-length merges into ONE spanning
+    # cell even when that fineness sits on a lighter specimen than another
+    # reading — e.g. c3h2: .986 on both 6.981 and 6.98, .968 on a 6.981 that
+    # would otherwise split the two .986 rows apart. Higher fineness first;
+    # heaviest weight first within a fineness group.
+    deduped.sort(key=lambda r: (-(r["fineness"] or 0.0), -(r["rough"] or 0.0)))
     cc.msr_n = len(deduped)
     # повна / чиста / Δ merge only WITHIN a проба group (group_field="fineness")
     # — a weight shared by two specimens under different fineness readings is
