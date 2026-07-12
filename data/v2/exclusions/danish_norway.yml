@@ -1,0 +1,71 @@
+# Curator per-coin EXCLUSIONS — entity `danish_norway`.
+#
+# Coins the curator has decided are out-of-scope and must NOT render even in the
+# `seed_unsorted` bucket — patterns / Prøvemønter, off-strikes, exonumia,
+# undocumented stubs — that the rule-based §9 seed filters missed (usually
+# because the SOURCE mislabelled the piece). Distinct from the other decision
+# surfaces: merge_decisions RESHAPE, classification_decisions CLASSIFY, this one
+# REMOVES a coin with a recorded reason.
+#
+# `id` is a SEED id (as in data/v2/seed/<src>/<entity>.yml). A final is dropped
+# when its own unified id OR any composed_of member resolves to a listed id. The
+# coin's seed / seed_unified SURVIVE (provenance / audit trail); the absorb drops
+# it from `final` so it never reaches the render.
+#
+# category vocab: pattern | off_strike | off_nominal | exonumia |
+#                 undocumented_stub | out_of_scope | duplicate_noise
+#
+# Consumed by scripts/maintenance/absorb_seeds_into_final_v2.py (_load_exclusions
+# + the exclusion purge in process_entity). Applied on every absorb run.
+
+entity_id: danish_norway
+exclusions:
+  # --- Frederik III Norway «Portugaløser» = Guldafslag off-strikes (§9.5
+  # off-nominal), curator 2026-07-12. Gold 10-Dukat off-strikes struck from the
+  # dies of the SILVER Norwegian 1 Speciedaler (Christiania) — stamped
+  # «1 Speciedaler» (silver) ≪ 10-Dukat gold-bullion value → §9.5. Verified
+  # ruler = Frederik III + Guldafslag against danskmoent norge (nf3h39/55/62) +
+  # KMM (authority «Frederik 3», nation Norge). Norway-Hede numbering (Rønning#/
+  # Thesen#), distinct from the Danish Hede — the silver Norwegian Speciedaler
+  # mothers (nf3h39/55/62) are separate finals and are KEPT. ---
+  - id: dk-numista-387243
+    category: off_strike
+    reason: >-
+      F.III Norway Guldafslag, Norge-Hede 62 ~1668, Christiania — gold 10 Dukat
+      Portugaløser off-strike of the silver 1 Speciedaler die (§9.5; KM PnD20,
+      Rønning P10 / Thesen 3). danskmoent norge/nf3h62: «Guldafslag af 1 Speciedaler».
+    curator: Serhii
+    date: 2026-07-12
+  - id: dk-numista-421408
+    category: off_strike
+    reason: >-
+      F.III Norway Guldafslag, Norge-Hede 39 1661, Christiania — gold 10 Dukat
+      Portugaløser off-strike of the silver 1 Speciedaler die (§9.5; Fr 5a,
+      Rønning P8 / Thesen 1, the enevolds-hyldning piece). danskmoent norge/nf3h39:
+      «Guldafslag af 1 Speciedaler», Unik.
+    curator: Serhii
+    date: 2026-07-12
+  - id: dk-numista-387448
+    category: off_strike
+    reason: >-
+      F.III Norway Guldafslag, Norge-Hede 55 1665, Christiania — gold 10 Dukat
+      Portugaløser off-strike of the silver 1 Speciedaler die (§9.5; KM PnC20,
+      Rønning P9 / Thesen 2). danskmoent norge/nf3h55: «Guldafslag af 1 Speciedaler».
+    curator: Serhii
+    date: 2026-07-12
+  - id: kmk-279773
+    category: off_strike
+    reason: >-
+      F.III Norway «Portugaløser» (KMM, authority «Frederik 3», nation Norge) —
+      gold Guldafslag off-strike of a silver Norwegian Speciedaler die (§9.5).
+      Already not standalone in final; excluded for durability.
+    curator: Serhii
+    date: 2026-07-12
+  - id: kmk-291973
+    category: off_strike
+    reason: >-
+      F.III Norway «Portugaløser» (KMM, authority «Frederik 3», Christiania) —
+      gold Guldafslag off-strike of a silver Norwegian Speciedaler die (§9.5).
+      Already not standalone in final; excluded for durability.
+    curator: Serhii
+    date: 2026-07-12
