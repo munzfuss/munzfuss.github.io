@@ -1,0 +1,39 @@
+# Curator per-coin EXCLUSIONS — entity `danish_realm`.
+#
+# Coins the curator has decided are out-of-scope and must NOT render even in the
+# `seed_unsorted` bucket — patterns / Prøvemønter, off-strikes, exonumia,
+# undocumented stubs — that the rule-based §9 seed filters missed (usually
+# because the SOURCE mislabelled the piece). Distinct from the other decision
+# surfaces: merge_decisions RESHAPE, classification_decisions CLASSIFY, this one
+# REMOVES a coin with a recorded reason.
+#
+# `id` is a SEED id (as in data/v2/seed/<src>/<entity>.yml). A final is dropped
+# when its own unified id OR any composed_of member resolves to a listed id. The
+# coin's seed / seed_unified SURVIVE (provenance / audit trail); the absorb drops
+# it from `final` so it never reaches the render.
+#
+# category vocab: pattern | off_strike | off_nominal | exonumia |
+#                 undocumented_stub | out_of_scope | duplicate_noise
+#
+# Consumed by scripts/maintenance/absorb_seeds_into_final_v2.py (_load_exclusions
+# + the exclusion purge in process_entity). Applied on every absorb run.
+
+entity_id: danish_realm
+exclusions:
+  - id: kmk-122102
+    category: pattern
+    reason: >-
+      Christian IV Hede 21B = «Prøvemønt efter engelsk forbillede» — a gold
+      pattern / trial strike (RRR/Unik), NOT a circulation coin (§9.1). IKMK
+      (KMM 122102) mislabelled it «1 Rosenobel»; the danskmoent.dk/Hede 21 page
+      calls it a Guldmønt-Prøvemønt. https://www.danskmoent.dk/chr/c4h21.htm
+    curator: Serhii
+    date: 2026-07-12
+  - id: kmk-354200
+    category: undocumented_stub
+    reason: >-
+      «1 Rosenobel» with NO ruler / metal / catalogue / weight / fineness — only
+      a 1500-1600 placeholder span (KMM 354200). Nothing to classify against
+      (§0); cannot place in any fuss without inventing data.
+    curator: Serhii
+    date: 2026-07-12

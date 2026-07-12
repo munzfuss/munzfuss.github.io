@@ -59,6 +59,7 @@ V2_SEED = ROOT / "data" / "v2" / "seed"
 V2_FINAL = ROOT / "data" / "v2" / "final"
 V2_CLASSIFICATION_DECISIONS = ROOT / "data" / "v2" / "classification_decisions"
 V2_MERGE_DECISIONS = ROOT / "data" / "v2" / "merge_decisions"
+V2_EXCLUSIONS = ROOT / "data" / "v2" / "exclusions"
 V2_OVERMERGE_PURGE = ROOT / "data" / "v2" / "overmerge_purge_allowlist.yml"
 
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -124,6 +125,37 @@ def _ruamel_to_dict(c):
     """Delegate to lib.v2_resolver.ruamel_to_plain."""
     from lib.v2_resolver import ruamel_to_plain
     return ruamel_to_plain(c)
+
+
+def _load_exclusions(entity_id: str) -> dict[str, dict]:
+    """Curator per-coin EXCLUSIONS — `data/v2/exclusions/<entity>.yml`.
+
+    Coins the curator has decided are out-of-scope and must NOT render even in
+    seed_unsorted — patterns / Prøvemønter, off-strikes, exonumia, undocumented
+    stubs — that the rule-based §9 seed filters missed (usually because the
+    SOURCE mislabelled the piece: IKMK tags a gold pattern «Rosenobel»). Distinct
+    from classification_decisions (which classify) and merge_decisions (which
+    reshape): this REMOVES a coin with a recorded reason. Returns
+    {seed_id: {category, reason}}. The coin's seed / seed_unified survive
+    (provenance / audit trail); the absorb drops it from `final` so it never
+    reaches the render (see process_entity's exclusion purge)."""
+    doc = _load_yaml(V2_EXCLUSIONS / f"{entity_id}.yml")
+    out: dict[str, dict] = {}
+    for e in (doc.get("exclusions") or []):
+        cid = e.get("id")
+        if cid:
+            out[str(cid)] = {"category": e.get("category"), "reason": e.get("reason")}
+    return out
+
+
+def _coin_exclusion_hit(entry: dict, excluded_ids: set) -> set:
+    """Which excluded seed ids a final entry matches — its OWN unified id or ANY
+    composed_of member (each stripped of the `unified-` prefix). Empty set = the
+    coin is not excluded. A non-empty set means drop it and mark those ids matched."""
+    seeds = {str(entry.get("id") or "").removeprefix("unified-")}
+    seeds |= {str(m).removeprefix("unified-")
+              for m in (entry.get("composed_of") or [])}
+    return seeds & excluded_ids
 
 
 def _entities_with_seed_unified() -> list[str]:
@@ -1377,6 +1409,17 @@ def process_entity(entity_id: str) -> dict:
     # entries were seeded with raw values; data quality rules
     # (U.År strip, bare-noun prefix, mojibake fix, canonical mint
     # spelling) apply retroactively across the whole pipeline.
+    # Curator per-coin exclusions (patterns / stubs the §9 seed filters missed).
+    # Loaded here; the AUTHORITATIVE drop is a single filter on the final list
+    # right before write (below) so it catches EVERY path a coin can enter final
+    # (foundation, bulk-promote, monotonic-guard re-promotion). The bulk-promote
+    # skip below is a cheap early-out; the final filter is the source of truth.
+    exclusions = _load_exclusions(entity_id)
+    excluded_ids = set(exclusions)
+    # ids matched ANYWHERE this run (bulk-promote skip OR final filter) — an id
+    # not matched anywhere is a true orphan (typo / coin already gone from seed).
+    excluded_matched: set[str] = set()
+
     out_of_scope_final_dropped = 0
     kept_finals: list[dict] = []
     for fe in final_entries:
@@ -2096,6 +2139,14 @@ def process_entity(entity_id: str) -> dict:
             unified = unified_by_id.get(uid)
             if not unified:
                 continue
+            # Curator exclusion (cheap early-out): never bulk-promote an excluded
+            # coin. Record the match so the orphan check below stays correct on
+            # re-runs (once dropped, the coin only reappears here as unmatched).
+            if excluded_ids:
+                _u_hit = _coin_exclusion_hit(unified, excluded_ids)
+                if _u_hit:
+                    excluded_matched |= _u_hit
+                    continue
             # Curator-assignment force-promote: if this unified id has
             # an explicit fuss/phase assignment, promote regardless of
             # the bulk_promote_mode gate. Curator decided — the gate
@@ -2455,6 +2506,32 @@ def process_entity(entity_id: str) -> dict:
               f"{_reloc_before - len(enriched_entries)} stale source-side "
               f"final(s) (coin moved to its target entity)")
 
+    # Curator per-coin exclusions — AUTHORITATIVE drop. A single filter over the
+    # fully-assembled final list, so it catches a coin no matter which path put
+    # it there (foundation, bulk-promote, monotonic-guard re-promotion). The
+    # coin's seed / seed_unified are untouched (provenance); it just never
+    # renders. Warn on orphaned exclusion ids (matched nothing — typo / already
+    # gone) so the list stays honest.
+    exclusion_dropped = 0
+    if excluded_ids:
+        _kept_after_excl: list[dict] = []
+        for fc in enriched_entries:
+            hit = _coin_exclusion_hit(fc, excluded_ids) if isinstance(fc, dict) else set()
+            if hit:
+                excluded_matched |= hit
+                exclusion_dropped += 1
+                continue
+            _kept_after_excl.append(fc)
+        enriched_entries = _kept_after_excl
+        if exclusion_dropped:
+            print(f"  [{entity_id}] curator exclusions: dropped {exclusion_dropped} "
+                  f"coin(s) from final ({len(excluded_matched)} id(s) matched)")
+        orphan_exclusions = sorted(excluded_ids - excluded_matched)
+        if orphan_exclusions:
+            print(f"  ⚠ [{entity_id}] {len(orphan_exclusions)} exclusion id(s) matched "
+                  f"nothing (orphan — check exclusions/{entity_id}.yml): "
+                  f"{orphan_exclusions[:6]}")
+
     return {
         "entity_id": entity_id,
         "unified_total": len(unified_entries),
@@ -2465,6 +2542,7 @@ def process_entity(entity_id: str) -> dict:
         "genuinely_new": len(unmatched),
         "bulk_promoted": len(bulk_promoted),
         "stale_purged": purged_count,
+        "exclusion_dropped": exclusion_dropped,
         "out_of_scope_dropped": out_of_scope_final_dropped,
         "stale_finals_dropped": len(stale_dropped_ids),
         "unmatched_unified_ids": unmatched,
