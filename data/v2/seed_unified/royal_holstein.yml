@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1732 per-source seed entries.
-# Output: 953 unified entries (one per physical coin).
+# Output: 952 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -13,43 +13,6 @@
 id: royal_holstein
 generated_at: '2026-07-12'
 coins:
-- id: unified-denmark-numismaster-65625
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ¼ Portugaløser
-  year_first: 1592
-  year_last: 1592
-  year_label: '1592'
-  mint: Haderslev
-  catalog:
-    fr: '64.3'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  weight_rough_g:
-  - value: 8.661
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65625
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - denmark-numismaster-65625
 - id: unified-denmark-numismaster-65653
   fuss: seed_unsorted
   phase: numismaster
@@ -280,6 +243,7 @@ coins:
     fr:
     - '64'
     - '64.1'
+    - '64.3'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -300,6 +264,9 @@ coins:
   sources:
   - type: literature
     url: https://numismaster.com/MC_65623
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_65625
     ref: NumisMaster
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -324,6 +291,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - denmark-numismaster-65623
+  - denmark-numismaster-65625
   - dk-bruun-4598
   - dk-numista-424614
   - kmk-136898

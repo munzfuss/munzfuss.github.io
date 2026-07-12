@@ -326,15 +326,18 @@ merges:
       /chr/c4h5.htm.
   - target_entity: royal_holstein
     members:
-      - dk-bruun-4598      # Hede 3 (¼ Portugaløser 1592-93) — home danish_realm (pinned)
-      - dk-numista-424614  # same coin, Numista N#424614 (§9a peer) — home danish_realm
-      - kmk-136898         # same coin, KMM Schou 7 = Hede 3 (§9a peer) — home danish_realm
+      - dk-bruun-4598              # Hede 3 (¼ Portugaløser 1592-93) — home danish_realm (pinned)
+      - dk-numista-424614          # same coin, Numista N#424614 (§9a peer) — home danish_realm
+      - kmk-136898                 # same coin, KMM Schou 7 = Hede 3 (§9a peer) — home danish_realm
+      - denmark-numismaster-65625  # same coin, NumisMaster Fr 64.3, 8.661 g (§9a peer) — home royal_holstein
     reason: |
       Christian IV «¼ Portugaløser», Hede 3, Schou 7, Fr 64, Haderslev 1592-93.
       Relocated from danish_realm (was _ENTITY_PIN-pinned) with the Christian IV
       Haderslev Portugaløser class; the cross-entity pull overrides the pin.
-      Numista N#424614 + KMM Schou 7 (kmk-136898) are the same coin (§9a), listed
-      as members so the group has ≥2 members and to relocate the folded stubs too.
+      Numista N#424614 + KMM Schou 7 (kmk-136898) are the same coin (§9a). NumisMaster
+      Fr 64.3 (denmark-numismaster-65625, 8.661 g) is the same coin too — a sibling
+      sub-variant of Fr 64 = Hede 3, exactly like Fr 64.1 (denmark-numismaster-65623,
+      which already auto-folds); added explicitly so it stops orphaning in seed_unsorted.
   - target_entity: royal_holstein
     members:
       - dk-hede-c4h4       # Hede 4 (2 Portugaløser 1592) — head; home royal_holstein
