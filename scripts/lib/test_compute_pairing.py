@@ -94,6 +94,25 @@ def test_tooltip_weight_only_names_both_sources():
     assert "з пробою з" in tip, tip
 
 
+def test_weight_only_borrows_highest_authority_fineness():
+    # c3h2 (2 Goldgulden): kmk publishes weight only; finenesses are
+    # [.968 numista FIRST-listed, .986 hede]. The weight-only kmk must borrow
+    # the HIGHEST-authority fineness (.986 hede/danskmoent), NOT the arbitrary
+    # first-listed .968 — so no source latches onto the stray numista reading.
+    cc = compute._compute_coin(_coin(
+        weights=[{"value": 6.98, "source": "kmk"},
+                 {"value": 6.981, "source": "hede"},
+                 {"value": 6.981, "source": "numista"}],
+        finenesses=[{"value": 0.968, "source": "numista"},
+                    {"value": 0.986, "source": "hede"}],
+    ), _fuss())
+    g = _groups(cc)
+    assert 6.88228 in g, f"kmk must use .986 (6.98x.986): {sorted(g)}"
+    assert 6.75664 not in g, f"kmk must NOT borrow stray .968: {sorted(g)}"
+    assert 6.75761 in g, f"numista OWN .968 reading must stay: {sorted(g)}"
+    assert "hede" in g[6.88228] and "kmk" in g[6.88228], g[6.88228]
+
+
 def test_single_source_scalar_unchanged():
     # a plain single-source coin still computes one own-pair value
     cc = compute._compute_coin(_coin(
@@ -142,6 +161,7 @@ if __name__ == "__main__":
     test_own_pair_no_cross_mix()
     test_tooltip_own_pair_single_source()
     test_tooltip_weight_only_names_both_sources()
+    test_weight_only_borrows_highest_authority_fineness()
     test_single_source_scalar_unchanged()
     test_per_phase_soll_target()
     test_unknown_phase_falls_back_to_scalar_soll()

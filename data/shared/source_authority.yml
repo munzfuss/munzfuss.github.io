@@ -1,0 +1,41 @@
+# Source authority — used when a WEIGHT-ONLY source has to BORROW a fineness.
+#
+# A source that publishes a weight but no fineness of its own (a museum such as
+# IKMK/kmk that lists weight + diameter only) needs *some* fineness to compute a
+# Feingewicht. It borrows the fineness from the HIGHEST-authority source listed
+# below — NOT the first-listed one, which is arbitrary. This stops a weight-only
+# source from latching onto a lower-authority (possibly erroneous) reading: e.g.
+# on 2 Goldgulden c3h2 the IKMK weight was pairing with a stray Numista .968
+# instead of the scholarly Hede/danskmoent .986.
+#
+# Higher score = more authoritative. Matched case-insensitively against the
+# fineness reading's `source` token: exact match first, then substring (so a
+# descriptive token like "Møntordning 1514 (23½ Karat)" matches "møntordning").
+# Unlisted sources score `default`. Ties are broken by list order (first wins),
+# so an empty / missing map reproduces the old first-listed behaviour exactly.
+#
+# Curator-editable. Consumed by scripts/lib/compute.py (_fin_authority). This is
+# a RENDER-TIME choice (which fineness a weight-only specimen is multiplied by);
+# it does NOT rewrite any source's own attestation — a source that published a
+# fineness always keeps pairing with its OWN reading (source-coherent).
+
+fineness_authority:
+  # danskmoent.dk scholarly catalogues (Hede, Galster) + de-jure ordinance
+  # anchors — top authority for fineness.
+  danskmoent:   100
+  hede:         100
+  galster:      100
+  moentordning: 100   # legal standard (ordinance), ASCII spelling
+  møntordning:  100   # legal standard (ordinance), Danish spelling
+  # printed scholarly catalogues
+  sieg:          80
+  schou:         80
+  # Krause-Mishler
+  numismaster:   60
+  # community / user-edited catalogues
+  numista:       40
+  ucoin:         40
+  # museum weight-only records (rarely a fineness source at all)
+  kmk:           20
+
+default: 0

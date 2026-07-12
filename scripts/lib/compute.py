@@ -11,6 +11,28 @@ from typing import Any
 from .schema import Coin, Fuss, Location, FieldValue
 from .catalog_codes import normalise_numeric_index, _NUMERIC_INDEX_FIELDS
 
+import functools
+
+
+@functools.lru_cache(maxsize=1)
+def _fin_authority_map() -> dict[str, int]:
+    """Load the fineness-source authority ranking from
+    `data/shared/source_authority.yml` (curator-editable). Higher = more
+    authoritative; used ONLY to pick which fineness a weight-only source
+    borrows (never rewrites a source's own reading).
+
+    Missing / unreadable / empty file → {} so every source scores 0 (tie) and
+    the old first-listed fallback behaviour is reproduced exactly (no regression
+    for callers without the data file, e.g. isolated unit tests)."""
+    import pathlib, yaml
+    try:
+        p = pathlib.Path(__file__).resolve().parents[2] / "data/shared/source_authority.yml"
+        raw = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+        return {str(k).lower(): int(v)
+                for k, v in (raw.get("fineness_authority") or {}).items()}
+    except Exception:
+        return {}
+
 
 def normalise_field(v) -> list[tuple[float, str | None]]:
     """Normalise a measurement field (scalar | list[FieldValue] | None)
@@ -846,8 +868,34 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
                     return wv, wsrc
         return None, None
 
-    fallback_f     = fineness_pairs[0][0] if fineness_pairs else None
-    fallback_f_src = fineness_pairs[0][1] if fineness_pairs else None
+    def _fin_authority(src):
+        """Authority score of a fineness reading's source (higher = better).
+        Exact-token match first, then substring (so «Møntordning 1514 (23½
+        Karat)» still resolves via «møntordning»). Unlisted → 0."""
+        amap = _fin_authority_map()
+        if not amap:
+            return 0
+        best = 0
+        for t in _toks(src):
+            tl = t.lower()
+            if tl in amap:
+                score = amap[tl]
+            else:
+                score = max((v for k, v in amap.items() if k in tl), default=0)
+            if score > best:
+                best = score
+        return best
+
+    # Fallback fineness for a weight-only source (one that published a weight
+    # but no fineness of its own): borrow the HIGHEST-authority reading, not the
+    # arbitrary first-listed one — so a weight-only specimen never latches onto a
+    # lower-authority (possibly erroneous) fineness. max() keeps list order on
+    # ties, so an empty authority map reproduces the old first-listed behaviour.
+    if fineness_pairs:
+        _fb = max(fineness_pairs, key=lambda p: _fin_authority(p[1]))
+        fallback_f, fallback_f_src = _fb[0], _fb[1]
+    else:
+        fallback_f, fallback_f_src = None, None
     _own_pf, _own_pf_src = _fineness_for(cc.primary_weight_source)
     if _own_pf is not None:
         primary_f_used, primary_f_used_src = _own_pf, _own_pf_src
