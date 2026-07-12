@@ -302,12 +302,28 @@ merges:
     members:
       - dk-bruun-4595      # Hede 1 (1 Portugaløser 1591-92) — home danish_realm (pinned)
       - dk-numista-469294  # same coin, Numista N#469294 (§9a peer) — home danish_realm
+      - dk-hede-c4h5a      # Hede 5A = same coin, die variety (Schou 3, reverse Dithmarschen arms) — home royal_holstein
+      - dk-hede-c4h5b      # Hede 5B = same coin, die variety (Schou 4, reverse Oldenburg-Delmenhorst arms) — home royal_holstein
+      - kmk-136895         # KMM «Schou 1-5» 1591 — same coin — home danish_realm
+      - kmk-156723         # KMM 1591, 34.4 g, no Schou — same coin (curator visual) — home danish_realm
+      - kmk-136991         # KMM «Schou 3 uden år» — same coin — home danish_realm
+      - kmk-136992         # KMM «Schou 3 uden år» — same coin — home danish_realm
     reason: |
-      Christian IV «1 Portugaløser», Hede 1, Schou 3, Fr 62, Haderslev 1591-92.
-      Relocated from danish_realm (was _ENTITY_PIN-pinned) with the Christian IV
-      Haderslev Portugaløser class; the cross-entity pull overrides the pin. The
-      Numista N#469294 attestation is the same coin (§9a) — listed as a member so
-      the group has ≥2 members (single-member cross-entity is unsupported).
+      Christian IV «1 Portugaløser», Haderslev 1591-92. danskmoent catalogues it at
+      different granularity — Hede 1 (Schou 1-5), Hede 5A (Schou 3, reverse
+      Dithmarschen arms) and Hede 5B (Schou 4, reverse Oldenburg-Delmenhorst arms) —
+      but danskmoent itself calls 5A/5B «die varieties of the same denomination, not
+      different coins», and Hede 1 (= Schou 1-5) encompasses both Schou 3 and Schou 4.
+      ONE coin per §9.4: Hede base 5 unifies 5A+5B (same base, different sub-suffix =
+      one row), and Schou 3 + Friedberg 62 unify Hede 1 with Hede 5. Curator verdict
+      2026-07-12 (5A ≡ 5B ≡ Hede 1). Members: dk-bruun-4595 (Hede 1) + dk-hede-c4h5a
+      (Hede 5A) + dk-hede-c4h5b (Hede 5B) + Numista N#469294 + four KMM specimens
+      (136895 «Schou 1-5»; 156723 34.4 g with no Schou, placed by the visual verdict
+      + 1-Portugaløser weight; 136991 + 136992 «Schou 3 uden år»). §9a — every weight
+      (incl. the KMM 34.4 g and the Hede 5B 34.88 g) + source preserved. Relocated
+      from danish_realm with the Christian IV Haderslev Portugaløser class; the
+      cross-entity pull overrides the _ENTITY_PIN. danskmoent.dk/chr/c4h1.htm +
+      /chr/c4h5.htm.
   - target_entity: royal_holstein
     members:
       - dk-bruun-4598      # Hede 3 (¼ Portugaløser 1592-93) — home danish_realm (pinned)

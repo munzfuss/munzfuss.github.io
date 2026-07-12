@@ -2,8 +2,8 @@
 # Generated 2026-07-12 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1728 per-source seed entries.
-# Output: 954 unified entries (one per physical coin).
+# Input: 1732 per-source seed entries.
+# Output: 953 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -257,71 +257,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-bruun-14783
-- id: unified-dk-bruun-4595
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Portugaløser
-  year_first: 1591
-  year_last: 1592
-  year_ranges:
-  - - 1591
-    - 1592
-  year_label: 1591-1592
-  ruler: Christian IV
-  mintmaster: Andreas Metzner
-  mint: Haderslev
-  catalog:
-    hede: '1'
-    sieg: '159'
-    bruun_collection_id: '4595'
-    schou: '3'
-    numista: '469294'
-    fr:
-    - '62'
-    - '62.1'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 34.61
-    source: bruun
-  - value: 35.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65629
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 13076, p. 64
-  - type: literature
-    url: https://en.numista.com/469294
-    ref: Numista N#469294 — 10 Ducats - Christian IV 1591-1592
-  note:
-    de: 10 Ducats
-    en: 10 Ducats
-    uk: 10 Ducats
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: royal_holstein
-  composed_of:
-  - denmark-numismaster-65629
-  - dk-bruun-4595
-  - dk-numista-469294
 - id: unified-dk-bruun-4598
   fuss: seed_unsorted
   phase: bruun
@@ -4705,35 +4640,81 @@ coins:
   phase: hede
   kind: kurant
   nominal: 1 Portugaløser
-  year_first: 1592
+  year_first: 1591
   year_last: 1592
-  year_label: '1592'
+  year_ranges:
+  - - 1591
+    - 1592
+  year_label: 1591-1592
   ruler: Christian IV.
+  mintmaster: Andreas Metzner
   mint: Haderslev
   catalog:
     hede:
+    - '1'
     - 5A
     - 5B
     hede_volume: c4h
-    schou: '3'
-    sieg: '8'
-    fr: '62.2'
+    schou:
+    - '1'
+    - '3'
+    sieg:
+    - '8'
+    - '159'
+    bruun_collection_id: '4595'
+    numista: '469294'
+    fr:
+    - '62'
+    - '62.1'
+    - '62.2'
   metal: gold
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 34.4
+    source: kmk
+  - value: 34.61
+    source: bruun
   - value: 34.88
     source: hede
+  - value: 35.0
+    source: numista
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65629
+    ref: NumisMaster
   - type: literature
     url: https://numismaster.com/MC_65630
     ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13076, p. 64
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h5.htm
     ref: danskmoent.dk (Hede c4h5A)
+  - type: literature
+    url: https://en.numista.com/469294
+    ref: Numista N#469294 — 10 Ducats - Christian IV 1591-1592
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/136895
+    ref: KMM 136895 (Inv. RP 7.1)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/136991
+    ref: KMM 136991 (Inv. RP 11.1)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/136992
+    ref: KMM 136992 (Inv. RP 12.1)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/156723
+    ref: KMM 156723 (Inv. KP 1800.4)
+  note:
+    de: 10 Ducats
+    en: 10 Ducats
+    uk: 10 Ducats
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -4741,9 +4722,16 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: royal_holstein
   composed_of:
+  - denmark-numismaster-65629
   - denmark-numismaster-65630
+  - dk-bruun-4595
   - dk-hede-c4h5a
   - dk-hede-c4h5b
+  - dk-numista-469294
+  - kmk-136895
+  - kmk-136991
+  - kmk-136992
+  - kmk-156723
 - id: unified-dk-hede-c4h8a
   fuss: seed_unsorted
   phase: hede
