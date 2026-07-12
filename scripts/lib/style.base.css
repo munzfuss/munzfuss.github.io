@@ -2035,6 +2035,29 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 [data-theme="v2"] .mt tbody tr:hover td { background: rgba(138, 58, 46, 0.04); }
 
 .mt tbody tr.rw-sch td { background: rgba(196, 139, 75, 0.05); }
+
+/* Measurement sub-rows (повна / чиста / Δ / проба / Ø) — one per specimen,
+   aligned across the separate <td>s. Each segment spans `--span` sub-rows;
+   the fixed --msr-row-h makes every column's sub-rows the same height so
+   they line up horizontally. Divider is LIGHTER than the inter-row border
+   (--border-soft vs --border) to read as a sub-row, not a row. */
+.mt { --msr-row-h: 44px; }
+.mt tbody td:has(.msr-seg) { padding: 0; vertical-align: top; }
+.msr-seg {
+  min-height: calc(var(--msr-row-h) * var(--span, 1));
+  display: flex;
+  align-items: flex-start;   /* value sits at TOP like a normal cell, not vertically centred */
+  /* Horizontal padding MATCHES the normal `.mt tbody td` (8px, left) so a
+     sub-row value lines up with a non-sub-row value in the same column; vertical
+     stays 6px so the 2-line Δ badge fits within --msr-row-h. v2 (Codex) uses a
+     6px cell padding — overridden below. */
+  padding: 6px 8px;
+  border-bottom: var(--hairline) solid var(--border-soft);
+  box-sizing: border-box;
+}
+[data-theme="v2"] .msr-seg { padding-left: 6px; padding-right: 6px; }
+.msr-seg:last-child { border-bottom: 0; }
+.msr-seg .sd { margin: 0; }
 [data-theme="v1"] .mt tbody tr.rw-sch td { background: rgba(196, 165, 100, 0.06); }
 [data-theme="v2"] .mt tbody tr.rw-sch td { background: rgba(0,0,0,0.025); }
 .mt tbody tr.rw-sch:hover td { background: rgba(212, 168, 90, 0.08); }
@@ -2071,10 +2094,21 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 /* Δ palette — 4-state spectrum, applied per .sd class */
 /* Δ badges fill the full column width so consecutive badges (primary +
    alt(s)) align flush instead of each shrinking to its own text width. */
-.c-delta .sd                     { display: block; width: auto; line-height: 1.25; padding: 1px 6px; border-radius: 2px; margin-bottom: 2px; box-sizing: border-box; }
+.c-delta .sd                     { display: block; width: auto; line-height: 1.25; padding: 1px 6px; border-radius: 2px; box-sizing: border-box; }
 .c-delta .sd.alt-source          { width: auto; }  /* override .alt-source fit-content */
-.c-delta .sd-g, .c-delta .sd-pct { display: block; }
-.c-delta .sd-pct                 { font-size: 0.92em; opacity: 0.85; }
+.c-delta .sd-g                   { display: block; }
+/* The unverified "(?)" marker sits OUTSIDE the coloured Δ badge, to its right,
+   vertically centred against the badge (curator: the marker is meta, not part
+   of the value box). .sd-wrap is the flex row holding badge + marker; the badge
+   keeps its top position within the sub-row while the marker centres against it.
+   Inter-badge spacing lives on the wrap (moved off .sd). */
+.c-delta .sd-wrap                { display: flex; align-items: center; gap: 5px; margin-bottom: 2px; }
+.c-delta .msr-seg .sd-wrap       { margin-bottom: 0; }
+.c-delta .sd-wrap .unverified    { flex: none; margin-left: 0; }  /* the 5px flex gap already spaces it */
+/* .sd-pct is inline-block (not block) so the trailing unverified "(?)" marker
+   sits inline right after the percentage instead of wrapping to a third line
+   — keeps the Δ badge two lines tall (grams / percent + marker). */
+.c-delta .sd-pct                 { display: inline-block; font-size: 0.92em; opacity: 0.85; }
 .c-delta .sd.under-deep  { color: var(--sd-under-deep-fg);  background: var(--sd-under-deep-bg); }
 .c-delta .sd.under-mild  { color: var(--sd-under-mild-fg);  background: var(--sd-under-mild-bg); }
 .c-delta .sd.over-mild   { color: var(--sd-over-mild-fg);   background: var(--sd-over-mild-bg); }
@@ -2221,7 +2255,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 [data-theme="v2"] .ent-badge.ent-herzogtum_sachsen_lauenburg { background: #d4dee8; color: #1f3045; border-color: #6e8aa8; }
 
 /* Verification & translation markers */
-.unverified  { color: var(--sd-under-deep-fg); cursor: help; font-weight: 600; font-family: var(--font-sans); }
+.unverified  { color: var(--sd-under-deep-fg); cursor: help; font-weight: 600; font-family: var(--font-sans); margin-left: 0.25em; }
 [data-theme="v1"] .unverified, [data-theme="v2"] .unverified { color: var(--accent); }
 .val-source  { cursor: help; }  /* primary value with explicit source — inline */
 /* Use rgba on color (not opacity) so the tooltip ::after pseudo-element
@@ -2230,6 +2264,14 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
    opacity:1 on the pseudo (multiplicative compositing). rgba alpha on
    color affects only the text glyphs. */
 .alt-source  { color: rgba(201, 122, 61, 0.65); cursor: help; display: block; width: fit-content; }
+/* проба (fineness) source markers. .fin-src = single/unanimous fineness reading:
+   NORMAL colour, but still carries a source tooltip (the reading always has a
+   provenance — a catalogue, or a Müntzfuß-anchor for inferred values). .fin-alt
+   = one of ≥2 DIVERGENT fineness readings: orange like .alt-source but INLINE
+   (so "Metall .750" stays on one line; .alt-source is display:block). Both use
+   the shared [data-tooltip] hover mechanism. */
+.fin-src  { cursor: help; }
+.fin-alt  { color: rgba(201, 122, 61, 0.65); cursor: help; }
 .untranslated {
   background: rgba(255, 220, 0, 0.08);
   border-bottom: 1px dashed rgba(255, 220, 0, 0.3);

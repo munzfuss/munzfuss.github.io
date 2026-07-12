@@ -196,6 +196,142 @@ def make_display_groups(
     return out
 
 
+def _seg_rle(rows: list[dict], field: str, ndigits: int, base_dec: int = 0,
+             src_field: str = "sources", group_field: str | None = None) -> list[dict]:
+    """Run-length-encode `rows` by the rounded value of `field`.
+
+    Consecutive rows whose `field` value rounds equal collapse into ONE
+    segment `{value, span, sources, delta_pct, decimals}` — the segment then
+    renders as a single cell that visually spans `span` sub-rows. Sources are
+    unioned across the merged rows (read from `src_field` — повна uses the raw
+    WEIGHT source, while the DERIVED columns чиста/Δ read a «weight × fineness»
+    derived-source label so their tooltip shows what each value was computed
+    from); delta_pct is carried from the first contributing row (used only by
+    the Δ column for its colour class); `decimals` is each value's own natural
+    precision floored at `base_dec` (§3 — never round below the source's).
+
+    `group_field` (optional) confines merges to WITHIN a group: two consecutive
+    rows merge only when both their `field` value AND their `group_field` value
+    are equal. повна / чиста / Δ pass group_field="fineness" so a value is NEVER
+    merged across a проба boundary — two specimens that happen to share a weight
+    but sit under different fineness readings (e.g. 3.49 g at .986 and 3.49 g at
+    .972) each keep their own sub-row instead of collapsing into one span.
+    """
+    segs: list[dict] = []
+    for r in rows:
+        v = r.get(field)
+        key = round(v, ndigits) if v is not None else None
+        gkey = None
+        if group_field is not None:
+            gv = r.get(group_field)
+            gkey = round(gv, 5) if gv is not None else None
+        if segs and segs[-1]["_key"] == key and segs[-1]["_gkey"] == gkey:
+            segs[-1]["span"] += 1
+            for s in r.get(src_field) or []:
+                if s and s not in segs[-1]["sources"]:
+                    segs[-1]["sources"].append(s)
+            if segs[-1].get("delta_pct") is None and r.get("delta_pct") is not None:
+                segs[-1]["delta_pct"] = r.get("delta_pct")
+        else:
+            dec = _natural_decimals(v, base_dec, base_dec + 3) if v is not None else base_dec
+            segs.append({"_key": key, "_gkey": gkey, "value": v, "span": 1,
+                         "sources": [s for s in (r.get(src_field) or []) if s],
+                         "delta_pct": r.get("delta_pct"), "decimals": dec})
+    return segs
+
+
+def _build_measurement_rows(cc, fineness_pairs) -> None:
+    """Populate cc.msr_* — per-specimen measurement sub-rows + per-column
+    run-length segments. Only meaningful (and rendered) when msr_n > 1.
+
+    Diameter is deliberately NOT a sub-row axis: specimen-to-specimen
+    diameter spread is wear / handling noise, not a standard difference, so
+    it neither splits sub-rows nor renders as a merged sub-column. It keeps
+    its own deduped column via `diameter_groups`.
+
+    The проба (fineness) column IS aligned with the sub-rows: each row's
+    fineness is derived from its own fein / rough and SNAPPED to the nearest
+    canonical reading in fineness_pairs, so the проба value on a row matches the
+    fineness that produced that row's чиста. A coin with two fineness readings
+    (e.g. .750 hede on three specimens, .764 galster on one) shows .750 spanning
+    the first three sub-rows and .764 on the fourth — exactly aligned with чиста.
+    Per-value source attribution comes from fineness_groups (the fineness field's
+    OWN sources), NEVER the per-specimen weight sources."""
+    pf = fineness_pairs[0][0] if fineness_pairs else None
+    # Canonical fineness readings (deduped values) to snap each row's derived
+    # fineness onto — keeps the displayed value clean (.750, not .74999 float
+    # noise) and maps it to the right catalogue reading.
+    _fin_vals = sorted({round(v, 5) for v, _ in fineness_pairs if v is not None})
+
+    def _rowfin(rough, fine, fallback):
+        if rough and fine and rough > 0 and _fin_vals:
+            raw = fine / rough
+            return min(_fin_vals, key=lambda fv: abs(fv - raw))
+        return fallback
+
+    # Per-row source attribution differs by column: повна (rough) → the raw
+    # WEIGHT source; чиста / Δ → the «weight × fineness» DERIVED-source label
+    # (so their tooltip shows what the value was computed from, not just the
+    # weight source). проба sources are overridden below from fineness_groups.
+    rows: list[dict] = [{
+        "rough": cc.primary_weight_rough_g, "fine": cc.weight_fein_g,
+        "delta": cc.delta_g, "delta_pct": cc.delta_pct,
+        "fineness": _rowfin(cc.primary_weight_rough_g, cc.weight_fein_g, pf),
+        "sources": [cc.primary_weight_source] if cc.primary_weight_source else [],
+        "fine_src": [cc.primary_derived_source] if cc.primary_derived_source else [],
+        "delta_src": [cc.primary_derived_source] if cc.primary_derived_source else [],
+    }]
+    for ca in cc.alts:
+        r_rough = ca.weight_rough_g if ca.weight_rough_g is not None else cc.primary_weight_rough_g
+        rows.append({
+            "rough": r_rough, "fine": ca.weight_fein_g,
+            "delta": ca.delta_g, "delta_pct": ca.delta_pct,
+            "fineness": _rowfin(r_rough, ca.weight_fein_g,
+                                ca.fineness if ca.fineness is not None else pf),
+            "sources": [ca.source] if ca.source else [],
+            "fine_src": [ca.derived_source] if ca.derived_source else [],
+            "delta_src": [ca.derived_source] if ca.derived_source else [],
+        })
+    # Dedup TRUE duplicates (identical across all four fields) — union every
+    # per-column source list so a merged sub-row keeps all its provenance.
+    deduped: list[dict] = []
+    for r in rows:
+        k = tuple(round(r[f], 5) if r[f] is not None else None
+                  for f in ("rough", "fine", "delta", "fineness"))
+        for d in deduped:
+            if d["_k"] == k:
+                for sf in ("sources", "fine_src", "delta_src"):
+                    for s in r.get(sf) or []:
+                        if s not in d[sf]:
+                            d[sf].append(s)
+                break
+        else:
+            r["_k"] = k
+            deduped.append(r)
+    # Descending weight (the natural specimen order the reader expects); a
+    # fineness variant that correlates with weight then clusters contiguously
+    # so the проба run-length merges stay clean.
+    deduped.sort(key=lambda r: (-(r["rough"] or 0.0), -(r["fineness"] or 0.0)))
+    cc.msr_n = len(deduped)
+    # повна / чиста / Δ merge only WITHIN a проба group (group_field="fineness")
+    # — a weight shared by two specimens under different fineness readings is
+    # NOT collapsed into one span. проба itself IS the grouping axis (no
+    # group_field) and keeps its spanning merge.
+    cc.msr_weight_segs   = _seg_rle(deduped, "rough", 4, base_dec=2, group_field="fineness")
+    cc.msr_fein_segs     = _seg_rle(deduped, "fine", 7, base_dec=5, src_field="fine_src", group_field="fineness")
+    cc.msr_delta_segs    = _seg_rle(deduped, "delta", 7, base_dec=5, src_field="delta_src", group_field="fineness")
+    cc.msr_fineness_segs = _seg_rle(deduped, "fineness", 5, base_dec=3)
+    # проба source attribution: the fineness's OWN sources (fineness_groups),
+    # keyed by value — NEVER the per-specimen weight sources. A single reading
+    # (curator-inferred or single-sourced) still carries its source so the
+    # tooltip shows provenance; the template colours it normal vs orange by the
+    # NUMBER of distinct fineness segments (1 → normal .fin-src, ≥2 → .fin-alt).
+    fin_src = {round(g.value, 5): list(g.sources) for g in cc.fineness_groups}
+    for seg in cc.msr_fineness_segs:
+        v = seg.get("value")
+        seg["sources"] = fin_src.get(round(v, 5), []) if v is not None else []
+
+
 @dataclass
 class ComputedAlt:
     """Per-source alternative measurement set with derived values
@@ -284,6 +420,20 @@ class ComputedCoin:
     # information). Group key = rounded implied_fuss; sources combined.
     # Empty when no source's reading meaningfully deviates from the standard.
     implied_fuss_groups: list[DisplayGroup] = field(default_factory=list)
+    # --- Measurement sub-rows (rendered only when msr_n > 1) ---
+    # One row per distinct specimen/reading (primary + alts, deduped by the
+    # full rough/fein/delta/fineness/diameter tuple). Each per-column list is
+    # run-length-encoded, so consecutive rows with an equal value merge into
+    # ONE segment that visually spans `span` sub-rows (the «sub-column» look —
+    # e.g. one проба value for three weight rows). Rows are sorted to cluster
+    # equal fineness so the vertical merges come out contiguous. Each segment
+    # dict: {value, span, sources, delta_pct, decimals}. Diameter is NOT a
+    # sub-row axis (see _build_measurement_rows) — it keeps diameter_groups.
+    msr_n: int = 0
+    msr_weight_segs: list[dict] = field(default_factory=list)
+    msr_fein_segs: list[dict] = field(default_factory=list)
+    msr_delta_segs: list[dict] = field(default_factory=list)
+    msr_fineness_segs: list[dict] = field(default_factory=list)
 
     def __getattr__(self, name):
         """Proxy to raw for convenience."""
@@ -944,6 +1094,10 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     cc.weight_groups.sort(key=lambda g: g.value, reverse=True)
     cc.weight_fein_groups.sort(key=lambda g: g.value, reverse=True)
     cc.delta_groups.sort(key=lambda g: g.value, reverse=True)
+
+    # Per-specimen measurement sub-rows (rendered by the template only when
+    # msr_n > 1; single-reading coins keep the compact *_groups rendering).
+    _build_measurement_rows(cc, fineness_pairs)
 
     # implied_fuss_groups: only entries where the corresponding source's
     # |delta_pct| > 2 — small deviations make implied ≈ declared and add no
