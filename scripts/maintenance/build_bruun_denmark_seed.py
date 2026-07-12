@@ -730,11 +730,17 @@ _ENTITY_PIN: dict[str, str] = {
     # the SEED from moving, which otherwise strands the curated final and
     # duplicates / orphans it. (Verified: the Rethwisch Speciedalers 10781/
     # 7749/7754 already rendered on SH from danish_realm before Part A.)
-    #   • Haderslev ½/¼ Portugaløser 1591-93, Christian IV — reichsdukatenfuss:
+    #   • Haderslev ½/1 Portugaløser 1591-93, Christian IV — reichsdukatenfuss.
+    #     4595/4597/4598 stay pinned to danish_realm as the HOME bucket the
+    #     _cross_entity.yml pull reads from (it relocates them → royal_holstein
+    #     with the rest of the Christian IV Haderslev Portugaløser class, curator
+    #     2026-07-12). dk-bruun-4601 (Hede 7B ¼) is standalone (no §9a peer to
+    #     form a ≥2-member cross-entity group) → UN-pinned here so it routes to
+    #     royal_holstein by mint; it has no danish_realm ¼-1593 stub to re-back a
+    #     stale final, so the no-backing drop is clean.
     "dk-bruun-4595": "danish_realm",
     "dk-bruun-4597": "danish_realm",
     "dk-bruun-4598": "danish_realm",
-    "dk-bruun-4601": "danish_realm",
     #   • Rethwisch / Kopenhagen Speciedaler 1769, Christian VII — 9¼-Thaler:
     "dk-bruun-7748": "danish_realm",
     "dk-bruun-7749": "danish_realm",

@@ -273,3 +273,49 @@ merges:
       foundation carrying that classification. NB: the f7h6c seed carried a wrong
       fuss=pistolenfuss (residue of the d'Or-note leak) — the 18_5_thaler head
       classification supersedes it.
+
+  # --- Christian IV Haderslev Portugaløser class → royal_holstein (curator
+  # 2026-07-12, Serhii). The whole Christian IV Haderslev Portugaløser series is
+  # royal Schleswig coinage; to render on BOTH the Denmark page (consumes
+  # royal_holstein ≤1864) AND the SH page it must live in the royal_holstein
+  # (S-H) file. Hede-headed siblings c4h4 (Hede 4) / c4h5a (Hede 5) already are;
+  # the Bruun-headed Hede 1/3/7B + the ½ Hede 2/6 were pinned to danish_realm
+  # (_ENTITY_PIN) → Denmark-only. Cross-entity pull overrides the pin (drops the
+  # danish_realm final via the relocation filter; the mint-less KMM stubs stay as
+  # danish_realm seed_unsorted, unaffected). Classification reichsdukatenfuss/I in
+  # classification_decisions/royal_holstein.yml. ---
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-c4h2       # Hede 2 (½ Portugaløser 1591-92) — head; home royal_holstein
+      - dk-bruun-4600      # Hede 6 (½ Portugaløser, Bruun III lot 11174) — home royal_holstein
+      - dk-bruun-4597      # Hede 6 (½ Portugaløser, Bruun IV lot 17041) — home danish_realm (pinned)
+      - dk-numista-423686  # Hede 2, Fr 63, «5 Ducats» = ½ Portugaløser (§9a peer) — home danish_realm
+      - dk-numista-569008  # Hede 6, Fr 63, «5 Ducats» = ½ Portugaløser (§9a peer) — home danish_realm
+    reason: |
+      ONE coin — Christian IV «½ Portugaløser», Haderslev 1591-1593. Hede 2
+      (1591-92) + Hede 6 (1592-93) are sub-variants of one ½-Portugaløser type
+      (§9.4); curator-confirmed Hede 2+6 = one coin (Serhii 2026-07-12). bruun-4597
+      + bruun-4600 are two Bruun specimens of Hede 6, dk-hede-c4h2 is the Hede 2
+      sibling — every specimen weight + Sieg 5/160 + Fr 63 accumulate per §9a.
+      Head = unified-dk-hede-c4h2. danskmoent.dk/chr/c4h1.htm.
+  - target_entity: royal_holstein
+    members:
+      - dk-bruun-4595      # Hede 1 (1 Portugaløser 1591-92) — home danish_realm (pinned)
+      - dk-numista-469294  # same coin, Numista N#469294 (§9a peer) — home danish_realm
+    reason: |
+      Christian IV «1 Portugaløser», Hede 1, Schou 3, Fr 62, Haderslev 1591-92.
+      Relocated from danish_realm (was _ENTITY_PIN-pinned) with the Christian IV
+      Haderslev Portugaløser class; the cross-entity pull overrides the pin. The
+      Numista N#469294 attestation is the same coin (§9a) — listed as a member so
+      the group has ≥2 members (single-member cross-entity is unsupported).
+  - target_entity: royal_holstein
+    members:
+      - dk-bruun-4598      # Hede 3 (¼ Portugaløser 1592-93) — home danish_realm (pinned)
+      - dk-numista-424614  # same coin, Numista N#424614 (§9a peer) — home danish_realm
+      - kmk-136898         # same coin, KMM Schou 7 = Hede 3 (§9a peer) — home danish_realm
+    reason: |
+      Christian IV «¼ Portugaløser», Hede 3, Schou 7, Fr 64, Haderslev 1592-93.
+      Relocated from danish_realm (was _ENTITY_PIN-pinned) with the Christian IV
+      Haderslev Portugaløser class; the cross-entity pull overrides the pin.
+      Numista N#424614 + KMM Schou 7 (kmk-136898) are the same coin (§9a), listed
+      as members so the group has ≥2 members and to relocate the folded stubs too.
