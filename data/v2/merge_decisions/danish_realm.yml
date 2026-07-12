@@ -593,6 +593,29 @@ merges:
       - kmk-190245
       - kmk-277003
     reason: 'c4h77: 1 Mark Danske Christian IV 1602-1608 (København), Hede 77 = KM 12. ONE coin per §9.4 — the Hede sub-letters 77/77A/77B/77C are die/year sub-variants of the single base Hede 77, and KM 12 (12/12a) is its Krause number (the KM-12/Hede-77 type, established distinct from KM-33/Hede-92 by the c4h92 work 2026-06-28). The family was fragmented across 6 seed_unified clusters: the KM-12a foundation (Numista 55302 + ucoin 163044 + KMM 190242/149993, already 9_thaler/I) plus five unabsorbed Hede-sub-letter clusters — 55303 (Hede 77/77A, KM 12), 190242 (Hede 77C), 190244 (Hede 77B), 190245 (Hede 77A), 277003 (Hede 77). Force-merge unites them so every specimen folds under the one coin (§9a); KM list-form [12, 12a], Hede [77, 77A, 77B, 77C], years 1602-1608. Does NOT touch the c4h92 no_merges (those keep Hede-92A/KM-33 out of the KM-12 cluster; dk-hede-c4h92a is not a member here). Curator-confirmed 2026-07-02 (Serhii).'
+  - members:
+      - kmk-575429
+      - dk-bruun-3831
+      - dk-galster-hg-24
+      - dk-numista-420401
+    reason: >-
+      Curator 2026-07-12 (Serhii): §9.4 duplicate fold, promotes a seed_unsorted
+      IKMK stub into nobel_fod. IKMK object KMM 575429 (kmk-575429, «1 Guldnobel»
+      Hans 1496, Schou 2) is the SAME coin as the classified 1 Nobel Hans
+      1496/1502 (bruun-3831 group) — KMM 575429 is already cited as a source on
+      that entry. Shared base index Schou 2 (+ Galster 24). Fold the standalone
+      seed entry in; preserve its 14.75 g KMM specimen weight per §9a.
+  - members:
+      - kmk-156725
+      - dk-galster-f1g-69
+    reason: >-
+      Curator 2026-07-12 (Serhii): §9.4 duplicate fold, promotes a seed_unsorted
+      IKMK stub into nobel_fod. IKMK object KMM 156725 (kmk-156725, «1 Nobel»
+      Frederik I 1523-1533, Schou 1) is the SAME coin as Galster 69 / Schou 1
+      (dk-galster-f1g-69) — already cited as a source there (cf. the reverted
+      Galster-68 erratum, CLAUDE.md §CN: the coin is Galster 69, Schou 1). Shared
+      base index Schou 1. Fold the standalone seed entry in; preserve its 17.4 g
+      KMM specimen weight per §9a.
 no_merges:
   # Split 4 outliers out of the Hede-144 core (Christian IV 1 Skilling, 1629).
   # Index graph: the legit core = Hede 144/144A/144B <-> Schou 57/58 <-> KM 113.1
