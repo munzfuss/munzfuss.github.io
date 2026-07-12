@@ -15,6 +15,42 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-12 — coin-table measurement sub-rows (per-specimen повна/чиста/Δ)
+
+> **UNPUSHED — push pending «пуш».** Commit `d04974e` (+ render-neutral
+> groundwork `8c67eba`). Full build exit 0; preview (port 3000) rebuilt.
+
+**What shipped.** Multi-specimen coins now render повна / чиста / Δ as aligned
+sub-rows (one per specimen) instead of comma-lists; проба spans exactly the
+sub-rows sharing its fineness. Files: `scripts/lib/compute.py` (`_seg_rle`,
+`_build_measurement_rows`, `ComputedCoin.msr_*`), `templates/location.html.j2`
+(метал/проба + повна + чиста + Δ cells, gated on `coin.msr_n > 1`, else the old
+`*_groups` rendering), `scripts/lib/style.base.css` (`.msr-seg`,
+`.fin-src`/`.fin-alt`, `.sd-wrap`).
+
+**Key design decisions (all curator-driven this session):**
+- проба driven by `fineness_groups` (per-SOURCE readings); each row's fineness
+  derived from its own чиста/повна + snapped to the catalogue value → проба
+  aligns with чиста row-for-row. Single reading → normal `.fin-src` + source
+  tooltip; ≥2 divergent → orange `.fin-alt`, each its own fineness source (NEVER
+  the weight source). Metal repeated per variant.
+- Diameter is NOT a sub-row axis (specimen spread = wear noise) — Ø keeps its
+  own `diameter_groups`.
+- чиста/Δ tooltips carry the «weight × fineness» derived-source label
+  (`_seg_rle` `src_field`); повна carries the raw weight source.
+- `_seg_rle` `group_field="fineness"`: повна/чиста/Δ never merge across a проба
+  boundary — a weight shared by two specimens under different fineness keeps its
+  own sub-row (не дедуплікується). проба itself is the grouping axis.
+- `--msr-row-h` 44px; Δ badge 2-line, unverified «(?)» sits OUTSIDE the coloured
+  badge (right, vertically centred via `.sd-wrap`); msr-seg horizontal padding
+  matched to `.mt td` so sub-row values align with non-sub-row values.
+
+**Verification note.** Spot-checks were on denmark via an isolated single-table
+demo (`site/_msr_demo.html`, now removed) + JS geometry — the preview pane can't
+screenshot the full 2025-coin page (renderer times out; scroll decoupled from
+capture). Reference cases: c3h14 (royal_holstein, .750 hede / .764 galster) and
+the reichsdukatenfuss .986/.972 @ 3.49 g coin — both confirmed aligned.
+
 ## 2026-07-10 (later) — founding-era reign-span mint/phase START rule
 
 > **UNPUSHED — push pending «пуш».** Commit `8d4d305` (was cf3aede pre message-amend).
