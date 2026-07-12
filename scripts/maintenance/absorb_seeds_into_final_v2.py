@@ -88,6 +88,7 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     _format_year_label,
     _take_first_non_none,
     _or_merge_verified,
+    _source_label_from_id,
     _catalog_refs,
     _shares_unique_id_ref,
     _shares_type_level_catalog,
@@ -688,19 +689,45 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
             # (a) §4 verified-wins: let the collected source readings +
             #     OR-merged verified flag stand; drop the unverified hold.
             continue
-        # (b) §9a preserve-all: union held value(s) with source readings.
+        # (b) §9a preserve-all: union the held value(s) with GENUINE source
+        # readings. Subtlety: `_collect_field_list` round-trips the foundation's
+        # own SCALAR hold into a FieldValue whose source it SYNTHESISES from the
+        # coin id (`_source_label_from_id`, e.g. 0.77 on unified-dk-hede-… →
+        # {value: 0.77, source: "hede"}). That collected entry is NOT a genuine
+        # peer attestation — it is the held anchor itself. Blindly unioning it
+        # back produced a schema-INVALID mixed list [0.77, {value:0.77,
+        # source:"hede"}] (the `(value, source)` dedup can't collapse a bare
+        # scalar with its own synthesised FieldValue). So: drop any collected
+        # reading that is the anchor round-trip (source == the coin's own
+        # id-label AND its value is already held). If nothing genuine remains,
+        # keep the hold VERBATIM (a scalar anchor stays scalar — no fake source,
+        # honours the «no source attests this fineness» curator note). Only
+        # genuinely-new readings force a homogeneous FieldValue list.
         held_val = final_entry[_hf]
-        merged = list(held_val) if isinstance(held_val, list) else [held_val]
+        held_list = held_val if isinstance(held_val, list) else [held_val]
+        def _vof(x):
+            return x.get("value") if isinstance(x, dict) else x
+        held_vals = {round(_vof(x), 6) for x in held_list if _vof(x) is not None}
+        own_src = _source_label_from_id(final_entry.get("id"))
         collected = out.get(_hf)
-        if isinstance(collected, list):
-            def _k(e):
-                return (e.get("value"), e.get("source")) if isinstance(e, dict) else (e, None)
-            seen = {_k(e) for e in merged}
-            for e in collected:
-                if _k(e) not in seen:
+        collected_list = (collected if isinstance(collected, list)
+                          else ([] if collected is None else [collected]))
+        genuine = [e for e in collected_list
+                   if not (isinstance(e, dict) and e.get("source") == own_src
+                           and _vof(e) is not None and round(_vof(e), 6) in held_vals)]
+        if not genuine:
+            out[_hf] = held_val
+        else:
+            def _norm(x):
+                return x if isinstance(x, dict) else {"value": x, "source": None}
+            merged = [_norm(x) for x in held_list]
+            seen = {(m.get("value"), m.get("source")) for m in merged}
+            for e in genuine:
+                k = (e.get("value"), e.get("source"))
+                if k not in seen:
                     merged.append(e)
-                    seen.add(_k(e))
-        out[_hf] = merged
+                    seen.add(k)
+            out[_hf] = merged
         # `out[_vf]` already holds the OR-merge over all members (foundation
         # + sources), which is the correct «any verified ⇒ verified» status.
 
