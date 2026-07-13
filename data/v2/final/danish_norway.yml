@@ -24991,46 +24991,6 @@ coins:
   composed_of:
   - unified-dk-galster-hg-159
 - fuss: seed_unsorted
-  phase: galster
-  kind: kurant
-  nominal: 1 Rhinsk gylden
-  ruler: Hans
-  issuing_entity: danish_norway
-  id: unified-dk-galster-hg-gej
-  year_first: 1481
-  year_last: 1513
-  year_ranges:
-  - - 1481
-    - 1513
-  year_label: 1481-1513
-  year_verified: false
-  mint: Bergen
-  catalog:
-    galster: Gej
-    galster_volume: hg
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/norge/hansGej.htm
-    ref: Galster Gej (hg) — danskmoent.dk norge_hansGej.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-hg-gej
-  promoted_to: unified-dk-bruun-3839
-- fuss: seed_unsorted
   phase: numista
   kind: kurant
   nominal: 1 Skilling
@@ -27230,6 +27190,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-86289
   - unified-dk-numista-119248
 - fuss: 9_25_thaler
   phase: I
@@ -72316,6 +72277,63 @@ coins:
   verification_note: *id006
   composed_of:
   - unified-kmk-308730
+- fuss: rhinsk_gylden_fod
+  phase: '0'
+  kind: kurant
+  nominal: 1 Goldgulden
+  ruler: John (Hans)
+  issuing_entity: danish_norway
+  id: unified-dk-numista-444264
+  year_first: 1481
+  year_last: 1513
+  year_ranges:
+  - - 1481
+    - 1513
+  year_label: 1481-1513
+  year_verified: false
+  mint: Bergen
+  catalog:
+    numista: '444264'
+    others:
+    - AAJT# 1A
+    - Thesen# 1
+    galster: Gej
+    galster_volume: hg
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.739
+    source: numista
+  weight_rough_g:
+  - value: 3.278
+    source: numista
+  diameter_mm:
+  - value: 22.5
+    source: numista
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/norge/hansGej.htm
+    ref: Galster Gej (hg) — danskmoent.dk norge_hansGej.htm
+  - type: literature
+    url: https://en.numista.com/444264
+    ref: Numista N#444264 — Norway 1 Goldgulden - Hans 1505-1510
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  composed_of:
+  - unified-dk-numista-444264
 - fuss: 18_5_thaler
   phase: I
   kind: kurant
