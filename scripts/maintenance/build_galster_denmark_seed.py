@@ -178,6 +178,18 @@ def coin_id(galster_number: str | None, ruler_volume: str | None, source_file: s
     return f"dk-galster-{source_file.replace('.htm', '').replace('.json', '')}"
 
 
+def _is_real_galster_index(num: str | None) -> bool:
+    """A real Galster catalogue number contains a digit («27», «27A»).
+
+    A non-numbered placeholder derived from a page filename — «Gej» from
+    `norge/hansGej.htm` (a special non-numbered Hans Bergen Goldgulden, see
+    galster_parsers/standard.py) — is NOT a catalogue index. Such a token stays
+    only in the `coin_id` (an internal identifier); it must be kept OUT of the
+    coin's `catalog.galster` field and out of the human-facing source-ref label.
+    """
+    return bool(num) and any(c.isdigit() for c in num)
+
+
 _GALSTER_MINTS_RE = re.compile(
     r",\s*("
     # Danish mints (incl. mojibake variants K�benhavn / Malm� /
@@ -298,14 +310,17 @@ def _build_sources(data: dict) -> list[dict]:
     )
     volume = data.get("ruler_volume")
     volume_part = f" ({volume})" if volume else ""
+    # A non-numbered placeholder («Gej» from norge/hansGej.htm) is not a Galster
+    # catalogue number — cite the danskmoent page plainly rather than «Galster Gej».
+    if _is_real_galster_index(galster_num):
+        ref = f"Galster {galster_num}{volume_part} — danskmoent.dk {data.get('source_file', '?')}"
+    else:
+        ref = f"danskmoent.dk {data.get('source_file', '?')}"
     return [
         {
             "type": "literature",
             "url": data.get("source_url_hint"),
-            "ref": (
-                f"Galster {galster_num}{volume_part} — "
-                f"danskmoent.dk {data.get('source_file', '?')}"
-            ),
+            "ref": ref,
         }
     ]
 
@@ -397,11 +412,21 @@ def build_entry(data: dict) -> dict | None:
     # non-schema key to `others` rather than copying it verbatim (which would
     # fail validation).
     catalog: dict = catalog_from_ref_dict(data.get("catalog_refs") or {})
-    if data.get("galster_number") and "galster" not in catalog:
+    if (data.get("galster_number") and "galster" not in catalog
+            and _is_real_galster_index(data.get("galster_number"))):
         catalog["galster"] = data["galster_number"]
-    if data.get("ruler_volume"):
+    # galster_volume is a companion to a REAL galster number (it disambiguates
+    # which Galster volume the number belongs to). Without a real galster index
+    # it is orphaned metadata — skip it for the non-numbered «Gej» placeholder.
+    if data.get("ruler_volume") and _is_real_galster_index(catalog.get("galster")):
         catalog["galster_volume"] = data["ruler_volume"]
     _clean_catalogue_refs(catalog)
+    # _clean_catalogue_refs drops non-index tokens from the galster cell (the
+    # «Gej» filename placeholder is not a real Galster number → removed). A
+    # galster_volume left with no surviving galster index is orphaned — drop it
+    # so the non-numbered hansGej.htm page keeps no galster catalogue at all.
+    if "galster" not in catalog:
+        catalog.pop("galster_volume", None)
 
     specs = data.get("specs") or {}
     sub_realm = data.get("sub_realm")
