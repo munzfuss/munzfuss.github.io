@@ -35,8 +35,9 @@ Resolved work is safely in git; open items are captured below.
 
 **Group progress (11 groups):**
 - ✅ `1_rosenobel` (2/2 excluded) · `2_nobel` (2/2 merged) · `3_portugaloser`
-  (19/22 done, 3 deferred) · `5_gold_daler_tarif` (5/5: 4 merged + 1 excluded)
-- ⬜ PENDING: `0_offstrike_EXCLUDE` (5) · `4_kurantdukat` (22) · `6_guldkrone` (7)
+  (19/22 done, 3 deferred) · `5_gold_daler_tarif` (5/5: 4 merged + 1 excluded) ·
+  `0_offstrike_EXCLUDE` (8 excluded — 5 gold + 3 copper/tin/unspec off-strikes)
+- ⬜ PENDING: `4_kurantdukat` (22) · `6_guldkrone` (7)
   · `7_goldgulden_gylden` (12) · `8_dukat` (73) · `9_dor_pistolen` (11) ·
   `Z_other_review` (51)
 
