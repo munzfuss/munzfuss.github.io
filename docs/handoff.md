@@ -15,6 +15,64 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-13 — gold seed_unsorted triage (Portugaløser + tarif-Daler)
+
+> **UNPUSHED — push pending «пуш».** Commits this triage: `d675e1d` `ec52477`
+> `cfc1c26` `2202998` `16491cb` `d941f3e` `26977af` `26b7d8a` `cc5f5aa` `be13259`
+> (Portugaløser Cases 1-9 + f2h7a classify + NumisMaster 65625 fold + tarif 1-4).
+> 36 commits unpushed total.
+
+**Task shape.** Working through the ~212 gold `fuss: seed_unsorted` coins
+(danish_realm / danish_norway / royal_holstein, metal != silver), group by group,
+classifying / merging / excluding each. Curator-driven, case-by-case.
+
+**⚠ Scratchpad loss.** The session working file
+`…/scratchpad/seed_unsorted_gold.md` (the 212-coin list with per-coin resolution
+map) was cleaned mid-session — scratchpad is session-scoped, do NOT rely on it.
+Regenerate if continuing: filter seed_unified for `fuss == seed_unsorted` +
+`metal != silver` across the three danish entities, group by nominal family.
+Resolved work is safely in git; open items are captured below.
+
+**Group progress (11 groups):**
+- ✅ `1_rosenobel` (2/2 excluded) · `2_nobel` (2/2 merged) · `3_portugaloser`
+  (19/22 done, 3 deferred) · `5_gold_daler_tarif` (4/5 merged, 1 pending)
+- ⬜ PENDING: `0_offstrike_EXCLUDE` (5) · `4_kurantdukat` (22) · `6_guldkrone` (7)
+  · `7_goldgulden_gylden` (12) · `8_dukat` (73) · `9_dor_pistolen` (11) ·
+  `Z_other_review` (51)
+
+**OPEN items awaiting the curator (all need a verdict — do NOT auto-resolve):**
+- **`kmk-136897`** (3_portugaloser Case 5) — KMM «½ portugaløser» but own tag
+  «Sch 2» + 1593. Analysis: it's ¼ **Hede 7B** (Schou 2 + 1593 = ¼; ½ would be
+  Schou 1). Merge target if confirmed → `dk-bruun-4601`. **BLOCKED**: source
+  images down on samlinger.natmus.dk; leave in seed until they return + curator
+  eyeballs ½ (17.5 g) vs ¼ (8.7 g).
+- **`kmk-122106`** (3_portugaloser Case 6) — KMM «portugaløser» but own tag
+  «H 49»; Hede 49 (c4h) = **Speciedaler 1603** (danskmoent c4h49). Suspected KMM
+  label error → it's the Speciedaler. Merge target if confirmed →
+  `unified-dk-hede-c4h49`. **BLOCKED**: images down; leave in seed.
+- **`kmk-298423`** (3_portugaloser Case 8) — undocumented «4 Portugaløser» Johan
+  Adolf (Gottorp), unique nominal, no wt/image/mint/catalogue. Either an
+  exceptional specimen or a KMM error. Leave in seed; revisit with more data.
+- **`kmk-464150`** (5_gold_daler_tarif) — lone gold Frederik III 1656
+  «Speciedaler», KMM «(Schou 5)» = cf. Hede 55 2-Speciedaler. NOT the Chr IV 1604
+  tarif klippe (grouping error). Likely a F.III **Guldafslag** off-strike (§9.5,
+  Case 9 class) but under-documented (no wt/image, danskmoent shows no gold
+  Hede 55, zero Bruun/Sieg/Numista corrob). Options surfaced to curator: exclude
+  `off_strike` (recommended) / exclude `undocumented_stub` / leave in seed.
+  Links given; awaiting verdict.
+
+**Mechanics used (reusable for the remaining groups).** Same-entity §9a specimen
+merges via `merge_decisions/<entity>.yml`; cross-entity relocations (Haderslev =
+royal Schleswig → `royal_holstein`, renders both pages) via
+`_cross_entity.yml`; off-strikes via `exclusions/<entity>.yml`; classifications
+via `classification_decisions/<entity>.yml`. Flow = merger `--apply` (no
+`--entity` when cross-entity active) → absorb affected entities → revert the
+date-only seed_unified noise (`git diff --numstat | awk '$1==2&&$2==2' | xargs
+git checkout --`) → `audit_lost_citations` → commit by pathspec. The §9.4
+graph-gate warns «no shared base» on catalogue-divergence + Schou-range +
+physical-uniqueness cases (all false alarms) — document the override in the
+merge reason.
+
 ## 2026-07-12 — coin-table measurement sub-rows (per-specimen повна/чиста/Δ)
 
 > **UNPUSHED — push pending «пуш».** Commit `d04974e` (+ render-neutral
