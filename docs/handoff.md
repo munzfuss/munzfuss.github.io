@@ -35,7 +35,7 @@ Resolved work is safely in git; open items are captured below.
 
 **Group progress (11 groups):**
 - ✅ `1_rosenobel` (2/2 excluded) · `2_nobel` (2/2 merged) · `3_portugaloser`
-  (19/22 done, 3 deferred) · `5_gold_daler_tarif` (4/5 merged, 1 pending)
+  (19/22 done, 3 deferred) · `5_gold_daler_tarif` (5/5: 4 merged + 1 excluded)
 - ⬜ PENDING: `0_offstrike_EXCLUDE` (5) · `4_kurantdukat` (22) · `6_guldkrone` (7)
   · `7_goldgulden_gylden` (12) · `8_dukat` (73) · `9_dor_pistolen` (11) ·
   `Z_other_review` (51)
@@ -53,13 +53,6 @@ Resolved work is safely in git; open items are captured below.
 - **`kmk-298423`** (3_portugaloser Case 8) — undocumented «4 Portugaløser» Johan
   Adolf (Gottorp), unique nominal, no wt/image/mint/catalogue. Either an
   exceptional specimen or a KMM error. Leave in seed; revisit with more data.
-- **`kmk-464150`** (5_gold_daler_tarif) — lone gold Frederik III 1656
-  «Speciedaler», KMM «(Schou 5)» = cf. Hede 55 2-Speciedaler. NOT the Chr IV 1604
-  tarif klippe (grouping error). Likely a F.III **Guldafslag** off-strike (§9.5,
-  Case 9 class) but under-documented (no wt/image, danskmoent shows no gold
-  Hede 55, zero Bruun/Sieg/Numista corrob). Options surfaced to curator: exclude
-  `off_strike` (recommended) / exclude `undocumented_stub` / leave in seed.
-  Links given; awaiting verdict.
 
 **Mechanics used (reusable for the remaining groups).** Same-entity §9a specimen
 merges via `merge_decisions/<entity>.yml`; cross-entity relocations (Haderslev =
