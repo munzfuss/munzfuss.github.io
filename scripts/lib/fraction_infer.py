@@ -222,6 +222,17 @@ RULES: dict[str, list[tuple[str, callable]]] = {
         ("guldmønt", _identity),
         ("ungersk", _identity),                 # «Ungersk Gylden» — head token «ungersk», treat as 1 Ducat
     ],
+    # ------- Rhinsk-Gyldenfod (gold Goldgulden / Rhinsk Gylden, .75-.77) -------
+    # fractions: 1, 2.  «N Goldgulden» / «N Rhinsk gylden» → N (mirrors the
+    # goldgulden/gylden handling under reichsdukatenfuss; distinct fuss, so it
+    # needs its own rule — else the Soll-Feingewicht + Δ columns stay blank).
+    "rhinsk_gylden_fod": [
+        ("goldgulden", _identity),
+        ("guldgylden", _identity),
+        ("rhinsk", _identity),                  # «N Rhinsk gylden» → N
+        ("gylden", _identity),
+        ("gulden", _identity),
+    ],
     # ------- Pistolenfuß (gold, .906) -------
     "pistolenfuss": [
         ("pistole", _identity),

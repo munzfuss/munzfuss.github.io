@@ -89,17 +89,35 @@ _NUMISTA_RULER_CANON = {
 }
 
 
+def _canon_numista_ruler(nm: str) -> str:
+    """Canonicalise a Numista king name to the project's Danish form.
+
+    Numista writes the Danish-Norwegian king Hans (John I, r. 1481-1513) with
+    the English exonym «John» — in several shapes: «John», «John I»,
+    «John (Hans)», «John I (Hans I)», any optionally trailed by a
+    « (reign-dates)». Hans is the ONLY Danish-Norwegian «John», so ANY leading
+    «John» token canonicalises to «Hans». Exact-map hits (`_NUMISTA_RULER_CANON`)
+    win first; the regex is the robust fallback that the hardcoded map missed
+    (e.g. «John (Hans)» → «Hans», the Norway Bergen Goldgulden N#444264, 2026-07-13).
+    """
+    if nm in _NUMISTA_RULER_CANON:
+        return _NUMISTA_RULER_CANON[nm]
+    if re.match(r"^\s*John\b", nm):
+        return "Hans"
+    return nm
+
+
 def _resolve_ruler(kings: list[dict] | None) -> str | None:
     """Pick the most informative ruler name. Multi-ruler entries get
     joined with « / » per pre_1541 builder convention. Danish exonyms are
-    mapped to the project's canonical Danish form via `_NUMISTA_RULER_CANON`."""
+    mapped to the project's canonical Danish form via `_canon_numista_ruler`."""
     if not kings:
         return None
     names = []
     for k in kings:
         if isinstance(k, dict) and k.get("name"):
             nm = str(k["name"])
-            names.append(_NUMISTA_RULER_CANON.get(nm, nm))
+            names.append(_canon_numista_ruler(nm))
     if not names:
         return None
     if len(names) == 1:
