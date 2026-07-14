@@ -4400,42 +4400,21 @@ coins:
 - fuss: rhinsk_gylden_fod
   phase: I
   kind: kurant
-  nominal: 1 Goldgulden
+  nominal: 1 Rhinsk Gylden
   ruler: Christian III.
-  issuing_entity:
-  - danish_realm
-  - royal_holstein
+  issuing_entity: royal_holstein
   fraction: '1'
   id: unified-dk-hede-c3h14
-  year_first: 1536
-  year_last: 1547
-  year_ranges:
-  - - 1536
-    - 1536
-  - - 1546
-    - 1547
-  year_label: 1536, 1546-1547
+  year_first: 1546
+  year_last: 1546
+  year_label: '1546'
   year_verified: true
-  mint:
-  - Flensburg
-  - Roskilde
+  mint: Flensburg
   catalog:
     hede: '14'
     hede_volume: c3h
-    sieg:
-    - '23'
-    - '51'
-    schou:
-    - '2'
-    - '4'
-    - '1351'
-    galster: '131'
-    lange: '18'
-    fr: '18'
-    mb: '42'
-    bruun_collection_id: '14770'
-    numista: '379084'
-    galster_volume: c3g
+    sieg: '51'
+    schou: '2'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -4446,33 +4425,13 @@ coins:
   fineness:
   - value: 0.75
     source: hede
-  - value: 0.764
-    source: galster
   weight_rough_g:
-  - value: 3.19
-    source: galster
-  - value: 3.23
-    source: numista
   - value: 3.278
     source: hede
-  - value: 3.37
-    source: bruun
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c3h15.htm
     ref: danskmoent.dk (Hede c3h14)
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14258, p. 322
-  - type: literature
-    url: https://numismaster.com/MC_167746
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/379084
-    ref: Numista N#379084 — 1 Goldgulden - Christian III
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g131.htm
-    ref: Galster 131 (c3g) — danskmoent.dk chr_c3g131.htm
   note:
     de: Rhinsk Gulden
     en: Rhinsk Gulden
@@ -4486,13 +4445,13 @@ coins:
       знаком Reynold Junge. Дані з danskmoent.dk (Galster 130; NFM XII, с. 10).
   composed_of:
   - unified-dk-hede-c3h14
-  - unified-schleswig_holstein-numismaster-167746
   _curation_holds:
     fuss: 'Gold Rhinsk Gylden (.75) — §8a metal-mismatch: cannot sit in the silver Flensborg-line 8_daler_lybsk_fod where
-      the over-broad mint-anchor rule had placed it. Δ −1.7 % vs rhinsk_gylden_fod Phase-0 soll (2.501 g fein). Classifier
-      metal-gate added so gold no longer auto-mis-routes.'
-    phase: Phase 0 (Christian III early Rhinsk Gylden) — joins the 1536 Roskilde piece (galster-c3g-131); this is the 1546
-      Flensborg pair (Hede c3h14/c3h15, Galster 130, NFM XII s.10).
+      the over-broad mint-anchor rule had placed it. Classifier metal-gate added so gold no longer auto-mis-routes.'
+    phase: 'Phase I (rhinsk_gylden_fod 1496-1547). SPLIT 2026-07-14: this is now the standalone Flensburg-1546 Hede-14 piece
+      (.750, Sieg 51, Schou 2); the 1536 Roskilde .764 «Goldgulden» is a separate coin in danish_realm (unified-dk-bruun-14770).'
+    mint: SPLIT 2026-07-14 — Flensburg only; the Roskilde reading belonged to the now-separated Coin A (unified-dk-bruun-14770).
+    nominal: SPLIT 2026-07-14 — «1 Rhinsk Gylden» (Hede name for the Flensburg piece); «1 Goldgulden» was the merged label.
 - fuss: rhinsk_gylden_fod
   phase: I
   kind: kurant

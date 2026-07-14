@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-07-12 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-14 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1732 per-source seed entries.
-# Output: 952 unified entries (one per physical coin).
+# Input: 1728 per-source seed entries.
+# Output: 951 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-07-12'
+generated_at: '2026-07-14'
 coins:
 - id: unified-denmark-numismaster-65653
   fuss: seed_unsorted
@@ -2427,86 +2427,40 @@ coins:
   phase: hede
   kind: kurant
   nominal: 1 Rhinsk Gylden
-  year_first: 1536
+  year_first: 1546
   year_last: 1546
-  year_ranges:
-  - - 1536
-    - 1536
-  - - 1546
-    - 1546
-  year_label: 1536, 1546
+  year_label: '1546'
   ruler: Christian III.
-  mint:
-  - Flensburg
-  - Roskilde
+  mint: Flensburg
   catalog:
     hede: '14'
     hede_volume: c3h
-    schou:
-    - '2'
-    - '4'
-    sieg:
-    - '23'
-    - '51'
-    bruun_collection_id: '14770'
-    galster: '131'
-    lange: '18'
-    numista: '379084'
-    mb: '42'
-    fr: '18'
-    galster_volume: c3g
+    schou: '2'
+    sieg: '51'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: false
   mint_verified: true
   verified: false
-  year_verified: true
   fineness:
   - value: 0.75
     source: hede
-  - value: 0.764
-    source: galster
   weight_rough_g:
-  - value: 3.19
-    source: galster
-  - value: 3.23
-    source: numista
   - value: 3.278
     source: hede
-  - value: 3.37
-    source: bruun
   sources:
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14258, p. 322
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g131.htm
-    ref: Galster 131 (c3g) — danskmoent.dk chr_c3g131.htm
   - type: literature
     url: https://www.danskmoent.dk/chr/c3h15.htm
     ref: danskmoent.dk (Hede c3h14)
-  - type: literature
-    url: https://en.numista.com/379084
-    ref: Numista N#379084 — 1 Goldgulden - Christian III
-  note:
-    de: Rhinsk Gulden
-    en: Rhinsk Gulden
-    uk: Rhinsk Gulden
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
       danskmoent.dk.'
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  issuing_entity:
-  - danish_realm
-  - royal_holstein
+  issuing_entity: royal_holstein
   composed_of:
-  - dk-bruun-14770
-  - dk-galster-c3g-131
   - dk-hede-c3h14
-  - dk-numista-379084
 - id: unified-dk-hede-c3h15
   fuss: seed_unsorted
   phase: hede
@@ -33161,44 +33115,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-167745
-- id: unified-schleswig_holstein-numismaster-167746
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Goldgulden
-  year_first: 1536
-  year_last: 1547
-  year_ranges:
-  - - 1536
-    - 1536
-  - - 1546
-    - 1547
-  year_label: 1536, 1546-1547
-  ruler: Christian III
-  catalog:
-    mb: '42'
-    schou: '1351'
-    fr: '18'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167746
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-167746
 - id: unified-schleswig_holstein-numismaster-167747
   fuss: seed_unsorted
   phase: numismaster

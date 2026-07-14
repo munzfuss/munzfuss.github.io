@@ -27,26 +27,16 @@ merges:
       (fixed at the Hede seed via _curation_holds: {metal} so the re-seed + merger
       keep billon). Host = unified-dk-hede-f6h31 (Hede authority); the bruun-8047
       foundation final is deleted (its seed migrates into the Hede head).
-  - members:
-      - dk-hede-c3h14      # «1 Rhinsk Gylden» 1546 — Hede 14, Sieg 51, Schou 2
-      - dk-bruun-14770     # «1 Goldgulden» 1536/1546-47 — Sieg 23, Schou 4/1351, Galster 131, Lange 18, Fr 18, MB 42
-    reason: |
-      Curator decision 2026-06-22 (Serhii): ONE coin — Christian III «Rhinsk
-      Gylden» (.75 gold, ca. 1536-1547). Catalogued under two names: Hede calls
-      the .75 gold gulden «Rhinsk Gylden» (c3h14, Sieg 51, Schou 2); Bruun /
-      Galster / Friedberg call the same type «Goldgulden» (dk-bruun-14770: Sieg
-      23, Schou 4/1351, Galster 131, Lange 18, Fr 18, MB 42). Nominal conflict →
-      curator picks «1 Rhinsk Gylden» (Hede host wins by authority; the discarded
-      «1 Goldgulden» surfaces in match_uncertainty). The catalogue refs accumulate
-      list-form per §9a/data-accumulation — incl. the Sieg 23-vs-51 and Schou
-      2-vs-4/1351 discrepancies (a catalogue-edition divergence on ONE type, not a
-      split). Both already classified rhinsk_gylden_fod phase 0. The «Goldgulden»
-      vs «Rhinsk Gylden» nominal genuinely differs, so the absorb re-validate
-      would normally evict the Bruun member — the force-merge exemption (commit
-      d071b81) protects this exact shape. A third copy, dk-numista-379084
-      (Galster 131 + Fr 18, «1 Goldgulden»), was mis-bucketed in gottorp_duchy —
-      now pulled into this group via `_cross_entity.yml::merges` (Serhii, by image
-      2026-06-22), so the coin is Hede c3h14 + Bruun 14770 + Numista 379084.
+  # SPLIT 2026-07-14 (Serhii): the former force-merge [dk-hede-c3h14,
+  # dk-bruun-14770] is REVERSED. The two are distinct types per §9.4 — no
+  # shared base index (Sieg 51≠23, Schou 2≠4; the Danish specialist catalogues
+  # give the Flensburg-1546 and Roskilde-1536 pieces different numbers). Only
+  # the coarse aggregators (Friedberg 18, Numista N#379084, MB 42) lumped them,
+  # which is cataloguing granularity, not identity (§5: specialist > coarse).
+  #   • Coin B (this entity) = dk-hede-c3h14 — Flensburg 1546, .750, Hede 14.
+  #   • Coin A = dk-bruun-14770 + dk-galster-c3g-131 + dk-numista-379084 +
+  #     numismaster-167746 — Roskilde 1536, .764 — relocated to danish_realm
+  #     via _cross_entity.yml.
   - members:
       - dk-hede-c4h156
       - dk-bruun-5441

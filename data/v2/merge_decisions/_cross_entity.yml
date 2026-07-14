@@ -124,31 +124,32 @@ merges:
       royal_holstein seed_unified (durable). kmk-131538 carries no KMM material
       tag (metal None) -> folds cleanly into the copper host, no metal conflict.
 
-  - target_entity: royal_holstein
+  - target_entity: danish_realm
     members:
-      - dk-hede-c3h14      # home: royal_holstein («1 Rhinsk Gylden», Hede 14)
-      - dk-numista-379084  # home: gottorp_duchy   («1 Goldgulden», Numista N#379084)
-      - dk-galster-c3g-131 # home: danish_realm    («1 Rhinsk gylden», Galster 131, .764 gold, Roskilde 1536)
+      - dk-galster-c3g-131                    # home: danish_realm    Coin A anchor (Galster 131, .764, Roskilde 1536)
+      - dk-bruun-14770                        # home: royal_holstein  Coin A (Sieg 23, Schou 4, Lange 18, Bruun 14770)
+      - dk-numista-379084                     # home: gottorp_duchy   Coin A (N#379084, Galster 131 + Fr 18)
+      - schleswig_holstein-numismaster-167746 # home: royal_holstein  Coin A (coarse Goldgulden: Schou 1351, Fr 18, MB 42)
     reason: |
-      Curator decision 2026-06-22 (Serhii, by image): third copy of the Christian
-      III «Rhinsk Gylden» / «Goldgulden» (.75 gold, ca. 1536-1547). dk-numista-379084
-      carries Galster 131 + Fr 18 — the SAME refs as the Bruun «Goldgulden» — but
-      no mint, so the classifier mis-bucketed it into gottorp_duchy + seed_unsorted.
-      It is the SAME coin as the royal_holstein c3h14 group (= the same-entity merge
-      `merge_decisions/royal_holstein.yml::merges [dk-hede-c3h14, dk-bruun-14770]`).
-      This cross-entity pull moves it into royal_holstein and force-unions it with
-      c3h14, so the three records (Hede c3h14 + Bruun 14770 + Numista 379084) form
-      ONE coin. Nominal stays «1 Rhinsk Gylden» (Hede host). The «Goldgulden» vs
-      «Rhinsk Gylden» nominal genuinely differs, so the absorb re-validate would
-      evict the Numista member — the force-merge exemption (d071b81) protects it
-      (the exemption reads _cross_entity::merges too).
-      FOURTH copy added 2026-07-02 (Serhii, by image): dk-galster-c3g-131 — the
-      standalone Galster-131 «1 Rhinsk gylden» that rendered as a separate DK row.
-      Same coin per §9.4 (Galster base 131). The completeness guard did NOT flag it
-      because it carries only a `galster` ref (no km/hede) and the guard keys on
-      km/hede bases. Its distinct Roskilde-1536 readings (.764 fineness, 3.19 g) are
-      preserved list-form (§9a) alongside the Flensburg-1546 Hede-14 .750 reading —
-      the two mints/years genuinely differ in fineness.
+      SPLIT 2026-07-14 (Serhii): the Roskilde-1536 «Goldgulden» is its OWN coin,
+      distinct from the Flensburg-1546 «Rhinsk Gylden» (dk-hede-c3h14, Hede 14).
+      This REVERSES the 2026-06-22/07-02 one-type decision. Per §9.4 the two share
+      no base index across the Danish specialist catalogues (Sieg 23≠51, Schou
+      4≠2, Galster 131 vs Hede-14-Flensburg); only the coarse world/community
+      catalogues (Friedberg 18, Numista N#379084, MB 42) lumped them, which is
+      cataloguing granularity not identity (§5 hierarchy: specialist > coarse).
+        • dk-galster-c3g-131 + dk-bruun-14770 — the specimen pieces: Roskilde,
+          1536, .764 gold, 3.19/3.37 g, Sieg 23, Schou 4, Lange 18, Galster 131.
+        • dk-numista-379084 + numismaster-167746 — the coarse aggregator pages
+          (Fr 18, MB 42, Schou 1351, N#379084) that had bridged the two mints;
+          both anchor on Galster 131 / the «Goldgulden» name → they belong here,
+          NOT to the Hede Flensburg record. Their loose 1546-1547 year windows
+          are held via `merge_decisions/danish_realm.yml::year_demote` so the
+          merged year stays 1536 (the specimen year).
+      target_entity = danish_realm: Roskilde is a Danish-realm mint (Roskilde is
+      not in the Schleswig-Holstein bucket), so the Roskilde coin issues as
+      danish_realm and renders on the Denmark page. dk-hede-c3h14 (Coin B) stays
+      natively in royal_holstein (Flensburg = ducal Schleswig).
 
   - target_entity: royal_holstein
     members:
