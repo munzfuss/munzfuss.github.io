@@ -141,11 +141,23 @@ merges:
         • dk-galster-c3g-131 + dk-bruun-14770 — the specimen pieces: Roskilde,
           1536, .764 gold, 3.19/3.37 g, Sieg 23, Schou 4, Lange 18, Galster 131.
         • dk-numista-379084 + numismaster-167746 — the coarse aggregator pages
-          (Fr 18, MB 42, Schou 1351, N#379084) that had bridged the two mints;
-          both anchor on Galster 131 / the «Goldgulden» name → they belong here,
-          NOT to the Hede Flensburg record. Their loose 1546-1547 year windows
-          are held via `merge_decisions/danish_realm.yml::year_demote` so the
-          merged year stays 1536 (the specimen year).
+          (Fr 18, MB 42, N#379084) that had bridged the two mints; both anchor
+          on Galster 131 / the «Goldgulden» name → they belong here, NOT to the
+          Hede Flensburg record. Their loose 1546-1547 year windows are held via
+          `merge_decisions/danish_realm.yml::year_demote` so the merged year
+          stays 1536 (the specimen year).
+      Schou index (curator decision 2026-07-14, Serhii): the TYPE schou is
+      danskmoent c3g131's stated range «Schou 1-7» (the Galster-131 type), which
+      subsumes Bruun lot 14258's specimen-level «Schou 4» (4 ∈ 1-7). NumisMaster
+      MC_167746's «Sch#1351» is DROPPED as spurious — its own general_note flags
+      it «for no date issue», and 1351 is out of range for Christian III (whose
+      Schou runs per-regent ~1-77; danskmoent lists no 1351 for this type). The
+      galster seed did not carry the range because parse_galster left c3g131's
+      catalog_refs empty (the «(… Schou 1-7 …)» parenthetical sits on a detached
+      line the parser doesn't scan) — see docs/SOURCES.md §13.11. Interim: `1-7`
+      hand-set on the galster seed + seed_unified + final; a full merger re-run
+      still needs the §13.11 parser fix (+ a schou-range-subsumption rule) to
+      keep it clean without re-surfacing Bruun's «4».
       target_entity = danish_realm: Roskilde is a Danish-realm mint (Roskilde is
       not in the Schleswig-Holstein bucket), so the Roskilde coin issues as
       danish_realm and renders on the Denmark page. dk-hede-c3h14 (Coin B) stays
