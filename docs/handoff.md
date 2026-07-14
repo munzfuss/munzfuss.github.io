@@ -15,9 +15,10 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
-## 2026-07-14 — galster Gej fix · Norway harvest-gap audit · rhinsk phase renumber · c3h14 Goldgulden split
+## 2026-07-14 — galster Gej fix · Norway harvest-gap audit · rhinsk phase renumber · c3h14 Goldgulden split · c3g131 schou 1-7 · c3h14 nominal → Goldgulden
 
-> **UNPUSHED — push pending «пуш».** 1 commit unpushed: `82e2d5e` (c3h14 Goldgulden split).
+> **UNPUSHED — push pending «пуш».** 4 commits unpushed: `82e2d5e` (c3h14 Goldgulden split),
+> `81eda30` (split handoff), `ee7d177` (c3g131 schou 1-7 fix), `990f750` (c3h14 nominal → Goldgulden).
 > Earlier today `dc95899..c90f0a8` were pushed (galster Gej, rhinsk renumber, rhinsk grundwerte aside).
 
 - **Christian III Goldgulden split (`82e2d5e`).** Reversed the 2026-06-22/07-02 one-type
@@ -32,6 +33,30 @@
   nominal/issuing_entity via deep-merge — hand-reset to the Flensburg coin only, frozen via
   `_curation_holds` (mint/nominal), durable across re-absorb. Denmark shows both rows; the SH
   page is unchanged (this ducal/royal gold is denmark-scoped, as before the split).
+
+- **c3g131 Coin A schou → `1-7` (`ee7d177`).** The Roskilde-1536 Goldgulden (`unified-dk-bruun-14770`)
+  had carried `schou: [4, 1351]`: «4» from Bruun lot 14258 (specimen variety), «1351» from
+  NumisMaster MC_167746 (its own note flags «for no date issue» — out of range for Christian III,
+  Schou per-regent ~1-77). danskmoent c3g131 states the type range **«Schou 1-7»** (4 ∈ 1-7).
+  Dropped 1351 from the numismaster seed; added `Schou 1-7` + `Sieg 23` to galster seed
+  `dk-galster-c3g-131`; set `schou: 1-7` on seed_unified member + final (+ `_curation_holds:
+  {catalog}`). **Verified the hard way:** a `_curation_holds: {catalog}` does NOT survive
+  absorb's main enrich re-derive (only the hygiene-fold) — durability rests on BOTH the
+  foundation AND its seed_unified member carrying `1-7`, which absorb unions to a clean `1-7`.
+  **Root cause = parser bug, documented in `docs/SOURCES.md §13.11`:** `parse_galster`'s
+  `_parse_description_and_refs` only scans the `Forside:` block to the first blank line, so the
+  `(Galster N, Schou X, Sieg Y; …)` line on a *detached* line (as on c3g131) is never extracted →
+  `catalog_refs` empty. **Deferred follow-ups (need decision):** (1) fix the parser + full galster
+  re-parse/re-seed (broad diff); (2) Bruun's faithful specimen «Schou 4» would re-surface as
+  `['1-7','4']` on a full merger re-run — needs a merger schou-range-subsumption rule OR a bruun
+  `_source_errata` (the latter needs explicit §4 permission — NOT taken).
+
+- **c3h14 Coin B nominal → «1 Goldgulden» (`990f750`).** Renamed the Flensburg-1546 piece
+  (`unified-dk-hede-c3h14`, Hede 14 · Sieg 51 · Schou 2, .750 gold) from «1 Rhinsk Gylden» →
+  «1 Goldgulden» so both split pieces read consistently (Coin A is already «1 Goldgulden»); Hede's
+  Danish «Rhinsk Gylden» stays as the alt-name in `note[]`. Durable via `nominal ∈
+  _FOUNDATION_IMMUTABLE_FIELDS` (absorb never re-derives nominal on an existing final) — touched
+  only the final foundation + updated the `_curation_holds.nominal` reason; hede seed left faithful.
 
 - **Galster «Gej» fix (`ffa32bf`).** `build_galster_denmark_seed` no longer emits a
   `galster` / `galster_volume` catalogue field for the non-numbered `norge/hansGej.htm`
