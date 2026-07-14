@@ -245,59 +245,150 @@ def _collapse_degenerate_hhv(value: str) -> str:
     return value
 
 
-def _parse_description_and_refs(text: str) -> tuple[str | None, dict]:
-    """Description block carries «Forside: ... bagside: ... (Galster N, Schou M, ...)».
+def _galster_number_from_filename(name: str) -> str | None:
+    """Derive the page's OWN Galster catalogue number from the cache
+    filename. Covers every danskmoent filename shape (reign-prefixed
+    chr_/fr_, the fr_hg / hansg / gotlg Hans variants, the norge_ Norway
+    variants). Returns the number-with-optional-letter-suffix («131»,
+    «92AB», «66c»), or None when the filename encodes no number
+    (norge_hansGej). Used to ANCHOR ref-extraction on the page's own
+    number so prose / neighbour parens can't clobber the index paren."""
+    for pat in (
+        r"_(?:c|f)\d+g(\d+\w*)\.htm$",         # chr_c3g131, fr_f1g120
+        r"^fr_hg(\d+\w*)\.htm$",               # fr_hg24 (Hans under fr/)
+        r"^hansg(\d+\w*)\.htm$",               # hansg31 (Hans root)
+        r"^gotlg(\d+\w*)\.htm$",               # gotlg141 (Gotland-Hans)
+        r"^norge_n(?:c|f)\d+g(\d+\w*)\.htm$",  # norge_nc2g174
+        r"^norge_nha_g(\d+\w*)\.htm$",         # norge_nha_g149
+        r"^norge_hansg(\d+\w*)\.htm$",         # norge_hansg151
+    ):
+        m = re.search(pat, name)
+        if m:
+            return m.group(1)
+    return None
 
-    Returns (description_text, catalog_refs_dict).
 
-    Multi-ref parsing strategy: locate each catalogue keyword in the
-    paren content and capture everything between this keyword and the
-    NEXT keyword (or end of paren). This preserves comma-separated
-    sub-values within one catalogue ref (e.g. «Schive XVI.2-7,11-13»
-    stays whole) AND strips Danish connectors like «hhv.» («Schou
-    hhv. 12-15, 1, 1, 4 og 27-29» → schou = «12-15, 1, 1, 4 og 27-29»).
-    """
+def _extract_refs_from_paren_content(content: str) -> dict:
+    """Extract catalogue refs from ONE parenthetical's content, using the
+    keyword-run strategy: each catalogue keyword captures everything up to
+    the NEXT keyword (or paren end). Preserves comma-separated sub-values
+    within one ref («Schive XVI.2-7,11-13» stays whole) AND the Danish
+    connector «hhv.» positional list («Schou hhv. 12-15, 1, 1, 4 og 27-29»),
+    collapsing only the degenerate all-identical «hhv. 1 og 1» → «1»."""
     refs: dict = {}
+    keyword_matches = list(_CATALOGUE_KEYWORD_RE.finditer(content))
+    for i, km in enumerate(keyword_matches):
+        value_start = km.end()
+        value_end = (
+            keyword_matches[i + 1].start()
+            if i + 1 < len(keyword_matches)
+            else len(content)
+        )
+        value_clean = re.sub(r"\s+", " ",
+                             content[value_start:value_end]).strip(" ,;.")
+        if not value_clean:
+            continue
+        value_clean = _collapse_degenerate_hhv(value_clean)
+        kw = km.group(1).lower()
+        kw_clean = kw.replace("/", "_").replace(" ", "_").replace(".", "")
+        if kw_clean == "fr":
+            kw_clean = "friedberg"
+        elif kw_clean.startswith("jensen"):
+            kw_clean = "jensen_skjoldager"
+        elif kw_clean == "reinhold_junge":
+            # Untyped catalogue → keep a clean display label so
+            # catalog_from_ref_dict routes it to others as
+            # «Reinhold Junge# N» (not «reinhold_junge# N»).
+            kw_clean = "Reinhold Junge"
+        refs[kw_clean] = value_clean
+    return refs
+
+
+def _find_canonical_index_paren(text: str, galster_num: str | None) -> str | None:
+    """Among all parentheticals in the pre-first-HR region, return the
+    content of THIS coin's catalogue-index paren: the one that names the
+    page's own Galster number AND carries the most catalogue keywords.
+
+    This discriminates the index paren «(Galster 131, Schou 1-7, Sieg 23)»
+    from prose parens that merely name a neighbour coin or a book
+    («(Galster 30)», «(Galster: Unionstidens Udmøntninger side 59)») — which
+    a naive «widen the capture to first HR» fix would otherwise let clobber
+    the real value via last-paren-wins overwrite. The anchor matches the
+    numeric base with an optional letter suffix («Galster 92» inside
+    «Galster 92AB») but NOT an unrelated neighbour («Galster 125» ≠ base
+    120). Returns None when the filename encodes no number or no matching
+    paren is present — the caller then falls back to the legacy scan."""
+    if not galster_num:
+        return None
+    base_m = re.match(r"(\d+)", galster_num)
+    if not base_m:
+        return None
+    base = base_m.group(1)
+    hr = text.find(HR_SENTINEL)
+    region = text[:hr] if hr >= 0 else text
+    anchor_re = re.compile(r"\bGalster\s+0*" + base + r"(?![0-9])", re.IGNORECASE)
+    best: str | None = None
+    best_kw = 0
+    for pm in re.finditer(r"\(([^)]+)\)", region):
+        content = pm.group(1)
+        if not anchor_re.search(content):
+            continue
+        kw = len(list(_CATALOGUE_KEYWORD_RE.finditer(content)))
+        if kw > best_kw:
+            best_kw = kw
+            best = content
+    return best
+
+
+def _parse_description_and_refs(
+    text: str, galster_num: str | None = None
+) -> tuple[str | None, dict]:
+    """Description block carries «Forside: ... bagside: ... (Galster N,
+    Schou M, ...)». Returns (description_text, catalog_refs_dict).
+
+    Ref-extraction strategy (2026-07-14): anchor on the page's OWN Galster
+    number via `_find_canonical_index_paren`. This recovers pages where the
+    index paren sits on a detached line after the Forside block (the c3g131
+    class — a blank line before the paren truncated the legacy Forside
+    capture) AND pages with no `Forside:` colon-anchor at all (c3g92,
+    f1g128), WITHOUT the regression a naive «widen to first HR» fix caused:
+    on pages carrying prose / literature / neighbour parens (f1g69, hg29,
+    f1g70) the anchor ignores the non-index parens instead of letting them
+    clobber the real value.
+
+    Two-tier, legacy-first, so ZERO currently-correct pages change:
+
+      Tier 1 — the legacy Forside-narrow-capture scan (last-paren-wins),
+        byte-identical to the prior behaviour. This keeps every page that
+        already worked unchanged, INCLUDING multi-variant summary pages
+        like f1g66 whose type paren «(Galster 66A-B)» sits inside the
+        Forside line (its per-variant «(Galster 66A, Schou …)» parens live
+        below the capture and are deliberately NOT promoted here — that
+        Schou-union is the separate deferred «accumulate» case).
+
+      Tier 2 — fires ONLY when Tier 1 yielded nothing (i.e. exactly the
+        old-empty pages): anchor on the page's own Galster number to
+        recover the detached-paren (c3g131) and no-`Forside:` (c3g92)
+        classes, without letting a prose / literature / neighbour paren
+        clobber the value.
+    """
     desc = None
     m = re.search(r"Forside:\s*(.*?)(?:\n\n|" + HR_SENTINEL + ")", text, re.DOTALL)
     if m:
         desc = m.group(1).strip()
+
+    # Tier 1 — legacy scan of the Forside-narrow capture.
+    refs: dict = {}
+    if desc:
         for pm in re.finditer(r"\(([^)]+)\)", desc):
-            content = pm.group(1)
-            keyword_matches = list(_CATALOGUE_KEYWORD_RE.finditer(content))
-            for i, km in enumerate(keyword_matches):
-                kw_start = km.start()
-                value_start = km.end()
-                # Value runs until the next keyword or end of paren content
-                value_end = (
-                    keyword_matches[i + 1].start()
-                    if i + 1 < len(keyword_matches)
-                    else len(content)
-                )
-                value_raw = content[value_start:value_end]
-                # PRESERVE Danish connector prefix («hhv.» / «henholdsvis»
-                # / «resp.») when segments differ — they're semantically
-                # meaningful (positional-per-year list). Collapse to a
-                # bare value when all segments are identical: «hhv. 1
-                # og 1» → «1» (degenerate case, verbose without info
-                # gain). User correction 2026-05-22.
-                value_clean = value_raw.strip(" ,;.")
-                if not value_clean:
-                    continue
-                value_clean = _collapse_degenerate_hhv(value_clean)
-                # Normalise keyword → ref-field name
-                kw = km.group(1).lower()
-                kw_clean = kw.replace("/", "_").replace(" ", "_").replace(".", "")
-                if kw_clean == "fr":
-                    kw_clean = "friedberg"
-                elif kw_clean.startswith("jensen"):
-                    kw_clean = "jensen_skjoldager"
-                elif kw_clean == "reinhold_junge":
-                    # Untyped catalogue → keep a clean display label so
-                    # catalog_from_ref_dict routes it to others as
-                    # «Reinhold Junge# N» (not «reinhold_junge# N»).
-                    kw_clean = "Reinhold Junge"
-                refs[kw_clean] = value_clean
+            refs.update(_extract_refs_from_paren_content(pm.group(1)))
+    if refs:
+        return desc, refs
+
+    # Tier 2 — anchored canonical paren over the widened pre-first-HR region.
+    canonical = _find_canonical_index_paren(text, galster_num)
+    if canonical is not None:
+        return desc, _extract_refs_from_paren_content(canonical)
     return desc, refs
 
 
@@ -575,7 +666,12 @@ def parse_page(html_path: Path, text: str) -> dict:
     """Parse a standard Galster coin page into structured data."""
     header = _parse_header_h1(text)
     mint = header.get("mint_from_h1") or _parse_mint_line(text)
-    desc, refs = _parse_description_and_refs(text)
+    # Anchor ref-extraction on the page's own Galster number (full filename
+    # derivation — covers every shape). Kept separate from the partial
+    # `galster_num` recomputed below for subsections/variants so their
+    # input is byte-identical to before.
+    page_galster = _galster_number_from_filename(html_path.name)
+    desc, refs = _parse_description_and_refs(text, page_galster)
     # Shape C: union Schou indices from inscription-variant bullets (each
     # die variant tagged with its own «(Schou N)») into catalog_refs.schou.
     # These sit below the Forside block the ref parser captures, so they'd
