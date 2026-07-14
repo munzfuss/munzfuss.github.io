@@ -337,11 +337,11 @@ _FOREIGN_CATALOGUE_RE = re.compile(
     r"^(hildebrand|lagerqvist|rasmusson|hauberg|ernst)\b", re.I)
 
 # Danish PROSE / negative markers danskmoent appends inside a catalogue cell —
-# never a real index: «mangler [hos X]» (absent from catalogue X), «adskillige
-# katalognumre» (several numbers), «se side N» (see page N), «unik» (unique —
-# a rarity note). Dropped, not routed.
+# never a real index: «mangler [hos X]» / abbreviated «mgl. [hos X]» (absent
+# from catalogue X), «adskillige katalognumre» (several numbers), «se side N»
+# (see page N), «unik» (unique — a rarity note). Dropped, not routed.
 _PROSE_NOISE_RE = re.compile(
-    r"\b(mangler|adskillige|katalognumre|se\s+side|unik)\b", re.I)
+    r"\b(mangler|mgl\.?|adskillige|katalognumre|se\s+side|unik)\b", re.I)
 # «hhv. X og mangler» = "respectively X (year 1) and missing (year 2)" — a
 # two-year Galster row where only the first year is catalogued. Keep X.
 _HHV_RE = re.compile(r"^hhv\.\s*(.+?)\s+og\s+mangler", re.I)

@@ -48,6 +48,12 @@ class TestProseDrop(unittest.TestCase):
         self.assertEqual(_c({"schou": "13; unik"}), {"schou": "13"})
         self.assertEqual(_c({"schou": "3; unik"}), {"schou": "3"})
 
+    def test_abbreviated_mgl_dropped(self):
+        # danskmoent's abbreviated «mgl. [hos]» = «mangler» (absent from cat).
+        # Surfaced by the canonical-index-paren recovery on fr_f1g123.
+        self.assertEqual(_c({"galster": "123, mgl. hos"}), {"galster": "123"})
+        self.assertEqual(_c({"galster": ["123", "mgl. hos"]}), {"galster": "123"})
+
 
 class TestHhvExtraction(unittest.TestCase):
     def test_hhv_x_og_mangler_keeps_x(self):
