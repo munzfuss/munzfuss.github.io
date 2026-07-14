@@ -717,6 +717,21 @@ re-invokes you with a `<task-notification>` when it exits. So:
   time — wait for its notification before the next (the shared-index race in the
   «Surgical staging» Git-safety protocol still applies).
 
+> **NEVER put a trailing `&` inside a `run_in_background: true` Bash command.**
+> The harness ALREADY detaches the whole command; an inner `&` forks the real work
+> (e.g. the `git commit`) into a grandchild that (a) ESCAPES the task's completion
+> tracking — the `<task-notification>` fires as soon as the wrapper's foreground
+> part (echoes etc.) exits, so the task reports «done» while the real work is still
+> running — and (b) for a hook-bearing `git commit`, keeps holding `.git/index.lock`
+> for the full duration of its pre-commit hook (`build --validate-only`, ~2-3 min),
+> so the very next git op fails with «`fatal: Unable to create … index.lock: File
+> exists`». Write the plain command with NO trailing `&` and let `run_in_background:
+> true` do the detaching. (Real failure 2026-07-14: a `git commit … &` inside a
+> backgrounded bash orphaned the commit; it eventually landed as `4afaafd`, but a
+> second commit launched meanwhile died on the lock and the orphan had to be waited
+> out.) The one legitimate use of `&` is a genuine parallel-fan-out you then `wait`
+> on within the SAME script — never for a git op, and never as the last token.
+
 Foreground (synchronous) Bash is fine only for genuinely fast commands
 (`--validate-only` alone when you need its result now, a single-page build
 spot-check, `git status`/`git log`, the audit scripts). The moment a command is a
