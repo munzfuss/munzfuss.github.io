@@ -473,17 +473,30 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     )
     seed_member = None
     if pure_absorbed and len(members) >= 2:
-        # `members` is [final_entry, seed_unified_member]. Pick the
-        # seed_unified one (member with the matching id, NOT the final
-        # entry itself) and use its year_ranges as authoritative.
-        seed_member = next(
-            (m for m in members[1:] if m.get("id") == final_id),
-            None,
-        )
-        if seed_member is not None:
-            authoritative_yr = _union_year_ranges([seed_member])
+        # Curator year-freeze wins even on a pure-absorbed foundation.
+        # `_curation_holds: {year_ranges|year_first}` marks a hand-corrected
+        # year that the seed's (often loose / mis-read «ND(a-b)») value must
+        # NOT overwrite. The pure-absorbed fast-path below trusts the seed
+        # member's year_ranges directly; without this guard it silently
+        # reverts the curation — e.g. sonderburg numismaster-120994, curator-
+        # corrected to 1622 (Numista N#151529) but seed «ND(1618-22)» carries
+        # the range-start 1618. Mirrors the hold-honouring `else` branch.
+        _holds = final_entry.get("_curation_holds")
+        _hk = set(_holds.keys() if isinstance(_holds, dict) else (_holds or []))
+        if "year_ranges" in _hk or "year_first" in _hk:
+            authoritative_yr = _union_year_ranges([final_entry])
         else:
-            authoritative_yr = _union_year_ranges(members)
+            # `members` is [final_entry, seed_unified_member]. Pick the
+            # seed_unified one (member with the matching id, NOT the final
+            # entry itself) and use its year_ranges as authoritative.
+            seed_member = next(
+                (m for m in members[1:] if m.get("id") == final_id),
+                None,
+            )
+            if seed_member is not None:
+                authoritative_yr = _union_year_ranges([seed_member])
+            else:
+                authoritative_yr = _union_year_ranges(members)
     else:
         # Curator foundation with seed_unified composed_of members.
         # The foundation's stored `year_first/year_last/year_ranges`
