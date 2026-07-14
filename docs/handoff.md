@@ -46,10 +46,15 @@
   **Root cause = parser bug, documented in `docs/SOURCES.md §13.11`:** `parse_galster`'s
   `_parse_description_and_refs` only scans the `Forside:` block to the first blank line, so the
   `(Galster N, Schou X, Sieg Y; …)` line on a *detached* line (as on c3g131) is never extracted →
-  `catalog_refs` empty. **Deferred follow-ups (need decision):** (1) fix the parser + full galster
-  re-parse/re-seed (broad diff); (2) Bruun's faithful specimen «Schou 4» would re-surface as
-  `['1-7','4']` on a full merger re-run — needs a merger schou-range-subsumption rule OR a bruun
-  `_source_errata` (the latter needs explicit §4 permission — NOT taken).
+  `catalog_refs` empty. **Deferred follow-up (needs decision):** fix the parser + full galster
+  re-parse/re-seed (broad diff). — *(Earlier this note listed a 2nd follow-up: that a full merger
+  re-run would re-surface Bruun's faithful «Schou 4» as `['1-7','4']` and need a merger
+  subsumption rule or a bruun `_source_errata`. That was WRONG — verified 2026-07-14: the
+  range-subsumption ALREADY exists (`catalog_codes.normalise_numeric_index` + `schou ∈
+  _NUMERIC_INDEX_FIELDS`), runs at all three chokepoints — merger `_fold_catalog_indices`
+  (`merge_seeds_cross_source.py:3350`), absorb `_normalise_catalog` (`absorb_…:1485`), render
+  (`compute.py:663`) — and collapses the plain `4` inside the plain range `1-7` to a clean `1-7`.
+  No merger rule and no bruun errata are needed.)*
 
 - **c3h14 Coin B nominal → «1 Goldgulden» (`990f750`).** Renamed the Flensburg-1546 piece
   (`unified-dk-hede-c3h14`, Hede 14 · Sieg 51 · Schou 2, .750 gold) from «1 Rhinsk Gylden» →
