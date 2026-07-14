@@ -17,12 +17,51 @@
 
 ## 2026-07-14 — galster Gej fix · Norway harvest-gap audit · rhinsk phase renumber · c3h14 Goldgulden split · c3g131 schou 1-7 · c3h14 nominal → Goldgulden
 
-> **UNPUSHED — push pending «пуш».** 10 commits unpushed: `82e2d5e` (c3h14 Goldgulden split),
-> `81eda30` (split handoff), `ee7d177` (c3g131 schou 1-7 fix), `990f750` (c3h14 nominal → Goldgulden),
-> `202de9e` (handoff), `115bb05` (docs: schou-subsumption already exists), `d3cb920` (galster parser
-> canonical-index-paren), `8d77786` (galster cleaner drops «mgl.»), `7607db3` (galster seed — bank
-> 34 recovered Schou/Sieg) + this docs commit.
-> Earlier today `dc95899..c90f0a8` were pushed (galster Gej, rhinsk renumber, rhinsk grundwerte aside).
+> **UNPUSHED — push pending «пуш».** 12 commits unpushed (`git log origin/main..HEAD`):
+> `82e2d5e` `81eda30` `ee7d177` `990f750` `202de9e` `115bb05` (c3h14 split / c3g131 schou 1-7 /
+> nominal / schou-subsumption docs), then the galster canonical-index-paren work
+> `d3cb920` (parser) · `8d77786` (cleaner «mgl.») · `7607db3` (seed + cache pointer, submodule
+> `67bdb7a9`) · `4b39400` (docs §13.11), then the overnight re-flow `e5d18a2` (absorb year-hold
+> fix) · `9a9b8c6` (galster re-flow to finals).
+> Earlier `dc95899..c90f0a8` were pushed (galster Gej, rhinsk renumber, rhinsk grundwerte aside).
+
+### 2026-07-15 overnight — pending-churn analysis + galster re-flow to finals
+
+- **What the «pending churn» actually was (investigated in full).** After the galster
+  seed commit `7607db3`, an `absorb --dry-run` showed re-promotions / bulk-promotes /
+  assignments across entities. **Conclusion: overwhelmingly benign.** The ~65 curator
+  `classification_decisions::assignments` (german_empire→Reichsgoldmünzfuß, danish Nobels→
+  nobel_fod, etc.) were ALREADY applied to the finals — absorb re-reports them idempotently
+  (0 fuss changes on re-run). The bulk of a full re-flow diff is **field-order
+  reserialization** (semantically noop — e.g. schauenburg 146 lines, 0 entries/fields
+  changed) + `generated_at` timestamp bumps + `multi_match_warnings` housekeeping. No data
+  loss anywhere (`audit_lost_citations` = 0; every regrouped seed member re-lands).
+
+- **Absorb year-hold fix (`e5d18a2`, + test).** The re-flow DID revert one curated value:
+  sonderburg `unified-schleswig_holstein-numismaster-120994` year 1622 (curator, Numista
+  N#151529) → seed «ND(1618-22)» start 1618. Root cause: the `pure_absorbed` fast-path in
+  `_enrich_final_entry` (`composed_of == [self]`) trusted the seed member's year_ranges
+  WITHOUT checking `_curation_holds` — the hold-honouring logic lived only in the `else`
+  branch. Fix: the fast-path now honours a `year_ranges`/`year_first` hold (dict- and
+  list-form). `tests/test_absorb_year_hold_pure_absorbed.py`. This is a durable pipeline fix,
+  not a one-off restore — future re-flows won't clobber year holds.
+
+- **Galster re-flow to finals (`9a9b8c6`).** Ran full merger + absorb (with the fix), then
+  committed ONLY the real-content subset — `danish_realm` + `gottorp_duchy` (seed_unified +
+  final) + the `sonderburg` year fix — reverting the 12 pure-reserialize finals + 20
+  timestamp-only seed_unified (pre-existing drift, not this session's concern). Lands: galster
+  Schou/Sieg propagated into finals; §9.4-clean regrouping the recovered Schou enabled
+  (f1g-55/f1g-60 split out of bruun-4025/4090; hg-36 + 3 kmk merge into peers — all 7 pass the
+  over-merge scan, 0 lost); a data FIX — `unified-dk-bruun-4090` reverts a stale reign-window
+  «1523-1533» to its Bruun-attested «1532»; c3g131 `_curation_holds.catalog` note refreshed
+  (parser fix landed → value now derives natively). sonderburg keeps 1622.
+
+- **KNOWN-ISSUE / possible morning cleanup — field-order reserialize drift.** A full absorb
+  re-run reserializes ~12 finals with a different in-entity field order than committed (pure
+  noise, 0 semantic change). It recurs every re-flow. Root cause not yet chased (absorb's
+  `out`-dict field order vs the committed order). Options: (a) leave latent (harmless); (b)
+  one-time resync commit; (c) make `_enrich_final_entry` emit a canonical field order. Left
+  for a deliberate hygiene pass — NOT urgent.
 
 - **Christian III Goldgulden split (`82e2d5e`).** Reversed the 2026-06-22/07-02 one-type
   merge: the Roskilde-1536 .764 «Goldgulden» and the Flensburg-1546 .750 «Rhinsk Gylden»
