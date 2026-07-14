@@ -15,10 +15,23 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
-## 2026-07-14 — galster Gej fix · Norway harvest-gap audit · rhinsk phase renumber
+## 2026-07-14 — galster Gej fix · Norway harvest-gap audit · rhinsk phase renumber · c3h14 Goldgulden split
 
-> **UNPUSHED — push pending «пуш».** 45 commits unpushed total. Today's:
-> `ffa32bf` (galster «Gej» non-index fix) + `4afaafd` (rhinsk_gylden_fod phase renumber).
+> **UNPUSHED — push pending «пуш».** 1 commit unpushed: `82e2d5e` (c3h14 Goldgulden split).
+> Earlier today `dc95899..c90f0a8` were pushed (galster Gej, rhinsk renumber, rhinsk grundwerte aside).
+
+- **Christian III Goldgulden split (`82e2d5e`).** Reversed the 2026-06-22/07-02 one-type
+  merge: the Roskilde-1536 .764 «Goldgulden» and the Flensburg-1546 .750 «Rhinsk Gylden»
+  are now **two coins** (§9.4 — Danish specialist catalogues give distinct bases: Sieg 23≠51,
+  Schou 4≠2; only coarse Fr 18 / Numista N#379084 / MB 42 lumped them). Coin A →
+  `danish_realm` `unified-dk-bruun-14770` (rhinsk_gylden_fod I); Coin B stays `royal_holstein`
+  `unified-dk-hede-c3h14`. Mechanism: dropped the `royal_holstein.yml` force-merge, redirected
+  `_cross_entity.yml` (Roskilde half → danish_realm, +numismaster-167746), added
+  `danish_realm.yml::year_demote` for the Numista/NumisMaster loose 1546-1547 windows.
+  **Foundation trap hit + fixed:** the c3h14 final foundation kept the merged mint/catalog/
+  nominal/issuing_entity via deep-merge — hand-reset to the Flensburg coin only, frozen via
+  `_curation_holds` (mint/nominal), durable across re-absorb. Denmark shows both rows; the SH
+  page is unchanged (this ducal/royal gold is denmark-scoped, as before the split).
 
 - **Galster «Gej» fix (`ffa32bf`).** `build_galster_denmark_seed` no longer emits a
   `galster` / `galster_volume` catalogue field for the non-numbered `norge/hansGej.htm`
