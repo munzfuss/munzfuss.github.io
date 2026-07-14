@@ -15,6 +15,39 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-14 — galster Gej fix · Norway harvest-gap audit · rhinsk phase renumber
+
+> **UNPUSHED — push pending «пуш».** 45 commits unpushed total. Today's:
+> `ffa32bf` (galster «Gej» non-index fix) + `4afaafd` (rhinsk_gylden_fod phase renumber).
+
+- **Galster «Gej» fix (`ffa32bf`).** `build_galster_denmark_seed` no longer emits a
+  `galster` / `galster_volume` catalogue field for the non-numbered `norge/hansGej.htm`
+  placeholder («Gej» = page-filename fragment, gated by `_is_real_galster_index` = has a
+  digit). «Gej» survives only in the coin_id. Test: `tests/test_galster_index_guard.py`.
+
+- **rhinsk_gylden_fod / 72-Guldgyldenfod phase renumber (`4afaafd`).** Curator direction:
+  a true «Phase 0» would be only the 2 pre-1514 Hans specimens — not worth a phase — so
+  shifted every phase +1: **0/I/II → I/II/III, no phase 0**. Founding 1496-1547 band = Phase I
+  (Hans + Frederik I + Christian III, .75), Frederik II = II (.77), Christian IV = III (.76).
+  Touched in lockstep: coin `phase` (10 finals + 3 classification assignments),
+  `soll_fein_by_phase` keys (both fractions — Δ stays aligned), denmark.yml phase blocks +
+  timeline + closing, fuesse.yml description + grundwerte. Phase I label shortened + fine
+  weight (2,436 g); Phase I description rewritten system-level (no specimens, .75 only,
+  Bergen coin in); Phase III label «мінімально знижено» → «.76 (18¼ карат)». New ref
+  `danskmoent-hans-goldgulden-bergen` (Nordbø NNUM 1978/1979). Verified: Δ per phase
+  (Hans Bergen −0.557 %), labels render I/II/III, audit_lost_citations 0.
+
+- **🔵 OPEN — Norway Numista pre-1513 harvest gap (audit finding, no code yet).** Investigated
+  why N#444264 (Hans Bergen Goldgulden) needed separate harvesting: **every** Numista Norway
+  harvest used mission floor **1514** (BO.6 `_BO6_audit_2026-05-20.json` + `fetch_numista_pre1541.py`).
+  The pre-1513 Norway body — **105 NIDs explicitly `oos_excluded`** in NO p2, ALL uncached,
+  + page-1 of the listing never audited for Norway — is a systematic, deliberate gap. **Asymmetry:**
+  Denmark got a `p0_pre_lovkompleks` context bucket (20 NIDs, harvested); Norway got none.
+  N#444264 isn't even in the 105 (added post-snapshot → body still growing). **Next step offered,
+  awaiting curator go-ahead:** mirror Denmark — create a `norway/p0_pre_lovkompleks` bucket,
+  enumerate listing page 1 (public page, no API budget) + the 1481-1513 subset of the 105, harvest.
+  Would also firm the «Norway's first gold coin» claim via Schive 1865 / Ahlström-Brekke *Norges Mynter*.
+
 ## 2026-07-13 — gold seed_unsorted triage (Portugaløser + tarif-Daler)
 
 > **UNPUSHED — push pending «пуш».** Commits this triage: `d675e1d` `ec52477`
