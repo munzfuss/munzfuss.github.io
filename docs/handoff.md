@@ -17,8 +17,11 @@
 
 ## 2026-07-14 — galster Gej fix · Norway harvest-gap audit · rhinsk phase renumber · c3h14 Goldgulden split · c3g131 schou 1-7 · c3h14 nominal → Goldgulden
 
-> **UNPUSHED — push pending «пуш».** 4 commits unpushed: `82e2d5e` (c3h14 Goldgulden split),
-> `81eda30` (split handoff), `ee7d177` (c3g131 schou 1-7 fix), `990f750` (c3h14 nominal → Goldgulden).
+> **UNPUSHED — push pending «пуш».** 10 commits unpushed: `82e2d5e` (c3h14 Goldgulden split),
+> `81eda30` (split handoff), `ee7d177` (c3g131 schou 1-7 fix), `990f750` (c3h14 nominal → Goldgulden),
+> `202de9e` (handoff), `115bb05` (docs: schou-subsumption already exists), `d3cb920` (galster parser
+> canonical-index-paren), `8d77786` (galster cleaner drops «mgl.»), `7607db3` (galster seed — bank
+> 34 recovered Schou/Sieg) + this docs commit.
 > Earlier today `dc95899..c90f0a8` were pushed (galster Gej, rhinsk renumber, rhinsk grundwerte aside).
 
 - **Christian III Goldgulden split (`82e2d5e`).** Reversed the 2026-06-22/07-02 one-type
@@ -46,8 +49,7 @@
   **Root cause = parser bug, documented in `docs/SOURCES.md §13.11`:** `parse_galster`'s
   `_parse_description_and_refs` only scans the `Forside:` block to the first blank line, so the
   `(Galster N, Schou X, Sieg Y; …)` line on a *detached* line (as on c3g131) is never extracted →
-  `catalog_refs` empty. **Deferred follow-up (needs decision):** fix the parser + full galster
-  re-parse/re-seed (broad diff). — *(Earlier this note listed a 2nd follow-up: that a full merger
+  `catalog_refs` empty. **This parser bug is now FIXED — see the next bullet.** — *(Earlier this note listed a 2nd follow-up: that a full merger
   re-run would re-surface Bruun's faithful «Schou 4» as `['1-7','4']` and need a merger
   subsumption rule or a bruun `_source_errata`. That was WRONG — verified 2026-07-14: the
   range-subsumption ALREADY exists (`catalog_codes.normalise_numeric_index` + `schou ∈
@@ -62,6 +64,29 @@
   Danish «Rhinsk Gylden» stays as the alt-name in `note[]`. Durable via `nominal ∈
   _FOUNDATION_IMMUTABLE_FIELDS` (absorb never re-derives nominal on an existing final) — touched
   only the final foundation + updated the `_curation_holds.nominal` reason; hede seed left faithful.
+
+- **Galster parser fix — canonical-index-paren anchoring (`d3cb920` parser+test · `8d77786`
+  cleaner+test · `67bdb7a9` submodule cache · main data commit for pointer+seed).** The c3g131
+  detached-paren bug (previous bullet) is the tip of a class: 34 standard pages carried empty
+  `catalog_refs` because the index paren sat on a detached line (c3g131 class) or the page had
+  no `Forside:` anchor (c3g92 class). **Analysed the whole 118-page corpus first** (user's
+  suspicion «сторінки не стандартизовані» — CORRECT): a naive «widen `Forside:`→first-HR» fix
+  REGRESSES ~10 currently-correct pages, because the widened region holds prose / literature /
+  neighbour parens («(Galster 30)», «(Galster: <book> side 59)») that clobber the real value via
+  the extractor's last-paren-wins. **Fix = two-tier, legacy-first, anchored on the page's OWN
+  Galster number** (`_galster_number_from_filename` + `_find_canonical_index_paren`): Tier 1 =
+  the legacy `Forside:`-narrow scan (byte-identical; keeps f1g66's «(Galster 66A-B)» summary);
+  Tier 2 fires only when Tier 1 is empty and picks the pre-HR paren naming the page's own number
+  with the most catalogue keywords. Migration gate (`tests/test_galster_canonical_paren.py` +
+  full-corpus diff): **unchanged 84, recovered 34, changed 0, LOST 0** — zero regressions.
+  Re-parse + re-seed banked 29 Schou + 20 Sieg; c3g131 now derives Schou 1-7 + Sieg 23 natively
+  (supersedes the ee7d177 interim). Also fixed `_PROSE_NOISE_RE` to drop abbreviated «mgl.»
+  (`build_galster_denmark_seed`, `8d77786`). **Scope = SEED only** — `seed_unified`/`final` NOT
+  re-derived because a merger+absorb re-run currently drags unrelated pending cross-session
+  reconciliation (19 monotonic re-promotions, bulk-promotes, assignments); banked in source,
+  propagates at the next deliberate coordinated re-flow. **Still-deferred:** the multi-variant
+  Schou-UNION «accumulate» case (f1g66 / f1g73 / f1g63 — Schou split across per-variant parens;
+  Tier 1/2 keep only summary/first, never the union). Full write-up: `docs/SOURCES.md §13.11`.
 
 - **Galster «Gej» fix (`ffa32bf`).** `build_galster_denmark_seed` no longer emits a
   `galster` / `galster_volume` catalogue field for the non-numbered `norge/hansGej.htm`
