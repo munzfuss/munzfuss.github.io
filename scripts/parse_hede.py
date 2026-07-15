@@ -664,21 +664,48 @@ def _extract_specs(text: str, basename: str = "") -> dict:
         return re.sub(r"\s+", " ", s.lower()).strip()
 
     current_denom: str | None = None
+    guldafslag_run = False
     for line in descriptive.split("\n"):
         line_s = line.strip()
         if not line_s:
             continue
+        # A «Guldafslag» / «Sølvafslag» block lists gold/silver off-strikes
+        # («Guldafslag 6 Dukat, 5 Dukat») of the current coin — their
+        # «N Dukat» labels are NOT this Hede's denomination and must not
+        # overwrite `current_denom` (else the following sub-letter's nominal
+        # is mis-tagged, e.g. Hede 100B → «5 dukat»).
+        if re.match(r"(?i)^(Guldafslag|Sølvafslag)\b", line_s):
+            guldafslag_run = True
         # Try denomination label at start of line
         m = DENOM_LABEL_RE.match(line_s)
         if m:
-            denom_label = (m.group(1) + " " + m.group(2) + (m.group(3) or "")).strip()
-            current_denom = _normalise_label(denom_label)
+            denom_word = m.group(2).strip()
+            # Inside the off-strike aside, «N Dukat» lines are gold multiples
+            # of the current coin — skip them. A NON-Dukat denomination label
+            # (e.g. «2 Speciedaler») is the next real section header and ENDS
+            # the aside (otherwise the aside swallows it and the section's
+            # Hede sub-variants inherit the PREVIOUS section's nominal — the
+            # f3h62 «1/2/3/4 Speciedaler» mis-tag).
+            if guldafslag_run and re.match(r"(?i)dukat", denom_word):
+                pass
+            else:
+                guldafslag_run = False
+                denom_label = (m.group(1) + " " + m.group(2) + (m.group(3) or "")).strip()
+                current_denom = _normalise_label(denom_label)
         # Find Hede ref anywhere in this line
         hm = HEDE_REF_RE.search(line_s)
-        if hm and current_denom:
-            hede_key = hm.group(1).replace(" ", "")
-            label_to_hede.setdefault(current_denom, hede_key)
-            hede_to_nominal.setdefault(hede_key, current_denom)
+        if hm:
+            guldafslag_run = False  # real coin attribution resumes
+            if current_denom:
+                hede_key = hm.group(1).replace(" ", "")
+                label_to_hede.setdefault(current_denom, hede_key)
+                hede_to_nominal.setdefault(hede_key, current_denom)
+        # The off-strike aside is a single sentence ending in «.» («Guldafslag:
+        # 10 Dukat, 5 Dukat og 4 Dukat.» / «Sølvafslag Schou 1a (RRR).»). Once
+        # it closes, a following «N Dukat» IS a real section header again (the
+        # c5h15 «2, 3 og 5 Dukat» page whose OWN denomination is the Dukat).
+        if line_s.endswith("."):
+            guldafslag_run = False
 
     # Also support legacy «label\n- Hede X» pattern explicitly to handle
     # cases where the label is on a previous line and the Hede ref line
@@ -824,7 +851,7 @@ def _extract_specs(text: str, basename: str = "") -> dict:
             # Lets downstream consumers (seed builder) use the per-Hede
             # nominal directly instead of guessing via weight-sorted
             # multi-nominal splits.
-            if key in hede_to_nominal:
+            if key in hede_to_nominal and basename not in _INVERTED_TAG_PAGES:
                 spec = {**spec, "nominal": hede_to_nominal[key]}
             if per_hede_refs:
                 spec = {**spec, "catalog_refs": per_hede_refs}
@@ -909,6 +936,83 @@ def _extract_specs(text: str, basename: str = "") -> dict:
                 "70":  _with_nominal(spec_3spd, "3 speciedaler"),
             }
 
+    # Per-sub-variant enrichment: attach each by_hede entry its OWN year(s) +
+    # catalog refs from the descriptive «(Hede N, Schou …, Sieg …)» groups.
+    # Without this, multi-nominal pages (f3h100 4-Mark/8-Mark) leak the page-
+    # level `years` + merged `catalog_refs` onto every sub-entry. Match each
+    # descriptive tag to a by_hede key by base + letter-subset so the spec
+    # table's combined key «100AB» collects both «Hede 100A» and «Hede 100B»
+    # groups, while «101» collects only «Hede 101». The builder already
+    # consumes `spec["years"]` / `spec["catalog_refs"]` per entry.
+    desc_groups = ({} if basename in _INVERTED_TAG_PAGES
+                   else _extract_desc_hede_groups(descriptive))
+    if desc_groups:
+        for key in list(by_hede.keys()):
+            base_k, letters_k = _split_hede_key(key)
+            if not base_k:
+                continue
+            # Collect the descriptive groups whose tag matches this key by
+            # base + letter-subset («100A»/«100B» ⊆ «100AB»; bare-base group
+            # matches only a bare-base key, avoiding «100»↔«100AB»).
+            matched: list[tuple[str, dict]] = []
+            for hnum, grp in desc_groups.items():
+                base_h, letters_h = _split_hede_key(hnum)
+                if base_h != base_k:
+                    continue
+                if letters_h:
+                    if not set(letters_h) <= set(letters_k):
+                        continue
+                elif letters_k:
+                    continue
+                matched.append((hnum, grp))
+            # When the granular sub-letter groups exist («100A»+«100B» for
+            # key «100AB»), drop the redundant combined summary label
+            # («1 Dukat Hede 100AB, Schou 5, 7, …» — the spec-table caption
+            # that repeats both variants' refs joined), so refs aren't
+            # double-counted («5», «7», «5,7»).
+            has_granular = any(
+                lh and set(lh) < set(letters_k)
+                for lh in (_split_hede_key(h)[1] for h, _ in matched)
+            )
+            agg_years: list[dict] = []
+            agg_refs: dict[str, list[str]] = {}
+            agg_noms: set[str] = set()
+            seen_y: set[int] = set()
+            for hnum, grp in matched:
+                letters_h = _split_hede_key(hnum)[1]
+                if has_granular and set(letters_h) == set(letters_k):
+                    continue
+                for y in grp["years"]:
+                    if y["year"] not in seen_y:
+                        agg_years.append(y)
+                        seen_y.add(y["year"])
+                for cat, vals in grp["catalog_refs"].items():
+                    cur = agg_refs.setdefault(cat, [])
+                    for v in vals:
+                        if v not in cur:
+                            cur.append(v)
+                if hnum in hede_to_nominal:
+                    agg_noms.add(hede_to_nominal[hnum])
+            if agg_years and "years" not in by_hede[key]:
+                by_hede[key] = {**by_hede[key], "years": agg_years}
+            # Combined-key nominal (spec table emits «100AB» without its own
+            # nominal label; the descriptive «Hede 100A»/«100B» groups both
+            # carry «4 Mark»). Without this the seed builder can't take the
+            # per-Hede-nominal path and mis-labels the sibling («8 Mark»
+            # Hede 101) via the weight-sort split fallback. Guard against a
+            # prose value that DENOM_LABEL_RE over-captured («2 Dukaten findes
+            # i to varianter» on f5h1) — only «<N> <denom>[ <qualifier>]» shapes.
+            if not by_hede[key].get("nominal") and len(agg_noms) == 1:
+                cand = next(iter(agg_noms))
+                if _looks_like_denom(cand):
+                    by_hede[key] = {**by_hede[key], "nominal": cand}
+            if agg_refs:
+                # Descriptive groups are the authoritative per-Hede refs;
+                # they win per-catalogue over the spec-table-window guess,
+                # keeping any catalogue the descriptive didn't name.
+                merged = {**(by_hede[key].get("catalog_refs") or {}), **agg_refs}
+                by_hede[key] = {**by_hede[key], "catalog_refs": merged}
+
     # Period-variant consolidation may leave by_hede with exactly one
     # entry (e.g. c4h107 has 2 Bruttovægt blocks for pre-/post-reform
     # but only Hede 107 — second skipped). Downstream consumers (seed
@@ -985,6 +1089,112 @@ def _extract_per_hede_refs(label_window: str, hede_tag: str) -> dict:
     if fr_match:
         refs["Fr"] = [fr_match.group(1).strip()]
     return refs
+
+
+# Pages whose spec TABLE lists sub-Hede blocks in an order that mis-resolves
+# the weight-to-tag mapping — usually an INVERTED Hede numbering where the
+# lower Hede number is the LARGER denomination (c5h39: Hede 39 = 2 Dukat /
+# 6.98 g, Hede 40 = 1 Dukat / 3.49 g). Attaching the (correct) descriptive
+# per-Hede nominal to such a mis-weighted spec block produces an internally
+# inconsistent entry (1-Dukat nominal on a 2-Dukat weight). Until the spec-
+# table tag resolution learns to reconcile weight↔nominal, skip the per-Hede
+# nominal/catalog attachment for these pages so the builder's weight-sorted
+# split keeps each entry self-consistent (curator flag — needs a proper fix).
+_INVERTED_TAG_PAGES = frozenset({"c5h39"})
+
+
+def _looks_like_denom(nom: str) -> bool:
+    """True when `nom` looks like a denomination label («2 speciedaler»,
+    «4 mark», «1 reichsthaler courant») rather than prose that DENOM_LABEL_RE
+    over-captured («2 dukaten findes i to varianter»). Strips a parenthetical
+    and a trailing year, then requires «<number> <1-2 words>»."""
+    if not nom:
+        return False
+    s = re.sub(r"\([^)]*\)", "", nom)
+    s = re.sub(r"\b1[0-9]{3}\b", "", s)
+    toks = s.split()
+    return 2 <= len(toks) <= 3 and toks[0][0].isdigit()
+
+
+def _split_hede_key(key: str) -> tuple[str, str]:
+    """Split a Hede tag into (base-number, trailing-letters).
+
+    «100AB» → («100», «AB»); «101» → («101», «»); «84A» → («84», «A»).
+    Used to match a descriptive-section sub-letter tag («100A», «100B»)
+    to the combined `by_hede` key the spec table emits («100AB»)."""
+    m = re.match(r"(\d+)([A-Za-z]*)$", key or "")
+    if not m:
+        return (key or "", "")
+    return (m.group(1), m.group(2).upper())
+
+
+def _extract_desc_hede_groups(descriptive: str) -> dict[str, dict]:
+    """Parse the descriptive section into per-Hede-number year + catalog data.
+
+    Multi-nominal / multi-sub-variant Hede pages document each variant as a
+    block «<year(s)>; … (Hede N, Schou …, Sieg …[, Fr …])». The catalog refs
+    live inside the «(Hede N, Schou …)» group; the year(s) precede that group
+    (back to the previous group). The parser otherwise keeps only a page-level
+    `years` list + a merged `catalog_refs`, which the seed builder then leaks
+    onto EVERY sub-entry (the f3h100 4-Mark/8-Mark bug: both sub-entries got
+    year 1559 + the union of both variants' Schou/Sieg).
+
+    Returns `{hede_num: {"years": [{"year": int, "rarity": None}, …],
+                         "catalog_refs": {"Schou": [...], "Sieg": [...], …}}}`.
+    `_extract_specs` matches these tags to `by_hede` keys (base + letter-subset)
+    and attaches per-sub-variant `years` + `catalog_refs`, which the builder
+    already consumes via `years_override` / `catalog_refs_override`.
+    """
+    if not descriptive:
+        return {}
+    flat = re.sub(r"\s+", " ", descriptive)
+    # A catalog GROUP anchor is «Hede N» IMMEDIATELY followed by a ref
+    # («, Schou» / «, Sieg» / «, Fr»). This distinguishes the group from a
+    # «Som Hede 84A» cross-reference (which is followed by « (Hede …», not
+    # a ref), so cross-refs don't spawn phantom sub-entries.
+    anchor_re = re.compile(
+        r"Hede\s+(\d+[A-Za-z]*)\s*,\s*(?:Schou|Sieg|Fr\b|Fr\.)", re.IGNORECASE)
+    anchors = list(anchor_re.finditer(flat))
+    if not anchors:
+        return {}
+    out: dict[str, dict] = {}
+    prev_group_end = 0
+    for i, m in enumerate(anchors):
+        hnum = m.group(1)
+        # Year span: text before THIS group's anchor, back to the previous
+        # group's end but capped at 250 chars so a far-away intro / legal-act
+        # year («Møntordning af 1544») can't leak onto the first sub-entry.
+        span_start = max(prev_group_end, m.start() - 250)
+        span = flat[span_start: m.start()]
+        years = _extract_years(span)
+        # Ref segment: the group itself — anchor to the closing «)» or the
+        # next «Hede » anchor or +150 chars, whichever comes first — so a
+        # sibling group's Schou/Sieg can't bleed in.
+        seg_end = min(
+            len(flat),
+            m.start() + 150,
+            (flat.find(")", m.end()) + 1) if flat.find(")", m.end()) >= 0 else len(flat),
+        )
+        nxt = flat.find("Hede ", m.end())
+        if 0 <= nxt < seg_end:
+            seg_end = nxt
+        refs = _extract_refs(flat[m.start(): seg_end])
+        refs.pop("Hede", None)
+        g = out.setdefault(hnum, {"years": [], "catalog_refs": {}})
+        seen_y = {y["year"] for y in g["years"]}
+        for y in years:
+            if y["year"] not in seen_y:
+                g["years"].append(y)
+                seen_y.add(y["year"])
+        for cat, vals in refs.items():
+            cur = g["catalog_refs"].setdefault(cat, [])
+            for v in vals:
+                if v not in cur:
+                    cur.append(v)
+        # This group's close = the ref-segment end; the next group's year
+        # span starts after it (never re-reading this group's own text).
+        prev_group_end = seg_end
+    return out
 
 
 def _spec_from_around(text: str, brutto_pos: int) -> dict:
