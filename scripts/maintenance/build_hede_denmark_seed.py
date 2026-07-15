@@ -118,6 +118,7 @@ from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
 from lib.paths import HEDE_CACHE, PROJECT_ROOT as PROJECT  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+from lib.note_extract import source_note  # noqa: E402
 
 
 def _classify_hede_entity(mint, hede_volume: str | None):
@@ -983,6 +984,14 @@ def _build_coin(
             "ще очікуються; дані взято безпосередньо з danskmoent.dk."
         )
     cm["verification_note"] = vn
+    # _source_note candidate (Phase-1, commit 80a1b62): danskmoent's coin
+    # `description` (Danish), cleaned + language-tagged for the later note-
+    # selector. Non-schema (underscore) → stripped before the strict Coin schema
+    # at final/render. Wiring here (the deferred follow-up) makes a re-seed
+    # reproduce it durably instead of dropping the one-off population.
+    _sn = source_note(parsed.get("description"), "da")
+    if _sn:
+        cm["_source_note"] = _sn
     return cm
 
 

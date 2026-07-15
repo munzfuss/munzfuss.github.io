@@ -48,6 +48,7 @@ from lib.mint_registry import (  # noqa: E402
 )
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 from lib.ruler_reigns import reign_window  # noqa: E402
+from lib.note_extract import source_note  # noqa: E402
 
 # Non-coin / exonumia object types (§9.2 medals · jetons · tokens; §9.3
 # off-strikes; plus banknotes · dies · tools · misc). KMM's `workDescription`
@@ -456,6 +457,12 @@ def build_entry(src) -> dict | None:
         }],
         "verification_note": _VNOTE,
     }
+    # _source_note candidate (Phase-1, commit 80a1b62): KMM's `motif` (Danish),
+    # cleaned + language-tagged for the later note-selector. Non-schema
+    # (underscore) → stripped before the strict Coin schema at final/render.
+    # Wiring here (the deferred follow-up) makes a re-seed reproduce it durably
+    # instead of dropping the one-off population. None → filtered out below.
+    entry["_source_note"] = source_note(src.get("motif"), "da")
     return {k: v for k, v in entry.items() if v is not None}
 
 

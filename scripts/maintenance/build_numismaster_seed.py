@@ -43,6 +43,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import NUMISMASTER_CACHE, PROJECT_ROOT  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 from lib.entity_routing import route_entity_with_rules  # noqa: E402
+from lib.note_extract import source_note  # noqa: E402
 
 # Per-CACHE-DIR year window applied to entries from that cache:
 #   schleswig_holstein  1514-1864 (Danish-jurisdiction SH end)
@@ -463,6 +464,15 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
         entry["_reverse"] = data["reverse"]
     if data.get("general_note"):
         entry["_general_note"] = data["general_note"]
+    # _source_note candidate (Phase-1, commit 80a1b62): the cleaned + language-
+    # tagged descriptive field, for the later note-selector. NumisMaster's
+    # richest description is `general_note`; source language en. Non-schema
+    # (underscore) → stripped before the strict Coin schema at final/render, so
+    # nothing reaches the page yet. Wiring it here (the deferred follow-up) makes
+    # a re-seed reproduce it durably instead of dropping the one-off population.
+    _sn = source_note(data.get("general_note"), "en")
+    if _sn:
+        entry["_source_note"] = _sn
     if data.get("actual_weight_fein"):
         entry["_actual_weight_fein_g"] = data["actual_weight_fein"]
     # NumisMaster MC_ID as a stable lookup anchor (non-schema; survives merge

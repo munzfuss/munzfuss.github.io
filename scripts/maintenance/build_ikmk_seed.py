@@ -48,6 +48,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from lib.paths import IKMK_CACHE  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+from lib.note_extract import source_note  # noqa: E402
 
 # IKMK `material.material_name_de` → Coin.metal enum. Materials outside the enum
 # (Zinn / Messing / Kupfer-Nickel / Aluminium / Weißmetall / Zinklegierung —
@@ -301,6 +302,12 @@ def build_entry(rec) -> dict | None:
         }],
         "verification_note": _VNOTE,
     }
+    # _source_note candidate (Phase-1, commit 80a1b62): IKMK's `comment`
+    # (German), cleaned + language-tagged for the later note-selector. Non-schema
+    # (underscore) → stripped before the strict Coin schema at final/render.
+    # Wiring here (the deferred follow-up) makes a re-seed reproduce it durably
+    # instead of dropping the one-off population. None → filtered out below.
+    entry["_source_note"] = source_note(rec.get("comment"), "de")
     # Drop None-valued keys (writer + merge tolerate absence; keeps seed clean).
     return {k: v for k, v in entry.items() if v is not None}
 

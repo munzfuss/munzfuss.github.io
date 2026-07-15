@@ -52,6 +52,7 @@ from lib.v2_entity_classify import (  # noqa: E402
     is_known_issuer,
 )
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+from lib.note_extract import source_note  # noqa: E402
 
 PARSED_DIR = PROJECT_ROOT / "scripts" / "cache" / "numista" / "parsed"
 
@@ -456,6 +457,17 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
     # Fold any «<km> (<Country>)» Krause-volume tag into the register-keyed km
     # form now that the entity (→ default register for bare values) is known.
     _apply_km_country_register(entry["catalog"], routed_ent)
+    # _source_note candidate (Phase-1, commit 80a1b62): «obverse / reverse»
+    # descriptions joined, cleaned + language-tagged (en) for the later note-
+    # selector. Non-schema (underscore) → stripped before the strict Coin schema
+    # at final/render. Wiring here (the deferred follow-up) makes a re-seed
+    # reproduce it durably instead of dropping the one-off population.
+    _obv = ((canonical.get("obverse") or {}).get("description") or "").strip()
+    _rev = ((canonical.get("reverse") or {}).get("description") or "").strip()
+    _combined = " / ".join(x for x in (_obv, _rev) if x)
+    _sn = source_note(_combined or None, "en")
+    if _sn:
+        entry["_source_note"] = _sn
     return entry
 
 
