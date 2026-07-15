@@ -15,6 +15,56 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-15 (part 2) — seed-writer idempotency · _source_note Phase-1 wiring · full lossless re-flow
+
+> **UNPUSHED — push pending «пуш».** 21 commits (`git log origin/main..HEAD`). This
+> session's 5 (newest first): `0484d7c` (re-merge seed_unified) · `a77ab38` (re-absorb
+> finals) · `d9d310c` (re-seed all) · `0ad4780` (wire _source_note ×5 builders) · `85be578`
+> (seed-writer idempotency) — on top of the 16 in the section below (incl. `80b671d`/`b46deed`/
+> `562661b` reserialize-drift resolution + gen_stamp ts fix). Submodule `scripts/cache` still
+> 3 ahead — push FIRST (PB-10).
+
+- **Seed-writer non-idempotency root-caused + fixed (`85be578`).** `_apply_pre_write_hygiene`
+  ran `_extract_mint_from_nominal` BEFORE the annotation splitters, so a mint hidden behind a
+  region suffix («Hvid , Visby (Gotland)») escaped the trailing-mint regex; then the splitters
+  stripped «(Gotland)» exposing a bare «, Visby» that nothing caught. The fresh-build path thus
+  disagreed with the orphan-normalisation pass (runs on already-normalised data, DID strip it),
+  so galster never reached a fixed point (perpetual re-seed churn). Fix: RE-extract after the
+  splitters. Also `_dump_seed_yaml` skip-write (content-stable seed `generated_at` via
+  `gen_stamp.content_equals_except_timestamp`). Tests: `test_nominal_mint_reextract.py`,
+  `test_gen_stamp.py`.
+
+- **`_source_note` = deferred Phase-1 work, now wired (`0ad4780`).** Investigating the «14k-line
+  stale-seed» churn revealed `_source_note` is NOT a disposable duplicate — commit `80a1b62`
+  (Phase-1) populated 2629 candidate-notes (source descriptions) via a one-off and EXPLICITLY
+  deferred the builder-wiring to «the next coordinated re-seed». This was that re-seed; dropping
+  it would abandon the work. Wired `_source_note` into all 5 builders (numismaster `general_note`
+  en · numista obv/rev-desc en · ikmk `comment` de · hede `description` da · kmk `motif` da) via
+  the existing `lib/note_extract.source_note`. Verified per-coin: 2625 reproduced IDENTICAL, 0
+  changed, 0 LOST + 357 gained coverage. Durable now. `_source_note` stays non-schema (stripped
+  by merger, never rendered) — pure curator-review candidate for the future note-selector.
+
+- **Full lossless re-flow (`d9d310c` → `a77ab38` → `0484d7c`).** re-seed → merge → absorb → build.
+  Verified by full-id-set + composed_of membership analysis (NOT raw diff lines — those are
+  inflated by benign reordering): **0 coins lost anywhere**. Real changes: 4 galster nominal
+  fixes («1 Hvid, Visby» → «1 Hvid») + 1 mint correction (c2g-174 Kopenhagen → «Hamar…») + **20
+  new hede coins** (f3h84ab etc.). danish_realm net −5 finals = hede providing the authoritative
+  Hede/Schou/KM anchor that unifies previously-separate museum(kmk)/auction(bruun)/catalogue
+  (numismaster/numista) records of the SAME coin — every consolidation §9.4-verified on a shared
+  catalogue base (e.g. kmk-156815 Hede 113A → f3h113a). Gates: audit_lost_citations = 0, V2 I2
+  clean, 547 tests OK, build OK, render OK («1 Hvid, Visby» = 0 in danish_realm). **My earlier
+  «200+ id restructuring / curation-loss» alarm was WRONG** — reordering artifacts; corrected.
+
+- **⚠ commit-order blemish (harmless):** the merger seed_unified commit was first BLOCKED by the
+  I2 hard-block (5 finals transiently referenced retired unified-ids from the hede re-cluster);
+  the absorb then purged those 13 stale refs, so finals committed first (`a77ab38`) and
+  seed_unified second (`0484d7c`). Final state is consistent (I2 clean); only git history order
+  is slightly inverted. If re-running from scratch, run merger+absorb THEN commit seed_unified
+  before finals.
+
+- **The 20 new hede coins are `seed_unsorted` (pending classification)** — they render but carry
+  no fuss/phase yet. Curator follow-up when convenient (not blocking).
+
 ## 2026-07-14 — galster Gej fix · Norway harvest-gap audit · rhinsk phase renumber · c3h14 Goldgulden split · c3g131 schou 1-7 · c3h14 nominal → Goldgulden
 
 > **UNPUSHED — push pending «пуш».** 16 commits unpushed (`git log origin/main..HEAD`):
