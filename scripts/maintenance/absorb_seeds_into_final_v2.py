@@ -64,6 +64,7 @@ V2_OVERMERGE_PURGE = ROOT / "data" / "v2" / "overmerge_purge_allowlist.yml"
 
 sys.path.insert(0, str(ROOT / "scripts"))
 from lib.fraction_infer import infer_fraction, load_fuss_fractions  # noqa: E402
+from lib.gen_stamp import resolve_generated_at  # noqa: E402
 from lib.seed_merge import merge_seed  # noqa: E402
 from lib.v2_seed_writer import (  # noqa: E402
     _is_out_of_scope_nominal,
@@ -2636,6 +2637,12 @@ def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
     payload["pending"] = [{"unified_id": uid, "status": "no_match_in_final"}
                           for uid in unmatched_ids]
     payload["multi_match_warnings"] = multi_match
+    # Content-stable timestamp: reuse the prior `generated_at` when the payload
+    # (pending / multi_match_warnings / assignments) is unchanged, so a no-op
+    # absorb re-run leaves this committed file byte-identical instead of a
+    # daily one-line churn (`generated_at` is informational — nothing branches
+    # on it). See lib/gen_stamp.py.
+    payload["generated_at"] = resolve_generated_at(payload, existing)
     return header + yaml.dump(payload, sort_keys=False, allow_unicode=True,
                               default_flow_style=False, width=120)
 

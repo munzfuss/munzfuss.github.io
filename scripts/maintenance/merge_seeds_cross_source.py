@@ -230,6 +230,7 @@ from lib.catalog_codes import normalise_catalog as _fold_catalog_indices
 from lib.catalog_codes import split_multi_ref as _split_multi_ref
 from lib.v2_seed_writer import _canonicalise_mint
 from lib.v2_entity_classify import classify_mint_to_entity
+from lib.gen_stamp import resolve_generated_at
 
 
 def _normalise_nominal(nominal):
@@ -4398,10 +4399,27 @@ def process_entity(entity_id: str,
 
 def _emit_unified_yaml(entity_id: str, unified_entries: list[dict],
                        seeds_count: int) -> str:
-    today = date.today().isoformat()
+    payload = {
+        "id": entity_id,
+        "generated_at": None,  # placeholder — resolved below
+        "coins": unified_entries,
+    }
+    # Content-stable timestamp: reuse the prior `generated_at` when the coins
+    # payload is unchanged, so a no-op merger re-run leaves this committed file
+    # byte-identical instead of a daily one-line churn (`generated_at` is
+    # informational — nothing branches on it). See lib/gen_stamp.py.
+    existing = None
+    _existing_path = V2_SEED_UNIFIED / f"{entity_id}.yml"
+    if _existing_path.exists():
+        try:
+            existing = yaml.safe_load(_existing_path.read_text(encoding="utf-8"))
+        except Exception:
+            existing = None
+    stamp = resolve_generated_at(payload, existing)
+    payload["generated_at"] = stamp
     header = (
         f"# V2 seed_unified for political entity `{entity_id}`.\n"
-        f"# Generated {today} by scripts/maintenance/merge_seeds_cross_source.py\n"
+        f"# Generated {stamp} by scripts/maintenance/merge_seeds_cross_source.py\n"
         f"# from data/v2/seed/<source>/{entity_id}.yml across all sources.\n"
         f"#\n"
         f"# Input: {seeds_count} per-source seed entries.\n"
@@ -4412,11 +4430,6 @@ def _emit_unified_yaml(entity_id: str, unified_entries: list[dict],
         f"# `fineness[]`, `diameter_mm[]` are multi-source lists preserving\n"
         f"# every reading per CLAUDE.md §9a. `sources[]` is the union.\n\n"
     )
-    payload = {
-        "id": entity_id,
-        "generated_at": today,
-        "coins": unified_entries,
-    }
     return header + yaml.dump(payload, sort_keys=False, allow_unicode=True,
                               default_flow_style=False, width=120)
 
