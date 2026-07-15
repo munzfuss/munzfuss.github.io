@@ -418,8 +418,8 @@ That rule covers «which of ≥2 same-resource sources is this link». But it ig
 
 4. **Numista pre1541 builder**: replace `"norwegian_realm"` with `"danish_norway"`; consider extending to use Numista's `issuer.code` / `issuer.name` for richer routing (e.g. county-level rulers).
 
-5. **Rebuild each affected seed with `--no-merge`** to overwrite legacy aliases. Safe for all 4 because V1 seeds are auto-generated (no curator-direct edits documented). Verify via:
-   - `grep "issuing_entity:" data/seed/<src>/*.yml | sort | uniq -c` — no `norwegian_realm`, no `schleswig_holstein_duchy`
+5. **Rebuild each affected seed wholesale** to overwrite legacy aliases: `rm -rf data/v2/seed/<src>/` then re-run the builder. (The `--no-merge` flag was removed in D47 — builders are now unconditionally merge-preserving, so a genuine wholesale rebuild deletes the seed dir first.) Safe for these because their seeds carry no curator-direct edits for the aliased fields. Verify via:
+   - `grep "issuing_entity:" data/v2/seed/<src>/*.yml | sort | uniq -c` — no `norwegian_realm`, no `schleswig_holstein_duchy`
    - Re-run regroup; `_unclassified` stays 0
    - Re-run merger + absorb; pipeline idempotent
 

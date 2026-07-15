@@ -20,8 +20,7 @@ Sweden-Christian-II is 0 entries (§BI negative finding) — no seed emitted.
 
 Curation preservation: merge-aware via `scripts/lib/seed_merge.py` (§BL). Existing
 `fuss`/`phase`/`fraction`/`issuing_entity`/`kind`/`note`/`*_verified` flags on
-on-disk entries survive regeneration. Pass `--no-merge` for legacy wholesale
-rewrite (verification / dry-run only).
+on-disk entries survive regeneration.
 
 Run:
     .venv/bin/python scripts/maintenance/build_numismaster_seed.py --location schleswig_holstein
@@ -523,7 +522,7 @@ def collect_from_cache(cache_name: str, location: str) -> tuple[list[dict], int]
     return entries, scanned
 
 
-def build_seed(no_merge: bool, dry_run: bool) -> int:
+def build_seed(dry_run: bool) -> int:
     """V2-native: walk every cache once, classify each coin by issuing_entity
     (set per-coin via COUNTRY_TO_ISSUING_ENTITY map at build_entry time),
     delegate to shared `write_v2_seed` for grouping + per-entity output."""
@@ -557,7 +556,6 @@ def build_seed(no_merge: bool, dry_run: bool) -> int:
         source_label="NumisMaster (numismaster.com per-coin HTML MC_NNNNN pages)",
         scope_note=scope_note,
         dry_run=dry_run,
-        no_merge=no_merge,
     )
     return 0
 
@@ -565,22 +563,13 @@ def build_seed(no_merge: bool, dry_run: bool) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument(
-        "--no-merge",
-        action="store_true",
-        help=(
-            "Skip the curation-preserving merge against the existing on-disk "
-            "seed and overwrite wholesale with fresh output. Destructive — only "
-            "use for verification / dry-run paths."
-        ),
-    )
     # `--all` and `--location` retained as no-op flags for backward compat
     # with shell scripts that still pass them; the new builder walks every
     # cache regardless.
     ap.add_argument("--all", action="store_true", help="(no-op; kept for compat)")
     ap.add_argument("--location", help="(no-op; kept for compat)")
     args = ap.parse_args()
-    return build_seed(args.no_merge, args.dry_run)
+    return build_seed(args.dry_run)
 
 
 if __name__ == "__main__":

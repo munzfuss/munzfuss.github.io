@@ -54,10 +54,9 @@ Usage (in a builder):
 
     from lib.seed_merge import merge_seed
 
-    if not args.no_merge:
-        entries, stats = merge_seed(entries, OUT_PATH)
-        print(f"merge: merged={stats['merged_existing']}, "
-              f"new={stats['added_new']}, orphan={stats['orphan_curated']}")
+    entries, stats = merge_seed(entries, OUT_PATH)
+    print(f"merge: merged={stats['merged_existing']}, "
+          f"new={stats['added_new']}, orphan={stats['orphan_curated']}")
 
     # ... existing yaml.dump(out, f) path unchanged
 """

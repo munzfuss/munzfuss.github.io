@@ -628,7 +628,7 @@ def _collect_v1_ucoin_entries() -> dict[str, tuple[str, dict]]:
     return out
 
 
-def build_seed(entity: str, no_merge: bool, dry_run: bool,
+def build_seed(entity: str, dry_run: bool,
                v1_tid_global: dict | None = None) -> int:
     if entity not in ENTITY_WINDOW:
         print(f"ERROR: unknown entity '{entity}'", file=sys.stderr)
@@ -718,12 +718,11 @@ def build_seed(entity: str, no_merge: bool, dry_run: bool,
         return 0
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    if not no_merge:
-        entries, stats = merge_seed(entries, out_path)
-        print(
-            f"  [{entity}] merge: merged_existing={stats['merged_existing']}, "
-            f"added_new={stats['added_new']}, orphan_curated={stats['orphan_curated']}"
-        )
+    entries, stats = merge_seed(entries, out_path)
+    print(
+        f"  [{entity}] merge: merged_existing={stats['merged_existing']}, "
+        f"added_new={stats['added_new']}, orphan_curated={stats['orphan_curated']}"
+    )
 
     # Pre-write hygiene — out-of-scope filter + nominal/mint/catalog
     # normalisation. Applied AFTER merge_seed so orphan-curated entries
@@ -777,15 +776,13 @@ def main() -> int:
     g.add_argument("--all", action="store_true",
                    help="Build seeds for every V2 entity")
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument("--no-merge", action="store_true",
-                    help="Skip curation-preserving merge (wholesale overwrite).")
     args = ap.parse_args()
 
     ents = entities if args.all else [args.entity]
     v1_tid_global = _collect_v1_ucoin_entries()
     rc = 0
     for ent in ents:
-        rc = build_seed(ent, args.no_merge, args.dry_run, v1_tid_global) or rc
+        rc = build_seed(ent, args.dry_run, v1_tid_global) or rc
     return rc
 
 

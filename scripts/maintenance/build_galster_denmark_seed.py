@@ -619,15 +619,6 @@ def collect_entries() -> list[dict]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument(
-        "--no-merge",
-        action="store_true",
-        help=(
-            "Skip the curation-preserving merge against the existing on-disk "
-            "seed and overwrite wholesale with fresh output. Destructive — only "
-            "use for verification / dry-run paths."
-        ),
-    )
     args = ap.parse_args()
 
     print(f"Collecting Galster pre-1541 entries from {GALSTER_CACHE}...")
@@ -660,7 +651,6 @@ def main() -> int:
         ),
         scope_note=scope_note,
         dry_run=args.dry_run,
-        no_merge=args.no_merge,
         extra_top_level={
             "scope_year_from": YEAR_FROM,
             "scope_year_to": YEAR_TO,

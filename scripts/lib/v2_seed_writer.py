@@ -1362,7 +1362,6 @@ def write_v2_seed(
     *,
     source_label: str | None = None,
     dry_run: bool = False,
-    no_merge: bool = False,
     extra_top_level: dict | None = None,
     extra_curated_fields: frozenset = frozenset(),
     exclude_ids: frozenset = frozenset(),
@@ -1382,9 +1381,6 @@ def write_v2_seed(
     source_label : optional value for the `source` header (defaults
         to source_name).
     dry_run : if True, only logs stats and skips writes.
-    no_merge : if True, wholesale-overwrites existing seed yamls
-        without `merge_seed` curation preservation. Destructive — use
-        only for verification or fresh-build scenarios.
     extra_top_level : optional dict of extra header keys to merge into
         every output yaml's top level (e.g. {"scope_year_from": 1514}).
 
@@ -1445,7 +1441,7 @@ def write_v2_seed(
     purged_per_file: dict[str, int] = {}
     out_of_scope_per_file: dict[str, int] = {}
     normalised_per_file: dict[str, int] = {}
-    if not dry_run and not no_merge:
+    if not dry_run:
         import ruamel.yaml as _ruyaml
         purge_yaml = _ruyaml.YAML(typ="rt")
         purge_yaml.preserve_quotes = True
@@ -1589,7 +1585,7 @@ def write_v2_seed(
         ents.sort(key=lambda e: (e.get("year_first") or 9999, e.get("id") or ""))
         out_path = src_dir / f"{entity}.yml"
         merge_stats = {"merged_existing": 0, "added_new": len(ents), "orphan_curated": 0}
-        if not dry_run and not no_merge:
+        if not dry_run:
             ents, merge_stats = merge_seed(ents, out_path, extra_curated_fields)
 
         print(f"  [{entity}] {len(ents)} entries  "
@@ -1629,7 +1625,7 @@ def write_v2_seed(
         unclass_path = src_dir / "_unclassified.yml"
         unclassified.sort(key=lambda e: (e.get("year_first") or 9999, e.get("id") or ""))
         merge_stats = {"merged_existing": 0, "added_new": len(unclassified), "orphan_curated": 0}
-        if not dry_run and not no_merge:
+        if not dry_run:
             unclassified, merge_stats = merge_seed(unclassified, unclass_path, extra_curated_fields)
         print(f"  [_unclassified] {len(unclassified)} entries")
         if not dry_run:

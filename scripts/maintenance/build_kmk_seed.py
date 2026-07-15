@@ -466,7 +466,7 @@ def build_entry(src) -> dict | None:
     return {k: v for k, v in entry.items() if v is not None}
 
 
-def build_seed(dry_run: bool, no_merge: bool, limit: int | None,
+def build_seed(dry_run: bool, limit: int | None,
                no_thin: bool = False) -> int:
     files = sorted(p for p in KMK_CACHE.glob("[0-9]*.json"))
     entries: list[dict] = []
@@ -510,7 +510,6 @@ def build_seed(dry_run: bool, no_merge: bool, limit: int | None,
         source_label="KMK Copenhagen (Nationalmuseet, api.natmus.dk)",
         scope_note=scope_note,
         dry_run=dry_run,
-        no_merge=no_merge,
     )
     # §9a weight-variance thinning of over-sampled KMM sub-variants. KMM
     # over-samples common types (one Hede-17 1648 2-Skilling sub-variant had
@@ -529,15 +528,13 @@ def main() -> int:
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--write", action="store_true", help="persist (default: dry-run)")
-    ap.add_argument("--no-merge", action="store_true",
-                    help="wholesale overwrite (skip merge_seed curation preservation)")
     ap.add_argument("--limit", type=int, default=None,
                     help="process only N cache files (subset test)")
     ap.add_argument("--no-thin", action="store_true",
                     help="skip the §9a over-sample thinning post-pass "
                          "(emit the raw per-specimen seed)")
     args = ap.parse_args()
-    return build_seed(dry_run=not args.write, no_merge=args.no_merge,
+    return build_seed(dry_run=not args.write,
                       limit=args.limit, no_thin=args.no_thin)
 
 

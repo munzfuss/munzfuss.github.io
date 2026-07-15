@@ -15,6 +15,44 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-15 (part 3) — removed the destructive `--no-merge` seed-builder flag (D47)
+
+> **UNPUSHED — push pending «пуш».** 23 commits (`git log origin/main..HEAD`). This section
+> adds 1 (`--no-merge` removal) on top of part-2's 22. Submodule `scripts/cache` still 3 ahead —
+> push FIRST (PB-10).
+
+- **Trigger.** Analysed whether a `_source_errata` on a `seed_unsorted` hede coin survives
+  downstream (question arose from the f3h100ab/f3h101 «1559»→1659 danskmoent typo, below).
+  Answer: **it does** — `apply_source_errata` runs LAST in `lib.seed_merge.merge_seed`
+  (called by `v2_seed_writer.write_v2_seed` for every seed write), `_source_errata` ∈
+  `_PRESERVE_ALWAYS_KEYS` (survives re-seed even though the parser re-emits the raw cache value),
+  and BOTH the merger (`_union_year_ranges` → `_format_year_label`) AND absorb regenerate
+  `year_label`/`year_last`/`year_ranges` from the corrected `year_first` — so a year errata needs
+  only `year_first` for the render (add `year_label` too just for seed self-consistency).
+  Empirically proved end-to-end (scratchpad test: seed-write correction + re-seed re-apply +
+  merger/absorb derivation all → 1659). The ONE residual hole was `--no-merge`.
+
+- **Removed `--no-merge` entirely (curator chose option B).** It was the SINGLE bypass of the
+  project's «never silently lose curation» invariant: it skipped both the pre-process purge AND
+  `merge_seed`, wholesale-writing fresh parser output → silently dropping `_curation_holds`,
+  `_source_errata`, curated field overrides, and orphan-curated entries for the whole entity.
+  Low-prob (explicit opt-in) × catastrophic (entire entity's curation) × silent — and literally
+  in the hede docstring's `Run:` examples. Removed the flag + `no_merge` param from all 8 builders
+  (`build_{hede_denmark,numista,numismaster,ucoin,kmk,ikmk,bruun_denmark,galster_denmark}_seed.py`)
+  and `write_v2_seed`; every builder now unconditionally routes through `merge_seed`. Verification =
+  `--dry-run` (unchanged); genuine fresh rebuild = `rm -rf data/v2/seed/<src>/` + builder. Full
+  rationale in **V2_DECISIONS D47**. NOT related to `no_merges` decision pairs / union-find
+  `add_no_merge` (untouched). Verified: py_compile all touched · 547 tests OK · kmk+ucoin dry-run
+  smoke · 0 leftover flag refs. Docs: D47 added; TODO §BT step 5 rebuild recipe updated.
+
+- **⚠ Pending curator decision — f3h100ab / f3h101 year is 1559 but should be 1659.** Both are
+  Frederik III Ebenezerkroner (danskmoent f3h100 prints «1559»; the 8 Mark Hede 101 on the same
+  page is correctly dated 1659 — motif «Gud afhugger svenskekongens hånd» = 1658–59 siege of
+  Copenhagen). This is a source typo (arguably an extraction artefact). Fix = `_source_errata` on
+  both seed entries in `data/v2/seed/hede/danish_realm.yml` (`year_first` 1559→1659 + `year_label`)
+  — but **§4 requires explicit in-chat «так» before adding any erratum**; NOT yet applied. Both are
+  among the 20 new `seed_unsorted` hede coins (still pending fuss/phase classification).
+
 ## 2026-07-15 (part 2) — seed-writer idempotency · _source_note Phase-1 wiring · full lossless re-flow
 
 > **UNPUSHED — push pending «пуш».** 21 commits (`git log origin/main..HEAD`). This

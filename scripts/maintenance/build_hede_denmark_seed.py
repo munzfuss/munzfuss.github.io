@@ -88,14 +88,9 @@ output against the existing on-disk seed (when one is present):
     curated entry on its own (parser instability could otherwise
     silently delete shipped data).
 
-`--no-merge` runs the legacy wholesale-rewrite behaviour (used by
-the dry-run / verification path; never recommended for the canonical
-seed file).
-
 Run:
     python scripts/maintenance/build_hede_denmark_seed.py
     python scripts/maintenance/build_hede_denmark_seed.py --year-to 1900
-    python scripts/maintenance/build_hede_denmark_seed.py --no-merge  # wholesale
 """
 from __future__ import annotations
 
@@ -1177,21 +1172,9 @@ def main() -> int:
             "(sibling TODO §BJ). NOT a Hede extension."
         ),
     )
-    ap.add_argument(
-        "--no-merge", action="store_true",
-        help=(
-            "Skip the curation-preserving merge against the existing "
-            "on-disk seed and overwrite wholesale with fresh output. "
-            "Destructive — only use for verification / dry-run paths "
-            "where you also pass a non-default output location. The "
-            "default behaviour merges (preserves curated fields, adds "
-            "new entries, keeps orphaned curated entries)."
-        ),
-    )
     args = ap.parse_args()
     year_to = args.year_to
     year_from = args.year_from
-    merge = not args.no_merge
 
     parsed_files = sorted(p for p in HEDE_CACHE.glob("*.json") if not p.name.startswith("_"))
     if not parsed_files:
@@ -1480,14 +1463,6 @@ def main() -> int:
         source_label="Hede 1971 (danskmoent.dk cache)",
         scope_note=scope_note,
         dry_run=False,
-        # `--no-merge` instructs writer to BYPASS merge_seed's curation
-        # preservation (CURATED_FIELDS / DEEP_MERGE_FIELDS) and write fresh
-        # data wholesale. Previously this flag also triggered dry_run=True
-        # via `dry_run=not merge`, which made --no-merge a NO-OP (writer
-        # never wrote). Now it writes the wholesale-fresh data as
-        # intended. Use with care — destructive for any curator overrides
-        # carried in the existing seed YAML.
-        no_merge=not merge,
         extra_top_level={
             "scope_year_from": year_from,
             "scope_year_to": year_to,

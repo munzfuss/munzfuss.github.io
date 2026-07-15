@@ -30,7 +30,6 @@ flags survive regeneration.
 Run:
     .venv/bin/python scripts/maintenance/build_numista_seed.py
     .venv/bin/python scripts/maintenance/build_numista_seed.py --dry-run
-    .venv/bin/python scripts/maintenance/build_numista_seed.py --no-merge
 """
 from __future__ import annotations
 
@@ -502,8 +501,6 @@ def collect_entries() -> tuple[list[dict[str, Any]], Counter]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument("--no-merge", action="store_true",
-                    help="Wholesale overwrite — destructive, verification only")
     args = ap.parse_args()
 
     if not PARSED_DIR.exists():
@@ -563,7 +560,6 @@ def main() -> int:
             "scripts/parse_numista.py."
         ),
         dry_run=args.dry_run,
-        no_merge=args.no_merge,
     )
     return 0
 

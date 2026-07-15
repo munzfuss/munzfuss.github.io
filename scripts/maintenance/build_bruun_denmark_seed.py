@@ -952,15 +952,6 @@ def collect_entries() -> list[dict]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--dry-run", action="store_true", help="Print summary; do not write file")
-    ap.add_argument(
-        "--no-merge",
-        action="store_true",
-        help=(
-            "Skip the curation-preserving merge against the existing on-disk "
-            "seed and overwrite wholesale with fresh output. Destructive — only "
-            "use for verification / dry-run paths."
-        ),
-    )
     args = ap.parse_args()
 
     print(f"Collecting Bruun pre-1541 realm entries ({YEAR_FROM}-{YEAR_TO})...")
@@ -990,7 +981,6 @@ def main() -> int:
             "Hede seed at v2/seed/hede/; parallel source."
         ),
         dry_run=args.dry_run,
-        no_merge=args.no_merge,
         # `nominal` is soft-preserved across regen: the live parser emits the
         # raw catalogue string and `_bruun_display_nominal` reproduces the
         # algorithmic normalisation for 1075/1099, but ~24 curated/special
