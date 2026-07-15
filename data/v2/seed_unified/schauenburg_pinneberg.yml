@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `schauenburg_pinneberg`.
-# Generated 2026-07-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-15 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
 # Input: 252 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: schauenburg_pinneberg
-generated_at: '2026-07-09'
+generated_at: '2026-07-15'
 coins:
 - id: unified-dk-bruun-14788
   fuss: seed_unsorted
@@ -3724,6 +3724,7 @@ coins:
   diameter_mm_verified: false
   mint_verified: false
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 7.0
     source: numismaster
@@ -4285,18 +4286,12 @@ coins:
   phase: numismaster
   kind: kurant
   nominal: 1 Pfennig
-  year_first: 1538
-  year_last: 1566
+  year_first: 1566
+  year_last: 1568
   year_ranges:
-  - - 1538
-    - 1539
-  - - 1545
-    - 1545
-  - - 1562
-    - 1562
   - - 1566
-    - 1566
-  year_label: 1538-1539, 1545, 1562, 1566
+    - 1568
+  year_label: 1566-1568
   ruler: Otto V
   catalog:
     mb: '2'
@@ -4306,6 +4301,7 @@ coins:
   weight_rough_verified: false
   mint_verified: false
   verified: false
+  year_verified: false
   sources:
   - type: literature
     url: https://numismaster.com/MC_171183
@@ -5865,9 +5861,12 @@ coins:
   phase: numismaster
   kind: kurant
   nominal: 1 Schreckenberger
-  year_first: 1619
+  year_first: 1616
   year_last: 1619
-  year_label: '1619'
+  year_ranges:
+  - - 1616
+    - 1619
+  year_label: 1616-1619
   ruler: Ernst III
   catalog:
     km: '75'
@@ -5877,6 +5876,7 @@ coins:
   weight_rough_verified: false
   mint_verified: false
   verified: false
+  year_verified: false
   sources:
   - type: literature
     url: https://numismaster.com/MC_96080
@@ -5897,8 +5897,11 @@ coins:
   kind: kurant
   nominal: 1 Schreckenberger
   year_first: 1616
-  year_last: 1616
-  year_label: '1616'
+  year_last: 1619
+  year_ranges:
+  - - 1616
+    - 1619
+  year_label: 1616-1619
   ruler: Ernst III
   catalog:
     km: '76'
@@ -5908,6 +5911,7 @@ coins:
   weight_rough_verified: false
   mint_verified: false
   verified: false
+  year_verified: false
   sources:
   - type: literature
     url: https://numismaster.com/MC_96081

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-07-14 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-15 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1728 per-source seed entries.
-# Output: 951 unified entries (one per physical coin).
+# Output: 952 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-07-14'
+generated_at: '2026-07-15'
 coins:
 - id: unified-denmark-numismaster-65653
   fuss: seed_unsorted
@@ -13710,6 +13710,7 @@ coins:
   diameter_mm_verified: false
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.888
     source: numismaster
@@ -14709,25 +14710,21 @@ coins:
   kind: kurant
   nominal: 2 Skilling
   year_first: 1514
-  year_last: 1533
+  year_last: 1522
   year_ranges:
   - - 1514
     - 1514
   - - 1518
     - 1520
   - - 1522
-    - 1527
-  - - 1533
-    - 1533
-  year_label: 1514, 1518-1520, 1522-1527, 1533
+    - 1522
+  year_label: 1514, 1518-1520, 1522
   ruler: Frederick I
   mint: Husum
   catalog:
     numista: '301237'
     sieg: F1-43
     mb: '10'
-    schou: 1542-43
-    lange: 13-16
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14748,9 +14745,6 @@ coins:
   - type: literature
     url: https://en.numista.com/301237
     ref: Numista N#301237 — 2 Schillings - Frederik I (Husum; portrait first type)
-  - type: literature
-    url: https://numismaster.com/MC_167733
-    ref: NumisMaster
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -14764,7 +14758,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-301237
-  - schleswig_holstein-numismaster-167733
 - id: unified-dk-numista-301239
   fuss: seed_unsorted
   phase: numista
@@ -15066,6 +15059,7 @@ coins:
   diameter_mm_verified: false
   mint_verified: false
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 0.36
     source: numista
@@ -32640,6 +32634,7 @@ coins:
   weight_rough_verified: true
   mint_verified: false
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 0.37
     source: numismaster
@@ -32814,6 +32809,7 @@ coins:
   weight_rough_verified: true
   mint_verified: false
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 1.9
     source: numismaster
@@ -32831,6 +32827,40 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-167731
+- id: unified-schleswig_holstein-numismaster-167733
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 2 Schilling
+  year_first: 1523
+  year_last: 1523
+  year_label: '1523'
+  ruler: Friedrich I
+  catalog:
+    mb: '10'
+    schou: 1542-43
+    lange: 13-16
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_167733
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: royal_holstein
+  composed_of:
+  - schleswig_holstein-numismaster-167733
 - id: unified-schleswig_holstein-numismaster-167734
   fuss: seed_unsorted
   phase: numismaster
@@ -33051,13 +33081,11 @@ coins:
   kind: kurant
   nominal: 1 Goldgulden
   year_first: 1523
-  year_last: 1531
+  year_last: 1533
   year_ranges:
   - - 1523
-    - 1523
-  - - 1531
-    - 1531
-  year_label: 1523, 1531
+    - 1533
+  year_label: 1523-1533
   ruler: Friedrich I
   catalog:
     mb: '30'
@@ -33069,6 +33097,7 @@ coins:
   weight_rough_verified: false
   mint_verified: false
   verified: false
+  year_verified: false
   sources:
   - type: literature
     url: https://numismaster.com/MC_167742
@@ -33101,6 +33130,7 @@ coins:
   weight_rough_verified: false
   mint_verified: false
   verified: false
+  year_verified: false
   sources:
   - type: literature
     url: https://numismaster.com/MC_167745
@@ -33567,8 +33597,11 @@ coins:
   kind: kurant
   nominal: 2 Skilling Lybsk
   year_first: 1620
-  year_last: 1620
-  year_label: '1620'
+  year_last: 1623
+  year_ranges:
+  - - 1620
+    - 1623
+  year_label: 1620-1623
   ruler: Christian IV
   catalog:
     km: '8.2'
@@ -33578,6 +33611,7 @@ coins:
   weight_rough_verified: true
   mint_verified: false
   verified: false
+  year_verified: false
   fineness:
   - value: 0.888
     source: numismaster
@@ -33604,8 +33638,11 @@ coins:
   kind: kurant
   nominal: 2 Skilling Lybsk
   year_first: 1620
-  year_last: 1620
-  year_label: '1620'
+  year_last: 1623
+  year_ranges:
+  - - 1620
+    - 1623
+  year_label: 1620-1623
   ruler: Christian IV
   catalog:
     km: '8.3'
@@ -33615,6 +33652,7 @@ coins:
   weight_rough_verified: true
   mint_verified: false
   verified: false
+  year_verified: false
   fineness:
   - value: 0.888
     source: numismaster
@@ -33641,8 +33679,11 @@ coins:
   kind: kurant
   nominal: 2 Skilling Lybsk
   year_first: 1620
-  year_last: 1620
-  year_label: '1620'
+  year_last: 1623
+  year_ranges:
+  - - 1620
+    - 1623
+  year_label: 1620-1623
   ruler: Christian IV
   catalog:
     km: '8.4'
@@ -33652,6 +33693,7 @@ coins:
   weight_rough_verified: true
   mint_verified: false
   verified: false
+  year_verified: false
   fineness:
   - value: 0.888
     source: numismaster
@@ -33678,8 +33720,11 @@ coins:
   kind: kurant
   nominal: 2 Skilling Lybsk
   year_first: 1620
-  year_last: 1620
-  year_label: '1620'
+  year_last: 1623
+  year_ranges:
+  - - 1620
+    - 1623
+  year_label: 1620-1623
   ruler: Christian IV
   catalog:
     km: '8.5'
@@ -33689,6 +33734,7 @@ coins:
   weight_rough_verified: true
   mint_verified: false
   verified: false
+  year_verified: false
   fineness:
   - value: 0.888
     source: numismaster
@@ -33714,9 +33760,12 @@ coins:
   phase: numismaster
   kind: kurant
   nominal: 2 Skilling Lybsk
-  year_first: 1620
-  year_last: 1620
-  year_label: '1620'
+  year_first: 1624
+  year_last: 1630
+  year_ranges:
+  - - 1624
+    - 1630
+  year_label: 1624-1630
   ruler: Christian IV
   catalog:
     km: '8.6'
@@ -33726,6 +33775,7 @@ coins:
   weight_rough_verified: true
   mint_verified: false
   verified: false
+  year_verified: false
   fineness:
   - value: 0.888
     source: numismaster
@@ -33752,8 +33802,11 @@ coins:
   kind: kurant
   nominal: 4 Skilling Lybsk
   year_first: 1620
-  year_last: 1620
-  year_label: '1620'
+  year_last: 1623
+  year_ranges:
+  - - 1620
+    - 1623
+  year_label: 1620-1623
   ruler: Christian IV
   catalog:
     km: '9.1'
@@ -33763,6 +33816,7 @@ coins:
   weight_rough_verified: true
   mint_verified: false
   verified: false
+  year_verified: false
   fineness:
   - value: 0.888
     source: numismaster
@@ -33789,8 +33843,11 @@ coins:
   kind: kurant
   nominal: 4 Skilling Lybsk
   year_first: 1624
-  year_last: 1624
-  year_label: '1624'
+  year_last: 1630
+  year_ranges:
+  - - 1624
+    - 1630
+  year_label: 1624-1630
   ruler: Christian IV
   catalog:
     km: '9.2'
@@ -33800,6 +33857,7 @@ coins:
   weight_rough_verified: true
   mint_verified: false
   verified: false
+  year_verified: false
   fineness:
   - value: 0.888
     source: numismaster

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `erzbisthum_bremen_verden`.
-# Generated 2026-07-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-15 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/erzbisthum_bremen_verden.yml across all sources.
 #
 # Input: 234 per-source seed entries.
-# Output: 196 unified entries (one per physical coin).
+# Output: 198 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: erzbisthum_bremen_verden
-generated_at: '2026-07-09'
+generated_at: '2026-07-15'
 coins:
 - id: unified-dk-bruun-12130
   fuss: seed_unsorted
@@ -415,7 +415,7 @@ coins:
   - - 1596
     - 1634
   year_label: 1596-1634
-  ruler: John Frederick of Holstein-Gottorp (Johann Friedrich von Holstein-Gottorp)
+  ruler: Hans
   catalog:
     km: '5'
     numista: '129842'
@@ -472,7 +472,7 @@ coins:
   - - 1596
     - 1634
   year_label: 1596-1634
-  ruler: John Frederick of Holstein-Gottorp (Johann Friedrich von Holstein-Gottorp)
+  ruler: Hans
   catalog:
     km: '8'
     numista: '129847'
@@ -732,7 +732,7 @@ coins:
   - - 1612
     - 1616
   year_label: 1612-1616
-  ruler: John Frederick of Holstein-Gottorp (Johann Friedrich von Holstein-Gottorp)
+  ruler: Hans
   catalog:
     km: '18'
     numista: '167735'
@@ -780,7 +780,7 @@ coins:
   - - 1613
     - 1616
   year_label: 1613-1616
-  ruler: John Frederick of Holstein-Gottorp (Johann Friedrich von Holstein-Gottorp)
+  ruler: Hans
   catalog:
     km: B75
     numista: '167741'
@@ -1170,7 +1170,7 @@ coins:
   - - 1612
     - 1622
   year_label: 1612-1622
-  ruler: John Frederick of Holstein-Gottorp (Johann Friedrich von Holstein-Gottorp)
+  ruler: Hans
   catalog:
     km:
     - '19.4'
@@ -1471,7 +1471,7 @@ coins:
   year_first: 1616
   year_last: 1616
   year_label: '1616'
-  ruler: John Frederick of Holstein-Gottorp (Johann Friedrich von Holstein-Gottorp)
+  ruler: Hans
   catalog:
     km: '19.2'
     numista: '397794'
@@ -1731,7 +1731,7 @@ coins:
   year_first: 1611
   year_last: 1611
   year_label: '1611'
-  ruler: John Frederick of Holstein-Gottorp (Johann Friedrich von Holstein-Gottorp)
+  ruler: Hans
   catalog:
     km: '6'
     numista: '517615'
@@ -2116,7 +2116,6 @@ coins:
   year_first: 1620
   year_last: 1620
   year_label: '1620'
-  mintmaster: Simon Timpf (Tympf)
   inscription_obv: MO NO CIVI STADEN
   inscription_rev: FERDIN D G R IM S A 6Z0
   mint: Stade
@@ -2129,20 +2128,13 @@ coins:
   weight_rough_g:
   - value: 1.54
     source: ikmk
-  - value: 1.61
-    source: ikmk
   diameter_mm:
   - value: 22.0
-    source: ikmk
-  - value: 23.0
     source: ikmk
   sources:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18236465
     ref: IKMK Berlin 18236465
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18288005
-    ref: IKMK Berlin 18288005
   note:
     de: 1/16 Taler
     en: 1/16 Taler
@@ -2151,7 +2143,6 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - ikmk-18236465
-  - ikmk-18288005
 - id: unified-ikmk-18236466
   fuss: seed_unsorted
   phase: ikmk
@@ -2309,8 +2300,6 @@ coins:
   mint_verified: true
   verified: false
   weight_rough_g:
-  - value: 1.86
-    source: ikmk
   - value: 1.9
     source: ikmk
   diameter_mm:
@@ -2320,6 +2309,39 @@ coins:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18287955
     ref: IKMK Berlin 18287955
+  note:
+    de: 1/16 Taler
+    en: 1/16 Taler
+    uk: 1/16 Taler
+  verification_note: *id001
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - ikmk-18287955
+- id: unified-ikmk-18287959
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Doppelschilling
+  year_first: 1618
+  year_last: 1618
+  year_label: '1618'
+  mintmaster: Simon Timpf (Tympf)
+  inscription_obv: MO NOU CIUI STADENSIS
+  inscription_rev: MATTIAS D G RO IM S A 618
+  mint: Stade
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.86
+    source: ikmk
+  diameter_mm:
+  - value: 23.0
+    source: ikmk
+  sources:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18287959
     ref: IKMK Berlin 18287959
@@ -2330,7 +2352,6 @@ coins:
   verification_note: *id001
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
-  - ikmk-18287955
   - ikmk-18287959
 - id: unified-ikmk-18287979
   fuss: seed_unsorted
@@ -2404,6 +2425,42 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - ikmk-18287996
+- id: unified-ikmk-18288005
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Doppelschilling
+  year_first: 1620
+  year_last: 1620
+  year_label: '1620'
+  mintmaster: Simon Timpf (Tympf)
+  inscription_obv: MO NO CIVI STADENS
+  inscription_rev: FERDIN D G R IM S A 6Z0
+  mint: Stade
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.61
+    source: ikmk
+  diameter_mm:
+  - value: 23.0
+    source: ikmk
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18288005
+    ref: IKMK Berlin 18288005
+  note:
+    de: 1/16 Taler
+    en: 1/16 Taler
+    uk: 1/16 Taler
+  verification_note: *id001
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - ikmk-18288005
 - id: unified-ikmk-18288012
   fuss: seed_unsorted
   phase: ikmk
