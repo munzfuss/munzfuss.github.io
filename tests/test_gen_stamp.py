@@ -18,7 +18,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from lib.gen_stamp import resolve_generated_at  # noqa: E402
+from lib.gen_stamp import (  # noqa: E402
+    resolve_generated_at,
+    content_equals_except_timestamp,
+)
 
 OLD = "2020-01-01"
 TODAY = date.today().isoformat()
@@ -84,6 +87,36 @@ class ResolveGeneratedAt(unittest.TestCase):
         new = {"coins": [{"id": "a"}], "id": "e", "generated_at": TODAY}
         old = {"id": "e", "generated_at": OLD, "coins": [{"id": "a"}]}
         self.assertEqual(resolve_generated_at(new, old), OLD)
+
+
+class ContentEqualsExceptTimestamp(unittest.TestCase):
+    def test_equal_except_ts_line(self):
+        a = "status: seed\ngenerated_at: '2026-07-15T09:00:00Z'\ncoins: []\n"
+        b = "status: seed\ngenerated_at: '2026-07-14T08:00:00Z'\ncoins: []\n"
+        self.assertTrue(content_equals_except_timestamp(a, b))
+
+    def test_differ_in_content(self):
+        a = "status: seed\ngenerated_at: '2026-07-15T09:00:00Z'\ncoins: [1]\n"
+        b = "status: seed\ngenerated_at: '2026-07-14T08:00:00Z'\ncoins: []\n"
+        self.assertFalse(content_equals_except_timestamp(a, b))
+
+    def test_identical_including_ts(self):
+        a = "generated_at: x\ncoins: []\n"
+        self.assertTrue(content_equals_except_timestamp(a, a))
+
+    def test_only_top_level_ts_stripped(self):
+        # an indented note text mentioning generated_at is NOT a ts line here,
+        # but the stripper is prefix-based on lstrip; a nested 'generated_at:'
+        # would be stripped from both sides symmetrically — so equality holds
+        # when both carry it identically.
+        a = "coins:\n  - note: hi\ngenerated_at: '2026-07-15'\n"
+        b = "coins:\n  - note: hi\ngenerated_at: '2026-07-14'\n"
+        self.assertTrue(content_equals_except_timestamp(a, b))
+
+    def test_custom_ts_field_name(self):
+        a = "last_run: a\nx: 1\n"
+        b = "last_run: b\nx: 1\n"
+        self.assertTrue(content_equals_except_timestamp(a, b, ts_field="last_run"))
 
 
 if __name__ == "__main__":

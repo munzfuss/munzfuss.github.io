@@ -43,3 +43,21 @@ def resolve_generated_at(new_payload: dict, existing_doc: dict | None,
     strip_new = {k: v for k, v in new_payload.items() if k != ts_field}
     strip_old = {k: v for k, v in existing_doc.items() if k != ts_field}
     return old_ts if strip_new == strip_old else today
+
+
+def content_equals_except_timestamp(new_text: str, old_text: str,
+                                    ts_field: str = "generated_at") -> bool:
+    """True when two rendered YAML documents are identical apart from their
+    single top-level `<ts_field>:` line.
+
+    A byte-exact sibling to `resolve_generated_at` for writers that render via
+    ruamel round-trip (the v2 seed writer): rather than reason about dict/scalar
+    equality across ruamel's typed nodes, compare the RENDERED text with the
+    timestamp line removed. A caller that gets True should skip the re-write
+    entirely, leaving the committed file (and its timestamp) byte-identical — so
+    a no-content-change re-seed produces no diff instead of a UTC-second churn.
+    """
+    def _strip(text: str) -> str:
+        return "\n".join(ln for ln in text.splitlines()
+                         if not ln.lstrip().startswith(f"{ts_field}:"))
+    return _strip(new_text) == _strip(old_text)

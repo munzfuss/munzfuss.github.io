@@ -24,6 +24,7 @@ stay verbatim — no silent data loss.
 """
 from __future__ import annotations
 
+import io
 import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
@@ -34,6 +35,7 @@ import ruamel.yaml
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import PROJECT_ROOT  # noqa: E402
 from lib.seed_merge import merge_seed  # noqa: E402
+from lib.gen_stamp import content_equals_except_timestamp  # noqa: E402
 
 V2_SEED_ROOT = PROJECT_ROOT / "data" / "v2" / "seed"
 
@@ -1108,6 +1110,7 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         new_nom = _normalise_nominal(nominal)
         if new_nom is not None and new_nom != nominal:
             c["nominal"] = new_nom
+            nominal = new_nom
             stats["nominal_normalised"] += 1
         # §CG-C: editorial content out of `nominal` → `note` (the
         # inscribed/source denomination is the nominal per §1). Two
@@ -1138,6 +1141,21 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
                 c["nominal"] = clean_nom
                 stats["nominal_annotation_to_note"] = stats.get("nominal_annotation_to_note", 0) + 1
             # else: note exists but payload absent → leave (avoid mismatched-note append)
+        # Re-extract mint from nominal AFTER the annotation splitters have run:
+        # `_normalise_nominal` + the splitters can strip a region qualifier that
+        # hid a trailing mint from the first pass («Hvid , Visby (Gotland)» →
+        # «1 Hvid, Visby» → the «, Visby» is now a bare trailing mint the first
+        # extraction couldn't see). Without this the fresh-build path leaves the
+        # mint in the nominal while the orphan-normalisation pass (which runs on
+        # already-normalised on-disk data) strips it — the two disagree and the
+        # seed never reaches a fixed point (perpetual re-seed churn).
+        _nom_now = c.get("nominal")
+        _nom2, _mint2 = _extract_mint_from_nominal(_nom_now, c.get("mint"))
+        if _nom2 != _nom_now:
+            c["nominal"] = _nom2
+            stats["nominal_normalised"] += 1
+        if _mint2 != c.get("mint"):
+            c["mint"] = _mint2
         mint = c.get("mint")
         # Detect ambiguity-indicators in the mint string («København eller
         # Malmø», «Copenhagen or Malmø», «København/Malmø», «Hamburg oder
@@ -1316,6 +1334,25 @@ def _home_entity(coin: dict) -> str | None:
             return "royal_holstein"
         return sorted(names)[0] if names else None
     return None
+
+
+def _dump_seed_yaml(yaml_obj, out: dict, out_path: Path) -> bool:
+    """Render `out` and write it to `out_path`, but SKIP the write when the only
+    change vs the existing file is the `generated_at:` line — so a no-content-
+    change re-seed leaves the committed file (and its UTC timestamp) byte-
+    identical instead of a per-second churn across every entity of the source.
+    Returns True if the file was (re)written, False if the write was skipped.
+    """
+    buf = io.StringIO()
+    yaml_obj.dump(out, buf)
+    new_text = buf.getvalue()
+    if out_path.exists():
+        old_text = out_path.read_text()
+        if content_equals_except_timestamp(new_text, old_text):
+            return False
+    with out_path.open("w") as f:
+        f.write(new_text)
+    return True
 
 
 def write_v2_seed(
@@ -1580,9 +1617,10 @@ def write_v2_seed(
                 if k not in out:
                     out[k] = v
         out["coins"] = ents
-        with out_path.open("w") as f:
-            yaml.dump(out, f)
-        stats["entities_written"].append(entity)
+        if _dump_seed_yaml(yaml, out, out_path):
+            stats["entities_written"].append(entity)
+        else:
+            stats.setdefault("skipped_unchanged", []).append(entity)
         stats["per_entity"][entity] = {**merge_stats, "total": len(ents)}
 
     # Unclassified bucket — keep coins that the entity classifier failed
@@ -1611,8 +1649,10 @@ def write_v2_seed(
                 ),
                 "coins": unclassified,
             }
-            with unclass_path.open("w") as f:
-                yaml.dump(out, f)
+            if _dump_seed_yaml(yaml, out, unclass_path):
+                stats["entities_written"].append("_unclassified")
+            else:
+                stats.setdefault("skipped_unchanged", []).append("_unclassified")
         stats["per_entity"]["_unclassified"] = {**merge_stats, "total": len(unclassified)}
 
     # Summary
