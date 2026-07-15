@@ -15,6 +15,65 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-16 — systemic parse_hede per-Hede year/catalog/nominal extraction
+
+> **UNPUSHED — push pending «пуш».** 26 main commits (`git log origin/main..HEAD`) — the 23 from
+> parts 1-3 + 3 parse_hede commits (`defdb80` parser+tests, `c124641` data, this handoff). Submodule
+> `scripts/cache` has 1 new commit (`a8ca05e87`, 57 re-parsed hede pages) — **push the submodule
+> FIRST** (PB-10), then `git push`. Overnight autonomous session; verify in the morning before push.
+
+- **What.** Multi-nominal Hede pages (one page documenting «4 Mark» Hede 100AB + «8 Mark» Hede
+  101 from the same dies; or «1/2/3/4 Speciedaler» f3h62 covering Hede 61-64) gave EVERY sub-entry
+  the page-level year list + the union of all sub-variants' Schou/Sieg. 79 pages / ~180 sub-entries.
+  Root cause was entirely in the parser: `_extract_specs` populated only a page-level `years` +
+  merged `catalog_refs`; the per-`by_hede` sub-specs had no own year/catalog (the seed builder
+  already consumes `spec["years"]`/`["catalog_refs"]`). Fix is **parser-only + additive**:
+  `_extract_desc_hede_groups` parses each «<year(s)>; (Hede N, Schou …, Sieg …)» block into
+  per-Hede {years, catalog_refs}; `_split_hede_key` + letter-subset matching attach «100A»+«100B»
+  → combined key «100AB»; combined-key nominal derived from the sub-letters; `_looks_like_denom`
+  guards prose over-capture; Guldafslag/Sølvafslag off-strike blocks no longer pollute the section
+  nominal (skip «N Dukat» during the aside, reset at «.»).
+
+- **Result (all root-fixed, propagated seed→unified→final→render):** f3h101 = «8 Mark» / 1659 /
+  Schou 31 / Sieg 54 (was «4 Mark»/1559/merged); f3h100ab = «4 Mark» / 1659-1660 / Schou[23,33-35,36]
+  / Sieg 53; f3h62 family 62AB=2 Spd, 63=3 Spd, 64=4 Spd. **One residual source typo** carried by a
+  `_source_errata` on `dk-hede-f3h100ab` (danskmoent prints «1559» for the Ebenezerkrone; real
+  years 1659/1660 — motif = 1658-59 siege of Copenhagen, 8 Mark Hede 101 dated 1659, eksemplarer
+  1659/1660). Verification: 5→11 unit tests (`tests/test_parse_hede_per_hede.py`); full re-parse
+  (57 pages, 0 key-set anomalies, 0 combined-form phantoms); seed scan 0 catalog-loss + only the
+  f3h101 nominal change; scoped catalog reset (978 uncurated `seed_unsorted` entries, parser-owned
+  schou/sieg/fr deleted then refilled fresh — `merge_seed` UNIONS list-catalog per §9a so a re-seed
+  alone can't PRUNE stale over-broad refs; the reset is the one-time prune).
+
+- **⚠⚠ FLAG FOR MORNING — `c5h39` inverted-numbering page (`dk-hede-c5h39` / `dk-hede-c5h40`).**
+  This page has INVERTED Hede numbering: Hede 39 = 2 Dukat (Sieg 106, 6.98 g), Hede 40 = 1 Dukat
+  (Sieg 107, 3.49 g). The spec-table tag resolution mis-maps weight↔tag (pre-existing, both old and
+  new parser) — tag 40 gets the 6.98 g (2-Dukat) block. The correct descriptive nominal «1 Dukat»
+  for Hede 40 then contradicts that weight. **Worked around** by adding `c5h39` to
+  `_INVERTED_TAG_PAGES` (parse_hede) so its per-Hede nominal/enrichment is skipped and the builder's
+  weight-sorted split keeps each entry self-consistent (as before this session). The two seed
+  entries are now consistent (nominal+weight match) but carry a slightly over-broad catalog
+  (Sieg[106,107] on both). **Needs a proper fix:** the spec-table tag resolution should reconcile
+  weight↔nominal for inverted pages, OR curate a swap (c5h39→2 Dukat/Sieg106/6.98g,
+  c5h40→1 Dukat/Sieg107/3.49g). NOT done autonomously — it's a substantive `weight_rough_g` swap
+  needing your numismatic confirmation.
+
+- **⚠ Minor — one auto-merge to eyeball: `unified-dk-hede-f3h29` gained `denmark-numismaster-65918`.**
+  Both are «3 Dukat/Ducat 1666» but with NO shared catalogue base (f3h29 = Hede 29 / Sieg 134 /
+  Schou 5; numismaster-65918 = KM 280) — a nominal+year auto-merge (the §9.4 gray zone). Very
+  likely legitimate (KM 280 Denmark = Hede 29, a specific rare gold coin), enabled by the corrected
+  f3h29 data, but worth a `merge_helper.py graph` glance. The sibling change `unified-dk-hede-f3h82`
+  −`kmk-149330` is CORRECT (kmk Schou 13 ≠ f3h82's corrected Schou 14-15 — the old over-broad
+  catalogue had wrongly fused them). f3h62ab (2 Spd) / f3h63 (3 Spd) clusters restored correctly.
+
+- **❓ Clarification for morning — «portugaloser / next category».** You mentioned finishing «все
+  що вилізло після того як ми розбирали portugaloser з seed unsorted» and moving to «наступної
+  категорії після portugaloser». I don't have context on a Portugalöser-specific seed_unsorted
+  categorisation thread — this session's chain was 20 new hede coins → f3h100ab/f3h101 year → the
+  parse_hede systemic fix (4/8 Mark Ebenezerkroner + Speciedaler pages, no Portugalöser). I finished
+  that in-flight work and did NOT start a Portugalöser categorisation pass (no clear context). If
+  that's a distinct backlog category, point me at it and I'll continue.
+
 ## 2026-07-15 (part 3) — removed the destructive `--no-merge` seed-builder flag (D47)
 
 > **UNPUSHED — push pending «пуш».** 23 commits (`git log origin/main..HEAD`). This section
