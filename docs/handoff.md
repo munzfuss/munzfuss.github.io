@@ -17,13 +17,16 @@
 
 ## 2026-07-14 — galster Gej fix · Norway harvest-gap audit · rhinsk phase renumber · c3h14 Goldgulden split · c3g131 schou 1-7 · c3h14 nominal → Goldgulden
 
-> **UNPUSHED — push pending «пуш».** 12 commits unpushed (`git log origin/main..HEAD`):
+> **UNPUSHED — push pending «пуш».** 16 commits unpushed (`git log origin/main..HEAD`):
 > `82e2d5e` `81eda30` `ee7d177` `990f750` `202de9e` `115bb05` (c3h14 split / c3g131 schou 1-7 /
 > nominal / schou-subsumption docs), then the galster canonical-index-paren work
 > `d3cb920` (parser) · `8d77786` (cleaner «mgl.») · `7607db3` (seed + cache pointer, submodule
 > `67bdb7a9`) · `4b39400` (docs §13.11), then the overnight re-flow `e5d18a2` (absorb year-hold
-> fix) · `9a9b8c6` (galster re-flow to finals).
+> fix) · `9a9b8c6` (galster re-flow to finals) · `ec809ac` (handoff), then the 2026-07-15
+> reserialize-drift resolution `80b671d` (gen_stamp timestamp fix + test) · `b46deed` (finals
+> serialization fixed-point) + this handoff commit.
 > Earlier `dc95899..c90f0a8` were pushed (galster Gej, rhinsk renumber, rhinsk grundwerte aside).
+> **Submodule `scripts/cache` is 3 commits ahead — push it FIRST (PB-10).**
 
 ### 2026-07-15 overnight — pending-churn analysis + galster re-flow to finals
 
@@ -56,12 +59,29 @@
   «1523-1533» to its Bruun-attested «1532»; c3g131 `_curation_holds.catalog` note refreshed
   (parser fix landed → value now derives natively). sonderburg keeps 1622.
 
-- **KNOWN-ISSUE / possible morning cleanup — field-order reserialize drift.** A full absorb
-  re-run reserializes ~12 finals with a different in-entity field order than committed (pure
-  noise, 0 semantic change). It recurs every re-flow. Root cause not yet chased (absorb's
-  `out`-dict field order vs the committed order). Options: (a) leave latent (harmless); (b)
-  one-time resync commit; (c) make `_enrich_final_entry` emit a canonical field order. Left
-  for a deliberate hygiene pass — NOT urgent.
+- **RESOLVED (2026-07-15) — reserialize-drift + timestamp-churn root-caused and fixed.** The
+  «~1500-line cosmetic churn per re-flow» split into two independent phenomena, both now closed:
+  - **Field-order drift (the ~850-line bulk) = ONE-TIME migration, NOT recurring.** The committed
+    finals predated a newer absorb serialization: `_enrich_final_entry` collects all immutable
+    fields (fuss/phase/kind/`fraction`/nominal/…) to the front, but older files had `fraction`
+    trailing after `composed_of`. Proven pure + stable THREE ways — HEAD→run-1: 13 finals, ALL
+    pure reserialize (structured order-independent compare, 0 data change); run-1→run-2:
+    byte-identical (0/22 differ — idempotent fixed point); validate + full build clean, render
+    unchanged (`Schou 1-7` / `Reinhold Junge` still present). Committed the fixed point in
+    `b46deed` so future re-flows stop reproducing it (they now show only real data diffs).
+  - **Timestamp churn (`generated_at`) = the ONLY genuinely-recurring part — durably fixed in
+    `80b671d`.** Both committed emit sites (merger `_emit_unified_yaml`, absorb
+    `_emit_classification_decisions`) stamped today's date unconditionally → a daily 1-line diff
+    on ~40 seed_unified / decisions files that buried real changes under `git diff data/`. New
+    `lib/gen_stamp.resolve_generated_at(new_payload, existing_doc)` reuses the prior date when the
+    payload (timestamp stripped from both sides) is unchanged, else today; +10 unit tests
+    (`tests/test_gen_stamp.py`). Verified end-to-end: a no-op absorb leaves the 19 timestamp-only
+    decisions byte-identical to HEAD (only the real schauenburg `multi_match_warnings` refresh
+    survives — a stale 2026-07-09 warning now cleared); a no-op merger leaves rantzau + norburg
+    seed_unified byte-identical despite their old `2026-07-09` dates. Safe because `generated_at`
+    is informational (verified: nothing branches on it). NOTE — the per-source SEED builders
+    (`v2_seed_writer`, `build_ucoin_seed`, …) still stamp a UTC timestamp on every re-seed; that
+    is the re-seed step, not a re-flow, so it is a separate (smaller) churn source left untouched.
 
 - **Christian III Goldgulden split (`82e2d5e`).** Reversed the 2026-06-22/07-02 one-type
   merge: the Roskilde-1536 .764 «Goldgulden» and the Flensburg-1546 .750 «Rhinsk Gylden»
