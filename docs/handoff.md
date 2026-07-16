@@ -52,12 +52,14 @@
   2 Ducat 6.94 g «Hede-40 Sieg-107 Fr-160») and assigns them the opposite way. Commit `e1ff225`
   (2026-05-12) already encoded the Bruun call as `_KNOWN_HEDE_TYPOS["c5h39"] = {"39":"40","40":"39"}`.
   User confirmed KEEP Bruun. **Current data already reflects this** (`dk-hede-c5h39` = 1 Dukat /
-  3.49 g). No swap, no re-parse needed — status quo IS the decision. Residual low-priority tidy
-  (NOT done, cheap-later): both entries carry a merged `Schou [2,3] / Sieg [106,107]`; under Bruun
-  the clean per-coin split is Hede 39 = Sieg 106 / Schou 4, Hede 40 = Sieg 107 / Schou 3. My extra
-  `_INVERTED_TAG_PAGES = {"c5h39"}` (defdb80) is now redundant (the typo-swap alone suffices) — can
-  be dropped next time parse_hede is re-run, but it's harmless. Also verify where final c5h39's
-  `km 415` came from (Bruun says the 1-Ducat is KM-A433).
+  3.49 g). No swap, no re-parse needed — status quo IS the decision. **Follow-up DONE (same day):**
+  per-coin Sieg/Schou curated directly in `data/v2/final/danish_realm.yml` — `unified-dk-hede-c5h39`
+  → Sieg 106 / Schou 4, `hede-40-chr-v-1693` → Sieg 107 / Schou 3 (both per Bruun lots), each with a
+  `_curation_holds: {catalog: …}` so absorb can't re-broaden (absorb skips `_fold_catalog_indices`
+  when catalog is held — verified in absorb source ~L2766). NOTE: `_INVERTED_TAG_PAGES = {"c5h39"}`
+  (defdb80) is NOT redundant — it's protective: removing it would make the typo-swap emit
+  Bruun-wrong Sieg 107 on Hede 39. KEEP both parser mechanisms. Still open (tiny): verify where
+  final c5h39's `km 415` came from (Bruun says the 1-Ducat is KM-A433).
 
 - **✅ RESOLVED (2026-07-16, user visual check) — `unified-dk-hede-f3h29` + `denmark-numismaster-65918`
   auto-merge is LEGITIMATE (one coin).** «3 Dukat 1666 Frederik III», Hede 29 / Sieg 134 / Schou 5
