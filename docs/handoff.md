@@ -45,26 +45,26 @@
   schou/sieg/fr deleted then refilled fresh — `merge_seed` UNIONS list-catalog per §9a so a re-seed
   alone can't PRUNE stale over-broad refs; the reset is the one-time prune).
 
-- **⚠⚠ FLAG FOR MORNING — `c5h39` inverted-numbering page (`dk-hede-c5h39` / `dk-hede-c5h40`).**
-  This page has INVERTED Hede numbering: Hede 39 = 2 Dukat (Sieg 106, 6.98 g), Hede 40 = 1 Dukat
-  (Sieg 107, 3.49 g). The spec-table tag resolution mis-maps weight↔tag (pre-existing, both old and
-  new parser) — tag 40 gets the 6.98 g (2-Dukat) block. The correct descriptive nominal «1 Dukat»
-  for Hede 40 then contradicts that weight. **Worked around** by adding `c5h39` to
-  `_INVERTED_TAG_PAGES` (parse_hede) so its per-Hede nominal/enrichment is skipped and the builder's
-  weight-sorted split keeps each entry self-consistent (as before this session). The two seed
-  entries are now consistent (nominal+weight match) but carry a slightly over-broad catalog
-  (Sieg[106,107] on both). **Needs a proper fix:** the spec-table tag resolution should reconcile
-  weight↔nominal for inverted pages, OR curate a swap (c5h39→2 Dukat/Sieg106/6.98g,
-  c5h40→1 Dukat/Sieg107/3.49g). NOT done autonomously — it's a substantive `weight_rough_g` swap
-  needing your numismatic confirmation.
+- **✅ RESOLVED (2026-07-16, user source-call) — `c5h39` / `c5h40` Hede↔denom is a SOURCE
+  CONFLICT, not a parser bug. Decision: Hede 39 = 1 Dukat (Bruun wins over danskmoent).**
+  danskmoent's page reads Hede 39 = 2 Dukat / Hede 40 = 1 Dukat; Bruun physically weighed the
+  coins (lot 13186: Ducat 3.45 g, NGC MS-63, «Hede-39 Sieg-106 Fr-161 KM-A433»; lot 17098:
+  2 Ducat 6.94 g «Hede-40 Sieg-107 Fr-160») and assigns them the opposite way. Commit `e1ff225`
+  (2026-05-12) already encoded the Bruun call as `_KNOWN_HEDE_TYPOS["c5h39"] = {"39":"40","40":"39"}`.
+  User confirmed KEEP Bruun. **Current data already reflects this** (`dk-hede-c5h39` = 1 Dukat /
+  3.49 g). No swap, no re-parse needed — status quo IS the decision. Residual low-priority tidy
+  (NOT done, cheap-later): both entries carry a merged `Schou [2,3] / Sieg [106,107]`; under Bruun
+  the clean per-coin split is Hede 39 = Sieg 106 / Schou 4, Hede 40 = Sieg 107 / Schou 3. My extra
+  `_INVERTED_TAG_PAGES = {"c5h39"}` (defdb80) is now redundant (the typo-swap alone suffices) — can
+  be dropped next time parse_hede is re-run, but it's harmless. Also verify where final c5h39's
+  `km 415` came from (Bruun says the 1-Ducat is KM-A433).
 
-- **⚠ Minor — one auto-merge to eyeball: `unified-dk-hede-f3h29` gained `denmark-numismaster-65918`.**
-  Both are «3 Dukat/Ducat 1666» but with NO shared catalogue base (f3h29 = Hede 29 / Sieg 134 /
-  Schou 5; numismaster-65918 = KM 280) — a nominal+year auto-merge (the §9.4 gray zone). Very
-  likely legitimate (KM 280 Denmark = Hede 29, a specific rare gold coin), enabled by the corrected
-  f3h29 data, but worth a `merge_helper.py graph` glance. The sibling change `unified-dk-hede-f3h82`
-  −`kmk-149330` is CORRECT (kmk Schou 13 ≠ f3h82's corrected Schou 14-15 — the old over-broad
-  catalogue had wrongly fused them). f3h62ab (2 Spd) / f3h63 (3 Spd) clusters restored correctly.
+- **✅ RESOLVED (2026-07-16, user visual check) — `unified-dk-hede-f3h29` + `denmark-numismaster-65918`
+  auto-merge is LEGITIMATE (one coin).** «3 Dukat 1666 Frederik III», Hede 29 / Sieg 134 / Schou 5
+  ↔ KM 280; no shared catalogue base in either source's own data, but fineness 0.979 + weight
+  10.471 g match exactly and the user confirmed visually it's the same physical coin. KM 280 (DK) =
+  Hede 29. Keep. (Sibling changes were already correct: `unified-dk-hede-f3h82` −`kmk-149330` right;
+  f3h62ab/f3h63 clusters restored.)
 
 - **❓ Clarification for morning — «portugaloser / next category».** You mentioned finishing «все
   що вилізло після того як ми розбирали portugaloser з seed unsorted» and moving to «наступної
