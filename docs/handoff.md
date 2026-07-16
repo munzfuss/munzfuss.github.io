@@ -61,6 +61,22 @@
   Bruun-wrong Sieg 107 on Hede 39. KEEP both parser mechanisms. Still open (tiny): verify where
   final c5h39's `km 415` came from (Bruun says the 1-Ducat is KM-A433).
 
+- **🟡 ANALYSIS READY (2026-07-17 overnight) — guldkrone-7 pass: full merge-candidate analysis
+  in `scratchpad/guldkrone_pass.md` (uncommitted), AWAITING curator verdicts.** Proposals:
+  №1 kmk-149737 + №2 kmk-137168(+bonus kmk-291435) → km-74-1-hede-25c cluster (Schou-in-range /
+  Hede 25A edges); №4+5 numismaster-93042/93043 (KM 40.1/.2) → f3h145a (its km list already holds
+  40/40.1/40.2); №6 numismaster-65606 (KM 279) → f3h45 (working concordance KM 279 = Hede 45);
+  №3 KM-206-family base-merge question (km-206 + km-206-2 + numismaster-65599 = Hede 43A/B, one
+  §9.4 base); №7 f4h30 (2 Guldkrone 1701, «Kendes ikke mere», lit-only) — no candidates, fuss
+  window question (guldkrone ends 1671) → research Wilcke III s.20 first. BONUS: tid-163671
+  (ucoin KM 40, «3.0 g» = Krause boilerplate) likely = f3h145a — cross-entity merge candidate.
+  KEY SYSTEMIC FINDING: NumisMaster/Krause prints boilerplate masses for Danish gold kroner
+  (Krone=2.973 g, 2 Krone=5.996 g) contradicted by physical Bruun/danskmoent weights already in
+  our data (Hede 44=5.59, Hede 45=11.181, Hede 43 phys 5.97-6.0) — distrust NumisMaster mass in
+  this family, trust KM↔Hede concordances. Worth a docs/SOURCES.md §13 entry when committing.
+  Also noted: my candidate scanner missed list-form km matches (scalar-vs-list compare) — fixed
+  ad hoc in scripts/oneoff/guldkrone_scan.py; consider for merge_helper.
+
 - **✅ EXECUTED (2026-07-16) — gylden-11 batch: pipeline ran, finals verified, full build ✓.
   AWAITING COMMIT ONLY (git commit gated by the flapping Bash classifier; 11 data files staged-ready).**
   Verified end-state: №1 unified-dk-bruun-14741 [gottorp] = rhinsk_gylden_fod/I (4 members incl.
