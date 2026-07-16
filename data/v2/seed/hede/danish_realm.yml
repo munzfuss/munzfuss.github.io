@@ -17832,11 +17832,27 @@ coins:
       hede: '39'
       hede_volume: c5h
       schou:
-        - '2'
-        - '3'
+        - '4'
       sieg:
         - '106'
-        - '107'
+    _source_errata:
+      - field: sieg
+        printed: ['106', '107']
+        correct: ['106']
+        reason: |
+          danskmoent's c5h39 page inverts the 1/2-Dukat denominations between Hede 39 and 40
+          (user source-call 2026-07-16: Bruun wins). The parser's page-level merged catalog gave
+          both entries Sieg [106,107]. Bruun Part II lot 13186 (physical specimen, NGC MS-63,
+          3.45 g) prints «Fr-161; KM-A433; Hede-39; Sieg-106; Schou-4» — Hede 39 = Sieg 106 only.
+        curator: serg
+      - field: schou
+        printed: ['2', '3']
+        correct: ['4']
+        reason: |
+          Same Bruun lot 13186 concordance: Hede 39 (1 Dukat 1693) = Schou 4. The printed [2,3]
+          is the page-level merge of danskmoent's two blocks (its Schou 2/3 attach to danskmoent's
+          inverted denomination reading, superseded by the Bruun call).
+        curator: serg
     metal: gold
     fineness: 0.979
     weight_rough_g: 3.49
@@ -17869,11 +17885,25 @@ coins:
       hede: '40'
       hede_volume: c5h
       schou:
-        - '2'
         - '3'
       sieg:
-        - '106'
         - '107'
+    _source_errata:
+      - field: sieg
+        printed: ['106', '107']
+        correct: ['107']
+        reason: |
+          Counterpart of the c5h39 erratum (user source-call 2026-07-16, Bruun over danskmoent).
+          Bruun Part IV lot 17098 (physical specimen, NGC MS-62, 6.94 g) prints «Fr-160;
+          Hede-40; Sieg-107; Schou-3» — Hede 40 (2 Dukat 1693) = Sieg 107 only.
+        curator: serg
+      - field: schou
+        printed: ['2', '3']
+        correct: ['3']
+        reason: |
+          Same Bruun lot 17098 concordance: Hede 40 = Schou 3. The printed [2,3] is the
+          page-level merge of danskmoent's two blocks.
+        curator: serg
     metal: gold
     fineness: 0.979
     weight_rough_g: 6.981
