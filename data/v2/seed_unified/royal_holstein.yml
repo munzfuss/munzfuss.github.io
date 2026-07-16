@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-07-16 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-17 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1728 per-source seed entries.
-# Output: 952 unified entries (one per physical coin).
+# Input: 1727 per-source seed entries.
+# Output: 948 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-07-16'
+generated_at: '2026-07-17'
 coins:
 - id: unified-denmark-numismaster-65653
   fuss: seed_unsorted
@@ -174,52 +174,6 @@ coins:
   composed_of:
   - dk-bruun-14709
   - dk-numista-468619
-- id: unified-dk-bruun-14783
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Ducat
-  year_first: 1534
-  year_last: 1534
-  year_label: '1534'
-  ruler: Christian III
-  mintmaster: Reynold Junge
-  mint: Gottorp
-  catalog:
-    bruun_collection_id: '14783'
-    sieg: '22'
-    schou: '1'
-    galster: '130'
-    lange: '17'
-    fr: '16'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  year_verified: false
-  weight_rough_g:
-  - value: 3.29
-    source: bruun
-  sources:
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14259, p. 323
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-bruun-14783
 - id: unified-dk-bruun-4598
   fuss: seed_unsorted
   phase: bruun
@@ -2475,23 +2429,39 @@ coins:
     hede: '15'
     hede_volume: c3h
     schou: '1'
-    sieg: '52'
+    sieg:
+    - '52'
+    - C3-52
+    numista: '474509'
+    mb: '51'
+    fr: '17'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   fineness:
   - value: 0.75
     source: hede
+  - value: 0.75
+    source: numista
   weight_rough_g:
   - value: 6.556
     source: hede
+  - value: 6.556
+    source: numista
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c3h15.htm
     ref: danskmoent.dk (Hede c3h15)
+  - type: literature
+    url: https://en.numista.com/474509
+    ref: Numista N#474509 — 2 Goldgulden - Christian III
+  - type: literature
+    url: https://numismaster.com/MC_167748
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -2500,6 +2470,8 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-hede-c3h15
+  - dk-numista-474509
+  - schleswig_holstein-numismaster-167748
 - id: unified-dk-hede-c3h16
   fuss: seed_unsorted
   phase: hede
@@ -4734,6 +4706,9 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/137162
     ref: KMM 137162 (Inv. RP 23.1)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/150041
+    ref: KMM 150041 (Inv. KP 1656.272)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -4749,6 +4724,7 @@ coins:
   - dk-tid-163398
   - kmk-137161
   - kmk-137162
+  - kmk-150041
 - id: unified-dk-hede-c5h115a
   fuss: seed_unsorted
   phase: hede
@@ -33074,76 +33050,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-167741
-- id: unified-schleswig_holstein-numismaster-167742
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Goldgulden
-  year_first: 1523
-  year_last: 1533
-  year_ranges:
-  - - 1523
-    - 1533
-  year_label: 1523-1533
-  ruler: Friedrich I
-  catalog:
-    mb: '30'
-    schou: '1337'
-    fr: '14'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  year_verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167742
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-167742
-- id: unified-schleswig_holstein-numismaster-167745
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Goldgulden
-  year_first: 1535
-  year_last: 1535
-  year_label: '1535'
-  ruler: Christian III
-  catalog:
-    mb: '39'
-    fr: '16'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  year_verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167745
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-167745
 - id: unified-schleswig_holstein-numismaster-167747
   fuss: seed_unsorted
   phase: numismaster
@@ -33176,38 +33082,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-167747
-- id: unified-schleswig_holstein-numismaster-167748
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Goldgulden
-  year_first: 1546
-  year_last: 1546
-  year_label: '1546'
-  ruler: Christian III
-  catalog:
-    mb: '51'
-    fr: '17'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167748
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-167748
 - id: unified-schleswig_holstein-numismaster-167749
   fuss: seed_unsorted
   phase: numismaster

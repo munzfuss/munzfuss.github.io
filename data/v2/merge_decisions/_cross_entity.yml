@@ -42,6 +42,7 @@ merges:
       - dk-tid-163398       # home: danish_realm     (1 Gulden, ucoin UC#12)
       - kmk-137161          # home: danish_realm     (KMM RP 22.1, Schou 11, 1592)
       - kmk-137162          # home: danish_realm     (KMM RP 23.1, Schou 10, 1592)
+      - kmk-150041          # home: danish_realm     (KMM «1 Ungarsk gylden» 1593, Schou 3)
     reason: |
       One coin — Christian IV «Ungersk Gylden», Hede 8A/8B, minted at Haderslev
       (royal Schleswig) 1591-1593. Hede catalogues the type as sub-variants 8A
@@ -53,7 +54,60 @@ merges:
       (.986) is authoritative. The two KMM museum specimens kmk-137161 (Schou 11)
       and kmk-137162 (Schou 10), CIV 1592, are exactly the Schou 10-11 sub-
       variants already listed in the Hede 8A/8B record → folded in too (Serhii
-      2026-06-20). Curator merge 2026-06-13 (Serhii).
+      2026-06-20). Curator merge 2026-06-13 (Serhii). kmk-150041 (KMM 150041,
+      «1 Ungarsk gylden» 1593, Schou 3) added 2026-07-16 (Serhii): Schou 3 sits
+      inside the cluster's own Schou [3, 7, 10-11] at the same ruler+nominal,
+      year 1593 = Hede 8B's year — the same coin, museum specimen.
+
+  - target_entity: gottorp_duchy
+    members:
+      - dk-bruun-14741                          # home: gottorp_duchy   (Bruun II, Galster 122, Sieg 49, Lange 9a, Fr 14, MB 30)
+      - dk-galster-f1g-122                      # home: gottorp_duchy   (danskmoent f1g122 «1 Rhinsk gylden» 1531, mint Gottorp)
+      - dk-numista-417865                       # home: gottorp_duchy   (N#417865)
+      - schleswig_holstein-numismaster-167742   # home: royal_holstein  (NumisMaster MC_167742, MB 30 + Fr 14 + «Sch#1337»)
+    reason: |
+      Curator merge 2026-07-16 (Serhii): ONE coin — Friedrich I ducal Goldgulden
+      (Gottorp mint), Galster 122, 1531 (NumisMaster dates the type 1523-1533).
+      MC_167742 shares TWO unique indices with the Galster-122 cluster: MB 30 AND
+      Fr 14 (both in the Schleswig-Holstein register scope), and its legends are
+      the ducal type verbatim: «FRIDERICVS D HOLSACI» / «MO NOV AVREA SLESVICENSIS»
+      (St. Andrew obverse). NumisMaster's «Sch#1337» is its serial-style Schou
+      reference (same style as MC_167746's spurious «Sch#1351», see the Coin-A
+      entry below) — the type Schou is danskmoent's «1-4». target_entity =
+      gottorp_duchy: the cluster's home, mint Gottorp per f1g122.
+
+  - target_entity: gottorp_duchy
+    members:
+      - dk-bruun-14783                          # home: royal_holstein  (Bruun II «1 Ducat» 1534, Fr 16, Galster 130, Sieg 22, Lange 17, Schou 1, 3.29 g)
+      - dk-numista-461448                       # home: gottorp_duchy   (N#461448 «1 Ducat» 1534, Fr 16, Galster 130, Sieg 22, Schou 1-2, 3.19 g)
+      - schleswig_holstein-numismaster-167745   # home: royal_holstein  (MC_167745 «1 Goldgulden» ND ca. 1535, MB 39 + Fr 16)
+    reason: |
+      Curator merge 2026-07-16 (Serhii): ONE coin — Christian III ducal gold,
+      Galster 130 / Sieg 22 / Lange 17, 1534. All three share Fr 16 (S-H register);
+      bruun-14783 and numista-461448 additionally agree on Galster 130 + Sieg 22 —
+      the same type split across entities. MC_167745's year «1535» is NumisMaster's
+      ND ca.-1535 estimate (unverified) — held via merge_decisions/
+      royal_holstein.yml::year_demote so the attested 1534 wins. Despite the
+      «Ducat» naming in Bruun/Numista, by fineness and weight (~3.2-3.3 g band)
+      the type fits the 72-Guldgyldenfod (rhinsk_gylden_fod), where the curator
+      assigns it (classification decision). Pre-1544-partition ducal issue,
+      mint Gottorp → issuing_entity gottorp_duchy (mint-derived stamp; the I1
+      home-file rule requires target = gottorp_duchy — same home as the
+      Galster-122 Friedrich-I goldgulden above).
+
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-c3h15                           # home: royal_holstein  (danskmoent c3h15 «2 Goldgulden» 1546, Hede 15, Schou 1, Sieg 52, 6.556 g)
+      - dk-numista-474509                       # home: gottorp_duchy   (N#474509 «2 Goldguldens» 1546, Hede 15, Sieg C3-52, 6.556 g)
+      - schleswig_holstein-numismaster-167748   # home: royal_holstein  (MC_167748 «2 Goldgulden» 1546, MB 51 + Fr 17)
+    reason: |
+      Curator merge 2026-07-16 (Serhii): ONE coin — Christian III «2 Goldgulden»
+      1546, Hede 15. c3h15 and N#474509 share Hede 15 + Sieg 52 + the identical
+      weight 6.556 g; MC_167748 matches on nominal + year + ruler exactly (the
+      sole 2-Goldgulden 1546 type) and contributes MB 51 + Fr 17. Fr 17 = Hede 15
+      is thereby the working concordance (hypothesis noted, no counter-evidence).
+      Home royal_holstein (Hede-native head, majority members); the cluster is
+      already classified rhinsk_gylden_fod via c3h15.
 
   - target_entity: royal_holstein
     members:

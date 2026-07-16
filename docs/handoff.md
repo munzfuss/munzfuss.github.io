@@ -61,6 +61,40 @@
   Bruun-wrong Sieg 107 on Hede 39. KEEP both parser mechanisms. Still open (tiny): verify where
   final c5h39's `km 415` came from (Bruun says the 1-Ducat is KM-A433).
 
+- **✅ EXECUTED (2026-07-16) — gylden-11 batch: pipeline ran, finals verified, full build ✓.
+  AWAITING COMMIT ONLY (git commit gated by the flapping Bash classifier; 11 data files staged-ready).**
+  Verified end-state: №1 unified-dk-bruun-14741 [gottorp] = rhinsk_gylden_fod/I (4 members incl.
+  MC_167742; year 1523-1533 = NumisMaster window union — OPTIONAL tidy: year_demote 167742 so
+  Galster's attested 1531 wins, ask user); №4 unified-dk-bruun-14783 [royal] = rhinsk_gylden_fod/I,
+  year 1534 clean (year_demote worked); №5 c3h15 enriched (mb 51 + fr 17 + numista 474509);
+  №6 167747 = rhinsk_gylden_fod/I; №7 kmk-150041 in c4h8a; №8 c4h16 got km B45. 14418 (Christian
+  Albrecht Ducat) intact after fixing my own Edit-collision in gottorp classification file (the
+  first-entry header replacement had orphaned 14418's fields under my entry — duplicate YAML keys,
+  last-wins; restored both entries, re-absorbed). Files to commit: merge_decisions ×3 +
+  classification_decisions ×2 + seed_unified ×3 + final ×3 (danish_realm/gottorp_duchy/
+  royal_holstein) + this handoff. Suggested msg: «data: gylden batch — 5 merges + 2 rhinsk
+  promotions; year_demote ND-ca-1535».
+
+  *(original plan record follows)* User-confirmed verdicts for the 11 `7_goldgulden_gylden`
+  seed_unsorted coins (see `scratchpad/seed_unsorted_gold.md`, uncommitted): merges №1
+  (167742→Galster-122 Gottorp cluster, cross-entity → gottorp_duchy), №4 (167745+bruun-14783+
+  numista-461448 → royal_holstein, year_demote on 167745's ND-ca-1535, fuss→rhinsk_gylden_fod),
+  №5 (167748+c3h15+numista-474509 → royal_holstein), №7 (kmk-150041 appended to the c4h8a
+  cross-entity entry), №8 (c4h16+numismaster-165442, danish_realm; «Guilder»=Krause anglicization
+  of Gylden, verified in-house via MC_65615; KM B45=Hede 16 working concordance); standalone
+  promote №6 (167747→rhinsk_gylden_fod); deferred №2+№9 (KMM photos unavailable — natmus resource
+  problem), №3 (next round), №11 (undocumented stub); №10 → 8_dukat pass. Decision files ALREADY
+  EDITED: `_cross_entity.yml` (3 new entries + c4h8a member), `royal_holstein.yml` (year_demote
+  section), `danish_realm.yml` (c4h16 merge). Classification assignments ALSO pre-written:
+  `classification_decisions/gottorp_duchy.yml` (unified-dk-bruun-14741 → rhinsk_gylden_fod I kurant)
+  + `classification_decisions/royal_holstein.yml` (unified-dk-bruun-14783 + unified-schleswig_holstein-
+  numismaster-167747 → rhinsk_gylden_fod I kurant). NOTE: the two cluster-head coin_ids (14741, 14783)
+  are PREDICTED (bruun outranks numista/galster/numismaster in head choice) — if the merger picks a
+  different head, absorb reports the assignment unmatched → fix the coin_id. **NEXT (pure execution):
+  validate_decisions --check-members → FULL merger --apply (no --entity, cross-entity needs global) →
+  verify heads match the assignments → absorb danish_realm+royal_holstein+gottorp_duchy --apply →
+  build → verify renders → atomic commits.** Nothing of this batch is committed yet.
+
 - **✅ RESOLVED (2026-07-16, user visual check) — `unified-dk-hede-f3h29` + `denmark-numismaster-65918`
   auto-merge is LEGITIMATE (one coin).** «3 Dukat 1666 Frederik III», Hede 29 / Sieg 134 / Schou 5
   ↔ KM 280; no shared catalogue base in either source's own data, but fineness 0.979 + weight
