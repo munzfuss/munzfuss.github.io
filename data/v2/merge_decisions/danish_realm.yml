@@ -9,6 +9,10 @@
 
 merges:
   - members:
+      - dk-hede-c5h39
+      - denmark-numismaster-165460
+    reason: 'Curator (Serhii) 2026-07-16: Christian V 1 Dukat 1693 — KM A433 = Hede 39. Bruun Part II lot 13186 (p. 138, physical specimen NGC MS-63, 3.45 g) prints the concordance «Fr-161; KM-A433; Hede-39; Sieg-106; Schou-4; Kold-135b». NumisMaster MC_165460 (KM A433, 1 Ducat 1693, no Hede tag) had auto-clustered into c5h31c on nominal+year alone — but Hede 31C is a different type (Sieg 104.3, Schou 7, dated 1693 AND 1696) while A433/165460 is 1693-only, matching Hede 39. Move 165460 to the c5h39 cluster; the §9.4 edge is Bruun''s printed KM-A433=Hede-39 concordance (same citation already on the c5h39 final row). Related context: Hede 39 = 1 Dukat is the user''s source-call (Bruun over danskmoent''s inverted c5h39 page, see _KNOWN_HEDE_TYPOS).'
+  - members:
       - dk-hede-c4h13
       - kmk-136996
       - denmark-numismaster-65566
@@ -627,6 +631,26 @@ merges:
       base index Schou 1. Fold the standalone seed entry in; preserve its 17.4 g
       KMM specimen weight per §9a.
 no_merges:
+  # Companions to the c5h39 + numismaster-165460 force-merge above: without these,
+  # 165460 auto-glues to the c5h31c cluster (1 Dukat 1693 nominal+year coincidence)
+  # and union-find drags c5h39 in too, fusing Hede 39 with Hede 31C — distinct types
+  # (Bruun: A433=Hede 39=Sieg 106=1693-only; Hede 31C=Sieg 104.3=Schou 7=1693+1696).
+  - members:
+      - denmark-numismaster-165460
+      - dk-hede-c5h31c
+    reason: 'Curator (Serhii) 2026-07-16: KM A433 = Hede 39 per Bruun lot 13186, NOT Hede 31C. 165460 matched 31C on nominal+year alone (both 1 Dukat 1693).'
+  - members:
+      - denmark-numismaster-165460
+      - kmk-492194
+    reason: 'Same split: kmk-492194 is Hede 31C (Schou 7, museum-tagged) — not the KM A433 = Hede 39 coin.'
+  - members:
+      - dk-hede-c5h39
+      - dk-hede-c5h31c
+    reason: 'Hede 39 ≠ Hede 31C — two distinct 1-Dukat-1693 types (Sieg 106 vs 104.3).'
+  - members:
+      - dk-hede-c5h39
+      - kmk-492194
+    reason: 'Hede 39 ≠ Hede 31C (kmk-492194 is museum-tagged 31C, Schou 7).'
   # Split 4 outliers out of the Hede-144 core (Christian IV 1 Skilling, 1629).
   # Index graph: the legit core = Hede 144/144A/144B <-> Schou 57/58 <-> KM 113.1
   # <-> Sieg 34, all dated 1629 (14 members). These 4 followed it in on
