@@ -1,0 +1,149 @@
+# Curator per-coin EXCLUSIONS — entity `royal_holstein`.
+#
+# Coins the curator has decided are out-of-scope and must NOT render even in the
+# `seed_unsorted` bucket — patterns / Prøvemønter, off-strikes, exonumia,
+# undocumented stubs — that the rule-based §9 seed filters missed (usually
+# because the SOURCE mislabelled the piece). Distinct from the other decision
+# surfaces: merge_decisions RESHAPE, classification_decisions CLASSIFY, this one
+# REMOVES a coin with a recorded reason.
+#
+# `id` is a SEED id (as in data/v2/seed/<src>/<entity>.yml). A final is dropped
+# when its own unified id OR any composed_of member resolves to a listed id. The
+# coin's seed / seed_unified SURVIVE (provenance / audit trail); the absorb drops
+# it from `final` so it never reaches the render.
+#
+# category vocab: pattern | off_strike | off_nominal | exonumia |
+#                 undocumented_stub | out_of_scope | duplicate_noise
+#
+# Consumed by scripts/maintenance/absorb_seeds_into_final_v2.py (_load_exclusions
+# + the exclusion purge in process_entity). Applied on every absorb run.
+
+entity_id: royal_holstein
+exclusions:
+  # --- Group F (Z_other_review gold triage, curator Serhii 2026-07-17):
+  # undocumented museum stubs — a bare KMM authority tag with NO nominal, NO year,
+  # NO catalogue index and NO image. Cannot be attributed (§9, kmk-78338
+  # precedent). SIDE-NOTE: several carry rulers of OTHER political entities
+  # (Schauenburg-Pinneberg, Oldenburg Anton Günther, the Gottorp dukes) — they are
+  # both empty AND mis-bucketed into royal_holstein; excluding drops them from the
+  # render regardless. The mis-routing itself is a separate entity-routing item. ---
+  - id: kmk-81474
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Christian 3) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-81498
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Johan Adolf) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-81499
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Johan Adolf) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-81693
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Christian Albert, Gottorp) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-81694
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Christian Albert, Gottorp) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-81719
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Frederik 4, Gottorp) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-81720
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Frederik 4, Gottorp) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-81736
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Karl Frederik, Gottorp) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-81737
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Karl Frederik, Gottorp) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-81826
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (August Frederik von Holsten-Gottorp) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-81839
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Christian August von Holsten-Gottorp) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-81852
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Adolf 13 af Schaumburg-Pinneberg) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83084
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Christian 3) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83089
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Christian 4) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83104
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Johan Adolph) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83133
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Frederik 4) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83138
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Karl Frederik af Holstein) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83139
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Karl Frederik af Holstein) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83152
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Christian) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83153
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Adolph 13) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83173
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Justus Herman Schauenburg, Holstein-Pinneberg) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83176
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Justus Herman Schauenburg, Holstein-Pinneberg) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83178
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Justus Herman Schauenburg, Holstein-Pinneberg) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83191
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Anton Günther, Oldenburg) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17

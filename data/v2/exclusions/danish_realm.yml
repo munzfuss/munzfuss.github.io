@@ -236,3 +236,65 @@ exclusions:
       verdict: exclude off_strike.
     curator: Serhii
     date: 2026-07-13
+  # --- Z_other_review gold triage (curator Serhii 2026-07-17) ---
+  - id: dk-numista-426966
+    category: out_of_scope
+    reason: >-
+      «Gold coin», Numista N#426966, dated 1397-1439 (Erik of Pomerania era) — the
+      first Danish gold coinage, but ~120 years BEFORE the Denmark-Norway realm
+      window (mission lower bound 1514, Christian II Lovkompleks). Valuable but
+      out of the page's temporal scope. NOTE: the Numista seed builder is
+      year-agnostic (does not scope-filter by year), so it slipped in.
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-159818
+    category: out_of_scope
+    reason: >-
+      «1 Pagode», KMM (Schou 244), Christian VII 1766-1808 — a gold pagoda of
+      DANSK OSTINDIEN (Tranquebar / Danish India colonial trade coinage), not
+      home-circulation Danish-realm money. Out of scope like the piastre.
+    curator: Serhii
+    date: 2026-07-17
+  - id: ikmk-18235175
+    category: out_of_scope
+    reason: >-
+      «20 Kronor» 1877, Oskar II — SWEDEN (IKMK title «Schweden: Oskar II.», mint
+      Stockholm). Mis-routed to danish_realm because mint_registry maps «stockholm»
+      → danish_realm UNCONDITIONALLY (intended only as the Hans-era Kalmar-Union
+      pre-1521 anchor). ROOT FIX PENDING: make «stockholm» year-aware (danish_realm
+      ≤1521, else out-of-scope) so post-Union Swedish Stockholm coins route to
+      _unclassified — see handoff. This exclusion drops the render meanwhile.
+    curator: Serhii
+    date: 2026-07-17
+  # --- Group F: undocumented museum stubs (no nominal / year / catalogue / image),
+  # authority-tag only — cannot be attributed (§9, kmk-78338 precedent). ---
+  - id: kmk-693222
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Hans) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83550
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Christian IV) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83604
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Christian V) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83605
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Christian V) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83634
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Frederik VI) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: kmk-83640
+    category: undocumented_stub
+    reason: 'KMM authority-only stub (Christian VIII) — no nominal/year/index/image.'
+    curator: Serhii
+    date: 2026-07-17
