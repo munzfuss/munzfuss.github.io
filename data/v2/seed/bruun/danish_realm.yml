@@ -16714,7 +16714,6 @@ coins:
       bruun_collection_id: '7334'
       sieg: '23.2'
       schou: '8'
-      friedberg: '230'
       davenport: '1289'
       km: '479.2'
       hede: '38'
@@ -16722,7 +16721,31 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17113
       bruun_page: 74
-    metal: gold
+    _source_errata:
+      - field: metal
+        printed: gold
+        correct: silver
+        reason: |
+          The build tagged metal=gold + metal_verified=true, driven by a phantom
+          friedberg:230 that the bruun parser bled in from an ADJACENT lot (Fr =
+          gold catalogue → the seed builder's metal-from-register inference picked
+          gold). The Bruun lot 17113 text itself attests SILVER: «6 Mark
+          (Rejsedaler), 1704 … NGC MS-62. Dav-1289; KM-479.2; NMD-1A; Hede-38;
+          Sieg-23.2 … Weight: 27.05 gms». Davenport indexes ONLY large silver
+          crowns; «Rejsedaler» = Speciedaler-class silver crown; 27.05 g = silver
+          speciedaler weight. Curator (Serhii) 2026-07-17, by Bruun-lot text.
+        curator: serg
+      - field: friedberg
+        printed: '230'
+        correct: ~
+        reason: |
+          Fr 230 is NOT in Bruun lot 17113's catalogue line — a parser ref-bleed
+          from a neighbouring lot (user-confirmed 2026-07-17). Drop it. This is the
+          value that mis-drove the gold inference above. Root cause = parse_bruun
+          adjacent-lot Friedberg bleed (docs/SOURCES.md §13); NOT fixing the
+          Fr→gold inference rule per curator direction.
+        curator: serg
+    metal: silver
     fineness:
     weight_rough_g: 27.05
     issuing_entity: danish_realm
