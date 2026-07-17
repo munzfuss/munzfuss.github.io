@@ -61,8 +61,22 @@
   Bruun-wrong Sieg 107 on Hede 39. KEEP both parser mechanisms. Still open (tiny): verify where
   final c5h39's `km 415` came from (Bruun says the 1-Ducat is KM-A433).
 
-- **🟡 ANALYSIS READY (2026-07-17 overnight) — guldkrone-7 pass: full merge-candidate analysis
-  in `scratchpad/guldkrone_pass.md` (uncommitted), AWAITING curator verdicts.** Proposals:
+- **✅ EXECUTED (2026-07-17) — guldkrone-7 pass: all verdicts applied, built, committed
+  (`3acabf6` merges 1-6, `b1e10db` phase III, `993db19` dedup script).** End-state verified:
+  kmk-149737/137168/291435 → km-74-1 Hede-25 cluster; KM-206 family base-merged into ONE final
+  (km [206, 206.1, 206.2] = Hede 43A/B; the km-206-2 duplicate foundation folded via
+  dedup_final_foundations — NOTE the new trap found there: the fold writes the DROPPED
+  foundation id into the keeper's composed_of, which trips audit_v2 I2 when the dropped id
+  exists nowhere else; fixed by pointing composed_of at the real unified id. Consider patching
+  the fold script's composed_of rule); KM 279 = Hede 45 (f3h45); KM 40.1/40.2 → f3h145a;
+  f4h30 promoted as guldkrone **phase III** (1701, last Danish Guldkrone, struck for the
+  Vestindiske Compagni, «kendes ikke mere» — lit-only: Ramus 192, Wilcke III 20, NFM X 87;
+  two new refs_pool keys, phase renders with citations). Analysis details remain in
+  `scratchpad/guldkrone_pass.md` (uncommitted). Guldkrone group in seed_unsorted: EMPTY.
+  Side-fund noted there: dozens of SILVER 1/½ Krone KMM records 1621/1655-1666 in unsorted —
+  a future silver-kronemønt pass. «Guilder» research (user Q): Krause English house-label for
+  ANY Danish gylden (labels both .972 ungersk and .76 rhinsk types «Guilder») — never a period
+  Danish term; etymology = anglicized Dutch gulden ≡ florin. Proposals:
   №1 kmk-149737 + №2 kmk-137168(+bonus kmk-291435) → km-74-1-hede-25c cluster (Schou-in-range /
   Hede 25A edges); №4+5 numismaster-93042/93043 (KM 40.1/.2) → f3h145a (its km list already holds
   40/40.1/40.2); №6 numismaster-65606 (KM 279) → f3h45 (working concordance KM 279 = Hede 45);
