@@ -68,15 +68,21 @@ FINAL_DIR = ROOT / "data" / "v2" / "final"
 
 # (entity, keep_id, drop_id) — curator-confirmed Pattern-A true duplicates.
 PAIRS = [
-    # c4h105: 2 Krone Chr IV 1618-1619, both KM [61,61.1]. keep richer (w#5).
-    ("danish_realm", "km-61-1-chr-iv-1618", "hede-105a-chr-iv-1618"),
-    # f5h11: 2 Dukat Fr V 1747, both KM [567,569]. keep the CLASSIFIED one
-    # (reichsdukatenfuss/III); f5h12ab is unclassified (seed_unsorted/hede).
-    ("danish_realm", "unified-dk-hede-f5h12", "unified-dk-hede-f5h12ab"),
-    # c7h13: 1 Speciedaler Chr VII, both KM [651,651.1]. keep pipeline-native.
-    ("royal_holstein", "unified-dk-hede-c7h13a", "km-651-1-chr-vii-1797"),
-    # c9h13: 2 Kroner Chr IX 1875, KM 798.1. keep pipeline-native (in seed_unified).
-    ("danish_realm", "unified-dk-hede-c9h13a", "km-798-1-chr-ix-1875"),
+    # --- APPLIED 2026-06-26 (kept for the record; ids no longer exist, and the
+    # script hard-errors on missing pairs, so they are commented out): ---
+    # ("danish_realm", "km-61-1-chr-iv-1618", "hede-105a-chr-iv-1618"),
+    # ("danish_realm", "unified-dk-hede-f5h12", "unified-dk-hede-f5h12ab"),
+    # ("royal_holstein", "unified-dk-hede-c7h13a", "km-651-1-chr-vii-1797"),
+    # ("danish_realm", "unified-dk-hede-c9h13a", "km-798-1-chr-ix-1875"),
+    # Hede 43 / KM 206 family: 1 Guldkrone Fr III 1655 Kopenhagen. The
+    # 2026-07-17 §9.4 base-merge (guldkrone pass No. 3, merge_decisions/
+    # danish_realm.yml) united the seeds [bruun-6175, bruun-6176,
+    # numismaster-65599, -65600] into one unified cluster; BOTH old
+    # foundation finals then matched it and got enriched — km-206 now
+    # carries the full merged catalog (km [206,206.2,206.1], Hede 43A/B),
+    # km-206-2 is a strict-subset duplicate (its bruun-6176 / Aagaard 17.1
+    # citations already on the keeper). Keep the richer km-206.
+    ("danish_realm", "km-206-fr-iii-1655", "km-206-2-fr-iii-1655"),
     # NOTE — c4h115 (km-81 / unified-dk-bruun-5181, both KM 81 4 Skilling)
     # is DELIBERATELY EXCLUDED: bruun-5181 carries a NumisMaster fineness
     # 0.437 + weight 1.462g that contradict the well-attested 4 Skilling
