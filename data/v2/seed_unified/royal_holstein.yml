@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1727 per-source seed entries.
-# Output: 948 unified entries (one per physical coin).
+# Output: 946 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -9371,6 +9371,7 @@ coins:
     km:
     - '40.1'
     - '40'
+    - '40.2'
     hede: 145A
     hede_volume: f3h
     schou:
@@ -9402,8 +9403,12 @@ coins:
   - value: 0.917
     source: hede
   - value: 0.917
+    source: numismaster
+  - value: 0.917
     source: numista
   weight_rough_g:
+  - value: 2.973
+    source: numismaster
   - value: 5.91
     source: bruun
   - value: 5.95
@@ -9428,6 +9433,12 @@ coins:
   - type: literature
     url: https://en.numista.com/306974
     ref: Numista N#306974 — 1 Guldkrone - Frederik III
+  - type: literature
+    url: https://numismaster.com/MC_93042
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_93043
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -9439,6 +9450,8 @@ coins:
   - dk-bruun-6300
   - dk-hede-f3h145a
   - dk-numista-306974
+  - schleswig_holstein-numismaster-93042
+  - schleswig_holstein-numismaster-93043
 - id: unified-dk-hede-f3h145b
   fuss: seed_unsorted
   phase: hede
@@ -34200,86 +34213,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-93040
-- id: unified-schleswig_holstein-numismaster-93042
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Gold Krone
-  year_first: 1657
-  year_last: 1660
-  year_ranges:
-  - - 1657
-    - 1657
-  - - 1659
-    - 1660
-  year_label: 1657, 1659-1660
-  ruler: Frederik III
-  mint: Glückstadt
-  catalog:
-    km: '40.1'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.917
-    source: numismaster
-  weight_rough_g:
-  - value: 2.973
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_93042
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-93042
-- id: unified-schleswig_holstein-numismaster-93043
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Gold Krone
-  year_first: 1660
-  year_last: 1660
-  year_label: '1660'
-  ruler: Frederik III
-  catalog:
-    km: '40.2'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.917
-    source: numismaster
-  weight_rough_g:
-  - value: 2.973
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_93043
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-93043
 - id: unified-sh-tid-187884
   fuss: seed_unsorted
   phase: ucoin
