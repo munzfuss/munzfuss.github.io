@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-07-15T22:26:40Z'
+generated_at: '2026-07-18T06:43:48Z'
 entity: danish_realm
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -1702,6 +1702,47 @@ coins:
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     _source_note:
       da: 'Forside: sammenslynget FS, bagside: værdiangivelse. Del af Dronning Sophies gavesæt. (Hede 7G, Schou 6, Sieg 29) Vægt: 3,27g'
+  - id: dk-hede-c4h20
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Guldmønt
+    year_label: 1606-1608
+    year_first: 1606
+    year_last: 1608
+    year_verified: false
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: '20'
+      hede_volume: c4h
+      schou: '8'
+      sieg: '159'
+    metal: gold
+    weight_rough_g: 22.64
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h20.htm
+        ref: danskmoent.dk (Hede c4h20)
+    issuing_entity: danish_realm
+    verified: false
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    _source_note:
+      da: 'Forside: portræt, bagside våbenskjold, kvinder (Hede 20, Schou 8, Sieg 159). Prøvemønt efter engelsk forbillede. Den unikke mønt befinder sig i Den Kgl. Mønt- og Medaillesamling, København'
+    year_ranges:
+      - [1606, 1608]
+    _curation_holds:
+      year_first: sovereign_fod trial, undated «u.år» — attributed to the 1606-1608 Sovereign programme (curator 2026-07-17); do not revert to the reign-window.
+      year_ranges:
+      year_last:
+      year_label:
+      year_verified:
   - id: dk-hede-c4h41
     fuss: seed_unsorted
     phase: hede
@@ -2849,6 +2890,48 @@ coins:
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     _source_note:
       da: 'Forside: kongen til hest, bagside: våbenskjold (Hede 9, Schou 1-6; sølvafslag Schou 30 RRR, Sieg 156) Iflg. Anders Harck er Portugaløseren slået ca. 1605 (-07) De to viste'
+  - id: dk-hede-c4h22
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Guldmønt
+    year_label: '1606-1608'
+    year_first: 1606
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: '22'
+      hede_volume: c4h
+      schou: '13'
+      sieg: '157'
+    metal: gold
+    weight_rough_g: 4.65
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h22.htm
+        ref: danskmoent.dk (Hede c4h22)
+    issuing_entity: danish_realm
+    verified: false
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    _source_note:
+      da: 'Forside: portræt, bagside våbenskjold, kvinder (Hede 22, Schou 13, Sieg 157) Prøvemønt efter engelsk forbillede. Det unikke stykke befinder sig i Den Kgl. Mønt- og Medaillesamling, København.
+        Forsidestemplet er som 8 Skilling 1606 (Hede 93)'
+    year_last: 1608
+    year_ranges:
+      - [1606, 1608]
+    year_verified: false
+    _curation_holds:
+      year_first: sovereign_fod trial, undated «u.år» — attributed to the 1606-1608 Sovereign programme (curator 2026-07-17); do not revert to the reign-window.
+      year_ranges:
+      year_last:
+      year_label:
+      year_verified:
   - id: dk-hede-c4h91
     fuss: seed_unsorted
     phase: hede
@@ -17831,14 +17914,12 @@ coins:
     catalog:
       hede: '39'
       hede_volume: c5h
-      schou:
-        - '4'
-      sieg:
-        - '106'
+      schou: &id004 ['4']
+      sieg: &id003 ['106']
     _source_errata:
       - field: sieg
-        printed: ['106', '107']
-        correct: ['106']
+        printed: &id005 ['106', '107']
+        correct: *id003
         reason: |
           danskmoent's c5h39 page inverts the 1/2-Dukat denominations between Hede 39 and 40
           (user source-call 2026-07-16: Bruun wins). The parser's page-level merged catalog gave
@@ -17846,8 +17927,8 @@ coins:
           3.45 g) prints «Fr-161; KM-A433; Hede-39; Sieg-106; Schou-4» — Hede 39 = Sieg 106 only.
         curator: serg
       - field: schou
-        printed: ['2', '3']
-        correct: ['4']
+        printed: &id006 ['2', '3']
+        correct: *id004
         reason: |
           Same Bruun lot 13186 concordance: Hede 39 (1 Dukat 1693) = Schou 4. The printed [2,3]
           is the page-level merge of danskmoent's two blocks (its Schou 2/3 attach to danskmoent's
@@ -17872,6 +17953,13 @@ coins:
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     _source_note:
       da: 'Forside: portræt, bagside: krone Stemplerne er skåret af Anton Meybusch. 1 Dukat Hede 40, Schou 3, Sieg 107'
+    _errata_applied:
+      - field: sieg
+        printed: *id005
+        correct: *id003
+      - field: schou
+        printed: *id006
+        correct: *id004
   - id: dk-hede-c5h40
     fuss: seed_unsorted
     phase: hede
@@ -17884,22 +17972,20 @@ coins:
     catalog:
       hede: '40'
       hede_volume: c5h
-      schou:
-        - '3'
-      sieg:
-        - '107'
+      schou: &id008 ['3']
+      sieg: &id007 ['107']
     _source_errata:
       - field: sieg
-        printed: ['106', '107']
-        correct: ['107']
+        printed: &id009 ['106', '107']
+        correct: *id007
         reason: |
           Counterpart of the c5h39 erratum (user source-call 2026-07-16, Bruun over danskmoent).
           Bruun Part IV lot 17098 (physical specimen, NGC MS-62, 6.94 g) prints «Fr-160;
           Hede-40; Sieg-107; Schou-3» — Hede 40 (2 Dukat 1693) = Sieg 107 only.
         curator: serg
       - field: schou
-        printed: ['2', '3']
-        correct: ['3']
+        printed: &id010 ['2', '3']
+        correct: *id008
         reason: |
           Same Bruun lot 17098 concordance: Hede 40 = Schou 3. The printed [2,3] is the
           page-level merge of danskmoent's two blocks.
@@ -17923,6 +18009,13 @@ coins:
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     _source_note:
       da: 'Forside: portræt, bagside: krone Stemplerne er skåret af Anton Meybusch. 1 Dukat Hede 40, Schou 3, Sieg 107'
+    _errata_applied:
+      - field: sieg
+        printed: *id009
+        correct: *id007
+      - field: schou
+        printed: *id010
+        correct: *id008
   - id: dk-hede-c5h99a
     fuss: seed_unsorted
     phase: hede
