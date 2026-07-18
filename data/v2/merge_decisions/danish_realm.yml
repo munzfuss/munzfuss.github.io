@@ -9,6 +9,14 @@
 
 merges:
   - members:
+      - dk-numista-426815       # Numista N#426815 «Gold coin 22.64g», Fr 50
+      - kmk-137087              # KMM «Prøvemønt uden år» 22.64g, Schou 8, Hede 20
+    reason: 'Curator (Serhii) 2026-07-17, sovereign_fod family: ONE coin — Christian IV English-model gold trial Hede 20 (Prøvemønt efter engelsk forbillede, 22.64 g, unique, Kgl. Mønt- og Medaillesamling). Concordance Fr 50 = Hede 20; both specimens 22.64 g. Numista titles it generically «Gold coin»; KMM «Prøvemønt uden år». Part of the Hede 19-22 Sovereign trial strand.'
+  - members:
+      - dk-numista-426842       # Numista N#426842 «Gold coin 4.65g», Fr 53
+      - kmk-137089              # KMM «prøvemønt uden år», Schou 13, Hede 22
+    reason: 'Curator (Serhii) 2026-07-17, sovereign_fod family: ONE coin — Christian IV English-model gold trial Hede 22 (Prøvemønt efter engelsk forbillede, 4.65 g, unique). Concordance Fr 53 = Hede 22 (danskmoent c4h22, Schou 13, Sieg 157); kmk-137089 carries Schou 13. Part of the Hede 19-22 Sovereign trial strand.'
+  - members:
       - dk-hede-f2h5            # Frederik II «Gold Krone (Golt Krone) Klippe» 1564, Hede 5, Sieg 26, Fr 23
       - dk-numista-420335       # Numista N#420335 «1 Crown … Seven-Years War Square 1564», Fr 23
     reason: 'Curator (Serhii) 2026-07-17, Z-review: ONE coin — Frederik II 1564 Gold Krone Klippe (square siege-issue of the Nordic Seven Years'' War), Hede 5 = Fr 23. Bruun lot 13071 attests «Gold Krone (Golt Krone) Klippe, 1564 … Fr-23; Hede-5; Sieg-26; Schou-2». N#420335''s «Square» = the klippe form; its .986 fineness is a Numista user-error (Hede attests .934 for the f2_guldkrone_fod Guldkrone) — the verified Hede value wins per §4. §9.4 edge = shared Fr 23.'
@@ -1165,6 +1173,12 @@ no_merges:
       - kmk-351541
     reason: 'c4h119 split: keep KM-66.2 (Hede 118) out of the Hede-119 (KM 67) class — break the over-merge bridge.'
 year_demote:
+  - member_id: dk-numista-426815
+    reason: 'sovereign_fod trial (Hede 20): Numista dates it to the Christian IV reign window 1588-1648 (undated trial). Demote so it does not widen the sovereign_fod/I phase span past the attested 1606-1608 episode (only the dated Sovereign Hede 19 = 1608 should drive it). Curator 2026-07-17.'
+  - member_id: dk-numista-426503
+    reason: 'sovereign_fod trial (Hede 21): same — undated, Numista reign-window 1588-1648; demote so the sovereign_fod/I span stays 1606-1608. Curator 2026-07-17.'
+  - member_id: dk-numista-426842
+    reason: 'sovereign_fod trial (Hede 22): same — undated, Numista reign-window 1588-1648; demote so the sovereign_fod/I span stays 1606-1608. Curator 2026-07-17.'
   - member_id: dk-numista-379084
     reason: |
       Numista N#379084 («1 Goldgulden», Christian III) spans min 1536 – max 1546
