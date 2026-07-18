@@ -146,20 +146,14 @@ def _classify_hede_entity(mint, hede_volume: str | None):
 # (e.g. `c4h20`). The skip happens early in the seed-build loop so
 # the entries never reach the curation-merge step.
 _KNOWN_PROOF_PATTERNS: set[str] = {
-    # Christian IV.
-    "c4h20",   # «Guldmønt U.år» Kbh, Hede 20 / Schou 8 / Sieg 159 —
-               # Prøvemønt efter engelsk forbillede; Unik in
-               # Den Kgl. Mønt- og Medaillesamling København.
-    "c4h21",   # «Guldmønt u. år» Kbh, Hede 21AB / Schou 10-12 / Sieg 158 —
-               # Prøvemønt efter engelsk forbillede; RRR/Unik in
-               # Den Kgl. Mønt- og Medaillesamling København. Per Anders
-               # Harck (2000): Hede Nr. 20-22 are all proof strikes from
-               # the same period (portrait type 4 / reverse of type 6).
-    "c4h22",   # «Guldmønt, U.år» Kbh, Hede 22 / Schou 13 / Sieg 157 —
-               # «Prøvemønt efter engelsk forbillede»; Unik in Den Kgl.
-               # Mønt- og Medaillesamling København. Forsidestempel
-               # shared with 8 Skilling 1606 (Hede 93). Same Harck-2000
-               # proof cluster as c4h20 + c4h21.
+    # (empty) — c4h20 / c4h21 / c4h22 were REMOVED 2026-07-17 (curator Serhii):
+    # the Christian IV «Prøvemønt efter engelsk forbillede» strand (Hede 19-22,
+    # «Dansk Sovereign» after James I's Unite, 1606-1608) is now documented as its
+    # own Müntzfuß `sovereign_fod` (data/shared/fuesse.yml). Per curator directive
+    # the trial pieces are KEPT alongside the issued Sovereign (Hede 19), so their
+    # danskmoent Hede pages must seed (and carry the danskmoent source into the
+    # sovereign_fod coins). They fold into the numista/kmk trial entries via
+    # merge_decisions/danish_realm.yml (dk-hede-c4h20/21/22).
 }
 
 
