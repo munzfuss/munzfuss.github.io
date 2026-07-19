@@ -523,6 +523,16 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
     # both are gold-trade-coin / world-crowns adjacencies that pair well
     # with FP's Danish gold + speciedaler Christian-VII focus.
     ("fp", "FP"),
+    # MB — Madai / Bach «Vollständiges Thaler-Cabinet» (18th-c. German-states
+    # + Schleswig-Holstein thaler/gold catalogue), surfaced by NumisMaster as
+    # its «MB#» catalog-number field. Was missing from this list although
+    # `_PREFIX_PRIORITY["MB"] = 100` already reserved a slot AND the schema has
+    # a `mb` field — the same missing-field (not missing-priority) bug the
+    # galster note above describes: coins whose source index was MB# (e.g. the
+    # Christian III Goldgulden 1547, MB# 57 / Schou 1352, numismaster MC_167747)
+    # rendered an empty catalog cell. Adding the mapping surfaces every
+    # catalog.mb value.
+    ("mb", "MB"),
 ]
 
 # Register tooltip text per Krause register code. Used by
