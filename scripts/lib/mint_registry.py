@@ -372,6 +372,17 @@ _MINT_REGISTRY: dict[str, dict] = {
         "entity": "landgrafschaft_hessen_kassel",
     },
 
+    # ────────────── Herzogtum Braunschweig-Lüneburg ────────────────────
+    # Wolfenbüttel = the ducal residence/mint; a Christian IV «Gutergros»
+    # 1627 struck there (his Thirty Years' War Lower Saxon Circle command)
+    # is catalogued by KMM under authority «Danmark» → routed to danish_realm
+    # by the nation fallback without this mint rule (kmk-291032).
+    "wolfenbüttel": {
+        "aliases": {"wolfenbüttel", "wolfenbuttel", "wolffenbüttel", "wolfenb?ttel"},
+        "display": "Wolfenbüttel",
+        "entity": "herzogtum_braunschweig_lueneburg",
+    },
+
     # ─────────────────────── Rantzau county ────────────────────────────
     "barmstedt": {
         "aliases": {"barmstedt"},
