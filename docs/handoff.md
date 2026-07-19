@@ -57,11 +57,24 @@ classify into a fuss (user clarified 2026-07-19 «не в стопу, а в ка
   classification will need a reign-window year (1746-1766, verified false),
   like the sovereign trials.
 
-**Z_other_review after this pass**: only **kmk-697135** left truly open —
-gold «IIII skilling» 1764, no weight / no photo / no index, suspected
-Guldafslag (§9.3) but insufficient data to decide. kmk-291032 (Gutergros,
-Wolfenbüttel) awaits its Brunswick re-entity move (curator: move, not
-exclude; gold Schou 12 = likely Guldafslag of silver kmk-291970).
+**Z_other_review — CLOSED** (all resolved): kmk-697135 excluded
+(undocumented_stub, gold «IIII skilling» 1764). **kmk-291032 RELOCATED**
+danish_realm → herzogtum_braunschweig_lueneburg (seed-file move; «Wolfenbüttel»
+added to mint_registry so a re-harvest routes it automatically; commit 99ca9c2).
+Not a cross-entity merge — that needs ≥2 members; a lone mis-homed coin is a
+plain seed-file move (entity = seed FILE location, per `_load_all_seeds`).
+
+**goldgulden_gylden Z-review** (2026-07-19 late): of the 5 unsorted,
+kmk-291022 «Gyldenløves dukat» recategorised to 8_dukat (categorise() fix —
+«gylden» substring in the «Gyldenløve» proper name was a false positive; the
+fix lives in the gitignored oneoff, not committable). Three excluded as
+undocumented_stub (no weight/photo/index on natmus.dk): kmk-178069, kmk-291022,
+kmk-78338 (commit 99ca9c2). **DEFERRED (2 left)**: kmk-122107 (1 Guldgylden,
+Frederik I 1531 — galster 6 + web LEB 4063 [L.E. Bruun coll.] + 3 photos) and
+kmk-137159 (2 Ungarsk gylden, Christian IV — schou 2 + web B 138b + 4 photos);
+both have photos + a recoverable web-`beskrivelser` index — hold until the
+natmus image/index access is sorted (part of §DB). Their extra web indices
+(LEB 4063, B 138b) are NOT yet recovered.
 
 **FLAG for the curator**: kmk-122102 (Hede 21B) is currently EXCLUDED as a
 gold pattern/Prøvemønt — but we now KEEP the sovereign trials in
