@@ -15,6 +15,60 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-19 — Z_other_review gold triage + KMK catalogue-index loss (§DB)
+
+**Sovereign_fod family closed out**: three trials got display polish
+(nominal → `Prøvemønt`, ruler + Kopenhagen mint on Hede 21 / 426503,
+km-a47 Stack's Bowers auction-lot source); kmk-137088 (KMM RP 19.1)
+merged into the Hede 21 entry per the RP-inventory-sequence argument
+(commit 58e1619).
+
+**§DB opened (Highest priority)**: the KMK ES harvest endpoint
+(`api.natmus.dk/search/public/raw`) is **403 «Site Disabled»** — fetcher
+dead — AND ~15k objects have empty `typeNumber` in our ES cache while the
+natmus.dk **web-rådata API** (`samlinger.natmus.dk/KMM/object/<id>`)
+carries the catalogue in a `beskrivelser` field we never harvested. An
+earlier "parser drops beskrivelser" hypothesis was WRONG (verified §0b) —
+the data is absent from our cache, not mis-parsed. Fix = migrate harvest
+to the web-rådata API + parse `beskrivelser`→catalog. See TODO §DB.
+
+**Interim recovery done (variant B, commit 28eb471)**: 3 Z-review coins
+got their web-rådata index by hand-editing the seed: kmk-86272 (schou 3a
++ Bech# 876 + B# 783.a), kmk-86273 (Bech# 977), kmk-298425 (B# 652).
+`Sch`→schou; `Bech`/`B` kept verbatim in `others` (ambiguous, not guessed).
+
+**kmk-86273 excluded** (out_of_scope, Danish East India / Tranquebar
+colonial gold, Bech 977) — commit pending.
+
+**DUKAT-PASS working set (curator direction: категорія, NOT fuss)** — these
+Z_other_review gold coins are dukat-class but have vague nominals («(?)»,
+«to mark»), so they will NOT surface in the categorise()-by-nominal triage
+table under 8_dukat. Track them explicitly; fold into the future 8_dukat /
+reichsdukatenfuss detailed pass. They stay `seed_unsorted` for now — do NOT
+classify into a fuss (user clarified 2026-07-19 «не в стопу, а в категорію»):
+  - kmk-298425 — Frederik III 1666, 35.38 g gold, **B 652** (Portugaløser / multi-dukat weight)
+  - kmk-86272 — Christian V 1670-99, 7.72 g gold, **Schou 3a** (2-Mark gold ≈ 2 dukat)
+  - kmk-391987 — Frederik V, 6.95 g gold, no code (≈ 2 dukat by weight)
+  - kmk-391994 — Frederik V, 3.5 g gold, no code (≈ 1 dukat)
+  - kmk-391997 — Frederik V, 3.14 g gold, no code (≈ 1 dukat)
+  - dk-bruun-7235 — Christian V, Christiania, 7.29 g, **Hede 20B / NMD 24A / Fr 14 / Schou 5** (Norway 2-dukat; entity **danish_norway**)
+
+  The 3 Frederik V pieces are UNDATED (KMM gives no minting year) — a fuss
+  classification will need a reign-window year (1746-1766, verified false),
+  like the sovereign trials.
+
+**Z_other_review after this pass**: only **kmk-697135** left truly open —
+gold «IIII skilling» 1764, no weight / no photo / no index, suspected
+Guldafslag (§9.3) but insufficient data to decide. kmk-291032 (Gutergros,
+Wolfenbüttel) awaits its Brunswick re-entity move (curator: move, not
+exclude; gold Schou 12 = likely Guldafslag of silver kmk-291970).
+
+**FLAG for the curator**: kmk-122102 (Hede 21B) is currently EXCLUDED as a
+gold pattern/Prøvemønt — but we now KEEP the sovereign trials in
+sovereign_fod. That exclusion is likely stale (pre-sovereign_fod era) and
+inconsistent with the merged Hede 21A (kmk-137088). Decide whether to
+un-exclude 21B into the sovereign_fod Hede 21 entry.
+
 ## 2026-07-16 — systemic parse_hede per-Hede year/catalog/nominal extraction
 
 > **UNPUSHED — push pending «пуш».** 26 main commits (`git log origin/main..HEAD`) — the 23 from
