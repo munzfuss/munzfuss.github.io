@@ -3,9 +3,10 @@
 round-trips each data-file family near-zero, and that edit_coin_field is
 byte-surgical.
 
-WHY: the project's data YAMLs are written by two serializers with family-
-specific settings (PyYAML width=120 for v2/final+seed_unified; ruamel with
-distinct width/offset for v2/seed vs locations vs shared). Round-tripping a
+WHY: the project's data YAMLs are written by ruamel with family-specific
+settings (v2/final + seed_unified + classification_decisions + v2/seed all on
+width=200/offset=2 since the 2026-07 unification; locations vs shared differ in
+width/offset). match_uncertainty/ (gitignored) keeps PyYAML. Round-tripping a
 file through the WRONG config reformats the ENTIRE file (a multi-thousand-line
 spurious diff from a one-field edit — observed repeatedly). This test pins the
 known per-family round-trip baseline so any config regression is caught loudly
@@ -40,8 +41,11 @@ def _changed(a: str, b: str) -> int:
 # above the empirically-observed baseline so harmless future data edits don't
 # trip them, but a wrong-serializer regression (hundreds+) does.
 ROUNDTRIP_CASES = [
-    ("data/v2/final/rantzau_county.yml",        "pyyaml120",     5),
-    ("data/v2/seed_unified/danish_realm.yml",   "pyyaml120",     5),
+    # final/ + seed_unified/ + classification_decisions/ unified onto the
+    # ruamel_seed profile (width=200/offset=2) in 2026-07 — see lib/yaml_io.
+    ("data/v2/final/rantzau_county.yml",        "ruamel_seed",   40),
+    ("data/v2/seed_unified/danish_realm.yml",   "ruamel_seed",   40),
+    ("data/v2/classification_decisions/danish_realm.yml", "ruamel_seed", 20),
     ("data/v2/seed/bruun/danish_realm.yml",     "ruamel_seed",   40),
     ("data/locations/denmark-references.yml",            "ruamel_loc",  20),
     ("data/locations/schleswig_holstein-references.yml", "ruamel_loc",  20),

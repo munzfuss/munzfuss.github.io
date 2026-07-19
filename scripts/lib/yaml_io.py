@@ -16,18 +16,32 @@ THREE axes that all have to match or the whole file reformats: serializer,
 line width, and — for ruamel — the sequence indent/offset (block-list dash
 flush with the parent key vs. indented):
 
-  | path prefix                           | serializer | width | seq/offset       |
-  |---------------------------------------|------------|-------|------------------|
-  | data/v2/final/, data/v2/seed_unified/ | PyYAML     | 120   | (n/a — pyyaml)   |
-  | data/v2/seed/                         | ruamel rt  | 200   | seq=4, offset=2  |
-  | data/locations/                       | ruamel rt  | 4096  | seq=2, offset=0  |
-  | data/shared/, data/i18n/              | ruamel rt  | 4096  | seq=4, offset=2  |
+  | path prefix                                        | serializer | width | seq/offset       |
+  |----------------------------------------------------|------------|-------|------------------|
+  | data/v2/final/, seed_unified/, classification_dec. | ruamel rt  | 200   | seq=4, offset=2  |
+  | data/v2/seed/                                       | ruamel rt  | 200   | seq=4, offset=2  |
+  | data/locations/                                     | ruamel rt  | 4096  | seq=2, offset=0  |
+  | data/shared/, data/i18n/                            | ruamel rt  | 4096  | seq=4, offset=2  |
 
-  (final/seed_unified are written by absorb_seeds_into_final_v2.py /
-   merge_seeds_cross_source.py with PyYAML width=120; the v2/seed family by
-   lib/seed_merge.py + lib/v2_seed_writer.py with ruamel width=200/offset=2;
-   the V1-era locations family uses offset=0 dash-flush block lists, while
-   data/shared uses offset=2 — these two LOOK alike but reformat each other.)
+  UNIFICATION (2026-07-19, curator decision B). Previously final/,
+  seed_unified/ and classification_decisions/ were written by
+  absorb_seeds_into_final_v2.py / merge_seeds_cross_source.py with PyYAML
+  (width=120, offset=0). A human editing one of those files with ruamel (the
+  natural tool for YAML-with-comments) reflowed the WHOLE file — the
+  offset0↔offset2 churn trap (the 2026-07-19 danish_realm incident, +216k/-219k
+  from a hand edit). PyYAML and ruamel cannot be made byte-identical even at
+  matched offset+width (quote policy + fold-point differ), so all three
+  machine-emitted-AND-hand-editable file types were unified onto ruamel
+  width=200/offset=2 (the `ruamel_seed` profile) — the yamllint/prettier
+  industry-standard indented-sequence style, matching what a ruamel hand-edit
+  produces. The emitters now call `dump_v2_canonical()` below.
+
+  match_uncertainty/* stays on PyYAML — it is GITIGNORED (never tracked, never
+  in a diff) and machine-only, so unifying it would only cost a multi-MB
+  reflow for zero benefit. The v2/seed family is written by lib/seed_merge.py
+  + lib/v2_seed_writer.py; the V1-era locations family uses offset=0 dash-flush
+  block lists, while data/shared uses offset=2 — these two LOOK alike but
+  reformat each other.
 
   Even the matching config leaves a small residual on some files (internal
   formatting drift accumulated over many sessions): seed ~18 lines, shared
@@ -84,8 +98,14 @@ def family_of(path) -> str:
     # "data/v2/seed_unified/" (the latter has no slash after "seed"), and
     # the final/seed_unified test runs first anyway.
     p = str(path).replace("\\", "/")
-    if "data/v2/final/" in p or "data/v2/seed_unified/" in p:
-        return "pyyaml120"
+    # final/, seed_unified/ and classification_decisions/ were unified onto the
+    # ruamel_seed profile (width=200/offset=2) in 2026-07 — see module docstring.
+    if (
+        "data/v2/final/" in p
+        or "data/v2/seed_unified/" in p
+        or "data/v2/classification_decisions/" in p
+    ):
+        return "ruamel_seed"
     if "data/v2/seed/" in p:
         return "ruamel_seed"
     if "data/locations/" in p:
@@ -100,6 +120,21 @@ def _make_ruamel(family: str) -> YAML:
     y.width = width
     y.indent(mapping=2, sequence=seq, offset=off)
     return y
+
+
+def dump_v2_canonical(payload) -> str:
+    """Serialize a plain dict/list payload to the canonical V2 string
+    (ruamel width=200, seq=4/offset=2). This is the single serializer for the
+    machine-emitted-AND-hand-editable V2 files — final/, seed_unified/,
+    classification_decisions/. The absorb/merger emitters call this instead of
+    the old PyYAML width=120 dump, so a subsequent ruamel hand-edit is a no-op
+    (no more offset0↔offset2 churn). Callers needing a header-comment banner
+    prepend it to the returned string. NOT for match_uncertainty/ (PyYAML,
+    gitignored)."""
+    import io
+    buf = io.StringIO()
+    _make_ruamel("ruamel_seed").dump(payload, buf)
+    return buf.getvalue()
 
 
 def make_yaml(path=None) -> YAML:

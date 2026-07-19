@@ -66,6 +66,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from lib.fraction_infer import infer_fraction, load_fuss_fractions  # noqa: E402
 from lib.gen_stamp import resolve_generated_at  # noqa: E402
 from lib.seed_merge import merge_seed  # noqa: E402
+from lib.yaml_io import dump_v2_canonical  # noqa: E402
 from lib.v2_seed_writer import (  # noqa: E402
     _is_out_of_scope_nominal,
     _is_out_of_scope_catalog,
@@ -2584,8 +2585,8 @@ def _emit_final_yaml(entity_id: str, coins: list[dict],
         "migrated_from_v1": (prior_doc or {}).get("migrated_from_v1") or "",
         "coins": coins,
     }
-    return yaml.dump(payload, sort_keys=False, allow_unicode=True,
-                     default_flow_style=False, width=120)
+    # Canonical ruamel width=200/offset=2 (unified 2026-07, see lib/yaml_io).
+    return dump_v2_canonical(payload)
 
 
 def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
@@ -2643,8 +2644,8 @@ def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
     # daily one-line churn (`generated_at` is informational — nothing branches
     # on it). See lib/gen_stamp.py.
     payload["generated_at"] = resolve_generated_at(payload, existing)
-    return header + yaml.dump(payload, sort_keys=False, allow_unicode=True,
-                              default_flow_style=False, width=120)
+    # Canonical ruamel width=200/offset=2 (unified 2026-07, see lib/yaml_io).
+    return header + dump_v2_canonical(payload)
 
 
 # ---------------------------------------------------------------------------

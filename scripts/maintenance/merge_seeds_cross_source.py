@@ -225,6 +225,7 @@ def _normalise_metal(metal, fineness):
 # Danish↔English/German fold. Keep this thin wrapper for backwards
 # compatibility — `_normalise_nominal` is called from many places
 # in this module.
+from lib.yaml_io import dump_v2_canonical
 from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices
 from lib.catalog_codes import split_multi_ref as _split_multi_ref
@@ -4430,8 +4431,8 @@ def _emit_unified_yaml(entity_id: str, unified_entries: list[dict],
         f"# `fineness[]`, `diameter_mm[]` are multi-source lists preserving\n"
         f"# every reading per CLAUDE.md §9a. `sources[]` is the union.\n\n"
     )
-    return header + yaml.dump(payload, sort_keys=False, allow_unicode=True,
-                              default_flow_style=False, width=120)
+    # Canonical ruamel width=200/offset=2 (unified 2026-07, see lib/yaml_io).
+    return header + dump_v2_canonical(payload)
 
 
 def _emit_match_uncertainty(entity_id: str, low_conf: list[dict],
