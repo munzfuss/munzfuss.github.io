@@ -116,6 +116,70 @@ The summary is per-tier — a Highest-tier summary stays under
 > to use this file»). Demote to High once the blocker semantic is no
 > longer warranted.
 
+### DB. 🔴 KMK re-harvest via the natmus.dk web-rådata API — ES endpoint dead + catalogue-index loss  *(opened 2026-07-19, user-marked «найвищий»)* *(est: many sessions)* *(type: harvest migration + parser + data integrity)*
+
+**The problem (verified 2026-07-19, §0b — an earlier "parser drops
+beskrivelser" hypothesis was WRONG; this is the corrected diagnosis):**
+
+Two independent defects in the KMK (Den Kgl. Mønt- og Medaljesamling)
+pipeline, both traced to the harvest source:
+
+1. **The ES harvest endpoint is DEAD.** `scripts/fetch_kmk.py` POSTs to
+   `https://api.natmus.dk/search/public/raw` (open Elasticsearch). A live
+   query on 2026-07-19 returned **HTTP 403 «Site Disabled»** — natmus.dk has
+   taken the public raw ES endpoint down. The current KMK fetcher can no
+   longer harvest or refresh anything.
+
+2. **Catalogue indices are missing for a large subset of objects.**
+   `build_kmk_seed.py::_catalog()` reads the ES `_source.typeNumber` field
+   (e.g. `'Sch 12'` → `schou: 12`). That works when `typeNumber` is populated:
+   28 122 / 43 033 cached objects have it. But **14 911 objects have
+   `typeNumber: None` AND `descriptions: []`** in our ES cache — no catalogue
+   at all. Meanwhile the natmus.dk WEB rådata API
+   (`samlinger.natmus.dk/KMM/object/<id>`, Danish-keyed JSON) exposes the same
+   catalogue in a `beskrivelser` field the ES `_source` lacks. Confirmed on
+   three real Z-review coins (all `typeNumber: None` in our cache):
+   - kmk-86272 (2 Mark gold, Christian V): web `beskrivelser` = «to mark; **Bech nr. 876; B 783.a; Sch 3a**» — we have NO catalogue.
+   - kmk-86273 (Frederik IV gold, «Danmark, Ostindien»): «**Bech nr. 977**».
+   - kmk-298425 (Frederik III 1666 gold, 35,38 g): «**B 652**».
+
+   14 911 is a loose upper bound (most are out of project scope, and not all
+   have a recoverable `beskrivelser` index); the true affected set is the
+   subset of our KMK *seed* coins with no catalogue — unknown until re-harvest
+   or per-coin web check.
+
+**Why it's not a one-line parser fix.** The data is absent from our cache,
+not mis-parsed — so nothing to recover locally. And the ES endpoint that fed
+the cache is gone. Both point to the same fix.
+
+**The fix (the "new способ"):**
+
+1. **Migrate the harvester off the dead ES endpoint onto the web-rådata API**
+   (`samlinger.natmus.dk/KMM/object/<id>` → its embedded rådata JSON; Danish
+   keys `beskrivelser` / `maalinger` / `materialer` / `haendelser` /
+   `identifikation`). Reachable today via Apify rag-web-browser (JS-rendered
+   SPA; the rådata JSON is in the page). Decide harvest strategy: per-object
+   fetch vs. a bulk index — the ES `_manifest.json` scope filter no longer has
+   a live backing endpoint, so scope discovery needs rethinking too.
+2. **Extend `build_kmk_seed.py::_catalog()` to also parse `beskrivelser`** —
+   map `Sch N` → schou, `Bech N` / `B N` → the appropriate schema field or
+   `others` (confirm the exact catalogue each abbreviation denotes before
+   committing a mapping — `Sch` = Schou is safe; `Bech` / `B` need a source
+   check, do NOT guess per §0). Handle the multi-ref «a; b; c» form.
+3. **Re-harvest + re-seed** the in-scope KMK objects; the merger/absorb then
+   propagate the recovered indices to seed_unified + final. Expect many
+   previously catalogue-less KMK coins to gain their Bech/B/Schou index at
+   once.
+
+**Interim (variant B, does NOT close this):** for individual Z-review coins we
+actively need, recover the index by hand from the web page (per-coin curation
+or `_source_errata`) — small, high-value, but per-coin. Track those so the
+full re-harvest doesn't miss them.
+
+🔴 paused-flag: the ES endpoint being 403 is an external blocker; the
+web-rådata path is the way around it but is a substantial migration. Marked
+«найвищий» by the user 2026-07-19 — blocks other KMK harvest work.
+
 ### BF. ✅ Denmark 1514-1566 gap — Müntzfüße + coin promotion for the new lower-bound window  *(opened 2026-05-15, rescoped 2026-05-16 per §BI, **closed 2026-05-21**)* *(est: large)* *(type: research-applied + data)*
 
 **Closed 2026-05-21** via commits `0102073` (Fuß defs in fuesse.yml) + `9343cd6` (V2 denmark fuss_periods + 6 c3h promotions + 4 refs). User verdict 2026-05-21: (a) separate Flensborg Fuß + Danish `_fod` naming.
