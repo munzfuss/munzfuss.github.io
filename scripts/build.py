@@ -1480,6 +1480,95 @@ def generate_assets(theme: dict) -> None:
                 print(f"📎 Asset: site/assets/{src.name} ({dst.stat().st_size:,} bytes)")
 
 
+SITE_ORIGIN = "https://munzfuss.github.io"
+
+
+def generate_seo_files(languages: list[str], base_url: str) -> None:
+    """Emit site/sitemap.xml + site/robots.txt for the rendered pages.
+
+    Google reported the root as «Crawled – currently not indexed» — not a
+    technical block (the pages serve fine with canonical + hreflang), but the
+    site had no sitemap and no robots.txt at all. These give Google an explicit
+    map of every indexable URL with its hreflang cluster and a Sitemap:
+    directive; they don't force indexing (that's mostly authority + time) but
+    remove the one concrete technical gap.
+
+    Source of truth is the RENDERED site/ tree (not the Location objects, whose
+    `.coins` filtering differs between local/CI builds) — every page actually
+    deployed is listed exactly once at its canonical URL:
+      - landing: en/x-default → `/`, de → `/de/`, uk → `/uk/`
+        (site/en/ is skipped — it canonicalises to `/`)
+      - location: en → `/<loc>/en/`, de → `/<loc>/de/`, uk → `/<loc>/uk/`
+    Absolute URLs = SITE_ORIGIN + base_url (base_url is "" for the org-pages
+    root; a project sub-path would prefix every URL). Written into site/ (the
+    gitignored deploy artifact), not committed.
+    """
+    prefix = SITE_ORIGIN + (base_url or "")
+    lang_dirs = set(languages)  # {de, en, uk}
+
+    def _has_page(rel: str) -> bool:
+        return (SITE_DIR / rel / "index.html").is_file()
+
+    # Discover location dirs: top-level site/ subdirs that are NOT a language
+    # dir / assets, and that hold at least one <lang>/index.html.
+    loc_ids = []
+    for child in sorted(SITE_DIR.iterdir()):
+        if not child.is_dir() or child.name in lang_dirs or child.name == "assets":
+            continue
+        if any(_has_page(f"{child.name}/{l}") for l in languages):
+            loc_ids.append(child.name)
+
+    # Build clusters: (x_default_path, {lang: path}) for landing + each loc.
+    clusters: list[tuple[str, dict[str, str]]] = []
+    # Landing cluster — en/x-default collapse to root; only add langs that built.
+    landing = {"en": "/"}
+    for l in languages:
+        if l != "en" and _has_page(l):
+            landing[l] = f"/{l}/"
+    clusters.append(("/", landing))
+    # Location clusters — only include the langs that actually rendered.
+    for loc_id in loc_ids:
+        cl = {l: f"/{loc_id}/{l}/" for l in languages if _has_page(f"{loc_id}/{l}")}
+        if cl:
+            clusters.append((cl.get("en", next(iter(cl.values()))), cl))
+
+    XHTML = "http://www.w3.org/1999/xhtml"
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+             f'xmlns:xhtml="{XHTML}">']
+    for x_default, cl in clusters:
+        for lang in languages:
+            loc_path = cl.get(lang)
+            if not loc_path:
+                continue
+            lines.append("  <url>")
+            lines.append(f"    <loc>{prefix}{loc_path}</loc>")
+            # hreflang alternates — same cluster on every member URL.
+            for al in languages:
+                if cl.get(al):
+                    lines.append(
+                        f'    <xhtml:link rel="alternate" hreflang="{al}" '
+                        f'href="{prefix}{cl[al]}"/>')
+            if x_default:
+                lines.append(
+                    f'    <xhtml:link rel="alternate" hreflang="x-default" '
+                    f'href="{prefix}{x_default}"/>')
+            lines.append("  </url>")
+    lines.append("</urlset>")
+    (SITE_DIR / "sitemap.xml").write_text("\n".join(lines) + "\n",
+                                          encoding="utf-8")
+
+    robots = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        f"\nSitemap: {prefix}/sitemap.xml\n"
+    )
+    (SITE_DIR / "robots.txt").write_text(robots, encoding="utf-8")
+    n_urls = sum(len(cl) for _p, cl in clusters)
+    print(f"🗺️  SEO: site/sitemap.xml ({n_urls} URLs, {len(clusters)} clusters) "
+          f"+ site/robots.txt")
+
+
 def copy_static_root() -> None:
     """Copy verbatim root-level static files from /static → site/ root.
 
@@ -1744,6 +1833,12 @@ def main():
 
     generate_assets(theme)
     copy_static_root()
+
+    # sitemap.xml + robots.txt — only on a FULL build (needs every location and
+    # all three languages; a partial --location / --lang run would emit a
+    # truncated sitemap). CI always does a full build.
+    if v2_locations and not location_filter and languages == DEFAULT_LANGS:
+        generate_seo_files(languages, base_url)
 
     print()
     print(f"✅ Build complete: {SITE_DIR}/")
