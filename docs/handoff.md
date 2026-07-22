@@ -15,6 +15,37 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-23 — Numista re-seed drift fix: curator year-narrowing + source-union preserved
+
+**Bug**: a full re-run of `build_numista_seed.py` reverted three Christian IV
+English-model gold coins (numista 426503 / 426815 / 426842, Fr 52/50/53) from
+the curator's source-backed window `1606-1608` (verified:false) back to
+Numista's bare full-reign placeholder `1588-1648` («denomination undetermined»),
+AND dropped the curator-added danskmoent.dk Hede c4h21 citation from `426503`.
+
+**Two defects in `merge_one` (scripts/lib/seed_merge.py)**:
+  1. `sources` fell through to «fresh wins» → curator-added primary-source
+     citations were REPLACED by the Numista-only fresh list — a §9a violation
+     («Reconciliation NEVER replaces `sources` — always UNION»). **Fixed**: new
+     `_LIST_UNION_FIELDS = {sources}` + `_union_source_lists` (JSON-key dedup,
+     existing leads); union field also guarded from the stale-key drop loop.
+  2. year fields are neither globally curated nor source-immutable, so the
+     curator narrowing wasn't preserved. **Fixed**: `_curation_holds` (dict-form
+     + rationale) on the 3 seed entries freezing year_first/last/ranges/label +
+     year_verified. Verified against danskmoent c4h21 = Hede 21, undated,
+     portrait-dated ~1606-1611 → 1606-1608 is a legit source-backed narrowing;
+     1588-1648 is the Numista lazy reign placeholder = the regression.
+
+**Regression was latent at the SEED layer only** — final/danish_realm already
+carried 1606-1608 + c4h21 (+ KMM museum enrichment); the next merger+absorb
+after a bad re-seed would have propagated 1588-1648 upward. Fix stops it at source.
+
+Re-seed now byte-idempotent on danish_realm. Test:
+`tests/test_seed_merge_sources_and_year_hold.py` (10 cases). Full suite 573 green,
+`build --validate-only` clean. NOTE danskmoent c4h21 flags these as *prøvemønt*
+(trial coins) — a possible §9.1 pattern-exclusion question left for the curator;
+not acted on here.
+
 ## 2026-07-22 — §DB first recovery pass: KMK web-rådata catalogue harvest (dukat group)
 
 **The web page is server-rendered — bare `curl` works** (earlier
