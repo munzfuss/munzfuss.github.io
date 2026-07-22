@@ -62,6 +62,7 @@ Usage (in a builder):
 """
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 from typing import Any
@@ -221,7 +222,11 @@ def _union_cat_values(existing_v, fresh_v):
     deduped, order-preserving result; collapses a singleton back to
     scalar. String values dedup case-insensitively («406.1» vs «406.1»);
     non-string entries (e.g. KMRef dicts) pass through without string
-    de-dup so dict-form km is never corrupted. Existing values lead."""
+    de-dup so dict-form km is never corrupted. Structured entries
+    (KMRef dicts, nested lists) are deduped by normalised content so a
+    repeated re-seed stays idempotent (a re-run must not append a second
+    identical `{register: value}` dict to a list-form km). Existing
+    values lead."""
     items: list = []
     for src in (existing_v, fresh_v):
         for v in (src if isinstance(src, list) else [src]):
@@ -229,9 +234,20 @@ def _union_cat_values(existing_v, fresh_v):
                 items.append(v)
     out: list = []
     seen: set = set()
+    seen_struct: set = set()
     for v in items:
         if isinstance(v, (dict, list)):
-            out.append(v)  # structured (KMRef) — no string-key dedup
+            # Content-key dedup for structured entries (KMRef dicts etc.):
+            # a stable JSON serialisation with sorted keys so
+            # {'nor': '260', 'dk': '645'} == {'dk': '645', 'nor': '260'}.
+            try:
+                sk = json.dumps(v, sort_keys=True, ensure_ascii=False, default=str)
+            except TypeError:  # pragma: no cover — unserialisable, keep as-is
+                out.append(v)
+                continue
+            if sk not in seen_struct:
+                seen_struct.add(sk)
+                out.append(v)
             continue
         k = str(v).strip().lower()
         if k not in seen:
