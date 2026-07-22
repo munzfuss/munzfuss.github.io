@@ -1012,38 +1012,15 @@ no_merges:
   - members: [dk-hede-f5h10ab, dk-hede-f5h14]
     reason: |
       2 Dukat Frederik V: Hede 10 ≠ Hede 14. catalog_graph comp 9.
-  - members:
-      - kmk-290904
-      - kmk-348808
-    reason: |
-      Curator decision 2026-06-08 (Serhii, by natmus image). KMM 290904 is
-      Christian IV's 1627 PRO RELIGIONE Speciedaler struck at Wolfenbüttel
-      (crowned C4 monogram + «MON PRO RELIGIONE», typeNumber «Sch 5» / «B 718»,
-      28.35 g, 3 photos) — the Thirty-Years-War occupation coinage, a DIFFERENT
-      type from the København portrait Speciedaler Hede 55 (KMM 348808 «daler»
-      «H 55» 28.48 g). They merged only on year 1627 + weight ~28.4 g + Christian
-      IV + silver; split them.
-  - members:
-      - kmk-290904
-      - dk-hede-c4h55
-    reason: |
-      Curator decision 2026-06-08. Blocks the absorb from re-matching the
-      Wolfenbüttel PRO RELIGIONE Speciedaler (KMM 290904) into the København
-      Hede 55 (dk-hede-c4h55) via the false «Schou 5» collision — both are
-      Christian-IV «Schou 5», but the Wolfenbüttel war-coinage «Sch 5» is a
-      different cataloguing context from the København Speciedaler sub-variant
-      Schou 5. 290904 belongs in seed_unsorted (no confident curated host).
-  - members:
-      - kmk-348808
-      - kmk-291969
-    reason: |
-      Curator decision 2026-06-08. KMM 348808 (genuine Hede 55 «daler», no
-      mint) and KMM 291969 (Wolfenbüttel war coin «Sch 11», 1627) share NO
-      catalogue ref and merge only on weight+year+ruler — bundling a Wolfenbüttel
-      coin with a Hede 55 one, whose hede-55 tie then bypasses the §9.4 mint
-      discriminator at absorb. Split so 348808 joins its Hede 55 type and 291969
-      is correctly blocked from c4h55 by the mint discriminator (Wolfenbüttel ≠
-      Kopenhagen).
+  # NOTE 2026-07-22: three no_merges guards from 2026-06-08 (kmk-290904 vs
+  # kmk-348808 / dk-hede-c4h55; kmk-348808 vs kmk-291969) were REMOVED here:
+  # the Wolfenbüttel occupation coins (kmk-290904, kmk-291969) relocated to
+  # the herzogtum_braunschweig_lueneburg entity via the mint registry
+  # (§DB raadata re-seed), so the cross-merges those guards blocked are now
+  # structurally impossible — the per-entity merger never sees the pairs
+  # together. The curator's 2026-06-08 finding (Wolfenbüttel war coinage ≠
+  # København types) is thereby ENCODED in the entity routing itself; full
+  # original reasoning preserved in git history of this file.
   # --- dk-tid-173642 over-merge split (curator decision 2026-06-09, Serhii) ---
   # A stale absorb had fused THREE coins into the ucoin host dk-tid-173642:
   #   coin 1  Hede 44 Speciedaler 1596  (host + dk-hede-c4h44)

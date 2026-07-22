@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-07-22T11:25:00Z'
+generated_at: '2026-07-22T12:43:02Z'
 entity: erzbisthum_bremen_verden
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -58,6 +58,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/166747
         ref: KMM 166747 (Inv. FP 1558.30)
     verification_note: *id001
+    mintmaster: Bremen
+    mint: Tysk
   - id: kmk-168417
     fuss: seed_unsorted
     phase: kmk
@@ -575,6 +577,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/277039
         ref: KMM 277039 (Inv. KP 1281.32.1)
     verification_note: *id001
+    mint: Tysk
+    mintmaster: Bremen
   - id: kmk-279136
     fuss: seed_unsorted
     phase: kmk
@@ -642,6 +646,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/494413
         ref: KMM 494413 (Inv. KP 1417.17)
     verification_note: *id001
+    mintmaster: Bremen
+    mint: Tysk
   - id: kmk-584917
     fuss: seed_unsorted
     phase: kmk
@@ -808,7 +814,7 @@ coins:
     year_ranges:
       -   - 1641
           - 1641
-    weight_rough_verified: false
+    weight_rough_verified: true
     catalog:
       schou: '14'
     verified: false
@@ -817,3 +823,4 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/741043
         ref: KMM 741043 (Inv. FP 1780.330)
     verification_note: *id001
+    weight_rough_g: 0.54

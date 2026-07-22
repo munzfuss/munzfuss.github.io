@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `gottorp_duchy`.
-# Generated 2026-07-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-22 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
-# Input: 539 per-source seed entries.
+# Input: 541 per-source seed entries.
 # Output: 386 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gottorp_duchy
-generated_at: '2026-07-17'
+generated_at: '2026-07-22'
 coins:
   - id: unified-dk-bruun-14114
     fuss: seed_unsorted
@@ -2943,6 +2943,7 @@ coins:
           - 1713
     year_label: 1710, 1712-1713
     ruler: Charles Frederick
+    mintmaster: Gottorp
     mint: Tönning
     catalog:
       km: '201'
@@ -6090,6 +6091,7 @@ coins:
     kind: kurant
     nominal: 1 Penning
     ruler: Johan Adolph
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -6269,6 +6271,12 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Søsling
+    year_first: 1594
+    year_last: 1604
+    year_ranges:
+      -   - 1594
+          - 1604
+    year_label: 1594-1604
     ruler: Johan Adolf
     mint: Gottorp
     metal_verified: false
@@ -6288,6 +6296,12 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Søsling
+    year_first: 1594
+    year_last: 1604
+    year_ranges:
+      -   - 1594
+          - 1604
+    year_label: 1594-1604
     ruler: Johan Adolf
     mint: Gottorp
     metal_verified: false
@@ -6311,6 +6325,8 @@ coins:
     year_last: 1723
     year_label: '1723'
     ruler: Karl Frederik
+    mintmaster: Gottorp
+    mint: Tysk
     catalog:
       lange: '479'
     metal_verified: false
@@ -6334,6 +6350,8 @@ coins:
     year_last: 1682
     year_label: '1682'
     ruler: Christian Albert
+    mintmaster: Gottorp
+    mint: Tysk
     catalog:
       lange: '408'
     metal_verified: false
@@ -6459,6 +6477,9 @@ coins:
     year_last: 1621
     year_label: '1621'
     mint: Pinneberg
+    catalog:
+      others:
+        - Auk.Kat.# 5146
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -6481,6 +6502,12 @@ coins:
     year_label: '1690'
     ruler: Hans Adolf
     mint: Pløn
+    catalog:
+      lange: '759'
+      others:
+        - Auk.Kat.# 5033
+        - Auk.Kat.# 5032
+        - Auk.Kat.# 5031
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -6489,53 +6516,17 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/290995
         ref: KMM 290995 (Inv. KP 1590.75)
-    verification_note: *id001
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - kmk-290995
-  - id: unified-kmk-290996
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: ⅔ Thaler
-    year_first: 1690
-    year_last: 1690
-    year_label: '1690'
-    ruler: Hans Adolf
-    mint: Pløn
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/290996
         ref: KMM 290996 (Inv. KP 1590.74)
-    verification_note: *id001
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - kmk-290996
-  - id: unified-kmk-290997
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: ⅔ Thaler
-    year_first: 1690
-    year_last: 1690
-    year_label: '1690'
-    ruler: Hans Adolf
-    mint: Pløn
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/290997
         ref: KMM 290997 (Inv. KP 1590.73)
     verification_note: *id001
     issuing_entity: gottorp_duchy
     composed_of:
+      - kmk-290995
+      - kmk-290996
       - kmk-290997
   - id: unified-kmk-290998
     fuss: seed_unsorted
@@ -6546,6 +6537,9 @@ coins:
     year_last: 1683
     year_label: '1683'
     ruler: Christian Albrecht
+    catalog:
+      others:
+        - Auk.Kat.# 4858
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -7518,6 +7512,9 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Christian Albert
+    catalog:
+      others:
+        - Auk.Kat.# Nr
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -7536,6 +7533,9 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Frederik 3
+    catalog:
+      others:
+        - Auk.Kat.# Nr
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -7554,6 +7554,9 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Johan Adolf
+    catalog:
+      others:
+        - Auk.Kat.# Nr
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -7572,6 +7575,9 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Johan Adolf
+    catalog:
+      others:
+        - Auk.Kat.# Nr
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -7590,6 +7596,9 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Johan Adolf
+    catalog:
+      others:
+        - Auk.Kat.# Nr
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8119,6 +8128,7 @@ coins:
     year_last: 1597
     year_label: '1597'
     ruler: Johan Adolf
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8140,6 +8150,7 @@ coins:
     year_last: 1597
     year_label: '1597'
     ruler: Johan Adolf
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8161,6 +8172,7 @@ coins:
     year_last: 1595
     year_label: '1595'
     ruler: Johan Adolf
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8182,6 +8194,7 @@ coins:
     year_last: 1595
     year_label: '1595'
     ruler: Johan Adolf
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8203,6 +8216,7 @@ coins:
     year_last: 1594
     year_label: '1594'
     ruler: Johan Adolf
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8224,6 +8238,7 @@ coins:
     year_last: 1594
     year_label: '1594'
     ruler: Johan Adolf
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8245,6 +8260,7 @@ coins:
     year_last: 1594
     year_label: '1594'
     ruler: Johan Adolf
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8266,6 +8282,7 @@ coins:
     year_last: 1593
     year_label: '1593'
     ruler: Johan Adolf
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8290,6 +8307,7 @@ coins:
           - 1598
     year_label: 1595-1598
     ruler: Johan Adolf
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8899,12 +8917,31 @@ coins:
       - kmk-575767
       - kmk-575769
       - kmk-575771
+  - id: unified-kmk-584922
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Frederik 3
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/584922
+        ref: KMM 584922 (Inv. FP 1668.40.1)
+    verification_note: *id001
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-584922
   - id: unified-kmk-584923
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     nominal: (?)
     ruler: Frederik 3
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8917,12 +8954,31 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-584923
+  - id: unified-kmk-584928
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Frederik 3
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/584928
+        ref: KMM 584928 (Inv. FP 1668.34)
+    verification_note: *id001
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-584928
   - id: unified-kmk-584929
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     nominal: (?)
     ruler: Frederik 3
+    mint: Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -8944,6 +9000,8 @@ coins:
     year_last: 1710
     year_label: '1710'
     ruler: Karl Frederik
+    mintmaster: Gottorp
+    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false

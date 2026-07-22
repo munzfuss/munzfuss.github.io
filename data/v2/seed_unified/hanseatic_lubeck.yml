@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_lubeck`.
-# Generated 2026-07-12 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-22 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
-# Input: 187 per-source seed entries.
-# Output: 187 unified entries (one per physical coin).
+# Input: 191 per-source seed entries.
+# Output: 191 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_lubeck
-generated_at: '2026-07-12'
+generated_at: '2026-07-22'
 coins:
   - id: unified-dk-bruun-12891
     fuss: seed_unsorted
@@ -936,6 +936,8 @@ coins:
     year_first: 1559
     year_last: 1559
     year_label: '1559'
+    mintmaster: Lübeck
+    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -948,6 +950,28 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-131181
+  - id: unified-kmk-155963
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling
+    year_first: 1559
+    year_last: 1559
+    year_label: '1559'
+    catalog:
+      behrens: '428'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155963
+        ref: KMM 155963 (Inv. FP 2624.228)
+    verification_note: *id002
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - kmk-155963
   - id: unified-kmk-156462
     fuss: seed_unsorted
     phase: kmk
@@ -975,6 +999,8 @@ coins:
     year_first: 1537
     year_last: 1537
     year_label: '1537'
+    mintmaster: Lübeck
+    mint: Tysk
     catalog:
       jesse: '626'
     metal_verified: false
@@ -997,6 +1023,8 @@ coins:
     year_first: 1559
     year_last: 1559
     year_label: '1559'
+    mintmaster: Lübeck
+    mint: Tysk
     catalog:
       jesse: '654'
     metal_verified: false
@@ -1011,7 +1039,7 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-159799
-  - id: unified-kmk-159801
+  - id: unified-kmk-159800
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -1027,12 +1055,58 @@ coins:
     verified: false
     sources:
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159800
+        ref: KMM 159800 (Inv. FP 3931.161)
+    verification_note: *id002
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - kmk-159800
+  - id: unified-kmk-159801
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1559
+    year_last: 1559
+    year_label: '1559'
+    mintmaster: Lübeck
+    mint: Tysk
+    catalog:
+      jesse: '654'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/159801
         ref: KMM 159801 (Inv. FP 3931.160)
     verification_note: *id002
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-159801
+  - id: unified-kmk-159802
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1559
+    year_last: 1559
+    year_label: '1559'
+    catalog:
+      jesse: '654'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159802
+        ref: KMM 159802 (Inv. FP 3931.159)
+    verification_note: *id002
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - kmk-159802
   - id: unified-kmk-167349
     fuss: seed_unsorted
     phase: kmk
@@ -1080,6 +1154,28 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-167368
+  - id: unified-kmk-167371
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling
+    year_first: 1559
+    year_last: 1559
+    year_label: '1559'
+    catalog:
+      behrens: '428'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167371
+        ref: KMM 167371 (Inv. FP 1892.45)
+    verification_note: *id002
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - kmk-167371
   - id: unified-kmk-167372
     fuss: seed_unsorted
     phase: kmk
@@ -1157,6 +1253,8 @@ coins:
     year_first: 1604
     year_last: 1604
     year_label: '1604'
+    mintmaster: Lübeck
+    mint: Tysk
     catalog:
       behrens: '438'
     metal_verified: false
@@ -1896,6 +1994,8 @@ coins:
     year_first: 1622
     year_last: 1622
     year_label: '1622'
+    mintmaster: Lübeck
+    mint: Tysk
     catalog:
       behrens: '279'
     metal: silver
@@ -1922,6 +2022,8 @@ coins:
     year_first: 1632
     year_last: 1632
     year_label: '1632'
+    mintmaster: Lübeck
+    mint: Tysk
     catalog:
       behrens: '270'
     metal: silver
@@ -1948,6 +2050,8 @@ coins:
     year_first: 1628
     year_last: 1628
     year_label: '1628'
+    mintmaster: Lübeck
+    mint: Tysk
     catalog:
       behrens: '267'
     metal: silver
@@ -1974,6 +2078,8 @@ coins:
     year_first: 1622
     year_last: 1622
     year_label: '1622'
+    mintmaster: Lübeck
+    mint: Tysk
     catalog:
       behrens: '262'
     metal: silver
@@ -2000,6 +2106,8 @@ coins:
     year_first: 1619
     year_last: 1619
     year_label: '1619'
+    mintmaster: Lübeck
+    mint: Tysk
     catalog:
       behrens: '259'
     metal: silver
@@ -2026,6 +2134,8 @@ coins:
     year_first: 1641
     year_last: 1641
     year_label: '1641'
+    mintmaster: Lübeck
+    mint: Tysk
     catalog:
       behrens: '171'
     metal: silver
@@ -2052,6 +2162,8 @@ coins:
     year_first: 1609
     year_last: 1609
     year_label: '1609'
+    mintmaster: Lübeck
+    mint: Tysk
     catalog:
       behrens: 135b
     metal: silver
@@ -2075,6 +2187,8 @@ coins:
     year_first: 1635
     year_last: 1635
     year_label: '1635'
+    mintmaster: Lübeck
+    mint: Tysk
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -2096,6 +2210,8 @@ coins:
     year_first: 1632
     year_last: 1632
     year_label: '1632'
+    mintmaster: Lübeck
+    mint: Tysk
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -2117,6 +2233,8 @@ coins:
     year_first: 1631
     year_last: 1631
     year_label: '1631'
+    mintmaster: Lübeck
+    mint: Tysk
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -2138,6 +2256,8 @@ coins:
     year_first: 1628
     year_last: 1628
     year_label: '1628'
+    mintmaster: Lübeck
+    mint: Tysk
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -2159,6 +2279,8 @@ coins:
     year_first: 1610
     year_last: 1610
     year_label: '1610'
+    mintmaster: Lübeck
+    mint: Tysk
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -2180,6 +2302,8 @@ coins:
     year_first: 1604
     year_last: 1604
     year_label: '1604'
+    mintmaster: Lübeck
+    mint: Tysk
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -2201,6 +2325,8 @@ coins:
     year_first: 1587
     year_last: 1587
     year_label: '1587'
+    mintmaster: Lübeck
+    mint: Tysk
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -2220,6 +2346,11 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Johan Frederik
+    mintmaster: Lübeck
+    mint: Tysk
+    catalog:
+      others:
+        - Auk.Kat.# Nr
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -2238,6 +2369,11 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Johan Frederik
+    mintmaster: Lübeck
+    mint: Tysk
+    catalog:
+      others:
+        - Auk.Kat.# Nr
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -2258,6 +2394,8 @@ coins:
     year_first: 1595
     year_last: 1595
     year_label: '1595'
+    mintmaster: Lübeck
+    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -2278,6 +2416,8 @@ coins:
     year_first: 1592
     year_last: 1592
     year_label: '1592'
+    mintmaster: Lübeck
+    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -2298,6 +2438,8 @@ coins:
     year_first: 1559
     year_last: 1559
     year_label: '1559'
+    mintmaster: Lübeck
+    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -2318,6 +2460,8 @@ coins:
     year_first: 1537
     year_last: 1537
     year_label: '1537'
+    mintmaster: Lübeck
+    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -2338,6 +2482,8 @@ coins:
     year_first: 1537
     year_last: 1537
     year_label: '1537'
+    mintmaster: Lübeck
+    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -2664,6 +2810,8 @@ coins:
     year_first: 1537
     year_last: 1537
     year_label: '1537'
+    mintmaster: Lübeck
+    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false

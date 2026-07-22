@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `landgrafschaft_hessen_kassel`.
-# Generated 2026-07-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-22 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/landgrafschaft_hessen_kassel.yml across all sources.
 #
-# Input: 439 per-source seed entries.
-# Output: 419 unified entries (one per physical coin).
+# Input: 442 per-source seed entries.
+# Output: 422 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: landgrafschaft_hessen_kassel
-generated_at: '2026-07-09'
+generated_at: '2026-07-22'
 coins:
   - id: unified-dk-bruun-12844
     fuss: seed_unsorted
@@ -1040,6 +1040,8 @@ coins:
           - 1751
     year_label: 1720-1751
     ruler: Frederik 1
+    mintmaster: Hessen
+    mint: Tysk
     metal: copper
     metal_verified: true
     weight_rough_verified: false
@@ -1056,7 +1058,7 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - kmk-114747
-  - id: unified-kmk-114751
+  - id: unified-kmk-114748
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -1075,12 +1077,89 @@ coins:
     verified: false
     sources:
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/114748
+        ref: KMM 114748 (Inv. GP 888.989)
+    verification_note: *id002
+    issuing_entity: landgrafschaft_hessen_kassel
+    composed_of:
+      - kmk-114748
+  - id: unified-kmk-114750
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    year_first: 1720
+    year_last: 1751
+    year_ranges:
+      -   - 1720
+          - 1751
+    year_label: 1720-1751
+    ruler: Frederik 1
+    metal: copper
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/114750
+        ref: KMM 114750 (Inv. GP 888.991)
+    verification_note: *id002
+    issuing_entity: landgrafschaft_hessen_kassel
+    composed_of:
+      - kmk-114750
+  - id: unified-kmk-114751
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    year_first: 1720
+    year_last: 1751
+    year_ranges:
+      -   - 1720
+          - 1751
+    year_label: 1720-1751
+    ruler: Frederik 1
+    mintmaster: Hessen
+    mint: Tysk
+    metal: copper
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/114751
         ref: KMM 114751 (Inv. GP 888.992)
     verification_note: *id002
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - kmk-114751
+  - id: unified-kmk-114753
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    year_first: 1720
+    year_last: 1751
+    year_ranges:
+      -   - 1720
+          - 1751
+    year_label: 1720-1751
+    ruler: Frederik 1
+    metal: copper
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/114753
+        ref: KMM 114753 (Inv. GP 888.994)
+    verification_note: *id002
+    issuing_entity: landgrafschaft_hessen_kassel
+    composed_of:
+      - kmk-114753
   - id: unified-kmk-114754
     fuss: seed_unsorted
     phase: kmk
@@ -1093,6 +1172,8 @@ coins:
           - 1751
     year_label: 1720-1751
     ruler: Frederik 1
+    mintmaster: Hessen
+    mint: Tysk
     metal: copper
     metal_verified: true
     weight_rough_verified: false
@@ -1139,6 +1220,8 @@ coins:
     year_last: 1899
     year_label: '1899'
     ruler: Ernst Ludvig
+    mintmaster: Hessen
+    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -1160,6 +1243,8 @@ coins:
     year_last: 1895
     year_label: '1895'
     ruler: Ernst Ludvig
+    mintmaster: Hessen
+    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false

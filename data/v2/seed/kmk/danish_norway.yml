@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-07-22T11:22:52Z'
+generated_at: '2026-07-22T12:39:38Z'
 entity: danish_norway
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -26,6 +26,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '3'
+      others:
+        - LEB# 10949
     verified: false
     sources:
       - type: museum
@@ -102,6 +104,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 37G
+      others:
+        - LEB# 10407
     verified: false
     sources:
       - type: museum
@@ -127,6 +131,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '3'
+      others:
+        - LEB# 10152
     verified: false
     sources:
       - type: museum
@@ -146,6 +152,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '39'
+      others:
+        - LEB# 10083
     verified: false
     sources:
       - type: museum
@@ -171,6 +179,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 68A
+      others:
+        - LEB# 9590
     verified: false
     sources:
       - type: museum
@@ -196,6 +206,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 9A
+      others:
+        - LEB# 9355
     verified: false
     sources:
       - type: museum
@@ -221,6 +233,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '1'
+      others:
+        - LEB# 9306
     verified: false
     sources:
       - type: museum
@@ -491,7 +505,7 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_norway
-    entity_classified_via: nation
+    entity_classified_via: mint
     nominal: 2 Mark
     metal: silver
     metal_verified: true
@@ -513,6 +527,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/131752
         ref: KMM 131752 (Inv. FP 4462.1)
     verification_note: *id001
+    mint: Christiania
   - id: kmk-133286
     fuss: seed_unsorted
     phase: kmk
@@ -766,6 +781,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/137202
         ref: KMM 137202 (Inv. RP 61.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 1148
   - id: kmk-137203
     fuss: seed_unsorted
     phase: kmk
@@ -785,6 +803,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/137203
         ref: KMM 137203 (Inv. RP 62.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 782
   - id: kmk-139303
     fuss: seed_unsorted
     phase: kmk
@@ -804,6 +825,32 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139303
         ref: KMM 139303 (Inv. KP 1715.416)
+    verification_note: *id001
+  - id: kmk-139632
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 4 Mark
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 5
+    year_first: 1672
+    year_last: 1673
+    year_label: 1672-1673
+    year_ranges:
+      -   - 1672
+          - 1673
+    weight_rough_verified: false
+    catalog:
+      schou: '43'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/139632
+        ref: KMM 139632 (Inv. KP 1715.87)
     verification_note: *id001
   - id: kmk-139649
     fuss: seed_unsorted
@@ -923,6 +970,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/139745
         ref: KMM 139745 (Inv. RP 131.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 753
   - id: kmk-139746
     fuss: seed_unsorted
     phase: kmk
@@ -942,6 +992,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/139746
         ref: KMM 139746 (Inv. RP 132.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 758
   - id: kmk-139747
     fuss: seed_unsorted
     phase: kmk
@@ -961,6 +1014,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/139747
         ref: KMM 139747 (Inv. RP 133.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 790
   - id: kmk-139748
     fuss: seed_unsorted
     phase: kmk
@@ -980,6 +1036,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/139748
         ref: KMM 139748 (Inv. RP 134.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 793a
   - id: kmk-139757
     fuss: seed_unsorted
     phase: kmk
@@ -999,6 +1058,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/139757
         ref: KMM 139757 (Inv. RP 143.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 897
   - id: kmk-139758
     fuss: seed_unsorted
     phase: kmk
@@ -1018,6 +1080,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/139758
         ref: KMM 139758 (Inv. RP 144.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 906
   - id: kmk-139759
     fuss: seed_unsorted
     phase: kmk
@@ -1037,6 +1102,16 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/139759
         ref: KMM 139759 (Inv. RP 145.1)
     verification_note: *id001
+    year_ranges:
+      -   - 1642
+          - 1642
+    year_label: '1642'
+    year_last: 1642
+    catalog:
+      schou: '55'
+      others:
+        - B# 938
+    year_first: 1642
   - id: kmk-139761
     fuss: seed_unsorted
     phase: kmk
@@ -1056,6 +1131,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/139761
         ref: KMM 139761 (Inv. RP 147.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 1009
   - id: kmk-148142
     fuss: seed_unsorted
     phase: kmk
@@ -6283,7 +6361,7 @@ coins:
     year_ranges:
       -   - 1686
           - 1686
-    weight_rough_verified: false
+    weight_rough_verified: true
     catalog:
       schou: '16'
     verified: false
@@ -6292,6 +6370,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/148612
         ref: KMM 148612 (Inv. KP 1656.1701)
     verification_note: *id001
+    weight_rough_g: 22.14
   - id: kmk-148613
     fuss: seed_unsorted
     phase: kmk
@@ -16835,7 +16914,7 @@ coins:
     mint: Bergen
     mint_verified: true
     ruler: Frederik 1
-    weight_rough_verified: false
+    weight_rough_verified: true
     catalog:
       schou: '22'
     verified: false
@@ -16844,6 +16923,13 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/150209
         ref: KMM 150209 (Inv. KP 1656.104)
     verification_note: *id001
+    weight_rough_g: 1.86
+    year_ranges:
+      -   - 1530
+          - 1530
+    year_label: '1530'
+    year_last: 1530
+    year_first: 1530
   - id: kmk-150258
     fuss: seed_unsorted
     phase: kmk
@@ -17188,6 +17274,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/152005
         ref: KMM 152005 (Inv. FP 3574.289)
     verification_note: *id001
+    year_ranges:
+      -   - 1713
+          - 1713
+    year_label: '1713'
+    year_last: 1713
+    year_first: 1713
   - id: kmk-152013
     fuss: seed_unsorted
     phase: kmk
@@ -17264,6 +17356,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/152016
         ref: KMM 152016 (Inv. FP 3574.278)
     verification_note: *id001
+    year_ranges:
+      -   - 1675
+          - 1675
+    year_label: '1675'
+    year_last: 1675
+    year_first: 1675
   - id: kmk-152017
     fuss: seed_unsorted
     phase: kmk
@@ -17283,6 +17381,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/152017
         ref: KMM 152017 (Inv. FP 3574.277)
     verification_note: *id001
+    year_ranges:
+      -   - 1683
+          - 1683
+    year_label: '1683'
+    year_last: 1683
+    year_first: 1683
   - id: kmk-152019
     fuss: seed_unsorted
     phase: kmk
@@ -17340,6 +17444,31 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/152027
         ref: KMM 152027 (Inv. FP 3574.267)
     verification_note: *id001
+    year_ranges:
+      -   - 1656
+          - 1656
+    year_label: '1656'
+    year_last: 1656
+    year_first: 1656
+  - id: kmk-152028
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: nation
+    nominal: 2 Skilling
+    metal_verified: false
+    mint_verified: false
+    ruler: Frederik 3
+    weight_rough_verified: false
+    catalog:
+      hede: '70'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/152028
+        ref: KMM 152028 (Inv. FP 3574.266)
+    verification_note: *id001
   - id: kmk-152030
     fuss: seed_unsorted
     phase: kmk
@@ -17377,6 +17506,32 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/152031
         ref: KMM 152031 (Inv. FP 3574.263)
+    verification_note: *id001
+  - id: kmk-155168
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling
+    metal_verified: false
+    mint: Kongsberg
+    mint_verified: true
+    ruler: Frederik 5
+    year_first: 1765
+    year_last: 1765
+    year_label: '1765'
+    year_ranges:
+      -   - 1765
+          - 1765
+    weight_rough_verified: false
+    catalog:
+      hede: '4'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155168
+        ref: KMM 155168 (Inv. FP 3144.13)
     verification_note: *id001
   - id: kmk-155251
     fuss: seed_unsorted
@@ -18691,6 +18846,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/156776
         ref: KMM 156776 (Inv. RP 417.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 149
   - id: kmk-156777
     fuss: seed_unsorted
     phase: kmk
@@ -18710,6 +18868,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/156777
         ref: KMM 156777 (Inv. RP 418.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 138
   - id: kmk-156778
     fuss: seed_unsorted
     phase: kmk
@@ -18729,6 +18890,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/156778
         ref: KMM 156778 (Inv. RP 419.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 132
   - id: kmk-156779
     fuss: seed_unsorted
     phase: kmk
@@ -18747,6 +18911,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/156779
         ref: KMM 156779 (Inv. RP 420.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 145
   - id: kmk-156804
     fuss: seed_unsorted
     phase: kmk
@@ -18766,6 +18933,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/156804
         ref: KMM 156804 (Inv. RP 445.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 113f
   - id: kmk-156805
     fuss: seed_unsorted
     phase: kmk
@@ -18785,6 +18955,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/156805
         ref: KMM 156805 (Inv. RP 446.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 117f
   - id: kmk-157065
     fuss: seed_unsorted
     phase: kmk
@@ -23270,6 +23443,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/160378
         ref: KMM 160378 (Inv. FP 3326.12)
     verification_note: *id001
+    catalog:
+      hede: 71B
   - id: kmk-160380
     fuss: seed_unsorted
     phase: kmk
@@ -23293,6 +23468,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/160380
         ref: KMM 160380 (Inv. FP 3326.11)
     verification_note: *id001
+    catalog:
+      hede: 71B
   - id: kmk-160382
     fuss: seed_unsorted
     phase: kmk
@@ -23316,6 +23493,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/160382
         ref: KMM 160382 (Inv. FP 3326.10)
     verification_note: *id001
+    catalog:
+      hede: 71B
   - id: kmk-160384
     fuss: seed_unsorted
     phase: kmk
@@ -23339,6 +23518,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/160384
         ref: KMM 160384 (Inv. FP 3326.9)
     verification_note: *id001
+    catalog:
+      hede: 71B
   - id: kmk-161135
     fuss: seed_unsorted
     phase: kmk
@@ -23411,6 +23592,1146 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/161246
         ref: KMM 161246 (Inv. FP 4408.9)
+    verification_note: *id001
+  - id: kmk-167021
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1644
+    year_last: 1644
+    year_label: '1644'
+    year_ranges:
+      -   - 1644
+          - 1644
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167021
+        ref: KMM 167021 (Inv. FP 1780.110)
+    verification_note: *id001
+  - id: kmk-167026
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1644
+    year_last: 1644
+    year_label: '1644'
+    year_ranges:
+      -   - 1644
+          - 1644
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167026
+        ref: KMM 167026 (Inv. FP 1780.106)
+    verification_note: *id001
+  - id: kmk-167043
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1642
+    year_last: 1642
+    year_label: '1642'
+    year_ranges:
+      -   - 1642
+          - 1642
+    weight_rough_verified: false
+    catalog:
+      hede: '16'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167043
+        ref: KMM 167043 (Inv. FP 1780.89)
+    verification_note: *id001
+  - id: kmk-167045
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1643
+    year_last: 1643
+    year_label: '1643'
+    year_ranges:
+      -   - 1643
+          - 1643
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167045
+        ref: KMM 167045 (Inv. FP 1780.90)
+    verification_note: *id001
+  - id: kmk-167046
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1643
+    year_last: 1643
+    year_label: '1643'
+    year_ranges:
+      -   - 1643
+          - 1643
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167046
+        ref: KMM 167046 (Inv. FP 1780.91)
+    verification_note: *id001
+  - id: kmk-167048
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1644
+    year_last: 1644
+    year_label: '1644'
+    year_ranges:
+      -   - 1644
+          - 1644
+    weight_rough_verified: false
+    catalog:
+      hede: '17'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167048
+        ref: KMM 167048 (Inv. FP 1780.102)
+    verification_note: *id001
+  - id: kmk-167050
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1644
+    year_last: 1644
+    year_label: '1644'
+    year_ranges:
+      -   - 1644
+          - 1644
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167050
+        ref: KMM 167050 (Inv. FP 1780.104)
+    verification_note: *id001
+  - id: kmk-167067
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Søsling lybsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1645
+    year_last: 1645
+    year_label: '1645'
+    year_ranges:
+      -   - 1645
+          - 1645
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167067
+        ref: KMM 167067 (Inv. FP 1780.157)
+    verification_note: *id001
+  - id: kmk-167094
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1648
+    year_last: 1648
+    year_label: '1648'
+    year_ranges:
+      -   - 1648
+          - 1648
+    weight_rough_verified: false
+    catalog:
+      hede: '17'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167094
+        ref: KMM 167094 (Inv. FP 1780.187)
+    verification_note: *id001
+  - id: kmk-167101
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1648
+    year_last: 1648
+    year_label: '1648'
+    year_ranges:
+      -   - 1648
+          - 1648
+    weight_rough_verified: false
+    catalog:
+      hede: '17'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167101
+        ref: KMM 167101 (Inv. FP 1780.188)
+    verification_note: *id001
+  - id: kmk-167102
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1648
+    year_last: 1648
+    year_label: '1648'
+    year_ranges:
+      -   - 1648
+          - 1648
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167102
+        ref: KMM 167102 (Inv. FP 1780.195)
+    verification_note: *id001
+  - id: kmk-167103
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1648
+    year_last: 1648
+    year_label: '1648'
+    year_ranges:
+      -   - 1648
+          - 1648
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167103
+        ref: KMM 167103 (Inv. FP 1780.194)
+    verification_note: *id001
+  - id: kmk-167107
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1648
+    year_last: 1648
+    year_label: '1648'
+    year_ranges:
+      -   - 1648
+          - 1648
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167107
+        ref: KMM 167107 (Inv. FP 1780.190)
+    verification_note: *id001
+  - id: kmk-167108
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1648
+    year_last: 1648
+    year_label: '1648'
+    year_ranges:
+      -   - 1648
+          - 1648
+    weight_rough_verified: false
+    catalog:
+      hede: '17'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167108
+        ref: KMM 167108 (Inv. FP 1780.189)
+    verification_note: *id001
+  - id: kmk-167111
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1646
+    year_last: 1646
+    year_label: '1646'
+    year_ranges:
+      -   - 1646
+          - 1646
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167111
+        ref: KMM 167111 (Inv. FP 1780.158)
+    verification_note: *id001
+  - id: kmk-167113
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1646
+    year_last: 1646
+    year_label: '1646'
+    year_ranges:
+      -   - 1646
+          - 1646
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167113
+        ref: KMM 167113 (Inv. FP 1780.162)
+    verification_note: *id001
+  - id: kmk-167116
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1647
+    year_last: 1647
+    year_label: '1647'
+    year_ranges:
+      -   - 1647
+          - 1647
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167116
+        ref: KMM 167116 (Inv. FP 1780.167)
+    verification_note: *id001
+  - id: kmk-167117
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1647
+    year_last: 1647
+    year_label: '1647'
+    year_ranges:
+      -   - 1647
+          - 1647
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167117
+        ref: KMM 167117 (Inv. FP 1780.168)
+    verification_note: *id001
+  - id: kmk-167126
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1646
+    year_last: 1646
+    year_label: '1646'
+    year_ranges:
+      -   - 1646
+          - 1646
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167126
+        ref: KMM 167126 (Inv. FP 1780.159)
+    verification_note: *id001
+  - id: kmk-167127
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1647
+    year_last: 1647
+    year_label: '1647'
+    year_ranges:
+      -   - 1647
+          - 1647
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167127
+        ref: KMM 167127 (Inv. FP 1780.166)
+    verification_note: *id001
+  - id: kmk-167128
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1647
+    year_last: 1647
+    year_label: '1647'
+    year_ranges:
+      -   - 1647
+          - 1647
+    weight_rough_verified: false
+    catalog:
+      hede: '17'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167128
+        ref: KMM 167128 (Inv. FP 1780.164)
+    verification_note: *id001
+  - id: kmk-167129
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1647
+    year_last: 1647
+    year_label: '1647'
+    year_ranges:
+      -   - 1647
+          - 1647
+    weight_rough_verified: false
+    catalog:
+      hede: '17'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167129
+        ref: KMM 167129 (Inv. FP 1780.163)
+    verification_note: *id001
+  - id: kmk-167130
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1647
+    year_last: 1647
+    year_label: '1647'
+    year_ranges:
+      -   - 1647
+          - 1647
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167130
+        ref: KMM 167130 (Inv. FP 1780.165)
+    verification_note: *id001
+  - id: kmk-167150
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1648
+    year_last: 1648
+    year_label: '1648'
+    year_ranges:
+      -   - 1648
+          - 1648
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167150
+        ref: KMM 167150 (Inv. FP 1780.203)
+    verification_note: *id001
+  - id: kmk-167156
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Christian 4
+    year_first: 1648
+    year_last: 1648
+    year_label: '1648'
+    year_ranges:
+      -   - 1648
+          - 1648
+    weight_rough_verified: false
+    catalog:
+      hede: '18'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167156
+        ref: KMM 167156 (Inv. FP 1780.200)
+    verification_note: *id001
+  - id: kmk-167166
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1649
+    year_last: 1649
+    year_label: '1649'
+    year_ranges:
+      -   - 1649
+          - 1649
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167166
+        ref: KMM 167166 (Inv. FP 1780.256)
+    verification_note: *id001
+  - id: kmk-167174
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1649
+    year_last: 1649
+    year_label: '1649'
+    year_ranges:
+      -   - 1649
+          - 1649
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167174
+        ref: KMM 167174 (Inv. FP 1780.253)
+    verification_note: *id001
+  - id: kmk-167197
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1649
+    year_last: 1649
+    year_label: '1649'
+    year_ranges:
+      -   - 1649
+          - 1649
+    weight_rough_verified: false
+    catalog:
+      hede: '70'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167197
+        ref: KMM 167197 (Inv. FP 1780.244)
+    verification_note: *id001
+  - id: kmk-167200
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1649
+    year_last: 1649
+    year_label: '1649'
+    year_ranges:
+      -   - 1649
+          - 1649
+    weight_rough_verified: false
+    catalog:
+      hede: '70'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167200
+        ref: KMM 167200 (Inv. FP 1780.245)
+    verification_note: *id001
+  - id: kmk-167201
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1650
+    year_last: 1650
+    year_label: '1650'
+    year_ranges:
+      -   - 1650
+          - 1650
+    weight_rough_verified: false
+    catalog:
+      hede: 71A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167201
+        ref: KMM 167201 (Inv. FP 1780.290)
+    verification_note: *id001
+  - id: kmk-167221
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1650
+    year_last: 1650
+    year_label: '1650'
+    year_ranges:
+      -   - 1650
+          - 1650
+    weight_rough_verified: false
+    catalog:
+      hede: 71A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167221
+        ref: KMM 167221 (Inv. FP 1780.275)
+    verification_note: *id001
+  - id: kmk-167223
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1651
+    year_last: 1651
+    year_label: '1651'
+    year_ranges:
+      -   - 1651
+          - 1651
+    weight_rough_verified: false
+    catalog:
+      hede: 70A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167223
+        ref: KMM 167223 (Inv. FP 1780.302)
+    verification_note: *id001
+  - id: kmk-167225
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1650
+    year_last: 1650
+    year_label: '1650'
+    year_ranges:
+      -   - 1650
+          - 1650
+    weight_rough_verified: false
+    catalog:
+      hede: 70A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167225
+        ref: KMM 167225 (Inv. FP 1780.271)
+    verification_note: *id001
+  - id: kmk-167235
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1650
+    year_last: 1650
+    year_label: '1650'
+    year_ranges:
+      -   - 1650
+          - 1650
+    weight_rough_verified: false
+    catalog:
+      hede: 71A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167235
+        ref: KMM 167235 (Inv. FP 1780.279)
+    verification_note: *id001
+  - id: kmk-167236
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1651
+    year_last: 1651
+    year_label: '1651'
+    year_ranges:
+      -   - 1651
+          - 1651
+    weight_rough_verified: false
+    catalog:
+      hede: '71'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167236
+        ref: KMM 167236 (Inv. FP 1780.314)
+    verification_note: *id001
+  - id: kmk-167245
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1651
+    year_last: 1651
+    year_label: '1651'
+    year_ranges:
+      -   - 1651
+          - 1651
+    weight_rough_verified: false
+    catalog:
+      hede: 71B
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167245
+        ref: KMM 167245 (Inv. FP 1780.306)
+    verification_note: *id001
+  - id: kmk-167246
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1651
+    year_last: 1651
+    year_label: '1651'
+    year_ranges:
+      -   - 1651
+          - 1651
+    weight_rough_verified: false
+    catalog:
+      hede: 70B
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167246
+        ref: KMM 167246 (Inv. FP 1780.303)
+    verification_note: *id001
+  - id: kmk-167251
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1651
+    year_last: 1651
+    year_label: '1651'
+    year_ranges:
+      -   - 1651
+          - 1651
+    weight_rough_verified: false
+    catalog:
+      hede: 71B
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167251
+        ref: KMM 167251 (Inv. FP 1780.310)
+    verification_note: *id001
+  - id: kmk-167254
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1652
+    year_last: 1652
+    year_label: '1652'
+    year_ranges:
+      -   - 1652
+          - 1652
+    weight_rough_verified: false
+    catalog:
+      hede: 71B
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167254
+        ref: KMM 167254 (Inv. FP 1780.322)
+    verification_note: *id001
+  - id: kmk-167255
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1652
+    year_last: 1652
+    year_label: '1652'
+    year_ranges:
+      -   - 1652
+          - 1652
+    weight_rough_verified: false
+    catalog:
+      hede: 71B
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167255
+        ref: KMM 167255 (Inv. FP 1780.321)
+    verification_note: *id001
+  - id: kmk-167256
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1652
+    year_last: 1652
+    year_label: '1652'
+    year_ranges:
+      -   - 1652
+          - 1652
+    weight_rough_verified: false
+    catalog:
+      hede: 71B
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167256
+        ref: KMM 167256 (Inv. FP 1780.320)
+    verification_note: *id001
+  - id: kmk-167258
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1652
+    year_last: 1652
+    year_label: '1652'
+    year_ranges:
+      -   - 1652
+          - 1652
+    weight_rough_verified: false
+    catalog:
+      hede: 71B
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167258
+        ref: KMM 167258 (Inv. FP 1780.323)
+    verification_note: *id001
+  - id: kmk-167260
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1649
+    year_last: 1658
+    year_label: 1649-1658
+    year_ranges:
+      -   - 1649
+          - 1658
+    weight_rough_verified: false
+    catalog:
+      hede: '71'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167260
+        ref: KMM 167260 (Inv. FP 1780.325)
+    verification_note: *id001
+  - id: kmk-167261
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 2 Skilling, norsk
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1653
+    year_last: 1653
+    year_label: '1653'
+    year_ranges:
+      -   - 1653
+          - 1653
+    weight_rough_verified: false
+    catalog:
+      hede: 70B
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167261
+        ref: KMM 167261 (Inv. FP 1780.324)
     verification_note: *id001
   - id: kmk-167999
     fuss: seed_unsorted
@@ -24042,13 +25363,17 @@ coins:
     year_ranges:
       -   - 1481
           - 1513
-    weight_rough_verified: false
+    weight_rough_verified: true
     verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/178001
         ref: KMM 178001 (Inv. BP 668.1)
     verification_note: *id001
+    weight_rough_g: 2.22
+    catalog:
+      galster: '148'
+      schou: '92'
   - id: kmk-185025
     fuss: seed_unsorted
     phase: kmk
@@ -29645,6 +30970,8 @@ coins:
     catalog:
       hede: '8'
       schou: '10'
+      others:
+        - B# 25
     verified: false
     sources:
       - type: museum
@@ -30622,6 +31949,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/274998
         ref: KMM 274998 (Inv. RP 690.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 155
   - id: kmk-276448
     fuss: seed_unsorted
     phase: kmk
@@ -30913,6 +32243,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '30'
+      others:
+        - B# 382
     verified: false
     sources:
       - type: museum
@@ -30967,6 +32299,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '35'
+      others:
+        - B# 568
     verified: false
     sources:
       - type: museum
@@ -31048,6 +32382,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '1'
+      others:
+        - B# 25
     verified: false
     sources:
       - type: museum
@@ -31075,6 +32411,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '1'
+      others:
+        - B# 91
     verified: false
     sources:
       - type: museum
@@ -31129,6 +32467,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '17'
+      others:
+        - B# 375
     verified: false
     sources:
       - type: museum
@@ -31156,6 +32496,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '7'
+      others:
+        - B# 372
     verified: false
     sources:
       - type: museum
@@ -31183,6 +32525,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '1'
+      others:
+        - B# 401
     verified: false
     sources:
       - type: museum
@@ -31208,6 +32552,8 @@ coins:
     weight_rough_verified: false
     catalog:
       schou: '41'
+      others:
+        - B# 740
     verified: false
     sources:
       - type: museum
@@ -31235,6 +32581,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '11'
+      others:
+        - B# 9
     verified: false
     sources:
       - type: museum
@@ -31289,6 +32637,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '13'
+      others:
+        - B# 11
     verified: false
     sources:
       - type: museum
@@ -31316,6 +32666,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '6'
+      others:
+        - B# 10A
     verified: false
     sources:
       - type: museum
@@ -31375,6 +32727,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/278782
         ref: KMM 278782 (Inv. KP 570.2)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 116a
   - id: kmk-278784
     fuss: seed_unsorted
     phase: kmk
@@ -31479,6 +32834,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '12'
+      others:
+        - B# 10
     verified: false
     sources:
       - type: museum
@@ -31808,6 +33165,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/279764
         ref: KMM 279764 (Inv. RP 751.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 1010
   - id: kmk-279765
     fuss: seed_unsorted
     phase: kmk
@@ -31829,6 +33189,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '44'
+      others:
+        - B# 1099
     verified: false
     sources:
       - type: museum
@@ -31856,6 +33218,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '45'
+      others:
+        - B# 1100
     verified: false
     sources:
       - type: museum
@@ -31883,6 +33247,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '3'
+      others:
+        - B# 804
     verified: false
     sources:
       - type: museum
@@ -31910,6 +33276,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '12'
+      others:
+        - B# 10
     verified: false
     sources:
       - type: museum
@@ -31936,6 +33304,8 @@ coins:
     weight_rough_verified: false
     catalog:
       schou: '34'
+      others:
+        - B# 852a
     verified: false
     sources:
       - type: museum
@@ -31988,6 +33358,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '221'
+      others:
+        - B# 68
     verified: false
     sources:
       - type: museum
@@ -32015,6 +33387,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '2'
+      others:
+        - B# 883
     verified: false
     sources:
       - type: museum
@@ -32041,6 +33415,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '217'
+      others:
+        - B# 64c
     verified: false
     sources:
       - type: museum
@@ -32067,6 +33443,8 @@ coins:
     weight_rough_verified: false
     catalog:
       schou: '5'
+      others:
+        - B# 455a
     verified: false
     sources:
       - type: museum
@@ -32139,6 +33517,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290923
         ref: KMM 290923 (Inv. KP 1590.147)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5891
   - id: kmk-290929
     fuss: seed_unsorted
     phase: kmk
@@ -32161,6 +33542,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290929
         ref: KMM 290929 (Inv. KP 1590.141)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5885
   - id: kmk-290935
     fuss: seed_unsorted
     phase: kmk
@@ -32183,6 +33567,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290935
         ref: KMM 290935 (Inv. KP 1590.135)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5879
   - id: kmk-290936
     fuss: seed_unsorted
     phase: kmk
@@ -32206,6 +33593,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290936
         ref: KMM 290936 (Inv. KP 1590.134)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5878
   - id: kmk-290937
     fuss: seed_unsorted
     phase: kmk
@@ -32229,6 +33619,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290937
         ref: KMM 290937 (Inv. KP 1590.133)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5857
   - id: kmk-290938
     fuss: seed_unsorted
     phase: kmk
@@ -32252,6 +33645,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290938
         ref: KMM 290938 (Inv. KP 1590.132)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5856
   - id: kmk-290939
     fuss: seed_unsorted
     phase: kmk
@@ -32275,6 +33671,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290939
         ref: KMM 290939 (Inv. KP 1590.131)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5855
   - id: kmk-290940
     fuss: seed_unsorted
     phase: kmk
@@ -32298,6 +33697,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290940
         ref: KMM 290940 (Inv. KP 1590.130)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5854
   - id: kmk-290941
     fuss: seed_unsorted
     phase: kmk
@@ -32321,6 +33723,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290941
         ref: KMM 290941 (Inv. KP 1590.129)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5853
   - id: kmk-290942
     fuss: seed_unsorted
     phase: kmk
@@ -32344,6 +33749,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290942
         ref: KMM 290942 (Inv. KP 1590.128)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5852
   - id: kmk-290943
     fuss: seed_unsorted
     phase: kmk
@@ -32367,6 +33775,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290943
         ref: KMM 290943 (Inv. KP 1590.127)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5851
   - id: kmk-290944
     fuss: seed_unsorted
     phase: kmk
@@ -32390,6 +33801,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290944
         ref: KMM 290944 (Inv. KP 1590.126)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5850
   - id: kmk-290945
     fuss: seed_unsorted
     phase: kmk
@@ -32413,6 +33827,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290945
         ref: KMM 290945 (Inv. KP 1590.125)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5848
   - id: kmk-290946
     fuss: seed_unsorted
     phase: kmk
@@ -32436,6 +33853,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290946
         ref: KMM 290946 (Inv. KP 1590.124)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5847
   - id: kmk-290947
     fuss: seed_unsorted
     phase: kmk
@@ -32459,6 +33879,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290947
         ref: KMM 290947 (Inv. KP 1590.123)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5846
   - id: kmk-290948
     fuss: seed_unsorted
     phase: kmk
@@ -32482,6 +33905,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290948
         ref: KMM 290948 (Inv. KP 1590.122)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5845
   - id: kmk-290949
     fuss: seed_unsorted
     phase: kmk
@@ -32505,6 +33931,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290949
         ref: KMM 290949 (Inv. KP 1590.121)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5844
   - id: kmk-290950
     fuss: seed_unsorted
     phase: kmk
@@ -32528,6 +33957,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290950
         ref: KMM 290950 (Inv. KP 1590.120)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5843
   - id: kmk-290951
     fuss: seed_unsorted
     phase: kmk
@@ -32551,6 +33983,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290951
         ref: KMM 290951 (Inv. KP 1590.119)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5842
   - id: kmk-290952
     fuss: seed_unsorted
     phase: kmk
@@ -32574,6 +34009,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290952
         ref: KMM 290952 (Inv. KP 1590.118)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5841
   - id: kmk-290953
     fuss: seed_unsorted
     phase: kmk
@@ -32597,6 +34035,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290953
         ref: KMM 290953 (Inv. KP 1590.117)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5840
   - id: kmk-290954
     fuss: seed_unsorted
     phase: kmk
@@ -32620,6 +34061,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/290954
         ref: KMM 290954 (Inv. KP 1590.116)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 5746
   - id: kmk-291024
     fuss: seed_unsorted
     phase: kmk
@@ -32643,6 +34087,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/291024
         ref: KMM 291024 (Inv. KP 1590.46)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 2874
   - id: kmk-291025
     fuss: seed_unsorted
     phase: kmk
@@ -32666,6 +34113,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/291025
         ref: KMM 291025 (Inv. KP 1590.45)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 2482
   - id: kmk-291026
     fuss: seed_unsorted
     phase: kmk
@@ -32689,6 +34139,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/291026
         ref: KMM 291026 (Inv. KP 1590.44)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 2470
   - id: kmk-291028
     fuss: seed_unsorted
     phase: kmk
@@ -32712,6 +34165,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/291028
         ref: KMM 291028 (Inv. KP 1590.42)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 2274
   - id: kmk-291030
     fuss: seed_unsorted
     phase: kmk
@@ -32735,6 +34191,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/291030
         ref: KMM 291030 (Inv. KP 1590.40)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 1847
   - id: kmk-291031
     fuss: seed_unsorted
     phase: kmk
@@ -32758,6 +34217,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/291031
         ref: KMM 291031 (Inv. KP 1590.39)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 1826
   - id: kmk-291056
     fuss: seed_unsorted
     phase: kmk
@@ -32782,6 +34244,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/291056
         ref: KMM 291056 (Inv. KP 1590.14)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# 931
   - id: kmk-291447
     fuss: seed_unsorted
     phase: kmk
@@ -32912,6 +34377,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '2'
+      others:
+        - B# 883
     verified: false
     sources:
       - type: museum
@@ -33194,7 +34661,7 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_norway
-    entity_classified_via: nation
+    entity_classified_via: mint
     nominal: 1 Skilling
     metal_verified: false
     mint_verified: false
@@ -33214,6 +34681,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/298430
         ref: KMM 298430 (Inv. FP 10291.5)
     verification_note: *id001
+    mint: Kongsberg
   - id: kmk-298709
     fuss: seed_unsorted
     phase: kmk
@@ -33312,7 +34780,7 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_norway
-    entity_classified_via: nation
+    entity_classified_via: mint
     nominal: 1 Hvid
     metal_verified: false
     mint_verified: false
@@ -33326,6 +34794,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/299568
         ref: KMM 299568 (Inv. FP 8430.40)
     verification_note: *id001
+    mint: Christiania
   - id: kmk-300356
     fuss: seed_unsorted
     phase: kmk
@@ -36369,6 +37838,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333573
         ref: KMM 333573 (Inv. BP 1447.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 210b
   - id: kmk-333582
     fuss: seed_unsorted
     phase: kmk
@@ -36395,6 +37867,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333582
         ref: KMM 333582 (Inv. RP 932.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 178
   - id: kmk-333583
     fuss: seed_unsorted
     phase: kmk
@@ -36445,6 +37920,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333593
         ref: KMM 333593 (Inv. BP 933.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 210a
   - id: kmk-333734
     fuss: seed_unsorted
     phase: kmk
@@ -36509,7 +37987,7 @@ coins:
     year_ranges:
       -   - 1764
           - 1764
-    weight_rough_verified: false
+    weight_rough_verified: true
     catalog:
       hede: '4'
     verified: false
@@ -36518,6 +37996,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333774
         ref: KMM 333774 (Inv. FP 5818.12)
     verification_note: *id001
+    weight_rough_g: 0.544
   - id: kmk-333775
     fuss: seed_unsorted
     phase: kmk
@@ -36534,7 +38013,7 @@ coins:
     year_ranges:
       -   - 1763
           - 1763
-    weight_rough_verified: false
+    weight_rough_verified: true
     catalog:
       hede: 3B
     verified: false
@@ -36543,6 +38022,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333775
         ref: KMM 333775 (Inv. FP 5818.11)
     verification_note: *id001
+    weight_rough_g: 1.095
   - id: kmk-333776
     fuss: seed_unsorted
     phase: kmk
@@ -36559,7 +38039,7 @@ coins:
     year_ranges:
       -   - 1710
           - 1710
-    weight_rough_verified: false
+    weight_rough_verified: true
     catalog:
       hede: 7A
     verified: false
@@ -36568,6 +38048,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333776
         ref: KMM 333776 (Inv. FP 5818.10)
     verification_note: *id001
+    weight_rough_g: 1.19
   - id: kmk-333835
     fuss: seed_unsorted
     phase: kmk
@@ -36594,6 +38075,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333835
         ref: KMM 333835 (Inv. RP 933.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 179
   - id: kmk-333836
     fuss: seed_unsorted
     phase: kmk
@@ -36697,6 +38181,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333839
         ref: KMM 333839 (Inv. RP 934.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 180
   - id: kmk-333840
     fuss: seed_unsorted
     phase: kmk
@@ -36723,6 +38210,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333840
         ref: KMM 333840 (Inv. RP 935.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 181
   - id: kmk-333841
     fuss: seed_unsorted
     phase: kmk
@@ -36749,6 +38239,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333841
         ref: KMM 333841 (Inv. RP 936.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 192
   - id: kmk-333842
     fuss: seed_unsorted
     phase: kmk
@@ -36775,6 +38268,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333842
         ref: KMM 333842 (Inv. RP 937.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 199
   - id: kmk-333843
     fuss: seed_unsorted
     phase: kmk
@@ -36801,6 +38297,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333843
         ref: KMM 333843 (Inv. RP 938.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 202
   - id: kmk-333844
     fuss: seed_unsorted
     phase: kmk
@@ -36827,6 +38326,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333844
         ref: KMM 333844 (Inv. RP 939.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 203
   - id: kmk-333845
     fuss: seed_unsorted
     phase: kmk
@@ -36853,6 +38355,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333845
         ref: KMM 333845 (Inv. RP 940.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 210
   - id: kmk-333846
     fuss: seed_unsorted
     phase: kmk
@@ -36879,6 +38384,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333846
         ref: KMM 333846 (Inv. RP 941.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 211
   - id: kmk-333847
     fuss: seed_unsorted
     phase: kmk
@@ -36905,6 +38413,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333847
         ref: KMM 333847 (Inv. RP 942.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 217
   - id: kmk-333848
     fuss: seed_unsorted
     phase: kmk
@@ -36931,6 +38442,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333848
         ref: KMM 333848 (Inv. RP 943.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 218
   - id: kmk-333849
     fuss: seed_unsorted
     phase: kmk
@@ -36957,6 +38471,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333849
         ref: KMM 333849 (Inv. RP 944.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 223
   - id: kmk-333850
     fuss: seed_unsorted
     phase: kmk
@@ -36983,6 +38500,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333850
         ref: KMM 333850 (Inv. RP 945.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 225
   - id: kmk-333851
     fuss: seed_unsorted
     phase: kmk
@@ -37009,6 +38529,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333851
         ref: KMM 333851 (Inv. RP 946.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 231
   - id: kmk-333852
     fuss: seed_unsorted
     phase: kmk
@@ -37035,6 +38558,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333852
         ref: KMM 333852 (Inv. RP 947.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 232
   - id: kmk-333853
     fuss: seed_unsorted
     phase: kmk
@@ -37061,6 +38587,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333853
         ref: KMM 333853 (Inv. RP 948.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 233
   - id: kmk-333854
     fuss: seed_unsorted
     phase: kmk
@@ -37087,6 +38616,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333854
         ref: KMM 333854 (Inv. RP 949.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 235
   - id: kmk-333855
     fuss: seed_unsorted
     phase: kmk
@@ -37113,6 +38645,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333855
         ref: KMM 333855 (Inv. RP 950.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 234
   - id: kmk-333856
     fuss: seed_unsorted
     phase: kmk
@@ -37139,6 +38674,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333856
         ref: KMM 333856 (Inv. RP 951.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 241
   - id: kmk-333857
     fuss: seed_unsorted
     phase: kmk
@@ -37165,6 +38703,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333857
         ref: KMM 333857 (Inv. RP 952.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 242
   - id: kmk-333858
     fuss: seed_unsorted
     phase: kmk
@@ -37191,6 +38732,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333858
         ref: KMM 333858 (Inv. RP 953.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 243
   - id: kmk-333859
     fuss: seed_unsorted
     phase: kmk
@@ -37217,6 +38761,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333859
         ref: KMM 333859 (Inv. RP 954.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 244
   - id: kmk-333860
     fuss: seed_unsorted
     phase: kmk
@@ -37243,6 +38790,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/333860
         ref: KMM 333860 (Inv. RP 955.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 245
   - id: kmk-334065
     fuss: seed_unsorted
     phase: kmk
@@ -37419,6 +38969,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '2'
+      others:
+        - B# 15
     verified: false
     sources:
       - type: museum
@@ -37446,6 +38998,8 @@ coins:
     weight_rough_verified: false
     catalog:
       schou: '2'
+      others:
+        - B# 28
     verified: false
     sources:
       - type: museum
@@ -37473,6 +39027,8 @@ coins:
     weight_rough_verified: false
     catalog:
       schou: '6'
+      others:
+        - B# 26
     verified: false
     sources:
       - type: museum
@@ -37500,6 +39056,8 @@ coins:
     weight_rough_verified: false
     catalog:
       schou: '3'
+      others:
+        - B# 36
     verified: false
     sources:
       - type: museum
@@ -37527,6 +39085,8 @@ coins:
     weight_rough_verified: false
     catalog:
       schou: '4'
+      others:
+        - B# 37
     verified: false
     sources:
       - type: museum
@@ -47138,6 +48698,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/402831
         ref: KMM 402831 (Inv. FP 3594.11)
     verification_note: *id001
+    mint: Mecklenburg
   - id: kmk-403371
     fuss: seed_unsorted
     phase: kmk
@@ -47163,6 +48724,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/403371
         ref: KMM 403371 (Inv. FP 3479.10)
     verification_note: *id001
+    mint: '?'
   - id: kmk-403372
     fuss: seed_unsorted
     phase: kmk
@@ -47188,6 +48750,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/403372
         ref: KMM 403372 (Inv. FP 3479.9)
     verification_note: *id001
+    mint: '?'
   - id: kmk-403373
     fuss: seed_unsorted
     phase: kmk
@@ -47213,6 +48776,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/403373
         ref: KMM 403373 (Inv. FP 3479.8)
     verification_note: *id001
+    mint: '?'
   - id: kmk-403404
     fuss: seed_unsorted
     phase: kmk
@@ -47238,6 +48802,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/403404
         ref: KMM 403404 (Inv. FP 3468.17)
     verification_note: *id001
+    mint: '?'
   - id: kmk-405179
     fuss: seed_unsorted
     phase: kmk
@@ -47263,6 +48828,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/405179
         ref: KMM 405179 (Inv. FP 3363.8)
     verification_note: *id001
+    mint: Hamborg
   - id: kmk-405180
     fuss: seed_unsorted
     phase: kmk
@@ -47288,6 +48854,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/405180
         ref: KMM 405180 (Inv. FP 3363.7)
     verification_note: *id001
+    mint: Hamborg
   - id: kmk-405717
     fuss: seed_unsorted
     phase: kmk
@@ -47641,6 +49208,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/415827
         ref: KMM 415827 (Inv. KP 1117.85)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# Nr
   - id: kmk-415828
     fuss: seed_unsorted
     phase: kmk
@@ -47658,6 +49228,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/415828
         ref: KMM 415828 (Inv. KP 1117.84)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# Nr
   - id: kmk-415833
     fuss: seed_unsorted
     phase: kmk
@@ -47676,6 +49249,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/415833
         ref: KMM 415833 (Inv. KP 1117.79)
     verification_note: *id001
+    catalog:
+      others:
+        - Auk.Kat.# Nr
   - id: kmk-417185
     fuss: seed_unsorted
     phase: kmk
@@ -56309,6 +57885,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/440642
         ref: KMM 440642 (Inv. RP 1110.1)
     verification_note: *id001
+    catalog:
+      others:
+        - B# 116
   - id: kmk-471237
     fuss: seed_unsorted
     phase: kmk
@@ -59075,6 +60654,8 @@ coins:
     weight_rough_verified: true
     catalog:
       schou: '24'
+      others:
+        - B# 77
     verified: false
     sources:
       - type: museum
@@ -59135,6 +60716,8 @@ coins:
     catalog:
       schou: '21'
       galster: '170'
+      others:
+        - B# 122b
     verified: false
     sources:
       - type: museum

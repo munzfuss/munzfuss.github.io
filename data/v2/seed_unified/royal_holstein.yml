@@ -2,8 +2,8 @@
 # Generated 2026-07-22 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1727 per-source seed entries.
-# Output: 946 unified entries (one per physical coin).
+# Input: 1736 per-source seed entries.
+# Output: 951 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -187,6 +187,8 @@ coins:
         - '64'
         - '64.1'
         - '64.3'
+      others:
+        - B# 14
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -4051,6 +4053,9 @@ coins:
         url: https://en.ucoin.net/coin/denmark-1-sosling-1640-1648/?tid=163580
         ref: ucoin
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167044
+        ref: KMM 167044 (Inv. FP 1780.88)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/351461
         ref: KMM 351461 (Inv. FP 5191.18)
       - type: museum
@@ -4072,6 +4077,7 @@ coins:
     composed_of:
       - dk-hede-c4h178a
       - km-25-chr-iv-1640
+      - kmk-167044
       - kmk-351461
       - kmk-429769
       - schleswig_holstein-numismaster-92968
@@ -4089,7 +4095,9 @@ coins:
     ruler: Christian IV.
     mint: Glückstadt
     catalog:
-      hede: 178B
+      hede:
+        - '178'
+        - 178B
       hede_volume: c4h
       schou:
         - 51-56
@@ -4115,8 +4123,8 @@ coins:
         url: https://www.danskmoent.dk/chr/c4h178.htm
         ref: danskmoent.dk (Hede c4h178B)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/318041
-        ref: KMM 318041 (Inv. FP 6724.21)
+        url: https://samlinger.natmus.dk/KMM/object/167030
+        ref: KMM 167030 (Inv. FP 1780.113)
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -4129,7 +4137,7 @@ coins:
       unit_raw: daler
     composed_of:
       - dk-hede-c4h178b
-      - kmk-318041
+      - kmk-167030
   - id: unified-dk-hede-c4h179
     fuss: seed_unsorted
     phase: hede
@@ -4384,6 +4392,10 @@ coins:
         - '62'
         - '62.1'
         - '62.2'
+      others:
+        - B# 5
+        - B# 1169
+        - B# 1170
     metal: gold
     metal_verified: true
     fineness_verified: false
@@ -4480,6 +4492,8 @@ coins:
       fr: '32'
       others:
         - ucoin# 12
+        - B# 18a
+        - B# 18
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -4568,6 +4582,7 @@ coins:
         - '64.2'
         - '64'
       hede:
+        - '115'
         - 115A
         - 115B
       hede_volume: c5h
@@ -4585,6 +4600,7 @@ coins:
       bruun_page: 129
       others:
         - Aagaard# 1.1
+        - B# 59a
       fr: '134'
       bruun_lot: '6825'
       numista: '275958'
@@ -4605,6 +4621,8 @@ coins:
     weight_rough_g:
       - value: 3.44
         source: bruun
+      - value: 3.46
+        source: kmk
       - value: 3.49
         source: hede
       - value: 3.5
@@ -4624,6 +4642,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-ducat-1672-1676/?tid=163668
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/83604
+        ref: KMM 83604 (Inv. GP 982.628)
       - type: literature
         url: https://numismaster.com/MC_93037
         ref: NumisMaster
@@ -4637,6 +4658,7 @@ coins:
       - dk-hede-c5h115a
       - dk-hede-c5h115b
       - km-64-1-chr-v-1674
+      - kmk-83604
       - schleswig_holstein-numismaster-93037
   - id: unified-dk-hede-c5h117
     fuss: seed_unsorted
@@ -6491,6 +6513,8 @@ coins:
         - '10.2'
         - '10.3'
       numista: '42563'
+      others:
+        - LEB# 7857
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -11851,6 +11875,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/159777
         ref: KMM 159777 (Inv. FP 3931.136)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/160386
+        ref: KMM 160386 (Inv. FP 3326.8)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/161236
         ref: KMM 161236 (Inv. FP 4406.2)
       - type: museum
@@ -11885,6 +11912,7 @@ coins:
       - kmk-159769
       - kmk-159775
       - kmk-159777
+      - kmk-160386
       - kmk-161236
       - kmk-298426
       - kmk-334025
@@ -16756,9 +16784,12 @@ coins:
     ruler: Christian 3
     mint: Flensburg
     metal_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 0.86
+        source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139673
@@ -16922,9 +16953,12 @@ coins:
     catalog:
       schou: '4'
     metal_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 28.79
+        source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148165
@@ -17262,9 +17296,12 @@ coins:
     catalog:
       schou: '6'
     metal_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 1.07
+        source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148192
@@ -17310,9 +17347,12 @@ coins:
     catalog:
       schou: '11'
     metal_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 1.16
+        source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148195
@@ -23438,14 +23478,145 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-161134
+  - id: unified-kmk-166953
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling lybsk
+    year_first: 1623
+    year_last: 1632
+    year_ranges:
+      -   - 1623
+          - 1632
+    year_label: 1623-1632
+    ruler: Christian 4
+    mint: Glückstadt
+    catalog:
+      hede: '171'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/166953
+        ref: KMM 166953 (Inv. FP 1780.49)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/166979
+        ref: KMM 166979 (Inv. FP 1780.37)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/173053
+        ref: KMM 173053 (Inv. FP 4469.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/340190
+        ref: KMM 340190 (Inv. FP 5662.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/492513
+        ref: KMM 492513 (Inv. FP 10686.11)
+    verification_note: *id002
+    issuing_entity: royal_holstein
+    composed_of:
+      - kmk-166953
+      - kmk-166979
+      - kmk-173053
+      - kmk-340190
+      - kmk-492513
+  - id: unified-kmk-166988
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling lybsk
+    year_first: 1625
+    year_last: 1625
+    year_label: '1625'
+    ruler: Christian 4
+    mint: Glückstadt
+    catalog:
+      hede: '171'
+    metal_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.444
+        source: kmk
+      - value: 0.521
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/166988
+        ref: KMM 166988 (Inv. FP 1780.62)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167000
+        ref: KMM 167000 (Inv. FP 1780.63)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/372980
+        ref: KMM 372980 (Inv. FP 4250.3)
+    verification_note: *id002
+    issuing_entity: royal_holstein
+    composed_of:
+      - kmk-166988
+      - kmk-167000
+      - kmk-372980
+  - id: unified-kmk-167040
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling, norsk
+    year_first: 1643
+    year_last: 1643
+    year_label: '1643'
+    ruler: Christian 4
+    mint: Glückstadt
+    catalog:
+      hede: 178A
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167040
+        ref: KMM 167040 (Inv. FP 1780.92)
+    verification_note: *id002
+    issuing_entity: royal_holstein
+    composed_of:
+      - kmk-167040
+  - id: unified-kmk-167068
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling lybsk
+    year_first: 1645
+    year_last: 1645
+    year_label: '1645'
+    ruler: Christian 4
+    mint: Glückstadt
+    catalog:
+      hede: 178B
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167068
+        ref: KMM 167068 (Inv. FP 1780.156)
+    verification_note: *id002
+    issuing_entity: royal_holstein
+    composed_of:
+      - kmk-167068
   - id: unified-kmk-167262
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     nominal: 1/16 Thaler
-    year_first: 1596
-    year_last: 1596
-    year_label: '1596'
+    year_first: 1595
+    year_last: 1598
+    year_ranges:
+      -   - 1595
+          - 1598
+    year_label: 1595-1598
     ruler: Johan Adolf
     metal: silver
     metal_verified: true
@@ -23462,12 +23633,16 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167296
         ref: KMM 167296 (Inv. FP 788.4.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624295
+        ref: KMM 624295 (Inv. FP 788.18.4)
     verification_note: *id002
     issuing_entity: royal_holstein
     composed_of:
       - kmk-167262
       - kmk-167288
       - kmk-167296
+      - kmk-624295
   - id: unified-kmk-167265
     fuss: seed_unsorted
     phase: kmk
@@ -23517,21 +23692,13 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/167280
         ref: KMM 167280 (Inv. FP 788.3.4)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167281
-        ref: KMM 167281 (Inv. FP 788.3.3)
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167285
         ref: KMM 167285 (Inv. FP 788.3.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167286
-        ref: KMM 167286 (Inv. FP 788.3.2)
     verification_note: *id002
     issuing_entity: royal_holstein
     composed_of:
       - kmk-167280
-      - kmk-167281
       - kmk-167285
-      - kmk-167286
   - id: unified-kmk-167284
     fuss: seed_unsorted
     phase: kmk
@@ -23689,45 +23856,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-168061
-  - id: unified-kmk-173053
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling lybsk
-    year_first: 1624
-    year_last: 1625
-    year_ranges:
-      -   - 1624
-          - 1625
-    year_label: 1624-1625
-    ruler: Christian 4
-    mint: Glückstadt
-    catalog:
-      hede: '171'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/173053
-        ref: KMM 173053 (Inv. FP 4469.8)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/240
-        ref: KMM 240 (Inv. FP 5691.7)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/355872
-        ref: KMM 355872 (Inv. FP 4729.6)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/492513
-        ref: KMM 492513 (Inv. FP 10686.11)
-    verification_note: *id002
-    issuing_entity: royal_holstein
-    composed_of:
-      - kmk-173053
-      - kmk-240
-      - kmk-355872
-      - kmk-492513
   - id: unified-kmk-175832
     fuss: seed_unsorted
     phase: kmk
@@ -24869,6 +24997,30 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-317711
+  - id: unified-kmk-318041
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling lybsk
+    year_first: 1646
+    year_last: 1646
+    year_label: '1646'
+    ruler: Christian 4
+    mint: Glückstadt
+    catalog:
+      hede: 178b
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/318041
+        ref: KMM 318041 (Inv. FP 6724.21)
+    verification_note: *id002
+    issuing_entity: royal_holstein
+    composed_of:
+      - kmk-318041
   - id: unified-kmk-318044
     fuss: seed_unsorted
     phase: kmk
@@ -25934,34 +26086,6 @@ coins:
     composed_of:
       - kmk-354253
       - kmk-354435
-  - id: unified-kmk-355074
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling lybsk
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    ruler: Christian 4
-    mint: Glückstadt
-    catalog:
-      hede: '171'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/355074
-        ref: KMM 355074 (Inv. FP 4842.5)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/372980
-        ref: KMM 372980 (Inv. FP 4250.3)
-    verification_note: *id002
-    issuing_entity: royal_holstein
-    composed_of:
-      - kmk-355074
-      - kmk-372980
   - id: unified-kmk-355089
     fuss: seed_unsorted
     phase: kmk
@@ -26346,9 +26470,12 @@ coins:
       hede: '21'
     metal: silver
     metal_verified: true
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 0.85
+        source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/411793
@@ -26850,6 +26977,10 @@ coins:
     year_label: '1781'
     ruler: Christian 7
     mint: Altona
+    catalog:
+      others:
+        - B# 119
+        - B# 119a
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -27335,25 +27466,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-624294
-  - id: unified-kmk-624295
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1/16 Thaler
-    ruler: Johan Adolf
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/624295
-        ref: KMM 624295 (Inv. FP 788.18.4)
-    verification_note: *id002
-    issuing_entity: royal_holstein
-    composed_of:
-      - kmk-624295
   - id: unified-kmk-624296
     fuss: seed_unsorted
     phase: kmk
@@ -29116,6 +29228,7 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Frederik 1
+    mintmaster: Slesvig-Holsten
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -29167,6 +29280,7 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Frederik 1
+    mintmaster: Slesvig-Holsten
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -29186,6 +29300,7 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Christian 3
+    mintmaster: Slesvig-Holsten
     metal: gold
     metal_verified: true
     weight_rough_verified: false
@@ -29225,6 +29340,7 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Christian 3
+    mintmaster: Slesvig-Holsten
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -29238,12 +29354,32 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-81476
+  - id: unified-kmk-81477
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Christian 3
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81477
+        ref: KMM 81477 (Inv. GP 888.55)
+    verification_note: *id002
+    issuing_entity: royal_holstein
+    composed_of:
+      - kmk-81477
   - id: unified-kmk-81478
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     nominal: (?)
     ruler: Frederik 2
+    mintmaster: Slesvig-Holsten
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -29263,6 +29399,7 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Christian 4
+    mintmaster: Slesvig-Holsten
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -29282,6 +29419,7 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Christian 4
+    mintmaster: Slesvig-Holsten
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -29301,6 +29439,7 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Frederik 3
+    mintmaster: Slesvig-Holsten
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -29320,6 +29459,7 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Christian 7
+    mintmaster: Slesvig-Holsten
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -29339,6 +29479,7 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Christian 7
+    mintmaster: Slesvig-Holsten
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -29357,6 +29498,7 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Christian 7
+    mintmaster: Slesvig-Holsten
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -29375,6 +29517,7 @@ coins:
     kind: kurant
     nominal: (?)
     ruler: Christian 7
+    mintmaster: Slesvig-Holsten
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -29449,7 +29592,12 @@ coins:
     phase: kmk
     kind: kurant
     nominal: (?)
+    year_first: 1690
+    year_last: 1690
+    year_label: '1690'
     ruler: Johan Adolf
+    catalog:
+      lange: '763'
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -29463,6 +29611,25 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-81500
+  - id: unified-kmk-81501
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81501
+        ref: KMM 81501 (Inv. GP 888.79)
+    verification_note: *id002
+    issuing_entity: royal_holstein
+    composed_of:
+      - kmk-81501
   - id: unified-kmk-81571
     fuss: seed_unsorted
     phase: kmk
@@ -30596,6 +30763,8 @@ coins:
     catalog:
       galster: '126'
       schou: '52'
+      others:
+        - B# 116d
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -30655,12 +30824,24 @@ coins:
     phase: kmk
     kind: kurant
     nominal: (?)
+    year_first: 1545
+    year_last: 1545
+    year_label: '1545'
     ruler: Christian 3
+    mint: Flensburg
+    catalog:
+      hede: 21A
+      schou: '15'
+      others:
+        - B# 148c
     metal: silver
     metal_verified: true
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 0.99
+        source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/83085
@@ -30669,6 +30850,25 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-83085
+  - id: unified-kmk-83086
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Christian 3
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/83086
+        ref: KMM 83086 (Inv. GP 982.110)
+    verification_note: *id002
+    issuing_entity: royal_holstein
+    composed_of:
+      - kmk-83086
   - id: unified-kmk-83087
     fuss: seed_unsorted
     phase: kmk
@@ -31157,7 +31357,13 @@ coins:
     phase: kmk
     kind: kurant
     nominal: (?)
+    year_first: 1690
+    year_last: 1690
+    year_label: '1690'
     ruler: Hans Adolph
+    mint: Glückstadt
+    catalog:
+      lange: '759'
     metal: silver
     metal_verified: true
     weight_rough_verified: false
