@@ -50,9 +50,19 @@ classification_decisions `pending:` awaiting curator review** (no
 bulk_promote there — correct no-promotion-without-curator discipline).
 NOTE: they left the Denmark gold-triage table scope (danish entities only).
 
-**Still open in §DB**: scope re-discovery for a FULL re-harvest (ES manifest
-has no live backing endpoint; need a way to enumerate in-scope KMM ids) + a
-bulk polite-rate web fetch over the ~15k typeNumber-less cached objects.
+**§DB Phase 1+2 COMPLETE (2026-07-22 session 2, commits `d3bc950` `6eeaf28`
+`e157d43`)**: bulk-fetched rådata JSON sidecars for ALL 13,991 seed objects
+(variant «б», 0 errors, 56 MB submodule) + full-corpus re-seed `--raadata` +
+merger + absorb for all 11 kmk entities. Gains: seed catalog +386/+234-upgraded
+(incl. `klassifikationer` Typenummer → canonical hede/galster/schou — a
+bonus discovery), mint +329, year +49, weight +44; finals +214 with catalogue.
+Guard-surfaced fixes en route: kmk-160386 (raadata «H. 16B») accreted into the
+existing f7h16 cross-entity group; unified-dk-bruun-8034 metal billon→copper
+(Bruun «red copper surfaces» + KMM `kobber` — old billon was a wrong verified
+inference); 3 stale 2026-06-08 no_merges guards removed (Wolfenbüttel
+relocation encodes the split structurally). **Still open in §DB**: only scope
+re-discovery (enumerate KMM ids beyond the 43k cache via the SPA search
+backend; small marginal gain — deprioritised).
 **User question pending**: what are `B` / `Bech` / `LEB` catalogues?
 (identify → promote `others[]` labels to schema fields). Also minor: stale
 sovereign assignments in danish_realm classification_decisions reference old

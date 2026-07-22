@@ -172,12 +172,20 @@ the finals (union); web pages cached as provenance. Still OPEN below:
    `materialer`), and `build_kmk_seed.py --raadata` natively fills ES-cache
    gaps from it (weight/year/mint/catalogue; ES values never overridden;
    catalogue UNIONed). First native re-seed applied for the 68 dukat-group
-   objects (commits `5fee913` + `0c80d46`). Still open: **scope
-   re-discovery.** The ES `_manifest.json` nation-scope filter no longer has a
-   live backing endpoint, so a FULL re-harvest (not just a hand-fed id list)
-   needs a new way to enumerate in-scope KMM object ids beyond the 43k already
-   cached — and a bulk web-page fetch pass over the ~15k typeNumber-less
-   cached objects (polite-rate, many sessions).
+   objects (commits `5fee913` + `0c80d46`). **Phase-1 bulk fetch DONE
+   2026-07-22** (commits `d3bc950` + `6eeaf28` + `e157d43`): all 13,991 seed
+   objects carry verbatim rådata JSON sidecars (`cache/kmk/web/<id>.json`,
+   56 MB, 0 fetch errors / 0 parse failures, variant «б» — HTML kept only as
+   parse-failure fallback, none needed), and the full-corpus re-seed +
+   merger + absorb applied. Seed gains: catalog +386 new / 234 upgraded
+   (incl. `klassifikationer` Typenummer → canonical hede/galster/schou),
+   mint +329, year +49, weight +44; final level: +214 kmk-involved coins
+   gained a catalogue index. Still open: **scope re-discovery.** The ES
+   `_manifest.json` nation-scope filter has no live backing endpoint, so
+   finding KMM objects BEYOND the 43k already cached needs a new enumeration
+   mechanism (candidate: the samlinger.natmus.dk SPA's own search backend —
+   one recon session via browser network tab). Likely small marginal gain
+   (new museum digitisations only) — deprioritised.
 2. **Extend `build_kmk_seed.py::_catalog()` to also parse `beskrivelser`** —
    ✅ DONE 2026-07-22 (commit `5fee913`): `_raadata_catalog()` +
    `_merge_raadata_catalog()` in the builder parse the rådata `beskrivelser`
