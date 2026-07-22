@@ -15,6 +15,37 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-07-22 — §DB first recovery pass: KMK web-rådata catalogue harvest (dukat group)
+
+**The web page is server-rendered — bare `curl` works** (earlier
+«JS-SPA, needs Apify» assumption was wrong). Catalogue sits in
+`<div id="description">` on `samlinger.natmus.dk/KMM/object/<id>`, e.g.
+`to mark  |  Bech nr. 876; B 783.a; Sch 3a`.
+
+**Shipped**: `scripts/fetch_kmk_web.py` — Phase-1 fetch
+(→ `scripts/cache/kmk/web/<id>.html`, skip-if-cached, polite) + shared
+`extract_description()` parser. First reusable step of the §DB migration.
+
+**First recovery pass (68 dukat-group KMK coins)**: 25 gained a catalogue
+index, 43 are genuinely nominal-only stubs (web has no catalogue either).
+Mapping applied: `Sch N`→`schou`; `Bech#`/`B#`/`LEB#`/`Schubart#`/`Auk.Kat.#`
+→ `others[]` verbatim (NOT mapped to named fields — still need a source check
+per §0). Written into BOTH kmk seed AND finals (union, ruamel_seed round-trip,
+pure +104-line catalog-only diff, no churn). Web pages committed to the
+submodule as provenance (`7c649b3`).
+
+**Still open in §DB**: (a) scope re-discovery for a FULL re-harvest (the ES
+`_manifest.json` nation filter has no live backing endpoint); (b) fold the
+`beskrivelser` parser into `build_kmk_seed._catalog()` for a native bulk
+re-seed; (c) also harvest `maalinger`/`haendelser` (weight/year/mint) — this
+pass did catalogue only. **User question pending**: what are `B` / `Bech` /
+`LEB` catalogues? (identify → promote `others[]` labels to schema fields).
+
+**43 nominal-only stubs** (no catalogue on web, most no year/weight) remain in
+the dukat group's `seed_unsorted`: the `kmk-783xx`/`kmk-277197..200`/etc.
+cluster. Those that ALSO lack a year are exclusion (undocumented_stub)
+candidates — a separate curator call, not done in this pass.
+
 ## 2026-07-19 — Z_other_review gold triage + KMK catalogue-index loss (§DB)
 
 **Sovereign_fod family closed out**: three trials got display polish

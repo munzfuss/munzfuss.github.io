@@ -152,20 +152,38 @@ pipeline, both traced to the harvest source:
 not mis-parsed — so nothing to recover locally. And the ES endpoint that fed
 the cache is gone. Both point to the same fix.
 
-**The fix (the "new способ"):**
+**Progress (2026-07-22): the web page is server-rendered — no JS needed.**
+The catalogue is in a plain `<div id="description">` on
+`samlinger.natmus.dk/KMM/object/<id>` (e.g. `to mark  |  Bech nr. 876; B 783.a;
+Sch 3a`), reachable with a bare `urllib`/`curl` GET — the earlier
+«JS-rendered SPA, needs Apify» assumption was wrong for the field we care
+about. First harvester step shipped: `scripts/fetch_kmk_web.py` (fetch →
+`scripts/cache/kmk/web/<id>.html`, skip-if-cached + polite rate, with the
+shared `extract_description()` parser). **First recovery pass done** for the
+68 dukat-group KMK coins: 25 gained a catalogue index (`Bech#`/`B#`/`LEB#`/
+`Schubart#` → `others[]`; `Sch` → `schou`), 43 are genuinely nominal-only
+stubs (web has no catalogue either). Values written into both the kmk seed and
+the finals (union); web pages cached as provenance. Still OPEN below:
 
 1. **Migrate the harvester off the dead ES endpoint onto the web-rådata API**
-   (`samlinger.natmus.dk/KMM/object/<id>` → its embedded rådata JSON; Danish
-   keys `beskrivelser` / `maalinger` / `materialer` / `haendelser` /
-   `identifikation`). Reachable today via Apify rag-web-browser (JS-rendered
-   SPA; the rådata JSON is in the page). Decide harvest strategy: per-object
-   fetch vs. a bulk index — the ES `_manifest.json` scope filter no longer has
-   a live backing endpoint, so scope discovery needs rethinking too.
+   — DONE for per-object fetch (`fetch_kmk_web.py`). Still open: **scope
+   re-discovery.** The ES `_manifest.json` nation-scope filter no longer has a
+   live backing endpoint, so a FULL re-harvest (not just a hand-fed id list)
+   needs a new way to enumerate in-scope KMM object ids. Also unharvested so
+   far: `maalinger` (weight/diameter) / `haendelser` (year/mint) parsing from
+   the web page for records whose ES cache lacks them — this pass recovered
+   catalogue only.
 2. **Extend `build_kmk_seed.py::_catalog()` to also parse `beskrivelser`** —
-   map `Sch N` → schou, `Bech N` / `B N` → the appropriate schema field or
-   `others` (confirm the exact catalogue each abbreviation denotes before
-   committing a mapping — `Sch` = Schou is safe; `Bech` / `B` need a source
-   check, do NOT guess per §0). Handle the multi-ref «a; b; c» form.
+   the recovery pass above applied the mapping ad-hoc (in a one-off apply
+   script, not yet in the builder): `Sch N` → `schou`; `Bech N` / `B N` /
+   `LEB N` / `Schubart N` / `Auk. Kat. no. N` → `others[]` as literal
+   `Bech#`/`B#`/`LEB#`/`Schubart#`/`Auk.Kat.#` labels (NOT mapped to named
+   schema fields — `Sch`=Schou is safe, the rest still need a source check per
+   §0, so they stay non-committal in `others`). Still TODO: fold this parser
+   into `build_kmk_seed._catalog()` so a bulk re-seed applies it natively, and
+   handle the multi-ref «a; b; c» split there. **Open question for the user:**
+   what are `B` / `Bech` / `LEB` — identify the catalogues so `others[]` labels
+   can promote to real schema fields.
 3. **Re-harvest + re-seed** the in-scope KMK objects; the merger/absorb then
    propagate the recovered indices to seed_unified + final. Expect many
    previously catalogue-less KMK coins to gain their Bech/B/Schou index at
