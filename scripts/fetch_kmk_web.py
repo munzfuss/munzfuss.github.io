@@ -31,6 +31,7 @@ this script is the reusable fetch + description-parser those steps build on.
 from __future__ import annotations
 
 import argparse
+import html as _html
 import json
 import re
 import sys
@@ -71,6 +72,61 @@ def extract_description(html: str) -> str:
     txt = re.sub(r"<br\s*/?>", "  |  ", m.group(1))
     txt = re.sub(r"<[^>]+>", "", txt)
     return txt.strip()
+
+
+def parse_raadata(html: str) -> dict | None:
+    """Extract the object's embedded rådata JSON from the page.
+
+    The KMM object page renders a full structured record (Danish-keyed:
+    `beskrivelser` / `maalinger` / `haendelser` / `materialer` /
+    `identifikation` …) into the «Rådata» section as HTML-escaped JSON. This
+    is a strictly richer source than `extract_description()` (which only sees
+    `beskrivelser`), so the seed builder consults it for weight / year / mint /
+    catalogue at once. Returns the parsed dict, or None if not found /
+    unparseable."""
+    i = html.find("Rådata")
+    if i < 0:
+        return None
+    seg = html[i:i + 20000]
+    j = seg.find("{")
+    if j < 0:
+        return None
+    depth = 0
+    in_str = esc = False
+    end = None
+    for k in range(j, len(seg)):
+        ch = seg[k]
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+        elif ch == '"':
+            in_str = True
+        elif ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                end = k + 1
+                break
+    if end is None:
+        return None
+    try:
+        return json.loads(_html.unescape(seg[j:end]))
+    except (json.JSONDecodeError, ValueError):
+        return None
+
+
+def load_raadata(obj_id: int | str) -> dict | None:
+    """Return the rådata dict for a cached object (None if no web page cached
+    or it has no parseable rådata). Read-only — never fetches."""
+    dest = WEB_CACHE / f"{obj_id}.html"
+    if not dest.exists():
+        return None
+    return parse_raadata(dest.read_text("utf-8"))
 
 
 def main() -> int:

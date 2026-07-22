@@ -49,6 +49,7 @@ from lib.mint_registry import (  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 from lib.ruler_reigns import reign_window  # noqa: E402
 from lib.note_extract import source_note  # noqa: E402
+from fetch_kmk_web import load_raadata  # noqa: E402  (§DB web-rådata enrichment)
 
 # Non-coin / exonumia object types (§9.2 medals · jetons · tokens; §9.3
 # off-strikes; plus banknotes · dies · tools · misc). KMM's `workDescription`
@@ -311,7 +312,9 @@ def _catalog(src):
     form («H: 134B; Sch: -», «Hbg. 4, MB 558») + abbreviations; first per key."""
     tn = src.get("typeNumber")
     if not isinstance(tn, str) or not tn.strip():
-        return {}
+        # §DB: no ES typeNumber — use the web-rådata catalogue that
+        # _enrich_from_raadata stashed (Sch → schou, Bech/B/LEB/… → others[]).
+        return _merge_raadata_catalog({}, src)
     out: dict = {}
     for seg in re.split(r"[;,]", tn):
         seg = seg.strip()
@@ -340,6 +343,23 @@ def _catalog(src):
         out["galster"] = errata[1]
     elif out.get("galster"):
         out["galster"] = out["galster"].upper()
+    # §DB: union any web-rådata refs the ES typeNumber didn't carry.
+    return _merge_raadata_catalog(out, src)
+
+
+def _merge_raadata_catalog(out: dict, src: dict) -> dict:
+    """UNION the stashed `_raadata_catalog` into `out`: `schou` fills only if
+    absent (ES wins on the same key); `others` labels are appended dedup'd."""
+    rc = src.get("_raadata_catalog") or {}
+    if rc.get("schou") and not out.get("schou"):
+        out["schou"] = rc["schou"]
+    if rc.get("others"):
+        cur = out.get("others")
+        lst = list(cur) if isinstance(cur, list) else ([cur] if cur else [])
+        for o in rc["others"]:
+            if o not in lst:
+                lst.append(o)
+        out["others"] = lst
     return out
 
 
@@ -388,9 +408,122 @@ _KMM_DROP_IDS = {
 }
 
 
+# ── §DB: web-rådata enrichment ───────────────────────────────────────────────
+# The ES harvest endpoint (api.natmus.dk) is 403-dead AND a large subset of the
+# ES `_source` cache carries `typeNumber: None` + no measurements/creationEvents.
+# The natmus.dk WEB object page (fetched via scripts/fetch_kmk_web.py into
+# scripts/cache/kmk/web/<id>.html) server-renders a full rådata JSON that DOES
+# carry the catalogue (`beskrivelser`), weight (`maalinger`), and year/mint
+# (`haendelser`). When a web page is cached for an object, we fill ONLY the ES
+# gaps from it (never override a present ES value) so the seed is reproducible
+# from cache — the recovered values survive a wholesale re-seed. See TODO §DB.
+
+def _raadata_catalog(beskrivelser) -> dict:
+    """Parse a rådata `beskrivelser` list → {schou, others[]}. `Sch N` → schou
+    (safe); `Bech`/`B`/`LEB`/`Schubart`/`Auk. Kat.` → verbatim `others[]` labels
+    (the exact catalogues these denote are unconfirmed per §0 — kept
+    non-committal, NOT mapped to named schema fields)."""
+    out: dict = {}
+    others: list[str] = []
+    for line in (beskrivelser or []):
+        for seg in re.split(r"[;|]", str(line)):
+            seg = seg.strip().strip(".")
+            if not seg:
+                continue
+            m = re.match(r"Sch\.?\s+(\w+)$", seg)
+            if m:
+                out.setdefault("schou", m.group(1))
+                continue
+            m = re.match(r"Schubart\s+(\w+)", seg)
+            if m:
+                others.append(f"Schubart# {m.group(1)}")
+                continue
+            m = re.match(r"Bech\s*(?:nr\.?)?\s*(\w+)", seg, re.I)
+            if m:
+                others.append(f"Bech# {m.group(1)}")
+                continue
+            m = re.match(r"LEB\s+(\w+)", seg)
+            if m:
+                others.append(f"LEB# {m.group(1)}")
+                continue
+            m = re.match(r"Auk\.?\s*Kat\.?\s*(?:no\.?)?\s*(\w+)", seg, re.I)
+            if m:
+                others.append(f"Auk.Kat.# {m.group(1)}")
+                continue
+            m = re.match(r"B\s+(\d+\w*(?:\.\w+)?)$", seg)
+            if m:
+                others.append(f"B# {m.group(1)}")
+                continue
+            # else: nominal word / descriptive prose → ignore
+    if others:
+        out["others"] = others
+    return out
+
+
+# §DB: web-rådata enrichment is OPT-IN (--raadata). Default OFF so that a plain
+# re-seed stays a pure function of the ES cache (reproducible without knowing
+# which objects happen to have a web page cached); the §DB recovery passes run
+# with the flag explicitly. NOTE (2026-07-22, §0b correction): an earlier
+# hypothesis that the §9a thinning post-pass would wrongly collapse rådata-
+# enriched sparse coins was WRONG — verified: each affected coin keeps a unique
+# sub-variant key (bucket=1, untouched by thinning). The 15-coin «disappearance»
+# in the first enriched re-seed was entity RELOCATION (ES place Wolfenbüttel/
+# Reinfeld routing via the mint registry to braunschweig/sonderburg after the
+# 2026-07-19 Wolfenbüttel registry addition), not data loss.
+_USE_RAADATA = False
+
+
+def _enrich_from_raadata(src: dict) -> dict:
+    """Return a copy of `src` with ES-cache gaps filled from the web-rådata
+    JSON (when a web page is cached for this object). Fills: measurements
+    (weight), creationEvents (year), place (mint), and stashes the parsed
+    beskrivelser catalogue under `_raadata_catalog` for `_catalog` to merge.
+    Present ES values are never overridden. Gated by _USE_RAADATA (--raadata)."""
+    if not _USE_RAADATA:
+        return src
+    rd = load_raadata(src.get("id"))
+    if not rd:
+        return src
+    src = dict(src)
+    # weight — maalinger [{vaerdi, enhed:"g"}] → measurements [{dimension:Vægt}]
+    if not src.get("measurements"):
+        mm = [
+            {"dimension": "Vægt", "data": m["vaerdi"]}
+            for m in (rd.get("maalinger") or [])
+            if m.get("enhed") == "g" and isinstance(m.get("vaerdi"), (int, float))
+        ]
+        if mm:
+            src["measurements"] = mm
+    # year / place — haendelser «Fremstilling» → creationEvents + place
+    fremst = [h for h in (rd.get("haendelser") or []) if h.get("titel") == "Fremstilling"]
+    if fremst:
+        h0 = fremst[0]
+        if not src.get("creationEvents") and h0.get("starttid"):
+            src["creationEvents"] = [{
+                "yearFrom": h0.get("starttid"),
+                "yearTo": h0.get("sluttid") or h0.get("starttid"),
+            }]
+        if not (src.get("place") or "").strip():
+            loc = ((h0.get("lokalitet") or {}).get("angivelser") or "").strip()
+            # rådata gives «Danmark - København» (nation - city) or bare
+            # «Danmark». Take the city after « - »; a bare nation is not a mint
+            # (_split_place drops it → routing falls back to nation).
+            city = loc.split(" - ", 1)[1].strip() if " - " in loc else loc
+            if city:
+                src["place"] = city
+    # catalogue — always stash for _catalog to UNION (the ES typeNumber and the
+    # web beskrivelser can each carry refs the other lacks: e.g. ES «Sch 3» +
+    # web «B 960» → schou 3 AND others [B# 960]).
+    rc = _raadata_catalog(rd.get("beskrivelser"))
+    if rc:
+        src["_raadata_catalog"] = rc
+    return src
+
+
 def build_entry(src) -> dict | None:
     if _is_exonumia_workdesc(src.get("workDescription")):
         return None
+    src = _enrich_from_raadata(src)
     if src.get("id") in _KMM_DROP_IDS or str(src.get("id")) in {str(x) for x in _KMM_DROP_IDS}:
         return None
     rid = src.get("id")
@@ -533,7 +666,14 @@ def main() -> int:
     ap.add_argument("--no-thin", action="store_true",
                     help="skip the §9a over-sample thinning post-pass "
                          "(emit the raw per-specimen seed)")
+    ap.add_argument("--raadata", action="store_true",
+                    help="§DB: enrich ES gaps from the web-rådata cache "
+                         "(scripts/cache/kmk/web/<id>.html) — weight/year/mint/"
+                         "catalogue. Off by default so a plain re-seed is a pure "
+                         "function of the ES cache; §DB recovery passes opt in.")
     args = ap.parse_args()
+    global _USE_RAADATA
+    _USE_RAADATA = args.raadata
     return build_seed(dry_run=not args.write,
                       limit=args.limit, no_thin=args.no_thin)
 
