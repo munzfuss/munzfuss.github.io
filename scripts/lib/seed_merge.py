@@ -258,6 +258,42 @@ def _union_cat_values(existing_v, fresh_v):
     return out[0] if len(out) == 1 else out
 
 
+# List-form fields that UNION existing + fresh entries instead of letting fresh
+# replace existing (§9a data-accumulation: «Reconciliation NEVER replaces
+# `sources` — always UNION»). A curator MAY add a primary-source citation to a
+# seed entry (e.g. a danskmoent.dk Hede page pinned onto a bare Numista
+# placeholder); a naive «fresh wins» would silently drop that citation on the
+# next re-seed — the exact §9a violation this guards against. Dedup is by a
+# key-order-insensitive JSON serialisation so a plain re-seed stays byte-
+# idempotent (fresh re-emits the same Numista source dict every run).
+_LIST_UNION_FIELDS = frozenset({"sources"})
+
+
+def _union_source_lists(existing_v, fresh_v) -> list:
+    """Union two `sources`-style lists of dicts into a deduped, order-preserving
+    result; existing entries lead so a curator-added citation keeps its slot.
+    Dedup key is a sorted-key JSON serialisation of each entry (so re-ordered
+    keys collapse); unserialisable entries pass through as-is."""
+    items: list = []
+    for src in (existing_v, fresh_v):
+        if isinstance(src, list):
+            items.extend(src)
+        elif src is not None:
+            items.append(src)
+    out: list = []
+    seen: set = set()
+    for v in items:
+        try:
+            sk = json.dumps(v, sort_keys=True, ensure_ascii=False, default=str)
+        except TypeError:  # pragma: no cover — unserialisable, keep as-is
+            out.append(v)
+            continue
+        if sk not in seen:
+            seen.add(sk)
+            out.append(v)
+    return out
+
+
 def merge_one(
     existing: CommentedMap, fresh: CommentedMap,
     extra_curated: frozenset = frozenset(),
@@ -345,6 +381,10 @@ def merge_one(
             elif ex_v is None and fr_v is not None:
                 existing[key] = fr_v
             continue
+        if key in _LIST_UNION_FIELDS:
+            # §9a: union existing + fresh, never replace (see _LIST_UNION_FIELDS).
+            existing[key] = _union_source_lists(existing.get(key), fresh[key])
+            continue
         if key in _VERIFIABLE_FIELDS:
             # Verified-wins-over-unverified rule (CLAUDE.md §4).
             verified_flag = _VERIFIABLE_FIELDS[key]
@@ -373,6 +413,8 @@ def merge_one(
         # rather than preserve a flag describing the now-gone old value.
         if key in CURATED_FIELDS and key not in _flag_follows_fresh:
             continue
+        if key in _LIST_UNION_FIELDS:
+            continue  # §9a accumulation: a union field is never silently dropped
         del existing[key]
 
     # §9.4 index hygiene on the MERGED catalog (post deep-merge). The
