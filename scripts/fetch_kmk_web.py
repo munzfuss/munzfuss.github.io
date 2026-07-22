@@ -63,6 +63,37 @@ def fetch_page(obj_id: int | str, *, force: bool = False) -> str:
     return html
 
 
+def fetch_raadata(obj_id: int | str, *, force: bool = False,
+                  sleep_secs: float = SLEEP_SECS) -> dict | None:
+    """Bulk-mode fetch (§DB Phase-1, variant «б»): fetch the object page,
+    extract its embedded rådata JSON, and persist ONLY that verbatim record as
+    `web/<id>.json` (~3 KB vs ~28 KB HTML — the rådata IS the museum's source
+    record; the surrounding HTML is site chrome). Full HTML is stored as
+    `web/<id>.html` ONLY when the rådata parse fails (fallback «а», so the raw
+    page survives for a later parser fix). Skip-if-cached on either artefact.
+    Returns the rådata dict, or None (no rådata found / fetch error)."""
+    WEB_CACHE.mkdir(parents=True, exist_ok=True)
+    jdest = WEB_CACHE / f"{obj_id}.json"
+    hdest = WEB_CACHE / f"{obj_id}.html"
+    if not force:
+        if jdest.exists() and jdest.stat().st_size > 2:
+            try:
+                return json.loads(jdest.read_text("utf-8"))
+            except json.JSONDecodeError:
+                pass  # corrupt sidecar → refetch
+        if hdest.exists() and hdest.stat().st_size > 1000:
+            return parse_raadata(hdest.read_text("utf-8"))
+    req = urllib.request.Request(OBJECT_URL.format(id=obj_id), headers={"User-Agent": USER_AGENT})
+    html = urllib.request.urlopen(req, timeout=25).read().decode("utf-8", "replace")
+    rd = parse_raadata(html)
+    if rd is not None:
+        jdest.write_text(json.dumps(rd, ensure_ascii=False, indent=1), "utf-8")
+    else:
+        hdest.write_text(html, "utf-8")   # fallback «а»: keep the raw page
+    time.sleep(sleep_secs)
+    return rd
+
+
 def extract_description(html: str) -> str:
     """Return the plain-text content of the page's <div id="description">
     (nominal + catalogue refs, `  |  `-joined across the source's <br/>s)."""
@@ -121,12 +152,53 @@ def parse_raadata(html: str) -> dict | None:
 
 
 def load_raadata(obj_id: int | str) -> dict | None:
-    """Return the rådata dict for a cached object (None if no web page cached
-    or it has no parseable rådata). Read-only — never fetches."""
+    """Return the rådata dict for a cached object (None if nothing cached or
+    no parseable rådata). Read-only — never fetches. Prefers the `<id>.json`
+    verbatim sidecar (bulk variant «б»); falls back to parsing `<id>.html`."""
+    jdest = WEB_CACHE / f"{obj_id}.json"
+    if jdest.exists():
+        try:
+            return json.loads(jdest.read_text("utf-8"))
+        except json.JSONDecodeError:
+            pass
     dest = WEB_CACHE / f"{obj_id}.html"
     if not dest.exists():
         return None
     return parse_raadata(dest.read_text("utf-8"))
+
+
+def _bulk_fetch(ids: list[str], workers: int, sleep_secs: float,
+                force: bool) -> int:
+    """§DB Phase-1 bulk mode: fetch rådata JSON sidecars for `ids` with a
+    small thread pool. Prints a progress line every 200 objects and a final
+    yield summary; failed ids land in `web/_failed_ids.json` for a re-run."""
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    ok = empty = err = 0
+    failed: list[str] = []
+    done = 0
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futs = {pool.submit(fetch_raadata, i, force=force,
+                            sleep_secs=sleep_secs): i for i in ids}
+        for fut in as_completed(futs):
+            i = futs[fut]
+            done += 1
+            try:
+                rd = fut.result()
+                if rd is None:
+                    empty += 1     # page fetched, no rådata → HTML fallback saved
+                else:
+                    ok += 1
+            except Exception as e:  # noqa: BLE001
+                err += 1
+                failed.append(i)
+                print(f"  ERR {i}: {e}", file=sys.stderr)
+            if done % 200 == 0:
+                print(f"  {done}/{len(ids)}  (raadata={ok} no-raadata={empty} err={err})",
+                      flush=True)
+    (WEB_CACHE / "_failed_ids.json").write_text(json.dumps(failed))
+    print(f"DONE {len(ids)}: raadata={ok}  no-raadata(html-fallback)={empty}  "
+          f"errors={err} (ids in web/_failed_ids.json)")
+    return 0 if err == 0 else 1
 
 
 def main() -> int:
@@ -135,6 +207,13 @@ def main() -> int:
     ap.add_argument("--file", help="JSON file holding a list of ids")
     ap.add_argument("--force", action="store_true", help="refetch even if cached")
     ap.add_argument("--preview", action="store_true", help="print each description div")
+    ap.add_argument("--bulk", action="store_true",
+                    help="§DB Phase-1 bulk mode: store verbatim raadata JSON "
+                         "sidecars (HTML only as parse-failure fallback)")
+    ap.add_argument("--workers", type=int, default=3,
+                    help="bulk-mode thread pool size (default 3)")
+    ap.add_argument("--sleep", type=float, default=SLEEP_SECS,
+                    help=f"per-worker sleep after each fetch (default {SLEEP_SECS}s)")
     args = ap.parse_args()
 
     ids = list(args.ids)
@@ -142,6 +221,10 @@ def main() -> int:
         ids += [str(x) for x in json.load(open(args.file))]
     if not ids:
         ap.error("no ids given (positional or --file)")
+
+    if args.bulk:
+        return _bulk_fetch(ids, workers=args.workers,
+                           sleep_secs=args.sleep, force=args.force)
 
     for n, i in enumerate(ids, 1):
         try:
