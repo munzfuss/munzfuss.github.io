@@ -34,12 +34,30 @@ per §0). Written into BOTH kmk seed AND finals (union, ruamel_seed round-trip,
 pure +104-line catalog-only diff, no churn). Web pages committed to the
 submodule as provenance (`7c649b3`).
 
-**Still open in §DB**: (a) scope re-discovery for a FULL re-harvest (the ES
-`_manifest.json` nation filter has no live backing endpoint); (b) fold the
-`beskrivelser` parser into `build_kmk_seed._catalog()` for a native bulk
-re-seed; (c) also harvest `maalinger`/`haendelser` (weight/year/mint) — this
-pass did catalogue only. **User question pending**: what are `B` / `Bech` /
-`LEB` catalogues? (identify → promote `others[]` labels to schema fields).
+**§DB step 2 shipped same day (commits `5fee913` + `0c80d46`)**: the object
+page embeds the FULL rådata JSON (`beskrivelser`/`maalinger`/`haendelser`/
+`materialer`) — `fetch_kmk_web.parse_raadata()` extracts it, and
+`build_kmk_seed.py --raadata` natively fills ES gaps (weight ← maalinger,
+year ← haendelser, mint ← lokalitet «Nation - City», catalogue ← beskrivelser
+UNIONed with typeNumber). Full re-seed + merger + absorb applied for 5
+entities. Side-effects verified clean: (a) 15 coins RELOCATED by the mint
+registry (13 × Wolfenbüttel-1627 → braunschweig, Reinfeld → sonderburg,
+86269 → danish_norway) — moves, not losses; (b) −14/+2 §9a thinning
+rep-swaps, no unique catalogue ref lost (galster 36/42 buckets checked);
+(c) sovereign_fod curation intact. **The 3 relocated Wolfenbüttel gold
+dukats (unified-kmk-290901 [+47350], 290902, 290909) sit in braunschweig
+classification_decisions `pending:` awaiting curator review** (no
+bulk_promote there — correct no-promotion-without-curator discipline).
+NOTE: they left the Denmark gold-triage table scope (danish entities only).
+
+**Still open in §DB**: scope re-discovery for a FULL re-harvest (ES manifest
+has no live backing endpoint; need a way to enumerate in-scope KMM ids) + a
+bulk polite-rate web fetch over the ~15k typeNumber-less cached objects.
+**User question pending**: what are `B` / `Bech` / `LEB` catalogues?
+(identify → promote `others[]` labels to schema fields). Also minor: stale
+sovereign assignments in danish_realm classification_decisions reference old
+merge-head ids (426815/137087/426842/137089 → now unified-dk-hede-c4h20/c4h22)
+— harmless («unmatched: 4» in absorb), could be cleaned to old-head-free form.
 
 **43 nominal-only stubs** (no catalogue on web, most no year/weight) remain in
 the dukat group's `seed_unsorted`: the `kmk-783xx`/`kmk-277197..200`/etc.

@@ -166,24 +166,27 @@ stubs (web has no catalogue either). Values written into both the kmk seed and
 the finals (union); web pages cached as provenance. Still OPEN below:
 
 1. **Migrate the harvester off the dead ES endpoint onto the web-rådata API**
-   — DONE for per-object fetch (`fetch_kmk_web.py`). Still open: **scope
+   — DONE for per-object fetch (`fetch_kmk_web.py`), and DONE (2026-07-22) for
+   the structured rådata: `parse_raadata()` extracts the page's embedded
+   HTML-escaped rådata JSON (`beskrivelser`/`maalinger`/`haendelser`/
+   `materialer`), and `build_kmk_seed.py --raadata` natively fills ES-cache
+   gaps from it (weight/year/mint/catalogue; ES values never overridden;
+   catalogue UNIONed). First native re-seed applied for the 68 dukat-group
+   objects (commits `5fee913` + `0c80d46`). Still open: **scope
    re-discovery.** The ES `_manifest.json` nation-scope filter no longer has a
    live backing endpoint, so a FULL re-harvest (not just a hand-fed id list)
-   needs a new way to enumerate in-scope KMM object ids. Also unharvested so
-   far: `maalinger` (weight/diameter) / `haendelser` (year/mint) parsing from
-   the web page for records whose ES cache lacks them — this pass recovered
-   catalogue only.
+   needs a new way to enumerate in-scope KMM object ids beyond the 43k already
+   cached — and a bulk web-page fetch pass over the ~15k typeNumber-less
+   cached objects (polite-rate, many sessions).
 2. **Extend `build_kmk_seed.py::_catalog()` to also parse `beskrivelser`** —
-   the recovery pass above applied the mapping ad-hoc (in a one-off apply
-   script, not yet in the builder): `Sch N` → `schou`; `Bech N` / `B N` /
-   `LEB N` / `Schubart N` / `Auk. Kat. no. N` → `others[]` as literal
-   `Bech#`/`B#`/`LEB#`/`Schubart#`/`Auk.Kat.#` labels (NOT mapped to named
-   schema fields — `Sch`=Schou is safe, the rest still need a source check per
-   §0, so they stay non-committal in `others`). Still TODO: fold this parser
-   into `build_kmk_seed._catalog()` so a bulk re-seed applies it natively, and
-   handle the multi-ref «a; b; c» split there. **Open question for the user:**
-   what are `B` / `Bech` / `LEB` — identify the catalogues so `others[]` labels
-   can promote to real schema fields.
+   ✅ DONE 2026-07-22 (commit `5fee913`): `_raadata_catalog()` +
+   `_merge_raadata_catalog()` in the builder parse the rådata `beskrivelser`
+   (`Sch N` → `schou`; `Bech#`/`B#`/`LEB#`/`Schubart#`/`Auk.Kat.#` → verbatim
+   `others[]`; multi-ref «a; b; c» split handled) and UNION it with the ES
+   `typeNumber` parse. Gated behind `--raadata` (a plain re-seed stays a pure
+   function of the ES cache). **Open question for the user:** what are `B` /
+   `Bech` / `LEB` — identify the catalogues so `others[]` labels can promote
+   to real schema fields.
 3. **Re-harvest + re-seed** the in-scope KMK objects; the merger/absorb then
    propagate the recovered indices to seed_unified + final. Expect many
    previously catalogue-less KMK coins to gain their Bech/B/Schou index at
