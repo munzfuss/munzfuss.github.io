@@ -511,6 +511,16 @@ def _enrich_from_raadata(src: dict) -> dict:
             city = loc.split(" - ", 1)[1].strip() if " - " in loc else loc
             if city:
                 src["place"] = city
+    # typeNumber — rådata `klassifikationer` [{term, system:"Typenummer"}] is
+    # the web-side equivalent of the ES `typeNumber` our cache lost for ~15k
+    # objects (e.g. term «Ahlström 24»). Fill the gap so the existing _catalog
+    # prefix parser handles it exactly like an ES-attested typeNumber.
+    if not isinstance(src.get("typeNumber"), str) or not src["typeNumber"].strip():
+        terms = [k.get("term") for k in (rd.get("klassifikationer") or [])
+                 if isinstance(k, dict) and k.get("system") == "Typenummer"
+                 and isinstance(k.get("term"), str) and k["term"].strip()]
+        if terms:
+            src["typeNumber"] = "; ".join(terms)
     # catalogue — always stash for _catalog to UNION (the ES typeNumber and the
     # web beskrivelser can each carry refs the other lacks: e.g. ES «Sch 3» +
     # web «B 960» → schou 3 AND others [B# 960]).
