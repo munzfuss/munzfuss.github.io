@@ -275,11 +275,43 @@ def merge_one(
     fresh_keys = set(fresh.keys())
     existing_keys = set(existing.keys())
 
+    # Field-consistency guard (§4, 2026-07-22): a `<field>_verified` flag must
+    # NOT be preserved from `existing` when its paired `<field>` VALUE is being
+    # replaced by a differing fresh value. The flag describes a specific value;
+    # once the value changes, the old flag is stale. This matters because some
+    # companion flags (`mint_verified`, `verified`) sit in CURATED_FIELDS and
+    # would otherwise be soft-preserved from existing — e.g. a corrected mint
+    # (None → «Christiania», fresh source-attested) would keep the stale
+    # `mint_verified: false`, and the writer's sources-imply-mint hygiene ran
+    # BEFORE merge so it can't re-fire. Pre-write hygiene already derived the
+    # correct flag on `fresh`, so the flag must follow fresh whenever the value
+    # is replaced. Non-curated companion flags (fineness_verified, …) already
+    # default to fresh-wins, but computing the set uniformly keeps the rule
+    # explicit and covers the drop-when-fresh-omits-flag case below.
+    _flag_follows_fresh: set[str] = set()
+    for _val_field, _flag_field in _VERIFIABLE_FIELDS.items():
+        if _val_field not in fresh_keys or _val_field in holds:
+            continue
+        # Mirror the verified-wins branch decision below: existing keeps its
+        # value only when it is source-attested and fresh is not.
+        _existing_wins = (
+            _val_field in existing_keys
+            and bool(existing.get(_flag_field))
+            and not bool(fresh.get(_flag_field))
+        )
+        if not _existing_wins and fresh.get(_val_field) != existing.get(_val_field):
+            _flag_follows_fresh.add(_flag_field)
+
     for key in fresh_keys:
         if key in _PRESERVE_ALWAYS_KEYS:
             continue  # never flows from fresh; survives via existing
         if key in holds:
             # Frozen field: existing state wins (present-or-absent).
+            continue
+        if key in _flag_follows_fresh:
+            # Companion verified-flag whose paired value is being replaced —
+            # take fresh's flag, overriding any CURATED_FIELDS preservation.
+            existing[key] = fresh[key]
             continue
         if key in curated:
             # Soft-curated: existing wins if present, fresh fills gaps.
@@ -334,7 +366,12 @@ def merge_one(
     for key in drop_candidates:
         if key in _PRESERVE_ALWAYS_KEYS:
             continue
-        if key in CURATED_FIELDS or key in holds:
+        if key in holds:
+            continue
+        # A curated companion verified-flag whose paired value was replaced is
+        # stale even though curated: fresh omitted the flag key, so drop it
+        # rather than preserve a flag describing the now-gone old value.
+        if key in CURATED_FIELDS and key not in _flag_follows_fresh:
             continue
         del existing[key]
 
