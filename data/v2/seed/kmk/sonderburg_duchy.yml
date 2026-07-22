@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-06-24T20:09:00Z'
+generated_at: '2026-07-22T11:25:05Z'
 entity: sonderburg_duchy
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -86,6 +86,26 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/328158
         ref: KMM 328158 (Inv. FP 6454.13)
     verification_note: *id001
+  - id: kmk-367913
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: sonderburg_duchy
+    entity_classified_via: mint
+    nominal: 2 Skilling lybsk
+    metal_verified: false
+    mint: Reinfeld
+    mint_verified: true
+    ruler: Hans den Yngre af Sønderborg
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/367913
+        ref: KMM 367913 (Inv. FP 4655.1)
+    verification_note: *id001
+    _source_note:
+      da: M. nældeblad og "1623"
   - id: kmk-367971
     fuss: seed_unsorted
     phase: kmk

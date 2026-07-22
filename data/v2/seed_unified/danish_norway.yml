@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-07-16 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-07-22 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 3903 per-source seed entries.
-# Output: 2138 unified entries (one per physical coin).
+# Input: 3904 per-source seed entries.
+# Output: 2139 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-07-16'
+generated_at: '2026-07-22'
 coins:
   - id: unified-denmark-numismaster-110619
     fuss: seed_unsorted
@@ -32519,6 +32519,8 @@ coins:
     ruler: Christian 7
     catalog:
       hede: '10'
+      others:
+        - LEB# 10854
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -32539,6 +32541,8 @@ coins:
     ruler: Christian 5
     catalog:
       hede: '8'
+      others:
+        - LEB# 10499
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -53986,6 +53990,8 @@ coins:
     mint: Kongsberg
     catalog:
       schou: '1'
+      others:
+        - B# 647
     metal: gold
     metal_verified: true
     weight_rough_verified: true
@@ -55167,6 +55173,8 @@ coins:
     mint: Christiania
     catalog:
       schou: '2'
+      others:
+        - B# 665
     metal: gold
     metal_verified: true
     weight_rough_verified: true
@@ -73402,3 +73410,28 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-83080
+  - id: unified-kmk-86269
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Dukat
+    year_first: 1673
+    year_last: 1673
+    year_label: '1673'
+    ruler: Christian 5
+    mint: Christiania
+    catalog:
+      others:
+        - B# 97a
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/86269
+        ref: KMM 86269 (Inv. GP 1373.34)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-86269
