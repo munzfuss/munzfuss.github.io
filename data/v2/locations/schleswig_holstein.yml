@@ -47,9 +47,9 @@ timeline:
     - id: rhinsk_gylden_fod
       order: 1
       label:
-        de: Rheinguldenfuß · Goldgulden
-        en: Rheinguldenfuß · Goldgulden
-        uk: Rheinguldenfuß · Goldgulden
+        de: Goldguldenfuß · Goldgulden
+        en: Goldguldenfuß · Goldgulden
+        uk: Goldguldenfuß · Goldgulden
       small:
         de: 2,50 g fein · Gold
         en: 2.50 g fine · gold
@@ -612,23 +612,56 @@ fuss_periods:
       uk: Reichsgoldmünzfuß, запроваджений 1871 р. як загальноімперський золотий стандарт, завершує 312-річну дію Reichsdukatenfuß; власної гольштинської монетної установи не має (Альтонський двір закрито ще 1863 р.). Золоті 5/10/20-Mark-Stücke, що оберталися в Гольштейні, надходили з інших імперських монетних дворів — передусім Гамбурга (J) і Берліна (A) — і як спільне імперське карбування не розрізняються територіально. Призупинення золотого розміну 1914 р. припиняє фактичну золоту валюту; формальна демонетизація 1924 р. закриває 53-річну золоту епоху і остаточно переводить Німеччину в епоху Papiermark (Reichsmark / Rentenmark).
   rhinsk_gylden_fod:
     name:
-      de: Rheinguldenfuß · Goldgulden
-      en: Rheinguldenfuß · Goldgulden
-      uk: Rheinguldenfuß · Goldgulden
-    historical_name: ''
+      de: Goldguldenfuß
+      en: Goldguldenfuß
+      uk: Goldguldenfuß
+    historical_name: Rheinguldenfuß
     grundwerte:
       heading:
-        de: "Grundwerte · Rheinguldenfuß"
-        en: "Base values · Rheinguldenfuß"
-        uk: "Базові значення · Rheinguldenfuß"
+        de: "Grundwerte · Goldguldenfuß"
+        en: "Base values · Goldguldenfuß"
+        uk: "Базові значення · Goldguldenfuß"
+      rows:
+        - key:
+            de: "Stückelung je Cölln. Marck"
+            en: "Pieces per Cologne Mark"
+            uk: "Штук з кельнської марки"
+          value:
+            de: "<b>72 Goldgulden</b> aus der rauen Cöllnischen Marck — der im Reich nach 1559 geltende Fuß (Müntzedikt Kaiser Ferdinands I.)<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup> und zugleich die dänische Vorgabe der Møntordninger 1514 / 1524<sup>[ref:wilcke-rhinsk-gylden-1514-standard]</sup>. Die ältere kurfürstliche Norm des Wormser Reichsabschieds 1495 stand auf <b>71⅓ Stück</b> zu 18½ Karat<sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>."
+            en: "<b>72 Goldgulden</b> per rough Cologne Mark — the standard in force in the Empire after 1559 (Emperor Ferdinand I''s coinage edict)<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup> and at the same time the Danish specification of the Møntordninger of 1514 / 1524<sup>[ref:wilcke-rhinsk-gylden-1514-standard]</sup>. The older electoral norm of the Worms Reichsabschied of 1495 stood at <b>71⅓ pieces</b> at 18½ carats<sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>."
+            uk: "<b>72 Goldgulden</b> з повної кельнської марки — стандарт, чинний у Рейху після 1559 р. (монетний едикт імператора Фердинанда I)<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup> і водночас данський припис Møntordninger 1514 / 1524<sup>[ref:wilcke-rhinsk-gylden-1514-standard]</sup>. Старіша курфюрстська норма Вормського Reichsabschied 1495 стояла на <b>71⅓ штуки</b> за 18½ карата<sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>."
+        - key:
+            de: "Raugewicht"
+            en: "Rough weight"
+            uk: "Повна вага"
+          value:
+            de: "<b>3,248 g</b> (= 233,856 / 72) — über beide Phasen konstant"
+            en: "<b>3.248 g</b> (= 233.856 / 72) — constant across both phases"
+            uk: "<b>3,248 г</b> (= 233,856 / 72) — стала через обидві фази"
+        - key:
+            de: "Phase I (1523-1547) · königlich, Møntordning 1514 / 1524"
+            en: "Phase I (1523-1547) · royal, Møntordning 1514 / 1524"
+            uk: "Фаза I (1523-1547) · королівська, Møntordning 1514 / 1524"
+          value:
+            de: "<span class='gw-phase'><span class='gw-phase-label'>Probe</span><b>18 Karat</b> (= .750)</span><span class='gw-phase'><span class='gw-phase-label'>Feingewicht</span><b>2,436 g fein</b> (= 3,248 × 18/24)</span>"
+            en: "<span class='gw-phase'><span class='gw-phase-label'>Fineness</span><b>18 carats</b> (= .750)</span><span class='gw-phase'><span class='gw-phase-label'>Fine weight</span><b>2.436 g fine</b> (= 3.248 × 18/24)</span>"
+            uk: "<span class='gw-phase'><span class='gw-phase-label'>Проба</span><b>18 карат</b> (= .750)</span><span class='gw-phase'><span class='gw-phase-label'>Чиста вага</span><b>2,436 г чистого</b> (= 3,248 × 18/24)</span>"
+        - key:
+            de: "Phase II (1619-1664) · herzoglich, Reichsnorm nach Ferdinand I. 1559"
+            en: "Phase II (1619-1664) · ducal, imperial norm after Ferdinand I 1559"
+            uk: "Фаза II (1619-1664) · герцогська, імперська норма за Фердинандом I 1559"
+          value:
+            de: "<span class='gw-phase'><span class='gw-phase-label'>Probe</span><b>18½ Karat</b> (= .770833) — kein Korn überliefert, Reichsnorm</span><span class='gw-phase'><span class='gw-phase-label'>Feingewicht</span><b>2,50367 g fein</b> (= 3,248 × 18½/24)<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup></span>"
+            en: "<span class='gw-phase'><span class='gw-phase-label'>Fineness</span><b>18½ carats</b> (= .770833) — no fineness recorded, imperial norm</span><span class='gw-phase'><span class='gw-phase-label'>Fine weight</span><b>2.50367 g fine</b> (= 3.248 × 18½/24)<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup></span>"
+            uk: "<span class='gw-phase'><span class='gw-phase-label'>Проба</span><b>18½ карата</b> (= .770833) — проби не подано, імперська норма</span><span class='gw-phase'><span class='gw-phase-label'>Чиста вага</span><b>2,50367 г чистого</b> (= 3,248 × 18½/24)<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup></span>"
     pdate_label:
       de: 'Geltungsbereich: 1523 → 1664 · 141 Jahre · königliche und herzogliche Karbung'
       en: 'Period of validity: 1523 → 1664 · 141 years · royal and ducal coinage'
       uk: 'Період дії: 1523 → 1664 · 141 рік · королівське і герцогське карбування'
     hintergrund:
-      de: 'Der Rheinguldenfuß galt in den Herzogtümern nach zwei Maßstäben, und die Stückzahl des deutschen war überdies veränderlich. Der deutsch-kaiserliche ist der ältere: die Norm der vier Rheinischen Kurfürsten, durch den <b>Wormser Reichsabschied 1495</b> reichsweit verbindlich<sup>[ref:wilcke6-worms-1495-reichsabschied]</sup> — <b>71⅓ Stück aus der rauen Cöllnischen Marck zu 18½ Karat</b><sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>; erst das <b>Müntzedikt Kaiser Ferdinands I. vom 19. August 1559</b> hebt die Stückzahl auf <b>72</b> bei gleichbleibenden 18½ Karat<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup>. Der dänische Maßstab regelte die königliche Karbung in Schleswig, dem Lehen der Krone: die <b>Møntordninger vom Sommer 1514 und 25. Februar 1524</b> setzen <b>72 Stück zu 18 Karat</b><sup>[ref:wilcke-rhinsk-gylden-1514-standard]</sup><sup>[ref:wilcke-rhinsk-gylden-1524-standard]</sup>. So folgt <b>Phase I</b> (1523-1547) königlich der dänischen Vorgabe, <b>Phase II</b> (1619-1664) herzoglich dem Reich nach 1559 — beide bei 72 Stück je Marck, gegen die daher durchweg gerechnet wird. Die kurfürstlichen 71⅓ der Zeit vor 1559 treten allein am Doppelgulden von 1546 zutage (siehe Phase I).'
-      en: 'In the duchies the Rheinguldenfuß ran on two standards, and the German one''s piece-count moreover changed over time. The German-imperial is the older: the norm of the four Rhenish electors, made binding empire-wide by the <b>Worms Reichsabschied of 1495</b><sup>[ref:wilcke6-worms-1495-reichsabschied]</sup> — <b>71⅓ to the rough Cologne mark at 18½ carats</b><sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>; only Emperor <b>Ferdinand I''s coinage edict of 19 August 1559</b> raised the count to <b>72</b>, the fineness staying at 18½ carats<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup>. The Danish standard governed the king''s coinage in Schleswig, a fief of the crown: the <b>Møntordninger of Summer 1514 and 25 February 1524</b> set <b>72 to the mark at 18 carats</b><sup>[ref:wilcke-rhinsk-gylden-1514-standard]</sup><sup>[ref:wilcke-rhinsk-gylden-1524-standard]</sup>. Thus <b>Phase I</b> (1523-1547) follows the Danish specification as royal coinage, and <b>Phase II</b> (1619-1664) the post-1559 imperial one as ducal coinage — both at 72 to the mark, which is therefore the grid the balance reckons against throughout. The electors'' 71⅓ of the pre-1559 period shows only on the 1546 double gulden (see Phase I).'
-      uk: 'У герцогствах Rheinguldenfuß діяв за двома мірилами, причому кількість штук у німецькому ще й змінювалася з часом. Німецько-імперське старіше: норма чотирьох рейнських курфюрстів, зроблена загальноімперськи обов''язковою <b>Вормським Reichsabschied 1495</b><sup>[ref:wilcke6-worms-1495-reichsabschied]</sup> — <b>71⅓ штуки з повної кельнської марки за 18½ карата</b><sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>; лише <b>монетний едикт імператора Фердинанда I від 19 серпня 1559 р.</b> підняв кількість до <b>72</b> при незмінних 18½ карата<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup>. Данське мірило впорядковувало королівське карбування в Шлезвігу, лені корони: <b>Møntordninger літа 1514 і 25 лютого 1524 рр.</b> ставлять <b>72 штуки за 18 карат</b><sup>[ref:wilcke-rhinsk-gylden-1514-standard]</sup><sup>[ref:wilcke-rhinsk-gylden-1524-standard]</sup>. Тож <b>Фаза I</b> (1523-1547) іде королівською за данським приписом, а <b>Фаза II</b> (1619-1664) — герцогською за пост-1559 імперським, обидві по 72 штуки з марки, проти яких і рахується баланс. Курфюрстські 71⅓ доедиктової доби проступають лише на подвійному гульдені 1546 р. (див. Фазу I).'
+      de: 'Der Goldguldenfuß galt in den Herzogtümern nach zwei Maßstäben, und die Stückzahl des deutschen war überdies veränderlich. Der deutsch-kaiserliche ist der ältere: die Norm der vier Rheinischen Kurfürsten, durch den <b>Wormser Reichsabschied 1495</b> reichsweit verbindlich<sup>[ref:wilcke6-worms-1495-reichsabschied]</sup> — <b>71⅓ Stück aus der rauen Cöllnischen Marck zu 18½ Karat</b><sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>; erst das <b>Müntzedikt Kaiser Ferdinands I. vom 19. August 1559</b> hebt die Stückzahl auf <b>72</b> bei gleichbleibenden 18½ Karat<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup>. Der dänische Maßstab regelte die königliche Karbung in Schleswig, dem Lehen der Krone: die <b>Møntordninger vom Sommer 1514 und 25. Februar 1524</b> setzen <b>72 Stück zu 18 Karat</b><sup>[ref:wilcke-rhinsk-gylden-1514-standard]</sup><sup>[ref:wilcke-rhinsk-gylden-1524-standard]</sup>. So folgt <b>Phase I</b> (1523-1547) königlich der dänischen Vorgabe, <b>Phase II</b> (1619-1664) herzoglich dem Reich nach 1559 — beide bei 72 Stück je Marck, gegen die daher durchweg gerechnet wird. Die kurfürstlichen 71⅓ der Zeit vor 1559 treten allein am Doppelgulden von 1546 zutage (siehe Phase I).'
+      en: 'In the duchies the Goldguldenfuß ran on two standards, and the German one''s piece-count moreover changed over time. The German-imperial is the older: the norm of the four Rhenish electors, made binding empire-wide by the <b>Worms Reichsabschied of 1495</b><sup>[ref:wilcke6-worms-1495-reichsabschied]</sup> — <b>71⅓ to the rough Cologne mark at 18½ carats</b><sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>; only Emperor <b>Ferdinand I''s coinage edict of 19 August 1559</b> raised the count to <b>72</b>, the fineness staying at 18½ carats<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup>. The Danish standard governed the king''s coinage in Schleswig, a fief of the crown: the <b>Møntordninger of Summer 1514 and 25 February 1524</b> set <b>72 to the mark at 18 carats</b><sup>[ref:wilcke-rhinsk-gylden-1514-standard]</sup><sup>[ref:wilcke-rhinsk-gylden-1524-standard]</sup>. Thus <b>Phase I</b> (1523-1547) follows the Danish specification as royal coinage, and <b>Phase II</b> (1619-1664) the post-1559 imperial one as ducal coinage — both at 72 to the mark, which is therefore the grid the balance reckons against throughout. The electors'' 71⅓ of the pre-1559 period shows only on the 1546 double gulden (see Phase I).'
+      uk: 'У герцогствах Goldguldenfuß діяв за двома мірилами, причому кількість штук у німецькому ще й змінювалася з часом. Німецько-імперське старіше: норма чотирьох рейнських курфюрстів, зроблена загальноімперськи обов''язковою <b>Вормським Reichsabschied 1495</b><sup>[ref:wilcke6-worms-1495-reichsabschied]</sup> — <b>71⅓ штуки з повної кельнської марки за 18½ карата</b><sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>; лише <b>монетний едикт імператора Фердинанда I від 19 серпня 1559 р.</b> підняв кількість до <b>72</b> при незмінних 18½ карата<sup>[ref:wilcke6-ferdinand-moentedikt-1559]</sup>. Данське мірило впорядковувало королівське карбування в Шлезвігу, лені корони: <b>Møntordninger літа 1514 і 25 лютого 1524 рр.</b> ставлять <b>72 штуки за 18 карат</b><sup>[ref:wilcke-rhinsk-gylden-1514-standard]</sup><sup>[ref:wilcke-rhinsk-gylden-1524-standard]</sup>. Тож <b>Фаза I</b> (1523-1547) іде королівською за данським приписом, а <b>Фаза II</b> (1619-1664) — герцогською за пост-1559 імперським, обидві по 72 штуки з марки, проти яких і рахується баланс. Курфюрстські 71⅓ доедиктової доби проступають лише на подвійному гульдені 1546 р. (див. Фазу I).'
     fractions:
       # Both phases reckon against 72 pieces to the mark (the constant grid):
       # Phase I on the Danish Møntordninger of 1514 + 1524 (72 @ 18 Karat → 2.436),
