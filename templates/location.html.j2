@@ -205,52 +205,6 @@
       <span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>
     {%- else -%}—{%- endif -%}
   </td>
-  <td class="c-soll">
-    {%- if coin.soll_fein_g -%}
-      {{ fmt_num(coin.soll_fein_g, decimals=5, unit='') }}
-    {%- else -%}—{%- endif -%}
-  </td>
-  <td class="c-d">
-    {# Diameter is NOT a measurement sub-row axis (specimen spread is wear noise,
-       not a standard difference) — it keeps its own deduped column regardless of
-       whether the other columns split into sub-rows. #}
-    {%- if coin.diameter_groups -%}
-      {%- set _qmark -%}{%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
-      {%- for g in coin.diameter_groups -%}
-        {%- set _dec = g.display_decimals if g.display_decimals is not none else 1 -%}
-        {%- set _txt = fmt_num(g.value, decimals=_dec, unit='') -%}
-        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}{% set _m = mark(g.sources, coin.diameter_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}
-        {%- elif g.is_unanimous -%}{{ _txt }}{% set _m = mark(g.sources, coin.diameter_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}
-        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{% set _m = mark(g.sources, coin.diameter_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}</span>
-        {%- endif -%}
-      {%- endfor -%}
-    {%- else -%}—{%- endif -%}
-  </td>
-  <td class="c-mint">
-    {%- if coin.raw.mint -%}
-      {%- if coin.raw.mint is string -%}{{ coin.raw.mint }}
-      {%- else -%}{{ coin.raw.mint|join(', ') }}
-      {%- endif -%}
-      {%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
-    {%- else -%}—{%- endif -%}
-  </td>
-  <td class="c-entity">
-    {# V2 issuing_entity may be a list (joint-jurisdiction coins per V2_PIPELINE.md
-       §3.10). Render one badge per entity in order; scalar shows a single badge. #}
-    {%- set ie_raw = coin.raw.issuing_entity -%}
-    {%- if ie_raw is none -%}—
-    {%- else -%}
-      {%- if ie_raw is string -%}{%- set ie_tags = [ie_raw] -%}
-      {%- else -%}{%- set ie_tags = ie_raw -%}{%- endif -%}
-      {%- for tag in ie_tags -%}
-        {%- set ent = issuing_entities.get(tag) -%}
-        {%- if ent -%}
-          <span class="ent-badge ent-{{ tag }}" data-tooltip="{{ ((ent.name|t(lang)) ~ ' — ' ~ ((ent.description|t(lang))|striptags if ent.description else '')) | nb_dashes }}">{{ ent.abbrev }}</span>{% if not loop.last %} {% endif %}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endif -%}
-  </td>
-  <td class="c-note">{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-fuss">
     {# When the coin has no computable fein weight (no fineness or no rough weight),
        collapse the Stopa column to a single plain rendering of the fuss name. The
@@ -302,6 +256,52 @@
       {%- endfor -%}
     {%- endif -%}
   </td>
+  <td class="c-soll">
+    {%- if coin.soll_fein_g -%}
+      {{ fmt_num(coin.soll_fein_g, decimals=5, unit='') }}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-d">
+    {# Diameter is NOT a measurement sub-row axis (specimen spread is wear noise,
+       not a standard difference) — it keeps its own deduped column regardless of
+       whether the other columns split into sub-rows. #}
+    {%- if coin.diameter_groups -%}
+      {%- set _qmark -%}{%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- for g in coin.diameter_groups -%}
+        {%- set _dec = g.display_decimals if g.display_decimals is not none else 1 -%}
+        {%- set _txt = fmt_num(g.value, decimals=_dec, unit='') -%}
+        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}{% set _m = mark(g.sources, coin.diameter_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}
+        {%- elif g.is_unanimous -%}{{ _txt }}{% set _m = mark(g.sources, coin.diameter_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}
+        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{% set _m = mark(g.sources, coin.diameter_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-mint">
+    {%- if coin.raw.mint -%}
+      {%- if coin.raw.mint is string -%}{{ coin.raw.mint }}
+      {%- else -%}{{ coin.raw.mint|join(', ') }}
+      {%- endif -%}
+      {%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-entity">
+    {# V2 issuing_entity may be a list (joint-jurisdiction coins per V2_PIPELINE.md
+       §3.10). Render one badge per entity in order; scalar shows a single badge. #}
+    {%- set ie_raw = coin.raw.issuing_entity -%}
+    {%- if ie_raw is none -%}—
+    {%- else -%}
+      {%- if ie_raw is string -%}{%- set ie_tags = [ie_raw] -%}
+      {%- else -%}{%- set ie_tags = ie_raw -%}{%- endif -%}
+      {%- for tag in ie_tags -%}
+        {%- set ent = issuing_entities.get(tag) -%}
+        {%- if ent -%}
+          <span class="ent-badge ent-{{ tag }}" data-tooltip="{{ ((ent.name|t(lang)) ~ ' — ' ~ ((ent.description|t(lang))|striptags if ent.description else '')) | nb_dashes }}">{{ ent.abbrev }}</span>{% if not loop.last %} {% endif %}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </td>
+  <td class="c-note">{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-ref">
     {%- for s in coin.raw.sources if s.display -%}
       <span class="ref-line">
@@ -328,12 +328,12 @@
       <th>{{ ui_get('col.rough') }}</th>
       <th>{{ ui_get('col.fine') }}</th>
       <th data-tooltip="{{ ui_get('col.delta_tooltip') }}">{{ ui_get('col.delta') }}</th>
+      <th data-tooltip="{{ ui_get('col.fuss_tooltip') }}">{{ ui_get('col.fuss') }}</th>
       <th data-tooltip="{{ ui_get('col.soll_tooltip') }}">{{ ui_get('col.soll') }}</th>
       <th>{{ ui_get('col.diameter') }}</th>
       <th>{{ ui_get('col.mint') }}</th>
       <th data-tooltip="{{ ui_get('col.entity_tooltip') }}">{{ ui_get('col.entity') }}</th>
       <th>{{ ui_get('col.note') }}</th>
-      <th data-tooltip="{{ ui_get('col.fuss_tooltip') }}">{{ ui_get('col.fuss') }}</th>
       <th>{{ ui_get('col.source') }}</th>
     </tr>
   </thead>
