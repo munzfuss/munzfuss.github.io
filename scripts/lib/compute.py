@@ -315,7 +315,7 @@ def _seg_rle(rows: list[dict], field: str, ndigits: int, base_dec: int = 0,
     return segs
 
 
-def _build_measurement_rows(cc, fineness_pairs) -> None:
+def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) -> None:
     """Populate cc.msr_* — per-specimen measurement sub-rows + per-column
     run-length segments. Only meaningful (and rendered) when msr_n > 1.
 
@@ -392,6 +392,17 @@ def _build_measurement_rows(cc, fineness_pairs) -> None:
     # heaviest weight first within a fineness group.
     deduped.sort(key=lambda r: (-(r["fineness"] or 0.0), -(r["rough"] or 0.0)))
     cc.msr_n = len(deduped)
+    # N/Marck per specimen (fraction-normalised): grid_unit_g / (weight / k),
+    # one from the rough weight, one from the fine. Same source/anchor keys as
+    # the weight columns so their run-length segments merge identically and the
+    # markers propagate unchanged.
+    if grid_unit_g:
+        for r in deduped:
+            _rw, _fw = r.get("rough"), r.get("fine")
+            r["n_rough"] = (grid_unit_g / (_rw / frac_k)
+                            if _rw and _rw > 0 else None)
+            r["n_fine"] = (grid_unit_g / (_fw / frac_k)
+                           if _fw and _fw > 0 else None)
     # повна / чиста / Δ merge only WITHIN a проба group (group_field="fineness")
     # — a weight shared by two specimens under different fineness readings is
     # NOT collapsed into one span. проба itself IS the grouping axis (no
@@ -400,6 +411,13 @@ def _build_measurement_rows(cc, fineness_pairs) -> None:
     cc.msr_fein_segs     = _seg_rle(deduped, "fine", 7, base_dec=5, src_field="fine_src", group_field="fineness")
     cc.msr_delta_segs    = _seg_rle(deduped, "delta", 7, base_dec=5, src_field="delta_src", group_field="fineness")
     cc.msr_fineness_segs = _seg_rle(deduped, "fineness", 5, base_dec=3)
+    # N/Marck sub-columns mirror the weight columns' source attribution:
+    # повна reads the raw WEIGHT source (default src_field), чиста reads the
+    # «weight × fineness» derived-source label (src_field="fine_src").
+    cc.msr_stop_rough_segs = _seg_rle(deduped, "n_rough", 2, base_dec=2,
+                                      group_field="fineness")
+    cc.msr_stop_fine_segs = _seg_rle(deduped, "n_fine", 2, base_dec=2,
+                                     src_field="fine_src", group_field="fineness")
     # проба source attribution: the fineness's OWN sources (fineness_groups),
     # keyed by value — NEVER the per-specimen weight sources. A single reading
     # (curator-inferred or single-sourced) still carries its source so the
@@ -522,6 +540,16 @@ class ComputedCoin:
     msr_fein_segs: list[dict] = field(default_factory=list)
     msr_delta_segs: list[dict] = field(default_factory=list)
     msr_fineness_segs: list[dict] = field(default_factory=list)
+    # N pieces per Cöllnische Marck (fraction-normalised), one from the rough
+    # (rauh) weight, one from the fine (fein) weight — the actual coins-per-mark
+    # implied by each specimen. Per-specimen run-length segments mirror
+    # msr_weight_segs / msr_fein_segs exactly (same grouping, sources, anchor,
+    # marks) so markers propagate for free; the single-reading path uses the
+    # *_groups lists below.
+    msr_stop_rough_segs: list[dict] = field(default_factory=list)
+    msr_stop_fine_segs: list[dict] = field(default_factory=list)
+    stop_rough_groups: list[DisplayGroup] = field(default_factory=list)
+    stop_fine_groups: list[DisplayGroup] = field(default_factory=list)
 
     def __getattr__(self, name):
         """Proxy to raw for convenience."""
@@ -1097,6 +1125,22 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
             cc.soll_fein_g = frac.soll_fein_g
         cc.soll_rau_g = frac.soll_rau_g
 
+    # Fraction multiplier for the N/Marck columns — how many base units this
+    # coin represents (2 Nobel → 2, ½ Speciedaler → 0.5). Absent/unparseable
+    # fraction falls back to 1.0 (raw per-piece count) so the columns always
+    # render a number. grid_unit_g is the Marck mass (233.856 g gold/silver,
+    # 500 g Zollpfund, 1000 g kg — per fuss).
+    frac_k = 1.0
+    if coin.fraction:
+        try:
+            _n, _, _d = coin.fraction.partition("/")
+            _kv = float(_n) / float(_d) if _d else float(_n)
+            if _kv > 0:
+                frac_k = _kv
+        except (ValueError, ZeroDivisionError):
+            frac_k = 1.0
+    grid_unit_g = fuss.grid_unit_g
+
     # delta
     if cc.weight_fein_g is not None and cc.soll_fein_g is not None:
         cc.delta_g = round(cc.weight_fein_g - cc.soll_fein_g, 5)
@@ -1295,9 +1339,24 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     cc.weight_fein_groups.sort(key=lambda g: g.value, reverse=True)
     cc.delta_groups.sort(key=lambda g: g.value, reverse=True)
 
+    # Single-reading N/Marck groups: a 1:1 transform value → grid_unit_g /
+    # (value / k) of the rough / fine weight groups. Sources, is_unanimous and
+    # anchor_key are carried over unchanged so the template's marker helpers
+    # produce the same «(?)»/«(!)» as on the weight columns; rendered at 2
+    # decimals. (The msr_n > 1 path is handled in _build_measurement_rows.)
+    def _stop_group(g):
+        return DisplayGroup(
+            value=round(grid_unit_g / (g.value / frac_k), 2),
+            sources=g.sources, is_unanimous=g.is_unanimous,
+            anchor_key=g.anchor_key, display_decimals=2)
+    cc.stop_rough_groups = [_stop_group(g) for g in cc.weight_groups
+                            if g.value]
+    cc.stop_fine_groups = [_stop_group(g) for g in cc.weight_fein_groups
+                           if g.value]
+
     # Per-specimen measurement sub-rows (rendered by the template only when
     # msr_n > 1; single-reading coins keep the compact *_groups rendering).
-    _build_measurement_rows(cc, fineness_pairs)
+    _build_measurement_rows(cc, fineness_pairs, grid_unit_g, frac_k)
 
     # implied_fuss_groups: only entries where the corresponding source's
     # |delta_pct| > 2 — small deviations make implied ≈ declared and add no

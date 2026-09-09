@@ -205,56 +205,43 @@
       <span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>
     {%- else -%}—{%- endif -%}
   </td>
-  <td class="c-fuss">
-    {# When the coin has no computable fein weight (no fineness or no rough weight),
-       collapse the Stopa column to a single plain rendering of the fuss name. The
-       "▸ Primär:" prefix only carries meaning when contrasted with a Sekundär/Tertiär
-       line; for unknown-fein coins it adds visual noise without information. #}
-    {%- if coin.weight_fein_g is none -%}
-      <span class="fuss-nominal">{{ coin.fuss.name|t(lang) }}</span>
-    {%- elif coin.raw.fuss_refs -%}
-      {%- for ref in coin.raw.fuss_refs -%}
-        <span class="sf-line {{ ref.rank }}">{{ ref.label|t(lang)|safe }}</span>
-      {%- endfor -%}
-    {%- else -%}
-      <span class="fuss-nominal">{{ coin.fuss.name|t(lang) }}</span>
-    {%- endif -%}
-    {# Auto-computed implied Fuß — appended whenever ANY source's reading
-       meaningfully deviates from the declared standard (>2 %) AND fuss_refs
-       doesn't already document an "Ist-Wert" note. The compute layer pre-
-       filters to only the > 2 % entries and groups identical implied_fuss
-       values, so the renderer just iterates: one line per unique implied
-       Fuß, with combined source tooltip when multiple sources agree.
-       Quantifies seigniorage gap for Scheidemünzen. #}
-    {%- if coin.implied_fuss_groups and not coin.has_manual_implied -%}
-      {%- set impl_label = {'de':'Ist','en':'Actual','uk':'Факт'}[lang] -%}
-      {# Pick the Fuß-unit label by the fuss id (stable across DE/EN/UK names):
-         every Krone-mønt fuss has 'kronemont' in its id (kronemont, kronemont_chr_iv,
-         kronemont_fine); gold fuesse default to Dukatenfuß. Otherwise fall back
-         to the generic Thaler-Fuß. #}
-      {%- if coin.fuss.metal == 'gold' -%}
-        {%- set fuss_unit = 'Dukatenfuß' -%}
-      {%- elif 'kronemont' in coin.fuss.id -%}
-        {%- set fuss_unit = 'Krone-Fuß' -%}
-      {%- else -%}
-        {%- set fuss_unit = 'Thaler-Fuß' -%}
-      {%- endif -%}
-      {# Implied Fuß always carries source attribution in its tooltip
-         even when there's a single group — unlike weight/Δ where a
-         single group means consensus across ALL sources, here it only
-         means consensus across the SUBSET whose |delta| > 2 %. The
-         tooltip stays so the reader can trace which source(s) drove
-         the implied value. The alt-source orange tint only kicks in
-         when multiple distinct implied values coexist. #}
-      {%- for g in coin.implied_fuss_groups -%}
-        {%- set _alt_cls = '' if loop.length == 1 else ' alt-source' -%}
-        {%- if g.sources -%}
-          <span class="sf-line implied{{ _alt_cls }}" data-tooltip="{{ g.sources|join('\n') }}">↳ {{ impl_label }} ≈ <span class="fuss-name">{{ fmt_num(g.value, decimals=2, unit='') }}-{{ fuss_unit }}</span>{%- if loop.length == 1 and coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}</span>
-        {%- else -%}
-          <span class="sf-line implied">↳ {{ impl_label }} ≈ <span class="fuss-name">{{ fmt_num(g.value, decimals=2, unit='') }}-{{ fuss_unit }}</span>{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}</span>
+  {# N/Marck повна — coins-per-Cöllnische-Marck from the ROUGH weight, fraction-
+     normalised (grid_unit_g / (rough / k)). Mirrors the rough weight column
+     (c-w above): same run-length segments / groups / source attribution, so the
+     specimen dividers and «(?)»/«(!)» markers propagate unchanged. Only the
+     number is shown (2 decimals). #}
+  <td class="c-stop-rough{% if coin.msr_n > 1 %} c-msr{% endif %}">
+    {%- if coin.msr_n > 1 -%}
+      {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}{%- endset -%}
+      {%- for s in coin.msr_stop_rough_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ s.sources|join('\n') }}">{{ fmt_num(s.value, decimals=2, unit='') }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}</span>{% else %}{{ fmt_num(s.value, decimals=2, unit='') }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
+    {%- elif coin.stop_rough_groups -%}
+      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}{%- endset -%}
+      {%- for g in coin.stop_rough_groups -%}
+        {%- set _txt = fmt_num(g.value, decimals=2, unit='') -%}
+        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}{% set _m = mark(g.sources, coin.weight_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}
+        {%- elif g.is_unanimous -%}{{ _txt }}{% set _m = mark(g.sources, coin.weight_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}
+        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{% set _m = mark(g.sources, coin.weight_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}</span>
         {%- endif -%}
       {%- endfor -%}
-    {%- endif -%}
+    {%- else -%}—{%- endif -%}
+  </td>
+  {# N/Marck чиста — coins-per-Cöllnische-Marck from the FINE weight, fraction-
+     normalised. Mirrors the fine weight column (c-w above): derived-source
+     attribution, mark_derived on anchor_key, derived_unverified «(?)». #}
+  <td class="c-stop-fine{% if coin.msr_n > 1 %} c-msr{% endif %}">
+    {%- if coin.msr_n > 1 -%}
+      {%- set _qm -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- for s in coin.msr_stop_fine_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ s.sources|join('\n') }}">{{ fmt_num(s.value, decimals=2, unit='') }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}</span>{% else %}{{ fmt_num(s.value, decimals=2, unit='') }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
+    {%- elif coin.stop_fine_groups -%}
+      {%- set _qmark -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- for g in coin.stop_fine_groups -%}
+        {%- set _txt = fmt_num(g.value, decimals=2, unit='') -%}
+        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}{% set _m = mark_derived(g.anchor_key, coin.weight_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}
+        {%- elif g.is_unanimous -%}{{ _txt }}{% set _m = mark_derived(g.anchor_key, coin.weight_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}
+        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{% set _m = mark_derived(g.anchor_key, coin.weight_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}—{%- endif -%}
   </td>
   <td class="c-soll">
     {%- if coin.soll_fein_g -%}
@@ -328,7 +315,8 @@
       <th>{{ ui_get('col.rough') }}</th>
       <th>{{ ui_get('col.fine') }}</th>
       <th data-tooltip="{{ ui_get('col.delta_tooltip') }}">{{ ui_get('col.delta') }}</th>
-      <th data-tooltip="{{ ui_get('col.fuss_tooltip') }}">{{ ui_get('col.fuss') }}</th>
+      <th data-tooltip="{{ ui_get('col.stop_rough_tooltip') }}">{{ ui_get('col.stop_rough') }}</th>
+      <th data-tooltip="{{ ui_get('col.stop_fine_tooltip') }}">{{ ui_get('col.stop_fine') }}</th>
       <th data-tooltip="{{ ui_get('col.soll_tooltip') }}">{{ ui_get('col.soll') }}</th>
       <th>{{ ui_get('col.diameter') }}</th>
       <th>{{ ui_get('col.mint') }}</th>

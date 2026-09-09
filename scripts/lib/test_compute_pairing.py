@@ -157,6 +157,52 @@ def test_unknown_phase_falls_back_to_scalar_soll():
     assert compute._compute_coin(_phased_coin("Z"), _fuss_phased()).soll_fein_g == 2.501
 
 
+# ---- N/Marck columns (stop_rough / stop_fine), fraction-normalised ----
+def test_stop_groups_single_reading():
+    # single reading, fraction 1 (default): N = grid_unit_g / weight
+    cc = compute._compute_coin(_coin(
+        weights=[{"value": 3.44, "source": "hede"}],
+        finenesses=[{"value": 0.986, "source": "hede"}],
+    ), _fuss())
+    assert len(cc.stop_rough_groups) == 1
+    assert cc.stop_rough_groups[0].value == round(233.856 / 3.44, 2)          # 67.98
+    # fine N from weight_fein (3.44 × .986 = 3.39184)
+    assert cc.stop_fine_groups[0].value == round(233.856 / 3.39184, 2)        # 68.95
+    assert cc.stop_rough_groups[0].display_decimals == 2
+
+
+def test_stop_fraction_normalised():
+    # fraction 2 → N normalised by k: grid_unit_g / (weight / 2) → ~16.76
+    coin = Coin.model_validate({
+        "id": "t2n", "fuss": "test", "phase": "A", "kind": "kurant",
+        "nominal": "2 Nobel", "year_label": "1502", "year_first": 1502,
+        "fraction": "2",
+        "weight_rough_g": [{"value": 27.90, "source": "hede"}],
+        "fineness": [{"value": 0.979, "source": "hede"}],
+    })
+    cc = compute._compute_coin(coin, _fuss())
+    assert cc.stop_rough_groups[0].value == round(233.856 / (27.90 / 2), 2)   # 16.76
+
+
+def test_stop_msr_segs_per_specimen():
+    # two weights, one fineness → msr_n == 2, one N seg per specimen; the seg
+    # values transform the weight, and `anchor` carries the weight source so
+    # per-specimen markers propagate exactly as on the weight columns.
+    cc = compute._compute_coin(_coin(
+        weights=[{"value": 14.75, "source": "bruun"},
+                 {"value": 14.67, "source": "galster"}],
+        finenesses=[{"value": 0.979, "source": "hede"}],
+    ), _fuss())
+    assert cc.msr_n == 2
+    want = sorted([round(233.856 / 14.75, 2), round(233.856 / 14.67, 2)])     # 15.85, 15.94
+    got = sorted(round(s["value"], 2) for s in cc.msr_stop_rough_segs)
+    assert got == want, got
+    anchors = {a for s in cc.msr_stop_rough_segs for a in s["anchor"]}
+    assert {"bruun", "galster"} <= anchors, anchors
+    # fine segs exist and transform the fein weight
+    assert len(cc.msr_stop_fine_segs) == 2, cc.msr_stop_fine_segs
+
+
 if __name__ == "__main__":
     test_own_pair_no_cross_mix()
     test_tooltip_own_pair_single_source()
@@ -165,4 +211,7 @@ if __name__ == "__main__":
     test_single_source_scalar_unchanged()
     test_per_phase_soll_target()
     test_unknown_phase_falls_back_to_scalar_soll()
-    print("all pairing + per-phase-soll tests passed ✓")
+    test_stop_groups_single_reading()
+    test_stop_fraction_normalised()
+    test_stop_msr_segs_per_specimen()
+    print("all pairing + per-phase-soll + N/Marck tests passed ✓")
