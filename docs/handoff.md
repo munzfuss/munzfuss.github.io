@@ -15,6 +15,51 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-09-10 (cont.) — reflow-home-drift fixed systemically (§CV + rebucket) + Option Z
+
+Resolves the previous entry's **DEFERRED 2**. Root cause of the ~13-coin
+relocation on a full re-flow: a seed entry's physical `data/v2/seed/<src>/<entity>.yml`
+bucket had drifted from `_home_entity(issuing_entity)` (issuing_entity edited in
+place without a builder re-run, or the `139df3f` royal_slesvig split moved
+Husum/Haderslev), and the merger buckets by the seed FILE → wrong seed_unified/final
+→ audit_v2 I1 hard-block. HEAD finals had been hand-relocated once; the re-flow
+reverted them.
+
+Shipped (3 commits, local, **unpushed**):
+- `3b34adf` **fix:** §CV — `_home_entity` (`scripts/lib/v2_seed_writer.py`) now homes a
+  joint `issuing_entity` by CONSUMES-MAP SUPERSET (the member whose consuming-page
+  set ⊇ every other's), replacing the hardcoded-`royal_holstein` overlap. Fixes the
+  cross-entity Christian IV Portugaløser/Ungersk-Gylden joints (c4h5a/c4h8a → royal_slesvig)
+  with zero royal_holstein regressions. `audit_v2` imports `_home_entity`, so audit ↔
+  seed-writer stay in lockstep. New memoised `_consumes_page_map()`.
+- `434b2aa` **build:** `scripts/maintenance/rebucket_seeds.py` (standalone, all-source
+  generalisation of `write_v2_seed`'s purge+regroup — moves a drifted entry verbatim to
+  its `_home_entity` bucket, aliases resolved, `_curation_holds` preserved, never re-derives
+  issuing_entity) + **pre-commit Check 8** (`rebucket_seeds.py --check` HARD-BLOCK on staged
+  `data/v2/seed/**`) so the drift can never reach a re-flow again.
+- `fd231b5` **data:** re-home 13 drifted seeds + Option Z + full re-flow (27 files).
+
+**Option Z (dk-bruun-14770, Christian III «1 Goldgulden» 1536):** mint resolved to
+**Roskilde only** → scalar `issuing_entity: danish_realm` (was the 2026-08-26 joint
+`[danish_realm, royal_slesvig]`, which §CV would have homed to royal_slesvig against the
+curator's «homes here»). Two specialist sources fix the mint and reject the other readings:
+danskmoent (Galster-131) «Roskilde, af Galster fejlagtigt henført til Gottorp» (Gottorp is
+Galster's OWN error, carried by KMM kmk-81473); Bruun lot 14258 «despite the reverse legend
+MON NOVA AVREA SLESVICENSIS … probably minted in Roskilde» (the Schleswig reading, carried by
+Numista N#379084). Demoted kmk-81473 + dk-numista-379084 `mint_verified→false`; final
+`issuing_entity` hand-frozen scalar (it's `_FOUNDATION_IMMUTABLE`) and mint cleared to Roskilde
+(the absorb `_collect_mints` union-ratchet otherwise re-keeps a stale reading).
+
+Validation: `audit_v2` I1 **14→0**; `verify_reflow` **0 losses** vs HEAD; `audit_lost_citations`
+**0**. Full pre-commit hook passed on the data commit.
+
+**OPEN — latent regression spun off (task `task_1ef16042`, analysis).** kmk-81473's
+`mint_verified` had been silently flipped false→true by a regen, contradicting its own
+2026-08-20 `_curation_holds`. Restored to false in `fd231b5`, but the ROOT (why the hold on a
+`*_verified` boolean flag did not survive the kmk re-seed / merge) is unfixed and likely affects
+every curated `*_verified` hold. New session to analyse `build_kmk_seed.py::CURATED_FIELDS` +
+`seed_merge.py::merge_seed` hold-application; READ-ONLY until curator approves a fix.
+
 ## 2026-09-10 — Guldkrone pass; two items deferred for a next-pass ANALYSIS
 
 Shipped this session (5 commits, local, unpushed): NGC KM-40 Guldkrone stub
@@ -37,7 +82,7 @@ Frederik III «2 Guldkrone», dropping the «-50 % Hede 25/28» framing — but
 verify the f3h45 / f4h30 metric and the Hede-1957 naming first (§0b) before
 touching the prose. Curator wants analysis, not a blind edit.
 
-**DEFERRED 2 — pre-existing seed-bucket ≠ issuing_entity drift.** Any full
+**DEFERRED 2 — ✅ RESOLVED 2026-09-10 (cont.), see the entry above (§CV + rebucket + Option Z).** Pre-existing seed-bucket ≠ issuing_entity drift. Any full
 `merge_seeds_cross_source --apply` + absorb-all relocates ~13 coins
 (kmk-575019/575020, kmk-81779/81780/81785/81790/81792/81793/81794,
 dk-bruun-14708/14709, ngc-167729/167733) into the wrong home file → I1/I3
