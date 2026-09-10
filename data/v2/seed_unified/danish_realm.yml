@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-09-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-09-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 13730 per-source seed entries.
+# Input: 13728 per-source seed entries.
 # Output: 7095 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-09-06'
+generated_at: '2026-09-10'
 coins:
   - id: unified-denmark-numismaster-117984
     fuss: seed_unsorted
@@ -6359,69 +6359,6 @@ coins:
       - dk-numista-144759
       - dk-tid-97238
       - ngc-1050099
-  - id: unified-dk-bruun-6498
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Gold Krone
-    year_first: 1666
-    year_last: 1666
-    year_label: '1666'
-    ruler: Frederik III
-    mint: Kopenhagen
-    catalog:
-      km: '278'
-      bruun_collection_id: '6498'
-      sieg: '144'
-      schou: '7'
-      hede: '44'
-      bruun_part: I
-      bruun_lot_no: 1084
-      bruun_page: 130
-      others:
-        - Aagaard# 60.1
-      fr: '88'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.917
-        source: ngc
-      - value: 0.917
-        source: numismaster
-    weight_rough_g:
-      - value: 2.973
-        source: ngc
-      - value: 2.973
-        source: numismaster
-      - value: 5.63
-        source: bruun
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65601
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1084, p. 130
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-gold-krone-km-278-1666-cuid-1050187-duid-1237856
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The Müntzfuß of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Müntzfuß цього примірника ще не визначено.
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65601
-      - dk-bruun-6498
-      - ngc-1050187
   - id: unified-dk-bruun-6500
     fuss: seed_unsorted
     phase: bruun
@@ -49573,8 +49510,22 @@ coins:
     weight_rough_g:
       - value: 2.973
         source: ngc
+        erroneous:
+          de: Einheitliches Katalog-Typengewicht 2,973 g des NumisMaster-/NGC-Preisführers für die «1 Gold Krone» — das Gewicht der einfachen Guldkrone (Christian IVs «1 guldkrone», Hede 26, ≈ ½ der 
+            von Frederik III «1 Guldkrone» genannten Doppelkrone; Hede 1957 Fußnote 1). Auf dieses doppelt so schwere Stück übertragen ist es die halbe Soll-Masse, kein Wägewert dieses Typs.
+          en: Uniform catalogue type-weight 2.973 g the NumisMaster / NGC price guide carries for the «1 Gold Krone» — the weight of the single Guldkrone (Christian IV's «1 guldkrone», Hede 26, ≈ ½ of
+            the double krone Frederik III renamed «1 Guldkrone»; Hede 1957 footnote 1). Carried onto this twice-as-heavy piece it is half the target mass, not a weighing of this type.
+          uk: Уніфікована каталогова типова вага 2,973 г, яку прайс-гайд NumisMaster / NGC подає для «1 Gold Krone» — це вага одинарної Guldkrone (Кристіанова «1 guldkrone», Hede 26, ≈ ½ подвійної 
+            крони, яку Фредерік III перейменував на «1 Guldkrone»; Hede 1957, виноска 1). Перенесена на цю вдвічі важчу монету — це половина цільової маси, а не вимір цього типу.
       - value: 2.973
         source: numismaster
+        erroneous:
+          de: Einheitliches Katalog-Typengewicht 2,973 g des NumisMaster-/NGC-Preisführers für die «1 Gold Krone» — das Gewicht der einfachen Guldkrone (Christian IVs «1 guldkrone», Hede 26, ≈ ½ der 
+            von Frederik III «1 Guldkrone» genannten Doppelkrone; Hede 1957 Fußnote 1). Auf dieses doppelt so schwere Stück übertragen ist es die halbe Soll-Masse, kein Wägewert dieses Typs.
+          en: Uniform catalogue type-weight 2.973 g the NumisMaster / NGC price guide carries for the «1 Gold Krone» — the weight of the single Guldkrone (Christian IV's «1 guldkrone», Hede 26, ≈ ½ of
+            the double krone Frederik III renamed «1 Guldkrone»; Hede 1957 footnote 1). Carried onto this twice-as-heavy piece it is half the target mass, not a weighing of this type.
+          uk: Уніфікована каталогова типова вага 2,973 г, яку прайс-гайд NumisMaster / NGC подає для «1 Gold Krone» — це вага одинарної Guldkrone (Кристіанова «1 guldkrone», Hede 26, ≈ ½ подвійної 
+            крони, яку Фредерік III перейменував на «1 Guldkrone»; Hede 1957, виноска 1). Перенесена на цю вдвічі важчу монету — це половина цільової маси, а не вимір цього типу.
       - value: 5.97
         source: bruun
       - value: 6.0
@@ -49628,33 +49579,78 @@ coins:
     ruler: Frederik III.
     mint: Kopenhagen
     catalog:
+      km: '278'
       hede: '44'
       hede_volume: f3h
       schou: '7'
       sieg: '144'
+      bruun_collection_id: '6498'
+      bruun_part: I
+      bruun_lot_no: 1084
+      bruun_page: 130
+      others:
+        - Aagaard# 60.1
+      fr: '88'
     metal: gold
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     fineness:
       - value: 0.917
         source: hede
+      - value: 0.917
+        source: ngc
+      - value: 0.917
+        source: numismaster
     weight_rough_g:
+      - value: 2.973
+        source: ngc
+        erroneous:
+          de: Einheitliches Katalog-Typengewicht 2,973 g des NumisMaster-/NGC-Preisführers für die «1 Gold Krone» — das Gewicht der einfachen Guldkrone (Christian IVs «1 guldkrone», Hede 26, ≈ ½ der 
+            von Frederik III «1 Guldkrone» genannten Doppelkrone; Hede 1957 Fußnote 1). Auf dieses doppelt so schwere Stück übertragen ist es die halbe Soll-Masse, kein Wägewert dieses Typs.
+          en: Uniform catalogue type-weight 2.973 g the NumisMaster / NGC price guide carries for the «1 Gold Krone» — the weight of the single Guldkrone (Christian IV's «1 guldkrone», Hede 26, ≈ ½ of
+            the double krone Frederik III renamed «1 Guldkrone»; Hede 1957 footnote 1). Carried onto this twice-as-heavy piece it is half the target mass, not a weighing of this type.
+          uk: Уніфікована каталогова типова вага 2,973 г, яку прайс-гайд NumisMaster / NGC подає для «1 Gold Krone» — це вага одинарної Guldkrone (Кристіанова «1 guldkrone», Hede 26, ≈ ½ подвійної 
+            крони, яку Фредерік III перейменував на «1 Guldkrone»; Hede 1957, виноска 1). Перенесена на цю вдвічі важчу монету — це половина цільової маси, а не вимір цього типу.
+      - value: 2.973
+        source: numismaster
+        erroneous:
+          de: Einheitliches Katalog-Typengewicht 2,973 g des NumisMaster-/NGC-Preisführers für die «1 Gold Krone» — das Gewicht der einfachen Guldkrone (Christian IVs «1 guldkrone», Hede 26, ≈ ½ der 
+            von Frederik III «1 Guldkrone» genannten Doppelkrone; Hede 1957 Fußnote 1). Auf dieses doppelt so schwere Stück übertragen ist es die halbe Soll-Masse, kein Wägewert dieses Typs.
+          en: Uniform catalogue type-weight 2.973 g the NumisMaster / NGC price guide carries for the «1 Gold Krone» — the weight of the single Guldkrone (Christian IV's «1 guldkrone», Hede 26, ≈ ½ of
+            the double krone Frederik III renamed «1 Guldkrone»; Hede 1957 footnote 1). Carried onto this twice-as-heavy piece it is half the target mass, not a weighing of this type.
+          uk: Уніфікована каталогова типова вага 2,973 г, яку прайс-гайд NumisMaster / NGC подає для «1 Gold Krone» — це вага одинарної Guldkrone (Кристіанова «1 guldkrone», Hede 26, ≈ ½ подвійної 
+            крони, яку Фредерік III перейменував на «1 Guldkrone»; Hede 1957, виноска 1). Перенесена на цю вдвічі важчу монету — це половина цільової маси, а не вимір цього типу.
       - value: 5.59
         source: hede
+      - value: 5.63
+        source: bruun
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65601
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1084, p. 130
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h44.htm
         ref: danskmoent.dk (Hede f3h44)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gold-krone-km-278-1666-cuid-1050187-duid-1237856
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65601
+      - dk-bruun-6498
       - dk-hede-f3h44
+      - ngc-1050187
   - id: unified-dk-hede-f3h45
     fuss: seed_unsorted
     phase: hede
@@ -49761,8 +49757,22 @@ coins:
     weight_rough_g:
       - value: 2.973
         source: ngc
+        erroneous:
+          de: Einheitliches Katalog-Typengewicht 2,973 g des NumisMaster-/NGC-Preisführers für die «1 Gold Krone» — das Gewicht der einfachen Guldkrone (Christian IVs «1 guldkrone», Hede 26, ≈ ½ der 
+            von Frederik III «1 Guldkrone» genannten Doppelkrone; Hede 1957 Fußnote 1). Auf dieses doppelt so schwere Stück übertragen ist es die halbe Soll-Masse, kein Wägewert dieses Typs.
+          en: Uniform catalogue type-weight 2.973 g the NumisMaster / NGC price guide carries for the «1 Gold Krone» — the weight of the single Guldkrone (Christian IV's «1 guldkrone», Hede 26, ≈ ½ of
+            the double krone Frederik III renamed «1 Guldkrone»; Hede 1957 footnote 1). Carried onto this twice-as-heavy piece it is half the target mass, not a weighing of this type.
+          uk: Уніфікована каталогова типова вага 2,973 г, яку прайс-гайд NumisMaster / NGC подає для «1 Gold Krone» — це вага одинарної Guldkrone (Кристіанова «1 guldkrone», Hede 26, ≈ ½ подвійної 
+            крони, яку Фредерік III перейменував на «1 Guldkrone»; Hede 1957, виноска 1). Перенесена на цю вдвічі важчу монету — це половина цільової маси, а не вимір цього типу.
       - value: 2.973
         source: numismaster
+        erroneous:
+          de: Einheitliches Katalog-Typengewicht 2,973 g des NumisMaster-/NGC-Preisführers für die «1 Gold Krone» — das Gewicht der einfachen Guldkrone (Christian IVs «1 guldkrone», Hede 26, ≈ ½ der 
+            von Frederik III «1 Guldkrone» genannten Doppelkrone; Hede 1957 Fußnote 1). Auf dieses doppelt so schwere Stück übertragen ist es die halbe Soll-Masse, kein Wägewert dieses Typs.
+          en: Uniform catalogue type-weight 2.973 g the NumisMaster / NGC price guide carries for the «1 Gold Krone» — the weight of the single Guldkrone (Christian IV's «1 guldkrone», Hede 26, ≈ ½ of
+            the double krone Frederik III renamed «1 Guldkrone»; Hede 1957 footnote 1). Carried onto this twice-as-heavy piece it is half the target mass, not a weighing of this type.
+          uk: Уніфікована каталогова типова вага 2,973 г, яку прайс-гайд NumisMaster / NGC подає для «1 Gold Krone» — це вага одинарної Guldkrone (Кристіанова «1 guldkrone», Hede 26, ≈ ½ подвійної 
+            крони, яку Фредерік III перейменував на «1 Guldkrone»; Hede 1957, виноска 1). Перенесена на цю вдвічі важчу монету — це половина цільової маси, а не вимір цього типу.
       - value: 5.47
         source: numista
       - value: 5.49
@@ -68133,6 +68143,13 @@ coins:
         source: numista
       - value: 5.62
         source: kmk
+        suspect:
+          de: Das Kgl. Müntzkabinett verzeichnet 5,62 g — rund 61 % über den ~3,49 g, die Galster und Numista für den Typ angeben und die der Ungersk-Gylden-Standard erwarten läßt; der Grund der 
+            Abweichung ist nicht belegt.
+          en: The Royal Coin Cabinet records 5.62 g — about 61 % above the ~3.49 g that Galster and Numista give for the type and that the Ungersk-Gylden standard implies; the reason for the 
+            discrepancy is not documented.
+          uk: Королівський монетний кабінет подає 5,62 г — приблизно на 61 % більше за ~3,49 г, які Galster і Numista дають для цього типу і які випливають зі стандарту Ungersk Gylden; причина 
+            розбіжності не задокументована.
     diameter_mm:
       - value: 22.0
         source: numista
@@ -229584,6 +229601,69 @@ coins:
       - kmk-136991
       - kmk-136992
       - kmk-156723
+  - id: unified-dk-bruun-6498
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Gold Krone
+    year_first: 1666
+    year_last: 1666
+    year_label: '1666'
+    ruler: Frederik III
+    mint: Kopenhagen
+    catalog:
+      km: '278'
+      bruun_collection_id: '6498'
+      sieg: '144'
+      schou: '7'
+      hede: '44'
+      bruun_part: I
+      bruun_lot_no: 1084
+      bruun_page: 130
+      others:
+        - Aagaard# 60.1
+      fr: '88'
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.917
+        source: ngc
+      - value: 0.917
+        source: numismaster
+    weight_rough_g:
+      - value: 2.973
+        source: ngc
+      - value: 2.973
+        source: numismaster
+      - value: 5.63
+        source: bruun
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65601
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1084, p. 130
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gold-krone-km-278-1666-cuid-1050187-duid-1237856
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    verification_note:
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The Müntzfuß of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Müntzfuß цього примірника ще не визначено.
+    issuing_entity: danish_realm
+    composed_of:
+      - denmark-numismaster-65601
+      - dk-bruun-6498
+      - ngc-1050187
   - id: unified-dk-hede-c4h8a
     fuss: seed_unsorted
     phase: hede
