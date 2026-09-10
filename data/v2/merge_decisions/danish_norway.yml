@@ -312,7 +312,23 @@ merges:
       - dk-bruun-10509
       - dk-numista-117123
       - dk-tid-145745
+      - ngc-1100481
+      - denmark-numismaster-110793
     reason: |
+      Curator (Serhii) 2026-09-10, added ngc-1100481 + denmark-numismaster-110793
+      to the class: the NGC/NumisMaster price-guide record for KM# 103 «Norway
+      1/2 Ducat» (https://www.ngccoin.com/price-guide/world/norway-1-2-ducat-km-103)
+      is the SAME type as this Christian V ½ Dukat u.aar Christiania — shared full
+      Krause register KM# 103 satisfies the §9.4 graph-gate. It had migrated onto a
+      purged NGC foundation and rendered spuriously under kronemont (10½-Krone-Fuß)
+      as a ducat has no place there; folding it into nc5h6 removes it from that
+      Fuß AND avoids a duplicate KM# 103 ½-Ducat row in reichsdukatenfuss. The NGC
+      seed's year 1668 is year_verified false and internally contradicts the type's
+      own ruler (Christian V reigned from 1670), so per §4 it neither disproves the
+      merge nor propagates; the group's year_demote keeps 1674 driving the display.
+      The .979 fineness and worn 1,49 g specimen already agree with the group (the
+      same 1,49 g ucoin reading is preserved per §9a).
+
       NOTE on the member list: all FOUR members of the intended class are named
       explicitly, not just the Hede page and the group's anchor. This is load-
       bearing, not redundancy. UnionFind.force_union clears AUTO no_merges
@@ -1185,6 +1201,13 @@ year_demote:
       full Norwegian reign 1670-1699 (year_verified false), not strike years.
       Demote so the dated peers (Numista 1674 / ucoin 1674) keep driving the
       displayed year for the merged group.
+  - member_id: denmark-numismaster-110793
+    reason: |
+      NumisMaster's KM# 103 record (MC_110793, folded 2026-09-10) carries year
+      1668 (year_verified false) — but KM# 103 is a Christian V type and 1668
+      falls in Frederik III's reign (Christian V acceded 1670), so the NumisMaster
+      year is internally contradictory, not a strike date. Demote so the dated
+      peers (Numista 1674 / ucoin 1674) keep driving the displayed year.
   - member_id: dk-hede-nc5h7
     reason: |
       Hede nc5h7 records the 1 Dukat as u.aar, so the seed carries the

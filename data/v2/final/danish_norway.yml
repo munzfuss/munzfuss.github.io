@@ -68822,10 +68822,18 @@ coins:
       - value: 0.979
         source: hede
       - value: 0.979
+        source: ngc
+      - value: 0.979
+        source: numismaster
+      - value: 0.979
         source: numista
       - value: 0.979
         source: ucoin
     weight_rough_g:
+      - value: 1.49
+        source: ngc
+      - value: 1.49
+        source: numismaster
       - value: 1.49
         source: ucoin
       - value: 1.71
@@ -68850,6 +68858,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-2-ducat-1674/?tid=145745
         ref: ucoin
+      - type: literature
+        url: https://numismaster.com/MC_110793
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-1-2-ducat-km-103-cuid-1100481-duid-1448998
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -72437,50 +72451,6 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     composed_of:
       - unified-ngc-1100479
-  - fuss: kronemont
-    phase: I
-    kind: kurant
-    nominal: ½ Ducat
-    issuing_entity: danish_norway
-    fraction: 1/2
-    id: unified-ngc-1100481
-    year_first: 1668
-    year_last: 1668
-    year_label: '1668'
-    year_verified: false
-    mint: Christiania
-    catalog:
-      km: '103'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.979
-        source: ngc
-      - value: 0.979
-        source: numismaster
-    weight_rough_g:
-      - value: 1.49
-        source: ngc
-      - value: 1.49
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110793
-        ref: NumisMaster
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-1-2-ducat-km-103-cuid-1100481-duid-1448998
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    composed_of:
-      - unified-ngc-1100481
   - fuss: reichsdukatenfuss
     phase: II
     kind: kurant
