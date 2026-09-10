@@ -1409,37 +1409,99 @@ def _check_entity_invariant(
     return stats
 
 
+_CONSUMES_PAGE_MAP: dict[str, frozenset[str]] | None = None
+
+
+def _consumes_page_map() -> dict[str, frozenset[str]]:
+    """`{entity: frozenset(location pages that consume it)}`.
+
+    Built once (module-level lazy cache) from every
+    `data/v2/locations/*.yml::consumes_entities`. Handles BOTH accepted
+    shapes of a `consumes_entities` entry — a bare entity-id string, or a
+    dict carrying `entity` (+ optional year-window keys) — mirroring the
+    build's own parse (`scripts/build.py`).
+
+    An entity consumed by ≥2 pages is an OVERLAP entity: its file is picked
+    up by every one of those pages via file-based Pass-1 assembly. This map
+    is what `_home_entity` uses to pick a joint coin's home so that no
+    consuming page loses the coin from Pass-1.
+    """
+    global _CONSUMES_PAGE_MAP
+    if _CONSUMES_PAGE_MAP is None:
+        import yaml as _yaml  # local import — ruamel is the module default
+        pages: dict[str, set[str]] = defaultdict(set)
+        loc_dir = PROJECT_ROOT / "data" / "v2" / "locations"
+        for p in sorted(loc_dir.glob("*.yml")):
+            try:
+                doc = _yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+            except (OSError, _yaml.YAMLError):
+                continue
+            for e in doc.get("consumes_entities") or []:
+                ent = e.get("entity") if isinstance(e, dict) else e
+                if isinstance(ent, str) and ent:
+                    pages[ent].add(p.stem)
+        _CONSUMES_PAGE_MAP = {k: frozenset(v) for k, v in pages.items()}
+    return _CONSUMES_PAGE_MAP
+
+
 def _home_entity(coin: dict) -> str | None:
     """Return the home-file entity for a coin.
 
     - Scalar `issuing_entity`: that entity.
-    - List-form `issuing_entity` (joint mint): the OVERLAP-priority entity
-      if present, else the alphabetically-first entity.
+    - List-form `issuing_entity` (joint mint): the member whose set of
+      consuming location pages is a SUPERSET of every other member's set
+      (see below); no such member → status-quo fallback.
     - Missing / empty: None (caller routes to `_unclassified.yml`).
 
-    Overlap priority (hardcoded; general consumes-map-driven rule = TODO §CV):
-    `royal_holstein` is consumed by BOTH the `schleswig_holstein` and the
-    `denmark` location pages (it is the SH∩Denmark overlap entity). A coin
-    whose `issuing_entity` set contains `royal_holstein` must therefore home
-    to `royal_holstein.yml` so both pages pick it up via the file-based Pass 1
-    assembly. The plain alphabetical-first default would file an
-    `[danish_realm, royal_holstein]` coin under `danish_realm.yml` (d < r),
-    where the SH page only recovers it via the fragile Pass-2 issuing_entity
-    intersection — and only as long as the joint VALUE survives the
-    merger/absorb pipeline. The issuing_entity VALUE is left untouched (the
-    joint list is the coin's circulation signal); only the home file changes.
-    `schauenburg_pinneberg` is the other current overlap entity (holstein_
-    schauenburg ∩ schleswig_holstein) and needs the same treatment once the
-    general rule lands (TODO §CV).
+    Superset rule (consumes-map-driven; the former hardcoded-`royal_holstein`
+    TODO §CV, now general). A joint coin lives in ONE file yet should appear
+    on every page any of its issuing entities entitles it to. With file-based
+    Pass-1 assembly a coin in file F appears on exactly the pages consuming F,
+    so the home must be the member whose consuming-page set contains all the
+    others' — then Pass-1 loses no page. `royal_slesvig`
+    ({denmark, schleswig_holstein}) ⊇ `danish_realm` ({denmark}), so a
+    `[danish_realm, royal_slesvig]` coin homes to `royal_slesvig.yml` and both
+    pages pick it up; `royal_holstein` behaves identically (it, too, is the
+    SH∩Denmark overlap).
+
+    When NO member is a superset — a genuine cross-region joint like
+    `[danish_realm, herzogtum_braunschweig_lueneburg]`, whose two entities are
+    consumed by disjoint page pairs — homing to either would DROP the coin
+    from a page it belongs on. There is no lossless Pass-1 home, so we keep
+    the status-quo choice (`royal_holstein` if present, else alphabetically
+    first) and let the fragile Pass-2 issuing_entity intersection recover the
+    other page, exactly as before. The issuing_entity VALUE is never touched;
+    only the home file is chosen.
+
+    Tiebreak among equally-large superset members: `royal_holstein` first
+    (preserves its long-documented priority against a future
+    `[gottorp_duchy, royal_holstein]`), then alphabetical.
     """
     ie = coin.get("issuing_entity")
     if isinstance(ie, str) and ie:
         return ie
     if isinstance(ie, list) and ie:
         names = [str(e) for e in ie if e]
-        if "royal_holstein" in names:
-            return "royal_holstein"
-        return sorted(names)[0] if names else None
+        if not names:
+            return None
+
+        def _status_quo() -> str:
+            return "royal_holstein" if "royal_holstein" in names else sorted(names)[0]
+
+        pmap = _consumes_page_map()
+        supersets = [
+            m for m in names
+            if all(pmap.get(m, frozenset()) >= pmap.get(o, frozenset())
+                   for o in names)
+        ]
+        if not supersets:
+            return _status_quo()
+        # Largest page-set wins; tiebreak royal_holstein, then alphabetical.
+        return min(
+            supersets,
+            key=lambda m: (-len(pmap.get(m, frozenset())),
+                           m != "royal_holstein", m),
+        )
     return None
 
 
