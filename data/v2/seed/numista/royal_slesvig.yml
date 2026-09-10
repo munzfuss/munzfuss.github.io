@@ -633,7 +633,13 @@ coins:
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: true
+    mint_verified: false
+    _curation_holds:
+      mint_verified: 'Curator call 2026-09-10 (Serhii, Option Z): demoted to false. Numista reads the mint off the reverse legend «MON NOVA AVREA SLESVICENSIS» → Schleswig, but the two specialist sources
+        resolve the mint to Roskilde and reject the legend as the mint: danskmoent (Galster-131) prints «Roskilde, af Galster fejlagtigt henført til Gottorp», and Stack''s Bowers/Bruun lot 14258 (Part II
+        p. 322) argues «despite the reverse legend … probably minted in Roskilde» (350-oz gold payment at Copenhagen Castle, minted at Roskilde). §5 specialist > coarse. This coin merges into
+        unified-dk-bruun-14770; leaving mint_verified true would keep the rejected Schleswig reading in the merged mint (→ joint [danish_realm, royal_slesvig] → wrong home). Value kept verbatim as Numista''s
+        record; only the verified flag is demoted so _collect_mints Tier-1 (Bruun/Galster Roskilde) wins.'
     sources:
       - type: literature
         url: https://en.numista.com/379084

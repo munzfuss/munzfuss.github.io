@@ -644,16 +644,21 @@ coins:
     year_first: 1625
     year_last: 1625
     year_label: '1625'
+    mint: Plön
     catalog:
       km: '5'
       dav: '3719'
+      lange: '748'
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 28.98
+        source: kmk
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-ploen-thaler-km-5-1625-cuid-1140214-duid-1380879
@@ -661,6 +666,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_73980
         ref: NumisMaster
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81779
+        ref: KMM 81779 (Inv. GP 888.357)
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -968,40 +976,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Thaler
-    ruler: Joachim Ernst
-    issuing_entity: norburg_plon_duchy
-    id: unified-kmk-81779
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    mint: Plön
-    catalog:
-      lange: '748'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.98
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81779
-        ref: KMM 81779 (Inv. GP 888.357)
-    verification_note: &id002
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
-    composed_of:
-      - unified-kmk-81779
-    _curation_holds:
-      issuing_entity: Plön and Nordborg belong to norburg_plon_duchy (mint_registry). The royal_holstein tag came from the registry lacking the Nationalmuseet's «Plöen» spelling and having no Nordborg
-        entry at all; both are added now. Absorb does not overwrite a final's issuing_entity, so it is set here by hand.
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: (?)
     ruler: Hans Adolf
     issuing_entity: norburg_plon_duchy
@@ -1016,7 +990,10 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/81780
         ref: KMM 81780 (Inv. GP 888.358)
-    verification_note: *id002
+    verification_note: &id002
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
     composed_of:
       - unified-kmk-81780
     _curation_holds:

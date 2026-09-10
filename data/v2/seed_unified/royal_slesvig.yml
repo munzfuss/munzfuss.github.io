@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_slesvig`.
-# Generated 2026-09-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-09-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
-# Input: 152 per-source seed entries.
-# Output: 67 unified entries (one per physical coin).
+# Input: 156 per-source seed entries.
+# Output: 68 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,8 +11,117 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_slesvig
-generated_at: '2026-09-06'
+generated_at: '2026-09-10'
 coins:
+  - id: unified-dk-bruun-14708
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Mark
+    year_first: 1514
+    year_last: 1514
+    year_label: '1514'
+    ruler: Frederik I
+    mintmaster: Jørgen Drewes
+    mint: Husum
+    catalog:
+      bruun_collection_id: '14708'
+      sieg: '46'
+      schou: 1-2
+      lange: '11'
+      bruun_part: II
+      bruun_lot_no: 14255
+      bruun_page: 319
+      galster: '115'
+      numista: '468620'
+      mb: '20'
+      galster_volume: f1g
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: true
+    weight_rough_g:
+      - value: 18.99
+        source: bruun
+      - value: 18.99
+        source: numista
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14255, p. 319
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f1g115.htm
+        ref: Galster 115 (f1g) — danskmoent.dk fr_f1g115.htm
+      - type: literature
+        url: https://en.numista.com/468620
+        ref: Numista N#468620 — 1 Mark - Frederick I
+    verification_note:
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The Müntzfuß of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Müntzfuß цього примірника ще не визначено.
+    issuing_entity: royal_slesvig
+    composed_of:
+      - dk-bruun-14708
+      - dk-galster-f1g-115
+      - dk-numista-468620
+  - id: unified-dk-bruun-14709
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: ½ Mark
+    year_first: 1514
+    year_last: 1514
+    year_label: '1514'
+    ruler: Frederik I
+    mintmaster: Jørgen Drewes
+    mint: Husum
+    catalog:
+      bruun_collection_id: '14709'
+      sieg: '45'
+      schou: '3'
+      bruun_part: II
+      bruun_lot_no: 14256
+      bruun_page: 320
+      galster: '116'
+      numista: '468619'
+      mb: '18'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 9.58
+        source: bruun
+      - value: 9.58
+        source: numista
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14256, p. 320
+      - type: literature
+        url: https://en.numista.com/468619
+        ref: Numista N#468619 — ½ Mark - Frederick I
+    verification_note:
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The Müntzfuß of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Müntzfuß цього примірника ще не визначено.
+    issuing_entity: royal_slesvig
+    composed_of:
+      - dk-bruun-14709
+      - dk-numista-468619
   - id: unified-dk-bruun-14741
     fuss: seed_unsorted
     phase: bruun
@@ -1598,6 +1707,213 @@ coins:
       - denmark-numismaster-65634
       - dk-hede-c4h4
       - kmk-136893
+  - id: unified-dk-hede-c4h5a
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Portugaløser
+    year_first: 1591
+    year_last: 1592
+    year_ranges:
+      -   - 1591
+          - 1592
+    year_label: 1591-1592
+    ruler: Christian IV.
+    mintmaster: Andreas Metzner
+    mint:
+      - Haderslev
+      - Kopenhagen
+    catalog:
+      hede:
+        - '1'
+        - 5A
+        - 5B
+      hede_volume: c4h
+      schou: 1-5
+      sieg:
+        - '8'
+        - '159'
+      bruun_collection_id: '4595'
+      numista: '469294'
+      fr:
+        - '62'
+        - '62.1'
+        - '62.2'
+      others:
+        - B# 5
+        - B# 1169
+        - B# 1170
+    metal: gold
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 34.4
+        source: kmk
+      - value: 34.61
+        source: bruun
+      - value: 34.88
+        source: hede
+      - value: 35.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65629
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_65630
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13076, p. 64
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h5.htm
+        ref: danskmoent.dk (Hede c4h5A)
+      - type: literature
+        url: https://en.numista.com/469294
+        ref: Numista N#469294 — 10 Ducats - Christian IV 1591-1592
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/136895
+        ref: KMM 136895 (Inv. RP 7.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/136991
+        ref: KMM 136991 (Inv. RP 11.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/136992
+        ref: KMM 136992 (Inv. RP 12.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156723
+        ref: KMM 156723 (Inv. KP 1800.4)
+    note:
+      de: 10 Ducats
+      en: 10 Ducats
+      uk: 10 Ducats
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    issuing_entity:
+      - danish_realm
+      - royal_slesvig
+    composed_of:
+      - denmark-numismaster-65629
+      - denmark-numismaster-65630
+      - dk-bruun-4595
+      - dk-hede-c4h5a
+      - dk-hede-c4h5b
+      - dk-numista-469294
+      - kmk-136895
+      - kmk-136991
+      - kmk-136992
+      - kmk-156723
+  - id: unified-dk-hede-c4h8a
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Ungersk Gylden
+    year_first: 1591
+    year_last: 1593
+    year_ranges:
+      -   - 1591
+          - 1593
+    year_label: 1591-1593
+    ruler: Christian IV.
+    mintmaster: Andreas Metzner
+    mint:
+      - Haderslev
+      - Kopenhagen
+    catalog:
+      hede:
+        - 8A
+        - 8B
+      hede_volume: c4h
+      schou:
+        - 3-4
+        - '7'
+        - 10-11
+      sieg:
+        - '1'
+        - '154.2'
+        - C4-154
+      bruun_collection_id: '4602'
+      numista: '142133'
+      fr: '32'
+      others:
+        - ucoin# 12
+        - B# 18a
+        - B# 18
+    metal: gold
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.972
+        source: numismaster
+      - value: 0.972
+        source: numista
+      - value: 0.972
+        source: ucoin
+      - value: 0.986
+        source: hede
+    weight_rough_g:
+      - value: 3.42
+        source: numista
+      - value: 3.42
+        source: ucoin
+      - value: 3.45
+        source: bruun
+      - value: 3.49
+        source: hede
+      - value: 3.49
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65611
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1012, p. 46
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h8.htm
+        ref: danskmoent.dk (Hede c4h8A)
+      - type: literature
+        url: https://en.numista.com/142133
+        ref: Numista N#142133 — 1 Gulden Hungarian-style - Christian IV 1591-1593
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-gulden-1591-1593/?tid=163398
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/137161
+        ref: KMM 137161 (Inv. RP 22.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/137162
+        ref: KMM 137162 (Inv. RP 23.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150041
+        ref: KMM 150041 (Inv. KP 1656.272)
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    issuing_entity:
+      - danish_realm
+      - royal_slesvig
+    composed_of:
+      - denmark-numismaster-65611
+      - dk-bruun-4602
+      - dk-hede-c4h8a
+      - dk-hede-c4h8b
+      - dk-numista-142133
+      - dk-tid-163398
+      - kmk-137161
+      - kmk-137162
+      - kmk-150041
   - id: unified-dk-hede-f2h30a
     fuss: seed_unsorted
     phase: hede
@@ -1915,51 +2231,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - dk-numista-153862
-  - id: unified-dk-numista-301214
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Schilling
-    year_first: 1514
-    year_last: 1533
-    year_ranges:
-      -   - 1514
-          - 1514
-      -   - 1520
-          - 1520
-      -   - 1522
-          - 1527
-      -   - 1533
-          - 1533
-    year_label: 1514, 1520, 1522-1527, 1533
-    ruler: Frederick I (Frederik I)
-    mint: Schleswig
-    catalog:
-      numista: '301214'
-      mb: '10'
-      lange: '16'
-      galster: '124'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://en.numista.com/301214
-        ref: Numista N#301214 — 2 Schillings - Frederick I
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references
-        (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-    issuing_entity: royal_slesvig
-    composed_of:
-      - dk-numista-301214
   - id: unified-dk-numista-301215
     fuss: seed_unsorted
     phase: numista
@@ -2350,88 +2621,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - dk-numista-313332
-  - id: unified-dk-numista-468619
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ½ Mark
-    year_first: 1514
-    year_last: 1514
-    year_label: '1514'
-    ruler: Frederick I (Frederik I)
-    mint: Husum
-    catalog:
-      numista: '468619'
-      mb: '18'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 9.58
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/468619
-        ref: Numista N#468619 — ½ Mark - Frederick I
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references
-        (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-    issuing_entity: royal_slesvig
-    composed_of:
-      - dk-numista-468619
-  - id: unified-dk-numista-468620
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Mark
-    year_first: 1514
-    year_last: 1514
-    year_label: '1514'
-    ruler: Frederick I (Frederik I)
-    mint: Husum
-    catalog:
-      numista: '468620'
-      mb: '20'
-      galster: '115'
-      schou: 1-2
-      galster_volume: f1g
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: true
-    weight_rough_g:
-      - value: 18.99
-        source: numista
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f1g115.htm
-        ref: Galster 115 (f1g) — danskmoent.dk fr_f1g115.htm
-      - type: literature
-        url: https://en.numista.com/468620
-        ref: Numista N#468620 — 1 Mark - Frederick I
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references
-        (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-    issuing_entity: royal_slesvig
-    composed_of:
-      - dk-galster-f1g-115
-      - dk-numista-468620
   - id: unified-ikmk-18239610
     fuss: seed_unsorted
     phase: ikmk
@@ -2955,3 +3144,79 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - kmk-81475
+  - id: unified-ngc-167729
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 4 Pfennig
+    year_first: 1516
+    year_last: 1516
+    year_label: '1516'
+    ruler: Friedrich I
+    catalog:
+      mb: '22'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-witten-4-pfennig-mb-22-1516-cuid-167729-duid-380803
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    verification_note:
+      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
+      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
+      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+    issuing_entity: royal_slesvig
+    composed_of:
+      - ngc-167729
+  - id: unified-ngc-167733
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 2 Schilling, Doppelschilling
+    year_first: 1514
+    year_last: 1533
+    year_ranges:
+      -   - 1514
+          - 1514
+      -   - 1520
+          - 1520
+      -   - 1522
+          - 1527
+      -   - 1533
+          - 1533
+    year_label: 1514, 1520, 1522-1527, 1533
+    ruler: Friedrich I
+    mint: Schleswig
+    catalog:
+      mb: '10'
+      numista: '301214'
+      lange: '16'
+      galster: '124'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/301214
+        ref: Numista N#301214 — 2 Schillings - Frederick I
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-schilling-doppelschilling-mb-10-15z5-15zz-cuid-167733-duid-380807
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    verification_note:
+      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
+      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
+      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+    issuing_entity: royal_slesvig
+    composed_of:
+      - dk-numista-301214
+      - ngc-167733

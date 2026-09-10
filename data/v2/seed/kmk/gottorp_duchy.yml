@@ -4962,18 +4962,51 @@ coins:
     metal: gold
     metal_verified: true
     mint: Gottorp
-    mint_verified: true
+    mint_verified: false
     ruler: Christian 3
     weight_rough_verified: false
     _curation_holds:
-      mint_verified: 'Curator call 2026-08-20 (Serhii): demoted to false so the Roskilde reading wins the merged mint. KMM prints place=Gottorp, and that is kept verbatim as the museum record — but it is
-        Galster''s attribution, which danskmoent corrects on the Galster-131 page: «Roskilde, af Galster fejlagtigt henfoert til Gottorp». Galster and KMM are therefore one reading heard twice, not two
-        witnesses. The only source that argues rather than labels is Stack''s Bowers lot 14258 (Bruun Part II, p. 322): despite the reverse legend MON NOVA AVREA SLESVICENSIS, «a payment of around 350 ounces
-        of gold was received at Copenhagen Castle on November 30, 1536 and transported to Roskilde to be minted into Goldgulden as payment for the troops». Per §4 the verified-tier accumulator (_collect_mints)
-        would otherwise union both, putting the corrected misattribution back into the render as mint: [Gottorp, Roskilde]. If regen flips this back to true the Gottorp reading returns to the Denmark page.'
+      mint_verified: 'Curator call 2026-08-20 (Serhii), re-affirmed 2026-09-10 (Option Z): demoted to false so the Roskilde reading wins the merged mint. Found flipped back to true (regen violated this
+        hold) and re-demoted. KMM prints place=Gottorp, and that is kept verbatim as the museum record — but it is Galster''s attribution, which danskmoent corrects on the Galster-131 page: «Roskilde, af
+        Galster fejlagtigt henfoert til Gottorp». Galster and KMM are therefore one reading heard twice, not two witnesses. The only source that argues rather than labels is Stack''s Bowers lot 14258 (Bruun
+        Part II, p. 322): despite the reverse legend MON NOVA AVREA SLESVICENSIS, «a payment of around 350 ounces of gold was received at Copenhagen Castle on November 30, 1536 and transported to Roskilde
+        to be minted into Goldgulden as payment for the troops». Per §4 the verified-tier accumulator (_collect_mints) would otherwise union both, putting the corrected misattribution back into the render
+        as mint: [Gottorp, Roskilde]. If regen flips this back to true the Gottorp reading returns to the Denmark page.'
     verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/81473
         ref: KMM 81473 (Inv. GP 888.51)
     verification_note: *id001
+  - id: kmk-575020
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: gottorp_duchy
+    entity_classified_via: nation
+    nominal: 6 Skilling lybsk
+    metal_verified: false
+    mint:
+    mint_verified: false
+    ruler: Karl Friedrich
+    year_first: 1724
+    year_last: 1724
+    year_label: '1724'
+    year_ranges:
+      -   - 1724
+          - 1724
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/575020
+        ref: KMM 575020 (Inv. FP 11167.26)
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+    _curation_holds:
+      mint: "KMM's place «Lybæk» names the CURRENCY these «… skilling lybsk» pieces are reckoned in, not a mint: 263 lybsk-denominated coins across seven entities and not one minted at Lübeck, and these
+        records give nation as Slesvig-Holsten under Gottorp/Holstein rulers. Stop-listed in build_kmk_seed; cleared here because §4 verified-wins would keep the old value against a fresh None."
+      mint_verified: false — see mint.
+      issuing_entity: Karl Friedrich was Duke of Holstein-Gottorp — 31 of his coins already sit there.

@@ -2,8 +2,8 @@
 # Generated 2026-09-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1871 per-source seed entries.
-# Output: 896 unified entries (one per physical coin).
+# Input: 1858 per-source seed entries.
+# Output: 899 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -31518,6 +31518,84 @@ coins:
     composed_of:
       - ngc-167735
       - schleswig_holstein-numismaster-167735
+  - id: unified-ngc-167736
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: ½ Mark
+    year_first: 1514
+    year_last: 1514
+    year_label: '1514'
+    ruler: Friedrich I
+    catalog:
+      mb: '18'
+      schou: '1340'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 9.5
+        source: ngc
+      - value: 9.5
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-1-2-mark-mb-18-1514-cuid-167736-duid-380821
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_167736
+        ref: NumisMaster
+    verification_note:
+      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
+      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
+      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-167736
+      - schleswig_holstein-numismaster-167736
+  - id: unified-ngc-167737
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1 Mark
+    year_first: 1514
+    year_last: 1514
+    year_label: '1514'
+    ruler: Friedrich I
+    catalog:
+      mb: '20'
+      lange: '11'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 18.9
+        source: ngc
+      - value: 18.9
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-mark-mb-20-1514-cuid-167737-duid-380822
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_167737
+        ref: NumisMaster
+    verification_note:
+      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
+      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
+      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+    issuing_entity: royal_holstein
+    composed_of:
+      - ngc-167737
+      - schleswig_holstein-numismaster-167737
   - id: unified-ngc-167738
     fuss: seed_unsorted
     phase: ngc
@@ -31742,30 +31820,27 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - schleswig_holstein-numismaster-167727
-  - id: unified-schleswig_holstein-numismaster-167736
+  - id: unified-schleswig_holstein-numismaster-167729
     fuss: seed_unsorted
     phase: numismaster
     kind: kurant
-    nominal: ½ Mark
-    year_first: 1514
-    year_last: 1514
-    year_label: '1514'
+    nominal: 1 Witten
+    year_first: 1516
+    year_last: 1516
+    year_label: '1516'
     ruler: Friedrich I
     catalog:
-      mb: '18'
-      schou: '1340'
+      mb: '22'
+      schou: '1344'
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: true
+    weight_rough_verified: false
     mint_verified: false
     verified: false
-    weight_rough_g:
-      - value: 9.5
-        source: numismaster
     sources:
       - type: literature
-        url: https://numismaster.com/MC_167736
+        url: https://numismaster.com/MC_167729
         ref: NumisMaster
     verification_note:
       de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
@@ -31773,7 +31848,38 @@ coins:
       uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
     issuing_entity: royal_holstein
     composed_of:
-      - schleswig_holstein-numismaster-167736
+      - schleswig_holstein-numismaster-167729
+  - id: unified-schleswig_holstein-numismaster-167733
+    fuss: seed_unsorted
+    phase: numismaster
+    kind: kurant
+    nominal: 2 Schilling
+    year_first: 1523
+    year_last: 1523
+    year_label: '1523'
+    ruler: Friedrich I
+    catalog:
+      mb: '10'
+      schou: 1542-43
+      lange: 13-16
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    year_verified: false
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_167733
+        ref: NumisMaster
+    verification_note:
+      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
+      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
+      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
+    issuing_entity: royal_holstein
+    composed_of:
+      - schleswig_holstein-numismaster-167733
   - id: unified-schleswig_holstein-numismaster-167738
     fuss: seed_unsorted
     phase: numismaster
