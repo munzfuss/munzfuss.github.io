@@ -14317,12 +14317,18 @@ coins:
       km: '279'
     metal: gold
     fineness: 0.917
-    weight_rough_g: 5.996
+    weight_rough_g:
+      - value: 5.996
+        source: numismaster
+        erroneous:
+          de: "Einheitliches Katalog-Typengewicht 5,996 g des NumisMaster-/NGC-Preisführers — das Gewicht der einfachen Guldkrone (Frederik III «1 Guldkrone»), fälschlich auf die doppelt so schwere «2 Guldkrone» (KM-279, ~11,99 g rauh, Hede 45) übertragen. Es ist die halbe Soll-Masse dieses Typs, kein Wägewert."
+          en: "Uniform catalogue type-weight 5.996 g from the NumisMaster / NGC price guide — the weight of the single Guldkrone (Frederik III's «1 Guldkrone»), wrongly carried onto the twice-as-heavy «2 Guldkrone» (KM-279, ~11.99 g rough, Hede 45). It is half this type's target mass, not a weighing."
+          uk: "Уніфікована каталогова типова вага 5,996 г з прайс-гайду NumisMaster / NGC — це вага одинарної Guldkrone (Фредерікова «1 Guldkrone»), хибно перенесена на вдвічі важчу «2 Guldkrone» (KM-279, ~11,99 г повної, Hede 45). Це половина цільової маси цього типу, а не вимір."
     issuing_entity: danish_realm
     verified: false
     metal_verified: true
     fineness_verified: true
-    weight_rough_verified: true
+    weight_rough_verified: false
     mint_verified: false
     sources:
       - type: literature
@@ -14340,6 +14346,9 @@ coins:
     _numismaster_mc: '65606'
     _reverse:
       description: Large crown with date above and legend below in inner circle
+    _curation_holds:
+      weight_rough_g: "Phantom NumisMaster/NGC single-Guldkrone type-weight 5.996 g carried onto the 2-Guldkrone KM-279 type; retained as ERRONEOUS per CLAUDE.md §4, renders (!), dropped from fine weight and Δ. See its erroneous reason. Curator 2026-09-10."
+      weight_rough_verified: "false — the sole weight on this stub is the erroneous single-Guldkrone template."
   - id: denmark-numismaster-65918
     fuss: seed_unsorted
     phase: numismaster
