@@ -38,12 +38,15 @@ actually touches files it cares about, so most commits run two or three.
 | 5 | `scripts/maintenance/validate_decisions.py` + `--check-members` | **BLOCK on failure** | `data/v2/merge_decisions/*.yml` |
 | 6 | `scripts/maintenance/audit_lost_citations.py` | **BLOCK on failure** | `data/v2/final/*.yml` |
 | 7 | `scripts/maintenance/verify_reflow.py` | **BLOCK on losses** | `data/v2/final/*.yml` |
+| 8 | `scripts/maintenance/rebucket_seeds.py --check` | **BLOCK on drift** | `data/v2/seed/*.yml` |
 
-Six of the seven block. A commit that breaks schema validation,
+Seven of the eight block. A commit that breaks schema validation,
 violates a V2 invariant, leaves a merge decision whose members do not
-resolve, drops a citation a final entry carried, or loses a coin or a
-value the baseline had, refuses to land. Checks 6 and 7 exist because
-each caught a specific real loss — see «What this protects against».
+resolve, drops a citation a final entry carried, loses a coin or a
+value the baseline had, or leaves a seed entry in a file other than its
+`_home_entity(issuing_entity)`, refuses to land. Checks 6, 7 and 8 exist
+because each caught a specific real defect — see «What this protects
+against».
 
 ### Prose lint — promoted 2026-09-03
 

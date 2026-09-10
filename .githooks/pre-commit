@@ -40,6 +40,12 @@
 #      audit hard-blocks pre-commit (stricter than the originally-
 #      recommended advisory mode, per user direction §7.4).
 #
+#   8. Seed-bucket drift (HARD BLOCK) — runs
+#      `scripts/maintenance/rebucket_seeds.py --check` when the
+#      commit touches a seed yaml. Blocks if any seed entry sits in a
+#      file other than its `_home_entity(issuing_entity)`, which would
+#      mis-home the coin on the next re-flow (audit_v2 I1).
+#
 # The hook is fast — it only runs the heavy checks when the commit
 # actually touches relevant files. Docs-only commits skip the build
 # step entirely.
@@ -280,6 +286,36 @@ if [ -n "$FINAL_RELEVANT" ]; then
     fi
     rm -f "$RFL_LOG"
     echo "  ${C_GREEN}✓${C_RST} no data lost against HEAD"
+fi
+
+# ---------------------------------------------------------------------------
+# Check 8: Seed-bucket drift (hard block)
+# ---------------------------------------------------------------------------
+# A seed entry must sit in the `<source>/<entity>.yml` its issuing_entity
+# demands (`_home_entity(coin)`). It drifts when issuing_entity is edited in
+# place without re-running the builder, or a mint-registry / entity split
+# changes the home while old seeds keep the stale bucket. The cross-source
+# merger buckets by the seed FILE, so drift lands the coin in the wrong
+# seed_unified/final and audit_v2 I1 blocks the eventual re-flow commit — with
+# the misplacement traced to a coin nobody touched. Catch it at the seed edit
+# instead. Heal with `rebucket_seeds.py --apply`.
+
+SEED_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/seed/.*\.yml$' || true)
+
+if [ -n "$SEED_RELEVANT" ]; then
+    echo "▶ Seed-bucket drift..."
+    RBK_LOG=$(mktemp -t precommit-rebucket.XXXXXX)
+    if ! "$PYTHON" scripts/maintenance/rebucket_seeds.py --check > "$RBK_LOG" 2>&1; then
+        echo "${C_RED}✗ Seed-bucket drift — a seed entry is not in its _home_entity file.${C_RST}"
+        tail -20 "$RBK_LOG" | sed 's/^/    /'
+        echo
+        echo "Relocate the drifted entries with:"
+        echo "    $PYTHON scripts/maintenance/rebucket_seeds.py --apply"
+        echo "then re-run merge + absorb, or bypass with: git commit --no-verify"
+        exit 1
+    fi
+    rm -f "$RBK_LOG"
+    echo "  ${C_GREEN}✓${C_RST} every seed entry sits in its home bucket"
 fi
 
 echo "${C_DIM}pre-commit: checks complete${C_RST}"
