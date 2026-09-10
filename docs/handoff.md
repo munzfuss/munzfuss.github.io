@@ -15,6 +15,42 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-09-10 — Guldkrone pass; two items deferred for a next-pass ANALYSIS
+
+Shipped this session (5 commits, local, unpushed): NGC KM-40 Guldkrone stub
+merge (`3e2d805`), NumisMaster/NGC single-krone template weights flagged
+`erroneous` (`39e2d62` + `cdb4807`), all 9 Guldkrone coins reclassified
+`kind kurant→tarif` (`4c65280`), and `c4h28` (Christian IV «2 Guldkrone» Hede 28)
+`fraction 2→1` (`6995600`). Root story: Hede 1957 fn (1) — Christian IV's
+«2 Guldkrone» is physically Frederik III's «1 Guldkrone» (~6 g), so the ~6 g
+piece is fraction 1; NumisMaster/NGC carry a single-krone «type weight» (2.973 g,
+and 3 g ucoin / 5.996 g on the 2-Guldkrone) glued onto every «Krone» KM.
+
+**DEFERRED 1 — stale fuss fraction-«2» comment (needs analysis first).**
+`data/shared/fuesse.yml::guldkrone.fractions."2"` carries a comment framing
+«2 Guldkrone (Christian IV Hede 25/28 series 1619-1648 … Δ exposes ~50 %
+Krone-unit-redefinition-seigniorage)». That model is NOT what the data does:
+km-74 (Hede 25) and now c4h28 (Hede 28) are both fraction **1** (the 6 g piece),
+and fraction 2 (soll 11.99 g) is used only by the GENUINE ~12 g double-doubles
+(f3h45 real 11.18 g, f4h30 1701). Rewrite the comment to describe the real 12 g
+Frederik III «2 Guldkrone», dropping the «-50 % Hede 25/28» framing — but
+verify the f3h45 / f4h30 metric and the Hede-1957 naming first (§0b) before
+touching the prose. Curator wants analysis, not a blind edit.
+
+**DEFERRED 2 — pre-existing seed-bucket ≠ issuing_entity drift.** Any full
+`merge_seeds_cross_source --apply` + absorb-all relocates ~13 coins
+(kmk-575019/575020, kmk-81779/81780/81785/81790/81792/81793/81794,
+dk-bruun-14708/14709, ngc-167729/167733) into the wrong home file → I1/I3
+hard-block; plus danish_realm-side pending relocations (c4h5a/c4h8a Ungersk,
+ngc-65611, bruun-6498, promotion f3h27). Their SEED sits in a
+`royal_holstein`/`royal_slesvig` bucket while `issuing_entity` points elsewhere.
+Reproducible with a clean tree at HEAD (independent of this session's work);
+HEAD's finals are stale vs the current seed corpus. All five Guldkrone commits
+were made by SURGICALLY isolating them around this drift (prune the 13 from
+`royal_holstein` seed_unified after each merger run; rebuild `danish_realm`
+final HEAD-base + swap only the intended blocks; `git checkout HEAD` the other
+entities' seed_unified). Analysis spawned as task `task_85dba800` (running).
+
 ## 2026-09-04 (3) — two markers on a source's reading: «(*)» suspect, «(!)» erroneous
 
 **Shipped.** Curator direction, 2026-09-04, in three corrections that shaped it:
