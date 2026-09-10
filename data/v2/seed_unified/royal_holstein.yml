@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-09-05 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-09-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1869 per-source seed entries.
-# Output: 910 unified entries (one per physical coin).
+# Input: 1871 per-source seed entries.
+# Output: 896 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-09-05'
+generated_at: '2026-09-10'
 coins:
   - id: unified-dk-bruun-5326
     fuss: seed_unsorted
@@ -8777,24 +8777,33 @@ coins:
     catalog:
       km:
         - '40.1'
-        - '40'
         - '40.2'
-      hede: 145A
+        - '40'
+      hede:
+        - 145A
+        - 145B
       hede_volume: f3h
       schou:
         - '1'
+        - '2'
         - '5'
         - 9-10
-      sieg: '160'
+      sieg:
+        - '160'
+        - 160A
       bruun_collection_id:
         - '6244'
         - '6300'
+        - '6343'
+        - '6344'
       bruun_part: II
       bruun_lot_no: 13139
       bruun_page: 103
       others:
         - Aagaard# 1.1
         - Aagaard# 2.1
+        - Aagaard# 3.2 (57-1-60-3)
+        - Aagaard# 4.1 (57-1-60-4)
       numista: '306974'
       fr:
         - '2'
@@ -8810,6 +8819,8 @@ coins:
       - value: 0.917
         source: hede
       - value: 0.917
+        source: ngc
+      - value: 0.917
         source: numismaster
       - value: 0.917
         source: numista
@@ -8817,12 +8828,16 @@ coins:
         source: ucoin
     weight_rough_g:
       - value: 2.973
+        source: ngc
+      - value: 2.973
         source: numismaster
       - value: 3.0
         source: ucoin
       - value: 5.91
         source: bruun
       - value: 5.95
+        source: bruun
+      - value: 5.99
         source: bruun
       - value: 5.996
         source: hede
@@ -8840,6 +8855,12 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13142, p. 105
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17070, p. 48
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11222, p. 116
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h145.htm
         ref: danskmoent.dk (Hede f3h145A)
@@ -8849,6 +8870,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1657-1660/?tid=163671
         ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-gold-krone-km-40.2-1660-cuid-1052606-duid-1239880
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-gold-krone-km-40.1-1657-1660-cuid-1063241-duid-1239877
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://numismaster.com/MC_93042
         ref: NumisMaster
@@ -8863,79 +8890,16 @@ coins:
     composed_of:
       - dk-bruun-6244
       - dk-bruun-6300
-      - dk-hede-f3h145a
-      - dk-numista-306974
-      - dk-tid-163671
-      - schleswig_holstein-numismaster-93042
-      - schleswig_holstein-numismaster-93043
-  - id: unified-dk-hede-f3h145b
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Guldkrone
-    year_first: 1660
-    year_last: 1660
-    year_label: '1660'
-    ruler: Frederik III.
-    mintmaster: Jacob Schwieger
-    mint: Glückstadt
-    catalog:
-      km: '40.2'
-      hede:
-        - 145A
-        - 145B
-      hede_volume: f3h
-      schou:
-        - '1'
-        - '2'
-      sieg:
-        - '160'
-        - 160A
-      bruun_collection_id:
-        - '6343'
-        - '6344'
-      bruun_part: IV
-      bruun_lot_no: 17070
-      bruun_page: 48
-      others:
-        - Aagaard# 3.2 (57-1-60-3)
-        - Aagaard# 4.1 (57-1-60-4)
-      fr: '120'
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.917
-        source: hede
-    weight_rough_g:
-      - value: 5.91
-        source: bruun
-      - value: 5.99
-        source: bruun
-      - value: 5.996
-        source: hede
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17070, p. 48
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11222, p. 116
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h145.htm
-        ref: danskmoent.dk (Hede f3h145B)
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    issuing_entity: royal_holstein
-    composed_of:
       - dk-bruun-6343
       - dk-bruun-6344
+      - dk-hede-f3h145a
       - dk-hede-f3h145b
+      - dk-numista-306974
+      - dk-tid-163671
+      - ngc-1052606
+      - ngc-1063241
+      - schleswig_holstein-numismaster-93042
+      - schleswig_holstein-numismaster-93043
   - id: unified-dk-hede-f3h146ab
     fuss: seed_unsorted
     phase: hede

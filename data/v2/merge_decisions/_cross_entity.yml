@@ -1352,3 +1352,34 @@ merges:
       claims Hede 123, which is the Glückstadt 1681 type (Sieg 129), a
       different coin.
 
+  - target_entity: royal_holstein
+    members:
+      - dk-bruun-6244                        # home: royal_holstein  (km 40.1, Hede 145A, 1657)
+      - dk-bruun-6300                        # home: royal_holstein  (km 40.1, Hede 145A, 1659)
+      - dk-bruun-6343                        # home: royal_holstein  (km 40.2, Hede 145A, 1660)
+      - dk-bruun-6344                        # home: royal_holstein  (km 40.2, Hede 145B, 1660)
+      - dk-hede-f3h145                       # home: royal_holstein  (bare Hede code → f3h145a + f3h145b)
+      - schleswig_holstein-numismaster-93042 # home: royal_holstein  (km 40.1)
+      - schleswig_holstein-numismaster-93043 # home: royal_holstein  (km 40.2)
+      - dk-numista-306974                    # home: royal_holstein  (km 40, N#306974)
+      - dk-tid-163671                        # home: royal_holstein  (km 40, ucoin «1 Krone»)
+      - ngc-1052606                          # home: danish_realm    (km 40.2, 1660 — NGC stub to pull in)
+      - ngc-1063241                          # home: danish_realm    (km 40.1, 1660 — NGC stub to pull in)
+    reason: |
+      One coin — Frederik III Guldkrone, Glückstadt 1657-1660, KM-40 (Hede
+      145A/145B / Sieg 160 / Schou 2). §9.4 index-graph: shared Krause base
+      KM-40 links every member — the Glückstadt group already unified in
+      royal_holstein (KM 40 / 40.1 / 40.2) and the two NGC price-guide stubs
+      ngc-1052606 (KM 40.2) + ngc-1063241 (KM 40.1), which were bucketed into
+      danish_realm because the NGC record carries no mint. Glückstadt is a
+      Holstein mint, so royal_holstein is the home entity (the coin renders on
+      both the Denmark and Schleswig-Holstein pages via the SH∩Denmark
+      overlap). The NGC/NumisMaster stubs carry the single-krone catalogue
+      «type weight» 2.973 g (Christian IV's «1 guldkrone» = ½ of the Frederik III
+      «1 Guldkrone» per Hede 1957 fn (1) «Betegnelsen guldkrone dækker under
+      Frederik III den mønt, Christian IV kaldte 2 guldkrone»), i.e. half the
+      physical Glückstadt double-krone; that reading is retained but flagged
+      `erroneous` on its seed entry (source template weight, not a specimen).
+      Curator merge 2026-09-10 (Serhii, by KM-40 base + the Hede-1957
+      nomenclature note).
+
