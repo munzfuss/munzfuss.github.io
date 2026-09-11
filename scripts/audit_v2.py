@@ -464,6 +464,48 @@ def check_i11_erroneous_readings(final_coins: list[tuple[str, dict]]) -> list[st
     return out
 
 
+_OVERVIEW_ID_RE = re.compile(r"^(?:unified-)?(?:dk-hede-)?n?[cf]\d+hede\d*$")
+_OVERVIEW_URL_RE = re.compile(
+    r"danskmoent\.dk/(?:chr|fr)/[cf]\d+hede\d*\.htm", re.IGNORECASE
+)
+
+
+def check_i12_hede_overview(final_coins: list[tuple[str, dict]]) -> list[str]:
+    """I12 — danskmoent reign-overview index pages are not coins, and their
+    URLs live at the site root.
+
+    Two regressions this guards, both of which actually happened:
+
+      (a) An overview page (`c3hede.htm`, `f3hede1.htm`, …) parsed as a phantom
+          coin — the `_looks_like_overview` gap that produced `dk-hede-c3hede`
+          («1 - Oversigt Efter Galster og Hede», hede «ede»). No coin id may
+          match the overview shape `n?[cf]\\d+hede\\d*`.
+
+      (b) A source URL under `/chr` or `/fr` for an overview page — those pages
+          are served from the ROOT (`/c5hede1.htm`), so `/chr/c5hede1.htm` and
+          `/fr/f3hede1.htm` are 404s. An earlier point-fix (b24eeed) cleaned
+          only the c4hede2 slice and the class crept back; this keeps it out.
+    """
+    out: list[str] = []
+    for entity, c in final_coins:
+        cid = str(c.get("id") or "")
+        if _OVERVIEW_ID_RE.match(cid):
+            out.append(
+                f"I12: coin {cid!r} in {entity} is a danskmoent OVERVIEW index "
+                f"page parsed as a coin — exclude it and fix parse_hede."
+            )
+        for s in c.get("sources") or []:
+            if not isinstance(s, dict):
+                continue
+            url = str(s.get("url") or "")
+            if _OVERVIEW_URL_RE.search(url):
+                out.append(
+                    f"I12: coin {cid!r} in {entity} cites a 404 overview URL "
+                    f"{url!r} (overview pages live at the site root, not /chr|/fr)."
+                )
+    return out
+
+
 def check_i10_soll_phase_keys() -> list[str]:
     """I10 — every key of a fraction's `soll_fein_by_phase` must be a phase id
     that some page declares for that fuss.
@@ -854,6 +896,10 @@ def main() -> int:
     print("Running I11 (erroneous readings vs verified flags)...")
     results["I11"] = check_i11_erroneous_readings(final_coins)
     print(f"  {len(results['I11'])} violation(s)")
+
+    print("Running I12 (Hede overview pages: not coins, root URLs)...")
+    results["I12"] = check_i12_hede_overview(final_coins)
+    print(f"  {len(results['I12'])} violation(s)")
 
     print("Running I9-info (fuss with no phases on any consuming page)...")
     results["I9-info"] = check_i9info_fuss_unpaged(final_coins)
