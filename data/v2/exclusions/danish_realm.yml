@@ -553,23 +553,14 @@ exclusions:
     curator: Serhii
     date: 2026-08-08
 
-  # --- Overview-index page parsed as a phantom coin (curator Serhii 2026-09-10) ---
-  - id: dk-hede-c3hede
-    category: undocumented_stub
-    reason: >-
-      NOT a coin — this is the danskmoent.dk Christian III reign-OVERVIEW index
-      page c3hede.htm («Christian 3. - oversigt efter Galster og Hede»), which the
-      Hede parser wrongly emitted as a coin: nominal «1 - Oversigt Efter Galster
-      og Hede», hede «ede» (the URL stem), and an aggregated pile of Galster
-      92AB/93-109/130-133/147/175/176/246-251 + Sieg 16.1/16.2 scraped from the
-      table. Root cause: parse_hede._looks_like_overview matched only «oversigt
-      efter Hede», missing the «Galster og» this page inserts — fixed the same
-      day to match the «oversigt efter» stem, so a re-parse will no longer emit
-      it. Every coin the overview indexes is already in the corpus (verified:
-      Galster/Hede types present via danskmoent deep pages + IKMK/Numista/Bruun),
-      so dropping this aggregate row is lossless. https://www.danskmoent.dk/c3hede.htm
-    curator: Serhii
-    date: 2026-09-10
+  # --- c3hede overview-page phantom: REMOVED here 2026-09-11. It was excluded on
+  # 2026-09-10 (commit 6851278) as a stop-gap while the phantom still sat in the
+  # seed. The root-cause parse_hede._looks_like_overview fix (same commit) now
+  # recognises c3hede.htm as an overview, so a --force re-parse dropped it from
+  # _parsed_index.json and the seed orphan `dk-hede-c3hede` was deleted outright.
+  # With no seed entry left to fire on, the exclusion matched nothing (it would
+  # only warn), so it is gone rather than kept as dead weight. The phantom is now
+  # absent from index, seed, seed_unified and final alike. ---
 
   # --- The 1658 5-Dukat «norsk medalje» — the danskmoent/NumisMaster/NGC twin of
   # the already-excluded kmk-393650. Same physical piece (Frederik III, Hede 27,
