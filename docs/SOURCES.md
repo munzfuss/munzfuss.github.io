@@ -1625,12 +1625,21 @@ scope one.
 (`chr/c3g246-248,250,251.htm`, Gustav Vasa 1535) are deliberately NOT harvested
 under this rule — do not add them.
 
-**Follow-up (next pass).** Tier 2 foreign-crown intrusions in `danish_realm`
-(August III/Poland at Gdansk, Æthelred II/England, Stralsund & Rostock civic
-issues) and a review of the Christian II 1535 exile pieces; plus an
-entity-routing filter so a future re-harvest cannot re-introduce foreign-crown
-coins into `danish_realm` (per §9/PB-12 an `exclusions/` entry removes what is
-here but does not stop re-ingest).
+**Tier 2 done (2026-09-11).** Five further foreign-crown intrusions excluded:
+`kmk-529443` (Æthelred II England, Agnus Dei penny), `kmk-578533` (Stralsund
+civic witten), `kmk-372890` (Rostock civic Skilling), `kmk-354873` (August III /
+Poland-Danzig Solidus, Kopicki 348/3a), `kmk-175967` (Johann Albrecht I of
+Mecklenburg Sechsling, Gaettens 182). The Christian II 1535 exile pieces were
+reviewed and KEPT (Danish claimant coinage, above).
+
+**Follow-up (next pass).** Entity-routing filter so a future re-harvest cannot
+re-introduce foreign-crown coins into `danish_realm` (per §9/PB-12 an
+`exclusions/` entry removes what is here but does not stop re-ingest); re-route
+the ~54 Holstein-Gottorp / Sønderborg ducal coins mis-bucketed into
+`danish_realm` (they belong on the Holstein/Gottorp page); the same ruler+mint
+scan on `danish_norway` / `royal_slesvig` / `royal_holstein` + the IKMK builder;
+and the `mint`-field data-quality debt (spurious «Hamborg»/«Mecklenburg» on
+genuine Danish coins) plus the exonumia tokens in the `ruler` field.
 
 ---
 
