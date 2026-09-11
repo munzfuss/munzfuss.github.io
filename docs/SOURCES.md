@@ -1586,13 +1586,33 @@ Christian I (1457-1464, 1465-1467), Hans (1497-1501) and Christian II
 Vasa elected; union dissolved). So any Swedish-crown issue dated **after 1523**
 is out of Denmark scope.
 
-**What was excluded (Tier 1, 11 finals, `data/v2/exclusions/danish_realm.yml`).**
+**What was excluded (Tier 1, 12 finals, `data/v2/exclusions/danish_realm.yml`).**
 All post-1523 Stockholm issues that had been ingested into `danish_realm` via the
 IKMK/Bruun bulk harvests and rendered in the `seed_unsorted` holding pen:
 Christian III 1535 ×3 (`dk-bruun-4232` = Galster 249, `kmk-139713`, `kmk-139714`
 — these bear Christian III's NAME but were struck by Gustav Vasa's independent
 Sweden during Grevens Fejde, so the crown was Vasa's), Erik XIV 1562, Johan III
-1568-1586 ×4, Ulrika Eleonora 1719, Fredrik I 1731, Karl XIV Johan 1825.
+1568-1586 ×4, Ulrika Eleonora 1719, Fredrik I 1731, Karl XIV Johan 1825, and
+Gustav Vasa 1 Ørtug 1524-1527 (`kmk-316367` — added in a second pass; the
+Swedish-mint scan missed it because its mint was spelled «Stokholm»).
+
+**Not excluded — a Danish imitation, not a foreign issue.** `kmk-312155`
+(«Æthelred» 1 Penning, mint Lund, 1.03 g) STAYS: the KMM record's `authority`
+field reads «Æthelred, **imitation**» and `nation` = «Danmark» — an early Danish
+imitation of an Anglo-Saxon penny struck at Lund (Becker Æ1/161), not an English
+coin. **KMM `nation` is the COLLECTION nationality, not the issuing polity** (it
+reads «Danmark» even on genuinely foreign pieces in the Royal cabinet); the
+discriminator is `authority` + the «imitation» marker. So a genuine foreign issue
+in the same collection — `kmk-529443` («Æthelred 2 den Rådløse», no imitation
+marker → real English penny) and `kmk-578533` («Stralsund» civic witten) — is a
+Tier-2 exclusion candidate despite `nation: Danmark`.
+
+**Christian II 1535 Grevens Fejde — Danish, NOT excluded.** `dk-galster-c2g-85` /
+`kmk-156732` / `kmk-156733` (Christian II 4 Skilling, Güstrow) assert the DANISH
+crown, not a foreign one: struck by Albrecht VII of Mecklenburg IN CHRISTIAN II's
+NAME during Grevens Fejde, reverse = Danish coat of arms, legend «IMMERITI
+CARCERIS APVD HOLSATAS 3», catalogued Danish (Galster c2g, Sieg 1, Schou 18-36;
+Kunzel, NNÅ 1985-86). Danish civil-war claimant coinage — in scope.
 
 **What stays.** Union-era Swedish coins (Christian I / Hans Stockholm-Vesterås
 Ørtug, 6 finals) — the Danish king then held the Swedish crown (note: those are
