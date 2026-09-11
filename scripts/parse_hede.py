@@ -1601,10 +1601,18 @@ def _parse_header(html: str) -> dict:
 
 
 def _looks_like_overview(html: str) -> bool:
-    """Overview pages have «oversigt efter Hede» in H1 and a big TABLE
+    """Overview pages have «oversigt efter …» in H1 and a big TABLE
     listing many entries — skip them in per-page parsing (we still
-    keep their raw HTML cached for human reference)."""
-    return bool(re.search(r"oversigt\s+efter\s+Hede", html, re.IGNORECASE))
+    keep their raw HTML cached for human reference).
+
+    The heading names the catalogue system(s) the table follows, and it
+    is NOT always just «Hede»: `c3hede.htm` reads «oversigt efter Galster
+    og Hede», which the older `oversigt efter Hede` pattern missed — so
+    that one overview slipped through and was parsed as a phantom coin
+    (`dk-hede-c3hede`). Match the «oversigt efter» stem alone; no deep
+    coin page carries that phrase (verified across the whole cache), so
+    the broadened pattern touches only the 21 overview index pages."""
+    return bool(re.search(r"oversigt\s+efter\b", html, re.IGNORECASE))
 
 
 # Hede letter-grouped sub-variant pattern: a single page lists 2+

@@ -552,3 +552,56 @@ exclusions:
       KEPT — it already carries Sieg 73.1 alongside its own Sieg 73.
     curator: Serhii
     date: 2026-08-08
+
+  # --- Overview-index page parsed as a phantom coin (curator Serhii 2026-09-10) ---
+  - id: dk-hede-c3hede
+    category: undocumented_stub
+    reason: >-
+      NOT a coin — this is the danskmoent.dk Christian III reign-OVERVIEW index
+      page c3hede.htm («Christian 3. - oversigt efter Galster og Hede»), which the
+      Hede parser wrongly emitted as a coin: nominal «1 - Oversigt Efter Galster
+      og Hede», hede «ede» (the URL stem), and an aggregated pile of Galster
+      92AB/93-109/130-133/147/175/176/246-251 + Sieg 16.1/16.2 scraped from the
+      table. Root cause: parse_hede._looks_like_overview matched only «oversigt
+      efter Hede», missing the «Galster og» this page inserts — fixed the same
+      day to match the «oversigt efter» stem, so a re-parse will no longer emit
+      it. Every coin the overview indexes is already in the corpus (verified:
+      Galster/Hede types present via danskmoent deep pages + IKMK/Numista/Bruun),
+      so dropping this aggregate row is lossless. https://www.danskmoent.dk/c3hede.htm
+    curator: Serhii
+    date: 2026-09-10
+
+  # --- The 1658 5-Dukat «norsk medalje» — the danskmoent/NumisMaster/NGC twin of
+  # the already-excluded kmk-393650. Same physical piece (Frederik III, Hede 27,
+  # Sieg 140, 1658, Copenhagen), a MEDAL of five-ducat weight (§9.2 exonumia), not
+  # circulation coinage — see the kmk-393650 exclusion above and danskmoent's
+  # article «5 dukat 1658 – norsk medalje?». These three seeds
+  # (danskmoent overview-stub f3h27 «Tiefenseite fehlt» + NumisMaster + NGC KM-219)
+  # form a SEPARATE unified cluster that did not merge with the kmk seed, so the
+  # kmk-393650 exclusion never reached them; they surfaced when a re-absorb caught
+  # up a stale HEAD final (§9b). Excluded here so the medal stays out of the render
+  # regardless of which representation the pipeline materialises — mirrors the
+  # ngc-1050405 precedent. Curator (Serhii) 2026-09-11.
+  # https://www.danskmoent.dk/artikler/5dukat1658.htm
+  - id: dk-hede-f3h27
+    category: exonumia
+    reason: >-
+      1658 5-Dukat «norsk medalje» (Frederik III, Hede 27, Sieg 140) — the
+      danskmoent overview-stub representation of the same medal excluded as
+      kmk-393650 (§9.2). Not a circulation coin.
+    curator: Serhii
+    date: 2026-09-11
+  - id: denmark-numismaster-65956
+    category: exonumia
+    reason: >-
+      NumisMaster (MC_65956, KM-219) representation of the 1658 5-Dukat «norsk
+      medalje», Hede 27 / Sieg 140 — same medal as kmk-393650 (§9.2 exonumia).
+    curator: Serhii
+    date: 2026-09-11
+  - id: ngc-1050977
+    category: exonumia
+    reason: >-
+      NGC World Coin Price Guide (KM-219) representation of the 1658 5-Dukat
+      «norsk medalje», Hede 27 / Sieg 140 — same medal as kmk-393650 (§9.2).
+    curator: Serhii
+    date: 2026-09-11
