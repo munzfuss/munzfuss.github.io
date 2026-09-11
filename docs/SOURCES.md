@@ -1571,6 +1571,47 @@ fineness that overstates their fine gold by ~20 %, and `weight_rough_verified` /
 `fineness_verified` were set `true` by the NGC seed builder on those values.
 See `docs/handoff.md` for the repair state.
 
+### 13.16 Swedish issues on the Denmark page — scope is by CROWN HELD, tracked via ruler, not mint city (2026-09-11)
+
+**Rule (curator, Serhii, 2026-09-11).** A polity's coins may appear in a
+location register ONLY for the years the Danish king also held that polity's
+crown. Personal union counts: while the Danish king wore the Swedish crown, the
+Swedish issues are in scope. The test is applied to the **issuing crown (the
+ruler)**, not the physical mint city — a Danish king's coin struck at an
+occupied or contracted foreign mint stays Danish.
+
+**Sweden timeline.** Kalmar Union: the Danish king held the Swedish crown under
+Christian I (1457-1464, 1465-1467), Hans (1497-1501) and Christian II
+(1520-1523). Sweden became permanently independent on **6 June 1523** (Gustav
+Vasa elected; union dissolved). So any Swedish-crown issue dated **after 1523**
+is out of Denmark scope.
+
+**What was excluded (Tier 1, 11 finals, `data/v2/exclusions/danish_realm.yml`).**
+All post-1523 Stockholm issues that had been ingested into `danish_realm` via the
+IKMK/Bruun bulk harvests and rendered in the `seed_unsorted` holding pen:
+Christian III 1535 ×3 (`dk-bruun-4232` = Galster 249, `kmk-139713`, `kmk-139714`
+— these bear Christian III's NAME but were struck by Gustav Vasa's independent
+Sweden during Grevens Fejde, so the crown was Vasa's), Erik XIV 1562, Johan III
+1568-1586 ×4, Ulrika Eleonora 1719, Fredrik I 1731, Karl XIV Johan 1825.
+
+**What stays.** Union-era Swedish coins (Christian I / Hans Stockholm-Vesterås
+Ørtug, 6 finals) — the Danish king then held the Swedish crown (note: those are
+also pre-1514, below the mission floor — a separate axis). Danish-king coins with
+a foreign/odd mint field (Hamburg, Mecklenburg, Wolfenbüttel under Christian IV
+etc.) — Danish crown, so in scope; the mint field is a data-quality matter, not a
+scope one.
+
+**Not re-openable as a harvest gap.** The five un-ingested Swedish Galster pages
+(`chr/c3g246-248,250,251.htm`, Gustav Vasa 1535) are deliberately NOT harvested
+under this rule — do not add them.
+
+**Follow-up (next pass).** Tier 2 foreign-crown intrusions in `danish_realm`
+(August III/Poland at Gdansk, Æthelred II/England, Stralsund & Rostock civic
+issues) and a review of the Christian II 1535 exile pieces; plus an
+entity-routing filter so a future re-harvest cannot re-introduce foreign-crown
+coins into `danish_realm` (per §9/PB-12 an `exclusions/` entry removes what is
+here but does not stop re-ingest).
+
 ---
 
 ## 13b. Which polity is harvested from which source
