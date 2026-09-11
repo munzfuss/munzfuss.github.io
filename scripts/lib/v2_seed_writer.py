@@ -1707,10 +1707,24 @@ def write_v2_seed(
                     # §9.4 index hygiene (fold others→typed + case-dedup)
                     if _fold_catalog_indices(catalog):
                         file_normalised += 1
+                # A curator-frozen `*_verified` flag (`_curation_holds`) must
+                # survive this on-disk normalisation pass. merge_seed/merge_one
+                # honour holds, but these two auto-promotion rules run BEFORE
+                # merge_seed and mutate the existing entry in place — so without
+                # this guard they flip a held `metal_verified`/`mint_verified`
+                # false→true, and the subsequent merge then faithfully preserves
+                # the already-corrupted value under the very hold meant to stop
+                # it. Real failure: kmk-81473 (Christian III Goldgulden 1536)
+                # held mint_verified:false since 2026-08-20 so the Roskilde
+                # reading wins the merged mint; the sources-imply-mint rule
+                # silently re-flipped it to true on the 9808d38 re-seed. Reads
+                # both list- and dict-form holds (set() over the keys).
+                _holds = set(c.get("_curation_holds") or [])
                 # fineness-implies-metal rule
                 if (c.get("metal")
                         and bool(c.get("fineness_verified"))
-                        and not bool(c.get("metal_verified"))):
+                        and not bool(c.get("metal_verified"))
+                        and "metal_verified" not in _holds):
                     c["metal_verified"] = True
                     file_normalised += 1
                 # sources-imply-mint rule — same shape as the in-memory copy
@@ -1725,7 +1739,8 @@ def write_v2_seed(
                         and not isinstance(c.get("mint"), list)
                         and isinstance(sources, list)
                         and any(isinstance(s, dict) and s.get("url") for s in sources)
-                        and not bool(c.get("mint_verified"))):
+                        and not bool(c.get("mint_verified"))
+                        and "mint_verified" not in _holds):
                     c["mint_verified"] = True
                     file_normalised += 1
                 kept.append(c)
