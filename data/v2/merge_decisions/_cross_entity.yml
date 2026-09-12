@@ -230,6 +230,22 @@ merges:
       - kmk-354548      # KMM, Hede 14, copper, 1812
       - kmk-405952      # KMM, Hede 14, 1812
       - kmk-741023      # KMM, Hede 14, 1812
+      # Curator 2026-09-12 — +13 KMM specimens, same cause as the Hede-74 group.
+      # KMM prints «H. 14», an exact match on this group's base; nominal + ruler agree
+      # and 1812 falls inside the group's 1808-1839 span.
+      - kmk-155250
+      - kmk-155252
+      - kmk-155269
+      - kmk-155271
+      - kmk-156106
+      - kmk-159732
+      - kmk-159740
+      - kmk-328069
+      - kmk-340216
+      - kmk-340432
+      - kmk-351614
+      - kmk-353443
+      - kmk-355600
     reason: |
       Durability for the 2026-06-22 cross-entity-dup consolidation (Serhii). The
       «3 Skilling» Frederik VI existed as TWO final rows sharing one id — a
@@ -349,6 +365,18 @@ merges:
       - kmk-317575                # KMM, Hede 13, «1 Speciemønt»
       - ngc-1050724                   # home: danish_realm  (NGC, km 654, 1799-1799)
       - dk-bruun-7928                 # Bruun II lot 11295, KM 651.1 + Hede 13A + Sieg 25.1
+    excludes:
+      # Curator 2026-09-12 — EXCLUDED, deliberately not merged. KMM prints the type as
+      # «Hede 13 ell. 39» and the mint as «København ell. Altona»: the museum declines
+      # to choose. That is not a formality — Hede 39 (Christian VII) is also a 1
+      # Speciedaler struck at Altona at the same 28,893 g, but a different base (Sieg
+      # 42.x / 55 / 56 against Sieg 33.1 here), and per §9.4 two bases no catalogue
+      # unifies are two coins. Listing them would settle, irreversibly, an attribution
+      # the source left open. NB the kmk seed already flattens the printed «13 ell. 39»
+      # to hede: 13 — that truncation is a separate defect, not evidence for a merge.
+      - kmk-317571
+      - kmk-317572
+      - kmk-317574
     reason: 'Curator 2026-06-28: c7h13 «1 Speciedaler» Christian VII 1795-1801 (Altona+Kopenhagen) is ONE coin = Hede 13, catalogued in two Krause volumes — KM 651 (Schleswig-Holstein/German volume, royal_holstein) and KM 654 (Denmark volume, danish_realm km-654/bruun-7940). The DK-volume cluster was bucketed into danish_realm; pull it into royal_holstein (the SH∩Denmark overlap home, so the coin renders on both pages) and union with the Hede-13 cluster. Final keeps the KM provenance split via dict-form km {sh:[651,651.1], dk:[654]} so the two Krause traditions are not conflated (as c5h125).'
   - target_entity: royal_holstein
     members:
@@ -715,6 +743,37 @@ merges:
       - kmk-625283                  # home: danish_norway   (KMM, Hede Norge 6, Kongsberg, 0.80 g)
       - ngc-1069011                   # home: danish_realm  (NGC, km 671, 1812-1812)
       - ngc-1097065                   # home: danish_norway  (NGC, km 281, 1812-1812)
+      # Curator 2026-09-12 — +28 KMM specimens, same cause as the Hede-74 group.
+      # KMM prints «H. 15A» against base 15 (§9.4 sub-variant); nominal, ruler and the
+      # 1812 date all agree.
+      - kmk-155170
+      - kmk-155257
+      - kmk-155261
+      - kmk-155263
+      - kmk-155265
+      - kmk-155267
+      - kmk-155273
+      - kmk-155275
+      - kmk-155277
+      - kmk-155279
+      - kmk-155280
+      - kmk-155281
+      - kmk-155282
+      - kmk-155283
+      - kmk-159728
+      - kmk-159730
+      - kmk-159734
+      - kmk-159759
+      - kmk-159776
+      - kmk-159778
+      - kmk-159780
+      - kmk-159782
+      - kmk-159784
+      - kmk-159786
+      - kmk-159788
+      - kmk-203795
+      - kmk-369248
+      - kmk-395196
     reason: |
       One coin — Frederik VI 1 Skilling 1812, copper. Load-bearing key:
       km 671 + Hede 15 base (the danish_realm side adds the 15B sub-letter,
@@ -1325,6 +1384,59 @@ merges:
       - kmk-155183
       - kmk-155189
       - kmk-157083
+      # Curator 2026-09-12 — +46 KMM specimens of this same type. They surfaced when
+      # the §9a thinning stopped discarding weightless records: it had been picking a
+      # bucket's three survivors by id-sort, so these stubs went without any redundant
+      # weight being shed. KMM prints «H. 74 A» against this group's Hede base 74, and
+      # per §9.4 a sub-letter is a sub-variant of the base, not a distinct type.
+      # Nominal + ruler agree; they carry no weight or metal of their own and add only
+      # museum attestations, per §9a.
+      - kmk-122574
+      - kmk-155187
+      - kmk-155193
+      - kmk-155195
+      - kmk-155197
+      - kmk-157089
+      - kmk-157091
+      - kmk-157093
+      - kmk-159697
+      - kmk-159699
+      - kmk-159701
+      - kmk-159703
+      - kmk-159722
+      - kmk-267332
+      - kmk-279202
+      - kmk-301904
+      - kmk-301905
+      - kmk-301906
+      - kmk-301908
+      - kmk-301909
+      - kmk-301910
+      - kmk-302517
+      - kmk-331205
+      - kmk-331206
+      - kmk-331697
+      - kmk-334849
+      - kmk-351594
+      - kmk-352746
+      - kmk-352747
+      - kmk-352748
+      - kmk-354443
+      - kmk-354444
+      - kmk-355676
+      - kmk-368219
+      - kmk-368419
+      - kmk-368420
+      - kmk-368421
+      - kmk-368422
+      - kmk-368423
+      - kmk-369344
+      - kmk-369421
+      - kmk-371730
+      - kmk-371731
+      - kmk-372833
+      - kmk-372860
+      - kmk-372861
       - kmk-157085
       - kmk-157087
       - kmk-292
