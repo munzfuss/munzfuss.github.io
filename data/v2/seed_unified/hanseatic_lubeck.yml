@@ -2,8 +2,8 @@
 # Generated 2026-09-12 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
-# Input: 414 per-source seed entries.
-# Output: 333 unified entries (one per physical coin).
+# Input: 416 per-source seed entries.
+# Output: 334 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -630,13 +630,20 @@ coins:
     weight_rough_g:
       - value: 0.33
         source: ikmk
+      - value: 0.34
+        source: ikmk
     diameter_mm:
+      - value: 12.0
+        source: ikmk
       - value: 13.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18283283
         ref: IKMK Berlin 18283283
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18283303
+        ref: IKMK Berlin 18283303
     note:
       de: einseitig
       en: einseitig
@@ -645,6 +652,41 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ikmk-18283283
+      - ikmk-18283303
+  - id: unified-ikmk-18283284
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Pfennig
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    mintmaster: Heinrich von der Klähren
+    mint: Lübeck
+    metal: copper
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.3
+        source: ikmk
+    diameter_mm:
+      - value: 12.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18283284
+        ref: IKMK Berlin 18283284
+    note:
+      de: einseitig
+      en: einseitig
+      uk: einseitig
+    verification_note: *id001
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - ikmk-18283284
   - id: unified-ikmk-18283285
     fuss: seed_unsorted
     phase: ikmk

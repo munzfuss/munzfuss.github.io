@@ -2,8 +2,8 @@
 # Generated 2026-09-12 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/erzbisthum_bremen_verden.yml across all sources.
 #
-# Input: 268 per-source seed entries.
-# Output: 224 unified entries (one per physical coin).
+# Input: 304 per-source seed entries.
+# Output: 240 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -309,6 +309,8 @@ coins:
         source: ikmk
       - value: 28.26
         source: ikmk
+      - value: 28.29
+        source: ikmk
     diameter_mm:
       - value: 41.0
         source: ikmk
@@ -325,6 +327,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18306136
         ref: IKMK Berlin 18306136
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18306137
+        ref: IKMK Berlin 18306137
       - type: museum
         url: https://ikmk.smb.museum/object?id=18306138
         ref: IKMK Berlin 18306138
@@ -348,6 +353,7 @@ coins:
     composed_of:
       - dk-numista-129840
       - ikmk-18306136
+      - ikmk-18306137
       - ikmk-18306138
       - ikmk-18306140
       - tid-tid-175546
@@ -1920,6 +1926,7 @@ coins:
     year_last: 1619
     year_label: '1619'
     ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
+    mintmaster: Thomas Timpf (Tympf)
     inscription_obv: I F D G - A E E P B
     inscription_rev: MATT D R IM S A 619
     mint: Bremervörde
@@ -1930,6 +1937,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.91
+        source: ikmk
       - value: 1.97
         source: ikmk
     diameter_mm:
@@ -1939,10 +1948,18 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18236460
         ref: IKMK Berlin 18236460
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18289045
+        ref: IKMK Berlin 18289045
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
     verification_note: *id001
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - ikmk-18236460
+      - ikmk-18289045
   - id: unified-ikmk-18236461
     fuss: seed_unsorted
     phase: ikmk
@@ -1984,6 +2001,7 @@ coins:
     year_last: 1619
     year_label: '1619'
     ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
+    mintmaster: Thomas Timpf (Tympf)
     inscription_obv: IOH FRI D G A ET EP B ET L
     inscription_rev: MATTHI D G R I S A
     mint: Bremervörde
@@ -1997,16 +2015,14 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 1.06
-        source: ikmk
       - value: 1.07
         source: ikmk
       - value: 1.08
         source: ikmk
+      - value: 1.12
+        source: ikmk
     diameter_mm:
       - value: 16.0
-        source: ikmk
-      - value: 18.0
         source: ikmk
       - value: 19.0
         source: ikmk
@@ -2015,8 +2031,8 @@ coins:
         url: https://ikmk.smb.museum/object?id=18236462
         ref: IKMK Berlin 18236462
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18289076
-        ref: IKMK Berlin 18289076
+        url: https://ikmk.smb.museum/object?id=18289074
+        ref: IKMK Berlin 18289074
       - type: museum
         url: https://ikmk.smb.museum/object?id=18289078
         ref: IKMK Berlin 18289078
@@ -2031,7 +2047,7 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - ikmk-18236462
-      - ikmk-18289076
+      - ikmk-18289074
       - ikmk-18289078
       - tid-tid-175383
   - id: unified-ikmk-18236463
@@ -2085,6 +2101,7 @@ coins:
     year_first: 1619
     year_last: 1619
     year_label: '1619'
+    mintmaster: Simon Timpf (Tympf)
     inscription_obv: MO NO CIVI STADEN
     inscription_rev: MATT D G R IM S A 619
     mint: Stade
@@ -2095,15 +2112,34 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.9
+        source: ikmk
+      - value: 1.91
+        source: ikmk
       - value: 1.93
+        source: ikmk
+      - value: 1.99
         source: ikmk
     diameter_mm:
       - value: 22.0
+        source: ikmk
+      - value: 23.0
+        source: ikmk
+      - value: 24.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18236464
         ref: IKMK Berlin 18236464
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287967
+        ref: IKMK Berlin 18287967
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287974
+        ref: IKMK Berlin 18287974
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287990
+        ref: IKMK Berlin 18287990
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -2112,6 +2148,9 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - ikmk-18236464
+      - ikmk-18287967
+      - ikmk-18287974
+      - ikmk-18287990
   - id: unified-ikmk-18236465
     fuss: seed_unsorted
     phase: ikmk
@@ -2401,6 +2440,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 2.16
+        source: ikmk
       - value: 2.18
         source: ikmk
     diameter_mm:
@@ -2410,6 +2451,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18287949
         ref: IKMK Berlin 18287949
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287951
+        ref: IKMK Berlin 18287951
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -2418,7 +2462,8 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - ikmk-18287949
-  - id: unified-ikmk-18287955
+      - ikmk-18287951
+  - id: unified-ikmk-18287952
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -2427,8 +2472,88 @@ coins:
     year_last: 1618
     year_label: '1618'
     mintmaster: Simon Timpf (Tympf)
-    inscription_obv: MON NOV CIV STADENSIS
-    inscription_rev: MATTHIAS D G RO IM S A 18
+    inscription_obv: MO NOU CIUI STADENSIS
+    inscription_rev: MATTHIAS D G RO I S A 618
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.9
+        source: ikmk
+      - value: 1.99
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+      - value: 24.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287952
+        ref: IKMK Berlin 18287952
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287955
+        ref: IKMK Berlin 18287955
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18287952
+      - ikmk-18287955
+  - id: unified-ikmk-18287956
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MON NOU CIUI STADENSIS
+    inscription_rev: MATTHIAS D G RO IM S A 618
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 2.07
+        source: ikmk
+    diameter_mm:
+      - value: 24.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287956
+        ref: IKMK Berlin 18287956
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18287956
+  - id: unified-ikmk-18287958
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MO NOU CIUI STADENS
+    inscription_rev: MATTHI D G RO IM S AV 618
     mint: Stade
     metal: silver
     metal_verified: true
@@ -2439,18 +2564,13 @@ coins:
     weight_rough_g:
       - value: 1.86
         source: ikmk
-      - value: 1.9
-        source: ikmk
     diameter_mm:
-      - value: 23.0
+      - value: 24.0
         source: ikmk
     sources:
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18287955
-        ref: IKMK Berlin 18287955
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18287959
-        ref: IKMK Berlin 18287959
+        url: https://ikmk.smb.museum/object?id=18287958
+        ref: IKMK Berlin 18287958
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -2458,9 +2578,8 @@ coins:
     verification_note: *id001
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
-      - ikmk-18287955
-      - ikmk-18287959
-  - id: unified-ikmk-18287979
+      - ikmk-18287958
+  - id: unified-ikmk-18287970
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -2469,8 +2588,44 @@ coins:
     year_last: 1619
     year_label: '1619'
     mintmaster: Simon Timpf (Tympf)
-    inscription_obv: MO NO CIVI STADENS
-    inscription_rev: MATT D G R IM S A 619
+    inscription_obv: MON NOV CIV STADENS
+    inscription_rev: MATTHIAS D G R IM S A 619
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 2.07
+        source: ikmk
+    diameter_mm:
+      - value: 22.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287970
+        ref: IKMK Berlin 18287970
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18287970
+  - id: unified-ikmk-18287972
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MO[N N]OV CIV STADENSIS
+    inscription_rev: '[MAT]THIAS D G RO IM S A 619'
     mint: Stade
     metal: silver
     metal_verified: true
@@ -2481,13 +2636,25 @@ coins:
     weight_rough_g:
       - value: 1.7
         source: ikmk
+      - value: 1.71
+        source: ikmk
+      - value: 1.78
+        source: ikmk
     diameter_mm:
+      - value: 22.0
+        source: ikmk
       - value: 23.0
         source: ikmk
     sources:
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18287972
+        ref: IKMK Berlin 18287972
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18287979
         ref: IKMK Berlin 18287979
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287993
+        ref: IKMK Berlin 18287993
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -2495,8 +2662,10 @@ coins:
     verification_note: *id001
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
+      - ikmk-18287972
       - ikmk-18287979
-  - id: unified-ikmk-18287996
+      - ikmk-18287993
+  - id: unified-ikmk-18287977
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -2505,8 +2674,8 @@ coins:
     year_last: 1619
     year_label: '1619'
     mintmaster: Simon Timpf (Tympf)
-    inscription_obv: MO NO CIVI STADEN
-    inscription_rev: MATT D G R IM S A 619
+    inscription_obv: MON NOV CIV STADENSIS
+    inscription_rev: MATTHIAS D G RO IM S A 619
     mint: Stade
     metal: silver
     metal_verified: true
@@ -2515,12 +2684,29 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.54
+        source: ikmk
+      - value: 1.57
+        source: ikmk
       - value: 1.6
+        source: ikmk
+      - value: 1.61
         source: ikmk
     diameter_mm:
       - value: 22.0
         source: ikmk
+      - value: 23.0
+        source: ikmk
     sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287977
+        ref: IKMK Berlin 18287977
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287978
+        ref: IKMK Berlin 18287978
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287981
+        ref: IKMK Berlin 18287981
       - type: museum
         url: https://ikmk.smb.museum/object?id=18287996
         ref: IKMK Berlin 18287996
@@ -2531,7 +2717,240 @@ coins:
     verification_note: *id001
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
+      - ikmk-18287977
+      - ikmk-18287978
+      - ikmk-18287981
       - ikmk-18287996
+  - id: unified-ikmk-18287980
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MO NO CIV[...] STADENS
+    inscription_rev: MATT D G R IM S AV 619
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.63
+        source: ikmk
+      - value: 1.68
+        source: ikmk
+      - value: 1.69
+        source: ikmk
+    diameter_mm:
+      - value: 22.0
+        source: ikmk
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287980
+        ref: IKMK Berlin 18287980
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287982
+        ref: IKMK Berlin 18287982
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287983
+        ref: IKMK Berlin 18287983
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18287980
+      - ikmk-18287982
+      - ikmk-18287983
+  - id: unified-ikmk-18287998
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MO CIVI STADENSIS
+    inscription_rev: FERDIN D G R IM [S] A 6Z0
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.81
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287998
+        ref: IKMK Berlin 18287998
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18287998
+  - id: unified-ikmk-18287999
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MO NO CIVI STADENS
+    inscription_rev: FERDIN D G R IM S A 6Z0
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.67
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287999
+        ref: IKMK Berlin 18287999
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18287999
+  - id: unified-ikmk-18288001
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MO NO CIVI STADEN
+    inscription_rev: FERDIN D G R IM S A 6Z0
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.78
+        source: ikmk
+    diameter_mm:
+      - value: 22.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18288001
+        ref: IKMK Berlin 18288001
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18288001
+  - id: unified-ikmk-18288002
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MO NO CIVI STADENS
+    inscription_rev: FERDIN D G R IM S A 6Z0
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.8
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18288002
+        ref: IKMK Berlin 18288002
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18288002
+  - id: unified-ikmk-18288004
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MO NO CIVI STADEN
+    inscription_rev: FERDIN D G R IM S A 6Z0
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.68
+        source: ikmk
+    diameter_mm:
+      - value: 24.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18288004
+        ref: IKMK Berlin 18288004
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18288004
   - id: unified-ikmk-18288005
     fuss: seed_unsorted
     phase: ikmk
@@ -2568,6 +2987,114 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - ikmk-18288005
+  - id: unified-ikmk-18288006
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MO NO CIVI STADENS
+    inscription_rev: FERDIN D G R IM S A 6Z0
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.71
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18288006
+        ref: IKMK Berlin 18288006
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18288006
+  - id: unified-ikmk-18288008
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MO NO CIVI STADEN
+    inscription_rev: FERDIN D G R IM S A 6Z0
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.63
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18288008
+        ref: IKMK Berlin 18288008
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18288008
+  - id: unified-ikmk-18288011
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    mintmaster: Simon Timpf (Tympf)
+    inscription_obv: MO NO CIVI STADENS
+    inscription_rev: FERDIN D G R IM S A 6Z0
+    mint: Stade
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.76
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18288011
+        ref: IKMK Berlin 18288011
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18288011
   - id: unified-ikmk-18288012
     fuss: seed_unsorted
     phase: ikmk
@@ -2613,6 +3140,7 @@ coins:
     year_last: 1618
     year_label: '1618'
     ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
+    mintmaster: Thomas Timpf (Tympf)
     inscription_obv: I F D G - A E E B L
     inscription_rev: MATTHI D G RO IM S A 618
     mint: Bremervörde
@@ -2625,100 +3153,31 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 1.77
-        source: ikmk
       - value: 1.82
         source: ikmk
       - value: 1.83
+        source: ikmk
+      - value: 1.89
+        source: ikmk
+      - value: 1.91
         source: ikmk
     diameter_mm:
       - value: 23.0
         source: ikmk
       - value: 24.0
         source: ikmk
+      - value: 25.0
+        source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18288745
         ref: IKMK Berlin 18288745
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18288770
+        ref: IKMK Berlin 18288770
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18288779
         ref: IKMK Berlin 18288779
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18288783
-        ref: IKMK Berlin 18288783
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - ikmk-18288745
-      - ikmk-18288779
-      - ikmk-18288783
-  - id: unified-ikmk-18288790
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
-    mintmaster: Thomas Timpf (Tympf)
-    inscription_obv: IOH F D G - A E EP B
-    inscription_rev: MATTHIAS D G RO I S A 618
-    mint: Bremervörde
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.68
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18288790
-        ref: IKMK Berlin 18288790
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - ikmk-18288790
-  - id: unified-ikmk-18288797
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
-    mintmaster: Thomas Timpf (Tympf)
-    inscription_obv: I F D G - A E EP B
-    inscription_rev: MATT D G R I S A 618
-    mint: Bremervörde
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.91
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18288797
         ref: IKMK Berlin 18288797
@@ -2729,8 +3188,137 @@ coins:
     verification_note: *id001
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
+      - ikmk-18288745
+      - ikmk-18288770
+      - ikmk-18288779
       - ikmk-18288797
-  - id: unified-ikmk-18289038
+  - id: unified-ikmk-18288783
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
+    inscription_obv: IO F D G - A E EP B
+    inscription_rev: MATTIAS D G RO IM S A 618
+    mint: Bremervörde
+    catalog:
+      lange: '499'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.77
+        source: ikmk
+    diameter_mm:
+      - value: 24.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18288783
+        ref: IKMK Berlin 18288783
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18288783
+  - id: unified-ikmk-18288786
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
+    mintmaster: Thomas Timpf (Tympf)
+    inscription_obv: IO F D G - A E EP B L
+    inscription_rev: MATTHI D G RO IM S A 618
+    mint: Bremervörde
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.65
+        source: ikmk
+      - value: 1.66
+        source: ikmk
+      - value: 1.68
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+      - value: 24.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18288786
+        ref: IKMK Berlin 18288786
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18288790
+        ref: IKMK Berlin 18288790
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18288792
+        ref: IKMK Berlin 18288792
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18288786
+      - ikmk-18288790
+      - ikmk-18288792
+  - id: unified-ikmk-18288796
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
+    mintmaster: Thomas Timpf (Tympf)
+    inscription_obv: IO F D G - A E E B L
+    inscription_rev: MATTHI D G RO IM S A 618
+    mint: Bremervörde
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 2.06
+        source: ikmk
+    diameter_mm:
+      - value: 24.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18288796
+        ref: IKMK Berlin 18288796
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18288796
+  - id: unified-ikmk-18289012
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -2740,7 +3328,7 @@ coins:
     year_label: '1619'
     ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
     mintmaster: Thomas Timpf (Tympf)
-    inscription_obv: I F D G - A E E B
+    inscription_obv: I F D G - A EP B
     inscription_rev: MATT D G R IM S A 619
     mint: Bremervörde
     metal: silver
@@ -2750,9 +3338,68 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.72
+        source: ikmk
+      - value: 1.73
+        source: ikmk
       - value: 1.74
         source: ikmk
       - value: 1.8
+        source: ikmk
+    diameter_mm:
+      - value: 21.0
+        source: ikmk
+      - value: 22.0
+        source: ikmk
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18289012
+        ref: IKMK Berlin 18289012
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18289023
+        ref: IKMK Berlin 18289023
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18289029
+        ref: IKMK Berlin 18289029
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18289038
+        ref: IKMK Berlin 18289038
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18289012
+      - ikmk-18289023
+      - ikmk-18289029
+      - ikmk-18289038
+  - id: unified-ikmk-18289068
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
+    mintmaster: Thomas Timpf (Tympf)
+    inscription_obv: IOH F D - G A E [E] B L
+    inscription_rev: MATT D G R IM S AV 619
+    mint: Bremervörde
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.66
+        source: ikmk
+      - value: 1.71
         source: ikmk
     diameter_mm:
       - value: 22.0
@@ -2761,11 +3408,11 @@ coins:
         source: ikmk
     sources:
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18289038
-        ref: IKMK Berlin 18289038
+        url: https://ikmk.smb.museum/object?id=18289068
+        ref: IKMK Berlin 18289068
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18289072
-        ref: IKMK Berlin 18289072
+        url: https://ikmk.smb.museum/object?id=18289070
+        ref: IKMK Berlin 18289070
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -2773,8 +3420,8 @@ coins:
     verification_note: *id001
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
-      - ikmk-18289038
-      - ikmk-18289072
+      - ikmk-18289068
+      - ikmk-18289070
   - id: unified-ikmk-18289073
     fuss: seed_unsorted
     phase: ikmk
@@ -2812,6 +3459,86 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - ikmk-18289073
+  - id: unified-ikmk-18289075
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1/24 Taler
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
+    inscription_obv: '[I] FRI D G A E EP B E LV'
+    inscription_rev: MAT D G R IM S A 6-9
+    mint: Bremervörde
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.97
+        source: ikmk
+    diameter_mm:
+      - value: 18.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18289075
+        ref: IKMK Berlin 18289075
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18289075
+  - id: unified-ikmk-18289076
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1/24 Taler
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
+    inscription_obv: I FRI D G A E EP B E L
+    inscription_rev: MAT D G R IM S A 6-9
+    mint: Bremervörde
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.03
+        source: ikmk
+      - value: 1.06
+        source: ikmk
+    diameter_mm:
+      - value: 18.0
+        source: ikmk
+      - value: 19.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18289076
+        ref: IKMK Berlin 18289076
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18289077
+        ref: IKMK Berlin 18289077
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+    verification_note: *id001
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - ikmk-18289076
+      - ikmk-18289077
   - id: unified-ikmk-18306108
     fuss: seed_unsorted
     phase: ikmk
@@ -3016,6 +3743,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 3.12
+        source: ikmk
       - value: 3.2
         source: ikmk
     diameter_mm:
@@ -3025,10 +3754,14 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18306118
         ref: IKMK Berlin 18306118
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18306119
+        ref: IKMK Berlin 18306119
     verification_note: *id001
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - ikmk-18306118
+      - ikmk-18306119
   - id: unified-ikmk-18306120
     fuss: seed_unsorted
     phase: ikmk
@@ -3054,14 +3787,10 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18306120
         ref: IKMK Berlin 18306120
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18306122
-        ref: IKMK Berlin 18306122
     verification_note: *id001
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - ikmk-18306120
-      - ikmk-18306122
   - id: unified-ikmk-18306123
     fuss: seed_unsorted
     phase: ikmk

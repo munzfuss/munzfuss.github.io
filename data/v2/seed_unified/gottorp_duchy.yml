@@ -2,8 +2,8 @@
 # Generated 2026-09-12 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
-# Input: 690 per-source seed entries.
-# Output: 376 unified entries (one per physical coin).
+# Input: 702 per-source seed entries.
+# Output: 377 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2983,7 +2983,7 @@ coins:
     composed_of:
       - ikmk-18284934
       - ikmk-18284946
-  - id: unified-ikmk-18285049
+  - id: unified-ikmk-18284940
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -2993,42 +2993,7 @@ coins:
     year_label: '1618'
     ruler: Friedrich III.
     inscription_obv: FRIDE-RIC D G
-    inscription_rev: HER NOR DUX SLES E HO 618
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.91
-        source: ikmk
-    diameter_mm:
-      - value: 25.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285049
-        ref: IKMK Berlin 18285049
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - ikmk-18285049
-  - id: unified-ikmk-18285050
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    ruler: Friedrich III.
-    inscription_obv: FRIDE-RIC D G
-    inscription_rev: HER NOR DVX SLES E HO 618
+    inscription_rev: HER NOR DVX SLE E HOL 1618
     catalog:
       lange: '339'
     metal: silver
@@ -3038,19 +3003,41 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 2.0
+        source: ikmk
+      - value: 2.01
+        source: ikmk
+      - value: 2.03
+        source: ikmk
       - value: 2.08
         source: ikmk
       - value: 2.09
         source: ikmk
+      - value: 2.1
+        source: ikmk
     diameter_mm:
+      - value: 22.0
+        source: ikmk
       - value: 24.0
         source: ikmk
       - value: 25.0
         source: ikmk
     sources:
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18284940
+        ref: IKMK Berlin 18284940
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18285050
         ref: IKMK Berlin 18285050
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285051
+        ref: IKMK Berlin 18285051
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285052
+        ref: IKMK Berlin 18285052
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285053
+        ref: IKMK Berlin 18285053
       - type: museum
         url: https://ikmk.smb.museum/object?id=18285059
         ref: IKMK Berlin 18285059
@@ -3061,8 +3048,96 @@ coins:
     verification_note: *id001
     issuing_entity: gottorp_duchy
     composed_of:
+      - ikmk-18284940
       - ikmk-18285050
+      - ikmk-18285051
+      - ikmk-18285052
+      - ikmk-18285053
       - ikmk-18285059
+  - id: unified-ikmk-18284942
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    ruler: Friedrich III.
+    inscription_obv: FRED-ER D G
+    inscription_rev: HAER NOR D SCHL E H 18
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.82
+        source: ikmk
+      - value: 1.9
+        source: ikmk
+      - value: 1.91
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+      - value: 25.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284942
+        ref: IKMK Berlin 18284942
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284945
+        ref: IKMK Berlin 18284945
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285049
+        ref: IKMK Berlin 18285049
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - ikmk-18284942
+      - ikmk-18284945
+      - ikmk-18285049
+  - id: unified-ikmk-18284944
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    ruler: Friedrich III.
+    inscription_obv: FRED-ER D G
+    inscription_rev: HAER NOR D SCHL E H 18
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 2.4
+        source: ikmk
+    diameter_mm:
+      - value: 22.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284944
+        ref: IKMK Berlin 18284944
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - ikmk-18284944
   - id: unified-ikmk-18285061
     fuss: seed_unsorted
     phase: ikmk
@@ -3083,13 +3158,25 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
-      - value: 1.84
+      - value: 1.57
+        source: ikmk
+      - value: 1.79
         source: ikmk
       - value: 1.85
         source: ikmk
       - value: 1.89
         source: ikmk
+      - value: 1.9
+        source: ikmk
+      - value: 1.92
+        source: ikmk
+      - value: 1.94
+        source: ikmk
+      - value: 2.02
+        source: ikmk
     diameter_mm:
+      - value: 21.0
+        source: ikmk
       - value: 22.0
         source: ikmk
       - value: 23.0
@@ -3099,11 +3186,26 @@ coins:
         url: https://ikmk.smb.museum/object?id=18285061
         ref: IKMK Berlin 18285061
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18285062
+        ref: IKMK Berlin 18285062
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285091
+        ref: IKMK Berlin 18285091
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285096
+        ref: IKMK Berlin 18285096
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18285098
         ref: IKMK Berlin 18285098
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18285109
-        ref: IKMK Berlin 18285109
+        url: https://ikmk.smb.museum/object?id=18285107
+        ref: IKMK Berlin 18285107
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285112
+        ref: IKMK Berlin 18285112
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285113
+        ref: IKMK Berlin 18285113
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -3112,8 +3214,13 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - ikmk-18285061
+      - ikmk-18285062
+      - ikmk-18285091
+      - ikmk-18285096
       - ikmk-18285098
-      - ikmk-18285109
+      - ikmk-18285107
+      - ikmk-18285112
+      - ikmk-18285113
   - id: unified-ikmk-18285101
     fuss: seed_unsorted
     phase: ikmk
@@ -3184,7 +3291,7 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - ikmk-18285105
-  - id: unified-ikmk-18285113
+  - id: unified-ikmk-18285109
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -3194,9 +3301,7 @@ coins:
     year_label: '1619'
     ruler: Friedrich III.
     inscription_obv: FRID-ER D G
-    inscription_rev: HAER NOR D SCHL E H 19
-    catalog:
-      lange: '339'
+    inscription_rev: HER NOR D SCHL E HO 619
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -3204,15 +3309,15 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
-      - value: 2.02
+      - value: 1.84
         source: ikmk
     diameter_mm:
       - value: 23.0
         source: ikmk
     sources:
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18285113
-        ref: IKMK Berlin 18285113
+        url: https://ikmk.smb.museum/object?id=18285109
+        ref: IKMK Berlin 18285109
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -3220,7 +3325,7 @@ coins:
     verification_note: *id001
     issuing_entity: gottorp_duchy
     composed_of:
-      - ikmk-18285113
+      - ikmk-18285109
   - id: unified-ikmk-18285130
     fuss: seed_unsorted
     phase: ikmk
@@ -5944,14 +6049,14 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/575750
         ref: KMM 575750 (Inv. FP 533.160)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575753
-        ref: KMM 575753 (Inv. FP 533.157)
+        url: https://samlinger.natmus.dk/KMM/object/575751
+        ref: KMM 575751 (Inv. FP 533.159)
     verification_note: *id002
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-575749
       - kmk-575750
-      - kmk-575753
+      - kmk-575751
   - id: unified-kmk-575754
     fuss: seed_unsorted
     phase: kmk
@@ -5974,14 +6079,14 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/575755
         ref: KMM 575755 (Inv. FP 533.155)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575758
-        ref: KMM 575758 (Inv. FP 533.152)
+        url: https://samlinger.natmus.dk/KMM/object/575756
+        ref: KMM 575756 (Inv. FP 533.154)
     verification_note: *id002
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-575754
       - kmk-575755
-      - kmk-575758
+      - kmk-575756
   - id: unified-kmk-575759
     fuss: seed_unsorted
     phase: kmk

@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-09-12T14:13:24Z'
+generated_at: '2026-09-12T18:47:58Z'
 entity: hanseatic_hamburg
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -26,6 +26,22 @@ coins:
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+  - id: kmk-130703
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: hanseatic_hamburg
+    entity_classified_via: mint
+    metal_verified: false
+    mint: Hamburg
+    mint_verified: true
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/130703
+        ref: KMM 130703 (Inv. FP 1217.5)
+    verification_note: *id001
   - id: kmk-131552
     fuss: seed_unsorted
     phase: kmk
@@ -84,22 +100,6 @@ coins:
         ref: KMM 151972 (Inv. FP 3574.322)
     verification_note: *id001
     mint: Hamburg
-  - id: kmk-156464
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: hanseatic_hamburg
-    entity_classified_via: mint
-    metal_verified: false
-    mint: Hamburg
-    mint_verified: true
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156464
-        ref: KMM 156464 (Inv. FP 2638.22)
-    verification_note: *id001
   - id: kmk-159551
     fuss: seed_unsorted
     phase: kmk
