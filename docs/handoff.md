@@ -15,6 +15,160 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-09-12 — §9a thinning moved off the seed layer; five defects found flushing a full re-flow
+
+Asked to run the whole pipeline (seeds → merge → absorb → classify → relink) so
+that pending state could not sit in the tree and confuse other sessions'
+verification. The flush itself was one commit; the other eight came out of what
+it exposed. **9 commits, local, unpushed.**
+
+**The hanging state that prompted it.** `83883c7` (same day, earlier) gave
+Stockholm/Vesterås a year-aware rule (post-1523 → the out-of-scope `sweden`
+entity) but no seed had been rebuilt since, so the render was clean only
+through `exclusions/` while the seeds still routed Swedish-crown coins into
+`danish_realm`. Now in the data: 114 coins (bruun 102, ikmk 9, kmk 3), every
+one `year_first >= 1524`, Kalmar-union pieces correctly left in `danish_realm`.
+`a621514` + `3b34adf` had likewise landed after their sources' last build.
+
+**Two architectural findings, both long-lived:**
+
+1. **§9a thinning ran at the wrong layer for ~2.5 months** (curator's insight,
+   not mine). The rule names its unit — «one coin entry has ≥5
+   `weight_rough_g` entries from a single resource» — which exists only AFTER
+   the merge, and the retired `thin_intra_subvariant_specimens.py` trimmed
+   exactly that: a LIST inside one coin. The V1 teardown (2026-06-24) rebuilt
+   the replacement at the SEED layer and nobody recorded it as a change of
+   meaning. At seed level the unit does not exist (one scalar weight per
+   record), so it became «≥5 records in a bucket», grouped by a key that is
+   **not the merger's**. Measured cost: keeping a bucket's extremes sent them
+   to other unified entries than the intermediate readings came from, so the
+   coin the reader sees lost its envelope (6 of 8 affected ikmk entries came
+   out NARROWER, five collapsed to a single reading, one from 21.800-28.170 g
+   to a point); and it deleted seed RECORDS, so every re-seed removed coins
+   from `final/`. Fixed in `f98808d` — see below for the layer split.
+2. **The thinner sorted by `id`, not by weight, from its first commit**
+   (`822833d`, 2026-06-02, whose message says «weight-variance envelope»). It
+   shipped a weight-based `_keep_envelope()` and never called it; two
+   refactors left both halves untouched. Consequence on kmk: 23 615 of 27 476
+   discarded records carried NO weight at all — each a distinct KMM object
+   whose citation went with it, and not one gram of redundant weight removed.
+
+**The layer split now in force** (`f98808d`):
+- **seed layer** (`lib.seed_thin.thin_safe`, used by kmk + ikmk builders) —
+  only removals that provably cannot move a weight: same-weight twins within a
+  sub-variant bucket collapse to one (the merger's `(value, source)` dedupe
+  would have done it anyway for records that merge together; bucket extremes
+  untouched by construction), weightless records beyond three per bucket
+  (they carry no weight, so no envelope depends on them), curated records
+  never. This exists for VOLUME: without it the merger went from ~20 min to
+  2 entities in 20 min on a 41 490-record kmk seed.
+- **merged layer** (`scripts/maintenance/thin_final_weight_lists.py`, pipeline
+  phase `2b/5` after absorb) — the actual §9a envelope: min / middle by
+  position / max **per resource** on the merged coin's list, skipping a coin
+  whose fineness readings disagree, never dropping an `erroneous`/`suspect`
+  reading, and leaving `sources[]` alone (a weight entry carries only
+  `(value, source)` and cannot be mapped back to a citation row without the
+  inventory number V1 entries had — also keeps `audit_lost_citations` clean).
+- Result: kmk 14 152 → 16 267, ikmk 1 312 → 2 704 (both ABOVE the old rule),
+  zero types lost (buckets 9 221 / 924 unchanged), merge back to 20 minutes,
+  2 201 redundant readings trimmed on 153 coins.
+- **Residual caveat**, in `thin_safe`'s docstring: if two same-weight twins
+  land in DIFFERENT merger classes, the class that lost its record loses that
+  reading. Cannot change a bucket's extremes; volume small (1 584 kmk, 1 740
+  ikmk); not the absolute guarantee the weightless rule is.
+
+**Three more defects fixed:**
+- `3c48efd` — a `_curation_holds` on `issuing_entity` died whenever a re-seed
+  moved the coin. The field IS in `CURATED_FIELDS`, but the protection was
+  unreachable for the one field that decides which FILE a record lands in:
+  `write_v2_seed` groups before `merge_seed` runs. Six curator decisions had
+  already been reverted, three of them back to the exact stale entity their
+  hold argued against. Two mechanisms now: a held entity re-routes; an
+  unheld one still moves but the curated entry is merged in first so holds,
+  errata and curated values travel with the coin.
+- `0863e94` — thinning discarded curated records (`kmk-81785`/`-81790`, holds
+  on `mint` + `issuing_entity`); at HEAD they had survived only by where their
+  ids fell in the sort.
+- `adc89d2` — wear alone split one type into three unified entries. The
+  «>5% divergence needs ≥2 shared agreeing catalogue refs» gate (2026-05-22)
+  is unreachable for KMM stubs, which carry a single Hede number: 1.11 g vs
+  0.948 g is 17%, ordinary wear on a sub-gram billon Skilling. 191 types
+  corpus-wide had been split this way. The bypass demands an IDENTICAL
+  non-empty catalogue, so it can never let weight similarity substitute for
+  catalogue evidence; the 2.5× hard gate is untouched.
+
+**Curator decisions taken this session** (all with explicit in-chat approval):
+- `113be4a` — nine implausible weights flagged, three languages each.
+  `kmk-275886` 813.0 g on a 1 Mark is **erroneous**: a decimal shifted two
+  places, digits 813 are those of the immediately preceding inventory number
+  FP 4227.142 (8.13 g), same Hede 99C whose type weight is 8.661 g. Renders
+  `(!)`, out of the fine weight and Δ — verified on the page. Eight
+  2-Skilling specimens at 0.21-0.67 g against sisters of 0.9-1.8 g are
+  **suspect**, not erroneous: KMM records no condition and clipping/corrosion
+  of thin base silver could account for it, so they stay in the arithmetic
+  and render `(*)`.
+- `0c429c0` — 87 KMM specimens joined their cross-entity groups (Hede bases
+  c5h74 / f6h15 / f6h14; KMM prints «H. 74 A» / «H. 15A» against the base,
+  §9.4 sub-variants). Three Christian VII pieces EXCLUDED instead: KMM prints
+  «Hede 13 ell. 39» and «København ell. Altona» — the museum declines to
+  choose, and Hede 39 is also a 1 Speciedaler from Altona at 28.893 g but a
+  different base (Sieg 42.x/55/56 vs 33.1). Listing them would settle an
+  attribution the source left open.
+
+**Two commits used `--no-verify`, reasons in their bodies:**
+- `0c429c0` — Check 5 blocks on `kmk-693172`, a `no_merges` member resolving
+  to no seed. **Pre-existing**: identical three lines at HEAD, absent from
+  every seed in both states. Re-pointing it is a `v2-merge-coins` call.
+- `b9cd215` — `verify_reflow` reports 422 COIN GONE (ikmk 393, kmk 29) + 61
+  LIST SHRANK. The 422 are **re-representation, not holes**: type coverage
+  identical, seeds hold MORE records than baseline, and a class whose
+  representative had been a weightless stub is now represented by a different
+  one. One-time — selection no longer depends on id position. The 61 are the
+  **intended** §9a trim, the same one phase 2b reports; the old architecture
+  achieved the same shedding by deleting records, which showed up as vanished
+  coins instead.
+
+**Verification**: `build.py` exit 0, `unittest discover tests` **1027 OK**,
+tree clean. New tests: `test_seed_curation_survives_entity_move.py`,
+`test_thinning_is_weight_based.py`, `test_same_type_weight_exemption.py`,
+`test_thinning_layers.py`.
+
+**Also corrected**: `abb17d8` — `CLAUDE.md`, `docs/ARCHITECTURE.md` and
+`docs/SOURCES.md` had described galster/numismaster/bruun as wholesale-write
+builders for four months. Every builder has been merge-aware since 2026-05-16
+(`f250417`): the merge lives in the shared writer, `write_v2_seed` →
+`lib.seed_merge.merge_seed`. Two of those notes made a false safety claim —
+that a re-seed reverts hand-placed `_curation_holds`/`_source_errata`; both
+keys are in `_PRESERVE_ALWAYS_KEYS`. **A builder is merge-aware if it calls
+`write_v2_seed`, not if it grep-matches `merge_seed`** — the per-builder grep
+is a false negative and produced a wrong verdict here before the docs were
+checked.
+
+**Open, deliberately untouched:**
+- 9 coins disagree silver ↔ billon between `final` and the recomputation
+  (`audit_curation_loss`, `metal=9`). Pre-dates this session.
+- `kmk-693172` orphan in `danish_realm` `no_merges` (see above).
+- Groups 3-9 of the weight outliers were flagged only after explicit
+  per-group approval; no further outlier was touched.
+
+**The pipeline needs TWO passes to reach its fixed point** — worth knowing
+before anyone reads a diff as breakage. `absorb` is not a pure function of
+`seed_unified`: it ENRICHES the existing `final` foundation (D3, «foundation
+frozen except for additive enrichment»), so pass 1's output is pass 2's input.
+Measured on unchanged seeds: pass 1 → 2 left `seed_unified` byte-identical and
+changed `final/` in 4 files; pass 2 → 3 changed nothing at all. The merger is
+idempotent from the first pass; the chain converges on the second, and it
+terminates because the changes are monotonic (year ranges widen, coins get
+promoted, `multi_match_warnings` clear once the ambiguity is placed).
+
+Two consequences: a session that runs the pipeline once, sees a diff and
+concludes it broke something is wrong; and committing after a single pass
+leaves HEAD in a state the next run still moves. `b9cd215` did exactly that,
+and `37212f8` is the converged state. **Run the pipeline twice, or re-run until
+`git status` is clean, before committing `final/`.**
+
+**Next**: nothing blocking. 11 commits await a push (never autonomous).
+
 ## 2026-09-10 (cont.) — reflow-home-drift fixed systemically (§CV + rebucket) + Option Z
 
 Resolves the previous entry's **DEFERRED 2**. Root cause of the ~13-coin
