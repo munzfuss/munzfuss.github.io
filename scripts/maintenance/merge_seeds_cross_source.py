@@ -1410,6 +1410,42 @@ def _weight_repr(coin) -> float | None:
     return None
 
 
+def _same_type_but_for_weight(a: dict, b: dict) -> bool:
+    """True when two records agree on EVERY field the merger treats as
+    type-identifying — nominal, ruler, both year bounds, mint, metal and the
+    whole catalogue dict — and differ only in what they weigh.
+
+    Why this has to bypass the >5%-needs-two-refs gate (curator direction
+    2026-09-12). That gate was written for the cross-source case: Bruun's
+    8 Skilling at 2.72 g citing «Galster 93» against Galster's own 3.32 g, one
+    shared ref, plainly not the same piece. A museum's own specimens of ONE
+    type are a different situation: KMM records carry a single Hede number and
+    nothing else, so two specimens of the same coin can never reach two shared
+    refs, and any wear above 5% split them apart. On a sub-gram billon
+    Skilling that is ordinary circulation wear — 1.11 g against 0.948 g is
+    17%, and it fragmented one Christian IV 2 Skilling lybsk into three
+    unified entries. Measured across the corpus it had split 191 types whose
+    every catalogue field agreed.
+
+    The exemption cannot widen into an over-merge: it demands the catalogue be
+    IDENTICAL, so it never lets weight similarity stand in for catalogue
+    evidence (the 83 different-catalogue groups a looser tolerance would have
+    admitted include `Hede 1 / Schou 24` against `Hede 5A / Schou 3`, and a
+    `Galster 155` against a `Schou 170` with no shared catalogue at all —
+    §9.4 distinct coins). The 2.5x hard gate upstream still applies, so a
+    genuine denomination mismatch is still refused.
+    """
+    for field in ("nominal", "ruler", "year_first", "year_last", "metal"):
+        if a.get(field) != b.get(field):
+            return False
+    if str(a.get("mint")) != str(b.get("mint")):
+        return False
+    cat_a, cat_b = a.get("catalog") or {}, b.get("catalog") or {}
+    if not cat_a or cat_a != cat_b:
+        return False          # no catalogue at all proves nothing
+    return True
+
+
 def _weight_diverges(a, b, tol_rel: float = 0.05) -> bool | None:
     """Tier-1 weight disambiguator.
 
@@ -1995,7 +2031,8 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
 
     if (_weight_diverges(coin_a, coin_b, tol_rel=0.05) is True
             and not _catalog_strongly_agrees(refs_a_pre, refs_b_pre,
-                                              min_shared_agreeing=2)):
+                                              min_shared_agreeing=2)
+            and not _same_type_but_for_weight(coin_a, coin_b)):
         wa = _weight_repr(coin_a)
         wb = _weight_repr(coin_b)
         why.append(
