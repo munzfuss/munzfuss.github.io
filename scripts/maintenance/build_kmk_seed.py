@@ -800,8 +800,19 @@ def build_seed(dry_run: bool, limit: int | None,
     # this a re-seed re-inflates to ~41k and undoes the curated envelope.
     # Integrated here so a single `--write` is idempotent + correctly filtered
     # (no separate manual thinning pass to remember).
+    # §9a thinning does NOT run here any more (2026-09-12). The rule's unit is
+    # a merged coin's weight list — «one coin entry has ≥5 weight_rough_g
+    # entries from a single resource» — which does not exist at this layer,
+    # where every record carries one scalar weight. Thinning seed RECORDS
+    # instead grouped by a key that is not the merger's, so the coin the reader
+    # sees lost its variance envelope, and it deleted records, so every re-seed
+    # removed coins from final/ and tripped verify_reflow. It now runs after
+    # absorb: scripts/maintenance/thin_final_weight_lists.py, wired into
+    # run_v2_pipeline.sh. `--no-thin` is still accepted so existing
+    # invocations and notes keep working.
     if not dry_run and not no_thin:
-        print("\n🪶 Thinning over-sampled sub-variants to §9a envelope...")
+        print("\n🪶 Seed-layer volume control (§9a-safe: duplicates + "
+              "weightless excess)...")
         from thin_kmk_seed import thin as _thin_kmk_seed
         _thin_kmk_seed(dry_run=False)
     return 0

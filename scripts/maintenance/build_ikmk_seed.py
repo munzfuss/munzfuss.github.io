@@ -411,11 +411,17 @@ def build_seed(dry_run: bool, limit: int | None,
     # no distinguishing signal beyond the sub-variant key + weight, so dropping
     # the redundant specimens loses nothing our data model can tell apart.
     # Integrated here so a single --write is self-filtering + idempotent.
+    # §9a thinning moved out of the seed layer (2026-09-12) — see the note in
+    # build_kmk_seed.py and the docstring of
+    # scripts/maintenance/thin_final_weight_lists.py, which now runs it after
+    # absorb on the merged coin's own weight list. `--no-thin` is still
+    # accepted so existing invocations keep working.
     if not dry_run and not no_thin:
-        print("\n🪶 Thinning over-sampled sub-variants to §9a envelope...")
+        print("\n🪶 Seed-layer volume control (§9a-safe: duplicates + "
+              "weightless excess)...")
         from lib.seed_thin import thin_seed_dir
         seed_dir = Path(__file__).resolve().parents[2] / "data" / "v2" / "seed" / "ikmk"
-        thin_seed_dir(seed_dir, catalogued_only=False, dry_run=False)
+        thin_seed_dir(seed_dir, dry_run=False)
     return 0
 
 

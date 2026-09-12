@@ -161,6 +161,105 @@ def _salvage_unique(reps: list, dropped: list) -> None:
                 break
 
 
+def _weight(coin: dict):
+    """One numeric weight, or None when unrecorded. Tolerates §9a list-form."""
+    v = coin.get("weight_rough_g")
+    if v in (None, "", []):
+        return None
+    if isinstance(v, list):
+        vals = [e.get("value") if isinstance(e, dict) else e for e in v]
+        vals = [x for x in vals if isinstance(x, (int, float)) and x > 0]
+        return min(vals) if vals else None
+    return v if isinstance(v, (int, float)) and v > 0 else None
+
+
+def _is_curated(coin: dict) -> bool:
+    """A curator wrote something onto this specimen, so it is never dropped:
+    the hold pins a FIELD on THIS record."""
+    return bool(coin.get("_curation_holds") or coin.get("_source_errata"))
+
+
+def thin_safe(coins: list, max_weightless: int = 3) -> tuple[list, dict]:
+    """Seed-layer volume control that cannot change a weight envelope.
+
+    §9a's own thinning — «keep min / middle / max» — belongs AFTER the merge,
+    on a coin's accumulated `weight_rough_g` list, and lives in
+    `scripts/maintenance/thin_final_weight_lists.py`. Doing it at the seed
+    layer meant grouping by a key that is not the merger's, so keeping a
+    bucket's true extremes sent them to other classes than the intermediate
+    readings had come from and the coin the reader sees lost its envelope:
+    6 of 8 affected ikmk entries came out narrower, five collapsed to a single
+    reading.
+
+    But the seed layer still has to control VOLUME, or the merger's pairwise
+    pass runs for hours: kmk unthinned is 41 490 records against 14 152, and a
+    full run went from ~20 minutes to 2 entities in 20 minutes. So this keeps
+    only the removals that provably cannot move any weight:
+
+      * every DISTINCT weight survives — same-weight duplicates within one
+        sub-variant bucket collapse to one. The merger dedupes readings by
+        (value, source) anyway, so for records that merge together this is a
+        no-op; the bucket's min and max are untouched by construction.
+      * weightless records beyond `max_weightless` per bucket. They carry no
+        weight at all, so no envelope — bucket-level or merged — depends on
+        them. They were 23 726 of the 25 310 removals on kmk, and 98.3% of
+        them carried nothing the keepers did not already have.
+
+    Curated records are never candidates. Dropped records still hand their
+    distinguishing catalogue indices, fineness and diameter to the keepers via
+    `_salvage_unique`.
+
+    Residual caveat on the duplicate rule, recorded rather than hidden: if two
+    same-weight twins end up in DIFFERENT merger classes, the class that lost
+    its record loses that reading. It cannot change a bucket's extremes, and
+    the affected volume is small (1 584 on kmk, 1 740 on ikmk), but it is not
+    an absolute guarantee — unlike the weightless rule, which is.
+    """
+    buckets: dict[tuple, list] = {}
+    for c in coins:
+        buckets.setdefault(_subvariant_key(c), []).append(c)
+    kept: list = []
+    dropped_total = 0
+    touched_buckets = 0
+    for members in buckets.values():
+        curated = [c for c in members if _is_curated(c)]
+        plain = [c for c in members if not _is_curated(c)]
+        keep: list = list(curated)
+        dropped: list = []
+        seen_w: set = set()
+        weightless: list = []
+        for c in plain:
+            w = _weight(c)
+            if w is None:
+                weightless.append(c)
+                continue
+            k = round(w, 2)
+            if k in seen_w:
+                dropped.append(c)
+            else:
+                seen_w.add(k)
+                keep.append(c)
+        if len(weightless) > max_weightless:
+            wl_sorted = sorted(weightless, key=lambda c: str(c.get("id")))
+            keep.extend(wl_sorted[:max_weightless])
+            dropped.extend(wl_sorted[max_weightless:])
+        else:
+            keep.extend(weightless)
+        if dropped:
+            _salvage_unique(keep, dropped)
+            dropped_total += len(dropped)
+            touched_buckets += 1
+        kept.extend(keep)
+    kept.sort(key=lambda c: str(c.get("id")))
+    return kept, {"before": len(coins), "after": len(kept),
+                  "sub_variants": len(buckets), "thinned_buckets": touched_buckets,
+                  "dropped": dropped_total,
+                  # the safe rule has no catalogue gate — every bucket is
+                  # eligible because no DISTINCT weight can be removed. Key
+                  # kept so `thin_seed_dir`'s reporting stays uniform.
+                  "skipped_uncatalogued_buckets": 0}
+
+
 def thin_coins(coins: list, min_bucket: int = 5,
                catalogued_only: bool = True) -> tuple[list, dict]:
     """Return (kept_coins, stats). Thin each ≥``min_bucket`` sub-variant bucket
@@ -207,8 +306,7 @@ def thin_seed_dir(seed_dir: Path, min_bucket: int = 5,
         coins = doc.get("coins") or []
         if not coins:
             continue
-        kept, stats = thin_coins(coins, min_bucket=min_bucket,
-                                 catalogued_only=catalogued_only)
+        kept, stats = thin_safe(coins)
         total_before += stats["before"]
         total_after += stats["after"]
         print(f"  {Path(f).name}: {stats['before']} → {stats['after']}  "

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# V2 pipeline runner — chains Phase 3.2 → 4 absorb → 4 classify → 6 relink.
+# V2 pipeline runner — chains Phase 3.2 → 4 absorb → §9a thinning → 4 classify
+# → 6 relink.
 #
 # Run after a harvest cycle (new cache entries) OR after curator edits to
 # `data/v2/merge_decisions/` / `data/v2/classification_decisions/` to regenerate
@@ -54,6 +55,13 @@ echo "──[1/5] Phase 3.2: merge_seeds_cross_source ────────�
 echo
 echo "──[2/5] Phase 4 absorb: absorb_seeds_into_final_v2 ───────────────"
 "$PY" scripts/maintenance/absorb_seeds_into_final_v2.py ${APPLY:---dry-run}
+
+echo
+echo "──[2b/5] §9a thinning: thin_final_weight_lists ───────────────────"
+# Runs AFTER absorb, because §9a's unit is a merged coin's weight list. It used
+# to run inside the seed builders, where that unit does not exist; see the
+# script's docstring for what that cost.
+"$PY" scripts/maintenance/thin_final_weight_lists.py ${APPLY:---dry-run}
 
 echo
 echo "──[3/5] Phase 4 classify: auto_classify_seed_unsorted ────────────"

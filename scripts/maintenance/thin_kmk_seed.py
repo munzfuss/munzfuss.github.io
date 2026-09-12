@@ -45,7 +45,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 from lib.seed_merge import _make_yaml_loader  # noqa: E402
-from lib.seed_thin import _salvage_unique  # noqa: E402
+from lib.seed_thin import thin_safe  # noqa: E402
 
 KMK_SEED_DIR = ROOT / "data" / "v2" / "seed" / "kmk"
 KMK_CACHE_DIR = ROOT / "scripts" / "cache" / "kmk"
@@ -157,6 +157,14 @@ def _keep_weightless(members: list, covered_years: set) -> list:
 
 
 def thin(dry_run: bool) -> int:
+    """Apply the provably-safe seed-layer rule to every kmk seed file.
+
+    The §9a envelope itself is no longer computed here — it belongs on the
+    merged coin's weight list (`thin_final_weight_lists.py`). What stays is
+    volume control that cannot move a weight: same-weight duplicates within a
+    sub-variant bucket collapse to one, weightless records beyond three per
+    bucket go, curated records never do. See `lib.seed_thin.thin_safe`.
+    """
     yaml = _make_yaml_loader()
     total_before = total_after = 0
     for f in sorted(glob.glob(str(KMK_SEED_DIR / "*.yml"))):
@@ -164,67 +172,18 @@ def thin(dry_run: bool) -> int:
         coins = doc.get("coins") or []
         if not coins:
             continue
-        buckets: dict[tuple, list] = {}
-        for c in coins:
-            buckets.setdefault(_subvariant_key(c), []).append(c)
-        kept: list = []
-        thinned_buckets = 0
-        for key, members in buckets.items():
-            # §9a thins ONE redundancy: intermediate WEIGHT readings between a
-            # bucket's min and max. So the threshold counts weight-BEARING
-            # members, and a weightless specimen is never a candidate.
-            #
-            # Until 2026-09-12 the bucket was sorted by `id` and cut to
-            # [0, mid, -1] with weight playing no part, so 86% of what thinning
-            # dropped (23 615 of 27 476) were records with no weight at all:
-            # each one a distinct KMM object, and shedding it removed a museum
-            # citation without removing one gram of redundant weight. Which
-            # weightless stub survived was decided by its id's sort position,
-            # so every re-seed reshuffled the survivors and `verify_reflow`
-            # read the previous representatives as 20 vanished coins.
-            curated = [c for c in members if _is_curated(c)]
-            plain = [c for c in members if not _is_curated(c)]
-            weighted = [c for c in plain if _weight(c) is not None]
-            weightless = [c for c in plain if _weight(c) is None]
-            reps: list = []
-            dropped: list = []
-            if len(weighted) >= 5:
-                by_weight = sorted(weighted, key=_weight)
-                idx = sorted({0, len(by_weight) // 2, len(by_weight) - 1})
-                reps = [by_weight[i] for i in idx]
-                dropped = [by_weight[i] for i in range(len(by_weight))
-                           if i not in idx]
-            else:
-                reps = list(weighted)
-            if len(weightless) > _WEIGHTLESS_KEEP:
-                wl_keep = _keep_weightless(
-                    weightless,
-                    {c.get("year_label") for c in reps + curated})
-                dropped += [c for c in weightless if c not in wl_keep]
-            else:
-                wl_keep = list(weightless)
-            if dropped:
-                # §9a salvage: carry the dropped specimens' distinguishing
-                # catalogue indices (+ fineness/diameter the reps lack) onto the
-                # kept reps; shed only the redundant weight + per-specimen sources.
-                _salvage_unique(reps + wl_keep + curated, dropped)
-                thinned_buckets += 1
-            kept.extend(curated)
-            kept.extend(reps)
-            kept.extend(wl_keep)
-        # preserve original entry order (by id) for a stable diff
-        kept.sort(key=lambda c: str(c.get("id")))
-        total_before += len(coins)
-        total_after += len(kept)
-        name = Path(f).name
-        print(f"  {name}: {len(coins)} → {len(kept)}  "
-              f"({thinned_buckets} buckets thinned, {len(buckets)} sub-variants)")
+        kept, stats = thin_safe(coins)
+        total_before += stats["before"]
+        total_after += stats["after"]
+        print(f"  {Path(f).name}: {stats['before']} → {stats['after']}  "
+              f"({stats['thinned_buckets']} buckets thinned, "
+              f"{stats['sub_variants']} sub-variants)")
         if not dry_run:
             doc["coins"] = kept
             with open(f, "w") as fh:
                 yaml.dump(doc, fh)
     print(f"\nTOTAL: {total_before} → {total_after} "
-          f"({total_before - total_after} specimens dropped)")
+          f"({total_before - total_after} redundant records dropped)")
     return 0
 
 
