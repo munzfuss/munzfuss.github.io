@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import argparse
 import glob
+import json
 import sys
 from pathlib import Path
 
@@ -47,6 +48,22 @@ from lib.seed_merge import _make_yaml_loader  # noqa: E402
 from lib.seed_thin import _salvage_unique  # noqa: E402
 
 KMK_SEED_DIR = ROOT / "data" / "v2" / "seed" / "kmk"
+KMK_CACHE_DIR = ROOT / "scripts" / "cache" / "kmk"
+
+
+_WEIGHTLESS_KEEP = 3
+
+
+def _is_curated(coin: dict) -> bool:
+    """True when a curator has written something onto this specimen.
+
+    Thinning must never discard such an entry: the hold pins a FIELD on THIS
+    record, and dropping the record drops the decision with it. Two held
+    norburg entries (kmk-81785 / -81790, `mint` + `issuing_entity`) were lost
+    exactly this way; at HEAD they had survived only by where their ids fell
+    in the sort, which is luck, not protection.
+    """
+    return bool(coin.get("_curation_holds") or coin.get("_source_errata"))
 
 
 def _subvariant_key(coin: dict) -> tuple:
@@ -76,6 +93,69 @@ def _weight(coin: dict):
     return w if isinstance(w, (int, float)) else None
 
 
+_PHOTO_MEMO: dict[str, bool] = {}
+
+
+def _has_photo(coin: dict) -> bool:
+    """True when this KMM record carries a still-photo asset.
+
+    Same probe `absorb_seeds_into_final_v2._kmm_specimen_has_image` uses, and
+    verified against the natmus page state the same way: a record with a still
+    asset shows photo(s), one without shows «Genstanden er endnu ikke
+    affotograferet» (2026-06-08 spot-check, KMM 290904 vs 123284). Memoised;
+    maintenance-side only — the build never reads cache.
+    """
+    nid = str(coin.get("id") or "").split("-")[-1]
+    if nid in _PHOTO_MEMO:
+        return _PHOTO_MEMO[nid]
+    has = False
+    try:
+        d = json.loads((KMK_CACHE_DIR / f"{nid}.json").read_text())
+        rel = d.get("related") or {}
+        assets = rel.get("assets") or [] if isinstance(rel, dict) else []
+        has = any(isinstance(a, dict) and a.get("type") == "still" for a in assets)
+    except (FileNotFoundError, ValueError, OSError):
+        has = False
+    _PHOTO_MEMO[nid] = has
+    return has
+
+
+def _keep_weightless(members: list, covered_years: set) -> list:
+    """Pick which weightless specimens of an over-sampled bucket to keep.
+
+    A weightless KMM stub is mostly pure redundancy — measured over the whole
+    kmk corpus, 23 198 of 23 601 (98.3%) carried nothing the kept
+    representatives did not already have, not one carried a different mint, and
+    the 310 with an unseen catalogue index are salvaged onto the reps anyway.
+    Keeping them all inflated the kmk seed from 14k to 37.7k entries and
+    ballooned the source lists §9a exists to trim.
+
+    Two things in that population are NOT redundant, so selection is by signal
+    rather than by list position:
+
+      * a photograph — 6.6% of the dropped stubs had one, and on 7.3% of
+        sampled buckets the discarded members held every photo the type had;
+      * a year no kept member covers — 93 records corpus-wide.
+
+    Everything else is interchangeable, so the fill is by lowest id, which is
+    also STABLE: the previous rule cut the bucket at [0, mid, -1] of an
+    id-sort, so every re-seed reshuffled the survivors and `verify_reflow`
+    reported the former representatives as vanished coins.
+    """
+    ranked = sorted(
+        members,
+        key=lambda c: (not _has_photo(c), str(c.get("id"))),
+    )
+    keep = ranked[:_WEIGHTLESS_KEEP]
+    kept_years = {c.get("year_label") for c in keep} | covered_years
+    for c in ranked[_WEIGHTLESS_KEEP:]:
+        y = c.get("year_label")
+        if y and y not in kept_years:
+            keep.append(c)          # a year nobody else covers
+            kept_years.add(y)
+    return keep
+
+
 def thin(dry_run: bool) -> int:
     yaml = _make_yaml_loader()
     total_before = total_after = 0
@@ -102,23 +182,36 @@ def thin(dry_run: bool) -> int:
             # weightless stub survived was decided by its id's sort position,
             # so every re-seed reshuffled the survivors and `verify_reflow`
             # read the previous representatives as 20 vanished coins.
-            weighted = [c for c in members if _weight(c) is not None]
-            weightless = [c for c in members if _weight(c) is None]
+            curated = [c for c in members if _is_curated(c)]
+            plain = [c for c in members if not _is_curated(c)]
+            weighted = [c for c in plain if _weight(c) is not None]
+            weightless = [c for c in plain if _weight(c) is None]
+            reps: list = []
+            dropped: list = []
             if len(weighted) >= 5:
                 by_weight = sorted(weighted, key=_weight)
                 idx = sorted({0, len(by_weight) // 2, len(by_weight) - 1})
                 reps = [by_weight[i] for i in idx]
                 dropped = [by_weight[i] for i in range(len(by_weight))
                            if i not in idx]
+            else:
+                reps = list(weighted)
+            if len(weightless) > _WEIGHTLESS_KEEP:
+                wl_keep = _keep_weightless(
+                    weightless,
+                    {c.get("year_label") for c in reps + curated})
+                dropped += [c for c in weightless if c not in wl_keep]
+            else:
+                wl_keep = list(weightless)
+            if dropped:
                 # §9a salvage: carry the dropped specimens' distinguishing
                 # catalogue indices (+ fineness/diameter the reps lack) onto the
                 # kept reps; shed only the redundant weight + per-specimen sources.
-                _salvage_unique(reps, dropped)
-                kept.extend(reps)
-                kept.extend(weightless)
+                _salvage_unique(reps + wl_keep + curated, dropped)
                 thinned_buckets += 1
-            else:
-                kept.extend(members)
+            kept.extend(curated)
+            kept.extend(reps)
+            kept.extend(wl_keep)
         # preserve original entry order (by id) for a stable diff
         kept.sort(key=lambda c: str(c.get("id")))
         total_before += len(coins)
