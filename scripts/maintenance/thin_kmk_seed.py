@@ -76,18 +76,6 @@ def _weight(coin: dict):
     return w if isinstance(w, (int, float)) else None
 
 
-def _keep_envelope(members: list) -> list:
-    """§9a variance envelope for one over-sampled sub-variant bucket. Prefer
-    the weight-bearing members (sorted by weight → min/middle/max); fall back
-    to id-sorted representatives only when no member has a weight."""
-    weighted = sorted(
-        (m for m in members if _weight(m) is not None), key=_weight
-    )
-    pool = weighted if weighted else sorted(members, key=lambda c: str(c.get("id")))
-    idx = sorted({0, len(pool) // 2, len(pool) - 1})
-    return [pool[i] for i in idx]
-
-
 def thin(dry_run: bool) -> int:
     yaml = _make_yaml_loader()
     total_before = total_after = 0
@@ -102,17 +90,32 @@ def thin(dry_run: bool) -> int:
         kept: list = []
         thinned_buckets = 0
         for key, members in buckets.items():
-            if len(members) >= 5:
-                members_sorted = sorted(members, key=lambda c: str(c.get("id")))
-                idx = sorted({0, len(members_sorted) // 2, len(members_sorted) - 1})
-                reps = [members_sorted[i] for i in idx]
-                dropped = [members_sorted[i] for i in range(len(members_sorted))
+            # §9a thins ONE redundancy: intermediate WEIGHT readings between a
+            # bucket's min and max. So the threshold counts weight-BEARING
+            # members, and a weightless specimen is never a candidate.
+            #
+            # Until 2026-09-12 the bucket was sorted by `id` and cut to
+            # [0, mid, -1] with weight playing no part, so 86% of what thinning
+            # dropped (23 615 of 27 476) were records with no weight at all:
+            # each one a distinct KMM object, and shedding it removed a museum
+            # citation without removing one gram of redundant weight. Which
+            # weightless stub survived was decided by its id's sort position,
+            # so every re-seed reshuffled the survivors and `verify_reflow`
+            # read the previous representatives as 20 vanished coins.
+            weighted = [c for c in members if _weight(c) is not None]
+            weightless = [c for c in members if _weight(c) is None]
+            if len(weighted) >= 5:
+                by_weight = sorted(weighted, key=_weight)
+                idx = sorted({0, len(by_weight) // 2, len(by_weight) - 1})
+                reps = [by_weight[i] for i in idx]
+                dropped = [by_weight[i] for i in range(len(by_weight))
                            if i not in idx]
                 # §9a salvage: carry the dropped specimens' distinguishing
                 # catalogue indices (+ fineness/diameter the reps lack) onto the
                 # kept reps; shed only the redundant weight + per-specimen sources.
                 _salvage_unique(reps, dropped)
                 kept.extend(reps)
+                kept.extend(weightless)
                 thinned_buckets += 1
             else:
                 kept.extend(members)
