@@ -34,7 +34,7 @@ import ruamel.yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import PROJECT_ROOT  # noqa: E402
-from lib.seed_merge import merge_seed  # noqa: E402
+from lib.seed_merge import load_existing_seed, merge_one, merge_seed  # noqa: E402
 from lib.gen_stamp import content_equals_except_timestamp  # noqa: E402
 
 V2_SEED_ROOT = PROJECT_ROOT / "data" / "v2" / "seed"
@@ -1444,6 +1444,50 @@ def _consumes_page_map() -> dict[str, frozenset[str]]:
     return _CONSUMES_PAGE_MAP
 
 
+def _existing_curated_entries(src_dir: Path) -> dict[str, tuple[str, object]]:
+    """Map `{coin id: (entity_file_stem, existing entry)}` for every existing
+    entry of this source that carries curator input — a `_curation_holds` or
+    `_source_errata` block. Used for two things at write time.
+
+    `issuing_entity` sits in `seed_merge.CURATED_FIELDS`, but that protection
+    is unreachable for this ONE field without this lookup: `write_v2_seed`
+    groups fresh coins into per-entity files BEFORE `merge_seed` runs, so a
+    fresh entry carrying a different entity lands in a different file, where
+    no existing entry shares its id — it is `added_new`, `merge_one` never
+    runs, and the cross-entity purge then drops the curated entry (with its
+    hold) from its old file. The curated value has to be read back BEFORE
+    grouping or it cannot survive at all.
+
+    (1) A HELD `issuing_entity` re-routes the fresh coin to the curated
+    entity's file, so `merge_one` runs there at all. An UN-held entity is
+    ordinary derived data that a refined mint reading is entitled to change,
+    and the C-stage relocation path depends on that staying true — so only a
+    held entity re-routes.
+
+    (2) On a legitimate relocation (entity NOT held, so the move stands), the
+    existing entry is merged into the fresh one anyway, carrying its holds,
+    errata and curated field values into the new file. Otherwise every hold on
+    a relocating coin — a hold on `mint`, on a `*_verified` flag, on anything
+    — dies with the purged entry, which is not what the hold asked for: it
+    pinned a FIELD, not a file.
+    """
+    found: dict[str, tuple[str, object]] = {}
+    if not src_dir.is_dir():
+        return found
+    for path in sorted(src_dir.glob("*.yml")):
+        try:
+            _, by_id = load_existing_seed(path)
+        except Exception as exc:  # a malformed seed must not sink the build
+            print(f"  \u26a0 curated-entry scan skipped {path.name}: {exc}")
+            continue
+        for cid, entry in by_id.items():
+            if not isinstance(entry, dict):
+                continue
+            if entry.get("_curation_holds") or entry.get("_source_errata"):
+                found[cid] = (path.stem, entry)
+    return found
+
+
 def _home_entity(coin: dict) -> str | None:
     """Return the home-file entity for a coin.
 
@@ -1589,6 +1633,50 @@ def write_v2_seed(
     # classifier returns. Doesn't auto-correct — the C-stage maintenance
     # script is the authorised path to relocate misclassified entries
     # (preserves curator decisions + handles cross-file moves cleanly).
+    # Curated-entity restore (must precede BOTH the invariant check and the
+    # grouping): re-assert a curator's held `issuing_entity` over the fresh
+    # value, so the coin routes to the file its curated entity names and
+    # `merge_one` gets to run there. Without this the hold cannot fire — see
+    # `_curated_entity_overrides`. Runs post-hygiene so the restored value is
+    # what the invariant check reports on.
+    _curated_existing = _existing_curated_entries(V2_SEED_ROOT / source_name)
+    _restored_entity = 0
+    _carried = 0
+    if _curated_existing:
+        for i, c in enumerate(coins):
+            cid = c.get("id")
+            if cid is None or cid not in _curated_existing:
+                continue
+            stale_file, existing = _curated_existing[cid]
+            holds = set(existing.get("_curation_holds") or ())
+            if "issuing_entity" in holds:
+                held = existing.get("issuing_entity")
+                if held and c.get("issuing_entity") != held:
+                    c["issuing_entity"] = held
+                    c["entity_classified_via"] = "curation_hold"
+                    _restored_entity += 1
+                continue
+            # Not held → the fresh entity stands. If that entity moves the
+            # coin to a different file, `merge_seed` there will treat it as
+            # brand new, so merge the curated entry in HERE and let the
+            # merged result travel. `merge_one` protects CURATED_FIELDS,
+            # which includes `issuing_entity` — re-assert the fresh entity
+            # afterwards so the relocation is not undone by its own fix.
+            fresh_entity = c.get("issuing_entity")
+            if _home_entity(c) == stale_file:
+                continue  # staying put; merge_seed handles it normally
+            merged = merge_one(existing, c)
+            if fresh_entity is not None:
+                merged["issuing_entity"] = fresh_entity
+            coins[i] = merged
+            _carried += 1
+    if _restored_entity:
+        print(f"  \u2713 restored {_restored_entity} curator-held "
+              f"issuing_entity value(s) over the fresh routing")
+    if _carried:
+        print(f"  \u2713 carried {_carried} curated entr(y/ies) across a "
+              f"cross-entity relocation (holds + errata preserved)")
+
     _check_entity_invariant(coins, source_name)
 
     by_entity: dict[str, list[dict]] = defaultdict(list)
