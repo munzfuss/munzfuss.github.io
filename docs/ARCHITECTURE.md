@@ -356,14 +356,24 @@ The reason: curation is expensive (multi-session research, source-verification r
 
 **Orphan handling:** ids present in the existing seed but absent from fresh regen are KEPT verbatim and flagged as «orphan curated» in the run summary. The generator NEVER auto-deletes a curated entry — parser instability could otherwise silently drop shipped data. The curator decides manually whether each orphan stays or goes.
 
-**Wholesale-write builders (existing technical debt):**
-- ✓ `build_hede_denmark_seed.py` — full 4-mechanism merge (reference implementation)
-- ✗ `build_bruun_denmark_seed.py` — wholesale write (acceptable today: no curation has occurred yet; all entries still `fuss: seed_unsorted`)
-- ✗ `build_galster_denmark_seed.py` — same
-- ✓ `build_numismaster_seed.py` — merge-aware via `write_v2_seed` (the `_pre1541` builder was retired 2026-07-10, its scope folded here)
-- ✓ `build_numista_seed.py` — merge-aware via `write_v2_seed` (the `_pre1541` builder was retired, its scope folded here)
+**Builder coverage — every seed builder is merge-aware (verified 2026-09-12).**
+There are no wholesale-write builders left. The merge does NOT live in the
+builders: the shared writer `lib/v2_seed_writer.write_v2_seed` routes every
+per-entity write through `lib.seed_merge.merge_seed`
+(`v2_seed_writer.py:1790` for the entity files, `:1830` for
+`_unclassified.yml`), so all nine builders — `hede`, `bruun`, `galster`,
+`ikmk`, `kmk`, `ngc`, `numismaster`, `numista`, `ucoin` — inherit the
+4-mechanism merge plus orphan preservation by calling it.
 
-**Upgrade trigger:** any of the 2 remaining wholesale-write seeds (`build_bruun_denmark_seed.py` / `build_galster_denmark_seed.py`) must be promoted to merge-aware BEFORE the curator starts assigning fuss/phase to entries in it. Failure to upgrade in time = loss of curation on the next regen. The reference implementation in `build_hede_denmark_seed.py` is ~150 lines (the `_merge_one` + `_merge_seed` functions + the four constants); porting to a sibling builder is mostly mechanical.
+`build_hede_denmark_seed.py` additionally carries its own `_merge_seed`, for
+Hede-specific handling on top of the shared pass; that is the only builder
+that needs one.
+
+**Do not measure this by grepping the builders.** A builder that never
+mentions `merge_seed` or `CURATED_FIELDS` is still merge-aware — the call is
+one level down, in the writer. The per-builder grep is a false negative and
+has already produced a wrong «wholesale-write» verdict once; check for a
+`write_v2_seed(` call instead.
 
 **For Phase-4 batch promotion scripts** (`scripts/oneoff/*.py`): when modifying existing entries in `data/locations/<loc>.yml`, use ruamel.yaml's round-trip mode (`YAML(typ='rt')`) to preserve comments + key order + ONLY touch the fields the script's intent dictates. Never serialise-and-rewrite the whole entry — that pattern is what destroys manual customisations.
 
