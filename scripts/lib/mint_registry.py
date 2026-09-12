@@ -136,11 +136,28 @@ _MINT_REGISTRY: dict[str, dict] = {
         "entity": "danish_realm",
     },
     "stockholm": {
-        # Appears as historical anchor on some Hans-era pages
-        # (Sweden under Kalmar Union pre-1521).
-        "aliases": {"stockholm"},
+        # Kalmar-Union anchor: the Danish king held the Swedish crown under
+        # Christian I (1457-1467) and Hans (1497-1501), so pre-1523 Stockholm
+        # issues are danish_realm. Sweden became permanently independent on
+        # 6 June 1523 (Gustav Vasa; union dissolved), so year ≥ 1523 → the
+        # out-of-scope `sweden` entity (renders on no page). Curator rule
+        # 2026-09-11; see docs/SOURCES.md §13.16. «stokholm» is a KMM typo form.
+        "aliases": {"stockholm", "stokholm"},
         "display": "Stockholm",
+        "entity": "danish_realm",  # default = pre-1523 (Kalmar Union)
+        "year_overrides": [
+            {"year_from": 1523, "entity": "sweden"},
+        ],
+    },
+    "vesteras": {
+        # Västerås — Swedish mint. Same Kalmar-Union rule as Stockholm:
+        # pre-1523 union issues danish_realm, year ≥ 1523 → sweden (OOS).
+        "aliases": {"vesteras", "västerås", "vasteras"},
+        "display": "Vesterås",
         "entity": "danish_realm",
+        "year_overrides": [
+            {"year_from": 1523, "entity": "sweden"},
+        ],
     },
     "lund": {
         "aliases": {"lund"},

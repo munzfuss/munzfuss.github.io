@@ -1632,14 +1632,30 @@ Poland-Danzig Solidus, Kopicki 348/3a), `kmk-175967` (Johann Albrecht I of
 Mecklenburg Sechsling, Gaettens 182). The Christian II 1535 exile pieces were
 reviewed and KEPT (Danish claimant coinage, above).
 
-**Follow-up (next pass).** Entity-routing filter so a future re-harvest cannot
-re-introduce foreign-crown coins into `danish_realm` (per §9/PB-12 an
-`exclusions/` entry removes what is here but does not stop re-ingest); re-route
-the ~54 Holstein-Gottorp / Sønderborg ducal coins mis-bucketed into
-`danish_realm` (they belong on the Holstein/Gottorp page); the same ruler+mint
-scan on `danish_norway` / `royal_slesvig` / `royal_holstein` + the IKMK builder;
-and the `mint`-field data-quality debt (spurious «Hamborg»/«Mecklenburg» on
-genuine Danish coins) plus the exonumia tokens in the `ruler` field.
+**Entity-routing filter — Sweden done (2026-09-12).** The root cause was
+`scripts/lib/mint_registry.py` mapping «Stockholm» → `danish_realm`
+unconditionally. Fixed with a `year_overrides` rule: Stockholm / Vesterås
+year ≥ 1523 → the new out-of-scope `sweden` entity (`data/i18n/issuing_entities.yml`,
+`out_of_scope: true`, consumed by no location); year < 1523 stays `danish_realm`
+(Kalmar Union). The «Stokholm» KMM typo is now an alias. So a future re-harvest
+routes post-1523 Stockholm issues to `seed/<src>/sweden.yml` (quarantined) instead
+of `danish_realm`. Pinned by `tests/test_classify_mint_year_aware.py::TestStockholmSwedenTransition`.
+Note: the `exclusions/` entries already keep the render clean regardless, because
+they are applied on every absorb and key on stable seed ids — the filter merely
+stops the seed itself from re-collecting the coins and auto-handles NEW post-1523
+Swedish types.
+
+**Follow-up (next pass).** The non-Swedish Tier-2 foreign mints have no
+year-aware registry rule yet — England (`kmk-529443`, no place field → routed via
+`nation`), Stralsund, Gdansk, Mecklenburg — but they are 1-offs already held off
+the render by `exclusions/`; a registry/nation guard for them is low priority and
+must NOT be city-blanket (Rostock carries both a civic issue AND a Danish
+«Christian III» Hede-10 piece — city alone can't decide). Also: re-route the ~54
+Holstein-Gottorp / Sønderborg ducal coins mis-bucketed into `danish_realm` (they
+belong on the Holstein/Gottorp page); run the same ruler+mint scan on
+`danish_norway` / `royal_slesvig` / `royal_holstein` + the IKMK builder; and the
+`mint`-field data-quality debt (spurious «Hamborg»/«Mecklenburg» on genuine
+Danish coins) plus the exonumia tokens in the `ruler` field.
 
 ---
 

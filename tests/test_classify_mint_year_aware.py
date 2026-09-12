@@ -146,5 +146,46 @@ class TestClassifyMintYearAwareListInput(unittest.TestCase):
         )
 
 
+class TestStockholmSwedenTransition(unittest.TestCase):
+    """Kalmar-Union rule (curator, 2026-09-11; docs/SOURCES.md §13.16):
+    the Danish king held the Swedish crown only until 6 June 1523. Stockholm
+    (and Västerås) issues year < 1523 → danish_realm (union era); year ≥ 1523
+    → the out-of-scope `sweden` entity (renders nowhere).
+    """
+
+    def test_stockholm_union_era_danish(self):
+        self.assertEqual(classify_mint_to_entity("Stockholm", year=1500),
+                         "danish_realm")
+        self.assertEqual(classify_mint_to_entity("Stockholm", year=1501),
+                         "danish_realm")
+
+    def test_stockholm_boundary_1523_is_sweden(self):
+        # year_from inclusive → 1523 itself is already Swedish.
+        self.assertEqual(classify_mint_to_entity("Stockholm", year=1523),
+                         "sweden")
+
+    def test_stockholm_post_union_sweden(self):
+        for yr in (1535, 1562, 1719, 1825):
+            self.assertEqual(classify_mint_to_entity("Stockholm", year=yr),
+                             "sweden", f"year {yr}")
+
+    def test_stokholm_typo_alias(self):
+        # KMM typo form must route identically.
+        self.assertEqual(classify_mint_to_entity("Stokholm", year=1525),
+                         "sweden")
+        self.assertEqual(classify_mint_to_entity("Stokholm", year=1500),
+                         "danish_realm")
+
+    def test_stockholm_undated_defaults_union(self):
+        # No year → default (pre-1523 union) entity, backward-compatible.
+        self.assertEqual(classify_mint_to_entity("Stockholm"), "danish_realm")
+
+    def test_vesteras_transition(self):
+        self.assertEqual(classify_mint_to_entity("Vesterås", year=1497),
+                         "danish_realm")
+        self.assertEqual(classify_mint_to_entity("Vesteras", year=1600),
+                         "sweden")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
