@@ -1513,6 +1513,7 @@ coins:
         - '23'
         - '24'
         - '25'
+        - '27'
         - '42'
         - '43'
       hede:
@@ -1592,8 +1593,17 @@ coins:
       - value: 2.72
         source: kmk
         display: false
+      - value: 2.73
+        source: kmk
+        display: false
+      - value: 2.74
+        source: kmk
+      - value: 2.77
+        source: kmk
+        display: false
       - value: 2.78
         source: kmk
+        display: false
       - value: 2.79
         source: kmk
         display: false
@@ -1892,6 +1902,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/189824
         ref: KMM 189824 (Inv. FP 3108.460)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/189825
         ref: KMM 189825 (Inv. FP 3108.459)
@@ -1996,6 +2007,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/190777
         ref: KMM 190777 (Inv. FP 3108.507)
         display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/189805
+        ref: KMM 189805 (Inv. FP 3108.479)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/189807
+        ref: KMM 189807 (Inv. FP 3108.477)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/189810
+        ref: KMM 189810 (Inv. FP 3108.474)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/189842
+        ref: KMM 189842 (Inv. FP 3108.442)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/189862
+        ref: KMM 189862 (Inv. FP 3108.422)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/189876
+        ref: KMM 189876 (Inv. FP 3108.408)
     verification_note:
       de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -2006,6 +2040,7 @@ coins:
       - unified-kmk-123287
       - unified-kmk-149987
       - unified-kmk-149991
+      - unified-kmk-189805
       - unified-kmk-189806
       - unified-kmk-189814
       - unified-kmk-189838
@@ -80472,8 +80507,13 @@ coins:
     issuing_entity: danish_realm
     id: unified-kmk-122878
     year_first: 1661
-    year_last: 1661
-    year_label: '1661'
+    year_last: 1663
+    year_ranges:
+      -   - 1661
+          - 1661
+      -   - 1663
+          - 1663
+    year_label: 1661, 1663
     mint: Kopenhagen
     catalog:
       hede:
@@ -83121,9 +83161,12 @@ coins:
     ruler: Christian IV.
     issuing_entity: danish_realm
     id: unified-kmk-130761
-    year_first: 1629
+    year_first: 1628
     year_last: 1629
-    year_label: '1629'
+    year_ranges:
+      -   - 1628
+          - 1629
+    year_label: 1628-1629
     mint: Kopenhagen
     catalog:
       km: '109'
@@ -129413,8 +129456,11 @@ coins:
     issuing_entity: danish_realm
     id: unified-kmk-159713
     year_first: 1662
-    year_last: 1662
-    year_label: '1662'
+    year_last: 1663
+    year_ranges:
+      -   - 1662
+          - 1663
+    year_label: 1662-1663
     catalog:
       hede:
         - '132'
@@ -136710,106 +136756,6 @@ coins:
     verification_note: *id005
     composed_of:
       - unified-kmk-18668
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 8 Skilling
-    ruler: Christian IV.
-    issuing_entity: danish_realm
-    id: unified-kmk-189805
-    year_first: 1606
-    year_last: 1607
-    year_ranges:
-      -   - 1606
-          - 1607
-    year_label: 1606-1607
-    catalog:
-      hede: 93A
-      schou:
-        - '8'
-        - '12'
-        - '14'
-        - '25'
-        - '27'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 2.67
-        source: kmk
-        display: false
-      - value: 2.77
-        source: kmk
-        display: false
-      - value: 2.86
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189805
-        ref: KMM 189805 (Inv. FP 3108.479)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189810
-        ref: KMM 189810 (Inv. FP 3108.474)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189814
-        ref: KMM 189814 (Inv. FP 3108.470)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189816
-        ref: KMM 189816 (Inv. FP 3108.468)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189836
-        ref: KMM 189836 (Inv. FP 3108.448)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189840
-        ref: KMM 189840 (Inv. FP 3108.444)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189842
-        ref: KMM 189842 (Inv. FP 3108.442)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189847
-        ref: KMM 189847 (Inv. FP 3108.437)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190777
-        ref: KMM 190777 (Inv. FP 3108.507)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190778
-        ref: KMM 190778 (Inv. FP 3108.506)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189857
-        ref: KMM 189857 (Inv. FP 3108.427)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189875
-        ref: KMM 189875 (Inv. FP 3108.409)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189807
-        ref: KMM 189807 (Inv. FP 3108.477)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189843
-        ref: KMM 189843 (Inv. FP 3108.441)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189862
-        ref: KMM 189862 (Inv. FP 3108.422)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189876
-        ref: KMM 189876 (Inv. FP 3108.408)
-        display: false
-    verification_note: *id005
-    composed_of:
-      - unified-kmk-189805
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -199877,6 +199823,7 @@ coins:
     nominal: 2 Skilling
     ruler: Christian IV.
     issuing_entity: danish_realm
+    year_is_reign_span: true
     id: unified-dk-hede-c4h134a
     year_first: 1588
     year_last: 1648
@@ -199885,7 +199832,6 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
-    year_is_reign_span: true
     mint: Kopenhagen
     catalog:
       km: '89'
@@ -214223,9 +214169,12 @@ coins:
     ruler: Frederik 3
     issuing_entity: danish_realm
     id: unified-kmk-402840
-    year_first: 1650
-    year_last: 1650
-    year_label: '1650'
+    year_first: 1648
+    year_last: 1651
+    year_ranges:
+      -   - 1648
+          - 1651
+    year_label: 1648-1651
     mint: Mecklenburg
     catalog:
       km: '158'
@@ -230356,12 +230305,9 @@ coins:
     ruler: Frederik 3
     issuing_entity: danish_realm
     id: unified-kmk-157903
-    year_first: 1648
-    year_last: 1651
-    year_ranges:
-      -   - 1648
-          - 1651
-    year_label: 1648-1651
+    year_first: 1650
+    year_last: 1650
+    year_label: '1650'
     mint: Kopenhagen
     catalog:
       hede:
@@ -230388,11 +230334,6 @@ coins:
         display: false
       - value: 1.41
         source: kmk
-    diameter_mm:
-      - value: 17.62
-        source: ucoin
-      - value: 18.85
-        source: ucoin
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/157903
