@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-08-26T06:31:06Z'
+generated_at: '2026-09-12T13:44:22Z'
 entity: royal_slesvig
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -637,9 +637,9 @@ coins:
     _curation_holds:
       mint_verified: 'Curator call 2026-09-10 (Serhii, Option Z): demoted to false. Numista reads the mint off the reverse legend «MON NOVA AVREA SLESVICENSIS» → Schleswig, but the two specialist sources
         resolve the mint to Roskilde and reject the legend as the mint: danskmoent (Galster-131) prints «Roskilde, af Galster fejlagtigt henført til Gottorp», and Stack''s Bowers/Bruun lot 14258 (Part II
-        p. 322) argues «despite the reverse legend … probably minted in Roskilde» (350-oz gold payment at Copenhagen Castle, minted at Roskilde). §5 specialist > coarse. This coin merges into
-        unified-dk-bruun-14770; leaving mint_verified true would keep the rejected Schleswig reading in the merged mint (→ joint [danish_realm, royal_slesvig] → wrong home). Value kept verbatim as Numista''s
-        record; only the verified flag is demoted so _collect_mints Tier-1 (Bruun/Galster Roskilde) wins.'
+        p. 322) argues «despite the reverse legend … probably minted in Roskilde» (350-oz gold payment at Copenhagen Castle, minted at Roskilde). §5 specialist > coarse. This coin merges into unified-dk-bruun-14770;
+        leaving mint_verified true would keep the rejected Schleswig reading in the merged mint (→ joint [danish_realm, royal_slesvig] → wrong home). Value kept verbatim as Numista''s record; only the verified
+        flag is demoted so _collect_mints Tier-1 (Bruun/Galster Roskilde) wins.'
     sources:
       - type: literature
         url: https://en.numista.com/379084

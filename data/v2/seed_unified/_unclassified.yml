@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `_unclassified`.
-# Generated 2026-08-26 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-09-12 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/_unclassified.yml across all sources.
 #
 # Input: 1314 per-source seed entries.
-# Output: 1215 unified entries (one per physical coin).
+# Output: 1204 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: _unclassified
-generated_at: '2026-08-26'
+generated_at: '2026-09-12'
 coins:
   - id: unified-dk-numista-108003
     fuss: seed_unsorted
@@ -36161,6 +36161,10 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 1.53
+        source: ikmk
+      - value: 1.58
+        source: ikmk
       - value: 1.77
         source: ikmk
     diameter_mm:
@@ -36170,43 +36174,6 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18231772
         ref: IKMK Berlin 18231772
-    verification_note: *id001
-    composed_of:
-      - ikmk-18231772
-  - id: unified-ikmk-18231774
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 3 Kreuzer
-    year_first: 1757
-    year_last: 1762
-    year_ranges:
-      -   - 1757
-          - 1762
-    year_label: 1757-1762
-    ruler: Friedrich II.
-    mintmaster: Ernst Dietrich Croll
-    inscription_obv: D G AVGVSTVS III REX POLONIARUM
-    inscription_rev: SAC ROM IMP ARCHIM ET ELECT 1754
-    catalog:
-      others:
-        - Schrötter# 1830
-        - Olding# 481
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.53
-        source: ikmk
-      - value: 1.58
-        source: ikmk
-    diameter_mm:
-      - value: 19.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18231774
         ref: IKMK Berlin 18231774
@@ -36215,6 +36182,7 @@ coins:
         ref: IKMK Berlin 18231776
     verification_note: *id001
     composed_of:
+      - ikmk-18231772
       - ikmk-18231774
       - ikmk-18231776
   - id: unified-ikmk-18231778
@@ -40859,7 +40827,6 @@ coins:
       others:
         - Schrötter# 12
         - Divo# 989 a
-        - Schrötter# 14
     metal: billon
     metal_verified: true
     weight_rough_verified: true
@@ -40867,7 +40834,7 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 2.06
+      - value: 1.92
         source: ikmk
       - value: 2.08
         source: ikmk
@@ -40879,13 +40846,13 @@ coins:
         url: https://ikmk.smb.museum/object?id=18260224
         ref: IKMK Berlin 18260224
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18260227
-        ref: IKMK Berlin 18260227
+        url: https://ikmk.smb.museum/object?id=18260226
+        ref: IKMK Berlin 18260226
     verification_note: *id001
     composed_of:
       - ikmk-18260224
-      - ikmk-18260227
-  - id: unified-ikmk-18260226
+      - ikmk-18260226
+  - id: unified-ikmk-18260227
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -40900,7 +40867,7 @@ coins:
     mint: Neuenburg
     catalog:
       others:
-        - Schrötter# 12
+        - Schrötter# 14
         - Divo# 989 a
     metal: billon
     metal_verified: true
@@ -40909,18 +40876,18 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 1.92
+      - value: 2.06
         source: ikmk
     diameter_mm:
       - value: 22.0
         source: ikmk
     sources:
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18260226
-        ref: IKMK Berlin 18260226
+        url: https://ikmk.smb.museum/object?id=18260227
+        ref: IKMK Berlin 18260227
     verification_note: *id001
     composed_of:
-      - ikmk-18260226
+      - ikmk-18260227
   - id: unified-ikmk-18260228
     fuss: seed_unsorted
     phase: ikmk
@@ -41153,6 +41120,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 3.2
+        source: ikmk
       - value: 3.28
         source: ikmk
       - value: 3.39
@@ -41167,10 +41136,14 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18260548
         ref: IKMK Berlin 18260548
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18260549
+        ref: IKMK Berlin 18260549
     verification_note: *id001
     composed_of:
       - ikmk-18260544
       - ikmk-18260548
+      - ikmk-18260549
   - id: unified-ikmk-18260547
     fuss: seed_unsorted
     phase: ikmk
@@ -41209,44 +41182,6 @@ coins:
     verification_note: *id001
     composed_of:
       - ikmk-18260547
-  - id: unified-ikmk-18260549
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Batzen
-    year_first: 1800
-    year_last: 1800
-    year_label: '1800'
-    ruler: Friedrich Wilhelm III.
-    mintmaster: Heinrich Peter
-    inscription_obv: F W III BOR REX - SUP NOVIC & VAL // CR 4
-    inscription_rev: SUUM 1800 CUIQUE
-    mint: Neuenburg
-    catalog:
-      others:
-        - Divo# 246
-        - Jaeger# 244 a
-        - Schön# 26
-        - Olding# 167 c
-    metal: billon
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 3.2
-        source: ikmk
-    diameter_mm:
-      - value: 26.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18260549
-        ref: IKMK Berlin 18260549
-    verification_note: *id001
-    composed_of:
-      - ikmk-18260549
   - id: unified-ikmk-18260551
     fuss: seed_unsorted
     phase: ikmk
@@ -41617,6 +41552,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.08
+        source: ikmk
       - value: 1.25
         source: ikmk
     diameter_mm:
@@ -41626,10 +41563,14 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18260675
         ref: IKMK Berlin 18260675
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18260676
+        ref: IKMK Berlin 18260676
     verification_note: *id001
     composed_of:
       - ikmk-18260675
-  - id: unified-ikmk-18260676
+      - ikmk-18260676
+  - id: unified-ikmk-18260677
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -41639,14 +41580,13 @@ coins:
     year_label: '1800'
     ruler: Friedrich Wilhelm III.
     mintmaster: Heinrich Peter
-    inscription_obv: 'F W III BOR REX SUP : NOV : & VA :'
+    inscription_obv: F W III BOR REX SUP NOV & VAL
     inscription_rev: SUUM 1800 CUIQUE
     mint: Neuenburg
     catalog:
       others:
         - Divo# 250 a
         - Schön# 22
-        - Olding# 174 a
         - Olding# 174 b
     metal: billon
     metal_verified: true
@@ -41657,21 +41597,15 @@ coins:
     weight_rough_g:
       - value: 1.03
         source: ikmk
-      - value: 1.08
-        source: ikmk
     diameter_mm:
       - value: 19.0
         source: ikmk
     sources:
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18260676
-        ref: IKMK Berlin 18260676
-      - type: museum
         url: https://ikmk.smb.museum/object?id=18260677
         ref: IKMK Berlin 18260677
     verification_note: *id001
     composed_of:
-      - ikmk-18260676
       - ikmk-18260677
   - id: unified-ikmk-18260678
     fuss: seed_unsorted
@@ -41697,53 +41631,25 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 0.89
+        source: ikmk
       - value: 1.06
         source: ikmk
     diameter_mm:
+      - value: 19.0
+        source: ikmk
       - value: 20.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18260678
         ref: IKMK Berlin 18260678
-    verification_note: *id001
-    composed_of:
-      - ikmk-18260678
-  - id: unified-ikmk-18260679
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Kreuzer
-    year_first: 1803
-    year_last: 1803
-    year_label: '1803'
-    ruler: Friedrich Wilhelm III.
-    mintmaster: Heinrich Peter
-    inscription_obv: F W III BOR REX SUP NOV & VAL
-    inscription_rev: SUUM 1803 CUIQUE
-    mint: Neuenburg
-    catalog:
-      others:
-        - Divo# 250 c
-        - Schön# 22
-    metal: billon
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.89
-        source: ikmk
-    diameter_mm:
-      - value: 19.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18260679
         ref: IKMK Berlin 18260679
     verification_note: *id001
     composed_of:
+      - ikmk-18260678
       - ikmk-18260679
   - id: unified-ikmk-18260681
     fuss: seed_unsorted
@@ -43219,6 +43125,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 0.79
+        source: ikmk
       - value: 0.99
         source: ikmk
     diameter_mm:
@@ -43228,41 +43136,6 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18281198
         ref: IKMK Berlin 18281198
-    note:
-      de: Dreipölker
-      en: Dreipölker
-      uk: Dreipölker
-    verification_note: *id001
-    composed_of:
-      - ikmk-18281198
-  - id: unified-ikmk-18281203
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1/24 Taler
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    ruler: Bogislav XIV.
-    inscription_obv: BVGSLAVS - DVX S POM
-    inscription_rev: DEVS ADIVTOR MEVS
-    mint: Rügenwalde
-    catalog:
-      others:
-        - Olding# 181 a
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.79
-        source: ikmk
-    diameter_mm:
-      - value: 19.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18281203
         ref: IKMK Berlin 18281203
@@ -43272,6 +43145,7 @@ coins:
       uk: Dreipölker
     verification_note: *id001
     composed_of:
+      - ikmk-18281198
       - ikmk-18281203
   - id: unified-ikmk-18281940
     fuss: seed_unsorted
@@ -43298,13 +43172,20 @@ coins:
     weight_rough_g:
       - value: 0.67
         source: ikmk
+      - value: 1.03
+        source: ikmk
     diameter_mm:
       - value: 18.0
+        source: ikmk
+      - value: 19.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18281940
         ref: IKMK Berlin 18281940
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18281944
+        ref: IKMK Berlin 18281944
     note:
       de: Dreipölker
       en: Dreipölker
@@ -43312,6 +43193,7 @@ coins:
     verification_note: *id001
     composed_of:
       - ikmk-18281940
+      - ikmk-18281944
   - id: unified-ikmk-18281943
     fuss: seed_unsorted
     phase: ikmk
@@ -43328,7 +43210,6 @@ coins:
     catalog:
       others:
         - Olding# 158
-        - Olding# 159
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -43336,8 +43217,6 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 1.03
-        source: ikmk
       - value: 1.04
         source: ikmk
     diameter_mm:
@@ -43347,9 +43226,6 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18281943
         ref: IKMK Berlin 18281943
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18281944
-        ref: IKMK Berlin 18281944
     note:
       de: Dreipölker
       en: Dreipölker
@@ -43357,7 +43233,6 @@ coins:
     verification_note: *id001
     composed_of:
       - ikmk-18281943
-      - ikmk-18281944
   - id: unified-ikmk-18281948
     fuss: seed_unsorted
     phase: ikmk
@@ -43849,87 +43724,31 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.84
+        source: ikmk
+      - value: 1.96
+        source: ikmk
       - value: 2.35
         source: ikmk
     diameter_mm:
+      - value: 23.0
+        source: ikmk
       - value: 24.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18285388
         ref: IKMK Berlin 18285388
-    verification_note: *id001
-    composed_of:
-      - ikmk-18285388
-  - id: unified-ikmk-18285420
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    ruler: August I.
-    mintmaster: Jacob Mirendorf
-    inscription_obv: AUGUSTUS D G P E RATZE
-    inscription_rev: DUX BRUNOUIC E L 18
-    mint: Schönberg
-    catalog:
-      others:
-        - Welter# 874
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.96
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18285420
         ref: IKMK Berlin 18285420
-    verification_note: *id001
-    composed_of:
-      - ikmk-18285420
-  - id: unified-ikmk-18285426
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    ruler: August I.
-    mintmaster: Jacob Mirendorf
-    inscription_obv: AVGVSTVS D G P E RATZEB
-    inscription_rev: DVX BRVNOVIC E L 18
-    mint: Schönberg
-    catalog:
-      others:
-        - Welter# 874
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.84
-        source: ikmk
-    diameter_mm:
-      - value: 24.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18285426
         ref: IKMK Berlin 18285426
     verification_note: *id001
     composed_of:
+      - ikmk-18285388
+      - ikmk-18285420
       - ikmk-18285426
   - id: unified-ikmk-18285439
     fuss: seed_unsorted
@@ -43954,6 +43773,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.87
+        source: ikmk
       - value: 2.01
         source: ikmk
     diameter_mm:
@@ -43964,47 +43785,16 @@ coins:
         url: https://ikmk.smb.museum/object?id=18285439
         ref: IKMK Berlin 18285439
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18285445
+        ref: IKMK Berlin 18285445
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18285451
         ref: IKMK Berlin 18285451
     verification_note: *id001
     composed_of:
       - ikmk-18285439
-      - ikmk-18285451
-  - id: unified-ikmk-18285445
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    ruler: August I.
-    mintmaster: Jacob Mirendorf
-    inscription_obv: AUGUSTUS D G P E RATZE
-    inscription_rev: DUX BRUNOUIC E L 19
-    mint: Schönberg
-    catalog:
-      others:
-        - Welter# 874
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.87
-        source: ikmk
-    diameter_mm:
-      - value: 24.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285445
-        ref: IKMK Berlin 18285445
-    verification_note: *id001
-    composed_of:
       - ikmk-18285445
+      - ikmk-18285451
   - id: unified-ikmk-18285454
     fuss: seed_unsorted
     phase: ikmk
@@ -44032,6 +43822,8 @@ coins:
         source: ikmk
       - value: 1.81
         source: ikmk
+      - value: 2.03
+        source: ikmk
     diameter_mm:
       - value: 22.0
         source: ikmk
@@ -44044,44 +43836,13 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18285505
         ref: IKMK Berlin 18285505
-    verification_note: *id001
-    composed_of:
-      - ikmk-18285454
-      - ikmk-18285505
-  - id: unified-ikmk-18285542
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    ruler: August I.
-    mintmaster: Michael Hacke (Hake)
-    inscription_obv: AVGVSTVS D G P E RATZEB
-    inscription_rev: DVX BRVNOVIC E L 20
-    mint: Schönberg
-    catalog:
-      others:
-        - Welter# 874
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.03
-        source: ikmk
-    diameter_mm:
-      - value: 22.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18285542
         ref: IKMK Berlin 18285542
     verification_note: *id001
     composed_of:
+      - ikmk-18285454
+      - ikmk-18285505
       - ikmk-18285542
   - id: unified-ikmk-18285543
     fuss: seed_unsorted
@@ -46855,11 +46616,15 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 7.73
+        source: ikmk
       - value: 7.77
         source: ikmk
       - value: 8.16
         source: ikmk
     diameter_mm:
+      - value: 25.0
+        source: ikmk
       - value: 26.0
         source: ikmk
     sources:
@@ -46867,47 +46632,16 @@ coins:
         url: https://ikmk.smb.museum/object?id=18312596
         ref: IKMK Berlin 18312596
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18312597
+        ref: IKMK Berlin 18312597
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18312598
         ref: IKMK Berlin 18312598
     verification_note: *id001
     composed_of:
       - ikmk-18312596
-      - ikmk-18312598
-  - id: unified-ikmk-18312597
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 3 Groschen
-    year_first: 1816
-    year_last: 1816
-    year_label: '1816'
-    ruler: Friedrich Wilhelm III.
-    inscription_rev: 60 EINEN THALER -/ 3 / GROSCHEN / GR. HERZ. / POSEN / 1816
-    mint: Breslau
-    catalog:
-      others:
-        - Schrötter# 265
-        - AKS# 52
-        - Jaeger# 162
-    metal: copper
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 7.73
-        source: ikmk
-    diameter_mm:
-      - value: 25.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18312597
-        ref: IKMK Berlin 18312597
-    verification_note: *id001
-    composed_of:
       - ikmk-18312597
+      - ikmk-18312598
   - id: unified-ikmk-18312603
     fuss: seed_unsorted
     phase: ikmk
@@ -46974,87 +46708,25 @@ coins:
     weight_rough_g:
       - value: 2.35
         source: ikmk
+      - value: 2.67
+        source: ikmk
     diameter_mm:
       - value: 20.0
+        source: ikmk
+      - value: 21.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18312607
         ref: IKMK Berlin 18312607
-    verification_note: *id001
-    composed_of:
-      - ikmk-18312607
-  - id: unified-ikmk-18312608
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Groschen
-    year_first: 1817
-    year_last: 1817
-    year_label: '1817'
-    ruler: Friedrich Wilhelm III.
-    inscription_rev: '180 EINEN THALER -/ 1 / GROSCHEN / GR: HERZ: / POSEN / 1817'
-    mint: Berlin
-    catalog:
-      others:
-        - Schrötter# 267
-        - AKS# 53
-        - Jaeger# 161
-    metal: copper
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.67
-        source: ikmk
-    diameter_mm:
-      - value: 21.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18312608
         ref: IKMK Berlin 18312608
     verification_note: *id001
     composed_of:
+      - ikmk-18312607
       - ikmk-18312608
   - id: unified-ikmk-18312609
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Groschen
-    year_first: 1816
-    year_last: 1816
-    year_label: '1816'
-    ruler: Friedrich Wilhelm III.
-    inscription_rev: 180 EINEN THALER -/ 1 / GROSCHEN / GR. HERZ. / POSEN / 1816
-    mint: Breslau
-    catalog:
-      others:
-        - Schrötter# 268
-        - AKS# 53
-        - Jaeger# 161
-    metal: copper
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.5
-        source: ikmk
-    diameter_mm:
-      - value: 21.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18312609
-        ref: IKMK Berlin 18312609
-    verification_note: *id001
-    composed_of:
-      - ikmk-18312609
-  - id: unified-ikmk-18312610
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -47081,10 +46753,15 @@ coins:
         source: ikmk
       - value: 2.29
         source: ikmk
+      - value: 2.5
+        source: ikmk
     diameter_mm:
       - value: 21.0
         source: ikmk
     sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18312609
+        ref: IKMK Berlin 18312609
       - type: museum
         url: https://ikmk.smb.museum/object?id=18312610
         ref: IKMK Berlin 18312610
@@ -47093,6 +46770,7 @@ coins:
         ref: IKMK Berlin 18312611
     verification_note: *id001
     composed_of:
+      - ikmk-18312609
       - ikmk-18312610
       - ikmk-18312611
   - id: unified-ikmk-18314715

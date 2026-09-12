@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_lubeck`.
-# Generated 2026-08-25 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-09-12 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
-# Input: 418 per-source seed entries.
-# Output: 337 unified entries (one per physical coin).
+# Input: 414 per-source seed entries.
+# Output: 333 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_lubeck
-generated_at: '2026-08-25'
+generated_at: '2026-09-12'
 coins:
   - id: unified-dk-bruun-12891
     fuss: seed_unsorted
@@ -846,11 +846,12 @@ coins:
     year_first: 1559
     year_last: 1559
     year_label: '1559'
+    mint: Lübeck
     catalog:
       behrens: '428'
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     sources:
       - type: museum
@@ -934,11 +935,12 @@ coins:
     year_first: 1559
     year_last: 1559
     year_label: '1559'
+    mint: Lübeck
     catalog:
       jesse: '654'
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     sources:
       - type: museum
@@ -971,28 +973,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-159801
-  - id: unified-kmk-159802
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Sechsling
-    year_first: 1559
-    year_last: 1559
-    year_label: '1559'
-    catalog:
-      jesse: '654'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/159802
-        ref: KMM 159802 (Inv. FP 3931.159)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-159802
   - id: unified-kmk-167349
     fuss: seed_unsorted
     phase: kmk
@@ -1042,29 +1022,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-167368
-  - id: unified-kmk-167371
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1559
-    year_last: 1559
-    year_label: '1559'
-    mint: Lübeck
-    catalog:
-      behrens: '428'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167371
-        ref: KMM 167371 (Inv. FP 1892.45)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-167371
   - id: unified-kmk-167372
     fuss: seed_unsorted
     phase: kmk
@@ -1114,29 +1071,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-167373
-  - id: unified-kmk-167374
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1559
-    year_last: 1559
-    year_label: '1559'
-    mint: Lübeck
-    catalog:
-      behrens: '428'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167374
-        ref: KMM 167374 (Inv. FP 1892.44)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-167374
   - id: unified-kmk-168039
     fuss: seed_unsorted
     phase: kmk
@@ -1668,29 +1602,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-203770
-  - id: unified-kmk-266843
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Sechsling
-    year_first: 1559
-    year_last: 1559
-    year_label: '1559'
-    mint: Lübeck
-    catalog:
-      jesse: '654'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/266843
-        ref: KMM 266843 (Inv. FP 10060.13)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-266843
   - id: unified-kmk-267200
     fuss: seed_unsorted
     phase: kmk

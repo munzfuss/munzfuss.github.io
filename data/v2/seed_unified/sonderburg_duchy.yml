@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `sonderburg_duchy`.
-# Generated 2026-09-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-09-12 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sonderburg_duchy.yml across all sources.
 #
 # Input: 112 per-source seed entries.
-# Output: 60 unified entries (one per physical coin).
+# Output: 54 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sonderburg_duchy
-generated_at: '2026-09-10'
+generated_at: '2026-09-12'
 coins:
   - id: unified-dk-bruun-14662
     fuss: seed_unsorted
@@ -641,7 +641,13 @@ coins:
         source: ikmk
       - value: 1.83
         source: ikmk
+      - value: 2.01
+        source: ikmk
+      - value: 2.26
+        source: ikmk
     diameter_mm:
+      - value: 23.0
+        source: ikmk
       - value: 24.0
         source: ikmk
       - value: 27.0
@@ -653,6 +659,12 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284395
         ref: IKMK Berlin 18284395
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284396
+        ref: IKMK Berlin 18284396
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284397
+        ref: IKMK Berlin 18284397
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -665,46 +677,9 @@ coins:
     composed_of:
       - ikmk-18284272
       - ikmk-18284395
-  - id: unified-ikmk-18284396
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    ruler: Johann
-    mintmaster: Tobias Reinhardt
-    inscription_obv: IOHAN D G HAERES NORWG
-    inscription_rev: D SCHL E HO C I OL E D 1618
-    mint: Reinfeld
-    catalog:
-      lange: '532'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.01
-        source: ikmk
-    diameter_mm:
-      - value: 24.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284396
-        ref: IKMK Berlin 18284396
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: sonderburg_duchy
-    composed_of:
       - ikmk-18284396
-  - id: unified-ikmk-18284397
+      - ikmk-18284397
+  - id: unified-ikmk-18284398
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -714,11 +689,11 @@ coins:
     year_label: '1618'
     ruler: Johann
     mintmaster: Tobias Reinhardt
-    inscription_obv: IOHAN D G HAERES NORWG
-    inscription_rev: D SCHL E HO C I O E D 1618
+    inscription_obv: IOHAN D G HAERES NOR
+    inscription_rev: D SCHL E H C I O E D 18
     mint: Reinfeld
     catalog:
-      lange: '532'
+      lange: '535'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -726,20 +701,25 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 2.16
+        source: ikmk
       - value: 2.24
         source: ikmk
-      - value: 2.26
+      - value: 2.35
         source: ikmk
     diameter_mm:
       - value: 23.0
         source: ikmk
     sources:
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18284397
-        ref: IKMK Berlin 18284397
-      - type: museum
         url: https://ikmk.smb.museum/object?id=18284398
         ref: IKMK Berlin 18284398
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284699
+        ref: IKMK Berlin 18284699
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284700
+        ref: IKMK Berlin 18284700
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -747,8 +727,9 @@ coins:
     verification_note: *id001
     issuing_entity: sonderburg_duchy
     composed_of:
-      - ikmk-18284397
       - ikmk-18284398
+      - ikmk-18284699
+      - ikmk-18284700
   - id: unified-ikmk-18284399
     fuss: seed_unsorted
     phase: ikmk
@@ -773,13 +754,25 @@ coins:
     weight_rough_g:
       - value: 1.48
         source: ikmk
+      - value: 1.83
+        source: ikmk
+      - value: 2.06
+        source: ikmk
     diameter_mm:
       - value: 23.0
+        source: ikmk
+      - value: 24.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284399
         ref: IKMK Berlin 18284399
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284692
+        ref: IKMK Berlin 18284692
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284696
+        ref: IKMK Berlin 18284696
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -788,6 +781,8 @@ coins:
     issuing_entity: sonderburg_duchy
     composed_of:
       - ikmk-18284399
+      - ikmk-18284692
+      - ikmk-18284696
   - id: unified-ikmk-18284404
     fuss: seed_unsorted
     phase: ikmk
@@ -801,8 +796,6 @@ coins:
     inscription_obv: IOH D G - HAE NOR
     inscription_rev: MATTHIAS D G R IM S A 619
     mint: Reinfeld
-    catalog:
-      lange: '533'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -816,12 +809,8 @@ coins:
         source: ikmk
       - value: 1.82
         source: ikmk
-      - value: 1.83
-        source: ikmk
     diameter_mm:
       - value: 23.0
-        source: ikmk
-      - value: 24.0
         source: ikmk
     sources:
       - type: museum
@@ -830,9 +819,6 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284691
         ref: IKMK Berlin 18284691
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284692
-        ref: IKMK Berlin 18284692
       - type: museum
         url: https://ikmk.smb.museum/object?id=18289032
         ref: IKMK Berlin 18289032
@@ -845,47 +831,7 @@ coins:
     composed_of:
       - ikmk-18284404
       - ikmk-18284691
-      - ikmk-18284692
       - ikmk-18289032
-  - id: unified-ikmk-18284696
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    ruler: Johann
-    mintmaster: Tobias Reinhardt
-    inscription_obv: IO D G - H NO
-    inscription_rev: DVX SL HOL CO O E D 619
-    mint: Reinfeld
-    catalog:
-      lange: '533'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.06
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284696
-        ref: IKMK Berlin 18284696
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - ikmk-18284696
   - id: unified-ikmk-18284697
     fuss: seed_unsorted
     phase: ikmk
@@ -935,6 +881,7 @@ coins:
           - 1619
     year_label: 1618-1619
     ruler: Johann
+    mintmaster: Tobias Reinhardt
     inscription_obv: IOHAN D G HAERES NOR
     inscription_rev: D SCHL E H C I O E D 18
     mint: Reinfeld
@@ -953,15 +900,22 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.9
+        source: ikmk
       - value: 2.05
         source: ikmk
     diameter_mm:
       - value: 22.0
         source: ikmk
+      - value: 24.0
+        source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284698
         ref: IKMK Berlin 18284698
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284701
+        ref: IKMK Berlin 18284701
       - type: literature
         url: https://numismaster.com/MC_120992
         ref: NumisMaster
@@ -969,148 +923,9 @@ coins:
     issuing_entity: sonderburg_duchy
     composed_of:
       - ikmk-18284698
-      - schleswig_holstein-numismaster-120992
-  - id: unified-ikmk-18284699
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    ruler: Johann
-    mintmaster: Tobias Reinhardt
-    inscription_obv: IOHAN D G HAERES NOR
-    inscription_rev: D SCHL E H C I O E D 18
-    mint: Reinfeld
-    catalog:
-      lange: '535'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.35
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284699
-        ref: IKMK Berlin 18284699
-    verification_note: *id001
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - ikmk-18284699
-  - id: unified-ikmk-18284700
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    ruler: Johann
-    mintmaster: Tobias Reinhardt
-    inscription_obv: IOHAN D G HAERES NOR
-    inscription_rev: D SCHL E H C I O E D 18
-    mint: Reinfeld
-    catalog:
-      lange: '535'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.16
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284700
-        ref: IKMK Berlin 18284700
-    verification_note: *id001
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - ikmk-18284700
-  - id: unified-ikmk-18284701
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    ruler: Johann
-    mintmaster: Tobias Reinhardt
-    inscription_obv: IOHAN D G HAERES NOR
-    inscription_rev: D SCHL E H C I O E D 18
-    mint: Reinfeld
-    catalog:
-      lange: '535'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.9
-        source: ikmk
-    diameter_mm:
-      - value: 24.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284701
-        ref: IKMK Berlin 18284701
-    verification_note: *id001
-    issuing_entity: sonderburg_duchy
-    composed_of:
       - ikmk-18284701
+      - schleswig_holstein-numismaster-120992
   - id: unified-ikmk-18284702
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    ruler: Johann
-    mintmaster: Tobias Reinhardt
-    inscription_obv: IOHAN D G HAERES NOR
-    inscription_rev: D SCHL E H C I O E D 19
-    mint: Reinfeld
-    catalog:
-      lange: '536'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.14
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284702
-        ref: IKMK Berlin 18284702
-    verification_note: *id001
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - ikmk-18284702
-  - id: unified-ikmk-18284706
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -1136,10 +951,15 @@ coins:
         source: ikmk
       - value: 1.96
         source: ikmk
+      - value: 2.14
+        source: ikmk
     diameter_mm:
       - value: 23.0
         source: ikmk
     sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284702
+        ref: IKMK Berlin 18284702
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284706
         ref: IKMK Berlin 18284706
@@ -1149,6 +969,7 @@ coins:
     verification_note: *id001
     issuing_entity: sonderburg_duchy
     composed_of:
+      - ikmk-18284702
       - ikmk-18284706
       - ikmk-18284710
   - id: unified-ikmk-18284712
@@ -1420,18 +1241,18 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/81764
         ref: KMM 81764 (Inv. GP 888.342)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81770
-        ref: KMM 81770 (Inv. GP 888.348)
+        url: https://samlinger.natmus.dk/KMM/object/81765
+        ref: KMM 81765 (Inv. GP 888.343)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81776
-        ref: KMM 81776 (Inv. GP 888.354)
+        url: https://samlinger.natmus.dk/KMM/object/81766
+        ref: KMM 81766 (Inv. GP 888.344)
     verification_note: *id002
     issuing_entity: sonderburg_duchy
     composed_of:
       - kmk-370043
       - kmk-81764
-      - kmk-81770
-      - kmk-81776
+      - kmk-81765
+      - kmk-81766
   - id: unified-kmk-372930
     fuss: seed_unsorted
     phase: kmk
@@ -1479,17 +1300,17 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/575715
         ref: KMM 575715 (Inv. FP 533.195)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575720
-        ref: KMM 575720 (Inv. FP 533.190)
+        url: https://samlinger.natmus.dk/KMM/object/575716
+        ref: KMM 575716 (Inv. FP 533.194)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575725
-        ref: KMM 575725 (Inv. FP 533.185)
+        url: https://samlinger.natmus.dk/KMM/object/575717
+        ref: KMM 575717 (Inv. FP 533.193)
     verification_note: *id002
     issuing_entity: sonderburg_duchy
     composed_of:
       - kmk-575715
-      - kmk-575720
-      - kmk-575725
+      - kmk-575716
+      - kmk-575717
   - id: unified-kmk-575726
     fuss: seed_unsorted
     phase: kmk
@@ -1509,17 +1330,17 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/575726
         ref: KMM 575726 (Inv. FP 533.184)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575729
-        ref: KMM 575729 (Inv. FP 533.181)
+        url: https://samlinger.natmus.dk/KMM/object/575727
+        ref: KMM 575727 (Inv. FP 533.183)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575731
-        ref: KMM 575731 (Inv. FP 533.179)
+        url: https://samlinger.natmus.dk/KMM/object/575728
+        ref: KMM 575728 (Inv. FP 533.182)
     verification_note: *id002
     issuing_entity: sonderburg_duchy
     composed_of:
       - kmk-575726
-      - kmk-575729
-      - kmk-575731
+      - kmk-575727
+      - kmk-575728
   - id: unified-kmk-687749
     fuss: seed_unsorted
     phase: kmk

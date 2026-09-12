@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-08-25T09:49:48Z'
+generated_at: '2026-09-12T14:13:24Z'
 entity: hanseatic_lubeck
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -96,10 +96,10 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: hanseatic_lubeck
-    entity_classified_via: nation
+    entity_classified_via: mint
     nominal: 1 Søsling
     metal_verified: false
-    mint_verified: false
+    mint_verified: true
     year_first: 1559
     year_last: 1559
     year_label: '1559'
@@ -115,6 +115,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/155963
         ref: KMM 155963 (Inv. FP 2624.228)
     verification_note: *id001
+    mint: Lübeck
   - id: kmk-156462
     fuss: seed_unsorted
     phase: kmk
@@ -188,10 +189,10 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: hanseatic_lubeck
-    entity_classified_via: nation
+    entity_classified_via: mint
     nominal: 1 Sechsling
     metal_verified: false
-    mint_verified: false
+    mint_verified: true
     year_first: 1559
     year_last: 1559
     year_label: '1559'
@@ -207,6 +208,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/159800
         ref: KMM 159800 (Inv. FP 3931.161)
     verification_note: *id001
+    mint: Lübeck
   - id: kmk-159801
     fuss: seed_unsorted
     phase: kmk
@@ -232,30 +234,6 @@ coins:
         ref: KMM 159801 (Inv. FP 3931.160)
     verification_note: *id001
     mint: Lübeck
-  - id: kmk-159802
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: hanseatic_lubeck
-    entity_classified_via: nation
-    nominal: 1 Sechsling
-    metal_verified: false
-    mint_verified: false
-    year_first: 1559
-    year_last: 1559
-    year_label: '1559'
-    year_ranges:
-      -   - 1559
-          - 1559
-    weight_rough_verified: false
-    catalog:
-      jesse: '654'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/159802
-        ref: KMM 159802 (Inv. FP 3931.159)
-    verification_note: *id001
   - id: kmk-167349
     fuss: seed_unsorted
     phase: kmk
@@ -306,31 +284,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/167368
         ref: KMM 167368 (Inv. FP 1892.46)
     verification_note: *id001
-  - id: kmk-167371
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: hanseatic_lubeck
-    entity_classified_via: mint
-    nominal: 1 Søsling
-    metal_verified: false
-    mint: Lübeck
-    mint_verified: true
-    year_first: 1559
-    year_last: 1559
-    year_label: '1559'
-    year_ranges:
-      -   - 1559
-          - 1559
-    weight_rough_verified: false
-    catalog:
-      behrens: '428'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167371
-        ref: KMM 167371 (Inv. FP 1892.45)
-    verification_note: *id001
   - id: kmk-167372
     fuss: seed_unsorted
     phase: kmk
@@ -380,31 +333,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167373
         ref: KMM 167373 (Inv. FP 1892.43)
-    verification_note: *id001
-  - id: kmk-167374
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: hanseatic_lubeck
-    entity_classified_via: mint
-    nominal: 1 Søsling
-    metal_verified: false
-    mint: Lübeck
-    mint_verified: true
-    year_first: 1559
-    year_last: 1559
-    year_label: '1559'
-    year_ranges:
-      -   - 1559
-          - 1559
-    weight_rough_verified: false
-    catalog:
-      behrens: '428'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167374
-        ref: KMM 167374 (Inv. FP 1892.44)
     verification_note: *id001
   - id: kmk-168039
     fuss: seed_unsorted
@@ -976,31 +904,6 @@ coins:
         ref: KMM 203770 (Inv. FP 6588.31)
     verification_note: *id001
     mint: Lübeck
-  - id: kmk-266843
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: hanseatic_lubeck
-    entity_classified_via: mint
-    nominal: 1 Sechsling
-    metal_verified: false
-    mint: Lübeck
-    mint_verified: true
-    year_first: 1559
-    year_last: 1559
-    year_label: '1559'
-    year_ranges:
-      -   - 1559
-          - 1559
-    weight_rough_verified: false
-    catalog:
-      jesse: '654'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/266843
-        ref: KMM 266843 (Inv. FP 10060.13)
-    verification_note: *id001
   - id: kmk-267200
     fuss: seed_unsorted
     phase: kmk

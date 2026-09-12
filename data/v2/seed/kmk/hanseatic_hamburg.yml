@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-08-25T09:49:48Z'
+generated_at: '2026-09-12T14:13:24Z'
 entity: hanseatic_hamburg
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -26,22 +26,6 @@ coins:
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
-  - id: kmk-130703
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: hanseatic_hamburg
-    entity_classified_via: mint
-    metal_verified: false
-    mint: Hamburg
-    mint_verified: true
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/130703
-        ref: KMM 130703 (Inv. FP 1217.5)
-    verification_note: *id001
   - id: kmk-131552
     fuss: seed_unsorted
     phase: kmk
@@ -188,7 +172,7 @@ coins:
     verification_note: *id001
     catalog:
       gaedechens: '915'
-  - id: kmk-167324
+  - id: kmk-167322
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -208,11 +192,32 @@ coins:
     verified: false
     sources:
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167324
-        ref: KMM 167324 (Inv. FP 1892.34)
+        url: https://samlinger.natmus.dk/KMM/object/167322
+        ref: KMM 167322 (Inv. FP 1892.32)
     verification_note: *id001
-    catalog:
-      gaedechens: '915'
+  - id: kmk-167323
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: hanseatic_hamburg
+    entity_classified_via: mint
+    nominal: 1 Skilling
+    metal_verified: false
+    mint: Hamburg
+    mint_verified: true
+    year_first: 1553
+    year_last: 1553
+    year_label: '1553'
+    year_ranges:
+      -   - 1553
+          - 1553
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167323
+        ref: KMM 167323 (Inv. FP 1892.35)
+    verification_note: *id001
   - id: kmk-167351
     fuss: seed_unsorted
     phase: kmk
@@ -356,29 +361,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/168423
         ref: KMM 168423 (Inv. FP 1555.21)
-    verification_note: *id001
-  - id: kmk-168424
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: hanseatic_hamburg
-    entity_classified_via: mint
-    nominal: 1 Skilling
-    metal_verified: false
-    mint: Hamburg
-    mint_verified: true
-    year_first: 1553
-    year_last: 1553
-    year_label: '1553'
-    year_ranges:
-      -   - 1553
-          - 1553
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168424
-        ref: KMM 168424 (Inv. FP 1555.20)
     verification_note: *id001
   - id: kmk-184176
     fuss: seed_unsorted

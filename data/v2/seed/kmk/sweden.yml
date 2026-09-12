@@ -1,0 +1,88 @@
+status: seed
+source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
+generated_at: '2026-09-12T14:13:28Z'
+entity: sweden
+scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
+  (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
+  (entity_classified_via records which). Museum-attested fields carry verified=true (weight only — no diameter/fineness). Phase-4 assigns Müntzfuß/phase; cross-source merger deduplicates against 
+  Hede/Bruun/Numista/IKMK/etc.
+coins:
+  - id: kmk-139713
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: sweden
+    entity_classified_via: mint
+    nominal: 4 Skilling
+    metal_verified: false
+    mint: Stockholm
+    mint_verified: true
+    ruler: Christian 3
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    year_ranges:
+      -   - 1535
+          - 1535
+    weight_rough_verified: false
+    catalog:
+      schou: '62'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/139713
+        ref: KMM 139713 (Inv. KP 1715.6)
+    verification_note: &id001
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+  - id: kmk-139714
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: sweden
+    entity_classified_via: mint
+    nominal: 4 Skilling
+    metal_verified: false
+    mint: Stockholm
+    mint_verified: true
+    ruler: Christian 3
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    year_ranges:
+      -   - 1535
+          - 1535
+    weight_rough_verified: false
+    catalog:
+      schou: '56'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/139714
+        ref: KMM 139714 (Inv. KP 1715.5)
+    verification_note: *id001
+  - id: kmk-316367
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: sweden
+    entity_classified_via: mint
+    nominal: 1 Ørtug
+    metal_verified: false
+    mint: Stockholm
+    mint_verified: true
+    ruler: Gustav Vasa
+    year_first: 1524
+    year_last: 1527
+    year_label: 1524-1527
+    year_ranges:
+      -   - 1524
+          - 1527
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/316367
+        ref: KMM 316367 (Inv. FP 6936.11)
+    verification_note: *id001

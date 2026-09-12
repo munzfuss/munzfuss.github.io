@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-08-25T09:47:42Z'
+generated_at: '2026-09-12T14:13:25Z'
 entity: norburg_plon_duchy
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -12,7 +12,7 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: norburg_plon_duchy
-    entity_classified_via: nation
+    entity_classified_via: mint
     nominal: 1 Thaler
     metal: silver
     metal_verified: true
@@ -34,7 +34,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/81779
         ref: KMM 81779 (Inv. GP 888.357)
-    verification_note:
+    verification_note: &id001
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
@@ -48,7 +48,7 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: norburg_plon_duchy
-    entity_classified_via: nation
+    entity_classified_via: mint
     metal: silver
     metal_verified: true
     mint: Plön
@@ -60,21 +60,72 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/81780
         ref: KMM 81780 (Inv. GP 888.358)
-    verification_note:
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+    verification_note: *id001
     _curation_holds:
       mint: KMM spells the place «Plöen»; the registry's Plön alias set lacked that form, so the entity fell through to the royal_holstein bucket. Alias added in mint_registry, and the value 
         canonicalised here by hand rather than by a full KMM re-seed — that re-run also re-thins every specimen list and dropped nine records outright.
       issuing_entity: KMM spells the place «Plöen»; the registry's Plön alias set lacked that form, so the entity fell through to the royal_holstein bucket. Alias added in mint_registry, and the value
         canonicalised here by hand rather than by a full KMM re-seed — that re-run also re-thins every specimen list and dropped nine records outright.
+  - id: kmk-81781
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: norburg_plon_duchy
+    entity_classified_via: mint
+    metal: silver
+    metal_verified: true
+    mint: Plön
+    mint_verified: true
+    ruler: Hans Adolf
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81781
+        ref: KMM 81781 (Inv. GP 888.359)
+    verification_note: *id001
+  - id: kmk-81782
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: norburg_plon_duchy
+    entity_classified_via: mint
+    metal: silver
+    metal_verified: true
+    mint: Plön
+    mint_verified: true
+    ruler: Hans Adolf
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81782
+        ref: KMM 81782 (Inv. GP 888.360)
+    verification_note: *id001
+  - id: kmk-81783
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: norburg_plon_duchy
+    entity_classified_via: mint
+    metal: silver
+    metal_verified: true
+    mint: Plön
+    mint_verified: true
+    ruler: Hans Adolf
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81783
+        ref: KMM 81783 (Inv. GP 888.361)
+    verification_note: *id001
   - id: kmk-81785
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: norburg_plon_duchy
-    entity_classified_via: nation
+    entity_classified_via: mint
     metal: silver
     metal_verified: true
     mint: Plön
@@ -86,10 +137,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/81785
         ref: KMM 81785 (Inv. GP 888.363)
-    verification_note:
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+    verification_note: *id001
     _curation_holds:
       mint: KMM spells the place «Plöen»; the registry's Plön alias set lacked that form, so the entity fell through to the royal_holstein bucket. Alias added in mint_registry, and the value 
         canonicalised here by hand rather than by a full KMM re-seed — that re-run also re-thins every specimen list and dropped nine records outright.
@@ -100,7 +148,7 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: norburg_plon_duchy
-    entity_classified_via: nation
+    entity_classified_via: mint
     metal: silver
     metal_verified: true
     mint: Plön
@@ -112,10 +160,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/81790
         ref: KMM 81790 (Inv. GP 888.368)
-    verification_note:
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+    verification_note: *id001
     _curation_holds:
       mint: KMM spells the place «Plöen»; the registry's Plön alias set lacked that form, so the entity fell through to the royal_holstein bucket. Alias added in mint_registry, and the value 
         canonicalised here by hand rather than by a full KMM re-seed — that re-run also re-thins every specimen list and dropped nine records outright.
@@ -126,7 +171,7 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: norburg_plon_duchy
-    entity_classified_via: nation
+    entity_classified_via: mint
     metal: silver
     metal_verified: true
     mint: Nordborg
@@ -138,10 +183,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/81792
         ref: KMM 81792 (Inv. GP 888.370)
-    verification_note:
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+    verification_note: *id001
     _curation_holds:
       issuing_entity: Nordborg on Als had no registry entry at all, so the place fell through to the royal_holstein bucket. Entry added in mint_registry (→ norburg_plon_duchy); the rulers confirm it —
         «August af Slesvig-Holsten-Sønderborg-Nordborg» and Frederik Karl.
@@ -150,7 +192,7 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: norburg_plon_duchy
-    entity_classified_via: nation
+    entity_classified_via: mint
     metal: silver
     metal_verified: true
     mint: Nordborg
@@ -162,10 +204,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/81793
         ref: KMM 81793 (Inv. GP 888.371)
-    verification_note:
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+    verification_note: *id001
     _curation_holds:
       issuing_entity: Nordborg on Als had no registry entry at all, so the place fell through to the royal_holstein bucket. Entry added in mint_registry (→ norburg_plon_duchy); the rulers confirm it —
         «August af Slesvig-Holsten-Sønderborg-Nordborg» and Frederik Karl.
@@ -174,7 +213,7 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: norburg_plon_duchy
-    entity_classified_via: nation
+    entity_classified_via: mint
     metal: silver
     metal_verified: true
     mint: Nordborg
@@ -186,10 +225,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/81794
         ref: KMM 81794 (Inv. GP 888.372)
-    verification_note:
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+    verification_note: *id001
     _curation_holds:
       issuing_entity: Nordborg on Als had no registry entry at all, so the place fell through to the royal_holstein bucket. Entry added in mint_registry (→ norburg_plon_duchy); the rulers confirm it —
         «August af Slesvig-Holsten-Sønderborg-Nordborg» and Frederik Karl.
