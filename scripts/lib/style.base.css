@@ -2302,9 +2302,12 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .fin-src  { cursor: help; }
 .fin-alt  { color: rgba(201, 122, 61, 0.65); cursor: help; }
 /* Markers on a measurement a named source publishes and that we have something
-   to say about. Both are presentational: the reading itself computes and
-   reaches the Δ like any other, so the figure is NOT struck through — the mark
-   sits beside it and carries the reason in its tooltip.
+   to say about. The reading still computes and reaches the Δ like any other,
+   but a marked figure is STRUCK THROUGH so the doubt is legible at a glance
+   without reading the tooltip: the block carrying the number takes a bare
+   `.suspect` / `.erroneous` class (see the `mkind` / `sv` macros in
+   templates/location.html.j2), while the «(*)»/«(!)» sign still sits beside it,
+   unstruck, carrying the reason in its tooltip.
 
      (*) .suspect-mark    — the reading does not fit, and we cannot show why
      (!) .erroneous-mark  — the reading has been shown to be wrong
@@ -2316,6 +2319,11 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
                   font-family: var(--font-sans); margin-left: 0.25em; }
 .erroneous-mark { color: rgba(178, 58, 58, 0.9); cursor: help; font-weight: 600;
                   font-family: var(--font-sans); margin-left: 0.25em; }
+/* The value block a mark applies to — struck through, in the mark's rank colour.
+   `text-decoration` on the value's own element leaves the trailing «(*)»/«(!)»
+   sign (a sibling) untouched. */
+.suspect    { text-decoration: line-through; text-decoration-color: rgba(201, 122, 61, 0.75); }
+.erroneous  { text-decoration: line-through; text-decoration-color: rgba(178, 58, 58, 0.75); }
 .untranslated {
   background: rgba(255, 220, 0, 0.08);
   border-bottom: 1px dashed rgba(255, 220, 0, 0.3);
