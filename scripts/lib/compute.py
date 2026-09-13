@@ -880,6 +880,18 @@ def _compute_catalog_groups(
         if prefix is None:
             plain_lines.append(value)
         else:
+            # Krause pattern/presentation numbers are stored under a synthetic
+            # «Pn» ref-type so they stay OUT of the KM merge-key space (the
+            # Bruun parser routes «KM-Pn10» there on purpose — §9.4: a Pn base
+            # like «Pn10» recurs across reigns and Krause volumes and would
+            # forge false KM-base merge edges). For DISPLAY they ARE Krause
+            # numbers — the source prints «KM-Pn10» — so relabel the group to
+            # «KM» at render time to restore the canonical form. The upstream
+            # merge key is untouched; this is the CLAUDE.md display-layer-filters
+            # rule (data keeps the collision-safe form, the page shows the
+            # source form). The value keeps its «Pn» stem → «KM# Pn10».
+            if prefix == "Pn":
+                prefix = "KM"
             add(prefix, value)
 
     # Numista — always last. Schema allows scalar `str` or list[str]
