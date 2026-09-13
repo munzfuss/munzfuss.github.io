@@ -185,6 +185,28 @@ _VERIFIABLE_FIELDS = {
     "ruler": "ruler_verified",
 }
 
+# Curator display marks (CLAUDE.md §4) that ride INSIDE a list-form measurement
+# value's FieldValue entries — «this reading is suspect / shown erroneous». A
+# parser NEVER emits them, so on a plain re-seed of the same source the fresh
+# value is the bare re-emission and the verified-wins branch (both sides
+# verified → fresh wins) would silently overwrite the curated list-form and
+# strip the mark. `_carries_curation_mark` lets the merge keep existing whenever
+# it carries a mark the fresh value lacks. (Caught 2026-09-13: the 5.62 g KMM
+# suspect on the 1531 Ungersk Gylden was clobbered by a re-seed's verified
+# scalar — no `_curation_holds` had been placed on the field.)
+_CURATION_MARK_KEYS = ("suspect", "erroneous")
+
+
+def _carries_curation_mark(value) -> bool:
+    """True when `value` is a list-form measurement whose any entry carries a
+    truthy `suspect` or `erroneous` annotation."""
+    if not isinstance(value, list):
+        return False
+    return any(
+        isinstance(entry, dict) and any(entry.get(k) for k in _CURATION_MARK_KEYS)
+        for entry in value
+    )
+
 
 def _make_yaml_loader() -> ruamel.yaml.YAML:
     """Round-trip YAML loader. Matches the dumper config used in the builders so
@@ -357,8 +379,13 @@ def merge_one(
         # value only when it is source-attested and fresh is not.
         _existing_wins = (
             _val_field in existing_keys
-            and bool(existing.get(_flag_field))
-            and not bool(fresh.get(_flag_field))
+            and (
+                (bool(existing.get(_flag_field)) and not bool(fresh.get(_flag_field)))
+                or (
+                    _carries_curation_mark(existing.get(_val_field))
+                    and not _carries_curation_mark(fresh.get(_val_field))
+                )
+            )
         )
         if not _existing_wins and fresh.get(_val_field) != existing.get(_val_field):
             _flag_follows_fresh.add(_flag_field)
@@ -437,6 +464,15 @@ def merge_one(
                 key in existing_keys
                 and existing_verified
                 and not fresh_verified
+            ):
+                continue
+            # A curator suspect/erroneous mark lives inside the value and is
+            # never re-emitted by a parser; keep existing when it carries a
+            # mark the fresh value lacks, so a plain re-seed cannot strip it.
+            if (
+                key in existing_keys
+                and _carries_curation_mark(existing.get(key))
+                and not _carries_curation_mark(fresh.get(key))
             ):
                 continue
         # Default: fresh wins.
