@@ -70,6 +70,20 @@
   {%- if kind -%}<span class="{{ kind }}">{{ text|safe }}</span>{%- else -%}{{ text|safe }}{%- endif -%}
 {%- endmacro -%}
 
+{#- Join a catalogue group's values. Aagaard entries carry a long parenthetical
+    form («13.1 (53-1/53-1)»); two or more of those on one line overflow the
+    Catalog column, so break after each comma onto its own line. Every other
+    group (and short Aagaard number lists without the «(…)» qualifier) stays a
+    single comma-separated line. `{{ v }}` is auto-escaped; the literal `<br>`
+    is template text, i.e. a real line break. -#}
+{%- macro catvals(prefix, vals) -%}
+  {%- if prefix == 'Aagaard' and vals|length >= 2 and '(' in (vals|join('')) -%}
+    {%- for v in vals -%}{{ v }}{%- if not loop.last %},<br>{% endif -%}{%- endfor -%}
+  {%- else -%}
+    {{- vals | join(', ') -}}
+  {%- endif -%}
+{%- endmacro -%}
+
 {%- macro mark(sources, marks) -%}
   {%- if marks and sources -%}
     {%- set ns = namespace(kind=none, why=none) -%}
@@ -110,7 +124,7 @@
         {#- A tooltip given as a `marker.*` key is resolved per language; older
             catalog tooltips are literal strings and pass through unchanged. -#}
         {%- set tip = ui_get(tooltip) if tooltip and tooltip.startswith('marker.') else tooltip -%}
-        <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ vals | join(', ') }}</span>
+        <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ catvals(prefix, vals) }}</span>
       {%- else -%}
         {%- for v in vals -%}
           <span class="cat-group cat-plain">{{ v }}</span>
@@ -389,7 +403,7 @@
         {#- A tooltip given as a `marker.*` key is resolved per language; older
             catalog tooltips are literal strings and pass through unchanged. -#}
         {%- set tip = ui_get(tooltip) if tooltip and tooltip.startswith('marker.') else tooltip -%}
-        <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ vals | join(', ') }}</span>
+        <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ catvals(prefix, vals) }}</span>
       {%- else -%}
         {%- for v in vals -%}
           <span class="cat-group cat-plain">{{ v }}</span>
