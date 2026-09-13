@@ -2328,6 +2328,11 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
    sign (a sibling) untouched. */
 .suspect    { text-decoration: line-through; text-decoration-color: rgba(201, 122, 61, 0.75); }
 .erroneous  { text-decoration: line-through; text-decoration-color: rgba(178, 58, 58, 0.75); }
+/* The Δ percentage line (.sd-pct) is inline-block, so an ancestor's line-through
+   does not reach it (atomic inline boxes are not decorated by their parents) —
+   re-apply it explicitly when the Δ badge itself is marked. */
+.suspect .sd-pct    { text-decoration: line-through; text-decoration-color: rgba(201, 122, 61, 0.75); }
+.erroneous .sd-pct  { text-decoration: line-through; text-decoration-color: rgba(178, 58, 58, 0.75); }
 .untranslated {
   background: rgba(255, 220, 0, 0.08);
   border-bottom: 1px dashed rgba(255, 220, 0, 0.3);
