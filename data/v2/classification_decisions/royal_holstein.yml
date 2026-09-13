@@ -114,10 +114,13 @@ assignments:
       Curator (Serhii) 2026-07-12.
   - coin_id: unified-dk-bruun-5326
     fuss: reichsdukatenfuss
-    phase: II
+    phase:
+      denmark: III
+      schleswig_holstein: I
     kind: kurant
-    reason: 'Re-phased 2026-08-14 (Serhii): Christian IV 1 Portugaløser 1623, Hede 156, Schou 3, Fr 66, Bruun 5326. Moved from Phase I to Phase II with the reichsdukatenfuss phase-boundary rework (Phase
-      I now ends 1611; Phase II 1623-1726). Curator direction.'
+    reason: 'Christian IV 1 Portugaløser 1623, Hede 156, Schou 3, Fr 66, Bruun 5326. Re-phased 2026-08-14 (Serhii) into the 1623-1726 late-.986-gold window; that window was renumbered from Phase II to Phase
+      III by the four-phase Dukatfod rework (fa19df4: DK now I 1531-1601 / II 1602-1611 / III 1623-1726 / IV 1726-1802). This coin was stranded on the old «II» — corrected here to the per-location dict
+      its 14 royal_holstein siblings already carry: denmark III (1623-1726), schleswig_holstein I (1600-1726). Curator direction.'
   - coin_id: unified-ngc-1050316
     fuss: 18_5_thaler
     phase: II
