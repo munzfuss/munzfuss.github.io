@@ -325,7 +325,9 @@ coins:
       bruun_lot_no: 14243
       bruun_page: 312
       sieg: '15.2'
-      lange: 529c
+      lange:
+        - 529a
+        - 529c
       dav: 3714B
     metal: silver
     metal_verified: true
@@ -335,6 +337,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 28.36
+        source: kmk
       - value: 28.65
         source: bruun
     sources:
@@ -347,6 +351,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-thaler-km-20-1622-cuid-1206706-duid-1389456
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714785
+        ref: KMM 714785 (Inv. FP 12405.265)
     note:
       de: Reichsthaler 1622-TR · Münzmeister Tobias Reinhardt
       en: Reichsthaler 1622-TR · mintmaster Tobias Reinhardt
@@ -1165,51 +1172,6 @@ coins:
     verification_note: *id001
     composed_of:
       - unified-kmk-367971
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling lybsk
-    ruler: Hans den Yngre
-    issuing_entity: sonderburg_duchy
-    id: unified-kmk-370043
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    mint: Sønderborg
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.89
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/370043
-        ref: KMM 370043 (Inv. FP 4345.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81764
-        ref: KMM 81764 (Inv. GP 888.342)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81770
-        ref: KMM 81770 (Inv. GP 888.348)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81776
-        ref: KMM 81776 (Inv. GP 888.354)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81765
-        ref: KMM 81765 (Inv. GP 888.343)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81766
-        ref: KMM 81766 (Inv. GP 888.344)
-        display: false
-    verification_note: *id001
-    composed_of:
-      - unified-kmk-370043
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -2267,7 +2229,7 @@ coins:
     ruler: Johann
     mintmaster: Tobias Reinhardt
     issuing_entity: sonderburg_duchy
-    id: unified-ikmk-18284699
+    id: unified-ikmk-18284398
     year_first: 1618
     year_last: 1618
     year_label: '1618'
@@ -2281,6 +2243,10 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 2.16
+        source: ikmk
+      - value: 2.24
+        source: ikmk
       - value: 2.35
         source: ikmk
     diameter_mm:
@@ -2288,10 +2254,748 @@ coins:
         source: ikmk
     sources:
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18284398
+        ref: IKMK Berlin 18284398
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18284699
         ref: IKMK Berlin 18284699
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284700
+        ref: IKMK Berlin 18284700
     inscription_obv: IOHAN D G HAERES NOR
     inscription_rev: D SCHL E H C I O E D 18
-    verification_note: *id002
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note:
+      de: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Interactive Catalogue of the Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
+      uk: Запис з інтерактивного каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
     composed_of:
-      - unified-ikmk-18284699
+      - unified-ikmk-18284398
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-131474
+    catalog:
+      lange: '540'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/131474
+        ref: KMM 131474 (Inv. FP 2519.138)
+    verification_note: &id003
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+    composed_of:
+      - unified-kmk-131474
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling
+    ruler: Hans den Yngre
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-133194
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/133194
+        ref: KMM 133194 (Inv. FP 9355.10)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-133194
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling
+    ruler: Hans den Yngre
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-133195
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/133195
+        ref: KMM 133195 (Inv. FP 9355.11)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-133195
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling
+    ruler: Hans den Yngre
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-133196
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/133196
+        ref: KMM 133196 (Inv. FP 9355.12)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-133196
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skiling lybsk
+    ruler: Johan af Sønderborg
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-159561
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159561
+        ref: KMM 159561 (Inv. FP 1813.160)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-159561
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skiling lybsk
+    ruler: Johan af Sønderborg
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-159562
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159562
+        ref: KMM 159562 (Inv. FP 1813.159)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-159562
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skiling lybsk
+    ruler: Johan af Sønderborg
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-159563
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159563
+        ref: KMM 159563 (Inv. FP 1813.158)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-159563
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-200939
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200939
+        ref: KMM 200939 (Inv. FP 3108.11611)
+    verification_note: &id004
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+    composed_of:
+      - unified-kmk-200939
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-200940
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200940
+        ref: KMM 200940 (Inv. FP 3108.11610)
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-200940
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-200941
+    year_first: 1620
+    year_last: 1629
+    year_ranges:
+      -   - 1620
+          - 1629
+    year_label: 1620-1629
+    mint: Sønderborg
+    catalog:
+      lange: 541-542
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.89
+        source: kmk
+      - value: 0.9
+        source: kmk
+      - value: 0.919
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200941
+        ref: KMM 200941 (Inv. FP 3108.11609)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200942
+        ref: KMM 200942 (Inv. FP 3108.11608)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200943
+        ref: KMM 200943 (Inv. FP 3108.11607)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200983
+        ref: KMM 200983 (Inv. FP 3108.11567)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200984
+        ref: KMM 200984 (Inv. FP 3108.11566)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200985
+        ref: KMM 200985 (Inv. FP 3108.11565)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/370043
+        ref: KMM 370043 (Inv. FP 4345.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714775
+        ref: KMM 714775 (Inv. FP 12405.275)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714777
+        ref: KMM 714777 (Inv. FP 12405.273)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81764
+        ref: KMM 81764 (Inv. GP 888.342)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81765
+        ref: KMM 81765 (Inv. GP 888.343)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81766
+        ref: KMM 81766 (Inv. GP 888.344)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81770
+        ref: KMM 81770 (Inv. GP 888.348)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81776
+        ref: KMM 81776 (Inv. GP 888.354)
+        display: false
+    note:
+      de: rytterpenning
+      en: rytterpenning
+      uk: rytterpenning
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-200941
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-200995
+    year_first: 1620
+    year_last: 1621
+    year_ranges:
+      -   - 1620
+          - 1621
+    year_label: 1620-1621
+    catalog:
+      lange: '2'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200995
+        ref: KMM 200995 (Inv. FP 3108.11555)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200996
+        ref: KMM 200996 (Inv. FP 3108.11554)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200997
+        ref: KMM 200997 (Inv. FP 3108.11553)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201026
+        ref: KMM 201026 (Inv. FP 3108.11524)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201027
+        ref: KMM 201027 (Inv. FP 3108.11523)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201028
+        ref: KMM 201028 (Inv. FP 3108.11522)
+        display: false
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-200995
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-201073
+    catalog:
+      lange: '2'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201073
+        ref: KMM 201073 (Inv. FP 3108.11477)
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-201073
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-201074
+    catalog:
+      lange: '2'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201074
+        ref: KMM 201074 (Inv. FP 3108.11476)
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-201074
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-201075
+    catalog:
+      lange: '2'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201075
+        ref: KMM 201075 (Inv. FP 3108.11475)
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-201075
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Sk., lybsk
+    ruler: Hans den Yngre
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-296097
+    year_first: 1620
+    year_last: 1629
+    year_ranges:
+      -   - 1620
+          - 1629
+    year_label: 1620-1629
+    catalog:
+      lange: 541-542
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.72
+        source: kmk
+      - value: 0.946
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/296097
+        ref: KMM 296097 (Inv. FP 9040.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/296098
+        ref: KMM 296098 (Inv. FP 9040.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/354886
+        ref: KMM 354886 (Inv. FP 4852.17)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714773
+        ref: KMM 714773 (Inv. FP 12405.277)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714776
+        ref: KMM 714776 (Inv. FP 12405.274)
+    note:
+      de: rytterpenning
+      en: rytterpenning
+      uk: rytterpenning
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-296097
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/96 Thaler
+    ruler: Hans den Yngre
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-329760
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    catalog:
+      lange: '538'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.55
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/329760
+        ref: KMM 329760 (Inv. BP 483.3)
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-329760
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/64 Thaler
+    ruler: Hans den Yngre
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-329766
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    catalog:
+      lange: 537b
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.73
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/329766
+        ref: KMM 329766 (Inv. RP 895.1)
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-329766
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/64 Thaler
+    ruler: Hans den Yngre
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-329767
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    catalog:
+      lange: 573c
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.69
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/329767
+        ref: KMM 329767 (Inv. RP 896.1)
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-329767
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling
+    ruler: Hans den Yngre
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-355088
+    catalog:
+      lange: '541'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/355088
+        ref: KMM 355088 (Inv. FP 4840.2)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-355088
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Sønderborg
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-369863
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/369863
+        ref: KMM 369863 (Inv. FP 4379.31)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-369863
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Schilling lybsk
+    ruler: Hans  den Yngre
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-372979
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/372979
+        ref: KMM 372979 (Inv. FP 4250.4)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-372979
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Sl.-H. Sønderborg
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-714771
+    year_first: 1564
+    year_last: 1623
+    year_ranges:
+      -   - 1564
+          - 1623
+    year_label: 1564-1623
+    catalog:
+      lange: '540'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.919
+        source: kmk
+      - value: 0.96
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714771
+        ref: KMM 714771 (Inv. FP 12405.279)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714772
+        ref: KMM 714772 (Inv. FP 12405.278)
+    note:
+      de: rytterpenning
+      en: rytterpenning
+      uk: rytterpenning
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-714771
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Sl.-H. Sønderborg
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-714778
+    year_first: 1623
+    year_last: 1623
+    year_label: '1623'
+    catalog:
+      lange: '547'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.9
+        source: kmk
+      - value: 0.94
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714778
+        ref: KMM 714778 (Inv. FP 12405.272)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714779
+        ref: KMM 714779 (Inv. FP 12405.271)
+    note:
+      de: rytterpenning
+      en: rytterpenning
+      uk: rytterpenning
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-714778
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Sl.-H. Sønderborg
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-714780
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    catalog:
+      lange: '542'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.0
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714780
+        ref: KMM 714780 (Inv. FP 12405.270)
+    note:
+      de: rytterpenning
+      en: rytterpenning
+      uk: rytterpenning
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-714780
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Hans den Yngre af Sl.-H. Sønderborg
+    issuing_entity: sonderburg_duchy
+    id: unified-kmk-714781
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
+    catalog:
+      lange: '541'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.9
+        source: kmk
+      - value: 0.91
+        source: kmk
+      - value: 0.95
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714781
+        ref: KMM 714781 (Inv. FP 12405.269)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714782
+        ref: KMM 714782 (Inv. FP 12405.268)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714784
+        ref: KMM 714784 (Inv. FP 12405.266)
+    note:
+      de: rytterpenning
+      en: rytterpenning
+      uk: rytterpenning
+    verification_note: *id004
+    composed_of:
+      - unified-kmk-714781

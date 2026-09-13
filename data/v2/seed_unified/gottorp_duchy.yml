@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `gottorp_duchy`.
-# Generated 2026-09-12 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-09-13 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
-# Input: 702 per-source seed entries.
-# Output: 377 unified entries (one per physical coin).
+# Input: 807 per-source seed entries.
+# Output: 453 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gottorp_duchy
-generated_at: '2026-09-12'
+generated_at: '2026-09-13'
 coins:
   - id: unified-dk-bruun-14114
     fuss: seed_unsorted
@@ -2631,6 +2631,65 @@ coins:
     composed_of:
       - dk-numista-301094
       - schleswig_holstein-numismaster-167352
+  - id: unified-dk-numista-301149
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1⁄16 Thaler
+    year_first: 1594
+    year_last: 1605
+    year_ranges:
+      -   - 1594
+          - 1605
+    year_label: 1594-1605
+    ruler: Johann Adolf
+    mint: Schleswig
+    catalog:
+      km: '5'
+      numista: '301149'
+      lange:
+        - 280-290
+        - 280-90
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    diameter_mm:
+      - value: 28.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/301149
+        ref: Numista N#301149 — 1⁄16 Thaler - John Adolphus
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167262
+        ref: KMM 167262 (Inv. FP 788.4.17)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167263
+        ref: KMM 167263 (Inv. FP 788.4.16)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167267
+        ref: KMM 167267 (Inv. FP 788.4.13)
+      - type: literature
+        url: https://numismaster.com/MC_167337
+        ref: NumisMaster
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references
+        (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - dk-numista-301149
+      - kmk-167262
+      - kmk-167263
+      - kmk-167267
+      - schleswig_holstein-numismaster-167337
   - id: unified-dk-numista-303372
     fuss: seed_unsorted
     phase: numista
@@ -3528,6 +3587,113 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-150537
+  - id: unified-kmk-167265
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1597
+    year_last: 1597
+    year_label: '1597'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167265
+        ref: KMM 167265 (Inv. FP 788.5.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167266
+        ref: KMM 167266 (Inv. FP 788.5.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167271
+        ref: KMM 167271 (Inv. FP 788.5.3)
+    verification_note: &id003
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-167265
+      - kmk-167266
+      - kmk-167271
+  - id: unified-kmk-167280
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1595
+    year_last: 1595
+    year_label: '1595'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167280
+        ref: KMM 167280 (Inv. FP 788.3.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167281
+        ref: KMM 167281 (Inv. FP 788.3.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167285
+        ref: KMM 167285 (Inv. FP 788.3.1)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-167280
+      - kmk-167281
+      - kmk-167285
+  - id: unified-kmk-167284
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1592
+    year_last: 1592
+    year_label: '1592'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167284
+        ref: KMM 167284 (Inv. FP 788.1)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-167284
+  - id: unified-kmk-167287
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1594
+    year_last: 1594
+    year_label: '1594'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167287
+        ref: KMM 167287 (Inv. FP 788.2)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-167287
   - id: unified-kmk-167312
     fuss: seed_unsorted
     phase: kmk
@@ -3792,6 +3958,27 @@ coins:
     composed_of:
       - kmk-168043
       - kmk-622083
+  - id: unified-kmk-175941
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling
+    ruler: Johan Adolf
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/175941
+        ref: KMM 175941 (Inv. FP 2920.67)
+    verification_note: &id004
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The Müntzfuß of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника ще не визначено.
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-175941
   - id: unified-kmk-184396
     fuss: seed_unsorted
     phase: kmk
@@ -4215,6 +4402,34 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-331519
+  - id: unified-kmk-340562
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1-64 Thaler
+    year_first: 1593
+    year_last: 1599
+    year_ranges:
+      -   - 1593
+          - 1599
+    year_label: 1593-1599
+    ruler: Johan Adolf
+    catalog:
+      lange:
+        - '306'
+        - 306-10
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/340562
+        ref: KMM 340562 (Inv. FP 5620.2)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-340562
   - id: unified-kmk-345239
     fuss: seed_unsorted
     phase: kmk
@@ -4554,6 +4769,42 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-353462
+  - id: unified-kmk-353471
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 4 Skilling lybsk
+    ruler: Johan Friedrich af Gottorp
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/353471
+        ref: KMM 353471 (Inv. FP 4964.42)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-353471
+  - id: unified-kmk-354144
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 4 Skilling lybsk
+    ruler: Johan Frederik af Gottorp
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/354144
+        ref: KMM 354144 (Inv. FP 4962.1)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-354144
   - id: unified-kmk-354215
     fuss: seed_unsorted
     phase: kmk
@@ -4624,6 +4875,48 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-354423
+  - id: unified-kmk-355146
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling lybsk
+    year_first: 1600
+    year_last: 1600
+    year_label: '1600'
+    ruler: Johan Adolf
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/355146
+        ref: KMM 355146 (Inv. FP 4832.15)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-355146
+  - id: unified-kmk-355320
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/64 Taler
+    year_first: 1596
+    year_last: 1596
+    year_label: '1596'
+    ruler: Johan Adolf
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/355320
+        ref: KMM 355320 (Inv. FP 4826.17)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-355320
   - id: unified-kmk-355855
     fuss: seed_unsorted
     phase: kmk
@@ -4646,6 +4939,48 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-355855
+  - id: unified-kmk-368442
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Specie/breddaler
+    year_first: 1607
+    year_last: 1607
+    year_label: '1607'
+    ruler: Johan Adolph
+    catalog:
+      km: '16'
+      lange:
+        - 264A
+        - 264B
+        - 264c
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 57.05
+        source: kmk
+      - value: 59.96
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/368442
+        ref: KMM 368442 (Inv. KP 605.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/368460
+        ref: KMM 368460 (Inv. BP 20.1)
+      - type: literature
+        url: https://numismaster.com/MC_167365
+        ref: NumisMaster
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-368442
+      - kmk-368460
+      - schleswig_holstein-numismaster-167365
   - id: unified-kmk-368444
     fuss: seed_unsorted
     phase: kmk
@@ -4727,41 +5062,29 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-368459
-  - id: unified-kmk-368460
+  - id: unified-kmk-372926
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 2 Speciedaler/ breddaler
-    year_first: 1607
-    year_last: 1607
-    year_label: '1607'
-    ruler: Johan Adolph
+    nominal: 1/96 Daler
+    year_first: 1597
+    year_last: 1597
+    year_label: '1597'
+    ruler: Johan Adolf
     catalog:
-      km: '16'
-      lange:
-        - 264B
-        - 264c
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
+      lange: '309'
+    metal_verified: false
+    weight_rough_verified: false
     mint_verified: false
     verified: false
-    weight_rough_g:
-      - value: 57.05
-        source: kmk
     sources:
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/368460
-        ref: KMM 368460 (Inv. BP 20.1)
-      - type: literature
-        url: https://numismaster.com/MC_167365
-        ref: NumisMaster
-    verification_note: *id002
+        url: https://samlinger.natmus.dk/KMM/object/372926
+        ref: KMM 372926 (Inv. FP 4257.4)
+    verification_note: *id004
     issuing_entity: gottorp_duchy
     composed_of:
-      - kmk-368460
-      - schleswig_holstein-numismaster-167365
+      - kmk-372926
   - id: unified-kmk-394023
     fuss: seed_unsorted
     phase: kmk
@@ -5756,6 +6079,28 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-463712
+  - id: unified-kmk-488161
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    year_first: 1599
+    year_last: 1599
+    year_label: '1599'
+    ruler: Johan Adolph
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/488161
+        ref: KMM 488161 (Inv. FP 7.2)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-488161
   - id: unified-kmk-574960
     fuss: seed_unsorted
     phase: kmk
@@ -6378,6 +6723,321 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-622082
+  - id: unified-kmk-624296
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624296
+        ref: KMM 624296 (Inv. FP 788.18.3)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624296
+  - id: unified-kmk-624297
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624297
+        ref: KMM 624297 (Inv. FP 788.18.2)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624297
+  - id: unified-kmk-624298
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624298
+        ref: KMM 624298 (Inv. FP 788.18.1)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624298
+  - id: unified-kmk-624302
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1607
+    year_last: 1607
+    year_label: '1607'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624302
+        ref: KMM 624302 (Inv. FP 788.15)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624302
+  - id: unified-kmk-624303
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1606
+    year_last: 1606
+    year_label: '1606'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624303
+        ref: KMM 624303 (Inv. FP 788.14.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624304
+        ref: KMM 624304 (Inv. FP 788.14.1)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624303
+      - kmk-624304
+  - id: unified-kmk-624318
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1604
+    year_last: 1604
+    year_label: '1604'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624318
+        ref: KMM 624318 (Inv. FP 788.12.43)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624319
+        ref: KMM 624319 (Inv. FP 788.12.42)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624320
+        ref: KMM 624320 (Inv. FP 788.12.41)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624318
+      - kmk-624319
+      - kmk-624320
+  - id: unified-kmk-624361
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1603
+    year_last: 1603
+    year_label: '1603'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624361
+        ref: KMM 624361 (Inv. FP 788.11.15)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624362
+        ref: KMM 624362 (Inv. FP 788.11.14)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624363
+        ref: KMM 624363 (Inv. FP 788.11.13)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624361
+      - kmk-624362
+      - kmk-624363
+  - id: unified-kmk-624376
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1602
+    year_last: 1602
+    year_label: '1602'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624376
+        ref: KMM 624376 (Inv. FP 788.10.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624377
+        ref: KMM 624377 (Inv. FP 788.10.7)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624378
+        ref: KMM 624378 (Inv. FP 788.10.6)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624376
+      - kmk-624377
+      - kmk-624378
+  - id: unified-kmk-624384
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1601
+    year_last: 1601
+    year_label: '1601'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624384
+        ref: KMM 624384 (Inv. FP 788.9.14)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624385
+        ref: KMM 624385 (Inv. FP 788.9.13)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624386
+        ref: KMM 624386 (Inv. FP 788.9.12)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624384
+      - kmk-624385
+      - kmk-624386
+  - id: unified-kmk-624398
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1600
+    year_last: 1600
+    year_label: '1600'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624398
+        ref: KMM 624398 (Inv. FP 788.8.35)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624399
+        ref: KMM 624399 (Inv. FP 788.8.34)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624400
+        ref: KMM 624400 (Inv. FP 788.8.33)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624398
+      - kmk-624399
+      - kmk-624400
+  - id: unified-kmk-624433
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1599
+    year_last: 1599
+    year_label: '1599'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624433
+        ref: KMM 624433 (Inv. FP 788.7.20)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624434
+        ref: KMM 624434 (Inv. FP 788.7.19)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624435
+        ref: KMM 624435 (Inv. FP 788.7.18)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624433
+      - kmk-624434
+      - kmk-624435
+  - id: unified-kmk-624454
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1598
+    year_last: 1598
+    year_label: '1598'
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624454
+        ref: KMM 624454 (Inv. FP 788.6.29)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624455
+        ref: KMM 624455 (Inv. FP 788.6.28)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624456
+        ref: KMM 624456 (Inv. FP 788.6.27)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-624454
+      - kmk-624455
+      - kmk-624456
   - id: unified-kmk-639291
     fuss: seed_unsorted
     phase: kmk
@@ -6582,6 +7242,840 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-657527
+  - id: unified-kmk-661832
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1593
+    year_last: 1604
+    year_ranges:
+      -   - 1593
+          - 1604
+    year_label: 1593-1604
+    ruler: Johan Adolf
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/661832
+        ref: KMM 661832 (Inv. FP 11978.4)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-661832
+  - id: unified-kmk-687753
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687753
+        ref: KMM 687753 (Inv. FP 64.357)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687753
+  - id: unified-kmk-687754
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687754
+        ref: KMM 687754 (Inv. FP 64.356)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687754
+  - id: unified-kmk-687755
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687755
+        ref: KMM 687755 (Inv. FP 64.355)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687755
+  - id: unified-kmk-687757
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1601
+    year_last: 1601
+    year_label: '1601'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687757
+        ref: KMM 687757 (Inv. FP 64.353)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687757
+  - id: unified-kmk-687758
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1600
+    year_last: 1600
+    year_label: '1600'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687758
+        ref: KMM 687758 (Inv. FP 64.352)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687758
+  - id: unified-kmk-687759
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1600
+    year_last: 1600
+    year_label: '1600'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687759
+        ref: KMM 687759 (Inv. FP 64.351)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687759
+  - id: unified-kmk-687760
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1600
+    year_last: 1600
+    year_label: '1600'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687760
+        ref: KMM 687760 (Inv. FP 64.350)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687760
+  - id: unified-kmk-687763
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1599
+    year_last: 1599
+    year_label: '1599'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687763
+        ref: KMM 687763 (Inv. FP 64.347)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687763
+  - id: unified-kmk-687764
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1599
+    year_last: 1599
+    year_label: '1599'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687764
+        ref: KMM 687764 (Inv. FP 64.346)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687764
+  - id: unified-kmk-687765
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1598
+    year_last: 1598
+    year_label: '1598'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687765
+        ref: KMM 687765 (Inv. FP 64.345)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687765
+  - id: unified-kmk-687766
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1598
+    year_last: 1598
+    year_label: '1598'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687766
+        ref: KMM 687766 (Inv. FP 64.344)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687766
+  - id: unified-kmk-687767
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1598
+    year_last: 1598
+    year_label: '1598'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687767
+        ref: KMM 687767 (Inv. FP 64.343)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687767
+  - id: unified-kmk-687770
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1597
+    year_last: 1597
+    year_label: '1597'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687770
+        ref: KMM 687770 (Inv. FP 64.340)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687770
+  - id: unified-kmk-687771
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1597
+    year_last: 1597
+    year_label: '1597'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687771
+        ref: KMM 687771 (Inv. FP 64.339)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687771
+  - id: unified-kmk-687772
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1597
+    year_last: 1597
+    year_label: '1597'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687772
+        ref: KMM 687772 (Inv. FP 64.338)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687772
+  - id: unified-kmk-687775
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1596
+    year_last: 1596
+    year_label: '1596'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687775
+        ref: KMM 687775 (Inv. FP 64.335)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687775
+  - id: unified-kmk-687776
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1596
+    year_last: 1596
+    year_label: '1596'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687776
+        ref: KMM 687776 (Inv. FP 64.334)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687776
+  - id: unified-kmk-687777
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1596
+    year_last: 1596
+    year_label: '1596'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687777
+        ref: KMM 687777 (Inv. FP 64.333)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687777
+  - id: unified-kmk-687779
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1595
+    year_last: 1595
+    year_label: '1595'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687779
+        ref: KMM 687779 (Inv. FP 64.331)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687779
+  - id: unified-kmk-687780
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1595
+    year_last: 1595
+    year_label: '1595'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687780
+        ref: KMM 687780 (Inv. FP 64.330)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687780
+  - id: unified-kmk-687781
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1595
+    year_last: 1595
+    year_label: '1595'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687781
+        ref: KMM 687781 (Inv. FP 64.329)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687781
+  - id: unified-kmk-687783
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1594
+    year_last: 1594
+    year_label: '1594'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687783
+        ref: KMM 687783 (Inv. FP 64.327)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687783
+  - id: unified-kmk-687784
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1594
+    year_last: 1594
+    year_label: '1594'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687784
+        ref: KMM 687784 (Inv. FP 64.326)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687784
+  - id: unified-kmk-687785
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1594
+    year_last: 1594
+    year_label: '1594'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687785
+        ref: KMM 687785 (Inv. FP 64.325)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687785
+  - id: unified-kmk-687786
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1593
+    year_last: 1593
+    year_label: '1593'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687786
+        ref: KMM 687786 (Inv. FP 64.324)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687786
+  - id: unified-kmk-687787
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1598
+    year_last: 1598
+    year_label: '1598'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687787
+        ref: KMM 687787 (Inv. FP 64.323)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687787
+  - id: unified-kmk-687788
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1598
+    year_last: 1598
+    year_label: '1598'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687788
+        ref: KMM 687788 (Inv. FP 64.322)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687788
+  - id: unified-kmk-687789
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1598
+    year_last: 1598
+    year_label: '1598'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687789
+        ref: KMM 687789 (Inv. FP 64.321)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687789
+  - id: unified-kmk-687792
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1597
+    year_last: 1597
+    year_label: '1597'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687792
+        ref: KMM 687792 (Inv. FP 64.318)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687792
+  - id: unified-kmk-687793
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1597
+    year_last: 1597
+    year_label: '1597'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687793
+        ref: KMM 687793 (Inv. FP 64.317)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687793
+  - id: unified-kmk-687794
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1596
+    year_last: 1596
+    year_label: '1596'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687794
+        ref: KMM 687794 (Inv. FP 64.316)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687794
+  - id: unified-kmk-687795
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1596
+    year_last: 1596
+    year_label: '1596'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687795
+        ref: KMM 687795 (Inv. FP 64.315)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687795
+  - id: unified-kmk-687796
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1596
+    year_last: 1596
+    year_label: '1596'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687796
+        ref: KMM 687796 (Inv. FP 64.314)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687796
+  - id: unified-kmk-687801
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1595
+    year_last: 1595
+    year_label: '1595'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687801
+        ref: KMM 687801 (Inv. FP 64.309)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687801
+  - id: unified-kmk-687802
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1595
+    year_last: 1595
+    year_label: '1595'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687802
+        ref: KMM 687802 (Inv. FP 64.308)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687802
+  - id: unified-kmk-687803
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1594
+    year_last: 1594
+    year_label: '1594'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687803
+        ref: KMM 687803 (Inv. FP 64.307)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687803
+  - id: unified-kmk-687804
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1594
+    year_last: 1594
+    year_label: '1594'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687804
+        ref: KMM 687804 (Inv. FP 64.306)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687804
+  - id: unified-kmk-687805
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1594
+    year_last: 1594
+    year_label: '1594'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687805
+        ref: KMM 687805 (Inv. FP 64.305)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687805
+  - id: unified-kmk-687807
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Schilling
+    year_first: 1593
+    year_last: 1593
+    year_label: '1593'
+    ruler: Johan Adolph
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687807
+        ref: KMM 687807 (Inv. FP 64.303)
+    verification_note: *id004
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687807
   - id: unified-kmk-698655
     fuss: seed_unsorted
     phase: kmk
@@ -7187,6 +8681,229 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-740293
+  - id: unified-kmk-81498
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Johan Adolf
+    metal: gold
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81498
+        ref: KMM 81498 (Inv. GP 888.76)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-81498
+  - id: unified-kmk-81499
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Johan Adolf
+    metal: gold
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81499
+        ref: KMM 81499 (Inv. GP 888.77)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-81499
+  - id: unified-kmk-81500
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    year_first: 1690
+    year_last: 1690
+    year_label: '1690'
+    ruler: Johan Adolf
+    catalog:
+      lange: '763'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81500
+        ref: KMM 81500 (Inv. GP 888.78)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81501
+        ref: KMM 81501 (Inv. GP 888.79)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-81500
+      - kmk-81501
+  - id: unified-kmk-81502
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    year_first: 1690
+    year_last: 1690
+    year_label: '1690'
+    ruler: Johan Adolf
+    catalog:
+      lange: 759-762
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81502
+        ref: KMM 81502 (Inv. GP 888.80)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-81502
+  - id: unified-kmk-81503
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81503
+        ref: KMM 81503 (Inv. GP 888.81)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-81503
+  - id: unified-kmk-81504
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81504
+        ref: KMM 81504 (Inv. GP 888.82)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-81504
+  - id: unified-kmk-81505
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Johan Adolf
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81505
+        ref: KMM 81505 (Inv. GP 888.83)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-81505
+  - id: unified-kmk-83104
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Johan Adolph
+    metal: gold
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/83104
+        ref: KMM 83104 (Inv. GP 982.128)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-83104
+  - id: unified-kmk-83105
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Johan Adolph
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/83105
+        ref: KMM 83105 (Inv. GP 982.129)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-83105
+  - id: unified-kmk-83106
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Johan Adolph
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/83106
+        ref: KMM 83106 (Inv. GP 982.130)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-83106
+  - id: unified-kmk-83107
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Johan Adolph
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/83107
+        ref: KMM 83107 (Inv. GP 982.131)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-83107
   - id: unified-ngc-1143626
     fuss: seed_unsorted
     phase: ngc
@@ -9260,6 +10977,12 @@ coins:
     mint_verified: false
     verified: false
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624299
+        ref: KMM 624299 (Inv. FP 788.17.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624300
+        ref: KMM 624300 (Inv. FP 788.17.1)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-1-16-thaler-km-42-1615-cuid-1177477-duid-1396328
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -9272,6 +10995,8 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: gottorp_duchy
     composed_of:
+      - kmk-624299
+      - kmk-624300
       - ngc-1177477
       - schleswig_holstein-numismaster-167340
   - id: unified-ngc-1180476
@@ -9526,50 +11251,48 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/16 Thaler
-    year_first: 1594
+    year_first: 1600
     year_last: 1605
     year_ranges:
-      -   - 1594
+      -   - 1600
+          - 1601
+      -   - 1603
           - 1605
-    year_label: 1594-1605
+    year_label: 1600-1601, 1603-1605
     ruler: Johann Adolf
-    mint: Schleswig
     catalog:
       km: '5'
-      numista: '301149'
-      lange:
-        - 280-290
-        - 280-90
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: false
-    diameter_mm_verified: true
-    mint_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
     verified: false
     year_verified: false
-    diameter_mm:
-      - value: 28.0
-        source: numista
     sources:
-      - type: literature
-        url: https://en.numista.com/301149
-        ref: Numista N#301149 — 1⁄16 Thaler - John Adolphus
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624305
+        ref: KMM 624305 (Inv. FP 788.13.13)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624306
+        ref: KMM 624306 (Inv. FP 788.13.12)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624307
+        ref: KMM 624307 (Inv. FP 788.13.11)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-1-16-thaler-km-5-1601-1600-cuid-1180584-duid-1394016
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_167337
-        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: gottorp_duchy
     composed_of:
-      - dk-numista-301149
+      - kmk-624305
+      - kmk-624306
+      - kmk-624307
       - ngc-1180584
-      - schleswig_holstein-numismaster-167337
   - id: unified-ngc-1181664
     fuss: seed_unsorted
     phase: ngc
@@ -11091,6 +12814,9 @@ coins:
     verified: false
     year_verified: false
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624301
+        ref: KMM 624301 (Inv. FP 788.16)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-1-16-thaler-km-12-1604-160z-cuid-1186486-duid-1395985
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -11103,6 +12829,7 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: gottorp_duchy
     composed_of:
+      - kmk-624301
       - ngc-1186486
       - schleswig_holstein-numismaster-167338
   - id: unified-ngc-1186487

@@ -154,3 +154,75 @@ rules:
         - 'chat 2026-05-27: deep Schauenburg tradition audit'
         - 'docs/TODO.md §CE: migration corpus + verification plan'
         - 'docs/TODO.md §CF: deeper 184-entry no-mint cluster audit'
+
+  - id: gottorp_ducal_lineage
+    description: |
+      Holstein-Gottorp ducal coinage (Johann Adolf, r. 1590-1616; Johann
+      Friedrich af Gottorp) routes to gottorp_duchy. These KMM records carry
+      no mint placeholder — the raw `place` is "Gottorph" /
+      "Slesvig-Holsten-Gottorp" / a bare region, which the builder drops to
+      mint=None — so the coarse nation="Danmark" fallback mis-routed them to
+      danish_realm (and some to royal_holstein), where they rendered only on
+      the Denmark page and were absent from the Schleswig-Holstein page (both
+      consume gottorp_duchy). Ruler lineage + the explicit "af Gottorp"
+      designation is the reliable tradition signal. Verified per-coin
+      2026-09-13 (KMM `place` field + Lange 307-312 / Jungk 316; the
+      royal_holstein "Johan Adolf" pieces are 1/16 Thaler 1594-1607 with the
+      Holstein arms, 2 explicitly place="Holsten-Gottorp"); see
+      docs/SOURCES.md §13.16.
+
+      Caveat: a future Sonderburg-Norburg "Johann Adolf" struck with NO mint
+      could match "johan adolf" and be actively re-routed here. The resolver
+      only actively overrides when mint is absent/unverified (a mint-bearing
+      Norburg piece is safe, getting a hint only); a no-mint one would surface
+      for curator review. No such coin exists in the corpus as of 2026-09-13.
+    match:
+      ruler_lineage_any:
+        - 'johan adolf'
+        - 'johan adolph'
+        - 'af gottorp'
+    routes_to: gottorp_duchy
+    audit:
+      first_added: '2026-09-13'
+      first_run_corpus: |
+        KMM (mint=None) Johann-Adolf-of-Gottorp coins mis-routed to
+        danish_realm + royal_holstein re-routed to gottorp_duchy:
+        "Johan Adolph" (place Gottorph, 1593-1601, Sechsling/Schilling),
+        "Johan Adolf" (place Slesvig-Holsten-Gottorp, Lange 307-312),
+        "Johan Frederik/Friedrich af Gottorp" (Jungk 316).
+      related_rules: ['sonderburg_ducal_lineage']
+      source_decisions:
+        - 'chat 2026-09-13: per-coin Gottorp/Sonderburg re-route verification'
+        - 'docs/SOURCES.md §13.16'
+
+  - id: sonderburg_ducal_lineage
+    description: |
+      Schleswig-Holstein-Sonderburg ducal coinage (Hans den Yngre / Hans the
+      Younger, r. 1564-1622, founder of the Sonderburg line; Johann of
+      Sonderburg) routes to sonderburg_duchy. Same defect as the Gottorp rule:
+      KMM records carry no mint placeholder, so nation="Danmark" mis-routed
+      them to danish_realm (and royal_holstein). Verified per-coin 2026-09-13
+      (Lange 540-542 / JsJ; explicit "af Sønderborg"; the royal_holstein
+      pieces carry ruler strings that spell out "af Slesvig-Holsten-Sønderborg
+      1564-1622"); see docs/SOURCES.md §13.16. Patterns are "hans den yngre"
+      (+ the KMM double-space form "hans  den yngre") — NOT bare "den yngre",
+      which wrongly caught Brunswick-Lüneburg's "August den Yngre" / "Henrik
+      den Yngre" (26 false matches, 2026-09-13). "Hans den Yngre" is
+      unambiguously the Sonderburg founder.
+    match:
+      ruler_lineage_any:
+        - 'hans den yngre'
+        - 'hans  den yngre'
+        - 'af sønderborg'
+        - 'af sonderborg'
+    routes_to: sonderburg_duchy
+    audit:
+      first_added: '2026-09-13'
+      first_run_corpus: |
+        KMM (mint=None) Hans-den-Yngre / Johan-af-Sønderborg coins mis-routed
+        to danish_realm + royal_holstein re-routed to sonderburg_duchy
+        (Lange 540-542, 1620-1621).
+      related_rules: ['gottorp_ducal_lineage']
+      source_decisions:
+        - 'chat 2026-09-13: per-coin Gottorp/Sonderburg re-route verification'
+        - 'docs/SOURCES.md §13.16'
