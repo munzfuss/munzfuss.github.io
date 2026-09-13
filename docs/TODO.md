@@ -3526,6 +3526,18 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 
 ## Low priority
 
+### DC. 🟢 KMK seed builder — private-issuer / medal exonumia gate (forward-protection only)  *(opened 2026-09-13)* *(est: small)* *(type: builder filter + test)*
+
+**Status — the underlying issue is already CLOSED for correctness.** The 33 private tokens/medals/note that had reached `danish_realm` final via the KMM bulk harvest are excluded in `data/v2/exclusions/danish_realm.yml` (§9.2, commit `8eb694e`). Exclusions are applied on every absorb and keyed on the stable seed id, so a re-harvest can never re-render them — the render is durably clean (verify_reflow: 0 losses, 33 excluded). This TODO is **forward-protection only**, not a regression fix.
+
+**The gap it would close.** The exclusions cover the KNOWN 33 by id. A KMM re-harvest that surfaces a NEW private-issuer token catalogued as «Mønt» would slip back into the `danish_realm` SEED (the coarse `nation=Danmark` fallback) and would need a fresh manual exclusion. `build_kmk_seed._is_exonumia_workdesc` already drops everything whose `workDescription` does NOT lead with «Mønt» (Jeton / Medalje / Plakette / Tegn / Seddel / Betalingstegn / Andet) — that catches ~81 of the 104 private issues in the cache automatically. The residue that slips through is exactly the private issuer whom KMM mislabels «Mønt».
+
+**Design — regression-proven safe (scan 2026-09-13 over 43 033 KMM records):**
+- **(B) authority private-issuer gate:** treat as exonumia when the KMM `authority` matches `selskab|forening|fabrik|bryggeri|& co|& son|\bhær\b|dampkjøkken|medaljør` (case-insensitive). 104 cache records match; EVERY one is a private association / medalist / company, ZERO are monarchs → no false positives. Over the existing workDescription gate it nets exactly the 28 «Mønt»-labelled tokens.
+- **(C) `medalje` anywhere in `workDescription`** (not only leading) → catches the 5 «Mønt, medalje» Schmahlfeld medal-coins. Safe (all 5 are a medalist's; no legitimate coin we keep is «Mønt, medalje»).
+
+**Done-when.** `build_kmk_seed` drops the B+C set at seed-emit; a re-seed of kmk drops exactly the 28 «Mønt» tokens + the Schmahlfeld family and nothing Danish-state (verify with `verify_reflow.py`); a small unittest pins that a monarch `authority` never matches the B-pattern. Once shipped, the corresponding `exonumia` entries in `exclusions/danish_realm.yml` become redundant belt-and-suspenders (leave them — they cost nothing and document the decision). Foreign-crown Tier-2 (6 one-off coins: England/Æthelred, Stralsund, Rostock-civic, Gdansk, Johann-Albrecht) is deliberately NOT filter-protected — a mint-registry route is unsafe (Rostock is ambiguous: `kmk-703271` is a genuine Danish Hede-10 coin with a Rostock place), and 6 one-offs do not justify per-ruler rules; exclusions suffice.
+
 ### CU. 🔵 Year-union should downweight reign-window placeholder members  *(opened 2026-06-15)* *(est: medium)* *(type: pipeline-rule + regression-test)*
 
 **Context.** `_enrich_final_entry` (absorb) derives a final's displayed year via `_union_year_ranges(members)` — a blind union of every composed member's `year_ranges`. When a member carries a loose full-reign span, the union widens the displayed minting year past what the coin was actually struck. Surfaced by the 2026-06-15 curation-loss field-diff gate (`scripts/maintenance/audit_curation_loss.py`): the ONLY 2 absorb-stage losses project-wide were both this pattern —
