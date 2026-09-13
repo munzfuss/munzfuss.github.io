@@ -50,6 +50,7 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
+import ruamel.yaml
 import yaml
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
@@ -57,7 +58,23 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
 from lib.seed_merge import merge_seed  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
-from lib.v2_resolver import ruamel_to_plain  # noqa: E402
+from lib.v2_seed_writer import _dump_seed_yaml  # noqa: E402
+
+
+def _canonical_seed_yaml() -> ruamel.yaml.YAML:
+    """A ruamel round-trip writer configured EXACTLY like
+    `lib.v2_seed_writer`'s per-entity output — width 200, indent 2/4/2,
+    quotes preserved. A relocation MUST re-serialise seeds in this same
+    format; the old code used PyYAML `safe_dump(width=120)`, which
+    re-flowed every long string in the whole file, so moving 56 coins
+    produced a 570 000-line diff (`-w` showed the real change was ~1.5k
+    lines). Reading round-trip too (not `safe_load`) keeps every
+    untouched entry's quote style byte-identical. Fixed 2026-09-13."""
+    y = ruamel.yaml.YAML(typ="rt")
+    y.preserve_quotes = True
+    y.width = 200
+    y.indent(mapping=2, sequence=4, offset=2)
+    return y
 
 V2_SEED_ROOT = PROJECT_ROOT / "data" / "v2" / "seed"
 
@@ -248,12 +265,31 @@ def _relocate_misclassifications(
               f"{len(coins)} coin(s){suffix}")
         if not apply or not is_relocatable:
             continue
-        # Read both yamls
+        # A relocation is asymmetric on purpose, and the asymmetry is not
+        # obvious — get it wrong and you either lose data or resurrect it:
+        #
+        #   * EXPECTED file (coins ARRIVING) → go through `merge_seed`, so a
+        #     curator-edited field on a coin already in the destination
+        #     survives the merge (merge-aware writer).
+        #   * CURRENT file (coins LEAVING) → do NOT touch `merge_seed`. It
+        #     preserves entries the fresh list no longer produces as
+        #     `orphan_curated` (see lib/seed_merge.py §2) — exactly the
+        #     coins we are trying to REMOVE. Feeding the removed set (or
+        #     the kept set) through merge_seed would re-append the 56 as
+        #     orphans, so they'd live in BOTH entity files at once. The
+        #     current file is therefore filtered in place and written
+        #     directly, never merged.
+        #
+        # Both writes use the canonical ruamel writer (_canonical_seed_yaml
+        # + _dump_seed_yaml) so the file re-flows only where it actually
+        # changed — see _canonical_seed_yaml for the 570k-line-diff bug
+        # that a width mismatch caused.
         cur_path = V2_SEED_ROOT / src / f"{cur}.yml"
         exp_path = V2_SEED_ROOT / src / f"{exp}.yml"
-        cur_data = yaml.safe_load(cur_path.read_text(encoding="utf-8")) or {}
+        _yaml = _canonical_seed_yaml()
+        cur_data = _yaml.load(cur_path.read_text(encoding="utf-8")) or {}
         exp_data = (
-            yaml.safe_load(exp_path.read_text(encoding="utf-8")) or {}
+            _yaml.load(exp_path.read_text(encoding="utf-8")) or {}
             if exp_path.exists() else {}
         )
         # Remove the misclassified coins from current
@@ -287,25 +323,18 @@ def _relocate_misclassifications(
         # dumper). PyYAML's safe_dump can't serialize CommentedMap, so
         # we flatten to plain dicts before assembling the output payload.
         merged, _stats = merge_seed(relocated_coins, exp_path)
-        exp_data["coins"] = ruamel_to_plain(merged)
-        # Also flatten the rest of exp_data — it was loaded via PyYAML
-        # safe_load (plain dicts), so this is a no-op for those keys
-        # but keeps the call shape uniform.
-        exp_data = ruamel_to_plain(exp_data)
-        # Preserve top-level keys if missing in destination
-        if not exp_data.get("entity_id"):
-            exp_data["entity_id"] = exp
-        # Write both
-        cur_path.write_text(
-            yaml.safe_dump(cur_data, sort_keys=False, allow_unicode=True,
-                           default_flow_style=False, width=120),
-            encoding="utf-8",
-        )
-        exp_path.write_text(
-            yaml.safe_dump(exp_data, sort_keys=False, allow_unicode=True,
-                           default_flow_style=False, width=120),
-            encoding="utf-8",
-        )
+        # Keep merge_seed's ruamel CommentedMaps as-is (no flatten to plain):
+        # the canonical writer dumps them with quote style + formatting
+        # intact, so untouched destination entries do not re-flow.
+        exp_data["coins"] = merged
+        # Seed header uses `entity:` (never `entity_id:`); backfill only
+        # when writing a brand-new destination file.
+        if not exp_data.get("entity"):
+            exp_data["entity"] = exp
+        # Write both in canonical format. _dump_seed_yaml skips the write
+        # when the only difference is the generated_at timestamp.
+        _dump_seed_yaml(_yaml, cur_data, cur_path)
+        _dump_seed_yaml(_yaml, exp_data, exp_path)
         print(f"    moved {len(coin_ids)} ids: {src}/{cur}.yml "
               f"({cur_coins_before}→{cur_coins_after}) → {src}/{exp}.yml")
         actions_taken += len(coin_ids)
