@@ -312,12 +312,22 @@ def _excluded_ids(entity: str) -> set[str]:
     # classes it was built from. Bridge the two through seed_unified, which is
     # the only place that maps a unified class to its member seeds — the
     # `unified-<head member>` naming is a convention, not something to parse.
+    seed_ids = set(raw)
     unified_path = ROOT / UNIFIED_REL / f"{entity}.yml"
     if unified_path.exists():
         udoc = yaml.safe_load(unified_path.read_text()) or {}
         for c in udoc.get("coins") or []:
             if c.get("id") and raw & set(c.get("composed_of") or []):
                 raw.add(c["id"])
+
+    # A FOUNDATION-only final (a V1-bootstrap coin the V2 merger never re-derived
+    # — e.g. a non-coin the merger's scope filter drops) carries NO seed_unified
+    # entry to bridge through, so the loop above cannot reach it. But the absorber
+    # matches such a coin's exclusion on the `unified-<seed id>` naming directly
+    # (see data/v2/exclusions header: «dropped when its own unified id … resolves
+    # to a listed id»), and drops it correctly. Mirror that convention here so the
+    # deliberate drop is recognised, not hard-blocked as a phantom loss.
+    raw |= {f"unified-{sid}" for sid in seed_ids}
     return raw
 
 
