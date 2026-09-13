@@ -15,6 +15,54 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-09-13 — foreign-crown scope cleanup (Sweden + Tier-2) and the Gottorp/Sonderburg re-route
+
+Applied the curator rule «a polity's coins appear on a location page only for
+the years the Danish king held that polity's crown» (personal union counts;
+tracked by the issuing CROWN = ruler, not the physical mint city).
+
+Shipped (local, **unpushed**):
+- `163ac3a` / `823c123` / `c78ef4a` — excluded post-1523 Swedish issues from
+  danish_realm (12: Christian III 1535 ×3 struck by Gustav Vasa, Erik XIV,
+  Johan III ×4, Ulrika Eleonora, Fredrik I, Karl XIV Johan, Gustav Vasa
+  1524-1527) + Tier-2 foreign crowns (5: Æthelred II England, Stralsund civic,
+  Rostock civic, August III/Poland-Gdansk, Johann Albrecht I/Mecklenburg). All
+  via `data/v2/exclusions/danish_realm.yml`. Rationale in `docs/SOURCES.md`
+  §13.16 (incl. the KMM-`nation`-is-collection-not-issuer finding: the
+  discriminator is `authority` + the «imitation» marker — `kmk-312155`
+  «Æthelred, imitation» is a Danish coin and STAYS).
+- `83883c7` — year-aware Stockholm/Vesterås mint routing (post-1523 → sweden
+  OOS entity), so a future re-harvest cannot re-introduce them.
+- `288303e` **fix:** `audit_entity_misclassifications._relocate_misclassifications`
+  now writes seeds with the canonical ruamel serializer (`_canonical_seed_yaml`,
+  width 200) + reads round-trip, not PyYAML `safe_dump(width=120)`. The old
+  path re-flowed every long string → a 56-coin move produced a 570 000-line
+  diff (real change ~1.5k). Pinned by `tests/test_relocate_serializer_canonical.py`.
+  The relocation's CUR-vs-EXP asymmetry (CUR = direct dump, never merge_seed,
+  or removed coins resurrect as orphan_curated; EXP = merge_seed) is documented
+  in the tool + `scripts/maintenance/README.md`.
+- `66f1eb5` **data(v2):** routed 151 KMM Holstein-Gottorp + Sonderburg ducal
+  coins out of danish_realm (56) + royal_holstein (95) into gottorp_duchy /
+  sonderburg_duchy via two `entity_routing_rules.yml` rules (gottorp_ducal_lineage,
+  sonderburg_ducal_lineage) + `audit_entity_misclassifications --apply --source kmk`.
+  gottorp/sonderburg set `bulk_promote_pending: all` so the relocated
+  seed_unsorted coins promote. verify_reflow: 0 losses (every removal a
+  recognised relocation); converged on pass 3 of merge→absorb→thin.
+
+**Method note that cost a full revert the first time:** the pipeline is
+TWO-PASS and the thinning phase is SEPARATE. A relocation is
+`audit_entity_misclassifications --apply` → `merge_seeds_cross_source --apply`
+→ `absorb_seeds_into_final_v2 --apply` → **`thin_final_weight_lists --apply`**,
+repeated until `git status` is clean (finals converge on ~pass 3). Skip the
+thinner and danish_realm final carries the full un-thinned §9a envelope
+(+4733 display:false weights) as churn unrelated to the change; measure a
+re-flow ONLY with `verify_reflow.py` (§9b).
+
+**Next (separate passes, NOT started — investigated 2026-09-13, see below):**
+Tier-2 residual review (Rostock 1557 «Christian III» Hede 10), the mint-field
+data-quality debt (spurious «Hamborg»/«Mecklenburg» on genuine Danish-king
+coins), and the exonumia tokens sitting in the `ruler` field of danish_realm.
+
 ## 2026-09-12 — §9a thinning moved off the seed layer; five defects found flushing a full re-flow
 
 Asked to run the whole pipeline (seeds → merge → absorb → classify → relink) so
