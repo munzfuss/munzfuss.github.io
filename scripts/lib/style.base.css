@@ -2292,15 +2292,19 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
    the parent dims its descendants AND its ::after, even with explicit
    opacity:1 on the pseudo (multiplicative compositing). rgba alpha on
    color affects only the text glyphs. */
-.alt-source  { color: rgba(201, 122, 61, 0.65); cursor: help; display: block; width: fit-content; }
+/* Divergent multi-specimen reading. Kept as a hover target (source tooltip) and
+   for layout, but NO distinct text colour — a value from N divergent specimens
+   reads in the normal theme colour, same as a single-specimen value (curator
+   direction 2026-09-13). The divergence is still discoverable via the tooltip. */
+.alt-source  { cursor: help; display: block; width: fit-content; }
 /* проба (fineness) source markers. .fin-src = single/unanimous fineness reading:
-   NORMAL colour, but still carries a source tooltip (the reading always has a
-   provenance — a catalogue, or a Müntzfuß-anchor for inferred values). .fin-alt
-   = one of ≥2 DIVERGENT fineness readings: orange like .alt-source but INLINE
-   (so "Metall .750" stays on one line; .alt-source is display:block). Both use
-   the shared [data-tooltip] hover mechanism. */
+   carries a source tooltip (the reading always has a provenance — a catalogue,
+   or a Müntzfuß-anchor for inferred values). .fin-alt = one of ≥2 DIVERGENT
+   fineness readings: INLINE (so "Metall .750" stays on one line; .alt-source is
+   display:block). Neither carries a distinct colour any more — both read in the
+   normal theme colour; both use the shared [data-tooltip] hover mechanism. */
 .fin-src  { cursor: help; }
-.fin-alt  { color: rgba(201, 122, 61, 0.65); cursor: help; }
+.fin-alt  { cursor: help; }
 /* Markers on a measurement a named source publishes and that we have something
    to say about. The reading still computes and reaches the Δ like any other,
    but a marked figure is STRUCK THROUGH so the doubt is legible at a glance
