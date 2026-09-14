@@ -627,175 +627,410 @@ Bobzin»). Each needs a §0b-1 verification step, or a decision: label as
 hypothesis, or move from `note` (rendered) to `verification_note` (not
 rendered). Listed in the §W step-5 commit body (`9f5a69d`).
 
-## 2026-08-26 — Pre-1544 Gottorp/Schleswig-mint issues → royal_slesvig (option A)
+## 2026-08-29 — §DB re-probed and measured; the re-harvest is NOT worth building
 
-**Curator-authorized pipeline change (Serhii, option A). Committed locally, NOT pushed.**
+**Blocker re-verified.** `api.natmus.dk/search/public/raw` now fails at TLS
+(cert `CN=api.natmus.dk` expired 24 Aug 2026); ignoring the cert it answers
+HTTP 403 «Web App - Unavailable». Permanently gone, not an outage. The web
+route `samlinger.natmus.dk/KMM/object/<id>` is HTTP 200, server-rendered,
+carries the rådata JSON. Recorded in `docs/SOURCES.md` §13.14.
 
-**What & why.** Pre-1544 issues struck at the **Gottorp** and **Schleswig-town**
-mints were anachronistically homed in `gottorp_duchy` — a duchy that did not
-exist until the Rendsburg partition of **19 Aug 1544** (Adolf I's share).
-Historically they are the undivided king-duke **Schleswig** line (Frederik I,
-Christian III) → `royal_slesvig`. This **SUPERSEDES the 2026-07-16 cross-entity
-legend call** that kept the pre-1544 Goldgulden in gottorp_duchy.
+**Measurement (the point of the session).** The 14 911 index-less ES objects do
+NOT convert: a stratified sample of 404 of the 11 033 uncached ones gains an
+index 3.2 % of the time, and only **2 of the 404 are in the kmk seed at all** —
+the population is ~99.5 % material the seed builder already filters out. The
+real target is the **4 107 catalogue-less seed coins**, of which **84 would gain
+a real index from rådata already on disk** (52 hede, 21 bergsoe, 6 schou,
+5 lange, 3 galster, 4 others). The remainder are KMM recording no index
+(«Hede» with no number ×244, «Ubestemmelig», «FALSK»), not a parser gap.
 
-**Mechanism.**
-- `scripts/lib/mint_registry.py`: added `year_overrides [{year_to: 1544, entity:
-  royal_slesvig}]` to `schleswig` + `gottorp` (exclusive cutoff — year<1544 → RS,
-  ≥1544 → gottorp_duchy default). Flensburg/Husum were already `royal_slesvig`.
-- `scripts/maintenance/merge_seeds_cross_source.py`: the cross-entity issuing_entity
-  stamp (was year-blind) now passes `year_first`; **and** a new optional
-  `issuing_entity:` field on a `_cross_entity.yml` merge entry pins the stamp
-  verbatim (bypassing the mint derivation) for the mint-ambiguous-resolved-by-ruler
-  case.
-- `_cross_entity.yml`: 14741 (1531) + 14783 (1534) target gottorp_duchy→royal_slesvig;
-  c3h15 (1546) target royal_holstein→royal_slesvig **+ `issuing_entity: royal_slesvig`
-  override** (post-1544 Schleswig-town mint would otherwise pull gottorp_duchy; it's
-  the KING's royal Flensburg issue, disambiguated by ruler).
-- classification_decisions: new `royal_slesvig.yml` (3 Goldgulden assignments +
-  `bulk_promote_pending: all`, matching the sibling denmark∩SH overlap entities so
-  the relocated seed_unsorted coins keep rendering); the two Goldgulden pulled out of
-  `gottorp_duchy.yml`.
-- Full builder re-run (galster/numista/bruun/kmk/ikmk) → merge → absorb.
+**Awaiting the curator.** Whether to run the local no-network re-seed for those
+84 now — it is a whole-corpus re-flow (§9b snapshot/diff + `verify_reflow.py`
+0 losses) for an 84-coin gain — or let it ride along with the next re-flow.
+Nothing has been flowed into the seeds.
 
-**End state (verified).** gottorp_duchy final has **0** pre-1544 coins; ~31 pre-1544
-Gottorp/Schleswig coins now in royal_slesvig. Badges: 14741→RS, 14783→RS, c3h15→RS,
-14770 (1536 Roskilde, stays danish_realm home)→**DK+RS**. c3h15 + 14770 finals carry
-`_curation_holds{issuing_entity}` (foundation-immutable froze the stale value);
-c3h15 also re-pins `year_verified: true` (lost in the royal_holstein→royal_slesvig
-relocation, was commit c070d60). **verify_reflow 0 losses, audit_v2 0 violations,
-audit_lost_citations 0 missing, full build OK.**
+**Shipped:** `741c5a1` explicit cf-reference guard in
+`build_kmk_seed._raadata_catalog` + `tests/test_kmk_raadata_cf_refs.py`
+(behaviour unchanged, previously safe only by regex accident); `ad10ff9` docs;
+`3f237b4` cache pointer (519 new rådata sidecars). 3 commits local, not pushed.
 
-**Incidental (disclose).** Re-running the kmk builder (needed to move the 2 Gottorp
-kmk coins) also healed pre-existing stale-seed drift: **40 Flensburg/Husum kmk seed
-records** (all Schleswig mints, correctly `royal_slesvig`) moved out of the stale
-`kmk/royal_holstein.yml` seed — **0 of them were in any final**, so no final-level
-effect. One unrelated `mb` list value (`'566'`) dropped from a danish_realm kmk seed
-(inert — cat-drop=0 in finals). Timestamp-only seed churn reverted.
+## 2026-08-25 — V1 atavisms DONE, and two parser defects they uncovered
 
-## 2026-08-19 — Frederik II's 1584 gold: Wilcke says the set is medals
+Five commits: `bf66e64` `45112a5` (bruun parser + its 15 coins), `6893067`
+(129 twins), `3a3e253` `dc6500c` `3c3dc79` (ngc parser, ucoin routing, the
+last 8 twins), `ea21a9e` (SOURCES §13.13). 100 commits ahead of origin,
+nothing pushed.
 
-**Dossier**: `docs/research/f2_guldmoent_1584_gavesaet.md`. **No data changed.**
-Curator's word: «це складне питання але зараз я не бачу рішення».
+### The V1-atavism task is closed
 
-**How it came up.** Looking for merge/promote candidates for `nobel_fod` and
-`rosenobel_fod` on the Denmark page. `nobel_fod` is closed — all 23 Nobel seed
-records are absorbed into seven finals, and the rest of the 1490-1540 gold sits
-in `rhinsk_gylden_fod` / `reichsdukatenfuss` legitimately. `rosenobel_fod` had
-exactly one loose record: `dk-hede-f2h7d`, **1 Engelot 1584**, 5,06 g, the last
-unplaced member of Dronning Sophies gavesæt.
+All 137 V1-legacy ucoin twins are gone. The premise held: a ucoin `tid=`
+identifies one type and should yield one seed, and 137 of them yielded two
+— a modern `*-tid-*` and a V1-era `km-…`. The twin carried no scalar field
+the modern seed lacked and cited only that same ucoin URL.
 
-**What the source says.** Wilcke 1931 pp. 85-90 is not in our harvest, but
-danskmoent republishes the chapter whole at
-<https://www.danskmoent.dk/wilcke/w6g.htm>. Verbatim: the pieces «kan kun
-betragtes som **Medailler til festlig Brug, ikke som Mønter, slaaede i
-Omsætningsøjemed**», and the denomination names are «hentede fra en Række
-udenlandske Mønter, som **ikke havde nogen Forbindelse med den hjemlige Mønt i
-Datiden**» — a «Paaskud» for assembling a presentation set. He says this
-explicitly against Jørgensen 1879 (who called them Prøvemønter) and against
-Ramus/Scharling.
+Audited across ALL nine sources on four independent signals — id convention,
+one-record-many-seeds, one id in several entity files, cross-source citation.
+**The residue was confined entirely to ucoin**, and signals A and B named the
+same 137 seeds from two directions. bruun / hede / galster / numista / ngc /
+ikmk / kmk are 100 % uniform. numismaster's two id prefixes are its per-country
+builder output, not a defect. ucoin's `tid-tid-*` shape (1863) is cosmetically
+odd but every one is backed by a cache record.
 
-Decisive for the original question: Wilcke prints the whole set's weights **in
-dukat multiples** — Portugaløser 10⅛, Rosenobel 2¼, Dobbelt Dukat 2, **Engelot
-1½**, Ungersk Gylden 1, Guldkrone 1, Goldgylden 15/16. One unit, seven foreign
-names on top. My earlier weight signal (5,06/7,69 = 0,658 ≈ the English
-angel-to-rose-noble ⅔) was correct arithmetic and the wrong inference: 1½ : 2¼
-IS ⅔, and no English prototype is needed to explain it. Metal: 18 rose nobles
-melted down, enough for at most two sets.
+### The thing that was misdiagnosed twice — read this before trusting a twin story
 
-**Why it is bigger than the Engelot.** The seven are one act, one account entry,
-one Sieg 29 — Wilcke's verdict cannot apply to 7d alone. Six are already placed:
-7a/7c/7e → `reichsdukatenfuss/I`, **7b → `rosenobel_fod/I`**, 7f →
-`f2_guldkrone_fod/II`, 7g → `rhinsk_gylden_fod/II`. Most exposed is
-`rosenobel_fod`, whose **Phase I is 7b and nothing else** and whose card
-describes a two-phase lineage with `events.first_adoption: 1584`. Phase II
-(Christian IV .833 / 8,994 g, 13 sources) is unaffected either way.
+`6893067`'s message says the twin carried a mint from V1 curation. **That is
+wrong.** Both twins have `mint: None`. What the twin carried was
+`issuing_entity: royal_holstein`, which the V1 curator read from ucoin's own
+`period` label. Corrected in `3c3dc79`; noted here because the wrong version
+is in the git log and will be read again.
 
-**Next session — do not decide from this entry alone**; the three options and
-what would settle each are in the dossier. Cheapest next moves: read Hede's own
-f2h7 page framing, then Galster 1959 (Nationalmuseets Arbejdsmark p. 117) and
-Jensen Steen 1975 (Møntsamlernyt 1/1975 p. XXIV), both cited on
-danskmoent's Engelot page. Watch the provenance chain — Wilcke argues against
-Jørgensen, so anyone downstream following Wilcke repeats one reading rather
-than corroborating it.
+`period` on ucoin is two different fields wearing one name: usually a currency
+era («Rigsdaler (1625-1699)»), but for part of the catalogue a TERRITORIAL
+series («Glückstadt (1617-1773)», «Holstein-Gottorp-Rendsburg», «Duchy of
+Schleswig-Holstein»). The builder routed the German series and had no entry for
+the two Danish-filed ones, so 53 coins sat in `danish_realm` while every
+mint-aware source put them in `royal_holstein` — 436 kmk, 63 hede, 62 numista,
+46 bruun, 15 numismaster, 3 ikmk, and the mint registry itself. `dc6500c` fixes
+it. Both consuming pages keep the coins.
 
-**Also found in the same scan, unrelated and untouched**: three NGC records of
-the ¼ Portugaløser 1592 in `danish_realm/seed_unsorted` carry Fr 64.1 / 64.2 /
-64.3 at 8,661 g — the same Fr indices and weight already on two `royal_holstein`
-finals (`hede 3` → Fr [64, 64.1, 64.3], `hede 7B` → Fr [64, 64.2]). Looks like
-cross-entity merge candidates; nobody has looked.
+### The cascade that was a symptom, not a cost
 
-## 2026-08-18 (later still) — the year now reaches the mint resolver
+Removing the last 8 twins first LOOKED expensive: it turned four per-entity
+merge groups into cross-entity ones, which imports the completeness invariant
+and demanded §9.4 calls on 20-plus further coins — including bare KM numbers
+colliding across the Denmark and Schleswig-Holstein volumes, exactly the trap
+§9.4 warns about. That whole cascade was an artefact of removing the twin
+BEFORE teaching the builder to derive what it held. With `dc6500c` in place the
+groups stay inside one entity and the gate never fires. **If a fix starts
+cascading into curator decisions far from the task, suspect the direction.**
 
-**Commit** `1b38390`, on top of `1e59087`.
+### Two parser defects found underneath
 
-Closes findings 1 and 2 of the entry below. The three year-blind call sites of
-`classify_mint_to_entity` now pass the coin's year, so the era-aware
-`year_overrides` in `mint_registry` are visible to them:
-`build_galster_denmark_seed.detect_issuing_entity` (year threaded through from
-`build_entry`), `build_hede_denmark_seed._classify_hede_entity`
-(`cm["year_first"]`), and `v2_seed_writer._check_entity_invariant`
-(`c["year_first"]`).
+- **bruun §9.1 over-fired on the next lot's headline.** A lot block runs to the
+  next lot-number line, so it swallows the catalogue's section headline for the
+  FOLLOWING lot — «Extremely Rare and Historically Interesting Pattern» — which
+  precedes the lot it describes and can only land on the previous one. 15
+  NGC-graded circulation coins were excluded by a word appearing nowhere in
+  their own description. The price estimate closes the description; the §9.1 and
+  §9.2 tests now run against that slice. Recovered 7117 (the Hede-39 specimen
+  CLAUDE.md §0b-1 is written about) and 7928 (the sole Bruun citation behind
+  c7h13).
+- **ngc could not read a date written against the mintmaster initials.** NGC
+  writes the cell as «1711IW» / «1671GK», so the trailing `\b` never matched: 40
+  records lost a legible date, and the same string was read as damage (12 flagged
+  partially illegible). NGC marks damage with `z` alone. This surfaced because
+  three NGC records had been drawing their years from the ucoin member of their
+  class and went yearless when it moved entity.
 
-**This was LATENT, and the fix moved no data — deliberately.** Measured before
-and after: galster has no Altona coins at all, and hede's 75 are every one of
-them 1640 or later, where the default era already gave the right answer. So the
-value of the change is entirely in the future — the trap had already nearly
-fired once, when the Gottorp `year_overrides` rule landed and neither builder
-could see it. `scripts/maintenance/test_mint_entity_year_aware.py` pins the
-property instead of leaving it to a data diff: it asserts the resolver is
-genuinely era-aware (so the rest is not vacuous), that a pre-1640 Altona mint
-reaches `schauenburg_pinneberg` through each of the three functions, that the
-writer's invariant still flags a wrongly-routed coin, and that no NEW year-blind
-call site appears in `build_*_seed.py` — with the two benign ones allow-listed
-by file and line, plus a check that the allow-list has not drifted off them.
+### NGC Denmark — there is NO harvest gap, and the metric that says otherwise is wrong
 
-`audit_v2 --quick` 0 blocking, `verify_reflow` 0 changed coins, build exit 0.
+Recorded in `docs/SOURCES.md` §13.13(a2)/(a3). Short version: `DENMARK` has
+exactly two sub-regions, `GLÜCKSTADT` (97 types) and `HOLSTEIN-GOTTORP-RENDSBORG`
+(4); `NORWAY` has none; all 101 cuids are already in the `denmark` tree from the
+All Regions walk. The two sub-region directories hold only a `_listing_raw.json`
+that was never ingested, which is why `fetch_ngc.py status` shows `0 / 0` for
+them — that is an un-ingested listing, not a shortfall.
 
-## 2026-08-18 (late) — the unsorted pens complete themselves; +7530 coins render
+**Do not audit NGC completeness against duid counts.** «Listing says N duids,
+parsed record has M rows, so N−M are missing» reported 756 missing in-scope rows
+across 311 types. All fictional. Verified live: cuid 1051684 is listed with 3
+duids and its page renders ONE row, identically at duid 1239857 and 1239858 —
+the duid in the URL selects nothing. Audit on cuids covered.
 
-**Commit** `43e3ed4`.
+### Still open
 
-Curator direction settled the question I had been treating as a decision: the
-`seed_unsorted` phase id is a transient label on material awaiting triage and
-carries nothing worth gating a coin on — «байдуже яка назва фази в seed
-unsorted», what matters is that a page shows the coins whose polity is in its
-scope. So the pens are now completed at assembly time from the phase ids the
-ASSEMBLED COINS actually carry, not from any list of sources. One rule covers the
-per-source tags, `v1_bootstrap`, and the legacy Roman-numeral ids alike.
+- **Duchy of Schleswig entity** — the big one, brief at «OPEN, BIG» above.
+- **`pending` promotion** — 1627 now. Re-count after the Schleswig work; the
+  reasoning for the order is at «NEXT UP» above and still holds.
+- **Hede 74 vs 123** — curator call, and the duplicated `numista: 22576` should
+  leave one side.
+- **53 new Hede types** await classification; `c5h30` and `f3h25` are off-strikes
+  → §9.3 exclusions.
+- **Four specimens** detached by the 3a/3b splits need a German-lands
+  `issuing_entity`.
+- **`_catalog` ranges** — only kmk was fixed; see the OPEN entry above.
 
-**Checked first, and it came back clean:** `audit_v2` I9 = 0 AND I9-info = 0, so
-every coin invisible for a phase reason was under `seed_unsorted`. There was no
-real-fuss case needing a separate decision. (I9-info had been 2 — the Denmark
-consume-cap resolved those.)
+---
 
-**Scoping, all five points pinned by tests:** only pages that already declare a
-seed_unsorted list are touched; curated pens always win; a generated pen inherits
-a sibling's year bounds so it never widens the page span; the generator only ever
-adds under `seed_unsorted`; and cross-page title reuse is restricted to ids that
-NAME A SEED SOURCE — `I` is «Ernst III (1601–1622)» on holstein_schauenburg and
-must not travel. Verified in the rendered HTML: the label stays put and
-schleswig_holstein's generated pen is neutral.
+## 2026-08-25 (later) — Schleswig gets its own entity, and Denmark's reach follows vassalage
 
-**Render: +7530 over ten pages.** denmark 1842 → 7949, schleswig_holstein 795 →
-1708, lubeck 80 → 309, holstein_schauenburg 279 → 405, hamburg 85 → 158,
-lubeck_bishopric 0 → 20; brunswick, lauenburg, osnabrueck unchanged. **Zero coins
-are now dropped for an undeclared phase.** Remaining drops are structural only:
-no year, a fuss the page does not carry, the per-entity consume-window.
+Five commits: `62c036b` (research), `139df3f` (the split), `e7747eb` (vassal
+bounds), `826bd25` (ruler houses + a correction), `ef9c1e3` (Gottorp's card).
 
-Data untouched — verify_reflow 0 changed, invariants clean, four suites pass.
+### What was actually wrong, and it was not what the brief said
 
-**What this means for the pages now.** Most of the intake is sparse: of the
-Denmark cohort, nominal 100 %, catalogue index 59 %, mint 47 %, metal 16 %,
-weight 12 %. That is by design — the pens hold un-triaged material and empty as
-classification proceeds — but the Denmark page is now ~4× its previous size and
-dominated by KMM museum specimens. If that proves too blunt in practice the
-filter tiers are measured and in the previous entry.
+The brief «OPEN, BIG — an entity for the Duchy of Schleswig» rests on the
+premise that filing pre-1544 coins under `gottorp_duchy` is an unnoticed
+contradiction. `trace_coin why` says otherwise: a curator call of 2026-07-16
+put a 1531 ducal Goldgulden there deliberately, on the legend «FRIDERICVS D
+HOLSACI / MO NOV AVREA SLESVICENSIS», date in plain view. So the routing is
+decided and stands; what was inconsistent was the entity's own DESCRIPTION.
+The full research is in `docs/research/duchy_of_schleswig_entity.md`.
 
-**One loose end left deliberately:** `erzbisthum_bremen_verden`'s single
-`bruun-L12177-unknown-1670` still carries `phase: I` whose meaning nothing
-establishes — its page declares neither `I` nor `II`. It now renders in a
-generated neutral pen, which is fine, but the id may simply be V1 debris worth
-retiring when someone triages that entity.
+The second premise had also expired: the Danish-spelling KMM records are no
+longer misrouted anywhere. All 52 sit in `danish_realm` with the right entity
+and simply lose their region, because `Slesvig` is not an alias in the registry.
+
+And `place: Slesvig` in KMM is not one attribution: **46 of the 54 records sit
+on a single register page, protocol III p. 129**, spanning 1523-1563 and three
+rulers. Frederik I's twelve are supported (Wilcke 7-2 p. 186-187, the mint moved
+Husum → Slesvig at his 1523 accession); Frederik II's twenty-eight are
+contradicted — danskmoent puts his mints at Bremerholm and Frederiksborg, Wilcke
+puts the duchy mint at Flensborg 1566-1571, and Gottorf had been Adolf's since
+19 August 1544. **Do not promote that group into a territorial entity.**
+
+### royal_slesvig
+
+`royal_holstein` stood for the king's share of BOTH duchies. Schleswig was a
+crown fief outside the Empire; Holstein an imperial fief from 1474 that joined
+the German Confederation in 1815 — the 1806 incorporation patent was «faktisch
+wirkungslos». The new entity takes the king's Schleswig mints — Flensburg,
+Husum, Haderslev. Rendsburg looks like a border case and is not: a noble
+arbitration of twelve knights ruled the town to Holstein in 1250.
+
+**The trap this hid.** `CROWN_MINT_REALM` and `HOLSTEIN_CROWN_MINTS` are both
+DERIVED from the registry, and the second was keyed on `royal_holstein` alone.
+Splitting would have silently dropped the three Schleswig mints out of the
+build-time widening gate and stopped their coins reaching the SH page at all.
+Renamed `DUCHY_CROWN_MINTS`, keyed on both duchy realms, old name aliased.
+
+### Denmark's consume list now states a rule
+
+Curator direction: a region belongs on the page for the years it belonged to
+the Danish king, directly or through a vassal — and **a vassal at war with his
+suzerain does not belong**.
+
+| entity | to | why | coins beyond |
+|---|---|---|---|
+| `royal_slesvig` | 1864 | crown fief throughout | 0 |
+| `royal_holstein` | 1864 | held by the king in person as duke | 0 |
+| `gottorp_duchy` | **1656** | Friedrich III took the field with Sweden in 1657; Roskilde 24 Feb 1658 ended the fealty | 141 |
+| `sonderburg_duchy` | **1667** | «Nach einem Konkurs 1667 ging der Sonderburger Anteil … an den dänischen König» | 0 |
+| `norburg_plon_duchy` | **1761** | Norburg failed 1669, lands to Plön 1679; Plön «erlosch 1761» | 0 |
+| `glucksburg_duchy` | **1779** | elder Glücksburg line «erlosch 1779» | 0 |
+| `danish_norway` | 1814 | Kiel | 192 |
+
+Denmark went from 14 Gottorp coins to 258, plus Sonderburg 56, Norburg-Plön 45,
+royal_slesvig 38, Glücksburg 7.
+
+### A measurement I got wrong — the fourth of this session
+
+I reported four coins wrongly on the Denmark page: undated Gottorp pieces of
+Christian Albrecht and Karl Friedrich, whose reigns lie wholly after 1658,
+slipping past the consume-window because `build.py` tests it only when
+`year_first` is not None. The bypass in the code is real. **The consequence was
+not.** An undated coin never reaches ANY page — it is dropped earlier and
+structurally for having no year, which this very file already records. Measured
+before and after: 0 either way, byte-identical pages. Corrected in `826bd25`;
+`e7747eb`'s message still carries the wrong claim.
+
+Same shape as the NGC duid gap and the «11 284 blocked buckets»: a conclusion
+drawn from code without checking the end of the chain. **Check the render.**
+
+Kept anyway, because the homonymy under it was genuine: `reign_window("Frederik
+3")` answered the Danish king 1648-1670 to anyone, including a Gottorp coin
+whose Friedrich III ruled 1616-1659. `HOUSE_REIGNS` is now keyed by issuing
+entity, with the Gottorp line from Adolf I 1544 to Paul 1773.
+
+### TWO BACKLOGS, and they are not the same queue
+
+Asked whether the unclassified Hede types are among the `pending`. **They are
+not**, and the distinction matters for planning:
+
+- **`pending` — 1627.** Unified classes with NO final entry. They do not render.
+- **`fuss: seed_unsorted` — 13 273 of 14 993 finals (88 %).** These ARE in final
+  and DO render; they just carry no Münzfuß. By phase: kmk 7842, ikmk 2495,
+  numista 995, ucoin 716, ngc 424, hede 193.
+
+Every one of the 1189 Hede seeds with a unified class is in final. The Hede
+slice of the unsorted backlog is 212 coins, not the 53 figure I had been
+carrying — 53 was the count of stubs the parser fix ADDED, some already
+classified.
+
+### Still open
+
+- **`pending` promotion** — 1627. Reasoning for the order at «NEXT UP» above.
+- **`fuss: seed_unsorted`** — 13 273. The far larger backlog, and untouched.
+- **Hede 74 vs 123** — curator call; the duplicated `numista: 22576` should
+  leave one side.
+- **Four specimens** from the 3a/3b splits need a German-lands `issuing_entity`.
+- **`_catalog` ranges** — only kmk was fixed.
+- `c5h30` and `f3h25` are off-strikes → §9.3 exclusions.
+
+## 2026-08-21 — mint source-fidelity pass, and what it left open
+
+Eight parser/registry defects that all had the same shape: no error, no empty
+field, just a confident value narrower than what the source said. Fixed in
+`aa771d5`, `38369e6`, `f53986f`, `8e875c2` + the `_recorded_removals.yml` work.
+Full re-flow done (re-parse NGC + Galster → re-seed 7 sources → merge → absorb),
+`verify_reflow` clean, 45 tests in `tests/test_mint_source_fidelity.py`.
+
+### OPEN — audit every `v1-*` / V1-carryover seed for atavistic indices
+
+**The task:** find seeds whose catalogue indices NO current source attests —
+values carried over from the V1 bootstrap and since orphaned. They look
+authoritative, they key the cross-source merger, and nothing regenerates or
+removes them.
+
+**The case that surfaced it.** `km-358-h123-chr-v-1681` is a SEED whose id is a
+V1 FINAL id, sitting in `data/v2/seed/ucoin/`, whose source URL is ucoin
+`tid=96983` — the very same ucoin record that already produced `dk-tid-96983`.
+So one ucoin entry became two seeds. The V1 copy additionally carries
+`hede: 123` + `sieg: 129`, which ucoin does not publish at all (its page is
+titled «Denmark 2 skilling, 1676-1681», no catalogue numbers): those came from
+V1 hand-curation and are attached to the wrong coin — Hede 123 is the
+Glückstadt 1681 type, ucoin's entry is the København 1676-1681 one (Hede 74A/B).
+The two indices then split the coin into two finals across two entities and made
+`Glückstadt` look attested on the København coin.
+
+**Suggested shape of the audit:** for every seed whose id does NOT match its
+builder's own id convention (`km-*`, `unified-*`, any V1 final-shaped id) — and
+especially those in `data/v2/seed/ucoin/` — compare each catalogue index it
+carries against what its cited source actually publishes in the cache. An index
+no source gives is an atavism: either re-attach it to the coin it belongs to, or
+drop it. Cross-check for duplicate seeds sharing one source URL (the ucoin
+`tid=` collision above is unlikely to be the only one).
+
+### OPEN — 108 Hede types with no record at all
+
+`parse_hede._extract_index_stubs` and its caller both gate on
+`^n?[cf]\d+hede$`, so every index page with a volume suffix is skipped:
+`c4hede2` (15 rows), `c5hede1` (41), `f3hede1` (44), `f3hede2` (8), plus
+`c4hede3` / `c5hede2` / `f3hede3` / `c8hede8c` (0 each). Those rows are Hede
+types whose danskmoent index line carries no deep-page link, so the stub is the
+only record they would ever get — and none exists. `c5h123` (2 Skilling,
+Glückstadt, 1681, Sieg 129) is one of them, and KMM 736272 is sitting there
+attesting exactly it with nowhere to merge.
+
+Curator direction: fix the regex, then MEASURE how many of the 108 merge into
+existing index-less museum records before deciding what to keep (§9 pass needed
+— some are off-strikes, e.g. `c5h30` «Kobberafslag af påtænkt dukat», `f3h25`
+«Sølvafslag af ukendt 1/2 Dukat»).
+
+### OPEN — curator calls still outstanding
+
+* **Hede 74 vs Hede 123** (2 Skilling Christian V): merge or keep apart. KM 358
+  and Numista 22576 unify them; Hede, Sieg AND KMM separate them by mint
+  (København vs Glückstadt). My read is «two types, Krause lumped» → `no_merges`
+  + strip the duplicated `numista: 22576` from one side.
+* **`Slesvig` as a mint alias.** `classify_mint_to_entity('Slesvig')` is None
+  while `Schleswig` → gottorp_duchy, so the Danish spelling dies in
+  `_split_place`'s nation-guard. KMM has 48 × «Danmark - Slesvig» (reads as a
+  town) against 254 compound forms (read as the region). Aliasing it moves those
+  48 into gottorp_duchy — measure before doing it.
+* **City in `mintmaster`, 164 kmk seeds.** `_enrich_from_raadata` splits the
+  rådata locality on `" - "` but not on `", "`, so «Tysk, Hamburg» reaches
+  `_split_place` whole and comes back as mint «Tysk» + mintmaster «Hamburg».
+  Fix: split on the comma too when the head is a territory (nation-classifier
+  test), not a mint.
+
+### OPEN — `_catalog` keeps only the FIRST number of a range
+
+`build_kmk_seed._catalog` reads an index with `re.match(r"\d+[A-Za-z]?", rest)`,
+so a printed range loses its tail: KMM's «Sch 20-22» becomes `schou: 20`. Found
+while fixing the edition-year bug (2026-08-21) and deliberately NOT widened
+there — the generic pattern feeds every catalogue, so broadening it changes many
+values at once and needs its own measurement. The edition-year path DOES read
+ranges (`Lange 1908, no. 306-312` → `lange: 306-312`), which is why that case is
+already correct.
+
+## NEXT UP — decided order, and why (2026-08-21, curator-agreed)
+
+**Do NOT bulk-promote the 1628 pending coins yet.** The order is:
+
+1. **V1-atavism audit** ← start here
+2. Duchy-of-Schleswig entity (the big open item above)
+3. one re-flow
+4. THEN re-count what is still pending and promote the remainder
+
+### What `pending` actually is (it was misread all session)
+
+`pending` is not a data state and not a place a coin lives. It is a list of ids
+in `data/v2/classification_decisions/<entity>.yml`. The coin itself sits in
+`seed_unified` with all its data; it is simply ABSENT from `final`, so it never
+reaches a page. That is different from `fuss: seed_unsorted`, which is a coin
+that IS in final and DOES render, just without a Fuß.
+
+1628 entries across 16 entities, every one `status: no_match_in_final`. The
+Danish entities are clean (`danish_realm` 0 pending / 91 assignments,
+`danish_norway` 0 / 45, `royal_holstein` 0 / 19); the backlog is the German
+lands — herzogtum_braunschweig_lueneburg 816, `_unclassified` 219,
+schauenburg_pinneberg 153, landgrafschaft_hessen_kassel 142, hanseatic_lubeck
+104, gottorp_duchy 81. Curator's verdict: this is debt, and it should end as
+`seed_unsorted` in final.
+
+### Why the promotion waits
+
+- **1553 of the 1628 carry a catalogue index.** They are mergeable under §9.4,
+  not orphans. Merging them into an existing coin costs nothing; promoting them
+  first and de-duplicating later costs an exclusion pass against gates that are
+  built to refuse exactly that.
+- **The three open items each SHRINK the number, and shrink it the right way** —
+  by attaching a coin to one that already exists rather than adding a row. The
+  V1 atavisms are the clearest case: a bogus index is what SPLITS a coin from
+  its type. `km-358-h123` was split from Hede 74 by a `hede: 123` carried over
+  from V1 that ucoin never published.
+- **`bulk_promote_pending` already defaults to `no_basic_peer_only`**, so
+  everything with no peer at all is promoted automatically. The 1628 are the
+  residue where the matcher DID see peers and could not decide — promoting them
+  wholesale means overriding that doubt by fiat.
+- Only **75** of the 1628 have no catalogue index at all. Those are the safe
+  slice if a small first batch is ever wanted.
+
+### THE V1-ATAVISM TASK — start here
+
+**Goal (curator's framing):** find catalogue indices that NO current source
+attests, and drop them. They are leftovers of over-merges, splits and the V1
+bootstrap; they look authoritative, they key the cross-source merger, and
+nothing regenerates or removes them.
+
+**What is already measured** (2026-08-21, upper bounds — the harmful share is
+NOT yet counted):
+- **216 seeds whose id does not match their own builder's convention**, ALL of
+  them in `data/v2/seed/ucoin/`, all shaped like a V1 final id
+  (`km-1-fr-iv-1702`, `km-x011-fr-iv-1719-half`). Every other source — bruun,
+  hede, galster, numista, ngc, ikmk, kmk, numismaster — holds the convention at
+  100%.
+- **395 source URLs cited by ≥2 DIFFERENT seeds.** The pattern is visible by
+  eye: `tid=90498 → ['sh-tid-90498', 'km-116-chr-v-1787']`, i.e. the modern
+  ucoin builder AND a V1 twin on the same ucoin `tid=`.
+
+**The worked example that proves the mechanism.**
+`km-358-h123-chr-v-1681` is a SEED whose id is a V1 FINAL id, living in
+`data/v2/seed/ucoin/`, whose source URL is ucoin `tid=96983` — the very record
+that already produced `dk-tid-96983`. It additionally carries `hede: 123` and
+`sieg: 129`, which ucoin does not publish at all (its page is «Denmark 2
+skilling, 1676-1681», no catalogue numbers). Those two indices came from V1
+hand-curation and are attached to the WRONG coin: Hede 123 is the Glückstadt
+1681 type, while ucoin's entry is the København 1676-1681 one (Hede 74A/74B).
+The result was one coin split across two finals in two entities, with
+`Glückstadt` looking attested on the København coin.
+
+**Method.** For every seed, for every catalogue index it carries, check whether
+the cached record of its OWN cited source actually prints that index. An index
+no source gives is an atavism: re-attach it to the coin it belongs to, or drop
+it. Do this across ALL sources, not only ucoin — the ucoin V1 twins are the
+visible cluster, not necessarily the whole set. Also list seeds that share one
+source URL: one source record should not produce two seeds.
+
+**Caution.** Removing an index changes merge keys, so it will move coins between
+classes and possibly between entities. Snapshot with `trace_coin.py snapshot`
+first, and expect `verify_reflow` to need `_recorded_removals.yml` entries for
+the indices deliberately dropped (`kind: field`).
+
+### Also still open
+
+- **Hede 74 vs 123** — merge or keep apart. My read: two types, Krause lumped
+  them under KM 358; Hede (74A/B vs 123), Sieg (7/8 vs 129) and KMM all separate
+  them by mint. Needs the curator's call, and the duplicated `numista: 22576`
+  should leave one of the two sides.
+- **53 new Hede types** await classification; `c5h30` and `f3h25` are
+  off-strikes and belong in §9.3 exclusions.
+- **Four specimens detached by the 3a/3b splits** need an `issuing_entity` for
+  the German states before their citations travel back to them.
+- **`_catalog` ranges for the other builders** — only kmk was fixed.
+
+---
 
 ## 2026-08-18 (night) — «I» renamed, and it did not mean what I assumed
 
@@ -1234,106 +1469,6 @@ coingallery.de registered in `SOURCES.md` §6.6.
 
 ---
 
-## 2026-08-10 — Queen Sophie's 1584 gift set: split apart, and its seventh piece finally harvested
-
-**Commits, local, unpushed** — `6b9ab63` (the split), `c6bf7c0` (the Engelot),
-submodule `692f78054`. `8e0f0ad` + `36aca53` ahead of them belong to ANOTHER
-session; leave them alone.
-
-**Hede 7 and Sieg 29 are SET numbers, not type numbers.** The reign index
-f2hede.htm prints ONE row — «7A-G | 29» — covering seven different
-denominations. Any two of the seven can auto-glue on those false shared bases,
-and blocking one pair just moves the fusion onto the next: blocking 7E-7F sent
-it straight to 7F-7G. `merge_decisions/danish_realm.yml` now carries the full
-21-pair clique. If an eighth record of this set ever appears, extend the clique
-before flowing it, not after.
-
-**Engelot 7D was never harvested because of its URL.** danskmoent hosts it at
-the site root as `/engelot.htm`; `fetch_hede`'s cNhM / fNhM pattern never
-matched, and the galster parser that caught the page by accident filed it as a
-reign-overview and skipped it. `fetch_hede` now detects irregular coin links
-(pure-anchor-list cell + conforming sibling + denomination-shaped anchor text —
-isolates exactly this one page across all 21 overviews) but harvests only what
-`IRREGULAR_COIN_PAGES` maps to an explicit Hede-shaped cache name, warning about
-anything unmapped. Cached as `f2h7d.htm`, seeded as `dk-hede-f2h7d`.
-
-**OPEN — the Engelot's Müntzfuß.** It sits in `seed_unsorted`, gold, 5.06 g, no
-fineness written. Wilcke 1950 tabulates «Angel (Engelot)» under Engelsk Moent at
-5.084 g rough / 5.057 g fine, which the specimen sits just under — but those
-digits are OCR-degraded in the cached scan, so nothing was written on their
-basis. To close it: a clean scan of that table, or Wilcke 1931 «Frederik II.s
-Guldmoent 1584», Daler Mark og Kroner s. 85-90, which danskmoent cites directly
-for this set. The project has no Angel/Engelot Fuss card; the sibling
-English-model cards (`nobel_fod`, `rosenobel_fod`, `sovereign_fod`) are the
-shape one would take.
-
-**f2_guldkrone_fod is no longer a two-year Fuss.** The set's Guldkrone (7F, 3.38
-g) went in as a new Phase II (1584) on gross weight alone per §8a step 4 — the
-source publishes no fineness and none was written. Window is now 1563-1584 and
-the documented-window hiatus to Christian IV reads 34 years, not 55, in all
-three languages.
-
-**Two traps that cost time here, both worth remembering.**
-(a) `cmd 2>&1 | tail -2 && next` does NOT stop on failure — `tail` exits 0. A
-`trace_coin snapshot` that correctly REFUSED a half-applied tree was read as
-having aborted the chain, and a second merger was launched on top of the first;
-two `merge_seeds_cross_source --apply` ran concurrently over the same
-`seed_unified/` before being killed. Check the rc, not the pipe.
-(b) A re-flow can silently drop curation. `verify_reflow` caught `f2h7g` losing
-its curated nominal, its canonical .770 fineness with the §4 note, and its
-`_curation_holds` — the entry had briefly been absorbed into a sibling and came
-back rebuilt from the unified. Restored verbatim from HEAD. Run verify_reflow
-before believing a re-flow was clean.
-
-**Why the seed diffs look enormous for one coin.** Purely positional. The
-builder is deterministic (consecutive runs differ only in `generated_at`), key
-order is stable, and `royal_holstein` came out semantically identical — 0 added,
-0 removed, 0 changed — while showing 568 changed lines. Same class as the
-seed_unified churn in `8e0f0ad`: there, 116 of 371 gottorp classes were RENAMED
-because a unified class is named after its top-authority member (§9b) and the
-list is id-sorted, so each rename moves a ~40-line block. Not a formatting
-regression; the line counts just overstate the semantic change by roughly ten
-times.
-
-## 2026-08-09 — NGC added as a source; NumisMaster is dead; Lübeck pilot done
-
-**Commits, local, unpushed** — `d3f3571`, `656c177` (docs), `1b92848` (scripts +
-cache pointer), submodule `c800a491`. Note another session was committing into
-this same worktree throughout; all four were made with explicit pathspecs and
-nothing of theirs was swept.
-
-**NumisMaster is OFFLINE.** Every URL, root and `MC_<N>` alike, 302s to
-numismaticnews.net/pricing. `scripts/cache/numismaster/` is now a permanently
-frozen archive — re-parseable, never re-fetchable. NGC bought the dataset and is
-the live custodian. SOURCES.md §1.4 carries the banner, §1.5 the new entry.
-
-**NGC access is browser-only, and that is settled.** No public catalogue API
-(the one JSON endpoint is typeahead — `CoinDescription` + `URL`, no specs); the
-sitemap is US-only; Cloudflare 403s curl. **Playwright was tested in 7
-configurations and blocked in all** (bundled Chromium and real `channel=chrome`,
-headless and headed, stealth patches, warm persistent profile) while a control
-`fetch()` in an ordinary tab succeeded — evidence table in §13.13(c2). **Do not
-re-open this by adding playwright/selenium/undetected-chromedriver.**
-
-**The harvest shape that works** — `ngc_receiver.py` on 127.0.0.1, in-page
-`fetch()` loop POSTs records straight into the cache. Chrome treats localhost as
-trustworthy so an HTTPS page may POST to it. This matters: it keeps a 265-page
-walk cheap enough to repeat for every remaining region, instead of relaying each
-record back through the agent. A JS loop also SURVIVES the 30 s tool timeout —
-fire it and poll the receiver from Bash.
-
-**Lübeck pilot: 265/265 types, 0 rejected.** Behrens 186 (70 %), Davenport 101,
-`Previous KM#` 55 (21 %), mayor arms 52, `Varieties exist` 60. Fineness/weight
-only ~24 % — those seed `*_verified: false` with NO value (§4). The full-population
-numbers beat the 25-page survey sample on both key fields.
-
-**Next, in order.** (1) The §9 call on the **42 `KM Pn*` types** (16 % of Lübeck)
-— pattern/presentation gate per §9.1/§9.5, needed BEFORE any seed builder runs.
-(2) `build_ngc_seed.py`, merge-aware from day one per the ARCHITECTURE
-manual-override rule. (3) Remaining regions — and take **both** `LUBECK` (179
-rows) and `LÜBECK` (772): they are separate regions with different contents, and
-the umlaut-doubling recurs across the 441-region list.
-
 ## 2026-08-15 — the 1604 gold Klippen get their own standard, and Denmark's ducat phase splits at 1602
 
 **Commits, local, unpushed** — `9f0b338` (dossier) + the fuss / denmark / data /
@@ -1431,65 +1566,66 @@ clean; all three refs cited from prose (24 / 18 / 12 times).
 * **Bruun's «6 Daler = 3½ Ungersk Gylden»** (1 Gylden = 1,714 Dlr) contradicts
   the ordinance's 1⅝ (1,625) by 5,5 %. Recorded in the dossier, not adjudicated.
 
-## 2026-08-08 — II-2 closed, and the phantom-anchor theory was wrong
+## 2026-08-10 — Queen Sophie's 1584 gift set: split apart, and its seventh piece finally harvested
 
-**Commits, local, unpushed** — `7c870ef` (+ everything from 2026-08-07, still
-unpushed).
+**Commits, local, unpushed** — `6b9ab63` (the split), `c6bf7c0` (the Engelot),
+submodule `692f78054`. `8e0f0ad` + `36aca53` ahead of them belong to ANOTHER
+session; leave them alone.
 
-**B3 closed** (`7c870ef`). The two ½ Portugaløsere — Frederik III 1653
-(`dk-bruun-6082`) and 1655 (`dk-bruun-6174`) — are gold afslag of their
-Speciedaler and left under §9.3, curator-confirmed. Both were singleton
-`seed_unsorted` classes, so nothing else moved; both silver mothers stay.
-6565 → 6563, no losses.
+**Hede 7 and Sieg 29 are SET numbers, not type numbers.** The reign index
+f2hede.htm prints ONE row — «7A-G | 29» — covering seven different
+denominations. Any two of the seven can auto-glue on those false shared bases,
+and blocking one pair just moves the fusion onto the next: blocking 7E-7F sent
+it straight to 7F-7G. `merge_decisions/danish_realm.yml` now carries the full
+21-pair clique. If an eighth record of this set ever appears, extend the clique
+before flowing it, not after.
 
-**II-2 closed, but NOT for the reason this file recorded.** The previous entry
-blamed the illustration caption «Forside: portræt, bagside: elefant (Hede Norge
-14, Schou 1)» acting as a phantom anchor, and proposed year-proximity as the
-discriminator. That was a hypothesis, and reading the actual span arithmetic
-refuted it. The caption anchor is real and does contribute 1673 — but the coin's
-own year was being lost somewhere else entirely: `_extract_desc_hede_groups`
-closed each group's ref segment at the next «)», and on an UNPARENTHESISED group
-(«Hede Norge 13, Schou 6») that «)» belongs to the FOLLOWING row's rarity marker,
-so «3 Dukat 1678 (unik).» fell inside the previous group and the Hede 14 row was
-left with an empty span. The boundary now trails the ref run itself. Both years
-are recorded, which is what §4 wants — the page's own header says 1673 and its
-own row says 1678; we carry both rather than adjudicate.
+**Engelot 7D was never harvested because of its URL.** danskmoent hosts it at
+the site root as `/engelot.htm`; `fetch_hede`'s cNhM / fNhM pattern never
+matched, and the galster parser that caught the page by accident filed it as a
+reign-overview and skipped it. `fetch_hede` now detects irregular coin links
+(pure-anchor-list cell + conforming sibling + denomination-shaped anchor text —
+isolates exactly this one page across all 21 overviews) but harvests only what
+`IRREGULAR_COIN_PAGES` maps to an explicit Hede-shaped cache name, warning about
+anything unmapped. Cached as `f2h7d.htm`, seeded as `dk-hede-f2h7d`.
 
-Corpus effect: four sub-entries, all GAINS — `c4h46` Hede 47 (+1597), `f3h82`
-Hede 81 (reign-span 1648-1670 → 1669, dropping `year_verified: false` with it),
-`f4h20` Hede 20 (+1702), `nc5h13` Hede 14 (+1678). No catalog_refs moved.
+**OPEN — the Engelot's Müntzfuß.** It sits in `seed_unsorted`, gold, 5.06 g, no
+fineness written. Wilcke 1950 tabulates «Angel (Engelot)» under Engelsk Moent at
+5.084 g rough / 5.057 g fine, which the specimen sits just under — but those
+digits are OCR-degraded in the cached scan, so nothing was written on their
+basis. To close it: a clean scan of that table, or Wilcke 1931 «Frederik II.s
+Guldmoent 1584», Daler Mark og Kroner s. 85-90, which danskmoent cites directly
+for this set. The project has no Angel/Engelot Fuss card; the sibling
+English-model cards (`nobel_fod`, `rosenobel_fod`, `sovereign_fod`) are the
+shape one would take.
 
-**The fix then exposed a sticky flag.** `year_is_reign_span` marks «this range
-IS the ruler's reign window», and the absorb override could only ever SET it —
-the field is foundation-immutable, copied verbatim across regens. So f3h81 got
-its real 1669 and went on rendering «(?)» as a reign placeholder. The clear is
-now in place, and two things about it are worth remembering:
+**f2_guldkrone_fod is no longer a two-year Fuss.** The set's Guldkrone (7F, 3.38
+g) went in as a new Phase II (1584) on gross weight alone per §8a step 4 — the
+source publishes no fineness and none was written. Window is now 1563-1584 and
+the documented-window hiatus to Christian IV reads 34 years, not 55, in all
+three languages.
 
-* Recomputing `year_verified` from the OR-merge does NOT undo the «(?)»:
-  `members[0]` is the foundation itself, so the stale False the rule wrote last
-  run re-elects itself. The clear asks the OTHER members only.
-* `normalise_ruler_name` resolves «Frederik III. von Gottorp» to the DANISH
-  Frederik III — the comment in CURATED_FIELDS claiming these dukes don't
-  resolve is wrong. A blind clear would have stripped km-44's curator flag,
-  whose range (1616-1659) is the duke's own reign and whose lookup is simply
-  someone else's. `_reign_lookup_is_exact` gates it. Note this cuts BOTH ways
-  and the SET direction is unguarded: a Gottorp coin dated exactly 1648-1670
-  would be flagged as a reign span on the Danish king's window. Not touched
-  here — it wants its own pass. The normaliser is loose in general (it maps
-  «Christian von Schleswig-Holstein-Glücksburg» → Christian V and «Christian 3
-  eller Frederik 2» → Christian III), so anything keyed on it deserves a look.
+**Two traps that cost time here, both worth remembering.**
+(a) `cmd 2>&1 | tail -2 && next` does NOT stop on failure — `tail` exits 0. A
+`trace_coin snapshot` that correctly REFUSED a half-applied tree was read as
+having aborted the chain, and a second merger was launched on top of the first;
+two `merge_seeds_cross_source --apply` ran concurrently over the same
+`seed_unified/` before being killed. Check the rc, not the pipe.
+(b) A re-flow can silently drop curation. `verify_reflow` caught `f2h7g` losing
+its curated nominal, its canonical .770 fineness with the §4 note, and its
+`_curation_holds` — the entry had briefly been absorbed into a sibling and came
+back rebuilt from the unified. Restored verbatim from HEAD. Run verify_reflow
+before believing a re-flow was clean.
 
-**Two method notes worth keeping.** (1) A dry-run over `raw_text` predicted six
-changes; the parser feeds that function `descriptive` (text before the first
-«Bruttovægt»), so two predicted gains (`c5h15` Hede 16/17) never existed — the
-prediction and the pipeline were reading different inputs, §9b again. (2)
-`merge_seeds_cross_source.py --entity a,b` silently processed ZERO seeds and
-reported success; the flag takes one entity. It also WROTE
-`seed_unified/danish_realm,danish_norway.yml` — a real file, a real entity id
-with a comma in it, `coins: []` — which is how the run was eventually caught: it
-turned up in `git status` as an untracked file hours later. Deleted, and the
-flag now exits 2 with the known list. If a re-flow ever looks suspiciously
-empty, check the entity spelling first.
+**Why the seed diffs look enormous for one coin.** Purely positional. The
+builder is deterministic (consecutive runs differ only in `generated_at`), key
+order is stable, and `royal_holstein` came out semantically identical — 0 added,
+0 removed, 0 changed — while showing 568 changed lines. Same class as the
+seed_unified churn in `8e0f0ad`: there, 116 of 371 gottorp classes were RENAMED
+because a unified class is named after its top-authority member (§9b) and the
+list is id-sorted, so each rename moves a ~40-line block. Not a formatting
+regression; the line counts just overstate the semantic change by roughly ten
+times.
 
 ## 2026-08-07 — the Christiania 3-Dukat re-grouping, and three heals for one accumulation defect
 
@@ -1599,59 +1735,6 @@ A heal is mandatory, and the ledger is what keeps the gate honest afterwards.
   catalogue edge at all — the §9.4 over-merge signature. The dead exclusion was
   removed; whether that absorption is legitimate is untouched.
 
-## 2026-08-02 (later) — the re-flow SHIPPED; the source-transfer report was mostly the gate
-
-**Three commits, local, unpushed** (`c36f34b`, `23026d2`, `f6dee35`). Tree clean.
-`verify_reflow` exits 0; the derived layers are no longer parked.
-
-The entry below reports «a member joining a class under a different anchor does
-not hand over its `sources`», measured from `unified-kmk-155180` losing all 13
-KMM URLs. **That reading was wrong, and the way it was wrong is the lesson.**
-Traced from the data instead of the symptom:
-
-* `seed_unified` carries every citation correctly — the merger's `_collect_sources`
-  never dropped anything. All 13 of unified-kmk-155180's URLs are still cited
-  after the re-flow; they SPLIT 6/7 between `km-x005-chr-iv-1620` and
-  `km-82-chr-iv-1640` because the dissolved class's seeds joined two different
-  new classes.
-* Entity-wide census, all 22 entities: 0 citations lost, 0 catalogue indices
-  (case-folded, as absorb folds them), 0 attested years. 54 of the 56 reported
-  losses were the GATE being stricter than its own question.
-
-`23026d2` fixes four false-positive classes in `verify_reflow`: redistribution
-across multiple survivors, a surviving coin whose class merely shrank (retention
-now measured entity-wide, movers counted as `moved`), the `display: false`
-visibility flip, catalogue case-folding, and year_ranges de-overlap.
-
-**The 2 real losses it was burying** were a genuine §9a violation, fixed in
-`c36f34b`: the stale-foundation purge snapshots a retired foundation's own
-citations into `curator_migrations[host]` under `__merge__sources`, but that
-table was read on the BULK-PROMOTE path only — so when the new host was already
-a final, the migration was built and silently discarded while the purge still
-printed «merged into peers». KMM 307931 / 307934 / 642976 (present in the
-harvest cache) ended up cited by nothing. `audit_lost_citations` could not see
-it: it compares a final against its own current members, and a retired
-foundation is not one of them.
-
-So the 2026-08-01 Rigsbanktegn fold WAS the same defect recurring — the systemic
-read was right; the located layer was not.
-
-Note for next time: absorb is not idempotent against a half-applied tree. The
-first attempted fix looked like a no-op because the earlier runs had already
-purged the foundations, leaving nothing to migrate — `git checkout HEAD --
-data/v2/final/` before re-running is what made it measurable.
-
-`git stash@{0}` («reflow-2026-08-02 …») is now superseded by `f6dee35` and can
-be dropped; left in place rather than discarded unilaterally.
-
-`task_48e9b393` (verify_reflow keys list entries on whole content) is subsumed
-by `23026d2` — the `display`-flip case was exactly that shape.
-
-Standing, unchanged from HEAD: `audit_curation_loss` reports metal=7. Those
-entries' stored metal is byte-identical on both sides — it is the
-foundation-immutable value disagreeing with what the members would recompute,
-not anything this re-flow did.
-
 ## 2026-08-02 — the metal guard, and the third defect in the same node
 
 **Pushed** (`f8c3187..e35973b`). Working tree clean, origin in sync.
@@ -1705,49 +1788,6 @@ value as a lost one (it keys entries on whole content, so a changed weight reads
 as vanish+appear). False alarm, not a missed loss, so the gate stays safe; but a
 gate that cries wolf stops being read, which is the one thing this one must not
 do.
-
-## 2026-08-01 — three catalogue-index losses in the Bruun chain, and what they hid
-
-**Four commits, local, unpushed** (10 ahead overall): `138c8ca` code, `bdba13c`
-seeds, `dfb6145` the Pn change + the Rigsbanktegn fold, plus two submodule
-commits (`7bbe58fc8`, `fe61eee4c`).
-
-Started from a curator question — Bruun lot 1070 prints `KM-PnA16` and our seed
-had no km at all. Three independent losses on the path from PDF to seed:
-
-1. The KM ref regex allowed ONE prefix letter, so the two-letter Krause
-   registers (`Tn` tokens, `PM` plate money) were dropped — 15 lots.
-2. The Pn regex demanded a digit straight after «Pn», so the series-letter forms
-   (`PnA16`, `PnH16`, `PnJ16`, `PnG16`, …) matched neither pattern. That marker
-   is the §9 item-5 gate for the off-nominal test.
-3. **`catalog.others` was existing-wins on merge**, so neither parser fix could
-   land. This was the one that mattered: teaching the parser a new catalogue is
-   useless if the merge drops the addition on every regen. It was also
-   swallowing a Hauberg ref in galster, unrelated to Pn.
-
-**What that uncovered.** Six Rigsbanktegn 1813-1815 had been rendering as TWO
-coins each for as long as the data has existed — the Bruun half holding Hede /
-Sieg / Schou, the commercial half holding the Krause `Tn` number and every
-weight. Complementary registers, and no audit could see it because they were
-formally distinct classes. `Tn` was the only shared key, and the regex ate it.
-Folded (pairs recorded in `dedup_final_foundations.py`), keeping the
-Bruun-anchored entry — right on `nominal` and on `kind` (§6: a copper token is
-scheide, the other half said kurant).
-
-Separately, `PATTERN_RE` carried `Pn\d+`, which CLAUDE.md §9 item 1 explicitly
-forbids as a skip criterion. Five full-weight gold coins were suppressed by it
-and nothing else — four Portugaløser/halves 1653-1655 and a 10 Ducats 1699. They
-are now in seed_unsorted. **Consequence for the 8_dukat triage: that set is
-built from what reaches the seed, so it was incomplete — group B in particular
-should grow when the set is regenerated.**
-
-**OPEN — spawned as `task_28d22baa`.** The re-merge expelled 15 KMM specimens
-from those classes into singletons. They differ from the retained KMM records
-only in having no `metal` value — missing data, which under §4 must not disprove
-a merge. Nothing ships worse (their museum URLs were already on the finals and
-stayed; the field-by-field final diff against HEAD shows 7 entries changed, 6
-duplicates gone, 0 new, zero URLs lost), but the matcher's membership graph is
-wrong and needs the systemic fix.
 
 ## 2026-08-02 — the absent-field veto, fixed; danish_realm absorb blocked
 
@@ -1806,6 +1846,49 @@ verified at the parser; a seed change is not verified at the seed. Note also
 that committing seeds without re-running merge+absorb leaves HEAD in a state
 where the seeds imply a re-flow nobody has done — the pre-commit citation check
 only fires when a `data/v2/final/*.yml` is staged, so it cannot catch that.
+
+## 2026-08-01 — three catalogue-index losses in the Bruun chain, and what they hid
+
+**Four commits, local, unpushed** (10 ahead overall): `138c8ca` code, `bdba13c`
+seeds, `dfb6145` the Pn change + the Rigsbanktegn fold, plus two submodule
+commits (`7bbe58fc8`, `fe61eee4c`).
+
+Started from a curator question — Bruun lot 1070 prints `KM-PnA16` and our seed
+had no km at all. Three independent losses on the path from PDF to seed:
+
+1. The KM ref regex allowed ONE prefix letter, so the two-letter Krause
+   registers (`Tn` tokens, `PM` plate money) were dropped — 15 lots.
+2. The Pn regex demanded a digit straight after «Pn», so the series-letter forms
+   (`PnA16`, `PnH16`, `PnJ16`, `PnG16`, …) matched neither pattern. That marker
+   is the §9 item-5 gate for the off-nominal test.
+3. **`catalog.others` was existing-wins on merge**, so neither parser fix could
+   land. This was the one that mattered: teaching the parser a new catalogue is
+   useless if the merge drops the addition on every regen. It was also
+   swallowing a Hauberg ref in galster, unrelated to Pn.
+
+**What that uncovered.** Six Rigsbanktegn 1813-1815 had been rendering as TWO
+coins each for as long as the data has existed — the Bruun half holding Hede /
+Sieg / Schou, the commercial half holding the Krause `Tn` number and every
+weight. Complementary registers, and no audit could see it because they were
+formally distinct classes. `Tn` was the only shared key, and the regex ate it.
+Folded (pairs recorded in `dedup_final_foundations.py`), keeping the
+Bruun-anchored entry — right on `nominal` and on `kind` (§6: a copper token is
+scheide, the other half said kurant).
+
+Separately, `PATTERN_RE` carried `Pn\d+`, which CLAUDE.md §9 item 1 explicitly
+forbids as a skip criterion. Five full-weight gold coins were suppressed by it
+and nothing else — four Portugaløser/halves 1653-1655 and a 10 Ducats 1699. They
+are now in seed_unsorted. **Consequence for the 8_dukat triage: that set is
+built from what reaches the seed, so it was incomplete — group B in particular
+should grow when the set is regenerated.**
+
+**OPEN — spawned as `task_28d22baa`.** The re-merge expelled 15 KMM specimens
+from those classes into singletons. They differ from the retained KMM records
+only in having no `metal` value — missing data, which under §4 must not disprove
+a merge. Nothing ships worse (their museum URLs were already on the finals and
+stayed; the field-by-field final diff against HEAD shows 7 entries changed, 6
+duplicates gone, 0 new, zero URLs lost), but the matcher's membership graph is
+wrong and needs the systemic fix.
 
 ## 2026-07-31 — A3 dukats: one closed, three blocked on the curator
 
@@ -1950,125 +2033,6 @@ the ordinance of 18 Dec 1841, so the three classes carrying I had it wrong).
   • Next triage group is **A3** of `output/scratch/dukat_triage_progress.md`
     (gitignored): late era 1687-1747, four records — `numismaster-65781`,
     `kmk-439652`, `bruun-7396`, `hede-f5h9`.
-
-## 2026-07-29 — ucoin duplicate seeds closed + Hede per-letter mint fix
-
-**Nine commits, local, unpushed** (16 ahead of origin overall): `18ea1a4` prose,
-`eafa879` I8, `9d9dc6b` ucoin routing, `17eeac9` parse_hede per-letter mint,
-`7e10e54` cache pointer (submodule `4827e06d5`), `5834806` hede re-seed,
-`2fcf2e5` eleven cross-entity decisions, `25ba9c7` merge, `2098ed8` absorb,
-`1c405bb` trace_coin.py + rules.
-
-**The task_aeed2422 defect is CLOSED.** All fifteen ucoin ids that lived in two
-entity buckets now resolve to exactly ONE final each. Root cause: build_ucoin_seed
-was the only builder writing its own yaml instead of going through
-`write_v2_seed`, so it had no cross-entity dup-purge, and it routed by ucoin URL
-country — which files every Danish-crown Altona/Rethwisch piece under /denmark/.
-`ebe11c3` relocated them once; the next re-seed re-created the danish_realm copies
-and both survived. Fixed at the builder + backstopped by the new **I8** invariant
-(seed id in at most one bucket per source, in the `--quick` set so the hook
-catches it).
-
-**The id-prefix trap, caught before it landed.** The first cut of the routing fix
-derived the id prefix from the home entity, so re-homing RENAMED coins
-(`dk-tid-70716` → `sh-tid-70716`) and would have stranded every composed_of and
-decision member. Prefix now comes from the URL country, which never moves.
-
-**Hede per-letter mint (curator-reported).** danskmoent gives the mint per letter
-whenever a type spans mints — f6h4 reads «A) København; 1828 … B) Altona;
-1829-1838» under a header saying only «Altona». `_mint_per_letter_block` existed
-but ran only when the header had NO mint, i.e. almost never. Now always runs.
-26 letter-mints on 14 pages; f6h4a's mint was simply wrong before, c4h5b/c4h8b
-said Haderslev where the letter says København. Consequence by design: 9 more Hede
-pages split across buckets (the f7h6/f7h16/f7h17 shape), 4 of which needed new
-cross-entity decisions.
-
-**Watch this class of failure.** FOUR times this session a routing change silently
-broke a standing curator decision. Three were healed in data; the fourth was the
-tool's fault — `validate_decisions --check-members` scoped resolution to the
-decision file's own bucket and so reported the live §CW Albertsdaler block as an
-orphan after `dk-hede-c7h13b` re-homed. It now mirrors the merger by adding
-cross-entity pulls to the entity's set. Run `validate_decisions.py` after EVERY
-re-seed, not just from the hook.
-
-**New tool — use it instead of hand-rolling.** `scripts/maintenance/trace_coin.py`
-(`trace` / `snapshot` / `diff`), seed-keyed. CLAUDE.md §9b explains why: unified
-and final ids are derived and RENAME during a merge, so a diff keyed on them
-reports moved coins as lost. I did exactly that three times in one session and
-reported it as fact each time.
-
-**CLOSED since** (see the 2026-07-30 entry above, which supersedes this list):
-three Rethwisch/1769 pairs (`baa1cb8` + `76ea1f3` — key was Hede + concordant
-Schou; Sieg was NOT usable, Bruun cites 32-35 where danskmoent cites 2-6, a
-systematic +30 offset between two registers), the KM 723 / KM 724 ⅕
-Rigsbankskilling, and the Rendsburg attribution incl. `dk-tid-169253`. The
-`km-735-2` / `km-721-3` phase check and the Bruun `kind: kurant` default remain
-open and are carried forward there.
-
-## 2026-07-28 — A2 (danish_realm early Dukats) closed + cross-entity dual-home fix
-
-**Three commits, local, unpushed**: `b13b443` (merger stamp fix + test),
-`a444118` (curator decisions), `dd18246` (pipeline output).
-
-**A2 group is DONE** — the four early-era danish_realm Dukats of the 8_dukat
-triage (`output/scratch/dukat_triage_progress.md`, gitignored, statuses
-updated there). One promotion, three merges:
-`f2h7c` → reichsdukatenfuss/I standalone · `ikmk-18219560` → the Hede 16AB
-class · `kmk-122098` → the Hede 28B class · `dk-bruun-5528` + `kmk-290902`
-cross-entity.
-
-**The bug worth remembering — cross-entity stamp vs occupation coinage.** The
-merger derived a pulled class's `issuing_entity` from the merged MINT, which
-silently overwrote the curator's pull target whenever the mint's entity did
-not cover it. Christian IV's 1627 Wolfenbüttel Ducat resolves by mint to
-`herzogtum_braunschweig_lueneburg` but was pulled into `danish_realm` — so the
-class was written to `danish_realm.yml` while claiming to belong elsewhere
-(I1 violation, and the coin would have dropped off the Denmark page). Occupation
-coinage is a DUAL HOME, not a relocation, and the curator had already ruled
-exactly that for this coin's siblings via the Bruun builder's `_ENTITY_PIN`
-(`f48f73e`). `_xentity_issuing_entity` now unions the two when they disagree;
-the other three branches are unchanged and every other cross-entity group takes
-the unchanged path.
-
-**Where errata was NOT the answer.** IKMK 18219560's `literatur` cites both
-"Hede … Nr. 16" and "Bruce-Michael 242"; the curator ruled the coin is Hede 16 /
-KM 236, so the KM-242 half is wrong. No erratum was written, because the parser
-never mapped that prose citation into a `km` field — the seed's catalog is
-`{hede: 16}` only. Errata cancels what a source put in OUR fields; there was
-nothing to cancel. The separate 1653-vs-1662 date conflict (IKMK's structured
-date contradicts its own legend transcription) is handled by `year_demote`.
-
-**Pre-existing noise, measured not assumed**: 14 prior classes split in
-`danish_realm` during the merge (c7h8/10/11d/36, f6h2/4a/15, six numista/ucoin
-pairs). A control run with the decision files reverted to HEAD produced the
-SAME 14 — it is `seed_unified` lagging the Hede parser fixes `dedee21` /
-`1bcce5b`, not this change. Expect them until someone re-flows danish_realm.
-
-**All four A2 records are classified** (`ef034fd` added the last one, the
-Wolfenbuettel Ducat -> reichsdukatenfuss/I per the standard the curator already
-named in `f48f73e`). f2h7c + 5528 in Phase I, f3h16ab + 6414 in Phase II.
-
-**Retraction — the "14 splits" of the merge run.** The earlier entry blamed
-`seed_unified` lagging the Hede parser fixes. That was wrong, and so was the
-control run I based it on. Running the SAME detector on the before-snapshot
-against ITSELF flags the same 14, so it never measured anything: it built a
-leaf->class map, and 15 ucoin ids exist in TWO entity buckets at once
-(`seed/ucoin/danish_realm.yml` + `seed/ucoin/royal_holstein.yml`, same id,
-byte-identical fields, differing only in issuing_entity), so one home always
-overwrote the other. There were no splits. Do not reuse that detector shape
-without deduplicating leaf ids first.
-
-**The real defect underneath** (spawned as `task_aeed2422`, not fixed here):
-those 15 ucoin records merge and land TWICE, once per bucket — e.g.
-`dk-tid-70716` is a member of `unified-dk-numista-19000` in royal_holstein AND
-of the singleton `unified-dk-tid-70716` in danish_realm. Introduced by
-`ebe11c3` (2026-05-26) which added the royal_holstein copies without dropping
-the danish_realm originals. `audit_v2` has no seed-id-uniqueness invariant,
-which is why it sat unnoticed for two months. The correct shape is ONE entry
-with list-form issuing_entity, as KM 631 is modelled.
-
-**Next in the triage**: A3 — danish_realm late era 1687-1747, four records
-(`numismaster-65781`, `kmk-439652`, `bruun-7396`, `hede-f5h9`).
 
 ## 2026-07-27 — A1 Christiania dukats closed + D48 (`merges` names the whole class)
 
@@ -2289,37 +2253,6 @@ the WHOLE lot body with the whitelist, so a lot with no mint of its own can
 pick one up from its prose. Lot 1247 (Swedish Würzburg Riksdaler) stores
 `mint: "Riga Mint"` with no mint in its meta segment at all.
 
-## 2026-07-23 — Numista re-seed drift fix: curator year-narrowing + source-union preserved
-
-**Bug**: a full re-run of `build_numista_seed.py` reverted three Christian IV
-English-model gold coins (numista 426503 / 426815 / 426842, Fr 52/50/53) from
-the curator's source-backed window `1606-1608` (verified:false) back to
-Numista's bare full-reign placeholder `1588-1648` («denomination undetermined»),
-AND dropped the curator-added danskmoent.dk Hede c4h21 citation from `426503`.
-
-**Two defects in `merge_one` (scripts/lib/seed_merge.py)**:
-  1. `sources` fell through to «fresh wins» → curator-added primary-source
-     citations were REPLACED by the Numista-only fresh list — a §9a violation
-     («Reconciliation NEVER replaces `sources` — always UNION»). **Fixed**: new
-     `_LIST_UNION_FIELDS = {sources}` + `_union_source_lists` (JSON-key dedup,
-     existing leads); union field also guarded from the stale-key drop loop.
-  2. year fields are neither globally curated nor source-immutable, so the
-     curator narrowing wasn't preserved. **Fixed**: `_curation_holds` (dict-form
-     + rationale) on the 3 seed entries freezing year_first/last/ranges/label +
-     year_verified. Verified against danskmoent c4h21 = Hede 21, undated,
-     portrait-dated ~1606-1611 → 1606-1608 is a legit source-backed narrowing;
-     1588-1648 is the Numista lazy reign placeholder = the regression.
-
-**Regression was latent at the SEED layer only** — final/danish_realm already
-carried 1606-1608 + c4h21 (+ KMM museum enrichment); the next merger+absorb
-after a bad re-seed would have propagated 1588-1648 upward. Fix stops it at source.
-
-Re-seed now byte-idempotent on danish_realm. Test:
-`tests/test_seed_merge_sources_and_year_hold.py` (10 cases). Full suite 573 green,
-`build --validate-only` clean. NOTE danskmoent c4h21 flags these as *prøvemønt*
-(trial coins) — a possible §9.1 pattern-exclusion question left for the curator;
-not acted on here.
-
 ## 2026-07-22 — §DB first recovery pass: KMK web-rådata catalogue harvest (dukat group)
 
 **The web page is server-rendered — bare `curl` works** (earlier
@@ -2379,198 +2312,6 @@ the dukat group's `seed_unsorted`: the `kmk-783xx`/`kmk-277197..200`/etc.
 cluster. Those that ALSO lack a year are exclusion (undocumented_stub)
 candidates — a separate curator call, not done in this pass.
 
-## 2026-07-19 — Z_other_review gold triage + KMK catalogue-index loss (§DB)
-
-**Sovereign_fod family closed out**: three trials got display polish
-(nominal → `Prøvemønt`, ruler + Kopenhagen mint on Hede 21 / 426503,
-km-a47 Stack's Bowers auction-lot source); kmk-137088 (KMM RP 19.1)
-merged into the Hede 21 entry per the RP-inventory-sequence argument
-(commit 58e1619).
-
-**§DB opened (Highest priority)**: the KMK ES harvest endpoint
-(`api.natmus.dk/search/public/raw`) is **403 «Site Disabled»** — fetcher
-dead — AND ~15k objects have empty `typeNumber` in our ES cache while the
-natmus.dk **web-rådata API** (`samlinger.natmus.dk/KMM/object/<id>`)
-carries the catalogue in a `beskrivelser` field we never harvested. An
-earlier "parser drops beskrivelser" hypothesis was WRONG (verified §0b) —
-the data is absent from our cache, not mis-parsed. Fix = migrate harvest
-to the web-rådata API + parse `beskrivelser`→catalog. See TODO §DB.
-
-**Interim recovery done (variant B, commit 28eb471)**: 3 Z-review coins
-got their web-rådata index by hand-editing the seed: kmk-86272 (schou 3a
-+ Bech# 876 + B# 783.a), kmk-86273 (Bech# 977), kmk-298425 (B# 652).
-`Sch`→schou; `Bech`/`B` kept verbatim in `others` (ambiguous, not guessed).
-
-**kmk-86273 excluded** (out_of_scope, Danish East India / Tranquebar
-colonial gold, Bech 977) — commit pending.
-
-**DUKAT-PASS working set (curator direction: категорія, NOT fuss)** — these
-Z_other_review gold coins are dukat-class but have vague nominals («(?)»,
-«to mark»), so they will NOT surface in the categorise()-by-nominal triage
-table under 8_dukat. Track them explicitly; fold into the future 8_dukat /
-reichsdukatenfuss detailed pass. They stay `seed_unsorted` for now — do NOT
-classify into a fuss (user clarified 2026-07-19 «не в стопу, а в категорію»):
-  - kmk-298425 — Frederik III 1666, 35.38 g gold, **B 652** (Portugaløser / multi-dukat weight)
-  - kmk-86272 — Christian V 1670-99, 7.72 g gold, **Schou 3a** (2-Mark gold ≈ 2 dukat)
-  - kmk-391987 — Frederik V, 6.95 g gold, no code (≈ 2 dukat by weight)
-  - kmk-391994 — Frederik V, 3.5 g gold, no code (≈ 1 dukat)
-  - kmk-391997 — Frederik V, 3.14 g gold, no code (≈ 1 dukat)
-  - dk-bruun-7235 — Christian V, Christiania, 7.29 g, **Hede 20B / NMD 24A / Fr 14 / Schou 5** (Norway 2-dukat; entity **danish_norway**)
-
-  The 3 Frederik V pieces are UNDATED (KMM gives no minting year) — a fuss
-  classification will need a reign-window year (1746-1766, verified false),
-  like the sovereign trials.
-
-**Z_other_review — CLOSED** (all resolved): kmk-697135 excluded
-(undocumented_stub, gold «IIII skilling» 1764). **kmk-291032 RELOCATED**
-danish_realm → herzogtum_braunschweig_lueneburg (seed-file move; «Wolfenbüttel»
-added to mint_registry so a re-harvest routes it automatically; commit 99ca9c2).
-Not a cross-entity merge — that needs ≥2 members; a lone mis-homed coin is a
-plain seed-file move (entity = seed FILE location, per `_load_all_seeds`).
-
-**goldgulden_gylden Z-review** (2026-07-19 late): of the 5 unsorted,
-kmk-291022 «Gyldenløves dukat» recategorised to 8_dukat (categorise() fix —
-«gylden» substring in the «Gyldenløve» proper name was a false positive; the
-fix lives in the gitignored oneoff, not committable). Three excluded as
-undocumented_stub (no weight/photo/index on natmus.dk): kmk-178069, kmk-291022,
-kmk-78338 (commit 99ca9c2). **DEFERRED (2 left)**: kmk-122107 (1 Guldgylden,
-Frederik I 1531 — galster 6 + web LEB 4063 [L.E. Bruun coll.] + 3 photos) and
-kmk-137159 (2 Ungarsk gylden, Christian IV — schou 2 + web B 138b + 4 photos);
-both have photos + a recoverable web-`beskrivelser` index — hold until the
-natmus image/index access is sorted (part of §DB). Their extra web indices
-(LEB 4063, B 138b) are NOT yet recovered.
-
-**FLAG for the curator**: kmk-122102 (Hede 21B) is currently EXCLUDED as a
-gold pattern/Prøvemønt — but we now KEEP the sovereign trials in
-sovereign_fod. That exclusion is likely stale (pre-sovereign_fod era) and
-inconsistent with the merged Hede 21A (kmk-137088). Decide whether to
-un-exclude 21B into the sovereign_fod Hede 21 entry.
-
-## 2026-07-16 — systemic parse_hede per-Hede year/catalog/nominal extraction
-
-> **UNPUSHED — push pending «пуш».** 26 main commits (`git log origin/main..HEAD`) — the 23 from
-> parts 1-3 + 3 parse_hede commits (`defdb80` parser+tests, `c124641` data, this handoff). Submodule
-> `scripts/cache` has 1 new commit (`a8ca05e87`, 57 re-parsed hede pages) — **push the submodule
-> FIRST** (PB-10), then `git push`. Overnight autonomous session; verify in the morning before push.
-
-- **What.** Multi-nominal Hede pages (one page documenting «4 Mark» Hede 100AB + «8 Mark» Hede
-  101 from the same dies; or «1/2/3/4 Speciedaler» f3h62 covering Hede 61-64) gave EVERY sub-entry
-  the page-level year list + the union of all sub-variants' Schou/Sieg. 79 pages / ~180 sub-entries.
-  Root cause was entirely in the parser: `_extract_specs` populated only a page-level `years` +
-  merged `catalog_refs`; the per-`by_hede` sub-specs had no own year/catalog (the seed builder
-  already consumes `spec["years"]`/`["catalog_refs"]`). Fix is **parser-only + additive**:
-  `_extract_desc_hede_groups` parses each «<year(s)>; (Hede N, Schou …, Sieg …)» block into
-  per-Hede {years, catalog_refs}; `_split_hede_key` + letter-subset matching attach «100A»+«100B»
-  → combined key «100AB»; combined-key nominal derived from the sub-letters; `_looks_like_denom`
-  guards prose over-capture; Guldafslag/Sølvafslag off-strike blocks no longer pollute the section
-  nominal (skip «N Dukat» during the aside, reset at «.»).
-
-- **Result (all root-fixed, propagated seed→unified→final→render):** f3h101 = «8 Mark» / 1659 /
-  Schou 31 / Sieg 54 (was «4 Mark»/1559/merged); f3h100ab = «4 Mark» / 1659-1660 / Schou[23,33-35,36]
-  / Sieg 53; f3h62 family 62AB=2 Spd, 63=3 Spd, 64=4 Spd. **One residual source typo** carried by a
-  `_source_errata` on `dk-hede-f3h100ab` (danskmoent prints «1559» for the Ebenezerkrone; real
-  years 1659/1660 — motif = 1658-59 siege of Copenhagen, 8 Mark Hede 101 dated 1659, eksemplarer
-  1659/1660). Verification: 5→11 unit tests (`tests/test_parse_hede_per_hede.py`); full re-parse
-  (57 pages, 0 key-set anomalies, 0 combined-form phantoms); seed scan 0 catalog-loss + only the
-  f3h101 nominal change; scoped catalog reset (978 uncurated `seed_unsorted` entries, parser-owned
-  schou/sieg/fr deleted then refilled fresh — `merge_seed` UNIONS list-catalog per §9a so a re-seed
-  alone can't PRUNE stale over-broad refs; the reset is the one-time prune).
-
-- **✅ RESOLVED (2026-07-16, user source-call) — `c5h39` / `c5h40` Hede↔denom is a SOURCE
-  CONFLICT, not a parser bug. Decision: Hede 39 = 1 Dukat (Bruun wins over danskmoent).**
-  danskmoent's page reads Hede 39 = 2 Dukat / Hede 40 = 1 Dukat; Bruun physically weighed the
-  coins (lot 13186: Ducat 3.45 g, NGC MS-63, «Hede-39 Sieg-106 Fr-161 KM-A433»; lot 17098:
-  2 Ducat 6.94 g «Hede-40 Sieg-107 Fr-160») and assigns them the opposite way. Commit `e1ff225`
-  (2026-05-12) already encoded the Bruun call as `_KNOWN_HEDE_TYPOS["c5h39"] = {"39":"40","40":"39"}`.
-  User confirmed KEEP Bruun. **Current data already reflects this** (`dk-hede-c5h39` = 1 Dukat /
-  3.49 g). No swap, no re-parse needed — status quo IS the decision. **Follow-up DONE (same day):**
-  per-coin Sieg/Schou curated directly in `data/v2/final/danish_realm.yml` — `unified-dk-hede-c5h39`
-  → Sieg 106 / Schou 4, `hede-40-chr-v-1693` → Sieg 107 / Schou 3 (both per Bruun lots), each with a
-  `_curation_holds: {catalog: …}` so absorb can't re-broaden (absorb skips `_fold_catalog_indices`
-  when catalog is held — verified in absorb source ~L2766). NOTE: `_INVERTED_TAG_PAGES = {"c5h39"}`
-  (defdb80) is NOT redundant — it's protective: removing it would make the typo-swap emit
-  Bruun-wrong Sieg 107 on Hede 39. KEEP both parser mechanisms. Still open (tiny): verify where
-  final c5h39's `km 415` came from (Bruun says the 1-Ducat is KM-A433).
-
-- **✅ EXECUTED (2026-07-17) — guldkrone-7 pass: all verdicts applied, built, committed
-  (`3acabf6` merges 1-6, `b1e10db` phase III, `993db19` dedup script).** End-state verified:
-  kmk-149737/137168/291435 → km-74-1 Hede-25 cluster; KM-206 family base-merged into ONE final
-  (km [206, 206.1, 206.2] = Hede 43A/B; the km-206-2 duplicate foundation folded via
-  dedup_final_foundations — NOTE the new trap found there: the fold writes the DROPPED
-  foundation id into the keeper's composed_of, which trips audit_v2 I2 when the dropped id
-  exists nowhere else; fixed by pointing composed_of at the real unified id. Consider patching
-  the fold script's composed_of rule); KM 279 = Hede 45 (f3h45); KM 40.1/40.2 → f3h145a;
-  f4h30 promoted as guldkrone **phase III** (1701, last Danish Guldkrone, struck for the
-  Vestindiske Compagni, «kendes ikke mere» — lit-only: Ramus 192, Wilcke III 20, NFM X 87;
-  two new refs_pool keys, phase renders with citations). Analysis details remain in
-  `scratchpad/guldkrone_pass.md` (uncommitted). Guldkrone group in seed_unsorted: EMPTY.
-  Side-fund noted there: dozens of SILVER 1/½ Krone KMM records 1621/1655-1666 in unsorted —
-  a future silver-kronemønt pass. «Guilder» research (user Q): Krause English house-label for
-  ANY Danish gylden (labels both .972 ungersk and .76 rhinsk types «Guilder») — never a period
-  Danish term; etymology = anglicized Dutch gulden ≡ florin. Proposals:
-  №1 kmk-149737 + №2 kmk-137168(+bonus kmk-291435) → km-74-1-hede-25c cluster (Schou-in-range /
-  Hede 25A edges); №4+5 numismaster-93042/93043 (KM 40.1/.2) → f3h145a (its km list already holds
-  40/40.1/40.2); №6 numismaster-65606 (KM 279) → f3h45 (working concordance KM 279 = Hede 45);
-  №3 KM-206-family base-merge question (km-206 + km-206-2 + numismaster-65599 = Hede 43A/B, one
-  §9.4 base); №7 f4h30 (2 Guldkrone 1701, «Kendes ikke mere», lit-only) — no candidates, fuss
-  window question (guldkrone ends 1671) → research Wilcke III s.20 first. BONUS: tid-163671
-  (ucoin KM 40, «3.0 g» = Krause boilerplate) likely = f3h145a — cross-entity merge candidate.
-  KEY SYSTEMIC FINDING: NumisMaster/Krause prints boilerplate masses for Danish gold kroner
-  (Krone=2.973 g, 2 Krone=5.996 g) contradicted by physical Bruun/danskmoent weights already in
-  our data (Hede 44=5.59, Hede 45=11.181, Hede 43 phys 5.97-6.0) — distrust NumisMaster mass in
-  this family, trust KM↔Hede concordances. Worth a docs/SOURCES.md §13 entry when committing.
-  Also noted: my candidate scanner missed list-form km matches (scalar-vs-list compare) — fixed
-  ad hoc in scripts/oneoff/guldkrone_scan.py; consider for merge_helper.
-
-- **✅ EXECUTED (2026-07-16) — gylden-11 batch: pipeline ran, finals verified, full build ✓.
-  AWAITING COMMIT ONLY (git commit gated by the flapping Bash classifier; 11 data files staged-ready).**
-  Verified end-state: №1 unified-dk-bruun-14741 [gottorp] = rhinsk_gylden_fod/I (4 members incl.
-  MC_167742; year 1523-1533 = NumisMaster window union — OPTIONAL tidy: year_demote 167742 so
-  Galster's attested 1531 wins, ask user); №4 unified-dk-bruun-14783 [royal] = rhinsk_gylden_fod/I,
-  year 1534 clean (year_demote worked); №5 c3h15 enriched (mb 51 + fr 17 + numista 474509);
-  №6 167747 = rhinsk_gylden_fod/I; №7 kmk-150041 in c4h8a; №8 c4h16 got km B45. 14418 (Christian
-  Albrecht Ducat) intact after fixing my own Edit-collision in gottorp classification file (the
-  first-entry header replacement had orphaned 14418's fields under my entry — duplicate YAML keys,
-  last-wins; restored both entries, re-absorbed). Files to commit: merge_decisions ×3 +
-  classification_decisions ×2 + seed_unified ×3 + final ×3 (danish_realm/gottorp_duchy/
-  royal_holstein) + this handoff. Suggested msg: «data: gylden batch — 5 merges + 2 rhinsk
-  promotions; year_demote ND-ca-1535».
-
-  *(original plan record follows)* User-confirmed verdicts for the 11 `7_goldgulden_gylden`
-  seed_unsorted coins (see `scratchpad/seed_unsorted_gold.md`, uncommitted): merges №1
-  (167742→Galster-122 Gottorp cluster, cross-entity → gottorp_duchy), №4 (167745+bruun-14783+
-  numista-461448 → royal_holstein, year_demote on 167745's ND-ca-1535, fuss→rhinsk_gylden_fod),
-  №5 (167748+c3h15+numista-474509 → royal_holstein), №7 (kmk-150041 appended to the c4h8a
-  cross-entity entry), №8 (c4h16+numismaster-165442, danish_realm; «Guilder»=Krause anglicization
-  of Gylden, verified in-house via MC_65615; KM B45=Hede 16 working concordance); standalone
-  promote №6 (167747→rhinsk_gylden_fod); deferred №2+№9 (KMM photos unavailable — natmus resource
-  problem), №3 (next round), №11 (undocumented stub); №10 → 8_dukat pass. Decision files ALREADY
-  EDITED: `_cross_entity.yml` (3 new entries + c4h8a member), `royal_holstein.yml` (year_demote
-  section), `danish_realm.yml` (c4h16 merge). Classification assignments ALSO pre-written:
-  `classification_decisions/gottorp_duchy.yml` (unified-dk-bruun-14741 → rhinsk_gylden_fod I kurant)
-  + `classification_decisions/royal_holstein.yml` (unified-dk-bruun-14783 + unified-schleswig_holstein-
-  numismaster-167747 → rhinsk_gylden_fod I kurant). NOTE: the two cluster-head coin_ids (14741, 14783)
-  are PREDICTED (bruun outranks numista/galster/numismaster in head choice) — if the merger picks a
-  different head, absorb reports the assignment unmatched → fix the coin_id. **NEXT (pure execution):
-  validate_decisions --check-members → FULL merger --apply (no --entity, cross-entity needs global) →
-  verify heads match the assignments → absorb danish_realm+royal_holstein+gottorp_duchy --apply →
-  build → verify renders → atomic commits.** Nothing of this batch is committed yet.
-
-- **✅ RESOLVED (2026-07-16, user visual check) — `unified-dk-hede-f3h29` + `denmark-numismaster-65918`
-  auto-merge is LEGITIMATE (one coin).** «3 Dukat 1666 Frederik III», Hede 29 / Sieg 134 / Schou 5
-  ↔ KM 280; no shared catalogue base in either source's own data, but fineness 0.979 + weight
-  10.471 g match exactly and the user confirmed visually it's the same physical coin. KM 280 (DK) =
-  Hede 29. Keep. (Sibling changes were already correct: `unified-dk-hede-f3h82` −`kmk-149330` right;
-  f3h62ab/f3h63 clusters restored.)
-
-- **❓ Clarification for morning — «portugaloser / next category».** You mentioned finishing «все
-  що вилізло після того як ми розбирали portugaloser з seed unsorted» and moving to «наступної
-  категорії після portugaloser». I don't have context on a Portugalöser-specific seed_unsorted
-  categorisation thread — this session's chain was 20 new hede coins → f3h100ab/f3h101 year → the
-  parse_hede systemic fix (4/8 Mark Ebenezerkroner + Speciedaler pages, no Portugalöser). I finished
-  that in-flight work and did NOT start a Portugalöser categorisation pass (no clear context). If
-  that's a distinct backlog category, point me at it and I'll continue.
-
 ## 2026-07-15 (part 3) — removed the destructive `--no-merge` seed-builder flag (D47)
 
 > **UNPUSHED — push pending «пуш».** 23 commits (`git log origin/main..HEAD`). This section
@@ -2608,56 +2349,6 @@ un-exclude 21B into the sovereign_fod Hede 21 entry.
   both seed entries in `data/v2/seed/hede/danish_realm.yml` (`year_first` 1559→1659 + `year_label`)
   — but **§4 requires explicit in-chat «так» before adding any erratum**; NOT yet applied. Both are
   among the 20 new `seed_unsorted` hede coins (still pending fuss/phase classification).
-
-## 2026-07-15 (part 2) — seed-writer idempotency · _source_note Phase-1 wiring · full lossless re-flow
-
-> **UNPUSHED — push pending «пуш».** 21 commits (`git log origin/main..HEAD`). This
-> session's 5 (newest first): `0484d7c` (re-merge seed_unified) · `a77ab38` (re-absorb
-> finals) · `d9d310c` (re-seed all) · `0ad4780` (wire _source_note ×5 builders) · `85be578`
-> (seed-writer idempotency) — on top of the 16 in the section below (incl. `80b671d`/`b46deed`/
-> `562661b` reserialize-drift resolution + gen_stamp ts fix). Submodule `scripts/cache` still
-> 3 ahead — push FIRST (PB-10).
-
-- **Seed-writer non-idempotency root-caused + fixed (`85be578`).** `_apply_pre_write_hygiene`
-  ran `_extract_mint_from_nominal` BEFORE the annotation splitters, so a mint hidden behind a
-  region suffix («Hvid , Visby (Gotland)») escaped the trailing-mint regex; then the splitters
-  stripped «(Gotland)» exposing a bare «, Visby» that nothing caught. The fresh-build path thus
-  disagreed with the orphan-normalisation pass (runs on already-normalised data, DID strip it),
-  so galster never reached a fixed point (perpetual re-seed churn). Fix: RE-extract after the
-  splitters. Also `_dump_seed_yaml` skip-write (content-stable seed `generated_at` via
-  `gen_stamp.content_equals_except_timestamp`). Tests: `test_nominal_mint_reextract.py`,
-  `test_gen_stamp.py`.
-
-- **`_source_note` = deferred Phase-1 work, now wired (`0ad4780`).** Investigating the «14k-line
-  stale-seed» churn revealed `_source_note` is NOT a disposable duplicate — commit `80a1b62`
-  (Phase-1) populated 2629 candidate-notes (source descriptions) via a one-off and EXPLICITLY
-  deferred the builder-wiring to «the next coordinated re-seed». This was that re-seed; dropping
-  it would abandon the work. Wired `_source_note` into all 5 builders (numismaster `general_note`
-  en · numista obv/rev-desc en · ikmk `comment` de · hede `description` da · kmk `motif` da) via
-  the existing `lib/note_extract.source_note`. Verified per-coin: 2625 reproduced IDENTICAL, 0
-  changed, 0 LOST + 357 gained coverage. Durable now. `_source_note` stays non-schema (stripped
-  by merger, never rendered) — pure curator-review candidate for the future note-selector.
-
-- **Full lossless re-flow (`d9d310c` → `a77ab38` → `0484d7c`).** re-seed → merge → absorb → build.
-  Verified by full-id-set + composed_of membership analysis (NOT raw diff lines — those are
-  inflated by benign reordering): **0 coins lost anywhere**. Real changes: 4 galster nominal
-  fixes («1 Hvid, Visby» → «1 Hvid») + 1 mint correction (c2g-174 Kopenhagen → «Hamar…») + **20
-  new hede coins** (f3h84ab etc.). danish_realm net −5 finals = hede providing the authoritative
-  Hede/Schou/KM anchor that unifies previously-separate museum(kmk)/auction(bruun)/catalogue
-  (numismaster/numista) records of the SAME coin — every consolidation §9.4-verified on a shared
-  catalogue base (e.g. kmk-156815 Hede 113A → f3h113a). Gates: audit_lost_citations = 0, V2 I2
-  clean, 547 tests OK, build OK, render OK («1 Hvid, Visby» = 0 in danish_realm). **My earlier
-  «200+ id restructuring / curation-loss» alarm was WRONG** — reordering artifacts; corrected.
-
-- **⚠ commit-order blemish (harmless):** the merger seed_unified commit was first BLOCKED by the
-  I2 hard-block (5 finals transiently referenced retired unified-ids from the hede re-cluster);
-  the absorb then purged those 13 stale refs, so finals committed first (`a77ab38`) and
-  seed_unified second (`0484d7c`). Final state is consistent (I2 clean); only git history order
-  is slightly inverted. If re-running from scratch, run merger+absorb THEN commit seed_unified
-  before finals.
-
-- **The 20 new hede coins are `seed_unsorted` (pending classification)** — they render but carry
-  no fuss/phase yet. Curator follow-up when convenient (not blocking).
 
 ## 2026-07-14 — galster Gej fix · Norway harvest-gap audit · rhinsk phase renumber · c3h14 Goldgulden split · c3g131 schou 1-7 · c3h14 nominal → Goldgulden
 
@@ -2871,131 +2562,6 @@ graph-gate warns «no shared base» on catalogue-divergence + Schou-range +
 physical-uniqueness cases (all false alarms) — document the override in the
 merge reason.
 
-## 2026-07-12 — coin-table measurement sub-rows (per-specimen повна/чиста/Δ)
-
-> **UNPUSHED — push pending «пуш».** Commit `d04974e` (+ render-neutral
-> groundwork `8c67eba`). Full build exit 0; preview (port 3000) rebuilt.
-
-**What shipped.** Multi-specimen coins now render повна / чиста / Δ as aligned
-sub-rows (one per specimen) instead of comma-lists; проба spans exactly the
-sub-rows sharing its fineness. Files: `scripts/lib/compute.py` (`_seg_rle`,
-`_build_measurement_rows`, `ComputedCoin.msr_*`), `templates/location.html.j2`
-(метал/проба + повна + чиста + Δ cells, gated on `coin.msr_n > 1`, else the old
-`*_groups` rendering), `scripts/lib/style.base.css` (`.msr-seg`,
-`.fin-src`/`.fin-alt`, `.sd-wrap`).
-
-**Key design decisions (all curator-driven this session):**
-- проба driven by `fineness_groups` (per-SOURCE readings); each row's fineness
-  derived from its own чиста/повна + snapped to the catalogue value → проба
-  aligns with чиста row-for-row. Single reading → normal `.fin-src` + source
-  tooltip; ≥2 divergent → orange `.fin-alt`, each its own fineness source (NEVER
-  the weight source). Metal repeated per variant.
-- Diameter is NOT a sub-row axis (specimen spread = wear noise) — Ø keeps its
-  own `diameter_groups`.
-- чиста/Δ tooltips carry the «weight × fineness» derived-source label
-  (`_seg_rle` `src_field`); повна carries the raw weight source.
-- `_seg_rle` `group_field="fineness"`: повна/чиста/Δ never merge across a проба
-  boundary — a weight shared by two specimens under different fineness keeps its
-  own sub-row (не дедуплікується). проба itself is the grouping axis.
-- `--msr-row-h` 44px; Δ badge 2-line, unverified «(?)» sits OUTSIDE the coloured
-  badge (right, vertically centred via `.sd-wrap`); msr-seg horizontal padding
-  matched to `.mt td` so sub-row values align with non-sub-row values.
-
-**Verification note.** Spot-checks were on denmark via an isolated single-table
-demo (`site/_msr_demo.html`, now removed) + JS geometry — the preview pane can't
-screenshot the full 2025-coin page (renderer times out; scroll decoupled from
-capture). Reference cases: c3h14 (royal_holstein, .750 hede / .764 galster) and
-the reichsdukatenfuss .986/.972 @ 3.49 g coin — both confirmed aligned.
-
-## 2026-07-10 (later) — founding-era reign-span mint/phase START rule
-
-> **UNPUSHED — push pending «пуш».** Commit `8d4d305` (was cf3aede pre message-amend).
-> Full build exit 0, preview (port 3000) rebuilt, 10 new unit tests pass.
-
-**Problem.** A standard whose EARLIEST coin is a reign-window placeholder
-(`year_is_reign_span` — «1513-1523» Christian II, exact mint year unknown) was
-starting its **карбування (mint) stripe** + phase at the nearest DATED coin,
-ignoring that the reign coin was struck earlier. On Dukatfod (reichsdukatenfuss)
-the mint stripe indented to 1531 while the standard's founding is 1513/1481.
-
-**Fix — 2-rule policy (curator direction), shared by BOTH surfaces.** New helper
-`timeline.founding_mint_start(reign_min, dated_min, adoption_year, firm)` →
-`(start, approx)`, driving the timeline mint stripe (`derive_mint_overrides`) AND
-the phase table (`build._expand_outer_phase_span`, now fed the fuss
-`first_adoption` via a cached `_load_fuesse_cached()`):
-- **Rule 1 firm** (dated ordinance / curator-certain de-facto start): HARD-clip
-  the start to the founding year, no fade. Reign spill before it is cut.
-- **Rule 2 non-firm** (uncertain de-facto): start from the reign coin's own year
-  WITH the uncertainty fade.
-
-**Discriminator = NEW per-scope field `FussEvent.firm_<scope>` (default True),
-read only on `first_adoption`.** Deliberately SEPARATE from `approx_<scope>` (user
-choice «окреме поле») so editing the display-approx flag never changes the span
-rule. **Keying on FIRMNESS, not literally «has a decree», is what protects the
-accepted 9¼-Thaler 1622** — its 1622 is de-facto-but-firm (Friedrich III first
-strike, no Møntordning), so `firm=True` hard-clips the 1588 reign coin up to 1622,
-no regression. Only `reichsdukatenfuss` `first_adoption.firm_anywhere: false` set
-in data (its anywhere 1481/1513 is a genuine de-facto estimate); everything else
-defaults firm=True.
-
-**Effect (denmark only):** reichsdukatenfuss/Dukatfod mint 1531→1513 (fade,
-clipped at the 1514 timeline left edge so the fade is off-screen — the stripe just
-reaches the edge now) + phase I 1514→1513; 8_5_gylden_fod mint 1516→1514 (Rule 1,
-Møntordning Sommeren 1514). 9¼-Thaler (1622) + 9-Thaler (1566) + all SH-scope
-reichsdukatenfuss UNCHANGED (SH has no Danish Christian II reign coin; its 1591
-shift is the pre-existing dated-coin c4h8a expansion). `last_mint` / the phase
-to-anchor still exclude reign placeholders — this rule is START-only.
-
-**Scope note.** Only 4 fusses ever had a reign-span-earliest coin (scan:
-reichsdukatenfuss, 8_5_gylden_fod, 9_thaler, 9_25_thaler); the helper is a no-op
-for every other fuss (no reign coin earlier than its dated coins → dated start).
-
-**Unrelated pre-existing failure noticed:** `tests/test_mint_ambiguity_split.py`
-has 4 failing tests (Malmø ø → Malmö ö normalisation in the mint-name splitter) —
-confirmed present at clean HEAD before this change (stash-verified). Not caused
-here; flagged as a separate task.
-
-## 2026-07-10 — denmark_pre_1541 unification (NumisMaster _pre1541 pipeline retired)
-
-> **UNPUSHED — push pending «пуш».** Commits (newest first): `c760e4f` cache
-> pointer bump · `6638351` data re-flow · `c9220e9` code+docs retirement. Plus
-> a submodule commit `1b00a12` (cache scope deletion). Working tree clean,
-> full build exit 0, preview (port 3000) rebuilt.
-
-**What.** `denmark_pre_1541` was never an entity/location/issuing_entity — only
-a legacy NumisMaster harvest **sub-scope** (3 MCs) with its own parser+builder,
-which duplicated coins the MAIN sub-scope already covers. Retired it:
-- Deleted `scripts/parse_numismaster_pre1541.py` +
-  `scripts/maintenance/build_numismaster_pre1541_seed.py` (both generalised long
-  ago into the sub-scope-aware `parse_numismaster.py` + merge-aware
-  `build_numismaster_seed.py`); dropped `denmark_pre_1541` from
-  `parse_numismaster.py` KNOWN_SUB_SCOPES + the `harvest_coverage.py` numismaster loop.
-- Removed the 3 `dk-numismaster-167727/167729/167745` seed entries from
-  `data/v2/seed/numismaster/royal_holstein.yml` + refreshed its stale §AZ header
-  to the §BK main-builder scope_note (dropped `scope_year_from/to` — the pre1541
-  fingerprint). Deleted the `scripts/cache/numismaster/denmark_pre_1541/` scope
-  (submodule; the 3 MCs live in `schleswig_holstein/` with raw .html + parsed).
-- Re-merged + re-absorbed royal_holstein: the 3 unified clusters lost the dk
-  member and re-keyed onto the main-scope head (167727 → `unified-dk-numista-309411`
-  [+ sh-numismaster-167727]; 167729/167745 → `unified-schleswig_holstein-numismaster-*`).
-  All 3 stayed seed_unsorted → 0 curation lost; final 903→903 (exact 3-for-3 re-key,
-  verified by id-diff; cross-entity pulls intact; sh-167745 gained Fr 16).
-
-**This ALSO closed the «two-builder overlap» half of systemic follow-up #1**
-(NumisMaster ND re-flow): royal_holstein no longer has a main-vs-pre1541 builder
-clash — only ONE numismaster builder writes it now. The coordinated re-seed still
-needs to review ~3 weeks of builder drift, but no longer has to reconcile two builders.
-
-**LEFT for a user decision (reported in chat).** The **numista** `denmark_pre_1541`
-is a DIFFERENT thing and is ALREADY data-unified: `build_numista_seed.py` reads a
-flat `scripts/cache/numista/parsed/*.json` dir (not a per-scope bucket) and seeds
-those 56 coins to their proper entities — there is NO numista data split. Only dormant
-scaffolding remains: `scripts/fetch_numista_pre1541.py` + `scripts/parse_numista_pre1541.py`
-+ the raw cache dir `scripts/cache/numista/denmark_pre_1541/` (56 coins, harvest
-provenance). Not touched — lower value, higher risk (deleting the raw dir loses
-harvest provenance for coins whose parsed sidecars are still consumed). Ask the user
-whether to also retire that dormant numista scaffolding.
-
 ## 2026-07-09 (later) — Phase-filter fix SHIPPED + reign-span model + coin cleanup
 
 > **UNPUSHED — push pending «пуш».** This session's commits (newest first):
@@ -3134,100 +2700,6 @@ mint still surfaces them on SH via the crown-map render-widening.
    each coin's fuss/phase to the mint entity via a classification_decision and
    drop it from `_ENTITY_PIN`.
 
-## 2026-07-02 — km-761 cross-entity consolidation + one-pass relocation + completeness guard (HARD ERROR)
-
-> **UNPUSHED — 73 commits ahead of origin; push pending «пуш».** origin/main = `21fbdcd`, HEAD = `73526f8`.
->
-> **km-761 «2 Rigsdaler» 1854-1863 cleaned + consolidated into ONE cross-entity coin.**
-> The fragmented km-761 cluster (km-761 + f7h6a/b/c) had a FABRICATED note (§0 —
-> a garbled Christian IX golden-wedding coin) + wrong indices (hede 7 → Prøvemønt
-> f7h7; dav 75 → KM 742 Death-and-Accession). Cleaned each (`be91f25` drop stray
-> f7h7 source, `0763b4b` consolidate). Consolidated 13 members → `_cross_entity.yml`
-> target royal_holstein, head `unified-dk-hede-f7h6a` (fuss 18_5_thaler, phase
-> `{denmark: I, schleswig_holstein: III}`, km [761,761.1,761.2,761.3], hede
-> [6A,6B,6C]) — the f7h8/KM631 precedent. Used the existing `_home_entity` [DR,RH]→
-> royal_holstein routing (no new logic needed).
->
-> **Absorber → ONE-PASS cross-entity relocation (`abfaa0d`).** Previously a
-> cross-entity merge needed TWO actions (merge + manual delete of the stale
-> source-side final). Added `_cross_entity_relocated_out(entity_id)` +
-> `_final_is_relocated(fe, relocated_out)` → the absorber now DROPS the stale
-> source-side final in the same pass (a FINAL filter on `enriched_entries`
-> AFTER the monotonic guard — placing it earlier didn't stick, the monotonic
-> guard re-promotes vanished prior-finals verbatim). Watch for `[<source>]
-> cross-entity relocation: dropped N stale source-side final(s)` in the absorb log.
->
-> **Completeness guard: WARNING → resolve 16 → HARD ERROR (`8bd2d4c` → `01e5330`
-> → `f05f1c7`).** New `_check_cross_entity_completeness` in the merger: on every
-> run, if a `_cross_entity.yml` group has a seed sharing a member's KM/Hede base +
-> nominal + metal that is NEITHER in `members` NOR in the new `excludes:` field, it
-> is a forgotten member (would fragment/phantom in its source entity — the exact
-> hole `_final_is_relocated` can't see, an unlisted seed is never in
-> `relocated_out`). Shipped as WARNING first; it found **16 real pre-existing
-> forgotten KMM specimens** (c7h33 +5, f6h14 +8, c7h13 +3) → MERGED all 16 per §9a
-> (NOT excluded — they ARE the coin; `_suppress_weightless_museum_overcollection`
-> handles display, thinning does its job). THEN promoted to HARD ERROR (`sys.exit(1)`).
-> Verified: clean run rc=0 (completeness=0 proceeds), injection rc=1 (BLOCKED, names
-> the seed). The merger is manual-only (CI `deploy.yml` runs build.py, not the
-> merger) so the hard-error breaks no automation.
->   - **KMM image signal** (learned): NOT the cache `drawingExists` flag (False for
->     all, including specimens that DO have images). Real signal = `related.assets`
->     with `type: "still"` in the ES `_source`. 3 of the 16 had images.
->
-> **Two smaller guards this session:**
-> - **exonumia guard broadened** (`86c8c82`, `bd9faa5`) — `build_numista_seed
->   ._excluded_strike_reason` now also drops off-scope metals (`_OFFSCOPE_METALS` =
->   paper/white-metal/tin/pewter) + title-exonumia (`^(medal|médaille|token|jeton|
->   jetton|plaquette)\b`). Cleared 2 of the 3 audit_v2 I4 failures.
-> - **phase int→str coercion** (`d88fb24`) — `schema.py::_coerce_phase_to_str`
->   field_validator: an unquoted-YAML-int phase (`phase: 131`) coerces to str; dict
->   int-values coerce too; bool still fails. Cleared the c3g-131 I4 failure. (str→int
->   was analysed + rejected: per-location dict form + non-numeric phase ids like «III».)
->
-> **`v2-merge-coins` skill — CROSS-ENTITY MERGE section added (`73526f8`).** Documents
-> the `_cross_entity.yml` GLOBAL path (target_entity + members + excludes), the merger
-> PULL/EXCLUDE/stamp mechanic, the one-pass relocation filter, and makes the HARD-ERROR
-> completeness guard's contract explicit (member enumeration mandatory; every KM/Hede-
-> base+nominal+metal sibling is a `member` or an `excludes`, no third option). Records
-> run-WITHOUT-`--entity`, absorb-both-entities, [DR,RH]→royal_holstein routing, and that
-> `merge_helper.py audit` skips `_cross_entity` by design.
->
-> **Board CLEAR** — the whole km-761 / cross-entity / completeness-guard cycle is closed.
-> Full suite 444 OK; audit_lost_citations 0; audit_v2 0; build rc=0.
->
-> **Later 2026-07-02 — «what's left» audit + two closures.** Re-verified the deferred
-> backlog against actual DATA (not the handoff scanner, which trusts stale markers):
-> **f3h62** + **c4h115** + **galster hg-238** + **audit_v2 I4** were ALL already
-> resolved — false-positives from un-updated «SURFACED, not actioned» bullets (closed
-> the stale block `abee66c`). GENUINELY open, data-verified: c9h18 (13 unabsorbed KMM
-> 2-Øre fragments), c4h77 (Hede-77 family unassembled), reign-scoped hede/sieg/schou
-> mis-attribution audit (never run), §W prose-lint (1203: 563 err/640 warn), i18n
-> guldkrone HEDE-25 (1 err/20 warn). Closed this session: **ucoin HARVEST_GUIDE**
-> «deferred»→ACTIVE (`5b43881`) + the **sub-letter-space** defect class (`67590f0` +
-> `296d051`, 109 values — see the 2026-06-28 «Minor known-quirk» entry, now RESOLVED).
->
-> **Later still 2026-07-02 — pushed to origin, then continued.** Pushed `21fbdcd..ec16333`
-> (85 commits) then kept working; **origin behind again** (local commits after the push await
-> the next «пуш»). Shipped after the push:
-> - **NEW skill `fuss-description`** (`aaeef69`) — writes/revises/SCORES a fuss `description`
->   against a 6-criterion rubric → X/10 (founding · role · per-phase differentiator · no
->   metric-fixation · every claim sourced · no specimens), loopable to a threshold (default
->   8+). Helper `describe_helper.py <fuss>`. Executable form of §7a+§0+§5+§0z. Registered in
->   CLAUDE.md §Skills + §7a pointer + PLAYBOOKS PB-3. Demo score: rhinsk_gylden_fod ~8.5/10
->   (8.0 = ship-bar, 9.0 = excellent). **NEVER invent to raise the score.**
-> - **c4h77** «1 Mark Danske» Chr IV consolidated — 6 seed_unified clusters → one coin, KM 12 =
->   Hede 77 (`cbd23ad`; bundled 4 benign «2 Skilling» §9a folds per curator OK).
-> - **i18n backlog 21 → 0** (`da2332e` normalize_catref hyphen-strip clears 20 spurious R3 +
->   `ac58500` gottorp km-46 missing-DE note).
-> - **72-Guldgyldenfod card** (= rhinsk_gylden_fod) reworked: atomic nobel-style Grundwerte rows,
->   per-phase sub-sections (`.gw-phase` CSS, no divider between phases), carats as fractions
->   (18 / 18¼ / 18½), aside block, uk «королівсько-монетний» German-calque → «королівський».
->   Commits 10ea0ec…c103f33.
-> - **Cross-entity c3g-131** folded into c3h14 (`ef1a441`) — 4th Galster-131 «1 Rhinsk gylden»
->   (DK standalone) merged into RH; both finenesses [.750, .764] preserved §9a. NOTE: the
->   completeness guard did NOT catch it (keys on km/hede; c3g-131 carries only `galster`) — a
->   known guard blind-spot for galster-only seeds.
-
 ## 2026-06-29 (night) — two skills + gottorp over-merge fixed + audit-expansion fix
 
 > **UNPUSHED — 57 commits ahead of origin; push pending «пуш».** Night-work session.
@@ -3300,85 +2772,6 @@ mint still surfaces them on SH via the crown-map render-widening.
 >
 > **STILL DEFERRED (older):** f7h7 (Prøvemønt tangle), c9h18 ~29 KMM museum rows.
 
-## 2026-06-29 — B4 (9/9) + B5 (1/1) COMPLETE; whole over-union B-group done bar f7h7
-
-> **UNPUSHED** — 41 commits ahead of origin; push pending «пуш».
->
-> The 25-group over-union audit is now essentially CLOSED: B1 (8) ✓, B2 (4) ✓,
-> B3 (3): f7h16+f7h17 ✓ / **f7h7 deferred**, B4 (9) ✓, B5 (1: f3h153) ✓.
->
-> **B4 (9/9)** — all re-evaluated under corrected §9.4 (Sieg sub-variants are
-> sub-variants of one coin). 8 merges + 1 clean:
-> - c4h106 (`bf8f2df`) Sieg 90.1-90.4; c4h107 (`0a55aa7`) Hede 107 — Sieg 79.3
->   kept as a verified Bruun attestation (c7h25 shape); c9h18+f3h121 (`5f52a41`);
->   f2h20 (`6c1ccf2`) foundation-fold; f5h34 (`d5b12b9`) KM 580/581; f5h38
->   (`2dfca82`) KM 595/596/597 — render exposed a 3rd KM (597) the B4 table missed.
-> - **c4h114** (`f430c87`) — the lone CLEAN: kmk-714958 was a Hede-114A specimen
->   mis-DATED 1619 by KMM (reverse reads «16Z0»=1620). Fixed via the established
->   `_KMM_YEAR_ERRATA` map in build_kmk_seed.py (NOT a final note); the year fix
->   auto-re-clustered it from Hede 110 (1619) to Hede 114 (1620-1621). The
->   KMM-year-error practice = that builder map, curator-confirmed per entry.
-> - **c7h28/c7h29** (`814a9d7`) — NOT a merge: two distinct «24 Skilling» Chr VII
->   (Hede 28/KM 635/Sieg 17 vs Hede 29/KM 643/Sieg 18, same 9.171 g). The bug was
->   V1 cross-contamination of the KM lists; cleaned both (dropped each other's
->   phantom KM + the orphan NumisMaster source). NO index source-error.
->
-> **B5 f3h153** (`f27d6a7`) — «4 Mark Danske» (=1 Krone) Frederik III Glückstadt
-> 1659-1660 = Hede 153, Krause-split across TWO volumes. Merged 3 finals with
-> **volume-separated dict-form km** `{sh:[95], dk:[A43,B43]}` (KM 95 = German SH
-> volume → KM# 95 on SH page; A43/B43 = Danish volume → KM-DK# on denmark) so
-> German/Danish indices never conflate. Confirms dict-form km renders correctly
-> on BOTH pages for a royal_holstein coin (the c7h13 dict-form glitch does NOT
-> recur here). kind set to tarif (§6 Kronemønt).
->
-> **OPEN / deferred:**
-> - **f7h7 (B3)** — NOT a clean cross-entity dup. danskmoent Hede 7 is a private
->   **Prøvemønt** (pattern, §9.1-excludable); the «km-761» data is actually the
->   f7h6 circulation «2 Rigsdaler» mis-tagged Hede 7. Tangled with f7h6. Awaiting
->   curator decision (fold km-761 into f7h6 + fix Hede tag, or defer).
-> - **c9h18 «2 Øre»** — ~29 PRE-EXISTING un-absorbed KMM museum-specimen rows
->   (weightless, fragmented across 19 seed_unified clusters). Separate
->   museum-fragmentation / §9a-thinning issue, project-wide pattern. Not touched.
-> - Single-member cross-entity re-home infra (validator relax + xentity stamp
->   fix) was developed for f7h7 then REVERTED when f7h7 deferred — re-add with the
->   concrete use-case if a single-member re-home is needed.
-
-## 2026-06-28 (later) — B2 specimen-fold (4 of 4) COMPLETE + §9.4 rule corrected
-
-> **UNPUSHED** — 30 commits ahead of origin; push pending «пуш». New this pass:
-> c7h25 `2773ab2`, §9.4 rule fix `d8df9d7`, B2 c7h39/f4h57/f3h40 `2a1c4d3`.
->
-> **B2 «specimen ⊂ main» (4 candidates) all merged.** Each verified via the
-> index-graph procedure (build the graph of all catalogue indices across all
-> candidates; a unifying catalogue ⇒ one coin):
-> - **c7h25** «1 Kurantdaler» Chr VII 1788 — cross-entity merge (royal_holstein↔
->   danish_realm), KM 645 + Hede 25. Sieg diverges by source: danskmoent «Sieg 26»
->   vs Bruun lot 13248 «Sieg-19» — BOTH cache-verified → union `sieg:[19,26]`.
-> - **c7h39** «1 Speciedaler» Chr VII 1787-1808 — 5 finals → 1 (KM base 138 sub
->   .1/.2/.3/.5, Hede 39A-39G). Intra royal_holstein.
-> - **f4h57** «1 Dukat» Fr IV 1705-1706 — 2 → 1 (KM 2/2.1/2.2, Hede 57A/57B). Intra rh.
-> - **f3h40** «¼ Dukat» Fr III 1665+1668 — 2 → 1 (KM 264/264.1/264.2, Hede 40A-40C). Intra danish_realm.
->
-> **§9.4 rule corrected (`d8df9d7`).** The old «different catalog index = different
-> type» was too blunt — we tripped over it every B-group session. New rule:
-> sub-indices (138.1/138.2; 39A/39B; 102.1/102.3) are sub-variants of ONE coin;
-> decide same-coin-vs-distinct-type by building the GRAPH of all catalogue indices
-> and checking whether ANY catalogue unifies them under one base index. Distinct
-> types only when EVERY catalogue gives distinct base indices unified by none.
-> Synced the «Do NOT skip» bullet + the anti-pattern §4 fineness clause.
->
-> **Remaining B-group fronts (not yet started):** B4 same-KM/diff-Sieg (9),
-> B3 cross-entity (3), B5 (1) — per the 2026-06-28 over-union audit below.
->
-> **Minor known-quirk — RESOLVED 2026-07-02** (`67590f0` code, `296d051` data):
-> the `catalog.hede: '39 C'` whitespace was NOT one occurrence — a full scan found
-> **109** of the same Numista tab-split defect (lange 82 + hede 27) across 22 seed/
-> seed_unified/final files. Durable fix shipped: `normalise_numeric_index` collapses
-> a whole-token «number space sub-letter» via `_strip_subletter_space` (anchored so
-> Lange's reign-disamb «358 C IV» + dav volume codes stay intact), reaching the
-> render chokepoint + every merge/absorb/seed-writer pass; the 109 existing values
-> healed format-preserving (+109/-109, zero churn). test_catalog_subletter_space.
-
 ## 2026-06-28 — B1 over-union cleanup (group D / Pattern B), 8 of 8 COMPLETE
 
 > **UNPUSHED** — pushing pending «пуш». New commits this session on top of the
@@ -3447,71 +2840,6 @@ mint still surfaces them on SH via the crown-map render-widening.
 > the COMPLETE block-set no_merge (block the moved seed from ALL catalog-less members
 > of the wrong cluster — c4h116 lesson).
 
-## 2026-06-27 — KM-differ candidates closed + dangling composed_of-pin finding
-
-> **UNPUSHED** — 4 commits ahead of origin (adeb443 c4h116, 48f49ee c5h57,
-> 1287d4c f6h27, f2a9291 c4h59) on top of the prior ~80. `git push` pending «пуш».
->
-> **All KM-differ candidates from the 2026-06-26 list are now resolved + committed:**
-> - **c4h116/c4h117** (adeb443) — over-merge regroup: catalog-less KM 80.2 forced into
->   Hede 117 (not 116). Needed the COMPLETE block-set (all 3 catalog-less Hede-116
->   records + kmk-191584 wanderer) because force-merge runs last and auto-match joins
->   catalog-less KM to the wrong cluster first.
-> - **c5h57** (48f49ee) — over-merge regroup: Hede 57 (u.år) = KM 455 (1699), not KM 387.
->   Same shape as c4h116; +no_merge [dk-hede-c5h57, denmark-numismaster-65801] to stop
->   KM B445 (1696 horseback Ducat) following the catalog-less record.
-> - **c9h16** (21fbdcd) — §CN errata: Bruun KM-195.1 is a misprint of 795.1 (10 Øre),
->   user-guaranteed; fold bruun-8346/8360.
-> - **f6h27** (1287d4c) — Krause dual-listing: 1-Rigsbankdaler = ½ Speciedaler ⇒ KM 696.2
->   = 706.2, one coin. Fold + accumulate KM per §9.
-> - **c4h59** (f2a9291) — Hede groups ½ Speciedaler Chr IV as one h59 (59A/B=KM 100
->   1624-1634, 59C=KM 135 1646) despite differing KM. merge_decision force + accumulate
->   KM [100,135]; final fold of standalone km-135; note updated (1624-1646, 59C/KM-135).
->
-> **FINDING — dangling composed_of pins trip audit_v2 I2 (5 pre-existing; NOT caused
-> by today's work).** `audit_v2.py --quick` exits 1 on the worktree AND on HEAD because
-> 5 final foundations pin a drop-id in `composed_of` that resolves to neither seed,
-> unified, nor final: `dk-tid-70760→unified-dk-bruun-8093` (f6h27),
-> `km-455→unified-dk-bruun-7244` (c5h57), `km-61-1→hede-105a` + `c9h13a→km-798-1` +
-> `c7h13a→km-651-1` (dedup_final_foundations PAIRS). Root cause: the dedup fold's
-> durability pin assumes the drop's twin survives in seed_unified; when a merge_decision
-> ALSO merges them at the seed_unified layer (f6h27, c5h57), the twin is consumed → the
-> pin dangles AND is redundant (durability already guaranteed by the merge_decision).
-> **c4h59 deliberately avoided this** — folded composed_of left clean (`['unified-dk-hede-
-> c4h59a','unified-dk-numista-109973']`), no pin, because its merge_decision handles
-> durability. The 2 session pins (f6h27/c5h57) are the same easy case and could be
-> stripped; the 3 dedup-PAIRS pins need care (no seed_unified merge_decision → check
-> whether removing risks absorb resurrection, or whether the pin should target the
-> UNIFIED twin id rather than the final id it currently names — the final-id pin may be
-> ineffective for durability anyway).
->
-> **RESOLVED — all 5 pins healed (`f8c2985`, audit_v2 I2 5→0).** Verified each
-> repair against absorb's OWN convergent state (`process_entity`, no `--apply` to
-> avoid the +21 stale-purge drift the session avoids): f6h27 dk-tid-70760 pin
-> RE-POINTED unified-dk-bruun-8093→unified-dk-hede-f6h27b (the live merged host);
-> c5h57 km-455 pin DROPPED→`[]` (Hede 57 already absorbed in dk-tid-97535); the 3
-> dedup orphans (drop composed_of=[], nothing to resurrect) pin DROPPED. KEY mechanic
-> learned: absorb's line-1670 "PURGE stale composed_of" strips any cid not in current
-> `unified_by_id` on EVERY run, BEFORE building already_absorbed — so the pin never
-> reached the resurrection guard; it was cosmetic. Isolated before/after build diff:
-> SH render-neutral; denmark removed 3 latent f6h27 "Bulk-Seed" phantom rows (broken
-> pin pointed at the dead bruun-8093 so its seeds were never suppressed) — ZERO data
-> loss, all values consolidated in keeper dk-tid-70760.
->
-> **I1 home-file audit was STALE — fixed (`f66e800`, audit_v2 --quick 0).** The 39
-> "violations" were CORRECTLY-placed coins: the live seed-writer
-> `lib.v2_seed_writer._home_entity` homes any `issuing_entity` containing
-> `royal_holstein` (the SH∩Denmark overlap entity) to royal_holstein.yml so BOTH
-> pages pick it up via robust Pass-1 — but the audit still hard-coded the old
-> alphabetical-first rule (would want danish_realm.yml) and flagged them. User
-> confirmed royal_holstein placement is right. Fix: the audit now IMPORTS
-> `_home_entity` and checks `_home_entity(coin) == filename`, so audit + writer
-> share ONE function and can't drift. All 12254 live coins pass; regression test
-> `tests/test_i1_home_file.py`. **Hook now installable** — `audit_v2 --quick` (what
-> Check 4 runs) = 0 (I1/I2/I3/I5 clean). Pre-existing FULL-audit-only findings remain
-> (NOT hook-gated, --quick skips them): I4 schema 51 + I6 decision-refs 7 — separate
-> cleanup before a non-quick gate could go green.
-
 ## 2026-06-26 — thin-line metal consensus + Pattern-A dedup + 2-Dukat-1747 regroup
 
 > **UNPUSHED** — ~80 commits ahead of origin. `git push` pending user «пуш».
@@ -3552,137 +2880,6 @@ mint still surfaces them on SH via the crown-map render-widening.
 > cross-ref exists for Danish gold — Danish catalogues (danskmoent/Hede/Schou/Sieg)
 > carry no KM, Krause/NumisMaster/Numista carry no Hede; the only bridge is Friedberg
 > or design-description match. Don't waste a session hunting a direct cross-ref.
-
-## 2026-06-25 — catalogue «/»=«and» split fix + §DA Table A/B (verdicts pending)
-
-> **UNPUSHED** — slash chain a32d944→5a391e6→97a0157→`5f8c2d1`→`8abf341`. `git push` pending.
->
-> **Catalogue «/» = «and» split — FINAL (`5f8c2d1` code+tests, `8abf341` data heal).**
-> Evolution across the session: a32d944 split on EVERY «/» → produced prefix-less
-> «96|T-91»; I interim-fixed it to «keep tight slash whole» (a32d944) and corrected my
-> wrong «range» label (5a391e6/97a0157); **user then settled the semantics — «/» = «та»
-> (and)**, superseding keep-whole. Final rule in `lib/catalog_codes.split_multi_ref`
-> (both surfaces delegate): split on «/», RE-ATTACH the leading alpha prefix of the
-> first member to any bare-numeric continuation → Jensen-Skjoldager «T-91/96» = [«T-91»,
-> «T-96»]. Number-list guard keeps non-number «/» whole (publisher «Divo/S», «#»-labelled
-> tokens); dash «T-81 - T-88» is a separate range notation, untouched; km keeps its own
-> split. **Data heal (`8abf341`):** the old code had ALREADY split these into prefix-less
-> lists in the seeds — galster `['T-91','96']`/`['T-41','45']`/`['T-31','35']` + Bruun
-> `['T21','25']`/`['T-22','26']` — propagated to seed_unified + final. normalise_catalog
-> can't re-heal (the «/» is gone), so a one-time nearest-preceding-prefix heal via
-> `lib/yaml_io.py` fixed all 4 danish_realm layers (incl. the merged unified-dk-bruun-4056
-> `['T21','25','T-22','26']` → mixed dash styles preserved per §0). Blast radius = J-S
-> only, danish_realm only; 0 bare-continuation J-S left; build + validate + 357/357.
->
-> **§DA remaining cases — re-investigated from source, awaiting verdicts.** Presented
-> two tables in chat (NOT yet acted on, no data touched):
-> - **Table A (11 coins, real errors):** **(A1) DONE (`cec33b1` cleaner, `6845b0a`
->   data).** `_reroute_foreign_catalogue_refs` → `_clean_catalogue_refs` (galster/
->   sieg/schive/schou/J-S): drops Danish prose («mangler hos», «adskillige
->   katalognumre, se side …», «; unik»), extracts «hhv. X og mangler»→X, routes
->   Ernst (+ existing Hildebrand/Lagerqvist/Rasmusson/Hauberg)→others. Fixed all 7
->   (f1g-168 galster→168, f1g-49 J-S dropped, c2g-172 schive→XV.5, hg-159/hg-155
->   schive→XIV.* + Ernst→others, f1g-78/f1g-74 schou→13/3). Seed cleaned + re-merged
->   (clean) + final patched SURGICALLY (a full re-absorb drifted an unrelated 10-Ducat
->   1604 entry — avoided). test_galster_catalogue_clean (9 tests). **(A2) DONE (`9bc6d09` filter, `18b3002`
->   data).** build_numista_seed had NO §9 filter (build_hede does); added
->   `_excluded_strike_reason` pre-screen (KM «Pn…»/«(OM)» + title «pattern/trial
->   strike»/off-metal/afslag) — caught 34 numista sidecars, all verified genuine.
->   Removed the 10 currently-seeded unambiguous ones (titles say pattern/trial/off-
->   metal, all standalone): user-flagged 314921 + 345593 (was rendering on denmark),
->   + 314933 (was rendering on oldenburg/german_empire), + 7 Bremen/Brunswick dormant.
->   **Batch-2 RESOLVED (`5660be5` + `43bbb7e`/`59d4c2b`).** Two sub-classes split by
->   curator 2026-06-25:
->   • **3 Portugaløsers KEPT** (387243/387448/427984) — unique FULL-VALUE gold show
->     coins (nominal IS the bullion denomination; «1 Portugaløser» = 10 ducats), could
->     circulate at face value (user: «нехай будуть у нас»). 387243/387448 standalone,
->     427984 merged in `unified-dk-bruun-6273`.
->   • **468992 EXCLUDED — §9 OFF-NOMINAL** — title «5 Ducats» (pure ducat weight) but
->     value.raw «1 Krone» (KM PnJ16): a 1-Krone struck in 5-ducat gold; same metal (not
->     off-metal) but would NOT circulate at its stamped nominal → out of scope. Standalone,
->     removed from 3 layers.
->   Filter changes: (a) dropped the bare Krause «Pn» trigger (it conflates die-trials
->   with full-value pieces) — keys on TITLE («pattern/trial strike»/«(Pattern)»/off-metal/
->   afslag) + «(OM)» KM; (b) added an OFF-NOMINAL rule (`32e485e`) — title leading segment
->   exactly «N Ducat(s)/Dukat» AND value.raw non-bullion AND «Pn» in KM (the «Pn» gate per
->   user — keeps overweight/tariff/bad-data out). Verified: still catches all 10
->   already-removed strikes; catches exactly 468992 off-nominal; does NOT touch the 181
->   genuine Ducat coins, «¼ Ducat / 3 Mark» tariff coins, or the 3 Portugaløsers.
->   **Class codified as CLAUDE.md §9 item 5 (`b387ab1`)** with all caveats (off-nominal =
->   nominal≪metal; Scheidemünze is the opposite §6; not dual-denom/equivalent; not
->   overweight/tariff/bad-data). Item 1 (patterns) refined: bare «Pn» not sufficient to
->   skip. Tests + full suite 382/382.
->   **(A3) DONE — both diagnoses corrected after deeper research.** `31393` (`6062832`):
->   NOT «strip # → SD 44» — «SIEG SD» is a DISTINCT Saxe-Lauenburg/German Sieg catalogue
->   (numista page confirms; 99 coins use Danish «SIEG#», only this 1 «SIEG SD#»). An old
->   build mis-mapped it into the typed (Danish, reign-scoped) `sieg` field → false
->   collision + mis-render. Dropped the typed dup; citation PRESERVED in `others` as
->   «SIEG SD# 44». `km-x000-fr-iii-1644` lange «280 ff.» (`b2ddeca`): NOT a paper/manual
->   value — a V1-bootstrap over-merge/mis-parse artifact. Per-coin identity audit
->   confirmed it's the SOLE genuine lange mis-attribution (km A43 Frederik III 4 Mark vs
->   the only «Lange 280» in harvest = «280-290» of Johann Adolf 1/16 Thaler KM 5). No
->   harvest source gives this coin a Lange; dropped (coin stays ID'd by KM A43+Hede 153B
->   +Sieg 153.2+Schou+Dav, all corroborated).
->   **Provenance audit (user-requested «what do sources not give»):** (1) vague/malformed
->   scan of ALL typed fields → «280 ff.» was the ONLY one. (2) per-coin identity audit
->   (km-owner match) reliable for GLOBAL catalogues: lange = 1 (this), fr = 0. (3)
->   REIGN-SCOPED catalogues (hede/sieg/schou) can't use km-owner match (numbering restarts
->   per reign → false positives, e.g. documented KM-240/241 Hede-62A) — a reign-scoped
->   (number+ruler→km) pass is an open FOLLOW-UP if we want to close that class. Thinning-
->   salvaged indices trace to dropped-specimen cache records → not flagged.
-> - **Table B:** `307035` hede «C4 80.C» (reign-disambiguated, our convention `c4h80.C`)
->   — leave as-is. **6× numista lange «… var.» → STRIPPED (`555f5bd` code, `31d5245`
->   data)**: user 2026-06-25 «var прибери, індекс уже достатньо» → `normalise_catalog`
->   now drops a trailing «var.»/«variant» qualifier (new `_strip_variant_qualifier`,
->   block 1b, all typed list-fields); 16b/271/28/331/358 C IV/399 A bared across
->   seed/seed_unified/final (gottorp_duchy + royal_holstein). Distinct from cf./unlisted
->   (those DROP the value). test_catalog_variant_strip (6 tests); 388/388.
-> - **§DA fully closed:** A1 (galster prose) + A2 (numista §9 patterns/off-metal/off-nominal,
->   Portugaløser KEPT) + A3 (31393 sieg-dup, 280 ff. mis-attribution) + Table B (var. strip)
->   all done. **Open follow-up:** reign-scoped hede/sieg/schou mis-attribution audit
->   (number+ruler→km) — the only mis-attribution class not yet swept (km-owner method can't
->   handle reign-restart).
-
-## 2026-06-25 — night: galster foreign-catalogue reroute + catalogue-hygiene audit (§DA)
-
-> **All UNPUSHED** (this night added 4: `9558e85` docs → `1a03f3e`). `git push` pending.
->
-> **Autonomous night work** (user: «лишаю тебе на night work, продовжуй доки не завершиш»).
-> Stayed inside guardrails: no push, no new errata beyond curator-approved, ambiguous
-> catalogue-semantics DOCUMENTED not guessed.
->
-> **Galster foreign-catalogue reroute — FIXED** (`e2e3727` builder, `1a03f3e` data).
-> 5 Hans (hg-) Galster coins crammed foreign catalogues into `galster`/`sieg`:
-> hg-233/234/236/238 had galster «233, Hildebrand 715, Rasmusson ill. 17,
-> Lagerqvist 4» (danskmoent COMMA-JOINS cross-refs into the galster string);
-> hg-141 had sieg «Hauberg 102». These rendered as «Galster Lagerqvist 4» on the
-> denmark page. `build_galster_denmark_seed._reroute_foreign_catalogue_refs` splits
-> on comma + routes foreign-NAME-whitelist parts (Hildebrand/Lagerqvist/Rasmusson/
-> Hauberg) to `others`; real index stays typed, legit Sieg «[2015] 8» kept. Applied
-> surgically to the danish_realm seed (ruamel round-trip) — NOT via `--no-merge`,
-> which had a collateral `mint_verified:true→false` flip on a danish_norway coin.
-> Re-flowed danish_realm (merge+absorb, 0 stale dropped); rendered «Lagerqvist 4»
-> now a plain `others` entry. Verified end-to-end.
->
-> **Broader finding → TODO §DA — CORRECTED 2026-06-25 (§0b).** The whitespace scan
-> surfaced 688 values, which I FIRST mis-documented as «~677 need curator judgment».
-> On verification (when the user asked me to double-check) that was **~93% false-
-> positive**: ~640 are LEGITIMATE source notation — chiefly **569 Davenport
-> volume-series** (`dav` «EC II 3529» etc.; numista emits «Dav <series>» codes and
-> `numista_canonical.py:99-106` routes them to `dav` BY DESIGN) + 44 spaced
-> sub-variants (source's literal «762 b») + 16 year/range/yearbook annotations + 11
-> Galster-UU sub-series. The **genuine issues are only ~30**: ucoin `km` «UC# N»
-> (12, internal id misfiled), bare-dash empties (6), bruun/galster parser garbage
-> (~10), lange «N var.» (6, policy), «; unik» (2). Lesson: «contains whitespace» is
-> NOT a bad-index signal (Davenport volumes/sub-letters legitimately have spaces) —
-> verify the source mapping before flagging. Full corrected breakdown in TODO §DA.
->
-> **2 stale royal_holstein assignments retargeted** (`60b7fcf`). The full re-flow's
-> «Curator assignments unmatched: 2» were c4h8b + bruun-14770 — coins that folded
-> into heads c4h8a (Ungersk Gylden) / c3h14 (Rhinsk Gylden); the assignments still
-> targeted the dead pre-fold ids. Classification was never at risk (curated finals
-> are guard-preserved), but retargeted c4h8b→c4h8a / bruun-14770→c3h14 to clear the
-> debt. Render-neutral (coin-id set unchanged); unmatched 2→0.
 
 ## 2026-06-24 (later) — §9a salvage + galster-key fix + full re-flow shipped
 
@@ -3741,281 +2938,6 @@ mint still surfaces them on SH via the crown-map render-widening.
 >
 > **Pre-existing backlog (NOT from this session):** audit_health shows 588 prose-lint
 > errors (§W cleanup) + 1 i18n error — coin-data re-flow doesn't touch prose surfaces.
-
-## 2026-06-24 — V1 layer fully removed; all consumers migrated to V2
-
-> **Commits UNPUSHED** (this session added 9: `366c9f4` reference/ → `30a4718`
-> docs). `git push` pending — no «пуш» yet.
->
-> **V1 is gone.** V2 (`data/v2/{locations,final}/`) is the sole pipeline. Proven
-> empirically before each removal: a full default build is **byte-identical**
-> (44 HTML files, manifest sha1 `91357407…038a15`) with vs. without each removed
-> piece. What was removed + how:
-> - **Empirical proof first**: re-ran ALL 10 V2 seed builders with `data/seed/`
->   moved aside → each reproduced its committed coin-id set 1:1 from cache
->   (`data/seed/` was V1-anchor, not a live input).
-> - **kmk-seed «staleness» was a FALSE alarm, now permanently fixed**
->   (investigated 2026-06-24, §0b). The committed seed was never stale — it was
->   deliberately curated: bare builder emits ~41490 raw museum specimens;
->   `822833d` thinned to the §9a envelope, `a80019b` dropped exonumia. The
->   thinning used to be a SEPARATE post-pass (`thin_kmk_seed.py`), so a bare
->   `build_kmk_seed.py --write` regressed it — which is why the last coordinated
->   re-seed (`3486bf0`) skipped kmk. **Fixed `12575db`**: `build_kmk_seed.py`
->   now calls `thin_kmk_seed.thin()` itself (scope→exonumia→§9a in one run,
->   idempotent, `--no-thin` escape). Seed resynced to the builder output
->   (`d547bec`, 13796→13819, render-neutral). **Safe to `--write` now; re-seed =
->   no-op.**
-> - **ikmk over-sampling — RESOLVED (full §9a thin)** (2026-06-24): ikmk also
->   over-sampled (4354, biggest bucket 734 uncatalogued «1/24 Taler» 1619; reached
->   final as a 63-weight coin). New shared `lib/seed_thin.py` (§9a min/middle/max,
->   optional `catalogued_only` gate) wired into `build_ikmk_seed.py`. First pass
->   used the catalogued-only gate (→ 4328, only −26 — the 734 uncatalogued bucket
->   stayed); curator then chose the FULL thin (`catalogued_only=False`) since an
->   uncatalogued museum record carries no distinguishing signal beyond the
->   sub-variant key + weight. ikmk seed now **1273** (4354→1273, −3081; the
->   734-bucket → ≤3 per mint-keyed sub-variant). KMK uses its own no-gate
->   `thin_kmk_seed.py` (committed envelope 13819). Both builders self-filtering +
->   content-idempotent (only `generated_at` churns, as for every V2 seed). All
->   render-neutral (data/v2/final/ untouched; resyncs on next coordinated re-flow).
->   The `catalogued_only` gate stays as an opt-in for future uncertain sources.
-> - `366c9f4` reference/ HTML artifacts · `ba528a9` seed_v2_regroup.py +
->   build_numista_pre1541_seed.py (no callers) · `1deb8ff` build.py V1 render path
->   (−458 lines: load_locations, _merge_seeds_into_raw, --include-v1/--v1-only,
->   V1 cross_ref/render/landing; landing+worker now V2-only) · `adb3b34`
->   `data/seed/` · `de7affd` the 12 `data/locations/<loc>.yml` coin yamls.
-> - **KEPT**: the 11 `data/locations/<loc>-references.yml` bibliography sidecars
->   (shared with V2 via `load_v2_locations`).
-> - **Consumers migrated** (`4c8505d` + `b99d131`): audit_prose + audit_i18n
->   (pre-commit) now scan `data/v2/locations/` + `data/v2/final/` (curated coins
->   only — skip `_unclassified` + `seed_unsorted`; V1 parity ≈ V1 hit counts);
->   audit_fuss_anchors + audit_ucoin_categories + fetch_numista_api + the
->   yaml_io roundtrip test re-pointed to `data/v2/final/` (or `-references` for
->   the ruamel_loc roundtrip case).
-> - **RETIRED notes** (`c855710` + bootstrap in `b99d131`): 8 V1-era one-time
->   passes (enrich_*, dedupe_sources, classify_issuing_entity, ucoin_backfill_metal,
->   bruun 04_cross_match, bootstrap_v2_final_from_v1) — kept for reference.
-> - **Docs** (`30a4718`): CLAUDE.md, ARCHITECTURE, V2_PIPELINE, HARVEST_GUIDE,
->   build_numismaster docstring updated to «V1 removed / V2 sole pipeline / native
->   builders». V2_DECISIONS (immutable journal) + TODO (curator list) left as-is.
->
-> **Note**: `scripts/oneoff/` scratch scripts still reference `data/locations/`
-> coin yamls — that's fine (throwaway tier; breaking on removal is expected).
-> The prose/i18n audits surfaced a real **curated-prose backlog** (1238 hits)
-> they couldn't see while stuck on frozen V1 — that's a separate cleanup, not a
-> migration artifact.
-
-## 2026-06-23 — 4 mixed cross-source dups merged (c5h56, f2h8, f6h31, f7h8) — durable
-
-> **18 commits UNPUSHED** (this turn added `673bf03`). `git push` pending.
->
-> **4 «mixed» dup candidates consolidated** (curator-confirmed by image). Distinct
-> from the stale-Hede-orphan pattern — these were fragmented across sources/entities
-> at the seed_unified level. Each merged into ONE host with §9a list-form catalog
-> accumulation, durable via `merge_decisions` (so a future re-flow reproduces them):
-> - **c5h56** Christian V «2 Dukat» Hede 56 → host `unified-dk-hede-c5h56`; km-458
->   (KM 458, Bruun 7243) folded in; KM 416.2/458 accumulate.
-> - **f2h8** Frederik II «3 Mark» (≡ 1 Speciedaler) Hede 8/8A/8B → host
->   `unified-dk-hede-f2h8`; manual f2h8b (Hede 8B, Bruun 4422 + Numista 142126) folded.
-> - **f6h31** Frederik VI «8 Rigsbankskilling» KM 152 Hede 31 → host
->   `unified-dk-hede-f6h31`; 3 heads united (same Bruun lot 17159); metal silver→**billon**
->   (0.375-fine = billon; fixed at the Hede SEED via `_curation_holds:{metal}` so the
->   merger keeps billon — danskmoent's loose «sølv» was the silver source).
-> - **f7h8** Frederik VII «1 Rigsdaler» Rigsmønt 1854-55 KM 760.1/760.2 → CROSS-ENTITY
->   merge (Kopenhagen danish_realm + Altona royal_holstein clusters) into ONE multi-mint
->   `unified-dk-hede-f7h8` in **royal_holstein** (overlap-home per c7h33/c8h11a, renders
->   on both pages); issuing_entity joint `[danish_realm, royal_holstein]`; phase DICT
->   `{denmark: I, schleswig_holstein: III}` (curator). `_cross_entity.yml` pulls the
->   Cph cluster out of danish_realm (no fragment there).
->
-> **Method (NEW memory lesson):** these deletions removed finals that fold REAL
-> seed-backed heads → seed_unified must be made consistent (else fragments). A full
-> `merger+absorb` re-flow does that BUT also materialises every pending decision in the
-> entity (surfaced last-session items). Solution: re-flow to compute the hosts, then
-> **transplant** only the 4 hosts into a backup-restored committed state, judge by
-> **semantic-diff** (`scripts/oneoff/semantic_diff.py`) not the line diff — the line
-> churn is YAML-anchor renumbering (cosmetic). Semantic diff confirmed EXACTLY these
-> 4 coins changed. Build clean (denmark/SH); f7h8 renders on both pages, f6h31 billon,
-> c5h56 dup row gone.
->
-> **TWO OPEN FOLLOW-UPS surfaced (not in this commit — need curator calls):**
-> 1. **c5h56 host carries KM 346, which is actually Hede 3** (`unified-dk-bruun-6808`
->    «2 Ducats» 1673 — a SEPARATE type). Looks like a pre-existing Hede-3-into-56 leak
->    from an older merge. NOT touched. → remove KM 346 from c5h56?
-> 2. **danish_realm has 2 pending fragments** from LAST session's decisions that a
->    future coordinated re-flow WILL surface (a full `merger+absorb danish_realm`
->    materialised them this session, then I transplanted them back to committed):
->    `unified-kmk-301777` «1 Skilling» 1771 (bruun-7774 no_merge → correct separation,
->    seed_unsorted) + `unified-kmk-175833` «3 Skilling» 1812 (f6h14-adjacent, seed_unsorted).
->    Both need classification when the next danish_realm coordinated re-flow lands.
-
-## 2026-06-22 — metal-conflict guard + bruun-7774 metal fix + 4 cross-entity-dup consolidation (durable)
-
-> **9 commits UNPUSHED.** All verified (build + tests + empirical re-flow). `git push` pending.
->
-> **Metal-conflict guard in `_collect_metal`** (commits `f71601a` + `eb80d9b`).
-> When >=2 composed_of members are `metal_verified:True` but disagree on metal,
-> the merger/absorb now RAISE `MetalConflictError` (stop → curator decides) —
-> it once silently shipped KMM «sølv» over Hede «copper». EXCEPTION: thin-line
-> alloy pairs `{silver,billon}` + `{bronze,copper}` WARN + pick by authority
-> (bronze IS a copper alloy; museums tag bronze «kobber»). c9h18b «2 Øre» CIX
-> resolved this way → bronze (Hede auth 5 > KMM 0). `_THIN_LINE_METAL_PAIRS` is
-> the list; new pairs go there. Unit tests `tests/test_metal_conflict_guard.py`.
->
-> **bruun-7774 «1 Skilling» 1771 silver→copper** (commit `4a86564`). The guard
-> exposed a stale-FINAL bug: the coin was silver but is COPPER (KM 616; ucoin +
-> NumisMaster×9 + KMM×4 + Bruun). Silver came from an old over-merge with a
-> silver «1 Skilling (?)» group (kmk-301777 et al., KMM-flagged «(?)»). Fix:
-> `no_merge` (dk-bruun-7774 ↔ kmk-301777) + metal→copper + drop the stale
-> composed_of link. The silver «(?)» group stays a separate seed_unified entry.
->
-> **4 cross-entity-id dups consolidated into royal_holstein** (commit `c910fd0`).
-> c8h11a / f6h9 / f6h14 / f6h17 each had a stale danish_realm copy + a seed-backed
-> royal_holstein copy. Merged each into ONE royal_holstein entry (copper, joint-ie
-> → renders on denmark Pass-1 windowed ≤1864 + SH Pass-1; data unioned; clean Hede
-> token). **c8h11a is the project's FIRST per-location phase DICT**
-> `{denmark: I, schleswig_holstein: II}` (1842 ∈ denmark 18_5_thaler I but SH II).
-> One-off: `scripts/oneoff/consolidate_cross_entity_dups_20260622.py` (gitignored).
->
-> **Durability — analysed + PROVEN** (the deletion un-folded 2 KMM specimens that
-> would PROMOTE as silver fragments on denmark; confirmed empirically). Fix:
-> kmk-131538 «3 Skilling» (metal None) → `_cross_entity.yml` fold into RH f6h14;
-> kmk-175835 «1 Rigsbankskilling» «sølv» → §9.3 Sølvafslag-exclude via
-> `build_kmk_seed.py::_KMM_DROP_IDS` (KMM tags it a coin «sølv», not «afslag» →
-> type-filter missed it) + removed from kmk seed / DR seed_unified / f6h17. Proven
-> via backed-up full re-flow: merger folds/excludes → danish_realm absorb 0
-> fragments; absorb `_enrich_final_entry` preserves all foundation enrichment 1:1.
-> New tooling-lesson in memory: «deleting a stale final copy that folded museum
-> specimens un-folds them → fragments».
-
-## 2026-06-17 (later) — CI build fix (ruamel) + Hede discrete-year root fix (c7h13a 1798)
-
-> **CI deploy was RED since ≥2026-06-11 — FIXED (commit `6f787bd`, UNPUSHED).**
-> Root: the build path top-level-imports `ruamel.yaml` (via `lib/v2_resolver.py`,
-> `lib/seed_merge.py`, `lib/v2_seed_writer.py`) but `requirements.txt` never listed
-> it — CI's `pip install -r requirements.txt` lacked it, so every push failed at
-> the «Validate data» step (`build.py --validate-only`) with `ModuleNotFoundError`
-> before any render. Local `.venv` has ruamel 0.19.1, which masked the gap. Fix:
-> added `ruamel.yaml>=0.17`. Verified: full `--include-v1` build + `--validate-only`
-> both exit 0 locally. **The push of this WILL turn CI green again.**
->
-> **Hede discrete-year root fix + c7h13a 1798 RESOLVED (commits `8571258` code+tests
-> / `58bc460` data, UNPUSHED).** `build_hede_denmark_seed.py::_build_year_fields`
-> collapsed a consecutive year run into a loose `year_first/year_last` span (emitted
-> `year_ranges` only with gaps), so the merger could displace it under a wider
-> discrete envelope and drop an interior year — c7h13C «1798, 1799» lost 1798.
-> Fix: emit one singleton `[y,y]` per attested year (Hede lists are always discrete
-> enumerations); `_format_year_label` folds them back to «1795-1799, 1801» for
-> display. Materialised: re-seed hede (3 entities, year-only diff: 262 hdr + 1510
-> singletons, 0 drift) → re-merge → re-absorb (curation-loss gate REAL-LOSS=0, 4
-> benign year-add). Three bonus label corrections (nf3h69 1649-1668→discrete gaps,
-> c5h126a/c5h107 1693-1696→1693-1694,1696, c8h3a 1840-1848→discrete) — now-discrete
-> Hede years let the merger displace masking ucoin/Numista loose spans (§3a/§4).
-> 58 tests green; rendered + verified denmark + SH de/en/uk. Full §CX write-up in TODO.
->
-> **Push state:** 3 commits UNPUSHED this turn — `6f787bd` (ruamel) `8571258` (Hede
-> fix+tests) `58bc460` (Hede data). No submodule change this turn. `git push` pending.
-
-## 2026-06-16 (later) — Bruun ND-year parser fix (committed) + N#131730 over-merge root-diagnosed (§CW)
-
-> **Bruun «ND (…)» year parser FIXED — commit `2efdb80` (UNPUSHED).** New
-> `parse_year_span(lot)` in `build_bruun_denmark_seed.py`: an «ND (…)» attribution
-> now captures the full range (incl. abbreviated upper bound, `ND (1607-11)`→1611)
-> + sets `year_verified=False` → «(?)» marker; dated strikes keep the plain single
-> year. 84 in-scope ND lots affected (45 ranges / 33 single / 6 ca.). `year_label`
-> stays a clean decimal per §3a. Logged `docs/SOURCES.md` §13.3.
-> **Builder code ONLY — the V2 Bruun seeds are NOT regenerated.** Running the
-> builder revealed the seeds are STALE w.r.t. ~10 intervening builder/cache commits
-> (`41efdf0` Aagaard→`others`, `4465c1b` km cross-register, cache re-parses
-> `f5634abb`/`8af66ec` Aagaard die-combos + FP refs + one new lot dk-bruun-6435 +
-> a metal flip). A clean regen folds that catch-up in AND then needs a
-> `seed_unified`→`final` re-flow — so it's deliberately deferred to the next
-> *coordinated* Bruun regen (batch with the parked apply), not bundled into a
-> «year-fix» commit. Verified the fix produces correct ranges on the real cache
-> lots before reverting the contaminated regen.
->
-> **N#131730 over-merge ROOT-DIAGNOSED → new TODO §CW (UNPUSHED docs).** The
-> «missing discrete years» question (user) led to: `unified-dk-hede-c7h13a` is a
-> **2+2 over-merge** of two distinct Christian-VII-Altona «1 Speciedaler» types —
-> **Hede 13** domestic Speciedaler (danskmoent verified: no KM/Dav, 1795-1801;
-> members dk-hede-c7h13a + c7h13b) + the **Albertsdaler** trade coin (KM 640/640.2,
-> Dav EC III 1310, 1781-1796; members dk-numista-131730 + denmark-numismaster-145357).
-> Merger matched on nominal+ruler+mint+metal; no trade-coin-vs-domestic discriminator.
-> **This REFINES the earlier handoff follow-up:** c7h13a's spurious-1781 widen is
-> the Albertsdaler over-merge (§CW), NOT a §CU reign-window member — the session's
-> year-hold (1795,1797,1799,1801) only MASKS the symptom; the over-merge persists
-> (c7h13a still carries dav EC III 1310 + km 640/640.2). The cache 131730.json has
-> only min/max (no discrete list) but that's moot — fix the over-merge (split +
-> re-flow) before re-harvesting the Albertsdaler's discrete years onto its OWN entry.
-> §0b: my earlier «KM-640 cross-register collision» hypothesis was WRONG (Hede 13A
-> has no KM at all; match fired on primary signals).
->
-> **Numista year_list re-harvest gap ROOT-FOUND → new TODO §CX (UNPUSHED docs).**
-> Tracing «why no discrete years for 131730» revealed the 2026-06-10 «501-entry»
-> year_list re-harvest covered **danish_norway + 5 German entities only** — the
-> Danish-crown track was NEVER re-harvested: range-only-no-`year_list` counts
-> royal_holstein 102/154, danish_realm 248/516, gottorp 55/93 (control danish_norway
-> 4/365 ✅). ~400+ ungapped Danish-crown numista entries; 131730 is just one. The
-> machinery (extractor `d4d1ca8`, Priority-0 queue `handoff_numista_year_list_reharvest.yml`)
-> all works — it just never ran on this entity track.
->
-> **✅ DONE THIS SESSION (UNPUSHED):**
-> - **§CW Albertsdaler split** — committed `2324dc9`. no_merges in
->   merge_decisions/royal_holstein.yml + re-ran merger/absorb royal_holstein;
->   c7h13a now domestic (dav EC III 1313, 0.875/28.893, hede 13A-D), Albertsdaler
->   consolidated onto c7h22ab (km 640.1/640/640.2, Dav EC III 1310). Fixed the
->   absorb's recurring km str-repr corruption on c7h13a + km-696 by hand (0 str-repr
->   left). Build clean (denmark 2081 / SH 727), renders verified on both pages.
-> - **§CX harvest** — collected 456 Danish-crown range-only NIDs, queued, drained
->   in-session via Chrome MCP (0.35s, 0 errors): 218 gained discrete `year_list`,
->   238 range-only. Caches committed in submodule `2758b6d41`; queue drained.
->   Cache→Downloads→disk transport (Blob `a.click()`) worked around the
->   javascript_tool ~1.5KB result-truncation.
->
-> - **km str-repr (form #2) durable fix** — committed `441b285`. Root:
->   `_merge_km_field` (~2620) now iterates a list-valued register instead of
->   `str()`-ing it whole. Heal: `normalise_catalog` explodes any str-repr element
->   (both top-level-list and register-dict-internal shapes), runs on every
->   absorb/merge/seed-write. `fix_corrupted_km_repr.py` shares the predicate; 0
->   corrupted finals. 10 unit tests (`tests/test_km_str_repr_form2.py`). Integration:
->   re-absorb royal_holstein (previously corrupted c7h13a + double-wrapped km-696)
->   → **0 str-repr** (verified, then reverted to keep the §CW final; the only diff
->   was a benign c7h13a km `{sh:[…]}`→bare-list normalisation).
-> - **§CU year-mute mechanism** — curator `year_demote` in `merge_decisions`.
->   `process_entity` stamps `_year_demoted` on named reign-window members;
->   `_union_year_ranges` (now `_collect()` + two-pass) holds them to a last-resort
->   pass (span never widens, years not deleted); `build_unified` propagates the
->   flag to wholly-muted unified entries. 3 culprits declared in
->   `merge_decisions/danish_realm.yml` (galster-hg-27, numista-355730, kmk-279179).
->   40 union tests pass; light-integration confirms bruun-3839→1496, c9h16a→1874-1905.
->   MECHANISM committed; MATERIALISATION deferred to the coordinated re-flow (full
->   bruun-3839 1496-1497 also needs the Bruun re-seed), and the per-case year-holds
->   on bruun-3839 + km-795 stay until then (remove WITH the re-flow so they don't
->   OVERRIDE the mute). §CU updated.
->
-> - **✅ COORDINATED RE-FLOW DONE (2026-06-17)** — full pipeline re-run, all 22
->   entities, materialising every deferred fix. Phases: submodule `c18232a7d`
->   (numista parsed-sidecar year_list backfill — §CX Phase-2 that the harvest had
->   skipped: build_numista_seed reads `numista/parsed/<NID>.json`, NOT the raw
->   cache the §CX patch wrote) → `3486bf0` re-seed all sources → `68fae2f` merge
->   (+ year_demote for 4 ND-swallow culprits) → `968af94` absorb (+ retired the
->   bruun-3839/km-795/c7h13a holds). Build clean (denmark 2076 / SH 726 stable;
->   German pages grew with the curator-approved ucoin +1136→+273 final). 0 str-repr.
->   Verified: bruun-3839 → 1496-1497, km-795 → 1874-1905 discrete, Albertsdaler
->   c7h22ab → 1781,1784,1786,1796, the 4 ND-swallow coins → their dated years.
->   Gate widens (34) = Bruun-ND honest-range improvements (single→range, desired)
->   + the 4 fixed swallows; metal bruun-3931 gold→silver = correction (Silver Gulden).
->   **NEW class found + fixed (ND-swallow):** an UNDATED Bruun specimen's broad
->   «ND (1670-99)» range (year_verified=False) was swallowing dated discretes of
->   its merged cluster → demoted via year_demote (same §CU mechanism).
->   **Edge case (was flagged) — ✅ RESOLVED at the root 2026-06-17** (commits
->   `8571258` fix+tests / `58bc460` data): c7h13a's missing 1798 was a Hede-seed
->   bug, not a union one — `_build_year_fields` collapsed consecutive runs
->   (13C «1798, 1799») to a loose span the merger could displace. Fix emits
->   discrete singleton `year_ranges`; c7h13a now renders «1795-1799, 1801».
->   See §CX in TODO.md for the full write-up.
->
-> **Push:** the re-flow commits (submodule `c18232a7d` + main through `968af94`)
-> were PUSHED 2026-06-17 (submodule `e5cd0b774`, main `d36a536` merging #17).
 
 ## 2026-06-16 — overlap-home architecture + merger stage of the global apply DONE; absorb DEFERRED (UNPUSHED, e8de501 + e414a0a + 8d882fe + 1a8097b)
 
@@ -4294,72 +3216,6 @@ apply effect (new merges + Royal Danish→Kopenhagen rebuild) needs merger --app
 first, then absorb, to be diffable end-to-end. Tree is clean → a verification apply
 is fully revertible via `git checkout`.
 
-## 2026-06-15 — issuing_entity derivation for SH-struck crown coins SHIPPED (UNPUSHED, bd9126b)
-
-`build.py::_derive_issuing_entity` (+ `_CROWN_MINT_REALM`): at assembly, a coin
-with `issuing_entity == danish_realm` struck at a crown-owned Holstein mint
-(Altona/Glückstadt) gets its issuing_entity recomputed as the union of mint-
-realms → **Holstein-only strike = royal_holstein; Altona+Kopenhagen = [danish_
-realm, royal_holstein]**. Criterion = issuer + circulation, NOT bare mint-
-location (curator decision): the issuer-owns-mint guard holds because the crown
-owned those mints, and `royal_holstein ⊂ danish_realm` politically so a duchy-
-only strike is PURE royal_holstein not joint. Scoped to danish_realm (Pass 1/2
-curated only; seed entries untouched) → commission strikes of other issuers at
-Altona (Schaumburg-Pinneberg pre-1640, Plön, 1848 Provisional Govt) keep their
-own entity. Applied in the two-pass: Pass-2 intersection tests the derived ie
-(SH page picks them up) + the resolved coin carries it. Render-only, durable
-(absorb's foundation-immutable ie never sees it). Effect: **29 coins (22 joint
-+ 7 pure royal_holstein)** now render on BOTH Denmark + SH; km-743 (Copenhagen-
-only) stays danish_realm; 1126 Copenhagen-only realm coins unchanged. Verified:
-full build clean, ALL per-location drop counts unchanged (no regression).
-**Deep-analysis note:** `classify_mint_to_entity` itself encodes the flawed
-bare-mint criterion → it would misclassify Altona-struck Danish *seeds* as
-royal_holstein; make it issuer-aware (KM register / denomination / ruler) before
-the seed-builders become authoritative.
-
-## 2026-06-15 — SH 11⅓ collapse + 18½ per-page phase derivation SHIPPED (UNPUSHED, dc24d7f + fcbf5fe)
-
-Phases are location-local generalisations over a global Müntzfuß (§7); a build
-drop fires when a coin's stored scalar `phase` isn't among the consumer page's
-windows for that fuss (`build.py:1005-1023`), so cross-periodised coins vanish
-from one page. Source review (Wilcke `/wilcke/w3f1.htm`, danskmoent Møntlove)
-established the SH 11⅓ sub-phases 1773/1788 are political/institutional, NOT
-standard changes (kurant never abolished — «man hang stadig ved Kuranten»;
-Altona struck 11⅓ to 1812).
-
-**SHIPPED (dc24d7f):** SH `phases.11_333_thaler` collapsed 3→1 `I[1726-1813]`
-(matches DK); 6 coins re-tagged phase II→I (direct final edits + durable
-`classification_decisions` assignments); the «retired/only-until-1788» claim
-corrected on every surface (SH closing/timeline + DK phases/timeline/
-fuss_periods) → Speciedaler became Holstein's PRIMARY from 1788 but the kurant
-itself continued; refs_pool gained `wilcke-1788-speciebank-kurant` +
-`sh-speciesbank-1788`. Build: drops DECREASED (denmark 7652→7646, SH 991→986),
-citations resolve, no stale claims.
-
-**SHIPPED — 18½-Thaler via per-page phase derivation (commit fcbf5fe, option b).**
-The first-tried «add 1841/1854 phases to DK» was BROKEN (narrowing DK's single
-phase I[1813-1875] dropped its phase-I coins with years 1842+, +52 regression,
-proven by build → reverted). The fix is build-side: `build.py`
-`_DERIVE_PHASE_FROM_YEAR = {"18_5_thaler"}` — for that fuss the assembly COMPUTES
-each coin's phase per consumer page from `year_first` against THAT page's
-windows (stored phase wins only as a boundary tiebreaker). No phase-window
-edits, no coin re-tag, denmark.yml untouched. On the Denmark page 18½ keeps its
-single wide I[1813-1875] so every 18½ coin (incl. SH-periodised stored-II/III
-dual-mint coins) derives to I and renders; on the SH page each derives to its
-finer I/II/III/IV year-window. Verified: full V2 build clean; drops decreased
-(denmark 7646→7626, SH 986→985) and unchanged on every other location; km-721/
-760/761/683 render on BOTH pages.
-
-**Other granularity desyncs — widen `_DERIVE_PHASE_FROM_YEAR` per fuss after
-review:** 9¼, 9-Thaler, kronemont, reichsdukatenfuss, courantdukatenfuss,
-guldkrone, kronemont_chr_iv all have differing DK↔SH windows; adding each fuss
-key to the set resolves it the same way. Do a quick per-fuss «realm-wide law vs
-political event» sanity check + a build-drop diff before widening (deliberate,
-not blanket). The 2 refs `danskmoent-moentlove-1841` +
-`forordning-rigsdaler-rigsmont-1854` were prepared then removed — not needed by
-the derivation approach (no DK phase prose added); re-add only if the DK 18½
-prose is later expanded.
-
 ## 2026-06-14 — KM render-leak fix + two pipeline fixes staged for the coordinated apply (UNPUSHED)
 
 10 commits unpushed (origin/main..HEAD). This session, in order of the user's reports:
@@ -4473,249 +3329,6 @@ Also this session (2026-06-11), earlier commits 4a86665 / 8428c9f /
 627c4a8: Nobel/Rosenobel prose polish — UK «сучасн-»→«тогочасн-» where
 period-relative; rosenobel «contemporary→earlier nobel_fod» factual fix;
 «Reichsdukat»→«Dukat» (Danish coin name) in the Nobelfod description.
-
-## KMM impossible-year guard — galster-hg-31 1581 fixed (2026-06-11) — SHIPPED, UNPUSHED (4 commits: d5eea8e/bc4a341 then revised fbc926c/d73819c)
-
-Closes the kmk-297794 «1513-1581» quirk surfaced by the Hans Galster-volume
-session. Root cause: 25 KMM (natmus) records carry a `creationEvent` with
-`yearFrom > yearTo` (raw inversion). The old `build_kmk_seed._year` only
-swapped, so an impossible value survived (Hans hvid 1581/1513 → 1513-1581;
-1581 is 68y after Hans †1513). New guard: swap when the implied span ≤ 20y
-(ordering slip — 7 records, all within reign), else DROP the event's year
-(year=None — 18 records, all impossible: truncated yearTo 152/58/675/…,
-post-reign yearFrom). Builder fix `d5eea8e`; data `bc4a341`.
-
-- **Materialised** by patching the in-seed records' year fields directly
-  (full `build_kmk_seed` re-run RE-INFLATES — thinning is a separate step;
-  danish_realm dry-run shows 32215 vs thinned 9630, so DON'T full-rebuild
-  to materialise a few rows — patch the thinned seed with the canonical
-  ruamel config `typ=rt, preserve_quotes, width=200, indent(2,4,2)` or the
-  whole file reformats) → re-merge + re-absorb danish_realm + danish_norway.
-  galster-hg-31 1 Hvid Hans now reads 1481-1513; page has 0 year-«1581».
-- **REVISED — null → reign-window anchor (`fbc926c` + `d73819c`).** The first
-  approach NULLED the year on dropped events. That removed the coin's ONLY
-  merger fallback signal, so 6 same-type museum specimens (Christian-IV
-  Hede-67 2-Skilling etc.) that share a type-level catalogue but carry no
-  fineness/mint stopped merging and surfaced as standalone seed_unsorted
-  finals — a regression. Fix: a dropped-all-year record now anchors to the
-  named ruler's reign window via `lib.ruler_reigns.reign_window`
-  (year_verified=False) — plausible-but-estimated, so the §9a multi-specimen
-  merge fires again without the garbage value. 191584 now re-merges into a
-  4-member Christian-IV group (year 1588-1648 unverified). Bare-«Hans»
-  (no ordinal) doesn't resolve a reign → stays year-None, harmless (merges
-  via Galster).
-- **❌ CORRECTED — the «KMM Arabic-vs-Roman ruler-scope gap» I flagged here
-  earlier DOES NOT EXIST.** I asserted it WITHOUT verifying (§0b lapse).
-  `merge_seeds_cross_source._normalise_ruler` ALREADY folds Arabic↔Roman:
-  `_normalise_ruler("Christian 4") == _normalise_ruler("Christian IV.") ==
-  "christian iv"` → same scope key. The real reason those specimens stood
-  alone was the year-null regression above (matcher requires primary +
-  ≥1 fallback; nulling the year left primary_true=4 / fallback=0 →
-  «insufficient signals» → no_match). Now fixed by the reign-window anchor.
-  NB: they still don't merge with the CURATED `c4h67` — but that's a genuine
-  metal disagreement (KMM silver vs curated billon), correctly blocked.
-
-## Numista discrete-year (year_list) harvest gap — 501 re-harvested (2026-06-10) — SHIPPED, 3 main + 1 submodule UNPUSHED
-
-User noticed Numista DOES give discrete struck years (1496, 1502) — in the
-«Manage my collection» date table — but our data showed the continuous
-range «1496-1502». Diagnosed: loss is at the HARVEST step, not the parser.
-The thin BO.1/chrome extractor (HARVEST_GUIDE) read only the «Years» range
-feature, never the `table.collection` date column, so 501 in-scope
-multi-year types had `year_first/last` but `year_list: null` →
-`build_numista_seed` fell back to a continuous `year_ranges`. The whole
-downstream was already discrete-ready (`parse_numista_chrome` consumes
-`year_list`; seed builder emits `[[y,y]]`; merger's `_union_year_ranges`
-prefers discretes). The v3 API does NOT help (`parse_numista_api` hardcodes
-`year_list=null`; discrete list needs the un-fetched `/types/{id}/issues`).
-
-- **Harvest (`submodule 93b0460d`, cache pointer `<bumped>`):** re-harvested
-  all 501 via Chrome MCP same-origin `fetch()` + DOMParser of
-  `table.collection` (≈30 NIDs/JS-call, 0.3 s pacing, 0 Cloudflare 403s).
-  **417 gained discrete years, 84 confirmed range-only** (kept, NOT
-  fabricated). year_list written to raw cache + parsed sidecars.
-- **HARVEST_GUIDE extractor upgraded** (`docs`) to capture `year_list` from
-  the date table — durable fix so future harvests + re-harvests get it.
-- **Materialised (`012fb9e`):** re-parse (surgical — deleted only the 501
-  sidecars, re-parsed WITHOUT --force to avoid surfacing 575 unrelated
-  newly-parseable types) → re-merge + re-absorb. **412 propagated** into
-  rendered finals across danish_norway + bremen_verden + oldenburg +
-  braunschweig_lueneburg + sachsen_lauenburg + osnabrueck (gapped labels
-  render). danish_norway −3 = lossless Hans-1-Hvid consolidation (the
-  prior Galster-volume fix reaching this entity; seed 3903/3903).
-- **Residual (entity-routing backlog, NOT this task):** 5 hanseatic_lubeck
-  + 144 `_unclassified`-final coins whose numista seed routes to
-  `_unclassified` (≠ their foundation's entity) — year_list is in cache +
-  `_unclassified` seed, propagates once they're classified. See SOURCES §13.1.
-- **Method gotcha for next time:** `parse_numista.py --force` re-parses the
-  WHOLE cache and surfaces newly-parseable types (575 → _unclassified, +
-  stray hamburg/danish_norway final churn). For a targeted re-parse, delete
-  only the target sidecars and run WITHOUT --force.
-
-## Hans Galster volume-scope fix — 1 Nobel year + 31 split-dup consolidations (2026-06-10) — SHIPPED, 2 main UNPUSHED
-
-User flagged: 1 Nobel Hans (Galster 24) rendered «1496-1502» (continuous)
-but sources attest discrete 1496 + 1502. Root cause was a **cross-source
-matcher gap**, not the year-merge rule (`_union_year_ranges` is correct):
-the coin was SPLIT across two finals — `unified-dk-bruun-3831`
-(Bruun+Numista+KMM; Numista's loose min/max `[[1496,1502]]` drove the
-year) and `unified-dk-galster-hg-24` (discrete `[[1496,1496],[1502,1502]]`).
-They never merged because `_catalog_refs` derives the Galster volume-scope
-from the ruler via a regex requiring a NUMERAL — **Hans has no ordinal**,
-so his refs stayed bare `galster` while the Galster-source entry sat in
-`galster/hg`; same Galster 24 → no catalog tie → `no_match`.
-
-- **Fix (`a37c821`):** make the ordinal optional in the volume-derivation
-  regex; map no-ordinal Hans → `hg`. Now bruun/kmk/numista Hans galster
-  refs scope to `/hg` and merge with Galster-source entries.
-- **Data (`bc6dc40`):** re-merge + re-absorb. 1 Nobel now ONE entry,
-  `year_label '1496, 1502'` (discrete wins — period not wider than
-  discrete min-max), galster source + Galster 24 + schou 2,3 all unified.
-  68 Hans bare-galster seed refs re-scoped; **31 stale Hans foundations
-  consolidated into peers** (1 Nobel/24, 1 Skilling/29, Goldgulden/27,
-  1 Hvid/31 +17 KMM specimens, …) — all same-galster-number same-type
-  (verified: every galster-31 member is Hans 1 Hvid; 0 wrong-ruler merge;
-  seed conservation 12819/12819, 0 loss).
-- **Surfaced (NOT fixed — pre-existing KMM quirk):** `kmk-297794` (Hans
-  1 Hvid, Galster 31) carries a loose KMM date «1513-1581», so the
-  consolidated `unified-dk-galster-hg-31` year_label widened to
-  «1481-1581» (1581 ≫ Hans †1513). A KMM date-field error on one
-  specimen, not a merge defect. Candidate for a KMM date-sanity pass.
-
-## Galster single-coin overview-page recovery: 2/3 Nobel danskmoent source (2026-06-10) — SHIPPED, 3 main + 1 submodule UNPUSHED
-
-User flagged that the danskmoent.dk source on **2 Nobel** (Hans 1502,
-N#428886) + **3 Nobel** (Hans 1496, N#428914) had vanished. Root cause:
-the Galster classifier (`scripts/lib/galster_parsers/classify.py` rule 3)
-routes any non-per-coin-filename page to the `reign_index` skip-parser as
-a redundant overview. `1nobel.htm` IS a genuine multi-reign overview, but
-`2nobel.htm` / `3nobel.htm` are **single-coin pages** (one catalogued
-type each → danskmoent never split a dedicated per-coin page), so they
-were silently dropped from the seed and never reached the coins.
-
-- **Fix (`c63779a`):** conservative content-based carve-out in rule 3 —
-  ruler-keyword H1 + exactly one Galster number + no overview markers
-  («Se også» / «ser således ud» / «Møntrækken» / reign-range header)
-  → route to `standard`. Dry-run over all 171 reign_index pages: exactly
-  4 flip (2nobel, 3nobel, 6penning, halvrhin), all genuine single-coin;
-  167 true overviews untouched. Also extended the galster year regex
-  `1[5-6]→1[4-6]` (standard.py + build_galster) so Hans-era 14xx years
-  parse — 3nobel's 1496 was being dropped (→ no seed). Blast radius:
-  only fr_hg24 (1 Nobel Hans) gains its genuine 1496 year. `_build_sources`
-  now falls back to catalog_refs.galster + omits empty volume parenthetical.
-- **Data (`99a1c69` + cache `bbad3177`):** re-parse → galster seed (+2
-  entries) → merge danish_realm → absorb. 2 Nobel gains catalog galster 26
-  + danskmoent/2nobel.htm; 3 Nobel gains schou 1 + danskmoent/3nobel.htm +
-  mint union [Kopenhagen, Malmö]. Both render on the Denmark page (verified).
-- **6penning** (Erik af Pommern, Åbo, pre-1481) + **halvrhin** (Hans ½
-  Rhinsk gylden, u.år) re-parse as single-coin but stay out of seed scope
-  (undated, no reign-volume anchor → builder drops them).
-- **Forgery-year drop (`3deea9d` + cache `afc092d`, data `e080583`).** Hans
-  1 Nobel (fr_hg24) carried 1508 — danskmoent flags «(1508 er falsk)»
-  (the only 1508-dated specimen is a forgery). Fixed via PARSER, not
-  errata (the source is correct, the parser mis-read it; errata is for
-  catalogue-index corrections). `_FORGERY_YEAR_PAREN_RE` strips a paren
-  with year+falsk before year extraction; cache-wide only `(1508 er falsk)`
-  matches → only fr_hg24 affected. year_label 1496,1502,1508 → 1496,1502.
-
-## Source-quality + Schauenburg entity split (2026-06-10) — SHIPPED, all local/UNPUSHED (`git rev-list --count origin/main..HEAD` for the live count)
-
-Six discrete tasks this session, all committed locally, **0 pushed** (push
-needs explicit user OK). Pre-commit hook + V2 build clean throughout.
-
-**(1) Bruun nominal-normalization restored — `f252733` (code) + `7f54d64` (data).**
-The Bruun seed builder had lost its display-nominal layer: fresh entries went
-in raw (no implicit-«1», roman not converted, fraction glyphs, NAME-parens,
-ø-spelling) while 1099 existing entries carried normalized forms — a naive
-re-run would degrade all of them. Added `_bruun_display_nominal()` +
-`extra_curated_fields=frozenset({"nominal"})` threaded through
-`merge_one`/`merge_seed`/`write_v2_seed` (default empty → no-op for other
-builders) so existing nominals are soft-preserved, fresh ones normalized.
-**parse_metal now runs on the RAW denomination** (parens intact) BEFORE the
-display strip — the descriptive paren carries the metal signal («12 Mark
-(Courant Ducat)»→gold, «8 Skilling (klippe)»→silver); running it on the
-stripped nominal had regressed 3 metals. Proven 0 semantic diff on re-run.
-`7f54d64` re-serialized the last PyYAML-style bruun seed (danish_realm) to
-ruamel — corpus format consistency.
-
-**(2) Absorb drops finals whose backing vanished — `78d54f2` (code+test) +
-`340219a` (data, −17).** Absorb was additive/sticky: a final persisted even
-when its backing seed_unified entry disappeared (the 622-exonumia hand-removal
-case). New drop: a `unified-*` final with NO live backing AND no curation
-(fuss seed_unsorted/None, no note/_curation_holds/promoted_to/curator-phase)
-is dropped — two enforcement points (explicit filter on the new final set +
-monotonic-guard exclusion so a final dropped by an earlier purge isn't
-resurrected). Module-level `_final_is_curated`/`_final_has_live_backing`/
-`_is_vanished_stale_final` + 19-case unit test (`tests/test_absorb_stale_final_drop.py`).
-Materialized 17 drops (15 cross-source-consolidation dups + 2 sub-variant
-re-key dups: dk-hede-f3h135→f3h135a/b, dk-galster-f1g-66→f1g-66c); verified 0
-seed orphaned, 0 cross-entity dup, note preserved.
-
-**(3) Re-serialize remaining stale seeds — `fe6574c`.** 5 seed files still in
-old PyYAML dash-at-parent style (3 kmk + 2 numismaster) → ruamel round-trip,
-0 semantic diff. Pure format (a builder re-run was wrong: kmk writes 0 files
-without parse-cache, numismaster re-run is a real data change). Corpus now
-uniformly ruamel.
-
-**(4) NGC grade-colour → copper — `ec63ace` (code) + `9720042` (data).**
-parse_metal reads the NGC/PCGS colour suffix (Brown/BN/RB/RD, anchored to
-«NGC <grade> <colour>» so prose «brown patina» never false-matches) →
-("copper", False), placed after explicit metal-words, before the weak
-denom heuristics. 24 in-scope flips (Danish bronze Øre, copper Rigsbanktegn,
-small Rigsbankskilling, 1677 siege klippe dk-bruun-7277, 1602 copper Penny).
-Knock-on: corrected metal unblocked 5 cross-source merges (Bruun KM-entry ↔
-Numista N#-entry, e.g. KM-754=N#43524) — verified 0 loss, 0 dup.
-
-**(5) Schauenburg 2-entity split — `997aa83`.** The old
-`holstein_schauenburg_county` umbrella conflated two regional traditions →
-split into **`grafschaft_schaumburg`** (Niedersachsen, 36 coins —
-Stadthagen/Bückeburg/Oldendorf/Rinteln, Mariengroschen tradition) +
-**`schauenburg_pinneberg`** (Holstein, 246 — Altona, SH-Courant + imperial
-1/24). holstein_schauenburg page consumes BOTH; schleswig_holstein consumes
-only the Holstein half (mirrors royal_holstein-on-denmark). Mechanism:
-new entity in issuing_entities; mint_registry (4 NS mints→grafschaft;
-Schauenburg issuer-name fallback→pinneberg); routing-rule routes_to
-grafschaft; **`build_numismaster_seed` now applies route_entity_with_rules**
-(was the 6-coin mis-route bug); bruun meta-tag→pinneberg. 123 county finals
-migrated verbatim (ids+notes preserved) then merge+absorb reconciled;
-test_entity_routing 10 green. See V2_DECISIONS D45 (+ D44 for the absorb drop).
-
-**(6) numista dav-dedup refresh — `b7b2165` (9 entities).** Re-running
-build_numista_seed materialized a stale catalog.dav: a 2-elem list with the
-SAME Davenport ref in two formats («EC II# 3656»+«EC II 3656») → scalar.
-218 entries, 0 other field changed. Seed-layer hygiene only — rendered final
-was already clean (absorb's `_fold_catalog_indices` normalizes on accumulate).
-numista-only quirk; ikmk/numismaster/bruun verified 0 non-Schauenburg drift.
-
-**CLOSED later in the session (the deferred clean-up, all committed):**
-- ✅ **galster 66A/66B genuinely lost — recovered** (`1b9e479` fix + `4c170ca`
-  data). NOT a re-key: 66A-B (pre-coronation Electus variant) ≠ 66C. Cause:
-  the `seed_merge` supersession-drop keyed on id-STRING and dropped
-  `dk-galster-f1g-66` (catalog «66A-B») as if `…-66c` superseded it. Fixed
-  catalogue-aware (`_own_cat_has_subletter`). Full re-run of hede+galster
-  found NO other dropped sub-variants — blast radius was exactly this 1 coin.
-- ✅ **holstein_schauenburg page prose rewritten** (`388e6bb`). Summary →
-  historical two-part principality (drop «104-piece pending / IKMK
-  undistinguished»); phase prose cleaned of §0z project-meta (source
-  file-paths / «Build-Assembly» / «Bulk-Seed» pipeline labels); §2-clean,
-  renders both parts.
-- ✅ **audits run** — `audit_prose` / `audit_i18n` on the new prose
-  (grafschaft_schaumburg desc + rewritten summary/phases): 0 new violations,
-  i18n-clean.
-- ✅ **SOURCES §13.1** numista EC II# quirk (`9b9d413`); **memory
-  tooling_lessons** scoping-bug entry (config-dir auto-revert).
-
-**OPEN / next:**
-- 🟡 **Systemic §2 «Taler» → «Thaler» normalisation (curator decision).**
-  Project-wide: ~1000+ `nominal: … Taler` (178 «1 Taler», 857 «1/24 Taler»,
-  …) + 657 §2 note-prose errors (`audit_prose` backlog). The nominal field
-  uses «Taler» pervasively while §2 wants «Thaler» in DE prose — the audit
-  flags notes, not nominals. NOT introduced by recent work; needs a deliberate
-  project-wide pass (nominals + notes together) or an explicit «keep Taler in
-  nominals» convention. The 1 holstein_schauenburg `audit_prose` hit
-  (unified-dk-bruun-14913 note) is one instance, left as-is pending this call.
-- 🟢 Pre-existing standing TODOs untouched: schou-only (17) catalog-noise;
-  ~8 genuine catalog over-merges.
 
 ## composed_of re-validate + full re-merge (2026-06-09) — SHIPPED, 3 commits UNPUSHED
 
@@ -4979,6 +3592,192 @@ tolerance.
     newly-absorbed entries + can't resolve sub-unit ratios (8 Rbsk→1/12) — a
     general «derive fraction over ALL final entries + sub-unit ratio table» pass
     is the proper long-term fix.
+
+## Harvest coverage state — ucoin + Numista (2026-05-20)
+
+> **For the next harvest session**: detailed snapshot of where every
+> ucoin period and Numista bucket stands. Full per-NID gap manifests
+> live in `scripts/cache/{ucoin,numista}/_BR_audit-2_2026-05-20.json`
+> + `_BO6_audit_2026-05-20.json`. Don't re-enumerate — use the gap
+> lists directly. Period IDs map to `?country=X&period=N` URLs on
+> ucoin.net catalog. **31 local commits ready to push** at session-
+> handover snapshot (`af737ee` → `dad58eb`).
+
+### ucoin — 15 of 15 periods verified (BR audit-2 complete)
+
+✅ **Verified clean (10 periods, exact page-by-page match):**
+
+| Period | Era | Cached / Total |
+|---|---|---:|
+| DK p2940 Speciedaler 1582-1624 | Christian IV pre-Kipper | 83 / 83 |
+| DK p2939 Glückstadt 1617-1773 | DK-rule Glückstadt mint | 50 / 50 |
+| DK p2995 HG-Rendsburg 1716-1720 | Holstein-Gottorp under F4 | 4 / 4 |
+| DK p374 Christian IX 1873-1906 | Krone-era memorials | 9 / 9 |
+| DK p373 Frederik VIII 1906-1912 | Krone-era full reign | 7 / 7 |
+| DK p646 Rigsdaler rigsmønt 1854-1873 | F7 → C9 | 13 / 13 |
+| NO p2399 Speciedaler 1648-1699 | F3 + Christian V | 153 / 153 |
+| NO p2400 Speciedaler 1699-1745 | F4 + C6 | 23 / 23 |
+| NO p1041 Rigsdaler 1746-1812 | F5 → F6 | 32 / 32 |
+| NO p883 Rigsbankdaler 1813-1815 | NO under DK 1813-1814 only | 2 / 2 |
+| SH-cluster `?country=schleswig_holstein` | Speciesbank-era SH 1787-1839 | 15 / 15 |
+
+🔵 **In-scope subset clear (1 period):**
+
+| Period | In-scope cached | Out-of-scope uncached |
+|---|---:|---:|
+| DK p220 Christian X 1912-1947 | 7 (1912-1914 window, all major denoms) | 23 (post-1914 OOS — Margrethe II era; no fetch needed) |
+
+⚠️ **Real gap periods (4) — 150 TIDs total**:
+
+| Period | Era | Cached / Total | Gap | Priority |
+|---|---|---:|---:|:---:|
+| DK p1147 Rigsdaler 1625-1699 | C4 late + F3 + Christian V | 201 / 211 | **10** | A — near-closure |
+| DK p846 Rigsdaler 1750-1812 | F5 → C7 → F6 early | 20 / 54 | **34** | B — ongoing |
+| **DK p1115 Rigsdaler 1699-1749** | **F4 → Christian VI** | **0 / 59** | **59** | **C — FULL UNTOUCHED** |
+| **DK p647 Rigsbankdaler 1813-1854** | **Helstaten F6 → C8** | **1 / 48** | **47** | **D — NEAR-FULL UNTOUCHED** |
+
+**ucoin gap details**:
+- p1147: 4 known on page 1 (`96989`, `96438`, `96455`, `96986` — Skilling/Hvid Scheide); 6 more need page-2-5 re-enum to identify
+- p846: 34 TIDs listed in audit-2 manifest (8/24/4/2-Skilling + 1-Mark + 8-Skilling Bornholm Speciesbank + 1/6-Rigsdaler family)
+- p1115: 59 TIDs listed in audit-2 manifest (Frederik IV + Christian VI Reichsdukatenfuß-era — Speciedaler + Krone + Dukat + Skilling)
+- p647: 47 TIDs listed in audit-2 manifest (Frederik VI Rigsbankdaler post-1813 reform + Christian VIII 1839-1848)
+- All four gap manifests in `scripts/cache/ucoin/_BR_audit-2_2026-05-20.json` under `NEW_GAPS_DISCOVERED`
+
+### Numista — 8 of 8 buckets enumerated (BO.6 v3 complete)
+
+✅ **Verified clean (5 buckets, 671 NIDs):**
+
+| Bucket | In-scope / Cached | Status |
+|---|---:|---|
+| DK p2 (1617-1671) | 200 / 200 | ✅ CLOSED (prior BO.5) |
+| DK p3 (1671-1791) | 200 / 200 | ✅ CLOSED (prior BO.5) |
+| DK p4 (1791-1914) | 124 / 104 (+20 Margrethe II false-pos OOS) | ✅ effectively CLOSED |
+| SH cluster (5 issuers) | 67 / 67 | ✅ CLOSED batches A+B |
+| DK p1 (1513-1617) | 139 / 125 | 🔵 14 left (last leg — batch K closes it) |
+
+⏳ **Untouched (3 buckets, 471 NIDs — all NO):**
+
+| Bucket | Era | Gap | Pages | URL filter |
+|---|---|---:|---:|---|
+| NO p2 (1513-1657) | C2 Oslo → F3 early | 193 | 1 | `?e=norvege&st=1-2-3-47-154-5-54&cat=y&p=2&q=200&s=c&o=y` |
+| NO p3 (1657-1697) | F3 mid → C5 Kongsberg | 200 | 1 | `&p=3` |
+| NO p4 (1697-1814) | C5 late → F6 1813 | 77 | 1 | `&p=4` (78 in-scope, only N#487340 cached) |
+
+**Numista gap details**:
+- DK p1: 14 NIDs listed in `_BO6_gaps_manifest_2026-05-19.json::denmark_gaps_by_page.p1.gap` (filter to uncached — 14 of 93 original)
+- NO p2-p4 in-scope NID lists in `_BO6_audit_2026-05-20.json::in_scope_buckets.norway`
+- Real Phase 2 Numista gap = **14 (DK p1) + 470 (NO p2-4) = 484 NIDs**
+
+### Headline numbers post-audit-2
+
+| Resource | Cache total | In-scope cached | Real gap | % done |
+|---|---:|---:|---:|---:|
+| **ucoin** | 660 TIDs (incl. 4 batch 25 + audit verification) | 656 / 807 | **150** | **81%** |
+| **Numista** | 1058 NIDs | 697 / 1181 | **484** | **59%** |
+
+### Recommended next-session work order
+
+0. **Numista `year_list` backfill** (HIGH — added 2026-05-22 per user N#420401 audit; **WIRED into the routine 2026-06-05**) — 122 cache entries with multi-year ranges and NO `year_list` field. Each needs a Numista-page recheck to distinguish dash-form continuous range from comma-form discrete years. Queue in `docs/handoff_numista_year_list_reharvest.yml` (sorted by year gap descending). **Why it sat at 0/122 for two weeks despite «HIGH»:** the routine batches off HARVEST_ROUTINE.md + `_harvest_handoff.json::priority_override`, NOT this handoff prose (HARVEST_ROUTINE.md §0 «this file's logic supersedes the handoff for routine batching»); priority_override was never set; and the §2.1 picker only fetches *uncached* NIDs, so a re-read of already-cached NIDs was structurally unreachable. **Fix:** added as **§2.2 Priority 0 (STANDING)** — every cron run drains 5 from the queue (re-read + §2.3-B `year_list` encoding) before any BO.7 enumeration, until empty (~24 runs). After the queue closes, re-build the affected Numista seeds + re-merge so the discrete `year_list` reaches the rendered table. Removes the §4 «source years are immutable» violation that turned N#420401's «1496, 1502» into a continuous 1496-1502 range.
+1. **ucoin p1147 closure** — 10 TIDs (4 known + re-enum p2-5 for remaining 6). Closes the DK Rigsdaler 1625-1699 bucket entirely.
+2. **ucoin p846 closure** — 34 TIDs of Frederik V → Christian VII Skilling/Mark Convention era. Mostly 8-Skilling + 1/6-Rigsdaler variants.
+3. **Numista DK p1 closure** — 14 NIDs to close pre-1617 DK Reichsdukatenfuß gold + post-1572 First Speciedaler.
+4. **ucoin p1115 OPEN** — 59 NEW TIDs (FULL bucket; Frederik IV + Christian VI Reichsdukatenfuß-era).
+5. **ucoin p647 OPEN** — 47 NEW TIDs (Frederik VI Helstaten + Christian VIII 1839-1848).
+6. **Numista NO p2-p4** — 470 NIDs across 3 pages (largest single remaining bucket).
+
+### Audit cache files (canonical references)
+
+- `scripts/cache/ucoin/_BR_audit-2_2026-05-20.json` — full per-period enumeration verification, ALL gap TID lists
+- `scripts/cache/numista/_BO6_audit_2026-05-20.json` — full per-bucket enumeration with in-scope NID lists for DK p1-p4 + NO p2-p4 + SH cluster
+- `scripts/cache/numista/_BO6_gaps_manifest_2026-05-19.json` — original BO.6 v2 explicit gap lists (still valid for SH-cluster + DK p1)
+
+### Technical lessons captured this session (in SOURCES.md §13)
+
+- §13.2 ucoin: listing-page slug-collapse trap (`?text-content-filter` solution), `\t`-separated DOM table layout, comma decimal separator, `a.href` vs `a.getAttribute('href')` Cloudflare query-string blackout, `window.<global>` doesn't survive navigation
+- §13.1 Numista: per-NID DOM = HTML `<table>` rows + `<th>`/`<td>` extraction beats innerText regex; listing-page year-regex false-positives (DK p4 = 20 Margrethe II false-pos caught)
+- PB-10 (PLAYBOOKS): detached-HEAD recovery + parallel-session rebase collision recovery
+
+### Source-quirks pinpointed this session
+
+- ucoin systematic ruler-misattribution: 4 instances flagged in `_audit_context` for seed corrections (KM-260 «Christian IV» 1665 → actually F3; KM-308 1669 «C5» → actually F3; KM-324 ND-1670 «F3» → actually C5; KM-631 1778-1785 «C9» → actually C7; KM-598 1764 «C9» → actually F5)
+- DK p846 «sidecar 86» was inflated — actual listing total = 54 (SH-Holstein cross-leak in §M-era sidecar)
+- DK p4 «20-NID gap» = all Margrethe II post-1972 false-positives (year-regex matched historic refs in modern descriptions) — effectively CLOSED
+
+---
+
+## V2 pipeline refactor — architecture refined 2026-05-18
+
+Late 2026-05-18 session refined the architecture into a **4-phase
+fully-automated pipeline with V1 as verification anchor**. Earlier in
+the session the autonomous-portion of the original 10-phase plan
+landed (Phases 0-2 + 4 + 5 + bidirectional link). After user feedback
+on idempotency, merge auditability, and curator-edits-via-rules, the
+plan reorganised:
+
+**New 4-phase model:**
+1. Raw → typed (per resource) — script-only, unchanged
+2. Typed → seed per (entity × resource) — script-only, V2 entity-keyed
+3. Per-resource seeds → unified per entity (cross-source merge) — script auto-merges where confident; low-confidence cases surface for explicit curator decision in `data/v2/merge_decisions/<entity>.yml`
+4. Unified seed → final fuss-distributed — script applies §8a auto-classify where confident; ambiguous cases surface for curator decision in `data/v2/classification_decisions/<entity>.yml`
+
+**V1 = verification anchor.** V1 (`data/locations/`, `data/seed/<src>/<loc>.yml`) frozen post-bootstrap. V2 reprocesses ALL source data — existing + newly-harvested — through the 4-phase pipeline. First full-cycle run expected to map ~1:1 onto V1 curated. Promotion gate (Phase 9): «V1↔V2 diff is zero or fully explained».
+
+**Curator role:** never edits coin fields by hand. Three decision surfaces only: (a) `data/i18n/issuing_entities.yml` (active entity set), (b) Phase 3 merge decisions, (c) Phase 4 classification decisions. Preferred path is always to update script rules so the case becomes auto-handled.
+
+**Resolved 2026-05-18** (all 4 pending §7 decisions closed; added to
+V2_PIPELINE.md §7a):
+- `catalog.km` schema = `str | dict[str, str]` (dict form for cross-volume
+  KMs); see `scripts/lib/v2_resolver.resolve_km_for_location`
+- `coin.phase` = `str | dict[str, str]` (scalar default + dict per-location
+  override); see `scripts/lib/v2_resolver.resolve_phase_for_location`
+- V2 shares `templates/location.html.j2` with V1 (forked only the
+  entity-badge cell to render N badges for list-form `issuing_entity`)
+- `audit_v2.py` hard-blocks pre-commit from Phase 7 onwards (stricter
+  than the original §7.4 «advisory» recommendation)
+
+**Landed this session (16 commits on `feat/v2-pipeline`):**
+
+| Stage | What |
+|---|---|
+| Phase 0 (bootstrap) | Skeleton `data/v2/`, audit + V1-side fix for 3 missing `issuing_entity` tags |
+| Phase 1 (bootstrap) | `bootstrap_v2_final_from_v1.py` — 1317 V1 curated coins → 20 entity files. Idempotent merge-aware via `lib/seed_merge.py` |
+| Phase 2 (bootstrap) | `init_v2_locations.py` — 12 V2 location display-meta files with `consumes_entities`. Preserves manual overrides on re-run |
+| Schema | `Coin.issuing_entity: str | list[str]`, `Coin.phase: str | dict[str, str]`, `CatalogRefs.km: + dict[str, str]` + 7 new catalog refs (galster / friedberg / schive / skaare / etc.). `Coin.composed_of` + `Coin.promoted_to` |
+| V2 build | `scripts/build.py --v1-only` / `--v2-only` + `_assemble_v2_location()` two-pass (direct + inverse-index) + per-coin phase pre-filter. Timeline + template updated for list-form `issuing_entity` |
+| km-120 fix | V1 mint correction (`Royal Mint (Tower Hill)` → `Altona` per Numista N#31895) + V2 regen → `_deprecated_gesamtstaat.yml` retired |
+| Phase 3.1 (new model) | `lib/v2_entity_classify.py` (mint → entity classifier) + `seed_v2_regroup.py` (V1 seeds → V2 per-entity-per-source seed yamls). Sanitisation moves catalog refs to nested `catalog:`, drops non-schema fields, coerces broken types. 2727 seed coins across hede/numismaster/bruun/galster/numista classified |
+| Pipeline idempotency | All V2 scripts now merge-aware via `lib/seed_merge.merge_seed()`: re-runs produce zero file changes; curator edits in CURATED_FIELDS persist; orphan entries preserved verbatim |
+| Phase 6 link | `relink_promoted_v2.py` — bidirectional `composed_of` ↔ `promoted_to` materialiser + `--audit` data-loss detection (flags weight/fineness/source-URL values present in seed but not in canonical host) |
+| Doc refresh | V2_PIPELINE.md rewritten to 4-phase model; ARCHITECTURE.md §«V2 entity-keyed pipeline» extended; data/v2/README.md + CLAUDE.md preamble updated |
+
+**Build results — V1 + V2 co-existence works:**
+- `site/<loc>/<lang>/`: V1 unchanged (DK 2502, SH 842) — frozen verification anchor
+- `site/v2/<loc>/<lang>/`: V2 bootstrap state (DK 3087, SH 485)
+- Pre-filter drops 22 coins on V2 DK + 12 on V2 SH (cross-page-phase
+  incompatibility — SH-page Phase II/III Helstaten coins rendering on DK;
+  Haderslev 1591-1593 outside SH reichsdukatenfuss Phase I)
+
+**Outstanding edge cases — DO NOT manually fix; encode as decision-file entries OR script-rule extensions:**
+1. `km-120-chr-v-1787` — V1 mint corrected this session via the legacy data-edit path. Going forward, mint corrections like this come from upstream (parser cache should reflect the source's stated mint; the V1-author's «Royal Mint (Tower Hill)» was a hand-edit on top of source data).
+2. `km-683-1-fr-vi-1813` dup-collision — DK side carries Bruun-specimen 1813 only; SH side is the consolidated 1813-1819 multi-mint type. **Goes into `data/v2/merge_decisions/danish_realm.yml`** when Phase 3.2 lands — explicit `merge: [dk-bruun-..., dk-numista-22803-..., dk-hede-f6h24a, ...]` declaration.
+3. 4 single-Kopenhagen Helstaten coins (`km-743 / km-770 / km-x001 / km-x002`) — they were on V1 SH page despite single-Kopenhagen mint. V2 mint→entity classifier puts them in `danish_realm` (correct per §3.1 strict reading). If user wants SH visibility, the entity classifier rule should explicitly extend for «post-1813 Kopenhagen-mint Helstaten coins → joint `[danish_realm, royal_holstein]`». Goes into `lib/v2_entity_classify.py` — NOT hand-edits on individual coins.
+4. 11 list-form Helstaten coins + 7 scalar `royal_holstein` SH-V1 coins use SH-page Phase II/III for `18_5_thaler`. On V2 DK they're dropped because DK has Phase I only. Resolution: Phase 4 auto-classifier needs to know about the dict-form `phase: {denmark: I, schleswig_holstein: II}` pattern — should detect when the same Müntzfuß has different periodisation across consumer pages and emit dict-form `phase` automatically. Goes into the classifier rules.
+5. 6 royal_holstein DK-V1 Haderslev coins (`hede-1`, `hede-3`, `hede-6`, `hede-7b`, `hede-8b`, `hede-156`) — 5 dropped on V2 SH because year 1591-1593 falls outside SH reichsdukatenfuss Phase I range [1600, 1726]. Resolution: either widen SH Phase I in `data/v2/locations/schleswig_holstein.yml::phases` (config), or extend the auto-classifier to handle the cross-rendering case automatically.
+6. 429 numismaster `_unclassified.yml` (schleswig_holstein_duchy tag without mint) — entity classifier rule needs extension for «numismaster `schleswig_holstein_duchy` without mint → consult ruler-era heuristic → assign». Phase 3.1 rule update, not per-coin manual.
+
+**Pending scripts (4-phase model completion):**
+- **`scripts/maintenance/merge_seeds_cross_source.py`** (Phase 3.2) — reads `data/v2/seed/<src>/<entity>.yml` (per-resource seeds), applies confident-merge rules + reads `data/v2/merge_decisions/<entity>.yml` for explicit curator confirmations, writes `data/v2/seed_unified/<entity>.yml` (one entry per physical coin, multi-source enriched).
+- **`scripts/maintenance/classify_to_fuss_v2.py`** (Phase 4) — reads `seed_unified/`, applies §8a Müntzfuß-disambiguation pipeline + reads `data/v2/classification_decisions/<entity>.yml`, writes `data/v2/final/<entity>.yml` (fuss-distributed). Also auto-detects cross-page-phase-mismatch cases and emits dict-form `phase` for affected coins.
+- **`scripts/maintenance/diff_v1_v2_final.py`** — compares V1 curated (`data/locations/`) against V2 final (`data/v2/final/`), lists every divergence. Phase 9 promotion-gate: «diff is zero or fully explained».
+- **`scripts/audit_v2.py`** (Phase 7, hard-block pre-commit per §7.4) — home-file rule, bidirectional link integrity, cross-entity duplicate detection, V1↔V2 reconciliation status.
+- **Native V2 builders** (post-Phase 9) — replace `seed_v2_regroup.py` post-processor with proper V2 builders consuming parser cache directly.
+
+**Migration of bootstrap state to new model:** the current `data/v2/curated/<entity>.yml` files (bootstrap-migrated from V1 curated) will be **replaced** by `data/v2/final/<entity>.yml` (regenerated from Phase 3.2 + Phase 4 scripts) once those scripts ship. Until then, `curated/` serves as «Phase 4 equivalent» for V1-migrated coins.
+
+**Anything touching** `_merge_seeds_into_raw` / `_assemble_v2_location` /
+`scripts/lib/v2_resolver.py` / `data/v2/curated/*.yml` /
+`data/v2/locations/*.yml` / `data/v2/seed/` (when Phase 3 lands) needs
+to keep V1 + V2 co-existence working until the explicit «фліпай V2».
 
 ## Current focus
 
@@ -5293,218 +4092,6 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
    correct (sample-checked hede-44). User asked for verification
    before any push. ⇒ Awaiting «OK to push» or further checks.
 
-## Harvest routine — anomaly investigation (2026-05-29)
-
-Investigated the autonomous harvest routine's self-logged anomalies
-(`scripts/cache/_harvest_handoff.json::runs[].anomalies`). Two systemic,
-one class transient.
-
-- **IKMK discovery noise → ✅ scope-purged.** `fetch_ikmk.py` uses
-  full-text `quick_search` + a **year-only** fetch filter, so the cache
-  had filled to ~90 % out-of-scope. Purged 5791/7259 records (cache
-  103→28 MB), kept 1468 German/Scandinavian coins + borderline-HRE.
-  Landed on **main** (submodule commit `07014b3`, superproject pointer
-  bump `651633d`) — not the worktree, due to a `cd /main` slip; curator
-  accepted keeping it there. Keep-rule + verification recorded in
-  `scripts/cache/ikmk/_oos_purged_by_scope_2026-05.json` and SOURCES.md
-  §13.8. **Durable filter landed** (commit `48dc101`, worktree branch):
-  `fetch_ikmk.py` now gates fetch + `scan_cache` on `_is_in_entity_scope`
-  (country + object-type); the year-only `_is_in_mission_scope` gate is
-  removed. Per the curator's multi-level scope (2026-05-29) year is NOT a
-  drop criterion — German/Scandinavian (+ lands under their rule) of ANY
-  era are broad keep-scope; only other-country coins + exonumia are
-  dropped. Validated: entity-only filter flags just 2 of 1478 cached (a
-  British Sovereign + a Koch medal — routine-added OOS the old year gate
-  let slip), keeps all 326 German/Scandinavian records outside 1514-1914.
-- **ucoin `osnabruck_p3057` skip-loop (occ≥10) → ✅ fixed.** Bucket
-  «Bishopric of Osnabrück 1482-1661» — first gap-TIDs were pre-1559 OOS,
-  so the picker re-offered + skipped it every run. Re-enumerated per-TID
-  years via the ucoin listing (Chrome, 2 pages, 55 TIDs) and split
-  `_BR_audit-4_2026-05-24.json::osnabruck_p3057.gap_tids` into 29
-  in-scope (1631-1662) + 26 `oos_excluded_tids` (1482-1541). gap_tids now
-  lists only the in-scope set, so the routine harvests the 1631-1662
-  coins and the skip-loop ends. Committed on the **worktree** branch
-  (submodule `417ab9d`, pointer bump `620241f`). Since reconciled:
-  `origin/main` was merged into the branch (`f989f9b`), unioning the
-  IKMK purge (origin) with this p3057 split in submodule merge `d385a7a`;
-  a follow-up normalised the audit JSON back to the routine's indent=2
-  (`e475a36` / pointer `04a17a7`). The branch's cache submodule now
-  carries both changes.
-- **Transient (no action):** chrome-mcp-disconnect (16:34 run),
-  cloudflare interstitials (auto-cleared), `osnabruck_p2988` audit label
-  drift («Hochstift» vs «City of Osnabrück»).
-
-## Harvest coverage state — ucoin + Numista (2026-05-20)
-
-> **For the next harvest session**: detailed snapshot of where every
-> ucoin period and Numista bucket stands. Full per-NID gap manifests
-> live in `scripts/cache/{ucoin,numista}/_BR_audit-2_2026-05-20.json`
-> + `_BO6_audit_2026-05-20.json`. Don't re-enumerate — use the gap
-> lists directly. Period IDs map to `?country=X&period=N` URLs on
-> ucoin.net catalog. **31 local commits ready to push** at session-
-> handover snapshot (`af737ee` → `dad58eb`).
-
-### ucoin — 15 of 15 periods verified (BR audit-2 complete)
-
-✅ **Verified clean (10 periods, exact page-by-page match):**
-
-| Period | Era | Cached / Total |
-|---|---|---:|
-| DK p2940 Speciedaler 1582-1624 | Christian IV pre-Kipper | 83 / 83 |
-| DK p2939 Glückstadt 1617-1773 | DK-rule Glückstadt mint | 50 / 50 |
-| DK p2995 HG-Rendsburg 1716-1720 | Holstein-Gottorp under F4 | 4 / 4 |
-| DK p374 Christian IX 1873-1906 | Krone-era memorials | 9 / 9 |
-| DK p373 Frederik VIII 1906-1912 | Krone-era full reign | 7 / 7 |
-| DK p646 Rigsdaler rigsmønt 1854-1873 | F7 → C9 | 13 / 13 |
-| NO p2399 Speciedaler 1648-1699 | F3 + Christian V | 153 / 153 |
-| NO p2400 Speciedaler 1699-1745 | F4 + C6 | 23 / 23 |
-| NO p1041 Rigsdaler 1746-1812 | F5 → F6 | 32 / 32 |
-| NO p883 Rigsbankdaler 1813-1815 | NO under DK 1813-1814 only | 2 / 2 |
-| SH-cluster `?country=schleswig_holstein` | Speciesbank-era SH 1787-1839 | 15 / 15 |
-
-🔵 **In-scope subset clear (1 period):**
-
-| Period | In-scope cached | Out-of-scope uncached |
-|---|---:|---:|
-| DK p220 Christian X 1912-1947 | 7 (1912-1914 window, all major denoms) | 23 (post-1914 OOS — Margrethe II era; no fetch needed) |
-
-⚠️ **Real gap periods (4) — 150 TIDs total**:
-
-| Period | Era | Cached / Total | Gap | Priority |
-|---|---|---:|---:|:---:|
-| DK p1147 Rigsdaler 1625-1699 | C4 late + F3 + Christian V | 201 / 211 | **10** | A — near-closure |
-| DK p846 Rigsdaler 1750-1812 | F5 → C7 → F6 early | 20 / 54 | **34** | B — ongoing |
-| **DK p1115 Rigsdaler 1699-1749** | **F4 → Christian VI** | **0 / 59** | **59** | **C — FULL UNTOUCHED** |
-| **DK p647 Rigsbankdaler 1813-1854** | **Helstaten F6 → C8** | **1 / 48** | **47** | **D — NEAR-FULL UNTOUCHED** |
-
-**ucoin gap details**:
-- p1147: 4 known on page 1 (`96989`, `96438`, `96455`, `96986` — Skilling/Hvid Scheide); 6 more need page-2-5 re-enum to identify
-- p846: 34 TIDs listed in audit-2 manifest (8/24/4/2-Skilling + 1-Mark + 8-Skilling Bornholm Speciesbank + 1/6-Rigsdaler family)
-- p1115: 59 TIDs listed in audit-2 manifest (Frederik IV + Christian VI Reichsdukatenfuß-era — Speciedaler + Krone + Dukat + Skilling)
-- p647: 47 TIDs listed in audit-2 manifest (Frederik VI Rigsbankdaler post-1813 reform + Christian VIII 1839-1848)
-- All four gap manifests in `scripts/cache/ucoin/_BR_audit-2_2026-05-20.json` under `NEW_GAPS_DISCOVERED`
-
-### Numista — 8 of 8 buckets enumerated (BO.6 v3 complete)
-
-✅ **Verified clean (5 buckets, 671 NIDs):**
-
-| Bucket | In-scope / Cached | Status |
-|---|---:|---|
-| DK p2 (1617-1671) | 200 / 200 | ✅ CLOSED (prior BO.5) |
-| DK p3 (1671-1791) | 200 / 200 | ✅ CLOSED (prior BO.5) |
-| DK p4 (1791-1914) | 124 / 104 (+20 Margrethe II false-pos OOS) | ✅ effectively CLOSED |
-| SH cluster (5 issuers) | 67 / 67 | ✅ CLOSED batches A+B |
-| DK p1 (1513-1617) | 139 / 125 | 🔵 14 left (last leg — batch K closes it) |
-
-⏳ **Untouched (3 buckets, 471 NIDs — all NO):**
-
-| Bucket | Era | Gap | Pages | URL filter |
-|---|---|---:|---:|---|
-| NO p2 (1513-1657) | C2 Oslo → F3 early | 193 | 1 | `?e=norvege&st=1-2-3-47-154-5-54&cat=y&p=2&q=200&s=c&o=y` |
-| NO p3 (1657-1697) | F3 mid → C5 Kongsberg | 200 | 1 | `&p=3` |
-| NO p4 (1697-1814) | C5 late → F6 1813 | 77 | 1 | `&p=4` (78 in-scope, only N#487340 cached) |
-
-**Numista gap details**:
-- DK p1: 14 NIDs listed in `_BO6_gaps_manifest_2026-05-19.json::denmark_gaps_by_page.p1.gap` (filter to uncached — 14 of 93 original)
-- NO p2-p4 in-scope NID lists in `_BO6_audit_2026-05-20.json::in_scope_buckets.norway`
-- Real Phase 2 Numista gap = **14 (DK p1) + 470 (NO p2-4) = 484 NIDs**
-
-### Headline numbers post-audit-2
-
-| Resource | Cache total | In-scope cached | Real gap | % done |
-|---|---:|---:|---:|---:|
-| **ucoin** | 660 TIDs (incl. 4 batch 25 + audit verification) | 656 / 807 | **150** | **81%** |
-| **Numista** | 1058 NIDs | 697 / 1181 | **484** | **59%** |
-
-### Recommended next-session work order
-
-0. **Numista `year_list` backfill** (HIGH — added 2026-05-22 per user N#420401 audit; **WIRED into the routine 2026-06-05**) — 122 cache entries with multi-year ranges and NO `year_list` field. Each needs a Numista-page recheck to distinguish dash-form continuous range from comma-form discrete years. Queue in `docs/handoff_numista_year_list_reharvest.yml` (sorted by year gap descending). **Why it sat at 0/122 for two weeks despite «HIGH»:** the routine batches off HARVEST_ROUTINE.md + `_harvest_handoff.json::priority_override`, NOT this handoff prose (HARVEST_ROUTINE.md §0 «this file's logic supersedes the handoff for routine batching»); priority_override was never set; and the §2.1 picker only fetches *uncached* NIDs, so a re-read of already-cached NIDs was structurally unreachable. **Fix:** added as **§2.2 Priority 0 (STANDING)** — every cron run drains 5 from the queue (re-read + §2.3-B `year_list` encoding) before any BO.7 enumeration, until empty (~24 runs). After the queue closes, re-build the affected Numista seeds + re-merge so the discrete `year_list` reaches the rendered table. Removes the §4 «source years are immutable» violation that turned N#420401's «1496, 1502» into a continuous 1496-1502 range.
-1. **ucoin p1147 closure** — 10 TIDs (4 known + re-enum p2-5 for remaining 6). Closes the DK Rigsdaler 1625-1699 bucket entirely.
-2. **ucoin p846 closure** — 34 TIDs of Frederik V → Christian VII Skilling/Mark Convention era. Mostly 8-Skilling + 1/6-Rigsdaler variants.
-3. **Numista DK p1 closure** — 14 NIDs to close pre-1617 DK Reichsdukatenfuß gold + post-1572 First Speciedaler.
-4. **ucoin p1115 OPEN** — 59 NEW TIDs (FULL bucket; Frederik IV + Christian VI Reichsdukatenfuß-era).
-5. **ucoin p647 OPEN** — 47 NEW TIDs (Frederik VI Helstaten + Christian VIII 1839-1848).
-6. **Numista NO p2-p4** — 470 NIDs across 3 pages (largest single remaining bucket).
-
-### Audit cache files (canonical references)
-
-- `scripts/cache/ucoin/_BR_audit-2_2026-05-20.json` — full per-period enumeration verification, ALL gap TID lists
-- `scripts/cache/numista/_BO6_audit_2026-05-20.json` — full per-bucket enumeration with in-scope NID lists for DK p1-p4 + NO p2-p4 + SH cluster
-- `scripts/cache/numista/_BO6_gaps_manifest_2026-05-19.json` — original BO.6 v2 explicit gap lists (still valid for SH-cluster + DK p1)
-
-### Technical lessons captured this session (in SOURCES.md §13)
-
-- §13.2 ucoin: listing-page slug-collapse trap (`?text-content-filter` solution), `\t`-separated DOM table layout, comma decimal separator, `a.href` vs `a.getAttribute('href')` Cloudflare query-string blackout, `window.<global>` doesn't survive navigation
-- §13.1 Numista: per-NID DOM = HTML `<table>` rows + `<th>`/`<td>` extraction beats innerText regex; listing-page year-regex false-positives (DK p4 = 20 Margrethe II false-pos caught)
-- PB-10 (PLAYBOOKS): detached-HEAD recovery + parallel-session rebase collision recovery
-
-### Source-quirks pinpointed this session
-
-- ucoin systematic ruler-misattribution: 4 instances flagged in `_audit_context` for seed corrections (KM-260 «Christian IV» 1665 → actually F3; KM-308 1669 «C5» → actually F3; KM-324 ND-1670 «F3» → actually C5; KM-631 1778-1785 «C9» → actually C7; KM-598 1764 «C9» → actually F5)
-- DK p846 «sidecar 86» was inflated — actual listing total = 54 (SH-Holstein cross-leak in §M-era sidecar)
-- DK p4 «20-NID gap» = all Margrethe II post-1972 false-positives (year-regex matched historic refs in modern descriptions) — effectively CLOSED
-
----
-
-## Recent state changes (this session)
-
-* **D39 — bulk_promote `no_basic_peer_only` mode + writer-bug fix**
-  (2026-05-19). Extends D37 with a second mode that promotes ONLY
-  unmatched unified entries with no metal+nominal peer in foundation;
-  D/E/H/C-category cases (catalog/ruler/fallback disagree, low-conf
-  near) stay in pending. Writer-bug fixed alongside:
-  `_emit_classification_decisions` previously collapsed the flag to
-  literal `True` via `bool(...)`, silently downgrading D39 →
-  D37-mode-all on the first absorb. 1st `--apply`: 535 N-cases
-  promoted across 8 entities, 583 D/E/H/C stay pending. 2nd
-  `--apply`: idempotent (0 newly absorbed, 0 newly promoted).
-  audit_v2 --quick: 0 violations. See V2_DECISIONS D39 for full
-  per-entity breakdown.
-* **D38 — NumisMaster builder routes country → canonical V2 entity**
-  (2026-05-19). `COUNTRY_TO_ISSUING_ENTITY` mapping refactored to use
-  9 canonical V2 entities directly (instead of legacy
-  `schleswig_holstein_duchy` alias). Per-cadet-line routing:
-  `royal_holstein` / `gottorp_duchy` / `schauenburg_pinneberg` /
-  `sonderburg_duchy` / `norburg_plon_duchy` / `glucksburg_duchy`.
-  Cascading rebuild: 426 `_unclassified` entries re-routed, V2
-  unified regenerated, V2 final absorb-pass surfaces new pending
-  for curator review. TODO §BT lists the 4 remaining builders
-  (Hede/Bruun/Galster/Numista pre1541) that need similar treatment.
-* **Per-case dedup methodology established** (user direction): each
-  case gets full source links provided up-front, «за / проти merge»
-  written out, user verifies visually before action. Auto-batching
-  forbidden.
-* **C-bucket auto-suppression in `build.py::_merge_seeds_into_raw`** —
-  build-time filter that drops seed coins whose Hede catalog ref is
-  already covered by a curated entry. Three safety guards layered on:
-  metal-mismatch (cf-companion citations), weight-mismatch (>25 %
-  ratio indicates cross-register KM clash or different denomination),
-  year-mismatch (>10y with u.år exception). Fineness-similarity
-  escape hatch on metal-mm guard for billon/silver labelling drift.
-* **Cross-location seed coverage**: denmark seed entries get
-  cross-checked against ALL location yamls' curated Hede refs (not
-  just denmark's own) — fixes the «Glückstadt Hede entry lives in
-  schleswig_holstein.yml curator but in denmark seed» pattern.
-* **Bare-basename auto-suppression**: when curator has `hede: '107B'`,
-  seed entry `dk-hede-c5h107` (bare basename, parser artefact) is
-  also auto-suppressed alongside the explicit `dk-hede-c5h107b`.
-* **KM register-aware architecture**: `KMRef {value, register}`
-  schema; `Location.km_register: 'DK'`/`'SH'`; render shows bare
-  «KM#» when single-entry in page default register, qualified «KM-DK#»
-  + tooltip when cross-register or multi-list. Applied to case 7
-  (Hede 178 → KM-DK# 25 + KM-SH# 87 same coin in two Krause volumes).
-* **Verified-wins-over-unverified merge rule** (codified just now):
-  CLAUDE.md §4 + `_VERIFIABLE_FIELDS` in seed builder's `_merge_one`.
-  Drops `(?)`-marked values when source-attested candidate exists.
-  Followed by legacy-data cleanup (45 «curated (legacy scalar)»
-  fineness entries purged).
-* **Proof-strike exclusion**: `_KNOWN_PROOF_PATTERNS = {"c4h20"}` in
-  seed builder + explicit drop from seed yaml. CLAUDE.md §9 forbids
-  proof / trial strikes; mechanism is ready for future entries.
-* **«Back-to-top» floating button** in `assets/app.js`: appears at
-  `max(viewport, 0.15 × page-height)` scroll threshold; custom RAF
-  smooth-scroll with sub-linear duration capped 900 ms.
-
 ## Open TODOs added this session
 
 | § | Topic |
@@ -5523,37 +4110,6 @@ one class transient.
 
 All entries carry their own design sketches in `docs/TODO.md`;
 this list exists only to anchor «what's open» on a quick read.
-
-## Local commit state
-
-* **Main repo**: working tree clean. Recent commits on
-  `feat/v2-pipeline` not pushed (user has not granted push
-  permission this turn):
-  - `917452c` audit(i18n): tighten R5 — flag only Mfuß-compound translations, not bare «стопа»
-  - `66a2adc` build: bump scripts/cache → galster JSON regenerations (parser refactor outputs)
-  - `5df8370` build: V2 default at /, V1 fallback under /v1/ (D44)
-  - `c020d11` build(v2): default bulk_promote_pending → no_basic_peer_only for steady-state
-  - `07b88cb` build(v2): expand Bruun year window to 1914 + schema cleanups
-* **Submodule `scripts/cache/`**: 7 commits ahead of `origin/main`
-  (parse(galster) regen + earlier parse(bruun) Galster/NMD/Schive/
-  Skjoldager ref patterns + parse(hede) multi-Hede header layout +
-  re-parse 87 hede files + extended marken_fin_udbragt_til). Push
-  needs `git -C scripts/cache push origin HEAD:main` once user
-  approves; superproject pointer already references the new head
-  (`3f566216`).
-
-## Recent changes — URL routing (2026-05-20)
-
-* **V2 → root default, V1 → /v1/ fallback** (`5df8370`, D44).
-  V2 pages now render at `site/<loc>/<lang>/index.html`; V1 pages
-  move to `site/v1/<loc>/<lang>/index.html`. Two landings:
-  `site/<lang>/index.html` lists V2 locations (default),
-  `site/v1/<lang>/index.html` lists V1. Root `index.html` redirects
-  to default; `/v1/index.html` redirects to V1 fallback. Both
-  subtrees emitted on every build; `--v1-only` / `--v2-only` flags
-  preserved.
-* **V2 invariants audit clean** post-routing (I1-I6 all pass:
-  3475 final coins, 3097 unified, 4560 seed, 22 entity tags).
 
 ## Helper queries (audit reproducibility)
 
@@ -5580,80 +4136,6 @@ session — search for «E1 NO-KM entirely-pending cases» if context
 is preserved, or regenerate by walking the `dup_pairs_denmark.txt`
 buckets.
 
-## V2 pipeline refactor — architecture refined 2026-05-18
-
-Late 2026-05-18 session refined the architecture into a **4-phase
-fully-automated pipeline with V1 as verification anchor**. Earlier in
-the session the autonomous-portion of the original 10-phase plan
-landed (Phases 0-2 + 4 + 5 + bidirectional link). After user feedback
-on idempotency, merge auditability, and curator-edits-via-rules, the
-plan reorganised:
-
-**New 4-phase model:**
-1. Raw → typed (per resource) — script-only, unchanged
-2. Typed → seed per (entity × resource) — script-only, V2 entity-keyed
-3. Per-resource seeds → unified per entity (cross-source merge) — script auto-merges where confident; low-confidence cases surface for explicit curator decision in `data/v2/merge_decisions/<entity>.yml`
-4. Unified seed → final fuss-distributed — script applies §8a auto-classify where confident; ambiguous cases surface for curator decision in `data/v2/classification_decisions/<entity>.yml`
-
-**V1 = verification anchor.** V1 (`data/locations/`, `data/seed/<src>/<loc>.yml`) frozen post-bootstrap. V2 reprocesses ALL source data — existing + newly-harvested — through the 4-phase pipeline. First full-cycle run expected to map ~1:1 onto V1 curated. Promotion gate (Phase 9): «V1↔V2 diff is zero or fully explained».
-
-**Curator role:** never edits coin fields by hand. Three decision surfaces only: (a) `data/i18n/issuing_entities.yml` (active entity set), (b) Phase 3 merge decisions, (c) Phase 4 classification decisions. Preferred path is always to update script rules so the case becomes auto-handled.
-
-**Resolved 2026-05-18** (all 4 pending §7 decisions closed; added to
-V2_PIPELINE.md §7a):
-- `catalog.km` schema = `str | dict[str, str]` (dict form for cross-volume
-  KMs); see `scripts/lib/v2_resolver.resolve_km_for_location`
-- `coin.phase` = `str | dict[str, str]` (scalar default + dict per-location
-  override); see `scripts/lib/v2_resolver.resolve_phase_for_location`
-- V2 shares `templates/location.html.j2` with V1 (forked only the
-  entity-badge cell to render N badges for list-form `issuing_entity`)
-- `audit_v2.py` hard-blocks pre-commit from Phase 7 onwards (stricter
-  than the original §7.4 «advisory» recommendation)
-
-**Landed this session (16 commits on `feat/v2-pipeline`):**
-
-| Stage | What |
-|---|---|
-| Phase 0 (bootstrap) | Skeleton `data/v2/`, audit + V1-side fix for 3 missing `issuing_entity` tags |
-| Phase 1 (bootstrap) | `bootstrap_v2_final_from_v1.py` — 1317 V1 curated coins → 20 entity files. Idempotent merge-aware via `lib/seed_merge.py` |
-| Phase 2 (bootstrap) | `init_v2_locations.py` — 12 V2 location display-meta files with `consumes_entities`. Preserves manual overrides on re-run |
-| Schema | `Coin.issuing_entity: str | list[str]`, `Coin.phase: str | dict[str, str]`, `CatalogRefs.km: + dict[str, str]` + 7 new catalog refs (galster / friedberg / schive / skaare / etc.). `Coin.composed_of` + `Coin.promoted_to` |
-| V2 build | `scripts/build.py --v1-only` / `--v2-only` + `_assemble_v2_location()` two-pass (direct + inverse-index) + per-coin phase pre-filter. Timeline + template updated for list-form `issuing_entity` |
-| km-120 fix | V1 mint correction (`Royal Mint (Tower Hill)` → `Altona` per Numista N#31895) + V2 regen → `_deprecated_gesamtstaat.yml` retired |
-| Phase 3.1 (new model) | `lib/v2_entity_classify.py` (mint → entity classifier) + `seed_v2_regroup.py` (V1 seeds → V2 per-entity-per-source seed yamls). Sanitisation moves catalog refs to nested `catalog:`, drops non-schema fields, coerces broken types. 2727 seed coins across hede/numismaster/bruun/galster/numista classified |
-| Pipeline idempotency | All V2 scripts now merge-aware via `lib/seed_merge.merge_seed()`: re-runs produce zero file changes; curator edits in CURATED_FIELDS persist; orphan entries preserved verbatim |
-| Phase 6 link | `relink_promoted_v2.py` — bidirectional `composed_of` ↔ `promoted_to` materialiser + `--audit` data-loss detection (flags weight/fineness/source-URL values present in seed but not in canonical host) |
-| Doc refresh | V2_PIPELINE.md rewritten to 4-phase model; ARCHITECTURE.md §«V2 entity-keyed pipeline» extended; data/v2/README.md + CLAUDE.md preamble updated |
-
-**Build results — V1 + V2 co-existence works:**
-- `site/<loc>/<lang>/`: V1 unchanged (DK 2502, SH 842) — frozen verification anchor
-- `site/v2/<loc>/<lang>/`: V2 bootstrap state (DK 3087, SH 485)
-- Pre-filter drops 22 coins on V2 DK + 12 on V2 SH (cross-page-phase
-  incompatibility — SH-page Phase II/III Helstaten coins rendering on DK;
-  Haderslev 1591-1593 outside SH reichsdukatenfuss Phase I)
-
-**Outstanding edge cases — DO NOT manually fix; encode as decision-file entries OR script-rule extensions:**
-1. `km-120-chr-v-1787` — V1 mint corrected this session via the legacy data-edit path. Going forward, mint corrections like this come from upstream (parser cache should reflect the source's stated mint; the V1-author's «Royal Mint (Tower Hill)» was a hand-edit on top of source data).
-2. `km-683-1-fr-vi-1813` dup-collision — DK side carries Bruun-specimen 1813 only; SH side is the consolidated 1813-1819 multi-mint type. **Goes into `data/v2/merge_decisions/danish_realm.yml`** when Phase 3.2 lands — explicit `merge: [dk-bruun-..., dk-numista-22803-..., dk-hede-f6h24a, ...]` declaration.
-3. 4 single-Kopenhagen Helstaten coins (`km-743 / km-770 / km-x001 / km-x002`) — they were on V1 SH page despite single-Kopenhagen mint. V2 mint→entity classifier puts them in `danish_realm` (correct per §3.1 strict reading). If user wants SH visibility, the entity classifier rule should explicitly extend for «post-1813 Kopenhagen-mint Helstaten coins → joint `[danish_realm, royal_holstein]`». Goes into `lib/v2_entity_classify.py` — NOT hand-edits on individual coins.
-4. 11 list-form Helstaten coins + 7 scalar `royal_holstein` SH-V1 coins use SH-page Phase II/III for `18_5_thaler`. On V2 DK they're dropped because DK has Phase I only. Resolution: Phase 4 auto-classifier needs to know about the dict-form `phase: {denmark: I, schleswig_holstein: II}` pattern — should detect when the same Müntzfuß has different periodisation across consumer pages and emit dict-form `phase` automatically. Goes into the classifier rules.
-5. 6 royal_holstein DK-V1 Haderslev coins (`hede-1`, `hede-3`, `hede-6`, `hede-7b`, `hede-8b`, `hede-156`) — 5 dropped on V2 SH because year 1591-1593 falls outside SH reichsdukatenfuss Phase I range [1600, 1726]. Resolution: either widen SH Phase I in `data/v2/locations/schleswig_holstein.yml::phases` (config), or extend the auto-classifier to handle the cross-rendering case automatically.
-6. 429 numismaster `_unclassified.yml` (schleswig_holstein_duchy tag without mint) — entity classifier rule needs extension for «numismaster `schleswig_holstein_duchy` without mint → consult ruler-era heuristic → assign». Phase 3.1 rule update, not per-coin manual.
-
-**Pending scripts (4-phase model completion):**
-- **`scripts/maintenance/merge_seeds_cross_source.py`** (Phase 3.2) — reads `data/v2/seed/<src>/<entity>.yml` (per-resource seeds), applies confident-merge rules + reads `data/v2/merge_decisions/<entity>.yml` for explicit curator confirmations, writes `data/v2/seed_unified/<entity>.yml` (one entry per physical coin, multi-source enriched).
-- **`scripts/maintenance/classify_to_fuss_v2.py`** (Phase 4) — reads `seed_unified/`, applies §8a Müntzfuß-disambiguation pipeline + reads `data/v2/classification_decisions/<entity>.yml`, writes `data/v2/final/<entity>.yml` (fuss-distributed). Also auto-detects cross-page-phase-mismatch cases and emits dict-form `phase` for affected coins.
-- **`scripts/maintenance/diff_v1_v2_final.py`** — compares V1 curated (`data/locations/`) against V2 final (`data/v2/final/`), lists every divergence. Phase 9 promotion-gate: «diff is zero or fully explained».
-- **`scripts/audit_v2.py`** (Phase 7, hard-block pre-commit per §7.4) — home-file rule, bidirectional link integrity, cross-entity duplicate detection, V1↔V2 reconciliation status.
-- **Native V2 builders** (post-Phase 9) — replace `seed_v2_regroup.py` post-processor with proper V2 builders consuming parser cache directly.
-
-**Migration of bootstrap state to new model:** the current `data/v2/curated/<entity>.yml` files (bootstrap-migrated from V1 curated) will be **replaced** by `data/v2/final/<entity>.yml` (regenerated from Phase 3.2 + Phase 4 scripts) once those scripts ship. Until then, `curated/` serves as «Phase 4 equivalent» for V1-migrated coins.
-
-**Anything touching** `_merge_seeds_into_raw` / `_assemble_v2_location` /
-`scripts/lib/v2_resolver.py` / `data/v2/curated/*.yml` /
-`data/v2/locations/*.yml` / `data/v2/seed/` (when Phase 3 lands) needs
-to keep V1 + V2 co-existence working until the explicit «фліпай V2».
-
 ## Quirks / known traps
 
 * **ruamel.yaml round-trip on `denmark.yml`**: re-dumping the whole
@@ -5669,581 +4151,3 @@ to keep V1 + V2 co-existence working until the explicit «фліпай V2».
 * **Push permission is per-turn**: «push» as a verb in any earlier
   turn does NOT carry to future turns. Always wait for an explicit
   per-turn push request.
-
-## 2026-08-21 — mint source-fidelity pass, and what it left open
-
-Eight parser/registry defects that all had the same shape: no error, no empty
-field, just a confident value narrower than what the source said. Fixed in
-`aa771d5`, `38369e6`, `f53986f`, `8e875c2` + the `_recorded_removals.yml` work.
-Full re-flow done (re-parse NGC + Galster → re-seed 7 sources → merge → absorb),
-`verify_reflow` clean, 45 tests in `tests/test_mint_source_fidelity.py`.
-
-### OPEN — audit every `v1-*` / V1-carryover seed for atavistic indices
-
-**The task:** find seeds whose catalogue indices NO current source attests —
-values carried over from the V1 bootstrap and since orphaned. They look
-authoritative, they key the cross-source merger, and nothing regenerates or
-removes them.
-
-**The case that surfaced it.** `km-358-h123-chr-v-1681` is a SEED whose id is a
-V1 FINAL id, sitting in `data/v2/seed/ucoin/`, whose source URL is ucoin
-`tid=96983` — the very same ucoin record that already produced `dk-tid-96983`.
-So one ucoin entry became two seeds. The V1 copy additionally carries
-`hede: 123` + `sieg: 129`, which ucoin does not publish at all (its page is
-titled «Denmark 2 skilling, 1676-1681», no catalogue numbers): those came from
-V1 hand-curation and are attached to the wrong coin — Hede 123 is the
-Glückstadt 1681 type, ucoin's entry is the København 1676-1681 one (Hede 74A/B).
-The two indices then split the coin into two finals across two entities and made
-`Glückstadt` look attested on the København coin.
-
-**Suggested shape of the audit:** for every seed whose id does NOT match its
-builder's own id convention (`km-*`, `unified-*`, any V1 final-shaped id) — and
-especially those in `data/v2/seed/ucoin/` — compare each catalogue index it
-carries against what its cited source actually publishes in the cache. An index
-no source gives is an atavism: either re-attach it to the coin it belongs to, or
-drop it. Cross-check for duplicate seeds sharing one source URL (the ucoin
-`tid=` collision above is unlikely to be the only one).
-
-### OPEN — 108 Hede types with no record at all
-
-`parse_hede._extract_index_stubs` and its caller both gate on
-`^n?[cf]\d+hede$`, so every index page with a volume suffix is skipped:
-`c4hede2` (15 rows), `c5hede1` (41), `f3hede1` (44), `f3hede2` (8), plus
-`c4hede3` / `c5hede2` / `f3hede3` / `c8hede8c` (0 each). Those rows are Hede
-types whose danskmoent index line carries no deep-page link, so the stub is the
-only record they would ever get — and none exists. `c5h123` (2 Skilling,
-Glückstadt, 1681, Sieg 129) is one of them, and KMM 736272 is sitting there
-attesting exactly it with nowhere to merge.
-
-Curator direction: fix the regex, then MEASURE how many of the 108 merge into
-existing index-less museum records before deciding what to keep (§9 pass needed
-— some are off-strikes, e.g. `c5h30` «Kobberafslag af påtænkt dukat», `f3h25`
-«Sølvafslag af ukendt 1/2 Dukat»).
-
-### OPEN — curator calls still outstanding
-
-* **Hede 74 vs Hede 123** (2 Skilling Christian V): merge or keep apart. KM 358
-  and Numista 22576 unify them; Hede, Sieg AND KMM separate them by mint
-  (København vs Glückstadt). My read is «two types, Krause lumped» → `no_merges`
-  + strip the duplicated `numista: 22576` from one side.
-* **`Slesvig` as a mint alias.** `classify_mint_to_entity('Slesvig')` is None
-  while `Schleswig` → gottorp_duchy, so the Danish spelling dies in
-  `_split_place`'s nation-guard. KMM has 48 × «Danmark - Slesvig» (reads as a
-  town) against 254 compound forms (read as the region). Aliasing it moves those
-  48 into gottorp_duchy — measure before doing it.
-* **City in `mintmaster`, 164 kmk seeds.** `_enrich_from_raadata` splits the
-  rådata locality on `" - "` but not on `", "`, so «Tysk, Hamburg» reaches
-  `_split_place` whole and comes back as mint «Tysk» + mintmaster «Hamburg».
-  Fix: split on the comma too when the head is a territory (nation-classifier
-  test), not a mint.
-
-### OPEN — `_catalog` keeps only the FIRST number of a range
-
-`build_kmk_seed._catalog` reads an index with `re.match(r"\d+[A-Za-z]?", rest)`,
-so a printed range loses its tail: KMM's «Sch 20-22» becomes `schou: 20`. Found
-while fixing the edition-year bug (2026-08-21) and deliberately NOT widened
-there — the generic pattern feeds every catalogue, so broadening it changes many
-values at once and needs its own measurement. The edition-year path DOES read
-ranges (`Lange 1908, no. 306-312` → `lange: 306-312`), which is why that case is
-already correct.
-
-## OPEN, BIG — an entity for the Duchy of Schleswig under the Danish crown
-
-**Why it exists.** 48 KMM records read «Danmark - Slesvig» — Frederik I (12),
-Christian III (8), Frederik II (28), years 1523-1563. The mint registry maps
-`schleswig → gottorp_duchy` unconditionally, and that entity's OWN description
-in `data/i18n/issuing_entities.yml` dates itself «Adolf I 1544 → Karl Peter
-Ulrich 1762». So the mapping files coins from 1523-1543 under a house that did
-not exist yet — a contradiction inside the committed data, not a matter of
-reading. `royal_holstein` does not take them either: it is Holstein, and its own
-description starts at Christian IV.
-
-Today the Denmark page compensates with a consume-cap, `gottorp_duchy` with
-`year_to: 1543` (35 coins in, 314 out). That produces the right VIEW from the
-wrong MODEL, and the curator's objection stands: everything the cap trims is
-potentially Danish and currently lost from the page.
-
-**The curator's proposal (2026-08-21), and why it holds.** Add an entity for the
-Duchy of Schleswig as a Danish fief, so a coin can carry BOTH it and
-`danish_realm` in list-form `issuing_entity`. No historical contradiction: the
-Danish king WAS Duke of Schleswig (fief of the Danish crown from the 1460 Treaty
-of Ribe), so a ducal legend — «FRIDERICVS D HOLSACI / MO NOV AVREA SLESVICENSIS»,
-the very legend the 2026-07-16 curator call read — expresses his title in that
-region, not a separate issuer. The coin does not stop being Danish. The joint
-list-form is the shape the pipeline already uses on 44 finals, and build.py's
-Pass 2 inverse index renders it on both pages without any year cap.
-
-**RESEARCH FIRST — these are historical questions with knowable answers, not
-curator preferences. Do not ask; find out and cite (§0 / §5).**
-
-1. From which year does the Duchy of Schleswig exist AS SUCH, and until which?
-2. Who ruled it in the years the coins give (1523-1563), and — going back —
-   who were the predecessors, i.e. from when did the territory belong to
-   Denmark? The focus is the Danish kingdom: a duke who became king belongs in
-   this set; a predecessor under whom the territory was not Danish does not.
-3. Were there interruptions — foreign or provisional rule? Those are exception
-   years, the shape `mint_registry` already supports via `year_overrides` (cf.
-   the Altona entry, `year_to: 1640 → schauenburg_pinneberg`).
-4. Where does the 1544 Rendsburg partition leave the ROYAL share of Schleswig
-   (Frederik II, 1563)? Same entity, or another?
-   Note the 1490 partition already gave Frederik the Gottorf seat, and the
-   ducal-zone mint moved Husum → Slesvig/Gottorp at his 1523 accession
-   (Wilcke 7-2 p. 186-187, via docs/research/sh_ducal_zone_husum_1514.md §3).
-
-**Mint side.** «Slesvig» is a REGION and appears to be the maximum precision
-those records offer. Curator direction: keep it as `Slesvig?` — region-level
-with the uncertainty marker, `mint_verified: false` — so a coin with a verified
-town mint later overrides it via the existing certain-wins rule in
-`_canonicalise_mint`. Do NOT alias `slesvig` onto `schleswig`: that would drag
-the entity along with the spelling.
-
-**Implementation surface, once the history is settled.**
-- `data/i18n/issuing_entities.yml` — new entity, de/en/uk description
-- `scripts/lib/mint_registry.py` — a Slesvig entry with `year_overrides`, AND
-  make the existing `schleswig → gottorp_duchy` year-aware (it is unconditional
-  today, so the same defect hits the German spelling too — the Danish spelling
-  was merely hiding it)
-- `data/v2/locations/*.yml` — `consumes_entities` on Denmark and
-  Schleswig-Holstein; drop the `year_to: 1543` cap once the model is right
-- full re-seed + merge + absorb, then check where the 35 capped coins land
-
-**Precedent to read BEFORE touching the registry** (docs/handoff.md,
-2026-08-18): re-routing pre-1544 Gottorp to `royal_holstein` in the registry was
-tried and fully reverted, because `trace_coin why` showed a 2026-07-16 curator
-cross-entity call that had already weighed it. «Run `why` before the registry,
-not after.» This proposal differs — it adds an entity rather than re-pointing an
-existing one — but the same check comes first.
-
-Deliberately kept OUT of the 2026-08-21 Phase-3 batch (mintmaster / catalogue
-ranges / Hede index stubs): those are mechanical, this is a historical model
-change touching two rendered pages, and mixing them would make the diff
-unreadable.
-
-## 2026-08-21 (late) — Phase 3 DONE, committed as `eddd3e8`
-
-Nothing below is outstanding; kept as the record of what the phase changed and
-why. Submodule artefacts: `eaf225d49` (NGC + Galster re-parse), `e8b41af71`
-(53 hede index stubs).
-
-### Where the work stands
-
-A long session fixing source-reading defects. Phases 1 and 2 are done; Phase 3
-is mid-execution — code changes are in, the re-seed is done, and what remains is
-merge → absorb → verify → commit.
-
-**Committed earlier today:** `aa771d5`, `38369e6`, `f53986f`, `8e875c2` (parser
-and registry fixes), `9808d38` (the first data flow + three merge decisions +
-`_recorded_removals.yml`), and `eaf225d49` in the `scripts/cache` submodule.
-
-**Phase 1 — done, uncommitted.** `absorb_seeds_into_final_v2.py` line ~2157: the
-`composed_of` purge now keeps a member that lives in ANOTHER entity (it only
-purged on `cid in unified_by_id`, a per-entity map, so a relocated member had
-its membership record DELETED). `audit_v2.py`: I3 extended from `final` to
-`seed_unified` and `seed` (per-source), so a home-file violation is caught at
-the layer where the move happens, not two layers later.
-
-**Phase 2 — measurements, all done.** Slesvig 48 records; city-in-mintmaster
-161 (66 would gain a registry-known mint); truncated catalogue ranges 81
-segments; V1 atavisms 216 odd-id seeds / 395 duplicated source URLs (upper
-bound, the harmful share is NOT yet counted).
-
-**Phase 3 — code done, uncommitted; run pending.**
-- `build_kmk_seed._enrich_from_raadata` → new `_raadata_place`: KMM uses TWO
-  separators for «territory + place» (`« - »` 4494, `«, »` 274) and only the
-  dash was handled, so `_split_place` read the comma as «city, mintmaster» and
-  put the TERRITORY in `mint` and the CITY in `mintmaster` on 161 seeds. Fixed
-  where the field is substituted, not in `_split_place`, which handles its own
-  ES field correctly (5 real mintmasters there).
-- `build_kmk_seed._catalog`: printed RANGES are kept whole («Sch 1-5», «Schou
-  31-47»), not truncated to the head. Ranges are already the convention — the
-  hede seeds hold 841 schou ranges, galster 81. Abbreviated forms («Lange
-  306-10») stored verbatim, not expanded (§0).
-- `parse_hede.py`: THREE gates each made the next pointless — the glob
-  `*hede.htm` (now `*hede*.htm`), the caller regex, and the same regex inside
-  `_extract_index_stubs`. Volume indices split across numbered files
-  (`c5hede1`, `f3hede1`…) had never produced a stub, so 53 Hede types had no
-  record at all. Also fixed the index LIFECYCLE: an existing stub was skipped
-  without being appended to `parsed_files`, so it vanished from
-  `_parsed_index.json` on every later run and `build_hede_denmark_seed` then
-  dropped it as `skipped_non_canonical` (43 → 3).
-- `build_hede_denmark_seed`: `DK_MINT_DE` knew 13 of the registry's 50 mints —
-  a fourth private copy of a mint vocabulary. It now falls back to the registry
-  for COVERAGE while keeping its own SPELLING decisions (Haderslev,
-  Rendsborg→Rendsburg). And `skipped_no_mint` is GONE (curator: an unnamed mint
-  is the source's state of knowledge, not grounds to discard the coin) —
-  `kept_no_mint: 61`, hede seeds 1154 → 1190.
-
-### HOW IT ENDED
-
-verify_reflow 0 losses / 119 gains, audit_v2 all invariants pass,
-audit_lost_citations 0, build exit 0. Seeds +82, finals 14987, 52 new Hede
-types. All 25 losses the gate first reported were traced and are recorded in
-`data/v2/_recorded_removals.yml` (37 entries now): 6 were a truncated index
-replaced by its own printed range — the gate now reads that as a refinement,
-same reasoning as `_is_span_refinement` for year_ranges — 17 were §9a thinning
-re-bucketing after coins gained real mints (each verified to leave exactly 3
-survivors), one a Davenport number gaining its volume, and one an NGC «5 Ducat
-1658» that joined the newly-created Hede 27.
-
-### NEXT — Phase 4, absorb only, no merge needed
-
-`classification_decisions` are read by absorb, so this is ~3 min, not ~7:
-
-```
-.venv/bin/python scripts/maintenance/trace_coin.py snapshot scratchpad/ph3_before.json
-.venv/bin/python scripts/maintenance/merge_seeds_cross_source.py --apply
-.venv/bin/python scripts/maintenance/absorb_seeds_into_final_v2.py --apply
-.venv/bin/python scripts/maintenance/verify_reflow.py         # must end 0 losses
-.venv/bin/python scripts/audit_v2.py --quick                  # must pass
-.venv/bin/python scripts/maintenance/audit_lost_citations.py  # must be 0
-.venv/bin/python scripts/build.py
-```
-
-The 52 new Hede types and the coins `kept_no_mint` returned are sitting in
-`pending` (1628 total). Two of the new stubs are off-strikes and belong in §9.3
-exclusions at classification time: `c5h30` «Kobberafslag af påtænkt dukat»,
-`f3h25` «Sølvafslag af ukendt 1/2 Dukat».
-
-Also pending: promoting the four specimens the 3a/3b splits detached — they need
-an `issuing_entity` for the German states before their citations can travel back
-to them.
-
-Deliberate removals go in `data/v2/_recorded_removals.yml` (`kind: thinning` /
-`kind: field`), read by BOTH branches of verify_reflow. Do not use
-`--no-verify`.
-
-### Lesson worth keeping
-
-Three times today a fix looked applied and was not: a duplicate
-`_all_v2_seed_coins` silently shadowed by a later definition, a regex fix behind
-an untouched glob, and a `KeyError` crash whose stale output file read as
-«nothing changed». Run the thing and read the WHOLE output, every time — an
-absent result is not evidence of an absent effect.
-
-## NEXT UP — decided order, and why (2026-08-21, curator-agreed)
-
-**Do NOT bulk-promote the 1628 pending coins yet.** The order is:
-
-1. **V1-atavism audit** ← start here
-2. Duchy-of-Schleswig entity (the big open item above)
-3. one re-flow
-4. THEN re-count what is still pending and promote the remainder
-
-### What `pending` actually is (it was misread all session)
-
-`pending` is not a data state and not a place a coin lives. It is a list of ids
-in `data/v2/classification_decisions/<entity>.yml`. The coin itself sits in
-`seed_unified` with all its data; it is simply ABSENT from `final`, so it never
-reaches a page. That is different from `fuss: seed_unsorted`, which is a coin
-that IS in final and DOES render, just without a Fuß.
-
-1628 entries across 16 entities, every one `status: no_match_in_final`. The
-Danish entities are clean (`danish_realm` 0 pending / 91 assignments,
-`danish_norway` 0 / 45, `royal_holstein` 0 / 19); the backlog is the German
-lands — herzogtum_braunschweig_lueneburg 816, `_unclassified` 219,
-schauenburg_pinneberg 153, landgrafschaft_hessen_kassel 142, hanseatic_lubeck
-104, gottorp_duchy 81. Curator's verdict: this is debt, and it should end as
-`seed_unsorted` in final.
-
-### Why the promotion waits
-
-- **1553 of the 1628 carry a catalogue index.** They are mergeable under §9.4,
-  not orphans. Merging them into an existing coin costs nothing; promoting them
-  first and de-duplicating later costs an exclusion pass against gates that are
-  built to refuse exactly that.
-- **The three open items each SHRINK the number, and shrink it the right way** —
-  by attaching a coin to one that already exists rather than adding a row. The
-  V1 atavisms are the clearest case: a bogus index is what SPLITS a coin from
-  its type. `km-358-h123` was split from Hede 74 by a `hede: 123` carried over
-  from V1 that ucoin never published.
-- **`bulk_promote_pending` already defaults to `no_basic_peer_only`**, so
-  everything with no peer at all is promoted automatically. The 1628 are the
-  residue where the matcher DID see peers and could not decide — promoting them
-  wholesale means overriding that doubt by fiat.
-- Only **75** of the 1628 have no catalogue index at all. Those are the safe
-  slice if a small first batch is ever wanted.
-
-### THE V1-ATAVISM TASK — start here
-
-**Goal (curator's framing):** find catalogue indices that NO current source
-attests, and drop them. They are leftovers of over-merges, splits and the V1
-bootstrap; they look authoritative, they key the cross-source merger, and
-nothing regenerates or removes them.
-
-**What is already measured** (2026-08-21, upper bounds — the harmful share is
-NOT yet counted):
-- **216 seeds whose id does not match their own builder's convention**, ALL of
-  them in `data/v2/seed/ucoin/`, all shaped like a V1 final id
-  (`km-1-fr-iv-1702`, `km-x011-fr-iv-1719-half`). Every other source — bruun,
-  hede, galster, numista, ngc, ikmk, kmk, numismaster — holds the convention at
-  100%.
-- **395 source URLs cited by ≥2 DIFFERENT seeds.** The pattern is visible by
-  eye: `tid=90498 → ['sh-tid-90498', 'km-116-chr-v-1787']`, i.e. the modern
-  ucoin builder AND a V1 twin on the same ucoin `tid=`.
-
-**The worked example that proves the mechanism.**
-`km-358-h123-chr-v-1681` is a SEED whose id is a V1 FINAL id, living in
-`data/v2/seed/ucoin/`, whose source URL is ucoin `tid=96983` — the very record
-that already produced `dk-tid-96983`. It additionally carries `hede: 123` and
-`sieg: 129`, which ucoin does not publish at all (its page is «Denmark 2
-skilling, 1676-1681», no catalogue numbers). Those two indices came from V1
-hand-curation and are attached to the WRONG coin: Hede 123 is the Glückstadt
-1681 type, while ucoin's entry is the København 1676-1681 one (Hede 74A/74B).
-The result was one coin split across two finals in two entities, with
-`Glückstadt` looking attested on the København coin.
-
-**Method.** For every seed, for every catalogue index it carries, check whether
-the cached record of its OWN cited source actually prints that index. An index
-no source gives is an atavism: re-attach it to the coin it belongs to, or drop
-it. Do this across ALL sources, not only ucoin — the ucoin V1 twins are the
-visible cluster, not necessarily the whole set. Also list seeds that share one
-source URL: one source record should not produce two seeds.
-
-**Caution.** Removing an index changes merge keys, so it will move coins between
-classes and possibly between entities. Snapshot with `trace_coin.py snapshot`
-first, and expect `verify_reflow` to need `_recorded_removals.yml` entries for
-the indices deliberately dropped (`kind: field`).
-
-### Also still open
-
-- **Hede 74 vs 123** — merge or keep apart. My read: two types, Krause lumped
-  them under KM 358; Hede (74A/B vs 123), Sieg (7/8 vs 129) and KMM all separate
-  them by mint. Needs the curator's call, and the duplicated `numista: 22576`
-  should leave one of the two sides.
-- **53 new Hede types** await classification; `c5h30` and `f3h25` are
-  off-strikes and belong in §9.3 exclusions.
-- **Four specimens detached by the 3a/3b splits** need an `issuing_entity` for
-  the German states before their citations travel back to them.
-- **`_catalog` ranges for the other builders** — only kmk was fixed.
-
----
-
-## 2026-08-25 — V1 atavisms DONE, and two parser defects they uncovered
-
-Five commits: `bf66e64` `45112a5` (bruun parser + its 15 coins), `6893067`
-(129 twins), `3a3e253` `dc6500c` `3c3dc79` (ngc parser, ucoin routing, the
-last 8 twins), `ea21a9e` (SOURCES §13.13). 100 commits ahead of origin,
-nothing pushed.
-
-### The V1-atavism task is closed
-
-All 137 V1-legacy ucoin twins are gone. The premise held: a ucoin `tid=`
-identifies one type and should yield one seed, and 137 of them yielded two
-— a modern `*-tid-*` and a V1-era `km-…`. The twin carried no scalar field
-the modern seed lacked and cited only that same ucoin URL.
-
-Audited across ALL nine sources on four independent signals — id convention,
-one-record-many-seeds, one id in several entity files, cross-source citation.
-**The residue was confined entirely to ucoin**, and signals A and B named the
-same 137 seeds from two directions. bruun / hede / galster / numista / ngc /
-ikmk / kmk are 100 % uniform. numismaster's two id prefixes are its per-country
-builder output, not a defect. ucoin's `tid-tid-*` shape (1863) is cosmetically
-odd but every one is backed by a cache record.
-
-### The thing that was misdiagnosed twice — read this before trusting a twin story
-
-`6893067`'s message says the twin carried a mint from V1 curation. **That is
-wrong.** Both twins have `mint: None`. What the twin carried was
-`issuing_entity: royal_holstein`, which the V1 curator read from ucoin's own
-`period` label. Corrected in `3c3dc79`; noted here because the wrong version
-is in the git log and will be read again.
-
-`period` on ucoin is two different fields wearing one name: usually a currency
-era («Rigsdaler (1625-1699)»), but for part of the catalogue a TERRITORIAL
-series («Glückstadt (1617-1773)», «Holstein-Gottorp-Rendsburg», «Duchy of
-Schleswig-Holstein»). The builder routed the German series and had no entry for
-the two Danish-filed ones, so 53 coins sat in `danish_realm` while every
-mint-aware source put them in `royal_holstein` — 436 kmk, 63 hede, 62 numista,
-46 bruun, 15 numismaster, 3 ikmk, and the mint registry itself. `dc6500c` fixes
-it. Both consuming pages keep the coins.
-
-### The cascade that was a symptom, not a cost
-
-Removing the last 8 twins first LOOKED expensive: it turned four per-entity
-merge groups into cross-entity ones, which imports the completeness invariant
-and demanded §9.4 calls on 20-plus further coins — including bare KM numbers
-colliding across the Denmark and Schleswig-Holstein volumes, exactly the trap
-§9.4 warns about. That whole cascade was an artefact of removing the twin
-BEFORE teaching the builder to derive what it held. With `dc6500c` in place the
-groups stay inside one entity and the gate never fires. **If a fix starts
-cascading into curator decisions far from the task, suspect the direction.**
-
-### Two parser defects found underneath
-
-- **bruun §9.1 over-fired on the next lot's headline.** A lot block runs to the
-  next lot-number line, so it swallows the catalogue's section headline for the
-  FOLLOWING lot — «Extremely Rare and Historically Interesting Pattern» — which
-  precedes the lot it describes and can only land on the previous one. 15
-  NGC-graded circulation coins were excluded by a word appearing nowhere in
-  their own description. The price estimate closes the description; the §9.1 and
-  §9.2 tests now run against that slice. Recovered 7117 (the Hede-39 specimen
-  CLAUDE.md §0b-1 is written about) and 7928 (the sole Bruun citation behind
-  c7h13).
-- **ngc could not read a date written against the mintmaster initials.** NGC
-  writes the cell as «1711IW» / «1671GK», so the trailing `\b` never matched: 40
-  records lost a legible date, and the same string was read as damage (12 flagged
-  partially illegible). NGC marks damage with `z` alone. This surfaced because
-  three NGC records had been drawing their years from the ucoin member of their
-  class and went yearless when it moved entity.
-
-### NGC Denmark — there is NO harvest gap, and the metric that says otherwise is wrong
-
-Recorded in `docs/SOURCES.md` §13.13(a2)/(a3). Short version: `DENMARK` has
-exactly two sub-regions, `GLÜCKSTADT` (97 types) and `HOLSTEIN-GOTTORP-RENDSBORG`
-(4); `NORWAY` has none; all 101 cuids are already in the `denmark` tree from the
-All Regions walk. The two sub-region directories hold only a `_listing_raw.json`
-that was never ingested, which is why `fetch_ngc.py status` shows `0 / 0` for
-them — that is an un-ingested listing, not a shortfall.
-
-**Do not audit NGC completeness against duid counts.** «Listing says N duids,
-parsed record has M rows, so N−M are missing» reported 756 missing in-scope rows
-across 311 types. All fictional. Verified live: cuid 1051684 is listed with 3
-duids and its page renders ONE row, identically at duid 1239857 and 1239858 —
-the duid in the URL selects nothing. Audit on cuids covered.
-
-### Still open
-
-- **Duchy of Schleswig entity** — the big one, brief at «OPEN, BIG» above.
-- **`pending` promotion** — 1627 now. Re-count after the Schleswig work; the
-  reasoning for the order is at «NEXT UP» above and still holds.
-- **Hede 74 vs 123** — curator call, and the duplicated `numista: 22576` should
-  leave one side.
-- **53 new Hede types** await classification; `c5h30` and `f3h25` are off-strikes
-  → §9.3 exclusions.
-- **Four specimens** detached by the 3a/3b splits need a German-lands
-  `issuing_entity`.
-- **`_catalog` ranges** — only kmk was fixed; see the OPEN entry above.
-
----
-
-## 2026-08-25 (later) — Schleswig gets its own entity, and Denmark's reach follows vassalage
-
-Five commits: `62c036b` (research), `139df3f` (the split), `e7747eb` (vassal
-bounds), `826bd25` (ruler houses + a correction), `ef9c1e3` (Gottorp's card).
-
-### What was actually wrong, and it was not what the brief said
-
-The brief «OPEN, BIG — an entity for the Duchy of Schleswig» rests on the
-premise that filing pre-1544 coins under `gottorp_duchy` is an unnoticed
-contradiction. `trace_coin why` says otherwise: a curator call of 2026-07-16
-put a 1531 ducal Goldgulden there deliberately, on the legend «FRIDERICVS D
-HOLSACI / MO NOV AVREA SLESVICENSIS», date in plain view. So the routing is
-decided and stands; what was inconsistent was the entity's own DESCRIPTION.
-The full research is in `docs/research/duchy_of_schleswig_entity.md`.
-
-The second premise had also expired: the Danish-spelling KMM records are no
-longer misrouted anywhere. All 52 sit in `danish_realm` with the right entity
-and simply lose their region, because `Slesvig` is not an alias in the registry.
-
-And `place: Slesvig` in KMM is not one attribution: **46 of the 54 records sit
-on a single register page, protocol III p. 129**, spanning 1523-1563 and three
-rulers. Frederik I's twelve are supported (Wilcke 7-2 p. 186-187, the mint moved
-Husum → Slesvig at his 1523 accession); Frederik II's twenty-eight are
-contradicted — danskmoent puts his mints at Bremerholm and Frederiksborg, Wilcke
-puts the duchy mint at Flensborg 1566-1571, and Gottorf had been Adolf's since
-19 August 1544. **Do not promote that group into a territorial entity.**
-
-### royal_slesvig
-
-`royal_holstein` stood for the king's share of BOTH duchies. Schleswig was a
-crown fief outside the Empire; Holstein an imperial fief from 1474 that joined
-the German Confederation in 1815 — the 1806 incorporation patent was «faktisch
-wirkungslos». The new entity takes the king's Schleswig mints — Flensburg,
-Husum, Haderslev. Rendsburg looks like a border case and is not: a noble
-arbitration of twelve knights ruled the town to Holstein in 1250.
-
-**The trap this hid.** `CROWN_MINT_REALM` and `HOLSTEIN_CROWN_MINTS` are both
-DERIVED from the registry, and the second was keyed on `royal_holstein` alone.
-Splitting would have silently dropped the three Schleswig mints out of the
-build-time widening gate and stopped their coins reaching the SH page at all.
-Renamed `DUCHY_CROWN_MINTS`, keyed on both duchy realms, old name aliased.
-
-### Denmark's consume list now states a rule
-
-Curator direction: a region belongs on the page for the years it belonged to
-the Danish king, directly or through a vassal — and **a vassal at war with his
-suzerain does not belong**.
-
-| entity | to | why | coins beyond |
-|---|---|---|---|
-| `royal_slesvig` | 1864 | crown fief throughout | 0 |
-| `royal_holstein` | 1864 | held by the king in person as duke | 0 |
-| `gottorp_duchy` | **1656** | Friedrich III took the field with Sweden in 1657; Roskilde 24 Feb 1658 ended the fealty | 141 |
-| `sonderburg_duchy` | **1667** | «Nach einem Konkurs 1667 ging der Sonderburger Anteil … an den dänischen König» | 0 |
-| `norburg_plon_duchy` | **1761** | Norburg failed 1669, lands to Plön 1679; Plön «erlosch 1761» | 0 |
-| `glucksburg_duchy` | **1779** | elder Glücksburg line «erlosch 1779» | 0 |
-| `danish_norway` | 1814 | Kiel | 192 |
-
-Denmark went from 14 Gottorp coins to 258, plus Sonderburg 56, Norburg-Plön 45,
-royal_slesvig 38, Glücksburg 7.
-
-### A measurement I got wrong — the fourth of this session
-
-I reported four coins wrongly on the Denmark page: undated Gottorp pieces of
-Christian Albrecht and Karl Friedrich, whose reigns lie wholly after 1658,
-slipping past the consume-window because `build.py` tests it only when
-`year_first` is not None. The bypass in the code is real. **The consequence was
-not.** An undated coin never reaches ANY page — it is dropped earlier and
-structurally for having no year, which this very file already records. Measured
-before and after: 0 either way, byte-identical pages. Corrected in `826bd25`;
-`e7747eb`'s message still carries the wrong claim.
-
-Same shape as the NGC duid gap and the «11 284 blocked buckets»: a conclusion
-drawn from code without checking the end of the chain. **Check the render.**
-
-Kept anyway, because the homonymy under it was genuine: `reign_window("Frederik
-3")` answered the Danish king 1648-1670 to anyone, including a Gottorp coin
-whose Friedrich III ruled 1616-1659. `HOUSE_REIGNS` is now keyed by issuing
-entity, with the Gottorp line from Adolf I 1544 to Paul 1773.
-
-### TWO BACKLOGS, and they are not the same queue
-
-Asked whether the unclassified Hede types are among the `pending`. **They are
-not**, and the distinction matters for planning:
-
-- **`pending` — 1627.** Unified classes with NO final entry. They do not render.
-- **`fuss: seed_unsorted` — 13 273 of 14 993 finals (88 %).** These ARE in final
-  and DO render; they just carry no Münzfuß. By phase: kmk 7842, ikmk 2495,
-  numista 995, ucoin 716, ngc 424, hede 193.
-
-Every one of the 1189 Hede seeds with a unified class is in final. The Hede
-slice of the unsorted backlog is 212 coins, not the 53 figure I had been
-carrying — 53 was the count of stubs the parser fix ADDED, some already
-classified.
-
-### Still open
-
-- **`pending` promotion** — 1627. Reasoning for the order at «NEXT UP» above.
-- **`fuss: seed_unsorted`** — 13 273. The far larger backlog, and untouched.
-- **Hede 74 vs 123** — curator call; the duplicated `numista: 22576` should
-  leave one side.
-- **Four specimens** from the 3a/3b splits need a German-lands `issuing_entity`.
-- **`_catalog` ranges** — only kmk was fixed.
-- `c5h30` and `f3h25` are off-strikes → §9.3 exclusions.
-
-## 2026-08-29 — §DB re-probed and measured; the re-harvest is NOT worth building
-
-**Blocker re-verified.** `api.natmus.dk/search/public/raw` now fails at TLS
-(cert `CN=api.natmus.dk` expired 24 Aug 2026); ignoring the cert it answers
-HTTP 403 «Web App - Unavailable». Permanently gone, not an outage. The web
-route `samlinger.natmus.dk/KMM/object/<id>` is HTTP 200, server-rendered,
-carries the rådata JSON. Recorded in `docs/SOURCES.md` §13.14.
-
-**Measurement (the point of the session).** The 14 911 index-less ES objects do
-NOT convert: a stratified sample of 404 of the 11 033 uncached ones gains an
-index 3.2 % of the time, and only **2 of the 404 are in the kmk seed at all** —
-the population is ~99.5 % material the seed builder already filters out. The
-real target is the **4 107 catalogue-less seed coins**, of which **84 would gain
-a real index from rådata already on disk** (52 hede, 21 bergsoe, 6 schou,
-5 lange, 3 galster, 4 others). The remainder are KMM recording no index
-(«Hede» with no number ×244, «Ubestemmelig», «FALSK»), not a parser gap.
-
-**Awaiting the curator.** Whether to run the local no-network re-seed for those
-84 now — it is a whole-corpus re-flow (§9b snapshot/diff + `verify_reflow.py`
-0 losses) for an 84-coin gain — or let it ride along with the next re-flow.
-Nothing has been flowed into the seeds.
-
-**Shipped:** `741c5a1` explicit cf-reference guard in
-`build_kmk_seed._raadata_catalog` + `tests/test_kmk_raadata_cf_refs.py`
-(behaviour unchanged, previously safe only by regex accident); `ad10ff9` docs;
-`3f237b4` cache pointer (519 new rådata sidecars). 3 commits local, not pushed.
