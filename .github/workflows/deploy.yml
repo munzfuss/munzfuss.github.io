@@ -78,3 +78,65 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # ---------------------------------------------------------------------------
+  # danskmoent.github.io — the Danish site, built from THIS repository's data
+  # by the `danskmoent` site profile (config/sites/danskmoent.yml) and pushed
+  # to a separate repository that serves it.
+  #
+  # Independent of the `build` job above rather than `needs:`-chained: it runs
+  # the same schema validation itself (build.py validates before rendering), so
+  # broken data fails this job too — and in parallel, not after a 4-minute wait.
+  # ---------------------------------------------------------------------------
+  danskmoent:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read        # pushes via the deploy key below, not GITHUB_TOKEN
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        # No submodule here either — see the note in the `build` job.
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build the Danish site
+        # --base-url is EMPTY on purpose: the target is an org-pages root
+        # (danskmoent.github.io), not a project sub-path, so asset and
+        # canonical URLs are absolute from «/». The profile supplies the
+        # origin, the output tree, the languages and the root mount.
+        # --repo-url stays THIS repository: the footer's source link points at
+        # where the data actually lives, which is here.
+        run: |
+          python scripts/build.py \
+            --clean \
+            --site danskmoent \
+            --base-url "" \
+            --repo-url https://github.com/${{ github.repository }}
+
+      - name: Publish to danskmoent.github.io
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # Repository-scoped SSH key: write access to that one repository and
+          # nothing else. Public half sits in its Deploy keys, private half in
+          # this repository's secrets.
+          deploy_key: ${{ secrets.DANSKMOENT_DEPLOY_KEY }}
+          external_repository: danskmoent/danskmoent.github.io
+          publish_branch: gh-pages
+          publish_dir: ./site-danskmoent
+          # The rendered site is ~58 MB. Without force_orphan the branch would
+          # keep every snapshot ever published; with it, the branch holds only
+          # the latest commit.
+          force_orphan: true
+          # `allow_empty_commit` defaults to false, which IS the «only publish
+          # when something changed» gate — no path filter needed, and none
+          # would be safe: this page depends on data/shared/**, data/i18n/**,
+          # eight entity finals, templates/** and scripts/**, so an
+          # enumerated filter would go stale and silently freeze the site.
+          full_commit_message: "site: rebuild from munzfuss@${{ github.sha }}"
