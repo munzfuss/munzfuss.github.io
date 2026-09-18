@@ -525,13 +525,13 @@ def build_entry(data: dict) -> dict | None:
                 "Data taken from the Galster pages on danskmoent.dk; the "
                 "catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, "
                 "Schive and others) come from the page heading and description "
-                "block. The Müntzfuß of this piece is not yet determined."
+                "block. The coinage standard of this piece is not yet determined."
             ),
             "uk": (
                 "Дані взято зі сторінок Galster на danskmoent.dk; каталожні "
                 "перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive "
                 "та інші) походять із заголовка та блоку опису сторінки. "
-                "Müntzfuß цього примірника ще не визначено."
+                "Стопу цього примірника ще не визначено."
             ),
         },
     }

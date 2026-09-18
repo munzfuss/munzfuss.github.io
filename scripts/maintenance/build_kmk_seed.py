@@ -450,10 +450,10 @@ _VNOTE = {
            "Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der "
            "Müntzfuß dieses Stücks ist noch nicht bestimmt."),
     "en": ("Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, "
-           "api.natmus.dk); the fields are museum-attested. The Müntzfuß of "
-           "this piece is not yet determined."),
+           "api.natmus.dk); the fields are museum-attested. The coinage "
+           "standard of this piece is not yet determined."),
     "uk": ("Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, "
-           "api.natmus.dk); поля засвідчені музеєм. Müntzfuß цього примірника "
+           "api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника "
            "ще не визначено."),
 }
 

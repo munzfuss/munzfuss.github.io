@@ -221,9 +221,9 @@ _VNOTE = {
            "Müntzfuß dieses Stücks ist noch nicht bestimmt."),
     "en": ("Record from the Interactive Catalogue of the Münzkabinett Berlin "
            "(ikmk.smb.museum, CC BY-SA 4.0); the fields are museum-attested. "
-           "The Müntzfuß of this piece is not yet determined."),
+           "The coinage standard of this piece is not yet determined."),
     "uk": ("Запис з інтерактивного каталогу Münzkabinett Berlin "
-           "(ikmk.smb.museum, CC BY-SA 4.0); поля засвідчені музеєм. Müntzfuß "
+           "(ikmk.smb.museum, CC BY-SA 4.0); поля засвідчені музеєм. Стопу "
            "цього примірника ще не визначено."),
 }
 

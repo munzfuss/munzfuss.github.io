@@ -477,7 +477,7 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
                 "werden bevor in kuratierte Einträge promotet."
             ),
             "en": (
-                "Numista seed: Müntzfuß and phase assignment plus per-coin "
+                "Numista seed: coinage-standard and phase assignment plus per-coin "
                 "verification are still outstanding; data taken directly "
                 "from the HTML catalog page (en.numista.com). Numista is "
                 "user-edited; cross-references (SIEG, Galster, Schou, Fr) "
@@ -485,7 +485,7 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
                 "into curated entries."
             ),
             "uk": (
-                "Numista-seed: призначення Müntzfuß і фази та покоінна "
+                "Numista-seed: призначення стопи і фази та покоінна "
                 "верифікація ще очікуються; дані взято безпосередньо з "
                 "HTML-каталог-сторінки (en.numista.com). Numista редагується "
                 "користувачами; cross-references (SIEG, Galster, Schou, Fr) "

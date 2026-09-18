@@ -496,6 +496,64 @@ def build_replacements(names: dict[str, str]) -> list[tuple[re.Pattern, callable
                     f"наведені; їх довелося б брати з друкованих Hede 1971 та "
                     f"Galster 1965.")),
     ]
+
+    # ---- family 5: the German term in ENGLISH and UKRAINIAN notes --------
+    # The Denmark page publishes as its own Danish-branded site, so its
+    # English and Ukrainian prose no longer calls the concept «Müntzfuß».
+    # These notes come from seed-builder templates (already updated); the
+    # strings below are the copies frozen in data/v2/**, which absorb
+    # gap-fills rather than overwrites — so a rewrite here survives a
+    # re-flow, and without it the existing ~9 000 rows would keep the old
+    # wording for ever. GERMAN notes are untouched: each pattern matches
+    # its own language's sentence, never the de twin.
+    for tmpl, repl in (
+        # kmk / bruun / galster / ikmk all end on this one sentence
+        ("The Müntzfuß of this piece is not yet determined.",
+         "The coinage standard of this piece is not yet determined."),
+        ("Müntzfuß цього примірника ще не визначено.",
+         "Стопу цього примірника ще не визначено."),
+        ("Hede seed: Müntzfuß assignment, phase and per-coin verification",
+         "Hede seed: coinage-standard assignment, phase and per-coin verification"),
+        ("Hede-seed: призначення Müntzfuß, фази та покоінна верифікація",
+         "Hede-seed: призначення стопи, фази та покоінна верифікація"),
+        ("Numista seed: Müntzfuß and phase assignment plus per-coin",
+         "Numista seed: coinage-standard and phase assignment plus per-coin"),
+        ("Numista-seed: призначення Müntzfuß і фази та покоінна",
+         "Numista-seed: призначення стопи і фази та покоінна"),
+        # frozen in the data only — no live generator emits this one
+        ("Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun "
+         "are still outstanding.",
+         "Coinage-standard assignment and per-coin verification against "
+         "Hede / Schön / Bruun are still outstanding."),
+        ("Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun "
+         "ще очікуються.",
+         "Призначення стопи і покоінна верифікація за Hede / Schön / Bruun "
+         "ще очікуються."),
+    ):
+        out.append((rx(tmpl), lambda m, t=repl: t))
+
+    # ---- family 5b: the same term inside notes THIS script itself wrote ---
+    # «the canonical Müntzfuß standard» was also a tautology in English —
+    # a Müntzfuß IS the standard. The Ukrainian twins of these were already
+    # phrased with «стопа» by the earlier families, which is why only the
+    # English side appears here.
+    for tmpl, repl in (
+        ("taken from the canonical Müntzfuß standard",
+         "taken from the canonical coinage standard"),
+        ("inferred from Müntzfuß convention:",
+         "inferred from coinage-standard convention:"),
+        ("harvested 2026-05-21 for Müntzfuß genealogy understanding). Specific "
+         "Müntzfuß and phase assignment plus per-coin verification still outstanding.",
+         "harvested 2026-05-21 to understand the genealogy of the standards). "
+         "The specific coinage-standard and phase assignment, and per-coin "
+         "verification, are still outstanding."),
+        ("харвест 2026-05-21 для розуміння Müntzfuß-генеалогії). Специфічне "
+         "Müntzfuß і phase призначення та покоінна верифікація очікуються.",
+         "харвест 2026-05-21 для розуміння генеалогії стоп). Призначення "
+         "конкретної стопи і фази та покоінна верифікація ще очікуються."),
+    ):
+        out.append((rx(tmpl), lambda m, t=repl: t))
+
     return out
 
 

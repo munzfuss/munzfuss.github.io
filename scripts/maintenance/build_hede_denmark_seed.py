@@ -1104,11 +1104,12 @@ def _build_coin(
             "stehen noch aus; Daten direkt aus danskmoent.dk übernommen."
         )
         vn["en"] = (
-            "Hede seed: Müntzfuß assignment, phase and per-coin verification "
-            "are still outstanding; data lifted directly from danskmoent.dk."
+            "Hede seed: coinage-standard assignment, phase and per-coin "
+            "verification are still outstanding; data lifted directly "
+            "from danskmoent.dk."
         )
         vn["uk"] = (
-            "Hede-seed: призначення Müntzfuß, фази та покоінна верифікація "
+            "Hede-seed: призначення стопи, фази та покоінна верифікація "
             "ще очікуються; дані взято безпосередньо з danskmoent.dk."
         )
     cm["verification_note"] = vn

@@ -1055,13 +1055,13 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
                 "L. E. Bruun Collection 2024-2026). The gross weight is a "
                 "single-specimen value; Bruun gives no fineness, so it follows "
                 "from the ordinance specification table in Wilcke 1950. The "
-                "Müntzfuß of this piece is not yet determined."
+                "coinage standard of this piece is not yet determined."
             ),
             "uk": (
                 "Дані взято з аукціонного каталогу Bruun (Stack's Bowers, "
                 "L. E. Bruun Collection 2024-2026). Повна вага — значення одного "
                 "примірника; проби Bruun не подає, вона випливає з таблиці "
-                "специфікацій ордонансів у Wilcke 1950. Müntzfuß цього "
+                "специфікацій ордонансів у Wilcke 1950. Стопу цього "
                 "примірника ще не визначено."
             ),
         },
