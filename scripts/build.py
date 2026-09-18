@@ -1309,6 +1309,8 @@ def build_location(
     mount: str = "tree",
     root_lang: str | None = None,
     has_landing: bool = True,
+    brand: str = "",
+    eyebrow: str | None = None,
 ) -> None:
     """Render one location to `<output_root>/<loc.id>/<lang>/index.html`.
 
@@ -1462,6 +1464,8 @@ def build_location(
             landing_urls=page_urls(base_url, "", languages, lang,
                                    root_lang, True),
             has_landing=has_landing,
+            brand=brand,
+            eyebrow=eyebrow,
             references=refs_for_lang,
             generated_date=generated_date,
             repo_url=repo_url,
@@ -1565,6 +1569,7 @@ def build_landing(
     output_root: Path | None = None,
     fuesse: dict | None = None,
     root_lang: str = "en",
+    brand: str = "",
 ) -> None:
     tmpl = env.get_template("landing.html.j2")
     generated_date = datetime.now().strftime("%Y-%m-%d")
@@ -1628,6 +1633,7 @@ def build_landing(
             lang=lang,
             languages=languages,
             urls=page_urls(base_url, "", languages, lang, root_lang, True),
+            brand=brand,
             generated_date=generated_date,
             repo_url=repo_url,
             base_url=base_url,
@@ -1898,7 +1904,8 @@ def _render_location_worker(loc_id: str, output_root_str: str, debug: bool,
                    issuing_entities=issuing_entities, base_url=base_url,
                    output_root=output_root,
                    mount=site.mount, root_lang=site.root_lang,
-                   has_landing=site.landing)
+                   has_landing=site.landing,
+                   brand=site.brand, eyebrow=site.eyebrow)
 
 
 def parse_args():
@@ -2073,7 +2080,8 @@ def main():
                                issuing_entities=issuing_entities,
                                base_url=base_url, output_root=output_root,
                                mount=site.mount, root_lang=site.root_lang,
-                               has_landing=site.landing)
+                               has_landing=site.landing,
+                               brand=site.brand, eyebrow=site.eyebrow)
             return
         from concurrent.futures import ProcessPoolExecutor, as_completed
         out_arg = str(output_root) if output_root is not None else ""
@@ -2125,7 +2133,7 @@ def main():
                       german_fuesse=german_fuesse,
                       german_fuesse_references=german_fuesse_refs,
                       include_seed=include_seed, fuesse=fuesse,
-                      root_lang=site.root_lang)
+                      root_lang=site.root_lang, brand=site.brand)
     elif v2_locations and location_filter:
         print(f"   ⏭  Landing NOT rebuilt (partial --location build of "
               f"{', '.join(location_filter)}) — the existing complete "

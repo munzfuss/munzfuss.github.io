@@ -33,7 +33,7 @@ THREE = ["de", "en", "uk"]
 
 def _profile(**over) -> SiteProfile:
     base = dict(id="t", origin="https://t.example", locations=["a"],
-                languages=THREE, root_lang="en")
+                languages=THREE, root_lang="en", brand="B")
     base.update(over)
     return SiteProfile(**base)
 
@@ -114,6 +114,17 @@ class ShippedProfiles(unittest.TestCase):
         exist."""
         self.assertNotEqual(load_site("munzfuss").static_dir,
                             load_site("danskmoent").static_dir)
+
+    def test_each_site_brands_itself_in_its_own_language(self):
+        """«Møntfod» is the Danish term for a Müntzfuß, attested on
+        danskmoent.dk itself. Being a -fod standard name it is one string in
+        every language (§2 tier 2), which is why the Danish site also
+        overrides the localised eyebrow."""
+        m, d = load_site("munzfuss"), load_site("danskmoent")
+        self.assertEqual(m.brand, "Müntzfüße")
+        self.assertEqual(d.brand, "Møntfod")
+        self.assertIsNone(m.eyebrow)      # falls back to the localised ui.yml
+        self.assertEqual(d.eyebrow, "Møntfod")
 
     def test_unknown_site_raises_and_names_the_ones_that_exist(self):
         with self.assertRaises(SiteProfileError) as cm:
@@ -203,6 +214,17 @@ class TemplatesHoldNoUrlLogic(unittest.TestCase):
     """
 
     TEMPLATES = ROOT / "templates"
+
+    def test_no_template_hardcodes_the_site_brand(self):
+        """The brand is per-site: the Danish site calls itself «Møntfod», not
+        «Müntzfüße». A literal in a template would silently re-brand it."""
+        for name in ("location.html.j2", "landing.html.j2"):
+            text = (self.TEMPLATES / name).read_text(encoding="utf-8")
+            for i, line in enumerate(text.splitlines(), 1):
+                if line.lstrip().startswith("{#") or "Müntzfüße" not in line:
+                    continue
+                with self.subTest(template=name, line=i):
+                    self.fail(f"{name}:{i} hardcodes the brand: {line.strip()}")
 
     def test_no_template_builds_a_canonical_or_hreflang_href_by_hand(self):
         for name in ("location.html.j2", "landing.html.j2"):

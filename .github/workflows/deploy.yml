@@ -134,9 +134,22 @@ jobs:
           # keep every snapshot ever published; with it, the branch holds only
           # the latest commit.
           force_orphan: true
-          # `allow_empty_commit` defaults to false, which IS the «only publish
-          # when something changed» gate — no path filter needed, and none
-          # would be safe: this page depends on data/shared/**, data/i18n/**,
-          # eight entity finals, templates/** and scripts/**, so an
-          # enumerated filter would go stale and silently freeze the site.
+          # NOTE on «only publish when something changed»: it does NOT happen
+          # here, and the first two runs proved it. `allow_empty_commit`
+          # defaults to false, but `force_orphan` rewrites the branch
+          # unconditionally, so the empty-commit check never gets a say — an
+          # unchanged rerun produced a NEW commit (9db21fe → d53db0e) around
+          # the very same tree object (6f0f913 both). Kept as-is, because the
+          # two settings solve the same problem and force_orphan solves it
+          # better: the branch holds one commit, and an identical tree
+          # transfers no new objects. The residual cost is a needless ~30 s
+          # Pages rebuild when a push touches nothing Danish. Dropping
+          # force_orphan would restore the gate but let the branch accumulate
+          # a full ~58 MB snapshot per change.
+          #
+          # There is deliberately no path filter on the trigger either: this
+          # page depends on data/shared/**, data/i18n/**, eight entity finals,
+          # templates/** and scripts/** — nearly everything — and GitHub's
+          # `paths-ignore` has no glob negation, so an enumerated filter would
+          # go stale as entities are added and silently freeze the site.
           full_commit_message: "site: rebuild from munzfuss@${{ github.sha }}"

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ tree.location.name|t(lang) }} · Müntzfüße</title>
+<title>{{ tree.location.name|t(lang) }} · {{ brand }}</title>
 {# SEO: every URL here is computed by `page_urls` in scripts/lib/sites.py —
    which segment this page lives under, which language is the site default,
    and whether this page is itself the site root all live there. No redirects. #}
@@ -571,7 +571,7 @@
 
 <section class="hero">
   <div class="hero-text">
-    <h1 class="h1">{{ ui_get('hero.eyebrow') }}<em class="h1-sub">{{ tree.location.name|t(lang) }}</em></h1>
+    <h1 class="h1">{{ eyebrow or ui_get('hero.eyebrow') }}<em class="h1-sub">{{ tree.location.name|t(lang) }}</em></h1>
     <p class="deck">{{ tree.location.summary|t(lang) }}</p>
   </div>
   <div class="hero-stats">
@@ -1148,7 +1148,7 @@
 
 <footer>
   <span class="ftr-l">{{ ui_get('meta.generated') }}: {{ fmt_date(generated_date) }}{% if repo_url %} · <a href="{{ repo_url }}">{{ ui_get('meta.source_data') }}</a>{% endif %}</span>
-  <span class="ftr-r">Müntzfüße · CC-BY-SA</span>
+  <span class="ftr-r">{{ brand }} · CC-BY-SA</span>
 </footer>
 
 </body>

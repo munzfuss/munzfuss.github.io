@@ -33,6 +33,13 @@ Profile fields:
     static_dir    directory copied verbatim to the site root (search-engine
                   verification tokens, CNAME, .well-known) — per site, because
                   such a token proves ownership of ONE host
+    brand         the site's own name, in the <title> and the footer. A proper
+                  noun, so it is one string across all languages (§2 tier 2:
+                  -Fuß / -fod standard names never translate)
+    eyebrow       optional override for the kicker above the <h1>; when unset
+                  the localised `hero.eyebrow` from data/i18n/ui.yml is used,
+                  which on the German site is a generic descriptor and IS
+                  translated
 
 Fields are consumed progressively by `scripts/build.py` as the site
 plumbing lands; the model validates all of them from the first commit so
@@ -77,6 +84,8 @@ class SiteProfile(_StrictBase):
     landing: bool = True
     mount: Literal["tree", "root"] = "tree"
     static_dir: str = "static"
+    brand: str
+    eyebrow: str | None = None
 
     @model_validator(mode="after")
     def _check_scope_and_langs(self) -> "SiteProfile":
