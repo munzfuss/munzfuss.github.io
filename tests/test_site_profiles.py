@@ -101,7 +101,16 @@ class ShippedProfiles(unittest.TestCase):
         p = load_site("munzfuss")
         self.assertEqual((p.mount, p.landing, p.out_dir),
                          ("tree", True, "site"))
-        self.assertEqual(p.all_except, [])
+
+    def test_the_two_sites_do_not_publish_the_same_location(self):
+        """Denmark publishes as danskmoent.github.io from this same data.
+        Left in both profiles it would put the identical page on two hosts,
+        competing with itself in search."""
+        m, d = load_site("munzfuss"), load_site("danskmoent")
+        self.assertIn("denmark", m.all_except)
+        self.assertEqual(d.locations, ["denmark"])
+        self.assertFalse(set(m.all_except) - set(d.locations),
+                         "a location munzfuss drops must be published somewhere")
 
     def test_danskmoent_is_one_page_at_its_own_root(self):
         p = load_site("danskmoent")

@@ -1,18 +1,17 @@
 # The German-lands site: munzfuss.github.io
 #
-# Every location in data/v2/locations/, the landing grid, pages mounted
-# under /<loc>/<lang>/. This is the profile the build uses when --site is
-# not given, so its output must stay byte-identical to the pre-profile
-# build.
+# The landing grid, pages mounted under /<loc>/<lang>/. This is the profile
+# the build uses when --site is not given.
 #
-# `all_except: []` means «every location»; the Denmark page is removed
-# from this list on the day danskmoent.github.io is confirmed serving
-# content, not before (a redirect pointing at a dead host is worse than
-# a duplicate page).
+# Denmark is excluded: it publishes as its own site, danskmoent.github.io,
+# from this same data. Keeping it here too would put the identical page on
+# two hosts competing with each other in search. The DATA stays — the Danish
+# entity files still feed schleswig_holstein, which shares royal_slesvig,
+# royal_holstein and gottorp_duchy with it.
 id: munzfuss
 origin: https://munzfuss.github.io
 out_dir: site
-all_except: []
+all_except: [denmark]
 languages: [de, en, uk]
 root_lang: en
 landing: true
