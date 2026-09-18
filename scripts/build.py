@@ -1740,8 +1740,11 @@ def generate_seo_files(languages: list[str], base_url: str,
     Source of truth is the RENDERED site/ tree (not the Location objects, whose
     `.coins` filtering differs between local/CI builds) — every page actually
     deployed is listed exactly once at its canonical URL:
-      - landing: root_lang + x-default → `/`, the others → `/<lang>/`
-        (site/<root_lang>/ is skipped — it canonicalises to `/`)
+      - the root page, when one was written: root_lang + x-default → `/`,
+        the others → `/<lang>/` (site/<root_lang>/ is skipped — it
+        canonicalises to `/`). That page is the landing on a tree-mounted
+        site and the location itself on a root-mounted one; which of the two
+        it is does not matter here, only that `/index.html` exists.
       - location: `/<loc>/<lang>/` for every rendered language
 
     `root_lang` is the site's default language, from the site profile — it
@@ -1765,14 +1768,18 @@ def generate_seo_files(languages: list[str], base_url: str,
         if any(_has_page(f"{child.name}/{l}") for l in languages):
             loc_ids.append(child.name)
 
-    # Build clusters: (x_default_path, {lang: path}) for landing + each loc.
+    # Build clusters: (x_default_path, {lang: path}) for the root + each loc.
     clusters: list[tuple[str, dict[str, str]]] = []
-    # Landing cluster — en/x-default collapse to root; only add langs that built.
-    landing = {root_lang: "/"}
-    for l in languages:
-        if l != root_lang and _has_page(l):
-            landing[l] = f"/{l}/"
-    clusters.append(("/", landing))
+    # Root cluster — root_lang + x-default collapse to «/»; only add languages
+    # that actually built. Emitted ONLY when a root page exists: a profile with
+    # `landing: false` and `mount: tree` writes no `/index.html`, and listing
+    # «/» for it would put a 404 in the sitemap as the site's x-default.
+    if (SITE_DIR / "index.html").is_file():
+        root_cluster = {root_lang: "/"}
+        for l in languages:
+            if l != root_lang and _has_page(l):
+                root_cluster[l] = f"/{l}/"
+        clusters.append(("/", root_cluster))
     # Location clusters — only include the langs that actually rendered.
     for loc_id in loc_ids:
         cl = {l: f"/{loc_id}/{l}/" for l in languages if _has_page(f"{loc_id}/{l}")}

@@ -124,6 +124,28 @@ class TreeMountedSite(SeoTreeCase):
         self.assertNotIn("https://t.example/assets/", self.locs())
 
 
+class NoRootPage(SeoTreeCase):
+    """`landing: false` with `mount: tree` — locations in their own subtrees
+    and nothing at «/». Nothing ships in this shape today, which is exactly
+    why it is pinned: the root cluster used to be unconditional, so such a
+    site would have advertised «/» as its x-default while «/» 404s."""
+
+    def test_no_root_cluster_when_no_root_page_was_written(self):
+        for lang in THREE:
+            self.page("lubeck", lang)
+            self.page("denmark", lang)
+        bld.generate_seo_files(THREE, "", root_lang="de")
+        self.assertNotIn("https://t.example/", self.locs())
+        self.assertEqual(len(self.locs()), 6)
+
+    def test_locations_still_get_their_clusters(self):
+        for lang in THREE:
+            self.page("lubeck", lang)
+        bld.generate_seo_files(THREE, "", root_lang="de")
+        self.assertIn("https://t.example/lubeck/en/", self.locs())
+        self.assertEqual(self.x_defaults(), {"https://t.example/lubeck/de/"})
+
+
 class ProjectPagesPrefix(SeoTreeCase):
     def test_base_url_prefixes_every_url(self):
         """A project-pages deploy serves the site under /<repo>/."""
