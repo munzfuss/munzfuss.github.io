@@ -38,7 +38,7 @@ from lib.timeline import (
 from lib.compute import compute_location
 from lib.render import build_env, generate_css
 from lib.schema import Location, Fuss, I18nText, Coin
-from lib.sites import DEFAULT_SITE, SiteProfileError, load_site
+from lib.sites import DEFAULT_SITE, SiteProfileError, load_site, page_urls
 from lib.v2_seed_writer import normalise_nominal_display
 from lib.mint_registry import (
     CROWN_MINT_REALM as _CROWN_MINT_REALM,
@@ -1457,9 +1457,10 @@ def build_location(
             theme=theme,
             lang=lang,
             languages=languages,
-            page_prefix=page_prefix,
-            root_lang=root_lang,
-            is_root_mounted=(mount == "root"),
+            urls=page_urls(base_url, page_prefix, languages, lang,
+                           root_lang, mount == "root"),
+            landing_urls=page_urls(base_url, "", languages, lang,
+                                   root_lang, True),
             has_landing=has_landing,
             references=refs_for_lang,
             generated_date=generated_date,
@@ -1626,7 +1627,7 @@ def build_landing(
             theme=theme,
             lang=lang,
             languages=languages,
-            root_lang=root_lang,
+            urls=page_urls(base_url, "", languages, lang, root_lang, True),
             generated_date=generated_date,
             repo_url=repo_url,
             base_url=base_url,
@@ -1816,8 +1817,8 @@ def generate_seo_files(languages: list[str], base_url: str,
           f"clusters) + {_rel}/robots.txt")
 
 
-def copy_static_root() -> None:
-    """Copy verbatim root-level static files from /static → site/ root.
+def copy_static_root(src_static: Path | None = None) -> None:
+    """Copy verbatim root-level static files from a static dir → site root.
 
     For files that must be served at the site root URL itself, not under
     /assets/ — Google/Bing site-verification tokens, robots.txt, a
@@ -1826,8 +1827,11 @@ def copy_static_root() -> None:
     is never served; placing it in /static gets it copied to site/<name>
     and thus served at https://<host>/<name>.
     """
-    src_static = REPO_ROOT / "static"
+    if src_static is None:
+        src_static = REPO_ROOT / "static"
     if not src_static.is_dir():
+        # A site with nothing to serve at its root is normal — a fresh site
+        # has no verification token yet.
         return
     for src in src_static.iterdir():
         if src.is_file():
@@ -2123,7 +2127,7 @@ def main():
               f"the landing.")
 
     generate_assets(theme)
-    copy_static_root()
+    copy_static_root(site.static_path)
 
     # sitemap.xml + robots.txt — only on a FULL build (needs every location and
     # all three languages; a partial --location / --lang run would emit a

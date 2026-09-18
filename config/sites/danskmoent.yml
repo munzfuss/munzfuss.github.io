@@ -17,3 +17,7 @@ languages: [de, en, uk]
 root_lang: en
 landing: false
 mount: root
+# Its own root-served files, NOT munzfuss's: a Search Console token proves
+# ownership of ONE host, and a CNAME would name ONE domain. The directory
+# does not exist yet and does not need to until there is a token to put in it.
+static_dir: static-danskmoent

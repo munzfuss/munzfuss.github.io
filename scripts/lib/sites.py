@@ -30,6 +30,9 @@ Profile fields:
     root_lang     the language additionally copied to `<out>/index.html`
     landing       whether to render the landing grid at all
     mount         `tree` → /<loc>/<lang>/ ; `root` → /<lang>/
+    static_dir    directory copied verbatim to the site root (search-engine
+                  verification tokens, CNAME, .well-known) — per site, because
+                  such a token proves ownership of ONE host
 
 Fields are consumed progressively by `scripts/build.py` as the site
 plumbing lands; the model validates all of them from the first commit so
@@ -73,6 +76,7 @@ class SiteProfile(_StrictBase):
     root_lang: str = "en"
     landing: bool = True
     mount: Literal["tree", "root"] = "tree"
+    static_dir: str = "static"
 
     @model_validator(mode="after")
     def _check_scope_and_langs(self) -> "SiteProfile":
@@ -98,6 +102,10 @@ class SiteProfile(_StrictBase):
     @property
     def out_path(self) -> Path:
         return _REPO_ROOT / self.out_dir
+
+    @property
+    def static_path(self) -> Path:
+        return _REPO_ROOT / self.static_dir
 
     def resolve_locations(self, available: list[str]) -> list[str]:
         """Return this profile's location ids, in `available` order.
@@ -155,3 +163,53 @@ def load_site(site_id: str = DEFAULT_SITE) -> SiteProfile:
             f"match the file name '{site_id}'"
         )
     return profile
+
+
+# ---------------------------------------------------------------------------
+# URL shapes
+# ---------------------------------------------------------------------------
+
+def lang_url(base_url: str, page_prefix: str, lang: str, root_lang: str,
+             collapses_root: bool) -> str:
+    """The URL of one language version of a page.
+
+    `page_prefix` is the page's own segment (`/denmark`, or empty when the
+    page IS the site root — the landing, or a root-mounted location).
+    `collapses_root` says whether this page has a root copy: when it does,
+    the site's default language is served at the prefix itself rather than
+    under its own language directory, because that render is written twice
+    (to `/` and to `/<root_lang>/`) and the two must consolidate onto one
+    canonical URL.
+
+    This is the single place a page URL is spelled. It used to be written
+    inline in both templates, which is how `en` ended up hard-coded in six
+    of them and how the location page came to advertise `/denmark/en/` on a
+    site that has no `/denmark/`.
+    """
+    if collapses_root and lang == root_lang:
+        return f"{base_url}{page_prefix}/"
+    return f"{base_url}{page_prefix}/{lang}/"
+
+
+def page_urls(base_url: str, page_prefix: str, languages: list[str],
+              lang: str, root_lang: str, collapses_root: bool) -> dict:
+    """Every URL the `<head>` of one rendered page needs.
+
+    - `canonical`   — this language version's own canonical URL
+    - `x_default`   — the default language's URL, for `hreflang="x-default"`
+    - `alternates`  — `[(lang, url), …]` for the hreflang cluster, in the
+                      order the languages are rendered
+
+    x-default is simply the root language's URL, which is why it needs no
+    rule of its own.
+    """
+    return {
+        "canonical": lang_url(base_url, page_prefix, lang, root_lang,
+                              collapses_root),
+        "x_default": lang_url(base_url, page_prefix, root_lang, root_lang,
+                              collapses_root),
+        "alternates": [
+            (l, lang_url(base_url, page_prefix, l, root_lang, collapses_root))
+            for l in languages
+        ],
+    }

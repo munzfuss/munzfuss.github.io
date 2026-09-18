@@ -4,15 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ ui_get('landing.title') }}</title>
-{# SEO: the site's default language (`root_lang`, a profile setting — NOT
-   assumed to be English) lives at the site root («/»). The root and
-   «/<root_lang>/» render identically and both canonicalise to «/»; the other
-   languages are self-canonical. hreflang clusters the URLs (x-default +
-   root_lang → root). #}
-<link rel="canonical" href="{{ base_url }}/{% if lang != root_lang %}{{ lang }}/{% endif %}">
-<link rel="alternate" hreflang="x-default" href="{{ base_url }}/">
-{% for l in languages -%}
-<link rel="alternate" hreflang="{{ l }}" href="{{ base_url }}/{% if l != root_lang %}{{ l }}/{% endif %}">
+{# SEO: URLs come from `page_urls` in scripts/lib/sites.py. The site's default
+   language lives at the root («/»); the root and «/<root_lang>/» render
+   identically and both canonicalise to «/», the other languages are
+   self-canonical. Which language that is comes from the site profile. #}
+<link rel="canonical" href="{{ urls.canonical }}">
+<link rel="alternate" hreflang="x-default" href="{{ urls.x_default }}">
+{% for l, href in urls.alternates -%}
+<link rel="alternate" hreflang="{{ l }}" href="{{ href }}">
 {% endfor -%}
 <link rel="icon" href="{{ base_url }}/assets/favicon.ico" sizes="any">
 <link rel="icon" href="{{ base_url }}/assets/favicon-32.png" type="image/png" sizes="32x32">
@@ -42,11 +41,11 @@
       </button>
     </div>
     <div class="lang-switch">
-      {% for l in languages -%}
+      {% for l, href in urls.alternates -%}
         {%- if l == lang -%}
           <a class="active">{{ l|upper }}</a>
         {%- else -%}
-          <a href="{{ base_url }}/{% if l != root_lang %}{{ l }}/{% endif %}">{{ l|upper }}</a>
+          <a href="{{ href }}">{{ l|upper }}</a>
         {%- endif -%}
       {%- endfor %}
     </div>
