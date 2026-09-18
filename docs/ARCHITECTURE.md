@@ -186,34 +186,96 @@ Top-level entry point. Pseudocode of what `main()` does (real names, not aliased
 ```python
 def main():
     args = parse_args()
+    site = load_site(args.site)                 # config/sites/<id>.yml, default munzfuss
+    apply_site(site)                            # rebinds SITE_DIR + SITE_ORIGIN
+    site_scope = set(site.resolve_locations(available_location_ids()))
+
     fuesse = load_fuesse()
     ui = load_ui()
     issuing_entities = load_issuing_entities()
     theme = load_theme()
-    locations = load_locations(filter_id=args.location)        # auto-discovers data/locations/*.yml
+    locations = load_v2_locations(filter_id=args.location,   # data/v2/locations/*.yml
+                                  scope=site_scope)
 
-    if not cross_ref_check(locations, fuesse):                  # phase ↔ fuss validation
+    if not cross_ref_check(locations, fuesse):  # phase ↔ fuss validation
         sys.exit(1)
     if args.validate_only:
         return
 
-    languages = [args.lang] if args.lang else DEFAULT_LANGS
+    languages = [args.lang] if args.lang else site.languages
 
-    for loc in locations:
+    for loc in locations:                       # or a ProcessPoolExecutor fan-out
         build_location(loc, fuesse, theme, ui, languages, env,
                        debug=args.debug, repo_url=args.repo_url,
-                       issuing_entities=issuing_entities, base_url=base_url)
+                       issuing_entities=issuing_entities, base_url=base_url,
+                       mount=site.mount, root_lang=site.root_lang,
+                       has_landing=site.landing)
 
-    if len(locations) > 1 or not args.location:
+    if locations and not args.location and site.landing:
         build_landing(locations, ui, theme, languages, env,
-                      repo_url=args.repo_url, base_url=base_url)
+                      repo_url=args.repo_url, base_url=base_url,
+                      root_lang=site.root_lang)
         # build_landing internally filters out locations that still
         # carry coins under fuss=seed_unsorted (placeholder bucket).
+        # It is skipped on ANY --location build: the landing lists every
+        # location, so rebuilding it from a subset would drop the rest.
 
     generate_assets(theme)
+    copy_static_root(site.static_path)
+    if locations and not args.location and languages == site.languages:
+        generate_seo_files(languages, base_url, root_lang=site.root_lang)
+        # A partial --location / --lang run would emit a truncated sitemap.
 ```
 
 Per-location rendering inside `build_location` calls `compute_location()` (A → B), then `categorize()` (B → C), then renders `location.html.j2` once per language.
+
+### Site profiles (`config/sites/<id>.yml`)
+
+One repository, one set of data and templates, several published sites. A
+profile says which locations a site contains, where it mounts them, under which
+origin, in which languages, and into which output tree. **munzfuss is itself a
+profile** — not a default with exceptions bolted on — so `--site` never has a
+privileged value; it merely defaults to `munzfuss`.
+
+```bash
+python scripts/build.py                        # --site munzfuss → site/
+python scripts/build.py --site danskmoent      # → site-danskmoent/
+```
+
+| field | meaning |
+|---|---|
+| `origin` | absolute origin for canonical / hreflang / sitemap |
+| `out_dir` | output tree, relative to the repo root (gitignored via `site-*/`) |
+| `locations` **xor** `all_except` | the site's scope; `all_except: []` means «every location» |
+| `languages` | languages to render — required, never inherited |
+| `root_lang` | the default language, also written to `<out>/index.html` |
+| `landing` | whether the landing grid is rendered at all |
+| `mount` | `tree` → `/<loc>/<lang>/` · `root` → `/<lang>/`, the page IS the site root |
+| `static_dir` | directory copied verbatim to the site root (verification token, CNAME) |
+
+Loader + validation: `scripts/lib/sites.py`. Three things it refuses rather than
+building something plausible: a location id the tree does not have, a profile
+resolving to zero locations, and a `--location` outside the selected site's
+scope — each of which would otherwise publish a silently wrong or empty site
+and exit 0.
+
+**Why a profile and not a second repository.** `schleswig_holstein` carries dual
+Danish-German jurisdiction, and the Danish entities (`royal_slesvig`,
+`royal_holstein`, `gottorp_duchy`) render on both sides, so splitting the data
+would duplicate either a location yaml or half of `data/v2/final/`.
+
+**URLs are computed, never spelled in a template.** `page_urls()` / `lang_url()`
+in `scripts/lib/sites.py` are the single source for canonical, `x-default` and
+the hreflang cluster; both templates render precomputed values. When the shapes
+lived inline in the templates, `en` ended up hard-coded in six places and a
+root-mounted page advertised `/denmark/en/` on a site that has no `/denmark/`.
+`x-default` needs no rule of its own — it is the root language's URL.
+
+**Per-site output globals.** `apply_site()` rebinds `SITE_DIR` and `SITE_ORIGIN`
+once; every output writer reads them rather than taking a path parameter. `_render_location_worker` calls it again
+from the site id it is handed, because `ProcessPoolExecutor` on macOS spawns a
+fresh interpreter that re-imports the module and inherits nothing — a worker
+that skipped it would write correct pages under the wrong root, silently.
 
 ## Data pipeline — 4 phases (HARVEST → SYNTHESIS → SEED → CURATED)
 

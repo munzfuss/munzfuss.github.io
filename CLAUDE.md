@@ -815,7 +815,23 @@ python scripts/build.py --location schleswig_holstein --lang de    # single page
 python scripts/build.py --debug                                    # also writes output/debug/*.json
 python scripts/build.py --validate-only                            # schema validation, no rendering
 python scripts/build.py --jobs 4                                   # opt-in parallel renderer (rarely helps)
+python scripts/build.py --site danskmoent                          # a different published site → site-danskmoent/
 ```
+
+**Site profiles.** `--site <id>` selects a profile from `config/sites/<id>.yml`
+— which locations that site contains, its origin, languages, default language,
+whether it has a landing grid, and its output tree. It defaults to `munzfuss`,
+which is itself an ordinary profile (`all_except: []`, landing on, pages under
+`/<loc>/<lang>/`), NOT a privileged default. `danskmoent` is the Danish site:
+`denmark` alone, mounted at the site root, no landing. `--site` is distinct from
+`--location`, which remains a PARTIAL build of one site and still suppresses the
+landing rebuild. Full reference: `docs/ARCHITECTURE.md` §«Site profiles».
+
+Two things that bind when touching this: every rendered URL comes from
+`page_urls()` / `lang_url()` in `scripts/lib/sites.py` — never spell one inside a
+template (a test enforces it) — and the DEFAULT LANGUAGE is `root_lang` in the
+profile, never a hard-coded `'en'`. Both sites are expected to change theirs
+(danskmoent → `da`, munzfuss → `de`).
 
 ### Run (re)builds and hook-bearing commits in the background — never block on them
 
