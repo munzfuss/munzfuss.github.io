@@ -201,12 +201,37 @@ class GrundwerteRow(_StrictBase):
     value: I18nText
 
 
+class GrundwerteRowPatch(_StrictBase):
+    """A per-location edit of ONE shared Grundwerte row (see `Grundwerte.rows_patch`)."""
+    key: I18nTextOptional | None = None
+    value: I18nTextOptional | None = None
+
+
 class Grundwerte(_StrictBase):
     """Base-value card shown under each Müntzfuß header."""
     heading: I18nText | None = None
     subheading: I18nTextOptional | None = None
     badge: I18nTextOptional | None = None            # small tag in header (e.g. "Müntzfuß · Silber")
     rows: list[GrundwerteRow] = Field(default_factory=list)
+    # Per-location edit of INDIVIDUAL shared rows, keyed by the shared row's
+    # GERMAN key text (`rows[].key.de`). Unlike `rows`, which replaces the
+    # whole list, a patch changes only the languages it names and leaves the
+    # rest of the row — and every other row — alone.
+    #
+    # Needed because a page can disagree with the shared card about one line.
+    # The Danish site says «coinage standard» where the German pages keep
+    # «Müntzfuß», and restating a five-row card in three languages to change
+    # one of them would duplicate ~27 KB of prose across the two files and
+    # leave two copies to drift.
+    #
+    # The German text is the identity because it is the authoring language and
+    # is mandatory on every `I18nText`; all 107 rows in `fuesse.yml` carry a
+    # distinct one. A patch that matches no row, or more than one, is an ERROR
+    # rather than a silent no-op — a shared card that was reworded must not
+    # quietly stop being patched.
+    #
+    # Applied AFTER `rows`, so the two compose: replace the list, then edit it.
+    rows_patch: dict[str, GrundwerteRowPatch] | None = None
     rechnungsfraktionen_label: I18nTextOptional | None = None
     rechnungsfraktionen: I18nText | None = None      # rich block, safe HTML
     aside_label: I18nTextOptional | None = None       # optional 2nd right-column block

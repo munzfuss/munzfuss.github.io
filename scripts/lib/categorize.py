@@ -67,7 +67,8 @@ def _resolve_fuss_with_overrides(base: Fuss, override: FussPeriod | None) -> Fus
       - `override.grundwerte` — partial-replace at the top-level sub-key
         granularity (heading/subheading/badge/rechnungsfraktionen_label/
         rechnungsfraktionen replace independently; `rows` is a list and
-        replaces fully when provided).
+        replaces fully when provided, while `rows_patch` edits individual
+        shared rows in place).
 
     Use case: «Reichsdukatenfuß» (German imperial standard 1559+) is
     surfaced on the Danish page as «Rigsdukatfod» (Danish-syntax form,
@@ -113,9 +114,17 @@ def _merge_grundwerte(base: Grundwerte | None, override: Grundwerte) -> Grundwer
     """Top-level partial-replace on Grundwerte. Each Grundwerte sub-key
     that's explicitly set in the override (via `model_fields_set`)
     replaces the corresponding base value. Sub-keys absent from the
-    override fall back to base. The `rows` list — when set in override —
-    replaces the base list in full (no list-element deep-merge — too
-    error-prone given row identity isn't a stable key)."""
+    override fall back to base.
+
+    `rows` still replaces the base list in FULL when set — two pages rely on
+    that (denmark/reichsdukatenfuss supplies 7 rows against 3 shared,
+    schleswig_holstein/rhinsk_gylden_fod 4 against 6), so the two lists are
+    genuinely different cards rather than edits of one.
+
+    `rows_patch` is the other case: edit ONE shared row and inherit the rest.
+    It is applied after `rows`, so a page may replace the list and then patch
+    the result. See `Grundwerte.rows_patch` for why the German key text is the
+    identity."""
     if base is None:
         return override
     base_dict = base.model_dump()
@@ -126,7 +135,40 @@ def _merge_grundwerte(base: Grundwerte | None, override: Grundwerte) -> Grundwer
     for k in explicit_keys:
         if k in override_dict:
             merged[k] = override_dict[k]
+    patch = merged.pop('rows_patch', None)
+    if patch:
+        merged['rows'] = _patch_rows(merged.get('rows') or [], patch)
+    else:
+        merged.pop('rows_patch', None)
     return Grundwerte(**merged)
+
+
+def _patch_rows(rows: list[dict], patch: dict[str, dict]) -> list[dict]:
+    """Apply `rows_patch` onto a Grundwerte row list, keyed by German key text.
+
+    Each patch entry names the languages it changes; everything else in the
+    row is inherited. A key that matches no row — or more than one — raises,
+    because the alternative is a page that quietly keeps showing the shared
+    wording the patch existed to change.
+    """
+    out = [dict(r) for r in rows]
+    for de_key, fields in patch.items():
+        hits = [i for i, r in enumerate(out)
+                if ((r.get('key') or {}).get('de')) == de_key]
+        if len(hits) != 1:
+            raise ValueError(
+                f"grundwerte.rows_patch: German row key {de_key!r} matched "
+                f"{len(hits)} rows (expected exactly 1). Available: "
+                + ', '.join(repr((r.get('key') or {}).get('de')) for r in out)
+            )
+        row = out[hits[0]]
+        for field_name, langs in (fields or {}).items():
+            if not langs:
+                continue
+            merged_field = dict(row.get(field_name) or {})
+            merged_field.update({k: v for k, v in langs.items() if v is not None})
+            row[field_name] = merged_field
+    return out
 
 
 @dataclass
