@@ -1458,7 +1458,8 @@ def build_location(
             lang=lang,
             languages=languages,
             page_prefix=page_prefix,
-            canonical_root_lang=(root_lang if mount == "root" else None),
+            root_lang=root_lang,
+            is_root_mounted=(mount == "root"),
             has_landing=has_landing,
             references=refs_for_lang,
             generated_date=generated_date,
@@ -1562,6 +1563,7 @@ def build_landing(
     include_seed: bool = False,
     output_root: Path | None = None,
     fuesse: dict | None = None,
+    root_lang: str = "en",
 ) -> None:
     tmpl = env.get_template("landing.html.j2")
     generated_date = datetime.now().strftime("%Y-%m-%d")
@@ -1624,6 +1626,7 @@ def build_landing(
             theme=theme,
             lang=lang,
             languages=languages,
+            root_lang=root_lang,
             generated_date=generated_date,
             repo_url=repo_url,
             base_url=base_url,
@@ -1658,23 +1661,25 @@ def build_landing(
         with open(out_dir / "index.html", "w", encoding="utf-8") as f:
             f.write(html)
         print(f"🏠 Landing: {out_dir.relative_to(REPO_ROOT)}/index.html")
-        # English is the site default and ALSO lives at the root «/» — served
-        # directly, NOT via a redirect (a redirect from «/» is bad for a googled
-        # resource: the root URL never accumulates ranking and bots see a bounce
-        # instead of content). The English landing render is path-independent
-        # (base_url-absolute links) and canonicalises to «/», so the SAME HTML is
-        # written byte-identical to «/en/» and «/». «/en/» stays as a canonical
-        # duplicate (→ «/») so existing /en/ links never 404. See landing.html.j2.
-        if lang == "en":
+        # The site's root language ALSO lives at «/» — served directly, NOT
+        # via a redirect (a redirect from «/» is bad for a googled resource:
+        # the root URL never accumulates ranking and bots see a bounce instead
+        # of content). That render is path-independent (base_url-absolute
+        # links) and canonicalises to «/», so the SAME HTML is written
+        # byte-identical to «/<root_lang>/» and «/»; the «/<root_lang>/» copy
+        # stays as a canonical duplicate (→ «/») so existing links never 404.
+        # Which language that is comes from the site profile — see
+        # landing.html.j2 and config/sites/<id>.yml.
+        if lang == root_lang:
             with open(root / "index.html", "w", encoding="utf-8") as f:
                 f.write(html)
             print(f"🏠 Landing (root default): {(root / 'index.html').relative_to(REPO_ROOT)}")
 
-    # No language-redirect page at «/». The root «/index.html» IS the English
-    # landing, written directly in the per-language loop above (root default =
-    # en). Serving content at «/» instead of bouncing is better for SEO; the
+    # No language-redirect page at «/». The root «/index.html» IS the landing
+    # in the site's root language, written directly in the per-language loop
+    # above. Serving content at «/» instead of bouncing is better for SEO; the
     # canonical + hreflang tags (landing.html.j2) cluster the language versions
-    # and consolidate «/en/» → «/».
+    # and consolidate «/<root_lang>/» → «/».
 
 
 def generate_assets(theme: dict) -> None:
@@ -1720,7 +1725,8 @@ def apply_site(profile) -> None:
     SITE_ORIGIN = profile.origin
 
 
-def generate_seo_files(languages: list[str], base_url: str) -> None:
+def generate_seo_files(languages: list[str], base_url: str,
+                       root_lang: str = "en") -> None:
     """Emit site/sitemap.xml + site/robots.txt for the rendered pages.
 
     Google reported the root as «Crawled – currently not indexed» — not a
@@ -1733,9 +1739,12 @@ def generate_seo_files(languages: list[str], base_url: str) -> None:
     Source of truth is the RENDERED site/ tree (not the Location objects, whose
     `.coins` filtering differs between local/CI builds) — every page actually
     deployed is listed exactly once at its canonical URL:
-      - landing: en/x-default → `/`, de → `/de/`, uk → `/uk/`
-        (site/en/ is skipped — it canonicalises to `/`)
-      - location: en → `/<loc>/en/`, de → `/<loc>/de/`, uk → `/<loc>/uk/`
+      - landing: root_lang + x-default → `/`, the others → `/<lang>/`
+        (site/<root_lang>/ is skipped — it canonicalises to `/`)
+      - location: `/<loc>/<lang>/` for every rendered language
+
+    `root_lang` is the site's default language, from the site profile — it
+    is NOT assumed to be English.
     Absolute URLs = SITE_ORIGIN + base_url (base_url is "" for the org-pages
     root; a project sub-path would prefix every URL). Written into site/ (the
     gitignored deploy artifact), not committed.
@@ -1758,16 +1767,16 @@ def generate_seo_files(languages: list[str], base_url: str) -> None:
     # Build clusters: (x_default_path, {lang: path}) for landing + each loc.
     clusters: list[tuple[str, dict[str, str]]] = []
     # Landing cluster — en/x-default collapse to root; only add langs that built.
-    landing = {"en": "/"}
+    landing = {root_lang: "/"}
     for l in languages:
-        if l != "en" and _has_page(l):
+        if l != root_lang and _has_page(l):
             landing[l] = f"/{l}/"
     clusters.append(("/", landing))
     # Location clusters — only include the langs that actually rendered.
     for loc_id in loc_ids:
         cl = {l: f"/{loc_id}/{l}/" for l in languages if _has_page(f"{loc_id}/{l}")}
         if cl:
-            clusters.append((cl.get("en", next(iter(cl.values()))), cl))
+            clusters.append((cl.get(root_lang, next(iter(cl.values()))), cl))
 
     XHTML = "http://www.w3.org/1999/xhtml"
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -2104,7 +2113,8 @@ def main():
                       contact_email=contact_email,
                       german_fuesse=german_fuesse,
                       german_fuesse_references=german_fuesse_refs,
-                      include_seed=include_seed, fuesse=fuesse)
+                      include_seed=include_seed, fuesse=fuesse,
+                      root_lang=site.root_lang)
     elif v2_locations and location_filter:
         print(f"   ⏭  Landing NOT rebuilt (partial --location build of "
               f"{', '.join(location_filter)}) — the existing complete "
@@ -2119,7 +2129,7 @@ def main():
     # all three languages; a partial --location / --lang run would emit a
     # truncated sitemap). CI always does a full build.
     if v2_locations and not location_filter and languages == site.languages:
-        generate_seo_files(languages, base_url)
+        generate_seo_files(languages, base_url, root_lang=site.root_lang)
 
     print()
     print(f"✅ Build complete: {SITE_DIR}/")

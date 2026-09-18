@@ -10,15 +10,17 @@
 <title>{{ tree.location.name|t(lang) }} · Müntzfüße</title>
 {# SEO: `page_prefix` is this page's URL segment — «/denmark» on a site that
    mounts locations under /<loc>/<lang>/, and nothing at all when the page IS
-   the site root. `canonical_root_lang` is set only in the latter case: that
+   the site root. `root_lang` is the site's default language (a profile
+   setting, NOT assumed to be English); when the page is root-mounted, that
    language is served at both «/» and «/<lang>/», so it canonicalises to «/»
    and the other languages stay self-canonical — the same consolidation the
-   landing applies to its own root copy. No redirects. #}
-{% set _root_of = canonical_root_lang|default(none) %}
-<link rel="canonical" href="{{ base_url }}{{ page_prefix }}/{% if lang != _root_of %}{{ lang }}/{% endif %}">
-<link rel="alternate" hreflang="x-default" href="{{ base_url }}{{ page_prefix }}/{% if _root_of is none %}en/{% endif %}">
+   landing applies to its own root copy. x-default points at the default
+   language either way. No redirects. #}
+{% set _collapses = is_root_mounted|default(false) %}
+<link rel="canonical" href="{{ base_url }}{{ page_prefix }}/{% if not (_collapses and lang == root_lang) %}{{ lang }}/{% endif %}">
+<link rel="alternate" hreflang="x-default" href="{{ base_url }}{{ page_prefix }}/{% if not _collapses %}{{ root_lang }}/{% endif %}">
 {% for l in languages -%}
-<link rel="alternate" hreflang="{{ l }}" href="{{ base_url }}{{ page_prefix }}/{% if l != _root_of %}{{ l }}/{% endif %}">
+<link rel="alternate" hreflang="{{ l }}" href="{{ base_url }}{{ page_prefix }}/{% if not (_collapses and l == root_lang) %}{{ l }}/{% endif %}">
 {% endfor -%}
 <link rel="icon" href="{{ base_url }}/assets/favicon.ico" sizes="any">
 <link rel="icon" href="{{ base_url }}/assets/favicon-32.png" type="image/png" sizes="32x32">
@@ -521,7 +523,7 @@
 
 <nav class="nav">
   {% if has_landing|default(true) %}
-  <a href="{{ base_url }}/{% if lang != 'en' %}{{ lang }}/{% endif %}">{{ ui_get('nav.home') }}</a>
+  <a href="{{ base_url }}/{% if lang != root_lang %}{{ lang }}/{% endif %}">{{ ui_get('nav.home') }}</a>
   <span style="color: var(--text-muted);">/</span>
   {% endif %}
   <strong>{{ tree.location.name|t(lang) }}</strong>
