@@ -25,7 +25,8 @@ Profile fields:
     out_dir       build output tree, relative to the repo root
     locations     explicit allowlist of location ids            ┐ exactly
     all_except    every location EXCEPT these ids               ┘ one of
-    languages     languages to render (the one place `da` is switched on)
+    languages     languages to render (the one place `da` is switched on);
+                  required — a site's language set is explicit, never inherited
     root_lang     the language additionally copied to `<out>/index.html`
     landing       whether to render the landing grid at all
     mount         `tree` → /<loc>/<lang>/ ; `root` → /<lang>/
@@ -40,7 +41,7 @@ from pathlib import Path
 from typing import Literal
 
 import yaml
-from pydantic import Field, ValidationError, model_validator
+from pydantic import ValidationError, model_validator
 
 from lib.schema import _StrictBase
 
@@ -68,7 +69,7 @@ class SiteProfile(_StrictBase):
     out_dir: str = "site"
     locations: list[str] | None = None
     all_except: list[str] | None = None
-    languages: list[str] = Field(default_factory=lambda: ["de", "en", "uk"])
+    languages: list[str]
     root_lang: str = "en"
     landing: bool = True
     mount: Literal["tree", "root"] = "tree"

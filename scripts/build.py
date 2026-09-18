@@ -58,7 +58,7 @@ V2_FINAL_DIR = DATA_DIR / "v2" / "final"
 V2_SEED_DIR = DATA_DIR / "v2" / "seed"
 V2_LOCATIONS_DIR = DATA_DIR / "v2" / "locations"
 
-DEFAULT_LANGS = ["de", "en", "uk"]
+# Render languages are per-site: see `languages` in config/sites/<id>.yml.
 
 
 def load_fuesse() -> dict[str, Fuss]:
@@ -1306,6 +1306,8 @@ def build_location(
     issuing_entities: dict | None = None,
     base_url: str = "",
     output_root: Path | None = None,
+    mount: str = "tree",
+    root_lang: str | None = None,
 ) -> None:
     """Render one location to `<output_root>/<loc.id>/<lang>/index.html`.
 
@@ -1313,6 +1315,14 @@ def build_location(
     - V2 pages → `site/<loc>/<lang>/index.html` (default; output_root=SITE_DIR)
     - V1 pages → `site/v1/<loc>/<lang>/index.html` (subtree; explicit
       output_root=SITE_DIR/v1)
+
+    `mount` comes from the site profile (`config/sites/<id>.yml`). With
+    `mount="root"` the location segment is dropped — the page lands at
+    `<output_root>/<lang>/index.html` and `root_lang` is additionally
+    written to `<output_root>/index.html`, so the site root IS this page.
+    That is how a single-page site (danskmoent) is published: one location,
+    no landing grid to click through. `root_lang` is ignored under
+    `mount="tree"`, where the root belongs to the landing.
 
     V2 became the default URL after the cross-source pipeline matured;
     V1 remains accessible via the /v1/ prefix so existing links keep
@@ -1416,7 +1426,11 @@ def build_location(
     generated_date = datetime.now().strftime("%Y-%m-%d")
     
     tmpl = env.get_template("location.html.j2")
-    
+
+    # Holds the `root_lang` render under `mount="root"`, for the copy at
+    # the site root written after the loop.
+    root_html: str | None = None
+
     for lang in languages:
         # Pre-resolve references for this language
         refs_for_lang = None
@@ -1486,12 +1500,42 @@ def build_location(
         # hero badge value.
         html = _patch_hero_refs_count(html)
 
-        out_dir = output_root / loc.id / lang
+        out_dir = (output_root / lang) if mount == "root" \
+            else (output_root / loc.id / lang)
         out_dir.mkdir(parents=True, exist_ok=True)
         out_file = out_dir / "index.html"
         with open(out_file, "w", encoding="utf-8") as f:
             f.write(html)
         print(f"   → {out_file.relative_to(REPO_ROOT)}")
+        if mount == "root" and lang == root_lang:
+            root_html = html
+
+    # Root-mounted site: the default language ALSO lives at «/», served
+    # directly rather than via a redirect — the root URL must accumulate
+    # ranking and show content to a crawler, not bounce it. Same mechanism
+    # the landing uses for its own root copy; the render is
+    # path-independent (base_url-absolute links) and canonicalises to the
+    # `/<lang>/` copy, so the identical HTML serves at both paths.
+    if mount == "root" and root_lang is not None:
+        if root_lang not in languages:
+            # A `--lang X` spot-check build of a root-mounted site cannot
+            # produce the root copy. Say so instead of leaving the root
+            # quietly missing: a published site without `/index.html` is
+            # a 404 on its own front page.
+            print(f"   ⚠ site root NOT written — root_lang '{root_lang}' is "
+                  f"not in this build's languages ({', '.join(languages)}). "
+                  f"Run without --lang before publishing.")
+            return
+        if root_html is None:
+            raise RuntimeError(
+                f"root_lang {root_lang!r} is in languages {languages} but no "
+                f"render was captured — build_location output-loop bug"
+            )
+        root_file = output_root / "index.html"
+        with open(root_file, "w", encoding="utf-8") as f:
+            f.write(root_html)
+        print(f"   → {root_file.relative_to(REPO_ROOT)} (root default, "
+              f"{root_lang})")
 
 
 def build_landing(
@@ -1629,7 +1673,8 @@ def generate_assets(theme: dict) -> None:
     css = generate_css(theme)
     with open(assets_dir / "style.css", "w", encoding="utf-8") as f:
         f.write(css)
-    print(f"🎨 CSS: site/assets/style.css ({len(css):,} bytes)")
+    print(f"🎨 CSS: {(assets_dir / 'style.css').relative_to(REPO_ROOT)} "
+          f"({len(css):,} bytes)")
 
     # Copy static assets (JS, images) from /assets → site/assets
     src_assets = REPO_ROOT / "assets"
@@ -1638,10 +1683,31 @@ def generate_assets(theme: dict) -> None:
             if src.is_file():
                 dst = assets_dir / src.name
                 shutil.copyfile(src, dst)
-                print(f"📎 Asset: site/assets/{src.name} ({dst.stat().st_size:,} bytes)")
+                print(f"📎 Asset: {dst.relative_to(REPO_ROOT)} "
+                      f"({dst.stat().st_size:,} bytes)")
 
 
 SITE_ORIGIN = "https://munzfuss.github.io"
+
+
+def apply_site(profile) -> None:
+    """Point the module-level output tree + origin at this site profile.
+
+    `SITE_DIR` and `SITE_ORIGIN` are read by sixteen output writers
+    (`generate_assets`, `copy_static_root`, `generate_seo_files`, the
+    landing's root copy, …); rebinding the two globals once redirects all
+    of them, which is why they are not threaded through as parameters.
+
+    Safe because one process builds exactly one site. The exception is
+    `_render_location_worker`, which runs under `ProcessPoolExecutor` —
+    on macOS that means *spawn*, a fresh interpreter that re-imports this
+    module and so starts from the munzfuss defaults above. The worker
+    therefore calls this itself from the site id it is handed; the
+    module-level values are never inherited.
+    """
+    global SITE_DIR, SITE_ORIGIN
+    SITE_DIR = profile.out_path
+    SITE_ORIGIN = profile.origin
 
 
 def generate_seo_files(languages: list[str], base_url: str) -> None:
@@ -1726,8 +1792,9 @@ def generate_seo_files(languages: list[str], base_url: str) -> None:
     )
     (SITE_DIR / "robots.txt").write_text(robots, encoding="utf-8")
     n_urls = sum(len(cl) for _p, cl in clusters)
-    print(f"🗺️  SEO: site/sitemap.xml ({n_urls} URLs, {len(clusters)} clusters) "
-          f"+ site/robots.txt")
+    _rel = SITE_DIR.relative_to(REPO_ROOT)
+    print(f"🗺️  SEO: {_rel}/sitemap.xml ({n_urls} URLs, {len(clusters)} "
+          f"clusters) + {_rel}/robots.txt")
 
 
 def copy_static_root() -> None:
@@ -1747,13 +1814,15 @@ def copy_static_root() -> None:
         if src.is_file():
             dst = SITE_DIR / src.name
             shutil.copyfile(src, dst)
-            print(f"📄 Static-root: site/{src.name} ({dst.stat().st_size:,} bytes)")
+            print(f"📄 Static-root: {dst.relative_to(REPO_ROOT)} "
+                  f"({dst.stat().st_size:,} bytes)")
 
 
 def _render_location_worker(loc_id: str, output_root_str: str, debug: bool,
                             repo_url: str, base_url: str,
                             location_filter: list[str] | None,
-                            lang: str | None) -> None:
+                            lang: str | None,
+                            site_id: str = DEFAULT_SITE) -> None:
     """ProcessPoolExecutor worker — renders one location in a clean
     subprocess.
 
@@ -1772,6 +1841,13 @@ def _render_location_worker(loc_id: str, output_root_str: str, debug: bool,
     pickles cleanly but mixing `None`-sentinel + Path is uglier here.
     """
     from pathlib import Path as _Path
+    # Spawned interpreter: re-establish the site's output tree + origin.
+    # Nothing set in main() reaches here (see `apply_site`), so a worker
+    # that skipped this would write correct pages under the WRONG root and
+    # with the wrong canonical — silently, since the render itself
+    # succeeds.
+    site = load_site(site_id)
+    apply_site(site)
     fuesse = load_fuesse()
     theme = load_theme()
     ui = load_ui()
@@ -1785,12 +1861,13 @@ def _render_location_worker(loc_id: str, output_root_str: str, debug: bool,
     loc = loc_list[0]
 
     env = build_env(str(TEMPLATE_DIR))
-    languages = [lang] if lang else DEFAULT_LANGS
+    languages = [lang] if lang else site.languages
     output_root = _Path(output_root_str) if output_root_str else None
     build_location(loc, fuesse, theme, ui, languages, env,
                    debug=debug, repo_url=repo_url,
                    issuing_entities=issuing_entities, base_url=base_url,
-                   output_root=output_root)
+                   output_root=output_root,
+                   mount=site.mount, root_lang=site.root_lang)
 
 
 def parse_args():
@@ -1854,8 +1931,10 @@ def main():
     except SiteProfileError as exc:
         print(f"❌ Site profile: {exc}")
         sys.exit(1)
+    apply_site(site)
     print(f"🌐 Site: {site.id} ({len(site_scope)} location(s), "
-          f"mount={site.mount}, landing={site.landing})")
+          f"mount={site.mount}, landing={site.landing}) → "
+          f"{site.out_dir}/ · {site.origin}")
     print()
 
     # YAML integrity guard — runs BEFORE Pydantic validation because
@@ -1939,7 +2018,7 @@ def main():
     SITE_DIR.mkdir(parents=True, exist_ok=True)
 
     # Render
-    languages = [args.lang] if args.lang else DEFAULT_LANGS
+    languages = [args.lang] if args.lang else site.languages
     env = build_env(str(TEMPLATE_DIR))
 
     # Parallel renderer: ProcessPoolExecutor across locations. Each call
@@ -1961,7 +2040,8 @@ def main():
                 build_location(loc, fuesse, theme, ui, languages, env,
                                debug=args.debug, repo_url=args.repo_url,
                                issuing_entities=issuing_entities,
-                               base_url=base_url, output_root=output_root)
+                               base_url=base_url, output_root=output_root,
+                               mount=site.mount, root_lang=site.root_lang)
             return
         from concurrent.futures import ProcessPoolExecutor, as_completed
         out_arg = str(output_root) if output_root is not None else ""
@@ -1969,7 +2049,7 @@ def main():
             futures = {
                 ex.submit(_render_location_worker, loc.id,
                           out_arg, args.debug, args.repo_url, base_url,
-                          location_filter, args.lang): loc.id
+                          location_filter, args.lang, site.id): loc.id
                 for loc in loc_list
             }
             for fut in as_completed(futures):
@@ -1991,7 +2071,7 @@ def main():
     # does a full build, so production is unaffected. (Previously the guard was
     # `len>1 or not --location`, which let MULTI-location partial builds clobber
     # the landing with just that subset.)
-    if v2_locations and not location_filter:
+    if v2_locations and not location_filter and site.landing:
         # Pull contact email from local.env (or process env). Falls back to
         # empty string → footer just hides the «Contact» link.
         from lib.env import load_local_env
@@ -2026,7 +2106,7 @@ def main():
     # sitemap.xml + robots.txt — only on a FULL build (needs every location and
     # all three languages; a partial --location / --lang run would emit a
     # truncated sitemap). CI always does a full build.
-    if v2_locations and not location_filter and languages == DEFAULT_LANGS:
+    if v2_locations and not location_filter and languages == site.languages:
         generate_seo_files(languages, base_url)
 
     print()
