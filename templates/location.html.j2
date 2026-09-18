@@ -8,12 +8,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ tree.location.name|t(lang) }} · Müntzfüße</title>
-{# SEO: each language version of this location is self-canonical; hreflang
-   clusters the three (x-default → the English version). No redirects. #}
-<link rel="canonical" href="{{ base_url }}/{{ tree.location.id }}/{{ lang }}/">
-<link rel="alternate" hreflang="x-default" href="{{ base_url }}/{{ tree.location.id }}/en/">
+{# SEO: `page_prefix` is this page's URL segment — «/denmark» on a site that
+   mounts locations under /<loc>/<lang>/, and nothing at all when the page IS
+   the site root. `canonical_root_lang` is set only in the latter case: that
+   language is served at both «/» and «/<lang>/», so it canonicalises to «/»
+   and the other languages stay self-canonical — the same consolidation the
+   landing applies to its own root copy. No redirects. #}
+{% set _root_of = canonical_root_lang|default(none) %}
+<link rel="canonical" href="{{ base_url }}{{ page_prefix }}/{% if lang != _root_of %}{{ lang }}/{% endif %}">
+<link rel="alternate" hreflang="x-default" href="{{ base_url }}{{ page_prefix }}/{% if _root_of is none %}en/{% endif %}">
 {% for l in languages -%}
-<link rel="alternate" hreflang="{{ l }}" href="{{ base_url }}/{{ tree.location.id }}/{{ l }}/">
+<link rel="alternate" hreflang="{{ l }}" href="{{ base_url }}{{ page_prefix }}/{% if l != _root_of %}{{ l }}/{% endif %}">
 {% endfor -%}
 <link rel="icon" href="{{ base_url }}/assets/favicon.ico" sizes="any">
 <link rel="icon" href="{{ base_url }}/assets/favicon-32.png" type="image/png" sizes="32x32">
@@ -515,8 +520,10 @@
 
 
 <nav class="nav">
+  {% if has_landing|default(true) %}
   <a href="{{ base_url }}/{% if lang != 'en' %}{{ lang }}/{% endif %}">{{ ui_get('nav.home') }}</a>
   <span style="color: var(--text-muted);">/</span>
+  {% endif %}
   <strong>{{ tree.location.name|t(lang) }}</strong>
   <div class="switchers">
     <div class="theme-switch" role="group" aria-label="Theme">

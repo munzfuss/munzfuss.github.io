@@ -1308,6 +1308,7 @@ def build_location(
     output_root: Path | None = None,
     mount: str = "tree",
     root_lang: str | None = None,
+    has_landing: bool = True,
 ) -> None:
     """Render one location to `<output_root>/<loc.id>/<lang>/index.html`.
 
@@ -1431,6 +1432,12 @@ def build_location(
     # the site root written after the loop.
     root_html: str | None = None
 
+    # URL segment this page lives under — `/denmark` on a tree-mounted
+    # site, nothing when the page IS the site root. Templates build
+    # canonical + hreflang from it, so it must match the output path
+    # chosen below or the page advertises a URL that does not exist.
+    page_prefix = "" if mount == "root" else f"/{loc.id}"
+
     for lang in languages:
         # Pre-resolve references for this language
         refs_for_lang = None
@@ -1450,6 +1457,9 @@ def build_location(
             theme=theme,
             lang=lang,
             languages=languages,
+            page_prefix=page_prefix,
+            canonical_root_lang=(root_lang if mount == "root" else None),
+            has_landing=has_landing,
             references=refs_for_lang,
             generated_date=generated_date,
             repo_url=repo_url,
@@ -1867,7 +1877,8 @@ def _render_location_worker(loc_id: str, output_root_str: str, debug: bool,
                    debug=debug, repo_url=repo_url,
                    issuing_entities=issuing_entities, base_url=base_url,
                    output_root=output_root,
-                   mount=site.mount, root_lang=site.root_lang)
+                   mount=site.mount, root_lang=site.root_lang,
+                   has_landing=site.landing)
 
 
 def parse_args():
@@ -2041,7 +2052,8 @@ def main():
                                debug=args.debug, repo_url=args.repo_url,
                                issuing_entities=issuing_entities,
                                base_url=base_url, output_root=output_root,
-                               mount=site.mount, root_lang=site.root_lang)
+                               mount=site.mount, root_lang=site.root_lang,
+                               has_landing=site.landing)
             return
         from concurrent.futures import ProcessPoolExecutor, as_completed
         out_arg = str(output_root) if output_root is not None else ""
