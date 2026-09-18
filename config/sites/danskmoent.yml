@@ -1,0 +1,19 @@
+# The Danish site: danskmoent.github.io
+#
+# One page — Denmark — mounted at the site root, so <host>/ IS the
+# Denmark page and there is no landing grid to click through. The data is
+# not duplicated: this profile renders the same
+# data/v2/locations/denmark.yml and the same Danish entity finals that
+# munzfuss reads.
+#
+# `languages` is the ONE place the Danish language is switched on; adding
+# `da` here is the whole of that change on the build side (the prose then
+# needs `da:` keys, which is a separate body of work).
+id: danskmoent
+origin: https://danskmoent.github.io
+out_dir: site-danskmoent
+locations: [denmark]
+languages: [de, en, uk]
+root_lang: en
+landing: false
+mount: root

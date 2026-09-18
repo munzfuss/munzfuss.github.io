@@ -38,6 +38,7 @@ from lib.timeline import (
 from lib.compute import compute_location
 from lib.render import build_env, generate_css
 from lib.schema import Location, Fuss, I18nText, Coin
+from lib.sites import DEFAULT_SITE, SiteProfileError, load_site
 from lib.v2_seed_writer import normalise_nominal_display
 from lib.mint_registry import (
     CROWN_MINT_REALM as _CROWN_MINT_REALM,
@@ -1183,7 +1184,16 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
     return len(kept)
 
 
-def load_v2_locations(filter_id: str | list[str] | None = None) -> list[Location]:
+def available_location_ids() -> list[str]:
+    """Location ids that exist on disk, in load order (alphabetical)."""
+    if not V2_LOCATIONS_DIR.exists():
+        return []
+    return [p.stem for p in sorted(V2_LOCATIONS_DIR.glob("*.yml"))
+            if not p.stem.endswith("-references")]
+
+
+def load_v2_locations(filter_id: str | list[str] | None = None,
+                      scope: set[str] | None = None) -> list[Location]:
     """Phase 4.2 V2 location loader. Reads `data/v2/locations/<loc>.yml`
     (display-meta only, no coins), assembles coins via
     `_assemble_v2_location()`, then validates as `Location`. Returns
@@ -1192,6 +1202,12 @@ def load_v2_locations(filter_id: str | list[str] | None = None) -> list[Location
     `filter_id` accepts a single string (legacy) or a list of ids
     (multi-location filter via `--location a,b,c` split). `None` loads
     everything.
+
+    `scope` is the SITE's location set (from `config/sites/<id>.yml`) and
+    is deliberately a separate concept from `filter_id`: a `--location`
+    build is a PARTIAL build of one site and suppresses the landing
+    rebuild, whereas the site scope is that site's complete content. Both
+    apply when both are given.
     """
     if not V2_LOCATIONS_DIR.exists():
         return []
@@ -1206,6 +1222,8 @@ def load_v2_locations(filter_id: str | list[str] | None = None) -> list[Location
         if path.stem.endswith("-references"):
             continue
         if filter_set is not None and path.stem not in filter_set:
+            continue
+        if scope is not None and path.stem not in scope:
             continue
         with open(path, encoding="utf-8") as f:
             raw = yaml.safe_load(f) or {}
@@ -1777,6 +1795,13 @@ def _render_location_worker(loc_id: str, output_root_str: str, debug: bool,
 
 def parse_args():
     p = argparse.ArgumentParser()
+    p.add_argument("--site", default=DEFAULT_SITE,
+                   help="Site profile to build, named after a file in "
+                        "config/sites/ (default: %(default)s). The profile "
+                        "decides which locations the site contains, its "
+                        "origin, its languages and its output tree. Distinct "
+                        "from --location, which is a partial build of one "
+                        "site.")
     p.add_argument("--location", help="Build only these location(s). Accepts one id "
                    "(e.g. `--location schleswig_holstein`) or a comma-separated list "
                    "(e.g. `--location denmark,schleswig_holstein,lubeck`). Default: all.")
@@ -1820,6 +1845,19 @@ def main():
     # Normalise base_url: drop trailing slash so templates can use {{ base_url }}/path
     base_url = args.base_url.rstrip("/")
 
+    # Site profile — which locations this site contains, where it mounts
+    # them, under which origin. munzfuss is itself a profile, so there is
+    # no «default site with exceptions»; see scripts/lib/sites.py.
+    try:
+        site = load_site(args.site)
+        site_scope = set(site.resolve_locations(available_location_ids()))
+    except SiteProfileError as exc:
+        print(f"❌ Site profile: {exc}")
+        sys.exit(1)
+    print(f"🌐 Site: {site.id} ({len(site_scope)} location(s), "
+          f"mount={site.mount}, landing={site.landing})")
+    print()
+
     # YAML integrity guard — runs BEFORE Pydantic validation because
     # Pydantic operates on the parsed dict, after PyYAML has silently
     # collapsed duplicate keys via last-wins. A botched edit that
@@ -1857,6 +1895,13 @@ def main():
     location_filter: list[str] | None = None
     if args.location:
         location_filter = [s.strip() for s in args.location.split(",") if s.strip()]
+        # A --location outside the site's scope would otherwise resolve to
+        # zero locations and exit 0 — a build that looks like it worked.
+        off_site = [lid for lid in location_filter if lid not in site_scope]
+        if off_site:
+            print(f"❌ --location {', '.join(off_site)} is not part of site "
+                  f"'{site.id}' (scope: {', '.join(sorted(site_scope))})")
+            sys.exit(1)
 
     # V2 is the only build path (V1 was removed 2026-06-24 once the V2
     # pipeline reached parity; data/v2/locations/ + data/v2/final/ are the
@@ -1867,7 +1912,8 @@ def main():
     v2_locations: list[Location] = []
     if build_v2:
         print("📦 Loading V2 entity-keyed locations...")
-        v2_locations = load_v2_locations(filter_id=location_filter)
+        v2_locations = load_v2_locations(filter_id=location_filter,
+                                        scope=site_scope)
         print(f"   V2 locations: {len(v2_locations)} "
               f"({', '.join(l.id for l in v2_locations)})")
     print()
