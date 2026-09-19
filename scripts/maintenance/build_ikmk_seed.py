@@ -225,6 +225,9 @@ _VNOTE = {
     "uk": ("Запис з інтерактивного каталогу Münzkabinett Berlin "
            "(ikmk.smb.museum, CC BY-SA 4.0); поля засвідчені музеєм. Стопу "
            "цього примірника ще не визначено."),
+    "da": ("Post fra Münzkabinett Berlins interaktive katalog "
+           "(ikmk.smb.museum, CC BY-SA 4.0); felterne er dokumenteret af "
+           "museet. Møntfoden for dette stykke er endnu ikke bestemt."),
 }
 
 

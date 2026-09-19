@@ -1064,6 +1064,13 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
                 "специфікацій ордонансів у Wilcke 1950. Стопу цього "
                 "примірника ще не визначено."
             ),
+            "da": (
+                "Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, "
+                "L. E. Bruun Collection 2024-2026). Bruttovægten er en "
+                "enkeltstyksværdi; Bruun angiver ingen finhed, den følger af "
+                "specifikationstabellen for forordningerne hos Wilcke 1950. "
+                "Møntfoden for dette stykke er endnu ikke bestemt."
+            ),
         },
     }
 

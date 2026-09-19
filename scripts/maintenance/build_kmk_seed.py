@@ -455,6 +455,9 @@ _VNOTE = {
     "uk": ("Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, "
            "api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника "
            "ще не визначено."),
+    "da": ("Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, "
+           "København, api.natmus.dk); felterne er dokumenteret af museet. "
+           "Møntfoden for dette stykke er endnu ikke bestemt."),
 }
 
 

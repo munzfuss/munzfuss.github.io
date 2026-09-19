@@ -533,6 +533,13 @@ def build_entry(data: dict) -> dict | None:
                 "та інші) походять із заголовка та блоку опису сторінки. "
                 "Стопу цього примірника ще не визначено."
             ),
+            "da": (
+                "Data hentet fra Galster-siderne på danskmoent.dk; "
+                "kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, "
+                "Schive m.fl.) stammer fra sidens overskrift og "
+                "beskrivelsesblok. Møntfoden for dette stykke er endnu "
+                "ikke bestemt."
+            ),
         },
     }
 

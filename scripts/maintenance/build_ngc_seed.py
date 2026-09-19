@@ -217,6 +217,9 @@ def build_entry(rec: dict, scope: str) -> dict | None:
             "uk": ("NGC-seed: World Coin Price Guide, на основі Krause-Mishler, "
                    "наступник закритого NumisMaster. Покоінна верифікація "
                    "проти первинних джерел перед промоцією."),
+            "da": ("NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, "
+                   "efterfølger til det nedlagte NumisMaster. Verifikation af "
+                   "den enkelte mønt mod primærkilder før optagelse."),
         },
         "_ngc_scope": scope,
         "_ngc_cuid": str(cuid),

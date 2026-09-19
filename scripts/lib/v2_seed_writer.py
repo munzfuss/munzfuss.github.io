@@ -1241,7 +1241,10 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
                 present = all(p in note for p in payloads)
             if note is None:
                 ps = "; ".join(payloads)
-                c["note"] = {"de": ps, "en": ps, "uk": ps}
+                # The payload is a catalogue annotation lifted verbatim out
+                # of the nominal, not prose — the same string in every
+                # language, Danish included.
+                c["note"] = {"de": ps, "en": ps, "uk": ps, "da": ps}
                 c["nominal"] = clean_nom
                 stats["nominal_annotation_to_note"] = stats.get("nominal_annotation_to_note", 0) + 1
             elif present:

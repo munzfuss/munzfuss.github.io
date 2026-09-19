@@ -439,6 +439,11 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
                 "видання на основі Krause-Mishler. Проти первинних джерел "
                 "(Hede / Sieg / Lange / Wilcke / Schive) ще не звірено."
             ),
+            "da": (
+                "Data fra NumisMaster-kataloget (Librios), et kommercielt "
+                "Krause-Mishler-værk. Endnu ikke efterprøvet mod "
+                "primærkilderne (Hede / Sieg / Lange / Wilcke / Schive)."
+            ),
         },
     }
     # UNDATED coin: the year is the «ND(…)» attribution range, not a struck date —

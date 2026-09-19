@@ -492,6 +492,14 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
                 "треба перевірити проти первинних джерел перед промоцією у "
                 "кур'єйтед-записи."
             ),
+            "da": (
+                "Numista-seed: tildeling af møntfod og fase samt verifikation "
+                "af den enkelte mønt udestår stadig; data er hentet direkte "
+                "fra katalogsiden (en.numista.com). Numista redigeres af "
+                "brugerne; krydshenvisningerne (Sieg, Galster, Schou, Fr) skal "
+                "efterprøves mod primærkilder før optagelse i kuraterede "
+                "poster."
+            ),
         },
     }
 

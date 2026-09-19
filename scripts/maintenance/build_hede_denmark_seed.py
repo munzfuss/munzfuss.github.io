@@ -1098,6 +1098,13 @@ def _build_coin(
             f"друкованих Hede 1971 та Galster 1965."
             + (f" Коментар з індексу: «{index_note}»" if index_note else "")
         )
+        vn["da"] = (
+            f"Kun oversigtsrækken hos {idx_basename} dokumenterer denne post; "
+            f"Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er "
+            f"ikke angivet der; de ville skulle hentes fra de trykte Hede "
+            f"1971 og Galster 1965."
+            + (f" Bemærkning i indekset: «{index_note}»" if index_note else "")
+        )
     else:
         vn["de"] = (
             "Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation "
@@ -1111,6 +1118,11 @@ def _build_coin(
         vn["uk"] = (
             "Hede-seed: призначення стопи, фази та покоінна верифікація "
             "ще очікуються; дані взято безпосередньо з danskmoent.dk."
+        )
+        vn["da"] = (
+            "Hede-seed: tildeling af møntfod og fase samt verifikation af "
+            "den enkelte mønt udestår stadig; data er hentet direkte fra "
+            "danskmoent.dk."
         )
     cm["verification_note"] = vn
     # _source_note candidate (Phase-1, commit 80a1b62): danskmoent's coin
