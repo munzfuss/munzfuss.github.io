@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from lib import i18n  # noqa: E402
-from lib.render import _FIN_UNITS  # noqa: E402
+from lib.render import _FIN_UNITS, strip_phase_marker  # noqa: E402
 
 UI = yaml.safe_load((ROOT / "data/i18n/ui.yml").read_text(encoding="utf-8"))
 ENTITIES = yaml.safe_load(
@@ -115,6 +115,34 @@ class MetalNamesCoverEveryRenderedLanguage(unittest.TestCase):
     def test_the_phase_marker_is_not_ukrainian_by_default(self):
         """It used to read `'Phase ' if lang in ('de','en') else 'Фаза '`."""
         self.assertEqual(UI["phase.label"]["da"], "Fase")
+
+
+class PhaseMarkerIsNotDoubled(unittest.TestCase):
+    """The template prints «Fase I · » and the title may still open with
+    «Phase I · », because the marker is localised and the title falls back.
+    Six of the Danish page's 36 phase headings read «Fase I · 1514 → 1532 ·
+    Phase I · …» before the strip stopped keying on the current language."""
+
+    def test_a_marker_in_another_language_is_still_stripped(self):
+        self.assertEqual(
+            strip_phase_marker("Phase I · de-jure standard", "I"),
+            "de-jure standard")
+        self.assertEqual(strip_phase_marker("Фаза III · щось", "III"), "щось")
+        self.assertEqual(strip_phase_marker("Fase I · x", "I"), "x")
+
+    def test_a_different_phase_id_is_left_alone(self):
+        """«Phase II · …» under phase I is not this phase's marker."""
+        self.assertEqual(strip_phase_marker("Phase II · x", "I"),
+                         "Phase II · x")
+
+    def test_a_descriptive_title_survives_intact(self):
+        """A title may legitimately open with a name and a middle dot."""
+        for title in ("Christian II · 1514 reform", "de-jure standard", ""):
+            with self.subTest(title=title):
+                self.assertEqual(strip_phase_marker(title, "I"), title)
+
+    def test_none_does_not_crash(self):
+        self.assertEqual(strip_phase_marker(None, "I"), "")
 
 
 if __name__ == "__main__":

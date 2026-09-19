@@ -3,6 +3,7 @@ Layer C → HTML: render categorized tree to HTML via Jinja2.
 """
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -30,6 +31,7 @@ def build_env(template_dir: str) -> Environment:
     env.filters["nominal_nbsp"] = nominal_nbsp
     env.filters["nb_dashes"] = nb_dashes
     env.filters["fin_unit"] = fin_unit
+    env.filters["strip_phase_marker"] = strip_phase_marker
 
     return env
 
@@ -184,6 +186,35 @@ def ruler_for_lang(name: str | None, lang: str) -> str:
         return name
     # en/uk/da: Roman-numeral ordinals don't carry the German trailing period.
     return re.sub(r"( [IVX]+)\.", r"\1", name)
+
+
+# Every language's word for a phase, so the marker can be stripped off a
+# title no matter which language that title came from. Kept here rather than
+# read from ui.yml at call time because the filter runs once per phase per
+# page and the set is four words long.
+_PHASE_WORDS = ("Phase", "Fase", "Фаза")
+_PHASE_MARKER_RE = re.compile(
+    r"^(?:%s)\s+(\S+)\s+·\s+" % "|".join(_PHASE_WORDS)
+)
+
+
+def strip_phase_marker(title: str | None, phase_id: str) -> str:
+    """Drop a leading «Phase I · » from a phase title.
+
+    The template emits the marker itself, so a title that repeats it would
+    show it twice. The catch is that the title and the marker need not be in
+    the same LANGUAGE: a page renders the marker in its own language but
+    falls back to another for an untranslated title, which is how the Danish
+    page came to read «Fase I · 1514 → 1532 · Phase I · …». So the match is on
+    any language's word for a phase, and on the phase id, which must agree —
+    a descriptive title that merely opens with a word and a dot is left alone.
+    """
+    if not title:
+        return title or ""
+    m = _PHASE_MARKER_RE.match(title)
+    if m and m.group(1) == str(phase_id):
+        return title[m.end():]
+    return title
 
 
 def first_sentence(html_text: str) -> str:

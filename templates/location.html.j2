@@ -1035,12 +1035,14 @@
       {% if pg.phase.id in ('single', 'only', 'einzige') %}
         {{ pg.phase.title|t(lang) }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }}
       {% else %}
-        {# The template emits the phase marker «Phase/Фаза {id} ·» itself, so a
-           title that redundantly embeds the same prefix (e.g. «Фаза I · …»)
-           would double it. Strip a leading localized «Phase/Фаза {id} · » from
-           the title before appending — no-op for purely descriptive titles. #}
-        {%- set _pm = (ui_get('phase.label') ~ ' ' ~ pg.phase.id ~ ' · ') -%}
-        {{ ui_get('phase.label') }} {{ pg.phase.id }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang) | replace(_pm, '', 1) }}
+        {# The template emits the phase marker «Phase {id} ·» itself, so a title
+           that repeats it would show it twice. The strip cannot be keyed on THIS
+           page's language: the marker is localised but an untranslated title
+           falls back to another language, which is how the Danish page read
+           «Fase I · 1514 → 1532 · Phase I · …». `strip_phase_marker` matches any
+           language's word for a phase, and only when the id agrees — a purely
+           descriptive title is left alone. #}
+        {{ ui_get('phase.label') }} {{ pg.phase.id }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang)|strip_phase_marker(pg.phase.id) }}
       {% endif %}
     </div>
     {% if pg.phase.description %}
