@@ -1042,7 +1042,7 @@
            «Fase I · 1514 → 1532 · Phase I · …». `strip_phase_marker` matches any
            language's word for a phase, and only when the id agrees — a purely
            descriptive title is left alone. #}
-        {{ ui_get('phase.label') }} {{ pg.phase.id }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang)|strip_phase_marker(pg.phase.id) }}
+        {{- ui_get('phase.label') }} {{ pg.phase.id }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang)|strip_phase_marker(pg.phase.id) }}
       {% endif %}
     </div>
     {% if pg.phase.description %}
