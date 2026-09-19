@@ -541,11 +541,17 @@
       </button>
     </div>
     <div class="lang-switch">
-      {% for l in languages -%}
+      {#- `urls.alternates` (lib/sites.py::page_urls), like the landing does.
+          The hand-built `../<lang>/` was right only while every language kept
+          its own directory: on a root-mounted site the default language is
+          canonical at «/», and «/<lang>/» is the duplicate copy the build
+          also writes — so the switcher contradicted the page's own
+          rel="canonical". -#}
+      {% for l, href in urls.alternates -%}
         {%- if l == lang -%}
           <a class="active">{{ l|upper }}</a>
         {%- else -%}
-          <a href="../{{ l }}/">{{ l|upper }}</a>
+          <a href="{{ href }}">{{ l|upper }}</a>
         {%- endif -%}
       {%- endfor %}
     </div>
