@@ -470,3 +470,58 @@ tl.filter.all:
   de: "Alle"
   en: "All"
   uk: "Усі"
+
+# Metal names for the «Metall» column. These lived as two literal maps inside
+# location.html.j2, indexed directly by `lang` — which rendered an empty cell
+# for any language the maps did not list. Here they pick up every language the
+# site renders, like every other string on the page.
+metal.silver:
+  de: Silber
+  en: Silver
+  uk: Срібло
+  da: Sølv
+
+metal.gold:
+  de: Gold
+  en: Gold
+  uk: Золото
+  da: Guld
+
+metal.billon:
+  de: Billon
+  en: Billon
+  uk: Білон
+  da: Billon
+
+metal.copper:
+  de: Kupfer
+  en: Copper
+  uk: Мідь
+  da: Kobber
+
+metal.lead:
+  de: Blei
+  en: Lead
+  uk: Свинець
+  da: Bly
+
+metal.bronze:
+  de: Bronze
+  en: Bronze
+  uk: Бронза
+  da: Bronze
+
+metal.brass:
+  de: Messing
+  en: Brass
+  uk: Латунь
+  da: Messing
+
+# The «Phase N ·» marker above each phase heading. Was a conditional on the
+# language literal in the template, so a fourth language fell through to the
+# Ukrainian branch.
+phase.label:
+  de: Phase
+  en: Phase
+  uk: Фаза
+  da: Fase

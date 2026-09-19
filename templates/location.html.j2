@@ -137,16 +137,20 @@
   </td>
   <td class="c-metal">
     {%- if coin.raw.metal -%}
+      {#- The names come from data/i18n/ui.yml so they cover every language
+          the site renders; they used to be spelled here per language, which
+          left the cell blank for any language the literal map omitted. An
+          unmapped METAL still resolves to Undefined → empty cell, as before. -#}
       {%- set metals = {
-        'silver': {'de': 'Silber', 'en': 'Silver', 'uk': 'Срібло'},
-        'gold':   {'de': 'Gold',   'en': 'Gold',   'uk': 'Золото'},
-        'billon': {'de': 'Billon', 'en': 'Billon', 'uk': 'Білон'},
-        'copper': {'de': 'Kupfer', 'en': 'Copper', 'uk': 'Мідь'},
-        'lead':   {'de': 'Blei',   'en': 'Lead',   'uk': 'Свинець'},
-        'bronze': {'de': 'Bronze', 'en': 'Bronze', 'uk': 'Бронза'}
+        'silver': ui_get('metal.silver'),
+        'gold':   ui_get('metal.gold'),
+        'billon': ui_get('metal.billon'),
+        'copper': ui_get('metal.copper'),
+        'lead':   ui_get('metal.lead'),
+        'bronze': ui_get('metal.bronze')
       } -%}
       {%- if coin.msr_n > 1 -%}
-        {%- set _mname -%}{{ metals[coin.raw.metal][lang] }}{%- if not coin.raw.metal_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+        {%- set _mname -%}{{ metals[coin.raw.metal] }}{%- if not coin.raw.metal_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
         {#- проба ALIGNED with the sub-rows: one .msr-seg per distinct fineness,
             spanning exactly the weight sub-rows it applies to (fineness derived
             per-row from fein/rough, snapped to the catalogue reading). Metal
@@ -156,7 +160,7 @@
         {%- set _funi = (coin.msr_fineness_segs|length) <= 1 -%}
         {%- for s in coin.msr_fineness_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{{ _mname }}{% if s.value is not none %}&nbsp;{% set _txt = '.' ~ ((s.value * (10 ** s.decimals))|round|int) %}{% set _k = mkind(s.sources, coin.fineness_marks) %}{% if _funi %}{% if s.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ s.sources|join('\n') }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{% else %}<span class="fin-alt {{ _k }}" data-tooltip="{{ s.sources|join('\n') }}">{{ _txt }}</span>{% endif %}{% set _fm = mark(s.sources, coin.fineness_marks) %}{{ _fm }}{% set _fu = s.value | fin_unit(coin.raw.metal, lang) %}{% set _fq = not coin.raw.fineness_verified and not _fm|trim %}{% if _fu or _fq %}<span class="fin-eq">{{ _fu }}{% if _fq %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endif %}{% endif %}</div>{%- endfor -%}
       {%- else -%}
-      {{ metals[coin.raw.metal][lang] }}
+      {{ metals[coin.raw.metal] }}
       {%- if not coin.raw.metal_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
       {%- if coin.fineness_groups -%}
         {%- for g in coin.fineness_groups %}
@@ -416,11 +420,11 @@
   </td>
   <td class="c-metal">
     {%- set metals = {
-      'copper': {'de': 'Kupfer', 'en': 'Copper', 'uk': 'Мідь'},
-      'bronze': {'de': 'Bronze', 'en': 'Bronze', 'uk': 'Бронза'},
-      'brass':  {'de': 'Messing','en': 'Brass',  'uk': 'Латунь'}
+      'copper': ui_get('metal.copper'),
+      'bronze': ui_get('metal.bronze'),
+      'brass':  ui_get('metal.brass')
     } -%}
-    {{ metals[coin.raw.metal][lang] if coin.raw.metal in metals else coin.raw.metal }}
+    {{ metals[coin.raw.metal] if coin.raw.metal in metals else coin.raw.metal }}
   </td>
   <td class="c-w{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 -%}
@@ -1029,8 +1033,8 @@
            title that redundantly embeds the same prefix (e.g. «Фаза I · …»)
            would double it. Strip a leading localized «Phase/Фаза {id} · » from
            the title before appending — no-op for purely descriptive titles. #}
-        {%- set _pm = (('Phase ' if lang in ('de', 'en') else 'Фаза ') ~ pg.phase.id ~ ' · ') -%}
-        {% if lang == 'de' %}Phase{% elif lang == 'en' %}Phase{% else %}Фаза{% endif %} {{ pg.phase.id }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang) | replace(_pm, '', 1) }}
+        {%- set _pm = (ui_get('phase.label') ~ ' ' ~ pg.phase.id ~ ' · ') -%}
+        {{ ui_get('phase.label') }} {{ pg.phase.id }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang) | replace(_pm, '', 1) }}
       {% endif %}
     </div>
     {% if pg.phase.description %}
