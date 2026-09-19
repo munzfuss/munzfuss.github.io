@@ -29,10 +29,19 @@ class _StrictBase(BaseModel):
 # =============================================================================
 
 class I18nText(_StrictBase):
-    """A translatable string. DE is mandatory; EN/UK fall back."""
+    """A translatable string. DE is mandatory; the others fall back.
+
+    German is the authoring language, which is why it alone is required and
+    why it is the last resort of every fallback chain. Danish is rendered
+    only by the danskmoent site (`config/sites/danskmoent.yml`), so most
+    strings in the corpus carry no `da` and resolve through en → de. That is
+    silent by design: a missing translation has never raised here, and the
+    Danish prose is being written surface by surface.
+    """
     de: str
     en: str | None = None
     uk: str | None = None
+    da: str | None = None
 
     def resolve(self, lang: str, fallback: list[str] = None) -> str:
         """Resolve to target language with fallback chain."""
@@ -50,6 +59,7 @@ class I18nTextOptional(_StrictBase):
     de: str | None = None
     en: str | None = None
     uk: str | None = None
+    da: str | None = None
 
     def resolve(self, lang: str, fallback: list[str] = None) -> str | None:
         fallback = fallback or ["en", "de"]

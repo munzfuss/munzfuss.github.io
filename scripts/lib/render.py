@@ -52,11 +52,12 @@ _FIN_FRACTIONS = [
 
 # gold → Cölln Mark ÷ 24 Karat; silver/billon → ÷ 16 Lot. Unit nouns are
 # period numismatic terms (don't translate for DE/EN per the i18n policy);
-# UK uses the established Cyrillic forms.
+# UK uses the established Cyrillic forms, DA the Danish ones (`lod`, not the
+# German `Lot`), lowercase as Danish writes unit nouns.
 _FIN_UNITS = {
-    "gold": (24, {"de": "Karat", "en": "Karat", "uk": "карат"}),
-    "silver": (16, {"de": "Lot", "en": "Lot", "uk": "лот"}),
-    "billon": (16, {"de": "Lot", "en": "Lot", "uk": "лот"}),
+    "gold": (24, {"de": "Karat", "en": "Karat", "uk": "карат", "da": "karat"}),
+    "silver": (16, {"de": "Lot", "en": "Lot", "uk": "лот", "da": "lod"}),
+    "billon": (16, {"de": "Lot", "en": "Lot", "uk": "лот", "da": "lod"}),
 }
 
 
@@ -165,8 +166,9 @@ def ruler_for_lang(name: str | None, lang: str) -> str:
 
     The YAML stores rulers in canonical German form, where Roman-numeral
     ordinals carry a trailing period (Christian IV. = "Christian der IV.").
-    English and Ukrainian don't use this convention — strip the period
-    from Roman numerals for non-DE rendering.
+    English, Ukrainian and Danish don't use this convention — strip the
+    period from Roman numerals for non-DE rendering. (Danish numismatic
+    literature writes «Christian IV», and danskmoent.dk does the same.)
     """
     if not name:
         return "—"
@@ -180,7 +182,7 @@ def ruler_for_lang(name: str | None, lang: str) -> str:
     name = re.sub(r"\s+([IVX]+\.?)(?=\s|$)", " \\1", name)
     if lang == "de":
         return name
-    # en/uk: Roman-numeral ordinals don't carry the German trailing period.
+    # en/uk/da: Roman-numeral ordinals don't carry the German trailing period.
     return re.sub(r"( [IVX]+)\.", r"\1", name)
 
 
@@ -271,7 +273,7 @@ def render_landing(
     )
 
 
-def generate_css(theme: dict) -> str:
+def generate_css(theme: dict, languages: list[str] | None = None) -> str:
     """Build the three-theme stylesheet (Atlas / Codex / Noir).
 
     Returns `prefix + styles.base.css` — the prefix is generated from
@@ -280,7 +282,8 @@ def generate_css(theme: dict) -> str:
     `styles.py`. Atlas and Codex palettes are hardcoded inside the static
     base — those themes don't read from theme.yml.
 
-    Output is language-agnostic; per-language line-height is selected via
-    `html[lang="…"] { --body-line-height: … }` rules in the prefix.
+    One stylesheet serves every language of one site; the per-language
+    line-height is selected via `html[lang="…"] { --body-line-height: … }`
+    rules in the prefix, emitted only for the languages `languages` names.
     """
-    return styles.build_css(theme)
+    return styles.build_css(theme, languages)

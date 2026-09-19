@@ -134,7 +134,7 @@ def _timeline_bars_css(bars: dict) -> str:
     return "\n".join(out)
 
 
-def build_prefix(theme: dict) -> str:
+def build_prefix(theme: dict, languages: list[str] | None = None) -> str:
     """Generate the dynamic CSS prefix from theme.yml.
 
     Contents (in order):
@@ -142,18 +142,29 @@ def build_prefix(theme: dict) -> str:
       2. `:root` block — every palette token referenced by var(--*) in
          `assets/style.base.css`. v3 (Noir) is the default; v1 / v2 are
          hardcoded inside base.css since those palettes are static.
-      3. `html[lang="en"]` / `html[lang="uk"]` overrides for
-         `--body-line-height`. The default value lives in `:root` above.
+      3. One `html[lang="…"]` override of `--body-line-height` per language
+         this site renders that has an entry in `theme.yml`. The default
+         value (German) lives in `:root` above.
       4. Per-bar timeline palette block.
     """
     c = theme.get("colors", {})
     a = theme.get("accents", {})
 
     # Default body line-height (DE) and per-language overrides.
+    #
+    # Only the languages this site actually renders get a rule. The
+    # stylesheet is one file per site, so emitting a rule for a language the
+    # site does not publish would put Danish selectors into the German
+    # site's CSS — inert, but a diff in a tree that should not move.
     overrides = theme.get("language_overrides", {}) or {}
     default_lh = "1.55"
-    en_lh = (overrides.get("en") or {}).get("line_height", default_lh)
-    uk_lh = (overrides.get("uk") or {}).get("line_height", default_lh)
+    langs = sorted(set(languages) & set(overrides)) if languages is not None \
+        else sorted(overrides)
+    lang_rules = "\n".join(
+        f'html[lang="{l}"] {{ --body-line-height: '
+        f'{(overrides.get(l) or {}).get("line_height", default_lh)}; }}'
+        for l in langs
+    )
 
     root = f"""\
 :root, :root[data-theme="v3"] {{
@@ -223,12 +234,11 @@ def build_prefix(theme: dict) -> str:
   --subcat-copper-border:  {c.get("subcat_copper_border", "#a8673c")};
   --subcat-copper-fg:      {c.get("subcat_copper_fg", "#d69a6e")};
 
-  /* Default body line-height — DE. html[lang=en|uk] override below. */
+  /* Default body line-height — DE. Per-language overrides below. */
   --body-line-height:   {default_lh};
 }}
 
-html[lang="en"] {{ --body-line-height: {en_lh}; }}
-html[lang="uk"] {{ --body-line-height: {uk_lh}; }}
+{lang_rules}
 """
 
     bar_block = _timeline_bars_css(theme.get("timeline_bars", {}) or {})
@@ -243,13 +253,15 @@ html[lang="uk"] {{ --body-line-height: {uk_lh}; }}
     )
 
 
-def build_css(theme: dict) -> str:
+def build_css(theme: dict, languages: list[str] | None = None) -> str:
     """Return the full stylesheet — `prefix` (theme-driven) + `style.base.css`
     (static).
 
-    Output is language-agnostic; per-language line-height is selected via
-    `html[lang=…] { --body-line-height: … }` rules emitted in the prefix.
+    One stylesheet serves every language of one site; the per-language
+    line-height is selected by `html[lang=…] { --body-line-height: … }` rules
+    in the prefix. `languages` limits those rules to what the site publishes;
+    passing None emits every language `theme.yml` defines.
     """
-    prefix = build_prefix(theme)
+    prefix = build_prefix(theme, languages)
     base = BASE_CSS_PATH.read_text(encoding="utf-8")
     return prefix + base

@@ -6,11 +6,16 @@ from __future__ import annotations
 from typing import Any
 
 
-# Fallback chain: target → en → de
+# Fallback chain: target → en → de. German is the authoring language, so it
+# ends every chain. Danish is rendered only by the danskmoent site and its
+# prose is still largely untranslated, so `da` resolving to English is the
+# normal case here rather than an error — and, as everywhere in this module,
+# it happens silently.
 FALLBACK = {
     "de": ["de"],
     "en": ["en", "de"],
     "uk": ["uk", "en", "de"],
+    "da": ["da", "en", "de"],
 }
 
 
@@ -41,6 +46,9 @@ _MONTHS = {
            "July", "August", "September", "October", "November", "December"],
     "uk": ["січня", "лютого", "березня", "квітня", "травня", "червня",
            "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"],
+    # Danish month names are lowercase, like the Ukrainian ones.
+    "da": ["januar", "februar", "marts", "april", "maj", "juni",
+           "juli", "august", "september", "oktober", "november", "december"],
 }
 
 
@@ -48,6 +56,7 @@ def fmt_date(iso: str, lang: str) -> str:
     """Render an ISO YYYY-MM-DD date in language-appropriate long form.
 
     de: "27. April 2026"   en: "27 April 2026"   uk: "27 квітня 2026"
+    da: "27. april 2026"  — Danish marks the day as an ordinal, like German.
     """
     try:
         y, m, d = iso.split("-")
@@ -58,7 +67,7 @@ def fmt_date(iso: str, lang: str) -> str:
     months = _MONTHS.get(lang, _MONTHS["de"])
     if not (0 <= m_idx < 12):
         return iso
-    if lang == "de":
+    if lang in ("de", "da"):
         return f"{d_int}. {months[m_idx]} {y}"
     if lang == "uk":
         return f"{d_int} {months[m_idx]} {y}"
@@ -83,7 +92,7 @@ def fmt_num(val: float | None, lang: str, decimals: int = 5, unit: str = "g") ->
                 formatted = f"{int_part}.{dec_part}"
     
     # Localize decimal separator
-    if lang in ("de", "uk"):
+    if lang in ("de", "uk", "da"):
         formatted = formatted.replace(".", ",")
     
     if unit:
@@ -99,7 +108,7 @@ def fmt_pct(val: float | None, lang: str) -> str:
         return "—"
     sign = "+" if val >= 0 else ""
     s = f"{sign}{val:.2f}%"
-    if lang in ("de", "uk"):
+    if lang in ("de", "uk", "da"):
         s = s.replace(".", ",")
     return s
 

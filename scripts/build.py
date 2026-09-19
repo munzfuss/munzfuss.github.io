@@ -1689,10 +1689,10 @@ def build_landing(
     # and consolidate «/<root_lang>/» → «/».
 
 
-def generate_assets(theme: dict) -> None:
+def generate_assets(theme: dict, languages: list[str] | None = None) -> None:
     assets_dir = SITE_DIR / "assets"
     assets_dir.mkdir(parents=True, exist_ok=True)
-    css = generate_css(theme)
+    css = generate_css(theme, languages)
     with open(assets_dir / "style.css", "w", encoding="utf-8") as f:
         f.write(css)
     print(f"🎨 CSS: {(assets_dir / 'style.css').relative_to(REPO_ROOT)} "
@@ -2141,7 +2141,10 @@ def main():
               f"from the grid. Run a full `python scripts/build.py` to refresh "
               f"the landing.")
 
-    generate_assets(theme)
+    # `site.languages`, not the possibly `--lang`-narrowed `languages`: the
+    # stylesheet is written once per site and must serve every language that
+    # site publishes, whatever a partial build happened to render.
+    generate_assets(theme, site.languages)
     copy_static_root(site.static_path)
 
     # sitemap.xml + robots.txt — only on a FULL build (needs every location and
