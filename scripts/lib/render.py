@@ -9,7 +9,6 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from . import i18n
 from . import styles
-from .categorize import LocationTree
 
 
 def build_env(template_dir: str) -> Environment:
@@ -291,53 +290,6 @@ def resolve_tips(items, ui: dict, lang: str) -> str:
             text = text.replace("{" + slot + "}", value)
         out.append(text)
     return "\n".join(out)
-
-
-def render_location(
-    tree: LocationTree,
-    ui: dict,
-    theme: dict,
-    lang: str,
-    template_dir: str,
-    languages_available: list[str],
-) -> str:
-    env = build_env(template_dir)
-    tmpl = env.get_template("location.html.j2")
-
-    return tmpl.render(
-        tree=tree,
-        ui=ui,
-        theme=theme,
-        lang=lang,
-        languages=languages_available,
-        ui_get=lambda k, l=lang: i18n.ui_get(ui, k, l),
-        t=lambda v, l=lang: i18n.t(v, l),
-        fmt_num=lambda v, **kw: i18n.fmt_num(v, lang, **kw),
-        fmt_delta=lambda g, p: i18n.fmt_delta(g, p, lang),
-        tips=lambda items: resolve_tips(items, ui, lang),
-    )
-
-
-def render_landing(
-    locations: list,
-    ui: dict,
-    theme: dict,
-    lang: str,
-    languages_available: list[str],
-    template_dir: str,
-) -> str:
-    env = build_env(template_dir)
-    tmpl = env.get_template("landing.html.j2")
-
-    return tmpl.render(
-        locations=locations,
-        ui=ui,
-        theme=theme,
-        lang=lang,
-        languages=languages_available,
-        ui_get=lambda k, l=lang: i18n.ui_get(ui, k, l),
-        t=lambda v, l=lang: i18n.t(v, l),
-    )
 
 
 def generate_css(theme: dict, languages: list[str] | None = None) -> str:

@@ -194,11 +194,12 @@ class DerivedTooltipsAreLocalised(unittest.TestCase):
 
 class TemplatesResolveTooltips(unittest.TestCase):
     def test_the_build_supplies_every_helper_the_template_calls(self):
-        """`resolve_tips` was added to `render.py::render_location` — which
-        the build does not use. build.py renders through its own context, so
-        both full builds died on «'tips' is undefined» after the unit tests
-        for the resolver itself had passed. Verifying a helper in isolation
-        says nothing about whether the renderer hands it to the template.
+        """`resolve_tips` was added to a `render_location` in render.py that
+        nothing called — dead since the initial commit, and since deleted.
+        build.py renders through its own context, so both full builds died on
+        «'tips' is undefined» after the unit tests for the resolver itself had
+        passed. Verifying a helper in isolation says nothing about whether the
+        renderer hands it to the template.
 
         Scans the template for names called as FUNCTIONS, having removed the
         inline <script> blocks (JS keywords are not Jinja) and subtracted the
