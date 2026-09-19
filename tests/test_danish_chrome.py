@@ -193,6 +193,42 @@ class DerivedTooltipsAreLocalised(unittest.TestCase):
 
 
 class TemplatesResolveTooltips(unittest.TestCase):
+    def test_the_build_supplies_every_helper_the_template_calls(self):
+        """`resolve_tips` was added to `render.py::render_location` — which
+        the build does not use. build.py renders through its own context, so
+        both full builds died on «'tips' is undefined» after the unit tests
+        for the resolver itself had passed. Verifying a helper in isolation
+        says nothing about whether the renderer hands it to the template.
+
+        Scans the template for names called as FUNCTIONS, having removed the
+        inline <script> blocks (JS keywords are not Jinja) and subtracted the
+        filters, which are registered on the environment rather than passed
+        in the context. What remains must be bound in build.py — the live
+        render path, not render.py's unused one.
+        """
+        import re
+        tpl = (ROOT / "templates/location.html.j2").read_text(encoding="utf-8")
+        tpl = re.sub(r"<script.*?</script>", "", tpl, flags=re.S | re.I)
+        build = (ROOT / "scripts/build.py").read_text(encoding="utf-8")
+        render = (ROOT / "scripts/lib/render.py").read_text(encoding="utf-8")
+
+        called = set(re.findall(r"(?<![.\w])([a-z_][a-z0-9_]*)\(", tpl))
+        local = set(re.findall(r"{%-?\s*(?:set|macro)\s+([a-z_][a-z0-9_]*)", tpl))
+        filters = set(re.findall(r'env\.filters\[[\'"]([a-z_0-9]+)[\'"]\]', render))
+        css = {"var", "calc", "rgb", "rgba", "url", "translate", "clamp"}
+        builtins = {"range", "dict", "len", "namespace", "join", "default",
+                    "int", "float", "round", "list", "lower", "upper", "trim",
+                    "replace", "format", "items", "get", "startswith", "split",
+                    "abs", "min", "max", "sum", "attr", "sort"}
+        provided = set(re.findall(r"^\s*([a-z_][a-z0-9_]*)=", build, re.M))
+
+        missing = sorted(called - local - filters - builtins - css - provided)
+        self.assertEqual(missing, [],
+                         f"template calls {missing}; build.py binds none of them")
+        # The scan is only meaningful if it actually sees the helpers.
+        self.assertIn("tips", called)
+        self.assertIn("tips", provided)
+
     def test_no_measurement_tooltip_joins_raw_sources(self):
         """A `sources|join` left behind would print the raw
         «marker.derived_split\x1fbruun» at the reader."""

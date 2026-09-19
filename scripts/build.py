@@ -36,7 +36,7 @@ from lib.timeline import (
     founding_mint_start,
 )
 from lib.compute import compute_location
-from lib.render import build_env, generate_css
+from lib.render import build_env, generate_css, resolve_tips
 from lib.schema import Location, Fuss, I18nText, Coin
 from lib.sites import DEFAULT_SITE, SiteProfileError, load_site, page_urls
 from lib.v2_seed_writer import normalise_nominal_display
@@ -1484,6 +1484,9 @@ def build_location(
             fmt_num=lambda v, **kw: i18n.fmt_num(v, lang, **kw),
             fmt_delta=lambda g, p: i18n.fmt_delta(g, p, lang),
             fmt_date=lambda d, l=lang: i18n.fmt_date(d, l),
+            # Resolves a tooltip line that is a localisation KEY rather than a
+            # source label — see lib/render.py::resolve_tips.
+            tips=lambda items, l=lang: resolve_tips(items, ui, l),
         )
 
         # Inline-refs post-processing pass (introduced 2026-05-25, see
