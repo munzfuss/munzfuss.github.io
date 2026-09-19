@@ -6,15 +6,21 @@
 # data/v2/locations/denmark.yml and the same Danish entity finals that
 # munzfuss reads.
 #
-# `languages` is the ONE place the Danish language is switched on; adding
-# `da` here is the whole of that change on the build side (the prose then
-# needs `da:` keys, which is a separate body of work).
+# `languages` is the ONE place the Danish language is switched on, and
+# `root_lang` makes it the version served at «/». Say plainly what that
+# means today: the CHROME is Danish — navigation, column headers, category
+# labels, the coin notes — while the historical prose (denmark.yml, the
+# Müntzfuß cards, the bibliography) is not yet, and every untranslated slot
+# falls back to English silently. So the front page is Danish furniture
+# around English prose. Moving `root_lang` back to `en` is a one-line
+# reversal if that reads badly while the prose is being written; measure
+# what is left with `audit_i18n.py --lang da`.
 id: danskmoent
 origin: https://danskmoent.github.io
 out_dir: site-danskmoent
 locations: [denmark]
-languages: [de, en, uk]
-root_lang: en
+languages: [da, de, en, uk]
+root_lang: da
 landing: false
 mount: root
 # Its own root-served files, NOT munzfuss's: a Search Console token proves
