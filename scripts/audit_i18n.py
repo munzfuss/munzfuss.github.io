@@ -61,6 +61,12 @@ except ImportError:
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
+# The languages every translated slot is EXPECTED to carry. Danish is not
+# among them: it renders on one site only and its prose is being written
+# surface by surface, so auditing it by default would report several hundred
+# deliberate gaps as errors on every commit — and the pre-commit hook treats
+# a prose error as a hard block. `--lang da` opts in and turns that gap into
+# the number it is: the remaining work, measured.
 LANGS = ("de", "en", "uk")
 
 
@@ -455,7 +461,14 @@ def main() -> int:
     ap.add_argument("--location", help="lint only this location's yamls")
     ap.add_argument("--rule", help="filter rule(s) by prefix, e.g. R1")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--lang", action="append", metavar="CODE", default=[],
+                    help="also require this language (e.g. --lang da). Off by "
+                         "default: see the note on LANGS.")
     args = ap.parse_args()
+
+    if args.lang:
+        global LANGS
+        LANGS = LANGS + tuple(l for l in args.lang if l not in LANGS)
 
     hits: list[Hit] = []
     for path in collect_files(args):

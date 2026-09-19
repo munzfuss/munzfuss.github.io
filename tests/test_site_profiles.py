@@ -29,6 +29,7 @@ from lib.sites import (  # noqa: E402
 )
 
 THREE = ["de", "en", "uk"]
+FOUR = ["da", "de", "en", "uk"]   # danskmoent, once Danish is switched on
 
 
 def _profile(**over) -> SiteProfile:
@@ -79,8 +80,11 @@ class ProfileValidation(unittest.TestCase):
                 _profile(**kwargs)
 
     def test_root_lang_must_be_rendered(self):
+        """`root_lang` names the version copied to the site root; a value
+        outside `languages` would silently leave the root empty. (The case
+        used to be spelled with «da», which now reads as a real language.)"""
         with self.assertRaises(Exception):
-            _profile(root_lang="da")          # not in `languages`
+            _profile(root_lang="zz")          # not in `languages`
 
     def test_origin_must_not_end_in_a_slash(self):
         """It is concatenated with base_url + an absolute path, so a trailing
@@ -111,6 +115,20 @@ class ShippedProfiles(unittest.TestCase):
         self.assertEqual(d.locations, ["denmark"])
         self.assertFalse(set(m.all_except) - set(d.locations),
                          "a location munzfuss drops must be published somewhere")
+
+    def test_only_the_danish_site_renders_danish(self):
+        """Danish exists for this one page. Switching it on for munzfuss too
+        would put a language with no prose behind it on twelve German pages,
+        each silently falling back to English."""
+        m, d = load_site("munzfuss"), load_site("danskmoent")
+        self.assertEqual(d.languages, ["da", "de", "en", "uk"])
+        self.assertEqual(d.root_lang, "da")
+        self.assertNotIn("da", m.languages)
+        self.assertEqual(m.root_lang, "en")
+
+    def test_the_danish_site_leads_with_danish(self):
+        """`languages` order is the hreflang and switcher order."""
+        self.assertEqual(load_site("danskmoent").languages[0], "da")
 
     def test_danskmoent_is_one_page_at_its_own_root(self):
         p = load_site("danskmoent")
@@ -183,6 +201,39 @@ class RootMountedUrls(unittest.TestCase):
     def test_alternates_point_the_root_language_at_the_root(self):
         self.assertEqual(self.urls("en")["alternates"],
                          [("de", "/"), ("en", "/en/"), ("uk", "/uk/")])
+
+
+class DanishDefaultAtTheRoot(unittest.TestCase):
+    """The shape danskmoent takes once Danish is its default: four languages,
+    root-mounted, and the default one collapsing onto «/».
+
+    Exercised separately from RootMountedUrls because both bugs this whole
+    extraction exists to stop are invisible when the default is English — the
+    wrong answer and the right one coincide at `/en/`.
+    """
+
+    def urls(self, lang):
+        return page_urls("", "", FOUR, lang, "da", True)
+
+    def test_danish_is_the_root_and_has_no_directory_of_its_own(self):
+        self.assertEqual(self.urls("da")["canonical"], "/")
+
+    def test_german_no_longer_collapses_just_because_it_is_first_alphabetically(self):
+        """`da` sorts before `de`; the collapse follows root_lang, not order."""
+        self.assertEqual(self.urls("de")["canonical"], "/de/")
+
+    def test_every_language_agrees_on_one_x_default(self):
+        self.assertEqual({self.urls(l)["x_default"] for l in FOUR}, {"/"})
+
+    def test_the_hreflang_cluster_covers_all_four(self):
+        self.assertEqual(self.urls("en")["alternates"],
+                         [("da", "/"), ("de", "/de/"), ("en", "/en/"),
+                          ("uk", "/uk/")])
+
+    def test_a_fourth_language_does_not_disturb_a_tree_mount(self):
+        """munzfuss keeps three; nothing here is global state."""
+        u = page_urls("", "/lubeck", THREE, "en", "de", False)
+        self.assertEqual(u["canonical"], "/lubeck/en/")
 
 
 class BaseUrlPrefix(unittest.TestCase):

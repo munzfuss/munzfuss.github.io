@@ -26,6 +26,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import build as bld  # noqa: E402
 
 THREE = ["de", "en", "uk"]
+FOUR = ["da", "de", "en", "uk"]
 
 
 class SeoTreeCase(unittest.TestCase):
@@ -89,6 +90,38 @@ class RootMountedSinglePage(SeoTreeCase):
 
     def test_x_default_is_always_the_root(self):
         self.build(root_lang="de")
+        self.assertEqual(self.x_defaults(), {"https://t.example/"})
+
+
+class FourLanguageRootMount(SeoTreeCase):
+    """danskmoent with Danish switched on and made the default.
+
+    The sitemap is derived from the RENDERED tree, not from the profile, so
+    it is the one place the site's shape has to be re-discovered from disk —
+    and the root language is on disk TWICE, at «/» and at «/<lang>/». If the
+    sitemap names the wrong one, every page's rel=canonical and the sitemap
+    give search engines contradictory answers while the build exits 0.
+    """
+
+    def build(self):
+        for lang in FOUR:
+            self.page(lang)
+        (self.site / "index.html").write_text("<html></html>", encoding="utf-8")
+        bld.generate_seo_files(FOUR, "", root_lang="da")
+
+    def test_the_danish_copy_is_listed_as_the_root_only(self):
+        self.build()
+        self.assertIn("https://t.example/", self.locs())
+        self.assertNotIn("https://t.example/da/", self.locs())
+
+    def test_the_other_three_keep_their_own_urls(self):
+        self.build()
+        for lang in ("de", "en", "uk"):
+            self.assertIn(f"https://t.example/{lang}/", self.locs())
+        self.assertEqual(len(self.locs()), 4)
+
+    def test_x_default_is_the_danish_root(self):
+        self.build()
         self.assertEqual(self.x_defaults(), {"https://t.example/"})
 
 
