@@ -616,3 +616,35 @@ phase.label:
   en: Phase
   uk: Фаза
   da: Fase
+
+# Tooltips on a DERIVED measurement — fine weight and Δ are weight × fineness,
+# computed by the build rather than cited, so the tooltip names both inputs'
+# sources instead of claiming a source for the product itself (§0). `{w}` is
+# the weight source, `{f}` the fineness source.
+#
+# These were a literal Ukrainian string inside compute.py, which runs once per
+# location for every language — so every German and English page carried
+# «Обчислено з вагою з:» until 2026-09-19.
+marker.derived_both:
+  de: "Errechnet aus Gewicht × Feingehalt von:\n{w}"
+  en: "Computed from weight × fineness of:\n{w}"
+  uk: "Обчислено з вагою × пробою з:\n{w}"
+  da: "Beregnet af vægt × finhed fra:\n{w}"
+
+marker.derived_split:
+  de: "Errechnet aus Gewicht von:\n{w}\nmit Feingehalt von:\n{f}"
+  en: "Computed from weight from:\n{w}\nwith fineness from:\n{f}"
+  uk: "Обчислено з вагою з:\n{w}\nз пробою з:\n{f}"
+  da: "Beregnet af vægt fra:\n{w}\nmed finhed fra:\n{f}"
+
+marker.derived_weight:
+  de: "Errechnet aus Gewicht von:\n{w}"
+  en: "Computed from weight from:\n{w}"
+  uk: "Обчислено з вагою з:\n{w}"
+  da: "Beregnet af vægt fra:\n{w}"
+
+marker.derived_fineness:
+  de: "Errechnet aus Feingehalt von:\n{f}"
+  en: "Computed from fineness from:\n{f}"
+  uk: "Обчислено з пробою з:\n{f}"
+  da: "Beregnet af finhed fra:\n{f}"

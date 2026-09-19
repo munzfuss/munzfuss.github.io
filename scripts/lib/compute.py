@@ -651,6 +651,11 @@ _KM_REGISTER_TOOLTIP: dict[str, str] = {
 # wrong for two thirds of the Norwegian rows. Labelling them while marking the
 # inference keeps the reader oriented without asserting a source that does not
 # exist (§0 / §4).
+# Separator between a tooltip KEY and its arguments (see `_derived_label`).
+# A unit separator rather than a printable character: source labels are free
+# text and must never be able to look like a delimiter.
+DERIVED_SEP = "\x1f"
+
 _HEDE_NORGE_TOOLTIP_ATTESTED = "marker.hede_norge_attested"
 _HEDE_NORGE_TOOLTIP_INFERRED = "marker.hede_norge_inferred"
 
@@ -1095,23 +1100,29 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         primary_f_used, primary_f_used_src = fallback_f, fallback_f_src
 
     # Source label for a derived Feingewicht/delta. These are COMPUTED
-    # values (weight × fineness), NOT cited from a source — the label
-    # says «обчислено з …» and names BOTH inputs' sources. When one
-    # source supplied both (own-pair) it collapses to a single «вагою ×
-    # пробою з: X»; when the weight source published no fineness of its
-    # own, the fallback fineness source is STILL named so the reader can
-    # trace which fineness the multiplication actually used (e.g. weight
-    # from bruun, fineness from hede).
+    # values (weight × fineness), NOT cited from a source — the label says so
+    # and names BOTH inputs' sources. When one source supplied both
+    # (own-pair) it collapses to a single «weight × fineness from: X»; when
+    # the weight source published no fineness of its own, the fallback
+    # fineness source is STILL named so the reader can trace which fineness
+    # the multiplication actually used (e.g. weight from bruun, fineness from
+    # hede).
+    #
+    # A KEY plus its arguments, not a sentence. `compute_location` runs ONCE
+    # per location while the page renders in every language the site
+    # publishes, so a literal here freezes one of them for all — which is
+    # exactly what happened: this label was Ukrainian, and shipped that way
+    # on every German and English page. Same reason `_HEDE_NORGE_TOOLTIP_*`
+    # above are keys. Resolved per language by `tips()` (lib/render.py).
     def _derived_label(w_src, f_src):
         if w_src and f_src:
             if _toks(w_src) & _toks(f_src):
-                return f"Обчислено з вагою × пробою з:\n{w_src}"
-            return (f"Обчислено з вагою з:\n{w_src}\n"
-                    f"з пробою з:\n{f_src}")
+                return DERIVED_SEP.join(("marker.derived_both", w_src))
+            return DERIVED_SEP.join(("marker.derived_split", w_src, f_src))
         if w_src:
-            return f"Обчислено з вагою з:\n{w_src}"
+            return DERIVED_SEP.join(("marker.derived_weight", w_src))
         if f_src:
-            return f"Обчислено з пробою з:\n{f_src}"
+            return DERIVED_SEP.join(("marker.derived_fineness", f_src))
         return None
 
     cc.primary_derived_source = _derived_label(cc.primary_weight_source,

@@ -258,6 +258,41 @@ def group_timeline_bars(bars):
     return groups
 
 
+def resolve_tips(items, ui: dict, lang: str) -> str:
+    """Join a tooltip's lines, resolving any that are a localisation KEY.
+
+    A tooltip line is normally a source label — free text, passed through
+    untouched. But a DERIVED measurement's label is written by
+    `lib/compute.py::_derived_label`, which runs once per location for every
+    language the site publishes and therefore cannot spell a sentence. It
+    emits `marker.<key>\x1f<arg>…` instead, and this resolves it against
+    data/i18n/ui.yml, substituting `{w}` (weight source) and `{f}` (fineness
+    source).
+
+    An unknown key is left as the raw label rather than rendered as `[key]`:
+    a tooltip is an aid, and showing a bracketed key in its place would be
+    worse than showing the untranslated text.
+    """
+    from .compute import DERIVED_SEP
+
+    out: list[str] = []
+    for item in items or []:
+        if not isinstance(item, str) or DERIVED_SEP not in item:
+            out.append(item)
+            continue
+        key, *args = item.split(DERIVED_SEP)
+        text = i18n.ui_get(ui, key, lang)
+        if text.startswith("["):          # ui_get's not-found form
+            out.append(DERIVED_SEP.join(args))
+            continue
+        names = dict(zip(("w", "f"), args))
+        # `.format` would choke on a source label containing a brace.
+        for slot, value in names.items():
+            text = text.replace("{" + slot + "}", value)
+        out.append(text)
+    return "\n".join(out)
+
+
 def render_location(
     tree: LocationTree,
     ui: dict,
@@ -279,6 +314,7 @@ def render_location(
         t=lambda v, l=lang: i18n.t(v, l),
         fmt_num=lambda v, **kw: i18n.fmt_num(v, lang, **kw),
         fmt_delta=lambda g, p: i18n.fmt_delta(g, p, lang),
+        tips=lambda items: resolve_tips(items, ui, lang),
     )
 
 

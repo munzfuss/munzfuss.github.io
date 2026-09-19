@@ -25,7 +25,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from lib import i18n  # noqa: E402
-from lib.render import _FIN_UNITS, strip_phase_marker  # noqa: E402
+from lib.compute import DERIVED_SEP  # noqa: E402
+from lib.render import _FIN_UNITS, resolve_tips, strip_phase_marker  # noqa: E402
 
 UI = yaml.safe_load((ROOT / "data/i18n/ui.yml").read_text(encoding="utf-8"))
 ENTITIES = yaml.safe_load(
@@ -143,6 +144,62 @@ class PhaseMarkerIsNotDoubled(unittest.TestCase):
 
     def test_none_does_not_crash(self):
         self.assertEqual(strip_phase_marker(None, "I"), "")
+
+
+class DerivedTooltipsAreLocalised(unittest.TestCase):
+    """`compute_location` runs ONCE per location while the page renders in
+    every language the site publishes, so a sentence written there is frozen
+    for all of them. This one was written in Ukrainian, and ~12 900 of them
+    shipped on every German and English page. It is a key plus arguments now,
+    resolved per language at render time — the same thing
+    `_HEDE_NORGE_TOOLTIP_*` already did."""
+
+    def tip(self, lang, *parts):
+        return resolve_tips([DERIVED_SEP.join(parts)], UI, lang)
+
+    def test_each_language_gets_its_own_sentence(self):
+        got = {l: self.tip(l, "marker.derived_split", "bruun", "hede")
+               for l in ("de", "en", "uk", "da")}
+        self.assertEqual(len(set(got.values())), 4, got)
+        for lang, text in got.items():
+            with self.subTest(lang=lang):
+                self.assertIn("bruun", text)
+                self.assertIn("hede", text)
+
+    def test_no_language_gets_the_ukrainian_one(self):
+        for lang in ("de", "en", "da"):
+            with self.subTest(lang=lang):
+                self.assertNotIn("Обчислено", self.tip(lang, "marker.derived_both", "kmk"))
+
+    def test_a_plain_source_label_passes_through_untouched(self):
+        """Most tooltip lines are source names, not keys."""
+        self.assertEqual(resolve_tips(["kmk", "numista"], UI, "de"), "kmk\nnumista")
+
+    def test_an_unknown_key_shows_the_sources_not_a_bracketed_key(self):
+        """A tooltip is an aid; «[marker.nope]» in place of it is worse than
+        the bare label."""
+        self.assertEqual(self.tip("de", "marker.nope", "kmk"), "kmk")
+
+    def test_a_source_label_containing_a_brace_survives(self):
+        """`.format` would raise on it; the substitution is a plain replace."""
+        self.assertIn("a{b}c", self.tip("en", "marker.derived_weight", "a{b}c"))
+
+    def test_every_derived_key_exists_in_all_four_languages(self):
+        for key in ("marker.derived_both", "marker.derived_split",
+                    "marker.derived_weight", "marker.derived_fineness"):
+            for lang in ("de", "en", "uk", "da"):
+                with self.subTest(key=key, lang=lang):
+                    self.assertTrue((UI[key] or {}).get(lang))
+
+
+class TemplatesResolveTooltips(unittest.TestCase):
+    def test_no_measurement_tooltip_joins_raw_sources(self):
+        """A `sources|join` left behind would print the raw
+        «marker.derived_split\x1fbruun» at the reader."""
+        text = (ROOT / "templates/location.html.j2").read_text(encoding="utf-8")
+        for line in text.splitlines():
+            if "sources|join" in line:
+                self.fail(f"unresolved tooltip join: {line.strip()[:70]}")
 
 
 if __name__ == "__main__":
