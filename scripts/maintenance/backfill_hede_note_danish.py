@@ -1,0 +1,300 @@
+#!/usr/bin/env python3
+"""Give the Hede-derived coin `note`s their Danish text back.
+
+WHY THIS IS NOT A TRANSLATION
+-----------------------------
+These notes were written FROM danskmoent.dk's Hede pages, which are Danish.
+The German and English we render are the translation; the Danish is the
+original, and it is already on disk in `scripts/cache/hede/<page>.json`
+under `description`. So this restores a source text rather than producing a
+new one — no network, no model, no §0 exposure: every character comes from
+the cited source.
+
+WHAT IS AND IS NOT TOUCHED
+--------------------------
+Only coins where ALL of the following hold, because anything looser stops
+being a restoration:
+
+  * the coin renders on the Danish page (the four entities `denmark.yml`
+    consumes, inside their year caps) and its `note` has no `da`;
+  * a Hede page for its catalogue number is in the cache WITH a description;
+  * that coin has NO Numista obverse/reverse description. This is the load-
+    bearing exclusion. Where Numista also describes the type, our note is
+    the NUMISTA description — richer, and about both faces — so substituting
+    Hede's «Forside: portræt, bagside: våbenskjold» would silently DOWNGRADE
+    the Danish reader's text while the other three languages keep the full
+    one. Those coins stay English until someone translates them;
+  * the German note opens «Vorderseite» and the Hede lead opens «Forside»,
+    and the two are within 30 % of each other in length. A note that opens
+    with a nominal is curator prose about one specimen, not a rendering of
+    the Hede page, and the Hede text is not a substitute for it;
+  * the `note:` line carries no YAML anchor. The emitter shares one mapping
+    across coins with identical notes, and a per-coin Danish text must never
+    reach a coin it was not read for.
+
+Everything rejected is counted and printed. That number is the remaining
+work, not an error.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+import yaml
+
+REPO = Path(__file__).resolve().parents[2]
+FINAL = REPO / "data" / "v2" / "final"
+HEDE = REPO / "scripts" / "cache" / "hede"
+NUMISTA = REPO / "scripts" / "cache" / "numista"
+FOLD_WIDTH = 200
+
+# entity -> inclusive year cap, per `denmark.yml::consumes_entities`.
+DENMARK_ENTITIES = {
+    "danish_realm": None,
+    "danish_norway": 1814,
+    "royal_holstein": 1864,
+    "gottorp_duchy": 1543,
+}
+
+# Lines below which the Hede page stops being prose: the measurement block
+# and the mintmark/variant apparatus the HTML flattened into the same field.
+_METRIC = re.compile(
+    r"^(Vægt|Bruttovægt|Finhed|Finvægt|Marken fin|Randskrift|Møntmestermærke"
+    r"|Sieg skelner|Illustrationen|Stemplerne)\b")
+_CAT_PAREN = re.compile(r"\((?:Hede|Schou|Sieg|KM|Galster|Fr)[^)]*\)")
+# Where the prose ends and the flattened variant table begins.
+_TABLE = re.compile(
+    r"(?:\b[A-E]\)|\bHede\b|\bSchou\b|\bSieg\b|\bÅr:|U\.år|\((?:R{1,3}|Unik)\))")
+_TABLE_LEFTOVER = re.compile(
+    r"(?:\b[A-E]\)|\bHede\b|\bSchou\b|\bSieg\b|\(R{1,3}\)|\(Unik\))")
+# Words that begin a sentence whose full stop went missing with the inline
+# mintmark image that used to precede them.
+_SENTENCE = ("Møntmester", "Møntmærke", "Udmøntet", "Kaldet", "Slået", "Ved ",
+             "Indskriften", "Mønten", "Del ")
+
+
+def hede_lead(desc: str) -> str:
+    """The prose part of a Hede page description, as one paragraph."""
+    kept: list[str] = []
+    for line in desc.replace("\r", "").split("\n"):
+        if _METRIC.match(line.strip()):
+            break
+        kept.append(line)
+    t = re.sub(r"\s*\n\s*", " ", "\n".join(kept))
+    t = _CAT_PAREN.sub("", t)
+    m = _TABLE.search(t)
+    if m:
+        t = t[:m.start()]
+    t = re.sub(r"\s{2,}", " ", t).strip()
+    t = re.sub(r"\s+([.,;:])", r"\1", t)
+    # Repair what the dropped inline images left behind.
+    t = re.sub(r",\s*,", ",", t)
+    t = re.sub(r":\s*\.", ".", t)
+    t = re.sub(r"\.{2,}", ".", t)
+    t = re.sub(r":\s*,", ",", t)
+    t = re.sub(r"(?<=[a-zæøåA-ZÆØÅ]) (?=(?:%s))" % "|".join(_SENTENCE), ". ", t)
+    t = re.sub(r"(?:^|(?<=\. ))Møntmestermærke[.:]\s*", "", t)
+    t = re.sub(r"\s{2,}", " ", t).strip(" ,;:")
+    if t and not t.endswith((".", "»", "!", "?")):
+        t += "."
+    return t
+
+
+def is_restoration(de: str, da: str) -> bool:
+    """True when `da` is plausibly the text `de` was translated from."""
+    if not de.startswith("Vorderseite") or not da.startswith("Forside"):
+        return False
+    if len(da) < 25 or _TABLE_LEFTOVER.search(da):
+        return False
+    return 0.70 <= len(da) / len(de) <= 1.40
+
+
+def _as_list(v) -> list:
+    if v is None:
+        return []
+    return v if isinstance(v, list) else [v]
+
+
+def danish_by_coin(entity: str, cap: int | None) -> tuple[dict[str, str], int]:
+    """{coin id: Danish note} for one entity, plus the count left behind."""
+    doc = yaml.safe_load((FINAL / f"{entity}.yml").read_text(encoding="utf-8"))
+    found: dict[str, str] = {}
+    left = 0
+    for coin in (doc.get("coins") or []):
+        yf = coin.get("year_first")
+        if cap is not None and (yf is None or yf > cap):
+            continue
+        note = coin.get("note")
+        if not isinstance(note, dict) or "da" in note:
+            continue
+        left += 1
+        cat = coin.get("catalog") or {}
+        volume = cat.get("hede_volume")
+        desc = ""
+        for number in _as_list(cat.get("hede")):
+            page = HEDE / f"{volume}{number}.json" if volume else None
+            if page and page.is_file():
+                text = (json.loads(page.read_text(encoding="utf-8"))
+                        .get("description") or "").strip()
+                if text:
+                    desc = text
+        if not desc:
+            continue
+        # Numista describes this type → our note is Numista's, not Hede's.
+        if any(
+            (NUMISTA / f"{n}.json").is_file()
+            and ((json.loads((NUMISTA / f"{n}.json").read_text(encoding="utf-8"))
+                  .get("obverse") or {}).get("description"))
+            for n in _as_list(cat.get("numista"))
+        ):
+            continue
+        de = (note.get("de") or "").strip()
+        da = hede_lead(desc)
+        if is_restoration(de, da):
+            found[coin["id"]] = da
+            left -= 1
+    return found, left
+
+
+# A coin item starts at «  - <key>:» and its keys are plain at that depth, so
+# `id:` can sit after `note:` in the mapping — the id is read per CHUNK, not
+# as a line that happens to precede the note.
+_ITEM_RE = re.compile(r"^  - \S")
+_ID_LINE_RE = re.compile(r"^    id: (?P<id>\S+)\s*$")
+# An anchored note is shared with other coins — never give it a per-coin text.
+_NOTE_RE = re.compile(r"^(?P<indent>\s*)note:\s*$")
+_LANG_RE = re.compile(r"^(?P<indent>\s*)(?P<lang>de|en|uk|da): (?P<rest>.*)$")
+
+
+def unfold(first: str, cont: list[str]) -> str:
+    return yaml.safe_load(
+        "v: " + first + "".join("\n  " + c.strip() for c in cont))["v"]
+
+
+def fold(indent: str, key: str, text: str) -> list[str]:
+    if ": " in text or " #" in text or text[:1] in "-?:,[]{}#&*!|>'\"%@`":
+        text = "'" + text.replace("'", "''") + "'"
+    cont = indent + "  "
+    lines, cur = [], f"{indent}{key}: "
+    for word in text.split(" "):
+        if cur.strip() and len(cur) + len(word) + 1 > FOLD_WIDTH:
+            lines.append(cur.rstrip() + " ")
+            cur = cont
+        cur += word + " "
+    lines.append(cur.rstrip())
+    return lines
+
+
+def process(raw: str, danish: dict[str, str]) -> tuple[str, int]:
+    lines = raw.split("\n")
+    # Pre-read each coin chunk's id, so a `note:` knows which coin it is on
+    # regardless of where `id:` sits in the mapping.
+    id_of_line: list[str | None] = [None] * len(lines)
+    start, current = None, None
+    for n, line in enumerate(lines):
+        if _ITEM_RE.match(line):
+            start, current = n, None
+        m_id = _ID_LINE_RE.match(line)
+        if m_id and start is not None:
+            current = m_id.group("id")
+            for k in range(start, len(lines)):
+                if k > start and _ITEM_RE.match(lines[k]):
+                    break
+                id_of_line[k] = current
+    out: list[str] = []
+    added = 0
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        coin_id = id_of_line[i]
+        m = _NOTE_RE.match(line)
+        if not m or coin_id not in danish:
+            out.append(line)
+            i += 1
+            continue
+        note_indent = m.group("indent")
+        out.append(line)
+        i += 1
+        block: list[str] = []
+        langs: dict[str, str] = {}
+        key, first, cont = None, "", []
+
+        def close() -> None:
+            if key:
+                langs[key] = unfold(first, cont)
+
+        while i < len(lines):
+            line = lines[i]
+            if not line.strip():
+                break
+            lm = _LANG_RE.match(line)
+            if lm and lm.group("indent") == note_indent + "  ":
+                close()
+                key, first, cont = lm.group("lang"), lm.group("rest"), []
+                block.append(line)
+                i += 1
+                continue
+            if key and line.startswith(note_indent + "    "):
+                cont.append(line)
+                block.append(line)
+                i += 1
+                continue
+            break
+        close()
+        out.extend(block)
+        # Exact-text guard: the Danish was read against THIS German scalar.
+        if "da" in langs or langs.get("de", "").strip() == "":
+            continue
+        out.extend(fold(note_indent + "  ", "da", danish[coin_id]))
+        added += 1
+    return "\n".join(out), added
+
+
+def _strip_da(doc) -> None:
+    for coin in (doc.get("coins") or []):
+        note = coin.get("note")
+        if isinstance(note, dict):
+            note.pop("da", None)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--apply", action="store_true",
+                    help="write changes (default: dry run)")
+    args = ap.parse_args()
+
+    total_added = total_left = 0
+    for entity, cap in DENMARK_ENTITIES.items():
+        path = FINAL / f"{entity}.yml"
+        danish, left = danish_by_coin(entity, cap)
+        raw = path.read_text(encoding="utf-8")
+        new, added = process(raw, danish)
+        total_added += added
+        total_left += left
+        print(f"  {added:5}  +da   {left:4} left   {path.name}")
+        if not added:
+            continue
+        before, after = yaml.safe_load(raw), yaml.safe_load(new)
+        _strip_da(before)
+        _strip_da(after)
+        assert before == after, f"{path.name}: the edit changed more than `da`"
+        parsed = yaml.safe_load(new)
+        for coin in (parsed.get("coins") or []):
+            if coin["id"] in danish:
+                got = (coin.get("note") or {}).get("da")
+                assert got == danish[coin["id"]], f"{coin['id']}: wrong text"
+        if args.apply:
+            path.write_text(new, encoding="utf-8")
+    print(f"{'restored' if args.apply else 'would restore'}: {total_added} "
+          f"Danish notes from the Hede cache; {total_left} notes still "
+          f"English (Numista-described, curator prose, or no cached page)")
+    if not args.apply:
+        print("(dry run — pass --apply to write)")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

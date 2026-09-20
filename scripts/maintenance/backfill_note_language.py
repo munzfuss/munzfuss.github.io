@@ -238,6 +238,8 @@ def process(raw: str) -> tuple[str, int, int]:
             continue
         da = DA_BY_EN.get(langs.get("en", ""))
         if da is None:
+            da = da_from_pattern(langs.get("de", ""))
+        if da is None:
             skipped += 1
             continue
         out.extend(fold(note_indent + "  ", "da", da))
@@ -272,6 +274,10 @@ def main() -> int:
             # Parse guard: the file must still load, and adding a key must
             # not have changed anything else about it.
             before, after = yaml.safe_load(raw), yaml.safe_load(new)
+            # Strip `da` from BOTH sides: on a second run the file already
+            # carries the leaves an earlier pass added, and stripping only the
+            # new document would report those as a loss.
+            _strip_da(before)
             _strip_da(after)
             assert before == after, f"{path.name}: the edit changed more than `da`"
             if args.apply:
@@ -284,6 +290,81 @@ def main() -> int:
     if not args.apply:
         print("(dry run — pass --apply to write)")
     return 0
+
+
+# ---------------------------------------------------------------------------
+# Interpolated families.
+#
+# These templates carry a per-coin value in the middle — a Müntzfuß name, a Δ,
+# the Hede overview filename, a harvest date — so they cannot be keyed on their
+# full text the way DA_BY_EN is. They are matched on the GERMAN scalar rather
+# than the English one for a single reason: German already writes the decimal
+# comma Danish needs, so a captured «−1,31 %» carries over untouched, whereas
+# the English «−1.31 %» would have to be re-punctuated and a botched substitution
+# there would print a wrong NUMBER rather than an untranslated word.
+#
+# The captured groups are passed through verbatim. A Müntzfuß name is one string
+# in every language (§2 tier 2), the index quote is already Danish (it is quoted
+# from danskmoent.dk), and the trailing Müntzfuß-convention fragment is carried
+# verbatim in German too.
+_PATTERNS: list[tuple[re.Pattern[str], str]] = [
+    # build_hede_denmark_seed.py — overview-row-only entries
+    (re.compile(
+        r"^Nur die Übersichtsreihe von (?P<page>\S+) belegt diesen Eintrag; die "
+        r"Hede-Tiefenseite fehlt auf danskmoent\.dk\. Gewicht und Probe sind dort "
+        r"nicht angegeben; sie wären den gedruckten Ausgaben Hede (?P<hede>\d+) und "
+        r"Galster (?P<galster>\d+) zu entnehmen\."
+        r"(?: Anmerkung im Index: «(?P<quote>.*)»)?$", re.S),
+     "Kun oversigtsrækken i {page} belægger denne post; Hede-dybdesiden mangler "
+     "på danskmoent.dk. Vægt og finhed er ikke angivet dér; de måtte tages fra de "
+     "trykte udgaver Hede {hede} og Galster {galster}."
+     "{_quote Note i indekset: «{quote}»}"),
+    # absorb_seeds_into_final_v2.py — canonical-fineness anchor
+    (re.compile(
+        r"^Probe nicht direkt belegt; aus dem kanonischen Müntzfuß-Standard "
+        r"\((?P<fuss>[^,)]*), Anker (?P<anchor>[\d,]+)\) übernommen"
+        r"(?P<single> — dieser Fuß kennt nur eine einzige Probe)?\. "
+        r"Δ (?P<delta>[+−-][\d,]+)\s% gegen den Soll-Wert liegt in der "
+        r"Spezimen-Toleranz\.$", re.S),
+     "Finheden er ikke direkte belagt; overtaget fra den kanoniske "
+     "møntfodsstandard ({fuss}, anker {anchor}){_single — denne fod kender kun én enkelt finhed}. "
+     "Δ {delta}\u00a0% i forhold til sollværdien ligger inden for specimen-tolerancen."),
+    # build_numista_seed.py — pre-1514 genealogy seed
+    (re.compile(
+        r"^Numista API-Seed \(pre-1514, vor Mission-Scope; geharvest "
+        r"(?P<date>[\d-]+) für Müntzfuß-Genealogie-Verständnis\)\. Spezifische "
+        r"Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen aus\.$",
+        re.S),
+     "Numista API-seed (før 1514, uden for missionens tidsramme; høstet {date} "
+     "for at forstå standardernes slægtskab). Den specifikke møntfods- og "
+     "faseplacering samt verifikationen af den enkelte mønt udestår stadig."),
+    # absorb — standard still to assign, metal inferred
+    (re.compile(
+        r"^Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun "
+        r"stehen noch aus\. Metall nicht direkt belegt; aus Münzfuß-Konvention "
+        r"abgeleitet: (?P<tail>.*)\.$", re.S),
+     "Møntfodsplacering og verifikation af den enkelte mønt mod Hede / Schön / "
+     "Bruun udestår stadig. Metallet er ikke direkte belagt; udledt af "
+     "møntfodskonventionen: {tail}."),
+]
+
+# `{_name text}` renders `text` only when group `name` matched, so one template
+# covers a family whose optional clause is present on some coins and not others.
+_OPTIONAL_RE = re.compile(r"\{_(?P<name>\w+)(?P<text>[^{}]*(?:\{\w+\}[^{}]*)*)\}")
+
+
+def da_from_pattern(de: str) -> str | None:
+    """Danish for one of the interpolated families, or None if none matches."""
+    for rx, template in _PATTERNS:
+        m = rx.match(de.strip())
+        if not m:
+            continue
+        groups = m.groupdict()
+        out = _OPTIONAL_RE.sub(
+            lambda o: (o.group("text") if groups.get(o.group("name")) else ""),
+            template)
+        return out.format(**{k: (v or "") for k, v in groups.items()})
+    return None
 
 
 def _strip_da(doc) -> None:
