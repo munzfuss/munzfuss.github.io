@@ -349,3 +349,80 @@ def edit_coin_field(
     lines[fi:span_end] = new_lines
     path.write_text(nl.join(lines))
     return True
+
+
+# ---------------------------------------------------------------------------
+# Canonical line rendering + round-trip residual.
+#
+# These two exist because LINE-BASED editing and STRUCTURAL editing were
+# quietly working against each other. A line-based edit is immune to the
+# reformat trap — that is the whole point of `edit_coin_field` — but a line
+# the author writes BY HAND is not necessarily the line the family's
+# serializer would emit. Write a 260-column scalar into a width-200 family and
+# nothing breaks today; the file's round-trip residual just goes up, and the
+# next session's structural edit pays for it as spurious diff. That is exactly
+# how data/shared/fuesse.yml went from a residual of 0 to 614 lines in one
+# session (2026-09-20) — every line hand-written, every line legal YAML.
+#
+# `canonical_lines()` closes the loop: render through the real serializer at
+# the real column, then splice. `round_trip_residual()` measures the debt, and
+# the pre-commit hook uses it to refuse a commit that RAISES it.
+# ---------------------------------------------------------------------------
+
+def canonical_lines(path_or_family, field: str, value, indent: int = 4) -> list[str]:
+    """The lines the family's serializer would emit for `field: value`.
+
+    `indent` is the column the key starts at (4 for a coin's own key inside
+    `coins: - …`, 6 for a nested one). Folding depends on the ABSOLUTE column,
+    so the value is rendered inside a nesting deep enough to put the key there
+    and the wrapper lines are dropped — rendering at column 0 and prefixing
+    spaces afterwards would fold at the wrong points, which is the bug this
+    function exists to prevent.
+    """
+    fam = path_or_family if path_or_family in _RUAMEL_CFG else family_of(path_or_family)
+    if fam not in _RUAMEL_CFG:
+        fam = "ruamel_shared"
+    if indent % 2:
+        raise ValueError(f"indent must be even, got {indent}")
+    depth = indent // 2
+    payload: Any = {field: value}
+    for i in range(depth):
+        payload = {f"_w{i}": payload}
+    import io
+    buf = io.StringIO()
+    _make_ruamel(fam).dump(payload, buf)
+    lines = buf.getvalue().split("\n")
+    while lines and lines[-1] == "":
+        lines.pop()
+    # One wrapper key per level, each on its own line, in order.
+    return lines[depth:]
+
+
+def round_trip_residual(path, raw: str | None = None) -> int:
+    """How many lines this file would move if it were round-tripped.
+
+    0 means a structural edit (`load()` / `save()`) shows only what changed.
+    Anything above is debt the next structural edit pays as noise. `raw`
+    overrides the file's content, so a caller can measure a blob from git
+    without writing it to disk under the right path.
+    """
+    import difflib
+    import io
+    path = Path(path)
+    text = path.read_text() if raw is None else raw
+    fam = family_of(path)
+    if fam == "pyyaml120":
+        header, body = _split_comment_header(text)
+        doc = _pyyaml.safe_load(body)
+        new = header + _pyyaml.dump(
+            doc, sort_keys=False, allow_unicode=True,
+            default_flow_style=False, width=_PYYAML_WIDTH)
+    else:
+        y = _make_ruamel(fam)
+        buf = io.StringIO()
+        y.dump(y.load(text), buf)
+        new = buf.getvalue()
+    diff = difflib.unified_diff(text.split("\n"), new.split("\n"),
+                                lineterm="", n=0)
+    return sum(1 for ln in diff
+               if ln[:1] in "+-" and not ln.startswith(("+++", "---")))
