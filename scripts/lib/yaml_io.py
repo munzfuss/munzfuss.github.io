@@ -259,12 +259,20 @@ def _render_field(indent: str, field: str, value) -> list[str]:
     """Render a scalar or list-valued field at the given indent. Strings are
     single-quoted to match the project's catalog-ref convention."""
     def q(v):
+        # bool BEFORE the str branch and before the fallback: Python's str()
+        # renders True/False capitalised, which YAML 1.1 still parses as a
+        # boolean but which no other line in this corpus is written as. `None`
+        # is the empty scalar, not the string "None".
+        if isinstance(v, bool):
+            return "true" if v else "false"
+        if v is None:
+            return ""
         return f"'{v}'" if isinstance(v, str) else str(v)
     if isinstance(value, (list, tuple)):
         out = [f"{indent}{field}:"]
         out += [f"{indent}- {q(v)}" for v in value]
         return out
-    return [f"{indent}{field}: {q(value)}"]
+    return [f"{indent}{field}: {q(value)}".rstrip()]
 
 
 def edit_coin_field(
