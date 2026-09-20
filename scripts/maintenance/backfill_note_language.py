@@ -156,6 +156,10 @@ DA_BY_EN = {
 # aliases (`verification_note: *id005`). Editing the definition reaches all of
 # them — an alias has no block of its own and is skipped by falling through.
 _NOTE_RE = re.compile(r"^(?P<indent>\s*)verification_note:(?: +&\S+)?\s*$")
+# A coin's keys are plain at one depth, and `id:` can follow `verification_note:`
+# in the mapping, so the id is read per CHUNK rather than as a preceding line.
+_ITEM_RE = re.compile(r"^  - \S")
+_ID_LINE_RE = re.compile(r"^    id: (?P<id>\S+)\s*$")
 _LANG_RE = re.compile(r"^(?P<indent>\s*)(?P<lang>de|en|uk|da): (?P<rest>.*)$")
 
 
@@ -173,6 +177,11 @@ def fold(indent: str, key: str, text: str) -> list[str]:
     every Danish string here opens with a letter, but several contain «: »
     inside (`Hede-seed: …`), which forces it.
     """
+    if "\n" in text:
+        # A folded scalar cannot carry a hard line break; one coin's note is
+        # two paragraphs, so it goes out double-quoted on a single line.
+        esc = text.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n")
+        return [f'{indent}{key}: "{esc}"']
     if ": " in text or " #" in text or text[:1] in "-?:,[]{}#&*!|>'\"%@`":
         text = "'" + text.replace("'", "''") + "'"
     cont = indent + "  "
@@ -189,10 +198,22 @@ def fold(indent: str, key: str, text: str) -> list[str]:
 def process(raw: str) -> tuple[str, int, int]:
     """Return (new text, notes given a `da`, notes left without one)."""
     lines = raw.split("\n")
+    id_of_line: list[str | None] = [None] * len(lines)
+    start = None
+    for n, line in enumerate(lines):
+        if _ITEM_RE.match(line):
+            start = n
+        m_id = _ID_LINE_RE.match(line)
+        if m_id and start is not None:
+            for k in range(start, len(lines)):
+                if k > start and _ITEM_RE.match(lines[k]):
+                    break
+                id_of_line[k] = m_id.group("id")
     out: list[str] = []
     added = skipped = 0
     i = 0
     while i < len(lines):
+        coin_id = id_of_line[i]
         m = _NOTE_RE.match(lines[i])
         if not m:
             out.append(lines[i])
@@ -236,7 +257,12 @@ def process(raw: str) -> tuple[str, int, int]:
             continue
         if "da" in langs:
             continue
-        da = DA_BY_EN.get(langs.get("en", ""))
+        da = None
+        if coin_id in DA_BY_COIN:
+            if langs.get("de", "").startswith(_DE_PREFIX[coin_id]):
+                da = DA_BY_COIN[coin_id]
+        if da is None:
+            da = DA_BY_EN.get(langs.get("en", ""))
         if da is None:
             da = da_from_pattern(langs.get("de", ""))
         if da is None:
@@ -293,6 +319,195 @@ def main() -> int:
 
 
 # ---------------------------------------------------------------------------
+# Per-coin notes.
+#
+# What is left after the templates is curator reasoning about ONE coin — why a
+# KM attribution was dropped, why a Klippe's Delta reads minus forty per cent,
+# which Sieg edition a catalogue quotes. No template stands in for any of it,
+# so each is translated once and keyed by the coin it belongs to. Numbers,
+# catalogue indices, field names and the HTML in them carry over untouched;
+# Müntzfuß names stay one string in every language (§2 tier 2) and the Danish
+# instruments keep their Danish names (§2 tier 1).
+#
+# The id is the key rather than the text, and `process` checks the German it
+# finds against _DE_PREFIX before writing: a note that has been rewritten since
+# is skipped rather than given a Danish text written for what it used to say.
+_P1514 = ("Finheden er ikke attesteret på stykket; .979 (23½ karat) er sat "
+          "som kanonisk møntfodsanker for Møntordning af sommeren 1514.")
+_NUMISTA_PRE = (" Numista API-seed (før 1514, uden for missionens tidsramme; "
+                "høstet 2026-05-21 for at forstå standardernes slægtskab). "
+                "Den specifikke møntfods- og faseplacering samt verifikationen "
+                "af den enkelte mønt udestår stadig.")
+_MARK12 = ("12 Mark Kurant — Frederik V's møntreform 1757 (75 stk. pr. mark, "
+           "2,728 g fin, tarif 12 Mark Kurant = 2 Rigsdaler Courant).")
+
+DA_BY_COIN = {
+ "dk-tid-101040": _MARK12,
+ "dk-tid-101041": _MARK12,
+ "dk-tid-162993":
+    "1 Søsling 1614 — Hede c4h opfører ikke denne årgang (c4h84 dækker 1609 "
+    "og 1611; c4h145 først fra 1631). ucoin tid 162993 fører typen under "
+    "KM 48; i Krause-Denmark svarer KM 48 imidlertid til ¼ Speciedaler 1602 "
+    "(Bruun-PDF lot 13080, Hede c4h48 bør verificeres). KM-tilskrivningen er "
+    "derfor fjernet — klassifikationen af den enkelte mønt udestår.",
+ "dk-tid-163059":
+    "Omregningen 2 Mark = ½ Speciesdaler efter Wikipedia DE «Speciestaler»: "
+    "«seit vor 1619 Speciesdaler (4 Rigsmarker zu 20 Skillinger Currentmönt) "
+    "im 9 1/4 Taler-Fuß» — altså 4 Mark Danske = 1 Speciedaler før Corona "
+    "Danica (1604, forud for den senere omlægning til 6 Mark = 1 Speciedaler "
+    "i Krone-tiden fra 1644). Hede c4h76 og danskmoent.dk-indekset "
+    "«2mark.htm» bekræfter Hede 76 / Sieg 82 / Schou 13-16 som "
+    "KM-23-typeklassifikation; den samlede udmøntning svarer til 424 daler. "
+    "Vægtspredningen Numista 18,37 g mod ucoin 16,58 g (≈ 10 %) er typisk "
+    "for en lille udmøntning på 424 daler — begge værdier er anført som "
+    "specimenbelæg i weight_rough_g. Δ under ½ × 9-Fuß: Numista −8,7 %, "
+    "ucoin −17 %; Numista-værdien passer bedst til normen for en lille "
+    "udmøntning under Christian IV før kippertiden.",
+ "dk-tid-163410":
+    "Tarifmønt: dalertariffen ligger over det rene guldindhold — Christian "
+    "IV's 6-daler-klippe bærer efter Bruun «3.5 Ducats» fint guld (≈ 12,17 g "
+    "empirisk) for en tarif på 6 daler, altså et tillæg på omkring 40 %. "
+    "Brøken «6» angiver dalertariffen (møntens påskrift), mens Δ-kolonnen "
+    "viser forskellen til Reichsdukatenfuß-sollet for 6 dukater fint guld "
+    "(20,65 g) — Δ ≈ −41 % gør møntningsgevinsten synlig. Søsterklippen "
+    "(km-27, 8 daler, Hede 10) følger samme mønster ved ≈ −40 %.\n\n"
+    "Sieg-udgavediskrepans: Bruun (2024) citerer Sieg-147; Hede c4h11 "
+    "(online) citerer Sieg-153 — formentlig forskellige Sieg-udgaver. I "
+    "kataloget er Sieg-147 efter Bruun bibeholdt.",
+ "dk-tid-78763":
+    "½ Skilling 1751-1762 — ucoin tid 78763 fører typen under KM 577; i "
+    "Krause-Denmark svarer KM 577 imidlertid til 1 Dukat 1749 under Frederik "
+    "V (verificeret mod Bruun-PDF lot 17127). Også ucoins angivelse af "
+    "3,654 g for en ½ skilling er numismatisk usandsynlig (sollvægten for en "
+    "½ skilling under Frederik V er ≈ 0,4 g). KM-tilskrivningen er fjernet — "
+    "klassifikationen af den enkelte mønt udestår.",
+ "km-110-chr-iv-1628":
+    "Møntstedet blev oprindeligt registreret som Glückstadt; ved en senere "
+    "revision mod Hede c4h140 + ucoin tid 97086 er det omtilskrevet som en "
+    "kongelig dansk københavnsk prægning (Borgerskabets Mønt). KM-110 hører "
+    "til Denmark-registret.",
+ "km-27-chr-iv-1604":
+    "Tarifmønt: dalertariffen ligger over det rene guldindhold — Christian "
+    "IV's 8-daler-klippe bærer ca. 4,8 dukater fint guld (16,51 g) for en "
+    "tarif på 8 daler, altså et tillæg på omkring 40 %. Brøken «8» angiver "
+    "dalertariffen (møntens påskrift), mens Δ-kolonnen viser forskellen til "
+    "Reichsdukatenfuß-sollet for 8 dukater fint guld (27,54 g) — Δ ≈ −40 % "
+    "gør møntningsgevinsten synlig. Søsterklippen (km dk-tid-163410, 6 "
+    "daler, Hede 11) følger samme mønster ved ≈ −41 %; Bruun noterer dér "
+    "ordret «6 Daler corresponded to 3.5 Ducats».",
+ "km-278-fr-iii-1666":
+    "Hede f3h44 opfører denne type ordret som «Pålydende: 1 Guldkrone» "
+    "(bruttovægt 5,590 g · finhed 0,917 · finvægt 5,126 g · København 1666). "
+    "Sen Frederik III-guldkrone fra den københavnske fortsættelse af "
+    "prægningen efter Glückstadt 1657-1660; den lette undervægt (Δ −6 %) er "
+    "typisk for udgaven fra 1666. Tidligere fejlagtigt anbragt under "
+    "reichsdukatenfuss × 2; bullionfinheden .917 ≠ reichsdukat .986 — passer "
+    "ikke. Søsterstykkerne km-40-2-fr-iii-1657 (Glückstadt, Hede 145B) og "
+    "km-303-fr-iii-1668 (København) står allerede korrekt under "
+    "guldkrone-Fuß × 1 kind=tarif.",
+ "km-74-1-hede-25c-chr-iv-1621":
+    "Hede c4h25 opfører Hede 25-serien ordret som «Pålydende: 2 Guldkrone» "
+    "(Hede 25C · bruttovægt 5,996 g · finhed 0,917 · finvægt 5,496 g — "
+    "identisk med vores soll for guldkrone-Fuß). Christian IV's guldkroner "
+    "er tarifmønter: pålydendet «2 Guldkrone» (Christian IV's kroneenhed) "
+    "svarer til bullionindholdet 1 guldkrone fin under Frederik III's "
+    "efterfølgende reform af kroneenheden. Brøken «2» betegner tariffen i "
+    "Hede-pålydendet; Δ-kolonnen viser omkring −50 % som den "
+    "møntningsgevinst, omdefineringen af kroneenheden gav (Christian "
+    "IV-krone = ½ Frederik III-krone i tarifenheder). Tidligere fejlagtigt "
+    "anbragt under reichsdukatenfuss × 2 (= 2 dukater dukatfin); "
+    "bullionfinheden .917 ≠ reichsdukat .986 — passer ikke. Om kontinuiteten "
+    "med Christian IV-forløberen, se Ingvardson & Märcher 2010.",
+ "km-a47-chr-iv-1608":
+    "Finheden er ikke angivet i de danske kilder (Hede: «Finhed ?»); den er "
+    "overtaget fra det kanoniske Sovereign-Fuß-anker .9166 — 22 karat efter "
+    "den engelske Unite, som Christian IV fulgte i 1606.",
+ "unified-dk-numista-428876": _P1514 +
+    " Numista-seed: den specifikke møntfods- og faseplacering samt "
+    "verifikationen af den enkelte mønt udestår stadig; data er taget "
+    "direkte fra HTML-katalogsiden (en.numista.com). Numista er "
+    "brugerredigeret; krydshenvisningerne (SIEG, Galster, Schou, Fr) skal "
+    "prøves mod primærkilder, før de overføres til kuraterede poster.",
+ "unified-dk-bruun-3831": _P1514 +
+    " Data er taget fra Bruun-auktionskataloget (Stack's Bowers, L. E. Bruun "
+    "Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun "
+    "angiver ingen finhed, den følger af specifikationstabellen til "
+    "møntordningen hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke "
+    "bestemt.",
+ "unified-dk-numista-428886": _P1514 + _NUMISTA_PRE,
+ "unified-dk-numista-428914": _P1514 + _NUMISTA_PRE,
+ "unified-dk-hede-f2h7g":
+    "Finheden .770 = den kanoniske finhed for Rhinskgyldenfod fase I "
+    "(≈ 18½ karat, Frederik II). danskmoent.dk og Hede angiver kun vægten "
+    "(3,27 g); finheden følger af standarden, ikke af en kilde.",
+ "dk-tid-55898":
+    "Flyttet hertil fra Schleswig-Holstein-artefaktet — KM# 250 / Hede# "
+    "12A–12B / Brekke# 31–36 hører til Christian VII's <b>Norge</b>-serie "
+    "(ikke til den danske Hede 12, som er en Altona ½ Speciedaler); "
+    "møntmærkerne ⚒ og den norske løve udpeger utvetydigt møntstedet "
+    "Kongsberg, og legenden «DAN·NOR·VAN·GOT·REX» nævner ikke Holsten. "
+    "Indordnet som <code>gesamtstaat</code> inden for det dansk-norske rige "
+    "(1537–1814); møntfodsklassifikationen 11⅓-Thaler-Fuß, fase A — "
+    "overtages, så snart <code>11_333_thaler</code> er bygget ud som egen "
+    "sektion i Danmarks-filen.",
+ "km-19-chr-iv-1627":
+    "Data fra ucoin.net-opførelsen; Krause-Mishler KM #19. Numista har ikke "
+    "tildelt typen et eget id.",
+ "km-x005-chr-iv-1620":
+    "Diameteren er ikke angivet i ucoin; verifikation mod Hede/Bruun "
+    "anbefales.",
+ "km-x010-fr-iv-1716":
+    "Møntstedet er angivet som «Rendsburg» efter ucoins periodenavn; "
+    "verifikation anbefales.",
+}
+
+
+# The first 40 characters of the German each Danish text was written against.
+_DE_PREFIX = {
+    'dk-tid-101040':
+        '12 Mark Kurant — Frederik V. Münzreform ',
+    'dk-tid-101041':
+        '12 Mark Kurant — Frederik V. Münzreform ',
+    'dk-tid-162993':
+        '1 Søsling 1614 — Hede c4h listet diesen ',
+    'dk-tid-163059':
+        'Reckoning 2 Mark = 1/2 Speciesdaler nach',
+    'dk-tid-163410':
+        'Tarifmünze: Daler-Nominaltarif liegt übe',
+    'dk-tid-78763':
+        '½ Skilling 1751-1762 — ucoin tid 78763 f',
+    'km-110-chr-iv-1628':
+        'Mzm. ursprünglich als Glückstadt erfaßt;',
+    'km-27-chr-iv-1604':
+        'Tarifmünze: Daler-Nominaltarif liegt übe',
+    'km-278-fr-iii-1666':
+        'Hede f3h44 verzeichnet diesen Typ verbat',
+    'km-74-1-hede-25c-chr-iv-1621':
+        'Hede c4h25 verzeichnet die Hede-25-Serie',
+    'km-a47-chr-iv-1608':
+        'Probe in den dänischen Quellen nicht ang',
+    'unified-dk-numista-428876':
+        'Probe am Stück nicht attestiert; .979 (2',
+    'unified-dk-bruun-3831':
+        'Probe am Stück nicht attestiert; .979 (2',
+    'unified-dk-numista-428886':
+        'Probe am Stück nicht attestiert; .979 (2',
+    'unified-dk-numista-428914':
+        'Probe am Stück nicht attestiert; .979 (2',
+    'unified-dk-hede-f2h7g':
+        'Probe .770 = kanonische Rhinskgyldenfod-',
+    'dk-tid-55898':
+        'Aus dem Schleswig-Holstein-Artefakt hier',
+    'km-19-chr-iv-1627':
+        'Daten aus ucoin.net-Listung; Krause-Mish',
+    'km-x005-chr-iv-1620':
+        'Durchmesser nicht in ucoin angegeben; He',
+    'km-x010-fr-iv-1716':
+        'Münzstätte als «Rendsburg» nach ucoin-Pe',
+}
+
+
+# ---------------------------------------------------------------------------
 # Interpolated families.
 #
 # These templates carry a per-coin value in the middle — a Müntzfuß name, a Δ,
@@ -338,6 +553,33 @@ _PATTERNS: list[tuple[re.Pattern[str], str]] = [
      "Numista API-seed (før 1514, uden for missionens tidsramme; høstet {date} "
      "for at forstå standardernes slægtskab). Den specifikke møntfods- og "
      "faseplacering samt verifikationen af den enkelte mønt udestår stadig."),
+    # absorb — fineness taken from the Krone tier of the 1873 Møntlov
+    (re.compile(
+        r"^Probe aus dem Krone-Fuß abgeleitet \((?P<nominal>[^,]+?) "
+        r"(?P<kind>Scheidemünze|Kurantmünze|Gedenkmünze), (?P<fineness>\.\d+)\), "
+        r"festgelegt durch die Møntloven af 23\. maj 1873\. Für dieses Stück "
+        r"nicht aus einer Quelle \(Hede / Sieg / Schou\) direkt belegt; die "
+        r"Δ-Rechnung bleibt innerhalb (?P<pct>[\d,]+)\s% des Soll-Feingewichts\.$",
+        re.S),
+     "Finheden er udledt af Krone-Fuß ({nominal} {kind}, {fineness}), fastsat "
+     "ved Møntloven af 23. maj 1873. For dette stykke er den ikke direkte "
+     "belagt i nogen kilde (Hede / Sieg / Schou); Δ-beregningen holder sig "
+     "inden for {pct}\u00a0% af sollfinvægten."),
+    # audit — a Glückstadt mint re-attributed to Copenhagen
+    (re.compile(
+        r"^Mzm\. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung "
+        r"gegen ucoin Period \(Rigsdaler 1625-1699 bzw\. Speciedaler 1582-1624 "
+        r"— Royal Danish Copenhagen\) und KM-DK# (?P<km>\S+) "
+        r"\(Royal-Danish-Krause-Index ohne SH-Pendant\) als königlich-dänische "
+        r"Kopenhagener Prägung re-attribuiert \((?P<year>[^)]+)\)\. Mzm\. "
+        r"weiterhin \(\?\) — kein direkter Hede/Wilcke-Beleg\.$", re.S),
+     "Møntstedet blev oprindeligt registreret som Glückstadt; ved en senere "
+     "revision mod ucoins periodeangivelse (Rigsdaler 1625-1699 henholdsvis "
+     "Speciedaler 1582-1624 — Royal Danish Copenhagen) og KM-DK# {km} (det "
+     "kongelige danske Krause-indeks uden holstensk modstykke) er det "
+     "omtilskrevet som en kongelig dansk københavnsk prægning ({year}). "
+     "Møntstedet står fortsat med (?) — ingen direkte dokumentation hos Hede "
+     "eller Wilcke."),
     # absorb — standard still to assign, metal inferred
     (re.compile(
         r"^Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun "
@@ -353,13 +595,23 @@ _PATTERNS: list[tuple[re.Pattern[str], str]] = [
 _OPTIONAL_RE = re.compile(r"\{_(?P<name>\w+)(?P<text>[^{}]*(?:\{\w+\}[^{}]*)*)\}")
 
 
+# A captured group can carry a German common noun. These three are the only
+# ones that occur, and the Danish is the wording the site's own chrome uses
+# (`data/i18n/ui.yml`: kurantmønt / skillemønt / erindringsmønt).
+_WORD_DA = {
+    "Kurantmünze": "kurantmønt",
+    "Scheidemünze": "skillemønt",
+    "Gedenkmünze": "erindringsmønt",
+}
+
+
 def da_from_pattern(de: str) -> str | None:
     """Danish for one of the interpolated families, or None if none matches."""
     for rx, template in _PATTERNS:
         m = rx.match(de.strip())
         if not m:
             continue
-        groups = m.groupdict()
+        groups = {k: _WORD_DA.get(v, v) for k, v in m.groupdict().items()}
         out = _OPTIONAL_RE.sub(
             lambda o: (o.group("text") if groups.get(o.group("name")) else ""),
             template)
