@@ -121,7 +121,8 @@ def resolve_pool_cites(
     return rewritten, resolved
 
 
-def inject_pool_refs(html: str, resolved: list[tuple[str, str, int]]) -> str:
+def inject_pool_refs(html: str, resolved: list[tuple[str, str, int]],
+                     heading: str = "References") -> str:
     """Insert resolved pool refs as `<li>` items into the page's biblio.
 
     If the page already has `<ol class="refs">` (rendered from legacy
@@ -149,7 +150,7 @@ def inject_pool_refs(html: str, resolved: list[tuple[str, str, int]]) -> str:
     # No legacy biblio — create one before </body>
     biblio = (
         '\n<hr class="rsep">\n'
-        '<h2 class="refs-title">References</h2>\n'
+        f'<h2 class="refs-title">{heading}</h2>\n'
         f'<ol class="refs">\n{items_html}\n</ol>\n'
     )
     if "</body>" in html:
@@ -158,7 +159,14 @@ def inject_pool_refs(html: str, resolved: list[tuple[str, str, int]]) -> str:
     return html + biblio
 
 
-def process_html(html: str, lang: str, pool: dict[str, dict[str, str]]) -> str:
-    """End-to-end: resolve + inject. Returns processed HTML."""
+def process_html(html: str, lang: str, pool: dict[str, dict[str, str]],
+                 heading: str = "References") -> str:
+    """End-to-end: resolve + inject. Returns processed HTML.
+
+    `heading` is only used when the page has no bibliography of its own and
+    one has to be built here. It defaults to English so a caller that does
+    not pass it behaves as before, but every caller in this build passes the
+    reader's language — the Danish page said «References» until it did.
+    """
     rewritten, resolved = resolve_pool_cites(html, lang, pool)
-    return inject_pool_refs(rewritten, resolved)
+    return inject_pool_refs(rewritten, resolved, heading)

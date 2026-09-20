@@ -1495,7 +1495,8 @@ def build_location(
         # appearance order, injects entries into the biblio section.
         from lib import refs_pool as _refs_pool_mod
         _pool = _refs_pool_mod.load_refs_pool(DATA_DIR / "shared" / "refs_pool.yml")
-        html = _refs_pool_mod.process_html(html, lang, _pool)
+        html = _refs_pool_mod.process_html(
+            html, lang, _pool, i18n.ui_get(ui, 'refs.heading', lang))
 
         # Fuss cross-reference pass (introduced 2026-06-11, see
         # scripts/lib/fuss_refs.py + docs/fuss_cross_refs_design.md).
@@ -1656,7 +1657,8 @@ def build_landing(
         # per-location pages (see _refs_pool_mod docstring).
         from lib import refs_pool as _refs_pool_mod
         _pool = _refs_pool_mod.load_refs_pool(DATA_DIR / "shared" / "refs_pool.yml")
-        html = _refs_pool_mod.process_html(html, lang, _pool)
+        html = _refs_pool_mod.process_html(
+            html, lang, _pool, i18n.ui_get(ui, 'refs.heading', lang))
 
         # Fuss cross-reference pass (see scripts/lib/fuss_refs.py). The
         # landing has no per-location override context — resolve markers
