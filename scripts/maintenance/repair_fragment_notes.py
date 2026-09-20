@@ -72,9 +72,11 @@ _WHY_MINT = ("2026-09-20: recovered from the note «Sverige», which was the "
              "parenthetical of the source page's own title «Hans, Halv ørtug "
              "u.år, Vesterås (Sverige)» — the entry had mint: null, so this "
              "was the only record that the piece is a Swedish issue.")
-_WHY_NOMINAL = ("2026-09-20: the final read «Lübeck. Taler» while this "
-                "entry's own seed reads «1 Taler» — Bruun's territory prefix "
-                "«Lübeck (Bishopric). Taler» leaked into the nominal.")
+_WHY_NOMINAL = ("2026-09-20: the source's own denomination string carried the "
+                "mint inside it — Bruun's «Lübeck (Bishopric). Taler», the "
+                "Galster page's «Halv ørtug, Vesterås (Sverige)» — and the "
+                "builder kept the whole string. The mint is stripped; it "
+                "lives in `mint`.")
 
 # The Hede page our Schou-82 coin belongs to, quoted for the note below.
 _ULFELDT = {
@@ -107,9 +109,27 @@ MINT_FOR = {"Sverige": "Vesterås"}
 REWRITE = {", 2½ Ducat": _DUCAT, "Ulfeldts": _ULFELDT}
 FRAGMENTS = DROP | set(MINT_FOR) | set(REWRITE)
 
-# The final-layer nominal that leaked its territory, and what the entry's own
-# seed says it should be.
-NOMINAL_FIX = {"unified-dk-bruun-14115": ("Lübeck. Taler", "1 Taler")}
+# Nominals that swallowed their mint, per entry id. Several (was → now) pairs
+# per id because the layers spell the rest of the nominal differently — the
+# final normalises «Halv ørtug» to «½ Ørtug» — and stripping the mint must not
+# quietly impose one layer's spelling on another. Only the mint comes off.
+NOMINAL_FIX: dict[str, list[tuple[str, str]]] = {
+    "unified-dk-bruun-14115": [("Lübeck. Taler", "1 Taler")],
+    "dk-galster-hg-236": [("Halv ørtug, Vesterås", "Halv ørtug")],
+    "dk-galster-hg-238": [("Halv ørtug, Vesterås", "Halv ørtug")],
+    "unified-dk-galster-hg-236": [("Halv ørtug, Vesterås", "Halv ørtug"),
+                                  ("½ Ørtug, Vesterås", "½ Ørtug")],
+    "unified-dk-galster-hg-238": [("Halv ørtug, Vesterås", "Halv ørtug"),
+                                  ("½ Ørtug, Vesterås", "½ Ørtug")],
+}
+
+
+def _nominal_target(eid: str, current) -> str | None:
+    """The repaired nominal for this entry as this layer spells it, or None."""
+    for was, now in NOMINAL_FIX.get(eid, ()):
+        if current == was:
+            return now
+    return None
 
 
 def files() -> list[Path]:
@@ -195,11 +215,13 @@ def edit_chunk(chunk: list[str], frag: str | None, eid: str) -> list[str]:
             ]
 
     if eid in NOMINAL_FIX:
-        was, now = NOMINAL_FIX[eid]
         span = _key_span(out, "nominal")
-        if span and out[span[0]].split(": ", 1)[-1].strip().strip("'\"") == was:
-            out[span[0]:span[1]] = [f"    nominal: {_q(now)}"]
-            holds["nominal"] = _WHY_NOMINAL
+        if span:
+            current = out[span[0]].split(": ", 1)[-1].strip().strip("'\"")
+            now = _nominal_target(eid, current)
+            if now:
+                out[span[0]:span[1]] = [f"    nominal: {_q(now)}"]
+                holds["nominal"] = _WHY_NOMINAL
 
     if holds:
         span = _key_span(out, "_curation_holds")
@@ -260,10 +282,17 @@ def targets(doc: dict) -> dict[str, str | None]:
         frag = ((note or {}).get("de") or "").strip() if isinstance(note, dict) else ""
         if frag in FRAGMENTS:
             out[entry["id"]] = frag
-        elif entry.get("id") in NOMINAL_FIX and \
-                entry.get("nominal") == NOMINAL_FIX[entry["id"]][0]:
+        elif _nominal_target(entry.get("id"), entry.get("nominal")):
             out[entry["id"]] = None
     return out
+
+
+def _entry_nominal(doc: dict, eid: str):
+    key = "coins" if "coins" in doc else "entries"
+    for e in doc.get(key) or []:
+        if e.get("id") == eid:
+            return e.get("nominal")
+    return None
 
 
 def check(before: dict, after: dict, wanted: dict) -> None:
@@ -285,7 +314,8 @@ def check(before: dict, after: dict, wanted: dict) -> None:
             assert a[eid].get("mint") == MINT_FOR[frag], f"{eid}: mint not set"
             assert a[eid].get("mint_verified") is True, f"{eid}: flag not set"
         if eid in NOMINAL_FIX:
-            assert a[eid]["nominal"] == NOMINAL_FIX[eid][1], f"{eid}: nominal"
+            assert _nominal_target(eid, b[eid]["nominal"]) == a[eid]["nominal"], \
+                f"{eid}: nominal is {a[eid]['nominal']!r}"
         if frag == "Ulfeldts":
             assert any(s_.get("url") == _ULFELDT_SOURCE["url"]
                        for s_ in a[eid].get("sources") or []), \
@@ -316,7 +346,12 @@ def main() -> int:
             what = ("nominal" if frag is None else
                     "drop" if frag in DROP else
                     "move → mint" if frag in MINT_FOR else "rewrite")
-            print(f"    {eid}: «{frag or NOMINAL_FIX[eid][0]}» → {what}")
+            if frag is None:
+                was = _entry_nominal(before, eid)
+                print(f"    {eid}: nominal «{was}» → "
+                      f"«{_nominal_target(eid, was)}»")
+            else:
+                print(f"    {eid}: «{frag}» → {what}")
         total += len(wanted)
         if args.apply:
             path.write_text(new, encoding="utf-8")
