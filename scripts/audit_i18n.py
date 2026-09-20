@@ -31,6 +31,10 @@ Tier of fields scanned (the role-3 surfaces):
   * `data/shared/fuesse.yml` — Fuß descriptions, phase narratives.
   * `data/shared/german_fuesse.yml` — landing-page Fuß cards.
   * `data/shared/german_fuesse-references.yml` — bibliography.
+  * `data/shared/refs_pool.yml` — the inline-refs pool, whose entries the
+    build injects into every page that cites them. Scanned only in a full
+    run: the pool is shared across pages, so reporting it under
+    `--location X` would charge one page for every other page's citations.
 
 Usage
 -----
@@ -121,6 +125,20 @@ def walk_references_triples(doc: dict) -> Iterator[tuple[str, dict[str, str]]]:
         content = entry.get("content")
         if isinstance(content, dict):
             yield from _triple(content, f"entries[{i}({eid})].content")
+
+
+def walk_refs_pool_triples(doc: dict) -> Iterator[tuple[str, dict[str, str]]]:
+    """`data/shared/refs_pool.yml` — a flat {stable-key: {lang: content}} map.
+
+    Every entry here is reader-facing: the build resolves a `<sup>[ref:KEY]</sup>`
+    marker against this pool and injects the resolved text straight into the
+    page's bibliography, per language. An entry missing a language silently
+    falls back (`refs_pool.py`: `entry.get(lang) or entry.get("en") or
+    entry.get("de")`), which is exactly the case this audit exists to surface.
+    """
+    for key, entry in (doc or {}).items():
+        if isinstance(entry, dict):
+            yield from _triple(entry, f"{key}")
 
 
 def walk_fuesse_triples(doc: dict) -> Iterator[tuple[str, dict[str, str]]]:
@@ -386,7 +404,8 @@ def collect_files(args) -> list[Path]:
     files += [p for p in sorted((DATA / "v2" / "final").glob("*.yml"))
               if not p.stem.startswith("_")]
     files += sorted((DATA / "locations").glob("*-references.yml"))
-    for name in ("fuesse.yml", "german_fuesse.yml", "german_fuesse-references.yml"):
+    for name in ("fuesse.yml", "german_fuesse.yml", "german_fuesse-references.yml",
+                 "refs_pool.yml"):
         p = DATA / "shared" / name
         if p.exists():
             files.append(p)
@@ -490,7 +509,12 @@ def main() -> int:
         elif parent == "locations":
             walker = walk_references_triples if path.stem.endswith("-references") else walk_location_triples
         elif parent == "shared":
-            walker = walk_references_triples if path.stem.endswith("-references") else walk_fuesse_triples
+            if path.stem == "refs_pool":
+                walker = walk_refs_pool_triples
+            elif path.stem.endswith("-references"):
+                walker = walk_references_triples
+            else:
+                walker = walk_fuesse_triples
         else:
             continue
 
