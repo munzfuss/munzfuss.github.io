@@ -76,6 +76,33 @@ _SENTENCE = ("Møntmester", "Møntmærke", "Udmøntet", "Kaldet", "Slået", "Ved
              "Indskriften", "Mønten", "Del ")
 
 
+# Where the page's prose gives way to its apparatus. `description` is cut at
+# the first of these; `raw_text` keeps going.
+_RAW_STOP = re.compile(
+    r"\n(?=(?:Bruttovægt|Vægt|Finhed|Finvægt|Marken fin|Eksemplar|Litteratur"
+    r"|Tilbage|Prøve))")
+
+
+def source_text(page: dict) -> str:
+    """The page's prose, repaired where `description` truncates it.
+
+    The parser's `description` drops whatever followed the last inline element
+    it recognised, which on 85 of the 729 cached pages cuts a sentence in half
+    — «Udmøntet af Hans de Willers (Johan fra Vilna) i 2.259» loses its
+    «eksemplarer.» and reads as a dangling number. `raw_text` holds the whole
+    page, so the tail is taken from there, up to the measurement block.
+    """
+    desc = (page.get("description") or "").strip()
+    raw = page.get("raw_text") or ""
+    if not desc:
+        return ""
+    at = raw.find(desc)
+    if at < 0:
+        return desc
+    tail = _RAW_STOP.split(raw[at + len(desc):])[0]
+    return (desc + tail).strip()
+
+
 def hede_lead(desc: str) -> str:
     """The prose part of a Hede page description, as one paragraph."""
     kept: list[str] = []
@@ -109,7 +136,12 @@ def is_restoration(de: str, da: str) -> bool:
         return False
     if len(da) < 25 or _TABLE_LEFTOVER.search(da):
         return False
-    return 0.70 <= len(da) / len(de) <= 1.40
+    # The lower bound is the real guard: Danish materially SHORTER than the
+    # German means our note says things the Hede page does not, so the page is
+    # not what it was written from. Longer is normal and fine — the page often
+    # closes with a specimen sentence our German dropped, and that sentence is
+    # the source's own prose, not an invention.
+    return 0.70 <= len(da) / len(de) <= 3.50
 
 
 def _as_list(v) -> list:
@@ -118,7 +150,8 @@ def _as_list(v) -> list:
     return v if isinstance(v, list) else [v]
 
 
-def danish_by_coin(entity: str, cap: int | None) -> tuple[dict[str, str], int]:
+def danish_by_coin(entity: str, cap: int | None,
+                   overwrite: bool = False) -> tuple[dict[str, str], int]:
     """{coin id: Danish note} for one entity, plus the count left behind."""
     doc = yaml.safe_load((FINAL / f"{entity}.yml").read_text(encoding="utf-8"))
     found: dict[str, str] = {}
@@ -128,17 +161,20 @@ def danish_by_coin(entity: str, cap: int | None) -> tuple[dict[str, str], int]:
         if cap is not None and (yf is None or yf > cap):
             continue
         note = coin.get("note")
-        if not isinstance(note, dict) or "da" in note:
+        if not isinstance(note, dict):
             continue
-        left += 1
+        has_da = "da" in note
+        if has_da and not (overwrite and note["da"].startswith("Forside")):
+            continue
+        if not has_da:
+            left += 1
         cat = coin.get("catalog") or {}
         volume = cat.get("hede_volume")
         desc = ""
         for number in _as_list(cat.get("hede")):
             page = HEDE / f"{volume}{number}.json" if volume else None
             if page and page.is_file():
-                text = (json.loads(page.read_text(encoding="utf-8"))
-                        .get("description") or "").strip()
+                text = source_text(json.loads(page.read_text(encoding="utf-8")))
                 if text:
                     desc = text
         if not desc:
@@ -155,7 +191,8 @@ def danish_by_coin(entity: str, cap: int | None) -> tuple[dict[str, str], int]:
         da = hede_lead(desc)
         if is_restoration(de, da):
             found[coin["id"]] = da
-            left -= 1
+            if not has_da:
+                left -= 1
     return found, left
 
 
@@ -188,7 +225,8 @@ def fold(indent: str, key: str, text: str) -> list[str]:
     return lines
 
 
-def process(raw: str, danish: dict[str, str]) -> tuple[str, int]:
+def process(raw: str, danish: dict[str, str],
+            overwrite: bool = False) -> tuple[str, int]:
     lines = raw.split("\n")
     # Pre-read each coin chunk's id, so a `note:` knows which coin it is on
     # regardless of where `id:` sits in the mapping.
@@ -245,9 +283,23 @@ def process(raw: str, danish: dict[str, str]) -> tuple[str, int]:
             break
         close()
         out.extend(block)
-        # Exact-text guard: the Danish was read against THIS German scalar.
-        if "da" in langs or langs.get("de", "").strip() == "":
+        if langs.get("de", "").strip() == "":
             continue
+        if "da" in langs:
+            if not overwrite or not langs["da"].startswith("Forside"):
+                continue
+            if langs["da"] == danish[coin_id]:
+                continue
+            # Drop the stale `da` this script wrote on an earlier run.
+            keep, skipping = [], False
+            for bline in block:
+                lm = _LANG_RE.match(bline)
+                if lm and lm.group("indent") == note_indent + "  ":
+                    skipping = lm.group("lang") == "da"
+                if not skipping:
+                    keep.append(bline)
+            del out[len(out) - len(block):]
+            out.extend(keep)
         out.extend(fold(note_indent + "  ", "da", danish[coin_id]))
         added += 1
     return "\n".join(out), added
@@ -262,6 +314,9 @@ def _strip_da(doc) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--overwrite", action="store_true",
+                    help="replace a Danish note this script wrote earlier "
+                         "when the text it now reads differs")
     ap.add_argument("--apply", action="store_true",
                     help="write changes (default: dry run)")
     args = ap.parse_args()
@@ -269,9 +324,9 @@ def main() -> int:
     total_added = total_left = 0
     for entity, cap in DENMARK_ENTITIES.items():
         path = FINAL / f"{entity}.yml"
-        danish, left = danish_by_coin(entity, cap)
+        danish, left = danish_by_coin(entity, cap, args.overwrite)
         raw = path.read_text(encoding="utf-8")
-        new, added = process(raw, danish)
+        new, added = process(raw, danish, args.overwrite)
         total_added += added
         total_left += left
         print(f"  {added:5}  +da   {left:4} left   {path.name}")
