@@ -76,6 +76,22 @@ _SENTENCE = ("Møntmester", "Møntmærke", "Udmøntet", "Kaldet", "Slået", "Ved
              "Indskriften", "Mønten", "Del ")
 
 
+# «Mønten» opens a sentence often enough to sit in the list above, but it is
+# also an ordinary noun mid-sentence — «…kun virkede på Mønten i Altona til
+# 1816» is one clause, and splitting it leaves the dangling «…virkede på.».
+# So the split is refused when the preceding word is a preposition.
+_PREP = {"på", "i", "ved", "af", "fra", "til", "om", "hos", "for", "med",
+         "under", "over", "efter", "mod", "og"}
+_SENTENCE_RE = re.compile(
+    r"(?P<prev>[\wæøåÆØÅ]+) (?P<next>(?:%s))" % "|".join(_SENTENCE))
+
+
+def _split_sentence(m: "re.Match") -> str:
+    if m.group("prev").lower() in _PREP:
+        return m.group(0)
+    return f"{m.group('prev')}. {m.group('next')}"
+
+
 # Where the page's prose gives way to its apparatus. `description` is cut at
 # the first of these; `raw_text` keeps going.
 _RAW_STOP = re.compile(
@@ -122,7 +138,7 @@ def hede_lead(desc: str) -> str:
     t = re.sub(r":\s*\.", ".", t)
     t = re.sub(r"\.{2,}", ".", t)
     t = re.sub(r":\s*,", ",", t)
-    t = re.sub(r"(?<=[a-zæøåA-ZÆØÅ]) (?=(?:%s))" % "|".join(_SENTENCE), ". ", t)
+    t = _SENTENCE_RE.sub(_split_sentence, t)
     t = re.sub(r"(?:^|(?<=\. ))Møntmestermærke[.:]\s*", "", t)
     t = re.sub(r"\s{2,}", " ", t).strip(" ,;:")
     if t and not t.endswith((".", "»", "!", "?")):
@@ -163,6 +179,34 @@ def is_restoration(de: str, da: str) -> bool:
     return 0.70 <= len(da) / len(de) <= 3.50
 
 
+def _numista_page(nid) -> dict | list | None:
+    """One cached Numista type, or None. Some cached files hold a LIST."""
+    page = NUMISTA / f"{nid}.json"
+    if not page.is_file():
+        return None
+    return json.loads(page.read_text(encoding="utf-8"))
+
+
+def cached_page_text(volume: str, number) -> str:
+    """The Hede page for one catalogue number, falling back to its base page.
+
+    danskmoent.dk publishes ONE page per base Hede number, and that page
+    carries the sub-variants (A, B, C …) as rows on it — there is no
+    `c4h102A.htm`. Our catalog fields cite the sub-variant, so asking for the
+    page under its own name misses on 193 of the coins that DO have their
+    Danish description on disk, under the base number. Trying the base second
+    keeps an exact page winning whenever one exists (`c4h108ab`, `c5h112a`).
+    """
+    for name in (f"{volume}{number}",
+                 re.sub(r"[A-Za-z]+$", "", f"{volume}{number}")):
+        page = HEDE / f"{name}.json"
+        if page.is_file():
+            text = source_text(json.loads(page.read_text(encoding="utf-8")))
+            if text:
+                return text
+    return ""
+
+
 def _as_list(v) -> list:
     if v is None:
         return []
@@ -191,27 +235,34 @@ def danish_by_coin(entity: str, cap: int | None,
         volume = cat.get("hede_volume")
         desc = ""
         for number in _as_list(cat.get("hede")):
-            page = HEDE / f"{volume}{number}.json" if volume else None
-            if page and page.is_file():
-                text = source_text(json.loads(page.read_text(encoding="utf-8")))
-                if text:
-                    desc = text
+            if not volume:
+                continue
+            text = cached_page_text(volume, number)
+            if text:
+                desc = text
         if not desc:
-            continue
-        # Numista describes this type → our note is Numista's, not Hede's.
-        if any(
-            (NUMISTA / f"{n}.json").is_file()
-            and ((json.loads((NUMISTA / f"{n}.json").read_text(encoding="utf-8"))
-                  .get("obverse") or {}).get("description"))
-            for n in _as_list(cat.get("numista"))
-        ):
             continue
         de = (note.get("de") or "").strip()
         da = drop_site_furniture(hede_lead(desc))
+        # The Numista gate below is a PROXY for «our note came from Numista,
+        # not from Hede». `is_restoration` answers that same question from the
+        # texts themselves — when the German opens «Vorderseite», the Danish
+        # opens «Forside» and they are within the length band, our note IS the
+        # Hede page rendered into German, whatever else Numista happens to
+        # publish about the type. Direct evidence beats the proxy, so it is
+        # tested first; 7 coins are only reachable this way.
         if is_restoration(de, da):
             found[coin["id"]] = da
             if not has_da:
                 left -= 1
+            continue
+        # Numista describes this type → our note is Numista's, not Hede's.
+        if any(
+            isinstance(_numista_page(n), dict)
+            and ((_numista_page(n).get("obverse") or {}).get("description"))
+            for n in _as_list(cat.get("numista"))
+        ):
+            continue
     return found, left
 
 
