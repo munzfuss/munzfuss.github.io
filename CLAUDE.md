@@ -1051,6 +1051,32 @@ Then:
 3. Commit (atomic, pathspec per the Git-safety protocol)
 4. GitHub Actions rebuilds and deploys (~1 min) on push
 
+**Editing a data YAML from a SCRIPT — always through `scripts/lib/yaml_io.py`.**
+Never a bare `yaml.safe_dump`, never a hand-rolled `ruamel.yaml.YAML()`, never
+a bespoke line-editor written for the occasion. The project's YAMLs are
+emitted by several serializers at different widths and sequence offsets;
+round-tripping one through the wrong config silently reformats the WHOLE file,
+so a one-field edit lands as a multi-thousand-line diff that buries the change
+and costs the next session the same discovery. `yaml_io` detects the family
+from the path and hands back the right serializer:
+
+- **one field on a coin, by id** → `yaml_io.edit_coin_field(path, coin_id,
+  field, value)`. Line-based, no round-trip, the rest of the file byte-for-byte
+  untouched. This covers most one-off fixes; reach for it first.
+- **genuinely structural** (insert / remove / reorder entries) →
+  `yaml_io.load()` / `save()`, which round-trip with the file's own settings.
+- **a line you write yourself** → render it with `yaml_io.canonical_lines()`,
+  so the line you insert is the line the serializer would have produced. A
+  hand-written line that the family's width would fold differently does not
+  break anything today — it raises the file's round-trip residual, which is
+  the next session's spurious diff. That is how `fuesse.yml` went from 0 to
+  614 residual lines in a single session (2026-09-20).
+
+The full rule, the family table and the reasoning: **`docs/CONVENTIONS.md`
+§«Programmatic edits»**. The pre-commit hook's Check 9 enforces the one
+invariant that matters — a commit may not RAISE a file's round-trip residual
+— so the debt cannot grow silently again.
+
 ## i18n policy
 
 Strategy A (inline): each translatable field is a `{de: ..., en: ..., uk: ...}` object in YAML. Supported fields: `title`, `description`, `note`, `verification_note`, boilerplate texts.
