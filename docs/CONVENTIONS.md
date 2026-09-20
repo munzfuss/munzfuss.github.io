@@ -31,14 +31,32 @@ has burned several sessions. The rule:
   Family-aware: load returns `(ctx, doc)`, `save(ctx, path, doc)` writes with the
   file's own serializer + settings.
 
-The families (path prefix → serializer / width / seq-offset): `data/v2/final/` +
-`data/v2/seed_unified/` → PyYAML / 120 / n-a; `data/v2/seed/` → ruamel / 200 /
-seq4-off2; `data/locations/` → ruamel / 4096 / **seq2-off0** (dash-flush block
+- **A line you compose yourself → `yaml_io.canonical_lines(path, field, value,
+  indent)`.** It renders the key/value through the real serializer at the real
+  column and hands back the lines to splice. Formatting the line by hand
+  instead breaks nothing today — it is legal YAML and the build passes — but a
+  scalar past the family's fold width raises the file's round-trip residual,
+  and that is the spurious diff the NEXT structural edit reads past.
+
+The families (path prefix → serializer / width / seq-offset): `data/v2/final/`
++ `data/v2/seed_unified/` + `data/v2/classification_decisions/` + `data/v2/seed/`
+→ ruamel / 200 / seq4-off2 (the four were unified onto this profile in 2026-07,
+curator decision B — the table here said PyYAML/120 until 2026-09-20, two
+months in which `yaml_io.py`'s own docstring was right and this one was wrong); `data/locations/` → ruamel / 4096 / **seq2-off0** (dash-flush block
 lists); `data/shared/` + `data/i18n/` → ruamel / 4096 / seq4-off2. The
 `data/locations` (offset 0) and `data/shared` (offset 2) families LOOK alike but
-reformat each other. `scripts/maintenance/test_yaml_io_roundtrip.py` pins each
-family's round-trip residual baseline — run it after touching `yaml_io.py`; a
-config regression shows up as hundreds/thousands of changed lines.
+reformat each other. `data/v2/match_uncertainty/` stays on PyYAML and is
+gitignored, so it is measured by nothing and never appears in a diff.
+
+**Two guards, and they fire on different things.**
+`scripts/maintenance/test_yaml_io_roundtrip.py` pins each family's residual
+baseline and catches a SERIALIZER-CONFIG regression — run it after touching
+`yaml_io.py`. That trigger is right for what it guards and wrong for what
+actually drifts: residual grows from editing DATA, not the module, so between
+2026-07 and 2026-09 `data/shared/fuesse.yml` went from a residual of 0 to 614
+lines without a word. The pre-commit hook's **Check 9**
+(`check_yaml_residual.py --staged`) covers that half — a commit may leave the
+existing backlog alone but may not add to it. `--scan` prints the whole table.
 
 ## File naming
 

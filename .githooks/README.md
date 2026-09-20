@@ -39,14 +39,15 @@ actually touches files it cares about, so most commits run two or three.
 | 6 | `scripts/maintenance/audit_lost_citations.py` | **BLOCK on failure** | `data/v2/final/*.yml` |
 | 7 | `scripts/maintenance/verify_reflow.py` | **BLOCK on losses** | `data/v2/final/*.yml` |
 | 8 | `scripts/maintenance/rebucket_seeds.py --check` | **BLOCK on drift** | `data/v2/seed/*.yml` |
+| 9 | `scripts/maintenance/check_yaml_residual.py --staged` | **BLOCK on growth** | `data/{v2,shared,i18n,locations}/**.yml` |
 
-Seven of the eight block. A commit that breaks schema validation,
+Eight of the nine block. A commit that breaks schema validation,
 violates a V2 invariant, leaves a merge decision whose members do not
 resolve, drops a citation a final entry carried, loses a coin or a
-value the baseline had, or leaves a seed entry in a file other than its
-`_home_entity(issuing_entity)`, refuses to land. Checks 6, 7 and 8 exist
-because each caught a specific real defect — see «What this protects
-against».
+value the baseline had, leaves a seed entry in a file other than its
+`_home_entity(issuing_entity)`, or makes a data YAML reformat more than
+it already did, refuses to land. Checks 6, 7, 8 and 9 exist because each
+caught a specific real defect — see «What this protects against».
 
 ### Prose lint — promoted 2026-09-03
 
@@ -95,3 +96,17 @@ The two failure modes the hook has caught in real sessions:
   Pydantic model without updating the data — the data side passes
   validation pre-change, fails post-change, hook surfaces it before
   the commit is recorded.
+
+- **Round-trip debt growing unseen** (check 9, added 2026-09-20). The
+  sibling of the indent-flatten trap, one layer quieter. A line-based
+  edit is immune to reformatting — that is why `edit_coin_field()`
+  exists — but a line the AUTHOR writes is not necessarily the line the
+  family's serializer would emit, and a scalar past the family's fold
+  width raises the file's round-trip residual without breaking
+  anything. Nothing complains: the line is legal YAML, the file parses,
+  the build passes. The cost lands on the NEXT session, whose structural
+  edit now diffs thousands of unrelated lines and has to decide whether
+  that is a reformat or a data loss. `data/shared/fuesse.yml` went from
+  a residual of 0 to 614 lines in a single session that way. Check 9
+  does not demand the ~28 200-line backlog be paid off — only that a
+  commit not add to it.

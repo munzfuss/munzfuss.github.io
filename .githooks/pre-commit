@@ -26,6 +26,12 @@
 #      globally; reports total errors. Doesn't block. After the
 #      §X cleanup, can be promoted to BLOCK.
 #
+#   9. YAML round-trip residual (HARD BLOCK on growth) — runs
+#      `scripts/maintenance/check_yaml_residual.py --staged` when the
+#      commit touches a data YAML. A commit may leave the existing
+#      reformat debt alone, but may not add to it. Fix with
+#      `yaml_io.canonical_lines()` / `yaml_io.edit_coin_field()`.
+#
 #   7. Reflow diff vs HEAD (HARD BLOCK on losses) — runs
 #      `scripts/maintenance/verify_reflow.py` when the commit
 #      touches a final yaml. Additions and recognised folds pass;
@@ -316,6 +322,39 @@ if [ -n "$SEED_RELEVANT" ]; then
     fi
     rm -f "$RBK_LOG"
     echo "  ${C_GREEN}✓${C_RST} every seed entry sits in its home bucket"
+fi
+
+# ---------------------------------------------------------------------------
+# Check 9: YAML round-trip residual must not grow (hard block)
+# ---------------------------------------------------------------------------
+# Dump a data YAML back through its own family's serializer and count the lines
+# that move: that is its round-trip residual, and it is the spurious diff the
+# NEXT structural edit to that file will have to read past. The corpus already
+# carries ~28 200 such lines across 83 files; paying that off is a separate,
+# semantically-null commit. This check only forbids ADDING to it — which every
+# hand-written line that the serializer would have folded differently does.
+#
+# The failure is invisible by inspection (the line is legal YAML, the file
+# parses, the build passes), which is why data/shared/fuesse.yml went from 0 to
+# 614 residual lines in one session before anything noticed. Fix by rendering
+# inserted lines with yaml_io.canonical_lines(), or by editing through
+# yaml_io.edit_coin_field().
+
+RESID_RELEVANT=$(echo "$STAGED" | grep -E '^data/(v2|shared|i18n|locations)/.*\.ya?ml$' || true)
+
+if [ -n "$RESID_RELEVANT" ]; then
+    echo "▶ YAML round-trip residual..."
+    RES_LOG=$(mktemp -t precommit-residual.XXXXXX)
+    if ! "$PYTHON" scripts/maintenance/check_yaml_residual.py --staged > "$RES_LOG" 2>&1; then
+        echo "${C_RED}✗ A staged YAML would reformat more than it did at HEAD.${C_RST}"
+        cat "$RES_LOG" | sed 's/^/    /'
+        echo
+        echo "Bypass with: git commit --no-verify"
+        exit 1
+    fi
+    if [ -s "$RES_LOG" ]; then sed 's/^/    /' "$RES_LOG"; fi
+    rm -f "$RES_LOG"
+    echo "  ${C_GREEN}✓${C_RST} no file reformats more than it did at HEAD"
 fi
 
 echo "${C_DIM}pre-commit: checks complete${C_RST}"
