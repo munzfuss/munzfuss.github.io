@@ -130,6 +130,25 @@ def hede_lead(desc: str) -> str:
     return t
 
 
+# danskmoent.dk talking about ITSELF — «click for the newspaper piece», «see
+# the bibliography», «the coin is shown top right on this page». True of that
+# site, meaningless on ours, and §0z role-3 furniture either way. The auction
+# clause goes with them: what a find fetched at auction is out of scope
+# project-wide, not a fact about the coinage.
+_FURNITURE = re.compile(
+    r"(?:Klik\b|denne side|litteraturliste|Tilbage til|avisomtale"
+    r"|solgtes på auktion|indbragte)", re.I)
+
+
+def drop_site_furniture(text: str) -> str:
+    # The bibliography pointer also appears parenthetically inside a sentence
+    # that is otherwise a fact worth keeping, so remove it BEFORE deciding
+    # which whole sentences to drop.
+    text = re.sub(r"\s*\((?:se|jf\.?)\s+litteraturlisten\)", "", text, flags=re.I)
+    kept = [s for s in re.split(r"(?<=[.!?])\s+", text) if not _FURNITURE.search(s)]
+    return re.sub(r"\s{2,}", " ", " ".join(kept)).strip()
+
+
 def is_restoration(de: str, da: str) -> bool:
     """True when `da` is plausibly the text `de` was translated from."""
     if not de.startswith("Vorderseite") or not da.startswith("Forside"):
@@ -188,7 +207,7 @@ def danish_by_coin(entity: str, cap: int | None,
         ):
             continue
         de = (note.get("de") or "").strip()
-        da = hede_lead(desc)
+        da = drop_site_furniture(hede_lead(desc))
         if is_restoration(de, da):
             found[coin["id"]] = da
             if not has_da:
