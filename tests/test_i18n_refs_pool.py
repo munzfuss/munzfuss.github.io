@@ -30,7 +30,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
-from audit_i18n import collect_files, walk_refs_pool_triples  # noqa: E402
+from audit_i18n import LANGS, collect_files, walk_refs_pool_triples  # noqa: E402
 
 POOL = ROOT / "data" / "shared" / "refs_pool.yml"
 
@@ -55,7 +55,14 @@ class TestRefsPoolIsAudited(unittest.TestCase):
         # marker carries — that is what makes a hit actionable.
         key = next(iter(doc))
         self.assertIn(key, found)
-        self.assertEqual(found[key], doc[key])
+        # The walker narrows each entry to the languages the audit compares,
+        # so assert THAT, not equality with the raw entry — the raw entry
+        # grew a `da` leaf in 2026-09 and would make an equality assertion
+        # fail for a reason that has nothing to do with the walker.
+        self.assertEqual(found[key],
+                         {l: doc[key].get(l, "") for l in LANGS})
+        for lang in LANGS:
+            self.assertIn(lang, found[key])
 
     def test_the_walker_skips_a_non_mapping_entry(self):
         self.assertEqual(dict(walk_refs_pool_triples({"k": "not a mapping"})), {})
