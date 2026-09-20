@@ -4137,10 +4137,6 @@ coins:
     phase: numista
     kind: kurant
     nominal: ½ Speciedaler
-    note:
-      de: 'Type II'
-      en: 'Type II'
-      uk: 'Type II'
     year_label: '1653'
     year_first: 1653
     year_last: 1653
@@ -4177,6 +4173,8 @@ coins:
         (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
       uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+    _curation_holds:
+      note: '2026-09-20: the note was a source fragment, not prose — a seed builder''s leftover after splitting one source string into a field plus a remainder. Frozen so a re-seed cannot restore it; see repair_fragment_notes.py for the full diagnosis.'
   - id: dk-numista-118175
     fuss: seed_unsorted
     phase: numista

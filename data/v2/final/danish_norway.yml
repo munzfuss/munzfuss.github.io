@@ -14323,10 +14323,6 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     inscription_obv: FRIDERICUS IIII D - G REX - DAN NOR V G // III MARCK / DANSKE
     inscription_rev: DOMINUS MI-HI ADIUTOR // 17-23
-    note:
-      de: AR
-      en: AR
-      uk: AR
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -14335,6 +14331,8 @@ coins:
     composed_of:
       - unified-dk-bruun-10634
       - unified-dk-hede-nf4h3
+    _curation_holds:
+      note: '2026-09-20: the note was a source fragment, not prose — a seed builder''s leftover after splitting one source string into a field plus a remainder. Frozen so a re-seed cannot restore it; see repair_fragment_notes.py for the full diagnosis.'
   - fuss: 11_333_thaler
     phase: I
     kind: kurant
@@ -61931,10 +61929,6 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-1-2-specie-daler-km-47-1653-1658-cuid-1114113-duid-1448860
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-    note:
-      de: Type II
-      en: Type II
-      uk: Type II
     verification_note: *id002
     hede_muentzfuss_yield:
       value: 9.288
@@ -61944,6 +61938,8 @@ coins:
     composed_of:
       - unified-dk-hede-nf3h20a
       - unified-kmk-698812
+    _curation_holds:
+      note: '2026-09-20: the note was a source fragment, not prose — a seed builder''s leftover after splitting one source string into a field plus a remainder. Frozen so a re-seed cannot restore it; see repair_fragment_notes.py for the full diagnosis.'
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
