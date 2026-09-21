@@ -4014,12 +4014,36 @@ def _load_seeds_for_entity(entity_id: str) -> list[dict]:
     return coins
 
 
-def _expand_member_against(mid: str, id_set) -> list[str]:
+def build_thinned_index(coins) -> dict[str, list[str]]:
+    """{thinned-away specimen id: [surviving representative ids]}.
+
+    Built from the `_thinned_from` lists §9a thinning writes onto the
+    representative that absorbed a bucket's redundant specimens
+    (lib/seed_thin._record_thinned_from). Pass the result to
+    `_expand_member_against` so a curator decision naming a since-thinned
+    specimen still resolves — to the representative that now stands for that
+    type, which is what the decision was always about."""
+    out: dict[str, list[str]] = {}
+    for c in coins:
+        rep = c.get("id")
+        if not rep:
+            continue
+        for dead in c.get("_thinned_from") or []:
+            out.setdefault(dead, []).append(rep)
+    return {k: sorted(v) for k, v in out.items()}
+
+
+def _expand_member_against(mid: str, id_set, thinned=None) -> list[str]:
     """Resolve a merge-decision member id against an arbitrary id set,
     expanding a Hede bare-id («dk-hede-c4h112») to its sub-letter seeds
     («…112a», «…112b»). Mirrors the per-entity `_expand_member` closure but
     takes the id set explicitly so the global cross-entity pre-scan can resolve
-    members that live in OTHER buckets. Returns [] when nothing matches."""
+    members that live in OTHER buckets.
+
+    With `thinned` (see `build_thinned_index`), a member naming a specimen §9a
+    thinning has since dropped resolves to the representative(s) that absorbed
+    it, instead of reading as an orphan. Tried LAST, so a live id always wins.
+    Returns [] when nothing matches."""
     if mid in id_set:
         return [mid]
     if re.search(r"\d$", mid):
@@ -4027,6 +4051,10 @@ def _expand_member_against(mid: str, id_set) -> list[str]:
                       if k.startswith(mid) and k[len(mid):].isalpha())
         if subs:
             return subs
+    if thinned:
+        reps = [r for r in thinned.get(mid) or [] if r in id_set]
+        if reps:
+            return sorted(reps)
     return []
 
 

@@ -123,7 +123,13 @@ _ERRATA_APPLIED_KEY = "_errata_applied"
 
 # Meta keys that NEVER flow from fresh and are NEVER dropped as stale — they
 # carry curator intent that must survive every regen.
-_PRESERVE_ALWAYS_KEYS = frozenset({_CURATION_HOLDS_KEY, _SOURCE_ERRATA_KEY})
+_THINNED_FROM_KEY = "_thinned_from"
+# `_thinned_from` records which specimens a surviving representative
+# absorbed during §9a thinning (see lib/seed_thin._record_thinned_from).
+# It must survive a re-seed: it is the only record of the link, and a
+# merge_decision naming a thinned specimen resolves through it.
+_PRESERVE_ALWAYS_KEYS = frozenset({_CURATION_HOLDS_KEY, _SOURCE_ERRATA_KEY,
+                                   _THINNED_FROM_KEY})
 
 
 def apply_source_errata(entry) -> None:

@@ -58,6 +58,22 @@ def _seed_ids(entity: str) -> set[str]:
     return out
 
 
+def _thinned_index() -> dict[str, list[str]]:
+    """{thinned-away id: [representative ids]} across EVERY seed bucket.
+
+    Global, not per-entity, because §9a thinning and V2 entity routing are
+    independent: a member may name a specimen whose representative now sits in
+    another bucket. `_expand_member_against` still intersects the result with
+    the entity's own id set, so a cross-bucket representative cannot silently
+    satisfy a member that does not belong to that entity."""
+    import yaml
+    coins = []
+    for f in sorted(SEED_DIR.glob("*/*.yml")):
+        d = yaml.safe_load(f.read_text()) or {}
+        coins.extend((d.get("coins") if isinstance(d, dict) else d) or [])
+    return _M.build_thinned_index(coins)
+
+
 def _cross_entity_pulls() -> dict[str, set[str]]:
     """{target_entity: {member seed ids pulled INTO it}} from _cross_entity.yml.
 
@@ -97,7 +113,10 @@ def check_member_resolution(entity_filter: set[str] | None = None) -> list[tuple
     sub-variant, grouping them so a no_merge never blocks within one coin).
 
     Using the merger's OWN resolver (`_M._expand_member_against`) keeps this gate
-    and the merger from ever drifting. A member that still resolves to nothing is
+    and the merger from ever drifting. The resolver is also handed the
+    `_thinned_from` index, so a member naming a specimen §9a thinning has since
+    dropped resolves to the representative that absorbed it rather than reading
+    as an orphan. A member that still resolves to nothing is
     a real orphan: typically a folded final/V1 id (`km-305-2-fr-iii-1669`) whose
     seed is already another member (redundant → drop), or a typo (re-point). NEVER
     re-point a bare Hede code to a flat sub-variant list — that would make a
@@ -107,6 +126,7 @@ def check_member_resolution(entity_filter: set[str] | None = None) -> list[tuple
     orphans: list[tuple] = []
     seeds_cache: dict[str, set[str]] = {}
     pulls = _cross_entity_pulls()
+    thinned = _thinned_index()
     for path in sorted(DECISIONS_DIR.glob("*.yml")):
         ent = path.stem
         if ent.startswith("_"):
@@ -122,7 +142,7 @@ def check_member_resolution(entity_filter: set[str] | None = None) -> list[tuple
         for key in ("merges", "no_merges"):
             for blk in (doc.get(key) or []):
                 for m in (blk.get("members") or []):
-                    if not _M._expand_member_against(m, sids):
+                    if not _M._expand_member_against(m, sids, thinned):
                         orphans.append((ent, key, m))
     return orphans
 

@@ -179,6 +179,46 @@ def _is_curated(coin: dict) -> bool:
     return bool(coin.get("_curation_holds") or coin.get("_source_errata"))
 
 
+_THINNED_FROM_KEY = "_thinned_from"
+
+
+def _record_thinned_from(reps: list, dropped: list) -> None:
+    """Note on the surviving representative WHICH specimens it now stands for.
+
+    Thinning sheds a specimen because it is redundant inside its own
+    sub-variant bucket — but a curator may have NAMED that specimen in a
+    merge_decision, and dropping it leaves the decision pointing at an id that
+    no longer exists (`kmk-348041` / `kmk-351541`, cut by the 2026-09-12
+    re-seed, found inert in 2026-09-21). The decision's real referent is the
+    TYPE, not the individual cabinet record, so the representative that
+    absorbed the specimen can answer for it — once something writes down which
+    representative that was.
+
+    Nothing else records it. `_salvage_unique` carries the dropped specimens'
+    DATA onto the keepers but not their identity, and the mapping cannot be
+    recovered afterwards: re-deriving a dead id's bucket key from the harvest
+    cache normalises it with today's parser while its surviving bucket-mates
+    were normalised by an older one, so the keys no longer meet. This is the
+    only moment the link is known.
+
+    Written onto `reps[0]` — the same target `_salvage_unique` uses, so a
+    specimen's data and its identity land on one record. A dropped specimen
+    that already carried `_thinned_from` hands its list over too, so a chain
+    of thinning runs stays resolvable back to the original id.
+    """
+    if not reps or not dropped:
+        return
+    target = reps[0]
+    acc = set(target.get(_THINNED_FROM_KEY) or [])
+    for d in dropped:
+        acc |= set(d.get(_THINNED_FROM_KEY) or [])   # keep the chain
+        if d.get("id"):
+            acc.add(d["id"])
+    acc.discard(target.get("id"))
+    if acc:
+        target[_THINNED_FROM_KEY] = sorted(acc)
+
+
 def thin_safe(coins: list, max_weightless: int = 3) -> tuple[list, dict]:
     """Seed-layer volume control that cannot change a weight envelope.
 
@@ -247,6 +287,7 @@ def thin_safe(coins: list, max_weightless: int = 3) -> tuple[list, dict]:
             keep.extend(weightless)
         if dropped:
             _salvage_unique(keep, dropped)
+            _record_thinned_from(keep, dropped)
             dropped_total += len(dropped)
             touched_buckets += 1
         kept.extend(keep)
@@ -284,6 +325,7 @@ def thin_coins(coins: list, min_bucket: int = 5,
             reps = [ms[i] for i in idx]
             dropped = [ms[i] for i in range(len(ms)) if i not in idx]
             _salvage_unique(reps, dropped)
+            _record_thinned_from(reps, dropped)
             kept.extend(reps)
             thinned_buckets += 1
         else:
