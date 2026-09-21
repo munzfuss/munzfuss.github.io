@@ -22,19 +22,19 @@
 fineness_authority:
   # danskmoent.dk scholarly catalogues (Hede, Galster) + de-jure ordinance
   # anchors — top authority for fineness.
-  danskmoent:   100
-  hede:         100
-  galster:      100
+  danskmoent: 100
+  hede: 100
+  galster: 100
   moentordning: 100   # legal standard (ordinance), ASCII spelling
-  møntordning:  100   # legal standard (ordinance), Danish spelling
+  møntordning: 100    # legal standard (ordinance), Danish spelling
   reichsabschied: 100 # legal standard (imperial Reichsabschied), e.g. the
                       # Wormser Reichsabschied 1495 that set the Rhenish
                       # Goldgulden at 18½ Karat. Without an entry here a
                       # weight-only specimen borrows the highest-scoring
                       # reading instead — on the ducal Goldgulden that was
                       # NumisMaster's .986, the very value we mark erroneous.
-  moentedikt:   100   # legal standard (royal/imperial mint edict), ASCII
-  møntedikt:    100   # Danish spelling. Ferdinand I's Møntedikt of 19.08.1559
+  moentedikt: 100     # legal standard (royal/imperial mint edict), ASCII
+  møntedikt: 100      # Danish spelling. Ferdinand I's Møntedikt of 19.08.1559
                       # fixes the Sonderburg Goldgulden at 18½ Karat — the same
                       # anchor as the Reichsabschied above, but the source label
                       # on those coins reads «Møntedikt», not «Reichsabschied».
@@ -42,14 +42,14 @@ fineness_authority:
                       # specimen weight borrowed NumisMaster's erroneous .986,
                       # leaving 18½ Karat paired with a single specimen.
   # printed scholarly catalogues
-  sieg:          80
-  schou:         80
+  sieg: 80
+  schou: 80
   # Krause-Mishler
-  numismaster:   60
+  numismaster: 60
   # community / user-edited catalogues
-  numista:       40
-  ucoin:         40
+  numista: 40
+  ucoin: 40
   # museum weight-only records (rarely a fineness source at all)
-  kmk:           20
+  kmk: 20
 
 default: 0

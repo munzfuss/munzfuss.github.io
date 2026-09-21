@@ -1,0 +1,11 @@
+# Revisions that only reformat YAML — no content change.
+#
+# These commits re-emit data YAMLs through their own family's serializer
+# (scripts/lib/yaml_io.py) to drive the round-trip residual to zero, so that
+# the NEXT structural edit to those files shows only what its author changed.
+# They move sequence indentation, scalar fold points and continuation-line
+# indentation; parsed content is byte-identical and the rendered site hash is
+# unchanged.
+#
+# GitHub honours this file automatically. Locally, enable it once with:
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
