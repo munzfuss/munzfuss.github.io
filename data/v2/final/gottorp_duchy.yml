@@ -8737,11 +8737,15 @@ coins:
     year_first: 1682
     year_last: 1682
     year_label: '1682'
-    mint: Lybæk
     metal: silver
     metal_verified: true
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
+    _curation_holds:
+      mint: 'removed — «Lybæk» is the Danish name of Lübeck, but on this record it is the CURRENCY half of the nominal («1 skilling lybsk»), not the place of striking: 263 coins carry «lybsk» in the nominal
+        across seven entities and not one was struck at Lübeck. The kmk seed builder already filters the value (`_NON_MINT_PLACES`, build_kmk_seed.py) and its seed correctly has no mint; only this final
+        kept a stale copy, which a builder filter cannot reach (curator 2026-09-21).'
+      mint_verified: false — no source attests a mint for this coin (CLAUDE.md §4). Held so a re-seed's verified-wins cannot restore the currency name as a mint.
     verified: false
     sources:
       - type: museum

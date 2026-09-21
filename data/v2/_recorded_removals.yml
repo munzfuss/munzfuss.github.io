@@ -343,3 +343,81 @@ removals:
     kind: thinning
     bucket_survivors: []
     reason: 1 Groschen (3 Kreuzer) 1620, uncatalogued Kipper piece — thinned in its new Braunschweig bucket.
+  # ── KMM non-place `mint` values, 2026-09-21 ───────────────────────────────
+  # `build_kmk_seed.py` maps KMM's `place` onto `mint`, and KMM uses that field
+  # to say it could NOT read the mint. The value is the museum's statement of
+  # ignorance, never a place of striking, and it reached the reader as one. All
+  # twelve records carry NO typeNumber, so no Hede/Galster page names the mint
+  # either: per §4 the honest state is an absent mint, not a mint called
+  # «illegible». Each entry also carries a `_curation_holds` on `mint` +
+  # `mint_verified` so a re-seed's verified-wins cannot restore it.
+  - seed: kmk-569564
+    kind: field
+    field: mint
+    dropped: ['ulæselig']
+    reason: KMM «ulæselig» — «illegible», the museum reporting an unreadable mint, not a town.
+  - seed: kmk-639604
+    kind: field
+    field: mint
+    dropped: ['ulæselig']
+    reason: KMM «ulæselig» — «illegible», the museum reporting an unreadable mint, not a town.
+  - seed: kmk-734474
+    kind: field
+    field: mint
+    dropped: ['ulæselig']
+    reason: KMM «ulæselig» — «illegible», the museum reporting an unreadable mint, not a town.
+  - seed: kmk-735399
+    kind: field
+    field: mint
+    dropped: ['ulæselig']
+    reason: KMM «ulæselig» — «illegible», the museum reporting an unreadable mint, not a town.
+  - seed: kmk-746475
+    kind: field
+    field: mint
+    dropped: ['ulæselig']
+    reason: KMM «ulæselig» — «illegible», the museum reporting an unreadable mint, not a town.
+  - seed: kmk-403023
+    kind: field
+    field: mint
+    dropped: ['ubestemt']
+    reason: KMM «ubestemt» — «undetermined», the museum reporting an unreadable mint, not a town.
+  - seed: kmk-572913
+    kind: field
+    field: mint
+    dropped: ['ubestemt']
+    reason: KMM «ubestemt» — «undetermined», the museum reporting an unreadable mint, not a town.
+  - seed: kmk-577069
+    kind: field
+    field: mint
+    dropped: ['ubestemt']
+    reason: KMM «ubestemt» — «undetermined», the museum reporting an unreadable mint, not a town.
+  - seed: kmk-569730
+    kind: field
+    field: mint
+    dropped: ['ej synligt']
+    reason: KMM «ej synligt» — «not visible», the museum reporting an unreadable mint, not a town.
+  - seed: kmk-578341
+    kind: field
+    field: mint
+    dropped: ['ej bevaret']
+    reason: KMM «ej bevaret» — «not preserved», the museum reporting an unreadable mint, not a town.
+  - seed: kmk-733021
+    kind: field
+    field: mint
+    dropped: ['ej læselig']
+    reason: KMM «ej læselig» — «not legible», the museum reporting an unreadable mint, not a town.
+  - seed: kmk-737062
+    kind: field
+    field: mint
+    dropped: ['møntsted ulæselig']
+    reason: KMM «møntsted ulæselig» — «mint illegible», the museum reporting an unreadable mint, not a town.
+  # «Lybæk» is Lübeck's Danish name, but here it is the CURRENCY half of «1
+  # skilling lybsk» — 263 coins carry «lybsk» in the nominal across seven
+  # entities and not one was struck at Lübeck. The seed builder already filters
+  # the value (`_NON_MINT_PLACES`); only the final kept a stale copy, which a
+  # builder filter cannot reach.
+  - seed: kmk-735220
+    kind: field
+    field: mint
+    dropped: ['Lybæk']
+    reason: KMM «Lybæk» on a «1 skilling lybsk» — the money of account, not the mint.
