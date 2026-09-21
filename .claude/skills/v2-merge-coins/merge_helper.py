@@ -165,39 +165,33 @@ def cmd_graph(entity, ids):
     return 0
 
 
-def _merger_resolves(mid, sids):
-    """Mirror merge_seeds_cross_source._expand_member_against: a member resolves
-    if it IS a seed id OR is a bare Hede code expanding to sub-letter seeds
-    (dk-hede-c4h112 -> c4h112a/c4h112b — the intended curator shorthand the
-    merger expands + groups). Final/V1 ids that expand to nothing (km-305-2-…)
-    are real orphans. Keeping this identical to the merger stops audit drift."""
-    if mid in sids:
-        return True
-    if re.search(r"\d$", mid):
-        return any(k.startswith(mid) and k[len(mid):].isalpha() for k in sids)
-    return False
+def _check_member_resolution(entity):
+    """Delegate to validate_decisions.check_member_resolution — the SAME gate
+    .githooks/pre-commit runs.
+
+    This used to be a local re-implementation of the merger's
+    `_expand_member_against`, on the theory that mirroring it stops drift. It
+    drifted anyway: the local copy checked a member against its own entity's
+    seeds only, while the real gate also counts the seeds a `_cross_entity.yml`
+    decision PULLS into that entity for the duration of a run. So the four §CW
+    pairs naming `dk-hede-c7h13b` (re-homed to danish_realm by the per-letter
+    mint fix) read as orphans here while the hook called them fine — the skill
+    disagreeing with the gate about the same file, and the skill being the one
+    that was wrong (2026-09-21).
+
+    A second copy of a rule cannot be kept identical by intent; calling the
+    first one can. Returns [(entity, key, member)]."""
+    import importlib.util
+    root = os.path.normpath(os.path.join(ROOT, "..", ".."))
+    path = os.path.join(root, "scripts", "maintenance", "validate_decisions.py")
+    spec = importlib.util.spec_from_file_location("validate_decisions", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.check_member_resolution({entity} if entity else None)
 
 
 def cmd_audit(entity):
-    seeds_by_entity = {}
-    entities = [entity] if entity else None
-    files = sorted(glob.glob(os.path.join(ROOT, "merge_decisions", "*.yml")))
-    orphans = []
-    for f in files:
-        ent = os.path.basename(f).replace(".yml", "")
-        if ent.startswith("_"):
-            continue  # _cross_entity handled separately
-        if entities and ent not in entities:
-            continue
-        if ent not in seeds_by_entity:
-            seeds_by_entity[ent] = set(load_seeds(ent))
-        sids = seeds_by_entity[ent]
-        doc = yaml.safe_load(open(f)) or {}
-        for key in ("merges", "no_merges"):
-            for blk in (doc.get(key) or []):
-                for m in (blk.get("members") or []):
-                    if not _merger_resolves(m, sids):
-                        orphans.append((ent, key, m))
+    orphans = _check_member_resolution(entity)
     if orphans:
         print(f"  ⚠ {len(orphans)} non-resolving merge-decision member(s):")
         for ent, key, m in orphans:
