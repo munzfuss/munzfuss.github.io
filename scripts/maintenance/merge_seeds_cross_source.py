@@ -3987,10 +3987,19 @@ def _completeness_base_keys(coin: dict, entity_id: str | None) -> set:
 
 
 def _norm_nominal_key(n) -> str:
-    """Normalise a nominal for loose equality — «2 Skilling» == «2skilling»
-    == «2-skilling»."""
-    import re as _re
-    return _re.sub(r"[\s\-.]", "", str(n or "").lower())
+    """Normalise a nominal for the completeness guard's peer screen.
+
+    Delegates to the canonical key the matcher itself uses. It was a local
+    whitespace-strip until 2026-09-21 — the last copy of a nominal key that
+    diverged from `lib.nominal_synonyms` after `_normalise_nominal` had already
+    moved there — and the divergence was not academic: the guard HARD-BLOCKS a
+    merger run over a forgotten cross-entity member, and with the weak key it
+    reported none while the canonical key found real ones. «1 Frederik d’Or»
+    and «Frederik d'Or» differed to it over a leading «1 » and a typographic
+    apostrophe; «3 Sk.» and «3 Skilling» over the abbreviation. Both were peers
+    of an existing group, dropped by the nominal screen after passing the metal
+    pre-screen and the shared catalogue base."""
+    return _normalise_nominal_shared(n)
 
 
 def _check_cross_entity_completeness(all_by_id: dict, home: dict,
