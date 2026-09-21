@@ -1599,6 +1599,100 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 ## Normal priority
 
+### DZ. 🟡 Thinning forgets its own drops; three normaliser gaps behind it  *(opened 2026-09-21)* *(est: medium)* *(type: code + data-audit)*
+
+Opened after two `no_merges` pairs in `danish_realm` were found pointing at
+seeds that no longer exist (dropped in `292aae7`, full trail there). Four
+findings, in dependency order — 1 and 2 are the work, 3 blocks 4.
+
+**1. §9a thinning records nothing about what it dropped.** `thin_safe()`
+(`scripts/lib/seed_thin.py`) returns `(kept, stats)` with aggregate counts
+only; the dropped coin objects reach `_salvage_unique()` — which carries their
+catalogue indices, fineness and diameter onto the keepers — and then go out of
+scope. No dropped id is written anywhere. `_is_curated()` protects
+`_curation_holds` / `_source_errata` but does not consult `merge_decisions/`,
+so a specimen a curator has NAMED in a decision can be thinned away, leaving
+that decision pointing at nothing. Its own docstring already records the same
+class of loss (the norburg pair kmk-81785 / -81790); the fix then covered half
+of it. 289 kmk ids are currently named across the decision files.
+
+The proposal, kept small on curator direction: write `_thinned_from: [id, …]`
+onto the surviving representative, and teach `_expand_member_against` to
+resolve a member through it — the same shape the merger already uses for bare
+Hede → sub-letter (`seed_merge.py` ~553-560). NOT a separate manifest file.
+
+**Historical attribution is NOT recoverable and must not be reconstructed.**
+Re-deriving a dead id's bucket key from cache gives today's normalisation
+against survivors normalised by an older parser: `kmk-348041` keys on nominal
+`'skilling'`, its surviving bucket-mates on `'1 Skilling'`. Anything presented
+as «where this was thinned from» would be a plausible reconstruction, not a
+fact (§0b). The harvest cache still holds every KMM object, so the specimens
+are not lost — only the pointer is.
+
+**2. `seed_thin._subvariant_key()` compares RAW fields while the merger
+normalises.** The docstring says the key uses «the signals the cross-source
+merger itself matches on», but `merge_seeds_cross_source._normalise_ruler`
+folds `Christian 4` and `Christian IV` to one key and `seed_thin` does not — so
+`kmk-122404` and `kmk-306282`, both Hede 119 / 1619, sit in DIFFERENT buckets
+and each keeps its own `max_weightless=3`. Fixing it changes bucket boundaries,
+so the next thinning run drops a different set: a data re-flow needing
+`trace_coin.py snapshot/diff` + `verify_reflow.py` per §9b, not a tidy-up.
+
+Consolidation scope is smaller than it first looked. Of the eight modules
+defining a `_normalise_*`, most normalise unrelated things (metal, fineness,
+weight, side, nation, catalog) — no duplication. Nominals are ALREADY
+consolidated: `merger._normalise_nominal` is a one-line delegation to
+`lib/nominal_synonyms.normalise_nominal`, which is the pattern to copy. Only
+RULER is still duplicated: `lib/ruler_reigns.normalise_ruler_name` exists but
+the merger keeps its own ~30-line copy. They agree on 7 of 8 sampled forms,
+differing only on `Friedrich III. von Schleswig-Holstein-Gottorp` (merger →
+`frederik iii`, lib → `None`). Folding the German form is SAFE: the polity is
+handled by comparison scope, not by the normaliser — the merger only ever
+compares within one entity, and kmk seeds are one file per entity so thinning
+buckets are entity-scoped too (curator raised the same-name-different-state
+concern 2026-09-21; it is already answered architecturally).
+
+**3. The cross-entity completeness guard already misses two live members.**
+`_check_cross_entity_completeness` filters peers with `_norm_nominal_key`
+(`merge_seeds_cross_source.py` ~4138) — a whitespace-strip with no synonym
+folding, the one remaining copy that diverges from the canonical key. Running
+the guard over all 30 293 seeds with each key: **weak key 0 hits, canonical key
+2 hits.** Both are real peers that passed the metal pre-screen and the shared
+base key, and were dropped by the nominal filter alone:
+
+- `dk-bruun-8101` [royal_holstein] «1 Frederik d'Or» (TYPOGRAPHIC apostrophe),
+  gold, 1835, `KM 701 · Hede 4B · Sieg 33 · Schou 2 · Fr 287`, Bruun III lot
+  11303 p. 152, weight 6.62 g. Belongs to the Hede-4 Frederik d'Or group. It
+  matches `dk-hede-f6h4b` on Hede 4B + Sieg 33 + Altona + 1835 with no
+  conflict, and it is the only candidate carrying KM 701 and a specimen weight
+  — the group's 4B member currently has no KM at all. Weak key splits it on
+  the leading «1 » and the `’` vs `'` character.
+- `kmk-301837` [danish_realm] «3 sk.», FP 8410.93, 1812, `H 14`, no metal, no
+  measurements, `drawingExists: False`. Belongs to the Hede-14 3-Skilling
+  group, on exactly the footing of the nine weightless kmk members already in
+  it. Weak key splits it on the abbreviation `Sk.` vs `Skilling`.
+
+Neither record is under any `no_merges`, and neither is in `exclusions/`.
+Verdict from the comparison tables: both are `members`, not `excludes`.
+
+Note the circularity on the second one: it is precisely the weightless-FP shape
+thinning drops first, so adding it to `_cross_entity.yml` before finding 1 is
+fixed knowingly creates a third future orphan.
+
+**4. Replacing the guard's key is blocked on 3.** The change is one line, but
+the guard is a HARD ERROR — the moment it uses the canonical key it aborts
+every merger run until both records above are adjudicated into `members` or
+`excludes`. Doing it inside another task would read as that task breaking the
+merger. Order: adjudicate the two → change the key → the change is then a
+behavioural no-op. Curator deferred the merge itself on 2026-09-21 to keep
+unrelated changes out of the current work.
+
+**Also spotted, already fixed:** `merge_helper.py audit` in the
+`v2-merge-coins` skill disagreed with the hook's own gate about the same file,
+reporting four working `dk-hede-c7h13b` safeguards as orphans because its
+private copy of the resolver ignored `_cross_entity` pulls. It now calls
+`validate_decisions.check_member_resolution` directly (`2de946c`).
+
 ### DA. 🟡 Catalogue-register hygiene — ~30 genuine misfiles/garbage (the «688» scan was ~93% false-positive)  *(opened 2026-06-25, CORRECTED 2026-06-25)* *(est: small)* *(type: data-audit)*
 
 **CORRECTION (2026-06-25, §0b).** The original framing of this entry was WRONG.
