@@ -235,6 +235,7 @@ def _normalise_metal(metal, fineness):
 # in this module.
 from lib.yaml_io import dump_v2_canonical
 from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared
+from lib.ruler_reigns import normalise_ruler_key as _normalise_ruler_shared
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices
 from lib.catalog_codes import split_multi_ref as _split_multi_ref
 from lib.v2_seed_writer import _canonicalise_mint
@@ -284,200 +285,22 @@ def _is_forgery_nominal(nominal) -> bool:
     return bool(nominal and _FORGERY_RE.search(str(nominal)))
 
 
-_ARABIC_ROMAN = {
-    1: "i", 2: "ii", 3: "iii", 4: "iv", 5: "v", 6: "vi", 7: "vii", 8: "viii",
-    9: "ix", 10: "x", 11: "xi", 12: "xii", 13: "xiii", 14: "xiv", 15: "xv",
-    16: "xvi", 17: "xvii", 18: "xviii", 19: "xix", 20: "xx",
-}
-
-
-def _regnal_arabic_to_roman(s: str) -> str:
-    """Convert a TRAILING 1-2-digit regnal number to roman for MATCHING.
-    ucoin / Numista write «Christian 4» / «Frederik 3»; Hede / Bruun write
-    «Christian IV» / «Frederik III» — same monarch, but the arabic-vs-roman
-    numeral fragments every Danish king (≈19k coins). Canonicalise to roman.
-
-    GUARDS (so two different rulers are never folded):
-      • only a TRAILING number is converted (with optional «?»), so
-        «Karl 3 Johan» (embedded → Karl XIV Johan) is left alone;
-      • the name-part must carry NO other digit and NO joint/uncertain
-        separator («eller» / «or» / «/»), so «Frederik 7 eller Christian 9»
-        is left alone;
-      • numbers outside 1-20 are left as-is.
-    Matching only — the stored ruler keeps its source form.
-    """
-    m = re.match(r"^(.+?)\s*(\d{1,2})\??$", s)
-    if not m:
-        return s
-    name = m.group(1).strip()
-    if not name or re.search(r"\d", name):
-        return s
-    if any(tok in name for tok in (" eller ", " or ", "/")):
-        return s
-    roman = _ARABIC_ROMAN.get(int(m.group(2)))
-    return f"{name} {roman}" if roman else s
-
-
-@lru_cache(maxsize=None)
 def _normalise_ruler(ruler):
     """Canonicalise a ruler string for cross-source comparison.
 
-    @lru_cache: pure str→str (ruler is a scalar string or None). Profiling
-    the royal_holstein merge showed this called 1.55 M times costing 21 s
-    uncached — the same shape as `_normalise_nominal`, which costs 0.28 s
-    BECAUSE it is cached. match_pair re-normalises the same handful of ruler
-    strings across every O(n²) pair; memoising collapses that to one compute
-    per distinct ruler. (2026-06-04 perf pass.)
+    The implementation lives in `lib.ruler_reigns.normalise_ruler_key`, beside
+    the reign table it serves and beside `normalise_ruler_name`, which is the
+    DISPLAY form of the same subject. It sat here until 2026-09-21 — the last
+    comparison normaliser still owned by a caller, after nominals had already
+    moved to `lib.nominal_synonyms` — which left `lib.seed_thin` unable to
+    bucket specimens by the signals this matcher matches on without importing
+    the whole merger.
 
-    Variants normalised to the same form (so reign-index queries +
-    cross-source matcher hits don't fragment over spelling artefacts):
+    `@lru_cache` is applied at the definition, so the memoisation the 2026-06-04
+    perf pass added (1.55 M calls, 21 s uncached) still holds through this
+    delegation."""
+    return _normalise_ruler_shared(ruler)
 
-      «Christian IV.»     →  «christian iv»
-      «Christian IV»      →  «christian iv»
-      «Christian IV. (1588-1648)»  →  «christian iv»
-      «Christian VII, der …»  →  «christian vii»
-      «Frederik IV 1699 - 1730»  →  «frederik iv»  (NumisMaster reign-bleed)
-      «Christian VII 1766 - 1808 Issuer: Danish …»  →  «christian vii»  (NumisMaster Issuer-bleed)
-      «Friedrich III. von Schleswig-Holstein-Gottorp»  →  «friedrich iii»
-
-    Returns lowercased, trailing-period-stripped, single-spaced.
-    """
-    if not ruler:
-        return ""
-    s = str(ruler)
-    # Drop parenthetical reign annotations, e.g. «(1588-1648)»
-    s = s.split("(")[0]
-    # Drop comma-tail descriptive epithets, e.g. «Christian VII, der …»
-    s = s.split(",")[0]
-    # Drop «Issuer:» bleed-through from NumisMaster pages
-    s = re.split(r"\s+Issuer\s*:", s, maxsplit=1)[0]
-    # Drop trailing «1699 - 1730» reign-year tail (NumisMaster mass-pollution
-    # already handled by parse_numismaster._clean_ruler, but defensive here
-    # so older seeds + future sources stay normalised)
-    s = re.sub(r"\s+\d{4}\s*-\s*\d{0,4}\s*$", "", s)
-    # Drop «von <house>» / «af <kingdom>» trailing peerage
-    s = re.split(r"\s+(?:von|af|of|zu)\s+", s, maxsplit=1)[0]
-    # Strip trailing dots + whitespace, normalise internal whitespace.
-    # Combined `[\s.]+$` handles the «Christian IV. (1588-1648)» path
-    # where split("(")[0] leaves «Christian IV. » — trailing space had
-    # to be stripped BEFORE the dot-strip could catch the dot, otherwise
-    # «christian iv.» leaked through with dot intact.
-    s = re.sub(r"[\s.]+$", "", s)
-    s = re.sub(r"\s+", " ", s)
-    s = s.lower()
-    # English / parser-artefact spelling normalisations. The Danish
-    # form is «Frederik» (no `c` before `k`); some sources / parsers
-    # render it «Frederick» which fragments index attestation. Same
-    # for «Christian» (no variant) — kept for symmetry future-proof.
-    # «Frederick»(en) / «Friedrich»(de) / «Friederich»(typo) → «frederik»
-    # (Danish canonical). MATCHING-only spelling fold. Safe despite German
-    # «Friedrich» rulers being distinct people from Danish «Frederik»: the
-    # matcher is per-entity (cross-entity Friedrichs never compared) and
-    # match_pair's year/catalog fallback separates same-name-same-numeral
-    # rulers within an entity (e.g. _unclassified «Friedrich III» 1491 vs
-    # 1888 → years disagree → no_match). Verified per-entity 2026-06-03.
-    # «Fredrik»(sv/no) + «Friedric»(truncation typo) joined the alternation
-    # 2026-07-30: the fold covered every foreign spelling EXCEPT the two the
-    # Scandinavian sources actually use, so KMM's «Fredrik 5» / «Carl Friedric»
-    # fragmented from every other source's «Frederik V» / «Karl Friedrich».
-    # Longer alternatives stay first — «friedrich» must win over «friedric».
-    s = re.sub(r"\b(?:frederick|friedrich|friederich|friedric|fredrik)\b",
-               "frederik", s)
-    # Cross-language ruler-name synonyms — different sources use the
-    # English vs Danish/Norwegian form for the same monarch.
-    #
-    #   «John I» / «John I (Hans I)» (Numista English) ↔ «Hans» (Bruun,
-    #       Hede, danskmoent.dk Danish form). Hans of Denmark (1455-1513)
-    #       reigned 1481-1513 as Hans / Johann / John I.
-    #   «John II» (Sweden side via Kalmar Union) — same Hans, period
-    #       Swedish attestation. Same canonical.
-    #   «Eric» ↔ «Erik» (Erik VII of Pomerania, Erik XIV, etc.)
-    #   «Margaret» ↔ «Margrethe» (Margrethe I, Margrethe II).
-    #
-    # Canonical form is the Danish (matches Hede/Galster/our project YAML).
-    # The parenthetical clipping above («John I (Hans I)» → «John I») runs
-    # before lowercase, so by the time we get here the input is the bare
-    # English form.
-    if s in ("john i", "john ii"):
-        s = "hans"
-    s = re.sub(r"\beric\b", "erik", s)
-    s = re.sub(r"\bmargaret\b", "margrethe", s)
-    # Leading ruler-TITLE strip — «Hertug …»/«Herzog …»/«Duke …»/«Ærkebisp …»
-    # /«Erkebisp …»/«Archbishop …» are not part of the identity (the name
-    # discriminates). Folds «Hertug Johan Adolf» → «johan adolf» and
-    # «Ærkebisp Johann Friedrich» → «johann friedrich» (Bremen-Verden
-    # archbishop — now safe to fold with the Frederik spelling work below).
-    s = re.sub(r"^(?:hertug(?:en)?|herzog|duke|ærkebisp(?:pen)?|erkebisp|archbishop)\s+", "", s)
-    #   «Johan Adolf» / «Johan Adolph» / «Johan Adolg»(typo) / «Johann Adolf»
-    #   / Adolph — Danish «Johan»(1n) vs German «Johann»(2n) + adolf/adolph
-    #   spelling of the SAME Holstein-Gottorp duke (r. 1590-1616). Reign-
-    #   window + entity survey (2026-06-03) confirms every NO-NUMERAL form
-    #   is this one duke (gottorp/royal_holstein/danish_realm, 1579-1615).
-    #   The numeral-lookahead guard keeps «Johann Adolph I» (Holstein-
-    #   Norburg-Plön, 1690) DISTINCT; the per-entity matcher prevents the
-    #   pre-existing gottorp↔norburg_plön «johann adolf» label overlap from
-    #   cross-merging. «John Adolphus» (English) is handled by the next sub.
-    s = re.sub(r"\bjohann?\s+adol(?:f|ph|g)\b(?!\s+[ivx]\b)", "johann adolf", s)
-    #   «John Adolphus» (Numista English) ↔ «Johann Adolf» (German) —
-    #   Johann Adolf von Holstein-Gottorp, Duke 1590-1616. Verified safe by
-    #   reign-window + entity survey (2026-06-03): the bare «John Adolphus»
-    #   form appears only in gottorp_duchy 1590-1611 = this one duke.
-    #   GUARDS (negative lookahead on a trailing roman numeral):
-    #     - «John Adolphus I» (Holstein-Norburg-Plön, 1690) — a DIFFERENT
-    #       duke — stays untouched (the «I» blocks the match).
-    #     - Bare «Adolf» (grandfather Adolf I, 1544-1586), Schauenburg counts
-    #       «Adolf XIII/XIV», «Hans Adolf», «Adolf Friedrich» are different
-    #       strings → never touched.
-    #   The matcher is per-entity, so even the pre-existing «johann adolf»
-    #   gottorp↔norburg_plön label overlap can't cross-merge.
-    s = re.sub(r"\bjohn adolphus\b(?!\s+[ivx]\b)", "johann adolf", s)
-    #   «John/Johan/Johann Frederik» — Danish «Johan»(1n)/English «John» vs
-    #   German «Johann»(2n) of the SAME compound-name ruler (Friedrich→
-    #   frederik already applied above). Per-entity matcher + reign window
-    #   verified one ruler per entity (e.g. Bremen-Verden archbishop Johann
-    #   Friedrich 1596-1622). Numeral guard keeps «Johann Frederik I»
-    #   (Saxony elector, 1535) DISTINCT; bare «Johan»/«John» (Hans the
-    #   Younger / John I of Denmark) is untouched (only the +Frederik
-    #   compound folds).
-    s = re.sub(r"\bjoh(?:n|an|ann)\s+frederik\b(?!\s+[ivx]\b)", "johann frederik", s)
-    #   «Christian Albert»(en) ↔ «Christian Albrecht»(de) — Christian Albrecht
-    #   von Holstein-Gottorp, Duke 1659-1695. Reign-window + entity survey
-    #   (2026-06-03): both forms = this one duke (gottorp/royal_holstein/
-    #   danish_realm/hamburg, 1661-1694). Fold to the German canonical.
-    #   Targets only the «Christian Alb…» compound, so bare «Albrecht»
-    #   (Wallenstein etc.), «Johan Albrecht I», «Albrecht II. Alcibiades»
-    #   are untouched; numeral guard reserves any future «Christian Albrecht I».
-    s = re.sub(r"\bchristian\s+alb(?:recht|ert)\b(?!\s+[ivx]\b)", "christian albrecht", s)
-    # Cross-language ruler-NAME translations — NAME component only, the
-    # regnal NUMERAL is preserved (user direction 2026-06-09: «імʼя не може
-    # йти окремо від порядкового номера»). Numista publishes English ruler
-    # names; NumisMaster / Bruun / Hede the German/Danish form. Folding the
-    # NAME (not the numeral) lets «Charles Frederick» ≡ «Karl Friedrich»
-    # and «Francis William» ≡ «Franz Wilhelm» merge, while «George IV»
-    # stays ≠ «Charles II» (different name → «georg iv» ≠ «karl ii») and
-    # «Frederik VI» stays ≠ «Frederik IX» (different numeral). The POLITY is
-    # handled by the per-entity matcher — same name+numeral in two
-    # different issuing entities is never compared (so a same-named ruler
-    # of two different lands cannot cross-merge). Whole-word, German-states
-    # canonical (every Charles/Karl, George/Georg, etc. in scope is a
-    # German/Norwegian/Swedish ruler — there is no Danish «Karl»).
-    # «Carl» joined 2026-07-30, same gap as «Fredrik» above: the ENGLISH
-    # spelling folded to the canonical while the SCANDINAVIAN one did not, so
-    # KMM's «Carl XIV Johan» / «Carl XI» / «Carl Frederik» never matched the
-    # «Karl …» every other source publishes.
-    s = re.sub(r"\b(?:charles|carl)\b", "karl", s)
-    s = re.sub(r"\bgeorge\b", "georg", s)
-    s = re.sub(r"\bwilliam\b", "wilhelm", s)
-    s = re.sub(r"\bfrancis\b", "franz", s)
-    s = re.sub(r"\bernest\b", "ernst", s)
-    s = re.sub(r"\baugustus\b", "august", s)
-    s = re.sub(r"\bhenry\b", "heinrich", s)
-    s = re.sub(r"\berich\b", "erik", s)
-    s = re.sub(r"\badolphus\b", "adolf", s)
-    # Arabic→roman regnal numeral (Christian 4 → christian iv, etc.) — LAST,
-    # after spelling/synonym folds, so the name-part is already canonical.
-    s = _regnal_arabic_to_roman(s)
-    return s
 
 
 def _coin_years(coin: dict) -> set[int]:
