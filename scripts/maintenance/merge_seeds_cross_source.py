@@ -3910,7 +3910,7 @@ V2_CROSS_ENTITY_DECISIONS = V2_MERGE_DECISIONS / "_cross_entity.yml"
 
 
 def _load_cross_entity_decisions(
-    all_ids: set[str],
+    all_ids: set[str], thinned: dict[str, list[str]] | None = None,
 ) -> tuple[dict[str, list[list[str]]], dict[str, str]]:
     """Pre-scan `data/v2/merge_decisions/_cross_entity.yml`. Each `merges` entry
     carries an explicit `target_entity` + `members` (ids from ANY bucket).
@@ -3951,7 +3951,7 @@ def _load_cross_entity_decisions(
         ie_override = entry.get("issuing_entity")
         expanded: list[str] = []
         for m in (entry.get("members") or []):
-            exp = _expand_member_against(m, all_ids)
+            exp = _expand_member_against(m, all_ids, thinned)
             if not exp:
                 print(f"  ⚠ cross-entity member {m!r} absent from all seeds — skipped")
                 continue
@@ -3993,7 +3993,8 @@ def _norm_nominal_key(n) -> str:
     return _re.sub(r"[\s\-.]", "", str(n or "").lower())
 
 
-def _check_cross_entity_completeness(all_by_id: dict, home: dict) -> list:
+def _check_cross_entity_completeness(all_by_id: dict, home: dict,
+                                     thinned: dict[str, list[str]] | None = None) -> list:
     """Completeness guard. For each `_cross_entity.yml` group, find seeds that
     share a member's KM/Hede base AND nominal AND metal but aren't listed (nor
     in the entry's `excludes:` escape-hatch) — a forgotten member that would
@@ -4016,10 +4017,10 @@ def _check_cross_entity_completeness(all_by_id: dict, home: dict) -> list:
         target = entry.get("target_entity")
         members: set = set()
         for m in (entry.get("members") or []):
-            members |= set(_expand_member_against(m, all_ids))
+            members |= set(_expand_member_against(m, all_ids, thinned))
         excludes: set = set()
         for x in (entry.get("excludes") or []):
-            excludes |= set(_expand_member_against(x, all_ids))
+            excludes |= set(_expand_member_against(x, all_ids, thinned))
         member_metals = {all_by_id[m].get("metal") for m in members if m in all_by_id}
         member_noms = {_norm_nominal_key(all_by_id[m].get("nominal"))
                        for m in members if m in all_by_id}
@@ -4276,6 +4277,8 @@ def process_entity(entity_id: str,
     for cid in seeds_by_id:
         uf.find(cid)
 
+    _thinned_here = build_thinned_index(seeds_by_id.values())
+
     def _expand_member(mid: str) -> list[str]:
         """Resolve a merge_decision member id to the real seed id(s) present.
 
@@ -4286,15 +4289,16 @@ def process_entity(entity_id: str,
         sub-variant differs from the other-coin members). A genuinely-missing id
         resolves to `[]` so the caller warns + skips (never KeyError-crashes).
         Non-Hede ids (numista/ucoin/numismaster) have no alpha-suffix siblings,
-        so this is a no-op identity for them."""
-        if mid in seeds_by_id:
-            return [mid]
-        if re.search(r"\d$", mid):
-            subs = sorted(k for k in seeds_by_id
-                          if k.startswith(mid) and k[len(mid):].isalpha())
-            if subs:
-                return subs
-        return []
+        so this is a no-op identity for them.
+
+        A member naming a specimen §9a thinning has since dropped resolves to
+        the representative that absorbed it, via `_thinned_from`. This body
+        delegates to `_expand_member_against` rather than repeating its rules:
+        the two were separate copies until 2026-09-21, and when the thinned
+        fallback was added to one of them, `validate_decisions` reported every
+        member resolving while THIS closure still skipped them — the gate
+        passing on a decision the merger silently dropped."""
+        return _expand_member_against(mid, seeds_by_id, _thinned_here)
 
     # 1. Apply explicit no_merges first (curator decisions take precedence
     #    over any auto-rule). Expand each member; pair ONLY across distinct
@@ -4857,7 +4861,14 @@ def main() -> int:
     # loop (a member's exclude from its source entity must agree with its pull
     # into the target — both sides need the same map).
     all_by_id, _home = _load_all_seeds()
-    pull_groups, member_target, member_ie = _load_cross_entity_decisions(set(all_by_id))
+    # One index for every member-resolution path in this run: the per-entity
+    # closure, the cross-entity pre-scan and the completeness guard. They are
+    # three call sites of ONE resolver, and a member thinning has dropped must
+    # read the same either way — wiring only some of them is how a decision
+    # ends up live in one path and silently skipped in another.
+    _thinned_all = build_thinned_index(all_by_id.values())
+    pull_groups, member_target, member_ie = _load_cross_entity_decisions(
+        set(all_by_id), _thinned_all)
     if member_target and args.entity:
         affected = {args.entity} | {member_target[m] for m in member_target}
         if affected - {args.entity}:
@@ -4866,7 +4877,7 @@ def main() -> int:
                   "excludes also apply — single-entity --apply can leave a "
                   "duplicate in the un-processed bucket.\n")
 
-    _xe_incomplete = _check_cross_entity_completeness(all_by_id, _home)
+    _xe_incomplete = _check_cross_entity_completeness(all_by_id, _home, _thinned_all)
     if _xe_incomplete:
         print(f"  ✗ cross-entity COMPLETENESS — BLOCKED: {len(_xe_incomplete)} "
               f"forgotten member(s). A seed shares a group member's KM/Hede base + "

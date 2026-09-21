@@ -798,6 +798,23 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                         f"{cid}.{f}: {v[:70]} (parser retraction)"
                         for v in sorted(excused))
                     gone -= excused
+                # Same ledger discipline, one field over: §9a keeps min /
+                # middle / max of a coin's readings per source, and
+                # thin_final_weight_lists now records each reading it removed
+                # on the coin itself. Excuse EXACTLY those, value by value —
+                # a list that also lost a reading the thinner never touched
+                # still blocks, and a coin carrying the marker gets no blanket
+                # amnesty for its other fields. Before the marker existed this
+                # gate could not tell a §9a trim from a real loss and
+                # hard-blocked the correct one (unified-kmk-714790, 2026-09-21).
+                thinned = {_key(e) for e in _as_list(c.get("_weights_thinned"))}
+                if thinned:
+                    trimmed = gone & thinned
+                    if trimmed:
+                        retractions.extend(
+                            f"{cid}.{f}: {v[:70]} (§9a envelope trim)"
+                            for v in sorted(trimmed))
+                        gone -= trimmed
                 if gone:
                     losses.append(f"LIST SHRANK  {cid}.{f}: lost {len(gone)} "
                                   f"({sorted(gone)[0][:70]}…)")

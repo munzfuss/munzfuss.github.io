@@ -125,8 +125,46 @@ def thin_coin(coin: dict) -> int:
                 dropped += 1
     if not dropped:
         return 0
+    removed = [e for e in weights if id(e) not in keep_ids]
     coin["weight_rough_g"] = [e for e in weights if id(e) in keep_ids]
+    _record_thinned_weights(coin, removed)
     return dropped
+
+
+_WEIGHTS_THINNED_KEY = "_weights_thinned"
+
+
+def _record_thinned_weights(coin: dict, removed: list) -> None:
+    """Record WHICH readings this thinner removed, value by value.
+
+    §9a keeps min / middle / max of a coin's readings per source; the
+    intermediate ones carry no envelope information and go. Until now they
+    went unrecorded, so nothing downstream could tell a §9a trim from a real
+    data loss — `verify_reflow` read both as «LIST SHRANK» and hard-blocked
+    the commit (2026-09-21, unified-kmk-714790: HEAD carried an un-thinned
+    six-reading list, this thinner correctly cut it to three, and the guard
+    called it a regression).
+
+    A boolean «was thinned» would not be enough to clear that: the guard has
+    to know that THESE readings went, so a genuine loss in the same list is
+    still caught. Each entry is stored verbatim — same {value, source} shape
+    as the reading it replaces — and the list is deduped and sorted, so a
+    re-run records the same thing and the file stays stable.
+
+    Mirrors `lib/seed_thin._record_thinned_from` one layer up (curator
+    direction: thinned data stays dropped, never forgotten)."""
+    if not removed:
+        return
+    def _k(e):
+        return (e.get("value"), str(e.get("source", ""))) if isinstance(e, dict) else (None, str(e))
+    acc = list(coin.get(_WEIGHTS_THINNED_KEY) or [])
+    seen = {_k(e) for e in acc}
+    for e in removed:
+        if _k(e) not in seen:
+            seen.add(_k(e))
+            acc.append(e)
+    coin[_WEIGHTS_THINNED_KEY] = sorted(
+        acc, key=lambda e: (str(_k(e)[1]), _k(e)[0] is None, _k(e)[0] or 0.0))
 
 
 def run(dry_run: bool) -> int:

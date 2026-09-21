@@ -43,6 +43,8 @@ from pathlib import Path
 _LIB = Path(__file__).resolve().parent
 sys.path.insert(0, str(_LIB.parent))
 from lib.seed_merge import _make_yaml_loader  # noqa: E402
+from lib.nominal_synonyms import normalise_nominal  # noqa: E402
+from lib.ruler_reigns import normalise_ruler_key  # noqa: E402
 
 # Catalogue indices that count as a confident type identity for the gate.
 CATALOG_KEYS = ("km", "hede", "lange", "sieg", "schou", "fr", "dav", "galster")
@@ -59,12 +61,34 @@ def _subvariant_key(coin: dict) -> tuple:
     merger keys on must appear here: omitting one (e.g. `galster`) lets
     specimens of DIFFERENT types share a bucket and get collapsed together,
     which both loses distinct types and — once thinning salvages refs onto the
-    reps — bloats the survivor's catalogue + drives transitive over-merges."""
+    reps — bloats the survivor's catalogue + drives transitive over-merges.
+
+    `nominal` and `ruler` go through the SAME normalisers the merger matches
+    on. They were compared raw until 2026-09-21, which made this docstring's
+    claim untrue in the one place it mattered: «Christian 4» and «Christian
+    IV», or «3 Sk.» and «3 Skilling», are one type to the merger and were two
+    buckets here. Each half-bucket then kept its own `max_weightless` quota, so
+    a type could hold six or nine weightless specimens where the rule allows
+    three. Aligning the key merged 308 bucket pairs and shed 294 records: 291
+    carrying no measurement at all, and 3 that are exact same-weight twins of a
+    specimen in the bucket they joined (kmk-714878/1.96, kmk-693170/1.65,
+    kmk-714938/2.03 — each a «8 Skilling dansk» meeting its «8 Skilling»
+    spelling under one Hede base). No weight envelope moved.
+
+    `mint` stays raw deliberately: running it through the merger's
+    `_normalise_mints` was measured and changes nothing (294 either way), so
+    the extra coupling buys nothing.
+
+    Normalising here can only MERGE buckets, never split them, so this cannot
+    strand a specimen in a bucket of its own — but it does drop records, and
+    every drop is recorded on its representative via `_record_thinned_from`."""
     cat = coin.get("catalog") or {}
     return (
         str(cat.get("km")), str(cat.get("hede")), str(cat.get("sieg")),
         str(cat.get("schou")), str(cat.get("lange")), str(cat.get("galster")),
-        coin.get("nominal"), coin.get("ruler"), coin.get("year_first"),
+        normalise_nominal(coin.get("nominal")),
+        normalise_ruler_key(coin.get("ruler")),
+        coin.get("year_first"),
         str(coin.get("mint")), coin.get("metal"),
     )
 
@@ -217,6 +241,70 @@ def _record_thinned_from(reps: list, dropped: list) -> None:
     acc.discard(target.get("id"))
     if acc:
         target[_THINNED_FROM_KEY] = sorted(acc)
+    _absorb_sources(target, dropped)
+
+
+def _absorb_sources(target: dict, dropped: list) -> None:
+    """Move the dropped specimens' citations onto the representative.
+
+    This layer is VOLUME CONTROL, not curation: `thin_safe` exists so the
+    merger's O(n²) pass stays tractable (41 490 kmk records against 14 152).
+    Dropping a record here must therefore not delete an attestation from the
+    corpus — the museum object was in it, and the representative stands for
+    the same sub-variant, so the citation belongs on the survivor exactly as
+    §9a's multi-specimen merge puts many specimens' sources on one coin.
+
+    `_salvage_unique` deliberately does NOT carry them, on the reasoning that
+    per-specimen URLs are the redundancy thinning sheds. That reasoning is
+    sound one layer up — `thin_final_weight_lists.py` drops surplus WEIGHT
+    READINGS from a coin that stays in the corpus with its own citations — and
+    it does not hold here, where the record itself goes. Applied at the seed
+    layer it deleted museum objects outright: 15 unified classes had a single
+    thinned specimen as their only member, so class, citation and every trace
+    of the object left the data together (found 2026-09-21 when `verify_reflow`
+    reported them GONE against HEAD; curator's call — thinned records stay
+    un-rendered, never deleted).
+
+    Deduped by (url, ref, type) like the merger's own source union, so a
+    re-run cannot accumulate copies."""
+    src = list(target.get("sources") or [])
+    seen = {(e.get("url"), e.get("ref"), e.get("type")) if isinstance(e, dict) else (str(e), None, None)
+            for e in src}
+    for d in dropped:
+        for e in d.get("sources") or []:
+            k = (e.get("url"), e.get("ref"), e.get("type")) if isinstance(e, dict) else (str(e), None, None)
+            if k in seen:
+                continue
+            seen.add(k)
+            src.append(e)
+    if src:
+        target["sources"] = src
+
+
+def _in_input_order(coins: list, kept: list) -> list:
+    """Return `kept` in the order the records arrived in.
+
+    Thinning is a FILTER, and its output order used to be `sorted(by id)` —
+    which is not how the rest of the corpus is written. `merge_seed` emits
+    fresh entries in the parser's order and appends orphan-curated ones at the
+    tail, a structure the sort dissolved; and of the nine seed sources only the
+    two that get thinned are id-sorted at all, so the sort was imposing a
+    second convention rather than following one.
+
+    The cost was reviewability, which is the thing thinning most needs: a run
+    that dropped 5 records from gottorp_duchy rewrote 6 127 lines, because that
+    file happened to be out of id order. A diff like that hides whether
+    anything was lost inside a reshuffle — the exact judgement a later session
+    has to make under time pressure.
+
+    Nothing depends on the output order (`merge_seed` keys by id), and no
+    weight ordering passes through here: the §9a envelope sorts a COIN's
+    weight list by weight in `thin_final_weight_lists.py`, a different layer.
+    The id sorts that remain inside the bucket rules — which weightless
+    specimens survive, and the [0, len//2, -1] pick — decide WHICH records are
+    kept and are untouched."""
+    keep = {id(c) for c in kept}
+    return [c for c in coins if id(c) in keep]
 
 
 def thin_safe(coins: list, max_weightless: int = 3) -> tuple[list, dict]:
@@ -291,7 +379,7 @@ def thin_safe(coins: list, max_weightless: int = 3) -> tuple[list, dict]:
             dropped_total += len(dropped)
             touched_buckets += 1
         kept.extend(keep)
-    kept.sort(key=lambda c: str(c.get("id")))
+    kept = _in_input_order(coins, kept)
     return kept, {"before": len(coins), "after": len(kept),
                   "sub_variants": len(buckets), "thinned_buckets": touched_buckets,
                   "dropped": dropped_total,
@@ -330,7 +418,7 @@ def thin_coins(coins: list, min_bucket: int = 5,
             thinned_buckets += 1
         else:
             kept.extend(members)
-    kept.sort(key=lambda c: str(c.get("id")))
+    kept = _in_input_order(coins, kept)
     return kept, {
         "before": len(coins), "after": len(kept),
         "sub_variants": len(buckets), "thinned_buckets": thinned_buckets,
