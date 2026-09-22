@@ -15,6 +15,72 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-09-22 — thinning stopped forgetting what it drops (both layers); YAML residual A + B paid
+
+Eleven commits local, NOT pushed: `474771f` `32e51b0` `292aae7` `2de946c`
+`dc944c0` `e2338b1` `71963bb` `fea6534` `c416c7e` `5e4dfce` `3c6a9af`.
+
+Started as the YAML reformat-debt task and turned into the thinning layers.
+Two inert `no_merges` pairs in danish_realm led back to §9a thinning dropping
+records that nothing downstream could account for.
+
+**Both thinning layers now record what they removed.**
+`lib/seed_thin._record_thinned_from` writes `_thinned_from` on the
+representative (the same record `_salvage_unique` targets), and
+`thin_final_weight_lists._record_thinned_weights` writes `_weights_thinned` —
+the removed readings verbatim, NOT a boolean, so `verify_reflow` can excuse
+exactly those values and still block a real loss in the same list. Both keys
+are in `_PRESERVE_ALWAYS_KEYS` / re-derived per pass.
+
+**The seed-layer bucket key is now the merger's.** `_subvariant_key` compared
+`nominal` and `ruler` RAW while claiming to use the merger's signals, so
+«Christian 4» and «Christian IV» were two buckets, each with its own
+`max_weightless` quota. Aligned it to `lib.nominal_synonyms.normalise_nominal`
++ `lib.ruler_reigns.normalise_ruler_key`; `mint` stays raw (measured: changes
+nothing). The re-flow dropped 294 kmk records — 291 weightless, 3 exact
+same-weight twins — with no envelope moving and every id recorded.
+
+**Thinning no longer re-sorts the file.** It sorted output by id, which is not
+how the corpus is written (only the two thinned sources were id-sorted at all;
+`merge_seed` emits parser order + orphan tail). Dropping 5 records from
+gottorp_duchy used to rewrite 6 127 lines; now 99, and sonderburg_duchy is not
+touched at all.
+
+**Ruler comparison key moved to `lib/ruler_reigns.normalise_ruler_key`**,
+beside `normalise_ruler_name` (display form, untouched). Nominals were already
+delegated. Verified identical on all 654 distinct live ruler strings.
+
+**Three method notes, each of which cost time here:**
+1. `_expand_member_against` has THREE call sites — the per-entity closure, the
+   cross-entity pre-scan, and the completeness guard. Wiring the thinned index
+   into one left `validate_decisions` reporting every member resolving while
+   the merger silently skipped them. Wire all three or none.
+2. The `absorb → thin_final_weight_lists` pairing in the 2026-09-13 note below
+   is real and I skipped it: absorb re-populates the full §9a envelope, so a
+   run without the thinner reads as 3 rendered coins "losing" weights.
+3. A guard extracted to the scratchpad resolves `FINAL_DIR` from `__file__` and
+   silently reads an EMPTY directory — it reports «0 changed» and looks like a
+   clean baseline. Run a HEAD-version script from inside the repo tree.
+
+**YAML residual**: step A (18 hand-edited files, 1 141 lines) and step B
+(`_pending_merge_review.yml`, 4 187) are paid; `.git-blame-ignore-revs` now
+exists (enable locally with `git config blame.ignoreRevsFile
+.git-blame-ignore-revs`). Site hash was byte-identical across step A.
+
+**Open, measured, not started:**
+- **Step D — `data/v2/seed/` 10 061 lines**, 93 % of it `seed/numista` (9 203)
+  + `galster` (807); kmk/ikmk are at zero through the same writer, so the
+  question is why `build_numista_seed` leaves a trace when they do not.
+  `v2_seed_writer.py` ~1838 only writes when something changed, so these never
+  self-heal.
+- **94 dead members in `_cross_entity.yml`**, absent from HEAD and from the
+  current seeds — stale since the 2026-09-12 re-seed. Invisible to the gate:
+  `check_member_resolution` skips `_`-prefixed files by design.
+- **`_pending_merge_review.yml` is decaying.** Live (284 of its 303 candidates
+  are still `seed_unsorted`) but keyed on `unified-*` ids, so in
+  `confident_duplicate` only 9 of 122 PEER ids still resolve. Re-key on seed
+  ids (§9b) when picking up the review.
+
 ## 2026-09-20 — NEXT TASK: the `mint` field carries a family of non-places
 
 Found while repairing the fragment notes (`07b6a97`) and settling one
