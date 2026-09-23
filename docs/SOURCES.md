@@ -533,6 +533,26 @@ passed the challenge. `pdf-viewer` MCP when it is connected. WebFetch is
 unreliable here (failed 2026-09-06) but sometimes returns a usable summary of an
 `.htm` page.
 
+**Cached locally — check here before fetching anything.** Two volumes are already
+in the harvest submodule, each as `<volume>/wilcke_N.pdf` + `pages/*.txt` (pypdf
+extraction, for grep) + a `README.md` carrying provenance, the page offset and
+the sha256:
+
+| Volume | Cache path under `scripts/cache/wilcke/` | Captured from |
+|---|---|---|
+| **I** *Christian IVs Møntpolitik 1588-1625* | `christian_iv_moentpolitik_1919/` (15 MB, 239 pp.) | <https://www.danskmoent.dk/pdf2/Wilcke_1.pdf> |
+| **VII** *Renæssancens Mønt- og Pengeforhold 1481-1588* | `renaessancens_moent_1950/` (8 chapters, 135 MB, 567 pp.) | <https://www.danskmoent.dk/pdf2/Wilcke%207-1.pdf> … `7-8.pdf` |
+
+**Cite the danskmoent URL, never the cache path.** The cache exists so that *we*
+can read the volume; the end-reader gets a link they can open. A
+`data/shared/refs_pool.yml` body, an inline `<sup>[ref:KEY]</sup>` target, or any
+other role-3 citation carries `https://www.danskmoent.dk/pdf2/...` — a
+`scripts/cache/...` path in rendered prose is a §0z role-3 leak. (The existing
+pool entries already follow this; keep it that way.)
+
+**Volume I page offset: PDF page = printed page + 2.** Check the offset per
+volume before quoting a page; it is recorded in each cache README.
+
 **So cache what you fetch.** Getting a Wilcke volume is the expensive step, not
 reading it; a volume pulled into a session scratchpad is lost at session end and
 the next session may not be able to re-fetch it at all. `scripts/cache/wilcke/`
