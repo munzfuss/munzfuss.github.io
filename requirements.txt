@@ -2,3 +2,11 @@ pydantic>=2.0
 pyyaml>=6.0
 jinja2>=3.1
 ruamel.yaml>=0.17
+
+# Research / source-reading tools. Not needed to build the site — needed to read
+# the scanned sources (Wilcke, Bruun, Jensen) in scripts/cache. pypdfium2
+# renders a page to PNG so a scan can be READ when its OCR text layer is wrong;
+# pypdf reads the text layer and page metadata. See docs/SOURCES.md §3.
+pypdf>=6.0
+pypdfium2>=5.0
+pillow>=10.0

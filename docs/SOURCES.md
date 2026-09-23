@@ -550,11 +550,26 @@ layer**, so `pypdf` reads them with no OCR pass of our own:
   fractions especially (`32,500` read as `82,500`; `859,375` as `8*>9,375`;
   `6²⁵⁷⁄₁₄₀₀` as `6267/hoo`). Never quote a figure straight from the text layer:
   recompute it from the printed fraction, or get eyes on the page.
-- **The page scans are JBIG2.** `pypdf` cannot export them without a `jbig2dec`
-  binary, and this repo has no local renderer (`pdftoppm` / `mutool` / PyMuPDF
-  are all absent). When a table has to be read exactly and the OCR is not
-  trustworthy, ask the user for a screenshot of the page — that is the working
-  fallback, not a dead end.
+- **The page scans are JBIG2**, so `pypdf.page.images` raises
+  `DependencyError: jbig2dec binary is not available` — but that is a limitation
+  of `pypdf`'s image EXPORT, not of rendering. **Render the page instead**, and
+  read the PNG. Two routes, both verified 2026-09-23 on this very table:
+
+  ```python
+  import pypdfium2                                     # .venv, BSD-3/Apache-2.0
+  pdf = pypdfium2.PdfDocument("W1.pdf")
+  pdf[150].render(scale=3).to_pil().save("p152.png")   # ~0.3 s, 1711x1170 px
+  ```
+
+  and the `PDF_Tools` MCP's `render_pdf_page` (`page` is 1-indexed: page 151 =
+  PDF index 150 = printed p. 152). Both reproduce the superscript/subscript
+  fractions legibly where the OCR mangles them.
+
+  **`PDF_Tools` is sandboxed** to `~/Documents`, `~/Downloads`, `~/Desktop` — it
+  cannot read the repo or a session scratchpad, and refuses with a message
+  naming the boundary. Either copy the PDF into `~/Downloads` first, or have the
+  user widen `allowed_directories`. `pypdfium2` has no such restriction, runs
+  from Bash, and needs no MCP — prefer it.
 
 **Wilcke I, the two pages that keep coming up.** p. 152 is the **denomination
 table** for Christian IV's kronemønt — per row: Jørgensen Beskr. Nr., legal
