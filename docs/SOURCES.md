@@ -550,8 +550,9 @@ other role-3 citation carries `https://www.danskmoent.dk/pdf2/...` — a
 `scripts/cache/...` path in rendered prose is a §0z role-3 leak. (The existing
 pool entries already follow this; keep it that way.)
 
-**Volume I page offset: PDF page = printed page + 2.** Check the offset per
-volume before quoting a page; it is recorded in each cache README.
+**Volume I page offset: printed page = PDF page + 1** (printed p. 152 = PDF
+page 151 = `pages[150]` 0-indexed). Check the offset per volume before quoting
+a page; it is recorded in each cache README.
 
 **So cache what you fetch.** Getting a Wilcke volume is the expensive step, not
 reading it; a volume pulled into a session scratchpad is lost at session end and
@@ -561,9 +562,9 @@ is the place for one that will be cited repeatedly.
 **Reading the scanned volumes.** The `/pdf2/` scans carry an **embedded OCR text
 layer**, so `pypdf` reads them with no OCR pass of our own:
 
-- `Wilcke_1.pdf` — 239 pages. **PDF index = printed page − 2** (index 150 =
-  printed p. 152; index 155 = p. 157). Check the offset per volume before
-  quoting a page.
+- `Wilcke_1.pdf` — 239 pages. **0-indexed page = printed − 2** (index 150 =
+  printed p. 152; index 155 = p. 157), i.e. 1-indexed PDF page = printed − 1.
+  Check the offset per volume before quoting a page.
 - Tables need `page.extract_text(extraction_mode="layout")`; the default mode
   collapses the columns into unreadable runs.
 - **The OCR mangles digits in dense tables** — commas and superscript/subscript
