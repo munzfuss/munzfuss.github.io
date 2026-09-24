@@ -175,7 +175,7 @@ class HedeMuentzfussYield(_StrictBase):
     unit: str = Field(..., min_length=1,
         description=(
             "Canonical denominator unit: 'speciedaler' / 'rigsdaler' / "
-            "'rigsdaler_kurant' / 'rigsbankdaler' / 'piastre'."
+            "'rigsdaler_kurant' / 'rigsdaler_krone' / 'rigsbankdaler' / 'piastre'."
         ))
     basis: str | None = Field(None,
         description="'fin' (fine Mark) or 'rauh' (gross Mark). Hede uses 'fin' on virtually all pages.")
@@ -386,6 +386,17 @@ class Fuss(_StrictBase):
             "kronefod). Optional for backward compatibility; new stops "
             "must declare. The unit itself (Marck / Pfund / kg) is "
             "captured by `grid_unit_name` + `grid_unit_g`."
+        ),
+    )
+    hede_yield: HedeMuentzfussYield | None = Field(
+        None,
+        description=(
+            "Hede's «marken fin udbragt til N <unit>» for the standard as a "
+            "whole — the daler value one FINE mark yields. Equal to "
+            "`grid_stops` only when the fuss's unit coin IS the accounting "
+            "daler (9¼, 18½, 11⅓); for the krone standards the two differ "
+            "(pieces per rough mark vs daler per fine mark), so the value "
+            "is kept here instead of being inferred from `grid_stops`."
         ),
     )
     fineness_standard: float = Field(..., ge=0.0, le=1.0)

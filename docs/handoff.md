@@ -15,6 +15,53 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-09-24 — kronemont_chr_iv sourced to Wilcke I page by page; open items for the curator
+
+Local, NOT pushed: `afc182c` (refs + Denmark prose), `2de0835` (card rows,
+two-era accounting fractions), `70b2fd8` (1619 kroneskilling `fraction: 1/48`),
+plus the Block 9 schema/grid_stops commit and this handoff. Plan:
+`~/.claude/plans/iterative-napping-oasis.md`.
+
+**Two corrections to the plan, found at the source:** the «1⅓ still short:
+34,4 g vs 32,5 g» passage is Wilcke I **p. 233** (PDF 232; OCR prints «235»),
+not 235; and after 1625 the Ortskrone = **½** sletdaler (32 ß), not 1½ —
+OCR «1 f2»; only ½ agrees with «halv Ortskrone = 1 Sletmark = 16 ß».
+
+**Not done, deliberately — curator decisions:**
+
+1. **Phase III `soll_fein_by_phase` (plan Block 8.2) skipped.** The 1665
+   Pumphosenkrone (.791 → 14,957 g fine) renders Δ −8 % against 16,250.
+   Setting phase III's Soll to the Grove Krone 14,964 would contradict the
+   rule this very file states for rhinsk_gylden_fod: «Only a dated ordinance
+   may set a phase's own target … so their shortfall stays visible». No
+   ordinance is known for 1665; Hede calls them «specielle udgaver». The
+   real question is placement (kronemont vs kronemont_chr_iv), not Soll.
+2. **`kronemont` `details` + Schleswig-Holstein copy still say «Anfangstarif
+   … Aufschlag ca. 11 %» citing `danskmoent-w2ref`** — the same wrong figure
+   fixed on kronemont_chr_iv (Wilcke I p. 231: 16 %, 20 % with recoining).
+   Other `danskmoent-w2ref` citers (Gresham claims, guldkrone phase) were not
+   verified against Wilcke II; the ref entry now at least describes the
+   volume it links.
+3. **`parse_hede.py::_UNIT_CANONICAL` maps `rd.kr` → `rigsdaler_kurant`.**
+   Hede writes «rigsdaler kroner»; not kurant, not post-1726, 10,4 ≠ 11⅓.
+   Fix map, add `rigsdaler_krone` (already in the schema docstring and on the
+   two krone `hede_yield`s), relabel 28 cache JSONs + 3 seed/unified/final.
+   The relabel alone moves nothing (`unit` is not rendered).
+4. **`hede_yield` is populated but NOT consumed.** `_build_yield_index`
+   skips any fuss declaring it, so the classifier sees neither the old nor
+   the new krone numbers. Wiring it in = re-classifying ~22 coins at 10,418
+   that sit on `9_25_thaler` (plus 5 at 10,4, 5 in seed_unsorted).
+5. `fractions.soll_fein_g` 1/1/2/1/4/1/8 realignment to Wilcke Nr. 105–108
+   (16,127 / 7,993 / 3,865 / 1,923 g) — moves Δ on ~15 rows.
+6. `½ Guldkrone` `unified-dk-hede-c4h27` (gold) on this silver fuss, Δ −83,5 %.
+7. `skilling danske` coins (12/8/4/2 Skilling) keyed as krone fractions;
+   `km-68` 2 Kroneskilling keyed 1/48 (Corona-Danica scale) in a table on
+   Hede's scale — should be 1/24; 4/8 ks likewise.
+8. Phase I `year_to: 1624` vs Wilcke «Sommeren 1625» (p. 231); prose now
+   says 1618–1625.
+9. hintergrund 10½-Fuß resumption «1644» vs kronemont card 1649/1652.
+10. Phase I description still carries KM# numbers in prose (§7a C6).
+
 ## 2026-09-22 — thinning stopped forgetting what it drops (both layers); YAML residual A + B paid
 
 Eleven commits local, NOT pushed: `474771f` `32e51b0` `292aae7` `2de946c`

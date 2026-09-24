@@ -2660,9 +2660,11 @@ kronemont_chr_iv:
   # Christian IV's kroner — primärkanonische Hede-Formel (Wilcke I p. 152, NNUM 1957):
   # 12 257/700 Stück je 13¾-lötiger Marck (.859) = 18,909 g rau / 16,250 g fein je Krone.
   # Anwendungszeitraum: 1618 (nur 2 Krone) bzw. 1619-1652 (alle Werte).
-  # grid_stops = 233,856 ÷ 16,250 = 14,391 (Stück pro Marck Feinsilber).
-  grid_stops: 14.391
+  # grid_stops = Hede's 12 257/700 pieces per ROUGH mark (grid_unit_convention:
+  # rauh). Was 14.391 = pieces per FINE mark, which contradicted the convention.
+  grid_stops: 12.367
   grid_unit_convention: rauh
+  hede_yield: {value: 10.793, unit: speciedaler, basis: fin}   # Hede H105; Wilcke I p. 152 Nr. 104
   fineness_standard: 0.859375
   fineness_period: '13¾ Lod'
   fineness_display: "≈ 859 ‰ (13¾ Loth = ⁵⁵⁄₆₄)"
@@ -2820,9 +2822,11 @@ kronemont:
   # 10½-Krone-Fuß (Hede-Nickname «grove kroner»). Hede 1957 / Wilcke II p. 203:
   # 10½ Stück je 10¾-lötiger Marck (.671875 = 43/64) = 22,272 g rau / 14,964 g fein.
   # Norwegen ab 1649, Dänemark ab 1652, letzte Prägung 1732.
-  # grid_stops = 233,856 ÷ 14,964 = 15,628.
-  grid_stops: 15.628
+  # grid_stops = 10½ pieces per ROUGH mark (grid_unit_convention: rauh; the
+  # «10½-Krone-Fuß» of the name). Was 15.628 = pieces per FINE mark.
+  grid_stops: 10.5
   grid_unit_convention: rauh
+  hede_yield: {value: 10.4186, unit: rigsdaler_krone, basis: fin, unit_raw: rd.kr}   # Hede prints 10 18/43
   fineness_standard: 0.671875
   fineness_period: '10¾ Lod'
   fineness_display: "≈ 672 ‰ (10¾ Loth = ⁴³⁄₆₄)"
@@ -2986,8 +2990,9 @@ kronemont_fine:
   metal: silver
   grid_unit_g: 233.856
   grid_unit_name: Cöllnische Marck
-  grid_stops: 15.607
+  grid_stops: 13      # Hede: 13 pieces per ROUGH 13⅓-lødig mark (was 15.607, per fine mark)
   grid_unit_convention: rauh
+  hede_yield: {value: 10.4, unit: rigsdaler_krone, basis: fin, unit_raw: rd.kr}   # Hede prints 10,400
   fineness_standard: 0.833333
   fineness_period: '13⅓ Lod'
   fineness_display: "≈ 833 ‰ (13⅓ Loth = ⁴⁰⁄₄₈)"
