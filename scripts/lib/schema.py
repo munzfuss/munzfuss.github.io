@@ -445,6 +445,27 @@ class Phase(_StrictBase):
         return self
 
 
+class FussSpec(_StrictBase):
+    """The one-line parameter formula under a fuss title — «67 Dukat /
+    Cöllnische Marck rauh / 23 Karat 8 Grän».
+
+    Per-location (it sits on FussPeriod), because the curator asked for it on
+    the Danish page only. Every slot is the SOURCE's figure, not a
+    re-derivation: `count` is a display string so a printed fraction such as
+    Hede's «12 257/700» survives verbatim. Unit words (the mark, rauh/fein,
+    Karat/Lod/…) are localised by the renderer; `coin` never is (§2 tier 2).
+    """
+    count: str                      # «16», «8½», «12 ²⁵⁷⁄₇₀₀», «37,2» (comma; en swaps to a point)
+    coin: str                       # «Nobel», «Speciedaler» — untranslated
+    unit: Literal["cologne_mark", "troy_pound", "kilogram"] = "cologne_mark"
+    basis: Literal["rauh", "fein"]
+    fineness: list[str]             # values; several = successive standards, in order
+    fineness_unit: str | None = None  # Karat / Lod / Loth / ‰; None when a value carries its own units («23 Karat 8 Grän»)
+    fineness_join: Literal["chrono", "per_denomination"] = "chrono"
+    # chrono → «23½ → 23 → 23½ Karat»; per_denomination → «20 · 22⅙ · 22½ Karat»
+    unverified: bool = False        # a slot the source does not attest → trailing (?)
+
+
 class FussPeriod(_StrictBase):
     """Per-location framing of a single Müntzfuß: validity range + background + closing summary.
 
@@ -491,6 +512,7 @@ class FussPeriod(_StrictBase):
     # Use it ONLY for a genuine per-page divergence. A value that is right
     # everywhere belongs on the shared fuss, where every page picks it up.
     fractions: dict[str, Fraction] | None = None
+    spec: FussSpec | None = None     # .pspec — parameter line under the title (see FussSpec)
 
 
 class KMRef(_StrictBase):

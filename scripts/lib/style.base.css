@@ -1422,6 +1422,24 @@ h2[style] {
   background-clip: text;
   color: transparent;
 }
+/* `.pspec` — parameter line («67 Dukat / Cöllnische Marck rauh / 23 Karat
+   8 Grän») between the title stack and .psub: smaller than .phistorical,
+   slightly larger than .psub. Same accent family as the title, but a flat
+   colour in every theme — a gradient at 17 px reads worse than a solid. */
+.phase-header .pspec {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  margin-top: 6px;
+  color: var(--accent-deep);
+}
+[data-theme="v2"] .phase-header .pspec,
+[data-theme="v3"] .phase-header .pspec { color: var(--accent); }
+.phase-header .pspec-sep,
+.phase-header .pspec-q { color: var(--text-muted); }
 .phase-header .psub {
   display: block;
   font-family: var(--font-body);

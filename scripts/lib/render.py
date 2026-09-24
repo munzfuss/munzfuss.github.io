@@ -30,6 +30,7 @@ def build_env(template_dir: str) -> Environment:
     env.filters["nominal_nbsp"] = nominal_nbsp
     env.filters["nb_dashes"] = nb_dashes
     env.filters["fin_unit"] = fin_unit
+    env.filters["fuss_spec"] = fuss_spec
     env.filters["strip_phase_marker"] = strip_phase_marker
 
     return env
@@ -306,3 +307,61 @@ def generate_css(theme: dict, languages: list[str] | None = None) -> str:
     rules in the prefix, emitted only for the languages `languages` names.
     """
     return styles.build_css(theme, languages)
+
+
+# `.pspec` — the parameter line under a fuss title. Unit nouns follow the
+# `_FIN_UNITS` convention above: period terms kept in DE/EN, Cyrillic forms in
+# UK, Danish forms in DA. The coin name is never translated (§2 tier 2).
+_SPEC_UNIT = {
+    "cologne_mark": {"de": "Cöllnische Marck", "en": "Cologne mark", "uk": "кельнська марка", "da": "Cöllnische Marck"},
+    "troy_pound": {"de": "Troy-Pfund", "en": "troy pound", "uk": "тройський фунт", "da": "troypund"},
+    "kilogram": {"de": "Kilogramm", "en": "kilogram", "uk": "кілограм", "da": "kilogram"},
+}
+# (rauh, fein) and whether the word precedes the unit
+_SPEC_BASIS = {
+    "de": ({"rauh": "rauh", "fein": "fein"}, False),
+    "en": ({"rauh": "rough", "fein": "fine"}, True),
+    "uk": ({"rauh": "повна", "fein": "чиста"}, True),
+    "da": ({"rauh": "rå", "fein": "fin"}, False),
+}
+_SPEC_UK_BASIS_M = {"rauh": "повний", "fein": "чистий"}   # masculine nouns (фунт, кілограм)
+_SPEC_WORDS = {
+    "Karat": {"uk": "карат", "da": "karat"},
+    "Lod": {"uk": "лот", "da": "lod"},
+    "Loth": {"uk": "лот", "da": "lod"},
+    "Grän": {"uk": "гран", "da": "gren"},
+}
+
+
+def _spec_words(text: str, lang: str) -> str:
+    for w, tr in _SPEC_WORDS.items():
+        if lang in tr:
+            text = re.sub(rf"\b{w}\b", tr[lang], text)
+    return text
+
+
+def fuss_spec(spec, lang: str):
+    """Render a FussSpec as «count coin / unit basis / fineness» HTML."""
+    from markupsafe import Markup, escape
+    if not spec:
+        return ""
+    g = spec if isinstance(spec, dict) else spec.model_dump()
+    count = g["count"]
+    if lang == "en":
+        count = re.sub(r"(?<=\d),(?=\d)", ".", count)
+    unit = _SPEC_UNIT[g.get("unit") or "cologne_mark"][lang]
+    words, before = _SPEC_BASIS[lang]
+    basis = words[g["basis"]]
+    if lang == "uk" and g.get("unit") in ("troy_pound", "kilogram"):
+        basis = _SPEC_UK_BASIS_M[g["basis"]]
+    mark = f"{basis} {unit}" if before else f"{unit} {basis}"
+    sep = " · " if g.get("fineness_join") == "per_denomination" else " → "
+    fin = sep.join(g["fineness"])
+    if g.get("fineness_unit"):
+        fin = f"{fin} {g['fineness_unit']}"
+    fin = _spec_words(fin, lang)
+    slash = Markup('<span class="pspec-sep"> / </span>')
+    out = (escape(f"{count} {g['coin']}") + slash + escape(mark) + slash + escape(fin))
+    if g.get("unverified"):
+        out += Markup(' <span class="pspec-q">(?)</span>')
+    return Markup(out)
