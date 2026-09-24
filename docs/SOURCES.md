@@ -490,7 +490,7 @@ Hede published two specialised articles in NNUM 1957 that are essential referenc
 | Volume | Title | Cover / access |
 |---|---|---|
 | **Wilcke I** | *Christian IVs Møntpolitik 1588-1625* (Kbh 1919) | `w1.htm` · chapters `wilcke/w1a-g.htm` · PDF `pdf2/Wilcke_1.pdf` |
-| **Wilcke II** | *Møntvæsenet under Christian IV og Frederik III 1625-1670* (Kbh 1924) | `w2.htm` · only `wilcke/w2d.htm` (Andre Møntsteder) as HTML |
+| **Wilcke II** | *Møntvæsenet under Christian IV og Frederik III 1625-1670* (Kbh 1924) | `w2.htm` · **fully digitised as HTML**, 20 chapters `wilcke/w2{ref,a1-a6,b1-b7,c1-c5,d}.htm` · no PDF |
 | **Wilcke III** | *Kurantmønten 1726-1788* (Kbh 1927) | `w3.htm` · chapters `wilcke/w3a-g.htm` |
 | **Wilcke IV** | *Specie- Kurant- og Rigsbankdaler 1788-1845* (Kbh 1929) | `w4.htm` · chapters `wilcke/w4a-s.htm` |
 | **Wilcke V** | *Sølv- og Guldmøntfod 1845-1914* (Kbh 1930) | `w5.htm` · chapters `wilcke/w5a-e.htm` |
@@ -542,6 +542,22 @@ passed the challenge. `pdf-viewer` MCP when it is connected. WebFetch is
 unreliable here (failed 2026-09-06) but sometimes returns a usable summary of an
 `.htm` page.
 
+**To harvest MANY pages, the user's own browser is the only workable client.**
+`scripts/maintenance/harvest_wilcke2_browser_console.js` is the pattern: the user
+pastes it into their browser console on a danskmoent page, it fetches every
+chapter and downloads one concatenated file, and we split that. Three curl
+strategies (including 45-second backoff across several hours) got 0 of 20.
+Two traps, both of which cost a run:
+
+- **Fetch RELATIVE paths.** The site answers on `danskmoent.dk` *and*
+  `www.danskmoent.dk`; to a browser those are different origins, and the server
+  sends no `Access-Control-Allow-Origin`, so an absolute url fails every fetch
+  with «Failed to fetch». The in-app Browser pane does NOT reproduce this — it
+  relaxes CORS for agent JS, so testing there gives a false pass.
+- **Split the download with `newline=''`.** Python's universal-newline
+  translation drops every CR from the captured CRLF HTML, and each chapter lands
+  one byte per line short. Verify against the per-chapter byte lengths.
+
 **Cached locally — check here before fetching anything.** Two volumes are already
 in the harvest submodule, each as `<volume>/wilcke_N.pdf` + `pages/*.txt` (pypdf
 extraction, for grep) + a `README.md` carrying provenance, the page offset and
@@ -550,6 +566,7 @@ the sha256:
 | Volume | Cache path under `scripts/cache/wilcke/` | Captured from |
 |---|---|---|
 | **I** *Christian IVs Møntpolitik 1588-1625* | `christian_iv_moentpolitik_1919/` (15 MB, 239 pp.) | <https://www.danskmoent.dk/pdf2/Wilcke_1.pdf> |
+| **II** *Møntvæsenet under Christian IV og Frederik III 1625-1670* | `moentvaesenet_1625_1670_1924/` (21 HTML chapters, 570 KB) | <https://danskmoent.dk/w2.htm> + `wilcke/w2*.htm` |
 | **VII** *Renæssancens Mønt- og Pengeforhold 1481-1588* | `renaessancens_moent_1950/` (8 chapters, 135 MB, 567 pp.) | <https://www.danskmoent.dk/pdf2/Wilcke%207-1.pdf> … `7-8.pdf` |
 
 **Cite the danskmoent URL, never the cache path.** The cache exists so that *we*
