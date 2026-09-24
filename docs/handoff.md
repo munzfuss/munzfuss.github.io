@@ -48,8 +48,8 @@ OCR «1 f2»; only ½ agrees with «halv Ortskrone = 1 Sletmark = 16 ß».
    two krone `hede_yield`s), relabel 28 cache JSONs + 3 seed/unified/final.
    The relabel alone moves nothing (`unit` is not rendered).
 4. **`hede_yield` is populated but NOT consumed.** `_build_yield_index`
-   skips any fuss declaring it, so the classifier sees neither the old nor
-   the new krone numbers. Wiring it in = re-classifying ~22 coins at 10,418
+   ignores the field and still indexes `grid_stops`; the new krone values
+   (12.367 / 10.5 / 13, unit rigsdaler_kurant) match no coin. Wiring it in = re-classifying ~22 coins at 10,418
    that sit on `9_25_thaler` (plus 5 at 10,4, 5 in seed_unsorted).
 5. `fractions.soll_fein_g` 1/1/2/1/4/1/8 realignment to Wilcke Nr. 105–108
    (16,127 / 7,993 / 3,865 / 1,923 g) — moves Δ on ~15 rows.

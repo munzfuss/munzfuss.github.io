@@ -102,7 +102,7 @@ def _load_fuesse() -> dict[str, dict]:
 def _build_yield_index(fuesse: dict[str, dict]) -> dict[tuple[float, str], str]:
     """Auto-build `(grid_stops, unit) → fuss_id` index from the fuesse
     catalogue. `grid_stops` equals the Hede yield only where the unit coin
-    is the accounting daler; fusses declaring `hede_yield` are skipped.
+    is the accounting daler; `hede_yield` is not consulted (yet).
     Unit is inferred per metal: silver → speciedaler (default); the
     Kurantmøntfod family (kronemont*) maps to rigsdaler_kurant; gold
     fusses get «dukat» / «pistole» / «krone» depending on the named
@@ -114,14 +114,11 @@ def _build_yield_index(fuesse: dict[str, dict]) -> dict[tuple[float, str], str]:
         metal = fdef.get("metal")
         if gs is None:
             continue
-        # A fuss that declares `hede_yield` is one where grid_stops is NOT
-        # the Hede yield (the krone standards: pieces per rough mark vs
-        # daler per fine mark). Keyed on grid_stops it would index a wrong
-        # number; keyed on hede_yield it would start classifying coins,
-        # which the curator deferred to the per-fuss content pass
-        # (2026-09-24). Leave these fusses out of the index until then.
-        if fdef.get("hede_yield"):
-            continue
+        # `hede_yield` is deliberately NOT read here (curator, 2026-09-24):
+        # for the krone standards it differs from grid_stops, and switching
+        # the index to it would re-classify coins — deferred to the
+        # per-fuss content pass. Their grid_stops (12.367 / 10.5 / 13) match
+        # no coin's rigsdaler_kurant yield, so they index harmlessly.
         # Unit inference per fuss-family name
         if metal == "silver":
             if fid.startswith("kronemont"):
