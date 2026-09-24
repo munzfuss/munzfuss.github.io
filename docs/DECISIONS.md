@@ -6,6 +6,62 @@ Entries are ordered newest-first within each month. CLAUDE.md carries the result
 
 ---
 
+## 2026-09-24 — Cöllnische Marck: we use 233,856 g (Schwinkowski), Wilcke uses 233,855 g
+
+**The finding.** Every Danish formula in this project is taken from Wilcke, and
+Wilcke computes on a mark of **233,855 g**. Our `grid_unit_g` is **233,856 g**,
+in 21 of the 26 entries in `data/shared/fuesse.yml` (the other five are the
+Zollpfund / Troy pound / kilogram stops). The two constants are not the same,
+and the difference is not a typo on either side — they come from different
+authorities.
+
+Wilcke states his own choice, and lists the competing values, in the
+Indledning to Wilcke II (*Møntvæsenet under Christian IV og Frederik III
+1625-1670*, København 1924, s. 5-10, noter 8-9) —
+<https://www.danskmoent.dk/w2.htm>:
+
+> «…jeg her som tidligere i Overensstemmelse med Holmboe (8) og Axel Nielsen (9)
+> gaar ud fra, at **1 Mark cølnsk vejede 233,855 gr.** Der er ganske vist ikke
+> ført noget exakt Bevis for Rigtigheden heraf.»
+
+| Value (g) | Authority | Locator |
+|---|---|---|
+| 233,85489 | C. A. Holmboe, in C. J. Schive, *Norges Mynter i Middelalderen* (Christiania 1865) | Indl. p. XXXV |
+| **233,855** | **Julius Wilcke** — the basis of every figure in Wilcke I-VII | Wilcke II, Indledning, note 8-9 |
+| 233,8123 | H. Buckenau, *Grundriss der Münzkunde* (1920) | p. 4 |
+| **233,856** | **W. Schwinkowski**, *Die Reichmünzreformbestrebungen 1665-70* (1916) | p. 45 |
+
+**Why it matters, and how much.** The gap is 0,001 g — **0,0004 %**. It is below
+every rounding this project prints, so it changes no rendered value and no Δ
+classification. What it does explain is a recurring nuisance: a figure
+recomputed from Wilcke's own formula lands *almost* on Wilcke's printed gram
+value rather than exactly on it, and a session chasing that residue will look
+for an error in the formula that is not there. Concrete case (2026-09-23): the
+Christian IV krone standard, `12²⁵⁷⁄₇₀₀` pieces per 13¾-lödig mark, reproduces
+Wilcke's 37,819 g / 32,500 g to three decimals but not further — the
+fourth-decimal residue is this constant, not a mis-read fraction.
+
+**Decision: keep 233,856 for now, and record which constant we are on.** The
+number is baked into 21 stops plus `implied_fuss` in `docs/ARCHITECTURE.md` and
+the glossary; changing it would touch every computed Soll in the corpus for a
+0,0004 % gain, and it would put us *further* from Schwinkowski without putting
+us *exactly* on Wilcke, whose own value is itself a rounding of Holmboe's
+233,85489.
+
+**Open question, deliberately not answered here.** Whether the Danish material
+specifically should move to Wilcke's 233,855 — since danskmoent, Hede and Wilcke
+are its sources throughout, and Hede computes on Wilcke — is a real question and
+a separate session's work. It is not a correction; both constants are defensible
+conventions.
+
+**Wilcke's own caveat, worth keeping in view.** He says outright that no exact
+proof of the figure exists, and reports that weighings he commissioned from the
+Royal Coin Cabinet in Copenhagen and the Myntkabinet in Kristiania, on
+well-preserved Norwegian species of 1628-69, imply marks ranging from **231,25
+to 234,00 g**. The constant is a scholarly convention, not a measurement — and a
+0,0004 % disagreement between two conventions sits four orders of magnitude
+inside the spread of the coins themselves.
+
 ## 2026-05-13 — Project audit tooling: prose / i18n / health + pre-commit hook
 
 Four scripts + one hook, all introduced on 2026-05-13 after the doc-infrastructure trio (below) was already in place:

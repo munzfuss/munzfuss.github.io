@@ -499,6 +499,15 @@ Hede published two specialised articles in NNUM 1957 that are essential referenc
 
 **Useful for:** primary attestations of Forordninger and Patenter — e.g. Wilcke II Anm. 53 quotes the «åbent Brev af 12. Juli 1618» introducing Christian IV's Corona Danica. Wilcke VII is the reference for the **Danish lower-anchor** period (Christian II Lovkompleks 1514 → `Wilcke 7-2.pdf`; Christian III's Møntreform 1541 → `Wilcke 7-4.pdf`).
 
+**Constant trap — Wilcke computes on a mark of 233,855 g, we use 233,856 g.**
+He says so in the Indledning to Wilcke II (noter 8-9) and lists the rival
+values there: Holmboe 233,85489, Buckenau 233,8123, Schwinkowski 233,856 — and
+ours is Schwinkowski's. The gap is 0,0004 %, so it changes nothing rendered, but
+it is why a figure recomputed from one of Wilcke's formulas lands *almost* on
+his printed gram value and not exactly on it. Do not go looking for an error in
+the formula. Full citation table and the reasoning for keeping 233,856:
+`docs/DECISIONS.md` 2026-09-24.
+
 **Page-number trap:** secondary literature (especially Hede's 1957 footnotes) cites Wilcke I p. 152 for the «1618 small denominations slightly lower Müntzfod» claim, NOT for the patent date. The patent itself is at Wilcke I pp. 156-157 (cross-referenced in Wilcke II Anm. 53). Do not conflate these two facts.
 
 **Access — the host actively defends itself, and the defence escalates.** Three
