@@ -23,16 +23,10 @@ from pathlib import Path
 BASE_CSS_PATH = Path(__file__).resolve().parent / "style.base.css"
 
 
-FONT_IMPORTS = (
-    "@import url('https://fonts.googleapis.com/css2?"
-    "family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500"
-    "&family=Inter:wght@400;500;600"
-    "&family=JetBrains+Mono:wght@400;500"
-    "&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700"
-    "&family=Spectral:ital,wght@0,400;0,500;0,700;1,400"
-    "&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400"
-    "&display=swap');\n"
-)
+# Web fonts are linked from the page <head> (preconnect + <link>), not
+# @import-ed here: an @import inside style.css only starts fetching after
+# style.css itself arrives, which made text re-flow visibly on every load.
+FONT_IMPORTS = ""
 
 
 def _hex_to_rgb(hex_str: str) -> tuple[int, int, int]:
