@@ -21,6 +21,8 @@ def build_env(template_dir: str) -> Environment:
 
     # Register filters
     env.filters["t"] = i18n.t
+    from .sites import sister_site_url
+    env.globals["sister_site_url"] = sister_site_url
     env.filters["fmt_num"] = i18n.fmt_num
     env.filters["fmt_pct"] = i18n.fmt_pct
     env.filters["fmt_delta"] = i18n.fmt_delta

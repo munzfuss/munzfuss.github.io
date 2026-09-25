@@ -27,7 +27,10 @@
 <body>
 
 <nav class="nav">
-  <strong>{{ ui_get('nav.home') }}</strong>
+  <span class="site-switch">
+    <a class="site-current" href="{{ urls.canonical }}" aria-current="page">{{ ui_get('nav.site_germany') }}</a>
+    <a class="site-other" href="{{ sister_site_url('danskmoent', lang) }}">{{ ui_get('nav.site_denmark') }}</a>
+  </span>
   <div class="switchers">
     <div class="theme-switch" role="group" aria-label="Theme">
       <button type="button" class="th th-v1" data-theme="v1" title="Light" aria-label="Light">&#9788;</button>

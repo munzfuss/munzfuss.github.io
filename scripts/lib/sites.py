@@ -222,3 +222,16 @@ def page_urls(base_url: str, page_prefix: str, languages: list[str],
             for l in languages
         ],
     }
+
+
+def sister_site_url(site_id: str, lang: str) -> str:
+    """Absolute URL of another published site's front page, in `lang` when
+    that site renders it, otherwise its default language (its root).
+
+    Used for the cross-site links on the front pages (Denmark ⇄ Germany).
+    A sister site is always linked by its public origin: there is no local
+    counterpart worth resolving from a localhost preview.
+    """
+    site = load_site(site_id)
+    target = lang if lang in site.languages else site.root_lang
+    return lang_url(site.origin, "", target, site.root_lang, True)

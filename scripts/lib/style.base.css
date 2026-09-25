@@ -115,6 +115,21 @@ a:hover { text-decoration: underline; }
 .nav strong { font-weight: 500; }
 [data-theme="v3"] .nav strong { color: var(--accent); }
 
+/* Site switcher (single-location sites): current site reads as «on»,
+   the sister site as a plain link that lights up on hover. */
+.site-switch { display: inline-flex; gap: 18px; align-items: baseline; }
+.site-switch a { letter-spacing: 0.16em; }
+.site-switch .site-current {
+  color: var(--accent);
+  font-weight: 600;
+  padding-bottom: 3px;
+  border-bottom: 2px solid var(--accent);
+  cursor: default;
+}
+.site-switch .site-current:hover { text-decoration: none; color: var(--accent); }
+.site-switch .site-other { color: var(--text-muted); transition: color 0.15s; }
+.site-switch .site-other:hover { color: var(--text-primary); text-decoration: none; }
+
 .nav .switchers {
   margin-left: auto;
   display: flex;
