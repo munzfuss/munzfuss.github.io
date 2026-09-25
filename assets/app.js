@@ -4,7 +4,7 @@
  *      (see build.py → root_html) lands on the user's last-chosen lang.
  *   2. Bottom-of-section "collapse" buttons — close the parent <details>
  *      and scroll back to its summary so the user isn't stranded mid-page.
- *   3. Theme switcher (Atlas / Codex / Noir). The inline <head> script
+ *   3. Theme switcher (light v1 / dark v3). The inline <head> script
  *      already paints the stored theme before first render to avoid FOUC;
  *      this block reflects the active theme on the .theme-switch buttons
  *      and persists clicks back to localStorage.
@@ -48,7 +48,7 @@
   });
 
   // 3) Theme switcher.
-  var THEMES = ["v1", "v2", "v3"];
+  var THEMES = ["v1", "v3"];
   function currentTheme() {
     var t = document.documentElement.dataset.theme || "";
     return THEMES.indexOf(t) >= 0 ? t : "v3";

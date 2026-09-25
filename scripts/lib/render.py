@@ -294,12 +294,12 @@ def resolve_tips(items, ui: dict, lang: str) -> str:
 
 
 def generate_css(theme: dict, languages: list[str] | None = None) -> str:
-    """Build the three-theme stylesheet (Atlas / Codex / Noir).
+    """Build the two-theme stylesheet (v3 dark / v1 light).
 
     Returns `prefix + styles.base.css` — the prefix is generated from
     `theme.yml` (Noir palette tokens, per-`html[lang]` body line-height,
     timeline-bar palette); the body lives as a static .css file alongside
-    `styles.py`. Atlas and Codex palettes are hardcoded inside the static
+    `styles.py`. The v1 light palette is hardcoded inside the static
     base — those themes don't read from theme.yml.
 
     One stylesheet serves every language of one site; the per-language

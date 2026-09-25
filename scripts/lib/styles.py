@@ -58,7 +58,7 @@ def _timeline_bars_css(bars: dict) -> str:
     """
     out: list[str] = []
     noir_selector = (
-        ':root:not([data-theme="v1"]):not([data-theme="v2"])'
+        ':root:not([data-theme="v1"])'
     )
     alpha = 1 / 6  # six layers stacking with plus-lighter sum to alpha=1
     for bar_id, conf in bars.items():
@@ -85,7 +85,7 @@ def _timeline_bars_css(bars: dict) -> str:
             f"background: var(--layer-bg); }}"
         )
 
-        # Light-theme override (v1 atlas / v2 codex).
+        # Light-theme override (v1).
         # See the original CLAUDE.md / DECISIONS.md for the WCAG / hue
         # rationale behind the from_light field and the 0.7 darkening.
         if "from_light" in conf:
@@ -95,8 +95,7 @@ def _timeline_bars_css(bars: dict) -> str:
             fr, fg, fb = _hex_to_rgb(conf["from"])
             fr_d, fg_d, fb_d = int(fr * DARKEN), int(fg * DARKEN), int(fb * DARKEN)
         out.append(
-            f'[data-theme="v1"] .tl-bar-layer.{bar_id}, '
-            f'[data-theme="v2"] .tl-bar-layer.{bar_id} {{ '
+            f'[data-theme="v1"] .tl-bar-layer.{bar_id} {{ '
             f"--layer-bg: rgba({fr_d}, {fg_d}, {fb_d}, calc({alpha:.4f} * var(--layer-alpha-multiplier, 1))); }}"
         )
 
@@ -111,8 +110,7 @@ def _timeline_bars_css(bars: dict) -> str:
             f"background: linear-gradient(90deg, {conf['to']}, {conf['from']}); }}"
         )
         out.append(
-            f'[data-theme="v1"] .tl-bar.{bar_id}:not(.tl-bar-layered), '
-            f'[data-theme="v2"] .tl-bar.{bar_id}:not(.tl-bar-layered) {{ '
+            f'[data-theme="v1"] .tl-bar.{bar_id}:not(.tl-bar-layered) {{ '
             f"background: linear-gradient(90deg, {conf['to']}, {conf['from']}); }}"
         )
 
@@ -140,8 +138,8 @@ def build_prefix(theme: dict, languages: list[str] | None = None) -> str:
     Contents (in order):
       1. Font imports
       2. `:root` block — every palette token referenced by var(--*) in
-         `assets/style.base.css`. v3 (Noir) is the default; v1 / v2 are
-         hardcoded inside base.css since those palettes are static.
+         `assets/style.base.css`. v3 (dark) is the default; the v1
+         (light) palette is hardcoded inside base.css since it is static.
       3. One `html[lang="…"]` override of `--body-line-height` per language
          this site renders that has an entry in `theme.yml`. The default
          value (German) lives in `:root` above.

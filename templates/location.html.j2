@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="{{ base_url }}/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="{{ base_url }}/assets/style.css">
 <script src="{{ base_url }}/assets/app.js" defer></script>
-<script>(function(){var t='v3';try{var s=localStorage.getItem('mz-theme');if(s==='v1'||s==='v2'||s==='v3')t=s;}catch(e){}document.documentElement.dataset.theme=t;})();</script>
+<script>(function(){var t='v3';try{var s=localStorage.getItem('mz-theme');if(s==='v2')s='v1';if(s==='v1'||s==='v3')t=s;}catch(e){}document.documentElement.dataset.theme=t;})();</script>
 </head>
 <body>
 
@@ -527,18 +527,8 @@
   <strong>{{ tree.location.name|t(lang) }}</strong>
   <div class="switchers">
     <div class="theme-switch" role="group" aria-label="Theme">
-      <button type="button" class="th th-v1" data-theme="v1" title="Museum Atlas — paper &amp; gold" aria-label="Museum Atlas">
-        <span class="th-swatch" aria-hidden="true"><i class="sw sw-1"></i><i class="sw sw-2"></i><i class="sw sw-3"></i></span>
-        <span class="th-label">Atlas</span>
-      </button>
-      <button type="button" class="th th-v2" data-theme="v2" title="Editorial Codex — ink &amp; vermilion" aria-label="Editorial Codex">
-        <span class="th-swatch" aria-hidden="true"><i class="sw sw-1"></i><i class="sw sw-2"></i><i class="sw sw-3"></i></span>
-        <span class="th-label">Codex</span>
-      </button>
-      <button type="button" class="th th-v3 active" data-theme="v3" title="Refined Dark — graphite &amp; gold" aria-label="Refined Dark">
-        <span class="th-swatch" aria-hidden="true"><i class="sw sw-1"></i><i class="sw sw-2"></i><i class="sw sw-3"></i></span>
-        <span class="th-label">Noir</span>
-      </button>
+      <button type="button" class="th th-v1" data-theme="v1" title="Light" aria-label="Light">&#9788;</button>
+      <button type="button" class="th th-v3 active" data-theme="v3" title="Dark" aria-label="Dark">&#9790;</button>
     </div>
     <div class="lang-switch">
       {#- `urls.alternates` (lib/sites.py::page_urls), like the landing does.
