@@ -187,6 +187,10 @@ a:hover { text-decoration: underline; }
    accent ring and full opacity. */
 .theme-switch .th-v1 { background: #f5efe1; color: #6b4f17; border-color: #c9b896; }
 .theme-switch .th-v3 { background: #14110d; color: #d4a85a; border-color: #3e372c; }
+/* Active state keyed on <html data-theme>, which the inline head script
+   sets before first paint — no flash of the wrong button. */
+[data-theme="v1"] .theme-switch .th-v1,
+:root:not([data-theme="v1"]) .theme-switch .th-v3,
 .theme-switch .th.active {
   opacity: 1;
   border-color: var(--accent);
