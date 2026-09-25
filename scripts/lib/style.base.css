@@ -122,10 +122,15 @@ a:hover { text-decoration: underline; }
    neither underlines nor reacts to hover. */
 .site-switch a + a { position: relative; }
 .site-switch a + a::before {
-  content: "·";
+  content: "";
   position: absolute;
-  left: -23px;
-  color: var(--text-muted);
+  left: -22px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 50%;
+  background: var(--text-muted);
   pointer-events: none;
 }
 .site-switch a { letter-spacing: 0.16em; }
