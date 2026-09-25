@@ -91,7 +91,7 @@ a:hover { text-decoration: underline; }
 
 .nav {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 14px;
   padding: 0 0 16px;
   border-bottom: var(--hairline) solid var(--border);
@@ -117,7 +117,17 @@ a:hover { text-decoration: underline; }
 
 /* Site switcher (single-location sites): current site reads as «on»,
    the sister site as a plain link that lights up on hover. */
-.site-switch { display: inline-flex; gap: 18px; align-items: baseline; }
+.site-switch { display: inline-flex; gap: 40px; align-items: baseline; }
+/* Middle-dot separator, centred in the gap and outside the links so it
+   neither underlines nor reacts to hover. */
+.site-switch a + a { position: relative; }
+.site-switch a + a::before {
+  content: "·";
+  position: absolute;
+  left: -23px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
 .site-switch a { letter-spacing: 0.16em; }
 .site-switch .site-current {
   color: var(--accent);
@@ -127,7 +137,7 @@ a:hover { text-decoration: underline; }
 }
 .site-switch .site-current:hover { text-decoration: none; color: var(--accent); }
 .site-switch .site-other { color: var(--text-muted); transition: color 0.15s; }
-.site-switch .site-other:hover { color: var(--text-primary); text-decoration: none; }
+.site-switch .site-other:hover { color: var(--accent); text-decoration: none; }
 
 .nav .switchers {
   margin-left: auto;
@@ -2606,4 +2616,10 @@ footer a:hover { color: var(--accent); }
 }
 @media (max-width: 640px) {
   .btt-button { right: 16px; bottom: 16px; width: 40px; height: 40px; }
+}
+/* Theme switch crossfade (View Transitions API, see assets/app.js). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
 }

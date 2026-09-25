@@ -194,7 +194,7 @@ def build_prefix(theme: dict, languages: list[str] | None = None) -> str:
   --radius-block:   4px;
 
   --page-pad-x:     64px;
-  --page-pad-y:     56px;
+  --page-pad-y:     40px;
 
   --bg-grad:        radial-gradient(ellipse at top, #1c1813, var(--bg-page) 60%);
   --hairline:       0.5px;

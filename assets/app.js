@@ -73,7 +73,17 @@
     var t = ev.target && ev.target.closest && ev.target.closest(".theme-switch .th");
     if (!t) return;
     var theme = t.dataset && t.dataset.theme;
-    if (theme) applyTheme(theme);
+    if (!theme || theme === currentTheme()) return;
+    // Crossfade via the View Transitions API: the browser snapshots the old
+    // page and fades it into the new theme on the GPU. Instant switch where
+    // the API is missing or the user prefers reduced motion.
+    var reduce = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (document.startViewTransition && !reduce) {
+      document.startViewTransition(function () { applyTheme(theme); });
+    } else {
+      applyTheme(theme);
+    }
   });
 
   // Reflect the current (inline-script-applied) theme on first paint.
