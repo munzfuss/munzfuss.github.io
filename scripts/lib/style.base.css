@@ -250,8 +250,12 @@ a:hover { text-decoration: underline; }
   letter-spacing: -0.005em;
   margin: 0 0 14px;
   color: var(--text-primary);
-  font-variant: small-caps;
+  /* Uniform small caps regardless of the language's own capitalisation
+     (German capitalises nouns, Ukrainian doesn't): every letter is a small
+     cap, and only the first one is a full capital. */
+  font-variant: all-small-caps;
 }
+.h1::first-letter { font-variant: normal; text-transform: uppercase; }
 
 [data-theme="v3"] .h1 {
   background: linear-gradient(180deg, var(--accent-glow), var(--accent));
