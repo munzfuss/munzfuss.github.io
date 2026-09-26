@@ -543,14 +543,15 @@ h2[style] {
      · Ducat Courant», «Guldkrone-Fuß · тарифна монета») wrap to a
      second line at this width — accepted tradeoff to keep the track
      column wide. */
-  grid-template-columns: 240px 1fr;
-  gap: 0 18px;
+  grid-template-columns: var(--tl-lab) 1fr;
+  gap: 0 var(--tl-gap);
   align-items: center;
   font-size: 13px;
   position: relative;
 }
 @media (max-width: 720px) {
-  .tl-grid { grid-template-columns: 140px 1fr; font-size: 12px; gap: 0 10px; }
+  .tl-grid { font-size: 12px; }
+  .tl-plot { --tl-lab: 140px; --tl-gap: 10px; }
 }
 /* Left column — fuss name (1-2 lines) + meta (weight·metal·…) right-aligned. */
 .tl-label {
@@ -1178,6 +1179,26 @@ h2[style] {
   letter-spacing: 0.02em;
 }
 .tl-axis span:first-child { transform: translateX(0); }
+/* Top axis: the bottom axis mirrored — labels above the rule, ticks down. */
+.tl-axis-top { border-top: 0; border-bottom: var(--hairline) solid var(--border-soft); margin: 0 0 8px; }
+.tl-axis-top span { top: auto; bottom: 5px; }
+.tl-axis-top span::before { top: auto; bottom: -8px; }
+/* Plot wrapper: holds the top axis, the bar grid (with bottom axis) and
+   the century guide overlay, which covers the track column only. */
+.tl-plot { position: relative; --tl-lab: 240px; --tl-gap: 18px; }
+.tl-centuries {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: calc(var(--tl-lab) + var(--tl-gap)); right: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+.tl-centuries span {
+  position: absolute;
+  top: 0; bottom: 0;
+  border-left: 1px dashed var(--text-muted);
+  opacity: .35;
+}
 .tl-axis span::before {
   content: "";
   position: absolute;

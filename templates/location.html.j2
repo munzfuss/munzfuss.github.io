@@ -644,6 +644,27 @@
       {%- endfor -%}
     </div>
   </div>
+  {# Year axis, drawn above and (mirrored) below the bars. Labels snap to
+     round years (1550, 1600, …) instead of starting at year_from (1559 →
+     awkward 1559/1609/… labels). #}
+  {%- macro tl_axis_ticks(cls) -%}
+    <div class="{{ cls }}">
+      {% set first_tick = (tl.year_from // tl.axis_step) * tl.axis_step %}
+      {% if first_tick < tl.year_from %}{% set first_tick = first_tick + tl.axis_step %}{% endif %}
+      {% set last_tick = (tl.year_to // tl.axis_step) * tl.axis_step %}
+      {% set tick_count = ((last_tick - first_tick) // tl.axis_step) + 1 if last_tick >= first_tick else 0 %}
+      {% for i in range(tick_count) %}
+        {% set year = first_tick + i * tl.axis_step %}
+        {% set pos = ((year - tl.year_from) / tl_span * 100) | round(2) %}
+        <span style="left:{{ pos }}%">{{ year }}</span>
+      {% endfor %}
+    </div>
+  {%- endmacro -%}
+  <div class="tl-plot">
+  <div class="tl-grid tl-grid-axis-top">
+    <div></div>
+    {{ tl_axis_ticks('tl-axis tl-axis-top') }}
+  </div>
   <div class="tl-grid{% if tl.scope_mode == 'denmark_only' %} tl-grid-denmark-only{% endif %}">
     {%- macro tl_bar_html(bar, tl, tl_span, lang, extra_class='', layers=None, year_runs=None, zones=None) -%}
       {# A year is a 1-year-wide block, not a point — the bar runs through
@@ -880,20 +901,15 @@
       </div>
     {% endfor %}
     <div></div>
-    <div class="tl-axis">
-      {# Snap axis labels to round years (1550, 1600, …) for legibility — instead
-         of starting at year_from (1559) which produces awkward 1559/1609/1659…
-         labels. Off-scale ticks are clamped between 0 % and 100 %. #}
-      {% set first_tick = (tl.year_from // tl.axis_step) * tl.axis_step %}
-      {% if first_tick < tl.year_from %}{% set first_tick = first_tick + tl.axis_step %}{% endif %}
-      {% set last_tick = (tl.year_to // tl.axis_step) * tl.axis_step %}
-      {% set tick_count = ((last_tick - first_tick) // tl.axis_step) + 1 if last_tick >= first_tick else 0 %}
-      {% for i in range(tick_count) %}
-        {% set year = first_tick + i * tl.axis_step %}
-        {% set pos = ((year - tl.year_from) / tl_span * 100) | round(2) %}
-        <span style="left:{{ pos }}%">{{ year }}</span>
-      {% endfor %}
-    </div>
+    {{ tl_axis_ticks('tl-axis') }}
+  </div>
+  {# Dashed full-height guide lines on every century year (1600, 1700, …),
+     spanning both axes; positioned over the track column only. #}
+  <div class="tl-centuries" aria-hidden="true">
+    {% for year in range(((tl.year_from + 99) // 100) * 100, tl.year_to + 1, 100) %}
+    <span style="left:{{ ((year - tl.year_from) / tl_span * 100) | round(2) }}%"></span>
+    {% endfor %}
+  </div>
   </div>
 </div>
 {% endif %}
