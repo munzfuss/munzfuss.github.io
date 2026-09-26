@@ -1,10 +1,15 @@
 # Müntzfüße · Coinage Standards of North German Territories
 
-Mathematically-verified, historically accurate reference pages documenting coinage standards (*Müntzfüße*) of North German cities and territories — and the wider Danish-Norwegian Reich whose courant standards governed Holstein — ca. 1559–1914.
+Mathematically-verified, historically accurate reference pages documenting coinage standards (*Müntzfüße*) of North German cities and territories (from 1559) and of the Danish-Norwegian realm (from 1514), up to 1914.
 
-**Live:** https://munzfuss.github.io/
+This repository builds **two sites** from one data set:
+
+| Site | Content | Languages (default first) |
+|---|---|---|
+| **https://munzfuss.github.io/** | North German territories, with a landing index of all locations | EN · DE · UK |
+| **https://danskmoent.github.io/** | The Kingdom of Denmark, as a single page at the site root | DA · DE · EN · UK |
+
 **Source research language:** German (period-correct orthography)
-**Interface languages:** DE · EN · UK
 
 ## What this is
 
@@ -27,11 +32,13 @@ the build assembles its coin table from the relevant entity files at render time
 
 **Curated** locations — full prose, per-coin verification, shown on the landing:
 
-| Location | Classified coins | Years | Bibliography |
-|---|---|---|---|
-| `denmark` | ~1 400 | 1572–1914 | 23 entries |
-| `schleswig_holstein` | ~375 | 1567–1863 | 36 entries |
-| `lubeck` | ~18 | 1620–1801 | 4 entries |
+| Location | Scope |
+|---|---|
+| `denmark` | The Danish-Norwegian realm, 1514–1914 (also the whole of danskmoent.github.io) |
+| `schleswig_holstein` | The duchies of Schleswig and Holstein |
+| `lubeck` | The Free City of Lübeck |
+
+Coin and bibliography counts are shown in each page's header; they change with every harvest.
 
 The other locations — `hamburg`, `holstein_schauenburg`, `bremen_verden`,
 `brunswick_lueneburg`, `oldenburg`, `hesse_kassel`, `osnabrueck`, `lauenburg`,
@@ -116,9 +123,20 @@ python scripts/build.py
 
 # Build one location in one language (fast iteration).
 python scripts/build.py --location schleswig_holstein --lang de
+
+# Build the Danish site (danskmoent.github.io) into site-danskmoent/.
+python scripts/build.py --site danskmoent
 ```
 
-Site output lands in `site/`. Open `site/de/index.html` in a browser.
+Site output lands in `site/` (or `site-danskmoent/`). Serve it over HTTP rather than opening the files directly — the per-Müntzfuß coin tables are fetched on demand:
+
+```bash
+python scripts/serve_preview.py 8000 site              # no-cache local server
+```
+
+### Site profiles
+
+`--site <id>` selects a profile from `config/sites/<id>.yml`: which locations the site contains, its origin, languages, default language (`root_lang`), whether it has a landing index, and its output directory. `munzfuss` is the default profile; `danskmoent` renders `denmark` alone at the site root. `--location` remains a partial build within one site. Full reference: `docs/ARCHITECTURE.md` § «Site profiles».
 
 ### If you cloned without `--recursive`
 
@@ -170,7 +188,7 @@ After any change:
 
 1. **Validate**: `python scripts/build.py --validate-only`.
 2. **Preview**: `python scripts/build.py --location <loc> --lang de`.
-3. **Commit + push**. GitHub Actions rebuilds and deploys (~1 min).
+3. **Commit + push**. GitHub Actions rebuilds and deploys both sites (~1 min for munzfuss.github.io; the Danish site is pushed to the `gh-pages` branch of [danskmoent/danskmoent.github.io](https://github.com/danskmoent/danskmoent.github.io)).
 
 Do **not** edit anything under `site/` — it's regenerated on every build.
 
@@ -238,8 +256,8 @@ Non-negotiable (see `CLAUDE.md` for full treatment):
 
 1. **No invention.** Every claim in the rendered prose traces to a named source — coin inscription, catalogue, auction, MGM, Numista / ucoin, Hede / Wilcke / Schou / Lange / Sieg, danskmoent.dk, etc. No mintage figures, motivations, or historiographical labels without an explicit citation.
 2. **Only what's on the coin** goes in `nominal`. Calculated equivalents go in `note`.
-3. **Period-correct German orthography** in `de` fields: Müntz, Müntzfuß, biß, Marck, Cöllnische, Thaler, Courant, Groß.
-4. **Academic register** in all three languages — no colloquialisms, no editorial intensifiers, no first-person voice.
+3. **German orthography — source form first.** Names, quotations and titles keep the source's spelling; our own connective German prose uses the period register (Müntz, Müntzfuß, biß, Marck, Cöllnische, Thaler, Courant, Groß).
+4. **Academic register** in every language — no colloquialisms, no editorial intensifiers, no first-person voice.
 5. **`(?)` marker** for unverified values. Set `verified: false` with explanatory `verification_note`. Flipping to `true` requires an explicit source — not a heuristic, not a «looks plausible» judgement.
 6. **Source hierarchy**: coin inscription → museum → auction → MGM → Numista / ucoin → Wikipedia → secondary. Every web-sourced fact gets a bibliography entry AND an inline `<sup>[N]</sup>` cite.
 7. **Kurant vs Scheide vs Tarif distinction** is mandatory — do not conflate.
@@ -254,7 +272,7 @@ Non-negotiable (see `CLAUDE.md` for full treatment):
 * **Jinja2** · HTML templates
 * **pypdf** · Bruun auction PDF ingest
 * **GitHub Actions + Pages** · CI/CD and hosting
-* No JavaScript framework. Minimal client-side JS (language redirect + table-of-contents anchor).
+* No JavaScript framework. One small script (`assets/app.js`): language cookie, light/dark theme, timeline filters, tooltips, and on-demand loading of each Müntzfuß's coin tables.
 
 ## Further reading
 
