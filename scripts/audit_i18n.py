@@ -492,7 +492,9 @@ def main() -> int:
     hits: list[Hit] = []
     for path in collect_files(args):
         try:
-            doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+            # libyaml loader (~5× faster on the multi-MB entity files); same structure.
+            doc = yaml.load(path.read_text(encoding="utf-8"),
+                            Loader=getattr(yaml, "CSafeLoader", yaml.SafeLoader)) or {}
         except yaml.YAMLError as e:
             print(f"WARN: {path.relative_to(ROOT)} — parse error: {e}", file=sys.stderr)
             continue
