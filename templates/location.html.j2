@@ -618,7 +618,8 @@
 {% set tl_span = (tl.year_to - tl.year_from) %}
 <div class="tl">
   <div class="tl-header">
-    <div class="tl-title">{{ tl.title|t(lang) }}</div>
+    {% set tl_t = tl.title|t(lang) %}{% set tl_parts = tl_t.rsplit(' · ', 1) %}
+    <div class="tl-title">{% if tl_parts|length == 2 %}{{ tl_parts[0] }} <span class="tl-title-span">· {{ tl_parts[1] }}</span>{% else %}{{ tl_t }}{% endif %}</div>
     {# Per-entity filter chips: one checkbox per issuing entity, labelled
        with its 2-letter abbrev («RH» / «HG» / «DK» / «DK+» / …), preceded
        by a single «All» master chip. All unchecked by default —
