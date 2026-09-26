@@ -1537,6 +1537,19 @@ def build_location(
             else (output_root / loc.id / lang)
         out_dir.mkdir(parents=True, exist_ok=True)
         out_file = out_dir / "index.html"
+        # Lazy phase tables (scripts/lib/lazy_fuss.py): fragments land in
+        # `<out_dir>/t/`, the page keeps only a `data-src` stub.
+        from lib import lazy_fuss as _lazy_fuss_mod
+        _url_dir = "/" + out_dir.relative_to(output_root).as_posix() + "/"
+        html, _frags = _lazy_fuss_mod.split(html, _url_dir)
+        _frag_dir = out_dir / "t"
+        if _frag_dir.exists():
+            for _old in _frag_dir.glob("*.html"):
+                _old.unlink()
+        if _frags:
+            _frag_dir.mkdir(exist_ok=True)
+            for _fid, _body in _frags.items():
+                (_frag_dir / f"{_fid}.html").write_text(_body, encoding="utf-8")
         with open(out_file, "w", encoding="utf-8") as f:
             f.write(html)
         print(f"   → {out_file.relative_to(REPO_ROOT)}")

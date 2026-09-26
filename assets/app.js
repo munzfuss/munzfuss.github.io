@@ -67,6 +67,31 @@
     }
   });
 
+  // 2b) Lazy phase tables (see scripts/lib/lazy_fuss.py): on first open
+  //     of a Müntzfuß block, fetch its `.fd-lazy[data-src]` fragment.
+  function loadLazy(details) {
+    var box = details.querySelector(":scope .fd-lazy[data-src]");
+    if (!box || box.dataset.state) return;
+    box.dataset.state = "loading";
+    box.innerHTML = '<div class="fd-lazy-msg">…</div>';
+    fetch(box.getAttribute("data-src"))
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (txt) { box.innerHTML = txt; box.dataset.state = "done"; })
+      .catch(function () {
+        box.dataset.state = "";
+        box.innerHTML = '<div class="fd-lazy-msg">⚠ <a href="' +
+          box.getAttribute("data-src") + '">' + box.getAttribute("data-src") + "</a></div>";
+      });
+  }
+  document.addEventListener("toggle", function (ev) {
+    var d = ev.target;
+    if (d && d.matches && d.matches("details.fuss-details") && d.open) loadLazy(d);
+  }, true);
+  document.addEventListener("DOMContentLoaded", function () {
+    var open = document.querySelectorAll("details.fuss-details[open]");
+    for (var i = 0; i < open.length; i++) loadLazy(open[i]);
+  });
+
   // 3) Theme switcher.
   var THEMES = ["v1", "v3"];
   function currentTheme() {

@@ -1035,6 +1035,9 @@
     <div class="fuss-hintergrund">{{ sp.details|t(lang)|safe }}</div>
     {% endif %}
 
+    {# Phase tables are cut out at build time into a per-fuss fragment
+       (scripts/lib/lazy_fuss.py) and fetched by app.js on first open. #}
+    <div class="fd-lazy"><!--fd-lazy-begin:{{ sg.fuss.id }}-->
     {% for pg in sg.nonempty_phases %}
     <div class="ph" data-phase="{{ pg.phase.id }}">
       {% if pg.phase.id in ('single', 'only', 'einzige') %}
@@ -1121,6 +1124,7 @@
 
     </div>
     {% endfor %}
+    <!--fd-lazy-end--></div>
 
     <div class="fd-foot">
       <button type="button" class="fd-close">
