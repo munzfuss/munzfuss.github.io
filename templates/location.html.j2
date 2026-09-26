@@ -594,16 +594,16 @@
     {% endif %}
     <div class="hs-stat">
       <span class="hs-lbl">{{ ui_get('hero.stat.muenzfuesse') }}</span>
-      <span class="hs-val">{{ ns.fuss_count }}<sub>{{ ui_get('hero.stat.standards_unit') }}</sub></span>
+      <span class="hs-val">{{ ns.fuss_count }}</span>
     </div>
     <div class="hs-stat">
       <span class="hs-lbl">{{ ui_get('hero.stat.muenzen') }}</span>
-      <span class="hs-val">{{ ns.coin_total }}<sub>{{ ui_get('hero.stat.coins_unit') }}</sub></span>
+      <span class="hs-val">{{ ns.coin_total }}</span>
     </div>
     {% if hero_refs %}
-    <div class="hs-stat">
+    <div class="hs-stat hs-stat-refs">
       <span class="hs-lbl">{{ ui_get('hero.stat.quellen') }}</span>
-      <span class="hs-val">{{ hero_refs }}<sub>{{ ui_get('hero.stat.refs_unit') }}</sub></span>
+      <span class="hs-val">{{ hero_refs }}</span>
     </div>
     {% endif %}
     <div class="hs-stat hs-stat-wide">

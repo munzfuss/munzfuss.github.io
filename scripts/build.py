@@ -204,116 +204,31 @@ def _weight_values(w) -> list[float]:
     return []
 
 
-_HERO_REFS_RE = re.compile(
-    r'(<span class="hs-lbl">[^<]*</span>\s*'
-    r'<span class="hs-val">)\d+(<sub>[^<]*Referenzen[^<]*</sub></span>)',
-    re.IGNORECASE,
-)
-_HERO_REFS_GENERIC_RE = re.compile(
-    # Locate the hero «refs_unit» badge regardless of language. We
-    # identify the badge by the presence of the `hs-stat` wrapper plus
-    # the «hero.stat.quellen» label ABOVE the badge value — but since the
-    # label is i18n'd, we anchor on the structural pattern: the LAST
-    # `hs-stat` in the hero block that contains a numeric `hs-val` with a
-    # `<sub>` child (the «Referenzen/References/Посилання» unit). This
-    # regex matches conservatively only when the bibliography list is
-    # present (caller checks for `<ol class="refs">`).
-    r'(<div class="hs-stat">\s*'
-    r'<span class="hs-lbl">[^<]*</span>\s*'
-    r'<span class="hs-val">)(\d+)(<sub>[^<]*</sub></span>\s*</div>)',
-    re.IGNORECASE,
-)
 _REFS_LI_VALUE_RE = re.compile(r'<li[^>]*value="(\d+)"')
 
-_HERO_REFS_FULL_RE = re.compile(
-    # Match the full `<div class="hs-stat">…</div>` wrapper that contains
-    # a refs-unit `<sub>` (Referenzen / refs / посилань / Джерела). The
-    # non-greedy `.*?` keeps the match scoped to a single hs-stat block.
-    r'<div class="hs-stat">\s*<span class="hs-lbl">[^<]*</span>\s*'
-    r'<span class="hs-val">\d+<sub>([^<]*)</sub></span>\s*</div>\s*',
-    re.IGNORECASE | re.DOTALL,
-)
-
-
-def _strip_hero_refs_badge(html: str) -> str:
-    """Remove the hero stat-badge whose `<sub>` label is a refs-unit
-    synonym. Used when the page has zero bibliography entries (legacy +
-    pool both empty). The template renders the badge unconditionally
-    (`hero_refs=1` floor) so the post-process owns the strip-on-empty
-    decision."""
-    def _is_refs_unit(sub_text: str) -> bool:
-        low = sub_text.lower()
-        return any(
-            t in low for t in
-            ("referenz", "reference", "refs", "посилан", "поси­лан",
-             "джерел")
-        )
-
-    def _repl(m: re.Match) -> str:
-        if _is_refs_unit(m.group(1)):
-            return ''
-        return m.group(0)
-
-    return _HERO_REFS_FULL_RE.sub(_repl, html)
+# The hero «References» stat carries the `hs-stat-refs` class; its value
+# is patched (or the whole stat removed) after the refs-pool pass.
+_HERO_REFS_STAT_RE = re.compile(
+    r'(<div class="hs-stat hs-stat-refs">\s*<span class="hs-lbl">[^<]*</span>\s*'
+    r'<span class="hs-val">)\d+(</span>\s*</div>\s*)')
 
 
 def _patch_hero_refs_count(html: str) -> str:
-    """Update the hero «Quellen N Referenzen» badge to reflect the total
-    bibliography size (legacy + pool refs).
+    """Set the hero «References» stat to the total bibliography size.
 
-    The Jinja template emits `hero_refs = references.entries | length`
-    which only sees the legacy `*-references.yml` entries. After
-    `refs_pool.process_html` injects pool entries, the badge undercounts.
-    Pre-existing symptom on the SH V2 page: «1 Referenzen» while the
-    bibliography actually carries 50+ entries (1 legacy + 49 pool).
-
-    Strategy: count `<li[^>]*value="N">` items inside the final
-    `<ol class="refs">` block of the rendered HTML. Use that total to
-    rewrite the hero badge's numeric value. Idempotent — re-running on
-    already-patched HTML produces identical output.
+    The template only knows the legacy `*-references.yml` count;
+    `refs_pool.process_html` injects pool entries afterwards. Count the
+    `<li value="N">` items in the final `<ol class="refs">` and rewrite
+    the stat; with no bibliography at all, drop the stat. Idempotent.
     """
-    # Locate the <ol class="refs"> block to count its <li> entries.
     ol_open = html.find('<ol class="refs">')
     ol_close = html.find('</ol>', ol_open) if ol_open >= 0 else -1
-    if ol_open < 0 or ol_close < 0:
-        li_count = 0
-    else:
-        block = html[ol_open:ol_close]
-        li_count = len(_REFS_LI_VALUE_RE.findall(block))
+    li_count = (len(_REFS_LI_VALUE_RE.findall(html[ol_open:ol_close]))
+                if ol_open >= 0 and ol_close >= 0 else 0)
     if li_count == 0:
-        # Strip the hero «References» badge entirely — no bibliography.
-        # Template sets hero_refs=1 as a floor so the badge always
-        # renders; strip-on-zero keeps the no-refs case clean.
-        return _strip_hero_refs_badge(html)
-    # Update only the hero stat-badge whose <sub> label contains the
-    # i18n'd «refs unit» word (Referenzen / References / Посилання).
-    # We rewrite all hero badges to the live count — there's only ONE
-    # such badge per page so the regex matches at most one location.
-    new_html, n_sub = _HERO_REFS_GENERIC_RE.subn(
-        lambda m: f"{m.group(1)}{li_count}{m.group(3)}", html, count=4
-    )
-    if n_sub == 0:
-        return html
-    # Multiple hero stats share the same pattern (Münzen, Müntzfüße,
-    # Quellen). To avoid overwriting the wrong one, we filter: only the
-    # badge whose <sub> text matches a known refs-unit synonym should be
-    # updated. Walk matches manually.
-    def _is_refs_unit(sub_text: str) -> bool:
-        low = sub_text.lower()
-        return any(
-            t in low for t in
-            ("referenz", "reference", "refs", "посилан", "поси­лан",
-             "джерел")
-        )
-
-    def _repl(m: re.Match) -> str:
-        # m.group(3) contains the `<sub>...</sub></span>...</div>` tail.
-        sub_inner = re.search(r'<sub>([^<]*)</sub>', m.group(3))
-        if sub_inner and _is_refs_unit(sub_inner.group(1)):
-            return f"{m.group(1)}{li_count}{m.group(3)}"
-        return m.group(0)
-
-    return _HERO_REFS_GENERIC_RE.sub(_repl, html)
+        return _HERO_REFS_STAT_RE.sub('', html, count=1)
+    return _HERO_REFS_STAT_RE.sub(
+        lambda m: f"{m.group(1)}{li_count}{m.group(2)}", html, count=1)
 
 
 # =============================================================================
