@@ -80,7 +80,13 @@ def main() -> int:
 
     for path in sorted(glob.glob(str(ROOT / "data/v2/final/*.yml"))):
         ent = Path(path).stem
-        ctx, doc = yaml_io.load(Path(path))
+        # The detector only READS coins, so parse with the fast libyaml loader
+        # (~7× faster than the ruamel round-trip). Only --apply writes back, and
+        # only that path needs yaml_io's format-preserving load/save.
+        if args.apply:
+            ctx, doc = yaml_io.load(Path(path))
+        else:
+            ctx, doc = None, (yaml.load(open(path), Loader=_L) or {})
         changed = False
         for c in doc.get("coins") or []:
             total_finals += 1
