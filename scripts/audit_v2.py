@@ -61,6 +61,9 @@ from collections import defaultdict
 from pathlib import Path
 
 import yaml
+# libyaml-backed loader when available (~5× faster than the pure-Python
+# SafeLoader on the multi-MB entity files); identical output structure.
+_FASTLOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 
 ROOT = Path(__file__).resolve().parents[1]
 V2_FINAL = ROOT / "data" / "v2" / "final"
@@ -85,7 +88,7 @@ from lib.v2_seed_writer import _home_entity  # noqa: E402
 def _load_yaml(p: Path) -> dict:
     if not p.exists():
         return {}
-    return yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+    return yaml.load(p.read_text(encoding="utf-8"), Loader=_FASTLOADER) or {}
 
 
 def _all_v2_final_coins() -> list[tuple[str, dict]]:

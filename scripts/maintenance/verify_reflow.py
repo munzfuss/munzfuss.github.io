@@ -99,6 +99,10 @@ from collections import Counter
 from pathlib import Path
 
 import yaml
+# libyaml-backed loader when available (~5× faster than the pure-Python
+# SafeLoader on the multi-MB entity files, and this script parses each final
+# twice — working tree + git-show HEAD baseline); identical output structure.
+_FASTLOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 FINAL_REL = "data/v2/final"
@@ -167,7 +171,7 @@ def _git_show(ref: str, rel: str) -> dict | None:
                        capture_output=True, text=True, cwd=ROOT)
     if r.returncode != 0:
         return None
-    return yaml.safe_load(io.StringIO(r.stdout)) or {}
+    return yaml.load(io.StringIO(r.stdout), Loader=_FASTLOADER) or {}
 
 
 def _coins(doc: dict | None) -> dict[str, dict]:
@@ -279,7 +283,7 @@ def _relocated_ids(entity: str) -> set[str]:
     path = ROOT / "data/v2/merge_decisions/_cross_entity.yml"
     if not path.exists():
         return set()
-    doc = yaml.safe_load(path.read_text()) or {}
+    doc = yaml.load(path.read_text(), Loader=_FASTLOADER) or {}
     out: set[str] = set()
     for d in (doc.get("merges") or []):
         if d.get("target_entity") == entity:
@@ -303,7 +307,7 @@ def _excluded_ids(entity: str) -> set[str]:
     path = ROOT / EXCLUSIONS_REL / f"{entity}.yml"
     if not path.exists():
         return set()
-    doc = yaml.safe_load(path.read_text()) or {}
+    doc = yaml.load(path.read_text(), Loader=_FASTLOADER) or {}
     raw = {e["id"] for e in (doc.get("exclusions") or []) if e.get("id")}
     if not raw:
         return set()
@@ -315,7 +319,7 @@ def _excluded_ids(entity: str) -> set[str]:
     seed_ids = set(raw)
     unified_path = ROOT / UNIFIED_REL / f"{entity}.yml"
     if unified_path.exists():
-        udoc = yaml.safe_load(unified_path.read_text()) or {}
+        udoc = yaml.load(unified_path.read_text(), Loader=_FASTLOADER) or {}
         for c in udoc.get("coins") or []:
             if c.get("id") and raw & set(c.get("composed_of") or []):
                 raw.add(c["id"])
@@ -354,7 +358,7 @@ def _retracted_refs(entity: str) -> dict[str, set[str]]:
         path = ROOT / rel
         if not path.exists():
             continue
-        doc = yaml.safe_load(path.read_text()) or {}
+        doc = yaml.load(path.read_text(), Loader=_FASTLOADER) or {}
         # `_recorded_removals.yml` keys its list `removals` and marks each entry
         # with a `kind`; only its field removals belong here (a `thinning` entry
         # excuses a whole coin and is handled in the vanished branch). The two
@@ -381,7 +385,7 @@ def _retracted_refs(entity: str) -> dict[str, set[str]]:
     if not unified_path.exists():
         return {}
     out: dict[str, set[str]] = {}
-    for c in (yaml.safe_load(unified_path.read_text()) or {}).get("coins") or []:
+    for c in (yaml.load(unified_path.read_text(), Loader=_FASTLOADER) or {}).get("coins") or []:
         for m in c.get("composed_of") or []:
             for field, vals in by_seed.get(m, {}).items():
                 out.setdefault(field, set()).update(vals)
@@ -402,7 +406,7 @@ def _cross_entity_targets() -> list[str]:
     path = ROOT / "data/v2/merge_decisions/_cross_entity.yml"
     if not path.exists():
         return []
-    doc = yaml.safe_load(path.read_text()) or {}
+    doc = yaml.load(path.read_text(), Loader=_FASTLOADER) or {}
     return sorted({m.get("target_entity") for m in (doc.get("merges") or [])
                    if m.get("target_entity")})
 
@@ -433,7 +437,7 @@ def _relocation_attestation_index() -> dict[str, set[str]]:
             if not path.exists():
                 continue
             for f, vals in _attestation_index(
-                    _coins(yaml.safe_load(path.read_text()))).items():
+                    _coins(yaml.load(path.read_text(), Loader=_FASTLOADER))).items():
                 idx.setdefault(f, set()).update(vals)
         _RELOCATION_INDEX = idx
     return _RELOCATION_INDEX
@@ -444,7 +448,7 @@ def compare_entity(entity: str, base: str) -> dict:
     rel = f"{FINAL_REL}/{entity}.yml"
     head = _coins(_git_show(base, rel))
     path = ROOT / rel
-    cur = _coins(yaml.safe_load(path.read_text()) if path.exists() else None)
+    cur = _coins(yaml.load(path.read_text(), Loader=_FASTLOADER) if path.exists() else None)
     return compare_coins(entity, head, cur, excluded=_excluded_ids(entity),
                          retracted=_retracted_refs(entity),
                          elsewhere=_relocation_attestation_index(),
@@ -484,7 +488,7 @@ def _recorded_removals() -> tuple[set[str], dict[str, set[str]]]:
         fields: dict[str, set[str]] = {}
         path = ROOT / RECORDED_REMOVALS_REL
         if path.exists():
-            for e in (yaml.safe_load(path.read_text()) or {}).get("removals") or []:
+            for e in (yaml.load(path.read_text(), Loader=_FASTLOADER) or {}).get("removals") or []:
                 seed = e.get("seed")
                 if not seed:
                     continue
@@ -550,11 +554,11 @@ def _coin_home_index() -> dict[str, tuple[str, str]]:
         # the new final never mentions it.
         unified: dict[str, list[str]] = {}
         for path in sorted((ROOT / "data/v2/seed_unified").glob("*.yml")):
-            for uid, u in _coins(yaml.safe_load(path.read_text())).items():
+            for uid, u in _coins(yaml.load(path.read_text(), Loader=_FASTLOADER)).items():
                 unified[uid] = list(u.get("composed_of") or [])
         for path in sorted((ROOT / FINAL_REL).glob("*.yml")):
             ent = path.stem
-            for cid, coin in _coins(yaml.safe_load(path.read_text())).items():
+            for cid, coin in _coins(yaml.load(path.read_text(), Loader=_FASTLOADER)).items():
                 idx.setdefault(cid, (ent, cid))
                 for m in (coin.get("composed_of") or [cid]):
                     idx.setdefault(m, (ent, cid))

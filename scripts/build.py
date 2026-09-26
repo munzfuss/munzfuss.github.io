@@ -21,6 +21,9 @@ from datetime import datetime
 from pathlib import Path
 
 import yaml
+# libyaml-backed loader when available (~5× faster than the pure-Python
+# SafeLoader on the multi-MB entity files); identical output structure.
+_FASTLOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from pydantic import ValidationError
 
@@ -64,7 +67,7 @@ V2_LOCATIONS_DIR = DATA_DIR / "v2" / "locations"
 def load_fuesse() -> dict[str, Fuss]:
     path = DATA_DIR / "shared" / "fuesse.yml"
     with open(path, encoding="utf-8") as f:
-        raw = yaml.safe_load(f)
+        raw = yaml.load(f, Loader=_FASTLOADER)
     
     fuesse = {}
     for fuss_id, data in raw.items():
@@ -75,7 +78,7 @@ def load_fuesse() -> dict[str, Fuss]:
 
 def load_theme() -> dict:
     with open(CONFIG_DIR / "theme.yml", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        return yaml.load(f, Loader=_FASTLOADER)
 
 
 def load_ui() -> dict:
@@ -88,7 +91,7 @@ def load_issuing_entities() -> dict:
     if not path.exists():
         return {}
     with open(path, encoding="utf-8") as f:
-        return yaml.safe_load(f) or {}
+        return yaml.load(f, Loader=_FASTLOADER) or {}
 
 
 _YEAR_PARSE_4DIGIT = re.compile(r"\b(1[5-9]\d{2})\b")
@@ -138,7 +141,7 @@ def load_german_fuesse() -> list[dict]:
     if not path.exists():
         return []
     with open(path, encoding="utf-8") as f:
-        raw = yaml.safe_load(f) or {}
+        raw = yaml.load(f, Loader=_FASTLOADER) or {}
     entries = raw.get("entries", [])
     indexed = list(enumerate(entries))
     indexed.sort(key=lambda ie: (_landing_year_from(ie[1]), ie[0]))
@@ -158,7 +161,7 @@ def load_german_fuesse_references() -> dict | None:
     if not path.exists():
         return None
     with open(path, encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        return yaml.load(f, Loader=_FASTLOADER)
 
 
 
@@ -361,7 +364,7 @@ def _load_v2_curated() -> dict[str, list[dict]]:
     if V2_FINAL_DIR.exists():
         for path in sorted(V2_FINAL_DIR.glob("*.yml")):
             with open(path, encoding="utf-8") as f:
-                doc = yaml.safe_load(f) or {}
+                doc = yaml.load(f, Loader=_FASTLOADER) or {}
             cache[doc.get("id", path.stem)] = doc.get("coins", []) or []
     _V2_FINAL_CACHE = cache
     return cache
@@ -389,7 +392,7 @@ def _load_v2_seed_entries() -> list[dict]:
             continue
         for path in sorted(source_dir.glob("*.yml")):
             with open(path, encoding="utf-8") as f:
-                doc = yaml.safe_load(f) or {}
+                doc = yaml.load(f, Loader=_FASTLOADER) or {}
             for c in doc.get("coins", []) or []:
                 c = dict(c)
                 c["_v2_seed_source"] = source_dir.name
@@ -418,7 +421,7 @@ def _load_v2_seed_unified() -> list[dict]:
         return out
     for path in sorted(unified_dir.glob("*.yml")):
         with open(path, encoding="utf-8") as f:
-            doc = yaml.safe_load(f) or {}
+            doc = yaml.load(f, Loader=_FASTLOADER) or {}
         for uc in (doc.get("coins") or []):
             out.append(uc)
     _V2_UNIFIED_CACHE = out
@@ -786,7 +789,7 @@ def _curated_pen_titles() -> dict[str, dict]:
     if v2_loc.is_dir():
         for lp in sorted(v2_loc.glob("*.yml")):
             try:
-                doc = yaml.safe_load(lp.read_text(encoding="utf-8")) or {}
+                doc = yaml.load(lp.read_text(encoding="utf-8"), Loader=_FASTLOADER) or {}
             except Exception:
                 continue
             for b in ((doc.get("phases") or {}).get("seed_unsorted") or []):
@@ -1230,7 +1233,7 @@ def load_v2_locations(filter_id: str | list[str] | None = None,
         if scope is not None and path.stem not in scope:
             continue
         with open(path, encoding="utf-8") as f:
-            raw = yaml.safe_load(f) or {}
+            raw = yaml.load(f, Loader=_FASTLOADER) or {}
         n_assembled = _assemble_v2_location(path.stem, raw)
         if n_assembled:
             print(f"   🌱 v2/{path.stem}: assembled {n_assembled} coin(s) "
@@ -1241,7 +1244,7 @@ def load_v2_locations(filter_id: str | list[str] | None = None,
             v1_ref_path = DATA_DIR / "locations" / f"{path.stem}-references.yml"
             if v1_ref_path.exists():
                 with open(v1_ref_path, encoding="utf-8") as rf:
-                    loc._references_data = yaml.safe_load(rf)
+                    loc._references_data = yaml.load(rf, Loader=_FASTLOADER)
             else:
                 loc._references_data = None
             locations.append(loc)
