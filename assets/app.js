@@ -9,6 +9,26 @@
  *      this block reflects the active theme on the .theme-switch buttons
  *      and persists clicks back to localStorage.
  */
+
+/* Tooltip table hydration (see scripts/lib/tooltip_dict.py): elements
+   whose repeated tooltip text was moved into window.__TT carry
+   `data-tt="<index>"`; restore `data-tooltip` on first hover / focus,
+   in the capture phase so every later tooltip handler sees it. */
+(function () {
+  function hydrate(ev) {
+    var el = ev.target;
+    var tt = window.__TT;
+    if (!tt || !el || !el.closest) return;
+    for (el = el.closest("[data-tt]"); el; el = el.parentElement && el.parentElement.closest("[data-tt]")) {
+      if (!el.hasAttribute("data-tooltip")) {
+        var v = tt[+el.getAttribute("data-tt")];
+        if (v != null) el.setAttribute("data-tooltip", v);
+      }
+    }
+  }
+  document.addEventListener("mouseover", hydrate, true);
+  document.addEventListener("focusin", hydrate, true);
+})();
 (function () {
   "use strict";
 

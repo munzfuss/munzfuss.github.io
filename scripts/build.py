@@ -1518,6 +1518,11 @@ def build_location(
             _fuss_name_map[_fk] = i18n.t(_nm, lang)
         html = _fuss_refs_mod.process_html(html, lang, _fuss_name_map)
 
+        # Tooltip dedup pass: repeated `data-tooltip` values → one JSON
+        # table + `data-tt` indices (see scripts/lib/tooltip_dict.py).
+        from lib import tooltip_dict as _tooltip_dict_mod
+        html = _tooltip_dict_mod.process_html(html)
+
         # Hero «References» count fix (2026-05-27): the template's
         # `hero_refs = references.entries | length` only counts the
         # legacy `*-references.yml` entries — it doesn't see the
