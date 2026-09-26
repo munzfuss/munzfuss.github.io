@@ -55,6 +55,35 @@
 # The hook is fast — it only runs the heavy checks when the commit
 # actually touches relevant files. Docs-only commits skip the build
 # step entirely.
+#
+# Execution model — the heavy checks run IN PARALLEL
+# --------------------------------------------------
+# The five heavy checks (1 build-validate, 3 i18n, 4 audit_v2,
+# 6 lost-citations, 7 reflow) are independent, read-only passes over the
+# same tree, so they are launched concurrently; the fast checks (2 prose,
+# 5 decisions, 8 rebucket, 9 residual) run sequentially alongside them.
+# The final verdict is unchanged from a sequential run — the commit is
+# blocked iff ANY check fails — only the fail-FAST behaviour is dropped:
+# every launched check runs to completion, then failures are reported
+# together. Every hard-block reason and message below is preserved.
+#
+# RESOURCE ASSUMPTIONS (read this first if the hook is killed / thrashes)
+# ----------------------------------------------------------------------
+# This runs on the machine that makes the commit — it is a LOCAL git hook
+# and NEVER runs in CI (.github/workflows/deploy.yml invokes build.py
+# directly, not this hook). Running the heavy checks concurrently assumes
+# a developer box with, roughly:
+#   • RAM  — combined peak ≈ 4.5 GB (build.py --validate-only alone is
+#            ≈ 2.7 GB, the rest are ≤ 0.5 GB each). Comfortable on ≥ 8 GB,
+#            trivial on the 24 GB box this was tuned on (2026-09).
+#   • CPU  — up to 5 Python processes at once; benefits from ≥ 4 cores,
+#            wall time is floored by build.py (~55–60 s under contention).
+# If this hook is OOM-killed, thrashing, or a check dies with no clear
+# error on a memory-constrained machine, that concurrency is the likely
+# cause: run the checks sequentially instead (launch each heavy block,
+# `wait` it, then launch the next), or bypass once with
+# `git commit --no-verify`. See docs/PLAYBOOKS.md / CLAUDE.md
+# «Run (re)builds … in the background» for the timing rationale.
 
 set -uo pipefail
 
@@ -86,34 +115,72 @@ if [ -z "$STAGED" ]; then
     exit 0
 fi
 
-# ---------------------------------------------------------------------------
-# Check 1: Build validation
-# ---------------------------------------------------------------------------
+# FAIL accumulates across every check; the hook exits non-zero (aborting the
+# commit) iff FAIL != 0 at the end. Individual checks set FAIL=1 instead of
+# exiting, so a launched background check is always reaped before we exit
+# (no orphaned build.py holding CPU after the commit is already doomed).
+FAIL=0
 
+# ---------------------------------------------------------------------------
+# Relevance gates — decide once which checks this commit needs.
+# ---------------------------------------------------------------------------
 BUILD_RELEVANT=$(echo "$STAGED" | grep -E '^(data/|templates/|scripts/lib/|scripts/build\.py$|config/theme\.yml$|assets/)' || true)
+STAGED_YAML=$(echo "$STAGED" | grep -E '^data/.*\.yml$' || true)
+V2_RELEVANT=$(echo "$STAGED" | grep -E '^(data/v2/|scripts/maintenance/(seed_v2|merge_seeds|absorb_seeds|relink_promoted|bootstrap_v2)|scripts/build\.py$|scripts/lib/(schema|v2_resolver|v2_entity_classify|seed_merge)\.py$)' || true)
+DECISIONS_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/merge_decisions/.*\.yml$' || true)
+FINAL_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/final/.*\.yml$' || true)
+SEED_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/seed/.*\.yml$' || true)
+RESID_RELEVANT=$(echo "$STAGED" | grep -E '^data/(v2|shared|i18n|locations)/.*\.ya?ml$' || true)
 
+# ---------------------------------------------------------------------------
+# Launch the heavy, independent, read-only checks in the background.
+# Each writes to its own log; exit codes are collected after the fast checks.
+# ---------------------------------------------------------------------------
+BUILD_PID=""; BUILD_LOG=""
 if [ -n "$BUILD_RELEVANT" ]; then
-    echo "▶ Build validation..."
     BUILD_LOG=$(mktemp -t precommit-build.XXXXXX)
-    if ! "$PYTHON" scripts/build.py --validate-only > "$BUILD_LOG" 2>&1; then
-        echo "${C_RED}✗ Build validation FAILED.${C_RST}"
-        echo "Last lines of output:"
-        tail -25 "$BUILD_LOG" | sed 's/^/    /'
-        echo
-        echo "Full log: $BUILD_LOG"
-        echo "Fix the build error before committing, or bypass with: git commit --no-verify"
-        exit 1
-    fi
-    rm -f "$BUILD_LOG"
-    echo "  ${C_GREEN}✓${C_RST} build validation clean"
+    "$PYTHON" scripts/build.py --validate-only > "$BUILD_LOG" 2>&1 &
+    BUILD_PID=$!
 fi
 
-# ---------------------------------------------------------------------------
-# Check 2: Prose lint on staged YAMLs (advisory)
-# ---------------------------------------------------------------------------
+I18N_PID=""; I18N_LOG=""
+if [ -n "$STAGED_YAML" ]; then
+    I18N_LOG=$(mktemp -t precommit-i18n.XXXXXX)
+    "$PYTHON" scripts/audit_i18n.py --json > "$I18N_LOG" 2>&1 &
+    I18N_PID=$!
+fi
 
-STAGED_YAML=$(echo "$STAGED" | grep -E '^data/.*\.yml$' || true)
+V2_PID=""; V2_LOG=""
+if [ -n "$V2_RELEVANT" ]; then
+    V2_LOG=$(mktemp -t precommit-v2audit.XXXXXX)
+    "$PYTHON" scripts/audit_v2.py --quick > "$V2_LOG" 2>&1 &
+    V2_PID=$!
+fi
 
+CIT_PID=""; CIT_LOG=""
+RFL_PID=""; RFL_LOG=""
+if [ -n "$FINAL_RELEVANT" ]; then
+    CIT_LOG=$(mktemp -t precommit-citations.XXXXXX)
+    "$PYTHON" scripts/maintenance/audit_lost_citations.py > "$CIT_LOG" 2>&1 &
+    CIT_PID=$!
+    RFL_LOG=$(mktemp -t precommit-reflow.XXXXXX)
+    "$PYTHON" scripts/maintenance/verify_reflow.py > "$RFL_LOG" 2>&1 &
+    RFL_PID=$!
+fi
+
+if [ -n "$BUILD_PID$I18N_PID$V2_PID$CIT_PID$RFL_PID" ]; then
+    echo "▶ Heavy checks running in parallel (build / i18n / v2 / citations / reflow, as relevant)…"
+fi
+
+# ===========================================================================
+# FAST checks — run sequentially WHILE the heavy checks work in the background.
+# On failure they set FAIL=1 (never `exit`), so the background checks above are
+# still reaped below before the hook exits.
+# ===========================================================================
+
+# ---------------------------------------------------------------------------
+# Check 2: Prose lint on staged YAMLs
+# ---------------------------------------------------------------------------
 if [ -n "$STAGED_YAML" ]; then
     echo "▶ Prose lint (staged YAMLs)..."
     PROSE_LOG=$(mktemp -t precommit-prose.XXXXXX)
@@ -146,62 +213,18 @@ for h in [x for x in d['hits'] if x['severity'] == 'error'][:12]:
         echo "scripts/audit_prose.py rather than suppressing the hit."
         echo "    $PYTHON scripts/audit_prose.py --staged   # detail"
         echo "or bypass with: git commit --no-verify"
-        rm -f "$PROSE_LOG"
-        exit 1
+        FAIL=1
     fi
     rm -f "$PROSE_LOG"
 fi
 
 # ---------------------------------------------------------------------------
-# Check 3: Cross-language i18n (advisory; full scan)
-# ---------------------------------------------------------------------------
-
-if [ -n "$STAGED_YAML" ]; then
-    echo "▶ Cross-language i18n (full scan)..."
-    I18N_LOG=$(mktemp -t precommit-i18n.XXXXXX)
-    "$PYTHON" scripts/audit_i18n.py --json > "$I18N_LOG" 2>&1 || true
-    ERR=$("$PYTHON" -c "import json,sys;d=json.load(open('$I18N_LOG'));print(d['summary']['error'])" 2>/dev/null || echo 0)
-    WARN=$("$PYTHON" -c "import json,sys;d=json.load(open('$I18N_LOG'));print(d['summary']['warning'])" 2>/dev/null || echo 0)
-    if [ "$ERR" = "0" ] && [ "$WARN" = "0" ]; then
-        echo "  ${C_GREEN}✓${C_RST} no cross-language inconsistencies"
-    else
-        echo "  ${C_YELL}⚠${C_RST} $ERR error(s) + $WARN warning(s) project-wide — ADVISORY (TODO §X cleanup pending)"
-    fi
-    rm -f "$I18N_LOG"
-fi
-
-# ---------------------------------------------------------------------------
-# Check 4: V2 invariants (hard block per D26)
-# ---------------------------------------------------------------------------
-
-V2_RELEVANT=$(echo "$STAGED" | grep -E '^(data/v2/|scripts/maintenance/(seed_v2|merge_seeds|absorb_seeds|relink_promoted|bootstrap_v2)|scripts/build\.py$|scripts/lib/(schema|v2_resolver|v2_entity_classify|seed_merge)\.py$)' || true)
-
-if [ -n "$V2_RELEVANT" ]; then
-    echo "▶ V2 invariants audit (per D26 hard-block)..."
-    V2_LOG=$(mktemp -t precommit-v2audit.XXXXXX)
-    if ! "$PYTHON" scripts/audit_v2.py --quick > "$V2_LOG" 2>&1; then
-        echo "${C_RED}✗ V2 invariants audit FAILED.${C_RST}"
-        echo "Last lines of output:"
-        tail -30 "$V2_LOG" | sed 's/^/    /'
-        echo
-        echo "Full log: $V2_LOG"
-        echo "Fix the V2 invariant violation, or bypass with: git commit --no-verify"
-        exit 1
-    fi
-    rm -f "$V2_LOG"
-    echo "  ${C_GREEN}✓${C_RST} V2 invariants pass (I1, I2, I3, I5, I8 in --quick mode)"
-fi
-
-# ---------------------------------------------------------------------------
-# Check 5: Curator decision-file integrity (hard block)
+# Check 5: Curator decision-file integrity
 # ---------------------------------------------------------------------------
 # A clobbered merge_decisions/<entity>.yml (duplicate key, or an entry that
 # lost its `members:` block) silently drops a force-merge — the merger applies
 # a WRONG grouping with no warning (caught 2026-06-26). Strict-load + structural
 # validate every decisions file whenever the commit touches one.
-
-DECISIONS_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/merge_decisions/.*\.yml$' || true)
-
 if [ -n "$DECISIONS_RELEVANT" ]; then
     echo "▶ Decision-file integrity..."
     DEC_LOG=$(mktemp -t precommit-decisions.XXXXXX)
@@ -211,91 +234,34 @@ if [ -n "$DECISIONS_RELEVANT" ]; then
         echo
         echo "A merge_decisions file is malformed (duplicate key or an entry"
         echo "missing its 'members'). Fix it, or bypass with: git commit --no-verify"
-        exit 1
+        FAIL=1
+    else
+        echo "  ${C_GREEN}✓${C_RST} decision files structurally valid"
+
+        # Member-resolution (HARD BLOCK since 2026-06-29 — backlog healed to 0).
+        # Every merges/no_merges member must resolve to a current seed id (with the
+        # merger's bare-Hede expansion). A non-resolving no_merges member is a SILENT
+        # over-merge gap; a non-resolving merge member is a folded/typo id. Heal via
+        # the v2-merge-coins skill (resolve → drop-if-redundant / fix), never by
+        # re-pointing a bare Hede code to a flat sub-variant list.
+        MEMB_LOG=$(mktemp -t precommit-members.XXXXXX)
+        if ! "$PYTHON" scripts/maintenance/validate_decisions.py --check-members --quiet > "$MEMB_LOG" 2>&1; then
+            echo "${C_RED}✗ Merge-decision member-resolution FAILED.${C_RST}"
+            cat "$MEMB_LOG" | sed 's/^/    /'
+            echo
+            echo "A merges/no_merges member does not resolve to a seed id. Heal via the"
+            echo "v2-merge-coins skill (resolve → drop/fix), or bypass: git commit --no-verify"
+            FAIL=1
+        else
+            echo "  ${C_GREEN}✓${C_RST} all merge-decision members resolve to seed ids"
+        fi
+        rm -f "$MEMB_LOG"
     fi
     rm -f "$DEC_LOG"
-    echo "  ${C_GREEN}✓${C_RST} decision files structurally valid"
-
-    # Member-resolution (HARD BLOCK since 2026-06-29 — backlog healed to 0).
-    # Every merges/no_merges member must resolve to a current seed id (with the
-    # merger's bare-Hede expansion). A non-resolving no_merges member is a SILENT
-    # over-merge gap; a non-resolving merge member is a folded/typo id. Heal via
-    # the v2-merge-coins skill (resolve → drop-if-redundant / fix), never by
-    # re-pointing a bare Hede code to a flat sub-variant list.
-    MEMB_LOG=$(mktemp -t precommit-members.XXXXXX)
-    if ! "$PYTHON" scripts/maintenance/validate_decisions.py --check-members --quiet > "$MEMB_LOG" 2>&1; then
-        echo "${C_RED}✗ Merge-decision member-resolution FAILED.${C_RST}"
-        cat "$MEMB_LOG" | sed 's/^/    /'
-        echo
-        echo "A merges/no_merges member does not resolve to a seed id. Heal via the"
-        echo "v2-merge-coins skill (resolve → drop/fix), or bypass: git commit --no-verify"
-        exit 1
-    fi
-    rm -f "$MEMB_LOG"
-    echo "  ${C_GREEN}✓${C_RST} all merge-decision members resolve to seed ids"
 fi
 
 # ---------------------------------------------------------------------------
-# Check 6: Lost-citation audit (hard block)
-# ---------------------------------------------------------------------------
-# A manual final reconciliation that sets `final.sources = cluster.sources`
-# (REPLACE) instead of unioning silently drops final-level citations the entry
-# carried from an earlier fold (caught 2026-06-28: c7h13 lost the SOLE source
-# for KM 651.1). The normal absorb path unions correctly; this guards the
-# hand-written path. Runs when the commit touches a final yaml.
-
-FINAL_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/final/.*\.yml$' || true)
-
-if [ -n "$FINAL_RELEVANT" ]; then
-    echo "▶ Lost-citation audit..."
-    CIT_LOG=$(mktemp -t precommit-citations.XXXXXX)
-    if ! "$PYTHON" scripts/maintenance/audit_lost_citations.py > "$CIT_LOG" 2>&1; then
-        echo "${C_RED}✗ Lost-citation audit FAILED — a final dropped member-source citations.${C_RST}"
-        tail -20 "$CIT_LOG" | sed 's/^/    /'
-        echo
-        echo "A reconciliation replaced sources instead of unioning. Heal with:"
-        echo "    $PYTHON scripts/maintenance/audit_lost_citations.py --apply"
-        echo "or bypass with: git commit --no-verify"
-        exit 1
-    fi
-    rm -f "$CIT_LOG"
-    echo "  ${C_GREEN}✓${C_RST} no lost source citations"
-fi
-
-# ---------------------------------------------------------------------------
-# Check 7: Committed-baseline reflow diff (hard block on LOSSES)
-# ---------------------------------------------------------------------------
-# Every other check measures INSIDE the working tree, so none of them can answer
-# the question that actually gates a commit: is the rendered data WORSE than
-# what is already committed? That measurement kept being hand-rolled in a shell
-# heredoc, and on 2026-08-01 four such hand-built baselines were each wrong in a
-# different way (a truncated cache field, one entity's seed_unified instead of
-# all, a half-applied snapshot, and an unread diff). A committed baseline cannot
-# be half-applied or truncated, so this diffs final/*.yml against git HEAD.
-#
-# Additions and recognised folds pass. It blocks only on a real loss: a coin
-# gone with no survivor absorbing it, a scalar emptied, a list or catalogue
-# register that shrank, or a fuss/phase demoted back to seed_unsorted.
-
-if [ -n "$FINAL_RELEVANT" ]; then
-    echo "▶ Reflow diff vs HEAD..."
-    RFL_LOG=$(mktemp -t precommit-reflow.XXXXXX)
-    if ! "$PYTHON" scripts/maintenance/verify_reflow.py > "$RFL_LOG" 2>&1; then
-        echo "${C_RED}✗ Reflow diff FAILED — the working tree loses data the baseline had.${C_RST}"
-        tail -25 "$RFL_LOG" | sed 's/^/    /'
-        echo
-        echo "Each line above is data present at HEAD and absent now. If a removal"
-        echo "is deliberate, make it a recognised fold (the survivor must list the"
-        echo "removed id in composed_of — dedup_final_foundations.py does this),"
-        echo "or bypass with: git commit --no-verify"
-        exit 1
-    fi
-    rm -f "$RFL_LOG"
-    echo "  ${C_GREEN}✓${C_RST} no data lost against HEAD"
-fi
-
-# ---------------------------------------------------------------------------
-# Check 8: Seed-bucket drift (hard block)
+# Check 8: Seed-bucket drift
 # ---------------------------------------------------------------------------
 # A seed entry must sit in the `<source>/<entity>.yml` its issuing_entity
 # demands (`_home_entity(coin)`). It drifts when issuing_entity is edited in
@@ -305,9 +271,6 @@ fi
 # seed_unified/final and audit_v2 I1 blocks the eventual re-flow commit — with
 # the misplacement traced to a coin nobody touched. Catch it at the seed edit
 # instead. Heal with `rebucket_seeds.py --apply`.
-
-SEED_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/seed/.*\.yml$' || true)
-
 if [ -n "$SEED_RELEVANT" ]; then
     echo "▶ Seed-bucket drift..."
     RBK_LOG=$(mktemp -t precommit-rebucket.XXXXXX)
@@ -318,14 +281,15 @@ if [ -n "$SEED_RELEVANT" ]; then
         echo "Relocate the drifted entries with:"
         echo "    $PYTHON scripts/maintenance/rebucket_seeds.py --apply"
         echo "then re-run merge + absorb, or bypass with: git commit --no-verify"
-        exit 1
+        FAIL=1
+    else
+        echo "  ${C_GREEN}✓${C_RST} every seed entry sits in its home bucket"
     fi
     rm -f "$RBK_LOG"
-    echo "  ${C_GREEN}✓${C_RST} every seed entry sits in its home bucket"
 fi
 
 # ---------------------------------------------------------------------------
-# Check 9: YAML round-trip residual must not grow (hard block)
+# Check 9: YAML round-trip residual must not grow
 # ---------------------------------------------------------------------------
 # Dump a data YAML back through its own family's serializer and count the lines
 # that move: that is its round-trip residual, and it is the spurious diff the
@@ -339,9 +303,6 @@ fi
 # 614 residual lines in one session before anything noticed. Fix by rendering
 # inserted lines with yaml_io.canonical_lines(), or by editing through
 # yaml_io.edit_coin_field().
-
-RESID_RELEVANT=$(echo "$STAGED" | grep -E '^data/(v2|shared|i18n|locations)/.*\.ya?ml$' || true)
-
 if [ -n "$RESID_RELEVANT" ]; then
     echo "▶ YAML round-trip residual..."
     RES_LOG=$(mktemp -t precommit-residual.XXXXXX)
@@ -350,11 +311,117 @@ if [ -n "$RESID_RELEVANT" ]; then
         cat "$RES_LOG" | sed 's/^/    /'
         echo
         echo "Bypass with: git commit --no-verify"
-        exit 1
+        FAIL=1
+    else
+        if [ -s "$RES_LOG" ]; then sed 's/^/    /' "$RES_LOG"; fi
+        echo "  ${C_GREEN}✓${C_RST} no file reformats more than it did at HEAD"
     fi
-    if [ -s "$RES_LOG" ]; then sed 's/^/    /' "$RES_LOG"; fi
     rm -f "$RES_LOG"
-    echo "  ${C_GREEN}✓${C_RST} no file reformats more than it did at HEAD"
+fi
+
+# ===========================================================================
+# Reap the background heavy checks, in the original check order, and report.
+# Each `wait <pid>` returns that check's real exit code.
+# ===========================================================================
+
+# ---- Check 1: Build validation (HARD BLOCK) ----
+if [ -n "$BUILD_PID" ]; then
+    if wait "$BUILD_PID"; then
+        echo "  ${C_GREEN}✓${C_RST} build validation clean"
+        rm -f "$BUILD_LOG"
+    else
+        echo "${C_RED}✗ Build validation FAILED.${C_RST}"
+        echo "Last lines of output:"
+        tail -25 "$BUILD_LOG" | sed 's/^/    /'
+        echo
+        echo "Full log: $BUILD_LOG"
+        echo "Fix the build error before committing, or bypass with: git commit --no-verify"
+        FAIL=1
+    fi
+fi
+
+# ---- Check 3: Cross-language i18n (ADVISORY — never blocks) ----
+if [ -n "$I18N_PID" ]; then
+    echo "▶ Cross-language i18n (full scan)..."
+    wait "$I18N_PID" || true
+    ERR=$("$PYTHON" -c "import json,sys;d=json.load(open('$I18N_LOG'));print(d['summary']['error'])" 2>/dev/null || echo 0)
+    WARN=$("$PYTHON" -c "import json,sys;d=json.load(open('$I18N_LOG'));print(d['summary']['warning'])" 2>/dev/null || echo 0)
+    if [ "$ERR" = "0" ] && [ "$WARN" = "0" ]; then
+        echo "  ${C_GREEN}✓${C_RST} no cross-language inconsistencies"
+    else
+        echo "  ${C_YELL}⚠${C_RST} $ERR error(s) + $WARN warning(s) project-wide — ADVISORY (TODO §X cleanup pending)"
+    fi
+    rm -f "$I18N_LOG"
+fi
+
+# ---- Check 4: V2 invariants (HARD BLOCK per D26) ----
+if [ -n "$V2_PID" ]; then
+    if wait "$V2_PID"; then
+        echo "  ${C_GREEN}✓${C_RST} V2 invariants pass (I1, I2, I3, I5, I8 in --quick mode)"
+        rm -f "$V2_LOG"
+    else
+        echo "${C_RED}✗ V2 invariants audit FAILED.${C_RST}"
+        echo "Last lines of output:"
+        tail -30 "$V2_LOG" | sed 's/^/    /'
+        echo
+        echo "Full log: $V2_LOG"
+        echo "Fix the V2 invariant violation, or bypass with: git commit --no-verify"
+        FAIL=1
+    fi
+fi
+
+# ---- Check 6: Lost-citation audit (HARD BLOCK) ----
+# A manual final reconciliation that sets `final.sources = cluster.sources`
+# (REPLACE) instead of unioning silently drops final-level citations the entry
+# carried from an earlier fold (caught 2026-06-28: c7h13 lost the SOLE source
+# for KM 651.1). The normal absorb path unions correctly; this guards the
+# hand-written path. Runs when the commit touches a final yaml.
+if [ -n "$CIT_PID" ]; then
+    if wait "$CIT_PID"; then
+        echo "  ${C_GREEN}✓${C_RST} no lost source citations"
+        rm -f "$CIT_LOG"
+    else
+        echo "${C_RED}✗ Lost-citation audit FAILED — a final dropped member-source citations.${C_RST}"
+        tail -20 "$CIT_LOG" | sed 's/^/    /'
+        echo
+        echo "A reconciliation replaced sources instead of unioning. Heal with:"
+        echo "    $PYTHON scripts/maintenance/audit_lost_citations.py --apply"
+        echo "or bypass with: git commit --no-verify"
+        FAIL=1
+    fi
+fi
+
+# ---- Check 7: Committed-baseline reflow diff (HARD BLOCK on LOSSES) ----
+# Every other check measures INSIDE the working tree, so none of them can answer
+# the question that actually gates a commit: is the rendered data WORSE than
+# what is already committed? That measurement kept being hand-rolled in a shell
+# heredoc, and on 2026-08-01 four such hand-built baselines were each wrong in a
+# different way (a truncated cache field, one entity's seed_unified instead of
+# all, a half-applied snapshot, and an unread diff). A committed baseline cannot
+# be half-applied or truncated, so this diffs final/*.yml against git HEAD.
+#
+# Additions and recognised folds pass. It blocks only on a real loss: a coin
+# gone with no survivor absorbing it, a scalar emptied, a list or catalogue
+# register that shrank, or a fuss/phase demoted back to seed_unsorted.
+if [ -n "$RFL_PID" ]; then
+    if wait "$RFL_PID"; then
+        echo "  ${C_GREEN}✓${C_RST} no data lost against HEAD"
+        rm -f "$RFL_LOG"
+    else
+        echo "${C_RED}✗ Reflow diff FAILED — the working tree loses data the baseline had.${C_RST}"
+        tail -25 "$RFL_LOG" | sed 's/^/    /'
+        echo
+        echo "Each line above is data present at HEAD and absent now. If a removal"
+        echo "is deliberate, make it a recognised fold (the survivor must list the"
+        echo "removed id in composed_of — dedup_final_foundations.py does this),"
+        echo "or bypass with: git commit --no-verify"
+        FAIL=1
+    fi
+fi
+
+if [ "$FAIL" -ne 0 ]; then
+    echo "${C_RED}pre-commit: one or more checks failed — commit aborted.${C_RST}"
+    exit 1
 fi
 
 echo "${C_DIM}pre-commit: checks complete${C_RST}"
