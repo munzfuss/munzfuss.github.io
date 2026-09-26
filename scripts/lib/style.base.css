@@ -1188,7 +1188,8 @@ h2[style] {
 .tl-plot { position: relative; --tl-lab: 240px; --tl-gap: 18px; }
 .tl-centuries {
   position: absolute;
-  top: 0; bottom: 0;
+  /* From the top axis rule to the bottom axis rule (each axis is 22px). */
+  top: 22px; bottom: 22px;
   left: calc(var(--tl-lab) + var(--tl-gap)); right: 0;
   pointer-events: none;
   z-index: 3;
