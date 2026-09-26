@@ -21,6 +21,13 @@ import sys
 
 import yaml
 
+# libyaml-backed loader when available. It composes the SAME node tree
+# (MappingNode/SequenceNode/ScalarNode with start_mark) that the pure-Python
+# SafeLoader does, so the dup-key walk below is unchanged — but ~4× faster,
+# and this scan over every data/ file is the dominant cost of a full
+# `build.py --validate-only`.
+_FastLoader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+
 
 def find_duplicate_keys(yaml_path: Path) -> list[tuple[str, str | int, int, int]]:
     """Return a list of (path, key, first_line, dup_line) for every
@@ -30,7 +37,7 @@ def find_duplicate_keys(yaml_path: Path) -> list[tuple[str, str | int, int, int]
     Empty list = clean.
     """
     with open(yaml_path) as fp:
-        loader = yaml.SafeLoader(fp)
+        loader = _FastLoader(fp)
         try:
             node = loader.get_single_node()
         finally:
