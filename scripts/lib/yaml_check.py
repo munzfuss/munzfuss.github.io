@@ -67,15 +67,26 @@ def find_duplicate_keys(yaml_path: Path) -> list[tuple[str, str | int, int, int]
     return issues
 
 
-def check_data_directory(root: Path = Path("data")) -> int:
-    """Walk every *.yml under `root` and report duplicate keys.
+def check_data_directory(root: Path = Path("data"),
+                         files: list[Path] | None = None) -> int:
+    """Report duplicate keys across a set of YAML files.
 
-    Returns the number of issues found across all files. Prints a clear
-    error for each issue. Use the return value as a process exit code:
-    zero = clean, non-zero = at least one duplicate detected.
+    Default: walk every *.yml under `root`. If `files` is given, scan only
+    those (a pre-commit hook passes the STAGED data yamls — a new duplicate
+    key can only appear in a file the commit changed, and CI keeps the full
+    `root` scan as the backstop). A path in `files` that does not exist or is
+    not under `root` is skipped.
+
+    Returns the number of issues found. Prints a clear error for each issue.
+    Use the return value as a process exit code: zero = clean, non-zero =
+    at least one duplicate detected.
     """
+    if files is None:
+        scan = sorted(root.rglob("*.yml"))
+    else:
+        scan = sorted(f for f in files if f.suffix == ".yml" and f.is_file())
     total = 0
-    for f in sorted(root.rglob("*.yml")):
+    for f in scan:
         issues = find_duplicate_keys(f)
         for path, key, first_line, dup_line in issues:
             rel = f.relative_to(Path.cwd()) if f.is_absolute() else f

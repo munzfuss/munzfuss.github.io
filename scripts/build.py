@@ -16,6 +16,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -1935,6 +1936,11 @@ def parse_args():
     p.add_argument("--lang", help="Build only this language (default: all)")
     p.add_argument("--debug", action="store_true", help="Dump intermediate JSON")
     p.add_argument("--validate-only", action="store_true", help="Check schema + cross-refs, don't render")
+    p.add_argument("--dupkey-staged", action="store_true",
+                   help="Limit the duplicate-key AST scan to git-staged data/*.yml "
+                        "(a new dup key can only appear in a changed file). The rest "
+                        "of validation stays full-corpus. For the LOCAL pre-commit "
+                        "hook only — CI must keep the full scan (its default).")
     p.add_argument("--clean", action="store_true", help="Remove site/ before building")
     p.add_argument("--repo-url", default="", help="URL for source data link in footer")
     p.add_argument("--base-url", default="", help="URL prefix for assets and inter-page "
@@ -1993,8 +1999,21 @@ def main():
     # duplicates a key (two `metal:` lines under one record) survives
     # schema validation and ships broken data; this AST walk catches it.
     from lib.yaml_check import check_data_directory
-    print("🛡️  YAML integrity check (duplicate keys)...")
-    n_dups = check_data_directory(Path("data"))
+    staged_yaml: list[Path] | None = None
+    if args.dupkey_staged:
+        # Scan only the staged data/*.yml — a new duplicate key can only be
+        # introduced by an edit, so an unchanged file's status is settled by
+        # the commit that last touched it (and CI's full scan is the backstop).
+        r = subprocess.run(
+            ["git", "diff", "--cached", "--name-only", "--diff-filter=ACMR"],
+            capture_output=True, text=True)
+        staged_yaml = [Path(p) for p in r.stdout.split()
+                       if p.startswith("data/") and p.endswith(".yml")]
+        print(f"🛡️  YAML integrity check (duplicate keys, staged only: "
+              f"{len(staged_yaml)} file(s))...")
+    else:
+        print("🛡️  YAML integrity check (duplicate keys)...")
+    n_dups = check_data_directory(Path("data"), files=staged_yaml)
     if n_dups:
         print(f"\n❌ Found {n_dups} duplicate-key issue(s). Fix and rerun.")
         sys.exit(1)

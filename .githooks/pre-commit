@@ -139,7 +139,10 @@ RESID_RELEVANT=$(echo "$STAGED" | grep -E '^data/(v2|shared|i18n|locations)/.*\.
 BUILD_PID=""; BUILD_LOG=""
 if [ -n "$BUILD_RELEVANT" ]; then
     BUILD_LOG=$(mktemp -t precommit-build.XXXXXX)
-    "$PYTHON" scripts/build.py --validate-only > "$BUILD_LOG" 2>&1 &
+    # --dupkey-staged limits the (dominant) duplicate-key AST scan to the
+    # staged data yamls; the rest of validation stays full-corpus. A new dup
+    # key can only appear in a changed file, and CI keeps the full scan.
+    "$PYTHON" scripts/build.py --validate-only --dupkey-staged > "$BUILD_LOG" 2>&1 &
     BUILD_PID=$!
 fi
 
