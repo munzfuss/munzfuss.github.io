@@ -1196,6 +1196,7 @@ def dump_debug_computed(loc_id: str, computed) -> None:
                 "soll_fein_g": cc.soll_fein_g,
                 "delta_g": cc.delta_g,
                 "delta_pct": cc.delta_pct,
+                "delta_basis": cc.delta_basis,
                 "within_remedium": cc.within_remedium,
                 "implied_fuss": cc.implied_fuss,
             }

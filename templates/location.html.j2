@@ -226,7 +226,9 @@
       {%- endfor -%}
     {%- else -%}—{%- endif -%}
   </td>
-  <td class="c-delta">
+  {#- A phase with unknown fineness (soll_fein_by_phase null) measures Δ on
+      the ROUGH weight; the tooltip says so, since the column header can't. #}
+  <td class="c-delta"{% if coin.delta_basis == 'rauh' %} data-tooltip="{{ ui_get('marker.delta_rough') }}"{% endif %}>
     {%- if coin.msr_n > 1 -%}
       {%- set _qm -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for s in coin.msr_delta_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">
