@@ -2440,8 +2440,13 @@ footer a:hover { color: var(--accent); }
      entire layered fill visually empties out.
    - `.tl-coin-year` likewise — same root cause; without exclusion the
      1-year mintage rectangles collapse to zero height (no visible
-     marks despite correct left%/width%). */
-[data-tooltip]:not(.tl-phase):not(.tl-bar):not(.tl-bar-layer):not(.tl-coin-year):not(.tl-bar-hover-zone) { position: relative; }
+     marks despite correct left%/width%).
+   - a coin-table header cell (`.mt-scroll th`): its tooltip goes through
+     the JS portal, so it needs no positioning context — and a
+     `position: relative` <th> in a `border-collapse` table paints its
+     background over the collapsed bottom border, so the accent rule under
+     a header vanished once hover hydrated its `data-tooltip` (app.js data-tt). */
+[data-tooltip]:not(.tl-phase):not(.tl-bar):not(.tl-bar-layer):not(.tl-coin-year):not(.tl-bar-hover-zone):not(.mt-scroll th) { position: relative; }
 /* Edge-anchored tooltip variants — added by app.js when the trigger
    element's center sits within ~half-tooltip-width of a viewport edge,
    so the ::after pseudo doesn't extend past the screen. Default is
