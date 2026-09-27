@@ -942,9 +942,13 @@
        per-page via fuss_periods.<fuss>.spec — see schema.FussSpec. #}
     {% if sp and sp.spec %}<span class="pspec">{{ sp.spec|fuss_spec(lang) }}</span>{% endif %}
   </div>
-  {% if sp and sp.pdate_label %}
+  {# Metal badge («Золото» / «Срібло» …) sits beside the period of validity,
+     not in the Grundwerte head. #}
+  {% set _badge = sg.fuss.grundwerte.badge if sg.fuss.grundwerte else none %}
+  {% if (sp and sp.pdate_label) or _badge %}
     <div class="ph-right">
-      <span class="pdate">{{ sp.pdate_label|t(lang)|safe }}</span>
+      {% if sp and sp.pdate_label %}<span class="pdate">{{ sp.pdate_label|t(lang)|safe }}</span>{% endif %}
+      {% if _badge %}<span class="bx {{ sg.fuss.metal }}">{{ _badge|t(lang) }}</span>{% endif %}
     </div>
   {% endif %}
   {# Short summary — its own full-width grid row BELOW the title/period pair,
@@ -967,7 +971,6 @@
       {% if gw.heading %}<div class="gw-heading">{{ gw.heading|t(lang) }}</div>{% endif %}
       {% if gw.subheading %}<div class="gw-subheading">{{ gw.subheading|t(lang) }}</div>{% endif %}
     </div>
-    {% if gw.badge %}<span class="bx {{ sg.fuss.metal }}">{{ gw.badge|t(lang) }}</span>{% endif %}
   </div>
   <div class="gw-body">
     {% if gw.rows %}

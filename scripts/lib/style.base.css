@@ -1256,6 +1256,17 @@ h2[style] {
   max-width: 36ch;
   text-align: right;
 }
+/* Metal badge next to the period of validity: one row, badge last; the
+   period text may wrap, the badge never splits from it onto its own line
+   unless the column is too narrow for both. */
+.phase-header .ph-right:has(.bx) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  max-width: none;
+}
+.phase-header .ph-right .bx { flex: none; }
 /* `.ph-desc` — the description row: spans both grid columns under the
    title/period pair, so it uses the full header width. */
 .phase-header .ph-desc {
