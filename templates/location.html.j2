@@ -306,6 +306,11 @@
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-soll">
+    {%- if coin.soll_rau_g -%}
+      {{ fmt_num(coin.soll_rau_g, decimals=5, unit='') }}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-soll">
     {%- if coin.soll_fein_g -%}
       {{ fmt_num(coin.soll_fein_g, decimals=5, unit='') }}
     {%- else -%}—{%- endif -%}
@@ -380,6 +385,7 @@
       <th data-tooltip="{{ ui_get('col.delta_tooltip') }}">{{ ui_get('col.delta') }}</th>
       <th data-tooltip="{{ ui_get('col.stop_rough_tooltip') }}">{{ ui_get('col.stop_rough') }}</th>
       <th data-tooltip="{{ ui_get('col.stop_fine_tooltip') }}">{{ ui_get('col.stop_fine') }}</th>
+      <th data-tooltip="{{ ui_get('col.soll_rau_tooltip') }}">{{ ui_get('col.soll_rau') }}</th>
       <th data-tooltip="{{ ui_get('col.soll_tooltip') }}">{{ ui_get('col.soll') }}</th>
       <th>{{ ui_get('col.diameter') }}</th>
       <th>{{ ui_get('col.mint') }}</th>

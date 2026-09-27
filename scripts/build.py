@@ -1192,6 +1192,7 @@ def dump_debug_computed(loc_id: str, computed) -> None:
             d = cc.raw.model_dump(exclude_none=True)
             d["_computed"] = {
                 "weight_fein_g": cc.weight_fein_g,
+                "soll_rau_g": cc.soll_rau_g,
                 "soll_fein_g": cc.soll_fein_g,
                 "delta_g": cc.delta_g,
                 "delta_pct": cc.delta_pct,
