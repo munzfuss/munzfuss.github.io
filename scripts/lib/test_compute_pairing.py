@@ -234,10 +234,13 @@ def test_per_phase_rough_target():
     assert compute._compute_coin(_nobel_coin("I", 0.979), _fuss_nobel_like()).soll_rau_g == 14.616
 
 
-def test_null_fine_target_suppresses_delta():
-    # even with a fineness present, a null per-phase fine target → no Δ
-    cc = compute._compute_coin(_nobel_coin("0", 0.979), _fuss_nobel_like())
-    assert cc.soll_fein_g is None and cc.delta_g is None
+def test_null_fine_target_measures_delta_on_rough():
+    # a null per-phase fine target (fineness unknown) → Δ on the rough
+    # weight against the phase's rough target: 14.75 − 14.914
+    cc = compute._compute_coin(_nobel_coin("0"), _fuss_nobel_like())
+    assert cc.soll_fein_g is None and cc.delta_basis == "rauh"
+    assert cc.delta_g == round(14.75 - 14.914, 5)
+    assert cc.delta_pct == round((14.75 - 14.914) / 14.914 * 100, 3)
     cc = compute._compute_coin(_nobel_coin("I", 0.979), _fuss_nobel_like())
     assert cc.soll_fein_g == 14.31 and cc.delta_g is not None
 
@@ -269,7 +272,7 @@ def test_spec_list_renders_one_line_per_standard():
 
 if __name__ == "__main__":
     test_per_phase_rough_target()
-    test_null_fine_target_suppresses_delta()
+    test_null_fine_target_measures_delta_on_rough()
     test_per_phase_mark_unit_for_n_per_mark()
     test_spec_list_renders_one_line_per_standard()
     test_own_pair_no_cross_mix()

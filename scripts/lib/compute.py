@@ -354,7 +354,9 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
         "fineness": _rowfin(cc.primary_weight_rough_g, cc.weight_fein_g, pf),
         "sources": [cc.primary_weight_source] if cc.primary_weight_source else [],
         "fine_src": [cc.primary_derived_source] if cc.primary_derived_source else [],
-        "delta_src": [cc.primary_derived_source] if cc.primary_derived_source else [],
+        "delta_src": ([cc.primary_weight_source] if cc.primary_weight_source else [])
+                     if cc.delta_basis == "rauh" else
+                     ([cc.primary_derived_source] if cc.primary_derived_source else []),
     }]
     for ca in cc.alts:
         r_rough = ca.weight_rough_g if ca.weight_rough_g is not None else cc.primary_weight_rough_g
@@ -365,7 +367,9 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
                                 ca.fineness if ca.fineness is not None else pf),
             "sources": [ca.source] if ca.source else [],
             "fine_src": [ca.derived_source] if ca.derived_source else [],
-            "delta_src": [ca.derived_source] if ca.derived_source else [],
+            "delta_src": ([ca.source] if ca.source else [])
+                         if cc.delta_basis == "rauh" else
+                         ([ca.derived_source] if ca.derived_source else []),
         })
     # Dedup TRUE duplicates (identical across all four fields) — union every
     # per-column source list so a merged sub-row keeps all its provenance.
@@ -480,6 +484,9 @@ class ComputedCoin:
     soll_fein_g: float | None = None       # from fuss.fractions[fraction]
     soll_rau_g: float | None = None        # for gold
     delta_g: float | None = None           # actual − target
+    # "fein" (default): Δ = fine weight − fine target. "rauh": the phase's
+    # fineness is unknown (soll_fein_by_phase null) → Δ on the rough weight.
+    delta_basis: str = "fein"
     delta_pct: float | None = None         # delta / target × 100
     within_remedium: bool | None = None    # |delta_pct| ≤ 1.0
     implied_fuss: float | None = None     # actual Münzfuß back-computed from metal content
@@ -1144,6 +1151,10 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         frac = fuss.fractions[coin.fraction]
         if frac.soll_fein_by_phase and coin.phase in frac.soll_fein_by_phase:
             cc.soll_fein_g = frac.soll_fein_by_phase[coin.phase]
+            # An explicit null = the phase's fineness is unknown: there is no
+            # fine target, so Δ is measured on the rough weight instead.
+            if cc.soll_fein_g is None:
+                cc.delta_basis = "rauh"
         else:
             cc.soll_fein_g = frac.soll_fein_g
         if frac.soll_rau_by_phase and coin.phase in frac.soll_rau_by_phase:
@@ -1169,8 +1180,14 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     if fuss.grid_unit_by_phase and coin.phase in fuss.grid_unit_by_phase:
         grid_unit_g = fuss.grid_unit_by_phase[coin.phase]
 
-    # delta
-    if cc.weight_fein_g is not None and cc.soll_fein_g is not None:
+    # delta — on the fine weight, or on the rough weight when the phase's
+    # fineness is unknown (delta_basis == "rauh")
+    if cc.delta_basis == "rauh":
+        if primary_w is not None and cc.soll_rau_g:
+            cc.delta_g = round(primary_w - cc.soll_rau_g, 5)
+            cc.delta_pct = round(cc.delta_g / cc.soll_rau_g * 100, 3)
+            cc.within_remedium = abs(cc.delta_pct) <= 1.0
+    elif cc.weight_fein_g is not None and cc.soll_fein_g is not None:
         cc.delta_g = round(cc.weight_fein_g - cc.soll_fein_g, 5)
         cc.delta_pct = round(cc.delta_g / cc.soll_fein_g * 100, 3)
         cc.within_remedium = abs(cc.delta_pct) <= 1.0
@@ -1227,7 +1244,12 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     def _fill_alt_derived(ca, w, f):
         if w is not None and f is not None:
             ca.weight_fein_g = round(w * f, 5)
-        if ca.weight_fein_g is not None and cc.soll_fein_g is not None:
+        if cc.delta_basis == "rauh":
+            if w is not None and cc.soll_rau_g:
+                ca.delta_g = round(w - cc.soll_rau_g, 5)
+                ca.delta_pct = round(ca.delta_g / cc.soll_rau_g * 100, 3)
+                ca.within_remedium = abs(ca.delta_pct) <= 1.0
+        elif ca.weight_fein_g is not None and cc.soll_fein_g is not None:
             ca.delta_g = round(ca.weight_fein_g - cc.soll_fein_g, 5)
             ca.delta_pct = round(ca.delta_g / cc.soll_fein_g * 100, 3)
             ca.within_remedium = abs(ca.delta_pct) <= 1.0
@@ -1351,9 +1373,10 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     cc.delta_groups = make_display_groups(delta_pairs, precision=5)
     # Annotate delta groups with delta_pct (from canonical value ÷ soll_fein)
     # so the template colour-classes the Δ badge without recomputing.
-    if cc.soll_fein_g:
+    _delta_ref = cc.soll_rau_g if cc.delta_basis == "rauh" else cc.soll_fein_g
+    if _delta_ref:
         for g in cc.delta_groups:
-            g.delta_pct = round(g.value / cc.soll_fein_g * 100, 3)
+            g.delta_pct = round(g.value / _delta_ref * 100, 3)
 
     # Render order: when a row carries multiple readings, sort the three
     # parallel columns (weight, weight_fein, delta) descending by value
