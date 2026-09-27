@@ -1415,7 +1415,7 @@ h2[style] {
 .gw-body {
   padding: 14px 22px 16px;
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 0 28px;
 }
 @media (max-width: 720px) {
@@ -2351,7 +2351,7 @@ a.loc-card--seed:hover {
    above each card and the inline phase-header / phase-summary dividers
    inside the body. */
 
-/* The .gw-body on the per-location pages is a 2-column grid (2fr 3fr).
+/* The .gw-body on the per-location pages is a 2-column grid (1:1).
    In the landing context we re-use those .gw / .gw-rows / .gw-fr classes,
    but our cards have additional block kinds (phase_header, phase_summary)
    that must NOT auto-flow into one of the two columns — they need to
