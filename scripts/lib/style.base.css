@@ -1256,6 +1256,12 @@ h2[style] {
   max-width: 36ch;
   text-align: right;
 }
+/* `.ph-desc` — the description row: spans both grid columns under the
+   title/period pair, so it uses the full header width. */
+.phase-header .ph-desc {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
 /* `.pname` mirrors `.h1` from the hero — same display font, weight, size,
    small-caps, line-height. Numeric Müntzfuß name is the page-section's
    primary title and reads as such. */
