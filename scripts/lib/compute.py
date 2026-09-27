@@ -487,6 +487,7 @@ class ComputedCoin:
     # "fein" (default): Δ = fine weight − fine target. "rauh": the phase's
     # fineness is unknown (soll_fein_by_phase null) → Δ on the rough weight.
     delta_basis: str = "fein"
+    delta_unverified: bool = False    # drives the (?) on the Δ cell
     delta_pct: float | None = None         # delta / target × 100
     within_remedium: bool | None = None    # |delta_pct| ≤ 1.0
     implied_fuss: float | None = None     # actual Münzfuß back-computed from metal content
@@ -1182,6 +1183,10 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
 
     # delta — on the fine weight, or on the rough weight when the phase's
     # fineness is unknown (delta_basis == "rauh")
+    # A rough-basis Δ uses no fineness, so only the weight's verification
+    # status can make it uncertain.
+    cc.delta_unverified = ((not coin.weight_rough_verified) if cc.delta_basis == "rauh"
+                           else cc.derived_unverified)
     if cc.delta_basis == "rauh":
         if primary_w is not None and cc.soll_rau_g:
             cc.delta_g = round(primary_w - cc.soll_rau_g, 5)

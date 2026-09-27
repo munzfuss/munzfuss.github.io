@@ -230,7 +230,7 @@
       the ROUGH weight; the tooltip says so, since the column header can't. #}
   <td class="c-delta"{% if coin.delta_basis == 'rauh' %} data-tooltip="{{ ui_get('marker.delta_rough') }}"{% endif %}>
     {%- if coin.msr_n > 1 -%}
-      {%- set _qm -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qm -%}{%- if coin.delta_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for s in coin.msr_delta_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">
         {%- if s.value is none -%}{% if coin.raw.metal == 'copper' %}<span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>{% else %}—{% endif %}
         {%- else -%}
@@ -248,7 +248,7 @@
          sources yield the same Δ (single group), drop both the
          alt-source styling AND the tooltip — same convention as the
          weight / fineness columns above (consensus = plain badge). #}
-      {%- set _qmark -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if coin.delta_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.delta_groups -%}
         {%- set dp = g.delta_pct if g.delta_pct is not none else 0 -%}
         {%- if dp < -1.0 -%}{%- set sd_cls = 'under-deep' -%}

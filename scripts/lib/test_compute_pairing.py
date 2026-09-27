@@ -270,7 +270,16 @@ def test_spec_list_renders_one_line_per_standard():
     assert html.count("(?)") == 1
 
 
+
+def test_rough_delta_not_marked_unverified_by_missing_fineness():
+    # fineness absent (fineness_verified False) must not flag a rough-basis Δ
+    coin = _nobel_coin("0").model_copy(update={"weight_rough_verified": True, "fineness_verified": False})
+    cc = compute._compute_coin(coin, _fuss_nobel_like())
+    assert cc.derived_unverified and not cc.delta_unverified
+
+
 if __name__ == "__main__":
+    test_rough_delta_not_marked_unverified_by_missing_fineness()
     test_per_phase_rough_target()
     test_null_fine_target_measures_delta_on_rough()
     test_per_phase_mark_unit_for_n_per_mark()
