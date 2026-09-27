@@ -533,18 +533,19 @@ def check_i10_soll_phase_keys() -> list[str]:
 
     def scan(fractions, fuss_id: str, known: set[str], where: str) -> None:
         for frac_id, frac in (fractions or {}).items():
-            by_phase = (frac or {}).get("soll_fein_by_phase") if isinstance(frac, dict) else None
-            if not by_phase:
-                continue
-            bad = sorted(set(by_phase) - known)
-            if bad:
-                errors.append(
-                    f"I10: {where} fuss {fuss_id!r}.fractions[{frac_id!r}]"
-                    f".soll_fein_by_phase has phase id(s) {bad} that are not "
-                    f"declared for this fuss (declared: {sorted(known) or 'none'}). "
-                    f"The key is inert — those coins silently keep measuring "
-                    f"against soll_fein_g."
-                )
+            for field in ("soll_fein_by_phase", "soll_rau_by_phase"):
+                by_phase = (frac or {}).get(field) if isinstance(frac, dict) else None
+                if not by_phase:
+                    continue
+                bad = sorted(set(by_phase) - known)
+                if bad:
+                    errors.append(
+                        f"I10: {where} fuss {fuss_id!r}.fractions[{frac_id!r}]"
+                        f".{field} has phase id(s) {bad} that are not "
+                        f"declared for this fuss (declared: {sorted(known) or 'none'}). "
+                        f"The key is inert — those coins silently keep measuring "
+                        f"against soll_fein_g."
+                    )
 
     # Shared table: a key is legitimate if ANY page that renders the fuss
     # declares it — the table is shared, so a page that simply doesn't use the

@@ -203,7 +203,75 @@ def test_stop_msr_segs_per_specimen():
     assert len(cc.msr_stop_fine_segs) == 2, cc.msr_stop_fine_segs
 
 
+# ---- per-phase rough target, null fine target, per-phase mark unit ----
+# (nobel_fod: Phase 0 at 16½ per troy mark, fineness unknown; Phase I+ at 16
+# per Cologne mark, .979)
+def _fuss_nobel_like():
+    return Fuss.model_validate({
+        "name": {"de": "T", "en": "T", "uk": "T"},
+        "metal": "gold",
+        "grid_unit_g": 233.856,
+        "grid_unit_by_phase": {"0": 246.084},
+        "grid_stops": 16,
+        "fineness_standard": 0.979,
+        "fractions": {"1": {"soll_rau_g": 14.616, "soll_fein_g": 14.31,
+                            "soll_rau_by_phase": {"0": 14.914},
+                            "soll_fein_by_phase": {"0": None}}},
+    })
+
+
+def _nobel_coin(phase, fineness=None):
+    d = {"id": f"t-nob-{phase}", "fuss": "test", "phase": phase, "kind": "kurant",
+         "nominal": "1 Nobel", "year_label": "1496", "year_first": 1496,
+         "fraction": "1", "weight_rough_g": [{"value": 14.75, "source": "bruun"}]}
+    if fineness is not None:
+        d["fineness"] = [{"value": fineness, "source": "hede"}]
+    return Coin.model_validate(d)
+
+
+def test_per_phase_rough_target():
+    assert compute._compute_coin(_nobel_coin("0"), _fuss_nobel_like()).soll_rau_g == 14.914
+    assert compute._compute_coin(_nobel_coin("I", 0.979), _fuss_nobel_like()).soll_rau_g == 14.616
+
+
+def test_null_fine_target_suppresses_delta():
+    # even with a fineness present, a null per-phase fine target → no Δ
+    cc = compute._compute_coin(_nobel_coin("0", 0.979), _fuss_nobel_like())
+    assert cc.soll_fein_g is None and cc.delta_g is None
+    cc = compute._compute_coin(_nobel_coin("I", 0.979), _fuss_nobel_like())
+    assert cc.soll_fein_g == 14.31 and cc.delta_g is not None
+
+
+def test_per_phase_mark_unit_for_n_per_mark():
+    cc = compute._compute_coin(_nobel_coin("0"), _fuss_nobel_like())
+    assert cc.stop_rough_groups[0].value == round(246.084 / 14.75, 2)        # 16.68
+    cc = compute._compute_coin(_nobel_coin("I", 0.979), _fuss_nobel_like())
+    assert cc.stop_rough_groups[0].value == round(233.856 / 14.75, 2)        # 15.85
+
+
+def test_spec_list_renders_one_line_per_standard():
+    from lib.render import fuss_spec
+    specs = [
+        {"count": "16½", "coin": "Nobel", "unit": "troy_mark", "basis": "rauh",
+         "fineness": ["?"], "fineness_unit": None, "fineness_join": "chrono",
+         "unverified": False, "fineness_unverified": True,
+         "label": {"de": "Phase 0", "en": "Phase 0", "uk": "Фаза 0", "da": "Fase 0"}},
+        {"count": "16", "coin": "Nobel", "unit": "cologne_mark", "basis": "rauh",
+         "fineness": ["23½"], "fineness_unit": "Karat", "fineness_join": "chrono",
+         "unverified": False, "fineness_unverified": False, "label": None},
+    ]
+    html = str(fuss_spec(specs, "uk"))
+    assert html.count('class="pspec-line"') == 2
+    assert "Фаза 0" in html and "повна тройська марка" in html
+    assert html.index("тройська") < html.index("кельнська")
+    assert html.count("(?)") == 1
+
+
 if __name__ == "__main__":
+    test_per_phase_rough_target()
+    test_null_fine_target_suppresses_delta()
+    test_per_phase_mark_unit_for_n_per_mark()
+    test_spec_list_renders_one_line_per_standard()
     test_own_pair_no_cross_mix()
     test_tooltip_own_pair_single_source()
     test_tooltip_weight_only_names_both_sources()

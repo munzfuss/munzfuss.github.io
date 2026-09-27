@@ -316,6 +316,7 @@ def generate_css(theme: dict, languages: list[str] | None = None) -> str:
 # UK, Danish forms in DA. The coin name is never translated (§2 tier 2).
 _SPEC_UNIT = {
     "cologne_mark": {"de": "Cöllnische Marck", "en": "Cologne mark", "uk": "кельнська марка", "da": "Cöllnische Marck"},
+    "troy_mark": {"de": "Troy-Marck", "en": "troy mark", "uk": "тройська марка", "da": "troisk mark"},
     "troy_pound": {"de": "Troy-Pfund", "en": "troy pound", "uk": "тройський фунт", "da": "troypund"},
     "kilogram": {"de": "Kilogramm", "en": "kilogram", "uk": "кілограм", "da": "kilogram"},
 }
@@ -343,10 +344,20 @@ def _spec_words(text: str, lang: str) -> str:
 
 
 def fuss_spec(spec, lang: str):
-    """Render a FussSpec as «count coin / unit basis / fineness» HTML."""
-    from markupsafe import Markup, escape
+    """Render a FussSpec — or a list of them, one line per successive
+    standard — as «count coin / unit basis / fineness» HTML."""
+    from markupsafe import Markup
     if not spec:
         return ""
+    if isinstance(spec, (list, tuple)):
+        lines = [_fuss_spec_line(s, lang) for s in spec]
+        return Markup("").join(
+            Markup('<span class="pspec-line">') + ln + Markup("</span>") for ln in lines)
+    return _fuss_spec_line(spec, lang)
+
+
+def _fuss_spec_line(spec, lang: str):
+    from markupsafe import Markup, escape
     g = spec if isinstance(spec, dict) else spec.model_dump()
     count = g["count"]
     if lang == "en":
@@ -363,7 +374,13 @@ def fuss_spec(spec, lang: str):
         fin = f"{fin} {g['fineness_unit']}"
     fin = _spec_words(fin, lang)
     slash = Markup('<span class="pspec-sep"> / </span>')
-    out = (escape(f"{count} {g['coin']}") + slash + escape(mark) + slash + escape(fin))
-    if g.get("unverified"):
-        out += Markup(' <span class="pspec-q">(?)</span>')
+    q = Markup(' <span class="pspec-q">(?)</span>')
+    out = Markup("")
+    label = g.get("label")
+    if label:
+        text = label.get(lang) or label.get("en") or ""
+        out += Markup('<span class="pspec-label">') + escape(text) + Markup("</span> ")
+    out += escape(f"{count} {g['coin']}") + slash + escape(mark) + slash + escape(fin)
+    if g.get("fineness_unverified") or g.get("unverified"):
+        out += q
     return Markup(out)

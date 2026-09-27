@@ -1324,6 +1324,10 @@ h2[style] {
 [data-theme="v3"] .phase-header .pspec { color: var(--accent); }
 .phase-header .pspec-sep,
 .phase-header .pspec-q { color: var(--text-muted); }
+/* A list-form spec: one line per successive standard, each with an optional
+   muted phase label («Phase 0»). */
+.phase-header .pspec-line { display: block; }
+.phase-header .pspec-label { color: var(--text-muted); }
 .phase-header .psub {
   display: block;
   font-family: var(--font-body);

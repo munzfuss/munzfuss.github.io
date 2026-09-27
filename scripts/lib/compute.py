@@ -1146,7 +1146,10 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
             cc.soll_fein_g = frac.soll_fein_by_phase[coin.phase]
         else:
             cc.soll_fein_g = frac.soll_fein_g
-        cc.soll_rau_g = frac.soll_rau_g
+        if frac.soll_rau_by_phase and coin.phase in frac.soll_rau_by_phase:
+            cc.soll_rau_g = frac.soll_rau_by_phase[coin.phase]
+        else:
+            cc.soll_rau_g = frac.soll_rau_g
 
     # Fraction multiplier for the N/Marck columns — how many base units this
     # coin represents (2 Nobel → 2, ½ Speciedaler → 0.5). Absent/unparseable
@@ -1163,6 +1166,8 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         except (ValueError, ZeroDivisionError):
             frac_k = 1.0
     grid_unit_g = fuss.grid_unit_g
+    if fuss.grid_unit_by_phase and coin.phase in fuss.grid_unit_by_phase:
+        grid_unit_g = fuss.grid_unit_by_phase[coin.phase]
 
     # delta
     if cc.weight_fein_g is not None and cc.soll_fein_g is not None:
@@ -1185,7 +1190,7 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         if k and metal_g and k > 0 and metal_g > 0:
             full_unit = metal_g / k
             if full_unit > 0:
-                cc.implied_fuss = round(fuss.grid_unit_g / full_unit, 2)
+                cc.implied_fuss = round(grid_unit_g / full_unit, 2)
 
     # Detect whether fuss_refs already documents an implied Fuß — if so,
     # templates should skip the auto-computed line to avoid duplication.
@@ -1240,7 +1245,7 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
             if k and metal_g and k > 0 and metal_g > 0:
                 full_unit = metal_g / k
                 if full_unit > 0:
-                    ca.implied_fuss = round(fuss.grid_unit_g / full_unit, 2)
+                    ca.implied_fuss = round(grid_unit_g / full_unit, 2)
 
     seen_f_srcs: set[str] = set()
     if primary_f_used_src:

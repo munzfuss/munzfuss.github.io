@@ -201,8 +201,14 @@ class Fraction(_StrictBase):
     # measured against their OWN standard fine weight, not a single fuss-wide
     # value. Keyed by phase id (must match coin.phase + Location.phases[fuss]
     # .id — a cross-check validator enforces this). Absent → all phases use
-    # the scalar soll_fein_g. soll_rau_g stays phase-constant (grid ÷ stops).
-    soll_fein_by_phase: dict[str, float] | None = None
+    # the scalar soll_fein_g. A `null` value means the phase's fineness is
+    # not known (e.g. nobel_fod Phase 0, struck before any Danish ordinance):
+    # no fine target → no Δ for that phase's coins.
+    soll_fein_by_phase: dict[str, float | None] | None = None
+    # Per-phase override of soll_rau_g, for a fuss whose phases were struck
+    # to different piece-counts or mark units (nobel_fod Phase 0: 16½ per
+    # troy mark; Phases I+: 16 per Cologne mark). Absent phase → scalar.
+    soll_rau_by_phase: dict[str, float] | None = None
 
 
 class GrundwerteRow(_StrictBase):
@@ -351,6 +357,16 @@ class Fuss(_StrictBase):
     # phase-header.
     metal: Literal["silver", "gold"]
     grid_unit_g: float = Field(..., description="E.g., 233.856 for Cöllnische Marck")
+    grid_unit_by_phase: dict[str, float] | None = Field(
+        None,
+        description=(
+            "Per-phase override of `grid_unit_g` for the N/Marck columns and "
+            "the implied-fuss computation, keyed by phase id. For a fuss whose "
+            "earliest phase followed a different mark (nobel_fod Phase 0: "
+            "Dutch troy mark 246.084 g, before the Cologne-mark Møntordning "
+            "of 1514). Absent phase → `grid_unit_g`."
+        ),
+    )
     grid_unit_name: str | None = Field(
         None,
         description=(
@@ -457,13 +473,19 @@ class FussSpec(_StrictBase):
     """
     count: str                      # «16», «8½», «12 ²⁵⁷⁄₇₀₀», «37,2» (comma; en swaps to a point)
     coin: str                       # «Nobel», «Speciedaler» — untranslated
-    unit: Literal["cologne_mark", "troy_pound", "kilogram"] = "cologne_mark"
+    unit: Literal["cologne_mark", "troy_mark", "troy_pound", "kilogram"] = "cologne_mark"
     basis: Literal["rauh", "fein"]
     fineness: list[str]             # values; several = successive standards, in order
     fineness_unit: str | None = None  # Karat / Lod / Loth / ‰; None when a value carries its own units («23 Karat 8 Grän»)
     fineness_join: Literal["chrono", "per_denomination"] = "chrono"
     # chrono → «23½ → 23 → 23½ Karat»; per_denomination → «20 · 22⅙ · 22½ Karat»
     unverified: bool = False        # a slot the source does not attest → trailing (?)
+    # Optional lead-in naming the phase(s) this line covers («Phase 0»), used
+    # when `FussPeriod.spec` is a list — one formula per distinct standard.
+    label: I18nText | None = None
+    # Per-slot (?) when only the fineness is unattested (the count + mark are
+    # sourced). `unverified` marks the whole line.
+    fineness_unverified: bool = False
 
 
 class FussPeriod(_StrictBase):
@@ -512,7 +534,10 @@ class FussPeriod(_StrictBase):
     # Use it ONLY for a genuine per-page divergence. A value that is right
     # everywhere belongs on the shared fuss, where every page picks it up.
     fractions: dict[str, Fraction] | None = None
-    spec: FussSpec | None = None     # .pspec — parameter line under the title (see FussSpec)
+    # .pspec — parameter line(s) under the title (see FussSpec). A list gives
+    # one line per successive standard, earliest first (nobel_fod: troy-mark
+    # Phase 0 above the Cologne-mark Møntordning line).
+    spec: FussSpec | list[FussSpec] | None = None
 
 
 class KMRef(_StrictBase):
