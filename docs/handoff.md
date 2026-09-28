@@ -45,6 +45,15 @@ the hand cleanup of the 3 Dukat exactly and found one more live case
 royal_holstein). Only the purged id's own seed is known to have departed —
 other members of a vanished class are not reconstructed.
 
+**Pending abolished by default** (`b227e31`, `6ecfa46`, `33e05e4`): absorb's
+default `bulk_promote_pending` is `all`; all 758 pending classes are now
+`seed_unsorted` finals (Brunswick +703). Every one had a metal+nominal peer, so
+all 758 are listed under `promoted_near_peers` in their classification_decisions
+file — the merge-review backlog (likely double rows), NOT yet reviewed. 111
+superseded shells dropped; 16 kept for curation (11 `_unclassified` with an own
+note, 5 danish_realm `unified-dk-tid-707xx` with fuss 18_5_thaler) — review.
+Rendered-page orphan citations (specimen on two rows): 292, not yet cleaned.
+
 ## 2026-09-24 — kronemont_chr_iv sourced to Wilcke I page by page; open items for the curator
 
 Local, NOT pushed: `afc182c` (refs + Denmark prose), `2de0835` (card rows,
