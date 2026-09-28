@@ -241,6 +241,7 @@ from lib.catalog_codes import split_multi_ref as _split_multi_ref
 from lib.v2_seed_writer import _canonicalise_mint
 from lib.v2_entity_classify import classify_mint_to_entity
 from lib.gen_stamp import resolve_generated_at
+from lib.seed_merge import _CURATION_MARK_KEYS
 
 
 def _normalise_nominal(nominal):
@@ -2427,23 +2428,26 @@ def _collect_field_list(members: list[dict], field: str,
                                 raw_src = correct
                                 break
                 entry = {"value": float(v), "source": raw_src}
-                # A `erroneous` reason travels with the reading. It is a
-                # curator's judgement AGAINST the source, so it must survive
-                # every merge: dropping it here would silently re-admit the
-                # value to Δ on the next re-flow. When two members carry the
+                # A curation mark (`erroneous` / `suspect` / `template`) travels
+                # with the reading, and the list of kinds is the one in
+                # seed_merge, so a new kind is added in one place. Each is a
+                # curator's judgement about the source that must survive every
+                # merge: dropping `erroneous` here would silently re-admit the
+                # value to Δ on the next re-flow, and dropping `template` lost
+                # the Nobel (§) marks until 2026-09-28. When two members carry the
                 # same (value, source) and only one is marked, the mark wins —
                 # a disbelief is never cancelled by an unmarked duplicate.
-                for _mk in ("erroneous", "suspect"):
+                for _mk in _CURATION_MARK_KEYS:
                     if item.get(_mk):
                         entry[_mk] = item[_mk]
                 key = (entry["value"], entry["source"])
                 if key not in seen:
                     seen.add(key)
                     out.append(entry)
-                elif entry.get("erroneous") or entry.get("suspect"):
+                elif any(entry.get(_mk) for _mk in _CURATION_MARK_KEYS):
                     for prior in out:
                         if (prior["value"], prior["source"]) == key:
-                            for _mk in ("erroneous", "suspect"):
+                            for _mk in _CURATION_MARK_KEYS:
                                 if entry.get(_mk):
                                     prior.setdefault(_mk, entry[_mk])
                             break
