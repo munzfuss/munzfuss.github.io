@@ -2121,7 +2121,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 
 /* Verification & translation markers */
 .unverified { color: var(--sd-under-deep-fg); cursor: help; font-weight: 600; font-family: var(--font-sans); margin-left: 0.25em; }
-[data-theme="v1"] .unverified { color: var(--accent); }
+[data-theme="v1"] .unverified, [data-theme="v1"] .template-mark { color: var(--accent); }
 .val-source { cursor: help; }  /* primary value with explicit source — inline */
 /* Use rgba on color (not opacity) so the tooltip ::after pseudo-element
    doesn't inherit a stacking-context opacity multiplier. CSS opacity on
@@ -2160,11 +2160,10 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .erroneous-mark { color: rgba(178, 58, 58, 0.9); cursor: help; font-weight: 600;
                   font-family: var(--font-sans); margin-left: 0.25em; }
 /* (§) .template-mark — the reading is the standard's computed target value, not
-   a measurement. Its own blue (distinct from the digits and from the amber/red
-   doubt marks) and NO strike: nothing is wrong with the number,
+   a measurement. Same colour as «(?)» (theme accent on light), and NO strike: nothing is wrong with the number,
    it just is not evidence about a specimen. (The `.template` value class gets
    no rule on purpose.) */
-.template-mark { color: rgba(74, 138, 190, 0.95); cursor: help; font-weight: 600;
+.template-mark { color: var(--sd-under-deep-fg); cursor: help; font-weight: 600;
                   font-family: var(--font-sans); margin-left: 0.25em; }
 /* The value block a mark applies to — struck through, in the mark's rank colour.
    `text-decoration` on the value's own element leaves the trailing «(*)»/«(!)»
