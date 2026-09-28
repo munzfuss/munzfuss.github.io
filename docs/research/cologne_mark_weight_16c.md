@@ -28,6 +28,8 @@
 | **Galster**, «Danske mønter» (`galster/galshist.htm`) | range | «*1 kølnsk mark (ca. 230 - 233.855 g)*» (context: from 1397). |
 | **Niels Jørgen Jensen**, «Møntvæsenet i Danmark i den sene unionstid specielt under Christian 2.» (`c2njj.htm`) | 233.855 g | «*Tyske historikere har i 1800-tallet fixeret 1600-tallets kölnske mark til 233,855 gram. Denne vægt er stadig alment anerkendt og i hvert fald det præciseste man har at gå ud fra*» (his note 27 → Wilcke's introduction). Against Galster: «*Galster vælger 230 gram. fordi det er et "rundt tal", men 230 gram er naturligvis kun et rundt tal for Galster, ikke for 1500-tallets møntmestre, som ikke kendte vægtenheden gram.*» |
 
+| **Jørgen Steen Jensen**, *Hertug Hans den Yngre* (Fra Als og Sundeved 50, 1971; danskmoent `pdf2/JSJ_HdY.pdf`) | 233.855 g (for 1568–1622) | p. 67: «*man udmøntede 9 stk. af den fine kølnske mark, hvis vægt normalt sættes til 233.855 gram*». His Schleswig-Holstein formulas on p. 68 use the same mark (recomputed: 70 dobbeltskillinge → 3,34 g = 233.8/70; 79 → 2,96 g = 233.8/79). No discussion of a lighter mark; period is post-1568, so not evidence for 1514. No Nobel content in the book (read in full, 91 pp.). |
+
 All danskmoent pages are unpaginated web transcriptions; the quote is the locator.
 Galster's German figure «23,156g.» is a transcription defect (a mark cannot weigh 23 g);
 hypothesis 231,56 g — would be settled by the printed «Danmarks Mønter».
