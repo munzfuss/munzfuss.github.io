@@ -235397,8 +235397,8 @@ coins:
     weight_rough_g: 13.7
     weight_rough_verified: true
     catalog:
-      hede: '4'
-      schou: '3'
+      hede: '5'
+      schou: '2'
       others:
         - B# 5a
     verified: false
@@ -235407,6 +235407,28 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/439647
         ref: KMM 439647 (Inv. RP 1098.1)
     verification_note: *id001
+    _source_errata:
+      - field: hede
+        printed: '4'
+        correct: '5'
+        reason: KMM 439647 prints typeNumber «H 4; Sch 3», but its own record gives nominal «4 dukat», Frederik 4, 1699, 13,7 g. Hede 4 / Schou 3 is the 3 Dukat 1699 (10,471 g, +31 % off); Hede 5 / 
+          Schou 2 is the 4 Dukat 1699 (13,961 g, -1,9 %), struck for the accession with Frederik IV on the obverse and Christian V on the reverse (danskmoent f4h2), matching the KMM photograph legend 
+          CHRIST·V·D·G·DAN·N·V·G·REX. Museum type number corrected; the misprint had merged the specimen into the 3 Dukat. 2026-09-28, curator approval in-chat.
+        curator: serg
+      - field: schou
+        printed: '3'
+        correct: '2'
+        reason: KMM 439647 prints typeNumber «H 4; Sch 3», but its own record gives nominal «4 dukat», Frederik 4, 1699, 13,7 g. Hede 4 / Schou 3 is the 3 Dukat 1699 (10,471 g, +31 % off); Hede 5 / 
+          Schou 2 is the 4 Dukat 1699 (13,961 g, -1,9 %), struck for the accession with Frederik IV on the obverse and Christian V on the reverse (danskmoent f4h2), matching the KMM photograph legend 
+          CHRIST·V·D·G·DAN·N·V·G·REX. Museum type number corrected; the misprint had merged the specimen into the 3 Dukat. 2026-09-28, curator approval in-chat.
+        curator: serg
+    _errata_applied:
+      - field: hede
+        printed: '4'
+        correct: '5'
+      - field: schou
+        printed: '3'
+        correct: '2'
   - id: kmk-439652
     fuss: seed_unsorted
     phase: kmk

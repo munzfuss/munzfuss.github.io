@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-09-21 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-09-28 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15271 per-source seed entries.
-# Output: 6933 unified entries (one per physical coin).
+# Output: 6932 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-09-21'
+generated_at: '2026-09-28'
 coins:
   - id: unified-denmark-numismaster-117984
     fuss: seed_unsorted
@@ -13379,19 +13379,9 @@ coins:
     fineness:
       - value: 0.979
         source: galster
-        template:
-          de: 'Kein Probierbefund: der Wert ist die in der Møntordning vorgeschriebene Probe (23½ Karat), nicht die an einem Stück bestimmte Feinheit.'
-          en: 'Not an assay: the figure is the fineness the Møntordning prescribes (23½ carats), not a fineness determined on a specimen.'
-          uk: 'Не результат пробірного аналізу: це проба, яку приписує Møntordning (23½ карата), а не проба, визначена на екземплярі.'
-          da: 'Ikke en prøvning: tallet er den lødighed, møntordningen foreskriver (23½ karat), ikke en lødighed bestemt på et eksemplar.'
     weight_rough_g:
       - value: 14.375
         source: galster
-        template:
-          de: 'Kein Wägebefund: der Wert ist die nach der Møntordning errechnete Sollgröße (16 Stück aus einer Cöllnischen Marck, hier zu rund 230 g gerechnet), nicht das Gewicht eines gewogenen Stücks.'
-          en: 'Not a weighing: the figure is the target weight computed from the Møntordning (16 pieces to a Cöllnische Marck, here reckoned at about 230 g), not the weight of a weighed specimen.'
-          uk: 'Не результат зважування: це цільова вага, обчислена з Møntordning (16 штук із Кельнської марки, тут прийнятої приблизно за 230 г), а не вага зваженого екземпляра.'
-          da: 'Ikke en vejning: tallet er den ud fra møntordningen beregnede målvægt (16 stykker af en Cöllnische Marck, her regnet til omkring 230 g), ikke vægten af et vejet eksemplar.'
       - value: 17.4
         source: kmk
         suspect:
@@ -59331,6 +59321,8 @@ coins:
       hede_volume: f4h
       schou: '2'
       sieg: '38'
+      others:
+        - B# 5a
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -59346,6 +59338,8 @@ coins:
       - value: 0.979
         source: numismaster
     weight_rough_g:
+      - value: 13.7
+        source: kmk
       - value: 13.961
         source: hede
       - value: 13.961
@@ -59359,6 +59353,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f4h2.htm
         ref: danskmoent.dk (Hede f4h5)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/439647
+        ref: KMM 439647 (Inv. RP 1098.1)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-4-ducat-km-464-1699-cuid-1050975-duid-1238184
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -59370,7 +59367,17 @@ coins:
     composed_of:
       - denmark-numismaster-65950
       - dk-hede-f4h5
+      - kmk-439647
       - ngc-1050975
+    _errata_applied:
+      - source: kmk-439647
+        field: hede
+        printed: '4'
+        correct: '5'
+      - source: kmk-439647
+        field: schou
+        printed: '3'
+        correct: '2'
   - id: unified-dk-hede-f4h50
     fuss: seed_unsorted
     phase: hede
@@ -69396,35 +69403,15 @@ coins:
     fineness:
       - value: 0.979
         source: galster
-        template:
-          de: 'Kein Probierbefund: der Wert ist die in der Møntordning vorgeschriebene Probe (23½ Karat), nicht die an einem Stück bestimmte Feinheit.'
-          en: 'Not an assay: the figure is the fineness the Møntordning prescribes (23½ carats), not a fineness determined on a specimen.'
-          uk: 'Не результат пробірного аналізу: це проба, яку приписує Møntordning (23½ карата), а не проба, визначена на екземплярі.'
-          da: 'Ikke en prøvning: tallet er den lødighed, møntordningen foreskriver (23½ karat), ikke en lødighed bestemt på et eksemplar.'
       - value: 0.979
         source: numista
-        template:
-          de: 'Kein Probierbefund: der Wert ist die in der Møntordning vorgeschriebene Probe (23½ Karat), nicht die an einem Stück bestimmte Feinheit.'
-          en: 'Not an assay: the figure is the fineness the Møntordning prescribes (23½ carats), not a fineness determined on a specimen.'
-          uk: 'Не результат пробірного аналізу: це проба, яку приписує Møntordning (23½ карата), а не проба, визначена на екземплярі.'
-          da: 'Ikke en prøvning: tallet er den lødighed, møntordningen foreskriver (23½ karat), ikke en lødighed bestemt på et eksemplar.'
     weight_rough_g:
       - value: 13.576
         source: kmk
       - value: 14.375
         source: galster
-        template:
-          de: 'Kein Wägebefund: der Wert ist die nach der Møntordning errechnete Sollgröße (16 Stück aus einer Cöllnischen Marck, hier zu rund 230 g gerechnet), nicht das Gewicht eines gewogenen Stücks.'
-          en: 'Not a weighing: the figure is the target weight computed from the Møntordning (16 pieces to a Cöllnische Marck, here reckoned at about 230 g), not the weight of a weighed specimen.'
-          uk: 'Не результат зважування: це цільова вага, обчислена з Møntordning (16 штук із Кельнської марки, тут прийнятої приблизно за 230 г), а не вага зваженого екземпляра.'
-          da: 'Ikke en vejning: tallet er den ud fra møntordningen beregnede målvægt (16 stykker af en Cöllnische Marck, her regnet til omkring 230 g), ikke vægten af et vejet eksemplar.'
       - value: 14.375
         source: numista
-        template:
-          de: 'Kein Wägebefund: der Wert ist die nach der Møntordning errechnete Sollgröße (16 Stück aus einer Cöllnischen Marck, hier zu rund 230 g gerechnet), nicht das Gewicht eines gewogenen Stücks.'
-          en: 'Not a weighing: the figure is the target weight computed from the Møntordning (16 pieces to a Cöllnische Marck, here reckoned at about 230 g), not the weight of a weighed specimen.'
-          uk: 'Не результат зважування: це цільова вага, обчислена з Møntordning (16 штук із Кельнської марки, тут прийнятої приблизно за 230 г), а не вага зваженого екземпляра.'
-          da: 'Ikke en vejning: tallet er den ud fra møntordningen beregnede målvægt (16 stykker af en Cöllnische Marck, her regnet til omkring 230 g), ikke vægten af et vejet eksemplar.'
       - value: 15.108
         source: kmk
     diameter_mm:
@@ -190095,36 +190082,6 @@ coins:
       - kmk-439232
       - kmk-439233
       - kmk-439234
-  - id: unified-kmk-439647
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Dukat
-    year_first: 1699
-    year_last: 1699
-    year_label: '1699'
-    ruler: Frederik 4
-    catalog:
-      hede: '4'
-      schou: '3'
-      others:
-        - B# 5a
-    metal: gold
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 13.7
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/439647
-        ref: KMM 439647 (Inv. RP 1098.1)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-439647
   - id: unified-kmk-439652
     fuss: seed_unsorted
     phase: kmk
