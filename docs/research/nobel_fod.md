@@ -153,43 +153,11 @@ All rows of both his 1514 and 1524 tables are on 230 g.
   f1g45 ref body were corrected accordingly in `b88bb76` (Phase I no longer says «the
   dated 1532 Nobler carry 23½ carats»; it gives Galster's caveat instead).
 
-### §4.3a Other authors on the same question (added 2026-09-28)
-
-- **Hede** — his own text is not online; what is known comes second-hand. Galster,
-  «Flensborg Mønt» (danskmoent `galster/flegal2.htm`), note 47: «*Hede (s. 9 nr.14 og
-  15), der går ud fra den traditionelle vægt for den kølnske mark (233.855 g), har
-  formlerne 3.278 g-0.750-2.458 g og 6.556 g-0.750-4.916 g.*» So Hede computes on
-  233.855 g, like Wilcke. The danskmoent Hede pages for Christian III confirm it
-  arithmetically: Sølvgylden 1545/1547 «29,232» = 233.856/8; Mark 1541 «9,744» =
-  233.856/24; Ungersk gylden 1557 «3,490» = 233.856/67. Hede's catalogue starts in 1541,
-  so he gives no Nobel figures at all. Hede says nothing about 230 g in the sources
-  read; the printed Hede introduction (1978) is not available to check.
-- **Galster himself** gives both readings for Christian III's Flensborg coinage 1545
-  (same article): «*Sætter vi den kølnske mark til 230 g, får vi formlen for
-  halvdaleren: 14.38 g-0.890-12.81 g … Med 233.855 g for samme mark bliver formlerne
-  henholdsvis 14.616 g-0.890-13.017 g*»; and on the 1547 pieces: «*vægten af de bevarede
-  mønter (gennemsnitlig 28.74 og 14.06 g) viser, at den kølnske mark i Flensborg har
-  været betydelig lettere end 233.855 g*». His 230 g therefore rests on specimen
-  weights, not on a metrological source. Recompute: 28.74 × 8 = 229.9 g ✓.
-- **Galster, «Danske mønter»** (`galster/galshist.htm`) gives a range: «*1 kølnsk mark
-  (ca. 230 - 233.855 g)*».
-- **Niels Jørgen Jensen**, «Møntvæsenet i Danmark i den sene unionstid specielt under
-  Christian 2.» (danskmoent `c2njj.htm`) criticises Galster's choice: «*Galster vælger
-  230 gram. fordi det er et "rundt tal", men 230 gram er naturligvis kun et rundt tal
-  for Galster, ikke for 1500-tallets møntmestre*»; the accepted value is 233,855 g:
-  «*Denne vægt er stadig alment anerkendt og i hvert fald det præciseste man har at gå
-  ud fra*». He also warns that surviving specimens are not average pieces (heaviest
-  ones culled; remedium «ofte ca. 1%»).
-- **Wilcke, later volume** (danskmoent `w4.htm`, «Specie-, Kurant- og Rigsbankdaler»):
-  «*Den kølnske Mark er vedblivende regnet til 233,855 gr. i Overenstemmelse med
-  Preussens Beregning fra 1815*», justified by his weighing results for 1625-1670 and
-  1726-1788 and by the Norwegian mint mark «*omkring 1730 vejede 233,75 gr.*» — this
-  justifies 233.855 for the 17th-18th c., not for 1514.
-
-**Balance:** 233.855 g = Wilcke, Hede, Jensen (the conventional value). 230 g =
-Galster alone, derived from light surviving specimens, which Jensen's culling argument
-undercuts (hypothesis-level on both sides: no early-16th-c. Danish mark weight is
-documented in any source read). This strengthens option (1) below.
+### §4.3a Other authors on the mark weight
+Moved to the cross-cutting dossier **`docs/research/cologne_mark_weight_16c.md`**
+(Hede and Jensen on 233.855 g, Galster's specimen-derived 230 g, Jensen's critique).
+Short form: 233.855 g = Wilcke, Hede, Jensen; 230 g = Galster alone; no source
+documents the mark actually used at a Danish mint 1513–1541.
 
 ### §4.4 Open curator decision
 Which mark the Danish 1513–1524 standards use in the card (currently 233.856 g, Wilcke,
