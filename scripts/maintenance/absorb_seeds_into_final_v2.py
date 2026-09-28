@@ -1110,7 +1110,16 @@ def _bulk_promote_mode(entity_id: str) -> str | None:
     # «genuinely new coin» case. Cases where the matcher found peers
     # but couldn't decide (D/E/H/C ambiguities) still land in pending
     # for curator review.
-    DEFAULT_MODE = "no_basic_peer_only"
+    # Default mode = "all" (curator direction 2026-09-28): nothing parks in
+    # `pending`, which renders nowhere and drains only by hand — 703 Brunswick
+    # coins sat there invisibly after the 2026-08-26 IKMK re-routing. An
+    # unmatched class becomes a `seed_unsorted` final (visible in the page's
+    # holding pens); the stale shell finals its seeds left behind are dropped,
+    # not re-promoted (see `_superseding_class`), and a promoted class with a
+    # metal+nominal peer is listed under `promoted_near_peers` in the
+    # classification_decisions file as a merge candidate. The narrower modes
+    # below stay available as an explicit per-entity opt-in.
+    DEFAULT_MODE = "all"
     path = V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml"
     if not path.exists():
         return DEFAULT_MODE
@@ -1705,6 +1714,66 @@ def _unified_home_index() -> dict[str, str]:
                     idx[c["id"]] = path.stem
         _UNIFIED_HOME_INDEX = idx
     return _UNIFIED_HOME_INDEX
+
+
+_SEED_CLASS_INDEX: dict[str, str] | None = None
+_CLASS_NOTES: dict[str, object] = {}
+
+
+def _seed_class_index() -> dict[str, str]:
+    """{seed id → the seed_unified class that composes it}, across all
+    entities. Cached; the files do not change during a run. Also caches each
+    class's `note` (for `_shell_is_curated`)."""
+    global _SEED_CLASS_INDEX
+    if _SEED_CLASS_INDEX is None:
+        idx: dict[str, str] = {}
+        for path in sorted(V2_SEED_UNIFIED.glob("*.yml")):
+            for c in (_load_yaml(path).get("coins") or []):
+                _CLASS_NOTES[c.get("id")] = c.get("note")
+                for m in c.get("composed_of") or []:
+                    idx.setdefault(m, c.get("id"))
+        _SEED_CLASS_INDEX = idx
+    return _SEED_CLASS_INDEX
+
+
+def _shell_is_curated(fe: dict, cls: str) -> bool:
+    """`_final_is_curated`, except that a `note` the superseding class carries
+    too is source text copied from the seed (an IKMK description), not a
+    curator's decision. Measured 2026-09-28: 122 _unclassified shells counted as
+    curated on such a note alone."""
+    if not _final_is_curated(fe):
+        return False
+    if fe.get("note") and fe.get("note") == _CLASS_NOTES.get(cls):
+        stripped = {k: v for k, v in fe.items() if k != "note"}
+        return _final_is_curated(stripped)
+    return True
+
+
+def _superseding_class(fe: dict, live_member_ids: set) -> str | None:
+    """The live seed_unified class that has SUPERSEDED this final, or None.
+
+    A standalone-promoted final is keyed `unified-<seed>`. When the merger
+    later folds that seed into a bigger class (a new source joins, a merge
+    decision, a re-routing), the class gets another id; the final's own
+    composed_of id vanishes and the stale purge empties it — but the final
+    itself stays, a shell with no live member, still rendering its old row.
+    `_final_has_live_backing` counts it as backed because its seed is alive,
+    so no drop gate ever fires — worse, the stale-foundation purge does drop
+    it and the monotonic guard re-promotes it verbatim on the same run.
+    Measured 2026-09-28: 159 finals were such shells (most in _unclassified,
+    left behind by the 2026-08 IKMK re-routing), and 34 of the 758 pending
+    classes were the live classes that superseded them.
+
+    A final is a shell when its id is `unified-<seed>`, none of its
+    composed_of members is live, and `<seed>` now sits in a class with a
+    different id. Returns that class id."""
+    fid = str(fe.get("id") or "")
+    if not fid.startswith("unified-"):
+        return None
+    if any(m in live_member_ids for m in (fe.get("composed_of") or [])):
+        return None
+    cls = _seed_class_index().get(fid[len("unified-"):])
+    return cls if cls and cls != fid else None
 
 
 def _final_is_routed_away(fe: dict, entity_id: str) -> bool:
@@ -2437,6 +2506,11 @@ def process_entity(entity_id: str) -> dict:
     # are module-level so the same seed-id resolution — including the
     # `unified-` prefix strip — applies identically on every path.
 
+    # SHELLS — finals superseded by a live class (see `_superseding_class`).
+    # Dropped after enrichment and never re-promoted by the monotonic guard,
+    # unless they carry curation (kept and reported).
+    _live_members = set(unified_by_id) | set(_unified_home_index())
+
     # Iterate unified entries, find matches in final
     new_links: dict[str, list[str]] = defaultdict(list)
     unmatched: list[str] = []
@@ -2566,6 +2640,7 @@ def process_entity(entity_id: str) -> dict:
 
     bulk_promoted: list[str] = []
     bulk_skipped: list[str] = []  # mode="no_basic_peer_only" — peer-exists cases stay pending
+    promoted_near_peers: list[str] = []  # mode="all" — promoted despite a metal+nominal peer
     if bulk_promote_mode is not None:
         existing_finals_for_peer_check = list(final_by_id.values())
         for uid in unmatched:
@@ -2678,6 +2753,10 @@ def process_entity(entity_id: str) -> dict:
             )
             enriched_entries.append(enriched)
             bulk_promoted.append(uid)
+            if bulk_promote_mode == "all" and not force_promote and _has_basic_peer(
+                    unified, existing_finals_for_peer_check, entity_id,
+                    reign_index=reign_index):
+                promoted_near_peers.append(uid)
         # Update pending lists. Skipped entries (mode "no_basic_peer_only"
         # with a matchable peer) stay in unmatched for curator review.
         unmatched = bulk_skipped
@@ -2841,10 +2920,20 @@ def process_entity(entity_id: str) -> dict:
 
     stale_dropped_ids: set[str] = set()
     _kept_after_stale: list[dict] = []
+    shell_dropped: set[str] = set()
+    shell_kept_curated: list[str] = []
     for e in enriched_entries:
         if _is_vanished_stale_final(e, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(e.get("id")))
             continue
+        _eid = str(e.get("id"))
+        _cls = _superseding_class(e, _live_members)
+        if _cls:
+            if _shell_is_curated(e, _cls):
+                shell_kept_curated.append(_eid)
+            else:
+                shell_dropped.add(_eid)
+                continue
         _kept_after_stale.append(e)
     enriched_entries = _kept_after_stale
     if stale_dropped_ids:
@@ -2901,6 +2990,14 @@ def process_entity(entity_id: str) -> dict:
         if _is_vanished_stale_final(fc, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(fid))
             continue
+        _cls = _superseding_class(fc, _live_members)
+        if _cls:
+            if _shell_is_curated(fc, _cls):
+                if fid not in shell_kept_curated:
+                    shell_kept_curated.append(fid)
+            else:
+                shell_dropped.add(str(fid))
+                continue  # superseded shell — its seed lives on in a live class
         if (_is_out_of_scope_nominal(fc.get("nominal"))
                 or _is_out_of_scope_catalog(fc.get("catalog"))
                 or _is_out_of_scope_year(fc.get("year_first"))):
@@ -2919,6 +3016,13 @@ def process_entity(entity_id: str) -> dict:
         enriched_entries.append(fc)
         new_repr_ids.add(fid)
         monotonic_restored.append(fid)
+    if shell_dropped:
+        print(f"  [{entity_id}] superseded shells dropped: {len(shell_dropped)} "
+              f"(their seed lives on in another class)")
+    if shell_kept_curated:
+        print(f"  [{entity_id}] ⚠ {len(shell_kept_curated)} superseded shell(s) "
+              f"KEPT because they carry curation — review: "
+              f"{shell_kept_curated[:8]}")
     if monotonic_restored:
         print(f"  [{entity_id}] monotonic guard: re-promoted "
               f"{len(monotonic_restored)} prior-final coin(s) a re-merge "
@@ -2995,6 +3099,7 @@ def process_entity(entity_id: str) -> dict:
         "stale_finals_dropped": len(stale_dropped_ids),
         "unmatched_unified_ids": unmatched,
         "multi_match_warnings": multi_match,
+        "promoted_near_peers": promoted_near_peers,
         "enrichment_conflicts": enrichment_conflicts,
         "enriched_final_entries": enriched_entries,
         "applied_assignments": applied_assignments,
@@ -3023,7 +3128,8 @@ def _emit_final_yaml(entity_id: str, coins: list[dict],
 
 
 def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
-                                    multi_match: list[dict]) -> str:
+                                    multi_match: list[dict],
+                                    near_peers: list[str] | None = None) -> str:
     today = date.today().isoformat()
     header = (
         f"# Classification decisions for entity `{entity_id}` (Phase 4).\n"
@@ -3071,6 +3177,14 @@ def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
     payload["pending"] = [{"unified_id": uid, "status": "no_match_in_final"}
                           for uid in unmatched_ids]
     payload["multi_match_warnings"] = multi_match
+    # Classes promoted to seed_unsorted although a final with the same metal +
+    # nominal existed — the likely double rows. Computed only at the moment of
+    # promotion (next run the class is already absorbed), so the list is
+    # ACCUMULATED across runs; the curator prunes it as merges are decided
+    # through merge_decisions (v2-merge-coins).
+    _np = sorted(set(existing.get("promoted_near_peers") or []) | set(near_peers or []))
+    if _np:
+        payload["promoted_near_peers"] = _np
     # Content-stable timestamp: reuse the prior `generated_at` when the payload
     # (pending / multi_match_warnings / assignments) is unchanged, so a no-op
     # absorb re-run leaves this committed file byte-identical instead of a
@@ -3248,6 +3362,7 @@ def main() -> int:
                         ent,
                         result["unmatched_unified_ids"],
                         result["multi_match_warnings"],
+                        result.get("promoted_near_peers") or [],
                     ),
                     encoding="utf-8",
                 )
