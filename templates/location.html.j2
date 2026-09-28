@@ -36,6 +36,8 @@
 
       (*)  suspect    — the reading does not fit, and we cannot show why
       (!)  erroneous  — the reading has been shown to be wrong
+      (§)  template   — the reading is the standard's computed target, not a
+                        measurement (NOT struck through)
 
     `marks` is {source: (kind, reason)}. At most ONE mark is emitted per value:
     a group merges the sources that agree on a figure, so two catalogues
@@ -46,13 +48,15 @@
     below (erroneous outranks suspect within a group), split out so the block
     that carries the numeric value can be struck through while `mark()` still
     emits the «(*)»/«(!)» sign beside it. -#}
+{%- set mrank = {'template': 1, 'suspect': 2, 'erroneous': 3} -%}
+{%- set msign = {'template': '(§)', 'suspect': '(*)', 'erroneous': '(!)'} -%}
 {%- macro mkind(sources, marks) -%}
   {%- set ns = namespace(kind='') -%}
   {%- if marks and sources -%}
     {%- for src in sources -%}
       {%- if src in marks -%}
         {%- set k, w = marks[src] -%}
-        {%- if not ns.kind or (k == 'erroneous' and ns.kind == 'suspect') -%}
+        {%- if not ns.kind or mrank[k] > mrank[ns.kind] -%}
           {%- set ns.kind = k -%}
         {%- endif -%}
       {%- endif -%}
@@ -94,13 +98,13 @@
     {%- for src in sources -%}
       {%- if src in marks -%}
         {%- set k, w = marks[src] -%}
-        {%- if ns.kind is none or (k == 'erroneous' and ns.kind == 'suspect') -%}
+        {%- if ns.kind is none or mrank[k] > mrank[ns.kind] -%}
           {%- set ns.kind = k -%}{%- set ns.why = w -%}
         {%- endif -%}
       {%- endif -%}
     {%- endfor -%}
     {%- if ns.kind -%}
-      <span class="{{ ns.kind }}-mark" data-tooltip="{{ ns.why|t(lang) }}">{{ '(!)' if ns.kind == 'erroneous' else '(*)' }}</span>
+      <span class="{{ ns.kind }}-mark" data-tooltip="{{ ns.why|t(lang) }}">{{ msign[ns.kind] }}</span>
     {%- endif -%}
   {%- endif -%}
 {%- endmacro %}

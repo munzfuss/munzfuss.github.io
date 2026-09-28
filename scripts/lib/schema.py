@@ -151,6 +151,21 @@ class FieldValue(_StrictBase):
     #
     # Like `erroneous`, the reason is required and is reader-facing prose (§0z).
     suspect: I18nText | None = None
+    # `template` marks a reading a named source publishes that is NOT a
+    # measurement at all: it is the TARGET value computed from the standard
+    # (pieces per mark x fineness of the ordinance), printed on the type page
+    # as if it were a specimen figure. Nothing about it is wrong or doubtful —
+    # it is simply not evidence of what a coin weighs. It computes like any
+    # other reading (Δ ≈ 0 by construction, which is why the reader must be
+    # told), is NOT struck through, and renders «(§)».
+    #
+    # Founding case (2026-09-28): the Nobel «14,375 g / .979» on danskmoent
+    # f1g45/f1g69 and Numista 428544 = Galster's conversion of the 1514/1524
+    # Møntordning on a 230 g Cologne mark (docs/research/nobel_fod.md §4.3).
+    #
+    # Precedence within one display group: erroneous > suspect > template.
+    # Like the others, the reason is required reader-facing prose (§0z).
+    template: I18nText | None = None
 
 
 class HedeMuentzfussYield(_StrictBase):

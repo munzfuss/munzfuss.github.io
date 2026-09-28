@@ -73,13 +73,15 @@ def normalise_field(v) -> list[tuple[float, str | None]]:
 
 def marker_reasons(v) -> dict[str, tuple[str, object]]:
     """Per-source markers for a measurement field: `{source: (kind, reason)}`,
-    where kind is «erroneous» or «suspect».
+    where kind is «erroneous», «suspect» or «template».
 
     Both mark a reading a NAMED source publishes, and they differ only in what
     can be shown:
 
         suspect     the reading does not fit, and we cannot show why  → «(*)»
         erroneous   the reading has been shown to be wrong            → «(!)»
+        template    the reading is the standard's computed target,
+                    not a measurement of a coin                       → «(§)»
 
     Neither removes the value from anything. The reading computes as normal and
     reaches the Δ; the marker rides alongside it in the rendered cell with the
@@ -99,7 +101,7 @@ def marker_reasons(v) -> dict[str, tuple[str, object]]:
         src = getattr(fv, "source", None)
         if not src:
             continue
-        for kind in ("erroneous", "suspect"):
+        for kind in ("erroneous", "suspect", "template"):
             why = getattr(fv, kind, None)
             if why is not None:
                 out[src] = (kind, why)

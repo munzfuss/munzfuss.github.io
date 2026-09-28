@@ -2159,6 +2159,12 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
                   font-family: var(--font-sans); margin-left: 0.25em; }
 .erroneous-mark { color: rgba(178, 58, 58, 0.9); cursor: help; font-weight: 600;
                   font-family: var(--font-sans); margin-left: 0.25em; }
+/* (§) .template-mark — the reading is the standard's computed target value, not
+   a measurement. Neutral colour and NO strike: nothing is wrong with the number,
+   it just is not evidence about a specimen. (The `.template` value class gets
+   no rule on purpose.) */
+.template-mark { color: var(--text-muted, rgba(120, 130, 150, 0.9)); cursor: help; font-weight: 600;
+                  font-family: var(--font-sans); margin-left: 0.25em; }
 /* The value block a mark applies to — struck through, in the mark's rank colour.
    `text-decoration` on the value's own element leaves the trailing «(*)»/«(!)»
    sign (a sibling) untouched. */

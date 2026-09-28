@@ -200,12 +200,12 @@ _VERIFIABLE_FIELDS = {
 # it carries a mark the fresh value lacks. (Caught 2026-09-13: the 5.62 g KMM
 # suspect on the 1531 Ungersk Gylden was clobbered by a re-seed's verified
 # scalar — no `_curation_holds` had been placed on the field.)
-_CURATION_MARK_KEYS = ("suspect", "erroneous")
+_CURATION_MARK_KEYS = ("suspect", "erroneous", "template")
 
 
 def _carries_curation_mark(value) -> bool:
     """True when `value` is a list-form measurement whose any entry carries a
-    truthy `suspect` or `erroneous` annotation."""
+    truthy `suspect`, `erroneous` or `template` annotation."""
     if not isinstance(value, list):
         return False
     return any(
