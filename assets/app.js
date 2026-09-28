@@ -282,7 +282,11 @@
     document.body.appendChild(portalEl);
     return portalEl;
   }
+  var portalFor = null;
   function showPortal(trigger) {
+    // Moving between children of the same trigger must not re-fade.
+    if (trigger === portalFor) return;
+    portalFor = trigger;
     var text = trigger.getAttribute("data-tooltip");
     if (!text) return;
     var p = ensurePortal();
@@ -307,8 +311,13 @@
     p.style.left = left + "px";
     p.style.visibility = "visible";
     p.style.opacity = "1";
+    // Restart the CSS fade-in (tt-fade) on every new trigger.
+    p.style.animation = "none";
+    void p.offsetWidth;
+    p.style.animation = "";
   }
   function hidePortal() {
+    portalFor = null;
     if (!portalEl) return;
     portalEl.style.opacity = "0";
     portalEl.style.visibility = "hidden";

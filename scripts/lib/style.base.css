@@ -2526,7 +2526,11 @@ footer a:hover { color: var(--accent); }
      making the text bleed through. */
   opacity: 1;
   box-shadow: 0 2px 8px rgba(0,0,0,0.45);
+  animation: tt-fade 160ms ease-out;
 }
+/* Soft appearance for both tooltip paths (::after and the JS portal).
+   Opacity only — `transform` carries the ::after centring. */
+@keyframes tt-fade { from { opacity: 0; } to { opacity: 1; } }
 [data-theme="v1"] [data-tooltip]:hover::after {
   background: #2a2520;
   color: #ece4d2;
@@ -2542,6 +2546,7 @@ footer a:hover { color: var(--accent); }
    visual style of the CSS ::after rule above so the user can't tell
    which path the tooltip took. */
 .tooltip-portal {
+  animation: tt-fade 160ms ease-out;
   background: #ede4ce;
   border: var(--hairline) solid var(--accent);
   color: #2a221a;
