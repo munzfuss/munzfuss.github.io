@@ -40,12 +40,14 @@ actually touches files it cares about, so most commits run two or three.
 | 7 | `scripts/maintenance/verify_reflow.py` | **BLOCK on losses** | `data/v2/final/*.yml` |
 | 8 | `scripts/maintenance/rebucket_seeds.py --check` | **BLOCK on drift** | `data/v2/seed/*.yml` |
 | 9 | `scripts/maintenance/check_yaml_residual.py --staged` | **BLOCK on growth** | `data/{v2,shared,i18n,locations}/**.yml` |
+| 10 | `scripts/maintenance/audit_curation_marks.py` | **BLOCK on failure** | `data/v2/seed/*.yml`, `data/v2/final/*.yml` — every seed «(!)/(*)/(§)» mark reaches final, and final is a §9a thinning fixed point |
 
-Eight of the nine block. A commit that breaks schema validation,
+Nine of the ten block. A commit that breaks schema validation,
 violates a V2 invariant, leaves a merge decision whose members do not
 resolve, drops a citation a final entry carried, loses a coin or a
 value the baseline had, leaves a seed entry in a file other than its
-`_home_entity(issuing_entity)`, or makes a data YAML reformat more than
+`_home_entity(issuing_entity)`, loses a curation mark between seed and final,
+or makes a data YAML reformat more than
 it already did, refuses to land. Checks 6, 7, 8 and 9 exist because each
 caught a specific real defect — see «What this protects against».
 

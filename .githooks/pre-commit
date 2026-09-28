@@ -171,8 +171,15 @@ if [ -n "$FINAL_RELEVANT" ]; then
     RFL_PID=$!
 fi
 
-if [ -n "$BUILD_PID$I18N_PID$V2_PID$CIT_PID$RFL_PID" ]; then
-    echo "▶ Heavy checks running in parallel (build / i18n / v2 / citations / reflow, as relevant)…"
+MRK_PID=""; MRK_LOG=""
+if [ -n "$FINAL_RELEVANT$SEED_RELEVANT" ]; then
+    MRK_LOG=$(mktemp -t precommit-marks.XXXXXX)
+    "$PYTHON" scripts/maintenance/audit_curation_marks.py > "$MRK_LOG" 2>&1 &
+    MRK_PID=$!
+fi
+
+if [ -n "$BUILD_PID$I18N_PID$V2_PID$CIT_PID$RFL_PID$MRK_PID" ]; then
+    echo "▶ Heavy checks running in parallel (build / i18n / v2 / citations / reflow / marks, as relevant)…"
 fi
 
 # ===========================================================================
@@ -418,6 +425,27 @@ if [ -n "$RFL_PID" ]; then
         echo "is deliberate, make it a recognised fold (the survivor must list the"
         echo "removed id in composed_of — dedup_final_foundations.py does this),"
         echo "or bypass with: git commit --no-verify"
+        FAIL=1
+    fi
+fi
+
+# ---- Check 10: Curation marks reach final; final is thinned (HARD BLOCK) ----
+# A mark «(!)/(*)/(§)» lives on the SEED reading and must survive seed →
+# seed_unified → final. The merger once copied only two of the three kinds, so
+# every absorb stripped the Nobel (§) marks and nothing noticed (2026-09-28).
+# The same script asserts final is a §9a thinning fixed point: absorb thins
+# before writing, so an un-thinned final means absorb was bypassed. Runs when
+# the commit touches a seed or a final yaml.
+if [ -n "$MRK_PID" ]; then
+    if wait "$MRK_PID"; then
+        echo "  ${C_GREEN}✓${C_RST} curation marks reach final; final is thinned"
+        rm -f "$MRK_LOG"
+    else
+        echo "${C_RED}✗ Curation-mark / thinning audit FAILED.${C_RST}"
+        grep -E "✗|Fix:" "$MRK_LOG" | head -20 | sed 's/^/    /'
+        echo
+        echo "Re-flow the entity (merge --apply, then absorb --apply), or see the"
+        echo "reading-marker skill; bypass with: git commit --no-verify"
         FAIL=1
     fi
 fi
