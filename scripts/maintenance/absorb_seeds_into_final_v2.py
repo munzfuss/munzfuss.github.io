@@ -79,6 +79,7 @@ from lib.v2_seed_writer import (  # noqa: E402
 
 # Reuse match-strategy + enrichment helpers from Phase 3.2.
 # Both files share the same data-accumulation conventions (D17-D21).
+from maintenance.thin_final_weight_lists import thin_coin as _thin_weights  # noqa: E402
 from maintenance.merge_seeds_cross_source import (  # noqa: E402
     match_pair,
     _build_reign_index,
@@ -1202,6 +1203,8 @@ _FUSS_FRACTIONS_CACHE: dict[str, set] | None = None
 # members per `_revalidate_composed_of`). Default on; `--no-revalidate`
 # disables for a one-off debug run that must not mutate existing membership.
 REVALIDATE_ENABLED: bool = True
+# §9a final-layer weight thinning runs inside absorb (see the write path).
+THIN_ENABLED: bool = True
 
 
 def _get_fuss_fractions_cache() -> dict[str, set]:
@@ -2977,12 +2980,19 @@ def main() -> int:
                         help="Write data/v2/final/ + data/v2/classification_decisions/")
     parser.add_argument("--entity", help="Process only this entity")
     parser.add_argument("--verbose", "-v", action="store_true")
+    parser.add_argument("--no-thin", action="store_true",
+                        help="Skip the §9a final-layer weight thinning "
+                             "(debugging only; the written final is then "
+                             "not a thinning fixed point)")
     parser.add_argument("--no-revalidate", action="store_true",
                         help="Skip composed_of re-validation (identity-"
                              "mismatch eviction) for this run")
     args = parser.parse_args()
     if args.apply:
         args.dry_run = False
+    if args.no_thin:
+        global THIN_ENABLED
+        THIN_ENABLED = False
     if args.no_revalidate:
         global REVALIDATE_ENABLED
         REVALIDATE_ENABLED = False
@@ -3092,6 +3102,14 @@ def main() -> int:
                 # Uninformative-KMM thinning on EVERY final entry (incl.
                 # V1-carryover foundations not re-enriched this run).
                 _suppress_weightless_museum_overcollection(_fc)
+                # §9a envelope thinning (min / middle / max per resource).
+                # Absorb re-derives every weight list from seed_unified, so
+                # without this the written final carries the full un-thinned
+                # envelope and reads as thousands of lines of churn. Running
+                # it here makes the thinner a part of absorb rather than a
+                # separate step that has been forgotten three times.
+                if THIN_ENABLED:
+                    _thin_weights(_fc)
             final_path.write_text(
                 _emit_final_yaml(ent, result["enriched_final_entries"],
                                   prior_doc),
