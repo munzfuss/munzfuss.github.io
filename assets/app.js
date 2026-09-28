@@ -256,12 +256,33 @@
   // Reading markers «(?)/(*)/(!)/(§)» carry a headline: when their reason has
   // more than one line, the first line is the short thesis and renders bold.
   // Built from text nodes, never innerHTML — tooltip text is data.
+  // Every marker tooltip opens with a bold headline naming the marker kind;
+  // (§)/(*)/(!) reasons of more than one line also keep their own bold thesis.
+  var MARK_HEAD = {
+    uk: {template: "Шаблонне значення.", suspect: "Підозріле значення.", unverified: "Прогнозоване значення.", erroneous: "Помилкове значення."},
+    de: {template: "Schablonenwert.", suspect: "Verdächtiger Wert.", unverified: "Geschätzter Wert.", erroneous: "Fehlerhafter Wert."},
+    en: {template: "Template value.", suspect: "Suspect value.", unverified: "Estimated value.", erroneous: "Erroneous value."},
+    da: {template: "Skabelonværdi.", suspect: "Mistænkelig værdi.", unverified: "Anslået værdi.", erroneous: "Fejlagtig værdi."}
+  };
+  function markKind(trigger) {
+    var m = trigger && trigger.className &&
+      /(?:^|\s)(suspect|erroneous|template)-mark(?:\s|$)|(?:^|\s)(unverified)(?:\s|$)/.exec(trigger.className);
+    return m ? (m[1] || m[2]) : null;
+  }
   function setTipText(box, text, trigger) {
-    var nl = text.indexOf("\n");
-    var isMark = trigger && trigger.className &&
-      /(^|\s)(suspect|erroneous|template)-mark(\s|$)/.test(trigger.className);
-    if (!isMark || nl < 0) { box.textContent = text; return; }
+    var kind = markKind(trigger);
     box.textContent = "";
+    if (!kind) { box.textContent = text; return; }
+    var lang = (document.documentElement.lang || "en").slice(0, 2);
+    var head = (MARK_HEAD[lang] || MARK_HEAD.en)[kind];
+    if (head) {
+      var h = document.createElement("b");
+      h.textContent = head;
+      box.appendChild(h);
+      box.appendChild(document.createTextNode("\n"));
+    }
+    var nl = text.indexOf("\n");
+    if (kind === "unverified" || nl < 0) { box.appendChild(document.createTextNode(text)); return; }
     var b = document.createElement("b");
     b.textContent = text.slice(0, nl);
     box.appendChild(b);
