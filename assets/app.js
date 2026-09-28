@@ -257,7 +257,6 @@
   // more than one line, the first line is the short thesis and renders bold.
   // Built from text nodes, never innerHTML — tooltip text is data.
   // Every marker tooltip opens with a bold headline naming the marker kind;
-  // (§)/(*)/(!) reasons of more than one line also keep their own bold thesis.
   var MARK_HEAD = {
     uk: {template: "Шаблонне значення.", suspect: "Підозріле значення.", unverified: "Прогнозоване значення.", erroneous: "Помилкове значення."},
     de: {template: "Schablonenwert.", suspect: "Verdächtiger Wert.", unverified: "Geschätzter Wert.", erroneous: "Fehlerhafter Wert."},
@@ -281,12 +280,7 @@
       box.appendChild(h);
       box.appendChild(document.createTextNode("\n"));
     }
-    var nl = text.indexOf("\n");
-    if (kind === "unverified" || nl < 0) { box.appendChild(document.createTextNode(text)); return; }
-    var b = document.createElement("b");
-    b.textContent = text.slice(0, nl);
-    box.appendChild(b);
-    box.appendChild(document.createTextNode(text.slice(nl)));
+    box.appendChild(document.createTextNode(text));
   }
   function ensurePortal() {
     if (portalEl) return portalEl;
