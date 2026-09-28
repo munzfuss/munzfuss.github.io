@@ -37,11 +37,13 @@ siblings of the value span, not children (`64bd5da`).
 **KMM 439647** → 4 Dukat 1699 Hede 5 via two `_source_errata` (`c62c735`,
 curator-approved).
 
-**Deferred (curator, 2026-09-28):** absorb unions `sources`/catalog and never
-removes them, so after a split the old coin keeps the departed seed's source
-and indices (KMM 439647 / «B# 5a» had to be removed from the 3 Dukat by hand).
-Needs a rule «drop only what came exclusively from the departed seed» — survey
-the corpus for such cases first.
+**Departed-seed cleanup** (done same day, curator rule «take only what is
+unique to the leaving source»): absorb's stale-purge path now calls
+`_surgical_decontaminate`, which also strips catalogue indices. It reproduced
+the hand cleanup of the 3 Dukat exactly and found one more live case
+(`unified-dk-tid-163623`, KM 26.2 + ucoin source of a seed now in
+royal_holstein). Only the purged id's own seed is known to have departed —
+other members of a vanished class are not reconstructed.
 
 ## 2026-09-24 — kronemont_chr_iv sourced to Wilcke I page by page; open items for the curator
 

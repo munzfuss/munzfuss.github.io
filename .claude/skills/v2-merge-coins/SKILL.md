@@ -157,13 +157,21 @@ When an existing entry bundles distinct coins (over-merge):
    no-shared-index pair). Remove any wrong force-`merges` you added earlier.
 3. Re-merge + re-absorb (Step 3). Confirm the seed_unified split into the
    intended N entries.
-4. **Foundation cleanup (Step 4 trap):** the split rarely propagates to a
+4. **Departed-seed cleanup is automatic.** When a seed leaves a coin (its
+   old unified id disappears, or re-validate / over-merge purge evicts it),
+   absorb's `_surgical_decontaminate` removes what that seed ALONE supplied —
+   weights, sources, catalogue indices incl. `others` — and keeps every value a
+   remaining member also attests. Read the absorb log line «stale-purge:
+   removed the exclusive contributions of N departed seed(s)» and the final
+   diff; do not hand-delete. Years are deliberately left wide (§0). A
+   `_curation_holds: catalog` freezes the indices against it.
+5. **Foundation cleanup (Step 4 trap):** the split rarely propagates to a
    poisoned final foundation automatically — reset it by hand (see above), then
    re-absorb. Newly-separated coins land in `pending` unless the entity
    `bulk_promote_pending` says otherwise; that is correct (they await
    classification) and is NOT data loss — verify the seeds + sources survive in
    the new entries / pending list.
-5. Verify (Step 4) + commit (Step 5). Be honest in history: a wrong-merge
+6. Verify (Step 4) + commit (Step 5). Be honest in history: a wrong-merge
    commit followed by a correction commit is the §0b trail.
 
 ## CROSS-ENTITY MERGE — when a coin's seeds span DIFFERENT entities

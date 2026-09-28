@@ -1390,6 +1390,30 @@ def _wkey(v):
         return None
 
 
+_SEED_RECORDS: dict[str, dict] = {}
+
+
+def _seed_record(entity_id: str, seed_id: str) -> dict | None:
+    """The current seed record for `seed_id`, looked up in this entity's seed
+    files first and the whole seed tree second. Loaded lazily (a stale purge is
+    rare) and cached per process. None when the seed no longer exists."""
+    if seed_id in _SEED_RECORDS:
+        return _SEED_RECORDS[seed_id]
+    import yaml as _yaml
+    _L = getattr(_yaml, "CSafeLoader", _yaml.SafeLoader)
+    for pat in (f"*/{entity_id}.yml", "*/*.yml"):
+        for p in sorted(V2_SEED.glob(pat)):
+            text = p.read_text(encoding="utf-8")
+            if f"id: {seed_id}\n" not in text:
+                continue
+            for c in (_yaml.load(text, Loader=_L) or {}).get("coins") or []:
+                if c.get("id"):
+                    _SEED_RECORDS.setdefault(c["id"], c)
+            if seed_id in _SEED_RECORDS:
+                return _SEED_RECORDS[seed_id]
+    return None
+
+
 def _surgical_decontaminate(
     fc: dict, evicted_members: list[dict], remaining_members: list[dict]
 ) -> None:
@@ -1450,6 +1474,46 @@ def _surgical_decontaminate(
             fc[field] = kept
         else:
             fc.pop(field, None)
+
+    # Catalogue indices, same rule: drop a value iff an evicted member carries
+    # it in that register and no remaining member does. Covers `others`
+    # («B# 5a»), which the cross-source intersect in _enrich_final_entry does
+    # not touch. A foundation that froze `catalog` via `_curation_holds` keeps
+    # it whole.
+    cat = fc.get("catalog")
+    _holds = fc.get("_curation_holds")
+    _held = set(_holds.keys() if isinstance(_holds, dict) else (_holds or []))
+    if isinstance(cat, dict) and "catalog" not in _held:
+        def _cat_keys(members):
+            keys = set()
+            for m in members:
+                mc = m.get("catalog")
+                if not isinstance(mc, dict):
+                    continue
+                for f, v in mc.items():
+                    for x in (v if isinstance(v, list) else [v]):
+                        if x is not None and not isinstance(x, dict):
+                            keys.add((f, str(x).strip()))
+            return keys
+        ev_cat = _cat_keys(evicted_members)
+        if ev_cat:
+            keep_cat = _cat_keys(remaining_members)
+            for f in list(cat.keys()):
+                v = cat[f]
+                if isinstance(v, dict):
+                    continue
+                vals = v if isinstance(v, list) else [v]
+                kept = [x for x in vals
+                        if not ((f, str(x).strip()) in ev_cat
+                                and (f, str(x).strip()) not in keep_cat)]
+                if len(kept) == len(vals):
+                    continue
+                if not kept:
+                    del cat[f]
+                elif isinstance(v, list):
+                    cat[f] = kept
+                else:
+                    cat[f] = kept[0]
 
     cur_sources = fc.get("sources")
     if isinstance(cur_sources, list):
@@ -2173,15 +2237,39 @@ def process_entity(entity_id: str) -> dict:
     # renders a multi-entity coin on every consuming page), and this entity's
     # stale final is dropped by `_final_is_routed_away` further down. Purging
     # its composed_of first would strip the very evidence that filter reads.
+    #
+    # A purged id whose seed now lives in ANOTHER class (a split, or an errata
+    # that re-homed it — KMM 439647 → 4 Dukat, 2026-09-28) leaves its baked
+    # contributions on this host: sources, catalogue indices. Those are
+    # removed surgically — only what that seed alone supplied; anything a
+    # remaining member also attests stays (_surgical_decontaminate). A purged
+    # id whose seed is still inside a kept class is a rename, not a departure,
+    # and removes nothing.
     purged_count = 0
+    departed_decontaminated = 0
     _home = _unified_home_index()
     for fid, fc in final_by_id.items():
         original_composed = fc.get("composed_of") or []
         kept = [cid for cid in original_composed
                 if cid in unified_by_id or cid in _home]
         if len(kept) != len(original_composed):
+            gone = [cid for cid in original_composed if cid not in kept]
+            staying_seeds = set()
+            for cid in kept:
+                staying_seeds |= set((unified_by_id.get(cid) or {}).get("composed_of") or [])
+                staying_seeds.add(_seed_of(cid))
+            departed = [_seed_of(cid) for cid in gone
+                        if _seed_of(cid) not in staying_seeds]
+            departed_recs = [r for r in (_seed_record(entity_id, sid) for sid in departed) if r]
+            if departed_recs:
+                remaining = [unified_by_id[c] for c in kept if c in unified_by_id]
+                _surgical_decontaminate(fc, departed_recs, remaining)
+                departed_decontaminated += len(departed_recs)
             fc["composed_of"] = kept
             purged_count += len(original_composed) - len(kept)
+    if departed_decontaminated:
+        print(f"  stale-purge: removed the exclusive contributions of "
+              f"{departed_decontaminated} departed seed(s)")
 
     # PURGE over-merge composed_of members (CLAUDE.md §9.4 base-KM split).
     # Older pipeline code fused entries of DIFFERENT base KM into one final
