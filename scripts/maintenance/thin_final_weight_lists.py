@@ -41,7 +41,8 @@ entry at position `len // 2` of the weight-sorted list, and the heaviest —
 tied weights stay deterministic.
 
 What it never drops:
-  * a reading carrying an `erroneous` or `suspect` mark — a curator's
+  * a reading carrying any curation mark (`erroneous`, `suspect`, `template`
+    — `seed_merge._CURATION_MARK_KEYS`) — a curator's
     judgement about a source, which §4 keeps visible rather than deleting;
   * anything when the coin's readings disagree on `fineness` (§9a: «If the
     bucket includes multiple fineness readings, do not thin: the variance is
@@ -66,7 +67,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from lib.seed_merge import _make_yaml_loader  # noqa: E402
+from lib.seed_merge import _CURATION_MARK_KEYS, _make_yaml_loader  # noqa: E402
 
 FINAL_DIR = ROOT / "data" / "v2" / "final"
 MIN_READINGS = 5
@@ -81,8 +82,8 @@ def _value(entry) -> float | None:
 
 
 def _is_marked(entry) -> bool:
-    return isinstance(entry, dict) and bool(
-        entry.get("erroneous") or entry.get("suspect"))
+    return isinstance(entry, dict) and any(
+        entry.get(k) for k in _CURATION_MARK_KEYS)
 
 
 def _fineness_disagrees(coin: dict) -> bool:
