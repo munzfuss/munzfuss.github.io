@@ -253,6 +253,20 @@
   //    CSS positioning, which is more performant and edge-anchored
   //    correctly for those elements.
   var portalEl = null;
+  // Reading markers «(?)/(*)/(!)/(§)» carry a headline: when their reason has
+  // more than one line, the first line is the short thesis and renders bold.
+  // Built from text nodes, never innerHTML — tooltip text is data.
+  function setTipText(box, text, trigger) {
+    var nl = text.indexOf("\n");
+    var isMark = trigger && trigger.className &&
+      /(^|\s)(suspect|erroneous|template)-mark(\s|$)/.test(trigger.className);
+    if (!isMark || nl < 0) { box.textContent = text; return; }
+    box.textContent = "";
+    var b = document.createElement("b");
+    b.textContent = text.slice(0, nl);
+    box.appendChild(b);
+    box.appendChild(document.createTextNode(text.slice(nl)));
+  }
   function ensurePortal() {
     if (portalEl) return portalEl;
     portalEl = document.createElement("div");
@@ -272,7 +286,7 @@
     var text = trigger.getAttribute("data-tooltip");
     if (!text) return;
     var p = ensurePortal();
-    p.textContent = text;
+    setTipText(p, text, trigger);
     p.style.visibility = "hidden";
     p.style.opacity = "0";
     // First measure with content laid out
