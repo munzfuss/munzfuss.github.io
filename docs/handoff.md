@@ -15,6 +15,34 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-09-28 — curation marks made whole; absorb now thins
+
+**Marks.** A reading mark (`erroneous` (!) / `suspect` (*) / `template` (§))
+lives on the SEED reading and flows seed → seed_unified → final. The merger
+(`b122530`) and the final-layer thinner (`98422f0`) hard-coded only
+erroneous/suspect, so every absorb erased the Nobel (§) marks. Both now read
+`seed_merge._CURATION_MARK_KEYS`. Guards: pre-commit **Check 10**
+`audit_curation_marks.py` (`666a078`, marks reach final + final is thinned) and
+`tests/test_curation_marks_survive.py`. Procedure: skill **`reading-marker`**.
+
+**Absorb thins** (`5fec228`): `thin_coin` runs in absorb's write path, so the
+«absorb → thin_final_weight_lists» pairing in the 2026-09-13 / 09-12 notes
+below is now automatic (`--no-thin` for debugging). The standalone script stays
+for audit/repair.
+
+**Tooltips**: marker tooltips open with a bold kind headline from `app.js`
+(`da9b0b1`); reasons carry no own headline line (`6cb7be3`). Marker spans are
+siblings of the value span, not children (`64bd5da`).
+
+**KMM 439647** → 4 Dukat 1699 Hede 5 via two `_source_errata` (`c62c735`,
+curator-approved).
+
+**Deferred (curator, 2026-09-28):** absorb unions `sources`/catalog and never
+removes them, so after a split the old coin keeps the departed seed's source
+and indices (KMM 439647 / «B# 5a» had to be removed from the 3 Dukat by hand).
+Needs a rule «drop only what came exclusively from the departed seed» — survey
+the corpus for such cases first.
+
 ## 2026-09-24 — kronemont_chr_iv sourced to Wilcke I page by page; open items for the curator
 
 Local, NOT pushed: `afc182c` (refs + Denmark prose), `2de0835` (card rows,

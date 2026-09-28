@@ -118,6 +118,10 @@ python scripts/maintenance/merge_seeds_cross_source.py --entity <entity> --apply
 python scripts/maintenance/absorb_seeds_into_final_v2.py  --entity <entity> --apply
 ```
 
+Absorb also runs the §9a final-layer weight thinning before it writes, so
+there is no separate `thin_final_weight_lists` step (pre-commit Check 10
+blocks a final that is not thinned).
+
 Watch the merger summary: `Forced merges (decisions): N` / `Forced no_merges: N`
 must match what you added. Any `⚠ merge member 'X' absent from seed — skipped`
 means Step 0 was not done — fix the id and re-run.
