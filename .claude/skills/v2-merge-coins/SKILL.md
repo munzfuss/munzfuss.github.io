@@ -163,7 +163,7 @@ When an existing entry bundles distinct coins (over-merge):
    weights, sources, catalogue indices incl. `others` — and keeps every value a
    remaining member also attests. Read the absorb log line «stale-purge:
    removed the exclusive contributions of N departed seed(s)» and the final
-   diff; do not hand-delete. Years are deliberately left wide (§0). A
+   diff; do not hand-delete. Years follow the same rule: a year only the departed seed attested leaves with it. A
    `_curation_holds: catalog` freezes the indices against it.
 5. **Foundation cleanup (Step 4 trap):** the split rarely propagates to a
    poisoned final foundation automatically — reset it by hand (see above), then

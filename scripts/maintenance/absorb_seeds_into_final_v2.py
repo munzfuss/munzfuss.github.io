@@ -1432,9 +1432,11 @@ def _surgical_decontaminate(
     — e.g. km-74's 4 Bruun/KMM source URLs) are PRESERVED untouched, honouring
     §9a «preserve all data, never collapse». Mutates `fc` in place.
 
-    Year fields are intentionally left alone: an over-wide year range is the
-    safe direction per §0 («year_last overshooting acceptable, never clip»),
-    and re-enrichment unions years from the surviving member set anyway.
+    Years follow the same rule (curator direction 2026-09-28): a year the
+    departing specimen alone attested leaves with it; a year a remaining
+    member also attests, or one no evicted member carries (the foundation's
+    own), stays. This is not clipping a source's range — the departed years
+    were never this coin's. A year hold in `_curation_holds` freezes them.
     """
     def _val_source_keys(members, field):
         keys = set()
@@ -1474,6 +1476,30 @@ def _surgical_decontaminate(
             fc[field] = kept
         else:
             fc.pop(field, None)
+
+    _hy = fc.get("_curation_holds")
+    _hyk = set(_hy.keys() if isinstance(_hy, dict) else (_hy or []))
+    if not _hyk & {"year_ranges", "year_first", "year_last", "year_label"}:
+        def _yearset(members):
+            out = set()
+            for lo, hi in (_union_year_ranges(members) or []):
+                out.update(range(int(lo), int(hi) + 1))
+            return out
+        own = _yearset([fc])
+        drop = (own & _yearset(evicted_members)) - _yearset(remaining_members)
+        left = sorted(own - drop)
+        if drop and left:
+            ranges, lo = [], left[0]
+            for a, b in zip(left, left[1:] + [None]):
+                if b != a + 1:
+                    ranges.append([lo, a])
+                    lo = b
+            fc["year_first"], fc["year_last"] = left[0], left[-1]
+            if len(ranges) == 1 and ranges[0][0] == ranges[0][1]:
+                fc.pop("year_ranges", None)
+            else:
+                fc["year_ranges"] = ranges
+            fc["year_label"] = _format_year_label(ranges)
 
     # Catalogue indices, same rule: drop a value iff an evicted member carries
     # it in that register and no remaining member does. Covers `others`

@@ -77,5 +77,26 @@ class DepartedSeedTakesOnlyItsOwn(unittest.TestCase):
         self.assertIn(KMM, fc["sources"])
 
 
+class DepartedYears(unittest.TestCase):
+    """The 1/16 Speciedaler case: 1645-1647 came only from the departed tid 163623."""
+    def test_exclusive_years_leave_shared_stay(self):
+        fc = {"id": "unified-dk-tid-163623", "year_first": 1640, "year_last": 1647,
+              "year_ranges": [[1640, 1643], [1645, 1647]]}
+        departed = {"id": "dk-tid-163623", "year_ranges": [[1641, 1646]]}
+        remaining = {"id": "unified-dk-tid-163618", "year_ranges": [[1640, 1641]]}
+        _surgical_decontaminate(fc, [departed], [remaining])
+        # 1642-1643 and 1645-1646 were the departed seed's alone; 1640-1641 are
+        # shared; 1647 was attested by no evicted member and stays.
+        self.assertEqual(fc["year_ranges"], [[1640, 1641], [1647, 1647]])
+        self.assertEqual((fc["year_first"], fc["year_last"]), (1640, 1647))
+
+    def test_year_hold_freezes(self):
+        fc = {"id": "x", "year_first": 1640, "year_last": 1646,
+              "year_ranges": [[1640, 1646]], "_curation_holds": {"year_ranges": "curated"}}
+        _surgical_decontaminate(fc, [{"year_ranges": [[1642, 1646]]}],
+                                [{"year_ranges": [[1640, 1641]]}])
+        self.assertEqual(fc["year_ranges"], [[1640, 1646]])
+
+
 if __name__ == "__main__":
     unittest.main()
