@@ -671,10 +671,18 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
         elsewhere_hit = next(
             ((m, home[m]) for m in probes
              if m in home and home[m][0] != entity), None)
+        # Superseded shell: a final keyed `unified-<seed>` whose seed now sits
+        # in ANOTHER final (any entity, this one included) — absorb drops such
+        # shells since 2026-09-28. Its identity survives through the seed id,
+        # the one stable handle (§9b), so this is still an identity test.
+        if elsewhere_hit is None and cid.startswith("unified-"):
+            _seed = cid[len("unified-"):]
+            if _seed in home and home[_seed][1] != cid:
+                elsewhere_hit = (_seed, home[_seed])
         if elsewhere_hit is not None:
             member, (ent, host) = elsewhere_hit
             dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
-                           f"— relocated to {ent} as {host}"
+                           f"— {'relocated to ' + ent if ent != entity else 'superseded in ' + ent} as {host}"
                            + (f" (via {member})" if member != cid else ""))
             continue
         absorbed_by = None
