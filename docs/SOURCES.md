@@ -716,10 +716,10 @@ København», p. XX «Tysk (holstensk) Mønt, præget i København 1536—37» (
 18–22 seen). The figure numbers live in the images, not the text layer. P. XXI
 is a weight table of surviving coins whose rows appear to follow the figure
 numbers («1534 1 Guldgylden Slesvig U. A. 1—2 3.23») — unconfirmed for the
-whole table. The page form was dropped from the catalogue column on
-2026-09-29 (`build_galster_denmark_seed`); the numbered form is still in
-`catalog.others`, and whether both become figure citations in `sources` is
-open (docs/handoff.md).
+whole table. Both forms were dropped from the catalogue column on 2026-09-29
+(`build_galster_denmark_seed` drops every «Reinhold Junge» entry; the removed
+values are in `_recorded_removals.yml`). Whether they return as figure
+citations in `sources` is open (docs/handoff.md).
 
 Not to be confused with Galster's shorter article of the same title in the
 *Festskrift til Kr. Erslev* (København 1927), pp. 271–290
