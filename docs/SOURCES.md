@@ -691,22 +691,35 @@ Grevefejde. Free on danskmoent (listed in its literature page
 
 The PDF carries an OCR text layer (usable; expect OCR noise such as «M ønter»).
 
-**How the danskmoent Galster type pages cite it.** Two forms, both as
-«Reinhold Junge …» inside the catalogue parenthesis:
+**How the danskmoent Galster type pages cite it — both forms are figure
+references, not catalogue indices** (verified 2026-09-29 against the plates;
+corrects the first version of this section, which called «Reinhold Junge N»
+an entry number). The plates XVIII–XX number their figures continuously, and
+the Galster pages cite those figures in two notations:
 
-- **«Reinhold Junge N»** (7, 11–21, 76, «6ab» …) — an entry number of the
-  edition; kept as a catalogue index in `catalog.others`.
-- **«Reinhold Junge s. XVIII,1» / «side XXIV; antedateret»** — a locator in the
-  roman-paginated introduction, not an index. Verified in the extract: pp.
-  XVIII–XX are plate pages (captions only: «Mønter fra Gottorp 1534 og Aarhus
-  1535», «Mønter fra Roskilde 1535 og København», «Tysk (holstensk) Mønt,
-  præget i København 1536—37»); p. XXI is a weight table of the surviving
-  coins; pp. XXIII–XXIV discuss the antedated 1535/1536 coinage. Reading
-  «s. XVIII,1» as «plate XVIII, figure 1» is a hypothesis — the figure numbers
-  are in the images, not the text layer; check against the plate before citing.
-  Since 2026-09-29 `build_galster_denmark_seed` drops this page form from the
-  catalogue column; whether it returns as a page citation in `sources` is open
-  (docs/handoff.md).
+- **«Reinhold Junge N»** (6ab, 7, 8, 12–15, 17, 20, 21 …) — figure N, plate
+  not named. Plate XVIII fig. 6a/6b/7/8 are the Aarhus klippings; plate XX
+  fig. 20 is the Joachimsdaler, fig. 21 the one cited for ½ Joachimsdaler 1537.
+- **«Reinhold Junge s. XX,18»** — plate XX, figure 18 (the Rhinsk Gylden with
+  St John and four shields, Galster 131). Likewise s. XVIII,1 = Guldgylden
+  Gottorp 1534 (Galster 130), s. XVIII.3 = Søsling Gottorp (Galster 133),
+  s. XX,19 / XX,22 = the coins with the Schleswig lions (Galster 132).
+
+Only two citations point at running text: «side XXIII / XXIV; antedateret»
+(Galster 96, 107), the discussion of the antedated 1535/1536 coinage.
+«Reinhold Junge 76» has no figure 76 on plates XVIII–XX; that it is a text
+page is a hypothesis, not checked.
+
+Plate layout (from the text extract + the plate images): p. XVIII «Mønter fra
+Gottorp 1534 og Aarhus 1535» (figs 1–10), p. XIX «Mønter fra Roskilde 1535 og
+København», p. XX «Tysk (holstensk) Mønt, præget i København 1536—37» (figs
+18–22 seen). The figure numbers live in the images, not the text layer. P. XXI
+is a weight table of surviving coins whose rows appear to follow the figure
+numbers («1534 1 Guldgylden Slesvig U. A. 1—2 3.23») — unconfirmed for the
+whole table. The page form was dropped from the catalogue column on
+2026-09-29 (`build_galster_denmark_seed`); the numbered form is still in
+`catalog.others`, and whether both become figure citations in `sources` is
+open (docs/handoff.md).
 
 Not to be confused with Galster's shorter article of the same title in the
 *Festskrift til Kr. Erslev* (København 1927), pp. 271–290
