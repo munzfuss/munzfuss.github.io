@@ -1483,6 +1483,9 @@ h2[style] {
   color: var(--text-muted);
 }
 .gw-v .gw-note b { color: var(--text-muted); font-weight: 600; }
+/* Inside a phase sub-section the note sits under the value with the same gap
+   as the value sits under its label (.gw-phase-label margin-bottom). */
+.gw-v .gw-phase .gw-note { margin-top: 2px; }
 
 /* Rechnungsfraktionen sub-card — sits in the right column of gw-body */
 .gw-fr {
