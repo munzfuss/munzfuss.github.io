@@ -677,6 +677,42 @@ extract locally with `pypdf`. Both files extract cleanly to text (Jensen 1971 �
 
 ---
 
+## 3b. Galster 1934 — Reynold Junges Møntmesterregnskaber (via danskmoent.dk)
+
+**Georg Galster (udg.), *Reynold Junges Møntmesterregnskaber 1534–1540*
+(Selskabet for Udgivelse af Kilder til dansk Historie, København 1934)** — the
+edition of the accounts of Christian III's mintmaster Reynold Junge during the
+Grevefejde. Free on danskmoent (listed in its literature page
+<https://www.danskmoent.dk/littg.htm>):
+
+| URL | Size | Cached (harvest submodule) |
+|---|---|---|
+| <https://www.danskmoent.dk/pdf2/ReinhJunge.pdf> | 16.5 MB, 249 PDF pp. | `scripts/cache/danskmoent/galster_junge_1934/ReinhJunge.pdf` + `ReinhJunge.extract.txt` (pypdf text layer, one block per PDF page) |
+
+The PDF carries an OCR text layer (usable; expect OCR noise such as «M ønter»).
+
+**How the danskmoent Galster type pages cite it.** Two forms, both as
+«Reinhold Junge …» inside the catalogue parenthesis:
+
+- **«Reinhold Junge N»** (7, 11–21, 76, «6ab» …) — an entry number of the
+  edition; kept as a catalogue index in `catalog.others`.
+- **«Reinhold Junge s. XVIII,1» / «side XXIV; antedateret»** — a locator in the
+  roman-paginated introduction, not an index. Verified in the extract: pp.
+  XVIII–XX are plate pages (captions only: «Mønter fra Gottorp 1534 og Aarhus
+  1535», «Mønter fra Roskilde 1535 og København», «Tysk (holstensk) Mønt,
+  præget i København 1536—37»); p. XXI is a weight table of the surviving
+  coins; pp. XXIII–XXIV discuss the antedated 1535/1536 coinage. Reading
+  «s. XVIII,1» as «plate XVIII, figure 1» is a hypothesis — the figure numbers
+  are in the images, not the text layer; check against the plate before citing.
+  Since 2026-09-29 `build_galster_denmark_seed` drops this page form from the
+  catalogue column; whether it returns as a page citation in `sources` is open
+  (docs/handoff.md).
+
+Not to be confused with Galster's shorter article of the same title in the
+*Festskrift til Kr. Erslev* (København 1927), pp. 271–290
+(<https://www.danskmoent.dk/galster/galjung1.htm>), which has no numbered
+catalogue.
+
 ## 4. Aagaard monographs (paper)
 
 Sven Aagaard is the leading modern Danish numismatic researcher. Three relevant monographs (paper-only, not digital):
