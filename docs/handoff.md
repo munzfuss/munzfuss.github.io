@@ -54,6 +54,14 @@ superseded shells dropped; 16 kept for curation (11 `_unclassified` with an own
 note, 5 danish_realm `unified-dk-tid-707xx` with fuss 18_5_thaler) — review.
 Rendered-page orphan citations (specimen on two rows): 292, not yet cleaned.
 
+**Open for next session (curator, 2026-09-29):** the six «Reinhold Junge
+s./side …» page locators were removed from the catalogue column (`1de1408`,
+recorded in `_recorded_removals.yml`); whether they return as page citations in
+`sources` («Galster, Reynold Junges Møntmesterregnskaber 1534–1540, Kbh. 1934,
+s. XVIII, 1») is to be discussed. Numbered «Reinhold Junge N» entries stay as
+indices; their display label (the edition is Galster's, not Junge's) is also
+still open.
+
 ## 2026-09-24 — kronemont_chr_iv sourced to Wilcke I page by page; open items for the curator
 
 Local, NOT pushed: `afc182c` (refs + Denmark prose), `2de0835` (card rows,
