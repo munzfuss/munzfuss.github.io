@@ -206,6 +206,99 @@ def coin_id(galster_number: str | None, ruler_volume: str | None, source_file: s
 # dropped from catalog.others; the parser cache keeps them.
 
 
+# Galster 1934 «Skema» (p. XXI): the weight table of the surviving coins. Its
+# row numbers ARE the figure numbers of plates XVIII-XX, and they are what the
+# danskmoent Galster pages cite as «Reinhold Junge N» / «s. XX,18». Transcribed
+# from the page scan (scripts/cache/danskmoent/galster_junge_1934/, PDF p. 24),
+# 2026-09-29; «—» in the printed table (ditto) resolved to the value above.
+# Columns: year, nominal, place, Schou, heaviest g, lightest g, average g,
+# specimens weighed in MK. «ℳ» = mark, «ß» = skilling, «□» = klipping, «l.» =
+# lybsk.
+JUNGE_PDF_URL = "https://www.danskmoent.dk/pdf2/ReinhJunge.pdf"
+JUNGE_WORK = ("Georg Galster (udg.), Reynold Junges Møntmesterregnskaber "
+              "1534–1540 (København 1934)")
+_JUNGE_SKEMA = {
+    1: ("1534", "Guldgylden", "Slesvig", "U. A. 1—2", "3.23", None, None, "1"),
+    2: ("1534", "2 ß l.", "Slesvig", "1—7", "3.90", "3.40", "3.70", "6"),
+    3: ("1534", "½ ß l.", "Slesvig", "8—9", "1.11", "0.95", "1.03", "0"),
+    4: ("1534", "2 ℳ □", "(—)", "1", "14.80", None, None, "1"),
+    5: ("1535", "2 ℳ □", "(Aarhus)", "17", "14.42", None, None, "1"),
+    6: ("1535", "ℳ □", "(Aarhus)", "48—50", "10.62", "9.45", "10.20", "3"),
+    7: ("1535", "8 ß □", "Aarhus", "239", "3.32", None, None, "1"),
+    8: ("1535", "4 ß □", "Aarhus", "240", "1.51", None, None, "1"),
+    9: ("1535", "4 ß", "Aarhus", "65—68", "3.82", "3.40", "3.61", "2"),
+    10: ("1535", "4 ß", "Aarhus", "69—99", "3.35", "2.27", "2.77", "15"),
+    11: ("1535", "2 ℳ", "(Roskilde)", "1—16", "13.51", "11.40", "12.44", "7"),
+    12: ("1535", "ℳ", "(Roskilde)", "18—45", "8.10", "5.72", "6.71", "15"),
+    13: ("1535", "4 ß", "Roskilde", "146—238", "3.35", "2.21", "2.66", "45"),
+    14: ("1535", "4 ß", "København", "100—135", "3.23", "2.25", "2.64", "22"),
+    15: ("1536", "2 ß", "Roskilde", "78", None, None, None, "0"),
+    16: ("1536", "2 ß", "København", "18—73", "2.21", "1.21", "1.62", "38"),
+    17: ("1536", "ß", "København", "79—112", "1.30", "0.73", "1.00", "25"),
+    18: ("1536", "Guldgylden", "Slesvig", "1—7", "3.22", "3.15", "3.18", "6"),
+    19: ("1536", "2 ß l.", "Slesvig", "8—12", "3.90", "3.40", "3.70", "6"),
+    20: ("1537", "Daler", "(København)", "2—13", "29.00", "28.06", "28.69", "8"),
+    21: ("1537", "½ Daler", "(København)", "14—17", "14.45", None, None, "1"),
+    22: ("1537", "2 ß", "Slesvig", "1—25", "4.20", "2.95", "3.74", "17"),
+}
+# Text-page citations: the danskmoent form → (page label, verbatim sentence).
+_JUNGE_TEXT = {
+    "side XXIII; antedateret": (
+        "S. XXIII–XXIV",
+        "man har fortsat Udmøntningen som før, men antedateret Mønterne med "
+        "Aarstallene 1535 og 1536 … De Toskillinger 1536, der foreligger fra "
+        "Aarhus, er sandsynligvis antedaterede."),
+    "side XXIV; antedateret": (
+        "S. XXIV",
+        "Der kendes nu af Ribemønt kun 4 ß 1535 og 2 og 1 ß 1536, der "
+        "utvivlsomt er antedaterede."),
+}
+
+
+def _junge_plate(n: int) -> str | None:
+    if n == 15:
+        return None          # the one row Galster does not illustrate (p. XXI)
+    return "XVIII" if n <= 10 else "XIX" if n <= 17 else "XX"
+
+
+def _junge_row_ref(n: int, figs: str) -> str:
+    y, nom, place, schou, hi, lo, avg, mk = _JUNGE_SKEMA[n]
+    w = f"tungeste Ex. {hi} g" if hi else ""
+    if lo:
+        w += f", letteste Ex. {lo} g, gennemsnit {avg} g"
+    data = "; ".join(x for x in (f"{y}, {nom}, {place}", f"Schou {schou}", w,
+                                 f"Af Exx. i MK {mk}") if x)
+    plate = _junge_plate(n)
+    tail = (f"; Tavle {plate}, fig. {figs}" if plate else
+            " — «De paagældende Mønter er gengivne her med Undtagelse af 2 ß "
+            "fra Roskilde 1536, der kun kendes i et enkelt Eksemplar i Ermitagen»")
+    return f"{JUNGE_WORK}, S. XXI, Skema nr. {n} ({data}){tail}"
+
+
+def _junge_sources(junge_value) -> list[dict]:
+    """Figure / page citations for one danskmoent «Reinhold Junge …» value.
+    An unrecognised value yields nothing — never a guessed citation."""
+    if not junge_value:
+        return []
+    v = str(junge_value).strip()
+    refs: list[str] = []
+    if v in _JUNGE_TEXT:
+        page, quote = _JUNGE_TEXT[v]
+        refs.append(f"{JUNGE_WORK}, {page} — «{quote}»")
+    else:
+        m = re.fullmatch(r"(\d+)([a-z]*)", v)
+        if m and int(m.group(1)) in _JUNGE_SKEMA:
+            n = int(m.group(1))
+            figs = ", ".join(f"{n}{c}" for c in m.group(2)) or str(n)
+            refs.append(_junge_row_ref(n, figs))
+        else:
+            for pm in re.finditer(r"s\.\s*([XVI]+)[,.]\s*(\d+)", v):
+                n = int(pm.group(2))
+                if n in _JUNGE_SKEMA and _junge_plate(n) == pm.group(1):
+                    refs.append(_junge_row_ref(n, str(n)))
+    return [{"type": "literature", "url": JUNGE_PDF_URL, "ref": r} for r in refs]
+
+
 def _drop_junge_page_refs(catalog: dict) -> None:
     others = catalog.get("others")
     if not isinstance(others, list):
@@ -362,7 +455,7 @@ def _build_sources(data: dict) -> list[dict]:
             "url": data.get("source_url_hint"),
             "ref": ref,
         }
-    ]
+    ] + _junge_sources((data.get("catalog_refs") or {}).get("Reinhold Junge"))
 
 
 # Foreign-catalogue NAMES that danskmoent lists as cross-references on a Galster
