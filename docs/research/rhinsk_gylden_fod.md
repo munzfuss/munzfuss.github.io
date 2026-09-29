@@ -567,7 +567,7 @@ Wilcke 6 comparison table (Stk./Mk brutto · Kt · ‰ · value · rauh · fein)
 
 | Scope | first_adoption | first_mint | last_mint | std_end | demonetisation |
 |---|---|---|---|---|---|
-| `anywhere` (realm) | **1514** (see §11 Q1: 1513?) | 1496 | 1632 | **1602** Forordning | ~1700 |
+| `anywhere` (realm) | **1513** Beskikkelsesbrev Dynes Blicher (firm) | 1496 | 1632 | **1602** Forordning | ~1700 |
 | `holstein` | **1495** Worms | 1523 | 1664 | **1602** | ~1700 |
 
 - 1559 voids the Danish coins by name in the EMPIRE; Danish/Schleswig royal
@@ -615,7 +615,7 @@ six places, derive every `soll_fein_g` from it.
 
 | # | Question | What would settle it |
 |---|---|---|
-| Q1 | Should `first_adoption.anywhere` be **1513** (Blicher Beskikkelsesbrev) rather than 1514? The 1513 act names the gulden and a norm but was never executed. | Curator decision on whether «adoption» means first instrument or first executed instrument; §7a/C1 phrasing either way must mention 1513. |
+| Q1 | ~~1513 vs 1514 for `first_adoption.anywhere`~~ — **settled 2026-09-29: 1513.** Curator: `first_adoption` is the founding ACT (schema/timeline: a decree year preceding the first strike belongs there); the first Danish act naming the gulden is 1 Aug 1513, executed or not. 1514 remains the first EXECUTED Danish norm (phase I). Known model limit: the circulation layer also starts at `first_adoption`, while foreign Rhenish gulden circulated in Denmark through the 15th c. (§4.1). | — |
 | Q2 | Flensborg 1546 on 71⅓ + 1547 bestalling «efter Kurfyrsternes»: separate Schleswig sub-norm (71⅓ / 18½ target) vs Danish 72/18? | The bestalling full text in RA T.K. 160 (Wilcke quotes only a paraphrase for the gold line); any Flensborg mint account. |
 | Q3 | Fineness of the Flensborg pieces: .750 (Hede) vs the 18½ the bestalling implies. | A published assay beyond NFM XII p. 10 (Hede's source). |
 | Q4 | Wolfenbüttel 1627 «GOLDT GULDEN» (Sieg 191): in data? which standard? | Hede Wolfenbüttel tillæg 1 specs; Harck NNUM 1975 pp. 120-121. |
