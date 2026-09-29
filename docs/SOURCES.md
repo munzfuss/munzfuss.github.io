@@ -724,9 +724,9 @@ figure numbers, so `build_galster_denmark_seed._JUNGE_SKEMA` (transcribed from
 the page scan) turns each reference into «S. XXI, Skema nr. N (row data);
 Tavle X, fig. N» with the PDF URL, and the two text references into a verbatim
 sentence. Row 15 (2 ß Roskilde 1536) is the one coin Galster does not
-illustrate. Open: Galster 105 «Reinhold Junge 76» — there is no row 76; row 16
-(2 ß København 1536, Schou 18—73) matches the coin, so «76» reads as a
-danskmoent typo for 16, but that is a source correction for the curator.
+illustrate. Galster 105 prints «Reinhold Junge 76»: there is no row 76, and row 16
+(2 ß København 1536, Schou 18—73) is the coin — cited as row 16 via
+`_JUNGE_SOURCE_TYPOS` (curator-approved 2026-09-29).
 
 Not to be confused with Galster's shorter article of the same title in the
 *Festskrift til Kr. Erslev* (København 1927), pp. 271–290

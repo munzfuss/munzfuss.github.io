@@ -255,6 +255,14 @@ _JUNGE_TEXT = {
 }
 
 
+# danskmoent source typos in the Junge reference, corrected with the curator's
+# in-chat approval (2026-09-29). Galster 105 (2 Skilling 1536 København) prints
+# «Reinhold Junge 76»; the edition has no row or figure 76 (printed p. 76 is a
+# building-cost account), and Skema row 16 is «2 ß, København, 1536, Schou
+# 18—73» — the very Schou range the danskmoent page gives Galster 105.
+_JUNGE_SOURCE_TYPOS = {"76": "16"}
+
+
 def _junge_plate(n: int) -> str | None:
     if n == 15:
         return None          # the one row Galster does not illustrate (p. XXI)
@@ -281,6 +289,7 @@ def _junge_sources(junge_value) -> list[dict]:
     if not junge_value:
         return []
     v = str(junge_value).strip()
+    v = _JUNGE_SOURCE_TYPOS.get(v, v)
     refs: list[str] = []
     if v in _JUNGE_TEXT:
         page, quote = _JUNGE_TEXT[v]

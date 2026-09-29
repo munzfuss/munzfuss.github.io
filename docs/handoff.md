@@ -56,9 +56,8 @@ Rendered-page orphan citations (specimen on two rows): 292, not yet cleaned.
 
 **Junge references (done 2026-09-29):** all «Reinhold Junge …» left the
 catalogue column and returned as Skema/plate citations in `sources`
-(docs/SOURCES.md §3b). Open for the curator: Galster 105 «Reinhold Junge 76»
-— no row 76; row 16 fits (Schou 18—73), so likely a danskmoent typo; citing it
-as row 16 is a source correction and needs a yes.
+(docs/SOURCES.md §3b). Galster 105 «Reinhold Junge 76» is cited as row 16 (danskmoent typo, curator
+approved 2026-09-29).
 
 ## 2026-09-24 — kronemont_chr_iv sourced to Wilcke I page by page; open items for the curator
 
