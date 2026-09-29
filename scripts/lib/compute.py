@@ -888,12 +888,25 @@ def _compute_catalog_groups(
                 else:
                     add(label, part, hede_tooltip)
 
-    # Others list — parse each
+    # Others list — parse each. `others` holds references to catalogues our
+    # schema does not type (Storgaard, JSJ1971, Sømod, Welter, B …); they
+    # render in the secondary «others» style, as one plain line per prefix
+    # («Storgaard# 5»), so the reader can tell them from the typed indices
+    # (curator direction 2026-09-29 — Sømod already looked like this, but only
+    # because its «ø» defeated the prefix pattern). Kept as ordinary groups:
+    # Krause Pn (relabelled KM below), Davenport sub-catalogues (the Dav dedup
+    # further down relies on them), and Aagaard (catvals formats it).
     plain_lines: list[str] = []
+    other_groups: dict[str, list[str]] = {}
     for raw in cat.others or []:
         prefix, value = _parse_ref(raw)
         if prefix is None:
             plain_lines.append(value)
+        elif not (prefix == "Pn" or prefix.startswith("Dav")
+                  or prefix == "Aagaard"):
+            vals = other_groups.setdefault(prefix, [])
+            if value not in vals:
+                vals.append(value)
         else:
             # Krause pattern/presentation numbers are stored under a synthetic
             # «Pn» ref-type so they stay OUT of the KM merge-key space (the
@@ -1009,6 +1022,8 @@ def _compute_catalog_groups(
         (p, groups[p], group_tooltip.get(p)) for p in sorted_prefixes
     ]
 
+    for p, vals in other_groups.items():
+        plain_lines.append(f"{p}# {', '.join(collapse_runs(vals))}")
     if plain_lines:
         out.append(("", plain_lines, None))
 
