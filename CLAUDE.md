@@ -1079,7 +1079,9 @@ invariant that matters — a commit may not RAISE a file's round-trip residual
 
 ## i18n policy
 
-Strategy A (inline): each translatable field is a `{de: ..., en: ..., uk: ...}` object in YAML. Supported fields: `title`, `description`, `note`, `verification_note`, boilerplate texts.
+Strategy A (inline): each translatable field is a `{de: ..., en: ..., uk: ...}` object in YAML.
+
+**Every wording edit goes into ALL language fields at once** (curator direction 2026-09-29: «обовʼязково, всі правки мають бути у всіх мовах»). When the curator asks for a change quoting one language — usually `uk` — make the equivalent change in every language field of that text (`de`, `en`, `uk`, `da`) in the same edit, without asking, and say so in the reply. A change that reaches only the quoted language leaves the pages out of step. Instrument and standard names keep their §2 tier-1 form in every language. Supported fields: `title`, `description`, `note`, `verification_note`, boilerplate texts.
 
 Non-translated fields (global identifiers):
 - Catalog references (KM#, Hede, Sieg, Bruun-lot) — never translated
