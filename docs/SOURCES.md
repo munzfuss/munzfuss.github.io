@@ -1785,6 +1785,18 @@ Danish coins) plus the exonumia tokens in the `ruler` field.
 
 ---
 
+### 13.17 Wilcke II (1924) — danskmoent HTML has no page breaks; page hints are section-level (2026-09-29)
+
+The only digital Wilcke II is danskmoent's HTML transcription (no PDF, no page
+images). It prints NO inline page breaks — only a «(Side N-M)» line under most
+sub-headings (e.g. w2a1 A.1 «(Side 49-58)», w2a2 «(Side 58-82)», w2c1 C.1
+«(Side 208-217)»). Consequences for §5a: default page hint = the section range;
+narrow to one page only where Wilcke himself cross-references a page («Oversigten
+p. 55» = the A.1 Udmøntnings-Oversigt) or a passage opens a section. Endnotes «(N)»
+were footnotes in print; their page is not recoverable. Full mapping table:
+`scripts/cache/wilcke/moentvaesenet_1625_1670_1924/README.md` «Printed-page mapping».
+Grep the whole volume for `p\. [0-9]` — internal cross-refs are the only way to pin more pages.
+
 ## 13b. Which polity is harvested from which source
 
 Per-source access notes live in this file; **per-polity coverage lives in

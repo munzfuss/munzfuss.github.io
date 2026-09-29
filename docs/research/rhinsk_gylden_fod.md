@@ -478,27 +478,29 @@ from the 15th century; as **Danish coinage** only from ~1496.
   pieces «fremdateret … med henblik på de forestående krigsudgifter»; 1627-28
   «oplagt slået til anvendelse i forbindelse med trediveårskrigen»; 1632 «må
   have en ganske anden baggrund» (separate peace 1629).
-- Wilcke 1924 (Møntvæsenet 1625-1670, ch. 1 p. ~49): «der var givet Befaling
+- Wilcke 1924 (Møntvæsenet 1625-1670, A.1, p. 49): «der var givet Befaling
   til Udmøntning af et stort Antal Guldgylden til Lønning af Krigsfolket»;
-  table p. ~55: «Rhinsk Gylden · 1¼ R. in spe. (7½ Mark) · Jørg. 33-34 · 72 ·
-  18¼ · 760,42». 30 Dec 1627: 2 144 Guldgylden to the army in Germany.
+  Oversigt p. 55 (Wilcke's own cross-reference «Oversigten p. 55»): «Rhinsk Gylden · 1¼ R. in spe. (7½ Mark) · Jørg. 33-34 · 72 ·
+  18¼ · 760,42». 30 Dec 1627: 2 144 Guldgylden to the army in Germany (A.1
+  note 4; footnote page not recoverable — section pp. 49-58 only).
   Wilcke 6: Christian IV's gulden «fra Trediveaarskrigen» were, like Hans',
   «bestemt til Sold … søgt noget forringet i Gehalt».
 - **Glückstadt**: Begnadigungsbrief for Albert Dionis, 30 May 1627, permits
   «Guldgylden og lybske Skillinger … saaledes som de hidtil sloges i
   København» — «Der kendes ikke glückstadtske Guldgylden fra disse Aar»
-  (Wilcke 1924, w2c1). Authorisation without known outturn.
+  (Wilcke 1924, C.1, pp. 208-217 — single page not determinable). Authorisation
+  without known outturn.
 - **Wolfenbüttel 1627**: «1 GOLDT GULDEN 1627», unique, monogram obverse (Hede
   Wolfenbüttel tillæg 1, Sieg 191; danskmoent guldgyld; Harck NNUM 1975
   pp. 120-121). Struck during Christian IV's occupation; not yet in our data —
   **open item** (standard membership unverified: no fineness).
-- **Tariffs 1630s** (Wilcke 1924 w2a2): Guldgylden 7½ Mark d.; gold:silver
+- **Tariffs 1630s** (Wilcke 1924, A.2, pp. 58-82 — single page not determinable): Guldgylden 7½ Mark d.; gold:silver
   ratio 12,95 for the gulden (Guldkrone 14,08, ducat 13,19); Forordning 1639
   raises it by ½ Mark (ratio 13,81), reversed Dec 1639; Mogens Kaas 24 Dec 1639:
   «en stor Part falske rhinske Gylden» imported — Rhenish gulden «i paafaldende
   Grad … forfalskede ganske særligt i Holland»; Tage Ottesen: gold from the
   German sea-towns «saa och goldt gyllen eller ringsk gyllen».
-- Wilcke 1924 w2a3: the «store Udmøntninger af rhinske Gylden ved Tyskekrigens
+- Wilcke 1924, A.3, pp. 82-101 (single page not determinable): the «store Udmøntninger af rhinske Gylden ved Tyskekrigens
   Begyndelse» as evidence gold still served as real payment money.
 
 ---
@@ -645,7 +647,12 @@ six places, derive every `soll_fein_g` from it.
   (Esslingen 1524 date and formula; Rhenish debasement in the Kipper period).
 - **Wilcke 1924, *Møntvæsenet 1625-1670*** — cache
   `.../moentvaesenet_1625_1670_1924/pages/w2a1.txt, w2a2.txt, w2a3.txt, w2c1.txt`.
-  Printed pages not yet mapped — do before citing.
+  Printed pages mapped 2026-09-29 (cache README «Printed-page mapping»): the
+  danskmoent transcription has no inline page breaks, only «(Side N-M)» per
+  section — w2a1 A.1 pp. 49-58, w2a2 pp. 58-82, w2a3 pp. 82-101, w2c1 C.1
+  pp. 208-217. Narrowed: p. 49 (Befaling … Guldgylden), p. 55 (Oversigt,
+  per Wilcke's cross-refs). The rest stays at section range until a scan of
+  the 1924 print is found. Cite the danskmoent url, never the cache path.
 - **Harck, N.: «Christian IV's guldmønter fra København 1624-1641»** —
   `danskmoent.dk/harck/c4guld.htm`, extract + table image in
   `scripts/cache/danskmoent/harck/`.
