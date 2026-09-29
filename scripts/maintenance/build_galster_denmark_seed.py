@@ -196,14 +196,14 @@ def coin_id(galster_number: str | None, ruler_volume: str | None, source_file: s
     return f"dk-galster-{source_file.replace('.htm', '').replace('.json', '')}"
 
 
-# «Reinhold Junge N» on a Galster page is an entry number in Galster's edition
-# of the mintmaster's accounts (Reynold Junges Møntmesterregnskaber 1534-1540,
-# Kbh. 1934) — a catalogue index. «Reinhold Junge s. XVIII,1» / «side XXIV;
-# antedateret» is a PAGE of that edition's introduction, where a coin is
-# discussed without a number: a citation locator, not an index, so it has no
-# place in the catalogue column (curator direction 2026-09-29). Only the page
-# form is dropped; the numbered form stays.
-_JUNGE_PAGE_RE = re.compile(r"^\s*(s\.|side\b|hhv\.)", re.I)
+# «Reinhold Junge …» on a Galster page cites Galster's edition of the
+# mintmaster's accounts (Reynold Junges Møntmesterregnskaber 1534-1540, Kbh.
+# 1934) — and BOTH notations are figure references to its plates, not catalogue
+# indices: «Reinhold Junge 14» = figure 14, «s. XX,18» = plate XX figure 18
+# (verified against the plates 2026-09-29; docs/SOURCES.md §3b). The rare
+# «side XXIII; antedateret» is a text page. None belongs in the catalogue
+# column (curator direction 2026-09-29), so every «Reinhold Junge#» entry is
+# dropped from catalog.others; the parser cache keeps them.
 
 
 def _drop_junge_page_refs(catalog: dict) -> None:
@@ -211,8 +211,7 @@ def _drop_junge_page_refs(catalog: dict) -> None:
     if not isinstance(others, list):
         return
     keep = [o for o in others
-            if not (isinstance(o, str) and o.startswith("Reinhold Junge#")
-                    and _JUNGE_PAGE_RE.match(o.split("#", 1)[1]))]
+            if not (isinstance(o, str) and o.startswith("Reinhold Junge#"))]
     if keep:
         catalog["others"] = keep
     else:
