@@ -196,6 +196,29 @@ def coin_id(galster_number: str | None, ruler_volume: str | None, source_file: s
     return f"dk-galster-{source_file.replace('.htm', '').replace('.json', '')}"
 
 
+# «Reinhold Junge N» on a Galster page is an entry number in Galster's edition
+# of the mintmaster's accounts (Reynold Junges Møntmesterregnskaber 1534-1540,
+# Kbh. 1934) — a catalogue index. «Reinhold Junge s. XVIII,1» / «side XXIV;
+# antedateret» is a PAGE of that edition's introduction, where a coin is
+# discussed without a number: a citation locator, not an index, so it has no
+# place in the catalogue column (curator direction 2026-09-29). Only the page
+# form is dropped; the numbered form stays.
+_JUNGE_PAGE_RE = re.compile(r"^\s*(s\.|side\b|hhv\.)", re.I)
+
+
+def _drop_junge_page_refs(catalog: dict) -> None:
+    others = catalog.get("others")
+    if not isinstance(others, list):
+        return
+    keep = [o for o in others
+            if not (isinstance(o, str) and o.startswith("Reinhold Junge#")
+                    and _JUNGE_PAGE_RE.match(o.split("#", 1)[1]))]
+    if keep:
+        catalog["others"] = keep
+    else:
+        catalog.pop("others", None)
+
+
 def _is_real_galster_index(num: str | None) -> bool:
     """A real Galster catalogue number contains a digit («27», «27A»).
 
@@ -435,6 +458,7 @@ def build_entry(data: dict) -> dict | None:
     # non-schema key to `others` rather than copying it verbatim (which would
     # fail validation).
     catalog: dict = catalog_from_ref_dict(data.get("catalog_refs") or {})
+    _drop_junge_page_refs(catalog)
     if (data.get("galster_number") and "galster" not in catalog
             and _is_real_galster_index(data.get("galster_number"))):
         catalog["galster"] = data["galster_number"]
