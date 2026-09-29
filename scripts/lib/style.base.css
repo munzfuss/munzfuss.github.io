@@ -1486,6 +1486,10 @@ h2[style] {
 /* Inside a phase sub-section the note sits under the value with the same gap
    as the value sits under its label (.gw-phase-label margin-bottom). */
 .gw-v .gw-phase .gw-note { margin-top: 2px; }
+/* A note in the MIDDLE of a phase value (more text follows it, as under one
+   line of a multi-line Probe) belongs to the line above: tighter above than
+   below, so the eye attaches it upward. */
+.gw-v .gw-phase .gw-note:not(:last-child) { margin-top: -1px; margin-bottom: 6px; }
 
 /* Rechnungsfraktionen sub-card — sits in the right column of gw-body */
 .gw-fr {
