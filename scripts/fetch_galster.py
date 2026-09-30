@@ -396,10 +396,38 @@ def fetch_all(force: bool = False) -> None:
     print(f"\n  Done: fetched={fetched}, skipped={skipped}, failed={failed}")
 
 
+NARRATIVE_PAGES = ("galkult", "galtysk")   # Galster, «Danmarks Mønter» (da) + German version
+
+
+def fetch_narrative(force: bool = False) -> None:
+    """Cache Galster's running text (galster/galkult.htm, galtysk.htm) and a
+    plain-text extract next to each, so quotes in refs_pool can be verified
+    offline. These are NOT per-coin pages, so ``fetch`` never sees them."""
+    import html as _html
+    opener = _make_session()
+    for name in NARRATIVE_PAGES:
+        dst = CACHE_DIR / f"galster_{name}.htm"
+        if dst.exists() and not force:
+            print(f"  cached: {dst.name}")
+            continue
+        page = _try_fetch(opener, f"{BASE}/galster/{name}.htm")
+        if not page or "Security Incident" in page[:400]:
+            print(f"  ✗ {name}: not fetched", file=sys.stderr)
+            continue
+        dst.write_text(page, encoding="utf-8")
+        txt = re.sub(r"(?is)<(script|style).*?</\1>", "", page)
+        txt = re.sub(r"(?i)<br\s*/?>|</p>|</tr>|</h\d>", "\n", txt)
+        txt = _html.unescape(re.sub(r"<[^>]+>", "", txt))
+        txt = re.sub(r"\n\s*\n+", "\n\n", re.sub(r"[ \t\xa0]+", " ", txt))
+        (CACHE_DIR / f"galster_{name}.extract.txt").write_text(txt, encoding="utf-8")
+        print(f"  ✓ {name}: {len(page)} bytes")
+        time.sleep(SLEEP_SECS)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("phase", nargs="?", default="all",
-                    choices=["discover", "fetch", "overviews", "all"])
+                    choices=["discover", "fetch", "overviews", "narrative", "all"])
     ap.add_argument("--force", action="store_true", help="Re-fetch already-cached pages")
     args = ap.parse_args()
 
@@ -412,6 +440,9 @@ def main() -> None:
     if args.phase in ("overviews", "all"):
         print(f"\nDiscovering denomination-overview pages...")
         discover_overviews()
+    if args.phase in ("narrative", "all"):
+        print("\nFetching Galster running text...")
+        fetch_narrative(force=args.force)
 
 
 if __name__ == "__main__":
