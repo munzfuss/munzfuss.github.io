@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-09-29 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-09-30 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15271 per-source seed entries.
-# Output: 6932 unified entries (one per physical coin).
+# Input: 15272 per-source seed entries.
+# Output: 6933 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-09-29'
+generated_at: '2026-09-30'
 coins:
   - id: unified-denmark-numismaster-117984
     fuss: seed_unsorted
@@ -13756,6 +13756,52 @@ coins:
     composed_of:
       - dk-galster-f1g-77
       - kmk-299043
+  - id: unified-dk-galster-halvrhin
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: ½ Rhinsk gylden
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    ruler: Hans
+    mint:
+      - Kopenhagen
+      - Malmø
+    catalog:
+      galster: '28'
+      schou: '8'
+    metal: gold
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    year_verified: false
+    weight_rough_g:
+      - value: 1.639
+        source: Horsnæs, Moesgaard, Märcher, Fra Denar til Daler (2018) s. 448 — illustration caption on danskmoent.dk halvrhin.htm
+    diameter_mm:
+      - value: 20.0
+        source: Horsnæs, Moesgaard, Märcher, Fra Denar til Daler (2018) s. 448 — illustration caption on danskmoent.dk halvrhin.htm
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/halvrhin.htm
+        ref: Galster 28 — danskmoent.dk halvrhin.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: danish_realm
+    composed_of:
+      - dk-galster-halvrhin
   - id: unified-dk-galster-hg-141
     fuss: seed_unsorted
     phase: galster

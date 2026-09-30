@@ -90,6 +90,8 @@ _RULER_REIGN = {
     "f1g": (1523, 1533),   # Frederik I
     "c3g": (1534, 1559),   # Christian III (pre-1541 portion only — YEAR_TO=1541 cuts later)
 }
+_RULER_NAME_VOLUME = {"Hans": "hg", "Christian II": "c2g",
+                      "Frederik I": "f1g", "Christian III": "c3g"}
 
 # The `c2g` volume holds two unrelated groups under one ruler name. Christian
 # II's own coins are of his reign; the Grevens-Fejde issues are struck in his
@@ -545,7 +547,11 @@ def build_entry(data: dict) -> dict | None:
         if data.get("page_shape") == "grevenfejde":
             reign = _GREVENS_FEJDE_WINDOW
         else:
-            reign = _RULER_REIGN.get(data.get("ruler_volume") or "")
+            # Root-level single-coin pages (halvrhin.htm, 2nobel.htm) carry
+            # no volume prefix in the filename → fall back to the ruler name.
+            reign = (_RULER_REIGN.get(data.get("ruler_volume") or "")
+                     or _RULER_REIGN.get(_RULER_NAME_VOLUME.get(
+                         (data.get("ruler") or "").strip(), "")))
         if reign is None:
             return None
         year_first, year_last = reign
