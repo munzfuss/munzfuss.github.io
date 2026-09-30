@@ -331,7 +331,11 @@ def _is_real_galster_index(num: str | None) -> bool:
     only in the `coin_id` (an internal identifier); it must be kept OUT of the
     coin's `catalog.galster` field and out of the human-facing source-ref label.
     """
-    return bool(num) and any(c.isdigit() for c in num)
+    # «67suaar31» (fr/f1g67suaar31.htm) is a filename too: the page is the
+    # undated Ronneby søsling that Galster left WITHOUT a number of its own
+    # («Schou u. år 31», a variant split off Galster 67). A real index is a
+    # number with at most a short letter suffix («57A», «66A-B», «119BCD»).
+    return bool(num) and bool(re.fullmatch(r"\d+[A-Za-z]{0,3}(-[A-Za-z])?", num.strip()))
 
 
 _GALSTER_MINTS_RE = re.compile(
@@ -549,9 +553,13 @@ def build_entry(data: dict) -> dict | None:
         else:
             # Root-level single-coin pages (halvrhin.htm, 2nobel.htm) carry
             # no volume prefix in the filename → fall back to the ruler name.
-            reign = (_RULER_REIGN.get(data.get("ruler_volume") or "")
-                     or _RULER_REIGN.get(_RULER_NAME_VOLUME.get(
-                         (data.get("ruler") or "").strip(), "")))
+            # The ruler named on the page wins over the filename volume: the
+            # Gotland pages (gotlg146.htm) sit in Hans's «hg» series but some
+            # are struck by Frederik I («Frederik 1., Hvid u. år, Visby»).
+            # Root-level pages (halvrhin.htm) carry no volume at all.
+            reign = (_RULER_REIGN.get(_RULER_NAME_VOLUME.get(
+                         (data.get("ruler") or "").strip(), ""))
+                     or _RULER_REIGN.get(data.get("ruler_volume") or ""))
         if reign is None:
             return None
         year_first, year_last = reign

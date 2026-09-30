@@ -43,6 +43,9 @@ import re
 # type Krause-split across KM 14/15/20» merge_decision), so km keeps its own
 # unconditional split below. Regression guard: tests/test_catalog_slash_split.py.
 _MULTI_SLASH_RE = re.compile(r"\s*/\s*")
+# Year-keyed citation «1515/20»: Schou numbers dated pieces per year (year
+# 1515, No. 20 — danskmoent chr/c2g40.htm). ONE reference, never split.
+_YEAR_KEYED_RE = re.compile(r"1[4-9]\d\d\s*/\s*\d{1,3}[A-Za-z]?")
 _NUM_PREFIX_RE = re.compile(r"^([A-Za-z]{1,4}-?)\d")
 
 
@@ -59,6 +62,10 @@ def split_multi_ref(value) -> list[str]:
     s = str(value).strip()
     if "/" not in s:
         return [s] if s else []
+    # Year-keyed citation «1515/20» (Schou numbers dated pieces per year: year
+    # 1515, No. 20 — danskmoent chr/c2g40.htm) is ONE reference, not two.
+    if _YEAR_KEYED_RE.fullmatch(s):
+        return [s]
     parts = [p.strip() for p in _MULTI_SLASH_RE.split(s) if p.strip()]
     if len(parts) < 2:
         return [s] if s else []
@@ -603,7 +610,7 @@ def normalise_numeric_index(value):
     for v in raw:
         if v is None:
             continue
-        for part in re.split(r"[,/]", str(v)):
+        for part in re.split(r"[,/]", str(v)) if not _YEAR_KEYED_RE.fullmatch(str(v).strip()) else [str(v)]:
             part = _strip_subletter_space(part.strip())
             if part:
                 toks.append(part)

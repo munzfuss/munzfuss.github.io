@@ -564,3 +564,20 @@ removals:
     dropped:
       - Reinhold Junge# 21
     reason: Figure reference to the plates of Galster's edition of Reynold Junges Møntmesterregnskaber 1534-1540 (Kbh. 1934), not a catalogue index; removed from the catalogue column (curator direction 2026-09-29). The builder now drops every Reinhold Junge entry.
+
+  # ── Galster builder fixes 2026-09-30 ──────────────────────────────────────
+  - seed: dk-galster-f1g-67suaar31
+    kind: field
+    field: galster
+    dropped: ['67suaar31']
+    reason: >-
+      Filename token of fr/f1g67suaar31.htm, not a Galster number — the page
+      says this undated Ronneby søsling (Schou u. år 31) has no number of its
+      own. The builder now accepts only a number with a short letter suffix.
+  - seed: dk-galster-c2g-40
+    kind: field
+    field: schou
+    dropped: ['1515']
+    reason: >-
+      Half of Schou «1515/20» (year 1515, No. 20 — danskmoent chr/c2g40.htm),
+      split off as if it were an index. The coin now carries schou 1515/20.
