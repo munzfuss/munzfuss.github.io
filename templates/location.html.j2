@@ -970,12 +970,14 @@
 {% set gw = sg.fuss.grundwerte %}
 {% if gw %}
 <section class="gw">
+  {% if gw.heading or gw.subheading %}
   <div class="gw-head">
     <div class="gw-head-text">
       {% if gw.heading %}<div class="gw-heading">{{ gw.heading|t(lang) }}</div>{% endif %}
       {% if gw.subheading %}<div class="gw-subheading">{{ gw.subheading|t(lang) }}</div>{% endif %}
     </div>
   </div>
+  {% endif %}
   <div class="gw-body">
     {% if gw.rows %}
     <div class="gw-rows">
