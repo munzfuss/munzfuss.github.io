@@ -378,7 +378,12 @@ def _fuss_spec_line(spec, lang: str):
         fin = f"{fin} {g['fineness_unit']}"
     fin = _spec_words(fin, lang)
     slash = Markup('<span class="pspec-sep"> / </span>')
-    q = Markup(' <span class="pspec-q">(?)</span>')
+    note = g.get("fineness_note") or {}
+    note = note.get(lang) or note.get("en") or ""
+    if note:
+        q = Markup(' <span class="pspec-q" data-tooltip="') + escape(note) + Markup('">(?)</span>')
+    else:
+        q = Markup(' <span class="pspec-q">(?)</span>')
     out = Markup("")
     label = g.get("label")
     if label:

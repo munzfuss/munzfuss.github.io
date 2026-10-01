@@ -501,6 +501,9 @@ class FussSpec(_StrictBase):
     # Per-slot (?) when only the fineness is unattested (the count + mark are
     # sourced). `unverified` marks the whole line.
     fineness_unverified: bool = False
+    # Tooltip on that (?) — why the fineness is not attested and where the
+    # figure shown comes from. Without it the marker carries no tooltip.
+    fineness_note: I18nText | None = None
 
 
 class FussPeriod(_StrictBase):
