@@ -337,6 +337,10 @@ _SPEC_WORDS = {
 
 
 def _spec_words(text: str, lang: str) -> str:
+    # Ukrainian takes the genitive singular after a fractional number:
+    # «17¾ карата», «23½ карата», but «18 карат».
+    if lang == "uk":
+        text = re.sub(r"(?<=[½⅓⅔¼¾⅛⅜⅝⅞]) Karat\b", " карата", text)
     for w, tr in _SPEC_WORDS.items():
         if lang in tr:
             text = re.sub(rf"\b{w}\b", tr[lang], text)
