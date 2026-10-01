@@ -553,6 +553,17 @@ h2[style] {
   .tl-grid { font-size: 12px; }
   .tl-plot { --tl-lab: 140px; --tl-gap: 10px; }
 }
+/* Phone: label above its track (one column) instead of a squeezed label
+   column beside it; the track gets the full width and the century guides /
+   axes start at the left edge. */
+@media (max-width: 720px) {
+  .tl-grid { grid-template-columns: minmax(0, 1fr); }
+  .tl-grid > div:empty { display: none; }
+  .tl-grid > .tl-label { text-align: left; padding: 12px 0 0; }
+  .tl-grid > .tl-label-sub { padding-left: 14px; }
+  .tl-grid > div:nth-child(n+3):not(:nth-last-child(-n+2)) { border-top: 0; }
+  .tl-grid > .tl-label:not(:first-child) { border-top: var(--hairline) dotted var(--border-soft); }
+}
 /* Left column — fuss name (1-2 lines) + meta (weight·metal·…) right-aligned. */
 .tl-label {
   color: var(--text-primary);
@@ -1186,6 +1197,10 @@ h2[style] {
 /* Plot wrapper: holds the top axis, the bar grid (with bottom axis) and
    the century guide overlay, which covers the track column only. */
 .tl-plot { position: relative; --tl-lab: 240px; --tl-gap: 18px; }
+@media (max-width: 720px) {
+  /* Stacked label/track layout: the track column starts at the left edge. */
+  .tl-plot { --tl-lab: 0px; --tl-gap: 0px; }
+}
 .tl-centuries {
   position: absolute;
   /* From the top axis rule to the bottom axis rule (each axis is 22px). */
