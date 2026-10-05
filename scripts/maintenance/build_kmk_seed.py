@@ -346,6 +346,37 @@ def _weight(src):
 # «Fiala 4 nr. 325» → «4 nr. 325», not the volume «4»).
 _CAT_FULL_REMAINDER = {"aagaard", "fiala"}
 
+# Fiala is the one catalogue KMM writes with commas INSIDE its own reference:
+# «Fiala IV, s. 194, 1144» is volume IV, page 194, number 1144. The generic
+# split below cuts on `[;,]`, so all it ever saw was «Fiala IV» — and 22 seeds
+# carried the bare volume, 18 of them sharing `fiala: IV` across different
+# talers (a false edge for any §9.4 index graph). Catalogues are separated by
+# «;» («Fiala IV, s. 181, 1001; Dav 6307»), so the Fiala reference runs to the
+# next «;», and is lifted out before the split. Stored verbatim, «var.» and
+# page-only forms included («VI, 65 var.», «IV, s. 179»): the source's own
+# string is what we can attest (§0).
+#
+# A comparison reference is not this coin's index (CLAUDE.md anti-pattern 5):
+# «Fiala IV, s. 194, cf. 1144», and its Danish form «Fiala VI, jfr. 164/76»
+# (jfr. = sammenlign). The whole reference is dropped, as `_raadata_catalog`
+# drops a cf-tainted segment — the page beside a cf. index locates the OTHER
+# coin, so nothing in it is safely this one's.
+_FIALA_REF_RE = re.compile(r"\bFiala\b[\s:.]*([^;]+)", re.I)
+_COMPARE_REF_RE = re.compile(r"\b(?:cfr?|jfr)\.", re.I)
+
+
+def _lift_fiala(type_number: str) -> tuple[str, str | None]:
+    """→ (typeNumber with the Fiala reference removed, Fiala value or None)."""
+    m = _FIALA_REF_RE.search(type_number)
+    if not m:
+        return type_number, None
+    rest = type_number[:m.start()] + type_number[m.end():]
+    # Only whitespace is trimmed: «65 var.» keeps its full stop, as printed.
+    val = m.group(1).strip()
+    if _COMPARE_REF_RE.search(val):
+        val = None
+    return rest, (val or None)
+
 # §CN-equivalent source-index errata for KMM `typeNumber` Galster mis-prints,
 # applied HERE in the builder (not via the data-level `_source_errata` block):
 # all three records fold into the Galster-57 bucket and get thinned away, so a
@@ -371,6 +402,9 @@ def _catalog(src):
         # _enrich_from_raadata stashed (Sch → schou, Bech/B/LEB/… → others[]).
         return _merge_raadata_catalog({}, src)
     out: dict = {}
+    tn, fiala = _lift_fiala(tn)
+    if fiala:
+        out["fiala"] = fiala
     for seg in re.split(r"[;,]", _join_edition_year_index(tn)):
         seg = seg.strip()
         m = re.match(r"^([A-Za-zÆØÅæøå]+)[\s:.]*(.+)$", seg)

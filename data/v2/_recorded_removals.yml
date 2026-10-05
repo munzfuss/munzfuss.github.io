@@ -581,3 +581,20 @@ removals:
     reason: >-
       Half of Schou «1515/20» (year 1515, No. 20 — danskmoent chr/c2g40.htm),
       split off as if it were an index. The coin now carries schou 1515/20.
+  # ── Fiala comparison references, 2026-10-05 ──────────────────────────────
+  # KMM's typeNumber was cut on its own commas, so these two seeds carried only
+  # the bare Fiala volume. Their full reference is a comparison — «cf.», and the
+  # Danish «jfr.» — which names a DIFFERENT coin (CLAUDE.md anti-pattern 5), so
+  # once the reference is read whole nothing in it is this coin's index. Agreed
+  # with the curator in chat 2026-10-05. The other 20 bare volumes were not
+  # removed but completed («IV» → «IV, s. 181, 1000»).
+  - seed: kmk-184201
+    kind: field
+    field: fiala
+    dropped: [VI]
+    reason: KMM «Fiala VI, jfr. 164/76» — jfr. (sammenlign) points at another type.
+  - seed: kmk-184211
+    kind: field
+    field: fiala
+    dropped: [IV]
+    reason: KMM «Fiala IV, s. 194, cf. 1144» — a cf. reference, not this coin's index.
