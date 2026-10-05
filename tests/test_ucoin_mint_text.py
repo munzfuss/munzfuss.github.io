@@ -34,6 +34,11 @@ class UcoinMintText(unittest.TestCase):
         self.assertEqual(bus._ucoin_mint({"mint_text": "Clausthal-Zellerfeld (Germany)"}),
                          ("Clausthal-Zellerfeld (Germany)", False))
 
+    def test_constituent_beside_merged_name_wins(self):
+        # tid 92111, verbatim.
+        self.assertEqual(bus._ucoin_mint({"mint_text": "Clausthal-Zellerfeld; Zellerfeld"}),
+                         ("Zellerfeld", True))
+
     def test_ordinary_mint_verified(self):
         self.assertEqual(bus._ucoin_mint({"mint_text": "Eversburg"}), ("Eversburg", True))
         self.assertEqual(bus._ucoin_mint({"mint_text": "Zellerfeld"}), ("Zellerfeld", True))

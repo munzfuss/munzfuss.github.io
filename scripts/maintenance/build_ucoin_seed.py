@@ -242,8 +242,18 @@ def _ucoin_mint(cache: dict) -> tuple[str | None, bool]:
     if raw.strip().lower() in _UCOIN_MINT_JUNK:
         return None, False
     head = re.sub(r"\s*\(.*$", "", raw).strip()
-    tokens = [t.strip().lower() for t in re.split(r"[,;]", head) if t.strip()]
-    if any(t in _UCOIN_MINT_IMPRECISE for t in tokens):
+    tokens = [t.strip() for t in re.split(r"[,;]", head) if t.strip()]
+    coarse = [t for t in tokens if t.lower() in _UCOIN_MINT_IMPRECISE]
+    if coarse:
+        # «Clausthal-Zellerfeld; Zellerfeld» (tid 92111): the merged-town name
+        # beside one of its own constituents. Keep the constituent — the
+        # coarse form only says «Clausthal or Zellerfeld», so the specific
+        # reading subsumes it whichever way the pair was meant, and nothing
+        # but the imprecision is lost (curator 2026-10-05).
+        parts = {c.lower() for t in coarse for c in t.split("-")}
+        fine = [t for t in tokens if t.lower() in parts]
+        if fine:
+            return "; ".join(fine), True
         return raw, False
     return raw, True
 
