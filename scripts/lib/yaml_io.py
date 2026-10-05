@@ -334,10 +334,19 @@ def edit_coin_field(
     rest = lines[fi].split(":", 1)[1].strip()
     if rest:  # scalar field — single line
         span_end = fi + 1
-    else:     # list field — header + following same-indent '- ' items
+    else:     # block field — header + its children
+        # Children are same-indent «- » items (indentless sequence) OR any
+        # line indented deeper than the key: offset sequences («  - x» under
+        # «mint:»), the nested rows of a sequence item, a nested mapping.
+        # Matching only same-indent items left offset items behind as orphans
+        # when a list field was replaced or removed — invalid YAML (caught
+        # 2026-10-05 on a ucoin seed, `mint: [CPS, IWS]` → None).
         span_end = fi + 1
         item_re = re.compile(rf"^{re.escape(indent)}-\s")
-        while span_end < e and item_re.match(lines[span_end]):
+        while span_end < e and (
+                item_re.match(lines[span_end])
+                or (lines[span_end].strip()
+                    and len(lines[span_end]) - len(lines[span_end].lstrip()) > len(indent))):
             span_end += 1
     if expect_contains is not None:
         block_txt = nl.join(lines[fi:span_end])
@@ -351,6 +360,12 @@ def edit_coin_field(
         new_lines = _render_field(indent, field, new_value[0])
     else:
         new_lines = _render_field(indent, field, new_value)
+        # Keep the file's own sequence offset: if the old block's items sat
+        # deeper than the key, write the new items there too.
+        old_items = [l for l in lines[fi + 1:span_end] if l.lstrip().startswith("- ")]
+        if isinstance(new_value, (list, tuple)) and old_items:
+            item_indent = old_items[0][:len(old_items[0]) - len(old_items[0].lstrip())]
+            new_lines = [new_lines[0]] + [item_indent + l.lstrip() for l in new_lines[1:]]
     old_lines = lines[fi:span_end]
     if old_lines == new_lines:
         return False
