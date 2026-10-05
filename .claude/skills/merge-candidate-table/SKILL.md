@@ -9,7 +9,12 @@ description: >-
   links for both sides. Use when deciding whether a seed_unsorted /
   under-documented coin is the same as an existing final, or when comparing any
   two coin records before a merge — the read-only evidence step that feeds a
-  curator verdict, then hands off to `v2-merge-coins` for execution. Trigger
+  curator verdict, then hands off to `v2-merge-coins` for execution. Also
+  invoke it PROACTIVELY, without being asked, whenever you are about to ask the
+  curator to approve or reject a merge — including merges you did not propose:
+  pairs a re-flow auto-merged, a `v2-merge-coins graph` «NO shared base»
+  warning, a `verify_reflow` fold or COIN GONE that turns out to be a new union,
+  a suspected over-merge before a split. Trigger
   phrases: "порівняй ці монети", "побудуй таблицю порівняння", "таблиця
   мердж-кандидатів", "record vs merge-candidate", "compare coin records", "is
   this the same coin as", "дай таблицю по цих записах".
@@ -26,12 +31,35 @@ user) first.
 
 ## When to use
 
+- **Any question to the curator of the form «merge or not».** The table is the
+  required FORM of that question, not a reference produced on request. If you
+  are about to write «approve this merge?» / «злити чи розвести?», build the
+  table first — a hand-rolled summary skips Step 0 (`no_merges`), the link
+  check and the 📍/🎯 split (2026-10-05: two re-flow auto-merges were put to
+  the curator as an ad-hoc table and had to be redone through this skill).
+- A re-flow produced a union no `merge_decisions` entry covers — `trace_coin`
+  shows a seed in another class, or an entity's coin count dropped.
+- `merge_helper.py graph` warned «NO shared base» — the curator sees the table
+  before any decision is written.
+- A suspected over-merge before a split — same table, different verdict.
 - A `seed_unsorted` or under-documented coin might be the same as an existing
   classified final → show the evidence before merging.
 - The user asks «is X the same coin as Y?» / «порівняй ці записи».
 - Any pre-merge review where the curator needs to SEE, field by field, what
   matches and what doesn't — especially when the §9.4 graph-gate warns «no shared
   base» and the call rests on a specific catalogue key.
+
+## When NOT to use
+
+- The merge is already approved and only needs executing → go straight to
+  `v2-merge-coins`.
+- The catalogue key is unambiguous (the same full KM / Hede / Schou index on
+  every member) and the merge is automatic, with no question to the curator —
+  there is nothing to show.
+- De-duplicating specimens of one already-merged type (§9a thinning, surplus
+  weights from one source) — that is not a «same coin or not» question.
+- A bulk audit of dozens of pairs → `v2-audit` / `merge_helper.py scan`. The
+  table is for the pairs that have reached a verdict, not for the sweep.
 
 ## The two roles — NEVER blur them
 

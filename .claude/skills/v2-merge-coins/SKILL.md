@@ -73,8 +73,11 @@ python .claude/skills/v2-merge-coins/merge_helper.py graph <entity> <seed id> [<
   catalogue gives them a single base with sub-letters) → merge is plausible per
   §9.4. Proceed.
 - **NO shared base index** → STOP. If the only commonality is ruler+nominal+year
-  this is failure mode #1. Surface the graph to the user and get an explicit
-  per-case verdict (§8a / §0). Never force a merge the graph cannot justify.
+  this is failure mode #1. Build the `merge-candidate-table` for each pair
+  (record 📍 vs candidate 🎯, verified links, Step 0 `no_merges`) and ask the
+  curator for an explicit per-case verdict on THAT table (§8a / §0) — not on a
+  bare graph printout or an ad-hoc summary. Never force a merge the graph cannot
+  justify.
 - Remember §9.4's caveat: two candidates are *distinct types* only when EVERY
   catalogue separates them; ONE catalogue unifying them (e.g. Lange base, even
   if Krause+Dav split) is enough to merge. The graph shows which.
