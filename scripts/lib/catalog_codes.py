@@ -578,9 +578,18 @@ def _canonicalise_aagaard(catalog: dict) -> int:
 # with special value shapes: km (register-aware), dav/davenport (volume codes),
 # aagaard (die-pairs → others), numista (N# ordering is curator-set), and the
 # *_volume / *_id / bruun_lot helper fields.
+# Catalogues whose ONE reference carries its own commas and is kept verbatim.
+# KMM writes Fiala as «IV, s. 181, 1000» — volume, page, number. Treated as a
+# plain number list, the comma-flatten step below shredded it into
+# ['1000', 'IV', 's. 181'] and absorb then kept only «1000» (2026-10-05, 20
+# Braunschweig coins). Kept verbatim also means the «var.» stays: «VI, 65 var.»
+# as KMM prints it (curator 2026-10-05 for Fiala; the general 2026-06-25
+# var.-strip below is unchanged for every other catalogue).
+_VERBATIM_REF_FIELDS: set[str] = {"fiala"}
+
 _NUMERIC_INDEX_FIELDS: set[str] = {
     "schou", "sieg", "hede", "lange", "galster", "nmd", "fp", "fr", "mb",
-    "behrens", "schive", "skaare", "thomsen", "fiala", "gaedechens",
+    "behrens", "schive", "skaare", "thomsen", "gaedechens",
     "hauberg", "jesse", "kreber", "welter", "bergsoe",
 }
 _PLAIN_RANGE_RE = re.compile(r"^(\d+)-(\d+)$")
@@ -707,7 +716,7 @@ def normalise_catalog(catalog: dict) -> int:
     #     qualifier on every value («Lange 16b var.» → «16b») — the index alone
     #     suffices (curator 2026-06-25); see `_strip_variant_qualifier`.
     for field in list_fields:
-        if field == "km":
+        if field == "km" or field in _VERBATIM_REF_FIELDS:
             continue
         val = catalog.get(field)
         if val is None:

@@ -59,6 +59,20 @@ class FialaReferenceKeptWhole(unittest.TestCase):
                          {"fiala": "4 nr. 325", "welter": "593"})
 
 
+class NormaliserKeepsFialaWhole(unittest.TestCase):
+    """The parser was right and the cross-source normaliser undid it: Fiala sat
+    in the comma-flattening numeric-index set, so «IV, s. 181, 1000» became
+    ['1000', 'IV', 's. 181'] in seed_unified and «1000» in final, and the
+    general «var.»-strip ate «65 var.»."""
+
+    def test_volume_page_number_survives(self):
+        from lib.catalog_codes import normalise_catalog
+        for v in ("IV, s. 181, 1000", "VI, 65 var.", "4 nr. 905*-07"):
+            c = {"fiala": v}
+            normalise_catalog(c)
+            self.assertEqual(c, {"fiala": v})
+
+
 class ComparisonReferenceDropped(unittest.TestCase):
     def test_cf(self):
         # KMM 184211.

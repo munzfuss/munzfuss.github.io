@@ -104,8 +104,17 @@ _EXTRA_CAT_AUTHORS = [
 # sub-variants («90 a», «552 A»), and Olding's K-numbers («K 16.2/3746»). The
 # trailing-letter group requires a word boundary (negative lookahead) so it
 # captures the sub-variant «a» in «90 a» but NOT the «u» of «90 und 91».
+#
+# A hyphenated sub-number is captured whole: Duve numbers the Löser-Taler
+# variants «Nr. 14-II» / «1-III», and the old `[\d.\-/]*` swallowed the hyphen
+# and then stopped at the second roman letter, storing «Duve# 14-» (7 records,
+# 2026-10-05). The arm after each hyphen is digits, a roman numeral, or a single
+# letter («1-B»). A sub-letter may carry its own digits («Olding Nr. 405 b1»,
+# previously cut to «405 b»).
 _EXTRA_NR_RE = re.compile(
-    r"\bNr\.\s*([A-Za-z]{0,2}\s?\d[\d.\-/]*(?:\s?[A-Za-z](?![A-Za-z]))?)"
+    r"\bNr\.\s*([A-Za-z]{0,2}\s?\d[\d./]*"
+    r"(?:-(?:\d[\d./]*|[IVX]+(?![A-Za-z])|[A-Za-z](?![A-Za-z])))*-?"
+    r"(?:\s?[A-Za-z]\d*(?![A-Za-z]))?)"
 )
 
 
