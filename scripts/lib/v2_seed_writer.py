@@ -284,6 +284,128 @@ def _split_joint_mint(value: str) -> list[str] | None:
     return parts
 
 
+# A source's mint string can carry a MINTMASTER as well as the mint, and the
+# two orders both occur. «Altona (FF)» / «Copenhagen (FK VS)» put the mint
+# first; ucoin also writes «HCH (Heinrich Christoph Hille, Zellerfeld)» and
+# «J (Hamburg)» — initials or a mint letter first, the town in the brackets.
+# `_canonicalise_mint` strips the bracket unconditionally, which is right for
+# the first order and, for the second, keeps exactly the wrong half: the town
+# was lost and «HCH» / «J» rendered in the mint column (2026-10-05: 16 such
+# values, plus ~30 bare initials with no town at all, e.g. «OHK», «CvC»).
+# CLAUDE.md anti-pattern 6: initials belong in `mintmaster`, never in `mint`.
+#
+# `_split_mint_mintmaster` runs BEFORE the canonicaliser and decides which half
+# is the mint by asking the registry, not by position. A lone capital letter is
+# a mint MARK (A = Berlin, J = Hamburg), not a person — it is never moved into
+# `mintmaster`; with no town beside it, it is simply not a mint.
+#
+# «;» gets the same treatment. KMM writes «Clausthal; Henning Schreiber» —
+# mint, then mintmaster — and the canonicaliser's `[,;]` split turned that into
+# a two-mint list. «København; Malmø» really is two mints, so «;» still splits
+# when every part is a known mint, exactly as `_split_joint_mint` already does
+# for «og / and / und». Otherwise the tail is a mintmaster — unless it is a
+# negation («ikke Andreas Khüne)» = «not Andreas Küne»), which names nobody and
+# is dropped rather than recorded as the opposite of what the source says.
+_INITIALS_RE = re.compile(r"^[A-Z](?:[a-z]?[A-Z]){1,3}(?:\s+[A-Z]{1,4})*$")
+_INITIALS_LIST_RE = re.compile(r"^[A-Z]{1,4}(?:/[A-Z]{1,4})+$")
+_MINT_LETTER_RE = re.compile(r"^[A-Z]$")
+_NEGATION_RE = re.compile(r"^(?:ikke|nicht|not|nein)\b", re.IGNORECASE)
+_BRACKETED_RE = re.compile(r"^(.*?)\s*\((.*)\)\s*$")
+
+
+def _known_mint(text: str) -> bool:
+    """True when the LAST comma-token of `text` is a registered mint
+    («Germany, Hannover» → Hannover)."""
+    tok = text.split(",")[-1].strip().strip(" .")
+    tok = _strip_mint_suffix(re.sub(r"\s*\?\s*$", "", tok))
+    return tok.lower() in _MINT_ALIAS_TO_CANON
+
+
+def _is_initials(text: str) -> bool:
+    t = text.strip()
+    return bool(_INITIALS_RE.match(t) or _INITIALS_LIST_RE.match(t))
+
+
+def _split_mint_mintmaster(raw):
+    """→ (mint, mintmaster_or_None). A list is handled per item; the first
+    mintmaster found wins. Strings with nothing to split are returned as-is."""
+    if isinstance(raw, list):
+        mints: list = []
+        mm = None
+        for item in raw:
+            m, x = _split_mint_mintmaster(item)
+            if m is not None and m not in mints:
+                mints.append(m)
+            mm = mm or x
+        if not mints:
+            return None, mm
+        return (mints[0] if len(mints) == 1 else mints), mm
+    if not isinstance(raw, str) or not raw.strip():
+        return raw, None
+    s = raw.strip()
+    mm = None
+    if ";" in s:
+        parts = [p.strip() for p in s.split(";") if p.strip()]
+        # Split off a mintmaster only when no part after the first is itself
+        # a mint: «Clausthal-Zellerfeld; Zellerfeld» names two mint strings,
+        # not a mint and a person.
+        if len(parts) > 1 and not any(
+                _known_mint(_BRACKETED_RE.sub(r"\1", p) if _BRACKETED_RE.match(p) else p)
+                for p in parts[1:]):
+            s = parts[0]
+            tail = "; ".join(parts[1:]).strip(" )(")
+            if tail and not _NEGATION_RE.match(tail):
+                mm = tail
+    b = _BRACKETED_RE.match(s)
+    if b:
+        head, inner = b.group(1).strip(), b.group(2).strip()
+        inner_first = inner.split(",")[0].strip()
+        if head and _known_mint(head):
+            # Mint first: the bracket may hold the mintmaster.
+            if _is_initials(inner_first) and not mm:
+                mm = inner_first
+            return s, mm
+        if _known_mint(inner):
+            # Mintmaster (or mint letter) first, town in the bracket.
+            if _is_initials(head) and not mm:
+                mm = head
+            return inner.split(",")[-1].strip(), mm
+        if _is_initials(head) or _MINT_LETTER_RE.match(head):
+            # Initials with a gloss but no town: «CvC (Carl von Cramm)»,
+            # «HS (mintmaster)». Not a mint.
+            if _is_initials(head) and not mm:
+                mm = head
+            return None, mm
+        return s, mm
+    if _is_initials(s) or _MINT_LETTER_RE.match(s):
+        if _is_initials(s) and not mm:
+            mm = s
+        return None, mm
+    return s, mm
+
+
+def _apply_mint_mintmaster_split(c: dict, stats: dict | None) -> None:
+    """Apply `_split_mint_mintmaster` to one coin in place. A mintmaster the
+    entry already carries is never overwritten — the split only fills a gap.
+    When the split leaves no mint at all, `mint_verified` goes false: nothing
+    attests a mint any more (CLAUDE.md §4)."""
+    mint = c.get("mint")
+    new_mint, mm = _split_mint_mintmaster(mint)
+    if new_mint == mint and mm is None:
+        return
+    if new_mint != mint:
+        if new_mint is None:
+            c.pop("mint", None)
+            if c.get("mint_verified"):
+                c["mint_verified"] = False
+        else:
+            c["mint"] = new_mint
+        if stats is not None:
+            stats["mint_mintmaster_split"] = stats.get("mint_mintmaster_split", 0) + 1
+    if mm and not c.get("mintmaster"):
+        c["mintmaster"] = mm
+
+
 def _canonicalise_mint(raw):
     """Map an arbitrary mint string (or list) to canonical project
     spelling. Strips country-prefixes, paren tails, applies alias
@@ -1266,6 +1388,7 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
             stats["nominal_normalised"] += 1
         if _mint2 != c.get("mint"):
             c["mint"] = _mint2
+        _apply_mint_mintmaster_split(c, stats)
         mint = c.get("mint")
         # Detect ambiguity-indicators in the mint string («København eller
         # Malmø», «Copenhagen or Malmø», «København/Malmø», «Hamburg oder
@@ -1785,6 +1908,7 @@ def write_v2_seed(
                 if new_nom is not None and new_nom != nominal:
                     c["nominal"] = new_nom
                     file_normalised += 1
+                _apply_mint_mintmaster_split(c, None)
                 mint = c.get("mint")
                 new_mint = _canonicalise_mint(mint)
                 if (new_mint != mint

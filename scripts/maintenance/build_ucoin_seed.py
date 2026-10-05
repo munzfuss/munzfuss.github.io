@@ -218,6 +218,36 @@ def _mint_to_entity(mint) -> str | list[str] | None:
     return None
 
 
+# ucoin `mint_text` values that are not a mint statement at all. The harvest
+# read them off the page beside the mint row: «Mintage» and «Mark» are table
+# headers of the mintage block («Mark\tMintage» keeps the tab between them).
+# 14 cached records, 2026-10-05; every one rendered as a mint town.
+_UCOIN_MINT_JUNK = frozenset({"mintage", "mark", "mark\tmintage"})
+
+# A real mint string that is not a precise attribution. «Clausthal-Zellerfeld»
+# is the town formed by merging Clausthal and Zellerfeld in 1924; the two mints
+# worked side by side for different Welf lines, so the string cannot say which
+# one struck the coin. It is kept verbatim — it is what ucoin says, and dropping
+# it would lose the only mint statement many of these coins have — but marked
+# unverified (§4), so a museum record naming the actual mint wins every merge
+# instead of being listed beside it as a second mint (curator 2026-10-05).
+_UCOIN_MINT_IMPRECISE = frozenset({"clausthal-zellerfeld"})
+
+
+def _ucoin_mint(cache: dict) -> tuple[str | None, bool]:
+    """ucoin cache → (mint, mint_verified)."""
+    raw = cache.get("mint_text")
+    if not isinstance(raw, str) or not raw.strip():
+        return None, False
+    if raw.strip().lower() in _UCOIN_MINT_JUNK:
+        return None, False
+    head = re.sub(r"\s*\(.*$", "", raw).strip()
+    tokens = [t.strip().lower() for t in re.split(r"[,;]", head) if t.strip()]
+    if any(t in _UCOIN_MINT_IMPRECISE for t in tokens):
+        return raw, False
+    return raw, True
+
+
 _MIXED_FRAC_RE = re.compile(r"^(\d+)[\-\s]1/2(?=\s)")
 
 
@@ -486,7 +516,7 @@ def _build_entry_from_cache(cache: dict, entity: str,
         "year_ranges": year_ranges,
         "ruler": raw_ruler,
         "ruler_verified": ruler_verified,
-        "mint": cache.get("mint_text"),
+        "mint": _ucoin_mint(cache)[0],
         "catalog": catalog,
         "metal": metal,
         "fineness": raw_fineness,
@@ -496,7 +526,7 @@ def _build_entry_from_cache(cache: dict, entity: str,
         "metal_verified": metal_attested,
         "fineness_verified": raw_fineness is not None,
         "weight_rough_verified": cache.get("weight_g") is not None,
-        "mint_verified": bool(cache.get("mint_text")),
+        "mint_verified": _ucoin_mint(cache)[1],
         "sources": [
             {
                 "type": "ucoin",

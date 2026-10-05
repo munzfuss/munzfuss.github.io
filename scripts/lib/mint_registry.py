@@ -522,6 +522,109 @@ _MINT_REGISTRY: dict[str, dict] = {
         "entity": "hochstift_osnabrueck",
     },
 
+    # ──────────── Recognised mints, no routing (curator 2026-10-05) ─────
+    # Each of these is a real mint town, attested as a mint by a source
+    # independent of ucoin (IKMK / KMM / Numista counts in the comment, or the
+    # named source). They are registered so the seed writer RECOGNISES them —
+    # it can then tell «HCH (Heinrich Christoph Hille, Zellerfeld)» (mintmaster,
+    # then the mint in brackets) from «Altona (FF)» (mint, then mintmaster) —
+    # and spells each one way across sources («Cologne» → «Köln»).
+    #
+    # `entity: None` is deliberate and makes the addition routing-neutral:
+    # `classify_mint_to_entity` skips a None-entity mint exactly as it skips an
+    # unknown one, so no coin changes entity because of this block. Several of
+    # these struck for more than one issuer (Berlin, Hannover, Köln, Münster,
+    # Koblenz), so a mint-driven entity would be wrong for some of their coins.
+    #
+    # NOT registered, on purpose: «Clausthal-Zellerfeld» — the town formed by
+    # merging the two in 1924, so as a mint name it is an anachronism covering
+    # two mints that worked side by side for different Welf lines; and
+    # «Eversburg», which no source attests as a mint. Both still pass through
+    # the writer verbatim — unregistered is not dropped.
+    "zellerfeld": {
+        # IKMK 41, KMM 54, Numista 4.
+        "aliases": {"zellerfeld"},
+        "display": "Zellerfeld",
+        "entity": None,
+    },
+    "clausthal": {
+        # IKMK 28, Numista 10, KMM 7.
+        "aliases": {"clausthal"},
+        "display": "Clausthal",
+        "entity": None,
+    },
+    "braunschweig": {
+        # IKMK 36.
+        "aliases": {"braunschweig", "brunswick"},
+        "display": "Braunschweig",
+        "entity": None,
+    },
+    "goslar": {
+        # KMM 13, IKMK 11, Numista 5.
+        "aliases": {"goslar"},
+        "display": "Goslar",
+        "entity": None,
+    },
+    "hannover": {
+        # IKMK 13, Numista 10.
+        "aliases": {"hannover", "hanover"},
+        "display": "Hannover",
+        "entity": None,
+    },
+    "berlin": {
+        # IKMK 209, Numista 7.
+        "aliases": {"berlin"},
+        "display": "Berlin",
+        "entity": None,
+    },
+    "bremen": {
+        # IKMK 33, Numista 8.
+        "aliases": {"bremen"},
+        "display": "Bremen",
+        "entity": None,
+    },
+    "celle": {
+        # IKMK 5, Numista 2.
+        "aliases": {"celle", "zelle"},
+        "display": "Celle",
+        "entity": None,
+    },
+    "halberstadt": {
+        # IKMK 7.
+        "aliases": {"halberstadt"},
+        "display": "Halberstadt",
+        "entity": None,
+    },
+    "muenster": {
+        # IKMK 5.
+        "aliases": {"münster", "muenster", "munster"},
+        "display": "Münster",
+        "entity": None,
+    },
+    "koeln": {
+        # IKMK 2; Künker lot «Reichstaler 1631, Köln» (Franz Wilhelm von
+        # Wartenberg, Osnabrück).
+        "aliases": {"köln", "koeln", "koln", "cologne", "cöln"},
+        "display": "Köln",
+        "entity": None,
+    },
+    "melle": {
+        # Only ucoin in the corpus; Olding (Osnabrück specialist) lists
+        # «4 Pfennig 1657 Melle», Franz Wilhelm von Wartenberg.
+        "aliases": {"melle"},
+        "display": "Melle",
+        "entity": None,
+    },
+    "koblenz": {
+        # Only ucoin in the corpus; principal mint of the Electors of Trier
+        # from the 15th century (Landeszentrale RLP, «Münzreiches
+        # Rheinland-Pfalz», 2012). Karl Joseph of Lorraine was both Bishop
+        # of Osnabrück and Elector of Trier.
+        "aliases": {"koblenz", "coblenz"},
+        "display": "Koblenz",
+        "entity": None,
+    },
+
     # ──────────────── Out-of-scope (foreign mints) ─────────────────────
     "mannheim": {
         "aliases": {"mannheim"},
