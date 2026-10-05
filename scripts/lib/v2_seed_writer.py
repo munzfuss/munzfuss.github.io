@@ -307,7 +307,7 @@ def _split_joint_mint(value: str) -> list[str] | None:
 # negation («ikke Andreas Khüne)» = «not Andreas Küne»), which names nobody and
 # is dropped rather than recorded as the opposite of what the source says.
 _INITIALS_RE = re.compile(r"^[A-Z](?:[a-z]?[A-Z]){1,3}(?:\s+[A-Z]{1,4})*$")
-_INITIALS_LIST_RE = re.compile(r"^[A-Z]{1,4}(?:/[A-Z]{1,4})+$")
+_INITIALS_LIST_RE = re.compile(r"^[A-Z]{1,4}(?:\s*[/,]\s*[A-Z]{1,4})+$")
 _MINT_LETTER_RE = re.compile(r"^[A-Z]$")
 _NEGATION_RE = re.compile(r"^(?:ikke|nicht|not|nein)\b", re.IGNORECASE)
 _BRACKETED_RE = re.compile(r"^(.*?)\s*\((.*)\)\s*$")

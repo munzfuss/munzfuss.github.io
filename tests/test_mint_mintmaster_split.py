@@ -55,6 +55,12 @@ class NoTownAtAll(unittest.TestCase):
         self.assertEqual(split("OHK"), (None, "OHK"))
         self.assertEqual(split("CvC (Carl von Cramm)"), (None, "CvC"))
         self.assertEqual(split("LW/HS/IPE/RB (mintmasters across years)"), (None, "LW/HS/IPE/RB"))
+        # hb-tid-81961, spaced slash.
+        self.assertEqual(split("IHL / OHK"), (None, "IHL / OHK"))
+        # tid 92007, comma-separated.
+        self.assertEqual(split("CPS, IWS"), (None, "CPS, IWS"))
+        # A real joint mint is not initials.
+        self.assertEqual(split("Kopenhagen, Altona"), (["Altona", "Kopenhagen"], None))
 
     def test_lone_letter_is_dropped_not_kept(self):
         self.assertEqual(split("D"), (None, None))
