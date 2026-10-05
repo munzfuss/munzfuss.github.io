@@ -1,6 +1,6 @@
 status: seed
 source: ucoin (ucoin.net per-coin pages, harvested via Chrome MCP)
-generated_at: '2026-07-29T11:06:14Z'
+generated_at: '2026-10-05T18:39:46Z'
 entity: herzogtum_sachsen_lauenburg
 scope_note: "ucoin V2 seed. User-edited coin catalogue (ucoin.net), tier-equivalent to Numista per CLAUDE.md §5.6. Pulls from `scripts/cache/ucoin/<tid>.json` harvests. Entity classification: mint via `lib/mint_registry`
   (year-aware), URL-country fallback when the mint is absent or outside this builder's entity set. Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / NumisMaster / Bruun) before
@@ -39,6 +39,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     _currency: Thaler of Lauenburg
     _period: Duchy of Lauenburg (1704 - 1830)
     _references_text: KM# 5
@@ -76,6 +77,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     _currency: Thaler of Lauenburg
     _period: Duchy of Lauenburg (1704 - 1830)
     _references_text: KM# 10
@@ -113,6 +115,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     _currency: Thaler of Lauenburg
     _period: Duchy of Lauenburg (1704 - 1830)
     _references_text: KM# 11
@@ -150,6 +153,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     diameter_mm: 16
     diameter_mm_verified: true
     _currency: Thaler of Lauenburg
@@ -189,6 +193,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     diameter_mm: 12.5
     diameter_mm_verified: true
     _currency: Thaler of Lauenburg
@@ -228,6 +233,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     _currency: Thaler of Lauenburg
     _period: Duchy of Lauenburg (1704 - 1830)
     _references_text: KM# 14
@@ -256,7 +262,11 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
+    _curation_holds:
+      mint_verified: false — ucoin gives «Clausthal-Zellerfeld», the town formed by merging the two in 1924; as a mint name it covers two mints that worked side by side for different Welf lines and 
+        cannot say which struck this coin. Kept verbatim, marked unverified so a source naming the actual mint wins a merge. Held because the writer's sources-imply-mint rule would otherwise promote 
+        it back to true on every re-seed (curator 2026-10-05).
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/lauenburg-8-schilling-1738/?tid=131329
@@ -265,6 +275,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     diameter_mm: 25.5
     diameter_mm_verified: true
     _currency: Thaler of Lauenburg
@@ -295,7 +306,11 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
+    _curation_holds:
+      mint_verified: false — ucoin gives «Clausthal-Zellerfeld», the town formed by merging the two in 1924; as a mint name it covers two mints that worked side by side for different Welf lines and 
+        cannot say which struck this coin. Kept verbatim, marked unverified so a source naming the actual mint wins a merge. Held because the writer's sources-imply-mint rule would otherwise promote 
+        it back to true on every re-seed (curator 2026-10-05).
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/lauenburg-16-schilling-1738/?tid=131330
@@ -304,6 +319,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     _currency: Thaler of Lauenburg
     _period: Duchy of Lauenburg (1704 - 1830)
     _references_text: KM# 16
@@ -332,7 +348,11 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
+    _curation_holds:
+      mint_verified: false — ucoin gives «Clausthal-Zellerfeld», the town formed by merging the two in 1924; as a mint name it covers two mints that worked side by side for different Welf lines and 
+        cannot say which struck this coin. Kept verbatim, marked unverified so a source naming the actual mint wins a merge. Held because the writer's sources-imply-mint rule would otherwise promote 
+        it back to true on every re-seed (curator 2026-10-05).
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/lauenburg-32-schilling-1738/?tid=131331
@@ -341,6 +361,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     _currency: Thaler of Lauenburg
     _period: Duchy of Lauenburg (1704 - 1830)
     _references_text: KM# 17
@@ -378,6 +399,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     _currency: Thaler of Lauenburg
     _period: Duchy of Lauenburg (1704 - 1830)
     _references_text: KM# 18
@@ -415,6 +437,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     _currency: Thaler of Lauenburg
     _period: Duchy of Lauenburg (1704 - 1830)
     _references_text: KM# 19
@@ -452,6 +475,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     diameter_mm: 34
     diameter_mm_verified: true
     _currency: Thaler of Lauenburg

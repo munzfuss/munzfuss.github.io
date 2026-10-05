@@ -598,3 +598,421 @@ removals:
     field: fiala
     dropped: [IV]
     reason: KMM «Fiala IV, s. 194, cf. 1144» — a cf. reference, not this coin's index.
+  # ── ucoin non-mint values in `mint`, 2026-10-05 ──────────────────────────
+  # The seed writer kept the wrong half of ucoin's «INITIALS (Name, Town)» /
+  # «J (Hamburg)» and passed bare initials, mint letters and two mintage-table
+  # headers («Mintage», «Mark») straight into `mint`. The writer now splits
+  # mint from mintmaster by asking the registry, and the ucoin builder drops
+  # the headers; this removes the values the finals had already accumulated.
+  # Agreed with the curator in chat 2026-10-05. Where ucoin names a town it
+  # replaces the token; initials move to `mintmaster`.
+  - seed: dk-tid-101250
+    kind: field
+    field: mint
+    dropped: ["Mark"]
+    reason: "«Mark» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: dk-tid-173629
+    kind: field
+    field: mint
+    dropped: ["Mark"]
+    reason: "«Mark» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: dk-tid-97317
+    kind: field
+    field: mint
+    dropped: ["Mark"]
+    reason: "«Mark» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: dk-tid-97532
+    kind: field
+    field: mint
+    dropped: ["Mark"]
+    reason: "«Mark» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: hb-tid-81960
+    kind: field
+    field: mint
+    dropped: ["IHL"]
+    reason: "«IHL» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: hb-tid-81961
+    kind: field
+    field: mint
+    dropped: ["IHL"]
+    reason: "«IHL» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: hb-tid-81961
+    kind: field
+    field: mint
+    dropped: ["OHK"]
+    reason: "«OHK» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: hb-tid-81962
+    kind: field
+    field: mint
+    dropped: ["OHK"]
+    reason: "«OHK» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: hb-tid-81964
+    kind: field
+    field: mint
+    dropped: ["OHK"]
+    reason: "«OHK» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: hb-tid-81974
+    kind: field
+    field: mint
+    dropped: ["OHK"]
+    reason: "«OHK» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: hb-tid-82030
+    kind: field
+    field: mint
+    dropped: ["B"]
+    reason: "«B» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: hb-tid-95655
+    kind: field
+    field: mint
+    dropped: ["OHK"]
+    reason: "«OHK» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: hb-tid-95656
+    kind: field
+    field: mint
+    dropped: ["OHK"]
+    reason: "«OHK» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-100767
+    kind: field
+    field: mint
+    dropped: ["HCH"]
+    reason: "«HCH» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-101110
+    kind: field
+    field: mint
+    dropped: ["DB"]
+    reason: "«DB» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-101111
+    kind: field
+    field: mint
+    dropped: ["DB"]
+    reason: "«DB» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-101255
+    kind: field
+    field: mint
+    dropped: ["GLC"]
+    reason: "«GLC» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-172168
+    kind: field
+    field: mint
+    dropped: ["CD"]
+    reason: "«CD» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-172185
+    kind: field
+    field: mint
+    dropped: ["Mintage"]
+    reason: "«Mintage» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: tid-tid-172187
+    kind: field
+    field: mint
+    dropped: ["Mintage"]
+    reason: "«Mintage» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: tid-tid-173148
+    kind: field
+    field: mint
+    dropped: ["Mintage"]
+    reason: "«Mintage» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: tid-tid-173284
+    kind: field
+    field: mint
+    dropped: ["Mintage"]
+    reason: "«Mintage» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: tid-tid-173339
+    kind: field
+    field: mint
+    dropped: ["HLO"]
+    reason: "«HLO» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-173345
+    kind: field
+    field: mint
+    dropped: ["HLO"]
+    reason: "«HLO» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-173349
+    kind: field
+    field: mint
+    dropped: ["Mark\tMintage"]
+    reason: "«Mark\tMintage» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: tid-tid-190570
+    kind: field
+    field: mint
+    dropped: ["Mintage"]
+    reason: "«Mintage» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: tid-tid-190571
+    kind: field
+    field: mint
+    dropped: ["Mintage"]
+    reason: "«Mintage» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: tid-tid-190572
+    kind: field
+    field: mint
+    dropped: ["Mintage"]
+    reason: "«Mintage» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: tid-tid-190590
+    kind: field
+    field: mint
+    dropped: ["D"]
+    reason: "«D» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-190773
+    kind: field
+    field: mint
+    dropped: ["D"]
+    reason: "«D» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-190779
+    kind: field
+    field: mint
+    dropped: ["D"]
+    reason: "«D» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-190781
+    kind: field
+    field: mint
+    dropped: ["D"]
+    reason: "«D» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-190782
+    kind: field
+    field: mint
+    dropped: ["D"]
+    reason: "«D» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-190783
+    kind: field
+    field: mint
+    dropped: ["D"]
+    reason: "«D» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-56079
+    kind: field
+    field: mint
+    dropped: ["J"]
+    reason: "«J» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-56148
+    kind: field
+    field: mint
+    dropped: ["J"]
+    reason: "«J» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-56154
+    kind: field
+    field: mint
+    dropped: ["J"]
+    reason: "«J» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-56157
+    kind: field
+    field: mint
+    dropped: ["J"]
+    reason: "«J» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-56158
+    kind: field
+    field: mint
+    dropped: ["J"]
+    reason: "«J» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-56166
+    kind: field
+    field: mint
+    dropped: ["B"]
+    reason: "«B» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-56167
+    kind: field
+    field: mint
+    dropped: ["B"]
+    reason: "«B» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-56168
+    kind: field
+    field: mint
+    dropped: ["J"]
+    reason: "«J» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-56175
+    kind: field
+    field: mint
+    dropped: ["J"]
+    reason: "«J» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-56213
+    kind: field
+    field: mint
+    dropped: ["J"]
+    reason: "«J» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-56260
+    kind: field
+    field: mint
+    dropped: ["A"]
+    reason: "«A» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-81959
+    kind: field
+    field: mint
+    dropped: ["Mintage"]
+    reason: "«Mintage» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: tid-tid-81963
+    kind: field
+    field: mint
+    dropped: ["Mark"]
+    reason: "«Mark» is a mintage-table header the ucoin harvest read off the page, not a mint."
+  - seed: tid-tid-82015
+    kind: field
+    field: mint
+    dropped: ["B"]
+    reason: "«B» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-82053
+    kind: field
+    field: mint
+    dropped: ["CvC"]
+    reason: "«CvC» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-82054
+    kind: field
+    field: mint
+    dropped: ["CvC"]
+    reason: "«CvC» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-82055
+    kind: field
+    field: mint
+    dropped: ["CvC"]
+    reason: "«CvC» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-82056
+    kind: field
+    field: mint
+    dropped: ["CvC"]
+    reason: "«CvC» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-85854
+    kind: field
+    field: mint
+    dropped: ["B"]
+    reason: "«B» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-85855
+    kind: field
+    field: mint
+    dropped: ["B"]
+    reason: "«B» is a mint letter; the town it stands for is recorded instead where ucoin names it."
+  - seed: tid-tid-91541
+    kind: field
+    field: mint
+    dropped: ["HS"]
+    reason: "«HS» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-91542
+    kind: field
+    field: mint
+    dropped: ["HS"]
+    reason: "«HS» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-91542
+    kind: field
+    field: mint
+    dropped: ["IPE"]
+    reason: "«IPE» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-91542
+    kind: field
+    field: mint
+    dropped: ["LW"]
+    reason: "«LW» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-91542
+    kind: field
+    field: mint
+    dropped: ["RB"]
+    reason: "«RB» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-91876
+    kind: field
+    field: mint
+    dropped: ["HH"]
+    reason: "«HH» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-92005
+    kind: field
+    field: mint
+    dropped: ["CPS"]
+    reason: "«CPS» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-92006
+    kind: field
+    field: mint
+    dropped: ["CPS"]
+    reason: "«CPS» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-92007
+    kind: field
+    field: mint
+    dropped: ["CPS"]
+    reason: "«CPS» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-92007
+    kind: field
+    field: mint
+    dropped: ["IWS"]
+    reason: "«IWS» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-92176
+    kind: field
+    field: mint
+    dropped: ["HB"]
+    reason: "«HB» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-92177
+    kind: field
+    field: mint
+    dropped: ["HB"]
+    reason: "«HB» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-96482
+    kind: field
+    field: mint
+    dropped: ["HCH"]
+    reason: "«HCH» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-96953
+    kind: field
+    field: mint
+    dropped: ["HS"]
+    reason: "«HS» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  - seed: tid-tid-96954
+    kind: field
+    field: mint
+    dropped: ["HS"]
+    reason: "«HS» is mintmaster initials, not a mint (anti-pattern 6); kept in mintmaster where ucoin gives them."
+  # The same three values on Numista-founded finals that absorbed the ucoin
+  # citation (tid 82056 / 82053 / 81963) — and its mint — without the ucoin
+  # seed ever joining their composition, so the row has to name the member
+  # seed that does.
+  - seed: dk-numista-66767
+    kind: field
+    field: mint
+    dropped: [CvC]
+    reason: "«CvC» (Carl von Cramm) is mintmaster initials taken in with the ucoin tid 82056 citation, not a mint; now in mintmaster."
+  - seed: dk-numista-75951
+    kind: field
+    field: mint
+    dropped: [CvC]
+    reason: "«CvC» (Carl von Cramm) is mintmaster initials taken in with the ucoin tid 82053 citation, not a mint; now in mintmaster."
+  - seed: dk-numista-85137
+    kind: field
+    field: mint
+    dropped: [Mark]
+    reason: "«Mark» is a mintage-table header the ucoin harvest read off the page (tid 81963), taken in with its citation; not a mint."
+  # ── IKMK catalogue numbers cut short, 2026-10-05 ──────────────────────────
+  # `build_ikmk_seed._EXTRA_NR_RE` stopped at the second roman letter of Duve's
+  # hyphenated variant numbers («Nr. 14-II» → «Duve# 14-») and at the digit
+  # after a sub-letter («Nr. 405 b1» → «405 b»). Each truncated value is replaced
+  # by the full one IKMK prints; the truncated string itself is what is dropped.
+  # Curator-approved in chat 2026-10-05.
+  - seed: ikmk-18232374
+    kind: field
+    field: others
+    dropped: ['Duve# 14-']
+    reason: "IKMK prints «14-II»; «14-» was the parser's truncation of it, now replaced by «Duve# 14-II»."
+  - seed: ikmk-18232375
+    kind: field
+    field: others
+    dropped: ['Duve# 14-']
+    reason: "IKMK prints «14-II»; «14-» was the parser's truncation of it, now replaced by «Duve# 14-II»."
+  - seed: ikmk-18232377
+    kind: field
+    field: others
+    dropped: ['Duve# 2-']
+    reason: "IKMK prints «2-II»; «2-» was the parser's truncation of it, now replaced by «Duve# 2-II»."
+  - seed: ikmk-18232395
+    kind: field
+    field: others
+    dropped: ['Duve# 1-']
+    reason: "IKMK prints «1-III»; «1-» was the parser's truncation of it, now replaced by «Duve# 1-III»."
+  - seed: ikmk-18232396
+    kind: field
+    field: others
+    dropped: ['Duve# 1-']
+    reason: "IKMK prints «1-II»; «1-» was the parser's truncation of it, now replaced by «Duve# 1-II»."
+  - seed: ikmk-18232463
+    kind: field
+    field: others
+    dropped: ['Duve# 1-']
+    reason: "IKMK prints «1-II»; «1-» was the parser's truncation of it, now replaced by «Duve# 1-II»."
+  - seed: ikmk-18232475
+    kind: field
+    field: others
+    dropped: ['Duve# 3-']
+    reason: "IKMK prints «3-II»; «3-» was the parser's truncation of it, now replaced by «Duve# 3-II»."
+  - seed: ikmk-18240566
+    kind: field
+    field: others
+    dropped: ['Olding# 405 b']
+    reason: "IKMK prints «405 b1»; «405 b» was the parser's truncation of it, now replaced by «Olding# 405 b1»."

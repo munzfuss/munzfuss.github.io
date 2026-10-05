@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-09-30 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-05 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15272 per-source seed entries.
-# Output: 6933 unified entries (one per physical coin).
+# Output: 6930 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-09-30'
+generated_at: '2026-10-05'
 coins:
   - id: unified-denmark-numismaster-117984
     fuss: seed_unsorted
@@ -29884,6 +29884,8 @@ coins:
         source: numismaster
       - value: 0.979
         source: numista
+      - value: 0.98
+        source: ucoin
     weight_rough_g:
       - value: 3.47
         source: bruun
@@ -29897,6 +29899,8 @@ coins:
         source: numismaster
       - value: 3.49
         source: numista
+      - value: 3.49
+        source: ucoin
     diameter_mm:
       - value: 23.7
         source: numista
@@ -29913,6 +29917,9 @@ coins:
       - type: literature
         url: https://en.numista.com/265064
         ref: Numista N#265064 — 1 Ducat - Christian V (Frederiksborg Fortress)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-dukat-1682/?tid=97532
+        ref: ucoin
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/176126
         ref: KMM 176126 (Inv. RP 502.1)
@@ -29929,6 +29936,7 @@ coins:
       - dk-bruun-6957
       - dk-hede-c5h11
       - dk-numista-265064
+      - dk-tid-97532
       - kmk-176126
       - ngc-1050267
   - id: unified-dk-hede-c5h110
@@ -30528,7 +30536,7 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     fineness:
@@ -30540,6 +30548,8 @@ coins:
         source: numismaster
       - value: 0.979
         source: numista
+      - value: 0.98
+        source: ucoin
     weight_rough_g:
       - value: 6.98
         source: ngc
@@ -30547,10 +30557,15 @@ coins:
         source: numismaster
       - value: 6.98
         source: numista
+      - value: 6.98
+        source: ucoin
       - value: 6.981
         source: hede
       - value: 7.0
         source: bruun
+    diameter_mm:
+      - value: 25.0
+        source: ucoin
     sources:
       - type: literature
         url: https://numismaster.com/MC_65878
@@ -30564,6 +30579,9 @@ coins:
       - type: literature
         url: https://en.numista.com/328531
         ref: Numista N#328531 — 2 Ducats - Christian V
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-dukat-1687/?tid=173629
+        ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-ducat-km-390-1687-cuid-1050372-duid-1238128
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -30577,6 +30595,7 @@ coins:
       - dk-bruun-7030
       - dk-hede-c5h15
       - dk-numista-328531
+      - dk-tid-173629
       - ngc-1050372
   - id: unified-dk-hede-c5h16
     fuss: seed_unsorted
@@ -31440,9 +31459,7 @@ coins:
     year_label: 1670-1699
     ruler: Christian V.
     mintmaster: Christian Wineke, the Elder (CW)
-    mint:
-      - Kopenhagen
-      - Mark
+    mint: Kopenhagen
     catalog:
       km:
         - '416.1'
@@ -36678,7 +36695,11 @@ coins:
         source: numismaster
       - value: 0.671
         source: numista
+      - value: 0.671
+        source: ucoin
     weight_rough_g:
+      - value: 22.27
+        source: ucoin
       - value: 22.272
         source: hede
       - value: 22.272
@@ -36688,6 +36709,8 @@ coins:
       - value: 22.272
         source: numista
     diameter_mm:
+      - value: 39.3
+        source: ucoin
       - value: 39.35
         source: numista
     sources:
@@ -36700,6 +36723,9 @@ coins:
       - type: literature
         url: https://en.numista.com/112718
         ref: Numista N#112718 — 4 Mark Dansk "Bondedreng" - Christian V
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1690/?tid=97317
+        ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-krone-km-400-1690-cuid-1069036-duid-1237045
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -36717,6 +36743,7 @@ coins:
       - denmark-numismaster-65317
       - dk-hede-c5h88
       - dk-numista-112718
+      - dk-tid-97317
       - ngc-1069036
   - id: unified-dk-hede-c5h89
     fuss: seed_unsorted
@@ -39333,6 +39360,7 @@ coins:
     year_last: 1842
     year_label: '1842'
     ruler: Christian VIII.
+    mintmaster: FK VS
     mint: Kopenhagen
     catalog:
       km: '728'
@@ -39408,6 +39436,7 @@ coins:
     year_last: 1842
     year_label: '1842'
     ruler: Christian VIII.
+    mintmaster: FK VS
     mint: Kopenhagen
     catalog:
       km: '725'
@@ -65251,6 +65280,7 @@ coins:
     year_last: 1852
     year_label: '1852'
     ruler: Frederik VII.
+    mintmaster: FK VS
     mint: Kopenhagen
     catalog:
       km: '753'
@@ -71642,6 +71672,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-101040
@@ -71687,6 +71718,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-101044
@@ -71726,6 +71758,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-162999
@@ -71765,6 +71798,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-163009
@@ -71853,6 +71887,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-163033
@@ -71904,52 +71939,10 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-163067
-  - id: unified-dk-tid-173629
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 2 Dukat
-    year_first: 1687
-    year_last: 1687
-    year_label: '1687'
-    ruler: Christian V
-    mint: Mark
-    catalog:
-      km: '390'
-      bruun_collection_id: '7030'
-      bruun_part: I
-      bruun_lot_no: 1109
-      bruun_page: 158
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.98
-        source: ucoin
-    weight_rough_g:
-      - value: 6.98
-        source: ucoin
-    diameter_mm:
-      - value: 25.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-2-dukat-1687/?tid=173629
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-tid-173629
   - id: unified-dk-tid-70718
     fuss: seed_unsorted
     phase: ucoin
@@ -71983,6 +71976,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-70718
@@ -72024,6 +72018,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-70753
@@ -72061,6 +72056,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-96468
@@ -72095,48 +72091,10 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-97090
-  - id: unified-dk-tid-97317
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Krone
-    year_first: 1690
-    year_last: 1690
-    year_label: '1690'
-    ruler: Christian V
-    mint: Mark
-    catalog:
-      km: '400'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.671
-        source: ucoin
-    weight_rough_g:
-      - value: 22.27
-        source: ucoin
-    diameter_mm:
-      - value: 39.3
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-krone-1690/?tid=97317
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-tid-97317
   - id: unified-dk-tid-97383
     fuss: seed_unsorted
     phase: ucoin
@@ -72173,6 +72131,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-97383
@@ -72202,48 +72161,10 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-97384
-  - id: unified-dk-tid-97532
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Dukat
-    year_first: 1682
-    year_last: 1682
-    year_label: '1682'
-    ruler: Christian V
-    mint: Mark
-    catalog:
-      km: '372'
-      bruun_collection_id: '6957'
-      bruun_part: II
-      bruun_lot_no: 13181
-      bruun_page: 132
-    metal: gold
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.98
-        source: ucoin
-    weight_rough_g:
-      - value: 3.49
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-dukat-1682/?tid=97532
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-tid-97532
   - id: unified-dk-tid-99106
     fuss: seed_unsorted
     phase: ucoin
@@ -72282,6 +72203,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-99106
@@ -72321,6 +72243,7 @@ coins:
       de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
       en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
       uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
+      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
     issuing_entity: danish_realm
     composed_of:
       - dk-tid-99111
@@ -217485,6 +217408,7 @@ coins:
     year_last: 1775
     year_label: '1775'
     ruler: Christian VII
+    mintmaster: HSK
     mint: Kopenhagen
     catalog:
       km: '627'
