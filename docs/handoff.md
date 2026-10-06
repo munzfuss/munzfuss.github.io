@@ -15,6 +15,67 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-10-06 — the `mint` field cleaned of non-places; edit_coin_field fixed
+
+Closes the 2026-09-20 task. Three sources, each with its own rule, all in code
+so a re-seed keeps them, plus the finals' accumulated stale values removed and
+recorded in `_recorded_removals.yml`. All commits pushed up to `1131610`; the
+eight after it (`1b776d9`…`5181cf8`) are LOCAL.
+
+**What changed**
+- KMM illegible/undetermined (`ulæselig`, `ubestemt`, …) → no mint, (?) —
+  `9145e18`. `Lybæk` stale on one final — same commit.
+- Seed writer: mint vs mintmaster decided by the registry, not by bracket
+  position («HCH (…, Zellerfeld)» → Zellerfeld + mm HCH); «;» splits as two
+  mints only when the tail is a mint — `2c8cc37`, `4b9cbde`. ucoin page headers
+  «Mintage»/«Mark» dropped; «Clausthal-Zellerfeld» kept but unverified (held via
+  `_curation_holds`, because the writer's sources-imply-mint rule re-promotes
+  it), beside a constituent it yields to it — `2c8cc37`, `e4322c2`, `f7527f2`.
+- Registry learned 12 mint towns, all `entity: None` (routing-neutral).
+- KMM `_split_place`: «Zellerfeld, Goslar; X» / «København, Altona» / «&» are
+  joint mints, «;» introduces the mintmaster (`1b776d9`); København+Frederiksborg
+  kept but unverified, Hede names København alone (`eb2d2a4`); 310429
+  «skilling» → Malmø per Galster 39 (`8f6351a`); data `5181cf8`.
+- Fiala kept verbatim, «var.» included (`72cbefd`, `7aac151`); Duve «14-II»
+  etc. no longer cut (`7aac151`).
+- Two Löser merges with NO shared catalogue base, curator-approved on a
+  merge-candidate-table: `merge_decisions/herzogtum_braunschweig_lueneburg.yml`.
+
+**`yaml_io.edit_coin_field` was unsafe on `final/` — fixed (`91449fd`, `39a0345`).**
+In final, `id` is not the first key; `fuss` … `issuing_entity` sit above it.
+The old «`id:` to next `id:`» block made an edit of coin X's `ruler` rewrite the
+NEXT coin's `ruler` silently. Block is now the list item; a post-write guard
+re-parses the block and refuses a miss. History audited 2026-06-03 → today
+(128 commits): no wrong-neighbour write found — those fields changed through
+classification_decisions/absorb, not this function.
+
+**Open — in order**
+1. **KMM seed sync is its own task.** A full `build_kmk_seed --write` today
+   brings, besides nothing of ours: the `da` verification_note line (15 821,
+   `22f5b5a`), the thinning records of `e2338b1`/`fea6534` (~1 180), and —
+   **dangerous** — reverts the 147 Gottorp/Sonderburg relocations of `66f1eb5`,
+   because those are applied AFTER the seed by
+   `audit_entity_misclassifications --apply --source kmk`. Procedure:
+   re-seed → that step → confirm only `da` + thinning records changed → re-flow
+   → own commit. The same re-seed also stops overwriting a verified existing
+   value with an unverified fresh one (§4), so a KMM change that LOWERS a flag
+   needs a targeted seed edit, as done in `5181cf8`.
+2. **`Tysk` ×126 finals (3 seeds) and `Ostindisk` ×1 — curator decision
+   pending.** The seed count fell because the rådata comma rule now routes
+   «Tysk, Hamburg» to Hamburg; the 126 finals look like stale accumulations
+   (hypothesis, not verified). Ask before touching.
+3. **`trace_coin.py why` does not know builder tables** — `_NON_MINT_PLACES`,
+   `_KMM_PLACE_ERRATA`, `_KMM_GALSTER_ERRATA`, `_KMM_DISPUTED_JOINT_MINTS`.
+   It prints «nothing recorded» where a decision exists in code (the `Lybæk`
+   lesson). Not started.
+4. Löser candidates not merged, same shape as the two approved: ucoin 5 Thaler
+   1624 KM 353 / 6 Thaler 1624 KM 354 vs IKMK 18232371 (Clausthal), ucoin
+   6 Thaler 1620 KM 228 vs IKMK 18232251. Put to the curator via
+   `merge-candidate-table` if pursued.
+5. Notes, no action: KMM 184211 «Fiala IV, s. 194, cf. 1144» now carries no
+   Fiala (cf. dropped, correct). In the Hede f2h12 class the verified Hede
+   København wins the merged mint, so Frederiksborg does not show there (§4).
+
 ## 2026-09-28 — curation marks made whole; absorb now thins
 
 **Marks.** A reading mark (`erroneous` (!) / `suspect` (*) / `template` (§))
@@ -171,42 +232,6 @@ exists (enable locally with `git config blame.ignoreRevsFile
   are still `seed_unsorted`) but keyed on `unified-*` ids, so in
   `confident_duplicate` only 9 of 122 PEER ids still resolve. Re-key on seed
   ids (§9b) when picking up the review.
-
-## 2026-09-20 — NEXT TASK: the `mint` field carries a family of non-places
-
-Found while repairing the fragment notes (`07b6a97`) and settling one
-`mint: lybsk` (`1ca194d`). The KMM `place` → `mint` mapping in the kmk seed
-builder pulled a whole family of values into `mint` that are not mint towns.
-Counts are entries across final + seed (each coin appears in both):
-
-| value | entries | what it actually is |
-|---|---:|---|
-| `Tysk` | 129 | «German» — a country/region, not a mint |
-| `ulæselig` | 10 | «illegible» |
-| `ubestemt` | 6 | «undetermined» |
-| `ej bevaret` / `ej læselig` / `ej synligt` / `møntsted ulæselig` | 2 each | the same, in other words |
-| `skilling`, `søsling` | 2 each | denominations in the mint field |
-| `ikke Andreas Khüne)` | 2 | a fragment, stray paren included |
-| `Ostindisk` | 2 | a region (Tranquebar / the East India trade) |
-
-**Start with the illegible/undetermined group (~22 entries).** It is the only
-unambiguous one: per §4 those belong as `mint: null` + `mint_verified: false`,
-not as a mint name — right now the rendered page prints «ulæselig» to the
-reader as a place of striking. `Tysk` ×129 needs a decision first: it may be a
-deliberate grouping for the brakteats rather than a defect.
-
-**Do NOT sweep this by pattern.** The same scan flagged `mint: Lybæk`, which
-is the Danish name of Lübeck and a REAL attribution that KMM records as the
-place — the curator's warning («в любеку теж могли карбувати, тому тут
-обережно») is what stopped that one being «fixed» into nothing. Every value
-needs its source read: for `lybsk` the answer came from Hede 171, which prints
-«1 søsling lybsk, Glückstadt» — currency in the name, mint elsewhere.
-
-Procedure: `trace_coin.py why <seed-id> --field mint` first (§0b-1), then the
-KMM cache record, then the Hede/Galster page the entry's `typeNumber` names.
-Repairs need a `_curation_holds` per entry: `mint` is not a CURATED_FIELD but
-a _VERIFIABLE_FIELD, so a re-seed with `mint_verified: true` on both sides
-lets fresh win and restores the bad value.
 
 ## 2026-09-13 — foreign-crown scope cleanup (Sweden + Tier-2) and the Gottorp/Sonderburg re-route
 
