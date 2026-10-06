@@ -238,18 +238,45 @@ _ID_RE = re.compile(r"^\s*(?:-\s+)?id:\s+(\S+)\s*$")
 
 def _coin_block_bounds(lines: list[str], coin_id: str) -> tuple[int, int] | None:
     """Return [start, end) line indices of the coin whose id == coin_id.
-    A coin block runs from its `id:` line to the next coin's `id:` line."""
-    start = None
+
+    A coin block is ONE sequence item: from the «- » marker that opens it to the
+    marker that opens the next item at the same column. It used to run from the
+    coin's `id:` line to the next `id:` line, which is right only when `id` is
+    the item's first key. In `data/v2/final/*.yml` it is not — `fuss`, `phase`,
+    `kind`, `nominal`, `ruler`, `mintmaster`, `issuing_entity` come before it —
+    so those fields were outside the coin's own block and INSIDE the previous
+    coin's: an edit of coin X's `mintmaster` either missed or rewrote the next
+    coin's (caught 2026-10-06 before any wrong write landed)."""
+    idx = None
     for i, l in enumerate(lines):
         m = _ID_RE.match(l)
         if m and m.group(1) == coin_id:
-            start = i
+            idx = i
             break
-    if start is None:
+    if idx is None:
         return None
+    id_line = lines[idx]
+    if re.match(r"^\s*-\s+id:", id_line):
+        start = idx
+        item_col = len(id_line) - len(id_line.lstrip())
+    else:
+        key_col = len(id_line) - len(id_line.lstrip())
+        start = None
+        for j in range(idx - 1, -1, -1):
+            lj = lines[j]
+            col = len(lj) - len(lj.lstrip())
+            if lj.lstrip().startswith("- ") and col < key_col:
+                start, item_col = j, col
+                break
+            if lj.strip() and col < key_col and not lj.lstrip().startswith("- "):
+                break
+        if start is None:
+            start, item_col = idx, key_col
     end = len(lines)
+    marker = re.compile(rf"^ {{{item_col}}}-\s")
+    outdent = re.compile(rf"^ {{0,{max(item_col - 1, 0)}}}\S")
     for j in range(start + 1, len(lines)):
-        if _ID_RE.match(lines[j]):
+        if marker.match(lines[j]) or (item_col > 0 and outdent.match(lines[j])) or (item_col == 0 and lines[j][:1] not in (" ", "-", "") ):
             end = j
             break
     return start, end

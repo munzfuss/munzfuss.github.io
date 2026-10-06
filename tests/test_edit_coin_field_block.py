@@ -76,3 +76,42 @@ class BlockField(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+FINAL_DOC = """coins:
+  - fuss: a
+    mintmaster: Goslar; X
+    id: one
+    mint: Zellerfeld
+  - fuss: b
+    mintmaster: Goslar; Y
+    id: two
+    mint: Zellerfeld
+  - fuss: c
+    id: three
+    mint: Altona
+"""
+
+
+class IdNotFirstKey(unittest.TestCase):
+    """In data/v2/final/*.yml `id` is not the item's first key, so the block
+    must start at the item's «- » marker, not at the `id:` line."""
+
+    def _edit(self, cid, field, value):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "x.yml"
+            p.write_text(FINAL_DOC)
+            edit_coin_field(p, cid, field, value)
+            return {c["id"]: c for c in yaml.safe_load(p.read_text())["coins"]}
+
+    def test_field_before_id_hits_its_own_coin(self):
+        c = self._edit("one", "mintmaster", "X")
+        self.assertEqual(c["one"]["mintmaster"], "X")
+        self.assertEqual(c["two"]["mintmaster"], "Goslar; Y")
+
+    def test_absent_field_never_reaches_the_next_coin(self):
+        with self.assertRaises(KeyError):
+            self._edit("three", "mintmaster", None)
+        c = self._edit("two", "mintmaster", None)
+        self.assertNotIn("mintmaster", c["two"])
+        self.assertEqual(c["one"]["mintmaster"], "Goslar; X")
