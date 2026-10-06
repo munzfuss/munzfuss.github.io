@@ -1197,7 +1197,14 @@ def _extract_mint_from_nominal(nominal, source_mint
                 right_head,
                 flags=re.IGNORECASE,
             )
-            if denom_match and left and not _NOT_A_MINT_RE.match(left):
+            # The left side must not itself be a denomination: KMM gives one
+            # coin two names — «søsling, 1/96 thaler» — and this rule took
+            # «søsling» for the mint, overriding the builder's «Gottorp»
+            # (kmk-168015; it came back on every re-seed, 2026-10-06).
+            left_is_denom = re.match(
+                r"^(?:\d+(?:[/¼½¾⅓⅔⅛]\d*)?\s+)?(?:" + denom_pattern + r")\b",
+                left, flags=re.IGNORECASE)
+            if denom_match and left and not left_is_denom and not _NOT_A_MINT_RE.match(left):
                 extracted_mint = left
                 s = right  # keep the (?) / (klipping) on the
                             # denomination for later stripping passes
