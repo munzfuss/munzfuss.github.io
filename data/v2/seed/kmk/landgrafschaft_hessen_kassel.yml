@@ -1,12 +1,40 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-09-12T18:47:59Z'
+generated_at: '2026-10-06T11:16:24Z'
 entity: landgrafschaft_hessen_kassel
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
   (entity_classified_via records which). Museum-attested fields carry verified=true (weight only — no diameter/fineness). Phase-4 assigns Müntzfuß/phase; cross-source merger deduplicates against 
   Hede/Bruun/Numista/IKMK/etc.
 coins:
+  - id: kmk-184172
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: landgrafschaft_hessen_kassel
+    entity_classified_via: nation
+    nominal: 1 Daler
+    metal_verified: false
+    mint_verified: false
+    ruler: Vilhelm 5
+    year_first: 1632
+    year_last: 1632
+    year_label: '1632'
+    year_ranges:
+      -   - 1632
+          - 1632
+    weight_rough_g: 28.29
+    weight_rough_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184172
+        ref: KMM 184172 (Inv. FP 3427.233)
+    verification_note: &id001
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
   - id: kmk-114747
     fuss: seed_unsorted
     phase: kmk
@@ -29,10 +57,28 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/114747
         ref: KMM 114747 (Inv. GP 888.988)
-    verification_note: &id001
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/114750
+        ref: KMM 114750 (Inv. GP 888.991)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/114751
+        ref: KMM 114751 (Inv. GP 888.992)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/114752
+        ref: KMM 114752 (Inv. GP 888.993)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/114753
+        ref: KMM 114753 (Inv. GP 888.994)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/114754
+        ref: KMM 114754 (Inv. GP 888.995)
+    verification_note: *id001
+    _thinned_from:
+      - kmk-114750
+      - kmk-114751
+      - kmk-114752
+      - kmk-114753
+      - kmk-114754
   - id: kmk-114748
     fuss: seed_unsorted
     phase: kmk
@@ -79,29 +125,28 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/114749
         ref: KMM 114749 (Inv. GP 888.990)
     verification_note: *id001
-  - id: kmk-184172
+  - id: kmk-494412
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: landgrafschaft_hessen_kassel
     entity_classified_via: nation
-    nominal: 1 Daler
+    nominal: 5 Mark
     metal_verified: false
-    mint_verified: false
-    ruler: Vilhelm 5
-    year_first: 1632
-    year_last: 1632
-    year_label: '1632'
+    mint_verified: true
+    ruler: Ernst Ludvig
+    year_first: 1895
+    year_last: 1895
+    year_label: '1895'
     year_ranges:
-      -   - 1632
-          - 1632
-    weight_rough_g: 28.29
-    weight_rough_verified: true
+      -   - 1895
+          - 1895
+    weight_rough_verified: false
     verified: false
     sources:
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/184172
-        ref: KMM 184172 (Inv. FP 3427.233)
+        url: https://samlinger.natmus.dk/KMM/object/494412
+        ref: KMM 494412 (Inv. KP 1417.18)
     verification_note: *id001
   - id: kmk-494411
     fuss: seed_unsorted
@@ -125,27 +170,4 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/494411
         ref: KMM 494411 (Inv. KP 1417.19)
-    verification_note: *id001
-  - id: kmk-494412
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: landgrafschaft_hessen_kassel
-    entity_classified_via: nation
-    nominal: 5 Mark
-    metal_verified: false
-    mint_verified: true
-    ruler: Ernst Ludvig
-    year_first: 1895
-    year_last: 1895
-    year_label: '1895'
-    year_ranges:
-      -   - 1895
-          - 1895
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/494412
-        ref: KMM 494412 (Inv. KP 1417.18)
     verification_note: *id001

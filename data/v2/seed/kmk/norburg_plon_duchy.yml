@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-09-12T18:47:59Z'
+generated_at: '2026-10-06T11:16:24Z'
 entity: norburg_plon_duchy
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -38,6 +38,7 @@ coins:
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     _curation_holds:
       mint: KMM spells the place «Plöen»; the registry's Plön alias set lacked that form, so the entity fell through to the royal_holstein bucket. Alias added in mint_registry, and the value 
         canonicalised here by hand rather than by a full KMM re-seed — that re-run also re-thins every specimen list and dropped nine records outright.
@@ -60,12 +61,33 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/81780
         ref: KMM 81780 (Inv. GP 888.358)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81784
+        ref: KMM 81784 (Inv. GP 888.362)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81786
+        ref: KMM 81786 (Inv. GP 888.364)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81787
+        ref: KMM 81787 (Inv. GP 888.365)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81788
+        ref: KMM 81788 (Inv. GP 888.366)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81789
+        ref: KMM 81789 (Inv. GP 888.367)
     verification_note: *id001
     _curation_holds:
       mint: KMM spells the place «Plöen»; the registry's Plön alias set lacked that form, so the entity fell through to the royal_holstein bucket. Alias added in mint_registry, and the value 
         canonicalised here by hand rather than by a full KMM re-seed — that re-run also re-thins every specimen list and dropped nine records outright.
       issuing_entity: KMM spells the place «Plöen»; the registry's Plön alias set lacked that form, so the entity fell through to the royal_holstein bucket. Alias added in mint_registry, and the value
         canonicalised here by hand rather than by a full KMM re-seed — that re-run also re-thins every specimen list and dropped nine records outright.
+    _thinned_from:
+      - kmk-81784
+      - kmk-81786
+      - kmk-81787
+      - kmk-81788
+      - kmk-81789
   - id: kmk-81781
     fuss: seed_unsorted
     phase: kmk

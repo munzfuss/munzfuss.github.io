@@ -1,12 +1,64 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-09-12T18:47:58Z'
+generated_at: '2026-10-06T11:16:21Z'
 entity: erzbisthum_bremen_verden
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
   (entity_classified_via records which). Museum-attested fields carry verified=true (weight only — no diameter/fineness). Phase-4 assigns Müntzfuß/phase; cross-source merger deduplicates against 
   Hede/Bruun/Numista/IKMK/etc.
 coins:
+  - id: kmk-168417
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 2 Skilling
+    metal_verified: false
+    mint_verified: false
+    ruler: Johan Frederik
+    year_first: 1614
+    year_last: 1614
+    year_label: '1614'
+    year_ranges:
+      -   - 1614
+          - 1614
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168417
+        ref: KMM 168417 (Inv. FP 1555.13)
+    verification_note: &id001
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+  - id: kmk-352858
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 2 Skilling lybsk
+    metal_verified: false
+    mint_verified: false
+    ruler: Johan Frederik
+    year_first: 1620
+    year_last: 1629
+    year_label: 1620-1629
+    year_ranges:
+      -   - 1620
+          - 1629
+    weight_rough_verified: false
+    catalog:
+      lange: 504A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/352858
+        ref: KMM 352858 (Inv. FP 5101.1)
+    verification_note: *id001
   - id: kmk-157258
     fuss: seed_unsorted
     phase: kmk
@@ -31,55 +83,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/157258
         ref: KMM 157258 (Inv. FP 4518.436)
-    verification_note: &id001
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
-  - id: kmk-166747
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 1 Dytgen
-    metal_verified: false
-    mint_verified: true
-    ruler: Frederik 3
-    year_first: 1642
-    year_last: 1642
-    year_label: '1642'
-    year_ranges:
-      -   - 1642
-          - 1642
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/166747
-        ref: KMM 166747 (Inv. FP 1558.30)
-    verification_note: *id001
-  - id: kmk-168417
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 2 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Johan Frederik
-    year_first: 1614
-    year_last: 1614
-    year_label: '1614'
-    year_ranges:
-      -   - 1614
-          - 1614
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/168417
-        ref: KMM 168417 (Inv. FP 1555.13)
     verification_note: *id001
   - id: kmk-200792
     fuss: seed_unsorted
@@ -132,188 +135,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200793
         ref: KMM 200793 (Inv. FP 3108.11757)
-    verification_note: *id001
-  - id: kmk-200794
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 3-skilling lybsk
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ærkebisp Frederik
-    year_first: 1643
-    year_last: 1643
-    year_label: '1643'
-    year_ranges:
-      -   - 1643
-          - 1643
-    weight_rough_verified: false
-    catalog:
-      hede: 4A
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200794
-        ref: KMM 200794 (Inv. FP 3108.11756)
-    verification_note: *id001
-  - id: kmk-200795
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 3-skilling lybsk
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ærkebisp Frederik
-    year_first: 1643
-    year_last: 1643
-    year_label: '1643'
-    year_ranges:
-      -   - 1643
-          - 1643
-    weight_rough_verified: false
-    catalog:
-      hede: 4A
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200795
-        ref: KMM 200795 (Inv. FP 3108.11755)
-    verification_note: *id001
-  - id: kmk-200796
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 3-skilling lybsk
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ærkebisp Frederik
-    year_first: 1643
-    year_last: 1643
-    year_label: '1643'
-    year_ranges:
-      -   - 1643
-          - 1643
-    weight_rough_verified: false
-    catalog:
-      hede: 4A
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200796
-        ref: KMM 200796 (Inv. FP 3108.11754)
-    verification_note: *id001
-  - id: kmk-200798
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 3-skilling lybsk
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ærkebisp Frederik
-    year_first: 1643
-    year_last: 1643
-    year_label: '1643'
-    year_ranges:
-      -   - 1643
-          - 1643
-    weight_rough_verified: false
-    catalog:
-      hede: 4B
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200798
-        ref: KMM 200798 (Inv. FP 3108.11752)
-    verification_note: *id001
-  - id: kmk-200799
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 3-skilling lybsk
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ærkebisp Frederik
-    year_first: 1642
-    year_last: 1642
-    year_label: '1642'
-    year_ranges:
-      -   - 1642
-          - 1642
-    weight_rough_verified: false
-    catalog:
-      hede: 4A
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200799
-        ref: KMM 200799 (Inv. FP 3108.11751)
-    verification_note: *id001
-  - id: kmk-200800
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 3-skilling lybsk
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ærkebisp Frederik
-    year_first: 1642
-    year_last: 1642
-    year_label: '1642'
-    year_ranges:
-      -   - 1642
-          - 1642
-    weight_rough_verified: false
-    catalog:
-      hede: 4A
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200800
-        ref: KMM 200800 (Inv. FP 3108.11750)
-    verification_note: *id001
-  - id: kmk-200801
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 3-skilling lybsk
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ærkebisp Frederik
-    year_first: 1642
-    year_last: 1642
-    year_label: '1642'
-    year_ranges:
-      -   - 1642
-          - 1642
-    weight_rough_verified: false
-    catalog:
-      hede: 4A
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200801
-        ref: KMM 200801 (Inv. FP 3108.11749)
     verification_note: *id001
   - id: kmk-200809
     fuss: seed_unsorted
@@ -393,6 +214,427 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/200811
         ref: KMM 200811 (Inv. FP 3108.11739)
     verification_note: *id001
+  - id: kmk-741043
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 1 Søsling
+    metal_verified: false
+    mint_verified: false
+    ruler: Frederik 3
+    year_first: 1641
+    year_last: 1641
+    year_label: '1641'
+    year_ranges:
+      -   - 1641
+          - 1641
+    weight_rough_verified: true
+    catalog:
+      schou: '14'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/741043
+        ref: KMM 741043 (Inv. FP 1780.330)
+    verification_note: *id001
+    weight_rough_g: 0.54
+  - id: kmk-166747
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 1 Dytgen
+    metal_verified: false
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1642
+    year_last: 1642
+    year_label: '1642'
+    year_ranges:
+      -   - 1642
+          - 1642
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/166747
+        ref: KMM 166747 (Inv. FP 1558.30)
+    verification_note: *id001
+  - id: kmk-200799
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 3-skilling lybsk
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ærkebisp Frederik
+    year_first: 1642
+    year_last: 1642
+    year_label: '1642'
+    year_ranges:
+      -   - 1642
+          - 1642
+    weight_rough_verified: false
+    catalog:
+      hede: 4A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200799
+        ref: KMM 200799 (Inv. FP 3108.11751)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200802
+        ref: KMM 200802 (Inv. FP 3108.11748)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200803
+        ref: KMM 200803 (Inv. FP 3108.11747)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200804
+        ref: KMM 200804 (Inv. FP 3108.11746)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200805
+        ref: KMM 200805 (Inv. FP 3108.11745)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200806
+        ref: KMM 200806 (Inv. FP 3108.11744)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200807
+        ref: KMM 200807 (Inv. FP 3108.11743)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200808
+        ref: KMM 200808 (Inv. FP 3108.11742)
+    verification_note: *id001
+    _thinned_from:
+      - kmk-200802
+      - kmk-200803
+      - kmk-200804
+      - kmk-200805
+      - kmk-200806
+      - kmk-200807
+      - kmk-200808
+  - id: kmk-200800
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 3-skilling lybsk
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ærkebisp Frederik
+    year_first: 1642
+    year_last: 1642
+    year_label: '1642'
+    year_ranges:
+      -   - 1642
+          - 1642
+    weight_rough_verified: false
+    catalog:
+      hede: 4A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200800
+        ref: KMM 200800 (Inv. FP 3108.11750)
+    verification_note: *id001
+  - id: kmk-200801
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 3-skilling lybsk
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ærkebisp Frederik
+    year_first: 1642
+    year_last: 1642
+    year_label: '1642'
+    year_ranges:
+      -   - 1642
+          - 1642
+    weight_rough_verified: false
+    catalog:
+      hede: 4A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200801
+        ref: KMM 200801 (Inv. FP 3108.11749)
+    verification_note: *id001
+  - id: kmk-200794
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 3-skilling lybsk
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ærkebisp Frederik
+    year_first: 1643
+    year_last: 1643
+    year_label: '1643'
+    year_ranges:
+      -   - 1643
+          - 1643
+    weight_rough_verified: false
+    catalog:
+      hede: 4A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200794
+        ref: KMM 200794 (Inv. FP 3108.11756)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200797
+        ref: KMM 200797 (Inv. FP 3108.11753)
+    verification_note: *id001
+    _thinned_from:
+      - kmk-200797
+  - id: kmk-200795
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 3-skilling lybsk
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ærkebisp Frederik
+    year_first: 1643
+    year_last: 1643
+    year_label: '1643'
+    year_ranges:
+      -   - 1643
+          - 1643
+    weight_rough_verified: false
+    catalog:
+      hede: 4A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200795
+        ref: KMM 200795 (Inv. FP 3108.11755)
+    verification_note: *id001
+  - id: kmk-200796
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 3-skilling lybsk
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ærkebisp Frederik
+    year_first: 1643
+    year_last: 1643
+    year_label: '1643'
+    year_ranges:
+      -   - 1643
+          - 1643
+    weight_rough_verified: false
+    catalog:
+      hede: 4A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200796
+        ref: KMM 200796 (Inv. FP 3108.11754)
+    verification_note: *id001
+  - id: kmk-200798
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 3-skilling lybsk
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ærkebisp Frederik
+    year_first: 1643
+    year_last: 1643
+    year_label: '1643'
+    year_ranges:
+      -   - 1643
+          - 1643
+    weight_rough_verified: false
+    catalog:
+      hede: 4B
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200798
+        ref: KMM 200798 (Inv. FP 3108.11752)
+    verification_note: *id001
+  - id: kmk-646716
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 1 Krone
+    metal_verified: false
+    mint_verified: false
+    ruler: Carl XI
+    year_first: 1670
+    year_last: 1670
+    year_label: '1670'
+    year_ranges:
+      -   - 1670
+          - 1670
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/646716
+        ref: KMM 646716 (Inv. BP 57.6a)
+    verification_note: *id001
+  - id: kmk-627184
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 1/16 Thaler
+    metal_verified: false
+    mint_verified: false
+    ruler: Carl XI
+    year_first: 1697
+    year_last: 1697
+    year_label: '1697'
+    year_ranges:
+      -   - 1697
+          - 1697
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/627184
+        ref: KMM 627184 (Inv. KP 146.20)
+    verification_note: *id001
+  - id: kmk-661579
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: ⅓
+    metal_verified: false
+    mint_verified: false
+    year_first: 1748
+    year_last: 1748
+    year_label: '1748'
+    year_ranges:
+      -   - 1748
+          - 1748
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/661579
+        ref: KMM 661579 (Inv. BP 597.23)
+    verification_note: *id001
+  - id: kmk-647827
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 1/12 Species
+    metal_verified: false
+    mint_verified: false
+    year_first: 1768
+    year_last: 1768
+    year_label: '1768'
+    year_ranges:
+      -   - 1768
+          - 1768
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/647827
+        ref: KMM 647827 (Inv. BP 90.39b)
+    verification_note: *id001
+  - id: kmk-658915
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 6 Grote
+    metal_verified: false
+    mint_verified: false
+    year_first: 1857
+    year_last: 1857
+    year_label: '1857'
+    year_ranges:
+      -   - 1857
+          - 1857
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/658915
+        ref: KMM 658915 (Inv. BP 435.54)
+    verification_note: *id001
+  - id: kmk-676441
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 1 Erindrings thaler
+    metal_verified: false
+    mint_verified: false
+    year_first: 1871
+    year_last: 1871
+    year_label: '1871'
+    year_ranges:
+      -   - 1871
+          - 1871
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/676441
+        ref: KMM 676441 (Inv. BP 874.4)
+    verification_note: *id001
+  - id: kmk-494413
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 5 Mark
+    metal_verified: false
+    mint_verified: true
+    year_first: 1906
+    year_last: 1906
+    year_label: '1906'
+    year_ranges:
+      -   - 1906
+          - 1906
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/494413
+        ref: KMM 494413 (Inv. KP 1417.17)
+    verification_note: *id001
   - id: kmk-200812
     fuss: seed_unsorted
     phase: kmk
@@ -412,7 +654,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200812
         ref: KMM 200812 (Inv. FP 3108.11738)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200815
+        ref: KMM 200815 (Inv. FP 3108.11735)
     verification_note: *id001
+    _thinned_from:
+      - kmk-200815
   - id: kmk-200813
     fuss: seed_unsorted
     phase: kmk
@@ -472,7 +719,204 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200816
         ref: KMM 200816 (Inv. FP 3108.11734)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200819
+        ref: KMM 200819 (Inv. FP 3108.11731)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200820
+        ref: KMM 200820 (Inv. FP 3108.11730)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200821
+        ref: KMM 200821 (Inv. FP 3108.11729)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200822
+        ref: KMM 200822 (Inv. FP 3108.11728)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200823
+        ref: KMM 200823 (Inv. FP 3108.11727)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200824
+        ref: KMM 200824 (Inv. FP 3108.11726)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200825
+        ref: KMM 200825 (Inv. FP 3108.11725)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200826
+        ref: KMM 200826 (Inv. FP 3108.11724)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200827
+        ref: KMM 200827 (Inv. FP 3108.11723)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200828
+        ref: KMM 200828 (Inv. FP 3108.11722)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200829
+        ref: KMM 200829 (Inv. FP 3108.11721)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200830
+        ref: KMM 200830 (Inv. FP 3108.11720)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200831
+        ref: KMM 200831 (Inv. FP 3108.11719)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200832
+        ref: KMM 200832 (Inv. FP 3108.11718)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200833
+        ref: KMM 200833 (Inv. FP 3108.11717)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200834
+        ref: KMM 200834 (Inv. FP 3108.11716)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200835
+        ref: KMM 200835 (Inv. FP 3108.11715)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200836
+        ref: KMM 200836 (Inv. FP 3108.11714)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200837
+        ref: KMM 200837 (Inv. FP 3108.11713)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200838
+        ref: KMM 200838 (Inv. FP 3108.11712)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200839
+        ref: KMM 200839 (Inv. FP 3108.11711)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200840
+        ref: KMM 200840 (Inv. FP 3108.11710)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200841
+        ref: KMM 200841 (Inv. FP 3108.11709)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200842
+        ref: KMM 200842 (Inv. FP 3108.11708)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200843
+        ref: KMM 200843 (Inv. FP 3108.11707)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200844
+        ref: KMM 200844 (Inv. FP 3108.11706)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200845
+        ref: KMM 200845 (Inv. FP 3108.11705)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200846
+        ref: KMM 200846 (Inv. FP 3108.11704)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200847
+        ref: KMM 200847 (Inv. FP 3108.11703)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200848
+        ref: KMM 200848 (Inv. FP 3108.11702)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200849
+        ref: KMM 200849 (Inv. FP 3108.11701)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200850
+        ref: KMM 200850 (Inv. FP 3108.11700)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200851
+        ref: KMM 200851 (Inv. FP 3108.11699)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200852
+        ref: KMM 200852 (Inv. FP 3108.11698)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200853
+        ref: KMM 200853 (Inv. FP 3108.11697)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200854
+        ref: KMM 200854 (Inv. FP 3108.11696)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200855
+        ref: KMM 200855 (Inv. FP 3108.11695)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200856
+        ref: KMM 200856 (Inv. FP 3108.11694)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200857
+        ref: KMM 200857 (Inv. FP 3108.11693)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200858
+        ref: KMM 200858 (Inv. FP 3108.11692)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200859
+        ref: KMM 200859 (Inv. FP 3108.11691)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200860
+        ref: KMM 200860 (Inv. FP 3108.11690)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200861
+        ref: KMM 200861 (Inv. FP 3108.11689)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200862
+        ref: KMM 200862 (Inv. FP 3108.11688)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200863
+        ref: KMM 200863 (Inv. FP 3108.11687)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200864
+        ref: KMM 200864 (Inv. FP 3108.11686)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200865
+        ref: KMM 200865 (Inv. FP 3108.11685)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200866
+        ref: KMM 200866 (Inv. FP 3108.11684)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200867
+        ref: KMM 200867 (Inv. FP 3108.11683)
     verification_note: *id001
+    _thinned_from:
+      - kmk-200819
+      - kmk-200820
+      - kmk-200821
+      - kmk-200822
+      - kmk-200823
+      - kmk-200824
+      - kmk-200825
+      - kmk-200826
+      - kmk-200827
+      - kmk-200828
+      - kmk-200829
+      - kmk-200830
+      - kmk-200831
+      - kmk-200832
+      - kmk-200833
+      - kmk-200834
+      - kmk-200835
+      - kmk-200836
+      - kmk-200837
+      - kmk-200838
+      - kmk-200839
+      - kmk-200840
+      - kmk-200841
+      - kmk-200842
+      - kmk-200843
+      - kmk-200844
+      - kmk-200845
+      - kmk-200846
+      - kmk-200847
+      - kmk-200848
+      - kmk-200849
+      - kmk-200850
+      - kmk-200851
+      - kmk-200852
+      - kmk-200853
+      - kmk-200854
+      - kmk-200855
+      - kmk-200856
+      - kmk-200857
+      - kmk-200858
+      - kmk-200859
+      - kmk-200860
+      - kmk-200861
+      - kmk-200862
+      - kmk-200863
+      - kmk-200864
+      - kmk-200865
+      - kmk-200866
+      - kmk-200867
   - id: kmk-200817
     fuss: seed_unsorted
     phase: kmk
@@ -549,53 +993,6 @@ coins:
     verification_note: *id001
     _source_note:
       da: fraklædt hoved over 'M'-agtigt ornament
-  - id: kmk-352858
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 2 Skilling lybsk
-    metal_verified: false
-    mint_verified: false
-    ruler: Johan Frederik
-    year_first: 1620
-    year_last: 1629
-    year_label: 1620-1629
-    year_ranges:
-      -   - 1620
-          - 1629
-    weight_rough_verified: false
-    catalog:
-      lange: 504A
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/352858
-        ref: KMM 352858 (Inv. FP 5101.1)
-    verification_note: *id001
-  - id: kmk-494413
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 5 Mark
-    metal_verified: false
-    mint_verified: true
-    year_first: 1906
-    year_last: 1906
-    year_label: '1906'
-    year_ranges:
-      -   - 1906
-          - 1906
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/494413
-        ref: KMM 494413 (Inv. KP 1417.17)
-    verification_note: *id001
   - id: kmk-584917
     fuss: seed_unsorted
     phase: kmk
@@ -612,163 +1009,3 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/584917
         ref: KMM 584917 (Inv. FP 1668.44)
     verification_note: *id001
-  - id: kmk-627184
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 1/16 Thaler
-    metal_verified: false
-    mint_verified: false
-    ruler: Carl XI
-    year_first: 1697
-    year_last: 1697
-    year_label: '1697'
-    year_ranges:
-      -   - 1697
-          - 1697
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/627184
-        ref: KMM 627184 (Inv. KP 146.20)
-    verification_note: *id001
-  - id: kmk-646716
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 1 Krone
-    metal_verified: false
-    mint_verified: false
-    ruler: Carl XI
-    year_first: 1670
-    year_last: 1670
-    year_label: '1670'
-    year_ranges:
-      -   - 1670
-          - 1670
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/646716
-        ref: KMM 646716 (Inv. BP 57.6a)
-    verification_note: *id001
-  - id: kmk-647827
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 1/12 Species
-    metal_verified: false
-    mint_verified: false
-    year_first: 1768
-    year_last: 1768
-    year_label: '1768'
-    year_ranges:
-      -   - 1768
-          - 1768
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/647827
-        ref: KMM 647827 (Inv. BP 90.39b)
-    verification_note: *id001
-  - id: kmk-658915
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 6 Grote
-    metal_verified: false
-    mint_verified: false
-    year_first: 1857
-    year_last: 1857
-    year_label: '1857'
-    year_ranges:
-      -   - 1857
-          - 1857
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/658915
-        ref: KMM 658915 (Inv. BP 435.54)
-    verification_note: *id001
-  - id: kmk-661579
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: ⅓
-    metal_verified: false
-    mint_verified: false
-    year_first: 1748
-    year_last: 1748
-    year_label: '1748'
-    year_ranges:
-      -   - 1748
-          - 1748
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/661579
-        ref: KMM 661579 (Inv. BP 597.23)
-    verification_note: *id001
-  - id: kmk-676441
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 1 Erindrings thaler
-    metal_verified: false
-    mint_verified: false
-    year_first: 1871
-    year_last: 1871
-    year_label: '1871'
-    year_ranges:
-      -   - 1871
-          - 1871
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/676441
-        ref: KMM 676441 (Inv. BP 874.4)
-    verification_note: *id001
-  - id: kmk-741043
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 1 Søsling
-    metal_verified: false
-    mint_verified: false
-    ruler: Frederik 3
-    year_first: 1641
-    year_last: 1641
-    year_label: '1641'
-    year_ranges:
-      -   - 1641
-          - 1641
-    weight_rough_verified: true
-    catalog:
-      schou: '14'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/741043
-        ref: KMM 741043 (Inv. FP 1780.330)
-    verification_note: *id001
-    weight_rough_g: 0.54
