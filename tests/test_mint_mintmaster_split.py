@@ -107,7 +107,8 @@ class NominalDoesNotOverrideMint(unittest.TestCase):
     denomination, not a mint, and must not replace the builder's mint."""
 
     def test_two_denominations_keep_source_mint(self):
-        self.assertEqual(w._extract_mint_from_nominal("søsling, 1/96 thaler", "Gottorp")[1], "Gottorp")
+        self.assertEqual(w._extract_mint_from_nominal("søsling, 1/96 thaler", "Gottorp"),
+                         ("1/96 thaler", "Gottorp"))
 
 
 class DanishSpellingOfTrondheim(unittest.TestCase):

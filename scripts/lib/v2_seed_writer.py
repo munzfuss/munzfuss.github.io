@@ -1204,7 +1204,12 @@ def _extract_mint_from_nominal(nominal, source_mint
             left_is_denom = re.match(
                 r"^(?:\d+(?:[/¼½¾⅓⅔⅛]\d*)?\s+)?(?:" + denom_pattern + r")\b",
                 left, flags=re.IGNORECASE)
-            if denom_match and left and not left_is_denom and not _NOT_A_MINT_RE.match(left):
+            if denom_match and left and left_is_denom:
+                # Keep the nominal as before (the right-hand name), but the
+                # left-hand name is no mint: the source's mint stands.
+                s = right
+                break
+            if denom_match and left and not _NOT_A_MINT_RE.match(left):
                 extracted_mint = left
                 s = right  # keep the (?) / (klipping) on the
                             # denomination for later stripping passes
