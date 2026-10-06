@@ -92,9 +92,10 @@ A value in the data is often not what the source printed, because a curator alre
 - `_source_errata` / `_errata_applied` / `_curation_holds` — inside the seed entry, typically BELOW the field they justify
 - `_KNOWN_HEDE_TYPOS` / `_INVERTED_TAG_PAGES` in `scripts/parse_hede.py` — keyed by SOURCE PAGE, invisible from the data, and applied *before the cache is written* (so the parser cache is already the corrected artefact and still differs from the printed page)
 - `data/v2/{exclusions,merge_decisions,classification_decisions}/`
-- `data/v2/_retracted_refs.yml`
+- `data/v2/_retracted_refs.yml` and `data/v2/_recorded_removals.yml`
+- seed-BUILDER tables keyed by record id or by the source's own value — e.g. `_NON_MINT_PLACES`, `_KMM_PLACE_ERRATA`, `_KMM_GALSTER_ERRATA`, `_KMM_DISPUTED_JOINT_MINTS` in `build_kmk_seed.py`, `_UCOIN_MINT_JUNK` in `build_ucoin_seed.py` — applied before the seed is written, so the seed already differs from the cache
 
-Reading the source and the cache and finding a mismatch therefore proves NOTHING on its own — those two are exactly the layers a curator override sits between. `why` prints all four in one place.
+Reading the source and the cache and finding a mismatch therefore proves NOTHING on its own — those two are exactly the layers a curator override sits between. `why` prints all of them in one place (builder tables and the removals ledger since 2026-10-06).
 
 **The failure this exists to stop** (2026-08-08, twice in two days, same coin). `dk-hede-c5h39` was declared defective for carrying «Schou 4, a value appearing nowhere on the page», then escalated the next day to «swapped Hede numbers — nominal and weight right, catalogue numbers wrong». Both verdicts were reached by diffing the seed against danskmoent and against `scripts/cache/hede/c5h39.json`. Both were wrong. Bruun's lot 13186 prints «Fr-161; KM-A433; Hede-39; Sieg-106; Schou-4» on the physical specimen; the curator called it for Bruun over danskmoent on 2026-07-16; the call is implemented as two `_source_errata` in that very seed entry — ten lines below the catalog block that was being read — plus the parser typo map. Two attempted «repairs» of that working construction followed, one inert and one actively harmful, before anyone read either record.
 
