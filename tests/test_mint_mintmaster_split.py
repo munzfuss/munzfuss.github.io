@@ -116,3 +116,10 @@ class DanishSpellingOfTrondheim(unittest.TestCase):
         self.assertEqual(split("Trondhjem (Nidaros)"), ("Nidaros", None))
         from lib.mint_registry import canon_for_alias
         self.assertEqual(canon_for_alias("Trondhjem"), "nidaros")
+
+
+class TwoDenominationNominalUntouched(unittest.TestCase):
+    def test_fraction_then_name_stays_whole(self):
+        # NGC «1/24 Thaler, Groschen» was never split; it must not start now.
+        self.assertEqual(w._extract_mint_from_nominal("1/24 Thaler, Groschen", "Gottorp"),
+                         ("1/24 Thaler, Groschen", "Gottorp"))
