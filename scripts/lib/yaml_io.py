@@ -302,6 +302,56 @@ def _render_field(indent: str, field: str, value) -> list[str]:
     return [f"{indent}{field}: {q(value)}".rstrip()]
 
 
+_ALIAS_RE = re.compile(r"(?<![\w*])\*[A-Za-z0-9_]+")
+
+
+def _assert_edit_landed(lines: list[str], coin_id: str, field: str, new_value, path) -> None:
+    """Post-condition for `edit_coin_field`, checked BEFORE the file is written:
+    the edited block must still parse as exactly one coin whose `id` is
+    `coin_id`, and `field` must be in the state that was asked for.
+
+    The block-bounds bug fixed in 91449fd let an edit land on the NEXT coin's
+    field of the same name without any error. This guard turns any future
+    variant of that — a layout the bounds do not anticipate — into a refusal
+    instead of a plausible-looking wrong diff. Only the one block is parsed;
+    YAML aliases («*id001», defined elsewhere in the file) are blanked first."""
+    b = _coin_block_bounds(lines, coin_id)
+    if b is None:
+        raise RuntimeError(f"{path.name}:{coin_id}: block vanished after the edit")
+    s, e = b
+    text = "\n".join(lines[s:e])
+    col = len(lines[s]) - len(lines[s].lstrip())
+    text = "\n".join(l[col:] if len(l) >= col else l for l in text.split("\n"))
+    try:
+        got = _pyyaml.safe_load(_ALIAS_RE.sub("null", text))
+    except _pyyaml.YAMLError as exc:
+        raise RuntimeError(f"{path.name}:{coin_id}: edited block no longer parses: {exc}") from exc
+    if not (isinstance(got, list) and len(got) == 1 and isinstance(got[0], dict)):
+        raise RuntimeError(f"{path.name}:{coin_id}: edited block is not one coin")
+    coin = got[0]
+    if coin.get("id") != coin_id:
+        raise RuntimeError(f"{path.name}: edit for {coin_id!r} landed in {coin.get('id')!r}")
+    def find(d):
+        if field in d:
+            return True, d[field]
+        for v in d.values():
+            if isinstance(v, dict):
+                hit = find(v)
+                if hit[0]:
+                    return hit
+        return False, None
+    present, value = find(coin)
+    if new_value is None:
+        if present:
+            raise RuntimeError(f"{path.name}:{coin_id}: {field!r} still present after removal")
+    else:
+        want = list(new_value) if isinstance(new_value, tuple) else new_value
+        if isinstance(want, list) and len(want) == 1:
+            want = want[0]
+        if not present or value != want:
+            raise RuntimeError(f"{path.name}:{coin_id}: {field!r} reads {value!r}, wanted {want!r}")
+
+
 def edit_coin_field(
     path,
     coin_id: str,
@@ -399,6 +449,7 @@ def edit_coin_field(
     if old_lines == new_lines:
         return False
     lines[fi:span_end] = new_lines
+    _assert_edit_landed(lines, coin_id, field, new_value, path)
     path.write_text(nl.join(lines))
     return True
 

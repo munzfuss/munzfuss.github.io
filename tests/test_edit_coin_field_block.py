@@ -115,3 +115,20 @@ class IdNotFirstKey(unittest.TestCase):
         c = self._edit("two", "mintmaster", None)
         self.assertNotIn("mintmaster", c["two"])
         self.assertEqual(c["one"]["mintmaster"], "Goslar; X")
+
+
+class EditGuard(unittest.TestCase):
+    """`_assert_edit_landed` refuses an edit whose result is not the coin and
+    field state that was asked for — before anything is written."""
+
+    def test_guard_refuses_wrong_coin(self):
+        from lib import yaml_io
+        lines = FINAL_DOC.split("\n")
+        with self.assertRaises(RuntimeError):
+            yaml_io._assert_edit_landed(lines, "one", "mintmaster", "Z", Path("x.yml"))
+
+    def test_guard_accepts_alias_in_block(self):
+        from lib import yaml_io
+        lines = (FINAL_DOC.replace("    mint: Zellerfeld\n  - fuss: b",
+                                   "    mint: Zellerfeld\n    verification_note: *id001\n  - fuss: b")).split("\n")
+        yaml_io._assert_edit_landed(lines, "one", "mint", "Zellerfeld", Path("x.yml"))
