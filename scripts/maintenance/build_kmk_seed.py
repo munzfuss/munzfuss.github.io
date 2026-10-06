@@ -43,6 +43,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from lib.paths import KMK_CACHE  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
+from lib.entity_routing import route_entity_with_rules  # noqa: E402
 from lib.mint_registry import (  # noqa: E402
     canon_for_alias, classify_nation_to_entity, display_for_alias,
 )
@@ -830,6 +831,18 @@ def build_entry(src) -> dict | None:
     _err = _KMM_PLACE_ERRATA.get(rid)
     if _err and (src.get("place") or "").strip() == _err[0]:
         entry["sources"].append(dict(_err[2]))
+    # Tradition-driven entity rules (`data/v2/entity_routing_rules.yml`), the
+    # same layer the Numista and NumisMaster builders apply. Without it the
+    # Gottorp / Sonderburg ducal relocations of 66f1eb5 lived only in the seed
+    # data, applied after the fact by audit_entity_misclassifications — so a
+    # plain KMM re-seed silently sent 147 ducal coins back to the Danish pages
+    # (measured 2026-10-06). Safe-mode as everywhere: a rule re-routes only a
+    # coin whose mint is absent or unverified; otherwise it leaves a hint.
+    routed_ent, hint = route_entity_with_rules(dict(entry), default_entity=entry["issuing_entity"])
+    if routed_ent != entry["issuing_entity"]:
+        entry["issuing_entity"] = routed_ent
+    if hint is not None:
+        entry["_entity_routing_hint"] = hint
     # _source_note candidate (Phase-1, commit 80a1b62): KMM's `motif` (Danish),
     # cleaned + language-tagged for the later note-selector. Non-schema
     # (underscore) → stripped before the strict Coin schema at final/render.
