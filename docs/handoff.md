@@ -50,16 +50,17 @@ re-parses the block and refuses a miss. History audited 2026-06-03 → today
 classification_decisions/absorb, not this function.
 
 **Open — in order**
-1. **KMM seed sync is its own task.** A full `build_kmk_seed --write` today
-   brings, besides nothing of ours: the `da` verification_note line (15 821,
-   `22f5b5a`), the thinning records of `e2338b1`/`fea6534` (~1 180), and —
-   **dangerous** — reverts the 147 Gottorp/Sonderburg relocations of `66f1eb5`,
-   because those are applied AFTER the seed by
-   `audit_entity_misclassifications --apply --source kmk`. Procedure:
-   re-seed → that step → confirm only `da` + thinning records changed → re-flow
-   → own commit. The same re-seed also stops overwriting a verified existing
-   value with an unverified fresh one (§4), so a KMM change that LOWERS a flag
-   needs a targeted seed edit, as done in `5181cf8`.
+1. ~~KMM seed sync~~ — **done 2026-10-06** (`277fbf9`). The builder now applies
+   `entity_routing_rules.yml` itself (`a619747`), so a plain KMM re-seed keeps
+   the Gottorp/Sonderburg relocations — no separate
+   `audit_entity_misclassifications` pass needed any more. Found and fixed on
+   the way: «søsling, 1/96 thaler» read «søsling» as the mint (`f88eb09`,
+   `f304044`, regression `0362060`); «Trondhjem» unregistered (`cfdde1e`);
+   absorb's own sources-imply-mint rule re-promoted held/declined flags on
+   every re-flow (`4e03f7a`). Lesson: measure a writer
+   change on EVERY source's values, not the one being fixed; and re-flow from
+   HEAD finals, not over a previous run's, because nominal is
+   foundation-immutable and flags OR-merge with the final's own stored value.
 2. **`Tysk` ×126 finals (3 seeds) and `Ostindisk` ×1 — curator decision
    pending.** The seed count fell because the rådata comma rule now routes
    «Tysk, Hamburg» to Hamburg; the 126 finals look like stale accumulations
