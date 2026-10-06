@@ -27,6 +27,18 @@ has burned several sessions. The rule:
   be a scalar, a list (block-rendered; 1-element collapses to scalar), or `None`
   (remove the field). Pass `expect_contains=...` to assert you're editing the
   value you think you are.
+
+  **A coin's block is its list item, not «its `id:` line onward».** Seeds and
+  seed_unified open every entry with `id`; `data/v2/final/` does not — each of
+  its entries opens with `fuss`, and `phase`, `kind`, `fraction`, `nominal`,
+  `ruler`, `mintmaster`, `issuing_entity` all sit ABOVE `id`. Until 91449fd
+  (2026-10-06) the block ran from `id:` to the next `id:`, so an edit of coin
+  X's `ruler` either raised KeyError or silently rewrote the NEXT coin's
+  `ruler` — no error, a plausible diff. The block is now the sequence item, and
+  `_assert_edit_landed` re-parses the edited block before writing and refuses
+  if the id or the field state is not what was asked. Anything hand-rolled that
+  locates a coin by its `id:` line has the same blind spot in `final/`: use
+  `_coin_block_bounds`, never your own «find `id:`, walk to the next one».
 - **Structural edits (add/remove/reorder coins) → `yaml_io.load()` / `save()`.**
   Family-aware: load returns `(ctx, doc)`, `save(ctx, path, doc)` writes with the
   file's own serializer + settings.
