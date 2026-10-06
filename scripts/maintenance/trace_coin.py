@@ -45,6 +45,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -485,6 +486,72 @@ def _parser_overrides(coin_id: str) -> list[str]:
     return found
 
 
+def _load_builder(name: str):
+    import importlib.util
+    path = PROJECT_ROOT / "scripts" / "maintenance" / f"{name}.py"
+    spec = importlib.util.spec_from_file_location(f"_why_{name}", path)
+    mod = importlib.util.module_from_spec(spec)
+    sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+    sys.path.insert(0, str(PROJECT_ROOT / "scripts" / "maintenance"))
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _builder_overrides(coin_id: str) -> list[str]:
+    """Seed-BUILDER tables that decide a value before it is ever written.
+
+    Like the parser overrides, nothing in the data points at them, and `why`
+    used to print «nothing recorded» over them. Real case (2026-09-20):
+    `kmk-735220` carried a stale mint «Lybæk» in final while `build_kmk_seed`
+    already stop-listed the value in `_NON_MINT_PLACES` — the decision existed,
+    in code, and was argued against before anyone read it.
+    """
+    found: list[str] = []
+    try:
+        if coin_id.startswith("kmk-") and coin_id[4:].isdigit():
+            rid = int(coin_id[4:])
+            bk = _load_builder("build_kmk_seed")
+            cache = PROJECT_ROOT / "scripts" / "cache" / "kmk" / f"{rid}.json"
+            src = json.loads(cache.read_text()) if cache.exists() else {}
+            place = (src.get("place") or "").strip()
+            if place:
+                found.append(f"KMM place (cache) = {place!r}")
+            if place.split(",")[0].strip().casefold() in getattr(bk, "_NON_MINT_PLACES", set()):
+                found.append(f"build_kmk_seed._NON_MINT_PLACES lists {place.split(',')[0].strip()!r}"
+                             f" — never written as a mint")
+            for name in ("_KMM_PLACE_ERRATA", "_KMM_GALSTER_ERRATA", "_KMM_YEAR_ERRATA"):
+                table = getattr(bk, name, {}) or {}
+                if rid in table:
+                    found.append(f"build_kmk_seed.{name}[{rid}] = {table[rid]!r}")
+            if rid in (getattr(bk, "_KMM_DROP_IDS", set()) or set()):
+                found.append("build_kmk_seed._KMM_DROP_IDS — the builder drops this record")
+            if src:
+                mint, _mm = bk._split_place(src)
+                if isinstance(mint, list):
+                    key = frozenset(bk.canon_for_alias(m) for m in mint)
+                    if key in getattr(bk, "_KMM_DISPUTED_JOINT_MINTS", set()):
+                        found.append(f"build_kmk_seed._KMM_DISPUTED_JOINT_MINTS — joint mint "
+                                     f"{mint} kept but mint_verified false")
+        elif "tid-" in coin_id:
+            tid = coin_id.rsplit("-", 1)[-1]
+            cache = PROJECT_ROOT / "scripts" / "cache" / "ucoin" / f"{tid}.json"
+            if cache.exists():
+                src = json.loads(cache.read_text())
+                if isinstance(src, dict):
+                    bu = _load_builder("build_ucoin_seed")
+                    raw = src.get("mint_text")
+                    found.append(f"ucoin mint_text (cache) = {raw!r}")
+                    if isinstance(raw, str) and raw.strip().lower() in getattr(bu, "_UCOIN_MINT_JUNK", set()):
+                        found.append("build_ucoin_seed._UCOIN_MINT_JUNK — a page header, not a mint")
+                    if isinstance(raw, str) and any(t.strip().lower() in getattr(bu, "_UCOIN_MINT_IMPRECISE", set())
+                                                    for t in re.split(r"[,;(]", raw)):
+                        found.append(f"build_ucoin_seed._ucoin_mint → {bu._ucoin_mint(src)!r} "
+                                     f"(imprecise mint name handling)")
+    except Exception as exc:                     # never swallow into silence
+        found.append(f"(could not read builder overrides: {exc})")
+    return found
+
+
 def cmd_why(args) -> int:
     """Every curator layer that touches a coin, before you call a value wrong.
 
@@ -542,6 +609,9 @@ def cmd_why(args) -> int:
         for line in _parser_overrides(cid):
             print(f"\n  ── parser override\n     {line}")
 
+        for line in _builder_overrides(cid):
+            print(f"\n  ── seed builder\n     {line}")
+
         for rel, key, label in (
                 ("exclusions", "exclusions", "EXCLUDED from the render"),
                 ("merge_decisions", None, "merge decision"),
@@ -550,6 +620,13 @@ def cmd_why(args) -> int:
                 blob = p.read_text(encoding="utf-8")
                 if cid in blob:
                     print(f"\n  ── {label}: {p.relative_to(PROJECT_ROOT)} mentions it")
+
+        rem = V2 / "_recorded_removals.yml"
+        if rem.exists():
+            for e in (_load(rem).get("removals") or []):
+                if e.get("seed") == cid and (not args.field or e.get("field") == args.field):
+                    print(f"\n  ── recorded removal: {e.get('field') or e.get('kind')} "
+                          f"dropped {e.get('dropped')!r}\n     {e.get('reason')}")
 
         led = V2 / "_retracted_refs.yml"
         if led.exists():
