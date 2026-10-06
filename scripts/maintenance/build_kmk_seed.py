@@ -195,6 +195,15 @@ def _ruler(src):
 _NON_MINT_PLACES = {"lybæk"}
 
 
+def _place_mints(text: str) -> list[str] | None:
+    """«Zellerfeld, Goslar» / «København & Frederiksborg» → both mints, when
+    EVERY part is a registered mint; None otherwise."""
+    parts = [p.strip() for p in re.split(r"\s*[,&]\s*", text) if p.strip()]
+    if len(parts) < 2 or not all(display_for_alias(p) for p in parts):
+        return None
+    return [display_for_alias(p) for p in parts]
+
+
 def _split_place(src):
     """`place` → (mint_city_or_None, mintmaster_or_None).
 
@@ -207,6 +216,18 @@ def _split_place(src):
     place = (src.get("place") or "").strip()
     if not place:
         return None, None
+    # Two mints, not «city, mintmaster»: the comma (or «&») joins a second
+    # REGISTERED mint, and a mintmaster, if any, follows «;». KMM writes
+    # «Zellerfeld, Goslar; Henning Schlüter» — both towns were his mints — and
+    # «København, Altona» on Frederik VII issues Hede gives as «København og
+    # Altona». Read as «city, mintmaster» the second town landed in
+    # `mintmaster` (15 records, 2026-10-06). A genuine «København, Schwabe»
+    # is untouched: «Schwabe» is not a mint.
+    mint_part, _, mm_part = place.partition(";")
+    joint = _place_mints(mint_part)
+    if joint:
+        mm = mm_part.strip().strip(" )(") or None
+        return joint, mm
     head, _, tail = place.partition(",")
     head, tail = head.strip(), tail.strip()
     mintmaster = tail or None
