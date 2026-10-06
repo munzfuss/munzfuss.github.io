@@ -195,6 +195,22 @@ def _ruler(src):
 _NON_MINT_PLACES = {"lybæk"}
 
 
+# A KMM `place` value that is not what KMM meant, corrected from a catalogue.
+# {id: (printed place, corrected mint, citation for the coin's `sources`)}.
+# Curator-approved 2026-10-06 (Serhii), per the §4 errata rule.
+#   310429 — KMM prints the denomination «skilling» in `place`, the only such
+#   record in 43 033. The coin is Galster 39 (Christian II, 1 Skilling
+#   1514-1515), which Galster places at Malmø («Malmø. Forside: stående konge
+#   med rigsæble …», 39A-39C); KMM's own two other Galster 39 specimens
+#   (298199, 726209) read «Malmø».
+_KMM_PLACE_ERRATA = {
+    310429: ("skilling", "Malmø", {
+        "type": "literature",
+        "url": "https://www.danskmoent.dk/skilling.htm",
+        "ref": "Galster 39 (danskmoent.dk, Skilling overview): «Malmø. Forside: stående konge med rigsæble»",
+    }),
+}
+
 # A KMM `place` naming two mints that the catalogue for the same type does not
 # both confirm. «København & Frederiksborg» / «København, Frederiksborg» sits on
 # Frederik II's Hede 9, 11, 12 and 14, and Hede's header for all four names
@@ -224,6 +240,9 @@ def _split_place(src):
     place = (src.get("place") or "").strip()
     if not place:
         return None, None
+    errata = _KMM_PLACE_ERRATA.get(src.get("id"))
+    if errata and place == errata[0]:
+        return errata[1], None
     # Two mints, not «city, mintmaster»: the comma (or «&») joins a second
     # REGISTERED mint, and a mintmaster, if any, follows «;». KMM writes
     # «Zellerfeld, Goslar; Henning Schlüter» — both towns were his mints — and
@@ -808,6 +827,9 @@ def build_entry(src) -> dict | None:
         }],
         "verification_note": _VNOTE,
     }
+    _err = _KMM_PLACE_ERRATA.get(rid)
+    if _err and (src.get("place") or "").strip() == _err[0]:
+        entry["sources"].append(dict(_err[2]))
     # _source_note candidate (Phase-1, commit 80a1b62): KMM's `motif` (Danish),
     # cleaned + language-tagged for the later note-selector. Non-schema
     # (underscore) → stripped before the strict Coin schema at final/render.

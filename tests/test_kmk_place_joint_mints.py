@@ -62,5 +62,11 @@ class DisputedPair(unittest.TestCase):
         self.assertTrue(e.get("mint_verified"))
 
 
+class PlaceErratum(unittest.TestCase):
+    def test_applies_to_its_printed_value_only(self):
+        self.assertEqual(split("skilling", rid=310429), ("Malmø", None))
+        self.assertEqual(split("Lund", rid=310429)[0], "Lund")
+
+
 if __name__ == "__main__":
     unittest.main()
