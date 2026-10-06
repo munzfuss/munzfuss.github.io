@@ -47,5 +47,20 @@ class JointMints(unittest.TestCase):
         self.assertEqual(split("København, Schwabe"), ("Kopenhagen", "Schwabe"))
 
 
+class DisputedPair(unittest.TestCase):
+    def test_frederiksborg_pair_unverified(self):
+        src = {"id": 699135, "place": "København & Frederiksborg", "nominal": "skilling"}
+        e = bk.build_entry(src) or {}
+        self.assertTrue(e)
+        self.assertEqual(e.get("mint"), ["Kopenhagen", "Frederiksborg"])
+        self.assertFalse(e.get("mint_verified"))
+
+    def test_other_joint_pair_verified(self):
+        src = {"id": 298426, "place": "København, Altona", "nominal": "1 skilling rigsmønt"}
+        e = bk.build_entry(src) or {}
+        self.assertTrue(e)
+        self.assertTrue(e.get("mint_verified"))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -44,7 +44,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from lib.paths import KMK_CACHE  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.mint_registry import (  # noqa: E402
-    classify_nation_to_entity, display_for_alias,
+    canon_for_alias, classify_nation_to_entity, display_for_alias,
 )
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 from lib.ruler_reigns import reign_window  # noqa: E402
@@ -193,6 +193,14 @@ def _ruler(src):
 # Scoped deliberately to the observed value: a genuine Lübeck mint reaches us
 # as «Lübeck» through the registry's own alias set.
 _NON_MINT_PLACES = {"lybæk"}
+
+
+# A KMM `place` naming two mints that the catalogue for the same type does not
+# both confirm. «København & Frederiksborg» / «København, Frederiksborg» sits on
+# Frederik II's Hede 9, 11, 12 and 14, and Hede's header for all four names
+# København alone. The museum's attestation is kept, both mints, but marked
+# unverified so the disagreement shows as (?) (curator 2026-10-06).
+_KMM_DISPUTED_JOINT_MINTS = {frozenset({"kopenhagen", "frederiksborg"})}
 
 
 def _place_mints(text: str) -> list[str] | None:
@@ -776,7 +784,9 @@ def build_entry(src) -> dict | None:
         "metal": metal,
         "metal_verified": metal is not None,
         "mint": mint,
-        "mint_verified": mint is not None,
+        "mint_verified": mint is not None and not (
+            isinstance(mint, list)
+            and frozenset(canon_for_alias(m) for m in mint) in _KMM_DISPUTED_JOINT_MINTS),
         "ruler": _ruler(src),
         "mintmaster": mintmaster,
         "year_first": yf,
