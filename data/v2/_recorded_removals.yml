@@ -1016,3 +1016,63 @@ removals:
     field: others
     dropped: ['Olding# 405 b']
     reason: "IKMK prints «405 b1»; «405 b» was the parser's truncation of it, now replaced by «Olding# 405 b1»."
+  # ── KMM place with two mints, 2026-10-06 ─────────────────────────────────
+  # `_split_place` read a second mint after «,» as a mintmaster and did not read
+  # «&» at all (1b776d9 / eb2d2a4 / 8f6351a); the writer split «;» tails as
+  # mints (2c8cc37). These are the stale values the finals had accumulated,
+  # which a re-seed cannot reach. Curator-approved 2026-10-06.
+  - seed: kmk-699145
+    kind: field
+    field: mint
+    dropped: ['København & Frederiksborg']
+    reason: "KMM «København & Frederiksborg» read as one mint string; now two mints, unverified (Hede names København alone)."
+  - seed: kmk-699191
+    kind: field
+    field: mint
+    dropped: ['København & Frederiksborg']
+    reason: "KMM «København & Frederiksborg» read as one mint string; now two mints, unverified (Hede names København alone)."
+  - seed: kmk-699141
+    kind: field
+    field: mint
+    dropped: ['København & Frederiksborg']
+    reason: "KMM «København & Frederiksborg» read as one mint string; now two mints, unverified (Hede names København alone)."
+  - seed: kmk-168015
+    kind: field
+    field: mint
+    dropped: ['søsling']
+    reason: "Denomination, not a mint; KMM place and rådata both read «Gottorp», which the current builder emits."
+  - seed: kmk-184211
+    kind: field
+    field: mint
+    dropped: ['Henning Schreiber']
+    reason: "KMM «Clausthal; Henning Schreiber» — the part after «;» is the mintmaster, now in mintmaster."
+  - seed: kmk-184212
+    kind: field
+    field: mint
+    dropped: ['Henning Schreiber']
+    reason: "KMM «Clausthal; Henning Schreiber» — the part after «;» is the mintmaster, now in mintmaster."
+  - seed: kmk-184221
+    kind: field
+    field: mint
+    dropped: ['ikke Andreas Khüne)']
+    reason: "KMM «Goslar; ikke Andreas Khüne)» — «not Andreas Küne», a negation that names no mint and no mintmaster."
+  - seed: kmk-395499
+    kind: field
+    field: mint
+    dropped: ['Goslar & Zellerfeld']
+    reason: "KMM «Goslar & Zellerfeld» read as one mint string; now the two mints Goslar and Zellerfeld."
+  - seed: kmk-187970
+    kind: field
+    field: mintmaster
+    dropped: ['Goslar']
+    reason: "KMM «Zellerfeld, Goslar» — Goslar is the second mint, not a mintmaster; now in mint."
+  - seed: kmk-299076
+    kind: field
+    field: mintmaster
+    dropped: ['Frederiksborg']
+    reason: "KMM «København, Frederiksborg» — Frederiksborg is a mint, not a mintmaster; now in mint, unverified."
+  - seed: kmk-298426
+    kind: field
+    field: mintmaster
+    dropped: ['Altona']
+    reason: "KMM «København, Altona» — Altona is the second mint (Hede 16: «København og Altona»), not a mintmaster; it stuck on the Hede 16A final from an earlier re-flow."

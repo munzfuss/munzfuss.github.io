@@ -185443,60 +185443,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/298425
         ref: KMM 298425 (Inv. RP 849.1)
     verification_note: *id001
-  - id: kmk-298426
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Skilling rigsmønt
-    metal_verified: false
-    mint: Kopenhagen
-    mint_verified: true
-    ruler: Frederik 7
-    mintmaster: Altona
-    weight_rough_verified: false
-    catalog:
-      hede: '16'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/298426
-        ref: KMM 298426 (Inv. FP 10291.9)
-    verification_note: *id001
-    year_ranges:
-      -   - 1856
-          - 1856
-    year_label: '1856'
-    year_last: 1856
-    year_first: 1856
-  - id: kmk-298427
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Rigsbankskilling
-    metal_verified: false
-    mint: Kopenhagen
-    mint_verified: true
-    ruler: Frederik 7
-    mintmaster: Altona
-    year_first: 1852
-    year_last: 1852
-    year_label: '1852'
-    year_ranges:
-      -   - 1852
-          - 1852
-    weight_rough_verified: false
-    catalog:
-      hede: 12A
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/298427
-        ref: KMM 298427 (Inv. FP 10291.8)
-    verification_note: *id001
   - id: kmk-298428
     fuss: seed_unsorted
     phase: kmk
@@ -185967,10 +185913,11 @@ coins:
     entity_classified_via: mint
     nominal: 1 Mark
     metal_verified: false
-    mint: Kopenhagen
-    mint_verified: true
+    mint:
+      - Frederiksborg
+      - Kopenhagen
+    mint_verified: false
     ruler: Frederik 2
-    mintmaster: Frederiksborg
     year_first: 1559
     year_last: 1563
     year_label: 1559-1563
@@ -193633,10 +193580,10 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
-    entity_classified_via: nation
+    entity_classified_via: 'mint'
     nominal: 1 Skilling
     metal_verified: false
-    mint: skilling
+    mint: 'Malmø'
     mint_verified: true
     ruler: Christian 2
     year_first: 1514
@@ -193653,6 +193600,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/310429
         ref: KMM 310429 (Inv. FP 7204.49)
+      - type: literature
+        url: https://www.danskmoent.dk/skilling.htm
+        ref: 'Galster 39 (danskmoent.dk, Skilling overview): «Malmø. Forside: stående konge med rigsæble»'
     verification_note: *id001
   - id: kmk-310535
     fuss: seed_unsorted
@@ -260259,11 +260209,13 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
-    entity_classified_via: nation
+    entity_classified_via: 'mint'
     nominal: 1 Skilling
     metal_verified: false
-    mint: København & Frederiksborg
-    mint_verified: true
+    mint:
+      - Frederiksborg
+      - Kopenhagen
+    mint_verified: false
     ruler: Frederik 2
     year_first: 1563
     year_last: 1563
@@ -260285,11 +260237,13 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
-    entity_classified_via: nation
+    entity_classified_via: 'mint'
     nominal: 1 Skilling
     metal_verified: false
-    mint: København & Frederiksborg
-    mint_verified: true
+    mint:
+      - Frederiksborg
+      - Kopenhagen
+    mint_verified: false
     ruler: Frederik 2
     year_first: 1563
     year_last: 1563
@@ -260311,11 +260265,13 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
-    entity_classified_via: nation
+    entity_classified_via: 'mint'
     nominal: 1 Skilling
     metal_verified: false
-    mint: København & Frederiksborg
-    mint_verified: true
+    mint:
+      - Frederiksborg
+      - Kopenhagen
+    mint_verified: false
     ruler: Frederik 2
     year_first: 1563
     year_last: 1563
@@ -260337,11 +260293,13 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
-    entity_classified_via: nation
+    entity_classified_via: 'mint'
     nominal: 2 Skilling
     metal_verified: false
-    mint: København & Frederiksborg
-    mint_verified: true
+    mint:
+      - Frederiksborg
+      - Kopenhagen
+    mint_verified: false
     ruler: Frederik 2
     year_first: 1560
     year_last: 1560
@@ -260363,11 +260321,13 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
-    entity_classified_via: nation
+    entity_classified_via: 'mint'
     nominal: 2 Skilling
     metal_verified: false
-    mint: København & Frederiksborg
-    mint_verified: true
+    mint:
+      - Frederiksborg
+      - Kopenhagen
+    mint_verified: false
     ruler: Frederik 2
     year_first: 1560
     year_last: 1560
@@ -260389,11 +260349,13 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
-    entity_classified_via: nation
+    entity_classified_via: 'mint'
     nominal: 2 Skilling
     metal_verified: false
-    mint: København & Frederiksborg
-    mint_verified: true
+    mint:
+      - Frederiksborg
+      - Kopenhagen
+    mint_verified: false
     ruler: Frederik 2
     year_first: 1560
     year_last: 1560
@@ -260415,11 +260377,13 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
-    entity_classified_via: nation
+    entity_classified_via: 'mint'
     nominal: 1 Mark
     metal_verified: false
-    mint: København & Frederiksborg
-    mint_verified: true
+    mint:
+      - Frederiksborg
+      - Kopenhagen
+    mint_verified: false
     ruler: Frederik 2
     year_first: 1563
     year_last: 1563
@@ -260535,11 +260499,13 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
-    entity_classified_via: nation
+    entity_classified_via: 'mint'
     nominal: 1 Mark
     metal_verified: false
-    mint: København & Frederiksborg
-    mint_verified: true
+    mint:
+      - Frederiksborg
+      - Kopenhagen
+    mint_verified: false
     ruler: Frederik 2
     year_first: 1563
     year_last: 1563

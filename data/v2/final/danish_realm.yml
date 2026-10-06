@@ -4136,7 +4136,7 @@ coins:
     year_first: 1687
     year_last: 1687
     year_label: '1687'
-    mint: 'Kopenhagen'
+    mint: Kopenhagen
     catalog:
       km: '390'
       bruun_collection_id: '7030'
@@ -9849,7 +9849,7 @@ coins:
     year_first: 1690
     year_last: 1690
     year_label: '1690'
-    mint: 'Kopenhagen'
+    mint: Kopenhagen
     catalog:
       km: '400'
       hede: '88'
@@ -10972,7 +10972,7 @@ coins:
     year_first: 1682
     year_last: 1682
     year_label: '1682'
-    mint: 'Kopenhagen'
+    mint: Kopenhagen
     catalog:
       km: '372'
       bruun_collection_id: '6957'
@@ -27246,6 +27246,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/310429
         ref: KMM 310429 (Inv. FP 7204.49)
         display: false
+      - type: literature
+        url: https://www.danskmoent.dk/skilling.htm
+        ref: 'Galster 39 (danskmoent.dk, Skilling overview): «Malmø. Forside: stående konge med rigsæble»'
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -32114,8 +32117,8 @@ coins:
     ruler: Christian VIII.
     issuing_entity: danish_realm
     fraction: 1/96
-    id: unified-dk-hede-c8h10
     mintmaster: FK VS
+    id: unified-dk-hede-c8h10
     year_first: 1842
     year_last: 1842
     year_label: '1842'
@@ -32191,8 +32194,8 @@ coins:
     ruler: Christian VIII.
     issuing_entity: danish_realm
     fraction: 1/192
-    id: unified-dk-hede-c8h12
     mintmaster: FK VS
+    id: unified-dk-hede-c8h12
     year_first: 1842
     year_last: 1842
     year_label: '1842'
@@ -41242,6 +41245,14 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/348051
         ref: KMM 348051 (Inv. FP 5414.10)
         display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/699136
+        ref: KMM 699136 (Inv. FP 322.11)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/699137
+        ref: KMM 699137 (Inv. FP 322.10)
+        display: false
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -45968,9 +45979,7 @@ coins:
       -   - 1560
           - 1563
     year_label: 1560-1563
-    mint:
-      - Kopenhagen
-      - København & Frederiksborg
+    mint: 'Kopenhagen'
     catalog:
       hede:
         - '9'
@@ -52809,7 +52818,7 @@ coins:
           - 1699
     year_label: 1670-1699
     year_verified: false
-    mint: 'Kopenhagen'
+    mint: Kopenhagen
     catalog:
       km:
         - '416.1'
@@ -153234,7 +153243,6 @@ coins:
     kind: kurant
     nominal: 1 Mark
     ruler: Frederik II.
-    mintmaster: Frederiksborg
     issuing_entity: danish_realm
     id: unified-kmk-299076
     year_first: 1559
@@ -153243,10 +153251,12 @@ coins:
       -   - 1559
           - 1563
     year_label: 1559-1563
-    mint: Kopenhagen
+    mint:
+      - Frederiksborg
+      - Kopenhagen
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     sources:
       - type: museum
@@ -159199,12 +159209,14 @@ coins:
     year_first: 1560
     year_last: 1560
     year_label: '1560'
-    mint: København & Frederiksborg
+    mint:
+      - Frederiksborg
+      - Kopenhagen
     catalog:
       hede: '11'
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     sources:
       - type: museum
@@ -203459,33 +203471,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Skilling
-    ruler: Christian 2
-    issuing_entity: danish_realm
-    id: unified-kmk-310429
-    year_first: 1514
-    year_last: 1515
-    year_ranges:
-      -   - 1514
-          - 1515
-    year_label: 1514-1515
-    mint: skilling
-    catalog:
-      galster: '39'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/310429
-        ref: KMM 310429 (Inv. FP 7204.49)
-    verification_note: *id014
-    composed_of:
-      - unified-kmk-310429
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 1 Hvid
     ruler: Hans
     issuing_entity: danish_realm
@@ -203537,46 +203522,6 @@ coins:
     verification_note: *id014
     composed_of:
       - unified-kmk-658382
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Frederik 2
-    issuing_entity: danish_realm
-    id: unified-kmk-699135
-    year_first: 1563
-    year_last: 1563
-    year_label: '1563'
-    mint: København & Frederiksborg
-    catalog:
-      hede: '12'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/699135
-        ref: KMM 699135 (Inv. FP 322.12)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/699138
-        ref: KMM 699138 (Inv. FP 322.9)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/699140
-        ref: KMM 699140 (Inv. FP 322.7)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/699136
-        ref: KMM 699136 (Inv. FP 322.11)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/699137
-        ref: KMM 699137 (Inv. FP 322.10)
-        display: false
-    verification_note: *id014
-    composed_of:
-      - unified-kmk-699135
   - fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -204950,8 +204895,8 @@ coins:
     nominal: 32 Skilling
     ruler: Christian VII
     issuing_entity: danish_realm
-    id: unified-ngc-1049940
     mintmaster: HSK
+    id: unified-ngc-1049940
     year_first: 1775
     year_last: 1775
     year_label: '1775'
@@ -221749,8 +221694,8 @@ coins:
     ruler: Frederik VII.
     issuing_entity: danish_realm
     fraction: 1/192
-    id: unified-dk-hede-f7h13
     mintmaster: FK VS
+    id: unified-dk-hede-f7h13
     year_first: 1852
     year_last: 1852
     year_label: '1852'
