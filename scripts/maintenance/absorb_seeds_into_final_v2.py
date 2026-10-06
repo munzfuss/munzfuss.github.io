@@ -1961,12 +1961,26 @@ def process_entity(entity_id: str) -> dict:
                     and bool(fe.get("fineness_verified"))
                     and not bool(fe.get("metal_verified"))):
                 fe["metal_verified"] = True
-            # sources-imply-mint rule
+            # sources-imply-mint rule — with the guards its seed-writer twin
+            # carries. It exists for V1 under-claims; it must not overrule a
+            # class whose own members decline to vouch for the mint. Without
+            # these, every absorb re-promoted the «Clausthal-Zellerfeld» finals
+            # that f7527f2 set unverified and whose seeds hold
+            # `mint_verified: false` (2026-10-06): the flag came back on a
+            # plain re-flow, the value unchanged, only the claim about it.
             sources_fe = fe.get("sources") or []
+            _fe_holds = set(fe.get("_curation_holds") or [])
+            _members = [unified_by_id[x] for x in [fe.get("id"), *(fe.get("composed_of") or [])]
+                        if x in unified_by_id]
+            _members_decline = bool(_members) and all(
+                m.get("mint_verified") is False for m in _members)
             if (fe.get("mint")
+                    and not isinstance(fe.get("mint"), list)
                     and isinstance(sources_fe, list)
                     and any(isinstance(s, dict) and s.get("url") for s in sources_fe)
-                    and not bool(fe.get("mint_verified"))):
+                    and not bool(fe.get("mint_verified"))
+                    and "mint_verified" not in _fe_holds
+                    and not _members_decline):
                 fe["mint_verified"] = True
         kept_finals.append(fe)
     final_entries = kept_finals
