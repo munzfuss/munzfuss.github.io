@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-06T11:15:52Z'
+generated_at: '2026-10-06T13:23:37Z'
 entity: danish_realm
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -357737,7 +357737,7 @@ coins:
     entity_classified_via: nation
     nominal: 1 Brakteat
     metal_verified: false
-    mint_verified: true
+    mint_verified: false
     ruler: Margrethe
     weight_rough_verified: false
     verified: false
@@ -357754,10 +357754,33 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/695080
         ref: KMM 695080 (Inv. FP 80.529)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695072
+        ref: KMM 695072 (Inv. FP 80.537)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695073
+        ref: KMM 695073 (Inv. FP 80.536)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695074
+        ref: KMM 695074 (Inv. FP 80.535)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695076
+        ref: KMM 695076 (Inv. FP 80.533)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695077
+        ref: KMM 695077 (Inv. FP 80.532)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695078
+        ref: KMM 695078 (Inv. FP 80.531)
     verification_note: *id001
-    mint: Tysk
     _thinned_from:
+      - kmk-695072
+      - kmk-695073
+      - kmk-695074
       - kmk-695075
+      - kmk-695076
+      - kmk-695077
+      - kmk-695078
       - kmk-695079
       - kmk-695080
   - id: kmk-695070
@@ -357768,7 +357791,7 @@ coins:
     entity_classified_via: nation
     nominal: 1 Brakteat
     metal_verified: false
-    mint_verified: true
+    mint_verified: false
     ruler: Margrethe
     weight_rough_verified: false
     verified: false
@@ -357777,7 +357800,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/695070
         ref: KMM 695070 (Inv. FP 80.539)
     verification_note: *id001
-    mint: Tysk
   - id: kmk-695071
     fuss: seed_unsorted
     phase: kmk
@@ -357808,58 +357830,6 @@ coins:
       - kmk-695076
       - kmk-695077
       - kmk-695078
-  - id: kmk-695072
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Brakteat
-    metal_verified: false
-    mint_verified: false
-    ruler: Margrethe
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/695072
-        ref: KMM 695072 (Inv. FP 80.537)
-    verification_note: *id001
-  - id: kmk-695073
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Brakteat
-    metal_verified: false
-    mint_verified: false
-    ruler: Margrethe
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/695073
-        ref: KMM 695073 (Inv. FP 80.536)
-    verification_note: *id001
-  - id: kmk-695074
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Brakteat
-    metal_verified: false
-    mint_verified: true
-    ruler: Margrethe
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/695074
-        ref: KMM 695074 (Inv. FP 80.535)
-    verification_note: *id001
-    mint: Tysk
   - id: kmk-695914
     fuss: seed_unsorted
     phase: kmk

@@ -2,8 +2,8 @@
 # Generated 2026-10-06 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15271 per-source seed entries.
-# Output: 6928 unified entries (one per physical coin).
+# Input: 15268 per-source seed entries.
+# Output: 6925 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -263438,10 +263438,9 @@ coins:
     kind: kurant
     nominal: 1 Brakteat
     ruler: Margrethe
-    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     sources:
       - type: museum
@@ -263456,6 +263455,24 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/695080
         ref: KMM 695080 (Inv. FP 80.529)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695072
+        ref: KMM 695072 (Inv. FP 80.537)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695073
+        ref: KMM 695073 (Inv. FP 80.536)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695074
+        ref: KMM 695074 (Inv. FP 80.535)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695076
+        ref: KMM 695076 (Inv. FP 80.533)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695077
+        ref: KMM 695077 (Inv. FP 80.532)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/695078
+        ref: KMM 695078 (Inv. FP 80.531)
     verification_note: *id002
     issuing_entity: danish_realm
     composed_of:
@@ -263466,10 +263483,9 @@ coins:
     kind: kurant
     nominal: 1 Brakteat
     ruler: Margrethe
-    mint: Tysk
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     sources:
       - type: museum
@@ -263506,61 +263522,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-695071
-  - id: unified-kmk-695072
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Brakteat
-    ruler: Margrethe
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/695072
-        ref: KMM 695072 (Inv. FP 80.537)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-695072
-  - id: unified-kmk-695073
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Brakteat
-    ruler: Margrethe
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/695073
-        ref: KMM 695073 (Inv. FP 80.536)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-695073
-  - id: unified-kmk-695074
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Brakteat
-    ruler: Margrethe
-    mint: Tysk
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/695074
-        ref: KMM 695074 (Inv. FP 80.535)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-695074
   - id: unified-kmk-695908
     fuss: seed_unsorted
     phase: kmk
