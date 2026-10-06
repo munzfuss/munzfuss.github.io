@@ -220,6 +220,14 @@ _KMM_PLACE_ERRATA = {
 _KMM_DISPUTED_JOINT_MINTS = {frozenset({"kopenhagen", "frederiksborg"})}
 
 
+# A KMM `place` that is a whole COUNTRY, not a mint: «Tysk» («German») on the
+# three Margrethe brakteats kmk-695069/70/74, which reach the builder through
+# the rådata locality. Matched only as the WHOLE value — «Tysk, Hamburg» is a
+# territory + town that `_raadata_place` already reduces to the town (curator
+# 2026-10-06).
+_KMM_COUNTRY_PLACES = {"tysk"}
+
+
 def _place_mints(text: str) -> list[str] | None:
     """«Zellerfeld, Goslar» / «København & Frederiksborg» → both mints, when
     EVERY part is a registered mint; None otherwise."""
@@ -244,6 +252,8 @@ def _split_place(src):
     errata = _KMM_PLACE_ERRATA.get(src.get("id"))
     if errata and place == errata[0]:
         return errata[1], None
+    if place.casefold() in _KMM_COUNTRY_PLACES:
+        return None, None
     # Two mints, not «city, mintmaster»: the comma (or «&») joins a second
     # REGISTERED mint, and a mintmaster, if any, follows «;». KMM writes
     # «Zellerfeld, Goslar; Henning Schlüter» — both towns were his mints — and

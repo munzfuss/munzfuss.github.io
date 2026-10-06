@@ -70,3 +70,8 @@ class PlaceErratum(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CountryIsNotAMint(unittest.TestCase):
+    def test_whole_value_tysk_gives_no_mint(self):
+        self.assertEqual(split("Tysk"), (None, None))
