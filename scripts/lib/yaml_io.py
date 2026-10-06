@@ -358,14 +358,16 @@ def edit_coin_field(
         new_lines: list[str] = []
     elif isinstance(new_value, (list, tuple)) and len(new_value) == 1:
         new_lines = _render_field(indent, field, new_value[0])
+    elif isinstance(new_value, (list, tuple)):
+        # A list is rendered by the file's own serializer at the key's column,
+        # so its items carry the family's sequence offset whether the field was
+        # a list before or a scalar. Hand-rendering put them at the key's own
+        # indent — legal YAML, but every such edit raised the file's round-trip
+        # residual (2026-10-06: a scalar mint turned into [Goslar, Zellerfeld]
+        # on 28 KMM seeds, residual 0 → 48).
+        new_lines = canonical_lines(path, field, list(new_value), indent=len(indent))
     else:
         new_lines = _render_field(indent, field, new_value)
-        # Keep the file's own sequence offset: if the old block's items sat
-        # deeper than the key, write the new items there too.
-        old_items = [l for l in lines[fi + 1:span_end] if l.lstrip().startswith("- ")]
-        if isinstance(new_value, (list, tuple)) and old_items:
-            item_indent = old_items[0][:len(old_items[0]) - len(old_items[0].lstrip())]
-            new_lines = [new_lines[0]] + [item_indent + l.lstrip() for l in new_lines[1:]]
     old_lines = lines[fi:span_end]
     if old_lines == new_lines:
         return False

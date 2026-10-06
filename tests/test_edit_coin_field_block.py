@@ -56,8 +56,17 @@ class BlockField(unittest.TestCase):
             p = Path(d) / "x.yml"
             p.write_text(DOC)
             edit_coin_field(p, "a", "mint", ["Goslar", "Zellerfeld"])
-            self.assertIn("    mint:\n      - 'Goslar'\n      - 'Zellerfeld'\n", p.read_text())
+            self.assertIn("    mint:\n      - Goslar\n      - Zellerfeld\n", p.read_text())
             self.assertEqual(yaml.safe_load(p.read_text())["coins"][0]["mint"], ["Goslar", "Zellerfeld"])
+
+    def test_scalar_to_list_uses_the_family_offset(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "data" / "v2" / "seed" / "kmk"
+            p.mkdir(parents=True)
+            f = p / "x.yml"
+            f.write_text(DOC)
+            edit_coin_field(f, "b", "mint", ["Goslar", "Zellerfeld"])
+            self.assertIn("    mint:\n      - Goslar\n      - Zellerfeld\n", f.read_text())
 
     def test_remove_nested_mapping(self):
         a, _ = self._edit("catalog", None)
