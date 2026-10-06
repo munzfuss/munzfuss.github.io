@@ -61,14 +61,16 @@ classification_decisions/absorb, not this function.
    change on EVERY source's values, not the one being fixed; and re-flow from
    HEAD finals, not over a previous run's, because nominal is
    foundation-immutable and flags OR-merge with the final's own stored value.
-2. **`Tysk` ×126 finals (3 seeds) and `Ostindisk` ×1 — curator decision
-   pending.** The seed count fell because the rådata comma rule now routes
-   «Tysk, Hamburg» to Hamburg; the 126 finals look like stale accumulations
-   (hypothesis, not verified). Ask before touching.
-3. **`trace_coin.py why` does not know builder tables** — `_NON_MINT_PLACES`,
-   `_KMM_PLACE_ERRATA`, `_KMM_GALSTER_ERRATA`, `_KMM_DISPUTED_JOINT_MINTS`.
-   It prints «nothing recorded» where a decision exists in code (the `Lybæk`
-   lesson). Not started.
+2. **`Tysk` / `Ostindisk` — analysed 2026-10-06, awaiting the curator.**
+   123 of the 126 `Tysk` finals are stale: no current seed gives «Tysk» (57 keep
+   the real town — Lübeck 27, Hamburg 26, Gottorp 4 — and 66 have no mint),
+   residue of the old «Tysk, Hamburg» mis-split. 3 are Margrethe brakteats whose
+   KMM rådata really says «Tysk» (a country, not a mint; also pre-1514). 1 is
+   `Ostindisk` on kmk-469060, Frederik III, Bergsøe 34 (Danish India). Proposed:
+   remove the 123 mechanically; drop «Tysk» from the 3; settle Ostindisk from
+   Bergsøe 34 if it names the mint, else drop.
+3. ~~`trace_coin why` and builder tables~~ — done 2026-10-06: `why` shows the
+   KMM/ucoin builder tables and `_recorded_removals.yml` rows.
 4. Löser candidates not merged, same shape as the two approved: ucoin 5 Thaler
    1624 KM 353 / 6 Thaler 1624 KM 354 vs IKMK 18232371 (Clausthal), ucoin
    6 Thaler 1620 KM 228 vs IKMK 18232251. Put to the curator via
