@@ -100,3 +100,18 @@ class ApplyToCoin(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class NominalDoesNotOverrideMint(unittest.TestCase):
+    """«søsling, 1/96 thaler» is one coin under two names; the left part is a
+    denomination, not a mint, and must not replace the builder's mint."""
+
+    def test_two_denominations_keep_source_mint(self):
+        self.assertEqual(w._extract_mint_from_nominal("søsling, 1/96 thaler", "Gottorp")[1], "Gottorp")
+
+
+class DanishSpellingOfTrondheim(unittest.TestCase):
+    def test_trondhjem_is_the_mint_not_its_bracket(self):
+        self.assertEqual(split("Trondhjem (Nidaros)"), ("Nidaros", None))
+        from lib.mint_registry import canon_for_alias
+        self.assertEqual(canon_for_alias("Trondhjem"), "nidaros")

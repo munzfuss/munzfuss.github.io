@@ -363,7 +363,9 @@ _MINT_REGISTRY: dict[str, dict] = {
     "nidaros": {
         # Trondheim (modern) — period name «Nidaros» preserved in
         # Bruun + Galster catalogues for medieval coinage.
-        "aliases": {"nidaros", "trondheim"},
+        # «Trondhjem» is the Danish spelling KMM uses («Trondhjem (Nidaros)»);
+        # without it the writer read the bracket as the town (2026-10-06).
+        "aliases": {"nidaros", "trondheim", "trondhjem"},
         "display": "Nidaros",
         "entity": "danish_norway",
     },
