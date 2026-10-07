@@ -15,6 +15,14 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## 2026-10-07 — Nobelfod phases reworked; refs split per passage; archive links by hand
+
+- **Done.** Nobelfod phase 0/I titles and descriptions rewritten at phase level (denmark.yml, 4 languages). The two bundled refs (`galster-unionstidens-nobel`, 12 quotes; `wilcke-1950-nobel-ordinance`, 5) were split into 15 per-passage keys (`galster-nobel-*`, `wilcke-1950-nobel-*` / `-rigsraadets-brev-1524` / `-kongebrev-1524`), each with ONE quote + a de/en/uk translation (da: original only) and every citation repointed (denmark.yml, fuesse.yml). CLAUDE.md §5b now reads «one passage = one key»; §5a: 25 words is a guideline.
+- **Archive links, manual for now.** The Galster entries carry a Wayback link (`web.archive.org/web/20250911000833/https://www.danskmoent.dk/galster/galkult.htm`, capture verified to contain the quoted text). Wikipedia practice is url + archive-url + archive-date + url-status.
+- **OPEN (curator decision, to do later): a structured `archive: {url, date}` field in `refs_pool.yml`** rendered by `lib/refs_pool.py` (live link primary, «archived <date>» second), instead of hand-written `<a>` in each entry's text. Do it when more than a handful of entries need it (every danskmoent / Wilcke ref is a candidate). Use timestamp-pinned Wayback URLs, never the floating `/web/2/…` form; the availability API rate-limits (429) — a `HEAD https://web.archive.org/web/2/<url>` and reading the `Location` header works.
+- **Translations of quoted Danish are ours** (the Wilcke 1524 pair, pp. 182–183, is archaic orthography — «vegne marck» read as «weighed mark»): flagged to the curator for review, not independently verified.
+- fuesse.yml `nobel_fod` prose still says «за Galster» in several sentences (curator asked for no author name only in the phase descriptions) — decide whether to normalise.
+
 ## 2026-10-06 — the `mint` field cleaned of non-places; edit_coin_field fixed
 
 Closes the 2026-09-20 task. Three sources, each with its own rule, all in code

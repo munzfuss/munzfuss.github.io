@@ -532,7 +532,7 @@ The build's post-render pass (`scripts/lib/refs_pool.py::process_html`):
 **Forbidden:**
 - Renumbering existing keys — they are stable IDs, NOT display numbers.
 - Pulling display number from key (e.g. `ref:42` is forbidden) — confusing; use semantic key.
-- Inlining a single ref under multiple keys — one source = one key.
+- Inlining the SAME passage under multiple keys — **one passage = one key** (curator direction 2026-10-07). Different passages of one work (different pages of a book; different quoted sentences of an unpaginated web article) each get their OWN key with their own locator — the academic analogue is a work listed once in the bibliography and cited many times at different pages (Chicago short notes, Wikipedia `{{sfn}}`). For an unpaginated online source the verbatim quote IS the locator, so two quotes from one page are two passages, not a duplicate. Never bundle a work's passages into one entry (the former 12-quote Galster entry): the reader following «[2]» must land on the passage that backs THIS sentence. A quoted Danish (or other non-reader-language) passage is followed, in de/en/uk, by a translation in the entry's own language, marked as a translation; the da entry carries the original only.
 
 **Migration status (as of 2026-05-25):** 18 cites migrated (entire `fuesse.yml::courantdukatenfuss` block + `data/v2/locations/denmark.yml::fuss_periods.courantdukatenfuss.hintergrund`). Remaining ~164 cites in fuesse.yml + N location-yml cites stay on legacy `<sup>[N]</sup>` system until incrementally migrated. Both systems coexist on the rendered page (legacy refs numbered 1..max, pool refs numbered max+1..max+M).
 
