@@ -465,7 +465,7 @@ A reference entry's job is to tell the reader **where to verify the claim**, ful
 - Title (italic).
 - Publisher and/or year for printed works; URL for online works.
 - Hyperlink with `target="_blank"` for online sources.
-- **A verbatim quote** (≤ 25 words, in quotation marks) of the exact passage the citation backs. **Mandatory** — this is the citation's locator: the reader sees what claim the ref backs without re-reading the source. Standard academic practice (Chicago Manual, MLA) and especially important for unpaginated web sources where the quote IS the only locator. (Clarification 2026-05-14: «посилання завжди на якийсь конкретний уривок з тексту».)
+- **A verbatim quote** (about 25 words — a guideline, not a hard cap — in quotation marks) of the exact passage the citation backs. **Mandatory** — this is the citation's locator: the reader sees what claim the ref backs without re-reading the source. Standard academic practice (Chicago Manual, MLA) and especially important for unpaginated web sources where the quote IS the only locator. (Clarification 2026-05-14: «посилання завжди на якийсь конкретний уривок з тексту».) (Clarification 2026-10-07: the 25 words are an orientation, not a strict limit — a passage that needs a few more words to be a faithful, self-contained locator may run over; what stays binding is that the quote is ONE passage backing the claim, not a collection.)
 - **Concrete page hint** when the source has pagination (see «Mandatory page hints» below). NOT required for unpaginated single-page web articles — the verbatim quote serves as the locator there.
 - Optional ≤ 80 chars of additional scope context outside the quote — but the quote alone is usually enough.
 
@@ -491,7 +491,7 @@ Forms accepted (use whichever fits the underlying work's pagination scheme):
 
 **Forbidden inside a ref body:**
 - Multi-sentence analysis, argumentation, or interpretation («establishes that …», «proves that …», «in other words: …»).
-- **Long quotes** — more than ~25 words. The required verbatim quote (above) caps at ~25 words to serve as locator, not evidence. Longer evidentiary quotes go in the prose where the ref is cited, with the ref pointer next to them.
+- **Long quotes** — well beyond ~25 words (a modest overrun to keep one passage intact is fine; a stack of several passages is not). The required verbatim quote (above) is sized at about 25 words to serve as locator, not evidence. Longer evidentiary quotes go in the prose where the ref is cited, with the ref pointer next to them.
 - Multi-source bundles. Each source gets its own `ref{N}` entry, even if the same prose paragraph cites three of them. Inline citations stack: `<sup><a href="#ref10">[10]</a><a href="#ref11">[11]</a><a href="#ref12">[12]</a></sup>`.
 - Cross-references between refs («see ref30», «contrasted with ref29»). Cross-talk goes in the prose.
 - Marketing / institutional fluff («the world's largest collection insured for 500 m DKK»).
