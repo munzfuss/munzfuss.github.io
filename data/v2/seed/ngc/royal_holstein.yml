@@ -255,12 +255,12 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Goldgulden
-    year_label: '1523'
-    year_first: 1523
-    year_last: 1523
+    year_label: '1531'
+    year_first: 1531
+    year_last: 1531
     year_ranges:
-      -   - 1523
-          - 1523
+      -   - 1531
+          - 1531
     ruler: Friedrich I
     mint:
     catalog:
@@ -294,6 +294,11 @@ coins:
     _ngc_note: Fr.#14; Ref. Sch#1337.
     _ngc_date_line: (1523-33) Rare
     _curation_holds:
+      year_label: NumisMaster/NGC «1523-1533» is Frederik I's reign window for an undated coin, not a dating; Galster 122 («1531, u.år»), Numista 417865 and NGC's own title attribute it to 1531. 
+        Curator agreed 2026-10-07.
+      year_first:
+      year_last:
+      year_ranges:
       year_verified: NGC's date_line «(1523-33)» is an attribution window, not a struck year; the parser leaves year_verified true only because the paren-range slips its ND check. Held false to keep 
         _cross_entity year_demote from widening the merge (curator 2026-08-18); a default build_ngc_seed run drops it otherwise, since year_verified is not in seed_merge.CURATED_FIELDS. Remove once 
         the general ND→year_verified mechanism lands in the parser.
