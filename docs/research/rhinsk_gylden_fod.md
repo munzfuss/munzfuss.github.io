@@ -737,3 +737,48 @@ Hans' weight); Lange for ducal pieces; NFM XII p. 10 (Flensborg 1546).
 
 Absence checks were a grep of `data/v2/final` + `data/v2/seed` for the catalogue key; before acting on an «absent», run `scripts/maintenance/trace_coin.py` / grep finals before
 asserting absence (§0b-1).
+
+---
+
+## 15. Whose norm, when — Danish vs German track compared (2026-10-08)
+
+Question tested: can the standard be summarised as «the only Danish gold
+standard that rested on the imperial norm rather than its own»? Answer: **no**
+— both halves fail. Curator-approved conclusion and closing wording below.
+
+| Years | German track (law / practice) | Danish track | Whose norm |
+|---|---|---|---|
+| 1490/91, Worms 1495 | law 71⅓ / 18½ | — | — |
+| ~1496–1510 Hans | law 71⅓ / 18½ | no Danish act; weight ≈ 71⅓–72, assay 17¾ (Valvationstag 1551) | Denmark IMITATES the imperial norm, short in fineness |
+| 1497 Sweden (not executed) | 71⅓ / 18½ | Hans prescribes 72 / 18½ | Danish-issued act anticipates the imperial 1559 form by 62 years — a parallel, not a borrowing |
+| 1513 Blicher (not executed) | 71⅓ / 18½ | «saa god som rinske Gylden» | intent to TAKE the imperial norm |
+| 1514 / Kongebrev 1524 | law 1524: 89 / 22 (Esslingen); practice 1524–51: 72 / 18⅓ | **own norm 72 / 18** | piece count = German PRACTICE; fineness own and lower |
+| 1527–1536 | practice 72 / 18⅓ | 1536 pieces .764 (18⅓) | de facto the German practice |
+| 1546–47 Flensborg (Schleswig) | 71⅓ / 18½ (restored by Karl V 1551) | bestalling «efter Kurfyrsternes Gylden»; coins on 71⅓ weight, .750 | imperial norm ORDERED, Danish fineness struck |
+| 1551 / 1559 | Karl V 71⅓ / 18½ → Ferdinand **72 / 18½** | — | — |
+| 1563–64, 1584 Frederik II | 72 / 18½ | no Danish act; .77 at 72 | FULLY on the imperial norm |
+| 1602 | 72 / 18½ in force | Forordning omits the gulden | Danish law stops naming the standard |
+| 1625–32 Christian IV | 72 / 18½; Münzverein ends ~1625 | no act; 72 / 18¼ | nominally imperial (Wilcke: 1559 relations valid «helt ind i Christian IV.s Tid»), actually lower |
+| 1619–27 ducal | 72 / 18½ | fineness unknown | undecidable |
+
+Findings:
+
+1. **A Danish norm existed** — Møntordning 1514 (18 Kt), repeated 1524,
+   executed by Frederik I and Christian III. «Not its own» is false.
+2. **Fully imperial** only under Frederik II 1563–1584 (and the Flensborg order
+   1547); Hans and Christian IV only orient to the imperial norm with lower
+   fineness.
+3. **No reverse borrowing**: no source has the Empire adopt a Danish norm. The
+   shared 72 (Denmark 1497/1514; Empire practice to 1551, law 1559) is a
+   parallel with German practice, not a Danish contribution.
+4. **«Only» fails too**: the ducat is equally an imperial standard; the 1602
+   Forordning gives the Ungersk Gylden its own Danish norm (67 / 23⅓) — the
+   very act that drops the gulden. **Open**: whether the Danish ducat had a
+   Danish act before 1602 (not checked).
+
+**Approved closing (curator 2026-10-08):** «Стопа німецького походження, до
+якої Данія то зверталася безпосередньо — Ганс і Фредерік II карбували за
+імперською нормою, — то ставила власну, на пів карата нижчу (1514–1547 рр.), а
+від 1602 р. перестала приписувати взагалі.» + war-linked coinages, ~¼ Nobel
+weight, parallel lines (Ungersk Gylden from 1531, Guldkrone 1563–64). Written
+to `data/v2/locations/denmark.yml::fuss_periods.rhinsk_gylden_fod.closing`.
