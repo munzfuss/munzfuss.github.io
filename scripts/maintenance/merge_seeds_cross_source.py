@@ -2270,9 +2270,18 @@ class UnionFind:
         # ARE cleared by `force_union` since a curator merge outranks a
         # heuristic no_match.
         self.explicit_no_merge: set[frozenset] = set()
+        # root → its members, in first-seen order (the order the old
+        # full `self.parent` scan produced, so the conflicting pair a
+        # union reports stays the same). Replaces an O(N) scan of every
+        # id per union — 17 s of a 30 s danish_norway run (2026-10-08).
+        self._members: dict[str, list[str]] = {}
+        self._seq: dict[str, int] = {}
 
     def find(self, x):
-        self.parent.setdefault(x, x)
+        if x not in self.parent:
+            self.parent[x] = x
+            self._seq[x] = len(self._seq)
+            self._members[x] = [x]
         while self.parent[x] != x:
             self.parent[x] = self.parent[self.parent[x]]
             x = self.parent[x]
@@ -2282,7 +2291,16 @@ class UnionFind:
         return frozenset({x, y}) not in self.no_merge
 
     def _class_members(self, root: str) -> list[str]:
-        return [k for k in self.parent if self.find(k) == root]
+        return self._members[root]
+
+    def _link(self, rx: str, ry: str) -> None:
+        """Attach the larger root under the smaller (stable root choice:
+        lexicographically smaller wins) and merge member lists."""
+        keep, gone = (rx, ry) if rx < ry else (ry, rx)
+        self.parent[gone] = keep
+        merged = self._members[keep] + self._members.pop(gone)
+        merged.sort(key=self._seq.__getitem__)
+        self._members[keep] = merged
 
     def union(self, x, y) -> tuple[bool, frozenset | None]:
         """Returns (succeeded, conflicting_pair_or_None).
@@ -2304,10 +2322,7 @@ class UnionFind:
                     if frozenset({mx, my}) in self.no_merge:
                         return (False, frozenset({mx, my}))
         # Stable root choice: lexicographically smaller wins
-        if rx < ry:
-            self.parent[ry] = rx
-        else:
-            self.parent[rx] = ry
+        self._link(rx, ry)
         return (True, None)
 
     def add_no_merge(self, x, y, explicit: bool = False):
@@ -2343,10 +2358,7 @@ class UnionFind:
         for mx in members_x:
             for my in members_y:
                 self.no_merge.discard(frozenset({mx, my}))
-        if rx < ry:
-            self.parent[ry] = rx
-        else:
-            self.parent[rx] = ry
+        self._link(rx, ry)
         return (True, None)
 
     def classes(self) -> dict[str, list[str]]:
@@ -4825,7 +4837,10 @@ def _emit_match_uncertainty(entity_id: str, low_conf: list[dict],
         "merge_conflicts": merge_conflicts or [],
         "transitivity_blocks": transitivity_blocks or [],
     }
-    return header + yaml.dump(payload, sort_keys=False, allow_unicode=True,
+    # CDumper: byte-identical to the pure-Python Dumper on this payload
+    # (checked 2026-10-08), ~3x faster on the 10 MB danish_norway file.
+    return header + yaml.dump(payload, Dumper=getattr(yaml, "CDumper", yaml.Dumper),
+                              sort_keys=False, allow_unicode=True,
                               default_flow_style=False, width=120)
 
 
