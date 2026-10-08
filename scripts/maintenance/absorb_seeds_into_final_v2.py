@@ -151,10 +151,29 @@ def _reign_lookup_is_exact(ruler: str | None) -> bool:
 # ---------------------------------------------------------------------------
 
 
+# libyaml's C loader: same documents as SafeLoader (checked on every seed /
+# seed_unified / final yml, 2026-10-08), ~6x faster — parsing was >99 % of
+# an absorb run.
+_FASTLOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+
+
 def _load_yaml(p: Path) -> dict:
     if not p.exists():
         return {}
-    return yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+    return yaml.load(p.read_text(encoding="utf-8"), Loader=_FASTLOADER) or {}
+
+
+_UNIFIED_DOCS: list[tuple[Path, dict]] | None = None
+
+
+def _all_unified_docs() -> list[tuple[Path, dict]]:
+    """Every seed_unified file, parsed once per run and shared READ-ONLY by
+    the index builders below (each used to re-parse the whole directory)."""
+    global _UNIFIED_DOCS
+    if _UNIFIED_DOCS is None:
+        _UNIFIED_DOCS = [(path, _load_yaml(path))
+                         for path in sorted(V2_SEED_UNIFIED.glob("*.yml"))]
+    return _UNIFIED_DOCS
 
 
 def _ruamel_to_dict(c):
@@ -1708,8 +1727,8 @@ def _unified_home_index() -> dict[str, str]:
     global _UNIFIED_HOME_INDEX
     if _UNIFIED_HOME_INDEX is None:
         idx: dict[str, str] = {}
-        for path in sorted(V2_SEED_UNIFIED.glob("*.yml")):
-            for c in (_load_yaml(path).get("coins") or []):
+        for path, doc in _all_unified_docs():
+            for c in (doc.get("coins") or []):
                 if c.get("id"):
                     idx[c["id"]] = path.stem
         _UNIFIED_HOME_INDEX = idx
@@ -1727,8 +1746,8 @@ def _seed_class_index() -> dict[str, str]:
     global _SEED_CLASS_INDEX
     if _SEED_CLASS_INDEX is None:
         idx: dict[str, str] = {}
-        for path in sorted(V2_SEED_UNIFIED.glob("*.yml")):
-            for c in (_load_yaml(path).get("coins") or []):
+        for path, doc in _all_unified_docs():
+            for c in (doc.get("coins") or []):
                 _CLASS_NOTES[c.get("id")] = c.get("note")
                 for m in c.get("composed_of") or []:
                     idx.setdefault(m, c.get("id"))
@@ -3256,8 +3275,8 @@ def main() -> int:
         for _c in (_load_yaml(_sf).get("coins") or []):
             if _c.get("id"):
                 _leaf_idx.setdefault(_c["id"], _c)
-    for _uf in V2_SEED_UNIFIED.glob("*.yml"):
-        for _c in (_load_yaml(_uf).get("coins") or []):
+    for _uf, _udoc in _all_unified_docs():
+        for _c in (_udoc.get("coins") or []):
             if _c.get("id"):
                 _leaf_idx.setdefault(_c["id"], _c)
     _mgmod._LEAF_INDEX = _leaf_idx

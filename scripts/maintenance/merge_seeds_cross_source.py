@@ -67,6 +67,14 @@ from pathlib import Path
 
 import yaml
 
+# libyaml's C loader — same documents as SafeLoader, ~6x faster; parsing was
+# ~98 % of a merge run (measured 2026-10-08).
+_FASTLOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+
+
+def _fast_load(text):
+    return yaml.load(text, Loader=_FASTLOADER)
+
 # Ensure `scripts/` is on sys.path so `from lib.nominal_synonyms ...`
 # below resolves regardless of how the script is invoked (direct
 # `python scripts/maintenance/merge_seeds_cross_source.py` puts only
@@ -3834,7 +3842,7 @@ def _load_seeds_for_entity(entity_id: str) -> list[dict]:
         path = src_dir / f"{entity_id}.yml"
         if not path.exists():
             continue
-        doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        doc = _fast_load(path.read_text(encoding="utf-8")) or {}
         for c in doc.get("coins") or []:
             if isinstance(c, dict) and c.get("id"):
                 coins.append(c)
@@ -3898,7 +3906,7 @@ def _load_all_seeds() -> tuple[dict[str, dict], dict[str, str]]:
             continue
         for path in sorted(src_dir.glob("*.yml")):
             entity = path.stem
-            doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+            doc = _fast_load(path.read_text(encoding="utf-8")) or {}
             for c in doc.get("coins") or []:
                 if isinstance(c, dict) and c.get("id"):
                     by_id[c["id"]] = c
@@ -4762,7 +4770,7 @@ def _emit_unified_yaml(entity_id: str, unified_entries: list[dict],
     _existing_path = V2_SEED_UNIFIED / f"{entity_id}.yml"
     if _existing_path.exists():
         try:
-            existing = yaml.safe_load(_existing_path.read_text(encoding="utf-8"))
+            existing = _fast_load(_existing_path.read_text(encoding="utf-8"))
         except Exception:
             existing = None
     stamp = resolve_generated_at(payload, existing)
