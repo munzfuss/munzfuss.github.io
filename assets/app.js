@@ -151,11 +151,12 @@
         : saved.y || 0;
       window.scrollTo(0, y);
     }
+    function reveal() { document.documentElement.classList.remove("mz-restoring"); }
     function init() {
       var saved = read();
       var nav = (performance.getEntriesByType && performance.getEntriesByType("navigation")[0]) || {};
       var wanted = saved && (nav.type === "reload" || nav.type === "back_forward");
-      if (!wanted) { restoring = false; capture(); return; }
+      if (!wanted) { restoring = false; reveal(); capture(); return; }
       var jobs = [];
       (saved.open || []).forEach(function (id) {
         var d = document.querySelector('details.fuss-details[data-fuss="' + id + '"]');
@@ -168,6 +169,7 @@
         requestAnimationFrame(function () {
           restoreScroll(saved);
           restoring = false;
+          reveal();
           capture();
         });
       });

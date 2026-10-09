@@ -65,6 +65,9 @@
 /* --- Body & global type --------------------------------------------------- */
 
 html { background: var(--bg-page); }
+/* Hidden between a reload and the restoration of open blocks + scroll
+   (assets/app.js, section 2c); a head script lifts it after 2.5 s at most. */
+html.mz-restoring body { visibility: hidden; }
 
 body {
   margin: 0;
