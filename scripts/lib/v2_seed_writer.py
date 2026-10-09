@@ -235,6 +235,12 @@ _MINT_CANONICAL: dict[str, str] = {
 _MINT_COUNTRY_PREFIXES = frozenset({
     "denmark", "norway", "sweden", "germany", "holstein", "schleswig",
     "schleswig-holstein", "lübeck", "hamburg",
+    # Nationality adjectives: Numista's «Norwegian Mint» names no town, and
+    # the « Mint»-strip left «Norwegian» in the mint column of 6 seeds and 8
+    # finals (2026-10-09). With a town in the gloss («Norwegian Mint
+    # (Kongsberg)») the town is taken instead. «Royal Danish» is untouched —
+    # it is a registry alias of Kopenhagen, and the guard below respects that.
+    "norwegian", "danish", "swedish", "german",
 })
 
 # U+FFFD «�» mojibake (iso-8859 → utf-8 round-trip) → clean mint spelling.
