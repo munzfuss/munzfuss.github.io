@@ -20,8 +20,9 @@
 - **Done, local (not pushed):** `2af70f3` (parser key `sch`; builder writes `catalog.others` «Sch# N», also from the legacy `schou` key in unre-parsed caches) + `ad1d9c6` (12 royal_holstein seeds edited in place — `merge_seed` deep-merges catalog, so a re-seed never clears an old `schou`; 12 removals recorded). Galster 122 / 131 finals now show only Schou 1-4 / 1-7.
 - «Sch#» = probably Schulten 1974 — NOT confirmed (Krause abbreviation list not reachable online). If confirmed, promote `others: Sch# N` to a `schulten` key. «Sch#1542-43» (MC_167733) breaks the 1337-1362 block — likely a NumisMaster typo, left as printed.
 - Curator 2026-10-09: `unified-ngc-167747` (Goldgulden 1547, MB 57, Holstein arms obverse) is NOT Hede 14 (Flensburg 1546, portrait) — no merge.
-- **Not committed on purpose:** a full NumisMaster re-seed adds a `da` note to every entry, and absorb re-quotes `mint` in six unrelated finals — pending churn from earlier builder changes, ship separately.
-- **OPEN:** `kmk-355601` `schou: 1524` and `dk-galster-c2g-40` `schou: 1515/20` look like years in the Schou field.
+- **Later the same day (local):** KMM «<cat> <vol|year>, nr. N» parsed to the number after nr. (`db8493a`, data `d3dca62` + correction in `d9e1f8f` — d3dca62's «13 specimens return» was a thinning artefact of stale catalogue keys); Galster 40 (apocryphal, danskmoent) split from Numista 153125 by no_merge (`ff82271`); NumisMaster da notes (`95b40ea`); yaml_io scalars via canonical_lines + residual sees quotes in machine dirs (`167b895`, `98142fc`); mint_verified dropped on empty mint in seed_merge + absorb (`2657257`).
+- **Schou numbering:** our danskmoent/Hede caches fit «per ruler + year + nr» (557/566 single-year keys unique; per-ruler 418/702 reused; «hhv.» lists and «u.år» sections). Unconfirmed against Schou 1926 itself. The merger keys schou «<idx>/<ruler>» (merge_seeds_cross_source.py ~829) — false edges possible across years. Open task, not started.
+- **OPEN:** Galster 40 exclusion from render (curator not yet decided); same «flag true, value empty» shape on 392 ucoin `ruler_verified` seeds and ~180 finals (diameter/fineness/weight) — unexamined.
 
 ## 2026-10-09 — decisions stranded by entity moves; Christian IV Denning laid out
 
