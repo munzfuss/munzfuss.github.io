@@ -492,5 +492,25 @@ class TestSeedDeclassified(unittest.TestCase):
         self.assertEqual(VR.declassified(was, now, set()), [])
 
 
+class TestCitationCarriedInAnotherEntity(_Base):
+    """A vanished coin whose only uncovered citation is carried by a coin in
+    another entity is redistribution, not loss (the c7h28 shell, 2026-10-09)."""
+
+    def tearDown(self):
+        VR._GLOBAL_URLS = None
+
+    def test_url_carried_elsewhere_is_a_fold(self):
+        VR._GLOBAL_URLS = {"u2": ("other", "far-coin")}
+        r = self.run_case([{"id": "a", "sources": [{"url": "u1"}, {"url": "u2"}]}],
+                          [{"id": "b", "sources": [{"url": "u1"}]}])
+        self.assertEqual(r["losses"], [])
+
+    def test_url_carried_nowhere_still_blocks(self):
+        VR._GLOBAL_URLS = {}
+        r = self.run_case([{"id": "a", "sources": [{"url": "u1"}, {"url": "u2"}]}],
+                          [{"id": "b", "sources": [{"url": "u1"}]}])
+        self.assertTrue(any("COIN GONE" in m for m in r["losses"]))
+
+
 if __name__ == "__main__":
     unittest.main()

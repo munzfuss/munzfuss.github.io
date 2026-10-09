@@ -672,6 +672,23 @@ def declassified(was: dict, now: dict, excused: set[str],
             for (n_ent, n_fid, ent, fid, fuss), v in sorted(hits.items())]
 
 
+_GLOBAL_URLS: dict[str, tuple[str, str]] | None = None
+
+
+def _global_url_carriers(exclude_entity: str) -> dict[str, tuple[str, str]]:
+    """{source url → (entity, final id)} over the CURRENT finals of every
+    entity other than `exclude_entity`. Cached; parsed through _read_yaml."""
+    global _GLOBAL_URLS
+    if _GLOBAL_URLS is None:
+        idx: dict[str, tuple[str, str]] = {}
+        for path in sorted((ROOT / FINAL_REL).glob("*.yml")):
+            for fid, coin in _coins(_read_yaml(path)).items():
+                for u in _urls(coin):
+                    idx.setdefault(u, (path.stem, fid))
+        _GLOBAL_URLS = idx
+    return {u: v for u, v in _GLOBAL_URLS.items() if v[0] != exclude_entity}
+
+
 def _coin_home_index() -> dict[str, tuple[str, str]]:
     """{id seen in some final → (entity, that final's id)} across EVERY entity.
 
@@ -884,6 +901,17 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                 covered: set[str] = set()
                 for sid in carriers:
                     covered |= _urls(cur[sid]) & want
+                if covered != want:
+                    # A citation the vanished coin had ACCUMULATED from a member
+                    # that has since moved to a coin in another entity is still
+                    # cited there — redistribution across the entity boundary,
+                    # not loss. (2026-10-09: the c7h28 24-Skilling shell kept
+                    # ucoin tid 79089, whose seed now heads a danish_realm coin.)
+                    elsewhere = _global_url_carriers(entity)
+                    far = {u: elsewhere[u] for u in want - covered if u in elsewhere}
+                    if far:
+                        covered |= set(far)
+                        carriers += sorted({f"{f} [{e}]" for e, f in far.values()})
                 if covered == want:
                     absorbed_by = ", ".join(carriers)
         if absorbed_by == "__demoted__":

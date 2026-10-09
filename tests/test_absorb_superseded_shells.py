@@ -62,5 +62,62 @@ class SupersededShells(unittest.TestCase):
                                              "unified-dk-numista-9"))
 
 
+class CuratedShellSettled(unittest.TestCase):
+    """A Hede page split into sub-letters (202a5c1) left the CLASSIFIED final
+    `unified-dk-hede-nc5h30` with no member beside a new seed_unsorted class
+    `nc5h30a` holding all of them — the type rendered twice, its fuss on the
+    empty row. 2026-10-09: the sub-letter class is recognised as the
+    successor and takes the curation; siblings split across classes stay a
+    curator question."""
+
+    def setUp(self):
+        self._saved = (ab._SEED_CLASS_INDEX, ab._SUB_LETTER_INDEX,
+                       set(ab._SPLIT_SUB_LETTER_SHELLS))
+        ab._SEED_CLASS_INDEX = {
+            "dk-hede-nc5h30a": "unified-dk-hede-nc5h30a",
+            "dk-hede-nc5h30b": "unified-dk-hede-nc5h30a",
+            "dk-hede-nc5h56a": "unified-dk-hede-nc5h56a",
+            "dk-hede-nc5h56b": "unified-dk-hede-nc5h56b",
+        }
+        ab._SUB_LETTER_INDEX = None
+
+    def tearDown(self):
+        ab._SEED_CLASS_INDEX, ab._SUB_LETTER_INDEX = self._saved[0], self._saved[1]
+        ab._SPLIT_SUB_LETTER_SHELLS.clear()
+        ab._SPLIT_SUB_LETTER_SHELLS.update(self._saved[2])
+
+    SHELL = {"id": "unified-dk-hede-nc5h30", "composed_of": ["unified-dk-hede-nc5h30"],
+             "fuss": "9_25_thaler", "phase": "I", "kind": "kurant", "fraction": "2",
+             "note": {"en": "Obverse: portrait"}}
+
+    def test_sub_letter_successor_found(self):
+        self.assertEqual(ab._superseding_class(dict(self.SHELL), set()),
+                         "unified-dk-hede-nc5h30a")
+
+    def test_split_siblings_are_not_a_successor(self):
+        fe = dict(self.SHELL, id="unified-dk-hede-nc5h56")
+        self.assertIsNone(ab._superseding_class(fe, set()))
+        self.assertIn("unified-dk-hede-nc5h56", ab._SPLIT_SUB_LETTER_SHELLS)
+
+    def test_unsorted_successor_takes_the_curation(self):
+        succ = {"id": "unified-dk-hede-nc5h30a", "fuss": "seed_unsorted", "phase": "hede"}
+        self.assertTrue(ab._settle_curated_shell(dict(self.SHELL), succ))
+        self.assertEqual((succ["fuss"], succ["phase"], succ["kind"], succ["fraction"]),
+                         ("9_25_thaler", "I", "kurant", "2"))
+        self.assertEqual(succ["note"], {"en": "Obverse: portrait"})
+
+    def test_differently_classified_successor_keeps_the_shell(self):
+        succ = {"id": "x", "fuss": "9_thaler", "phase": "I"}
+        self.assertFalse(ab._settle_curated_shell(dict(self.SHELL), succ))
+        self.assertEqual(succ["fuss"], "9_thaler")
+
+    def test_unsorted_shell_hands_over_only_its_note(self):
+        shell = dict(self.SHELL, fuss="seed_unsorted", phase="hede")
+        succ = {"id": "y", "fuss": "seed_unsorted", "phase": "kmk"}
+        self.assertTrue(ab._settle_curated_shell(shell, succ))
+        self.assertEqual(succ["phase"], "kmk")
+        self.assertEqual(succ["note"], {"en": "Obverse: portrait"})
+
+
 if __name__ == "__main__":
     unittest.main()

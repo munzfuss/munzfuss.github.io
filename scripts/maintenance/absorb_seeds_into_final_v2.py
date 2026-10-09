@@ -1791,8 +1791,95 @@ def _superseding_class(fe: dict, live_member_ids: set) -> str | None:
         return None
     if any(m in live_member_ids for m in (fe.get("composed_of") or [])):
         return None
-    cls = _seed_class_index().get(fid[len("unified-"):])
+    idx = _seed_class_index()
+    bare = fid[len("unified-"):]
+    if bare not in idx:
+        # The parser split a Hede page into sub-letter seeds (`dk-hede-nc5h30`
+        # → `nc5h30a`, 202a5c1): the bare seed no longer exists, so the lookup
+        # below would miss and the curated final would stay as a shell beside
+        # a new seed_unsorted class holding every member — the type rendered
+        # twice (12 such pairs measured 2026-10-09). Follow the sub-letters,
+        # but only when they all landed in ONE class; siblings split across
+        # classes (nc5h56a / nc5h56b) are a curator question, not a rename.
+        subs = {idx[k] for k in _sub_letter_seeds(bare)}
+        if len(subs) > 1 and fe.get("fuss") not in (None, "seed_unsorted"):
+            _SPLIT_SUB_LETTER_SHELLS.add(fid)
+        return subs.pop() if len(subs) == 1 and fid not in subs else None
+    cls = idx.get(bare)
     return cls if cls and cls != fid else None
+
+
+_SUB_LETTER_INDEX: dict[str, list[str]] | None = None
+# Classified shells whose sub-letter seeds landed in SEVERAL classes — left
+# for the curator (one coin or several?) and reported by process_entity.
+_SPLIT_SUB_LETTER_SHELLS: set[str] = set()
+
+
+def _sub_letter_seeds(bare: str) -> list[str]:
+    """Seed ids `<bare><letters>` (dk-hede-nc5h30 → nc5h30a, nc5h30b)."""
+    global _SUB_LETTER_INDEX
+    if _SUB_LETTER_INDEX is None:
+        import re as _re
+        idx: dict[str, list[str]] = {}
+        for k in _seed_class_index():
+            m = _re.match(r"^(.*\d)([a-z]+)$", k)
+            if m:
+                idx.setdefault(m.group(1), []).append(k)
+        _SUB_LETTER_INDEX = idx
+    return _SUB_LETTER_INDEX.get(bare, [])
+
+
+_SHELL_TRANSFER_FIELDS = ("fuss", "phase", "kind", "fraction")
+
+
+def _settle_curated_shell(shell: dict, successor: dict | None) -> bool:
+    """A curated shell whose class was superseded: hand its curation to the
+    successor and report True (drop the shell), or report False (keep it).
+
+    Before 2026-10-09 every curated shell was kept, with a «review» line
+    nobody read: the classification stayed on a final with no members and
+    the successor sat in seed_unsorted, so the type rendered twice. Settled
+    automatically only in the two unambiguous cases:
+      * the successor is unclassified and carries no curation hold — it
+        takes fuss / phase / kind / fraction, and the note and holds it lacks;
+      * the successor already has the same fuss and phase — only a missing
+        note is handed over.
+    A successor with a DIFFERENT classification is a curator question and the
+    shell is kept for review, as before."""
+    if successor is None:
+        return False
+    s_fuss = successor.get("fuss")
+    if shell.get("fuss") in (None, "seed_unsorted"):
+        # An unclassified shell kept only for its note: hand over the note,
+        # never its phase/kind — on an unsorted entry those are source tags.
+        pass
+    elif s_fuss in (None, "seed_unsorted") and not successor.get("_curation_holds"):
+        for f in _SHELL_TRANSFER_FIELDS:
+            if shell.get(f) is not None:
+                successor[f] = shell[f]
+    elif not (s_fuss == shell.get("fuss") and successor.get("phase") == shell.get("phase")):
+        return False
+    if shell.get("note") and not successor.get("note"):
+        successor["note"] = shell["note"]
+    if shell.get("_curation_holds"):
+        holds = shell["_curation_holds"]
+        if isinstance(holds, list):
+            holds = {h: None for h in holds}
+        mine = successor.get("_curation_holds") or {}
+        if isinstance(mine, list):
+            mine = {h: None for h in mine}
+        successor["_curation_holds"] = {**holds, **mine}
+    return True
+
+
+def _entries_by_member(entries: list[dict]) -> dict[str, dict]:
+    """{final id or composed_of id → its entry} for locating a successor."""
+    out: dict[str, dict] = {}
+    for e in entries:
+        for k in [e.get("id"), *(e.get("composed_of") or [])]:
+            if k:
+                out.setdefault(str(k), e)
+    return out
 
 
 def _final_is_routed_away(fe: dict, entity_id: str) -> bool:
@@ -2964,6 +3051,8 @@ def process_entity(entity_id: str) -> dict:
     _kept_after_stale: list[dict] = []
     shell_dropped: set[str] = set()
     shell_kept_curated: list[str] = []
+    shell_settled: list[str] = []
+    _by_member = _entries_by_member(enriched_entries)
     for e in enriched_entries:
         if _is_vanished_stale_final(e, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(e.get("id")))
@@ -2972,6 +3061,10 @@ def process_entity(entity_id: str) -> dict:
         _cls = _superseding_class(e, _live_members)
         if _cls:
             if _shell_is_curated(e, _cls):
+                if _settle_curated_shell(e, _by_member.get(_cls)):
+                    shell_settled.append(_eid)
+                    shell_dropped.add(_eid)
+                    continue
                 shell_kept_curated.append(_eid)
             else:
                 shell_dropped.add(_eid)
@@ -3035,6 +3128,10 @@ def process_entity(entity_id: str) -> dict:
         _cls = _superseding_class(fc, _live_members)
         if _cls:
             if _shell_is_curated(fc, _cls):
+                if _settle_curated_shell(fc, _entries_by_member(enriched_entries).get(_cls)):
+                    shell_settled.append(str(fid))
+                    shell_dropped.add(str(fid))
+                    continue
                 if fid not in shell_kept_curated:
                     shell_kept_curated.append(fid)
             else:
@@ -3061,6 +3158,14 @@ def process_entity(entity_id: str) -> dict:
     if shell_dropped:
         print(f"  [{entity_id}] superseded shells dropped: {len(shell_dropped)} "
               f"(their seed lives on in another class)")
+    if shell_settled:
+        print(f"  [{entity_id}] superseded curated shells settled: "
+              f"{len(shell_settled)} (curation handed to the successor class): "
+              f"{sorted(shell_settled)[:8]}")
+    _split_here = sorted(_SPLIT_SUB_LETTER_SHELLS & {str(e.get("id")) for e in enriched_entries})
+    if _split_here:
+        print(f"  [{entity_id}] ⚠ {len(_split_here)} classified shell(s) whose Hede "
+              f"sub-letters split across several classes — curator: {_split_here}")
     if shell_kept_curated:
         print(f"  [{entity_id}] ⚠ {len(shell_kept_curated)} superseded shell(s) "
               f"KEPT because they carry curation — review: "
