@@ -81303,8 +81303,8 @@ coins:
       da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     composed_of:
       - unified-dk-hede-c5h49ab
-  - fuss: seed_unsorted
-    phase: hede
+  - fuss: kronemont
+    phase: II
     kind: kurant
     nominal: 1 Krone
     ruler: Christian V.
@@ -81517,6 +81517,7 @@ coins:
       unit_raw: rd
     composed_of:
       - unified-dk-hede-c5h67a
+    fraction: '1'
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
@@ -81920,8 +81921,8 @@ coins:
       da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     composed_of:
       - unified-dk-hede-f3h7
-  - fuss: seed_unsorted
-    phase: hede
+  - fuss: 9_25_thaler
+    phase: I
     kind: kurant
     nominal: 1 Speciedaler
     ruler: Frederik III.
@@ -82073,6 +82074,7 @@ coins:
       - unified-dk-hede-f3h73
       - unified-dk-hede-f3h73a
       - unified-dk-numista-308265
+    fraction: '1'
   - fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -82928,8 +82930,8 @@ coins:
       da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     composed_of:
       - unified-dk-hede-f5h13
-  - fuss: seed_unsorted
-    phase: hede
+  - fuss: kronemont_chr_iv
+    phase: I
     kind: kurant
     nominal: 2 Skilling
     ruler: Christian IV.
@@ -83019,6 +83021,7 @@ coins:
       unit_raw: dlr
     composed_of:
       - unified-dk-hede-c4h116a
+    fraction: 1/48
   - fuss: reichsdukatenfuss
     phase: III
     kind: kurant
@@ -168088,8 +168091,8 @@ coins:
     verification_note: *id005
     composed_of:
       - unified-kmk-160883
-  - fuss: seed_unsorted
-    phase: kmk
+  - fuss: 9_25_thaler
+    phase: I
     kind: kurant
     nominal: 2 Skilling
     issuing_entity: danish_realm
@@ -168439,6 +168442,7 @@ coins:
       - unified-dk-hede-c4h143
       - unified-kmk-160885
       - unified-kmk-275642
+    fraction: 1/48
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -267953,6 +267957,7 @@ coins:
     ruler: Christian IV.
     issuing_entity: danish_realm
     year_is_reign_span: true
+    fraction: 1/48
     id: unified-dk-hede-c4h134a
     year_first: 1588
     year_last: 1648
@@ -268196,6 +268201,13 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/717146
         ref: KMM 717146 (Inv. FP 392.1)
         display: false
+    note:
+      de: Gekrönter verzierter flachgedeckter Schild über einem langen Kreuz in einem Perlkreis; Umschrift außen, durch die Kreuzarme in vier Teile geteilt. / Wert in Buchstaben in vier Zeilen in 
+        einem Perlkreis; Umschrift und Datum am Rand; Müntzzeichen nach dem Datum.
+      en: Crowned ornate flat-topped shield over a long cross within a beaded circle; legend outside, divided in four parts by the cross arms. / Value in letters on four lines in a beaded circle; 
+        legend and date around the rim; mintmark after the date.
+      uk: Коронований оздоблений щит із пласким верхом над довгим хрестом у перлинному колі; легенда назовні, поділена раменами хреста на чотири частини. / Номінал літерами у чотири рядки в перлинному
+        колі; легенда й дата по краю; монетний знак після дати.
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -268208,20 +268220,13 @@ coins:
       unit_raw: daler
     composed_of:
       - unified-dk-hede-c4h134a
-    fraction: 1/48
-    note:
-      de: Gekrönter verzierter flachgedeckter Schild über einem langen Kreuz in einem Perlkreis; Umschrift außen, durch die Kreuzarme in vier Teile geteilt. / Wert in Buchstaben in vier Zeilen in 
-        einem Perlkreis; Umschrift und Datum am Rand; Müntzzeichen nach dem Datum.
-      en: Crowned ornate flat-topped shield over a long cross within a beaded circle; legend outside, divided in four parts by the cross arms. / Value in letters on four lines in a beaded circle; 
-        legend and date around the rim; mintmark after the date.
-      uk: Коронований оздоблений щит із пласким верхом над довгим хрестом у перлинному колі; легенда назовні, поділена раменами хреста на чотири частини. / Номінал літерами у чотири рядки в перлинному
-        колі; легенда й дата по краю; монетний знак після дати.
   - fuss: 9_25_thaler
     phase: I
     kind: scheide
     nominal: 4 Skilling
     ruler: Frederik III.
     issuing_entity: danish_realm
+    fraction: 1/24
     id: unified-dk-hede-f3h136a
     year_first: 1665
     year_last: 1665
@@ -268254,6 +268259,10 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h136.htm
         ref: danskmoent.dk (Hede f3h136A)
+    note:
+      de: 'Vorderseite: Monogramm, Rückseite: Wertangabe. Müntzmeisterinitialen GK. Es gibt eine Schreibfehler-Variante: ‹PRVIDEBIT› statt ‹PROVIDEBIT›.'
+      en: 'Obverse: monogram, reverse: value indication. Mintmaster initials GK. A spelling-error variant reads ‹PRVIDEBIT› instead of ‹PROVIDEBIT›.'
+      uk: 'Аверс: монограма, реверс: позначення номіналу. Ініціали монетмейстера GK. Є варіант з орфографічною помилкою: ‹PRVIDEBIT› замість ‹PROVIDEBIT›.'
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -268261,11 +268270,6 @@ coins:
       da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     composed_of:
       - unified-dk-hede-f3h136a
-    fraction: 1/24
-    note:
-      de: 'Vorderseite: Monogramm, Rückseite: Wertangabe. Müntzmeisterinitialen GK. Es gibt eine Schreibfehler-Variante: ‹PRVIDEBIT› statt ‹PROVIDEBIT›.'
-      en: 'Obverse: monogram, reverse: value indication. Mintmaster initials GK. A spelling-error variant reads ‹PRVIDEBIT› instead of ‹PROVIDEBIT›.'
-      uk: 'Аверс: монограма, реверс: позначення номіналу. Ініціали монетмейстера GK. Є варіант з орфографічною помилкою: ‹PRVIDEBIT› замість ‹PROVIDEBIT›.'
   - fuss: 9_25_thaler
     phase: I
     kind: kurant
@@ -268273,6 +268277,7 @@ coins:
     ruler: Frederik III.
     mintmaster: Caspar Herbach
     issuing_entity: danish_realm
+    fraction: '1'
     id: unified-dk-hede-f3h66a
     year_first: 1664
     year_last: 1664
@@ -268351,6 +268356,13 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     inscription_obv: FRIDERIC 3 D G DAN NOR VAN GOT REX
     inscription_rev: DOMINUS - PROVIDEBIT 16-64
+    note:
+      de: 1 Speciedaler Friedrichs III. (Glückstadt 1664) — <b>Sondertyp mit reduziertem Feingehalt .875</b> (vs. dem Standard-9¼-Fuß-Wert .888 für die parallele Hauptemission km-51 1664–1666). Im 
+        Schleswig-Holstein-KM-Register nicht erfasst, sondern nur als <b>KM-DK# 250</b> im Royal-Danish-Register. ucoin-Eintrag tid 97365; in Numista nicht direkt katalogisiert.
+      en: 1 Speciedaler of Frederik III (Glückstadt 1664) — <b>special type with reduced fineness .875</b> (vs. the standard 9¼-Fuß value .888 of the parallel main issue km-51 1664–1666). Not recorded
+        in the Schleswig-Holstein KM register, only as <b>KM-DK# 250</b> in the Royal Danish register. ucoin entry tid 97365; not catalogued directly by Numista.
+      uk: 1 Speciedaler Фредеріка III (Glückstadt 1664) — <b>спеціальний тип зі зниженою пробою .875</b> (vs. стандартне для 9¼-Fuß значення .888 паралельної основної емісії km-51 1664–1666). У 
+        шлезвіг-гольштинському KM-реєстрі не зафіксовано, лише як <b>KM-DK# 250</b> у данському Royal-реєстрі. ucoin запис tid 97365; у Numista окремо не каталогізовано.
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -268363,14 +268375,6 @@ coins:
       unit_raw: speciedalere
     composed_of:
       - unified-dk-hede-f3h66a
-    fraction: '1'
-    note:
-      de: 1 Speciedaler Friedrichs III. (Glückstadt 1664) — <b>Sondertyp mit reduziertem Feingehalt .875</b> (vs. dem Standard-9¼-Fuß-Wert .888 für die parallele Hauptemission km-51 1664–1666). Im 
-        Schleswig-Holstein-KM-Register nicht erfasst, sondern nur als <b>KM-DK# 250</b> im Royal-Danish-Register. ucoin-Eintrag tid 97365; in Numista nicht direkt katalogisiert.
-      en: 1 Speciedaler of Frederik III (Glückstadt 1664) — <b>special type with reduced fineness .875</b> (vs. the standard 9¼-Fuß value .888 of the parallel main issue km-51 1664–1666). Not recorded
-        in the Schleswig-Holstein KM register, only as <b>KM-DK# 250</b> in the Royal Danish register. ucoin entry tid 97365; not catalogued directly by Numista.
-      uk: 1 Speciedaler Фредеріка III (Glückstadt 1664) — <b>спеціальний тип зі зниженою пробою .875</b> (vs. стандартне для 9¼-Fuß значення .888 паралельної основної емісії km-51 1664–1666). У 
-        шлезвіг-гольштинському KM-реєстрі не зафіксовано, лише як <b>KM-DK# 250</b> у данському Royal-реєстрі. ucoin запис tid 97365; у Numista окремо не каталогізовано.
     _curation_holds:
       note: V1 backfill 2026-05-26 from denmark.yml::unified-dk-hede-f3h66 (matched via seed-unified-bridge; V1→V2 bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
   - fuss: seed_unsorted
@@ -268672,6 +268676,7 @@ coins:
     nominal: 1 Mark
     ruler: Christian V.
     issuing_entity: danish_realm
+    fraction: 1/4
     id: unified-dk-hede-c5h107a
     year_first: 1693
     year_last: 1696
@@ -268724,6 +268729,13 @@ coins:
       - type: literature
         url: https://en.numista.com/112565
         ref: Numista N#112565 — 1 Mark Dansk - Christian V
+    note:
+      de: Brustbild König Christians V. mit gelocktem Haar nach rechts; Umschrift an den Seiten am Rand. / Große Königskrone über den Initialen des Wahlspruchs, die Wertangabe an den Seiten teilend; 
+        Umschrift am Rand mit der Jahreszahl unter dem Wahlspruch, von einem kleinen Herz geteilt.
+      en: Bust of King Christian V with curly hair facing right; legend divided at the sides, along the rim. / A large royal crown above the King's motto initials, dividing the value at the sides; 
+        legend around the rim with the date below the motto, divided by a small heart.
+      uk: Погруддя короля Christian V з кучерявим волоссям, праворуч; напис розділений з боків по краю. / Велика королівська корона над ініціалами девізу короля, що розділяє номінал з боків; напис по 
+        краю з датою під девізом, розділеною маленьким серцем.
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -268736,14 +268748,6 @@ coins:
       unit_raw: rd
     composed_of:
       - unified-dk-hede-c5h107a
-    fraction: 1/4
-    note:
-      de: Brustbild König Christians V. mit gelocktem Haar nach rechts; Umschrift an den Seiten am Rand. / Große Königskrone über den Initialen des Wahlspruchs, die Wertangabe an den Seiten teilend; 
-        Umschrift am Rand mit der Jahreszahl unter dem Wahlspruch, von einem kleinen Herz geteilt.
-      en: Bust of King Christian V with curly hair facing right; legend divided at the sides, along the rim. / A large royal crown above the King's motto initials, dividing the value at the sides; 
-        legend around the rim with the date below the motto, divided by a small heart.
-      uk: Погруддя короля Christian V з кучерявим волоссям, праворуч; напис розділений з боків по краю. / Велика королівська корона над ініціалами девізу короля, що розділяє номінал з боків; напис по 
-        краю з датою під девізом, розділеною маленьким серцем.
   - fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -296382,8 +296386,8 @@ coins:
       da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     composed_of:
       - unified-dk-hede-c5h4
-  - fuss: seed_unsorted
-    phase: ngc
+  - fuss: 18_5_thaler
+    phase: I
     kind: kurant
     nominal: 32 Rigsbankskilling
     ruler: Christian VIII.
@@ -311564,8 +311568,8 @@ coins:
     verification_note: *id023
     composed_of:
       - unified-kmk-78400
-  - fuss: seed_unsorted
-    phase: ngc
+  - fuss: 9_25_thaler
+    phase: I
     kind: kurant
     nominal: 2 Skilling
     ruler: Frederick III
@@ -311654,6 +311658,7 @@ coins:
       da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     composed_of:
       - unified-ngc-1050503
+    fraction: 1/48
   - fuss: rhinsk_gylden_fod
     phase: '0'
     kind: kurant
