@@ -456,6 +456,22 @@ def compare_entity(entity: str, base: str) -> dict:
 
 
 _ELSEWHERE_COINS: dict[str, tuple[str, str]] | None = None
+# (entity, final id) → that final's current fuss. Filled alongside
+# _ELSEWHERE_COINS so a relocation can be checked for a lost classification.
+_ELSEWHERE_FUSS: dict[tuple[str, str], str | None] = {}
+
+
+def _demoted_in_move(was: dict, host_fuss: str | None) -> bool:
+    """A coin that moved — to another entity, into another class, or into a
+    renamed class — must not arrive in `seed_unsorted` when it left a real
+    Müntzfuß behind. Classification can live ONLY on the final (no curator
+    assignment backs it), so the move silently drops it; the identity checks
+    below then excuse the vanished id because the coin is «alive elsewhere».
+    Observed 2026-10-09: eleven royal_slesvig and four royal_holstein coins
+    lost their fuss this way on the royal_slesvig split, plus a Denning whose
+    class was renamed by a Hede stub joining it."""
+    old = was.get("fuss")
+    return bool(old) and old != "seed_unsorted" and host_fuss == "seed_unsorted"
 
 
 _HEAD_UNIFIED: dict[str, dict[str, list[str]]] = {}
@@ -560,6 +576,7 @@ def _coin_home_index() -> dict[str, tuple[str, str]]:
             ent = path.stem
             for cid, coin in _coins(yaml.load(path.read_text(), Loader=_FASTLOADER)).items():
                 idx.setdefault(cid, (ent, cid))
+                _ELSEWHERE_FUSS[(ent, cid)] = coin.get("fuss")
                 for m in (coin.get("composed_of") or [cid]):
                     idx.setdefault(m, (ent, cid))
                     for seed in unified.get(m, []):
@@ -645,6 +662,12 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
         # cannot see the survivor, so consult the decision that moved it.
         moved = ({cid} | set(was.get("composed_of") or [])) & _relocated_ids(entity)
         if moved:
+            _home = _coin_home_index()
+            _host = next((_home[m] for m in sorted(moved) if m in _home), None)
+            if _host and _demoted_in_move(was, _ELSEWHERE_FUSS.get(_host)):
+                losses.append(f"DEMOTED IN MOVE  {cid}.fuss: {was.get('fuss')!r} → "
+                              f"seed_unsorted as {_host[1]} [{_host[0]}] (cross-entity merge)")
+                continue
             dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
                            f"— cross-entity merge: {', '.join(sorted(moved))}")
             continue
@@ -681,6 +704,12 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                 elsewhere_hit = (_seed, home[_seed])
         if elsewhere_hit is not None:
             member, (ent, host) = elsewhere_hit
+            _hf = (cur[host].get("fuss") if ent == entity and host in cur
+                   else _ELSEWHERE_FUSS.get((ent, host)))
+            if _demoted_in_move(was, _hf):
+                losses.append(f"DEMOTED IN MOVE  {cid}.fuss: {was.get('fuss')!r} → "
+                              f"seed_unsorted as {host} [{ent}]")
+                continue
             dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
                            f"— {'relocated to ' + ent if ent != entity else 'superseded in ' + ent} as {host}"
                            + (f" (via {member})" if member != cid else ""))
@@ -689,6 +718,10 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
         for sid, sc in cur.items():
             if cid in (sc.get("composed_of") or []):
                 absorbed_by = sid
+                if _demoted_in_move(was, sc.get("fuss")):
+                    losses.append(f"DEMOTED IN MOVE  {cid}.fuss: {was.get('fuss')!r} → "
+                                  f"seed_unsorted as {sid} (folded)")
+                    absorbed_by = "__demoted__"
                 break
             u = _urls(was)
             if u and u <= _urls(sc):
@@ -716,6 +749,8 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                     covered |= _urls(cur[sid]) & want
                 if covered == want:
                     absorbed_by = ", ".join(carriers)
+        if absorbed_by == "__demoted__":
+            continue
         if absorbed_by:
             gains.append(f"{cid} folded into {absorbed_by}")
         else:

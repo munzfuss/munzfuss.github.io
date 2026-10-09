@@ -419,5 +419,45 @@ class CrossEntityRelocation(unittest.TestCase):
         self.assertLess(len(targets), 22)
 
 
+class TestDemotedInMove(_Base):
+    """A coin that moves must not arrive in seed_unsorted with its fuss left
+    behind (2026-10-09: fifteen coins lost their classification on the
+    royal_slesvig split; the identity checks excused them as «alive elsewhere»)."""
+
+    def tearDown(self):
+        VR._ELSEWHERE_COINS = None
+        VR._ELSEWHERE_FUSS.clear()
+
+    def test_fold_into_unsorted_class_blocks(self):
+        r = self.run_case(
+            [{"id": "old", "fuss": "9_thaler", "phase": "I"}],
+            [{"id": "new", "fuss": "seed_unsorted", "composed_of": ["old"]}])
+        self.assertTrue(any("DEMOTED IN MOVE" in m for m in r["losses"]), r["losses"])
+
+    def test_fold_into_classified_class_is_a_gain(self):
+        r = self.run_case(
+            [{"id": "old", "fuss": "9_thaler"}],
+            [{"id": "new", "fuss": "9_thaler", "composed_of": ["old"]}])
+        self.assertEqual(r["losses"], [])
+
+    def test_relocation_to_unsorted_in_other_entity_blocks(self):
+        VR._ELSEWHERE_COINS = {"unified-x": ("other", "unified-x")}
+        VR._ELSEWHERE_FUSS[("other", "unified-x")] = "seed_unsorted"
+        r = self.run_case([{"id": "unified-x", "fuss": "8_daler_lybsk_fod"}], [])
+        self.assertTrue(any("DEMOTED IN MOVE" in m for m in r["losses"]), r["losses"])
+
+    def test_relocation_keeping_its_fuss_passes(self):
+        VR._ELSEWHERE_COINS = {"unified-x": ("other", "unified-x")}
+        VR._ELSEWHERE_FUSS[("other", "unified-x")] = "8_daler_lybsk_fod"
+        r = self.run_case([{"id": "unified-x", "fuss": "8_daler_lybsk_fod"}], [])
+        self.assertEqual(r["losses"], [])
+
+    def test_unsorted_coin_moving_to_unsorted_passes(self):
+        VR._ELSEWHERE_COINS = {"unified-x": ("other", "unified-x")}
+        VR._ELSEWHERE_FUSS[("other", "unified-x")] = "seed_unsorted"
+        r = self.run_case([{"id": "unified-x", "fuss": "seed_unsorted"}], [])
+        self.assertEqual(r["losses"], [])
+
+
 if __name__ == "__main__":
     unittest.main()
