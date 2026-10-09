@@ -28,34 +28,49 @@ bulk_promote_pending: all
 assignments:
   - coin_id: unified-dk-bruun-14741
     fuss: rhinsk_gylden_fod
-    phase: I
+    phase:
+      denmark: I.a
+      schleswig_holstein: I
     kind: kurant
-    reason: Friedrich I ducal Goldgulden (Gottorp mint), Galster 122 = «1 Rhinsk gylden» 1531 per danskmoent f1g122; MB 30 + Fr 14; St.-Andrew Rhenish-goldgulden imitation type («MO NOV AVREA 
-      SLESVICENSIS»), ~3.19-3.25 g — Rhinsk-Gylden standard, phase I. Cluster incl. NumisMaster MC_167742 via _cross_entity merge (curator 2026-07-16). Relocated gottorp_duchy→royal_slesvig 2026-08-26
-      (option A) — pre-1544 Gottorp-mint issue = undivided king-duke Schleswig line, the Gottorp duchy not existing before the 19 Aug 1544 Rendsburg partition.
+    reason: 'Friedrich I ducal Goldgulden (Gottorp mint), Galster 122 = «1 Rhinsk gylden» 1531 per danskmoent f1g122; MB 30 + Fr 14; St.-Andrew Rhenish-goldgulden imitation type («MO NOV AVREA SLESVICENSIS»),
+      ~3.19-3.25 g — Rhinsk-Gylden standard, phase I. Cluster incl. NumisMaster MC_167742 via _cross_entity merge (curator 2026-07-16). Relocated gottorp_duchy→royal_slesvig 2026-08-26 (option A) — pre-1544
+      Gottorp-mint issue = undivided king-duke Schleswig line, the Gottorp duchy not existing before the 19 Aug 1544 Rendsburg partition. SUB-PHASE 2026-10-10 (curator): Denmark page splits rhinsk_gylden_fod
+      phase I into I.a 1514-1533 (Møntordning 1514 / Kongebrev 1524, 72 / 18 Kt), I.b 1534-1539 (Junge account 72 / 18⅓), I.c 1546 (Flensborg, Junge, 71⅓ / 18), I.d 1547 (Kock bestalling 71⅓ / 18½); Schleswig-Holstein
+      keeps I.'
   - coin_id: unified-dk-bruun-14783
     fuss: rhinsk_gylden_fod
-    phase: I
+    phase:
+      denmark: I.b
+      schleswig_holstein: I
     kind: kurant
-    reason: Christian III ducal gold 1534, mint Gottorp (Galster 130, Sieg 22, Lange 17, Fr 16, MB 39; cluster incl. numista-461448 + MC_167745 via _cross_entity merge, curator 2026-07-16). Sources 
-      name it «Ducat», but by fineness and weight (~3.2-3.3 g band, goldgulden signature — a full ducat runs ~3.44-3.49 g at .986) it fits the Guldgyldenfod (previously 72-Guldgyldenfod) → 
-      rhinsk_gylden_fod, phase I (curator direction 2026-07-16). Relocated gottorp_duchy→royal_slesvig 2026-08-26 (option A) — pre-1544 Gottorp-mint issue = king-duke Schleswig line.
+    reason: 'Christian III ducal gold 1534, mint Gottorp (Galster 130, Sieg 22, Lange 17, Fr 16, MB 39; cluster incl. numista-461448 + MC_167745 via _cross_entity merge, curator 2026-07-16). Sources name
+      it «Ducat», but by fineness and weight (~3.2-3.3 g band, goldgulden signature — a full ducat runs ~3.44-3.49 g at .986) it fits the Guldgyldenfod (previously 72-Guldgyldenfod) → rhinsk_gylden_fod,
+      phase I (curator direction 2026-07-16). Relocated gottorp_duchy→royal_slesvig 2026-08-26 (option A) — pre-1544 Gottorp-mint issue = king-duke Schleswig line. SUB-PHASE 2026-10-10 (curator): Denmark
+      page splits rhinsk_gylden_fod phase I into I.a 1514-1533 (Møntordning 1514 / Kongebrev 1524, 72 / 18 Kt), I.b 1534-1539 (Junge account 72 / 18⅓), I.c 1546 (Flensborg, Junge, 71⅓ / 18), I.d 1547 (Kock
+      bestalling 71⅓ / 18½); Schleswig-Holstein keeps I.'
   - coin_id: unified-dk-hede-c3h15
     fuss: rhinsk_gylden_fod
-    phase: I
+    phase:
+      denmark: I.c
+      schleswig_holstein: I
     kind: kurant
-    reason: Christian III «2 Goldgulden» 1546, Hede 15 (mints Flensburg + Schleswig-town; cluster incl. numista-474509 + MC_167748 via _cross_entity merge, curator 2026-07-16). Rhinsk-Gylden standard 
-      → rhinsk_gylden_fod; year 1546 = tail of phase I (1496-1547). Relocated royal_holstein→royal_slesvig 2026-08-26 (option A) — this is the KING'S royal Schleswig coinage (Flensburg, Reynold Junge 
-      mintmaster), NOT a Gottorp-share coin. Post-1544, so the Schleswig-town mint's year_override does not fire; issuing_entity is pinned per-coin to royal_slesvig on the final via _curation_holds 
-      (ruler disambiguates the ambiguous post-1544 Schleswig-town mint).
+    reason: "Christian III «2 Goldgulden» 1546, Hede 15 (mints Flensburg + Schleswig-town; cluster incl. numista-474509 + MC_167748 via _cross_entity merge, curator 2026-07-16). Rhinsk-Gylden standard →
+      rhinsk_gylden_fod; year 1546 = tail of phase I (1496-1547). Relocated royal_holstein→royal_slesvig 2026-08-26 (option A) — this is the KING'S royal Schleswig coinage (Flensburg, Reynold Junge mintmaster),
+      NOT a Gottorp-share coin. Post-1544, so the Schleswig-town mint's year_override does not fire; issuing_entity is pinned per-coin to royal_slesvig on the final via _curation_holds (ruler disambiguates
+      the ambiguous post-1544 Schleswig-town mint). SUB-PHASE 2026-10-10 (curator): Denmark page splits rhinsk_gylden_fod phase I into I.a 1514-1533 (Møntordning 1514 / Kongebrev 1524, 72 / 18 Kt), I.b
+      1534-1539 (Junge account 72 / 18⅓), I.c 1546 (Flensborg, Junge, 71⅓ / 18), I.d 1547 (Kock bestalling 71⅓ / 18½); Schleswig-Holstein keeps I."
   - coin_id: unified-dk-hede-c3h14
     fuss: rhinsk_gylden_fod
-    phase: I
+    phase:
+      denmark: I.c
+      schleswig_holstein: I
     kind: kurant
     reason: '1 Rhinsk Gylden Christian III 1546, Flensburg (Hede 14, Sieg 51, Schou 2, .750 gold, 3.278 g). Rhinsk-Gylden standard → rhinsk_gylden_fod; year 1546 is Phase I (1496-1547). SPLIT 2026-07-14
       (Serhii): the Roskilde-1536 .764 «Goldgulden» half (Bruun 14770 / Galster 131 / Numista 379084 / NumisMaster 167746) is now a separate coin in danish_realm (unified-dk-bruun-14770) — see _cross_entity.yml.
       This record is the Flensburg piece only; it no longer carries the Bruun/Galster/Numista refs. RELOCATED 2026-10-09 from classification_decisions/royal_holstein.yml: the coin now lives in royal_slesvig
-      (Flensburg = royal Schleswig), so the decision filed under royal_holstein was never applied and the coin fell to seed_unsorted.'
+      (Flensburg = royal Schleswig), so the decision filed under royal_holstein was never applied and the coin fell to seed_unsorted. SUB-PHASE 2026-10-10 (curator): Denmark page splits rhinsk_gylden_fod
+      phase I into I.a 1514-1533 (Møntordning 1514 / Kongebrev 1524, 72 / 18 Kt), I.b 1534-1539 (Junge account 72 / 18⅓), I.c 1546 (Flensborg, Junge, 71⅓ / 18), I.d 1547 (Kock bestalling 71⅓ / 18½); Schleswig-Holstein
+      keeps I.'
   - coin_id: unified-dk-hede-c4h8a
     fuss: reichsdukatenfuss
     phase: I

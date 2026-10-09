@@ -827,15 +827,48 @@ fuss_periods:
           - 17¾
         fineness_unit: Karat
       - label:
-          de: Phase I
-          en: Phase I
-          uk: Фаза I
-          da: Fase I
+          de: Phase I.a
+          en: Phase I.a
+          uk: Фаза I.a
+          da: Fase I.a
         count: '72'
         coin: Goldgulden
         basis: rauh
         fineness:
-          - 18, 18⅓
+          - '18'
+        fineness_unit: Karat
+      - label:
+          de: Phase I.b
+          en: Phase I.b
+          uk: Фаза I.b
+          da: Fase I.b
+        count: '72'
+        coin: Goldgulden
+        basis: rauh
+        fineness:
+          - 18⅓
+        fineness_unit: Karat
+      - label:
+          de: Phase I.c
+          en: Phase I.c
+          uk: Фаза I.c
+          da: Fase I.c
+        count: 71⅓
+        coin: Goldgulden
+        basis: rauh
+        fineness:
+          - '18'
+        fineness_unit: Karat
+      - label:
+          de: Phase I.d
+          en: Phase I.d
+          uk: Фаза I.d
+          da: Fase I.d
+        count: 71⅓
+        coin: Goldgulden
+        basis: rauh
+        fineness:
+          - 18½
         fineness_unit: Karat
       - label:
           de: Phase II, III
@@ -874,16 +907,22 @@ fuss_periods:
           # 19 Aug 1559, 18½ Karat. Phase 0 (pre-1514), phase III (ducal 1619-1627)
           # and phase IV (Christian IV 1625-1632) have no instrument of their own and
           # fall back to the scalar (18½), so their shortfall stays visible.
-          I: 2.436
           II: 2.50367
           '0': 2.52707
+          I.a: 2.436
+          I.b: 2.48133
+          I.c: 2.45877
+          I.d: 2.52707
       '2':
         soll_rau_g: 6.496
         soll_fein_g: 5.00733
         soll_fein_by_phase:
-          I: 4.872
           II: 5.00733
           '0': 5.05414
+          I.a: 4.872
+          I.b: 4.96267
+          I.c: 4.91754
+          I.d: 5.05414
     closing_label:
       de: Zusammenfassung
       en: Summary
@@ -1758,21 +1797,66 @@ phases:
         en: 'The coinage of <b>Hans</b> (r. 1481-1513) precedes any Danish gold ordinance. Its benchmark is the norm of the four Rhenish electors of 1490 — 71⅓ pieces from the rough Cologne mark at 18½ carats — made binding throughout the Empire by the Reichsabschied of Worms in 1495<sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup><sup>[ref:wilcke6-worms-1495-reichsabschied]</sup>. The undated gulden from Malmø or København, «<i>formentlig slået omkring 1497</i>», paid the German mercenaries in the war against Sten Sture<sup>[ref:danskmoent-hans-rhinsk-gylden-1497]</sup>; according to Hvitfeldt the king had 150,000 struck for the campaign of 1497<sup>[ref:wilcke6-hans-150000-gylden-1497]</sup>. Hans also struck the half gulden<sup>[ref:danskmoent-halvrhin-hans]</sup> and at Bergen a gulden reading <i>REX NORWEGIE</i> / <i>MONETA NOVA AVREA BERGE</i><sup>[ref:danskmoent-hans-goldgulden-bergen]</sup>. His Møntanordning for Sweden of 4 December 1497 prescribes «<i>guldmynt på Rhenska gulden slag</i>», 72 pieces to the 18½-carat mark, but was never executed<sup>[ref:wilcke6-hans-moentanordning-1497-sverige]</sup>. The Nürnberg Valvationstag of 1551 found the surviving type «<i>kun ca. 3/4 Karat</i>» below the norm, i.e. at 17¾ carats<sup>[ref:wilcke6-valvationstag-1551]</sup>; Wilcke counts this gold as soldiers'' pay, reduced in fineness «<i>til Fordel for Kongen</i>»<sup>[ref:wilcke6-sold-krigsfolket]</sup>.'
         uk: 'Карбування <b>Hans</b> (прав. 1481-1513) передує будь-якій данській золотій ординації. Його мірило — норма чотирьох рейнських курфюрстів 1490 р., 71⅓ штуки з повної кельнської марки за 18½ карата, яку Вормський Reichsabschied 1495 р. зробив обовʼязковою для всієї Імперії<sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup><sup>[ref:wilcke6-worms-1495-reichsabschied]</sup>. Недатовані гульдени з Мальме або Копенгагена, «<i>formentlig slået omkring 1497</i>», ішли на платню німецьким найманцям у війні проти Sten Sture<sup>[ref:danskmoent-hans-rhinsk-gylden-1497]</sup>; за Hvitfeldt для походу 1497 р. король велів викарбувати 150 000 штук<sup>[ref:wilcke6-hans-150000-gylden-1497]</sup>. Hans карбував також пів гульдена<sup>[ref:danskmoent-halvrhin-hans]</sup> і в Бергені — гульден з написами <i>REX NORWEGIE</i> / <i>MONETA NOVA AVREA BERGE</i><sup>[ref:danskmoent-hans-goldgulden-bergen]</sup>. Його Møntanordning для Швеції від 4 грудня 1497 р. приписує «<i>guldmynt på Rhenska gulden slag</i>», 72 штуки на 18½-каратну марку, але так і не була виконана<sup>[ref:wilcke6-hans-moentanordning-1497-sverige]</sup>. Нюрнберзький Valvationstag 1551 р. знайшов збережений тип на «<i>kun ca. 3/4 Karat</i>» нижче норми, тобто на 17¾ карата<sup>[ref:wilcke6-valvationstag-1551]</sup>; Wilcke відносить це золото до платні війську, погіршеної за пробою «<i>til Fordel for Kongen</i>»<sup>[ref:wilcke6-sold-krigsfolket]</sup>.'
         da: '<b>Hans''</b> prægning (reg. 1481-1513) går forud for enhver dansk guldforordning. Dens målestok er de fire rhinske kurfyrsters norm fra 1490 — 71⅓ stykker af den rå Cöllnische Marck ved 18½ karat — som rigsafskeden i Worms 1495 gjorde bindende for hele riget<sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup><sup>[ref:wilcke6-worms-1495-reichsabschied]</sup>. De udaterede gylden fra Malmø eller København, «<i>formentlig slået omkring 1497</i>», gik til sold for de tyske lejetropper i krigen mod Sten Sture<sup>[ref:danskmoent-hans-rhinsk-gylden-1497]</sup>; ifølge Hvitfeldt lod kongen slå 150.000 stykker til toget i 1497<sup>[ref:wilcke6-hans-150000-gylden-1497]</sup>. Hans prægede også den halve gylden<sup>[ref:danskmoent-halvrhin-hans]</sup> og i Bergen en gylden med <i>REX NORWEGIE</i> / <i>MONETA NOVA AVREA BERGE</i><sup>[ref:danskmoent-hans-goldgulden-bergen]</sup>. Hans møntanordning for Sverige af 4. december 1497 foreskriver «<i>guldmynt på Rhenska gulden slag</i>», 72 stykker på den 18½ karat fine mark, men blev aldrig udført<sup>[ref:wilcke6-hans-moentanordning-1497-sverige]</sup>. Valvationsdagen i Nürnberg 1551 fandt den bevarede type «<i>kun ca. 3/4 Karat</i>» under normen, altså 17¾ karat<sup>[ref:wilcke6-valvationstag-1551]</sup>; Wilcke regner dette guld til krigsfolkets sold, forringet i lødighed «<i>til Fordel for Kongen</i>»<sup>[ref:wilcke6-sold-krigsfolket]</sup>.'
-    - id: I
+    - id: I.a
       year_from: 1514
-      year_to: 1547
+      year_to: 1533
       from_label: '1514'
+      to_label: '1533'
+      title:
+        de: Møntordning vom Sommer 1514 · Kongebrev 1524 — 72 Stück aus der rauen Cöllnischen Marck zu 18 Karat
+        en: Møntordning of summer 1514 · Kongebrev 1524 — 72 pieces from the rough Cologne mark at 18 carats
+        uk: Møntordning літа 1514 · Kongebrev 1524 — 72 штуки з повної кельнської марки за 18 карат
+        da: Møntordningen fra sommeren 1514 · kongebrev 1524 — 72 stykker af den rå Cöllnische Marck ved 18 karat
+      description:
+        de: 'Die erste dänische Urkunde über den Gulden — Christians II. Bestallungsbrief für den Müntzmeister Dynes Blicher vom 1. August 1513 — befiehlt «<i>hele og halve Gylden saa god som rinske Gylden</i>», wurde aber nicht ausgeführt<sup>[ref:wilcke-1950-blicher-1513]</sup>. In Kraft trat die <b>Møntordning vom Sommer 1514</b>: 72 Stück aus der Marck zu 18 Karat, ein halbes Karat unter der Reichsnorm<sup>[ref:wilcke-1950-moentordning-1514]</sup>; <b>Frederik I.</b> wiederholte sie im Königsbrief (Kongebrev) von 1524<sup>[ref:wilcke-1950-moentordning-1524]</sup>. Nach dieser Vorschrift schlägt Frederik I. 1527 in Malmø<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup> und 1531 in Gottorp<sup>[ref:danskmoent-1rhinsk-gylden]</sup>.'
+        en: "The first Danish instrument on the gulden — Christian II's letter of appointment for the mintmaster Dynes Blicher of 1 August 1513 — orders «<i>hele og halve Gylden saa god som rinske Gylden</i>», but was not executed<sup>[ref:wilcke-1950-blicher-1513]</sup>. What took effect was the <b>Møntordning of summer 1514</b>: 72 pieces from the mark at 18 carats, half a carat below the imperial norm<sup>[ref:wilcke-1950-moentordning-1514]</sup>; <b>Frederik I</b> repeated it in the royal letter (Kongebrev) of 1524<sup>[ref:wilcke-1950-moentordning-1524]</sup>. Under this prescription Frederik I strikes at Malmø in 1527<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup> and at Gottorp in 1531<sup>[ref:danskmoent-1rhinsk-gylden]</sup>."
+        uk: 'Перший данський акт про гульден — лист Christian II про призначення монетмайстра Dynes Blicher від 1 серпня 1513 р. — велить бити «<i>hele og halve Gylden saa god som rinske Gylden</i>», але виконаний не був<sup>[ref:wilcke-1950-blicher-1513]</sup>. Чинною стала <b>Møntordning літа 1514 р.</b>: 72 штуки з марки за 18 карат, на пів карата нижче імперської норми<sup>[ref:wilcke-1950-moentordning-1514]</sup>; <b>Frederik I</b> повторив її королівським листом (Kongebrev) 1524 р.<sup>[ref:wilcke-1950-moentordning-1524]</sup>. За цим приписом Frederik I карбує 1527 р. у Мальме<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup> і 1531 р. у Готторпі<sup>[ref:danskmoent-1rhinsk-gylden]</sup>.'
+        da: 'Den første danske akt om gyldenen — Christian 2.s beskikkelsesbrev for møntmester Dynes Blicher af 1. august 1513 — befaler «<i>hele og halve Gylden saa god som rinske Gylden</i>», men blev ikke udført<sup>[ref:wilcke-1950-blicher-1513]</sup>. I kraft trådte <b>møntordningen fra sommeren 1514</b>: 72 stykker af marken ved 18 karat, en halv karat under rigsnormen<sup>[ref:wilcke-1950-moentordning-1514]</sup>; <b>Frederik 1.</b> gentog den i kongebrevet af 1524<sup>[ref:wilcke-1950-moentordning-1524]</sup>. Efter denne forskrift præger Frederik 1. i Malmø 1527<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup> og i Gottorp 1531<sup>[ref:danskmoent-1rhinsk-gylden]</sup>.'
+    - id: I.b
+      year_from: 1534
+      year_to: 1539
+      from_label: '1534'
+      to_label: '1539'
+      title:
+        de: Rechnung Reynold Junges 1534–1539 — 72 Stück aus der rauen Cöllnischen Marck zu 18⅓ Karat
+        en: Reynold Junge's account 1534–1539 — 72 pieces from the rough Cologne mark at 18⅓ carats
+        uk: Рахунок Reynold Junge 1534–1539 — 72 штуки з повної кельнської марки за 18⅓ карата
+        da: Reynold Junges regnskab 1534–1539 — 72 stykker af den rå Cöllnische Marck ved 18⅓ karat
+      description:
+        de: 'Unter <b>Christian III.</b> legiert der Müntzmeister <b>Reynold Junge</b> das Gold für die Gulden auf 18 Karat 4 Grän (18⅓ Karat) und schrotet 72 Stück aus der Marck; nach seiner Rechnung sind es 24 470 Gulden<sup>[ref:galster-1934-junge-guldregnskab]</sup>. Das liegt ein Drittel Karat über der dänischen Vorschrift und genau bei dem Korn, das der Valvationstag 1551 als übliche tatsächliche Ausbringung des rheinischen Guldens im Reich festhält<sup>[ref:wilcke6-normalgylden-ausbringung-1551]</sup>. Geschlagen wird in Gottorp 1534 und in Roskilde 1536<sup>[ref:danskmoent-1rhinsk-gylden]</sup><sup>[ref:danskmoent-c3g131-roskilde]</sup>. Der Reces von 1540 setzt den Kurs: der rheinische Gulden nicht höher als 3 Mark danske, gleich dem Joachimsthaler<sup>[ref:wilcke-1950-recess-1540-rhinsk-gylden]</sup>.'
+        en: 'Under <b>Christian III</b> the mintmaster <b>Reynold Junge</b> alloys the gold for the gulden at 18 carats 4 grains (18⅓ carats) and cuts 72 pieces to the mark; by his account they number 24,470 gulden<sup>[ref:galster-1934-junge-guldregnskab]</sup>. That is a third of a carat above the Danish prescription and exactly the fineness the Valvationstag of 1551 records as the usual actual outturn of the Rhenish gulden in the Empire<sup>[ref:wilcke6-normalgylden-ausbringung-1551]</sup>. The coinage is struck at Gottorp in 1534 and at Roskilde in 1536<sup>[ref:danskmoent-1rhinsk-gylden]</sup><sup>[ref:danskmoent-c3g131-roskilde]</sup>. The Recess of 1540 sets the rate: the Rhenish gulden no higher than 3 Mark danske, equal to the Joachimsthaler<sup>[ref:wilcke-1950-recess-1540-rhinsk-gylden]</sup>.'
+        uk: 'За <b>Christian III</b> монетмайстер <b>Reynold Junge</b> сплавляє золото на гульдени по 18 карат 4 грени (18⅓ карата) і вирізає 72 штуки з марки; за його рахунком їх 24 470<sup>[ref:galster-1934-junge-guldregnskab]</sup>. Це на третину карата вище за данський припис і рівно та проба, яку Valvationstag 1551 р. фіксує як звичайну фактичну вибірку рейнського гульдена в Імперії<sup>[ref:wilcke6-normalgylden-ausbringung-1551]</sup>. Карбують у Готторпі 1534 р. і в Роскілле 1536 р.<sup>[ref:danskmoent-1rhinsk-gylden]</sup><sup>[ref:danskmoent-c3g131-roskilde]</sup>. Рецес 1540 р. встановлює курс: рейнський гульден не дорожче 3 Mark danske, нарівні з Joachimsthaler<sup>[ref:wilcke-1950-recess-1540-rhinsk-gylden]</sup>.'
+        da: 'Under <b>Christian 3.</b> legerer møntmester <b>Reynold Junge</b> guldet til gyldenerne på 18 karat 4 gren (18⅓ karat) og skroder 72 stykker af marken; efter hans regnskab er det 24.470 gylden<sup>[ref:galster-1934-junge-guldregnskab]</sup>. Det ligger en tredjedel karat over den danske forskrift og netop på den lødighed, som valvationsdagen 1551 fastslår som den rhinske gyldens sædvanlige faktiske udmøntning i riget<sup>[ref:wilcke6-normalgylden-ausbringung-1551]</sup>. Der præges i Gottorp 1534 og i Roskilde 1536<sup>[ref:danskmoent-1rhinsk-gylden]</sup><sup>[ref:danskmoent-c3g131-roskilde]</sup>. Recessen 1540 fastsætter kursen: den rhinske gylden ikke dyrere end 3 mark danske, lig med joachimsdaleren<sup>[ref:wilcke-1950-recess-1540-rhinsk-gylden]</sup>.'
+    - id: I.c
+      year_from: 1546
+      year_to: 1546
+      from_label: '1546'
+      to_label: '1546'
+      title:
+        de: Flensborg 1546 · Reynold Junge — 71⅓ Stück aus der rauen Cöllnischen Marck zu 18 Karat
+        en: Flensborg 1546 · Reynold Junge — 71⅓ pieces from the rough Cologne mark at 18 carats
+        uk: Фленсбург 1546 · Reynold Junge — 71⅓ штуки з повної кельнської марки за 18 карат
+        da: Flensborg 1546 · Reynold Junge — 71⅓ stykker af den rå Cöllnische Marck ved 18 karat
+      description:
+        de: Die Müntze in Flensborg wird 1544 wiederhergestellt; nach dem Tod des Müntzmeisters Jørgen Degener führt sie 1546 Reynold Junge<sup>[ref:wilcke-1950-flensborg-1544-1547]</sup>. Mit seinem Zeichen sind der einfache und der doppelte Gulden von 1546 bekannt, nach Hede zu 3,278 und 6,556 g bei .750 — also 71⅓ Stück aus der Marck zu 18 Karat (errechnet aus den Gewichten)<sup>[ref:danskmoent-c3-rhinsk-gylden-1546]</sup>. Eine eigene Ordnung für diese Karbung ist nicht überliefert.
+        en: The Flensborg mint is re-established in 1544; after the death of the mintmaster Jørgen Degener it is run in 1546 by Reynold Junge<sup>[ref:wilcke-1950-flensborg-1544-1547]</sup>. The single and double gulden of 1546 are known with his mark, per Hede at 3.278 and 6.556 g at .750 — i.e. 71⅓ pieces to the mark at 18 carats (as computed from the weights)<sup>[ref:danskmoent-c3-rhinsk-gylden-1546]</sup>. No ordinance of its own survives for this coinage.
+        uk: Монетний двір у Фленсбурзі відновлено 1544 р.; після смерті монетмайстра Jørgen Degener у 1546 р. його веде Reynold Junge<sup>[ref:wilcke-1950-flensborg-1544-1547]</sup>. З його знаком відомі одинарний і подвійний гульдени 1546 р., за Hede — 3,278 і 6,556 г при пробі .750, тобто 71⅓ штуки з марки за 18 карат (обчислено з ваг)<sup>[ref:danskmoent-c3-rhinsk-gylden-1546]</sup>. Окремої ординації для цього карбування не збереглося.
+        da: Møntstedet i Flensborg genoprettes 1544; efter møntmester Jørgen Degeners død ledes det i 1546 af Reynold Junge<sup>[ref:wilcke-1950-flensborg-1544-1547]</sup>. Med hans mærke kendes den enkelte og den dobbelte gylden fra 1546, efter Hede på 3,278 og 6,556 g ved .750 — altså 71⅓ stykker af marken ved 18 karat (beregnet af vægtene)<sup>[ref:danskmoent-c3-rhinsk-gylden-1546]</sup>. Nogen egen forordning for denne prægning er ikke overleveret.
+    - id: I.d
+      year_from: 1547
+      year_to: 1547
+      from_label: '1547'
       to_label: '1547'
       title:
-        de: 'Bestallungsbrief 1513 · Møntordning vom Sommer 1514 · Kongebrev 1524 — 72 Stück aus der rauen Cöllnischen Marck zu 18 Karat'
-        en: 'Letter of appointment 1513 · Møntordning of summer 1514 · Kongebrev 1524 — 72 pieces from the rough Cologne mark at 18 carats'
-        uk: 'Лист про призначення 1513 · Møntordning літа 1514 · Kongebrev 1524 — 72 штуки з повної кельнської марки за 18 карат'
-        da: Beskikkelsesbrev 1513 · møntordningen fra sommeren 1514 · kongebrev 1524 — 72 stykker af den rå Cöllnische Marck ved 18 karat
+        de: Bestallung vom 22. Januar 1547 · Jørgen Kock — 71⅓ Stück aus der rauen Cöllnischen Marck zu 18½ Karat
+        en: Bestalling of 22 January 1547 · Jørgen Kock — 71⅓ pieces from the rough Cologne mark at 18½ carats
+        uk: Бестaллунг 22 січня 1547 · Jørgen Kock — 71⅓ штуки з повної кельнської марки за 18½ карата
+        da: Bestallingen af 22. januar 1547 · Jørgen Kock — 71⅓ stykker af den rå Cöllnische Marck ved 18½ karat
       description:
-        de: 'Die erste dänische Urkunde über den Gulden — Christians II. Bestallungsbrief für den Müntzmeister Dynes Blicher vom 1. August 1513 — befiehlt «<i>hele og halve Gylden saa god som rinske Gylden</i>», wurde aber nicht ausgeführt<sup>[ref:wilcke-1950-blicher-1513]</sup>. In Kraft trat die <b>Møntordning vom Sommer 1514</b>: 72 Stück aus der Marck zu 18 Karat, ein halbes Karat unter der Reichsnorm<sup>[ref:wilcke-1950-moentordning-1514]</sup>; <b>Frederik I.</b> wiederholte sie im Königsbrief (Kongebrev) von 1524<sup>[ref:wilcke-1950-moentordning-1524]</sup>. Nach dieser Vorschrift schlagen Frederik I. 1527 in Malmø<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup> und <b>Christian III.</b> 1536 in Roskilde<sup>[ref:danskmoent-c3g131-roskilde]</sup>; die Gulden von 1536 halten .764, also 18⅓ Karat — so viel, wie der Valvationstag 1551 als übliches tatsächliches Korn des rheinischen Guldens im Reich festhält<sup>[ref:wilcke6-normalgylden-ausbringung-1551]</sup>. In Flensborg schlägt Christian III. 1546 den einfachen und den doppelten Gulden<sup>[ref:danskmoent-c3-rhinsk-gylden-1546]</sup>; die dortige Bestallung vom 22. Januar 1547 befiehlt den Gulden «<i>efter Kurfyrsternes Gylden</i>», also nach der Reichsnorm<sup>[ref:wilcke-1950-flensborg-1547-guldgylden]</sup>, und die Flensborger Stücke wiegen nach dem Reichsraster von 71⅓ Stück aus der Marck (errechnet aus 3,278 g). Der Reces von 1540 setzt den Kurs: der rheinische Gulden nicht höher als 3 Mark danske, gleich dem Joachimsthaler<sup>[ref:wilcke-1950-recess-1540-rhinsk-gylden]</sup>.'
-        en: 'The first Danish instrument on the gulden — Christian II''s letter of appointment for the mintmaster Dynes Blicher of 1 August 1513 — orders «<i>hele og halve Gylden saa god som rinske Gylden</i>», but was not executed<sup>[ref:wilcke-1950-blicher-1513]</sup>. What took effect was the <b>Møntordning of summer 1514</b>: 72 pieces from the mark at 18 carats, half a carat below the imperial norm<sup>[ref:wilcke-1950-moentordning-1514]</sup>; <b>Frederik I</b> repeated it in the royal letter (Kongebrev) of 1524<sup>[ref:wilcke-1950-moentordning-1524]</sup>. Under this prescription Frederik I strikes at Malmø in 1527<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup> and <b>Christian III</b> at Roskilde in 1536<sup>[ref:danskmoent-c3g131-roskilde]</sup>; the gulden of 1536 hold .764, i.e. 18⅓ carats — the figure the Valvationstag of 1551 records as the usual actual fineness of the Rhenish gulden in the Empire<sup>[ref:wilcke6-normalgylden-ausbringung-1551]</sup>. At Flensborg Christian III strikes the single and double gulden in 1546<sup>[ref:danskmoent-c3-rhinsk-gylden-1546]</sup>; the bestalling there of 22 January 1547 orders the gulden «<i>efter Kurfyrsternes Gylden</i>», i.e. to the imperial norm<sup>[ref:wilcke-1950-flensborg-1547-guldgylden]</sup>, and the Flensborg pieces weigh to the imperial grid of 71⅓ to the mark (as computed from 3.278 g). The Recess of 1540 sets the rate: the Rhenish gulden no higher than 3 Mark danske, equal to the Joachimsthaler<sup>[ref:wilcke-1950-recess-1540-rhinsk-gylden]</sup>.'
-        uk: 'Перший данський акт про гульден — лист Christian II про призначення монетмайстра Dynes Blicher від 1 серпня 1513 р. — велить бити «<i>hele og halve Gylden saa god som rinske Gylden</i>», але виконаний не був<sup>[ref:wilcke-1950-blicher-1513]</sup>. Чинною стала <b>Møntordning літа 1514 р.</b>: 72 штуки з марки за 18 карат, на пів карата нижче імперської норми<sup>[ref:wilcke-1950-moentordning-1514]</sup>; <b>Frederik I</b> повторив її королівським листом (Kongebrev) 1524 р.<sup>[ref:wilcke-1950-moentordning-1524]</sup>. За цим приписом карбують Frederik I — 1527 р. у Мальме<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup> — і <b>Christian III</b> — 1536 р. у Роскілле<sup>[ref:danskmoent-c3g131-roskilde]</sup>; гульдени 1536 р. мають пробу .764, тобто 18⅓ карата, — стільки ж, скільки Valvationstag 1551 р. фіксує як звичайну фактичну пробу рейнського гульдена в Імперії<sup>[ref:wilcke6-normalgylden-ausbringung-1551]</sup>. У Фленсбурзі Christian III 1546 р. карбує одинарний і подвійний гульден<sup>[ref:danskmoent-c3-rhinsk-gylden-1546]</sup>; тамтешній бестaллунг від 22 січня 1547 р. велить бити гульден «<i>efter Kurfyrsternes Gylden</i>», тобто за імперською нормою<sup>[ref:wilcke-1950-flensborg-1547-guldgylden]</sup>, і фленсбурзькі монети важать за імперською сіткою 71⅓ штуки з марки (обчислено з 3,278 г). Рецес 1540 р. встановлює курс: рейнський гульден не дорожче 3 Mark danske, нарівні з Joachimsthaler<sup>[ref:wilcke-1950-recess-1540-rhinsk-gylden]</sup>.'
-        da: 'Den første danske akt om gyldenen — Christian 2.s beskikkelsesbrev for møntmester Dynes Blicher af 1. august 1513 — befaler «<i>hele og halve Gylden saa god som rinske Gylden</i>», men blev ikke udført<sup>[ref:wilcke-1950-blicher-1513]</sup>. I kraft trådte <b>møntordningen fra sommeren 1514</b>: 72 stykker af marken ved 18 karat, en halv karat under rigsnormen<sup>[ref:wilcke-1950-moentordning-1514]</sup>; <b>Frederik 1.</b> gentog den i kongebrevet af 1524<sup>[ref:wilcke-1950-moentordning-1524]</sup>. Efter denne forskrift præger Frederik 1. i Malmø 1527<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup> og <b>Christian 3.</b> i Roskilde 1536<sup>[ref:danskmoent-c3g131-roskilde]</sup>; gyldenerne fra 1536 holder .764, altså 18⅓ karat — det samme, som valvationsdagen 1551 fastslår som den rhinske gyldens sædvanlige faktiske lødighed i riget<sup>[ref:wilcke6-normalgylden-ausbringung-1551]</sup>. I Flensborg præger Christian 3. i 1546 den enkelte og den dobbelte gylden<sup>[ref:danskmoent-c3-rhinsk-gylden-1546]</sup>; bestallingen dér af 22. januar 1547 befaler gyldenen slået «<i>efter Kurfyrsternes Gylden</i>», altså efter rigsnormen<sup>[ref:wilcke-1950-flensborg-1547-guldgylden]</sup>, og Flensborg-stykkerne vejer efter rigets raster på 71⅓ stykker af marken (beregnet af 3,278 g). Recessen 1540 fastsætter kursen: den rhinske gylden ikke dyrere end 3 mark danske, lig med joachimsdaleren<sup>[ref:wilcke-1950-recess-1540-rhinsk-gylden]</sup>.'
+        de: Am 22. Januar 1547 wird Jørgen Kock der Jüngere zum Müntzmeister in Flensborg ernannt<sup>[ref:wilcke-1950-flensborg-1544-1547]</sup>; seine Bestallung befiehlt den Gulden «<i>efter Kurfyrsternes Gylden</i>», also nach der Norm der Kurfürsten — 71⅓ Stück aus der Marck zu 18½ Karat<sup>[ref:wilcke-1950-flensborg-1547-guldgylden]</sup><sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>. Aus demselben Jahr ist ein neuer Typ bekannt, mit dem holsteinischen Wappen auf der Vorderseite<sup>[ref:ngc-mb57-goldgulden-1547]</sup>. Gewicht und Korn dieser Müntze geben die Quellen nicht an.
+        en: On 22 January 1547 Jørgen Kock the younger is appointed mintmaster at Flensborg<sup>[ref:wilcke-1950-flensborg-1544-1547]</sup>; his bestalling orders the gulden «<i>efter Kurfyrsternes Gylden</i>», i.e. to the electors' norm — 71⅓ pieces to the mark at 18½ carats<sup>[ref:wilcke-1950-flensborg-1547-guldgylden]</sup><sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>. A new type is known from the same year, with the Holstein arms on the obverse<sup>[ref:ngc-mb57-goldgulden-1547]</sup>. The sources give neither weight nor fineness for this coin.
+        uk: 22 січня 1547 р. монетмайстром у Фленсбурзі призначено Jørgen Kock молодшого<sup>[ref:wilcke-1950-flensborg-1544-1547]</sup>; його бестaллунг велить бити гульден «<i>efter Kurfyrsternes Gylden</i>», тобто за нормою курфюрстів — 71⅓ штуки з марки за 18½ карата<sup>[ref:wilcke-1950-flensborg-1547-guldgylden]</sup><sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>. З того ж року відомий новий тип — з гербом Гольштейну на аверсі<sup>[ref:ngc-mb57-goldgulden-1547]</sup>. Ваги й проби цієї монети джерела не подають.
+        da: Den 22. januar 1547 udnævnes Jørgen Kock den yngre til møntmester i Flensborg<sup>[ref:wilcke-1950-flensborg-1544-1547]</sup>; hans bestalling befaler gyldenen slået «<i>efter Kurfyrsternes Gylden</i>», altså efter kurfyrsternes norm — 71⅓ stykker af marken ved 18½ karat<sup>[ref:wilcke-1950-flensborg-1547-guldgylden]</sup><sup>[ref:wilcke6-rhinfyrster-1490-norm]</sup>. Fra samme år kendes en ny type med det holstenske våben på forsiden<sup>[ref:ngc-mb57-goldgulden-1547]</sup>. Vægt og lødighed for denne mønt oplyser kilderne ikke.
     - id: II
       year_from: 1563
       year_to: 1584
