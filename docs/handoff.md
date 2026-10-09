@@ -24,6 +24,12 @@
 - **Schou numbering:** our danskmoent/Hede caches fit «per ruler + year + nr» (557/566 single-year keys unique; per-ruler 418/702 reused; «hhv.» lists and «u.år» sections). Unconfirmed against Schou 1926 itself. The merger keys schou «<idx>/<ruler>» (merge_seeds_cross_source.py ~829) — false edges possible across years. Open task, not started.
 - **OPEN:** Galster 40 exclusion from render (curator not yet decided); same «flag true, value empty» shape on 392 ucoin `ruler_verified` seeds and ~180 finals (diameter/fineness/weight) — unexamined.
 
+## 2026-10-09 (later) — lost classifications: seed-keyed guard, shells settled, renames restored
+
+- **Done, local (not pushed):** `03b64fc` verify_reflow SEED DECLASSIFIED (seed-keyed: a seed classified at HEAD that is seed_unsorted now = loss; excused only by exclusion or `_recorded_removals` `kind: declassify`) + parsed-YAML caches (26 s → 28 s with the new pass); `ca67adb` absorb `_settle_curated_shell` (a superseded curated shell hands fuss/phase/kind/fraction + missing note/holds to its successor; Hede sub-letter successors followed when they landed in ONE class) + cross-entity citation carriers in verify_reflow; `54383ca` 21 shells settled; `7be3d1b` 11 renamed classes restored by assignment (2 Ducats 1697 phase II→III per §8.2).
+- **OPEN — curator decisions, evidence in scratchpad lists of this session (regenerate by snapshot diff):** (a) five `dk-tid-*` shells in danish_realm whose successors in royal_holstein carry phase II vs their I (absorb log «KEPT … review»); (b) Hede sub-letters split across classes: Norge nc5h32/37/56/68/69 (absorb log «sub-letters split»); (c) 1 Krone 1659-1660 `unified-kmk-710043` — two former hosts (numista-143625 9_25_thaler vs km-194 kronemont); (d) ~25 fragment classes sharing a catalogue key with a classified host, 8 classes built around new Hede index stubs (eddd3e8), 6 lone KMM specimens sharing a key — merge-candidate tables; (e) second fragments of split renamed classes (kmk-157953, kmk-139642, kmk-351883, kmk-403371, NM 175635).
+- 43 classified finals with no seed (23 V1 foundations, 20 KMM standalones whose seed was thinned, several duplicating a classified type) — separate task.
+
 ## 2026-10-09 — decisions stranded by entity moves; Christian IV Denning laid out
 
 - **Done, local commits (not pushed):** `2517ba1` `de40892` `c005e67` `9a904b6` `3d07616` `79792a3` `c9f98c4` `d7581b2` `bb14a68` `07925e7`.
