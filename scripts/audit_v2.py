@@ -36,6 +36,13 @@ a commit:
       `classification_decisions/<entity>.yml` resolves to a real
       unified id.
 
+  I13. **Decision filed in its coin's entity**: a per-entity decision
+      (merge_decisions merges / no_merges / year_demote members,
+      classification_decisions assignments, exclusions) is applied ONLY
+      to coins of that entity. A decision left in the old file after the
+      coin moved to another entity is silently never applied (the
+      royal_holstein → royal_slesvig drift found 2026-10-09).
+
 Exit codes:
   0 — all invariants pass (commit OK)
   1 — one or more invariants violated (commit blocked when called
@@ -72,6 +79,7 @@ V2_SEED = ROOT / "data" / "v2" / "seed"
 V2_LOCATIONS = ROOT / "data" / "v2" / "locations"
 V2_MERGE_DECISIONS = ROOT / "data" / "v2" / "merge_decisions"
 V2_CLASSIFICATION_DECISIONS = ROOT / "data" / "v2" / "classification_decisions"
+V2_EXCLUSIONS = ROOT / "data" / "v2" / "exclusions"
 I18N_ENTITIES = ROOT / "data" / "i18n" / "issuing_entities.yml"
 
 # Reuse the pipeline's OWN home-file logic so the audit and the seed-writer
@@ -826,6 +834,104 @@ def check_i6_decision_refs(unified_coins: list[tuple[str, dict]],
     return errors
 
 
+def _expand_seed(mid: str, seed_ids) -> list[str]:
+    """Same expansion as `_expands_to_seed`, returning the seed ids."""
+    if mid in seed_ids:
+        return [mid]
+    if re.search(r"\d$", mid):
+        return sorted(k for k in seed_ids
+                      if k.startswith(mid) and k[len(mid):].isalpha())
+    return []
+
+
+def check_i13_decision_entity(final_coins: list[tuple[str, dict]],
+                              unified_coins: list[tuple[str, dict]],
+                              seed_coins: list[tuple[str, str, dict]],
+                              merge_dir: Path | None = None,
+                              classification_dir: Path | None = None,
+                              exclusions_dir: Path | None = None) -> list[str]:
+    """I13 — every per-entity decision is filed under the entity whose
+    pipeline run actually applies it.
+
+    Each surface is checked the way it is APPLIED, not the way it looks:
+      * merge_decisions/<e>.yml (merges, no_merges, year_demote): the merger
+        for <e> sees the seeds homed in <e>, minus/plus members that
+        `_cross_entity.yml` routes by `target_entity`. A member whose
+        effective home is another entity is never seen.
+      * classification_decisions/<e>.yml assignments: absorb for <e> matches
+        coin_id against <e>'s final ids and composed_of. A coin_id found
+        only in another entity's final is never applied.
+      * exclusions/<e>.yml: absorb for <e> drops finals of <e> reaching the
+        seed. A seed that reaches a final of another entity keeps rendering.
+    Ids that resolve nowhere are I6's business and are skipped here.
+    """
+    merge_dir = merge_dir or V2_MERGE_DECISIONS
+    classification_dir = classification_dir or V2_CLASSIFICATION_DECISIONS
+    exclusions_dir = exclusions_dir or V2_EXCLUSIONS
+    errors: list[str] = []
+
+    seed_home = {c["id"]: ent for _, ent, c in seed_coins if c.get("id")}
+    seed_ids = set(seed_home)
+    for e in (_load_yaml(merge_dir / "_cross_entity.yml").get("merges") or []):
+        tgt = e.get("target_entity")
+        for m in e.get("members") or []:
+            for s in _expand_seed(m, seed_ids):
+                seed_home[s] = tgt
+
+    unified_members = {c["id"]: set(c.get("composed_of") or [])
+                       for _, c in unified_coins if c.get("id")}
+    final_keys: dict[str, set[str]] = defaultdict(set)   # id/composed_of -> entities
+    seed_final: dict[str, set[str]] = defaultdict(set)   # seed -> final entities
+    for ent, c in final_coins:
+        refs = [c.get("id")] + list(c.get("composed_of") or [])
+        for r in refs:
+            if not r:
+                continue
+            final_keys[r].add(ent)
+            for s in unified_members.get(r, ()) or ():
+                seed_final[s].add(ent)
+            if r in seed_ids:
+                seed_final[r].add(ent)
+
+    for p in sorted(merge_dir.glob("*.yml")):
+        if p.stem.startswith("_"):
+            continue
+        d = _load_yaml(p)
+        for sec in ("merges", "no_merges", "year_demote"):
+            for i, e in enumerate(d.get(sec) or []):
+                ids = e.get("members") or (
+                    [e["member_id"]] if e.get("member_id") else [])
+                for mid in ids:
+                    for s in _expand_seed(mid, seed_ids):
+                        home = seed_home[s]
+                        if home != p.stem:
+                            errors.append(
+                                f"I13: merge_decisions/{p.stem}.yml::{sec}[{i}] "
+                                f"member {s!r} is merged in {home!r} — move the "
+                                f"entry to merge_decisions/{home}.yml")
+
+    for p in sorted(classification_dir.glob("*.yml")):
+        d = _load_yaml(p)
+        for i, e in enumerate(d.get("assignments") or []):
+            cid = e.get("coin_id")
+            ents = final_keys.get(cid) or set()
+            if ents and p.stem not in ents:
+                errors.append(
+                    f"I13: classification_decisions/{p.stem}.yml::assignments[{i}] "
+                    f"coin_id {cid!r} lives in {sorted(ents)} — never applied")
+
+    for p in sorted(exclusions_dir.glob("*.yml")):
+        d = _load_yaml(p)
+        for i, e in enumerate(d.get("exclusions") or []):
+            sid = str(e.get("id") or "")
+            ents = seed_final.get(sid) or set()
+            if ents and p.stem not in ents:
+                errors.append(
+                    f"I13: exclusions/{p.stem}.yml[{i}] {sid!r} renders in "
+                    f"{sorted(ents)} — exclusion never applied")
+    return errors
+
+
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
@@ -920,6 +1026,10 @@ def main() -> int:
     else:
         results["I6"] = []
         print("Skipping I6 (--quick mode)")
+
+    print("Running I13 (decision filed in its coin's entity)...")
+    results["I13"] = check_i13_decision_entity(final_coins, unified_coins, seed_coins)
+    print(f"  {len(results['I13'])} violation(s)")
 
     print("Running I7 (entity routing conflicts)...")
     results["I7"] = check_i7_routing_conflicts(final_coins + unified_coins)
