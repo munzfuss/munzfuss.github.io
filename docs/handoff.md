@@ -15,6 +15,14 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+
+## 2026-10-10 — Guldgyldenfod (rhinsk_gylden_fod) Denmark card complete
+
+- Denmark page: description, closing, Grundwerte (Worms 1495 → 0 → Møntordning 1514 → I.a–I.d → II → III → IV), per-phase formula, sub-phases I.a/I.b/I.c/I.d with per-phase fine + rough targets. Full state + rationale: `docs/research/rhinsk_gylden_fod.md` §10, §15–§17.
+- Open: Schleswig-Holstein card for this fuss NOT reviewed (old refs, «25 February 1524»); MB 57 parameters unknown; Galster 59 has two finals (bruun-4056/4057), possibly a duplicate.
+- Parallel sessions: stranded classification decisions (5 Christian IV Haderslev coins); NGC «Sch#» → Schulten.
+- Local commits not pushed since the last «пуш».
+
 ## 2026-10-09 — NumisMaster «Sch#» is not Schou
 
 - **Done, local (not pushed):** `2af70f3` (parser key `sch`; builder writes `catalog.others` «Sch# N», also from the legacy `schou` key in unre-parsed caches) + `ad1d9c6` (12 royal_holstein seeds edited in place — `merge_seed` deep-merges catalog, so a re-seed never clears an old `schou`; 12 removals recorded). Galster 122 / 131 finals now show only Schou 1-4 / 1-7.
