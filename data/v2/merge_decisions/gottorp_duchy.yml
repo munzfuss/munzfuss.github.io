@@ -6,36 +6,6 @@
 #   year_demote: hold reign-window / undated-specimen year ranges to a
 #                last-resort pass in _union_year_ranges (§CU year-mute).
 
-# §CU year-mute — UNDATED Bruun specimen whose broad attribution range would
-# swallow the dated discrete year of the SAME type. Surfaced by the 2026-06-17
-# coordinated re-flow curation-loss gate (ND-swallow class).
-year_demote:
-  - member_id: dk-bruun-14741
-    reason: |
-      Bruun II lot 14257, 1 Goldgulden Frederik I, ND (1523-1533). The dated
-      peer Galster 122 (1531, year_verified=true) drives the displayed year;
-      the undated Bruun range must not widen it to 1523-1533. Last-resort only.
-  - member_id: schleswig_holstein-numismaster-167742
-    reason: |
-      MC_167742 (same Galster-122 Goldgulden, joined via _cross_entity merge
-      2026-07-16) carries the same ND type-window 1523-1533 as Bruun 14741 —
-      demote for the same reason: Galster's attested 1531 drives the year.
-  - member_id: schleswig_holstein-numismaster-167745
-    reason: |
-      MC_167745's «1535» is NumisMaster's ND ca.-1535 estimate for the undated
-      Christian III ducal gold (Galster 130 / Fr 16) — curator 2026-07-16: mark
-      unverified so the union keeps the attested 1534 of dk-bruun-14783 +
-      dk-numista-461448. (Moved from royal_holstein.yml when the cluster's
-      target became gottorp_duchy per the I1 mint-derived home rule.)
-  - member_id: ngc-167742
-    reason: |
-      NGC re-harvest of the same WCPG record cuid-167742 = MC_167742 (joined via
-      _cross_entity 2026-08-18). Its date_line «(1523-33)» is the same ND
-      attribution window as Bruun 14741 / MC_167742; the seed carries
-      year_verified=false. Demote so Galster 122's attested 1531 keeps driving
-      the year. Manual bridge until the general ND→year_verified merge mechanism
-      lands (spawned session task_28fdc10e), after which this becomes redundant.
-
 no_merges:
   # Gottorp John Adolphus / Frederik III Thaler cluster — THREE distinct coins
   # (curator 2026-06-29, corrects an earlier over-merge that fused all three):
