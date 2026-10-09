@@ -906,6 +906,10 @@ merges:
       danskmoent guldridd.htm / halvrose.htm Guldridder. Full class listed
       to protect existing members from the force-union expel trap.
       Curator (Serhii) 2026-08-14.
+  - members:
+      - ngc-1049834
+      - denmark-numismaster-64951
+    reason: 'Christian IV Denning class B = KM 62: NGC WCPG 1049834 and NumisMaster MC_64951 are the same Krause entry (KM# 62, 1619, Copenhagen, «Below horse the letter P», titles of czar Mikhail Fjodorovitsj). Curator (Serhii) 2026-10-09.'
 
 no_merges:
   # §9.4 over-merge split (Curator Serhii, 2026-07-23, by image): ikmk-18219556
@@ -1482,6 +1486,25 @@ no_merges:
       - dk-hede-f2h7f
       - dk-hede-f2h7g
     reason: 'Gavesaet 1584 clique: Guldkrone (Schou 5, 3.38 g) and Rhinsk Gylden (Schou 6, 3.27 g) are different denominations of Queen Sophie''s gift set, not sub-variants of one type. Their shared Hede base 7 and Sieg 29 are the index of the SET (the Hede reign index prints one row "7A-G | 29" covering seven denominations), so neither is a §9.4 unifying key — Schou separates the pieces. Every pair of the set is blocked because the false shared bases let the matcher glue any two of them: blocking 7E-7F alone simply moved the fusion onto 7F-7G. Curator (Serhii) 2026-08-10.'
+  - members:
+      - dk-hede-c4h104
+      - ngc-1049834
+    reason: 'Christian IV Denning (wire money for the Russian trade): Hede 104 / Sieg 10 (danskmoent index: u.år, København, «Russisk tekst»; KMM specimens tagged Hede 104) versus the KM 62 cluster (NumisMaster MC_64951 KM# 62, 1619, Copenhagen; NGC WCPG 1049834). No source prints Hede 104 and KM 62 together, and Numista N#416350 places Hede 104 / Sieg 10 at Glückstadt 1620-1630 — the auto-matcher fused them on metal + nominal + ruler alone (§9.4). Kept apart; both stay in seed_unsorted. Curator (Serhii) 2026-10-09.'
+  - members:
+      - dk-hede-c4h104
+      - denmark-numismaster-64951
+    reason: 'Christian IV Denning (wire money for the Russian trade): Hede 104 / Sieg 10 (danskmoent index: u.år, København, «Russisk tekst»; KMM specimens tagged Hede 104) versus the KM 62 cluster (NumisMaster MC_64951 KM# 62, 1619, Copenhagen; NGC WCPG 1049834). No source prints Hede 104 and KM 62 together, and Numista N#416350 places Hede 104 / Sieg 10 at Glückstadt 1620-1630 — the auto-matcher fused them on metal + nominal + ruler alone (§9.4). Kept apart; both stay in seed_unsorted. Curator (Serhii) 2026-10-09.'
+  - members:
+      - ngc-1049834
+      - kmk-137196
+    reason: 'Curator (Serhii) 2026-10-09, Christian IV Denning cluster laid out by catalogue index (§9.4): A = Hede 104 (København, «Russisk tekst»); B = KM 62 (Copenhagen, «P», titles of czar Mikhail); F = KMM 137196, Schou 85 / B# 1211b, which no catalogue links to any other class (Schou 85 lies outside Hede 169''s «Schou 80-84»). The matcher fused these records on nominal + ruler alone.'
+  # Christian IV Denning, 2026-10-09: KMM 137196 (Schou 85) carries one catalogue key
+  # and shares none with class B (KM 62); blocked against every member so it cannot
+  # bridge into it through the matcher. (Class A, Hede 104, homes to royal_holstein.)
+  - members:
+      - kmk-137196
+      - denmark-numismaster-64951
+    reason: 'kmk-137196 (Schou 85, class F) vs denmark-numismaster-64951 (class A = Hede 104 / B = KM 62): no shared catalogue key; index-poor bridge. Curator (Serhii) 2026-10-09.'
 
 year_demote:
   - member_id: dk-hede-c5h57
