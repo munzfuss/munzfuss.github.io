@@ -1575,3 +1575,34 @@ merges:
       to København. Both mints are kept with their sources, so the coin homes to
       royal_holstein (Glückstadt) and renders on both pages via the overlap.
       Curator merge 2026-10-09 (Serhii).
+
+  - target_entity: royal_holstein
+    members:
+      - dk-hede-f7h12a    # home: danish_realm   (Hede 12A, 1 Rigsbankskilling 1852, København og Altona)
+      - dk-hede-f7h12b    # home: danish_realm   (Hede 12B)
+      - dk-bruun-8208     # home: danish_realm   (Bruun IV lot 17196, Hede 12A, KM 754)
+      - kmk-736270        # home: danish_realm   (KMM, H. 12)
+      - denmark-numismaster-65994  # home: danish_realm (MC_65994, KM 754)
+      - dk-numista-43524  # home: danish_realm   (Numista N#43524, KM 754)
+      - dk-tid-70724      # home: danish_realm   (ucoin tid 70724, KM 754)
+      - ngc-1050461       # home: danish_realm   (NGC KM 754)
+      - kmk-298427        # home: royal_holstein (KMM FP 10291.8, «1 rigsbankskilling», «H. 12A», 1852)
+    excludes:
+      - dk-hede-f7h12c    # Hede 12C (1853) — its own class in the pipeline; not part of this decision
+      - dk-bruun-8215
+      - kmk-160388
+      - kmk-331181
+      - kmk-354566
+      - kmk-152036        # standalone KMM record, H. 12 — not part of this decision
+      - kmk-353465        # standalone KMM record, H. 12 — not part of this decision
+    reason: |
+      One coin — Frederik VII 1 Rigsbankskilling 1852, Hede 12A. §9.4 key: the
+      KMM record's typeNumber «H. 12A» is a member of the Hede 12 class (12,
+      12A, 12B; KM 754). The KMM place reads «København, Altona», so the
+      classifier bucketed it into royal_holstein, where it rendered as a second
+      row although the Hede 12A final already cited KMM 298427. Members are
+      the existing Hede 12A/12B class plus the KMM record; the Hede 12C class
+      and two standalone «H. 12» KMM records are excluded from this decision
+      (their relation to 12A is a separate question). Hede gives the mints as
+      «København og Altona», so the coin homes to royal_holstein and renders on
+      both pages via the overlap. Curator merge 2026-10-09 (Serhii).

@@ -2,7 +2,7 @@
 # Generated 2026-10-09 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1833 per-source seed entries.
+# Input: 1841 per-source seed entries.
 # Output: 830 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -12894,6 +12894,104 @@ coins:
       - dk-bruun-8228
       - dk-hede-f7h11a
       - dk-numista-10231
+  - id: unified-dk-hede-f7h12a
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Rigsbankskilling. København og Altona
+    year_first: 1852
+    year_last: 1853
+    year_ranges:
+      -   - 1852
+          - 1853
+    year_label: 1852-1853
+    ruler: Frederik VII.
+    mint:
+      - Altona
+      - Kopenhagen
+    catalog:
+      km: '754'
+      hede:
+        - '12'
+        - 12A
+        - 12B
+      hede_volume: f7h
+      schou:
+        - 2-3
+        - '4'
+      sieg:
+        - '2'
+        - '3'
+      bruun_collection_id: '8208'
+      bruun_part: IV
+      bruun_lot_no: 17196
+      bruun_page: 104
+      numista: '43524'
+    metal: copper
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 7.3
+        source: ucoin
+      - value: 7.308
+        source: hede
+      - value: 7.308
+        source: ngc
+      - value: 7.308
+        source: numismaster
+      - value: 7.308
+        source: numista
+    diameter_mm:
+      - value: 23.0
+        source: numista
+      - value: 23.0
+        source: ucoin
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65994
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17196, p. 104
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h12.htm
+        ref: danskmoent.dk (Hede f7h12A)
+      - type: literature
+        url: https://en.numista.com/43524
+        ref: Numista N#43524 — 1 Rigsbankskilling - Frederik VII (type 1)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1852/?tid=70724
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/298427
+        ref: KMM 298427 (Inv. FP 10291.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/736270
+        ref: KMM 736270 (Inv. FP 12907.15)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankskilling-km-754-1852-cuid-1050461-duid-1238209
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
+    composed_of:
+      - denmark-numismaster-65994
+      - dk-bruun-8208
+      - dk-hede-f7h12a
+      - dk-hede-f7h12b
+      - dk-numista-43524
+      - dk-tid-70724
+      - kmk-298427
+      - kmk-736270
+      - ngc-1050461
   - id: unified-dk-hede-f7h16a
     fuss: seed_unsorted
     phase: hede
@@ -24510,34 +24608,6 @@ coins:
       active: false
       agrees_with_active: false
       reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'gottorp_duchy'; active entity is 'royal_holstein'.
-  - id: unified-kmk-298427
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Rigsbankskilling
-    year_first: 1852
-    year_last: 1852
-    year_label: '1852'
-    ruler: Frederik 7
-    mint:
-      - Altona
-      - Kopenhagen
-    catalog:
-      hede: 12A
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/298427
-        ref: KMM 298427 (Inv. FP 10291.8)
-    verification_note: *id002
-    issuing_entity:
-      - danish_realm
-      - royal_holstein
-    composed_of:
-      - kmk-298427
   - id: unified-kmk-306392
     fuss: seed_unsorted
     phase: kmk
