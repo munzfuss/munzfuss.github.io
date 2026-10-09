@@ -2023,3 +2023,11 @@ removals:
     field: sieg
     dropped: ['F1-43']
     reason: Truncated by the parser; Numista prints F1-43,5 (now F1-43.5).
+  # Numista «Norwegian Mint» names no town; the « Mint»-strip left the
+  # nationality adjective «Norwegian» in the mint column. v2_seed_writer now
+  # drops it (_MINT_COUNTRY_PREFIXES). Agreed with the curator 2026-10-09.
+  - seed: dk-numista-99778
+    kind: field
+    field: mint
+    dropped: ['Norwegian']
+    reason: Numista «Norwegian Mint» — a nationality adjective, not a mint town.
