@@ -125,13 +125,35 @@ def parse_references(html: str) -> dict:
         return {}
     block = m.group(1)
     refs: dict = {}
-    # Pattern: <a ...>SIEG</a>#&#8239;VALUE  OR  <a ...>Galster UU</a>#&#8239;VALUE
-    for am in re.finditer(
-        r'<a[^>]+class="fiche_catalogue"[^>]*>([^<]+)</a>#(?:&nbsp;|&#8239;|\s)*([^<,]+?)(?=,|<|$)',
-        block,
-    ):
+    # Everything between one catalogue anchor and the next belongs to the
+    # first: «SIEG# C2-3, C2-4» prints ONE anchor and two numbers. Cutting the
+    # value at the first comma dropped every number after it (n153125 lost
+    # Sieg C2-4, 2026-10-09). The separator comma before the next anchor is
+    # trailing text of this segment and falls away as an empty piece.
+    anchors = list(re.finditer(
+        r'<a[^>]+class="fiche_catalogue"[^>]*>([^<]+)</a>', block))
+    for i, am in enumerate(anchors):
+        seg_end = anchors[i + 1].start() if i + 1 < len(anchors) else len(block)
+        raw_seg = block[am.end():seg_end]
+        # The catalogue's full citation follows the numbers in a hover tooltip.
+        raw_seg = re.split(r'<div[^>]+class="tooltip', raw_seg, maxsplit=1)[0]
+        seg = strip_tags(raw_seg)
+        seg = re.sub(r"(?:&nbsp;|&#8239;|\u202f|\xa0)", " ", seg).strip()
+        if not seg.startswith("#"):
+            continue
+        # Numbers are separated by «, »; a comma WITHOUT a space is Numista's
+        # decimal sub-number («F1-43,1, F1-43,2» = F1-43.1 and F1-43.2), kept
+        # verbatim. A trailing «etc.» is not an index.
+        parts = [x.strip().rstrip(";.") for x in re.split(r",\s+|,$", seg[1:])]
+        parts = [x for x in parts if x and x.lower() != "etc"]
+        # Decimal sub-number to the dot form the rest of the corpus uses
+        # («F1-10.2»), as parse_numista_api does for KM («156,3» → «156.3»);
+        # left as «F1-43,2» the catalogue normaliser splits it on the comma.
+        parts = [re.sub(r"(?<=\d),(?=\d)", ".", x) for x in parts]
+        if not parts:
+            continue
+        value = parts[0] if len(parts) == 1 else parts
         name = am.group(1).strip()
-        value = am.group(2).strip().rstrip(",;.")
         key = name.lower().replace(" ", "_").replace("/", "_")
         # Normalise specific known catalogues
         if key in ("sieg",):
