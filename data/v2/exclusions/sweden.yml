@@ -1,0 +1,145 @@
+# Curator per-coin EXCLUSIONS — entity `sweden`.
+#
+# Coins the curator has decided are out-of-scope and must NOT render even in the
+# `seed_unsorted` bucket — patterns / Prøvemønter, off-strikes, exonumia,
+# undocumented stubs — that the rule-based §9 seed filters missed (usually
+# because the SOURCE mislabelled the piece). Distinct from the other decision
+# surfaces: merge_decisions RESHAPE, classification_decisions CLASSIFY, this one
+# REMOVES a coin with a recorded reason.
+#
+# `id` is a SEED id (as in data/v2/seed/<src>/<entity>.yml). A final is dropped
+# when its own unified id OR any composed_of member resolves to a listed id. The
+# coin's seed / seed_unified SURVIVE (provenance / audit trail); the absorb drops
+# it from `final` so it never reaches the render.
+#
+# category vocab: pattern | off_strike | off_nominal | exonumia |
+#                 undocumented_stub | out_of_scope | duplicate_noise
+#
+# Consumed by scripts/maintenance/absorb_seeds_into_final_v2.py (_load_exclusions
+# + the exclusion purge in process_entity). Applied on every absorb run.
+
+entity_id: sweden
+exclusions:
+  # ── Swedish issues after the Kalmar Union (post-1523) — out of Denmark scope ──
+  # Curator rule (Serhii, 2026-09-11): a polity's coins appear on the Denmark
+  # page ONLY while the Danish king also held that polity's crown. Sweden was
+  # independent from 6 June 1523 (Gustav Vasa elected; Kalmar Union dissolved),
+  # so every Stockholm/Swedish-crown issue dated after 1523 is out of scope,
+  # tracked by the issuing crown (ruler), not the physical mint city. The three
+  # 1535 pieces bear Christian III's NAME but were struck by Gustav Vasa's
+  # independent Sweden during Grevens Fejde — the Swedish crown was Vasa's, not
+  # the Danish king's, so they fall under the same rule. Union-era Swedish coins
+  # (Christian I 1457-1467, Hans 1497-1501) stay — the Danish king then held the
+  # Swedish crown. See docs/SOURCES.md §13. (Relocated 2026-10-09 from exclusions/danish_realm.yml with its entries.)
+  - id: ikmk-18235175
+    category: out_of_scope
+    reason: >-
+      «20 Kronor» 1877, Oskar II — SWEDEN (IKMK title «Schweden: Oskar II.», mint
+      Stockholm). Mis-routed to danish_realm because mint_registry maps «stockholm»
+      → danish_realm UNCONDITIONALLY (intended only as the Hans-era Kalmar-Union
+      pre-1521 anchor). ROOT FIX PENDING: make «stockholm» year-aware (danish_realm
+      ≤1521, else out-of-scope) so post-Union Swedish Stockholm coins route to
+      _unclassified — see handoff. This exclusion drops the render meanwhile.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-07-17
+  - id: dk-bruun-4232
+    category: out_of_scope
+    reason: >-
+      Christian III 8/4 Skilling 1535 Stockholm (Galster 249) — struck by Gustav
+      Vasa in Christian III's name; independent Sweden, crown not held by the
+      Danish king. Post-1523, out of Denmark scope.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
+  - id: kmk-139713
+    category: out_of_scope
+    reason: >-
+      Christian III 4 Skilling 1535 Stockholm — Gustav Vasa's independent Sweden
+      (struck in Christian III's name); crown not held by the Danish king.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
+  - id: kmk-139714
+    category: out_of_scope
+    reason: >-
+      Christian III 4 Skilling 1535 Stockholm — Gustav Vasa's independent Sweden
+      (struck in Christian III's name); crown not held by the Danish king.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
+  - id: ikmk-18201698
+    category: out_of_scope
+    reason: >-
+      Erik XIV 3 Mark 1562 Stockholm — independent Sweden; Swedish crown not held
+      by the Danish king. Out of Denmark scope.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
+  - id: ikmk-18296050
+    category: out_of_scope
+    reason: >-
+      Johan III 6 Daler 1568-1574 Stockholm — independent Sweden; Swedish crown
+      not held by the Danish king. Out of Denmark scope.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
+  - id: ikmk-18201735
+    category: out_of_scope
+    reason: >-
+      Johan III 1 Daler 1575 Stockholm — independent Sweden; Swedish crown not
+      held by the Danish king. Out of Denmark scope.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
+  - id: ikmk-18296060
+    category: out_of_scope
+    reason: >-
+      Johan III 1 Daler 1576 Stockholm — independent Sweden; Swedish crown not
+      held by the Danish king. Out of Denmark scope.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
+  - id: ikmk-18296063
+    category: out_of_scope
+    reason: >-
+      Johan III 1 Daler 1586 Stockholm — independent Sweden; Swedish crown not
+      held by the Danish king. Out of Denmark scope.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
+  - id: ikmk-18217806
+    category: out_of_scope
+    reason: >-
+      Ulrika Eleonora 2 Dukaten 1719 Stockholm — independent Sweden; Swedish
+      crown not held by the Danish king. Out of Denmark scope.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
+  - id: ikmk-18203663
+    category: out_of_scope
+    reason: >-
+      Fredrik I 1 Taler 1731 Stockholm — independent Sweden; Swedish crown not
+      held by the Danish king. Out of Denmark scope.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
+  - id: ikmk-18204758
+    category: out_of_scope
+    reason: >-
+      Karl XIV Johan 1 Riksdaler 1825 Stockholm — independent Sweden (Bernadotte);
+      Swedish crown not held by the Danish king. Out of Denmark scope.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
+  - id: kmk-316367
+    category: out_of_scope
+    reason: >-
+      Gustav Vasa 1 Ørtug 1524-1527 Stockholm — independent Sweden (post-1523,
+      under Gustav Vasa's own crown); not held by the Danish king. Same rule as
+      the 11 above; missed in the first pass because its mint was spelled
+      «Stokholm» (typo) and escaped the Swedish-mint scan. Caught via the
+      foreign-ruler scan. See docs/SOURCES.md §13.16.
+    relocated: 'RELOCATED 2026-10-09 from exclusions/danish_realm.yml — the coin lives in the out-of-scope sweden bucket, so the exclusion filed under danish_realm never applied.'
+    curator: Serhii
+    date: 2026-09-11
