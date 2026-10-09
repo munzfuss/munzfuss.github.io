@@ -282,26 +282,6 @@ def _coin_block_bounds(lines: list[str], coin_id: str) -> tuple[int, int] | None
     return start, end
 
 
-def _render_field(indent: str, field: str, value) -> list[str]:
-    """Render a scalar or list-valued field at the given indent. Strings are
-    single-quoted to match the project's catalog-ref convention."""
-    def q(v):
-        # bool BEFORE the str branch and before the fallback: Python's str()
-        # renders True/False capitalised, which YAML 1.1 still parses as a
-        # boolean but which no other line in this corpus is written as. `None`
-        # is the empty scalar, not the string "None".
-        if isinstance(v, bool):
-            return "true" if v else "false"
-        if v is None:
-            return ""
-        return f"'{v}'" if isinstance(v, str) else str(v)
-    if isinstance(value, (list, tuple)):
-        out = [f"{indent}{field}:"]
-        out += [f"{indent}- {q(v)}" for v in value]
-        return out
-    return [f"{indent}{field}: {q(value)}".rstrip()]
-
-
 _ALIAS_RE = re.compile(r"(?<![\w*])\*[A-Za-z0-9_]+")
 
 
@@ -434,7 +414,7 @@ def edit_coin_field(
     if new_value is None:
         new_lines: list[str] = []
     elif isinstance(new_value, (list, tuple)) and len(new_value) == 1:
-        new_lines = _render_field(indent, field, new_value[0])
+        new_lines = canonical_lines(path, field, new_value[0], indent=len(indent))
     elif isinstance(new_value, (list, tuple)):
         # A list is rendered by the file's own serializer at the key's column,
         # so its items carry the family's sequence offset whether the field was
@@ -444,7 +424,13 @@ def edit_coin_field(
         # on 28 KMM seeds, residual 0 → 48).
         new_lines = canonical_lines(path, field, list(new_value), indent=len(indent))
     else:
-        new_lines = _render_field(indent, field, new_value)
+        # Scalars go through the serializer too. `_render_field` single-quoted
+        # every string, which the absorb/merger emitter (`dump_v2_canonical`,
+        # same ruamel profile, quotes only where YAML needs them) undoes on the
+        # next re-flow: 5614fad wrote `mint: 'Hamburg'` into 26 finals and every
+        # absorb since re-wrote it `mint: Hamburg` (2026-10-09). Numeric-looking
+        # strings («'340'») stay quoted — the serializer quotes those itself.
+        new_lines = canonical_lines(path, field, new_value, indent=len(indent))
     old_lines = lines[fi:span_end]
     if old_lines == new_lines:
         return False
@@ -501,6 +487,14 @@ def canonical_lines(path_or_family, field: str, value, indent: int = 4) -> list[
     return lines[depth:]
 
 
+def _is_machine_emitted(path) -> bool:
+    """final/, seed_unified/, classification_decisions/ — written whole by
+    `dump_v2_canonical` on every re-flow."""
+    p = str(path).replace("\\", "/")
+    return any(d in p for d in ("data/v2/final/", "data/v2/seed_unified/",
+                                "data/v2/classification_decisions/"))
+
+
 def round_trip_residual(path, raw: str | None = None) -> int:
     """How many lines this file would move if it were round-tripped.
 
@@ -522,6 +516,12 @@ def round_trip_residual(path, raw: str | None = None) -> int:
             default_flow_style=False, width=_PYYAML_WIDTH)
     else:
         y = _make_ruamel(fam)
+        if _is_machine_emitted(path):
+            # absorb / the merger rewrite these files whole through
+            # `dump_v2_canonical`, which keeps no quote state; measured with
+            # preserve_quotes the residual was blind to a quote the next
+            # re-flow strips (5614fad, 2026-10-09).
+            y.preserve_quotes = False
         buf = io.StringIO()
         y.dump(y.load(text), buf)
         new = buf.getvalue()
