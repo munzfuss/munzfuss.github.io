@@ -728,6 +728,34 @@ illustrate. Galster 105 prints «Reinhold Junge 76»: there is no row 76, and ro
 (2 ß København 1536, Schou 18—73) is the coin — cited as row 16 via
 `_JUNGE_SOURCE_TYPOS` (curator-approved 2026-09-29).
 
+**Gold — where to look** (added 2026-10-09, Guldgyldenfod work). Locate by
+the `===== PDF page n =====` markers in `ReinhJunge.extract.txt`; the offset
+printed↔PDF is not constant (plates), so the PDF page is given per item.
+
+- **Guldregnskab** (section IV, pp. 105–108; the quote below is on PDF p. 139) — the primary
+  account. P. 108: «Jtem szo is dit vorgheschreuen fijne golt beschicket thom
+  rijnschem golde … Dar van de $ gheweghen holt **18 kraet 4 greyn**» = 18⅓
+  Karat = .764; after loss «339 $ lodich 13 loth 3 quentijn 1 orth … Hijr van
+  sijn ghemuntet golt guiden». Gold received at Gottorp, Roskilde and
+  København: 261 Mark 10 Lod 3 Q fine.
+- **Indledning p. XVI** — Galster's modern conversion of the account
+  figures: «Guldgylden 3,19 · 764 · 2,44» (g raw / ‰ / g fine). These are
+  the figures danskmoent prints for Galster 130 (Gottorp 1534) and 131
+  (Roskilde 1536): an account NORM, not an assay of either coin.
+- **Udmøntningsskema, Tillæg** (pp. 183–184; the row below is on PDF p. 215) — last row reads
+  in the text layer «Rhinske Gylden … 339 13 3 1 · **17⅓ Karat** · 24470 ·
+  72». 24 470 = gulden struck 1534–39 at 72 to the mark. The «17⅓» contradicts
+  the account's own «18 kraet 4 greyn» and Galster's XVI table; Wilcke 1950
+  (7-3 p. 242–244, «72 · 17⅓ Karat», fine 2,345 g) copies this row. Status:
+  misprint in the Skema or OCR artefact — NOT checked against the page image
+  (no renderer in that session; `pdftoppm` absent). Do not cite 17⅓ as a
+  fineness of these coins.
+- **Indledning p. XXI** — weights of surviving coins: «1534 1 Guldgylden
+  Slesvig U. A. 1—2 3.23 (1 ex.)»; «1536 18 Guldgylden Slesvig 1—7 3.22 3.15
+  3.18 (6 ex.)».
+- **Indledning p. XXII** — «Christian IIIs Guldgylden» valued by Netherlands
+  exchangers at 28 Styver, the same as the Hamburg gulden.
+
 Not to be confused with Galster's shorter article of the same title in the
 *Festskrift til Kr. Erslev* (København 1927), pp. 271–290
 (<https://www.danskmoent.dk/galster/galjung1.htm>), which has no numbered
