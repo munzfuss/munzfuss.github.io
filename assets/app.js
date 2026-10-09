@@ -71,17 +71,21 @@
   //     of a Müntzfuß block, fetch its `.fd-lazy[data-src]` fragment.
   function loadLazy(details) {
     var box = details.querySelector(":scope .fd-lazy[data-src]");
-    if (!box || box.dataset.state) return;
+    if (!box) return Promise.resolve();
+    if (box._lazyP) return box._lazyP;
+    if (box.dataset.state) return Promise.resolve();
     box.dataset.state = "loading";
     box.innerHTML = '<div class="fd-lazy-msg">…</div>';
-    fetch(box.getAttribute("data-src"))
+    box._lazyP = fetch(box.getAttribute("data-src"))
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(function (txt) { box.innerHTML = txt; box.dataset.state = "done"; })
       .catch(function () {
         box.dataset.state = "";
+        box._lazyP = null;
         box.innerHTML = '<div class="fd-lazy-msg">⚠ <a href="' +
           box.getAttribute("data-src") + '">' + box.getAttribute("data-src") + "</a></div>";
       });
+    return box._lazyP;
   }
   document.addEventListener("toggle", function (ev) {
     var d = ev.target;
@@ -91,6 +95,86 @@
     var open = document.querySelectorAll("details.fuss-details[open]");
     for (var i = 0; i < open.length; i++) loadLazy(open[i]);
   });
+
+  // 2c) Remember open Müntzfuß blocks and the scroll position across a
+  //     reload (sessionStorage, per tab + page path). The browser's own
+  //     scroll restoration runs before the lazy fragments exist, so it is
+  //     switched off and the position is restored after they are inserted.
+  (function () {
+    var KEY = "mz-ui:" + location.pathname;
+    var state = { open: [], y: 0, a: "", ao: 0 };
+    var restoring = true;
+    function read() {
+      try { var v = JSON.parse(sessionStorage.getItem(KEY)); if (v && typeof v === "object") return v; }
+      catch (e) {}
+      return null;
+    }
+    function write() {
+      if (restoring) return;
+      try { sessionStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    }
+    function collectOpen() {
+      var out = [], ds = document.querySelectorAll("details.fuss-details[open]");
+      for (var i = 0; i < ds.length; i++) out.push(ds[i].getAttribute("data-fuss"));
+      return out;
+    }
+    function capture() {
+      state.open = collectOpen();
+      state.y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var secs = document.querySelectorAll("section.fuss-block"), best = null, top = 0;
+      for (var i = 0; i < secs.length; i++) {
+        var t = secs[i].getBoundingClientRect().top;
+        if (t <= 0) { best = secs[i]; top = t; } else break;
+      }
+      state.a = best ? best.id : "";
+      state.ao = best ? -top : 0;
+      write();
+    }
+    try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) {}
+
+    var queued = false;
+    window.addEventListener("scroll", function () {
+      if (queued || restoring) return;
+      queued = true;
+      requestAnimationFrame(function () { queued = false; capture(); });
+    }, { passive: true });
+    document.addEventListener("toggle", function (ev) {
+      var d = ev.target;
+      if (d && d.matches && d.matches("details.fuss-details")) capture();
+    }, true);
+    window.addEventListener("pagehide", function () { restoring = false; capture(); });
+
+    function restoreScroll(saved) {
+      var el = saved.a ? document.getElementById(saved.a) : null;
+      var y = el
+        ? el.getBoundingClientRect().top + (window.pageYOffset || 0) + (saved.ao || 0)
+        : saved.y || 0;
+      window.scrollTo(0, y);
+    }
+    function init() {
+      var saved = read();
+      var nav = (performance.getEntriesByType && performance.getEntriesByType("navigation")[0]) || {};
+      var wanted = saved && !location.hash && (nav.type === "reload" || nav.type === "back_forward");
+      if (!wanted) { restoring = false; capture(); return; }
+      var jobs = [];
+      (saved.open || []).forEach(function (id) {
+        var d = document.querySelector('details.fuss-details[data-fuss="' + id + '"]');
+        if (!d) return;
+        d.open = true;
+        jobs.push(loadLazy(d));
+      });
+      Promise.all(jobs).then(function () {
+        restoreScroll(saved);
+        requestAnimationFrame(function () {
+          restoreScroll(saved);
+          restoring = false;
+          capture();
+        });
+      });
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+    else init();
+  })();
 
   // 3) Theme switcher.
   var THEMES = ["v1", "v3"];
