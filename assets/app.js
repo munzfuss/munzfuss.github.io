@@ -154,7 +154,7 @@
     function init() {
       var saved = read();
       var nav = (performance.getEntriesByType && performance.getEntriesByType("navigation")[0]) || {};
-      var wanted = saved && !location.hash && (nav.type === "reload" || nav.type === "back_forward");
+      var wanted = saved && (nav.type === "reload" || nav.type === "back_forward");
       if (!wanted) { restoring = false; capture(); return; }
       var jobs = [];
       (saved.open || []).forEach(function (id) {
