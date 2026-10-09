@@ -925,6 +925,15 @@ no_merges:
   # sit in different entities, so no danish_realm no_merge is needed — and naming
   # the relocated f3h39 here would leave an orphaned member.
 
+  # §9.4 over-merge split (Curator Serhii, 2026-10-09, by image): Galster 40 is the
+  # apocryphal Christian II Malmø skilling 1515 («apokryf … har sandsynligvis aldrig
+  # eksisteret», danskmoent c2g40); Numista 153125 is a circulating Malmø skilling
+  # 1514-1515 (Sieg C2-3, C2-4). No shared catalogue index — glued on
+  # nominal+ruler+mint+year alone.
+  - members:
+      - dk-galster-c2g-40
+      - dk-numista-153125
+    reason: 'Curator (Serhii) 2026-10-09, visual check: different coins. Galster 40 (apocryphal, Schou 1515/20) shares no index with Numista 153125 (Sieg C2-3, C2-4).'
   # Companions to the c5h39 + numismaster-165460 force-merge above: without these,
   # 165460 auto-glues to the c5h31c cluster (1 Dukat 1693 nominal+year coincidence)
   # and union-find drags c5h39 in too, fusing Hede 39 with Hede 31C — distinct types

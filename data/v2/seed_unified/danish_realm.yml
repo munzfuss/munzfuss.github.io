@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15243 per-source seed entries.
-# Output: 6915 unified entries (one per physical coin).
+# Output: 6916 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -38,6 +38,7 @@ coins:
       de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
       en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
       uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
+      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
     issuing_entity: danish_realm
     composed_of:
       - denmark-numismaster-117984
@@ -124,6 +125,7 @@ coins:
       de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
       en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
       uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
+      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
     issuing_entity: danish_realm
     composed_of:
       - denmark-numismaster-65022
@@ -187,6 +189,7 @@ coins:
       de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
       en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
       uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
+      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
     issuing_entity: danish_realm
     composed_of:
       - denmark-numismaster-65422
@@ -12207,6 +12210,42 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-c2g-38
+  - id: unified-dk-galster-c2g-40
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1515
+    year_last: 1515
+    year_label: '1515'
+    ruler: Christian II
+    mint: Malmø
+    catalog:
+      galster: '40'
+      galster_volume: c2g
+      schou: 1515/20
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: true
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c2g40.htm
+        ref: Galster 40 (c2g) — danskmoent.dk chr_c2g40.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: danish_realm
+    composed_of:
+      - dk-galster-c2g-40
   - id: unified-dk-galster-c2g-41
     fuss: seed_unsorted
     phase: galster
@@ -74263,9 +74302,6 @@ coins:
     catalog:
       numista: '153125'
       sieg: C2-3
-      galster: '40'
-      galster_volume: c2g
-      schou: 1515/20
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -74273,7 +74309,6 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
-    year_verified: true
     fineness:
       - value: 0.375
         source: numista
@@ -74284,9 +74319,6 @@ coins:
       - value: 26.8
         source: numista
     sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c2g40.htm
-        ref: Galster 40 (c2g) — danskmoent.dk chr_c2g40.htm
       - type: literature
         url: https://en.numista.com/153125
         ref: Numista N#153125 — 1 Skilling - Christian II (Malmo; type 1)
@@ -74299,7 +74331,6 @@ coins:
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
     issuing_entity: danish_realm
     composed_of:
-      - dk-galster-c2g-40
       - dk-numista-153125
   - id: unified-dk-numista-153173
     fuss: seed_unsorted
