@@ -610,17 +610,19 @@ six places, derive every `soll_fein_g` from it.
   (1514, 1524); even the 1534-39 outturn keeps 72 while the karat drops. The
   imperial 71⅓ (1490-1559, 1551) and the 1513 Danish act and the 1547 Schleswig
   bestalling (both «as the electors'») are the exceptions — see §11 Q2.
-- Phase targets (`soll_fein_by_phase`) only where a dated instrument sets them:
-  I = 1514/1524 Kongebrev (18 Kt), II = 1559 edict (18½). Phase 0 (Hans) and the
-  Christian IV phase have no instrument → scalar 18½; their shortfall stays in Δ
-  (Chr. IV: −1,38 % at 3,249 g ≈ 18¼/18½ − 1 = −1,35 %).
-- **SUPERSEDED 2026-10-10** — current targets (denmark.yml fuss_periods
-  fractions): fine `soll_fein_by_phase` 0: 2.52707 (Worms 71⅓ / 18½; «no
-  parameters from the future» — curator), I.a 2.436, I.b 2.48133 (Junge account;
-  curator accepted an account, not a decree, as the I.b benchmark), I.c 2.45877,
-  I.d 2.52707, II 2.50367; III and IV fall back to the scalar 2.50367 (1559
-  edict in force). Rough `soll_rau_by_phase` 3.27836 for 0, I.c, I.d (71⅓ grid),
-  scalar 3.248 elsewhere. 2-Goldgulden: double values.
+- Norm per period and the source that sets it (1 Goldgulden, fine silver-free
+  gold per Cölln. Marck rauh 233,856 g):
+  - Hans (to 1513): no Danish instrument; the norm in force is Worms 1495,
+    71⅓ / 18½ Karat (2,52707 g fine).
+  - 1514–1533: Møntordning 1514 + Kongebrev 1524, 72 / 18 (2,436 g).
+  - 1534–1539: no decree; Junge's mint account, 72 / 18 Kt 4 Grän = 18⅓
+    (2,48133 g) — an outturn record, not a prescription.
+  - 1546: Flensborg; Hede's weights 3,278 / 6,556 g fit 71⅓ at 18 Kt
+    (2,45877 g) — computed, no decree.
+  - 1547: bestalling 22.1.1547 «after the electors' gulden», 71⅓ / 18½
+    (2,52707 g); coin parameters not attested.
+  - from 1559 (Frederik II, Christian IV): Ferdinand's edict 1559, 72 / 18½
+    (2,50367 g); Christian IV's coins assay 18¼ (2,46983 g), no Danish act.
 - Phase 0 is not «first» because the 1497 Swedish act is evidentiary (Swedish
   scope, never executed), and — new — the 1513 Danish act was also never
   executed; neither gives Hans' coins a Danish target.
@@ -744,7 +746,7 @@ Hans' weight); Lange for ducal pieces; NFM XII p. 10 (Flensborg 1546).
 | Frederik I | 1531 Gottorp | Galster 122 | yes — `final/royal_slesvig.yml` | SH |
 | Christian III | 1534 Gottorp | Galster 130 | yes — `final/royal_slesvig.yml` (+ bruun seed in royal_holstein) | SH |
 | Christian III | 1536 Roskilde | Galster 131 | yes | phase I |
-| Christian III | 1546 Flensborg 1 / 2 | Hede 14 / 15 | yes — two finals `unified-dk-hede-c3h14`, `-c3h15` (royal_slesvig; c3h14 was lost to seed_unsorted until 2026-10-09, see §17) | DK I.c / SH I |
+| Christian III | 1546 Flensborg 1 / 2 | Hede 14 / 15 | yes — two finals `unified-dk-hede-c3h14`, `-c3h15` | DK I.c / SH I |
 | Frederik II | 1563, 1564 | Hede 3, 6 | yes | phase II |
 | Frederik II | 1584 gift set | Hede 7G | yes | phase II |
 | Christian IV | 1625-1632 | Hede 29 | yes | Chr. IV phase |
@@ -828,45 +830,3 @@ Open:
 - MB 57 weight and fineness.
 - Hede 14 type (no photo; assumed same as Hede 15).
 - Galster 59 has two finals (bruun-4056, bruun-4057) — possible duplicate.
-
-
-## 17. State of the Denmark-page card and session log (2026-10-08 … 10)
-
-Card as it stands (fuesse.yml `rhinsk_gylden_fod` + denmark.yml):
-- **Description** (fuesse): origin 1490 / Worms 1495 / Esslingen 1524 / Karl V
-  1551 / Ferdinand 1559; Danish acts 1513 (unexecuted), 1514, Kongebrev 1524;
-  phase axis; role = pay coin (Hans, Christian IV); end = Forordning 1602.
-  Dropped on curator call: «trade coin for the imperial market» (unsourced),
-  fineness-vs-ducat sentence («untrue»), Sound-Toll sentence (concerns foreign
-  gulden, not the Danish coinage), all exchange rates (nominals block).
-- **Closing** (denmark.yml): German-origin standard taken over directly (Hans,
-  Frederik II) or replaced by an own, half-carat lower norm (1514–1547), not
-  prescribed after 1602; war-linked coinages; ~¼ Nobel weight; parallel lines.
-  The «only Danish gold standard on the imperial norm» framing was REFUTED (§15).
-- **Formula** (spec list): 0 71⅓/17¾ · I.a 72/18 · I.b 72/18⅓ · I.c 71⅓/18 ·
-  I.d 71⅓/18½ · II, III 72/18½ · IV 72/18¼. Phase III's 18½ is the 1559 edict
-  in force (curator: a confirmed value for the phase, no (?)). Renderer writes
-  uk «карата» after a fraction (render.py `_spec_words`); `FussSpec.fineness_note`
-  exists for a tooltip on a fineness (?) (currently unused here).
-- **Grundwerte** rows: Worms 1495 (HRR) → phase 0 (assay 17¾, fine 2,42462) →
-  Møntordning 1514 (72 / 3,248, gw-note: Kongebrev 1524, imperial from 1559) →
-  I.a … I.d → II → III (18½ edict) → IV (18¼ assay, fine 2,46983). Heading only
-  «Базові значення», no subheading, no aside.
-- **pdate_label** Denmark: «~1496 → 1632 · 136 років». `first_adoption.anywhere`
-  1513 (curator: the founding ACT, executed or not).
-- Schleswig-Holstein page NOT touched (its own grundwerte, phases I/II, old
-  `wilcke-rhinsk-gylden-1514/1524-standard` refs and «25 February 1524» still
-  there — TODO when SH is reviewed).
-
-Pipeline findings this session:
-- `unified-dk-hede-c3h14` was classified in `classification_decisions/royal_holstein.yml`
-  while the coin lives in royal_slesvig → never applied → seed_unsorted. Fixed
-  (362b617). Five more coins with the same defect (Christian IV Haderslev gold:
-  c4h8a, c4h2, c4h5a, bruun-4598, bruun-4601) and a sweep of all decision
-  surfaces were handed to a parallel session («Find V2 curator decisions
-  stranded in the wrong entity»).
-- NGC/NumisMaster «Sch#» was parsed into `catalog.schou` (e.g. MB 57 «Sch#1352»,
-  MB 42 «Sch#1351»); most likely Schulten. Handed to a parallel session («Fix
-  NGC Sch# parsed as Schou instead of Schulten»).
-- Tools: `pdftoppm` (poppler) installed via Homebrew — the Read tool now renders
-  PDF pages (used to verify the Galster Skema misprint).
