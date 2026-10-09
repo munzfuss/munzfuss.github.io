@@ -75,6 +75,13 @@ class DecisionEntityDrift(unittest.TestCase):
                          "no_merges:\n  - members: [dk-bruun-1]\n"})
         self.assertEqual(len(bad), 1)
 
+    def test_no_merge_spanning_two_entities_is_inert_not_misfiled(self):
+        """kmk-1 (gottorp) vs dk-hede-c4h8a (royal_slesvig) filed in gottorp: one
+        member is merged here, so the prohibition stays where it is."""
+        ok = self._run({"merge/gottorp_duchy.yml":
+                        "no_merges:\n  - members: [kmk-1, dk-hede-c4h8a]\n"})
+        self.assertEqual(ok, [])
+
     def test_exclusion_of_coin_rendering_elsewhere(self):
         errs = self._run({"excl/royal_holstein.yml": "exclusions:\n  - id: kmk-1\n"})
         self.assertEqual(len(errs), 1)

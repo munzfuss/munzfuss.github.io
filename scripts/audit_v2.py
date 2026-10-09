@@ -901,6 +901,19 @@ def check_i13_decision_entity(final_coins: list[tuple[str, dict]],
             for i, e in enumerate(d.get(sec) or []):
                 ids = e.get("members") or (
                     [e["member_id"]] if e.get("member_id") else [])
+                if sec == "no_merges":
+                    # A prohibition spanning two entities can never be broken
+                    # (no merger run sees both sides), so it is inert, not
+                    # misfiled — keep it as the curator's record. Misfiled is
+                    # a no_merge none of whose members is merged here.
+                    homes = {seed_home[s] for mid in ids
+                             for s in _expand_seed(mid, seed_ids)}
+                    if homes and p.stem not in homes:
+                        errors.append(
+                            f"I13: merge_decisions/{p.stem}.yml::no_merges[{i}] "
+                            f"no member is merged in {p.stem!r} (they are in "
+                            f"{sorted(homes)}) — move the entry")
+                    continue
                 for mid in ids:
                     for s in _expand_seed(mid, seed_ids):
                         home = seed_home[s]
