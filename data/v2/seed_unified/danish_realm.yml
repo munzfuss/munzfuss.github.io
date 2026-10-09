@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15243 per-source seed entries.
-# Output: 6916 unified entries (one per physical coin).
+# Output: 6915 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -20514,7 +20514,6 @@ coins:
         - 119B
         - 119C
         - 119D
-        - '1978'
       hede_volume: c4h
       schou:
         - '15'
@@ -24750,9 +24749,7 @@ coins:
       km:
         - '133.2'
         - '133'
-      hede:
-        - '150'
-        - '1978'
+      hede: '150'
       hede_volume: c4h
       schou:
         - 82-89
@@ -24997,9 +24994,7 @@ coins:
     ruler: Christian IV.
     mint: Kopenhagen
     catalog:
-      hede:
-        - '152'
-        - '1978'
+      hede: '152'
       hede_volume: c4h
       schou:
         - 48-55
@@ -42888,9 +42883,7 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '636'
-      hede:
-        - '34'
-        - '1978'
+      hede: '34'
       hede_volume: c7h
       schou:
         - 9-10
@@ -95517,7 +95510,6 @@ coins:
         - 119B
         - 119C
         - 119D
-        - '1978'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -105710,6 +105702,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/274306
         ref: KMM 274306 (Inv. FP 1667.167)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/355601
+        ref: KMM 355601 (Inv. FP 4791.7)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/591653
         ref: KMM 591653 (Inv. FP 2193.37)
       - type: museum
@@ -105728,6 +105723,7 @@ coins:
       - kmk-140293
       - kmk-150233
       - kmk-274306
+      - kmk-355601
       - kmk-591653
       - kmk-591654
       - kmk-591655
@@ -144114,7 +144110,6 @@ coins:
         - '134'
         - 134A
         - 134B
-        - '1978'
       schou: '66'
     metal: silver
     metal_verified: true
@@ -157894,7 +157889,6 @@ coins:
       hede:
         - '8'
         - 8B
-        - '1978'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -167285,7 +167279,6 @@ coins:
       hede:
         - '132'
         - 132A
-        - '1978'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -222692,6 +222685,8 @@ coins:
     year_last: 1692
     year_label: '1692'
     ruler: Christian Albrecht
+    catalog:
+      lange: '408'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -222770,29 +222765,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-355593
-  - id: unified-kmk-355601
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1524
-    year_last: 1524
-    year_label: '1524'
-    ruler: Frederik 1
-    catalog:
-      schou: '1524'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/355601
-        ref: KMM 355601 (Inv. FP 4791.7)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-355601
   - id: unified-kmk-355610
     fuss: seed_unsorted
     phase: kmk
@@ -276412,7 +276384,6 @@ coins:
       hede:
         - '75'
         - 75A
-        - '1978'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -284435,7 +284406,6 @@ coins:
         - 79A
         - 79C
         - 79D
-        - '1978'
     metal: silver
     metal_verified: true
     fineness_verified: false
