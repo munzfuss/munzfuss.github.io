@@ -31407,15 +31407,16 @@ coins:
       da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
     composed_of:
       - unified-schleswig_holstein-numismaster-92967
-  - fuss: seed_unsorted
-    phase: hede
-    kind: kurant
+  - fuss: 11_333_thaler
+    phase: I
+    kind: scheide
     nominal: 24 Skilling
     ruler: Christian VII.
     issuing_entity:
       - danish_realm
       - royal_holstein
     mintmaster: Caspar Heinrich Lyng
+    fraction: 1/4
     id: unified-dk-hede-c7h28a
     year_first: 1778
     year_last: 1783
@@ -31487,6 +31488,13 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13238, p. 167
+    note:
+      de: 'Vorderseite: gekröntes C7, Rückseite: Wappenschild. Geprägt in Altona (CHL) und København (HSK). Die Stempel schnitt Wolff. Die ersten Altonaer Ausprägungen stammen von 1778 biß Mai 1779, die
+        zweite Reihe von etwa Mai biß Dezember 1782 (Michael Märcher, unveröffentlichte Untersuchungen).'
+      en: 'Obverse: crowned C7; reverse: coat of arms. Struck at Altona (CHL) and Copenhagen (HSK). The dies were cut by Wolff. The first Altona strikings date from 1778 to May 1779, the second series from
+        about May to December 1782 (Michael Märcher, unpublished studies).'
+      uk: 'Аверс: короноване C7; реверс: герб. Карбовано в Altona (CHL) та Копенгагені (HSK). Штемпелі вирізав Wolff. Перші карбування в Altona датуються від 1778 до травня 1779 року, друга серія — приблизно
+        від травня до грудня 1782 року (Michael Märcher, неопубліковані дослідження).'
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -36041,104 +36049,3 @@ coins:
     _curation_holds:
       note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-km-54-fr-iii-1665 (matched via unified-prefix; V1→V2 bootstrap had dropped the note field — see 
         restore_v1_notes_to_v2_final.py).
-  - fuss: 11_333_thaler
-    phase: I
-    kind: scheide
-    nominal: 24 Skilling
-    fraction: 1/4
-    ruler: Christian VII.
-    issuing_entity:
-      - danish_realm
-      - royal_holstein
-    id: unified-dk-hede-c7h28
-    year_first: 1778
-    year_last: 1783
-    year_ranges:
-      -   - 1778
-          - 1779
-      -   - 1782
-          - 1783
-    year_label: 1778-1779, 1782-1783
-    mint:
-      - Altona
-      - Kopenhagen
-    catalog:
-      km:
-        - '635.1'
-        - '635'
-      hede:
-        - '28'
-        - 28A
-      hede_volume: c7h
-      schou:
-        - '3'
-        - '9'
-      sieg:
-        - '12.1'
-        - '17'
-      bruun_collection_id:
-        - '7839'
-        - '7796'
-      bruun_part: III
-      bruun_lot_no: 11293
-      bruun_page: 147
-      fp: '24'
-      numista: '148504'
-      others:
-        - FP-24
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.562
-        source: hede
-      - value: 0.562
-        source: numista
-    weight_rough_g:
-      - value: 9.1
-        source: numista
-      - value: 9.171
-        source: hede
-      - value: 9.2
-        source: bruun
-    diameter_mm:
-      - value: 28.76
-        source: numista
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c7h28.htm
-        ref: danskmoent.dk (Hede c7h28)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-24-skilling-1778-1783/?tid=79089
-        ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11293, p. 147
-      - type: literature
-        url: https://en.numista.com/148504
-        ref: Numista N#148504 — 24 Skilling Dansk - Christian VII
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13238, p. 167
-    note:
-      de: 'Vorderseite: gekröntes C7, Rückseite: Wappenschild. Geprägt in Altona (CHL) und København (HSK). Die Stempel schnitt Wolff. Die ersten Altonaer Ausprägungen stammen von 1778 biß Mai 1779, die
-        zweite Reihe von etwa Mai biß Dezember 1782 (Michael Märcher, unveröffentlichte Untersuchungen).'
-      en: 'Obverse: crowned C7; reverse: coat of arms. Struck at Altona (CHL) and Copenhagen (HSK). The dies were cut by Wolff. The first Altona strikings date from 1778 to May 1779, the second series from
-        about May to December 1782 (Michael Märcher, unpublished studies).'
-      uk: 'Аверс: короноване C7; реверс: герб. Карбовано в Altona (CHL) та Копенгагені (HSK). Штемпелі вирізав Wolff. Перші карбування в Altona датуються від 1778 до травня 1779 року, друга серія — приблизно
-        від травня до грудня 1782 року (Michael Märcher, неопубліковані дослідження).'
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 11.333
-      unit: rigsdaler
-      basis: fin
-    composed_of:
-      - unified-dk-hede-c7h28
