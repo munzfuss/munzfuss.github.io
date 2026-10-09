@@ -2001,6 +2001,15 @@ def process_entity(entity_id: str) -> dict:
                     and "mint_verified" not in _fe_holds
                     and not _members_decline):
                 fe["mint_verified"] = True
+            # A verified flag attests a value (§4): with the mint empty, the
+            # OR-merge above must not leave it `true` (a member seed that still
+            # carried a stale flag re-verified the emptied mint of 5614fad's
+            # «Tysk» finals on every re-flow, 2026-10-09).
+            # Scoped to `mint`; other flag/value pairs show the same shape on
+            # ~180 finals and have not been examined.
+            if (fe.get("mint_verified") is True and fe.get("mint") in (None, "", [])
+                    and "mint_verified" not in _fe_holds and "mint" not in _fe_holds):
+                fe["mint_verified"] = False
         kept_finals.append(fe)
     final_entries = kept_finals
 

@@ -502,6 +502,19 @@ def merge_one(
             continue  # §9a accumulation: a union field is never silently dropped
         del existing[key]
 
+    # A verified flag attests a VALUE (§4); with no value left it attests
+    # nothing. `_flag_follows_fresh` only fires when fresh carries the value
+    # field, so a value that disappeared (fresh omits it) left the old `true`
+    # behind: 88 KMM seeds lost their «Tysk» mint in 5614fad yet kept
+    # `mint_verified: true`, and absorb's OR-merge then re-verified the empty
+    # mint on the finals (2026-10-09). Frozen flags/values are left alone.
+    # Scoped to `mint`: the same shape on other pairs (392 ucoin seeds with
+    # `ruler_verified` and no ruler) has not been examined.
+    if ("mint" not in holds and "mint_verified" not in holds
+            and existing.get("mint_verified") is True
+            and existing.get("mint") in (None, "", [])):
+        existing["mint_verified"] = False
+
     # §9.4 index hygiene on the MERGED catalog (post deep-merge). The
     # deep-merge keeps existing sub-keys verbatim, so a stale scalar
     # `schou: "20-21"` + `others: [schou# N]` shape survives the merge
