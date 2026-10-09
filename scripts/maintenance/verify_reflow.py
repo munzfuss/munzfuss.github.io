@@ -165,13 +165,34 @@ def _ident(field: str, v) -> str:
     return _key(v)
 
 
+# Parsed-YAML caches. libyaml speeds up only the PARSER; the constructor and
+# implicit-tag resolver stay pure Python and dominate (≈20 s of resolver calls
+# per run, measured 2026-10-09). The same seed_unified / exclusions files were
+# parsed up to four times per run by separate helpers; each is now parsed once.
+# Callers treat the returned objects as read-only.
+_GIT_CACHE: dict[tuple[str, str], dict | None] = {}
+_FILE_CACHE: dict[str, tuple[int, dict]] = {}
+
+
 def _git_show(ref: str, rel: str) -> dict | None:
     """Parse `<ref>:<rel>` as YAML; None when the path does not exist there."""
-    r = subprocess.run(["git", "show", f"{ref}:{rel}"],
-                       capture_output=True, text=True, cwd=ROOT)
-    if r.returncode != 0:
-        return None
-    return yaml.load(io.StringIO(r.stdout), Loader=_FASTLOADER) or {}
+    key = (ref, rel)
+    if key not in _GIT_CACHE:
+        r = subprocess.run(["git", "show", f"{ref}:{rel}"],
+                           capture_output=True, text=True, cwd=ROOT)
+        _GIT_CACHE[key] = (None if r.returncode != 0 else
+                           yaml.load(io.StringIO(r.stdout), Loader=_FASTLOADER) or {})
+    return _GIT_CACHE[key]
+
+
+def _read_yaml(path: Path) -> dict:
+    """Parse a working-tree YAML once per run (keyed by path + mtime)."""
+    st = path.stat().st_mtime_ns
+    hit = _FILE_CACHE.get(str(path))
+    if hit is None or hit[0] != st:
+        hit = (st, yaml.load(path.read_text(), Loader=_FASTLOADER) or {})
+        _FILE_CACHE[str(path)] = hit
+    return hit[1]
 
 
 def _coins(doc: dict | None) -> dict[str, dict]:
@@ -283,7 +304,7 @@ def _relocated_ids(entity: str) -> set[str]:
     path = ROOT / "data/v2/merge_decisions/_cross_entity.yml"
     if not path.exists():
         return set()
-    doc = yaml.load(path.read_text(), Loader=_FASTLOADER) or {}
+    doc = _read_yaml(path)
     out: set[str] = set()
     for d in (doc.get("merges") or []):
         if d.get("target_entity") == entity:
@@ -307,7 +328,7 @@ def _excluded_ids(entity: str) -> set[str]:
     path = ROOT / EXCLUSIONS_REL / f"{entity}.yml"
     if not path.exists():
         return set()
-    doc = yaml.load(path.read_text(), Loader=_FASTLOADER) or {}
+    doc = _read_yaml(path)
     raw = {e["id"] for e in (doc.get("exclusions") or []) if e.get("id")}
     if not raw:
         return set()
@@ -319,7 +340,7 @@ def _excluded_ids(entity: str) -> set[str]:
     seed_ids = set(raw)
     unified_path = ROOT / UNIFIED_REL / f"{entity}.yml"
     if unified_path.exists():
-        udoc = yaml.load(unified_path.read_text(), Loader=_FASTLOADER) or {}
+        udoc = _read_yaml(unified_path)
         for c in udoc.get("coins") or []:
             if c.get("id") and raw & set(c.get("composed_of") or []):
                 raw.add(c["id"])
@@ -358,7 +379,7 @@ def _retracted_refs(entity: str) -> dict[str, set[str]]:
         path = ROOT / rel
         if not path.exists():
             continue
-        doc = yaml.load(path.read_text(), Loader=_FASTLOADER) or {}
+        doc = _read_yaml(path)
         # `_recorded_removals.yml` keys its list `removals` and marks each entry
         # with a `kind`; only its field removals belong here (a `thinning` entry
         # excuses a whole coin and is handled in the vanished branch). The two
@@ -385,7 +406,7 @@ def _retracted_refs(entity: str) -> dict[str, set[str]]:
     if not unified_path.exists():
         return {}
     out: dict[str, set[str]] = {}
-    for c in (yaml.load(unified_path.read_text(), Loader=_FASTLOADER) or {}).get("coins") or []:
+    for c in _read_yaml(unified_path).get("coins") or []:
         for m in c.get("composed_of") or []:
             for field, vals in by_seed.get(m, {}).items():
                 out.setdefault(field, set()).update(vals)
@@ -406,7 +427,7 @@ def _cross_entity_targets() -> list[str]:
     path = ROOT / "data/v2/merge_decisions/_cross_entity.yml"
     if not path.exists():
         return []
-    doc = yaml.load(path.read_text(), Loader=_FASTLOADER) or {}
+    doc = _read_yaml(path)
     return sorted({m.get("target_entity") for m in (doc.get("merges") or [])
                    if m.get("target_entity")})
 
@@ -437,10 +458,15 @@ def _relocation_attestation_index() -> dict[str, set[str]]:
             if not path.exists():
                 continue
             for f, vals in _attestation_index(
-                    _coins(yaml.load(path.read_text(), Loader=_FASTLOADER))).items():
+                    _coins(_read_yaml(path))).items():
                 idx.setdefault(f, set()).update(vals)
         _RELOCATION_INDEX = idx
     return _RELOCATION_INDEX
+
+
+# {(ref or None for the working tree, entity) → {id: coin}} — filled by
+# compare_entity so the seed-level pass does not parse every final twice.
+_LOADED_FINALS: dict[tuple, dict[str, dict]] = {}
 
 
 def compare_entity(entity: str, base: str) -> dict:
@@ -448,7 +474,9 @@ def compare_entity(entity: str, base: str) -> dict:
     rel = f"{FINAL_REL}/{entity}.yml"
     head = _coins(_git_show(base, rel))
     path = ROOT / rel
-    cur = _coins(yaml.load(path.read_text(), Loader=_FASTLOADER) if path.exists() else None)
+    cur = _coins(_read_yaml(path) if path.exists() else None)
+    _LOADED_FINALS[(base, entity)] = head
+    _LOADED_FINALS[(None, entity)] = cur
     return compare_coins(entity, head, cur, excluded=_excluded_ids(entity),
                          retracted=_retracted_refs(entity),
                          elsewhere=_relocation_attestation_index(),
@@ -504,7 +532,7 @@ def _recorded_removals() -> tuple[set[str], dict[str, set[str]]]:
         fields: dict[str, set[str]] = {}
         path = ROOT / RECORDED_REMOVALS_REL
         if path.exists():
-            for e in (yaml.load(path.read_text(), Loader=_FASTLOADER) or {}).get("removals") or []:
+            for e in _read_yaml(path).get("removals") or []:
                 seed = e.get("seed")
                 if not seed:
                     continue
@@ -533,6 +561,115 @@ def _head_unified_members(base: str) -> dict[str, list[str]]:
                 out[uid] = list(u.get("composed_of") or [])
         _HEAD_UNIFIED[base] = out
     return _HEAD_UNIFIED[base]
+
+
+_DECLASSIFY_OK: set[str] | None = None
+
+
+def _declassify_recorded() -> set[str]:
+    """Seeds whose classification the curator removed on purpose.
+
+    `_recorded_removals.yml` entries of `kind: declassify` — written only after
+    the curator agreed in chat, like every other recorded removal. Keyed by
+    SEED id (§9b)."""
+    global _DECLASSIFY_OK
+    if _DECLASSIFY_OK is None:
+        out: set[str] = set()
+        path = ROOT / RECORDED_REMOVALS_REL
+        if path.exists():
+            for e in _read_yaml(path).get("removals") or []:
+                if e.get("kind") == "declassify" and e.get("seed"):
+                    out.add(str(e["seed"]))
+        _DECLASSIFY_OK = out
+    return _DECLASSIFY_OK
+
+
+def _seed_classification(finals: dict[str, dict[str, dict]],
+                         unified: dict[str, list[str]]
+                         ) -> dict[str, tuple[str, str, str | None]]:
+    """{seed id → (entity, final id, fuss)} — where each SEED is rendered.
+
+    `final.composed_of` names unified ids and, on older entries, seed ids
+    directly (lib/v2_index.py); both are resolved. A composed_of id that is
+    neither a unified id nor a seed (a stale or foundation id) may be keyed
+    too; it is harmless — it either persists unchanged or vanishes, and a
+    vanished key is skipped. Seed files are deliberately NOT read: doing so
+    from git for the baseline quadrupled the gate's runtime (26 s → 99 s)."""
+    out: dict[str, tuple[str, str, str | None]] = {}
+    for ent, coins in finals.items():
+        for fid, c in coins.items():
+            for ref in c.get("composed_of") or []:
+                for s in unified.get(ref, [ref]):
+                    if not s.startswith("unified-"):
+                        out[s] = (ent, fid, c.get("fuss"))
+    return out
+
+
+def seed_declassifications(base: str, entities: list[str]) -> list[str]:
+    """Seeds that sat in a CLASSIFIED final at `base` and sit in a
+    seed_unsorted final now.
+
+    The per-coin checks key on final ids, and a final id is not stable (§9b):
+    a class renamed by a new member, a Hede page split into sub-letters
+    (`nc5h30` → `nc5h30a`), a fragment split off its host — each leaves the old
+    final either gone (DEMOTED IN MOVE catches that) or still present as a
+    classified shell beside a NEW seed_unsorted row, which every id-keyed check
+    reads as a gain. Measured on history 2026-10-09: the 202a5c1 Hede re-seed
+    left twelve such pairs and passed this gate; the type rendered twice, once
+    classified with no members, once unsorted with all of them. Keyed by seed,
+    the one stable handle, the case is a plain loss.
+
+    Excused: seeds recorded as `kind: declassify` (curator-agreed), seeds a
+    curator exclusion names, and seeds no final carries any more (thinning,
+    exclusion — the coin-level checks own those)."""
+    def load(ref: str | None) -> tuple[dict, dict]:
+        finals: dict[str, dict[str, dict]] = {}
+        unified: dict[str, list[str]] = {}
+        if ref is None:
+            for p in sorted((ROOT / FINAL_REL).glob("*.yml")):
+                finals[p.stem] = (_LOADED_FINALS.get((None, p.stem))
+                                  or _coins(_read_yaml(p)))
+            for p in sorted((ROOT / "data/v2/seed_unified").glob("*.yml")):
+                for uid, u in _coins(_read_yaml(p)).items():
+                    unified[uid] = list(u.get("composed_of") or [])
+            return finals, unified
+        def ls(d):
+            return subprocess.run(["git", "ls-tree", "-r", "--name-only", ref, d],
+                                  capture_output=True, text=True, cwd=ROOT).stdout.split()
+        for rel in ls(FINAL_REL + "/"):
+            finals[Path(rel).stem] = (_LOADED_FINALS.get((ref, Path(rel).stem))
+                                      or _coins(_git_show(ref, rel)))
+        unified = _head_unified_members(ref)
+        return finals, unified
+
+    h_fin, h_uni = load(base)
+    c_fin, c_uni = load(None)
+    excluded: set[str] = set()
+    for ent in set(h_fin) | set(c_fin):
+        excluded |= _excluded_ids(ent)
+    return declassified(_seed_classification(h_fin, h_uni),
+                        _seed_classification(c_fin, c_uni),
+                        _declassify_recorded() | excluded, entities)
+
+
+def declassified(was: dict, now: dict, excused: set[str],
+                 entities: list[str] | None = None) -> list[str]:
+    """The comparison behind `seed_declassifications`, kept pure for tests.
+    `was` / `now`: {seed → (entity, final id, fuss)}."""
+    hits: dict[tuple, list[str]] = {}
+    for s, (ent, fid, fuss) in was.items():
+        if fuss in (None, "seed_unsorted") or s in excused or s not in now:
+            continue
+        n_ent, n_fid, n_fuss = now[s]
+        if n_fuss != "seed_unsorted":
+            continue
+        if entities and ent not in entities and n_ent not in entities:
+            continue
+        hits.setdefault((n_ent, n_fid, ent, fid, fuss), []).append(s)
+    return [f"[{n_ent}] SEED DECLASSIFIED  {n_fid} is seed_unsorted, but its seed(s) "
+            f"{', '.join(sorted(v)[:4])}{' …' if len(v) > 4 else ''} were in {fid} "
+            f"[{ent}] as {fuss!r}"
+            for (n_ent, n_fid, ent, fid, fuss), v in sorted(hits.items())]
 
 
 def _coin_home_index() -> dict[str, tuple[str, str]]:
@@ -570,11 +707,11 @@ def _coin_home_index() -> dict[str, tuple[str, str]]:
         # the new final never mentions it.
         unified: dict[str, list[str]] = {}
         for path in sorted((ROOT / "data/v2/seed_unified").glob("*.yml")):
-            for uid, u in _coins(yaml.load(path.read_text(), Loader=_FASTLOADER)).items():
+            for uid, u in _coins(_read_yaml(path)).items():
                 unified[uid] = list(u.get("composed_of") or [])
         for path in sorted((ROOT / FINAL_REL).glob("*.yml")):
             ent = path.stem
-            for cid, coin in _coins(yaml.load(path.read_text(), Loader=_FASTLOADER)).items():
+            for cid, coin in _coins(_read_yaml(path)).items():
                 idx.setdefault(cid, (ent, cid))
                 _ELSEWHERE_FUSS[(ent, cid)] = coin.get("fuss")
                 for m in (coin.get("composed_of") or [cid]):
@@ -968,6 +1105,12 @@ def main() -> int:
                 print(f"      {cid}: {', '.join(sorted(moved))}")
             for g in r["gains"]:
                 print(f"      + {g}")
+
+    declass = seed_declassifications(args.base, [args.entity] if args.entity else [])
+    total_loss += declass
+    if declass:
+        print(f"\n✗ seed-level: {len(declass)} class(es) hold seeds that were "
+              f"classified at {args.base} and are seed_unsorted now")
 
     print(f"\nchanged coins: {total_changed}   gains: {total_gain}   "
           f"losses: {len(total_loss)}   moved: {total_moved}")

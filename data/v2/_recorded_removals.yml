@@ -19,8 +19,14 @@
 #     so no re-flow can clear it; only a manual removal can, and a manual
 #     removal reads as FIELD EMPTIED.
 #
-# An entry excuses ONE removal: one seed for a thinning, one field of one seed
-# for a field removal. It excuses nothing else — another field on the same
+#   * A curator declassifies a coin (its fuss/phase was wrong, e.g. the
+#     Christian IV Denning is its own standard). Its seeds move from a
+#     classified final to seed_unsorted, which the seed-level check
+#     (SEED DECLASSIFIED) reads as a loss. `kind: declassify`, one entry per
+#     seed, agreed with the curator in chat first.
+#
+# An entry excuses ONE removal: one seed for a thinning or a declassify, one
+# field of one seed for a field removal. It excuses nothing else — another field on the same
 # coin, another coin in the same operation, a citation, all still block.
 generated_at: '2026-08-21'
 removals:

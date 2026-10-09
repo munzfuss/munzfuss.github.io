@@ -459,5 +459,38 @@ class TestDemotedInMove(_Base):
         self.assertEqual(r["losses"], [])
 
 
+class TestSeedDeclassified(unittest.TestCase):
+    """Seed-keyed demotion (§9b). The 202a5c1 Hede re-seed split nc5h30 into
+    sub-letter seeds: the classified final stayed as a shell and a NEW
+    seed_unsorted class took every member, which the id-keyed checks read as
+    a gain. Keyed by seed it is a loss."""
+
+    WAS = {"s1": ("dn", "unified-dk-hede-nc5h30", "9_25_thaler"),
+           "s2": ("dn", "unified-dk-hede-nc5h30", "9_25_thaler")}
+
+    def test_shell_plus_new_unsorted_class_blocks(self):
+        now = {"s1": ("dn", "unified-dk-hede-nc5h30a", "seed_unsorted"),
+               "s2": ("dn", "unified-dk-hede-nc5h30a", "seed_unsorted")}
+        r = VR.declassified(self.WAS, now, set())
+        self.assertEqual(len(r), 1)
+        self.assertIn("SEED DECLASSIFIED", r[0])
+
+    def test_seed_still_classified_elsewhere_passes(self):
+        now = {"s1": ("dn", "x", "9_25_thaler"), "s2": ("rh", "y", "9_25_thaler")}
+        self.assertEqual(VR.declassified(self.WAS, now, set()), [])
+
+    def test_recorded_declassify_or_exclusion_excuses(self):
+        now = {"s1": ("dn", "z", "seed_unsorted"), "s2": ("dn", "z", "seed_unsorted")}
+        self.assertEqual(VR.declassified(self.WAS, now, {"s1", "s2"}), [])
+
+    def test_seed_gone_is_left_to_the_coin_checks(self):
+        self.assertEqual(VR.declassified(self.WAS, {}, set()), [])
+
+    def test_unsorted_before_and_after_passes(self):
+        was = {"s1": ("dn", "a", "seed_unsorted")}
+        now = {"s1": ("dn", "b", "seed_unsorted")}
+        self.assertEqual(VR.declassified(was, now, set()), [])
+
+
 if __name__ == "__main__":
     unittest.main()
