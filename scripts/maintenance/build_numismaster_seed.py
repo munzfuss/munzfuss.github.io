@@ -245,14 +245,14 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
     metal = detect_metal(composition, data.get("denomination"))
 
     # Catalog refs — schema-clean subset only. Coin.catalog (CatalogRefs)
-    # accepts: km, lange, hede, sieg, schou, fr, dav, mb, bruun_collection_id,
+    # accepts: km, lange, hede, sieg, fr, dav, mb, bruun_collection_id,
     # bruun_part, bruun_lot_no, bruun_page, bruun_lot, numista. NumisMaster's
     # extra-vocabulary refs (schive / numismaster_mc / generic bruun-number)
     # are dropped here — the canonical raw record lives in
     # `MC_<N>.parsed.json`, so curators who want them open the cache. The
     # parser's `friedberg` key maps to schema `fr`.
     _ALLOWED_CATALOG_KEYS = {
-        "km", "lange", "hede", "sieg", "schou", "fr", "dav", "mb",
+        "km", "lange", "hede", "sieg", "fr", "dav", "mb",
         "bruun_collection_id", "bruun_part", "bruun_lot_no", "bruun_page",
         "bruun_lot", "numista",
     }
@@ -268,6 +268,17 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
             elif prefix == "fr":
                 catalog["fr"] = value
     for k, v in (data.get("catalog_refs") or {}).items():
+        # NumisMaster «Sch#» is NOT Schou (a contiguous cross-reign block
+        # 1337-1362; Schou numbers per reign) — probably Schulten 1974,
+        # unconfirmed, so it travels uninterpreted in `others`. Caches parsed
+        # before 2026-10-09 still carry it under the old `schou` key; every
+        # `schou` NumisMaster ever produced came from that «Sch#» regex.
+        if k in ("sch", "schou"):
+            for tok in str(v).split(", "):
+                catalog.setdefault("others", [])
+                if f"Sch# {tok}" not in catalog["others"]:
+                    catalog["others"].append(f"Sch# {tok}")
+            continue
         key = "fr" if k == "friedberg" else k
         if key in _ALLOWED_CATALOG_KEYS:
             catalog.setdefault(key, v)

@@ -20,11 +20,15 @@ Output schema per `MC_<N>.parsed.json`:
   - parsed_at — UTC ISO-8601 wall-clock
 
 Cross-refs extracted from «General note» (verbatim) and the page body:
-  - schou (Sch#)         — Schou 1926 Danish-Norwegian catalogue
+  - sch (Sch#)           — Krause/NGC «Sch#» as printed, NOT Schou: the
+                           numbers are a contiguous cross-reign block
+                           (1337-1362 for Friedrich I .. Friedrich II), which
+                           Schou's per-reign numbering cannot produce. Most
+                           likely Schulten 1974 (unconfirmed) — kept uninterpreted.
   - lange (L#)           — Lange 1908/1912 Schleswig-Holstein catalogue
   - friedberg (Fr#)      — Friedberg gold-coin standard
   - km (KM#)             — Krause-Mishler (per-country numbering caveat per CLAUDE.md §9)
-  - mb (MB#)             — Madai-Bach (pre-Krause SH duchy numbering)
+  - mb (MB#)             — Krause «MB» = Mishler-Bruce pre-1601 numbering
   - sieg                 — Sieg-Møntkatalog
   - hede                 — Hede 1957 / 1971
   - bruun                — L. E. Bruun Collection catalogue
@@ -308,8 +312,8 @@ def _clean_mint(raw: str | None) -> str | None:
 
 def parse_references(text: str) -> dict:
     """Extract cross-references from «General note» / page body. Catalogues
-    covered: Schou (Sch#), Lange (L#), Friedberg (Fr#), Krause-Mishler (KM#),
-    Madai-Bach (MB#), Sieg, Hede, Bruun, Schive (Norway), Davenport (Dav#).
+    covered: «Sch#» (raw, see module docstring), Lange (L#), Friedberg (Fr#), Krause-Mishler (KM#),
+    Mishler-Bruce (MB#), Sieg, Hede, Bruun, Schive (Norway), Davenport (Dav#).
 
     Each ref captures the FULL token sequence — range («358CI-358CIII») or
     comma-list («339, 339C») — as a single string. Downstream consumers can
@@ -321,10 +325,10 @@ def parse_references(text: str) -> dict:
     # comma/dash with another «<NUM>[<letter-suffix>]». Greedy.
     _LIST_OR_RANGE = r"(\d+[A-Za-z]*(?:\s*[,\-/]\s*\d+[A-Za-z]*)*)"
 
-    # Schou — «Sch#1357», «Sch. 1357», «Sch#1, 2»
+    # «Sch#1357» — NOT Schou (see module docstring); key `sch`, uninterpreted.
     m = re.search(r"\bSch[#.]?\s*" + _LIST_OR_RANGE, text)
     if m:
-        refs["schou"] = re.sub(r"\s+", "", m.group(1)).replace(",", ", ")
+        refs["sch"] = re.sub(r"\s+", "", m.group(1)).replace(",", ", ")
     # Lange — «L#23», «L#23, 23AB», «L#358CI-358CIII»
     m = re.search(r"\bL[#.]?\s*" + _LIST_OR_RANGE, text)
     if m:
@@ -339,7 +343,7 @@ def parse_references(text: str) -> dict:
     m = re.search(r"\bKM\s*#?\s*([\w\.]+)", text)
     if m and m.group(1) not in ("Mishler",):
         refs["km"] = m.group(1).rstrip(".,;")
-    # Madai-Bach — «MB#33», «MB#A43» (pre-Krause SH duchy numbering)
+    # Mishler-Bruce — «MB#33», «MB#A43» (pre-Krause SH duchy numbering)
     m = re.search(r"\bMB\s*#?\s*([A-Za-z]?\d+[A-Za-z]*)", text)
     if m:
         refs["mb"] = m.group(1)
