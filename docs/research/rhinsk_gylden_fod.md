@@ -623,6 +623,9 @@ six places, derive every `soll_fein_g` from it.
     (2,52707 g); coin parameters not attested.
   - from 1559 (Frederik II, Christian IV): Ferdinand's edict 1559, 72 / 18½
     (2,50367 g); Christian IV's coins assay 18¼ (2,46983 g), no Danish act.
+- Our data against these norms (computed): Christian IV, Hede 29 at 3,249 g →
+  Δ −1,38 % vs 18½, ≈ the 18¼/18½ − 1 = −1,35 % of the assay; Flensborg 1546,
+  Hede 14 / 15 at 3,278 / 6,556 g → Δ −0,01 % vs 71⅓ / 18 Kt.
 - Phase 0 is not «first» because the 1497 Swedish act is evidentiary (Swedish
   scope, never executed), and — new — the 1513 Danish act was also never
   executed; neither gives Hans' coins a Danish target.
@@ -749,6 +752,7 @@ Hans' weight); Lange for ducal pieces; NFM XII p. 10 (Flensborg 1546).
 | Christian III | 1546 Flensborg 1 / 2 | Hede 14 / 15 | yes — two finals `unified-dk-hede-c3h14`, `-c3h15` | DK I.c / SH I |
 | Frederik II | 1563, 1564 | Hede 3, 6 | yes | phase II |
 | Frederik II | 1584 gift set | Hede 7G | yes | phase II |
+| Christian III | 1547 Flensborg | NGC MB 57 (Holstein arms) | yes — weight and fineness not given by NGC | DK I.d / SH I |
 | Christian IV | 1625-1632 | Hede 29 | yes | Chr. IV phase |
 | Christian IV | 1627 Wolfenbüttel | Hede Wolf. tillæg 1 | **absent** (no «GOLDT GULDEN 1627» in danish_realm final) — Q4 | — |
 | Gottorp / Sonderburg | 1619-1664 | Jensen / Lange | partly (Jensen refs) | ducal phase |
@@ -830,3 +834,8 @@ Open:
 - MB 57 weight and fineness.
 - Hede 14 type (no photo; assumed same as Hede 15).
 - Galster 59 has two finals (bruun-4056, bruun-4057) — possible duplicate.
+
+Catalogue note (hypothesis, unverified): NGC/NumisMaster print «Sch# 1352» for
+MB 57 (and «Sch# 1351» for MB 42). Our data reads it as Schou; the numbers do not
+fit Schou's Christian III range and most likely refer to Schulten. Pending check
+against NGC's catalogue key.
