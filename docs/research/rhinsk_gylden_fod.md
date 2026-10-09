@@ -85,7 +85,7 @@ found in circulating coin; **outturn** = what a mint's own accounts show;
 | 25 Feb 1524 | Frederik I: Rigsraadets Brev — **lists no Rhinsk Gylden** | — | — | — | — | — | DK |
 | after 25 Feb 1524 | Frederik I: **Kongebrev** to Jørgen Kock (Malmø), similar to Ribe — «Rinske Gylden (18 Karat, 72 Stkr.)» | decree | 72 | 18 | 3,249 | 2,437 | DK |
 | 1524-51 | «Rhinsk Gylden 1524-51» row of Wilcke's table = the Valvationstag's finding | assay | 72 | 18⅓ | 3,249 | 2,481 | DE |
-| 1534-39 | Mårten's accounts (Danish mint, Grevens Fejde years) | outturn | 72 | 17⅓ | — | — | DK |
+| 1534-39 | Reynold Junge's mint account (Galster 1934 p. 108: «18 kraet 4 greyn», 72 per mark, 24 470 gulden) | outturn | 72 | 18⅓ | 3,248 | 2,481 | DK |
 | 1540 | Recess: «en rinsk gyllen eller en iacopsdaler» not above 3 Mark danske | tariff | — | — | — | — | DK |
 | **22 Jan 1547** | Christian III: Bestalling med Møntordning for Jørgen Kock the younger, Flensborg — «Guldgylden skulde slaas efter Kurfyrsternes Gylden i Værd, Halt, Schrot og Korn» | decree | 71⅓ | 18 (Wilcke's table: «Guldgylden 1546 71⅓ 18 K. 3,278 2,458») | 3,278 | 2,458 | SH (royal, Schleswig) |
 | 14 Feb 1551 → spring 1551 | Reichstag Augsburg orders the Nürnberg **Valvationstag** | assay | — | — | — | — | DE |
@@ -400,9 +400,18 @@ from the 15th century; as **Danish coinage** only from ~1496.
 
 ### 5.4 Christian III (1534-1559)
 
-- **1534-39 Mårten's accounts**: «Rhinske Gylden 72 · 17⅓ Karat» (Wilcke
-  7-3 p. 242) — outturn during the Grevens Fejde years, below both norms,
-  piece-count still 72.
+- **1534-39 Reynold Junge's account** (CORRECTED 2026-10-10). Primary: Galster
+  (udg.), *Reynold Junges Møntmesterregnskaber 1534–1540* (1934), Guldregnskab
+  p. 108: «Dar van de ℳ gheweghen holt 18 kraet 4 greyn … gheschrodet up de
+  gheweghenn ℳ 72 stucken. Vnde is ym talle 24470 golt gulden» = 72 / 18⅓ Kt,
+  24 470 pieces; arithmetic check: fine 261 Mk 10 L 3 Q / alloyed 342 Mk 8 L
+  2½ Q = 0,7639. Galster's Indledning p. XVI converts it to «3,19 · 764 · 2,44»
+  (the figures danskmoent prints for Galster 130/131 — an account norm, not an
+  assay). His Udmøntningsskema (p. 184, verified on the page image) prints
+  «17⅓ Karat» — a MISPRINT; Wilcke 1950 (7-3 pp. 242–244, fine 2,345 g) copied
+  that row. The earlier version of this dossier called these «Mårten's
+  accounts» (Mårten Mynteskrivare's Swedish Svartsjö accounts are cited in the
+  same Wilcke table for klippings only) and carried 17⅓ — both wrong.
 - Valuations of the 1530s (7-3 p. 239): «En Guldgylden, dansk Guldgylden af
   rhinsk Guld, rhinsk Guldgylden eller stemplet rhinsk Gylden, Joachimsdaler
   eller Daler, gik … for 29 … 30 ß Lybsk»; «en Mark Guld regnedes altid lig 72
@@ -616,7 +625,7 @@ six places, derive every `soll_fein_g` from it.
 | # | Question | What would settle it |
 |---|---|---|
 | Q1 | ~~1513 vs 1514 for `first_adoption.anywhere`~~ — **settled 2026-09-29: 1513.** Curator: `first_adoption` is the founding ACT (schema/timeline: a decree year preceding the first strike belongs there); the first Danish act naming the gulden is 1 Aug 1513, executed or not. 1514 remains the first EXECUTED Danish norm (phase I). Known model limit: the circulation layer also starts at `first_adoption`, while foreign Rhenish gulden circulated in Denmark through the 15th c. (§4.1). | — |
-| Q2 | Flensborg 1546 on 71⅓ + 1547 bestalling «efter Kurfyrsternes»: separate Schleswig sub-norm (71⅓ / 18½ target) vs Danish 72/18? | The bestalling full text in RA T.K. 160 (Wilcke quotes only a paraphrase for the gold line); any Flensborg mint account. |
+| Q2 | ~~settled 2026-10-10 by sub-phases I.c / I.d, §16~~ Flensborg 1546 on 71⅓ + 1547 bestalling «efter Kurfyrsternes»: separate Schleswig sub-norm (71⅓ / 18½ target) vs Danish 72/18? | The bestalling full text in RA T.K. 160 (Wilcke quotes only a paraphrase for the gold line); any Flensborg mint account. |
 | Q3 | Fineness of the Flensborg pieces: .750 (Hede) vs the 18½ the bestalling implies. | A published assay beyond NFM XII p. 10 (Hede's source). |
 | Q4 | Wolfenbüttel 1627 «GOLDT GULDEN» (Sieg 191): in data? which standard? | Hede Wolfenbüttel tillæg 1 specs; Harck NNUM 1975 pp. 120-121. |
 | Q5 | Ducal 1619-1664 list and the 1664 end-coin (Christian Albrecht): source. | Lange (Samml. schlesw.-holst. Münzen) numbers via Jensen or a danskmoent page; KM Schleswig-Holstein. |
@@ -782,3 +791,33 @@ Findings:
 від 1602 р. перестала приписувати взагалі.» + war-linked coinages, ~¼ Nobel
 weight, parallel lines (Ungersk Gylden from 1531, Guldkrone 1563–64). Written
 to `data/v2/locations/denmark.yml::fuss_periods.rhinsk_gylden_fod.closing`.
+
+
+## 16. Sub-phases of phase I on the Denmark page (curator 2026-10-10)
+
+| Sub-phase | Years | Source of the parameters | Grid | Karat | soll fein g | Coins (final id) |
+|---|---|---|---|---|---|---|
+| I.a | 1514–1533 | Møntordning 1514 + Kongebrev 1524 | 72 | 18 | 2,436 | bruun-4056, -4057 (Galster 59, 1527), bruun-14741 (Galster 122, 1531) |
+| I.b | 1534–1539 | Junge account (Galster 1934 p. 108) | 72 | 18⅓ | 2,48133 | bruun-14783 (Galster 130, 1534), bruun-14770 (Galster 131, 1536) |
+| I.c | 1546 | Hede 14/15 weights 3,278 / 6,556, .750 (Junge's Flensborg coinage, before the 1547 act) | 71⅓ | 18 | 2,45877 | hede-c3h14, hede-c3h15 |
+| I.d | 1547 | bestalling 22.1.1547 for Kock, «efter Kurfyrsternes Gylden» | 71⅓ | 18½ | 2,52707 | ngc-167747 (MB 57, Holstein-arms obverse; no weight/fineness) |
+
+Flensborg chronology (Wilcke 1950 7-4 pp. 276–277, after Dipl. Flensb. II):
+mint re-established 1.10.1544 (Degener; the King asks Lübeck and Hamburg for
+their Møntordning for it); Degener dead by 23.5.1546; Junge successor by
+8.6.1546, dies within the year; Kock appointed with bestalling 22.1.1547. So
+the 1546 gulden (Junge's mark per danskmoent) PRECEDE the bestalling; MB 57
+(1547) is the only known coin under it.
+
+Mechanism: per-page dict phase on the royal_slesvig / royal_holstein coins
+(`{denmark: I.x, schleswig_holstein: I}`); SH keeps its single phase I.
+Hede 14 and MB 57 are NOT one coin (curator 2026-10-09): MB 57's obverse is the
+Holstein arms, the 1546 type (photo of Hede 15) is St Andrew with date 4–6.
+
+Open:
+- 3,278 / 6,556 g — weighing or a norm assigned by Nobbe/Hede (matches Wilcke's
+  formula 7-4 p. 284 to the digit)? Settled by Nobbe, NFM XII (1930) p. 10, or a
+  weighing of the KMM specimen.
+- MB 57 weight and fineness.
+- Hede 14 type (no photo; assumed same as Hede 15).
+- Galster 59 has two finals (bruun-4056, bruun-4057) — possible duplicate.

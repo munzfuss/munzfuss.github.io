@@ -747,9 +747,10 @@ printed↔PDF is not constant (plates), so the PDF page is given per item.
   72». 24 470 = gulden struck 1534–39 at 72 to the mark. The «17⅓» contradicts
   the account's own «18 kraet 4 greyn» and Galster's XVI table; Wilcke 1950
   (7-3 p. 242–244, «72 · 17⅓ Karat», fine 2,345 g) copies this row. Status:
-  misprint in the Skema or OCR artefact — NOT checked against the page image
-  (no renderer in that session; `pdftoppm` absent). Do not cite 17⅓ as a
-  fineness of these coins.
+  misprint in the Skema — VERIFIED 2026-10-10 on the page image
+  (`pdftoppm` installed): the Skema prints 17⅓, the account (p. 108) prints
+  18 kraet 4 greyn and the fine/alloy weights compute to 0,7639. Do not cite
+  17⅓ as a fineness of these coins.
 - **Indledning p. XXI** — weights of surviving coins: «1534 1 Guldgylden
   Slesvig U. A. 1—2 3.23 (1 ex.)»; «1536 18 Guldgylden Slesvig 1—7 3.22 3.15
   3.18 (6 ex.)».
