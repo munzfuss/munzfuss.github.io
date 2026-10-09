@@ -2005,3 +2005,21 @@ removals:
     field: lange
     dropped: ['1']
     reason: KMM typeNumber qualifier — Lange volume 1, not a Lange number.
+  # Numista pre-1541 parser cut «SIEG# F1-43,1, F1-43,2» at the first comma and
+  # stored the truncated «F1-43» on three different types. The full numbers
+  # (dot form) replace it; agreed with the curator 2026-10-09.
+  - seed: dk-numista-301237
+    kind: field
+    field: sieg
+    dropped: ['F1-43']
+    reason: Truncated by the parser; Numista prints F1-43,1 and F1-43,2 (now F1-43.1, F1-43.2).
+  - seed: dk-numista-301239
+    kind: field
+    field: sieg
+    dropped: ['F1-43']
+    reason: Truncated by the parser; Numista prints F1-43,2 (now F1-43.2).
+  - seed: dk-numista-153257
+    kind: field
+    field: sieg
+    dropped: ['F1-43']
+    reason: Truncated by the parser; Numista prints F1-43,5 (now F1-43.5).
