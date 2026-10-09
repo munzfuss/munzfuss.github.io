@@ -111,11 +111,33 @@ _CAT_YEAR_COMMA_INDEX_RE = re.compile(
     r"((?:19|20)\d{2})\s*,\s*(?=(?:nr\.?|no\.?|#)\s*\d)", re.IGNORECASE)
 
 
+# «Lange 1, nr. 358E» / «Lange I, nr. 340» (VOLUME before the number) and
+# «Schou 1524, nr. 126» (the coin's YEAR — Schou's own layout files types under
+# their year) put a qualifier between catalogue and index that is neither an
+# edition year (19xx/20xx, handled above) nor the index. The bare `\d+` grab
+# took the qualifier: 60 Gottorp seeds carried `lange: '1'`, kmk-355601
+# `schou: '1524'` (2026-10-09). When «nr.»/«no.» follows, the number after it
+# is the index; drop the qualifier. Only for prefixes we map (Fiala is lifted
+# earlier and keeps its own «<vol> nr. <n>» form).
+_CAT_QUALIFIED_INDEX_RE = re.compile(
+    r"\b([A-Za-zÆØÅæøå]+)\.?\s+(?:\d{1,4}|[IVX]{1,4})\s*,?\s*(?:nr\.?|no\.?)\s*(?=\d)",
+    re.IGNORECASE)
+
+
+def _drop_index_qualifier(m: re.Match) -> str:
+    prefix = m.group(1)
+    if any(rx.match(prefix) for rx, _ in _CAT_PREFIX):
+        return f"{prefix} "
+    return m.group(0)
+
+
 def _join_edition_year_index(type_number: str) -> str:
     """Drop the comma in «<cat> <year>, no. <index>» so the segment split keeps
     the catalogue, its edition year and its index together — the year path
-    below then reads the index, ranges included."""
-    return _CAT_YEAR_COMMA_INDEX_RE.sub(r"\1 ", type_number)
+    below then reads the index, ranges included. Then drop a volume / coin-year
+    qualifier before «nr.» (see `_CAT_QUALIFIED_INDEX_RE`)."""
+    s = _CAT_YEAR_COMMA_INDEX_RE.sub(r"\1 ", type_number)
+    return _CAT_QUALIFIED_INDEX_RE.sub(_drop_index_qualifier, s)
 
 
 def _index_after_edition_year(rest: str) -> str | None:
