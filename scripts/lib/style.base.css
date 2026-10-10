@@ -2665,6 +2665,22 @@ footer a:hover { color: var(--accent); }
   background: #2a2520;
   color: #ece4d2;
 }
+.tooltip-portal .tt-sd {
+  display: inline-block;
+  margin: 2px 0;
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+.tooltip-portal .tt-sd.under-deep { color: var(--sd-under-deep-fg);  background: var(--sd-under-deep-bg); }
+.tooltip-portal .tt-sd.under-mild { color: var(--sd-under-mild-fg);  background: var(--sd-under-mild-bg); }
+.tooltip-portal .tt-sd.over-mild { color: var(--sd-over-mild-fg);   background: var(--sd-over-mild-bg); }
+.tooltip-portal .tt-sd.over-strong { color: var(--sd-over-strong-fg); background: var(--sd-over-strong-bg); }
+/* On the light theme the portal card is dark and the badge tints are light
+   translucent, so the chips use the solid dark-theme pairs from theme.yml. */
+[data-theme="v1"] .tooltip-portal .tt-sd.under-deep { color: #c97a3d; background: #2a1e14; }
+[data-theme="v1"] .tooltip-portal .tt-sd.under-mild { color: #a08966; background: #221a13; }
+[data-theme="v1"] .tooltip-portal .tt-sd.over-mild { color: #68a257; background: #1a2a1a; }
+[data-theme="v1"] .tooltip-portal .tt-sd.over-strong { color: #92d24c; background: #1f3017; }
 
 /* Edge anchoring for tooltips on the leftmost / rightmost timeline bars.
    The default `left: 50%; transform: translateX(-50%)` centers the

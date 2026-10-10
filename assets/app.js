@@ -357,6 +357,24 @@
   function setTipText(box, text, trigger) {
     var kind = markKind(trigger);
     box.textContent = "";
+    // Legend lines «{class}text» become colour chips (same palette as the Δ
+    // badges); class is whitelisted and the text goes in as a text node.
+    if (!kind && /(^|\n)\{(?:under-deep|under-mild|over-mild|over-strong)\}/.test(text)) {
+      var lines = text.split("\n");
+      for (var i = 0; i < lines.length; i++) {
+        var m = /^\{(under-deep|under-mild|over-mild|over-strong)\}(.*)$/.exec(lines[i]);
+        if (m) {
+          var chip = document.createElement("span");
+          chip.className = "tt-sd " + m[1];
+          chip.textContent = m[2];
+          box.appendChild(chip);
+        } else {
+          box.appendChild(document.createTextNode(lines[i]));
+        }
+        if (i < lines.length - 1) box.appendChild(document.createTextNode("\n"));
+      }
+      return;
+    }
     if (!kind) { box.textContent = text; return; }
     var lang = (document.documentElement.lang || "en").slice(0, 2);
     var head = (MARK_HEAD[lang] || MARK_HEAD.en)[kind];
