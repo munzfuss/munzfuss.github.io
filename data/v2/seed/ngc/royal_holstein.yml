@@ -526,7 +526,11 @@ coins:
       mb: '57'
     metal: gold
     fineness:
+      - value: 0.770833
+        source: 71⅓ Stk. aus der Cöllnischen Marck zu 18½ Karat — Norm der Kurfürsten (Wormser Reichsabschied 1495), für diese Müntze nicht belegt
     weight_rough_g:
+      - value: 3.27836
+        source: errechnet aus 233,856 g / 71⅓ (Rauhgewicht nach der Norm, kein Wägewert)
     diameter_mm:
     issuing_entity: royal_holstein
     verified: false
@@ -539,10 +543,16 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-goldgulden-mb-57-1547-cuid-167747-duid-380834
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/Wilcke%207-4.pdf
+        ref: 'Wilcke 1950, Kap. 4, S. 282 — Bestallungsbrief Christians III. vom 22. Januar 1547: «Guldgylden skulde slaas efter Kurfyrsternes Gylden i Værd, Halt, Schrot og Korn»'
     verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      de: Weder Gewicht noch Korn dieser Müntze sind überliefert; angesetzt sind die Parameter der Norm — 71⅓ Stück aus der rauhen Cöllnischen Marck zu 18½ Karat (Norm der Kurfürsten; Wormser 
+        Reichsabschied 1495), die der Bestallungsbrief von 1547 vorschreibt.
+      en: Neither weight nor fineness of this coin is recorded; the figures shown are those of the norm — 71⅓ pieces from the rough Cologne mark at 18½ carats (the electors' norm; Worms Reichsabschied
+        of 1495), which the 1547 letter of appointment prescribes.
+      uk: Ні вага, ні проба цієї монети не засвідчені; наведено параметри норми — 71⅓ штуки з повної кельнської марки за 18½ карата (норма курфюрстів; Вормський Reichsabschied 1495), яку приписує лист
+        1547 р.
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '167747'
     _obverse: Holstein arms in open field or in shield, titles of Christian III
@@ -550,6 +560,12 @@ coins:
     _reverse_legend: MON. NOVA. AVREA. SLESVICENSIS.
     _ngc_note: Ref. Sch#1352.
     _ngc_date_line: 1547 Rare
+    _curation_holds:
+      fineness: "2026-10-10: the norm's 18½ carats entered on curator request as an unverified anchor (§4); no source gives a fineness for this coin."
+      fineness_verified: false — canonical anchor, not a source reading.
+      weight_rough_g: '2026-10-10: 233,856 / 71⅓ = 3,27836 g computed from the norm on curator request; not a weighing. weight_rough_verified stays false so the (?) renders.'
+      sources: Added the 1547 letter of appointment (Wilcke 1950, p. 282) that prescribes the norm; keep across regen.
+      verification_note: Explains the anchor to the reader.
   - id: ngc-167721
     fuss: seed_unsorted
     phase: ngc

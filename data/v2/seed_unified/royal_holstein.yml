@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-10-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1844 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-10-09'
+generated_at: '2026-10-10'
 coins:
   - id: unified-dk-bruun-5326
     fuss: seed_unsorted
@@ -33964,17 +33964,29 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    fineness:
+      - value: 0.770833
+        source: 71⅓ Stk. aus der Cöllnischen Marck zu 18½ Karat — Norm der Kurfürsten (Wormser Reichsabschied 1495), für diese Müntze nicht belegt
+    weight_rough_g:
+      - value: 3.27836
+        source: errechnet aus 233,856 g / 71⅓ (Rauhgewicht nach der Norm, kein Wägewert)
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-goldgulden-mb-57-1547-cuid-167747-duid-380834
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
+        url: https://www.danskmoent.dk/pdf2/Wilcke%207-4.pdf
+        ref: 'Wilcke 1950, Kap. 4, S. 282 — Bestallungsbrief Christians III. vom 22. Januar 1547: «Guldgylden skulde slaas efter Kurfyrsternes Gylden i Værd, Halt, Schrot og Korn»'
+      - type: literature
         url: https://numismaster.com/MC_167747
         ref: NumisMaster
     verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      de: Weder Gewicht noch Korn dieser Müntze sind überliefert; angesetzt sind die Parameter der Norm — 71⅓ Stück aus der rauhen Cöllnischen Marck zu 18½ Karat (Norm der Kurfürsten; Wormser 
+        Reichsabschied 1495), die der Bestallungsbrief von 1547 vorschreibt.
+      en: Neither weight nor fineness of this coin is recorded; the figures shown are those of the norm — 71⅓ pieces from the rough Cologne mark at 18½ carats (the electors' norm; Worms Reichsabschied
+        of 1495), which the 1547 letter of appointment prescribes.
+      uk: Ні вага, ні проба цієї монети не засвідчені; наведено параметри норми — 71⅓ штуки з повної кельнської марки за 18½ карата (норма курфюрстів; Вормський Reichsabschied 1495), яку приписує лист
+        1547 р.
     issuing_entity: royal_holstein
     composed_of:
       - ngc-167747
