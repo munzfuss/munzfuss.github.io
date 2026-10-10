@@ -389,16 +389,24 @@ def gw_grouped(rows, lang: str) -> list[dict]:
         par = m.group("par")
         last_group = next((i for i in reversed(items) if i["kind"] == "group"), None)
         if not (items and items[-1]["kind"] == "sub" and last_group and last_group["par"] == par):
-            last_group = {"kind": "group", "par": par, "pre": m.group("pre"), "years": []}
-            items.append(last_group)
+            prev = items[-1] if items else None
+            # A plain «Phase I (…) · …» row right before «Phase I.a» is the group
+            # header itself, carrying the values the sub-phases share.
+            if prev and prev["kind"] == "row" and re.match(
+                    rf"^\S+ {re.escape(par)}(?![.\w])", str(prev["key"])):
+                last_group = {"kind": "group", "par": par, "row": prev["row"], "key": prev["key"]}
+                items[-1] = last_group
+            else:
+                last_group = {"kind": "group", "par": par, "pre": m.group("pre"), "years": []}
+                items.append(last_group)
         y = _YEARS_RE.search(m.group("rest"))
-        if y:
+        if y and "years" in last_group:
             last_group["years"] += [int(y.group(1)), int(y.group(2) or y.group(1))]
         items.append({"kind": "sub", "row": row,
                       "key": escape(par) + Markup('.<span class="ph-subl">') + escape(m.group("sub"))
                              + Markup("</span>") + escape(m.group("rest"))})
     for g in items:
-        if g["kind"] == "group":
+        if g["kind"] == "group" and "years" in g:
             yrs = g.pop("years")
             span = f" ({min(yrs)}-{max(yrs)})" if yrs else ""
             g["key"] = escape(f"{g['pre']}{g['par']}{span}")

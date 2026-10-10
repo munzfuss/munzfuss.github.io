@@ -984,7 +984,7 @@
     <div class="gw-rows">
       {% for it in gw.rows|gw_grouped(lang) %}
       {% if it.kind == 'group' %}
-      <div class="gw-row gw-group"><div class="gw-k">{{ it.key }}</div></div>
+      <div class="gw-row gw-group"><div class="gw-k">{{ it.key }}</div>{% if it.row %}<div class="gw-v">{{ it.row.value|t(lang)|safe }}</div>{% endif %}</div>
       {% else %}
       <div class="gw-row{% if it.kind == 'sub' %} gw-sub{% endif %}">
         <div class="gw-k">{{ it.key }}</div>
