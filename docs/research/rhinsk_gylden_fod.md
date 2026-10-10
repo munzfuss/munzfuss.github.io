@@ -412,6 +412,24 @@ from the 15th century; as **Danish coinage** only from ~1496.
   that row. The earlier version of this dossier called these «Mårten's
   accounts» (Mårten Mynteskrivare's Swedish Svartsjö accounts are cited in the
   same Wilcke table for klippings only) and carried 17⅓ — both wrong.
+- **Galster's 3,19 g is 72 to a mark of ≈ 230 g, not 233,856 g** (2026-10-10).
+  Galster 1934 Indledning pp. XV–XVI: «Den kølnske Mark fikseredes 1821 i
+  Berlin til 233,856 g, derimod er den beregnet til at have været 231,156 g i
+  det 16. Aarhundrede. Den »kølnske« Mark, som man regnede med i Norden, var
+  endda lidt lavere; man maa antage, at Reynold Junge efter de bevarede Mønter
+  at dømme har benyttet en Markvægt til ca. 230 g»; glossary p. 236 «Marck
+  lodich … ca. 230 g». 230 / 72 = 3,194 → his «3,19 · 764 · 2,44». Divided by
+  OUR mark (233,856) the same 3,19 g gives 73,31 «pieces to the mark» — an
+  artefact of two mark bases, not a coin standard. danskmoent prints 3,19 g
+  for all four gulden types 1527–1536 (Galster 59, 122, 130, 131): for 130/131
+  it is Junge's norm; for 59/122 (Frederik I, a different mintmaster) the same
+  figure is most likely the same conversion carried over — not stated on the
+  pages (hypothesis). Marked «(§)» template on the four galster seed readings
+  (curator 2026-10-10); same treatment as the Nobel's 14,375 g (Galster 69).
+  Tension left open: Galster says «efter de bevarede Mønter at dømme», yet the
+  weighed specimens in our data for these types run 3,23–3,37 g (Bruun et al.),
+  which fit 233,856 / 72 = 3,248 better than 3,19. Our targets stay on the
+  233,856 g mark, as everywhere in the project.
 - Valuations of the 1530s (7-3 p. 239): «En Guldgylden, dansk Guldgylden af
   rhinsk Guld, rhinsk Guldgylden eller stemplet rhinsk Gylden, Joachimsdaler
   eller Daler, gik … for 29 … 30 ß Lybsk»; «en Mark Guld regnedes altid lig 72
