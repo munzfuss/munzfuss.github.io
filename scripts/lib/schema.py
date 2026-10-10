@@ -230,6 +230,10 @@ class GrundwerteRow(_StrictBase):
     """A key-value row inside the Grundwerte card. Values may contain safe HTML."""
     key: I18nText
     value: I18nText
+    # `decree` marks a row that states the parameters of a legal instrument
+    # (ordinance, imperial resolution) rather than those of a phase; the
+    # renderer gives it a faint background so the two kinds read apart.
+    kind: Literal["decree"] | None = None
 
 
 class GrundwerteRowPatch(_StrictBase):
