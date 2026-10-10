@@ -1082,6 +1082,13 @@
     {% for pg in sg.nonempty_phases %}
     {% set par = pg.phase.id|phase_parent %}
     {% set is_sub = par != pg.phase.id|string %}
+    {% if sp and sp.instruments %}{% for _in in sp.instruments if _in.before == pg.phase.id|string %}
+    <div class="ph-inst">
+      <div class="ph ph-inst-h">{{ _in.title|t(lang) }}</div>
+      {% if _in.spec %}<div class="phspec">{{ _in.spec|fuss_spec(lang) }}</div>{% endif %}
+      {% if _in.text %}<div class="phd">{{ _in.text|t(lang)|safe }}</div>{% endif %}
+    </div>
+    {% endfor %}{% endif %}
     {% if is_sub and phg.parent != par %}
       {% set ns_y = namespace(f=None, t=None) %}
       {% for q in sg.nonempty_phases %}{% if (q.phase.id|phase_parent) == par %}{% if ns_y.f is none %}{% set ns_y.f = q.phase.from_label %}{% endif %}{% set ns_y.t = q.phase.to_label %}{% endif %}{% endfor %}

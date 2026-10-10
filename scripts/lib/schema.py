@@ -514,6 +514,15 @@ class FussSpec(_StrictBase):
     fineness_note: I18nText | None = None
 
 
+class FussInstrument(_StrictBase):
+    """A legal instrument (ordinance, imperial resolution) shown inside the
+    details of a fuss, as its own block placed before the phase `before`."""
+    before: str
+    title: I18nText
+    spec: FussSpec | None = None
+    text: I18nText | None = None
+
+
 class FussPeriod(_StrictBase):
     """Per-location framing of a single Müntzfuß: validity range + background + closing summary.
 
@@ -564,6 +573,7 @@ class FussPeriod(_StrictBase):
     # one line per successive standard, earliest first (nobel_fod: troy-mark
     # Phase 0 above the Cologne-mark Møntordning line).
     spec: FussSpec | list[FussSpec] | None = None
+    instruments: list[FussInstrument] | None = None   # legal instruments shown as blocks inside the details
 
 
 class KMRef(_StrictBase):
