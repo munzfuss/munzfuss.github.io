@@ -717,13 +717,12 @@ _PREFIX_PRIORITY: dict[str, int] = {
     # `Hede Norge#` is the NORWEGIAN Hede volume — a series numbered
     # independently of the Danish one (Hede 39 = 2 Dukat gold; Hede Norge 39
     # = 1 Speciedaler silver). Sorted immediately after `Hede`.
-    "Hede": 20, "Hede Norge": 21, "Sieg": 30, "Schou": 40, "Lange": 50,
-    "Fr": 60, "FP": 65,
+    "Hede": 20, "Hede Norge": 21, "Sieg": 30, "Lange": 50, "Galster": 51,
+    "Fr": 60, "Schou": 61, "FP": 65,
     "Dav": 70,
     "Dav EC II": 71, "Dav EC III": 72, "Dav EC IV": 73, "Dav ECT": 74,
     "Dav Lg": 75, "Dav SG": 76, "Dav GT I": 77, "Dav CCT": 78,
     "Dav.": 75,
-    "Bruun": 80,
     "MB": 100, "Weinm": 110, "AKS": 120, "C": 130,
     "Schön": 140, "Schön DM": 141, "Kahnt/Schön": 142,
     "Behr": 150, "Behr.": 150, "Brockmann": 160,
@@ -731,8 +730,9 @@ _PREFIX_PRIORITY: dict[str, int] = {
     "Jaeg": 200, "Jaeg 6 NWD": 201,
     "Aagaard": 210, "Aagaard-1": 211, "Aagaard-2": 212, "Aagaard-5": 213,
     "Saur": 220, "Diakov": 230, "Uzd": 240, "Bit": 250,
-    "Brekke": 260, "Galster": 270, "Hauberg": 280,
+    "Brekke": 260, "Hauberg": 280,
     "Fb": 290, "J": 300,
+    "Bruun": 9000,  # the Bruun collection number sits directly above Numista's
     "N": 9999,  # Numista's own ID — always last
 }
 
