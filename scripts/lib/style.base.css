@@ -1379,6 +1379,9 @@ h2[style] {
    muted phase label («Phase 0»). */
 .phase-header .pspec-line { display: block; }
 .phase-header .pspec-label { color: var(--text-muted); }
+/* Sub-phases («I.a»): a muted «Phase I» line, then each sub-phase indented
+   with its letter only. */
+.phase-header .pspec-sub { padding-left: 1.6em; }
 .phase-header .psub {
   display: block;
   font-family: var(--font-body);
@@ -1474,6 +1477,10 @@ h2[style] {
   border-bottom: var(--hairline) dotted var(--border-soft);
 }
 .gw-row:last-child { border-bottom: 0; }
+/* Grundwerte sub-phase rows under a «Phase I (1514-1547)» group row. */
+.gw-row.gw-group { border-bottom: 0; padding-bottom: 0; }
+.gw-row.gw-sub { margin-left: 10px; padding-left: 10px; border-left: 2px solid var(--border-soft); }
+.gw-k .ph-subl { text-transform: none; }
 .gw-k {
   display: block;
   font-family: var(--font-sans);
@@ -1780,6 +1787,21 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   border-left: 2px solid var(--accent);
 }
 [data-theme="v1"] .ph { color: var(--accent-deep); }
+/* Sub-phases: the parent «Phase I» header, then smaller indented headers and
+   a left rule over each sub-phase's description and tables. */
+.ph .ph-subl { text-transform: none; }
+.ph.ph-group + .ph.ph-sub { margin-top: 8px; }
+.ph.ph-sub {
+  margin-left: 14px;
+  font-size: 10.5px;
+  background: transparent;
+  border-left: 2px solid color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.phd.phd-sub, .phc.phc-sub {
+  margin-left: 14px;
+  padding-left: 12px;
+  border-left: 2px solid color-mix(in srgb, var(--accent) 45%, transparent);
+}
 .ph em {
   color: var(--text-muted);
   font-style: italic;

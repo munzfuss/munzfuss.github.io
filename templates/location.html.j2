@@ -982,11 +982,15 @@
   <div class="gw-body">
     {% if gw.rows %}
     <div class="gw-rows">
-      {% for row in gw.rows %}
-      <div class="gw-row">
-        <div class="gw-k">{{ row.key|t(lang) }}</div>
-        <div class="gw-v">{{ row.value|t(lang)|safe }}</div>
+      {% for it in gw.rows|gw_grouped(lang) %}
+      {% if it.kind == 'group' %}
+      <div class="gw-row gw-group"><div class="gw-k">{{ it.key }}</div></div>
+      {% else %}
+      <div class="gw-row{% if it.kind == 'sub' %} gw-sub{% endif %}">
+        <div class="gw-k">{{ it.key }}</div>
+        <div class="gw-v">{{ it.row.value|t(lang)|safe }}</div>
       </div>
+      {% endif %}
       {% endfor %}
     </div>
     {% endif %}
@@ -1029,7 +1033,7 @@
    it matters as standalone history, lives elsewhere — in `hintergrund`
    or `closing`, both shown unconditionally. #}
 {% if sg.nonempty_phases %}
-{% set ph_n = sg.nonempty_phases|length %}
+{% set ph_n = sg.nonempty_phases|map(attribute='phase.id')|map('phase_parent')|unique|list|length %}
 {% set coin_n = sg.nonempty_phases|sum(attribute='total') if sg.nonempty_phases else 0 %}
 {# Distinct `nominal` strings across all coins of this fuss on this page.
    Replaces an earlier `len(grundwerte.rows)` count — Grundwerte rows
@@ -1074,8 +1078,17 @@
     {# Phase tables are cut out at build time into a per-fuss fragment
        (scripts/lib/lazy_fuss.py) and fetched by app.js on first open. #}
     <div class="fd-lazy"><!--fd-lazy-begin:{{ sg.fuss.id }}-->
+    {% set phg = namespace(parent=None) %}
     {% for pg in sg.nonempty_phases %}
-    <div class="ph" data-phase="{{ pg.phase.id }}">
+    {% set par = pg.phase.id|phase_parent %}
+    {% set is_sub = par != pg.phase.id|string %}
+    {% if is_sub and phg.parent != par %}
+      {% set ns_y = namespace(f=None, t=None) %}
+      {% for q in sg.nonempty_phases %}{% if (q.phase.id|phase_parent) == par %}{% if ns_y.f is none %}{% set ns_y.f = q.phase.from_label %}{% endif %}{% set ns_y.t = q.phase.to_label %}{% endif %}{% endfor %}
+    <div class="ph ph-group" data-phase="{{ par }}">{{ ui_get('phase.label') }} {{ par }} · {{ ns_y.f }} → {{ ns_y.t }}</div>
+    {% endif %}
+    {% set phg.parent = par if is_sub else None %}
+    <div class="ph{% if is_sub %} ph-sub{% endif %}" data-phase="{{ pg.phase.id }}">
       {% if pg.phase.id in ('single', 'only', 'einzige') %}
         {{ pg.phase.title|t(lang) }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }}
       {% else %}
@@ -1086,14 +1099,14 @@
            «Fase I · 1514 → 1532 · Phase I · …». `strip_phase_marker` matches any
            language's word for a phase, and only when the id agrees — a purely
            descriptive title is left alone. #}
-        {{- ui_get('phase.label') }} {{ pg.phase.id }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang)|strip_phase_marker(pg.phase.id) }}
+        {{- (pg.phase.id|phase_sub_span) if is_sub else (ui_get('phase.label') ~ ' ' ~ pg.phase.id) }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang)|strip_phase_marker(pg.phase.id) }}
       {% endif %}
     </div>
     {% if pg.phase.description %}
-    <div class="phd">{{ pg.phase.description|t(lang)|safe }}</div>
+    <div class="phd{% if is_sub %} phd-sub{% endif %}">{{ pg.phase.description|t(lang)|safe }}</div>
     {% endif %}
 
-    <div class="phc">
+    <div class="phc{% if is_sub %} phc-sub{% endif %}">
       {% if pg.phase.context %}
       <div class="phc-context">{{ pg.phase.context|t(lang)|safe }}</div>
       {% endif %}

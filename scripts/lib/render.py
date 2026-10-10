@@ -34,6 +34,9 @@ def build_env(template_dir: str) -> Environment:
     env.filters["fin_unit"] = fin_unit
     env.filters["fuss_spec"] = fuss_spec
     env.filters["strip_phase_marker"] = strip_phase_marker
+    env.filters["gw_grouped"] = gw_grouped
+    env.filters["phase_parent"] = phase_parent
+    env.filters["phase_sub_span"] = phase_sub_span
 
     return env
 
@@ -347,16 +350,86 @@ def _spec_words(text: str, lang: str) -> str:
     return text
 
 
+# Sub-phases: a phase id «I.a» is sub-phase «a» of phase «I». Detected from
+# the id alone, so every fuss gets the grouping without extra data.
+_SUB_ID_RE = re.compile(r"^(0|[IVX]+)\.([a-z])$")
+# A label / key that names a sub-phase: «Фаза I.a (1514-1533) · …».
+_SUB_LABEL_RE = re.compile(r"^(?P<pre>\S+ )(?P<par>0|[IVX]+)\.(?P<sub>[a-z])\b(?P<rest>.*)$", re.S)
+_YEARS_RE = re.compile(r"\((\d{4})(?:\s*[-–]\s*(\d{4}))?\)")
+
+
+def phase_parent(phase_id) -> str:
+    """«I.a» → «I»; any other id is its own parent."""
+    m = _SUB_ID_RE.match(str(phase_id))
+    return m.group(1) if m else str(phase_id)
+
+
+def phase_sub_span(phase_id: str):
+    """For a sub-phase id «I.a» → «I.<span class="ph-subl">a</span>», so an
+    uppercase header does not turn the letter into «I.A»."""
+    from markupsafe import Markup, escape
+    m = _SUB_ID_RE.match(str(phase_id))
+    if not m:
+        return escape(phase_id)
+    return escape(m.group(1)) + Markup('.<span class="ph-subl">') + escape(m.group(2)) + Markup("</span>")
+
+
+def gw_grouped(rows, lang: str) -> list[dict]:
+    """Grundwerte rows with sub-phase rows («Phase I.a …») gathered under a
+    group header «Phase I (first-last)». Returns items
+    {kind: 'row'|'group'|'sub', key: Markup, row}."""
+    from markupsafe import Markup, escape
+    items: list[dict] = []
+    for row in rows or []:
+        key = i18n.t(row.key, lang) or ""
+        m = _SUB_LABEL_RE.match(key or "")
+        if not m:
+            items.append({"kind": "row", "key": escape(key), "row": row})
+            continue
+        par = m.group("par")
+        last_group = next((i for i in reversed(items) if i["kind"] == "group"), None)
+        if not (items and items[-1]["kind"] == "sub" and last_group and last_group["par"] == par):
+            last_group = {"kind": "group", "par": par, "pre": m.group("pre"), "years": []}
+            items.append(last_group)
+        y = _YEARS_RE.search(m.group("rest"))
+        if y:
+            last_group["years"] += [int(y.group(1)), int(y.group(2) or y.group(1))]
+        items.append({"kind": "sub", "row": row,
+                      "key": escape(par) + Markup('.<span class="ph-subl">') + escape(m.group("sub"))
+                             + Markup("</span>") + escape(m.group("rest"))})
+    for g in items:
+        if g["kind"] == "group":
+            yrs = g.pop("years")
+            span = f" ({min(yrs)}-{max(yrs)})" if yrs else ""
+            g["key"] = escape(f"{g['pre']}{g['par']}{span}")
+    return items
+
+
 def fuss_spec(spec, lang: str):
     """Render a FussSpec — or a list of them, one line per successive
     standard — as «count coin / unit basis / fineness» HTML."""
-    from markupsafe import Markup
+    from markupsafe import Markup, escape
     if not spec:
         return ""
     if isinstance(spec, (list, tuple)):
-        lines = [_fuss_spec_line(s, lang) for s in spec]
-        return Markup("").join(
-            Markup('<span class="pspec-line">') + ln + Markup("</span>") for ln in lines)
+        out = Markup("")
+        parent = None
+        for s in spec:
+            g = s if isinstance(s, dict) else s.model_dump()
+            label = (g.get("label") or {})
+            text = label.get(lang) or label.get("en") or ""
+            m = _SUB_LABEL_RE.match(text)
+            if m and m.group("rest") == "":
+                if parent != m.group("par"):
+                    parent = m.group("par")
+                    out += (Markup('<span class="pspec-line pspec-group"><span class="pspec-label">')
+                            + escape(m.group("pre") + parent) + Markup("</span></span>"))
+                g = dict(g, label={lang: m.group("sub")})
+                out += Markup('<span class="pspec-line pspec-sub">') + _fuss_spec_line(g, lang) + Markup("</span>")
+            else:
+                parent = None
+                out += Markup('<span class="pspec-line">') + _fuss_spec_line(s, lang) + Markup("</span>")
+        return out
     return _fuss_spec_line(spec, lang)
 
 
