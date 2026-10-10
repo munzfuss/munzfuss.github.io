@@ -637,7 +637,7 @@ six places, derive every `soll_fein_g` from it.
 | # | Question | What would settle it |
 |---|---|---|
 | Q1 | ~~1513 vs 1514 for `first_adoption.anywhere`~~ — **settled 2026-09-29: 1513.** Curator: `first_adoption` is the founding ACT (schema/timeline: a decree year preceding the first strike belongs there); the first Danish act naming the gulden is 1 Aug 1513, executed or not. 1514 remains the first EXECUTED Danish norm (phase I). Known model limit: the circulation layer also starts at `first_adoption`, while foreign Rhenish gulden circulated in Denmark through the 15th c. (§4.1). | — |
-| Q2 | ~~settled 2026-10-10 by sub-phases I.c / I.d, §16~~ Flensborg 1546 on 71⅓ + 1547 bestalling «efter Kurfyrsternes»: separate Schleswig sub-norm (71⅓ / 18½ target) vs Danish 72/18? | The bestalling full text in RA T.K. 160 (Wilcke quotes only a paraphrase for the gold line); any Flensborg mint account. |
+| Q2 | ~~settled 2026-10-10 by phase II (II.a / II.b), §16~~ Flensborg 1546 on 71⅓ + 1547 bestalling «efter Kurfyrsternes»: separate Schleswig sub-norm (71⅓ / 18½ target) vs Danish 72/18? | The bestalling full text in RA T.K. 160 (Wilcke quotes only a paraphrase for the gold line); any Flensborg mint account. |
 | Q3 | Fineness of the Flensborg pieces: .750 (Hede) vs the 18½ the bestalling implies. | A published assay beyond NFM XII p. 10 (Hede's source). |
 | Q4 | Wolfenbüttel 1627 «GOLDT GULDEN» (Sieg 191): in data? which standard? | Hede Wolfenbüttel tillæg 1 specs; Harck NNUM 1975 pp. 120-121. |
 | Q5 | Ducal 1619-1664 list and the 1664 end-coin (Christian Albrecht): source. | Lange (Samml. schlesw.-holst. Münzen) numbers via Jensen or a danskmoent page; KM Schleswig-Holstein. |
@@ -749,11 +749,11 @@ Hans' weight); Lange for ducal pieces; NFM XII p. 10 (Flensborg 1546).
 | Frederik I | 1531 Gottorp | Galster 122 | yes — `final/royal_slesvig.yml` | SH |
 | Christian III | 1534 Gottorp | Galster 130 | yes — `final/royal_slesvig.yml` (+ bruun seed in royal_holstein) | SH |
 | Christian III | 1536 Roskilde | Galster 131 | yes | phase I |
-| Christian III | 1546 Flensborg 1 / 2 | Hede 14 / 15 | yes — two finals `unified-dk-hede-c3h14`, `-c3h15` | DK I.c / SH I |
-| Frederik II | 1563, 1564 | Hede 3, 6 | yes | phase II |
-| Frederik II | 1584 gift set | Hede 7G | yes | phase II |
-| Christian III | 1547 Flensborg | NGC MB 57 (Holstein arms) | yes — weight and fineness not given by NGC | DK I.d / SH I |
-| Christian IV | 1625-1632 | Hede 29 | yes | Chr. IV phase |
+| Christian III | 1546 Flensborg 1 / 2 | Hede 14 / 15 | yes — two finals `unified-dk-hede-c3h14`, `-c3h15` | DK II.a / SH I |
+| Frederik II | 1563, 1564 | Hede 3, 6 | yes | DK III |
+| Frederik II | 1584 gift set | Hede 7G | yes | DK III |
+| Christian III | 1547 Flensborg | NGC MB 57 (Holstein arms) | yes — weight and fineness not given by NGC | DK II.b / SH I |
+| Christian IV | 1625-1632 | Hede 29 | yes | DK V |
 | Christian IV | 1627 Wolfenbüttel | Hede Wolf. tillæg 1 | **absent** (no «GOLDT GULDEN 1627» in danish_realm final) — Q4 | — |
 | Gottorp / Sonderburg | 1619-1664 | Jensen / Lange | partly (Jensen refs) | ducal phase |
 
@@ -806,14 +806,19 @@ weight, parallel lines (Ungersk Gylden from 1531, Guldkrone 1563–64). Written
 to `data/v2/locations/denmark.yml::fuss_periods.rhinsk_gylden_fod.closing`.
 
 
-## 16. Sub-phases of phase I on the Denmark page (curator 2026-10-10)
+## 16. Phases I and II on the Denmark page (curator 2026-10-10)
+
+Phase I (1514–1539) and phase II (1546–1547) are split by the GRID — 72 per
+mark (Danish norm, 3,248 g) vs 71⅓ (electors' norm, 3,278 g); the sub-phases
+inside each differ by fineness only. The ducal lines and Christian IV became
+phases IV and V.
 
 | Sub-phase | Years | Source of the parameters | Grid | Karat | soll fein g | Coins (final id) |
 |---|---|---|---|---|---|---|
 | I.a | 1514–1533 | Møntordning 1514 + Kongebrev 1524 | 72 | 18 | 2,436 | bruun-4056, -4057 (Galster 59, 1527), bruun-14741 (Galster 122, 1531) |
 | I.b | 1534–1539 | Junge account (Galster 1934 p. 108) | 72 | 18⅓ | 2,48133 | bruun-14783 (Galster 130, 1534), bruun-14770 (Galster 131, 1536) |
-| I.c | 1546 | Hede 14/15 weights 3,278 / 6,556, .750 (Junge's Flensborg coinage, before the 1547 act) | 71⅓ | 18 | 2,45877 | hede-c3h14, hede-c3h15 |
-| I.d | 1547 | bestalling 22.1.1547 for Kock, «efter Kurfyrsternes Gylden» | 71⅓ | 18½ | 2,52707 | ngc-167747 (MB 57, Holstein-arms obverse; no weight/fineness) |
+| II.a | 1546 | Hede 14/15 weights 3,278 / 6,556, .750 (Junge's Flensborg coinage, before the 1547 act) | 71⅓ | 18 | 2,45877 | hede-c3h14, hede-c3h15 |
+| II.b | 1547 | bestalling 22.1.1547 for Kock, «efter Kurfyrsternes Gylden» | 71⅓ | 18½ | 2,52707 | ngc-167747 (MB 57, Holstein-arms obverse; no weight/fineness) |
 
 Flensborg chronology (Wilcke 1950 7-4 pp. 276–277, after Dipl. Flensb. II):
 mint re-established 1.10.1544 (Degener; the King asks Lübeck and Hamburg for
@@ -823,7 +828,7 @@ the 1546 gulden (Junge's mark per danskmoent) PRECEDE the bestalling; MB 57
 (1547) is the only known coin under it.
 
 Mechanism: per-page dict phase on the royal_slesvig / royal_holstein coins
-(`{denmark: I.x, schleswig_holstein: I}`); SH keeps its single phase I.
+(`{denmark: I.x / II.x, schleswig_holstein: I}`); SH keeps its single phase I.
 Hede 14 and MB 57 are NOT one coin (curator 2026-10-09): MB 57's obverse is the
 Holstein arms, the 1546 type (photo of Hede 15) is St Andrew with date 4–6.
 
