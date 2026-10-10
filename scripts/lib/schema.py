@@ -502,6 +502,10 @@ class FussSpec(_StrictBase):
     # Optional lead-in naming the phase(s) this line covers («Phase 0»), used
     # when `FussPeriod.spec` is a list — one formula per distinct standard.
     label: I18nText | None = None
+    # Phase ids this formula describes. A phase listed here shows the formula
+    # under its own header inside the details; a spec without `phases` is shown
+    # only under the fuss title.
+    phases: list[str] | None = None
     # Per-slot (?) when only the fineness is unattested (the count + mark are
     # sourced). `unverified` marks the whole line.
     fineness_unverified: bool = False

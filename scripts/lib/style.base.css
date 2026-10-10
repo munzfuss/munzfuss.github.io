@@ -1816,6 +1816,20 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   font-weight: 400;
 }
 
+.phspec {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  color: var(--accent-deep);
+  margin: 6px 0 4px 12px;
+}
+.phspec.phspec-sub {
+  margin-left: 14px;
+  padding-left: 12px;
+  border-left: 2px solid color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.phspec .pspec-sep, .phspec .pspec-q { color: var(--text-muted); }
 .phd {
   font-family: var(--font-body);
   font-size: 13.5px;

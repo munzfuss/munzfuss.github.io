@@ -33,6 +33,7 @@ def build_env(template_dir: str) -> Environment:
     env.filters["nb_dashes"] = nb_dashes
     env.filters["fin_unit"] = fin_unit
     env.filters["fuss_spec"] = fuss_spec
+    env.filters["phase_spec"] = phase_spec
     env.filters["strip_phase_marker"] = strip_phase_marker
     env.filters["gw_grouped"] = gw_grouped
     env.filters["phase_parent"] = phase_parent
@@ -439,6 +440,19 @@ def fuss_spec(spec, lang: str):
                 out += Markup('<span class="pspec-line">') + _fuss_spec_line(s, lang) + Markup("</span>")
         return out
     return _fuss_spec_line(spec, lang)
+
+
+def phase_spec(spec, phase_id, lang: str):
+    """The formula of the spec entry that lists `phase_id` in its `phases`,
+    without the phase label, as a line to put under that phase's header."""
+    from markupsafe import Markup
+    if not spec or not isinstance(spec, (list, tuple)):
+        return ""
+    for s in spec:
+        g = s if isinstance(s, dict) else s.model_dump()
+        if str(phase_id) in [str(x) for x in (g.get("phases") or [])]:
+            return _fuss_spec_line(dict(g, label=None), lang)
+    return ""
 
 
 def _fuss_spec_line(spec, lang: str):

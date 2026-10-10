@@ -1102,6 +1102,8 @@
         {{- (pg.phase.id|phase_sub_span) if is_sub else (ui_get('phase.label') ~ ' ' ~ pg.phase.id) }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang)|strip_phase_marker(pg.phase.id) }}
       {% endif %}
     </div>
+    {% set _ps = (sp.spec|phase_spec(pg.phase.id, lang)) if (sp and sp.spec) else '' %}
+    {% if _ps %}<div class="phspec{% if is_sub %} phspec-sub{% endif %}">{{ _ps }}</div>{% endif %}
     {% if pg.phase.description %}
     <div class="phd{% if is_sub %} phd-sub{% endif %}">{{ pg.phase.description|t(lang)|safe }}</div>
     {% endif %}
