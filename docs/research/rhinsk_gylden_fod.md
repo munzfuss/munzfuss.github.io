@@ -646,6 +646,7 @@ six places, derive every `soll_fein_g` from it.
 | Q8 | Hans ½ Rhinsk gylden (Galster 28): in our data? Rechnungsfraktionen lacks «½». | Coverage check in `data/v2/final/danish_realm.yml`; danskmoent halvrhin. |
 | Q9 | Sonderburg «kein Münzrecht» quote: its source. | Find the quoted German sentence (likely Wikipedia DE «Herzogtum Schleswig-Holstein-Sonderburg»). |
 | Q10 | Does any German imperial act between 1559 and ~1625 change the gulden (e.g. Kipper-era)? | Hirsch, *Münz-Archiv*; Wilcke 1919 p. 224 (his n. 16 for «helt ind i Christian IV.s Tid»). |
+| Q11 | Which coin is Christian III's «slesvigske Guldgylden med Sct. Andreas» that the Valvationstag 1551 put at 18 Kt / 70½ Kr (Wilcke 6, n. 5: Hirsch I pp. 325, 355; Beskr. Tavle XII Nr 2; Lange Tavle 80 Nr 18A; Jørgensen 9-11)? If the 1546 Flensborg type (Hede 14/15, St Andrew) — an independent assay confirming II.a 18 Kt, which now rests on Hede + computation. If Gottorp 1534 (Galster 130, I.b) — an assay of 18 Kt against Junge's account 18⅓. Our data: Galster 130 = Lange 17, Galster 131 (Roskilde) = Lange 18, the 1546 pieces carry no Lange number. Not taken into the card (curator 2026-10-10). | Lange, *Sammlung schleswig-holsteinischer Münzen* II, Tafel 80 Nr 18A (type, year, mint); Jørgensen 9-11. |
 
 ---
 
