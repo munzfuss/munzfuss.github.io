@@ -200,6 +200,9 @@ def parse_references_from_strings(items: list[str] | None) -> dict[str, str]:
             continue
         # A single list element may contain multiple refs separated by
         # commas («KM# 12, Hede# 5») or semicolons.
+        # A comma between digits with no space is Numista's decimal sub-number
+        # («SIEG# CHR3-2,1» = 2.1); the separator comma is followed by a space.
+        raw = re.sub(r"(?<=\d),(?=\d)", ".", raw)
         for chunk in re.split(r"[,;]+", raw):
             chunk = chunk.strip()
             if not chunk:

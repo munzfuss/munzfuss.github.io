@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-10-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15240 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-10-09'
+generated_at: '2026-10-10'
 coins:
   - id: unified-denmark-numismaster-117984
     fuss: seed_unsorted
@@ -559,7 +559,10 @@ coins:
     mint: Malmø
     catalog:
       bruun_collection_id: '3917'
-      sieg: '3.1'
+      sieg:
+        - '3'
+        - '3.1'
+        - '4'
       schou:
         - '1'
         - 8-10
@@ -570,21 +573,34 @@ coins:
         - '39'
         - 39A
         - 39B
+      numista: '153125'
       others:
         - LEB# 3942
     metal: billon
-    metal_verified: false
-    fineness_verified: false
+    metal_verified: true
+    fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
+    fineness:
+      - value: 0.375
+        source: numista
     weight_rough_g:
+      - value: 2.37
+        source: numista
       - value: 2.46
         source: bruun
+    diameter_mm:
+      - value: 26.8
+        source: numista
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13050, p. 51
+      - type: literature
+        url: https://en.numista.com/153125
+        ref: Numista N#153125 — 1 Skilling - Christian II (Malmo; type 1)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/122108
         ref: KMM 122108 (Inv. GP 4551.26)
@@ -628,6 +644,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-3917
+      - dk-numista-153125
       - kmk-122108
       - kmk-133759
       - kmk-133760
@@ -692,16 +709,14 @@ coins:
     phase: bruun
     kind: kurant
     nominal: 1 Silver Gulden
-    year_first: 1516
+    year_first: 1518
     year_last: 1523
     year_ranges:
-      -   - 1516
-          - 1516
       -   - 1518
           - 1518
       -   - 1523
           - 1523
-    year_label: 1516, 1518, 1523
+    year_label: 1518, 1523
     ruler: Christian II
     mintmaster: Dines Blicher
     mint: Malmø
@@ -719,28 +734,31 @@ coins:
       bruun_lot_no: 11153
       bruun_page: 82
       galster: '38'
-      others:
-        - B# 10
-        - B# 13b
+      numista: '108782'
+      dav: EC I 8220
       fr: '6'
-      dav: '8220'
     metal: silver
     metal_verified: true
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
+    fineness:
+      - value: 0.875
+        source: numista
     weight_rough_g:
-      - value: 28.5
-        source: kmk
+      - value: 23.68
+        source: numista
       - value: 28.74
         source: bruun
       - value: 28.88
         source: bruun
-      - value: 28.9
-        source: kmk
       - value: 29.49
         source: bruun
+    diameter_mm:
+      - value: 41.8
+        source: numista
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -751,12 +769,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17034, p. 27
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/684502
-        ref: KMM 684502 (Inv. RP 1550.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/700405
-        ref: KMM 700405 (Inv. RP 1629.1)
+      - type: literature
+        url: https://en.numista.com/108782
+        ref: Numista N#108782 — 1 Sølvgylden - Christian II (Malmo)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -769,8 +784,7 @@ coins:
       - dk-bruun-3931
       - dk-bruun-3933
       - dk-bruun-3934
-      - kmk-684502
-      - kmk-700405
+      - dk-numista-108782
   - id: unified-dk-bruun-3957
     fuss: seed_unsorted
     phase: bruun
@@ -1240,9 +1254,7 @@ coins:
     mint: Kopenhagen
     catalog:
       bruun_collection_id: '4075'
-      sieg:
-        - '29'
-        - F1-29
+      sieg: '29'
       schou: '15'
       jensen_skjoldager:
         - T-81
@@ -1732,9 +1744,7 @@ coins:
     mint: Roskilde
     catalog:
       bruun_collection_id: '4186'
-      sieg:
-        - '14'
-        - C3-14
+      sieg: '14'
       schou: 1-16
       bruun_part: II
       bruun_lot_no: 13058
@@ -1809,22 +1819,32 @@ coins:
       bruun_lot_no: 11163
       bruun_page: 86
       galster: '98'
-    metal: silver
+      numista: '476681'
+    metal: billon
     metal_verified: true
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
+    fineness:
+      - value: 0.406
+        source: numista
     weight_rough_g:
+      - value: 7.19
+        source: numista
       - value: 8.07
         source: bruun
+    diameter_mm:
+      - value: 34.0
+        source: numista
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11163, p. 86
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/673522
-        ref: KMM 673522 (Inv. FP 43.1)
+      - type: literature
+        url: https://en.numista.com/476681
+        ref: Numista N#476681 — 1 Mark - Christian III (Roskilde)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -1835,7 +1855,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-4194
-      - kmk-673522
+      - dk-numista-476681
   - id: unified-dk-bruun-4276
     fuss: seed_unsorted
     phase: bruun
@@ -1855,7 +1875,6 @@ coins:
       sieg:
         - '10'
         - '19'
-        - C3-10
       schou: 2-13
       bruun_part: I
       bruun_lot_no: 1005
@@ -1954,7 +1973,6 @@ coins:
       sieg:
         - '8'
         - '17'
-        - C3-8
       schou: 14-17
       bruun_part: II
       bruun_lot_no: 13061
@@ -2039,7 +2057,7 @@ coins:
         - '4337'
       sieg:
         - '37.2'
-        - C3-38.2
+        - '38.2'
       schou:
         - '1'
         - '2'
@@ -12894,6 +12912,54 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-c3g-92b
+  - id: unified-dk-galster-c3g-98
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Mark
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    ruler: Christian III
+    mint: Roskilde
+    catalog:
+      galster: '98'
+      galster_volume: c3g
+      schou: 18-45
+      sieg: '13'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: true
+    fineness:
+      - value: 0.406
+        source: galster
+    weight_rough_g:
+      - value: 7.19
+        source: galster
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c3g98.htm
+        ref: Galster 98 (c3g) — danskmoent.dk chr_c3g98.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/ReinhJunge.pdf
+        ref: Georg Galster (udg.), Reynold Junges Møntmesterregnskaber 1534–1540 (København 1934), S. XXI, Skema nr. 12 (1535, ℳ, (Roskilde); Schou 18—45; tungeste Ex. 8.10 g, letteste Ex. 5.72 g, 
+          gennemsnit 6.71 g; Af Exx. i MK 15); Tavle XIX, fig. 12
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: danish_realm
+    composed_of:
+      - dk-galster-c3g-98
   - id: unified-dk-galster-f1g-257
     fuss: seed_unsorted
     phase: galster
@@ -13031,7 +13097,7 @@ coins:
     catalog:
       galster: '52'
       schou: 14-17
-      sieg: '[2018] 29'
+      sieg: '29'
       jensen_skjoldager: T-81 - T-88
       galster_volume: f1g
     metal: silver
@@ -13070,7 +13136,7 @@ coins:
       galster: '54'
       galster_volume: f1g
       schou: 18-37
-      sieg: '[2018] 25'
+      sieg: '25'
       jensen_skjoldager: K-01 - K-99
     metal: billon
     metal_verified: true
@@ -13117,7 +13183,7 @@ coins:
         - 55A
       galster_volume: f1g
       schou: 2-5
-      sieg: '[2018] 23.1'
+      sieg: '23.1'
       jensen_skjoldager: S-51 - S-59
     metal: billon
     metal_verified: true
@@ -13161,7 +13227,7 @@ coins:
     catalog:
       galster: '56'
       schou: 4-5
-      sieg: '[2018] 18'
+      sieg: '18'
       jensen_skjoldager: F-51 - F-58
       galster_volume: f1g
     metal: billon
@@ -13209,7 +13275,7 @@ coins:
         - '46'
         - 50-54
         - 89-99
-      sieg: '[2018] 10.1'
+      sieg: '10.1'
       jensen_skjoldager: gruppe 4xx
     metal: billon
     metal_verified: true
@@ -14740,7 +14806,7 @@ coins:
     mint: Visby
     catalog:
       galster: '141'
-      sieg: '[2015] 8'
+      sieg: '8'
       schou: '227'
       galster_volume: hg
       others:
@@ -17083,7 +17149,6 @@ coins:
       sieg:
         - '37.1'
         - '38.1'
-        - C3-38.1
       bruun_collection_id: '4282'
       bruun_part: III
       bruun_lot_no: 11166
@@ -17164,9 +17229,7 @@ coins:
       schou:
         - 4-5
         - 7-8
-      sieg:
-        - '37.1'
-        - C3-37.1
+      sieg: '37.1'
       numista: '474248'
       others:
         - B# 135
@@ -17243,9 +17306,7 @@ coins:
         - '5'
         - 6-7
         - '9'
-      sieg:
-        - '36.1'
-        - C3-36.1
+      sieg: '36.1'
       numista: '474250'
       others:
         - B# 26
@@ -17411,7 +17472,6 @@ coins:
       sieg:
         - '33.1'
         - '33.2'
-        - C3-33.2
       numista: '47997'
     metal: billon
     metal_verified: true
@@ -17470,9 +17530,7 @@ coins:
       hede: '7'
       hede_volume: c3h
       schou: 2-3
-      sieg:
-        - '32'
-        - C3-32
+      sieg: '32'
       numista: '474449'
     metal: billon
     metal_verified: true
@@ -27216,7 +27274,6 @@ coins:
       sieg:
         - '93'
         - '109'
-        - C4-93
       bruun_collection_id: '4594'
       bruun_part: I
       bruun_lot_no: 1010
@@ -27389,7 +27446,6 @@ coins:
       sieg:
         - '95'
         - '111'
-        - C4-95
       bruun_collection_id: '4624'
       bruun_part: II
       bruun_lot_no: 13077
@@ -27458,7 +27514,6 @@ coins:
       sieg:
         - '96'
         - '112'
-        - C4-96
       bruun_collection_id: '4632'
       bruun_part: II
       bruun_lot_no: 13079
@@ -27543,9 +27598,9 @@ coins:
       hede_volume: c4h
       schou: '1'
       sieg:
+        - '97'
         - '97.1'
         - '113'
-        - C4-97
       bruun_collection_id: '4631'
       bruun_part: I
       bruun_lot_no: 1014
@@ -29107,7 +29162,6 @@ coins:
       sieg:
         - '28'
         - '36'
-        - C4-28
       bruun_collection_id: '4613'
       bruun_part: IV
       bruun_lot_no: 17043
@@ -46837,9 +46891,7 @@ coins:
         - 4-5
         - 6-8
         - 135-139
-      sieg:
-        - '6'
-        - F2-6
+      sieg: '6'
       numista: '142120'
     metal: silver
     metal_verified: true
@@ -46956,9 +47008,7 @@ coins:
       schou:
         - '6'
         - 140-184
-      sieg:
-        - '3'
-        - F2-3
+      sieg: '3'
       numista: '88661'
     metal: billon
     metal_verified: true
@@ -47310,9 +47360,9 @@ coins:
         - 8-9
         - '10'
       sieg:
+        - '16'
         - '16.1'
         - '16.2'
-        - F2-16
       numista: '108820'
     metal: silver
     metal_verified: true
@@ -47365,9 +47415,7 @@ coins:
       hede: '15'
       hede_volume: f2h
       schou: 133-134
-      sieg:
-        - '9'
-        - F2-9
+      sieg: '9'
       numista: '142121'
     metal: silver
     metal_verified: true
@@ -47426,9 +47474,7 @@ coins:
       hede: '17'
       hede_volume: f2h
       schou: 1-10
-      sieg:
-        - '22'
-        - F2-22
+      sieg: '22'
       bruun_collection_id:
         - '4523'
         - '4525'
@@ -48009,9 +48055,7 @@ coins:
         - '2'
         - 6-15
         - 12-18
-      sieg:
-        - '8'
-        - F2-8
+      sieg: '8'
       bruun_collection_id: '4558'
       bruun_part: IV
       bruun_lot_no: 17040
@@ -48092,9 +48136,7 @@ coins:
       schou:
         - 16-24
         - 19-20
-      sieg:
-        - '5'
-        - F2-5
+      sieg: '5'
       numista: '108360'
       others:
         - ucoin# 2
@@ -48167,9 +48209,7 @@ coins:
       schou:
         - 21-23
         - 25-27
-      sieg:
-        - '2'
-        - F2-2
+      sieg: '2'
       bruun_collection_id: '4547'
       bruun_part: IV
       bruun_lot_no: 17039
@@ -48342,9 +48382,7 @@ coins:
       hede: '4'
       hede_volume: f2h
       schou: '1'
-      sieg:
-        - '28'
-        - F2-28
+      sieg: '28'
       bruun_collection_id: '4486'
       bruun_part: I
       bruun_lot_no: 1009
@@ -48799,7 +48837,6 @@ coins:
       sieg:
         - '21'
         - '63'
-        - F2-21
       bruun_collection_id:
         - '4402'
         - '4422'
@@ -48948,7 +48985,6 @@ coins:
       sieg:
         - '15'
         - '15.2'
-        - F2-15
       bruun_collection_id: '4443'
       schou: '77'
       bruun_part: II
@@ -71669,7 +71705,7 @@ coins:
     mint: Malmø
     catalog:
       numista: '108399'
-      sieg: H-1
+      sieg: '1'
       galster: '31'
       schou: 142-144
       thomsen: '11172'
@@ -73028,57 +73064,6 @@ coins:
       - kmk-395588
       - kmk-395589
       - kmk-643789
-  - id: unified-dk-numista-108782
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Gulden
-    year_first: 1518
-    year_last: 1523
-    year_ranges:
-      -   - 1518
-          - 1518
-      -   - 1523
-          - 1523
-    year_label: 1518, 1523
-    ruler: Christian II
-    mint: Malmø
-    catalog:
-      numista: '108782'
-      sieg: C2-9
-      dav: EC I 8220
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 23.68
-        source: numista
-    diameter_mm:
-      - value: 41.8
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/108782
-        ref: Numista N#108782 — 1 Sølvgylden - Christian II (Malmo)
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-numista-108782
   - id: unified-dk-numista-108822
     fuss: seed_unsorted
     phase: numista
@@ -73092,7 +73077,7 @@ coins:
     year_label: 1564-1566
     catalog:
       numista: '108822'
-      sieg: F2-7
+      sieg: '7'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -73309,7 +73294,7 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '111385'
-      sieg: C3-36
+      sieg: '36'
       hede: '10'
     metal: billon
     metal_verified: true
@@ -73415,7 +73400,7 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '142024'
-      sieg: C3-31
+      sieg: '31'
       hede: '8'
     metal: billon
     metal_verified: true
@@ -73594,7 +73579,7 @@ coins:
     mint: Næstved
     catalog:
       numista: '143451'
-      sieg: E7-5
+      sieg: '5'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -73638,7 +73623,7 @@ coins:
     ruler: Eric VII
     catalog:
       numista: '143452'
-      sieg: E7-2
+      sieg: '2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -73687,7 +73672,7 @@ coins:
     mint: Malmø
     catalog:
       numista: '143575'
-      sieg: C1-1
+      sieg: '1'
       schive:
         - XIII:38
         - XIII:39
@@ -73740,9 +73725,7 @@ coins:
     mint: Roskilde
     catalog:
       numista: '152059'
-      sieg:
-        - '12'
-        - C3-12
+      sieg: '12'
       galster: '99'
       galster_volume: c3g
       schou: 146-238
@@ -73834,8 +73817,8 @@ coins:
     catalog:
       numista: '152060'
       sieg:
+        - '3'
         - '6'
-        - C3-3
       galster: '105'
       galster_volume: c3g
       schou: 18-73
@@ -74022,7 +74005,7 @@ coins:
     ruler: Frederick I
     catalog:
       numista: '152267'
-      sieg: F1-22
+      sieg: '22'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -74115,7 +74098,7 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '152639'
-      sieg: F1-25
+      sieg: '25'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -74163,7 +74146,7 @@ coins:
     mint: Gurre
     catalog:
       numista: '152728'
-      sieg: E7-15
+      sieg: '15'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -74208,7 +74191,7 @@ coins:
     mint: Aalborg
     catalog:
       numista: '152921'
-      sieg: H-2
+      sieg: '2'
       galster: '155'
       schou: 187-190
     metal: silver
@@ -74259,7 +74242,7 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '152925'
-      sieg: H-7
+      sieg: '7'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -74305,7 +74288,7 @@ coins:
     mint: Malmø
     catalog:
       numista: '152926'
-      sieg: H-6
+      sieg: '6'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -74332,56 +74315,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-numista-152926
-  - id: unified-dk-numista-153125
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1514
-    year_last: 1515
-    year_ranges:
-      -   - 1514
-          - 1515
-    year_label: 1514-1515
-    ruler: Christian II
-    mint: Malmø
-    catalog:
-      numista: '153125'
-      sieg:
-        - C2-3
-        - C2-4
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.375
-        source: numista
-    weight_rough_g:
-      - value: 2.37
-        source: numista
-    diameter_mm:
-      - value: 26.8
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/153125
-        ref: Numista N#153125 — 1 Skilling - Christian II (Malmo; type 1)
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-numista-153125
   - id: unified-dk-numista-153173
     fuss: seed_unsorted
     phase: numista
@@ -74397,7 +74330,7 @@ coins:
     mint: Malmø
     catalog:
       numista: '153173'
-      sieg: F1-26
+      sieg: '26'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -74918,7 +74851,7 @@ coins:
     ruler: Christian II / Christian III
     catalog:
       numista: '264676'
-      sieg: C2-1
+      sieg: '1'
       mb: '45'
     metal: billon
     metal_verified: true
@@ -74963,7 +74896,7 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '278811'
-      sieg: F2-15
+      sieg: '15'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -75011,7 +74944,7 @@ coins:
     mint: Lund
     catalog:
       numista: '287318'
-      sieg: E7-14
+      sieg: '14'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -75063,7 +74996,7 @@ coins:
     year_label: 1560-1561, 1563
     catalog:
       numista: '291306'
-      sieg: F2-11
+      sieg: '11'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -75110,7 +75043,7 @@ coins:
     ruler: Christian II
     catalog:
       numista: '297656'
-      sieg: C2-8
+      sieg: '8'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -75156,8 +75089,8 @@ coins:
     catalog:
       numista: '301174'
       sieg:
-        - F1-10.2
-        - F1-10.3
+        - '10.2'
+        - '10.3'
       schou: '126'
     metal: silver
     metal_verified: true
@@ -75207,7 +75140,7 @@ coins:
     ruler: Frederick I
     catalog:
       numista: '301177'
-      sieg: F1-10.4
+      sieg: '10.4'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -75249,9 +75182,7 @@ coins:
     mint: Århus
     catalog:
       numista: '301375'
-      sieg:
-        - '16.2'
-        - C3-16.2
+      sieg: '16.2'
       galster:
         - 95A
         - 95B
@@ -75317,7 +75248,7 @@ coins:
     mint: Frederiksborg
     catalog:
       numista: '301584'
-      sieg: F2-14
+      sieg: '14'
       others:
         - ucoin# 5
       hede: '26'
@@ -75443,7 +75374,7 @@ coins:
       numista: '303699'
       sieg:
         - '1'
-        - CHR3-2
+        - '2'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -76465,7 +76396,7 @@ coins:
     year_label: '1544'
     catalog:
       numista: '474249'
-      sieg: C3-37.2
+      sieg: '37.2'
       hede: 4B
     metal: silver
     metal_verified: true
@@ -76509,7 +76440,7 @@ coins:
     year_label: '1544'
     catalog:
       numista: '474251'
-      sieg: C3-36.2
+      sieg: '36.2'
       hede: 5B
     metal: silver
     metal_verified: true
@@ -76555,7 +76486,7 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '474514'
-      sieg: C3-34
+      sieg: '34'
       hede: '9'
       others:
         - B# 146
@@ -76611,7 +76542,7 @@ coins:
     year_label: '1537'
     catalog:
       numista: '474583'
-      sieg: C3-9
+      sieg: '9'
       galster: '101'
     metal: silver
     metal_verified: true
@@ -76655,9 +76586,7 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '474591'
-      sieg:
-        - '7'
-        - C3-7
+      sieg: '7'
       galster: '104'
       galster_volume: c3g
       schou: 100-135
@@ -76737,9 +76666,7 @@ coins:
     mint: Ribe
     catalog:
       numista: '474604'
-      sieg:
-        - '17'
-        - C3-17
+      sieg: '17'
       galster: '109'
       galster_volume: c3g
       schou: 113-119
@@ -76894,9 +76821,7 @@ coins:
     mint: Ribe
     catalog:
       numista: '476659'
-      sieg:
-        - '19'
-        - C3-19
+      sieg: '19'
       galster: '107'
       galster_volume: c3g
       schou: 136-145
@@ -76956,9 +76881,7 @@ coins:
     mint: Ribe
     catalog:
       numista: '476662'
-      sieg:
-        - '18'
-        - C3-18
+      sieg: '18'
       galster: '108'
       galster_volume: c3g
       schou: 74-77
@@ -77043,8 +76966,7 @@ coins:
         - 92B
       sieg:
         - '3'
-        - C3-3
-        - C3-4
+        - '4'
       schou: '49'
       galster_volume: c3g
     metal: billon
@@ -77102,9 +77024,7 @@ coins:
     catalog:
       numista: '476670'
       galster: '93'
-      sieg:
-        - '2'
-        - C3-2
+      sieg: '2'
       galster_volume: c3g
       schou: '239'
     metal: silver
@@ -77157,9 +77077,7 @@ coins:
     catalog:
       numista: '476671'
       galster: '94'
-      sieg:
-        - '1'
-        - C3-1
+      sieg: '1'
       galster_volume: c3g
       schou: '240'
     metal: silver
@@ -77246,9 +77164,7 @@ coins:
     mint: Århus
     catalog:
       numista: '476674'
-      sieg:
-        - '16.1'
-        - C3-16.1
+      sieg: '16.1'
       galster:
         - '95'
         - 95A
@@ -77328,9 +77244,7 @@ coins:
     mint: Århus
     catalog:
       numista: '476676'
-      sieg:
-        - '15'
-        - C3-15
+      sieg: '15'
       galster: '96'
       schou: 1-17
       galster_volume: c3g
@@ -77398,69 +77312,6 @@ coins:
       - kmk-308011
       - kmk-315121
       - kmk-355275
-  - id: unified-dk-numista-476681
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Mark
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian III
-    mint: Roskilde
-    catalog:
-      numista: '476681'
-      sieg:
-        - '13'
-        - C3-13
-      galster: '98'
-      galster_volume: c3g
-      schou: 18-45
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: true
-    fineness:
-      - value: 0.406
-        source: galster
-      - value: 0.406
-        source: numista
-    weight_rough_g:
-      - value: 7.19
-        source: galster
-      - value: 7.19
-        source: numista
-    diameter_mm:
-      - value: 34.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3g98.htm
-        ref: Galster 98 (c3g) — danskmoent.dk chr_c3g98.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/ReinhJunge.pdf
-        ref: Georg Galster (udg.), Reynold Junges Møntmesterregnskaber 1534–1540 (København 1934), S. XXI, Skema nr. 12 (1535, ℳ, (Roskilde); Schou 18—45; tungeste Ex. 8.10 g, letteste Ex. 5.72 g, 
-          gennemsnit 6.71 g; Af Exx. i MK 15); Tavle XIX, fig. 12
-      - type: literature
-        url: https://en.numista.com/476681
-        ref: Numista N#476681 — 1 Mark - Christian III (Roskilde)
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-c3g-98
-      - dk-numista-476681
   - id: unified-dk-numista-476684
     fuss: seed_unsorted
     phase: numista
@@ -77473,9 +77324,7 @@ coins:
     mint: Roskilde
     catalog:
       numista: '476684'
-      sieg:
-        - '11'
-        - C3-11
+      sieg: '11'
       galster: '100'
       galster_volume: c3g
       schou: '78'
@@ -77693,7 +77542,6 @@ coins:
       numista: '476705'
       galster: '50'
       schou: '4'
-      sieg: '[2018]'
       galster_volume: f1g
     metal: silver
     metal_verified: true
@@ -77744,9 +77592,7 @@ coins:
     catalog:
       numista: '476713'
       galster: '53'
-      sieg:
-        - F1-27
-        - '[2018] 27'
+      sieg: '27'
       schou: '1'
       jensen_skjoldager:
         - T-31
@@ -77993,7 +77839,7 @@ coins:
     mint: Lund
     catalog:
       numista: '76322'
-      sieg: E7-6
+      sieg: '6'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -78086,9 +77932,7 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '84844'
-      sieg:
-        - '5'
-        - C3-5
+      sieg: '5'
       galster: '106'
       galster_volume: c3g
       schou: 79-112
@@ -256625,6 +256469,28 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-673520
+  - id: unified-kmk-673522
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Mark
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    ruler: Christian 3
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/673522
+        ref: KMM 673522 (Inv. FP 43.1)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-673522
   - id: unified-kmk-676749
     fuss: seed_unsorted
     phase: kmk
@@ -256892,6 +256758,49 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-683148
+  - id: unified-kmk-684502
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sølvgylden
+    year_first: 1516
+    year_last: 1518
+    year_ranges:
+      -   - 1516
+          - 1516
+      -   - 1518
+          - 1518
+    year_label: 1516, 1518
+    ruler: Christian 2
+    mint: Malmø
+    catalog:
+      galster: '38'
+      schou: '2'
+      others:
+        - B# 10
+        - B# 13b
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 28.5
+        source: kmk
+      - value: 28.9
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684502
+        ref: KMM 684502 (Inv. RP 1550.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/700405
+        ref: KMM 700405 (Inv. RP 1629.1)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-684502
+      - kmk-700405
   - id: unified-kmk-684506
     fuss: seed_unsorted
     phase: kmk

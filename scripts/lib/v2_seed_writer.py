@@ -995,6 +995,12 @@ def _clean_index_prose(value):
     return result[0] if len(result) == 1 else result
 
 
+# Numista prefixes a Sieg number with the ruler code («C3-22», «F2-6», «H-1»,
+# «CHR3-2.1»); danskmoent prefixes the edition («[2018] 27»).
+_SIEG_RULER_PREFIX_RE = re.compile(r"^[A-Z]{1,3}\d?-(?=\d)")
+_SIEG_EDITION_RE = re.compile(r"^\[\d{4}\]\s*")
+
+
 def _normalise_catalog(catalog: dict | None) -> tuple[dict | None, int]:
     """Detect and split jammed catalog-ref values.
 
@@ -1073,6 +1079,27 @@ def _normalise_catalog(catalog: dict | None) -> tuple[dict | None, int]:
             if new_list != list(val):
                 # Replace; preserve scalar shape if list collapsed to one
                 catalog[field] = new_list[0] if len(new_list) == 1 else new_list
+    # Sieg: drop the ruler prefix Numista prints («C3-22» = Christian III,
+    # no. 22) and the edition tag danskmoent prints («[2018] 27»). Both are
+    # presentation of the same number; curator direction 2026-10-10 accepts
+    # losing the edition marker. Entries left empty (a bare «[2018]») go.
+    sv = catalog.get("sieg")
+    if sv is not None and isinstance(sv, (str, list)):
+        items = sv if isinstance(sv, list) else [sv]
+        out: list = []
+        for it in items:
+            if isinstance(it, str):
+                it2 = _SIEG_EDITION_RE.sub("", _SIEG_RULER_PREFIX_RE.sub("", it.strip())).strip()
+                it = it2
+            if it not in ("", None) and it not in out:
+                out.append(it)
+        new_sv = None if not out else (out[0] if len(out) == 1 else out)
+        if new_sv != sv:
+            if new_sv is None:
+                del catalog["sieg"]
+            else:
+                catalog["sieg"] = new_sv
+            changes += 1
     # Strip Danish year-variant prose («hhv. A og B») from the Danish-catalogue
     # index fields, keeping only the distinct catalogue indices.
     for pf in ("schou", "sieg", "hede", "galster"):
