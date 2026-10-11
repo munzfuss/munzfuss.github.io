@@ -201,6 +201,10 @@ same edit (every wording edit goes into all languages).
 | «Lod» in prose when a WEIGHT is meant | «лот» (1/16 кельнської марки) | «Lod» stays as the period form only in formal slots (a silver fineness «14 Lod»); weight in prose is «лот» |
 | naming a decree in Ukrainian («Монетний ордонанс») | the original form in every language («Møntordning Christian II 1514», «Kongebrev», «Rigsraadets Brev») | CLAUDE.md §2 tier 1; a generic descriptor («королівський лист») may be translated |
 
+**A gap in the record.** Write «з джерел невідомо» / «в джерелах не засвідчено» (DE «ist aus den Quellen
+nicht bekannt», EN «is not known from the sources», DA «vides ikke ud fra kilderne»), never the
+colloquial «джерела не кажуть» («the sources do not say»): sources do not speak, the record has a gap.
+
 **Numbers in text.** Fineness derived from carats is written to five decimals («23½ Karat =
 .97917», never «.979» as if exact); fine weight likewise («14,3115 g»). Source readings keep
 the source's own figure.
