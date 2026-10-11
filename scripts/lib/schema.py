@@ -329,7 +329,7 @@ class FussEvents(_StrictBase):
     are derived from them:
 
       mint         = [first_mint, last_mint]                   (▓)
-      status       = [first_adoption, std_end]                 (▒)
+      status       = [std_start or first_adoption, std_end]    (▒)
       circulation  = [first_adoption, demonetisation]          (░)
       sole         = [sole_start, sole_end]                    (✦)
                      OPTIONAL — only set when the standard had a
@@ -351,6 +351,10 @@ class FussEvents(_StrictBase):
     first_adoption: FussEvent | None = None
     first_mint: FussEvent | None = None
     last_mint: FussEvent | None = None
+    std_start: FussEvent | None = None
+    """Start of the standard's legal force, when later than `first_adoption`
+    (which then marks the start of use / circulation). Drives only the
+    status layer; per scope it falls back to `first_adoption`."""
     std_end: FussEvent | None = None
     demonetisation: FussEvent | None = None
     sole_start: FussEvent | None = None

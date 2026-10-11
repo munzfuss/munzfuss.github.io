@@ -414,10 +414,15 @@ def compute_bar_layers(
         for scope in active_scopes:
             _add("mint", scope, fm, lm)
 
-        # status = [first_adoption, std_end]
+        # status = [std_start or first_adoption, std_end]. `std_start` is set
+        # when the standard came into force later than it came into use (the
+        # Rhenish gulden circulated in Denmark long before the Møntordning of
+        # 1514 prescribed it); per scope, a missing std_start value falls back.
         fa, se = events.first_adoption, events.std_end
+        ss_ = getattr(events, "std_start", None)
         for scope in active_scopes:
-            _add("status", scope, fa, se)
+            st = ss_ if (ss_ is not None and getattr(ss_, scope, None) is not None) else fa
+            _add("status", scope, st, se)
 
         # circulation = [first_adoption, demonetisation]
         de_ = events.demonetisation
