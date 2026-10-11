@@ -86,8 +86,8 @@ caveat b), not corroboration.
 `docs/research/burgundian_gold_real_1487.md`. De Witte II p. 74 has the instruction
 of July 1487: 16½ to the mark, XXIV carats. The mark is the Trooise mark ≈ 244.75 g
 (Vanhoudt), not the 246.084 g Hollandse mark, which gives 14.833 g. That equals Van
-Gelder's legal mass of 14.83 g. The 14.914 g above is therefore open to revision
-(curator decision pending).
+Gelder's legal mass of 14.83 g. The card was switched to 244.75 g / 14.833 g on 2026-10-11
+(curator «так»); the 246.084 / 14.914 rows above are the pre-revision state.
 
 The period-0 parameter set is therefore **the model's**, applied to Hans's pieces on
 Galster's weight comparison. The card says so in those terms (Grundwerte Phase 0 row).

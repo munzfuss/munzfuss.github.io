@@ -386,7 +386,8 @@ class Fuss(_StrictBase):
             "Per-phase override of `grid_unit_g` for the N/Marck columns and "
             "the implied-fuss computation, keyed by phase id. For a fuss whose "
             "earliest phase followed a different mark (nobel_fod Phase 0: "
-            "Dutch troy mark 246.084 g, before the Cologne-mark Møntordning "
+            "troy mark 244.75 g (1487 Netherlands ordinance), before the "
+            "Cologne-mark Møntordning "
             "of 1514). Absent phase → `grid_unit_g`."
         ),
     )

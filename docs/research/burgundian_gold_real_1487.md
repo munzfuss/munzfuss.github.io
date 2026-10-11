@@ -204,7 +204,9 @@ Findings:
    Vanhoudt reserves for Willem I. On 244.75 g the rough weight is **14.833 g**. That
    equals the legal mass in Van Gelder 1995 p. 53; 14.914 g is attested by no source
    except Galster's rounded «14,9». Proposed fix: mark 244.75 g, ref → Vanhoudt
-   p. xxiv (new pool key). Awaiting curator.
+   p. xxiv (new pool key). **Applied 2026-10-11** (curator «так»): mark 244.75 g, rough
+   14.833 g, `soll_rau_by_phase['0']` 14.83333 / 29.66667 / 44.5, ref
+   `vanhoudt-2015-trooise-mark`.
 2. **«24 carats».** De Witte's instruction says XXIV carats, so the note «the Dutch
    model had 24 carats» is backed by the instrument, not just by Galster. Its ‰ value is
    open (Q1), so the card should not convert it to 1.000.
@@ -222,7 +224,12 @@ Findings:
    New `refs_pool` keys needed (one passage = one key): `dewitte-1896-real-dor-1487-instruction`,
    `dewitte-1896-real-dor-1487-juillet`, `vangelder-1995-grote-reaal-massa`,
    `vangelder-1951-reaal-dordrecht`, `vanhoudt-2015-trooise-mark`,
-   `vanhoudt-2015-24-karaat` (names provisional).
+   `vanhoudt-2015-24-karaat`. **Applied 2026-10-11** as the decree row «Ordonnantie
+   Maximilian 20 april 1487 — …» (`kind: decree`); final keys:
+   `dewitte-1896-real-or-1487-instruction`, `dewitte-1896-real-or-1487-juillet`,
+   `vangelder-1995-grote-reaal`, `vangelder-1995-wettelijke-massa`,
+   `vangelder-1951-goud-dordrecht`, `vanhoudt-2015-trooise-mark`,
+   `vanhoudt-2015-24-karaat`.
 4. **Danish Nobel 1514 vs the July 1487 real** (recomputed):
    - rough 14.616 g vs 14.833 g, Δ −1.46 %;
    - fine 14.3115 g vs 14.72 g, Δ −2.78 %;
