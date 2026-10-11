@@ -105,7 +105,7 @@ title:
 For short fields, inline flow style is acceptable:
 
 ```yaml
-title: {de: "Phase A", en: "Phase A", uk: "Фаза А"}
+title: {de: "Periode A", en: "Period A", uk: "Період А"}
 ```
 
 For paragraphs, use block style with `|` or `>`:

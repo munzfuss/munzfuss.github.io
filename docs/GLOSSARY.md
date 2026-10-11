@@ -138,9 +138,11 @@ Keep literal German/Danish spelling across languages:
 
 ## Phase & period markers
 
+The reader-facing name of a location-level subdivision of a standard is **period** — de/da «Periode», en «Period», uk «Період» — not «phase» (curator 2026-10-11). Reasons: the Danish literature divides monetary history into «Periode» / «Tidsrum» (Wilcke, danskmoent), never «Fase»; and our subdivisions are cut by ruler, by legal instrument or by a parameter change, often with no Danish instrument at all (Nobelfod «0»), which is a span of time, not a stage of one process. Internal identifiers (`phase`, `phases`, `phase.label`, `gw-phase`) keep their names. uk: «період» is masculine, so adjectives agree («головний період», «цього періоду»).
+
 | DE | EN | UK |
 |---|---|---|
-| Phase | Phase | Фаза |
+| Periode | Period | Період |
 | ab, von, seit | from, since | з, від |
 | biß (period-correct) / bis | until | до |
 | ca. | c. / ca. | бл. / приб. |
