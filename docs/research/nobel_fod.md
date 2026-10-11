@@ -421,6 +421,14 @@ ignores the old one; being indirect, that end is marked approximate («~»).
 10. **«First dated gold coin of Denmark» (card) vs Bruun «first dated Scandinavian
     coin».** Curator kept the card wording 2026-10-11. → a source on dated Danish coins
     before 1496 would settle it either way.
+12. **Earlier gold under Erik of Pomerania (1397–1439).** Curator 2026-10-11: the first known
+    Danish gold coin is Erik's, not Hans's; Galster's «noget nyt … Udmøntning af Guld» is
+    therefore not repeated in the card (phase 0 now says only that gold Nobel and Gylden are
+    struck under Hans, with Galster's armament link). Web search found a Numista record of a
+    gold coin of Erik (Lund, 9.85 g) but no source stating it is the first; nothing in the
+    cached Galster/Wilcke/Bruun texts. → a Galster «Unionstidens Udmøntninger» (1972) entry
+    for Erik's gold, or the Royal Collection record. Until then the card carries no «first
+    gold» claim; the «first dated gold coin of Denmark» line stays (curator, see Q10).
 11. **Is Galster 68 the «Moneta nova aurea Ripensis» gold of Ernst (Jørgensen 25)?** The
     plate legend suggests it; unverified. → Jørgensen's catalogue or the plate itself.
 
@@ -441,3 +449,4 @@ ignores the old one; being indirect, that end is marked approximate («~»).
 | «Forordning 1602 defines Danish gold only as Portugaløser + Ungersk Gylden» (`std_end` note, card text, other dossiers) | The same table has three gold Daler-Klippinge rows (8, 6, 4 Daler); reworded everywhere to «lists …, with no Nobel». |
 | «14,31 g fine / .979» in the card | 23½/24 = .979167 and 14.616 × 23½/24 = 14.3115 exactly; the card now carries five decimals (`070999f`, `7720ca1`). |
 | «The Nobel has nothing in common with the English Noble» (card sentence cited to `galster-nobel-navn`) | That key only supports the name. Galster's statement concerns the Rosenobel, and the curator noted a possible indirect link via the Dutch real's relation to the English noble; the sentence was removed (`174dc2f`), not replaced by a counter-claim. |
+| «The first Danish gold appears under King Hans» (phase 0 opening, written 2026-10-11 from Galster's «noget nyt») | Curator: the first known Danish gold coin is Erik of Pomerania's. Sentence replaced by a neutral one (§8 Q12). The Galster sentence is the author's and is not independently confirmed. |
