@@ -65,6 +65,11 @@ class ExtractRefsInfix(unittest.TestCase):
         )
 
 
+# scripts/cache is a private submodule; CI checks out without it.
+_NO_CACHE = "hede cache submodule not present"
+
+
+@unittest.skipUnless((CACHE / "nc5h16.htm").exists(), _NO_CACHE)
 class LetterGroupsNorwegian(unittest.TestCase):
     def test_nc5h16_a_and_b(self):
         groups = ph._extract_letter_groups(_text("nc5h16"), "16")
@@ -79,6 +84,7 @@ class LetterGroupsNorwegian(unittest.TestCase):
         self.assertEqual(groups["B"]["years"], [])
 
 
+@unittest.skipUnless((CACHE / "c4h100.htm").exists(), _NO_CACHE)
 class LetterGroupsDanishRegression(unittest.TestCase):
     def test_c4h100_unchanged(self):
         groups = ph._extract_letter_groups(_text("c4h100"), "100")

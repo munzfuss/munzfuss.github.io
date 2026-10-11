@@ -24,9 +24,14 @@ bk = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(bk)
 
 
+_SRC = ROOT / "scripts" / "cache" / "kmk" / "353471.json"
+
+
+# scripts/cache is a private submodule; CI checks out without it.
+@unittest.skipUnless(_SRC.exists(), "kmk cache submodule not present")
 class DucalLineageRouting(unittest.TestCase):
     def test_gottorp_ruler_without_mint_routes_to_the_duchy(self):
-        src = json.load(open(ROOT / "scripts" / "cache" / "kmk" / "353471.json"))
+        src = json.load(open(_SRC))
         e = bk.build_entry(bk._enrich_from_raadata(src))
         self.assertEqual(e["issuing_entity"], "gottorp_duchy")
         self.assertTrue(e["_entity_routing_hint"]["active"])

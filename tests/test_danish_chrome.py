@@ -114,8 +114,9 @@ class MetalNamesCoverEveryRenderedLanguage(unittest.TestCase):
                     self.assertTrue((UI[f"metal.{metal}"] or {}).get(lang))
 
     def test_the_phase_marker_is_not_ukrainian_by_default(self):
-        """It used to read `'Phase ' if lang in ('de','en') else 'Фаза '`."""
-        self.assertEqual(UI["phase.label"]["da"], "Fase")
+        """It used to read `'Phase ' if lang in ('de','en') else 'Фаза '`.
+        The term is «period» since 2026-10-11 (Wilcke's «Periode»)."""
+        self.assertEqual(UI["phase.label"]["da"], "Periode")
 
 
 class PhaseMarkerIsNotDoubled(unittest.TestCase):
@@ -213,9 +214,13 @@ class TemplatesResolveTooltips(unittest.TestCase):
         build = (ROOT / "scripts/build.py").read_text(encoding="utf-8")
         render = (ROOT / "scripts/lib/render.py").read_text(encoding="utf-8")
 
-        called = set(re.findall(r"(?<![.\w])([a-z_][a-z0-9_]*)\(", tpl))
+        # `|map(...)` is a filter call, not a context name — the «|» excludes it.
+        called = set(re.findall(r"(?<![.\w|])([a-z_][a-z0-9_]*)\(", tpl))
         local = set(re.findall(r"{%-?\s*(?:set|macro)\s+([a-z_][a-z0-9_]*)", tpl))
         filters = set(re.findall(r'env\.filters\[[\'"]([a-z_0-9]+)[\'"]\]', render))
+        # Environment globals (sister_site_url, ebc9e2d) reach every template
+        # without being passed in build.py's context.
+        filters |= set(re.findall(r'env\.globals\[[\'"]([a-z_0-9]+)[\'"]\]', render))
         css = {"var", "calc", "rgb", "rgba", "url", "translate", "clamp"}
         builtins = {"range", "dict", "len", "namespace", "join", "default",
                     "int", "float", "round", "list", "lower", "upper", "trim",

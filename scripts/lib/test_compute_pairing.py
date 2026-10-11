@@ -52,6 +52,22 @@ def _groups(cc):
     return {round(g.value, 5): " / ".join(g.sources) for g in cc.weight_fein_groups}
 
 
+_UI = None
+
+
+def _tip_uk(cc, value):
+    """The derived tooltip as the uk page renders it. compute emits a
+    localisation KEY plus source arguments (since 2227e06, so one location
+    pass serves every language); render.resolve_tips spells it per page."""
+    global _UI
+    from lib import i18n, render
+    if _UI is None:
+        _UI = i18n.load_ui(os.path.join(os.path.dirname(os.path.dirname(_HERE)),
+                                        "data", "i18n", "ui.yml"))
+    g = next(g for g in cc.weight_fein_groups if round(g.value, 5) == value)
+    return render.resolve_tips(g.sources, _UI, "uk")
+
+
 def test_own_pair_no_cross_mix():
     cc = compute._compute_coin(_coin(
         weights=[{"value": 3.19, "source": "galster"},
@@ -77,9 +93,9 @@ def test_tooltip_own_pair_single_source():
         finenesses=[{"value": 0.75, "source": "hede"},
                     {"value": 0.764, "source": "galster"}],
     ), _fuss())
-    g = _groups(cc)
-    assert "вагою × пробою з" in g[2.43716], g[2.43716]
-    assert "galster" in g[2.43716]
+    tip = _tip_uk(cc, 2.43716)
+    assert "вагою × пробою з" in tip, tip
+    assert "galster" in tip
 
 
 def test_tooltip_weight_only_names_both_sources():
@@ -88,8 +104,7 @@ def test_tooltip_weight_only_names_both_sources():
                  {"value": 3.37, "source": "bruun"}],
         finenesses=[{"value": 0.75, "source": "hede"}],
     ), _fuss())
-    g = _groups(cc)
-    tip = g[2.5275]                       # bruun 3.37 × fallback .75 (hede)
+    tip = _tip_uk(cc, 2.5275)             # bruun 3.37 × fallback .75 (hede)
     assert "bruun" in tip and "hede" in tip, f"must name both: {tip!r}"
     assert "з пробою з" in tip, tip
 

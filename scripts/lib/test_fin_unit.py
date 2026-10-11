@@ -1,5 +1,6 @@
 """Unit tests for the fineness → period-unit (Karat / Lot) display helper."""
 import os
+import re
 import sys
 import unittest
 
@@ -10,8 +11,9 @@ from lib.render import fin_unit  # noqa: E402
 
 
 def _plain(value, metal, lang="de"):
-    """Rendered string with nbsp entities normalised to spaces, trimmed."""
-    return str(fin_unit(value, metal, lang)).replace("\xa0", " ").replace("&nbsp;", " ").strip()
+    """Rendered text without its `fin-unit` span (fa3dfd1), nbsp entities
+    normalised to spaces, trimmed."""
+    return re.sub(r"<[^>]+>", "", str(fin_unit(value, metal, lang))).replace("\xa0", " ").replace("&nbsp;", " ").strip()
 
 
 class TestFinUnit(unittest.TestCase):
