@@ -25,6 +25,11 @@ overlap zone get NO fade (drop the bad CSS class). Layers with a
 genuine solo tail get the fade only on the tail. Layers fully solo
 keep current full-layer fade.
 
+AMENDED 2026-10-11 (curator): the solo condition is dropped — an approximate
+edge fades in the zone that touches it even when a same-scope sibling runs on
+past it (Guldgyldenfod status ~1602 inside mint to 1632 had no fade). The fade
+still stays confined to that edge zone.
+
 Run via:
     .venv/bin/python -m unittest tests.test_attach_visual_pieces -v
 """
@@ -129,12 +134,14 @@ class TestAttachVisualPiecesSoloDetection(unittest.TestCase):
         # mint: no approx → no visual_pieces
         self.assertNotIn("visual_pieces", layers[0])
 
-        # status: la=T but sibling (circulation) extends past it →
-        # NEVER solo → all pieces fade_end=False. After merge-adjacent,
-        # the two pieces collapse to one.
+        # status: la=T; circulation runs on past it, but since 2026-10-11
+        # (curator) an approximate edge fades anyway — in the zone that
+        # touches it (1533) only.
         self.assertEqual(layers[1]["visual_pieces"], [
-            {"left_pct": 0.0, "width_pct": 5.0,
+            {"left_pct": 0.0, "width_pct": 4.75,
              "show_fade_start": False, "show_fade_end": False},
+            {"left_pct": 4.75, "width_pct": 0.25,
+             "show_fade_start": False, "show_fade_end": True},
         ])
 
         # circulation: solo in zone 1534-1600 only. After merge, 2 pieces.
@@ -291,11 +298,14 @@ class TestAttachVisualPiecesMergeAdjacent(unittest.TestCase):
             _zone(1534, 1600, [1],    5.0,  16.75),
         ]
         attach_visual_pieces({"b": layers}, {"b": zones})
-        # status has la=T but sibling (circulation) overlaps both its
-        # active zones → no solo → all pieces fade_end=F → merge into one.
+        # status has la=T; the zone touching its end (1533) fades even
+        # though circulation overlaps it (curator 2026-10-11), so the two
+        # pieces differ and do not merge.
         self.assertEqual(layers[0]["visual_pieces"], [
-            {"left_pct": 0.0, "width_pct": 5.0,
+            {"left_pct": 0.0, "width_pct": 4.75,
              "show_fade_start": False, "show_fade_end": False},
+            {"left_pct": 4.75, "width_pct": 0.25,
+             "show_fade_start": False, "show_fade_end": True},
         ])
 
 

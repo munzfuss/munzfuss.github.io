@@ -857,11 +857,17 @@ def attach_visual_pieces(bar_layers: dict, hover_zones: dict) -> None:
                 is_solo = (same_scope_count == 1)
                 touches_lo = (z["first"] == L["first"])
                 touches_hi = (z["last"]  == L["last"])
+                # Curator 2026-10-11: an approximate edge is ALWAYS faded,
+                # also where a sibling of the same scope runs on beyond it
+                # (Guldgyldenfod status ~1602 inside mint to 1632). The fade
+                # stays confined to the zone touching that edge, so it does
+                # not bleed across the rest of the layer. `is_solo` is kept
+                # for the record but no longer gates the fade.
                 pieces.append({
                     "left_pct":  z["left_pct"],
                     "width_pct": z["width_pct"],
-                    "show_fade_start": fa and is_solo and touches_lo,
-                    "show_fade_end":   la and is_solo and touches_hi,
+                    "show_fade_start": fa and touches_lo,
+                    "show_fade_end":   la and touches_hi,
                 })
 
             if pieces:
