@@ -367,6 +367,23 @@ from the 15th century; as **Danish coinage** only from ~1496.
   at stikke Folk Blaar i Øjnene» (p. 156).
   So the Danish 18 Kt is a **deliberate half-carat undercut** of the imperial
   18½, one year after an act that had prescribed 18½.
+- **Two readings of «18 Karat fint nobel Guld» (added 2026-10-11).**
+  - Galster reads «Nobelguld» as a reference unit: «*Christiern II's Brev til
+    Møntmesteren … Halten 18 Karat Nobelguld, hvad der giver en lidt besværlig
+    Omregning 18 x 23 1/2 : 24 for at udfinde den ovenstaaende Finhed: 17 5/8
+    Karat*» (danskmoent `galster/galkult.htm`; his tables are on a 230 g mark).
+  - Wilcke p. 153 rejects this for both coins: reading the Nobel as «231/2 Karat af
+    23 Karat 31/2 grains engelsk Nobelguld» is «*for subtilt*»; the identical
+    wording «*kun, som selve Ordet »nobel« angiver, fint eller ædelt Guld*», so the
+    Gylden is «*slet og ret 18 Karat*».
+  - Recomputed: 18 × 23½/24 = 17⅝ Kt = .7344 vs 18 Kt = .750; fine weight on
+    233.856 g / 72 = 3.248 g: 2.385 g vs 2.436 g. The card follows Wilcke (18 Kt);
+    Galster's figure is the minority reading. Both read the Gylden as below the
+    imperial 18½, so the «undercut» holds on either. No coin of the 1514 act is
+    known (the Gylden of Christian II was never struck, Galster), so no assay can
+    decide it. The same question for the Nobel of the same letter: `nobel_fod.md` §3.2.
+  - The card text for the Nobel now states Wilcke's rejection («for subtilt») with the
+    quote in the reference; the Guldgyldenfod card states Wilcke's 18 Kt only.
 - Christian II coinage: none known (danskmoent 1rhingyl lists none).
 - **3 Aug 1514** Norway: «Sølv- og Guldvægten skal være ligedan i Norge som i
   Danmark; for Fremtiden skal den cølnske Vægt bruges … ei nogen indføre og
@@ -693,6 +710,7 @@ six places, derive every `soll_fein_g` from it.
 | Q9 | Sonderburg «kein Münzrecht» quote: its source. | Find the quoted German sentence (likely Wikipedia DE «Herzogtum Schleswig-Holstein-Sonderburg»). |
 | Q10 | Does any German imperial act between 1559 and ~1625 change the gulden (e.g. Kipper-era)? | Hirsch, *Münz-Archiv*; Wilcke 1919 p. 224 (his n. 16 for «helt ind i Christian IV.s Tid»). |
 | Q11 | Which coin is Christian III's «slesvigske Guldgylden med Sct. Andreas» that the Valvationstag 1551 put at 18 Kt / 70½ Kr (Wilcke 6, n. 5: Hirsch I pp. 325, 355; Beskr. Tavle XII Nr 2; Lange Tavle 80 Nr 18A; Jørgensen 9-11)? If the 1546 Flensborg type (Hede 14/15, St Andrew) — an independent assay confirming II.a 18 Kt, which now rests on Hede + computation. If Gottorp 1534 (Galster 130, I.b) — an assay of 18 Kt against Junge's account 18⅓. Our data: Galster 130 = Lange 17, Galster 131 (Roskilde) = Lange 18, the 1546 pieces carry no Lange number. Not taken into the card (curator 2026-10-10). | Lange, *Sammlung schleswig-holsteinischer Münzen* II, Tafel 80 Nr 18A (type, year, mint); Jørgensen 9-11. |
+| Q12 | Galster 17⅝ Kt vs Wilcke 18 Kt for the 1514 Gylden (§5.2): which reading does the letter bear? | The text of the 1514 letter to Dienis (Suhm, *Ny Samling* II 1 p. 141; RA Chr. II Registre 1513-23 fol. 189) and any contemporary ordinance that defines «Nobelguld» as a unit; no assay is possible (no coinage). |
 
 ---
 
