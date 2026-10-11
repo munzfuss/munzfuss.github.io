@@ -241,6 +241,22 @@ RULES: list[tuple[re.Pattern, str, str, set[str], str]] = [
      "authorial editorialising"),
 
     # ------------------------------------------------------------------
+    # §2a — personified sources / conversational wording (curator 2026-10-11)
+    # ------------------------------------------------------------------
+    (re.compile(r"\bджерел[ао]?\s+(?:не\s+)?(?:кажуть|каже|говорять|говорить|мовчать|розповідають|розповідає)\b", re.IGNORECASE),
+     "warning", "§2a", {"uk"},
+     "personified source; write «з джерел невідомо» / «у джерелах не засвідчено»"),
+    (re.compile(r"\b(?:дивно|на\s+жаль|звісно|мабуть)\b|\bсхоже,", re.IGNORECASE),
+     "warning", "§2a", {"uk"},
+     "conversational / unattributed hedge; use a source-bound «імовірно»"),
+    (re.compile(r"\bdie\s+Quellen\s+(?:sagen|schweigen|erzählen)\b", re.IGNORECASE),
+     "warning", "§2a", {"de"},
+     "personified source; write «ist aus den Quellen nicht bekannt»"),
+    (re.compile(r"\bthe\s+sources?\s+(?:do(?:es)?\s+not\s+say|say\s+nothing|(?:is|are)\s+silent|tell\s+us)\b", re.IGNORECASE),
+     "warning", "§2a", {"en"},
+     "personified source; write «is not known from the sources»"),
+
+    # ------------------------------------------------------------------
     # §0a — hedging meta-language
     # ------------------------------------------------------------------
     (_kw("arguably", "presumably"),
@@ -496,6 +512,23 @@ def walk_v2_location(doc: dict) -> Iterator[tuple[str, str, str]]:
                 yield from _emit_i18n(period.get("closing") or {}, lang, f"fuss_periods.{fk}.closing")
                 yield from _emit_i18n(period.get("description") or {}, lang, f"fuss_periods.{fk}.description")
                 yield from _emit_i18n(period.get("details") or {}, lang, f"fuss_periods.{fk}.details")
+    # Phase descriptions («details») and instrument blocks — the per-period prose that
+    # carries the circumstances of a standard (curator 2026-10-11: they were never linted).
+    phases = doc.get("phases")
+    if isinstance(phases, dict):
+        for fk, plist in phases.items():
+            for i, ph in enumerate(plist or []):
+                if isinstance(ph, dict):
+                    for lang in LANGS:
+                        yield from _emit_i18n(ph.get("description") or {}, lang, f"phases.{fk}[{i}].description")
+    if isinstance(fuss_periods, dict):
+        for fk, period in fuss_periods.items():
+            if not isinstance(period, dict):
+                continue
+            for j, inst in enumerate(period.get("instruments") or []):
+                if isinstance(inst, dict):
+                    for lang in LANGS:
+                        yield from _emit_i18n(inst.get("text") or {}, lang, f"fuss_periods.{fk}.instruments[{j}].text")
     timeline = doc.get("timeline")
     if isinstance(timeline, dict):
         for i, bar in enumerate(timeline.get("bars") or []):
@@ -534,6 +567,12 @@ def walk_fuesse(doc: dict) -> Iterator[tuple[str, str, str]]:
             if isinstance(sub, dict):
                 for lang in LANGS:
                     yield from _emit_i18n(sub, lang, f"{fuss_id}.{slot}")
+        # a revised fuss keeps its description as the card text
+        if fuss.get("description_in_card") is True:
+            rf = (fuss.get("grundwerte") or {}).get("rechnungsfraktionen")
+            if isinstance(rf, dict):
+                for lang in LANGS:
+                    yield from _emit_i18n(rf, lang, f"{fuss_id}.grundwerte.rechnungsfraktionen")
         # phases inside fuesse.yml
         phases = fuss.get("phases")
         if isinstance(phases, dict):

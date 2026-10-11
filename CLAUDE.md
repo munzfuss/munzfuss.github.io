@@ -287,7 +287,7 @@ three of those states violations, which is why `audit_prose.py`
 reported hundreds of §2 errors against text that was in fact correct.
 The three tiers describe the practice instead of fighting it.
 
-### 2a. Academic register (mandatory in all three languages)
+### 2a. Academic register (mandatory in all four languages: DE, EN, UK, DA)
 
 This is a **scholarly historical-numismatic study**, not a popular-history blog. All running text — descriptions, phase backgrounds, coin notes, methodological remarks — uses an **academic register**: precise, restrained, source-driven. Avoid:
 
@@ -297,6 +297,15 @@ This is a **scholarly historical-numismatic study**, not a popular-history blog.
 - **Ad-hoc abbreviations and informal punctuation** in section titles (`+`, `&`, `/`); use full conjunctions ("und"/"and"/"та")
 - **First-person voice** ("we think", "our analysis suggests") — use impersonal constructions or attribute to a source
 - **Vague hedging** ("probably", "kind of", "досить") — either commit and cite, or mark `verified: false` with a verification note
+
+**The register is formal, written and scholarly — not spoken, not essayistic** (curator direction 2026-10-11, repeated in every language). In addition to the list above:
+
+- **No spoken or conversational wording**: no asides, conversational connectives, rhetorical questions or evaluative remarks («дивно, але», «на жаль», «звісно», «власне», «просто»; de «übrigens», «leider»; en "oddly", "of course", "unfortunately"). State the dated fact; leave judgement to the reader.
+- **Do not personify sources or data.** Sources do not «speak»: not «джерела не кажуть / мовчать / розповідають», not "the sources do not say / are silent / tell us", not «die Quellen sagen nicht». A gap is written as a gap in the record: «з джерел невідомо», «у джерелах не засвідчено» (de «ist aus den Quellen nicht bekannt», en "is not known from the sources", da «vides ikke ud fra kilderne»). Verbs that fit a record are fine: «джерело фіксує / засвідчує / подає», "the source records / attests / gives".
+- **No narrative or essayistic tone**: no storytelling arc, moralising, or colour («у час воєнних труднощів…»). Chronology and attributed circumstance only.
+- **Hedging is source-bound.** Fuzzy quantifiers («досить», "kind of") stay forbidden. A hedge is allowed only when it marks an explicit hypothesis (§0b) or renders the source's own hedge, and then it names the source: «за Wilcke, … імовірно», never a bare «схоже», «мабуть», «напевно». «Імовірно» / «ймовірно» is the register-correct marker.
+- **The project's own conclusion** is written with a modal, not an anonymous «they»: «можна вважати …», not «відносять …». Not «ми» (first-person plural stays forbidden above).
+- Ukrainian-specific decisions (calques such as «пробірний», «вагомий» for weight, declension of «екзерг», etc.) are collected in `docs/GLOSSARY.md` «Ukrainian wording decisions»; check a new uk sentence against it.
 
 Preferred terms (uk → register-correct German/English equivalents in parentheses):
 - «надбавка» / «премія» / «маржа» (de: «Aufschlag», en: "premium")  — NOT «наварок»
