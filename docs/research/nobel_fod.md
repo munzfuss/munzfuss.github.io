@@ -82,6 +82,13 @@ caveat b), not corroboration.
 | Fine weight | — (no fineness) | gap |
 | Evidence the Danish pieces follow the model's weight | «*Hertil svarer de tre i den kgl. Mønt- og Medaille samling bevarede Exemplarer saa godt, som man kan forlange*» | Galster |
 
+**Update 2026-10-11:** the model's own standard is documented in
+`docs/research/burgundian_gold_real_1487.md`. De Witte II p. 74 has the instruction
+of July 1487: 16½ to the mark, XXIV carats. The mark is the Trooise mark ≈ 244.75 g
+(Vanhoudt), not the 246.084 g Hollandse mark, which gives 14.833 g. That equals Van
+Gelder's legal mass of 14.83 g. The 14.914 g above is therefore open to revision
+(curator decision pending).
+
 The period-0 parameter set is therefore **the model's**, applied to Hans's pieces on
 Galster's weight comparison. The card says so in those terms (Grundwerte Phase 0 row).
 
