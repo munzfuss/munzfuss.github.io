@@ -51,6 +51,7 @@ Reference for consistent terminology across languages. Used when writing YAML i1
 | Wiener Marck (233,890 g) | Vienna mark | віденська марка |
 | Bayrische Marck (233,950 g) | Bavarian mark | баварська марка |
 | Lot (1/16 Mark = 14,616 g) | Lot (1/16 mark) | лот |
+| Quintin (¼ Lot = 3,654 g, Cologne weight; not defined in the cached Wilcke text) | quintin (¼ lot) | квінтин |
 | Karat | carat (gold) | карат |
 | Grän (1/12 Karat) | grain (1/12 carat) | гран |
 | Zollpfund (500 g, ab 1857) | Zollpfund (customs pound) | цольфунт |
@@ -176,6 +177,36 @@ Keep literal German/Danish spelling across languages:
 | «dual-denominiert» | "dual-denominated" | «подвійно деноміновано» |
 | «nach Analogie zu» | "by analogy to" | «за аналогією до» |
 | «in keiner Online-Quelle belegt» | "not documented in online sources" | «не задокументовано в онлайн-джерелах» |
+
+## Ukrainian wording decisions (curator-corrected, 2026-10)
+
+Each row is a choice the curator made while correcting a text, so the same stumble is not
+repeated in the next fuss. «Don't write» is what read badly or wrongly; «Write» is the decision.
+These rules concern the UK fields; the DE / EN / DA fields get the equivalent change in the
+same edit (every wording edit goes into all languages).
+
+| Don't write (UK) | Write | Why |
+|---|---|---|
+| «пробірний аналіз», «пробірний акт» | «визначення проби»; «акт перевірки проби» | «пробірний» reads as «пробірка» (test tube), not as «проба» (fineness) |
+| «вагомий» about weight («вагомі нобелі») | «важкий» («особливо важкі нобелі») | «вагомий» means influential, not heavy |
+| «нобельне золото» | «благородне золото»; «fint nobel Guld» («чисте благородне золото») | the direct translation of «nobel» is «благородний» |
+| «Ribe карбував …» (a town as the subject, without saying it is a town) | «монетний двір у місті Ribe карбував …»; «нобелі з Ribe» | a reader who does not know Ribe takes it for a person |
+| «відносять до …», «вважають …» (impersonal, when it is the project's own conclusion) | «можна вважати …», «технічно можна вважати …» | the conclusion is ours; the sentence says so with a modal, not an anonymous «they» |
+| «напевно» with no attribution | «імовірно», «схоже»; «напевно» only when it renders a source's own «sikkert» and is attributed («за Wilcke … напевно») | §0b: certainty belongs to the source, not to the text |
+| «потрійні» for a weight | «втричі важчі за норму» (or «у середньому близько трьох лотів проти одного») | «потрійний» reads as a denomination (3 Nobel); weight and denomination are different things |
+| «Період дії: 1496 → 1532» when the bar shows the years of striking | «Період карбування: 1496 → 1532»; «Період дії» only for legal validity | the two are different (coinage 1496–1532, legal basis from 1514) |
+| a foreign-language quotation alone | the quotation in the source language, then the translation in parentheses in the field's language | applies to Danish, Dutch, French, English quotes in UK / DE / EN prose; in the DA field only non-Danish quotes need a translation |
+| «Pragtmønter» without a gloss | «Pragtmønter» («парадні монети») on first mention; DE «Prunkmüntzen», EN «show coins», DA «pragtmønter» | the source's own term is kept; the gloss is ours |
+| «Lod» in prose when a WEIGHT is meant | «лот» (1/16 кельнської марки) | «Lod» stays as the period form only in formal slots (a silver fineness «14 Lod»); weight in prose is «лот» |
+| naming a decree in Ukrainian («Монетний ордонанс») | the original form in every language («Møntordning Christian II 1514», «Kongebrev», «Rigsraadets Brev») | CLAUDE.md §2 tier 1; a generic descriptor («королівський лист») may be translated |
+
+**Numbers in text.** Fineness derived from carats is written to five decimals («23½ Karat =
+.97917», never «.979» as if exact); fine weight likewise («14,3115 g»). Source readings keep
+the source's own figure.
+
+**Layers of one description.** The card prose is a short summary of the standard; the phase
+descriptions («details») carry the circumstances; do not duplicate a norm text in both — the
+instrument block carries the norm.
 
 ## UI labels (for `data/i18n/ui.yml`)
 
