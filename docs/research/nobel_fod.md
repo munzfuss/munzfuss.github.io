@@ -4,6 +4,10 @@
 > Nobelfod card revision (commits `2fdd18d` … `b88bb76`); supersedes the 2026-06-05
 > version, whose retracted claims are kept in §9 with what disproved them.
 >
+> **Extended 2026-10-11** (descriptions of phases 0 and I, card heading, Ribe dating,
+> 1602 gold table): new §1 rows, §5a, §6a, §7b; §8 and §9 amended. Sections written
+> earlier keep their date; where a later section supersedes one, it says so.
+>
 > **Question this dossier settles:** what the sources document about the Danish
 > Nobel as a *standard* — its model, its two parameter regimes (pre-1514 and the
 > 1514/1524 ordinances), the dated instruments, who reproduces whom, and how our own
@@ -37,6 +41,12 @@
 | — (coin-row source only) | Numista 428544 (1 Noble 1532) | «Gold (.979)», 14.375 g; references_list = `["Fr# 12", "Galster UU# 45"]` | **Derived from Galster** — same triple, cites only Galster. Not independent of danskmoent. |
 | `stacksbowers-bruun-1496-nobel` | Stack's Bowers, L. E. Bruun Part I, lot 1001 (14 Sept 2024) | Auction description, Hans 1496 | Secondary; carries the «first dated Scandinavian coin» claim and the survival count. |
 | `wikipedia-troy-weight-dutch-mark` | en.wikipedia «Troy weight», Dutch-troy passage | Metrology: «The mark was rated as 3,798 troy grains or 246.084 grams.» | Tertiary; used only for the gram value of the Dutch troy mark. |
+| `ernst-1948-ribe-pragtmoenter-1524-1525`, `-ribe-nobel-haandfaestning-1524`, `-ribe-frederik-1-1524-1526` | Axel Ernst, **«Bidrag til Ribe Mønts Historie»**, NNÅ 1948 — danskmoent `ernst/ribeaxe1.htm` (full text; local copy `scripts/cache/danskmoent/galster/ernst_ribeaxe1.htm`) | Dates Frederik I's Ribe coinage 1524–1526 and the undated Ribe Pragtmønter 1524/1525; reviews Galster's «Ribe Mønt» (Fra Ribe Amt XI, 1947) | Secondary; builds on Galster 1947 but argues the dating itself. The transcription does not expose the print pages (danskmoent's literature list gives NNÅ 1948 pp. 15-18). |
+| `wilcke-1950-hans-krige-pengetrang` (p. 147), `-guldmoent-krigsaar` (p. 215), `-christian-ii-flugt-1523` (p. 169), `-christian-ii-landgang-norge-1531` (p. 223), `-nobler-1532-vaegtige` (pp. 215–216), `-ribe-nobler-proever` (p. 194) | Wilcke 1950 ch. 2 (local text `scripts/cache/wilcke/renaessancens_moent_1950/pages/wilcke_7-2.txt`; printed page = PDF page + 145) | Context of the three coinage episodes and of Ribe | Account-based; his own inferences are hedged («sikkert», «formentlig») and the cards keep the hedge |
+| `galster-nobel-christian-ii-pragtmoenter`, `-1532-rustning-christian-ii`, `-hans-ingen-moentordning`, `-gelderske-kors-dordrecht`, `-tre-eksemplarer-vaegt` | Galster «Danmarks Mønter» (same transcription) | Pragtmønter, the 1532 armament «imod den hjemvendende Christiern II», no Møntordning of Hans, Dordrecht details copied, KMM specimens vs the model's weight | Same author, five more passages (one passage = one key) |
+| `vangelder-1995-reaal-toog-parament` (p. 32) | Van Gelder 1995 | the real as «munt van pronk en opschik» | Quote and page taken from `burgundian_gold_real_1487.md` §2; the PDF was not re-opened for this key |
+| `stacksbowers-bruun-1496-nobel-gave` | Bruun Part I lot 1001 text | the «gift for foreign dignitaries» sentence | Verified verbatim in `scripts/cache/bruun/pages/part1.txt` (hedged in the source) |
+| **not read** | Galster «Ribe Mønt» (Fra Ribe Amt XI, 1947, pp. 587–619 — tidsskrift.dk/fraribeamt holds image-only scans); Jensen–Skjoldager «The missing link — søslingeudmøntningen i Ribe og Ålborg 1524» (NNUM 2012/1 pp. 14–17), «Frederik 1.s søslinge» (2010), «Tronraneren» (2021) | Would settle the Ribe dating (§8 Q8) | Listed on danskmoent `fr/f1g73.htm` |
 
 **Chain to keep in mind:** Galster ⟶ danskmoent type pages ⟶ Numista. Agreement of
 danskmoent and Numista on 14,375 / .979 is ONE reading propagated twice (CLAUDE.md §9.4
@@ -212,6 +222,87 @@ recommended**; (2) switch the 1513–1524 ordinance standards (Nobelfod, Guldgyl
 
 ---
 
+## §5a. Context and dating added 2026-10-11 (feeds the phase 0 / phase I descriptions)
+
+**Hans, 1496–1513 (phase 0).**
+- Galster: «*Under Kong Hans skete noget nyt … Udmøntning af Guld: Noble og Gylden. Dette
+  staar rimeligvis i Forbindelse med Udrustningerne til Sverigestoget*» and «*Der er ikke
+  bevaret nogen dansk Møntordning fra Kong Hans*». Wilcke p. 147: Hans «*udnyttede …
+  Møntsystemet til at skaffe sig Midler til sine Krige mod Sverige og Ditmarsken m. fl.
+  … var han stedse i Pengetrang*». (Wilcke 7-1 pp. 32–37 gives the monetary milieu:
+  Sigismund's silver gylden 1484, the American silver after 1492, Danish coin before
+  Hans mostly small silver, foreign gulden in the accounts. Not used in the card text.)
+- **The model's own character.** Van Gelder 1995 p. 32 calls the great reals «*munt van
+  pronk en opschik*»; Van Gelder 1951 p. 46: gold was «*practisch niet geslagen*» in the
+  Netherlands apart from a modest Dordrecht coinage. Galster: «*gelderske Kors … Rosen i
+  Afsnittet, Dordrechts Møntmærke*» came over to the Danish copy. So Hans copied a show
+  coin that was itself struck in small numbers.
+- Galster on the KMM specimens: «*Hertil svarer de tre … Exemplarer saa godt, som man
+  kan forlange*» (weight against the model's 14.9 g, §3.1).
+- **Fineness of the model's «24 karat».** De Witte p. 73 prints XXIV carats; Vanhoudt
+  p. xxiv says some Netherlandish ordinances equated pure gold with the English gold
+  noble (23 kt 10½ gn, ≈ 995 ‰). Whether that reading applies to the 1487 real is NOT
+  stated by either (`burgundian_gold_real_1487.md` Q1); the card says so in those words.
+- Function: Bruun lot 1001 (hedged): «*it seems likely that it was struck for the king's
+  personal use as a gift for foreign dignitaries*». Used in the phase 0 text with the
+  hedge.
+
+**Christian II, 1516 and 1518 (phase I).** Galster: the Nobler are, like Hans's,
+«*i første Række Pragtmønter, der skylder Rustningerne mod Sverige deres Tilblivelse*».
+The source says «armaments against Sweden» only; it does not say campaign, and the
+card says «military preparations». Wilcke p. 161 only places the 1518 war with Sweden
+in the narrative («Vi nærmer os nu Krigen med Sverige 1518»); no instrument ties the
+Nobler to it.
+
+**Frederik I, 1523–1533 — events relevant to any gold issue** (Galster / Wilcke):
+
+| Date | Event | Source |
+|---|---|---|
+| 13 Apr 1523 | Christian II flees | Wilcke p. 169 |
+| 13 Jul – 10 Aug 1523 | New tax in Jutland for the Klipping withdrawal; forordning of 10 Aug; «Lejrskillinger» struck in the camp at Serritslev Mark during the siege of Copenhagen; the danger from Christian II «foreløbigt drevet over i Slutningen af 1523» | Galster |
+| 25 Feb 1524 | Rigsraadets Brev + Kongebrev to Jørgen Kock (Nobel 16/mark) | Wilcke pp. 182–183 |
+| 1524 | Mints at Malmø, the «nyindrettede Mønt i Ribe», Aalborg, København, Landskrone «væsentlig af Hensyn til Klippingenes Ommøntning» | Galster |
+| 7 Aug 1524 | Coronation as Danish king | Ernst |
+| Nov 1524 | Frederik signs at Ribe the Norwegian Haandfæstning (Vincens Lunge): Norway a hereditary kingdom | Ernst (citing Kinch I pp. 467–468) |
+| 1523–25 | Søren Norby on Gotland, then Blekinge; at Sølvitsborg Nov 1525 – Aug 1526 | Galster |
+| 1526 | Malmø mint pledged to Jørgen Kock; the King lacks silver | Galster (Herredag Odense 1526) |
+| to 1530 | Malmø mint idle «halvtredje Aar» («silver has become so dear») | Galster (Kock's letter 6 May 1530) |
+| 5 Nov 1531 | Christian II lands in Norway | Wilcke p. 223 |
+| 18 Dec 1531 | Rigsraad decides the church-silver requisition | Wilcke p. 206 |
+| 1 Jul 1532 | Christian II surrenders | Wilcke p. 223 |
+| 10 Apr 1533 | Frederik I dies | Galster |
+
+**Ribe — what dates the undated Nobler (Galster 68, 69).**
+- Ernst: Ribe had no mint from the 14th century until summer 1524; «*Ribe-Udmøntninger
+  under Fred. I kun strakte sig over Aarene 1524-1526*». Dated Ribe types (danskmoent
+  `fr/f1g73.htm`): Søsling 1524 (Schou 126–131), 1525 (Schou 39–43), 1526 (Schou 5–7,
+  «*sikkert kun i ret ringe Omfang*»); four-Hvide and 14-Penning of 1524 (before / after
+  the coronation).
+- Ernst: «*Til Aarene 1524 eller 1525 maa endelig henføres de uden Aarstal i Ribe
+  prægede Pragtmønter*»; the Nobel (Schou 1) and the Halvsølvgylden (Schou 5) are Unica
+  of the Royal Collection and «*kan muligvis sættes i Forbindelse med*» the November 1524
+  signing at Ribe. His reasoning for the silver off-strike (Schou 3): between the
+  coronation (7 Aug 1524) and the Norwegian Haandfæstning (Nov 1524). **His hedge
+  («muligvis», «bør vel») is carried into the card text.**
+- The title «Heres Norvegiæ»: Ernst's earlier note «To hidtil ubeskrevne 14-Penninge fra
+  1524» (danskmoent `ernst/14p1524.htm`, local `scripts/cache/danskmoent/galster/ernst_14p1524.htm`)
+  finds it, besides on a Ribe 14-Penning of 1524, only on «Fred. I.s kendte Mønt fra
+  Ribe med Reversomskriften: «Moneta nova aurea Ripensis» (Jørgensen Nr. 25)». The Galster 68 plate legend (curator's scan 2026-10-11) reads
+  «…AVREA RIPENSIS MONETA NOVA» — **hypothesis, not verified:** the same piece.
+- Wilcke p. 194 (different view): «*Nobler og Sølvgylden, formentlig Prøver, thi
+  Midlerne hertil skulde ikke synes at foreligge*». Both views are in the phase I text,
+  each attributed.
+- **Galster 68 stays in the table (curator 2026-10-11).** danskmoent says genuine
+  specimens «ikke længere kendes ægte» and cast copies exist; Ernst calls Schou 3 a
+  silver off-strike of an unknown Nobel. The Galster plate states «Au, 38 mm»; cast
+  silver copies do not refute a gold original, so the §9.3 off-metal exclusion is NOT
+  applied.
+- What was NOT found: any source that ties a Ribe Nobel to a campaign. Wartime
+  coincidences (Norby 1523–26; Christian II 1531–32) are outside Ernst's 1524–1525 window
+  except by inference; none is made.
+
+---
+
 ## §6. Our data against the sources (inventory 2026-09-28, `data/v2/final/danish_realm.yml`)
 
 | Final | Type | Phase | Fineness in data | Weights in data | Note |
@@ -228,6 +319,21 @@ Observations (not acted on): the «14.375 g» `weight_rough_g` entries are type 
 sitting in a specimen-weight list. Whether to keep them there (they are what the source
 prints) or tag them is a curator question — see §8. `fineness_verified: true` is correct
 under §4 («present in a source»).
+
+---
+
+## §6a. Update to §6 (2026-10-11)
+
+- `unified-dk-galster-f1g-68` and `-69` (Ribe): `year_label` **1524-1525** with the
+  unverified marker, `year_verified: false`. The earlier 1523-1533 was Frederik I's reign
+  window (`year_is_reign_span`), not a source date; the flag is removed and the values
+  frozen in `_curation_holds` (basis: Ernst, §5a).
+- Fineness, mark and weight rows of the card now read: **.97917** (23½/24, five decimals),
+  14.616 g rough / **14.3115 g** fine per Nobel; 2 Nobel 28.623 g, 3 Nobel 42.9345 g
+  (`soll_fein_g`). Source readings (Galster .979 / 14.375 / 14.08) are left as the sources
+  print them.
+- The seed record Galster 69 has no recorded `why` decision about its year: the seed
+  default was the reign window.
 
 ---
 
@@ -262,6 +368,34 @@ ignores the old one; being indirect, that end is marked approximate («~»).
   removed so the bar renders like Guldgyldenfod; bar to 1602.
 - `demonetisation` ~1600 still unsourced — left as is (curator 2026-10-11).
 
+## §7b. Card state 2026-10-11 (supersedes the stale bullets of §7)
+
+- Phases (Denmark page): **0 · Hans · Ohne dänische Møntordning** (1496–1513) and
+  **I · Christian II · Frederik I** (**1516**–1532; coin-based start — the legal basis
+  stays 1514). Card keys: «Phase 0 (1496-1513) · König Hans …» and «Phase I (1516-1532) ·
+  Könige Christian II., Frederik I.».
+- A decree section «Møntordning Christian II 1514 / Kongebrev Frederik I 1524» between
+  phases 0 and I (16 / mark, 14.616 g, 23½ kt = .97917, 14.3115 g fine; the 1524 changes
+  of fineness are not in it). Phase I keeps «Parameter gemäß …», the three fineness lines
+  and the denomination. The Dutch ordinance 1487 has its own decree row above phase 0
+  (`burgundian_gold_real_1487.md` §6).
+- Phase 0 description: first Danish gold, wartime finance (Wilcke p. 147), no Danish
+  Møntordning, model and its «24 karat» convention (stated as open), Pragtmønter, KMM
+  specimens vs model weight, the gift hypothesis.
+- Phase I description (chronological): Wilcke's wartime-gold remark → 1516/1518 (Galster)
+  → Ribe 1524–1526 (Ernst, Wilcke) → 1532 (Galster, Wilcke). The ordinance text is only
+  in the instrument block.
+- Card description (`grundwerte.rechnungsfraktionen`): heading «coinage 1496–1532, legal
+  basis from 1514»; role (Pragtmønter, wartime); Rhinsk Gylden cross-reference; «no
+  determination of the fineness of a Danish Nobel is attested»; end of the standard from
+  the 1602 table. **Kept as is by the curator:** «the first dated gold coin of Denmark»,
+  although Bruun says «first dated Scandinavian coin» (§8 Q10).
+- 1602: the Forordning's gold table lists the Portugaløser, the Ungersk Gylden and the
+  three gold Daler-Klippinge — not «only» the first two (corrected in `std_end` notes,
+  the Guldgyldenfod description and the other dossiers).
+
+---
+
 ## §8. Open questions — each with what would settle it
 
 1. **Fineness of any actual Danish Nobel.** No assay known. → an assay/XRF record
@@ -279,6 +413,17 @@ ignores the old one; being indirect, that end is marked approximate («~»).
 7. **`demonetisation 1600` event** — unsourced approximation. → a source for when
    Nobler ceased to be accepted, or drop the event.
 
+8. **Dating of the Ribe Nobler (Galster 68, 69).** Ernst gives 1524 or 1525 (hedged).
+   → Galster «Ribe Mønt» (1947), Jensen–Skjoldager «The missing link» (NNUM 2012/1) and
+   «Tronraneren» (2021); the Royal Collection record of the Unica.
+9. **The «24 karat» of the 1487 real** (Vanhoudt's noble-gold convention). → see
+   `burgundian_gold_real_1487.md` Q1; unchanged.
+10. **«First dated gold coin of Denmark» (card) vs Bruun «first dated Scandinavian
+    coin».** Curator kept the card wording 2026-10-11. → a source on dated Danish coins
+    before 1496 would settle it either way.
+11. **Is Galster 68 the «Moneta nova aurea Ripensis» gold of Ernst (Jørgensen 25)?** The
+    plate legend suggests it; unverified. → Jørgensen's catalogue or the plate itself.
+
 ---
 
 ## §9. Retracted claims from the 2026-06-05 version
@@ -292,3 +437,7 @@ ignores the old one; being indirect, that end is marked approximate («~»).
 | The Nobel is a «Pragtmünze, NOT circulation money» (as fact) | Galster says only «i første Række Pragtmønter» of Hans's and Christian II's pieces; the absolute claim was removed from the card (`36ed09d`). |
 | «Hans struck gold … to pay his German mercenaries» (danskmoent c2njj.htm) | Not re-verified in this rewrite; not used in the card. Status: unverified. |
 | `.986` in the card is a mis-anchor pending decision | Applied — card is on .979. |
+| «The range 1523–1533 for the Ribe Nobler is in Galster» (chat 2026-10-11) | danskmoent f1g68/69 print «u.år»; 1523–1533 was the reign window set by the seed (`year_is_reign_span`). Replaced by 1524–1525 (?) after Ernst (§5a, §6a). |
+| «Forordning 1602 defines Danish gold only as Portugaløser + Ungersk Gylden» (`std_end` note, card text, other dossiers) | The same table has three gold Daler-Klippinge rows (8, 6, 4 Daler); reworded everywhere to «lists …, with no Nobel». |
+| «14,31 g fine / .979» in the card | 23½/24 = .979167 and 14.616 × 23½/24 = 14.3115 exactly; the card now carries five decimals (`070999f`, `7720ca1`). |
+| «The Nobel has nothing in common with the English Noble» (card sentence cited to `galster-nobel-navn`) | That key only supports the name. Galster's statement concerns the Rosenobel, and the curator noted a possible indirect link via the Dutch real's relation to the English noble; the sentence was removed (`174dc2f`), not replaced by a counter-claim. |
