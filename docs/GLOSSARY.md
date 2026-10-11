@@ -161,6 +161,7 @@ Keep literal German/Danish spelling across languages:
 | Kursverhältnis | exchange rate | курсове співвідношення |
 | Gold-Silber-Ratio | gold-silver ratio | відношення золота до срібла |
 | Legende | legend (inscription) | легенда (напис) |
+| Abschnitt (da. Afsnit) | exergue (the lower part of the field under the main scene) | екзерг (нижній відрізок поля під основною сценою) |
 | Obverse / Vorderseite | obverse | аверс / лицева сторона |
 | Reverse / Rückseite | reverse | реверс / зворотна сторона |
 | Stempelschneider | die-cutter | різьбяр штемпелів |
