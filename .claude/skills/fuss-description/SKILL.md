@@ -1,7 +1,7 @@
 ---
 name: fuss-description
 description: >-
-  Write, revise, and SCORE a Müntzfuß description (data/shared/fuesse.yml::<fuss>.description,
+  Write, revise, and SCORE a Müntzfuß description (data/shared/fuesse.yml::<fuss>.description, or the card text grundwerte.rechnungsfraktionen for revised fuss,
   de/en/uk) against a fixed 6-criterion rubric, returning X/10 so the work can loop until it
   clears a threshold (default 8+). Use when authoring a new fuss description, rewriting an
   existing one, or auditing whether a description meets the project's §7a (system-not-specimens),
@@ -19,9 +19,24 @@ description: >-
 Executable form of CLAUDE.md **§7a** (Müntzfuß description scope — SYSTEM, not
 specimens) + **§0 / §0b** (no invention, hypotheses labelled) + **§5 / §5b**
 (source hierarchy, web-fact → refs_pool cite in the same change) + **§0z / §0a**
-(reader voice). It governs ONE field: `data/shared/fuesse.yml::<fuss>.description`
-(the `{de, en, uk}` prose block rendered under the Müntzfuß header). It does NOT
-touch the Grundwerte card, phases, coins, or events.
+(reader voice). It governs ONE piece of prose per fuss — the system-level description
+in `data/shared/fuesse.yml` — which lives in one of TWO places:
+
+- **`<fuss>.description`** (`{de, en, uk}`, the legacy field) — still the place for a fuss
+  not yet revised;
+- **`<fuss>.grundwerte.rechnungsfraktionen`** (`{de, en, uk, da}`, the card text) — where the
+  description of a revised fuss now lives; `description` is then absent. Done so far:
+  `nobel_fod`, `rhinsk_gylden_fod`; the others move here as each is reached. In a fuss that
+  has NOT been moved, `rechnungsfraktionen` is the accounting-fractions block — not prose to score.
+
+The helper reads `description` when present, else the card text, and says which it read
+(`--field description|card` forces one; `--list` marks `[desc]` / `[card]`). If the card
+text is read from a fuss with no `description` field, confirm it really is description
+prose (e.g. `kronemont_chr_iv` shows `[card]` but holds only fractions).
+
+The skill does NOT touch the Grundwerte rows, the phase descriptions or titles
+(`data/v2/locations/<loc>.yml`), coins, or events; those carry the per-period detail.
+C3 is judged on the description text itself, wherever that text lives.
 
 The deliverable is a **score out of 10** against the six criteria below, plus a
 concrete gap list, so a caller can loop `score → fix → re-score` until the
@@ -29,7 +44,7 @@ description clears the threshold. **Default ship threshold: 8.0** (tunable — t
 project may raise it to 9 once descriptions routinely clear 8).
 
 Helper (mechanical signal-scan, candidates not verdicts):
-`python .claude/skills/fuss-description/describe_helper.py <fuss> [--lang de|en|uk] | --list`
+`python .claude/skills/fuss-description/describe_helper.py <fuss> [--lang de|en|uk] [--field description|card] | --list`
 
 ## The six criteria (what a good description contains)
 
@@ -101,7 +116,7 @@ gap; 8-9 means substantively complete with only minor polish left.
 **SCORE mode** — «оціни опис стопи X» (READ-ONLY, no edits, no build):
 1. `describe_helper.py <fuss>` — read the mechanical signals (bare metrics,
    specimen flags, citation coverage, founding/role/phase presence, unresolved refs).
-2. Read the actual `description.{de,en,uk}` in `fuesse.yml`.
+2. Read the actual description text in `fuesse.yml` — `description.{de,en,uk}`, or for a revised fuss the card text `grundwerte.rechnungsfraktionen.{de,en,uk,da}` (the helper names the field it read).
 3. **Verify sources (§0b) before scoring C5** — for each cited `[ref:KEY]`,
    confirm it resolves in `refs_pool.yml`; for each uncited load-bearing sentence,
    decide if it's genuinely unsourced. Do NOT award C5 on faith.

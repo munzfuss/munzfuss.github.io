@@ -9,7 +9,7 @@ citation coverage (C5), and founding/role/phase presence (C1/C2/C3), plus verify
 each cited [ref:KEY] resolves.
 
 Usage:
-    python .claude/skills/fuss-description/describe_helper.py <fuss_key> [--lang de|en|uk]
+    python .claude/skills/fuss-description/describe_helper.py <fuss_key> [--lang de|en|uk] [--field description|card]
     python .claude/skills/fuss-description/describe_helper.py --list         # all fuss keys
 """
 import sys, re, os, json
@@ -129,13 +129,46 @@ def scan_lang(desc, refkeys):
     return hits
 
 
+CARD_FIELD = "grundwerte.rechnungsfraktionen (card text)"
+
+
+def get_description(f, force=None):
+    """Return (text_dict, source_label) for a fuss.
+
+    A fuss's description prose lives in one of two places:
+      * `description` — the legacy field (default; kept until a fuss is migrated);
+      * `grundwerte.rechnungsfraktionen` — the card text, where the description of a
+        migrated fuss now lives (nobel_fod, rhinsk_gylden_fod so far; the rest follow as
+        each is revised). For a fuss that has NOT been migrated this field holds the
+        accounting-fractions block, which is not a description.
+    Default: `description` when present, else the card text. `force` ('description' or
+    'card') overrides.
+    """
+    gw = f.get("grundwerte") if isinstance(f.get("grundwerte"), dict) else {}
+    card = gw.get("rechnungsfraktionen") if isinstance(gw.get("rechnungsfraktionen"), dict) else None
+    desc = f.get("description") if isinstance(f.get("description"), dict) else None
+    if force == "description":
+        return desc, "description"
+    if force == "card":
+        return card, CARD_FIELD
+    if desc:
+        return desc, "description"
+    if card:
+        return card, CARD_FIELD
+    return None, None
+
+
 def main():
     if "--list" in sys.argv:
         data = load(FUESSE)
         for k in data:
             nm = (data[k].get("name") or {}).get("en", "") if isinstance(data[k], dict) else ""
-            has = bool(isinstance(data[k], dict) and data[k].get("description"))
-            print(f"  {k:26} {'[desc]' if has else '[no desc]':10} {nm}")
+            if isinstance(data[k], dict):
+                d, src = get_description(data[k])
+                tag = "[desc]" if src == "description" else ("[card]" if src else "[no desc]")  # [card] = description lives in the card text (no legacy field)
+            else:
+                tag = "[no desc]"
+            print(f"  {k:26} {tag:10} {nm}")
         return
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     if not args:
@@ -149,13 +182,21 @@ def main():
     if fuss not in data:
         print(f"fuss '{fuss}' not found. Try --list."); sys.exit(1)
     f = data[fuss]
-    desc = f.get("description")
+    force = None
+    if "--field" in sys.argv:
+        force = sys.argv[sys.argv.index("--field") + 1]
+    desc, src = get_description(f, force)
     if not desc:
-        print(f"fuss '{fuss}' has NO description field — nothing to score (C1-C6 all 0)."); return
+        print(f"fuss '{fuss}' has NO description text (neither `description` nor the card text "
+              f"`grundwerte.rechnungsfraktionen`) — nothing to score (C1-C6 all 0)."); return
     refkeys = set(load(REFS_POOL).keys()) if os.path.exists(REFS_POOL) else set()
 
     name = (f.get("name") or {}).get("en") or fuss
     print(f"FUSS: {fuss} — {name}")
+    print(f"  description read from: {src}")
+    if src == CARD_FIELD and not f.get("description"):
+        print("  NOTE: no legacy `description` field, so the card text is read as the description "
+              "(migrated fuss). Confirm it is description prose and not just an accounting-fractions block.")
     print(f"  metal={f.get('metal')}  grid={f.get('grid_stops')}/{f.get('grid_unit_name')}  "
           f"fineness_std={f.get('fineness_standard')}  phases_in_fractions_comments=?")
     print(f"  events: {', '.join(k for k in (f.get('events') or {}) if not k.endswith('_label'))}")
