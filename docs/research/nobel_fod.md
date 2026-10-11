@@ -237,6 +237,24 @@ under §4 («present in a source»).
 
 ---
 
+## §7a. In force 1514 → ~1602 (curator 2026-10-11, Denmark)
+
+**Curator rule for the end of force (2026-10-11).** When no act expressly
+ends a standard, its end is the nearest act that sets a different standard and
+ignores the old one; being indirect, that end is marked approximate («~»).
+- `std_start` 1514: Møntordning af Sommeren 1514, «Nobel 23 1/2 Karat fint
+  nobel Guld … 16 Stkr.» (Wilcke 1950 7-2 p. 153) — the first Danish act on the
+  Nobel; Hans' Nobler 1496-1513 precede any act.
+- `std_end` ~1602 (was 1533 approx, from Frederik I's death — an inference):
+  Forordning 8 Sep 1602 defines Danish gold as Portugaløser + Ungersk Gylden
+  only; no earlier repeal (1541 silver-only). Last Nobler 1532.
+- `first_adoption` stays 1496 (curator: Danish Nobler share only the name with
+  English nobles — a different standard, so English nobles' earlier circulation
+  in Denmark does not date this one).
+- Denmark timeline: status stripe shown (1514 → ~1602, end fade), mint ×6 alpha
+  removed so the bar renders like Guldgyldenfod; bar to 1602.
+- `demonetisation` ~1600 still unsourced — left as is (curator 2026-10-11).
+
 ## §8. Open questions — each with what would settle it
 
 1. **Fineness of any actual Danish Nobel.** No assay known. → an assay/XRF record

@@ -594,6 +594,34 @@ Wilcke 6 comparison table (Stk./Mk brutto · Kt · ‰ · value · rauh · fein)
 
 | Scope | first_adoption | first_mint | last_mint | std_end | demonetisation |
 |---|---|---|---|---|---|
+| Scope | first_adoption (use) | std_start (force) | first_mint | last_mint | std_end | demonetisation |
+|---|---|---|---|---|---|---|
+| `anywhere` (realm) | **~1406** treaty of Lund 11.11.1406 (approx, not firm) | **1514** Møntordning | 1497 | 1632 | **~1602** Forordning (approx) | ~1700 (unsourced, left) |
+| `holstein` | **1495** Worms | — (falls back to 1495) | 1523 | 1664 | **1602** | ~1700 |
+
+UPDATED 2026-10-11 (Denmark scope only). **Curator rule for the end of force (2026-10-11).** When no act expressly
+ends a standard, its end is the nearest act that sets a different standard and
+ignores the old one; being indirect, that end is marked approximate («~»).
+- `std_start` (new event, schema 2026-10-11) carries the start of legal force
+  and drives only the status stripe; `first_adoption` now means the start of
+  USE in Denmark. Before: first_adoption 1513 (Blicher, unexecuted) served as
+  both. The 1513 letter stays the first Danish act naming the gulden (§5.2).
+- Start of use ~1406, Diplomatarium Danicum (tekstnet.dk): Lund 11 Nov 1406,
+  Erik VII's dowry for Katrine «veertech dusent Rynescher guldene edder och
+  ander ghelt edder sulwer na Rynescher guldene werde» (dd_14061111001, RA NKR
+  2111a); Lübeck 14 Sep 1406, Margrete's proxy collects «florenos Renenses»
+  (dd_14060914001); Varberg 11 Aug 1429, a private fine of «70 rinske gylden»;
+  several 1409-1413 crown documents (dowry 40 000, Sulzbach / Helsingborg /
+  Lund-Malmø). Earlier DD hits are foreign (Bremen 1387, Lübeck 1399). DD runs
+  to 1450 (incomplete from 1440).
+- End ~1602: Forordning 8 Sep 1602 defines Danish gold without the gulden; the
+  1541 Møntordning is silver-only, the Recess of 1540 a rate — no earlier
+  Danish repeal.
+
+Earlier state (2026-09-05):
+
+| Scope | first_adoption | first_mint | last_mint | std_end | demonetisation |
+|---|---|---|---|---|---|
 | `anywhere` (realm) | **1513** Beskikkelsesbrev Dynes Blicher (firm) | 1496 | 1632 | **1602** Forordning | ~1700 |
 | `holstein` | **1495** Worms | 1523 | 1664 | **1602** | ~1700 |
 
