@@ -66,7 +66,7 @@ opens with a generic bold headline per kind («Помилкове / Підозр
 4. **Write the reason** — four languages (de / en / uk / da), reader-facing
    (§0z), sourced (§0), one paragraph:
    - first sentence: a short thesis in plain text («Надважкий екземпляр.»,
-     «Не результат пробірного аналізу.»), no own headline line, no «Підозріло:»;
+     «Не результат визначення проби.»), no own headline line, no «Підозріло:»;
    - then the evidence: the value, what it is compared with, and where from;
    - for (*), end with what remains open («… однаково можливі, і жодне з них не
      доведене.»). Numbers: comma decimals in de/uk/da, point in en.
