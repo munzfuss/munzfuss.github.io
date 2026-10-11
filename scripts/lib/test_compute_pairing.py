@@ -258,14 +258,14 @@ def test_spec_list_renders_one_line_per_standard():
         {"count": "16½", "coin": "Nobel", "unit": "troy_mark", "basis": "rauh",
          "fineness": ["?"], "fineness_unit": None, "fineness_join": "chrono",
          "unverified": False, "fineness_unverified": True,
-         "label": {"de": "Phase 0", "en": "Phase 0", "uk": "Фаза 0", "da": "Fase 0"}},
+         "label": {"de": "Periode 0", "en": "Period 0", "uk": "Період 0", "da": "Periode 0"}},
         {"count": "16", "coin": "Nobel", "unit": "cologne_mark", "basis": "rauh",
          "fineness": ["23½"], "fineness_unit": "Karat", "fineness_join": "chrono",
          "unverified": False, "fineness_unverified": False, "label": None},
     ]
     html = str(fuss_spec(specs, "uk"))
     assert html.count('class="pspec-line"') == 2
-    assert "Фаза 0" in html and "повна тройська марка" in html
+    assert "Період 0" in html and "повна тройська марка" in html
     assert html.index("тройська") < html.index("кельнська")
     assert html.count("(?)") == 1
 

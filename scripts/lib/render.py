@@ -194,11 +194,12 @@ def ruler_for_lang(name: str | None, lang: str) -> str:
     return re.sub(r"( [IVX]+)\.", r"\1", name)
 
 
-# Every language's word for a phase, so the marker can be stripped off a
+# Every language's word for a period (formerly «phase» — renamed 2026-10-11;
+# the old words stay matched for untranslated or not-yet-renamed titles), so the marker can be stripped off a
 # title no matter which language that title came from. Kept here rather than
 # read from ui.yml at call time because the filter runs once per phase per
 # page and the set is four words long.
-_PHASE_WORDS = ("Phase", "Fase", "Фаза")
+_PHASE_WORDS = ("Periode", "Period", "Період", "Phase", "Fase", "Фаза")
 _PHASE_MARKER_RE = re.compile(
     r"^(?:%s)\s+(\S+)\s+·\s+" % "|".join(_PHASE_WORDS)
 )
