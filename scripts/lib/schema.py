@@ -1241,6 +1241,22 @@ class Timeline(_StrictBase):
     single-jurisdiction page whose «anywhere» scope IS the whole subject (e.g.
     the German Empire page, where there is no Holstein sub-track)."""
 
+    hide_kinds: list[Literal["mint", "status", "circulation", "sole"]] = Field(default_factory=list)
+    """Page-wide visibility switch: suppress every layer of these kinds on all
+    bars (both scopes), e.g. `[circulation]` hides the «в обігу» stripes. The
+    events and per-bar `hide_layers` stay untouched; remove the key to show
+    the layers again."""
+
+    @model_validator(mode="after")
+    def _apply_hide_kinds(self):
+        for bar in self.bars:
+            have = {(h.scope, h.kind) for h in bar.hide_layers}
+            for kind in self.hide_kinds:
+                for scope in ("anywhere", "holstein"):
+                    if (scope, kind) not in have:
+                        bar.hide_layers.append(HiddenLayer(scope=scope, kind=kind))
+        return self
+
     @model_validator(mode="after")
     def _sort_bars_by_order(self):
         """Sort `bars` by their optional `order` field, stable.
