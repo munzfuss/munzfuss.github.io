@@ -92,7 +92,7 @@ found in circulating coin; **outturn** = what a mint's own accounts show;
 | 28 Jul 1551 | Karl V's Augsburg Reichsmünzordnung: gulden kept «i den af de 4 Rhinfyrster oprindelig vedtagne Skikkelse»; Guldgylden = Sølvgylden = 72 Kreuzer | decree | 71⅓ | 18½ | 3,278 | 2,527 | DE (imperial) |
 | **19 Aug 1559** | Ferdinand I's Møntedikt (Augsburg Reichsmünzordnung): «fastsattes endelig … 72 Stkr. af den 18 1/2 Karat fine Mark»; 75 Kreuzer; Hans' and Christian III's gulden voided with 6 months' notice | decree | 72 | 18½ | 3,249 | 2,504 | DE (imperial); applied in DK 1563-64, 1584 |
 | 1563-64 | Frederik II, Copenhagen: 3 254 «Guldgylden Klippinge» | outturn | 72 | 18½ (Hede .77) | 3,248 | 2,50 | DK |
-| 8 Sep 1602 | Christian IV: Forordning — gold schedule has Portugaløser + Ungersk Gylden only, **no Rhinsk Gylden** | silence | — | — | — | — | DK |
+| 8 Sep 1602 | Christian IV: Forordning — gold schedule lists Portugaløser, Ungersk Gylden and the three gold Daler-Klippinge (8, 6, 4 Daler), **no Rhinsk Gylden** | silence | — | — | — | — | DK |
 | 1624/25-1632 | Christian IV, Copenhagen: ≈ 33 942 pieces; Wilcke 1924 table: 72, 18¼ | outturn/assay | 72 | 18¼ (Hede .76) | 3,249 | 2,470 | DK |
 | 1619-1664 | Gottorp and Sonderburg ducal lines | no instrument, no fineness | — | — | ~3,08-3,19 (specimens, Jensen) | — | SH (ducal) |
 | ~1625 | Rheinischer Münzverein stops striking the gulden | practice | — | — | — | — | DE |
@@ -495,7 +495,7 @@ from the 15th century; as **Danish coinage** only from ~1496.
 ### 5.6 Christian IV (1588-1648): legal exit, wartime revival
 
 - **8 Sep 1602 Forordning**: gold schedule = Portugaløser (6¾, 23½ Kt) +
-  Ungersk Gylden (67, 23⅓ Kt); Rhinsk Gylden absent (`dk_dukat_portugaloeser_fod.md`
+  Ungersk Gylden (67, 23⅓ Kt) + three gold Daler-Klippinge (8, 6, 4 Daler); Rhinsk Gylden absent (`dk_dukat_portugaloeser_fod.md`
   §3.1). Argument from silence of a comprehensive schedule — strong, but not an
   express ban.
 - **1624-1632 coinage** (Harck, danskmoent/harck/c4guld): accounts 1624

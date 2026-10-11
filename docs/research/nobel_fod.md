@@ -253,8 +253,8 @@ ignores the old one; being indirect, that end is marked approximate («~»).
   nobel Guld … 16 Stkr.» (Wilcke 1950 7-2 p. 153) — the first Danish act on the
   Nobel; Hans' Nobler 1496-1513 precede any act.
 - `std_end` ~1602 (was 1533 approx, from Frederik I's death — an inference):
-  Forordning 8 Sep 1602 defines Danish gold as Portugaløser + Ungersk Gylden
-  only; no earlier repeal (1541 silver-only). Last Nobler 1532.
+  Forordning 8 Sep 1602 lists Danish gold as Portugaløser, Ungersk Gylden and
+  the three gold Daler-Klippinge, with no Nobel; no earlier repeal (1541 silver-only). Last Nobler 1532.
 - `first_adoption` stays 1496 (curator: Danish Nobler share only the name with
   English nobles — a different standard, so English nobles' earlier circulation
   in Denmark does not date this one).
