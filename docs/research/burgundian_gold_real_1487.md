@@ -148,6 +148,42 @@ Silver real/griffioen are outside the scope (§0).
   Van Gelder's computed fine content and Numista's .992 (§3.2) both sit below 1.000.
   Settled by: the instruction text with its remedium, or an assay (Q1).
 
+### §3.1a. What «24 carats» means in Burgundian-Habsburg instruments (checked 2026-10-11)
+
+**Result.** In the Netherlands ordinances «fine gold» was a *conventional* standard, not
+chemically pure gold. Three instruments in De Witte II say so in their own words; two
+later ones state the same standard numerically. Nothing found states a 1487 instruction
+using the formula, so the reading for the real itself remains an inference from
+consistent usage 1469 → 1521 (Q1 stays open for 1487).
+
+| Year / instrument | Wording (De Witte II, OCR text; carat-grain = 1/12 carat unless noted) | Page |
+|---|---|---|
+| 1469, Bruges conference, Charles the Bold and Edward IV | «*l'on considérerait comme or pur le nouveau noble anglais, appelé royal, ouvré à [X]XIII carats III grains et demi*» — the English noble counted as pure gold (23 ct 3½ gr in English quarter-carat grains = 23.875 ct = .9948) | 39–40 |
+| Burgundian florin (Philip the Good → Charles) | «*à XIX carats, le noble Henricus compté pour fin*» | 44, 53 |
+| **Instruction after the ordinance of 14 Dec 1489** | «*double Florin au Saint-André; c'est-à-dire à XXIV carats — le noble Henricus compté pour fin*» — **24 carats is explicitly the noble counted as fine** | 79 |
+| Instruction of 20 Feb 1500 | Toison d'or «*XXIII carats IX 1/2 grains*», 54½ to the mark | 116–117 |
+| Ordinance of 4 Feb 1521 (Charles V) | «*ung denier de fin or qui se nommera real et contiendra vingt trois caratz neuf grains et demy d'or fin*», 46 to the mark; merchants' «*matières de fin or*» are paid by assay above 23 ct 9½ gr | 160 |
+
+Cross-check (arithmetic): 244.75 / 54.5 = 4.491 g × (23 + 9.5/12)/24 = 4.452 g = Van Gelder
+1995's «4.49 g / 4.45 g fijn» for the Golden-Fleece florin (p. 53 list). The same list
+gives the rijder 3.63 / 3.60 g (.9917), the Hungarian ducat 3.55 / 3.52 g (.9915) and the
+real 14.83 / 14.72 g (.9926): Van Gelder's computed fine contents for the «24-carat»
+pieces cluster at .991–.993, never at 1.000.
+
+**Who noticed.** Vanhoudt 2015 p. xxiv states the convention generally («*in sommige
+gevallen werd zuiver goud gelijkgesteld aan de Engelse gouden nobel … 23 karaat 10 ½
+grein, hetzij ca. 995‰*»). De Witte reproduces the contemporary wording «*compté pour
+fin*». Van Gelder computes the net contents without commenting on the discrepancy.
+Not found: an assay study of a Dutch gold real. Outside the Netherlands, Munro's
+Toronto lecture notes call the Venetian ducat «*virtually 24 carats*» and give the
+English noble as .995 (Table 3); a figure of 99.7 % for florin and ducat attributed
+to Spufford turned up only in a search summary and is **not verified** here.
+
+**Consequence for the Nobelfod card.** The number «24 carats» can be reported as what the
+instruments call the standard; it must not be converted to 1.000 or presented as the
+Danish Nobel's fineness. Whether the 1487 real's «XXIV carats» meant the same noble
+standard is supported by usage in 1469, 1489 and 1521 but not stated for 1487.
+
 ### §3.2 The great gold real
 
 | Parameter | April 1487 instruction | July 1487 modification | Source |
