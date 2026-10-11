@@ -25,14 +25,15 @@ in `data/shared/fuesse.yml` — which lives in one of TWO places:
 - **`<fuss>.description`** (`{de, en, uk}`, the legacy field) — still the place for a fuss
   not yet revised;
 - **`<fuss>.grundwerte.rechnungsfraktionen`** (`{de, en, uk, da}`, the card text) — where the
-  description of a revised fuss now lives; `description` is then absent. Done so far:
-  `nobel_fod`, `rhinsk_gylden_fod`; the others move here as each is reached. In a fuss that
-  has NOT been moved, `rechnungsfraktionen` is the accounting-fractions block — not prose to score.
+  description of a revised fuss now lives; `description` is then absent and the fuss carries
+  **`description_in_card: true`** (schema field, `fuesse.yml`). Done so far: `nobel_fod`,
+  `rhinsk_gylden_fod`. **When you move a fuss's description into the card, set the flag** —
+  the helper reads the card text only for a flagged fuss. In a fuss that has NOT been moved,
+  `rechnungsfraktionen` is the accounting-fractions block — not prose to score.
 
-The helper reads `description` when present, else the card text, and says which it read
-(`--field description|card` forces one; `--list` marks `[desc]` / `[card]`). If the card
-text is read from a fuss with no `description` field, confirm it really is description
-prose (e.g. `kronemont_chr_iv` shows `[card]` but holds only fractions).
+The helper reads `description` when present, else the card text of a flagged fuss, and says
+which it read (`--field description|card` forces one; `--list` marks `[desc]` / `[card]` /
+`[no desc]`). A fuss with neither is reported as having no description.
 
 The skill does NOT touch the Grundwerte rows, the phase descriptions or titles
 (`data/v2/locations/<loc>.yml`), coins, or events; those carry the per-period detail.

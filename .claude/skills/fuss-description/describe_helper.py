@@ -141,8 +141,10 @@ def get_description(f, force=None):
         migrated fuss now lives (nobel_fod, rhinsk_gylden_fod so far; the rest follow as
         each is revised). For a fuss that has NOT been migrated this field holds the
         accounting-fractions block, which is not a description.
-    Default: `description` when present, else the card text. `force` ('description' or
-    'card') overrides.
+    Default: `description` when present; else the card text, but only for a fuss flagged
+    `description_in_card: true` in fuesse.yml (without the flag the card text is the
+    accounting-fractions block, not a description). `force` ('description' or 'card')
+    overrides.
     """
     gw = f.get("grundwerte") if isinstance(f.get("grundwerte"), dict) else {}
     card = gw.get("rechnungsfraktionen") if isinstance(gw.get("rechnungsfraktionen"), dict) else None
@@ -153,7 +155,7 @@ def get_description(f, force=None):
         return card, CARD_FIELD
     if desc:
         return desc, "description"
-    if card:
+    if f.get("description_in_card") is True and card:
         return card, CARD_FIELD
     return None, None
 
@@ -187,16 +189,16 @@ def main():
         force = sys.argv[sys.argv.index("--field") + 1]
     desc, src = get_description(f, force)
     if not desc:
-        print(f"fuss '{fuss}' has NO description text (neither `description` nor the card text "
-              f"`grundwerte.rechnungsfraktionen`) — nothing to score (C1-C6 all 0)."); return
+        print(f"fuss '{fuss}' has NO description text (neither `description` nor a card-text description "
+              f"(`description_in_card: true` + `grundwerte.rechnungsfraktionen`)) — nothing to score (C1-C6 all 0)."); return
     refkeys = set(load(REFS_POOL).keys()) if os.path.exists(REFS_POOL) else set()
 
     name = (f.get("name") or {}).get("en") or fuss
     print(f"FUSS: {fuss} — {name}")
     print(f"  description read from: {src}")
-    if src == CARD_FIELD and not f.get("description"):
-        print("  NOTE: no legacy `description` field, so the card text is read as the description "
-              "(migrated fuss). Confirm it is description prose and not just an accounting-fractions block.")
+    if force == "card" and not f.get("description_in_card"):
+        print("  NOTE: --field card forced on a fuss NOT flagged `description_in_card: true`; "
+              "the card text is probably the accounting-fractions block, not a description.")
     print(f"  metal={f.get('metal')}  grid={f.get('grid_stops')}/{f.get('grid_unit_name')}  "
           f"fineness_std={f.get('fineness_standard')}  phases_in_fractions_comments=?")
     print(f"  events: {', '.join(k for k in (f.get('events') or {}) if not k.endswith('_label'))}")

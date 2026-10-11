@@ -458,6 +458,15 @@ class Fuss(_StrictBase):
     )
     fineness_display: str | None = None
     description: I18nText | None = None
+    description_in_card: bool = Field(
+        False,
+        description=(
+            "True once the fuss's system-level description has moved out of "
+            "`description` into the card text (`grundwerte.rechnungsfraktionen`). "
+            "Read by the `fuss-description` skill helper so it knows which field "
+            "carries the prose; the renderer does not use it."
+        ),
+    )
     grundwerte: Grundwerte | None = None
     fractions: dict[str, Fraction]
     events: FussEvents | None = None
