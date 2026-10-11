@@ -92,6 +92,39 @@ weight to the WHOLE real. The shared word «nobel» does not mean the same coin.
 d'or à travailler, le maître devait livrer: un marc de Réaux, 2 marcs de Nobles et 17
 marcs de Florins*». So the real was 5 % of the gold by weight, by design.
 
+### §2a. 1488 → 1514: was the real standard changed again? (checked 2026-10-11)
+
+**Result.** No later instrument that changes the pieces-per-mark or the fineness of
+the great gold real has been found. What is attested is (a) a possible general lowering
+in July 1488 whose application to the gold real is open, (b) the end of striking in
+1488, and (c) the real surviving only as a valued tariff coin at the 16½ standard.
+
+| Date | What the source says | Source (verbatim, page) |
+|---|---|---|
+| 20 May 1488 | Valuation: real 240 st, fine content still 14.72 g | Van Gelder 1995 table p. 35 «*1488 grote reaal 14,72 240 1,23 41*» |
+| **July 1488** | Instruction lowers «weight and fineness of all pieces» by ≈ 10 %. It is not stated that the gold real is included; the text of the instruction is not seen | Van Gelder 1951 p. 47: «*een instructie van Juli 1488 verlaagde gewicht en gehalte van alle stukken met ongeveer 10 %*» (n. 9: Verachter p. 41, not seen) |
+| 26 Oct – 20 Nov 1488 | New series; **the striking of the 1487 series ends** (Van Gelder). Gold: «demi-Noble» of XXIII carats at 72 to the mark (the figures are OCR-damaged in the scan «XXIII carats de fin et de 7[2] de taille», cross-check Van Gelder 1995 table p. 35: halve nobel 3,26 g fine = 244.75 / 72 × 23/24) | De Witte II p. 76; Van Gelder 1951 p. 47: «*waardoor de aanmunting van de serie van 1487 een einde nam*» |
+| 1495 → 1514 | The real is **not struck**. Van Gelder 1995 p. 53: «*de grote gouden reaal van Maxilimiliaan geslagen 1487-1488*». De Witte II pp. 90–91: the great gold real «*existe pour la Flandre et la Hollande, n'a pas été frappé pour le Brabant*» | as quoted |
+| 14 Dec 1489 | Return to the 1466 system. Gold is Burgundian gulden of 2, 1, ½; the real is not on the list (Van Gelder 1995 table III p. 68, column «1489 dec.»: «—») | Van Gelder 1951 pp. 47–49; Van Gelder 1995 p. 68 |
+| 1492, 2 Nov 1493 | The «grand Réal d'or» is valued again: 144 st (1492), 28 sous de gros instead of 24 (1493) | Van Gelder 1995 table III p. 68; De Witte II p. 86 |
+| **31 Dec 1495** | Tariff lists «**Le grand Réal d'Autriche de XVI 1/2 au marc**» at 25 sous 4 deniers, «demi-Réal d'Autriche de XXXIII au marc», «quart … de LXVI au marc». The July 1487 count (16½) is therefore the one still quoted in 1495. After 16 April 1496 the rate falls to 21 sous 8 deniers | De Witte II pp. 110–111 |
+| 14 May 1496 | New gold: Golden-Fleece and Philippus gulden (48 and 24 st), not reals | Van Gelder 1951 p. 50 |
+| 8 Dec 1499 | Valuation list «Grand Réal d'Autriche: 17 sous, 6 deniers; Demi-Réal: 13 sous, 9 deniers»; this ordinance is in force until 1520 (De Witte). The Instruction of 20 Feb 1500 changes the Toison d'or (XXIII carats 9½ grains, 54½ to the mark) and the Philippus florin, not the real | De Witte II pp. 116–117 |
+| 1507–1514 | No gold real in De Witte's text for Brabant (instruction of 9 Jan 1507 onward) | text search of De Witte II (OCR layer), no hit |
+| 4 Feb 1521 | **Outside the window:** Charles V's ordinance creates a *new* Real d'or (and double Real) to circulate with Spanish pieces | De Witte II pp. 154–155 (Serrure quoted), p. 172 |
+
+Silver real/griffioen are outside the scope (§0).
+
+**What this does and does not settle.**
+- The Danish Nobel (1496–1532) was struck while the Dutch real was only a valued tariff
+  coin at 16½ to the mark. The model's *parameters* did not change in that time on the
+  evidence above; its *striking* had stopped in 1488.
+- Whether the July 1488 instruction touched the gold real remains open (Q3): Van Gelder
+  1995 keeps 14.72 g in 1488, but the tariff he cites (20 May 1488) is earlier than the
+  instruction.
+- Holland and Flanders instructions are not covered by De Witte (Brabant). The Holland
+  account (Van der Chijs 1858 p. 491) was not seen (Q2).
+
 ---
 
 ## §3. Parameters
