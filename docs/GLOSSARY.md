@@ -190,6 +190,7 @@ same edit (every wording edit goes into all languages).
 |---|---|---|
 | «пробірний аналіз», «пробірний акт» | «визначення проби»; «акт перевірки проби» | «пробірний» reads as «пробірка» (test tube), not as «проба» (fineness) |
 | «вагомий» about weight («вагомі нобелі») | «важкий» («особливо важкі нобелі») | «вагомий» means influential, not heavy |
+| «грейн», «грейнів» (1/12 карата) | «гран»: «10 гранів», «10½ грана» | the project already uses «гран» for Grän (see the term table and the 5760-гран figures); «гран» is the unit of mass, not «грань» (facet) |
 | «нобельне золото» | «благородне золото»; «fint nobel Guld» («чисте благородне золото») | the direct translation of «nobel» is «благородний» |
 | «Ribe карбував …» (a town as the subject, without saying it is a town) | «монетний двір у місті Ribe карбував …»; «нобелі з Ribe» | a reader who does not know Ribe takes it for a person |
 | «відносять до …», «вважають …» (impersonal, when it is the project's own conclusion) | «можна вважати …», «технічно можна вважати …» | the conclusion is ours; the sentence says so with a modal, not an anonymous «they» |
