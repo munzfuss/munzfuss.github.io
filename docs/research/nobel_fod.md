@@ -44,6 +44,7 @@
 | `ernst-1948-ribe-pragtmoenter-1524-1525`, `-ribe-nobel-haandfaestning-1524`, `-ribe-frederik-1-1524-1526` | Axel Ernst, **«Bidrag til Ribe Mønts Historie»**, NNÅ 1948 — danskmoent `ernst/ribeaxe1.htm` (full text; local copy `scripts/cache/danskmoent/galster/ernst_ribeaxe1.htm`) | Dates Frederik I's Ribe coinage 1524–1526 and the undated Ribe Pragtmønter 1524/1525; reviews Galster's «Ribe Mønt» (Fra Ribe Amt XI, 1947) | Secondary; builds on Galster 1947 but argues the dating itself. The transcription does not expose the print pages (danskmoent's literature list gives NNÅ 1948 pp. 15-18). |
 | `wilcke-1950-hans-krige-pengetrang` (p. 147), `-guldmoent-krigsaar` (p. 215), `-christian-ii-flugt-1523` (p. 169), `-christian-ii-landgang-norge-1531` (p. 223), `-nobler-1532-vaegtige` (pp. 215–216), `-ribe-nobler-proever` (p. 194) | Wilcke 1950 ch. 2 (local text `scripts/cache/wilcke/renaessancens_moent_1950/pages/wilcke_7-2.txt`; printed page = PDF page + 145) | Context of the three coinage episodes and of Ribe | Account-based; his own inferences are hedged («sikkert», «formentlig») and the cards keep the hedge |
 | `galster-nobel-christian-ii-pragtmoenter`, `-1532-rustning-christian-ii`, `-hans-ingen-moentordning`, `-gelderske-kors-dordrecht`, `-tre-eksemplarer-vaegt` | Galster «Danmarks Mønter» (same transcription) | Pragtmønter, the 1532 armament «imod den hjemvendende Christiern II», no Møntordning of Hans, Dordrecht details copied, KMM specimens vs the model's weight | Same author, five more passages (one passage = one key) |
+| `ernst-1938-nobler-1532-regnskab-fejlskrift` | Axel Ernst, **«Dansk Halv-Sølvgylden 1531»**, NNÅ 1938 pp. 41–52 — danskmoent `ernst/f1g50ern.htm` (local `scripts/cache/danskmoent/galster/ernst_f1g50ern.htm`) | A second reading of the 1532–33 account's Nobler (§5b); the print page of the passage is not shown by the transcription | Independent of Wilcke's reading of the same account; Ernst treats the account as Wilcke's source (Rørdam's printing) and proposes a scribal error |
 | `vangelder-1995-reaal-toog-parament` (p. 32) | Van Gelder 1995 | the real as «munt van pronk en opschik» | Quote and page taken from `burgundian_gold_real_1487.md` §2; the PDF was not re-opened for this key |
 | `stacksbowers-bruun-1496-nobel-gave` | Bruun Part I lot 1001 text | the «gift for foreign dignitaries» sentence | Verified verbatim in `scripts/cache/bruun/pages/part1.txt` (hedged in the source) |
 | **not read** | Galster «Ribe Mønt» (Fra Ribe Amt XI, 1947, pp. 587–619 — tidsskrift.dk/fraribeamt holds image-only scans); Jensen–Skjoldager «The missing link — søslingeudmøntningen i Ribe og Ålborg 1524» (NNUM 2012/1 pp. 14–17), «Frederik 1.s søslinge» (2010), «Tronraneren» (2021) | Would settle the Ribe dating (§8 Q8) | Listed on danskmoent `fr/f1g73.htm` |
@@ -322,6 +323,64 @@ under §4 («present in a source»).
 
 ---
 
+## §5b. The 1532–33 account of the Nobler: Lod, Quintin, two readings (added 2026-10-11)
+
+**Units.**
+- **Lod** (Lot) = 1/16 of the Cologne mark = 233.856 / 16 = **14.616 g** (`docs/GLOSSARY.md`). In
+  these accounts it is a weight; the same word also counts silver fineness in sixteenths
+  («14 Lod»).
+- **1 Nobel = 1 Lod** is not a further rule: it is the standard «16 Nobel per mark» written in
+  the unit the accounts use (Wilcke p. 216: «en Nobel efter Kong Frederiks Møntordning vejede 1
+  Lod»; English nobles «1/2 Lod»).
+- **Quintin** = ¼ Lod (3.654 g) in the Cologne weight system. NOT checked in the cached
+  Wilcke text (it uses the unit without defining it); hypothesis from general metrology. The
+  conclusions below move by < 0.5 % if it is wrong.
+
+**The account** (Wilcke 7-2 p. 208; he reprints it from Rørdam 1867 and notes «Enkelte Fejl
+i Rørdams Gengivelse»; original: RA, Universitetsarkivet, Konsistorium 52, Aktstykker før
+Reformationen): «*Anders Bille lod mønte: 21 Nobler (paa tilsammen ca. 60 Lod) å ca. 18 gylden
+å 2½ M … ca. 945 M; 1 Nobel paa 2½ Lod 1 Quintin Guld = ca. 15 gylden … ca. 37 M*».
+
+**Wilcke's reading** (p. 215–216): «*Anders Bilde lod slaa 21 Nobler til samlet Vægt 60 Lod ÷ 1
+Quintin og en tyk Nobel paa 2½ Lod 1 Quintin. Det har været særdeles vægtige Nobler,
+gennemsnitlig 3-dobbelte … De skulde sikkert gives de højere Befalingsmænd*» (« ÷ » = minus).
+- Recomputed: 59¾ Lod = 873 g / 21 = 41.6 g ≈ 2.85 Lod per piece = 2.85 × the standard;
+  the thick piece 2¾ Lod ≈ 40.2 g.
+- Check from the account's own valuation: 18 gylden per piece against a standard Nobel of
+  14.3115 g / 2.436 g (18-karat gylden) ≈ 5.9 gylden → 18 / 5.9 ≈ 3.1; the thick piece
+  15 gylden for 2¾ Lod ≈ 2.55 × 5.9.
+
+**Ernst's reading of the same account** (NNÅ 1938, danskmoent `ernst/f1g50ern.htm`): the
+account gives «*21 Nobler til en samlet Vægt af 878,7 g og 1 «tyk» Nobel til en Vægt af 40,44
+g*» (his figures, not Wilcke's lots); this does not fit the 1524 ordinances (16 per mark =
+14.375 g). «*Jeg er derfor tilbøjelig til at antage, at «21» (xxi) i Regnskabet skyldes en
+Fejlskrift, vistnok for «61» (lxi), og i saa Fald vilde Udtrykket «1 tyk Nobel» ogsaa blive
+mere forstaaeligt som sigtende til en 3 (?) dobbelt Nobel*». 878.7 / 61 = 14.4 g — the
+standard Nobel; he places the coinage in the Galster 45 / Schou 1532 Nr. 1 type (13.55 and
+15.08 g).
+- **The two readings conflict:** Wilcke — 21 pieces averaging triple weight; Ernst — 61
+  ordinary Nobler plus one thick (probably triple) Nobel. The account's original numeral
+  would decide it (§8 Q13).
+
+**Search for anything else on triple Nobler of 1532 (2026-10-11):**
+- danskmoent type pages `1nobel`/`2nobel`/`3nobel`: multiples are Hans only — 3 Nobel 1496
+  (Galster 25, Unik), 2 Nobel 1502 (Galster 26, Unik); none for Frederik I.
+- Our seeds (galster, numista, kmk, bruun, ikmk): Frederik I Nobler are 1 Nobel only
+  (Galster 45 / KMM 680125, 680126 / Numista 428544; Ribe types 68, 69). Bruun lot text:
+  «only 20 remain» of all Danish Nobles.
+- Cached Wilcke 7-1…7-8, Galster «Danmarks Mønter», Bruun Part I, Hede: no other mention of
+  such pieces; the 1533 inventory (Ernst, quoting Nye danske Magazin VI) lists «VI gulden
+  stucke van kon. Maits eygen munte» between Portugaløsere and double ducats — Ernst: possibly
+  the 1532 Nobel; no weight.
+- Result: the account is the only source for such pieces; no coin of triple weight is
+  known, and the denomination-by-weight precedent is Hans's 3 Nobel 1496 (44.72 g ≈ 3.06 Lod)
+  and 2 Nobel 1502 (27.9 g ≈ 1.9 Lod). **Hypothesis (curator, 2026-10-11): denomination was
+  determined by weight, no number being on the coin** — consistent with Hans's multiples;
+  not stated by any source and not in the card text.
+- The Phase I text states both readings and that nothing else is attested.
+
+---
+
 ## §6a. Update to §6 (2026-10-11)
 
 - `unified-dk-galster-f1g-68` and `-69` (Ribe): `year_label` **1524-1525** with the
@@ -429,6 +488,9 @@ ignores the old one; being indirect, that end is marked approximate («~»).
     cached Galster/Wilcke/Bruun texts. → a Galster «Unionstidens Udmøntninger» (1972) entry
     for Erik's gold, or the Royal Collection record. Until then the card carries no «first
     gold» claim; the «first dated gold coin of Denmark» line stays (curator, see Q10).
+13. **The Nobler of the 1532–33 account: 21 pieces of average triple weight (Wilcke) or 61
+    ordinary + one thick (Ernst)?** → the account's original (RA, Universitetsarkivet,
+    Konsistorium 52) or Rørdam 1867's printing; any weight record of a 1532 Nobel above ≈ 15 g.
 11. **Is Galster 68 the «Moneta nova aurea Ripensis» gold of Ernst (Jørgensen 25)?** The
     plate legend suggests it; unverified. → Jørgensen's catalogue or the plate itself.
 
