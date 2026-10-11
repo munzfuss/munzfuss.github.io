@@ -9,7 +9,7 @@ citation coverage (C5), and founding/role/phase presence (C1/C2/C3), plus verify
 each cited [ref:KEY] resolves.
 
 Usage:
-    python .claude/skills/fuss-description/describe_helper.py <fuss_key> [--lang de|en|uk] [--field description|card]
+    python .claude/skills/fuss-description/describe_helper.py <fuss_key> [--lang de|en|uk] [--field description|card] [--location <loc>]
     python .claude/skills/fuss-description/describe_helper.py --list         # all fuss keys
 """
 import sys, re, os, json
@@ -160,6 +160,73 @@ def get_description(f, force=None):
     return None, None
 
 
+LOCATIONS_DIR = os.path.join(REPO, "data/v2/locations")
+
+
+def locations_with_fuss(fuss):
+    """Location ids whose `phases` block has this fuss (sorted)."""
+    import glob
+    out = []
+    for fp in sorted(glob.glob(os.path.join(LOCATIONS_DIR, "*.yml"))):
+        d = load(fp)
+        ph = d.get("phases") if isinstance(d, dict) else None
+        if isinstance(ph, dict) and ph.get(fuss):
+            out.append(os.path.basename(fp)[:-4])
+    return out
+
+
+def pick_lang(t, lang):
+    if isinstance(t, dict):
+        return t.get(lang) or t.get("en") or t.get("de") or next(iter(t.values()), "")
+    return t or ""
+
+
+def phase_layers(fuss, f, loc, refkeys, lang):
+    """The per-phase layers of ONE scored variant: the Grundwerte rows (left block of the
+    card) and the phase descriptions of ONE location page. C4 is NOT applied to either:
+    numbers in the rows are the card's data, and phase prose is judged for sourcing/specimens
+    only."""
+    gw = f.get("grundwerte") if isinstance(f.get("grundwerte"), dict) else {}
+    rows = gw.get("rows") or []
+    print(f"====== [{lang}] LEFT BLOCK of the card — Grundwerte rows ({len(rows)}) ======")
+    print("  (numbers here are the card's data: C4 does not apply; read these for C3 phase "
+          "differentiators and C1 decree rows)")
+    for r in rows:
+        key = strip_tags(pick_lang(r.get("key"), lang)).strip()
+        val = pick_lang(r.get("value"), lang)
+        kind = r.get("kind") or "phase"
+        cites = len(cited_keys(val)[0])
+        spec = sorted(set(re.findall(SPECIMEN, strip_tags(val), re.I)))
+        print(f"  [{kind:6}] {key[:96]}   (cites={cites}{', SPECIMEN-FLAG ' + str(spec) if spec else ''})")
+    print()
+    if not loc:
+        print("====== PHASE DESCRIPTIONS (details) — NOT scored: no location chosen ======")
+        locs = locations_with_fuss(fuss)
+        print(f"  This fuss has phases on: {', '.join(locs) or 'no location'}. A scoring covers ONE "
+              f"description variant — pass --location <loc> for the page being rated.")
+        print()
+        return
+    d = load(os.path.join(LOCATIONS_DIR, loc + ".yml"))
+    phs = (d.get("phases") or {}).get(fuss) or []
+    print(f"====== [{lang}] PHASE DESCRIPTIONS (details) — location '{loc}' ({len(phs)} phase(s)) ======")
+    if not phs:
+        print(f"  '{fuss}' has no phases on '{loc}'.")
+    for p in phs:
+        title = strip_tags(pick_lang(p.get("title"), lang))
+        desc = pick_lang(p.get("description"), lang)
+        sc = scan_lang(desc, refkeys) if desc else None
+        print(f"  Phase {p.get('id')}: {title[:90]}")
+        if not desc:
+            print("     (no description)"); continue
+        print(f"     C5 cites={sc['c5_cite_count']}/{sc['c5_sentences']} sentence(s)"
+              + (f"  UNRESOLVED={sc['c5_unresolved_refs']}" if sc['c5_unresolved_refs'] else "")
+              + (f"  uncited-claims={len(sc['c5_uncited_claim_sentences'])}" if sc['c5_uncited_claim_sentences'] else ""))
+        c6 = sc['c6_specimens'] + sc['c6_catalogue'] + sc['c6_mintmasters']
+        print(f"     C6 flags={c6 or 'none'}   C1: decree={sc['c1_decree']} ruler={sc['c1_ruler']} "
+              f"year={sc['c1_year']}   C2 role tokens={sc['c2_role_tokens'] or '—'}")
+    print()
+
+
 def main():
     if "--list" in sys.argv:
         data = load(FUESSE)
@@ -230,6 +297,14 @@ def main():
         print(f"     <- auction/lot/grade/unique + catalogue-number-in-prose (Hede f2h3, Galster 131) "
               f"+ one-issue mintmaster ALL count as §7a C6 intrusions in a fuss description")
         print()
+    loc = None
+    if "--location" in sys.argv:
+        loc = sys.argv[sys.argv.index("--location") + 1]
+    else:
+        locs = locations_with_fuss(fuss)
+        if len(locs) == 1:
+            loc = locs[0]
+    phase_layers(fuss, f, loc, refkeys, (only or "uk"))
     print("Apply the SKILL.md rubric to finalise X/10. Signals are candidates, not verdicts —"
           " verify sources (§0b) before deducting or awarding C5.")
 

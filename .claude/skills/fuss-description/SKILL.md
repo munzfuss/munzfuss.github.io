@@ -35,9 +35,34 @@ The helper reads `description` when present, else the card text of a flagged fus
 which it read (`--field description|card` forces one; `--list` marks `[desc]` / `[card]` /
 `[no desc]`). A fuss with neither is reported as having no description.
 
-The skill does NOT touch the Grundwerte rows, the phase descriptions or titles
-(`data/v2/locations/<loc>.yml`), coins, or events; those carry the per-period detail.
-C3 is judged on the description text itself, wherever that text lives.
+## What ONE scoring covers (the evaluated variant)
+
+A scoring rates **one description variant — the one the user asks about**, never a merge of
+several. That variant is three layers of the SAME page:
+
+1. **The description prose** — `description`, or the card text for a flagged fuss (above).
+2. **The left block of the card** — the `grundwerte.rows`: phase rows (title with years and
+   rulers, short parameters) and decree rows (`kind: decree`). Short by design.
+3. **The phase descriptions («details»)** — `phases[<fuss>][].description` in the
+   `data/v2/locations/<loc>.yml` of **the location page being rated**. Phases are local (§7),
+   so a fuss shown on several pages has several variants; the user names the page, or the
+   fuss has only one (the helper picks it). If it has several and none is named, ASK — do
+   not average, and do not read other locations (`--location <loc>`).
+
+How the layers feed the criteria:
+
+| Criterion | Reads |
+|---|---|
+| C1 founding | prose; decree rows and phase descriptions confirm the instrument and ruler |
+| C2 role | prose + phase descriptions |
+| **C3 phases** | **all three** — the differentiator per phase may be carried by the phase rows and the phase descriptions; the prose need not repeat it |
+| **C4 metric-fixation** | **prose only.** Numbers in the left block and in decree rows are the card's data and never count against C4; phase prose is not scored for C4 |
+| C5 sources | every layer's prose (a claim is cited wherever it stands) |
+| C6 specimens | every layer's prose (catalogue numbers, lots, mintmasters in prose are intrusions in the phase text too) |
+
+The helper prints the layers separately (left block, then the phase descriptions of the chosen
+location) with their citation counts and flags; the score is still judgment (§0b). It does NOT
+touch coins or events.
 
 The deliverable is a **score out of 10** against the six criteria below, plus a
 concrete gap list, so a caller can loop `score → fix → re-score` until the
@@ -45,7 +70,7 @@ description clears the threshold. **Default ship threshold: 8.0** (tunable — t
 project may raise it to 9 once descriptions routinely clear 8).
 
 Helper (mechanical signal-scan, candidates not verdicts):
-`python .claude/skills/fuss-description/describe_helper.py <fuss> [--lang de|en|uk] [--field description|card] | --list`
+`python .claude/skills/fuss-description/describe_helper.py <fuss> [--lang de|en|uk] [--field description|card] [--location <loc>] | --list`
 
 ## The six criteria (what a good description contains)
 
@@ -94,7 +119,7 @@ citations (cross-language count drift is `audit_i18n`'s job, not this rubric).
 |---|---|---:|---|
 | C1 | Founding (how/why/by whom) | 2.0 | 0.7 instrument named (decree/treaty/market forcing) · 0.7 ruler/authority named · 0.6 WHY (the forcing). Each part only counts if sourced. |
 | C2 | Role / function | 2.0 | 1.0 monetary function stated · 1.0 placed vs ≥1 other standard (cross-ref). |
-| C3 | Phase differentiators | 1.5 | If phases exist: 1.0 = each phase's key differentiator named · 0.5 = the differentiating axis is explicit. **If NO phases: award the full 1.5** (N/A, not a penalty). |
+| C3 | Phase differentiators | 1.5 | If phases exist: 1.0 = each phase's key differentiator named · 0.5 = the differentiating axis is explicit. Read the whole variant (prose + left block + the chosen location's phase descriptions). **If NO phases: award the full 1.5** (N/A, not a penalty). |
 | C4 | No metric-fixation | 1.5 | Start 1.5; **−0.5** per weight/fineness/carat/piece number that is NOT a whole-standard, law-anchored defining value (i.e. duplicates Grundwerte). Floor 0. |
 | C5 | Every claim sourced (§0) | 2.0 | Start 2.0; **−0.5** per load-bearing claim (founding fact, motivation, role claim, «first/only») with no citation. **Hard cap: any INVENTED claim** (unsourced motive/mintage/singularity) → C5 ≤ 1.0. Unresolved `[ref:KEY]` → −0.5 each. |
 | C6 | No specimen mentions | 1.0 | Start 1.0; **−0.5** per specimen-level intrusion in the PROSE (auction lot, single-piece measure/grade, unique-specimen claim, one-issue mintmaster, provenance, **or a catalogue index number — «Hede f2h3», «Galster 131», «KM 138.2»**). A catalogue number inside a `[ref:KEY]` body is NOT a hit. Floor 0. |
