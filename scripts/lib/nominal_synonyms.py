@@ -312,8 +312,9 @@ def normalise_nominal(nominal: str | None) -> str:
     # KMM seeds never matched their peers on the nominal
     # (tests/test_cross_entity_completeness::test_norm_nominal had been red
     # since 5e4dfce made this the guard's key too). Before the synonyms, so
-    # «2 sk.» still expands; ordinals («2nd», «50th») are left alone.
-    s = re.sub(r"(?<=\d)-?(?=[a-z])(?!(?:st|nd|rd|th)\b)", " ", s)
+    # «2 sk.» still expands; ordinals («2nd», «50th») and a single
+    # sub-letter («1A») are left alone.
+    s = re.sub(r"(?<=\d)-?(?=[a-z]{2})(?!(?:st|nd|rd|th)\b)", " ", s)
     for pattern, replacement in NOMINAL_SYNONYMS:
         s = re.sub(pattern, replacement, s)
     # Removing a leading «dansk» above leaves a space behind.
