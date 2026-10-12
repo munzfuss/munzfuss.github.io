@@ -738,6 +738,14 @@ def _raadata_place(loc: str) -> str:
     return loc
 
 
+# FP 1780 records whose web page, although it carries the same inventory base
+# number (the off-by-one class), describes a different coin than the API
+# record: 167065 (API 2 skilling ↔ page søsling lybsk, Glückstadt, Hede 178B),
+# 167067 (søsling lybsk ↔ skilling Christiania Hede 18), 167107 (2 skilling
+# norsk ↔ skilling Hede 18), 167151 (skilling norsk 1643 ↔ 2 skilling
+# København Hede 122A 1648). Curator-approved 2026-10-12, SOURCES §13.19.
+_RAADATA_INCOHERENT_IDS = frozenset({"167065", "167067", "167107", "167151"})
+
 _INV_RE = re.compile(r"^\s*([A-Za-z]+)\s+(\d+)")
 
 
@@ -749,6 +757,8 @@ def _raadata_other_object(src: dict, rd: dict) -> bool:
     suffix only (leading zeros, «,x2» vs «,1», the FP 1780 off-by-one) is NOT
     treated as another object — see docs/SOURCES.md §13 (KMM id/inventory
     mismatch)."""
+    if str(src.get("id")) in _RAADATA_INCOHERENT_IDS:
+        return True
     a = _INV_RE.match(src.get("objectIdentification") or "")
     w = _INV_RE.match(rd.get("identifikation") or "")
     if not a or not w:

@@ -1971,7 +1971,11 @@ nominal/authority/typeNumber against page place/klassifikationer/beskrivelser):
   incoherent — 167065 (API 2 skilling ↔ page søsling lybsk, Glückstadt,
   Hede 178B), 167067 (søsling lybsk ↔ skilling Hede 18 Christiania),
   167107, 167137, 167151, 167095, 167103 (missing «norsk» only), 741043
-  (søsling ↔ sechsling, actually coherent). Open: curator call.
+  (søsling ↔ sechsling, actually coherent). Neighbour comparison shows the
+  page CONTENT follows the id, only the printed inventory labels are shifted.
+  167137, 167095, 167103 are coherent after all; 167065, 167067, 167107 and
+  167151 describe another coin and are listed in `_RAADATA_INCOHERENT_IDS`
+  (curator 2026-10-12): treated like class C.
 - **C — another object entirely, 45 ids**: the base number differs and EVERY
   page is an FP 3423.* German **Hulpenning** (Kirial/Oertzen/Jesse numbers,
   places Hamborg/Mecklenburg/Lübeck/Lüneburg/«Tyskland - ?»), while the API
@@ -1985,7 +1989,7 @@ Consequence for citation: our seed source URL
 `samlinger.natmus.dk/KMM/object/<id>` shows the Hulpenning for class C, so
 the link does not lead the reader to the coin cited; the `ref` text
 («KMM <id> (Inv. FP …)») carries the API inventory number, which is the
-correct one. Proposed fix (pending curator): skip enrichment when prefix or
-base number differ (class C only); measured 2026-10-12 — seed diff touches
+correct one. Fix (curator-approved, c686bde): skip enrichment when prefix or
+base number differ (class C only), and say so in the ref; measured 2026-10-12 — seed diff touches
 only class-C mint fields + 2 §9a thinning folds, re-flow `verify_reflow`
 0 losses, 6 seed_unsorted finals fold into existing classes.
