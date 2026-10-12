@@ -1018,13 +1018,13 @@ fuss_periods:
         soll_rau_g: 3.248
         soll_fein_g: 2.50367
         soll_fein_by_phase:
-          # Only a dated ordinance may set a phase's own target. Phase I: Møntordning
-          # Sommer 1514 + 25 Feb 1524, 18 Karat. Phase II: Møntedikt Ferdinands I.
-          # 19 Aug 1559, 18½ Karat. Phase 0 (pre-1514), phase III (ducal 1619-1627)
-          # and phase IV (Christian IV 1625-1632) have no instrument of their own and
-          # fall back to the scalar (18½), so their shortfall stays visible.
+          # Per-phase targets follow the period's spec row in the Grundwerte card.
+          # Phase 0 (Hans, no Danish ordinance): 71⅓ per rough Cologne mark @ 17¾
+          # Karat — the Worms 1495 count with the assayed fineness (Valvationstag
+          # 1551); curator direction 2026-10-12. Phases without an entry fall back
+          # to the scalar (72 @ 18½, Reichsmünzordnung 1559).
           III: 2.50367
-          '0': 2.52707
+          '0': 2.42462
           I.a: 2.436
           I.b: 2.48133
           II.a: 2.45877
@@ -1038,14 +1038,22 @@ fuss_periods:
         soll_fein_g: 5.00733
         soll_fein_by_phase:
           III: 5.00733
-          '0': 5.05414
+          '0': 4.84923
           I.a: 4.872
           I.b: 4.96267
           II.a: 4.91754
           II.b: 5.05414
         soll_rau_by_phase:
+          '0': 6.55672
           II.a: 6.55672
           II.b: 6.55672
+      1/2:
+        soll_rau_g: 1.624
+        soll_fein_g: 1.25184
+        soll_fein_by_phase:
+          '0': 1.21231
+        soll_rau_by_phase:
+          '0': 1.63918
     closing_label:
       de: Zusammenfassung
       en: Summary
