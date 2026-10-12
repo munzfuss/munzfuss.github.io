@@ -305,8 +305,19 @@ def normalise_nominal(nominal: str | None) -> str:
     s = re.sub(r"[‒–—]+", "-", s)
     s = re.sub(r"\s+", " ", s)
     s = _preprocess(s)   # fractions, d'or, parenthetical glosses, region prefix, diacritics
+    # The count and the unit are one key whatever separates them: the KMM
+    # records write «2-skilling», «3-skilling lybsk», «10-Øre», «2skilling»,
+    # «16rdr» for what every other source writes «2 Skilling». Until
+    # 2026-10-11 the key kept the hyphen / the run-together form, so ~170
+    # KMM seeds never matched their peers on the nominal
+    # (tests/test_cross_entity_completeness::test_norm_nominal had been red
+    # since 5e4dfce made this the guard's key too). Before the synonyms, so
+    # «2 sk.» still expands; ordinals («2nd», «50th») are left alone.
+    s = re.sub(r"(?<=\d)-?(?=[a-z])(?!(?:st|nd|rd|th)\b)", " ", s)
     for pattern, replacement in NOMINAL_SYNONYMS:
         s = re.sub(pattern, replacement, s)
+    # Removing a leading «dansk» above leaves a space behind.
+    s = s.strip()
     # Strip leading «1 » (implicit-one quantifier). Applied AFTER synonyms
     # so «1 Rose Noble» → «1 rosenobel» → «rosenobel» works correctly.
     # `^1\s+` won't touch «1/2», «1.5», «10», «1A», «2 Nobles». The
