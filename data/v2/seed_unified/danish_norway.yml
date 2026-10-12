@@ -2,8 +2,8 @@
 # Generated 2026-10-12 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 4711 per-source seed entries.
-# Output: 2187 unified entries (one per physical coin).
+# Input: 4718 per-source seed entries.
+# Output: 2149 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -25420,12 +25420,20 @@ coins:
       hede:
         - '71'
         - 71A
+        - 71A-71C
         - 71B
         - 71C
       hede_volume: nf3h
       schou:
+        - '48'
         - '50'
         - 64-65
+      numista: '82133'
+      others:
+        - Brekke# 227-236
+        - Thesen# 232-241
+        - Rønning# 69
+      skaare: '563'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -25441,8 +25449,52 @@ coins:
       - value: 0.156
         source: numismaster
       - value: 0.156
+        source: numista
+      - value: 0.156
         source: ucoin
     weight_rough_g:
+      - value: 0.565
+        source: kmk
+      - value: 0.57
+        source: kmk
+      - value: 0.59
+        source: kmk
+      - value: 0.62
+        source: kmk
+      - value: 0.64
+        source: kmk
+      - value: 0.65
+        source: kmk
+      - value: 0.7
+        source: kmk
+      - value: 0.71
+        source: kmk
+      - value: 0.72
+        source: kmk
+      - value: 0.73
+        source: kmk
+      - value: 0.74
+        source: kmk
+      - value: 0.75
+        source: kmk
+      - value: 0.76
+        source: kmk
+      - value: 0.77
+        source: kmk
+      - value: 0.8
+        source: kmk
+      - value: 0.82
+        source: kmk
+      - value: 0.83
+        source: kmk
+      - value: 0.85
+        source: kmk
+      - value: 0.88
+        source: kmk
+      - value: 0.89
+        source: kmk
+      - value: 0.91
+        source: kmk
       - value: 0.92
         source: ngc
       - value: 0.92
@@ -25451,9 +25503,15 @@ coins:
         source: ucoin
       - value: 0.921
         source: hede
+      - value: 0.921
+        source: numista
+      - value: 1.1
+        source: kmk
     diameter_mm:
       - value: 15.0
         source: ucoin
+      - value: 16.5
+        source: numista
     sources:
       - type: literature
         url: https://numismaster.com/MC_110595
@@ -25461,21 +25519,1383 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/norge/nf3h71.htm
         ref: danskmoent.dk (Hede nf3h71A)
+      - type: literature
+        url: https://en.numista.com/82133
+        ref: Numista N#82133 — NO 1 Skilling - Frederik III 1649-1670
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-skilling-1649-1670/?tid=143755
         ref: ucoin
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122420
+        ref: KMM 122420 (Inv. FP 4443.7)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122421
+        ref: KMM 122421 (Inv. FP 4443.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/133325
+        ref: KMM 133325 (Inv. FP 9374.120)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/149255
+        ref: KMM 149255 (Inv. KP 1656.1058)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/149256
+        ref: KMM 149256 (Inv. KP 1656.1057)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/149257
+        ref: KMM 149257 (Inv. KP 1656.1056)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155251
+        ref: KMM 155251 (Inv. FP 3115.105)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/352711
+        ref: KMM 352711 (Inv. FP 5113.63)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155295
+        ref: KMM 155295 (Inv. FP 3115.110)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155296
+        ref: KMM 155296 (Inv. FP 3115.109)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155297
+        ref: KMM 155297 (Inv. FP 3115.108)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155298
+        ref: KMM 155298 (Inv. FP 3115.107)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/352707
+        ref: KMM 352707 (Inv. FP 5113.67)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/352708
+        ref: KMM 352708 (Inv. FP 5113.66)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155299
+        ref: KMM 155299 (Inv. FP 3115.106)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/403373
+        ref: KMM 403373 (Inv. FP 3479.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157800
+        ref: KMM 157800 (Inv. FP 1466.232)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157807
+        ref: KMM 157807 (Inv. FP 1466.225)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157808
+        ref: KMM 157808 (Inv. FP 1466.224)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157801
+        ref: KMM 157801 (Inv. FP 1466.231)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157802
+        ref: KMM 157802 (Inv. FP 1466.230)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157803
+        ref: KMM 157803 (Inv. FP 1466.229)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157804
+        ref: KMM 157804 (Inv. FP 1466.228)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157805
+        ref: KMM 157805 (Inv. FP 1466.227)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157806
+        ref: KMM 157806 (Inv. FP 1466.226)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157809
+        ref: KMM 157809 (Inv. FP 1466.223)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157810
+        ref: KMM 157810 (Inv. FP 1466.222)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157811
+        ref: KMM 157811 (Inv. FP 1466.221)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157812
+        ref: KMM 157812 (Inv. FP 1466.220)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157813
+        ref: KMM 157813 (Inv. FP 1466.219)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159761
+        ref: KMM 159761 (Inv. FP 3931.141)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159792
+        ref: KMM 159792 (Inv. FP 3931.142)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159794
+        ref: KMM 159794 (Inv. FP 3931.143)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/160378
+        ref: KMM 160378 (Inv. FP 3326.12)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/160380
+        ref: KMM 160380 (Inv. FP 3326.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/160382
+        ref: KMM 160382 (Inv. FP 3326.10)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/160384
+        ref: KMM 160384 (Inv. FP 3326.9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/161188
+        ref: KMM 161188 (Inv. FP 2261.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/161246
+        ref: KMM 161246 (Inv. FP 4408.9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167196
+        ref: KMM 167196 (Inv. FP 1780.249)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167201
+        ref: KMM 167201 (Inv. FP 1780.290)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167221
+        ref: KMM 167221 (Inv. FP 1780.275)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167234
+        ref: KMM 167234 (Inv. FP 1780.280)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167235
+        ref: KMM 167235 (Inv. FP 1780.279)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167202
+        ref: KMM 167202 (Inv. FP 1780.289)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167216
+        ref: KMM 167216 (Inv. FP 1780.294)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167236
+        ref: KMM 167236 (Inv. FP 1780.314)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167237
+        ref: KMM 167237 (Inv. FP 1780.315)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167250
+        ref: KMM 167250 (Inv. FP 1780.311)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167251
+        ref: KMM 167251 (Inv. FP 1780.310)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167244
+        ref: KMM 167244 (Inv. FP 1780.305)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167245
+        ref: KMM 167245 (Inv. FP 1780.306)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167254
+        ref: KMM 167254 (Inv. FP 1780.322)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167258
+        ref: KMM 167258 (Inv. FP 1780.323)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167255
+        ref: KMM 167255 (Inv. FP 1780.321)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167256
+        ref: KMM 167256 (Inv. FP 1780.320)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167260
+        ref: KMM 167260 (Inv. FP 1780.325)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/174284
+        ref: KMM 174284 (Inv. FP 8166.96)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/174288
+        ref: KMM 174288 (Inv. FP 8166.97)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/174307
+        ref: KMM 174307 (Inv. FP 8166.94)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201081
+        ref: KMM 201081 (Inv. FP 3108.11469)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201084
+        ref: KMM 201084 (Inv. FP 3108.11466)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201085
+        ref: KMM 201085 (Inv. FP 3108.11465)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201086
+        ref: KMM 201086 (Inv. FP 3108.11464)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201087
+        ref: KMM 201087 (Inv. FP 3108.11463)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201088
+        ref: KMM 201088 (Inv. FP 3108.11462)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201089
+        ref: KMM 201089 (Inv. FP 3108.11461)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201090
+        ref: KMM 201090 (Inv. FP 3108.11460)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201091
+        ref: KMM 201091 (Inv. FP 3108.11459)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201092
+        ref: KMM 201092 (Inv. FP 3108.11458)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201093
+        ref: KMM 201093 (Inv. FP 3108.11457)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201094
+        ref: KMM 201094 (Inv. FP 3108.11456)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201082
+        ref: KMM 201082 (Inv. FP 3108.11468)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201083
+        ref: KMM 201083 (Inv. FP 3108.11467)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201095
+        ref: KMM 201095 (Inv. FP 3108.11455)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201098
+        ref: KMM 201098 (Inv. FP 3108.11452)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201099
+        ref: KMM 201099 (Inv. FP 3108.11451)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201100
+        ref: KMM 201100 (Inv. FP 3108.11450)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201096
+        ref: KMM 201096 (Inv. FP 3108.11454)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201097
+        ref: KMM 201097 (Inv. FP 3108.11453)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201101
+        ref: KMM 201101 (Inv. FP 3108.11449)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201104
+        ref: KMM 201104 (Inv. FP 3108.11446)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201105
+        ref: KMM 201105 (Inv. FP 3108.11445)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201106
+        ref: KMM 201106 (Inv. FP 3108.11444)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201102
+        ref: KMM 201102 (Inv. FP 3108.11448)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201103
+        ref: KMM 201103 (Inv. FP 3108.11447)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201107
+        ref: KMM 201107 (Inv. FP 3108.11443)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201110
+        ref: KMM 201110 (Inv. FP 3108.11440)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201111
+        ref: KMM 201111 (Inv. FP 3108.11439)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201112
+        ref: KMM 201112 (Inv. FP 3108.11438)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201113
+        ref: KMM 201113 (Inv. FP 3108.11437)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201114
+        ref: KMM 201114 (Inv. FP 3108.11436)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201115
+        ref: KMM 201115 (Inv. FP 3108.11435)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201116
+        ref: KMM 201116 (Inv. FP 3108.11434)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201117
+        ref: KMM 201117 (Inv. FP 3108.11433)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201118
+        ref: KMM 201118 (Inv. FP 3108.11432)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201119
+        ref: KMM 201119 (Inv. FP 3108.11431)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201120
+        ref: KMM 201120 (Inv. FP 3108.11430)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201121
+        ref: KMM 201121 (Inv. FP 3108.11429)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201122
+        ref: KMM 201122 (Inv. FP 3108.11428)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201123
+        ref: KMM 201123 (Inv. FP 3108.11427)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201124
+        ref: KMM 201124 (Inv. FP 3108.11426)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201125
+        ref: KMM 201125 (Inv. FP 3108.11425)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201126
+        ref: KMM 201126 (Inv. FP 3108.11424)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201108
+        ref: KMM 201108 (Inv. FP 3108.11442)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201109
+        ref: KMM 201109 (Inv. FP 3108.11441)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201127
+        ref: KMM 201127 (Inv. FP 3108.11423)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201130
+        ref: KMM 201130 (Inv. FP 3108.11420)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201131
+        ref: KMM 201131 (Inv. FP 3108.11419)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201132
+        ref: KMM 201132 (Inv. FP 3108.11418)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201133
+        ref: KMM 201133 (Inv. FP 3108.11417)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201134
+        ref: KMM 201134 (Inv. FP 3108.11416)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201135
+        ref: KMM 201135 (Inv. FP 3108.11415)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201136
+        ref: KMM 201136 (Inv. FP 3108.11414)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201137
+        ref: KMM 201137 (Inv. FP 3108.11413)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201138
+        ref: KMM 201138 (Inv. FP 3108.11412)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201139
+        ref: KMM 201139 (Inv. FP 3108.11411)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201140
+        ref: KMM 201140 (Inv. FP 3108.11410)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201141
+        ref: KMM 201141 (Inv. FP 3108.11409)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201142
+        ref: KMM 201142 (Inv. FP 3108.11408)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201143
+        ref: KMM 201143 (Inv. FP 3108.11407)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201144
+        ref: KMM 201144 (Inv. FP 3108.11406)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201145
+        ref: KMM 201145 (Inv. FP 3108.11405)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201146
+        ref: KMM 201146 (Inv. FP 3108.11404)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201147
+        ref: KMM 201147 (Inv. FP 3108.11403)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201148
+        ref: KMM 201148 (Inv. FP 3108.11402)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201149
+        ref: KMM 201149 (Inv. FP 3108.11401)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201150
+        ref: KMM 201150 (Inv. FP 3108.11400)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201151
+        ref: KMM 201151 (Inv. FP 3108.11399)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201152
+        ref: KMM 201152 (Inv. FP 3108.11398)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201153
+        ref: KMM 201153 (Inv. FP 3108.11397)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201154
+        ref: KMM 201154 (Inv. FP 3108.11396)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201155
+        ref: KMM 201155 (Inv. FP 3108.11395)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201156
+        ref: KMM 201156 (Inv. FP 3108.11394)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201128
+        ref: KMM 201128 (Inv. FP 3108.11422)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201129
+        ref: KMM 201129 (Inv. FP 3108.11421)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201157
+        ref: KMM 201157 (Inv. FP 3108.11393)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201160
+        ref: KMM 201160 (Inv. FP 3108.11390)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201161
+        ref: KMM 201161 (Inv. FP 3108.11389)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201162
+        ref: KMM 201162 (Inv. FP 3108.11388)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201163
+        ref: KMM 201163 (Inv. FP 3108.11387)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201164
+        ref: KMM 201164 (Inv. FP 3108.11386)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201165
+        ref: KMM 201165 (Inv. FP 3108.11385)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201166
+        ref: KMM 201166 (Inv. FP 3108.11384)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201167
+        ref: KMM 201167 (Inv. FP 3108.11383)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201168
+        ref: KMM 201168 (Inv. FP 3108.11382)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201169
+        ref: KMM 201169 (Inv. FP 3108.11381)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201170
+        ref: KMM 201170 (Inv. FP 3108.11380)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201171
+        ref: KMM 201171 (Inv. FP 3108.11379)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201172
+        ref: KMM 201172 (Inv. FP 3108.11378)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201173
+        ref: KMM 201173 (Inv. FP 3108.11377)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201174
+        ref: KMM 201174 (Inv. FP 3108.11376)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201175
+        ref: KMM 201175 (Inv. FP 3108.11375)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201176
+        ref: KMM 201176 (Inv. FP 3108.11374)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201177
+        ref: KMM 201177 (Inv. FP 3108.11373)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201178
+        ref: KMM 201178 (Inv. FP 3108.11372)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201179
+        ref: KMM 201179 (Inv. FP 3108.11371)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201180
+        ref: KMM 201180 (Inv. FP 3108.11370)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201181
+        ref: KMM 201181 (Inv. FP 3108.11369)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201182
+        ref: KMM 201182 (Inv. FP 3108.11368)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201183
+        ref: KMM 201183 (Inv. FP 3108.11367)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201184
+        ref: KMM 201184 (Inv. FP 3108.11366)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201185
+        ref: KMM 201185 (Inv. FP 3108.11365)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201186
+        ref: KMM 201186 (Inv. FP 3108.11364)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201187
+        ref: KMM 201187 (Inv. FP 3108.11363)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201188
+        ref: KMM 201188 (Inv. FP 3108.11362)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201189
+        ref: KMM 201189 (Inv. FP 3108.11361)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201158
+        ref: KMM 201158 (Inv. FP 3108.11392)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201159
+        ref: KMM 201159 (Inv. FP 3108.11391)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201190
+        ref: KMM 201190 (Inv. FP 3108.11360)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201193
+        ref: KMM 201193 (Inv. FP 3108.11357)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201194
+        ref: KMM 201194 (Inv. FP 3108.11356)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201195
+        ref: KMM 201195 (Inv. FP 3108.11355)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201196
+        ref: KMM 201196 (Inv. FP 3108.11354)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201197
+        ref: KMM 201197 (Inv. FP 3108.11353)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201198
+        ref: KMM 201198 (Inv. FP 3108.11352)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201199
+        ref: KMM 201199 (Inv. FP 3108.11351)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201200
+        ref: KMM 201200 (Inv. FP 3108.11350)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201201
+        ref: KMM 201201 (Inv. FP 3108.11349)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201202
+        ref: KMM 201202 (Inv. FP 3108.11348)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201203
+        ref: KMM 201203 (Inv. FP 3108.11347)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201204
+        ref: KMM 201204 (Inv. FP 3108.11346)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201205
+        ref: KMM 201205 (Inv. FP 3108.11345)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201206
+        ref: KMM 201206 (Inv. FP 3108.11344)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201207
+        ref: KMM 201207 (Inv. FP 3108.11343)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201208
+        ref: KMM 201208 (Inv. FP 3108.11342)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201209
+        ref: KMM 201209 (Inv. FP 3108.11341)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201210
+        ref: KMM 201210 (Inv. FP 3108.11340)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201211
+        ref: KMM 201211 (Inv. FP 3108.11339)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201212
+        ref: KMM 201212 (Inv. FP 3108.11338)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201213
+        ref: KMM 201213 (Inv. FP 3108.11337)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201214
+        ref: KMM 201214 (Inv. FP 3108.11336)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201215
+        ref: KMM 201215 (Inv. FP 3108.11335)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201216
+        ref: KMM 201216 (Inv. FP 3108.11334)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201217
+        ref: KMM 201217 (Inv. FP 3108.11333)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201218
+        ref: KMM 201218 (Inv. FP 3108.11332)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201219
+        ref: KMM 201219 (Inv. FP 3108.11331)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201220
+        ref: KMM 201220 (Inv. FP 3108.11330)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201221
+        ref: KMM 201221 (Inv. FP 3108.11329)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201222
+        ref: KMM 201222 (Inv. FP 3108.11328)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201223
+        ref: KMM 201223 (Inv. FP 3108.11327)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201224
+        ref: KMM 201224 (Inv. FP 3108.11326)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201225
+        ref: KMM 201225 (Inv. FP 3108.11325)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201226
+        ref: KMM 201226 (Inv. FP 3108.11324)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201227
+        ref: KMM 201227 (Inv. FP 3108.11323)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201228
+        ref: KMM 201228 (Inv. FP 3108.11322)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201229
+        ref: KMM 201229 (Inv. FP 3108.11321)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201230
+        ref: KMM 201230 (Inv. FP 3108.11320)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201231
+        ref: KMM 201231 (Inv. FP 3108.11319)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201191
+        ref: KMM 201191 (Inv. FP 3108.11359)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201192
+        ref: KMM 201192 (Inv. FP 3108.11358)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201232
+        ref: KMM 201232 (Inv. FP 3108.11318)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201235
+        ref: KMM 201235 (Inv. FP 3108.11315)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201236
+        ref: KMM 201236 (Inv. FP 3108.11314)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201237
+        ref: KMM 201237 (Inv. FP 3108.11313)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201238
+        ref: KMM 201238 (Inv. FP 3108.11312)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201239
+        ref: KMM 201239 (Inv. FP 3108.11311)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201240
+        ref: KMM 201240 (Inv. FP 3108.11310)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201241
+        ref: KMM 201241 (Inv. FP 3108.11309)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201242
+        ref: KMM 201242 (Inv. FP 3108.11308)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201243
+        ref: KMM 201243 (Inv. FP 3108.11307)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201244
+        ref: KMM 201244 (Inv. FP 3108.11306)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201245
+        ref: KMM 201245 (Inv. FP 3108.11305)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201246
+        ref: KMM 201246 (Inv. FP 3108.11304)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201247
+        ref: KMM 201247 (Inv. FP 3108.11303)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201248
+        ref: KMM 201248 (Inv. FP 3108.11302)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201249
+        ref: KMM 201249 (Inv. FP 3108.11301)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201250
+        ref: KMM 201250 (Inv. FP 3108.11300)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201251
+        ref: KMM 201251 (Inv. FP 3108.11299)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201252
+        ref: KMM 201252 (Inv. FP 3108.11298)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201253
+        ref: KMM 201253 (Inv. FP 3108.11297)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201254
+        ref: KMM 201254 (Inv. FP 3108.11296)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201255
+        ref: KMM 201255 (Inv. FP 3108.11295)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201256
+        ref: KMM 201256 (Inv. FP 3108.11294)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201257
+        ref: KMM 201257 (Inv. FP 3108.11293)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201258
+        ref: KMM 201258 (Inv. FP 3108.11292)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201259
+        ref: KMM 201259 (Inv. FP 3108.11291)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201260
+        ref: KMM 201260 (Inv. FP 3108.11290)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201261
+        ref: KMM 201261 (Inv. FP 3108.11289)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201262
+        ref: KMM 201262 (Inv. FP 3108.11288)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201263
+        ref: KMM 201263 (Inv. FP 3108.11287)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201264
+        ref: KMM 201264 (Inv. FP 3108.11286)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201265
+        ref: KMM 201265 (Inv. FP 3108.11285)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201266
+        ref: KMM 201266 (Inv. FP 3108.11284)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201267
+        ref: KMM 201267 (Inv. FP 3108.11283)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201268
+        ref: KMM 201268 (Inv. FP 3108.11282)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201269
+        ref: KMM 201269 (Inv. FP 3108.11281)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201270
+        ref: KMM 201270 (Inv. FP 3108.11280)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201271
+        ref: KMM 201271 (Inv. FP 3108.11279)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201272
+        ref: KMM 201272 (Inv. FP 3108.11278)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201273
+        ref: KMM 201273 (Inv. FP 3108.11277)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201274
+        ref: KMM 201274 (Inv. FP 3108.11276)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201275
+        ref: KMM 201275 (Inv. FP 3108.11275)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201276
+        ref: KMM 201276 (Inv. FP 3108.11274)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201277
+        ref: KMM 201277 (Inv. FP 3108.11273)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201278
+        ref: KMM 201278 (Inv. FP 3108.11272)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201279
+        ref: KMM 201279 (Inv. FP 3108.11271)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201280
+        ref: KMM 201280 (Inv. FP 3108.11270)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201281
+        ref: KMM 201281 (Inv. FP 3108.11269)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201282
+        ref: KMM 201282 (Inv. FP 3108.11268)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201283
+        ref: KMM 201283 (Inv. FP 3108.11267)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201284
+        ref: KMM 201284 (Inv. FP 3108.11266)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201285
+        ref: KMM 201285 (Inv. FP 3108.11265)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201286
+        ref: KMM 201286 (Inv. FP 3108.11264)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201287
+        ref: KMM 201287 (Inv. FP 3108.11263)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201288
+        ref: KMM 201288 (Inv. FP 3108.11262)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201289
+        ref: KMM 201289 (Inv. FP 3108.11261)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201290
+        ref: KMM 201290 (Inv. FP 3108.11260)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201291
+        ref: KMM 201291 (Inv. FP 3108.11259)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201292
+        ref: KMM 201292 (Inv. FP 3108.11258)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201293
+        ref: KMM 201293 (Inv. FP 3108.11257)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201294
+        ref: KMM 201294 (Inv. FP 3108.11256)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201295
+        ref: KMM 201295 (Inv. FP 3108.11255)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201296
+        ref: KMM 201296 (Inv. FP 3108.11254)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201297
+        ref: KMM 201297 (Inv. FP 3108.11253)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201298
+        ref: KMM 201298 (Inv. FP 3108.11252)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201299
+        ref: KMM 201299 (Inv. FP 3108.11251)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201300
+        ref: KMM 201300 (Inv. FP 3108.11250)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201301
+        ref: KMM 201301 (Inv. FP 3108.11249)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201302
+        ref: KMM 201302 (Inv. FP 3108.11248)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201303
+        ref: KMM 201303 (Inv. FP 3108.11247)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201304
+        ref: KMM 201304 (Inv. FP 3108.11246)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201305
+        ref: KMM 201305 (Inv. FP 3108.11245)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201306
+        ref: KMM 201306 (Inv. FP 3108.11244)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201307
+        ref: KMM 201307 (Inv. FP 3108.11243)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201308
+        ref: KMM 201308 (Inv. FP 3108.11242)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201309
+        ref: KMM 201309 (Inv. FP 3108.11241)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201310
+        ref: KMM 201310 (Inv. FP 3108.11240)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201311
+        ref: KMM 201311 (Inv. FP 3108.11239)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201312
+        ref: KMM 201312 (Inv. FP 3108.11238)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201313
+        ref: KMM 201313 (Inv. FP 3108.11237)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201314
+        ref: KMM 201314 (Inv. FP 3108.11236)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201315
+        ref: KMM 201315 (Inv. FP 3108.11235)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201316
+        ref: KMM 201316 (Inv. FP 3108.11234)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201317
+        ref: KMM 201317 (Inv. FP 3108.11233)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201318
+        ref: KMM 201318 (Inv. FP 3108.11232)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201319
+        ref: KMM 201319 (Inv. FP 3108.11231)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201320
+        ref: KMM 201320 (Inv. FP 3108.11230)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201321
+        ref: KMM 201321 (Inv. FP 3108.11229)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201322
+        ref: KMM 201322 (Inv. FP 3108.11228)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201323
+        ref: KMM 201323 (Inv. FP 3108.11227)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201324
+        ref: KMM 201324 (Inv. FP 3108.11226)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201325
+        ref: KMM 201325 (Inv. FP 3108.11225)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201326
+        ref: KMM 201326 (Inv. FP 3108.11224)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201327
+        ref: KMM 201327 (Inv. FP 3108.11223)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201328
+        ref: KMM 201328 (Inv. FP 3108.11222)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201329
+        ref: KMM 201329 (Inv. FP 3108.11221)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201330
+        ref: KMM 201330 (Inv. FP 3108.11220)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201331
+        ref: KMM 201331 (Inv. FP 3108.11219)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201332
+        ref: KMM 201332 (Inv. FP 3108.11218)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201333
+        ref: KMM 201333 (Inv. FP 3108.11217)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201334
+        ref: KMM 201334 (Inv. FP 3108.11216)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201335
+        ref: KMM 201335 (Inv. FP 3108.11215)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201336
+        ref: KMM 201336 (Inv. FP 3108.11214)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201337
+        ref: KMM 201337 (Inv. FP 3108.11213)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201338
+        ref: KMM 201338 (Inv. FP 3108.11212)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201339
+        ref: KMM 201339 (Inv. FP 3108.11211)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201340
+        ref: KMM 201340 (Inv. FP 3108.11210)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201341
+        ref: KMM 201341 (Inv. FP 3108.11209)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201342
+        ref: KMM 201342 (Inv. FP 3108.11208)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201343
+        ref: KMM 201343 (Inv. FP 3108.11207)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201233
+        ref: KMM 201233 (Inv. FP 3108.11317)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201234
+        ref: KMM 201234 (Inv. FP 3108.11316)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201344
+        ref: KMM 201344 (Inv. FP 3108.11206)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201347
+        ref: KMM 201347 (Inv. FP 3108.11203)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201348
+        ref: KMM 201348 (Inv. FP 3108.11202)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201349
+        ref: KMM 201349 (Inv. FP 3108.11201)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201350
+        ref: KMM 201350 (Inv. FP 3108.11200)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201351
+        ref: KMM 201351 (Inv. FP 3108.11199)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201352
+        ref: KMM 201352 (Inv. FP 3108.11198)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201353
+        ref: KMM 201353 (Inv. FP 3108.11197)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201354
+        ref: KMM 201354 (Inv. FP 3108.11196)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201355
+        ref: KMM 201355 (Inv. FP 3108.11195)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201356
+        ref: KMM 201356 (Inv. FP 3108.11194)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201357
+        ref: KMM 201357 (Inv. FP 3108.11193)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201358
+        ref: KMM 201358 (Inv. FP 3108.11192)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201359
+        ref: KMM 201359 (Inv. FP 3108.11191)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201360
+        ref: KMM 201360 (Inv. FP 3108.11190)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201361
+        ref: KMM 201361 (Inv. FP 3108.11189)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201362
+        ref: KMM 201362 (Inv. FP 3108.11188)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201363
+        ref: KMM 201363 (Inv. FP 3108.11187)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201364
+        ref: KMM 201364 (Inv. FP 3108.11186)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201365
+        ref: KMM 201365 (Inv. FP 3108.11185)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201366
+        ref: KMM 201366 (Inv. FP 3108.11184)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201367
+        ref: KMM 201367 (Inv. FP 3108.11183)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201368
+        ref: KMM 201368 (Inv. FP 3108.11182)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201369
+        ref: KMM 201369 (Inv. FP 3108.11181)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201370
+        ref: KMM 201370 (Inv. FP 3108.11180)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201371
+        ref: KMM 201371 (Inv. FP 3108.11179)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201372
+        ref: KMM 201372 (Inv. FP 3108.11178)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201373
+        ref: KMM 201373 (Inv. FP 3108.11177)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201374
+        ref: KMM 201374 (Inv. FP 3108.11176)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201375
+        ref: KMM 201375 (Inv. FP 3108.11175)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201376
+        ref: KMM 201376 (Inv. FP 3108.11174)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201377
+        ref: KMM 201377 (Inv. FP 3108.11173)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201378
+        ref: KMM 201378 (Inv. FP 3108.11172)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201379
+        ref: KMM 201379 (Inv. FP 3108.11171)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201380
+        ref: KMM 201380 (Inv. FP 3108.11170)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201381
+        ref: KMM 201381 (Inv. FP 3108.11169)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201382
+        ref: KMM 201382 (Inv. FP 3108.11168)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201383
+        ref: KMM 201383 (Inv. FP 3108.11167)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201384
+        ref: KMM 201384 (Inv. FP 3108.11166)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201385
+        ref: KMM 201385 (Inv. FP 3108.11165)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201386
+        ref: KMM 201386 (Inv. FP 3108.11164)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201387
+        ref: KMM 201387 (Inv. FP 3108.11163)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201388
+        ref: KMM 201388 (Inv. FP 3108.11162)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201389
+        ref: KMM 201389 (Inv. FP 3108.11161)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201390
+        ref: KMM 201390 (Inv. FP 3108.11160)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201391
+        ref: KMM 201391 (Inv. FP 3108.11159)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201392
+        ref: KMM 201392 (Inv. FP 3108.11158)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201393
+        ref: KMM 201393 (Inv. FP 3108.11157)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201394
+        ref: KMM 201394 (Inv. FP 3108.11156)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201395
+        ref: KMM 201395 (Inv. FP 3108.11155)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201396
+        ref: KMM 201396 (Inv. FP 3108.11154)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201397
+        ref: KMM 201397 (Inv. FP 3108.11153)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201398
+        ref: KMM 201398 (Inv. FP 3108.11152)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201399
+        ref: KMM 201399 (Inv. FP 3108.11151)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201400
+        ref: KMM 201400 (Inv. FP 3108.11150)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201401
+        ref: KMM 201401 (Inv. FP 3108.11149)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201402
+        ref: KMM 201402 (Inv. FP 3108.11148)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201403
+        ref: KMM 201403 (Inv. FP 3108.11147)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201404
+        ref: KMM 201404 (Inv. FP 3108.11146)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201405
+        ref: KMM 201405 (Inv. FP 3108.11145)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201406
+        ref: KMM 201406 (Inv. FP 3108.11144)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201407
+        ref: KMM 201407 (Inv. FP 3108.11143)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201408
+        ref: KMM 201408 (Inv. FP 3108.11142)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201409
+        ref: KMM 201409 (Inv. FP 3108.11141)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201410
+        ref: KMM 201410 (Inv. FP 3108.11140)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201411
+        ref: KMM 201411 (Inv. FP 3108.11139)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201412
+        ref: KMM 201412 (Inv. FP 3108.11138)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201413
+        ref: KMM 201413 (Inv. FP 3108.11137)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201345
+        ref: KMM 201345 (Inv. FP 3108.11205)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/201346
+        ref: KMM 201346 (Inv. FP 3108.11204)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/203773
         ref: KMM 203773 (Inv. FP 6588.28)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/266471
+        ref: KMM 266471 (Inv. FP 10024.27)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/267277
+        ref: KMM 267277 (Inv. FP 10090.5)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/284
+        ref: KMM 284 (Inv. FP 5751.19)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/295577
+        ref: KMM 295577 (Inv. FP 9139.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/295865
+        ref: KMM 295865 (Inv. FP 9050.19)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/301821
+        ref: KMM 301821 (Inv. FP 8410.109)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/302377
+        ref: KMM 302377 (Inv. FP 8372.15)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/302575
+        ref: KMM 302575 (Inv. FP 8321.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/303984
+        ref: KMM 303984 (Inv. FP 8047.1)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/306308
         ref: KMM 306308 (Inv. FP 7858.22)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/306309
+        ref: KMM 306309 (Inv. FP 7858.21)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/306342
+        ref: KMM 306342 (Inv. FP 7856.14)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/306390
+        ref: KMM 306390 (Inv. FP 7836.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/308679
+        ref: KMM 308679 (Inv. FP 7430.37)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/308734
+        ref: KMM 308734 (Inv. FP 7428.9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/308735
+        ref: KMM 308735 (Inv. FP 7428.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/308795
+        ref: KMM 308795 (Inv. FP 7415.17)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/331168
+        ref: KMM 331168 (Inv. FP 6200.93)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/312262
+        ref: KMM 312262 (Inv. FP 7110.10)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/316649
+        ref: KMM 316649 (Inv. FP 6897.15)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/316851
+        ref: KMM 316851 (Inv. FP 6872.17)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/316852
+        ref: KMM 316852 (Inv. FP 6872.16)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317171
+        ref: KMM 317171 (Inv. FP 6803.21)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317172
+        ref: KMM 317172 (Inv. FP 6803.20)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317173
+        ref: KMM 317173 (Inv. FP 6803.19)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/331166
+        ref: KMM 331166 (Inv. FP 6200.95)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/331167
+        ref: KMM 331167 (Inv. FP 6200.94)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/331169
+        ref: KMM 331169 (Inv. FP 6200.92)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/331677
+        ref: KMM 331677 (Inv. FP 6143.3)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/340757
         ref: KMM 340757 (Inv. FP 5609.3234)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/351548
+        ref: KMM 351548 (Inv. FP 5180.46)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/351549
+        ref: KMM 351549 (Inv. FP 5180.45)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/351628
+        ref: KMM 351628 (Inv. FP 5173.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/352709
+        ref: KMM 352709 (Inv. FP 5113.65)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/352710
+        ref: KMM 352710 (Inv. FP 5113.64)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/369241
+        ref: KMM 369241 (Inv. FP 4492.28)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/369381
+        ref: KMM 369381 (Inv. FP 4452.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/371071
+        ref: KMM 371071 (Inv. FP 8104.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/371743
+        ref: KMM 371743 (Inv. FP 9926.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/372406
+        ref: KMM 372406 (Inv. FP 4303.9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/372841
+        ref: KMM 372841 (Inv. FP 4277.7)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/372849
+        ref: KMM 372849 (Inv. FP 4276.16)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/394034
+        ref: KMM 394034 (Inv. FP 4227.1688)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/403404
+        ref: KMM 403404 (Inv. FP 3468.17)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/405179
+        ref: KMM 405179 (Inv. FP 3363.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/410711
+        ref: KMM 410711 (Inv. FP 3008.32)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/429762
         ref: KMM 429762 (Inv. FP 10567.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/437510
+        ref: KMM 437510 (Inv. FP 10576.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693
+        ref: KMM 693 (Inv. FP 5901.48)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693087
+        ref: KMM 693087 (Inv. FP 280.92)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693088
+        ref: KMM 693088 (Inv. FP 280.91)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693089
+        ref: KMM 693089 (Inv. FP 280.90)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693090
+        ref: KMM 693090 (Inv. FP 280.89)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693091
+        ref: KMM 693091 (Inv. FP 280.88)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693092
+        ref: KMM 693092 (Inv. FP 280.87)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693093
+        ref: KMM 693093 (Inv. FP 280.86)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693094
+        ref: KMM 693094 (Inv. FP 280.85)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693095
+        ref: KMM 693095 (Inv. FP 280.84)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693096
+        ref: KMM 693096 (Inv. FP 280.83)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693097
+        ref: KMM 693097 (Inv. FP 280.82)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693098
+        ref: KMM 693098 (Inv. FP 280.81)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/693099
+        ref: KMM 693099 (Inv. FP 280.80)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/725828
+        ref: KMM 725828 (Inv. FP 5215.8,x4)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-skilling-km-29-1649-1670-cuid-1100313-duid-1448809
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -25494,12 +26914,160 @@ coins:
       - dk-hede-nf3h71a
       - dk-hede-nf3h71b
       - dk-hede-nf3h71c
+      - dk-numista-82133
       - dk-tid-143755
+      - kmk-122420
+      - kmk-122421
+      - kmk-133325
+      - kmk-149255
+      - kmk-149256
+      - kmk-149257
+      - kmk-155251
+      - kmk-155295
+      - kmk-155296
+      - kmk-155297
+      - kmk-155298
+      - kmk-155299
+      - kmk-157800
+      - kmk-157801
+      - kmk-157802
+      - kmk-157803
+      - kmk-157804
+      - kmk-157805
+      - kmk-157806
+      - kmk-157809
+      - kmk-157810
+      - kmk-157811
+      - kmk-157812
+      - kmk-157813
+      - kmk-159761
+      - kmk-159792
+      - kmk-159794
+      - kmk-160378
+      - kmk-160380
+      - kmk-160382
+      - kmk-160384
+      - kmk-161188
+      - kmk-161246
+      - kmk-167196
+      - kmk-167201
+      - kmk-167202
+      - kmk-167216
+      - kmk-167236
+      - kmk-167237
+      - kmk-167244
+      - kmk-167245
+      - kmk-167254
+      - kmk-167255
+      - kmk-167256
+      - kmk-167260
+      - kmk-174284
+      - kmk-174288
+      - kmk-174307
+      - kmk-201081
+      - kmk-201082
+      - kmk-201083
+      - kmk-201095
+      - kmk-201096
+      - kmk-201097
+      - kmk-201101
+      - kmk-201102
+      - kmk-201103
+      - kmk-201107
+      - kmk-201108
+      - kmk-201109
+      - kmk-201127
+      - kmk-201128
+      - kmk-201129
+      - kmk-201157
+      - kmk-201158
+      - kmk-201159
+      - kmk-201190
+      - kmk-201191
+      - kmk-201192
+      - kmk-201232
+      - kmk-201233
+      - kmk-201234
+      - kmk-201344
+      - kmk-201345
+      - kmk-201346
       - kmk-203773
+      - kmk-266471
+      - kmk-267277
+      - kmk-284
+      - kmk-295577
+      - kmk-295865
+      - kmk-301821
+      - kmk-302377
+      - kmk-302575
+      - kmk-303984
       - kmk-306308
+      - kmk-306309
+      - kmk-306342
+      - kmk-306390
+      - kmk-308679
+      - kmk-308734
+      - kmk-308735
+      - kmk-308795
+      - kmk-312262
+      - kmk-316649
+      - kmk-316851
+      - kmk-316852
+      - kmk-317171
+      - kmk-317172
+      - kmk-317173
+      - kmk-331166
+      - kmk-331167
+      - kmk-331169
+      - kmk-331677
       - kmk-340757
+      - kmk-351548
+      - kmk-351549
+      - kmk-351628
+      - kmk-352709
+      - kmk-352710
+      - kmk-369241
+      - kmk-369381
+      - kmk-371071
+      - kmk-371743
+      - kmk-372406
+      - kmk-372841
+      - kmk-372849
+      - kmk-394034
+      - kmk-403404
+      - kmk-405179
+      - kmk-410711
       - kmk-429762
+      - kmk-437510
+      - kmk-693
+      - kmk-693087
+      - kmk-693088
+      - kmk-693089
+      - kmk-693090
+      - kmk-693091
+      - kmk-693092
+      - kmk-693093
+      - kmk-693094
+      - kmk-693095
+      - kmk-693096
+      - kmk-693097
+      - kmk-693098
+      - kmk-693099
+      - kmk-725828
       - ngc-1100313
+    _errata_applied:
+      - source: kmk-308795
+        field: ruler
+        printed: Frederik II
+        correct: Frederik 3
+      - source: kmk-394034
+        field: nominal
+        printed: 2 Skilling
+        correct: 1 Skilling
+      - source: kmk-405179
+        field: mint
+        printed: Hamborg
+        correct:
   - id: unified-dk-hede-nf3h72
     fuss: seed_unsorted
     phase: hede
@@ -29837,59 +31405,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-numista-553716
-  - id: unified-dk-numista-82133
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1649
-    year_last: 1670
-    year_ranges:
-      -   - 1649
-          - 1670
-    year_label: 1649-1670
-    ruler: Frederik III
-    catalog:
-      km: '29'
-      numista: '82133'
-      hede: 71A-71C
-      others:
-        - Brekke# 227-236
-        - Thesen# 232-241
-        - Rønning# 69
-      skaare: '563'
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.156
-        source: numista
-    weight_rough_g:
-      - value: 0.921
-        source: numista
-    diameter_mm:
-      - value: 16.5
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/82133
-        ref: Numista N#82133 — NO 1 Skilling - Frederik III 1649-1670
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-numista-82133
   - id: unified-dk-numista-82371
     fuss: seed_unsorted
     phase: numista
@@ -31482,144 +32997,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-133324
-  - id: unified-kmk-133325
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1651
-    year_last: 1659
-    year_ranges:
-      -   - 1651
-          - 1659
-    year_label: 1651-1659
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      hede:
-        - '71'
-        - 71B
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.72
-        source: kmk
-      - value: 0.74
-        source: kmk
-      - value: 0.76
-        source: kmk
-      - value: 0.8
-        source: kmk
-      - value: 0.82
-        source: kmk
-      - value: 0.83
-        source: kmk
-      - value: 0.85
-        source: kmk
-      - value: 0.88
-        source: kmk
-      - value: 0.91
-        source: kmk
-      - value: 1.1
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/133325
-        ref: KMM 133325 (Inv. FP 9374.120)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157800
-        ref: KMM 157800 (Inv. FP 1466.232)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157807
-        ref: KMM 157807 (Inv. FP 1466.225)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157808
-        ref: KMM 157808 (Inv. FP 1466.224)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157801
-        ref: KMM 157801 (Inv. FP 1466.231)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157802
-        ref: KMM 157802 (Inv. FP 1466.230)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157803
-        ref: KMM 157803 (Inv. FP 1466.229)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157804
-        ref: KMM 157804 (Inv. FP 1466.228)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157805
-        ref: KMM 157805 (Inv. FP 1466.227)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157806
-        ref: KMM 157806 (Inv. FP 1466.226)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157809
-        ref: KMM 157809 (Inv. FP 1466.223)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157811
-        ref: KMM 157811 (Inv. FP 1466.221)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157812
-        ref: KMM 157812 (Inv. FP 1466.220)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157813
-        ref: KMM 157813 (Inv. FP 1466.219)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201101
-        ref: KMM 201101 (Inv. FP 3108.11449)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201104
-        ref: KMM 201104 (Inv. FP 3108.11446)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201105
-        ref: KMM 201105 (Inv. FP 3108.11445)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201106
-        ref: KMM 201106 (Inv. FP 3108.11444)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201102
-        ref: KMM 201102 (Inv. FP 3108.11448)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201103
-        ref: KMM 201103 (Inv. FP 3108.11447)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/308679
-        ref: KMM 308679 (Inv. FP 7430.37)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/331677
-        ref: KMM 331677 (Inv. FP 6143.3)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/352709
-        ref: KMM 352709 (Inv. FP 5113.65)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/372849
-        ref: KMM 372849 (Inv. FP 4276.16)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-133325
-      - kmk-157800
-      - kmk-157801
-      - kmk-157802
-      - kmk-157803
-      - kmk-157804
-      - kmk-157805
-      - kmk-157806
-      - kmk-157809
-      - kmk-157811
-      - kmk-157812
-      - kmk-157813
-      - kmk-201101
-      - kmk-201102
-      - kmk-201103
-      - kmk-308679
-      - kmk-331677
-      - kmk-352709
-      - kmk-372849
   - id: unified-kmk-133326
     fuss: seed_unsorted
     phase: kmk
@@ -41941,38 +43318,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-149254
-  - id: unified-kmk-149255
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1652
-    year_last: 1652
-    year_label: '1652'
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      schou: '48'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/149255
-        ref: KMM 149255 (Inv. KP 1656.1058)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/149256
-        ref: KMM 149256 (Inv. KP 1656.1057)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/149257
-        ref: KMM 149257 (Inv. KP 1656.1056)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-149255
-      - kmk-149256
-      - kmk-149257
   - id: unified-kmk-149264
     fuss: seed_unsorted
     phase: kmk
@@ -46273,285 +47618,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-152031
-  - id: unified-kmk-155251
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1649
-    year_last: 1649
-    year_label: '1649'
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      hede:
-        - '71'
-        - 71A
-        - 71B
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.73
-        source: kmk
-      - value: 0.75
-        source: kmk
-      - value: 0.76
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/155251
-        ref: KMM 155251 (Inv. FP 3115.105)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/352711
-        ref: KMM 352711 (Inv. FP 5113.63)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/174307
-        ref: KMM 174307 (Inv. FP 8166.94)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201344
-        ref: KMM 201344 (Inv. FP 3108.11206)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201347
-        ref: KMM 201347 (Inv. FP 3108.11203)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201348
-        ref: KMM 201348 (Inv. FP 3108.11202)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201349
-        ref: KMM 201349 (Inv. FP 3108.11201)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201350
-        ref: KMM 201350 (Inv. FP 3108.11200)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201351
-        ref: KMM 201351 (Inv. FP 3108.11199)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201352
-        ref: KMM 201352 (Inv. FP 3108.11198)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201353
-        ref: KMM 201353 (Inv. FP 3108.11197)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201354
-        ref: KMM 201354 (Inv. FP 3108.11196)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201355
-        ref: KMM 201355 (Inv. FP 3108.11195)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201356
-        ref: KMM 201356 (Inv. FP 3108.11194)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201357
-        ref: KMM 201357 (Inv. FP 3108.11193)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201358
-        ref: KMM 201358 (Inv. FP 3108.11192)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201359
-        ref: KMM 201359 (Inv. FP 3108.11191)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201360
-        ref: KMM 201360 (Inv. FP 3108.11190)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201361
-        ref: KMM 201361 (Inv. FP 3108.11189)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201362
-        ref: KMM 201362 (Inv. FP 3108.11188)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201363
-        ref: KMM 201363 (Inv. FP 3108.11187)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201364
-        ref: KMM 201364 (Inv. FP 3108.11186)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201365
-        ref: KMM 201365 (Inv. FP 3108.11185)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201366
-        ref: KMM 201366 (Inv. FP 3108.11184)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201367
-        ref: KMM 201367 (Inv. FP 3108.11183)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201368
-        ref: KMM 201368 (Inv. FP 3108.11182)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201369
-        ref: KMM 201369 (Inv. FP 3108.11181)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201370
-        ref: KMM 201370 (Inv. FP 3108.11180)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201371
-        ref: KMM 201371 (Inv. FP 3108.11179)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201372
-        ref: KMM 201372 (Inv. FP 3108.11178)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201373
-        ref: KMM 201373 (Inv. FP 3108.11177)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201374
-        ref: KMM 201374 (Inv. FP 3108.11176)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201375
-        ref: KMM 201375 (Inv. FP 3108.11175)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201376
-        ref: KMM 201376 (Inv. FP 3108.11174)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201377
-        ref: KMM 201377 (Inv. FP 3108.11173)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201378
-        ref: KMM 201378 (Inv. FP 3108.11172)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201379
-        ref: KMM 201379 (Inv. FP 3108.11171)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201380
-        ref: KMM 201380 (Inv. FP 3108.11170)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201381
-        ref: KMM 201381 (Inv. FP 3108.11169)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201382
-        ref: KMM 201382 (Inv. FP 3108.11168)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201383
-        ref: KMM 201383 (Inv. FP 3108.11167)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201384
-        ref: KMM 201384 (Inv. FP 3108.11166)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201385
-        ref: KMM 201385 (Inv. FP 3108.11165)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201386
-        ref: KMM 201386 (Inv. FP 3108.11164)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201387
-        ref: KMM 201387 (Inv. FP 3108.11163)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201388
-        ref: KMM 201388 (Inv. FP 3108.11162)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201389
-        ref: KMM 201389 (Inv. FP 3108.11161)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201390
-        ref: KMM 201390 (Inv. FP 3108.11160)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201391
-        ref: KMM 201391 (Inv. FP 3108.11159)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201392
-        ref: KMM 201392 (Inv. FP 3108.11158)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201393
-        ref: KMM 201393 (Inv. FP 3108.11157)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201394
-        ref: KMM 201394 (Inv. FP 3108.11156)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201395
-        ref: KMM 201395 (Inv. FP 3108.11155)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201396
-        ref: KMM 201396 (Inv. FP 3108.11154)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201397
-        ref: KMM 201397 (Inv. FP 3108.11153)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201398
-        ref: KMM 201398 (Inv. FP 3108.11152)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201399
-        ref: KMM 201399 (Inv. FP 3108.11151)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201400
-        ref: KMM 201400 (Inv. FP 3108.11150)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201401
-        ref: KMM 201401 (Inv. FP 3108.11149)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201402
-        ref: KMM 201402 (Inv. FP 3108.11148)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201403
-        ref: KMM 201403 (Inv. FP 3108.11147)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201404
-        ref: KMM 201404 (Inv. FP 3108.11146)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201405
-        ref: KMM 201405 (Inv. FP 3108.11145)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201406
-        ref: KMM 201406 (Inv. FP 3108.11144)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201407
-        ref: KMM 201407 (Inv. FP 3108.11143)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201408
-        ref: KMM 201408 (Inv. FP 3108.11142)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201409
-        ref: KMM 201409 (Inv. FP 3108.11141)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201410
-        ref: KMM 201410 (Inv. FP 3108.11140)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201411
-        ref: KMM 201411 (Inv. FP 3108.11139)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201412
-        ref: KMM 201412 (Inv. FP 3108.11138)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201413
-        ref: KMM 201413 (Inv. FP 3108.11137)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201345
-        ref: KMM 201345 (Inv. FP 3108.11205)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201346
-        ref: KMM 201346 (Inv. FP 3108.11204)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/303984
-        ref: KMM 303984 (Inv. FP 8047.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/306390
-        ref: KMM 306390 (Inv. FP 7836.6)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/331169
-        ref: KMM 331169 (Inv. FP 6200.92)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693097
-        ref: KMM 693097 (Inv. FP 280.82)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693098
-        ref: KMM 693098 (Inv. FP 280.81)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693099
-        ref: KMM 693099 (Inv. FP 280.80)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-155251
-      - kmk-174307
-      - kmk-201344
-      - kmk-201345
-      - kmk-201346
-      - kmk-303984
-      - kmk-306390
-      - kmk-331169
-      - kmk-693097
-      - kmk-693098
-      - kmk-693099
   - id: unified-kmk-155255
     fuss: seed_unsorted
     phase: kmk
@@ -46815,535 +47881,6 @@ coins:
       - kmk-155290
       - kmk-301815
       - kmk-352533
-  - id: unified-kmk-155295
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1665
-    year_last: 1665
-    year_label: '1665'
-    ruler: Frederik 3
-    catalog:
-      hede: 71C
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/155295
-        ref: KMM 155295 (Inv. FP 3115.110)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/369241
-        ref: KMM 369241 (Inv. FP 4492.28)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-155295
-      - kmk-369241
-  - id: unified-kmk-155296
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1660
-    year_last: 1660
-    year_label: '1660'
-    ruler: Frederik 3
-    catalog:
-      hede: 71C
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/155296
-        ref: KMM 155296 (Inv. FP 3115.109)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-155296
-  - id: unified-kmk-155297
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1658
-    year_last: 1658
-    year_label: '1658'
-    ruler: Frederik 3
-    catalog:
-      hede: 71B
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/155297
-        ref: KMM 155297 (Inv. FP 3115.108)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/160378
-        ref: KMM 160378 (Inv. FP 3326.12)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-155297
-      - kmk-160378
-  - id: unified-kmk-155298
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1656
-    year_last: 1656
-    year_label: '1656'
-    ruler: Frederik 3
-    catalog:
-      hede: 71B
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/155298
-        ref: KMM 155298 (Inv. FP 3115.107)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/352707
-        ref: KMM 352707 (Inv. FP 5113.67)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/352708
-        ref: KMM 352708 (Inv. FP 5113.66)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/159792
-        ref: KMM 159792 (Inv. FP 3931.142)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201095
-        ref: KMM 201095 (Inv. FP 3108.11455)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201098
-        ref: KMM 201098 (Inv. FP 3108.11452)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201099
-        ref: KMM 201099 (Inv. FP 3108.11451)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201100
-        ref: KMM 201100 (Inv. FP 3108.11450)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201096
-        ref: KMM 201096 (Inv. FP 3108.11454)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201097
-        ref: KMM 201097 (Inv. FP 3108.11453)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317172
-        ref: KMM 317172 (Inv. FP 6803.20)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-155298
-      - kmk-159792
-      - kmk-201095
-      - kmk-201096
-      - kmk-201097
-      - kmk-317172
-  - id: unified-kmk-155299
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1650
-    year_last: 1650
-    year_label: '1650'
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      hede:
-        - '71'
-        - 71A
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.64
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/155299
-        ref: KMM 155299 (Inv. FP 3115.106)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201232
-        ref: KMM 201232 (Inv. FP 3108.11318)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201235
-        ref: KMM 201235 (Inv. FP 3108.11315)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201236
-        ref: KMM 201236 (Inv. FP 3108.11314)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201237
-        ref: KMM 201237 (Inv. FP 3108.11313)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201238
-        ref: KMM 201238 (Inv. FP 3108.11312)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201239
-        ref: KMM 201239 (Inv. FP 3108.11311)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201240
-        ref: KMM 201240 (Inv. FP 3108.11310)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201241
-        ref: KMM 201241 (Inv. FP 3108.11309)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201242
-        ref: KMM 201242 (Inv. FP 3108.11308)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201243
-        ref: KMM 201243 (Inv. FP 3108.11307)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201244
-        ref: KMM 201244 (Inv. FP 3108.11306)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201245
-        ref: KMM 201245 (Inv. FP 3108.11305)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201246
-        ref: KMM 201246 (Inv. FP 3108.11304)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201247
-        ref: KMM 201247 (Inv. FP 3108.11303)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201248
-        ref: KMM 201248 (Inv. FP 3108.11302)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201249
-        ref: KMM 201249 (Inv. FP 3108.11301)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201250
-        ref: KMM 201250 (Inv. FP 3108.11300)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201251
-        ref: KMM 201251 (Inv. FP 3108.11299)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201252
-        ref: KMM 201252 (Inv. FP 3108.11298)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201253
-        ref: KMM 201253 (Inv. FP 3108.11297)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201254
-        ref: KMM 201254 (Inv. FP 3108.11296)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201255
-        ref: KMM 201255 (Inv. FP 3108.11295)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201256
-        ref: KMM 201256 (Inv. FP 3108.11294)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201257
-        ref: KMM 201257 (Inv. FP 3108.11293)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201258
-        ref: KMM 201258 (Inv. FP 3108.11292)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201259
-        ref: KMM 201259 (Inv. FP 3108.11291)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201260
-        ref: KMM 201260 (Inv. FP 3108.11290)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201261
-        ref: KMM 201261 (Inv. FP 3108.11289)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201262
-        ref: KMM 201262 (Inv. FP 3108.11288)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201263
-        ref: KMM 201263 (Inv. FP 3108.11287)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201264
-        ref: KMM 201264 (Inv. FP 3108.11286)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201265
-        ref: KMM 201265 (Inv. FP 3108.11285)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201266
-        ref: KMM 201266 (Inv. FP 3108.11284)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201267
-        ref: KMM 201267 (Inv. FP 3108.11283)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201268
-        ref: KMM 201268 (Inv. FP 3108.11282)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201269
-        ref: KMM 201269 (Inv. FP 3108.11281)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201270
-        ref: KMM 201270 (Inv. FP 3108.11280)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201271
-        ref: KMM 201271 (Inv. FP 3108.11279)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201272
-        ref: KMM 201272 (Inv. FP 3108.11278)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201273
-        ref: KMM 201273 (Inv. FP 3108.11277)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201274
-        ref: KMM 201274 (Inv. FP 3108.11276)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201275
-        ref: KMM 201275 (Inv. FP 3108.11275)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201276
-        ref: KMM 201276 (Inv. FP 3108.11274)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201277
-        ref: KMM 201277 (Inv. FP 3108.11273)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201278
-        ref: KMM 201278 (Inv. FP 3108.11272)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201279
-        ref: KMM 201279 (Inv. FP 3108.11271)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201280
-        ref: KMM 201280 (Inv. FP 3108.11270)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201281
-        ref: KMM 201281 (Inv. FP 3108.11269)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201282
-        ref: KMM 201282 (Inv. FP 3108.11268)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201283
-        ref: KMM 201283 (Inv. FP 3108.11267)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201284
-        ref: KMM 201284 (Inv. FP 3108.11266)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201285
-        ref: KMM 201285 (Inv. FP 3108.11265)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201286
-        ref: KMM 201286 (Inv. FP 3108.11264)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201287
-        ref: KMM 201287 (Inv. FP 3108.11263)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201288
-        ref: KMM 201288 (Inv. FP 3108.11262)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201289
-        ref: KMM 201289 (Inv. FP 3108.11261)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201290
-        ref: KMM 201290 (Inv. FP 3108.11260)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201291
-        ref: KMM 201291 (Inv. FP 3108.11259)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201292
-        ref: KMM 201292 (Inv. FP 3108.11258)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201293
-        ref: KMM 201293 (Inv. FP 3108.11257)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201294
-        ref: KMM 201294 (Inv. FP 3108.11256)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201295
-        ref: KMM 201295 (Inv. FP 3108.11255)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201296
-        ref: KMM 201296 (Inv. FP 3108.11254)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201297
-        ref: KMM 201297 (Inv. FP 3108.11253)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201298
-        ref: KMM 201298 (Inv. FP 3108.11252)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201299
-        ref: KMM 201299 (Inv. FP 3108.11251)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201300
-        ref: KMM 201300 (Inv. FP 3108.11250)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201301
-        ref: KMM 201301 (Inv. FP 3108.11249)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201302
-        ref: KMM 201302 (Inv. FP 3108.11248)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201303
-        ref: KMM 201303 (Inv. FP 3108.11247)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201304
-        ref: KMM 201304 (Inv. FP 3108.11246)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201305
-        ref: KMM 201305 (Inv. FP 3108.11245)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201306
-        ref: KMM 201306 (Inv. FP 3108.11244)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201307
-        ref: KMM 201307 (Inv. FP 3108.11243)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201308
-        ref: KMM 201308 (Inv. FP 3108.11242)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201309
-        ref: KMM 201309 (Inv. FP 3108.11241)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201310
-        ref: KMM 201310 (Inv. FP 3108.11240)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201311
-        ref: KMM 201311 (Inv. FP 3108.11239)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201312
-        ref: KMM 201312 (Inv. FP 3108.11238)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201313
-        ref: KMM 201313 (Inv. FP 3108.11237)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201314
-        ref: KMM 201314 (Inv. FP 3108.11236)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201315
-        ref: KMM 201315 (Inv. FP 3108.11235)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201316
-        ref: KMM 201316 (Inv. FP 3108.11234)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201317
-        ref: KMM 201317 (Inv. FP 3108.11233)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201318
-        ref: KMM 201318 (Inv. FP 3108.11232)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201319
-        ref: KMM 201319 (Inv. FP 3108.11231)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201320
-        ref: KMM 201320 (Inv. FP 3108.11230)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201321
-        ref: KMM 201321 (Inv. FP 3108.11229)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201322
-        ref: KMM 201322 (Inv. FP 3108.11228)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201323
-        ref: KMM 201323 (Inv. FP 3108.11227)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201324
-        ref: KMM 201324 (Inv. FP 3108.11226)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201325
-        ref: KMM 201325 (Inv. FP 3108.11225)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201326
-        ref: KMM 201326 (Inv. FP 3108.11224)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201327
-        ref: KMM 201327 (Inv. FP 3108.11223)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201328
-        ref: KMM 201328 (Inv. FP 3108.11222)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201329
-        ref: KMM 201329 (Inv. FP 3108.11221)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201330
-        ref: KMM 201330 (Inv. FP 3108.11220)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201331
-        ref: KMM 201331 (Inv. FP 3108.11219)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201332
-        ref: KMM 201332 (Inv. FP 3108.11218)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201333
-        ref: KMM 201333 (Inv. FP 3108.11217)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201334
-        ref: KMM 201334 (Inv. FP 3108.11216)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201335
-        ref: KMM 201335 (Inv. FP 3108.11215)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201336
-        ref: KMM 201336 (Inv. FP 3108.11214)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201337
-        ref: KMM 201337 (Inv. FP 3108.11213)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201338
-        ref: KMM 201338 (Inv. FP 3108.11212)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201339
-        ref: KMM 201339 (Inv. FP 3108.11211)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201340
-        ref: KMM 201340 (Inv. FP 3108.11210)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201341
-        ref: KMM 201341 (Inv. FP 3108.11209)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201342
-        ref: KMM 201342 (Inv. FP 3108.11208)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201343
-        ref: KMM 201343 (Inv. FP 3108.11207)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201233
-        ref: KMM 201233 (Inv. FP 3108.11317)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201234
-        ref: KMM 201234 (Inv. FP 3108.11316)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/266471
-        ref: KMM 266471 (Inv. FP 10024.27)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/295577
-        ref: KMM 295577 (Inv. FP 9139.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/351549
-        ref: KMM 351549 (Inv. FP 5180.45)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/352710
-        ref: KMM 352710 (Inv. FP 5113.64)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/369381
-        ref: KMM 369381 (Inv. FP 4452.6)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693096
-        ref: KMM 693096 (Inv. FP 280.83)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-155299
-      - kmk-201232
-      - kmk-201233
-      - kmk-201234
-      - kmk-266471
-      - kmk-295577
-      - kmk-351549
-      - kmk-352710
-      - kmk-369381
-      - kmk-693096
   - id: unified-kmk-155381
     fuss: seed_unsorted
     phase: kmk
@@ -50852,40 +51389,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-157239
-  - id: unified-kmk-157810
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1663
-    year_last: 1663
-    year_label: '1663'
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      hede:
-        - 71A
-        - 71C
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.77
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157810
-        ref: KMM 157810 (Inv. FP 1466.222)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/174284
-        ref: KMM 174284 (Inv. FP 8166.96)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-157810
-      - kmk-174284
   - id: unified-kmk-157814
     fuss: seed_unsorted
     phase: kmk
@@ -51055,169 +51558,6 @@ coins:
       - kmk-157821
       - kmk-346029
       - kmk-394036
-  - id: unified-kmk-159761
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1652
-    year_last: 1652
-    year_label: '1652'
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      hede: 71B
-      schou: '48'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.59
-        source: kmk
-      - value: 0.65
-        source: kmk
-      - value: 0.89
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/159761
-        ref: KMM 159761 (Inv. FP 3931.141)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/161188
-        ref: KMM 161188 (Inv. FP 2261.2)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/161246
-        ref: KMM 161246 (Inv. FP 4408.9)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201157
-        ref: KMM 201157 (Inv. FP 3108.11393)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201160
-        ref: KMM 201160 (Inv. FP 3108.11390)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201161
-        ref: KMM 201161 (Inv. FP 3108.11389)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201162
-        ref: KMM 201162 (Inv. FP 3108.11388)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201163
-        ref: KMM 201163 (Inv. FP 3108.11387)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201164
-        ref: KMM 201164 (Inv. FP 3108.11386)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201165
-        ref: KMM 201165 (Inv. FP 3108.11385)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201166
-        ref: KMM 201166 (Inv. FP 3108.11384)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201167
-        ref: KMM 201167 (Inv. FP 3108.11383)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201168
-        ref: KMM 201168 (Inv. FP 3108.11382)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201169
-        ref: KMM 201169 (Inv. FP 3108.11381)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201170
-        ref: KMM 201170 (Inv. FP 3108.11380)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201171
-        ref: KMM 201171 (Inv. FP 3108.11379)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201172
-        ref: KMM 201172 (Inv. FP 3108.11378)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201173
-        ref: KMM 201173 (Inv. FP 3108.11377)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201174
-        ref: KMM 201174 (Inv. FP 3108.11376)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201175
-        ref: KMM 201175 (Inv. FP 3108.11375)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201176
-        ref: KMM 201176 (Inv. FP 3108.11374)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201177
-        ref: KMM 201177 (Inv. FP 3108.11373)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201178
-        ref: KMM 201178 (Inv. FP 3108.11372)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201179
-        ref: KMM 201179 (Inv. FP 3108.11371)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201180
-        ref: KMM 201180 (Inv. FP 3108.11370)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201181
-        ref: KMM 201181 (Inv. FP 3108.11369)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201182
-        ref: KMM 201182 (Inv. FP 3108.11368)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201183
-        ref: KMM 201183 (Inv. FP 3108.11367)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201184
-        ref: KMM 201184 (Inv. FP 3108.11366)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201185
-        ref: KMM 201185 (Inv. FP 3108.11365)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201186
-        ref: KMM 201186 (Inv. FP 3108.11364)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201187
-        ref: KMM 201187 (Inv. FP 3108.11363)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201188
-        ref: KMM 201188 (Inv. FP 3108.11362)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201189
-        ref: KMM 201189 (Inv. FP 3108.11361)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201158
-        ref: KMM 201158 (Inv. FP 3108.11392)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201159
-        ref: KMM 201159 (Inv. FP 3108.11391)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/295865
-        ref: KMM 295865 (Inv. FP 9050.19)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/437510
-        ref: KMM 437510 (Inv. FP 10576.3)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693092
-        ref: KMM 693092 (Inv. FP 280.87)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693093
-        ref: KMM 693093 (Inv. FP 280.86)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693094
-        ref: KMM 693094 (Inv. FP 280.85)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-159761
-      - kmk-161188
-      - kmk-161246
-      - kmk-201157
-      - kmk-201158
-      - kmk-201159
-      - kmk-295865
-      - kmk-437510
-      - kmk-693092
-      - kmk-693093
-      - kmk-693094
   - id: unified-kmk-159767
     fuss: seed_unsorted
     phase: kmk
@@ -51262,49 +51602,6 @@ coins:
       - kmk-194521
       - kmk-194522
       - kmk-194523
-  - id: unified-kmk-159794
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1664
-    year_last: 1664
-    year_label: '1664'
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      hede:
-        - '71'
-        - 71B
-        - 71C
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/159794
-        ref: KMM 159794 (Inv. FP 3931.143)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/174288
-        ref: KMM 174288 (Inv. FP 8166.97)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/306342
-        ref: KMM 306342 (Inv. FP 7856.14)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/371743
-        ref: KMM 371743 (Inv. FP 9926.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/372841
-        ref: KMM 372841 (Inv. FP 4277.7)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-159794
-      - kmk-174288
-      - kmk-306342
-      - kmk-371743
-      - kmk-372841
   - id: unified-kmk-159807
     fuss: seed_unsorted
     phase: kmk
@@ -51530,159 +51827,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-160367
-  - id: unified-kmk-160380
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1657
-    year_last: 1657
-    year_label: '1657'
-    ruler: Frederik 3
-    catalog:
-      hede: 71B
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/160380
-        ref: KMM 160380 (Inv. FP 3326.11)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/301821
-        ref: KMM 301821 (Inv. FP 8410.109)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-160380
-      - kmk-301821
-  - id: unified-kmk-160382
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1653
-    year_last: 1653
-    year_label: '1653'
-    ruler: Frederik 3
-    mint: '?'
-    catalog:
-      hede: 71B
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/160382
-        ref: KMM 160382 (Inv. FP 3326.10)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/160384
-        ref: KMM 160384 (Inv. FP 3326.9)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201127
-        ref: KMM 201127 (Inv. FP 3108.11423)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201130
-        ref: KMM 201130 (Inv. FP 3108.11420)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201131
-        ref: KMM 201131 (Inv. FP 3108.11419)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201132
-        ref: KMM 201132 (Inv. FP 3108.11418)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201133
-        ref: KMM 201133 (Inv. FP 3108.11417)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201134
-        ref: KMM 201134 (Inv. FP 3108.11416)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201135
-        ref: KMM 201135 (Inv. FP 3108.11415)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201136
-        ref: KMM 201136 (Inv. FP 3108.11414)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201137
-        ref: KMM 201137 (Inv. FP 3108.11413)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201138
-        ref: KMM 201138 (Inv. FP 3108.11412)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201139
-        ref: KMM 201139 (Inv. FP 3108.11411)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201140
-        ref: KMM 201140 (Inv. FP 3108.11410)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201141
-        ref: KMM 201141 (Inv. FP 3108.11409)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201142
-        ref: KMM 201142 (Inv. FP 3108.11408)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201143
-        ref: KMM 201143 (Inv. FP 3108.11407)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201144
-        ref: KMM 201144 (Inv. FP 3108.11406)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201145
-        ref: KMM 201145 (Inv. FP 3108.11405)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201146
-        ref: KMM 201146 (Inv. FP 3108.11404)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201147
-        ref: KMM 201147 (Inv. FP 3108.11403)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201148
-        ref: KMM 201148 (Inv. FP 3108.11402)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201149
-        ref: KMM 201149 (Inv. FP 3108.11401)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201150
-        ref: KMM 201150 (Inv. FP 3108.11400)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201151
-        ref: KMM 201151 (Inv. FP 3108.11399)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201152
-        ref: KMM 201152 (Inv. FP 3108.11398)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201153
-        ref: KMM 201153 (Inv. FP 3108.11397)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201154
-        ref: KMM 201154 (Inv. FP 3108.11396)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201155
-        ref: KMM 201155 (Inv. FP 3108.11395)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201156
-        ref: KMM 201156 (Inv. FP 3108.11394)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201128
-        ref: KMM 201128 (Inv. FP 3108.11422)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201129
-        ref: KMM 201129 (Inv. FP 3108.11421)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/403404
-        ref: KMM 403404 (Inv. FP 3468.17)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-160382
-      - kmk-160384
-      - kmk-201127
-      - kmk-201128
-      - kmk-201129
-      - kmk-403404
   - id: unified-kmk-161135
     fuss: seed_unsorted
     phase: kmk
@@ -52114,37 +52258,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-167173
-  - id: unified-kmk-167196
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling, norsk
-    year_first: 1649
-    year_last: 1658
-    year_ranges:
-      -   - 1649
-          - 1658
-    year_label: 1649-1658
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      hede: '71'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167196
-        ref: KMM 167196 (Inv. FP 1780.249)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167260
-        ref: KMM 167260 (Inv. FP 1780.325)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-167196
-      - kmk-167260
   - id: unified-kmk-167197
     fuss: seed_unsorted
     phase: kmk
@@ -52173,47 +52286,6 @@ coins:
     composed_of:
       - kmk-167197
       - kmk-167200
-  - id: unified-kmk-167201
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling, norsk
-    year_first: 1650
-    year_last: 1650
-    year_label: '1650'
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      hede: 71A
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167201
-        ref: KMM 167201 (Inv. FP 1780.290)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167221
-        ref: KMM 167221 (Inv. FP 1780.275)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167234
-        ref: KMM 167234 (Inv. FP 1780.280)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167235
-        ref: KMM 167235 (Inv. FP 1780.279)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167202
-        ref: KMM 167202 (Inv. FP 1780.289)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167216
-        ref: KMM 167216 (Inv. FP 1780.294)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-167201
-      - kmk-167202
-      - kmk-167216
   - id: unified-kmk-167223
     fuss: seed_unsorted
     phase: kmk
@@ -52268,85 +52340,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-167225
-  - id: unified-kmk-167236
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling, norsk
-    year_first: 1651
-    year_last: 1651
-    year_label: '1651'
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      hede:
-        - '71'
-        - 71B
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167236
-        ref: KMM 167236 (Inv. FP 1780.314)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167237
-        ref: KMM 167237 (Inv. FP 1780.315)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167250
-        ref: KMM 167250 (Inv. FP 1780.311)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167251
-        ref: KMM 167251 (Inv. FP 1780.310)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167244
-        ref: KMM 167244 (Inv. FP 1780.305)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167245
-        ref: KMM 167245 (Inv. FP 1780.306)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-167236
-      - kmk-167237
-      - kmk-167244
-      - kmk-167245
-  - id: unified-kmk-167254
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling, norsk
-    year_first: 1652
-    year_last: 1652
-    year_label: '1652'
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      hede: 71B
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167254
-        ref: KMM 167254 (Inv. FP 1780.322)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167258
-        ref: KMM 167258 (Inv. FP 1780.323)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167255
-        ref: KMM 167255 (Inv. FP 1780.321)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/167256
-        ref: KMM 167256 (Inv. FP 1780.320)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-167254
-      - kmk-167255
-      - kmk-167256
   - id: unified-kmk-167261
     fuss: seed_unsorted
     phase: kmk
@@ -57970,355 +57963,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-200621
-  - id: unified-kmk-201081
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Frederik 3
-    catalog:
-      hede: 71A
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201081
-        ref: KMM 201081 (Inv. FP 3108.11469)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201084
-        ref: KMM 201084 (Inv. FP 3108.11466)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201085
-        ref: KMM 201085 (Inv. FP 3108.11465)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201086
-        ref: KMM 201086 (Inv. FP 3108.11464)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201087
-        ref: KMM 201087 (Inv. FP 3108.11463)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201088
-        ref: KMM 201088 (Inv. FP 3108.11462)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201089
-        ref: KMM 201089 (Inv. FP 3108.11461)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201090
-        ref: KMM 201090 (Inv. FP 3108.11460)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201091
-        ref: KMM 201091 (Inv. FP 3108.11459)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201092
-        ref: KMM 201092 (Inv. FP 3108.11458)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201093
-        ref: KMM 201093 (Inv. FP 3108.11457)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201094
-        ref: KMM 201094 (Inv. FP 3108.11456)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-201081
-  - id: unified-kmk-201082
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Frederik 3
-    catalog:
-      hede: 71A
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201082
-        ref: KMM 201082 (Inv. FP 3108.11468)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-201082
-  - id: unified-kmk-201083
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Frederik 3
-    catalog:
-      hede: 71A
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201083
-        ref: KMM 201083 (Inv. FP 3108.11467)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-201083
-  - id: unified-kmk-201107
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1651
-    year_last: 1655
-    year_ranges:
-      -   - 1651
-          - 1651
-      -   - 1654
-          - 1655
-    year_label: 1651, 1654-1655
-    ruler: Frederik 3
-    mint: Christiania
-    catalog:
-      hede: 71B
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.57
-        source: kmk
-      - value: 0.62
-        source: kmk
-      - value: 0.64
-        source: kmk
-      - value: 0.7
-        source: kmk
-      - value: 0.71
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201107
-        ref: KMM 201107 (Inv. FP 3108.11443)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201110
-        ref: KMM 201110 (Inv. FP 3108.11440)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201111
-        ref: KMM 201111 (Inv. FP 3108.11439)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201112
-        ref: KMM 201112 (Inv. FP 3108.11438)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201113
-        ref: KMM 201113 (Inv. FP 3108.11437)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201114
-        ref: KMM 201114 (Inv. FP 3108.11436)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201115
-        ref: KMM 201115 (Inv. FP 3108.11435)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201116
-        ref: KMM 201116 (Inv. FP 3108.11434)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201117
-        ref: KMM 201117 (Inv. FP 3108.11433)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201118
-        ref: KMM 201118 (Inv. FP 3108.11432)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201119
-        ref: KMM 201119 (Inv. FP 3108.11431)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201120
-        ref: KMM 201120 (Inv. FP 3108.11430)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201121
-        ref: KMM 201121 (Inv. FP 3108.11429)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201122
-        ref: KMM 201122 (Inv. FP 3108.11428)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201123
-        ref: KMM 201123 (Inv. FP 3108.11427)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201124
-        ref: KMM 201124 (Inv. FP 3108.11426)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201125
-        ref: KMM 201125 (Inv. FP 3108.11425)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201126
-        ref: KMM 201126 (Inv. FP 3108.11424)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201108
-        ref: KMM 201108 (Inv. FP 3108.11442)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201109
-        ref: KMM 201109 (Inv. FP 3108.11441)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201190
-        ref: KMM 201190 (Inv. FP 3108.11360)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201193
-        ref: KMM 201193 (Inv. FP 3108.11357)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201194
-        ref: KMM 201194 (Inv. FP 3108.11356)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201195
-        ref: KMM 201195 (Inv. FP 3108.11355)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201196
-        ref: KMM 201196 (Inv. FP 3108.11354)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201197
-        ref: KMM 201197 (Inv. FP 3108.11353)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201198
-        ref: KMM 201198 (Inv. FP 3108.11352)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201199
-        ref: KMM 201199 (Inv. FP 3108.11351)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201200
-        ref: KMM 201200 (Inv. FP 3108.11350)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201201
-        ref: KMM 201201 (Inv. FP 3108.11349)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201202
-        ref: KMM 201202 (Inv. FP 3108.11348)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201203
-        ref: KMM 201203 (Inv. FP 3108.11347)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201204
-        ref: KMM 201204 (Inv. FP 3108.11346)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201205
-        ref: KMM 201205 (Inv. FP 3108.11345)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201206
-        ref: KMM 201206 (Inv. FP 3108.11344)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201207
-        ref: KMM 201207 (Inv. FP 3108.11343)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201208
-        ref: KMM 201208 (Inv. FP 3108.11342)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201209
-        ref: KMM 201209 (Inv. FP 3108.11341)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201210
-        ref: KMM 201210 (Inv. FP 3108.11340)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201211
-        ref: KMM 201211 (Inv. FP 3108.11339)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201212
-        ref: KMM 201212 (Inv. FP 3108.11338)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201213
-        ref: KMM 201213 (Inv. FP 3108.11337)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201214
-        ref: KMM 201214 (Inv. FP 3108.11336)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201215
-        ref: KMM 201215 (Inv. FP 3108.11335)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201216
-        ref: KMM 201216 (Inv. FP 3108.11334)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201217
-        ref: KMM 201217 (Inv. FP 3108.11333)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201218
-        ref: KMM 201218 (Inv. FP 3108.11332)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201219
-        ref: KMM 201219 (Inv. FP 3108.11331)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201220
-        ref: KMM 201220 (Inv. FP 3108.11330)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201221
-        ref: KMM 201221 (Inv. FP 3108.11329)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201222
-        ref: KMM 201222 (Inv. FP 3108.11328)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201223
-        ref: KMM 201223 (Inv. FP 3108.11327)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201224
-        ref: KMM 201224 (Inv. FP 3108.11326)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201225
-        ref: KMM 201225 (Inv. FP 3108.11325)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201226
-        ref: KMM 201226 (Inv. FP 3108.11324)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201227
-        ref: KMM 201227 (Inv. FP 3108.11323)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201228
-        ref: KMM 201228 (Inv. FP 3108.11322)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201229
-        ref: KMM 201229 (Inv. FP 3108.11321)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201230
-        ref: KMM 201230 (Inv. FP 3108.11320)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201231
-        ref: KMM 201231 (Inv. FP 3108.11319)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201191
-        ref: KMM 201191 (Inv. FP 3108.11359)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/201192
-        ref: KMM 201192 (Inv. FP 3108.11358)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693087
-        ref: KMM 693087 (Inv. FP 280.92)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693088
-        ref: KMM 693088 (Inv. FP 280.91)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693089
-        ref: KMM 693089 (Inv. FP 280.90)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693090
-        ref: KMM 693090 (Inv. FP 280.89)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693091
-        ref: KMM 693091 (Inv. FP 280.88)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/693095
-        ref: KMM 693095 (Inv. FP 280.84)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-201107
-      - kmk-201108
-      - kmk-201109
-      - kmk-201190
-      - kmk-201191
-      - kmk-201192
-      - kmk-693087
-      - kmk-693088
-      - kmk-693089
-      - kmk-693090
-      - kmk-693091
-      - kmk-693095
   - id: unified-kmk-203774
     fuss: seed_unsorted
     phase: kmk
@@ -59843,26 +59487,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-279774
-  - id: unified-kmk-284
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Frederik 3
-    catalog:
-      hede: '71'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/284
-        ref: KMM 284 (Inv. FP 5751.19)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-284
   - id: unified-kmk-290923
     fuss: seed_unsorted
     phase: kmk
@@ -61015,48 +60639,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-301826
-  - id: unified-kmk-302377
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Sk.
-    ruler: Frederik 3
-    catalog:
-      hede: 71A
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/302377
-        ref: KMM 302377 (Inv. FP 8372.15)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-302377
-  - id: unified-kmk-302575
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1662
-    year_last: 1662
-    year_label: '1662'
-    catalog:
-      hede: '71'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/302575
-        ref: KMM 302575 (Inv. FP 8321.3)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-302575
   - id: unified-kmk-304632
     fuss: seed_unsorted
     phase: kmk
@@ -61162,35 +60744,6 @@ coins:
       - kmk-334207
       - kmk-334984
       - kmk-372347
-  - id: unified-kmk-306309
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1668
-    year_last: 1668
-    year_label: '1668'
-    ruler: Frederik III
-    catalog:
-      hede:
-        - '71'
-        - 71C
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/306309
-        ref: KMM 306309 (Inv. FP 7858.21)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/351548
-        ref: KMM 351548 (Inv. FP 5180.46)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-306309
-      - kmk-351548
   - id: unified-kmk-306513
     fuss: seed_unsorted
     phase: kmk
@@ -61301,56 +60854,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-308611
-  - id: unified-kmk-308734
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1-skilling
-    year_first: 1662
-    year_last: 1662
-    year_label: '1662'
-    ruler: Frederik 3
-    catalog:
-      hede: 71C
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/308734
-        ref: KMM 308734 (Inv. FP 7428.9)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317171
-        ref: KMM 317171 (Inv. FP 6803.21)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-308734
-      - kmk-317171
-  - id: unified-kmk-308735
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1-skilling
-    year_first: 1659
-    year_last: 1659
-    year_label: '1659'
-    ruler: Frederik 3
-    catalog:
-      hede: 71C
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/308735
-        ref: KMM 308735 (Inv. FP 7428.8)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-308735
   - id: unified-kmk-308736
     fuss: seed_unsorted
     phase: kmk
@@ -61412,32 +60915,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-308785
-  - id: unified-kmk-308795
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1-skilling
-    year_first: 1651
-    year_last: 1659
-    year_ranges:
-      -   - 1651
-          - 1659
-    year_label: 1651-1659
-    ruler: Frederik II
-    catalog:
-      hede: 71B
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/308795
-        ref: KMM 308795 (Inv. FP 7415.17)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-308795
   - id: unified-kmk-308806
     fuss: seed_unsorted
     phase: kmk
@@ -61634,37 +61111,6 @@ coins:
       - kmk-317170
       - kmk-352705
       - kmk-569243
-  - id: unified-kmk-317173
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1651
-    year_last: 1651
-    year_label: '1651'
-    ruler: Frederik 3
-    catalog:
-      hede: 71B
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317173
-        ref: KMM 317173 (Inv. FP 6803.19)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/331167
-        ref: KMM 331167 (Inv. FP 6200.94)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/331168
-        ref: KMM 331168 (Inv. FP 6200.93)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-317173
-      - kmk-331167
-      - kmk-331168
   - id: unified-kmk-317174
     fuss: seed_unsorted
     phase: kmk
@@ -62068,35 +61514,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-331165
-  - id: unified-kmk-331166
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1654
-    year_last: 1654
-    year_label: '1654'
-    ruler: Frederik 3
-    catalog:
-      hede:
-        - '71'
-        - 71B
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/331166
-        ref: KMM 331166 (Inv. FP 6200.95)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/371071
-        ref: KMM 371071 (Inv. FP 8104.8)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-331166
-      - kmk-371071
   - id: unified-kmk-331170
     fuss: seed_unsorted
     phase: kmk
@@ -65011,26 +64428,6 @@ coins:
       - kmk-351793
       - kmk-351794
       - kmk-351795
-  - id: unified-kmk-351628
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Frederik 3
-    catalog:
-      hede: '71'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/351628
-        ref: KMM 351628 (Inv. FP 5173.4)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-351628
   - id: unified-kmk-351639
     fuss: seed_unsorted
     phase: kmk
@@ -67264,29 +66661,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-372348
-  - id: unified-kmk-372406
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1661
-    year_last: 1661
-    year_label: '1661'
-    ruler: Frederik 3
-    catalog:
-      hede: '71'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/372406
-        ref: KMM 372406 (Inv. FP 4303.9)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-372406
   - id: unified-kmk-372543
     fuss: seed_unsorted
     phase: kmk
@@ -67406,33 +66780,6 @@ coins:
     composed_of:
       - kmk-394032
       - kmk-394033
-  - id: unified-kmk-394034
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1662
-    year_last: 1662
-    year_label: '1662'
-    ruler: Frederik 3
-    catalog:
-      hede: 71C
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.565
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/394034
-        ref: KMM 394034 (Inv. FP 4227.1688)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-394034
   - id: unified-kmk-394037
     fuss: seed_unsorted
     phase: kmk
@@ -67831,30 +67178,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-402831
-  - id: unified-kmk-403371
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 12 Skilling
-    year_first: 1723
-    year_last: 1723
-    year_label: '1723'
-    ruler: Frederik 4
-    mint: '?'
-    catalog:
-      hede: '15'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/403371
-        ref: KMM 403371 (Inv. FP 3479.10)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-403371
   - id: unified-kmk-403372
     fuss: seed_unsorted
     phase: kmk
@@ -67864,12 +67187,11 @@ coins:
     year_last: 1666
     year_label: '1666'
     ruler: Frederik 3
-    mint: '?'
     catalog:
       hede: 70E
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     sources:
       - type: museum
@@ -67879,54 +67201,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-403372
-  - id: unified-kmk-403373
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1650
-    year_last: 1650
-    year_label: '1650'
-    ruler: Frederik 3
-    mint: '?'
-    catalog:
-      hede: 71A
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/403373
-        ref: KMM 403373 (Inv. FP 3479.8)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-403373
-  - id: unified-kmk-405179
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1667
-    year_last: 1667
-    year_label: '1667'
-    ruler: Frederik 3
-    mint: Hamborg
-    catalog:
-      hede: 71C
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/405179
-        ref: KMM 405179 (Inv. FP 3363.8)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-405179
   - id: unified-kmk-405717
     fuss: seed_unsorted
     phase: kmk
@@ -82995,28 +82269,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-717073
-  - id: unified-kmk-725828
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1661
-    year_last: 1661
-    year_label: '1661'
-    catalog:
-      hede: '71'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/725828
-        ref: KMM 725828 (Inv. FP 5215.8,x4)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-725828
   - id: unified-kmk-726455
     fuss: seed_unsorted
     phase: kmk
@@ -85632,6 +84884,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/351853
         ref: KMM 351853 (Inv. FP 5149 5149.505)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/403371
+        ref: KMM 403371 (Inv. FP 3479.10)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-12-skilling-km-217-1717-1724-cuid-1097885-duid-1445188
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -85652,6 +84907,7 @@ coins:
       - kmk-351851
       - kmk-351852
       - kmk-351853
+      - kmk-403371
       - ngc-1097885
   - id: unified-ngc-1097939
     fuss: seed_unsorted

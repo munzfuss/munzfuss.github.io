@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-09T15:11:04Z'
+generated_at: '2026-10-12T07:11:53Z'
 entity: danish_norway
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -21504,7 +21504,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/155299
         ref: KMM 155299 (Inv. FP 3115.106)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/403373
+        ref: KMM 403373 (Inv. FP 3479.8)
     verification_note: *id001
+    _thinned_from:
+      - kmk-403373
   - id: kmk-157065
     fuss: seed_unsorted
     phase: kmk
@@ -23881,32 +23886,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/394316
         ref: KMM 394316 (Inv. FP 4227.1406)
     verification_note: *id001
-  - id: kmk-403373
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_norway
-    entity_classified_via: nation
-    nominal: 1 Skilling
-    metal_verified: false
-    mint_verified: true
-    ruler: Frederik 3
-    year_first: 1650
-    year_last: 1650
-    year_label: '1650'
-    year_ranges:
-      -   - 1650
-          - 1650
-    weight_rough_verified: false
-    catalog:
-      hede: 71A
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/403373
-        ref: KMM 403373 (Inv. FP 3479.8)
-    verification_note: *id001
-    mint: '?'
   - id: kmk-424806
     fuss: seed_unsorted
     phase: kmk
@@ -25409,7 +25388,7 @@ coins:
     nominal: 1-skilling
     metal_verified: false
     mint_verified: false
-    ruler: Frederik II
+    ruler: Frederik 3
     year_first: 1651
     year_last: 1659
     year_label: 1651-1659
@@ -25424,7 +25403,23 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/308795
         ref: KMM 308795 (Inv. FP 7415.17)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/331168
+        ref: KMM 331168 (Inv. FP 6200.93)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik II
+        correct: Frederik 3
+        reason: KMM object 308795 records ruler «Frederik II», but its own typeNumber is Hede (Norge) 71B and its dating 1651-1659 — Frederik III (r. 1648-1670); Frederik II died 1588. A KMM 
+          data-entry error.
+        curator: serg
+    _thinned_from:
+      - kmk-331168
+    _errata_applied:
+      - field: ruler
+        printed: Frederik II
+        correct: Frederik 3
   - id: kmk-317173
     fuss: seed_unsorted
     phase: kmk
@@ -25474,31 +25469,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/331167
         ref: KMM 331167 (Inv. FP 6200.94)
-    verification_note: *id001
-  - id: kmk-331168
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_norway
-    entity_classified_via: nation
-    nominal: 1 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Frederik 3
-    year_first: 1651
-    year_last: 1651
-    year_label: '1651'
-    year_ranges:
-      -   - 1651
-          - 1651
-    weight_rough_verified: false
-    catalog:
-      hede: 71B
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/331168
-        ref: KMM 331168 (Inv. FP 6200.93)
     verification_note: *id001
   - id: kmk-346977
     fuss: seed_unsorted
@@ -29637,7 +29607,7 @@ coins:
     entity_classified_via: nation
     nominal: 1 Skilling
     metal_verified: false
-    mint_verified: true
+    mint_verified: false
     ruler: Frederik 3
     year_first: 1653
     year_last: 1653
@@ -29654,7 +29624,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/403404
         ref: KMM 403404 (Inv. FP 3468.17)
     verification_note: *id001
-    mint: '?'
   - id: kmk-424743
     fuss: seed_unsorted
     phase: kmk
@@ -40823,7 +40792,7 @@ coins:
     kind: kurant
     issuing_entity: danish_norway
     entity_classified_via: nation
-    nominal: 2 Skilling
+    nominal: 1 Skilling
     metal: silver
     metal_verified: true
     mint_verified: false
@@ -40844,6 +40813,17 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/394034
         ref: KMM 394034 (Inv. FP 4227.1688)
     verification_note: *id001
+    _source_errata:
+      - field: nominal
+        printed: 2 Skilling
+        correct: 1 Skilling
+        reason: 'KMM object 394034 (FP, «H: 71C», 1662) records «2 skilling», but the obverse photo on the KMM object page reads «· I · SKILLING DANSK» with «NORVEGI…» and 1662 in the legend; Hede Norge
+          71C is a 1 Skilling, and the 0.565 g weight fits a 1 Skilling (Hede norm 0.921 g), not a 2 Skilling. A KMM data-entry error.'
+        curator: serg
+    _errata_applied:
+      - field: nominal
+        printed: 2 Skilling
+        correct: 1 Skilling
   - id: kmk-394083
     fuss: seed_unsorted
     phase: kmk
@@ -45724,7 +45704,7 @@ coins:
     entity_classified_via: nation
     nominal: 2 Skilling
     metal_verified: false
-    mint_verified: true
+    mint_verified: false
     ruler: Frederik 3
     year_first: 1666
     year_last: 1666
@@ -45741,7 +45721,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/403372
         ref: KMM 403372 (Inv. FP 3479.9)
     verification_note: *id001
-    mint: '?'
   - id: kmk-424405
     fuss: seed_unsorted
     phase: kmk
@@ -46936,7 +46915,19 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/405179
         ref: KMM 405179 (Inv. FP 3363.8)
     verification_note: *id001
-    mint: Hamborg
+    mint:
+    _source_errata:
+      - field: mint
+        printed: Hamborg
+        correct:
+        reason: '«Hamborg» is not in the KMM API record 405179 (FP 3363.8, Norge, «1 skilling», «H: 71C», 1667, no place). It was borrowed from the cached web page under the same id, which the live samlinger.natmus.dk/KMM/object/405179
+          confirms is a different object: FP 3423.340, a Hamburg Hulpenning (Kirial 889, «Tyskland - Hamborg»). Hede Norge 71C is struck at Christiania. Value dropped; the mint is not attested for this
+          record.'
+        curator: serg
+    _errata_applied:
+      - field: mint
+        printed: Hamborg
+        correct:
   - id: kmk-405717
     fuss: seed_unsorted
     phase: kmk
@@ -70574,7 +70565,7 @@ coins:
     entity_classified_via: nation
     nominal: 12 Skilling
     metal_verified: false
-    mint_verified: true
+    mint_verified: false
     ruler: Frederik 4
     year_first: 1723
     year_last: 1723
@@ -70591,7 +70582,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/403371
         ref: KMM 403371 (Inv. FP 3479.10)
     verification_note: *id001
-    mint: '?'
   - id: kmk-148348
     fuss: seed_unsorted
     phase: kmk

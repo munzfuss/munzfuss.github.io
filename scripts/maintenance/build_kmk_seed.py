@@ -299,6 +299,11 @@ def _split_place(src):
         return None, mintmaster
     if first.casefold() in _NON_MINT_PLACES:
         return None, mintmaster
+    # «?» is KMM's «place unknown», not a mint (10 records, 2026-10-12). It
+    # used to pass through as a verified mint and sat beside «Christiania» on
+    # the merged Hede Norge 71 coin.
+    if re.fullmatch(r"[?\s.]+", first):
+        return None, mintmaster
     # Region (not a mint city) → drop from mint field; routing falls to nation.
     if classify_mint_to_entity(first) is None and classify_nation_to_entity(first):
         return None, mintmaster
