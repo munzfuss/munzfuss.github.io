@@ -1882,6 +1882,31 @@ were footnotes in print; their page is not recoverable. Full mapping table:
 `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/README.md` «Printed-page mapping».
 Grep the whole volume for `p\. [0-9]` — internal cross-refs are the only way to pin more pages.
 
+### 13.18 KMM `typeNumber` «Hede N» names no volume — the record's `nation` does (2026-10-12)
+
+Hede numbers restart in the Norwegian sub-catalogue, and the two volumes reuse
+the same numbers for unrelated coins: Hede **c5h76** (Danmark, Christian V) is a
+«1 Krone» 1680, København; Hede **nc5h76** (Norge) is a «2 Skilling» Kongsberg
+1688–1699. KMM writes only «Hede 76» (`typeNumber`), never which volume.
+
+*How the volume is resolved today.* Not from the number. The KMM record's
+`nation` field («Danmark» / «Norge», see `docs/KMK_HARVEST.md` «Scope filter»)
+routes the seed into `danish_realm` or `danish_norway`; the merger compares
+seeds only within one entity, so a Norge «Hede 76» can only ever meet Hede Norge
+76. `kmk-308785` / `kmk-308678` («2-skilling», Hede 76, 1692 / 1688–1699, nation
+Norge) → `nc5h76`; `kmk-710014` («krone», Hede 67, nation Danmark) → `c5h67`.
+Nominal and years agree with the volume the nation picked — that agreement is
+the cross-check to run when in doubt.
+
+*Where it can go wrong.* (1) `nation` is dirty: «Danmark-Norge», «Danmark; Norge»
+name both realms, so the volume is NOT settled by routing for those records —
+decide by nominal + years against both Hede pages, and say so. (2) The merger's
+`_hede_volume_to_ruler` strips the `n` prefix (Norge) on purpose, so nothing
+INSIDE the matcher keeps the two volumes apart; the separation rests entirely on
+entity routing. A Norge record routed into `danish_realm` (or a future
+cross-entity merge spanning both) would compare its Hede number against the
+Danish volume. Do not read a bare KMM «Hede N» as Danish by default.
+
 ## 13b. Which polity is harvested from which source
 
 Per-source access notes live in this file; **per-polity coverage lives in
