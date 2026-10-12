@@ -62,6 +62,16 @@
   --hairline:       1px
 }
 
+/* Prose scale (2026-10-12), all themes: fixed px made running text 12-14.5 px
+   on every screen. Grows with the viewport, capped; secondary prose ~0.87.
+   --prose-measure caps the LINE LENGTH of prose blocks — the page itself
+   stays full-width. */
+:root {
+  --prose:          clamp(15px, 0.4vw + 12px, 17.5px);
+  --prose-sm:       calc(var(--prose) * 0.87);
+  --prose-measure:  78ch;
+}
+
 /* --- Body & global type --------------------------------------------------- */
 
 html { background: var(--bg-page); }
@@ -169,7 +179,7 @@ a:hover { text-decoration: underline; }
   border-radius: var(--radius-pill);
   cursor: pointer;
   font-family: var(--font-sans);
-  font-size: 9.5px;
+  font-size: 11px;
   letter-spacing: 0.16em;
   line-height: 1;
   box-sizing: border-box;
@@ -329,7 +339,7 @@ a:hover { text-decoration: underline; }
 .hs-stat-wide { grid-column: 1 / -1; }
 .hs-lbl {
   font-family: var(--font-sans);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.20em;
   text-transform: uppercase;
@@ -415,7 +425,7 @@ h2[style] {
 }
 .tl-title {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -455,7 +465,7 @@ h2[style] {
   border: 0.5px solid var(--border);
   border-radius: 3px;
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.04em;
   cursor: pointer;
@@ -1384,9 +1394,10 @@ h2[style] {
 .phase-header .pspec-sub { padding-left: 1.6em; }
 .phase-header .psub {
   display: block;
+  max-width: var(--prose-measure);
   font-family: var(--font-body);
   font-style: italic;
-  font-size: 14.5px;
+  font-size: var(--prose);
   font-weight: 400;
   color: var(--text-secondary);
   margin: 8px 0 0;
@@ -1489,7 +1500,7 @@ h2[style] {
 .gw-k {
   display: block;
   font-family: var(--font-sans);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1499,7 +1510,7 @@ h2[style] {
 .gw-v {
   display: block;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13.5px;
   color: var(--text-primary);
   line-height: 1.5;
   word-break: break-word;
@@ -1519,7 +1530,7 @@ h2[style] {
 .gw-v .gw-phase-label {
   display: block;
   font-family: var(--font-sans);
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -1549,11 +1560,11 @@ h2[style] {
   border-left: 2px solid var(--accent);
   border-radius: 0 4px 4px 0;
   padding: 12px 16px;
-  font-size: 12.5px;
-  line-height: 1.75;
+  font-size: var(--prose-sm);
+  line-height: 1.7;
   color: var(--text-secondary);
   margin: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
 }
 [data-theme="v1"] .gw-fr { background: rgba(163, 124, 44, 0.04); border-left-color: var(--accent); }
 
@@ -1563,7 +1574,7 @@ h2[style] {
 .gw-fr .gw-fr-label {
   display: block;
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -1590,7 +1601,7 @@ h2[style] {
    Default style = silver. `.bx.gold` is a modifier for gold-fuss badges
    (Reichsdukatenfuß, Guldkrone-Fuß, Reichsgoldmünzfuß). */
 .bx {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   font-family: var(--font-sans);
   letter-spacing: 0.06em;
@@ -1675,9 +1686,10 @@ summary.fuss-summary:hover { border-color: var(--accent); }
 }
 [data-theme="v1"] .fs-num { color: var(--accent-deep); }
 
+
 .fs-lbl {
   font-family: var(--font-sans);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1702,6 +1714,19 @@ summary.fuss-summary:hover { border-color: var(--accent); }
   transition: filter 0.15s;
 }
 [data-theme="v1"] .fs-toggle { background: var(--text-primary); color: var(--bg-page); }
+
+/* Narrow screens: three stats + the Details pill did not fit one row, so the
+   labels were clipped and overlapped (2026-10-12). Stats wrap onto their own
+   row above a full-width Details pill. */
+@media (max-width: 720px) {
+  summary.fuss-summary { flex-wrap: wrap; }
+  .fs-stats { flex: 1 1 100%; }
+  .fs-stat { flex: 1 1 0; padding: 10px 12px; }
+  .fs-stat:last-child { border-right: 0; }
+  .fs-lbl { letter-spacing: 0.04em; hyphens: auto; }
+  .fs-toggle { flex: 1 1 100%; margin-left: 0; justify-content: center;
+               padding: 12px 16px; }
+}
 
 summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .fs-toggle-icon {
@@ -1799,7 +1824,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .ph.ph-sub { display: table; }
 .ph.ph-sub {
   margin-left: 14px;
-  font-size: 10.5px;
+  font-size: 11px;
   background: var(--accent-bg);
   border-left: 2px solid color-mix(in srgb, var(--accent) 45%, transparent);
 }
@@ -1838,8 +1863,9 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .phspec .pspec-sep, .phspec .pspec-q { color: var(--text-muted); }
 [data-theme="v3"] .phspec { color: var(--accent); }
 .phd {
+  max-width: var(--prose-measure);
   font-family: var(--font-body);
-  font-size: 13.5px;
+  font-size: var(--prose);
   line-height: 1.55;
   color: var(--text-secondary);
   margin: 6px 0 10px 12px;
@@ -1982,7 +2008,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   text-align: left;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-size: 9.5px;
+  font-size: 11px;
   white-space: nowrap;
   vertical-align: bottom;
 }
@@ -2060,7 +2086,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .c-mint { font-size: 11px; color: var(--text-secondary); }
 .c-note {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 13.5px;
   color: var(--text-secondary);
   line-height: 1.5;
   min-width: 380px;
@@ -2118,7 +2144,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .c-fuss .fuss-name { white-space: nowrap; }
 .c-fuss .sf-line {
   display: block;
-  font-size: 10.5px;
+  font-size: 11px;
   font-style: italic;
   line-height: 1.35;
   margin-top: 2px;
@@ -2143,7 +2169,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .c-fuss .sf-line.tertiary::before { content: "▸ Tertiär: "; color: var(--cite); font-weight: 600; font-style: normal; }
 .c-fuss .sf-line.implied { color: var(--sd-under-deep-fg); font-style: italic; opacity: 0.85; }
 
-.c-ref { font-family: var(--font-sans); font-size: 10.5px; color: var(--accent-muted); font-style: italic; }
+.c-ref { font-family: var(--font-sans); font-size: 12px; color: var(--accent-muted); font-style: italic; }
 .c-ref a { color: var(--accent-muted); }
 /* Each source on its own line — was previously joined with " · " inline,
    which forced wide cells and split single source labels mid-line.
@@ -2157,7 +2183,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   padding: 2px 6px;
   border-radius: 3px;
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.04em;
   cursor: help;
@@ -2284,7 +2310,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   border-radius: var(--radius-block);
   padding: 14px 18px;
   margin: 14px 0 0;
-  font-size: 13px;
+  font-size: var(--prose-sm);
   color: var(--text-secondary);
   line-height: 1.65;
   font-style: italic;
@@ -2296,7 +2322,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .terr .tlb {
   display: block;
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -2327,8 +2353,9 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 
 .refs {
   padding-left: 24px;
+  max-width: var(--prose-measure);
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: var(--prose-sm);
   line-height: 1.65;
   color: var(--text-secondary);
 }
@@ -2343,11 +2370,12 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   border: var(--hairline) solid var(--border);
   border-radius: var(--radius-card);
   padding: 16px 22px;
-  font-size: 13.5px;
+  font-size: var(--prose-sm);
   color: var(--text-secondary);
   line-height: 1.7;
   margin: 0 0 22px;
 }
+.methodology > * { max-width: var(--prose-measure); }
 .methodology b { color: var(--text-primary); font-weight: 600; }
 .methodology em, .methodology i { color: var(--accent); font-style: italic; }
 
@@ -2419,7 +2447,7 @@ a.loc-card--seed:hover {
   background: var(--subcat-scheide-bg);
   border: 0.5px solid var(--subcat-scheide-border);
   color: var(--subcat-scheide-fg);
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2526,7 +2554,7 @@ footer {
   padding-top: 18px;
   border-top: var(--hairline) solid var(--border);
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-muted);
