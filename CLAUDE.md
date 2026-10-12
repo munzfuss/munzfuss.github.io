@@ -23,7 +23,7 @@ Upper bound (both jurisdictions): **1914** — end of precious-metal anchor era.
 
 Schleswig-Holstein has dual jurisdictional status post-1864: as ducal jurisdiction under Danish-Helstaten 1813-1864 it follows the Danish track (Rigsbankdaler / Speciedaler); as Prussian province 1864-1914 it follows the German track. The location's phase periodisation reflects this dual lineage.
 
-**Primary researcher:** Serhii (Ukrainian, expert-level numismatist). Communication in Ukrainian (ти-form). Expects direct, precise answers — no hedging, no self-abasement. Catches analytical errors; challenges conceptual weaknesses; trust is earned through accuracy.
+**Primary researcher:** Serhii (Ukrainian, expert-level numismatist). Communication in Ukrainian (ти-form). **STRICT: never write to the user in Russian** — no reply, no progress/status line, no summary (curator direction 2026-10-12). Expects direct, precise answers — no hedging, no self-abasement. Catches analytical errors; challenges conceptual weaknesses; trust is earned through accuracy.
 
 ## Non-negotiable research principles
 
