@@ -789,6 +789,7 @@ def _enrich_from_raadata(src: dict) -> dict:
         # ref can tell the reader the object page shows another object.
         return {**src, "_raadata_other_inv": rd.get("identifikation").strip()}
     src = dict(src)
+    src["_raadata_inv"] = (rd.get("identifikation") or "").strip()
     # weight — maalinger [{vaerdi, enhed:"g"}] → measurements [{dimension:Vægt}]
     if not src.get("measurements"):
         mm = [
@@ -831,11 +832,24 @@ def _enrich_from_raadata(src: dict) -> dict:
     return src
 
 
+def _inv_key(inv: str) -> str:
+    """Inventory number with pure notation variants removed: a repeated base
+    («FP 5149 5149.200» = «FP 5149.200») and leading zeros in the suffix
+    («FP 3574.098» = «FP 3574.98»)."""
+    inv = re.sub(r"^(\S+)\s+(\d+)\s+\2(?=\.)", r"\1 \2", inv.strip())
+    return re.sub(r"(?<=[.,])0+(?=\d)", "", inv)
+
+
 def _kmm_ref(rid, src: dict) -> str:
     """«KMM <id> (Inv. …)»; when the web object page under this id is another
     object (docs/SOURCES.md §13.19, class C) both inventory numbers are given."""
     inv = _inventory(src)
     other = src.get("_raadata_other_inv")
+    web = src.get("_raadata_inv")
+    if not other and inv and web and _inv_key(web) != _inv_key(inv):
+        # Same object, but the page prints another inventory number (the
+        # FP 1780 off-by-one, the FP 5215 «,x2»/«,1» form — SOURCES §13.19).
+        other = web
     if inv and other:
         return (f"KMM {rid} (Inv. {inv}; die Webseite unter dieser "
                 f"Objektnummer zeigt Inv. {other})")

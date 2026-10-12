@@ -16,6 +16,12 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-12 — KMM web page under an id can be another object (SOURCES §13.19) — closed
+
+- **Done, local (not pushed):** `c8172b5` (SOURCES §13.19) → `c686bde` (class C: no enrichment when inventory prefix/base differ; ref names both inventories) → `1f02448` (inert 405179 mint erratum dropped) → `4c40573` (`_RAADATA_INCOHERENT_IDS` 167065/167067/167107/167151; superseded bare refs dropped, 46 `_recorded_removals`) → `bfbbeb3` (`_KMM_PUBLISHED_UNDER`: 403404→818690, 404261→830521, 404262→830522 as second source) → this commit (ref note for every suffix-only mismatch too, 174 refs; `audit_kmk_raadata_mismatch.py`).
+- **After any KMM re-harvest:** run `scripts/maintenance/audit_kmk_raadata_mismatch.py`; exit 1 = a new B-incoherent record → curator call, then add to `_RAADATA_INCOHERENT_IDS`. Note `merge_seed` unions `sources`, so a CHANGED ref text leaves the old ref beside the new one — clean it up in seeds + finals and record removals (see 4c40573).
+- 42 class-C objects are not published on samlinger.natmus.dk at all (site search indexes the page inventory, not the API one) — no correct link exists.
+
 ## 2026-10-10 — Guldgyldenfod (rhinsk_gylden_fod) Denmark card complete
 
 - Denmark page: description, closing, Grundwerte (Worms 1495 → 0 → Møntordning 1514 → I.a–I.d → II → III → IV), per-phase formula, sub-phases I.a/I.b/I.c/I.d with per-phase fine + rough targets. Full state + rationale: `docs/research/rhinsk_gylden_fod.md` §10, §15–§17.

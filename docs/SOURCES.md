@@ -2003,3 +2003,10 @@ are unusable; 3 are published under another id and were verified —
 403404 → 818690 (inv., 1653, Norge, «H. 71B», find place), 404261 → 830521
 and 404262 → 830522 (inv. and find place Nørre Nebel Kirke). These are added
 as a second source (`_KMM_PUBLISHED_UNDER` in `build_kmk_seed.py`).
+
+*Ref note extended (2026-10-12).* Every KMM ref whose page prints another
+inventory number now names it — class C, the 4 incoherent records AND the
+suffix-only class B (174 refs); notation-only class A is left alone
+(`_inv_key`). Re-check after a re-harvest with
+`scripts/maintenance/audit_kmk_raadata_mismatch.py` (exit 1 = new
+B-incoherent record awaiting a curator call).
