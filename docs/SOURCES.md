@@ -2010,3 +2010,11 @@ suffix-only class B (174 refs); notation-only class A is left alone
 (`_inv_key`). Re-check after a re-harvest with
 `scripts/maintenance/audit_kmk_raadata_mismatch.py` (exit 1 = new
 B-incoherent record awaiting a curator call).
+
+*Wrong links removed (2026-10-12, curator).* The 46 records with no correct
+page (class C minus `_KMM_PUBLISHED_UNDER`, plus `_RAADATA_INCOHERENT_IDS`)
+are cited WITHOUT a url: «KMM <id> (Inv. …)» (`_kmm_source`). `api.natmus.dk`
+is off for everyone (Azure «Web App - Unavailable», certificate host mismatch),
+and it only ever took POST queries — there is no public URL for these records.
+Wayback could not be checked (IA offline) → docs/TODO.md §DD.
+

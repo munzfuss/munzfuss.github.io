@@ -1597,6 +1597,12 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 **Cross-references.** Closes the TODO §BO.5 step 5 cleanup tail — see TODO §BO entry body for the original «OR fold into existing Numista parser» note that this scope is now fulfilling.
 
+### DD. 🔴 KMM: when the Internet Archive is back, look for snapshots of the 46 link-less KMM records — MANDATORY  *(opened 2026-10-12, curator «обов'язково»)* *(est: small)* *(type: research + data)*
+
+**Why.** For 49 KMM records the page `samlinger.natmus.dk/KMM/object/<id>` shows another object (docs/SOURCES.md §13.19: 45 class C + 4 incoherent FP 1780 — `_RAADATA_INCOHERENT_IDS`). 3 have their own page under another id (`_KMM_PUBLISHED_UNDER`); for the other 46 the builder emits the citation WITHOUT a url (`_kmm_source` in `build_kmk_seed.py`), only «KMM <id> (Inv. …)». `api.natmus.dk` is switched off for everyone (Azure «Web App - Unavailable», cert mismatch) and only ever took POST queries, so no public URL for those records exists. On 2026-10-12 the Wayback Machine itself was down («Temporarily Offline» / 429), so it could not be checked.
+
+**What to do when IA answers.** For each id in the 46 (list = class C minus the 3 + the 4; reproduce with `audit_kmk_raadata_mismatch.py`): query `https://web.archive.org/cdx/search/cdx?url=samlinger.natmus.dk/KMM/object/<id>` (also `/kmm/object/`). A snapshot whose page shows the API inventory number and matching content (nominal, ruler, type number, find place) is the record's correct page → add it as the source url (archived link) in the builder, measure, re-flow, verify_reflow. No snapshot / snapshot of the wrong object → leave link-less and note the result here. Blocker: Internet Archive availability.
+
 ## Normal priority
 
 ### DZ. 🟡 Thinning forgets its own drops; three normaliser gaps behind it  *(opened 2026-09-21)* *(est: medium)* *(type: code + data-audit)*

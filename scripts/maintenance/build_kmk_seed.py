@@ -856,6 +856,22 @@ def _kmm_ref(rid, src: dict) -> str:
     return f"KMM {rid}" + (f" (Inv. {inv})" if inv else "")
 
 
+def _kmm_source(rid, src: dict) -> dict:
+    """The record's own museum citation. When the object page under this id
+    shows ANOTHER object (class C / `_RAADATA_INCOHERENT_IDS`, SOURCES
+    §13.19) no link is emitted — it would lead the reader to the wrong coin,
+    and the API record has no public URL (api.natmus.dk is switched off).
+    The museum inventory number still identifies the object. Curator
+    2026-10-12; re-check Wayback snapshots (docs/TODO.md) when IA is back."""
+    if src.get("_raadata_other_inv"):
+        inv = _inventory(src)
+        return {"type": "museum",
+                "ref": f"KMM {rid}" + (f" (Inv. {inv})" if inv else "")}
+    return {"type": "museum",
+            "url": f"https://samlinger.natmus.dk/KMM/object/{rid}",
+            "ref": _kmm_ref(rid, src)}
+
+
 def build_entry(src) -> dict | None:
     if _is_exonumia_workdesc(src.get("workDescription")):
         return None
@@ -920,11 +936,7 @@ def build_entry(src) -> dict | None:
         "weight_rough_verified": w is not None,
         "catalog": catalog or None,
         "verified": False,
-        "sources": [{
-            "type": "museum",
-            "url": f"https://samlinger.natmus.dk/KMM/object/{rid}",
-            "ref": _kmm_ref(rid, src),
-        }],
+        "sources": [_kmm_source(rid, src)],
         "verification_note": _VNOTE,
     }
     _alt = _KMM_PUBLISHED_UNDER.get(str(rid))
