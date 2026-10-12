@@ -2,8 +2,8 @@
 # Generated 2026-10-12 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15192 per-source seed entries.
-# Output: 6864 unified entries (one per physical coin).
+# Input: 15187 per-source seed entries.
+# Output: 6862 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -62773,44 +62773,6 @@ coins:
       - dk-numista-90042
       - dk-tid-94244
       - ngc-1050114
-  - id: unified-dk-hede-f4h35
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 3 Krone
-    year_first: 1699
-    year_last: 1699
-    year_label: '1699'
-    ruler: Frederik IV.
-    mint: Kopenhagen
-    catalog:
-      hede: '35'
-      hede_volume: f4h
-      schou: '8'
-      sieg: '21'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.993
-        source: hede
-    weight_rough_g:
-      - value: 45.287
-        source: hede
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f4h35.htm
-        ref: danskmoent.dk (Hede f4h35)
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-hede-f4h35
   - id: unified-dk-hede-f4h36
     fuss: seed_unsorted
     phase: hede
@@ -276752,66 +276714,6 @@ coins:
     composed_of:
       - dk-tid-97338
       - ngc-1049973
-  - id: unified-ngc-1049974
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 3 Krone
-    year_first: 1699
-    year_last: 1699
-    year_label: '1699'
-    ruler: Christian 5/Frederik 4
-    catalog:
-      km: '449'
-      dav: A3649
-      hede: '35'
-      schou: '8'
-      others:
-        - B# 9
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.933
-        source: ngc
-      - value: 0.933
-        source: numismaster
-    weight_rough_g:
-      - value: 44.41
-        source: kmk
-      - value: 44.82
-        source: kmk
-      - value: 45.287
-        source: ngc
-      - value: 45.287
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65366
-        ref: NumisMaster
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/20664
-        ref: KMM 20664 (Inv. GP 3210.2)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/439653
-        ref: KMM 439653 (Inv. RP 1100.1)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-3-krone-km-449-1699-cuid-1049974-duid-1237375
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65366
-      - kmk-20664
-      - kmk-439653
-      - ngc-1049974
   - id: unified-ngc-1049975
     fuss: seed_unsorted
     phase: ngc

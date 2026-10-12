@@ -21860,56 +21860,6 @@ coins:
   - fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: 3 Krone
-    ruler: Frederik IV.
-    issuing_entity: danish_norway
-    id: unified-dk-bruun-7297
-    year_first: 1699
-    year_last: 1699
-    year_label: '1699'
-    mint: Kongsberg
-    catalog:
-      km: '449'
-      bruun_collection_id: '7297'
-      sieg: '21'
-      schou: '8'
-      hede: '35'
-      nmd: '2'
-      bruun_part: II
-      bruun_lot_no: 13202
-      bruun_page: 150
-      numista: '119286'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 42.14
-        source: bruun
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13202, p. 150
-      - type: literature
-        url: https://en.numista.com/119286
-        ref: Numista N#119286 — 3 Kroner (12 Mark) - Frederick IV (Change of throne) - Norway
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - unified-dk-bruun-7297
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
     nominal: 1 Speciedaler
     ruler: Christian IV.
     mintmaster: Anders Pedersen
@@ -88720,6 +88670,92 @@ coins:
     verification_note: *id009
     composed_of:
       - unified-kmk-82676
+  - fuss: kronemont
+    phase: II
+    kind: kurant
+    nominal: 3 Krone
+    ruler: Frederik IV.
+    issuing_entity:
+      - danish_norway
+      - danish_realm
+    id: unified-dk-hede-f4h35
+    year_first: 1699
+    year_last: 1699
+    year_label: '1699'
+    mint:
+      - Kongsberg
+      - Kopenhagen
+    catalog:
+      km: '449'
+      hede: '35'
+      hede_volume: f4h
+      schou: '8'
+      sieg: '21'
+      bruun_collection_id: '7297'
+      nmd: '2'
+      bruun_part: II
+      bruun_lot_no: 13202
+      bruun_page: 150
+      dav: A3649
+      numista: '119286'
+      others:
+        - B# 9
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.933
+        source: ngc
+      - value: 0.933
+        source: numismaster
+      - value: 0.993
+        source: hede
+    weight_rough_g:
+      - value: 42.14
+        source: bruun
+      - value: 44.41
+        source: kmk
+      - value: 44.82
+        source: kmk
+      - value: 45.287
+        source: hede
+      - value: 45.287
+        source: ngc
+      - value: 45.287
+        source: numismaster
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65366
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13202, p. 150
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f4h35.htm
+        ref: danskmoent.dk (Hede f4h35)
+      - type: literature
+        url: https://en.numista.com/119286
+        ref: Numista N#119286 — 3 Kroner (12 Mark) - Frederick IV (Change of throne) - Norway
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/20664
+        ref: KMM 20664 (Inv. GP 3210.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/439653
+        ref: KMM 439653 (Inv. RP 1100.1)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-3-krone-km-449-1699-cuid-1049974-duid-1237375
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    composed_of:
+      - unified-dk-hede-f4h35
+    fraction: '3'
   - fuss: 9_25_thaler
     phase: I
     kind: kurant
