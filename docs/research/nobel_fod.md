@@ -475,8 +475,16 @@ ignores the old one; being indirect, that end is marked approximate («~»).
 8. **Dating of the Ribe Nobler (Galster 68, 69).** Ernst gives 1524 or 1525 (hedged).
    → Galster «Ribe Mønt» (1947), Jensen–Skjoldager «The missing link» (NNUM 2012/1) and
    «Tronraneren» (2021); the Royal Collection record of the Unica.
-9. **The «24 karat» of the 1487 real** (Vanhoudt's noble-gold convention). → see
-   `burgundian_gold_real_1487.md` Q1; unchanged.
+9. **The «24 karat» of the 1487 real** (Vanhoudt's noble-gold convention). **Narrowed
+   2026-10-12:** the Netherlands instructions themselves use «24 carats» as a
+   conventional label — De Witte II p. 79 (instruction after the ordinance of 14 Dec
+   1489): «*à XXIV carats — le noble Henricus compté pour fin*»; pp. 39–40 (Bruges 1469),
+   44, 53; numeric «fine gold» = 23 ct 9½ gr in 1500 (p. 116) and 1521 (p. 160); full
+   table in `burgundian_gold_real_1487.md` §3.1a. Still open: whether the 1487 text
+   says the same (Q1). **Card/description state:** «24 карати» is NOT given as the
+   prototype's fineness in the phase 0 text; it stays in the details section
+   «Instructie Maximilian juli 1487» as what the instruction names, with the
+   convention note (ref `dewitte-1896-or-fin-noble-compte-pour-fin-1489`).
 10. **«First dated gold coin of Denmark» (card) vs Bruun «first dated Scandinavian
     coin».** Curator kept the card wording 2026-10-11. → a source on dated Danish coins
     before 1496 would settle it either way.
