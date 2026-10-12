@@ -66,12 +66,13 @@ METRIC = (r"\d+[.,]\d+\s*g\b|\d+[.,]?\d*\s*‰|(?<![\d.])\.\d{3}\b|"
 MINT_WORD = (r"викарбува|карбува|рахун|geprägt|ausgeprägt|Auflage|Rechnung|struck|minted|"
              r"mintage|account|udm[øo]nt|pr[æa]get|regnskab|наклад")
 BIG_NUMBER = r"\b\d{1,3}(?:[ \u00a0\u202f.]\d{3})+\b|\b\d{5,}\b"
-# survivor / known-specimen counts — forbidden in EVERY layer (curator 2026-10-12):
-# «N known specimens», «2 Exemplare bekannt», «збереглося 3 екземпляри», and the
-# zero case «no specimen survives / жодного екземпляра не збереглося».
-SURVIVORS = (r"\d+\s*(?:bekannte?n?\s+)?(?:Exemplar\w*|specimens?|eksemplar\w*|екземпляр\w*)|"
-             r"(?:kein|keines|no|intet|ingen|жодн\w*)\s+(?:\w+\s+){0,2}"
-             r"(?:Exemplar\w*|specimens?|eksemplar\w*|екземпляр\w*)")
+# survivor / known-specimen counts (curator 2026-10-12): a NUMBER of surviving /
+# known specimens («2 Exemplare bekannt», «збереглося 3 екземпляри») is forbidden in
+# every layer; the ZERO case («no specimen survives / жодного екземпляра не
+# збереглося») is forbidden in the fuss description but allowed in a phase description.
+SURVIVORS = r"\d+\s*(?:bekannte?n?\s+)?(?:Exemplar\w*|specimens?|eksemplar\w*|екземпляр\w*)"
+SURVIVORS_NONE = (r"(?:kein|keines|no|intet|ingen|жодн\w*)\s+(?:\w+\s+){0,2}"
+                  r"(?:Exemplar\w*|specimens?|eksemplar\w*|екземпляр\w*)")
 # claim verbs that usually need a citation (C5)
 CLAIM = (r"founded|established|introduced|ordered|decreed|standardis|adopt|"
          r"served|functioned|role|because|prompted|led to|resulted|reform|"
@@ -147,6 +148,10 @@ def scan_lang(desc, refkeys, layer="description"):
     hits["c6_catalogue"] = sorted(set(re.findall(CATALOGUE, plain)))
     hits["c6_mintmasters"] = sorted(set(re.findall(MINTMASTER, plain)))
     hits["c6_survivors"] = sorted(set(re.findall(SURVIVORS, plain, re.I)))
+    none_ = sorted(set(re.findall(SURVIVORS_NONE, plain, re.I)))
+    hits["survivors_none"] = none_                 # informational in a phase
+    if layer == "description":
+        hits["c6_survivors"] += none_
     mint = []
     for s in sentences(desc):
         if re.search(MINT_WORD, s, re.I):
@@ -269,6 +274,8 @@ def phase_layers(fuss, f, loc, refkeys, lang):
         c6 = sc['c6_specimens'] + sc['c6_catalogue'] + sc['c6_mintmasters'] + sc['c6_survivors']
         print(f"     C6 flags={c6 or 'none'}   C1: decree={sc['c1_decree']} ruler={sc['c1_ruler']} "
               f"year={sc['c1_year']}   C2 role tokens={sc['c2_role_tokens'] or '—'}")
+        if sc['survivors_none']:
+            print(f"     no-survivor statement {sc['survivors_none']} — allowed in a phase description (not a C6 hit)")
         if sc['mintage']:
             print(f"     mintage figures {sc['mintage']} — allowed in a phase description (not a C6 hit)")
     print()
@@ -343,7 +350,7 @@ def main():
                   f"mintmaster: {h['c6_mintmasters'] or '—'}")
         print(f"     <- auction/lot/grade/unique + catalogue-number-in-prose (Hede f2h3, Galster 131) "
               f"+ one-issue mintmaster + mintage figures + survivor counts ALL count as §7a C6 "
-              f"intrusions in a fuss description (phase descriptions may carry mintage, not survivor counts)")
+              f"intrusions in a fuss description (phase descriptions may carry mintage and «no specimen survives», not a survivor count)")
         print()
     loc = None
     if "--location" in sys.argv:
