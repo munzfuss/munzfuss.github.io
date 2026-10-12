@@ -64,12 +64,13 @@
 
 /* Prose scale (2026-10-12), all themes: fixed px made running text 12-14.5 px
    on every screen. Grows with the viewport, capped; secondary prose ~0.87.
-   --prose-measure caps the LINE LENGTH of prose blocks — the page itself
-   stays full-width. */
+   --prose-measure: line-length cap for prose blocks — tried at 78ch and
+   dropped (curator: the empty band beside the text looked odd); kept as a
+   single switch, now «none». */
 :root {
   --prose:          clamp(15px, 0.4vw + 12px, 17.5px);
   --prose-sm:       calc(var(--prose) * 0.87);
-  --prose-measure:  78ch;
+  --prose-measure:  none;
 }
 
 /* --- Body & global type --------------------------------------------------- */
@@ -1459,7 +1460,7 @@ h2[style] {
 [data-theme="v1"] .gw-heading { color: var(--accent-deep); }
 
 .gw-subheading {
-  font-size: 12.5px;
+  font-size: var(--prose-sm);
   color: var(--text-muted);
   margin-top: 3px;
   line-height: 1.5;
@@ -1481,6 +1482,9 @@ h2[style] {
   grid-template-columns: 1fr;
   gap: 0;
   font-size: 13px;
+  /* Pack rows at the top: the grid is as tall as the prose column beside it,
+     and the default stretch spread that height into big gaps between rows. */
+  align-content: start;
 }
 .gw-row {
   display: block;
@@ -1993,7 +1997,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   min-width: 1100px;
   border-collapse: collapse;
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 14px;
   background: var(--bg-page);
   margin: 0;
 }
@@ -2032,7 +2036,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
    the fixed --msr-row-h makes every column's sub-rows the same height so
    they line up horizontally. Divider is LIGHTER than the inter-row border
    (--border-soft vs --border) to read as a sub-row, not a row. */
-.mt { --msr-row-h: 44px; }
+.mt { --msr-row-h: 48px; }
 .mt tbody td:has(.msr-seg) { padding: 0; vertical-align: top; }
 .msr-seg {
   min-height: calc(var(--msr-row-h) * var(--span, 1));
@@ -2065,13 +2069,13 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 /* Per-cell typography */
 .c-nom { font-weight: 500; font-style: italic; max-width: 220px; }
 
-.c-year { font-family: var(--font-mono); font-size: 11px; color: var(--accent); }
+.c-year { font-family: var(--font-mono); font-size: 12.5px; color: var(--accent); }
 .c-year .yr-chunk { display: block; white-space: nowrap; }
-.c-km { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+.c-km { font-size: 12.5px; color: var(--text-secondary); line-height: 1.4; }
 .c-km .cat-group { display: inline-block; white-space: nowrap; }
 .c-km .cat-prefix { color: var(--text-muted); font-weight: 500; font-family: var(--font-sans); }
 .c-km .cat-plain { color: var(--text-muted); font-style: italic; }
-.c-metal { font-size: 11px; color: var(--text-secondary); }
+.c-metal { font-size: 12.5px; color: var(--text-secondary); }
 /* Period-unit equivalent of the fineness (Karat / Lot) + its (?) marker — own
    line, flush-left under the .xxx value, regardless of the cell's own
    text-align. The .fin-eq wrapper is the block; the unit text is muted; the
@@ -2081,9 +2085,9 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .c-metal .fin-eq { display: block; flex-basis: 100%; text-align: left; }
 .c-metal .fin-unit { color: var(--text-muted); }
 .c-metal .msr-seg { flex-wrap: wrap; align-content: flex-start; }
-.c-w { font-family: var(--font-mono); font-size: 11px; white-space: nowrap; }
-.c-d { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
-.c-mint { font-size: 11px; color: var(--text-secondary); }
+.c-w { font-family: var(--font-mono); font-size: 12.5px; white-space: nowrap; }
+.c-d { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-muted); }
+.c-mint { font-size: 12.5px; color: var(--text-secondary); }
 .c-note {
   font-family: var(--font-body);
   font-size: 13.5px;
@@ -2097,9 +2101,9 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .c-note a { color: var(--accent); }
 .c-note sup a { font-size: 0.85em; }
 
-.c-soll { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.c-stop-rough, .c-stop-fine { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.c-delta { font-family: var(--font-mono); font-size: 11px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.c-soll { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.c-stop-rough, .c-stop-fine { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.c-delta { font-family: var(--font-mono); font-size: 12.5px; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* Δ palette — 4-state spectrum, applied per .sd class */
 /* Δ badges fill the full column width so consecutive badges (primary +
@@ -2134,7 +2138,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .c-delta .sd.dev-pos { color: var(--sd-over-strong-fg); background: var(--sd-over-strong-bg); padding: 1px 6px; border-radius: 2px; }
 .c-delta .sd-na { color: var(--text-muted); font-style: italic; cursor: help; }
 
-.c-fuss { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+.c-fuss { font-size: 12.5px; color: var(--text-secondary); line-height: 1.4; }
 .c-fuss .fuss-nominal { display: block; color: var(--text-primary); white-space: nowrap; }
 .c-fuss .fuss-implied { color: var(--accent); font-style: italic; }
 /* Keep Fuß names like "9¼-Thaler-Fuß" / "Reichsdukatenfuß" on a single
@@ -2144,7 +2148,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .c-fuss .fuss-name { white-space: nowrap; }
 .c-fuss .sf-line {
   display: block;
-  font-size: 11px;
+  font-size: 12.5px;
   font-style: italic;
   line-height: 1.35;
   margin-top: 2px;
@@ -2169,7 +2173,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .c-fuss .sf-line.tertiary::before { content: "▸ Tertiär: "; color: var(--cite); font-weight: 600; font-style: normal; }
 .c-fuss .sf-line.implied { color: var(--sd-under-deep-fg); font-style: italic; opacity: 0.85; }
 
-.c-ref { font-family: var(--font-sans); font-size: 12px; color: var(--accent-muted); font-style: italic; }
+.c-ref { font-family: var(--font-sans); font-size: 12.5px; color: var(--accent-muted); font-style: italic; }
 .c-ref a { color: var(--accent-muted); }
 /* Each source on its own line — was previously joined with " · " inline,
    which forced wide cells and split single source labels mid-line.
@@ -2183,7 +2187,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   padding: 2px 6px;
   border-radius: 3px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.04em;
   cursor: help;
@@ -2414,7 +2418,7 @@ a.loc-card:hover {
 }
 [data-theme="v1"] .loc-card h3 { color: var(--accent-deep); }
 
-.loc-card p { margin: 0; font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+.loc-card p { margin: 0; font-size: 14.5px; color: var(--text-secondary); line-height: 1.55; }
 
 /* Seed-card variant — locations whose Müntzfuß-classification is still
    pending (any seed_unsorted coin present). Rendered only on local builds
@@ -2469,7 +2473,7 @@ a.loc-card--seed:hover {
 }
 .gf-subheading {
   margin: 0 0 4px;
-  font-size: 13px;
+  font-size: var(--prose-sm);
   color: var(--text-secondary);
   line-height: 1.6;
 }
