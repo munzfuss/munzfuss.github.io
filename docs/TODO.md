@@ -1597,12 +1597,6 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 **Cross-references.** Closes the TODO §BO.5 step 5 cleanup tail — see TODO §BO entry body for the original «OR fold into existing Numista parser» note that this scope is now fulfilling.
 
-### DD. 🔴 KMM: when the Internet Archive is back, look for snapshots of the 46 link-less KMM records — MANDATORY  *(opened 2026-10-12, curator «обов'язково»)* *(est: small)* *(type: research + data)*
-
-**Why.** For 49 KMM records the page `samlinger.natmus.dk/KMM/object/<id>` shows another object (docs/SOURCES.md §13.19: 45 class C + 4 incoherent FP 1780 — `_RAADATA_INCOHERENT_IDS`). 3 have their own page under another id (`_KMM_PUBLISHED_UNDER`); for the other 46 the builder emits the citation WITHOUT a url (`_kmm_source` in `build_kmk_seed.py`), only «KMM <id> (Inv. …)». `api.natmus.dk` is switched off for everyone (Azure «Web App - Unavailable», cert mismatch) and only ever took POST queries, so no public URL for those records exists. On 2026-10-12 the Wayback Machine itself was down («Temporarily Offline» / 429), so it could not be checked.
-
-**What to do when IA answers.** For each id in the 46 (list = class C minus the 3 + the 4; reproduce with `audit_kmk_raadata_mismatch.py`): query `https://web.archive.org/cdx/search/cdx?url=samlinger.natmus.dk/KMM/object/<id>` (also `/kmm/object/`). A snapshot whose page shows the API inventory number and matching content (nominal, ruler, type number, find place) is the record's correct page → add it as the source url (archived link) in the builder, measure, re-flow, verify_reflow. No snapshot / snapshot of the wrong object → leave link-less and note the result here. Blocker: Internet Archive availability.
-
 ## Normal priority
 
 ### DZ. 🟡 Thinning forgets its own drops; three normaliser gaps behind it  *(opened 2026-09-21)* *(est: medium)* *(type: code + data-audit)*
@@ -3707,6 +3701,15 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 **Done-when.** The Danish-crown numista entities' range-only-no-`year_list` count drops to the genuine range-only residual (mirroring danish_norway's 4/365); discrete `year_list`s are in cache + seed; after a re-flow the gapped year labels render (e.g. «1781, 1784, 1786, 1796» instead of «1781-1796») on the correctly-split entries (§CW first for 131730). Cross-ref §CW.
 
 ## Done
+
+### DD. ✅ KMM: when the Internet Archive is back, look for snapshots of the 46 link-less KMM records — MANDATORY  *(opened 2026-10-12, curator «обов'язково»)* *(est: small)* *(type: research + data)*
+
+**Why.** For 49 KMM records the page `samlinger.natmus.dk/KMM/object/<id>` shows another object (docs/SOURCES.md §13.19: 45 class C + 4 incoherent FP 1780 — `_RAADATA_INCOHERENT_IDS`). 3 have their own page under another id (`_KMM_PUBLISHED_UNDER`); for the other 46 the builder emits the citation WITHOUT a url (`_kmm_source` in `build_kmk_seed.py`), only «KMM <id> (Inv. …)». `api.natmus.dk` is switched off for everyone (Azure «Web App - Unavailable», cert mismatch) and only ever took POST queries, so no public URL for those records exists. On 2026-10-12 the Wayback Machine itself was down («Temporarily Offline» / 429), so it could not be checked.
+
+**What to do when IA answers.** For each id in the 46 (list = class C minus the 3 + the 4; reproduce with `audit_kmk_raadata_mismatch.py`): query `https://web.archive.org/cdx/search/cdx?url=samlinger.natmus.dk/KMM/object/<id>` (also `/kmm/object/`). A snapshot whose page shows the API inventory number and matching content (nominal, ruler, type number, find place) is the record's correct page → add it as the source url (archived link) in the builder, measure, re-flow, verify_reflow. No snapshot / snapshot of the wrong object → leave link-less and note the result here. Blocker: Internet Archive availability.
+
+**DONE 2026-10-12 (same day, via the in-app browser — IA's CDX API refused curl with 429/hangs, but same-origin fetch from a web.archive.org page worked).** All 46 ids checked (CDX, then `/__wb/sparkline` for the CDX 503s, control-tested on 404726). Snapshots exist for 8: 402835 (2021-10-26, 2026-04-10), 404726 (2026-04-14), 404727 (2026-04-13), 404731 (2024-05-19, 2025-02-12), 404735 (2021-10-25), 404738 (2026-04-12), 404741 (2024-05-23). EVERY one shows the FP 3423.* Hulpenning (the same inventory as today's page), none the API object. So the web page under these ids has shown the other object since at least October 2021 — the mismatch sits on the API side (its record under the same number was a different object), not in a later site change. No correct archived page exists; the 46 stay link-less. Recorded in SOURCES §13.19.
+
 
 ### CE. ✅ Schauenburg NS-tradition migration + «1/24 Thaler» rule correction  *(opened 2026-05-27, closed 2026-05-29)* *(est: small)* *(type: data-audit + curator-fix + rule correction)*
 

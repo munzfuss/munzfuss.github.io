@@ -2018,3 +2018,13 @@ is off for everyone (Azure «Web App - Unavailable», certificate host mismatch)
 and it only ever took POST queries — there is no public URL for these records.
 Wayback could not be checked (IA offline) → docs/TODO.md §DD.
 
+*Wayback check done (2026-10-12).* Of the 46, 8 ids have snapshots
+(earliest 402835 on 2021-10-26 and 404735 on 2021-10-25); all show the same
+FP 3423.* Hulpenning as the live page. The web page under these ids has
+therefore shown the other object since at least 2021: the id clash is on the
+API side, not a later site change. No archived correct page exists. Access
+note: IA's CDX endpoint answered curl with 429 / hung, but a same-origin
+`fetch('/cdx/search/cdx?…')` from a web.archive.org page in the in-app
+browser worked; for CDX 503s, `/__wb/sparkline?output=json&url=…` (the
+calendar's own endpoint) gives first/last timestamps.
+
