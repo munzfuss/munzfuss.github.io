@@ -98,6 +98,22 @@ body {
   :root { --page-pad-x: 18px; --page-pad-y: 28px; }
 }
 
+/* Narrow screens: the breadcrumb / site switch takes the first row, the theme
+   and language switchers sit together on a second row instead of being pushed
+   off the right edge. */
+@media (max-width: 720px) {
+  .nav { flex-wrap: wrap; row-gap: 14px; align-items: center; }
+  .site-switch { gap: 28px; }
+  .site-switch a + a::before { left: -16px; }
+  .nav > div.switchers {
+    flex: 1 0 100%;
+    margin-left: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
