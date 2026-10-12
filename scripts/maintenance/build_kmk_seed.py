@@ -738,6 +738,24 @@ def _raadata_place(loc: str) -> str:
     return loc
 
 
+_INV_RE = re.compile(r"^\s*([A-Za-z]+)\s+(\d+)")
+
+
+def _raadata_other_object(src: dict, rd: dict) -> bool:
+    """True when the cached web page under this numeric id describes a
+    DIFFERENT museum object than the API record: the inventory numbers differ
+    in prefix or in base number (e.g. id 405179: API «FP 3363.8», a Norwegian
+    skilling; page «FP 3423.340», a Hamburg Hulpenning). A difference in the
+    suffix only (leading zeros, «,x2» vs «,1», the FP 1780 off-by-one) is NOT
+    treated as another object — see docs/SOURCES.md §13 (KMM id/inventory
+    mismatch)."""
+    a = _INV_RE.match(src.get("objectIdentification") or "")
+    w = _INV_RE.match(rd.get("identifikation") or "")
+    if not a or not w:
+        return False
+    return (a.group(1).upper(), a.group(2)) != (w.group(1).upper(), w.group(2))
+
+
 def _enrich_from_raadata(src: dict) -> dict:
     """Return a copy of `src` with ES-cache gaps filled from the web-rådata
     JSON (when a web page is cached for this object). Fills: measurements
@@ -750,6 +768,10 @@ def _enrich_from_raadata(src: dict) -> dict:
     rd = load_raadata(src.get("id"))
     if not rd:
         return src
+    if _raadata_other_object(src, rd):
+        # Enrich nothing, but keep the page's inventory number so the source
+        # ref can tell the reader the object page shows another object.
+        return {**src, "_raadata_other_inv": rd.get("identifikation").strip()}
     src = dict(src)
     # weight — maalinger [{vaerdi, enhed:"g"}] → measurements [{dimension:Vægt}]
     if not src.get("measurements"):
@@ -791,6 +813,17 @@ def _enrich_from_raadata(src: dict) -> dict:
     if rc:
         src["_raadata_catalog"] = rc
     return src
+
+
+def _kmm_ref(rid, src: dict) -> str:
+    """«KMM <id> (Inv. …)»; when the web object page under this id is another
+    object (docs/SOURCES.md §13.19, class C) both inventory numbers are given."""
+    inv = _inventory(src)
+    other = src.get("_raadata_other_inv")
+    if inv and other:
+        return (f"KMM {rid} (Inv. {inv}; die Webseite unter dieser "
+                f"Objektnummer zeigt Inv. {other})")
+    return f"KMM {rid}" + (f" (Inv. {inv})" if inv else "")
 
 
 def build_entry(src) -> dict | None:
@@ -860,8 +893,7 @@ def build_entry(src) -> dict | None:
         "sources": [{
             "type": "museum",
             "url": f"https://samlinger.natmus.dk/KMM/object/{rid}",
-            "ref": "KMM " + str(rid) + (
-                f" (Inv. {_inventory(src)})" if _inventory(src) else ""),
+            "ref": _kmm_ref(rid, src),
         }],
         "verification_note": _VNOTE,
     }

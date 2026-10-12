@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 4723 per-source seed entries.
-# Output: 2149 unified entries (one per physical coin).
+# Output: 2148 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -25616,6 +25616,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/403373
         ref: KMM 403373 (Inv. FP 3479.8)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/403373
+        ref: KMM 403373 (Inv. FP 3479.8; die Webseite unter dieser Objektnummer zeigt Inv. FP 3423.2146)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/157800
         ref: KMM 157800 (Inv. FP 1466.232)
       - type: museum
@@ -26882,8 +26885,14 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/403404
         ref: KMM 403404 (Inv. FP 3468.17)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/403404
+        ref: KMM 403404 (Inv. FP 3468.17; die Webseite unter dieser Objektnummer zeigt Inv. FP 3423.2115)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/405179
         ref: KMM 405179 (Inv. FP 3363.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/405179
+        ref: KMM 405179 (Inv. FP 3363.8; die Webseite unter dieser Objektnummer zeigt Inv. FP 3423.340)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/410711
         ref: KMM 410711 (Inv. FP 3008.32)
@@ -45876,6 +45885,7 @@ coins:
     mint: Christiania
     catalog:
       schou: '54'
+      hede: '18'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -45884,10 +45894,17 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/149503
         ref: KMM 149503 (Inv. KP 1656.810)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/402831
+        ref: KMM 402831 (Inv. FP 3594.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/402831
+        ref: KMM 402831 (Inv. FP 3594.11; die Webseite unter dieser Objektnummer zeigt Inv. FP 3423.2688)
     verification_note: *id002
     issuing_entity: danish_norway
     composed_of:
       - kmk-149503
+      - kmk-402831
   - id: unified-kmk-149504
     fuss: seed_unsorted
     phase: kmk
@@ -61335,7 +61352,6 @@ coins:
     year_last: 1661
     year_label: '1661'
     ruler: Frederik 3
-    mint: Hamborg
     catalog:
       hede:
         - 70E
@@ -61343,7 +61359,7 @@ coins:
     metal: silver
     metal_verified: true
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 1.061
@@ -61389,6 +61405,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/405180
         ref: KMM 405180 (Inv. FP 3363.7)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/405180
+        ref: KMM 405180 (Inv. FP 3363.7; die Webseite unter dieser Objektnummer zeigt Inv. FP 3423.339)
     verification_note: *id002
     issuing_entity: danish_norway
     composed_of:
@@ -67195,31 +67214,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-396408
-  - id: unified-kmk-402831
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1643
-    year_last: 1643
-    year_label: '1643'
-    ruler: Christian 4
-    mint: Mecklenburg
-    catalog:
-      hede: '18'
-      schou: '54'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/402831
-        ref: KMM 402831 (Inv. FP 3594.11)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-402831
   - id: unified-kmk-403372
     fuss: seed_unsorted
     phase: kmk
@@ -67239,6 +67233,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/403372
         ref: KMM 403372 (Inv. FP 3479.9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/403372
+        ref: KMM 403372 (Inv. FP 3479.9; die Webseite unter dieser Objektnummer zeigt Inv. FP 3423.2147)
     verification_note: *id002
     issuing_entity: danish_norway
     composed_of:
@@ -84929,6 +84926,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/403371
         ref: KMM 403371 (Inv. FP 3479.10)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/403371
+        ref: KMM 403371 (Inv. FP 3479.10; die Webseite unter dieser Objektnummer zeigt Inv. FP 3423.2148)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-12-skilling-km-217-1717-1724-cuid-1097885-duid-1445188
         ref: NGC World Coin Price Guide (powered by NumisMaster)
