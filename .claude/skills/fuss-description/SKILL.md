@@ -58,7 +58,7 @@ How the layers feed the criteria:
 | **C3 phases** | **all three** — the differentiator per phase may be carried by the phase rows and the phase descriptions; the prose need not repeat it |
 | **C4 metric-fixation** | **prose only.** Numbers in the left block and in decree rows are the card's data and never count against C4; phase prose is not scored for C4 |
 | C5 sources | every layer's prose (a claim is cited wherever it stands) |
-| C6 specimens | every layer's prose (catalogue numbers, lots, mintmasters in prose are intrusions in the phase text too) |
+| C6 specimens | every layer's prose (catalogue numbers, lots, mintmasters, survivor counts in prose are intrusions in the phase text too; **mintage figures count only in the description prose — a phase description may carry them**) |
 
 The helper prints the layers separately (left block, then the phase descriptions of the chosen
 location) with their citation counts and flags; the score is still judgment (§0b). It does NOT
@@ -108,6 +108,14 @@ Helper (mechanical signal-scan, candidates not verdicts):
    not a hit. (Curator direction 2026-07-03 — this tightens §7a's older «catalogue
    TYPE numbers are allowed» reading, which applied to coin-row attestation, not to
    the system-level description prose.)
+   **Counts — two kinds, treated differently (curator 2026-10-12):**
+   - **Mintage** (pieces STRUCK, from an account or ordinance — «за рахунком 24 470»,
+     «викарбувано 3 254») is a C6 hit in the fuss description prose, but is
+     **allowed in a phase description** («details»): there it documents the issue
+     the phase is about.
+   - **Survivor / known-specimen counts** («2 Exemplare bekannt», «збереглося 3
+     екземпляри», and the zero case «жодного екземпляра не збереглося / no specimen
+     survives») are a C6 hit in **every** layer, phase descriptions included.
 
 ## Scoring rubric — 10 points
 
@@ -122,7 +130,7 @@ citations (cross-language count drift is `audit_i18n`'s job, not this rubric).
 | C3 | Phase differentiators | 1.5 | If phases exist: 1.0 = each phase's key differentiator named · 0.5 = the differentiating axis is explicit. Read the whole variant (prose + left block + the chosen location's phase descriptions). **If NO phases: award the full 1.5** (N/A, not a penalty). |
 | C4 | No metric-fixation | 1.5 | Start 1.5; **−0.5** per weight/fineness/carat/piece number that is NOT a whole-standard, law-anchored defining value (i.e. duplicates Grundwerte). Floor 0. |
 | C5 | Every claim sourced (§0) | 2.0 | Start 2.0; **−0.5** per load-bearing claim (founding fact, motivation, role claim, «first/only») with no citation. **Hard cap: any INVENTED claim** (unsourced motive/mintage/singularity) → C5 ≤ 1.0. Unresolved `[ref:KEY]` → −0.5 each. |
-| C6 | No specimen mentions | 1.0 | Start 1.0; **−0.5** per specimen-level intrusion in the PROSE (auction lot, single-piece measure/grade, unique-specimen claim, one-issue mintmaster, provenance, **or a catalogue index number — «Hede f2h3», «Galster 131», «KM 138.2»**). A catalogue number inside a `[ref:KEY]` body is NOT a hit. Floor 0. |
+| C6 | No specimen mentions | 1.0 | Start 1.0; **−0.5** per specimen-level intrusion in the PROSE (auction lot, single-piece measure/grade, unique-specimen claim, one-issue mintmaster, provenance, survivor / known-specimen count, **or a catalogue index number — «Hede f2h3», «Galster 131», «KM 138.2»**); a mintage figure is a hit in the description prose only, never in a phase description. A catalogue number inside a `[ref:KEY]` body is NOT a hit. Floor 0. |
 
 **Threshold: ship at ≥ 8.0.** Below 8: the description has a real gap in founding,
 role, sourcing, or scope — fix and re-score. A 10 means all six fully met with no
