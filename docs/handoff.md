@@ -16,6 +16,12 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-12 — Nobelfod (Denmark page) practically finished: the reference card
+
+- **Curator 2026-10-12:** the Nobelfod section of the Denmark page is practically complete and is now the MODEL for the other Fuß cards — structure (description, Grundwerte, phases with period texts, timeline bar), register, and citation shape. Status note at the top of `docs/research/nobel_fod.md`.
+- Bibliography finished today: `c686cdf` (missing translations, archive copies for all web links incl. Wilcke 7-2 saved to Wayback, #6/#14 passage overlap removed, quote trims), `059b33b` (cite what you read: danskmoent reproductions of Ernst cited without print page; «NNÅ 1948, s. 1–38» named). Rules + linter: skill `cite-source` (`68d2601`, `5ba96e2`).
+- **Next candidate:** Guldgyldenfod — `cite_helper.py --fuss rhinsk_gylden_fod --location denmark` shows many Danish quotes untranslated (pool and period texts).
+
 ## 2026-10-12 — KMM web page under an id can be another object (SOURCES §13.19) — closed
 
 - **Done, local (not pushed):** `c8172b5` (SOURCES §13.19) → `c686bde` (class C: no enrichment when inventory prefix/base differ; ref names both inventories) → `1f02448` (inert 405179 mint erratum dropped) → `4c40573` (`_RAADATA_INCOHERENT_IDS` 167065/167067/167107/167151; superseded bare refs dropped, 46 `_recorded_removals`) → `bfbbeb3` (`_KMM_PUBLISHED_UNDER`: 403404→818690, 404261→830521, 404262→830522 as second source) → this commit (ref note for every suffix-only mismatch too, 174 refs; `audit_kmk_raadata_mismatch.py`).

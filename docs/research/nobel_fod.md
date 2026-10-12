@@ -8,6 +8,15 @@
 > 1602 gold table): new §1 rows, §5a, §6a, §7b; §8 and §9 amended. Sections written
 > earlier keep their date; where a later section supersedes one, it says so.
 >
+> **Card status 2026-10-12 — REFERENCE MODEL.** The Nobelfod section of the Denmark page
+> is, by the curator's call, practically finished and the model for the other Füße:
+> description, Grundwerte, phases 0/I with period texts, timeline bar and a bibliography
+> of 42 per-passage keys (every foreign quote translated, archive copy beside every web
+> link, `cite-source` lint clean at high/medium). When reworking another Fuß card, take
+> this one as the template for structure, register and citation shape. Residual low-level
+> items: four quotes over ~25 words; «за Galster» author naming in the prose (handoff
+> 2026-10-07) — both left as they are.
+>
 > **Question this dossier settles:** what the sources document about the Danish
 > Nobel as a *standard* — its model, its two parameter regimes (pre-1514 and the
 > 1514/1524 ordinances), the dated instruments, who reproduces whom, and how our own
