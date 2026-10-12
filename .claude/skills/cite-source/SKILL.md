@@ -33,6 +33,33 @@ Helper (candidates, not verdicts):
 .venv/bin/python .claude/skills/cite-source/cite_helper.py --page site-danskmoent/uk/index.html --section fuss-nobel_fod
 ```
 
+## When to use
+
+- **Any new fact entering rendered text from a source** — a Fuß description, a period
+  text, a phase background, a timeline bar, a closing, a grundwerte line. The pool entry
+  and the `<sup>[ref:KEY]</sup>` are written in the same change as the sentence (§5).
+- **Quoting a source in prose** — the quote needs its translation in every field whose
+  language it is not in, and must match the cited key's passage.
+- **Editing or trimming an existing pool entry, or re-pointing a citation** — run
+  `--usage` first: a key is shared across Füße and pages.
+- **Auditing a bibliography** — «перевір посилання в розділі X», «чи коректні джерела»,
+  «чи всюди є переклад / архівна копія», «чи є дублі»: `--page … --section …` or `--fuss`.
+- **Adding archive copies** to existing entries, or after a source site changes / dies.
+- **Before committing any `refs_pool.yml` change** — lint the touched keys.
+
+## When NOT to use
+
+- **Coin-row source attribution** (`coin.sources[]`, `weight_rough_g[].source`) — that is
+  pipeline data written by the seed builders, not a bibliography entry.
+- **Legacy per-location `<loc>-references.yml` `[N]` refs** — §5a's shape applies, but new
+  citations go to the pool; migrate rather than extend the legacy file.
+- **Research dossiers (`docs/research/*.md`)** — quotes + page hints per §5a, but no pool
+  entry is needed unless the fact also reaches the rendered page (`research-dossier`).
+- **Chat** — quoting a source to the curator follows the chat rule (Ukrainian translation
+  right after the quote), not the pool shape.
+- **Scoring a Fuß description's content** — that is `fuss-description`; use this skill for
+  the citations it adds.
+
 ## Modes
 
 - **AUDIT** («перевір посилання», «чи все коректно») — READ-ONLY. Run the helper, open each
