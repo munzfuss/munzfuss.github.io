@@ -68,8 +68,36 @@ jobs:
         with:
           path: site/
 
+  # ---------------------------------------------------------------------------
+  # Unit tests (tests/ via unittest + the two standalone scripts/lib tests).
+  # Runs in parallel with `build`; BOTH deploys wait for it, so a red test
+  # blocks publishing. Until 2026-10-12 nothing ran the tests in CI, and five
+  # of them had gone red unnoticed for up to five weeks. No submodule: tests
+  # that need scripts/cache skip themselves when it is absent.
+  # ---------------------------------------------------------------------------
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: |
+          python -m unittest discover tests
+          python scripts/lib/test_compute_pairing.py
+          python scripts/lib/test_fin_unit.py
+
   deploy:
-    needs: build
+    needs: [build, test]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -87,8 +115,10 @@ jobs:
   # Independent of the `build` job above rather than `needs:`-chained: it runs
   # the same schema validation itself (build.py validates before rendering), so
   # broken data fails this job too — and in parallel, not after a 4-minute wait.
+  # It does wait for `test` (2026-10-12): a red test must not publish either site.
   # ---------------------------------------------------------------------------
   danskmoent:
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: read        # pushes via the deploy key below, not GITHUB_TOKEN
