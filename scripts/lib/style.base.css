@@ -1869,7 +1869,8 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .phd {
   max-width: var(--prose-measure);
   font-family: var(--font-body);
-  font-size: var(--prose);
+  /* Not larger than the fuss-card prose (.gw-fr, --prose-sm) — curator. */
+  font-size: var(--prose-sm);
   line-height: 1.55;
   color: var(--text-secondary);
   margin: 6px 0 10px 12px;
