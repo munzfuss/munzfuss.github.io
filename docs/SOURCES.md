@@ -1950,3 +1950,42 @@ When the «Status» column shows anything other than `OK`, the affected harvest 
 ---
 
 When citing a new source for the first time, **add a ref-slot** in the appropriate references file (per CLAUDE.md §5 «Source hierarchy» / «Web-sourced facts → bibliography entry + inline `<sup>` citation, IMMEDIATELY»).
+
+### 13.19 KMM — the web page under an object id can be a DIFFERENT object than the API record (2026-10-12)
+
+`build_kmk_seed._enrich_from_raadata` fills gaps in the API record
+(`scripts/cache/kmk/<id>.json`, `objectIdentification`) from the cached web
+page (`scripts/cache/kmk/web/<id>.json`, `identifikation`), keyed only by the
+numeric id. For **179 ids** the two inventory numbers differ. Live pages
+re-fetched 2026-10-12 (167022, 167065, 167067, 405179, 403279, 152196, 725807)
+match our cache, so the cache is faithful; the divergence is on natmus's side.
+Three classes (classifier: compare the inventory strings, then API
+nominal/authority/typeNumber against page place/klassifikationer/beskrivelser):
+
+- **A — formatting only, 15 ids** (FP 3574.098 vs .98, FP 3427.009 vs .9,
+  FP 5215.12,x2 vs ,1). Same object; typeNumber == klassifikation. Harmless.
+- **B — FP 1780 off-by-one, 119 ids** (167000–167330 + 741043): suffix shifted
+  by one, but under the SAME id the content is coherent in 111 cases
+  («skilling, norsk» ↔ Christiania; nominal = beskrivelse). Re-keying by
+  inventory number makes it WORSE (tried and reverted). 8 are locally
+  incoherent — 167065 (API 2 skilling ↔ page søsling lybsk, Glückstadt,
+  Hede 178B), 167067 (søsling lybsk ↔ skilling Hede 18 Christiania),
+  167107, 167137, 167151, 167095, 167103 (missing «norsk» only), 741043
+  (søsling ↔ sechsling, actually coherent). Open: curator call.
+- **C — another object entirely, 45 ids**: the base number differs and EVERY
+  page is an FP 3423.* German **Hulpenning** (Kirial/Oertzen/Jesse numbers,
+  places Hamborg/Mecklenburg/Lübeck/Lüneburg/«Tyskland - ?»), while the API
+  record is a Danish/Norwegian coin (FP 3594.*, 2711.*, 2481.*, 3479.*,
+  3363.*, 318.*, …). E.g. 405179 API FP 3363.8 Norge 1 skilling H 71C ↔
+  page FP 3423.340 Hamburg Hulpenning Kirial 889; 403279 FP 3514.4 ↔
+  FP 3423.2240. 39 of them are in our seeds; enrichment borrowed
+  mint Hamborg (18) / Mecklenburg (10) / Vibe (1) from the wrong object.
+
+Consequence for citation: our seed source URL
+`samlinger.natmus.dk/KMM/object/<id>` shows the Hulpenning for class C, so
+the link does not lead the reader to the coin cited; the `ref` text
+(«KMM <id> (Inv. FP …)») carries the API inventory number, which is the
+correct one. Proposed fix (pending curator): skip enrichment when prefix or
+base number differ (class C only); measured 2026-10-12 — seed diff touches
+only class-C mint fields + 2 §9a thinning folds, re-flow `verify_reflow`
+0 losses, 6 seed_unsorted finals fold into existing classes.
