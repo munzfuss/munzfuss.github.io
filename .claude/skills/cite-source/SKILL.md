@@ -91,11 +91,15 @@ Rules, each one a past failure:
 1. **Author bold, title italic, title in the ORIGINAL language and wording** — never
    translate or partially translate a title or an auction-lot title («Denmark, Noble 1496,
    Hans» stays English in the uk entry). Tier-1 per §2.
-2. **Page hint is mandatory for any paginated work** (PDF book, journal, auction catalogue,
-   ordinance gazette): a concrete page, not a range or «passim». A web reproduction of a
-   paginated work still needs the print page if the reproduction gives it; if it does not
-   (danskmoent's Ernst articles), the gap is reported to the curator, not filled. Unpaginated
-   web pages need no page — the quote is the locator.
+2. **Page hint is mandatory for a paginated work WE READ** (PDF book, journal scan, auction
+   catalogue, ordinance gazette): a concrete page, not a range or «passim».
+   **Cite what you read** (curator 2026-10-12): when the text was read in a web
+   reproduction (danskmoent's Ernst / Galster pages), the reproduction IS the cited source —
+   link it, archive it, and the verbatim quote is the locator; no page is required and
+   none is invented. Name the original publication as the reproduction states it
+   («Nordisk Numismatisk Årsskrift 1948, s. 1–38» — an article range is fine here, it is
+   bibliographic data, not a locator). The reproduction's own fidelity to the print is
+   its responsibility, not ours. Unpaginated web pages likewise need no page.
 3. **Verbatim quote, ~25 words** (a guideline — a little more to keep one passage intact is
    fine; a stack of passages is not). Copy it from the source/cache, never from memory.
    Mark omissions with `…` (or `[…]` when the source's own style uses it). Cut parts the

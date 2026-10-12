@@ -482,6 +482,8 @@ A reference entry's job is to tell the reader **where to verify the claim**, ful
 
 The rule applies whenever the source itself has page numbers, regardless of whether the URL exposes them. **It does NOT apply** to single-page web articles (danskmoent.dk/artikler/*.htm, lex.dk entries, Wikipedia HTML articles without print original, etc.) — those have no pages to cite; the required verbatim quote alone serves as locator.
 
+**Cite what you read** (curator direction 2026-10-12). When a printed work was read in a web reproduction that carries no print pagination — danskmoent.dk's transcriptions of Ernst's NNÅ articles or of Galster — the reproduction is the cited source: link it (plus its archive copy), the verbatim quote is the locator, and no page is required or invented. The original publication is named as the reproduction states it («Nordisk Numismatisk Årsskrift 1948, s. 1–38»; an article range is bibliographic data here, not a locator). The reproduction's fidelity to the print is the reproducer's responsibility. The page-hint requirement stays for paginated works we read directly (a PDF / scan). The executable form is the `cite-source` skill.
+
 Forms accepted (use whichever fits the underlying work's pagination scheme):
 - `«verbatim quote» (S. 14)` — short quote + page, the canonical form.
 - `Band 11, S. 890–891` — for multi-volume works name the volume + pages.

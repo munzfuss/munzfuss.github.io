@@ -147,8 +147,12 @@ def lint(pool: dict, key: str) -> list[tuple[str, str]]:
         if live and "web.archive.org" not in t:
             out.append(("medium", f"{l}: no archive copy for {live[0]}"))
     # page hint
-    paginated = any(h.lower().endswith(".pdf") for h, _ in LINK_RE.findall(base)) or \
-        re.search(r"Årsskrift|Aarsskrift|Jaarboek|Bd\.|bd\.|vol\.|Lot \d", base)
+    # Page hint is required for a paginated work we read (a PDF / scan). A web
+    # reproduction of a print work is cited as what was read: the quote is the
+    # locator (curator 2026-10-12), so an .htm reproduction is not flagged.
+    links = [h for h, _ in LINK_RE.findall(base) if "web.archive.org" not in h]
+    paginated = any(h.lower().split("#")[0].endswith(".pdf") for h in links) or \
+        (not links and re.search(r"Årsskrift|Aarsskrift|Jaarboek|Bd\.|bd\.|vol\.", base))
     if paginated:
         for l, t in texts.items():
             if t and not re.search(PAGE_RE[l], t) and not re.search(r"Lot \d", t):
