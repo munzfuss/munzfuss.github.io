@@ -1993,3 +1993,13 @@ correct one. Fix (curator-approved, c686bde): skip enrichment when prefix or
 base number differ (class C only), and say so in the ref; measured 2026-10-12 — seed diff touches
 only class-C mint fields + 2 §9a thinning folds, re-flow `verify_reflow`
 0 losses, 6 seed_unsorted finals fold into existing classes.
+
+*Finding the right page (2026-10-12).* Site search
+(`samlinger.natmus.dk/api/Objectbrowse?keyword=<inv>`) indexes the inventory
+number printed on the WEB page, not the API one. Of the 49 records above, 42
+API inventory numbers return nothing (object not published on the site); the
+4 FP 1780 hits land on a neighbour (labels shifted, content follows id) and
+are unusable; 3 are published under another id and were verified —
+403404 → 818690 (inv., 1653, Norge, «H. 71B», find place), 404261 → 830521
+and 404262 → 830522 (inv. and find place Nørre Nebel Kirke). These are added
+as a second source (`_KMM_PUBLISHED_UNDER` in `build_kmk_seed.py`).

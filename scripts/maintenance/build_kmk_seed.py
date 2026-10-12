@@ -746,6 +746,12 @@ def _raadata_place(loc: str) -> str:
 # København Hede 122A 1648). Curator-approved 2026-10-12, SOURCES §13.19.
 _RAADATA_INCOHERENT_IDS = frozenset({"167065", "167067", "167107", "167151"})
 
+# Class-C records (SOURCES §13.19) whose own inventory number IS published on
+# samlinger.natmus.dk, under another object id (found via api/Objectbrowse,
+# 2026-10-12). Verified: same inventory number and find place on both sides;
+# 818690 also year 1653, Norge, «H. 71B», skilling. Emitted as an extra source.
+_KMM_PUBLISHED_UNDER = {"403404": "818690", "404261": "830521", "404262": "830522"}
+
 _INV_RE = re.compile(r"^\s*([A-Za-z]+)\s+(\d+)")
 
 
@@ -907,6 +913,13 @@ def build_entry(src) -> dict | None:
         }],
         "verification_note": _VNOTE,
     }
+    _alt = _KMM_PUBLISHED_UNDER.get(str(rid))
+    if _alt:
+        entry["sources"].append({
+            "type": "museum",
+            "url": f"https://samlinger.natmus.dk/KMM/object/{_alt}",
+            "ref": f"KMM {_alt} (Inv. {_inventory(src)})",
+        })
     _err = _KMM_PLACE_ERRATA.get(rid)
     if _err and (src.get("place") or "").strip() == _err[0]:
         entry["sources"].append(dict(_err[2]))
