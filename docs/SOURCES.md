@@ -629,6 +629,37 @@ p. 157 carries the **tariff chain of the Forordning af 1. maj 1618** — Mark =
 20 ß, Daler = 84 ß, so Krone = 1½ Daler = 126 ß = 6,3 Marker — which is the
 decree's own way of defining the standard.
 
+**Guldgyldenfod — where the «end of the standard» question was researched
+(2026-10-13).** No Danish act repeals the Rhinsk Gylden; the trail is acts that
+set gold parameters and leave it out, plus tariff acts that go on rating it as
+money. Every passage below was read in this session; re-read these before
+re-opening the question, in this order:
+
+| Source | Where | What it attests |
+|---|---|---|
+| Wilcke I (1919) | p. 69 (table) + pp. 74-75 → cache `christian_iv_moentpolitik_1919/pages/wilcke_1.txt` ~l. 3073-3110, 3374-3430; web `wilcke/w1d.htm` | Forordning 8. September 1602 gold table: Portugaløser, Ungersk Gylden, 8/6/4-Daler Guldklipping — **no Rhinsk Gylden**; Møntordning 20. November 1604 is «enslydende» and repeats the same three gold sorts |
+| Wilcke I (1919) | pp. 147-149 → cache ~l. 7088-7115 | Guldkrone 1618/1619: no foreign model «navnlig ikke med Hensyn til Finhed og Vægt»; the Guldkrone-Klipping 1564 and Guldkrone 1584 had no role in circulation |
+| Wilcke I (1919) | pp. 223-224 → cache ~l. 11055-11130 | Forordning 16. August 1622 rates the Guldgylden at 7½ Mark = 1¼ Dlr (these are the *rhinske* gylden); 1625 output 29 205 pieces; «For … de rhinske Gylden findes Udmøntningsforholdene [ikke] fastslaaede ved nogen offentliggjort Forordning» — parameters only from the Møntregnskaber: 72/Mark brutto, 18 Karat 3 Gran (vs «den almindelige Gyldens» 18 Karat 6 Gran) |
+| Wilcke II (1924) | `w2a1.htm` (Side 49-58) → cache `moentvaesenet_1625_1670_1924/pages/w2a1.txt` | 1625 order to strike a large number of Guldgylden for the soldiery; the p. 55 table row «Rhinsk Gylden 1¼ R. in spe. (7½ Mark) · Jørg. 33-34 · 72 · 18¼ · 760,42»; Rentemester 30. Decbr. 1627: 2 144 Guldgylden sent to the army |
+| Wilcke II (1924) | `w2a2.htm` (Side 58-82) → cache `w2a2.txt` | Frdg. 10. Oktober 1629 §6 valuation (Guldgylden 7½ Mark d., ratio 12,95); Aabent Brev 27. August 1635 to Peter Grüner: Hungarian ducats «i Overensstemmelse med den sædvanlige, hidtilgældende Møntfod»; Frdg. 8. Juni 1639 raises gold (Goltgylden 8 Mark; ratio 13,81), the Rigsraad declarations Dec. 1639 (Mogens Kaas: many false rhinske Gylden imported; Tage Thott: «goldt gyllen eller ringsk gyllen» from the German sea towns), Frdg. 18. Maj 1640 lowers gold back |
+| Wilcke II (1924) | `w2a3.htm` → cache `w2a3.txt` | Frdg. 10. December 1647 valuation: «En Goldgylden 1 [Rdlr] 1½ [Mark]»; mint «nedlagt» 11. Marts 1646 |
+| Wilcke II (1924) | `w2a4.htm` → cache `w2a4.txt` | Rigens Raads Forordning 21. Marts 1648 om Guld- og Sølvmønt: «En Goldtgylden 8 Mark», «En Metzergylden 7 Mark 8 ß» — the last tariff of the gulden read so far |
+| Wilcke II (1924) | `w2a5.htm` → cache `w2a5.txt` | Frederik III: Forordning 2. Januar 1658 (ducat 12 Mark), 6. Februar 1658 free coinage of ducats / sletdaler / 2 Mark — no gulden |
+| Wilcke VII (1950) | 7-2 PDF p. 27 (cache `renaessancens_moent_1950/pages/wilcke_7-2.txt` ~l. 1000), 7-4 ~l. 795-815, 7-6 printed p. 524 (~l. 5940-5975) | 1514 Sølvgylden vs the rhinsk Gylden; 1535-1541 Opgæld on Guldgylden and Sølvgylden; «Guldfoden er opgivet» at p. 524 concerns the **Reich** edict of 1559 and the Reichsgulden, not Denmark |
+| Galster, *Danske efterligninger af fremmed mønt fra nyere tid* | <https://www.danskmoent.dk/galster/galsfre2.htm> (not cached) | Rhinsk gylden struck Hans 1490s · Chr. II after 1518 · Fr. I 1527/1531 · Chr. III 1536/1546 (for the duchies) · Fr. II 1563-64 · Chr. IV 1625, 1627, 1628, 1632 «ialt henved 35.000 stk.»; no ordinance ending it; «ungerske gylden» goes out of use, «ducaten» appears 1637; Guldkrone 1619 = Sølvkrone 1618 in value, «dermed var guldkronens rolle udspillet» after 1666/1668 |
+| Harck, «Christian IV's guldmønter fra København 1624-1641» | <https://www.danskmoent.dk/harck/c4guld.htm> → cache `scripts/cache/danskmoent/harck/c4guld.extract.txt` + `nr93_tab01.jpg` | Account table 1624 / 1627 / 1632 in Rdlr (1 Rhinsk Gylden = 1,25 Rdlr → 33 942 pieces); 1625-dated pieces possibly struck 1624; 1632 issue after the separate peace of 1629 |
+| Wilcke VI, «Frederik II.s Guldmønt 1584» | <https://www.danskmoent.dk/wilcke/w6g.htm> (not cached) | The 1584 set lists «Guld-Gylden» at 1 Dukat weight; Rentekammer lists 1628 («Golt gylden») and 1639 («Goltgylden 1.») keep the pieces as «rene Kuriosa» — no gold ordinance under Frederik II |
+| danskmoent.dk, «Gylden» | <https://www.danskmoent.dk/gylden.htm> (not cached) | Only «De første gylden i Danmark præges under kong Hans (1483-1513), de sidste under Christian 4. (1588-1648)» + see-also links |
+| lex.dk, «rhinsk gylden» | <https://lex.dk/rhinsk_gylden> → cache `scripts/cache/danskmoent/lex_rhinsk_gylden.extract.txt` | «Rhinske gylden blev udmøntet i Danmark ca. 1500-1632.» |
+
+Searches that found nothing further: a Danish gold ordinance under Frederik II
+(the 1582 Møntordning is Mark / 8 ß / 2 ß / ß / hvid); the text of any
+Frederik III gold valuation beyond the ones above (Mordhorst's compilation in
+*Dansk Pengehistorie* III, 1968, and Aagaard, *Frederik III Guldmønt og
+speciemønt 1648-1670*, 2011, are the next places to look, both paper). The
+`artikler/1rhinskg.htm` URL guessed for a danskmoent Rhinsk-Gylden article is a
+404.
+
 ---
 
 ## 3a. Jensen monographs (via danskmoent.dk) — the ducal Schleswig-Holstein authority
@@ -824,6 +855,8 @@ URL: <https://lex.dk/>
 The current Danish national encyclopaedia (successor to Den Store Danske leksikon). Authoritative for Danish historical / numismatic terms.
 
 Most used: <https://lex.dk/dansk_møntvæsen> — has the verbatim «Kroneudmøntningen blev fra 1692 afløst af kurantudmøntningen» and Møntloven 1873 references.
+
+Also <https://lex.dk/rhinsk_gylden> — «Rhinske gylden blev udmøntet i Danmark ca. 1500-1632.» (cached verbatim in `scripts/cache/danskmoent/lex_rhinsk_gylden.extract.txt`; the only dated end-of-coinage statement in a reference work, see §3 «Guldgyldenfod» table).
 
 **Access:** WebFetch works.
 
