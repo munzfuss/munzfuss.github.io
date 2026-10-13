@@ -109,12 +109,78 @@ of 6 May 1530, the 1518 «Klipping» coinage (accounts only, no act), the «sepa
 26 Feb 1524» (not found in Wilcke 7-2), Hans the Elder's interest Forordning 10 Aug 1557 —
 see §4.
 
-### §1b · 1559–1625 — next chunk (rows below migrated from the old table)
+### §1b · 1559–1625 (Frederik II · Christian IV to the Krone reform)
+
+«Text seen»: `act (Secher I nr. N, s. P)` = the act read in Secher's Corpus (volume, Secher's
+act number, printed page from the running head); `Secher index` = only the Sagregister line
+read so far (act text to be read for the dossier); `Wilcke I s. P` = Wilcke 1919 printed page
+(= our PDF page + 1); `Wilcke 7-5/7-6 s. P` = Wilcke VII printed page.
 
 | Date | Instrument (source's name) | Issuer | Jur. | What it sets | Text seen | refs_pool key | Dossier |
 |---|---|---|---|---|---|---|---|
-| **1602**, 8 Sept | Forordning | Christian IV | DK | Gold schedule: Portugaløser 6¾/Mark at 23½ Kt, Ungersk Gylden 67/Mark at 23⅓ Kt; the rhinsk Gylden absent — Danish gold redefined on the ducat grid. | Wilcke I (w1d) | `wilcke1-moentordning-1602-guld` | `dk_dukat_portugaloeser_fod.md` §3.1 |
-| **1604**, 20 Nov | Møntordning | Christian IV | DK | Moves the tariff only; the 1602 metrology stands. | Wilcke I | `wilcke1-moentordning-1604-nedsaettelse` | `dk_dukat_portugaloeser_fod.md` §3 |
+| **1563** (autumn) → **1564**, 10 Dec | Forordning on the war Klippinge + 7 enforcing acts: Mis. 14 Sept 1563 (nr. 174), Åb. br. 30 Nov 1563 (190), 27 March 1564 (205), 15 Apr (210), Mis. 18 Apr (211), Åb. br. 27 Apr (214), Mis. 28 Apr (215), Åb. br. 10 Dec (240) | Frederik II | DK | Legal tender of the Klippinge struck «udi denne feide»: to be taken «for fulde», on pain of life and the gallows (27–28 Apr 1564); 15 Apr 1564 the peasants to lend their Klippinge to the king against «rund mønt» later. Secher: the Forordning itself is lost, known from nr. 205. | act (Secher I nr. 174–240, s. 243–260) | — | — |
+| **1564**, 28 June | Brev (Norske Magasin I p. 434) | Frederik II | NO | The Klipping not to be refused or held «ugæv» in Norway. | Wilcke 7-5 s. 358 (quotes) | — | — |
+| **1564**, 11 Dec → **1566**, 1 March | Bestalling Hans Køppelin, Bremerholm (1 year), then letter to the lensmand of Flensborg: Køppelin to strike small coin «som Lybecksk og Hamburgsk Skrot» | Frederik II | DK → SH-k | Flensborg small coin at the Lübeck/Hamburg standard — standard by reference. | Wilcke 7-5 s. 351 | — | — |
+| **1567**, 5 Jan · 27 Feb · 11 March | Mis. to the toldere (nr. 346, 357); Åb. br. to the landsdommere (359) | Frederik II | DK | The course at which the «ny dalere» are taken in told; the coin in which law-fines are paid. | act (Secher I nr. 357, s. 331) · Secher index (346, 359) | — | — |
+| **1569**, 17 Sept | Mis. to the tolder in Aalborg | Frederik II | DK | Value of a rosenobel paid in told. | act (Secher I nr. 488, s. 418) | — | — |
+| **1570**, 26 Oct | Bestalling Baltzer Wegener, Flensborg (1 year) | Frederik II | SH-k | Skilling, Hvid, Blaffert, Søsling and Pfennig at Flensborg; the Lower-Saxon Wardein found the Skilling 3 Penninge too light, the Landdag asked in 1571 to stop the mint. | Wilcke 7-5 s. 353 | — | — |
+| **1571**, 26 March | Mis. | Frederik II | DK | Told and lastpenge in the Sound to be taken in old dalers. | Secher index (nr. 569) | — | — |
+| **1572**, 16 June | Aabent Brev (Kiøpnehafn) | Frederik II | DK | «hvorved kursen paa skillemønt fastsættes og udførsel af landets mønt forbydes» — the course of the small coin against the daler fixed; export of the realm's coin forbidden. Ernst: the end of the doubled Skillingtal. | act (Secher I nr. 609, s. 504–505) · Wilcke 7-6 s. 375 | — | → dossier candidate |
+| **1572**, 9 Sept · 15 Sept · **1573**, 29 Jan · 28 March · **1574**, 10 March | Mis. ×4 + Åb. br. on the dalers in told | Frederik II | DK | 9 Sept 1572: on each new daler take as much as it is lighter than an old daler; 29 Jan 1573: the new Netherlands dalers «fast alle vegne ugangbar» — told only in old dalers; 10 March 1574: course of the new Netherlands daler. | act (Secher I nr. 621 s. 522, nr. 636 s. 532) · Secher index (623, 648, 695) | — | — |
+| **1574**, 26 Jan | Stadfæstelse of the Bergen burghers' «Skik og Ordning» | Frederik II | NO | After the coin change: where 3 Mark was paid for 1 Daler before, no more than 1 Daler = 2 Mark «som Mønten nu er omsat». | Wilcke 7-6 s. 386 (quotes) | — | — |
+| **1576**, 14 Dec · **1578**, 26 Nov · **1581**, 9 Nov | Åb. br. on the reckoning of jordskyld and husleje (Nyborg), of the sagemark, of taxes, jordskyld and landgilde «efter møntens forandring» | Frederik II | DK | Accounting conversion rules after the 1572 change. | Secher index (II nr. 45, 139, 264) | — | — |
+| **1580**, 22 Sept | Mis. to Copenhagen, Helsingør, Slangerup | Frederik II | DK | Rosenobler, dukater «eller andit guld» to be taken from the hofsinder at the value they have been current for in the realm. | act (Secher II nr. 214, s. 172) | — | — |
+| **1581**, 4 May | Mis. to the tolder in Helsingør | Frederik II | DK | The coin he may take instead of gold. | Secher index (II nr. 242) | — | — |
+| **1582**, 12 Jan | Møntanordning / Befaling for mintmaster Poul Gulden | Frederik II | DK | Daler = 64 Skilling, Mark pieces at their face; silver reckoned at 8 Dlr. 2 M 8 sk. per mark fine; a Münzdruckwerk ordered. Not in Secher's Møntvæsen list (Kancelli instruction). | Wilcke I s. 55, 61; Wilcke 7-6 s. 406; Wilcke II (w2ref) | — | → dossier candidate |
+| **1582**, 12 Feb | Åb. br. | Frederik II | DK | Course of the rosenobel at the Øresund told. | Secher index (II nr. 277) | — | — |
+| **1586**, 30 Jan | Mis. to Copenhagen and Helsingør | Frederik II | DK | The imported new dalers «ikke skulle være så gode, som sig burde». | Secher index (II nr. 422) | — | — |
+| **1586**, 6 June | Forordning for Norway | Frederik II | NO | How byskat, jordskyld and landgilde are collected in Norway since the coin change (1 Mark = 8 sk. etc., the coin doubled in reckoning). | Wilcke 7-6 s. 386 | — | — |
+| **1590**, 20 Nov | Mis. to the toldere | Christian IV (regency) | DK | The rosenobel has fallen from 16 to 13 Mark danske; add ¾ daler per rosenobel taken in told, or take 4 dalers instead. | act (Secher II nr. 549, s. 578) | — | — |
+| **1593**, 20 May | Møntanordning | regency | DK | The Mark at 7,3 g of 14-lot silver (Wilcke: 6,3990 g fine). | Wilcke I s. 48 | — | — |
+| **1593**, 14 Sept · **1594**, 1 Aug | Bestalling Andreas Metzner (Kolding) · Møntordning for Metzner | regency | DK | Metzner to set up the Münzdruckwerk; the 1594 ordinance «af ganske samme Indhold» as 12 Jan 1582. | Wilcke I s. 57; Wilcke II (w2ref) | — | — |
+| **1602**, 12 May | Åb. br. om dalernes værdi | Christian IV | DK | Rigsdaler = 66 sk. danske (Wilcke's period 12 May–8 Sept 1602). | act (Secher III nr. 173, s. 145–147) · Wilcke I s. 61 | — | — |
+| **1602**, 25 June | Forordning / Møntordning (silver) | Christian IV | DK | The silver grid of 1602. | Wilcke I s. 64 | — | → 1602 dossier |
+| **1602**, 8 Sept | Forordning (gold) | Christian IV | DK | Portugaløser 6¾/Mark at 23½ Kt, Ungersk Gylden 67/Mark at 23⅓ Kt; the rhinsk Gylden absent. | Wilcke I (w1d) | `wilcke1-moentordning-1602-guld` | `dk_dukat_portugaloeser_fod.md` §3.1 |
+| **1604**, 20 Nov | Møntordning (nedsættelse) | Christian IV | DK | Moves the tariff only; the 1602 metrology stands. | Wilcke I | `wilcke1-moentordning-1604-nedsaettelse` | `dk_dukat_portugaloeser_fod.md` §3 |
+| **1605**, 17 March | Frdg. om møntens forandring | Christian IV | DK | — | Secher index (III nr. 208) | — | — |
+| **1605**, 8 July · 4 Aug | Frdg. (both realms) on the Slesvig coin; Frdg. on the Sønderborg coin | Christian IV | DK+NO | The Slesvig 4-skilling set at the Lüneburg Kreistag to 4 lybske penninge, the skilling to 2 — current for six months, then withdrawn; the same to apply in the realms. | act (Secher III nr. 214, s. 188–189) · Secher index (216) | — | — |
+| **1605**, 31 Aug | Møntordning | Christian IV | DK | «enslydende med Møntordningen af 8. September 1602, dog …» | Wilcke I s. 75 | — | — |
+| **1607**, 28 May · **1609**, 28 Sept | Bestalling og Ordning / Müntz-Ordnung for Hans Flemming, Helsingør | Christian IV | DK | Mint ordinance «an schrott, Korn und Gewichte»; assay box (Dutch model); minting on English and Dutch merchants' account. | Wilcke I s. 77 | — | — |
+| **1609**, 3 Feb | Mandat om møntens forandring | Christian IV with Rigsraad | DK+NO | Every daler in Denmark and Norway = 34 sk. lybsk = 68 sk. danske; 4 Mark … (continues). | act (Secher III nr. 295, s. 253) · Wilcke I s. 137 | — | — |
+| **1609**, 4 Oct | Frdg. | Christian IV | DK | Foreign small coin, withdrawn at its own mints, forbidden in trade. | Secher index (III nr. 309) | — | — |
+| **1610**, 1 Feb · 28 Feb · 2 Nov · **1611**, 8 May | Forordninger Johan Adolf (Gottorp) | Duke Johan Adolf | SH-d | The subjects' demand to pay in the duke's own coin; Wilcke cites them for the ducal Mark coinage's difficulties. | Wilcke I s. 144 | — | — |
+| **1610**, 3 April | Frdg. om møntens forandring over alt Danmarkes og Norges riger | Christian IV | DK+NO | The rigsdaler rising in Germany to 74 sk. danske and above — raised here likewise, lest dalers leave the land; printed Waldkirch 1610, 7 leaves. | act (Secher III nr. 318, s. 272) · Wilcke I s. 107 | — | — |
+| **1613**, 15 May | Mis. to toldere and sisemestre in Denmark and Norway | Christian IV | DK+NO | Told only in rigsdaler, not in gold, Mark pieces or other coin — except rosenobel and goldgylden for ship toll; small coin received to be changed into rigsdaler. | act (Secher III nr. 395, s. 404) | — | — |
+| **1616**, 4 July | Frdg. om mønten | Christian IV | DK | — | Secher index (III nr. 433) · Wilcke I s. 122 | — | — |
+| **1616**, 21 Oct | Contract Count Ernst of Holstein-Schauenburg ↔ Gabriel de Valentza, Altona | Count Ernst | Schauenburg (HRE) | 150 Mark fine silver weekly to the Altona mint, struck as Schreckenberger 47 to the 9 3/16-lot Mark (c. 5 g, 2,85 g fine); fee ⅓ ß lybsk per Mark. | Wilcke I s. 34 | — | — |
+| **1618**, 5 April | Åb. br. om mønten + Instruks + Bestallinger | Christian IV | DK | Gold Kroner: dobbelt krone = 3 rigsdaler, krone 1½, ½ krone 3 rigsort; 22 karat; 39 dobbelte / 78½ / 160 pieces to the lødig Mark (127½–128½ rdl from a Mark fine). | act (Secher III nr. 487, s. 529) · Wilcke I s. 11 | — | → Krone dossier |
+| **1618**, 1 May | Frdg. om forhøjelse af rigsdalernes værdi | Christian IV | DK | Rigsdaler raised. | Secher index (III nr. 495) · Wilcke I s. 137 | — | — |
+| **1618**, 12 July | Åb. br. om den ny mønt (Krone) | Christian IV | DK | Krone = 1½ rigsdaler in specie = 126 sk. danske; ½ krone 3 rigsort; ortskrone 1½ rigsort; the Krone to follow the rigsdaler's course. | act (Secher III nr. 500, s. 547) | `wilcke-1919-patent-12-juli-1618` | → Krone dossier |
+| **1618**, 12 Dec | Mandat (with Lübeck) § 5; «Ordning om 2 ß og Groschen» | Christian IV | SH-k | Foreign 4 ß (and 2 ß, 1 ß) below the Brunswick Kreis resolution forbidden. | Wilcke I s. 39, 162 | — | — |
+| **1619**, 8 Jan | Frdg. | Christian IV | DK | Value at which various fireskillingsstykker are taken. | Secher index (III nr. 512) · Wilcke I s. 179 | — | — |
+| **1619**, 4/5 April | Instruks (mint, «alle de nye Udregninger») | Christian IV | DK | 1 ß at 13¾ lot; the new calculations for the small coin. | Wilcke I s. 163 | — | — |
+| **1619**, 8 April | Frdg. om guld- og sølvkroner og mindre møntsorter («møntordinantie») | Christian IV | DK+NO | The Krone grid in gold and silver and the smaller sorts, «paa det mønten … al tid kand blifve udi en statu». | act (Secher III nr. 523, s. 573) · Wilcke I s. 167 | — | → Krone dossier |
+| **1619**, 7 Sept | Plakat | Christian IV | DK | Course 6½ Mark; the «slagne Daler» first officially called Rigsdaler. | Wilcke I s. 48 | — | — |
+| **1619**, 16 Nov · 20 Nov | Frdg. om mønten · Møntmesteranordning (Schwabe's Bestalling) | Christian IV | DK | The Forordning with its mintmaster's ordinance (2 ß weight; 1 ß reduced from 13¾ to 5 lot). | Secher index (III nr. 541) · Wilcke I s. 12, 183 | — | — |
+| **1620**, 20 July | Møntedikt for the duchies | Christian IV | SH-k | Dobbeltskillinger (4 ß d.) taken only by weight per the attached Specifikation (old stamped pieces at full value); the Daler at most 33¼ ß l. = 104 ß d. | Wilcke I s. 187 | — | — |
+| **1621**, 20 Feb | Frdg. om mønten | Christian IV | DK | — | Secher index (III nr. 581) | — | — |
+| **1622**, 10 May | Møntordning | Christian IV | DK | — | Wilcke I s. 199 | — | — |
+| **1622**, 16 Aug | Frdg. om forskellige mønters værdi | Christian IV | DK | Gold tariff table (SOURCES §3). | Secher index (IV nr. 20) · Wilcke I s. 224 | — | — |
+| **1622**, 15 Oct · 24 Oct | Frdg. on foreign 4/2/1-skilling pieces · on foreign dalers' value | Christian IV | DK | Tariff of foreign coin. | Secher index (IV nr. 33, 36) · Wilcke I s. 207, 18 | — | — |
+| **1622**, 25 Oct | Mandat wegen der kleinen Münzen (duchies) | Christian IV | SH-k | The neighbours' light sorts forbidden; the king's 2 and 4 ß at a Rigsdaler of 36 ß l. | Wilcke I s. 204–205; Wilcke II (w2ref) | — | — |
+| **1623**, 28 Feb | Münz-Edict (duchies) | Christian IV | SH-k | Daler = 3 Mark lybsk. | Wilcke I s. 211 | — | — |
+| **1623**, 14 Dec | Patent (duchies) — «Münz-Calada» | Christian IV | SH-k | General reduction of the bad coin against the new good one; a term set. | Wilcke I s. 30 | — | — |
+| **1624**, 14 Feb | Møntordning for mønten i København | Christian IV | DK | Rigsdaler to 100 ß (Wilcke's period 14 Feb 1624–4 May 1625); the Krone system. | Secher index (IV nr. 117) · Wilcke I s. 217 | `wilcke-1919-moentordning-14-feb-1624` | → Krone dossier |
+| **1625**, 22 Jan | Frdg. | Christian IV | DK | 7- and 3½-skilling pieces reduced; foreign imitations forbidden. | Secher index (IV nr. 138) · Wilcke I s. 225 | — | — |
+| **1625**, 24 April | Mis. to the tolder in Helsingør | Christian IV | DK | 4 rigsdaler per rosenobel in told. | Secher index (IV nr. 154) | — | — |
+| **1625**, 4 May | Frdg. om mønten | Christian IV | DK | — | Secher index (IV nr. 158) · Wilcke I s. 232 | `wilcke-1919-forordning-4-maj-1625` | → Krone dossier |
+
+Not instruments, kept out (block B): Haandfæstning 1559 (no coinage clause, Wilcke 7-5 s. 308),
+Bestalling Køppelin 15 Sept 1563 (1 year, no grid), Isensnider 1565, Kort N. 1576, Delhusen 1577,
+Brucker 1581 (staff), Svendborg byskat 1578, counterfeit warning 1584, the coronation letters 1596,
+export ban 12 July 1603, the Dutch Plakat 1606, Charisius 1607, the valvations 1613/1620/1623,
+the Westphalian Kreis decision 7 May 1618, the Mecklenburg–Hanse union 23 Apr 1620, Rigsraad's
+Betænkning 15 Feb 1625 — see §4.
 
 ## §2 · Imperial / German
 
@@ -147,14 +213,7 @@ work on it, rather than researching it afresh.
 | 1566 | Reichsabschied | `9_thalerfuss.md`, `fuesse.yml`, `german_fuesse-references.yml` … |
 | 1566 | Reichsmünzordnung | `fuesse.yml` |
 | 1571 | Reichsmünzordnung | `fuesse.yml` |
-| 1582 | Møntordning | `moentordning_1541.md` |
-| 1602 | Forordning | `daler_klippe_1604.md`, `danish_royal_gold_1560_1648.md`, `refs_pool.yml` |
-| 1602 | Moentordning | `fuesse.yml`, `refs_pool.yml` |
-| 1602 | Møntordning | `daler_klippe_1604.md`, `danish_royal_gold_1560_1648.md` |
-| 1604 | Moentordning | `fuesse.yml`, `refs_pool.yml` |
-| 1604 | Møntordning | `danish_royal_gold_1560_1648.md`, `refs_pool.yml` |
 | 1615 | Reces | `moentordning_1541.md` |
-| 1624 | Forordning | `fuesse.yml` |
 | 1658 | Forordning | `fuesse.yml` |
 | 1667 | Münzvertrag | `9_thalerfuss.md`, `german_fuesse-references.yml`, `german_fuesse.yml` … |
 | 1668 | Münzvertrag | `9_thalerfuss.md`, `fuesse.yml` |
@@ -206,3 +265,16 @@ the jurisdictions above). Kept so the next scan does not re-open them.
 | 1530, 6 May | Brev Jørgen Kock → Bergenhus | Galster; Holst | a REPORT on the Malmø mint's fineness — evidence for the 1524 dossier |
 | 1531, 30 May | Brunswick Møntordning (Wildemannsthaler) | Wilcke 7-6 | territorial German, not Imperial |
 | 1557, 10 Aug | Forordning of Duke Hans the Elder on interest | Wilcke 7-4 p. 308 | 6 % cap — not coinage |
+| 1559, 12 Aug | Haandfæstning Frederik II | Wilcke 7-5 s. 308 | no coinage clause taken up |
+| 1563–1581 | Bestallinger / Åb. breve for mint staff: Køppelin 15 Sept 1563 (1 year), Boessen 1565 (Isensnider), Kort N. 1576, Delhusen 1577, Brucker 1581 (Münzdruckwerk trials) | Wilcke 7-5, 7-6 | appointments without a grid |
+| 1578, 4 June | Åb. br. Svendborg byskat after the coin change | Wilcke 7-6 s. 384 | fiscal conversion of one town's tax |
+| 1584, 2 Oct | Mis. warning against foreign counterfeit coin | Secher II nr. 380 | police |
+| 1596, 8 and 24 July | Kongebreve to Gottorp / Matz Puls | Wilcke II (w2ref) | borrowing minters for the coronation specie |
+| 1603, 12 July | Frdg. against export of gold, silver and copper | Secher III nr. 161 | export ban, no parameter |
+| 1606, 21 March | Dutch Møntplakat | Wilcke I s. 77 | foreign model of the 1607 Bestalling |
+| 1607, 21 Jan | Instruks Jonas Charisius | Wilcke I s. 76 | diplomatic mission |
+| 1613, 10 Aug · 1620, 10 June · 1623, 1 March | Valvationer | Wilcke I | assay outcomes |
+| 1618, 7 May | Westphalian Kreis probation-day decision (Altona) | Wilcke I s. 37 | Kreis jurisdiction, context for Schauenburg |
+| 1620, 23 April | Union Mecklenburg–Bremen–Lübeck–Hamburg | Wilcke I s. 162 | foreign; repeats the 1618 Mandat |
+| 1622, 18 Jan | end date of Johan Post's account | Wilcke I s. 163 | not an act |
+| 1625, 15 Feb | Rigsraadets Betænkning | refs `wilcke-1919-rigsraad-betaenkning-1625` | advice, evidence for the 1624/25 dossier |
