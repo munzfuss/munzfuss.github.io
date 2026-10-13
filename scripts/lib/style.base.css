@@ -1250,6 +1250,12 @@ h2[style] {
   border-left: 1px dashed var(--text-muted);
   opacity: .35;
 }
+/* While a bar is hovered, lift its layer wrapper above the century guides
+   (z-index 3): the wrapper is an isolated stacking context at z auto, so
+   its tooltip `::after` (z 100 inside that context) could never beat the
+   guides, and the dashed lines ran across the tooltip card
+   (curator screenshot 2026-10-13). */
+.tl-bar-layers:hover, .tl-phase:hover { z-index: 4; }
 .tl-axis span::before {
   content: "";
   position: absolute;
