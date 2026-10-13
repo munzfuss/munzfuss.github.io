@@ -2028,3 +2028,22 @@ note: IA's CDX endpoint answered curl with 429 / hung, but a same-origin
 browser worked; for CDX 503s, `/__wb/sparkline?output=json&url=…` (the
 calendar's own endpoint) gives first/last timestamps.
 
+
+### 13.20 NGC price-guide pages cannot be archived — Wayback 403, archive.ph Cloudflare loop (2026-10-13)
+
+Do not spend time getting an archive copy of an `ngccoin.com/price-guide/…`
+page; three routes failed for the same two records (KM 108 cuid 1156101,
+MB 57 cuid 167747):
+
+- **Save Page Now via URL** (`web.archive.org/save/<url>`, curl or browser):
+  «Job failed» with no reason, twice before and once on 2026-10-13.
+- **Save Page Now form** (in-app browser, web.archive.org/save): states the
+  reason — «The target server blocks access … (HTTP status=403)».
+- **archive.ph** (submit form; one reCAPTCHA, passed by the curator): the
+  crawler gets 403 and then loops on Cloudflare's
+  `cdn-cgi/challenge-platform/…/chl_page` with a fresh ray id each pass;
+  after 5+ minutes still «Loading», no snapshot (wip/Up74o, wip/5AF7F).
+
+Curator decision: NGC refs_pool entries carry no archive copy. The quoted
+record is also in our harvest cache (`scripts/cache/ngc/<region>/cuid_<id>.parsed.json`),
+which is the in-house fallback for re-verifying a quote.
