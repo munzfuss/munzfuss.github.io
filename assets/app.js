@@ -477,36 +477,52 @@
  * the .mt-scroll table portal handler above).
  *
  * Default CSS centers the tooltip on its trigger (left:50% / translateX
- * (-50%)). For triggers near a viewport edge — common in the timeline
- * where layers near the right end have very little room on their right —
- * the centered tooltip overflows past the screen and gets clipped.
+ * (-50%)); hover zones centre it on the bar's cumulative band (`--tt-cx`).
+ * For triggers near a viewport edge — the whole timeline on a phone, the
+ * right end of a bar on any screen — the centered tooltip overflows past
+ * the screen and gets clipped.
  *
- * Fix: on mouseover, measure the trigger's position vs viewport. If the
- * trigger's center is within ~half-tooltip-width of an edge, add a
- * `tt-anchor-left` or `tt-anchor-right` class. The corresponding CSS
- * (in styles.py) re-anchors the tooltip's left or right edge to the
- * trigger's edge instead of centering. On mouseout, the class is removed.
+ * Fix: on mouseover, compute where the centered box WOULD land (intended
+ * centre − half the fitted width), clamp that to the viewport minus a
+ * pad, and hand the result to CSS as `--tt-left` (px, relative to the
+ * trigger's left edge) under the class `tt-anchor-px`. The CSS rule
+ * (style.base.css) then pins the box at that offset instead of centring.
+ * Pixel placement, not a left/right class, because the hover-zone rule
+ * has the same specificity as a class variant and used to win: on a
+ * phone the zone tooltips ran off the left edge (2026-10-13).
+ * On mouseout, the class is removed.
  * --------------------------------------------------------------------- */
 (function () {
   "use strict";
-  // Upper-bound estimate matching the CSS max-width: 320px → half = 160 px,
-  // plus a small viewport-pad so the tooltip doesn't kiss the edge.
-  var HALF_MAX = 160;
-  var EDGE_PAD = 12;
+  var EDGE_PAD = 12;        // viewport pad so the tooltip doesn't kiss the edge
   var MAX_W = 320;          // matches CSS max-width
   var H_PAD = 20;           // 10 px × 2 horizontal tooltip padding
   var FIT_BUFFER = 1;       // 1 px sub-pixel safety
 
+  function viewportWidth() {
+    return document.documentElement.clientWidth || window.innerWidth;
+  }
+  // The widest box the viewport can hold with the pad on both sides.
+  function maxWidth() {
+    return Math.max(80, Math.min(MAX_W, viewportWidth() - 2 * EDGE_PAD));
+  }
+
   function classify(el) {
     var rect = el.getBoundingClientRect();
-    var center = rect.left + rect.width / 2;
-    var vw = document.documentElement.clientWidth || window.innerWidth;
-    el.classList.remove("tt-anchor-left", "tt-anchor-right");
-    if (center - HALF_MAX < EDGE_PAD) {
-      el.classList.add("tt-anchor-left");
-    } else if (center + HALF_MAX > vw - EDGE_PAD) {
-      el.classList.add("tt-anchor-right");
-    }
+    var vw = viewportWidth();
+    // Intended centre: hover zones anchor at the band centre (`--tt-cx`,
+    // a percentage of the zone, set inline by the template); everything
+    // else at the trigger's own centre.
+    var cxPct = parseFloat(el.style.getPropertyValue("--tt-cx"));
+    var center = rect.left + rect.width * (isNaN(cxPct) ? 0.5 : cxPct / 100);
+    var w = parseFloat(el.style.getPropertyValue("--tt-w"));
+    if (isNaN(w) || !w) w = maxWidth();
+    var left = center - w / 2;
+    var maxLeft = vw - EDGE_PAD - w;
+    if (left > maxLeft) left = maxLeft;
+    if (left < EDGE_PAD) left = EDGE_PAD;
+    el.style.setProperty("--tt-left", (left - rect.left) + "px");
+    el.classList.add("tt-anchor-px");
   }
 
   // Off-screen measurement element. Mirrors the tooltip's text styling
@@ -527,8 +543,7 @@
       "font-weight:400;letter-spacing:0;text-transform:none;" +
       "line-height:1.45;" +
       "white-space:pre-line;" +
-      "width:max-content;" +
-      "max-width:" + MAX_W + "px;"
+      "width:max-content;"
     );
     document.body.appendChild(measEl);
     return measEl;
@@ -538,6 +553,7 @@
     var text = el.getAttribute("data-tooltip");
     if (!text) return;
     var m = getMeasEl();
+    m.style.maxWidth = maxWidth() + "px";
     m.textContent = text;
     var range = document.createRange();
     try {
@@ -552,7 +568,8 @@
     }
     if (!maxLine) return;
     var fitted = Math.ceil(maxLine + H_PAD + FIT_BUFFER);
-    if (fitted > MAX_W) fitted = MAX_W;
+    var cap = maxWidth();
+    if (fitted > cap) fitted = cap;
     el.style.setProperty("--tt-w", fitted + "px");
   }
 
@@ -562,6 +579,8 @@
     // Skip table-cell tooltips — those use the portal system above.
     if (t.closest(".mt-scroll")) return;
     fit(t);
+    // Zones of one bar share a width (below); settle it before placing.
+    if (t.classList.contains("tl-bar-hover-zone")) unifyZoneWidths(t);
     classify(t);
   });
 
@@ -571,7 +590,7 @@
     if (t.closest(".mt-scroll")) return;
     var related = ev.relatedTarget;
     if (related && t.contains(related)) return;
-    t.classList.remove("tt-anchor-left", "tt-anchor-right");
+    t.classList.remove("tt-anchor-px");
   });
 
   // ------------------------------------------------------------------
@@ -606,13 +625,6 @@
     wrap.dataset.zonesFitted = "1";
   }
 
-  document.addEventListener("mouseover", function (ev) {
-    var t = ev.target;
-    if (!t || !t.closest) return;
-    var zone = t.closest(".tl-bar-hover-zone");
-    if (!zone) return;
-    unifyZoneWidths(zone);
-  });
 
   /* ------------------------------------------------------------------ *
    *  Back-to-top button                                                 *

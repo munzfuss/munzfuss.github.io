@@ -2618,13 +2618,6 @@ footer a:hover { color: var(--accent); }
      background over the collapsed bottom border, so the accent rule under
      a header vanished once hover hydrated its `data-tooltip` (app.js data-tt). */
 [data-tooltip]:not(.tl-phase):not(.tl-bar):not(.tl-bar-layer):not(.tl-coin-year):not(.tl-bar-hover-zone):not(.mt-scroll th) { position: relative; }
-/* Edge-anchored tooltip variants — added by app.js when the trigger
-   element's center sits within ~half-tooltip-width of a viewport edge,
-   so the ::after pseudo doesn't extend past the screen. Default is
-   centered on the element (left:50% / translateX(-50%)); the variants
-   pin the tooltip's left or right edge to the element's edge instead. */
-[data-tooltip].tt-anchor-left:hover::after { left: 0; right: auto; transform: none; }
-[data-tooltip].tt-anchor-right:hover::after { left: auto; right: 0; transform: none; }
 /* Hover-zone tooltips anchor at the centre of the cumulative layer band
    (the visual envelope of all overlapping period × scope strips), not at
    the centre of the individual zone the cursor is in — so the tooltip
@@ -2632,6 +2625,13 @@ footer a:hover { color: var(--accent); }
    `--tt-cx` is set inline by the template per zone (see
    compute_hover_zones in categorize.py). */
 [data-tooltip].tl-bar-hover-zone:hover::after { left: var(--tt-cx, 50%); transform: translateX(-50%); }
+/* Viewport-clamped placement — app.js sets `--tt-left` (px from the
+   trigger's left edge) and the class on hover, after measuring where the
+   centred box would land and clamping it inside the viewport. Must come
+   AFTER the hover-zone rule above: same specificity, and the later rule
+   wins — a class-only left/right variant used to lose to it, which is
+   why zone tooltips ran off the left edge of a phone screen. */
+[data-tooltip].tt-anchor-px:hover::after { left: var(--tt-left); right: auto; transform: none; }
 [data-tooltip]:hover::after {
   content: attr(data-tooltip);
   position: absolute;
