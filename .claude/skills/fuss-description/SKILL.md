@@ -60,6 +60,12 @@ How the layers feed the criteria:
 | C5 sources | every layer's prose (a claim is cited wherever it stands) |
 | C6 specimens | every layer's prose (catalogue numbers, lots, mintmasters, survivor counts in prose are intrusions in the phase text too; **mintage figures and «no specimen survives» count only in the description prose — a phase description may carry them**) |
 
+**Overlap between the layers is intended, not a defect** (curator 2026-10-13). The card states
+a fact briefly; the phase description states the same fact again in detail. Never deduct for it,
+never list it as a gap, never propose cutting a phase sentence because the card already carries
+it. A problem INSIDE a repeated sentence (an unsourced «first», a wrong date) is still a problem —
+fix the wording in every place it stands.
+
 The helper prints the layers separately (left block, then the phase descriptions of the chosen
 location) with their citation counts and flags; the score is still judgment (§0b). It does NOT
 touch coins or events.
