@@ -21,7 +21,7 @@ file, `Mordh.` = Mordhorst digest.
 
 | Date | Instrument (source form) | Jur. | Gist | Text | Triage |
 |---|---|---|---|---|---|
-| 1480-09-12 | Møntordning, Arboga (Riksråd / Sten Sture) | SE | Swedish coinage standard; Wilcke's starting point for the Union years | W7-1 p.89 | ❓ SE — evidentiary like 1497 |
+| 1480-09-12 | Møntordning, Arboga (Riksråd / Sten Sture) | SE | Swedish coinage standard; Wilcke's starting point for the Union years | W7-1 p.89 | ✅ SE — evidentiary row like 1497 (Wilcke's starting point) |
 | 1497-12-04 | Møntanordning for Sverige (Hans → Michel Johansson) | SE | Gylden 72/mark 18½ kt; never executed | W7-1 p.90; register §1 | ✅ (already in register) |
 | 1513-07-22 | Haandfæstning Christian II, møntparagraf | DK+NO | «to Mark gør Fyldest for en rhinsk Gylden» — the rate the 1514 ordinance implements | W7-2 p.4; Galster | ✅ |
 | 1513-08-01 | Beskikkelsesbrev / reskript Dynes Blicher, Malmø | DK | Skilling = 3 Hvide; rhinsk Gylden = 32 sk. (Ernst); never executed per Wilcke | W7-2 p.4; artikler_skilltal | ✅ (goes into the 1514 dossier) |
@@ -29,21 +29,21 @@ file, `Mordh.` = Mordhorst digest.
 | 1514-08-03 | Møntordning for Norge | NO | Norwegian coin to be as good as Danish, mutually current; Sølv- og Guldvægt | W7-2 p.11; artikler_holst | ✅ |
 | Easter 1515 | Kvittering (Blicher) | DK | receipt — Wilcke's dating evidence for the complex, states no parameter itself | W7-2 p.12 | ✖ outcome; cite inside the 1514 dossier |
 | 1515-08-24 | Aabent Brev for Sjælland | DK | renews the 1514 Skikkelse; Korshvid 4→5→6 per Skilling | W7-2 p.11–12 | ✅ |
-| 1518 | «Klipping»-ordning (undated reskript to Blicher) | DK | Ernst dates the undated reskript (1 rh. gld. = 24 sk.) to 1515; Wilcke: 1518 Klippinge | W7-2 p.17 ff.; artikler_skilltal | ❓ find the act; may be the same undated reskript |
+| 1518 | «Klipping»-ordning (undated reskript to Blicher) | DK | Ernst dates the undated reskript (1 rh. gld. = 24 sk.) to 1515; Wilcke: 1518 Klippinge | W7-2 p.17 ff.; artikler_skilltal | ✖ no act: W7-2 pp. 15–21 give accounts and Blicher's 1518 privilege only; the Klipping coinage rests on accounts. **Flag:** `denmark.yml` 8½-Gylden-fod A2 names a «1518 Klipping ordinance» — unsupported |
 | 1523-03-26 / 1523-08-03 | Haandfæstning Frederik I (foreløbig / endelig) | DK | coin to be «ligegodt ved Lybsck, Hamborgh oc Lanteholstenn» | W7-2 p.29; W7-5 p.3; Galster | ✅ |
 | 1523-08-10 | Forordning / Valvation | DK | old coin to be handed in within 3 weeks and exchanged at real, not nominal, value; 1 M = 12 sk. for the new coin | W7-2 p.48; Galster; artikler_kghklipp | ✅ |
 | 1524-02-25 | Rigsraadets Møntordning (brev til Jørgen Kock) | DK | Nobel 23 kt 16/mark · rhinsk Gylden 18 kt 72/mark · silver grid; klippinge withdrawn | W7-2 p.35 (prints it); register §1 | ✅ |
-| 1524-02-26 | separate act on the 14-Penning piece | DK | named in `denmark.yml` timeline, no ref | ? | ❓ locate in W7-2 |
+| 1524-02-26 | separate act on the 14-Penning piece | DK | named in `denmark.yml` timeline, no ref | ? | ✖ not found: W7-2 p.46 treats the 14 Penning without a separate dated act. **Flag:** `denmark.yml` 8-Gylden-fod timeline names it |
 | 1524 | Kongebrev Frederik I to Jørgen Kock | DK | executes the Rigsraad ordinance (Wilcke 7-2 p.184 printed) | W7-2; refs `wilcke-1950-kongebrev-1524` | ✅ |
 | 1524-06-20 (Holst: 24-06) | Kongebrev to Bisp Magnus, Hamar | NO | 4-Hvid skilling at 5 lod, piece-count stated | W7-2 p.51; artikler_holst | ✅ |
 | 1525-10-18 | Befaling, Olav Galle (Akershus) on the king's behalf | NO | Oslo minting parameters (Holst's table) | artikler_holst | ✅ (check W7-2 p.54) |
 | 1526-01-01 | Brev to Vincents Lunge, Bergen | NO | strike Skilling (4-Hvid) and Hvid for Frederik I | artikler_holst | ✅ |
 | 1526-11-08 | Ordning (Oslo) | NO | «for bryst og trang … paa penninge» — Oslo mint parameters | W7-2 p.54; artikler_holst | ✅ |
-| 1527 (Wed. after Midfaste) | Regulativ, Vincents Lunge | NO | fourth Norwegian order in Holst's table | artikler_holst | ❓ date + text |
+| 1527 (Wed. after Midfaste) | Regulativ, Vincents Lunge | NO | fourth Norwegian order in Holst's table | artikler_holst | ✅ NO — Holst's table: Firehvid 126/mark (Wilcke: 106) 4½ lod; Hvid 320/mark 3½ lod |
 | 1530-05-06 | Brev Jørgen Kock → Bergenhus | DK | REPORT on the Malmø mint's fineness (5 1/9 lod) — evidence, not an instrument | Galster; artikler_holst | ✖ outcome (dossier 1524 cites it) |
 | 1530-08-07 | Befaling to Esge Bille, Bergenhus | NO | strike coin «lige goed udi korn oc pagementhe» with the Danish | artikler_holst (Dipl. N.) | ✅ |
-| 1532-11-23 | Aabent Brev, Erik Gyldenstierne (Akershus) | NO | may strike as much coin as he can to pay his men — no standard | W7-2 p.59 | ❓ (mint authorisation without parameters → likely ✖) |
-| 1535-04-15 | Kursächsische Münzordnung sent to Christian III | HRE (Saxony) | the model: Gylden 14 lod 8 gr., 8/mark … ; also in T.K. 160 pp. 8–15 | W7-4 p.3; rigsarkivet | ❓ foreign model — §2 row or dossier-1541 antecedent |
+| 1532-11-23 | Aabent Brev, Erik Gyldenstierne (Akershus) | NO | may strike as much coin as he can to pay his men — no standard | W7-2 p.59 | ✅ NO — standard by reference: «paa det samme Pavemint, Korn og Skrot» as Mogens Gyldenstierne struck |
+| 1535-04-15 | Kursächsische Münzordnung sent to Christian III | HRE (Saxony) | the model: Gylden 14 lod 8 gr., 8/mark … ; also in T.K. 160 pp. 8–15 | W7-4 p.3; rigsarkivet | ✅ §2 (Saxony) — received model with full grid (Gylden 14 L 8 gr 8/mark …), antecedent of 1541 |
 | 1536-10-30 | Haandfæstning Christian III, møntparagraf | DK | coin to be «lidelig og gavnlig … lige ved Fyrstendømmerne» once peace | W7-5 p.3 | ✅ |
 | 1537-08-24 | Ordinans (St. Bartholomæi), cap. 10 | DK | the king's coin to pass at the value he set it | W7-3 p.21 | ✅ (legal tender) |
 | 1537-10-21 | Reces / Forordning | DK | all coin struck by the king reduced to half its value | W7-3 p.26; Galster | ✅ |
@@ -51,7 +51,7 @@ file, `Mordh.` = Mordhorst digest.
 | 1541-03-20 | Forordning om Maal og Vægt | DK+NO | weights | `sources/paus_…` ; dossier 1541 | ✅ |
 | 1541-09-20 | Møntordning Christian III | DK+NO | dalerfod | dossier `moentordning_1541.md`; T.K. 160 pp. 16–22 | ✅ |
 | 1544-09-27 | Møntordning / tillæg (for unge Jørgen Koch) | DK+NO | full grid, printed as a table by Wilcke | W7-4 p.13; T.K. 160 pp. 25–27 | ✅ |
-| 1544-12 (1–15) | Brev to the Hansestæder on the Flensborg coin | SH-k | coin types to be struck in Flensborg | artikler_flenobbe (Sejdelin 865) | ❓ |
+| 1544-12 (1–15) | Brev to the Hansestæder on the Flensborg coin | SH-k | coin types to be struck in Flensborg | artikler_flenobbe (Sejdelin 865) | ✅ SH-k — list of the types to be struck at Flensborg (incl. Witten); the 1547 Bestalling repeats it |
 | 1547-01-22 | Bestalling mit Müntzordnung, Jørgen Kock d. y., Flensborg | SH-k | Flensborg grid incl. hele/halve Gyldengroschen | W7-4 p.25–26; T.K. 160 pp. 28–29; artikler_flenobbe | ✅ |
 | 1550-07-08 | Instruks, tolder Sander Leyl, Helsingør | DK | Sundtold payable in gold / rosenobler or 3 full dalers | W7-4 p.29 | ✅ (course) |
 | 1551-10-11 | Aabent Brev to the lensmænd «om Mønten» | NO | the Norwegian 4-Hvid pieces not to be refused | W7-4 p.48 | ✅ (legal tender) |
@@ -66,59 +66,59 @@ Imperial rows for §2 found here: 1524-11-10 Esslinger Reichsmünzordnung (W1 p.
 |---|---|---|---|---|---|
 | 1559-08-12 | Haandfæstning Frederik II | DK | Wilcke: NO coinage clause was taken up | W7-5 p.2 | ✖ |
 | 1563-09-14 → 1564-12-10 | 8 acts: Mis. / Åb. br. on those who «vrage den ny mønt» (klippinge), loans of klippinge against round coin, gallows for refusal | DK | legal-tender enforcement of the war klippinge; 1564-04-27 fixes acceptance «for dens pålydende værdi» | Secher 1 pp. 174, 190, 205, 210, 211, 214, 215, 240 | ✅ as ONE register row group (legal tender), dossier optional |
-| 1563-09-15 / 1564-12-11 / 1565-05-17 / 1570-10-26 | Bestallinger: Hans Køppelin (1 yr), Bremerholm mintmaster, Laurentz Boessen (Isensnider), Baltzer Wegener Flensborg (ß, Hvid, Blaffert, Søsling, Pf.) | DK / SH-k | appointments; parameters? | W7-5 pp. 19, 22, 45, 47 | ❓ read — ✅ only where the Bestalling carries the grid |
+| 1563-09-15 / 1564-12-11 / 1565-05-17 / 1570-10-26 | Bestallinger: Hans Køppelin (1 yr), Bremerholm mintmaster, Laurentz Boessen (Isensnider), Baltzer Wegener Flensborg (ß, Hvid, Blaffert, Søsling, Pf.) | DK / SH-k | appointments; parameters? | W7-5 pp. 19, 22, 45, 47 | ✖ Køppelin 1563 (1 yr, no grid) · ✖ Boessen (Isensnider) · ✅ SH-k one row: Køppelin Bremerholm 1564-12-11 → Flensborg per letter 1566-03-01 «smaa Mønt som Lybecksk og Hamburgsk Skrot» (standard by reference) · ✅ SH-k Wegener 1570-10-26 (ß, Hvid, Blaffert, Søsling, Pf. at Flensborg) |
 | 1564-06-28 | Brev (Norske Magasin) on Klipping | NO | refusal of the klipping forbidden | W7-5 p.52 | ✅ (legal tender, NO) |
 | 1567-01-05 / 02-27 / 03-11 | Mis. ×2 + Åb. br. on the course of the «ny dalere» in told; coin for law-fines | DK | tariff | Secher 1 pp. 346, 357, 359 | ✅ |
 | 1569-09-17 | Mis. value of a rosenobel in told | DK | tariff | Secher 1 p. 488 | ✅ |
 | 1571-03-26 | Mis. Sundtold in old dalers | DK | tariff | Secher 1 p. 569 | ✅ |
 | 1572-06-16 | Aabent Brev — course of the skillemønt; export of the realm's coin forbidden | DK | tariff + export ban (Ernst cites it as the end of the Skillingtal) | Secher 1 p. 609; W7-6 p.10 | ✅ |
 | 1572-09-09 / 09-15 / 1573-01-29 / 03-28 / 1574-03-10 | Mis. ×4 + Åb. br.: daler course in told, opgæld abolished, old dalers only, Netherlands daler course | DK | tariff | Secher 1 pp. 621, 623, 636, 648, 695 | ✅ (one row each; short) |
-| 1574-01-26 | Stadfæstelse of a «Skik og Ordning» of the Bergen burghers | NO | local accounting rule after the coin change | W7-6 p.21 | ❓ |
+| 1574-01-26 | Stadfæstelse of a «Skik og Ordning» of the Bergen burghers | NO | local accounting rule after the coin change | W7-6 p.21 | ✅ NO — conversion rule 3 M old = 1 Dlr = 2 M new; add **1586-06-06 Frdg. for Norway** on byskat/jordskyld after the coin change (W7-6 p.21, new find) |
 | 1576-12-14 / 1578-11-26 / 1581-11-09 | Åb. br.: reckoning of jordskyld, sagemark, taxes «efter møntens forandring» | DK | accounting conversion rules after the 1572 change | Secher 2 pp. 45, 139, 264 | ✅ (tariff / reckoning) |
 | 1576-11-20 / 1577-04-11 / 1581-08-17 | Åb. br. / Bestalling: Kort N., Hans Delhusen (Isensnider), Jacob Brucker (Münzdruckwerk trials) | DK | mint staff | W7-6 pp. 21–22, 30 | ✖ (no parameters) unless the Delhusen letter carries a grid |
 | 1578-06-04 | Åb. br. Svendborg byskat after the coin change | DK | fiscal conversion | W7-6 p.19 | ✖ (fiscal, not coinage) |
 | 1580-09-22 / 1581-05-04 / 1582-02-12 / 1590-11-20 | Mis.: rosenobler/dukater at their former value; coin instead of gold in told; rosenobel course at Øresund; rosenobel course | DK | gold tariff | Secher 2 pp. 214, 242, 277, 549 | ✅ |
 | 1582-01-12 | Møntanordning / Befaling Frederik II for Poul Gulden | DK | Daler = 64 sk.; silver price 8 Dlr. 2 M 8 sk. per mark fine | W1 p.54, 60; W7-6 p.41; W2 w2ref | ✅ — NOT in Secher's list (Kancelli, not printed) |
 | 1584-10-02 | Mis. warning against foreign counterfeit coin | DK | police | Secher 2 p. 380 | ✖ |
-| 1586-01-30 | Mis. to Kbh./Helsingør on the imported new dalers «ikke så gode som de burde» | DK | tariff? | Secher 2 p. 422 | ❓ |
+| 1586-01-30 | Mis. to Kbh./Helsingør on the imported new dalers «ikke så gode som de burde» | DK | tariff? | Secher 2 p. 422 | ✅ provisional — tariff/legal tender of the imported dalers; read Secher 2 p. 422 in Stage 3 |
 | 1593-05-20 | Møntanordning (regency) | DK | Mark = 7,3 g at 14 lod (Wilcke's figures) | W1 p.47 | ✅ |
 | 1593-09-14 / 1594-08-01 | Bestalling Andreas Metzner; Møntordning for Metzner «af ganske samme Indhold» as 1582 | DK | restates 1582 | W1 p.56; W2 w2ref | ✅ (one row, points at 1582) |
-| 1596-07-08 / 08-29 | Kongebreve (Wilcke II refs) | DK | ? | W2 w2ref | ❓ |
+| 1596-07-08 / 08-29 | Kongebreve (Wilcke II refs) | DK | ? | W2 w2ref | ✖ borrowing minters from Gottorp for the coronation specie |
 | 1602-05-12 | Åb. br. on the dalers' value in Denmark | DK | Rigsdaler = 66 sk. (Wilcke I §2 heading «12 Maj–8 Sept 1602») | Secher 3 p. 173; W1 p.60, 65 | ✅ |
 | 1602-06-25 | Forordning / Møntordning (silver) | DK | the silver grid of 1602 | W1 p.63; W2 | ✅ |
 | 1602-09-08 | Forordning (gold) | DK | Portugaløser 6¾ / Ungersk Gylden 67 per mark | register §1; dossier `daler_klippe_1604.md` | ✅ — not under Secher «Møntvæsen»; find in chronological list |
-| 1603-07-12 | Frdg. against export of gold, silver and copper | DK | export ban | Secher 3 p. 161 (W1 note) | ❓ (no parameter) |
+| 1603-07-12 | Frdg. against export of gold, silver and copper | DK | export ban | Secher 3 p. 161 (W1 note) | ✖ bullion/copper export ban, no parameter → §4 |
 | 1604-03-22 | Møntordning — Karl IX, Sweden | SE | Swedish; context only | W1 p.46 | ✖ (SE) |
 | 1604-11-20 | Møntordning (nedsættelse) | DK | tariff moved | register §1 | ✅ |
 | 1605-03-17 | Frdg. om møntens forandring | DK | | Secher 3 p. 208 | ✅ |
 | 1605-07-08 / 08-04 | Frdg. (both realms) on the Slesvig coin's value; on the Sønderborg coin's value | DK+NO | tariff of ducal coin | Secher 3 pp. 214, 216 | ✅ |
 | 1605-08-31 | Møntordning | DK | | W1 p.74 | ✅ |
-| 1606-03-21 | Plakat | DK | (agent scan; context not yet read) | W1 | ❓ |
+| 1606-03-21 | Plakat | DK | (agent scan; context not yet read) | W1 | ✖ Dutch Møntplakat — foreign model of the 1607 Bestalling (antecedent note in that dossier) |
 | 1607-01-21 | Instruks Jonas Charisius (Netherlands mission) | DK | diplomatic — not coinage | W1 p.75 | ✖ |
 | 1607-05-28 | Bestalling og Ordning, Flemming (mintmaster) | DK | mint ordinance with assay box etc. | W1 p.76 | ✅ (read for the grid) |
 | 1609-02-03 | Mandat om møntens forandring | DK | | Secher 3 p. 295; W1 p.136 | ✅ |
-| 1609-09-28 | Bestalling (Flemming) | DK | | W1 p.90 | ❓ |
+| 1609-09-28 | Bestalling (Flemming) | DK | | W1 p.90 | ✅ with 1607-05-28: Flemming's Bestalling og Ordning / Müntz-Ordnung «an schrott, Korn und Gewichte» — one row |
 | 1609-10-04 | Frdg. foreign small coin withdrawn at its own mints forbidden | DK | legal tender | Secher 3 p. 309 | ✅ |
 | 1610-04-03 | Frdg. om forandring af mønten over alt Danmark og Norge | DK+NO | | Secher 3 p. 320; W1 p.106 | ✅ |
-| 1610-02-01 / 11-02 | Edikt / forordninger (ducal?) | SH | | W1 p.143 | ❓ |
+| 1610-02-01 / 11-02 | Edikt / forordninger (ducal?) | SH | | W1 p.143 | ✅ SH-d — Johan Adolf's Forordninger 1 Feb, 28 Feb, 2 Nov 1610, 8 May 1611 on paying in his own coin (legal tender); read in Stage 3 |
 | 1613-05-15 | Mis. toldere DK+NO: coin for the told | DK+NO | tariff | Secher 3 p. 395 | ✅ |
 | 1613-08-10 / 1620-06-10 / 1623-03-01 | Valvationer | — | assay OUTCOMES | W1 | ✖ (evidence) |
 | 1616-07-04 | Frdg. om mønten | DK | | Secher 3 p. 433; W1 p.121 | ✅ |
-| 1616-10-21 | Kontrakt (mint lease?) | DK | | W1 p.33 | ❓ |
+| 1616-10-21 | Kontrakt (mint lease?) | DK | | W1 p.33 | ✅ Schauenburg (HRE) — Count Ernst's contract with Gabriel de Valentza: 150 mark fine/week → Schreckenberger 47/mark at 9 3/16 lod (mint contract with grid) |
 | 1618-04-05 | Åb. br. om mønten + Instruks + Bestallinger | DK | | Secher 3 p. 487; W1 p.10 | ✅ |
 | 1618-05-01 | Frdg. forhøjelse af rigsdalernes værdi | DK | tariff | Secher 3 p. 495; W1 p.136 | ✅ |
-| 1618-05-07 | Instruktion | DK | | W1 p.36 | ❓ |
+| 1618-05-07 | Instruktion | DK | | W1 p.36 | ✖ Westphalian Kreis probation-day decision on Altona's Kreis membership — context for the Schauenburg page |
 | 1618-07-12 | Åb. br. om den ny mønt (Krone) | DK | kronemønt | Secher 3 p. 500; refs `wilcke-1919-patent-12-juli-1618` | ✅ |
 | 1618-12-12 | Mandat (with Lübeck) § 5 on foreign 4 ß / 2 ß / 1 ß; «Ordning om 2 ß og Groschen» | SH / Hanse | legal tender of small coin | W1 pp. 38, 161 | ✅ (SH-k) |
 | 1619-01-08 | Frdg. value of various fireskillingsstykker | DK | tariff | Secher 3 p. 512; W1 p.178 | ✅ |
-| 1619-04-05 | Instruks (mint) | DK | | W1 p.162 | ❓ |
+| 1619-04-05 | Instruks (mint) | DK | | W1 p.162 | ✅ Instruks 4/5 April 1619 «alle de nye Udregninger»; 1 ß at 13¾ lod |
 | 1619-04-08 | Frdg. om guld- og sølvkroner og mindre møntsorter | DK | kronemønt grid | Secher 3 p. 523; W1 p.166 | ✅ |
 | 1619-09-07 | Plakat — course 6½ Mark; «slagne Daler» first officially called Rigsdaler | DK | tariff | W1 p.47 | ✅ |
 | 1619-11-16 | Frdg. om mønten | DK | | Secher 3 p. 541; W1 p.11 | ✅ |
-| 1619-11-20 | Bestalling | DK | | W1 p.182 | ❓ |
-| 1620-04-23 / 1620-07-20 | Mandat; Edikt | SH? | | W1 pp. 161, 189 | ❓ |
+| 1619-11-20 | Bestalling | DK | | W1 p.182 | ✅ Møntmesteranordning / Schwabe's Bestalling 20 Nov 1619 belonging to the Frdg. 16 Nov 1619 (2 ß weight) |
+| 1620-04-23 / 1620-07-20 | Mandat; Edikt | SH? | | W1 pp. 161, 189 | ✖ 1620-04-23 Mecklenburg–Bremen–Lübeck–Hamburg union (context) · ✅ SH-k 1620-07-20 Møntedikt for the duchies: 4 ß d. only by weight per Specifikation; Daler ≤ 33¼ ß l. = 104 ß d. |
 | 1621-02-20 | Frdg. om mønten | DK | | Secher 3 p. 581 | ✅ |
-| 1622-01-18 | Forordning + instruks | DK | | W1 p.162 | ❓ |
+| 1622-01-18 | Forordning + instruks | DK | | W1 p.162 | ✖ end date of Johan Post's account, not an act |
 | 1622-05-10 | Møntordning | DK | | W1 p.198 | ✅ |
 | 1622-08-16 | Frdg. om forskellige mønters værdi | DK | tariff (gold table per SOURCES §3) | Secher 4 p. 20; W1 p.223 | ✅ |
 | 1622-10-15 / 10-24 | Frdg. foreign 4/2/1-skilling; foreign dalers' value | DK | tariff | Secher 4 pp. 33, 36; W1 pp. 206, 17 | ✅ |
@@ -136,7 +136,7 @@ Imperial rows for §2 found here: 1524-11-10 Esslinger Reichsmünzordnung (W1 p.
 | Date | Instrument (source form) | Jur. | Gist | Text | Triage |
 |---|---|---|---|---|---|
 | 1627-12-22 | Forordning on minting from Bruchsilber (ca. 1½ Dlr. over Speciemøntfod) | DK | mint policy with a fod | W2 w2a1 | ✅ |
-| 1628-09-29 / 10-30 / 11-13 / 11-15 | Forordninger, Bestemmelser, Ansættelsesbreve (Wilcke's table of the 2 ß) | DK | | W2 w2a1 | ❓ |
+| 1628-09-29 / 10-30 / 11-13 / 11-15 | Forordninger, Bestemmelser, Ansættelsesbreve (Wilcke's table of the 2 ß) | DK | | W2 w2a1 | ✅ 1628-11-15 Müntzordnung (6 ß from Bruchsilber + gold incl. Rosenobel 24/mark 20 kt) · ✖ 11-13 Schwabe's Erklæring (evidence) · 09-29 / 10-30 read in Stage 3 (Wilcke's table: Ansættelsesbreve) |
 | 1629-04-08 | Frdg. no coin but that accepted in tax | DK | legal tender | Secher 4; W2 | ✅ |
 | 1629-10-10 | Frdg. om møntvæsenets bedre indretning | DK | | Secher 4 p. 341; W1 p.11; W2 w2a1 | ✅ |
 | 1630-01-21 | Møntordning for mønten i København | DK | | Secher 4; W2 w2a2 | ✅ |
@@ -146,9 +146,9 @@ Imperial rows for §2 found here: 1524-11-10 Esslinger Reichsmünzordnung (W1 p.
 | 1639-06-08 | Frdg. om guldmønten m. m. | DK | gold tariff (SOURCES §3 table) | Secher 5 p. 31; W2 | ✅ |
 | 1639-07-10 | Åb. br. forhøjelse af kursen på goltgylden | DK | tariff | Secher 5 p. 41 | ✅ |
 | 1640-05-18 | Frdg. nedsættelse af guldmøntens værdi | DK | tariff | Secher 5 p. 56; W2 w2a2 | ✅ |
-| 1641-06-17 | Åb. br. forbud mod indførsel af pajement | DK | import ban | Secher 5 p. 97 | ❓ (legal tender of foreign small coin → likely ✅) |
+| 1641-06-17 | Åb. br. forbud mod indførsel af pajement | DK | import ban | Secher 5 p. 97 | ✅ legal tender — Helsingør import ban on foreign pajement (Secher prints it, PDF p. 0102); group with the 1651 bans |
 | 1643-02-25 | Møntordning | DK | | W2 w2b7 | ✅ |
-| 1643-02-27 | Reces (Kristian IV's, Norway) | NO | coinage §? | Secher 5 p. 143 | ❓ |
+| 1643-02-27 | Reces (Kristian IV's, Norway) | NO | coinage §? | Secher 5 p. 143 | ✅ NO — Secher lists it under Møntvæsen; read the coin chapter in Stage 3 |
 | 1644-07-06 | Mandat (Hamburg devaluation) | HRE (Hamburg) | foreign | W2 w2c2 | ✖ (context) |
 | 1645-12-12 / 1646-09-26 | Skrivelse / Forordning (Duke Frederik of Gottorp): no one bound to take > 10 Marck in the new Markstykker | SH-d | legal tender limit | W2 w2c2 | ✅ |
 | 1647-12-10 | Frdg. om guld- og sølvmøntens kurs | DK | tariff | Secher 5 p. 337; W2 w2a3 | ✅ |
@@ -166,21 +166,21 @@ Imperial rows for §2 found here: 1524-11-10 Esslinger Reichsmünzordnung (W1 p.
 | 1658-02-06 | Frdg. om fri udmøntning på kongens mønt | DK | free coinage | Secher 6 p. 319 | ✅ |
 | 1660-04-18 | Patent (Flensborg complaints): the 1644–45 14 and 7 ß l. «Hebræer» pieces to be accepted | SH-k | legal tender | W2 w2c3 | ✅ |
 | 1660-09-20 | Kgl. Patent «der Müntz halber und Absetzung der Cronen» (Frederik III + Christian Albrecht) | SH-k+SH-d | reduction of the Krone in the duchies | W2 w2a6 | ✅ |
-| 1628–1665 | Bestallinger (1628-04-28, 1640-09-17, 1641-01-03, 1641-12-31, 1650-06-12, 1651-01-14, 1654-02-16, 1655-02-26, 1656-04-20, 1657-07-15, 1659-05-19, 1662-03-12, 1663-04-02, 1663-11-02, 1664-10-20) | DK/NO/SH | appointments | W2 passim | ❓ read each — ✅ only with a grid |
+| 1628–1665 | Bestallinger (1628-04-28, 1640-09-17, 1641-01-03, 1641-12-31, 1650-06-12, 1651-01-14, 1654-02-16, 1655-02-26, 1656-04-20, 1657-07-15, 1659-05-19, 1662-03-12, 1663-04-02, 1663-11-02, 1664-10-20) | DK/NO/SH | appointments | W2 passim | ✅ NO 1628-04-28 Anders Pedersen, Christiania: daler 15½ lod, 9/mark, halves 18, orts 36, ½ orts 72 · ✅ SH-k 1640-09-17 Timpff Glückstadt + 1641-12-31 renewal (8 ß l. 48/mark 13 lod; Wilcke prints the whole system table) · ✅ NO 1651-01-14 Frederik Grüner (Rigsdaler «efter hollandsk Skrot og Korn»; 2/1 ß per Chr IV's orders) · ✅ DK 1654-02-16 Herbach Wardein (Guldkroner, Sletdaler «efter hidtidig Korn og Skrot») · ✅ SH-k 1657-07-15 Schwieger Glückstadt (Rigsdaler, halves, Orter, Dukater) + 1659-05-19 Kroner 10½/mark at 10 lod 3 qv. · ✖ 1641-01-03 (letter), 1650-06-12 / 1655-02-26 / 1656-04-20 (proberer, wardein), 1662-03-12, 1662-06-20 (confirmation), 1663-04-02, 1663-11-02, 1664-10-20 (salary only) · ❓ 1664-11-15 Krüger's Bevilling «paa dend liden Mønt» — privilege, parameters to check |
 
 ## D · 1661–1700 (Frederik III absolutism · Christian V) — Mordhorst digest; Schou Bd 1; Wilcke II to 1670
 
 | Date | Instrument (Mordhorst's title) | Jur. | Gist | Text | Triage |
 |---|---|---|---|---|---|
 | 1661-02-20 | Forordning at Toldens Opbørsel skal være udi Rixdal. Mynt in Specie | DK+NO | told in specie | Mordh. f3; Schou | ✅ (tariff) |
-| 1663-11-19 / 1664-03-08 | Åbent brev / Forbud: export of gold and silver | DK | bullion export ban | Mordh. f3 | ❓ |
+| 1663-11-19 / 1664-03-08 | Åbent brev / Forbud: export of gold and silver | DK | bullion export ban | Mordh. f3 | ✖ bullion export bans, no parameter → §4 |
 | 1665-01-10 / 01-22 | Reskripter: minting of small coin < 2-mark stopped; dies to the treasury | DK | mint policy | Mordh. f3 | ✅ |
 | 1665-05-06 | (reskript) specie minting at Christiania | NO | | Mordh. f3 | ✅ |
 | 1665-06-05 | Forordning om Falske Mynte | DK | penal | Mordh. f3 | ✖ |
 | 1666-01-10 / 01-12 | Forordning om Smaa-Mynten; reskript to the mintmasters | DK | small coin standard | Mordh. f3 | ✅ |
 | 1667-03-29 | Forordning om Fremmede Myntes Affsettelse | DK | foreign coin tariff | Mordh. f3 | ✅ |
 | 1669-03-18 / 1670-04-12 | Forbud om Smaa Mynt fra fremmede Stæder; Forordning om Smaa Mynten | DK | import ban | Mordh. f3/c5 | ✅ (legal tender) |
-| 1669-02-20 / 03-01 | Kongebreve (Wilcke II) | DK | ? | W2 w2a6 | ❓ |
+| 1669-02-20 / 03-01 | Kongebreve (Wilcke II) | DK | ? | W2 w2a6 | ✖ Commercekollegium memorial + Kongebrev to the Statskollegium: inquiry, evidence for the 1671 dossier |
 | 1671-02-14 | Commerce Collegium recommendation | DK | advice | `denmark.yml` tl.guldkrone | ✖ (evidence) |
 | 1671-03-22 | Myndt-Ordning Christian V | DK+NO | specie 9¼ · krone 10 rd 2½ M · 4 sk 10⅔ · 2 sk 11 · 1 sk 12 · søsling 13⅓ per mark fine; dukat 67/mark 23½ kt; mints Kbh., Christiania, Glückstadt | Mordh. c5; Schou; refs `danskmoent-c5mord` | ✅ |
 | 1671-03-22 | Forbud paa Smaa-Myntis Indførsel | DK | import ban | Mordh. c5 | ✅ |
@@ -189,7 +189,7 @@ Imperial rows for §2 found here: 1524-11-10 Esslinger Reichsmünzordnung (W1 p.
 | 1675-03-08 | Forordning om fremmede Myndt (dukaton 7½ M, Albertus/Kreuzdaler) | DK | tariff | Mordh. c5 | ✅ |
 | 1675-03-11 | Reskript (2-Krone) | DK | | `denmark.yml` tl.kronemont, no ref | ✅ (find in Schou) |
 | 1676-05-30 | Forordning om Mynten | DK | | Mordh. c5 | ✅ |
-| 1676-06-05 / 1689-05-18 | Forordning om Sølfkiøbet | DK | silver purchase price | Mordh. c5 | ❓ (mint price → likely ✅) |
+| 1676-06-05 / 1689-05-18 | Forordning om Sølfkiøbet | DK | silver purchase price | Mordh. c5 | ✅ the mint's silver purchase price: 3 M 4 sk. (1676) / 3 M 3 sk. (1689) kurant per lod at Copenhagen fineness |
 | 1680-02-10 / 09-18 | Forordning om Fremmede Dytkeners Afsettelse (DK; NO) | DK / NO | tariff | Mordh. c5 | ✅ |
 | 1681-04-16 / 1683-04-15 / 1688-03-31 | Wexel-Rætten; Danske Lov; misuse of bills | DK | exchange law | Mordh. c5 | ✖ |
 | 1682-10-28 | Forordning om Kaaber-Penges afskaffelse (Norway war copper) | NO | demonetisation | Mordh. c5 | ✅ |
@@ -202,8 +202,14 @@ Imperial rows for §2 found here: 1524-11-10 Esslinger Reichsmünzordnung (W1 p.
 | 1695-06-22 / 1696-08-21 | authorised Seddeler (Norway) and their abolition | NO | paper money | Mordh. c5 | ✖ (out: not coin) |
 | 1699-02-14 | Forordning om Toldens Oppebørsel udi Specie efter Told-Rullen 1691 | DK | told in specie | Mordh. c5 | ✅ |
 
-## Next step
+## Review 2026-10-13
 
-Curator reviews the ❓ rows and the ✖ calls; then Stage 3 writes the register
-rows in three chunks (A · B · C+D), reading each ✅ act in Secher / Wilcke /
-Schou and marking «text seen» honestly.
+Curator: every ❓ may hold something useful — read them too and conclude; the
+✖ calls stand. All ❓ rows above now carry a verdict from the source context
+(Wilcke VII/I/II, Holst, Secher page text); two «acts» named in `denmark.yml`
+turned out to have no instrument behind them (1518 Klipping ordinance,
+1524-02-26) and are flagged for the Guldgyldenfod / 8½-Gylden-fod texts.
+One ❓ remains (1664-11-15 Krüger's mint privilege) and three «read in
+Stage 3» notes (1586-01-30, 1610 Gottorp Forordninger, 1628-09-29/10-30).
+Next: Stage 3 — register rows in three chunks (A · B · C+D), each ✅ act read
+in Secher / Wilcke / Schou, «text seen» marked honestly.
