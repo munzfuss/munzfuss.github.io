@@ -19,6 +19,33 @@
    written up here yet. The «cited in» column says where to read what we
    already know, so the next session starts from our own text rather than from
    a search engine.
+4. A row with a **Dossier** link has its full write-up in
+   [`instruments/`](instruments/README.md) (one file per act, nine fixed
+   sections). §4 lists acts that were examined and found to set no monetary
+   parameter — so nobody re-finds them.
+
+## Columns (target shape for §1 and §2 — rows are being migrated to it, 2026-10-13)
+
+`Date · Instrument (the source's own name, its own language) · Issuer ·
+Jurisdiction · What it sets · Text seen · refs_pool key · Dossier`
+
+- **Jurisdiction codes:** `DK` Denmark · `NO` Norway under the Danish crown ·
+  `SH-d` the ducal (Gottorp / Haderslev / Sønderborg) share of
+  Schleswig-Holstein · `SH-k` the royal share · `HRE` Imperial. One row may
+  carry several (`DK+NO` for the 1514 pair).
+- **What it sets:** the parameters only — coins named · pieces to the mark
+  (which mark) · fineness in the act's unit (karat / lod) · tariff / course ·
+  mints · mintmaster — in ≤ 3 lines. Everything beyond that is the dossier's.
+- **Text seen** is the honesty column: `act` when the row was written from the
+  instrument's own text (Secher, Kolderup-Rosenvinge, Paus, Schou, Hirsch,
+  Mordhorst's Bilag, a Rigsarkivet scan); `Wilcke` / `Galster` / `Ernst` when
+  it was written from that author's retelling. A retelling is NOT the act —
+  a figure that only a retelling gives is cited as the retelling's, and the
+  dossier says so.
+- In scope: an act that fixes pieces/mark, fineness, weight, tariff or
+  course, legal-tender status or demonetisation, a mint's location, or a
+  mintmaster's appointment WITH parameters. Out of scope (→ §4): acts with
+  no monetary parameter.
 
 ## Discipline — two rules learned the hard way
 
@@ -140,3 +167,13 @@ work on it, rather than researching it afresh.
 
 *(A year appearing in both §1/§2 and §3 is not a duplicate: §3 lists every
 mention, including the ones the written-up rows above already cover.)*
+
+## §4 · Seen, excluded
+
+Acts examined for this register that set no monetary parameter (general
+administrative letters, confirmations without figures, instruments outside
+the jurisdictions above). Kept so the next scan does not re-open them.
+
+| Date | Instrument | Where seen | Why excluded |
+|---|---|---|---|
+| — | *(none yet)* | | |

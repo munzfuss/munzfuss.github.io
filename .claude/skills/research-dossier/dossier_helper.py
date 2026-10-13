@@ -140,8 +140,12 @@ def scan(path: Path) -> int:
 def main() -> int:
     args = [a for a in sys.argv[1:]]
     if not args or args[0] == "--list":
-        for p in sorted(RESEARCH.glob("*.md")):
-            print(f"  {p.name:52} {len(p.read_text(encoding='utf-8').splitlines()):5} lines")
+        # top-level dossiers + per-instrument dossiers; `sources/` holds
+        # verbatim captures, not dossiers, and is left out on purpose.
+        files = sorted(RESEARCH.glob("*.md")) + sorted((RESEARCH / "instruments").glob("*.md"))
+        for p in files:
+            name = str(p.relative_to(RESEARCH))
+            print(f"  {name:52} {len(p.read_text(encoding='utf-8').splitlines()):5} lines")
         return 0
     p = Path(args[0])
     if not p.is_absolute():
