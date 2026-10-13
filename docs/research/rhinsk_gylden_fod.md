@@ -385,8 +385,10 @@ from the 15th century; as **Danish coinage** only from ~1496.
     imperial 18½, so the «undercut» holds on either. No coin of the 1514 act is
     known (the Gylden of Christian II was never struck, Galster), so no assay can
     decide it. The same question for the Nobel of the same letter: `nobel_fod.md` §3.2.
-  - The card text for the Nobel now states Wilcke's rejection («for subtilt») with the
-    quote in the reference; the Guldgyldenfod card states Wilcke's 18 Kt only.
+  - Neither card discusses the two readings (curator decision 2026-10-13: the Nobel
+    instrument block no longer carries Wilcke's «for subtilt» sentence — the dispute
+    concerns the Gylden, not the Nobel — and the Guldgyldenfod card states Wilcke's
+    18 Kt only). The key `wilcke-1950-nobel-finhed` stays in the pool, uncited.
 - Christian II coinage: none known (danskmoent 1rhingyl lists none).
 - **3 Aug 1514** Norway: «Sølv- og Guldvægten skal være ligedan i Norge som i
   Danmark; for Fremtiden skal den cølnske Vægt bruges … ei nogen indføre og
