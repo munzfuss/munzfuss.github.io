@@ -1599,6 +1599,36 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 ## Normal priority
 
+### EA. 🔵 Register of coinage instruments 1480–1914 + one dossier per act  *(opened 2026-10-13)* *(est: many sessions, per-case)* *(type: research)*
+
+Curator request 2026-10-13: every act that regulates coinage (Møntordning,
+Forordning, Plakat, Reces, Kongebrev, Bestalling, Instruks, Mandat, Reskript,
+mint contracts) 1480–1914 — Denmark, Norway under the crown, the duchies
+(ducal + royal), the Imperial anchors — listed with a gist, and a full dossier
+per act. First tranche to ~1700. Plan: `~/.claude/plans/expressive-greeting-cray.md`.
+
+**Done (2026-10-13).** Harvest: Secher CCD Bd 1–6 (1558–1660) text,
+Schou Bd 1 (1670–99) ALTO, Mordhorst digest pages (`scripts/fetch_secher.py`,
+`fetch_schou.py`, `fetch_danskmoent_mord.py`; SOURCES §10a). Register
+`docs/research/ordinances_register.md` §1a–§1c: 148 rows 1480–1700 with
+issuer, jurisdiction, what it sets, «text seen» (act vs retelling), key,
+dossier; §4 «seen, excluded». Dossiers in `docs/research/instruments/`:
+`1514_moentordning_malmoe.md`, `1524_moentordning_frederik_i.md` (template
+in the folder README; score ≥ 8 by the `research-dossier` rubric).
+
+**Open, per case.** Dossiers in the plan's order: 1480 (Arboga) · 1497 ·
+1547 Flensborg Bestalling · 1572 åbent Brev · 1582 Møntanordning · 1602/1604
+· 1618 · 1624/1625 · 1643 · 1671 Myndt-Ordning · 1692 — each adds the
+refs_pool keys its register rows lack (most rows carry «—»). Schou Bd 1
+pages for 1671/1675/1692 still to be located via the IIIF images (Fraktur
+OCR). ~10 §1b/§1c rows say «Frdg. om mønten» with no parameters (text not
+yet read). Then the 1700–1914 tranche (Schou Bd 2–25, Mordhorst c7, aclove
+lists). Deferred by the curator to the per-Fuß reviews: the 8½-Gylden-fod
+card's small-coin figures (1513, not 1514 — dossier 1514 §8.1), the
+unclassified 1514–17 Skilling/Hvid seeds (§8.6), the Sølvgylden-vs-Mark
+question of 1524 (dossier 1524 §8.2), the «26 Feb 1524» bar title.
+
+
 ### DZ. 🟡 Thinning forgets its own drops; three normaliser gaps behind it  *(opened 2026-09-21)* *(est: medium)* *(type: code + data-audit)*
 
 Opened after two `no_merges` pairs in `danish_realm` were found pointing at
