@@ -16,6 +16,14 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-13 — Coinage-instruments register 1480–1700: Stages 0–2 done, Stage 3 next
+
+- **Curator request:** one register of every act that regulates coinage (Møntordning, Forordning, Plakat, Reces, Kongebrev, Bestalling, Instruks, Mandat, Reskript …) 1480–1914, first tranche to ~1700, with a gist per act and a full dossier per act. Scope: DK, NO under the crown, SH ducal + royal, HRE anchors. Plan in `~/.claude/plans/expressive-greeting-cray.md` (stages 0–5).
+- **Stage 0** (`9be30a1`): `docs/research/instruments/README.md` (nine-section dossier template, `<yyyy>_<slug>.md`), register `ordinances_register.md` gets the target column set (issuer, jurisdiction DK/NO/SH-d/SH-k/HRE, «text seen» act-vs-retelling, dossier link) + §4 «seen, excluded».
+- **Stage 1** (`da3b55c` fetchers; cache submodule `9c6088dc9` → pointer bump pending): Secher CCD Bd 1–6 text (`scripts/cache/secher/`, PDFs gitignored, from Wikimedia Commons — kildeskriftselskabet is 50 kB/s), Schou Bd 1 1670–99 ALTO (`scripts/cache/schou/bd1/`, nb.no), Mordhorst digest pages (`scripts/cache/danskmoent/mord/`). SOURCES §10a documents all four act collections. Each Secher volume's Sagregister «Møntvæsenet» (PDF pages in `secher/README.md`) is THE candidate list for 1558–1660.
+- **Stage 2:** `scripts/oneoff/scan_instruments.py` + **`docs/research/instruments/_candidates_1480_1700.md`** — ~150 dated acts triaged ✅/❓/✖ with where the text is. **Awaiting the curator's review of the ❓ rows** before Stage 3 (register rows, three chunks 1480–1559 / 1559–1625 / 1625–1700, one commit each).
+- Not done: TODO.md entry «§ordinances register» (TODO.md was dirty from a parallel session when this was written — add it when clean). Secher printed-page ↔ PDF-page offsets per volume still to be fixed when the first rows are written.
+
 ## 2026-10-13 — Guldgyldenfod (Denmark) citations: audit + fixes 1–4 done
 
 - New skill **`fuss-cite-audit`** (`ef3e292`): every citation of one Fuß on one page (timeline, card, details, coin Note), languages from the site profile. Run: `fuss_cite_audit.py --fuss rhinsk_gylden_fod --location denmark`.
