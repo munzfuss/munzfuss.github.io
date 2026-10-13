@@ -373,7 +373,7 @@ unpublished ordinance, s. 155 n. 2).
   / <https://kildeskriftselskabet.dk/images/Pdf-filer/1887_Secher_130016635082.pdf>; cache
   `scripts/cache/secher/bd3/pages/0545–0548, 0558, 0563–0564.txt`.
 - Wilcke, Julius: *Christian IV.s Møntpolitik 1588–1625* (København 1919), s. 140–141,
-  151–166 — <https://www.danskmoent.dk/pdf2/Wilcke%201.pdf>.
+  151–166 — <https://www.danskmoent.dk/pdf2/Wilcke_1.pdf>.
 - Wilcke, Julius: *Møntvæsenet under Christian IV og Frederik III* (1924), ch. I n. 53 (w2ref).
 - Hede, Holger: «Kronemønten 1618–1771», NNUM 1957 pp. 129–134 (danskmoent hedekron.htm);
   «Frederik III's guldkroner», NNUM 1957 (f3guldkr.htm).

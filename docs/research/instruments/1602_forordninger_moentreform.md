@@ -274,7 +274,7 @@ verdict), `wilcke-1919-moentordning-1605-31-aug` (E, the endorsements).
   and <https://kildeskriftselskabet.dk/images/Pdf-filer/1887_Secher_130016635082.pdf>; cache
   `scripts/cache/secher/bd3/pages/0167.txt`–`0168.txt`.
 - Wilcke, Julius: *Christian IV.s Møntpolitik 1588–1625* (København 1919), s. 62–76 —
-  <https://www.danskmoent.dk/pdf2/Wilcke%201.pdf>; HTML part 3 at
+  <https://www.danskmoent.dk/pdf2/Wilcke_1.pdf>; HTML part 3 at
   <https://www.danskmoent.dk/wilcke/w1d.htm>.
 - Galster, Georg: *Danmarks Mønter* (1936), galkult; *Danske mønter* (galshist).
 - Cited, not seen: Scharling, *Pengenes synkende Værdi* (1869) pp. 88–91; Beskrivelse 1791

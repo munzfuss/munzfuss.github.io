@@ -203,7 +203,7 @@ Keys added with this dossier: `wilcke-1950-befaling-1582-moentgrid`,
   Kapitel, s. 397–407 — <https://www.danskmoent.dk/pdf2/Wilcke%207-6.pdf> (archived
   <https://web.archive.org/web/20261013165803/https://www.danskmoent.dk/pdf2/Wilcke%207-6.pdf>).
 - Wilcke, Julius: *Christian IV.s Møntpolitik 1588–1625* (København 1919), s. 53–61 —
-  <https://www.danskmoent.dk/pdf2/Wilcke%201.pdf>.
+  <https://www.danskmoent.dk/pdf2/Wilcke_1.pdf>.
 - Wilcke, Julius: *Møntvæsenet under Christian IV og Frederik III 1625–1670* (1924), the
   reference chapter (danskmoent w2ref).
 - Galster, Georg: *Danmarks Mønter* (1936), galkult — the Frederik II chapter.
