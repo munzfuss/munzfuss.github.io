@@ -529,3 +529,54 @@ ignores the old one; being indirect, that end is marked approximate («~»).
 | «14,31 g fine / .979» in the card | 23½/24 = .979167 and 14.616 × 23½/24 = 14.3115 exactly; the card now carries five decimals (`070999f`, `7720ca1`). |
 | «The Nobel has nothing in common with the English Noble» (card sentence cited to `galster-nobel-navn`) | That key only supports the name. Galster's statement concerns the Rosenobel, and the curator noted a possible indirect link via the Dutch real's relation to the English noble; the sentence was removed (`174dc2f`), not replaced by a counter-claim. |
 | «The first Danish gold appears under King Hans» (phase 0 opening, written 2026-10-11 from Galster's «noget nyt») | Curator: the first known Danish gold coin is Erik of Pomerania's. Sentence replaced by a neutral one (§8 Q12). The Galster sentence is the author's and is not independently confirmed. |
+
+## §10. Tariff acts and accounts as a circulation trace — the search (2026-10-13)
+
+Question (curator): the Guldgyldenfod circulation layer (~1400–~1650) was
+built from the series of valuation acts that name and rate the Rhinsk Gylden
+(`rhinsk_gylden_fod.md` §17). Is there anything comparable for the Danish
+Nobler of 1496–1532 (not the Rosenobel)?
+
+**Answer: no.** Every Danish valuation, tariff list and account read for the
+gulden series was re-read for «Nobel». The Danish Nobel is never named as a
+rated or received coin in any of them. What the sources carry:
+
+| Date | Record | What it names | Danish Nobel? |
+|---|---|---|---|
+| 1497, 1503 | Øresund toll accounts (Wilcke 7-1 pp. 80, 143; Astrid Friis) | toll of one «Nobel» per ship, paid in Nobler or 2½ rhinske Gylden; «Noblerne var jo ogsaa af forskellig Art» | «Nobel» = the English toll unit; the Danish piece not distinguishable |
+| 1513–14 | Helsingør toll receipts (Wilcke 7-2 p. 167) | «300 Nobel, 331 Nobel 17 engelske Nobel, 130 Nobel, 150 Nobel, 200 engelske Nobel» | the only place where plain «Nobel» stands beside «engelske Nobel» — §8 Q5 hypothesis, unverified |
+| 1529, 1530 | accounts (Wilcke 7-2 p. 69) | 1 Rosenobel = 10 Mark d., 1 Engelot = 6 Mark, 1 Goltgylden = 28 ß | no |
+| 1532–33 | Anders Bille's account (Wilcke 7-2 pp. 215–216; §5b) | 21 Nobler «å ca. 18 gylden å 2½ M», one thick Nobel «ca. 15 gylden»; Wilcke: «De skulde sikkert gives de højere Befalingsmænd» | **yes — the only valuation of a Danish Nobel in a record**, at the mint, as pay or gift to senior officers |
+| 1540 | Recess (Wilcke I p. 50) | rhinsk Gylden / Jochimsdaler ceiling | no |
+| 1542–48, 1558–62 | Sound toll tables by coin kind (Wilcke 7-4 p. 294 tbl.; 7-5 p. 346 tbl.) | columns Rosenobel, Henriksnobel, Portugaløser, Engelot, Dobb. Dukat, Guldgylden, Kejsergylden … | no column, no entry |
+| 1547, 1581 | Rentekammer rates (Wilcke 7-6 p. 538) | Rosenobel 3 Dlr 10 ß, Henriksnobel 3 Dlr, Dobb. Dukat, Engelot, Portugaløser, Goldgylden … | no |
+| 8 Jul 1550 | toll instruction (Wilcke 7-4 p. 292) | Rosenobler, or 3 rhinske Gylden per Nobel | «Nobel» = toll unit |
+| 1602, 1604 | Forordning / Møntordning gold tables (Wilcke I pp. 69, 74–75) | Portugaløser, Ungersk Gylden, Guldklippinge | no (the `std_end` ~1602 anchor) |
+| c. 1609–12 | Lower-Saxon Kreis valuation (Wilcke I p. 104) | Rosenobel, Skibsnobel, Engellot, Rhinsk Gylden … | no |
+| 1622, 1629, 1639, 1640, 1647, 1648 | Danish valuations (Wilcke I pp. 223–224; Wilcke II w2a2–w2a4) | Rosenobel («Dansk og gammel engelsk Rosenobel», 1639), «Flamsk eller Henricus Nobel», Engelot, Goltgylden … | no |
+
+**Reading.** The record is consistent with Galster's «i første Række
+Pragtmønter» and Wilcke's «De skulde sikkert gives de højere Befalingsmænd»
+(both already in §5–§5b): the Danish Nobler enter the sources once, at the
+mint, valued per piece for distribution to officers, and never reappear in a
+tariff, a toll or a rate list. That is not evidence that none circulated — a
+rate list names the coins its drafter expects to meet, and ~20 surviving
+pieces (Stack's Bowers on Bruun 3831) could not register in any list — but it
+means **no circulation window can be reconstructed from acts**, unlike the
+gulden. The two things that could still move this: (a) the 1513–14 account
+text itself (§8 Q5: is plain «Nobel» there the Danish piece?); (b) hoard
+evidence — none found (danskmoent «Møntfund fra Møn» has no Hans gold; no
+find with a Danish Nobel surfaced in a web search 2026-10-13).
+
+**Consequence for the data.** `nobel_fod.events.demonetisation` ~1600 stays
+unsourced (§8 Q7). The honest options are to drop the event (the Denmark page
+already hides the circulation layer for this bar) or to leave it hidden as
+now; a dated circulation layer like the gulden's cannot be sourced. Not
+applied — curator's call.
+
+Sources read for this section beyond those of §1: Wilcke 7-1 pp. 80–81, 143;
+7-2 pp. 69, 167, 215–216; 7-4 pp. 292–294; 7-5 p. 346; 7-6 p. 538; Wilcke I
+pp. 50, 69, 74–75, 104, 223–224; Wilcke II w2a2–w2a4; Flensborg, «Nobler og
+sølvgylden», Frederiksborg Amts Avis 29 Aug 1987
+(<https://www.danskmoent.dk/artikler/pfnobler.htm>, Hans's Nobel only, no
+circulation data).
