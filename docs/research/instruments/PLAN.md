@@ -25,7 +25,7 @@
 | ☑ | 1523, 10 Aug (+ 30 Aug · 17 Sept · 28 Sept retreats) | Valvation — the old coin against the Gylden, the new Skilling 24 / 12, Klippinge demonetised | A | `1523_valvation_klippinge.md` | not executed; Lejrskilling «hele ß» vs 10 Hvide open (§8.1) |
 | ☑ | 1524, 25 Feb · 1524 | Rigsraadets Møntordning + Kongebrev Frederik I (Jørgen Kock) | A | `1524_moentordning_frederik_i.md` | «26 Feb separate act» retracted |
 | ☑ | 1524, 20 June · 1525, 18 Oct · 1526, 1 Jan · 8 Nov · 1527, 3 April · 1530, 7 Aug · 1532, 23 Nov | The Norwegian letters of Frederik I (Hamar, Oslo, Bergen, Akershus) | A | `1524_norske_moentbreve_frederik_i.md` (one dossier for the seven) | Bergen 106 vs 126 open; A's date 20 vs 24 June |
-| ☐ | 1536, 30 Oct · 1537, 24 Aug · 21 Oct | Haandfæstning Christian III; Ordinans cap. 10; Forordning/Reces 1537 | B | fold into `moentordning_1541.md` §6 if they carry parameters; else ✖ | Rosenvinge IV; check |
+| ☑ | 1536, 30 Oct · 1537, 24 Aug · 21 Oct | Haandfæstning Christian III (promise); Ordinans cap. 10 (face upheld); **Reces / Afsætning 21 Oct 1537 — the war coin halved, Gylden / daler = 3 Mark** | A (the Reces) | `1537_reces_moentens_afsaettelse.md` | executed 1538 (Wilcke) or only 1540 (Galster) — open |
 | ☑ | 1540 · 1541, 20 March · 20 Sept · 1544, 27 Sept | Reces 1540 cap. 12; Maal og Vægt; Møntordning Christian III; tillæg 1544 | A | `../moentordning_1541.md` (pre-dates this folder; register links it) | — |
 | ☑ | 1544, Dec · 1547, 22 Jan | Brev to the Hansestæder; Bestalling + Müntzordnung Jørgen Kock d. y., Flensborg | A | `1547_bestalling_flensborg.md` | «1 M» vs «ein wergk» open |
 | ✖ | 1550, 8 July | Instruks for tolder Sander Leyl | C | register only | — |
