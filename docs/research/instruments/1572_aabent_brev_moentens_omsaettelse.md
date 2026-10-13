@@ -248,7 +248,8 @@ this session).
   `scripts/cache/secher/bd1/pages/0536.txt`–`0537.txt`.
 - Wilcke, Julius: *Renæssancens Mønt- og Pengeforhold 1481–1588* (København 1950), Sjette
   Kapitel «Frederik II.s Forsøg paa Møntreform, Dalerregning», s. 373–379 —
-  <https://www.danskmoent.dk/pdf2/Wilcke%207-6.pdf>.
+  <https://www.danskmoent.dk/pdf2/Wilcke%207-6.pdf> (archived
+  <https://web.archive.org/web/20261013165803/https://www.danskmoent.dk/pdf2/Wilcke%207-6.pdf>).
 - Galster, Georg: *Danmarks Mønter* (1936), galkult — the Frederik II chapter.
 - Eriksen, Einar: «De første norske skillingstall på daleren», danskmoent artikler (skilltal).
 - Cited, not seen: Edvardsen, *Skelskør*, pp. 49–54; Scharling, *Danmarks Statistik* p. 245;
