@@ -16,6 +16,14 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-13 — Guldgyldenfod (Denmark) citations: audit + fixes 1–4 done
+
+- New skill **`fuss-cite-audit`** (`ef3e292`): every citation of one Fuß on one page (timeline, card, details, coin Note), languages from the site profile. Run: `fuss_cite_audit.py --fuss rhinsk_gylden_fod --location denmark`.
+- Notes rewritten earlier today: 18 Guldgyldenfod coin notes (`ced0fb6`), `mintmasters` schema field (`9fc7e4b`, not rendered), JSJ_HdY.pdf in cache (`a8c438e` submodule → `d7e6de3`).
+- Audit fixes (curator «пункти 1–4»): `457fea0` 1rhinsk split · `be8e392` wilcke1-1602 split (3-daler passage is p. 82, not 81) · `36e8199` Wilcke 6 keys one passage each + w6a archive · `d25dab2` Harck / Wilcke 1924 / Wilcke 1950 (1563) · `3a7b660` 17 keys translated; Kongebrev 1524 vs Nobelfod overlap resolved; 8-Gylden-fod now cites the Sølvgylden table row p. 187. Point 2 (f2h7g/f2h7f overlap) was a false positive — overlap check now compares only same-URL keys (`56e16a7`).
+- Audit after: 67 keys, 4 high = detector false positives (English/table quotes read as Latin, legering vs normalgylden same formula). **Open:** point 5–8 content items (harck figures on c4h29 now carried by the table note; moentordning-1514 quote omits «72»), point 9 archive copies (danskmoent c3g131, Wilcke 7-3/7-4/7-5 PDFs, Wikipedia, NGC impossible §13.20), point 11 old translation labels (8 keys). Phase III text calls the 1563 gold from August of Saxony a «позика/loan» — Wilcke only says Rantzau «received» it; ask the curator.
+- **Not pushed** — cache submodule `a8c438e` first, then main.
+
 ## 2026-10-12 — Nobelfod (Denmark page) practically finished: the reference card
 
 - **Curator 2026-10-12:** the Nobelfod section of the Denmark page is practically complete and is now the MODEL for the other Fuß cards — structure (description, Grundwerte, phases with period texts, timeline bar), register, and citation shape. Status note at the top of `docs/research/nobel_fod.md`.
