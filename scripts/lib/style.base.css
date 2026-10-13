@@ -1220,7 +1220,11 @@ h2[style] {
   white-space: nowrap;
   letter-spacing: 0.02em;
 }
-.tl-axis span:first-child { transform: translateX(0); }
+/* Only a tick on the track's left edge is left-aligned (the template sets
+   `.tl-axis-edge` when pos == 0); every other first label — 1500 on the
+   Denmark axis from 1490, 1600 on the SH axis from 1559 — is centred on
+   its tick like the rest. (Was `span:first-child`, which shifted those.) */
+.tl-axis span.tl-axis-edge { transform: translateX(0); }
 /* Top axis: the bottom axis mirrored — labels above the rule, ticks down. */
 .tl-axis-top { border-top: 0; border-bottom: var(--hairline) solid var(--border-soft); margin: 0 0 8px; }
 .tl-axis-top span { top: auto; bottom: 5px; }

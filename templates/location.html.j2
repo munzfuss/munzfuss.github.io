@@ -669,7 +669,10 @@
       {% for i in range(tick_count) %}
         {% set year = first_tick + i * tl.axis_step %}
         {% set pos = ((year - tl.year_from) / tl_span * 100) | round(2) %}
-        <span style="left:{{ pos }}%">{{ year }}</span>
+        {# A label is centred on its tick; only a tick sitting on the track's
+           left edge (axis start on a round year) is left-aligned so it does
+           not overflow the track. #}
+        <span{% if pos == 0 %} class="tl-axis-edge"{% endif %} style="left:{{ pos }}%">{{ year }}</span>
       {% endfor %}
     </div>
   {%- endmacro -%}
