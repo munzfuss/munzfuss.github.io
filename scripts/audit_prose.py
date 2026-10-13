@@ -272,6 +272,11 @@ RULES: list[tuple[re.Pattern, str, str, set[str], str]] = [
     (_kw("прягеа"),
      "error", "§2a", {"uk"},
      "fabricated non-word (fake-feminine of «Prägung»); use «карбування» / «наклад»"),
+    # «Karbung» / «karbte» / «gekarbt» — German-looking calque of uk
+    # «карбування»; not a German word (125 occurrences removed 2026-10-13).
+    (re.compile(r"\w*karb(?:ung|te|ten|t)\w*", re.IGNORECASE),
+     "error", "§2a", {"de", "en"},
+     "non-word «Karbung/karbte/gekarbt» (calque of uk «карбування»); use «Prägung»/«prägen» or «Ausmünzung»"),
     (re.compile(r"\bРеймсько-", re.IGNORECASE),
      "error", "§2a", {"uk"},
      "wrong rendering of «Reichsweit-»; use «загальноімперсько-» / «імперсько-»"),

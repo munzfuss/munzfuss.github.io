@@ -30,7 +30,7 @@ Die folgende Tabelle ist die Hede-1957-Synopsis, verbatim aus
 `danskmoent.dk/artikler/hedekron.htm` und (für Guldkrone)
 `danskmoent.dk/artikler/f3guldkr.htm`:
 
-| Müntzfuß | Hede-Formel | Karbverfahren | Tarif |
+| Müntzfuß | Hede-Formel | Prägezeit | Tarif |
 |---|---|---|---|
 | **Christian IVs kroner** | 12 ²⁵⁷⁄₇₀₀ je 13¾-lødig (.859) Marck = 18,909 g rau / **16,250 g fein** | 1618–1652 (+spec. 1665, 1675) | 1½ → 1⅓ Specie |
 | **Grove kroner (10½-Fuß)** | 10½ je 10¾-lødig (.672) Marck = 22,272 g rau / **14,964 g fein** | 1649 NO / 1652 DK – 1732 | ⅔ Specie (ab 1671) |
@@ -81,7 +81,7 @@ Königsregierungsfenster.
 regulärer Verwendung — Christian IV (1618–1624/25) plus Frederik
 III (1651–1652). Die Datierung «<i>1618–1652</i>» ist Hedes
 zusammenfassende Klassifikation und ist die korrekte Periodisierung
-der **Müntzformel**. Wer das Karbverfahren strikt nach
+der **Müntzformel**. Wer die Prägung strikt nach
 Personal-Regierungen modelliert, würde die Frederik-III.-Phase
 1651–1652 als Sub-Periode der `kronemont` (Grobe) eingruppieren —
 das wäre aber inkonsistent mit dem Müntzformel-Inhalt, da die
@@ -98,7 +98,7 @@ nicht dem 10½-Krone-Fuß.
 > werden</i>»
 
 Die Tarifsenkung 1625 erfolgt unmittelbar nach dem Ende der Christian-
-IV.-personnellen Karbverfahrensphase (1624). Die Tarifabwertung
+IV.-personnellen Prägephase (1624). Die Tarifabwertung
 reflektiert die Erkenntnis, daß der Anfangstarif 1½ Specie weit
 über dem tatsächlichen Silberwert von ≈ 1⅓ Specie lag («Schwindel-
 mønt»; Nationalmuseet: «<i>svindler-mønt</i>»). Wilcke I (1919)
@@ -112,7 +112,7 @@ Krone, weil sie für Auslandszahlungen einbehalten wurden.
 
 > «<i>møntens tyske tilnavn ... 'Pumpbucksen' Thaler</i>» (1665 — Krone
 > und ½ Krone, Schou 39/40, mit höherem Feingehalt für ein
-> «schöneres Karbverfahren»)
+> «schöneres Gepräge»)
 
 > «<i>2 krone 1675 deviated from standard</i>» (Schou 11–15, Christian
 > V; Reskript 11. März 1675 über den Münzgewinn)
@@ -225,7 +225,7 @@ zum Geburtstag Christian VII. — als Schaumünze konzipiert.
 
 Die 3-Krone-Stücke 1699 (Frederik IV. tritt nach dem Tod Christians
 V. an) und 1746 (Frederik V. tritt nach dem Tod Christians VI. an)
-sind keine reguläre Karbung, sondern ceremonelle Schaumünzen zur
+sind keine reguläre Prägung, sondern ceremonelle Schaumünzen zur
 Tronwechselfeier. Sie folgen einer eigenen, nicht formell
 festgelegten Müntzfod und sind in Hedes Datierung «1693–1771»
 inkludiert.
@@ -250,7 +250,7 @@ in *Danefæ — Skatte fra den danske muld*, Nationalmuseet, S. 254–
   (≈ 25 % des erhaltenen Korpus); erster dokumentierter Fundort
   für diesen Typ
 
-**Datierungs-Schluß:** die Christian-IV.-Guldkrone-Karbung läuft
+**Datierungs-Schluß:** die Christian-IV.-Guldkrone-Prägung läuft
 biß mindestens **1628** — also über die Wikipedia-DE-«Corona-
 Danica»-Phase 1618–1622 hinaus. Solche Stücke dienten allerdings
 nicht dem täglichen Umlauf, sondern als Hofgeschenk und
@@ -301,11 +301,11 @@ Kopenhagen.
 **Commerce-Collegium-Empfehlung 14. Februar 1671** (Hede verbatim):
 
 > «<i>betænkning af 14. februar 1671 ... de icke paa andre Steder
-> gangbar er</i>» — der Vorschlag, die Guldkrone-Karbung
+> gangbar er</i>» — der Vorschlag, die Guldkrone-Prägung
 > einzustellen, weil die Münzen in anderen Ländern nicht akzeptiert
 > wurden.
 
-Christian V. setzt die Guldkrone-Karbung nicht fort. Goldprägung
+Christian V. setzt die Guldkrone-Prägung nicht fort. Goldprägung
 in Dänemark läuft danach auf den Reichsdukatenfuß (Reichsdukat,
 Couranddukat) — die Guldkrone-Tarif-Logik erlischt.
 
@@ -321,7 +321,7 @@ in:
 - Lauerentsen, *Museum Regium*, 2. Auflage, T. XXIII Nr. 11
   (Gravur eines Exemplars)
 
-**Reale Exemplare nicht überliefert** — die Karbung ist nur
+**Reale Exemplare nicht überliefert** — die Prägung ist nur
 indirekt durch die Lauerentsen-Gravur bezeugt. Hede selbst
 schreibt: «<i>Krüger meinte, dass Guldkronernes tid var forbi</i>».
 
@@ -343,16 +343,16 @@ der Krone-Müntzfuß-Familie zusammen:
 | 1665 | «Pumphosenkrone» / «Pumpbucksen Thaler» (Schou 39/40) | Hede 1957 |
 | 1666, 1668 | Frederik-III.-Guldkrone-jüngere Form | Hede 1957 |
 | 9. Februar 1670 | Tod Frederiks III. | (allgemein bekannt) |
-| 14. Februar 1671 | Commerce Collegium beendet Guldkrone-Karbung | Hede 1957 |
+| 14. Februar 1671 | Commerce Collegium beendet Guldkrone-Prägung | Hede 1957 |
 | **22. März 1671** | **Münzordnung Christian V. — formelle Festschreibung 10½-Krone-Fuß** | Aagaard 2022; danskmoent.dk c5mord.htm |
 | 11. März 1675 | Reskript über den Münzgewinn der 2-Krone 1675 | Hede 1957 |
 | 1692 | Krone-Mønt verliert Dominanz an Kurantmønt | lex.dk; Hede 1957 |
 | **31. Dezember 1692** | **Reskript Christian V. — Einführung 13-Krone-Fuß** | Hede 1957 |
-| 1693 | Erste Karbung 13-Krone-Fuß | Hede 1957 |
+| 1693 | Erste Prägung 13-Krone-Fuß | Hede 1957 |
 | 1699 | 3-Krone-Skuemønt zur Thronfolge Frederik IV. | Hede 1957 |
 | 2. September 1701 | Königliche Resolution Vestindiske Compagni 2-Guldkrone | Hede 1957 |
 | 1726 | Forordning Kurantmøntfod (Übergang vom Krone- zum Kurant-System) | (Forordning 15./31. Juli 1726) |
-| 1732 | Letzte Karbung 10½-Krone-Fuß (Christian VI. Krone, Hede 4) | Hede 1957 |
+| 1732 | Letzte Prägung 10½-Krone-Fuß (Christian VI. Krone, Hede 4) | Hede 1957 |
 | 1746 | 3-Krone-Skuemønt zur Thronfolge Frederik V. | Hede 1957 |
 | **1771** | **Letzte Krone-Mønt der dänischen Monarchie** (Christian VII., 1771 Kopenhagen, Hede 23) | Hede 1957 |
 | 5. Januar 1813 | Forordning om Forandring i Pengevæsenet (Statsbankerot) — Krone-Rechnung erlischt | (Forordning 5. Januar 1813) |
@@ -376,7 +376,7 @@ In Reihenfolge der Verlässlichkeit für unsere Anwendung:
 | **Aagaard-Hebræer** | Sven Aagaard, «Beskrivelse af Christian IV's hebræermønter 1644-1648» | `danskmoent.dk/myst/aag1.htm` | Hebræermønt als Kriegsmünze des Torstenson-Krieges, kein formeller Müntzfuß |
 | **Wilcke-I** | Julius Wilcke, «Christian IVs Møntpolitik 1588–1625» (1919) | `danskmoent.dk/wilcke/w2ref.htm` | Foundational Christian-IV.-Müntzpolitik-Quelle; Greshamscher Mechanismus |
 | **Wilcke-II** | Julius Wilcke, «Møntvæsenet under Christian IV og Frederik III 1625–1670» (1924) | `danskmoent.dk/wilcke/w2ref.htm` | Frederik-III.-Müntzpolitik 1648-1670; primary attestation des Patents 12. Juli 1618 (Anm. 53, mit Bezug auf Wilcke I S. 156–157) |
-| **Esrum-2010** | Ingvardson & Märcher, «Christian 4.s guldmønt fra Esrum Møllegård» (2010), in *Danefæ — Skatte fra den danske muld*, Nationalmuseet, S. 254–257 | `portal.research.lu.se/en/publications/christian-4s-guldmønt-fra-esrum-møllegård` | Drei dobbelt guldkroner Christian IV. von 1628 (Hede 28) — peer-reviewed Beleg, daß die Christian-IV.-Guldkrone-Karbung biß mindestens 1628 lief |
+| **Esrum-2010** | Ingvardson & Märcher, «Christian 4.s guldmønt fra Esrum Møllegård» (2010), in *Danefæ — Skatte fra den danske muld*, Nationalmuseet, S. 254–257 | `portal.research.lu.se/en/publications/christian-4s-guldmønt-fra-esrum-møllegård` | Drei dobbelt guldkroner Christian IV. von 1628 (Hede 28) — peer-reviewed Beleg, daß die Christian-IV.-Guldkrone-Prägung biß mindestens 1628 lief |
 | **Wilcke-III** | Julius Wilcke, «Christian V – Frederik IV» | `danskmoent.dk/wilcke/w3guldkh.htm` | Übergang zum Courantdukat und Krone-Epoche-Ende |
 | **Schou** | H.H. Schou, «Beskrivelse af Danske og Norske Mønter 1448-1814 og Danske Mønter 1815-1923» (1926) | (paper-only) | Standard-Type-Reference-Katalog; H105–H126 Christian IVs kroner; Schou 39/40 Pumphosenkrone; Schou 11–15 2-Krone 1675 |
 | **NatMus** | Nationalmuseet, «Christian 4.s svindler-mønt fylder 400 år» | `natmus.dk/webdok/christian-4s-svindler-moent-fylder-400-aar/` | Institutionelle Bestätigung «svindler-mønt»-Charakter Corona Danica |
@@ -403,8 +403,8 @@ In Reihenfolge der Müntzfuß-Files:
 - `guldkrone.events.first_mint.anywhere = 1655` (Hede; Kopenhagen-
   erste-Prägung) — **bisher 1657, korrigiert nach Hede F3-Guldkrone**
 - `guldkrone.events.last_mint.anywhere = 1668` (Hede; Frederik-III.-
-  jüngere Form letzte Karbung) +
-  `holstein = 1660` (Glückstadt-letzte-Karbung)
+  jüngere Form letzte Prägung) +
+  `holstein = 1660` (Glückstadt-letzte-Prägung)
 
 ### `data/locations/denmark.yml`
 
@@ -496,7 +496,7 @@ en/publications/christian-4s-guldmønt-fra-esrum-møllegård`.
   diesen Typ
 
 **Bedeutung für unsere Datierung:** belegt, daß die Christian-IV.-
-Guldkrone-Karbung biß **mindestens 1628** aktiv war — also über
+Guldkrone-Prägung biß **mindestens 1628** aktiv war — also über
 die Wikipedia-DE-«Corona-Danica»-Phase 1618–1622 hinaus, wenn
 auch nicht im breiten täglichen Umlauf (solche Stücke dienten
 als Hofgeschenk und Soldzahlung).

@@ -1818,7 +1818,7 @@ Until both close, IKMK stays «supplementary museum-catalogue enrichment» (HARV
 
 ### BY. ✅ Pre-1541 Danish silver Müntzfüße — 2 standards landed + Christian III Dalerfod Phase 0 expansion + 55 specimens promoted  *(opened 2026-05-21, closed 2026-05-21, **refactored 2026-05-21**)* *(est: medium-large)* *(type: data + classifier extension)*
 
-**Refactor 2026-05-21:** following web-research into how numismatic literature (danskmoent.dk Galster-Hede catalogue, Wilcke 1950 7-3 p. 242 «die 1537 Karbung etabliert das 14½-Lod-Daler-Standard», Reynold Junge mintmaster continuity 1534-1540 per `jungebc.htm`), the originally-separate `christian_iii_grevens_fejde_fod` was MERGED into `8_daler_fod` as Phase 0 (de-facto-Etablierung 1534-1540). Rationale: no source treats them as separate Müntzfüße; metric anchor (14½ Lod / 8/M / 26.494 g fein) is identical between 1537 Joachimsdaler and 1541 Møntordning Daler — 1541 codifies de jure what Junge established de facto 1537. The 40 specimens previously under grevens_fejde A1/A2/A3 are now under dalerfod Phase 0. Cycle now ships 2 (not 3) new Müntzfüße + 1 phase-expansion of existing dalerfod.
+**Refactor 2026-05-21:** following web-research into how numismatic literature (danskmoent.dk Galster-Hede catalogue, Wilcke 1950 7-3 p. 242, table row «1534–39 · Jochimsdaler · 8 · 14½ Lod · 906,25» — no 1537 statement there; the sentence «die 1537 Karbung etabliert das 14½-Lod-Daler-Standard» formerly quoted here as Wilcke was our own denmark.yml prose, corrected 2026-10-13, Reynold Junge mintmaster continuity 1534-1540 per `jungebc.htm`), the originally-separate `christian_iii_grevens_fejde_fod` was MERGED into `8_daler_fod` as Phase 0 (de-facto-Etablierung 1534-1540). Rationale: no source treats them as separate Müntzfüße; metric anchor (14½ Lod / 8/M / 26.494 g fein) is identical between 1537 Joachimsdaler and 1541 Møntordning Daler — 1541 codifies de jure what Junge established de facto 1537. The 40 specimens previously under grevens_fejde A1/A2/A3 are now under dalerfod Phase 0. Cycle now ships 2 (not 3) new Müntzfüße + 1 phase-expansion of existing dalerfod.
 
 **Closed 2026-05-21.** 3-Müntzfuß implementation cycle complete in three atomic commits:
 
@@ -2032,7 +2032,7 @@ Defer the evaluation until a session that touches a piece of contested data (a w
 
 ### Y. Fuß-event vs coin-data span audit (timeline-bar accuracy)  *(opened 2026-05-13)*
 
-**Surfaced during.** Verifying that timeline bars («Standard / Karbung / im Umlauf» — status / mint / circulation layers) on the Denmark + SH pages reflect the post-2026-05-13 data state. The `guldkrone` Fuß was the clear case from this session's «latest findings» — its anywhere-axis events were extended from 1655 → 1618 to match the Christian-IV Guldkrone unification (commits `6f8fe18` + `4b28b8e` + `e050128`). While doing that walk, two PRE-EXISTING mismatches surfaced — not from this session's work, worth their own audit pass:
+**Surfaced during.** Verifying that timeline bars («Standard / Prägung / im Umlauf» — status / mint / circulation layers) on the Denmark + SH pages reflect the post-2026-05-13 data state. The `guldkrone` Fuß was the clear case from this session's «latest findings» — its anywhere-axis events were extended from 1655 → 1618 to match the Christian-IV Guldkrone unification (commits `6f8fe18` + `4b28b8e` + `e050128`). While doing that walk, two PRE-EXISTING mismatches surfaced — not from this session's work, worth their own audit pass:
 
 **Mismatch 1: `kronemont_chr_iv` last_mint vs DK data — RESOLVED 2026-05-13**
 

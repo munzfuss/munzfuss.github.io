@@ -216,6 +216,12 @@ the source's own figure.
 descriptions («details») carry the circumstances; do not duplicate a norm text in both — the
 instrument block carries the norm.
 
+## German wording decisions (curator-approved, 2026-10)
+
+| Don't write (DE) | Write | Why |
+|---|---|---|
+| «Karbung», «Karbungs-», «-karbung», «karbte / karbten / gekarbt / karbt» | «Prägung» / «prägen» for the act or period of striking («Massenprägung», «Prägejahr», «Prägezeit»); «Ausmünzung» / «ausmüntzen» for minting a quantity at a standard or from a stated metal input («Ausmünzung 17. Oktober 1563: 66½ Marck → 4860 Stück», «Lovkompleks-Ausmünzung»); «Gepräge» for the look of a strike | «Karbung» is not German — a calque of uk «карбування» (§2a Cyrillic-transliteration trap, same class as «прягеа»); 125 occurrences removed 2026-10-13, now an error in `audit_prose.py` |
+
 ## UI labels (for `data/i18n/ui.yml`)
 
 | key | de | en | uk |
