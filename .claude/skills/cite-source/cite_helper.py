@@ -74,6 +74,9 @@ def overlaps(pool: dict, key: str) -> list[str]:
         e = pool.get(k) or {}
         s = e.get("da") or e.get("de") or ""
         return [norm(m) for m in QUOTE_RE.findall(s)]
+    def url(k):
+        m = LINK_RE.search((pool.get(k) or {}).get("da") or (pool.get(k) or {}).get("de") or "")
+        return m.group(1) if m else None
     mine = qs(key)
     grams = {tuple(w[i:i + 7]) for w in mine for i in range(len(w) - 6)}
     if not grams:
@@ -81,6 +84,11 @@ def overlaps(pool: dict, key: str) -> list[str]:
     hits = []
     for k in pool:
         if k == key or not isinstance(pool[k], dict):
+            continue
+        # one passage = one key is about ONE work: the same wording on two
+        # different pages (danskmoent repeats a description across coin pages)
+        # is two passages, not an overlap.
+        if url(k) and url(key) and url(k) != url(key):
             continue
         for w in qs(k):
             if any(tuple(w[i:i + 7]) in grams for i in range(len(w) - 6)):
