@@ -235,15 +235,16 @@ this session).
    coinage, not for the act.
 4. **The «1582 ny Møntordning»** in Wilcke's account table is the Kancelli instruction of
    12 Jan 1582 (register §1b) — to be confirmed when that dossier is written.
-5. **Wayback copies** for the Secher Commons PDF and for Wilcke 7-6.pdf (none in the pool
-   yet) — Save Page Now needs the curator's yes.
+5. **Wayback copies** — both added 2026-10-13 (Wilcke 7-6: 20261013165803; Secher Bd 1
+   Commons PDF: an existing snapshot of 11 Jan 2026). Closed.
 
 ## 9. Sources consulted
 
 - Secher, V. A. (ed.): *Corpus constitutionum Daniæ. Forordninger, Recesser og andre
   kongelige Breve, Danmarks Lovgivning vedkommende 1558–1660*, I: 1558–1575 (København
   1887–88), nr. 609, s. 504–505 — KB digitisation via Wikimedia Commons
-  (`Corpus constitutionum Daniæ … bind 1 (år 1558-1575).pdf`) and
+  (`Corpus constitutionum Daniæ … bind 1 (år 1558-1575).pdf`; archived
+  <https://web.archive.org/web/20260111040657/https://upload.wikimedia.org/wikipedia/commons/2/22/Corpus_constitutionum_Dani%C3%A6_Forordninger%2C_Recesser_og_andre_kongelige_Breve%2C_Danmarks_Lovgivning_vedkommende_1558-1660_-_bind_1_%28%C3%A5r_1558-1575%29.pdf>) and
   <https://kildeskriftselskabet.dk/images/Pdf-filer/1887_Secher_130016635066.pdf>. Cache
   `scripts/cache/secher/bd1/pages/0536.txt`–`0537.txt`.
 - Wilcke, Julius: *Renæssancens Mønt- og Pengeforhold 1481–1588* (København 1950), Sjette
@@ -258,4 +259,4 @@ this session).
 
 ---
 Score (research-dossier rubric, self-assessed 2026-10-13): C1 1.5 · C2 2.5 · C3 2.0 ·
-C4 1.5 (no archive copies yet) · C5 1.0 · C6 1.0 = **9.5/10**.
+C4 2.0 · C5 1.0 · C6 1.0 = **10/10**.

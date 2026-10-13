@@ -84,9 +84,13 @@ we currently have textual evidence:
 Per **Wilcke II references** (danskmoent.dk/wilcke/w2ref.htm):
 > «I den Møntordning, der udkom den 25. Juni 1602»
 
-This set the relationship of the silver Daler to the Skilling
-Danske at **1 Daler = 66 Skilling Danske** (up from the previous 64
-Skilling), responding to rising silver prices across Europe. Per
+~~This set the relationship of the silver Daler to the Skilling
+Danske at **1 Daler = 66 Skilling Danske**~~ — CORRECTION 2026-10-13: the
+66-ß daler is set by the **Aabent Brev of 12 May 1602** (Secher III nr. 173,
+§ 1: «enhver daller skal herefter … gieide 33 sk. lybsk eller 66 sk. danske»,
+Mark pieces excepted); the 25 June Forordning is the silver grid for the new
+mintmaster Schwabe and still reckons the Mark at 16 ß (Wilcke I s. 66). Full
+write-up of the five acts 1602–05: `instruments/1602_forordninger_moentreform.md`. Per
 Galster (danskmoent.dk/galster/galshist.htm):
 > «1602 sætte daleren til 66 skilling»
 
