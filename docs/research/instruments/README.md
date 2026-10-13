@@ -1,4 +1,5 @@
 # docs/research/instruments/ — one dossier per coinage instrument
+> **Queue:** `PLAN.md` in this folder is the chronological checklist of every instrument to be written up, with ☑/☐ status — take the next item from there and tick it in the same commit; add any instrument a dossier turns up.
 
 Per-instrument dossiers for the rows of
 [`../ordinances_register.md`](../ordinances_register.md). The register is the
