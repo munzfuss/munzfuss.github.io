@@ -16,6 +16,14 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-13 — Denmark timeline axis 1490; Guldgyldenfod circulation layer; dossier §17 / §10
+
+- **Axis 1514 → 1490** (`data/v2/locations/denmark.yml`): title, hero stat and summary read 1490–1914 (curator); Nobelfod bar box 1496–1602. Pre-1514 mint layers and markers (Nobel 1496/1502, Goldgulden 1497, 1505–1510) now render. Ticks 1500…1900.
+- **Marker guard** `timeline.clamp_markers_to_mint` (schema + `compute_coin_year_runs(mint_spans=…)` + `tests/test_coin_year_runs_mint_span.py`): markers clamped to the post-sync mint span; ON for Denmark only (the 1513 placeholder of `unified-dk-galster-c2g-44` would otherwise sit before the 8½-Gylden stripe). SH page byte-identical with the flag off; enabling it there would trim placeholder runs 1559–65 (9-Thaler), 1588–1617 (9¼), 1820–39 (11⅓) — curator's call.
+- **Guldgyldenfod circulation layer** (~1400–~1650) on Denmark via per-bar `show_layers` + `layer_alpha_multiplier` 4/3 (`6ce26df`, `ad1f139`); `demonetisation` anywhere ~1700 → ~1650 from the tariff-act series, `docs/research/rhinsk_gylden_fod.md` §17 (last named rating: Rigsraad Forordning 21 Mar 1648). Nobelfod: no tariff trace at all, `nobel_fod.md` §10; its `demonetisation` ~1600 stays unsourced — drop or keep hidden, curator's call.
+- `docs/SOURCES.md` §3 carries the source table for both searches. Pending questions: Mordhorst 1968 texts of the 1667/1675/1687 valuations; Frederik II valuations 1559–1602.
+- **Not pushed:** everything from `bde0352` on.
+
 ## 2026-10-13 — Coinage-instruments register 1480–1700: Stages 0–2 done, Stage 3 next
 
 - **Curator request:** one register of every act that regulates coinage (Møntordning, Forordning, Plakat, Reces, Kongebrev, Bestalling, Instruks, Mandat, Reskript …) 1480–1914, first tranche to ~1700, with a gist per act and a full dossier per act. Scope: DK, NO under the crown, SH ducal + royal, HRE anchors. Plan in `~/.claude/plans/expressive-greeting-cray.md` (stages 0–5).
