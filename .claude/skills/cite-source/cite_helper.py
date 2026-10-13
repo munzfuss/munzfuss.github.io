@@ -194,12 +194,17 @@ def fuss_blocks(fuss: str, location: str | None):
     if location:
         loc = yaml.safe_load((ROOT / f"data/v2/locations/{location}.yml").read_text())
         yield f"{location}.yml::fuss_periods.{fuss}", (loc.get("fuss_periods") or {}).get(fuss) or {}
-        for i, ph in enumerate(loc.get("phases") or []):
-            if isinstance(ph, dict) and ph.get("fuss") == fuss:
-                yield f"{location}.yml::phases[{i}]", ph
+        phases = loc.get("phases") or {}
+        if isinstance(phases, dict):            # V2 locations: {fuss: [phase, …]}
+            for i, ph in enumerate(phases.get(fuss) or []):
+                yield f"{location}.yml::phases.{fuss}[{i}]", ph
+        else:
+            for i, ph in enumerate(phases):
+                if isinstance(ph, dict) and ph.get("fuss") == fuss:
+                    yield f"{location}.yml::phases[{i}]", ph
         for b in ((loc.get("timeline") or {}).get("bars") or []):
-            if isinstance(b, dict) and b.get("fuss") == fuss:
-                yield f"{location}.yml::timeline.bar", b
+            if isinstance(b, dict) and fuss in (b.get("id"), b.get("fuss")):
+                yield f"{location}.yml::timeline.bars[{b.get('id')}]", b
 
 
 def page_keys(page: Path, section: str) -> list[str]:

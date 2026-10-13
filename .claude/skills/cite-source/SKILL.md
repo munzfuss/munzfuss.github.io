@@ -42,8 +42,8 @@ Helper (candidates, not verdicts):
   language it is not in, and must match the cited key's passage.
 - **Editing or trimming an existing pool entry, or re-pointing a citation** — run
   `--usage` first: a key is shared across Füße and pages.
-- **Auditing a bibliography** — «перевір посилання в розділі X», «чи коректні джерела»,
-  «чи всюди є переклад / архівна копія», «чи є дублі»: `--page … --section …` or `--fuss`.
+- **Auditing a few keys or one passage** — «чи коректне це посилання», «чи є переклад /
+  архівна копія», «чи є дублі»: `cite_helper.py KEY …` or `--page … --section …`.
 - **Adding archive copies** to existing entries, or after a source site changes / dies.
 - **Before committing any `refs_pool.yml` change** — lint the touched keys.
 
@@ -57,6 +57,10 @@ Helper (candidates, not verdicts):
   entry is needed unless the fact also reaches the rendered page (`research-dossier`).
 - **Chat** — quoting a source to the curator follows the chat rule (Ukrainian translation
   right after the quote), not the pool shape.
+- **Auditing ALL citations of one Fuß on one page** (timeline, card, details, coin notes,
+  across the page's languages) → `fuss-cite-audit`, which applies this skill's rules to
+  every key and adds the boundary, cross-language counts and claim map. Fixes it finds
+  come back here.
 - **Scoring a Fuß description's content** — that is `fuss-description`; use this skill for
   the citations it adds.
 
