@@ -184,7 +184,7 @@ Whether these get a Fuß (an «Ørtug» standard of 1480/1497: 135/M Stockholm a
 curator question for the Swedish-crown scope, not for this dossier. No refs_pool key cited
 this act before; added with this dossier: `wilcke-1950-arboga-1480-oertug`,
 `wilcke-1950-arboga-1480-halvoertug-penning`, `wilcke-1950-arboga-1480-produktion-cap`
-(no Wayback copy of `Wilcke 7-1.pdf` exists — Save Page Now needs the curator's yes).
+(Wayback copy saved 2026-10-13 at the curator's request: web.archive.org/web/20261013153702/…).
 
 ## 8. Open questions
 
@@ -211,8 +211,8 @@ this act before; added with this dossier: `wilcke-1950-arboga-1480-oertug`,
 
 - Wilcke, Julius: *Renæssancens Mønt- og Pengeforhold 1481–1588* (København 1950), Første
   Kapitel «Kong Hans' ‹Møntreformer›, Gyldenregning», s. 115–126 —
-  <https://www.danskmoent.dk/pdf2/Wilcke%207-1.pdf> (no Wayback snapshot as of
-  2026-10-13). Cache: `scripts/cache/wilcke/renaessancens_moent_1950/`.
+  <https://www.danskmoent.dk/pdf2/Wilcke%207-1.pdf> (archived
+  <https://web.archive.org/web/20261013153702/https://www.danskmoent.dk/pdf2/Wilcke%207-1.pdf>). Cache: `scripts/cache/wilcke/renaessancens_moent_1950/`.
 - Galster, Georg: *Danmarks Mønter* (1936), danskmoent «galkult» — on 1513's borrowings.
 - Cited by Wilcke, not seen: Bring, *Handlingar och Påminnelser* III (1758) pp. 264–72;
   *Nya handlingar rörande Skandinaviens historia* 19 (1834) pp. 11 ff.; Wallroth 1917
@@ -221,4 +221,4 @@ this act before; added with this dossier: `wilcke-1950-arboga-1480-oertug`,
 
 ---
 Score (research-dossier rubric, self-assessed 2026-10-13): C1 1.5 · C2 2.5 · C3 2.0 ·
-C4 1.5 (one reproduction only, no archive copy) · C5 1.0 · C6 1.0 = **9.5/10**.
+C4 2.0 · C5 1.0 · C6 1.0 = **10/10**.
