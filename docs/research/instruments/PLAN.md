@@ -24,12 +24,12 @@
 | ◐ | 1523, 26 March / 3 Aug | Haandfæstning Frederik I, møntparagraf | B | `1523_valvation_klippinge.md` §3 (H) | — |
 | ☑ | 1523, 10 Aug (+ 30 Aug · 17 Sept · 28 Sept retreats) | Valvation — the old coin against the Gylden, the new Skilling 24 / 12, Klippinge demonetised | A | `1523_valvation_klippinge.md` | not executed; Lejrskilling «hele ß» vs 10 Hvide open (§8.1) |
 | ☑ | 1524, 25 Feb · 1524 | Rigsraadets Møntordning + Kongebrev Frederik I (Jørgen Kock) | A | `1524_moentordning_frederik_i.md` | «26 Feb separate act» retracted |
-| ☐ | 1524, 20 June · 1525, 18 Oct · 1526, 8 Nov · 1527 · 1530, 7 Aug · 1532, 23 Nov | The Norwegian letters of Frederik I (Hamar, Akershus, Oslo, Bergenhus) | A (1526 Ordning) / B | `1526_ordning_oslo.md` (to write — one dossier for the six) | Wilcke VII kap. on Norge; Schive |
+| ☑ | 1524, 20 June · 1525, 18 Oct · 1526, 1 Jan · 8 Nov · 1527, 3 April · 1530, 7 Aug · 1532, 23 Nov | The Norwegian letters of Frederik I (Hamar, Oslo, Bergen, Akershus) | A | `1524_norske_moentbreve_frederik_i.md` (one dossier for the seven) | Bergen 106 vs 126 open; A's date 20 vs 24 June |
 | ☐ | 1536, 30 Oct · 1537, 24 Aug · 21 Oct | Haandfæstning Christian III; Ordinans cap. 10; Forordning/Reces 1537 | B | fold into `moentordning_1541.md` §6 if they carry parameters; else ✖ | Rosenvinge IV; check |
 | ☑ | 1540 · 1541, 20 March · 20 Sept · 1544, 27 Sept | Reces 1540 cap. 12; Maal og Vægt; Møntordning Christian III; tillæg 1544 | A | `../moentordning_1541.md` (pre-dates this folder; register links it) | — |
 | ☑ | 1544, Dec · 1547, 22 Jan | Brev to the Hansestæder; Bestalling + Müntzordnung Jørgen Kock d. y., Flensborg | A | `1547_bestalling_flensborg.md` | «1 M» vs «ein wergk» open |
 | ✖ | 1550, 8 July | Instruks for tolder Sander Leyl | C | register only | — |
-| ☐ | 1551, 11 Oct | Aabent Brev to the Norwegian lensmænd «om Mønten» | B | fold into the 1526 Norwegian dossier §6 | Wilcke VII |
+| ☐ | 1551, 11 Oct | Aabent Brev to the Norwegian lensmænd «om Mønten» | B | fold into `1524_norske_moentbreve_frederik_i.md` §6 on next revision | Wilcke VII |
 | ☐ | 1563 (autumn) → 1564, 10 Dec | Forordning on the war Klippinge + 7 enforcing acts | A | `1563_klippinge_syvaarskrigen.md` (to write) | Wilcke VII 7-6; Secher I |
 | ☐ | 1564, 11 Dec → 1566, 1 March | Bestalling Hans Køppelin (Bremerholm) → Flensborg | A | fold into the 1563 dossier §5 or own file if the Bestalling has a grid | Wilcke VII |
 | ✖ | 1567 · 1569 · 1571 · 1572–74 · 1576–81 · 1580 · 1581 · 1586 · 1590 | Missiver / åbne breve on dalers in told, jordskyld reckoning | C | register only (1572 toll letters are in the 1572 dossier §6) | — |
