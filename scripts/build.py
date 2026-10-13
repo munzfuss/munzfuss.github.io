@@ -37,7 +37,7 @@ from lib.timeline import (
     attach_visual_pieces,
     compute_bar_layers, compute_coin_year_runs,
     compute_hover_zones, derive_mint_overrides,
-    founding_mint_start,
+    founding_mint_start, _mint_sync_scope,
 )
 from lib.compute import compute_location
 from lib.render import build_env, generate_css, resolve_tips
@@ -1329,9 +1329,24 @@ def build_location(
         # was actually minted under that stope (per data/locations/<loc>.yml
         # coin entries). Renders as 1-year-wide rectangles overlaid on the
         # layered period × scope bar.
+        # With `timeline.clamp_markers_to_mint`, markers are clamped to each
+        # fuss's effective mint span (post auto-sync), so a reign-window
+        # placeholder cannot paint a marker outside the mint stripe (see
+        # compute_coin_year_runs docstring). Off by default: pages that do
+        # not opt in render exactly as before.
+        _sync_scope = _mint_sync_scope(loc) if loc.timeline.clamp_markers_to_mint else None
+        mint_spans: dict[str, tuple[int, int]] = {}
+        if _sync_scope is not None:
+            for _fid, _f in fuesse_for_bars.items():
+                _ev = getattr(_f, "events", None)
+                _fm = getattr(getattr(_ev, "first_mint", None), _sync_scope, None)
+                _lm = getattr(getattr(_ev, "last_mint", None), _sync_scope, None)
+                if _fm is not None and _lm is not None:
+                    mint_spans[_fid] = (_fm, _lm)
         coin_years = compute_coin_year_runs(
             loc.timeline.bars, computed,
             loc.timeline.year_from, loc.timeline.year_to,
+            mint_spans=mint_spans,
         )
         # Hover zones — segments where the active layer set stays constant.
         # Each zone becomes a transparent overlay div with a static

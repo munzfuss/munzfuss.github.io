@@ -516,11 +516,22 @@ def compute_coin_year_runs(
     computed_coins: list,
     tl_year_from: int,
     tl_year_to: int,
+    mint_spans: dict[str, tuple[int, int]] | None = None,
 ) -> dict[str, list[dict]]:
     """For each timeline bar, collect the set of years when at least one
     coin was minted under that stope (per the location's coin entries),
     collapse consecutive years into runs, and pre-compute left% / width%
     for the timeline track.
+
+    `mint_spans` (fuss id → (first_mint, last_mint) for the page's sync
+    scope, i.e. the `events` AFTER `derive_mint_overrides`) clamps each
+    fuss's marker years to its effective mint layer. Without it a
+    reign-window placeholder coin can paint a marker outside the mint
+    stripe: `unified-dk-galster-c2g-44` (8½-Gylden-Fod, «1513-1523»,
+    `year_verified: false`) would put a lone 1513 marker one year before
+    the mint layer that the founding rule pins to 1514 — visible once the
+    Denmark axis opened at 1490 (2026-10-13). A fuss absent from the dict
+    keeps the axis-only filter.
 
     A run has shape `{"first": int, "last": int, "coin_count": int,
     "state": str, "left_pct": float, "width_pct": float}`. Each year a
@@ -581,9 +592,11 @@ def compute_coin_year_runs(
             ents_for_year = list(ie) if ie else [None]
         else:
             ents_for_year = [ie]
+        span = (mint_spans or {}).get(c.fuss)
         for first, last in ranges_iter:
             for y in range(first, last + 1):
-                if tl_year_from <= y <= tl_year_to:
+                if tl_year_from <= y <= tl_year_to and (
+                        span is None or span[0] <= y <= span[1]):
                     ent_map = years_ent.setdefault(y, {})
                     for ent in ents_for_year:
                         ent_map.setdefault(ent, set()).add(c.id)

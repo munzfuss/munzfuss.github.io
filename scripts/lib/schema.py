@@ -1304,6 +1304,16 @@ class Timeline(_StrictBase):
     single-jurisdiction page whose «anywhere» scope IS the whole subject (e.g.
     the German Empire page, where there is no Holstein sub-track)."""
 
+    clamp_markers_to_mint: bool = False
+    """When `true`, the per-year coin markers of every bar are clamped to the
+    fuss's effective mint span (`first_mint`..`last_mint` for the page's sync
+    scope, after `derive_mint_overrides`). Stops a reign-window placeholder
+    coin («1513-1523», «1588-1648») from painting markers outside the mint
+    stripe. Denmark enables it (axis opened at 1490 on 2026-10-13 exposed a
+    lone 1513 marker before the 8½-Gylden-Fod stripe); the SH page keeps the
+    default so its rendering is unchanged — enabling it there would trim the
+    placeholder-driven runs 1559-1565 (9-Thaler), 1588-1617 (9¼-Thaler) and
+    1820-1839 (11⅓-Thaler)."""
     hide_kinds: list[Literal["mint", "status", "circulation", "sole"]] = Field(default_factory=list)
     """Page-wide visibility switch: suppress every layer of these kinds on all
     bars (both scopes), e.g. `[circulation]` hides the «в обігу» stripes. The
