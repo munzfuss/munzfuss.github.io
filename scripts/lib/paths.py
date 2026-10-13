@@ -75,6 +75,17 @@ GALSTER_CACHE: Path = HARVEST_ROOT / "danskmoent" / "galster"
 # in scope and is why we harvest the page at all — our `sieg` citations
 # do not record which edition they came from.
 KONKORDANS_CACHE: Path = HARVEST_ROOT / "danskmoent" / "konkordans"
+# danskmoent.dk «Forordninger m.v. vedr. Møntvæsenet under Enevælden» —
+# added 2026-10-13 for the coinage-instruments register. Mordhorst, Dansk
+# Pengehistorie III (Bilag), pp. 159-264, transcribed per reign:
+# artikler/mord.htm (index) + f3mord … f7mord.htm (1661-1849).
+MORD_CACHE: Path = HARVEST_ROOT / "danskmoent" / "mord"
+# Secher, Corpus constitutionum Daniæ (1558-1660, 6 Bd.) — the printed
+# Danish ordinances; KB digitisation served by kildeskriftselskabet.dk.
+SECHER_CACHE: Path = HARVEST_ROOT / "secher"
+# Schou, Chronologisk Register over de Kongelige Forordninger (from 1670);
+# nb.no digibok, per-page ALTO OCR.
+SCHOU_CACHE: Path = HARVEST_ROOT / "schou"
 # NumisMaster (Librios) commercial catalogue — added 2026-05-16 per §AZ
 # Tier 3 + Phase 1b full inventory walk. Layout under HARVEST_ROOT/numismaster:
 #   denmark_pre_1541/MC_<N>.html + .json  — legacy §AZ subdir (3 entries)
@@ -118,7 +129,11 @@ def refresh() -> None:
     time is already correct.
     """
     global HARVEST_ROOT, HEDE_CACHE, IKMK_CACHE, NUMISTA_CACHE, UCOIN_CACHE, BRUUN_CACHE, GALSTER_CACHE, KONKORDANS_CACHE, NUMISMASTER_CACHE, KMK_CACHE, NGC_CACHE
+    global MORD_CACHE, SECHER_CACHE, SCHOU_CACHE
     HARVEST_ROOT = _resolve_harvest_root()
+    MORD_CACHE = HARVEST_ROOT / "danskmoent" / "mord"
+    SECHER_CACHE = HARVEST_ROOT / "secher"
+    SCHOU_CACHE = HARVEST_ROOT / "schou"
     HEDE_CACHE = HARVEST_ROOT / "hede"
     IKMK_CACHE = HARVEST_ROOT / "ikmk"
     NUMISTA_CACHE = HARVEST_ROOT / "numista"

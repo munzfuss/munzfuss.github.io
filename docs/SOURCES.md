@@ -1067,6 +1067,26 @@ These are **paper-only**, accessible only via specialist libraries:
 
 **When you absolutely need to verify a fact and online sources don't suffice:** ask the user. They have access to some of these in paper.
 
+### 10a. Printed collections of the Danish-Norwegian acts — the ACT, not a retelling (2026-10-13)
+
+The register `docs/research/ordinances_register.md` distinguishes a row
+written from the instrument's own text from one written from Wilcke's or
+Galster's retelling. These are the sources that give the text. All four are
+digitised and harvested or harvestable; fetchers under `scripts/`.
+
+| Source | Period | Digital copy | Our cache | Notes |
+|---|---|---|---|---|
+| **Secher, V. A. (ed.)**, *Corpus constitutionum Daniæ. Forordninger, Recesser og andre kongelige Breve, Danmarks Lovgivning vedkommende 1558-1660*, 6 Bd. (Kbh. 1887-1918) | 1558-1660 | KB digitisation: [kildeskriftselskabet.dk](https://kildeskriftselskabet.dk/index.php/kildeudgaver/1500-tallet/165-corpus-constitutionum-daniae-forordninger-recesser-og-andre-kongelige-breve-danmarks-lovgivning-vedkommende-1558-1660-bd-1-8) (≈50 kB/s) and the same scans on Wikimedia Commons for [da.wikisource](https://da.wikisource.org/wiki/Corpus_constitutionum_Dani%C3%A6_Forordninger,_Recesser_og_andre_kongelige_Breve,_Danmarks_Lovgivning_vedkommende_1558-1660) (≈2 MB/s; the `_gl.pdf` files are the KB originals). archive.org has Google scans of Bd 2, Bd 4 and one Hæfte of Bd 3. HathiTrust: 403 to our tools. | `scripts/cache/secher/bd<N>/pages/<NNNN>.txt` (pdftotext of the Commons PDF; PDFs themselves gitignored) — `scripts/fetch_secher.py` | Bd 1 1558-75 · 2 1576-95 · 3 1596-1621 · 4 1622-38 · 5 1639-50 · 6 1651-60. Each Bd has a chronological register at the front — read that first to list candidates. Wikisource's per-page transcription is mostly raw OCR (bind 1: 399 pages at quality 1, 94 proofread at 3) — a second reading, not a better one. |
+| **Schou, J. H.**, *Chronologisk Register over de Kongelige Forordninger og aabne Breve samt andre trykte Anordninger som fra Aar 1670 af ere udkomne* | 1670-1849 (Danmark-Norge to 1813) | nb.no digibok, public domain, `accessAllowedFrom: EVERYWHERE`; volume URNs listed on [lokalhistoriewiki.no «Schous forordninger»](https://lokalhistoriewiki.no/wiki/Schous_forordninger). Per-page ALTO OCR at `api.nb.no/catalog/v1/metadata/<urn>/altos/<urn>_<page>`; page images via the IIIF manifest. | `scripts/cache/schou/bd<N>/{alto,pages}/` — `scripts/fetch_schou.py` | Fraktur OCR, noisy (lex.dk warns that searches miss) — grep for several spellings and check the image before quoting. Bd 1 = Christian V 1670-1699 «samt nogle før Hans Tid udkomne Anordninger». Schou prints digests of most acts and the full text of the important ones. |
+| **Mordhorst, Kirsten**, «Forordninger m.v. vedr. Møntvæsenet under Enevælden», *Dansk Pengehistorie* III: Bilag (Nationalbanken 1968), pp. 159-264 | 1661-1849 | danskmoent.dk `artikler/<reign>mord.htm`, transcribed to Christian 7. (1808); Frederik 6. / Christian 8. / Frederik 7. pages are placeholders | `scripts/cache/danskmoent/mord/` — `scripts/fetch_danskmoent_mord.py` | A DIGEST with quotations and footnotes («Findes ikke i forordningssamlingen, men hos Schou»), not the act. Cite as `Mordhorst` in the register's «text seen» column; quote the act from Schou / Secher when the wording matters. |
+| **Kolderup-Rosenvinge, J. L. A.**, *Samling af gamle danske Love* IV: *Danske Recesser og Ordinantser* (1824) | to 1558 | Google Books (link in `docs/research/moentordning_1541.md` §9.3) | not cached | Does NOT contain the 1541 Møntordning (its p. 513 note points to Paus); has the Recesser 1536-47. |
+| **Paus, Hans**, *Samling af gamle Norske Love* (1751-52) | Norway, to 1660 | nb.no | `docs/research/sources/paus_christian_iii_1541_maal_og_vaegt.md` (one act captured) | The Norwegian side of the 1514 / 1541 acts. |
+
+Pre-1558 Danish acts (1480 Møntordning, 1497, 1514 Lovkompleks, 1524) have
+NO printed Corpus — Wilcke VII (1950) prints them from the Rigsarkivet
+registers and remains the only text access; the register marks those rows
+`Wilcke (prints the act)` rather than `act`.
+
 ---
 
 ## 11. By-period quick lookups
