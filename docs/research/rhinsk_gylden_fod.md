@@ -937,7 +937,8 @@ Holstein and for the Danish money market, not Danish law).
 | 11 Nov 1536 / 22 May 1536 | royal receipts | 24 ß l. in lybsk coin / 2½ Mark d. = 40 ß d. | DK account | Wilcke 7-4 p. 286 (~l. 826-833) |
 | 1540 | Recess | «ikke dyrere … end for III Mark Danske» (= 48 ß d.), equal to the Joachimsdaler | **DK statutory ceiling** | Wilcke I p. 50; 7-4 ~l. 838 (5 Nov 1540 pledge: 2 Mark l. = 32 ß l.) |
 | 1540s-1557 | accounts | daler 31 ß l., gulden 32 ß l.; 1557 Opgæld 10 Alb.; 1557 crown takes 400 «Goltg.» at 3 Mark 2 ß d. «billigere end Kursen» | DK accounts | Wilcke 7-4 p. 285-287 (~l. 810-850) |
-| 1557-60 | Rentemester accounts | gold now marginal: «Gyldenens Dage er forbi. Daleren er nu Hovedmønten» | DK — Wilcke's reading | Wilcke 7-4 p. 290 (~l. 981) |
+| 8 Jul 1550 | secret Instrux to the Øresund toller Sander Leyl | 3 full-weight rhinske Gylden per Nobel instead of 2½ (2 Nobler = 5, 3 Nobler = 8 Gylden); the toll accounts «omhandler kun Rosenobler og Rhinske Gylden samt undertiden Daler»; last toll account read by Wilcke: 3 526 Rosenobler, 3 534 rhinske Gylden, 7 215 Dlr | DK toll rate + volume — the gulden is still the mass gold coin of the Sound toll in the 1550s | Wilcke 7-4 p. 292-293 (~l. 1118-1160) |
+| 1546, 1551, 1554, 1556, 1557, 1557-58 | Rentemester income accounts (table Wilcke 7-4 p. 290-291) | gold marginal in state income, dalers dominant: «Gyldenens Dage er forbi. Daleren er nu Hovedmønten» — said of THESE six accounts, i.e. the last years of Christian III | DK accounts — Wilcke's reading, not an act | Wilcke 7-4 p. 290 (~l. 981), table ~l. 1030-1060 |
 | 1568 | pledge letter | a noblewoman lends the crown «rhinske Gylden, Dalere og ungersk Guld» | DK — gulden still a hoard / lending medium | Wilcke 7-5 (~l. 1187) |
 | 1602 (8 Sep) / 1604 (20 Nov) | Forordning / Møntordning | not in the gold table; 1604 leaves «Guldmøntens Værdi i Dalere uomtalt» | DK — silent | Wilcke I p. 69, 74-75 |
 | c. 1609-12 | Lower-Saxon Kreis valuation (table Wilcke I p. 104) | 44⅔ ß l. (ducat 60½, Rigsdaler in specie 37⅓) | L / Holstein | Wilcke I p. 104 |
@@ -981,7 +982,7 @@ record read is the 1497 toll account; the dossier's §4 already places the
 coin in Danish documents from 1406 (treaty of Lund), so the tariff series
 starts long after use began. (b) Quantities — rates say the coin is legal,
 not how much of it circulated; only the toll and Rentemester accounts
-(1497, 1503, 1557-60) speak to volume, and Wilcke's «Gyldenens Dage er forbi»
+(1497, 1503, the Sound toll 1550s, the Rentemester accounts 1546-1558) speak to volume, and Wilcke's «Gyldenens Dage er forbi»
 (c. 1560) is his reading of those accounts, not an act. (c) Anything after
 1648 beyond silence: a rate list that omits the gulden proves only that the
 drafter saw no need to name it. (d) The 1410/1450 Wendish and the c. 1609
