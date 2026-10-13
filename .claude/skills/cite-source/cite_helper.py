@@ -28,8 +28,8 @@ ROOT = Path(__file__).resolve().parents[3]
 POOL = ROOT / "data/shared/refs_pool.yml"
 LANGS = ("de", "en", "uk", "da")
 TR_MARK = {"de": r"\(dt\.:", "en": r"\(transl\.:", "uk": r"\(перекл\.:", "da": r"\(overs\.:"}
-PAGE_RE = {"de": r"\bS\. ?[0-9ivxlc]", "en": r"\bpp?\. ?[0-9ivxlc]",
-           "uk": r"\bс\. ?[0-9ivxlc]", "da": r"\bs\. ?[0-9ivxlc]"}
+PAGE_RE = {"de": r"\bS\. ?[0-9ivxlcIVXLC]", "en": r"\bpp?\. ?[0-9ivxlcIVXLC]",
+           "uk": r"\bс\. ?[0-9ivxlcIVXLC]", "da": r"\bs\. ?[0-9ivxlcIVXLC]"}
 QUOTE_RE = re.compile(r"«<i>(.*?)</i>»", re.S)
 LINK_RE = re.compile(r'<a href="([^"]+)"([^>]*)>')
 REF_RE = re.compile(r"\[ref:([a-z0-9][a-z0-9-]*)\]")

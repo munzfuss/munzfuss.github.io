@@ -1103,6 +1103,7 @@ Non-translated fields (global identifiers):
 - Catalog references (KM#, Hede, Sieg, Bruun-lot) — never translated
 - `nominal` — kept as literal inscription (Danish/German/Latin); translation is in `note` if needed
 - Mint names, ruler names — use standard academic spellings, identical across languages
+- **City names in prose — the form of the power that ruled the city at the time** («чия влада того й назва», curator 2026-10-13), identical in every language field: Malmø, København, Roskilde, Flensborg, Gottorp, Skien under the Danish crown; Lübeck, Hamburg, Worms under the Empire. Regions and states ARE translated (Шлезвіг, Гольштейн, Данія). Apply it to text being written or revised; existing prose elsewhere is converted only when that text is worked on.
 - Münzfuß names in technical form (`9¼-Fuß`) — displayed identically across languages
 - Numbers — localized by formatter, not translated per-row
 
