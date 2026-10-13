@@ -21,8 +21,8 @@
 | ☑ | 1480, 12/14 Sept | Møntordning, Arboga (Swedish Riksråd) | A | `1480_moentordning_arboga.md` | dating 12 vs 14 Sept open (§8.1) |
 | ☑ | 1497, 4 Dec | Møntanordning for Sverige (Hans → Michel Johansson) | A | `1497_moentanordning_stockholm.md` | 18¼ kt finding → Guldgyldenfod review |
 | ☑ | 1513, 22 July · 1 Aug · 1514 (summer) · 3 Aug · 1515 Easter · 24 Aug | Christian II Lovkompleks (Haandfæstning, Blicher's Beskikkelse, Malmø Møntordning, Norge, Kvittering, Sjælland) | A | `1514_moentordning_malmoe.md` | card questions deferred to per-Fuß reviews |
-| ☐ | 1523, 26 March / 3 Aug | Haandfæstning Frederik I, møntparagraf | B | → fold into a **1523 Klipping withdrawal** dossier with the next row | text in Wilcke VII |
-| ☐ | 1523, 10 Aug | Forordning / Valvation — Klipping withdrawal | A | `1523_klipping_valvation.md` (to write) | the first post-Christian-II act; Wilcke VII s. 2xx; Galster kghklipp |
+| ◐ | 1523, 26 March / 3 Aug | Haandfæstning Frederik I, møntparagraf | B | `1523_valvation_klippinge.md` §3 (H) | — |
+| ☑ | 1523, 10 Aug (+ 30 Aug · 17 Sept · 28 Sept retreats) | Valvation — the old coin against the Gylden, the new Skilling 24 / 12, Klippinge demonetised | A | `1523_valvation_klippinge.md` | not executed; Lejrskilling «hele ß» vs 10 Hvide open (§8.1) |
 | ☑ | 1524, 25 Feb · 1524 | Rigsraadets Møntordning + Kongebrev Frederik I (Jørgen Kock) | A | `1524_moentordning_frederik_i.md` | «26 Feb separate act» retracted |
 | ☐ | 1524, 20 June · 1525, 18 Oct · 1526, 8 Nov · 1527 · 1530, 7 Aug · 1532, 23 Nov | The Norwegian letters of Frederik I (Hamar, Akershus, Oslo, Bergenhus) | A (1526 Ordning) / B | `1526_ordning_oslo.md` (to write — one dossier for the six) | Wilcke VII kap. on Norge; Schive |
 | ☐ | 1536, 30 Oct · 1537, 24 Aug · 21 Oct | Haandfæstning Christian III; Ordinans cap. 10; Forordning/Reces 1537 | B | fold into `moentordning_1541.md` §6 if they carry parameters; else ✖ | Rosenvinge IV; check |
