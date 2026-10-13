@@ -497,6 +497,8 @@ Hede published two specialised articles in NNUM 1957 that are essential referenc
 | **Wilcke VI** | *Daler, Mark og Kroner 1481-1914* (Kbh 1931) | `w6.htm` · type-monographs `wilcke/w6a-t.htm` |
 | **Wilcke VII** | *Renæssancens Mønt- og Pengeforhold 1481-1588* (Kbh 1950) | `w7.htm` · PDF-only `pdf2/Wilcke 7-0.pdf … 7-8.pdf` |
 
+**Wilcke VII tables are often image-only in the PDF text layer** (7-2 printed s. 154 and s. 187 — the 1514 and 1524 grids — come through OCR as one line or as garbage): render the page with `pdftoppm -f N -l N -r 120 -png` and read the image. Per-act write-ups with the texts: `docs/research/instruments/`; index of every act: `docs/research/ordinances_register.md`.
+
 **Useful for:** primary attestations of Forordninger and Patenter — e.g. Wilcke II Anm. 53 quotes the «åbent Brev af 12. Juli 1618» introducing Christian IV's Corona Danica. Wilcke VII is the reference for the **Danish lower-anchor** period (Christian II Lovkompleks 1514 → `Wilcke 7-2.pdf`; Christian III's Møntreform 1541 → `Wilcke 7-4.pdf`).
 
 **Constant trap — Wilcke computes on a mark of 233,855 g, we use 233,856 g.**

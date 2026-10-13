@@ -277,9 +277,8 @@ actually struck in quantity, per Galster) is absent from the render; see §8.
    page's card text gives «Skilling 96/M @ 5¾ Lod + Hvid 222/M @ 4½ Lod» as the 1514
    ordinance's Scheidemünzen; those are the 1 Aug 1513 figures (Wilcke s. 152, Galster's
    1513 table). The 1514 letter has Skilling 88/M at 6 lod and Hvid 220/M at 5 lod (s. 153,
-   154). Settled by: the printed lines above. → curator decision whether the card text and
-   the cited key (`wilcke-1950-moentordning-1514-soelvgylden`) are to be corrected (noted
-   in handoff 2026-10-13 as «open aside»).
+   154). Settled by: the printed lines above. → curator 2026-10-13: not now — each Fuß card will be reviewed on its own
+   («по кожній стопі окремо»); deferred, not closed.
 2. **Date of the letter.** Undated in the register copy; Wilcke «Sommeren 1514», Galster
    «samtidig med» 3 Aug 1514, Eriksen «uten årstall» but necessarily between 1 Aug 1513 and
    the Cantate-1515 receipt (which already counts the new Skilling at 5 Hvid). Would be
@@ -295,8 +294,9 @@ actually struck in quantity, per Galster) is absent from the render; see §8.
    (24,192 g) than the Skilling (23,904 g) — Wilcke's table shows it; no source comments
    on it. Observation, no claim.
 6. **Small coin absent from the render** (§7). Whether the Skillinger 1514–1517 (Galster
-   c2g-series) are in the seeds but unclassified, or not harvested, is to be checked with
-   `trace_coin.py` before any phase text says they are «documented».
+   c2g-series) are in the seeds but unclassified, or not harvested, — checked 2026-10-13: Galster c2g-40 (Skilling 1515), c2g-41 (1516–17), c2g-43 (Hvid 1513)
+   and the Norwegian c2g-164/165 are in the Galster seed and sit in `seed_unsorted`.
+   Curator 2026-10-13: classification deferred to the per-Fuß review.
 
 ## 9. Sources consulted
 

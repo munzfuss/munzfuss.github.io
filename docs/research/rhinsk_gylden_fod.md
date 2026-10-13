@@ -1,5 +1,8 @@
 # Guldgyldenfod / Rhinsk-Gyldenfod — the Rhenish gold-gulden standard, German and Danish tracks
 
+> **Instrument dossiers (2026-10-13):** `instruments/1514_moentordning_malmoe.md` (72/M 18 kt, phase I.a) and `instruments/1524_moentordning_frederik_i.md` (restated); the Imperial and Danish acts 1480–1700 are indexed in `ordinances_register.md`.
+
+
 > **Reference dossier for the `rhinsk_gylden_fod` Müntzfuß** (display name
 > «Guldgyldenfod» on the Denmark page, «Goldguldenfuß» on Schleswig-Holstein;
 > `historical_name: Rhinskgyldenfod`). Rewritten 2026-09-29 as the model

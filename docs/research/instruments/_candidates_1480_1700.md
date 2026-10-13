@@ -33,7 +33,7 @@ file, `Mordh.` = Mordhorst digest.
 | 1523-03-26 / 1523-08-03 | Haandfæstning Frederik I (foreløbig / endelig) | DK | coin to be «ligegodt ved Lybsck, Hamborgh oc Lanteholstenn» | W7-2 p.29; W7-5 p.3; Galster | ✅ |
 | 1523-08-10 | Forordning / Valvation | DK | old coin to be handed in within 3 weeks and exchanged at real, not nominal, value; 1 M = 12 sk. for the new coin | W7-2 p.48; Galster; artikler_kghklipp | ✅ |
 | 1524-02-25 | Rigsraadets Møntordning (brev til Jørgen Kock) | DK | Nobel 23 kt 16/mark · rhinsk Gylden 18 kt 72/mark · silver grid; klippinge withdrawn | W7-2 p.35 (prints it); register §1 | ✅ |
-| 1524-02-26 | separate act on the 14-Penning piece | DK | named in `denmark.yml` timeline, no ref | ? | ✖ not found: W7-2 p.46 treats the 14 Penning without a separate dated act. **Flag:** `denmark.yml` 8-Gylden-fod timeline names it |
+| 1524-02-26 | separate act on the 14-Penning piece | DK | named in `denmark.yml` timeline, no ref | ? | ✖ no third act: Wilcke's table s. 187 dates the 14-penning line 25/2 1524; the project's «26 Feb» was a misreading (`1524_moentordning_frederik_i.md` §8.1) |
 | 1524 | Kongebrev Frederik I to Jørgen Kock | DK | executes the Rigsraad ordinance (Wilcke 7-2 p.184 printed) | W7-2; refs `wilcke-1950-kongebrev-1524` | ✅ |
 | 1524-06-20 (Holst: 24-06) | Kongebrev to Bisp Magnus, Hamar | NO | 4-Hvid skilling at 5 lod, piece-count stated | W7-2 p.51; artikler_holst | ✅ |
 | 1525-10-18 | Befaling, Olav Galle (Akershus) on the king's behalf | NO | Oslo minting parameters (Holst's table) | artikler_holst | ✅ (check W7-2 p.54) |

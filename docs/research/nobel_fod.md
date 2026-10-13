@@ -1,5 +1,8 @@
 # `nobel_fod` — the Danish gold Nobel standard (1496–1532): research dossier
 
+> **Instrument dossiers (2026-10-13):** the acts this standard rests on are written up per act in `instruments/` — `1514_moentordning_malmoe.md` (Nobel 16/M 23½ kt) and `1524_moentordning_frederik_i.md` (Rigsraad 23 kt → Kongebrev 23½ kt); every Danish act 1480–1700 is indexed in `ordinances_register.md`.
+
+
 > **Status:** internal research dossier (role-1). Rewritten 2026-09-28 after the
 > Nobelfod card revision (commits `2fdd18d` … `b88bb76`); supersedes the 2026-06-05
 > version, whose retracted claims are kept in §9 with what disproved them.

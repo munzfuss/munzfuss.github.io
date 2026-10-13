@@ -15,6 +15,8 @@
 
 ## §1. Christian II 1513 Haandfæstning + 1514 Lovkompleks
 
+> Superseded for the acts themselves by `instruments/1514_moentordning_malmoe.md` (2026-10-13: verbatim texts, Wilcke's p. 154 table read from the page image, recomputation). Kept for the specimen notes below.
+
 ### 1513 Haandfæstning (Christian II's Coronation Charter)
 
 Source: Wilcke 7-2 p. 150 (Galster-derived spec table).
@@ -68,6 +70,8 @@ Source: Wilcke 7-2 p. 156. «*meget almindelig*» (very common) — high mintage
 
 ## §2. Frederik I 1524 Royal Ordinance
 
+> Superseded for the acts themselves by `instruments/1524_moentordning_frederik_i.md` (2026-10-13).
+
 ### 25 February 1524 ordinance (København)
 
 Source: Wilcke 7-2 p. 184-187. Verbatim p. 184: «*Vi Fr. … at slaa, i Guld: Nobler (den vegne Mark skal holde 23½ Karat og skraade 16 Stkr.), Rinske Gylden (18 Karat, 72 Stkr.) …*»
@@ -88,7 +92,7 @@ Master spec table (Wilcke p. 187 / file PDF-page 42 of wilcke_7-2.txt):
 | 4-Hvid ß | 96 | 5 Lod 2 grän | 0.319 | 2.438 | 0.778 |
 | Hvid | 300 | 4 Lod | 0.250 | 0.779 | 0.195 |
 
-A separate 26 February 1524 act for «14 %» small-change subtype: 3 Lod 6 grän, ~0.20 g fineness — see Wilcke p. 187.
+~~A separate 26 February 1524 act for «14 %» small-change subtype~~ — CORRECTION 2026-10-13: Wilcke's table p. 187 dates the 14-penning line 25/2 1524 (page image read); the 3 Lod 6 grän / 2 Lod 3 grän finenesses of the 14- and 6-penning come from the marginal notes of Kongens Brev to the 25 Feb letter (p. 181 n. 1–2). There is no third act. Full write-up: `instruments/1524_moentordning_frederik_i.md`.
 
 ### Frederik I 1527 Goldgulden Malmö (Galster 59)
 
