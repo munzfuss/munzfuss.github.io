@@ -29,7 +29,7 @@ file, `Mordh.` = Mordhorst digest.
 | 1514-08-03 | Møntordning for Norge | NO | Norwegian coin to be as good as Danish, mutually current; Sølv- og Guldvægt | W7-2 p.11; artikler_holst | ✅ |
 | Easter 1515 | Kvittering (Blicher) | DK | receipt — Wilcke's dating evidence for the complex, states no parameter itself | W7-2 p.12 | ✖ outcome; cite inside the 1514 dossier |
 | 1515-08-24 | Aabent Brev for Sjælland | DK | renews the 1514 Skikkelse; Korshvid 4→5→6 per Skilling | W7-2 p.11–12 | ✅ |
-| 1518 | «Klipping»-ordning (undated reskript to Blicher) | DK | Ernst dates the undated reskript (1 rh. gld. = 24 sk.) to 1515; Wilcke: 1518 Klippinge | W7-2 p.17 ff.; artikler_skilltal | ✖ no act: W7-2 pp. 15–21 give accounts and Blicher's 1518 privilege only; the Klipping coinage rests on accounts. **Flag:** `denmark.yml` 8½-Gylden-fod A2 names a «1518 Klipping ordinance» — unsupported |
+| 1518 | «Klipping»-ordning (undated reskript to Blicher) | DK | Ernst dates the undated reskript (1 rh. gld. = 24 sk.) to 1515; Wilcke: 1518 Klippinge | W7-2 p.17 ff.; artikler_skilltal | ✖ no act: W7-2 pp. 15–21 give accounts and Blicher's 1518 privilege only; the Klipping coinage rests on accounts. (`denmark.yml` 8½-Gylden-fod A2 speaks only of the Klipping debasement, not of an ordinance — nothing to fix) |
 | 1523-03-26 / 1523-08-03 | Haandfæstning Frederik I (foreløbig / endelig) | DK | coin to be «ligegodt ved Lybsck, Hamborgh oc Lanteholstenn» | W7-2 p.29; W7-5 p.3; Galster | ✅ |
 | 1523-08-10 | Forordning / Valvation | DK | old coin to be handed in within 3 weeks and exchanged at real, not nominal, value; 1 M = 12 sk. for the new coin | W7-2 p.48; Galster; artikler_kghklipp | ✅ |
 | 1524-02-25 | Rigsraadets Møntordning (brev til Jørgen Kock) | DK | Nobel 23 kt 16/mark · rhinsk Gylden 18 kt 72/mark · silver grid; klippinge withdrawn | W7-2 p.35 (prints it); register §1 | ✅ |
@@ -206,9 +206,9 @@ Imperial rows for §2 found here: 1524-11-10 Esslinger Reichsmünzordnung (W1 p.
 
 Curator: every ❓ may hold something useful — read them too and conclude; the
 ✖ calls stand. All ❓ rows above now carry a verdict from the source context
-(Wilcke VII/I/II, Holst, Secher page text); two «acts» named in `denmark.yml`
-turned out to have no instrument behind them (1518 Klipping ordinance,
-1524-02-26) and are flagged for the Guldgyldenfod / 8½-Gylden-fod texts.
+(Wilcke VII/I/II, Holst, Secher page text); one «act» named in `denmark.yml`
+turned out to have no instrument behind it in Wilcke (the «separate act of
+26 February 1524» in the 8-Gylden-fod timeline bar title) and is flagged.
 One ❓ remains (1664-11-15 Krüger's mint privilege) and three «read in
 Stage 3» notes (1586-01-30, 1610 Gottorp Forordninger, 1628-09-29/10-30).
 Next: Stage 3 — register rows in three chunks (A · B · C+D), each ✅ act read
