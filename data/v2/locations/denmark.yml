@@ -145,6 +145,16 @@ timeline:
         uk: Guldgyldenfod (традиція Rhenish-Gulden, 72 штуки з повної кельнської марки за 18½ карат / 770 ‰, 3,248 г повної / 2,501 г чистого на штуку) · Wormser Reichsabschied 1495 як імперський якір · період I Hans ~1497 / Фредерік I 1527 / Кристіан III 1536 Roskilde (.764, Galster 131 — «Galster fejlagtigt henført til Gottorp») · період II Фредерік II 1563-1564 (.77) · період III герцогська лінія 1619-1627 (Готторп / Зондербург, проби не подано) · період IV Кристіан IV 1625-1632 (.76, фінансування Імперсько-данської війни) · 135-річне задокументоване вікно · торгова монета для німецько-північнонімецького ринку, без формального тарифу до Speciedaler · самостійна стопа (НЕ Reichsdukatenfuß, НЕ Guldkrone)
         da: Guldgyldenfod (den rhinske gyldens tradition, 72 stykker pr. rå Cölln. Marck ved 18½ karat / 770 ‰, 3,248 g rå / 2,501 g fin pr. stykke) · Wormser Reichsabschied 1495 som kejserligt anker · periode I Hans ~1497 / Frederik 1. 1527 / Christian 3. 1536 Roskilde (.764, Galster 131 — Galster fejlagtigt henført til Gottorp) · periode II Frederik 2. 1563-1564 (.77) · periode III den hertugelige linje 1619-1627 (Gottorp / Sønderborg, ingen overleveret lødighed) · periode IV Christian 4. 1625-1632 (.76, finansiering af Kejserkrigen) · et belægvindue på 135 år · handelsmønt til det tyske og nordtyske marked, uden formel tarif til speciedaleren · en selvstændig møntfodsstamme (IKKE Reichsdukatenfuß, IKKE Guldkrone)
       color_class: g
+      # The Denmark page hides every circulation layer (`hide_kinds`); this bar
+      # shows its own — the Rhenish gulden circulated in Denmark ~1400–~1650,
+      # a century beyond its minting (1497–1632) and its legal span (1514–1602):
+      # the tariff-act series in docs/research/rhinsk_gylden_fod.md §17. Three
+      # stacked layers at 4/3 of the page multiplier sum to the same ~0.67 the
+      # two-layer bars reach.
+      show_layers:
+        - scope: anywhere
+          kind: circulation
+      layer_alpha_multiplier: 1.3333
     - id: reichsdukatenfuss
       order: 2
       label:
