@@ -909,3 +909,110 @@ Catalogue note (hypothesis, unverified): NGC/NumisMaster print «Sch# 1352» for
 MB 57 (and «Sch# 1351» for MB 42). Our data reads it as Schou; the numbers do not
 fit Schou's Christian III range and most likely refer to Schulten. Pending check
 against NGC's catalogue key.
+
+## 17. Can the tariff acts reconstruct a circulation timeline? (2026-10-13)
+
+Question (curator): the Danish valuation / tariff acts go on rating the
+Rhinsk Gylden long after 1632 — can they be used to trace when the coin
+enters and leaves circulation in Denmark and the Danish lands?
+
+### 17.1 The series, as read this session
+
+«Rate» is the legal or account rate of ONE gold gulden. DK = act or account
+of the Danish crown; L = Lübeck / Wendish or Lower-Saxon Kreis (relevant for
+Holstein and for the Danish money market, not Danish law).
+
+| Date | Instrument / record | Rate of 1 Rhinsk Gylden | Kind | Source |
+|---|---|---|---|---|
+| 1410 | Møntreces of Lübeck, Hamburg, Wismar, Lüneburg | 13 ß l. (Lübeck gylden 16 ß l.) | L tariff, gold legal tender at fixed rate | Wilcke 7-1 p. 80-81 |
+| 1450 | new Wendish Reces | buying and selling in gold forbidden, only in Mark lybsk | L — gold no longer the measure | Wilcke 7-1 p. 81 |
+| 1497 | Øresund toll account | 900 r. Gylden = 360 Nobel (2½ gylden per Nobel) | DK account | Wilcke 7-1 p. 143 (~l. 3861) |
+| 1503 | Ribe / Kolding market tolls | 2 Mark d. | DK account | Wilcke 7-1 p. 143 |
+| 1506-28 | Hanseatic towns, legal | 22 ß l.; market 26-28 ß l. | L | Wilcke 7-2 p. 69-70 (~l. 2771) |
+| 1514 (24 Aug 1515 Sjælland renewal) | Møntordning Christian II | «24 ß gælde en rhinsk Gylden» | **DK statutory rate** | Wilcke 7-2 p. 156-157 (~l. 454) |
+| 10 Aug 1523 | Valvation Frederik I | 2 Mark à 12 ß (= 24 ß) of the new coin; gold:silver-gylden 10,5:1 | DK valuation | Wilcke 7-2 p. 37-38 (~l. 1758-1780) |
+| 1524 | Møntordning Frederik I | skilling struck 40 to the gylden | DK (implied rate) | Wilcke I p. 50 (~l. 2341) |
+| 1529-32 | Hanseatic, legal | old 26 / new 24 ß l.; market 28-29 ß l. | L | Wilcke 7-2 ~l. 2776-2781 |
+| 1534-36 | Reynold Junge accounts | 29-30 ß l. («dansk Guldgylden af rhinsk Guld … Joachimsdaler eller Daler») | DK mint account; gulden = daler | Wilcke 7-3 p. 230 (~l. 380) |
+| 11 Nov 1536 / 22 May 1536 | royal receipts | 24 ß l. in lybsk coin / 2½ Mark d. = 40 ß d. | DK account | Wilcke 7-4 p. 286 (~l. 826-833) |
+| 1540 | Recess | «ikke dyrere … end for III Mark Danske» (= 48 ß d.), equal to the Joachimsdaler | **DK statutory ceiling** | Wilcke I p. 50; 7-4 ~l. 838 (5 Nov 1540 pledge: 2 Mark l. = 32 ß l.) |
+| 1540s-1557 | accounts | daler 31 ß l., gulden 32 ß l.; 1557 Opgæld 10 Alb.; 1557 crown takes 400 «Goltg.» at 3 Mark 2 ß d. «billigere end Kursen» | DK accounts | Wilcke 7-4 p. 285-287 (~l. 810-850) |
+| 1557-60 | Rentemester accounts | gold now marginal: «Gyldenens Dage er forbi. Daleren er nu Hovedmønten» | DK — Wilcke's reading | Wilcke 7-4 p. 290 (~l. 981) |
+| 1568 | pledge letter | a noblewoman lends the crown «rhinske Gylden, Dalere og ungersk Guld» | DK — gulden still a hoard / lending medium | Wilcke 7-5 (~l. 1187) |
+| 1602 (8 Sep) / 1604 (20 Nov) | Forordning / Møntordning | not in the gold table; 1604 leaves «Guldmøntens Værdi i Dalere uomtalt» | DK — silent | Wilcke I p. 69, 74-75 |
+| c. 1609-12 | Lower-Saxon Kreis valuation (table Wilcke I p. 104) | 44⅔ ß l. (ducat 60½, Rigsdaler in specie 37⅓) | L / Holstein | Wilcke I p. 104 |
+| 16 Aug 1622 | Forordning | 7½ Mark d. = 1¼ Dlr (Wilcke: these are the rhinske Gylden) | **DK tariff** | Wilcke I p. 223-224 |
+| 1624-32 | Møntregnskaber | struck 72/Mark, 18 Kt 3 Gr; 1 Rhinsk Gylden = 1,25 Rigsdaler | DK mint account | Wilcke I p. 224; Harck c4guld |
+| 10 Oct 1629 §6 | Forordning | Guldgylden 7½ Mark d. | **DK tariff** | Wilcke II w2a2 |
+| 8 Jun 1639 | Forordning | Goltgylden 8 Mark (1 Rdlr 32 ß); Dec 1639: false rhinske Gylden flooding in from the German sea towns | **DK tariff** | Wilcke II w2a2 |
+| 18 May 1640 | Forordning | back to the pre-1639 rate | **DK tariff** | Wilcke II w2a2 |
+| 10 Dec 1647 | Forordning | «En Goldgylden 1 [Rdlr] 1½ [Mark]» | **DK tariff** | Wilcke II w2a3 |
+| 21 Mar 1648 | Rigens Raads Forordning om Guld- og Sølvmønt | «En Goldtgylden 8 Mark», «En Metzergylden 7 Mark 8 ß» | **DK tariff — last named rating found** | Wilcke II w2a4 |
+| 1650-1669 | Frederik III ordinances (danskmoent `artikler/f3mord.htm`) | gulden not named; 29 Mar 1667: foreign coin to be taken «paa Skrot og Korn» | DK — generic rule | f3mord.htm (WebFetch 2026-10-13) |
+| 1670-1699 | Christian V ordinances (danskmoent `artikler/c5mord.htm`) | gulden not named; 8 Mar 1675: «al guldmønt må stadig have omløb til pålydende værdi»; 22 Mar 1671 gold = ducats 67/Mark 23½ Kt | DK — generic rule | c5mord.htm (WebFetch 2026-10-13) |
+
+### 17.2 What the series can and cannot give
+
+**It can give a circulation layer with three phases, and it dates the exit
+better than anything we had.**
+
+1. **Named, statutory money (1514-1648).** From the Møntordning 1514 to the
+   Rigsraad Forordning of 21 March 1648 the Rhinsk Gylden is named in every
+   general Danish valuation we have read, with a rate: 24 ß (1514) → 40 ß d.
+   (1524/1536) → 3 Mark d. ceiling (1540) → 7½ Mark d. (1622, 1629, 1640,
+   1647) → 8 Mark (1639, 1648). The crown rates it as money for 134 years,
+   including the 1559-1624 stretch in which it struck none itself and the
+   1602/1604 acts that dropped it from the minting table. **The minting
+   standard and the circulation status are therefore two different
+   timelines**, and the tariff acts document the second one directly.
+2. **Unnamed, generic foreign gold (1649-1699).** Frederik III's and
+   Christian V's published ordinances name ducats, ducatons, Guldkrone,
+   specie, but no gulden. The 1667 rule (foreign coin at metal value) and the
+   1675 rule (all gold coin circulates at face value) cover it without naming
+   it. The last named rating is 21 March 1648. That is a terminus for
+   «statutory money», not for physical presence.
+3. **Physical tail.** No read source dates the last gulden in a Danish
+   payment. The 1639 complaint about false rhinske Gylden pouring in from the
+   German towns shows a live inflow as late as 1639; the 1648 rating shows it
+   still worth naming. Nothing read so far shows it after 1648.
+
+**What it cannot give.** (a) An entry date for Denmark — the earliest Danish
+record read is the 1497 toll account; the dossier's §4 already places the
+coin in Danish documents from 1406 (treaty of Lund), so the tariff series
+starts long after use began. (b) Quantities — rates say the coin is legal,
+not how much of it circulated; only the toll and Rentemester accounts
+(1497, 1503, 1557-60) speak to volume, and Wilcke's «Gyldenens Dage er forbi»
+(c. 1560) is his reading of those accounts, not an act. (c) Anything after
+1648 beyond silence: a rate list that omits the gulden proves only that the
+drafter saw no need to name it. (d) The 1410/1450 Wendish and the c. 1609
+Kreis valuations are Lübeck / Kreis law — usable for Holstein and as
+market context, never as Danish circulation evidence.
+
+### 17.3 Consequences for the data (proposed, not applied)
+
+- `rhinsk_gylden_fod.events.demonetisation.anywhere` is **~1700** with a note
+  that calls it an «approximate practical-circulation tail». The tariff
+  series supports **~1650** (approx): last named rating 21 March 1648,
+  generic-foreign-gold rules from 1667. ~1700 has no act behind it at all;
+  ~1650 has the last act that names the coin. Both remain approximate.
+- The `std_end` 1602 (approx) stands; §17.1 adds the 1604 repeat and the
+  fact that the crown went on **tariffing** the coin it had stopped
+  prescribing — worth one sentence in the std_end note so the two timelines
+  are not conflated again.
+- A per-location prose sentence on the Denmark page (phase V closing or the
+  card's closing) could state the 1622-1648 tariff line with
+  `wilcke1-…-1622`, `wilcke2-…-1629`, `…-1648` refs — none of these passages
+  has a `refs_pool` key yet; adding them is a `cite-source` task.
+- Holstein scope: the Kreis valuation c. 1609-12 (Wilcke I p. 104) and the
+  Glückstadt wardein oath of 25 June 1644 (gold «efter det romerske Riges
+  Mønt-Edikter», Wilcke II w2c2) show the ducal / Holstein side rating and
+  probing gold by the Reich norm throughout; the ducal last_mint 1664 and
+  the Reich-side tariffs are consistent. No change proposed there.
+
+### 17.4 Open
+
+| # | Question | What would settle it |
+|---|---|---|
+| Q17a | Does any Danish act between 1648 and 1700 name the gulden (Mordhorst's compilations list only headings on danskmoent)? | Mordhorst, *Dansk Pengehistorie* III (1968), full texts of the 1667, 1675, 1687 valuations |
+| Q17b | Are there Danish valuations 1559-1602 that name the gulden (Frederik II)? | Wilcke 7-6 (the Frederik II chapters) read for «Gylden» + a rate; Secher, *Forordninger* II |
+| Q17c | Volume: do the Øresund toll accounts after 1600 still list «Goltgylden» receipts? | Wilcke I p. 20-21 (Sundtolden) + Bang's toll tables |

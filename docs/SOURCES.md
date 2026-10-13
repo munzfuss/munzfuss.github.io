@@ -651,6 +651,9 @@ re-opening the question, in this order:
 | Wilcke VI, «Frederik II.s Guldmønt 1584» | <https://www.danskmoent.dk/wilcke/w6g.htm> (not cached) | The 1584 set lists «Guld-Gylden» at 1 Dukat weight; Rentekammer lists 1628 («Golt gylden») and 1639 («Goltgylden 1.») keep the pieces as «rene Kuriosa» — no gold ordinance under Frederik II |
 | danskmoent.dk, «Gylden» | <https://www.danskmoent.dk/gylden.htm> (not cached) | Only «De første gylden i Danmark præges under kong Hans (1483-1513), de sidste under Christian 4. (1588-1648)» + see-also links |
 | lex.dk, «rhinsk gylden» | <https://lex.dk/rhinsk_gylden> → cache `scripts/cache/danskmoent/lex_rhinsk_gylden.extract.txt` | «Rhinske gylden blev udmøntet i Danmark ca. 1500-1632.» |
+| danskmoent.dk, «Møntforordninger m.v. under Frederik 3.» / «… Christian 5.» | <https://www.danskmoent.dk/artikler/f3mord.htm>, <https://www.danskmoent.dk/artikler/c5mord.htm> (not cached; WebFetch summaries 2026-10-13) | Ordinance headings 1648-1699: no gulden named; 29 Mar 1667 foreign coin «paa Skrot og Korn»; 22 Mar 1671 ducats 67/Mark 23½ Kt; 8 Mar 1675 all gold coin circulates at face value. `artikler/c4mord.htm` does not exist (404) |
+| Wilcke I (1919) | p. 104 → cache ~l. 4857-4930 | Lower-Saxon Kreis valuation c. 1609-12: «Rhinsk Gylden … 44⅔ ß l.», ducat 60½, Rigsdaler in specie 37⅓ — Kreis law, Holstein context, not a Danish act |
+| Wilcke VII (1950) | 7-1 pp. 80-81, 143; 7-2 pp. 37-38, 69-70, 156-157; 7-3 p. 230; 7-4 pp. 285-290; 7-5 ~l. 1187 | The gulden tariff series 1410-1568 (Wendish recesses, 1514 «24 ß gælde en rhinsk Gylden», 1523 valuation, Junge accounts 29-30 ß l., 1540 Recess, 1557-60 accounts «Gyldenens Dage er forbi») — tabulated in `docs/research/rhinsk_gylden_fod.md` §17 |
 
 Searches that found nothing further: a Danish gold ordinance under Frederik II
 (the 1582 Møntordning is Mark / 8 ß / 2 ß / ß / hvid); the text of any
