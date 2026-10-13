@@ -1262,6 +1262,22 @@ class TimelineBar(_StrictBase):
     setting `hide_layers: [{scope: anywhere, kind: circulation}]` on
     those bars suppresses just that one layer while leaving the
     anywhere-mint and anywhere-status layers intact."""
+    show_layers: list["HiddenLayer"] = Field(default_factory=list)
+    """Per-bar EXEMPTION from the page-wide `Timeline.hide_kinds`: the listed
+    (scope, kind) layers are rendered on this bar even though the page hides
+    that kind everywhere else. Use case: the Denmark page hides every
+    `circulation` layer (`hide_kinds: [circulation]`), but the Guldgyldenfod
+    bar shows its circulation layer (~1400—~1650, the tariff-act series of
+    `docs/research/rhinsk_gylden_fod.md` §17) because for that standard the
+    circulation and the minting timelines diverge by a century. An explicit
+    `hide_layers` entry for the same pair still wins."""
+    layer_alpha_multiplier: float | None = None
+    """Override `--layer-alpha-multiplier` for EVERY layer of THIS bar
+    (default: inherit the page value — 2 on a `denmark_only` page, 1
+    elsewhere). Use case: a bar that renders three kinds on a page whose other
+    bars render two — `4/3` on a denmark_only page makes its three stacked
+    layers sum to the same ~0.67 saturation the two-layer bars reach, instead
+    of the full 1.0. `mint_alpha_multiplier` still overrides the mint layer."""
     mint_alpha_multiplier: float | None = None
     """Override `--layer-alpha-multiplier` for THIS bar's `mint` layer
     only (default: inherit the page value — 2 on a `denmark_only` page,
@@ -1298,9 +1314,10 @@ class Timeline(_StrictBase):
     def _apply_hide_kinds(self):
         for bar in self.bars:
             have = {(h.scope, h.kind) for h in bar.hide_layers}
+            shown = {(h.scope, h.kind) for h in bar.show_layers}
             for kind in self.hide_kinds:
                 for scope in ("anywhere", "holstein"):
-                    if (scope, kind) not in have:
+                    if (scope, kind) not in have and (scope, kind) not in shown:
                         bar.hide_layers.append(HiddenLayer(scope=scope, kind=kind))
         return self
 

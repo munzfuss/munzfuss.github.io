@@ -735,7 +735,7 @@
                 isolation with `z-index: 3`, which made layer tooltips
                 (locked inside the isolation, whose context sat at
                 `z-auto` in the track) paint UNDERNEATH markers. #}
-        <div class="tl-bar-layers">
+        <div class="tl-bar-layers"{% if bar.layer_alpha_multiplier %} style="--layer-alpha-multiplier:{{ bar.layer_alpha_multiplier }}"{% endif %}>
         {%- if layers -%}
           {# Pre-compute per-layer tooltip text into `_tts.parts[i]`. Used
              below for the visual layer divs themselves AND for the
