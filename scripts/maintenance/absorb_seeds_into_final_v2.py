@@ -437,6 +437,10 @@ def _suppress_weightless_museum_overcollection(coin: dict) -> int:
 _FOUNDATION_IMMUTABLE_FIELDS = frozenset({
     "fuss", "phase", "kind", "fraction", "nominal",
     "ruler", "mintmaster", "issuing_entity",
+    # Curator-filled, source-attributed mintmaster list (schema
+    # MintmasterEntry, 2026-10-13). No seed carries it, so without this
+    # entry the enrich rebuild silently drops it on every run.
+    "mintmasters",
     # A hand-set reign-span flag survives regen (the auto override below re-sets
     # it for Danish rulers; for German dukes/counts, whose ruler names
     # normalise_ruler_name can't resolve, this verbatim copy is the only way the

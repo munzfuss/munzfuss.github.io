@@ -784,6 +784,30 @@ class Source(_StrictBase):
     display:false sources; the YAML retains every link + datum under the hood."""
 
 
+class MintmasterEntry(_StrictBase):
+    """One source-attributed mintmaster reading for a coin (curator 2026-10-13).
+
+    Structured successor-in-waiting to the scalar `Coin.mintmaster` string,
+    prepared for a future «Monetmeister» table column and NOT rendered yet.
+    The scalar stays the pipeline's field (merger gap-fill, absorb
+    foundation-immutable, verify_reflow scalar check); this list is
+    curator-filled per coin and carries what the scalar cannot: the source of
+    each attribution, the years a master served when a type spans several,
+    and an either/or attribution («Herman van Nassau or Hans Sever») as two
+    entries with `certain: false` instead of one prose string.
+    """
+    name: str = Field(..., min_length=1)
+    years: str | None = None
+    source: str = Field(..., min_length=1)
+    certain: bool = Field(
+        True,
+        description=(
+            "False when the source gives this master as one of alternatives "
+            "or with its own hedge; the attribution is the source's, not ours."
+        ),
+    )
+
+
 class FussRef(_StrictBase):
     """One line in the Fuß-column for a coin (primary / secondary / tertiary).
     Used for dual- or triple-denominated coins where the same silver content
@@ -896,6 +920,15 @@ class Coin(_StrictBase):
     )
     mint_verified: bool = True
     mintmaster: str | None = None
+    mintmasters: list[MintmasterEntry] | None = Field(
+        None,
+        description=(
+            "Source-attributed mintmasters, one entry per attribution — "
+            "preparation for a future table column, not rendered (see "
+            "MintmasterEntry). Until then a mintmaster the reader should see "
+            "is written in `note`."
+        ),
+    )
     catalog: CatalogRefs = Field(default_factory=CatalogRefs)
     metal: Literal["silver", "gold", "billon", "copper", "lead", "bronze"] | None = None
     metal_verified: bool = Field(

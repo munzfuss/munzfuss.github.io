@@ -80,6 +80,10 @@ CURATED_FIELDS = frozenset({
     "note",
     "mint_verified",
     "verified",
+    # Structured, source-attributed mintmaster list (schema MintmasterEntry,
+    # curator 2026-10-13). No seed builder emits it yet — it is curator-filled
+    # on the final entry — so without this a regen drops it as stale.
+    "mintmasters",
     # V2 bidirectional seed↔curated link (Phase 6) — both fields are
     # curator-maintained or relink-script-derived audit trail of the
     # §9a multi-specimen merge. They MUST persist across regen so that:
