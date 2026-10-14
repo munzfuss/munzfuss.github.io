@@ -1585,6 +1585,49 @@ h2[style] {
    below, so the eye attaches it upward. */
 .gw-v .gw-phase .gw-note:not(:last-child) { margin-top: -1px; margin-bottom: 1.5px; }
 
+/* In-card act reference: «per <act>» inside a Grundwerte value names a
+   `kind: decree` row of the same card (`data-act` slug on both ends, see
+   GrundwerteRow.act). Dotted accent underline + `cursor: help` is the page's
+   «something is here» idiom; app.js shows the decree row as a hover card. */
+.gw-v .gw-act {
+  color: var(--accent);
+  text-decoration: underline dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+.gw-v .gw-act:hover,
+.gw-v .gw-act:focus-visible,
+.gw-v .gw-act.gw-act-open {
+  color: var(--text-primary);
+  text-decoration-style: solid;
+  text-decoration-color: var(--accent);
+}
+.gw-v .gw-act:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+/* The hover card: a cut-out of the Grundwerte card (same surface, the cloned
+   `.gw-row.gw-decree` keeps its own look) lifted off the page by an accent
+   frame, a page-coloured halo ring and a drop shadow — the card beneath has
+   the same background, so the frame is what separates the two. Appended to
+   <body> by app.js (`.gw` clips overflow, an in-card popup would be cut). */
+.gw-act-pop {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  width: max-content;
+  max-width: min(380px, calc(100vw - 24px));
+  background: var(--bg-subcard);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-card, 6px);
+  box-shadow: 0 0 0 3px var(--bg-page), 0 6px 18px rgba(0,0,0,0.5);
+  padding: 4px 12px;
+  animation: tt-fade 160ms ease-out;
+}
+[data-theme="v1"] .gw-act-pop { background: var(--bg-card); }
+[data-theme="v3"] .gw-act-pop { background: var(--bg-card); }
+.gw-act-pop .gw-row.gw-decree { margin: 0; padding: 7px 8px; border-bottom: 0; }
+.gw-act-pop .gw-rows { font-size: 13px; }
+.gw-act-pop .gw-act { color: inherit; text-decoration: none; cursor: inherit; }
+
 /* Rechnungsfraktionen sub-card — sits in the right column of gw-body */
 .gw-fr {
   background: rgba(212, 168, 90, 0.04);

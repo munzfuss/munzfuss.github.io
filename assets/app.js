@@ -472,6 +472,184 @@
 })();
 
 /* ---------------------------------------------------------------------
+ * Act hover cards in the Grundwerte cards.
+ *
+ * A value line «per <act>» carries `<span class="gw-act" data-act="slug">`
+ * and the act itself is a `.gw-row.gw-decree[data-act="slug"]` of the SAME
+ * card. Hovering (or focusing / tapping) the reference shows that decree
+ * row as a card: same markup, so the card CSS styles it; appended to <body>
+ * because `.gw` clips overflow. The copy is built from cloned DOM only.
+ *
+ * A decree row may itself only say «per <other act>» (the 1524 Kongebrev
+ * restates the 1514 Møntordning). Such a line is resolved: the phase whose
+ * value is nothing but a reference is replaced by the referenced act's
+ * phases (recursively, depth-capped; the schema forbids cycles), filtered
+ * by label when the referring label lists parts («Pieces per mark / Rough
+ * weight»). Citations (<sup>) are dropped — the card shows parameters.
+ */
+(function () {
+  var pop = null, openFor = null;
+  var MAX_DEPTH = 4;
+
+  function ensurePop() {
+    if (pop) return pop;
+    pop = document.createElement("div");
+    pop.className = "gw-act-pop";
+    pop.id = "gw-act-pop";
+    pop.setAttribute("role", "tooltip");
+    pop.style.visibility = "hidden";
+    pop.style.opacity = "0";
+    document.body.appendChild(pop);
+    return pop;
+  }
+  function decreeRow(card, slug) {
+    var rows = card.querySelectorAll(".gw-row.gw-decree[data-act]");
+    for (var i = 0; i < rows.length; i++) if (rows[i].getAttribute("data-act") === slug) return rows[i];
+    return null;
+  }
+  function labelParts(label) {
+    return label.toLowerCase().split("/").map(function (s) { return s.trim(); }).filter(Boolean);
+  }
+  function phaseLabel(ph) {
+    var l = ph.querySelector(".gw-phase-label");
+    return l ? l.textContent.trim() : "";
+  }
+  // A phase is a pure reference when, apart from its label and citations,
+  // its only element child is one .gw-act and the text around it is short
+  // connective («per», «згідно з», «iflg.»).
+  function soleRef(ph) {
+    var ref = null, text = "";
+    for (var n = ph.firstChild; n; n = n.nextSibling) {
+      if (n.nodeType === 3) { text += n.textContent; continue; }
+      if (n.nodeType !== 1) continue;
+      if (n.classList.contains("gw-phase-label") || n.tagName === "SUP") continue;
+      if (n.classList.contains("gw-act") && !ref) { ref = n; continue; }
+      return null;
+    }
+    if (!ref) return null;
+    return text.trim().length <= 12 ? ref.getAttribute("data-act") : null;
+  }
+  // Resolved .gw-phase elements of an act: its own phases, with pure
+  // reference lines replaced by the referenced act's phases.
+  function phasesOf(card, slug, depth) {
+    var row = decreeRow(card, slug);
+    if (!row || depth > MAX_DEPTH) return [];
+    var v = row.querySelector(".gw-v");
+    if (!v) return [];
+    var out = [];
+    var phases = v.querySelectorAll(":scope > .gw-phase");
+    for (var i = 0; i < phases.length; i++) {
+      var ph = phases[i];
+      var target = soleRef(ph);
+      if (target && target !== slug) {
+        var parts = labelParts(phaseLabel(ph));
+        var got = phasesOf(card, target, depth + 1);
+        var pick = got;
+        if (parts.length > 1) {
+          pick = got.filter(function (g) { return parts.indexOf(phaseLabel(g).toLowerCase()) >= 0; });
+          if (!pick.length) pick = got;
+        }
+        for (var j = 0; j < pick.length; j++) out.push(pick[j]);
+      } else {
+        out.push(ph.cloneNode(true));
+      }
+    }
+    return out;
+  }
+  function buildActCard(card, slug) {
+    var row = decreeRow(card, slug);
+    if (!row) return null;
+    var box = document.createElement("div");
+    box.className = "gw-rows";
+    var r = document.createElement("div");
+    r.className = "gw-row gw-decree";
+    var k = row.querySelector(".gw-k");
+    if (k) r.appendChild(k.cloneNode(true));
+    var v = document.createElement("div");
+    v.className = "gw-v";
+    var phases = phasesOf(card, slug, 0);
+    for (var i = 0; i < phases.length; i++) v.appendChild(phases[i]);
+    r.appendChild(v);
+    box.appendChild(r);
+    // parameters only: no citations, no nested hover targets, no ids
+    var strip = box.querySelectorAll("sup");
+    for (i = 0; i < strip.length; i++) strip[i].parentNode.removeChild(strip[i]);
+    var acts = box.querySelectorAll(".gw-act");
+    for (i = 0; i < acts.length; i++) { acts[i].removeAttribute("data-act"); acts[i].removeAttribute("tabindex"); }
+    var ids = box.querySelectorAll("[id]");
+    for (i = 0; i < ids.length; i++) ids[i].removeAttribute("id");
+    return box;
+  }
+  function show(trigger) {
+    if (trigger === openFor) return;
+    hide();
+    var card = trigger.closest(".gw");
+    var slug = trigger.getAttribute("data-act");
+    if (!card || !slug) return;
+    var content = buildActCard(card, slug);
+    if (!content) return;
+    var p = ensurePop();
+    p.textContent = "";
+    p.appendChild(content);
+    openFor = trigger;
+    trigger.classList.add("gw-act-open");
+    trigger.setAttribute("aria-describedby", p.id);
+    var rect = trigger.getBoundingClientRect();
+    var tw = p.offsetWidth, th = p.offsetHeight, pad = 8;
+    var top = rect.top - th - pad;
+    if (top < 4) top = rect.bottom + pad;
+    var vw = document.documentElement.clientWidth;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    if (left + tw > vw - 4) left = vw - tw - 4;
+    if (left < 4) left = 4;
+    p.style.top = top + "px";
+    p.style.left = left + "px";
+    p.style.visibility = "visible";
+    p.style.opacity = "1";
+    p.style.animation = "none";
+    void p.offsetWidth;
+    p.style.animation = "";
+  }
+  function hide() {
+    if (openFor) {
+      openFor.classList.remove("gw-act-open");
+      openFor.removeAttribute("aria-describedby");
+    }
+    openFor = null;
+    if (!pop) return;
+    pop.style.opacity = "0";
+    pop.style.visibility = "hidden";
+  }
+  function triggerOf(ev) {
+    var t = ev.target && ev.target.closest && ev.target.closest(".gw-act[data-act]");
+    return t && !t.closest(".gw-act-pop") ? t : null;
+  }
+  var acts = document.querySelectorAll(".gw .gw-act[data-act]");
+  for (var i = 0; i < acts.length; i++) acts[i].setAttribute("tabindex", "0");
+  document.addEventListener("mouseover", function (ev) { var t = triggerOf(ev); if (t) show(t); });
+  document.addEventListener("mouseout", function (ev) {
+    var t = triggerOf(ev);
+    if (!t || t !== openFor) return;
+    if (ev.relatedTarget && t.contains(ev.relatedTarget)) return;
+    hide();
+  });
+  document.addEventListener("focusin", function (ev) { var t = triggerOf(ev); if (t) show(t); });
+  document.addEventListener("focusout", function (ev) { var t = triggerOf(ev); if (t && t === openFor) hide(); });
+  // Touch (no hover): a tap toggles; a tap anywhere else closes. With a
+  // pointer the card already follows hover, so a click on the trigger is
+  // left alone (it would otherwise close the card under the cursor).
+  var noHover = window.matchMedia && window.matchMedia("(hover: none)").matches;
+  document.addEventListener("click", function (ev) {
+    var t = triggerOf(ev);
+    if (t) { if (noHover) { if (t === openFor) hide(); else show(t); } return; }
+    if (openFor) hide();
+  });
+  document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") hide(); });
+  document.addEventListener("scroll", hide, true);
+  window.addEventListener("resize", hide);
+})();
+
+/* ---------------------------------------------------------------------
  * Smart tooltip edge-anchoring (for non-portal `[data-tooltip]` ::after
  * pseudos — i.e. timeline layers, header chips, etc., everything OUTSIDE
  * the .mt-scroll table portal handler above).
