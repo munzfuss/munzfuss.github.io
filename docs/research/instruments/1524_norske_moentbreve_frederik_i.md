@@ -227,8 +227,23 @@ Akershus (Wilcke s. 204).
 - **Successors:** Christian III's Haandfæstning 30 Oct 1536; Møntordning 20 Sept 1541 and the
   tillæg of 27 Sept 1544 for Jørgen Kock d. y. in Norway (Gullnes — `../moentordning_1541.md`;
   Holst: Skillinger 118 instead of 106/M at 4 lod, Hvide 314 instead of 318/M at 3½ lod);
-  Christian III's order of 4 Oct 1546 ending Norwegian coinage; Aabent Brev 11 Oct 1551 «om
-  Mønten» (register §1a — fold here on next revision).
+  Christian III's order of 4 Oct 1546 ending Norwegian coinage; **Aabent Brev 11 Oct 1551 «om
+  Mønten»** to the Norwegian lensmænd (Wilcke VII s. 305, after R. A. D. K. B 19, Registre over
+  alle Lande no. 5; N. R. R. I p. 133): the king had learnt that the coin struck in Norway,
+  «hvert Stk. paa 4 Hvide», was «foragtes og forringes, saa at Ingen oppebærer eller udgiver
+  den for mere end 2 Hvide»; with his council he orders all in Norway «at holde den norske
+  Mønt for sit fulde Værd, nemlig et norsk 4 Hvid Stk. for 4 danske Hvide og skal 36 Stkr.
+  deraf regnes saa gode som en Jochimsdaler»; whoever takes them lower forfeits the money and
+  goods, half to the king, half to the informer; to be read at the things. Wilcke: «næppe …
+  andet end den specifik norske Mønt fra Frederik I.s Tid 1524–27, der blev udmøntet som 4
+  Hvid ß» — i.e. the Oslo / Bergen Skilling of §§3–4 above, whose fine weight «svarede stort
+  set til ß d. 1541». A tariff act (36 Skilling = 1 Joachimsdaler → the Norwegian 4-Hvid
+  piece at 1/36 of 25,578 g = 0,711 g fine — against its 1527 target of 0,620 g at 106/M and
+  4½ lod, i.e. the tariff over-rates it by about 15 %; errechnet), no grid; preceded by the
+  king's letter of 4 July 1551 to Peder Hansen on Akershus, «at han … for nogen mærkelig
+  Aarsags Skyld ikke for Tiden [kunde] gøre nogen Forandring deri». Key
+  `wilcke-1950-norge-1551-fire-hvid-paabud`; register §1a, 1551. (Folded in 2026-10-14 from
+  the PLAN queue; Wilcke VII s. 305 is the only reading — N. R. R. I would give the text.)
 
 ## 7. Our data
 

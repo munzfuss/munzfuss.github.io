@@ -160,9 +160,9 @@ Matthias Urban for 1 000 Dlr (1 Sept 1582); the old mintmaster Hans Delhusen con
   Mark (9,744 g at ca. 650 ‰) whose «gamle Skrot» the Mark keeps while the fineness falls to
   614,58 ‰; Gulden's assay of the Swedish öre and skilling of 1580–81 as the argument.
 - **Successors.** Befaling for Norge 1 Aug 1589 (confirms 4 Mark = 1 daler); Metzner's
-  Bestalling 14 Sept 1593 and Møntordning 1 Aug 1594; Müntzordnung 1 Aug 1597; Christian IV's
-  Møntanordning 20 May 1593 (the Mark at 7,3 g of 14-lot silver — register §1b; a different
-  Mark, Wilcke I s. 48); the Aabent Brev of 12 May 1602 (daler to 66 ß) and the Forordning of
+  Bestalling 14 Sept 1593 and Møntordning 1 Aug 1594; Müntzordnung 1 Aug 1597; (the «Møntanordning 20 May 1593 — the Mark at 7,3 g of 14-lot
+  silver», Wilcke I s. 48, is SIGISMUND'S SWEDISH ordinance, not a Danish act — corrected
+  2026-10-14, `1593_bestalling_metzner.md` §4.3 D2); the Aabent Brev of 12 May 1602 (daler to 66 ß) and the Forordning of
   25 June 1602 (new silver grid) — `1602_forordning_8_september.md` (to write).
 
 ## 7. Our data

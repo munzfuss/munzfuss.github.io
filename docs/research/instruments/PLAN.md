@@ -29,7 +29,7 @@
 | ☑ | 1540 · 1541, 20 March · 20 Sept · 1544, 27 Sept | Reces 1540 cap. 12; Maal og Vægt; Møntordning Christian III; tillæg 1544 | A | `../moentordning_1541.md` (pre-dates this folder; register links it) | — |
 | ☑ | 1544, Dec · 1547, 22 Jan | Brev to the Hansestæder; Bestalling + Müntzordnung Jørgen Kock d. y., Flensborg | A | `1547_bestalling_flensborg.md` | «1 M» vs «ein wergk» open |
 | ✖ | 1550, 8 July | Instruks for tolder Sander Leyl | C | register only | — |
-| ☐ | 1551, 11 Oct | Aabent Brev to the Norwegian lensmænd «om Mønten» | B | fold into `1524_norske_moentbreve_frederik_i.md` §6 on next revision | Wilcke VII |
+| ◐ | 1551, 11 Oct | Aabent Brev to the Norwegian lensmænd «om Mønten» (4-Hvid piece = 4 danske Hvide, 36 = 1 Joachimsdaler) | B | `1524_norske_moentbreve_frederik_i.md` §6 (folded 2026-10-14) | N. R. R. I text not seen |
 | ☑ | 1563, 13 June → 1564, 10 Dec (+ 1567, 11 March) | Ordre 13 June 1563 (the Klipping grid); the lost Forordning; the enforcing chain nr. 174–240; the 1567 fines act; Norway 1564 | A | `1563_klippinge_syvaarskrigen.md` | Forordning lost; N dated 7 May / 28 June; 2-ß grid unknown; f2h15 weight unsourced |
 | ◐ | 1564, 11 Dec → 1566, 1 March → 1567 | Bestalling Hans Køppelin (Bremerholm) → Flensborg; the 1567 assay | A | `1563_klippinge_syvaarskrigen.md` §4.3, §5 (no grid in the Bestalling — standard by reference) | — |
 | ✖ | 1567 · 1569 · 1571 · 1572–74 · 1576–81 · 1580 · 1581 · 1586 · 1590 | Missiver / åbne breve on dalers in told, jordskyld reckoning | C | register only (1572 toll letters are in the 1572 dossier §6) | — |
@@ -37,7 +37,7 @@
 | ☑ | 1572, 16 June | Aabent Brev om Møntens Omsættelse | A | `1572_aabent_brev_moentens_omsaettelse.md` | — |
 | ☑ | 1582, 12 Jan | Befaling / Møntanordning for Poul Gulden | A | `1582_befaling_poul_gulden.md` | original = T.K. 160 no. 8 (scan task) |
 | ☐ | 1582, 12 Feb · 1586, 6 June (NO) | Åb. br.; Forordning for Norway | B | fold into the 1582 dossier §6 on next revision | Secher II |
-| ☐ | 1593, 20 May · 14 Sept · 1594, 1 Aug | Møntanordning 1593; Bestalling Andreas Metzner + Møntordning for Metzner | A | `1593_moentordning_metzner.md` (to write) | Wilcke VII 7-6 (re-issue of the 1582 grid, 1597 «samme indhold») |
+| ☑ | 1593, 14 Sept · 1594, 1 Aug / 1597, 1 Aug | Bestalling Andreas Metzner; Møntordning for Metzner (= 1582 grid) — the «Møntanordning 20 May 1593» was SWEDISH, dropped | A | `1593_bestalling_metzner.md` | O's date 1594 (Wilcke II) vs 1597 (Wilcke VII); Bestalling text (NFM I) not in cache |
 | ☑ | 1602, 12 May · 25 June · 8 Sept · 1604, 20 Nov · 1605, 31 Aug | The Christian IV reform acts | A | `1602_forordninger_moentreform.md` (+ `../daler_klippe_1604.md`) | — |
 | ☐ | 1605, 17 March · 8 July · 4 Aug | Frdg. om møntens forandring; the Slesvig / Sønderborg coin | B | fold into the 1602 dossier §6 on next revision | Secher III |
 | ☐ | 1607, 28 May · 1609, 28 Sept | Bestalling og Ordning / Müntz-Ordnung Hans Flemming, Helsingør | A | `1607_muentzordnung_flemming.md` (to write) | Wilcke I; Sjæll. Reg. |
