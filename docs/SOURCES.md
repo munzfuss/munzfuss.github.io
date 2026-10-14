@@ -2111,3 +2111,8 @@ MB 57 cuid 167747):
 Curator decision: NGC refs_pool entries carry no archive copy. The quoted
 record is also in our harvest cache (`scripts/cache/ngc/<region>/cuid_<id>.parsed.json`),
 which is the in-house fallback for re-verifying a quote.
+
+
+### 13.21 Wilcke VII (1950) — text and table on the same page can disagree; cite both or neither (2026-10-14)
+
+Wilcke's running text and his own summary tables are not always reconciled. Case: the Frederik II Mark of 1560 — text s. 312 «der gik 34 1/9 M paa M fin … en Lødighed paa ca. 11» (ca. 6,855 g fine), table s. 315 «ca. 12» lod, «ca. 34 5/9 M», ca. 6,75 g fine — about one lod apart, same assay source (Kølle, *Beskrivelsen* p. LVII). Likewise one letter with two dates on one page (the Norwegian Klipping Paabud 1564: «7. Maj» in the text, «28. juni» in the footnote, s. 358). *Decision.* A figure from Wilcke VII is not safe until the text AND the table of the same chapter have been read; where they differ, the dossier records both readings in its «⚠ Source-internal discrepancies» block (template `docs/research/instruments/README.md` §8) and marks the figure ⚠ in the parameters table. The 1560 case: `docs/research/instruments/1563_klippinge_syvaarskrigen.md` §4.4.

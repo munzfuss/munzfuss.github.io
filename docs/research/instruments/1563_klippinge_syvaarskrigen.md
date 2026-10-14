@@ -44,7 +44,7 @@
 | **214** | **27 April 1564**, København | **Åb. brev om livsstraf for den, som ikke vil tage klippingemønten for dens pålydende værdi** — a printed patent (fol.); the only act of the chain printed in full | Frederik II → the whole realm | DK | Trykt patent, Dske. kancellis saml.; Dske. Mag. 3, 111–12; Secher I nr. 214, s. 246–248 |
 | 215 | 28 April 1564, København | Missive til lænsmændene — to read 214 at the herredsting; offenders to be hanged «i galgen»; the same day to the towns, with a gallows on the market | Frederik II | DK | Tegn. 7, 711–12; Secher I nr. 215, s. 248 |
 | 240 | 10 Dec 1564, Nyborg | Åb. brev til undersåtterne over alt Danmark — 214 re-issued against those who refuse the coin in trade with the king's soldiers («næsten ordret enslydende») | Frederik II | DK | Koncept; Secher I nr. 240, s. 260 (variants to 214) |
-| N | 1564 (Wilcke: 7 May; his note: letter of 28 June) | Paabud to «alle vore Undersaatter … i Norge» — the Klippinge («2 M Stkr., 1 M Stkr. 4 ß og 2 ß Stkr.») legal tender in Norway at 3 Mark per daler | Frederik II | NO | Norske Magasin I p. 434 (Wilcke s. 358) |
+| N | **⚠ 1564, 7 May (Wilcke's text) / 28 June (his note) — §4.4 D2** | Paabud to «alle vore Undersaatter … i Norge» — the Klippinge («2 M Stkr., 1 M Stkr. 4 ß og 2 ß Stkr.») legal tender in Norway at 3 Mark per daler | Frederik II | NO | Norske Magasin I p. 434 (Wilcke s. 358) |
 | N′ | 14 Oct 1564 | the same to Trondhjem Stift | Frederik II | NO | Wilcke s. 359 (N. R. R.) |
 | 359 | 11 March 1567, København | Åb. brev til landsdommerne — fines of 3 or 40 Mark «udlegge … uti rund mynt, och skal beregnis uti hver mrk. 16 sk.» | Frederik II «med vore Danmarkis rigis raad» | DK | Tegn. 8; Secher I nr. 359, s. 332–333 |
 | K | 11 Dec 1564 | Bestalling for 1 year, Hans Køppelin, mintmaster on Bremerholm (300 Mark d.; Danish Møntere) — no grid | Frederik II | DK | R. A. T. K. p. 18 no. 160, p. 4 no. 12 (Wilcke s. 325–326 n. 1) |
@@ -255,7 +255,7 @@ in 4-ß Klippinge 12 × 0,664 = 7,968 g (Wilcke; exact 7,972). Against the 1563 
 |---|---|---|---|---|---|---|
 | Mark 1544 (Christian III) | 24 | 13½ (843,75) | 9,744 | 8,221 | 28,44 M | ordinance 1544; Wilcke s. 315 |
 | Mark 1559 | 24 | 13½ | 9,744 | 8,221 | 28,44 M | Hede 9A: «slået efter Christian 3.s møntordning 1544» |
-| Mark 1560 | 24 | ca. 12 | ca. 9 | ca. 6,75 | ca. 34 5/9 M | assay «M og ß Stkr. fra dette Aar»: 34 1/9 M per fine mark, «Lødighed paa ca. 11» (s. 312) — the table says ca. 12 / 34 5/9 (s. 315) — Wilcke's own figures disagree, §8.4 |
+| Mark 1560 | 24 | **⚠ ca. 12 (table) / ca. 11 (text)** | ca. 9 | ca. 6,75 | **⚠ ca. 34 5/9 M (table) / 34 1/9 M (text)** | assay (Kølle, *Beskrivelsen* p. LVII) — **Wilcke's text s. 312 and his table s. 315 disagree; neither figure is safe to cite alone — see §4.4 D1** |
 | **Rund Mark 1563** | 24 | ca. 10⅖ (650) — assay | 9,744 | 6,334 | 36,92 M | Wilcke s. 315; Hede 9B: .649, 6,326 g, 12,321 daler (= 36,96 M) |
 | 1 ß 1562 | 150 | 3 | 1,559 | 0,292 | — | Wilcke s. 315 |
 | Klippinge after 1563 | — | «yderligere forringet» | — | — | eventually 3 M Klipping = 1 round M; 4 round M = 1 Dlr. → 12 M Klipping per Dlr. | Rentemester extracts (Wilcke s. 329, 339); no grid |
@@ -286,6 +286,20 @@ Hamburg lod); 233,855/208 = 1,124 ✓; 1,124 × 0,3281 = 0,369 ✓. Output (Køp
 account, s. 353): 680 lødige M 13 lod (17 April 1566 – 13 March 1567) + 474 M 4 lod (18 June –
 2 Dec 1567) = 1 155 M 3 lod, Slagskat 4 ß per lødig mark = 149 Dlr.; «ca. 11 800 Dlr.».
 Wegener's coin (W) — no figures in Wilcke beyond the Wardein's «ß 3 Penninge for ringe».
+
+### 4.4 ⚠ Source-internal discrepancies (read before citing any figure above)
+
+Figures that one source gives in two forms, or that our data carries without the source
+printing them. Listed here so that a partial reading of this dossier (or of the source) does
+not pick one value as if it were the only one. Each is also an open question in §8.
+
+| # | Figure | Reading A | Reading B | Status |
+|---|---|---|---|---|
+| D1 | **Mark 1560, fineness and yield** | Wilcke VII s. 312 (text): assay «34 1/9 M paa M fin», «Lødighed paa ca. 11», ca. 6,855 g fine | Wilcke VII s. 315 (table): «ca. 12» lod, «ca. 34 5/9 M», ca. 6,75 g fine | Wilcke contradicts himself by about one lod; the underlying assay is Kølle, *Beskrivelsen* p. LVII (not in hand). Cite BOTH or neither. §8.4 |
+| D2 | **Date of the Norwegian Paabud (N)** | Wilcke s. 358 text: «Den 7. Maj 1564» | Wilcke s. 358 n. 1: «Norske Magasin I, p. 434. Brev af 28. juni 1564» | One letter, two dates in the same paragraph; the register row formerly carried 28 June alone. Norske Magasin I would settle it. §8.2 |
+| D3 | **4 Skilling Klipping 1563, weight** | the order (Wilcke s. 312, 315): 88/M at 4 lod = 2,657 g / 0,664 g fine | our final `dk-hede-f2h15`: 6,878 g / .437 (the Mark Klipping's values) | Hede's page prints only «Finhed: 0,437», no weight; the seed's 6,878 g has no source on the page and no curator decision (`why`). Do not cite 6,878 g for the 4 ß. §8.5 |
+| D4 | **2 Mark Klipping, fineness** | the order (s. 312): «ligeledes 7 Lod fine» | Wilcke's table s. 315: «—» in the Lødighed column | not a contradiction — the table leaves the cell empty; the 6,018 g fine it prints presupposes 7 lod |
+| D5 | **Bestalling Køppelin, date** | Wilcke s. 325–326: 11 Dec 1564 | the register's §3 row (before this dossier): «15 Sept 1563» | B was a misreading — 15 Sept 1563 is the refund of the Saxon minters' travel money on the same page; corrected |
 
 ## 5. Mints and mintmasters
 

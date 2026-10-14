@@ -67,6 +67,13 @@ register links it.
    `trace_coin.py`).
 8. **Open questions** — each paired with what would settle it. Hypotheses
    labelled as such (§0b).
+   **Source-internal discrepancies get their own marked block** (a «⚠ Source-internal
+   discrepancies» sub-section under §4, as `1563_klippinge_syvaarskrigen.md` §4.4): when
+   one source gives a figure in two forms (Wilcke's text vs his own table; a date in the
+   text vs the footnote), or our data carries a value the source does not print, list
+   both readings side by side AND flag the figure with ⚠ where it appears in the
+   parameters table. A reader who opens only the table must see that the value is
+   contested; burying it in §8 is not enough (curator direction 2026-10-14).
 9. **Sources consulted** — full bibliographic lines, with URLs and archive
    copies.
 
