@@ -130,7 +130,7 @@ coins:
     nominal: 1 Gylden
     metal: gold
     metal_verified: true
-    mint: Sønderborg
+    mint: Reinfeld
     mint_verified: true
     ruler: Hans den Yngre
     year_first: 1619
@@ -157,6 +157,19 @@ coins:
       active: false
       agrees_with_active: true
       reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'sonderburg_duchy'; active entity is 'sonderburg_duchy'.
+    _source_errata:
+      - field: mint
+        printed: Sønderborg
+        correct: Reinfeld
+        curator: Serhii
+        date: '2026-10-14'
+        reason: KMM «place» for GP 888.341 is Sønderborg, the ducal seat; the mint of this type is Reinfeld. Jensen, Hertug Hans den Yngre (1971) catalogues the coin as no. 2 under «B. Prægning i 
+          Reinfeld 1618–1620» and cites this very specimen («1) KM, 3.15 gr. (GP 888, H. Mayntzhusen)»); the Reinfeld mint was built 1618 (mintmaster Tobias Reinhardt), Sønderborg struck only 1604 and
+          from spring 1622. Same type as NGC/NumisMaster KM 10 / Lange 527 (mint Reinfeld). Curator decision 2026-10-14 (Serhii).
+    _errata_applied:
+      - field: mint
+        printed: Sønderborg
+        correct: Reinfeld
   - id: kmk-133194
     fuss: seed_unsorted
     phase: kmk

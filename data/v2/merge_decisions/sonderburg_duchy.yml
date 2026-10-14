@@ -1,0 +1,22 @@
+# Curator merge decisions — entity `sonderburg_duchy`.
+#
+# Loaded by merge_seeds_cross_source.py::_load_decisions. Surfaces:
+#   merges:      force member-ids into one unified class
+#   no_merges:   forbid member pairs from uniting
+
+merges:
+  # Hans den Yngre, Goldgulden 1619, Reinfeld — ONE coin, three records.
+  # §9.4 graph: Lange base 527 links KMM GP 888.341 (kmk-81763) with the NGC
+  # record (ngc-1161408: KM 10, Sieg 18, Lange 527); KM base 10 links the NGC
+  # record with NumisMaster MC_101382. Jensen 1971 no. 2 («B. Prægning i
+  # Reinfeld 1618–1620», Lange nr. 527) cites the KMM specimen itself:
+  # «1) KM, 3.15 gr. (GP 888, H. Mayntzhusen)». The KMM place «Sønderborg»
+  # is corrected to Reinfeld by a _source_errata on the seed (curator
+  # 2026-10-14). The whole class is named so no transitive member is expelled.
+  - members: [kmk-81763, ngc-1161408, schleswig_holstein-numismaster-101382]
+    reason: >-
+      1 Goldgulden 1619, Hans den Yngre, Reinfeld — KMM GP 888.341 (Lange 527,
+      3.15 g; the specimen Jensen 1971 no. 2 cites), NGC cuid 1161408 (KM 10,
+      Sieg 18, Lange 527, Fr 3099) and NumisMaster MC_101382 (KM 10, Fr 3099)
+      are the same type: shared Lange base 527 and KM base 10 (§9.4). Indices
+      and the KMM weight accumulate list-form per §9a. Curator 2026-10-14.

@@ -1403,42 +1403,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Gylden
-    ruler: Hans den Yngre
-    issuing_entity: sonderburg_duchy
-    id: unified-kmk-81763
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    mint: Sønderborg
-    catalog:
-      lange: '527'
-    metal: gold
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 3.15
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81763
-        ref: KMM 81763 (Inv. GP 888.341)
-    verification_note: *id001
-    composed_of:
-      - unified-kmk-81763
-    _entity_routing_hint:
-      rule_id: sonderburg_ducal_lineage
-      matched_on:
-        ruler_lineage: hans den yngre
-      would_route_to: sonderburg_duchy
-      active: false
-      agrees_with_active: true
-      reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'sonderburg_duchy'; active entity is 'sonderburg_duchy'.
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 2 Skilling lybsk
     ruler: Hans den Yngre af Sønderborg
     issuing_entity: sonderburg_duchy
@@ -1560,6 +1524,8 @@ coins:
     weight_rough_g:
       - value: 3.15
         source: Jensen 1971 nr. 2 (Lange 527) — Nationalmuseets Møntsamling, København, GP 888 (ex H. Mayntzhusen)
+      - value: 3.15
+        source: kmk
       - value: 3.5
         source: ngc
         erroneous:
@@ -1588,6 +1554,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/pdf2/JSJ_HdY.pdf
         ref: Jørgen Steen Jensen, Hertug Hans den Yngre (København 1971), Katalog, nr. 2 — «Guldgylden, 1619 … Lange nr. 527. 1) KM, 3.15 gr. (GP 888, H. Mayntzhusen)»
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81763
+        ref: KMM 81763 (Inv. GP 888.341)
     note:
       de: Brustbild Johanns nach rechts im Innenkreis / Reichsapfel im Innenkreis. NGC/NumisMaster geben für diesen Goldgulden irrtümlich das Schablonengewicht und das Schablonenkorn des Dukaten an 
         (3,5 g, .986). Geprägt zu Reinfeld 1618-1620, Müntzmeister Tobias Reinhardt. Gewogenes Stück 3,15 g (Kgl. Müntzkabinett Kopenhagen, GP 888, ex Mayntzhusen); zwei Exemplare bekannt.
@@ -1609,6 +1578,14 @@ coins:
         gulden at 72 pieces to the 18½-carat mark, and these ducal issues are imperial and post-edict."
       fineness_verified: false — canonical anchor, not a source reading.
       verification_note: Explains the anchor to the reader.
+    _entity_routing_hint:
+      rule_id: sonderburg_ducal_lineage
+      matched_on:
+        ruler_lineage: hans den yngre
+      would_route_to: sonderburg_duchy
+      active: false
+      agrees_with_active: true
+      reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'sonderburg_duchy'; active entity is 'sonderburg_duchy'.
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant

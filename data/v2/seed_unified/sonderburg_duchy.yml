@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `sonderburg_duchy`.
-# Generated 2026-10-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-14 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sonderburg_duchy.yml across all sources.
 #
 # Input: 171 per-source seed entries.
-# Output: 78 unified entries (one per physical coin).
+# Output: 77 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sonderburg_duchy
-generated_at: '2026-10-09'
+generated_at: '2026-10-14'
 coins:
   - id: unified-dk-bruun-14662
     fuss: seed_unsorted
@@ -2806,42 +2806,6 @@ coins:
       would_route_to: sonderburg_duchy
       active: true
       reasoning: Rule matched on ruler_lineage='hans den yngre'; mint absent / unverified → rule re-routed.
-  - id: unified-kmk-81763
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Gylden
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    ruler: Hans den Yngre
-    mint: Sønderborg
-    catalog:
-      lange: '527'
-    metal: gold
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 3.15
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81763
-        ref: KMM 81763 (Inv. GP 888.341)
-    verification_note: *id002
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - kmk-81763
-    _entity_routing_hint:
-      rule_id: sonderburg_ducal_lineage
-      matched_on:
-        ruler_lineage: hans den yngre
-      would_route_to: sonderburg_duchy
-      active: false
-      agrees_with_active: true
-      reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'sonderburg_duchy'; active entity is 'sonderburg_duchy'.
   - id: unified-ngc-1157218
     fuss: seed_unsorted
     phase: ngc
@@ -3079,6 +3043,8 @@ coins:
     weight_rough_g:
       - value: 3.15
         source: Jensen 1971 nr. 2 (Lange 527) — Nationalmuseets Møntsamling, København, GP 888 (ex H. Mayntzhusen)
+      - value: 3.15
+        source: kmk
       - value: 3.5
         source: ngc
         erroneous:
@@ -3098,6 +3064,9 @@ coins:
           uk: Том Краузе по Шлезвіг-Гольштейну подає це число для всіх золотих монет, які не мають власної ваги; виміром саме цього типу воно не є. Jensen 1971 зважує чотири екземпляри цього 
             карбування — від 3,08 до 3,22 г.
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81763
+        ref: KMM 81763 (Inv. GP 888.341)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-goldgulden-km-10-1619-cuid-1161408-duid-1387257
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -3120,8 +3089,22 @@ coins:
       uk: Проби для цього карбування джерела не подають; наведено власну пробу стопи — 18½ карата за Вормським імперським рішенням 1495 р.
     issuing_entity: sonderburg_duchy
     composed_of:
+      - kmk-81763
       - ngc-1161408
       - schleswig_holstein-numismaster-101382
+    _entity_routing_hint:
+      rule_id: sonderburg_ducal_lineage
+      matched_on:
+        ruler_lineage: hans den yngre
+      would_route_to: sonderburg_duchy
+      active: false
+      agrees_with_active: true
+      reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'sonderburg_duchy'; active entity is 'sonderburg_duchy'.
+    _errata_applied:
+      - source: kmk-81763
+        field: mint
+        printed: Sønderborg
+        correct: Reinfeld
   - id: unified-ngc-1161491
     fuss: seed_unsorted
     phase: ngc
