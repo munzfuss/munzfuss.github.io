@@ -40,8 +40,8 @@
 | ☑ | 1593, 14 Sept · 1594, 1 Aug / 1597, 1 Aug | Bestalling Andreas Metzner; Møntordning for Metzner (= 1582 grid) — the «Møntanordning 20 May 1593» was SWEDISH, dropped | A | `1593_bestalling_metzner.md` | O's date 1594 (Wilcke II) vs 1597 (Wilcke VII); Bestalling text (NFM I) not in cache |
 | ☑ | 1602, 12 May · 25 June · 8 Sept · 1604, 20 Nov · 1605, 31 Aug | The Christian IV reform acts | A | `1602_forordninger_moentreform.md` (+ `../daler_klippe_1604.md`) | — |
 | ☐ | 1605, 17 March · 8 July · 4 Aug | Frdg. om møntens forandring; the Slesvig / Sønderborg coin | B | fold into the 1602 dossier §6 on next revision | Secher III |
-| ☐ | 1607, 28 May · 1609, 28 Sept | Bestalling og Ordning / Müntz-Ordnung Hans Flemming, Helsingør | A | `1607_muentzordnung_flemming.md` (to write) | Wilcke I; Sjæll. Reg. |
-| ☐ | 1609, 3 Feb · 4 Oct · 1610, 3 April · 1613, 15 May · 1616, 4 July | Mandat / Forordninger om møntens forandring (daler 68 ß etc.) | B | fold into the 1607 dossier §6 (the daler-course chain 1609–16) | Secher III; Wilcke I |
+| ☑ | 1607, 28 May · 1609, 28 Sept | Bestalling + Münzordnung Hans Flemming, Helsingør (the mint farmed; 1602 grid by reference; Løvedaler, gold on merchants' Forlag); new Bestalling 1609 with the daler licence | A | `1607_muentzordnung_flemming.md` | texts of B/O/B′ (NFM I) not in cache; daler 14 4/18 target vs 14 lod outcome; six ⚠ items |
+| ◐ | 1609, 3 Feb · 3 Oct · 1610, 3 April · 1613, 15 May · 1616, 4 July | Mandat / Forordninger om møntens forandring (daler 68 → 74 → 80 ß; foreign small coin; tolls in rigsdaler) | B | `1607_muentzordnung_flemming.md` §3, §6 (texts from Secher III nr. 295, 309, 318, 395, 433; folded 2026-10-15) | Wilcke I chapter 5 context (1613) not read |
 | ☐ | 1610, 1 Feb · 28 Feb · 2 Nov · 1611, 8 May | Forordninger Johan Adolf (Gottorp) | A (SH-d) | `1610_forordninger_gottorp.md` (to write) | Wilcke I; Lange |
 | ☐ | 1616, 21 Oct | Contract Ernst of Schauenburg ↔ Gabriel de Valentza (Altona) | A (HRE) | `1616_contract_schauenburg_altona.md` (to write) | Wilcke I; Lange |
 | ☑ | 1618, 5 April · 1 May · 12 July | Krone acts | A | `1618_kronemoent_indfoerelse.md` | — |
