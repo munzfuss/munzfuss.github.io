@@ -30,10 +30,10 @@
 | ☑ | 1544, Dec · 1547, 22 Jan | Brev to the Hansestæder; Bestalling + Müntzordnung Jørgen Kock d. y., Flensborg | A | `1547_bestalling_flensborg.md` | «1 M» vs «ein wergk» open |
 | ✖ | 1550, 8 July | Instruks for tolder Sander Leyl | C | register only | — |
 | ☐ | 1551, 11 Oct | Aabent Brev to the Norwegian lensmænd «om Mønten» | B | fold into `1524_norske_moentbreve_frederik_i.md` §6 on next revision | Wilcke VII |
-| ☐ | 1563 (autumn) → 1564, 10 Dec | Forordning on the war Klippinge + 7 enforcing acts | A | `1563_klippinge_syvaarskrigen.md` (to write) | Wilcke VII 7-6; Secher I |
-| ☐ | 1564, 11 Dec → 1566, 1 March | Bestalling Hans Køppelin (Bremerholm) → Flensborg | A | fold into the 1563 dossier §5 or own file if the Bestalling has a grid | Wilcke VII |
+| ☑ | 1563, 13 June → 1564, 10 Dec (+ 1567, 11 March) | Ordre 13 June 1563 (the Klipping grid); the lost Forordning; the enforcing chain nr. 174–240; the 1567 fines act; Norway 1564 | A | `1563_klippinge_syvaarskrigen.md` | Forordning lost; N dated 7 May / 28 June; 2-ß grid unknown; f2h15 weight unsourced |
+| ◐ | 1564, 11 Dec → 1566, 1 March → 1567 | Bestalling Hans Køppelin (Bremerholm) → Flensborg; the 1567 assay | A | `1563_klippinge_syvaarskrigen.md` §4.3, §5 (no grid in the Bestalling — standard by reference) | — |
 | ✖ | 1567 · 1569 · 1571 · 1572–74 · 1576–81 · 1580 · 1581 · 1586 · 1590 | Missiver / åbne breve on dalers in told, jordskyld reckoning | C | register only (1572 toll letters are in the 1572 dossier §6) | — |
-| ☐ | 1570, 26 Oct | Bestalling Baltzer Wegener, Flensborg | B | fold into the 1563 dossier (post-war Flensborg) | Wilcke VII |
+| ◐ | 1570, 26 Oct | Bestalling Baltzer Wegener, Flensborg | B | `1563_klippinge_syvaarskrigen.md` §5 | standard not in Wilcke (Nøbbe, Lange not harvested) |
 | ☑ | 1572, 16 June | Aabent Brev om Møntens Omsættelse | A | `1572_aabent_brev_moentens_omsaettelse.md` | — |
 | ☑ | 1582, 12 Jan | Befaling / Møntanordning for Poul Gulden | A | `1582_befaling_poul_gulden.md` | original = T.K. 160 no. 8 (scan task) |
 | ☐ | 1582, 12 Feb · 1586, 6 June (NO) | Åb. br.; Forordning for Norway | B | fold into the 1582 dossier §6 on next revision | Secher II |
