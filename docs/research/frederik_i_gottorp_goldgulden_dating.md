@@ -108,6 +108,14 @@ settle it.
 - Frederik's gold begins as king: Nobel 1524 (Rigsraadets Brev 25 Feb 1524 /
   Kongebrev), Rhinsk gylden Malmø 1527 (Galster 59, Schou 1–3), then Gottorp
   (Galster 122, 1531 and undated), Ungersk gylden 1531 (Galster 46).
+- **The standard itself is of 1524** (curator's point, 2026-10-14). The Rhenish
+  gulden at 72 to the mark and 18 K — the standard the Gottorp gulden is struck
+  on (Galster: .750, 3,19 g target) — enters Frederik's coinage with his
+  Møntordning of 1524 (Rigsraadets Brev 25 Feb 1524 and the Kongebrev; Wilcke
+  VII p. 186 table «Rhinsk Gylden … 72 · 18 K. · 750 · 3,249 · 2,437»; dossier
+  `instruments/1524_moentordning_frederik_i.md`). Before that act Frederik had
+  no gold ordinance of his own; a gulden on this standard earlier than 1524 is
+  therefore improbable on the legal as well as on the mint-historical side.
 
 **Consequence.** The legend «MO NO AVREA SLESWICENSIS» names the Schleswig
 mint, i.e. Gottorp. That mint was set up c. 1522 (Galster 1934; Wilcke's
@@ -169,7 +177,9 @@ undecidable from what we hold:
 
 1. «um 1506» is an isolated dating of 1859, carried unchanged by IKMK, without
    stated grounds, and incompatible with the foundation of the Schleswig/Gottorp
-   mint c. 1522 and with the absence of any ducal gold in Galster and Wilcke.
+   mint c. 1522, with the Møntordning of 1524 that first sets Frederik's
+   Rhenish-gulden standard, and with the absence of any ducal gold in Galster
+   and Wilcke.
    It is to be treated as a source error of Dannenberg's (hypothesis as to its
    origin in §2), not as a competing attestation.
 2. The sources' range for the undated Gottorp gulden: **c. 1522–1533**
@@ -225,13 +235,14 @@ undecidable from what we hold:
   full-text search (Cloudflare), Lange 1908, Schou 1926, Jensen/Skjoldager
   2021.
 
-## §9. Open decisions (curator)
+## §9. Decisions
 
-1. Merge `ikmk-18239610` into the Galster-122 class — proposed. The year of the
-   merged class: hold `year_ranges` at `[[1523, 1533]]` (or keep Galster's
-   1531?) with `year_verified: false` and a `_curation_holds` reason citing
-   §3 and §6; IKMK's 1506 stays visible in the seed and in this dossier, not
-   in the rendered year.
+1. **Decided 2026-10-14 (curator):** merge `ikmk-18239610` into the Galster-122
+   class; the year stays **1531** («так кажуть два джерела»: Galster 122 and
+   the Numista/NumisMaster dating of the dated piece) — a `year_demote` on the
+   IKMK member in `merge_decisions/royal_slesvig.yml` keeps 1506 out of the
+   year union; the IKMK «um 1506» is recorded on the coin's note as a doubtful
+   dating with the §3 arguments in short form. Implemented the same day.
 2. If Schou 1926 / Lange 1908 / *Tronraneren* become readable: record which die
    group carries the 1531 date (§5) and whether Lange 9 vs 9A is legend-only.
 3. If Dannenberg's p. 48 is ever read: record his stated grounds for 1506 and
