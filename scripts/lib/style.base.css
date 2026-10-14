@@ -1511,6 +1511,16 @@ h2[style] {
 }
 @media (max-width: 720px) {
   .gw-body { grid-template-columns: 1fr; gap: 12px 0; }
+  /* One column: the prose box drops under the Grundwerte rows, so the
+     accent rule that separated the two columns on the left is replaced by
+     the same rule on top, separating the two stacked blocks. Radius follows
+     the rule's new side. */
+  .gw-body > .gw-rows + .gw-fr {
+    border-left: 0;
+    border-top: 2px solid var(--accent);
+    border-radius: 0 0 4px 4px;
+    margin-top: 4px;
+  }
 }
 
 .gw-rows {
