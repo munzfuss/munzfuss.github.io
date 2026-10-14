@@ -375,13 +375,6 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3h15.htm
         ref: danskmoent.dk (Hede c3h14)
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    composed_of:
-      - unified-dk-hede-c3h14
     note:
       de: Brustbild / Wappenschilde. Die Zuweisung nach Flensburg beruht auf Reynold Junges Müntzzeichen, dem Glühhaken («glødehagen»)<sup>[ref:danskmoent-c3h15-flensborg-gloedehagen]</sup>. Ein 
         einziges Stück bekannt<sup>[ref:danskmoent-c3-rhinsk-gylden-1546]</sup>.
@@ -391,6 +384,13 @@ coins:
         екземпляр<sup>[ref:danskmoent-c3-rhinsk-gylden-1546]</sup>.
       da: Portræt / våbenskjolde. Henførslen til Flensborg bygger på Reynold Junges møntmærke, glødehagen<sup>[ref:danskmoent-c3h15-flensborg-gloedehagen]</sup>. 
         Unik<sup>[ref:danskmoent-c3-rhinsk-gylden-1546]</sup>.
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
+    composed_of:
+      - unified-dk-hede-c3h14
   - fuss: 8_daler_lybsk_fod
     phase: I
     kind: kurant
@@ -1367,7 +1367,9 @@ coins:
       - Schleswig
     catalog:
       sieg: '49'
-      lange: 9a
+      lange:
+        - '9'
+        - 9a
       bruun_collection_id: '14741'
       schou: 1-4
       galster: '122'
@@ -1402,8 +1404,12 @@ coins:
       - value: 3.24
         source: bruun
       - value: 3.25
+        source: ikmk
+      - value: 3.25
         source: numista
     diameter_mm:
+      - value: 24.0
+        source: ikmk
       - value: 24.0
         source: numista
     sources:
@@ -1422,6 +1428,30 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_167742
         ref: NumisMaster
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18239610
+        ref: IKMK Berlin 18239610
+    inscription_obv: FREDERICVS - D HOLSACI
+    inscription_rev: MO NO AVREA SLESWICENSIS
+    note:
+      de: 'Hl. Andreas stehend mit Kreuz, zu Füßen der Holsteiner Schild / die Wappen von Holstein, Schleswig, Stormarn und Norwegen um einen kleinen Oldenburger Schild. Umschriften: «FRIDERICVS - D HOLSACI.»
+        («Frederik, Herzog von Holstein») / «MO. NOV. AVREA. SLESVICENSIS.» («Neue Goldmüntze Schleswigs»). Das Berliner Exemplar (Münzkabinett Berlin, 3,25 g) datiert das IKMK nach Dannenberg 1859 «um
+        1506» — eine zweifelhafte Datierung: die Müntze zu Schleswig/Gottorp richtete Herzog Frederik erst um 1522 ein<sup>[ref:galster-1934-gottorp-moentsmedje-1522]</sup>, den rheinischen Gulden führt
+        in seiner Prägung erst die Møntordning 1524 ein<sup>[ref:wilcke-1950-moentordning-1524]</sup>, sein erster Gulden ist Malmø 1527<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup>; herzogliches Gold
+        kennen Galster und Wilcke nicht.'
+      en: 'St Andrew standing with a cross, the Holstein shield at his feet / the arms of Holstein, Schleswig, Stormarn and Norway around a small Oldenburg shield. Legends: «FRIDERICVS - D HOLSACI.» («Frederik,
+        duke of Holstein») / «MO. NOV. AVREA. SLESVICENSIS.» («new gold coin of Schleswig»). The Berlin specimen (Münzkabinett Berlin, 3.25 g) is dated by the IKMK «c. 1506» after Dannenberg 1859 — a doubtful
+        dating: Duke Frederik set up the Schleswig/Gottorp mint only around 1522<sup>[ref:galster-1934-gottorp-moentsmedje-1522]</sup>, the Rhenish gulden enters his coinage only with the Møntordning of
+        1524<sup>[ref:wilcke-1950-moentordning-1524]</sup>, his first gulden is Malmø 1527<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup>; Galster and Wilcke know no ducal gold.'
+      uk: 'Св. Андрій стоїть із хрестом, біля ніг щиток Гольштейну / герби Гольштейну, Шлезвігу, Стормарну й Норвегії навколо малого щита Ольденбурга. Легенди: «FRIDERICVS - D HOLSACI.» («Frederik, герцог
+        Гольштейну») / «MO. NOV. AVREA. SLESVICENSIS.» («нова золота монета Шлезвігу»). Берлінський примірник (Münzkabinett Berlin, 3,25 г) IKMK датує «близько 1506» за Dannenberg 1859 — датування сумнівне:
+        двір у Schleswig/Gottorp герцог Frederik влаштував лише близько 1522 р.<sup>[ref:galster-1934-gottorp-moentsmedje-1522]</sup>, рейнський гульден у його карбуванні запроваджує лише Møntordning 1524<sup>[ref:wilcke-1950-moentordning-1524]</sup>,
+        перший його гульден — Malmø 1527<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup>; герцогського золота Galster і Wilcke не знають.'
+      da: 'Sct. Andreas stående med kors, Holstens skjold ved fødderne / våbenskjoldene fra Holsten, Slesvig, Stormarn og Norge omkring et lille Oldenborgskjold. Omskrift: «FRIDERICVS - D HOLSACI.» («Frederik,
+        hertug af Holsten») / «MO. NOV. AVREA. SLESVICENSIS.» («ny guldmønt fra Slesvig»). Berlinereksemplaret (Münzkabinett Berlin, 3,25 g) dateres af IKMK «o. 1506» efter Dannenberg 1859 — en tvivlsom
+        datering: mønten på Schleswig/Gottorp indrettede hertug Frederik først omkring 1522<sup>[ref:galster-1934-gottorp-moentsmedje-1522]</sup>, den rhinske gylden indføres i hans udmøntning først med
+        møntordningen af 1524<sup>[ref:wilcke-1950-moentordning-1524]</sup>, hans første gylden er Malmø 1527<sup>[ref:danskmoent-f1-rhinsk-gylden-1527]</sup>; hertugeligt guld kender Galster og Wilcke
+        ikke.'
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -1433,15 +1463,6 @@ coins:
         specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - unified-dk-bruun-14741
-    note:
-      de: 'Hl. Andreas stehend mit Kreuz, zu Füßen der Holsteiner Schild / die Wappen von Holstein, Schleswig, Stormarn und Norwegen um einen kleinen Oldenburger Schild. Umschriften: «FRIDERICVS - D HOLSACI.»
-        («Frederik, Herzog von Holstein») / «MO. NOV. AVREA. SLESVICENSIS.» («Neue Goldmüntze Schleswigs»).'
-      en: 'St Andrew standing with a cross, the Holstein shield at his feet / the arms of Holstein, Schleswig, Stormarn and Norway around a small Oldenburg shield. Legends: «FRIDERICVS - D HOLSACI.» («Frederik,
-        duke of Holstein») / «MO. NOV. AVREA. SLESVICENSIS.» («new gold coin of Schleswig»).'
-      uk: 'Св. Андрій стоїть із хрестом, біля ніг щиток Гольштейну / герби Гольштейну, Шлезвігу, Стормарну й Норвегії навколо малого щита Ольденбурга. Легенди: «FRIDERICVS - D HOLSACI.» («Frederik, герцог
-        Гольштейну») / «MO. NOV. AVREA. SLESVICENSIS.» («нова золота монета Шлезвігу»).'
-      da: 'Sct. Andreas stående med kors, Holstens skjold ved fødderne / våbenskjoldene fra Holsten, Slesvig, Stormarn og Norge omkring et lille Oldenborgskjold. Omskrift: «FRIDERICVS - D HOLSACI.» («Frederik,
-        hertug af Holsten») / «MO. NOV. AVREA. SLESVICENSIS.» («ny guldmønt fra Slesvig»).'
   - fuss: rhinsk_gylden_fod
     phase:
       denmark: I.b
@@ -1809,6 +1830,15 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_167748
         ref: NumisMaster
+    note:
+      de: Brustbild / Wappenschilde. Die Zuweisung nach Flensburg beruht auf Reynold Junges Müntzzeichen, dem Glühhaken («glødehagen»)<sup>[ref:danskmoent-c3h15-flensborg-gloedehagen]</sup>. Das 
+        einzige bekannte Stück liegt in der Kgl. Müntz- und Medaillensammlung, Kopenhagen<sup>[ref:danskmoent-c3h15-2-gylden-unik]</sup>.
+      en: Portrait / shields of arms. The attribution to Flensburg rests on Reynold Junge’s mint mark, the fire hook («glødehagen»)<sup>[ref:danskmoent-c3h15-flensborg-gloedehagen]</sup>. The only 
+        known specimen is in the Royal Collection of Coins and Medals, Copenhagen<sup>[ref:danskmoent-c3h15-2-gylden-unik]</sup>.
+      uk: Портрет / гербові щити. Атрибуція Фленсбургу ґрунтується на монетному знаку Reynold Junge — гачку для жару («glødehagen»)<sup>[ref:danskmoent-c3h15-flensborg-gloedehagen]</sup>. Єдиний 
+        відомий екземпляр — у Королівській колекції монет і медалей, Копенгаген<sup>[ref:danskmoent-c3h15-2-gylden-unik]</sup>.
+      da: Portræt / våbenskjolde. Henførslen til Flensborg bygger på Reynold Junges møntmærke, glødehagen<sup>[ref:danskmoent-c3h15-flensborg-gloedehagen]</sup>. Det eneste kendte eksemplar er i Den 
+        Kgl. Mønt- og Medaillesamling, København<sup>[ref:danskmoent-c3h15-2-gylden-unik]</sup>.
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -1826,15 +1856,6 @@ coins:
         would re-adopt the joint [gottorp_duchy, royal_slesvig] from the seed_unified bridge.
       year_verified: 1546 is source-attested (Hede 15 = danskmoent c3h15, Numista N#474509, both 1546). A yearless NGC/NumisMaster re-harvest member flips the OR-merge to false; pin true (§4 
         verified-wins). Was commit c070d60; re-pinned after the 2026-08-26 royal_holstein→royal_slesvig relocation dropped the prior foundation and its hold.
-    note:
-      de: Brustbild / Wappenschilde. Die Zuweisung nach Flensburg beruht auf Reynold Junges Müntzzeichen, dem Glühhaken («glødehagen»)<sup>[ref:danskmoent-c3h15-flensborg-gloedehagen]</sup>. Das 
-        einzige bekannte Stück liegt in der Kgl. Müntz- und Medaillensammlung, Kopenhagen<sup>[ref:danskmoent-c3h15-2-gylden-unik]</sup>.
-      en: Portrait / shields of arms. The attribution to Flensburg rests on Reynold Junge’s mint mark, the fire hook («glødehagen»)<sup>[ref:danskmoent-c3h15-flensborg-gloedehagen]</sup>. The only 
-        known specimen is in the Royal Collection of Coins and Medals, Copenhagen<sup>[ref:danskmoent-c3h15-2-gylden-unik]</sup>.
-      uk: Портрет / гербові щити. Атрибуція Фленсбургу ґрунтується на монетному знаку Reynold Junge — гачку для жару («glødehagen»)<sup>[ref:danskmoent-c3h15-flensborg-gloedehagen]</sup>. Єдиний 
-        відомий екземпляр — у Королівській колекції монет і медалей, Копенгаген<sup>[ref:danskmoent-c3h15-2-gylden-unik]</sup>.
-      da: Portræt / våbenskjolde. Henførslen til Flensborg bygger på Reynold Junges møntmærke, glødehagen<sup>[ref:danskmoent-c3h15-flensborg-gloedehagen]</sup>. Det eneste kendte eksemplar er i Den 
-        Kgl. Mønt- og Medaillesamling, København<sup>[ref:danskmoent-c3h15-2-gylden-unik]</sup>.
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
@@ -1935,44 +1956,6 @@ coins:
         (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
     composed_of:
       - unified-dk-numista-309415
-  - fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Goldgulden
-    ruler: Friedrich I.
-    issuing_entity: royal_slesvig
-    id: unified-ikmk-18239610
-    year_first: 1506
-    year_last: 1506
-    year_label: '1506'
-    mint: Schleswig
-    catalog:
-      lange: '9'
-    metal: gold
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 3.25
-        source: ikmk
-    diameter_mm:
-      - value: 24.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18239610
-        ref: IKMK Berlin 18239610
-    inscription_obv: FREDERICVS - D HOLSACI
-    inscription_rev: MO NO AVREA SLESWICENSIS
-    verification_note:
-      de: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Interactive Catalogue of the Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); the fields are museum-attested. The coinage standard of this piece is not yet determined.
-      uk: Запис з інтерактивного каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
-      da: Post fra Münzkabinett Berlins interaktive katalog (ikmk.smb.museum, CC BY-SA 4.0); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - unified-ikmk-18239610
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
