@@ -626,19 +626,24 @@
   }
   var acts = document.querySelectorAll(".gw .gw-act[data-act]");
   for (var i = 0; i < acts.length; i++) acts[i].setAttribute("tabindex", "0");
-  document.addEventListener("mouseover", function (ev) { var t = triggerOf(ev); if (t) show(t); });
+  // Without hover (touch) the tap is the only control: a tap on the
+  // reference toggles the card, a tap anywhere else closes it. A touch
+  // browser emulates hover on the first tap — mouseover and focusin would
+  // open the card and the click that follows would close it again, so the
+  // reference needed two taps. Hover / focus handlers are therefore skipped
+  // on such devices; with a pointer the card follows hover and a click on
+  // the trigger is left alone (it would close the card under the cursor).
+  var noHover = window.matchMedia && window.matchMedia("(hover: none)").matches;
+  document.addEventListener("mouseover", function (ev) { if (noHover) return; var t = triggerOf(ev); if (t) show(t); });
   document.addEventListener("mouseout", function (ev) {
+    if (noHover) return;
     var t = triggerOf(ev);
     if (!t || t !== openFor) return;
     if (ev.relatedTarget && t.contains(ev.relatedTarget)) return;
     hide();
   });
-  document.addEventListener("focusin", function (ev) { var t = triggerOf(ev); if (t) show(t); });
-  document.addEventListener("focusout", function (ev) { var t = triggerOf(ev); if (t && t === openFor) hide(); });
-  // Touch (no hover): a tap toggles; a tap anywhere else closes. With a
-  // pointer the card already follows hover, so a click on the trigger is
-  // left alone (it would otherwise close the card under the cursor).
-  var noHover = window.matchMedia && window.matchMedia("(hover: none)").matches;
+  document.addEventListener("focusin", function (ev) { if (noHover) return; var t = triggerOf(ev); if (t) show(t); });
+  document.addEventListener("focusout", function (ev) { if (noHover) return; var t = triggerOf(ev); if (t && t === openFor) hide(); });
   document.addEventListener("click", function (ev) {
     var t = triggerOf(ev);
     if (t) { if (noHover) { if (t === openFor) hide(); else show(t); } return; }
