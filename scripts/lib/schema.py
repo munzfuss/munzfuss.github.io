@@ -72,6 +72,22 @@ class I18nTextOptional(_StrictBase):
         return None
 
 
+class YearMark(_StrictBase):
+    """A curation mark on a seed's own year (see Coin.year_mark)."""
+    kind: Literal["suspect", "erroneous"]
+    # Reader-facing reason, translated like any other tooltip text (§0z).
+    reason: I18nText
+
+
+class YearAlt(_StrictBase):
+    """One member source's marked year that is shown beside, not inside, the
+    displayed year (see Coin.year_alts)."""
+    value: str = Field(..., min_length=1)
+    source: str = Field(..., min_length=1)
+    kind: Literal["suspect", "erroneous"]
+    reason: I18nText
+
+
 class FieldValue(_StrictBase):
     """A single measurement reading attributed to one source. Used as
     elements in list-form measurement fields (weight_rough_g,
@@ -943,6 +959,20 @@ class Coin(_StrictBase):
             "and tooltip counts reflect real minting activity."
         ),
     )
+    # A curation mark on the coin's OWN year, written on the seed of the source
+    # that published it (never on seed_unified / final — both are regenerated).
+    # The year-column analogue of FieldValue.suspect / .erroneous: the source's
+    # year stays in the seed, and when the merger holds it out of the displayed
+    # year (a `year_demote`), the merged entry lists it in `year_alts` beside
+    # the year with the marker and the reason in the tooltip. Founding case:
+    # the Münzkabinett Berlin's «um 1506» (Dannenberg 1859) on the Frederik I
+    # Gottorp Goldgulden, Galster 122 (docs/research/frederik_i_gottorp_goldgulden_dating.md).
+    year_mark: "YearMark | None" = None
+    # Alternative years a member source publishes that do NOT drive the
+    # displayed year — each with its source, its mark kind and the reader-facing
+    # reason. Emitted by the cross-source merger from the members' `year_mark`,
+    # unioned by absorb; never hand-written on final.
+    year_alts: "list[YearAlt] | None" = None
     ruler: str | None = None
     ruler_verified: bool = Field(
         True,

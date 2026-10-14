@@ -2373,6 +2373,44 @@ class UnionFind:
 # ---------------------------------------------------------------------------
 
 
+def _collect_year_alts(members: list[dict]) -> list[dict]:
+    """Year alternatives from members that carry a `year_mark` (schema
+    Coin.year_mark): one `{value, source, kind, reason}` per marked member,
+    labelled by its source. Whether the member's year also drives the displayed
+    year is the merge's business (`year_demote`); the template hides an alt
+    whose value is already in the label. Order: member order; duplicates by
+    (value, source) collapse."""
+    out: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+    for m in members:
+        if not isinstance(m, dict):
+            continue
+        mark = m.get("year_mark")
+        label = m.get("year_label")
+        if not isinstance(mark, dict) or not label:
+            continue
+        kind = mark.get("kind")
+        reason = mark.get("reason")
+        if kind not in ("suspect", "erroneous") or not isinstance(reason, dict):
+            continue
+        src = _source_label_from_id(m.get("id"))
+        key = (str(label), src)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append({"value": str(label), "source": src, "kind": kind,
+                    "reason": dict(reason)})
+    # Alts a member already carries (a seed_unified member re-merged) pass through.
+    for m in members:
+        for a in (m.get("year_alts") or []) if isinstance(m, dict) else []:
+            if isinstance(a, dict) and a.get("value") and a.get("source"):
+                key = (str(a["value"]), str(a["source"]))
+                if key not in seen:
+                    seen.add(key)
+                    out.append(dict(a))
+    return out
+
+
 def _collect_field_list(members: list[dict], field: str,
                           skip_first_list: bool = False) -> list[dict]:
     """For weight_rough_g / fineness / diameter_mm — collect ALL readings
@@ -3640,6 +3678,9 @@ def build_unified(members: list[dict], unified_id: str,
     diameters = _collect_field_list(members, "diameter_mm")
     if diameters:
         out["diameter_mm"] = diameters
+    year_alts = _collect_year_alts(members)
+    if year_alts:
+        out["year_alts"] = year_alts
 
     # Sources union
     sources = _collect_sources(members)

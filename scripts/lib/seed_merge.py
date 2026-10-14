@@ -84,6 +84,9 @@ CURATED_FIELDS = frozenset({
     # curator 2026-10-13). No seed builder emits it yet — it is curator-filled
     # on the final entry — so without this a regen drops it as stale.
     "mintmasters",
+    # Curation mark on the seed's own year (schema YearMark) — curator-filled,
+    # no builder emits it; the merger turns it into `year_alts` on the class.
+    "year_mark",
     # V2 bidirectional seed↔curated link (Phase 6) — both fields are
     # curator-maintained or relink-script-derived audit trail of the
     # §9a multi-specimen merge. They MUST persist across regen so that:
