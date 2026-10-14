@@ -451,3 +451,31 @@ it changes the OTHER pages, the ones without a `hintergrund`.
 Found 2026-08-16: a rewritten Danish `fuss_periods.reichsdukatenfuss.description`
 produced no visible change, and the pre-existing override text turned out never to
 have rendered either. Verify a prose edit on the built page, not in the YAML.
+
+## Grundwerte act references — hover card for «per <act>»
+
+A Grundwerte row of `kind: decree` states the parameters of one legal act
+(Instructie 1487, Møntordning 1514, Reichsmünzordnung 1559 …). When another
+row of the SAME card says «Parameter gemäß Møntordning Christian II 1514»,
+mark both ends with the same slug:
+
+```yaml
+- key: {de: Møntordning Christian II 1514, …}
+  value: {…}
+  kind: decree
+  act: moentordning-christian-ii-1514          # lowercase-hyphen slug
+- key: {de: Phase I (1516-1518) · König Christian II., …}
+  value:
+    de: <span class='gw-phase'><span class='gw-phase-label'>Parameter</span>gemäß <span class='gw-act' data-act='moentordning-christian-ii-1514'>Møntordning Christian II. 1514</span></span>
+```
+
+Wrap ONLY the act's name (its inflected form in that language), in every
+language field. The page script (`assets/app.js`, «Act hover cards») shows the
+decree row as a card on hover / focus / tap, built from the card's own DOM,
+with citations stripped; a decree row that itself only says «per <other act>»
+(the 1524 Kongebrev restating 1514) is followed to the figures. The schema
+(`Grundwerte._check_acts`) rejects a `data-act` that names no decree row of
+the card, an `act` on a non-decree row, a duplicate slug, and a reference
+cycle — so a reworded or removed act row fails validation instead of leaving a
+dead hover target. Slugs are card-local; the same act may use the same slug in
+several cards.

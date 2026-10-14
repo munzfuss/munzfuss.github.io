@@ -16,6 +16,10 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-14 — Grundwerte act hover cards (Nobelfod / Guldgyldenfod)
+
+- «згідно з <act>» in a card row now shows the act's decree row as a hover card (same card markup, citations stripped; a pure «per <other act>» line — the 1524 Kongebrev — is resolved to the 1514 figures). Mechanism: `GrundwerteRow.act` slug on the decree row + `<span class='gw-act' data-act='…'>` around the act name in referencing values (both gold cards, 9 slugs, 60 spans, 4 languages); `Grundwerte._check_acts` validates resolution / uniqueness / no cycle (`tests/test_grundwerte_act_refs.py`); template emits `data-act` on `.gw-row.gw-decree`; CSS `.gw-act` / `.gw-act-pop`; JS IIFE «Act hover cards» in `assets/app.js`. Convention written up in `docs/CONVENTIONS.md` § «Grundwerte act references». Other cards adopt it by adding `act:` + the span. «припис Christian III 1547» (Guldgylden II.b) has no decree row and stays plain.
+
 ## 2026-10-14 — Nobelfod / Guldgyldenfod details restructured: one block per act, Nobel period I split
 
 - **Denmark page** (`acc7772` data; `classification` + `final` commit; docs commit): Guldgyldenfod has three instrument blocks before I.a (Blicher 1513 — spec 71⅓ @ 18½ with (?) + note; Møntordning Christian II 1514; Møntordning Frederik I 1524 (Kongebrev)); period I.a is coinage only. Nobelfod: period I = Christian II 1516–1518, new period II = Frederik I 1524–1532; blocks before II: Rigsraadets Brev 25 Feb 1524 (23 kt, no coin attributable — Malmø only, Ribe mint from summer 1524 and Kongebrev only) and Møntordning Frederik I 1524 (Kongebrev, 23½). Coins f1g-68 / f1g-69 / numista-428544 → phase II via `classification_decisions`; absorb + `verify_reflow` 0 losses.
