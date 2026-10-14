@@ -1545,7 +1545,10 @@ h2[style] {
   padding: 7px 8px;
   margin: 0 -8px;
 }
-.gw-row.gw-sub { margin-left: 10px; padding-left: 10px; border-left: 2px solid var(--border-soft); }
+/* The period rule sits flush under the group label and indents its content by
+   8px only, so a sub-phase's own .gw-phase rule lands about where a decree
+   row's does instead of a further 20px to the right. */
+.gw-row.gw-sub { margin-left: 0; padding-left: 8px; border-left: 2px solid var(--border-soft); }
 .gw-k .ph-subl { text-transform: none; }
 .gw-k {
   display: block;
