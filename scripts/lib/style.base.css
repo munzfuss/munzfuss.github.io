@@ -1975,6 +1975,15 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   border-left: var(--hairline) solid var(--border-soft);
   margin: 4px 0 10px 12px;
 }
+/* Narrow screens: the coin-table block drops its left rule and indent so the
+   tables use the full width (desktop keeps the rule). */
+@media (max-width: 720px) {
+  .phc, .phc.phc-sub {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: 0;
+  }
+}
 
 .phc b { color: var(--text-primary); font-weight: 600; }
 .phc em { color: var(--text-muted); font-style: italic; font-size: 13px; }
