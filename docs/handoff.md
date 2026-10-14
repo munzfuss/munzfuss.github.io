@@ -16,6 +16,15 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-14 — Nobelfod / Guldgyldenfod details restructured: one block per act, Nobel period I split
+
+- **Denmark page** (`acc7772` data; `classification` + `final` commit; docs commit): Guldgyldenfod has three instrument blocks before I.a (Blicher 1513 — spec 71⅓ @ 18½ with (?) + note; Møntordning Christian II 1514; Møntordning Frederik I 1524 (Kongebrev)); period I.a is coinage only. Nobelfod: period I = Christian II 1516–1518, new period II = Frederik I 1524–1532; blocks before II: Rigsraadets Brev 25 Feb 1524 (23 kt, no coin attributable — Malmø only, Ribe mint from summer 1524 and Kongebrev only) and Møntordning Frederik I 1524 (Kongebrev, 23½). Coins f1g-68 / f1g-69 / numista-428544 → phase II via `classification_decisions`; absorb + `verify_reflow` 0 losses.
+- **Naming decision (curator):** the royal letter IS the 1524 Møntordning in its final redaction (Wilcke prints it as «Kongens Brev» variants of the Rigsraad text; «Kong Frederiks Møntordning» s. 216; Galster «en ny [Møntordning]») → «Møntordning Frederik I 1524 (Kongebrev)» everywhere, incl. the card parameter labels in `fuesse.yml` (both gold cards). The Guldgyldenfod CARD text still says «Kongebrev 1524» in its running prose and «Esslingen … заступила» — curator declined the Esslingen card change; the Kongebrev wording in the card was not in the plan (open).
+- **Esslingen 1524** = a parallel lesser gulden, not a change of the Rhenish norm (Wilcke 6 «ikke kunde afskaffes»); `rhinsk_gylden_fod.md` §3.2 corrected. The 1514 instrument dossier §4.5 records why the Frederik I Nobler follow the Kongebrev.
+- Four new pool keys: `wilcke-1950-rigsraad-1524-kock-malmoe`, `wilcke-1950-kongens-brev-marginen`, `ernst-1948-ribe-moentsted-sommeren-1524`, `ernst-1948-ribe-nobel-datering-1524`. `wilcke-1950-nobel-finhed` stays in the pool uncited.
+- Earlier today (2026-10-13 late): page summary → «Монетні стандарти Королівства Данії 1490–1914 … Christian II Lovkompleks 1514 … кронової реформи Christian IX 1873–1875»; Lovkompleks named in Nobel I / Guldgylden I.a; tooltip fixes (`04c2145` viewport clamp, `d5ab5e7` z-index over century guides).
+- **Not pushed:** everything from `bde0352` on (incl. two commits of a parallel session, `37a5e1d`, `f77f569`).
+
 ## 2026-10-13 — Denmark timeline axis 1490; Guldgyldenfod circulation layer; dossier §17 / §10
 
 - **Axis 1514 → 1490** (`data/v2/locations/denmark.yml`): title, hero stat and summary read 1490–1914 (curator); Nobelfod bar box 1496–1602. Pre-1514 mint layers and markers (Nobel 1496/1502, Goldgulden 1497, 1505–1510) now render. Ticks 1500…1900.

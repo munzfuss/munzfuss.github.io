@@ -411,7 +411,12 @@ standard Nobel; he places the coinage in the Galster 45 / Schou 1532 Nr. 1 type 
 ## §7. Card state after the 2026-09 revision (for orientation)
 
 - Name `Nobelfod` (was `16-Nobelfod`, `2fdd18d`). Period 1496–1532, phases 0 (1496–1513)
-  and I (1514–1532). `fineness_standard: 0.979` (the earlier `.986` Reichsdukat
+  and I (1514–1532).
+  **Re-periodised 2026-10-14 (curator):** phase I split at 1524 — I = Christian II
+  (1516–1518), II = Frederik I (1524–1532; Ribe 1524–25 + 1532). The acts sit in
+  instrument blocks: Møntordning 1514 before I; Rigsraadets Brev 25 Feb 1524 and
+  Møntordning Frederik I 1524 (Kongebrev) before II. Coins re-phased via
+  `classification_decisions` (f1g-68, f1g-69, numista-428544 → II). `fineness_standard: 0.979` (the earlier `.986` Reichsdukat
   mis-anchor is gone).
 - Grundwerte: Phase 0 = model's 16½ / troy mark, fineness unknown; Phase I = 16 /
   Cölln. Marck, fineness lines 1514 / 25.2.1524 / Kongebrev 1524.

@@ -202,7 +202,7 @@ meget huserende rhinske Guldgylden» (Wilcke 7-1 p. 33); the Joachimsthaler
 svare i Værdi til en Guldgylden» (Wilcke 1919 p. ~24). This is why Danish
 tariffs equate «rhinsk Gylden eller Jochimsdaler» (§5.4).
 
-### 3.2 Esslingen 1524 — the break the Danish prose omits
+### 3.2 Esslingen 1524 — a parallel lesser gulden, not a break in the Rhenish norm
 
 Karl V's Reichsmünzordnung of Esslingen, **10 Nov 1524**, §§ 49-50: a gulden
 «af Korn og Skrot 89 Stkr. paa den 22 Karat fine Mark cölnsk», because «die
@@ -215,10 +215,16 @@ Guldgylden til 8 Stkr. af den 15 lødige Mark»). Wilcke's table: 89 / 22 Kt /
 (2,437) on a different alloy**. Wilcke 6: «Denne nye Møntfod fra 1524 kunde
 visselig ikke tjene Kong Hans til Undskyldning».
 
-Consequence for our prose: the sentence «the imperial norm stood on the 1490
-form until Karl V kept it in 1551» is wrong in its middle — 1524-1551 the
-imperial LAW prescribed 89/22 Kt, and Karl V's 1551 ordinance RESTORED the
-1490 form. (The note to `wikipedia-de-reichsmuenzordnungen-gold`, used on the
+Reading corrected 2026-10-14 (curator): the Esslingen piece is «en anden,
+ringere Guldgylden» — a DIFFERENT coin (2,628 g rough on a 22-Kt alloy), not a
+re-setting of the Rhenish gulden. Wilcke 6 continues: «Den rhinske Gyldens store
+Betydning for Omsætningen var imidlertid saa grundfæstet, at den ikke kunde
+afskaffes» — the Rhenish gulden was NOT displaced; Karl V 1551 kept it «i den af
+de 4 Rhinfyrster oprindelig vedtagne Skikkelse» and Ferdinand I 1559 fixed 72 @
+18½. The only movement 1495–1559 is in PRACTICE (Valvationstag 1551: mostly 108
+per 1½ mark at 18⅓ Kt). So the norm the 1513 Blicher letter refers to («saa god
+som rinske Gylden») is the unchanged 1495 norm, 71⅓ @ 18½ — the `spec` of the
+1513 instrument block on the Denmark page carries it with a (?) and a note. (The note to `wikipedia-de-reichsmuenzordnungen-gold`, used on the
 Reichsdukatenfuß card, says Esslingen 1524 «erklärt allein die Cöllnische
 Marck zum allgemeinen Müntzgewicht» — the gulden clause is not in that ref;
 Wilcke is the source for it.)

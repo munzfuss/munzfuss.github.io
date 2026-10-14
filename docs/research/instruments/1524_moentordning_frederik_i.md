@@ -192,6 +192,29 @@ Sølvgylden only nominally).
 - A rhinsk Gylden of 1527, Malmø, exists (Galster 59); Nobler of Ribe 1524–25 (Galster 68,
   69) and of 1532; Sølvgylden ½ and ¼ of 1532 (Galster 47–52).
 
+### 4.5 Which of the two letters the Frederik I Nobler follow (added 2026-10-14)
+
+No Frederik I Nobel is assayed, so the 23 vs 23½ question cannot be decided on
+metal. It is decided institutionally: the Rigsraad letter went to Kock at Malmø
+only (s. 181: «lyrgenn Kaack, vor naadigste herriss mynttemestter och burgimestter
+vdi Mallmø»); no Malmø Nobel of 1524 is known (Galster's Frederik I Nobler are 68,
+69 — Ribe, undated — and 45 of 1532); Ribe re-enters as a mint only «Sommeren 1524»
+(Ernst 1948) and received only the Kongebrev (s. 183); Ernst dates the Ribe Nobel
+between the coronation 7 Aug 1524 and Nov 1524; Wilcke s. 194 struck «i
+Overensstemmelse med Frederik I.s ovennævnte Møntordning». So no coin can be tied
+to the 23-kt prescription and the Ribe Nobler belong to the Kongebrev. Kock's own
+report of 6 May 1530 (s. 203) lists only silver and says the Malmø mint stood
+still. Pool keys: `wilcke-1950-rigsraad-1524-kock-malmoe`,
+`ernst-1948-ribe-moentsted-sommeren-1524`, `ernst-1948-ribe-nobel-datering-1524`.
+
+**Naming (curator 2026-10-14).** The Kongebrev is the Møntordning of 1524 in its
+final form: an open letter («Vi Fr. gjøre alle vitterligt») printed by Wilcke as
+the royal redaction of the Rigsraad text (his notes «Kongens Brev tilføjer i
+Marginen», «har i Stedet», «Herefter følger i Kongens Brev»), called «Kong
+Frederiks Møntordning» by Wilcke (s. 216) and «en ny [Møntordning]» by Galster.
+The page names it «Møntordning Frederik I 1524 (Kongebrev)» and the Rigsraad
+letter its first redaction.
+
 ## 5. Mints and mintmasters
 
 Jørgen Kock, mintmaster and burgomaster of Malmø (the mint pledged to him «paa Vilkaar, som
