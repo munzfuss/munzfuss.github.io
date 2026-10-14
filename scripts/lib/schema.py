@@ -9,6 +9,7 @@ All types are Pydantic models. Validation errors at build-time catch:
 """
 from __future__ import annotations
 
+import re
 from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
@@ -226,6 +227,11 @@ class Fraction(_StrictBase):
     soll_rau_by_phase: dict[str, float] | None = None
 
 
+# `<span class='gw-act' data-act='slug'>` inside a Grundwerte row value — an
+# in-card reference to a decree row (`GrundwerteRow.act`).
+ACT_REF_RE = re.compile(r"""data-act=['"]([a-z0-9-]+)['"]""")
+
+
 class GrundwerteRow(_StrictBase):
     """A key-value row inside the Grundwerte card. Values may contain safe HTML."""
     key: I18nText
@@ -234,6 +240,12 @@ class GrundwerteRow(_StrictBase):
     # (ordinance, imperial resolution) rather than those of a phase; the
     # renderer gives it a faint background so the two kinds read apart.
     kind: Literal["decree"] | None = None
+    # Slug a `decree` row answers to (`moentordning-christian-ii-1514`).
+    # Other rows of the SAME card refer to the act from inside their value
+    # HTML as `<span class='gw-act' data-act='<slug>'>Møntordning …</span>`;
+    # the page script then shows the decree row as a hover card. Every
+    # reference must resolve within the card (see `Grundwerte._check_acts`).
+    act: str | None = Field(default=None, pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
 class GrundwerteRowPatch(_StrictBase):
@@ -276,6 +288,49 @@ class Grundwerte(_StrictBase):
     aside2_label: I18nTextOptional | None = None      # optional 3rd right-column block,
     aside2: I18nText | None = None                    # rendered below `aside` (e.g. a
                                                       # «Tarif …» block moved off the rows)
+
+    @model_validator(mode="after")
+    def _check_acts(self) -> "Grundwerte":
+        """Act references inside row values resolve to a decree row of this card.
+
+        `act` sits only on `kind: decree` rows and is unique per card; every
+        `data-act='…'` in any language of any row names one of them; and the
+        decree→decree references (a Kongebrev whose parameters are «per the
+        1514 Møntordning») form no cycle, so a hover card that follows the
+        chain always reaches figures."""
+        acts: dict[str, int] = {}
+        for i, row in enumerate(self.rows):
+            if row.act is None:
+                continue
+            if row.kind != "decree":
+                raise ValueError(f"grundwerte row {i}: `act` is allowed on kind: decree rows only")
+            if row.act in acts:
+                raise ValueError(f"grundwerte: act slug {row.act!r} used by rows {acts[row.act]} and {i}")
+            acts[row.act] = i
+        edges: dict[str, set[str]] = {}
+        for i, row in enumerate(self.rows):
+            for lang, html in (row.value.model_dump() if hasattr(row.value, "model_dump") else dict(row.value)).items():
+                if not html:
+                    continue
+                for slug in ACT_REF_RE.findall(html):
+                    if slug not in acts:
+                        raise ValueError(f"grundwerte row {i} ({lang}): data-act={slug!r} names no decree row of this card")
+                    if row.act is not None:
+                        edges.setdefault(row.act, set()).add(slug)
+        # cycle check over decree→decree references
+        state: dict[str, int] = {}
+        def visit(n: str, path: list[str]) -> None:
+            if state.get(n) == 2:
+                return
+            if state.get(n) == 1:
+                raise ValueError(f"grundwerte: act references form a cycle: {' -> '.join(path + [n])}")
+            state[n] = 1
+            for m in edges.get(n, ()):
+                visit(m, path + [n])
+            state[n] = 2
+        for n in list(edges):
+            visit(n, [])
+        return self
 
 
 class FussEvent(_StrictBase):
