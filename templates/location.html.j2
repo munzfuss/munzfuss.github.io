@@ -125,6 +125,8 @@
     {%- set parts = coin.raw.year_label.split(',') -%}
     {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
     {%- if not coin.raw.year_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- set shown = parts|map('trim')|list -%}
+    {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }} <span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   {%- endif -%}</td>
   <td>{{ coin.raw.ruler|ruler(lang) }}{%- if not coin.raw.ruler_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}</td>
   <td class="c-km">
@@ -416,6 +418,8 @@
     {%- set parts = coin.raw.year_label.split(',') -%}
     {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
     {%- if not coin.raw.year_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- set shown = parts|map('trim')|list -%}
+    {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }} <span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   {%- endif -%}</td>
   <td>{{ coin.raw.ruler|ruler(lang) }}{%- if not coin.raw.ruler_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}</td>
   <td class="c-km">
