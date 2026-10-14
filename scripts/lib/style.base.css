@@ -1350,6 +1350,15 @@ h2[style] {
     font-size: clamp(34px, 11vw, 56px);
     overflow-wrap: anywhere;
   }
+  /* Order on one column: name → period of validity + metal badge → the
+     parameter lines (one per period) → description. `.ph-left` dissolves
+     into the grid so its two children can be ordered around `.ph-right`
+     without a DOM change; on wide screens the LR split keeps the stack. */
+  .phase-header .ph-left { display: contents; }
+  .phase-header .pname { order: 1; }
+  .phase-header .ph-right { order: 2; }
+  .phase-header .pspec { order: 3; margin-top: 2px; }
+  .phase-header .ph-desc { order: 4; }
 }
 /* `.pname` mirrors `.h1` from the hero — same display font, weight, size,
    small-caps, line-height. Numeric Müntzfuß name is the page-section's
