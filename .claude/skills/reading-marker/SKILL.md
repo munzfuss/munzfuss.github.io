@@ -86,6 +86,27 @@ opens with a generic bold headline per kind («Помилкове / Підозр
 Removing a mark is the same procedure with step 4 replaced by deleting the key
 from the seed reading.
 
+## A mark on the YEAR (not on a measurement)
+
+A source's year that must not drive the displayed year, but must stay visible
+with a marker, is handled by the year analogue of the reading marks
+(2026-10-15, founding case: the Münzkabinett Berlin's «um 1506» on the
+Frederik I Gottorp Goldgulden, Galster 122):
+
+1. On the SEED entry of the source that published the year, add
+   `year_mark: {kind: suspect | erroneous, reason: {de, en, uk, da}}`
+   (schema `YearMark`; rendered with `yaml_io.canonical_lines`). It sits in
+   `seed_merge.CURATED_FIELDS`, so a re-seed keeps it.
+2. Keep that member's year out of the year union with a `year_demote` entry in
+   `merge_decisions/<entity>.yml` (the year is demoted, never deleted).
+3. The merger (`_collect_year_alts`) emits `year_alts: [{value, source, kind,
+   reason}]` on the unified class; absorb unions the live members' alts onto
+   final; the template shows the value beside the year as a muted chunk with
+   «(*)» / «(!)» and the reason in the tooltip (`MARK_HEAD` headline applies).
+   An alt whose value is already in the year label is not shown.
+4. Re-flow (merger + absorb), rebuild, hover the marker. The reason is
+   reader-facing prose with sources named (§0z), not a project note.
+
 ## Hard rules
 
 - A mark is written on the SEED reading only. Anything in `final` without a

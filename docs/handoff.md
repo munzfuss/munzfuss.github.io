@@ -16,6 +16,13 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-15 — Both merge calls closed; year marks «(*)» shipped
+
+- **Sønderborg Gylden 1619** (`a53d101`): kmk-81763 merged into `unified-ngc-1161408` (rhinsk IV); `_source_errata` on the KMM seed, place «Sønderborg» → mint «Reinfeld» (Jensen 1971 no. 2 under «B. Prægning i Reinfeld 1618–1620» cites the KMM specimen; curator chose the erratum over `mint_verified: false` because the museum does publish the place — the value is attested, only wrong as a mint).
+- **Berlin Goldgulden «um 1506»** (`d83b602` + the year-mark commits): ikmk-18239610 merged into the Galster-122 class `unified-dk-bruun-14741` (cross-entity decision; `year_demote` on the IKMK member keeps 1531). Research dossier `docs/research/frederik_i_gottorp_goldgulden_dating.md` (the 1506 rests on Dannenberg 1859 alone; the Schleswig/Gottorp mint dates from c. 1522, the Rhenish gulden from the Møntordning 1524, no ducal gold in Galster/Wilcke; the Chörau hoard closes after 1546; the Norway lion and the ducal title date nothing). Dannenberg's text, Lange 1908, Schou 1926, *Tronraneren* 2021 remain unread — §9 of the dossier.
+- **New mechanism — year marks:** `Coin.year_mark {kind, reason}` on the SEED of the source that published the year → merger `_collect_year_alts` → `Coin.year_alts` on unified/final → template shows «1506 (*)» beside the year with the reason in the tooltip. Procedure in `.claude/skills/reading-marker/SKILL.md` § «A mark on the YEAR». Founding case is the Berlin coin; the Note of that coin also carries the short written reasoning (curator asked for both).
+- Guldgyldenfod / Nobelfod final check of 2026-10-14 stands (see below); everything from `78acddc` on is **not pushed**.
+
 ## 2026-10-14 — Nobelfod / Guldgyldenfod final check: coins placed, texts audited; two merge calls open
 
 - **Coins** (seed-keyed trace over every Denmark-page entity + sweden): all 22 Nobel seeds sit in `nobel_fod`, all Rhenish-gulden seeds (25 danish_realm + 29 in the subject entities) in `rhinsk_gylden_fod`; `pending:` is empty everywhere, `_pending_merge_review` holds no Danish gold, Sweden has no gold gylden/nobel seeds at all. Three records remain outside: `kmk-81763` (sonderburg `seed_unsorted`), `ikmk-18239610` (royal_slesvig `seed_unsorted`), `kmk-137159` (2 Ungarsk gylden, out of these two Füße). `kmk-178069` / `kmk-291022` are curator exclusions (2026-07-19).
