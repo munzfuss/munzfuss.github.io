@@ -175,6 +175,18 @@ end-of-reign debasement went beyond the Lübeck step. No source says Denmark too
 Skillinger are undated (only the 1512 ones carry a year). Would be settled by: dated 8/7-lod
 Skillinger, hoards with closing dates (Jensen et al. 1992), Märcher 2018.
 
+**Sources checked for a dated fineness series (2026-10-15):** none in our cache gives one. Eriksson 2017
+(assays grouped by lod; only the 1512 pieces dated; s. 10: undated high-silver Skillinger «måste vara
+präglade före 1512»; Skilling minting perhaps only after 1497 — Bangbostrand hoard, c. 1490, 210 Hans
+Hvide and no Skillinger; Möllegården, Skillinger only); Wilcke 7-1 s. 144 (no ordinance → no comparison
+possible; Mårten 1542 ≈ 2,7 g «lidt over 5½ Lod» = the coins melted in 1542, an end state); Wilcke 7-2
+s. 150–151 (Lübeck ß c. 1500 «1,269 — 1,103 gr.» fine, i.e. 11½ → 13¼); Galster galkult (Skilling
+«nogenlunde god», Hvide bad; Hans Sever mintmaster in Malmø 1492–1512); Ernst 1940 summary (Danish
+Witten 245–280 ‰ vs Lübeck Witten 1502 1,08 g @ ≈ 328 ‰). Not in cache, would be needed: Galster 1972
+*Unionstidens udmøntninger* (paper), Märcher 2018 *Denar til Daler* s. 426–495 (paper), the DMS hoard
+corpus (Jensen et al. 1992) for closing dates of hoards with 9/8/7-lod Skillinger, Østergaard 1995,
+Stefke on the Lübeck side.
+
 ### §3.5 Mark coins under Hans? (2026-10-15)
 
 No specimen is known. The only witness is Mårten Myntskrivare's 1542 melt account (Svartsjö):
