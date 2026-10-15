@@ -109,10 +109,12 @@ assignments:
   - coin_id: unified-dk-hede-f2h7a
     fuss: reichsdukatenfuss
     phase: I
-    kind: kurant
-    reason: Frederik II 1 Portugaløser 1584, Frederiksborg (Danish crown mint, Sjælland — stays danish_realm / Denmark page, not Schleswig), Hede 7a, Schou 1, Sieg 29, .986 gold 35.2 g. 
-      reichsdukatenfuss Phase I (1514-1629, the Ungersk Gylden / Portugaløser .986-gold line, Christian II–Christian IV — the phase description explicitly names Frederik II). Pulled from seed_unsorted
-      2026-07-12 (Case «3_portugaloser» triage). Curator (Serhii).
+    kind: gedenk
+    reason: "Frederik II 1 Portugaløser 1584, Frederiksborg (Danish crown mint, Sjælland — stays danish_realm / Denmark page, not Schleswig), Hede 7a, Schou 1, Sieg 29, .986 gold 35.2 g. reichsdukatenfuss
+      Phase I (1514-1629, the Ungersk Gylden / Portugaløser .986-gold line, Christian II–Christian IV — the phase description explicitly names Frederik II). Pulled from seed_unsorted 2026-07-12 (Case «3_portugaloser»
+      triage). Curator (Serhii). GEDENK 2026-10-15 (curator): kind kurant -> gedenk for the whole 1584 set (Hede 7A-7G, Sieg 29): Wilcke 1931, «Frederik II.s Guldmønt 1584», from Walkendorf's Rentemester
+      accounts — «Medailler til festlig Brug, ikke som Mønter, slaaede i Omsætningsøjemed», a set of «Skuepenge» for Christian IV's Hylding 1584 or for the Queen (docs/research/f2_guldmoent_1584_gavesaet.md).
+      Fuss/phase kept; whether to exclude the set as exonumia stays open in that dossier."
   - coin_id: unified-dk-galster-f1g-68
     fuss: nobel_fod
     phase: III
@@ -174,19 +176,23 @@ assignments:
   - coin_id: unified-dk-hede-f2h7g
     fuss: rhinsk_gylden_fod
     phase: IV
-    kind: kurant
-    reason: '1 Rhinsk Gylden Frederik II 1584 Frederiksborg (Hede f2h7g, Schou 6, Sieg 29, 3.27 g gold; danskmoent.dk/fr/f2h7g.htm). Hede classifies the type as Rhinsk Gylden, so promote from seed_unsorted
+    kind: gedenk
+    reason: "1 Rhinsk Gylden Frederik II 1584 Frederiksborg (Hede f2h7g, Schou 6, Sieg 29, 3.27 g gold; danskmoent.dk/fr/f2h7g.htm). Hede classifies the type as Rhinsk Gylden, so promote from seed_unsorted
       to rhinsk_gylden_fod Phase II (the Frederik II phase, year window extended to 1584 — coins drive phase years per curator). Curator verdict (Serhii, by danskmoent) 2026-06-19. RENUMBER 2026-10-10 (curator):
-      Denmark page phase I split by grid — I (72 per mark: I.a, I.b) and II (71⅓, Flensborg: II.a 1546, II.b 1547); former II, III, IV become III, IV, V.'
+      Denmark page phase I split by grid — I (72 per mark: I.a, I.b) and II (71⅓, Flensborg: II.a 1546, II.b 1547); former II, III, IV become III, IV, V. GEDENK 2026-10-15 (curator): kind kurant -> gedenk
+      for the whole 1584 set (Hede 7A-7G, Sieg 29): Wilcke 1931, «Frederik II.s Guldmønt 1584», from Walkendorf's Rentemester accounts — «Medailler til festlig Brug, ikke som Mønter, slaaede i Omsætningsøjemed»,
+      a set of «Skuepenge» for Christian IV's Hylding 1584 or for the Queen (docs/research/f2_guldmoent_1584_gavesaet.md). Fuss/phase kept; whether to exclude the set as exonumia stays open in that dossier."
   - coin_id: unified-dk-hede-f2h7e
     fuss: reichsdukatenfuss
     phase: I
-    kind: kurant
-    reason: 1 Ungersk Gylden Frederik II 1584 Frederiksborg (Hede f2h7e, Schou 7, 3.50 g gold; danskmoent.dk/fr/f2h7e.htm). The Ungersk Gylden is the Hungarian-standard (.986) gold gulden, so promote 
-      from seed_unsorted to reichsdukatenfuss Phase I — distinct from the 1584 Rhinsk Gylden f2h7g (rhinsk_gylden_fod, .77). No existing 1584 Ungersk Gylden in RDF, so this is its own entry (not a 
-      merge). Curator verdict (Serhii, by danskmoent) 2026-06-20. CORRECTION 2026-08-10 (Serhii) — the entry had silently absorbed the set's Guldkrone f2h7f (Schou 5, 3.38 g), because the auto-matcher
-      glued the two on the gift set's shared Hede-7 / Sieg-29 indices, which cover seven different denominations and are not §9.4 merge keys. Split via merge_decisions no_merges; f2h7f now stands as 
-      its own entry under f2_guldkrone_fod Phase II. This assignment and its 3.50 g reading describe the Ungersk Gylden alone.
+    kind: gedenk
+    reason: "1 Ungersk Gylden Frederik II 1584 Frederiksborg (Hede f2h7e, Schou 7, 3.50 g gold; danskmoent.dk/fr/f2h7e.htm). The Ungersk Gylden is the Hungarian-standard (.986) gold gulden, so promote from
+      seed_unsorted to reichsdukatenfuss Phase I — distinct from the 1584 Rhinsk Gylden f2h7g (rhinsk_gylden_fod, .77). No existing 1584 Ungersk Gylden in RDF, so this is its own entry (not a merge). Curator
+      verdict (Serhii, by danskmoent) 2026-06-20. CORRECTION 2026-08-10 (Serhii) — the entry had silently absorbed the set's Guldkrone f2h7f (Schou 5, 3.38 g), because the auto-matcher glued the two on
+      the gift set's shared Hede-7 / Sieg-29 indices, which cover seven different denominations and are not §9.4 merge keys. Split via merge_decisions no_merges; f2h7f now stands as its own entry under
+      f2_guldkrone_fod Phase II. This assignment and its 3.50 g reading describe the Ungersk Gylden alone. GEDENK 2026-10-15 (curator): kind kurant -> gedenk for the whole 1584 set (Hede 7A-7G, Sieg 29):
+      Wilcke 1931, «Frederik II.s Guldmønt 1584», from Walkendorf's Rentemester accounts — «Medailler til festlig Brug, ikke som Mønter, slaaede i Omsætningsøjemed», a set of «Skuepenge» for Christian IV's
+      Hylding 1584 or for the Queen (docs/research/f2_guldmoent_1584_gavesaet.md). Fuss/phase kept; whether to exclude the set as exonumia stays open in that dossier."
   - coin_id: unified-dk-bruun-14770
     fuss: rhinsk_gylden_fod
     phase: II.b
@@ -199,13 +205,15 @@ assignments:
   - coin_id: unified-dk-hede-f2h7c
     fuss: reichsdukatenfuss
     phase: I
-    kind: kurant
+    kind: gedenk
     reason: "Curator (Serhii) 2026-07-27: 2 Dukat 1584, Frederiksborg, Frederik II —\nHede 7C / Schou 3 / Sieg 29, Bruttovaegt 6,91 g. A full-weight trade\nDukat (canonical 2 x 3,49 = 6,98 g), so Reichsdukatenfuss,
       Phase I\n(1514-1629); it joins its sibling from the same set, the 1584 Ungersk\nGylden f2h7e, already in Phase I. Fineness is not published by the source\nand stays unrecorded rather than assumed.\n\
       \nStandalone, no merge: a corpus-wide scan found no second record carrying\nHede 7C. The Sieg 29 it shares with f2h7a / 7b / 7e / 7f / 7g is the\nindex of Queen Sophie's gift set as a whole, not of
       this type — the seven\npieces differ by nominal and Hede sub-letter (Portugaloeser 7a, Rosenobel\n7b, 2 Dukat 7c, Ungersk Gylden 7e, Guldkrone 7f, Rhinsk Gylden 7g), so\nSieg 29 cannot serve as a
       merge key here. danskmoent f2h7c also records\nthe piece as \"(Unik)\".\n\nSources on the page for later citation work: Galster, Nationalmuseets\nArbejdsmark 1959 s. 117; J. S. Jensen, Moentsamlernyt
-      1/1975; Wilcke,\n\"Frederik II.s Guldmoent 1584\", Daler, Mark og Kroner 1481-1914,\nKoebenhavn 1931, s. 85-90.\n"
+      1/1975; Wilcke,\n\"Frederik II.s Guldmoent 1584\", Daler, Mark og Kroner 1481-1914,\nKoebenhavn 1931, s. 85-90. GEDENK 2026-10-15 (curator): kind kurant -> gedenk for the whole 1584 set (Hede 7A-7G,
+      Sieg 29): Wilcke 1931, «Frederik II.s Guldmønt 1584», from Walkendorf's Rentemester accounts — «Medailler til festlig Brug, ikke som Mønter, slaaede i Omsætningsøjemed», a set of «Skuepenge» for Christian
+      IV's Hylding 1584 or for the Queen (docs/research/f2_guldmoent_1584_gavesaet.md). Fuss/phase kept; whether to exclude the set as exonumia stays open in that dossier."
   - coin_id: unified-dk-bruun-5528
     fuss: reichsdukatenfuss
     phase: III
@@ -215,7 +223,7 @@ assignments:
   - coin_id: unified-dk-hede-f2h7f
     fuss: f2_guldkrone_fod
     phase: II
-    kind: kurant
+    kind: gedenk
     reason: "Curator (Serhii) 2026-08-10: 1 Guldkrone 1584, Frederiksborg,\nFrederik II - Hede 7F / Schou 5 / Sieg 29, Bruttovaegt 3,38 g,\nunique, part of Queen Sophie's gift set.\n\nSplit out of the f2h7e
       class on the same date (see merge_decisions\nno_merges): Hede 7 and Sieg 29 are the gift set's own indices,\ncovering seven different denominations, so neither can act as a\nsection 9.4 merge key.
       A corpus-wide scan found no other record of a\n1584 Guldkrone - this is a standalone entry, not a merge.\n\nStandard by section 8a step 4 (Bruttogewicht pattern; the source\npublishes no fineness).
@@ -223,7 +231,9 @@ assignments:
       IV / Frederik III (5,996 g at .917, 1618+) is 44 % away\nin gross weight and outside its window, so it is ruled out.\n\nNew Phase II (1584): the Frederiksborg gift set repeats the same three\nparallel
       gold kinds as the 1563-1564 coinage - Ungersk Gylden\n(reichsdukatenfuss), Rhinsk Gylden (rhinsk_gylden_fod), Guldkrone\n(this Fuss). Same procedure as the set's Rhinsk Gylden, promoted into\nrhinsk_gylden_fod
       Phase II on 2026-06-19 by extending that Fuss's\nwindow to 1584.\n\nNo fineness is written. The source publishes none, and the .934 of the\n1563-1564 Kroneguld would be an inference; the row carries
-      the\nstandard through its fuss assignment only.\n"
+      the\nstandard through its fuss assignment only. GEDENK 2026-10-15 (curator): kind kurant -> gedenk for the whole 1584 set (Hede 7A-7G, Sieg 29): Wilcke 1931, «Frederik II.s Guldmønt 1584», from Walkendorf's
+      Rentemester accounts — «Medailler til festlig Brug, ikke som Mønter, slaaede i Omsætningsøjemed», a set of «Skuepenge» for Christian IV's Hylding 1584 or for the Queen (docs/research/f2_guldmoent_1584_gavesaet.md).
+      Fuss/phase kept; whether to exclude the set as exonumia stays open in that dossier."
   - coin_id: unified-dk-hede-c4h30
     fuss: reichsdukatenfuss
     phase: III
@@ -723,6 +733,14 @@ assignments:
     kind: kurant
     reason: Frederik I 1 Nobel 1532 (Galster 45). Phase I was a final-foundation value without a decision; recorded 2026-10-14 (curator) when Nobelfod period I was split at 1524 — I = Christian II 
       (1516–1518), II = Frederik I (1524–1532).
+  - coin_id: unified-dk-hede-f2h7b
+    fuss: rosenobel_fod
+    phase: I
+    kind: gedenk
+    reason: "Frederik II 1 Rosenobel 1584, Frederiksborg (Hede 7B, Sieg 29). fuss/phase as already on the final (no decision recorded before); added to carry the set-wide kind. GEDENK 2026-10-15 (curator):
+      kind kurant -> gedenk for the whole 1584 set (Hede 7A-7G, Sieg 29): Wilcke 1931, «Frederik II.s Guldmønt 1584», from Walkendorf's Rentemester accounts — «Medailler til festlig Brug, ikke som Mønter,
+      slaaede i Omsætningsøjemed», a set of «Skuepenge» for Christian IV's Hylding 1584 or for the Queen (docs/research/f2_guldmoent_1584_gavesaet.md). Fuss/phase kept; whether to exclude the set as exonumia
+      stays open in that dossier."
 pending: []
 multi_match_warnings: []
 promoted_near_peers:
