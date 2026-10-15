@@ -116,6 +116,8 @@
 
 ## Log
 
+- 2026-10-15 — Bobzin: «lübischer Münzfuß» also names the 1726 34-Mark-Fuß (our `11_333_thaler`) — D14 name collision put to the curator (step 3.1 ⏸).
+
 - 2026-10-15 — Bobzin (hagen-bobzin.de) cached; Fuß dossier §3.1a: «N-Mark-Fuß» measure, proposal for step 3.2 = 11½ Mark lübisch per fine mark (1468/1492).
 
 - 2026-10-15 — Fuß dossier `luebischer_muenzfuss.md` created.

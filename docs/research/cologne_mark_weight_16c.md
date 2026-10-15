@@ -34,6 +34,26 @@ All danskmoent pages are unpaginated web transcriptions; the quote is the locato
 Galster's German figure «23,156g.» is a transcription defect (a mark cannot weigh 23 g);
 hypothesis 231,56 g — would be settled by the printed «Danmarks Mønter».
 
+## §1a. Witthöft's metrology via Bobzin (added 2026-10-15)
+
+Hagen Bobzin, «Gewichte/Zählweisen» (hagen-bobzin.de; cache `scripts/cache/bobzin/muenzen_gewichte.*`),
+after Witthöft (1991) p. 95 and Grote (1863) p. 30 ff. — secondary, not read in the original:
+
+| Period | Mark | Value | Bobzin's wording |
+|---|---|---:|---|
+| 1342/43 | Cologne = Tower mark, 160 d | 233,28 g | «*1 Mark = 8 Unzen = 16 Lot = 160 Denare = 233,28g*» |
+| 1343 | «Nürnberger Guldenmark» (72 gulden of the Nuremberg mark = 66 per Cologne mark) | 233,8875 g | |
+| — | the (old) Cologne mark in Richtpfennige / Äßchen, «*zur Basis der Eßlinger Münzkonvention von 1524*» | **233,8123 g** | |
+| 2nd half 15th c. | Cologne mark of 153 Engels (Dutch troy based) | 235,318 g | |
+| 2nd half 15th c. | «niederländische Guldenmark», 16 Cologne Lot × 9½ Engels = 152 Engels | **233,7796 g** | «*die kölner Mark zu 19/20 holländischen Troy-Mark*» |
+| 1694 | Augsburg standard weight | 234,067 g | |
+| 1760 | Augsburg congress, 4020 ducat-As | 233,8123 g | |
+| 1816 | Prussian fixing | 233,8555 g | |
+
+**Bearing on §5 (230 vs 233.856):** none of Witthöft's 14th–16th-c. Cologne marks is near Galster's
+230 g; they run 233,28–235,32 g, the 1524 imperial basis 233,81 g. This supports keeping 233.856 as a
+good approximation (differences ≤ 0,6 %) and does not support 230 g — still the curator's decision.
+
 ## §2. What Galster's 230 g actually rests on
 
 Specimen weights, not a metrological record: Flensborg 1547 daler average 28.74 g ×

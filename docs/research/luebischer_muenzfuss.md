@@ -54,6 +54,7 @@ Archive copies: survey §2 + plan step 5.2 (all seven web sources archived 2026-
 - **Holstein** (imperial fief, the Danish king its count from 1460, duke from 1474): Christian
   I bound himself and his heirs to strike «*ingen mønt … uden den som til Lübeck og Hamburg er
   gængs og gæv*» (L7).
+- **Name collision (found 2026-10-15).** Bobzin («Münzfüße», hagen-bobzin.de, cache `scripts/cache/bobzin/muenzfuesse.*`) uses «*Der Lübecksche oder lübische Münzfuß (oder Lübischer Kurantfuß)*» for the **1726** Hamburg–Lübeck 34-Mark-Fuß — our card `11_333_thaler` (11⅓-Thaler-Fuß, historical name «Kurantmøntfod»). A card named «Lübischer Müntzfuß» for the 15th-c. standard can be read as that 1726 standard — curator to decide whether D14 needs a qualifier (put to the curator 2026-10-15).
 - **Name.** «lübischer Münzfuß» is the scholars' term (Grautoff 1836, Jesse); the recesses
   write «lubesche munte / mark»; Danish texts «lybsk mynt»; Wilcke «lybsk Møntfod» (survey
   §10.3). Card strings per D14.

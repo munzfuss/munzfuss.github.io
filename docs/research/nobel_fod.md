@@ -42,6 +42,8 @@
 
 ---
 
+> **2026-10-15:** Munro 1974 (via Bobzin) gives the 1487 real 16½ per Trooise mark at 23,8 carats, 14,71 g fine — see `burgundian_gold_real_1487.md` §6a.
+
 ## §1. Sources and their provenance chains
 
 | Key (refs_pool) | Work | What it is | Independence |

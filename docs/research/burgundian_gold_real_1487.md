@@ -310,15 +310,51 @@ Findings:
 
 ---
 
+## §6a. Munro 1974 via Bobzin (added 2026-10-15)
+
+Hagen Bobzin, «Niederländisches Münzsystem» (hagen-bobzin.de; cache
+`scripts/cache/bobzin/muenzsystem_niederlaendisch.*`), cites **J. H. Munro, «Money and Coinage of
+the Age of Erasmus»**, in *The Collected Works of Erasmus*, vol. 1 (Toronto 1974) pp. 311–48, here
+p. 326 (not seen — Bobzin's rendering; a secondary chain):
+«*Österreich lässt ab 1487 Grand real mit einem großen Goldkern (14,71g) herstellen. Von ihm gehen
+16½ Stück auf Mark zu 23,8 Karat Gold.*» and «*1487 lebt der noble de Bourgogne (33 Stück auf die
+23⅘ karätige Mark) unter dem habsburger König Maximilian als minderwertige Fälschung des englischen
+Rose Noble noch einmal auf.*» His table (same page, after Munro):
+
+| Year | Coin | carat | per mark | rough g | fine g |
+|---|---|---:|---:|---:|---:|
+| 1487 | Grand real (royal) von Österreich | 23,8 | 16½ | 14,834 | 14,710 |
+| 1487 | burgund. Noble = demi-real | 23,8 | 33 | 7,417 | 7,355 |
+| 1487 | Burgund. Dukat = demi-noble = quarter-royal | 23,8 | 66 | 3,708 | 3,677 |
+| 1489 | demi-noble | 22,85 | 72 | 3,399 | 3,236 |
+
+Recomputation: every rough weight is the **Trooise mark 244,753 g** ÷ pieces (244,753 / 16,5 =
+14,834), every fine weight × carat/24 (14,834 × 23,8/24 = 14,710) — Munro's «Mark» is the Trooise
+mark, as §3.1 established for the 1487 instruments.
+
+What it adds:
+- **Q1 (‰ of the 1487 «XXIV carats»):** Munro gives a numeric **23,8 carats (≈ .9917)**, i.e. the
+  noble-gold convention, not pure 24/24; it agrees with Van Gelder's 14,72 g fine (.9926) within
+  0,07 %. Not the instruction's own wording — Munro's value; the 1487 text still says XXIV.
+- **Q5 (Numista .992 / 14,71 g):** **hypothesis** — Numista's «.992» is Munro's 23,8 carats
+  (23,8/24 = .9917) and its «14,71 g» is Munro's FINE weight given as the weight; the rough weight
+  is 14,834. Would be confirmed by Numista's record history / its cited reference.
+- The 1487 «noble de Bourgogne» = demi-real (33/M). The demi-noble at 72/M: Munro (via Bobzin)
+  dates it 1489 at **22,85 carats** (3,236 g fine); §2 has it from 26 Oct – 20 Nov 1488 at
+  **XXIII carats** (De Witte, OCR-damaged) with Van Gelder's 3,26 g fine (= 244,75/72 × 23/24).
+  The two differ by ⅙ carat and a year — open until the instruction text is read.
+- Munro calls the 1487 noble a «minderwertige Fälschung des englischen Rose Noble» — the English
+  ryal as the model behind the Burgundian noble (context for `nobel_fod.md` §2).
+
 ## §7. Open questions
 
 | # | Question | Would be settled by |
 |---|---|---|
-| Q1 | **Partly settled 2026-10-12 (§3.1a): the Netherlands instructions use «24 carats» as the conventional label of fine gold (the English noble counted as fine, ≈ .995; numeric 23 ct 9½ gr in 1500/1521). Open only for the 1487 text itself.** The ‰ value of «XXIV carats» in 1487. Is it pure 24/24, noble-gold 23 kt 10½ gn (Vanhoudt's convention), or something else? What prescribed fineness gives Van Gelder's 14.72 g fine (≈ 23 kt 10 gn)? Remedium? | The instruction text: Lille Registre des chartes 16 fol. 84; Verachter, *Documens* (1840) p. 41; Van der Chijs, *Holland* p. 491. Failing that, an assay of a Dordrecht real. |
+| Q1 | **Munro 1974 p. 326 (via Bobzin, §6a) gives 23,8 carats for the 1487 real.** **Partly settled 2026-10-12 (§3.1a): the Netherlands instructions use «24 carats» as the conventional label of fine gold (the English noble counted as fine, ≈ .995; numeric 23 ct 9½ gr in 1500/1521). Open only for the 1487 text itself.** The ‰ value of «XXIV carats» in 1487. Is it pure 24/24, noble-gold 23 kt 10½ gn (Vanhoudt's convention), or something else? What prescribed fineness gives Van Gelder's 14.72 g fine (≈ 23 kt 10 gn)? Remedium? | The instruction text: Lille Registre des chartes 16 fol. 84; Verachter, *Documens* (1840) p. 41; Van der Chijs, *Holland* p. 491. Failing that, an assay of a Dordrecht real. |
 | Q2 | Did the Holland mint (Dordrecht) work to the July 1487 Brabant parameters or to a separate Holland instruction? Which mark did it use? | Van der Chijs, *De munten der voormalige graafschappen Holland en Zeeland* (1858) p. 491 (Holland account 1487) — likely on Delpher / Google Books. |
 | Q3 | Did the July 1488 instruction («*gewicht en gehalte van alle stukken met ongeveer 10 %*» lowered) cover the gold real? Van Gelder 1995's table keeps 14.72 g for 1488. | Verachter p. 49; Van der Chijs, *Holland* p. 498 (Van Gelder 1951 n. 9). |
 | Q4 | Which «Regnskaber» Galster used for «24 Karat, 16½ paa en troysk Mark», and why his 14,9 g implies a ~246 g mark. | Galster's printed book (footnotes), not on danskmoent. |
-| Q5 | Source of Numista's .992 / 14.71 g (§5 suspicion). | Numista record history / Delmonte, *Le Benelux d'or*, G 749. |
+| Q5 | **Hypothesis 2026-10-15 (§6a): Munro's 23,8 carats and his fine weight 14,71 g.** Source of Numista's .992 / 14.71 g (§5 suspicion). | Numista record history / Delmonte, *Le Benelux d'or*, G 749. |
 | Q6 | Lille silver real «930/1000e» vs De Witte's XI d IV gr (.944). Out of scope; noted only. | — |
 
 ---
