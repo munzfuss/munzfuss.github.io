@@ -380,6 +380,17 @@ had 24 carats (which, however, were probably 23.875 carats = 99.479% pure gold �
 Florentine florins, Venetian ducats, and English nobles)*». So his 23,8 for the real (via Bobzin) is not his
 «24 carats» convention (that would be 23,875 → 14,756 g fine) — it is a separate figure, source unknown.
 
+**CWE vol. 8 (1988), Munro, «Money and coinage of the age of Erasmus», Table A p. 349** (read 2026-10-15 from the
+curator's Google Books screenshot, books.google.com/books?id=Oulx6h9Z-p0C&pg=PA349): «The coinage of the
+Burgundian-Hapsburg Netherlands before and after 1521» — 1500–20 gold: toison d'or «*23 carats 9.5 grains*»,
+99.13 %, 54½ to the marc, 4.491 / 4.452 g; St Philip florin 15 carats 11 grains; 1521–56: réal d'or «*23 carats
+9.5 grains*», 46, 5.321 / 5.274 g. **No 1487 real.** Note 1: «*For gold coins, fineness was measured in terms of
+24 carats = 100%, with 12 grains per carat of gold*»; note 2: the marc de Troyes «*contained 244.753g*», and the
+gram weights «*are merely a theoretical, ideal mean*». So in this table Munro writes carats + grains and treats
+24 carats as 100 % — not the 23.875 of WP38 n. 6. The «23,8» for the real stays Bobzin's rendering of vol. 1,
+unverified: 23,8 carats is 23 carats 9,6 grains, not a carat-grain value of the kind Munro prints here; 23 carats
+9¾ grains (= 23,8125) would be.
+
 The 1489 demi-noble at 22,85 carats in Munro is likewise a quarter-grain value: 22 carats 10¼
 grains = 22,854.
 
