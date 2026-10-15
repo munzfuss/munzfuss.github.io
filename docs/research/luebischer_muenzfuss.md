@@ -187,6 +187,26 @@ Witten 245–280 ‰ vs Lübeck Witten 1502 1,08 g @ ≈ 328 ‰). Not in cache,
 corpus (Jensen et al. 1992) for closing dates of hoards with 9/8/7-lod Skillinger, Østergaard 1995,
 Stefke on the Lübeck side.
 
+**Working model for the next card update (hypothesis — not yet on the card; curator 2026-10-15: «на базі
+цього будемо потім оновлювати картку стопи»).** Three stages of Hans' Skilling, each with its evidence
+and its weak point:
+
+| Stage | Skilling | Mark lübisch / fine mark | Evidence | Weak point |
+|---|---|---:|---|---|
+| 1 | 9 lod, ≈ 1,27 g fine | ≈ 11½ = Lübeck 1468/1492 | Eriksson tab. 7; Jesse (treaty 1468, «so 1483 und 1492»); Eriksson s. 5 (weights «motsvarade mycket bra de lübska») | start date: perhaps only after 1497 (Eriksson s. 10, hoards Bangbostrand / Möllegården) |
+| 2 | 8–7 lod, ≈ 1,0–1,24 g fine | ≈ 12–14, around 13 = Lübeck Markstück 1502/06, Schilling 1515 13¼ | Eriksson tab. 7; Wilcke 7-2 s. 150–151 (Lübeck ß c. 1500 «1,269 — 1,103 gr.»); Bobzin / Jesse (13-Mark-Fuß) | undated; no source says Denmark joined or followed the 1502–1506 recesses |
+| 3 | 6 lod, dated 1512, ≈ 0,82–0,96 g fine | ≈ 15–18, below Lübeck | Eriksson tab. 7 (1512 pieces), s. 10 (fineness cut «med ca. 1/3»); Wilcke 7-1 s. 144 (Mårten 1542 ≈ 0,93 g) | none for the level; the start of the stage is unknown |
+
+The Hvid (Ernst 1940: 245–280 ‰; ≈ ¼ of the early Skilling, ≈ ⅓ of the 1512 one, §3.4) and the reckoning
+(Gylden 2 → 2½ Mark dansk «ved Aarhundredskiftet», Wilcke 7-1 s. 134) fit the same direction. What would
+turn the model into a finding: closing dates of hoards with 9 / 8 / 7-lod Skillinger (DMS, Jensen et al.
+1992), Galster 1972, Märcher 2018.
+
+⚠ **Source discrepancy — mintmaster Hans Sever in Malmø.** Galster (galkult): Dringenberg «1492 blev afløst
+af Hans Sever, der var Kong Hans' Møntmester i Malmø til 1512»; danskmoent `hans.htm`: «Henrik Dringenberg,
+Malmø -1489 | Hans Sever, Malmø 1489-». Start 1489 or 1492 — not settled; the end 1512 (his presumed death,
+Galster) coincides with the dated 1512 Skillinger of stage 3 (coincidence noted, no causal claim).
+
 ### §3.5 Mark coins under Hans? (2026-10-15)
 
 No specimen is known. The only witness is Mårten Myntskrivare's 1542 melt account (Svartsjö):
