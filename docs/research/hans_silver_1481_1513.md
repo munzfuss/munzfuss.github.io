@@ -1,5 +1,7 @@
 # Danish-Norwegian silver and billon under King Hans, 1481–1513 — standard, sources, data
 
+> **The Fuß dossier is `luebischer_muenzfuss.md`** (from 2026-10-15); this file is the evidence survey behind it.
+
 > **Question.** The gold of King Hans is covered (`nobel_fod`, `rhinsk_gylden_fod`).
 > His silver and billon — Hvid, Søsling, Skilling, the Norwegian and Gotland issues — and
 > the coins of the other issuers inside his realm in those years sit in `seed_unsorted`.

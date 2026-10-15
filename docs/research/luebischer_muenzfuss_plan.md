@@ -5,7 +5,7 @@
 > with sourced notes — at the level of `nobel_fod` / `rhinsk_gylden_fod` (curator-approved
 > models, 2026-10-12 / 2026-10-13), in de / en / uk / da.
 >
-> **Evidence base:** `hans_silver_1481_1513.md` (dossier). **This file is the working
+> **Fuß dossier:** `luebischer_muenzfuss.md` (the standard, parameters, instruments, inclusion verdicts). **Evidence survey:** `hans_silver_1481_1513.md`. **This file is the working
 > checklist**: tick a step in the same commit that completes it; add, split or reorder steps
 > as the work shows what is needed; record every curator decision here with its date.
 >
@@ -115,6 +115,8 @@
 | ☐ | 8.3 Later, not in this plan unless the curator asks: Christian I / Christoffer / Erik of Pomerania silver under the same card (Hvid since c. 1440) | — |
 
 ## Log
+
+- 2026-10-15 — Fuß dossier `luebischer_muenzfuss.md` created.
 
 - 2026-10-15 — relocation applied (`_cross_entity.yml`, `issuing_entity: sweden` override needed: the Stockholm mint maps to `danish_realm` before 1523); single-member RELOCATE enabled in the merger (`5da257c`). Found while re-flowing, NOT ours, left at HEAD: `unified-kmk-692607` (Christian 3 Sechsling) — the committed KMM seed would widen 1546 → 1534–1559 on the next re-flow (seeds committed without merge+absorb); `erzbisthum_bremen_verden` final has a hand-set `display: false` on a source that absorb drops. Both for the curator / the KMM session.
 
