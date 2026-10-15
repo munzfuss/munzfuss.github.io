@@ -1879,6 +1879,27 @@ Swedish issues are in scope. The test is applied to the **issuing crown (the
 ruler)**, not the physical mint city — a Danish king's coin struck at an
 occupied or contracted foreign mint stays Danish.
 
+**Amendment (curator, 2026-10-15) — crown held is necessary, not sufficient; the
+STANDARD decides too, and every case is the curator's.** A polity's coins go on the
+Denmark page when (1) there was some hierarchical tie to Denmark — the Danish king also
+held that crown or duchy (personal union counts; a duke who is at the same time king of
+Denmark counts), or the land was a Danish fief or otherwise subordinate — AND (2) its
+coinage was on a standard compatible with the Danish one. Arguments, weighed per case:
+- **Different base mark = argument AGAINST** (e.g. Sweden: the Stockholm mark of
+  ~210,6 g and Ørtug reckoning vs the Cologne mark in Denmark). A common higher unit (both
+  reckoning from the Cologne mark) is an argument FOR.
+- **Small parameter differences are not a reason to separate** — parameters drifted
+  anyway: a Rhenish gulden at 71⅓ to the mark at 18½ karat in one land and 72 at 18 karat
+  in Denmark is the same standard family.
+- Standards that are similar but not equal (debatable) are examined for compatibility
+  case by case.
+- **No polity is added to or removed from the page without the curator approving that
+  specific case.** Proposals go to the curator with the sources; record each verdict here.
+
+The Sweden ruling below (union issues in scope) is therefore **re-opened**: the curator
+(2026-10-15) prefers to treat the Swedish union coinage separately, on a different page,
+because Sweden coined on its own mark and standard. Pending a per-case verdict.
+
 **Sweden timeline.** Kalmar Union: the Danish king held the Swedish crown under
 Christian I (1457-1464, 1465-1467), Hans (1497-1501) and Christian II
 (1520-1523). Sweden became permanently independent on **6 June 1523** (Gustav

@@ -473,3 +473,20 @@ king himself was count/duke of Holstein, but as an imperial vassal, never as a D
   to fetch tools; Kalkar not checked.
 - Consequence: the curator's condition («if that was the period spelling») is not met for
   the «-Fuß / -fod» compound in either language. Choice put to the curator (2026-10-15).
+
+### 10.4 Norway — from when on the Danish standard (curator question 2026-10-15)
+
+| Period | What the sources say | Reading against the inclusion rule (SOURCES §13.16) |
+|---|---|---|
+| c. 1380s–1483 | no Norwegian coinage («det myntløse århundret», S6 s. 4–5); Holst: «*Fra Erik av Pommern, Christopher av Bayern og Christiern I kjennes nemlig ingen n[orske mynter]*» | nothing to include; our `danish_norway` has no pre-Hans record |
+| 1483–1513, Hans | håndfæstning 1 Feb 1483: Norwegian coin «*jeffngod … wid Danske penninge*» (S6 s. 3–4); Holst: the Oldenburgs' Norwegian coins are «*efter det lybske myntsystem*», and Gaute Ivarsson's «*slutter sig ved sin vekt til de kongelige mynter*»; Wilcke 7-1 s. 143: «*efter lybsk Møntfod*». Caveats: Holst notes the inference from 1514 that the weight used in Norway before was **not** the Cologne one, but sets the håndfæstning against it; Ernst 1940 (S-zus.): Norwegian Hvide average 0,63 g vs Danish ≈ 0,75 g | same system and same declared value as the Danish coin → **include from 1483** (proposal); the weight-base question is a stated argument, not a decision |
+| 1513–1523, Christian II | Møntordning for Norge 3 Aug 1514: Norwegian coin as good as Danish, mutually current, Cologne weight «for fremtiden» (Holst; register §1a) | formally identical → include |
+| 1523–1524 | interregnum Dobbelthvid at Oslo («Hans Mule», G 165; Holst) | case for the curator — no king |
+| 1524–1532, Frederik I | own Norwegian grids, all at the Cologne mark: Hamar 96/M 5 lod = the Danish 1524 Skilling; Oslo 112/M 4 → 3½ lod; Bergen 106/M 4½ lod; 1530 order «*samme Korn og Skrot som den danske Mønt*» (`instruments/1524_norske_moentbreve_frederik_i.md`) | same base mark and same reckoning, lower tiers at Oslo/Bergen → compatible per the rule (drift); case to confirm |
+| 1531–1532 | Christian II's emergency coins in Norway (Holst nos. 82–84) — a deposed claimant, not the reigning king | case for the curator |
+| 1523–1537 | Archbishop Olav Engelbrektsson's Skillinger and «Mark» (Holst nos. 94–95) | case for the curator (church lordship inside Norway; in 1536–37 opposed to Christian III) |
+| from 1537 / 1543 | Norway joined to the Danish crown; from 1543 the Norwegian coinage is struck for the joint monarchy and circulates «*som danske*» (Holst) | include (already consumed to 1814) |
+
+Data note: the 16 `danish_norway` records of Hans carry year labels starting **1481**; Hans was
+recognised in Norway only in **1483** — the labels come from the sources (Galster «1481-1513»),
+so they stay; a display filter by reign start is a separate question.
