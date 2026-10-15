@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-12T11:12:17Z'
+generated_at: '2026-10-15T08:19:45Z'
 entity: danish_realm
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -12717,6 +12717,7 @@ coins:
       galster: '32'
       schou: '27'
     year_first: 1512
+    nominal: 1 Skilling
   - id: kmk-273472
     fuss: seed_unsorted
     phase: kmk
@@ -26960,6 +26961,7 @@ coins:
       galster: '85'
       schou: '36'
     year_first: 1535
+    nominal: 4 Skilling
   - id: kmk-131222
     fuss: seed_unsorted
     phase: kmk
@@ -35989,6 +35991,7 @@ coins:
       others:
         - B# 148aa
     year_first: 1545
+    nominal: 1 Søsling lybsk
   - id: kmk-131363
     fuss: seed_unsorted
     phase: kmk
@@ -36287,6 +36290,7 @@ coins:
       schou: '14'
       others:
         - B# 158b
+    nominal: 1 Søsling lybsk
   - id: kmk-741070
     fuss: seed_unsorted
     phase: kmk
@@ -224714,6 +224718,7 @@ coins:
       hede: 132A
       schou: '56'
     year_first: 1661
+    nominal: 2 Skilling
   - id: kmk-131172
     fuss: seed_unsorted
     phase: kmk
@@ -256472,6 +256477,7 @@ coins:
         ref: KMM 699194 (Inv. FP 327.25)
     verification_note: *id001
     mint: Kopenhagen
+    nominal: 2 Skilling
   - id: kmk-740518
     fuss: seed_unsorted
     phase: kmk
@@ -271150,6 +271156,7 @@ coins:
     catalog:
       schou: '7'
     year_first: 1703
+    nominal: 2 Skilling
   - id: kmk-175955
     fuss: seed_unsorted
     phase: kmk
@@ -281395,6 +281402,7 @@ coins:
       others:
         - B# 326
     year_first: 1728
+    nominal: 8 Skilling
   - id: kmk-156581
     fuss: seed_unsorted
     phase: kmk
@@ -294761,6 +294769,7 @@ coins:
       others:
         - B# 142
     year_first: 1783
+    nominal: 24 Skilling
   - id: kmk-106919
     fuss: seed_unsorted
     phase: kmk
@@ -296768,6 +296777,7 @@ coins:
     catalog:
       hede: '36'
       schou: '2'
+    nominal: 4 Skilling
   - id: kmk-159754
     fuss: seed_unsorted
     phase: kmk
@@ -308116,6 +308126,7 @@ coins:
       hede: '11'
       schou: '8'
     year_first: 1854
+    nominal: 4 Skilling rigsmønt
   - id: kmk-158190
     fuss: seed_unsorted
     phase: kmk
@@ -317363,32 +317374,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/168046
         ref: KMM 168046 (Inv. FP 2533.64)
     verification_note: *id001
-  - id: kmk-28296
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Amulet
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    year_first: 1912
-    year_last: 1947
-    year_label: 1912-1947
-    year_ranges:
-      -   - 1912
-          - 1947
-    weight_rough_g: 8.07
-    weight_rough_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/28296
-        ref: KMM 28296 (Inv. GP 3803.1)
-    verification_note: *id001
-    _source_note:
-      da: dr. Alexandrine m. kunstnerinitialer AH / syvtakket stjerne og indskriften 'LYKKE' omgivet af kornaks og blomster
   - id: kmk-311183
     fuss: seed_unsorted
     phase: kmk
@@ -323236,8 +323221,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/739521
         ref: KMM 739521 (Inv. FP 12951.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/292791
+        ref: KMM 292791 (Inv. FP 6952.27)
     verification_note: *id001
     _thinned_from:
+      - kmk-292791
       - kmk-292792
       - kmk-295060
       - kmk-296132
@@ -332254,6 +332243,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/160511
         ref: KMM 160511 (Inv. FP 4678.3)
     verification_note: *id001
+    nominal: 1 Skilling
   - id: kmk-166428
     fuss: seed_unsorted
     phase: kmk
@@ -332920,6 +332910,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/175637
         ref: KMM 175637 (Inv. FP 28.7)
     verification_note: *id001
+    nominal: 1 Penning
   - id: kmk-175789
     fuss: seed_unsorted
     phase: kmk
@@ -338742,22 +338733,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/292790
         ref: KMM 292790 (Inv. FP 6952.28)
-    verification_note: *id001
-  - id: kmk-292791
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Penning
-    metal_verified: false
-    mint_verified: false
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292791
-        ref: KMM 292791 (Inv. FP 6952.27)
     verification_note: *id001
   - id: kmk-292820
     fuss: seed_unsorted
@@ -359729,6 +359704,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/78432
         ref: KMM 78432 (Inv. GP 678.96)
     verification_note: *id001
+    nominal: ½ Specie
   - id: kmk-78433
     fuss: seed_unsorted
     phase: kmk
@@ -359821,6 +359797,23 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/78437
         ref: KMM 78437 (Inv. GP 678.101)
+    verification_note: *id001
+  - id: kmk-78439
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Frederik 5
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78439
+        ref: KMM 78439 (Inv. GP 678.103)
     verification_note: *id001
   - id: kmk-78447
     fuss: seed_unsorted
@@ -360846,3 +360839,33 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/160309
         ref: KMM 160309 (Inv. FP 3312.1)
     verification_note: *id002
+  - id: kmk-28296
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 1 Amulet
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    year_first: 1912
+    year_last: 1947
+    year_label: 1912-1947
+    year_ranges:
+      -   - 1912
+          - 1947
+    weight_rough_g: 8.07
+    weight_rough_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/28296
+        ref: KMM 28296 (Inv. GP 3803.1)
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    _source_note:
+      da: dr. Alexandrine m. kunstnerinitialer AH / syvtakket stjerne og indskriften 'LYKKE' omgivet af kornaks og blomster

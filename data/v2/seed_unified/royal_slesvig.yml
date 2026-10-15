@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
 # Input: 157 per-source seed entries.
-# Output: 68 unified entries (one per physical coin).
+# Output: 69 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2557,10 +2557,6 @@ coins:
       numista: '309411'
       mb: '33'
       lange: '23'
-      hede: 21A
-      schou: '15'
-      others:
-        - B# 148c
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -2569,17 +2565,12 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 0.99
-        source: kmk
       - value: 1.0
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/309411
         ref: Numista N#309411 — 1 Sechsling - Christian III
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/83085
-        ref: KMM 83085 (Inv. GP 982.109)
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -2592,7 +2583,6 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - dk-numista-309411
-      - kmk-83085
   - id: unified-dk-numista-309415
     fuss: seed_unsorted
     phase: numista
@@ -3248,6 +3238,37 @@ coins:
     issuing_entity: royal_slesvig
     composed_of:
       - kmk-81475
+  - id: unified-kmk-83085
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling
+    year_first: 1545
+    year_last: 1545
+    year_label: '1545'
+    ruler: Christian 3
+    mint: Flensburg
+    catalog:
+      hede: 21A
+      schou: '15'
+      others:
+        - B# 148c
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.99
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/83085
+        ref: KMM 83085 (Inv. GP 982.109)
+    verification_note: *id001
+    issuing_entity: royal_slesvig
+    composed_of:
+      - kmk-83085
   - id: unified-ngc-167729
     fuss: seed_unsorted
     phase: ngc

@@ -782,6 +782,29 @@ def _raadata_other_object(src: dict, rd: dict) -> bool:
     return (a.group(1).upper(), a.group(2)) != (w.group(1).upper(), w.group(2))
 
 
+# A rådata `beskrivelser` line that is ONLY a denomination («4 skilling
+# rigsmønt», «½ specie», «søsling lybsk», «gylden»). `beskrivelser` is a
+# free-form list — motif lines («Kronet DOC», «Højere port kronet af "O"…»)
+# and catalogue lines sit in it too — so the whole line must match; a line that
+# merely contains a denomination word is not taken. Used only when the ES
+# record has no `nominal` (KMM 78541: ES nominal empty, web page «4 skilling
+# rigsmønt»).
+_RAADATA_NOMINAL_RE = re.compile(
+    r"^(?:\d+|½|¼|⅛|\d+/\d+)?[ -]?"
+    r"(?:skilling|søsling|hvid|penning|gylden|dukat|speciedaler|specie|"
+    r"rigsdaler|daler|mark|øre|kroner?)"
+    r"(?:[ -](?:rigsmønt|lybsk|danske?|kurant|courant|banco|rigsbank))?$",
+    re.IGNORECASE,
+)
+
+
+def _raadata_nominal(beskrivelser) -> str | None:
+    for line in beskrivelser or []:
+        if isinstance(line, str) and _RAADATA_NOMINAL_RE.match(line.strip()):
+            return line.strip()
+    return None
+
+
 def _enrich_from_raadata(src: dict) -> dict:
     """Return a copy of `src` with ES-cache gaps filled from the web-rådata
     JSON (when a web page is cached for this object). Fills: measurements
@@ -833,6 +856,11 @@ def _enrich_from_raadata(src: dict) -> dict:
                  and isinstance(k.get("term"), str) and k["term"].strip()]
         if terms:
             src["typeNumber"] = "; ".join(terms)
+    # nominal — ES `nominal` empty, the web page's description line names it.
+    if not (src.get("nominal") or "").strip():
+        nom = _raadata_nominal(rd.get("beskrivelser"))
+        if nom:
+            src["nominal"] = nom
     # catalogue — always stash for _catalog to UNION (the ES typeNumber and the
     # web beskrivelser can each carry refs the other lacks: e.g. ES «Sch 3» +
     # web «B 960» → schou 3 AND others [B# 960]).

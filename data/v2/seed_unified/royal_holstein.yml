@@ -2,7 +2,7 @@
 # Generated 2026-10-15 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1839 per-source seed entries.
+# Input: 1841 per-source seed entries.
 # Output: 832 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -5749,6 +5749,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/569244
         ref: KMM 569244 (Inv. FP 10842.9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/699194
+        ref: KMM 699194 (Inv. FP 327.25)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-2-skilling-km-358-1676-1861-cuid-1049987-duid-1236621
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -5809,6 +5812,7 @@ coins:
       - kmk-429758
       - kmk-429766
       - kmk-569244
+      - kmk-699194
       - ngc-1049987
   - id: unified-dk-hede-c7h10
     fuss: seed_unsorted
@@ -6619,6 +6623,7 @@ coins:
         - '635.1'
         - '635'
       hede:
+        - '28'
         - 28A
         - 28B
       hede_volume: c7h
@@ -6636,6 +6641,8 @@ coins:
       bruun_lot_no: 11293
       bruun_page: 147
       numista: '148504'
+      others:
+        - B# 142
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -6657,6 +6664,8 @@ coins:
         source: hede
       - value: 9.2
         source: bruun
+      - value: 9.24
+        source: kmk
     diameter_mm:
       - value: 28.76
         source: numista
@@ -6673,6 +6682,9 @@ coins:
       - type: literature
         url: https://en.numista.com/148504
         ref: Numista N#148504 — 24 Skilling Dansk - Christian VII
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78474
+        ref: KMM 78474 (Inv. GP 678.138)
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -6690,6 +6702,7 @@ coins:
       - dk-hede-c7h28a
       - dk-hede-c7h28b
       - dk-numista-148504
+      - kmk-78474
   - id: unified-dk-hede-c7h33a
     fuss: seed_unsorted
     phase: hede

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-10-12 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-15 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15187 per-source seed entries.
-# Output: 6858 unified entries (one per physical coin).
+# Input: 15185 per-source seed entries.
+# Output: 6856 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-10-12'
+generated_at: '2026-10-15'
 coins:
   - id: unified-denmark-numismaster-117984
     fuss: seed_unsorted
@@ -82585,7 +82585,7 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: (?)
+    nominal: 4 Skilling
     year_first: 1535
     year_last: 1535
     year_label: '1535'
@@ -90707,7 +90707,7 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: (?)
+    nominal: 2 Skilling
     year_first: 1703
     year_last: 1703
     year_label: '1703'
@@ -90722,10 +90722,14 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/130604
         ref: KMM 130604 (Inv. FP 2726.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/175955
+        ref: KMM 175955 (Inv. FP 2920.40)
     verification_note: *id002
     issuing_entity: danish_realm
     composed_of:
       - kmk-130604
+      - kmk-175955
   - id: unified-kmk-130618
     fuss: seed_unsorted
     phase: kmk
@@ -90820,7 +90824,7 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: (?)
+    nominal: 2 Skilling
     year_first: 1661
     year_last: 1661
     year_label: '1661'
@@ -102541,6 +102545,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/739521
         ref: KMM 739521 (Inv. FP 12951.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/292791
+        ref: KMM 292791 (Inv. FP 6952.27)
     verification_note: *id002
     issuing_entity: danish_realm
     composed_of:
@@ -160691,7 +160698,7 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: (?)
+    nominal: 1 Skilling
     ruler: Christian 3
     mint: Roskilde
     metal_verified: false
@@ -167454,7 +167461,7 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: (?)
+    nominal: 1 Penning
     catalog:
       mb: '261'
     metal_verified: false
@@ -168322,29 +168329,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-175954
-  - id: unified-kmk-175955
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2-Skilling
-    year_first: 1703
-    year_last: 1703
-    year_label: '1703'
-    ruler: Frederik 4
-    catalog:
-      schou: '7'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/175955
-        ref: KMM 175955 (Inv. FP 2920.40)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-175955
   - id: unified-kmk-175959
     fuss: seed_unsorted
     phase: kmk
@@ -190193,7 +190177,9 @@ coins:
     ruler: Frederik 7
     catalog:
       hede: '11'
-    metal_verified: false
+      schou: '8'
+    metal: silver
+    metal_verified: true
     weight_rough_verified: false
     mint_verified: false
     verified: false
@@ -190201,10 +190187,14 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/267324
         ref: KMM 267324 (Inv. FP 10092.24)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78541
+        ref: KMM 78541 (Inv. GP 678.205)
     verification_note: *id002
     issuing_entity: danish_realm
     composed_of:
       - kmk-267324
+      - kmk-78541
   - id: unified-kmk-267325
     fuss: seed_unsorted
     phase: kmk
@@ -198149,7 +198139,11 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/28296
         ref: KMM 28296 (Inv. GP 3803.1)
-    verification_note: *id002
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: danish_realm
     composed_of:
       - kmk-28296
@@ -200234,23 +200228,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-292790
-  - id: unified-kmk-292791
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Penning
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292791
-        ref: KMM 292791 (Inv. FP 6952.27)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-292791
   - id: unified-kmk-292846
     fuss: seed_unsorted
     phase: kmk
@@ -260838,47 +260815,36 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Sechsling
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
+    nominal: 1 Søsling lybsk
+    year_first: 1546
+    year_last: 1546
+    year_label: '1546'
     ruler: Christian 3
     catalog:
       hede: 22A
       schou: '14'
       others:
         - B# 158b
-        - Bech# 65
-        - B# 209b
     metal_verified: false
     weight_rough_verified: true
     mint_verified: false
     verified: false
     weight_rough_g:
-      - value: 0.7
-        source: kmk
       - value: 0.99
         source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/692607
         ref: KMM 692607 (Inv. FP 129.165)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/86265
-        ref: KMM 86265 (Inv. GP 1373.30)
     verification_note: *id002
     issuing_entity: danish_realm
     composed_of:
       - kmk-692607
-      - kmk-86265
   - id: unified-kmk-692608
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: (?)
+    nominal: 1 Søsling lybsk
     year_first: 1545
     year_last: 1545
     year_label: '1545'
@@ -263050,30 +263016,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-699181
-  - id: unified-kmk-699194
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: (?)
-    year_first: 1677
-    year_last: 1677
-    year_label: '1677'
-    ruler: Christian 5
-    mint: Kopenhagen
-    catalog:
-      hede: '74'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/699194
-        ref: KMM 699194 (Inv. FP 327.25)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-699194
   - id: unified-kmk-699201
     fuss: seed_unsorted
     phase: kmk
@@ -272568,7 +272510,7 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: (?)
+    nominal: ½ Specie
     ruler: Frederik 5
     metal: silver
     metal_verified: true
@@ -272707,6 +272649,25 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-78438
+  - id: unified-kmk-78439
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Frederik 5
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78439
+        ref: KMM 78439 (Inv. GP 678.103)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-78439
   - id: unified-kmk-78447
     fuss: seed_unsorted
     phase: kmk
@@ -273260,31 +273221,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-78540
-  - id: unified-kmk-78541
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: (?)
-    year_first: 1854
-    year_last: 1854
-    year_label: '1854'
-    ruler: Frederik 7
-    catalog:
-      hede: '11'
-      schou: '8'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/78541
-        ref: KMM 78541 (Inv. GP 678.205)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-78541
   - id: unified-kmk-78542
     fuss: seed_unsorted
     phase: kmk
@@ -274015,6 +273951,38 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-86264
+  - id: unified-kmk-86265
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Sechsling
+    year_first: 1534
+    year_last: 1559
+    year_ranges:
+      -   - 1534
+          - 1559
+    year_label: 1534-1559
+    ruler: Christian 3
+    catalog:
+      hede: 22A
+      others:
+        - Bech# 65
+        - B# 209b
+    metal_verified: false
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.7
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/86265
+        ref: KMM 86265 (Inv. GP 1373.30)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-86265
   - id: unified-kmk-86267
     fuss: seed_unsorted
     phase: kmk
@@ -274887,10 +274855,6 @@ coins:
       km:
         - '635.1'
         - '635'
-      hede: '28'
-      schou: '9'
-      others:
-        - B# 142
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -274912,8 +274876,6 @@ coins:
         source: ngc
       - value: 9.171
         source: numismaster
-      - value: 9.24
-        source: kmk
     diameter_mm:
       - value: 30.4
         source: ucoin
@@ -274924,9 +274886,6 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-24-skilling-1778-1783/?tid=79089
         ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/78474
-        ref: KMM 78474 (Inv. GP 678.138)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-24-skilling-km-635.1-1778-1783-cuid-1049854-duid-1236748
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -274938,7 +274897,6 @@ coins:
     composed_of:
       - denmark-numismaster-65146
       - dk-tid-79089
-      - kmk-78474
       - ngc-1049854
   - id: unified-ngc-1049856
     fuss: seed_unsorted
