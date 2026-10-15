@@ -395,6 +395,11 @@ data for reference: Christian I 65, Christoffer 9, Rigsråd 1448 9 (all `danish_
 | D6 | Counterfeits / piefort in KMM | §9 exclusions · keep |
 | D7 | Mission lower bound | add Hans' silver (1481) to CLAUDE.md scope |
 
+**Curator decisions 2026-10-15:** D1 → A (global «lübischer Münzfuß»); D2 → one phase for now;
+D3 → other issuers only if their territory belonged to Denmark directly or as a vassal;
+D4 → no merge for now; D5 → keep provisionally, verdict per case; D6 → yes, scope from 1481.
+The work plan with its checklist: `luebischer_muenzfuss_plan.md`.
+
 ## 9. Open questions — and what would settle each
 
 | Question | Would be settled by |
