@@ -167,7 +167,7 @@ No specimen is known. The only witness is Mårten Myntskrivare's 1542 melt accou
 «*danska hwiter, Konung Hanses skellinger och Marckestycker*» (Wilcke 7-1 s. 139). Wilcke (s. 141)
 concludes «*Det maa da have været lybske Markstykker, som Kong Hans har ladet udmønte*»; Galster 1947
 (hansgals): Hans' «Thaler» / Sølvgylden known only as casts and fantasy pieces, none from a find or a
-document; Eriksson 2017 s. 11: «*inte känt att det skulle finnas några marker från Hans (Galster 1972,
+document; Eriksson 2017 s. 6: «*inte känt att det skulle finnas några marker från Hans (Galster 1972,
 23f). Förmodligen kan dessa markmynt syfta på silvergyllen*». Note: had Hans struck a Mark lübsch c.
 1502–1513, the Lübeck Markstück of those years was already on the 13-Mark-Fuß (§3.1a), not 11½.
 
