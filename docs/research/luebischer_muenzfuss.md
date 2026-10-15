@@ -138,6 +138,50 @@ Same tiers (Hvid, Søsling, Skilling at Bergen; Hvide at Oslo, Nidaros; Hvid at 
 Hvide average 0,63 g vs Danish ≈ 0,75 g (Ernst 1940 summary); Holst's weight-base caveat
 (survey §10.4) — set aside by D15 (Norway included from 1483).
 
+### §3.4 Hvid and Søsling against the Skilling (2026-10-15, curator question)
+
+Best specimens with assayed fineness (Eriksson 2017 tab. 7–9, recomputed fine = weight × silver %):
+
+| Coin | specimen | rough g | Ag % | fine g | ÷ early Skilling (1,27) | ÷ late Skilling (≈ 0,85–0,95) |
+|---|---|---:|---:|---:|---:|---:|
+| Skilling, early (9 lod) | Malmø G 29 / Kbh G 32 | 2,47 / 2,37 | 51,54 / 53,42 | 1,273 / 1,266 | 1 | — |
+| Skilling, 1512 (6 lod) | Malmø G 29 | 2,66–2,45 | 35,90–33,28 | 0,955–0,815 | ≈ ¾–⅔ | 1 |
+| Søsling (5 lod) | Malmø G 33 | 1,47 / 1,31 | 28,87 / 29,40 | 0,424 / 0,385 | ≈ ⅓ | **≈ ½** |
+| Hvid (6 lod) | Aalborg G 36 / Kbh G 34 | 0,90 / 0,82 | 33,82 / 34,40 | 0,304 / 0,282 | **≈ ¼** | **≈ ⅓** |
+
+Rough-weight ratios to the early Skilling (2,47 g): Søsling 0,60, Hvid 0,36. Our own data (no fineness)
+has the same top weights (Hvid 0,90 / 0,88, Skilling 2,65, Søsling 1,57).
+
+**Reading (hypothesis, curator's call):** against the early full Skilling the Hvid carries ≈ ¼ of its
+silver — the Lübeck 3-pfennig value Eriksson s. 5 reports («värdesattes endast till 3 penningar
+lübsk») and Wilcke 7-2 s. 149's «Skillinger … kostede baade 4 og 5 Hvide i Stedet for de almindelige
+3»; against the debased 1512 Skilling the nominal ratios (Hvid 4 Pf = ⅓ ß, Søsling 6 Pf = ½ ß) hold
+in silver. That fits Eriksson's dating of the Søsling to the later reign (s. 10). Would be settled by
+dated Søslinger / Hvide with assays; only two Søslinger are assayed. Rates in the sources: Wilcke 7-2
+s. 149 (4–5 Hvide per Skilling); Eriksson s. 11 after Galster 1936 s. 165 (Hvid «till underkurs mot
+skillingen»); Blicher 1 Aug 1513 restores 3 Hvide per ß (Wilcke 7-2 s. 149–150).
+
+### §3.5 Mark coins under Hans? (2026-10-15)
+
+No specimen is known. The only witness is Mårten Myntskrivare's 1542 melt account (Svartsjö):
+«*danska hwiter, Konung Hanses skellinger och Marckestycker*» (Wilcke 7-1 s. 139). Wilcke (s. 141)
+concludes «*Det maa da have været lybske Markstykker, som Kong Hans har ladet udmønte*»; Galster 1947
+(hansgals): Hans' «Thaler» / Sølvgylden known only as casts and fantasy pieces, none from a find or a
+document; Eriksson 2017 s. 11: «*inte känt att det skulle finnas några marker från Hans (Galster 1972,
+23f). Förmodligen kan dessa markmynt syfta på silvergyllen*». Note: had Hans struck a Mark lübsch c.
+1502–1513, the Lübeck Markstück of those years was already on the 13-Mark-Fuß (§3.1a), not 11½.
+
+### §3.6 Danish spelling «mark» / «marck» (2026-10-15, curator question)
+
+From the period texts Wilcke prints: Swedish Arboga 1480 «*wågen mark*» (7-1 s. 118); Haandfæstning
+22 July 1513 «*thue mark giør fyldest*» (7-2 s. 149, from Erik Krabbe's later copy); Blicher 1 Aug
+1513 «*veien mark*», «*weien Kølns mark*» (7-2 s. 149–150, partly paraphrased by Wilcke); Rigsraad
+1524 «*vegne marck*», «*vegenn marck*» (7-2); 1529 «*marck danske*», «*marck siølff*» (7-2); Mårten
+1542 (Swedish) «*Marckestycker*» beside «*mark*»; coin legends «*I MARCK DANSKE 1543*» (Holst). So:
+«mark» in the Hans / 1513 texts, «marck» in Danish chancery texts from the 1520s. Caveat: the 1513
+texts reach us through later copies and Wilcke's partial normalisation — not settled without the
+originals (Danske Breve fra Middelalderen / Diplomatarium Danicum online).
+
 ## §4. Instruments
 
 | Date | Instrument | Role for the card | Register / dossier |
