@@ -63,8 +63,8 @@ Archive copies: survey §2 + plan step 5.2 (all seven web sources archived 2026-
 
 | Rezess | Coin | per mark | lot | rough g | fine g |
 |---|---|---:|---:|---:|---:|
-| 1424 (with Denmark) | Sechsling | 168 (42 Wurf) | «11 % Lot» (OCR: 11½ or 11¾ — open) | 1,392 | 1,00–1,02 |
-| 1424 | Hohlpfennig | 696 | «7Vl» (OCR, read 7½ — open) | 0,336 | ≈ 0,16 |
+| 1424 (with Denmark) | Sechsling | 168 (42 Wurf), remedium 3 Grän | 11¼ | 1,392 | 0,979 |
+| 1424 | Hohlpfennig | 696 (3½ Mark + 2 ß) | 7¼ | 0,336 | 0,152 |
 | 1468 = 1492 | Doppelschilling | 69 | 12 | 3,389 | 2,542 |
 | 1468 = 1492 | Schilling | 103½ | 9 | 2,259 | **1,271** |
 | 1492 | Sechsling | 188–190 | 8 | 1,24 | 0,62 |
@@ -72,9 +72,11 @@ Archive copies: survey §2 + plan step 5.2 (all seven web sources archived 2026-
 | 1501 (plan) / 1502 | ⅓ Mark («Ternarius») | 34½ per **fine** mark, 15-lot | 15 | 7,21 | 6,76 |
 | 1501/02 | Witten | 216 | 5¼ | 1,083 | **0,355** |
 | 1504 = 1506 | Markpenning | 13 Mark per fine mark; 5¼ Quentin, 15-lot | 15 | 19,18 (Jesse) | 17,98 |
-| 1512 | Markstück | 13 per 15-lot mark, «noch mit ½ Lot Kupfer vermischt» | — | 17,99 before the copper | not recomputed (the ½-lot addition is ambiguous) |
+| 1512 | Markstück | 13 per 15-lot mark, «noch mit ½ Lot Kupfer vermischt» | ≈ 14½ | — | **≈ 16,3** under either reading |
 
-Checks: 1424 Sechsling «1,35 g» in Jesse vs our 1,392 — Jesse's mark weight ≈ 227 g (cf. his
+1512 copper clause, two readings: (a) ½ lot of copper added to a 15-lot mark → 15/16½ = 14,55 lot, 16,35 g fine per piece; (b) the mark brought down by ½ lot → 14½ lot, 16,30 g. Same result within 0,3 %, and Jesse's next step (1515: 12 to the 14½-lot mark) is at 14½ lot — the clause does not affect the card.
+
+1424 fineness read 2026-10-15 from the page image of the danskmoent PDF (Jesse s. 102: «*mit 11¼ Lot Feingehalt mit 3 Grän erlaubtem Remedium zu 42 Wurf = 168 Stück aus der Mark (1,35 g)*», «*aus 7¼lötigem Silber zu 3½ Mark + 2 ß = 696 Stück (0,33)*»); the coingallery transcription agrees; the PDF text layer had garbled the ¼. Checks: 1424 Sechsling «1,35 g» in Jesse vs our 1,392 — Jesse's mark weight ≈ 227 g (cf. his
 19,392 g for a 1492 Mark, survey §5 — open). The 1492 Schilling 1,271 g fine matches Wilcke's
 «1,269–1,103» for the Lübeck ß c. 1500 (L2 7-2 s. 150–151).
 
