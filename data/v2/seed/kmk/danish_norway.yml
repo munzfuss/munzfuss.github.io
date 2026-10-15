@@ -87308,7 +87308,7 @@ coins:
     kind: kurant
     issuing_entity: danish_norway
     entity_classified_via: nation
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal_verified: false
     mint_verified: false
     ruler: Hans
@@ -87319,6 +87319,16 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/643961
         ref: KMM 643961 (Inv. FP 188.20)
     verification_note: *id001
+    _source_errata:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
+        curator: serg
+        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
+    _errata_applied:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
   - id: kmk-647301
     fuss: seed_unsorted
     phase: kmk

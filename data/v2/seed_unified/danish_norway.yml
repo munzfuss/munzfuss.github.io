@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-10-12 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-15 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 4721 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-10-12'
+generated_at: '2026-10-15'
 coins:
   - id: unified-denmark-numismaster-86285
     fuss: seed_unsorted
@@ -78723,7 +78723,7 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     ruler: Hans
     metal_verified: false
     weight_rough_verified: false
@@ -78737,6 +78737,11 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-643961
+    _errata_applied:
+      - source: kmk-643961
+        field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
   - id: unified-kmk-646300
     fuss: seed_unsorted
     phase: kmk
