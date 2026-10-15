@@ -32,6 +32,7 @@
 | D17 | Hans' Holstein Blaffert (2026-10-15) | **yes**, on the page (king = duke; Lübeck–Hamburg standard) — once found in the data |
 | D18 | MB#8 (2026-10-15) | **yes** — relocate `royal_holstein` → `danish_realm` |
 | D14 | Name (2026-10-15) | variant **a**: «Lübischer Müntzfuß» (munzfuss), «Lybsk Møntfod» (Danish page, all languages) as scholarly names, like Nobelfod |
+| D19 | Name collision with the 1726 34-Mark-Fuß (2026-10-15) | **D14 stands** — Hans' standard is «Lybsk Møntfod» (Danish page); the collision is set aside until the 1726 card (`11_333_thaler`) is reworked — both are Lübeck standards, at different times, so it may not be critical |
 | D11 | Save Page Now | **yes** (2026-10-15) — standing for this work |
 
 ## 1. Research completion
@@ -58,7 +59,7 @@
 
 | ✓ | Step | Output |
 |---|---|---|
-| ◐ | 3.1 Key and display string (D7 → D14: «Lübischer Müntzfuß» / «Lybsk Møntfod»; dossier §10.3). Key `luebischer_muenzfuss`. Two display strings → the name may need to differ by **site profile** (munzfuss vs danskmoent) — check whether the build supports a per-site name; if not, add it | curator picks the strings; build support |
+| ◐ | 3.1 (name settled: D14 + D19) Key and display string (D7 → D14: «Lübischer Müntzfuß» / «Lybsk Møntfod»; dossier §10.3). Key `luebischer_muenzfuss`. Two display strings → the name may need to differ by **site profile** (munzfuss vs danskmoent) — check whether the build supports a per-site name; if not, add it | curator picks the strings; build support |
 | ☐ | 3.2 Grid: what defines the standard on the card — the Schilling 103½ to the 9-lot Cologne mark (Rezess 1468 = 1492) as `grid_stops` / `fineness_standard 0.5625`, or the Mark lübsch as unit; computed fine weights (§5 of the dossier) | fuesse.yml |
 | ☐ | 3.3 `events`: `first_adoption` / `std_start` / `std_end` / `first_mint` / `last_mint` / `demonetisation` per scope (anywhere vs Denmark); the end for Denmark = håndfæstning 22 July 1513 (+ Blicher grid), marked indirect if so | fuesse.yml + schema check |
 | ☐ | 3.4 `grundwerte.rows`: decree rows (Rezess 1468/1492; håndfæstning 1483; håndfæstning 1513 as the end) and the period row «Period I (1481–1513) · King Hans» with short parameters | fuesse.yml |
@@ -115,6 +116,8 @@
 | ☐ | 8.3 Later, not in this plan unless the curator asks: Christian I / Christoffer / Erik of Pomerania silver under the same card (Hvid since c. 1440) | — |
 
 ## Log
+
+- 2026-10-15 — D19: collision deferred, D14 stands; 1726 sense traced to MKL 1888 (dossier); 15th-c. sense = Grautoff 1836 / Jesse / Wilcke 7-1 s. 143.
 
 - 2026-10-15 — Bobzin: «lübischer Münzfuß» also names the 1726 34-Mark-Fuß (our `11_333_thaler`) — D14 name collision put to the curator (step 3.1 ⏸).
 
