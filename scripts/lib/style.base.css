@@ -1929,8 +1929,16 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
    side by side; a folded header is a shrink-to-fit block instead, keeping
    each phase on its own line with the normal header spacing. */
 .ph.ph-is-folded { display: table; }
+.ph-foot { display: flex; justify-content: flex-end; margin: 4px 0 0; }
+.ph-fold-bottom {
+  font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.08em;
+  padding: 2px 9px; color: var(--accent); background: transparent;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: 3px; cursor: pointer;
+}
+.ph-fold-bottom:hover, .ph-fold-bottom:focus-visible { background: var(--accent-bg); color: var(--text-primary); }
 .ph-folded { display: none !important; }
-@media print { .ph-fold { display: none; } .ph-folded { display: revert !important; } }
+@media print { .ph-fold, .ph-foot { display: none; } .ph-folded { display: revert !important; } }
 /* Sub-phases: the parent «Phase I» header, then smaller indented headers and
    a left rule over each sub-phase's description and tables. */
 .ph .ph-subl { text-transform: none; }

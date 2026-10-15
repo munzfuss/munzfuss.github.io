@@ -69,14 +69,28 @@
 
   // 2a) Fold one phase: hide everything after its «.ph» header up to the next
   //     phase header / instrument block. Delegated, so it also works on the
-  //     lazily fetched phase tables.
-  document.addEventListener("click", function (ev) {
-    var t = ev.target;
-    var btn = t && t.closest ? t.closest(".ph-fold") : null;
+  //     lazily fetched phase tables. A second button at the foot of the
+  //     phase (.ph-fold-bottom) folds it too and scrolls back to its header.
+  //     Folded phases are remembered per page in localStorage (per viewer,
+  //     survives a reload) and re-applied when a fragment is inserted.
+  var FOLD_KEY = "mz-folds:" + location.pathname;
+  function foldsRead() {
+    try { var v = JSON.parse(localStorage.getItem(FOLD_KEY)); if (v && typeof v === "object") return v; }
+    catch (e) {}
+    return {};
+  }
+  function foldsWrite(v) {
+    try { localStorage.setItem(FOLD_KEY, JSON.stringify(v)); } catch (e) {}
+  }
+  function foldId(head) {
+    var d = head.closest("details.fuss-details");
+    var f = d ? d.getAttribute("data-fuss") : "";
+    var p = head.getAttribute("data-phase");
+    return f && p ? f + "|" + p : null;
+  }
+  function setFold(head, fold, persist) {
+    var btn = head.querySelector(":scope > .ph-fold");
     if (!btn) return;
-    var head = btn.closest(".ph");
-    if (!head) return;
-    var fold = btn.getAttribute("aria-expanded") === "true";
     for (var el = head.nextElementSibling; el; el = el.nextElementSibling) {
       if (el.classList.contains("ph") || el.classList.contains("ph-inst")) break;
       el.classList.toggle("ph-folded", fold);
@@ -84,6 +98,38 @@
     head.classList.toggle("ph-is-folded", fold);
     btn.setAttribute("aria-expanded", fold ? "false" : "true");
     btn.title = btn.getAttribute(fold ? "data-l-show" : "data-l-hide") || "";
+    if (!persist) return;
+    var id = foldId(head);
+    if (!id) return;
+    var v = foldsRead();
+    if (fold) v[id] = 1; else delete v[id];
+    foldsWrite(v);
+  }
+  function applyFolds(root) {
+    var v = foldsRead(), heads = root.querySelectorAll(".ph[data-phase]");
+    for (var i = 0; i < heads.length; i++) {
+      var id = foldId(heads[i]);
+      if (id && v[id]) setFold(heads[i], true, false);
+    }
+  }
+  document.addEventListener("click", function (ev) {
+    var t = ev.target;
+    if (!t || !t.closest) return;
+    var btn = t.closest(".ph-fold");
+    if (btn) {
+      var head = btn.closest(".ph");
+      if (head) setFold(head, btn.getAttribute("aria-expanded") === "true", true);
+      return;
+    }
+    var bot = t.closest(".ph-fold-bottom");
+    if (!bot) return;
+    var el = bot.closest(".phc");
+    while (el && !(el.classList.contains("ph") && el.querySelector(":scope > .ph-fold"))) {
+      el = el.previousElementSibling;
+    }
+    if (!el) return;
+    setFold(el, true, true);
+    if (el.getBoundingClientRect().top < 0) el.scrollIntoView({ block: "start" });
   });
 
   // 2b) Lazy phase tables (see scripts/lib/lazy_fuss.py): on first open
@@ -97,7 +143,7 @@
     box.innerHTML = '<div class="fd-lazy-msg">…</div>';
     box._lazyP = fetch(box.getAttribute("data-src"))
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-      .then(function (txt) { box.innerHTML = txt; box.dataset.state = "done"; })
+      .then(function (txt) { box.innerHTML = txt; box.dataset.state = "done"; applyFolds(box); })
       .catch(function () {
         box.dataset.state = "";
         box._lazyP = null;
