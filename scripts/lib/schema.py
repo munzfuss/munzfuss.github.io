@@ -1399,6 +1399,14 @@ class Timeline(_StrictBase):
     default so its rendering is unchanged — enabling it there would trim the
     placeholder-driven runs 1559-1565 (9-Thaler), 1588-1617 (9¼-Thaler) and
     1820-1839 (11⅓-Thaler)."""
+    bar_sort: Literal["order", "first_mint"] = "order"
+    """`order` (default): bars in `order` / YAML order (`_sort_bars_by_order`).
+    `first_mint`: the build re-sorts the bars by the first year of each bar's
+    rendered «Prägung» layer, ascending, regardless of metal (a bar with no
+    mint layer falls back to its earliest layer, then to `year_from`; ties
+    keep the `order` sequence). The Müntzfuß blocks on the page follow the
+    same sequence (categorize orders them by bar position). Denmark uses it
+    (curator direction 2026-10-15)."""
     hide_kinds: list[Literal["mint", "status", "circulation", "sole"]] = Field(default_factory=list)
     """Page-wide visibility switch: suppress every layer of these kinds on all
     bars (both scopes), e.g. `[circulation]` hides the «в обігу» stripes. The

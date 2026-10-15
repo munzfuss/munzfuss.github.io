@@ -1394,6 +1394,26 @@ def build_location(
         # to affected layers.
         attach_visual_pieces(bar_layers, hover_zones)
 
+        # `timeline.bar_sort: first_mint` — bars, and with them the Müntzfuß
+        # blocks below the timeline, in order of each bar's first minting year.
+        # Known only now (mint layers come from the auto-synced events above),
+        # so the categorize() tree built earlier is re-ordered to match.
+        if loc.timeline.bar_sort == "first_mint":
+            def _first_mint(bar):
+                ls = bar_layers.get(bar.id) or []
+                mint = [l["first"] for l in ls if l["kind"] == "mint"]
+                if mint:
+                    return min(mint)
+                if ls:
+                    return min(l["first"] for l in ls)
+                return bar.year_from if bar.year_from is not None else 10**6
+            loc.timeline.bars = sorted(loc.timeline.bars, key=_first_mint)
+            _pos = {b.id: i for i, b in enumerate(loc.timeline.bars)}
+            _orig = {fg.fuss.id: i for i, fg in enumerate(tree.fuesse)}
+            tree.fuesse.sort(key=lambda fg: (
+                (0, _pos[fg.fuss.id]) if fg.fuss.id in _pos
+                else (1, _orig[fg.fuss.id])))
+
     # Resolve references (from sidecar YAML) if present
     references_data = getattr(loc, '_references_data', None)
     
