@@ -85,5 +85,59 @@ class TestFinalIsRelocated(unittest.TestCase):
         self.assertTrue(A._final_is_relocated(fe, self.RELOC))
 
 
+class TestRelocationCarry(unittest.TestCase):
+    """The TARGET gap-fills a relocated coin's curator fields from the source
+    final, and the SOURCE keeps its copy until the target can (2026-10-15,
+    MB 57: the Note lived only on the royal_holstein final and was lost)."""
+
+    SRC_FINAL = {"id": "unified-s1", "composed_of": ["unified-s1"],
+                 "fuss": "rhinsk_gylden_fod", "phase": {"denmark": "III.b"},
+                 "kind": "kurant", "note": {"de": "N"},
+                 "issuing_entity": "src"}
+    SHELL = {"id": "unified-s9", "composed_of": ["unified-s9"],
+             "fuss": "x_fod", "note": {"de": "shell"}}
+
+    def setUp(self):
+        self._saved = (A._FINAL_SNAPSHOT, A._cross_entity_relocated_out,
+                       A._final_is_routed_away, A._target_holds_relocated,
+                       set(A._RUN_ENTITIES))
+        A._FINAL_SNAPSHOT = {"src": [self.SRC_FINAL, self.SHELL], "tgt": []}
+        A._cross_entity_relocated_out = (
+            lambda e: {"s1"} if e == "src" else set())
+        A._final_is_routed_away = lambda fe, e: False
+        A._RUN_ENTITIES.clear()
+
+    def tearDown(self):
+        (A._FINAL_SNAPSHOT, A._cross_entity_relocated_out,
+         A._final_is_routed_away, A._target_holds_relocated, run) = self._saved
+        A._RUN_ENTITIES.clear()
+        A._RUN_ENTITIES.update(run)
+
+    def test_target_finds_the_relocated_source_final(self):
+        got = A._cross_entity_carry_in(
+            "tgt", [{"id": "unified-s1", "composed_of": ["s1", "s2"]},
+                    {"id": "unified-s9x", "composed_of": ["s9"]}])
+        self.assertEqual([(h, e, f["id"]) for h, e, f in got],
+                         [("unified-s1", "src", "unified-s1")])
+
+    def test_kept_shell_carries_nothing(self):
+        # unified-s9 is not relocated (only kept for review) — even though its
+        # seed now lives in the target, it must not seed the target's fields.
+        got = A._cross_entity_carry_in(
+            "tgt", [{"id": "unified-s9x", "composed_of": ["s9"]}])
+        self.assertEqual(got, [])
+
+    def test_source_keeps_copy_until_target_holds_it(self):
+        A._target_holds_relocated = lambda tgt, keys: False
+        self.assertFalse(A._relocation_drop_is_safe(self.SRC_FINAL, {"tgt"}))
+        A._target_holds_relocated = lambda tgt, keys: True
+        self.assertTrue(A._relocation_drop_is_safe(self.SRC_FINAL, {"tgt"}))
+
+    def test_target_in_this_run_makes_drop_safe(self):
+        A._target_holds_relocated = lambda tgt, keys: False
+        A._RUN_ENTITIES.add("tgt")
+        self.assertTrue(A._relocation_drop_is_safe(self.SRC_FINAL, {"tgt"}))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

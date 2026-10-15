@@ -1728,8 +1728,8 @@ def _cross_entity_relocated_out(entity_id: str) -> set:
     `_is_vanished_stale_final` gate whenever it carries curation (a real
     `fuss`/`phase`), because the per-entity `seed_to_unified` map can't see that
     the seed moved to ANOTHER entity's bucket. Those source-side finals are
-    relocation orphans — the coin now lives in the target and its curation moved
-    with it. Two shapes result: a same-id duplicate (audit_v2 I3 catches it) and
+    relocation orphans — the coin now lives in the target, which gap-fills the
+    curation from them (`_cross_entity_carry_in`) before they are dropped. Two shapes result: a same-id duplicate (audit_v2 I3 catches it) and
     a folded orphan under a now-unique id (I3 does NOT — it would render as a
     silent phantom row). Both are dropped by `_final_is_relocated`.
 
@@ -1960,6 +1960,136 @@ def _final_is_relocated(fe: dict, relocated_out: set) -> bool:
         if cs.startswith("unified-"):
             keys.add(cs[len("unified-"):])
     return bool(keys & relocated_out)
+
+
+# ---------------------------------------------------------------------------
+# Cross-entity relocation CARRY (2026-10-15).
+#
+# `_final_is_relocated` drops the source-side final of a coin that
+# `_cross_entity.yml` moves to another entity. Its curator-only fields — the
+# Note, a classification no decision backs, curator-added sources — lived on
+# that final alone, and the target entity rebuilt the coin from seed_unified
+# without them. That is how ten classifications had to be «Restored
+# 2026-10-09», and how the MB 57 Note was lost on 2026-10-15.
+#
+# The fix: the TARGET gap-fills those fields from the source final (never
+# overriding a value it already has), and the SOURCE keeps its copy until the
+# target has had the chance. Both read a snapshot of every final taken before
+# any entity is written, so the order entities are processed in does not
+# matter within one run; across separate `--entity` runs the source keeps its
+# copy (with a warning) until the target entity has been absorbed.
+# ---------------------------------------------------------------------------
+_FINAL_SNAPSHOT: dict[str, list[dict]] | None = None
+_RUN_ENTITIES: set[str] = set()
+
+
+def _final_snapshot() -> dict[str, list[dict]]:
+    """{entity → its finals} as on disk before this run wrote anything."""
+    global _FINAL_SNAPSHOT
+    if _FINAL_SNAPSHOT is None:
+        _FINAL_SNAPSHOT = {
+            path.stem: list(_load_yaml(path).get("coins") or [])
+            for path in sorted(V2_FINAL.glob("*.yml"))
+        }
+    return _FINAL_SNAPSHOT
+
+
+def _cross_entity_member_targets() -> dict[str, str]:
+    """{member seed id → target entity} over every `_cross_entity.yml` merge."""
+    doc = _load_yaml(V2_MERGE_DECISIONS / "_cross_entity.yml")
+    out: dict[str, str] = {}
+    for e in (doc.get("merges") or []):
+        tgt = e.get("target_entity")
+        for m in (e.get("members") or []):
+            if tgt:
+                out[str(m)] = str(tgt)
+    return out
+
+
+def _final_relocation_keys(fe: dict) -> set:
+    """The ids `_final_is_relocated` matches a final by."""
+    fid = str(fe.get("id") or "")
+    keys = {fid[len("unified-"):]} if fid.startswith("unified-") else set()
+    for c in (fe.get("composed_of") or []):
+        cs = str(c)
+        keys.add(cs)
+        if cs.startswith("unified-"):
+            keys.add(cs[len("unified-"):])
+    return keys
+
+
+def _target_holds_relocated(target: str, members: set) -> bool:
+    """True when `target`'s final ON DISK already carries a coin built from
+    any of `members` — i.e. the relocation has landed there."""
+    for fe in (_load_yaml(V2_FINAL / f"{target}.yml").get("coins") or []):
+        if _final_relocation_keys(fe) & members:
+            return True
+    return False
+
+
+def _relocation_drop_is_safe(fe: dict, targets: set) -> bool:
+    """A relocated source-side final may be dropped only once its curation can
+    reach every entity the coin moved to: that entity is processed in this run
+    (it reads the pre-run snapshot), or its final already holds the coin."""
+    keys = _final_relocation_keys(fe)
+    for tgt in targets:
+        if tgt in _RUN_ENTITIES:
+            continue
+        if not _target_holds_relocated(tgt, keys):
+            return False
+    return True
+
+
+def _relocation_targets(fe: dict, entity_id: str, relocated_out: set,
+                        member_targets: dict[str, str]) -> set:
+    """Entities a source-side final's coin moved to — by `_cross_entity.yml`
+    (declared) or by mint routing (its seed_unified members now live there)."""
+    out = {member_targets[m] for m in (_final_relocation_keys(fe) & relocated_out)
+           if m in member_targets}
+    home = _unified_home_index()
+    out |= {home[str(m)] for m in (fe.get("composed_of") or [])
+            if str(m) in home and home[str(m)] != entity_id}
+    out.discard(entity_id)
+    return out
+
+
+def _cross_entity_carry_in(entity_id: str, unified_entries: list[dict]
+                           ) -> list[tuple[str, str, dict]]:
+    """(host unified id in `entity_id`, source entity, source final) for every
+    final in ANOTHER entity built from a seed or seed_unified that now lives
+    HERE — whether `_cross_entity.yml` pulled it or mint routing moved it.
+    Restricted to finals the source entity drops as relocated
+    (`_final_is_relocated` / `_final_is_routed_away`) — superseded shells kept
+    for review are a different case and carry nothing."""
+    host_of: dict[str, str] = {}
+    for u in unified_entries:
+        uid = u.get("id")
+        if not uid:
+            continue
+        host_of[str(uid)] = uid
+        for m in (u.get("composed_of") or []):
+            host_of[str(m)] = uid
+    if not host_of:
+        return []
+    out: list[tuple[str, str, dict]] = []
+    for ent, finals in _final_snapshot().items():
+        if ent == entity_id:
+            continue
+        ent_relocated_out = _cross_entity_relocated_out(ent)
+        for fe in finals:
+            if not str(fe.get("id") or "").startswith("unified-"):
+                continue
+            # Only a final the source entity will itself DROP as relocated
+            # (declared or routed). A superseded shell that absorb keeps for
+            # curator review is not a relocation and must not seed another
+            # coin's fields.
+            if not (_final_is_relocated(fe, ent_relocated_out)
+                    or _final_is_routed_away(fe, ent)):
+                continue
+            hosts = {host_of[k] for k in _final_relocation_keys(fe) if k in host_of}
+            for host in sorted(hosts):
+                out.append((host, ent, fe))
+    return out
 
 
 def process_entity(entity_id: str) -> dict:
@@ -2249,6 +2379,43 @@ def process_entity(entity_id: str) -> dict:
         curator_migrations[new_host_fid] = existing
 
     relocated_out = _cross_entity_relocated_out(entity_id)
+
+    # Cross-entity CARRY-IN: snapshot the curator fields of every source-side
+    # final whose coin moves HERE, keyed by its host unified id. They reach a
+    # bulk-promoted host through `curator_migrations` (gap-fill semantics),
+    # and an already-existing host through `_gapfill_cross_carry` below.
+    # issuing_entity never travels — the coin's entity is what changed.
+    cross_carry: dict[str, dict] = {}
+    for host, src_ent, src_fe in _cross_entity_carry_in(entity_id,
+                                                       unified_entries):
+        carried = {k: v for k, v in src_fe.items() if k != "issuing_entity"}
+        before = set(curator_migrations.get(host) or {})
+        _migrate_classification(carried, host)
+        snap = curator_migrations.get(host) or {}
+        cross_carry[host] = {k: v for k, v in snap.items()
+                             if not k.startswith("__merge__")}
+        print(f"  [{entity_id}] cross-entity carry: {src_ent}/"
+              f"{src_fe.get('id')} → {host} "
+              f"({len(set(snap) - before) or len(snap)} field(s))")
+
+    def _gapfill_cross_carry(entry: dict, fid: str, composed: list) -> None:
+        snap = cross_carry.get(fid)
+        if snap is None:
+            for mid in composed:
+                if mid in cross_carry:
+                    snap = cross_carry[mid]
+                    break
+        if not snap:
+            return
+        for field, value in snap.items():
+            cur = entry.get(field)
+            if field == "fuss" and cur in (None, "seed_unsorted"):
+                entry[field] = value
+            elif field == "phase" and (cur is None or cur in _SEED_TAG_PHASES):
+                entry[field] = value
+            elif field not in ("fuss", "phase") and cur in (None, "", [], {}):
+                entry[field] = value
+
     surviving_finals: list[dict] = []
     for fe in final_entries:
         fid = fe.get("id") if isinstance(fe, dict) else None
@@ -2764,6 +2931,7 @@ def process_entity(entity_id: str) -> dict:
         enriched, conflicts = _enrich_final_entry(fc, members, entity_id)
         _apply_migrated_merge_fields(enriched, fid, full_composed,
                                      curator_migrations)
+        _gapfill_cross_carry(enriched, fid, full_composed)
         enriched_entries.append(enriched)
         if conflicts:
             enrichment_conflicts.append({
@@ -3215,8 +3383,26 @@ def process_entity(entity_id: str) -> dict:
     # coin lives in the target entity; its curation moved with it. (2026-07-01,
     # KM 761 «2 Rigsdaler» f7h6a/f7h6c danish_realm -> royal_holstein.)
     _reloc_before = len(enriched_entries)
-    enriched_entries = [fc for fc in enriched_entries
-                        if not _final_is_relocated(fc, relocated_out)]
+    _member_targets = _cross_entity_member_targets()
+    _kept_for_carry: list[str] = []
+    _reloc_kept: list[dict] = []
+    for fc in enriched_entries:
+        if not _final_is_relocated(fc, relocated_out):
+            _reloc_kept.append(fc)
+        elif not _relocation_drop_is_safe(
+                fc, _relocation_targets(fc, entity_id, relocated_out,
+                                        _member_targets)):
+            # The target has not received the coin yet and is not in this
+            # run: dropping now would lose this final's curation for good.
+            _reloc_kept.append(fc)
+            _kept_for_carry.append(str(fc.get("id")))
+    enriched_entries = _reloc_kept
+    if _kept_for_carry:
+        print(f"  ⚠ [{entity_id}] cross-entity relocation: KEPT "
+              f"{len(_kept_for_carry)} source-side final(s) until the target "
+              f"entity is absorbed (its curation is carried from here): "
+              f"{', '.join(_kept_for_carry[:5])} — run absorb for the target "
+              f"or without --entity")
     if len(enriched_entries) != _reloc_before:
         print(f"  [{entity_id}] cross-entity relocation: dropped "
               f"{_reloc_before - len(enriched_entries)} stale source-side "
@@ -3227,8 +3413,19 @@ def process_entity(entity_id: str) -> dict:
     # moves the seed and its seed_unified to another entity while the old final
     # stays behind, leaving the coin in two entity files (audit_v2 I3).
     _routed_before = len(enriched_entries)
-    enriched_entries = [fc for fc in enriched_entries
-                        if not _final_is_routed_away(fc, entity_id)]
+    _routed_kept: list[dict] = []
+    for fc in enriched_entries:
+        if not _final_is_routed_away(fc, entity_id):
+            _routed_kept.append(fc)
+        elif not _relocation_drop_is_safe(
+                fc, _relocation_targets(fc, entity_id, relocated_out,
+                                        _member_targets)):
+            _routed_kept.append(fc)
+            _kept_for_carry.append(str(fc.get("id")))
+            print(f"  ⚠ [{entity_id}] routing relocation: KEPT "
+                  f"{fc.get('id')} until its new entity is absorbed "
+                  f"(its curation is carried from here)")
+    enriched_entries = _routed_kept
     if len(enriched_entries) != _routed_before:
         print(f"  [{entity_id}] routing relocation: dropped "
               f"{_routed_before - len(enriched_entries)} final(s) whose "
@@ -3405,6 +3602,10 @@ def main() -> int:
     if not entities:
         print("No V2 seed_unified files found.")
         return 0
+    # Cross-entity carry reads every final as it was BEFORE this run wrote
+    # anything (see «Cross-entity relocation CARRY»).
+    _RUN_ENTITIES.update(entities)
+    _final_snapshot()
 
     print(f"Processing {len(entities)} entit(y/ies)...\n")
 
@@ -3461,6 +3662,14 @@ def main() -> int:
         if result["enrichment_conflicts"]:
             line += f"  conflicts:{len(result['enrichment_conflicts'])}"
         print(line)
+        # Name the decisions that matched nothing: usually a coin that moved
+        # to another entity (its decision did not move with it) or a decision
+        # left under a class id the merger has since renamed. A bare count
+        # hid exactly those for months.
+        if result.get("unapplied_assignments") and not args.verbose:
+            miss = result["unapplied_assignments"]
+            print(f"      ASSIGN-MISS ids: {', '.join(map(str, miss[:8]))}"
+                  + (f" … (+{len(miss) - 8})" if len(miss) > 8 else ""))
 
         if args.verbose and result.get("unapplied_assignments"):
             print(f"    assignments with unknown coin_id (skipped):")
