@@ -161,6 +161,57 @@
     for (var i = 0; i < open.length; i++) loadLazy(open[i]);
   });
 
+  // 2b') Bibliography («Джерела»): a closed <details class="refs-box"> whose
+  //      list sits in a fragment (scripts/lib/lazy_fuss.py::split_refs). It is
+  //      fetched on first open; a citation link «#ref…» whose target is not in
+  //      the DOM yet opens the box, loads the list and then scrolls to the
+  //      entry. Never remembered — the box always starts closed.
+  function loadRefs(box) {
+    var lazy = box.querySelector(":scope > .refs-lazy[data-src]");
+    if (!lazy) return Promise.resolve();
+    if (lazy._p) return lazy._p;
+    lazy.innerHTML = '<div class="fd-lazy-msg">…</div>';
+    lazy._p = fetch(lazy.getAttribute("data-src"))
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (txt) { lazy.innerHTML = txt; lazy.removeAttribute("data-src"); })
+      .catch(function () {
+        lazy._p = null;
+        lazy.innerHTML = '<div class="fd-lazy-msg">⚠ <a href="' +
+          lazy.getAttribute("data-src") + '">' + lazy.getAttribute("data-src") + "</a></div>";
+      });
+    return lazy._p;
+  }
+  function goToRef(id, push) {
+    var box = document.querySelector("details.refs-box");
+    if (!box) return false;
+    box.open = true;
+    loadRefs(box).then(function () {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (push) history.pushState(null, "", "#" + id);
+      el.scrollIntoView({ block: "center" });
+      el.classList.remove("ref-flash"); void el.offsetWidth; el.classList.add("ref-flash");
+    });
+    return true;
+  }
+  document.addEventListener("toggle", function (ev) {
+    var d = ev.target;
+    if (d && d.matches && d.matches("details.refs-box") && d.open) loadRefs(d);
+  }, true);
+  document.addEventListener("click", function (ev) {
+    var a = ev.target && ev.target.closest ? ev.target.closest('a[href^="#ref"]') : null;
+    if (!a) return;
+    var id = decodeURIComponent(a.getAttribute("href").slice(1));
+    if (document.getElementById(id)) return;          // already loaded: native jump
+    if (goToRef(id, true)) ev.preventDefault();
+  });
+  function hashRef() {
+    var h = decodeURIComponent((location.hash || "").slice(1));
+    if (/^ref/.test(h) && !document.getElementById(h)) goToRef(h, false);
+  }
+  document.addEventListener("DOMContentLoaded", hashRef);
+  window.addEventListener("hashchange", hashRef);
+
   // 2c) Remember open Müntzfuß blocks and the scroll position across a
   //     reload (sessionStorage, per tab + page path). The browser's own
   //     scroll restoration runs before the lazy fragments exist, so it is

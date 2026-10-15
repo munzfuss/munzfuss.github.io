@@ -2485,6 +2485,23 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   margin: 18px 0 14px;
 }
 [data-theme="v1"] .refs-title { color: var(--accent-deep); }
+/* Bibliography box (lazy, see scripts/lib/lazy_fuss.py::split_refs). */
+.refs-box > summary { list-style: none; cursor: pointer; }
+.refs-box > summary::-webkit-details-marker { display: none; }
+.refs-box > summary .refs-title { display: inline-flex; align-items: baseline; gap: 10px; }
+.refs-sum-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; font-family: var(--font-sans); font-size: 14px;
+  font-variant: normal; line-height: 1;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 3px;
+}
+.refs-box[open] .refs-sum-icon { font-size: 0; }
+.refs-box[open] .refs-sum-icon::before { content: "−"; font-size: 14px; }
+.refs-box > summary:hover .refs-sum-icon,
+.refs-box > summary:focus-visible .refs-sum-icon { background: var(--accent-bg); }
+.refs-n { font-family: var(--font-sans); font-size: 13px; font-variant: normal; color: var(--text-muted); }
+@keyframes ref-flash { from { background: var(--accent-bg-strong); } to { background: transparent; } }
+.refs li.ref-flash { animation: ref-flash 1.6s ease-out; }
 
 .refs {
   padding-left: 24px;

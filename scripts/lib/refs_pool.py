@@ -153,6 +153,11 @@ def inject_pool_refs(html: str, resolved: list[tuple[str, str, int]],
         f'<h2 class="refs-title">{heading}</h2>\n'
         f'<ol class="refs">\n{items_html}\n</ol>\n'
     )
+    # Before the page footer when there is one (the bibliography is page
+    # content; after the footer it read as an appendix to the footer).
+    footer = html.rfind("<footer")
+    if footer != -1:
+        return html[:footer] + biblio.lstrip("\n") + "\n" + html[footer:]
     if "</body>" in html:
         return html.replace("</body>", biblio + "</body>", 1)
     # No </body> either — append at end

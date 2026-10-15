@@ -37,3 +37,35 @@ def split(html: str, url_dir: str) -> tuple[str, dict[str, str]]:
         return f'<div class="fd-lazy" data-src="{url_dir}t/{fid}.html"></div>'
 
     return _RE.sub(_sub, html), frags
+
+
+# ── Bibliography («Джерела») ─────────────────────────────────────────────
+# The final `<h2 class="refs-title">…</h2><ol class="refs">…</ol>` (legacy
+# entries + the pool entries refs_pool.py appended) becomes a closed
+# `<details class="refs-box">`; the list itself moves to `t/_refs.html` and
+# app.js fetches it on first open, or when a citation `#ref…` is followed.
+# The leading «_» keeps the file name clear of every fuss id.
+REFS_FRAGMENT = "_refs"
+
+_REFS_RE = re.compile(
+    r'<h2 class="refs-title">(.*?)</h2>\s*(<ol class="refs">.*?</ol>)', re.S)
+
+
+def split_refs(html: str, url_dir: str) -> tuple[str, str | None]:
+    """Return (page_html, refs_fragment_html | None)."""
+    m = None
+    for m in _REFS_RE.finditer(html):
+        pass                       # the bibliography is the LAST such block
+    if m is None:
+        return html, None
+    heading, ol = m.group(1), m.group(2)
+    n = ol.count("<li ")
+    box = (
+        '<details class="refs-box">'
+        '<summary class="refs-sum"><h2 class="refs-title">'
+        f'<span class="refs-sum-icon" aria-hidden="true">+</span>{heading}'
+        f' <span class="refs-n">({n})</span></h2></summary>'
+        f'<div class="refs-lazy" data-src="{url_dir}t/{REFS_FRAGMENT}.html"></div>'
+        '</details>'
+    )
+    return html[:m.start()] + box + html[m.end():], ol

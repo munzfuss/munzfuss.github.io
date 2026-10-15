@@ -1282,6 +1282,11 @@ def build_location(
     V1 remains accessible via the /v1/ prefix so existing links keep
     working. The template + assembly logic is shared between V1 and V2
     — only the output path branches."""
+    # Footer «Contact» link, as on the landing: local.env / process env;
+    # empty → the link is omitted. Read here so pool workers get it too.
+    from lib.env import load_local_env
+    load_local_env()
+    contact_email = os.environ.get("CONTACT_EMAIL", "")
     if output_root is None:
         output_root = SITE_DIR
     print(f"🏛️  Building {loc.id} ({len(loc.coins)} coins) → {output_root.relative_to(REPO_ROOT)}/")
@@ -1435,6 +1440,7 @@ def build_location(
             references=refs_for_lang,
             generated_date=generated_date,
             repo_url=repo_url,
+            contact_email=contact_email,
             base_url=base_url,
             issuing_entities=issuing_entities or {},
             active_entity_ids=active_entity_ids,
@@ -1500,6 +1506,9 @@ def build_location(
         from lib import lazy_fuss as _lazy_fuss_mod
         _url_dir = "/" + out_dir.relative_to(output_root).as_posix() + "/"
         html, _frags = _lazy_fuss_mod.split(html, _url_dir)
+        html, _refs_frag = _lazy_fuss_mod.split_refs(html, _url_dir)
+        if _refs_frag is not None:
+            _frags[_lazy_fuss_mod.REFS_FRAGMENT] = _refs_frag
         _frag_dir = out_dir / "t"
         if _frag_dir.exists():
             for _old in _frag_dir.glob("*.html"):
@@ -1918,7 +1927,9 @@ def parse_args():
                         "of validation stays full-corpus. For the LOCAL pre-commit "
                         "hook only — CI must keep the full scan (its default).")
     p.add_argument("--clean", action="store_true", help="Remove site/ before building")
-    p.add_argument("--repo-url", default="", help="URL for source data link in footer")
+    p.add_argument("--repo-url", default=None, help="URL for source data link in footer "
+                   "(default: this checkout's `origin` remote, so a local build shows "
+                   "the same footer as the published site)")
     p.add_argument("--base-url", default="", help="URL prefix for assets and inter-page "
                    "links. Empty for user pages or root-served sites; '/repo-name' for "
                    "GitHub Pages project sites. Trailing slash stripped automatically.")
@@ -1953,6 +1964,19 @@ def main():
 
     # Normalise base_url: drop trailing slash so templates can use {{ base_url }}/path
     base_url = args.base_url.rstrip("/")
+
+    # Footer source link: CI passes --repo-url; a local build defaults to the
+    # checkout's `origin` remote so the preview shows the published footer.
+    if args.repo_url is None:
+        try:
+            _origin = subprocess.run(
+                ["git", "-C", str(REPO_ROOT), "remote", "get-url", "origin"],
+                capture_output=True, text=True, check=True).stdout.strip()
+        except (OSError, subprocess.CalledProcessError):
+            _origin = ""
+        if _origin.startswith("git@github.com:"):
+            _origin = "https://github.com/" + _origin[len("git@github.com:"):]
+        args.repo_url = _origin[:-4] if _origin.endswith(".git") else _origin
 
     # Site profile — which locations this site contains, where it mounts
     # them, under which origin. munzfuss is itself a profile, so there is

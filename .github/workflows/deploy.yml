@@ -143,6 +143,10 @@ jobs:
         # origin, the output tree, the languages and the root mount.
         # --repo-url stays THIS repository: the footer's source link points at
         # where the data actually lives, which is here.
+        # CONTACT_EMAIL: the same optional secret as the munzfuss build; the
+        # page footer shows the «Contact» link only when it is set.
+        env:
+          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
         run: |
           python scripts/build.py \
             --clean \
