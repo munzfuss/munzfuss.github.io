@@ -21,6 +21,11 @@
 | D4 | ~120 KMM specimens without Schou | **do not merge for now** |
 | D5 | Counterfeits / piefort in KMM | **provisionally keep**; review each case for a final verdict |
 | D6 | Mission lower bound | **yes** — Hans' silver (from 1481) enters the Danish scope |
+| D7 | Name (2026-10-15, 2nd round) | munzfuss site: «Lübischer Müntzfuß» **if** that was the period German spelling; Danish page (all languages): «Lybsk Møntfod» **if** it matches Danish usage of the 15th–16th c.; otherwise the form of that time. Finding (dossier §10.3): no «-Fuß / -fod» compound is attested for the 15th–16th c. — ⏸ curator to choose |
+| D8 | KMM specimens without Schou (2026-10-15) | **all go on the page** as their own rows for now; merging later |
+| D9 | Sweden (2026-10-15) | **own entity file, like Norway**; its union-era coins enter the Denmark page by time window |
+| D10 | Holstein / Duke Frederik (2026-10-15) | establish the facts first (dossier §10.1–10.2) |
+| D11 | Save Page Now | **yes** (2026-10-15) — standing for this work |
 
 ## 1. Research completion
 
@@ -28,7 +33,7 @@
 |---|---|---|
 | ☑ | 1.1 Inventory, sources, recomputation, options | `hans_silver_1481_1513.md` (commit `1a06455`); sources cached `scripts/cache/danskmoent/hans_1481_1513/` (`a803eda37`) |
 | ☑ | 1.2 Record D1–D6 in the dossier §8 | dossier |
-| ☐ | 1.3 **Territorial status table for D3**, each with a source: Denmark proper + Skåne; Gotland / Visby (Danish crown); Norway (union kingdom, håndfæstning 1483 — consumed by the page via `danish_norway`); archbishopric of Nidaros (Gaute Ivarsson, Erik Valkendorf); Sweden 1497–1501 (union kingdom — **not** dependent on Denmark → proposal: Hans' Ørtug off the page, relocate to `sweden`); Schleswig (Danish fief) vs Holstein (imperial fief) for Duke Frederik's Hohlpfennige — which duchy and mint the pieces belong to | dossier §, then ⏸ curator confirms each row |
+| ◐ | 1.3 **Territorial status table for D3** (facts in dossier §10.1; per-land placement still ⏸), each with a source: Denmark proper + Skåne; Gotland / Visby (Danish crown); Norway (union kingdom, håndfæstning 1483 — consumed by the page via `danish_norway`); archbishopric of Nidaros (Gaute Ivarsson, Erik Valkendorf); Sweden 1497–1501 (union kingdom — **not** dependent on Denmark → proposal: Hans' Ørtug off the page, relocate to `sweden`); Schleswig (Danish fief) vs Holstein (imperial fief) for Duke Frederik's Hohlpfennige — which duchy and mint the pieces belong to | dossier §, then ⏸ curator confirms each row |
 | ☐ | 1.4 Lübeck standards from Jesse in full: Rezesse 1424 (with Denmark), 1468, 1492 (31 articles), 1501/1504/1506 — exact figures, page / passage locators; the 19,392 g question | dossier §5; `instruments/` dossiers if tier A (see 1.6) |
 | ☐ | 1.5 Remaining sources: Galster 1972 *Unionstidens udmøntninger* (paper — gap or library), Märcher 2018 (paper — gap), Ernst 1940 (danskmoent `ernst/hanshvid.htm`, cached), Hauberg 1891 Gotland, Risvaag / Lohne 2010 (Nidaros mint), Wilcke 7-1 s. 32–147 read end to end for anything missed, Eriksen 1949 (`artikler/skilltal.htm`) | dossier; cache + SOURCES for each new one |
 | ☐ | 1.6 Instruments: håndfæstning 1483 (register row ☑), Wendish Rezesse 1468 / 1492 / 1506, Danish-Hanseatic treaty 1424 — decide which get an `instruments/` dossier; add them to `instruments/PLAN.md` | `instruments/`, register |
@@ -45,7 +50,7 @@
 
 | ✓ | Step | Output |
 |---|---|---|
-| ⏸ | 3.1 Key and display string. Proposal: key `luebischer_muenzfuss`; name per §2 tier 1 — the sources write «lübischer Münzfuß» (Jesse), CLAUDE.md lists «Lübischer Müntzfuß», Danish «lybsk Møntfod»; one string in all languages | curator picks the string |
+| ⏸ | 3.1 Key and display string (D7; dossier §10.3). Key `luebischer_muenzfuss`. Two display strings → the name may need to differ by **site profile** (munzfuss vs danskmoent) — check whether the build supports a per-site name; if not, add it | curator picks the strings; build support |
 | ☐ | 3.2 Grid: what defines the standard on the card — the Schilling 103½ to the 9-lot Cologne mark (Rezess 1468 = 1492) as `grid_stops` / `fineness_standard 0.5625`, or the Mark lübsch as unit; computed fine weights (§5 of the dossier) | fuesse.yml |
 | ☐ | 3.3 `events`: `first_adoption` / `std_start` / `std_end` / `first_mint` / `last_mint` / `demonetisation` per scope (anywhere vs Denmark); the end for Denmark = håndfæstning 22 July 1513 (+ Blicher grid), marked indirect if so | fuesse.yml + schema check |
 | ☐ | 3.4 `grundwerte.rows`: decree rows (Rezess 1468/1492; håndfæstning 1483; håndfæstning 1513 as the end) and the period row «Period I (1481–1513) · King Hans» with short parameters | fuesse.yml |
@@ -66,7 +71,7 @@
 | ✓ | Step | Output |
 |---|---|---|
 | ☐ | 5.1 One key per passage for every claim in 3.4–4.4 (Wilcke 7-1 s. 134, 139–140, 143, 144; 7-2 s. 149, 152, 155; Galster galkult; Galster 1947; Eriksson 2017 tab. 7/9/16; Gullbekk s. 3–4, 8; Holst; Jesse 1424/1492/1501/1506; Ingvardson 2022); reuse existing keys (`galster-nobel-hans-ingen-moentordning`, `wilcke-1950-haandfaestning-1513`, …) | refs_pool |
-| ⏸ | 5.2 Archive copies: find Wayback snapshots; Save Page Now only with the curator's yes per batch | refs_pool |
+| ◐ | 5.2 Archive copies (D11 yes). Done 2026-10-15: Eriksson 2017 → `20261015100138`, hansgals → `20261015100433` (SPN); existing: Gullbekk `20251006175259`, Gribshunden `20250907030329`, galshans `20260122081043`, holst `20250916081200`, Sømod c1holst `20250808133935`. Remaining: the rest as keys are written | refs_pool |
 | ☐ | 5.3 Translations after every quote in de/en/uk; da original for Danish | refs_pool + prose |
 
 ## 6. Coins
@@ -74,10 +79,13 @@
 | ✓ | Step | Output |
 |---|---|---|
 | ☐ | 6.1 Classify the type-attributable records (Galster 29–36, 141–142, 148–162 per D3, Rigsrådet G 22, archbishops) into `luebischer_muenzfuss` / phase I, with `kind` (Skilling, Søsling: kurant? Hvid: scheide? — decide from the sources and note the reason) | `classification_decisions/{danish_realm,danish_norway}.yml` → absorb |
-| ⏸ | 6.2 The ~120 KMM specimens without a type key (D4: no merge) — do they render as single rows in the table now, or stay in `seed_unsorted` until a merge decision? | curator |
+| ☐ | 6.2 The ~120 KMM specimens without a type key: classify them all into the card as single rows (D8); no merge (D4) | classification_decisions |
 | ☐ | 6.3 Per-case review of counterfeits / piefort (D5): `kmk-278927`, `kmk-318049`, `kmk-734756`, + any found — table with source text, for the curator's verdict each | this file / dossier |
 | ☐ | 6.4 Data anomalies: `kmk-643973` (Hans 1517 in KMM source), `unified-dk-bruun-3837` year range 1512–1515, Norwegian-Schou records in `danish_realm`, KMM «galster» values 3/15/23/41/57B/115 — trace (`trace_coin why`), then report | dossier §4.3 |
-| ⏸ | 6.5 Entity moves per D3 (Swedish Ørtug → `sweden`; Norwegian records → `danish_norway`; Duke Frederik's pieces per 1.3) — RELOCATE via `v2-merge-coins` after the curator confirms each | merge_decisions |
+| ☐ | 6.5a **Sweden entity (D9):** a union-era Swedish entity on the `danish_norway` model (proposal: «Kingdom of Sweden under the union king», Christian I 1457–64, Hans 1497–1501, Christian II 1520–23) in `issuing_entities.yml`; the existing `sweden` entity is post-1523 and `out_of_scope` and its description says union issues stay in `danish_realm` — rewrite it; add the new entity to Denmark's `consumes_entities` with a year window; relocate Hans' Ørtug (Galster 230–238) and any Christian I / II Swedish pieces — via `v2-merge-coins` RELOCATE | entities, denmark.yml, merge_decisions |
+| ⏸ | 6.5b Norwegian-Schou records sitting in `danish_realm` → `danish_norway` | merge_decisions |
+| ⏸ | 6.5c The two NGC pfennige in `royal_holstein` (dossier §10.2): MB#5 → Christian I per Sømod (disputed), MB#8 → King Frederik I (Galster 79); neither is Hans-era. Curator: re-attribute ruler / years, or leave | final via curation surface |
+| ☐ | 6.5d Hans' own Holstein Blaffert (Oldenburg bars; Sømod D103, Jesse 299) — search our data and sources; card row only if the curator places Holstein coin of the king on the Denmark page for this period | — |
 | ☐ | 6.6 Coin notes: sourced note per type row (as on the Guldgyldenfod rows) — nominal literal per §1, assay / account figures with citation, no specimen trivia | final via notes surface |
 
 ## 7. Verification and quality gates
@@ -99,5 +107,7 @@
 | ☐ | 8.3 Later, not in this plan unless the curator asks: Christian I / Christoffer / Erik of Pomerania silver under the same card (Hvid since c. 1440) | — |
 
 ## Log
+
+- 2026-10-15 — D7–D11; dossier §10 (status of the lands, the NGC pfennige, period name); Sømod 2002 cached; two SPN captures.
 
 - 2026-10-15 — plan created after D1–D6.

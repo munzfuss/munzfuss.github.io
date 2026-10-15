@@ -676,12 +676,15 @@ and assays. Analysis: `docs/research/hans_silver_1481_1513.md`. Cached in
 | Source | URL | What it attests |
 |---|---|---|
 | Wilcke VII (1950) 7-1 s. 32–147 | cache `renaessancens_moent_1950/pages/wilcke_7-1.txt` (PDF page + 30 = printed) | Gylden 2 → 2½ M d (s. 134); Mårten Myntskrivare's Svartsjö 1542 melt account of «danska hwiter» and «Konungh Hansses 4 skellinge» (s. 139–140); Hvide 4¼-lødige, no ordinance (s. 144); Norwegian coin «efter lybsk Møntfod» (s. 143) |
-| Eriksson, «Haltanalyser av danska mynt 1448-1523», *Metallanalyser av mynt* 2017:1 | <https://www.danskmoent.dk/pdf/Metallanalyser%20av%20mynt_2017_1.pdf> | 118 assays: Hans Skilling 9/8 → 6 lod, Hvid 6 → 4 lod, Søsling 5 lod (tab. 7–9, 16, s. 9–15) |
-| Gullbekk, «Norsk mynt i dansketiden. Kong Hans», NNT 2025-1 s. 4–10 | <https://www.danskmoent.dk/pdf/NNT-2025-1%20Gullbekk.pdf> | håndfæstning Halmstad 1483 «jeffngod mynt wid Danske penninge»; «lybsk myntstandard» |
-| Holst, «Norges mynter til slutten af 16. årh.», Nordisk Kultur XXIX (1936) | <https://www.danskmoent.dk/artikler/holst.htm> | Lübeck system in Norway under the Oldenburgs; Gaute Ivarsson's coins follow the royal ones in weight; Hans weights |
-| Galster, «De saakaldte kong Hans' Sølvgylden», NNUM 1947 s. 49–56 | <https://www.danskmoent.dk/galster/galshans.htm> | the cast «Hans Sølvgylden» are forgeries |
-| Ingvardson, Müter, Foley, *JAS: Reports* 43 (2022) 103468 | <https://www.danskmoent.dk/pdf/Gribshunden.pdf> (48 MB, extract only cached) | Gribshunden purse, June 1495: only Hvide, no Skilling / Søsling |
-| danskmoent «Kong Hans - oversigt efter Galster» | <https://www.danskmoent.dk/hansgals.htm> | Galster / Schou / Sømod concordance for all Hans types |
+| Eriksson, «Haltanalyser av danska mynt 1448-1523», *Metallanalyser av mynt* 2017:1 | <https://www.danskmoent.dk/pdf/Metallanalyser%20av%20mynt_2017_1.pdf> (Wayback `20261015100138`, SPN) | 118 assays: Hans Skilling 9/8 → 6 lod, Hvid 6 → 4 lod, Søsling 5 lod (tab. 7–9, 16, s. 9–15) |
+| Gullbekk, «Norsk mynt i dansketiden. Kong Hans», NNT 2025-1 s. 4–10 | <https://www.danskmoent.dk/pdf/NNT-2025-1%20Gullbekk.pdf> (Wayback `20251006175259`) | håndfæstning Halmstad 1483 «jeffngod mynt wid Danske penninge»; «lybsk myntstandard» |
+| Holst, «Norges mynter til slutten af 16. årh.», Nordisk Kultur XXIX (1936) | <https://www.danskmoent.dk/artikler/holst.htm> (Wayback `20250916081200`) | Lübeck system in Norway under the Oldenburgs; Gaute Ivarsson's coins follow the royal ones in weight; Hans weights |
+| Galster, «De saakaldte kong Hans' Sølvgylden», NNUM 1947 s. 49–56 | <https://www.danskmoent.dk/galster/galshans.htm> (Wayback `20260122081043`) | the cast «Hans Sølvgylden» are forgeries |
+| Ingvardson, Müter, Foley, *JAS: Reports* 43 (2022) 103468 | <https://www.danskmoent.dk/pdf/Gribshunden.pdf> (48 MB, extract only cached; Wayback `20250907030329`) | Gribshunden purse, June 1495: only Hvide, no Skilling / Søsling |
+| danskmoent «Kong Hans - oversigt efter Galster» | <https://www.danskmoent.dk/hansgals.htm> (Wayback `20261015100433`, SPN) | Galster / Schou / Sømod concordance for all Hans types |
+| Sømod, «Holstenske mønter fra Christiern I og Hans» (2002) | <https://www.danskmoent.dk/soemod/c1holst.htm> (Wayback `20250808133935`) | the Holstein/Oldenburg hollow pieces (Lange 10, NGC «MB# 5») are Christian I's, not Frederik I's; Hans' Holstein Blaffert with the Oldenburg bars; Christian I's 1460 promise to Hamburg to strike only coin current in Lübeck and Hamburg |
+
+Word history: Grimm DWB «MÜNZFUSZ» cites only Frisch 1741; FWB (1350–1650) has no headword «münzfuß»; ODS answers fetch tools with 401.
 
 Not seen (paper): Märcher, «Et differentieret møntvæsen ca. 1480-1550», *Denar til Daler*
 (2018) s. 426-495 — the modern synthesis; Galster 1972 *Unionstidens udmøntninger*.

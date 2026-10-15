@@ -411,3 +411,65 @@ The work plan with its checklist: `luebischer_muenzfuss_plan.md`.
 | Duke Frederik's hollow pfennige standard | Lange 1908 (paper) or a Holstein/Lübeck recess naming ducal pfennige |
 | KMM «galster» values 3/15/23/41/57B/115 on Hans records | the KMM object pages |
 | Gribshunden: further coins from later excavation seasons | future publications of the wreck |
+
+## 10. Follow-up 2026-10-15 — territorial status, the «Frederik» pfennige, the card's name
+
+### 10.1 Status of the lands under Hans (plan step 1.3)
+
+| Land | Status under Hans | Source |
+|---|---|---|
+| Kalmar Union as a whole | personal union of three kingdoms; each kept its own laws, council and administration | Wikipedia DA «Kalmarunionen»: «*Kalmarunionen var en personalunion mellem kongerigerne Danmark, Norge og Sverige*»; «*Kongen skal styre hvert rige i overensstemmelse med hvert riges egne love*» |
+| Coinage across the union | each realm keeps its own coin | Wilcke 7-1 s. 143 (håndfæstning 1483): «*Samtidig blev der i Haandfæstningen bestemt, at hvert Rige skulde beholde sin Mønt.*» |
+| Denmark | king 1481 (Rigsrådet interregnum 1481–83 per Østergaard, S5) | Wikipedia DA «Kong Hans»: «*efter Christian 1.'s død i 1481 kun i Danmark, at Hans forholdsvis gnidningsfrit kunne overtage tronen*» |
+| Norway | king 1483–1513, union kingdom — the page already consumes `danish_norway` | ibid.: «*I Norge lykkedes det først … for Hans at blive anerkendt som konge i 1483*» |
+| Sweden | king Nov 1497 – Aug 1501 only; union kingdom, own Riksråd and own coin (Stockholm-mark Ørtug per the 1480/1497 ordinances) | ibid.: «*kunne Hans endelig blive kronet til svensk konge i november 1497*»; «*i august 1501 måtte Hans forlade Stockholm*» |
+| Gotland / Visby | under the Danish crown (Galster: «*Norge og Gotland blev inddraget under dansk Møntomraade under Kong Hans*») | S3 |
+| Schleswig | fief of the Danish crown, outside the Empire | `duchy_of_schleswig_entity.md` §1 Q1 (Wikipedia DA/DE) |
+| Holstein | imperial fief; from 1460 (Ribe) the Danish king is its count, from 1474 its duke — personal union, administered apart from the kingdom | Wikipedia DE «Herzogtum Holstein»: «*wählte der Adel Holsteins und Schleswigs 1460 den dänischen König Christian I. zum gemeinsamen Landesherrn*»; «*Holstein verblieb somit Teil des Heiligen Römischen Reiches*»; «*Holstein weiterhin getrennt vom Königreich verwaltet wurde*» |
+| Before 1460 | Holstein belonged to the Schauenburg counts — no tie to the Danish crown (they held Schleswig as a Danish fief from 1386) | Sømod 2002: «*Holsten havde fra gammel tid tilhørt de schauenburgiske grever. Nu skete det, at den regerende linie i 1459 uddøde.*» |
+| 1490 division | Hans takes the Segeberg share, Duke Frederik the Gottorp share — Frederik held his Schleswig part of the king, his Holstein part of the Emperor | Wikipedia DA «Kong Hans»: «*foretoges den 10. august en deling af landene … hvorved kongen fik den segebergske del og hertugen den gottorpske*» |
+
+So the Holstein question did NOT start with Frederik's accession in 1523: from 1460 the Danish
+king himself was count/duke of Holstein, but as an imperial vassal, never as a Danish fief.
+
+### 10.2 The two NGC «Friedrich I» pfennige in `royal_holstein`
+
+- **NGC cuid 167718, «MB# 5», L#10, shield halved Holstein / Oldenburg, «ca1501-10».**
+  Sømod 2002 (danskmoent `soemod/c1holst.htm`, cached) reviews the attribution history —
+  older literature Christian I; Hauberg, Jørgensen, Schou → Frederik I; Nöbbe → partly
+  Christian III; Wilcke → Johan Adolph — and assigns the pieces (his A103 Blaffert, B103
+  Penning; «Lange 10») to **Christian I (1460–1481)**: the arms are Christian I's maternal
+  (Holstein) and paternal (Oldenburg) arms; the type occurs in the Travemünde hoard closing
+  1515; never in Danish hoards → «*Mønterne med det todelte våbenskjold må tilhøre det
+  holstenske område og ikke kongeriget*». NGC's «Friedrich I, ca 1501–10» follows the
+  Hauberg / Schou line. **The attribution is disputed in the literature; no source puts
+  them under Duke Frederik with a date before 1514.**
+- **NGC cuid 167719, «MB# 8», crowned F, Sch# 1362, «ca1510».** danskmoent places the
+  crowned-F hollow pfennig as Galster 79, Schou 40, under **King** Frederik I (1523–33),
+  «*U.år, ukendt møntsted*». Sømod mentions «*de senere hulmønter med kronet C og kronet F*».
+  NGC's ca. 1510 is not supported by these sources.
+- **Duke Frederik's first coins are Husum 1514** (Galster f1g 115–121; Sømod: «*mønter fra
+  Frederik I som hertug af Slesvig og Holsten med årstallet 1514*»). No ducal coin of
+  Frederik from 1490–1513 is attested in the sources read.
+- **Hans' own Holstein coin:** Sømod assigns to Hans (1482–1513) a hollow Blaffert with the
+  Oldenburg bars alone (his D103; Jesse 299; Schou Frederik I u.å. note), current in
+  Holstein «*som en gængs og gæv mønt*». Not found in our data yet (plan step).
+- **A Holstein instrument for the card:** Christian I's agreement with Hamburg on taking
+  Holstein, 1460 — «*at han og hans efterkommere skulle ingen mønt sætte, uden den som til
+  Lübeck og Hamburg er gængs og gæv*» (Sømod after Hauberg 1886 s. 189 and Friis Johansen,
+  NNÅ 1961). The Holstein half of the Lübeck frame.
+
+### 10.3 Period form of the name (plan step 3.1)
+
+- **German.** No compound «Münzfuß / Müntzfuß» is attested for the 15th–16th c. in the
+  dictionaries checked: Grimm DWB «MÜNZFUSZ» has one citation, Frisch 1741 (woerterbuchnetz,
+  Bd. 12 Sp. 2709); the Frühneuhochdeutsches Wörterbuch (1350–1650) has no headword
+  «münzfuß» (the string appears only in its definition texts). The Wendish recesses speak of
+  «*lubesche munte*», «*lubesche mark*» (Jesse's quotations, e.g. 1492 «*de sulvere munte
+  unde penninge na den Lubeschen gulden to ordinerende*»). «lübischer Münzfuß» is the
+  scholars' term (Grautoff 1836, Jesse).
+- **Danish.** Our corpus shows «Møntfod» only in Wilcke's own (20th-c.) prose; the period
+  texts he quotes say «lybsk» / «lybske Penge», «lybsk Mynt». ODS (from c. 1700) answered 401
+  to fetch tools; Kalkar not checked.
+- Consequence: the curator's condition («if that was the period spelling») is not met for
+  the «-Fuß / -fod» compound in either language. Choice put to the curator (2026-10-15).
