@@ -244,6 +244,89 @@ Moves made: Swedish Ørtug of Hans (5) and Christian I (3) → `sweden` (`a266ff
 Frederik I 1523–33, now `danish_realm`) (`03f5859`, `a266ff7`). Anomalies still open: survey
 §4.3.
 
+### §6a Undocumented-stub candidates (2026-10-15, curator question — NOT excluded, awaiting «так»)
+
+Selection: classes under `luebischer_muenzfuss` whose every member is a KMM record with no weight/diameter
+(`measurements` empty), no catalogue index (`typeNumber`), no description or motif, no drawing, and no photo.
+Photo checked LIVE on samlinger.natmus.dk (2026-10-15; the public API was down, 403): the page shows
+`defaultThumbnail.png` and no `/kmm/asset/` image. 73 seeds checked; kmk-178001 (Bergen Skilling) has
+photos although the cache has none — removed from the list.
+
+**A — nominal only (no mint/place):** 19 classes
+
+| # | final | entity | nominal | mint | years | KMM seeds (object no.) |
+|---|---|---|---|---|---|---|
+| 1 | `unified-kmk-132585` | danish_realm | 1 Hvid | — | 1481-1513 | [kmk-132585](https://samlinger.natmus.dk/KMM/object/132585) (FP 9656.26) |
+| 2 | `unified-kmk-133291` | danish_realm | 1 Hvid | — | 1481-1513 | [kmk-133291](https://samlinger.natmus.dk/KMM/object/133291) (FP 9374.2) |
+| 3 | `unified-kmk-306290` | danish_realm | 1 Hvid | — | — | [kmk-306290](https://samlinger.natmus.dk/KMM/object/306290) (FP 7861.6) |
+| 4 | `unified-kmk-310707` | danish_realm | 1 Hvid | — | — | [kmk-310707](https://samlinger.natmus.dk/KMM/object/310707) (FP 7194.12) |
+| 5 | `unified-kmk-310767` | danish_realm | 1 Hvid | — | 1483-1513 | [kmk-310767](https://samlinger.natmus.dk/KMM/object/310767) (FP 7190.14) |
+| 6 | `unified-kmk-310951` | danish_realm | 1 Hvid | — | — | [kmk-310951](https://samlinger.natmus.dk/KMM/object/310951) (FP 7165.4) |
+| 7 | `unified-kmk-311193` | danish_realm | 1 Hvid | — | 1481-1483 | [kmk-311193](https://samlinger.natmus.dk/KMM/object/311193) (FP 7138.126) |
+| 8 | `unified-kmk-340459` | danish_realm | 1 Hvid | — | 1483-1513 | [kmk-340459](https://samlinger.natmus.dk/KMM/object/340459) (FP 5629.32) |
+| 9 | `unified-kmk-558972` | danish_realm | 1 Hvid | — | 1482-1513 | [kmk-558972](https://samlinger.natmus.dk/KMM/object/558972) (FP 10759.24) |
+| 10 | `unified-kmk-575659` | danish_realm | 1 Hvid | — | 1483-1513 | [kmk-575659](https://samlinger.natmus.dk/KMM/object/575659) (FP 11303.15) |
+| 11 | `unified-kmk-726455` | danish_norway | 1 Hvid | — | 1481-1512 | [kmk-726455](https://samlinger.natmus.dk/KMM/object/726455) (FP 12626.48) |
+| 12 | `unified-kmk-734050` | danish_realm | 1 Hvid | — | 1481-1513 | [kmk-734050](https://samlinger.natmus.dk/KMM/object/734050) (FP 12723.5) |
+| 13 | `unified-kmk-741189` | danish_realm | 1 Hvid | — | 1481-1513 | [kmk-741189](https://samlinger.natmus.dk/KMM/object/741189) (FP 11798.1) |
+| 14 | `unified-kmk-317649` | danish_realm | 1 Hvid(?) | — | 1483-1513 | [kmk-317649](https://samlinger.natmus.dk/KMM/object/317649) (FP 7609.12), [kmk-317650](https://samlinger.natmus.dk/KMM/object/317650) (FP 7609.11), [kmk-317651](https://samlinger.natmus.dk/KMM/object/317651) (FP 7609.10) |
+| 15 | `unified-kmk-186398` | danish_realm | 1 Korshvid | — | 1482-1513 | [kmk-186398](https://samlinger.natmus.dk/KMM/object/186398) (FP 489.19.5), [kmk-186399](https://samlinger.natmus.dk/KMM/object/186399) (FP 489.19.4), [kmk-186400](https://samlinger.natmus.dk/KMM/object/186400) (FP 489.19.7) |
+| 16 | `unified-kmk-643961` | danish_norway | 1 Korshvid | — | — | [kmk-643961](https://samlinger.natmus.dk/KMM/object/643961) (FP 188.20) |
+| 17 | `unified-kmk-133116` | danish_realm | 1 Skilling | — | 1481-1513 | [kmk-133116](https://samlinger.natmus.dk/KMM/object/133116) (FP 9324.26) |
+| 18 | `unified-kmk-133758` | danish_realm | 1 Skilling | — | 1483-1513 | [kmk-133758](https://samlinger.natmus.dk/KMM/object/133758) (FP 9436.1) |
+| 19 | `unified-kmk-643973` | danish_realm | 1 Skilling | — | 1513 | [kmk-643973](https://samlinger.natmus.dk/KMM/object/643973) (FP 188.8) |
+
+**B — nominal + mint/place only:** 40 classes
+
+| # | final | entity | nominal | mint | years | KMM seeds (object no.) |
+|---|---|---|---|---|---|---|
+| 1 | `unified-kmk-643658` | danish_realm | 1 Firehvid | Kopenhagen | — | [kmk-643658](https://samlinger.natmus.dk/KMM/object/643658) (FP 34.12), [kmk-643659](https://samlinger.natmus.dk/KMM/object/643659) (FP 34.11), [kmk-643660](https://samlinger.natmus.dk/KMM/object/643660) (FP 34.10) |
+| 2 | `unified-kmk-643662` | danish_realm | 1 Firehvid | Malmø | 1512 | [kmk-643662](https://samlinger.natmus.dk/KMM/object/643662) (FP 34.8), [kmk-643663](https://samlinger.natmus.dk/KMM/object/643663) (FP 34.7), [kmk-643664](https://samlinger.natmus.dk/KMM/object/643664) (FP 34.6), [kmk-643666](https://samlinger.natmus.dk/KMM/object/643666) (FP 34.4) |
+| 3 | `unified-kmk-130728` | danish_realm | 1 Hvid | Aalborg | 1483-1513 | [kmk-130728](https://samlinger.natmus.dk/KMM/object/130728) (FP 1560.9) |
+| 4 | `unified-kmk-133736` | danish_realm | 1 Hvid | Aalborg | 1483-1513 | [kmk-133736](https://samlinger.natmus.dk/KMM/object/133736) (FP 9432.9) |
+| 5 | `unified-kmk-294367` | danish_realm | 1 Hvid | Aalborg | 1481-1513 | [kmk-294367](https://samlinger.natmus.dk/KMM/object/294367) (FP 9256.7) |
+| 6 | `unified-kmk-297666` | danish_realm | 1 Hvid | Aalborg | 1481-1513 | [kmk-297666](https://samlinger.natmus.dk/KMM/object/297666) (FP 8762.1) |
+| 7 | `unified-kmk-316502` | danish_realm | 1 Hvid | Aalborg | 1483-1513 | [kmk-316502](https://samlinger.natmus.dk/KMM/object/316502) (FP 6906.48) |
+| 8 | `unified-kmk-326440` | danish_realm | 1 Hvid | Aalborg | — | [kmk-326440](https://samlinger.natmus.dk/KMM/object/326440) (FP 6625.7) |
+| 9 | `unified-kmk-709902` | danish_realm | 1 Hvid | Aalborg | 1481-1513 | [kmk-709902](https://samlinger.natmus.dk/KMM/object/709902) (FP 12354.2) |
+| 10 | `unified-kmk-396026` | danish_realm | 1 Hvid | Alborg | 1482-1513 | [kmk-396026](https://samlinger.natmus.dk/KMM/object/396026) (FP 560.345), [kmk-396027](https://samlinger.natmus.dk/KMM/object/396027) (FP 560.344), [kmk-396028](https://samlinger.natmus.dk/KMM/object/396028) (FP 560.343) |
+| 11 | `unified-kmk-340458` | danish_realm | 1 Hvid | Kbh. el. Malmø | 1483-1513 | [kmk-340458](https://samlinger.natmus.dk/KMM/object/340458) (FP 5629.33) |
+| 12 | `unified-kmk-396025` | danish_realm | 1 Hvid | Kopenhagen | 1482-1513 | [kmk-396025](https://samlinger.natmus.dk/KMM/object/396025) (FP 560.346) |
+| 13 | `unified-kmk-130729` | danish_realm | 1 Hvid | Malmø | 1483-1513 | [kmk-130729](https://samlinger.natmus.dk/KMM/object/130729) (FP 1560.8) |
+| 14 | `unified-kmk-130791` | danish_realm | 1 Hvid | Malmø | 1483-1513 | [kmk-130791](https://samlinger.natmus.dk/KMM/object/130791) (FP 1518.1) |
+| 15 | `unified-kmk-133858` | danish_realm | 1 Hvid | Malmø | 1483-1513 | [kmk-133858](https://samlinger.natmus.dk/KMM/object/133858) (FP 9456.3) |
+| 16 | `unified-kmk-297998` | danish_realm | 1 Hvid | Malmø | 1481-1513 | [kmk-297998](https://samlinger.natmus.dk/KMM/object/297998) (FP 8703.27) |
+| 17 | `unified-kmk-329830` | danish_realm | 1 Hvid | Malmø | — | [kmk-329830](https://samlinger.natmus.dk/KMM/object/329830) (FP 6377.11) |
+| 18 | `unified-kmk-355434` | danish_realm | 1 Hvid | Malmø | 1481-1483 | [kmk-355434](https://samlinger.natmus.dk/KMM/object/355434) (FP 10449.2) |
+| 19 | `unified-kmk-309772` | danish_realm | 1 Hvid | Malmø? | — | [kmk-309772](https://samlinger.natmus.dk/KMM/object/309772) (FP 7300.5) |
+| 20 | `unified-kmk-328562` | danish_realm | 1 Hvid | Malmø? | — | [kmk-328562](https://samlinger.natmus.dk/KMM/object/328562) (FP 6390.1) |
+| 21 | `unified-kmk-330687` | danish_realm | 1 Hvid | Malmø? | — | [kmk-330687](https://samlinger.natmus.dk/KMM/object/330687) (FP 6253.5) |
+| 22 | `unified-kmk-352954` | danish_realm | 1 Hvid | Malmø? | 1483-1513 | [kmk-352954](https://samlinger.natmus.dk/KMM/object/352954) (FP 10428.1) |
+| 23 | `unified-kmk-553` | danish_realm | 1 Hvid | Malmø? | 1483-1513 | [kmk-553](https://samlinger.natmus.dk/KMM/object/553) (FP 5865.9) |
+| 24 | `unified-kmk-591463` | danish_realm | 1 Hvid | Malmø? | 1481-1513 | [kmk-591463](https://samlinger.natmus.dk/KMM/object/591463) (FP 11636.10) |
+| 25 | `unified-kmk-569730` | danish_realm | 1 Hvid | — | 1481-1513 | [kmk-569730](https://samlinger.natmus.dk/KMM/object/569730) (FP 10902.24) |
+| 26 | `unified-kmk-308060` | danish_realm | 1 Hvid | Ubestemmelig | 1483-1513 | [kmk-308060](https://samlinger.natmus.dk/KMM/object/308060) (FP 7588.21) |
+| 27 | `unified-kmk-308567` | danish_realm | 1 Hvid | Ubestemmelig | — | [kmk-308567](https://samlinger.natmus.dk/KMM/object/308567) (FP 7482.1) |
+| 28 | `unified-kmk-46387` | danish_realm | 1 Hvid | Visby | 1482-1513 | [kmk-46387](https://samlinger.natmus.dk/KMM/object/46387) (GP 2890.6) |
+| 29 | `unified-kmk-326039` | danish_realm | 1 Hvid | Århus | 1483-1513 | [kmk-326039](https://samlinger.natmus.dk/KMM/object/326039) (FP 6660.37) |
+| 30 | `unified-kmk-643971` | danish_realm | 1 Korshvid | Aalborg | — | [kmk-643971](https://samlinger.natmus.dk/KMM/object/643971) (FP 188.10) |
+| 31 | `unified-kmk-642162` | danish_realm | 1 Korshvid | Malmø | — | [kmk-642162](https://samlinger.natmus.dk/KMM/object/642162) (FP 34.1508), [kmk-642163](https://samlinger.natmus.dk/KMM/object/642163) (FP 34.1507), [kmk-642164](https://samlinger.natmus.dk/KMM/object/642164) (FP 34.1506) |
+| 32 | `unified-kmk-643962` | danish_realm | 1 Korshvid | Malmø | — | [kmk-643962](https://samlinger.natmus.dk/KMM/object/643962) (FP 188.19) |
+| 33 | `unified-kmk-643963` | danish_realm | 1 Korshvid | Malmø | — | [kmk-643963](https://samlinger.natmus.dk/KMM/object/643963) (FP 188.18) |
+| 34 | `unified-kmk-643964` | danish_realm | 1 Korshvid | Malmø | — | [kmk-643964](https://samlinger.natmus.dk/KMM/object/643964) (FP 188.17) |
+| 35 | `unified-kmk-291065` | danish_realm | 1 Skilling | Malmø | 1512 | [kmk-291065](https://samlinger.natmus.dk/KMM/object/291065) (KP 1590.5) |
+| 36 | `unified-kmk-643972` | danish_realm | 1 Skilling | Malmø | — | [kmk-643972](https://samlinger.natmus.dk/KMM/object/643972) (FP 188.9) |
+| 37 | `unified-kmk-312170` | danish_realm | 1 Skilling | — | — | [kmk-312170](https://samlinger.natmus.dk/KMM/object/312170) (FP 7117.58) |
+| 38 | `unified-kmk-291064` | danish_realm | 1 Søsling | Malmø | — | [kmk-291064](https://samlinger.natmus.dk/KMM/object/291064) (KP 1590.6) |
+| 39 | `unified-kmk-314952` | danish_realm | 1 Søsling | Malmø | 1481-1513 | [kmk-314952](https://samlinger.natmus.dk/KMM/object/314952) (FP 6980.7) |
+| 40 | `unified-kmk-330624` | danish_realm | 1 Søsling | Malmø | 1481-1513 | [kmk-330624](https://samlinger.natmus.dk/KMM/object/330624) (FP 6270.6) |
+
+**What would disappear with them** (against the 160 classes that stay):
+- nominal «Korshvid» — all 7 records are candidates (A 2, B 5); «Firehvid» — both records (B); «Hvid(?)» —
+  the KMM trio (A). Hvid and Skilling themselves stay (112 / 31 classes).
+- mint/place values unique to B: «Århus» (kmk-326039 — not a Hans mint in Galster's list), «Kbh. el. Malmø»,
+  «Ubestemmelig» ×2, «Alborg» (spelling of Aalborg, which stays). No other mint is lost.
+
 ## §7. Inclusion decisions on the page (curator 2026-10-15)
 
 | Territory / issuer | Verdict | Basis |
