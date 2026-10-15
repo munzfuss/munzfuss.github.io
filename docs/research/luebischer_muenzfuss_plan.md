@@ -59,27 +59,27 @@
 
 | ✓ | Step | Output |
 |---|---|---|
-| ◐ | 3.1 (name settled: D14 + D19) Key and display string (D7 → D14: «Lübischer Müntzfuß» / «Lybsk Møntfod»; dossier §10.3). Key `luebischer_muenzfuss`. Two display strings → the name may need to differ by **site profile** (munzfuss vs danskmoent) — check whether the build supports a per-site name; if not, add it | curator picks the strings; build support |
-| ☐ | 3.2 Grid: what defines the standard on the card — the Schilling 103½ to the 9-lot Cologne mark (Rezess 1468 = 1492) as `grid_stops` / `fineness_standard 0.5625`, or the Mark lübsch as unit; computed fine weights (§5 of the dossier) | fuesse.yml |
-| ☐ | 3.3 `events`: `first_adoption` / `std_start` / `std_end` / `first_mint` / `last_mint` / `demonetisation` per scope (anywhere vs Denmark); the end for Denmark = håndfæstning 22 July 1513 (+ Blicher grid), marked indirect if so | fuesse.yml + schema check |
-| ☐ | 3.4 `grundwerte.rows`: decree rows (Rezess 1468/1492; håndfæstning 1483; håndfæstning 1513 as the end) and the period row «Period I (1481–1513) · King Hans» with short parameters | fuesse.yml |
-| ☐ | 3.5 Card text `rechnungsfraktionen` (`description_in_card: true`): founding, role (Skilling = Lübeck Schilling; Hvid as small coin «densche drelinge»; Gylden 2 → 2½ M d), cessation (1513/1514), cross-refs `[fuss:rhinsk_gylden_fod]`, `[fuss:nobel_fod]`, `[fuss:8_5_gylden_fod]` | fuesse.yml, 4 languages |
-| ☐ | 3.6 `fractions` (Mark = 16 ß = 192 Pf; Hvid 4 Pf; Søsling 6 Pf; Skilling 12 Pf) | fuesse.yml |
+| ☑ | 3.1 (name settled: D14 + D19) Key and display string (D7 → D14: «Lübischer Müntzfuß» / «Lybsk Møntfod»; dossier §10.3). Key `luebischer_muenzfuss`. Two display strings → the name may need to differ by **site profile** (munzfuss vs danskmoent) — check whether the build supports a per-site name; if not, add it | curator picks the strings; build support |
+| ☑ | 3.2 Grid: what defines the standard on the card — the Schilling 103½ to the 9-lot Cologne mark (Rezess 1468 = 1492) as `grid_stops` / `fineness_standard 0.5625`, or the Mark lübsch as unit; computed fine weights (§5 of the dossier) | fuesse.yml |
+| ☑ | 3.3 `events`: `first_adoption` / `std_start` / `std_end` / `first_mint` / `last_mint` / `demonetisation` per scope (anywhere vs Denmark); the end for Denmark = håndfæstning 22 July 1513 (+ Blicher grid), marked indirect if so | fuesse.yml + schema check |
+| ☑ | 3.4 `grundwerte.rows`: decree rows (Rezess 1468/1492; håndfæstning 1483; håndfæstning 1513 as the end) and the period row «Period I (1481–1513) · King Hans» with short parameters | fuesse.yml |
+| ☑ | 3.5 Card text `rechnungsfraktionen` (`description_in_card: true`): founding, role (Skilling = Lübeck Schilling; Hvid as small coin «densche drelinge»; Gylden 2 → 2½ M d), cessation (1513/1514), cross-refs `[fuss:rhinsk_gylden_fod]`, `[fuss:nobel_fod]`, `[fuss:8_5_gylden_fod]` | fuesse.yml, 4 languages |
+| ◐ | 3.6 `fractions` (Mark = 16 ß = 192 Pf; Hvid 4 Pf; Søsling 6 Pf; Skilling 12 Pf) | fuesse.yml |
 
 ## 4. The Denmark page — `data/v2/locations/denmark.yml`
 
 | ✓ | Step | Output |
 |---|---|---|
-| ☐ | 4.1 `fuss_order` position (before `8_5_gylden_fod`) and timeline bar (year span, layers, bar_title) | denmark.yml |
-| ☐ | 4.2 `fuss_periods`: `spec`, `instruments`, `pdate_label`, `closing_label`, `closing` | denmark.yml |
-| ☐ | 4.3 `phases[luebischer_muenzfuss]`: one phase I (1481–1513) — title + description (Rigsrådet 1481–83 prelude, Hvid-only start (Gribshunden 1495), Skilling / Søsling later, debasement to 1512, Gylden 2 → 2½ M d, mints in Denmark, Norway, Gotland, archbishops per D3) | denmark.yml |
+| ☑ | 4.1 `fuss_order` position (before `8_5_gylden_fod`) and timeline bar (year span, layers, bar_title) | denmark.yml |
+| ◐ | 4.2 `fuss_periods`: `spec`, `instruments`, `pdate_label`, `closing_label`, `closing` | denmark.yml |
+| ☑ | 4.3 `phases[luebischer_muenzfuss]`: one phase I (1481–1513) — title + description (Rigsrådet 1481–83 prelude, Hvid-only start (Gribshunden 1495), Skilling / Søsling later, debasement to 1512, Gylden 2 → 2½ M d, mints in Denmark, Norway, Gotland, archbishops per D3) | denmark.yml |
 | ☐ | 4.4 Cross-references from neighbours: Nobelfod / Guldgyldenfod period I (silver coinage of the same king), `8_5_gylden_fod` (successor) | 4 languages |
 
 ## 5. Citations — `data/shared/refs_pool.yml` (skill `cite-source`)
 
 | ✓ | Step | Output |
 |---|---|---|
-| ☐ | 5.1 One key per passage for every claim in 3.4–4.4 (Wilcke 7-1 s. 134, 139–140, 143, 144; 7-2 s. 149, 152, 155; Galster galkult; Galster 1947; Eriksson 2017 tab. 7/9/16; Gullbekk s. 3–4, 8; Holst; Jesse 1424/1492/1501/1506; Ingvardson 2022); reuse existing keys (`galster-nobel-hans-ingen-moentordning`, `wilcke-1950-haandfaestning-1513`, …) | refs_pool |
+| ◐ | 5.1 One key per passage for every claim in 3.4–4.4 (Wilcke 7-1 s. 134, 139–140, 143, 144; 7-2 s. 149, 152, 155; Galster galkult; Galster 1947; Eriksson 2017 tab. 7/9/16; Gullbekk s. 3–4, 8; Holst; Jesse 1424/1492/1501/1506; Ingvardson 2022); reuse existing keys (`galster-nobel-hans-ingen-moentordning`, `wilcke-1950-haandfaestning-1513`, …) | refs_pool |
 | ◐ | 5.2 Archive copies (D11 yes). Done 2026-10-15: Eriksson 2017 → `20261015100138`, hansgals → `20261015100433` (SPN); existing: Gullbekk `20251006175259`, Gribshunden `20250907030329`, galshans `20260122081043`, holst `20250916081200`, Sømod c1holst `20250808133935`. Remaining: the rest as keys are written | refs_pool |
 | ☐ | 5.3 Translations after every quote in de/en/uk; da original for Danish | refs_pool + prose |
 
@@ -116,6 +116,8 @@
 | ☐ | 8.3 Later, not in this plan unless the curator asks: Christian I / Christoffer / Erik of Pomerania silver under the same card (Hvid since c. 1440) | — |
 
 ## Log
+
+- 2026-10-15 — Card built (3.1–3.5, 4.1, 4.3): `fuesse.yml::luebischer_muenzfuss` (name «Lübischer Müntzfuß», grid 103½ Schilling / rough Cologne mark @ 9 Lot = Jesse's 15 June 1468 treaty, reaffirmed 1483/1492; rows 1468 · Haandfæstning 1483 · Period I · Haandfæstning 1513; card text; fractions 2 / 1 / ½ Schilling only — Hvid has no Lübeck counterpart in 1468, open; events 1481–1513, std_end approx); denmark.yml: name override «Lybsk Møntfod», spec, pdate_label, phase I, timeline bar (order 7.5, timeline from 1480). Six new pool keys (Jesse ×2, Wilcke 7-1 s. 134/143, Eriksson s. 5 ×2). Not yet: instruments blocks, closing, coins (6.x), neighbour cross-refs (4.4).
 
 - 2026-10-15 — D19: collision deferred, D14 stands; 1726 sense traced to MKL 1888 (dossier); 15th-c. sense = Grautoff 1836 / Jesse / Wilcke 7-1 s. 143.
 

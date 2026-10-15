@@ -187,7 +187,7 @@ Rule text: `docs/SOURCES.md` §13.16 amendment; CLAUDE.md §9 pointer.
 
 ## §8. Card state
 
-Not built yet. Steps and status: `luebischer_muenzfuss_plan.md` §3–§7. One phase for Hans
+Built 2026-10-15 (card, page section, phase I, timeline bar; no coins yet). Grid: 103½ Schilling per rough Cologne mark @ 9 Lot (Jesse: treaty Hamburg–Lübeck 15 June 1468, «so 1483 und 1492» reaffirmed); Jesse's 1,278 g fine shown beside our 1,271 g at 233,856 g (his mark weight, §9). Steps and status: `luebischer_muenzfuss_plan.md` §3–§7. One phase for Hans
 (D2), 1481/83–1513; card global (fuesse.yml), phases local (denmark.yml).
 
 ## §9. Open questions — each with what would settle it
