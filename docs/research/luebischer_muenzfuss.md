@@ -161,6 +161,20 @@ dated Søslinger / Hvide with assays; only two Søslinger are assayed. Rates in 
 s. 149 (4–5 Hvide per Skilling); Eriksson s. 11 after Galster 1936 s. 165 (Hvid «till underkurs mot
 skillingen»); Blicher 1 Aug 1513 restores 3 Hvide per ß (Wilcke 7-2 s. 149–150).
 
+### §3.4b Did Hans follow the Lübeck 13-Mark-Fuß after 1502? (2026-10-15, curator question — open)
+
+Mark lübisch per fine mark, recomputed from Eriksson tab. 7 (fine = weight × Ag %; 233,856 g mark):
+Lübeck 1468/1492 Schilling 11½; Lübeck Markstück 1502/06 13 (per ß 1,124 g); Lübeck Schilling 1515 13¼.
+Hans 9 lod 11,5 · 8 lod 11,8–14,8 · 7 lod 13,3–18,2 · 6 lod ≈ 15,7 · dated 1512 15,3–17,9 (one 1512
+outlier, 3,13 g @ 41,63 %, 11,2).
+
+**Reading (hypothesis):** the 8-lod and best 7-lod Skillinger sit at the 13-Mark level, so a middle
+stage on the Lübeck 1502/06 step is possible; but the 1512 coins (15–18) are well below 13–13¼ — the
+end-of-reign debasement went beyond the Lübeck step. No source says Denmark took part in the
+1502/1504/1506 recesses (Wendish towns only, Jesse) or that Hans adopted them; the 9/8/7-lod
+Skillinger are undated (only the 1512 ones carry a year). Would be settled by: dated 8/7-lod
+Skillinger, hoards with closing dates (Jensen et al. 1992), Märcher 2018.
+
 ### §3.5 Mark coins under Hans? (2026-10-15)
 
 No specimen is known. The only witness is Mårten Myntskrivare's 1542 melt account (Svartsjö):
