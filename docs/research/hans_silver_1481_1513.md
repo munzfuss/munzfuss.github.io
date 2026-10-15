@@ -490,3 +490,32 @@ king himself was count/duke of Holstein, but as an imperial vassal, never as a D
 Data note: the 16 `danish_norway` records of Hans carry year labels starting **1481**; Hans was
 recognised in Norway only in **1483** — the labels come from the sources (Galster «1481-1513»),
 so they stay; a display filter by reign start is a separate question.
+
+### 10.5 Sweden — compatibility test (curator definition 2026-10-15)
+
+Curator's test: a coin on a different base mark is still compatible if its count per local
+mark is set so that the coin equals a Danish one counted against the Cologne mark (same
+standard in local units, exactly or approximately). Recomputed:
+
+| Item | Sweden (1480 = 1497 ordinance) | Denmark under Hans |
+|---|---|---|
+| Base mark | Stockholm mark 210,616 g (Wilcke 7-1 s. 122) | Cologne mark (Galster: «ligesom i Kong Hans' Dage») |
+| Coin | Ørtug 135/M at 8 lod = 1,560 g, **0,780 g fine** (= 299,8 to the fine Cologne mark); ½ Ørtug 212/M at 6 lod = **0,373 g fine** | Hvid ≈ 0,25 g fine; Skilling ≈ 0,93 g (lübsch-valued) |
+| Units | Ørtug = 8 (Swedish) penningar; Stockholm mark = 8 öre = 24 Ørtug | Hvid = 4, Skilling = 12 Pf.; Mark dansk = 16 ß = 48 Hvide |
+| Gylden | 1½ Stockholm mark = 36 Ørtug ≈ **28,1 g** fine (1497 tariff) | 2 → 2½ Mark dansk = 96 → 120 Hvide ≈ **24 g** fine |
+| Unit relation | 1 Stockholm mark = 1⅓ Mark dansk on the Gylden parity; 1 Ørtug = 1/36 Gylden vs a Danish ß of 3 Hvide = 1/32 Gylden | — |
+
+- No Swedish coin is set equal to a Danish one, and no unit relation is integral; the
+  nearest pair (Ørtug 0,78 g fine vs three Hvide 0,75 g) is a numerical neighbour, not a
+  designed equality — its value of account differs by ≈ 12 % (1/36 vs 1/32 Gylden).
+- The Swedish standard was set **against** the Danish coin: 1478 the Ørtug went from 10 to 8
+  lod «*for at hindre, at den ringere danske Mønt oversvømmede Rigets søndre Provinser*»
+  (Wilcke 7-1 s. 115–116, after Styffe); the 1483 håndfæstning kept each realm's coin (s. 143).
+- Christian I's Ørtug (Stockholm, 1457–64) are on the Swedish standard of his time; Denmark
+  struck no Ørtug at all.
+
+**Verdict under the curator's rule: incompatible → off the Denmark page.** Applied
+2026-10-15: Hans' ½ Ørtug (Galster 233, 234, 236, 238 + KMM 150267) and Christian I's Ørtug
+(KMM 139310, 150297, 150298) relocated `danish_realm` → `sweden`. No Christian II Swedish
+issue is in our data (his Stockholm Klippinge 1520–23, if harvested later, are a separate case:
+Danish denomination and type).

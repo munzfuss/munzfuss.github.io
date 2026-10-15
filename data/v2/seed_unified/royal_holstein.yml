@@ -2,8 +2,8 @@
 # Generated 2026-10-15 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1841 per-source seed entries.
-# Output: 832 unified entries (one per physical coin).
+# Input: 1840 per-source seed entries.
+# Output: 831 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -33407,71 +33407,6 @@ coins:
           -   - 1460
               - 1481
       - source: ngc-167718
-        field: year_verified
-        printed:
-        correct: false
-  - id: unified-ngc-167719
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Pfennig
-    year_first: 1523
-    year_last: 1533
-    year_ranges:
-      -   - 1523
-          - 1533
-    year_label: 1523-1533
-    ruler: Frederik I.
-    catalog:
-      mb: '8'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 0.37
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-pfennig-mb-8-ca1510-cuid-167719-duid-380783
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    issuing_entity: royal_holstein
-    composed_of:
-      - ngc-167719
-    _errata_applied:
-      - source: ngc-167719
-        field: ruler
-        printed: Friedrich I
-        correct: Frederik I.
-      - source: ngc-167719
-        field: year_label
-        printed: '1510'
-        correct: 1523-1533
-      - source: ngc-167719
-        field: year_first
-        printed: 1510
-        correct: 1523
-      - source: ngc-167719
-        field: year_last
-        printed: 1510
-        correct: 1533
-      - source: ngc-167719
-        field: year_ranges
-        printed:
-          -   - 1510
-              - 1510
-        correct:
-          -   - 1523
-              - 1533
-      - source: ngc-167719
         field: year_verified
         printed:
         correct: false
