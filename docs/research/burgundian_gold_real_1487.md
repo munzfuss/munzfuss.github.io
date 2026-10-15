@@ -394,6 +394,36 @@ unverified: 23,8 carats is 23 carats 9,6 grains, not a carat-grain value of the 
 The 1489 demi-noble at 22,85 carats in Munro is likewise a quarter-grain value: 22 carats 10¼
 grains = 22,854.
 
+### §6c. Munro CWE vol. 1 read (2026-10-15) — the «rounding» hypothesis of §6b is wrong
+
+Read from a copy of *The Correspondence of Erasmus. Letters 1 to 141* (CWE 1, Toronto 1974) supplied
+by the curator (not cached — copyright). Munro's glossary and appendix A:
+
+- p. 326, «NOBLES OF FLANDERS AND BURGUNDY»: «*in April 1487, the regent Maximilian of Hapsburg struck
+  the noble de Bourgogne, at 23⅘ carats and a taille of 33 to the marc (= 7.355 grams fine gold), as a
+  quite inferior counterfeit of Edward IV's heavy 'rose' or ryal noble (qv) of 1465*».
+- p. 327, «PHILIPPUS»: the 1433 cavalier «*with a taille of 67½ to a marc of 23 13/16 carats (= 3.598
+  grams fine gold)*».
+- p. 336, appendix A «Gold Coinage», Burgundian-Hapsburg Low Countries: «*grand real (royal) of
+  Austria 1487 14.834 99.17 14.710*»; noble of Burgundy = demi-real 1487 7.417 / 99.17 / 7.355; ducat of
+  Burgundy = demi-noble = quarter-royal 1487 3.708 / 99.17 / 3.677; demi-noble 1489 3.400 / 95.20 / 3.237;
+  philippus or cavalier (rijder) 1433 3.626 / 99.22 / 3.598.
+
+**Correction.** §6b read Munro's «23,8» (via Bobzin) as a rounding of 23 13/16. Munro prints **23⅘**
+in words for the 1487 coins and **23 13/16** for the 1433 rijder — two different values, both his.
+So the difference between Munro (14,710 g) and Van Gelder (14,72 g) is a real difference between the
+two authors' prescribed fineness for the 1487 real (23⅘ vs ≈ 23 13/16 implied), not a rounding. Neither
+names his source for the 1487 figure on these pages. §6b's table and arithmetic stand; its «Reading
+(hypothesis)» paragraph is withdrawn.
+
+**Q5 settled:** Numista's .992 / 14,71 g = Munro's 99.17 % and his fine weight 14.710 g (the fine weight
+given as the weight).
+
+**Card (2026-10-15, curator: fraction, not decimal):** Instructie 1487 row — fineness **23⅘ carats
+(≈ .9917)**, fine weight **14,710 g** after Munro (key `munro-1974-cwe1-gold-coinage-1487`), Van Gelder's
+14,72 g beside it; details note: April 1487 instruction «XXIV carats», Munro 23⅘, Van Gelder ≈ 23 13/16;
+1514 instrument text: the 1514 Nobel 3/10 carat lower and ≈ 1,5 % lighter than the real (computed).
+
 ## §7. Open questions
 
 | # | Question | Would be settled by |
@@ -402,7 +432,7 @@ grains = 22,854.
 | Q2 | Did the Holland mint (Dordrecht) work to the July 1487 Brabant parameters or to a separate Holland instruction? Which mark did it use? | Van der Chijs, *De munten der voormalige graafschappen Holland en Zeeland* (1858) p. 491 (Holland account 1487) — likely on Delpher / Google Books. |
 | Q3 | Did the July 1488 instruction («*gewicht en gehalte van alle stukken met ongeveer 10 %*» lowered) cover the gold real? Van Gelder 1995's table keeps 14.72 g for 1488. | Verachter p. 49; Van der Chijs, *Holland* p. 498 (Van Gelder 1951 n. 9). |
 | Q4 | Which «Regnskaber» Galster used for «24 Karat, 16½ paa en troysk Mark», and why his 14,9 g implies a ~246 g mark. | Galster's printed book (footnotes), not on danskmoent. |
-| Q5 | **Hypothesis 2026-10-15 (§6a): Munro's 23,8 carats and his fine weight 14,71 g.** Source of Numista's .992 / 14.71 g (§5 suspicion). | Numista record history / Delmonte, *Le Benelux d'or*, G 749. |
+| Q5 | **Settled 2026-10-15 (§6c): Munro's 99.17 % and fine weight 14.710 g.** Source of Numista's .992 / 14.71 g (§5 suspicion). | Numista record history / Delmonte, *Le Benelux d'or*, G 749. |
 | Q6 | Lille silver real «930/1000e» vs De Witte's XI d IV gr (.944). Out of scope; noted only. | — |
 
 ---
