@@ -371,6 +371,15 @@ with 23,8. **Reading (hypothesis):** both authors rest on ≈ 23 13/16 carats; t
 is Munro's rounding to 23⅘. Would be settled by Munro's own table (CWE 1, p. 326) and the 1487
 instruction text (Verachter 1840 p. 41; Van der Chijs, *Holland* p. 491) — neither read.
 
+Search for Munro's own table (2026-10-15): CWE vol. 1 is not on archive.org (vols 2–11, 18, 19 are, as
+restricted lending copies); Project MUSE has it behind institutional access. Munro's open papers on the
+Toronto economics site (cache `scripts/cache/munro/`: «Money, Wages, and Real Incomes in the Age of
+Erasmus» 2001; «CWE14Coinage»; «Flemish Monetary Policies» WP38) do not give the 1487 real — only the 1500
+toison and the 1521 réal (23 carats 9½ grains). WP38 n. 6 states Munro's general convention: «*fine gold coins
+had 24 carats (which, however, were probably 23.875 carats = 99.479% pure gold …: the actual fineness of
+Florentine florins, Venetian ducats, and English nobles)*». So his 23,8 for the real (via Bobzin) is not his
+«24 carats» convention (that would be 23,875 → 14,756 g fine) — it is a separate figure, source unknown.
+
 The 1489 demi-noble at 22,85 carats in Munro is likewise a quarter-grain value: 22 carats 10¼
 grains = 22,854.
 
