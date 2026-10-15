@@ -343,8 +343,12 @@ def categorize(
             def _row_order(c):
                 frac = _fraction_value(getattr(c.raw, "fraction", None))
                 mag = _nominal_magnitude(c.raw.nominal)
+                # Same first year → the shorter span first (1481-1483 before
+                # 1481-1513); a single year counts as ending in that year.
+                yl = c.raw.year_last if c.raw.year_last is not None else c.raw.year_first
                 return (c.raw.year_first is None,
                         c.raw.year_first or 0,
+                        yl or 0,
                         frac is None,
                         frac if frac is not None else 0.0,
                         mag is None,
