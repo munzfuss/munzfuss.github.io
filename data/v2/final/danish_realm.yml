@@ -79012,6 +79012,10 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/569888
         ref: KMM 569888 (Inv. FP 10909.10)
         display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291455
+        ref: KMM 291455 (Inv. FP 9687.23)
+        display: false
     verification_note:
       de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
         Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -190682,32 +190686,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Hvid
-    ruler: Hans?
-    issuing_entity: danish_realm
-    id: unified-kmk-291455
-    year_first: 1481
-    year_last: 1513
-    year_ranges:
-      -   - 1481
-          - 1513
-    year_label: 1481-1513
-    catalog:
-      galster: '31'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/291455
-        ref: KMM 291455 (Inv. FP 9687.23)
-    verification_note: *id005
-    composed_of:
-      - unified-kmk-291455
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 1 Søsling
     ruler: Frederik I.
     issuing_entity: danish_realm
@@ -194137,6 +194115,10 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/643638
         ref: KMM 643638 (Inv. FP 34.32)
         display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/306131
+        ref: KMM 306131 (Inv. FP 7877.51)
+        display: false
     verification_note: *id005
     composed_of:
       - unified-kmk-296203
@@ -196133,27 +196115,6 @@ coins:
     verification_note: *id005
     composed_of:
       - unified-kmk-306130
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Korshvid
-    ruler: Rigsrådet?
-    issuing_entity: danish_realm
-    id: unified-kmk-306131
-    mint: Malmø
-    catalog:
-      galster: '22'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/306131
-        ref: KMM 306131 (Inv. FP 7877.51)
-    verification_note: *id005
-    composed_of:
-      - unified-kmk-306131
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -199762,11 +199723,11 @@ coins:
     verification_note: *id005
     composed_of:
       - unified-kmk-317576
-  - fuss: seed_unsorted
-    phase: kmk
+  - fuss: luebischer_muenzfuss
+    phase: I
     kind: kurant
     nominal: 1 Hvid(?)
-    ruler: Hans?
+    ruler: Hans
     issuing_entity: danish_realm
     id: unified-kmk-317649
     year_first: 1483
@@ -199780,6 +199741,7 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    ruler_verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317649
@@ -201618,11 +201580,11 @@ coins:
     verification_note: *id005
     composed_of:
       - unified-kmk-330455
-  - fuss: seed_unsorted
-    phase: kmk
+  - fuss: luebischer_muenzfuss
+    phase: I
     kind: kurant
     nominal: 1 Søsling
-    ruler: Hans?
+    ruler: Hans
     issuing_entity: danish_realm
     id: unified-kmk-330624
     year_first: 1481
@@ -201636,6 +201598,7 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    ruler_verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/330624
@@ -208436,11 +208399,11 @@ coins:
     verification_note: *id005
     composed_of:
       - unified-kmk-353375
-  - fuss: seed_unsorted
-    phase: kmk
+  - fuss: luebischer_muenzfuss
+    phase: I
     kind: kurant
     nominal: 1 Hvid
-    ruler: Hans?
+    ruler: Hans
     issuing_entity: danish_realm
     id: unified-kmk-353422
     year_first: 1481
@@ -208453,6 +208416,7 @@ coins:
     weight_rough_verified: true
     mint_verified: false
     verified: false
+    ruler_verified: false
     weight_rough_g:
       - value: 0.42
         source: kmk
@@ -229017,11 +228981,11 @@ coins:
     verification_note: *id005
     composed_of:
       - unified-kmk-575500
-  - fuss: seed_unsorted
-    phase: kmk
+  - fuss: luebischer_muenzfuss
+    phase: I
     kind: kurant
     nominal: 1 Hvid
-    ruler: Hans?
+    ruler: Hans
     issuing_entity: danish_realm
     id: unified-kmk-575659
     year_first: 1483
@@ -229034,6 +228998,7 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    ruler_verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/575659
@@ -235313,9 +235278,23 @@ coins:
     ruler: Hans
     issuing_entity: danish_realm
     id: unified-kmk-643973
-    year_first: 1517
-    year_last: 1517
-    year_label: '1517'
+    year_first: 1513
+    year_last: 1513
+    year_label: '1513'
+    year_verified: false
+    year_alts:
+      - value: '1517'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: Der Datensatz des Nationalmuseums (KMM, FP 188.8) gibt 1517 als Herstellungsjahr; König Hans starb im Februar 1513 (Eriksson 2017). Das Jahr 1517 ist mit dem Münzherrn unvereinbar; 
+            gezeigt wird 1513, das letzte Jahr seiner Regierung, als ungesichertes Jahr.
+          en: The National Museum record (KMM, FP 188.8) gives 1517 as the year of manufacture; King Hans died in February 1513 (Eriksson 2017). The year 1517 is incompatible with the issuer; 1513, 
+            the last year of his reign, is shown as an unconfirmed year.
+          uk: Запис Національного музею (KMM, FP 188.8) подає 1517 як рік виготовлення; король Hans помер у лютому 1513 р. (Eriksson 2017). Рік 1517 несумісний з емітентом; показано 1513, останній рік
+            його правління, як непідтверджений рік.
+          da: Nationalmuseets post (KMM, FP 188.8) angiver 1517 som fremstillingsår; kong Hans døde i februar 1513 (Eriksson 2017). Året 1517 kan ikke forenes med møntherren; 1513, det sidste år af 
+            hans regering, vises som et usikkert år.
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -246027,11 +246006,11 @@ coins:
     verification_note: *id005
     composed_of:
       - unified-kmk-733358
-  - fuss: seed_unsorted
-    phase: kmk
+  - fuss: luebischer_muenzfuss
+    phase: I
     kind: kurant
     nominal: 1 Hvid
-    ruler: Hans?
+    ruler: Hans
     issuing_entity: danish_realm
     id: unified-kmk-734050
     year_first: 1481
@@ -246044,6 +246023,7 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    ruler_verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/734050
@@ -249638,11 +249618,11 @@ coins:
     verification_note: *id005
     composed_of:
       - unified-kmk-741155
-  - fuss: seed_unsorted
-    phase: kmk
+  - fuss: luebischer_muenzfuss
+    phase: I
     kind: kurant
     nominal: 1 Hvid
-    ruler: Hans?
+    ruler: Hans
     issuing_entity: danish_realm
     id: unified-kmk-741189
     year_first: 1481
@@ -249655,6 +249635,7 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    ruler_verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/741189

@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15178 per-source seed entries.
-# Output: 6849 unified entries (one per physical coin).
+# Output: 6847 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -15463,6 +15463,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/267494
         ref: KMM 267494 (Inv. FP 10136.12)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291455
+        ref: KMM 291455 (Inv. FP 9687.23)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/291456
         ref: KMM 291456 (Inv. FP 9687.22)
       - type: museum
@@ -15651,6 +15654,7 @@ coins:
       - kmk-173004
       - kmk-173011
       - kmk-267494
+      - kmk-291455
       - kmk-291456
       - kmk-294716
       - kmk-308257
@@ -15667,6 +15671,11 @@ coins:
       - kmk-395806
       - kmk-533299
       - kmk-741072
+    _errata_applied:
+      - source: kmk-291455
+        field: ruler
+        printed: Hans?
+        correct: Hans
   - id: unified-dk-galster-hg-32
     fuss: seed_unsorted
     phase: galster
@@ -198810,32 +198819,6 @@ coins:
       - kmk-301871
       - kmk-309010
       - kmk-331201
-  - id: unified-kmk-291455
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1481
-    year_last: 1513
-    year_ranges:
-      -   - 1481
-          - 1513
-    year_label: 1481-1513
-    ruler: Hans?
-    catalog:
-      galster: '31'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/291455
-        ref: KMM 291455 (Inv. FP 9687.23)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-291455
   - id: unified-kmk-291520
     fuss: seed_unsorted
     phase: kmk
@@ -202052,6 +202035,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/304741
         ref: KMM 304741 (Inv. FP 7901.14)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/306131
+        ref: KMM 306131 (Inv. FP 7877.51)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/306689
         ref: KMM 306689 (Inv. FP 7740.52)
       - type: museum
@@ -202326,6 +202312,7 @@ coins:
       - kmk-299599
       - kmk-303571
       - kmk-304741
+      - kmk-306131
       - kmk-306689
       - kmk-334314
       - kmk-355152
@@ -202334,6 +202321,11 @@ coins:
       - kmk-643556
       - kmk-643557
       - kmk-643558
+    _errata_applied:
+      - source: kmk-306131
+        field: ruler
+        printed: Rigsrådet?
+        correct: Rigsrådet
   - id: unified-kmk-296264
     fuss: seed_unsorted
     phase: kmk
@@ -204806,27 +204798,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-306130
-  - id: unified-kmk-306131
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Korshvid
-    ruler: Rigsrådet?
-    mint: Malmø
-    catalog:
-      galster: '22'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/306131
-        ref: KMM 306131 (Inv. FP 7877.51)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-306131
   - id: unified-kmk-306180
     fuss: seed_unsorted
     phase: kmk
@@ -209506,6 +209477,7 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    ruler_verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317649
@@ -213151,12 +213123,13 @@ coins:
       -   - 1481
           - 1513
     year_label: 1481-1513
-    ruler: Hans?
+    ruler: Hans
     mint: Malmø
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    ruler_verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/330624
@@ -213165,6 +213138,11 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-330624
+    _errata_applied:
+      - source: kmk-330624
+        field: ruler
+        printed: Hans?
+        correct: Hans
   - id: unified-kmk-330685
     fuss: seed_unsorted
     phase: kmk
@@ -220816,11 +220794,12 @@ coins:
       -   - 1481
           - 1513
     year_label: 1481-1513
-    ruler: Hans?
+    ruler: Hans
     metal_verified: false
     weight_rough_verified: true
     mint_verified: false
     verified: false
+    ruler_verified: false
     weight_rough_g:
       - value: 0.42
         source: kmk
@@ -220832,6 +220811,11 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-353422
+    _errata_applied:
+      - source: kmk-353422
+        field: ruler
+        printed: Hans?
+        correct: Hans
   - id: unified-kmk-353447
     fuss: seed_unsorted
     phase: kmk
@@ -246394,11 +246378,12 @@ coins:
       -   - 1483
           - 1513
     year_label: 1483-1513
-    ruler: Hans?
+    ruler: Hans
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    ruler_verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/575659
@@ -246407,6 +246392,11 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-575659
+    _errata_applied:
+      - source: kmk-575659
+        field: ruler
+        printed: Hans?
+        correct: Hans
   - id: unified-kmk-575772
     fuss: seed_unsorted
     phase: kmk
@@ -254208,14 +254198,28 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Skilling
-    year_first: 1517
-    year_last: 1517
-    year_label: '1517'
+    year_first: 1513
+    year_last: 1513
+    year_label: '1513'
     ruler: Hans
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
+    year_alts:
+      - value: '1517'
+        source: kmk
+        kind: erroneous
+        reason:
+          de: Der Datensatz des Nationalmuseums (KMM, FP 188.8) gibt 1517 als Herstellungsjahr; König Hans starb im Februar 1513 (Eriksson 2017). Das Jahr 1517 ist mit dem Münzherrn unvereinbar; 
+            gezeigt wird 1513, das letzte Jahr seiner Regierung, als ungesichertes Jahr.
+          en: The National Museum record (KMM, FP 188.8) gives 1517 as the year of manufacture; King Hans died in February 1513 (Eriksson 2017). The year 1517 is incompatible with the issuer; 1513, 
+            the last year of his reign, is shown as an unconfirmed year.
+          uk: Запис Національного музею (KMM, FP 188.8) подає 1517 як рік виготовлення; король Hans помер у лютому 1513 р. (Eriksson 2017). Рік 1517 несумісний з емітентом; показано 1513, останній рік
+            його правління, як непідтверджений рік.
+          da: Nationalmuseets post (KMM, FP 188.8) angiver 1517 som fremstillingsår; kong Hans døde i februar 1513 (Eriksson 2017). Året 1517 kan ikke forenes med møntherren; 1513, det sidste år af 
+            hans regering, vises som et usikkert år.
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/643973
@@ -254224,6 +254228,27 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-643973
+    _errata_applied:
+      - source: kmk-643973
+        field: year_first
+        printed: 1517
+        correct: 1513
+      - source: kmk-643973
+        field: year_last
+        printed: 1517
+        correct: 1513
+      - source: kmk-643973
+        field: year_label
+        printed: '1517'
+        correct: '1513'
+      - source: kmk-643973
+        field: year_ranges
+        printed:
+          -   - 1517
+              - 1517
+        correct:
+          -   - 1513
+              - 1513
   - id: unified-kmk-646857
     fuss: seed_unsorted
     phase: kmk
@@ -266742,11 +266767,12 @@ coins:
       -   - 1481
           - 1513
     year_label: 1481-1513
-    ruler: Hans?
+    ruler: Hans
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    ruler_verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/734050
@@ -266755,6 +266781,11 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-734050
+    _errata_applied:
+      - source: kmk-734050
+        field: ruler
+        printed: Hans?
+        correct: Hans
   - id: unified-kmk-734447
     fuss: seed_unsorted
     phase: kmk
@@ -270498,11 +270529,12 @@ coins:
       -   - 1481
           - 1513
     year_label: 1481-1513
-    ruler: Hans?
+    ruler: Hans
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    ruler_verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/741189
@@ -270511,6 +270543,11 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-741189
+    _errata_applied:
+      - source: kmk-741189
+        field: ruler
+        printed: Hans?
+        correct: Hans
   - id: unified-kmk-741205
     fuss: seed_unsorted
     phase: kmk
