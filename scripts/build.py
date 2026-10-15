@@ -344,6 +344,29 @@ def _load_v2_seed_unified() -> list[dict]:
     return out
 
 
+_V2_EXCLUDED_SEED_IDS_CACHE: set[str] | None = None
+
+
+def _excluded_seed_ids() -> set[str]:
+    """Seed ids listed in `data/v2/exclusions/<entity>.yml` (§9, PB-12).
+
+    The absorb drops an excluded coin from `final`; but a seed that no final
+    absorbs is rendered by the seed pass of `_assemble_v2_location` as an
+    unsorted row, so without this filter an exclusion would bring the coin
+    back into the seed_unsorted table. Ids are global (seed ids are unique
+    across entities), so one set serves every location."""
+    global _V2_EXCLUDED_SEED_IDS_CACHE
+    if _V2_EXCLUDED_SEED_IDS_CACHE is None:
+        ids: set[str] = set()
+        for f in sorted((DATA_DIR / "v2" / "exclusions").glob("*.yml")):
+            doc = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
+            for e in doc.get("exclusions") or []:
+                if e.get("id"):
+                    ids.add(str(e["id"]))
+        _V2_EXCLUDED_SEED_IDS_CACHE = ids
+    return _V2_EXCLUDED_SEED_IDS_CACHE
+
+
 def _compute_absorbed_seed_ids() -> set[str]:
     """Build the global set of V1 seed coin ids that are already
     represented in a foundation entry via the absorb chain. Walked once
@@ -832,6 +855,7 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
     # See the function docstring for the per-level rationale, including
     # the rendered-duplicate bug reports that motivated each level.
     absorbed_seed_ids = _compute_absorbed_seed_ids()
+    excluded_seed_ids = _excluded_seed_ids()
 
     # ---- Pass 1: direct membership ---------------------------------------
     for ent in consumes_entities:
@@ -894,6 +918,8 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
         if not cid or cid in seen_ids:
             continue
         if cid in absorbed_seed_ids:
+            continue
+        if cid in excluded_seed_ids:
             continue
         ie_list = _normalise_ie_to_list(coin.get("issuing_entity"))
         if not (set(ie_list) & consumes_set):
