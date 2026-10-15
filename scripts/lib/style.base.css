@@ -1925,6 +1925,10 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .ph-fold:hover, .ph-fold:focus-visible { background: var(--accent-bg); color: var(--text-primary); }
 .ph-fold-icon { display: inline-block; transition: transform 120ms ease-out; }
 .ph-is-folded .ph-fold-icon { transform: rotate(-90deg); }
+/* .ph is inline-block, so headers whose content is folded away would line up
+   side by side; a folded header is a shrink-to-fit block instead, keeping
+   each phase on its own line with the normal header spacing. */
+.ph.ph-is-folded { display: table; }
 .ph-folded { display: none !important; }
 @media print { .ph-fold { display: none; } .ph-folded { display: revert !important; } }
 /* Sub-phases: the parent «Phase I» header, then smaller indented headers and
