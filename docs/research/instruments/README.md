@@ -1,5 +1,6 @@
 # docs/research/instruments/ — one dossier per coinage instrument
 > **Queue:** `PLAN.md` in this folder is the chronological checklist of every instrument to be written up, with ☑/☐ status — take the next item from there and tick it in the same commit; add any instrument a dossier turns up.
+> **Findings about our data:** `FUSS_REVIEW_FINDINGS.md` — every dossier's §7 observation about `data/v2/final` (unsorted coins whose act is now known, mis-placed coins, contradicted values) goes there as one row, keyed by Fuß / entity, in the same commit as the dossier. A session sorting `seed_unsorted` or reviewing a Fuß starts from that file, not from twenty dossiers.
 
 Per-instrument dossiers for the rows of
 [`../ordinances_register.md`](../ordinances_register.md). The register is the

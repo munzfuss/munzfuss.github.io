@@ -29,6 +29,7 @@ two rules that cost this project real rework: an instrument states a TARGET
 while an assay states an OUTCOME, and karat is the primary value with the
 permille only its conversion.
 
+The per-Fuß findings of the dossiers are collected in **[`instruments/FUSS_REVIEW_FINDINGS.md`](instruments/FUSS_REVIEW_FINDINGS.md)** (read before sorting `seed_unsorted`).
 The register's rows point at **[`instruments/`](instruments/README.md)** — one
 dossier per act (`<yyyy>_<slug>.md`, fixed nine-section template in that
 folder's README). `moentordning_1541.md` predates the folder and stays here.
