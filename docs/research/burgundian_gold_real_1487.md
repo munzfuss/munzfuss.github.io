@@ -346,6 +346,34 @@ What it adds:
 - Munro calls the 1487 noble a «minderwertige Fälschung des englischen Rose Noble» — the English
   ryal as the model behind the Burgundian noble (context for `nobel_fod.md` §2).
 
+### §6b. Why Van Gelder has 14,72 g and Munro 14,71 g (analysis 2026-10-15)
+
+Neither author prints the carat value he computed with; Van Gelder 1995 p. 52 says only that the
+fine contents are «*uit het voorgeschreven gehalte berekend*». Back-solving on the exact rough
+weight 244,75 / 16½ = **14,8333 g** (the ratios 14,72/14,83 = .99258 and 14,71/14,83 = .99191 use
+rounded weights and mislead):
+
+| Candidate fineness | ‰ | real fine g | rijder fine g (244,75/67½) | fits |
+|---|---|---:|---:|---|
+| 23 carats 9½ grains (the 1500 / 1521 «fin or») | .99132 | 14,705 | 3,594 | neither |
+| **23⅘ carats** (Munro's real, via Bobzin) | .99167 | **14,710** | 3,596 | Munro's 14,71 |
+| **23 carats 9¾ grains = 23 13/16 carats** | **.99219 = 127/128** | **14,717** | 3,598 | **Van Gelder's 14,72** (and 3,60) |
+| 23,815 carats (Munro's rijder, via Bobzin) | .99229 | 14,719 | 3,598 | Van Gelder's 14,72 |
+| 23 carats 10 grains | .99306 | 14,730 | 3,601 | neither (14,73) |
+| 23 carats 10½ grains (English noble «compted pour fin») | .99479 | 14,756 | 3,607 | neither |
+
+Van Gelder's 14,72 g requires 23,808–23,825 carats (rounding band); it excludes 23⅘ (14,710) and
+23 ct 10 gr (14,730). The value inside the band that is expressible in the period's units (carat =
+12 grains; halves and quarters of a grain occur, «IX ½ grains» 1500/1521) is **23 carats 9¾ grains =
+23 13/16 carats = 127/128 fine**. Munro's 23,815 for the rijder is the same value rounded (23,8125);
+his 23,8 for the real looks like a coarser rounding of it, and his 14,71 g follows from computing
+with 23,8. **Reading (hypothesis):** both authors rest on ≈ 23 13/16 carats; the 0,01 g difference
+is Munro's rounding to 23⅘. Would be settled by Munro's own table (CWE 1, p. 326) and the 1487
+instruction text (Verachter 1840 p. 41; Van der Chijs, *Holland* p. 491) — neither read.
+
+The 1489 demi-noble at 22,85 carats in Munro is likewise a quarter-grain value: 22 carats 10¼
+grains = 22,854.
+
 ## §7. Open questions
 
 | # | Question | Would be settled by |
