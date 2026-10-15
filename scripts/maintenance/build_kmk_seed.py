@@ -1010,6 +1010,19 @@ def build_entry(src) -> dict | None:
     return {k: v for k, v in entry.items() if v is not None}
 
 
+def _thin_post_merge(coins: list) -> list:
+    """Seed-layer volume control (§9a-safe: same-weight duplicates + weightless
+    excess, never a curated record — see lib.seed_thin.thin_safe), applied by
+    write_v2_seed to each entity's merged list BEFORE the file is rendered, so
+    an unchanged entity keeps its generated_at. Same rule the standalone
+    thin_kmk_seed.py applies to files on disk."""
+    from lib.seed_thin import thin_safe
+    kept, st = thin_safe(coins)
+    print(f"    thinned {st['before']} → {st['after']} "
+          f"({st['thinned_buckets']} buckets)")
+    return kept
+
+
 def build_seed(dry_run: bool, limit: int | None,
                no_thin: bool = False) -> int:
     files = sorted(p for p in KMK_CACHE.glob("[0-9]*.json"))
@@ -1054,28 +1067,12 @@ def build_seed(dry_run: bool, limit: int | None,
         source_label="KMK Copenhagen (Nationalmuseet, api.natmus.dk)",
         scope_note=scope_note,
         dry_run=dry_run,
+        post_merge=None if no_thin else _thin_post_merge,
     )
-    # §9a weight-variance thinning of over-sampled KMM sub-variants. KMM
-    # over-samples common types (one Hede-17 1648 2-Skilling sub-variant had
-    # 302 specimens); the bare builder emits every museum object, so without
-    # this a re-seed re-inflates to ~41k and undoes the curated envelope.
-    # Integrated here so a single `--write` is idempotent + correctly filtered
-    # (no separate manual thinning pass to remember).
-    # §9a thinning does NOT run here any more (2026-09-12). The rule's unit is
-    # a merged coin's weight list — «one coin entry has ≥5 weight_rough_g
-    # entries from a single resource» — which does not exist at this layer,
-    # where every record carries one scalar weight. Thinning seed RECORDS
-    # instead grouped by a key that is not the merger's, so the coin the reader
-    # sees lost its variance envelope, and it deleted records, so every re-seed
-    # removed coins from final/ and tripped verify_reflow. It now runs after
-    # absorb: scripts/maintenance/thin_final_weight_lists.py, wired into
-    # run_v2_pipeline.sh. `--no-thin` is still accepted so existing
-    # invocations and notes keep working.
-    if not dry_run and not no_thin:
-        print("\n🪶 Seed-layer volume control (§9a-safe: duplicates + "
-              "weightless excess)...")
-        from thin_kmk_seed import thin as _thin_kmk_seed
-        _thin_kmk_seed(dry_run=False)
+    # Seed-layer volume control runs INSIDE write_v2_seed (post_merge =
+    # _thin_post_merge), on each entity's merged list before the file is
+    # rendered. The §9a envelope itself is computed after absorb, on a merged
+    # coin's weight list (thin_final_weight_lists.py, run_v2_pipeline.sh).
     return 0
 
 

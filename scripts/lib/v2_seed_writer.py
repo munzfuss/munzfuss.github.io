@@ -1723,7 +1723,8 @@ def _home_entity(coin: dict) -> str | None:
     return None
 
 
-def _dump_seed_yaml(yaml_obj, out: dict, out_path: Path) -> bool:
+def _dump_seed_yaml(yaml_obj, out: dict, out_path: Path,
+                    baseline: str | None = None) -> bool:
     """Render `out` and write it to `out_path`, but SKIP the write when the only
     change vs the existing file is the `generated_at:` line — so a no-content-
     change re-seed leaves the committed file (and its UTC timestamp) byte-
@@ -1733,6 +1734,12 @@ def _dump_seed_yaml(yaml_obj, out: dict, out_path: Path) -> bool:
     buf = io.StringIO()
     yaml_obj.dump(out, buf)
     new_text = buf.getvalue()
+    if baseline is not None and content_equals_except_timestamp(new_text, baseline):
+        # Unchanged vs the text before this run — put that text back verbatim
+        # (an earlier pass of the same run may have rewritten the file).
+        if not out_path.exists() or out_path.read_text() != baseline:
+            out_path.write_text(baseline)
+        return False
     if out_path.exists():
         old_text = out_path.read_text()
         if content_equals_except_timestamp(new_text, old_text):
@@ -1752,6 +1759,7 @@ def write_v2_seed(
     extra_top_level: dict | None = None,
     extra_curated_fields: frozenset = frozenset(),
     exclude_ids: frozenset = frozenset(),
+    post_merge=None,
 ) -> dict:
     """Group `coins` by `issuing_entity` → write
     `data/v2/seed/<source_name>/<entity>.yml` per entity.
@@ -1864,6 +1872,16 @@ def write_v2_seed(
 
     src_dir = V2_SEED_ROOT / source_name
     src_dir.mkdir(parents=True, exist_ok=True)
+    # Each file's text as it stood BEFORE this run: the purge / normalise pass
+    # below may rewrite a file in place (e.g. a list reordered by the round
+    # trip), and the «only generated_at changed» guard must compare the final
+    # render with the committed text, not with that intermediate state.
+    baseline_text: dict = {}
+    for _p in src_dir.glob("*.yml"):
+        try:
+            baseline_text[_p] = _p.read_text()
+        except OSError:
+            pass
 
     # Cross-entity dup-purge: when a fresh build re-classifies a coin
     # from entity A to entity B (e.g. mint reading refined → previously
@@ -2051,6 +2069,13 @@ def write_v2_seed(
         merge_stats = {"merged_existing": 0, "added_new": len(ents), "orphan_curated": 0}
         if not dry_run:
             ents, merge_stats = merge_seed(ents, out_path, extra_curated_fields)
+            # A source's own post-merge pass (KMM: thin_safe) runs here, in
+            # memory, so the «only generated_at changed» guard in
+            # _dump_seed_yaml compares the FINAL text. Run as a separate
+            # rewrite after this writer, it re-stamped every file whose
+            # pre-thinning text differed — i.e. all of them.
+            if post_merge is not None:
+                ents = post_merge(ents)
 
         print(f"  [{entity}] {len(ents)} entries  "
               f"(merged={merge_stats['merged_existing']}, "
@@ -2077,7 +2102,7 @@ def write_v2_seed(
                 if k not in out:
                     out[k] = v
         out["coins"] = ents
-        if _dump_seed_yaml(yaml, out, out_path):
+        if _dump_seed_yaml(yaml, out, out_path, baseline_text.get(out_path)):
             stats["entities_written"].append(entity)
         else:
             stats.setdefault("skipped_unchanged", []).append(entity)
@@ -2091,6 +2116,8 @@ def write_v2_seed(
         merge_stats = {"merged_existing": 0, "added_new": len(unclassified), "orphan_curated": 0}
         if not dry_run:
             unclassified, merge_stats = merge_seed(unclassified, unclass_path, extra_curated_fields)
+            if post_merge is not None:
+                unclassified = post_merge(unclassified)
         print(f"  [_unclassified] {len(unclassified)} entries")
         if not dry_run:
             yaml = ruamel.yaml.YAML(typ="rt")
@@ -2109,7 +2136,7 @@ def write_v2_seed(
                 ),
                 "coins": unclassified,
             }
-            if _dump_seed_yaml(yaml, out, unclass_path):
+            if _dump_seed_yaml(yaml, out, unclass_path, baseline_text.get(unclass_path)):
                 stats["entities_written"].append("_unclassified")
             else:
                 stats.setdefault("skipped_unchanged", []).append("_unclassified")
