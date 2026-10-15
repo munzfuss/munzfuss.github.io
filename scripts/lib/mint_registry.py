@@ -136,28 +136,24 @@ _MINT_REGISTRY: dict[str, dict] = {
         "entity": "danish_realm",
     },
     "stockholm": {
-        # Kalmar-Union anchor: the Danish king held the Swedish crown under
-        # Christian I (1457-1467) and Hans (1497-1501), so pre-1523 Stockholm
-        # issues are danish_realm. Sweden became permanently independent on
-        # 6 June 1523 (Gustav Vasa; union dissolved), so year ≥ 1523 → the
-        # out-of-scope `sweden` entity (renders on no page). Curator rule
-        # 2026-09-11; see docs/SOURCES.md §13.16. «stokholm» is a KMM typo form.
+        # Swedish mint, Stockholm mark — always `sweden` (out of scope, renders
+        # on no page). The Kalmar-Union kings (Christian I 1457-1467, Hans
+        # 1497-1501) struck Ørtug here on the Swedish standard, which is not
+        # compatible with the Danish one (curator 2026-10-15; docs/SOURCES.md
+        # §13.16 amendment; docs/research/hans_silver_1481_1513.md §10.5). The
+        # former «pre-1523 → danish_realm» rule (2026-09-11) is withdrawn. A
+        # union issue on the DANISH standard (e.g. Christian II's Stockholm
+        # Klippinge, if harvested) is a per-case curator call, routed by a
+        # `_cross_entity.yml` issuing_entity override. «stokholm» is a KMM typo.
         "aliases": {"stockholm", "stokholm"},
         "display": "Stockholm",
-        "entity": "danish_realm",  # default = pre-1523 (Kalmar Union)
-        "year_overrides": [
-            {"year_from": 1523, "entity": "sweden"},
-        ],
+        "entity": "sweden",
     },
     "vesteras": {
-        # Västerås — Swedish mint. Same Kalmar-Union rule as Stockholm:
-        # pre-1523 union issues danish_realm, year ≥ 1523 → sweden (OOS).
+        # Västerås — Swedish mint; same rule as Stockholm.
         "aliases": {"vesteras", "västerås", "vasteras"},
         "display": "Vesterås",
-        "entity": "danish_realm",
-        "year_overrides": [
-            {"year_from": 1523, "entity": "sweden"},
-        ],
+        "entity": "sweden",
     },
     "lund": {
         "aliases": {"lund"},

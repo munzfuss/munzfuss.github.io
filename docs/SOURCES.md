@@ -1896,9 +1896,12 @@ coinage was on a standard compatible with the Danish one. Arguments, weighed per
 - **No polity is added to or removed from the page without the curator approving that
   specific case.** Proposals go to the curator with the sources; record each verdict here.
 
-The Sweden ruling below (union issues in scope) is therefore **re-opened**: the curator
-(2026-10-15) prefers to treat the Swedish union coinage separately, on a different page,
-because Sweden coined on its own mark and standard. Pending a per-case verdict.
+The Sweden ruling below (union issues in scope) is **withdrawn** (curator 2026-10-15): the
+Swedish Ørtug standard on the Stockholm mark is not compatible with the Danish one
+(`docs/research/hans_silver_1481_1513.md` §10.5). The 8 union Ørtug in our data were relocated to
+`sweden`, and `scripts/lib/mint_registry.py` now routes Stockholm and Västerås to `sweden` for every
+year (no pre-1523 exception). A union issue on the Danish standard (Christian II's Stockholm
+Klippinge, if harvested) is a per-case call via a `_cross_entity.yml` issuing_entity override.
 
 **Sweden timeline.** Kalmar Union: the Danish king held the Swedish crown under
 Christian I (1457-1464, 1465-1467), Hans (1497-1501) and Christian II
