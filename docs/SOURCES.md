@@ -665,6 +665,27 @@ speciemønt 1648-1670*, 2011, are the next places to look, both paper). The
 `artikler/1rhinskg.htm` URL guessed for a danskmoent Rhinsk-Gylden article is a
 404.
 
+### 3.x King Hans' silver 1481–1513 (added 2026-10-15)
+
+No coinage ordinance of Hans survives for Denmark or Norway (Wilcke 7-1 s. 144, Galster
+galkult, Holst 1936); the standard is reconstructed from the reckoning, one melt account
+and assays. Analysis: `docs/research/hans_silver_1481_1513.md`. Cached in
+`scripts/cache/danskmoent/hans_1481_1513/` (danskmoent answered a browser User-Agent with
+200 on 2026-10-15; earlier sessions met 455 — fall back to Wayback `id_` URLs):
+
+| Source | URL | What it attests |
+|---|---|---|
+| Wilcke VII (1950) 7-1 s. 32–147 | cache `renaessancens_moent_1950/pages/wilcke_7-1.txt` (PDF page + 30 = printed) | Gylden 2 → 2½ M d (s. 134); Mårten Myntskrivare's Svartsjö 1542 melt account of «danska hwiter» and «Konungh Hansses 4 skellinge» (s. 139–140); Hvide 4¼-lødige, no ordinance (s. 144); Norwegian coin «efter lybsk Møntfod» (s. 143) |
+| Eriksson, «Haltanalyser av danska mynt 1448-1523», *Metallanalyser av mynt* 2017:1 | <https://www.danskmoent.dk/pdf/Metallanalyser%20av%20mynt_2017_1.pdf> | 118 assays: Hans Skilling 9/8 → 6 lod, Hvid 6 → 4 lod, Søsling 5 lod (tab. 7–9, 16, s. 9–15) |
+| Gullbekk, «Norsk mynt i dansketiden. Kong Hans», NNT 2025-1 s. 4–10 | <https://www.danskmoent.dk/pdf/NNT-2025-1%20Gullbekk.pdf> | håndfæstning Halmstad 1483 «jeffngod mynt wid Danske penninge»; «lybsk myntstandard» |
+| Holst, «Norges mynter til slutten af 16. årh.», Nordisk Kultur XXIX (1936) | <https://www.danskmoent.dk/artikler/holst.htm> | Lübeck system in Norway under the Oldenburgs; Gaute Ivarsson's coins follow the royal ones in weight; Hans weights |
+| Galster, «De saakaldte kong Hans' Sølvgylden», NNUM 1947 s. 49–56 | <https://www.danskmoent.dk/galster/galshans.htm> | the cast «Hans Sølvgylden» are forgeries |
+| Ingvardson, Müter, Foley, *JAS: Reports* 43 (2022) 103468 | <https://www.danskmoent.dk/pdf/Gribshunden.pdf> (48 MB, extract only cached) | Gribshunden purse, June 1495: only Hvide, no Skilling / Søsling |
+| danskmoent «Kong Hans - oversigt efter Galster» | <https://www.danskmoent.dk/hansgals.htm> | Galster / Schou / Sømod concordance for all Hans types |
+
+Not seen (paper): Märcher, «Et differentieret møntvæsen ca. 1480-1550», *Denar til Daler*
+(2018) s. 426-495 — the modern synthesis; Galster 1972 *Unionstidens udmøntninger*.
+
 ---
 
 ## 3a. Jensen monographs (via danskmoent.dk) — the ducal Schleswig-Holstein authority
