@@ -845,6 +845,12 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         v = _or_merge_verified(members, field)
         if v is not None:
             out[field] = v
+    # ruler_verified (schema default True): False only when every seed_unified
+    # member says False — the foundation's own absent key is not an attestation,
+    # it is the previous absorb's output.
+    _rv_src = members[1:] if len(members) > 1 else members
+    if _rv_src and not any(bool(m.get("ruler_verified", True)) for m in _rv_src):
+        out["ruler_verified"] = False
 
     # Multi-source measurement lists (D17 / §9a).
     # `skip_first_list=True` — the first member is the foundation (fc),

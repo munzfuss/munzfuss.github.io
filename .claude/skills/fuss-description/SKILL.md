@@ -30,6 +30,9 @@ in `data/shared/fuesse.yml` — which lives in one of TWO places:
   `rhinsk_gylden_fod`. **When you move a fuss's description into the card, set the flag** —
   the helper reads the card text only for a flagged fuss. In a fuss that has NOT been moved,
   `rechnungsfraktionen` is the accounting-fractions block — not prose to score.
+  Variant (2026-10-15, `luebischer_muenzfuss` = 11½-Markfod): the right column holds the units of
+  account in `rechnungsfraktionen`, and the description sits in **`grundwerte.below`** — a
+  full-width row under both columns. The helper reads `below` first when it is present.
 
 The helper reads `description` when present, else the card text of a flagged fuss, and says
 which it read (`--field description|card` forces one; `--list` marks `[desc]` / `[card]` /

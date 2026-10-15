@@ -77,6 +77,10 @@ class YearMark(_StrictBase):
     kind: Literal["suspect", "erroneous"]
     # Reader-facing reason, translated like any other tooltip text (§0z).
     reason: I18nText
+    # The year the source printed, when a curator `_source_errata` has replaced
+    # the seed's own year (the alt must still show what the source said, not the
+    # corrected value). Absent → the seed's `year_label` is the source's year.
+    value: str | None = None
 
 
 class YearAlt(_StrictBase):
@@ -304,6 +308,12 @@ class Grundwerte(_StrictBase):
     aside2_label: I18nTextOptional | None = None      # optional 3rd right-column block,
     aside2: I18nText | None = None                    # rendered below `aside` (e.g. a
                                                       # «Tarif …» block moved off the rows)
+    # Full-width prose UNDER both columns (rows on the left, the right-column
+    # blocks). Used when the right column holds the units of account and the
+    # system-level description of the standard needs its own row (11½-Markfod,
+    # curator 2026-10-15). Safe HTML, cites like the rest of the card.
+    below_label: I18nTextOptional | None = None
+    below: I18nText | None = None
 
     @model_validator(mode="after")
     def _check_acts(self) -> "Grundwerte":

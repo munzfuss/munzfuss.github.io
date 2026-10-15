@@ -197,7 +197,11 @@ def get_description(f, force=None):
     overrides.
     """
     gw = f.get("grundwerte") if isinstance(f.get("grundwerte"), dict) else {}
-    card = gw.get("rechnungsfraktionen") if isinstance(gw.get("rechnungsfraktionen"), dict) else None
+    # `grundwerte.below` (full-width prose under both columns) carries the
+    # description when the right column holds the units of account instead
+    # (11½-Markfod, 2026-10-15); it wins over `rechnungsfraktionen`.
+    card = (gw.get("below") if isinstance(gw.get("below"), dict) else
+            gw.get("rechnungsfraktionen") if isinstance(gw.get("rechnungsfraktionen"), dict) else None)
     desc = f.get("description") if isinstance(f.get("description"), dict) else None
     if force == "description":
         return desc, "description"

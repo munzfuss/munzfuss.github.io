@@ -2386,7 +2386,9 @@ def _collect_year_alts(members: list[dict]) -> list[dict]:
         if not isinstance(m, dict):
             continue
         mark = m.get("year_mark")
-        label = m.get("year_label")
+        # `value` = the source's printed year when an erratum replaced the
+        # seed's own year_label; otherwise the label IS the source's year.
+        label = (mark.get("value") if isinstance(mark, dict) else None) or m.get("year_label")
         if not isinstance(mark, dict) or not label:
             continue
         kind = mark.get("kind")
@@ -3667,6 +3669,18 @@ def build_unified(members: list[dict], unified_id: str,
         v = _or_merge_verified(sorted_members, field)
         if v is not None:
             out[field] = v
+    # ruler_verified on a SEED is mostly a matching signal (ucoin flips it when
+    # its ruler name falls outside a reign window — often a name collision, e.g.
+    # Hesse-Kassel «Frederick I»), not a display flag. It reaches the unified
+    # entry (and so the page's (?)) only when a curator froze it on a member via
+    # `_curation_holds: {ruler_verified: …}` and no member attests the ruler
+    # (absent key = schema default True = attested). 2026-10-15, KMM «Hans?».
+    def _rv_held(m):
+        h = m.get("_curation_holds")
+        return "ruler_verified" in (h.keys() if isinstance(h, dict) else (h or []))
+    if (members and any(_rv_held(m) for m in members)
+            and not any(bool(m.get("ruler_verified", True)) for m in members)):
+        out["ruler_verified"] = False
 
     # Multi-source measurement lists (every reading preserved)
     fine = _collect_field_list(members, "fineness")

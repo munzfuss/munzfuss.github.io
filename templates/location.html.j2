@@ -1024,6 +1024,12 @@
     </div>
     {% endif %}
   </div>
+  {% if gw.below %}
+  <div class="gw-below">
+    {% if gw.below_label %}<span class="gw-fr-label">{{ gw.below_label|t(lang) }}</span>{% endif %}
+    {{ gw.below|t(lang)|safe }}
+  </div>
+  {% endif %}
 </section>
 {% endif %}
 
