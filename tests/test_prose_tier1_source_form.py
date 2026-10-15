@@ -135,5 +135,26 @@ class AttributedHedges(unittest.TestCase):
         self.assertTrue(any(h.rule == "§0b" for h in got))
 
 
+
+class FirstPersonInsideQuotes(unittest.TestCase):
+    """A quotation's own «we / our» is the source speaking (curator 2026-10-15)."""
+
+    @staticmethod
+    def _rules(text, lang):
+        return [h.rule for h in ap.lint_text(text, lang, "f", "x", text, None)]
+
+    def test_quoted_translation_is_excused(self):
+        t = "розміщує двір «binnen unser Stadt Flensburgk» («у нашому місті Flensborg»)."
+        self.assertNotIn("§0z", self._rules(t, "uk"))
+
+    def test_unquoted_project_voice_still_fires(self):
+        self.assertIn("§0z", self._rules("Це відображено у нашому артефакті.", "uk"))
+        self.assertIn("§0a", self._rules("we treat this coin as gold.", "en"))
+        self.assertIn("§0a", self._rules("Hier wir behandeln die Müntze.", "de"))
+
+    def test_german_low_quotes_are_quotes_too(self):
+        self.assertNotIn("§0a", self._rules("es heißt: „wir behandeln die Müntze“.", "de"))
+
+
 if __name__ == "__main__":
     unittest.main()

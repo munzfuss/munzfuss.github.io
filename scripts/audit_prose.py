@@ -735,6 +735,23 @@ TIER1_EXCUSED_DESCRIPTIONS = frozenset({
 })
 
 
+# First-person plural inside a QUOTATION is the source speaking, not the
+# project: a ruler's «binnen unser Stadt Flensburgk» and its translation
+# («у нашому місті Flensborg») are verbatim text, not «our card». So the
+# first-person rules are excused when the match lies wholly inside a «…» /
+# „…“ / “…” span (curator direction 2026-10-15). Outside quotes they bind
+# as before.
+QUOTE_EXCUSED_DESCRIPTIONS = frozenset({
+    "project-internal reference in role-3 prose (CLAUDE.md §0z)",
+    "project-internal reference in role-3 prose",
+    "first-person plural about project work",
+})
+
+
+def quote_spans(stripped: str) -> list[tuple[int, int]]:
+    return [(m.start(), m.end()) for m in _QUOTE_SPAN_RE.finditer(stripped)]
+
+
 def _tier1_excuses(section: str, description: str) -> bool:
     return section in TIER1_EXCUSED_SECTIONS or description in TIER1_EXCUSED_DESCRIPTIONS
 
@@ -792,6 +809,7 @@ def lint_text(text: str, lang: str, field: str, file_str: str, raw_text: str,
     stripped = strip_html(text)
     line = find_line_of(raw_text, text)
     spans = tier1_spans(stripped, text)
+    qspans = quote_spans(stripped)
     for pattern, severity, section, langs, description in RULES:
         if langs != "any" and lang not in langs:
             continue
@@ -802,6 +820,9 @@ def lint_text(text: str, lang: str, field: str, file_str: str, raw_text: str,
         for m in pattern.finditer(stripped):
             # CLAUDE.md §2 tier 1 — the span's spelling is the source's.
             if excusable and _in_tier1(spans, m.start(), m.end()):
+                continue
+            # A quotation's own «we / our» is the source's voice.
+            if description in QUOTE_EXCUSED_DESCRIPTIONS and _in_tier1(qspans, m.start(), m.end()):
                 continue
             # A hedge / intensifier that names its source is attributed,
             # not asserted in our own voice (§0b).

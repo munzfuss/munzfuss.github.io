@@ -156,6 +156,7 @@ This rule supersedes and concretises §0a (reader voice vs analyst voice): §0a 
 
 **Allowed self-reference (only):**
 - Computation attribution per §0: «<i>errechnet aus … </i>» / «<i>as computed from …</i>». Computation is a deductive step, not a project decision — citing the build's own arithmetic is honest.
+- First person inside a verbatim quotation or its translation is the SOURCE's voice, not the project's: a ruler's «binnen unser Stadt Flensburgk» («у нашому місті Flensborg») is correct prose. `audit_prose.py` excuses the «we / our / wir / ми / наш» rules for a match lying wholly inside «…» / „…“ / “…” (curator direction 2026-10-15); outside quotes they bind as before.
 - Source-driven hedging when sources themselves are uncertain: «<i>nach den vorliegenden Quellen</i>» / «<i>according to the available sources</i>» — but only when the uncertainty is in the historical record, not in our analysis.
 
 **Operational test for any sentence going into prose:**
