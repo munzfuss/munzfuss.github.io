@@ -354,7 +354,14 @@ def categorize(
             coins_in_phase.sort(key=_row_order)
             
             for cc in coins_in_phase:
-                if cc.raw.kind == "kurant":
+                if fuss_id == "seed_unsorted":
+                    # A seed_unsorted «phase» is one source's holding pen, and
+                    # an untriaged coin's `kind` is only the seed builder's
+                    # default — so the pen renders as ONE table, not split
+                    # into Kurant / Scheide / copper sub-tables (curator
+                    # direction 2026-10-15).
+                    pg.kurant_coins.append(cc)
+                elif cc.raw.kind == "kurant":
                     pg.kurant_coins.append(cc)
                 elif cc.raw.kind == "scheide":
                     # Pure copper tokens (no precious metal content) get their own sub-group

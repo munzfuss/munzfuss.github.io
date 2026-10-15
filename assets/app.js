@@ -67,6 +67,25 @@
     }
   });
 
+  // 2a) Fold one phase: hide everything after its «.ph» header up to the next
+  //     phase header / instrument block. Delegated, so it also works on the
+  //     lazily fetched phase tables.
+  document.addEventListener("click", function (ev) {
+    var t = ev.target;
+    var btn = t && t.closest ? t.closest(".ph-fold") : null;
+    if (!btn) return;
+    var head = btn.closest(".ph");
+    if (!head) return;
+    var fold = btn.getAttribute("aria-expanded") === "true";
+    for (var el = head.nextElementSibling; el; el = el.nextElementSibling) {
+      if (el.classList.contains("ph") || el.classList.contains("ph-inst")) break;
+      el.classList.toggle("ph-folded", fold);
+    }
+    head.classList.toggle("ph-is-folded", fold);
+    btn.setAttribute("aria-expanded", fold ? "false" : "true");
+    btn.title = btn.getAttribute(fold ? "data-l-show" : "data-l-hide") || "";
+  });
+
   // 2b) Lazy phase tables (see scripts/lib/lazy_fuss.py): on first open
   //     of a Müntzfuß block, fetch its `.fd-lazy[data-src]` fragment.
   function loadLazy(details) {

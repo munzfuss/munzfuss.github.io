@@ -1913,6 +1913,20 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   border-left: 2px solid var(--accent);
 }
 [data-theme="v1"] .ph { color: var(--accent-deep); }
+/* Phase fold button (assets/app.js «2a»): folds the phase's description and
+   tables up to the next phase header. */
+.ph-fold {
+  font: inherit; font-size: 11px; line-height: 1;
+  margin: 0 0 0 10px; padding: 1px 5px;
+  color: var(--accent); background: transparent;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: 3px; cursor: pointer; vertical-align: 1px;
+}
+.ph-fold:hover, .ph-fold:focus-visible { background: var(--accent-bg); color: var(--text-primary); }
+.ph-fold-icon { display: inline-block; transition: transform 120ms ease-out; }
+.ph-is-folded .ph-fold-icon { transform: rotate(-90deg); }
+.ph-folded { display: none !important; }
+@media print { .ph-fold { display: none; } .ph-folded { display: revert !important; } }
 /* Sub-phases: the parent «Phase I» header, then smaller indented headers and
    a left rule over each sub-phase's description and tables. */
 .ph .ph-subl { text-transform: none; }
