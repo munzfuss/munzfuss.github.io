@@ -33,6 +33,7 @@
 | D18 | MB#8 (2026-10-15) | **yes** — relocate `royal_holstein` → `danish_realm` |
 | D14 | Name (2026-10-15) | variant **a**: «Lübischer Müntzfuß» (munzfuss), «Lybsk Møntfod» (Danish page, all languages) as scholarly names, like Nobelfod |
 | D19 | Name collision with the 1726 34-Mark-Fuß (2026-10-15) | **D14 stands** — Hans' standard is «Lybsk Møntfod» (Danish page); the collision is set aside until the 1726 card (`11_333_thaler`) is reworked — both are Lübeck standards, at different times, so it may not be critical |
+| D20 | Card name (2026-10-15) | **«11½-Markfod»** main name (all languages, global), **«Lybsk Møntfod»** as `historical_name`; supersedes the name strings of D14 (curator's own term, after Bobzin's «N-Mark-Fuß» measure; 11½ = Schilling 103½ / 9-lot mark) |
 | D11 | Save Page Now | **yes** (2026-10-15) — standing for this work |
 
 ## 1. Research completion
