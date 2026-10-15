@@ -161,6 +161,23 @@ merges:
       target — same home as the 1531 Friedrich-I goldgulden above.
 
   - target_entity: royal_slesvig
+    members:
+      - ngc-167747                              # home: royal_holstein  (NGC WCPG cuid-167747, MB 57, 1547; mint Flensburg (?) by curator 2026-10-15)
+      - schleswig_holstein-numismaster-167747   # home: royal_holstein  (NumisMaster MC_167747 = the same WCPG record, MB 57 + «Sch#1352»)
+    reason: |
+      Curator 2026-10-15 (Serhii): relocate, not a new merge — the two seeds
+      already form one class (unified-ngc-167747; same WCPG record, MB 57).
+      Christian III 1 Goldgulden 1547. royal_holstein was the builders'
+      default for a mintless «German States Schleswig-Holstein» record; the
+      coin is royal Schleswig: reverse legend «MON. NOVA. AVREA.
+      SLESVICENSIS.» (NGC), mint Flensborg per the letter of appointment of
+      22 January 1547 (Wilcke 1950 p. 282, «binnen unser Stadt Flensburgk»;
+      entered as mint_verified false), the mint_registry routes Flensborg to
+      royal_slesvig, and the Flensborg gulden of 1546 (Hede 14 / 15) already
+      live there. The Holstein arms on the obverse do not decide it — the
+      1547 appointment is for both duchies with one mint.
+
+  - target_entity: royal_slesvig
     issuing_entity: royal_slesvig   # override the mint-derived stamp — see reason
     members:
       - dk-hede-c3h15                           # home: royal_slesvig   (danskmoent c3h15 «2 Goldgulden» 1546, Hede 15, Schou 1, Sieg 52, 6.556 g)
