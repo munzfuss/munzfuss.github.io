@@ -10,7 +10,7 @@ force-merge was dropped this way, re-scattering the coin).
 
 This validator (a) strict-loads every decisions file with a duplicate-key-
 raising loader, and (b) checks every merges/no_merges entry carries
-`members` = a list of >= 2 non-empty ids, and every year_demote entry carries
+`members` = a list of >= 2 non-empty ids (>= 1 in `_cross_entity.yml` merges: a RELOCATE), and every year_demote entry carries
 `member_id`/`members`. Both checks share `merge_seeds_cross_source`'s
 implementation so the merger and this gate never drift.
 

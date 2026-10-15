@@ -3827,9 +3827,13 @@ def validate_decisions_doc(doc: dict, path) -> list[str]:
                 errs.append(f"{path}::{key}[{i}] is not a mapping")
                 continue
             members = e.get("members")
-            if not isinstance(members, list) or len(members) < 2:
+            # A cross-entity RELOCATE of a one-seed class names one member: the
+            # entry moves the coin, it does not merge it (v2-merge-coins RELOCATE).
+            _min = 1 if (str(path).endswith("_cross_entity.yml")
+                         and key == "merges") else 2
+            if not isinstance(members, list) or len(members) < _min:
                 errs.append(
-                    f"{path}::{key}[{i}] 'members' must be a list of >=2 ids, "
+                    f"{path}::{key}[{i}] 'members' must be a list of >={_min} ids, "
                     f"got {members!r}")
             elif not all(isinstance(m, str) and m.strip() for m in members):
                 errs.append(
@@ -4029,7 +4033,9 @@ def _load_cross_entity_decisions(
             member_target[mid] = target
             if ie_override is not None:
                 member_ie[mid] = ie_override
-        if len(expanded) >= 2:
+        # A single expanded member is a RELOCATE: still a group, so the class
+        # is stamped with the target entity like a multi-member pull.
+        if expanded:
             pull_groups.setdefault(target, []).append(expanded)
     return pull_groups, member_target, member_ie
 
