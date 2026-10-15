@@ -26,6 +26,15 @@ Subcommands:
   merge_helper.py graph   <entity> <id> [<id> ...]      # ids resolved first
   merge_helper.py audit   [<entity>]                    # all entities if omitted; exit 1 if orphans
   merge_helper.py scan    <entity>                      # §9.4 over-merge candidates; exit 1 if any
+  merge_helper.py relocate <entity> <coin-id> <target>  # READ-ONLY plan for moving a coin to another entity
+
+  * RELOCATE  — read-only preparation of a cross-entity move: the class's seed
+                ids, every sibling seed in ANY bucket that the completeness
+                guard will ask about (members or excludes), every
+                classification decision under ANY id of the class (current and
+                historical — they are matched only in their own entity's file),
+                the pages and Emitent badge before/after, and a ready-to-paste
+                `_cross_entity.yml` block. Writes nothing.
 """
 from __future__ import annotations
 import sys, glob, os, re
@@ -291,6 +300,130 @@ def cmd_scan(entity):
     return 0
 
 
+def _all_seed_index():
+    """{seed id → (bucket entity, seed dict)} over every seed file."""
+    out = {}
+    for f in sorted(glob.glob(os.path.join(ROOT, "seed", "*", "*.yml"))):
+        ent = os.path.splitext(os.path.basename(f))[0]
+        for c in _load(f):
+            if c.get("id"):
+                out[c["id"]] = (ent, c)
+    return out
+
+
+def _cat_bases(c):
+    cat = c.get("catalog") or {}
+    out = set()
+    for k in CAT_KEYS:
+        v = cat.get(k)
+        if isinstance(v, dict):
+            v = list(v.values())
+        for x in (v if isinstance(v, list) else [v]):
+            if x not in (None, ""):
+                out.add((k, _base(k, x)))
+    return out
+
+
+def _nominal_key(c):
+    return re.sub(r"\s+", " ", str(c.get("nominal") or "").strip().lower())
+
+
+def _pages_for(entity, year):
+    """Location pages (by id) that consume `entity` at `year`."""
+    pages = []
+    for f in sorted(glob.glob(os.path.join(ROOT, "locations", "*.yml"))):
+        doc = yaml.safe_load(open(f)) or {}
+        for ce in doc.get("consumes_entities") or []:
+            ent, yt = (ce, None) if isinstance(ce, str) else (ce.get("entity"), ce.get("year_to"))
+            if ent == entity and (yt is None or year is None or year <= yt):
+                pages.append(doc.get("id") or os.path.basename(f))
+    return pages
+
+
+def cmd_relocate(entity, coin_id, target):
+    seeds = load_seeds(entity)
+    unified = load_layer(entity, "seed_unified")
+    final = load_layer(entity, "final")
+    members, kind = resolve(entity, coin_id, seeds, unified, final)
+    idx = _all_seed_index()
+    # A class already pulled across entities keeps its seeds in their home
+    # bucket, so membership is checked against every bucket, not this one.
+    members = [m for m in members if m in idx]
+    seeds = {**seeds, **{m: idx[m][1] for m in members}}
+    if not members:
+        print(f"  ⚠ {coin_id} does not resolve to a seed in {entity} ({kind})")
+        return 1
+    fin = final.get(coin_id) or next(
+        (f for f in final.values()
+         if set(f.get("composed_of") or []) & ({coin_id} | {u for u, x in unified.items()
+                                                 if set(x.get("composed_of") or []) & set(members)})), None)
+    print(f"RELOCATE {coin_id}: {entity} → {target}\n")
+    print("1. Seeds of the class (→ members):")
+    for m in members:
+        c = seeds[m]
+        print(f"     {m:42s} bucket {idx[m][0]:16s} {c.get('nominal')} {c.get('year_label')}  {c.get('catalog')}")
+
+    xdoc = yaml.safe_load(open(os.path.join(ROOT, "merge_decisions", "_cross_entity.yml"))) or {}
+    for e in xdoc.get("merges") or []:
+        inside = sorted(set(map(str, e.get("members") or [])) & set(members))
+        if inside:
+            print(f"   ⚠ already in a _cross_entity.yml entry (target_entity: "
+                  f"{e.get('target_entity')}): {inside} — edit THAT entry's "
+                  f"target_entity, do not add a second one")
+
+    # Siblings anywhere: same metal + nominal + a shared catalogue base.
+    bases = set().union(*(_cat_bases(seeds[m]) for m in members))
+    metal = {seeds[m].get("metal") for m in members}
+    nom = {_nominal_key(seeds[m]) for m in members}
+    sib = [(sid, ent, c) for sid, (ent, c) in idx.items()
+           if sid not in members and c.get("metal") in metal
+           and _nominal_key(c) in nom and _cat_bases(c) & bases]
+    print("\n2. Siblings the completeness guard will ask about (→ members OR excludes):")
+    for sid, ent, c in sorted(sib):
+        print(f"     {sid:42s} home {ent:22s} {c.get('year_label')}  {c.get('catalog')}")
+    if not sib:
+        print("     none")
+
+    # Classification decisions under any id of the class, in any entity.
+    ids = {coin_id} | set(members) | {"unified-" + m for m in members}
+    ids |= {u for u, x in unified.items() if set(x.get("composed_of") or []) & set(members)}
+    if fin:
+        ids.add(fin.get("id"))
+    print("\n3. Classification decisions naming the class (matched ONLY in their own entity's file):")
+    hit = 0
+    for f in sorted(glob.glob(os.path.join(ROOT, "classification_decisions", "*.yml"))):
+        ent = os.path.splitext(os.path.basename(f))[0]
+        doc = yaml.safe_load(open(f)) or {}
+        for a in doc.get("assignments") or []:
+            if a.get("coin_id") in ids:
+                hit += 1
+                where = "OK (target)" if ent == target else "MOVE to target"
+                print(f"     {ent}: {a.get('coin_id')}  fuss={a.get('fuss')} phase={a.get('phase')} kind={a.get('kind')}  → {where}")
+    if not hit:
+        print("     none — the classification lives on the final only; absorb carries it")
+
+    # Render impact.
+    ents = yaml.safe_load(open(os.path.join(ROOT, "..", "i18n", "issuing_entities.yml"))) or {}
+    yr = (fin or {}).get("year_first") or seeds[members[0]].get("year_first")
+    ab = lambda e: (ents.get(e) or {}).get("abbrev", e)
+    print(f"\n4. Render impact: Emitent badge {ab(entity)} → {ab(target)}; "
+          f"pages {_pages_for(entity, yr)} → {_pages_for(target, yr)} (year {yr})")
+    if fin:
+        carried = [k for k in ("note", "fuss", "phase", "kind", "mintmasters", "sources") if fin.get(k)]
+        print(f"   final-only fields absorb will carry to the target: {carried}")
+
+    print("\n5. _cross_entity.yml block (fill the reason; add siblings to members/excludes):\n")
+    print(f"  - target_entity: {target}")
+    print("    members:")
+    for m in members:
+        print(f"      - {m:40s} # home: {idx[m][0]}")
+    print("    reason: |\n      <why the coin belongs to " + target + ", with the source>")
+    print("\n6. Then: merge_seeds_cross_source.py --dry-run → --apply (NO --entity);")
+    print(f"   absorb --entity {target} --apply, then --entity {entity} --apply (or no --entity);")
+    print("   trace_coin.py snapshot/diff around it; move any decision flagged in 3.")
+    return 0
+
+
 def main():
     if len(sys.argv) < 2:
         print(__doc__); return 2
@@ -303,6 +436,8 @@ def main():
         return cmd_audit(sys.argv[2] if len(sys.argv) > 2 else None)
     if cmd == "scan":
         return cmd_scan(sys.argv[2])
+    if cmd == "relocate":
+        return cmd_relocate(sys.argv[2], sys.argv[3], sys.argv[4])
     print(__doc__); return 2
 
 

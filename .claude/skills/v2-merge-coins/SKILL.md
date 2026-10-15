@@ -12,7 +12,9 @@ description: >-
   different V2 entity buckets — with the HARD-ERROR completeness guard that
   forbids forgetting a member. Trigger phrases: "merge these coins", "split
   this over-merge", "cross-entity merge", "роби мердж", "це over-merge",
-  "об'єднай через сутності", "почисти orphan-и в merge-рішеннях".
+  "об'єднай через сутності", "почисти orphan-и в merge-рішеннях",
+  "перенеси монету в іншу сутність", "виправ емітент", "change the issuing
+  entity" (RELOCATE).
 ---
 
 # v2-merge-coins — safe merge / split in the V2 pipeline
@@ -24,7 +26,7 @@ Executable form of `docs/PLAYBOOKS.md` PB-1. The merger
 index-graph rule) and §9a (multi-specimen preservation) first — they are the
 law this skill enforces.
 
-Helper: `python .claude/skills/v2-merge-coins/merge_helper.py {resolve|graph|audit} …`
+Helper: `python .claude/skills/v2-merge-coins/merge_helper.py {resolve|graph|audit|scan|relocate} …`
 
 ## The two failure modes this skill exists to stop
 
@@ -245,6 +247,41 @@ members span buckets — the `# home: X` comments in existing entries show which
 
 Precedents in the file: KM 631 / c7h33, Ungersk Gylden c4h8, f7h8, f7h16, f7h17,
 the km-761 2-Rigsdaler consolidation.
+
+## RELOCATE — one coin changes its issuing entity (no new merge)
+
+The class is already right; only its ENTITY is wrong (e.g. a builder's default
+bucket for a mintless record — MB 57, 2026-10-15). Mechanically it is a
+cross-entity entry whose members are just the class's own seeds.
+
+1. **Plan (read-only):**
+   `merge_helper.py relocate <entity> <coin-id> <target>` — prints the class's
+   seeds (with their physical bucket), the siblings the completeness guard will
+   ask about, EVERY classification decision naming any id of the class (current
+   AND historical `unified-<member>` ids — a decision is matched only in its
+   own entity's file), the render impact (Emitent badge — it IS visible — and
+   pages), and a ready `_cross_entity.yml` block. If a member already sits in
+   a `_cross_entity.yml` entry, edit THAT entry's `target_entity` instead of
+   adding a second one.
+2. **Decide with the curator** — the badge change and the reason (source for
+   the new entity). Write the block with the reason.
+3. **Move every decision flagged in step 1** to the target's
+   `classification_decisions/<target>.yml` (a historical-id decision too: its
+   phase may predate a renumbering). Append a `RELOCATED <date>` note to the
+   reason.
+4. **Flow:** `merge_seeds_cross_source.py --dry-run` → `--apply` (NO
+   `--entity`); then absorb — preferably WITHOUT `--entity`, or target first.
+   Absorb CARRIES the source final's curator fields (Note, classification,
+   curator sources, …) onto the target final, gap-fill only, and logs
+   `cross-entity carry: <src>/<id> → <host>`. If you absorb the source alone
+   first, it logs `KEPT … until the target entity is absorbed` and keeps its
+   copy — absorb the target, then the source again; that is not an error.
+5. **Verify:** `trace_coin.py snapshot/diff` (0 real losses; the seeds show as
+   «moved to another entity file»), compare old vs new final field by field
+   (`note`, `fuss`/`phase`/`kind`, `sources`), `verify_reflow`, and the absorb
+   summary line — `ASSIGN-MISS ids:` names any decision you forgot to move.
+6. **Commit** `_cross_entity.yml` + both entities' classification_decisions,
+   seed_unified and final with one pathspec.
 
 ## ORPHAN audit / heal (standing maintenance)
 

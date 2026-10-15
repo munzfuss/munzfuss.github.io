@@ -16,6 +16,14 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-15 — Relocating a coin between entities: carry, guard, RELOCATE procedure
+
+- **Absorb carries curation across entities** (`build:` commit after `cdaab86`): a coin moved by `_cross_entity.yml` or by mint routing now keeps its source final's Note / classification / curator sources (gap-fill on the target); the source keeps its copy (warning `KEPT … until the target entity is absorbed`) until the target has it. The summary line prints `ASSIGN-MISS ids:`. Current tree: 3 misses in royal_holstein, 10 in danish_realm, 1 in royal_slesvig (the historical-id MB 57 decision, inert by design) — not yet reviewed.
+- **RELOCATE procedure** in `.claude/skills/v2-merge-coins/SKILL.md`; plan with `merge_helper.py relocate <entity> <coin-id> <target>` (read-only: seeds + buckets, siblings, decisions under any id, Emitent badge / pages, ready block).
+- Done today with it by hand: MB 57 Goldgulden 1547 royal_holstein → royal_slesvig (`9a915ac`), mint Flensburg (?) (`15e4841`).
+- **Gift set 1584 (Hede 7A–7G)** marked gedenk ✦ on Wilcke 1931 (`cdaab86`); exclusion as exonumia still open in `docs/research/f2_guldmoent_1584_gavesaet.md`.
+- **Gottorp Goldgulden 1619 (KM 53) / 1627 (KM 79)**: no source names a mint (NGC, Jensen 2002, KMM cache, web); Friedrich III ran Gottorp/Schleswig, Steinbeck, Burg auf Fehmarn — left empty. Would settle: Lange *Sammlung*, or the Osnabrück 1998 auction lot text.
+
 ## 2026-10-15 — Hans period: «no Danish ordinance» reworded; Denmark-page gold phases renumbered from I
 
 - **Wording (curator 2026-10-15):** «Hans precedes any Danish gold ordinance» / «без данської ординації» claimed non-existence. Sources: Galster (galkult) «Der er ikke bevaret nogen dansk Møntordning fra Kong Hans» + the 1513 ordinance repeats «ældre, tabte danske Møntordninger»; Wilcke 7-1 p. 128 «I Danmark synes netop ingen Møntordning at være udstedt» (p. 144: «foreligger … ikke nogen Møntordning»). Rule now: say «none survives», present Galster vs Wilcke attributed. New pool keys `wilcke-1950-hans-ingen-moentordning-udstedt` and `galster-moentordning-1513-aeldste` (the latter cited in the Blicher 1513 block — oldest Danish Møntordning, preserved only as a detailed summary; curator moved it there from the Hans period). Details titles of the Hans period: Nobel «за зразком Instructie 1487», Guldgylden «за імперською нормою (Worms 1495)»; card rows drop the clause entirely. Guldgylden period V (Christian IV) «без ординації» left as is (Wilcke 1919: no published ordinance — a different claim).
