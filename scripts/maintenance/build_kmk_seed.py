@@ -66,6 +66,16 @@ _EXONUMIA_WORKDESC_LEAD = (
 )
 
 
+# KMM `nominal` values that name an object type, not a denomination. Such a
+# record can still carry workDescription «Mønt» (KMM 28296: a silver «LYKKE»
+# amulet of Queen Alexandrine, 1912-1947, nominal «amulet») — §9.2 exonumia.
+_EXONUMIA_NOMINALS = frozenset({"amulet"})
+
+
+def _is_exonumia_nominal(nom: str | None) -> bool:
+    return (nom or "").strip().lower() in _EXONUMIA_NOMINALS
+
+
 def _is_exonumia_workdesc(wd: str | None) -> bool:
     w = (wd or "").strip().lower()
     if not w:
@@ -874,6 +884,8 @@ def _kmm_source(rid, src: dict) -> dict:
 
 def build_entry(src) -> dict | None:
     if _is_exonumia_workdesc(src.get("workDescription")):
+        return None
+    if _is_exonumia_nominal(src.get("nominal")):
         return None
     src = _enrich_from_raadata(src)
     if src.get("id") in _KMM_DROP_IDS or str(src.get("id")) in {str(x) for x in _KMM_DROP_IDS}:
