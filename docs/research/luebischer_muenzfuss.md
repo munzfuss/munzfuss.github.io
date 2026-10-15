@@ -38,6 +38,7 @@
 | L5 | Gullbekk, NNT 2025-1 s. 3–10 | håndfæstning 1483; «lybsk myntstandard» in Norway | rests on the same 1483 clause as L6 |
 | L6 | Holst 1936 (danskmoent artikler/holst.htm) | Lübeck system in Norway; Gaute's coins by weight with the royal ones; Hans weights | — |
 | L7 | Sømod 2002 (danskmoent soemod/c1holst.htm) | Holstein: Christian I's 1460 promise to strike only coin current in Lübeck and Hamburg; Christian I's and Hans' Holstein hollow pieces | Sømod after Hauberg 1886 s. 189 and Friis Johansen NNÅ 1961 (not seen) |
+| L9 | Bobzin, hagen-bobzin.de «Lübisches Münzsystem» (cache `scripts/cache/bobzin/`) | chronology 1255–1620 of the Lübeck standard in «N-Mark-Fuß» form; 1461, 1502, 1506 variants, 1515 | amateur compilation after Jesse 1928, Stefke 2002, Witthöft 1989; cross-checked |
 | L8 | Ingvardson et al., *JAS: Reports* 43 (2022) | Gribshunden purse June 1495: only Hvide | sample small (their caveat) |
 
 Archive copies: survey §2 + plan step 5.2 (all seven web sources archived 2026-10-15).
@@ -79,6 +80,34 @@ Archive copies: survey §2 + plan step 5.2 (all seven web sources archived 2026-
 1424 fineness read 2026-10-15 from the page image of the danskmoent PDF (Jesse s. 102: «*mit 11¼ Lot Feingehalt mit 3 Grän erlaubtem Remedium zu 42 Wurf = 168 Stück aus der Mark (1,35 g)*», «*aus 7¼lötigem Silber zu 3½ Mark + 2 ß = 696 Stück (0,33)*»); the coingallery transcription agrees; the PDF text layer had garbled the ¼. Checks: 1424 Sechsling «1,35 g» in Jesse vs our 1,392 — Jesse's mark weight ≈ 227 g (cf. his
 19,392 g for a 1492 Mark, survey §5 — open). The 1492 Schilling 1,271 g fine matches Wilcke's
 «1,269–1,103» for the Lübeck ß c. 1500 (L2 7-2 s. 150–151).
+
+### §3.1a The «Mark-Fuß» measure — Mark lübisch per fine Cologne mark
+
+Bobzin («Lübisches Münzsystem», hagen-bobzin.de; cache `scripts/cache/bobzin/muenzverein_wendisch.*`)
+states the Lübeck standard as the number of Mark lübisch (16 ß) struck from one fine mark,
+e.g. «*1 Ml. = 1/13 feine Mark Silber ≈ 18g Silber (13-Mark-Fuß)*» for the 1502/1506 Markstück.
+Applied to the defining coins (Bobzin's own figures where he gives them, else recomputed from §3.1):
+
+| Year | Coin / measure | ß per fine mark | Mark lübisch per fine mark | Source |
+|---|---|---:|---:|---|
+| 1461 | Kaufpreis of the fine mark | 166–172 | 10⅜–10¾ | Bobzin («10 Ml. und 6 bis 12 ßl.») |
+| 1468 = 1492 | Schilling 103½ to the 9-lot mark | 184 | **11½** | recomputed from Jesse |
+| 1502 / 1504–06 | Markstück | 208 | **13** («13-Mark-Fuß») | Bobzin; Jesse |
+| 1506 | Markstück variants: 12¼/15-lot · 11¾/14½-lot · 12/14½-lot | 209,1 · 207,4 · 211,9 | 13,07 · 12,97 · 13,24 | Bobzin |
+| 1515 | Schilling | 212 | **13¼** | Bobzin («13¼-Mark-Fuß») |
+| Hans, early Skilling (9 lod, ≈ 1,24–1,32 g fine) | | 177–189 | ≈ 11–11¾ | recomputed (Eriksson tab. 7) — **the 1468/1492 Lübeck level** |
+| Hans, Mårten 1542 (≈ 0,93 g) | | ≈ 251 | ≈ 15¾ | recomputed (Wilcke 7-1 s. 144) |
+| Hans, 1512-dated Skilling (≈ 0,85–1,0 g) | | 234–275 | ≈ 14⅝–17¼ | recomputed (Eriksson tab. 7) |
+| 1513 Blicher Skilling (96/M, 5¾ lod) | | 267 | 16,7 | recomputed (face lod, Wilcke's reading) |
+| 1514 Skilling (88/M, 6 lod) | | 234⅔ | 14,67 | recomputed (`instruments/1514_moentordning_malmoe.md`) |
+
+**For the card (plan step 3.2, proposal, curator's call):** the whole-standard defining value
+can be given in Bobzin's measure — the Lübeck standard of the 1468/1492 Rezess = **11½ Mark
+lübisch from the fine Cologne mark** (Schilling 103½ from the 9-lot mark) — with Hans' early
+Skilling at that level and the debasement to ≈ 15–17 Mark by 1512. «11½-Mark-Fuß» is Bobzin's
+analytic form, not a period name; the card name stays «Lybsk Møntfod» / «Lübischer Müntzfuß».
+Bobzin's caveat (SOURCES §6.5): an amateur compilation — his chronology is cross-checked against
+Jesse above (1502/1506 agree; Bobzin's 1461 has no Jesse counterpart in our cache).
 
 ### §3.2 Denmark under Hans — reconstructed, no ordinance
 

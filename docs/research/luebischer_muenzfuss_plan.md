@@ -116,6 +116,8 @@
 
 ## Log
 
+- 2026-10-15 — Bobzin (hagen-bobzin.de) cached; Fuß dossier §3.1a: «N-Mark-Fuß» measure, proposal for step 3.2 = 11½ Mark lübisch per fine mark (1468/1492).
+
 - 2026-10-15 — Fuß dossier `luebischer_muenzfuss.md` created.
 
 - 2026-10-15 — relocation applied (`_cross_entity.yml`, `issuing_entity: sweden` override needed: the Stockholm mint maps to `danish_realm` before 1523); single-member RELOCATE enabled in the merger (`5da257c`). Found while re-flowing, NOT ours, left at HEAD: `unified-kmk-692607` (Christian 3 Sechsling) — the committed KMM seed would widen 1546 → 1534–1559 on the next re-flow (seeds committed without merge+absorb); `erzbisthum_bremen_verden` final has a hand-set `display: false` on a source that absorb drops. Both for the curator / the KMM session.

@@ -923,7 +923,7 @@ Most used:
 
 **Caveats:** dating sometimes coarse (e.g. 1753 Konventionsfuß without distinguishing Austria 1750 vs Bavaria 1753), and uses analytic-didactic labels («Schleswig-Holsteinischer Kurantfuß») not always period-attested. Cross-check against period sources (Meyers, Wikipedia DE).
 
-**Access:** WebFetch works.
+**Access:** WebFetch works; curl with a browser User-Agent works too. **Cached 2026-10-15** in `scripts/cache/bobzin/` (`muenzverein_wendisch`, `muenzverein_rheinisch`, `muenzen`, `muenzfuesse`, `muenzen_gewichte`, `muenzsorten`, `waehrungen` — html + `.extract.txt`). The site menu (built by script) also lists «Rhein. Münzsystem», «Niederländ. Münzsystem», «Englisches / Französ. Münzwesen», «Böhmen / Sachsen / Schlesien», «Gewichte/Zählweisen». Used 2026-10-15 for the «N-Mark-Fuß» chronology of the Lübeck standard (`docs/research/luebischer_muenzfuss.md` §3.1a); curator pointed to it as a good resource for this and adjacent topics.
 
 ### 6.6 coingallery.de — `coingallery.de` ⭐
 
