@@ -33350,10 +33350,13 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Pfennig
-    year_first: 1501
-    year_last: 1501
-    year_label: '1501'
-    ruler: Friedrich I
+    year_first: 1460
+    year_last: 1481
+    year_ranges:
+      -   - 1460
+          - 1481
+    year_label: 1460-1481
+    ruler: Christian I.
     catalog:
       mb: '5'
     metal: silver
@@ -33363,6 +33366,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     weight_rough_g:
       - value: 0.37
         source: ngc
@@ -33377,15 +33381,47 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-167718
+    _errata_applied:
+      - source: ngc-167718
+        field: ruler
+        printed: Friedrich I
+        correct: Christian I.
+      - source: ngc-167718
+        field: year_label
+        printed: '1501'
+        correct: 1460-1481
+      - source: ngc-167718
+        field: year_first
+        printed: 1501
+        correct: 1460
+      - source: ngc-167718
+        field: year_last
+        printed: 1501
+        correct: 1481
+      - source: ngc-167718
+        field: year_ranges
+        printed:
+          -   - 1501
+              - 1501
+        correct:
+          -   - 1460
+              - 1481
+      - source: ngc-167718
+        field: year_verified
+        printed:
+        correct: false
   - id: unified-ngc-167719
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Pfennig
-    year_first: 1510
-    year_last: 1510
-    year_label: '1510'
-    ruler: Friedrich I
+    year_first: 1523
+    year_last: 1533
+    year_ranges:
+      -   - 1523
+          - 1533
+    year_label: 1523-1533
+    ruler: Frederik I.
     catalog:
       mb: '8'
     metal: silver
@@ -33395,6 +33431,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     weight_rough_g:
       - value: 0.37
         source: ngc
@@ -33409,6 +33446,35 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-167719
+    _errata_applied:
+      - source: ngc-167719
+        field: ruler
+        printed: Friedrich I
+        correct: Frederik I.
+      - source: ngc-167719
+        field: year_label
+        printed: '1510'
+        correct: 1523-1533
+      - source: ngc-167719
+        field: year_first
+        printed: 1510
+        correct: 1523
+      - source: ngc-167719
+        field: year_last
+        printed: 1510
+        correct: 1533
+      - source: ngc-167719
+        field: year_ranges
+        printed:
+          -   - 1510
+              - 1510
+        correct:
+          -   - 1523
+              - 1533
+      - source: ngc-167719
+        field: year_verified
+        printed:
+        correct: false
   - id: unified-ngc-167720
     fuss: seed_unsorted
     phase: ngc

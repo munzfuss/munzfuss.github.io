@@ -9,13 +9,13 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Pfennig
-    year_label: '1501'
-    year_first: 1501
-    year_last: 1501
-    year_ranges:
-      -   - 1501
-          - 1501
-    ruler: Friedrich I
+    year_label: '1460-1481'
+    year_first: 1460
+    year_last: 1481
+    year_ranges: &id001
+      -   - 1460
+          - 1481
+    ruler: Christian I.
     mint:
     catalog:
       mb: '5'
@@ -45,18 +45,73 @@ coins:
     _ngc_date_line: (ca1501-10)
     _ngc_flags:
       uniface: true
+    _source_errata:
+      - field: ruler
+        printed: Friedrich I
+        correct: Christian I.
+        reason: "Halved Holstein / Oldenburg shield, Lange 10. Sømod 2002 («Holstenske mønter fra Christiern I og Hans», danskmoent soemod/c1holst.htm) assigns the type to Christian I as count of Holstein
+          (1460-1481): the arms are his maternal (Holstein) and paternal (Oldenburg) arms; Hauberg / Schou had placed it under Frederik I without argument. NGC's «Friedrich I, ca1501-10» follows the Hauberg
+          / Schou line. Attribution disputed in the literature; curator decision 2026-10-15."
+        curator: serg
+      - field: year_label
+        printed: '1501'
+        correct: 1460-1481
+        reason: see the ruler erratum
+        curator: serg
+      - field: year_first
+        printed: 1501
+        correct: 1460
+        reason: see the ruler erratum
+        curator: serg
+      - field: year_last
+        printed: 1501
+        correct: 1481
+        reason: see the ruler erratum
+        curator: serg
+      - field: year_ranges
+        printed: &id002
+          -   - 1501
+              - 1501
+        correct: *id001
+        reason: see the ruler erratum
+        curator: serg
+      - field: year_verified
+        printed:
+        correct: false
+        reason: attribution range, not a dated year (CLAUDE.md §3a)
+        curator: serg
+    year_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Friedrich I
+        correct: Christian I.
+      - field: year_label
+        printed: '1501'
+        correct: 1460-1481
+      - field: year_first
+        printed: 1501
+        correct: 1460
+      - field: year_last
+        printed: 1501
+        correct: 1481
+      - field: year_ranges
+        printed: *id002
+        correct: *id001
+      - field: year_verified
+        printed:
+        correct: false
   - id: ngc-167719
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Pfennig
-    year_label: '1510'
-    year_first: 1510
-    year_last: 1510
-    year_ranges:
-      -   - 1510
-          - 1510
-    ruler: Friedrich I
+    year_label: '1523-1533'
+    year_first: 1523
+    year_last: 1533
+    year_ranges: &id003
+      -   - 1523
+          - 1533
+    ruler: Frederik I.
     mint:
     catalog:
       mb: '8'
@@ -86,6 +141,60 @@ coins:
     _ngc_date_line: (ca1510)
     _ngc_flags:
       uniface: true
+    _source_errata:
+      - field: ruler
+        printed: Friedrich I
+        correct: Frederik I.
+        reason: "Crowned F hollow pfennig = Galster 79, Schou 40 (Sch# 1362): danskmoent 1penning.htm places it under King Frederik I (1523-1533), «U.år, ukendt møntsted»; no source read supports NGC's
+          «ca1510», when Frederik was duke and struck no coin before Husum 1514. Curator decision 2026-10-15."
+        curator: serg
+      - field: year_label
+        printed: '1510'
+        correct: 1523-1533
+        reason: see the ruler erratum
+        curator: serg
+      - field: year_first
+        printed: 1510
+        correct: 1523
+        reason: see the ruler erratum
+        curator: serg
+      - field: year_last
+        printed: 1510
+        correct: 1533
+        reason: see the ruler erratum
+        curator: serg
+      - field: year_ranges
+        printed: &id004
+          -   - 1510
+              - 1510
+        correct: *id003
+        reason: see the ruler erratum
+        curator: serg
+      - field: year_verified
+        printed:
+        correct: false
+        reason: attribution range, not a dated year (CLAUDE.md §3a)
+        curator: serg
+    year_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Friedrich I
+        correct: Frederik I.
+      - field: year_label
+        printed: '1510'
+        correct: 1523-1533
+      - field: year_first
+        printed: 1510
+        correct: 1523
+      - field: year_last
+        printed: 1510
+        correct: 1533
+      - field: year_ranges
+        printed: *id004
+        correct: *id003
+      - field: year_verified
+        printed:
+        correct: false
   - id: ngc-167735
     fuss: seed_unsorted
     phase: ngc
