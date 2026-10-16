@@ -456,6 +456,21 @@ level — Denmark went further than Lübeck before 1513.
 | When did the Danish Skilling pass below 13 (7-lod group)? | same; dated 7-lod Skillinger |
 | Was Lübeck's coin itself debased between 1506 and 1513 beyond 13¼? | Lübeck mint accounts / Münzproben of those years (Jesse's notes, not in the coingallery extract); Behrens 1905 |
 
+**Web search for the settling sources (2026-10-16):** none is online. DMS (Jensen, Bendixen, Liebgott,
+Lindahl, *Danmarks middelalderlige skattefund c. 1050 – c. 1550*, Nordiske Fortidsminder B 12, 1992, 2 vols,
+327 hoards) — only reviews (Historisk Tidsskrift; Numismatic Chronicle 1993, JSTOR) and a Numista
+literature entry; Galster 1972 *Unionstidens udmøntninger* (Danish and Norwegian coinage 1397–1540) — only
+cited (Numista 444265 uses it as «UU# 148» for a Norwegian Hans Skilling «1500–1513»); Märcher 2018 — not
+found under that title. Found and cached instead: Jørgen Steen Jensen, «Senmiddelalderlige mønters
+brugbarhed som dateringsgrundlag ved kirkefund», *Hikuin* 17, s. 79–84 (tidsskrift.dk; cache
+`scripts/cache/danskmoent/hans_1481_1513/jensen_hikuin17_senmiddelalderlige_moenter.*`). What it gives (s. 82):
+the Korshvid of Christopher, Rigsrådet, Christian I and Hans «*Alle er udmøntede i Malmø, under kong Hans,
+fra 1490'erne, dog også i København og Aalborg*»; their fineness «*lå mellem 200 og 250 promille*»; and a
+METHOD warning — the 1440s Korshvide still occur in large numbers in hoards deposited after 1526 or even in
+the 1540s, i.e. very long circulation, so a hoard's closing date dates the coin only loosely. Consequence:
+even DMS would bound the 8-lod Skillinger only by a terminus ante quem, not date their issue.
+
+
 ### §3.5 Mark coins under Hans? (2026-10-15)
 
 No specimen is known. The only witness is Mårten Myntskrivare's 1542 melt account (Svartsjö):
