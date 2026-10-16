@@ -231,6 +231,24 @@ at 5 Hvide = 920 Hvide = 19⅙ Mark dansk; via Wilcke's 20 ß l. = 2 M d. = 18,4
 lybsk, not 4; his own pairing (7-2 s. 149) is 4 Hvide ↔ 96 Hvide per Gylden at 24 ß per Gylden. Not
 resolvable from our sources.
 
+### §3.1e The levels of the system — curator's model checked (2026-10-16)
+
+| Curator's statement | Verdict | Evidence |
+|---|---|---|
+| Standard defined in Lübeck units (Schilling; Mark lübisch by reckoning) | **confirmed** | Jesse: 103½ Schilling / 9-lot mark (1468 = 1492); «die feine Mark zu 11 M. 8 s» |
+| Danish Skilling corresponded to the Lübeck Schilling | **confirmed early, lost later** | 9-lod Skilling ≈ 1,27 g fine = Lübeck (Eriksson tab. 7; «motsvarade mycket bra de lübska», s. 5); reckoned «god for lybsk Valuta» (Wilcke 7-2 s. 149); 1512 Skillinger 6–7 lod, ≈ 0,82–0,96 g, fineness cut «med ca. 1/3» (Eriksson s. 10) — below the Lübeck Schilling, which itself sank to «1,269 — 1,103 gr.» c. 1500 (Wilcke 7-2 s. 150–151) |
+| Hvid not tied to the higher levels; value set in circulation | **confirmed** (as far as documented) | Hvid valued as a Lübeck 3-penny (Eriksson s. 5); Skilling bought with 4, 5 Hvide instead of 3 (Wilcke 7-1 s. 142); Wilcke 7-1 s. 36: «*Hvidene i Virkeligheden kun var Skillemønt*» |
+| Mark dansk reckoned in Hvide, not Skillinger | **confirmed** | Wilcke 7-2 s. 149: «M dansk à 16 ß à 3 Hvide» |
+| Danish Penning tied / not tied to the Hvid | **only as unit of account**: Hvid = 4, Søsling 6, Skilling 12 Penninge (Eriksson s. 4); no Danish royal Penning coin of Hans in our type list (danskmoent `hans.htm`) | — |
+| Norway had only Penninge, matching the Danish | **corrected**: Hans struck in Norway «*gullgylden, skillinger, halvskillinger (søslinger) og hvider*»; royal Penninge «*synes mer usikkert*» (Gullbekk s. 5); hollow penny Oslo (Galster 156) and Archbishop Gaute's brakteates exist. The 1483 act requires coin «jaffngod … wid Danske penninge»; Norwegian Hvide lighter than Danish (0,63 vs ≈ 0,75 g, Ernst 1940) | |
+| Marks were units of account | **Lübeck: yes until 1502**, then Markstücke struck (Jesse; Bobzin); **Danish: yes** — no Danish mark coin of Hans survives (the 1542 «Marckestycker» unresolved, §3.5) | |
+| Mark dansk : Mark lübisch = Schilling : Hvid | **arithmetically yes**: Mark lübisch = 16 ß, Mark dansk = 48 Hvide → ratio = (Hvide per ß lübisch) ÷ 3. The documented ratios 1,6 and ≈ 1,67 (via the Gylden, Wilcke 7-1 s. 142–143) correspond to 4,8 and 5 Hvide per ß lübisch; Wilcke's «4 Hvide» (1497) would give 1,33 — the tension noted in §3.1d | computed |
+
+**The formula lines:** Schilling = a coin (struck at 103½ per rough 9-lot mark). Mark lübisch = the money of
+account of 16 Schilling (192 Pf) — NOT a «fine silver» unit; «per fine mark» refers to the WEIGHT mark
+(Cologne, of pure silver): one fine weight mark yields 184 Schilling coins = 11½ Mark lübisch. One Mark lübisch
+then holds ≈ 20,3 g fine silver (16 × 1,271 g, computed).
+
 ### §3.2 Denmark under Hans — reconstructed, no ordinance
 
 | Element | Value | Source |
