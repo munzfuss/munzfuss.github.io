@@ -964,6 +964,17 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                     continue
                 losses.append(f"FIELD EMPTIED  {cid}.{f}: {hv!r} → empty")
             elif f in ("fuss", "phase") and cv == "seed_unsorted":
+                # A curator-agreed declassify (`kind: declassify`, keyed by
+                # seed) excuses the demotion of the final that carries it —
+                # the same ledger the seed-keyed SEED DECLASSIFIED pass reads.
+                seeds_here = [cid, *(c.get("composed_of") or [])]
+                seeds_here += [x for m in list(seeds_here)
+                               for x in (head_members or {}).get(m, [])]
+                seeds_here += [s[len("unified-"):] for s in list(seeds_here)
+                               if s.startswith("unified-")]
+                if set(seeds_here) & _declassify_recorded():
+                    retractions.append(f"{cid}.{f}: {hv!r} → seed_unsorted (recorded declassify)")
+                    continue
                 losses.append(f"DEMOTED  {cid}.{f}: {hv!r} → seed_unsorted")
 
         for f in LIST_FIELDS:

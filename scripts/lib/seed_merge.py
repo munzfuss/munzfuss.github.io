@@ -87,6 +87,8 @@ CURATED_FIELDS = frozenset({
     # Curation mark on the seed's own year (schema YearMark) — curator-filled,
     # no builder emits it; the merger turns it into `year_alts` on the class.
     "year_mark",
+    # Same for the ruler (schema Coin.ruler_mark → ruler_alts).
+    "ruler_mark",
     # V2 bidirectional seed↔curated link (Phase 6) — both fields are
     # curator-maintained or relink-script-derived audit trail of the
     # §9a multi-specimen merge. They MUST persist across regen so that:

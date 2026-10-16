@@ -2407,15 +2407,25 @@ def _collect_year_alts(members: list[dict]) -> list[dict]:
     year is the merge's business (`year_demote`); the template hides an alt
     whose value is already in the label. Order: member order; duplicates by
     (value, source) collapse."""
+    return _collect_marked_alts(members, "year", "year_label")
+
+
+def _collect_ruler_alts(members: list[dict]) -> list[dict]:
+    """Ruler alternatives from members that carry a `ruler_mark` (schema
+    Coin.ruler_mark) — the ruler-column analogue of `_collect_year_alts`."""
+    return _collect_marked_alts(members, "ruler", "ruler")
+
+
+def _collect_marked_alts(members: list[dict], key: str, label_field: str) -> list[dict]:
     out: list[dict] = []
     seen: set[tuple[str, str]] = set()
     for m in members:
         if not isinstance(m, dict):
             continue
-        mark = m.get("year_mark")
-        # `value` = the source's printed year when an erratum replaced the
-        # seed's own year_label; otherwise the label IS the source's year.
-        label = (mark.get("value") if isinstance(mark, dict) else None) or m.get("year_label")
+        mark = m.get(f"{key}_mark")
+        # `value` = the source's printed value when an erratum replaced the
+        # seed's own one; otherwise the seed's field IS the source's value.
+        label = (mark.get("value") if isinstance(mark, dict) else None) or m.get(label_field)
         if not isinstance(mark, dict) or not label:
             continue
         kind = mark.get("kind")
@@ -2423,19 +2433,19 @@ def _collect_year_alts(members: list[dict]) -> list[dict]:
         if kind not in ("suspect", "erroneous") or not isinstance(reason, dict):
             continue
         src = _source_label_from_id(m.get("id"))
-        key = (str(label), src)
-        if key in seen:
+        k = (str(label), src)
+        if k in seen:
             continue
-        seen.add(key)
+        seen.add(k)
         out.append({"value": str(label), "source": src, "kind": kind,
                     "reason": dict(reason)})
     # Alts a member already carries (a seed_unified member re-merged) pass through.
     for m in members:
-        for a in (m.get("year_alts") or []) if isinstance(m, dict) else []:
+        for a in (m.get(f"{key}_alts") or []) if isinstance(m, dict) else []:
             if isinstance(a, dict) and a.get("value") and a.get("source"):
-                key = (str(a["value"]), str(a["source"]))
-                if key not in seen:
-                    seen.add(key)
+                k = (str(a["value"]), str(a["source"]))
+                if k not in seen:
+                    seen.add(k)
                     out.append(dict(a))
     return out
 
@@ -3722,6 +3732,9 @@ def build_unified(members: list[dict], unified_id: str,
     year_alts = _collect_year_alts(members)
     if year_alts:
         out["year_alts"] = year_alts
+    ruler_alts = _collect_ruler_alts(members)
+    if ruler_alts:
+        out["ruler_alts"] = ruler_alts
 
     # Sources union
     sources = _collect_sources(members)

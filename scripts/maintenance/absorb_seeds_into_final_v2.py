@@ -683,30 +683,32 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     if yv is not None:
         out["year_verified"] = yv
 
-    # year_alts — union across members (foundation first), deduped by
-    # (value, source). The merger emits them from the seeds' `year_mark`; the
-    # final never carries one the current members do not, so a mark removed on
-    # the seed disappears here on the next absorb.
-    _alts: list[dict] = []
-    _alt_seen: set[tuple[str, str]] = set()
-    for _m in members:
-        for _a in (_m.get("year_alts") or []):
-            if not isinstance(_a, dict) or not _a.get("value") or not _a.get("source"):
-                continue
-            _k = (str(_a["value"]), str(_a["source"]))
-            if _k not in _alt_seen:
-                _alt_seen.add(_k)
-                _alts.append(dict(_a))
-    # Only members[1:] (the live seed_unified side) may introduce an alt; the
-    # foundation's own copy is kept only while a live member still carries it.
-    _live = {(str(a["value"]), str(a["source"]))
-             for _m in members[1:] for a in (_m.get("year_alts") or [])
-             if isinstance(a, dict) and a.get("value") and a.get("source")}
-    _alts = [a for a in _alts if (str(a["value"]), str(a["source"])) in _live]
-    if _alts:
-        out["year_alts"] = _alts
-    else:
-        out.pop("year_alts", None)
+    # year_alts / ruler_alts — union across members (foundation first), deduped
+    # by (value, source). The merger emits them from the seeds' `year_mark` /
+    # `ruler_mark`; the final never carries one the current members do not, so
+    # a mark removed on the seed disappears here on the next absorb.
+    for _fld in ("year_alts", "ruler_alts"):
+        _alts: list[dict] = []
+        _alt_seen: set[tuple[str, str]] = set()
+        for _m in members:
+            for _a in (_m.get(_fld) or []):
+                if not isinstance(_a, dict) or not _a.get("value") or not _a.get("source"):
+                    continue
+                _k = (str(_a["value"]), str(_a["source"]))
+                if _k not in _alt_seen:
+                    _alt_seen.add(_k)
+                    _alts.append(dict(_a))
+        # Only members[1:] (the live seed_unified side) may introduce an alt;
+        # the foundation's own copy is kept only while a live member still
+        # carries it.
+        _live = {(str(a["value"]), str(a["source"]))
+                 for _m in members[1:] for a in (_m.get(_fld) or [])
+                 if isinstance(a, dict) and a.get("value") and a.get("source")}
+        _alts = [a for a in _alts if (str(a["value"]), str(a["source"])) in _live]
+        if _alts:
+            out[_fld] = _alts
+        else:
+            out.pop(_fld, None)
 
     # Reign-span override (curator direction 2026-07-09). When the resolved
     # year range is EXACTLY a ruler's reign window — «Christian IV 1588-1648»,

@@ -73,7 +73,8 @@ class I18nTextOptional(_StrictBase):
 
 
 class YearMark(_StrictBase):
-    """A curation mark on a seed's own year (see Coin.year_mark)."""
+    """A curation mark on a seed's own year or ruler (see Coin.year_mark,
+    Coin.ruler_mark)."""
     kind: Literal["suspect", "erroneous"]
     # Reader-facing reason, translated like any other tooltip text (§0z).
     reason: I18nText
@@ -84,8 +85,8 @@ class YearMark(_StrictBase):
 
 
 class YearAlt(_StrictBase):
-    """One member source's marked year that is shown beside, not inside, the
-    displayed year (see Coin.year_alts)."""
+    """One member source's marked year (or ruler) that is shown beside, not
+    inside, the displayed value (see Coin.year_alts, Coin.ruler_alts)."""
     value: str = Field(..., min_length=1)
     source: str = Field(..., min_length=1)
     kind: Literal["suspect", "erroneous"]
@@ -1000,6 +1001,15 @@ class Coin(_StrictBase):
             "attestations override the suspect ucoin reading."
         ),
     )
+    # The ruler-column analogue of year_mark / year_alts: a curation mark on
+    # the ruler a source published, written on that source's seed. When a
+    # curator `_source_errata` replaces the seed's ruler, `value` keeps what the
+    # source printed; the merger turns the mark into `ruler_alts`, shown beside
+    # the displayed ruler with «(*)» / «(!)» and the reason in the tooltip.
+    # Founding case: KMM 331973 «Hans» on a Hauberg-numbered Lund penning
+    # (docs/research/luebischer_muenzfuss.md §6d).
+    ruler_mark: "YearMark | None" = None
+    ruler_alts: "list[YearAlt] | None" = None
     mint: str | list[str] | None = Field(
         None,
         description=(

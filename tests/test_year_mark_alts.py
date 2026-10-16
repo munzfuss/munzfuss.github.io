@@ -51,6 +51,24 @@ class YearAltsMerger(unittest.TestCase):
         self.assertEqual(merger._collect_year_alts(members), [alt])
 
 
+class RulerAltsMerger(unittest.TestCase):
+    """The ruler-column analogue (founding case KMM 331973 «Hans»)."""
+
+    def test_marked_ruler_keeps_the_printed_value(self):
+        members = [{"id": "kmk-331973", "ruler": "?",
+                    "ruler_mark": {"kind": "erroneous", "value": "Hans",
+                                   "reason": REASON}}]
+        self.assertEqual(merger._collect_ruler_alts(members),
+                         [{"value": "Hans", "source": "kmk",
+                           "kind": "erroneous", "reason": REASON}])
+
+    def test_year_mark_does_not_leak_into_ruler_alts(self):
+        members = [{"id": "ikmk-1", "ruler": "Frederik I", "year_label": "1506",
+                    "year_mark": {"kind": "suspect", "reason": REASON}}]
+        self.assertEqual(merger._collect_ruler_alts(members), [])
+        self.assertEqual(len(merger._collect_year_alts(members)), 1)
+
+
 class YearAltsSchema(unittest.TestCase):
     def test_coin_accepts_year_mark_and_year_alts(self):
         schema.YearMark(kind="suspect", reason=REASON)

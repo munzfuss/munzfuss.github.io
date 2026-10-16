@@ -107,6 +107,16 @@ Frederik I Gottorp Goldgulden, Galster 122):
 4. Re-flow (merger + absorb), rebuild, hover the marker. The reason is
    reader-facing prose with sources named (§0z), not a project note.
 
+## A mark on the RULER
+
+Same shape as the year (2026-10-16, founding case KMM 331973 «Hans» on a
+Hauberg-numbered Lund penning): `ruler_mark: {kind, value?, reason}` on the
+SEED (in `CURATED_FIELDS`); the merger emits `ruler_alts`, absorb unions them,
+the template shows the value muted beside the ruler with «(*)» / «(!)». When an
+erratum replaces the seed's ruler, put the printed ruler in `value`. NOTE:
+`ruler` is foundation-immutable in absorb — a corrected ruler must also be set
+on the existing final entry (yaml_io line edit), or it never reaches the render.
+
 ## Hard rules
 
 - A mark is written on the SEED reading only. Anything in `final` without a
