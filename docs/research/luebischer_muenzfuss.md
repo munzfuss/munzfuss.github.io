@@ -76,7 +76,7 @@ Status marks: **A** = attested in a cited source; **C** = our computation from a
   century to 1513»).
 - To do (curator to confirm): split the second rate block into II and III if the matrix is adopted; put
   the Søsling into III; decide the Hvid fraction; the three-stage Skilling model (§3.4b) as card text;
-  KMM 331973 «Penning, Lund» (parallel task); «Christiania» → «Oslo» in the mint field of the Oslo coins
+  KMM 331973 «Penning, Lund» — not Hans, see §6d (exclude / declassify / keep); «Christiania» → «Oslo» in the mint field of the Oslo coins
   (city name of the time).
 
 ## §1. Sources and provenance chains
@@ -655,6 +655,63 @@ catalogue data: kmk-395587 (Thomsen 11172/11171/11169), kmk-643057 / kmk-643058 
 102, 0,76 / 0,74 g). The same audit restored two category-C records of 2026-10-15: kmk-130728
 (Thomsen 11149/11147) and kmk-130729 (Thomsen 11178…) — catalogue indices are information (curator).
 165 classes under the card.
+
+### §6d KMM 331973 «Hans · Lund · penning · Hbg. 1» — not a coin of King Hans (2026-10-16, finding; NOT changed)
+
+**The record.** `scripts/cache/kmk/331973.json` (Inv. FP 6086.1): authority «Hans», place «Lund»,
+nominal «penning», typeNumber «Hbg. 1», creation 1483–1513, find «NV for Stangegård, Åker s.»
+(Bornholm), no weight, no description, no image (natmus page checked 2026-10-16). No other FP 6086.x
+object is in the KMM cache. In our data: seed `kmk-331973` → `unified-kmk-331973` (`danish_realm`),
+`luebischer_muenzfuss` I `kurant` by the bulk Hans decision of 2026-10-15
+(`classification_decisions/danish_realm.yml`, reason «King Hans / Rigsrådet 1481 / …»); `why` shows no
+coin-specific decision. Seed carries `catalog.hauberg: '1'`, `mint: Lund`, `mint_verified: true`.
+
+**Which Hauberg.** Four Hauberg catalogues come into question; none numbers a coin of Hans:
+- *Danmarks Myntvæsen og Mynter i Tidsrummet 1241–1377* (1885) — numbering restarts **per ruler and
+  per mint**; «Lund 1» exists under every king from Erik Plovpenning to Valdemar Atterdag
+  (danskmoent konkord.htm, `scripts/cache/danskmoent/konkordans/konkord.htm`: «1241-1250 Erik
+  Plovpenning Lund: Hauberg = MB», «1319-1332 Christoffer 2. Lund: Hbg/MB: 1/524, …»).
+- *Danmarks Myntvæsen i Tidsrummet 1377–1481* (Aarbøger for nordisk Oldkyndighed og Historie 1886,
+  s. 135 ff.; archive.org `y1886a87aarbger00norduoft`) — ends 1481 by title; it has **no running
+  catalogue numbers**, only figures: Fig. 1 (s. 153) is the Flensborg Firepenning («Saavel Omskriften
+  som Neldebladet vise, at denne Mynt, den ældste kjendte fra Flensborg …»); Erik af Pommern's Lund
+  sterlings are Fig. 7–9 (s. 162).
+- *Myntforhold og Udmyntninger i Danmark indtil 1146* (1900) and *Danmarks Myntvæsen i Tidsrummet
+  1146–1241* (1906) — before the period by title.
+- *Gullands Myntvæsen* (1891) — Gotland; the danskmoent Hans list cites it as Hauberg 102–108 (Visby).
+
+**The KMM precedent in the same field.** Sibling record `kmk-353178`: authority «Christian 2», place
+Roskilde, nominal penning, typeNumber «Hbg. 4, MB 558». The konkordans gives «1319-1332 Christoffer 2.
+… Roskilde: Hbg/MB: … 4/556-561» — MB 558 falls inside Hauberg 1885 Christoffer II Roskilde no. 4. So
+KMM uses Hauberg 1885 with per-mint numbers, and in that record the ruler name is not the one the
+catalogue number belongs to (Christoffer II, not Christian II). A third sibling, `kmk-306180`
+(Roskilde, «Hbg. 1»), carries authority «?».
+
+**No Lund mint under Hans.** (i) Hauberg 1886, s. 136: «Kronen omsider nødtes til at standse
+Udmyntningen ved de forskjellige Myntsteder, sidst i Lund, hvor Mynten nedlagdes ved Aaret 1377»
+— the end of the 13th–14th-c. penning coinage. (ii) Jensen, J. S.: *Regionale forskelle på udmøntning
+og møntbrug i Danmark ca. 1050 – ca. 1500*, Hikuin 35 (2008), s. 158: «Møntstedet i Lund blev lukket
+lidt ind i 1440’erne, og i stedet blev produktionen flyttet til Malmø» (after Erik af Pommern's
+sterlings and hollow pennies, c. 1420–35); s. 159: «under kong Hans oprettet nye møntsteder, både i
+København og i Ålborg». (iii) danskmoent hansgals.htm (after Galster): Hans' only penning is the Oslo
+hulpenning (Galster 156); no Lund. (iv) danskmoent 1penning.htm: the last Lund penning listed is Erik
+af Pommern's «ca. 1400-1420, Lund. Hulpenning; krone i strålekrans (Galster 5 note)».
+No archiepiscopal Lund coinage under Hans was found (web search 2026-10-16; hypothesis (b) unsupported,
+not disproved — MEC 10 / Karlsson & Steen Jensen on late-medieval Lund would settle it).
+
+**Conclusion (computed from the above, not a source statement).** «Hbg. 1» + «Lund» is a Hauberg 1885
+(1241–1377) type number — Lund no. 1 of one of eight rulers, which one the record does not say — or
+less likely Hauberg 1900/1906. The authority «Hans» and the 1483–1513 dating are therefore very
+probably a KMM data-entry error of the «Christian 2» kind; hypothesis: «Hans» stands for a Johannes
+(e.g. an archbishop) or is a slip — unverified. Without weight, description or image the ruler cannot
+be recovered from the record. It is not an 11½-Markfod coin.
+
+**Cached** (2026-10-16): `scripts/cache/danskmoent/hans_1481_1513/hauberg_1886_myntvaesen_1377_1481.{pdf,extract.txt}`
+(Aarbøger 1886 s. 135–189) and `…/jensen_2008_hikuin35_regionale_forskelle.{pdf,extract.txt}`.
+
+**Options for the curator** (nothing changed): (1) exclude from the render (§9, PB-12) as an
+unidentifiable stub outside the 1514 lower bound — recommended; (2) declassify to `seed_unsorted`
+with a note; (3) keep. Also: `mint_verified: true` here rests on the KMM place alone.
 
 ## §7. Inclusion decisions on the page (curator 2026-10-15)
 
