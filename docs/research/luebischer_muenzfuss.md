@@ -571,6 +571,26 @@ Viborg*. Kilder til numismatik og pengehistorie IV» — the publication of the 
 Skilling resumed 1480s/90s; dated Skillinger from 1512; Hvid issue to c. 1510) and names two items to obtain
 next — Risvaag 2009 (Galster 155 mint) and Märcher 2018 *Tre møntskatte* (Lemvig hoard of 190 Hans Skillinger).
 
+**Galster, *Mønt* (2. rev. oplag, København 1973) — read 2026-10-16** (curator's link to slaegtsbibliotek.dk;
+cache `scripts/cache/danskmoent/hans_1481_1513/galster_1973_moent.*`; printed page = pdf page; OCR garbles
+fractions, read from the page image). A handbook by the author of *Unionstidens udmøntninger* (1972) — the same
+reading as Galster 1972, not a second witness. **Not** Risvaag 2009 (still unread).
+- s. 23: Margrethe restores the coinage 1397 «*efter lybsk regning: 1 kølnsk mark (ca. 230 — 233.855 g) = 16
+  skilling = 192 penning*» — Galster equates the Lübeck reckoning mark with the Cologne weight mark (cf.
+  `mark_lybsk_mark_dansk.md` §2, where the mark of account is 16 ß lübisch).
+- s. 24: under Christian I «*kun hvide, der forringes fra ⅓ skilling til ¼ eller mindre*»; «*Under rustningerne
+  mod Sverige under kong Hans udmøntes atter skillinge*» (Skilling resumption tied to the Swedish armament — no
+  year); Hans' rhinsk gylden «*kun 17¾ karat mod 18½*»; the nobles «*svarer nøje til de hollandske guldrealer*».
+- s. 45: Hans' Norwegian håndfæstning 1 Feb 1483 — coin in Throndhjem «*og ligeså i Bergen og Oslo, jævngod mønt
+  med danske penge*»; «*I Bergen lod kongen slå søslinge, her og i de andre stæder tillige hvide og penninge. Men
+  al hans mønt var underlødig og ikke på nær dets pålydende værd, ligesom hans danske mønt.*» Galster here names
+  Oslo as a royal mint of Hans (the reading danskmoent follows for Galster 155).
+- s. 51: Hans' Swedish ordinance of 4 Dec 1497 — rhinsk gylden «*til en vægt af 3.38 g, svarende til hans danske
+  guldmønt; men den synes ikke at være udmøntet*» (agrees with `instruments/1497_moentanordning_stockholm.md`).
+- ⚠ Data note (not acted on): Galster 149 Bergen Søsling sits in TWO finals in `danish_norway` —
+  `unified-dk-bruun-9223` and `unified-dk-galster-hg-149` (both Galster 149 / Schou 100 / Schive XIV:2);
+  `unified-kmk-134394` is Galster 150. A §9.4 merge candidate for the curator.
+
 
 ### §3.5 Mark coins under Hans? (2026-10-15)
 
