@@ -112,7 +112,7 @@ The strict «no Chrome MCP» rule that briefly applied here was overly conservat
 | **II** | 14–15 Mar 2025 | Baur au Lac, Zurich | [`SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf`](https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf) (mirrored on danskmoent.dk) | 356 | 13001–13263 + 14001–14287 |
 | **III** | 28–30 Oct 2025 | Odd Fellow Palæet, Copenhagen | [`SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf`](https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf) | 284 | 11001–11308 + 12001–12228 |
 | **IV** | 24–25 Mar 2026 | Kosciuszko Foundation, NYC | [`SBG_Mar2026_BruunIV_Coins_Catalog.pdf`](https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf) | 128 | 17001–17291 + 18xxx |
-| **V** | 27–28 Oct 2026 | Odd Fellow Palæet, Copenhagen | [`SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf`](https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf) (danskmoent.dk only as of 2026-10-16; no Wayback copy yet) | 228 | 14001–14226 (Denmark) + 15001–15188 (Norway, Sweden, Germany) + 15189–15283 (medals) |
+| **V** | 27–28 Oct 2026 | Odd Fellow Palæet, Copenhagen | [`SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf`](https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf) (danskmoent.dk only as of 2026-10-16; [archive copy 2026-10-16](https://web.archive.org/web/20261016155119/https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf), identical sha256) | 228 | 14001–14226 (Denmark) + 15001–15188 (Norway, Sweden, Germany) + 15189–15283 (medals) |
 
 **Part V notes (harvested 2026-10-16).** 29 134 381 bytes, sha256
 `21327fc00f49c6788a377693c5c5b038303550c66ca443dbed41d1595a82eb8d`, InDesign

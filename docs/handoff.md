@@ -18,7 +18,7 @@
 
 ## 2026-10-16 — Bruun Part V (Copenhagen 27–28 Oct 2026) harvested, parsed, NOT seeded
 
-- PDF `scripts/cache/bruun/part5.pdf` (228 pp., sha256 `21327fc0…a82eb8d`), source URL danskmoent.dk only (Stack's Bowers page still lists I–IV); **no Wayback copy — Save Page Now awaits the curator's yes**. Lots 14001–14226 DK, 15001–15188 NO/SE/DE, 15189–15283 medals. `lots/part5.json` = 509/509.
+- PDF `scripts/cache/bruun/part5.pdf` (228 pp., sha256 `21327fc0…a82eb8d`), source URL danskmoent.dk only (Stack's Bowers page still lists I–IV); Wayback copy `https://web.archive.org/web/20261016155119/https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf` (curator-approved Save Page Now 2026-10-16, sha256 identical). Lots 14001–14226 DK, 15001–15188 NO/SE/DE, 15189–15283 medals. `lots/part5.json` = 509/509.
 - Parser fixes (`02_parse_lots.py`): out-of-order lot starts (+3 in V, **+14 never-seeded lots in II–IV** — these flow into the bruun seed on the next regen by anyone), and §9.2 medal titles → `is_pattern` (91 in V, 0 in I–IV). SOURCES §13.3 has all four entries.
 - Seed builder knows Part V but `_SEEDED_PARTS = (1,2,3,4)`; `--dry-run --parts 1,2,3,4,5` → +293 entries (danish_realm +108, danish_norway +109, royal_holstein +29, sweden +37, oldenburg +7, brunswick +2, gottorp +1); ~280 share a Hede/KM/Sieg/Galster/Lange key with an existing final.
 - **Blocker for seeding (curator):** printed Bruun-id collisions → duplicate seed ids: 4632 (II 13079 vs V 14085), 9764 (III 12079 vs V 15041, same 57.41 g — maybe the same specimen re-offered, unverified), 12937 (V 15162/15163). Also decide: 15200 Largesse Money 1671, 15247 Platina 1830, 15256 Greenland KM-Tn54 (in the medal session, not filtered).
