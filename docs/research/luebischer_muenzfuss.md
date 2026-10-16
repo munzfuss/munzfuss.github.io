@@ -112,6 +112,9 @@ analytic form, not a period name; the card name stays «Lybsk Møntfod» / «Lü
 Bobzin's caveat (SOURCES §6.5): an amateur compilation — his chronology is cross-checked against
 Jesse above (1502/1506 agree; Bobzin's 1461 has no Jesse counterpart in our cache).
 
+> **Which mark:** «11½» is Mark lübisch per fine mark; Mark dansk is a different, weaker money of account
+> (Hans: 1 Mark lübisch = 1,6 → ≈ 1,67 Mark dansk). Full treatment: `mark_lybsk_mark_dansk.md`.
+
 ### §3.1b How the sources state the size of the standard (2026-10-16, curator question)
 
 - **Jesse** (coingallery reproduction, counted 2026-10-16): the piece-count form «N Stück aus der x-lötigen
