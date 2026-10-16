@@ -441,13 +441,20 @@ proof that Denmark took the 1502/06 step.
 | 1502 / 1506 | Markstück | 13 | Bobzin; Jesse |
 | 1506 | Hamburg Witten (208 / 5 Lot 1 Grän) | ≈ 13 7/10 | Bobzin |
 | 1506 | three Markstück variants 12¼/15 lot · 11¾/14½ · 12/14½ | 13,07 · 12,97 · 13,24 | Bobzin («*die dritte, noch einmal verschlechterte Variante*» prevails 1515) |
+| **1512 recess (confirmed Bergedorf 1513)** | Markstück 13 from the 15-lot mark «*die aber noch mit 1/2 Lot Kupfer vermischt werden sollte*» (= 14½ lot) | **≈ 14⅓** (13 × 16 ÷ 14½ = 14,34; recomputed) | Jesse («*Ein neuer Rezeß von 1512 … setzte den Münzfuß auf 13 Stück aus der 15lötigen Mark fest*») |
+| 1512 recess | Doppelschilling 104 from the 15-lot mark («*fein 2,012 g*») | ≈ 13⅞ (104 ÷ 8 × 16 ÷ 15 = 13,87; recomputed) | Jesse — but «*Außer den Witten dieses Jahres ist aber keine andere Münze bekannt*»: the 1512 Mark and Doppelschilling are a paper standard |
+| 1515 (plan) | Schilling 106–108 from the 8-lot mark | 13¼ – 13½ (recomputed: 1,103 – 1,083 g fine) | Jesse («*1515, als ein Schilling zu 106-108 aus einer 8 lötigen Mark geplant*»); Bobzin 13¼ |
 | 1515 | Schilling | 13¼ | Bobzin («*1 feine Mark Silber = 212 ßl. = 13 Ml. 4 ßl.*») |
 | 1519 / 1528 | Taler (8 on the 15-lot mark) | 12⅘ | Bobzin |
 | 1522–30 | Doppelschillinge | 14⅜ – 15⅝ | Jesse («*wurde sie 1522-30 zu 14 M. 6 s bis 15 M. 10 s ausgemünzt*») |
 
-So within Hans' reign Lübeck stayed at 13 – 13¼ (small change ≈ 13 7/10); its next fall (14⅜–15⅝) is in
+~~So within Hans' reign Lübeck stayed at 13 – 13¼ (small change ≈ 13 7/10); its next fall (14⅜–15⅝) is in
 the 1520s. Denmark's dated 1512 Skillinger (15–18) were therefore already BELOW Lübeck's contemporary
-level — Denmark went further than Lübeck before 1513.
+level — Denmark went further than Lübeck before 1513.~~ **Corrected 2026-10-16:** the first version missed
+Jesse's 1512 recess. On paper Lübeck itself stepped down again in 1512 — Markstück ≈ 14⅓, Doppelschilling
+≈ 13⅞ Mark lübisch per fine mark — though Jesse knows only Witten struck that year; the 1515 Schilling plan is
+back at 13¼–13½. So the gap between Lübeck's (paper) 1512 level and the dated Danish 1512 Skillinger (15–18) is
+smaller than first stated: Denmark was still below, by ≈ 1–4 Mark rather than ≈ 2–5.
 
 **Open — what would settle each:**
 | Question | Would be settled by |
@@ -629,8 +636,27 @@ discusses whether a Danish king was held to Lübeck's OLD level after Lübeck mo
 (**hypothesis** — would be settled by a contemporary complaint or ruling invoking the clause against a Lübeck change).
 Note also who could enforce it: in 1460 Hamburg (Holstein); in the håndfæstninger the Danish council — never Lübeck.
 Lübeck's own instruments against Danish coin were valuation and prohibition: Danish coin is valued or banned in
-the recesses («*dänische Dreilinge*», after 1492 complaints about «*Dänemark*»; 1512 a Lübeck mintmaster executed
-«*wegen des Vertriebes von dänischen und Verdener Witten*», Jesse).
+the recesses («*dänische Dreilinge*», after 1492 complaints about «*Dänemark*»). ~~1512 a Lübeck mintmaster executed
+«*wegen des Vertriebes von dänischen und Verdener Witten*»~~ — **corrected 2026-10-16:** Jesse gives the case twice.
+In the chapter on organisation: «*in Lübeck ist 1512 ein Münzmeister wegen des Vertriebes von dänischen und Verdener
+Witten hingerichtet worden*». In the chapter on the last Witten, the context: imitations of the Hanseatic Witten
+(Stade, Otterndorf, Verden …), «*die "contrafegeden witten", vor denen in dieser Zeit immer wieder gewarnt wird und
+bei deren Vertrieb in Lübeck 1512 ein Münzmeister mit seinen Helfershelfern gefaßt wurde*». So: a mintmaster (not
+said to be Lübeck's own) and accomplices, caught in Lübeck putting **imitated («contrafegeden») Witten** into
+circulation, among them Danish and Verden pieces. Whether the «dänischen Witten» were Danish royal Hvide or
+imitations of them is not said. It is a counterfeiting case, not a measure against Danish royal coin as such.
+
+**Curator's reading (2026-10-16):** Wilcke's «*Hans saa vel som hans Fader havde lovet Rigsraaderne at holde Mønten op
+til den lybske i Hansestæderne*» (7-2 s. 147) is a strong argument that Denmark had to move with Lübeck to the
+13-Mark level. **Analysis:** «holde … op til» = keep the coin UP TO Lübeck's, i.e. not worse than the current
+Lübeck coin — a floor that moves with Lübeck. When Lübeck stepped to 13 (1502/06) and on paper to ≈ 14⅓ (1512), the
+floor dropped with it: a Danish Skilling at the 13-Mark level kept the promise; one below Lübeck's level broke it.
+The promise therefore PERMITS and benchmarks the move to 13 — it makes the 13-Mark level the expected Danish
+level once Lübeck was there — but it does not by itself COMPEL a debasement (a Danish coin better than Lübeck's would
+also have kept it). Fits the fixed position of §3.4d (Danish Skilling at the 13-Mark level at some point) and
+Wilcke's own verdict that the promise failed «*under Krig og Orlog*» (the 1512 Skillinger below Lübeck). Limits: Wilcke
+gives no instrument for the promise, and names its addressee differently at 7-1 s. 142 («*Lybækkerne*»); until the
+text is found it is Wilcke's statement, not the act's wording.
 
 **Consequences for the «departure» of 1513.**
 - What Wilcke calls the departure is in the RECKONING: «*Forholdet til den lybske ß ophævet … paa Bekostning af
