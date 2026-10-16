@@ -67,6 +67,8 @@ compilation after Jesse (M1) and others — agreement between M6 and M1 is one r
 | 1497 | «*4 Hvide ß, som Kong Hans mønte lod*»; elsewhere 5 Hvide per ß | M2 s. 142 | the Skilling coin above 3 Hvide |
 | 22 Jul / 1 Aug 1513 | 2 Mark dansk = 1 Gylden, 16 ß per M, **3 Hvide per ß** restored; «*Forholdet til den lybske ß ophævet*» | M3 s. 149–151 | the Danish ß detached from the Lübeck ß |
 | 1514 | Gylden = 24 ß = 72 Hvide | `instruments/1514_moentordning_malmoe.md` | back to the Lübeck count per Gylden inside the 8½-Gylden-Fod; beyond this card |
+| 10 Aug 1523 | «*for hele β 24 for 1 g og 12 af dem for en dansk M … item 4 Hvide i en hel β (og 3 Penninge for 1 Hvid, IIII lybsk for 1 Hvid)*» | *Denar til daler* (2018) s. 464, quoting Wilcke 1950 s. 174f. (same reading) | 1 Hvid = 3 Pf dansk = 4 Pf lybsk; beyond this card |
+| 1541 | 3 Mark = 1 Daler / rhinsk Gylden, 16 ß per Mark — «*i dansk mønt, ikke lybsk hvoraf der nu gik 2 danske skilling på 1 lybsk skilling*» | *Denar til daler* s. 488 | the 1 : 2 ratio of the Christian III reform; beyond this card |
 
 ## §5. Why two marks — what the sources say
 

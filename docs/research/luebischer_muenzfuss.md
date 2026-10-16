@@ -452,7 +452,7 @@ level — Denmark went further than Lübeck before 1513.
 **Open — what would settle each:**
 | Question | Would be settled by |
 |---|---|
-| Did the Danish move to ≈ 13 coincide with, lag behind, or precede Lübeck's 1502/06 step? | closing dates of hoards with 8-lod Skillinger (DMS, Jensen et al. 1992); Galster 1972; Märcher 2018 |
+| Did the Danish move to ≈ 13 coincide with, lag behind, or precede Lübeck's 1502/06 step? | closing dates of hoards with 8-lod Skillinger (DMS, Jensen et al. 1992); Galster 1972; Märcher 2018 *Tre møntskatte fra Lemvig …* (190 Hans Skillinger; NOT *Denar til daler*, which has no study — §3.4e) |
 | When did the Danish Skilling pass below 13 (7-lod group)? | same; dated 7-lod Skillinger |
 | Was Lübeck's coin itself debased between 1506 and 1513 beyond 13¼? | Lübeck mint accounts / Münzproben of those years (Jesse's notes, not in the coingallery extract); Behrens 1905 |
 
@@ -471,8 +471,9 @@ Lunds domkirkes korstole», s. 1–26 (the choir-stall find, 432 coins, deposite
 - **The settling book, correctly identified:** H. W. Horsnæs, J. C. Moesgaard & M. Märcher, *Denar til
   daler. Danmarks mønthistorie indtil 1550* (Danmarks Nationalbank, København 2018; 517 s.; ISBN
   9788792933072). Märcher's chapter «En ny start i en krisetid – ca. 1380–1480» is s. 354–425; the Hvid
-  pages Ingvardson cites (s. 435, 458) and the Hans period (s. 426–495, our earlier note) follow it. Not
-  online: Nationalbanken's page (checked 2026-10-16) has no download; reviews only (Historisk Tidsskrift).
+  pages Ingvardson cites (s. 435, 458) and the Hans period (s. 426–495, our earlier note) follow it.
+  ~~Not online: Nationalbanken's page (checked 2026-10-16) has no download~~ — **retracted the same day**:
+  the page does carry a PDF download (the curator found it); read and cached, see §3.4e.
 - Albin Hedin, «Cirkulationen av Erik av Pommerns kopparsterling i medeltida Danmark», s. 30–37 —
   pre-Hans, not relevant to the card.
 
@@ -490,6 +491,85 @@ fra 1490'erne, dog også i København og Aalborg*»; their fineness «*lå melle
 METHOD warning — the 1440s Korshvide still occur in large numbers in hoards deposited after 1526 or even in
 the 1540s, i.e. very long circulation, so a hoard's closing date dates the coin only loosely. Consequence:
 even DMS would bound the 8-lod Skillinger only by a terminus ante quem, not date their issue.
+
+
+### §3.4e *Denar til daler* (2018) — read 2026-10-16
+
+H. W. Horsnæs, J. C. Moesgaard & M. Märcher, *Denar til daler. Danmarks mønthistorie indtil 1550*
+(Danmarks Nationalbank, København 2018). PDF from nationalbanken.dk (528 pdf pp.; book page = pdf page − 4).
+Cache: `scripts/cache/danskmoent/hans_1481_1513/denar_til_daler_2018.extract.txt` (whole book, page
+markers) + `denar_til_daler_2018_kap6-7.pdf` (book pp. 354–495 only — the full PDF is 111,7 MB, above
+GitHub's per-file limit). Both chapters are Märcher's: kap. 6 «En ny start i en krisetid – ca. 1380-1480»
+(s. 354–425), kap. 7 «Et differentieret møntvæsen – ca. 1480-1550» (s. 426–495).
+
+**Provenance.** A survey, not a primary source. For Hans it leans on Schou 1926 (variant counts), Galster
+1972b *Unionstidens udmøntninger* (catalogue and history; Märcher calls it «*standardværket for
+katalogisering af periodens mønter*», s. 494), Wilcke 1950 (rates; n. 19 «Wilcke 1950, 90 og 131f.») and
+DMS 1992 (hoards). Where it repeats Wilcke or Galster it is the same reading, not corroboration.
+
+⚠ **Two different works hide behind «Märcher 2018».** Ingvardson (Myntstudier 2023:1) cites «Märcher 2018,
+435; 458» — those pages match *Denar til daler* (s. 458 = the Hvid section). But *Denar til daler*'s own
+bibliography lists «Märcher, M. 2018 (under udgivelse). *Tre møntskatte fra Lemvig, Stege og Engedal ved
+Viborg*. Kilder til numismatik og pengehistorie IV» — the publication of the Lemvig Møllegaard hoard (below).
+§3.4d's «Märcher 2018» lead meant the latter work.
+
+**What it settles or adds:**
+
+1. **No study of Hans' Skillinger exists (as of 2018)** — s. 461: «*Der findes ikke studier målrettet Hans'
+   hvide, og det samme gør sig gældende for skillingerne produceret under Hans og Christian 2.*» (n. 53:
+   die studies «*er dog undervejs*»). The book gives no fineness stages and no date for the 8-lod / 7-lod
+   groups. **§3.4c/§3.4d stays open; the book does not answer whether Denmark followed Lübeck's 1502/06 step.**
+2. **Start of Skilling coinage under Hans** — s. 443: skilling coinage «*efter genoptagelsen deraf i
+   1480'erne eller 1490'erne*» continued at intervals to 1872; s. 443: dated coins «*i Danmark starter med
+   1496 på guldmønter og fra 1512 ses skillinger med årstal*»; «*hvidene er under Hans alle uden årstal*».
+   New mints Aalborg and København «*nok i 1480'erne eller første halvdel af 1490'erne*» (mintmaster Herman
+   van Nassau in København 10 June 1495; Hans Mitzener at Aalborg c. two years later; s. 442).
+3. **Variant counts (Schou 1926, «with great reservations»)** — s. 443: Malmø «*74 og 44 varianter for
+   skillinger og hvide*», København 7 and 5, Aalborg 4 and 17. København «*formentlig … markant flere
+   skillinger end Aalborg*», the reverse for Hvide.
+4. **Søsling under Hans** — s. 443: «*Foruden et mindre antal guldmønter og nogle søslinge i Aalborg og få i
+   København blev der primært produceret hvide og sekundært skillinger under Hans.*» The sentence is
+   ambiguous: either Søslinger at Aalborg (and a few at København), or «few [gold coins] at København».
+   s. 444: the Søsling «*Der var produceret få tidligere i 1400-tallet, og det blev heller ikke til mange, før
+   den fik meget stor betydning fra 1524.*» No date within Hans' reign. ⚠ Our data has the Søsling of 1512
+   (Galster 30) — the book neither confirms nor contradicts the year; the mint reading (Aalborg / København)
+   should be checked against our Søsling rows' mints (open, §9).
+5. **Hvid production ends c. 1510** — s. 458: «*Den blev produceret i kolossale mængder fra 1440'erne til
+   omkring 1510, og den blev udbredt til alle egne af riget og dominerede store dele af møntomløbet frem til
+   1520-1530'erne.*» Fits stage III (§0.1: Søsling and dated Skillinger from 1512, Hvid issue over). Source
+   for «c. 1510» not given in the passage.
+6. **Hvid weight / silver** — s. 362: «*ofte ca. 0,75-1 g med et sølvindhold, der typisk var 0,2-0,3 g eller
+   derunder*». Consistent with Jensen's 200–250 ‰ (§3.4d).
+7. **Rates** — s. 447: «*Omkring år 1500 blev en nobel regnet som 2½ gylden, hvor en gylden svarede til
+   omkring 2-2½ mark (dansk) i sølvmønt.*» — n. 19 = Wilcke 1950 s. 90, 131f.: the same reading as our card's
+   aside blocks (2 → 2½ M dansk), not a second witness. Danish rhinsk gylden ≈ 3,28 g, ≈ 2,42 g gold; Huitfeldt:
+   150 000 gylden struck for the 1497 war.
+8. **Lübeck model, older layer** — s. 368: the Danish coinage built after 1400 «*byggede på det lybske
+   møntvæsen*»; Lübeck reckoning «*16 skilling på 1 mark*»; the Skilling «*kunne deles i to
+   søslinge/sechslinge, tre hvide/witten, fire sterlinge eller 12 penninge*»; 1375 Witten 176 per 13-lot Cologne
+   mark (recomputed in the book: ≈ 1,31 g, ≈ 1,06 g fine). s. 404: the Hanseatic Schilling of 1432 «*til 92
+   styk på den 10-lødige mark*»; Christopher's first Danish Skilling «*noget ringere – kursforskellen var 10%
+   eller mere*». s. 362: «*1 skilling (=3 hvid) startede som en betydelig sølvmønt fra ca. 1440*».
+9. **Norway** — s. 453: the archbishops' coins «*skulle holde samme møntfod som kongens*»; «*Danmark-Norge
+   havde fælles møntcirkulation*»; August 1514 ordinance (quoted after Galster 1972b, 38) — Norwegian coin as
+   good as Danish, Cologne mark in both realms. Find table 7.4 (s. 454): «Norge, Hans, hvid, Bergen» 3, «Norge,
+   Hans, hvid» 1 — no Oslo attribution. **Galster 155 mint not discussed.** But the bibliography names the
+   settling article: **J. A. Risvaag 2009, «Var Oslo myntsted under kong Hans?», NNUM s. 97–102** (beside
+   Risvaag 2006 *Mynt og by*). That is the item to read for the Oslo / Trondhjem question (§3.4d ⚠).
+10. **Circulation of Hans' Skillinger** — s. 461: single finds are rare («*skillingen må i større grad end
+    forventet primært være blevet brugt til opsparing og større transaktioner*»); s. 458–459: the **Lemvig
+    Møllegaard** hoard «*består udelukkende af Hans' skillinger (190 stk.)*» (publication: Märcher 2018, above).
+    A hoard of Hans Skillinger alone is the natural material for dating the 8-lod / 7-lod groups (die study +
+    metal analysis) — the lead for §3.4c.
+11. **After Hans (context only)** — s. 462: the Skillinger of Christian II (1515, Dines Blicher) «*formentlig
+    bevidst produceret en del under den foreskrevne møntfod*» (n. 56 Galster 1972b). s. 464, 1523 recess
+    (Wilcke 174f.): «*4 Hvide i en hel β (og 3 Penninge for 1 Hvid, IIII lybsk for 1 Hvid)*» — 1 Hvid = 3
+    Danish = 4 Lübeck Penninge. s. 488, 1541: mark and skilling «*i dansk mønt, ikke lybsk hvoraf der nu gik
+    2 danske skilling på 1 lybsk skilling*». Feeds `mark_lybsk_mark_dansk.md` §4 (beyond Hans).
+
+**Net effect on the card:** no parameter changes. The book confirms the framing (Lübeck-based system;
+Skilling resumed 1480s/90s; dated Skillinger from 1512; Hvid issue to c. 1510) and names two items to obtain
+next — Risvaag 2009 (Galster 155 mint) and Märcher 2018 *Tre møntskatte* (Lemvig hoard of 190 Hans Skillinger).
 
 
 ### §3.5 Mark coins under Hans? (2026-10-15)
@@ -836,7 +916,9 @@ Built 2026-10-15 (card, page section, phase I, timeline bar; no coins yet). Grid
 
 | Question | Would be settled by |
 |---|---|
-| Start of Skilling / Søsling coinage (1495–1512) | Märcher 2018 (*Denar til Daler* s. 426–495, paper); dated hoards (Jensen et al. 1992) |
+| Start of Skilling / Søsling coinage (1495–1512) | *Denar til daler* read (§3.4e): Skilling resumed «1480'erne eller 1490'erne», dated from 1512, Søsling date not given; next: Märcher 2018 *Tre møntskatte* (Lemvig hoard), DMS 1992 |
+| Søsling mints under Hans (Aalborg / København per *Denar til daler* s. 443) vs our Søsling rows | our data vs Galster 1972b catalogue |
+| Galster 155 mint: Oslo (danskmoent) vs Trondhjem (Ingvardson) | Risvaag 2009, «Var Oslo myntsted under kong Hans?», NNUM s. 97–102 |
 | Which 1513 figures repeat Hans-era ordinances | the 1496 goldsmiths' Skraa text (not seen) |
 | Jesse's mark weight (≈ 223–227 g implied by 19,392 g and 1,35 g) | Jesse's print notes (omitted on coingallery) |
 | Hans' «Marckestycker» (1542 account) | a specimen or a second account (none known) |
