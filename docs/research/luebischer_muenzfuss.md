@@ -112,6 +112,26 @@ analytic form, not a period name; the card name stays «Lybsk Møntfod» / «Lü
 Bobzin's caveat (SOURCES §6.5): an amateur compilation — his chronology is cross-checked against
 Jesse above (1502/1506 agree; Bobzin's 1461 has no Jesse counterpart in our cache).
 
+### §3.1b How the sources state the size of the standard (2026-10-16, curator question)
+
+- **Jesse** (coingallery reproduction, counted 2026-10-16): the piece-count form «N Stück aus der x-lötigen
+  Mark» 43 times — the recesses' own form (e.g. 1468 «*103½ Stück aus der 9lötigen Mark*»); the value of
+  the fine mark («die feine Mark zu N Mark») 9 times, used to compare standards across time. For this
+  standard verbatim: «*Verglichen mit dem Münzfuß der Doppelschillinge von 1492 … War damals die feine Mark
+  zu 11 M. 8 s ausgebracht, wurde sie 1522-30 zu 14 M. 6 s bis 15 M. 10 s ausgemünzt*» — 11 M 8 ß = 11½
+  Mark per fine mark, from the 1492 Doppelschilling (69 / 12-lot mark → 92 per fine mark = 184 ß). So
+  «11½» is Jesse's figure, not only our recomputation (§3.1a).
+- **Bobzin** («Lübisches Münzsystem»): value-of-the-fine-mark and «N-Mark-Fuß» throughout, but from 1502
+  on (13-, 13 7/10-, 13¼-, 12⅘-Mark-Fuß); for 1461 «1 feine Mark Silber = 10 Ml. und 6 bis 12 ßl.»; the
+  1468 / 1492 standard itself is not stated by him.
+- **Wilcke 7-2 s. 150–151**: fine weight per ß («1,269 — 1,103 gr.»); **Eriksson**: lod + weight per piece.
+- **Formula on the card**: «103½ Schilling / rough Cologne mark / 9 Lot» is the recess form — the 9-lot
+  mark is the alloyed (rough) mark of 9-lot silver; 103½ pieces per FINE mark would be wrong (184).
+
+Reading: the period instruments state pieces per rough mark at a lot fineness; «11½ Mark» is the
+historians' comparative measure (Jesse 1492, Bobzin's «N-Mark-Fuß» for later steps). Both are in the
+literature; the card name uses the second, the card formula the first.
+
 ### §3.2 Denmark under Hans — reconstructed, no ordinance
 
 | Element | Value | Source |

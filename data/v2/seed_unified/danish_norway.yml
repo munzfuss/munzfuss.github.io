@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-10-15 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-16 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 4721 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-10-15'
+generated_at: '2026-10-16'
 coins:
   - id: unified-denmark-numismaster-86285
     fuss: seed_unsorted
@@ -3184,13 +3184,13 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: ½ Skilling
+    nominal: 1 Søsling
     year_first: 1481
-    year_last: 1512
+    year_last: 1513
     year_ranges:
       -   - 1481
-          - 1512
-    year_label: 1481-1512
+          - 1513
+    year_label: 1481-1513
     ruler: Hans
     mint: Bergen
     catalog:
@@ -3214,6 +3214,12 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12029, p. 173
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273661
+        ref: KMM 273661 (Inv. FP 1667.102)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/311328
+        ref: KMM 311328 (Inv. FP 7135.108)
     note:
       de: Søsling
       en: Søsling
@@ -3228,6 +3234,13 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-bruun-9223
+      - kmk-273661
+      - kmk-311328
+    _errata_applied:
+      - source: dk-bruun-9223
+        field: nominal
+        printed: ½ Skilling
+        correct: 1 Søsling
   - id: unified-dk-bruun-9242
     fuss: seed_unsorted
     phase: bruun
@@ -7270,12 +7283,6 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/norge/nha/g149.htm
         ref: Galster 149 (hg) — danskmoent.dk norge_nha_g149.htm
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273661
-        ref: KMM 273661 (Inv. FP 1667.102)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/311328
-        ref: KMM 311328 (Inv. FP 7135.108)
     verification_note:
       de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
         Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -7288,8 +7295,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-galster-hg-149
-      - kmk-273661
-      - kmk-311328
   - id: unified-dk-galster-hg-151
     fuss: seed_unsorted
     phase: galster
