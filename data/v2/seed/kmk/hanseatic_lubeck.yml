@@ -1,12 +1,40 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-15T08:20:16Z'
+generated_at: '2026-10-16T16:11:27Z'
 entity: hanseatic_lubeck
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
   (entity_classified_via records which). Museum-attested fields carry verified=true (weight only — no diameter/fineness). Phase-4 assigns Müntzfuß/phase; cross-source merger deduplicates against 
   Hede/Bruun/Numista/IKMK/etc.
 coins:
+  - id: kmk-156462
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: hanseatic_lubeck
+    entity_classified_via: mint
+    metal_verified: false
+    mint: Lübeck
+    mint_verified: true
+    weight_rough_verified: false
+    catalog:
+      jesse: '187'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156462
+        ref: KMM 156462 (Inv. FP 2638.24)
+    verification_note: &id001
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    year_label: '1500'
+    year_first: 1500
+    year_last: 1500
+    year_ranges:
+      -   - 1500
+          - 1500
   - id: kmk-267276
     fuss: seed_unsorted
     phase: kmk
@@ -29,11 +57,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/267276
         ref: KMM 267276 (Inv. FP 10090.6)
-    verification_note: &id001
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
-      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    verification_note: *id001
   - id: kmk-168425
     fuss: seed_unsorted
     phase: kmk
@@ -1987,7 +2011,11 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/130699
         ref: KMM 130699 (Inv. FP 1217.1)
-    verification_note: *id001
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
   - id: kmk-130701
     fuss: seed_unsorted
     phase: kmk
@@ -2003,24 +2031,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/130701
         ref: KMM 130701 (Inv. FP 1217.3)
-    verification_note: *id001
-  - id: kmk-156462
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: hanseatic_lubeck
-    entity_classified_via: mint
-    metal_verified: false
-    mint: Lübeck
-    mint_verified: true
-    weight_rough_verified: false
-    catalog:
-      jesse: '187'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156462
-        ref: KMM 156462 (Inv. FP 2638.24)
     verification_note: *id001
   - id: kmk-348620
     fuss: seed_unsorted
@@ -2042,6 +2052,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/348620
         ref: KMM 348620 (Inv. FP 5396.190)
     verification_note: *id001
+    year_first: 1559
+    year_label: '1559'
+    year_last: 1559
+    year_ranges:
+      -   - 1559
+          - 1559
   - id: kmk-415797
     fuss: seed_unsorted
     phase: kmk

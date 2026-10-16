@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `herzogtum_braunschweig_lueneburg`.
-# Generated 2026-10-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-16 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/herzogtum_braunschweig_lueneburg.yml across all sources.
 #
 # Input: 2912 per-source seed entries.
-# Output: 2532 unified entries (one per physical coin).
+# Output: 2530 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: herzogtum_braunschweig_lueneburg
-generated_at: '2026-10-09'
+generated_at: '2026-10-16'
 coins:
   - id: unified-dk-bruun-5538
     fuss: seed_unsorted
@@ -49188,7 +49188,11 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156463
         ref: KMM 156463 (Inv. FP 2638.23)
-    verification_note: *id002
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - kmk-156463
@@ -50331,30 +50335,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Portrætdaler
-    ruler: Christian
-    catalog:
-      welter: '924'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 28.13
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/348676
-        ref: KMM 348676 (Inv. FP 5396.134)
-    verification_note: *id002
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - kmk-348676
-  - id: unified-kmk-348677
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Portrætdaler
+    year_first: 1630
+    year_last: 1630
+    year_label: '1630'
     ruler: Christian
     catalog:
       welter: '924'
@@ -50366,19 +50349,28 @@ coins:
     weight_rough_g:
       - value: 27.06
         source: kmk
+      - value: 28.13
+        source: kmk
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348676
+        ref: KMM 348676 (Inv. FP 5396.134)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/348677
         ref: KMM 348677 (Inv. FP 5396.133)
     verification_note: *id002
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - kmk-348676
       - kmk-348677
   - id: unified-kmk-348678
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     nominal: 1 Portrætdaler
+    year_first: 1626
+    year_last: 1626
+    year_label: '1626'
     ruler: Christian
     catalog:
       welter: '923'
@@ -50403,6 +50395,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Portrætdaler
+    year_first: 1625
+    year_last: 1625
+    year_label: '1625'
     ruler: Christian
     catalog:
       welter: '923'
@@ -50427,6 +50422,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Andreasdaler
+    year_first: 1622
+    year_last: 1622
+    year_label: '1622'
     ruler: Christian
     catalog:
       welter: '926'
@@ -50451,6 +50449,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Skilling
+    year_first: 1642
+    year_last: 1642
+    year_label: '1642'
     ruler: August den Yngre
     catalog:
       welter: '796'
@@ -50475,6 +50476,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Vildmandsdaler
+    year_first: 1639
+    year_last: 1639
+    year_label: '1639'
     ruler: August den Yngre
     catalog:
       welter: '819'
@@ -50499,6 +50503,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Portrætdaler
+    year_first: 1636
+    year_last: 1636
+    year_label: '1636'
     ruler: August den Yngre
     catalog:
       welter: '882'
@@ -50523,6 +50530,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Portrætdaler
+    year_first: 1634
+    year_last: 1634
+    year_label: '1634'
     ruler: August den Yngre
     catalog:
       welter: '882'
@@ -50547,6 +50557,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Vildmandsdaler
+    year_first: 1628
+    year_last: 1628
+    year_label: '1628'
     ruler: Frederik Ulrik
     catalog:
       welter: 1057A
@@ -50565,10 +50578,14 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/348692
         ref: KMM 348692 (Inv. FP 5396.118)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/393959
+        ref: KMM 393959 (Inv. FP 4227.1763)
     verification_note: *id002
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - kmk-348687
+      - kmk-393959
   - id: unified-kmk-348688
     fuss: seed_unsorted
     phase: kmk
@@ -50589,6 +50606,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/348688
         ref: KMM 348688 (Inv. FP 5396.122)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348692
+        ref: KMM 348692 (Inv. FP 5396.118)
     verification_note: *id002
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
@@ -50670,6 +50690,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Vildmandsdaler
+    year_first: 1623
+    year_last: 1623
+    year_label: '1623'
     ruler: Frederik Ulrik
     catalog:
       welter: 1057A
@@ -50790,6 +50813,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Vildmandsdaler
+    year_first: 1615
+    year_last: 1615
+    year_label: '1615'
     ruler: Frederik Ulrik
     catalog:
       welter: 1057A
@@ -50814,6 +50840,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Vildmandsdaler
+    year_first: 1608
+    year_last: 1608
+    year_label: '1608'
     ruler: hertug Henrik Julius
     catalog:
       welter: 645B
@@ -50934,6 +50963,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Vildmandsdaler
+    year_first: 1604
+    year_last: 1604
+    year_label: '1604'
     ruler: hertug Henrik Julius
     catalog:
       welter: 645B
@@ -51030,6 +51062,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Vildmandsdaler
+    year_first: 1601
+    year_last: 1601
+    year_label: '1601'
     ruler: hertug Henrik Julius
     catalog:
       welter: 645B
@@ -51054,6 +51089,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Kvartdaler; licht thaler
+    year_first: 1580
+    year_last: 1580
+    year_label: '1580'
     ruler: Julius
     catalog:
       welter: '591'
@@ -51078,6 +51116,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Brillenthaler
+    year_first: 1588
+    year_last: 1588
+    year_label: '1588'
     ruler: Julius
     catalog:
       welter: '581'
@@ -51102,6 +51143,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Licht thaler
+    year_first: 1586
+    year_last: 1586
+    year_label: '1586'
     ruler: Julius
     catalog:
       welter: '578'
@@ -51126,6 +51170,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Kvartdaler
+    year_first: 1530
+    year_last: 1530
+    year_label: '1530'
     ruler: Vilhelm
     catalog:
       welter: 729A
@@ -51454,30 +51501,6 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - kmk-393958
-  - id: unified-kmk-393959
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Vildmandsdaler
-    year_first: 1628
-    year_last: 1628
-    year_label: '1628'
-    ruler: Frederik Ulrik
-    catalog:
-      welter: 1057A
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/393959
-        ref: KMM 393959 (Inv. FP 4227.1763)
-    verification_note: *id002
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - kmk-393959
   - id: unified-kmk-393960
     fuss: seed_unsorted
     phase: kmk

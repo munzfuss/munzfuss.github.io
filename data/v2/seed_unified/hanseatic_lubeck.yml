@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_lubeck`.
-# Generated 2026-10-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-16 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
 # Input: 416 per-source seed entries.
-# Output: 334 unified entries (one per physical coin).
+# Output: 333 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_lubeck
-generated_at: '2026-10-06'
+generated_at: '2026-10-16'
 coins:
   - id: unified-dk-bruun-12891
     fuss: seed_unsorted
@@ -838,7 +838,11 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/130699
         ref: KMM 130699 (Inv. FP 1217.1)
-    verification_note: *id002
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-130699
@@ -915,6 +919,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: (?)
+    year_first: 1500
+    year_last: 1500
+    year_label: '1500'
     mint: Lübeck
     catalog:
       jesse: '187'
@@ -1805,6 +1812,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Daler
+    year_first: 1559
+    year_last: 1559
+    year_label: '1559'
     ruler: borgm. Amb. Meyer
     mint: Lübeck
     metal: silver
@@ -1819,10 +1829,14 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/348620
         ref: KMM 348620 (Inv. FP 5396.190)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624181
+        ref: KMM 624181 (Inv. FP 788.78)
     verification_note: *id002
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-348620
+      - kmk-624181
   - id: unified-kmk-368632
     fuss: seed_unsorted
     phase: kmk
@@ -2424,28 +2438,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-624180
-  - id: unified-kmk-624181
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1559
-    year_last: 1559
-    year_label: '1559'
-    mint: Lübeck
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/624181
-        ref: KMM 624181 (Inv. FP 788.78)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-624181
   - id: unified-kmk-651570
     fuss: seed_unsorted
     phase: kmk
