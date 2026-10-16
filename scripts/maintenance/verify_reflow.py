@@ -315,6 +315,22 @@ def _relocated_ids(entity: str) -> set[str]:
     return out
 
 
+def _member_excluded_kmm(entity: str) -> set[str]:
+    """KMM object numbers of seeds excluded with `scope: member` (2026-10-16).
+
+    Such an exclusion removes ONE record from a merged class; absorb then drops
+    that record's KMM citation from the class. The citation leaving the class is
+    the recorded decision, not a loss — excused citation by citation, nothing
+    else."""
+    path = ROOT / EXCLUSIONS_REL / f"{entity}.yml"
+    if not path.exists():
+        return set()
+    doc = _read_yaml(path)
+    return {str(e["id"]).removeprefix("kmk-") for e in (doc.get("exclusions") or [])
+            if e.get("id") and e.get("scope") == "member"
+            and str(e["id"]).startswith("kmk-")}
+
+
 def _excluded_ids(entity: str) -> set[str]:
     """Seed ids the curator has excluded for `entity` (data/v2/exclusions/).
 
@@ -1027,6 +1043,16 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                             f"{cid}.{f}: {v[:70]} (§9a envelope trim)"
                             for v in sorted(trimmed))
                         gone -= trimmed
+                if gone and f == "sources":
+                    _mx = _member_excluded_kmm(entity)
+                    if _mx:
+                        member_gone = {v for v in gone
+                                       if any(f"/KMM/object/{n}\"" in v for n in _mx)}
+                        if member_gone:
+                            retractions.extend(
+                                f"{cid}.{f}: {v[:70]} (member exclusion)"
+                                for v in sorted(member_gone))
+                            gone -= member_gone
                 if gone:
                     losses.append(f"LIST SHRANK  {cid}.{f}: lost {len(gone)} "
                                   f"({sorted(gone)[0][:70]}…)")

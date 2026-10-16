@@ -199,18 +199,23 @@ def _load_exclusions(entity_id: str) -> dict[str, dict]:
     for e in (doc.get("exclusions") or []):
         cid = e.get("id")
         if cid:
-            out[str(cid)] = {"category": e.get("category"), "reason": e.get("reason")}
+            out[str(cid)] = {"category": e.get("category"), "reason": e.get("reason"),
+                             "scope": e.get("scope")}
     return out
 
 
-def _coin_exclusion_hit(entry: dict, excluded_ids: set) -> set:
+def _coin_exclusion_hit(entry: dict, excluded_ids: set,
+                        member_ids: set = frozenset()) -> set:
     """Which excluded seed ids a final entry matches — its OWN unified id or ANY
     composed_of member (each stripped of the `unified-` prefix). Empty set = the
-    coin is not excluded. A non-empty set means drop it and mark those ids matched."""
-    seeds = {str(entry.get("id") or "").removeprefix("unified-")}
-    seeds |= {str(m).removeprefix("unified-")
-              for m in (entry.get("composed_of") or [])}
-    return seeds & excluded_ids
+    coin is not excluded. A non-empty set means drop it and mark those ids matched.
+    A `scope: member` id (`member_ids`) matches the entry's OWN id only: it
+    removes that record (a singleton — the merger isolates it), never the class
+    whose composed_of still names it from an earlier merge."""
+    own = str(entry.get("id") or "").removeprefix("unified-")
+    seeds = {own} | {str(m).removeprefix("unified-")
+                     for m in (entry.get("composed_of") or [])}
+    return (seeds & (excluded_ids - member_ids)) | ({own} & member_ids)
 
 
 def _entities_with_seed_unified() -> list[str]:
@@ -2160,6 +2165,7 @@ def process_entity(entity_id: str) -> dict:
     # skip below is a cheap early-out; the final filter is the source of truth.
     exclusions = _load_exclusions(entity_id)
     excluded_ids = set(exclusions)
+    member_ids = {k for k, v in exclusions.items() if v.get("scope") == "member"}
     # ids matched ANYWHERE this run (bulk-promote skip OR final filter) — an id
     # not matched anywhere is a true orphan (typo / coin already gone from seed).
     excluded_matched: set[str] = set()
@@ -2983,7 +2989,7 @@ def process_entity(entity_id: str) -> dict:
             # coin. Record the match so the orphan check below stays correct on
             # re-runs (once dropped, the coin only reappears here as unmatched).
             if excluded_ids:
-                _u_hit = _coin_exclusion_hit(unified, excluded_ids)
+                _u_hit = _coin_exclusion_hit(unified, excluded_ids, member_ids)
                 if _u_hit:
                     excluded_matched |= _u_hit
                     continue
@@ -3447,16 +3453,38 @@ def process_entity(entity_id: str) -> dict:
     if excluded_ids:
         _kept_after_excl: list[dict] = []
         for fc in enriched_entries:
-            hit = _coin_exclusion_hit(fc, excluded_ids) if isinstance(fc, dict) else set()
+            hit = _coin_exclusion_hit(fc, excluded_ids, member_ids) if isinstance(fc, dict) else set()
             if hit:
                 excluded_matched |= hit
                 exclusion_dropped += 1
                 continue
+            # A member-scope record left this class: drop its stale composed_of
+            # reference (the class no longer contains it).
+            if member_ids and isinstance(fc, dict) and fc.get("composed_of"):
+                _co = [m for m in fc["composed_of"]
+                       if str(m).removeprefix("unified-") not in member_ids
+                       or str(m).removeprefix("unified-") == str(fc.get("id") or "").removeprefix("unified-")]
+                if len(_co) != len(fc["composed_of"]):
+                    fc["composed_of"] = _co
+            # …and its citation: the record was removed, so the class must not keep
+            # citing it (absorb unions the foundation's stored sources, so without
+            # this the KMM object URL would survive the record's removal).
+            if member_ids and isinstance(fc, dict) and fc.get("sources"):
+                _kmm_gone = {m.removeprefix("kmk-") for m in member_ids if m.startswith("kmk-")}
+                _src = [x for x in fc["sources"]
+                        if not (isinstance(x, dict)
+                                and "/KMM/object/" in str(x.get("url") or "")
+                                and str(x.get("url")).rstrip("/").rsplit("/", 1)[-1] in _kmm_gone)]
+                if len(_src) != len(fc["sources"]):
+                    fc["sources"] = _src
             _kept_after_excl.append(fc)
         enriched_entries = _kept_after_excl
         if exclusion_dropped:
             print(f"  [{entity_id}] curator exclusions: dropped {exclusion_dropped} "
                   f"coin(s) from final ({len(excluded_matched)} id(s) matched)")
+        # A member-scope id whose singleton class exists did its job: the record
+        # sits alone in seed_unified and never reached final.
+        excluded_matched |= {m for m in member_ids if f"unified-{m}" in unified_by_id}
         orphan_exclusions = sorted(excluded_ids - excluded_matched)
         if orphan_exclusions:
             print(f"  ⚠ [{entity_id}] {len(orphan_exclusions)} exclusion id(s) matched "

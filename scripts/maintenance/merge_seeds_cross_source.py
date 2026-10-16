@@ -90,6 +90,26 @@ V2_SEED = ROOT / "data" / "v2" / "seed"
 V2_SEED_UNIFIED = ROOT / "data" / "v2" / "seed_unified"
 V2_MERGE_DECISIONS = ROOT / "data" / "v2" / "merge_decisions"
 V2_MATCH_UNCERTAINTY = ROOT / "data" / "v2" / "match_uncertainty"
+V2_EXCLUSIONS = ROOT / "data" / "v2" / "exclusions"
+
+
+def _excluded_seed_ids() -> set[str]:
+    """Seed ids excluded with `scope: member` in data/v2/exclusions/*.yml.
+    The merger keeps each one a SINGLETON (UnionFind.isolated), so the record
+    leaves the class it had joined (on nominal + ruler + mint alone, say) and
+    absorb drops the singleton by its own id. Plain exclusions (no scope) keep
+    the old meaning — the whole coin the seed belongs to is removed — because
+    earlier curator decisions rely on it: isolating them surfaced 5 coins the
+    curator had removed and dropped 3 finals (measured 2026-10-16)."""
+    out: set[str] = set()
+    if not V2_EXCLUSIONS.exists():
+        return out
+    for f in sorted(V2_EXCLUSIONS.glob("*.yml")):
+        doc = yaml.safe_load(f.read_text()) or {}
+        for e in doc.get("exclusions") or []:
+            if isinstance(e, dict) and e.get("id") and e.get("scope") == "member":
+                out.add(str(e["id"]))
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -2276,6 +2296,9 @@ class UnionFind:
         # id per union — 17 s of a 30 s danish_norway run (2026-10-08).
         self._members: dict[str, list[str]] = {}
         self._seq: dict[str, int] = {}
+        # Seeds that never join a class (curator exclusions) — see
+        # `_excluded_seed_ids`. Both `union` and `force_union` refuse them.
+        self.isolated: set[str] = set()
 
     def find(self, x):
         if x not in self.parent:
@@ -2309,6 +2332,8 @@ class UnionFind:
         rx, ry = self.find(x), self.find(y)
         if rx == ry:
             return (False, None)
+        if x in self.isolated or y in self.isolated:
+            return (False, frozenset({x, y}))
         # Direct pair check
         if not self.can_union(x, y):
             return (False, frozenset({x, y}))
@@ -2346,6 +2371,8 @@ class UnionFind:
         rx, ry = self.find(x), self.find(y)
         if rx == ry:
             return (True, None)
+        if x in self.isolated or y in self.isolated:
+            return (False, frozenset({x, y}))
         members_x = self._class_members(rx)
         members_y = self._class_members(ry)
         # Refuse on explicit curator no_merge conflict.
@@ -4367,6 +4394,7 @@ def process_entity(entity_id: str,
 
     seeds_by_id: dict[str, dict] = {c["id"]: c for c in seeds}
     uf = UnionFind()
+    uf.isolated = _excluded_seed_ids() & set(seeds_by_id)
     # Ensure all ids are in uf so singleton classes show up.
     for cid in seeds_by_id:
         uf.find(cid)
