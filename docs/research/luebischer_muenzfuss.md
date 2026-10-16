@@ -421,6 +421,46 @@ Rigsrådet untouched). Photo absence re-checked live for any new seed.
 Note: C includes `unified-kmk-643973` (KMM Skilling «1517» → 1513 (?), the erratum of 2026-10-15) and one
 KMM Hvid dated 1512 (danskmoent lists Hans' Hvide as undated, «U.år»).
 
+### §6c Empty KMM members inside merged classes (2026-10-16, candidates — NOT excluded)
+
+KMM records with no catalogue index, no weight, no description and no photo (checked live on natmus.dk)
+that sit as members of a merged class — joined on nominal + ruler + mint alone, no shared index (§9.4).
+The Galster 31 class `unified-dk-galster-hg-31` itself is clean: all its KMM members carry «G 31».
+Curator 2026-10-16: such records are exclusion candidates too.
+
+Tried: pairwise `no_merges` (104 pairs) against their own class → each one re-glued to ANOTHER keyed
+class of the same nominal + mint (Galster 31, Galster 29 / Bruun 3837, Numista 152921). Reverted. What
+works: exclude them (`exclusions/`) AND make the merger keep an excluded seed as a singleton — today the
+merger does not read `exclusions/`, so a member exclusion is inert (absorb matches only the final's own
+id and its `composed_of` unified ids).
+
+22 records:
+
+| # | class (final) | nominal · mint | KMM seed (object no.) |
+|---|---|---|---|
+| 1 | `unified-dk-galster-hg-36` | 1 Hvid · Aalborg | [kmk-642893](https://samlinger.natmus.dk/KMM/object/642893) (FP 34.777) |
+| 2 | `unified-dk-galster-hg-36` | 1 Hvid · Aalborg | [kmk-642894](https://samlinger.natmus.dk/KMM/object/642894) (FP 34.776) |
+| 3 | `unified-dk-galster-hg-36` | 1 Hvid · Aalborg | [kmk-642895](https://samlinger.natmus.dk/KMM/object/642895) (FP 34.775) |
+| 4 | `unified-dk-galster-hg-36` | 1 Hvid · Aalborg | [kmk-643057](https://samlinger.natmus.dk/KMM/object/643057) (FP 34.613) |
+| 5 | `unified-dk-galster-hg-36` | 1 Hvid · Aalborg | [kmk-643058](https://samlinger.natmus.dk/KMM/object/643058) (FP 34.612) |
+| 6 | `unified-dk-numista-108399` | 1 Hvid · Malmø | [kmk-186398](https://samlinger.natmus.dk/KMM/object/186398) (FP 489.19.5) |
+| 7 | `unified-dk-numista-108399` | 1 Hvid · Malmø | [kmk-186399](https://samlinger.natmus.dk/KMM/object/186399) (FP 489.19.4) |
+| 8 | `unified-dk-numista-108399` | 1 Hvid · Malmø | [kmk-186400](https://samlinger.natmus.dk/KMM/object/186400) (FP 489.19.7) |
+| 9 | `unified-dk-numista-108399` | 1 Hvid · Malmø | [kmk-395587](https://samlinger.natmus.dk/KMM/object/395587) (FP 560.784) |
+| 10 | `unified-dk-numista-108399` | 1 Hvid · Malmø | [kmk-395588](https://samlinger.natmus.dk/KMM/object/395588) (FP 560.783) |
+| 11 | `unified-dk-numista-108399` | 1 Hvid · Malmø | [kmk-395589](https://samlinger.natmus.dk/KMM/object/395589) (FP 560.782) |
+| 12 | `unified-dk-numista-108399` | 1 Hvid · Malmø | [kmk-642162](https://samlinger.natmus.dk/KMM/object/642162) (FP 34.1508) |
+| 13 | `unified-dk-numista-108399` | 1 Hvid · Malmø | [kmk-642163](https://samlinger.natmus.dk/KMM/object/642163) (FP 34.1507) |
+| 14 | `unified-dk-numista-108399` | 1 Hvid · Malmø | [kmk-642164](https://samlinger.natmus.dk/KMM/object/642164) (FP 34.1506) |
+| 15 | `unified-dk-numista-152925` | 1 Skilling · Kopenhagen | [kmk-639604](https://samlinger.natmus.dk/KMM/object/639604) (FP 11781.1) |
+| 16 | `unified-dk-numista-152925` | 1 Skilling · Kopenhagen | [kmk-643658](https://samlinger.natmus.dk/KMM/object/643658) (FP 34.12) |
+| 17 | `unified-dk-numista-152925` | 1 Skilling · Kopenhagen | [kmk-643659](https://samlinger.natmus.dk/KMM/object/643659) (FP 34.11) |
+| 18 | `unified-dk-numista-152925` | 1 Skilling · Kopenhagen | [kmk-643660](https://samlinger.natmus.dk/KMM/object/643660) (FP 34.10) |
+| 19 | `unified-dk-numista-152926` | 1 Skilling · Malmø | [kmk-643662](https://samlinger.natmus.dk/KMM/object/643662) (FP 34.8) |
+| 20 | `unified-dk-numista-152926` | 1 Skilling · Malmø | [kmk-643663](https://samlinger.natmus.dk/KMM/object/643663) (FP 34.7) |
+| 21 | `unified-dk-numista-152926` | 1 Skilling · Malmø | [kmk-643664](https://samlinger.natmus.dk/KMM/object/643664) (FP 34.6) |
+| 22 | `unified-dk-numista-152926` | 1 Skilling · Malmø | [kmk-643666](https://samlinger.natmus.dk/KMM/object/643666) (FP 34.4) |
+
 ## §7. Inclusion decisions on the page (curator 2026-10-15)
 
 | Territory / issuer | Verdict | Basis |
