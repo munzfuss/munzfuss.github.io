@@ -423,6 +423,39 @@ mark in stage II (and then falling further), but this cannot be stated as fact. 
 closing dates that contain 8-lod Skillinger (DMS, Jensen et al. 1992), Galster 1972, Märcher 2018; any
 Danish account naming the Skilling's weight / fineness between 1500 and 1511.
 
+### §3.4d Curator's fixed position on the 13-Mark question and the research it leaves open (2026-10-16)
+
+**Fixed (curator, on the evidence of §3.4c):** at some point within the Lybsk Møntfod the Danish Skilling
+did stand at the level of the 13-Mark standard (the 8-lod group, ≈ 1,0–1,24 g fine). Whether it got there
+by FOLLOWING Lübeck's 1502/06 step or simply by debasement passing through that level is not known.
+
+**Indirect support for an orientation on the Lübeck system until 1513:** Wilcke reads the 1513 grid as
+cutting the tie — «*Forholdet til den lybske ß ophævet … paa Bekostning af Skillingen og dens Forbindelse
+med den lybske M og ß*» (7-2 s. 151) — which implies the tie existed before 1513. Together with «*regnedes
+god for lybsk Valuta*» (s. 149) this makes the Lübeck system a plausible factor in the Danish level, not
+proof that Denmark took the 1502/06 step.
+
+**Lübeck after the step — did it debase further?** (Bobzin, «Lübisches Münzsystem»; Jesse)
+| Year | Lübeck coin | Mark lübisch per fine mark | Source |
+|---|---|---:|---|
+| 1502 / 1506 | Markstück | 13 | Bobzin; Jesse |
+| 1506 | Hamburg Witten (208 / 5 Lot 1 Grän) | ≈ 13 7/10 | Bobzin |
+| 1506 | three Markstück variants 12¼/15 lot · 11¾/14½ · 12/14½ | 13,07 · 12,97 · 13,24 | Bobzin («*die dritte, noch einmal verschlechterte Variante*» prevails 1515) |
+| 1515 | Schilling | 13¼ | Bobzin («*1 feine Mark Silber = 212 ßl. = 13 Ml. 4 ßl.*») |
+| 1519 / 1528 | Taler (8 on the 15-lot mark) | 12⅘ | Bobzin |
+| 1522–30 | Doppelschillinge | 14⅜ – 15⅝ | Jesse («*wurde sie 1522-30 zu 14 M. 6 s bis 15 M. 10 s ausgemünzt*») |
+
+So within Hans' reign Lübeck stayed at 13 – 13¼ (small change ≈ 13 7/10); its next fall (14⅜–15⅝) is in
+the 1520s. Denmark's dated 1512 Skillinger (15–18) were therefore already BELOW Lübeck's contemporary
+level — Denmark went further than Lübeck before 1513.
+
+**Open — what would settle each:**
+| Question | Would be settled by |
+|---|---|
+| Did the Danish move to ≈ 13 coincide with, lag behind, or precede Lübeck's 1502/06 step? | closing dates of hoards with 8-lod Skillinger (DMS, Jensen et al. 1992); Galster 1972; Märcher 2018 |
+| When did the Danish Skilling pass below 13 (7-lod group)? | same; dated 7-lod Skillinger |
+| Was Lübeck's coin itself debased between 1506 and 1513 beyond 13¼? | Lübeck mint accounts / Münzproben of those years (Jesse's notes, not in the coingallery extract); Behrens 1905 |
+
 ### §3.5 Mark coins under Hans? (2026-10-15)
 
 No specimen is known. The only witness is Mårten Myntskrivare's 1542 melt account (Svartsjö):
