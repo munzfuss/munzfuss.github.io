@@ -808,6 +808,8 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
     changes: list[str] = []
     moved_only = 0
     attested = _attestation_index(cur)
+    entity_thinned = {_key(e) for x in cur.values()
+                      for e in _as_list(x.get("_weights_thinned"))}
     for f, vals in (elsewhere or {}).items():
         attested.setdefault(f, set()).update(vals)
 
@@ -1047,6 +1049,18 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                 # gate could not tell a §9a trim from a real loss and
                 # hard-blocked the correct one (unified-kmk-714790, 2026-09-21).
                 thinned = {_key(e) for e in _as_list(c.get("_weights_thinned"))}
+                # A reading that LEFT this coin with its specimen and was
+                # §9a-trimmed in the coin it joined is recorded there, on that
+                # coin's own `_weights_thinned` — the same ledger, one coin
+                # over. Excuse exactly those values (2026-10-16: KMM specimens
+                # that gained a year moved from an undated class into a dated
+                # one whose envelope kept min / middle / max).
+                trimmed_elsewhere = gone & entity_thinned - thinned
+                if trimmed_elsewhere:
+                    retractions.extend(
+                        f"{cid}.{f}: {v[:70]} (§9a envelope trim in the coin it moved to)"
+                        for v in sorted(trimmed_elsewhere))
+                    gone -= trimmed_elsewhere
                 if thinned:
                     trimmed = gone & thinned
                     if trimmed:

@@ -836,11 +836,22 @@ def _enrich_from_raadata(src: dict) -> dict:
     fremst = [h for h in (rd.get("haendelser") or []) if h.get("titel") == "Fremstilling"]
     if fremst:
         h0 = fremst[0]
-        if not src.get("creationEvents") and h0.get("starttid"):
-            src["creationEvents"] = [{
-                "yearFrom": h0.get("starttid"),
-                "yearTo": h0.get("sluttid") or h0.get("starttid"),
-            }]
+        # A page may carry only `sluttid` (337 objects on the Denmark-page
+        # entities, 2026-10-16) — that single year is the coin's own date:
+        # checked against Hede's year list for every one of them that has a
+        # Hede number and a parsed Hede page, 108 of 108 fall inside it (88
+        # Danish volume, 20 Norwegian). Requiring `starttid` dropped them all.
+        es_has_year = any(
+            isinstance(e, dict) and (e.get("yearFrom") or e.get("yearTo"))
+            for e in (src.get("creationEvents") or []))
+        y_from = h0.get("starttid") or h0.get("sluttid")
+        if not es_has_year and y_from:
+            years = {"yearFrom": y_from,
+                     "yearTo": h0.get("sluttid") or h0.get("starttid")}
+            evs = [e for e in (src.get("creationEvents") or []) if isinstance(e, dict)]
+            # Keep a year-less ES event's other content; only add the years.
+            src["creationEvents"] = ([{**evs[0], **years}, *evs[1:]] if evs
+                                     else [years])
         if not (src.get("place") or "").strip():
             loc = ((h0.get("lokalitet") or {}).get("angivelser") or "").strip()
             city = _raadata_place(loc)
