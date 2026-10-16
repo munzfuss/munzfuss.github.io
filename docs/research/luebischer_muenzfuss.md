@@ -191,6 +191,46 @@ Münzfuß»); the 1492 Sechsling (188–190 @ 8 lot = 1,237 g / 0,619 g fine at 
 alternative — curator's call which one the Δ uses. Hvid: open (a Danish unit with no Lübeck coin of 1468/92
 behind it; nominal ⅓ Schilling).
 
+### §3.1d How the Danish denominations sat in the Lübeck standard — legal link or market? (2026-10-16, analysis, no card change)
+
+**What the sources give:**
+1. **No Danish act of Hans fixes any Danish coin to the Lübeck foot.** No Danish Møntordning of Hans
+   survives (Galster: «*Der er ikke bevaret nogen dansk Møntordning fra Kong Hans*»); Wilcke 7-1 s. 128:
+   «*I Danmark synes netop ingen Møntordning at være udstedt*», s. 144: «*foreligger … ikke nogen
+   Møntordning*». Galster also reads the 1513 grid as repeating «ældre, tabte danske Møntordninger» —
+   so a lost Hans ordinance cannot be excluded; its content is unknown.
+2. **The 1483 Haandfæstning ties Norway to Denmark, not Denmark to Lübeck.** The act (Gullbekk s. 3–4):
+   «*alle disse tre steder jevngod mynt med*» Danish pennies. «*o: efter lybsk Møntfod*» is Wilcke's gloss
+   («o:» = «that is»), 7-1 s. 143, not the act's words. ⚠ The card row «Haandfæstning 1483» quotes the
+   gloss as if it were the act — to fix (curator).
+3. **The only hard Danish–Lübeck link in our sources is the 1424 common coinage** (Jesse): new Sechsling /
+   Hohlpfennig to circulate equally in the three realms and the four towns; broken within years.
+4. **The Skilling coin was struck to the Lübeck Schilling and reckoned as Lübeck money** — de facto, not
+   by any surviving decree: weights «*motsvarade mycket bra de lübska*» (Eriksson s. 5); the early 9-lod
+   Skilling ≈ 1,27 g fine = 103½ / 9-lot (§3.4); Wilcke 7-2 s. 149: «*Kong Hans' Skillinger … regnedes god
+   for lybsk Valuta, 20 eller 24 paa Gyldenen*». So «103½ Schilling» describes Hans' Skilling only in the
+   sense that the coin matched it (early stage); no source says «103½ Skilling» of Denmark.
+5. **The Danish money of account was the mark of Hvide** (16 ß à 3 Hvide; Wilcke 7-2 s. 149), and its
+   relation to the Skilling coin and to the Gylden FLOATED: Skilling coin 4 Hvide (1497), elsewhere 5;
+   Gylden 2 M d (toll 1503) → 2½ M d (1503 «senere», 1508) (Wilcke 7-1 s. 134, 142). These are values from
+   accounts, tolls and debts — circulation values, not decreed rates.
+6. **The first Danish legal fixing of the units is 1513**: Haandfæstning 22 July (2 Mark dansk = 1 Gylden)
+   and Blicher's letter 1 Aug (16 ß per M, 3 Hvide per ß, with fineness and pieces per mark) — and Wilcke
+   reads it as cutting the Lübeck tie («*Forholdet til den lybske ß ophævet*», 7-2 s. 151).
+
+**Reading (this dossier's, curator's call):** under Hans the standard was Lübeck's; the Danish side had
+(a) a Skilling coin that tracked the Lübeck Schilling physically and was counted in Lübeck money, and (b)
+a Danish money of account in Hvide whose value against the Skilling and the Gylden was set by circulation
+(accounts, tolls, contracts) — no fixed legal rate is documented. «103½ Skilling» is not attested; the
+Danish units relate to the foot through the Skilling coin's physical match and through market rates.
+
+**The Lübeck foot expressed in Danish units (our arithmetic, to show the spread, not a source figure):**
+184 ß per fine mark (11½ Mark lübisch) — with the Skilling coin at 4 Hvide = 736 Hvide = 15⅓ Mark dansk;
+at 5 Hvide = 920 Hvide = 19⅙ Mark dansk; via Wilcke's 20 ß l. = 2 M d. = 18,4 Mark dansk; via 24 ß l. =
+2½ M d. ≈ 19,2. ⚠ Internal tension in Wilcke: 20 ß lybsk per Gylden with 96 Hvide gives 4,8 Hvide per ß
+lybsk, not 4; his own pairing (7-2 s. 149) is 4 Hvide ↔ 96 Hvide per Gylden at 24 ß per Gylden. Not
+resolvable from our sources.
+
 ### §3.2 Denmark under Hans — reconstructed, no ordinance
 
 | Element | Value | Source |
