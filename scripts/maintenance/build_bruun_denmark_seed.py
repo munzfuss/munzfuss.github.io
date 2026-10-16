@@ -14,7 +14,8 @@ that the pre-1541 window excluded — leading to 62 Bruun-citation
 losses on stale-foundation purge).
 
 This transforms the already-parsed Bruun lot JSON
-(`scripts/cache/bruun/lots/part{1-4}.json`) into project-shaped seed
+(`scripts/cache/bruun/lots/part{1-5}.json`; Part V not seeded by default —
+see `_SEEDED_PARTS`) into project-shaped seed
 entries that the cross-source merger consolidates with parallel
 Hede / Numista / NumisMaster / ucoin attestations.
 
@@ -258,8 +259,20 @@ _BRUUN_PART_PDF_URL: dict[int, str] = {
     2: "https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf",
     3: "https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf",
     4: "https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf",
+    # Part V (Copenhagen, 27-28 Oct 2026) — as of 2026-10-16 published only on
+    # danskmoent.dk; stacksbowers.com's Bruun page still links Parts I-IV.
+    5: "https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf",
 }
-_BRUUN_PART_ROMAN: tuple[str, ...] = ("I", "II", "III", "IV")
+_BRUUN_PART_ROMAN: tuple[str, ...] = ("I", "II", "III", "IV", "V")
+
+# Parts the seed is built from by default. Part V is parsed
+# (`lots/part5.json`) but NOT seeded until the curator's go-ahead (2026-10-16):
+# its printed Bruun collection-ids collide with Parts II/III for two lots
+# (Bruun-4632, Bruun-9764 — `lot_id` would emit the same seed id for two
+# different lots) and twice inside Part V itself. Preview with
+# `--parts 1,2,3,4,5 --dry-run`; add 5 here only once the collisions are
+# resolved.
+_SEEDED_PARTS: tuple[int, ...] = (1, 2, 3, 4)
 
 
 def _build_bruun_source(part: int, lot: dict) -> dict:
@@ -1094,10 +1107,10 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
 # Main pipeline -------------------------------------------------------
 
 
-def collect_entries() -> list[dict]:
+def collect_entries(parts: tuple[int, ...] = _SEEDED_PARTS) -> list[dict]:
     entries: list[dict] = []
     trial_skipped: list[tuple[int, int, str]] = []  # (part, lot_no, denomination)
-    for part in (1, 2, 3, 4):
+    for part in parts:
         path = CACHE_DIR / f"part{part}.json"
         if not path.exists():
             print(f"  warning: {path} missing — skipping", file=sys.stderr)
@@ -1132,10 +1145,14 @@ def collect_entries() -> list[dict]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--dry-run", action="store_true", help="Print summary; do not write file")
+    ap.add_argument("--parts", default=None,
+                    help="Comma-separated part numbers (default: _SEEDED_PARTS)")
     args = ap.parse_args()
+    parts = (tuple(int(x) for x in args.parts.split(",")) if args.parts
+             else _SEEDED_PARTS)
 
     print(f"Collecting Bruun pre-1541 realm entries ({YEAR_FROM}-{YEAR_TO})...")
-    entries = collect_entries()
+    entries = collect_entries(parts)
     print(f"\nTotal entries: {len(entries)}\n")
 
     # Sort by year, then by Bruun-id

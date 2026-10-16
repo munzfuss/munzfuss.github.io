@@ -100,11 +100,11 @@ The strict «no Chrome MCP» rule that briefly applied here was overly conservat
 
 **Use as:** confirmation source — when ucoin's weight/fineness/diameter agrees with our value, that counts as a confirmation suitable for `*_verified: true`. When ucoin disagrees, record the divergence via `measurement_alts`.
 
-### 1.3 Stack's Bowers — L. E. Bruun Collection (3 PDF catalogues) ⭐
+### 1.3 Stack's Bowers — L. E. Bruun Collection (5 PDF catalogues) ⭐
 
 **Coverage:** the world's largest private collection of Scandinavian numismatica (Bruun bequest, 1928), insured 500 m DKK ≈ USD 72.5 m, ~20 000 pieces, 15th–20th centuries. Sold across three Stack's Bowers auctions 2024–2025. **Most authoritative specimen-level source we have for Danish / Norwegian / Schleswig-Holstein gold and silver.**
 
-**Four parts to date, four PDFs:**
+**Five parts to date, five PDFs:**
 
 | Part | Date | Venue | URL | Pages | Lots |
 |---|---|---|---|---|---|
@@ -112,6 +112,18 @@ The strict «no Chrome MCP» rule that briefly applied here was overly conservat
 | **II** | 14–15 Mar 2025 | Baur au Lac, Zurich | [`SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf`](https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf) (mirrored on danskmoent.dk) | 356 | 13001–13263 + 14001–14287 |
 | **III** | 28–30 Oct 2025 | Odd Fellow Palæet, Copenhagen | [`SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf`](https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf) | 284 | 11001–11308 + 12001–12228 |
 | **IV** | 24–25 Mar 2026 | Kosciuszko Foundation, NYC | [`SBG_Mar2026_BruunIV_Coins_Catalog.pdf`](https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf) | 128 | 17001–17291 + 18xxx |
+| **V** | 27–28 Oct 2026 | Odd Fellow Palæet, Copenhagen | [`SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf`](https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf) (danskmoent.dk only as of 2026-10-16; no Wayback copy yet) | 228 | 14001–14226 (Denmark) + 15001–15188 (Norway, Sweden, Germany) + 15189–15283 (medals) |
+
+**Part V notes (harvested 2026-10-16).** 29 134 381 bytes, sha256
+`21327fc00f49c6788a377693c5c5b038303550c66ca443dbed41d1595a82eb8d`, InDesign
+export of 2026-09-23 (server Last-Modified 2026-10-02). Catalogued by Michael
+Fornitz and Henrik Berndt; lots in the order of the 1928 *L. E. Bruuns Mønt- og
+medaillesamling*. Lot text format identical to Parts I–IV. Two traps: (1)
+**lot numbers 14001–14226 repeat Part II's** — a lot number identifies a lot only
+together with its part (seed ids are keyed on the Bruun collection-id, so this
+bites only lots without one, which fall back to `dk-bruun-pt<N>-<lot>`); (2) the
+first **medal session** of the series — filtered at parse time (§13.3). Download
+route: §13.3 «Part V download».
 
 Overview page: <https://stacksbowers.com/the-l-e-bruun-collection/>
 
@@ -1409,6 +1421,18 @@ The 4 Bruun catalogue PDFs are hosted per-part on different origins: **Parts I, 
 *Diagnosis.* Verified host distribution by grepping seed/seed_unified PDF URLs (746 Part-II on danskmoent, 1430 Parts I/III/IV on stacksbowers); confirmed the lost lot lived in seed_unified but not final.
 *Fix.* Guard `.pdf` URLs onto the multi-record (url, ref, type) path BEFORE the single-page-host check — host-agnostic, so a future danskmoent mirror of any part is covered. Recovers Part-II citations everywhere (danish_norway 248→281, danish_realm 590). — commit `7abc3f1`.
 *Lesson.* A catalogue PDF is ALWAYS multi-record (one file, hundreds of lots, per-lot discriminator in `ref`) regardless of which host serves it. Don't let a host-substring whitelist override that.
+
+**Part V download — danskmoent 454 challenge; only the user's Chrome can save the file (2026-10-16).**
+`curl` with a browser UA (with or without `Referer`) got the 7 296-byte «Checking your browser…» page (`454`) — the §3 danskmoent defence. The in-app Browser pane passes the challenge and `fetch('/pdf/…')` returns the real 29 MB PDF, but the pane cannot hand it to disk: an anchor-download saves nothing, and a POST to a `127.0.0.1` receiver fails («Failed to fetch», private-network block from an https page). What worked: Claude in Chrome → open `https://www.danskmoent.dk/` → `fetch` the relative path → `Blob` + `<a download>` click → lands in `~/Downloads`. Verify with the sha256 computed in-page (`crypto.subtle.digest`) against the saved file.
+
+**Out-of-order lot STARTS dropped — 3 lots in Part V, 14 recovered in Parts II–IV (2026-10-16).**
+The two-column layout prints lot N physically after N+1 (Part V: 14046 after 14048; 14087/14088 after 14089). The 2026-07 fix taught the block-END test to break on such a descending number, but the lot-START test still skipped any number ≤ the previous lot as a «stray digit line», so the lot vanished from `lots/partN.json`. Fix in `02_parse_lots.py`: a lower number is a real lot start when its next non-blank line is a region META line and the number is not yet parsed (same signature as the block-end test). Effect: Part V 506 → 509 (complete); Parts II–IV gain 14 lots that were never in the seed (Bruun-1710, 1945, 9285, 12814, 13571, 331, 962, 3712, 5634, 9204, 9962, 10574, 7300, 7603); no existing lot changed.
+
+**Medal session (Part V 15189–15283) — §9.2 exonumia filtered at parse time (2026-10-16).**
+The seed builder had no medal filter because Parts I–IV carry no medal titles. `02_parse_lots.py` now sets `is_pattern` (the existing §9.1/§9.2 drop flag, same as the «medallic» rule) when the lot TITLE — text before the grade or the first `;` — contains «Medal»: 91 lots in Part V, 0 in Parts I–IV. Title-only on purpose: the medal session also holds coins (15207 ¼ Speciedaler 1685, 15247 Platina 1830, 15200 «Gold Largesse Money» 1671, 15256 Greenland 48 Skilling KM-Tn54), which stay in the cache unflagged.
+
+**Printed Bruun collection-ids collide across and within parts (2026-10-16).**
+The seed id is `dk-bruun-<Bruun-collection-id>`, assumed unique. Part V breaks that four times: Bruun-4632 = Part II lot 13079 (Speciedaler 1597, 29.81 g) AND Part V lot 14085 (2 Speciedaler 1600, 69.63 g); Bruun-9764 = Part III lot 12079 (2 Speciedaler 1658-FG, Hede-27, 57.41 g) AND Part V lot 15041 (2 Speciedaler 1658, Hede-31, 57.41 g — same weight, re-attributed; whether it is the same specimen re-offered is unverified); Bruun-12937 = Part V lots 15162/15163 (Swedish Ducats 1748/7 and 1749); Bruun-15599 = Part V medals 15236/15278. The first three reach the seed builder and would emit duplicate seed ids, two of them colliding with existing curated seeds. Part V is therefore parsed but not seeded by default (`_SEEDED_PARTS` in `build_bruun_denmark_seed.py`) until the curator decides how to key them.
 
 ### 13.4 Hede catalogue (danskmoent.dk per-coin pages)
 

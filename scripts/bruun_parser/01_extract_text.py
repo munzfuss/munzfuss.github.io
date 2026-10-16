@@ -30,12 +30,17 @@ PARTS = [
     ("part2", "Bruun Part II (Mar 2025 — Zurich)"),
     ("part3", "Bruun Part III (Oct 2025 — Zurich)"),
     ("part4", "Bruun Part IV (Mar 2026 — New York)"),
-    # Add ("part5", "...") when Part V is published
+    ("part5", "Bruun Part V (Oct 2026)"),
 ]
 
 
 def main():
+    # Optional argv filter (`01_extract_text.py part5`) so adding a new part
+    # does not re-extract — and possibly re-flow — the existing page dumps.
+    only = set(sys.argv[1:])
     for slug, label in PARTS:
+        if only and slug not in only:
+            continue
         pdf_path = PDF_DIR / f"{slug}.pdf"
         if not pdf_path.exists():
             print(f"  ! missing {pdf_path} — see scripts/bruun_parser/README.md to download")

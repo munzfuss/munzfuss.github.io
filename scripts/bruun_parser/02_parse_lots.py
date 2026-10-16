@@ -55,6 +55,10 @@ PART_LOT_RANGES: dict[str, list[tuple[int, int]]] = {
     "part2": [(13001, 13500), (14001, 14500)],  # Mar 2025 Zurich Sess I+II — 13001-13263 / 14001-14287
     "part3": [(11001, 11500), (12001, 12500)],  # Oct 2025 Zurich Sess I+II — 11001-11308 / 12001-12228
     "part4": [(17001, 17500), (18001, 18500)],  # Mar 2026 NYC Sess I+II — 17001-17291 / 18xxx
+    # Oct 2026 Copenhagen Sess I (Denmark 14001-14226) + Sess II (Norway/Sweden/
+    # Germany 15001-15188, medals 15189-15283). NB: 14001-14226 REUSES Part II's
+    # lot numbers — a lot number is only unique together with its part.
+    "part5": [(14001, 14500), (15001, 15500)],
 }
 
 
@@ -347,11 +351,25 @@ def parse_part(slug: str) -> list[dict]:
             i += 1
             continue
         lot_no = int(m.group(1))
-        # Sanity: lot number must increase monotonically (auction sequence)
+        # Sanity: lot number normally increases (auction sequence). A lower
+        # number is accepted only as a REAL out-of-order lot start — the
+        # two-column layout that the block-end test below handles also puts
+        # lot N physically after N+1 (Part V: 14046 after 14048, 14087/14088
+        # after 14089) — recognised by the same signature: next non-blank
+        # line is a region META line, and the number was not parsed yet.
         if lots and lot_no <= lots[-1]["lot_no"]:
-            # Likely a stray digit-only line; skip
-            i += 1
-            continue
+            k = i + 1
+            while k < n and not flat[k][1].strip():
+                k += 1
+            is_real_start = (
+                k < n
+                and META_LINE_RE.match(flat[k][1].strip())
+                and all(l["lot_no"] != lot_no for l in lots)
+            )
+            if not is_real_start:
+                # Likely a stray digit-only line; skip
+                i += 1
+                continue
         # Filter implausibly small/large numbers — must fall in declared ranges
         if not _in_lot_range(slug, lot_no):
             i += 1
@@ -490,6 +508,16 @@ def parse_part(slug: str) -> list[dict]:
         # Sieg-Unlisted). The seed builder drops any is_pattern lot.
         if (re.search(r"\bmedallic\b", desc_match, re.IGNORECASE)
                 and not refs.get("KM") and not refs.get("Sieg")):
+            is_pattern = True
+        # §9.2 exonumia — a lot whose TITLE (the meta segment before the grade
+        # / first catalogue ref) names a «Medal». Part V (Oct 2026) is the first
+        # Bruun sale with a medal session (lots 15189-15283); 91 lots match, 0
+        # in Parts I-IV. Title-only on purpose: the medal session also holds
+        # real coins (15207 ¼ Speciedaler 1685, 15247 Platina 1830) that a
+        # lot-range or body-prose test would drop.
+        title_m = re.search(r"\b(?:NGC|PCGS|ANACS)\b|;", desc_match)
+        title = desc_match[: title_m.start()] if title_m else desc_match[:200]
+        if re.search(r"\bMedal\b", title, re.IGNORECASE):
             is_pattern = True
         # Mint — prefer the cataloguer's structured meta-line «<X> Mint»
         # (authoritative, positioned right after the year); fall back to the
