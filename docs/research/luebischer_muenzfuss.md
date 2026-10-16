@@ -131,6 +131,14 @@ Jesse above (1502/1506 agree; Bobzin's 1461 has no Jesse counterpart in our cach
 - **Formula on the card**: «103½ Schilling / rough Cologne mark / 9 Lot» is the recess form — the 9-lot
   mark is the alloyed (rough) mark of 9-lot silver; 103½ pieces per FINE mark would be wrong (184).
 
+**One standard, two measures (2026-10-16, curator question):** 103½ ß per ROUGH mark of 9-lot silver =
+103½ × 16/9 = 184 ß = 11½ Mark lübisch per FINE mark; the 1492 Doppelschilling (69 per 12-lot mark) gives
+the same 92 × 2 = 184 ß. The weight mark is the Cologne one — Jesse (M1, «Metrologie»): «*Für das
+Silbergeld aber sind kölnische und lübische Mark identisch*», the Cologne mark being «*im deutschen Norden
+das herrschende Münzgewicht*». The ratio does not depend on the mark's gram weight, which Jesse discusses
+as unsettled for the Middle Ages (Hilliger 210,24 g, Guilhermoz 229,4558 g, traditional 233,855 g); his own
+1468 figure (1,278 g fine per ß) implies ≈ 235 g, Galster takes ≈ 230 g for Denmark c. 1500 (§3.1, §9).
+
 Reading: the period instruments state pieces per rough mark at a lot fineness; «11½ Mark» is the
 historians' comparative measure (Jesse 1492, Bobzin's «N-Mark-Fuß» for later steps). Both are in the
 literature; the card name uses the second, the card formula the first.
