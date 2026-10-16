@@ -21,7 +21,7 @@
 - **Card** `fuesse.yml::luebischer_muenzfuss`, name «11½-Markfod», historical_name «Lybsk Møntfod» (curator D20; D14/D19 in `docs/research/luebischer_muenzfuss_plan.md`). Grid 103½ Schilling / rough Cologne mark @ 9 Lot (Jesse: Hamburg–Lübeck treaty 15 June 1468, reaffirmed 1483/1492). Right column = units of account (Mark lübisch = 16 ß = 192 Pf …); description in the new full-width `grundwerte.below` (schema + template + CSS; fuss-description helper reads it). Denmark page: phase I 1481–1513, timeline from 1480.
 - **Coins**: Hans / Rigsrådet / Gaute silver from `seed_unsorted` classified, all `kurant` provisionally; KMM «Korshvid» → Hvid, «Firehvid» → Skilling, «Malmø» → Hvid, «Hans?»/«Rigsrådet?» → ruler + (?) (errata); year marks: kmk-643973 1517 (!) → 1513 (?), kmk-714448 1512–1515 (!). Exclusions: 61 undocumented KMM stubs + 2 counterfeits (dossier §6a/§6b). 163 classes remain.
 - **Pipeline**: `YearMark.value`; `ruler_verified` reaches final only when curator-held (seed-level flags are matching signals — Hesse-Kassel «Frederick I» would otherwise show 87 false (?)).
-- **Open (curator)**: kind per denomination (Hvid scheide?); fractions for Hvid / Søsling; the three-stage Skilling model (dossier §3.4b) → next card update; KMM trio «Hvid(?)» merge target; kmk-326039 «Århus»; Rigsrådet stubs kept. Not pushed.
+- **Open (curator)**: kind per denomination (Hvid scheide?); fractions for Hvid / Søsling; the three-stage Skilling model (dossier §3.4b) → next card update; kmk-326039 «Århus»; Rigsrådet stubs kept. Not pushed.
 
 ## 2026-10-15 — Relocating a coin between entities: carry, guard, RELOCATE procedure
 
