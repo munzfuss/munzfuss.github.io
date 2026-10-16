@@ -143,6 +143,54 @@ Reading: the period instruments state pieces per rough mark at a lot fineness; �
 historians' comparative measure (Jesse 1492, Bobzin's «N-Mark-Fuß» for later steps). Both are in the
 literature; the card name uses the second, the card formula the first.
 
+### §3.1c The Lübeck denominations of 1468 / 1492 and their Danish counterparts (2026-10-16)
+
+**The recesses (Jesse, M1 = L1, coingallery reproduction):**
+- 15 June 1468, Hamburg–Lübeck: «*der den Schilling weiter auf 103½ Stück aus der 9lötigen Mark
+  herabsetzte (1,278 g fein) und außerdem und offenbar zum gleichen Münzfuß für 1/20 der Gesamtsumme
+  Sechslinge sowie Doppelschillinge zu 69 aus der 12lötigen Mark und endlich Blafferte und Pfennige
+  vorsah. Die Hälfte der Gesamtsumme sollte aber in Schillingen als der wichtigsten Münzsorte ausgeprägt
+  werden.*» Soll weights of the three silver sorts: «*3,39, 2,27 und 1,13 g*». New Doppelschillinge show
+  the city's saint (Hamburg Gaedechens 745–49 ≈ 3,28 g; Lübeck Behrens 65, 3,35 g average).
+- 1492 recess, 31 articles — the aim (1483 proposal of the Hamburg burgomaster Hermann Langenbeck) is the
+  «*ewigen werigen und beständigen Lubeschen mark*», to order the silver money «*na den Lubeschen gulden*»
+  and not follow the sinking Rhenish gulden: «*Deshalb wurde der Münzfuß von 1468 beibehalten, also 69
+  Doppelschillinge aus der 12 und 103½ Schillinge aus der 9lötigen Mark geprägt. Die Sechslinge wurden
+  etwas schlechter, zu 188-190 aus der 8lötigen Mark, ausgebracht. Für die Blafferte und Pfennige endlich
+  war ein Münzfuß von 4½ Mark = 864 Pfennigen oder 432 Blafferten aus 6lötigem Silber festgesetzt (0,27
+  und 0,54 g, fein 0,1 und 0,2 g).*» Quota: the two coarse sorts in equal parts, 1100 Mark (Lübeck 400,
+  Hamburg 300, the other two 200 each).
+- Later (context only): the 1540s talks name «*als Scheidemünzen Doppelschillinge und Sechslinge*» (61–63
+  from the 7½-lot mark) — by then the Doppelschilling had become small change; in 1468/1492 it was a
+  coarse sort at the full Schilling standard.
+
+**Recomputed per fine mark (233,856 g; Schilling-equivalents):**
+
+| 1492 sort | per rough mark @ lot | per fine mark | ß per fine mark | Mark lübisch | vs Schilling |
+|---|---|---:|---:|---:|---:|
+| Doppelschilling (24 Pf) | 69 @ 12 | 92 | 184 | 11½ | 0 |
+| Schilling (12 Pf) | 103½ @ 9 | 184 | 184 | 11½ | 0 |
+| Sechsling (6 Pf) | 188–190 @ 8 | 376–380 | 188–190 | 11¾–11⅞ | −2,1 … −3,2 % silver |
+| Blaffert (2 Pf) / Pfennig | 432 / 864 @ 6 | 1152 / 2304 | 192 | 12 | −4,2 % silver |
+
+**Danish counterparts under Hans (curator criterion 2026-10-16: a non-Danish unit belongs in the card's
+fractions only if a Danish coin corresponded to it):**
+
+| Lübeck sort | Danish coin | Correspondence | Source |
+|---|---|---|---|
+| Schilling | **Skilling** | yes: early 9-lod Skilling ≈ 1,27 g fine = the 1468/1492 Schilling; weights «*motsvarade mycket bra de lübska*» | Eriksson s. 5, tab. 7 |
+| Sechsling | **Søsling** | yes in denomination and weight: Denmark struck Sechslinge from the 1424 common coinage («*Für Dänemark war der Sechsling eine völlig neue Münzsorte*», Danish type: three lions / ᗺ on cross); Hans' Søsling weight «*motsvarade mycket bra de lübska*». Silver lower: 5 lod, 0,39–0,42 g fine vs 0,62 g (1492) — ≈ ⅔ | Jesse (1424); Eriksson s. 5, tab. 8 |
+| Doppelschilling | **none under Hans** | Hans struck no double skilling (danskmoent `hans.htm` type list: Hvid, Søsling, Skilling; gold Gylden, Nobel). Danish/Holstein Doppelschillinge come later: «*Doppelschillinge Friedrichs I. (seit 1522 …) und Christians III. (1534, 1536 und 1537 …) mit Gewichten von 3,8 g*» (Jesse); «*Christian II.s Dobbelt ß*» in Frederik I's 1523/24 valuation (Wilcke 7-2 s. 192) | |
+| Witten (4 Pf) | **Hvid** (4 Pf) | denomination only: Lübeck struck no Witten 1468–1500; the 1501/02 Witten 0,355 g fine vs Hvid ≈ 0,25–0,30 g; the Hvid passed for 3 Lübeck Pf («densche drelinge») | Eriksson s. 4–5; Ernst 1940 summary |
+| Blaffert / Pfennig | Norwegian hollow pennies (Oslo Galster 156; Gaute's brakteates) | not established in our sources | Holst; danskmoent |
+
+**Consequence for the card's fractions (applied 2026-10-16):** «2» (Doppelschilling) removed — no Danish
+coin corresponds. «1» (Schilling) and «½» (Søsling, at the 1468 «gleicher Münzfuß» soll 1,13 g rough /
+0,635 g fine) stay. Note: the 1468 Sechsling fineness is Jesse's inference («offenbar zum gleichen
+Münzfuß»); the 1492 Sechsling (188–190 @ 8 lot = 1,237 g / 0,619 g fine at 189) would be the stated
+alternative — curator's call which one the Δ uses. Hvid: open (a Danish unit with no Lübeck coin of 1468/92
+behind it; nominal ⅓ Schilling).
+
 ### §3.2 Denmark under Hans — reconstructed, no ordinance
 
 | Element | Value | Source |
