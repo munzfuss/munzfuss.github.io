@@ -498,8 +498,8 @@ even DMS would bound the 8-lod Skillinger only by a terminus ante quem, not date
 H. W. Horsnæs, J. C. Moesgaard & M. Märcher, *Denar til daler. Danmarks mønthistorie indtil 1550*
 (Danmarks Nationalbank, København 2018). PDF from nationalbanken.dk (528 pdf pp.; book page = pdf page − 4).
 Cache: `scripts/cache/danskmoent/hans_1481_1513/denar_til_daler_2018.extract.txt` (whole book, page
-markers) + `denar_til_daler_2018_kap6-7.pdf` (book pp. 354–495 only — the full PDF is 111,7 MB, above
-GitHub's per-file limit). Both chapters are Märcher's: kap. 6 «En ny start i en krisetid – ca. 1380-1480»
+markers) + the full PDF split in two (`denar_til_daler_2018_part1_pdf001-264.pdf`,
+`…_part2_pdf265-528.pdf` — the original 111,7 MB is above GitHub's per-file limit; chapters 6–7 are in part 2). Both chapters are Märcher's: kap. 6 «En ny start i en krisetid – ca. 1380-1480»
 (s. 354–425), kap. 7 «Et differentieret møntvæsen – ca. 1480-1550» (s. 426–495).
 
 **Provenance.** A survey, not a primary source. For Hans it leans on Schou 1926 (variant counts), Galster
