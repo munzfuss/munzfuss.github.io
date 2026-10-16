@@ -592,6 +592,82 @@ reading as Galster 1972, not a second witness. **Not** Risvaag 2009 (still unrea
   `unified-kmk-134394` is Galster 150. A §9.4 merge candidate for the curator.
 
 
+### §3.4f On what terms was Denmark tied to the Lübeck standard — and was it bound to follow Lübeck's changes? (2026-10-16, curator question)
+
+**Short answer (from the sources read):** for the KINGDOM under Christian I and Hans no instrument is known
+that binds Denmark to Lübeck's coinage, let alone to Lübeck's later changes. The one real treaty (1424) fixed
+specific coins and lapsed within years; afterwards there is only orientation («Anlehnung»), a Holstein-only
+obligation (1460), and promises to the Danish estates whose wording for the kingdom we have not seen. The first
+verbatim Danish-realm clause naming Lübeck is Frederik I's of 1523 — ten years after the «departure».
+
+**The instruments, in order:**
+
+| Date | Instrument | Who binds whom | What it says | Static or dynamic? | Source |
+|---|---|---|---|---|---|
+| 8 Oct 1424 | Queen Philippa ↔ Lübeck, Hamburg, Lüneburg, Wismar (København) | the Danish crown and the four cities, mutually | coin «*de ghenge vnde gheue wesen schal beyde in den Ryken*»; Søsling «*eluen loht vnde en quentyn*», 168 per weighed mark; Hohlpfennig 7¼ lot; old Danish pieces devalued; annual assay in København | **static** — fixes parameters, no clause on later changes | Hauberg 1886 s. 173–175 (text printed); Jesse (assay «*jährliche Prüfung … in Kopenhagen*») |
+| 1425–1435 | — | — | «*Infolge dieser Verhältnisse ist deshalb auch die Münzeinigung mit den Städten sehr bald wieder zerrissen. Nur die Anlehnung des dänischen Münzwesens an das der Städte blieb bestehen.*» (Jesse); Søsling «*omtales ikke i noget senere Aktstykke*» (Hauberg s. 176) | treaty lapsed | Jesse; Hauberg |
+| 1460 | Christian I as Count of Holstein ↔ Hamburg | Christian I and heirs, **for the duchies only** | «*forpligtede Christiern I som holstensk Greve sig til kun at bruge saadan Mynt i Hertugdømmerne, som var gjængs og gjæv i Lybek og Hamborg*» (Hauberg s. 140, after Hvitfeldt II 889); Sømod: «*ingen mønt sætte, uden den som til Lübeck og Hamburg er gængs og gæv*» | **dynamic** (whatever passes in Lübeck/Hamburg) — but Holstein, not the kingdom | Hauberg; Sømod 2002 |
+| 1474 | Christian I's complaint to the Emperor | — | «*1474 beklagte sich König Christian von Dänemark beim Kaiser, daß die vier Städte in den letzten 3 Jahren Schillinge schlügen, deren 24 bis 25 auf den Gulden gerechnet werden müßten, wodurch Zinsen, Renten und Zölle, die auf 23 ß = 1 fl. gegründet seien, beeinträchtigt würden.*» | shows the dependence ran the OTHER way: Danish dues fixed in Lübeck ß, so Lübeck's debasement cost the crown | Jesse |
+| 1 Feb 1483 | Hans' håndfæstning (Halmstad) | king → Danish-Norwegian council | each realm keeps its coin; Norway's coin «*jeffngod … wid Danske penninge*» (Gullbekk). Wilcke 7-1 s. 143 glosses this as «*jevngod Mønt med den danske, o: efter lybsk Møntfod, saa den var gænge og gæv i Hansestæderne*» — the «o:» part is **Wilcke's gloss**, not the act | ties Norway to DENMARK, not to Lübeck | Gullbekk 2025; Wilcke 7-1 s. 143 |
+| 1491, Jan 1508 | Hans; Christian (II) as elect | — | Norwegian and Danish coin «*giæng og gjæv*» in each other's realm at full value; 1508: «*vor kære Faders Mønt skal være giæng og gæv for allehaande Varer*» (Dipl. Norv. III 754) | intra-union, no Lübeck | Wilcke 7-1 s. 143 |
+| — (Christian I, Hans) | promise to keep the coin «up to» Lübeck's | ⚠ **addressee given two ways by one author**: «*som hans Fader Christian I. i sin Tid havde lovet Lybækkerne*» (7-1 s. 142) vs «*Hans saa vel som hans Fader havde lovet Rigsraaderne at holde Mønten op til den lybske i Hansestæderne, men det lykkedes ikke under Krig og Orlog*» (7-2 s. 147). No instrument or text cited at either place | unknown | Wilcke |
+| 22 Jul 1513 | Christian II's håndfæstning | king → council | Wilcke's quotation: «*hvad som myntes efter thende dag i Danmark og Norge skal myntes saa at thue mark giør fyldest for en riksdlr. (af andre Kilder en rhinsk Gylden)*» (7-2 s. 149; RA Erik Krabbes Lovarbejder I b; Aarsberetn. fra Geheimearkivet II p. 62). **No Lübeck in the quoted clause** — anchor is the Rhenish Gulden | static (2 M d = 1 fl) | Wilcke 7-2 s. 149; N. J. Jensen 1976 |
+| 26 Mar / 3 Aug 1523 | Frederik I's håndfæstning (Viborg; Roskilde) | king → nobility/council | «*item hvad som skal møntes efter thend Dag udi Danmark skal mønthes lige god ved lybsk, hamborgsk oc Landte Holsten*» (Wilcke 7-2 s. 174); Galster: «*huad ther skall myntis epther thenne dag i Danmarck, skall myntis ligegoett ved Lybsck, Hamborgh oc Lanteholstenn*» | **dynamic** («as good as» Lübeck/Hamburg/Holstein) — first verbatim realm-wide Lübeck clause found | Wilcke 7-2 s. 174; Galster, *Danmarks Mønter* (danskmoent) |
+
+⚠ **Source discrepancy — did the 1513 håndfæstning ALSO tie the coin to the cities?** Wilcke's verbatim extract
+has only the Gulden clause. But Huitfeldt (as quoted by Wilcke 7-2 s. 173): «*uanset hans Haandfæstning formelder,
+han skulde lade mønte god Mønt lige med Stædernes*», and Galster (*Danmarks Mønter*, danskmoent) introduces the 1523
+clause with «*(ligesom i Christiern II's Haandfæstning)*». Either the 1513 text has a second coin clause Wilcke did
+not quote, or Huitfeldt/Galster read the 1523 wording back into 1513. **Open — settled only by the full 1513 text**
+(Aarsberetninger fra Geheimearchivet II p. 62; Erik Krabbes Lovarbejder; Kong Christian II's håndfæstning in
+*Danske Kongers Haandfæstninger*, 1974 ed.). Not found online (web search 2026-10-16).
+
+**What «gængs og gæv / lige god ved lybsk» means as an obligation.** The formula is relational, not a
+parameter: coin must PASS at par with («be as good as») the current Lübeck coin. Read literally it is dynamic —
+if Lübeck debased (1502/06 step to 13 Mark), «as good as Lübeck» would be satisfied at the lower level. No source
+discusses whether a Danish king was held to Lübeck's OLD level after Lübeck moved; that reading is ours
+(**hypothesis** — would be settled by a contemporary complaint or ruling invoking the clause against a Lübeck change).
+Note also who could enforce it: in 1460 Hamburg (Holstein); in the håndfæstninger the Danish council — never Lübeck.
+Lübeck's own instruments against Danish coin were valuation and prohibition: Danish coin is valued or banned in
+the recesses («*dänische Dreilinge*», after 1492 complaints about «*Dänemark*»; 1512 a Lübeck mintmaster executed
+«*wegen des Vertriebes von dänischen und Verdener Witten*», Jesse).
+
+**Consequences for the «departure» of 1513.**
+- What Wilcke calls the departure is in the RECKONING: «*Forholdet til den lybske ß ophævet … paa Bekostning af
+  Skillingen og dens Forbindelse med den lybske M og ß*» (7-2 s. 151) — the Danish ß reckoned 32 per Gulden (Lübeck:
+  «*vedblivende regnedes for højst 24 ß paa 1 Gylden*», s. 151, Lübeck ß then «*1,269 — 1,103 gr*» fine). It
+  departs from no treaty, because none bound the kingdom in 1513 as far as the read sources show.
+- Wilcke's Lübeck range 1,269 → 1,103 g fine per ß corresponds (our arithmetic, 233,856 g mark) to ≈ 11½ → ≈ 13¼
+  Mark lübisch per fine mark — i.e. Wilcke's own comparison already spans Lübeck's 1502/06 step.
+- In 1514 the reckoning went back to 24 ß / 72 Hvide per Gulden «*som i Hansestæderne*» (Wilcke 7-2 s. 155), Galster
+  reading it as «*Meningen at bringe det danske Møntvæsen nogenlunde paa Højde med det lybske*» (*Danmarks Mønter*).
+  So the «departure» lasted one ordinance; both 1513 and 1514 anchor on the Rhenish Gulden, and the Lübeck tie in
+  1514 is again in the count per Gulden, not in a treaty.
+- **Working reading (hypothesis):** the common yardstick was the gold Gulden. Lübeck coin and Danish coin were both
+  priced in ß per Gulden; Denmark's dues were fixed in Lübeck ß (1474); a Lübeck debasement therefore showed up in
+  Denmark as a change of the ß-per-Gulden count, which the crown resisted (1474) rather than was bound to copy.
+  Would be settled by: the toll/revenue ordinances that fixed «23 ß = 1 fl.» and any Hans-era complaint after 1502.
+
+**Open — with what would settle each:**
+| Question | Would be settled by |
+|---|---|
+| Full coin clause(s) of Christian II's 1513 håndfæstning | *Aarsberetninger fra Geheimearchivet* II p. 62; *Danske Kongers Haandfæstninger* (1974) |
+| Hans' DANISH håndfæstning 1483 coin clause (beyond the Norway article) | same edition; Kancelliets Brevbøger / RA |
+| Christian I's promise «to the Lübeckers» (Wilcke 7-1 s. 142) — which instrument? | Hanserecesse II (1431–76); Lübeck UB; Christian I's privileges for Lübeck |
+| Did anyone invoke «lige god ved lybsk» against a king after a Lübeck change? | Hanserecesse III (1477–1530); Danish herredag records |
+
+Sources read for this section: Hauberg 1886 (cache `…/hans_1481_1513/hauberg_1886_*`); Jesse (cache
+`scripts/cache/coingallery/jesse_1927/_jesse_wend_muenzverein.htm`); Wilcke 7-1, 7-2 (cache
+`scripts/cache/wilcke/renaessancens_moent_1950/pages/`); Galster, *Danmarks Mønter* (cache
+`scripts/cache/danskmoent/galster/galster_galkult.extract.txt`); Sømod 2002; N. J. Jensen, «Møntvæsenet i Danmark i
+den sene unionstid specielt under Christian 2.» (unpublished university paper 1976, danskmoent `c2njj.htm`, read
+2026-10-16 in the browser, not cached — low authority, a student survey: «*fra kong Hans forpligtes de danske
+regenter i reglen i håndfæstningerne til at slå lødig mønt, holde den norske mønt pari den danske, bringe mønten op
+på tidligere tiders stade osv.*»; «*der blev aldrig tale om en yderligere tilnærmelse til håndfæstningens krav
+endsige det uopnåelige lybske forbillede*»). Hans–Lübeck peace of Malmø (23 Apr 1512): 17 articles per Wikipedia;
+no coin article reported (secondary only; text unread).
+
+
 ### §3.5 Mark coins under Hans? (2026-10-15)
 
 No specimen is known. The only witness is Mårten Myntskrivare's 1542 melt account (Svartsjö):
