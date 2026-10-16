@@ -456,6 +456,27 @@ level — Denmark went further than Lübeck before 1513.
 | When did the Danish Skilling pass below 13 (7-lod group)? | same; dated 7-lod Skillinger |
 | Was Lübeck's coin itself debased between 1506 and 1513 beyond 13¼? | Lübeck mint accounts / Münzproben of those years (Jesse's notes, not in the coingallery extract); Behrens 1905 |
 
+**Myntstudier 2023:1 (read 2026-10-16; cache `scripts/cache/danskmoent/hans_1481_1513/myntstudier_2023_1.*`).**
+Gitte T. Ingvardson, «Mellem riller og revner — Rekonstruktion og nytolkning af 500 års mønthistorie under
+Lunds domkirkes korstole», s. 1–26 (the choir-stall find, 432 coins, deposited mid-14th c. – c. 1536):
+- «*Kong Hans' hvid udgør den yngste større samlede møntgruppe*» (s. 13) — 25 Hvide of Hans (Malmø
+  Galster 31: 20; Aalborg G 36: 1; Bergen G 151–154: 1; «Norska Mynt» G 155/158: 3, catalogue p. 24).
+- «*skatte dokumenterer, at hvid dominerede møntomløbet frem til 1530-erne (Märcher 2018, 435; 458)*»
+  (s. 14) — supports Jensen (Hikuin 17): the Hvid circulated for decades; hoards date issues only loosely.
+- ⚠ **Mint of Galster 155 (and 158):** Ingvardson's catalogue (p. 24) gives «Trondhjem», «*se Risvaag
+  2006 for møntsted*» (Risvaag, J. A. 2006, *Mynt og by*, Trondhjem); danskmoent `hans.htm` (after Galster)
+  gives Galster 155 = **Oslo** — which is what our data carries (`danish_norway`, mint Oslo). Two readings,
+  not settled; would be settled by Risvaag 2006 (and Gullbekk, «Oslo som myntsted under kong Hans», NNUM
+  1/2009 s. 13–19, listed on danskmoent). Curator's call before any data change.
+- **The settling book, correctly identified:** H. W. Horsnæs, J. C. Moesgaard & M. Märcher, *Denar til
+  daler. Danmarks mønthistorie indtil 1550* (Danmarks Nationalbank, København 2018; 517 s.; ISBN
+  9788792933072). Märcher's chapter «En ny start i en krisetid – ca. 1380–1480» is s. 354–425; the Hvid
+  pages Ingvardson cites (s. 435, 458) and the Hans period (s. 426–495, our earlier note) follow it. Not
+  online: Nationalbanken's page (checked 2026-10-16) has no download; reviews only (Historisk Tidsskrift).
+- Albin Hedin, «Cirkulationen av Erik av Pommerns kopparsterling i medeltida Danmark», s. 30–37 —
+  pre-Hans, not relevant to the card.
+
+
 **Web search for the settling sources (2026-10-16):** none is online. DMS (Jensen, Bendixen, Liebgott,
 Lindahl, *Danmarks middelalderlige skattefund c. 1050 – c. 1550*, Nordiske Fortidsminder B 12, 1992, 2 vols,
 327 hoards) — only reviews (Historisk Tidsskrift; Numismatic Chronicle 1993, JSTOR) and a Numista
