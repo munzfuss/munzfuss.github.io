@@ -816,8 +816,9 @@ class CatalogRefs(_StrictBase):
     thomsen: str | list[str] | None = None
     # Bergsøe («Bgs.») — Danish (Vilhelm Bergsøe), medals + coins.
     bergsoe: str | list[str] | None = None
-    # Hauberg («Hbg.») — P. Hauberg, «Danmarks Myntvæsen … 1146-1241»,
-    # medieval Danish (borderline; mostly era-gated out at SEED).
+    # Hauberg («Hbg.») — P. Hauberg's medieval catalogues (1885 «… 1241-1377»,
+    # numbered per ruler and mint; 1900 «… indtil 1146»; 1906 «… 1146-1241»).
+    # KMM's «Hbg. N» does not say which; see luebischer_muenzfuss.md §6d.
     hauberg: str | list[str] | None = None
     # Aagaard («Aagaard 1996 …») — Danish modern typology reference.
     aagaard: str | list[str] | None = None
