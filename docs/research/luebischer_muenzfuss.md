@@ -461,6 +461,14 @@ id and its `composed_of` unified ids).
 | 21 | `unified-dk-numista-152926` | 1 Skilling · Malmø | [kmk-643664](https://samlinger.natmus.dk/KMM/object/643664) (FP 34.6) |
 | 22 | `unified-dk-numista-152926` | 1 Skilling · Malmø | [kmk-643666](https://samlinger.natmus.dk/KMM/object/643666) (FP 34.4) |
 
+**Outcome (2026-10-16, curator «так»):** 19 of the 22 excluded with `scope: member` (new: the merger
+keeps such a seed a singleton, absorb drops it and its KMM citation from the class, verify_reflow
+excuses that citation). Kept — the first filter read only the KMM cache, not the seed, and missed
+catalogue data: kmk-395587 (Thomsen 11172/11171/11169), kmk-643057 / kmk-643058 (Galster 36, Schou
+102, 0,76 / 0,74 g). The same audit restored two category-C records of 2026-10-15: kmk-130728
+(Thomsen 11149/11147) and kmk-130729 (Thomsen 11178…) — catalogue indices are information (curator).
+165 classes under the card.
+
 ## §7. Inclusion decisions on the page (curator 2026-10-15)
 
 | Territory / issuer | Verdict | Basis |

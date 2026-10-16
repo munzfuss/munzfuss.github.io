@@ -15,6 +15,11 @@
 # category vocab: pattern | off_strike | off_nominal | exonumia |
 #                 undocumented_stub | out_of_scope | duplicate_noise
 #
+# `scope: member` (2026-10-16): remove ONE record that has joined a merged class
+# (e.g. on nominal + ruler + mint alone), not the class. The merger keeps such a
+# seed a singleton, absorb drops that singleton. Without `scope`, an id removes
+# the whole coin it belongs to (the original meaning, kept for older entries).
+#
 # Consumed by scripts/maintenance/absorb_seeds_into_final_v2.py (_load_exclusions
 # + the exclusion purge in process_entity). Applied on every absorb run.
 
@@ -1139,18 +1144,6 @@ exclusions:
       Hans, «1 Hvid», mint —, 1481-1513 (KMM FP 11798.1) — undocumented stub: no weight,
       no photo, no catalogue index, no description; nothing unique lost (category C).
       Curator (Serhii) 2026-10-15.
-  - id: kmk-130728
-    category: undocumented_stub
-    reason: >-
-      Hans, «1 Hvid», mint Aalborg, 1483-1513 (KMM FP 1560.9) — undocumented stub: no weight,
-      no photo, no catalogue index, no description; nothing unique lost (category C).
-      Curator (Serhii) 2026-10-15.
-  - id: kmk-130729
-    category: undocumented_stub
-    reason: >-
-      Hans, «1 Hvid», mint Malmø, 1483-1513 (KMM FP 1560.8) — undocumented stub: no weight,
-      no photo, no catalogue index, no description; nothing unique lost (category C).
-      Curator (Serhii) 2026-10-15.
   - id: kmk-297666
     category: undocumented_stub
     reason: >-
@@ -1253,3 +1246,138 @@ exclusions:
       Hans, «1 Hvid», mint Aalborg, 1483-1513 (KMM FP 6906.48) — undocumented stub: no weight,
       no photo, no catalogue index, no description; nothing unique lost (category C).
       Curator (Serhii) 2026-10-15.
+  # 11½-Markfod (dossier §6c) — curator (Serhii) 2026-10-16 «так»: empty KMM
+  # records inside merged classes, no index / weight / photo (checked live).
+  - id: kmk-186398
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Hvid», mint Malmø (KMM FP 489.19.5) — undocumented stub inside
+      unified-dk-numista-108399: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-186399
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Hvid», mint Malmø (KMM FP 489.19.4) — undocumented stub inside
+      unified-dk-numista-108399: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-186400
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Hvid», mint Malmø (KMM FP 489.19.7) — undocumented stub inside
+      unified-dk-numista-108399: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-395588
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Hvid», mint Malmø (KMM FP 560.783) — undocumented stub inside
+      unified-dk-numista-108399: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-395589
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Hvid», mint Malmø (KMM FP 560.782) — undocumented stub inside
+      unified-dk-numista-108399: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-642162
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Hvid», mint Malmø (KMM FP 34.1508) — undocumented stub inside
+      unified-dk-numista-108399: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-642163
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Hvid», mint Malmø (KMM FP 34.1507) — undocumented stub inside
+      unified-dk-numista-108399: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-642164
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Hvid», mint Malmø (KMM FP 34.1506) — undocumented stub inside
+      unified-dk-numista-108399: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-639604
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Skilling», mint Kopenhagen (KMM FP 11781.1) — undocumented stub inside
+      unified-dk-numista-152925: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-643658
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Skilling», mint Kopenhagen (KMM FP 34.12) — undocumented stub inside
+      unified-dk-numista-152925: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-643659
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Skilling», mint Kopenhagen (KMM FP 34.11) — undocumented stub inside
+      unified-dk-numista-152925: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-643660
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Skilling», mint Kopenhagen (KMM FP 34.10) — undocumented stub inside
+      unified-dk-numista-152925: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-643662
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Skilling», mint Malmø (KMM FP 34.8) — undocumented stub inside
+      unified-dk-numista-152926: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-643663
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Skilling», mint Malmø (KMM FP 34.7) — undocumented stub inside
+      unified-dk-numista-152926: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-643664
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Skilling», mint Malmø (KMM FP 34.6) — undocumented stub inside
+      unified-dk-numista-152926: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-643666
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Skilling», mint Malmø (KMM FP 34.4) — undocumented stub inside
+      unified-dk-numista-152926: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-642893
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Hvid», mint Aalborg (KMM FP 34.777) — undocumented stub inside
+      unified-dk-galster-hg-36: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-642894
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Hvid», mint Aalborg (KMM FP 34.776) — undocumented stub inside
+      unified-dk-galster-hg-36: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
+  - id: kmk-642895
+    category: undocumented_stub
+    scope: member
+    reason: >-
+      Hans, «1 Hvid», mint Aalborg (KMM FP 34.775) — undocumented stub inside
+      unified-dk-galster-hg-36: no catalogue index, no weight, no photo (natmus.dk checked
+      2026-10-16); joined the class on nominal + ruler + mint alone. Curator (Serhii) 2026-10-16.
