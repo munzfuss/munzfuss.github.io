@@ -48,7 +48,7 @@ Status marks: **A** = attested in a cited source; **C** = our computation from a
 | Level | I (1481 – c. 1500/03) | II (c. 1500/03 – c. 1511) | III (1512 – 1513) |
 |---|---|---|---|
 | **1. Lübeck reference** (fixed by the recesses; the card's formula) | Schilling 103½ / rough 9-lot mark (1468 = 1492); Mark lübisch = 16 ß = 192 Pf; = 11½ Mark lübisch per fine mark (Jesse «11 M. 8 s») — **A** | same reference; Lübeck itself moves: Markstück 1502/06 at 13 Mark per fine mark (**A**), Lübeck ß c. 1500 «1,269 — 1,103 gr.» (Wilcke 7-2 s. 150–151, **A**) | same reference; Lübeck Schilling 1515 at 13¼ (Bobzin, **A**, after the period) |
-| **2. Danish Skilling** (the coin that tracked the Schilling; reckoned «god for lybsk Valuta», Wilcke 7-2 s. 149) | 9 lod ≈ 1,27 g fine = Lübeck level 11½ (Eriksson tab. 7 **A**; level **C**) | 8–7 lod, ≈ 0,80–1,24 g fine, ≈ 12–15 Mark lübisch per fine mark, around 13 (**C** from undated assays; placing them in II is **H**) | 6–7 lod, dated 1512, ≈ 0,82–0,96 g, ≈ 15–18 (**A** assays, **C** level) — below Lübeck |
+| **2. Danish Skilling** (the coin that tracked the Schilling; reckoned «god for lybsk Valuta», Wilcke 7-2 s. 149) | 9 lod ≈ 1,27 g fine = Lübeck level 11½ (Eriksson tab. 7 **A**; level **C**) | 8–7 lod, ≈ 0,80–1,24 g fine, ≈ 12–15 Mark lübisch per fine mark, around 13 (**C** from undated assays; placing them in II is **H**); 8-lod group brackets the 13-Mark value 1,124 g — consistent with following Lübeck's 1502/06 step, not proven (§3.4c) | 6–7 lod, dated 1512, ≈ 0,82–0,96 g, ≈ 15–18 (**A** assays, **C** level) — below Lübeck |
 | **3. Danish small change** — Hvid (4 Pf), Søsling (6 Pf); Mark dansk = 16 ß à 3 Hvide = 48 Hvide = 192 Pf (account); Penning = account (Hvid 4, Søsling 6, Skilling 12; Eriksson s. 4) | Hvid 6 → 5 lod (Eriksson tab. 9, undated); valued as a Lübeck 3-penny (Eriksson s. 5); Gylden = 2 M d = 96 Hvide; Skilling coin = 4 Hvide (1497) — **A** | Gylden = 2½ M d = 40 ß d = 120 Hvide (**A**); Skilling coin = 5 Hvide (**A** undated; placing it in II follows Wilcke's pairing 7-2 s. 149) | no new rate attested (2½ M d last seen 1508); **Søsling appears** (1512 dated; silver ≈ 0,39–0,42 g = ≈ 1½ Hvid = ≈ ½ of the 1512 Skilling — fits III, **C**); end act 1513: 2 M d per Gylden, 3 Hvide per ß again |
 | **Norway** (measure = the Danish system) | 1483 act: coin «jaffngod … wid Danske penninge» (Gullbekk s. 4, **A**); Hans strikes Gylden, Skilling, Søsling, Hvid in Norway, royal Penninge uncertain (Gullbekk s. 5); Oslo hollow penny (Galster 156); Norwegian Hvide lighter, 0,63 vs ≈ 0,75 g (Ernst 1940) | same | Bergen Søslinger (Galster 149, 150) undated — III by analogy (**H**) |
 
@@ -76,7 +76,7 @@ Status marks: **A** = attested in a cited source; **C** = our computation from a
   century to 1513»).
 - To do (curator to confirm): split the second rate block into II and III if the matrix is adopted; put
   the Søsling into III; decide the Hvid fraction; the three-stage Skilling model (§3.4b) as card text;
-  KMM 331973 «Penning, Lund» — not Hans, see §6d (exclude / declassify / keep); «Christiania» → «Oslo» in the mint field of the Oslo coins
+  KMM 331973 «Penning, Lund» — not Hans, declassified (§6d); «Christiania» → «Oslo» in the mint field of the Oslo coins
   (city name of the time).
 
 ## §1. Sources and provenance chains
@@ -394,6 +394,35 @@ af Hans Sever, der var Kong Hans' Møntmester i Malmø til 1512»; danskmoent `h
 Malmø -1489 | Hans Sever, Malmø 1489-». Start 1489 or 1492 — not settled; the end 1512 (his presumed death,
 Galster) coincides with the dated 1512 Skillinger of stage 3 (coincidence noted, no causal claim).
 
+### §3.4c Did the Danish Skilling follow Lübeck's step to 13 Mark (1502/06)? (2026-10-16, curator question — open, leaning «consistent»)
+
+**For** (none decisive):
+1. **The 8-lod Skillinger sit on the 13-Mark level.** Eriksson tab. 7, fine = weight × Ag % (C): 8 lod Malmø
+   1,236 / 0,987 g (11,8 / 14,8 Mark per fine mark), 8 lod København 1,183 / 1,100 g (12,4 / 13,3); the
+   13-Mark Schilling is 1,124 g, the 13¼ one 1,103 g. The 8-lod group brackets the 13-Mark value; the 9-lod
+   group sits on 11½ (1,273 / 1,266 g). 7 lod already lower (0,80–1,10 g, 13,3–18,2).
+2. **Lübeck's own Schilling was sinking in the same years**: «*1,269 — 1,103 gr.*» c. 1500 (Wilcke 7-2
+   s. 150–151) = 11½ → 13¼ (C); Hans' Skillinger «*regnedes god for lybsk Valuta*» (s. 149) — counted as
+   Lübeck money whatever Lübeck's ß was worth.
+
+**Against / not established:**
+3. **No act, letter or account says Denmark took the 1502–1506 step.** The recesses are the Wendish towns'
+   (Jesse); Denmark is not named as a party after 1424.
+4. **The reckoning does not mark it:** the Gylden at 24 ß lübisch is Lübeck's value both in 1461 and in 1502
+   (Bobzin: «*1 Rheinischer Gulden … = 1½ Ml. = 24 ßl.*» in both places), so «24 Skilling per Gylden» in
+   Denmark does not date a move to 13.
+5. **The 8-lod Skillinger are undated**; whether they belong after 1502 is exactly the open point. Holding a
+   level near 13 could also be drift from 11½ that happens to pass through 13.
+6. **Stage III goes far beyond 13** (1512: 15–18), so if Denmark followed the step it did not stay on it.
+7. Wilcke's «*lybske Markstykker, som Kong Hans har ladet udmønte*» (7-1 s. 141) would, if true, be coins on
+   the 13-Mark Markstück standard — but no specimen exists and Galster / Eriksson read the 1542 «Marckestycker»
+   otherwise (§3.5).
+
+**Verdict:** the data are CONSISTENT with Denmark's Skilling following Lübeck to about 13 Mark per fine
+mark in stage II (and then falling further), but this cannot be stated as fact. Would settle it: hoards with
+closing dates that contain 8-lod Skillinger (DMS, Jensen et al. 1992), Galster 1972, Märcher 2018; any
+Danish account naming the Skilling's weight / fineness between 1500 and 1511.
+
 ### §3.5 Mark coins under Hans? (2026-10-15)
 
 No specimen is known. The only witness is Mårten Myntskrivare's 1542 melt account (Svartsjö):
@@ -656,7 +685,7 @@ catalogue data: kmk-395587 (Thomsen 11172/11171/11169), kmk-643057 / kmk-643058 
 (Thomsen 11149/11147) and kmk-130729 (Thomsen 11178…) — catalogue indices are information (curator).
 165 classes under the card.
 
-### §6d KMM 331973 «Hans · Lund · penning · Hbg. 1» — not a coin of King Hans (2026-10-16, finding; NOT changed)
+### §6d KMM 331973 «Hans · Lund · penning · Hbg. 1» — not a coin of King Hans (2026-10-16; declassified)
 
 **The record.** `scripts/cache/kmk/331973.json` (Inv. FP 6086.1): authority «Hans», place «Lund»,
 nominal «penning», typeNumber «Hbg. 1», creation 1483–1513, find «NV for Stangegård, Åker s.»
@@ -709,9 +738,12 @@ be recovered from the record. It is not an 11½-Markfod coin.
 **Cached** (2026-10-16): `scripts/cache/danskmoent/hans_1481_1513/hauberg_1886_myntvaesen_1377_1481.{pdf,extract.txt}`
 (Aarbøger 1886 s. 135–189) and `…/jensen_2008_hikuin35_regionale_forskelle.{pdf,extract.txt}`.
 
-**Options for the curator** (nothing changed): (1) exclude from the render (§9, PB-12) as an
-unidentifiable stub outside the 1514 lower bound — recommended; (2) declassify to `seed_unsorted`
-with a note; (3) keep. Also: `mint_verified: true` here rests on the KMM place alone.
+**Outcome (curator 2026-10-16: «у seed_unsorted, виправ правителя і роки»).** Declassified to
+`seed_unsorted` (classification decision removed; `_recorded_removals.yml` `kind: declassify`). Seed
+`kmk-331973`: `_source_errata` ruler Hans → «?», years 1483–1513 → **1241–1377** (the period of
+Hauberg 1885, rough approximation, `year_verified: false`); KMM's values stay visible as **(!)** via
+`year_mark` and the new `ruler_mark` (→ `ruler_alts`, the ruler-column analogue of `year_alts`).
+Final `ruler` set to «?» by hand (foundation-immutable in absorb). `mint_verified: true` left as is.
 
 ## §7. Inclusion decisions on the page (curator 2026-10-15)
 
