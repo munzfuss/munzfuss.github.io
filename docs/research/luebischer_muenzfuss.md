@@ -29,6 +29,56 @@
 >   definition is used here.
 > - Erik of Pomerania, Christoffer, Christian I (Hvid since c. 1440) — plan step 8.3, later.
 
+## §0. SYNTHESIS — working model and buffer for the card (2026-10-16; READ THIS FIRST)
+
+Curator's framing (2026-10-16), checked against the sources in §3.1a–§3.6 and `mark_lybsk_mark_dansk.md`.
+Status marks: **A** = attested in a cited source; **C** = our computation from attested figures;
+**H** = hypothesis, not yet on the card. Nothing here is on the card unless §0.4 says so.
+
+### §0.1 Stages (years)
+
+| Stage | Years | What fixes the boundary | Status |
+|---|---|---|---|
+| I — start | 1481 – c. 1500/1503 | Hvide from 1481 (Rigsrådet 1481–83, Eriksson s. 4); hoards c. 1490 (Bangbostrand) and the Gribshunden purse 1495 hold Hvide only; Skilling coinage perhaps only after 1497 (Eriksson s. 10, **H**); reckoning Gylden = 2 M d (Wilcke 7-1 s. 134); 1497 «4 Hvide ß» (s. 142) | A / H |
+| II — middle | c. 1500/1503 – c. 1511 | Gylden = 2½ M d «ved Aarhundredskiftet» (Wilcke 7-1 s. 134); 1503 both 2 M d (toll, «senere 2½») and 2½ M (Queen Christina's accountant), 1508 still 2½ (s. 132, 134) → transition c. 1503; Lübeck's own Mark step to 13 in 1502/06 (Jesse, Bobzin) | A |
+| III — end | 1512 – 1513 | the only dated silver: Skillinger 1512 at 6–7 lod, among the lowest (Eriksson s. 10, tab. 7); Søsling 1512 (Galster 30; Eriksson s. 10 «unik sösling 1512»); Hans d. Feb 1513; Haandfæstning 22 Jul 1513 ends the period | A; the II/III border rests only on the 1512 dates (**H** for where II ends) |
+
+### §0.2 Matrix — levels × stages
+
+| Level | I (1481 – c. 1500/03) | II (c. 1500/03 – c. 1511) | III (1512 – 1513) |
+|---|---|---|---|
+| **1. Lübeck reference** (fixed by the recesses; the card's formula) | Schilling 103½ / rough 9-lot mark (1468 = 1492); Mark lübisch = 16 ß = 192 Pf; = 11½ Mark lübisch per fine mark (Jesse «11 M. 8 s») — **A** | same reference; Lübeck itself moves: Markstück 1502/06 at 13 Mark per fine mark (**A**), Lübeck ß c. 1500 «1,269 — 1,103 gr.» (Wilcke 7-2 s. 150–151, **A**) | same reference; Lübeck Schilling 1515 at 13¼ (Bobzin, **A**, after the period) |
+| **2. Danish Skilling** (the coin that tracked the Schilling; reckoned «god for lybsk Valuta», Wilcke 7-2 s. 149) | 9 lod ≈ 1,27 g fine = Lübeck level 11½ (Eriksson tab. 7 **A**; level **C**) | 8–7 lod, ≈ 0,80–1,24 g fine, ≈ 12–15 Mark lübisch per fine mark, around 13 (**C** from undated assays; placing them in II is **H**) | 6–7 lod, dated 1512, ≈ 0,82–0,96 g, ≈ 15–18 (**A** assays, **C** level) — below Lübeck |
+| **3. Danish small change** — Hvid (4 Pf), Søsling (6 Pf); Mark dansk = 16 ß à 3 Hvide = 48 Hvide = 192 Pf (account); Penning = account (Hvid 4, Søsling 6, Skilling 12; Eriksson s. 4) | Hvid 6 → 5 lod (Eriksson tab. 9, undated); valued as a Lübeck 3-penny (Eriksson s. 5); Gylden = 2 M d = 96 Hvide; Skilling coin = 4 Hvide (1497) — **A** | Gylden = 2½ M d = 40 ß d = 120 Hvide (**A**); Skilling coin = 5 Hvide (**A** undated; placing it in II follows Wilcke's pairing 7-2 s. 149) | no new rate attested (2½ M d last seen 1508); **Søsling appears** (1512 dated; silver ≈ 0,39–0,42 g = ≈ 1½ Hvid = ≈ ½ of the 1512 Skilling — fits III, **C**); end act 1513: 2 M d per Gylden, 3 Hvide per ß again |
+| **Norway** (measure = the Danish system) | 1483 act: coin «jaffngod … wid Danske penninge» (Gullbekk s. 4, **A**); Hans strikes Gylden, Skilling, Søsling, Hvid in Norway, royal Penninge uncertain (Gullbekk s. 5); Oslo hollow penny (Galster 156); Norwegian Hvide lighter, 0,63 vs ≈ 0,75 g (Ernst 1940) | same | Bergen Søslinger (Galster 149, 150) undated — III by analogy (**H**) |
+
+**Rules that follow (for the card):**
+- In stage I the Skilling = the Lübeck Schilling — ratios through the Skilling are usable there.
+- Hvid and Søsling are small change; their rates against the Skilling were set in circulation (documented
+  for the Hvid). Do not convert them by a fixed rate; show the attested values per stage.
+- Mark dansk is a mark of Hvide; Mark lübisch : Mark dansk = (Hvide per ß lübisch) ÷ 3 (**C**) — I: 1,6
+  (Wilcke 20 ß l. = 2 M d.), II: ≈ 1,67 (24 ß l. = 2½ M d.); tension with «4 Hvide» (1497) → 1,33 (§3.1d).
+- Søsling: nominally ½ Skilling; by silver a small-change coin; dated only 1512 → stage III (II at the
+  earliest if the undated Kbh / Bergen pieces are older — not known).
+
+### §0.3 Decisions of the curator (D1–D20 in the plan) and later ones (2026-10-15/16)
+- Card name «11½-Markfod», historical name «Lybsk Møntfod» (D20); formula lines «103½ Schilling / rough
+  Cologne mark / 9 Lot» + «11½ Mark lübisch / fine Cologne mark / 9 Lot» (`1a84990`).
+- All coins kurant provisionally; units of account Danish-first with two rate blocks (`bc6b1ec`).
+- Fractions: «1» (Skilling/Schilling), «½» (Søsling, soll from the 1468 «gleicher Münzfuß» — curator to
+  choose 1468 vs 1492, §3.1c); Doppelschilling dropped (no Danish counterpart); Hvid fraction open.
+- Exclusions: empty KMM stubs (no index / weight / photo; checked live) — §6a/§6b/§6c; records with any
+  catalogue index stay (curator: indices are information); Rigsrådet kept via the indexed class kmk-296203.
+- 1483 act quoted from the act (Gullbekk), Wilcke's «efter lybsk Møntfod» shown as his gloss (`3898534`).
+
+### §0.4 On the card now vs to do
+- On the card: §0.3 items; the Danish-first units block with stages I and II (II labelled «turn of the
+  century to 1513»).
+- To do (curator to confirm): split the second rate block into II and III if the matrix is adopted; put
+  the Søsling into III; decide the Hvid fraction; the three-stage Skilling model (§3.4b) as card text;
+  KMM 331973 «Penning, Lund» (parallel task); «Christiania» → «Oslo» in the mint field of the Oslo coins
+  (city name of the time).
+
 ## §1. Sources and provenance chains
 
 | # | Source | What it gives | Chain / caveat |

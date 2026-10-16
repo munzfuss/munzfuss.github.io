@@ -16,7 +16,9 @@
 > `docs/TODO.md` (with full context).
 
 
-## 2026-10-16 — 11½-Markfod (Lybsk Møntfod): King Hans' silver card built and populated
+## 2026-10-16 — 11½-Markfod (Lybsk Møntfod)
+
+- **Read `docs/research/luebischer_muenzfuss.md` §0 first** — synthesis matrix (levels × stages I 1481–c.1500/03, II c.1500/03–c.1511, III 1512–13), attested vs computed vs hypothesis, and the to-do list for the card. Mark lübisch vs Mark dansk: `docs/research/mark_lybsk_mark_dansk.md`. Parallel task offered: KMM 331973 «Penning, Lund».: King Hans' silver card built and populated
 
 - **Card** `fuesse.yml::luebischer_muenzfuss`, name «11½-Markfod», historical_name «Lybsk Møntfod» (curator D20; D14/D19 in `docs/research/luebischer_muenzfuss_plan.md`). Grid 103½ Schilling / rough Cologne mark @ 9 Lot (Jesse: Hamburg–Lübeck treaty 15 June 1468, reaffirmed 1483/1492). Right column = units of account (Mark lübisch = 16 ß = 192 Pf …); description in the new full-width `grundwerte.below` (schema + template + CSS; fuss-description helper reads it). Denmark page: phase I 1481–1513, timeline from 1480.
 - **Coins**: Hans / Rigsrådet / Gaute silver from `seed_unsorted` classified, all `kurant` provisionally; KMM «Korshvid» → Hvid, «Firehvid» → Skilling, «Malmø» → Hvid, «Hans?»/«Rigsrådet?» → ruler + (?) (errata); year marks: kmk-643973 1517 (!) → 1513 (?), kmk-714448 1512–1515 (!). Exclusions: 61 undocumented KMM stubs + 2 counterfeits (dossier §6a/§6b). 163 classes remain.
