@@ -343,9 +343,7 @@
   </td>
   <td class="c-mint">
     {%- if coin.raw.mint -%}
-      {%- if coin.raw.mint is string -%}{{ coin.raw.mint }}
-      {%- else -%}{{ coin.raw.mint|join(', ') }}
-      {%- endif -%}
+      {{- coin.raw.mint|mint_label(coin.raw.year_first) -}}
       {%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
@@ -478,9 +476,7 @@
   </td>
   <td class="c-mint">
     {%- if coin.raw.mint -%}
-      {%- if coin.raw.mint is string -%}{{ coin.raw.mint }}
-      {%- else -%}{{ coin.raw.mint|join(', ') }}
-      {%- endif -%}
+      {{- coin.raw.mint|mint_label(coin.raw.year_first) -}}
       {%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>

@@ -11,6 +11,32 @@ from . import i18n
 from . import styles
 
 
+# City names follow the power that ruled the city at the time (CLAUDE.md i18n
+# policy). The mint registry stores one canonical name per mint town, which for
+# Oslo is «Christiania» (the town's name 1624-1924). Until the refoundation as
+# Christiania in 1624 the Danish crown's name for the town was «Oslo» (danskmoent
+# / Wilcke / Galster: «mints in Bergen, Oslo», «1 skilling 1531, Oslo»), so the
+# render shows that name for a coin first struck before 1624. Display only: the
+# data keeps the canonical value, on which merging and entity routing depend.
+_MINT_RENAMES_BEFORE = (
+    ("Christiania", 1624, "Oslo"),
+)
+
+
+def mint_label(mint, year_first=None) -> str:
+    """Mint name(s) of one coin for display — a list is joined with «, »."""
+    names = mint if isinstance(mint, list) else [mint]
+    out = []
+    for n in names:
+        if isinstance(n, str) and isinstance(year_first, int):
+            for canon, until, old in _MINT_RENAMES_BEFORE:
+                if n == canon and year_first < until:
+                    n = old
+                    break
+        out.append(n)
+    return ", ".join(str(n) for n in out if n)
+
+
 def build_env(template_dir: str) -> Environment:
     env = Environment(
         loader=FileSystemLoader(template_dir),
@@ -30,6 +56,7 @@ def build_env(template_dir: str) -> Environment:
     env.filters["first_sentence"] = first_sentence
     env.filters["ruler"] = ruler_for_lang
     env.filters["nominal_nbsp"] = nominal_nbsp
+    env.filters["mint_label"] = mint_label
     env.filters["nb_dashes"] = nb_dashes
     env.filters["fin_unit"] = fin_unit
     env.filters["fuss_spec"] = fuss_spec
