@@ -60,10 +60,48 @@ dansk, senere 24 ß lybsk og 2½ M dansk» — Jesse's market price is 24 ß fro
 the period «bis etwa 1500». We follow R3/R4: the Gulden in Lübeck money stayed at 24 ß; the 2 → 2½ step is
 on the Danish side only.
 
-**Assumption used below (labelled):** the Gulden passed in Denmark at the same silver value as in Lübeck. No
-source states it; Wilcke's own reading («2 M eller 2½ M d. = 1 r. Gylden regnes at ækvivalere ca. 29 gr.
+**Assumption used below (labelled):** the Gulden passed in Denmark at the same silver value as in Lübeck. ~~No
+source states it~~ (corrected 2026-10-17, see §2a: the Danish market priced the Gulden in Lübeck money at
+Lübeck's own figure); Wilcke's own reading («2 M eller 2½ M d. = 1 r. Gylden regnes at ækvivalere ca. 29 gr.
 Sølv», 7-1 s. 134) uses the same assumption. If the Danish market valued gold higher (a higher relation),
 every implied Danish silver figure below rises in proportion.
+
+### §2a. Did Denmark value the Gulden as Lübeck did? (2026-10-17, curator question)
+
+| Evidence | What it shows | Source |
+|---|---|---|
+| **Ribe, 1501** (a Nuremberg-Lübeck merchant's slip in the Ribe/Kolding toll roll): «*Item 800 mr lub ist 533 gulden 8 ß lub den gulden to 2,5 mr ist 1333 mr 5 ß 1 wit denisch*» | On the Danish market the Gulden = 1½ M lübisch = **24 ß lübisch — Lübeck's own market price** (§2) — and = 2½ M dansk on the same slip. Direct attestation of the assumption for 1501 | R4 s. 234 (RAK Ribe og Kolding Toldregnskab 1501) |
+| «*Bis etwa 1500 waren es noch ein rheinischer Gulden zu 1,5 lübischen Mark oder zwei dänischen Mark gewesen*» | same 24 ß lübisch per Gulden in Denmark before 1500 | R4 s. 234 after Enemark 2003 I s. 340 |
+| 1474: Christian I's rents, tolls and dues «*auf 23 ß = 1 fl. gegründet*» | the Crown reckoned the Gulden in Lübeck ß at a Lübeck-level figure (23, while Lübeck's market had gone to 24) | R3 |
+| 1487: 1 ß d. ≈ ¾ ß l. | with 32 ß d / G gives 24 ß l. / G | R1 s. 143 (Wilcke after himself) |
+| Sweden, Hans' Møntanordning 4 Dec 1497: Gulden = «halffænnan» = **1½ M Stockholm** = 36 Ørtug = 28,08 g silver vs 2,47 g gold | **1 : 11,37** (Wilcke's computation); the Lübeck market relation 1477–92 was 1 : 11,51–12,06 | R1 s. 116, 127 (table) |
+| Denmark, mint grid 1 Aug 1513 (Blicher): 2 M d = 32 ß of 0,875 g = 28 g silver per Gulden of 2,527 g gold | **1 : 11** — an official mint relation, not a market rate | R2 s. 152 («Forholdstallet mellem Guld og Sølv er herefter 1 : 11») |
+| Denmark, Møntordning 1514: 24 ß of 0,997 g = 23,9 g per Gylden (18 kt, 72/M) | **1 : 9,9** — official, and per Wilcke a debasement | R2 s. 153–155 |
+
+**Answer:** for the years the rates cover, the assumption is attested rather than assumed. In 1501 and «bis
+etwa 1500» the Danish market priced the Gulden at exactly Lübeck's 24 ß lübisch. So the Gulden's silver in
+Denmark = the silver of 24 Lübeck ß as they circulated there — the same 30,5 g (to 1506) as in Lübeck. No
+source shows the Danish market valuing gold HIGHER than Lübeck: the neighbouring Swedish legal relation (1497,
+1 : 11,37) and the Danish mint relations (1513 1 : 11, 1514 1 : 9,9) are LOWER. If the Danish figure differed,
+it lowered the silver per Gulden, not raised it.
+
+**Sensitivity of §6 (recomputed, Gulden gold 2,52 g):** relation 11,0 → 27,7 g; 11,37 → 28,7 g; 12,06 → 30,4 g.
+- Hvid 6 lod (0,27–0,30) at 96 / G: needs 25,9–28,8 g — fits 11,0–11,4 and sits just under 12,06; unchanged.
+- Hvid 5 lod (≈ 0,18–0,24) at 120 / G: needs 21,6–28,8 g — fits every relation; unchanged.
+- Skilling 9 lod (1,24–1,27) at 24 / G: needs 29,8–30,5 g — **only at the Lübeck relation (≈ 12)**; at 11,0 it
+  would be 22 per G. Since 1501 shows the Lübeck price in Denmark, the reading stands.
+- Skilling 8 lod (0,99–1,24) at 24 / G: needs 23,8–29,8 g — fits 11,0–12,06 before 1506 as well as the 27,0 g
+  after 1506. **So the 8-lod group can be either «c. 1500–1505 debased» or «after 1506, Lübeck's 13 Mark»; the
+  relation does not decide.** Its date rests on the reckoning (5 Hvide at 2½ M d) only.
+- Skilling 7 / 6 lod (≈ 0,7–1,0) at 32 / G: needs 22–32 g — unchanged.
+
+Caveat: which Lübeck coins circulated in Ribe in 1501 (the 1468/92 Schillinge at 1,271 g, or older and worn
+pieces) is not stated; the 24 ß figure is the Lübeck price, its silver is the Lübeck standard's.
+
+⚠ The «*1 M dansk i Sverige, særlig Østgøtaland og Smaaland … = 18 Ørtuger eller ½ r. Gylden af Finvægt 14,0418
+gr.*» (R1 s. 134) matches, in Wilcke's own table on s. 126–127, the row of the **M gutisk** (Gotland mark: 16 ß =
+6 Øre = 18 Ørtug = 14,0418 g); the row «1 M dansk (Götaland)» there is 24 Ørtug = 18,7224 g. Hypothesis: s. 134
+mislabels the Gotland mark as «M dansk». Would be settled by: Wilcke's Swedish source (Styffe / Wallroth).
 
 ## §3. The dated Danish rates — chronological register
 
@@ -172,6 +210,6 @@ mint, not our seed ids. No data change proposed; this is a dating aid for phase 
 | The forced «2 M = 32 ß» toll rate 1503–1510: account ß or Skilling coin? (R4 says «Schillingmünzen») | Enemark, *Studier i toldregnskabsmateriale* 1971 I s. 113–118 (paper); Enemark, *Dansk oksehandel* 2003 I s. 337–360 |
 | Year-by-year Gulden rates 1496–1505 in the court accounts | *Dronning Christines Hofholdningsregnskaber* (ed. W. Christensen 1904), s. 11–125 and register s. 463 — not found online 2026-10-17 |
 | Gaps 1484–1494, 1509–1512 | *Danske Breve fra Middelalderen* 2. R. (the series R1 uses); Kong Hans' Regnskabsbog 1487 (Medd. fra Rentekammerarkivet) |
-| Did the Danish market value the Gulden at Lübeck's relation (assumption §2)? | a Danish document pricing the Gulden in Skilling coins and Lübeck money on one date |
+| ~~Did the Danish market value the Gulden at Lübeck's relation (assumption §2)?~~ Answered for c. 1500–1501 (§2a: Ribe 1501, Enemark); still open for 1483–1499 and 1502–1512 | a Danish document pricing the Gulden in Lübeck money in those years (Danske Breve 2. R.; DCH 1904) |
 | Wilcke's «20 ß lybsk» early Gulden (§2 ⚠) | Wilcke's own source for it (not given) |
-| Wilcke 7-1 s. 134: «1 M dansk i Sverige … = 18 Ørtuger eller ½ r. Gylden af Finvægt 14,0418 gr.» — date and units unclear (does not fit 1497's Gulden = 4½ M Stockholm) | the Swedish source Wilcke used (not named there) |
+| Wilcke 7-1 s. 134: «1 M dansk i Sverige … = 18 Ørtuger eller ½ r. Gylden af Finvægt 14,0418 gr.» — ~~does not fit 1497's Gulden = 4½ M Stockholm~~ (the 1497 Gulden is «halffænnan» = 1½ M Stockholm, Wilcke s. 127 table; «4½» was my misreading of Wilcke's «(halvfffemte!)» remark); see §2a ⚠: probably the M gutisk | the Swedish source Wilcke used (Styffe / Wallroth) |
