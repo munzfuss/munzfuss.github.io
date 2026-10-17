@@ -1835,6 +1835,61 @@ def _shell_is_curated(fe: dict, cls: str) -> bool:
     return True
 
 
+def _hand_over_renamed_classes(final_by_id: dict, unified_by_id: dict,
+                               home: dict) -> list[str]:
+    """Hand a RENAMED class back to the classified final whose seeds it holds.
+
+    A class is named after its top-authority member, so a newcomer renames it
+    (`unified-dk-tid-163042` → `unified-ngc-1050065`). When an unclassified
+    standalone final already carries the new id — the newcomer's own
+    pre-merge shell — the class counts as «already absorbed» into the shell,
+    the stale purge reads the classified final's seeds as departed, and the
+    classified coin loses its members and drops out. 2026-10-17: reading
+    NGC's Z-shaped 2 («16Z4») renamed 8 classes this way, KM 93 24 Skilling
+    among them; it was worked round three times by deleting the shells by
+    hand before absorb.
+
+    Handed over only when exactly one classified final claims the class and
+    the shell is a bare `[class]` with no curation: the class joins the
+    classified final's composed_of and the shell is removed from
+    `final_by_id` (mutated in place) — a fold, since its id now sits in that
+    composed_of. Anything less clear-cut is reported, not decided.
+    Returns «class → host» lines for the log.
+    """
+    holder: dict[str, str] = {}
+    for fid, fc in final_by_id.items():
+        for cid in fc.get("composed_of") or []:
+            holder.setdefault(cid, fid)
+    cls_idx = _seed_class_index()
+    claims: dict[str, set[str]] = defaultdict(set)
+    for fid, fc in final_by_id.items():
+        if fc.get("fuss") in (None, "seed_unsorted"):
+            continue
+        for cid in fc.get("composed_of") or []:
+            if cid in unified_by_id or cid in home:
+                continue
+            cls = cls_idx.get(_seed_of(cid))
+            shell_id = holder.get(cls) if cls in unified_by_id else None
+            if not shell_id or shell_id == fid:
+                continue
+            shell = final_by_id[shell_id]
+            if (shell.get("fuss") in (None, "seed_unsorted")
+                    and list(shell.get("composed_of") or []) == [cls]):
+                claims[cls].add(fid)
+    done: list[str] = []
+    for cls, claimants in sorted(claims.items()):
+        shell_id = holder[cls]
+        if len(claimants) != 1 or _shell_is_curated(final_by_id[shell_id], cls):
+            print(f"  ⚠ renamed class {cls} held by shell {shell_id}, claimed by "
+                  f"{sorted(claimants)} — left for the curator")
+            continue
+        host = final_by_id[next(iter(claimants))]
+        host["composed_of"] = list(host.get("composed_of") or []) + [cls]
+        del final_by_id[shell_id]
+        done.append(f"{cls} → {host['id']}")
+    return done
+
+
 def _superseding_class(fe: dict, live_member_ids: set) -> str | None:
     """The live seed_unified class that has SUPERSEDED this final, or None.
 
@@ -2707,6 +2762,14 @@ def process_entity(entity_id: str) -> dict:
     purged_count = 0
     departed_decontaminated = 0
     _home = _unified_home_index()
+    # A RENAMED class goes back to the classified final whose seeds it now
+    # holds, before the purge below reads them as departed — see
+    # `_hand_over_renamed_classes`.
+    renamed_handover = _hand_over_renamed_classes(final_by_id, unified_by_id, _home)
+    if renamed_handover:
+        final_entries = [f for f in final_entries if f.get("id") in final_by_id]
+        print(f"  renamed-class handover: {len(renamed_handover)} "
+              f"({'; '.join(renamed_handover[:4])})")
     for fid, fc in final_by_id.items():
         original_composed = fc.get("composed_of") or []
         kept = [cid for cid in original_composed
