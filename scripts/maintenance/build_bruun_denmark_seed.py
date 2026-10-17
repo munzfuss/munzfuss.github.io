@@ -1066,21 +1066,21 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     # Norwegian region marker
     is_norway = "NORW" in region
 
-    # Scope-gate for GERMANY / SWEDEN regions (added 2026-05-25 alongside
-    # REALM_REGIONS expansion). Bruun catalogue carries ~100 GERMANY +
-    # ~180 SWEDEN lots; only those tagging a known project entity
-    # (SH-duchy, Bremen-Verden, Hesse-Kassel, Plön, Holstein-Schauenburg,
-    # bishopric Lübeck/Osnabrück) belong in-scope. The mint→entity
-    # classifier handles cases where the lot's mint pins down an entity
-    # (Steinbeck Mint → gottorp_duchy); _classify_via_meta_line handles
-    # cases where the subnational annotation is only in meta_line. Lots
-    # that fall through to the `danish_realm` default — pure Swedish
-    # coinage (Stockholm Mint), Pomerania, Livonia, Mainz, Erfurt — are
-    # genuinely out of project scope and MUST NOT enter the seed.
+    # Entity for GERMANY / SWEDEN lots. `_classify_entity` falls back to the
+    # Danish default when neither the meta line nor the mint names an entity —
+    # right for a DENMARK / NORWAY lot, wrong for a foreign one (it would put a
+    # Pomeranian taler on the Denmark page). Until 2026-10-17 such lots were
+    # DROPPED, which lost every coin of a mint the registry does not know (79
+    # Swedish lots in Parts I-V: Svartsjö, Avesta plate money, Riga, Szczecin,
+    # Stralsund, Erfurt …). Curator 2026-10-17: never drop a lot because its
+    # mint is unknown. A SWEDEN lot goes to `sweden` (the Swedish crown is the
+    # issuer; the entity renders on no page); an unresolved GERMANY lot gets no
+    # entity, so the writer files it in `_unclassified.yml` for review.
+    region_entity: str | None = "unset"
     if region in {"GERMANY", "SWEDEN"}:
         entity_check = _classify_entity(mint, is_norway, meta_line=meta, year=year)
         if entity_check in {"danish_realm", "danish_norway"}:
-            return None
+            region_entity = "sweden" if region == "SWEDEN" else None
 
     lot_errata = _BRUUN_LOT_ERRATA.get((part, lot.get("lot_no")))
     id_lot = lot
@@ -1132,7 +1132,9 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         "metal_verified": metal_verified,
         "fineness": None,  # not in Bruun lot data; comes from spec tables (Wilcke)
         "weight_rough_g": lot.get("weight_g"),
-        "issuing_entity": _ENTITY_PIN.get(cid) or _classify_entity(mint, is_norway, meta_line=meta, year=year),
+        "issuing_entity": _ENTITY_PIN.get(cid) or (
+            region_entity if region_entity != "unset"
+            else _classify_entity(mint, is_norway, meta_line=meta, year=year)),
         "verified": False,
         "fineness_verified": False,
         "weight_rough_verified": bool(lot.get("weight_g")),

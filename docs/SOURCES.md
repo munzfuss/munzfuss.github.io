@@ -1442,6 +1442,9 @@ The seed id is `dk-bruun-<Bruun-collection-id>`, assumed unique. Part V breaks t
 
 **Weights the parser missed — decimal comma and label slips (2026-10-17).** `WEIGHT_RE` required «Weight: N.NN gms». 21 lots in Parts I–V print the specimen weight otherwise: «3,46 gms» (Swedish lots), «Weight 5.91», «Weigt:», «Weight;», «Weigh:», or a bare «15.51 gms.» right after the closing «Bruun-N». `WEIGHT_LOOSE_RE` is the fallback (bare form only directly after «Bruun-N»); exactly those 21 lots gained a weight, no other field and no existing weight changed.
 
+**GERMANY / SWEDEN lots with an unknown mint were dropped — now routed (2026-10-17).**
+`build_coin_entry` used to return None for a GERMANY / SWEDEN lot whose meta line and mint named no entity, because `_classify_entity` falls back to the Danish default and would have put the coin on the Denmark page. The side effect: every coin of a mint missing from `mint_registry` was lost — 79 Swedish lots in Parts I–V (Szczecin 17, Riga 10, Stralsund 6, Svartsjö 5, Avesta plate money 5, Erfurt 4, Reval 3, …, plus Stockholm pieces whose meta line names no mint); no GERMANY lot was affected. Curator: never drop a lot because its mint is unknown. Now: SWEDEN → `sweden` (renders on no page), unresolved GERMANY → no entity → `_unclassified.yml`. Measured old vs new builder over all five parts: +79 entries, all `sweden`; no existing entry changed. Other builders already keep unknown mints (`ikmk` / `kmk` / `numista` → `_unclassified`; `hede` / `galster` / `ucoin` → Danish default by design of their Danish scope).
+
 ### 13.4 Hede catalogue (danskmoent.dk per-coin pages)
 
 **Hede silver-spec card describes a gold off-strike sub-variant inline — risk of wrong-metal weight (2026-05-13).**

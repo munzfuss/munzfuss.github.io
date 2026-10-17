@@ -23,7 +23,7 @@
 - Seed builder knows Part V but `_SEEDED_PARTS = (1,2,3,4)`; `--dry-run --parts 1,2,3,4,5` → +293 entries (danish_realm +108, danish_norway +109, royal_holstein +29, sweden +37, oldenburg +7, brunswick +2, gottorp +1); ~280 share a Hede/KM/Sieg/Galster/Lange key with an existing final.
 - **All three collisions resolved from the printed 1928 catalogue (danskmoent sections, SOURCES §13.3):** 14085 = Bruun-4633; 15162 = 12928 (15163 = 12937 ✓); 15041 = 9765 and Schou 12 (12079 = 9764 ✓). Applied 2026-10-17 (curator yes) as `_BRUUN_LOT_ERRATA` in the builder + suspect «(*)» on 15041's 57.41 g. Parser now also reads comma / mislabelled weights (+21 lots, I–V).
 - **2026-10-17 curator calls, implemented:** whole MEDALS section = exonumia (parser `catalogue_section`, 95 lots); 14085 kept, weight 69.63 g suspect «(*)» with Bruun's own «presentation piece» sentence.
-- **Open before seeding:** the Bruun builder DROPS GERMANY / SWEDEN lots whose mint it does not know (79 Swedish lots, Parts I–V; 0 German). Curator: never drop an unknown mint. Analysis done — naive removal would default them to `danish_realm` (Denmark page); proposal = SWEDEN → `sweden`, unresolved GERMANY → `_unclassified`. Awaiting go-ahead. Seeding itself waits until everything is prepared.
+- **Unknown-mint drop replaced (curator 2026-10-17):** SWEDEN → `sweden`, unresolved GERMANY → `_unclassified`; +79 Swedish entries (65 of them from Parts I–III, so they enter on the next Bruun regen by anyone), nothing else changed. Part V seeding waits until everything is prepared — nothing known still blocks it.
 
 ## 2026-10-16 — 11½-Markfod (Lybsk Møntfod)
 
