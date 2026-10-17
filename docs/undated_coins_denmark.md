@@ -85,3 +85,50 @@ Options for the curator (row 1):
   the 3 danish_realm «Johan / Johannes» pennies → row 2; Sonderburg KM 11
   (NGC 1172866 + numismaster-120993 vs km-11-hans-jr-sonderb-1620) needs a
   merge decision (found by the NGC session).
+
+## Row 2 — medieval rulers (analysis 2026-10-17)
+
+After row 1 the page has **111** undated coins. The «medieval» pattern of the
+first pass also caught later rulers whose names contain «erik» (Frederik …);
+re-sorted:
+
+**Truly before 1481 — 28 records**, all KMM, almost all find-protocol (FP)
+objects without weight or image:
+
+| Ruler as KMM writes it | Records | Index | Note |
+|---|---|---|---|
+| Christoffer II («Christoffer2», «Ckristopher II», «Chrstoffer 2») | 10 | MB 533–640 | MB numbers sit in Christoffer II's ranges of the Hauberg/MB concordance (konkord.htm) |
+| «Johan», Saxkøbing penning | 2 | MB 569–570, MB 578 + Hbg 1 | MB 578 = Christoffer II, Saxkøbing, Hbg 1 (konkord.htm) — Christoffer II's era |
+| Christoffer I («Chyristoffer 1») | 1 | MB 083, Hbg 5 | |
+| Erik Menved («Ereik Menved») | 1 | MB 441 | |
+| Hardeknud («Hardeknuyd») | 1 | Hbg 39 | |
+| Magnus den Gode («Magnud den Gode») | 1 | — | |
+| Valdemar I («Vardemar I»), «Valdemarerne?» | 3 | Hauberg Tab. II 13 (one) | |
+| Jakob Erlandsen (archbishop of Lund) | 3 | Jesse 262 (one) | |
+| Margrethe (I) | 3 | — | Brakteater |
+| «Kongeløs tid» | 1 | L.E.B. 3690 | the interregnum 1332–1340 |
+| Håkon V Magnusson (Norway) | 2 | — | empty GP 982 stubs |
+| «Johannes», Odense | 1 | Hbg VIII.5 | has a weight |
+| «Æthelred», Lund | 1 | Becker Æ1/161 | English type (Becker's Æthelred imitations) |
+| «Øystein?», Norway | 1 | — | Brakteat |
+
+**Not medieval — move to other rows:** «Kristian 1», «Chrisytian 1» (Hvid
+Malmø, Christian I) and «Johan» Hvid Malmø (690101 — Hans = Johannes) → row 6
+(aliases); «Frederik IX.» 2 Øre → row 9; «Frederik» 2 Schilling lybsk Gottorph,
+«Frederik III.», «Johan Frederik», «Karl Frederik» Søsling → rows 1/8.
+**Six more empty GP 888 / GP 982 stubs** of the row-1 kind were missed by the
+row-1 match: «Karl Frederik» ×4 (royal_holstein), «Frederik Karl» (Nordborg),
+«Peter Frederik Vilhelm» — same criteria as the 57 excluded.
+
+**What the page already does with pre-1481 coins:** 11 dated ones render, all
+in `seed_unsorted` (Erik VII, the 1448 interregnum Hvid, the Lund penning
+1241–1377). The seed_unsorted phases open at 1480 and these sit as «year
+outside phase» advisories.
+
+Options for the curator (row 2):
+- (a) leave the 28 undated — they stay off the page; nothing to do;
+- (b) date them: add the medieval kings (and the archbishop) to the reign
+  table, each with a source, plus the misspelling aliases; they then render
+  in `seed_unsorted` like the 11 already there;
+- (c) exclude them explicitly as `out_of_scope` (before the page's span) —
+  and decide whether the 11 dated pre-1481 coins follow, for consistency.
