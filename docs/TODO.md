@@ -3648,6 +3648,16 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 
 ---
 
+
+### EB. 🔵 Undated coins on the Denmark page — one group at a time  *(opened 2026-10-17)* *(est: many sessions, per-case)* *(type: data-audit + decision)*
+
+185 coins drop off the Denmark page for «no year information» (2026-10-17,
+after `80d1dd4`). The curator adopted the nine-group table as the plan and
+works through it row by row: **`docs/undated_coins_denmark.md`** holds the
+table, the counts and each row's analysis and decision. Row 1 (rulers of
+other houses) analysed 2026-10-17 — awaiting the curator's verdict on the 58
+empty KMM stubs.
+
 ## Low priority
 
 ### DC. 🟢 KMK seed builder — private-issuer / medal exonumia gate (forward-protection only)  *(opened 2026-09-13)* *(est: small)* *(type: builder filter + test)*
