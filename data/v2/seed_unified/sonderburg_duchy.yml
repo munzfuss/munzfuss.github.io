@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `sonderburg_duchy`.
-# Generated 2026-10-16 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-17 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sonderburg_duchy.yml across all sources.
 #
 # Input: 171 per-source seed entries.
-# Output: 77 unified entries (one per physical coin).
+# Output: 73 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sonderburg_duchy
-generated_at: '2026-10-16'
+generated_at: '2026-10-17'
 coins:
   - id: unified-dk-bruun-14662
     fuss: seed_unsorted
@@ -600,49 +600,6 @@ coins:
     issuing_entity: sonderburg_duchy
     composed_of:
       - dk-numista-151529
-  - id: unified-dk-numista-151534
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Düttchen
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    ruler: Alexander
-    catalog:
-      km: '25'
-      numista: '151534'
-      lange: 559a
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.44
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/151534
-        ref: Numista N#151534 — 1 Düttchen - Alexander
-      - type: literature
-        url: https://numismaster.com/MC_101369
-        ref: NumisMaster
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - dk-numista-151534
-      - schleswig_holstein-numismaster-101369
   - id: unified-ikmk-18284272
     fuss: seed_unsorted
     phase: ikmk
@@ -1086,56 +1043,6 @@ coins:
       - ikmk-18284707
       - ikmk-18284709
       - ikmk-18284710
-  - id: unified-ikmk-18284712
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 2 Schilling lübisch
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    ruler: Johann
-    mintmaster: Christoph Mittelbach
-    inscription_obv: IOHAN[S] / VAN GOTT / GNA ERWE / ZV NORW[E] / HER ZV SC/HL HOL
-    mint: Reinfeld
-    catalog:
-      lange: '542'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.88
-        source: ikmk
-      - value: 0.9
-        source: ikmk
-    diameter_mm:
-      - value: 15.0
-        source: ikmk
-      - value: 16.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284712
-        ref: IKMK Berlin 18284712
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284714
-        ref: IKMK Berlin 18284714
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284716
-        ref: IKMK Berlin 18284716
-    note:
-      de: Reuterpfennig
-      en: Reuterpfennig
-      uk: Reuterpfennig
-    verification_note: *id001
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - ikmk-18284712
-      - ikmk-18284714
-      - ikmk-18284716
   - id: unified-ikmk-18284715
     fuss: seed_unsorted
     phase: ikmk
@@ -3196,9 +3103,13 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 4 Schilling
+    year_first: 1622
+    year_last: 1622
+    year_label: '1622'
     ruler: Johann
     catalog:
       km: '12'
+      lange: 539A
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -3206,11 +3117,13 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-4-schilling-km-12-16zz-cuid-1164738-duid-1407009
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120995
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -3218,6 +3131,7 @@ coins:
     issuing_entity: sonderburg_duchy
     composed_of:
       - ngc-1164738
+      - schleswig_holstein-numismaster-120995
   - id: unified-ngc-1164739
     fuss: seed_unsorted
     phase: ngc
@@ -3257,27 +3171,43 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/16 Thaler
+    year_first: 1625
+    year_last: 1625
+    year_label: '1625'
+    ruler: Alexander
     catalog:
       km: '25'
+      numista: '151534'
+      lange: 559a
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
+    weight_rough_g:
+      - value: 1.44
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/151534
+        ref: Numista N#151534 — 1 Düttchen - Alexander
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-1-16-thaler-km-25-16z5-cuid-1166181-duid-1388970
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_101369
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: sonderburg_duchy
     composed_of:
+      - dk-numista-151534
       - ngc-1166181
+      - schleswig_holstein-numismaster-101369
   - id: unified-ngc-1166275
     fuss: seed_unsorted
     phase: ngc
@@ -3315,6 +3245,12 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 2 Schilling
+    year_first: 1618
+    year_last: 1619
+    year_ranges:
+      -   - 1618
+          - 1619
+    year_label: 1618-1619
     ruler: Johann
     catalog:
       km: '5'
@@ -3325,7 +3261,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-2-schilling-km-5-1618-1619-cuid-1167501-duid-1390390
@@ -3413,34 +3348,80 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 2 Schilling
+    year_first: 1620
+    year_last: 1625
+    year_ranges:
+      -   - 1620
+          - 1621
+      -   - 1623
+          - 1623
+      -   - 1625
+          - 1625
+    year_label: 1620-1621, 1623, 1625
     ruler: Johann
+    mintmaster: Christoph Mittelbach
+    inscription_obv: IOHAN[S] / VAN GOTT / GNA ERWE / ZV NORW[E] / HER ZV SC/HL HOL
+    mint: Reinfeld
     catalog:
       km: '11'
+      lange:
+        - 541-42
+        - '542'
+        - 547-48
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
-    year_verified: false
     weight_rough_g:
+      - value: 0.88
+        source: ikmk
+      - value: 0.9
+        source: ikmk
       - value: 0.9
         source: ngc
+      - value: 0.9
+        source: numismaster
     diameter_mm:
       - value: 13.9
         source: ngc
+      - value: 15.0
+        source: ikmk
+      - value: 16.0
+        source: ikmk
     sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284712
+        ref: IKMK Berlin 18284712
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284714
+        ref: IKMK Berlin 18284714
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284716
+        ref: IKMK Berlin 18284716
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-2-schilling-km-11-16z0-16z5-cuid-1172866-duid-1391554
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120993
+        ref: NumisMaster
+    note:
+      de: Reuterpfennig
+      en: Reuterpfennig
+      uk: Reuterpfennig
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: sonderburg_duchy
     composed_of:
+      - ikmk-18284712
+      - ikmk-18284714
+      - ikmk-18284716
       - ngc-1172866
+      - schleswig_holstein-numismaster-120993
   - id: unified-ngc-1175224
     fuss: seed_unsorted
     phase: ngc
@@ -3594,75 +3575,3 @@ coins:
       - kmk-81778
       - ngc-1206707
       - schleswig_holstein-numismaster-101383
-  - id: unified-schleswig_holstein-numismaster-120993
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 2 Schilling
-    year_first: 1620
-    year_last: 1625
-    year_ranges:
-      -   - 1620
-          - 1621
-      -   - 1623
-          - 1623
-      -   - 1625
-          - 1625
-    year_label: 1620-1621, 1623, 1625
-    ruler: Johann
-    catalog:
-      km: '11'
-      lange:
-        - 541-42
-        - 547-48
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.9
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_120993
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - schleswig_holstein-numismaster-120993
-  - id: unified-schleswig_holstein-numismaster-120995
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 4 Schilling
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    ruler: Johann
-    catalog:
-      km: '12'
-      lange: 539A
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_120995
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: sonderburg_duchy
-    composed_of:
-      - schleswig_holstein-numismaster-120995

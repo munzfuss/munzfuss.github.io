@@ -43,16 +43,17 @@ coins:
       - value: 0.9
         source: ikmk
       - value: 0.9
+        source: ngc
+      - value: 0.9
         source: numismaster
     diameter_mm:
+      - value: 13.9
+        source: ngc
       - value: 15.0
         source: ikmk
       - value: 16.0
         source: ikmk
     sources:
-      - type: literature
-        url: https://numismaster.com/MC_120993
-        ref: NumisMaster
       - type: numista
         url: https://en.numista.com/catalogue/pieces151528.html
         ref: Numista
@@ -76,6 +77,12 @@ coins:
         url: https://ikmk.smb.museum/object?id=18284717
         ref: IKMK Berlin, Inv. 18284717
         note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-2-schilling-km-11-16z0-16z5-cuid-1172866-duid-1391554
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120993
+        ref: NumisMaster
     inscription_obv: IOHANS / VAN GOTT / GNA ERWE / ZV NORWE / HER ZV SC/HL HOL
     note:
       de: "2 Schilling Lübisch = 1/30 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1620-1625\n\nSub-Stempelvarianten Lange 542 c und 542 d (Vorderseiten-Aufschriftvarianten des Reuterpfennigs)
@@ -90,8 +97,7 @@ coins:
       uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
       da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
     composed_of:
-      - unified-ikmk-18284712
-      - unified-schleswig_holstein-numismaster-120993
+      - unified-ngc-1172866
     v1_home_location: schleswig_holstein
   - fuss: 9_25_thaler
     phase: I
@@ -122,15 +128,18 @@ coins:
       - value: 2.19
         source: numista
     sources:
-      - type: literature
-        url: https://numismaster.com/MC_120995
-        ref: NumisMaster
       - type: numista
         url: https://en.numista.com/catalogue/pieces151529.html
         ref: Numista
       - type: literature
         url: https://en.numista.com/151529
         ref: Numista N#151529 — 4 Schilling Lübisch "Reuterpfennig" - John
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-4-schilling-km-12-16zz-cuid-1164738-duid-1407009
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_120995
+        ref: NumisMaster
     note:
       de: 4 Schilling Lübisch = 1/15 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
       en: 4 Schilling Lübisch = 1/15 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
@@ -142,7 +151,7 @@ coins:
       da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
     composed_of:
       - unified-dk-numista-151529
-      - unified-schleswig_holstein-numismaster-120995
+      - unified-ngc-1164738
     v1_home_location: schleswig_holstein
   - fuss: 9_25_thaler
     phase: I
@@ -709,6 +718,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284706
         ref: IKMK Berlin 18284706
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-2-schilling-km-5-1618-1619-cuid-1167501-duid-1390390
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     inscription_obv: IOHAN D G HAERES NOR
     inscription_rev: D SCHL E H C I O E D 19
     note:
@@ -726,6 +738,7 @@ coins:
       - unified-dk-numista-151525
       - unified-ikmk-18284698
       - unified-ikmk-18284702
+      - unified-ngc-1167501
     v1_home_location: schleswig_holstein
     _weights_thinned:
       - value: 1.87
@@ -1082,52 +1095,6 @@ coins:
     composed_of:
       - unified-dk-numista-151528
   - fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Düttchen
-    ruler: Alexander
-    issuing_entity: sonderburg_duchy
-    id: unified-dk-numista-151534
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    catalog:
-      km: '25'
-      numista: '151534'
-      lange: 559a
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.44
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/151534
-        ref: Numista N#151534 — 1 Düttchen - Alexander
-      - type: literature
-        url: https://numismaster.com/MC_101369
-        ref: NumisMaster
-    note:
-      de: Brustbild nach rechts, umlaufende Umschrift. / Dreizeilige Inschrift im Zentrum mit dem Nominal, umlaufende Umschrift mit der Jahreszahl.
-      en: Bust facing right, surrounding legend. / Three-line central inscription with the denomination, surrounding legend with the date.
-      uk: Погруддя праворуч, коловий напис навколо. / Трирядковий напис у центрі з номіналом, коловий напис із датою навколо.
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - unified-dk-numista-151534
-  - fuss: seed_unsorted
     phase: kmk
     kind: kurant
     nominal: 2-skilling lybsk
@@ -1406,6 +1373,7 @@ coins:
     nominal: 2 Skilling lybsk
     ruler: Hans den Yngre af Sønderborg
     issuing_entity: sonderburg_duchy
+    year_is_reign_span: true
     id: unified-kmk-367913
     year_first: 1564
     year_last: 1622
@@ -1414,7 +1382,6 @@ coins:
           - 1622
     year_label: 1564-1622
     year_verified: false
-    year_is_reign_span: true
     mint: Reinfeld
     metal_verified: false
     weight_rough_verified: false
@@ -1598,41 +1565,6 @@ coins:
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
-    nominal: 4 Schilling
-    ruler: Johann
-    issuing_entity: sonderburg_duchy
-    id: unified-ngc-1164738
-    year_first: 1564
-    year_last: 1622
-    year_ranges:
-      -   - 1564
-          - 1622
-    year_label: 1564-1622
-    year_verified: false
-    year_is_reign_span: true
-    catalog:
-      km: '12'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-4-schilling-km-12-16zz-cuid-1164738-duid-1407009
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - unified-ngc-1164738
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
     nominal: 1/96 Thaler
     ruler: Johann
     issuing_entity: sonderburg_duchy
@@ -1670,20 +1602,35 @@ coins:
     nominal: 1/16 Thaler
     issuing_entity: sonderburg_duchy
     id: unified-ngc-1166181
+    ruler: Alexander
+    year_first: 1625
+    year_last: 1625
+    year_label: '1625'
     year_verified: false
     catalog:
       km: '25'
+      numista: '151534'
+      lange: 559a
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 1.44
+        source: numista
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-1-16-thaler-km-25-16z5-cuid-1166181-duid-1388970
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://en.numista.com/151534
+        ref: Numista N#151534 — 1 Düttchen - Alexander
+      - type: literature
+        url: https://numismaster.com/MC_101369
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -2253,82 +2200,6 @@ coins:
     composed_of:
       - unified-ngc-1166275
   - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Schilling
-    ruler: Johann
-    issuing_entity: sonderburg_duchy
-    id: unified-ngc-1167501
-    year_first: 1564
-    year_last: 1622
-    year_ranges:
-      -   - 1564
-          - 1622
-    year_label: 1564-1622
-    year_verified: false
-    year_is_reign_span: true
-    catalog:
-      km: '5'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-2-schilling-km-5-1618-1619-cuid-1167501-duid-1390390
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - unified-ngc-1167501
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Schilling
-    ruler: Johann
-    issuing_entity: sonderburg_duchy
-    id: unified-ngc-1172866
-    year_first: 1564
-    year_last: 1622
-    year_ranges:
-      -   - 1564
-          - 1622
-    year_label: 1564-1622
-    year_verified: false
-    year_is_reign_span: true
-    catalog:
-      km: '11'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.9
-        source: ngc
-    diameter_mm:
-      - value: 13.9
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-sonderburg-2-schilling-km-11-16z0-16z5-cuid-1172866-duid-1391554
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
-    composed_of:
-      - unified-ngc-1172866
-  - fuss: seed_unsorted
     phase: ikmk
     kind: kurant
     nominal: 1 Doppelschilling
@@ -2449,6 +2320,7 @@ coins:
     nominal: 2 Skilling lybsk
     ruler: Hans den Yngre
     issuing_entity: sonderburg_duchy
+    year_is_reign_span: true
     id: unified-kmk-131474
     year_first: 1564
     year_last: 1622
@@ -2457,7 +2329,6 @@ coins:
           - 1622
     year_label: 1564-1622
     year_verified: false
-    year_is_reign_span: true
     catalog:
       lange: '540'
     metal_verified: false
@@ -2663,6 +2534,7 @@ coins:
     nominal: 2 Skilling lybsk
     ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
     issuing_entity: sonderburg_duchy
+    year_is_reign_span: true
     id: unified-kmk-200939
     year_first: 1564
     year_last: 1622
@@ -2671,7 +2543,6 @@ coins:
           - 1622
     year_label: 1564-1622
     year_verified: false
-    year_is_reign_span: true
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -2701,6 +2572,7 @@ coins:
     nominal: 2 Skilling lybsk
     ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
     issuing_entity: sonderburg_duchy
+    year_is_reign_span: true
     id: unified-kmk-200940
     year_first: 1564
     year_last: 1622
@@ -2709,7 +2581,6 @@ coins:
           - 1622
     year_label: 1564-1622
     year_verified: false
-    year_is_reign_span: true
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -3243,6 +3114,7 @@ coins:
     nominal: 2 Skilling lybsk
     ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
     issuing_entity: sonderburg_duchy
+    year_is_reign_span: true
     id: unified-kmk-201073
     year_first: 1564
     year_last: 1622
@@ -3251,7 +3123,6 @@ coins:
           - 1622
     year_label: 1564-1622
     year_verified: false
-    year_is_reign_span: true
     catalog:
       lange: '2'
     metal: silver
@@ -3299,6 +3170,7 @@ coins:
     nominal: 2 Skilling lybsk
     ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
     issuing_entity: sonderburg_duchy
+    year_is_reign_span: true
     id: unified-kmk-201074
     year_first: 1564
     year_last: 1622
@@ -3307,7 +3179,6 @@ coins:
           - 1622
     year_label: 1564-1622
     year_verified: false
-    year_is_reign_span: true
     catalog:
       lange: '2'
     metal: silver
@@ -3335,6 +3206,7 @@ coins:
     nominal: 2 Skilling lybsk
     ruler: Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622
     issuing_entity: sonderburg_duchy
+    year_is_reign_span: true
     id: unified-kmk-201075
     year_first: 1564
     year_last: 1622
@@ -3343,7 +3215,6 @@ coins:
           - 1622
     year_label: 1564-1622
     year_verified: false
-    year_is_reign_span: true
     catalog:
       lange: '2'
     metal: silver
@@ -3542,6 +3413,7 @@ coins:
     nominal: 2 Skilling
     ruler: Hans den Yngre
     issuing_entity: sonderburg_duchy
+    year_is_reign_span: true
     id: unified-kmk-355088
     year_first: 1564
     year_last: 1622
@@ -3550,7 +3422,6 @@ coins:
           - 1622
     year_label: 1564-1622
     year_verified: false
-    year_is_reign_span: true
     catalog:
       lange: '541'
     metal_verified: false
@@ -3608,6 +3479,7 @@ coins:
     nominal: 2 Schilling lybsk
     ruler: Hans  den Yngre
     issuing_entity: sonderburg_duchy
+    year_is_reign_span: true
     id: unified-kmk-372979
     year_first: 1564
     year_last: 1622
@@ -3616,7 +3488,6 @@ coins:
           - 1622
     year_label: 1564-1622
     year_verified: false
-    year_is_reign_span: true
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
