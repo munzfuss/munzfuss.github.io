@@ -109,6 +109,22 @@ class TestWhoseWindow(unittest.TestCase):
             self.assertEqual(reign_window_placeholder(r, "sonderburg_duchy"), (1564, 1622), r)
         self.assertIsNone(reign_window_placeholder("Johann", "royal_holstein"))
 
+    def test_medieval_rulers_and_kmm_misspellings(self):
+        # Undated-coins plan row 2 (curator 2026-10-17): KMM's own spellings.
+        cases = {"Christoffer2": (1320, 1332), "Ckristopher II": (1320, 1332),
+                 "Chyristoffer 1": (1252, 1259), "Ereik Menved": (1286, 1319),
+                 "Hardeknuyd": (1035, 1042), "Magnud den Gode": (1042, 1047),
+                 "Vardemar I": (1157, 1182), "Margrethe": (1376, 1412),
+                 "Kongeløs tid": (1332, 1340), "Jakob Erlandsen": (1249, 1274),
+                 "Kristian 1": (1448, 1481), "Chrtistian 4": (1588, 1648)}
+        for r, w in cases.items():
+            self.assertEqual(reign_window_placeholder(r, "danish_realm"), w, r)
+        self.assertEqual(reign_window_placeholder("Håkon 5 Magnusson", "danish_norway"), (1299, 1319))
+        # Not resolved on purpose: a modern queen, a vague dynasty, an
+        # ambiguous first name.
+        for r in ("Margrethe 2", "Valdemarerne?", "Johan"):
+            self.assertIsNone(reign_window_placeholder(r, "danish_realm"), r)
+
     def test_rigsraadet(self):
         self.assertEqual(reign_window_placeholder("Rigsrådet", "danish_realm"), (1481, 1483))
 

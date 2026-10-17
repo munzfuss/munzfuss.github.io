@@ -36,6 +36,33 @@ from functools import lru_cache
 # 1514-1914 because the personal union kept Danish kings on the
 # Norwegian throne until 1814.
 RULER_REIGNS: dict[str, tuple[int, int]] = {
+    # Medieval rulers, for the reign-window placeholder of undated museum
+    # pennies (curator 2026-10-17, undated-coins plan row 2). Kings from the
+    # Danish regent list, da.wikipedia.org/wiki/Danmarks_regenter: Hardeknud
+    # «1035-11-12 – 1042-06-08»; Magnus den Gode «Konge 1042 ved Hardeknuds
+    # død», † 25.10.1047; Valdemar den Store «Konge over hele Danmark 23.
+    # oktober 1157», † 12.5.1182; Christoffer 1. «Konge 29. juni 1252», †
+    # 29.5.1259; Erik Menved «Konge 22. november 1286», † 13.11.1319;
+    # Christoffer 2. 1320-1326 and 1329-† 2.8.1332 (one span here); «Den
+    # kongeløse tid … 1332–1340»; Margrete 1. «Formynder for Olav Håkonsson
+    # fra 3. maj 1376», † 28.10.1412.
+    "Hardeknud":       (1035, 1042),
+    "Magnus den Gode": (1042, 1047),
+    "Valdemar I":      (1157, 1182),
+    "Christoffer I":   (1252, 1259),
+    "Erik VI":         (1286, 1319),  # Erik Menved
+    "Christoffer II":  (1320, 1332),
+    "Kongeløs tid":    (1332, 1340),
+    "Margrete I":      (1376, 1412),
+    # Jakob Erlandsen: «I 1249 blev han af paven indsat som biskop i
+    # Roskilde», «I 1254 blev Jakob Erlandsen valgt til ærkebiskop i Lund»,
+    # † 1274 (lex.dk/Jakob_Erlandsen). The KMM pennies give Roskilde, so the
+    # span covers both sees; a rough placeholder, shown (?).
+    "Jakob Erlandsen": (1249, 1274),
+    # Norway: «Håkon 5. Magnusson var norsk konge i perioden 1299–1319»
+    # (snl.no/Håkon_5._Magnusson).
+    "Håkon V":         (1299, 1319),
+
     # Pre-1514 — relevant for the `denmark/p0_pre_lovkompleks`
     # bucket (Erik VII → Hans 1396-1513).
     "Erik VII":      (1396, 1439),
@@ -250,6 +277,9 @@ def normalise_ruler_name(raw: str | None) -> str | None:
     # uncertain attribution) is the same name with a doubt mark.
     if re.fullmatch(r"(?i)(hans|john)\??", head):
         return "Hans I"
+    _bare = _EXACT_BARE.get(_bare_key(head))
+    if _bare is not None and _bare in RULER_REIGNS:
+        return _bare
     if re.fullmatch(r"(?i)(rigsrådet|rigsraadet|riksrådet)\??", head):
         return "Rigsrådet"
     m = _RULER_RE.search(head)
@@ -294,9 +324,35 @@ def reign_window(ruler_raw: str | None,
 
 # Names the kings' table holds under a single bearer, written without a
 # numeral in the sources (KMM «Hans», «Rigsrådet»): the bare form IS the whole
-# name, not a name with a qualifier dropped.
-_EXACT_BARE = {"hans": "Hans I", "john": "Hans I", "rigsrådet": "Rigsrådet",
-               "rigsraadet": "Rigsrådet", "riksrådet": "Rigsrådet"}
+# name, not a name with a qualifier dropped. Also the medieval names the
+# numeral regex cannot read, and KMM's misspellings of a ruler's name
+# (2026-10-17 survey of the Denmark-page undated coins) — each spelling exactly
+# as KMM writes it, lower-cased, punctuation dropped, spaces collapsed.
+_EXACT_BARE = {
+    "hans": "Hans I", "john": "Hans I", "rigsrådet": "Rigsrådet",
+    "rigsraadet": "Rigsrådet", "riksrådet": "Rigsrådet", "ridsrådet": "Rigsrådet",
+    "hardeknud": "Hardeknud", "hardeknuyd": "Hardeknud",
+    "magnus den gode": "Magnus den Gode", "magnud den gode": "Magnus den Gode",
+    "valdemar i": "Valdemar I", "vardemar i": "Valdemar I",
+    "valdemar den store": "Valdemar I",
+    "christoffer 1": "Christoffer I", "chyristoffer 1": "Christoffer I",
+    "christoffer i": "Christoffer I",
+    "erik menved": "Erik VI", "ereik menved": "Erik VI", "erik vi": "Erik VI",
+    "christoffer2": "Christoffer II", "chrstoffer 2": "Christoffer II",
+    "ckristopher ii": "Christoffer II", "christopher ii": "Christoffer II",
+    "christoffer 2": "Christoffer II", "christoffer ii": "Christoffer II",
+    "kongeløs tid": "Kongeløs tid",
+    "margrethe": "Margrete I", "margrete i": "Margrete I", "margrethe i": "Margrete I",
+    "margrete 1": "Margrete I", "margrethe 1": "Margrete I",
+    "jakob erlandsen": "Jakob Erlandsen",
+    "håkon 5 magnusson": "Håkon V", "håkon v magnusson": "Håkon V",
+    "kristian 1": "Christian I", "chrisytian 1": "Christian I",
+    "chrtistian 4": "Christian IV", "chritian 4": "Christian IV",
+}
+
+
+def _bare_key(raw: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"[.,?]", " ", str(raw))).strip().lower()
 
 
 def reign_lookup_is_exact(ruler: str | None) -> bool:
@@ -317,9 +373,9 @@ def reign_lookup_is_exact(ruler: str | None) -> bool:
     norm = normalise_ruler_name(ruler)
     if not norm:
         return False
-    raw = re.sub(r"[.,?]", " ", str(ruler)).lower().split()
-    if len(raw) == 1 and _EXACT_BARE.get(raw[0]) == norm:
+    if _EXACT_BARE.get(_bare_key(ruler)) == norm:
         return True
+    raw = re.sub(r"[.,?]", " ", str(ruler)).lower().split()
     ref = str(norm).lower().split()
     if raw and ref and raw[-1].isdigit():
         raw = raw[:-1] + [ref[-1]]
