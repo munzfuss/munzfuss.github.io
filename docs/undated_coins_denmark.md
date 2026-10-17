@@ -147,3 +147,36 @@ Options for the curator (row 2):
   MB numbers put them in Christoffer II's Saxkøbing series, but the name is
   not his), «Johannes» Odense, «Æthelred» (English type), «Øystein?».
 - 6 more empty stubs excluded (5 royal_holstein, 1 norburg_plon_duchy).
+
+## Row 3 — no ruler, no catalogue (analysis 2026-10-17)
+
+After row 2 the page has **76** undated coins; **36** carry no ruler (`None` /
+`?`). Not all are «no catalogue»: re-sorted by what the record still holds.
+
+| Sub-group | Records | What is there | Could date it |
+|---|---|---|---|
+| a. Sæby Kirke excavation (FP 9374.x) | 17 | nominal only (Hulpenning, Hvid, Skilling, Søsling, 2 Skilling, «skilling eller moderne mønt»); no weight, image, mint | no — the nominals span centuries |
+| b. Kobbersterling | 3 | nominal (FP 9197.2–3 Tyvelse, FP 9177.10 Sanderumgård «?») | **yes**: Erik af Pommern's copper sterlings, «dateres … til ca. 1420-1430/35» (Jensen, Hikuin 35, 2008, s. 158, after Moesgaard 2005) |
+| c. Penning with MB numbers | 3 | MB 261; MB 266-269; MB 285, 287, 319-320 | **yes**: the Hauberg/MB concordance (danskmoent konkord.htm) gives ruler and mint per MB number — MB 261 and 266-269 = Erik Klipping, Slesvig (1259–1286); MB 285–320 = Erik Menved, Lund (1286–1319) |
+| d. Penning, Hbg 1, Roskilde | 1 | Hauberg 1885 per-ruler number | no — «Roskilde 1» exists under every ruler |
+| e. Korshvid | 1 | nominal, very copper-rich, Øm kloster | rough: Korshvide of Christoffer, Rigsrådet, Christian I and Hans, all Malmø (danskmoent, quoted in luebischer_muenzfuss.md) — 1440–1513 |
+| f. NGC | 3 | 1/16 Thaler KM 25 Sonderburg «16Z5»; 2 Ducat KM 327; 10 Ducat KM PnA19 | the first dates as 1625 once Sonderburg is re-flowed (held for a merge decision); the other two NGC pages give no date; PnA19 is a Krause Pn number (§9 item 5 gate) |
+| g. Græse find penning | 1 | 0,36 g, «stående frelser/kors», image | the Græse hoard is dated by its finds (Niels / Erik Emune — Galster 1955); not attempted |
+| h. Tranquebar lead piece | 1 | Pb, «VF-DAN-NES-BOR», «Bgs. mgl.» | colonial Danish India — scope question, not a date question |
+| i. Nothing left | 6 | «(?)», «MB» without number, «?» | no |
+
+**Two pipeline defects found here (beyond row 3):**
+1. *Thinning merges different types.* `kmk-138263` is the keeper of a bucket of
+   ruler-less weightless pennies and carries `mb: [285, 500, 566-567]` salvaged
+   from the dropped records — Erik Menved (MB 285) and Christoffer II
+   (MB 566-567) in one record (`lib/seed_thin.thin_safe` + `_salvage_unique`:
+   the bucket key does not separate records whose catalogue indices differ
+   when the ruler is absent).
+2. *Comma-continued numbers are dropped.* KMM «MB 285, 287; 319-320» is split
+   on «,»; «287» has no prefix and is lost (`build_kmk_seed._catalog`).
+
+**Cross-check of row 2 by the concordance:** the MB numbers confirm the KMM
+ruler for Christoffer II (MB 533, 541, 566-567, 580, 589, 595, 606), Christoffer
+I (MB 083) and Erik Menved (MB 441) — but **MB 640** (`kmk-298884`, KMM
+«Christoffer2», Lund) is «Skåne under Magnus Smek, Lund 2» (1332–1360) in the
+concordance, not Christoffer II. Our data now shows it 1320–1332 (?).
