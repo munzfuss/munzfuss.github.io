@@ -140,6 +140,8 @@ def _set_reign_span_flag(out: dict) -> None:
 # for the tests and the call sites below.
 from lib.ruler_reigns import reign_lookup_is_exact as _reign_lookup_is_exact  # noqa: E402
 from lib.ruler_reigns import reign_window_placeholder as _reign_window_placeholder  # noqa: E402
+from lib.ruler_reigns import DANISH_CROWN_ENTITIES as _DANISH_CROWN_ENTITIES  # noqa: E402
+from lib.mb_concordance import mb_window as _mb_window, nominal_window as _nominal_window  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -664,7 +666,26 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
             # table, an open alternative («Christian I/Hans ?») spans both
             # reigns, and a qualified name the tables do not know («Frederik 3
             # som ærkebiskop») stays undated (lib.ruler_reigns).
-            _rw0 = _reign_window_placeholder(out.get("ruler"), out.get("issuing_entity"))
+            # Before the ruler: an MB number (the Hauberg/MB concordance
+            # gives that type's own ruler and years) and a nominal struck in
+            # one period only (the Kobbersterling) — both for the Danish
+            # crown's issuers only, where those catalogues apply (curator
+            # 2026-10-17, undated-coins plan row 3; lib.mb_concordance).
+            _ie = out.get("issuing_entity")
+            _ies = set(_ie) if isinstance(_ie, list) else {_ie}
+            _rw0 = None
+            if _ies & _DANISH_CROWN_ENTITIES:
+                # `out["catalog"]` is assembled further down — read the MB
+                # numbers from the members themselves.
+                _mb = []
+                for _m in members:
+                    _v = (_m.get("catalog") or {}).get("mb")
+                    for _x in (_v if isinstance(_v, list) else [_v]):
+                        if _x and str(_x) not in _mb:
+                            _mb.append(str(_x))
+                _rw0 = (_mb_window(_mb) if _mb else None) or _nominal_window(out.get("nominal"))
+            if _rw0 is None:
+                _rw0 = _reign_window_placeholder(out.get("ruler"), _ie)
             if _rw0 is not None:
                 authoritative_yr = [[_rw0[0], _rw0[1]]]
                 _reign_placeholder = True

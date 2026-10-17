@@ -70,6 +70,31 @@ class TestReignPlaceholder(unittest.TestCase):
         self.assertIsNone(enrich(holds={"year_first": "kept undated"}).get("year_first"))
 
 
+class TestMbAndNominalPlaceholder(unittest.TestCase):
+    """Row 3 (curator 2026-10-17): no ruler, but an MB number or a one-period
+    nominal dates the coin; MB beats the ruler (MB 640 = Magnus Smek)."""
+
+    def _enrich(self, **coin):
+        coin = {"id": "unified-kmk-1", "composed_of": ["unified-kmk-1"],
+                "issuing_entity": "danish_realm", **coin}
+        member = dict(coin)
+        out, _ = AB._enrich_final_entry(coin, [coin, member], "danish_realm")
+        return out
+
+    def test_mb_number_without_ruler(self):
+        out = self._enrich(nominal="1 Penning", catalog={"mb": "261"})
+        self.assertEqual((out["year_first"], out["year_last"]), (1259, 1286))
+        self.assertIs(out.get("year_verified"), False)
+
+    def test_kobbersterling(self):
+        out = self._enrich(nominal="1 Kobbersterling")
+        self.assertEqual((out["year_first"], out["year_last"]), (1420, 1435))
+
+    def test_mb_beats_the_ruler(self):
+        out = self._enrich(nominal="1 Penning", ruler="Christoffer2", catalog={"mb": "640"})
+        self.assertEqual((out["year_first"], out["year_last"]), (1332, 1360))
+
+
 class TestWhoseWindow(unittest.TestCase):
     """2026-10-17, second pass: the first version took the KING's window for
     any name the loose normaliser resolved — a Gottorp duke got 1648-1670, an
