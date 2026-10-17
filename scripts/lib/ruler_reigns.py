@@ -107,6 +107,17 @@ HOUSE_REIGNS: dict[str, dict[str, tuple[int, int]]] = {
         "Karl Peter Ulrich": (1739, 1762),
         "Paul":              (1762, 1773),
     },
+    # Sonderburg: Hans (Johann) der Jüngere received his third in the
+    # Flensburg treaty of 27 Jan 1564 and died 9 Oct 1622 — «Im Flensburger
+    # Vertrag (27.1.1564) überließ Kg. Friedrich II. von Dänemark seinem
+    # jüngsten Bruder J. ein Drittel», † 9.10.1622 (H. W. Schwarz, «Johann der
+    # Jüngere», Neue Deutsche Biographie 10, 1974, S. 534 f.,
+    # deutsche-biographie.de/sfz53359.html). Full rule only from 1571 (same
+    # article); the coinage window is the 1564-1622 span. His successors
+    # (Alexander and the other sons, 1622/23) are not in the table yet.
+    "sonderburg_duchy": {
+        "Hans der Jüngere":  (1564, 1622),
+    },
 }
 
 # Observed source spellings → canonical key inside a house table. Lowercased,
@@ -133,6 +144,13 @@ _HOUSE_ALIASES: dict[str, dict[str, str]] = {
         "karl peter ulrich": "Karl Peter Ulrich",
         "paul": "Paul",
     },
+    "sonderburg_duchy": {
+        # KMM «Hans den Yngre» (several spacings), NGC «Johann», German forms.
+        # Only one Hans/Johann ruled Sonderburg.
+        "hans den yngre": "Hans der Jüngere", "hans der jüngere": "Hans der Jüngere",
+        "johann der jüngere": "Hans der Jüngere", "johann": "Hans der Jüngere",
+        "johan": "Hans der Jüngere", "hans": "Hans der Jüngere",
+    },
 }
 
 _HOUSE_SUFFIX_RE = re.compile(
@@ -155,7 +173,7 @@ def house_reign_window(ruler_raw: str | None,
     if not aliases:
         return None
     name = _HOUSE_SUFFIX_RE.sub("", ruler_raw.strip())
-    name = name.replace(".", "").strip().lower()
+    name = re.sub(r"\s+", " ", name.replace(".", "")).strip().lower()
     key = aliases.get(name)
     if key is None:
         return None
@@ -358,8 +376,9 @@ def reign_window_placeholder(ruler_raw: str | None,
     # names the house («Frederik 3 af Slesvig-Holsten-Gottorp» on a
     # royal_holstein record).
     houses = [e for e in ents if e in HOUSE_REIGNS]
-    if re.search(r"gottorp", ruler_raw, re.IGNORECASE) and "gottorp_duchy" not in houses:
-        houses.append("gottorp_duchy")
+    for _pat, _h in ((r"gottorp", "gottorp_duchy"), (r"s[øo]nderb(?:o|u)rg", "sonderburg_duchy")):
+        if re.search(_pat, ruler_raw, re.IGNORECASE) and _h not in houses:
+            houses.append(_h)
     for h in houses:
         w = house_reign_window(ruler_raw.replace("?", "").strip(), h)
         if w is not None:

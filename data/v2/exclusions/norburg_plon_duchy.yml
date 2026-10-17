@@ -1,0 +1,84 @@
+# Curator per-coin EXCLUSIONS — entity `norburg_plon_duchy`.
+#
+# Coins the curator has decided are out-of-scope and must NOT render even in the
+# `seed_unsorted` bucket — patterns / Prøvemønter, off-strikes, exonumia,
+# undocumented stubs — that the rule-based §9 seed filters missed (usually
+# because the SOURCE mislabelled the piece). Distinct from the other decision
+# surfaces: merge_decisions RESHAPE, classification_decisions CLASSIFY, this one
+# REMOVES a coin with a recorded reason.
+#
+# `id` is a SEED id (as in data/v2/seed/<src>/<entity>.yml). A final is dropped
+# when its own unified id OR any composed_of member resolves to a listed id. The
+# coin's seed / seed_unified SURVIVE (provenance / audit trail); the absorb drops
+# it from `final` so it never reaches the render.
+#
+# category vocab: pattern | off_strike | off_nominal | exonumia |
+#                 undocumented_stub | out_of_scope | duplicate_noise
+#
+# Consumed by scripts/maintenance/absorb_seeds_into_final_v2.py (_load_exclusions
+# + the exclusion purge in process_entity). Applied on every absorb run.
+
+entity_id: norburg_plon_duchy
+exclusions:
+  # --- Undated-coins plan row 1 (docs/undated_coins_denmark.md), curator Serhii
+  # 2026-10-17: «виключи 58 порожніх заглушок … як порожні (як категорію C
+  # 2026-10-15)». KMM accession-list objects (GP 888.x = 1883-84, GP 982.x =
+  # 1888-89): an authority and «Mønt», NO nominal, NO year, NO weight, NO
+  # catalogue index, NO description, NO image (checked: ES related.assets and
+  # web billeder). Several name another issuer than the entity file's. ---
+  - id: kmk-81780
+    category: undocumented_stub
+    reason: >-
+      KMM GP 888.358, authority «Hans Adolf» — undocumented stub: no nominal, no year,
+      no weight, no catalogue index, no description, no image.
+    curator: Serhii
+    date: 2026-10-17
+  - id: kmk-81781
+    category: undocumented_stub
+    reason: >-
+      KMM GP 888.359, authority «Hans Adolf» — undocumented stub: no nominal, no year,
+      no weight, no catalogue index, no description, no image.
+    curator: Serhii
+    date: 2026-10-17
+  - id: kmk-81782
+    category: undocumented_stub
+    reason: >-
+      KMM GP 888.360, authority «Hans Adolf» — undocumented stub: no nominal, no year,
+      no weight, no catalogue index, no description, no image.
+    curator: Serhii
+    date: 2026-10-17
+  - id: kmk-81783
+    category: undocumented_stub
+    reason: >-
+      KMM GP 888.361, authority «Hans Adolf» — undocumented stub: no nominal, no year,
+      no weight, no catalogue index, no description, no image.
+    curator: Serhii
+    date: 2026-10-17
+  - id: kmk-81785
+    category: undocumented_stub
+    reason: >-
+      KMM GP 888.363, authority «Hans Adolf» — undocumented stub: no nominal, no year,
+      no weight, no catalogue index, no description, no image.
+    curator: Serhii
+    date: 2026-10-17
+  - id: kmk-81790
+    category: undocumented_stub
+    reason: >-
+      KMM GP 888.368, authority «Hans Adolf» — undocumented stub: no nominal, no year,
+      no weight, no catalogue index, no description, no image.
+    curator: Serhii
+    date: 2026-10-17
+  - id: kmk-81792
+    category: undocumented_stub
+    reason: >-
+      KMM GP 888.370, authority «August af Slesvig-Holsten-Sønderborg-Nordborg» — undocumented stub: no nominal, no year,
+      no weight, no catalogue index, no description, no image.
+    curator: Serhii
+    date: 2026-10-17
+  - id: kmk-81793
+    category: undocumented_stub
+    reason: >-
+      KMM GP 888.371, authority «August af Slesvig-Holsten-Sønderborg-Nordborg» — undocumented stub: no nominal, no year,
+      no weight, no catalogue index, no description, no image.
+    curator: Serhii
+    date: 2026-10-17

@@ -101,6 +101,14 @@ class TestWhoseWindow(unittest.TestCase):
         self.assertEqual(reign_window_placeholder("Christian IV.", ["danish_realm", "royal_holstein"]), (1588, 1648))
         self.assertIsNone(enrich(entity="sweden").get("year_first"))
 
+    def test_sonderburg_hans_der_juengere(self):
+        # NDB 10 (1974) S. 534 f.: his third from the Flensburg treaty of
+        # 27.1.1564, † 9.10.1622. KMM / NGC write him several ways.
+        for r in ("Hans den Yngre", "Hans  den Yngre", "Johann",
+                  "Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622"):
+            self.assertEqual(reign_window_placeholder(r, "sonderburg_duchy"), (1564, 1622), r)
+        self.assertIsNone(reign_window_placeholder("Johann", "royal_holstein"))
+
     def test_rigsraadet(self):
         self.assertEqual(reign_window_placeholder("Rigsrådet", "danish_realm"), (1481, 1483))
 
