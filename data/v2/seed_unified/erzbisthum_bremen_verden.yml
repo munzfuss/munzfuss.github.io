@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `erzbisthum_bremen_verden`.
-# Generated 2026-10-16 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-17 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/erzbisthum_bremen_verden.yml across all sources.
 #
 # Input: 304 per-source seed entries.
-# Output: 240 unified entries (one per physical coin).
+# Output: 238 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: erzbisthum_bremen_verden
-generated_at: '2026-10-16'
+generated_at: '2026-10-17'
 coins:
   - id: unified-dk-bruun-12130
     fuss: seed_unsorted
@@ -1437,7 +1437,9 @@ coins:
     year_label: 1641-1643
     ruler: Frederick II of Denmark (Friedrich II)
     catalog:
-      km: '37.1'
+      km:
+        - '37.1'
+        - '37'
       numista: '394107'
       others:
         - Jungk# 366 - 371
@@ -1451,13 +1453,20 @@ coins:
     weight_rough_g:
       - value: 1.57
         source: numista
+      - value: 1.6
+        source: ucoin
     diameter_mm:
+      - value: 19.0
+        source: ucoin
       - value: 19.3
         source: numista
     sources:
       - type: literature
         url: https://en.numista.com/394107
         ref: Numista N#394107 — 1/16 Thaler (2 Schilling) - Archbishopric of Bremen - Friedrich II 1641-1643
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-1-16-thaler-1641-1643/?tid=175386
+        ref: ucoin
     note:
       de: 1/16 Thaler
       en: 1/16 Thaler
@@ -1474,6 +1483,7 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - dk-numista-394107
+      - tid-tid-175386
   - id: unified-dk-numista-397794
     fuss: seed_unsorted
     phase: numista
@@ -1717,6 +1727,9 @@ coins:
       - type: literature
         url: https://en.numista.com/429659
         ref: Numista N#429659 — 2 Schilling - Frederick II - Archbishopric of Bremen
+      - type: ucoin
+        url: https://en.ucoin.net/coin/bremen-2-schilling-1641-1643/?tid=175306
+        ref: ucoin
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -1729,6 +1742,7 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - dk-numista-429659
+      - tid-tid-175306
   - id: unified-dk-numista-517615
     fuss: seed_unsorted
     phase: numista
@@ -8560,37 +8574,6 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - tid-tid-107057
-  - id: unified-tid-tid-175306
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 2 Schilling
-    year_first: 1641
-    year_last: 1643
-    year_ranges:
-      -   - 1641
-          - 1643
-    year_label: 1641-1643
-    catalog:
-      km: '36'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/bremen-2-schilling-1641-1643/?tid=175306
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - tid-tid-175306
   - id: unified-tid-tid-175310
     fuss: seed_unsorted
     phase: ucoin
@@ -8820,44 +8803,6 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - tid-tid-175385
-  - id: unified-tid-tid-175386
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1/16 Thaler
-    year_first: 1641
-    year_last: 1643
-    year_ranges:
-      -   - 1641
-          - 1643
-    year_label: 1641-1643
-    catalog:
-      km: '37'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.6
-        source: ucoin
-    diameter_mm:
-      - value: 19.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/bremen-1-16-thaler-1641-1643/?tid=175386
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - tid-tid-175386
   - id: unified-tid-tid-175388
     fuss: seed_unsorted
     phase: ucoin
