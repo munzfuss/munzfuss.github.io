@@ -26,12 +26,17 @@
 | R5 | Eriksson 2017 (metal analyses) | cache `…/eriksson_2017_metallanalyser.*` | assays of Christian I, Rigsråd 1481, Hans and Christian II coins (tab. 5–9, 12, 15) |
 | R6 | Hauberg 1886 | cache `…/hauberg_1886_myntvaesen_1377_1481.*` | the pre-1481 baseline (1449, 1453, 1460) |
 | R7 | Ingvardson et al. 2022 (Gribshunden) | cache `…/ingvardson_2022_gribshunden.extract.txt` | June 1495 purse: Hvide only; 1490s hoards |
+| R9 | *Dronning Christines Hofholdningsregnskaber*, ed. W. Christensen (København 1904) = «DCH» | cache `…/dch_1904_hofholdningsregnskaber.*` (archive.org, public domain; printed page = PDF page − 16) | the queen's own accounts 1496–1521: Gulden rates by entry, the 1503 Ribe/Kolding toll sum, Hungarian Gulden, Saxon silver coins (register «Møntvæsen» s. 463) |
+| R10 | Bobzin, «Münzen» (hagen-bobzin.de, after von Langenn 1838) | cache `scripts/cache/bobzin/muenzen.extract.txt` | Saxon Guldengroschen 1500: 8 per 15-lot mark, 27,40 g fine; Schreckenberger 1498: 3,9 g fine; Zinsgroschen («Schneeberger») 1498 |
 | R8 | Galster 1973 «Mønt» | cache `…/galster_1973_moent.*` | s. 24: under Christian I the Hvid fell «fra ⅓ skilling til ¼ eller mindre» (OCR prints «%»); under Hans Skillinger again |
 
 Provenance: R1 and R2 are one author. R4 is a reading of Enemark (not of the toll rolls) except the Mulich
 note, which Piorr quotes from the roll (RAK, Ribe og Kolding Toldregnskab 1501, slip between fol. 1 and 2).
 R1's court-account figures and R4's DCH figures come from the same printed accounts (W. Christensen,
-*Dronning Christines Hofholdningsregnskaber*, 1904) — one witness, two readers.
+*Dronning Christines Hofholdningsregnskaber*, 1904) — one witness, two readers; R9 is that edition itself,
+read 2026-10-17. Enemark 1971 (*Studier i toldregnskabsmateriale i begyndelsen af det 16. århundrede*, 2 vols,
+Aarhus) is out of print and not digitised (Aarhus UP page: «Udsolgt fra forlaget»; no copy on archive.org,
+slaegtsbibliotek or Google); the 2003 excerpt on unipress.dk (ch. 1) has no currency section.
 
 ## §2. The yardstick and its silver
 
@@ -103,6 +108,25 @@ gr.*» (R1 s. 134) matches, in Wilcke's own table on s. 126–127, the row of th
 6 Øre = 18 Ørtug = 14,0418 g); the row «1 M dansk (Götaland)» there is 24 Ørtug = 18,7224 g. Hypothesis: s. 134
 mislabels the Gotland mark as «M dansk». Would be settled by: Wilcke's Swedish source (Styffe / Wallroth).
 
+### §2b. A silver-to-silver anchor: the Saxon coins in the queen's account (2026-10-17)
+
+Independent of any gold : silver relation. Saxony's coins after 1498 / 1500 (R10, after von Langenn 1838):
+Guldengroschen («Klappmützentaler», Leipziger Münzordnung 1500) «*zu 8 Stück auf die 15lötige Mark … 27,40g
+Feinsilber*», = 1 Gulden = 7 Schreckenberger = 21 Zinsgroschen; Schreckenberger 3,9 g fine; Zinsgroschen («Schneeberger»)
+88 per mark at 7½ lot 4 grän ≈ 1,28 g fine (recomputed).
+
+| Entry | Price | If the coin is a Guldengroschen (27,40 g) | If it is the small coin of that name |
+|---|---|---|---|
+| 1507 «Sneberger» (R9 s. 246) | 132 Hvide | **Hvid ≈ 0,208 g** | Zinsgroschen 1,28 g → Hvid ≈ 0,010 g — impossible |
+| 1511 «en hell Skreckenberg» (R9 s. 386) | 128 Hvide | **Hvid ≈ 0,214 g** | Schreckenberger 3,9 g → Hvid ≈ 0,030 g — impossible |
+
+**Reading (hypothesis):** both prices only make sense for a whole Saxon Guldengroschen — struck at the Annaberg
+(Schreckenberg) and Schneeberg mints, and a fitting godparent's gift. Then a Hvid in 1507–1511 carried ≈ 0,21 g of
+silver at face value, i.e. 120 Hvide (2½ M d) ≈ 25 g per Gulden — in the range §2a gives (relation 11 → 27,7 g;
+1514 grid 23,9 g), and exactly the **5-lod Hans Hvid** (≈ 0,18–0,24 g, §5). A coin bought as a gift may carry a
+premium, so these are upper bounds on the Hvid's price, lower bounds on its silver. Would be settled by: the
+names «Sneberger» / «Schreckenberg» for Guldengroschen in another Danish or Hanseatic source.
+
 ## §3. The dated Danish rates — chronological register
 
 | Date | Rate as the source gives it | Normalised | Source (verbatim / locator) |
@@ -123,8 +147,20 @@ mislabels the Gotland mark as «M dansk». Would be settled by: Wilcke's Swedish
 | «bis etwa 1500» | 1 r.G. = 1½ M lübisch = **2 M dansk** | **2 M d / G** | R4 s. 234 after Enemark 2003 I s. 340 |
 | 1500–1505 | court accounts: Gulden «zwischen zwei und 2,5 Mark, wobei zumindest zwischen 1500 und 1505 … üblicherweise 2,5 Mark» | **2½ M d / G** | R4 s. 233 (DCH 1904 s. 11f., 15, 23, 31, 36, 107, 125) |
 | 1501 (Ribe) | Mulich: «den gulden to 2,5 mr ist 1333 mr 5 ß 1 wit denisch»; 1 M l. ≈ 1,67 M d | **2½ M d / G; 1 M l = 1,67 M d** | R4 s. 234 (RAK Ribe og Kolding Toldregnskab 1501) |
-| 1502 | 1 r.G. = 2½ M; 200 «stemplede» r.G. = 500 M d | **2½ M d / G** | R1 s. 90 |
+| 10 Aug 1500 | «*7½ mr. fore 3 rinske guldene, item 2½ mr. fore 2 postulatus guldene, item 3 mr. fore 3 hornicke guldene*»; «*25 ß fore en postulatus guldene*» | **2½ M d / G**; Postulat 20–25 ß; Hornsgylden 1 M | R9 s. 15 |
+| 1500 | «*2½ mr. fore en rinsk guldene*» | **2½ M d / G** | R9 s. 23 |
+| 1502 | 1 r.G. = 2½ M; 200 «stemplede» r.G. = 500 M d | **2½ M d / G** | R1 s. 90; R9 s. 31 («*200 rinske guldene for 500 mr. danske*») |
 | 1503 | mixed: 1 r.G. = 2 M (?); Postulatsgylden 25 ß; 3 Hornsgylden = 3 M d; 3 r.G. = 7½ M | 2 and **2½ M d / G** | R1 s. 90–91 |
+| 1503 (Ribe and Kolding toll, in the queen's account) | «*ther war eblan vdi samme swm 331 rinske guldene aff tollen … guldene regnendes fore 2 mr.*» — and the page sum «*hwer guldene fore 2½ mr.*» | **the dual rate in the primary record**: toll Gulden at 2 M d, the account at 2½ | R9 s. 11–12 |
+| 1503 / 1504 | page sums «*hwer guldene regnit fore 2½ mr.*», «*hwer guldene regnendes fore 2½ mr.*» | **2½ M d / G** | R9 s. 31, 36 |
+| 1504 | «*½ rinsk guldene i guld, 20 ß regnendes*»; editor: in the queen's account Gulden : Mark lybsk = 1 : 1½ | **40 ß d / G**; **24 ß lübisch / G** | R9 s. 107 (variant note), s. 46 (editor's note) |
+| c. 1504 | «*3½ mark, jegh gaff fore en vngersk guldene*» | Hungarian Gulden = 3½ M d | R9 s. 161 (Regnskab III, 1504–05) |
+| 26 Mar 1505 | «*2½ mr. gaff jeg fore en rinsk guldene*» | **2½ M d / G** | R9 s. 125 |
+| 30 May 1507 | «*3 mr. 4 ß myndre fore en Sneberger*» (as a godparent's gift) | a «Sneberger» = 2 M 12 ß d = 132 Hvide | R9 s. 246 (see §2b) |
+| 29 Aug 1508 | «*1 guldene swo goed som 27 ß danske*» | an unnamed Gulden = 27 ß d (not the Rhenish) | R9 s. 293 |
+| Jan 1509 | «*1 rinsk guldene, som war paa 20 ß lub. slaget*» | a Rhenish Gulden «at 20 ß lübisch» — reading open (a lighter Gulden? a Lübeck valuation?) | R9 s. 309–310 |
+| 12 Oct 1511 | «*2½ marck 8 alb. gaff jeg en tysk for en hell Skreckenberg*»; «*6 ß 8 alb. for 2 andre sølffpenning*» | a «whole Schreckenberg» = 2½ M + 8 Hvide = 128 Hvide | R9 s. 386 (see §2b) |
+| 1520 | «*4 marck gaff jeg fore en wngers gylden*» | Hungarian Gulden = 4 M d | R9 s. 406 |
 | 1503 – 1507 (– 1510) | Kolding / Ribe tolls collected at «dem alten Kurs (1 rfl = 2 mr = 32 ß)», accounted at «dem neuen Kurs (1 rfl = 2,5 mr = 40 ß)» | forced 2 M d vs market 2½ | R4 s. 233 after Enemark 1971 I s. 115–118 |
 | 24 Mar 1508 | 8 r.G. «hver r. Gylden for 2½ M d.» | **2½ M d / G** | R1 s. 134 |
 | 1509 (Sweden) | 1 lødig M silver = 12½ M Ørtug (peace of 17 Aug); 13 M Ørtug, 15 M Penning | Swedish money | R1 s. 115–116 |
@@ -135,8 +171,8 @@ mislabels the Gotland mark as «M dansk». Would be settled by: Wilcke's Swedish
 | 1514 | Gylden = 24 ß = 72 Hvide | — | R2 s. 153–155 |
 | 1529 | r.G. «almindeligvis» 2½ M d | — | R1 s. 91 |
 
-**Coverage:** rate-bearing years 1483, 1485, 1487, 1495, 1497, 1500–1508, 1510, 1513 (plus Lübeck 1470–1506
-and Sweden 1478, 1509). **Gaps:** 1481–82, 1484, 1486, 1488–94, 1496, 1498–99, 1509 (Danish side), 1511–12.
+**Coverage:** rate-bearing years 1483, 1485, 1487, 1495, 1497, 1500–1508, 1510, 1511, 1513 (plus Lübeck 1470–1506
+and Sweden 1478, 1509). **Gaps:** 1481–82, 1484, 1486, 1488–94, 1496, 1498–99, 1509 (one entry, reading open), 1512.
 
 **Reading:** two Danish levels only, both stated in Mark dansk per Gulden: **2 M d** (Christian I → 1483 →
 1485 → 1487 → «bis etwa 1500») and **2½ M d** (1500/01 → 1502 → 1503 → 1505 → 1508 → 1513 complaint). The
@@ -183,7 +219,7 @@ Built only from §3–§5. None of the undated coins carries a year; every row i
 | Group | Proposed date | Why (sources) | Against / caveat | Would be settled by |
 |---|---|---|---|---|
 | Hvid 6 lod | **c. 1483 – c. 1500** | fits 2 M d / G (1483, 1485, 1487, «bis etwa 1500») and Hvid = 3 Pf (1495); Eriksson: «Hans höjde halterna» after the 5-lod Rigsråd Hvid | 3 assays only; Gribshunden 1495 Hvide not assayed | assays of the Gribshunden (1495) and other 1490s hoard Hvide (Jensen et al. 1992) |
-| Hvid 5 lod | **c. 1500 – c. 1510** | fits 2½ M d (1500–1508); Skilling = 5 Hvide (R1 s. 142) | 5-lod Hvide also existed in 1481 (Rigsråd) — the lod alone does not date | hoards closed 1500–1510 with assayed Hvide |
+| Hvid 5 lod | **c. 1500 – c. 1510** | fits 2½ M d (1500–1508); Skilling = 5 Hvide (R1 s. 142); Saxon Guldengroschen 1507 / 1511 → Hvid ≈ 0,21 g (§2b) | 5-lod Hvide also existed in 1481 (Rigsråd) — the lod alone does not date | hoards closed 1500–1510 with assayed Hvide |
 | Hvid 4 lod | **after c. 1505?** | below the 2½ M d level | no rate expresses it | as above; Lemvig / Stege hoards (Märcher 2018b) |
 | Skilling 9 lod | **c. 1495/97 – c. 1500/03** | = Lübeck Schilling 1,271 = 24 / G; «4 Hvide ß» c. 1497; absent in June 1495 (Gribshunden), present in the late-1490s Møllegården hoard | earliest Skilling date open (R7: «sample size … too small») | assays of the Møllegården Skillinger (190 pieces, Märcher 2018b) |
 | Skilling 8 lod | **c. 1503/06 – c. 1510** | = Lübeck 13-Mark Schilling 1,124 = 24 / G after 1506 = 5 Hvide at 2½ M d — **the Danish Skilling following Lübeck's 1504/06 step is consistent with this group** | the same 8-lod coins are 25–31 / G against the pre-1506 Gulden — they could also be c. 1500–1505 debasement passing the level | a dated or hoard-closed 8-lod Skilling; the toll accounts 1503–1510 (Enemark) for the coin rate |
@@ -207,8 +243,9 @@ mint, not our seed ids. No data change proposed; this is a dating aid for phase 
 
 | Question | Would be settled by |
 |---|---|
-| The forced «2 M = 32 ß» toll rate 1503–1510: account ß or Skilling coin? (R4 says «Schillingmünzen») | Enemark, *Studier i toldregnskabsmateriale* 1971 I s. 113–118 (paper); Enemark, *Dansk oksehandel* 2003 I s. 337–360 |
-| Year-by-year Gulden rates 1496–1505 in the court accounts | *Dronning Christines Hofholdningsregnskaber* (ed. W. Christensen 1904), s. 11–125 and register s. 463 — not found online 2026-10-17 |
+| The forced «2 M = 32 ß» toll rate 1503–1510: account ß or Skilling coin? (R4 says «Schillingmünzen»). DCH s. 11–12 confirms the dual rate for 1503 but does not say in which coin the toll was paid | Enemark, *Studier i toldregnskabsmateriale* 1971 I s. 113–118 (paper, not online — checked 2026-10-17); Enemark, *Dansk oksehandel* 2003 I s. 337–360 (paper); the Ribe og Kolding toll rolls in the Rigsarkivet (RAK) |
+| DCH 1509: «*1 rinsk guldene, som war paa 20 ß lub. slaget*» — what «slaget» means here | other DCH entries with «slaget»; a glossary (Kalkar) |
+| ~~Year-by-year Gulden rates 1496–1505 in the court accounts~~ — DCH found on archive.org and read 2026-10-17 (§3 rows from R9). Still open: a full pass of DCH beyond the register entries (prices in Lübeck money on the queen's journeys, e.g. 1504 Lübeck, s. 44–69) | R9 read page by page |
 | Gaps 1484–1494, 1509–1512 | *Danske Breve fra Middelalderen* 2. R. (the series R1 uses); Kong Hans' Regnskabsbog 1487 (Medd. fra Rentekammerarkivet) |
 | ~~Did the Danish market value the Gulden at Lübeck's relation (assumption §2)?~~ Answered for c. 1500–1501 (§2a: Ribe 1501, Enemark); still open for 1483–1499 and 1502–1512 | a Danish document pricing the Gulden in Lübeck money in those years (Danske Breve 2. R.; DCH 1904) |
 | Wilcke's «20 ß lybsk» early Gulden (§2 ⚠) | Wilcke's own source for it (not given) |
