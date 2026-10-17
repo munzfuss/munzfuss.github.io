@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15202 per-source seed entries.
-# Output: 6734 unified entries (one per physical coin).
+# Output: 6732 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -139,62 +139,6 @@ coins:
       - kmk-699195
       - kmk-699196
       - kmk-699197
-  - id: unified-denmark-numismaster-65422
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1607
-    year_last: 1614
-    year_ranges:
-      -   - 1607
-          - 1614
-    year_label: 1607-1614
-    ruler: Christian 4
-    catalog:
-      km: '144'
-      dav: '3537'
-      hede:
-        - '53'
-        - 53B
-      schou: '5'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 28.75
-        source: kmk
-      - value: 28.94
-        source: kmk
-      - value: 29.232
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65422
-        ref: NumisMaster
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190270
-        ref: KMM 190270 (Inv. FP 3108.14)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/348809
-        ref: KMM 348809 (Inv. FP 5396.1)
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: danish_realm
-    composed_of:
-      - denmark-numismaster-65422
-      - kmk-190270
-      - kmk-348809
   - id: unified-dk-bruun-10772
     fuss: seed_unsorted
     phase: bruun
@@ -29630,6 +29574,7 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     year_verified: false
@@ -29637,12 +29582,19 @@ coins:
       - value: 0.125
         source: hede
       - value: 0.125
+        source: ngc
+      - value: 0.125
         source: numismaster
     weight_rough_g:
       - value: 1.017
         source: hede
       - value: 1.017
+        source: ngc
+      - value: 1.017
         source: numismaster
+    diameter_mm:
+      - value: 16.5
+        source: ngc
     sources:
       - type: literature
         url: https://numismaster.com/MC_117787
@@ -29650,6 +29602,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h84.htm
         ref: danskmoent.dk (Hede c4h84A)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-s%C3%B8sling-km-40.3-1607-09-cuid-1069703-duid-1238741
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -29658,6 +29613,7 @@ coins:
     composed_of:
       - denmark-numismaster-117787
       - dk-hede-c4h84a
+      - ngc-1069703
   - id: unified-dk-hede-c4h84b
     fuss: seed_unsorted
     phase: hede
@@ -68174,6 +68130,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: true
     verified: false
+    year_verified: false
     fineness:
       - value: 0.979
         source: hede
@@ -281560,6 +281517,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     fineness:
       - value: 0.993
         source: ngc
@@ -282133,11 +282091,19 @@ coins:
     kind: kurant
     nominal: 1 Speciedaler
     year_first: 1607
-    year_last: 1607
-    year_label: '1607'
+    year_last: 1614
+    year_ranges:
+      -   - 1607
+          - 1614
+    year_label: 1607-1614
+    ruler: Christian 4
     catalog:
       km: '144'
       dav: '3537'
+      hede:
+        - '53'
+        - 53B
+      schou: '5'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -282145,13 +282111,31 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     fineness:
       - value: 0.875
         source: ngc
+      - value: 0.875
+        source: numismaster
     weight_rough_g:
+      - value: 28.75
+        source: kmk
+      - value: 28.94
+        source: kmk
       - value: 29.232
         source: ngc
+      - value: 29.232
+        source: numismaster
     sources:
+      - type: literature
+        url: https://numismaster.com/MC_65422
+        ref: NumisMaster
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190270
+        ref: KMM 190270 (Inv. FP 3108.14)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348809
+        ref: KMM 348809 (Inv. FP 5396.1)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-144-1607-14-cuid-1050179-duid-1237430
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -282161,6 +282145,9 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: danish_realm
     composed_of:
+      - denmark-numismaster-65422
+      - kmk-190270
+      - kmk-348809
       - ngc-1050179
   - id: unified-ngc-1050180
     fuss: seed_unsorted
@@ -288778,14 +288765,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: ½ Skilling
-    year_first: 1771
+    year_first: 1784
     year_last: 1784
-    year_ranges:
-      -   - 1771
-          - 1771
-      -   - 1784
-          - 1784
-    year_label: 1771, 1784
+    year_label: '1784'
     ruler: Christian VII
     mint: Kopenhagen
     catalog:
@@ -288797,6 +288779,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: true
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://numismaster.com/MC_85473
@@ -288855,8 +288838,11 @@ coins:
     kind: kurant
     nominal: 2 Skilling Lybsk
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
     ruler: Christian IV
     catalog:
       km: '8.1'
@@ -288867,6 +288853,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     fineness:
       - value: 0.888
         source: ngc
@@ -289128,8 +289115,11 @@ coins:
     kind: kurant
     nominal: 2 Skilling Lybsk
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
     ruler: Christian IV
     catalog:
       km: '8.4'
@@ -289140,6 +289130,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     fineness:
       - value: 0.888
         source: ngc
@@ -289459,14 +289450,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: ½ Skilling
-    year_first: 1771
+    year_first: 1773
     year_last: 1773
-    year_ranges:
-      -   - 1771
-          - 1771
-      -   - 1773
-          - 1773
-    year_label: 1771, 1773
+    year_label: '1773'
     ruler: Christian VII
     mint: Kopenhagen
     catalog:
@@ -289478,6 +289464,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: true
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://numismaster.com/MC_85471
@@ -289574,8 +289561,11 @@ coins:
     kind: kurant
     nominal: 2 Skilling Lybsk
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
     ruler: Christian IV
     catalog:
       km: '8.3'
@@ -289586,6 +289576,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     fineness:
       - value: 0.888
         source: ngc
@@ -290049,6 +290040,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-73-mdclxxxiii-1683-cuid-1052025-duid-1239845
@@ -290316,8 +290308,11 @@ coins:
     kind: kurant
     nominal: 2 Skilling Lybsk
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
     ruler: Christian IV
     catalog:
       km: '8.2'
@@ -290328,6 +290323,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     fineness:
       - value: 0.888
         source: ngc
@@ -290351,8 +290347,11 @@ coins:
     kind: kurant
     nominal: 2 Skilling Lybsk
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
     ruler: Christian IV
     catalog:
       km: '8.5'
@@ -290363,6 +290362,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     fineness:
       - value: 0.888
         source: ngc
@@ -290386,8 +290386,11 @@ coins:
     kind: kurant
     nominal: 2 Skilling Lybsk
     year_first: 1624
-    year_last: 1624
-    year_label: '1624'
+    year_last: 1630
+    year_ranges:
+      -   - 1624
+          - 1630
+    year_label: 1624-1630
     ruler: Christian IV
     catalog:
       km: '8.6'
@@ -290398,6 +290401,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     fineness:
       - value: 0.888
         source: ngc
@@ -294067,6 +294071,7 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    year_verified: false
     fineness:
       - value: 0.875
         source: ngc
@@ -296847,8 +296852,11 @@ coins:
     kind: kurant
     nominal: 4 Skilling Lybsk
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
     ruler: Christian IV
     catalog:
       km: '9.1'
@@ -296859,6 +296867,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     fineness:
       - value: 0.888
         source: ngc
@@ -296882,8 +296891,11 @@ coins:
     kind: kurant
     nominal: 4 Skilling Lybsk
     year_first: 1624
-    year_last: 1624
-    year_label: '1624'
+    year_last: 1630
+    year_ranges:
+      -   - 1624
+          - 1630
+    year_label: 1624-1630
     ruler: Christian IV
     catalog:
       km: '9.2'
@@ -296894,6 +296906,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     fineness:
       - value: 0.888
         source: ngc
@@ -297021,43 +297034,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ngc-1069328
-  - id: unified-ngc-1069703
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1607
-    year_last: 1607
-    year_label: '1607'
-    catalog:
-      km: '40.3'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.125
-        source: ngc
-    weight_rough_g:
-      - value: 1.017
-        source: ngc
-    diameter_mm:
-      - value: 16.5
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-s%C3%B8sling-km-40.3-1607-09-cuid-1069703-duid-1238741
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    issuing_entity: danish_realm
-    composed_of:
-      - ngc-1069703
   - id: unified-ngc-1069947
     fuss: seed_unsorted
     phase: ngc

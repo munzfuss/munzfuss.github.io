@@ -303,6 +303,7 @@ coins:
     year_first: 1622
     year_last: 1622
     year_label: '1622'
+    year_verified: false
     mint: Altona
     catalog:
       km: '130'
@@ -2971,6 +2972,7 @@ coins:
     year_first: 1622
     year_last: 1622
     year_label: '1622'
+    year_verified: false
     catalog:
       km: '129'
       others:
@@ -6298,6 +6300,7 @@ coins:
     year_first: 1620
     year_last: 1620
     year_label: '1620'
+    year_verified: false
     catalog:
       km: '90'
       others:
@@ -6401,19 +6404,51 @@ coins:
     year_last: 1620
     year_label: '1620'
     catalog:
+      km:
+        - '89'
+        - '88'
       others:
         - Weinmeister-ZfN26# 313
+        - Weinm# 313
+      numista: '137320'
+      lange: '942'
     metal: copper
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 1.35
+        source: ikmk
+      - value: 1.45
+        source: numista
+    diameter_mm:
+      - value: 17.0
+        source: ikmk
+      - value: 18.0
+        source: numista
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18286856
         ref: IKMK Berlin, Inv. 18286856
         note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-4-pfennig-km-89-16z0-cuid-1153427-duid-1386905
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96061
+        ref: NumisMaster
+      - type: literature
+        url: https://en.numista.com/137320
+        ref: Numista N#137320 — 4 Pfennigs - Ernest III - County of Holstein-Schaumburg-Pinneberg – Numista
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-4-pfennig-km-88-16z0-1620-cuid-1154785-duid-1385141
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96060
+        ref: NumisMaster
     verification_note:
       de: Bulk-Seed aus IKMK Berlin (Holstein-Schauenburg, Ernst III.). Müntzstadt — Pinneberg (modernes SH) oder Stadthagen / Bückeburg (Niedersachsen) — und Müntzfuß-Zuordnung sind ungeklärt; 
         Per-Münze-Recherche via Weinmeister 1908 + Bei der Wieden 1961 ausstehend.
@@ -6421,7 +6456,9 @@ coins:
         research via Weinmeister 1908 + Bei der Wieden 1961 pending.
       uk: Bulk-сід з IKMK Berlin (Holstein-Schauenburg, Ernст III). Місто карбування — Піннеберг (сучасний SH) чи Stadthagen / Bückeburg (Нижня Саксонія) — і призначення Müntzfuß не визначені; 
         покоінне дослідження через Weinmeister 1908 + Bei der Wieden 1961 очікується.
-    composed_of: []
+    composed_of:
+      - unified-ngc-1153427
+      - unified-ngc-1154785
     v1_home_location: holstein_schauenburg
   - fuss: seed_unsorted
     phase: I
@@ -6484,6 +6521,7 @@ coins:
     year_first: 1620
     year_last: 1620
     year_label: '1620'
+    year_verified: false
     catalog:
       km: '85'
     metal: copper
@@ -6895,6 +6933,7 @@ coins:
     year_first: 1620
     year_last: 1620
     year_label: '1620'
+    year_verified: false
     catalog:
       km: '87'
       numista: '137315'
@@ -8019,48 +8058,6 @@ coins:
     composed_of:
       - unified-dk-numista-278796
   - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 4 Pfennig
-    ruler: Ernst III
-    issuing_entity: schauenburg_pinneberg
-    id: unified-ngc-1153427
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    year_verified: false
-    catalog:
-      km: '89'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.35
-        source: ikmk
-    diameter_mm:
-      - value: 17.0
-        source: ikmk
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-4-pfennig-km-89-16z0-cuid-1153427-duid-1386905
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286856
-        ref: IKMK Berlin 18286856
-      - type: literature
-        url: https://numismaster.com/MC_96061
-        ref: NumisMaster
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    composed_of:
-      - unified-ngc-1153427
-  - fuss: seed_unsorted
     phase: numismaster
     kind: kurant
     nominal: 1 Thaler
@@ -8775,56 +8772,6 @@ coins:
     composed_of:
       - unified-ngc-1153654
   - fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 4 Pfennig
-    ruler: Ernst III
-    issuing_entity: schauenburg_pinneberg
-    id: unified-ngc-1154785
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    year_verified: false
-    catalog:
-      km: '88'
-      numista: '137320'
-      lange: '942'
-      others:
-        - Weinm# 313
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.45
-        source: numista
-    diameter_mm:
-      - value: 18.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/137320
-        ref: Numista N#137320 — 4 Pfennigs - Ernest III - County of Holstein-Schaumburg-Pinneberg – Numista
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-4-pfennig-km-88-16z0-1620-cuid-1154785-duid-1385141
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_96060
-        ref: NumisMaster
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286856
-        ref: IKMK Berlin, Inv. 18286856
-        note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    composed_of:
-      - unified-ngc-1154785
-  - fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Schreckenberger
@@ -9504,6 +9451,7 @@ coins:
       -   - 1619
           - 1620
     year_label: 1619-1620
+    year_verified: false
     catalog:
       km: '107'
       dav: '3740'
@@ -9974,6 +9922,7 @@ coins:
     year_first: 1622
     year_last: 1622
     year_label: '1622'
+    year_verified: false
     catalog:
       km: '127'
       numista: '278298'

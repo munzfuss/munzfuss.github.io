@@ -1024,7 +1024,6 @@ coins:
     catalog:
       km:
         - '40'
-        - '40.3'
         - '40.4'
         - '40.1'
         - '40.2'
@@ -1083,9 +1082,6 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-s%C3%B8sling-km-40.2-1607-09-cuid-1059867-duid-1236431
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-s%C3%B8sling-km-40.3-1607-09-cuid-1069703-duid-1238741
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
       en: Coinage-standard assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -1095,7 +1091,6 @@ coins:
       - unified-ngc-1049979
       - unified-ngc-1053891
       - unified-ngc-1059867
-      - unified-ngc-1069703
     v1_home_location: denmark
   - fuss: 9_thaler
     phase: I
@@ -1162,6 +1157,8 @@ coins:
         source: ngc
       - value: 16.0
         source: ucoin
+      - value: 16.5
+        source: ngc
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-sosling-1611/?tid=162992
@@ -1189,6 +1186,9 @@ coins:
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-s%C3%B8sling-km-47.3-1611-cuid-1055135-duid-1238745
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-s%C3%B8sling-km-40.3-1607-09-cuid-1069703-duid-1238741
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note:
       de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
@@ -29050,69 +29050,6 @@ coins:
       - unified-denmark-numismaster-65022
       - unified-ngc-1049984
   - fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Speciedaler
-    issuing_entity: danish_realm
-    ruler: Christian 4
-    id: unified-denmark-numismaster-65422
-    year_first: 1607
-    year_last: 1614
-    year_ranges:
-      -   - 1607
-          - 1614
-    year_label: 1607-1614
-    year_verified: false
-    catalog:
-      km: '144'
-      dav: '3537'
-      hede:
-        - '53'
-        - 53B
-      schou: '5'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-    weight_rough_g:
-      - value: 28.75
-        source: kmk
-      - value: 28.94
-        source: kmk
-      - value: 29.232
-        source: ngc
-      - value: 29.232
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_65422
-        ref: NumisMaster
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/190270
-        ref: KMM 190270 (Inv. FP 3108.14)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/348809
-        ref: KMM 348809 (Inv. FP 5396.1)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-144-1607-14-cuid-1050179-duid-1237430
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    composed_of:
-      - unified-denmark-numismaster-65422
-      - unified-ngc-1050179
-  - fuss: seed_unsorted
     phase: bruun
     kind: kurant
     nominal: 1 Skilling
@@ -48089,6 +48026,7 @@ coins:
     year_first: 1746
     year_last: 1746
     year_label: '1746'
+    year_verified: false
     mint: Kopenhagen
     catalog:
       km:
@@ -258800,18 +258738,54 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    catalog:
+      km: '144'
+      dav: '3537'
+      hede:
+        - '53'
+        - 53B
+      schou: '5'
     metal: silver
     metal_verified: true
-    weight_rough_verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: false
     verified: false
+    fineness:
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+    weight_rough_g:
+      - value: 28.75
+        source: kmk
+      - value: 28.94
+        source: kmk
+      - value: 29.232
+        source: ngc
+      - value: 29.232
+        source: numismaster
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/78341
         ref: KMM 78341 (Inv. GP 678.5)
+      - type: literature
+        url: https://numismaster.com/MC_65422
+        ref: NumisMaster
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/190270
+        ref: KMM 190270 (Inv. FP 3108.14)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348809
+        ref: KMM 348809 (Inv. FP 5396.1)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-speciedaler-km-144-1607-14-cuid-1050179-duid-1237430
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     verification_note: *id005
     composed_of:
       - unified-kmk-78341
+      - unified-ngc-1050179
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -279849,6 +279823,7 @@ coins:
     year_first: 1747
     year_last: 1747
     year_label: '1747'
+    year_verified: false
     catalog:
       km: '546'
       dav: '1297'
@@ -283801,14 +283776,10 @@ coins:
     ruler: Christian VII
     issuing_entity: danish_realm
     id: unified-ngc-1051604
-    year_first: 1771
+    year_first: 1784
     year_last: 1784
-    year_ranges:
-      -   - 1771
-          - 1771
-      -   - 1784
-          - 1784
-    year_label: 1771, 1784
+    year_label: '1784'
+    year_verified: false
     mint: Kopenhagen
     catalog:
       km:
@@ -283888,8 +283859,12 @@ coins:
     issuing_entity: danish_realm
     id: unified-ngc-1051679
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
+    year_verified: false
     catalog:
       km:
         - '8.1'
@@ -284198,8 +284173,12 @@ coins:
     issuing_entity: danish_realm
     id: unified-ngc-1051727
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
+    year_verified: false
     catalog:
       km: '8.4'
     metal: silver
@@ -284403,14 +284382,10 @@ coins:
     ruler: Christian VII
     issuing_entity: danish_realm
     id: unified-ngc-1051865
-    year_first: 1771
+    year_first: 1773
     year_last: 1773
-    year_ranges:
-      -   - 1771
-          - 1771
-      -   - 1773
-          - 1773
-    year_label: 1771, 1773
+    year_label: '1773'
+    year_verified: false
     mint: Kopenhagen
     catalog:
       km: '615.2'
@@ -284524,8 +284499,12 @@ coins:
     issuing_entity: danish_realm
     id: unified-ngc-1051970
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
+    year_verified: false
     catalog:
       km: '8.3'
     metal: silver
@@ -284945,6 +284924,7 @@ coins:
     year_first: 1683
     year_last: 1683
     year_label: '1683'
+    year_verified: false
     catalog:
       km: '73'
       dav: '3677'
@@ -285220,8 +285200,12 @@ coins:
     issuing_entity: danish_realm
     id: unified-ngc-1052598
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
+    year_verified: false
     catalog:
       km: '8.2'
     metal: silver
@@ -285256,8 +285240,12 @@ coins:
     issuing_entity: danish_realm
     id: unified-ngc-1052599
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
+    year_verified: false
     catalog:
       km: '8.5'
     metal: silver
@@ -285292,8 +285280,12 @@ coins:
     issuing_entity: danish_realm
     id: unified-ngc-1052600
     year_first: 1624
-    year_last: 1624
-    year_label: '1624'
+    year_last: 1630
+    year_ranges:
+      -   - 1624
+          - 1630
+    year_label: 1624-1630
+    year_verified: false
     catalog:
       km: '8.6'
     metal: silver
@@ -287556,6 +287548,7 @@ coins:
     year_first: 1671
     year_last: 1671
     year_label: '1671'
+    year_verified: false
     mint: Kopenhagen
     catalog:
       km: '318'
@@ -289797,8 +289790,12 @@ coins:
     issuing_entity: danish_realm
     id: unified-ngc-1069324
     year_first: 1620
-    year_last: 1620
-    year_label: '1620'
+    year_last: 1623
+    year_ranges:
+      -   - 1620
+          - 1623
+    year_label: 1620-1623
+    year_verified: false
     catalog:
       km:
         - '9.1'
@@ -289853,8 +289850,12 @@ coins:
     issuing_entity: danish_realm
     id: unified-ngc-1069325
     year_first: 1624
-    year_last: 1624
-    year_label: '1624'
+    year_last: 1630
+    year_ranges:
+      -   - 1624
+          - 1630
+    year_label: 1624-1630
+    year_verified: false
     catalog:
       km: '9.2'
     metal: silver

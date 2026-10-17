@@ -81,6 +81,8 @@ coins:
         reason: attribution range, not a dated year (CLAUDE.md §3a)
         curator: serg
     year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1501-10)
     _errata_applied:
       - field: ruler
         printed: Friedrich I
@@ -176,6 +178,8 @@ coins:
         reason: attribution range, not a dated year (CLAUDE.md §3a)
         curator: serg
     year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1510)
     _errata_applied:
       - field: ruler
         printed: Friedrich I
@@ -411,6 +415,8 @@ coins:
       year_verified: NGC's date_line «(1523-33)» is an attribution window, not a struck year; the parser leaves year_verified true only because the paren-range slips its ND check. Held false to keep 
         _cross_entity year_demote from widening the merge (curator 2026-08-18); a default build_ngc_seed run drops it otherwise, since year_verified is not in seed_merge.CURATED_FIELDS. Remove once 
         the general ND→year_verified mechanism lands in the parser.
+    _ngc_dates_as_printed:
+      - (1523-33) Rare
   - id: ngc-167734
     fuss: seed_unsorted
     phase: ngc
@@ -500,6 +506,9 @@ coins:
     _reverse_legend: MO. NO. AVREA. SLESVICENSIS.
     _ngc_note: 'Fr. #16.'
     _ngc_date_line: (ca1535) Rare
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1535) Rare
   - id: ngc-167720
     fuss: seed_unsorted
     phase: ngc
@@ -541,6 +550,9 @@ coins:
     _ngc_date_line: (ca1540)
     _ngc_flags:
       uniface: true
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1540)
   - id: ngc-167740
     fuss: seed_unsorted
     phase: ngc
@@ -693,12 +705,12 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Pfennig
-    year_label: '1559'
+    year_label: '1559–1588'
     year_first: 1559
-    year_last: 1559
+    year_last: 1588
     year_ranges:
       -   - 1559
-          - 1559
+          - 1588
     ruler: Friedrich II
     mint:
     catalog:
@@ -729,6 +741,9 @@ coins:
     _ngc_date_line: (1559-88)
     _ngc_flags:
       uniface: true
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (1559-88)
   - id: ngc-167731
     fuss: seed_unsorted
     phase: ngc
@@ -770,17 +785,20 @@ coins:
     _reverse_legend: MO. DVCATV. SLES. Z HOLSA.
     _ngc_note: Ref. L#27.
     _ngc_date_line: (ca1565) (d)
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1565) (d)
   - id: ngc-167728
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 6 Pfennig
-    year_label: '1566'
+    year_label: '1566–1570'
     year_first: 1566
-    year_last: 1566
+    year_last: 1570
     year_ranges:
       -   - 1566
-          - 1566
+          - 1570
     ruler: Friedrich II
     mint:
     catalog:
@@ -813,6 +831,9 @@ coins:
     _ngc_date_line: (ca1566-70) (d)
     _ngc_flags:
       varieties_exist: true
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1566-70) (d)
   - id: ngc-121097
     fuss: seed_unsorted
     phase: ngc
@@ -855,6 +876,9 @@ coins:
     _ngc_date_line: (ca.1640)
     _ngc_previous_km:
       - '2'
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca.1640)
   - id: ngc-121098
     fuss: seed_unsorted
     phase: ngc
@@ -897,6 +921,9 @@ coins:
     _ngc_date_line: (ca.1640)
     _ngc_previous_km:
       - '3'
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca.1640)
   - id: ngc-121095
     fuss: seed_unsorted
     phase: ngc
@@ -1104,6 +1131,9 @@ coins:
     _reverse: Crowned C5 monograms
     _ngc_note: 'Dav. #3676. Prev. Holstein KM#11.'
     _ngc_date_line: (ca.1670) Rare
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca.1670) Rare
   - id: ngc-101324
     fuss: seed_unsorted
     phase: ngc
