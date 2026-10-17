@@ -646,6 +646,22 @@ said to be Lübeck's own) and accomplices, caught in Lübeck putting **imitated 
 circulation, among them Danish and Verden pieces. Whether the «dänischen Witten» were Danish royal Hvide or
 imitations of them is not said. It is a counterfeiting case, not a measure against Danish royal coin as such.
 
+**Was Danish coin banned in Lübeck? (2026-10-17, curator question)** Not as a category. What Jesse records:
+- the recesses after 1425 drop most valuations of foreign silver and fall back on a general ban: «*Wenn dann auch
+  nach 1425 derartige Valvationen von fremden Silbermünzen mehr und mehr aus den Rezessen verschwinden und die meisten
+  sich ganz allgemein auf ein Verbot fremden Geldes beschränken, sind doch immer wieder in den einzelnen Städten …
+  bestimmte auswärtige Münzsorten hervorgehoben worden, die zu einem festen Kurs zulässig blieben*». Danish coin fell
+  under the general ban like any foreign coin; earlier (1389, regularly from 1403) Danish money is among the sorts
+  admitted at a fixed rate;
+- specific Danish sorts, named in the **Hamburg** Burspraken (not Lübeck's): «*dänische Dreilinge*» that «*zeitweise
+  wieder ganz verboten wurden*», and at the start of the 16th c. «*dänische Klippenpfennige*»; after 1492, complaints
+  about bad foreign coin «*besonders solcher von Stade, Bremervörde und Dänemark*»;
+- **hypothesis (not checked):** Galster (*Danmarks Mønter*, danskmoent) — «*Nordtyske Smaafyrster (især
+  Saksen-Lauenborg) gjorde iøvrigt gode Forretninger med at efterligne og udmønte de berygtede "densche dreelinge"*».
+  With the Danish Hvid valued as a Lübeck 3-penny (Eriksson s. 5), the «*dänische Dreilinge*» of the Hamburg bans may
+  be Danish Hvide and/or their Lauenburg imitations. Would be settled by the Burspraken texts (Hamburg) and the
+  sources in Jesse's notes (not in the coingallery reproduction).
+
 **Curator's reading (2026-10-16):** Wilcke's «*Hans saa vel som hans Fader havde lovet Rigsraaderne at holde Mønten op
 til den lybske i Hansestæderne*» (7-2 s. 147) is a strong argument that Denmark had to move with Lübeck to the
 13-Mark level. **Analysis:** «holde … op til» = keep the coin UP TO Lübeck's, i.e. not worse than the current
