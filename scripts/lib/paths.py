@@ -75,6 +75,11 @@ GALSTER_CACHE: Path = HARVEST_ROOT / "danskmoent" / "galster"
 # in scope and is why we harvest the page at all — our `sieg` citations
 # do not record which edition they came from.
 KONKORDANS_CACHE: Path = HARVEST_ROOT / "danskmoent" / "konkordans"
+# danskmoent.dk per-coin pages of Mansfeld-Bûllner (mb/mbNNN.htm), 1241-1375 —
+# added 2026-10-17. Each page lines up one MB number with Hauberg, Kaaber,
+# Sømod and Grinder-Hansen (ruler / mint / dating), which the concordance
+# page gives only as Hauberg↔MB ranges.
+MB_CACHE: Path = HARVEST_ROOT / "danskmoent" / "mb"
 # danskmoent.dk «Forordninger m.v. vedr. Møntvæsenet under Enevælden» —
 # added 2026-10-13 for the coinage-instruments register. Mordhorst, Dansk
 # Pengehistorie III (Bilag), pp. 159-264, transcribed per reign:
@@ -129,7 +134,7 @@ def refresh() -> None:
     time is already correct.
     """
     global HARVEST_ROOT, HEDE_CACHE, IKMK_CACHE, NUMISTA_CACHE, UCOIN_CACHE, BRUUN_CACHE, GALSTER_CACHE, KONKORDANS_CACHE, NUMISMASTER_CACHE, KMK_CACHE, NGC_CACHE
-    global MORD_CACHE, SECHER_CACHE, SCHOU_CACHE
+    global MORD_CACHE, SECHER_CACHE, SCHOU_CACHE, MB_CACHE
     HARVEST_ROOT = _resolve_harvest_root()
     MORD_CACHE = HARVEST_ROOT / "danskmoent" / "mord"
     SECHER_CACHE = HARVEST_ROOT / "secher"
@@ -141,6 +146,7 @@ def refresh() -> None:
     BRUUN_CACHE = HARVEST_ROOT / "bruun"
     GALSTER_CACHE = HARVEST_ROOT / "danskmoent" / "galster"
     KONKORDANS_CACHE = HARVEST_ROOT / "danskmoent" / "konkordans"
+    MB_CACHE = HARVEST_ROOT / "danskmoent" / "mb"
     NUMISMASTER_CACHE = HARVEST_ROOT / "numismaster"
     KMK_CACHE = HARVEST_ROOT / "kmk"
     NGC_CACHE = HARVEST_ROOT / "ngc"
