@@ -233,27 +233,5 @@ class TestEdgeCases(unittest.TestCase):
         self.assertEqual(normalise_nominal("1.5 Daler"), "1.5 daler")
 
 
-class TestLuebischQualifier(unittest.TestCase):
-    """Sonderburg KM 11 (2026-10-17): IKMK / Numista «2 Schilling Lübisch» and
-    NGC «2 Schilling» did not match on the nominal, so the NGC class could not
-    absorb into its own final. A German Schilling is lübisch by default; the
-    Danish «lybsk» is a different unit (= 2 Skilling dansk) and must stay."""
-
-    def test_german_luebisch_dropped(self):
-        for n in ("2 Schilling Lübisch", "2 Schilling lübisch",
-                  "4 Schilling, Lübsch", "8 Schilling Lübsk"):
-            qty = n.split()[0]
-            self.assertEqual(normalise_nominal(n), f"{qty} skilling", n)
-
-    def test_danish_lybsk_kept(self):
-        self.assertEqual(normalise_nominal("4 Skilling lybsk"), "4 skilling lybsk")
-        self.assertEqual(normalise_nominal("4 Schilling lybsk"), "4 skilling lybsk")
-        self.assertNotEqual(normalise_nominal("4 Skilling lybsk"),
-                            normalise_nominal("4 Skilling dansk"))
-
-    def test_luebeck_untouched(self):
-        self.assertIn("lubeck", normalise_nominal("Lübeck Thaler"))
-
-
 if __name__ == "__main__":
     unittest.main(verbosity=2)

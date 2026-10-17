@@ -250,14 +250,6 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     # dansk» ≡ «6 Skilling». Stripped as a standalone word. «lybsk» (Lübeck)
     # and «norsk» (Norwegian) are GENUINELY distinguishing and are kept.
     (r"\s*\bdanske?\b", ""),
-    # German «Lübisch» / «Lübsch» / «Lübsk» (diacritics already folded) is
-    # the DEFAULT of a German Schilling — «2 Schilling Lübisch» ≡ «2
-    # Schilling» (curator, 2026-10-17: Sonderburg KM 11 split on exactly
-    # this). Stripped like «dansk». The Danish «lybsk» is NOT touched: in
-    # the Danish realm «Skilling lybsk» = 2 «Skilling dansk», a different
-    # denomination, and the KMK writes Christian IV's coins «4 Schilling
-    # lybsk» too.
-    (r"\s*\bl(?:u|ue)b(?:isch|sch|sk)\b", ""),
     # «Halv-X» (Danish «half») ≡ «½ X»: «Halvkrone»→«1/2 krone»,
     # «Halvdaler», «Halvskilling», «Halv ørtug», «halv dukat», …. The
     # leading form CONSUMES the implicit-one («1 Halvkrone» = one half-
