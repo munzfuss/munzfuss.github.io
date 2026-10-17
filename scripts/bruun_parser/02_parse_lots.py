@@ -241,6 +241,17 @@ def extract_year(meta_line: str | None, body_match: str | None) -> int | None:
 
 
 WEIGHT_RE = re.compile(r"\bWeight:\s*([\d.]+)\s*(?:gms?|grams?)\b", re.IGNORECASE)
+# Fallback for the cataloguers' slips (2026-10-17, 21 lots across Parts I-V,
+# all a specimen weight that WEIGHT_RE missed): a decimal comma («3,46 gms»,
+# the Swedish lots of Part V), a misspelt / mis-punctuated label («Weight 5.91»,
+# «Weigt:», «Weight;», «Weigh:»), or a bare «15.51 gms.» right after the
+# «Bruun-N» reference that closes the ref list. The bare form is accepted ONLY
+# in that position, so a weight mentioned in the prose is never read.
+WEIGHT_LOOSE_RE = re.compile(
+    r"\bWeig\w*\s*[:;]?\s*(\d+(?:[.,]\d+)?)\s*(?:gms?|grams?)\b"
+    r"|\bBruun-\s*\d+(?:\.\d+)?[.;]?\s+(\d+(?:[.,]\d+)?)\s*gms?\b",
+    re.IGNORECASE,
+)
 GRADE_RE = re.compile(r"\b(NGC|PCGS|ICG|ANACS)\s+([A-Z]+(?:\-\d{1,2})?(?:\s+(?:DPL|DCAM|CAM|PL|FH|UCAM))?)\b")
 RARITY_RE = re.compile(
     r"\b(EXTREMELY RARE|UNIQUE|VERY RARE|EXCESSIVELY RARE|EXTRAORDINARILY RARE|RARE|R{2,5})\b",
@@ -470,6 +481,10 @@ def parse_part(slug: str) -> list[dict]:
         # Weight
         wmatch = WEIGHT_RE.search(body_match)
         weight_g = float(wmatch.group(1)) if wmatch else None
+        if weight_g is None:
+            lm = WEIGHT_LOOSE_RE.search(body_match)
+            if lm:
+                weight_g = float((lm.group(1) or lm.group(2)).replace(",", "."))
         # Grade
         gmatch = GRADE_RE.search(body_match)
         grade = f"{gmatch.group(1)} {gmatch.group(2)}" if gmatch else None
