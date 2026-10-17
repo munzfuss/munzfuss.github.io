@@ -229,8 +229,10 @@ def build_entry(rec: dict, scope: str) -> dict | None:
     # with no year at all cannot claim one — both render '(?)'. A Z-shaped 2
     # ('16Z4') IS read (parse_ngc._Z_YEAR); the cells as NGC printed them are
     # kept in `_ngc_dates_as_printed` so the reading stays auditable (§3a: the
-    # year fields themselves carry plain digits only).
-    if rec.get("year_partially_illegible") or yf is None:
+    # year fields themselves carry plain digits only). An undated coin the
+    # catalogue attributes to a span («(1618-22)») keeps the span, with '(?)'.
+    if (rec.get("year_partially_illegible") or rec.get("year_attributed")
+            or yf is None):
         entry["year_verified"] = False
 
     for key, dst in (("obverse", "_obverse"), ("reverse", "_reverse"),

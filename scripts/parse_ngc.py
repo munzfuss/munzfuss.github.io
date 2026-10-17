@@ -248,14 +248,44 @@ _IMPLIED_DIGITS = re.compile(r"\((\d{1,3})\)(?=[\dZ])")
 _Z_YEAR = re.compile(r"(?<![0-9A-Za-z])1[0-9Z]{3}(?![0-9A-Za-z])")
 
 
+# A parenthesised prefix written in front of a year that is already complete:
+# «(1)1604 (c)» (Schaumburg KM 7, cuid 1154787; NumisMaster prints the same
+# cell). «11604» is no year, and the type's other cells — «(1)604 (p)», «1604
+# (p)» — read 1604, so the prefix is a doubled digit and is dropped.
+_DOUBLED_PREFIX = re.compile(r"\((\d{1,3})\)(?=(\d{4})(?!\d))")
+
+# An undated coin the catalogue attributes to a span or an approximate year:
+# «(1618-22)», «(1590-1616)», «(ca1566-70) (d)», «(ca1611)», «(c.1620)»,
+# «(ca.1640)». The span is carried whole; it is an attribution, not a date on
+# the coin, so the record is marked `year_attributed` (→ year_verified: false).
+# «(after 1620)» is NOT a span and is not matched here.
+_ATTRIBUTED = re.compile(
+    r"\((?:c(?:a)?\.?\s*)?(1\d{3})(?:-(\d{2}|\d{4}))?\)")
+
+
 def normalise_date(s: str) -> str:
     """NGC date cell → the same cell with the year written in plain digits.
 
     Two Krause conventions are resolved, both verified against a second
-    source (see `_IMPLIED_DIGITS`, `_Z_YEAR`); everything else passes through.
+    source (see `_IMPLIED_DIGITS`, `_Z_YEAR`), plus the doubled prefix of
+    `_DOUBLED_PREFIX`; everything else passes through.
     """
+    s = _DOUBLED_PREFIX.sub(
+        lambda m: "" if m.group(2).startswith(m.group(1)) else m.group(0), s)
     s = _IMPLIED_DIGITS.sub(r"\1", s)
     return _Z_YEAR.sub(lambda m: m.group(0).replace("Z", "2"), s)
+
+
+def _attributed_years(s: str) -> list[int] | None:
+    """Every year of an attributed span in a (normalised) cell, else None."""
+    m = _ATTRIBUTED.search(s)
+    if not m:
+        return None
+    a, b = int(m.group(1)), m.group(2)
+    if b is None:
+        return [a]
+    end = int(b) if len(b) == 4 else int(str(a)[:2] + b)
+    return list(range(a, end + 1)) if end >= a else None
 
 
 def parse_years(rec: dict) -> dict:
@@ -273,21 +303,36 @@ def parse_years(rec: dict) -> dict:
     if not raw and rec.get("date_line"):
         raw = [rec["date_line"]]
     years, illegible, rewritten = [], False, []
+    attributed_only = None
     for s in raw:
         s2 = normalise_date(s)
         if s2 != s and s not in rewritten:
             rewritten.append(s)
+        span = _attributed_years(s2)
+        if span:
+            years.extend(span)
+            attributed_only = attributed_only is not False
+            if s not in rewritten:
+                rewritten.append(s)
+            continue
         # An unread digit left after normalisation — «166z». The
         # `\d[a-z]` alternative that used to sit here read the mintmaster
         # initials in «1711IW» as a damaged digit.
         if re.search(r"\bz\b|\dz|z\d", s2, re.I):
             illegible = True
-        years.extend(int(y) for y in _YEAR.findall(s2))
+        found = [int(y) for y in _YEAR.findall(s2)]
+        if found:
+            attributed_only = False
+        years.extend(found)
     out = {"year_first": min(years) if years else None,
            "year_last": max(years) if years else None,
            "years_all": sorted(set(years)) or None}
     if illegible:
         out["year_partially_illegible"] = True
+    if attributed_only:
+        # Every year comes from an attribution («(1618-22)», «(ca1611)»):
+        # the coin carries no date (§3a — the span stays, the (?) renders).
+        out["year_attributed"] = True
     if rewritten:
         out["dates_as_printed"] = rewritten
     return out

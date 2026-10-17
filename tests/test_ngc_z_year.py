@@ -62,6 +62,43 @@ class ImpliedCentury(unittest.TestCase):
     def test_mintmark_and_range_untouched(self):
         self.assertEqual(normalise_date("1651 (c)"), "1651 (c)")
         self.assertEqual(normalise_date("(1618-22)"), "(1618-22)")
+        self.assertEqual(normalise_date("(16)19"), "1619")
+
+
+class AttributedSpan(unittest.TestCase):
+    """An undated coin the catalogue attributes to a span («(1618-22)») kept
+    only the span's first year, as if dated — 1618, verified. The span is
+    carried whole and the record is marked attributed (→ '(?)', §3a)."""
+
+    def test_span_carried_whole(self):
+        out = years("(1618-22)")
+        self.assertEqual(out["years_all"], [1618, 1619, 1620, 1621, 1622])
+        self.assertTrue(out["year_attributed"])
+        self.assertEqual(years("(1590-1616)")["year_last"], 1616)
+        self.assertEqual(years("(ca1566-70) (d)")["years_all"],
+                         [1566, 1567, 1568, 1569, 1570])
+
+    def test_approximate_year(self):
+        for cell in ("(ca1611)", "(c.1620)", "(ca.1640) Rare"):
+            out = years(cell)
+            self.assertEqual(len(out["years_all"]), 1, cell)
+            self.assertTrue(out["year_attributed"], cell)
+
+    def test_dated_cell_keeps_record_dated(self):
+        """MB 10: «(ca1523)» beside dated cells — the record is dated."""
+        out = years("(15)Z5", "(ca1523)", "1514")
+        self.assertNotIn("year_attributed", out)
+        self.assertIn(1523, out["years_all"])
+
+    def test_mintmark_is_not_a_span(self):
+        self.assertNotIn("year_attributed", years("1651 (c)"))
+
+
+class DoubledPrefix(unittest.TestCase):
+    def test_prefix_before_complete_year(self):
+        """«(1)1604 (c)», Schaumburg KM 7: read nothing; it is 1604."""
+        self.assertEqual(normalise_date("(1)1604 (c)"), "1604 (c)")
+        self.assertEqual(years("(1)1604 (c)")["years_all"], [1604])
 
 
 class StillUnread(unittest.TestCase):
