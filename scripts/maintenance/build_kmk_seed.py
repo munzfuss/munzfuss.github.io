@@ -528,6 +528,9 @@ def _drop_lange_volume(type_number: str) -> str:
 # indices of this coin, so none of them is continued onto the catalogue.
 _UNCERTAIN_LIST_RE = re.compile(r"\beller\b|\bell\.|\?")
 
+# A sub-variant letter printed after a space, as the whole rest of a segment.
+_SPACED_LETTER_RE = re.compile(r"\s+([A-Za-z])\s*\.?\s*")
+
 # A bare number or printed range — what a continuation segment must be in
 # full. «2var.», «4 mark!», «var. 1», «tvl. 21.» are not.
 _BARE_INDEX_RE = re.compile(r"\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?")
@@ -654,6 +657,18 @@ def _catalog(src):
             # own string is what we can attest (§0).
             nm = re.match(r"\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?", rest)
             val = re.sub(r"\s*-\s*", "-", nm.group(0)) if nm else None
+            # «H 3 B», «H. 80 A», «Galster 57 B», «Lange 504 A»: KMM often
+            # prints the sub-variant letter after a space, and the match above
+            # stopped at the digits — the letter of ~250 records was lost
+            # (2026-10-17). A letter that is the WHOLE remainder is part of
+            # the index. Anything longer — «151 A el. B», «119 B-C», «119 B?»,
+            # «80 e/g», «80 C og F» — offers alternatives or a span of
+            # sub-variants; only the base number is certain there, so it
+            # stays the base.
+            if val and val[-1].isdigit() and "-" not in val:
+                lm = _SPACED_LETTER_RE.fullmatch(rest[nm.end():])
+                if lm:
+                    val += lm.group(1)
         if val:
             out[key] = val
             last_key = key
@@ -804,7 +819,10 @@ def _raadata_catalog(beskrivelser) -> dict:
             if m:
                 others.append(f"LEB# {m.group(1)}")
                 continue
-            m = re.match(r"Auk\.?\s*Kat\.?\s*(?:no\.?)?\s*(\w+)", seg, re.I)
+            # «Auk. Kat. no. 4003» and «auk. Kat. Nr. 1573». Only «no.» was
+            # known until 2026-10-17, so 25 records stored the word «Nr» as
+            # the number — one shared junk value, a false edge between them.
+            m = re.match(r"Auk\.?\s*Kat\.?\s*(?:no|nr)?\.?\s*(\d\w*)", seg, re.I)
             if m:
                 others.append(f"Auk.Kat.# {m.group(1)}")
                 continue

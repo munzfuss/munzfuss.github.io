@@ -105,9 +105,36 @@ class TypeNumberContinuation(unittest.TestCase):
         self.assertEqual({"hede": "101"}, cat("H. 101, 102 ell. 137"))
 
 
+class SpacedSubVariantLetter(unittest.TestCase):
+    """«H 3 B» lost its B on ~250 records: the number match stopped at the
+    digits. A lone letter is part of the index; alternatives are not."""
+
+    def test_lone_letter_is_kept(self):
+        self.assertEqual({"hede": "3B"}, cat("H 3 B"))
+        self.assertEqual({"hede": "71c"}, cat("H. 71 c"))
+        self.assertEqual({"galster": "57B"}, cat("Galster 57 B"))
+        self.assertEqual({"lange": "504A"}, cat("Lange 1, 504 A"))
+
+    def test_alternatives_keep_only_the_base(self):
+        self.assertEqual({"hede": "151"}, cat("H: 151 A el. B"))
+        self.assertEqual({"hede": "119"}, cat("H. 119 B-C"))
+        self.assertEqual({"hede": "119"}, cat("H. 119 B?"))
+        self.assertEqual({"hede": "80"}, cat("Hede 80 e/g"))
+
+
+class AuctionCatalogueNumber(unittest.TestCase):
+    def test_nr_form_reads_the_number(self):
+        from build_kmk_seed import _raadata_catalog
+        self.assertEqual({"others": ["Auk.Kat.# 1573", "Auk.Kat.# 4003"]},
+                         _raadata_catalog(["auk. Kat. Nr. 1573",
+                                           "Auk. Kat. no. 4003"]))
+        self.assertEqual({}, _raadata_catalog(["Auk. Kat. Nr"]))
+
+
 class LangeVolumeIsNotTheIndex(unittest.TestCase):
     def test_volume_before_number(self):
         self.assertEqual({"lange": "503-04"}, cat("Lange 1, 503-04"))
+        self.assertEqual({"lange": "504A"}, cat("Lange 1, 504 A"))
         self.assertEqual({"lange": "542c"}, cat("Lange 2, 542c"))
         self.assertEqual({"lange": "324"}, cat("Lange I, 324"))
         self.assertEqual({"lange": "359"}, cat("Lange 1, nr. 359"))
