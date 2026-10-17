@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1841 per-source seed entries.
-# Output: 832 unified entries (one per physical coin).
+# Output: 827 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -33254,6 +33254,12 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 6 Pfennig
+    year_first: 1623
+    year_last: 1625
+    year_ranges:
+      -   - 1623
+          - 1625
+    year_label: 1623-1625
     ruler: Christian IV
     catalog:
       km: '79'
@@ -33264,7 +33270,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-km-79-16z4-16z3-cuid-121093-duid-309958
@@ -33281,6 +33286,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 6 Pfennig
+    year_first: 1642
+    year_last: 1642
+    year_label: '1642'
     ruler: Christian IV
     catalog:
       km: '87'
@@ -33291,7 +33299,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-km-87-164z-cuid-121094-duid-309961
@@ -33566,9 +33573,14 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 3 Pfennig, Dreier
+    year_first: 1557
+    year_last: 1557
+    year_label: '1557'
     ruler: Christian III
     catalog:
       mb: '60'
+      others:
+        - Sch# 1358
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -33576,11 +33588,13 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-3-pfennig-dreier-mb-60-1557-cuid-167724-duid-380790
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_167724
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -33588,6 +33602,7 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-167724
+      - schleswig_holstein-numismaster-167724
   - id: unified-ngc-167726
     fuss: seed_unsorted
     phase: ngc
@@ -33638,9 +33653,24 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 6 Pfennig
+    year_first: 1534
+    year_last: 1554
+    year_ranges:
+      -   - 1534
+          - 1534
+      -   - 1545
+          - 1546
+      -   - 1554
+          - 1554
+    year_label: 1534, 1545-1546, 1554
     ruler: Christian III
     catalog:
       mb: '33'
+      others:
+        - Sch# 1357
+      lange:
+        - '23'
+        - 23AB
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -33648,14 +33678,18 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 1.0
         source: ngc
+      - value: 1.0
+        source: numismaster
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-mb-33-1534-1554-cuid-167727-duid-380795
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_167727
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -33663,6 +33697,7 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-167727
+      - schleswig_holstein-numismaster-167727
   - id: unified-ngc-167728
     fuss: seed_unsorted
     phase: ngc
@@ -33747,6 +33782,14 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Schilling
+    year_first: 1566
+    year_last: 1571
+    year_ranges:
+      -   - 1566
+          - 1566
+      -   - 1571
+          - 1571
+    year_label: 1566, 1571
     ruler: Friedrich II
     catalog:
       mb: '75'
@@ -33757,7 +33800,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 1.9
         source: ngc
@@ -33937,9 +33979,13 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Mark
+    year_first: 1563
+    year_last: 1563
+    year_label: '1563'
     ruler: Friedrich II
     catalog:
       mb: '64'
+      lange: '26'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -33947,14 +33993,18 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 9.4
         source: ngc
+      - value: 9.4
+        source: numismaster
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-mark-mb-64-1563-cuid-167738-duid-380823
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_167738
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -33962,11 +34012,15 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-167738
+      - schleswig_holstein-numismaster-167738
   - id: unified-ngc-167739
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Thaler
+    year_first: 1522
+    year_last: 1522
+    year_label: '1522'
     ruler: Friedrich I
     catalog:
       mb: '27'
@@ -33978,7 +34032,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-thaler-mb-27-15zz-cuid-167739-duid-380824
@@ -33995,9 +34048,13 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Ducat
+    year_first: 1563
+    year_last: 1563
+    year_label: '1563'
     ruler: Friedrich II
     catalog:
       mb: '67'
+      fr: '19'
     metal: gold
     metal_verified: true
     fineness_verified: false
@@ -34005,14 +34062,18 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 3.48
         source: ngc
+      - value: 3.48
+        source: numismaster
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-ducat-mb-67-1563-cuid-167749-duid-380836
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_167749
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -34020,14 +34081,19 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-167749
+      - schleswig_holstein-numismaster-167749
   - id: unified-ngc-167751
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Portugaløser
+    year_first: 1591
+    year_last: 1591
+    year_label: '1591'
     ruler: Christian IV
     catalog:
       mb: '77'
+      lange: '30'
     metal: gold
     metal_verified: true
     fineness_verified: false
@@ -34035,11 +34101,13 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-10-ducat-portugaloser-mb-77-1591-cuid-167751-duid-380838
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_167751
+        ref: NumisMaster
     note:
       de: 10 Ducat,
       en: 10 Ducat,
@@ -34051,81 +34119,7 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - ngc-167751
-  - id: unified-schleswig_holstein-numismaster-167724
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 3 Pfennig
-    year_first: 1557
-    year_last: 1557
-    year_label: '1557'
-    ruler: Christian III
-    catalog:
-      mb: '60'
-      others:
-        - Sch# 1358
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_167724
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-167724
-  - id: unified-schleswig_holstein-numismaster-167727
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 6 Pfennig
-    year_first: 1534
-    year_last: 1554
-    year_ranges:
-      -   - 1534
-          - 1534
-      -   - 1545
-          - 1546
-      -   - 1554
-          - 1554
-    year_label: 1534, 1545-1546, 1554
-    ruler: Christian III
-    catalog:
-      mb: '33'
-      others:
-        - Sch# 1357
-      lange:
-        - '23'
-        - 23AB
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.0
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_167727
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-167727
+      - schleswig_holstein-numismaster-167751
   - id: unified-schleswig_holstein-numismaster-167729
     fuss: seed_unsorted
     phase: numismaster
@@ -34190,102 +34184,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - schleswig_holstein-numismaster-167733
-  - id: unified-schleswig_holstein-numismaster-167738
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Mark
-    year_first: 1563
-    year_last: 1563
-    year_label: '1563'
-    ruler: Friedrich II
-    catalog:
-      mb: '64'
-      lange: '26'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 9.4
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_167738
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-167738
-  - id: unified-schleswig_holstein-numismaster-167749
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1 Ducat
-    year_first: 1563
-    year_last: 1563
-    year_label: '1563'
-    ruler: Friedrich II
-    catalog:
-      mb: '67'
-      fr: '19'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 3.48
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_167749
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-167749
-  - id: unified-schleswig_holstein-numismaster-167751
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 10 Ducat
-    year_first: 1591
-    year_last: 1591
-    year_label: '1591'
-    ruler: Christian IV
-    catalog:
-      mb: '77'
-      lange: '30'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_167751
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: royal_holstein
-    composed_of:
-      - schleswig_holstein-numismaster-167751
   - id: unified-schleswig_holstein-numismaster-92967
     fuss: seed_unsorted
     phase: numismaster

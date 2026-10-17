@@ -3856,3 +3856,12 @@ removals:
         url: https://samlinger.natmus.dk/KMM/object/402823
         ref: 'KMM 402823 (Inv. FP 3599.1; die Webseite unter dieser Objektnummer zeigt Inv. FP 3423.2696)'
     reason: The KMM object page under this id shows another object (SOURCES 13.19); the citation stays without a url.
+  # ── NGC Z-date fix, 2026-10-17 ──────────────────────────────────────────
+  # Read as 1622–1623 («(1)6ZZ»), NGC 1159742 now merges with Numista 278793
+  # (same KM 134 Thaler); the merged register keeps Numista's «EC II 3749».
+  # Same Davenport number. Curator agreed in chat 2026-10-17.
+  - seed: ngc-1159742
+    kind: field
+    field: dav
+    dropped: ['3749']
+    reason: Same Davenport number as the surviving «EC II 3749» (Numista 278793); curator-agreed 2026-10-17.
