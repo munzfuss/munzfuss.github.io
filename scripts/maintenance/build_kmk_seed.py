@@ -158,7 +158,11 @@ def _index_after_edition_year(rest: str) -> str | None:
 
 _CAT_PREFIX = [
     (re.compile(r"^(?:hede|he|h)$", re.I), "hede"),
-    (re.compile(r"^(?:schou|sch)$", re.I), "schou"),
+    # KMM's own misspellings of «Schou» (2026-10-16 survey of the Denmark-page
+    # entities: Shou ×2, Schouo ×2, Schoju ×2, Scho, Sshou, Sckou, Scou, Sachou,
+    # Schoou, Scvhou, Skou — 15 records whose Schou number was dropped). The
+    # number printed after them is the source's; only the name is misspelt.
+    (re.compile(r"^(?:schou|sch|shou|schouo|scho|schoju|sshou|sckou|scou|sachou|schoou|scvhou|skou)$", re.I), "schou"),
     (re.compile(r"^(?:galster|gal|g)$", re.I), "galster"),
     (re.compile(r"^(?:lange|l)$", re.I), "lange"),
     (re.compile(r"^(?:davenport|dav)$", re.I), "dav"),
@@ -442,6 +446,18 @@ def _weight(src):
 # «Fiala 4 nr. 325» → «4 nr. 325», not the volume «4»).
 _CAT_FULL_REMAINDER = {"aagaard", "fiala"}
 
+# typeNumber catalogues without a CatalogRefs slot that KMM cites with a
+# number — kept verbatim as `others` labels (lower-cased prefix → label).
+# Counted 2026-10-16 on the Denmark-page entities: JSJ 13 (+47 in the web
+# beskrivelser), Sømod 42 («Sømod Br3828»), single Ahlström / Brekke /
+# Storgaard / Jungk / Bjørnstad / Gaettens references.
+_OTHERS_VERBATIM = {
+    "jsj": "JSJ", "sømod": "Sømod", "ahlström": "Ahlström",
+    "ahlströhm": "Ahlström", "ahlstrøm": "Ahlström", "brekke": "Brekke",
+    "storgaard": "Storgaard", "jungk": "Jungk", "bjørnstad": "Bjørnstad",
+    "gaettens": "Gaettens",
+}
+
 # Fiala is the one catalogue KMM writes with commas INSIDE its own reference:
 # «Fiala IV, s. 194, 1144» is volume IV, page 194, number 1144. The generic
 # split below cuts on `[;,]`, so all it ever saw was «Fiala IV» — and 22 seeds
@@ -501,6 +517,11 @@ def _catalog(src):
     tn, fiala = _lift_fiala(tn)
     if fiala:
         out["fiala"] = fiala
+    # «H:99C; Sch;82» — KMM put the field separator between the catalogue and
+    # its number, so the split below tore «Sch» from «82» (2 records). Rejoin a
+    # catalogue abbreviation followed by «;» and a digit.
+    tn = re.sub(r"\b(Sch|Schou)\s*;\s*(?=\d)", r"\1 ", tn)
+    others: list[str] = []
     for seg in re.split(r"[;,]", _join_edition_year_index(tn)):
         seg = seg.strip()
         m = re.match(r"^([A-Za-zÆØÅæøå]+)[\s:.]*(.+)$", seg)
@@ -508,7 +529,16 @@ def _catalog(src):
             continue
         prefix, rest = m.group(1), m.group(2).strip()
         key = next((k for rx, k in _CAT_PREFIX if rx.match(prefix)), None)
-        if key is None or key in out:
+        if key is None:
+            # Catalogues with no schema slot, kept VERBATIM in `others`
+            # (label = the source's own abbreviation, never mapped to a named
+            # field — what «JSJ» or «Sømod Br» denotes is not verified, §0).
+            lab = _OTHERS_VERBATIM.get(prefix.lower())
+            nm = re.match(r"([A-Za-z]{0,3}\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?\??)", rest)
+            if lab and nm and not _CF_REF_RE.search(seg):
+                others.append(f"{lab}# {re.sub(r'\s*-\s*', '-', nm.group(1))}")
+            continue
+        if key in out:
             continue
         if key in _CAT_FULL_REMAINDER:
             val = rest.rstrip(" .-")
@@ -539,6 +569,8 @@ def _catalog(src):
     # sub-variant from KMM and the Galster source share a thinning bucket key +
     # merge cleanly. Scoped to galster only — Hede/Lange/Schou sub-variant case
     # convention is not uniformly uppercase, so those are left untouched.
+    if others:
+        out["others"] = others
     errata = _KMM_GALSTER_ERRATA.get(src.get("id"))
     if errata:
         out["galster"] = errata[1]
@@ -664,6 +696,10 @@ def _raadata_catalog(beskrivelser) -> dict:
             m = re.match(r"Bech\s*(?:nr\.?)?\s*(\w+)", seg, re.I)
             if m:
                 others.append(f"Bech# {m.group(1)}")
+                continue
+            m = re.match(r"JSJ\s+(\d+\w*)", seg, re.I)
+            if m:
+                others.append(f"JSJ# {m.group(1)}")
                 continue
             m = re.match(r"LEB\s+(\w+)", seg)
             if m:
