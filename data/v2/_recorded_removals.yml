@@ -4089,3 +4089,13 @@ removals:
     field: others
     dropped: ['Auk.Kat.# Nr']
     reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  # ── Sonderburg KM 11 merge, 2026-10-17 (curator) ──────────────────────────
+  # Merging the KMM Lange 541/542 records into KM 11 brings the range
+  # «541-542»; catalog_codes.normalise_numeric_index drops a plain number a
+  # plain range covers, so «542» (IKMK 18284714) leaves the column. The range
+  # still carries it. Curator agreed in chat 2026-10-17.
+  - seed: ikmk-18284714
+    kind: field
+    field: lange
+    dropped: ['542']
+    reason: Covered by the merged range Lange 541-542 (normalise_numeric_index); curator-agreed 2026-10-17.

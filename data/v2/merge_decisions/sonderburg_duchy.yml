@@ -38,7 +38,7 @@ merges:
   # absorbs into the final, because its nominal «2 Schilling» differs from
   # the final's «2 Schilling Lübisch» (the coin reads «2 – L»). The whole
   # class is named, the IKMK Reinfeld pieces included.
-  - members: [ikmk-18284712, ikmk-18284714, ikmk-18284716, schleswig_holstein-numismaster-120993, ngc-1172866]
+  - members: [ikmk-18284712, ikmk-18284714, ikmk-18284716, schleswig_holstein-numismaster-120993, ngc-1172866, dk-numista-151528, kmk-200941, kmk-200942, kmk-200943, kmk-200995, kmk-200996, kmk-200997, kmk-201026, kmk-201027, kmk-201028, kmk-201052, kmk-201053, kmk-201054, kmk-201055, kmk-296097, kmk-296098, kmk-354886, kmk-355088, kmk-370043, kmk-714773, kmk-714775, kmk-714776, kmk-714777, kmk-714780, kmk-714781, kmk-714782, kmk-714784]
     reason: >-
       2 Schilling (Lübisch), Hans den Yngre, KM 11 — NGC cuid 1172866 (KM 11,
       «Ref. L#541-42, 547-48», 1620, 1621, 1623, 1625) and NumisMaster
@@ -46,3 +46,35 @@ merges:
       the IKMK Reinfeld pieces of 1621 (one Lange 542, within 541-42) were
       already this coin's members. Indices, weights and years accumulate
       list-form per §9a. Curator 2026-10-17.
+      Extended the same day (curator, merge by Lange and KM): Numista 151528
+      (KM 11, Lange 542c) and the KMM «2 skilling lybsk» records of Lange 541,
+      542, 542c, «541, 542», «541-542 el. 547-548» (Sømod Sø3631) and JSJ 13 /
+      13a — all inside KM 11's Lange 541-42 / 547-48. Not named, no index of
+      their own: kmk-81764/65/66 (no typeNumber), kmk-200939 («Lange -»),
+      kmk-200983/84/85 («Lange conf., 547», a cf. reference). The KMM decade
+      dating «1620-1629» of kmk-200941/42/43 and kmk-296097 is held back by
+      year_demote below, so it does not widen KM 11's attested years.
+  # Hans den Yngre, 2 Schilling KM 4 (Lange 540, 1618-1622) — ONE coin.
+  - members: [ngc-1171377, schleswig_holstein-numismaster-120991, dk-numista-151523, kmk-131474, kmk-201073, kmk-201074, kmk-201075, kmk-714771, kmk-714772]
+    reason: >-
+      2 Schilling (Lübisch), Hans den Yngre, KM 4 / Lange 540 — NGC cuid
+      1171377 (KM 4) and NumisMaster MC_120991 (KM 4, Lange 540), Numista
+      151523 (KM 4, Lange 540, Reinfeld) and the KMM «2 skilling lybsk»
+      records of «Lange 540» / «Lange 2, 540» (Sømod Sø3629) share KM base 4
+      and Lange base 540 (§9.4). Kept apart from KM 11 (Lange 541-42; Sømod
+      Sø3631). Indices, weights and sources accumulate list-form per §9a.
+      Curator 2026-10-17 (merge by Lange and KM). The KMM dating «1564-1623»
+      of kmk-714771/72 (the reign of Hans den Yngre) is held back by
+      year_demote below, so it does not widen KM 4's 1618-1622.
+
+
+year_demote:
+  # KMM dates these «2 skilling lybsk» records by a window, not a strike year:
+  # a decade (1620-1629) or the whole reign of Hans den Yngre (1564-1623).
+  # Merged into KM 11 / KM 4 (curator 2026-10-17), the window would widen the
+  # years NGC, NumisMaster and Numista attest (KM 11: 1620-1621, 1623, 1625;
+  # KM 4: 1618-1622). Held back so the attested years drive the display.
+  - members: [kmk-200941, kmk-200942, kmk-200943, kmk-296097, kmk-200983, kmk-200984, kmk-200985]
+    reason: KMM decade dating 1620-1629, not a strike year; KM 11's attested years stand (curator 2026-10-17).
+  - members: [kmk-714771, kmk-714772]
+    reason: KMM dating 1564-1623 is Hans den Yngre's reign, not a strike year; KM 4's 1618-1622 stands (curator 2026-10-17).
