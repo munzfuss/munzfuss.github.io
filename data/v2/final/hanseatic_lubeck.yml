@@ -2140,18 +2140,28 @@ coins:
       -   - 1634
           - 1638
     year_label: 1634-1638
+    mint: Lübeck
     catalog:
       km: A65
       behrens: 164b
-      dav: 5449D
+      dav:
+        - 5449D
+        - '5449'
+        - '67'
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 27.81
+        source: kmk
+      - value: 28.6
+        source: kmk
+      - value: 28.93
+        source: kmk
       - value: 29.0
         source: ucoin
     diameter_mm:
@@ -2164,6 +2174,15 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-a65-1634-1638-cuid-1137445-duid-1339418
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184158
+        ref: KMM 184158 (Inv. FP 3427.247)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184159
+        ref: KMM 184159 (Inv. FP 3427.246)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/187987
+        ref: KMM 187987 (Inv. FP 4271.9)
     verification_note:
       de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
       en: Coinage-standard assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -4835,40 +4854,6 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Daler
-    ruler: Ferdinand 2
-    issuing_entity: hanseatic_lubeck
-    id: unified-kmk-184158
-    year_first: 1637
-    year_last: 1637
-    year_label: '1637'
-    mint: Lübeck
-    catalog:
-      dav: '5449'
-      behrens: '167'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.93
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/184158
-        ref: KMM 184158 (Inv. FP 3427.247)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/184159
-        ref: KMM 184159 (Inv. FP 3427.246)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/187987
-        ref: KMM 187987 (Inv. FP 4271.9)
-    verification_note: *id002
-    composed_of:
-      - unified-kmk-184158
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
     issuing_entity: hanseatic_lubeck
     id: unified-kmk-184160
     year_first: 1636
@@ -4958,7 +4943,9 @@ coins:
     year_label: '1621'
     mint: Lübeck
     catalog:
-      dav: '5449'
+      dav:
+        - '5449'
+        - '67'
       behrens: '151'
     metal_verified: false
     weight_rough_verified: true
@@ -4966,6 +4953,8 @@ coins:
     verified: false
     weight_rough_g:
       - value: 28.79
+        source: kmk
+      - value: 28.99
         source: kmk
     sources:
       - type: museum
@@ -5066,7 +5055,9 @@ coins:
     year_label: '1559'
     mint: Lübeck
     catalog:
-      dav: '79'
+      dav:
+        - '79'
+        - '9408'
     metal_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -5587,7 +5578,7 @@ coins:
     mint: Lübeck
     catalog:
       others:
-        - Auk.Kat.# Nr
+        - Auk.Kat.# 1850
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -5610,7 +5601,7 @@ coins:
     mint: Lübeck
     catalog:
       others:
-        - Auk.Kat.# Nr
+        - Auk.Kat.# 1849
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -6087,90 +6078,6 @@ coins:
     verification_note: *id002
     composed_of:
       - unified-kmk-740898
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    issuing_entity: hanseatic_lubeck
-    id: unified-kmk-184159
-    year_first: 1637
-    year_last: 1637
-    year_label: '1637'
-    mint: Lübeck
-    catalog:
-      behrens: '167'
-      dav: '5449'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 27.81
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/184159
-        ref: KMM 184159 (Inv. FP 3427.246)
-    verification_note: &id003
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
-    composed_of:
-      - unified-kmk-184159
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    ruler: Ferdinand 2
-    issuing_entity: hanseatic_lubeck
-    id: unified-kmk-187987
-    year_first: 1637
-    year_last: 1637
-    year_label: '1637'
-    mint: Lübeck
-    catalog:
-      dav: '67'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.6
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/187987
-        ref: KMM 187987 (Inv. FP 4271.9)
-    verification_note: *id003
-    composed_of:
-      - unified-kmk-187987
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    ruler: Ferdinand 2
-    issuing_entity: hanseatic_lubeck
-    id: unified-kmk-187988
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    mint: Lübeck
-    catalog:
-      dav: '67'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.99
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/187988
-        ref: KMM 187988 (Inv. FP 4271.8)
-    verification_note: *id003
-    composed_of:
-      - unified-kmk-187988
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
@@ -8093,7 +8000,7 @@ coins:
         ref: IKMK Berlin 18201883
     inscription_obv: MONETA CESAREAE CIVITATIS LVBECAE 15-37
     inscription_rev: + IMP CAROLVS V CESARVS NVLLI SECVNDVS
-    verification_note: &id004
+    verification_note: &id003
       de: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Interactive Catalogue of the Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис з інтерактивного каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
@@ -8134,7 +8041,7 @@ coins:
         ref: IKMK Berlin 18219983
     inscription_obv: MONETA LVBICENS
     inscription_rev: S IOhANES - BAPTIST
-    verification_note: *id004
+    verification_note: *id003
     composed_of:
       - unified-ikmk-18219983
   - fuss: seed_unsorted
@@ -8156,7 +8063,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/188
         ref: KMM 188 (Inv. FP 129.2677)
-    verification_note: &id005
+    verification_note: &id004
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
@@ -8181,7 +8088,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200
         ref: KMM 200 (Inv. FP 129.2678)
-    verification_note: *id005
+    verification_note: *id004
     composed_of:
       - unified-kmk-200
   - fuss: seed_unsorted
@@ -8203,7 +8110,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/298422
         ref: KMM 298422 (Inv. RP 471.20)
-    verification_note: *id005
+    verification_note: *id004
     composed_of:
       - unified-kmk-298422
   - fuss: seed_unsorted
@@ -8232,7 +8139,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/624181
         ref: KMM 624181 (Inv. FP 788.78)
-    verification_note: *id005
+    verification_note: *id004
     composed_of:
       - unified-kmk-348620
   - fuss: seed_unsorted
@@ -8254,7 +8161,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/624179
         ref: KMM 624179 (Inv. FP 788.79.2)
-    verification_note: *id005
+    verification_note: *id004
     composed_of:
       - unified-kmk-624179
   - fuss: seed_unsorted
@@ -8276,7 +8183,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/624180
         ref: KMM 624180 (Inv. FP 788.79.1)
-    verification_note: *id005
+    verification_note: *id004
     composed_of:
       - unified-kmk-624180
   - fuss: seed_unsorted
@@ -11448,7 +11355,11 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/155963
         ref: KMM 155963 (Inv. FP 2624.228)
-    verification_note: &id006
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167374
+        ref: KMM 167374 (Inv. FP 1892.44)
+        display: false
+    verification_note: &id005
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
@@ -11474,7 +11385,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/159800
         ref: KMM 159800 (Inv. FP 3931.161)
-    verification_note: *id006
+    verification_note: *id005
     composed_of:
       - unified-kmk-159800
   - fuss: seed_unsorted
@@ -11579,3 +11490,30 @@ coins:
       da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - unified-kmk-184166
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling
+    issuing_entity: hanseatic_lubeck
+    id: unified-kmk-167371
+    year_first: 1559
+    year_last: 1559
+    year_label: '1559'
+    mint: Lübeck
+    catalog:
+      behrens: '428'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167371
+        ref: KMM 167371 (Inv. FP 1892.45)
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-kmk-167371

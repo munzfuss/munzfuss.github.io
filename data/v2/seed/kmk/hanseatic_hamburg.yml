@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-17T10:08:46Z'
+generated_at: '2026-10-17T15:48:57Z'
 entity: hanseatic_hamburg
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -96,7 +96,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167322
         ref: KMM 167322 (Inv. FP 1892.32)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/168424
+        ref: KMM 168424 (Inv. FP 1555.20)
     verification_note: *id001
+    _thinned_from:
+      - kmk-168424
   - id: kmk-167323
     fuss: seed_unsorted
     phase: kmk
@@ -1812,3 +1817,51 @@ coins:
         ref: KMM 393939 (Inv. FP 4227.1783)
     verification_note: *id001
     mint: Hamburg
+  - id: kmk-167324
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: hanseatic_hamburg
+    entity_classified_via: mint
+    nominal: 1 Skilling
+    metal_verified: false
+    mint: Hamburg
+    mint_verified: true
+    year_first: 1553
+    year_last: 1553
+    year_label: '1553'
+    year_ranges:
+      -   - 1553
+          - 1553
+    weight_rough_verified: false
+    catalog:
+      gaedechens: '915'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167324
+        ref: KMM 167324 (Inv. FP 1892.34)
+    verification_note: *id001
+  - id: kmk-167327
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: hanseatic_hamburg
+    entity_classified_via: mint
+    nominal: 1 Skilling
+    metal_verified: false
+    mint: Hamburg
+    mint_verified: true
+    year_first: 1553
+    year_last: 1553
+    year_label: '1553'
+    year_ranges:
+      -   - 1553
+          - 1553
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167327
+        ref: KMM 167327 (Inv. FP 1892.31)
+    verification_note: *id001

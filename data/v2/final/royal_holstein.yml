@@ -22085,16 +22085,26 @@ coins:
     year_last: 1622
     year_label: '1622'
     catalog:
-      lange: '2'
+      lange:
+        - 948b
+        - 948c
+      others:
+        - Sømod# Sc3767
     metal: silver
     metal_verified: true
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 28.8
+        source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200868
         ref: KMM 200868 (Inv. FP 3108.11682)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714752
+        ref: KMM 714752 (Inv. FP 12405.298)
     verification_note: *id003
     composed_of:
       - unified-kmk-200868
@@ -23651,6 +23661,8 @@ coins:
     year_first: 1710
     year_last: 1710
     year_label: '1710'
+    catalog:
+      lange: '468'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -25592,35 +25604,6 @@ coins:
     verification_note: *id003
     composed_of:
       - unified-kmk-699180
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    ruler: Justus Herman
-    issuing_entity: royal_holstein
-    id: unified-kmk-714752
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    catalog:
-      lange: 948b
-      others:
-        - Sømod# Sc3767
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 28.8
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714752
-        ref: KMM 714752 (Inv. FP 12405.298)
-    verification_note: *id003
-    composed_of:
-      - unified-kmk-714752
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -33503,7 +33486,9 @@ coins:
       - Glückstadt
       - Kopenhagen
     catalog:
-      hede: '104'
+      hede:
+        - '104'
+        - 167-169
       hede_volume: c4h
       sieg: '10'
       numista: '416350'

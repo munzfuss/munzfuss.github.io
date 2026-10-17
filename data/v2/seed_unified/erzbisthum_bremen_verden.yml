@@ -2,8 +2,8 @@
 # Generated 2026-10-17 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/erzbisthum_bremen_verden.yml across all sources.
 #
-# Input: 304 per-source seed entries.
-# Output: 238 unified entries (one per physical coin).
+# Input: 305 per-source seed entries.
+# Output: 239 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -4491,7 +4491,9 @@ coins:
     nominal: 2 Skilling lybsk
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     catalog:
-      lange: '1'
+      lange:
+        - '504'
+        - 504A
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -4515,7 +4517,9 @@ coins:
     nominal: 2 Skilling lybsk
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     catalog:
-      lange: '1'
+      lange:
+        - '504'
+        - 504A
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -4536,7 +4540,9 @@ coins:
     nominal: 2 Skilling lybsk
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     catalog:
-      lange: '1'
+      lange:
+        - '504'
+        - 504A
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -4550,6 +4556,27 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - kmk-200814
+  - id: unified-kmk-200815
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling lybsk
+    ruler: Ærkebisp Johann Friedrich 1596 - 1634
+    catalog:
+      lange: 504A
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200815
+        ref: KMM 200815 (Inv. FP 3108.11735)
+    verification_note: *id002
+    issuing_entity: erzbisthum_bremen_verden
+    composed_of:
+      - kmk-200815
   - id: unified-kmk-200816
     fuss: seed_unsorted
     phase: kmk
@@ -4557,7 +4584,7 @@ coins:
     nominal: 4 Skilling lybsk
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     catalog:
-      lange: '1'
+      lange: 503-04
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -4725,7 +4752,7 @@ coins:
     nominal: 4 Skilling lybsk
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     catalog:
-      lange: '1'
+      lange: 503-04
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -4746,7 +4773,7 @@ coins:
     nominal: 4 Skilling lybsk
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     catalog:
-      lange: '1'
+      lange: 503-04
     metal: silver
     metal_verified: true
     weight_rough_verified: false

@@ -3865,3 +3865,227 @@ removals:
     field: dav
     dropped: ['3749']
     reason: Same Davenport number as the surviving «EC II 3749» (Numista 278793); curator-agreed 2026-10-17.
+
+  # ── KMM catalogue values no source gave, 2026-10-17 (curator) ─────────────
+  # Two parser defects, fixed in 781537e / 5bd3834. «Lange 1, 503-04» /
+  # «Lange 2, 542c»: the volume of Lange 1908/12 was stored as the index.
+  # «auk. Kat. Nr. 1573»: the word «Nr» was stored as the number, one shared
+  # junk value on 25 records (and, by seed thinning, on kmk-133398 and
+  # kmk-311201). `catalog` unions in the seed and in final, so the fixed
+  # parser cannot clear them; scripts/oneoff/kmm_strip_salvaged_indices_
+  # 2026_10_17.py removed them by hand.
+  - seed: kmk-200812
+    kind: field
+    field: lange
+    dropped: ['1']
+    reason: Volume of Lange 1908/12 («Lange 1, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-200813
+    kind: field
+    field: lange
+    dropped: ['1']
+    reason: Volume of Lange 1908/12 («Lange 1, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-200814
+    kind: field
+    field: lange
+    dropped: ['1']
+    reason: Volume of Lange 1908/12 («Lange 1, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-200816
+    kind: field
+    field: lange
+    dropped: ['1']
+    reason: Volume of Lange 1908/12 («Lange 1, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-200817
+    kind: field
+    field: lange
+    dropped: ['1']
+    reason: Volume of Lange 1908/12 («Lange 1, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-200818
+    kind: field
+    field: lange
+    dropped: ['1']
+    reason: Volume of Lange 1908/12 («Lange 1, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-200868
+    kind: field
+    field: lange
+    dropped: ['2']
+    reason: Volume of Lange 1908/12 («Lange 2, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-200995
+    kind: field
+    field: lange
+    dropped: ['2']
+    reason: Volume of Lange 1908/12 («Lange 2, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-200996
+    kind: field
+    field: lange
+    dropped: ['2']
+    reason: Volume of Lange 1908/12 («Lange 2, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-200997
+    kind: field
+    field: lange
+    dropped: ['2']
+    reason: Volume of Lange 1908/12 («Lange 2, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-201026
+    kind: field
+    field: lange
+    dropped: ['2']
+    reason: Volume of Lange 1908/12 («Lange 2, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-201027
+    kind: field
+    field: lange
+    dropped: ['2']
+    reason: Volume of Lange 1908/12 («Lange 2, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-201028
+    kind: field
+    field: lange
+    dropped: ['2']
+    reason: Volume of Lange 1908/12 («Lange 2, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-201073
+    kind: field
+    field: lange
+    dropped: ['2']
+    reason: Volume of Lange 1908/12 («Lange 2, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-201074
+    kind: field
+    field: lange
+    dropped: ['2']
+    reason: Volume of Lange 1908/12 («Lange 2, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-201075
+    kind: field
+    field: lange
+    dropped: ['2']
+    reason: Volume of Lange 1908/12 («Lange 2, …»), not an index; the record now carries the number printed after it.
+  - seed: kmk-415827
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415828
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415833
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415823
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415824
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415825
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415826
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415831
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415832
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415843
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415830
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415842
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415814
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415815
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415817
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415820
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415822
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415788
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415789
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415790
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415796
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415793
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415795
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415797
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-415798
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-133398
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.
+  - seed: kmk-311201
+    kind: field
+    field: others
+    dropped: ['Auk.Kat.# Nr']
+    reason: The word «Nr» of «Auk. Kat. Nr. N» read as the number; the record now carries N where the rådata prints one.

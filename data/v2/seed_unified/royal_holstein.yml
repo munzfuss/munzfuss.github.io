@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1841 per-source seed entries.
-# Output: 827 unified entries (one per physical coin).
+# Output: 826 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1506,7 +1506,9 @@ coins:
       - Glückstadt
       - Kopenhagen
     catalog:
-      hede: '104'
+      hede:
+        - '104'
+        - 167-169
       hede_volume: c4h
       sieg: '10'
       numista: '416350'
@@ -5573,6 +5575,18 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/741034
         ref: KMM 741034 (Inv. FP 13015.2)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/302553
+        ref: KMM 302553 (Inv. FP 8323.18)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/351594
+        ref: KMM 351594 (Inv. FP 5179.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/368219
+        ref: KMM 368219 (Inv. FP 4552.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/372546
+        ref: KMM 372546 (Inv. FP 4280.267)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/122574
         ref: KMM 122574 (Inv. FP 3774.6)
       - type: museum
@@ -5702,17 +5716,11 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/301902
         ref: KMM 301902 (Inv. FP 8410.28)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/302553
-        ref: KMM 302553 (Inv. FP 8323.18)
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/157093
         ref: KMM 157093 (Inv. FP 4518.254)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/267332
         ref: KMM 267332 (Inv. FP 10092.16)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/351594
-        ref: KMM 351594 (Inv. FP 5179.1)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/355675
         ref: KMM 355675 (Inv. FP 4770.2)
@@ -5720,17 +5728,11 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/355676
         ref: KMM 355676 (Inv. FP 4770.1)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/368219
-        ref: KMM 368219 (Inv. FP 4552.4)
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/371730
         ref: KMM 371730 (Inv. FP 9925.8)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/371731
         ref: KMM 371731 (Inv. FP 9925.7)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/372546
-        ref: KMM 372546 (Inv. FP 4280.267)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/308822
         ref: KMM 308822 (Inv. FP 7412.5)
@@ -24132,20 +24134,31 @@ coins:
     year_label: '1622'
     ruler: Justus Herman
     catalog:
-      lange: '2'
+      lange:
+        - 948b
+        - 948c
+      others:
+        - Sømod# Sc3767
     metal: silver
     metal_verified: true
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 28.8
+        source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200868
         ref: KMM 200868 (Inv. FP 3108.11682)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/714752
+        ref: KMM 714752 (Inv. FP 12405.298)
     verification_note: *id002
     issuing_entity: royal_holstein
     composed_of:
       - kmk-200868
+      - kmk-714752
   - id: unified-kmk-200869
     fuss: seed_unsorted
     phase: kmk
@@ -26129,6 +26142,8 @@ coins:
     year_last: 1710
     year_label: '1710'
     ruler: Carl Friedric
+    catalog:
+      lange: '468'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -28318,35 +28333,6 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-699180
-  - id: unified-kmk-714752
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    ruler: Justus Herman
-    catalog:
-      lange: 948b
-      others:
-        - Sømod# Sc3767
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 28.8
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/714752
-        ref: KMM 714752 (Inv. FP 12405.298)
-    verification_note: *id002
-    issuing_entity: royal_holstein
-    composed_of:
-      - kmk-714752
   - id: unified-kmk-714753
     fuss: seed_unsorted
     phase: kmk
