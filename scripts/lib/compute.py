@@ -640,10 +640,11 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
     # jesse 11, gaedechens 9, thomsen 7, hauberg 7, aagaard (KMM) — 47 coins
     # on the Denmark page had an EMPTY catalogue cell because their only
     # index sat in one of these. Labels follow the source's own print form
-    # (Bruun: «NMD-53», «JS-…», «Skaare-…»). `schive` is deliberately not
-    # here yet: three Bruun seeds carry `schive: rn`, a mis-parse of the
-    # mintmaster name «Hans Schivern Knoph» (curator decision pending).
+    # (Bruun: «NMD-53», «JS-…», «Skaare-…», «Schive-X:14»). The three
+    # `schive: rn` values (a mis-parse of the mintmaster name «Hans Schivern
+    # Knoph») were removed 2026-10-17 before `schive` was added here.
     ("nmd", "NMD"),
+    ("schive", "Schive"),
     ("skaare", "Skaare"),
     ("jensen_skjoldager", "JS"),
     ("bergsoe", "Bergsøe"),
@@ -755,7 +756,7 @@ _PREFIX_PRIORITY: dict[str, int] = {
     "Saur": 220, "Diakov": 230, "Uzd": 240, "Bit": 250,
     "Brekke": 260, "Hauberg": 280,
     # Named fields added 2026-10-16 (see _NAMED_FIELDS).
-    "NMD": 31, "Skaare": 32, "JS": 52, "Bergsøe": 53, "Thomsen": 54,
+    "NMD": 31, "Skaare": 32, "Schive": 33, "JS": 52, "Bergsøe": 53, "Thomsen": 54,
     "Behrens": 150, "Welter": 155, "Fiala": 156, "Gaedechens": 157,
     "Jesse": 158, "Kreber": 159,
     "Fb": 290, "J": 300,

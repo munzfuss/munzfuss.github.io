@@ -650,6 +650,22 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                 authoritative_yr = _union_year_ranges(seed_unified_members)
         else:
             authoritative_yr = _union_year_ranges(members)
+    # No member attests ANY year, but the ruler is known: give the coin its
+    # ruler's reign window as a placeholder (curator direction 2026-10-17:
+    # «вставляти роки правління з (?), щоб монета не зникала»). Without a year
+    # the page assembly drops the coin («no year information»). The reign-span
+    # override below then marks it year_verified: false + year_is_reign_span,
+    # so it renders «(?)» and never drives phase outer-span expansion. It is a
+    # final-layer placeholder only: years are re-derived from the live members
+    # on every absorb, so the first attested year replaces it. A curator year
+    # hold leaves the coin alone.
+    if authoritative_yr is None:
+        _yh = final_entry.get("_curation_holds")
+        _yhk = set(_yh.keys() if isinstance(_yh, dict) else (_yh or []))
+        if not (_yhk & {"year_ranges", "year_first", "year_last", "year_label"}):
+            _rw0 = _reign_window(_norm_ruler(out.get("ruler")))
+            if _rw0 is not None:
+                authoritative_yr = [[_rw0[0], _rw0[1]]]
     if authoritative_yr is not None:
         if len(authoritative_yr) == 1 and authoritative_yr[0][0] == authoritative_yr[0][1]:
             out["year_first"] = authoritative_yr[0][0]

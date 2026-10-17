@@ -220,6 +220,11 @@ def normalise_ruler_name(raw: str | None) -> str | None:
     # Joint-attribution form: take the first half before « / » so
     # «Christian V / Frederick III» → «Christian V».
     head = raw.split("/", 1)[0].strip()
+    # A bare «Hans» (KMM, Bruun, danskmoent write the king without a numeral)
+    # is unambiguous: the table has one Hans, 1481-1513. «Hans?» (KMM's
+    # uncertain attribution) is the same name with a doubt mark.
+    if re.fullmatch(r"(?i)(hans|john)\??", head):
+        return "Hans I"
     m = _RULER_RE.search(head)
     if not m:
         return None

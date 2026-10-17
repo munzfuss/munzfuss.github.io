@@ -320,6 +320,28 @@ def _union_cat_values(existing_v, fresh_v):
     return out[0] if len(out) == 1 else out
 
 
+def _drop_bare_superseded_by_cf(v):
+    """«cf. X» supersedes a bare «X» in the same catalogue field.
+
+    The union above is accumulation, and accumulation is right for two
+    DIFFERENT readings. It is wrong when the parser re-reads the SAME source
+    statement more precisely: KMM «Sch. 44, cf.» was first stored as
+    `schou: '44'` and, once the parser kept the qualifier, re-emitted as
+    `'cf. 44'` — the union then kept both, so the seed still claimed Schou 44
+    as the coin's own index (2026-10-17, 9 KMM seeds). A cf-form names the
+    same number as a SIMILAR coin, so the bare twin is the stale reading and
+    is dropped. Values without a cf twin are untouched; a singleton collapses
+    to a scalar exactly as `_union_cat_values` does."""
+    if not isinstance(v, list):
+        return v
+    cf = {str(x).strip()[3:].strip().lower() for x in v
+          if isinstance(x, str) and str(x).strip().lower().startswith("cf.")}
+    if not cf:
+        return v
+    out = [x for x in v if not (isinstance(x, str) and str(x).strip().lower() in cf)]
+    return out[0] if len(out) == 1 else out
+
+
 # List-form fields that UNION existing + fresh entries instead of letting fresh
 # replace existing (§9a data-accumulation: «Reconciliation NEVER replaces
 # `sources` — always UNION»). A curator MAY add a primary-source citation to a
@@ -462,7 +484,8 @@ def merge_one(
                         # this branch existed.
                         ex_v[sub_k] = _union_others(ex_v[sub_k], sub_v)
                     elif sub_k in _list_cap:
-                        ex_v[sub_k] = _union_cat_values(ex_v[sub_k], sub_v)
+                        ex_v[sub_k] = _drop_bare_superseded_by_cf(
+                            _union_cat_values(ex_v[sub_k], sub_v))
             elif ex_v is None and fr_v is not None:
                 existing[key] = fr_v
             continue

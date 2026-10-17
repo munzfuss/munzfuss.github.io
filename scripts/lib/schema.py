@@ -985,6 +985,12 @@ class Coin(_StrictBase):
     # reason. Emitted by the cross-source merger from the members' `year_mark`,
     # unioned by absorb; never hand-written on final.
     year_alts: "list[YearAlt] | None" = None
+    # A source's own statement that the object is (or may be) a forgery,
+    # kept VERBATIM («falsk?», «H. 99 B, samtidig forfalskning?», «Falsk som
+    # H. 52»). Recorded so the information is not lost; nothing reads it yet
+    # — no render, no classification, no exclusion (curator 2026-10-17: what
+    # to do with forgeries is decided later). Emitted by the KMM seed builder.
+    forgery_flag: str | None = None
     ruler: str | None = None
     ruler_verified: bool = Field(
         True,

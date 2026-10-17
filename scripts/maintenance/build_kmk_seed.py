@@ -522,8 +522,16 @@ def _catalog(src):
     # catalogue abbreviation followed by «;» and a digit.
     tn = re.sub(r"\b(Sch|Schou)\s*;\s*(?=\d)", r"\1 ", tn)
     others: list[str] = []
+    last_key = None
     for seg in re.split(r"[;,]", _join_edition_year_index(tn)):
         seg = seg.strip()
+        if re.fullmatch(r"cfr?\.?", seg, re.I):
+            # Curator 2026-10-17: keep the reference WITH its «cf.» — the
+            # merger's D31 filter keeps a cf-form out of the catalogue column,
+            # the seed keeps the source's statement.
+            if last_key and out.get(last_key) and not str(out[last_key]).startswith("cf."):
+                out[last_key] = f"cf. {out[last_key]}"
+            continue
         m = re.match(r"^([A-Za-zÆØÅæøå]+)[\s:.]*(.+)$", seg)
         if not m:
             continue
@@ -563,6 +571,7 @@ def _catalog(src):
             val = re.sub(r"\s*-\s*", "-", nm.group(0)) if nm else None
         if val:
             out[key] = val
+            last_key = key
     # Galster sub-variant letters are uppercase in Galster's catalogue (the
     # dk-galster source uses 57A/57B/39A/23B); KMM's typeNumber is inconsistent
     # (57b/23a/39b). Canonicalise the suffix to uppercase so the same Galster
@@ -661,6 +670,9 @@ _KMM_DROP_IDS = {
 # below and scripts/maintenance/test_seed_reseed_idempotent.py.
 
 _CF_REF_RE = re.compile(r"\bcfr?\.", re.I)
+_FORGERY_RE = re.compile(r"fals|forfalsk", re.I)
+# A trailing segment that is ONLY «cf.» / «cfr.» qualifies the index before
+# it: «Sch. 44, cf.» = «cf. Schou 44», a similar coin, not this one's index.
 
 
 def _raadata_catalog(beskrivelser) -> dict:
@@ -1026,6 +1038,13 @@ def build_entry(src) -> dict | None:
         "sources": [_kmm_source(rid, src)],
         "verification_note": _VNOTE,
     }
+    # KMM's own forgery remark (typeNumber «falsk?», «Falsk som H. 52»,
+    # «samtidig forfalskning?»; workDescription «Mønt, falsk»), verbatim.
+    # Not acted on anywhere yet (curator 2026-10-17).
+    _fl = [s for s in (src.get("typeNumber"), src.get("workDescription"))
+           if isinstance(s, str) and _FORGERY_RE.search(s)]
+    if _fl:
+        entry["forgery_flag"] = "; ".join(_fl)
     _alt = _KMM_PUBLISHED_UNDER.get(str(rid))
     if _alt:
         entry["sources"].append({
