@@ -505,9 +505,74 @@ _KMM_GALSTER_ERRATA = {
 }
 
 
+# KMM writes Lange 1908/12 — a two-volume work — with the VOLUME before the
+# number: «Lange 1, 503-04», «Lange 2, 542c», «Lange I, 324». The form with
+# «nr.» («Lange 1, nr. 359») was already read right by `_join_edition_year_
+# index`; without «nr.» the split below cut on «,» and kept the volume as the
+# index, so 88 records carried `lange: '1'` / `'2'` (and 2 «Lange I» none at
+# all) and fused across types on it — Lange 2 540 / 541 / 542 / 542c in one
+# final class. Every number printed after the volume in the cache is ≥ 321
+# (2026-10-17 survey), so a volume can never be mistaken for a genuine «Lange
+# 1, 2» pair. Same shape as the Fiala volume lift above. Curator-approved
+# 2026-10-17.
+_LANGE_VOLUME_RE = re.compile(r"\b(Lange)\s+(?:1|2|I|II)\s*,\s*(?:nr\.?\s*)?(?=\d)", re.I)
+
+
+def _drop_lange_volume(type_number: str) -> str:
+    return _LANGE_VOLUME_RE.sub(r"\1 ", type_number)
+
+
+# A typeNumber that offers alternatives — «H. 86, 101, 102 eller 137?», «H.
+# 101, 102 ell. 137», «H. 134A (eller 134B, 174)» — is a cataloguer's
+# uncertain identification. Its comma-separated numbers are candidates, not
+# indices of this coin, so none of them is continued onto the catalogue.
+_UNCERTAIN_LIST_RE = re.compile(r"\beller\b|\bell\.|\?")
+
+# A bare number or printed range — what a continuation segment must be in
+# full. «2var.», «4 mark!», «var. 1», «tvl. 21.» are not.
+_BARE_INDEX_RE = re.compile(r"\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?")
+
+
+def _continued_index(seg: str, sep, cont_key, uncertain: bool):
+    """→ the index a bare segment adds to the PREVIOUS segment's catalogue,
+    or None when the segment is not such a continuation.
+
+    KMM lists several numbers of one catalogue after a single prefix: «Lange
+    541, 542», «Schou 85, 88-89, 93», «Hede 104, 167-169», «MB 285, 287;
+    319-320». The split on [;,] used to drop every segment after the first,
+    because it carries no prefix — 281 segments on 275 records (2026-10-17).
+
+    «;» normally separates catalogues (12 236 prefixed segments after it in
+    the cache, 4 bare), so a bare number after «;» is the rare case. Of those
+    four, two are «Sch;82» (re-joined above), one is «4 mark!» (not a number),
+    and one is «MB 285, 287; 319-320» (KMM 138263): a string naming no other
+    catalogue, whose numbers sit inside MB's own Erik Menved / Lund block (MB
+    283–326, danskmoent.dk/mb/em_lund.htm). Continuing it as MB reads the
+    source as printed; the rule is the same for both separators.
+    """
+    if cont_key is None or sep not in (",", ";") or uncertain:
+        return None
+    if not _BARE_INDEX_RE.fullmatch(seg):
+        return None
+    return re.sub(r"\s*-\s*", "-", seg)
+
+
+def _append_index(out: dict, key: str, value: str) -> None:
+    cur = out.get(key)
+    if isinstance(cur, list):
+        if value not in cur:
+            cur.append(value)
+    elif cur is None:
+        out[key] = value
+    elif cur != value:
+        out[key] = [cur, value]
+
+
 def _catalog(src):
     """Parse `typeNumber` → {catalog_key: ref}. Handles multi-field colon/comma
-    form («H: 134B; Sch: -», «Hbg. 4, MB 558») + abbreviations; first per key."""
+    form («H: 134B; Sch: -», «Hbg. 4, MB 558») + abbreviations. First per key,
+    except bare numbers continuing the previous catalogue («Lange 541, 542»
+    → both; see _continued_index)."""
     tn = src.get("typeNumber")
     if not isinstance(tn, str) or not tn.strip():
         # §DB: no ES typeNumber — use the web-rådata catalogue that
@@ -521,16 +586,36 @@ def _catalog(src):
     # its number, so the split below tore «Sch» from «82» (2 records). Rejoin a
     # catalogue abbreviation followed by «;» and a digit.
     tn = re.sub(r"\b(Sch|Schou)\s*;\s*(?=\d)", r"\1 ", tn)
+    tn = _drop_lange_volume(tn)
     others: list[str] = []
     last_key = None
-    for seg in re.split(r"[;,]", _join_edition_year_index(tn)):
-        seg = seg.strip()
+    # The register the PREVIOUS segment wrote a number to — the catalogue a
+    # bare number after it continues (see _continued_index). Reset by every
+    # segment that wrote nothing, so a number after «Lange conf.», «Jvf.
+    # Lange I» or «Sch,» never attaches to an earlier catalogue.
+    cont_key = None
+    uncertain = bool(_UNCERTAIN_LIST_RE.search(tn))
+    parts = re.split(r"([;,])", _join_edition_year_index(tn))
+    for i in range(0, len(parts), 2):
+        seg = parts[i].strip()
+        sep = parts[i - 1] if i else None
+        cont = _continued_index(seg, sep, cont_key, uncertain)
+        if cont is not None:
+            _append_index(out, cont_key, cont)
+            continue
+        cont_key = None
         if re.fullmatch(r"cfr?\.?", seg, re.I):
             # Curator 2026-10-17: keep the reference WITH its «cf.» — the
             # merger's D31 filter keeps a cf-form out of the catalogue column,
             # the seed keeps the source's statement.
-            if last_key and out.get(last_key) and not str(out[last_key]).startswith("cf."):
-                out[last_key] = f"cf. {out[last_key]}"
+            cur = out.get(last_key) if last_key else None
+            if isinstance(cur, list):
+                # «Schou 59, 61, cf.» — the «cf.» follows the number it
+                # qualifies, which is the list's last.
+                if not str(cur[-1]).startswith("cf."):
+                    cur[-1] = f"cf. {cur[-1]}"
+            elif cur and not str(cur).startswith("cf."):
+                out[last_key] = f"cf. {cur}"
             continue
         m = re.match(r"^([A-Za-zÆØÅæøå]+)[\s:.]*(.+)$", seg)
         if not m:
@@ -572,6 +657,8 @@ def _catalog(src):
         if val:
             out[key] = val
             last_key = key
+            if key not in _CAT_FULL_REMAINDER:
+                cont_key = key
     # Galster sub-variant letters are uppercase in Galster's catalogue (the
     # dk-galster source uses 57A/57B/39A/23B); KMM's typeNumber is inconsistent
     # (57b/23a/39b). Canonicalise the suffix to uppercase so the same Galster
