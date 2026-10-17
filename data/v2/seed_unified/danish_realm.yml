@@ -2,8 +2,8 @@
 # Generated 2026-10-17 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15201 per-source seed entries.
-# Output: 6735 unified entries (one per physical coin).
+# Input: 15202 per-source seed entries.
+# Output: 6738 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -10318,7 +10318,6 @@ coins:
       sieg: '26'
       schou: '2'
       hede: '3'
-      schive: rn
       bruun_part: II
       bruun_lot_no: 13235
       bruun_page: 165
@@ -41901,7 +41900,6 @@ coins:
         - '16'
         - '22'
       bruun_collection_id: '7761'
-      schive: rn
       bruun_part: III
       bruun_lot_no: 11289
       bruun_page: 145
@@ -137455,14 +137453,10 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/150156
         ref: KMM 150156 (Inv. KP 1656.157)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156606
-        ref: KMM 156606 (Inv. FP 2036.6)
     verification_note: *id002
     issuing_entity: danish_realm
     composed_of:
       - kmk-150156
-      - kmk-156606
   - id: unified-kmk-150158
     fuss: seed_unsorted
     phase: kmk
@@ -140348,12 +140342,6 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Hvid
-    year_first: 1483
-    year_last: 1513
-    year_ranges:
-      -   - 1483
-          - 1513
-    year_label: 1483-1513
     ruler: Hans
     mint: Malmø
     catalog:
@@ -140366,14 +140354,10 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/150279
         ref: KMM 150279 (Inv. KP 1656.34)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273987
-        ref: KMM 273987 (Inv. FP 1667.133.2)
     verification_note: *id002
     issuing_entity: danish_realm
     composed_of:
       - kmk-150279
-      - kmk-273987
   - id: unified-kmk-150280
     fuss: seed_unsorted
     phase: kmk
@@ -147749,6 +147733,28 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-156597
+  - id: unified-kmk-156606
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 2 Skilling
+    year_first: 1536
+    year_last: 1536
+    year_label: '1536'
+    ruler: Christian 3
+    mint: Kopenhagen
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156606
+        ref: KMM 156606 (Inv. FP 2036.6)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-156606
   - id: unified-kmk-156663
     fuss: seed_unsorted
     phase: kmk
@@ -189452,8 +189458,6 @@ coins:
     year_label: 1483-1513
     ruler: Hans
     mint: Malmø
-    catalog:
-      schou: '44'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -189479,8 +189483,6 @@ coins:
     year_label: 1483-1513
     ruler: Hans
     mint: Malmø
-    catalog:
-      schou: '58'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -189773,8 +189775,6 @@ coins:
     year_label: 1483-1513
     ruler: Hans
     mint: Malmø
-    catalog:
-      schou: '130'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -189858,18 +189858,10 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/274113
         ref: KMM 274113 (Inv. FP 1667.126.28)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/274050
-        ref: KMM 274050 (Inv. FP 1667.126.7)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/274051
-        ref: KMM 274051 (Inv. FP 1667.126.8)
     verification_note: *id002
     issuing_entity: danish_realm
     composed_of:
       - kmk-273750
-      - kmk-274050
-      - kmk-274051
   - id: unified-kmk-273797
     fuss: seed_unsorted
     phase: kmk
@@ -189910,8 +189902,6 @@ coins:
     year_label: 1483-1513
     ruler: Hans
     mint: Malmø?
-    catalog:
-      schou: '141'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -190079,6 +190069,31 @@ coins:
       - kmk-273848
       - kmk-273849
       - kmk-273853
+  - id: unified-kmk-273987
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1483
+    year_last: 1513
+    year_ranges:
+      -   - 1483
+          - 1513
+    year_label: 1483-1513
+    ruler: Hans
+    mint: Malmø
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273987
+        ref: KMM 273987 (Inv. FP 1667.133.2)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-273987
   - id: unified-kmk-274046
     fuss: seed_unsorted
     phase: kmk
@@ -190208,6 +190223,113 @@ coins:
       - kmk-274048
       - kmk-274049
       - kmk-274091
+  - id: unified-kmk-274050
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1483
+    year_last: 1513
+    year_ranges:
+      -   - 1483
+          - 1513
+    year_label: 1483-1513
+    ruler: Hans
+    mint: Malmø
+    catalog:
+      schou: '130'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274050
+        ref: KMM 274050 (Inv. FP 1667.126.7)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274053
+        ref: KMM 274053 (Inv. FP 1667.126.10)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274054
+        ref: KMM 274054 (Inv. FP 1667.126.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274055
+        ref: KMM 274055 (Inv. FP 1667.126.12)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274056
+        ref: KMM 274056 (Inv. FP 1667.126.13)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274057
+        ref: KMM 274057 (Inv. FP 1667.126.15)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274058
+        ref: KMM 274058 (Inv. FP 1667.126.16)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274059
+        ref: KMM 274059 (Inv. FP 1667.126.17)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274060
+        ref: KMM 274060 (Inv. FP 1667.126.18)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274061
+        ref: KMM 274061 (Inv. FP 1667.126.19)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274062
+        ref: KMM 274062 (Inv. FP 1667.126.20)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274063
+        ref: KMM 274063 (Inv. FP 1667.126.21)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274064
+        ref: KMM 274064 (Inv. FP 1667.126.22)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274065
+        ref: KMM 274065 (Inv. FP 1667.126.23)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274066
+        ref: KMM 274066 (Inv. FP 1667.126.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274067
+        ref: KMM 274067 (Inv. FP 1667.126.24)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274068
+        ref: KMM 274068 (Inv. FP 1667.126.5)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274069
+        ref: KMM 274069 (Inv. FP 1667.126.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274085
+        ref: KMM 274085 (Inv. FP 1667.126.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274086
+        ref: KMM 274086 (Inv. FP 1667.126.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274087
+        ref: KMM 274087 (Inv. FP 1667.126.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274088
+        ref: KMM 274088 (Inv. FP 1667.126.25)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274089
+        ref: KMM 274089 (Inv. FP 1667.126.26)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274090
+        ref: KMM 274090 (Inv. FP 1667.126.27)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274113
+        ref: KMM 274113 (Inv. FP 1667.126.28)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274051
+        ref: KMM 274051 (Inv. FP 1667.126.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274052
+        ref: KMM 274052 (Inv. FP 1667.126.9)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-274050
+      - kmk-274051
+      - kmk-274052
   - id: unified-kmk-274081
     fuss: seed_unsorted
     phase: kmk
@@ -190637,8 +190759,6 @@ coins:
     year_label: '1515'
     ruler: Christian 2
     mint: Malmø
-    catalog:
-      schou: '9'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
