@@ -258,7 +258,7 @@ _DOUBLED_PREFIX = re.compile(r"\((\d{1,3})\)(?=(\d{4})(?!\d))")
 # «(1618-22)», «(1590-1616)», «(ca1566-70) (d)», «(ca1611)», «(c.1620)»,
 # «(ca.1640)». The span is carried whole; it is an attribution, not a date on
 # the coin, so the record is marked `year_attributed` (→ year_verified: false).
-# «(after 1620)» is NOT a span and is not matched here.
+# «(after 1620)» is NOT a span — see `_AFTER`.
 _ATTRIBUTED = re.compile(
     r"\((?:c(?:a)?\.?\s*)?(1\d{3})(?:-(\d{2}|\d{4}))?\)")
 
@@ -274,6 +274,12 @@ def normalise_date(s: str) -> str:
         lambda m: "" if m.group(2).startswith(m.group(1)) else m.group(0), s)
     s = _IMPLIED_DIGITS.sub(r"\1", s)
     return _Z_YEAR.sub(lambda m: m.group(0).replace("Z", "2"), s)
+
+
+# «(after 1620)» — Schaumburg Kipper 12 Pfennig KM 93-95: a lower bound, not a
+# span. The bound is read as the year (curator's fallback, 2026-10-17) and kept
+# in `year_after`, so the seed can close the span on the ruler's reign end.
+_AFTER = re.compile(r"\(after\s+(1\d{3})\)")
 
 
 def _attributed_years(s: str) -> list[int] | None:
@@ -304,11 +310,15 @@ def parse_years(rec: dict) -> dict:
         raw = [rec["date_line"]]
     years, illegible, rewritten = [], False, []
     attributed_only = None
+    out_after = None
     for s in raw:
         s2 = normalise_date(s)
         if s2 != s and s not in rewritten:
             rewritten.append(s)
-        span = _attributed_years(s2)
+        after = _AFTER.search(s2)
+        if after:
+            out_after = int(after.group(1))
+        span = [out_after] if after else _attributed_years(s2)
         if span:
             years.extend(span)
             attributed_only = attributed_only is not False
@@ -333,6 +343,8 @@ def parse_years(rec: dict) -> dict:
         # Every year comes from an attribution («(1618-22)», «(ca1611)»):
         # the coin carries no date (§3a — the span stays, the (?) renders).
         out["year_attributed"] = True
+    if out_after is not None:
+        out["year_after"] = out_after
     if rewritten:
         out["dates_as_printed"] = rewritten
     return out

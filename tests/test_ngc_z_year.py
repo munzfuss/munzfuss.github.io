@@ -18,6 +18,7 @@ from __future__ import annotations
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -92,6 +93,42 @@ class AttributedSpan(unittest.TestCase):
 
     def test_mintmark_is_not_a_span(self):
         self.assertNotIn("year_attributed", years("1651 (c)"))
+
+
+class AfterBound(unittest.TestCase):
+    """«(after 1620)», Schaumburg Kipper 12 Pfennig KM 93-95 (Ernst III): read
+    as a verified 1620. Curator, 2026-10-17: close it on the ruler's reign end
+    when known, else 1620 with '(?)'."""
+
+    REC = {"cuid": "1153429", "heading": "German States SCHAUMBURG-PINNEBERG"
+           " 12 Pfennig KM# 93", "ruler": "Ernst III",
+           "dates": [{"year_mint": "(after 1620)"}]}
+
+    def test_parser_keeps_the_bound(self):
+        out = years("(after 1620)")
+        self.assertEqual(out["years_all"], [1620])
+        self.assertEqual(out["year_after"], 1620)
+        self.assertTrue(out["year_attributed"])
+
+    def _entry(self, reign):
+        import build_ngc_seed as b
+        from parse_ngc import parse_record
+        rec = parse_record(self.REC)
+        with mock.patch.object(b, "reign_window", return_value=reign), \
+                mock.patch.object(b, "route_entity_with_rules",
+                                  side_effect=lambda e, default_entity: (default_entity, None)):
+            return b.build_entry(rec, "schaumburg_pinneberg")
+
+    def test_closed_on_reign_end(self):
+        e = self._entry((1601, 1622))
+        self.assertEqual((e["year_first"], e["year_last"]), (1621, 1622))
+        self.assertEqual(e["year_label"], "1621–1622")
+        self.assertFalse(e["year_verified"])
+
+    def test_fallback_without_reign(self):
+        e = self._entry(None)
+        self.assertEqual(e["year_label"], "1620")
+        self.assertFalse(e["year_verified"])
 
 
 class DoubledPrefix(unittest.TestCase):

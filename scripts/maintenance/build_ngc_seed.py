@@ -34,6 +34,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from lib.entity_routing import route_entity_with_rules  # noqa: E402
 from lib.paths import NGC_CACHE  # noqa: E402
+from lib.ruler_reigns import reign_window  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
 # NGC region -> default issuing_entity. The region IS the polity: NGC splits
@@ -172,7 +173,18 @@ def build_entry(rec: dict, scope: str) -> dict | None:
     metal, metal_ok = _metal(rec.get("composition"))
     diam, diam_raw = _diameter(rec.get("diameter_raw"))
     yf, yl = rec.get("year_first"), rec.get("year_last")
-    ranges = _year_ranges(rec.get("years_all"), yf, yl)
+    years_all = rec.get("years_all")
+    after = rec.get("year_after")
+    if after is not None:
+        # «(after 1620)»: closed on the ruler's reign end when the reign table
+        # knows the ruler for this house; otherwise the bound itself stands,
+        # marked '(?)' below (curator, 2026-10-17).
+        reign = reign_window(rec.get("ruler"),
+                             house=SCOPE_ENTITY.get(scope, ""))
+        if reign and reign[1] > after and reign[0] <= after + 1:
+            yf, yl = after + 1, reign[1]
+            years_all = list(range(yf, yl + 1))
+    ranges = _year_ranges(years_all, yf, yl)
     fineness = rec.get("fineness")
     weight = rec.get("weight_g")
     flags = rec.get("flags") or {}
