@@ -442,7 +442,7 @@ proof that Denmark took the 1502/06 step.
 | 1506 | Hamburg Witten (208 / 5 Lot 1 Grän) | ≈ 13 7/10 | Bobzin |
 | 1506 | three Markstück variants 12¼/15 lot · 11¾/14½ · 12/14½ | 13,07 · 12,97 · 13,24 | Bobzin («*die dritte, noch einmal verschlechterte Variante*» prevails 1515) |
 | **1512 recess (confirmed Bergedorf 1513)** | Markstück 13 from the 15-lot mark «*die aber noch mit 1/2 Lot Kupfer vermischt werden sollte*» (= 14½ lot) | **≈ 14⅓** (13 × 16 ÷ 14½ = 14,34; recomputed) | Jesse («*Ein neuer Rezeß von 1512 … setzte den Münzfuß auf 13 Stück aus der 15lötigen Mark fest*») |
-| 1512 recess | Doppelschilling 104 from the 15-lot mark («*fein 2,012 g*») | ≈ 13⅞ (104 ÷ 8 × 16 ÷ 15 = 13,87; recomputed) | Jesse — but «*Außer den Witten dieses Jahres ist aber keine andere Münze bekannt*»: the 1512 Mark and Doppelschilling are a paper standard |
+| 1512 recess | Doppelschilling 104 from the 15-lot mark («*fein 2,012 g*») | ≈ 13⅞ (104 ÷ 8 × 16 ÷ 15 = 13,87; recomputed) | Jesse — «*Außer den Witten dieses Jahres ist aber keine andere Münze bekannt*» (said of the SMALL sorts: Doppelschilling / Schilling 1512 = paper). ~~the 1512 Mark and Doppelschilling are a paper standard~~ **Corrected 2026-10-17:** that sentence does not cover the Markstück. For the Mark: no 1512-dated piece is named (Lübeck dates 1506, 1523, 1546, 1549 — but dates are type dates, §3.4g-1); Jesse weighed 33 whole, 14 half, 10 quarter Markstücke: «*Durchschnittsgewicht von 19,1 g, … durchweg zu rund 12 Stück aus der rauhen Mark*» — 13 per mark would give ≈ 18,0 g (18,55 g if the ½ lot copper is added on top; recomputed). So the 1512 Mark rate is not visible in the surviving coins (our reading of Jesse's figures, not his statement) |
 | 1515 (plan) | Schilling 106–108 from the 8-lot mark | 13¼ – 13½ (recomputed: 1,103 – 1,083 g fine) | Jesse («*1515, als ein Schilling zu 106-108 aus einer 8 lötigen Mark geplant*»); Bobzin 13¼ |
 | 1515 | Schilling | 13¼ | Bobzin («*1 feine Mark Silber = 212 ßl. = 13 Ml. 4 ßl.*») |
 | 1519 / 1528 | Taler (8 on the 15-lot mark) | 12⅘ | Bobzin |
@@ -451,7 +451,7 @@ proof that Denmark took the 1502/06 step.
 ~~So within Hans' reign Lübeck stayed at 13 – 13¼ (small change ≈ 13 7/10); its next fall (14⅜–15⅝) is in
 the 1520s. Denmark's dated 1512 Skillinger (15–18) were therefore already BELOW Lübeck's contemporary
 level — Denmark went further than Lübeck before 1513.~~ **Corrected 2026-10-16:** the first version missed
-Jesse's 1512 recess. On paper Lübeck itself stepped down again in 1512 — Markstück ≈ 14⅓, Doppelschilling
+Jesse's 1512 recess. On paper (the recess; not visible in the surviving Markstücke, see table) Lübeck itself stepped down again in 1512 — Markstück ≈ 14⅓, Doppelschilling
 ≈ 13⅞ Mark lübisch per fine mark — though Jesse knows only Witten struck that year; the 1515 Schilling plan is
 back at 13¼–13½. So the gap between Lübeck's (paper) 1512 level and the dated Danish 1512 Skillinger (15–18) is
 smaller than first stated: Denmark was still below, by ≈ 1–4 Mark rather than ≈ 2–5.
