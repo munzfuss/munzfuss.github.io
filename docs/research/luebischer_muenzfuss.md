@@ -760,6 +760,57 @@ Jesse's 15 lot — secondary, not followed).
 > **Correction of our own text:** §0.2 matrix, §3.1a table and §3.4d table carried «1502 / 1506 … 13» and
 > «Markstück 1502/06» after Bobzin — wrong for 1502; struck through and corrected there (2026-10-17).
 
+**§3.4g-1 Did Lübeck strike on the 13-Mark standard before 1506, ahead of Hamburg? Did the towns wait for
+consensus?** (2026-10-17, curator question; Jesse, coingallery reproduction)
+
+How the union worked — Jesse, verbatim:
+- Recesses are often drafts, subject to each town's decision: «*Nicht alle Münzrezesse … sind als der
+  Niederschlag endgültiger und abschließender Beschlüsse anzusehen. Sie stellen vielmehr oft neue
+  Verhandlungen oder die entscheidende Stellungnahme der einzelnen Städte in Aussicht, wie … 1492 und 1501*»;
+  the envoys' reservation «*das "torugge bringen"*» (= referring back to their council) «*hat auch die
+  Verhandlungen und Entscheidungen des Münzvereins oft arg verzögert*»; the 1492 recess was «*in einer
+  besonderen Urkunde von Hamburg und Lübeck ausdrücklich bestätigt und angenommen*».
+- Execution was each town's own: «*Die Ausführung im einzelnen freilich blieb den Städten selbst überlassen,
+  da ja innerhalb des Münzvereins keine gemeinsame Münzstätte bestand*».
+- Not all four towns always took part, and towns struck non-union sorts on their own; the rules were loosely
+  kept: «*Wie wenig bindend die Vorschriften der Rezesse oft gehandhabt sind, zeigen besonders die Gepräge des
+  16. Jahrhunderts, wo z. B. die Anbringung bestimmter Jahrzahlen auf den Markgeprägen durchaus nicht
+  gleichmäßig gehandhabt worden ist und die Prägung der Doppelschillinge nach 1522 in den Städten zu ganz
+  verschiedenen Zeiten eingesetzt hat*».
+
+The 1501–1506 case, step by step:
+| When | Who struck what | Standard | Jesse |
+|---|---|---|---|
+| 1502 | Lübeck and Lüneburg ⅓ / ⅔ Mark; all four Witten | 1501 plan (11½) | «*Zur Ausprägung der größeren Nominale hatten sich die letzteren beiden Städte* [Wismar, Hamburg] *offenbar noch nicht entschließen können, doch war ihr Anschluß nur eine Frage der Zeit*» |
+| Aug – 13 Dec 1504 | nobody — 13 decided, charter without details | 13 (paper) | — |
+| 1505 | towns: not executed; Hamburg alone ⅓ / ⅔ Mark 1505 | 1501 (≈ 11,7), i.e. NOT the 1504 decision | «*Zu einer Ausführung der Beschlüsse ist es aber auch im folgenden Jahre noch nicht gekommen*»; Hamburg «*folgte … offenbar den Vorschriften von 1501*» |
+| Jan – Mittfasten 1506 | dies and legends negotiated jointly | — | «*Noch zu Mittfasten hoffte man sie in Umlauf setzen zu können. Ob das geschehen ist, wird schwer zu entscheiden sein*» |
+| 29 Dec 1506 | final recess | 13 | «*Wahrscheinlich bedeutet aber erst der Rezeß vom 29. Dezember 1506 … den endgültigen Abschluß*» |
+| dated 1506 | first ganze / ½ / ¼ Mark in **all four** towns, common reverse with the three arms | 13 | «*tragen in allen vier Städten die Jahreszahl 1506*» |
+
+Reading (our conclusion from Jesse; no source states it in these words):
+1. **For the 13-Mark Markstück there is no sign that Lübeck began earlier.** No Lübeck Mark coin dated
+   1504 or 1505 is named; Lübeck's earliest Markstücke are 1506, the same year as the other three towns, and
+   the type is the common one (three arms). Between Aug 1504 and 1506 the decision was paper in Lübeck too
+   («*auch im folgenden Jahre noch nicht*» is said of the towns generally).
+2. **But the union did not require consensus before a town struck.** In 1502 Lübeck and Lüneburg struck the
+   large pieces while Hamburg and Wismar had not yet decided; in 1505 Hamburg struck on the old 1501 standard
+   while the 1504 decision was pending. A single town could strike on its own — on an agreed (1501) standard,
+   not ahead of an unagreed one.
+3. **The 13-Mark standard became actual only with the joint 1506 outcome.** The 1504 decision fixed it
+   («*Der Münzfuß war also der gleiche wie 1504 vorgesehen geblieben*» = the 1506 recess kept the 1504
+   value unchanged); execution followed the 1506 agreement.
+4. **Caveat on «1506» as a striking date.** The recess is of 29 Dec 1506, yet coins are dated 1506: either
+   striking began earlier in 1506 (Jesse leaves the Mittfasten hope open) or the date was a fixed type date —
+   Hamburg kept «1506» on all its Markstücke to mid-century, and dates on Mark coins were «*durchaus nicht
+   gleichmäßig*». So «dated 1506» ≠ «struck in 1506». Whether Lübeck struck Markstücke between Mittfasten
+   and December 1506 is open. Would be settled by: Lübeck mint accounts / Lübeck UB for 1506; *Hanserecesse*
+   III for 1506.
+5. The «1504/06» pair also stands in Jesse's list of drafts whose Münzfuß «*in der endgültigen Fassung des
+   nächsten Jahres bereits wieder verändert*» was — against his own «*der gleiche wie 1504*» for the Mark.
+   Unresolved inside Jesse (possibly other sorts, or the Dec 1504 charter vs the Aug 1504 decision);
+   hypothesis only.
+
 **Consequence for the Danish question (§3.4b–d):** Lübeck's large-silver step dates 1504 (decision) / 1506
 (execution), not 1502. The Lübeck small change was already near 13¾ in the 1502 Witten. A Danish Skilling at
 the 13-Mark level (8-lod group, §3.4c) therefore matches the Lübeck Markstück of 1506 and the Lübeck Schilling
