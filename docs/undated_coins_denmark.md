@@ -24,7 +24,7 @@ by issuer (`c6202fa`, `80d1dd4`) — 1776 → 542 drops.
 | # | Group | Coins | What could date them | Status |
 |---|---|---|---|---|
 | 1 | Ruler of another house, no reign table | 61 (78 by the wider match) | reign tables for Sønderborg, Plön/Norburg, Schaumburg-Pinneberg, Oldenburg, Gottorp prince-bishops, Rantzau — each with a source; or entity re-routing | **done 2026-10-17** (57 stubs excluded, Sønderborg table) |
-| 2 | Medieval rulers (before 1481) | 44 | datable, but outside the page's span — exclude from the page rather than date? | open |
+| 2 | Medieval rulers (before 1481) | 44 (28 truly) | dated by reign windows (?) | **done 2026-10-17** |
 | 3 | No ruler, no catalogue | 29 | hopeless except nominals of one period (Kobbersterling = Erik af Pommern) | open |
 | 4 | Catalogue index matching a dated type | ~12 | not years — merge into the type (`merge_decisions`, a comparison table per pair) | open |
 | 5 | «Aahuset L. Chr. Larsen» | 8 | probably a private issuer — unchecked | open |
@@ -132,3 +132,18 @@ Options for the curator (row 2):
   in `seed_unsorted` like the 11 already there;
 - (c) exclude them explicitly as `out_of_scope` (before the page's span) —
   and decide whether the 11 dated pre-1481 coins follow, for consistency.
+
+**Decision and outcome (curator 2026-10-17: «Датуй 28 середньовічних: додай
+середньовічних королів і архієпископа до таблиці правлінь з джерелами та
+аліаси описок; і виключи 6 порожніх заглушок GP 888/982»).**
+- `lib/ruler_reigns.py` (`8e0c1e9`): Hardeknud, Magnus den Gode, Valdemar I,
+  Christoffer I, Erik VI Menved, Christoffer II (1320–1332, one span),
+  Kongeløs tid, Margrete I (from 1376), with da.wikipedia «Danmarks regenter»;
+  Jakob Erlandsen 1249–1274 (lex.dk — Roskilde 1249, Lund 1254, † 1274);
+  Håkon V 1299–1319 (snl.no). KMM's misspellings as exact aliases; also
+  «Kristian 1», «Chrisytian 1», «Chrtistian 4», «Chritian 4», «Ridsrådet»
+  (row 6, done here).
+- Left undated on purpose: «Valdemarerne?» (2), «Johan» Saxkøbing (2 — the
+  MB numbers put them in Christoffer II's Saxkøbing series, but the name is
+  not his), «Johannes» Odense, «Æthelred» (English type), «Øystein?».
+- 6 more empty stubs excluded (5 royal_holstein, 1 norburg_plon_duchy).
