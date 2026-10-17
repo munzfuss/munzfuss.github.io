@@ -26,7 +26,7 @@ by issuer (`c6202fa`, `80d1dd4`) — 1776 → 542 drops.
 | 1 | Ruler of another house, no reign table | 61 (78 by the wider match) | reign tables for Sønderborg, Plön/Norburg, Schaumburg-Pinneberg, Oldenburg, Gottorp prince-bishops, Rantzau — each with a source; or entity re-routing | **done 2026-10-17** (57 stubs excluded, Sønderborg table) |
 | 2 | Medieval rulers (before 1481) | 44 (28 truly) | dated by reign windows (?) | **done 2026-10-17** |
 | 3 | No ruler, no catalogue | 29 (36 by re-count) | Kobbersterling and MB-numbered pennies dated | **done 2026-10-17** (the rest left undated) |
-| 4 | Catalogue index matching a dated type | ~12 | not years — merge into the type (`merge_decisions`, a comparison table per pair) | open |
+| 4 | Catalogue index matching a dated type | ~12 (4 real) | systemic merger fix first, pairs after | **analysed 2026-10-17**, waiting for the merger session |
 | 5 | «Aahuset L. Chr. Larsen» | 8 | probably a private issuer — unchecked | open |
 | 6 | Unambiguous misspellings of Danish kings | ~6 | aliases in the normaliser («Chrtistian 4», «Chritian 4», «Chrisytian 1», «Kristian 1», «Ridsrådet») | open |
 | 7 | Years printed in the ruler string | 5 | «Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622» — KMM's own reign years, as (?) | open |
@@ -197,3 +197,30 @@ concordance, not Christoffer II. Our data now shows it 1320–1332 (?).
   «Hbg 1» Roskilde penning, the rest of the sub-groups a/d/g/h/i.
 - The two pipeline defects went to the session «KMM: thinning merges MB types;
   'MB 285, 287' lost».
+
+## Row 4 — catalogue index matching a dated type (analysis 2026-10-17)
+
+Four real candidates once nominal and ruler are required to fit (bare numbers
+across catalogues collide constantly — Schou 6 sits on dozens of types):
+`unified-kmk-317773` + `unified-kmk-307517` → `unified-dk-bruun-9248` (Galster
+177, Gaute Ivarsson Hvid); `unified-kmk-332024` «Christian» → `unified-dk-hede-
+c4h134a` (Hede 134, 2 Skilling — «Christian» is ambiguous); `unified-kmk-317111`
+«Søren Nordby» → `unified-dk-bruun-4125` (Galster 144, Visby); `unified-kmk-
+307062` «Christian» Hvid Malmø → `unified-kmk-122558` (Galster 23). Rejected:
+Schou 6 (Christian III only), «Margrethe 2» Hede 6 (row 9), Hbg 1 Roskilde.
+
+**The systemic finding.** The same scoped index stands in several separate
+classes: Hede 134 (c4h134a + ~9 KMM classes), Galster 23 (4 KMM classes +
+`unified-kmk-741073` «Hans» G23 under 11½-Markfod), Galster 144 (3 classes),
+Hede 148 (`unified-dk-hede-c4h148` vs `unified-kmk-122209`). The index scoping
+in `_catalog_refs` is right; `match_pair(dk-hede-c4h134a, <KMM seed>)` shows
+three rule-level causes: (1) a number inside a range of the same catalogue
+(Schou 32 ∈ «29-32») counts as «catalog disagree»; (2) catalog + nominal +
+ruler without year or metal abstains; (3) the weight tier-1 disambiguator
+(Δ > 5 % with < 2 shared refs) blocks worn museum specimens. A bare «Christian»
+correctly does not match «Christian IV».
+
+**Decision (curator 2026-10-17):** no pair merges for now; a separate session
+investigates and fixes the cause systemically, respecting that numbering
+restarts differently per catalogue (proposed as «Merger: same scoped index
+fails to merge»). The four pairs are re-checked after that fix.
