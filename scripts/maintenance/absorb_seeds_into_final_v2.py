@@ -113,6 +113,29 @@ from lib.ruler_reigns import (  # noqa: E402
 )
 
 
+def _set_reign_span_flag(out: dict) -> None:
+    """Set `year_is_reign_span: true` where a re-run will find it.
+
+    The flag is foundation-immutable, so from the second absorb on it is
+    copied from the stored final, which places it right after
+    `issuing_entity`. Setting it fresh with `out[k] = True` appended it at the
+    END of the entry, so every coin that gained the flag moved it on the next
+    run — a two-line diff per coin that no data change caused (noticed
+    2026-10-17 after the reign-window placeholder, ~1000 coins). Insert it
+    where the copy puts it instead."""
+    if out.get("year_is_reign_span") is True:
+        return
+    if "year_is_reign_span" in out or "issuing_entity" not in out:
+        out["year_is_reign_span"] = True
+        return
+    items = list(out.items())
+    out.clear()
+    for k, v in items:
+        out[k] = v
+        if k == "issuing_entity":
+            out["year_is_reign_span"] = True
+
+
 # Shared with the merger since 2026-10-17 (lib.ruler_reigns); the name is kept
 # for the tests and the call sites below.
 from lib.ruler_reigns import reign_lookup_is_exact as _reign_lookup_is_exact  # noqa: E402
@@ -723,7 +746,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
             # imprecise estimate (schema.year_is_reign_span). Data-only — render
             # + expansion already key on year_verified=False; the flag lets an
             # audit tell «1588-1648 reign» apart from «1496-1497 approximate».
-            out["year_is_reign_span"] = True
+            _set_reign_span_flag(out)
         elif (_rw is not None and out.get("year_is_reign_span") is True
                 and _reign_lookup_is_exact(out.get("ruler"))):
             # …and the reverse, which the rule used to be unable to express.
@@ -759,7 +782,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # I/Hans ?») it compares against the first KING's window and does not match.
     if _reign_placeholder and "year_verified" not in holds_keys:
         out["year_verified"] = False
-        out["year_is_reign_span"] = True
+        _set_reign_span_flag(out)
 
     # Ambiguity-split sweep across members: any member with a scalar
     # mint containing «eller / oder / or / /» indicators (Hede/Galster
