@@ -23,7 +23,7 @@ by issuer (`c6202fa`, `80d1dd4`) — 1776 → 542 drops.
 
 | # | Group | Coins | What could date them | Status |
 |---|---|---|---|---|
-| 1 | Ruler of another house, no reign table | 61 (78 by the wider match) | reign tables for Sønderborg, Plön/Norburg, Schaumburg-Pinneberg, Oldenburg, Gottorp prince-bishops, Rantzau — each with a source; or entity re-routing | analysed, below |
+| 1 | Ruler of another house, no reign table | 61 (78 by the wider match) | reign tables for Sønderborg, Plön/Norburg, Schaumburg-Pinneberg, Oldenburg, Gottorp prince-bishops, Rantzau — each with a source; or entity re-routing | **done 2026-10-17** (57 stubs excluded, Sønderborg table) |
 | 2 | Medieval rulers (before 1481) | 44 | datable, but outside the page's span — exclude from the page rather than date? | open |
 | 3 | No ruler, no catalogue | 29 | hopeless except nominals of one period (Kobbersterling = Erik af Pommern) | open |
 | 4 | Catalogue index matching a dated type | ~12 | not years — merge into the type (`merge_decisions`, a comparison table per pair) | open |
@@ -70,3 +70,18 @@ Options for the curator (row 1):
   new house tables and keep them.
 - B: a Sønderborg reign table (Hans den Yngre 1564–1622; source to be cited),
   then the existing placeholder rule dates the 12; the NGC four go to row 4.
+
+**Decision and outcome (curator 2026-10-17: «Виключи 58 порожніх заглушок …
+як порожні (як категорію C 2026-10-15); і додай таблицю Sønderborg з
+джерелом»).**
+- A: 57 excluded as `undocumented_stub` (49 in `exclusions/royal_holstein.yml`,
+  8 in the new `exclusions/norburg_plon_duchy.yml`). The 58th candidate,
+  `kmk-83149` «Alexander» (GP 982.173), has a weight and typeNumber «Lange»
+  (no number), so it is not empty and stays — open.
+- B: `sonderburg_duchy` reign table, Hans (Johann) der Jüngere 1564–1622
+  (NDB 10, 1974, S. 534 f.); 12 Sønderborg coins now carry 1564–1622 (?).
+  Commit `697bcee` (code + exclusions) and the re-flow after it.
+- Left over: the 4 NGC royal_holstein Friedrich I / II records → row 4;
+  the 3 danish_realm «Johan / Johannes» pennies → row 2; Sonderburg KM 11
+  (NGC 1172866 + numismaster-120993 vs km-11-hans-jr-sonderb-1620) needs a
+  merge decision (found by the NGC session).
