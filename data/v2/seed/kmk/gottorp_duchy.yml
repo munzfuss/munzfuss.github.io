@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-16T16:11:26Z'
+generated_at: '2026-10-16T16:40:23Z'
 entity: gottorp_duchy
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -8656,6 +8656,9 @@ coins:
         records give nation as Slesvig-Holsten under Gottorp/Holstein rulers. Stop-listed in build_kmk_seed; cleared here because §4 verified-wins would keep the old value against a fresh None."
       mint_verified: false — see mint.
       issuing_entity: Karl Friedrich was Duke of Holstein-Gottorp — 31 of his coins already sit there.
+    catalog:
+      others:
+        - Storgaard# 11
   - id: kmk-351731
     fuss: seed_unsorted
     phase: kmk
@@ -8882,6 +8885,9 @@ coins:
       would_route_to: gottorp_duchy
       active: true
       reasoning: Rule matched on ruler_lineage='af gottorp'; mint absent / unverified → rule re-routed.
+    catalog:
+      others:
+        - Jungk# 316
   - id: kmk-368459
     fuss: seed_unsorted
     phase: kmk

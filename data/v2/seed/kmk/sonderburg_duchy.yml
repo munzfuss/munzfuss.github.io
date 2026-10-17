@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-15T08:20:20Z'
+generated_at: '2026-10-16T16:40:27Z'
 entity: sonderburg_duchy
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -108,6 +108,8 @@ coins:
     weight_rough_verified: true
     catalog:
       lange: '538'
+      others:
+        - JSJ# 21
     verified: false
     sources:
       - type: museum
@@ -143,6 +145,8 @@ coins:
     weight_rough_verified: true
     catalog:
       lange: '527'
+      others:
+        - JSJ# 2
     verified: false
     sources:
       - type: museum
@@ -200,6 +204,9 @@ coins:
       would_route_to: sonderburg_duchy
       active: true
       reasoning: Rule matched on ruler_lineage='hans den yngre'; mint absent / unverified → rule re-routed.
+    catalog:
+      others:
+        - JSJ# 10A
   - id: kmk-133195
     fuss: seed_unsorted
     phase: kmk
@@ -770,6 +777,8 @@ coins:
     weight_rough_verified: false
     catalog:
       lange: '542'
+      others:
+        - JSJ# 13
     verified: false
     sources:
       - type: museum
@@ -854,6 +863,8 @@ coins:
     weight_rough_verified: true
     catalog:
       lange: 537b
+      others:
+        - JSJ# 9a
     verified: false
     sources:
       - type: museum
@@ -888,6 +899,8 @@ coins:
     weight_rough_verified: true
     catalog:
       lange: 573c
+      others:
+        - JSJ# 9b
     verified: false
     sources:
       - type: museum
@@ -1809,6 +1822,8 @@ coins:
     weight_rough_verified: false
     catalog:
       lange: '542'
+      others:
+        - JSJ# 13
     verified: false
     sources:
       - type: museum
@@ -1918,6 +1933,9 @@ coins:
       would_route_to: sonderburg_duchy
       active: true
       reasoning: Rule matched on ruler_lineage='hans den yngre'; mint absent / unverified → rule re-routed.
+    catalog:
+      others:
+        - JSJ# 13a
   - id: kmk-370043
     fuss: seed_unsorted
     phase: kmk
@@ -1952,6 +1970,9 @@ coins:
       active: false
       agrees_with_active: true
       reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'sonderburg_duchy'; active entity is 'sonderburg_duchy'.
+    catalog:
+      others:
+        - JSJ# 13a
   - id: kmk-575715
     fuss: seed_unsorted
     phase: kmk

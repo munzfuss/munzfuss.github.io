@@ -9,6 +9,149 @@
 
 merges:
   - members:
+      - dk-numista-15669
+      - dk-tid-163034
+      - kmk-122197
+      - kmk-139664
+      - kmk-149700
+      - kmk-149727
+      - kmk-149729
+      - kmk-149730
+      - kmk-149732
+      - kmk-149733
+      - kmk-149939
+      - kmk-149940
+      - kmk-149941
+      - kmk-149943
+      - kmk-149946
+      - kmk-149950
+      - kmk-149954
+      - kmk-149955
+      - kmk-149956
+      - kmk-149957
+      - kmk-149962
+      - kmk-149963
+      - kmk-149964
+      - kmk-149965
+      - kmk-149966
+      - kmk-149968
+      - kmk-149969
+      - kmk-149973
+      - kmk-149974
+      - kmk-149975
+      - kmk-149977
+      - kmk-149978
+      - kmk-149988
+      - kmk-189784
+      - kmk-189785
+      - kmk-189787
+      - kmk-189788
+      - kmk-189789
+      - kmk-189791
+      - kmk-189792
+      - kmk-189796
+      - kmk-189797
+      - kmk-189798
+      - kmk-189799
+      - kmk-189800
+      - kmk-189801
+      - kmk-189802
+      - kmk-189803
+      - kmk-189804
+      - kmk-189832
+      - kmk-189834
+      - kmk-190634
+      - kmk-190635
+      - kmk-190642
+      - kmk-190647
+      - kmk-190648
+      - kmk-190652
+      - kmk-190653
+      - kmk-190692
+      - kmk-190694
+      - kmk-190696
+      - kmk-190699
+      - kmk-190700
+      - kmk-190701
+      - kmk-190702
+      - kmk-190703
+      - kmk-190704
+      - kmk-190705
+      - kmk-190706
+      - kmk-190708
+      - kmk-190710
+      - kmk-190713
+      - kmk-190714
+      - kmk-190715
+      - kmk-190716
+      - kmk-190718
+      - kmk-190719
+      - kmk-190720
+      - kmk-190722
+      - kmk-190726
+      - kmk-190728
+      - kmk-190729
+      - kmk-190732
+      - kmk-190733
+      - kmk-190734
+      - kmk-190735
+      - kmk-190737
+      - kmk-190738
+      - kmk-190740
+      - kmk-190742
+      - kmk-190743
+      - kmk-190744
+      - kmk-190746
+      - kmk-190747
+      - kmk-190748
+      - kmk-190749
+      - kmk-190751
+      - kmk-190752
+      - kmk-190753
+      - kmk-190754
+      - kmk-190755
+      - kmk-190756
+      - kmk-190757
+      - kmk-190758
+      - kmk-190759
+      - kmk-190760
+      - kmk-190761
+      - kmk-190762
+      - kmk-190763
+      - kmk-190764
+      - kmk-190765
+      - kmk-190766
+      - kmk-190768
+      - kmk-190769
+      - kmk-190770
+      - kmk-190773
+      - kmk-190774
+      - kmk-190780
+      - kmk-190781
+      - kmk-190782
+      - kmk-201900
+      - kmk-275968
+      - kmk-275996
+      - kmk-275997
+      - kmk-275998
+      - kmk-312271
+      - kmk-328247
+      - kmk-329947
+      - kmk-575867
+      - kmk-714926
+      - kmk-714927
+      - kmk-714930
+      - kmk-149961              # KMM, typeNumber «Sshou 61» (misspelt Schou), 8 Skilling 1608
+      - kmk-190730              # KMM, typeNumber «H:93a; Sch:61 (?)», 8 Skilling 1608, 1.78 g
+    reason: |
+      Curator decision 2026-10-17 (Serhii, explicit): kmk-149961 and kmk-190730
+      belong to the 8 Skilling class dk-tid-163034. §9.4 gate: schou base 61
+      links the two KMM records, and the class itself carries Schou 61 and
+      Hede 93A (kmk-190730 prints Hede 93a). After the KMM typeNumber parser
+      learned the misspelling «Sshou», the matcher paired the two records into
+      a separate seed_unsorted class instead of joining this one. The whole
+      class is listed so the force-union cannot expel an existing member.
+  - members:
       - dk-galster-f1g-46       # danskmoent f1g46, Galster 46 / Schou 1, «1 Ungersk gylden» 1531, 3.49 g @ .986
       - dk-numista-428864       # N#428864, Galster 46 + Fr 11
       - kmk-575432              # KMM, typeNumber «Schou 1; G. 46», «ungarsk dukat», Malmoe/Kbh 1531, 5.62 g

@@ -15269,9 +15269,14 @@ coins:
     ruler: Christian VII.
     issuing_entity: royal_holstein
     id: unified-kmk-131767
-    year_first: 1796
+    year_first: 1787
     year_last: 1796
-    year_label: '1796'
+    year_ranges:
+      -   - 1787
+          - 1787
+      -   - 1796
+          - 1796
+    year_label: 1787, 1796
     mint: Altona
     catalog:
       hede:
@@ -15518,6 +15523,8 @@ coins:
     year_last: 1800
     year_label: '1800'
     mint: Altona
+    catalog:
+      schou: '10'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -22973,6 +22980,8 @@ coins:
     year_label: '1626'
     catalog:
       lange: '558'
+      others:
+        - JSJ# 30
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -22997,6 +23006,9 @@ coins:
     year_first: 1622
     year_last: 1622
     year_label: '1622'
+    catalog:
+      others:
+        - JSJ# 21?
     metal: copper
     metal_verified: true
     weight_rough_verified: true
@@ -25596,6 +25608,8 @@ coins:
     year_label: '1622'
     catalog:
       lange: 948b
+      others:
+        - Sømod# Sc3767
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -25624,6 +25638,9 @@ coins:
       -   - 1607
           - 1634
     year_label: 1607-1634
+    catalog:
+      others:
+        - Sømod# Br3828
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -25659,6 +25676,8 @@ coins:
     year_label: 1607-1634
     catalog:
       lange: '504'
+      others:
+        - Sømod# Br3825
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -25740,6 +25759,8 @@ coins:
     year_label: 1616-1659
     catalog:
       lange: '359'
+      others:
+        - Sømod# Go3488
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -25790,6 +25811,8 @@ coins:
     year_label: 1616-1659
     catalog:
       lange: 358E
+      others:
+        - Sømod# Go3487
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -28270,6 +28293,8 @@ coins:
     year_label: '1625'
     catalog:
       lange: '449'
+      others:
+        - JSJ# 35
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -30181,6 +30206,7 @@ coins:
         - 9-13
       others:
         - LEB# 7857
+        - JSJ# 250
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -34170,6 +34196,16 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156513
         ref: KMM 156513 (Inv. FP 918.35)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156546
+        ref: KMM 156546 (Inv. FP 918.36)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/423262
+        ref: KMM 423262 (Inv. FP 2447.1820)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/423263
+        ref: KMM 423263 (Inv. FP 2447.1819)
+        display: false
     verification_note: &id006
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
@@ -35232,6 +35268,8 @@ coins:
     year_label: 1607-1634
     catalog:
       lange: '503'
+      others:
+        - Sømod# Br3826
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -35316,6 +35354,8 @@ coins:
     year_last: 1704
     year_label: '1704'
     mint: Glückstadt
+    catalog:
+      schou: '21'
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -35828,6 +35868,32 @@ coins:
     verification_note: *id007
     composed_of:
       - unified-kmk-200916
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 8 Skilling
+    ruler: Frederik 4
+    issuing_entity: royal_holstein
+    id: unified-kmk-156517
+    year_first: 1704
+    year_last: 1704
+    year_label: '1704'
+    mint: Glückstadt
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156517
+        ref: KMM 156517 (Inv. FP 918.34)
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-kmk-156517
   - fuss: 9_thaler
     phase: II
     kind: kurant

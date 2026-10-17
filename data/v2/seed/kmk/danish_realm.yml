@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-16T16:11:13Z'
+generated_at: '2026-10-16T16:40:10Z'
 entity: danish_realm
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -934,10 +934,6 @@ coins:
         reason: 'KMM prints «Hans?» (uncertain attribution). Curator 2026-10-15: ruler without the question mark, ruler_verified false so the page shows (?).'
     _curation_holds:
       ruler_verified: KMM attributes it with a question mark («Hans?»); curator 2026-10-15.
-    _errata_applied:
-      - field: ruler
-        printed: Hans?
-        correct: Hans
     _thinned_from:
       - kmk-292252
       - kmk-345135
@@ -946,6 +942,10 @@ coins:
       - kmk-370077
       - kmk-372128
       - kmk-372129
+    _errata_applied:
+      - field: ruler
+        printed: Hans?
+        correct: Hans
   - id: kmk-291456
     fuss: seed_unsorted
     phase: kmk
@@ -1880,10 +1880,6 @@ coins:
         reason: 'KMM prints «Hans?» (uncertain attribution). Curator 2026-10-15: ruler without the question mark, ruler_verified false so the page shows (?).'
     _curation_holds:
       ruler_verified: KMM attributes it with a question mark («Hans?»); curator 2026-10-15.
-    _errata_applied:
-      - field: ruler
-        printed: Hans?
-        correct: Hans
     _thinned_from:
       - kmk-134447
       - kmk-134448
@@ -1946,6 +1942,10 @@ coins:
       - kmk-747719
       - kmk-747720
       - kmk-747721
+    _errata_applied:
+      - field: ruler
+        printed: Hans?
+        correct: Hans
   - id: kmk-355434
     fuss: seed_unsorted
     phase: kmk
@@ -12600,14 +12600,14 @@ coins:
         reason: 'KMM prints «Hans?» (uncertain attribution). Curator 2026-10-15: ruler without the question mark, ruler_verified false so the page shows (?).'
     _curation_holds:
       ruler_verified: KMM attributes it with a question mark («Hans?»); curator 2026-10-15.
-    _errata_applied:
-      - field: ruler
-        printed: Hans?
-        correct: Hans
     _thinned_from:
       - kmk-348449
       - kmk-351479
       - kmk-422661
+    _errata_applied:
+      - field: ruler
+        printed: Hans?
+        correct: Hans
   - id: kmk-643789
     fuss: seed_unsorted
     phase: kmk
@@ -19462,6 +19462,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/150235
         ref: KMM 150235 (Inv. KP 1656.78)
     verification_note: *id001
+    catalog:
+      schou: '118'
   - id: kmk-150236
     fuss: seed_unsorted
     phase: kmk
@@ -20476,6 +20478,8 @@ coins:
     weight_rough_verified: false
     catalog:
       galster: '73'
+      others:
+        - JSJ# 212
     verified: false
     sources:
       - type: museum
@@ -20507,6 +20511,8 @@ coins:
     weight_rough_verified: false
     catalog:
       galster: '73'
+      others:
+        - JSJ# 211
     verified: false
     sources:
       - type: museum
@@ -37060,6 +37066,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 6B
+      others:
+        - JSJ# 215
     verified: false
     sources:
       - type: museum
@@ -37428,6 +37436,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/175967
         ref: KMM 175967 (Inv. FP 2920.75)
     verification_note: *id001
+    catalog:
+      others:
+        - Gaettens# 182
   - id: kmk-150110
     fuss: seed_unsorted
     phase: kmk
@@ -51714,6 +51725,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '29'
+      others:
+        - JSJ# 217
     verified: false
     sources:
       - type: museum
@@ -63171,6 +63184,8 @@ coins:
       - kmk-684815
       - kmk-740392
       - kmk-740393
+    catalog:
+      schou: '61'
   - id: kmk-149962
     fuss: seed_unsorted
     phase: kmk
@@ -63718,7 +63733,96 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/159432
         ref: KMM 159432 (Inv. FP 1813.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/430297
+        ref: KMM 430297 (Inv. FP 994.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442083
+        ref: KMM 442083 (Inv. KP 1306.78)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442084
+        ref: KMM 442084 (Inv. KP 1306.77)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442085
+        ref: KMM 442085 (Inv. KP 1306.76)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442086
+        ref: KMM 442086 (Inv. KP 1306.75)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442087
+        ref: KMM 442087 (Inv. KP 1306.74)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442088
+        ref: KMM 442088 (Inv. KP 1306.73)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442089
+        ref: KMM 442089 (Inv. KP 1306.72)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442090
+        ref: KMM 442090 (Inv. KP 1306.71)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442091
+        ref: KMM 442091 (Inv. KP 1306.70)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442092
+        ref: KMM 442092 (Inv. KP 1306.69)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442093
+        ref: KMM 442093 (Inv. KP 1306.68)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/442094
+        ref: KMM 442094 (Inv. KP 1306.67)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/494518
+        ref: KMM 494518 (Inv. KP 1656.355a)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684810
+        ref: KMM 684810 (Inv. FP 53.7)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684811
+        ref: KMM 684811 (Inv. FP 53.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684812
+        ref: KMM 684812 (Inv. FP 53.5)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684813
+        ref: KMM 684813 (Inv. FP 53.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684814
+        ref: KMM 684814 (Inv. FP 53.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684815
+        ref: KMM 684815 (Inv. FP 53.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/740392
+        ref: KMM 740392 (Inv. FP 422.50)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/740393
+        ref: KMM 740393 (Inv. FP 422.49)
     verification_note: *id001
+    _thinned_from:
+      - kmk-430297
+      - kmk-442083
+      - kmk-442084
+      - kmk-442085
+      - kmk-442086
+      - kmk-442087
+      - kmk-442088
+      - kmk-442089
+      - kmk-442090
+      - kmk-442091
+      - kmk-442092
+      - kmk-442093
+      - kmk-442094
+      - kmk-494518
+      - kmk-684810
+      - kmk-684811
+      - kmk-684812
+      - kmk-684813
+      - kmk-684814
+      - kmk-684815
+      - kmk-740392
+      - kmk-740393
   - id: kmk-160648
     fuss: seed_unsorted
     phase: kmk
@@ -81788,6 +81892,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 80F
+      others:
+        - JSJ# 219
     verified: false
     sources:
       - type: museum
@@ -90474,6 +90580,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149825
         ref: KMM 149825 (Inv. KP 1656.488)
     verification_note: *id001
+    catalog:
+      schou: '66'
   - id: kmk-149826
     fuss: seed_unsorted
     phase: kmk
@@ -91190,9 +91298,21 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/189940
         ref: KMM 189940 (Inv. FP 3108.344)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/189941
+        ref: KMM 189941 (Inv. FP 3108.343)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275722
+        ref: KMM 275722 (Inv. FP 4227.325)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275724
+        ref: KMM 275724 (Inv. FP 4227.322)
     verification_note: *id001
     _thinned_from:
       - kmk-189940
+      - kmk-189941
+      - kmk-275722
+      - kmk-275724
   - id: kmk-189932
     fuss: seed_unsorted
     phase: kmk
@@ -91417,42 +91537,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/189939
         ref: KMM 189939 (Inv. FP 3108.345)
     verification_note: *id001
-  - id: kmk-189941
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Mark
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Christian 4
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    year_ranges:
-      -   - 1618
-          - 1618
-    weight_rough_g: 8.15
-    weight_rough_verified: true
-    catalog:
-      hede: 99C
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/189941
-        ref: KMM 189941 (Inv. FP 3108.343)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275722
-        ref: KMM 275722 (Inv. FP 4227.325)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/275724
-        ref: KMM 275724 (Inv. FP 4227.322)
-    verification_note: *id001
-    _thinned_from:
-      - kmk-275722
-      - kmk-275724
   - id: kmk-189942
     fuss: seed_unsorted
     phase: kmk
@@ -92233,7 +92317,16 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/275713
         ref: KMM 275713 (Inv. FP 4227.334)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275722
+        ref: KMM 275722 (Inv. FP 4227.325)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/275724
+        ref: KMM 275724 (Inv. FP 4227.322)
     verification_note: *id001
+    _thinned_from:
+      - kmk-275722
+      - kmk-275724
   - id: kmk-275714
     fuss: seed_unsorted
     phase: kmk
@@ -104791,6 +104884,8 @@ coins:
     verification_note: *id001
     _thinned_from:
       - kmk-740389
+    catalog:
+      schou: '33'
   - id: kmk-149732
     fuss: seed_unsorted
     phase: kmk
@@ -107738,6 +107833,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 119D
+      others:
+        - JSJ# 226
     verified: false
     sources:
       - type: museum
@@ -130022,6 +130119,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 134B
+      others:
+        - JSJ# 230
     verified: false
     sources:
       - type: museum
@@ -135973,6 +136072,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '134'
+      others:
+        - JSJ# 227
     verified: false
     sources:
       - type: museum
@@ -155667,6 +155768,7 @@ coins:
     weight_rough_verified: true
     catalog:
       hede: '141'
+      schou: '16'
     verified: false
     sources:
       - type: museum
@@ -158386,6 +158488,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 151B
+      others:
+        - JSJ# 235
     verified: false
     sources:
       - type: museum
@@ -168527,6 +168631,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '150'
+      others:
+        - JSJ# 234
     verified: false
     sources:
       - type: museum
@@ -187028,6 +187134,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '125'
+      others:
+        - JSJ# 236
     verified: false
     sources:
       - type: museum
@@ -208313,6 +208421,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '131'
+      others:
+        - JSJ# 238
     verified: false
     sources:
       - type: museum
@@ -216074,6 +216184,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 130B
+      others:
+        - JSJ# 237
     verified: false
     sources:
       - type: museum
@@ -227981,6 +228093,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 132B
+      others:
+        - JSJ# 239
     verified: false
     sources:
       - type: museum
@@ -230672,6 +230786,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 134A
+      others:
+        - JSJ# 240
     verified: false
     sources:
       - type: museum
@@ -237518,6 +237634,8 @@ coins:
       - kmk-424393
       - kmk-424394
       - kmk-424395
+    catalog:
+      schou: '107'
   - id: kmk-148868
     fuss: seed_unsorted
     phase: kmk
@@ -237619,7 +237737,188 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148871
         ref: KMM 148871 (Inv. KP 1656.1442)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424350
+        ref: KMM 424350 (Inv. FP 2447.732)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424351
+        ref: KMM 424351 (Inv. FP 2447.731)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424352
+        ref: KMM 424352 (Inv. FP 2447.730)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424353
+        ref: KMM 424353 (Inv. FP 2447.729)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424354
+        ref: KMM 424354 (Inv. FP 2447.728)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424355
+        ref: KMM 424355 (Inv. FP 2447.727)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424357
+        ref: KMM 424357 (Inv. FP 2447.725)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424358
+        ref: KMM 424358 (Inv. FP 2447.724)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424359
+        ref: KMM 424359 (Inv. FP 2447.723)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424360
+        ref: KMM 424360 (Inv. FP 2447.722)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424361
+        ref: KMM 424361 (Inv. FP 2447.721)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424362
+        ref: KMM 424362 (Inv. FP 2447.720)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424363
+        ref: KMM 424363 (Inv. FP 2447.719)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424364
+        ref: KMM 424364 (Inv. FP 2447.718)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424365
+        ref: KMM 424365 (Inv. FP 2447.717)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424366
+        ref: KMM 424366 (Inv. FP 2447.716)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424367
+        ref: KMM 424367 (Inv. FP 2447.715)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424368
+        ref: KMM 424368 (Inv. FP 2447.714)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424369
+        ref: KMM 424369 (Inv. FP 2447.713)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424370
+        ref: KMM 424370 (Inv. FP 2447.712)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424371
+        ref: KMM 424371 (Inv. FP 2447.711)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424372
+        ref: KMM 424372 (Inv. FP 2447.710)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424373
+        ref: KMM 424373 (Inv. FP 2447.709)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424374
+        ref: KMM 424374 (Inv. FP 2447.708)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424375
+        ref: KMM 424375 (Inv. FP 2447.707)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424376
+        ref: KMM 424376 (Inv. FP 2447.706)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424377
+        ref: KMM 424377 (Inv. FP 2447.705)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424378
+        ref: KMM 424378 (Inv. FP 2447.704)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424379
+        ref: KMM 424379 (Inv. FP 2447.703)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424380
+        ref: KMM 424380 (Inv. FP 2447.702)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424381
+        ref: KMM 424381 (Inv. FP 2447.701)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424382
+        ref: KMM 424382 (Inv. FP 2447.700)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424383
+        ref: KMM 424383 (Inv. FP 2447.699)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424384
+        ref: KMM 424384 (Inv. FP 2447.698)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424385
+        ref: KMM 424385 (Inv. FP 2447.697)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424386
+        ref: KMM 424386 (Inv. FP 2447.696)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424387
+        ref: KMM 424387 (Inv. FP 2447.695)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424388
+        ref: KMM 424388 (Inv. FP 2447.694)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424389
+        ref: KMM 424389 (Inv. FP 2447.693)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424390
+        ref: KMM 424390 (Inv. FP 2447.692)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424391
+        ref: KMM 424391 (Inv. FP 2447.691)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424392
+        ref: KMM 424392 (Inv. FP 2447.690)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424393
+        ref: KMM 424393 (Inv. FP 2447.689)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424394
+        ref: KMM 424394 (Inv. FP 2447.688)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424395
+        ref: KMM 424395 (Inv. FP 2447.687)
     verification_note: *id001
+    _thinned_from:
+      - kmk-424350
+      - kmk-424351
+      - kmk-424352
+      - kmk-424353
+      - kmk-424354
+      - kmk-424355
+      - kmk-424357
+      - kmk-424358
+      - kmk-424359
+      - kmk-424360
+      - kmk-424361
+      - kmk-424362
+      - kmk-424363
+      - kmk-424364
+      - kmk-424365
+      - kmk-424366
+      - kmk-424367
+      - kmk-424368
+      - kmk-424369
+      - kmk-424370
+      - kmk-424371
+      - kmk-424372
+      - kmk-424373
+      - kmk-424374
+      - kmk-424375
+      - kmk-424376
+      - kmk-424377
+      - kmk-424378
+      - kmk-424379
+      - kmk-424380
+      - kmk-424381
+      - kmk-424382
+      - kmk-424383
+      - kmk-424384
+      - kmk-424385
+      - kmk-424386
+      - kmk-424387
+      - kmk-424388
+      - kmk-424389
+      - kmk-424390
+      - kmk-424391
+      - kmk-424392
+      - kmk-424393
+      - kmk-424394
+      - kmk-424395
   - id: kmk-148872
     fuss: seed_unsorted
     phase: kmk
@@ -244762,6 +245061,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 140C
+      others:
+        - JSJ# 241
     verified: false
     sources:
       - type: museum
@@ -247860,6 +248161,8 @@ coins:
     weight_rough_verified: false
     catalog:
       schou: '18'
+      others:
+        - Bjørnstad# 604
     verified: false
     sources:
       - type: museum
@@ -272440,6 +272743,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/148440
         ref: KMM 148440 (Inv. KP 1656.1873)
     verification_note: *id001
+    catalog:
+      schou: '8'
   - id: kmk-148441
     fuss: seed_unsorted
     phase: kmk
@@ -274921,6 +275226,7 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '45'
+      others: JSJ# 243
     verified: false
     sources:
       - type: museum
@@ -277890,6 +278196,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '45'
+      others:
+        - JSJ# 244
     verified: false
     sources:
       - type: museum
@@ -281389,6 +281697,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '52'
+      others:
+        - JSJ# 246
     verified: false
     sources:
       - type: museum
@@ -293764,6 +294074,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 33B
+      others:
+        - JSJ# 250
     verified: false
     sources:
       - type: museum
@@ -293916,6 +294228,7 @@ coins:
     weight_rough_verified: true
     catalog:
       hede: '34'
+      others: JSJ# 251
     verified: false
     sources:
       - type: museum
@@ -297369,6 +297682,7 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '7'
+      others: JSJ# 252
     verified: false
     sources:
       - type: museum
@@ -299642,6 +299956,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '20'
+      others:
+        - JSJ# 258
     verified: false
     sources:
       - type: museum
@@ -299667,6 +299983,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '20'
+      others:
+        - JSJ# 257
     verified: false
     sources:
       - type: museum
@@ -301410,6 +301728,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '23'
+      others:
+        - JSJ# 262
     verified: false
     sources:
       - type: museum
@@ -301435,6 +301755,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '22'
+      others:
+        - JSJ# 261
     verified: false
     sources:
       - type: museum
@@ -301460,6 +301782,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '22'
+      others:
+        - JSJ# 260
     verified: false
     sources:
       - type: museum
@@ -301485,6 +301809,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '21'
+      others:
+        - JSJ# 259
     verified: false
     sources:
       - type: museum
@@ -305549,6 +305875,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 9A
+      others:
+        - JSJ# 263
     verified: false
     sources:
       - type: museum
@@ -307490,6 +307818,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 12C
+      others:
+        - JSJ# 264
     verified: false
     sources:
       - type: museum
@@ -309482,6 +309812,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: '16'
+      others:
+        - JSJ# 265
     verified: false
     sources:
       - type: museum
@@ -312408,6 +312740,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 18A
+      others:
+        - JSJ# 268
     verified: false
     sources:
       - type: museum
@@ -312433,6 +312767,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 18A
+      others:
+        - JSJ# 267
     verified: false
     sources:
       - type: museum
@@ -312458,6 +312794,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 17A
+      others:
+        - JSJ# 266
     verified: false
     sources:
       - type: museum
@@ -314762,6 +315100,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 18A
+      others:
+        - JSJ# 269
     verified: false
     sources:
       - type: museum
@@ -315033,6 +315373,8 @@ coins:
     weight_rough_verified: false
     catalog:
       hede: 18A
+      others:
+        - JSJ# 270
     verified: false
     sources:
       - type: museum
@@ -339577,6 +339919,8 @@ coins:
     weight_rough_verified: false
     catalog:
       galster: '79'
+      others:
+        - JSJ# 213
     verified: false
     sources:
       - type: museum
@@ -368020,4 +368364,98 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/78345
         ref: KMM 78345 (Inv. GP 678.9)
+    verification_note: *id001
+  - id: kmk-266924
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: mint
+    nominal: 1 Søsling
+    metal_verified: false
+    mint: Malmø
+    mint_verified: true
+    ruler: Frederik 1
+    year_first: 1524
+    year_last: 1524
+    year_label: '1524'
+    year_ranges:
+      -   - 1524
+          - 1524
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/266924
+        ref: KMM 266924 (Inv. FP 10040.12)
+    verification_note: *id001
+  - id: kmk-430296
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 8 Skilling
+    metal_verified: false
+    mint_verified: false
+    ruler: Christian 4
+    year_first: 1608
+    year_last: 1608
+    year_label: '1608'
+    year_ranges:
+      -   - 1608
+          - 1608
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/430296
+        ref: KMM 430296 (Inv. FP 994.2)
+    verification_note: *id001
+  - id: kmk-740389
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 8 Skilling
+    metal_verified: false
+    mint_verified: false
+    ruler: Christian 4
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/740389
+        ref: KMM 740389 (Inv. FP 422.53)
+    verification_note: *id001
+  - id: kmk-424159
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: mint
+    nominal: 2 Skilling
+    metal_verified: false
+    mint: Kopenhagen
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1667
+    year_last: 1667
+    year_label: '1667'
+    year_ranges:
+      -   - 1667
+          - 1667
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/424159
+        ref: KMM 424159 (Inv. FP 2447.726)
     verification_note: *id001
