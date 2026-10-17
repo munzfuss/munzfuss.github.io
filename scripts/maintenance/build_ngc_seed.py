@@ -225,8 +225,11 @@ def build_entry(rec: dict, scope: str) -> dict | None:
         "_ngc_cuid": str(cuid),
     }
 
-    # §4: an unreadable date digit ('16z4') is NOT resolved into a year, and a
-    # coin with no year at all cannot claim one — both render '(?)'.
+    # §4: an unread date digit ('166z') is NOT resolved into a year, and a coin
+    # with no year at all cannot claim one — both render '(?)'. A Z-shaped 2
+    # ('16Z4') IS read (parse_ngc._Z_YEAR); the cells as NGC printed them are
+    # kept in `_ngc_dates_as_printed` so the reading stays auditable (§3a: the
+    # year fields themselves carry plain digits only).
     if rec.get("year_partially_illegible") or yf is None:
         entry["year_verified"] = False
 
@@ -234,7 +237,8 @@ def build_entry(rec: dict, scope: str) -> dict | None:
                      ("obverse_legend", "_obverse_legend"),
                      ("reverse_legend", "_reverse_legend"),
                      ("note_raw", "_ngc_note"),
-                     ("date_line", "_ngc_date_line")):
+                     ("date_line", "_ngc_date_line"),
+                     ("dates_as_printed", "_ngc_dates_as_printed")):
         if rec.get(key):
             entry[dst] = rec[key]
     if diam_raw:
