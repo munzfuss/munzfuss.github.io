@@ -42,6 +42,13 @@ RULER_REIGNS: dict[str, tuple[int, int]] = {
     "Christoffer III": (1440, 1448),
     "Christian I":   (1448, 1481),
     "Hans I":        (1481, 1513),  # also written «John I» in English ucoin
+    # The Rigsråd's interregnum after Christian I's death. Its Hvide are
+    # 1481-1483: «Bent Östergaard har visat att hviderna måste ha präglats
+    # först 1481-1483 (Östergaard 1995)» (Eriksson 2017, Myntstudier, s. 4).
+    # The Rigsråd's SKILLING is 1448 instead (Stefke 1995, same page) — the
+    # 1448 interregnum. Every Rigsrådet coin in the data is a Hvid
+    # (2026-10-17); a Rigsrådet skilling needs its own 1448 handling.
+    "Rigsrådet":     (1481, 1483),
 
     # Post-Lovkompleks Christian-II line.
     "Christian II":  (1513, 1523),
@@ -225,6 +232,8 @@ def normalise_ruler_name(raw: str | None) -> str | None:
     # uncertain attribution) is the same name with a doubt mark.
     if re.fullmatch(r"(?i)(hans|john)\??", head):
         return "Hans I"
+    if re.fullmatch(r"(?i)(rigsrådet|rigsraadet|riksrådet)\??", head):
+        return "Rigsrådet"
     m = _RULER_RE.search(head)
     if not m:
         return None
@@ -263,6 +272,116 @@ def reign_window(ruler_raw: str | None,
     if key is None:
         return None
     return RULER_REIGNS.get(key)
+
+
+# Names the kings' table holds under a single bearer, written without a
+# numeral in the sources (KMM «Hans», «Rigsrådet»): the bare form IS the whole
+# name, not a name with a qualifier dropped.
+_EXACT_BARE = {"hans": "Hans I", "john": "Hans I", "rigsrådet": "Rigsrådet",
+               "rigsraadet": "Rigsrådet", "riksrådet": "Rigsrådet"}
+
+
+def reign_lookup_is_exact(ruler: str | None) -> bool:
+    """Did the reign lookup use the WHOLE ruler name, or drop a qualifier?
+
+    `normalise_ruler_name` strips territorial and other qualifiers, so
+    «Frederik III. von Gottorp» and «Frederik 3 som ærkebiskop» (Bremen,
+    before he was king) both resolve to King Frederik III and come back with
+    a window that is someone else's — or the same man's in another office.
+    This test is deliberately strict: it passes only when the normalised name
+    accounts for the entire raw name. It looks through the numeral form
+    («Christian 4» = «Christian IV»), a trailing period, a doubt mark «?», and
+    the single-bearer bare names in `_EXACT_BARE`. Moved here from absorb
+    2026-10-17 so the merger and absorb share it.
+    """
+    if not ruler:
+        return False
+    norm = normalise_ruler_name(ruler)
+    if not norm:
+        return False
+    raw = re.sub(r"[.,?]", " ", str(ruler)).lower().split()
+    if len(raw) == 1 and _EXACT_BARE.get(raw[0]) == norm:
+        return True
+    ref = str(norm).lower().split()
+    if raw and ref and raw[-1].isdigit():
+        raw = raw[:-1] + [ref[-1]]
+    return raw == ref
+
+
+def reign_window_exact(ruler_raw: str | None) -> tuple[int, int] | None:
+    """`reign_window`, but only when the lookup used the whole name
+    (`reign_lookup_is_exact`); None otherwise. Use this wherever a reign
+    window is applied to data — a qualified name must not borrow a king's
+    window."""
+    return reign_window(ruler_raw) if reign_lookup_is_exact(ruler_raw) else None
+
+
+_ALTERNATIVE_SPLIT_RE = re.compile(
+    r"\s*(?:/|\beller\b|\bell\.|\boder\b|\bor\b|\s-\s|–)\s*", re.IGNORECASE)
+
+
+# Issuing entities whose rulers ARE the Danish kings of `RULER_REIGNS` — the
+# realm, Norway in the union, and the king's shares of Schleswig and Holstein.
+# A same-named ruler of any other issuer is someone else: «Hans» on a Swedish
+# coin is King Hans of Sweden 1497-1501, «Frederik 3» on a Bremen coin is the
+# archbishop of 1634-1645, «Frederik 3» on a Gottorp coin the duke 1616-1659.
+DANISH_CROWN_ENTITIES = frozenset({
+    "danish_realm", "danish_norway", "royal_holstein", "royal_slesvig",
+})
+
+
+def reign_window_placeholder(ruler_raw: str | None,
+                             entity: str | list | None = None) -> tuple[int, int] | None:
+    """The year span to show for a coin NO source dates, from its ruler alone.
+
+    Stricter than `reign_window` about whose window it is, looser about how
+    many rulers the source names (absorb's placeholder, curator 2026-10-17):
+
+      * the issuer decides whose table: a ducal house by `entity` or by a
+        ruler string that names it («Frederik 3 af Slesvig-Holsten-Gottorp»
+        → Duke Friedrich III, 1616-1659, not King Frederik III); the Danish
+        kings only for `DANISH_CROWN_ENTITIES`; any other issuer → None (a
+        Swedish «Hans», a Bremen «Frederik 3» are other men);
+      * an alternative the source leaves open («Christian I/Hans ?», «Hans
+        eller Christian 2», «Christian 3/4», «Frederik 7 eller Christian 9»)
+        spans from the first reign's start to the last reign's end; a bare
+        numeral («3/4») borrows the preceding name;
+      * every part must be an exact name (`reign_lookup_is_exact`), so a
+        qualified name («… som ærkebiskop», «… von Holsten-Gottorp» when the
+        house table does not know him) yields None and the coin stays undated
+        rather than borrowing someone else's reign.
+    """
+    if not ruler_raw or not isinstance(ruler_raw, str):
+        return None
+    ents = set(entity) if isinstance(entity, (list, tuple, set)) else ({entity} if entity else set())
+    # A ducal house: by the issuing entity, or by a ruler string that itself
+    # names the house («Frederik 3 af Slesvig-Holsten-Gottorp» on a
+    # royal_holstein record).
+    houses = [e for e in ents if e in HOUSE_REIGNS]
+    if re.search(r"gottorp", ruler_raw, re.IGNORECASE) and "gottorp_duchy" not in houses:
+        houses.append("gottorp_duchy")
+    for h in houses:
+        w = house_reign_window(ruler_raw.replace("?", "").strip(), h)
+        if w is not None:
+            return w
+    # The kings' table only for an issuer of the Danish crown — matched by
+    # entity, never by the name alone (curator 2026-10-17).
+    if houses or not (ents & DANISH_CROWN_ENTITIES):
+        return None
+    parts = [p.strip(" ?") for p in _ALTERNATIVE_SPLIT_RE.split(ruler_raw) if p.strip(" ?")]
+    if not parts:
+        return None
+    windows = []
+    prev_name = None
+    for part in parts:
+        if part.isdigit() and prev_name:
+            part = f"{prev_name} {part}"
+        w = reign_window(part) if reign_lookup_is_exact(part) else None
+        if w is None:
+            return None
+        windows.append(w)
+        prev_name = part.split()[0]
+    return (min(w[0] for w in windows), max(w[1] for w in windows))
 
 
 def reign_covers_year(ruler_raw: str | None, year: int | None,

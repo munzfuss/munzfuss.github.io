@@ -29,15 +29,17 @@ _spec = importlib.util.spec_from_file_location(
 AB = importlib.util.module_from_spec(_spec)
 sys.modules["absorb_seeds_into_final_v2"] = AB
 _spec.loader.exec_module(AB)
-from lib.ruler_reigns import reign_window  # noqa: E402
+from lib.ruler_reigns import reign_window, reign_window_placeholder  # noqa: E402
 
 
-def enrich(ruler="Hans", member_years=None, holds=None):
+def enrich(ruler="Hans", member_years=None, holds=None, entity="danish_realm"):
     coin = {"id": "unified-kmk-150279", "ruler": ruler, "nominal": "1 Hvid",
             "composed_of": ["unified-kmk-150279"]}
     if holds:
         coin["_curation_holds"] = holds
-    member = {"id": "unified-kmk-150279", "ruler": ruler, "nominal": "1 Hvid"}
+    coin["issuing_entity"] = entity
+    member = {"id": "unified-kmk-150279", "ruler": ruler, "nominal": "1 Hvid",
+              "issuing_entity": entity}
     if member_years:
         member.update({"year_first": member_years[0], "year_last": member_years[1],
                        "year_ranges": [list(member_years)]})
@@ -66,6 +68,41 @@ class TestReignPlaceholder(unittest.TestCase):
 
     def test_curator_year_hold_wins(self):
         self.assertIsNone(enrich(holds={"year_first": "kept undated"}).get("year_first"))
+
+
+class TestWhoseWindow(unittest.TestCase):
+    """2026-10-17, second pass: the first version took the KING's window for
+    any name the loose normaliser resolved — a Gottorp duke got 1648-1670, an
+    open alternative got its first ruler's reign only."""
+
+    def test_gottorp_duke_reads_the_ducal_table(self):
+        self.assertEqual(reign_window_placeholder("Frederik 3 af Slesvig-Holsten-Gottorp", "royal_holstein"), (1616, 1659))
+
+    def test_alternative_spans_both_reigns(self):
+        self.assertEqual(reign_window_placeholder("Christian I/Hans ?", "danish_realm"), (1448, 1513))
+        self.assertEqual(reign_window_placeholder("Frederik 7 eller Christian 9", "danish_realm"), (1848, 1906))
+        self.assertEqual(reign_window_placeholder("Christian 3/4", "danish_realm"), (1534, 1648))
+
+    def test_qualified_unknown_name_stays_undated(self):
+        self.assertIsNone(reign_window_placeholder("frederik 3 som ærkebiskop", "danish_realm"))
+        self.assertIsNone(reign_window_placeholder("August Frederik von Holsten-Gottorp", "royal_holstein"))
+
+    def test_alternative_placeholder_is_marked_unverified(self):
+        out = enrich(ruler="Christian I/Hans ?")
+        self.assertEqual((out.get("year_first"), out.get("year_last")), (1448, 1513))
+        self.assertIs(out.get("year_verified"), False)
+        self.assertIs(out.get("year_is_reign_span"), True)
+
+    def test_issuer_decides_whose_window(self):
+        # Curator 2026-10-17: a same-named ruler of another issuer is another man.
+        self.assertEqual(reign_window_placeholder("Frederik 3", "gottorp_duchy"), (1616, 1659))
+        self.assertIsNone(reign_window_placeholder("Hans", "sweden"))
+        self.assertIsNone(reign_window_placeholder("Frederik 3", "erzbisthum_bremen_verden"))
+        self.assertEqual(reign_window_placeholder("Christian IV.", ["danish_realm", "royal_holstein"]), (1588, 1648))
+        self.assertIsNone(enrich(entity="sweden").get("year_first"))
+
+    def test_rigsraadet(self):
+        self.assertEqual(reign_window_placeholder("Rigsrådet", "danish_realm"), (1481, 1483))
 
 
 if __name__ == "__main__":

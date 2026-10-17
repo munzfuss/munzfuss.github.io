@@ -113,37 +113,10 @@ from lib.ruler_reigns import (  # noqa: E402
 )
 
 
-def _reign_lookup_is_exact(ruler: str | None) -> bool:
-    """Did the reign lookup use the WHOLE ruler name, or drop a qualifier?
-
-    `normalise_ruler_name` strips territorial qualifiers, so «Frederik III. von
-    Gottorp» resolves to the Danish Frederik III and comes back with the wrong
-    reign window (1648-1670 instead of the duke's 1616-1659). A comment in
-    CURATED_FIELDS asserts these dukes simply don't resolve; they do, and the
-    window is someone else's.
-
-    Setting a flag on that basis is a pre-existing question. CLEARING one on it
-    would silently strip a curator's own flag from a coin whose «wrong» range is
-    in fact the right reign — km-44 exactly. So the clear runs only when the
-    normalised name accounts for the entire raw name.
-
-    The normaliser is looser than one would guess — it resolves «Christian von
-    Schleswig-Holstein-Glücksburg» to Christian V and «Christian 3 eller
-    Frederik 2» to Christian III — so this test is deliberately strict and
-    conservative: an English spelling or a parenthetical simply doesn't clear.
-    The one thing it does look through is the numeral form, «Christian 4» being
-    the same man as «Christian IV» rather than a qualifier.
-    """
-    if not ruler:
-        return False
-    norm = _norm_ruler(ruler)
-    if not norm:
-        return False
-    raw = re.sub(r"[.,]", " ", str(ruler)).lower().split()
-    ref = str(norm).lower().split()
-    if raw and ref and raw[-1].isdigit():
-        raw = raw[:-1] + [ref[-1]]
-    return raw == ref
+# Shared with the merger since 2026-10-17 (lib.ruler_reigns); the name is kept
+# for the tests and the call sites below.
+from lib.ruler_reigns import reign_lookup_is_exact as _reign_lookup_is_exact  # noqa: E402
+from lib.ruler_reigns import reign_window_placeholder as _reign_window_placeholder  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -659,13 +632,19 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # final-layer placeholder only: years are re-derived from the live members
     # on every absorb, so the first attested year replaces it. A curator year
     # hold leaves the coin alone.
+    _reign_placeholder = False
     if authoritative_yr is None:
         _yh = final_entry.get("_curation_holds")
         _yhk = set(_yh.keys() if isinstance(_yh, dict) else (_yh or []))
         if not (_yhk & {"year_ranges", "year_first", "year_last", "year_label"}):
-            _rw0 = _reign_window(_norm_ruler(out.get("ruler")))
+            # Whose window it is matters: a Gottorp duke reads the ducal
+            # table, an open alternative («Christian I/Hans ?») spans both
+            # reigns, and a qualified name the tables do not know («Frederik 3
+            # som ærkebiskop») stays undated (lib.ruler_reigns).
+            _rw0 = _reign_window_placeholder(out.get("ruler"), out.get("issuing_entity"))
             if _rw0 is not None:
                 authoritative_yr = [[_rw0[0], _rw0[1]]]
+                _reign_placeholder = True
     if authoritative_yr is not None:
         if len(authoritative_yr) == 1 and authoritative_yr[0][0] == authoritative_yr[0][1]:
             out["year_first"] = authoritative_yr[0][0]
@@ -774,6 +753,13 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                 out["year_verified"] = others
             elif out.get("year_verified") is False:
                 out.pop("year_verified", None)
+
+    # The placeholder is a reign span by construction, whatever the override
+    # above concluded: for a Gottorp duke or an open alternative («Christian
+    # I/Hans ?») it compares against the first KING's window and does not match.
+    if _reign_placeholder and "year_verified" not in holds_keys:
+        out["year_verified"] = False
+        out["year_is_reign_span"] = True
 
     # Ambiguity-split sweep across members: any member with a scalar
     # mint containing «eller / oder / or / /» indicators (Hede/Galster

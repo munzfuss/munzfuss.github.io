@@ -264,6 +264,7 @@ def _normalise_metal(metal, fineness):
 from lib.yaml_io import dump_v2_canonical
 from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared
 from lib.ruler_reigns import normalise_ruler_key as _normalise_ruler_shared
+from lib.ruler_reigns import reign_window_exact as _reign_window_exact  # noqa: E402
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices
 from lib.catalog_codes import split_multi_ref as _split_multi_ref
 from lib.v2_seed_writer import _canonicalise_mint
@@ -401,7 +402,7 @@ def _coin_years(coin: dict) -> set[int]:
 #       1646 for a Frederik V coin — FR V reigned 1746-1766; the
 #       attestation is dropped so it doesn't poison the index).
 #
-# The reign window is also exposed by ruler-name (`_DK_RULER_REIGNS`)
+# The reign window is also exposed by ruler-name (`_dk_reign_window`)
 # so non-Hede sources (NumisMaster, Numista, Bruun, Galster) can use
 # the SAME filter when their seed's `ruler` field attests a king for
 # a year outside that king's reign (captured 2026-05-18:
@@ -436,25 +437,19 @@ _HEDE_VOLUME_TO_RULER: dict[str, str] = {
     "c10h": "christian x",
 }
 
-_DK_RULER_REIGNS: dict[str, tuple[int, int]] = {
-    "christian ii": (1513, 1523),
-    "frederik i": (1523, 1533),
-    "christian iii": (1534, 1559),
-    "frederik ii": (1559, 1588),
-    "christian iv": (1588, 1648),
-    "frederik iii": (1648, 1670),
-    "christian v": (1670, 1699),
-    "frederik iv": (1699, 1730),
-    "christian vi": (1730, 1746),
-    "frederik v": (1746, 1766),
-    "christian vii": (1766, 1808),
-    "frederik vi": (1808, 1839),
-    "christian viii": (1839, 1848),
-    "frederik vii": (1848, 1863),
-    "christian ix": (1863, 1906),
-    "frederik viii": (1906, 1912),
-    "christian x": (1912, 1947),
-}
+# The reign windows themselves live in ONE place, `lib.ruler_reigns`
+# (`RULER_REIGNS`, looked up through `reign_window`), so a ruler added there —
+# Hans I, the Rigsråd's 1481-1483 interregnum — reaches this matcher too. Until
+# 2026-10-17 the merger kept its own copy (Christian II → Christian X only), so
+# every pre-1513 attestation in the DK-realm entities was dropped by the strict
+# filter below as «not in the Danish chronology» (curator: «об'єднати функції,
+# щоб не додавати нових правителів в два місця»).
+def _dk_reign_window(rn: str | None) -> tuple[int, int] | None:
+    """Reign window of a normalised ruler key, from the shared kings' table —
+    exact names only, as the old private table was: «frederik 3 som
+    ærkebiskop» (Bremen, 1634-1645) is not King Frederik III, and borrowing
+    1648-1670 for it dropped its attestation and split two merges."""
+    return _reign_window_exact(rn) if rn else None
 
 
 def _hede_volume_to_ruler(coin: dict) -> str | None:
@@ -488,12 +483,14 @@ def _attestation_ruler(coin: dict) -> str | None:
 # (Danish-Norwegian personal union 1380-1814, plus Holstein-Glückstadt
 # under Danish sovereignty 1544+). For these we apply STRICT reign
 # filtering: an attestation whose normalised ruler isn't in
-# `_DK_RULER_REIGNS` is dropped entirely (treated as parser-anomaly
+# `lib.ruler_reigns` is dropped entirely (treated as parser-anomaly
 # bad data). Real example caught 2026-05-18: NumisMaster MC pages
 # for Danish 1809-1810 coins of Frederik VI rendered as «Frederick IX»
 # (FR IX reigned 1947-1972, never could have signed 1809 coins) —
 # visual VI / IX confusion in their data entry.
-_DK_REALM_ENTITIES = frozenset({"danish_realm", "danish_norway", "royal_holstein"})
+# Same set as lib.ruler_reigns.DANISH_CROWN_ENTITIES (royal_slesvig, the king's
+# share of Schleswig, was missing here until 2026-10-17).
+from lib.ruler_reigns import DANISH_CROWN_ENTITIES as _DK_REALM_ENTITIES  # noqa: E402
 
 
 def _build_reign_index(coins: list[dict], entity_id: str | None = None) -> dict[int, set[str]]:
@@ -538,7 +535,11 @@ def _build_reign_index(coins: list[dict], entity_id: str | None = None) -> dict[
         rn = _attestation_ruler(c)
         if not rn:
             continue
-        reign_window = _DK_RULER_REIGNS.get(rn)
+        # The Danish kings' windows only for an issuer of the Danish crown: a
+        # same-named ruler of another issuer is another man (curator
+        # 2026-10-17) — Bremen's archbishop «Frederik II» struck in 1641, far
+        # outside King Frederik II's 1559-1588, and that attestation is right.
+        reign_window = _dk_reign_window(rn) if (strict_dk or entity_id is None) else None
         if strict_dk and reign_window is None:
             # Strict DK-realm filter: a ruler-name not in the Danish
             # royal chronology (e.g. NumisMaster's «Frederick IX» on
