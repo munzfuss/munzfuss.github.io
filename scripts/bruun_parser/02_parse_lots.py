@@ -342,9 +342,40 @@ def split_pages(slug: str) -> list[tuple[int, str]]:
     return pages
 
 
+# Catalogue section headers («COINS OF DENMARK», «THE COINAGE OF NORW AY»,
+# «PLATE MONEY OF SWEDEN», «MEDALS OF DENMARK, SWEDEN, AND GERMANY»). Upper case
+# only: the mixed-case session banners and the table of contents repeat the same
+# words and must not switch the section.
+SECTION_HEADER_RE = re.compile(
+    r"^\s*(?:THE\s+)?(?:[A-Z]+\s+)*?(COINS|COINAGE|PLATE MONEY|MEDALS|TOKENS)\s+OF\s+[A-Z]"
+)
+# Sections whose every lot is exonumia (CLAUDE.md §9.2). Curator 2026-10-17:
+# «MEDALS OF DENMARK, SWEDEN, AND GERMANY — це дійсно все медалі», including the
+# coin-like pieces in it (Largesse money, medallic ¼ Speciedaler, «Platina»,
+# private tokens).
+EXONUMIA_SECTIONS = {"MEDALS", "TOKENS"}
+
+
+def page_sections(pages: list[tuple[int, str]]) -> dict[int, str | None]:
+    """Section kind in force on each page. pypdf emits a header wherever the
+    layout puts it in the text stream — often AFTER the page's first lot
+    (Part V p. 171: lot 15189, then «MEDALS OF …») — so a header governs its
+    whole page and every following page until the next header."""
+    out: dict[int, str | None] = {}
+    current: str | None = None
+    for page_no, txt in pages:
+        for ln in txt.splitlines():
+            m = SECTION_HEADER_RE.match(ln)
+            if m:
+                current = m.group(1)
+        out[page_no] = current
+    return out
+
+
 def parse_part(slug: str) -> list[dict]:
     """Walk pages in order; identify lot-number lines; collect text until next lot-number or page break."""
     pages = split_pages(slug)
+    section_of_page = page_sections(pages)
     lots: list[dict] = []
 
     # Build a flat (page, line) sequence
@@ -534,6 +565,9 @@ def parse_part(slug: str) -> list[dict]:
         title = desc_match[: title_m.start()] if title_m else desc_match[:200]
         if re.search(r"\bMedal\b", title, re.IGNORECASE):
             is_pattern = True
+        catalogue_section = section_of_page.get(page_no)
+        if catalogue_section in EXONUMIA_SECTIONS:
+            is_pattern = True
         # Mint — prefer the cataloguer's structured meta-line «<X> Mint»
         # (authoritative, positioned right after the year); fall back to the
         # body search only when the meta names no mint or is truncated mid-word
@@ -691,6 +725,7 @@ def parse_part(slug: str) -> list[dict]:
             "weight_g": weight_g,
             "rarity": rarity,
             "is_pattern": is_pattern,
+            "catalogue_section": catalogue_section,
             "refs": refs,
             "body_excerpt": body[:600],
         })

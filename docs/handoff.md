@@ -22,7 +22,8 @@
 - Parser fixes (`02_parse_lots.py`): out-of-order lot starts (+3 in V, **+14 never-seeded lots in II–IV** — these flow into the bruun seed on the next regen by anyone), and §9.2 medal titles → `is_pattern` (91 in V, 0 in I–IV). SOURCES §13.3 has all four entries.
 - Seed builder knows Part V but `_SEEDED_PARTS = (1,2,3,4)`; `--dry-run --parts 1,2,3,4,5` → +293 entries (danish_realm +108, danish_norway +109, royal_holstein +29, sweden +37, oldenburg +7, brunswick +2, gottorp +1); ~280 share a Hede/KM/Sieg/Galster/Lange key with an existing final.
 - **All three collisions resolved from the printed 1928 catalogue (danskmoent sections, SOURCES §13.3):** 14085 = Bruun-4633; 15162 = 12928 (15163 = 12937 ✓); 15041 = 9765 and Schou 12 (12079 = 9764 ✓). Applied 2026-10-17 (curator yes) as `_BRUUN_LOT_ERRATA` in the builder + suspect «(*)» on 15041's 57.41 g. Parser now also reads comma / mislabelled weights (+21 lots, I–V).
-- **Still open before seeding Part V (curator):** the medal-session coin-like lots 15200 Largesse Money 1671, 15207 ¼ Speciedaler 1685, 15247 Platina 1830, 15256 Greenland KM-Tn54 (proposal: exclude 15256 + 15247, keep 15200 + 15207); Swedish mints (Uppsala, Svartsjö, Åbo, Vadstena, Arboga, Sala + dominions) missing from mint_registry → 14 Swedish lots dropped.
+- **2026-10-17 curator calls, implemented:** whole MEDALS section = exonumia (parser `catalogue_section`, 95 lots); 14085 kept, weight 69.63 g suspect «(*)» with Bruun's own «presentation piece» sentence.
+- **Open before seeding:** the Bruun builder DROPS GERMANY / SWEDEN lots whose mint it does not know (79 Swedish lots, Parts I–V; 0 German). Curator: never drop an unknown mint. Analysis done — naive removal would default them to `danish_realm` (Denmark page); proposal = SWEDEN → `sweden`, unresolved GERMANY → `_unclassified`. Awaiting go-ahead. Seeding itself waits until everything is prepared.
 
 ## 2026-10-16 — 11½-Markfod (Lybsk Møntfod)
 

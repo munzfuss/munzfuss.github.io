@@ -269,9 +269,9 @@ _BRUUN_PART_ROMAN: tuple[str, ...] = ("I", "II", "III", "IV", "V")
 # Parts the seed is built from by default. Part V is parsed
 # (`lots/part5.json`) but NOT seeded until the curator's go-ahead. Its printed
 # Bruun-id collisions (4632, 9764, 12937) are resolved by `_BRUUN_LOT_ERRATA`
-# (curator 2026-10-17); still open before seeding: the four coin-like lots of
-# the medal session (15200, 15207, 15247, 15256) and the Swedish mints missing
-# from `mint_registry`. Preview with `--parts 1,2,3,4,5 --dry-run`.
+# (curator 2026-10-17); still open before seeding: the builder's drop of GERMANY /
+# SWEDEN lots whose mint is unknown (analysis pending). The medal section is
+# filtered at parse time (`catalogue_section`). Preview with `--parts 1,2,3,4,5 --dry-run`.
 _SEEDED_PARTS: tuple[int, ...] = (1, 2, 3, 4)
 
 
@@ -896,6 +896,23 @@ _BRUUN_LOT_ERRATA: dict[tuple[int, int], list[dict]] = {
 
 # Curation marks on a Bruun lot's printed weight, keyed like the errata above.
 _BRUUN_LOT_WEIGHT_MARKS: dict[tuple[int, int], dict] = {
+    # Curator 2026-10-17: keep the lot, mark the weight suspect with Bruun's own words.
+    (5, 14085): {"suspect": {
+        "de": "Übergewichtiges Stück. Der Katalog Bruun Part V (Los 14085, S. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» "
+              "(Übers.: «Mit fast 20 % über dem gesetzlichen Gewicht war das vorliegende Stück wahrscheinlich als "
+              "Geschenkstück gedacht, zumal keine anderen schweren Exemplare bekannt sind»). Als Gewicht des Typs ist "
+              "die Angabe nicht brauchbar; ob es ein Geschenkstück war, ist nicht belegt.",
+        "en": "An overweight piece. Bruun Part V (lot 14085, p. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist». As the weight of the type the figure cannot "
+              "serve; that it was a presentation piece is not documented.",
+        "uk": "Надважкий екземпляр. Каталог Bruun Part V (лот 14085, с. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» (перекл.: «Маючи вагу майже на 20 % "
+              "вищу за статутну, цей екземпляр, імовірно, призначався як подарунковий, тим паче що інших важких "
+              "екземплярів не відомо»). За вагу типу це значення служити не може; що це подарунковий екземпляр, не "
+              "засвідчено.",
+        "da": "Et overvægtigt eksemplar. Bruun Part V (lot 14085, s. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» (overs.: «Med næsten 20 % over den "
+              "lovbestemte vægt var det foreliggende eksemplar sandsynligvis tænkt som gaveeksemplar, især da ingen "
+              "andre tunge eksemplarer kendes»). Som typens vægt kan tallet ikke bruges; at det var et gaveeksemplar, "
+              "er ikke dokumenteret.",
+    }},
     (5, 15041): {"suspect": {
         "de": "Das Gewicht stimmt nicht sicher zu diesem Stück. Dieselben 57,41 g druckt der Katalog Bruun Part III "
               "(Los 12079) für ein anderes Stück, 2 Speciedaler 1658 Hede Norge 27, das auch die Nummer Bruun 9764 und "
