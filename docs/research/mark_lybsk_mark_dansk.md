@@ -65,6 +65,7 @@ compilation after Jesse (M1) and others — agreement between M6 and M1 is one r
 | Hans, early | 1 rhinsk Gylden = 20 ß lybsk = **2 M dansk** (= 32 ß d.) → 1 ß d. = 10/16 ß l., **1 Mark lübisch = 1,6 Mark dansk** | M2 s. 142 («*En rhinsk Gylden var lig 20 ß lybsk og 2 M dansk*»; «*Efter Forholdet 20 ß l. = 2 M d. = 32 ß d., altsaa 1 ß d. = 10/16 ß l.*») | Mark lübisch ratio recomputed |
 | Hans, later («ved Aarhundredskiftet») | Gylden = 24 ß lybsk = **2½ M dansk** (= 40 ß d.) → **1 Mark lübisch = 5/3 ≈ 1,67 Mark dansk** | M2 s. 142–143, s. 134 | Wilcke: «*Allerede da nærmede den lybske ß sig altsaa til at være dobbelt saa meget værd som den danske*» (s. 142) |
 | 1497 | «*4 Hvide ß, som Kong Hans mønte lod*»; elsewhere 5 Hvide per ß | M2 s. 142 | the Skilling coin above 3 Hvide |
+| «bis etwa 1500» → 1501 | Gulden = 1½ M lübisch = 2 M dansk, then = 2½ M dansk; Ribe 1501 (Mulich): «*800 mr lub ist 533 gulden 8 ß lub den gulden to 2,5 mr ist 1333 mr 5 ß 1 wit denisch*» → **1 M l. = 1,67 M d.** | Piorr 2021 s. 234, after Enemark 2003 I s. 340 and RAK Ribe og Kolding Toldregnskab 1501 | dates the step to the later ratio: c. 1500–1501. Full register: `hans_rates_1481_1513.md` |
 | 22 Jul / 1 Aug 1513 | 2 Mark dansk = 1 Gylden, 16 ß per M, **3 Hvide per ß** restored; «*Forholdet til den lybske ß ophævet*» | M3 s. 149–151 | the Danish ß detached from the Lübeck ß |
 | 1514 | Gylden = 24 ß = 72 Hvide | `instruments/1514_moentordning_malmoe.md` | back to the Lübeck count per Gylden inside the 8½-Gylden-Fod; beyond this card |
 | 10 Aug 1523 | «*for hele β 24 for 1 g og 12 af dem for en dansk M … item 4 Hvide i en hel β (og 3 Penninge for 1 Hvid, IIII lybsk for 1 Hvid)*» | *Denar til daler* (2018) s. 464, quoting Wilcke 1950 s. 174f. (same reading) | 1 Hvid = 3 Pf dansk = 4 Pf lybsk; beyond this card |
@@ -87,7 +88,7 @@ compilation after Jesse (M1) and others — agreement between M6 and M1 is one r
 
 | Question | Would be settled by |
 |---|---|
-| ⚠ Eriksson s. 4: «*I mitten av 1400-talet motsvarade en viktmark silver 8½ mark penningar och i början av 1500-talet 12½ mark penningar*» (after Lagerqvist & Nathorst-Böös 1984) — Swedish or Danish «mark penningar»? Which weight mark? At 12½ it would sit near the Lübeck level, not 1,6–1,67 × it. | Lagerqvist & Nathorst-Böös 1984, p. 19 (paper) |
+| ~~⚠ Eriksson s. 4: «*I mitten av 1400-talet motsvarade en viktmark silver 8½ mark penningar och i början av 1500-talet 12½ mark penningar*» (after Lagerqvist & Nathorst-Böös 1984) — Swedish or Danish «mark penningar»? Which weight mark? At 12½ it would sit near the Lübeck level, not 1,6–1,67 × it.~~ **Answered 2026-10-17: Swedish.** Wilcke 7-1 s. 115–116 gives the Swedish series: Ørtug mark 1449 = ⅛ M silver, then «*81/2, 9 og 11½ samt 12*», and at the peace of 17 Aug 1509 «*hver … løde M Sølv for 12½ marc ørtug*» — the same 8½ → 12½ (Stockholm mark). Not a Danish figure. | — |
 | The Danish mark between 1424 and 1481 (Christoffer, Christian I) — any dated ratio | Wilcke 7-1 earlier chapters; Galster 1972 |
 | Whether «M dansk» in 1495 and the toll accounts of 1503 meant the Hvid mark throughout | the RA documents Wilcke cites (Arkivregistratur I p. 21 no. 46; Danske Breve 2. R.) |
 

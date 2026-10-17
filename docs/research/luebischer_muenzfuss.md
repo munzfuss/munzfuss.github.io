@@ -1163,6 +1163,7 @@ Built 2026-10-15 (card, page section, phase I, timeline bar; no coins yet). Grid
 | Start of Skilling / Søsling coinage (1495–1512) | *Denar til daler* read (§3.4e): Skilling resumed «1480'erne eller 1490'erne», dated from 1512, Søsling date not given; next: Märcher 2018 *Tre møntskatte* (Lemvig hoard), DMS 1992 |
 | Søsling mints under Hans (Aalborg / København per *Denar til daler* s. 443) vs our Søsling rows | our data vs Galster 1972b catalogue |
 | Galster 155 mint: Oslo (danskmoent) vs Trondhjem (Ingvardson) | Risvaag 2009, «Var Oslo myntsted under kong Hans?», NNUM s. 97–102 |
+| Dating the undated Hans Hvide / Skillinger by lod group (6-lod Hvid c. 1483–1500, 5-lod c. 1500–1510; 9-lod Skilling c. 1495/97–1500/03, 8-lod c. 1503/06–1510, 7/6-lod c. 1510–1512) — hypotheses from the rate register `hans_rates_1481_1513.md` §6 | Enemark 1971 I s. 113–118; DCH 1904; assays of hoard-closed pieces (Gribshunden 1495, Møllegården) |
 | Texts of the Wendish recesses Aug/13 Dec 1504 and 29 Dec 1506 (the 13-Mark step, §3.4g) — Jesse quotes phrases only | *Hanserecesse* III. Abt. (vol. for 1504–1506); Jesse 1928 Urkundenanhang (paper); Lübeck UB |
 | Which 1513 figures repeat Hans-era ordinances | the 1496 goldsmiths' Skraa text (not seen) |
 | Jesse's mark weight (≈ 223–227 g implied by 19,392 g and 1,35 g) | Jesse's print notes (omitted on coingallery) |
