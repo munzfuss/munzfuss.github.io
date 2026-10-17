@@ -341879,7 +341879,7 @@ coins:
     metal_verified: false
     mint: Lund
     mint_verified: true
-    ruler: Christoffer2
+    ruler: Magnus Smek
     weight_rough_verified: false
     catalog:
       mb: '640'
@@ -341889,6 +341889,17 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/298884
         ref: KMM 298884 (Inv. FP 8604.11)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Christoffer2
+        correct: Magnus Smek
+        curator: serg
+        reason: 'KMM prints authority «Christoffer2» with typeNumber «MB 640»; the danskmoent Hauberg/MB concordance (konkord.htm) places MB 640 under «1332-1360 Skåne under Magnus Smek», Lund («Hbg/MB:
+          1/637-639, 2/640-641»). Curator 2026-10-17: correct the ruler by the concordance.'
+    _errata_applied:
+      - field: ruler
+        printed: Christoffer2
+        correct: Magnus Smek
   - id: kmk-298885
     fuss: seed_unsorted
     phase: kmk

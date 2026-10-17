@@ -25,7 +25,7 @@ by issuer (`c6202fa`, `80d1dd4`) — 1776 → 542 drops.
 |---|---|---|---|---|
 | 1 | Ruler of another house, no reign table | 61 (78 by the wider match) | reign tables for Sønderborg, Plön/Norburg, Schaumburg-Pinneberg, Oldenburg, Gottorp prince-bishops, Rantzau — each with a source; or entity re-routing | **done 2026-10-17** (57 stubs excluded, Sønderborg table) |
 | 2 | Medieval rulers (before 1481) | 44 (28 truly) | dated by reign windows (?) | **done 2026-10-17** |
-| 3 | No ruler, no catalogue | 29 | hopeless except nominals of one period (Kobbersterling = Erik af Pommern) | open |
+| 3 | No ruler, no catalogue | 29 (36 by re-count) | Kobbersterling and MB-numbered pennies dated | **done 2026-10-17** (the rest left undated) |
 | 4 | Catalogue index matching a dated type | ~12 | not years — merge into the type (`merge_decisions`, a comparison table per pair) | open |
 | 5 | «Aahuset L. Chr. Larsen» | 8 | probably a private issuer — unchecked | open |
 | 6 | Unambiguous misspellings of Danish kings | ~6 | aliases in the normaliser («Chrtistian 4», «Chritian 4», «Chrisytian 1», «Kristian 1», «Ridsrådet») | open |
@@ -180,3 +180,20 @@ ruler for Christoffer II (MB 533, 541, 566-567, 580, 589, 595, 606), Christoffer
 I (MB 083) and Erik Menved (MB 441) — but **MB 640** (`kmk-298884`, KMM
 «Christoffer2», Lund) is «Skåne under Magnus Smek, Lund 2» (1332–1360) in the
 concordance, not Christoffer II. Our data now shows it 1320–1332 (?).
+
+**Decision and outcome (curator 2026-10-17: «Датуй Kobbersterling … і пенінги
+з номерами MB через конкорданс, виправ MB 640 за конкордансом; два дефекти
+пайплайну … — окремою сесією»).**
+- `lib/mb_concordance.py` (`65d740f`): MB number → the concordance row's ruler,
+  years and mint; Kobbersterling → ca. 1420–1435. Wired into absorb's
+  placeholder before the ruler window, for the Danish crown's issuers only.
+- Dated (?): 3 Kobbersterlinge 1420–1435; MB 261 and MB 266–269 1259–1286;
+  «Johan» Saxkøbing MB 569–570 / MB 578 1319–1332 (concordance years).
+- MB 640: `kmk-298884` ruler «Christoffer2» → «Magnus Smek» by `_source_errata`
+  (seed) and in the final; now 1332–1360 (?).
+- Left undated: `kmk-138263` (its MB list mixes Erik Menved and Christoffer II
+  — the thinning defect; the KMM print «MB 285, 287; 319-320» also falls into
+  the concordance's Lund gap 319–320), the Sæby Kirke excavation coins, the
+  «Hbg 1» Roskilde penning, the rest of the sub-groups a/d/g/h/i.
+- The two pipeline defects went to the session «KMM: thinning merges MB types;
+  'MB 285, 287' lost».
