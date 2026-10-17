@@ -145,6 +145,12 @@ HOUSE_REIGNS: dict[str, dict[str, tuple[int, int]]] = {
     "sonderburg_duchy": {
         "Hans der Jüngere":  (1564, 1622),
     },
+    # Schauenburg-Pinneberg: NumisMaster's ruler link «Ernst III 1601 - 1622»
+    # (scripts/cache/numismaster/schleswig_holstein/MC_96084.html), requested
+    # 2026-10-17 by the NGC-dates session for NGC «(after 1620)» KM 93-95.
+    "schauenburg_pinneberg": {
+        "Ernst III":         (1601, 1622),
+    },
 }
 
 # Observed source spellings → canonical key inside a house table. Lowercased,
@@ -170,6 +176,9 @@ _HOUSE_ALIASES: dict[str, dict[str, str]] = {
         "carl frederik": "Karl Friedrich", "charles frederick": "Karl Friedrich",
         "karl peter ulrich": "Karl Peter Ulrich",
         "paul": "Paul",
+    },
+    "schauenburg_pinneberg": {
+        "ernst iii": "Ernst III", "ernst 3": "Ernst III",
     },
     "sonderburg_duchy": {
         # KMM «Hans den Yngre» (several spacings), NGC «Johann», German forms.
@@ -432,7 +441,8 @@ def reign_window_placeholder(ruler_raw: str | None,
     # names the house («Frederik 3 af Slesvig-Holsten-Gottorp» on a
     # royal_holstein record).
     houses = [e for e in ents if e in HOUSE_REIGNS]
-    for _pat, _h in ((r"gottorp", "gottorp_duchy"), (r"s[øo]nderb(?:o|u)rg", "sonderburg_duchy")):
+    for _pat, _h in ((r"gottorp", "gottorp_duchy"), (r"s[øo]nderb(?:o|u)rg", "sonderburg_duchy"),
+                     (r"scha(?:u|ue)mburg|schauenburg|pinneberg", "schauenburg_pinneberg")):
         if re.search(_pat, ruler_raw, re.IGNORECASE) and _h not in houses:
             houses.append(_h)
     for h in houses:

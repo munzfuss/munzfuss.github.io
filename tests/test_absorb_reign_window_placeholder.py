@@ -125,6 +125,12 @@ class TestWhoseWindow(unittest.TestCase):
         for r in ("Margrethe 2", "Valdemarerne?", "Johan"):
             self.assertIsNone(reign_window_placeholder(r, "danish_realm"), r)
 
+    def test_schauenburg_ernst_iii(self):
+        # NumisMaster MC_96084 ruler link «Ernst III 1601 - 1622».
+        self.assertEqual(reign_window_placeholder("Ernst III", "schauenburg_pinneberg"), (1601, 1622))
+        self.assertEqual(reign_window_placeholder("Ernst 3 af Schaumburg-Pinneberg", "royal_holstein"), (1601, 1622))
+        self.assertIsNone(reign_window_placeholder("Ernst III", "danish_realm"))
+
     def test_rigsraadet(self):
         self.assertEqual(reign_window_placeholder("Rigsrådet", "danish_realm"), (1481, 1483))
 
