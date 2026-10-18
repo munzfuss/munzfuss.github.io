@@ -503,6 +503,16 @@ def _apply_migrated_merge_fields(entry: dict, fid: str,
                 break
     if not migrated:
         return
+    # Classification travels only onto an UNCLASSIFIED host, and only when
+    # every retired peer agrees on it (2026-10-17). A merge that renames a
+    # classified class — its seeds re-grouped under another unified id, so
+    # the old final retires into a host that was a seed_unsorted singleton —
+    # used to land the coin in seed_unsorted: the replace-shaped fields were
+    # applied on the bulk-promote path only, and an existing host is never
+    # bulk-promoted. A host that already carries a classification keeps it.
+    classes = set(migrated.get("__classes__") or [])
+    if len(classes) == 1 and entry.get("fuss") in (None, "", "seed_unsorted"):
+        entry["fuss"], entry["phase"], entry["kind"] = next(iter(classes))
     for key, value in migrated.items():
         if not key.startswith("__merge__"):
             continue
@@ -2097,6 +2107,67 @@ _FINAL_SNAPSHOT: dict[str, list[dict]] | None = None
 _RUN_ENTITIES: set[str] = set()
 
 
+def _inherit_classification(entity_id: str, finals: list[dict]) -> int:
+    """A seed_unsorted final takes the classification of the classes its
+    seeds came from, when they all agree (2026-10-17).
+
+    A merge renames a class (its top-authority member changed) or a split
+    leaves part of a classified class in a new one; either way the new class
+    has no final of its own and lands in seed_unsorted, although every seed in
+    it was classified a run ago. The merger records the previous classes of
+    each changed class (`match_uncertainty/<entity>.prev_classes.json`); the
+    classification of the finals that held those classes before this run
+    (`_final_snapshot`) is inherited when exactly one classification is found.
+    Two or more distinct classifications mean the new class fused coins the
+    curator had classified apart — reported, never resolved here. A seed the
+    curator declassified (`_recorded_removals.yml`, kind declassify) or a coin
+    with an explicit classification decision is left alone."""
+    import json
+    side = ROOT / "data" / "v2" / "match_uncertainty" / f"{entity_id}.prev_classes.json"
+    if not side.exists():
+        return 0
+    prev_of = json.loads(side.read_text(encoding="utf-8"))
+    class_of: dict[str, set] = defaultdict(set)
+    value_of: dict[str, tuple] = {}   # hashable key → (fuss, phase, kind)
+    for fe in _final_snapshot().get(entity_id) or []:
+        if not isinstance(fe, dict) or fe.get("fuss") in (None, "", "seed_unsorted"):
+            continue
+        cls = (fe.get("fuss"), fe.get("phase"), fe.get("kind"))
+        key = json.dumps(cls, sort_keys=True, default=str)
+        value_of[key] = cls
+        for uid in [fe.get("id")] + list(fe.get("composed_of") or []):
+            if uid:
+                class_of[str(uid)].add(key)
+    removals = _load_yaml(ROOT / "data" / "v2" / "_recorded_removals.yml")
+    declassified = {str(e.get("seed")) for e in (removals.get("removals") or [])
+                    if isinstance(e, dict) and e.get("kind") == "declassify"}
+    decided = {str(a.get("coin_id")) for a in (_load_yaml(
+        V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml").get("assignments") or [])
+        if isinstance(a, dict)}
+    applied = 0
+    for fc in finals:
+        if not isinstance(fc, dict) or fc.get("fuss") not in (None, "", "seed_unsorted"):
+            continue
+        ids = [str(fc.get("id"))] + [str(m) for m in (fc.get("composed_of") or [])]
+        if decided & set(ids):
+            continue
+        if any(i.removeprefix("unified-") in declassified for i in ids):
+            continue
+        prev = {p for i in ids for p in prev_of.get(i, [])}
+        classes = {c for p in prev for c in class_of.get(p, ())}
+        if len(classes) == 1:
+            fc["fuss"], fc["phase"], fc["kind"] = value_of[next(iter(classes))]
+            applied += 1
+        elif len(classes) > 1:
+            print(f"  [{entity_id}] ⚠ {fc.get('id')}: its seeds came from "
+                  f"differently classified coins {sorted(classes)} — "
+                  "left seed_unsorted, review the merge")
+    if applied:
+        print(f"  [{entity_id}] classification followed the seeds into "
+              f"{applied} renamed / split class(es)")
+    return applied
+
+
 def _final_snapshot() -> dict[str, list[dict]]:
     """{entity → its finals} as on disk before this run wrote anything."""
     global _FINAL_SNAPSHOT
@@ -2268,7 +2339,10 @@ def process_entity(entity_id: str) -> dict:
     # skip below is a cheap early-out; the final filter is the source of truth.
     exclusions = _load_exclusions(entity_id)
     excluded_ids = set(exclusions)
-    member_ids = {k for k, v in exclusions.items() if v.get("scope") == "member"}
+    # An undocumented stub is a singleton in the merger (isolated like a
+    # `scope: member` id), so it too matches only its own id here.
+    member_ids = {k for k, v in exclusions.items()
+                  if v.get("scope") == "member" or v.get("category") == "undocumented_stub"}
     # ids matched ANYWHERE this run (bulk-promote skip OR final filter) — an id
     # not matched anywhere is a true orphan (typo / coin already gone from seed).
     excluded_matched: set[str] = set()
@@ -2481,6 +2555,12 @@ def process_entity(entity_id: str) -> dict:
             return
         existing = curator_migrations.get(new_host_fid) or {}
         existing.update(snapshot)
+        # Every retired peer's classification, so the applier can tell one
+        # agreed classification from a contradiction (see
+        # `_apply_migrated_merge_fields`).
+        if fe.get("fuss") not in (None, "", "seed_unsorted"):
+            existing.setdefault("__classes__", []).append(
+                (fe.get("fuss"), fe.get("phase"), fe.get("kind")))
         # Accumulate merge-field entries across multiple stale-foundations
         # pointing at the same new host.
         for k, vlist in merge_snapshot.items():
@@ -2508,7 +2588,7 @@ def process_entity(entity_id: str) -> dict:
         _migrate_classification(carried, host)
         snap = curator_migrations.get(host) or {}
         cross_carry[host] = {k: v for k, v in snap.items()
-                             if not k.startswith("__merge__")}
+                             if not k.startswith("__")}
         print(f"  [{entity_id}] cross-entity carry: {src_ent}/"
               f"{src_fe.get('id')} → {host} "
               f"({len(set(snap) - before) or len(snap)} field(s))")
@@ -2667,6 +2747,14 @@ def process_entity(entity_id: str) -> dict:
         return True
 
     self_foundation_folded = 0
+    # Self-foundations dropped on the PREDICTION that the absorb loop will
+    # fold their unified into the matched peer. When the loop does not (its
+    # match runs unified-vs-final, the prediction final-vs-final, and the two
+    # can disagree), the unified reaches the bulk-promote path as if new and
+    # loses the classification its own final carried — Hede 5B, 4 Skilling
+    # Rigsmønt, 18_5_thaler at HEAD, seed_unsorted after (2026-10-17). The
+    # promote path restores the dropped final instead.
+    _folded_self: dict[str, dict] = {}
     self_foundation_fold_skipped_multi: list[str] = []
     self_foundation_fold_skipped_clash: list[str] = []
     final_after_fold: list[dict] = []
@@ -2701,6 +2789,7 @@ def process_entity(entity_id: str) -> dict:
                 # Safe to fold. Drop self-foundation; loop below will
                 # absorb the unified into V1 via the normal match_pair path.
                 self_foundation_folded += 1
+                _folded_self[fid] = fe
                 continue
             # Classification disagreement — needs curator review.
             self_foundation_fold_skipped_clash.append(fid)
@@ -2972,11 +3061,32 @@ def process_entity(entity_id: str) -> dict:
         if uid in already_absorbed:
             already_in += 1
             continue
+        # A curator-excluded class never joins an existing final: the
+        # exclusion purge below drops every final that lists an excluded
+        # member, so absorbing it would remove the host coin with it
+        # (2026-10-17: the off-strike kmk-136896 matched the Portugaløser
+        # final dk-tid-163077, an undocumented stub matched the Hvid Galster
+        # 36 class, and both hosts vanished). The excluded class itself is
+        # dropped as before.
+        if excluded_ids:
+            _x_hit = _coin_exclusion_hit(unified, excluded_ids, member_ids)
+            if _x_hit:
+                excluded_matched |= _x_hit
+                continue
         # Find match against final entries (per §5.2 hierarchy)
         candidates = []
+        _u_has_catalog = bool(_catalog_refs(unified, entity_id))
         for fid, fc in final_by_id.items():
             if _curator_no_merged(unified, fc, no_merge_pairs, unified_by_id):
                 continue  # curator no_merge: different coin — never absorb
+            # An unclassified final with no catalogue index at all (a bare
+            # KMM «1 Krone», no year) is never the host of a class that has
+            # one: matched on nominal + ruler alone it became a hub that
+            # pulled in Hede 104 (kronemont) and KM 428 (kronemont_fine)
+            # together and dropped both to seed_unsorted (2026-10-17).
+            if (_u_has_catalog and fc.get("fuss") in (None, "", "seed_unsorted")
+                    and not _catalog_refs(fc, entity_id)):
+                continue
             result = match_pair(unified, fc, entity_id, reign_index=reign_index)
             if result["decision"] == "confident":
                 candidates.append(fid)
@@ -3148,6 +3258,12 @@ def process_entity(entity_id: str) -> dict:
             # route through `_enrich_final_entry` so the output has
             # the SAME canonical field layout as V1-foundation entries
             # — guarantees idempotency on re-runs.
+            if uid in _folded_self:
+                restored = dict(_folded_self[uid])
+                restored["composed_of"] = [uid]
+                enriched, _ = _enrich_final_entry(restored, [restored, unified], entity_id)
+                enriched_entries.append(enriched)
+                continue
             promoted_stub = dict(unified)
             promoted_stub["composed_of"] = [uid]
             # Apply curator-classification migration from any V1-bootstrap
@@ -3180,6 +3296,8 @@ def process_entity(entity_id: str) -> dict:
                             existing_list.append(v_entry)
                         promoted_stub[bare] = existing_list
                         continue
+                    if field.startswith("__"):
+                        continue   # bookkeeping (e.g. «__classes__»), not a field
                     # Don't overwrite a non-trivial value the seed already
                     # carries — but DO overwrite when the seed has the
                     # default placeholder («seed_unsorted» for fuss, the
@@ -3848,6 +3966,7 @@ def main() -> int:
             # were not re-enriched this run (no current seed_unified member),
             # whose stale overflow would otherwise survive. Skips entries
             # that froze `catalog` via `_curation_holds`.
+            _inherit_classification(ent, result["enriched_final_entries"])
             for _fc in result["enriched_final_entries"]:
                 if not isinstance(_fc, dict):
                     continue

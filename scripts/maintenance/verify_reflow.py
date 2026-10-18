@@ -93,6 +93,7 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import re
 import subprocess
 import sys
 from collections import Counter
@@ -770,6 +771,8 @@ def _attestation_index(coins: dict[str, dict]) -> dict[str, set[str]]:
     """
     idx: dict[str, set[str]] = {f: set() for f in LIST_FIELDS}
     idx["catalog"] = set()
+    idx["catalog_bare"] = set()
+    idx["source_urls"] = set()
     for coin in coins.values():
         for f in LIST_FIELDS:
             if f == "year_ranges":
@@ -778,7 +781,17 @@ def _attestation_index(coins: dict[str, dict]) -> dict[str, set[str]]:
                 idx[f] |= {_key(x) for x in _as_list(coin.get(f))}
         for reg, vals in _catalog_registers(coin).items():
             idx["catalog"] |= {f"{reg}={v}" for v in vals}
+            idx["catalog_bare"] |= {f"{reg}={_EDITION_PREFIX.sub('', str(v))}" for v in vals}
+        idx["source_urls"] |= {s["url"] for s in _as_list(coin.get("sources"))
+                               if isinstance(s, dict) and s.get("url")}
     return idx
+
+
+# Davenport's numbers carry their volume as a prefix in some sources («EC II
+# 3534») and not in others («3534»). When two members merge and the catalogue
+# de-duplicates to the prefixed form, the bare form is the same index, not a
+# lost one (2026-10-17).
+_EDITION_PREFIX = re.compile(r"^EC\s+[IVX]+\s+", re.IGNORECASE)
 
 
 def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
@@ -1025,6 +1038,14 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                         changes.append(
                             f"{cid}.{f}: value changed under {ident_of.get(k, k)[:60]}")
                 gone = (dropped - modified) - attested[f]
+                # A source whose URL another coin still cites moved with its
+                # member and was de-duplicated there under that coin's label
+                # (one danskmoent page, «Hede c4h79C» vs «Hede c4h79A»).
+                if f == "sources":
+                    keep_urls = attested["source_urls"]
+                    gone = {k for k in gone
+                            if not any(isinstance(x, dict) and x.get("url") in keep_urls
+                                       and _key(x) == k for x in _as_list(h.get(f)))}
                 # A reading the parser REFUSED is a recorded removal, not a
                 # loss. This is the measurement-list twin of the catalog branch
                 # below: a source-sanity gate (parse_ngc.sift_fineness) declines
@@ -1114,7 +1135,8 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                         for v in sorted(_refined))
                 if not dropped:
                     continue
-                gone = {v for v in dropped if f"{reg}={v}" not in attested["catalog"]}
+                gone = {v for v in dropped if f"{reg}={v}" not in attested["catalog"]
+                        and f"{reg}={v}" not in attested["catalog_bare"]}
                 # A value the parser retracted is a recorded removal, not a
                 # loss — but ONLY that value of ONLY that register. Anything
                 # else in the same shrink still blocks, so a ledger entry can
