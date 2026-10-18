@@ -552,6 +552,22 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
            if k in _FOUNDATION_IMMUTABLE_FIELDS}
     out["id"] = final_entry["id"]
 
+    # A curator's ruler correction on a member (`_source_errata` field ruler,
+    # carried up as the class's `_errata_applied`) outranks the ruler the
+    # foundation froze on an earlier absorb (curator 2026-10-18). Without it a
+    # KMM «Frederik 3» corrected to Frederik I stayed «Frederik III.» on a coin
+    # that kept its final. Only one agreed correction applies; a ruler hold on
+    # the final still wins.
+    _rh = final_entry.get("_curation_holds")
+    _rh = set(_rh.keys() if isinstance(_rh, dict) else (_rh or []))
+    if "ruler" not in _rh:
+        _rc = {str(r["correct"]) for m in members[1:] if isinstance(m, dict)
+               for r in (m.get("_errata_applied") or [])
+               if isinstance(r, dict) and r.get("field") == "ruler"
+               and r.get("correct") not in (None, "")}
+        if len(_rc) == 1:
+            out["ruler"] = next(iter(_rc))
+
     # «non-None wins over None» gap-fill: when a foundation descriptive field
     # is None, adopt the first composed_of member's non-None value. Members are
     # authority-sorted (foundation first), so members[1:] are the seed_unified
@@ -754,9 +770,12 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                     _alts.append(dict(_a))
         # Only members[1:] (the live seed_unified side) may introduce an alt;
         # the foundation's own copy is kept only while a live member still
-        # carries it.
+        # carries it. A bulk-promoted class is enriched with itself as the
+        # only member — it IS the live side then (without this a newly
+        # promoted or relocated coin lost its KMM «(!)» ruler, 2026-10-18).
         _live = {(str(a["value"]), str(a["source"]))
-                 for _m in members[1:] for a in (_m.get(_fld) or [])
+                 for _m in (members[1:] if len(members) > 1 else members)
+                 for a in (_m.get(_fld) or [])
                  if isinstance(a, dict) and a.get("value") and a.get("source")}
         _alts = [a for a in _alts if (str(a["value"]), str(a["source"])) in _live]
         if _alts:
@@ -2302,6 +2321,16 @@ def process_entity(entity_id: str) -> dict:
     unified_doc = _load_yaml(V2_SEED_UNIFIED / f"{entity_id}.yml")
     unified_entries: list[dict] = unified_doc.get("coins") or []
     unified_by_id = {u["id"]: u for u in unified_entries if u.get("id")}
+    # The merger's «a Schou number that two types list is not evidence» guard
+    # reads a per-entity claims table the merger builds for its own run. Absorb
+    # calls the same match_pair against finals, so without the table here the
+    # guard was off at the final layer: KMM «1 Krone» records carrying only a
+    # Schou number, kept apart by the merger, were folded into the broad
+    # Frederik III Krone final (dk-tid-97152) on the next absorb — absorb was
+    # not idempotent (2026-10-18).
+    import maintenance.merge_seeds_cross_source as _mg_claims
+    _mg_claims._SUBVAR_CLAIMS = _mg_claims._build_subvariant_claims(
+        unified_by_id, entity_id)
 
     # Curator no_merges — loaded ONCE, up-front, because every consolidation
     # path below must honour them: the final↔final self-foundation fold, the

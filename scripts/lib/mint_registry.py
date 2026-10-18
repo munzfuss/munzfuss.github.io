@@ -124,8 +124,9 @@ _MINT_REGISTRY: dict[str, dict] = {
         "entity": "danish_realm",
     },
     "visby": {
-        # Medieval Danish Gotland (then Swedish 1645+).
-        "aliases": {"visby"},
+        # Medieval Danish Gotland (then Swedish 1645+). KMM records name the
+        # island («Gotland») for the Visby mint (curator 2026-10-18).
+        "aliases": {"visby", "gotland"},
         "display": "Visby",
         "entity": "danish_realm",
     },

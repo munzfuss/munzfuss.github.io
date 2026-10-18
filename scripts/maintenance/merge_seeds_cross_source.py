@@ -1723,6 +1723,10 @@ _MINT_SPELLING_ALIASES = {
     # Helsingør — English «Elsinore» variant
     "elsinore": "helsingør",
     "elseneur": "helsingør",           # French (rare, appears in old auction catalogues)
+    # KMM names the island where the coin was struck; the mint on Gotland in
+    # the Danish period was Visby (Søren Norby's skillings, Galster 144:
+    # «Visby Mint», coinvarieties.com; curator 2026-10-18).
+    "gotland": "visby",
 }
 
 
