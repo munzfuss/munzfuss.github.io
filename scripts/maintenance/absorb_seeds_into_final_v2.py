@@ -1458,7 +1458,7 @@ def _curator_no_merged(a: dict, b: dict, no_merge_pairs: set,
 
 def _revalidate_composed_of(
     final_by_id: dict, unified_by_id: dict, entity_id: str,
-    force_merge_pairs=None
+    force_merge_pairs=None, no_merge_pairs=None
 ) -> dict[str, set]:
     """Re-validate existing composed_of membership; return per-host evict set.
 
@@ -1524,6 +1524,16 @@ def _revalidate_composed_of(
             if _is_forgery_nominal(host_nom) != _is_forgery_nominal(m.get("nominal")):
                 evictions.setdefault(fid, set()).add(mid)
                 continue
+            # A curator no_merge between this member and the rest of the
+            # host binds membership already absorbed, not only new absorbs
+            # (2026-10-18: two KMM «1 Krone» stubs, 1651 Schou 43 / 1660
+            # Schou 39, that no Hede type of their year lists, had been
+            # folded into the Frederik III Krone final dk-tid-97152).
+            if no_merge_pairs:
+                rest = dict(fc, composed_of=[c for c in comp if c != mid])
+                if _curator_no_merged(m, rest, no_merge_pairs, unified_by_id):
+                    evictions.setdefault(fid, set()).add(mid)
+                    continue
             if not _nominal_genuinely_differs(host_nom, m.get("nominal")):
                 continue
             if _shares_type_level_catalog(fa, _catalog_refs(m, entity_id)):
@@ -3029,7 +3039,7 @@ def process_entity(entity_id: str) -> dict:
                     for _j in range(_i + 1, len(_mem)):
                         _fm_pairs.add(frozenset({_mem[_i], _mem[_j]}))
         revalid = _revalidate_composed_of(
-            final_by_id, unified_by_id, entity_id, _fm_pairs)
+            final_by_id, unified_by_id, entity_id, _fm_pairs, no_merge_pairs)
         revalid_evicted = 0
         for host_id, evict_set in revalid.items():
             fc = final_by_id.get(host_id)
