@@ -16,11 +16,19 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-18 — Merger scoped-index rules; KMM rulers; Schou-only folds undone
+
+- **Merger (e9cf8c6, data e4afc3a):** records sharing a scoped index now merge (Schou/Sieg range containment, index+nominal+ruler without year/metal, billon = silver, 10 % weight with agreeing index, weak PASS-2 vetoes lifted by a unifying type-level member — `_WeakVetoIndex`), but strong contradictions always stand; a Schou number that two types of one nominal list is not evidence (`_SUBVAR_CLAIMS`); Krone ≡ 4 Mark is neutral. Classification follows the seeds into renamed/split classes (`match_uncertainty/<entity>.prev_classes.json` sidecar → absorb `_inherit_classification`). Extra classes per Hede type ~1300 → ~550.
+- **Absorb (8a4a0f6, 7b039b5):** curator ruler `_source_errata` beats the frozen foundation ruler; Schou-claims guard built in absorb too (absorb is idempotent again — two runs leave final/ byte-identical); promoted/relocated classes keep their alts; a curator no_merge evicts an already-absorbed member.
+- **KMM rulers (bc48e95):** pre-1648 «Frederik 3» = Duke Frederik III of Gottorp («Friedrich III. von Gottorp», 7 → gottorp_duchy) or Prince Frederik as Archbishop of Bremen 1641–43 («Erzbischof Friedrich», Hede BV4/BV6, 19 → erzbisthum_bremen_verden); KMM value shown (!) via ruler_mark, ours (?) via ruler_verified false. Galster 144 Norby → Christian II., Gotland = Visby; Gaute spellings; bare Christian/Frederik by year/index.
+- **Schou-only folds (fb09986):** 15 KMM records moved to the type their YEAR names (Hede gives Schou per year), 2 back to seed_unsorted (declassify recorded). Rule for the next session: a KMM record with only Schou is placed by year + Schou, never by Schou alone.
+- **Open:** KMM «Frederik» 1645 Skilling/Dütken, 1623 records already moved as assumptions; Hede 95 split across `dk-tid-97152` and `km-194-fr-iii-1654` (pre-existing); remaining undated-coins plan rows 5–9 (`docs/undated_coins_denmark.md`). Nothing pushed.
+
 ## 2026-10-18 — Bruun Part V seeded and re-flowed
 
 - `_SEEDED_PARTS = (1..5)`; bruun seed + full merge + absorb (from HEAD final). verify_reflow 0 losses, citations 0 missing, validate OK. Sweden +98 coins, danish_norway/realm/royal_holstein got the Part V specimens.
 - Curator decisions applied: 4 lots added to existing `_cross_entity.yml` groups (6301 Guldkrone, 7850 12 Mark, 8095 Frederik d'or, 7892 Rejsedaler); 7892's «Copenhagen Mint» = erroneous `mint_mark` (new mint_mark → mint_alts mechanism); Hede 28B split from Hede 31 (foundation `f3h31` reset + `no_merges`); KM B445 kept off Hede 55 (`no_merges`); Wolfenbüttel 1627 Hede 3 class fixed (merge incl. KMM 290904; KMM 291968 «Sch 10» unbound from Hede 5); Hede Norge 32A/B/C union + KM 51 moved to Hede 32 accepted, stale KM 51 removed from `nf3h33`; Hvid 1575 regroup accepted.
-- Open: final `unified-dk-hede-c5h55` still carries stale KM 445/375/387 (pre-existing); KMM 291968 («Sch 10» = Hede 3B by Bruun) stands alone in brunswick; absorb on HEAD `e4afc3a` not idempotent (other session investigating).
+- Open: KMM 291968 («Sch 10» = Hede 3B by Bruun) stands alone in brunswick. (c5h55 stale KM reset in 21ea38e; absorb idempotence fixed in 8a4a0f6.)
 
 ## 2026-10-16 — Bruun Part V (Copenhagen 27–28 Oct 2026) harvested, parsed, NOT seeded
 
