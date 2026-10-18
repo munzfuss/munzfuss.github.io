@@ -5278,6 +5278,21 @@ def _write_prev_classes(entity_id: str, unified_entries: list[dict]) -> None:
     V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
     (V2_MATCH_UNCERTAINTY / f"{entity_id}.prev_classes.json").write_text(
         json.dumps(out, indent=1, sort_keys=True), encoding="utf-8")
+    # Seeds that LEFT a class which kept its id (a split): absorb removes what
+    # they alone contributed to the host final (`_surgical_decontaminate`).
+    # Without it the final kept a departed seed's indices — Hede 87 still
+    # showed KM 192.x after the KM 192 records moved to Hede 91 (2026-10-19).
+    old_members = {e["id"]: set(e.get("composed_of") or [])
+                   for e in (old.get("coins") or []) if e.get("id")}
+    departed = {}
+    for u in unified_entries:
+        uid = u.get("id")
+        if uid in old_members:
+            gone = old_members[uid] - set(u.get("composed_of") or [])
+            if gone:
+                departed[uid] = sorted(gone)
+    (V2_MATCH_UNCERTAINTY / f"{entity_id}.departed.json").write_text(
+        json.dumps(departed, indent=1, sort_keys=True), encoding="utf-8")
 
 
 def _emit_match_uncertainty(entity_id: str, low_conf: list[dict],

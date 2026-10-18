@@ -1136,7 +1136,8 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                 if not dropped:
                     continue
                 gone = {v for v in dropped if f"{reg}={v}" not in attested["catalog"]
-                        and f"{reg}={v}" not in attested["catalog_bare"]}
+                        and f"{reg}={_EDITION_PREFIX.sub('', str(v))}"
+                        not in attested["catalog_bare"]}
                 # A value the parser retracted is a recorded removal, not a
                 # loss — but ONLY that value of ONLY that register. Anything
                 # else in the same shrink still blocks, so a ledger entry can

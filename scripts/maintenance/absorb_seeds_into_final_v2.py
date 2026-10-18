@@ -2943,6 +2943,29 @@ def process_entity(entity_id: str) -> dict:
                 departed_decontaminated += len(departed_recs)
             fc["composed_of"] = kept
             purged_count += len(original_composed) - len(kept)
+    # Seeds that left a class which KEPT its id (merger sidecar
+    # `<entity>.departed.json`): same surgical removal as above. The purge
+    # only sees ids that vanished, so a split that keeps the class id left
+    # the departed seeds' indices on the host final.
+    import json as _json
+    _dep_path = ROOT / "data" / "v2" / "match_uncertainty" / f"{entity_id}.departed.json"
+    _departed_by_class = (_json.loads(_dep_path.read_text(encoding="utf-8"))
+                          if _dep_path.exists() else {})
+    if _departed_by_class:
+        for fid, fc in final_by_id.items():
+            comp = fc.get("composed_of") or []
+            if not any(c in _departed_by_class for c in comp):
+                continue
+            staying = set()
+            for cid in comp:
+                staying |= set((unified_by_id.get(cid) or {}).get("composed_of") or [])
+                staying.add(_seed_of(cid))
+            gone = {s for c in comp for s in _departed_by_class.get(c, [])} - staying
+            recs = [r for r in (_seed_record(entity_id, sid) for sid in sorted(gone)) if r]
+            if recs:
+                remaining = [unified_by_id[c] for c in comp if c in unified_by_id]
+                _surgical_decontaminate(fc, recs, remaining)
+                departed_decontaminated += len(recs)
     if departed_decontaminated:
         print(f"  stale-purge: removed the exclusive contributions of "
               f"{departed_decontaminated} departed seed(s)")

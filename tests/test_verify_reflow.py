@@ -62,6 +62,11 @@ class TestSameValueOtherForm(_Base):
                           [{"id": "a", "catalog": {"dav": ["EC II 3534"]}}])
         self.assertFalse(r["losses"])
 
+    def test_davenport_prefix_moved_to_bare_form(self):
+        r = self.run_case([{"id": "a", "catalog": {"dav": ["EC II 3570"]}}, {"id": "b"}],
+                          [{"id": "a"}, {"id": "b", "catalog": {"dav": ["3570"]}}])
+        self.assertFalse([m for m in r["losses"] if "CATALOG" in m])
+
     def test_source_url_cited_by_another_coin(self):
         u = "https://www.danskmoent.dk/chr/c4h79.htm"
         r = self.run_case(
