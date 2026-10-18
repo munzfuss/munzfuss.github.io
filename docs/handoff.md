@@ -28,7 +28,8 @@
 
 - `_SEEDED_PARTS = (1..5)`; bruun seed + full merge + absorb (from HEAD final). verify_reflow 0 losses, citations 0 missing, validate OK. Sweden +98 coins, danish_norway/realm/royal_holstein got the Part V specimens.
 - Curator decisions applied: 4 lots added to existing `_cross_entity.yml` groups (6301 Guldkrone, 7850 12 Mark, 8095 Frederik d'or, 7892 Rejsedaler); 7892's «Copenhagen Mint» = erroneous `mint_mark` (new mint_mark → mint_alts mechanism); Hede 28B split from Hede 31 (foundation `f3h31` reset + `no_merges`); KM B445 kept off Hede 55 (`no_merges`); Wolfenbüttel 1627 Hede 3 class fixed (merge incl. KMM 290904; KMM 291968 «Sch 10» unbound from Hede 5); Hede Norge 32A/B/C union + KM 51 moved to Hede 32 accepted, stale KM 51 removed from `nf3h33`; Hvid 1575 regroup accepted.
-- Open: KMM 291968 («Sch 10» = Hede 3B by Bruun) stands alone in brunswick. (c5h55 stale KM reset in 21ea38e; absorb idempotence fixed in 8a4a0f6.)
+- Later the same day: 21ea38e Hede 55 final reset to KM 454; 9b48792 Wolfenbüttel 1627 Speciedaler — one cross-entity class per Hede number (W3 = 3A+3B incl. KMM 291968 «Sch 10», W5), issuing_entity [danish_realm, herzogtum_braunschweig_lueneburg] (curator: «W3AB одна монета»; danskmoent c4wolfh3 / c4wolfh5); e76ef62 KMM 149615 «København» = erroneous mint_mark, W5 mint Wolfenbüttel.
+- Open: W3/W5 still `seed_unsorted` (danskmoent: Marken fin 9,000 daler — Fuß assignment is the curator's call); KMM 415742/415743 («speciedaler» 1627, no place/type) sit in W3 by nominal+year only — review; Bruun Wolfenbüttel lots carry a bare «Hede 5» with no section volume, so the cross-entity guard confuses them with Hede Norge 5 (35 excludes in the W5 group) — a Wolfenbüttel hede_volume would remove that. All commits unpushed.
 
 ## 2026-10-16 — Bruun Part V (Copenhagen 27–28 Oct 2026) harvested, parsed, NOT seeded
 
