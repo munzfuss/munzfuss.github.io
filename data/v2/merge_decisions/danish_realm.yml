@@ -11,136 +11,9 @@ merges:
   - members:
       - dk-numista-15669
       - dk-tid-163034
-      - kmk-122197
-      - kmk-139664
-      - kmk-149700
-      - kmk-149727
-      - kmk-149729
-      - kmk-149730
-      - kmk-149732
-      - kmk-149733
-      - kmk-149939
-      - kmk-149940
-      - kmk-149941
-      - kmk-149943
-      - kmk-149946
-      - kmk-149950
-      - kmk-149954
-      - kmk-149955
-      - kmk-149956
-      - kmk-149957
-      - kmk-149962
-      - kmk-149963
-      - kmk-149964
-      - kmk-149965
-      - kmk-149966
-      - kmk-149968
-      - kmk-149969
-      - kmk-149973
-      - kmk-149974
-      - kmk-149975
-      - kmk-149977
-      - kmk-149978
-      - kmk-149988
-      - kmk-189784
-      - kmk-189785
-      - kmk-189787
-      - kmk-189788
-      - kmk-189789
-      - kmk-189791
       - kmk-189792
-      - kmk-189796
-      - kmk-189797
-      - kmk-189798
-      - kmk-189799
-      - kmk-189800
-      - kmk-189801
-      - kmk-189802
-      - kmk-189803
-      - kmk-189804
-      - kmk-189832
-      - kmk-189834
-      - kmk-190634
-      - kmk-190635
-      - kmk-190642
-      - kmk-190647
-      - kmk-190648
-      - kmk-190652
-      - kmk-190653
-      - kmk-190692
-      - kmk-190694
-      - kmk-190696
-      - kmk-190699
-      - kmk-190700
-      - kmk-190701
-      - kmk-190702
-      - kmk-190703
-      - kmk-190704
-      - kmk-190705
-      - kmk-190706
-      - kmk-190708
-      - kmk-190710
-      - kmk-190713
-      - kmk-190714
-      - kmk-190715
-      - kmk-190716
-      - kmk-190718
-      - kmk-190719
-      - kmk-190720
-      - kmk-190722
-      - kmk-190726
-      - kmk-190728
       - kmk-190729
-      - kmk-190732
-      - kmk-190733
-      - kmk-190734
-      - kmk-190735
-      - kmk-190737
-      - kmk-190738
-      - kmk-190740
-      - kmk-190742
-      - kmk-190743
-      - kmk-190744
-      - kmk-190746
-      - kmk-190747
-      - kmk-190748
-      - kmk-190749
-      - kmk-190751
-      - kmk-190752
-      - kmk-190753
-      - kmk-190754
-      - kmk-190755
-      - kmk-190756
-      - kmk-190757
-      - kmk-190758
-      - kmk-190759
-      - kmk-190760
-      - kmk-190761
-      - kmk-190762
-      - kmk-190763
       - kmk-190764
-      - kmk-190765
-      - kmk-190766
-      - kmk-190768
-      - kmk-190769
-      - kmk-190770
-      - kmk-190773
-      - kmk-190774
-      - kmk-190780
-      - kmk-190781
-      - kmk-190782
-      - kmk-201900
-      - kmk-275968
-      - kmk-275996
-      - kmk-275997
-      - kmk-275998
-      - kmk-312271
-      - kmk-328247
-      - kmk-329947
-      - kmk-575867
-      - kmk-714926
-      - kmk-714927
-      - kmk-714930
       - kmk-149961              # KMM, typeNumber «Sshou 61» (misspelt Schou), 8 Skilling 1608
       - kmk-190730              # KMM, typeNumber «H:93a; Sch:61 (?)», 8 Skilling 1608, 1.78 g
     reason: |
@@ -151,6 +24,12 @@ merges:
       learned the misspelling «Sshou», the matcher paired the two records into
       a separate seed_unsorted class instead of joining this one. The whole
       class is listed so the force-union cannot expel an existing member.
+      CORRECTED 2026-10-17: the first version of this entry (155cb6c) listed
+      ~140 members taken from a working-tree class that had already fused
+      Hede 93, Hede 96 and Hede 122 KMM records; the force-union froze that
+      over-merge (Hede 93 ≠ 96 is an explicit curator no_merge below). The
+      members are cut back to the class as it stood before 155cb6c (5 seeds,
+      Hede 93A) plus the two approved records.
   - members:
       - dk-galster-f1g-46       # danskmoent f1g46, Galster 46 / Schou 1, «1 Ungersk gylden» 1531, 3.49 g @ .986
       - dk-numista-428864       # N#428864, Galster 46 + Fr 11
@@ -210,9 +89,23 @@ merges:
   - members:
       - dk-hede-c4h25a          # anchor of the km-74-1-hede-25c cluster (Hede 25A-E, 2 Guldkrone 1619-1648)
       - kmk-149737              # KMM «dobbelt guldkrone» 1621, Schou 2
-      - kmk-137168              # KMM «2 guldkrone» 1628, Sch 4, Hede 25A (RP 29.1 + FP 8935.1, 5.29 g worn)
       - kmk-291435              # KMM «Dobbeltkrone» 1628, Hede 25A
-    reason: 'Curator (Serhii) 2026-07-17, guldkrone pass Nos. 1-2: three KMM museum specimens of the Christian IV 2 Guldkrone type Hede 25 (KM 74.x, Fr 54). kmk-149737: Schou 2 sits inside the type''s Hede-1971 Schou range «1-2» + exact nominal/ruler/year 1621. kmk-137168 + kmk-291435: both museum-tagged Hede 25A (∈ cluster''s 25A-25E), year 1628 ∈ cluster years; the Hede-28 alternative (also 1628) is excluded by the museum''s own Hede 25A tags — index beats year-adjacency. The 5.29 g reading (137168) is a worn-specimen observation, accumulates per §9a.'
+    reason: 'Curator (Serhii) 2026-07-17, guldkrone pass Nos. 1-2: three KMM museum specimens of the Christian IV 2 Guldkrone type Hede 25 (KM 74.x, Fr 54). kmk-149737: Schou 2 sits inside the type''s Hede-1971 Schou range «1-2» + exact nominal/ruler/year 1621. kmk-137168 + kmk-291435: both museum-tagged Hede 25A (∈ cluster''s 25A-25E), year 1628 ∈ cluster years; the Hede-28 alternative (also 1628) is excluded by the museum''s own Hede 25A tags — index beats year-adjacency. The 5.29 g reading (137168) is a worn-specimen observation, accumulates per §9a. CORRECTED 2026-10-17 (curator, visual comparison KMM 137168 vs danskmoent c4h28): kmk-137168 is Hede 28, not Hede 25 — removed from this entry. The «Hede 25A» tag and the 5.29 g reading belong to a different KMM object, FP 8935.1 = kmk-296435; kmk-137168 (RP 29.1) carries only «Sch 4», and Schou 4 for 1628 is Hede 28 («Schou hhv. 1-4 og 5»), while Hede 25 lists no Schou 4.'
+  - members:
+      - dk-hede-c4h28           # danskmoent c4h28, Hede 28, 2 Guldkrone 1628-1629, Schou 1-4 / 5, Sieg 141
+      - dk-bruun-5540           # Bruun, KM 111, Hede 28, Schou 2, 1628
+      - dk-bruun-5541           # Bruun, KM 111, Hede 28, Schou 3, 1628
+      - denmark-numismaster-65605  # MC_65605, KM 111, 1628-1629
+      - dk-numista-420650       # N#420650, KM 111, 1628-1629
+      - ngc-1050787             # NGC, KM 111, 1628
+      - kmk-137168              # KMM RP 29.1, «2 guldkrone» 1628, typeNumber «Sch 4»
+    reason: |
+      Curator (Serhii) 2026-10-17, visual comparison of KMM 137168 with
+      danskmoent c4h28: the same coin; Hede 25 is a different one. §9.4 key:
+      Schou 4 with year 1628 — danskmoent c4h28 «1628 (R), 1629 (RRR) …
+      (Hede 28, Schou hhv. 1-4 og 5, Sieg 141)», whereas c4h25 lists Schou
+      6 (25A) and 5 (25D) for 1628 and no Schou 4. The whole Hede 28 class
+      is listed so the force-union expels no member.
   - members:
       - dk-bruun-6175           # km-206 final (KM 206 = Hede 43A, Schou 3, Sieg 142.1, Bruun 5.97 g)
       - dk-bruun-6176           # km-206-2 final (KM 206.2 = Hede 43B, Schou 4, Sieg 142.2, Bruun 6.0 g)

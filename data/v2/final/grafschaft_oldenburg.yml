@@ -2640,14 +2640,16 @@ coins:
     issuing_entity: grafschaft_oldenburg
     id: unified-dk-numista-340123
     year_first: 1614
-    year_last: 1619
+    year_last: 1622
     year_ranges:
       -   - 1614
-          - 1619
-    year_label: 1614-1619
+          - 1622
+    year_label: 1614-1622
     catalog:
       km: '47'
-      numista: '340123'
+      numista:
+        - '340123'
+        - '340125'
       others:
         - Saur# 3350
     metal: silver
@@ -2660,46 +2662,12 @@ coins:
     weight_rough_g:
       - value: 6.6
         source: numista
+      - value: 6.99
+        source: numista
     sources:
       - type: literature
         url: https://en.numista.com/340123
         ref: Numista N#340123 — ¼ Thaler - Anthony Günter (In the name of Matthias) - County of Oldenburg
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-    composed_of:
-      - unified-dk-numista-340123
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ¼ Thaler
-    ruler: Anthony Günther (Anton Günther)
-    issuing_entity: grafschaft_oldenburg
-    id: unified-dk-numista-340125
-    year_first: 1619
-    year_last: 1622
-    year_ranges:
-      -   - 1619
-          - 1622
-    year_label: 1619-1622
-    catalog:
-      km: '47'
-      numista: '340125'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 6.99
-        source: numista
-    sources:
       - type: literature
         url: https://en.numista.com/340125
         ref: Numista N#340125 — 1/4 Thaler - Anthony Günter (In the name of Ferdinand II) - County of Oldenburg
@@ -2711,7 +2679,7 @@ coins:
       uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
     composed_of:
-      - unified-dk-numista-340125
+      - unified-dk-numista-340123
   - fuss: seed_unsorted
     phase: numista
     kind: kurant

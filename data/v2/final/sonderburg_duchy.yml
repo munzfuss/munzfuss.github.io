@@ -1334,8 +1334,6 @@ coins:
       - value: 2.34
         source: ikmk
     diameter_mm:
-      - value: 22.0
-        source: ikmk
       - value: 23.0
         source: ikmk
       - value: 24.0
@@ -1414,13 +1412,11 @@ coins:
       da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
     composed_of:
       - unified-dk-numista-151525
-      - unified-ikmk-18284698
+      - unified-ikmk-18284701
       - unified-ikmk-18284702
       - unified-ngc-1167501
     v1_home_location: schleswig_holstein
     _weights_thinned:
-      - value: 1.87
-        source: ikmk
       - value: 1.9
         source: ikmk
       - value: 1.93
@@ -1428,8 +1424,6 @@ coins:
       - value: 1.94
         source: ikmk
       - value: 2.03
-        source: ikmk
-      - value: 2.05
         source: ikmk
       - value: 2.14
         source: ikmk
@@ -2842,9 +2836,9 @@ coins:
       da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     composed_of:
       - unified-ngc-1166275
-  - fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
+  - fuss: 9_thaler
+    phase: I
+    kind: scheide
     nominal: 1 Doppelschilling
     ruler: Johann
     mintmaster: Tobias Reinhardt
@@ -2865,11 +2859,9 @@ coins:
     weight_rough_g:
       - value: 1.75
         source: ikmk
-      - value: 1.77
-        source: ikmk
       - value: 1.78
         source: ikmk
-      - value: 1.82
+      - value: 1.87
         source: ikmk
     diameter_mm:
       - value: 23.0
@@ -2889,6 +2881,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284708
         ref: IKMK Berlin 18284708
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284710
+        ref: IKMK Berlin 18284710
     inscription_obv: IOH D G - HAE NOR
     inscription_rev: MATTHIAS D G R IM S A 619
     note:
@@ -2903,9 +2898,14 @@ coins:
       da: Post fra Münzkabinett Berlins interaktive katalog (ikmk.smb.museum, CC BY-SA 4.0); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - unified-ikmk-18284404
-  - fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
+    _weights_thinned:
+      - value: 1.77
+        source: ikmk
+      - value: 1.82
+        source: ikmk
+  - fuss: 9_thaler
+    phase: I
+    kind: scheide
     nominal: 1 Doppelschilling
     ruler: Johann
     mintmaster: Tobias Reinhardt
@@ -2924,6 +2924,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 2.05
+        source: ikmk
       - value: 2.16
         source: ikmk
       - value: 2.24
@@ -2931,6 +2933,8 @@ coins:
       - value: 2.35
         source: ikmk
     diameter_mm:
+      - value: 22.0
+        source: ikmk
       - value: 23.0
         source: ikmk
     sources:
@@ -2943,6 +2947,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284700
         ref: IKMK Berlin 18284700
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284698
+        ref: IKMK Berlin 18284698
     inscription_obv: IOHAN D G HAERES NOR
     inscription_rev: D SCHL E H C I O E D 18
     note:
@@ -3151,7 +3158,6 @@ coins:
           - 1622
     year_label: 1564-1622
     year_verified: false
-    catalog: {}
     metal: silver
     metal_verified: true
     weight_rough_verified: true

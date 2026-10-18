@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `erzbisthum_bremen_verden`.
-# Generated 2026-10-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/erzbisthum_bremen_verden.yml across all sources.
 #
 # Input: 305 per-source seed entries.
-# Output: 239 unified entries (one per physical coin).
+# Output: 225 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: erzbisthum_bremen_verden
-generated_at: '2026-10-17'
+generated_at: '2026-10-18'
 coins:
   - id: unified-dk-bruun-12130
     fuss: seed_unsorted
@@ -2095,6 +2095,10 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.03
+        source: ikmk
+      - value: 1.06
+        source: ikmk
       - value: 1.07
         source: ikmk
       - value: 1.08
@@ -2103,6 +2107,8 @@ coins:
         source: ikmk
     diameter_mm:
       - value: 16.0
+        source: ikmk
+      - value: 18.0
         source: ikmk
       - value: 19.0
         source: ikmk
@@ -2113,6 +2119,12 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18289074
         ref: IKMK Berlin 18289074
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18289076
+        ref: IKMK Berlin 18289076
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18289077
+        ref: IKMK Berlin 18289077
       - type: museum
         url: https://ikmk.smb.museum/object?id=18289078
         ref: IKMK Berlin 18289078
@@ -2128,6 +2140,8 @@ coins:
     composed_of:
       - ikmk-18236462
       - ikmk-18289074
+      - ikmk-18289076
+      - ikmk-18289077
       - ikmk-18289078
       - tid-tid-175383
   - id: unified-ikmk-18236463
@@ -2200,6 +2214,8 @@ coins:
         source: ikmk
       - value: 1.99
         source: ikmk
+      - value: 2.07
+        source: ikmk
     diameter_mm:
       - value: 22.0
         source: ikmk
@@ -2215,6 +2231,9 @@ coins:
         url: https://ikmk.smb.museum/object?id=18287967
         ref: IKMK Berlin 18287967
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18287970
+        ref: IKMK Berlin 18287970
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18287974
         ref: IKMK Berlin 18287974
       - type: museum
@@ -2229,6 +2248,7 @@ coins:
     composed_of:
       - ikmk-18236464
       - ikmk-18287967
+      - ikmk-18287970
       - ikmk-18287974
       - ikmk-18287990
   - id: unified-ikmk-18236465
@@ -2520,6 +2540,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 2.07
+        source: ikmk
       - value: 2.16
         source: ikmk
       - value: 2.18
@@ -2534,6 +2556,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18287951
         ref: IKMK Berlin 18287951
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287956
+        ref: IKMK Berlin 18287956
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -2543,6 +2568,7 @@ coins:
     composed_of:
       - ikmk-18287949
       - ikmk-18287951
+      - ikmk-18287956
   - id: unified-ikmk-18287952
     fuss: seed_unsorted
     phase: ikmk
@@ -2562,6 +2588,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.86
+        source: ikmk
       - value: 1.9
         source: ikmk
       - value: 1.99
@@ -2578,76 +2606,6 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18287955
         ref: IKMK Berlin 18287955
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - ikmk-18287952
-      - ikmk-18287955
-  - id: unified-ikmk-18287956
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    mintmaster: Simon Timpf (Tympf)
-    inscription_obv: MON NOU CIUI STADENSIS
-    inscription_rev: MATTHIAS D G RO IM S A 618
-    mint: Stade
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.07
-        source: ikmk
-    diameter_mm:
-      - value: 24.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18287956
-        ref: IKMK Berlin 18287956
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - ikmk-18287956
-  - id: unified-ikmk-18287958
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    mintmaster: Simon Timpf (Tympf)
-    inscription_obv: MO NOU CIUI STADENS
-    inscription_rev: MATTHI D G RO IM S AV 618
-    mint: Stade
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.86
-        source: ikmk
-    diameter_mm:
-      - value: 24.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18287958
         ref: IKMK Berlin 18287958
@@ -2658,43 +2616,9 @@ coins:
     verification_note: *id001
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
+      - ikmk-18287952
+      - ikmk-18287955
       - ikmk-18287958
-  - id: unified-ikmk-18287970
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    mintmaster: Simon Timpf (Tympf)
-    inscription_obv: MON NOV CIV STADENS
-    inscription_rev: MATTHIAS D G R IM S A 619
-    mint: Stade
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.07
-        source: ikmk
-    diameter_mm:
-      - value: 22.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18287970
-        ref: IKMK Berlin 18287970
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - ikmk-18287970
   - id: unified-ikmk-18287972
     fuss: seed_unsorted
     phase: ikmk
@@ -2714,6 +2638,10 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.68
+        source: ikmk
+      - value: 1.69
+        source: ikmk
       - value: 1.7
         source: ikmk
       - value: 1.71
@@ -2733,6 +2661,12 @@ coins:
         url: https://ikmk.smb.museum/object?id=18287979
         ref: IKMK Berlin 18287979
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18287980
+        ref: IKMK Berlin 18287980
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18287982
+        ref: IKMK Berlin 18287982
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18287993
         ref: IKMK Berlin 18287993
     note:
@@ -2744,6 +2678,8 @@ coins:
     composed_of:
       - ikmk-18287972
       - ikmk-18287979
+      - ikmk-18287980
+      - ikmk-18287982
       - ikmk-18287993
   - id: unified-ikmk-18287977
     fuss: seed_unsorted
@@ -2772,6 +2708,8 @@ coins:
         source: ikmk
       - value: 1.61
         source: ikmk
+      - value: 1.63
+        source: ikmk
     diameter_mm:
       - value: 22.0
         source: ikmk
@@ -2788,6 +2726,9 @@ coins:
         url: https://ikmk.smb.museum/object?id=18287981
         ref: IKMK Berlin 18287981
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18287983
+        ref: IKMK Berlin 18287983
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18287996
         ref: IKMK Berlin 18287996
     note:
@@ -2800,57 +2741,8 @@ coins:
       - ikmk-18287977
       - ikmk-18287978
       - ikmk-18287981
-      - ikmk-18287996
-  - id: unified-ikmk-18287980
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    mintmaster: Simon Timpf (Tympf)
-    inscription_obv: MO NO CIV[...] STADENS
-    inscription_rev: MATT D G R IM S AV 619
-    mint: Stade
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.63
-        source: ikmk
-      - value: 1.68
-        source: ikmk
-      - value: 1.69
-        source: ikmk
-    diameter_mm:
-      - value: 22.0
-        source: ikmk
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18287980
-        ref: IKMK Berlin 18287980
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18287982
-        ref: IKMK Berlin 18287982
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18287983
-        ref: IKMK Berlin 18287983
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - ikmk-18287980
-      - ikmk-18287982
       - ikmk-18287983
+      - ikmk-18287996
   - id: unified-ikmk-18287998
     fuss: seed_unsorted
     phase: ikmk
@@ -3233,6 +3125,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.77
+        source: ikmk
       - value: 1.82
         source: ikmk
       - value: 1.83
@@ -3259,6 +3153,9 @@ coins:
         url: https://ikmk.smb.museum/object?id=18288779
         ref: IKMK Berlin 18288779
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18288783
+        ref: IKMK Berlin 18288783
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18288797
         ref: IKMK Berlin 18288797
     note:
@@ -3271,45 +3168,8 @@ coins:
       - ikmk-18288745
       - ikmk-18288770
       - ikmk-18288779
-      - ikmk-18288797
-  - id: unified-ikmk-18288783
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
-    inscription_obv: IO F D G - A E EP B
-    inscription_rev: MATTIAS D G RO IM S A 618
-    mint: Bremervörde
-    catalog:
-      lange: '499'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.77
-        source: ikmk
-    diameter_mm:
-      - value: 24.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18288783
-        ref: IKMK Berlin 18288783
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
       - ikmk-18288783
+      - ikmk-18288797
   - id: unified-ikmk-18288786
     fuss: seed_unsorted
     phase: ikmk
@@ -3418,6 +3278,10 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.66
+        source: ikmk
+      - value: 1.71
+        source: ikmk
       - value: 1.72
         source: ikmk
       - value: 1.73
@@ -3446,47 +3310,6 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18289038
         ref: IKMK Berlin 18289038
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - ikmk-18289012
-      - ikmk-18289023
-      - ikmk-18289029
-      - ikmk-18289038
-  - id: unified-ikmk-18289068
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
-    mintmaster: Thomas Timpf (Tympf)
-    inscription_obv: IOH F D - G A E [E] B L
-    inscription_rev: MATT D G R IM S AV 619
-    mint: Bremervörde
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.66
-        source: ikmk
-      - value: 1.71
-        source: ikmk
-    diameter_mm:
-      - value: 22.0
-        source: ikmk
-      - value: 23.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18289068
         ref: IKMK Berlin 18289068
@@ -3500,6 +3323,10 @@ coins:
     verification_note: *id001
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
+      - ikmk-18289012
+      - ikmk-18289023
+      - ikmk-18289029
+      - ikmk-18289038
       - ikmk-18289068
       - ikmk-18289070
   - id: unified-ikmk-18289073
@@ -3575,50 +3402,6 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - ikmk-18289075
-  - id: unified-ikmk-18289076
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1/24 Taler
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
-    inscription_obv: I FRI D G A E EP B E L
-    inscription_rev: MAT D G R IM S A 6-9
-    mint: Bremervörde
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.03
-        source: ikmk
-      - value: 1.06
-        source: ikmk
-    diameter_mm:
-      - value: 18.0
-        source: ikmk
-      - value: 19.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18289076
-        ref: IKMK Berlin 18289076
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18289077
-        ref: IKMK Berlin 18289077
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-    verification_note: *id001
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - ikmk-18289076
-      - ikmk-18289077
   - id: unified-ikmk-18306108
     fuss: seed_unsorted
     phase: ikmk
@@ -3823,11 +3606,15 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 3.02
+        source: ikmk
       - value: 3.12
         source: ikmk
       - value: 3.2
         source: ikmk
     diameter_mm:
+      - value: 27.0
+        source: ikmk
       - value: 28.0
         source: ikmk
     sources:
@@ -3837,39 +3624,14 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18306119
         ref: IKMK Berlin 18306119
-    verification_note: *id001
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - ikmk-18306118
-      - ikmk-18306119
-  - id: unified-ikmk-18306120
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 4 Grote
-    year_first: 1512
-    year_last: 1512
-    year_label: '1512'
-    mint: Bremen
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 3.02
-        source: ikmk
-    diameter_mm:
-      - value: 27.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18306120
         ref: IKMK Berlin 18306120
     verification_note: *id001
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
+      - ikmk-18306118
+      - ikmk-18306119
       - ikmk-18306120
   - id: unified-ikmk-18306123
     fuss: seed_unsorted
@@ -4489,6 +4251,12 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 2 Skilling lybsk
+    year_first: 1620
+    year_last: 1629
+    year_ranges:
+      -   - 1620
+          - 1629
+    year_label: 1620-1629
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     catalog:
       lange:
@@ -4506,77 +4274,23 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200815
         ref: KMM 200815 (Inv. FP 3108.11735)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200813
+        ref: KMM 200813 (Inv. FP 3108.11737)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200814
+        ref: KMM 200814 (Inv. FP 3108.11736)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/352858
+        ref: KMM 352858 (Inv. FP 5101.1)
     verification_note: *id002
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - kmk-200812
-  - id: unified-kmk-200813
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling lybsk
-    ruler: Ærkebisp Johann Friedrich 1596 - 1634
-    catalog:
-      lange:
-        - '504'
-        - 504A
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200813
-        ref: KMM 200813 (Inv. FP 3108.11737)
-    verification_note: *id002
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
       - kmk-200813
-  - id: unified-kmk-200814
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling lybsk
-    ruler: Ærkebisp Johann Friedrich 1596 - 1634
-    catalog:
-      lange:
-        - '504'
-        - 504A
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200814
-        ref: KMM 200814 (Inv. FP 3108.11736)
-    verification_note: *id002
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
       - kmk-200814
-  - id: unified-kmk-200815
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling lybsk
-    ruler: Ærkebisp Johann Friedrich 1596 - 1634
-    catalog:
-      lange: 504A
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200815
-        ref: KMM 200815 (Inv. FP 3108.11735)
-    verification_note: *id002
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
       - kmk-200815
+      - kmk-352858
   - id: unified-kmk-200816
     fuss: seed_unsorted
     phase: kmk
@@ -4741,51 +4455,17 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200867
         ref: KMM 200867 (Inv. FP 3108.11683)
-    verification_note: *id002
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - kmk-200816
-  - id: unified-kmk-200817
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling lybsk
-    ruler: Ærkebisp Johann Friedrich 1596 - 1634
-    catalog:
-      lange: 503-04
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200817
         ref: KMM 200817 (Inv. FP 3108.11733)
-    verification_note: *id002
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - kmk-200817
-  - id: unified-kmk-200818
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling lybsk
-    ruler: Ærkebisp Johann Friedrich 1596 - 1634
-    catalog:
-      lange: 503-04
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200818
         ref: KMM 200818 (Inv. FP 3108.11732)
     verification_note: *id002
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
+      - kmk-200816
+      - kmk-200817
       - kmk-200818
   - id: unified-kmk-277039
     fuss: seed_unsorted
@@ -4829,32 +4509,6 @@ coins:
     issuing_entity: erzbisthum_bremen_verden
     composed_of:
       - kmk-279136
-  - id: unified-kmk-352858
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling lybsk
-    year_first: 1620
-    year_last: 1629
-    year_ranges:
-      -   - 1620
-          - 1629
-    year_label: 1620-1629
-    ruler: Johan Frederik
-    catalog:
-      lange: 504A
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/352858
-        ref: KMM 352858 (Inv. FP 5101.1)
-    verification_note: *id002
-    issuing_entity: erzbisthum_bremen_verden
-    composed_of:
-      - kmk-352858
   - id: unified-kmk-494413
     fuss: seed_unsorted
     phase: kmk

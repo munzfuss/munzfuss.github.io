@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `schauenburg_pinneberg`.
-# Generated 2026-10-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
 # Input: 499 per-source seed entries.
-# Output: 286 unified entries (one per physical coin).
+# Output: 265 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: schauenburg_pinneberg
-generated_at: '2026-10-17'
+generated_at: '2026-10-18'
 coins:
   - id: unified-dk-bruun-14788
     fuss: seed_unsorted
@@ -566,14 +566,18 @@ coins:
     catalog:
       km: '38'
       bruun_collection_id: '14912'
+      dav: LS472
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     year_verified: false
     weight_rough_g:
+      - value: 58.0
+        source: ngc
       - value: 58.0
         source: numismaster
       - value: 58.35
@@ -582,6 +586,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14264, p. 326
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-38-cuid-1153651-duid-1387609
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://numismaster.com/MC_96172
         ref: NumisMaster
@@ -595,6 +602,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-bruun-14912
+      - ngc-1153651
       - schleswig_holstein-numismaster-96172
   - id: unified-dk-bruun-14913
     fuss: seed_unsorted
@@ -610,10 +618,12 @@ coins:
       km: '40'
       bruun_collection_id: '14913'
       lange: 836b
+      dav: LS479
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     year_verified: false
@@ -621,11 +631,16 @@ coins:
       - value: 57.66
         source: bruun
       - value: 58.0
+        source: ngc
+      - value: 58.0
         source: numismaster
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14265, p. 326
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-40-cuid-1162635-duid-1387610
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://numismaster.com/MC_96174
         ref: NumisMaster
@@ -639,6 +654,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-bruun-14913
+      - ngc-1162635
       - schleswig_holstein-numismaster-96174
   - id: unified-dk-bruun-14914
     fuss: seed_unsorted
@@ -653,10 +669,12 @@ coins:
     catalog:
       km: '41'
       bruun_collection_id: '14914'
+      dav: LS481
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     year_verified: false
@@ -664,11 +682,16 @@ coins:
       - value: 57.32
         source: bruun
       - value: 58.0
+        source: ngc
+      - value: 58.0
         source: numismaster
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14266, p. 327
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-41-cuid-1156515-duid-1386683
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://numismaster.com/MC_96175
         ref: NumisMaster
@@ -682,6 +705,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-bruun-14914
+      - ngc-1156515
       - schleswig_holstein-numismaster-96175
   - id: unified-dk-bruun-14915
     fuss: seed_unsorted
@@ -3356,6 +3380,8 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 1.66
+        source: ikmk
       - value: 1.71
         source: ikmk
       - value: 1.75
@@ -3364,10 +3390,16 @@ coins:
         source: ikmk
       - value: 1.77
         source: ikmk
+      - value: 1.8
+        source: ikmk
+      - value: 1.83
+        source: ikmk
     diameter_mm:
       - value: 21.0
         source: ikmk
       - value: 22.0
+        source: ikmk
+      - value: 23.0
         source: ikmk
     sources:
       - type: museum
@@ -3380,8 +3412,17 @@ coins:
         url: https://ikmk.smb.museum/object?id=18285715
         ref: IKMK Berlin 18285715
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18285716
+        ref: IKMK Berlin 18285716
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18285717
         ref: IKMK Berlin 18285717
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285718
+        ref: IKMK Berlin 18285718
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285720
+        ref: IKMK Berlin 18285720
     note:
       de: 1/16 Taler
       en: 1/16 Taler
@@ -3392,56 +3433,10 @@ coins:
       - ikmk-18285708
       - ikmk-18285714
       - ikmk-18285715
-      - ikmk-18285717
-  - id: unified-ikmk-18285716
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    ruler: Ernst III.
-    inscription_obv: E D G C H - S E S D G
-    inscription_rev: MATTHIAS [D G] RO IM S A 19
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.8
-        source: ikmk
-      - value: 1.83
-        source: ikmk
-      - value: 1.89
-        source: ikmk
-    diameter_mm:
-      - value: 22.0
-        source: ikmk
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285716
-        ref: IKMK Berlin 18285716
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285718
-        ref: IKMK Berlin 18285718
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285724
-        ref: IKMK Berlin 18285724
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
       - ikmk-18285716
+      - ikmk-18285717
       - ikmk-18285718
-      - ikmk-18285724
+      - ikmk-18285720
   - id: unified-ikmk-18285719
     fuss: seed_unsorted
     phase: ikmk
@@ -3485,49 +3480,6 @@ coins:
     composed_of:
       - ikmk-18285719
       - ikmk-18285723
-  - id: unified-ikmk-18285720
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    ruler: Ernst III.
-    inscription_obv: E D G C H - S E S D G
-    inscription_rev: MATTHIAS D G R IM S A 619
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.62
-        source: ikmk
-      - value: 1.66
-        source: ikmk
-    diameter_mm:
-      - value: 22.0
-        source: ikmk
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285720
-        ref: IKMK Berlin 18285720
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285722
-        ref: IKMK Berlin 18285722
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ikmk-18285720
-      - ikmk-18285722
   - id: unified-ikmk-18285721
     fuss: seed_unsorted
     phase: ikmk
@@ -3563,6 +3515,76 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18285721
+  - id: unified-ikmk-18285722
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    ruler: Ernst III.
+    inscription_obv: E D G C H - S E S D G
+    inscription_rev: MATTHIAS D G RO IM S A 619
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.62
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285722
+        ref: IKMK Berlin 18285722
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - ikmk-18285722
+  - id: unified-ikmk-18285724
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Doppelschilling
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    ruler: Ernst III.
+    inscription_obv: E D G C H - S E S D G
+    inscription_rev: MATTHIAS D G RO IM S A 619
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.89
+        source: ikmk
+    diameter_mm:
+      - value: 23.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285724
+        ref: IKMK Berlin 18285724
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+    verification_note: *id001
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - ikmk-18285724
   - id: unified-ikmk-18285754
     fuss: seed_unsorted
     phase: ikmk
@@ -3589,7 +3611,13 @@ coins:
         source: ikmk
       - value: 1.73
         source: ikmk
+      - value: 1.77
+        source: ikmk
+      - value: 1.8
+        source: ikmk
     diameter_mm:
+      - value: 21.0
+        source: ikmk
       - value: 22.0
         source: ikmk
     sources:
@@ -3603,6 +3631,12 @@ coins:
         url: https://ikmk.smb.museum/object?id=18285805
         ref: IKMK Berlin 18285805
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18285814
+        ref: IKMK Berlin 18285814
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285911
+        ref: IKMK Berlin 18285911
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18285916
         ref: IKMK Berlin 18285916
     note:
@@ -3615,6 +3649,8 @@ coins:
       - ikmk-18285754
       - ikmk-18285803
       - ikmk-18285805
+      - ikmk-18285814
+      - ikmk-18285911
       - ikmk-18285916
   - id: unified-ikmk-18285773
     fuss: seed_unsorted
@@ -3634,6 +3670,10 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 1.49
+        source: ikmk
+      - value: 1.54
+        source: ikmk
       - value: 1.57
         source: ikmk
       - value: 1.6
@@ -3655,8 +3695,14 @@ coins:
         url: https://ikmk.smb.museum/object?id=18285774
         ref: IKMK Berlin 18285774
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18285782
+        ref: IKMK Berlin 18285782
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18285789
         ref: IKMK Berlin 18285789
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285797
+        ref: IKMK Berlin 18285797
       - type: museum
         url: https://ikmk.smb.museum/object?id=18285913
         ref: IKMK Berlin 18285913
@@ -3669,51 +3715,10 @@ coins:
     composed_of:
       - ikmk-18285773
       - ikmk-18285774
-      - ikmk-18285789
-      - ikmk-18285913
-  - id: unified-ikmk-18285782
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    ruler: Ernst III.
-    inscription_obv: E D G C H - S E S D G
-    inscription_rev: MATTHIAS D G R IM S A 6Z0
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.49
-        source: ikmk
-      - value: 1.54
-        source: ikmk
-    diameter_mm:
-      - value: 22.0
-        source: ikmk
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285782
-        ref: IKMK Berlin 18285782
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285797
-        ref: IKMK Berlin 18285797
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
       - ikmk-18285782
+      - ikmk-18285789
       - ikmk-18285797
+      - ikmk-18285913
   - id: unified-ikmk-18285792
     fuss: seed_unsorted
     phase: ikmk
@@ -3755,49 +3760,6 @@ coins:
     composed_of:
       - ikmk-18285792
       - ikmk-18285818
-  - id: unified-ikmk-18285814
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    ruler: Ernst III.
-    inscription_obv: E D G P E - C H S C S D
-    inscription_rev: FERDINAN D G R IM S A 6Z0
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.77
-        source: ikmk
-      - value: 1.8
-        source: ikmk
-    diameter_mm:
-      - value: 21.0
-        source: ikmk
-      - value: 22.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285814
-        ref: IKMK Berlin 18285814
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285911
-        ref: IKMK Berlin 18285911
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    verification_note: *id001
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ikmk-18285814
-      - ikmk-18285911
   - id: unified-ikmk-18285931
     fuss: seed_unsorted
     phase: ikmk
@@ -3934,6 +3896,10 @@ coins:
         source: ikmk
       - value: 4.73
         source: ikmk
+      - value: 4.89
+        source: ikmk
+      - value: 5.02
+        source: ikmk
     diameter_mm:
       - value: 27.0
         source: ikmk
@@ -3951,8 +3917,14 @@ coins:
         url: https://ikmk.smb.museum/object?id=18286307
         ref: IKMK Berlin 18286307
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18286326
+        ref: IKMK Berlin 18286326
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18286334
         ref: IKMK Berlin 18286334
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286342
+        ref: IKMK Berlin 18286342
       - type: museum
         url: https://ikmk.smb.museum/object?id=18286369
         ref: IKMK Berlin 18286369
@@ -3968,61 +3940,11 @@ coins:
     composed_of:
       - ikmk-18286306
       - ikmk-18286307
+      - ikmk-18286326
       - ikmk-18286334
+      - ikmk-18286342
       - ikmk-18286369
       - ikmk-18286375
-  - id: unified-ikmk-18286326
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Arendschilling
-    year_first: 1616
-    year_last: 1619
-    year_ranges:
-      -   - 1616
-          - 1619
-    year_label: 1616-1619
-    ruler: Ernst III.
-    inscription_obv: ERN-ES D G - CO [...] - S ET S - D G
-    inscription_rev: MATTHIAS D G RO IM SEM AV
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 4.89
-        source: ikmk
-      - value: 5.02
-        source: ikmk
-      - value: 5.11
-        source: ikmk
-    diameter_mm:
-      - value: 29.0
-        source: ikmk
-      - value: 30.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286326
-        ref: IKMK Berlin 18286326
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286342
-        ref: IKMK Berlin 18286342
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286362
-        ref: IKMK Berlin 18286362
-    note:
-      de: Escalin
-      en: Escalin
-      uk: Escalin
-    verification_note: *id001
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ikmk-18286326
-      - ikmk-18286342
-      - ikmk-18286362
   - id: unified-ikmk-18286356
     fuss: seed_unsorted
     phase: ikmk
@@ -4061,6 +3983,44 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18286356
+  - id: unified-ikmk-18286362
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Arendschilling
+    year_first: 1616
+    year_last: 1619
+    year_ranges:
+      -   - 1616
+          - 1619
+    year_label: 1616-1619
+    ruler: Ernst III.
+    inscription_obv: ERN-EST D - G CO HO - S ET S - D G
+    inscription_rev: MATTHIAS D G RO IM SEM AV
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 5.11
+        source: ikmk
+    diameter_mm:
+      - value: 29.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286362
+        ref: IKMK Berlin 18286362
+    note:
+      de: Escalin
+      en: Escalin
+      uk: Escalin
+    verification_note: *id001
+    issuing_entity: schauenburg_pinneberg
+    composed_of:
+      - ikmk-18286362
   - id: unified-ikmk-18286654
     fuss: seed_unsorted
     phase: ikmk
@@ -4316,6 +4276,8 @@ coins:
         source: ikmk
       - value: 1.81
         source: ikmk
+      - value: 1.87
+        source: ikmk
     diameter_mm:
       - value: 23.0
         source: ikmk
@@ -4328,41 +4290,14 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18286703
         ref: IKMK Berlin 18286703
-    verification_note: *id001
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ikmk-18286700
-      - ikmk-18286703
-  - id: unified-ikmk-18286704
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Fürstengroschen (12 Meißnische Pfennige)
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    ruler: Ernst III.
-    inscription_obv: ERNES[...] D G RO I [...]
-    inscription_rev: LANDTMVNZE ZV 1Z
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 1.87
-        source: ikmk
-    diameter_mm:
-      - value: 25.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18286704
         ref: IKMK Berlin 18286704
     verification_note: *id001
     issuing_entity: schauenburg_pinneberg
     composed_of:
+      - ikmk-18286700
+      - ikmk-18286703
       - ikmk-18286704
   - id: unified-ikmk-18286709
     fuss: seed_unsorted
@@ -4544,6 +4479,8 @@ coins:
         source: ikmk
       - value: 0.68
         source: ikmk
+      - value: 0.69
+        source: ikmk
     diameter_mm:
       - value: 17.0
         source: ikmk
@@ -4553,6 +4490,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18286759
         ref: IKMK Berlin 18286759
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286827
+        ref: IKMK Berlin 18286827
       - type: museum
         url: https://ikmk.smb.museum/object?id=18286836
         ref: IKMK Berlin 18286836
@@ -4564,6 +4504,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18286759
+      - ikmk-18286827
       - ikmk-18286836
   - id: unified-ikmk-18286763
     fuss: seed_unsorted
@@ -4583,6 +4524,14 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 0.81
+        source: ikmk
+      - value: 0.82
+        source: ikmk
+      - value: 0.83
+        source: ikmk
+      - value: 0.84
+        source: ikmk
       - value: 0.86
         source: ikmk
       - value: 0.88
@@ -4590,6 +4539,8 @@ coins:
       - value: 0.89
         source: ikmk
     diameter_mm:
+      - value: 16.0
+        source: ikmk
       - value: 17.0
         source: ikmk
       - value: 18.0
@@ -4599,11 +4550,23 @@ coins:
         url: https://ikmk.smb.museum/object?id=18286763
         ref: IKMK Berlin 18286763
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18286782
+        ref: IKMK Berlin 18286782
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18286784
         ref: IKMK Berlin 18286784
       - type: museum
         url: https://ikmk.smb.museum/object?id=18286821
         ref: IKMK Berlin 18286821
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286826
+        ref: IKMK Berlin 18286826
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286829
+        ref: IKMK Berlin 18286829
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286834
+        ref: IKMK Berlin 18286834
     note:
       de: Groschen
       en: Groschen
@@ -4612,8 +4575,12 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18286763
+      - ikmk-18286782
       - ikmk-18286784
       - ikmk-18286821
+      - ikmk-18286826
+      - ikmk-18286829
+      - ikmk-18286834
   - id: unified-ikmk-18286771
     fuss: seed_unsorted
     phase: ikmk
@@ -4692,41 +4659,6 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18286786
-  - id: unified-ikmk-18286827
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1/24 Taler
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    ruler: Ernst III.
-    inscription_obv: '[E] D G P E - C H E S'
-    inscription_rev: Z0 FERD Z D G R I S A
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.69
-        source: ikmk
-    diameter_mm:
-      - value: 17.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286827
-        ref: IKMK Berlin 18286827
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-    verification_note: *id001
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ikmk-18286827
   - id: unified-ikmk-18286831
     fuss: seed_unsorted
     phase: ikmk
@@ -4762,41 +4694,6 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18286831
-  - id: unified-ikmk-18286834
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1/24 Taler
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    ruler: Ernst III.
-    inscription_obv: E D G P E - [C H E S]
-    inscription_rev: Z0 FERD Z D G R I S A
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.84
-        source: ikmk
-    diameter_mm:
-      - value: 17.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286834
-        ref: IKMK Berlin 18286834
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-    verification_note: *id001
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ikmk-18286834
   - id: unified-ikmk-18286854
     fuss: seed_unsorted
     phase: ikmk
@@ -5425,6 +5322,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 2 Thaler
+    year_first: 1604
+    year_last: 1604
+    year_label: '1604'
     ruler: Ernst III
     catalog:
       km: '112'
@@ -5440,6 +5340,8 @@ coins:
     weight_rough_g:
       - value: 58.0
         source: ngc
+      - value: 58.0
+        source: numismaster
     diameter_mm:
       - value: 43.0
         source: ngc
@@ -5447,6 +5349,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-112-cuid-1153536-duid-1387332
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96146
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -5454,11 +5359,15 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153536
+      - schleswig_holstein-numismaster-96146
   - id: unified-ngc-1153537
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 2 Thaler
+    year_first: 1604
+    year_last: 1604
+    year_label: '1604'
     ruler: Ernst III
     catalog:
       km: '113'
@@ -5474,6 +5383,8 @@ coins:
     weight_rough_g:
       - value: 58.0
         source: ngc
+      - value: 58.0
+        source: numismaster
     diameter_mm:
       - value: 43.0
         source: ngc
@@ -5481,6 +5392,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-113-cuid-1153537-duid-1386679
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96147
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -5488,6 +5402,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153537
+      - schleswig_holstein-numismaster-96147
   - id: unified-ngc-1153538
     fuss: seed_unsorted
     phase: ngc
@@ -5702,42 +5617,14 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153650
-  - id: unified-ngc-1153651
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Thaler
-    ruler: Ernst III
-    catalog:
-      km: '38'
-      dav: LS472
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 58.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-38-cuid-1153651-duid-1387609
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ngc-1153651
   - id: unified-ngc-1153652
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 2½ Thaler
+    year_first: 1606
+    year_last: 1606
+    year_label: '1606'
     ruler: Ernst III
     catalog:
       km: '12'
@@ -5754,6 +5641,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-1-2-thaler-km-12-cuid-1153652-duid-1387802
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96176
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -5761,11 +5651,15 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153652
+      - schleswig_holstein-numismaster-96176
   - id: unified-ngc-1153653
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 10 Ducat
+    year_first: 1610
+    year_last: 1610
+    year_label: '1610'
     ruler: Ernst III
     catalog:
       km: '15.1'
@@ -5785,6 +5679,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-10-ducat-km-15.1-cuid-1153653-duid-1386685
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96186
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -5792,11 +5689,15 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153653
+      - schleswig_holstein-numismaster-96186
   - id: unified-ngc-1153654
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 20 Ducat
+    year_first: 1610
+    year_last: 1610
+    year_label: '1610'
     ruler: Ernst III
     catalog:
       km: '16'
@@ -5816,6 +5717,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-20-ducat-km-16-cuid-1153654-duid-1387804
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96187
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -5823,6 +5727,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153654
+      - schleswig_holstein-numismaster-96187
   - id: unified-ngc-1154784
     fuss: seed_unsorted
     phase: ngc
@@ -6062,8 +5967,8 @@ coins:
     year_last: 1620
     year_label: '1620'
     ruler: Ernst III
-    inscription_obv: '[E] P E C - H S E S'
-    inscription_rev: FERDI D G R I S A Z0
+    inscription_obv: E D G P E - C H E S
+    inscription_rev: Z0 FERD Z D G R I S A
     catalog:
       km: '99'
     metal: silver
@@ -6080,34 +5985,15 @@ coins:
         source: ngc
       - value: 0.8
         source: numismaster
-      - value: 0.81
-        source: ikmk
-      - value: 0.82
-        source: ikmk
-      - value: 0.83
-        source: ikmk
     diameter_mm:
-      - value: 16.0
-        source: ikmk
       - value: 17.0
-        source: ikmk
-      - value: 18.0
         source: ikmk
       - value: 18.0
         source: ngc
     sources:
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18286782
-        ref: IKMK Berlin 18286782
-      - type: museum
         url: https://ikmk.smb.museum/object?id=18286798
         ref: IKMK Berlin 18286798
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286826
-        ref: IKMK Berlin 18286826
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286829
-        ref: IKMK Berlin 18286829
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-1-24-thaler-km-99-16z0-1620-cuid-1154789-duid-1385151
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -6124,10 +6010,7 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
-      - ikmk-18286782
       - ikmk-18286798
-      - ikmk-18286826
-      - ikmk-18286829
       - ngc-1154789
       - schleswig_holstein-numismaster-96088
   - id: unified-ngc-1154790
@@ -6679,37 +6562,6 @@ coins:
     composed_of:
       - ngc-1156514
       - schleswig_holstein-numismaster-96159
-  - id: unified-ngc-1156515
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Thaler
-    ruler: Ernst III
-    catalog:
-      km: '41'
-      dav: LS481
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 58.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-41-cuid-1156515-duid-1386683
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ngc-1156515
   - id: unified-ngc-1156516
     fuss: seed_unsorted
     phase: ngc
@@ -7228,6 +7080,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 3 Thaler
+    year_first: 1606
+    year_last: 1606
+    year_label: '1606'
     ruler: Ernst III
     catalog:
       km: '45'
@@ -7243,10 +7098,15 @@ coins:
     weight_rough_g:
       - value: 87.0
         source: ngc
+      - value: 87.0
+        source: numismaster
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-3-thaler-km-45-cuid-1156748-duid-1387374
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96181
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -7254,11 +7114,15 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156748
+      - schleswig_holstein-numismaster-96181
   - id: unified-ngc-1156749
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 20 Ducat
+    year_first: 1610
+    year_last: 1610
+    year_label: '1610'
     ruler: Ernst III
     catalog:
       km: A17
@@ -7278,6 +7142,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-20-ducat-km-a17-cuid-1156749-duid-1386686
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96188
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -7285,6 +7152,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156749
+      - schleswig_holstein-numismaster-96188
   - id: unified-ngc-1156773
     fuss: seed_unsorted
     phase: ngc
@@ -8612,6 +8480,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 3 Thaler
+    year_first: 1606
+    year_last: 1606
+    year_label: '1606'
     ruler: Ernst III
     catalog:
       km: '44'
@@ -8627,10 +8498,15 @@ coins:
     weight_rough_g:
       - value: 87.0
         source: ngc
+      - value: 87.0
+        source: numismaster
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-3-thaler-km-44-cuid-1159746-duid-1385402
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96180
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -8638,11 +8514,15 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159746
+      - schleswig_holstein-numismaster-96180
   - id: unified-ngc-1159747
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 5 Thaler
+    year_first: 1606
+    year_last: 1606
+    year_label: '1606'
     ruler: Ernst III
     catalog:
       km: '13'
@@ -8658,10 +8538,15 @@ coins:
     weight_rough_g:
       - value: 146.0
         source: ngc
+      - value: 146.0
+        source: numismaster
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-5-thaler-km-13-cuid-1159747-duid-1385453
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96182
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -8669,6 +8554,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159747
+      - schleswig_holstein-numismaster-96182
   - id: unified-ngc-1162545
     fuss: seed_unsorted
     phase: ngc
@@ -9004,6 +8890,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 2 Thaler
+    year_first: 1606
+    year_last: 1606
+    year_label: '1606'
     ruler: Ernst III
     catalog:
       km: '39'
@@ -9019,10 +8908,15 @@ coins:
     weight_rough_g:
       - value: 58.0
         source: ngc
+      - value: 58.0
+        source: numismaster
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-39-cuid-1162634-duid-1406342
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96173
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -9030,37 +8924,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1162634
-  - id: unified-ngc-1162635
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 2 Thaler
-    ruler: Ernst III
-    catalog:
-      km: '40'
-      dav: LS479
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 58.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-2-thaler-km-40-cuid-1162635-duid-1387610
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ngc-1162635
+      - schleswig_holstein-numismaster-96173
   - id: unified-ngc-1180940
     fuss: seed_unsorted
     phase: ngc
@@ -9355,6 +9219,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 10 Ducat
+    year_first: 1610
+    year_last: 1610
+    year_label: '1610'
     ruler: Ernst III
     catalog:
       km: '15.2'
@@ -9374,6 +9241,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-10-ducat-km-15.2-cuid-1189194-duid-1399869
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_175586
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -9381,6 +9251,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1189194
+      - schleswig_holstein-numismaster-175586
   - id: unified-ngc-1191087
     fuss: seed_unsorted
     phase: ngc
@@ -9904,6 +9775,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 3 Thaler
+    year_first: 1606
+    year_last: 1606
+    year_label: '1606'
     ruler: Ernst III
     catalog:
       km: '43'
@@ -9919,10 +9793,15 @@ coins:
     weight_rough_g:
       - value: 87.0
         source: ngc
+      - value: 87.0
+        source: numismaster
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-3-thaler-km-43-cuid-1206101-duid-1406343
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96179
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -9930,11 +9809,15 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206101
+      - schleswig_holstein-numismaster-96179
   - id: unified-ngc-1206102
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 5 Ducat
+    year_first: 1610
+    year_last: 1610
+    year_label: '1610'
     ruler: Ernst III
     catalog:
       km: '14'
@@ -9954,6 +9837,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-5-ducat-km-14-cuid-1206102-duid-1406345
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96185
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -9961,6 +9847,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206102
+      - schleswig_holstein-numismaster-96185
   - id: unified-ngc-171183
     fuss: seed_unsorted
     phase: ngc
@@ -11071,102 +10958,6 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - schleswig_holstein-numismaster-171191
-  - id: unified-schleswig_holstein-numismaster-175586
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 10 Ducat
-    year_first: 1610
-    year_last: 1610
-    year_label: '1610'
-    ruler: Ernst III
-    catalog:
-      km: '15.2'
-      fr: '3066'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_175586
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-175586
-  - id: unified-schleswig_holstein-numismaster-96146
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 2 Thaler
-    year_first: 1604
-    year_last: 1604
-    year_label: '1604'
-    ruler: Ernst III
-    catalog:
-      km: '112'
-      dav: '3743'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 58.0
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96146
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96146
-  - id: unified-schleswig_holstein-numismaster-96147
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 2 Thaler
-    year_first: 1604
-    year_last: 1604
-    year_label: '1604'
-    ruler: Ernst III
-    catalog:
-      km: '113'
-      dav: '3744'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 58.0
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96147
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96147
   - id: unified-schleswig_holstein-numismaster-96166
     fuss: seed_unsorted
     phase: numismaster
@@ -11198,312 +10989,3 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - schleswig_holstein-numismaster-96166
-  - id: unified-schleswig_holstein-numismaster-96173
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 2 Thaler
-    year_first: 1606
-    year_last: 1606
-    year_label: '1606'
-    ruler: Ernst III
-    catalog:
-      km: '39'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 58.0
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96173
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96173
-  - id: unified-schleswig_holstein-numismaster-96176
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 2½ Thaler
-    year_first: 1606
-    year_last: 1606
-    year_label: '1606'
-    ruler: Ernst III
-    catalog:
-      km: '12'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96176
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96176
-  - id: unified-schleswig_holstein-numismaster-96179
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 3 Thaler
-    year_first: 1606
-    year_last: 1606
-    year_label: '1606'
-    ruler: Ernst III
-    catalog:
-      km: '43'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 87.0
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96179
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96179
-  - id: unified-schleswig_holstein-numismaster-96180
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 3 Thaler
-    year_first: 1606
-    year_last: 1606
-    year_label: '1606'
-    ruler: Ernst III
-    catalog:
-      km: '44'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 87.0
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96180
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96180
-  - id: unified-schleswig_holstein-numismaster-96181
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 3 Thaler
-    year_first: 1606
-    year_last: 1606
-    year_label: '1606'
-    ruler: Ernst III
-    catalog:
-      km: '45'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 87.0
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96181
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96181
-  - id: unified-schleswig_holstein-numismaster-96182
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 5 Thaler
-    year_first: 1606
-    year_last: 1606
-    year_label: '1606'
-    ruler: Ernst III
-    catalog:
-      km: '13'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 146.0
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96182
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96182
-  - id: unified-schleswig_holstein-numismaster-96185
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 5 Ducat
-    year_first: 1610
-    year_last: 1610
-    year_label: '1610'
-    ruler: Ernst III
-    catalog:
-      km: '14'
-      fr: '3067'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96185
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96185
-  - id: unified-schleswig_holstein-numismaster-96186
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 10 Ducat
-    year_first: 1610
-    year_last: 1610
-    year_label: '1610'
-    ruler: Ernst III
-    catalog:
-      km: '15.1'
-      fr: '3066'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96186
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96186
-  - id: unified-schleswig_holstein-numismaster-96187
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 20 Ducat
-    year_first: 1610
-    year_last: 1610
-    year_label: '1610'
-    ruler: Ernst III
-    catalog:
-      km: '16'
-      fr: '3064'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96187
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96187
-  - id: unified-schleswig_holstein-numismaster-96188
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 20 Ducat
-    year_first: 1610
-    year_last: 1610
-    year_label: '1610'
-    ruler: Ernst III
-    catalog:
-      km: A17
-      fr: '3065'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96188
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - schleswig_holstein-numismaster-96188

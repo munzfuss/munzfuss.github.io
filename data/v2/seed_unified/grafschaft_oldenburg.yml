@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `grafschaft_oldenburg`.
-# Generated 2026-10-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/grafschaft_oldenburg.yml across all sources.
 #
 # Input: 179 per-source seed entries.
-# Output: 169 unified entries (one per physical coin).
+# Output: 168 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: grafschaft_oldenburg
-generated_at: '2026-10-17'
+generated_at: '2026-10-18'
 coins:
   - id: unified-dk-bruun-15088
     fuss: seed_unsorted
@@ -2773,15 +2773,17 @@ coins:
     kind: kurant
     nominal: ¼ Thaler
     year_first: 1614
-    year_last: 1619
+    year_last: 1622
     year_ranges:
       -   - 1614
-          - 1619
-    year_label: 1614-1619
+          - 1622
+    year_label: 1614-1622
     ruler: Anthony Günther (Anton Günther)
     catalog:
       km: '47'
-      numista: '340123'
+      numista:
+        - '340123'
+        - '340125'
       others:
         - Saur# 3350
     metal: silver
@@ -2794,48 +2796,12 @@ coins:
     weight_rough_g:
       - value: 6.6
         source: numista
+      - value: 6.99
+        source: numista
     sources:
       - type: literature
         url: https://en.numista.com/340123
         ref: Numista N#340123 — ¼ Thaler - Anthony Günter (In the name of Matthias) - County of Oldenburg
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    issuing_entity: grafschaft_oldenburg
-    composed_of:
-      - dk-numista-340123
-  - id: unified-dk-numista-340125
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ¼ Thaler
-    year_first: 1619
-    year_last: 1622
-    year_ranges:
-      -   - 1619
-          - 1622
-    year_label: 1619-1622
-    ruler: Anthony Günther (Anton Günther)
-    catalog:
-      km: '47'
-      numista: '340125'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 6.99
-        source: numista
-    sources:
       - type: literature
         url: https://en.numista.com/340125
         ref: Numista N#340125 — 1/4 Thaler - Anthony Günter (In the name of Ferdinand II) - County of Oldenburg
@@ -2850,6 +2816,7 @@ coins:
         (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
     issuing_entity: grafschaft_oldenburg
     composed_of:
+      - dk-numista-340123
       - dk-numista-340125
   - id: unified-dk-numista-340198
     fuss: seed_unsorted

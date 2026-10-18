@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `herzogtum_sachsen_lauenburg`.
-# Generated 2026-10-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/herzogtum_sachsen_lauenburg.yml across all sources.
 #
 # Input: 73 per-source seed entries.
-# Output: 48 unified entries (one per physical coin).
+# Output: 45 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: herzogtum_sachsen_lauenburg
-generated_at: '2026-10-09'
+generated_at: '2026-10-18'
 coins:
   - id: unified-dk-bruun-8082
     fuss: seed_unsorted
@@ -1102,6 +1102,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.35
+        source: ikmk
       - value: 1.41
         source: ikmk
       - value: 1.42
@@ -1126,6 +1128,9 @@ coins:
         url: https://ikmk.smb.museum/object?id=18283564
         ref: IKMK Berlin 18283564
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18283565
+        ref: IKMK Berlin 18283565
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18283579
         ref: IKMK Berlin 18283579
       - type: museum
@@ -1137,6 +1142,7 @@ coins:
       - ikmk-18283494
       - ikmk-18283497
       - ikmk-18283564
+      - ikmk-18283565
       - ikmk-18283579
       - ikmk-18283582
   - id: unified-ikmk-18283500
@@ -1158,6 +1164,7 @@ coins:
     catalog:
       others:
         - Dorfmann# 57 e
+        - Dorfmann# 58 a
         - Dorfmann# 56 k
         - Dorfmann# 56 a
     metal: silver
@@ -1175,10 +1182,16 @@ coins:
         source: ikmk
       - value: 1.57
         source: ikmk
+      - value: 1.6
+        source: ikmk
+      - value: 1.62
+        source: ikmk
     diameter_mm:
       - value: 21.0
         source: ikmk
       - value: 22.0
+        source: ikmk
+      - value: 23.0
         source: ikmk
     sources:
       - type: museum
@@ -1187,6 +1200,12 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18283505
         ref: IKMK Berlin 18283505
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18283574
+        ref: IKMK Berlin 18283574
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18283575
+        ref: IKMK Berlin 18283575
       - type: museum
         url: https://ikmk.smb.museum/object?id=18283584
         ref: IKMK Berlin 18283584
@@ -1198,40 +1217,10 @@ coins:
     composed_of:
       - ikmk-18283500
       - ikmk-18283505
+      - ikmk-18283574
+      - ikmk-18283575
       - ikmk-18283584
       - ikmk-18283587
-  - id: unified-ikmk-18283565
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    ruler: August
-    inscription_obv: AUGU - D G DU
-    inscription_rev: MATTHIAS D G R IM S A
-    mint: Lauenburg
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.35
-        source: ikmk
-    diameter_mm:
-      - value: 21.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18283565
-        ref: IKMK Berlin 18283565
-    verification_note: *id001
-    issuing_entity: herzogtum_sachsen_lauenburg
-    composed_of:
-      - ikmk-18283565
   - id: unified-ikmk-18283567
     fuss: seed_unsorted
     phase: ikmk
@@ -1284,50 +1273,6 @@ coins:
       - ikmk-18283567
       - ikmk-18283576
       - ikmk-18283585
-  - id: unified-ikmk-18283574
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    ruler: August
-    mintmaster: Barthold Bartels
-    inscription_obv: AUGUSTUS D G DUX
-    inscription_rev: SAXON ANGAR ET WEST
-    mint: Lauenburg
-    catalog:
-      others:
-        - Dorfmann# 58 a
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.6
-        source: ikmk
-      - value: 1.62
-        source: ikmk
-    diameter_mm:
-      - value: 22.0
-        source: ikmk
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18283574
-        ref: IKMK Berlin 18283574
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18283575
-        ref: IKMK Berlin 18283575
-    verification_note: *id001
-    issuing_entity: herzogtum_sachsen_lauenburg
-    composed_of:
-      - ikmk-18283574
-      - ikmk-18283575
   - id: unified-ikmk-18283583
     fuss: seed_unsorted
     phase: ikmk
@@ -1379,6 +1324,7 @@ coins:
     catalog:
       others:
         - Dorfmann# 64 a
+        - Dorfmann# 63 c
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -1386,6 +1332,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.42
+        source: ikmk
       - value: 1.47
         source: ikmk
       - value: 1.51
@@ -1400,49 +1348,17 @@ coins:
         url: https://ikmk.smb.museum/object?id=18283589
         ref: IKMK Berlin 18283589
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18283590
+        ref: IKMK Berlin 18283590
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18283591
         ref: IKMK Berlin 18283591
     verification_note: *id001
     issuing_entity: herzogtum_sachsen_lauenburg
     composed_of:
       - ikmk-18283589
-      - ikmk-18283591
-  - id: unified-ikmk-18283590
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    ruler: August
-    mintmaster: Barthold Bartels
-    inscription_obv: AU D G - D S A
-    inscription_rev: DA PACIM DOM IN D N Z1
-    mint: Lauenburg
-    catalog:
-      others:
-        - Dorfmann# 63 c
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.42
-        source: ikmk
-    diameter_mm:
-      - value: 21.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18283590
-        ref: IKMK Berlin 18283590
-    verification_note: *id001
-    issuing_entity: herzogtum_sachsen_lauenburg
-    composed_of:
       - ikmk-18283590
+      - ikmk-18283591
   - id: unified-ikmk-18283593
     fuss: seed_unsorted
     phase: ikmk

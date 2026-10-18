@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `sonderburg_duchy`.
-# Generated 2026-10-17 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sonderburg_duchy.yml across all sources.
 #
 # Input: 175 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sonderburg_duchy
-generated_at: '2026-10-17'
+generated_at: '2026-10-18'
 coins:
   - id: unified-dk-bruun-14662
     fuss: seed_unsorted
@@ -597,6 +597,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 2.05
+        source: ikmk
       - value: 2.16
         source: ikmk
       - value: 2.24
@@ -604,12 +606,17 @@ coins:
       - value: 2.35
         source: ikmk
     diameter_mm:
+      - value: 22.0
+        source: ikmk
       - value: 23.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284398
         ref: IKMK Berlin 18284398
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284698
+        ref: IKMK Berlin 18284698
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284699
         ref: IKMK Berlin 18284699
@@ -624,6 +631,7 @@ coins:
     issuing_entity: sonderburg_duchy
     composed_of:
       - ikmk-18284398
+      - ikmk-18284698
       - ikmk-18284699
       - ikmk-18284700
   - id: unified-ikmk-18284399
@@ -753,6 +761,8 @@ coins:
         source: ikmk
       - value: 1.82
         source: ikmk
+      - value: 1.87
+        source: ikmk
     diameter_mm:
       - value: 23.0
         source: ikmk
@@ -769,6 +779,9 @@ coins:
         url: https://ikmk.smb.museum/object?id=18284708
         ref: IKMK Berlin 18284708
       - type: museum
+        url: https://ikmk.smb.museum/object?id=18284710
+        ref: IKMK Berlin 18284710
+      - type: museum
         url: https://ikmk.smb.museum/object?id=18289032
         ref: IKMK Berlin 18289032
     note:
@@ -781,6 +794,7 @@ coins:
       - ikmk-18284404
       - ikmk-18284691
       - ikmk-18284708
+      - ikmk-18284710
       - ikmk-18289032
   - id: unified-ikmk-18284697
     fuss: seed_unsorted
@@ -819,7 +833,7 @@ coins:
     issuing_entity: sonderburg_duchy
     composed_of:
       - ikmk-18284697
-  - id: unified-ikmk-18284698
+  - id: unified-ikmk-18284701
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -852,17 +866,10 @@ coins:
     weight_rough_g:
       - value: 1.9
         source: ikmk
-      - value: 2.05
-        source: ikmk
     diameter_mm:
-      - value: 22.0
-        source: ikmk
       - value: 24.0
         source: ikmk
     sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284698
-        ref: IKMK Berlin 18284698
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284701
         ref: IKMK Berlin 18284701
@@ -872,7 +879,6 @@ coins:
     verification_note: *id001
     issuing_entity: sonderburg_duchy
     composed_of:
-      - ikmk-18284698
       - ikmk-18284701
       - schleswig_holstein-numismaster-120992
   - id: unified-ikmk-18284702
@@ -898,8 +904,6 @@ coins:
     verified: false
     weight_rough_g:
       - value: 1.63
-        source: ikmk
-      - value: 1.87
         source: ikmk
       - value: 1.93
         source: ikmk
@@ -940,9 +944,6 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18284709
         ref: IKMK Berlin 18284709
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18284710
-        ref: IKMK Berlin 18284710
     verification_note: *id001
     issuing_entity: sonderburg_duchy
     composed_of:
@@ -953,7 +954,6 @@ coins:
       - ikmk-18284706
       - ikmk-18284707
       - ikmk-18284709
-      - ikmk-18284710
   - id: unified-ikmk-18284715
     fuss: seed_unsorted
     phase: ikmk
