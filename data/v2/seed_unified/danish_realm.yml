@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15377 per-source seed entries.
-# Output: 5991 unified entries (one per physical coin).
+# Output: 5992 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -4275,12 +4275,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/291968
         ref: KMM 291968 (Inv. RP 772.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/415742
-        ref: KMM 415742 (Inv. FP 601.3)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/415743
-        ref: KMM 415743 (Inv. FP 601.2)
     note:
       de: Reichstaler
       en: Reichstaler
@@ -4310,8 +4304,6 @@ coins:
       - kmk-290905
       - kmk-291967
       - kmk-291968
-      - kmk-415742
-      - kmk-415743
   - id: unified-dk-bruun-5536
     fuss: seed_unsorted
     phase: bruun
@@ -215867,6 +215859,32 @@ coins:
     composed_of:
       - kmk-415735
       - kmk-415736
+  - id: unified-kmk-415742
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_first: 1627
+    year_last: 1627
+    year_label: '1627'
+    ruler: Christian 4
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/415742
+        ref: KMM 415742 (Inv. FP 601.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/415743
+        ref: KMM 415743 (Inv. FP 601.2)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-415742
+      - kmk-415743
   - id: unified-kmk-415823
     fuss: seed_unsorted
     phase: kmk
