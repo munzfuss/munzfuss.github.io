@@ -5803,7 +5803,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik
+    ruler: Friedrich III. von Gottorp
     year_first: 1646
     year_last: 1646
     year_label: '1646'
@@ -5817,6 +5817,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/430265
         ref: KMM 430265 (Inv. FP 994.33)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik
+        correct: Friedrich III. von Gottorp
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik
+        correct: Friedrich III. von Gottorp
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-657527
     fuss: seed_unsorted
     phase: kmk

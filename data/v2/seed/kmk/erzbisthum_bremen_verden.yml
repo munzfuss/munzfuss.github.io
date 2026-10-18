@@ -223,7 +223,7 @@ coins:
     nominal: 1 Søsling
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1641
     year_last: 1641
     year_label: '1641'
@@ -240,6 +240,37 @@ coins:
         ref: KMM 741043 (Inv. FP 1780.330; die Webseite unter dieser Objektnummer zeigt Inv. FP 1780.329)
     verification_note: *id001
     weight_rough_g: 0.54
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv6.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv6.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason:
+        de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König war Friedrich III. erst ab 1648; 1641 prägte er als Erzbischof von Bremen. Hede BV6 verzeichnet «1 Søsling lybsk» 1641 mit
+          Schou 13–16; die Schou-Nummer des Stücks liegt darin.
+        en: The National Museum record (KMM) names «Frederik 3». Frederik III was king only from 1648; in 1641 he struck coins as Archbishop of Bremen. Hede BV6 lists «1 Søsling lybsk» 1641 with Schou
+          13–16; the piece's Schou number lies within these.
+        uk: Запис Національного музею (KMM) називає «Frederik 3». Королем Frederik III став лише 1648 р.; 1641 р. він карбував як архієпископ Бремена. Hede BV6 подає «1 Søsling lybsk» 1641 з Schou 
+          13–16; номер Schou примірника лежить у цих межах.
+        da: Nationalmuseets post (KMM) nævner «Frederik 3». Konge blev Frederik III først i 1648; 1641 prægede han som ærkebiskop af Bremen. Hede BV6 opfører «1 Søsling lybsk» 1641 med Schou 13–16; 
+          stykkets Schou-nummer ligger inden for disse.
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-166747
     fuss: seed_unsorted
     phase: kmk

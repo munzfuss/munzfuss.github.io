@@ -2,8 +2,8 @@
 # Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
-# Input: 808 per-source seed entries.
-# Output: 438 unified entries (one per physical coin).
+# Input: 815 per-source seed entries.
+# Output: 441 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3462,6 +3462,67 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-130785
+  - id: unified-kmk-131619
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Daler
+    year_first: 1625
+    year_last: 1625
+    year_label: '1625'
+    ruler: Friedrich III. von Gottorp
+    catalog:
+      lange:
+        - 323a
+        - 323c
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 27.19
+        source: kmk
+      - value: 28.29
+        source: kmk
+    ruler_alts:
+      - value: Frederik 3
+        source: kmk
+        kind: erroneous
+        reason:
+          de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König Friedrich III. regierte erst ab 1648 (Huldigung am 6. Juli 1648). Das Stück trägt eine Nummer aus Langes Katalog der 
+            schleswig-holsteinischen Münzen; der regierende Friedrich jener Jahre war Herzog Friedrich III. von Gottorp (1616–1659).
+          en: The National Museum record (KMM) names «Frederik 3». King Frederik III reigned only from 1648 (homage on 6 July 1648). The piece carries a number from Lange's catalogue of 
+            Schleswig-Holstein coins; the reigning Frederik of those years was Duke Frederik III of Gottorp (1616–1659).
+          uk: Запис Національного музею (KMM) називає «Frederik 3». Король Frederik III правив лише з 1648 р. (присяга 6 липня 1648 р.). Примірник має номер із каталогу Lange монет Шлезвіг-Гольштейну;
+            Фредеріком, що правив у ті роки, був герцог Frederik III Gottorp (1616–1659).
+          da: Nationalmuseets post (KMM) nævner «Frederik 3». Kong Frederik III regerede først fra 1648 (hyldning 6. juli 1648). Stykket bærer et nummer fra Langes katalog over slesvig-holstenske 
+            mønter; den regerende Frederik i disse år var hertug Frederik III af Gottorp (1616–1659).
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/131619
+        ref: KMM 131619 (Inv. FP 3537.28)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348804
+        ref: KMM 348804 (Inv. FP 5396.6)
+    verification_note: &id003
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-131619
+      - kmk-348804
+    _errata_applied:
+      - source: kmk-131619
+        field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - source: kmk-131619
+        field: ruler_verified
+        printed: true
+        correct: false
   - id: unified-kmk-150537
     fuss: seed_unsorted
     phase: kmk
@@ -4575,6 +4636,49 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-331519
+  - id: unified-kmk-332379
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1623
+    year_last: 1623
+    year_label: '1623'
+    ruler: Friedrich III. von Gottorp
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    ruler_alts:
+      - value: Frederik 3
+        source: kmk
+        kind: erroneous
+        reason:
+          de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König Friedrich III. regierte erst ab 1648 (Huldigung am 6. Juli 1648). Die Zuweisung an Herzog Friedrich III. von Gottorp, 
+            von dem derselbe Nominal 1623 bekannt ist (Lange 340, 1623–1625), ist eine Annahme.
+          en: The National Museum record (KMM) names «Frederik 3». King Frederik III reigned only from 1648 (homage on 6 July 1648). The attribution to Duke Frederik III of Gottorp, from whom the same
+            denomination is known for 1623 (Lange 340, 1623–1625), is an assumption.
+          uk: Запис Національного музею (KMM) називає «Frederik 3». Король Frederik III правив лише з 1648 р. (присяга 6 липня 1648 р.). Віднесення до герцога Frederik III Gottorp, від якого відомий 
+            той самий номінал 1623 р. (Lange 340, 1623–1625), — припущення.
+          da: Nationalmuseets post (KMM) nævner «Frederik 3». Kong Frederik III regerede først fra 1648 (hyldning 6. juli 1648). Henførelsen til hertug Frederik III af Gottorp, fra hvem samme nominal 
+            kendes fra 1623 (Lange 340, 1623–1625), er en antagelse.
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/332379
+        ref: KMM 332379 (Inv. FP 6014.5)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-332379
+    _errata_applied:
+      - source: kmk-332379
+        field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - source: kmk-332379
+        field: ruler_verified
+        printed: true
+        correct: false
   - id: unified-kmk-340562
     fuss: seed_unsorted
     phase: kmk
@@ -4632,33 +4736,6 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-345239
-  - id: unified-kmk-348804
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1625
-    year_last: 1625
-    year_label: '1625'
-    ruler: Hertug Frederik 3
-    catalog:
-      lange: 323c
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 28.29
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/348804
-        ref: KMM 348804 (Inv. FP 5396.6)
-    verification_note: *id002
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - kmk-348804
   - id: unified-kmk-349193
     fuss: seed_unsorted
     phase: kmk
@@ -6633,7 +6710,7 @@ coins:
     year_first: 1646
     year_last: 1646
     year_label: '1646'
-    ruler: Frederik
+    ruler: Friedrich III. von Gottorp
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -6646,6 +6723,49 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-430265
+    _errata_applied:
+      - source: kmk-430265
+        field: ruler
+        printed: Frederik
+        correct: Friedrich III. von Gottorp
+      - source: kmk-430265
+        field: ruler_verified
+        printed: true
+        correct: false
+  - id: unified-kmk-441351
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    ruler: Friedrich III. von Gottorp
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/441351
+        ref: KMM 441351 (Inv. BP 363.1)
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-441351
+    _errata_applied:
+      - source: kmk-441351
+        field: ruler
+        printed: Frederik
+        correct: Friedrich III. von Gottorp
+      - source: kmk-441351
+        field: ruler_verified
+        printed: true
+        correct: false
   - id: unified-kmk-463712
     fuss: seed_unsorted
     phase: kmk
@@ -8466,6 +8586,36 @@ coins:
       would_route_to: gottorp_duchy
       active: true
       reasoning: Rule matched on ruler_lineage='johan adolf'; mint absent / unverified → rule re-routed.
+  - id: unified-kmk-687752
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 6 Skilling
+    year_first: 1623
+    year_last: 1623
+    year_label: '1623'
+    ruler: Friedrich III. von Gottorp
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/687752
+        ref: KMM 687752 (Inv. FP 64.358)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-687752
+    _errata_applied:
+      - source: kmk-687752
+        field: ruler
+        printed: Frederik
+        correct: Friedrich III. von Gottorp
+      - source: kmk-687752
+        field: ruler_verified
+        printed: true
+        correct: false
   - id: unified-kmk-687753
     fuss: seed_unsorted
     phase: kmk
@@ -14187,6 +14337,7 @@ coins:
       km: '96'
       lange:
         - 357A-357B
+        - 357B
         - 358-358C
     metal: silver
     metal_verified: true
@@ -14195,7 +14346,23 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    ruler_alts:
+      - value: Frederik 3
+        source: kmk
+        kind: erroneous
+        reason:
+          de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König Friedrich III. regierte erst ab 1648 (Huldigung am 6. Juli 1648). Das Stück trägt eine Nummer aus Langes Katalog der 
+            schleswig-holsteinischen Münzen; der regierende Friedrich jener Jahre war Herzog Friedrich III. von Gottorp (1616–1659).
+          en: The National Museum record (KMM) names «Frederik 3». King Frederik III reigned only from 1648 (homage on 6 July 1648). The piece carries a number from Lange's catalogue of 
+            Schleswig-Holstein coins; the reigning Frederik of those years was Duke Frederik III of Gottorp (1616–1659).
+          uk: Запис Національного музею (KMM) називає «Frederik 3». Король Frederik III правив лише з 1648 р. (присяга 6 липня 1648 р.). Примірник має номер із каталогу Lange монет Шлезвіг-Гольштейну;
+            Фредеріком, що правив у ті роки, був герцог Frederik III Gottorp (1616–1659).
+          da: Nationalmuseets post (KMM) nævner «Frederik 3». Kong Frederik III regerede først fra 1648 (hyldning 6. juli 1648). Stykket bærer et nummer fra Langes katalog over slesvig-holstenske 
+            mønter; den regerende Frederik i disse år var hertug Frederik III af Gottorp (1616–1659).
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/372489
+        ref: KMM 372489 (Inv. FP 4291.11)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-1-96-thaler-km-96-1646-1657-cuid-1185575-duid-1394010
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -14208,8 +14375,18 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: gottorp_duchy
     composed_of:
+      - kmk-372489
       - ngc-1185575
       - schleswig_holstein-numismaster-167316
+    _errata_applied:
+      - source: kmk-372489
+        field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - source: kmk-372489
+        field: ruler_verified
+        printed: true
+        correct: false
   - id: unified-ngc-1185577
     fuss: seed_unsorted
     phase: ngc
@@ -14996,7 +15173,10 @@ coins:
     catalog:
       km: '69'
       numista: '301813'
-      lange: 340a
+      lange:
+        - '340'
+        - 340-341A
+        - 340a
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -15010,10 +15190,26 @@ coins:
     diameter_mm:
       - value: 20.0
         source: numista
+    ruler_alts:
+      - value: Frederik 3
+        source: kmk
+        kind: erroneous
+        reason:
+          de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König Friedrich III. regierte erst ab 1648 (Huldigung am 6. Juli 1648). Das Stück trägt eine Nummer aus Langes Katalog der 
+            schleswig-holsteinischen Münzen; der regierende Friedrich jener Jahre war Herzog Friedrich III. von Gottorp (1616–1659).
+          en: The National Museum record (KMM) names «Frederik 3». King Frederik III reigned only from 1648 (homage on 6 July 1648). The piece carries a number from Lange's catalogue of 
+            Schleswig-Holstein coins; the reigning Frederik of those years was Duke Frederik III of Gottorp (1616–1659).
+          uk: Запис Національного музею (KMM) називає «Frederik 3». Король Frederik III правив лише з 1648 р. (присяга 6 липня 1648 р.). Примірник має номер із каталогу Lange монет Шлезвіг-Гольштейну;
+            Фредеріком, що правив у ті роки, був герцог Frederik III Gottorp (1616–1659).
+          da: Nationalmuseets post (KMM) nævner «Frederik 3». Kong Frederik III regerede først fra 1648 (hyldning 6. juli 1648). Stykket bærer et nummer fra Langes katalog over slesvig-holstenske 
+            mønter; den regerende Frederik i disse år var hertug Frederik III af Gottorp (1616–1659).
     sources:
       - type: literature
         url: https://en.numista.com/301813
         ref: Numista N#301813 — 1⁄16 Thaler - Frederick III
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/138193
+        ref: KMM 138193 (Inv. FP 8680.1)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-1-16-thaler-km-69-1625-16z3-cuid-1186487-duid-1394353
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -15027,8 +15223,18 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - dk-numista-301813
+      - kmk-138193
       - ngc-1186487
       - schleswig_holstein-numismaster-167343
+    _errata_applied:
+      - source: kmk-138193
+        field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - source: kmk-138193
+        field: ruler_verified
+        printed: true
+        correct: false
   - id: unified-ngc-1186488
     fuss: seed_unsorted
     phase: ngc
@@ -16033,6 +16239,7 @@ coins:
       km: '55'
       numista: '313367'
       lange:
+        - '354'
         - 354a-354b
         - 354b
         - '356'
@@ -16046,6 +16253,19 @@ coins:
     weight_rough_g:
       - value: 0.5
         source: numista
+    ruler_alts:
+      - value: Frederik 3
+        source: kmk
+        kind: erroneous
+        reason:
+          de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König Friedrich III. regierte erst ab 1648 (Huldigung am 6. Juli 1648). Das Stück trägt eine Nummer aus Langes Katalog der 
+            schleswig-holsteinischen Münzen; der regierende Friedrich jener Jahre war Herzog Friedrich III. von Gottorp (1616–1659).
+          en: The National Museum record (KMM) names «Frederik 3». King Frederik III reigned only from 1648 (homage on 6 July 1648). The piece carries a number from Lange's catalogue of 
+            Schleswig-Holstein coins; the reigning Frederik of those years was Duke Frederik III of Gottorp (1616–1659).
+          uk: Запис Національного музею (KMM) називає «Frederik 3». Король Frederik III правив лише з 1648 р. (присяга 6 липня 1648 р.). Примірник має номер із каталогу Lange монет Шлезвіг-Гольштейну;
+            Фредеріком, що правив у ті роки, був герцог Frederik III Gottorp (1616–1659).
+          da: Nationalmuseets post (KMM) nævner «Frederik 3». Kong Frederik III regerede først fra 1648 (hyldning 6. juli 1648). Stykket bærer et nummer fra Langes katalog over slesvig-holstenske 
+            mønter; den regerende Frederik i disse år var hertug Frederik III af Gottorp (1616–1659).
     sources:
       - type: literature
         url: https://en.numista.com/313367
@@ -16053,6 +16273,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/168015
         ref: KMM 168015 (Inv. FP 2366.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/353168
+        ref: KMM 353168 (Inv. FP 5055.4)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-1-96-thaler-km-55-1621-16z4-cuid-1209911-duid-1395266
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -16067,8 +16290,18 @@ coins:
     composed_of:
       - dk-numista-313367
       - kmk-168015
+      - kmk-353168
       - ngc-1209911
       - schleswig_holstein-numismaster-167312
+    _errata_applied:
+      - source: kmk-353168
+        field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - source: kmk-353168
+        field: ruler_verified
+        printed: true
+        correct: false
   - id: unified-ngc-1209912
     fuss: seed_unsorted
     phase: ngc

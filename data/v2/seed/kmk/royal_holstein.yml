@@ -3157,7 +3157,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik
+    ruler: Friedrich III. von Gottorp
     year_first: 1618
     year_last: 1618
     year_label: '1618'
@@ -3171,6 +3171,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/441351
         ref: KMM 441351 (Inv. BP 363.1)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik
+        correct: Friedrich III. von Gottorp
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik
+        correct: Friedrich III. von Gottorp
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-161127
     fuss: seed_unsorted
     phase: kmk

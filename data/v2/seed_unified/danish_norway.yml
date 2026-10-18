@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 4839 per-source seed entries.
-# Output: 1821 unified entries (one per physical coin).
+# Output: 1819 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3302,7 +3302,9 @@ coins:
           - 1510
     year_label: 1505-1510
     ruler: Gaute Ivarsson
-    mint: Nidaros
+    mint:
+      - Nidaros
+      - Niduras?
     catalog:
       bruun_collection_id: '9248'
       sieg: '7'
@@ -3324,6 +3326,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12032, p. 174
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317773
+        ref: KMM 317773 (Inv. FP 6758.27)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -3336,6 +3341,12 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-bruun-9248
+      - kmk-317773
+    _errata_applied:
+      - source: kmk-317773
+        field: ruler
+        printed: Ærkebiskop Gante Iversen
+        correct: Gaute Ivarsson
   - id: unified-dk-bruun-9251
     fuss: seed_unsorted
     phase: bruun
@@ -59973,29 +59984,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-304632
-  - id: unified-kmk-306256
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1698
-    year_last: 1698
-    year_label: '1698'
-    ruler: Christian
-    catalog:
-      hede: '77'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/306256
-        ref: KMM 306256 (Inv. FP 7861.40)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-306256
   - id: unified-kmk-306513
     fuss: seed_unsorted
     phase: kmk
@@ -60024,7 +60012,7 @@ coins:
     phase: kmk
     kind: kurant
     nominal: (?)
-    ruler: Gavte Ivarsson
+    ruler: Gaute Ivarsson
     mint: Nidaros
     catalog:
       galster: '177'
@@ -60040,6 +60028,11 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-307517
+    _errata_applied:
+      - source: kmk-307517
+        field: ruler
+        printed: Gavte Ivarsson
+        correct: Gaute Ivarsson
   - id: unified-kmk-308600
     fuss: seed_unsorted
     phase: kmk
@@ -60195,27 +60188,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-317733
-  - id: unified-kmk-317773
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Ærkebiskop Gante Iversen
-    mint: Niduras?
-    catalog:
-      galster: '177'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317773
-        ref: KMM 317773 (Inv. FP 6758.27)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-317773
   - id: unified-kmk-318295
     fuss: seed_unsorted
     phase: kmk
@@ -61900,7 +61872,7 @@ coins:
     year_first: 1666
     year_last: 1666
     year_label: '1666'
-    ruler: Frederik
+    ruler: Frederik III.
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -61913,6 +61885,15 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-352776
+    _errata_applied:
+      - source: kmk-352776
+        field: ruler
+        printed: Frederik
+        correct: Frederik III.
+      - source: kmk-352776
+        field: ruler_verified
+        printed: true
+        correct: false
   - id: unified-kmk-353223
     fuss: seed_unsorted
     phase: kmk
@@ -82628,6 +82609,9 @@ coins:
         url: https://en.numista.com/99007
         ref: Numista N#99007 — 1 Skilling - Christian V (Kongsberg type II) - Norway
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/306256
+        ref: KMM 306256 (Inv. FP 7861.40)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/306257
         ref: KMM 306257 (Inv. FP 7861.39)
       - type: museum
@@ -82644,9 +82628,19 @@ coins:
     composed_of:
       - denmark-numismaster-110601
       - dk-numista-99007
+      - kmk-306256
       - kmk-306257
       - kmk-331165
       - ngc-1114096
+    _errata_applied:
+      - source: kmk-306256
+        field: ruler
+        printed: Christian
+        correct: Christian V.
+      - source: kmk-306256
+        field: ruler_verified
+        printed: true
+        correct: false
   - id: unified-ngc-1114098
     fuss: seed_unsorted
     phase: ngc

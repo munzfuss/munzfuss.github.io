@@ -236,7 +236,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139318
         ref: KMM 139318 (Inv. KP 1715.401)
-    verification_note: &id006
+    verification_note: &id009
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
@@ -21780,7 +21780,7 @@ coins:
     metal_verified: false
     mint: Malmø
     mint_verified: true
-    ruler: Frederik
+    ruler: Frederik I.
     year_first: 1524
     year_last: 1524
     year_label: '1524'
@@ -21796,6 +21796,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/367974
         ref: KMM 367974 (Inv. FP 4622.24)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik
+        correct: Frederik I.
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik
+        correct: Frederik I.
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-371287
     fuss: seed_unsorted
     phase: kmk
@@ -23372,7 +23391,7 @@ coins:
     nominal: 1 Søsling?
     metal_verified: false
     mint_verified: false
-    ruler: Frederik?
+    ruler: Frederik I.
     year_first: 1524
     year_last: 1525
     year_label: 1524-1525
@@ -23386,6 +23405,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/638108
         ref: KMM 638108 (Inv. FP 11751.1)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik?
+        correct: Frederik I.
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik?
+        correct: Frederik I.
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-641458
     fuss: seed_unsorted
     phase: kmk
@@ -23915,7 +23953,7 @@ coins:
     nominal: 1 Søsling
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Frederik I.
     year_first: 1524
     year_last: 1528
     year_label: 1524-1528
@@ -23929,6 +23967,33 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/747724
         ref: KMM 747724 (Inv. FP 10954.38)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Frederik I.
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: king1.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: king1.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason:
+        de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». Das Stück ist 1524–1528 datiert; König war in diesen Jahren Friedrich I. (1523–1533), Friedrich III. regierte erst ab 1648.
+        en: The National Museum record (KMM) names «Frederik 3». The piece is dated 1524–1528; the king in those years was Frederik I (1523–1533), Frederik III reigned only from 1648.
+        uk: Запис Національного музею (KMM) називає «Frederik 3». Примірник датовано 1524–1528 рр.; королем у ці роки був Frederik I (1523–1533), Frederik III правив лише з 1648 р.
+        da: Nationalmuseets post (KMM) nævner «Frederik 3». Stykket er dateret 1524–1528; konge i disse år var Frederik I (1523–1533), Frederik III regerede først fra 1648.
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Frederik I.
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-130794
     fuss: seed_unsorted
     phase: kmk
@@ -34589,7 +34654,7 @@ coins:
     metal_verified: false
     mint: Kopenhagen
     mint_verified: true
-    ruler: Christian
+    ruler: Christian III.
     year_first: 1536
     year_last: 1536
     year_label: '1536'
@@ -34605,6 +34670,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/367973
         ref: KMM 367973 (Inv. FP 4622.25)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Christian
+        correct: Christian III.
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Christian
+        correct: Christian III.
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-371849
     fuss: seed_unsorted
     phase: kmk
@@ -48109,7 +48193,7 @@ coins:
     nominal: 1 Skilling
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Frederik II.
     year_first: 1563
     year_last: 1563
     year_label: '1563'
@@ -48125,6 +48209,37 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/354854
         ref: KMM 354854 (Inv. FP 4855.2)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Frederik II.
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: king2.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: king2.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason:
+        de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». Typennummer «H. 12» und Jahr 1563 entsprechen Hede 12 unter Friedrich II. (1 Skilling, 1562–1563, København); Friedrich III. 
+          regierte erst ab 1648.
+        en: The National Museum record (KMM) names «Frederik 3». The type number «H. 12» and the year 1563 match Hede 12 under Frederik II (1 Skilling, 1562–1563, København); Frederik III reigned only
+          from 1648.
+        uk: Запис Національного музею (KMM) називає «Frederik 3». Номер типу «H. 12» і рік 1563 відповідають Hede 12 за Frederik II (1 Skilling, 1562–1563, København); Frederik III правив лише з 1648 
+          р.
+        da: Nationalmuseets post (KMM) nævner «Frederik 3». Typenummeret «H. 12» og året 1563 svarer til Hede 12 under Frederik II (1 Skilling, 1562–1563, København); Frederik III regerede først fra 
+          1648.
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Frederik II.
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-407394
     fuss: seed_unsorted
     phase: kmk
@@ -108388,7 +108503,7 @@ coins:
     nominal: 1/96 Daler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Friedrich III. von Gottorp
     year_first: 1621
     year_last: 1621
     year_label: '1621'
@@ -108404,6 +108519,37 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/353168
         ref: KMM 353168 (Inv. FP 5055.4)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: gottorp_lange.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: gottorp_lange.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: &id006
+        de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König Friedrich III. regierte erst ab 1648 (Huldigung am 6. Juli 1648). Das Stück trägt eine Nummer aus Langes Katalog der 
+          schleswig-holsteinischen Münzen; der regierende Friedrich jener Jahre war Herzog Friedrich III. von Gottorp (1616–1659).
+        en: The National Museum record (KMM) names «Frederik 3». King Frederik III reigned only from 1648 (homage on 6 July 1648). The piece carries a number from Lange's catalogue of 
+          Schleswig-Holstein coins; the reigning Frederik of those years was Duke Frederik III of Gottorp (1616–1659).
+        uk: Запис Національного музею (KMM) називає «Frederik 3». Король Frederik III правив лише з 1648 р. (присяга 6 липня 1648 р.). Примірник має номер із каталогу Lange монет Шлезвіг-Гольштейну; 
+          Фредеріком, що правив у ті роки, був герцог Frederik III Gottorp (1616–1659).
+        da: Nationalmuseets post (KMM) nævner «Frederik 3». Kong Frederik III regerede først fra 1648 (hyldning 6. juli 1648). Stykket bærer et nummer fra Langes katalog over slesvig-holstenske 
+          mønter; den regerende Frederik i disse år var hertug Frederik III af Gottorp (1616–1659).
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-369869
     fuss: seed_unsorted
     phase: kmk
@@ -112539,7 +112685,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Friedrich III. von Gottorp
     year_first: 1623
     year_last: 1625
     year_label: 1623-1625
@@ -112557,6 +112703,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/138193
         ref: KMM 138193 (Inv. FP 8680.1)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: gottorp_lange.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: gottorp_lange.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id006
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-149689
     fuss: seed_unsorted
     phase: kmk
@@ -113668,7 +113837,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Friedrich III. von Gottorp
     year_first: 1623
     year_last: 1623
     year_label: '1623'
@@ -113682,6 +113851,37 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/332379
         ref: KMM 332379 (Inv. FP 6014.5)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: gottorp_1623.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: gottorp_1623.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason:
+        de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König Friedrich III. regierte erst ab 1648 (Huldigung am 6. Juli 1648). Die Zuweisung an Herzog Friedrich III. von Gottorp, von 
+          dem derselbe Nominal 1623 bekannt ist (Lange 340, 1623–1625), ist eine Annahme.
+        en: The National Museum record (KMM) names «Frederik 3». King Frederik III reigned only from 1648 (homage on 6 July 1648). The attribution to Duke Frederik III of Gottorp, from whom the same 
+          denomination is known for 1623 (Lange 340, 1623–1625), is an assumption.
+        uk: Запис Національного музею (KMM) називає «Frederik 3». Король Frederik III правив лише з 1648 р. (присяга 6 липня 1648 р.). Віднесення до герцога Frederik III Gottorp, від якого відомий той
+          самий номінал 1623 р. (Lange 340, 1623–1625), — припущення.
+        da: Nationalmuseets post (KMM) nævner «Frederik 3». Kong Frederik III regerede først fra 1648 (hyldning 6. juli 1648). Henførelsen til hertug Frederik III af Gottorp, fra hvem samme nominal 
+          kendes fra 1623 (Lange 340, 1623–1625), er en antagelse.
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-348022
     fuss: seed_unsorted
     phase: kmk
@@ -113932,7 +114132,7 @@ coins:
     nominal: 6 Skilling
     metal_verified: false
     mint_verified: false
-    ruler: Frederik
+    ruler: Friedrich III. von Gottorp
     year_first: 1623
     year_last: 1623
     year_label: '1623'
@@ -113946,6 +114146,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/687752
         ref: KMM 687752 (Inv. FP 64.358)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik
+        correct: Friedrich III. von Gottorp
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik
+        correct: Friedrich III. von Gottorp
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-687860
     fuss: seed_unsorted
     phase: kmk
@@ -123967,7 +124186,7 @@ coins:
     nominal: 1 Daler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Friedrich III. von Gottorp
     year_first: 1625
     year_last: 1625
     year_label: '1625'
@@ -123984,6 +124203,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/131619
         ref: KMM 131619 (Inv. FP 3537.28)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: gottorp_lange.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: gottorp_lange.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id006
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-137173
     fuss: seed_unsorted
     phase: kmk
@@ -158451,7 +158693,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1641
     year_last: 1641
     year_label: '1641'
@@ -158467,6 +158709,37 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149365
         ref: KMM 149365 (Inv. KP 1656.948)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: &id007
+        de: 'Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König war Friedrich III. erst ab 1648; 1641–1643 prägte er als Erzbischof von Bremen. Hede (Friedrich III., Abschnitt Bremen-Verden,
+          BV4) verzeichnet «3 Skilling lybsk» 1641–43 (= 1/16 Reichstaler) mit Schou 1641: 3–10, 1642: 2–19, 1643: 1–6; die Schou-Nummer des Stücks liegt darin.'
+        en: "The National Museum record (KMM) names «Frederik 3». Frederik III was king only from 1648; in 1641–1643 he struck coins as Archbishop of Bremen. Hede (Frederik III, section Bremen-Verden, BV4)
+          lists «3 Skilling lybsk» 1641–43 (= 1/16 Reichsthaler) with Schou 1641: 3–10, 1642: 2–19, 1643: 1–6; the piece's Schou number lies within these."
+        uk: 'Запис Національного музею (KMM) називає «Frederik 3». Королем Frederik III став лише 1648 р.; у 1641–1643 рр. він карбував як архієпископ Бремена. Hede (Frederik III, розділ Bremen-Verden,
+          BV4) подає «3 Skilling lybsk» 1641–43 (= 1/16 рейхсталера) з Schou 1641: 3–10, 1642: 2–19, 1643: 1–6; номер Schou примірника лежить у цих межах.'
+        da: 'Nationalmuseets post (KMM) nævner «Frederik 3». Konge blev Frederik III først i 1648; 1641–1643 prægede han som ærkebiskop af Bremen. Hede (Frederik III, afsnit Bremen-Verden, BV4) opfører
+          «3 Skilling lybsk» 1641–43 (= 1/16 rigsdaler) med Schou 1641: 3–10, 1642: 2–19, 1643: 1–6; stykkets Schou-nummer ligger inden for disse.'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-149366
     fuss: seed_unsorted
     phase: kmk
@@ -158476,7 +158749,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1641
     year_last: 1641
     year_label: '1641'
@@ -158492,6 +158765,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149366
         ref: KMM 149366 (Inv. KP 1656.947)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-149367
     fuss: seed_unsorted
     phase: kmk
@@ -158501,7 +158797,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1641
     year_last: 1641
     year_label: '1641'
@@ -158517,6 +158813,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149367
         ref: KMM 149367 (Inv. KP 1656.946)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-160401
     fuss: seed_unsorted
     phase: kmk
@@ -158774,7 +159093,7 @@ coins:
     nominal: 1/16 Rigsdaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1641
     year_last: 1641
     year_label: '1641'
@@ -158788,6 +159107,37 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/425005
         ref: KMM 425005 (Inv. FP 2447.77)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_rd.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_rd.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: &id008
+        de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König war Friedrich III. erst ab 1648; 1641–1643 prägte er als Erzbischof von Bremen. Nominal und Jahr entsprechen Hede BV4 («3 
+          Skilling lybsk» = 1/16 Reichstaler, 1641–43); eine Schou-Nummer fehlt, die Zuweisung ist eine Annahme.
+        en: The National Museum record (KMM) names «Frederik 3». Frederik III was king only from 1648; in 1641–1643 he struck coins as Archbishop of Bremen. Denomination and year match Hede BV4 («3 
+          Skilling lybsk» = 1/16 Reichsthaler, 1641–43); there is no Schou number, the attribution is an assumption.
+        uk: Запис Національного музею (KMM) називає «Frederik 3». Королем Frederik III став лише 1648 р.; у 1641–1643 рр. він карбував як архієпископ Бремена. Номінал і рік відповідають Hede BV4 («3 
+          Skilling lybsk» = 1/16 рейхсталера, 1641–43); номера Schou немає, віднесення — припущення.
+        da: Nationalmuseets post (KMM) nævner «Frederik 3». Konge blev Frederik III først i 1648; 1641–1643 prægede han som ærkebiskop af Bremen. Nominal og år svarer til Hede BV4 («3 Skilling lybsk» 
+          = 1/16 rigsdaler, 1641–43); et Schou-nummer mangler, henførelsen er en antagelse.
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-425006
     fuss: seed_unsorted
     phase: kmk
@@ -158913,7 +159263,7 @@ coins:
     nominal: 1/16 Rigsdaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1641
     year_last: 1641
     year_label: '1641'
@@ -158927,6 +159277,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/740340
         ref: KMM 740340 (Inv. FP 422.102)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_rd.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_rd.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id008
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-740352
     fuss: seed_unsorted
     phase: kmk
@@ -158959,7 +159332,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1642
     year_last: 1642
     year_label: '1642'
@@ -158975,6 +159348,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149358
         ref: KMM 149358 (Inv. KP 1656.955)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-149359
     fuss: seed_unsorted
     phase: kmk
@@ -158984,7 +159380,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1642
     year_last: 1642
     year_label: '1642'
@@ -159000,6 +159396,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149359
         ref: KMM 149359 (Inv. KP 1656.954)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-149360
     fuss: seed_unsorted
     phase: kmk
@@ -159009,7 +159428,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1642
     year_last: 1642
     year_label: '1642'
@@ -159025,6 +159444,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149360
         ref: KMM 149360 (Inv. KP 1656.953)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-149361
     fuss: seed_unsorted
     phase: kmk
@@ -159034,7 +159476,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1642
     year_last: 1642
     year_label: '1642'
@@ -159050,6 +159492,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149361
         ref: KMM 149361 (Inv. KP 1656.952)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-149362
     fuss: seed_unsorted
     phase: kmk
@@ -159059,7 +159524,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1642
     year_last: 1642
     year_label: '1642'
@@ -159075,6 +159540,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149362
         ref: KMM 149362 (Inv. KP 1656.951)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-149363
     fuss: seed_unsorted
     phase: kmk
@@ -159084,7 +159572,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1642
     year_last: 1642
     year_label: '1642'
@@ -159100,6 +159588,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149363
         ref: KMM 149363 (Inv. KP 1656.950)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-149364
     fuss: seed_unsorted
     phase: kmk
@@ -159109,7 +159620,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1642
     year_last: 1642
     year_label: '1642'
@@ -159125,6 +159636,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149364
         ref: KMM 149364 (Inv. KP 1656.949)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-195861
     fuss: seed_unsorted
     phase: kmk
@@ -159440,7 +159974,7 @@ coins:
     nominal: 1/16 Rigsdaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1642
     year_last: 1642
     year_label: '1642'
@@ -159454,6 +159988,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/425003
         ref: KMM 425003 (Inv. FP 2447.79)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_rd.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_rd.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id008
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-425004
     fuss: seed_unsorted
     phase: kmk
@@ -159487,7 +160044,7 @@ coins:
     metal: silver
     metal_verified: true
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1642
     year_last: 1642
     year_label: '1642'
@@ -159501,6 +160058,37 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/575790
         ref: KMM 575790 (Inv. FP 533.120)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_6sk.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_6sk.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason:
+        de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König war Friedrich III. erst ab 1648; 1641–1643 prägte er als Erzbischof von Bremen. «6 Skilling» 1642 entspricht vermutlich 
+          der «1/2 Rigsort (6 skilling lybsk)» 1642 bei Hede (Abschnitt Bremen-Verden); eine Annahme.
+        en: The National Museum record (KMM) names «Frederik 3». Frederik III was king only from 1648; in 1641–1643 he struck coins as Archbishop of Bremen. «6 Skilling» 1642 probably matches the «1/2
+          Rigsort (6 skilling lybsk)» 1642 in Hede (section Bremen-Verden); an assumption.
+        uk: Запис Національного музею (KMM) називає «Frederik 3». Королем Frederik III став лише 1648 р.; у 1641–1643 рр. він карбував як архієпископ Бремена. «6 Skilling» 1642, імовірно, відповідає 
+          «1/2 Rigsort (6 skilling lybsk)» 1642 у Hede (розділ Bremen-Verden); припущення.
+        da: Nationalmuseets post (KMM) nævner «Frederik 3». Konge blev Frederik III først i 1648; 1641–1643 prægede han som ærkebiskop af Bremen. «6 Skilling» 1642 svarer formentlig til «1/2 Rigsort 
+          (6 skilling lybsk)» 1642 hos Hede (afsnit Bremen-Verden); en antagelse.
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-575819
     fuss: seed_unsorted
     phase: kmk
@@ -159629,7 +160217,7 @@ coins:
     nominal: 1/16 Rigsdaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1642
     year_last: 1642
     year_label: '1642'
@@ -159643,6 +160231,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/740338
         ref: KMM 740338 (Inv. FP 422.104)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_rd.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_rd.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id008
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-740339
     fuss: seed_unsorted
     phase: kmk
@@ -159652,7 +160263,7 @@ coins:
     nominal: 1/16 Rigsdaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1642
     year_last: 1642
     year_label: '1642'
@@ -159666,6 +160277,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/740339
         ref: KMM 740339 (Inv. FP 422.103)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_rd.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_rd.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id008
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-740383
     fuss: seed_unsorted
     phase: kmk
@@ -159723,7 +160357,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1643
     year_last: 1643
     year_label: '1643'
@@ -159739,6 +160373,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149355
         ref: KMM 149355 (Inv. KP 1656.958)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-149356
     fuss: seed_unsorted
     phase: kmk
@@ -159748,7 +160405,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1643
     year_last: 1643
     year_label: '1643'
@@ -159764,6 +160421,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149356
         ref: KMM 149356 (Inv. KP 1656.957)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-149357
     fuss: seed_unsorted
     phase: kmk
@@ -159773,7 +160453,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1643
     year_last: 1643
     year_label: '1643'
@@ -159789,6 +160469,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/149357
         ref: KMM 149357 (Inv. KP 1656.956)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv4.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id007
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-158132
     fuss: seed_unsorted
     phase: kmk
@@ -163533,7 +164236,7 @@ coins:
     nominal: 4 Skilling
     metal_verified: false
     mint_verified: false
-    ruler: Christian
+    ruler: Christian IV.
     year_first: 1644
     year_last: 1645
     year_label: 1644-1645
@@ -163549,6 +164252,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/330825
         ref: KMM 330825 (Inv. FP 6233.26)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Christian
+        correct: Christian IV.
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Christian
+        correct: Christian IV.
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-332663
     fuss: seed_unsorted
     phase: kmk
@@ -172093,7 +172815,7 @@ coins:
     nominal: 1/96 Daler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Friedrich III. von Gottorp
     year_first: 1647
     year_last: 1647
     year_label: '1647'
@@ -172109,6 +172831,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/372489
         ref: KMM 372489 (Inv. FP 4291.11)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: gottorp_lange.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: gottorp_lange.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id006
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-424949
     fuss: seed_unsorted
     phase: kmk
@@ -264014,7 +264759,7 @@ coins:
     nominal: 1 Skilling
     metal_verified: false
     mint_verified: false
-    ruler: Christian
+    ruler: Christian V.
     year_first: 1686
     year_last: 1686
     year_label: '1686'
@@ -264030,6 +264775,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/308807
         ref: KMM 308807 (Inv. FP 7415.5)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Christian
+        correct: Christian V.
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Christian
+        correct: Christian V.
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-317551
     fuss: seed_unsorted
     phase: kmk
@@ -344175,7 +344939,7 @@ coins:
     metal_verified: false
     mint: Malmø
     mint_verified: true
-    ruler: Christian
+    ruler: Christian I.
     weight_rough_verified: false
     catalog:
       galster: '23'
@@ -344185,6 +344949,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/307062
         ref: KMM 307062 (Inv. FP 7709.10)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Christian
+        correct: Christian I.
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Christian
+        correct: Christian I.
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-307583
     fuss: seed_unsorted
     phase: kmk
@@ -345572,7 +346355,7 @@ coins:
     metal_verified: false
     mint: Malmø
     mint_verified: true
-    ruler: Christian
+    ruler: Christian I.
     weight_rough_verified: false
     catalog:
       galster: '23'
@@ -345582,6 +346365,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/312338
         ref: KMM 312338 (Inv. FP 7100.12)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Christian
+        correct: Christian I.
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Christian
+        correct: Christian I.
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-314606
     fuss: seed_unsorted
     phase: kmk
@@ -346550,7 +347352,7 @@ coins:
     metal_verified: false
     mint: Gotland
     mint_verified: true
-    ruler: Søren Nordby
+    ruler: Christian II.
     weight_rough_verified: false
     catalog:
       galster: '144'
@@ -346560,6 +347362,28 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/317111
         ref: KMM 317111 (Inv. FP 6819.1)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Søren Nordby
+        correct: Christian II.
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: norby.'
+    ruler_mark:
+      kind: erroneous
+      value: Søren Nordby
+      reason:
+        de: Der Datensatz des Nationalmuseums (KMM) nennt «Søren Nordby». Søren Norby war Lehnsmann auf Visborg (Gotland, 1517–1525) und prägte im Namen König Christians II.; sein eigener Name steht 
+          auf der Vorderseite (Galster 144).
+        en: The National Museum record (KMM) names «Søren Nordby». Søren Norby was the king's fief-holder at Visborg (Gotland, 1517–1525) and struck in the name of King Christian II; his own name is 
+          on the obverse (Galster 144).
+        uk: Запис Національного музею (KMM) називає «Søren Nordby». Søren Norby був ленсманом короля у Visborg (Готланд, 1517–1525) і карбував від імені короля Christian II; його власне ім'я стоїть на
+          аверсі (Galster 144).
+        da: Nationalmuseets post (KMM) nævner «Søren Nordby». Søren Norby var lensmand på Visborg (Gotland, 1517–1525) og prægede i kong Christian II's navn; hans eget navn står på forsiden (Galster 
+          144).
+    _errata_applied:
+      - field: ruler
+        printed: Søren Nordby
+        correct: Christian II.
   - id: kmk-317556
     fuss: seed_unsorted
     phase: kmk
@@ -347744,7 +348568,7 @@ coins:
     nominal: 2 Skilling
     metal_verified: false
     mint_verified: false
-    ruler: Christian
+    ruler: Christian IV.
     weight_rough_verified: false
     catalog:
       hede: '134'
@@ -347754,6 +348578,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/332024
         ref: KMM 332024 (Inv. FP 6063.12)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Christian
+        correct: Christian IV.
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Christian
+        correct: Christian IV.
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-332038
     fuss: seed_unsorted
     phase: kmk
@@ -365169,7 +366012,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/150299
         ref: KMM 150299 (Inv. KP 1656.14)
-    verification_note: *id006
+    verification_note: *id009
   - id: kmk-160309
     fuss: seed_unsorted
     phase: kmk
@@ -365190,7 +366033,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/160309
         ref: KMM 160309 (Inv. FP 3312.1)
-    verification_note: *id006
+    verification_note: *id009
   - id: kmk-28296
     fuss: seed_unsorted
     phase: kmk
