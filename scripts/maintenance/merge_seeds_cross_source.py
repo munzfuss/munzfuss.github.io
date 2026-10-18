@@ -753,6 +753,27 @@ _GALSTER_RULER_ALIASES = {
 }
 
 
+def _catalogue_section(coin: dict) -> str | None:
+    """A section inside one ruler's catalogue that restarts Hede and Schou.
+
+    Christian IV's 1627 Wolfenbüttel coinage is catalogued as its own section
+    (danskmoent «Hede Wolfenbüttel 3A / 3B / 5», pages `chr/c4wolfh*.htm`;
+    Schou 4 = 2 Speciedaler, 5-11 Speciedaler, 12-16 Gutergroschen), so its
+    «Hede 5» is not the Danish or Norwegian Hede 5 of the same king
+    (curator 2026-10-18). Recognised by `hede_volume` «c4wolf…» or, for the
+    sources that cite a bare number (Bruun, IKMK, KMM), by the mint
+    Wolfenbüttel under Christian IV. Returns «wolfenbüttel» or None."""
+    cat = coin.get("catalog") or {}
+    if (cat.get("hede_volume") or "").strip().lower().startswith("c4wolf"):
+        return "wolfenbüttel"
+    mint = coin.get("mint")
+    mints = mint if isinstance(mint, list) else [mint]
+    if any(isinstance(m, str) and "wolfenb" in m.lower() for m in mints):
+        if _normalise_ruler(coin.get("ruler")) == _normalise_ruler("Christian IV"):
+            return "wolfenbüttel"
+    return None
+
+
 def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
     """Return dict of {scope_key: ref_value} for every catalog ref.
     Keys encode scope so cross-volume / cross-ruler collisions don't
@@ -816,6 +837,9 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         else:
             scope = ""
         key = f"hede/{scope}" if scope else "hede"
+        _section = _catalogue_section(coin)
+        if _section:
+            key = f"{key}/{_section}"
         hede_vals = _split_multi(hede)
         refs[key] = "|".join(sorted(hede_vals)) if hede_vals else str(hede).strip()
 
@@ -890,11 +914,16 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
     # Norwegian numbering is already separated by entity).
     _reign = _normalise_ruler(coin.get("ruler")) or (
         cat.get("hede_volume") or "").strip()
+    _section = _catalogue_section(coin)
     for _ridx in ("schou", "sieg"):
         _v = cat.get(_ridx)
         if _v is None:
             continue
         _key = f"{_ridx}/{_reign}" if _reign else _ridx
+        # Schou restarts inside the Wolfenbüttel section; Sieg does not
+        # (Sieg 187-196 continue Christian IV's sequence).
+        if _section and _ridx == "schou":
+            _key = f"{_key}/{_section}"
         _vals = _split_multi(_v)
         refs[_key] = "|".join(sorted(_vals)) if _vals else str(_v).strip()
 
@@ -1870,6 +1899,10 @@ def _hede_series(coin: dict) -> str | None:
     """
     if not coin:
         return None
+    # The Wolfenbüttel section is a series of its own (see
+    # `_catalogue_section`); it is known even without a volume code.
+    if _catalogue_section(coin) == "wolfenbüttel":
+        return "wolfenbüttel"
     vol = ((coin.get("catalog") or {}).get("hede_volume") or "").strip()
     if not vol:
         return None
@@ -2059,6 +2092,25 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
                 "why": [f"hede series differs: {_sa} vs {_sb} "
                         f"(Danish and Norwegian Hede volumes number "
                         f"independently)"]}
+
+    # A catalogue SECTION (Christian IV's Wolfenbüttel coinage, see
+    # `_catalogue_section`) numbers Hede and Schou on its own. Once its keys
+    # carry the section, a Danish «Hede 55» and a Wolfenbüttel «Hede 3» no
+    # longer collide — and therefore no longer DISAGREE, which let nominal +
+    # year pull KMM «H 55» (København) into Hede W3. So: when exactly one side
+    # is in the section and both sides cite a Hede or Schou number, the
+    # numbers belong to different series — no match (curator 2026-10-18).
+    _seca, _secb = _catalogue_section(coin_a), _catalogue_section(coin_b)
+    if _seca != _secb:
+        _ca = coin_a.get("catalog") or {}
+        _cb = coin_b.get("catalog") or {}
+        if (any(_ca.get(k) for k in ("hede", "schou"))
+                and any(_cb.get(k) for k in ("hede", "schou"))):
+            return {"decision": "no_match",
+                    "primary": {}, "fallback": {},
+                    "why": [f"catalogue section differs: {_seca or 'main'} vs "
+                            f"{_secb or 'main'} (Hede and Schou restart "
+                            f"inside the Wolfenbüttel section)"]}
 
     # Weight tier-1 disambiguator (user-confirmed 2026-05-22, refined
     # same day to be catalog-strength-aware).
