@@ -4099,3 +4099,13 @@ removals:
     field: lange
     dropped: ['542']
     reason: Covered by the merged range Lange 541-542 (normalise_numeric_index); curator-agreed 2026-10-17.
+  # ── Hede Wolfenbüttel 5 (curator 2026-10-18) ──────────────────────────────
+  # KMM 149615 prints place «København» for a Schou 11 = Hede Wolfenbüttel 5
+  # Speciedaler; danskmoent c4wolfh5 gives Wolfenbüttel only. The KMM value is
+  # now an erroneous mint_mark (shown with (!), out of all logic); the class's
+  # stored mint loses the Kopenhagen it had accumulated from that record.
+  - seed: kmk-149615
+    kind: field
+    field: mint
+    dropped: [Kopenhagen]
+    reason: KMM «København» for Hede Wolfenbüttel 5 — danskmoent c4wolfh5 gives Wolfenbüttel; kept visible as an erroneous mint_mark.
