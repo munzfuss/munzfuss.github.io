@@ -7,6 +7,23 @@
 # Loaded by merge_seeds_cross_source.py::_load_decisions on every Phase 3.2 run.
 
 merges:
+  # Wolfenbüttel 1627 Speciedaler, Hede 3 / 3A (Curator Serhii, 2026-10-18,
+  # Bruun Part V re-flow review). The whole intended class: the four IKMK
+  # specimens published as «Hede (1971) 140 Nr. 3», Bruun Part V lot 14111
+  # (Hede-3A, Schou-8, KM-66) and KMM 291967 («Sch 8» = Hede 3A by the Bruun
+  # lots), plus KMM 290904 («Sch 5»), which sat in this class before the re-flow
+  # moved it to Hede 5. Schou 5 has no Hede concordance in our sources; it stays
+  # here by the curator's call, not by a shared index.
+  - members:
+      - ikmk-18250994
+      - ikmk-18250995
+      - ikmk-18250996
+      - ikmk-18250997
+      - dk-bruun-5533
+      - kmk-291967
+      - kmk-290904
+    reason: 'Hede base 3 (IKMK «Hede 140 Nr. 3», Bruun lot 14111 Hede-3A) and Schou 8 (KMM 291967 = Bruun 14111) unify the class (§9.4). KMM 290904 (Sch 5) kept here by curator decision 2026-10-18 — no source gives its Hede number.'
+
   - members:
       - tid-tid-190737
       - ikmk-18232372
@@ -15,3 +32,17 @@ merges:
       - tid-tid-190741
       - ikmk-18232375
     reason: 'Curator decision 2026-10-05 (Serhii), approved in chat after a field-by-field table. One 6 Taler (Löser) 1634 of Friedrich Ulrich, held by ucoin (tid 190741: KM 383, 169.8 g, mint «Clausthal-Zellerfeld») and IKMK Berlin (18232375: Zellerfeld, mintmaster Henning Schlüter, Duve 14-II, 173.52 g, 95 mm). NO shared catalogue base (KM vs Duve), so this rests on nominal, ruler, year, metal and a 2.1 % weight gap, plus no other 6 Taler 1634 of Friedrich Ulrich in any source. Recorded as the curator''s call against the §9.4 gate. Became matchable once «Clausthal-Zellerfeld» was marked unverified.'
+
+no_merges:
+  # Curator 2026-10-18: Hede 5 (IKMK «Hede 140 Nr. 5») takes neither KMM 290904
+  # («Sch 5», belongs with Hede 3 above) nor KMM 291968 («Sch 10» — Schou 10 is
+  # Hede 3B by Bruun Part III lot 11199, not Hede 5 = Schou 11 per Bruun Part II
+  # lot 13110). KMM 291968 stands alone until a source names its Hede number.
+  - members:
+      - kmk-290904
+      - ikmk-18250998
+    reason: 'KMM 290904 (Sch 5) is not the Hede 5 Speciedaler; it belongs to the Hede 3 class. Curator 2026-10-18.'
+  - members:
+      - kmk-291968
+      - ikmk-18250998
+    reason: 'KMM 291968 «Sch 10»: Schou 10 = Hede 3B (Bruun Part III lot 11199), Hede 5 = Schou 11 (Bruun Part II lot 13110). Not this coin. Curator 2026-10-18.'

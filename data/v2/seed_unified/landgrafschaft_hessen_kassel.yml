@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `landgrafschaft_hessen_kassel`.
-# Generated 2026-10-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/landgrafschaft_hessen_kassel.yml across all sources.
 #
-# Input: 442 per-source seed entries.
+# Input: 443 per-source seed entries.
 # Output: 422 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,8 +11,57 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: landgrafschaft_hessen_kassel
-generated_at: '2026-10-09'
+generated_at: '2026-10-18'
 coins:
+  - id: unified-dk-bruun-12814
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Taler
+    year_first: 1733
+    year_last: 1733
+    year_label: '1733'
+    ruler: Fredrik I
+    mintmaster: Louis Rollin
+    catalog:
+      km: '418'
+      bruun_collection_id: '12814'
+      dav: '2294'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 28.0
+        source: ucoin
+      - value: 28.78
+        source: bruun
+    diameter_mm:
+      - value: 40.0
+        source: ucoin
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14181, p. 281
+      - type: ucoin
+        url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1733/?tid=121111
+        ref: ucoin
+    verification_note:
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
+    issuing_entity: landgrafschaft_hessen_kassel
+    composed_of:
+      - dk-bruun-12814
+      - tid-tid-121111
   - id: unified-dk-bruun-12844
     fuss: seed_unsorted
     phase: bruun
@@ -60,6 +109,8 @@ coins:
         ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
       uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
         специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-bruun-12844
@@ -114,6 +165,8 @@ coins:
         ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
       uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
         специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - dk-bruun-12898
@@ -4303,42 +4356,6 @@ coins:
     issuing_entity: landgrafschaft_hessen_kassel
     composed_of:
       - tid-tid-121110
-  - id: unified-tid-tid-121111
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1733
-    year_last: 1733
-    year_label: '1733'
-    ruler: Frederick I
-    catalog:
-      km: '418'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 28.0
-        source: ucoin
-    diameter_mm:
-      - value: 40.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/hesse_kassel-1-thaler-1733/?tid=121111
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
-    issuing_entity: landgrafschaft_hessen_kassel
-    composed_of:
-      - tid-tid-121111
   - id: unified-tid-tid-121113
     fuss: seed_unsorted
     phase: ucoin

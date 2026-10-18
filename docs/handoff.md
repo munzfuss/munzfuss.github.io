@@ -16,6 +16,12 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-18 — Bruun Part V seeded and re-flowed
+
+- `_SEEDED_PARTS = (1..5)`; bruun seed + full merge + absorb (from HEAD final). verify_reflow 0 losses, citations 0 missing, validate OK. Sweden +98 coins, danish_norway/realm/royal_holstein got the Part V specimens.
+- Curator decisions applied: 4 lots added to existing `_cross_entity.yml` groups (6301 Guldkrone, 7850 12 Mark, 8095 Frederik d'or, 7892 Rejsedaler); 7892's «Copenhagen Mint» = erroneous `mint_mark` (new mint_mark → mint_alts mechanism); Hede 28B split from Hede 31 (foundation `f3h31` reset + `no_merges`); KM B445 kept off Hede 55 (`no_merges`); Wolfenbüttel 1627 Hede 3 class fixed (merge incl. KMM 290904; KMM 291968 «Sch 10» unbound from Hede 5); Hede Norge 32A/B/C union + KM 51 moved to Hede 32 accepted, stale KM 51 removed from `nf3h33`; Hvid 1575 regroup accepted.
+- Open: final `unified-dk-hede-c5h55` still carries stale KM 445/375/387 (pre-existing); KMM 291968 («Sch 10» = Hede 3B by Bruun) stands alone in brunswick; absorb on HEAD `e4afc3a` not idempotent (other session investigating).
+
 ## 2026-10-16 — Bruun Part V (Copenhagen 27–28 Oct 2026) harvested, parsed, NOT seeded
 
 - PDF `scripts/cache/bruun/part5.pdf` (228 pp., sha256 `21327fc0…a82eb8d`), source URL danskmoent.dk only (Stack's Bowers page still lists I–IV); Wayback copy `https://web.archive.org/web/20261016155119/https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf` (curator-approved Save Page Now 2026-10-16, sha256 identical). Lots 14001–14226 DK, 15001–15188 NO/SE/DE, 15189–15283 medals. `lots/part5.json` = 509/509.

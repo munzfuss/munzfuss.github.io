@@ -948,6 +948,33 @@ merges:
     reason: 'Christian IV Denning class B = KM 62: NGC WCPG 1049834 and NumisMaster MC_64951 are the same Krause entry (KM# 62, 1619, Copenhagen, «Below horse the letter P», titles of czar Mikhail Fjodorovitsj). Curator (Serhii) 2026-10-09.'
 
 no_merges:
+  # Bruun Part V re-flow review (Curator Serhii, 2026-10-18). Hede 28B (2 Dukat
+  # 1664-1667, crowned portrait with inner ring, KM 216.2, Sieg 133.2 — curator
+  # 2026-07-27) and Hede 31 (2 Dukat 1667, uncrowned portrait without ring,
+  # KM 295, Sieg 136; danskmoent f3h28 / f3h31) are different coins. They fused
+  # at absorb through stale KM 216.2 / Bruun 6414 values on the f3h31 final
+  # (removed the same day). Keep the Hede 31 seed apart from the 28B lots.
+  - members:
+      - dk-hede-f3h31
+      - dk-bruun-6413
+    reason: 'Hede 31 (KM 295) is not Hede 28B (KM 216.2): danskmoent f3h31 «ukronet portræt, uden ring» vs f3h28 «kronet portræt, ring indenfor omskrift». Bruun Part V lot 14143 prints Hede-28B / KM-216.2. Curator 2026-10-18.'
+  - members:
+      - dk-hede-f3h31
+      - dk-bruun-6414
+    reason: 'Same split as above — Bruun Part IV lot 17075 prints Hede-28B / KM-216.2. Curator 2026-10-18.'
+  # KM B445 (NumisMaster MC_65801 / NGC: «Christian V on horseback, left» /
+  # «Crowned double monogram», 1696) is not Hede 55 (monogram on pyramid /
+  # prospect of København, undated; danskmoent c5h55). Fused in the Bruun Part V
+  # re-flow with no shared catalogue base. Companion to the B445 x Hede 57 block.
+  - members:
+      - dk-hede-c5h55
+      - ngc-1050901
+    reason: 'KM B445 (horseback / crowned double monogram, 1696) is a different ducat from Hede 55 (pyramid monogram / København prospect, undated). Curator 2026-10-18.'
+  - members:
+      - dk-hede-c5h55
+      - denmark-numismaster-65801
+    reason: 'Same as above — NumisMaster MC_65801 is KM B445. Curator 2026-10-18.'
+
   # §9.4 over-merge split (Curator Serhii, 2026-07-23, by image): ikmk-18219556
   # is a VISUALLY DIFFERENT coin from dk-hede-f3h39 and carries NO catalogue index
   # of its own (1658, 2 Dukaten, Kopenhagen). It auto-glued to f3h39 on
