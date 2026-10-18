@@ -1952,3 +1952,78 @@ merges:
     members:
       - kmk-575790
     reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 6 Skilling 1642: in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+
+  # Wolfenbüttel 1627 Speciedaler of Christian IV — one coin per Hede number
+  # (curator 2026-10-18: «W3AB одна монета, інші каталоги просто більш дрібно
+  # її класифікують»). danskmoent c4wolfh3: «1 Speciedaler 1627, Wolfenbüttel
+  # … A) Årstal i omskrift (Hede Wolfenbüttel 3A, Schou 5-8, Sieg 187)
+  # B) Årstal ved monogram (Hede Wolfenbüttel 3B, Schou 9-10, Sieg 189)» — one
+  # number, one specification, two varieties; Krause (KM 66 / 67) and
+  # Davenport (7758D / 7759) only split it finer. Dual home per the curator's
+  # 2026-07-24 ruling (Danish denomination on a Danish standard, struck in
+  # Lower Saxony).
+  - target_entity: danish_realm
+    issuing_entity: [danish_realm, herzogtum_braunschweig_lueneburg]
+    members:
+      - dk-bruun-5530                 # home: danish_realm  (Hede 3A, KM 66, Schou 6, Bruun II lot 13108)
+      - dk-bruun-5534                 # home: danish_realm  (Hede 3B, KM 67, Schou 9, Bruun II lot 13109)
+      - dk-bruun-5535                 # home: danish_realm  (Hede 3B, KM 67, Schou 10, Bruun III lot 11199)
+      - dk-bruun-5533                 # home: herzogtum_braunschweig_lueneburg  (Hede 3A, KM 66, Schou 8, Bruun V lot 14111)
+      - ikmk-18250994                 # home: herzogtum_braunschweig_lueneburg  (IKMK «Hede (1971) 140 Nr. 3»)
+      - ikmk-18250995                 # home: herzogtum_braunschweig_lueneburg  (IKMK, Hede 3)
+      - ikmk-18250996                 # home: herzogtum_braunschweig_lueneburg  (IKMK, Hede 3)
+      - ikmk-18250997                 # home: herzogtum_braunschweig_lueneburg  (IKMK, Hede 3)
+      - kmk-290904                    # home: herzogtum_braunschweig_lueneburg  (KMM «Sch 5» = 3A)
+      - kmk-290905                    # home: herzogtum_braunschweig_lueneburg  (KMM «Sch 7» = 3A)
+      - kmk-291967                    # home: herzogtum_braunschweig_lueneburg  (KMM «Sch 8» = 3A)
+      - kmk-291968                    # home: herzogtum_braunschweig_lueneburg  (KMM «Sch 10» = 3B)
+    reason: 'One coin — Hede Wolfenbüttel 3 (varieties 3A year in legend / 3B year by monogram), danskmoent c4wolfh3 (Schou 5-8 / 9-10). Every member carries Hede 3/3A/3B or a Schou number inside 5-10. Curator 2026-10-18.'
+  # Hede Wolfenbüttel 5 — «Årstal ved skjold (Hede Wolfenbüttel 5, Schou 11,
+  # Sieg 190)», danskmoent c4wolfh5. KMM 149615 prints «Schou 11» with place
+  # «København» (Hede 5 is Wolfenbüttel) — kept here by its Schou number.
+  - target_entity: danish_realm
+    issuing_entity: [danish_realm, herzogtum_braunschweig_lueneburg]
+    members:
+      - dk-bruun-5536                 # home: danish_realm  (Hede 5, Schou 11, Bruun II lot 13110)
+      - kmk-149615                    # home: danish_realm  (KMM «Schou 11», place «København»)
+      - ikmk-18250998                 # home: herzogtum_braunschweig_lueneburg  (IKMK «Hede (1971) 140 Nr. 5»)
+      - kmk-291969                    # home: herzogtum_braunschweig_lueneburg  (KMM «Sch 11»)
+    # Hede NORGE 5 (Christiania Speciedaler 1629-1648) shares the bare number «Hede 5»
+    # under the same ruler scope; it is a different coin, not a forgotten member.
+    excludes:
+      - dk-bruun-9319
+      - dk-bruun-9332
+      - dk-bruun-9334
+      - dk-bruun-9347
+      - dk-bruun-9351
+      - dk-bruun-9357
+      - dk-bruun-9379
+      - dk-bruun-9387
+      - dk-bruun-9409
+      - dk-bruun-9450
+      - dk-bruun-9481
+      - dk-bruun-9482
+      - dk-bruun-9513
+      - dk-bruun-9531
+      - dk-bruun-9533
+      - dk-bruun-9553
+      - dk-bruun-9573
+      - dk-hede-nc4h5a
+      - dk-hede-nc4h5b
+      - dk-numista-118914
+      - kmk-131614
+      - kmk-131615
+      - kmk-184399
+      - kmk-184400
+      - kmk-184401
+      - kmk-184402
+      - kmk-184404
+      - kmk-190264
+      - kmk-190265
+      - kmk-190266
+      - kmk-190267
+      - kmk-395540
+      - kmk-705836
+      - kmk-705837
+      - kmk-740775
+    reason: 'One coin — Hede Wolfenbüttel 5 (year by the shield), Schou 11, danskmoent c4wolfh5. Curator 2026-10-18.'

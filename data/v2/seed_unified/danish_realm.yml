@@ -2,8 +2,8 @@
 # Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15368 per-source seed entries.
-# Output: 6012 unified entries (one per physical coin).
+# Input: 15379 per-source seed entries.
+# Output: 6010 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -4160,32 +4160,121 @@ coins:
     year_last: 1627
     year_label: '1627'
     ruler: Christian IV
+    inscription_obv: 'MONET : R : D : N : VIC : PHIL : REINH : C : S :'
+    inscription_rev: QVID NON PRO RELIGIONE AO 1627 -/ C 4
     mint: Wolfenbüttel
     catalog:
-      km: '66'
-      bruun_collection_id: '5530'
-      sieg: '193.2'
-      schou: '6'
-      hede: 3A
+      km:
+        - '66'
+        - '67'
+      bruun_collection_id:
+        - '5530'
+        - '5533'
+        - '5534'
+        - '5535'
+      sieg:
+        - '193.2'
+        - '195'
+      schou:
+        - '5'
+        - '6'
+        - '7'
+        - '8'
+        - '9'
+        - '10'
+      hede:
+        - '3'
+        - 3A
+        - 3B
       bruun_part: II
       bruun_lot_no: 13108
       bruun_page: 83
       others:
         - Aagaard# 10
-      dav: 7758D
+        - Aagaard# 9
+        - Aagaard# 8
+        - Aagaard# 7
+        - B# 718
+        - B# 719
+        - B# 720
+        - B# 721
+      dav:
+        - 7758D
+        - '7759'
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 28.16
+        source: bruun
+      - value: 28.35
+        source: kmk
+      - value: 28.45
+        source: ikmk
+      - value: 28.55
+        source: kmk
+      - value: 28.57
+        source: bruun
       - value: 28.65
         source: bruun
+      - value: 28.71
+        source: kmk
+      - value: 28.74
+        source: bruun
+      - value: 28.74
+        source: ikmk
+      - value: 28.87
+        source: ikmk
+      - value: 28.92
+        source: ikmk
+    diameter_mm:
+      - value: 43.0
+        source: ikmk
+      - value: 44.0
+        source: ikmk
+      - value: 45.0
+        source: ikmk
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13108, p. 83
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14111, p. 61
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13109, p. 83
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11199, p. 101
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250994
+        ref: IKMK Berlin 18250994
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250995
+        ref: IKMK Berlin 18250995
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250996
+        ref: IKMK Berlin 18250996
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250997
+        ref: IKMK Berlin 18250997
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290904
+        ref: KMM 290904 (Inv. RP 769.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290905
+        ref: KMM 290905 (Inv. RP 770.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291967
+        ref: KMM 291967 (Inv. RP 771.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291968
+        ref: KMM 291968 (Inv. RP 772.1)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/415742
         ref: KMM 415742 (Inv. FP 601.3)
@@ -4210,72 +4299,19 @@ coins:
       - herzogtum_braunschweig_lueneburg
     composed_of:
       - dk-bruun-5530
-      - kmk-415742
-      - kmk-415743
-  - id: unified-dk-bruun-5534
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1627
-    year_last: 1627
-    year_label: '1627'
-    ruler: Christian IV
-    mint: Wolfenbüttel
-    catalog:
-      km: '67'
-      bruun_collection_id:
-        - '5534'
-        - '5535'
-      sieg: '195'
-      schou:
-        - '9'
-        - '10'
-      hede: 3B
-      bruun_part: II
-      bruun_lot_no: 13109
-      bruun_page: 83
-      others:
-        - Aagaard# 8
-        - Aagaard# 7
-      dav: '7759'
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.16
-        source: bruun
-      - value: 28.57
-        source: bruun
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13109, p. 83
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11199, p. 101
-    note:
-      de: Reichstaler
-      en: Reichstaler
-      uk: Reichstaler
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    issuing_entity:
-      - danish_realm
-      - herzogtum_braunschweig_lueneburg
-    composed_of:
+      - dk-bruun-5533
       - dk-bruun-5534
       - dk-bruun-5535
+      - ikmk-18250994
+      - ikmk-18250995
+      - ikmk-18250996
+      - ikmk-18250997
+      - kmk-290904
+      - kmk-290905
+      - kmk-291967
+      - kmk-291968
+      - kmk-415742
+      - kmk-415743
   - id: unified-dk-bruun-5536
     fuss: seed_unsorted
     phase: bruun
@@ -4285,7 +4321,11 @@ coins:
     year_last: 1627
     year_label: '1627'
     ruler: Christian IV
-    mint: Wolfenbüttel
+    inscription_obv: 'MONET : REGIS : DAN : NORW : VICARII . PHILIP . REINH : COM [:] S :'
+    inscription_rev: QVID NON PRO RELIGIONE -/ C 4
+    mint:
+      - Kopenhagen
+      - Wolfenbüttel
     catalog:
       bruun_collection_id: '5536'
       sieg: '196'
@@ -4296,20 +4336,38 @@ coins:
       bruun_page: 83
       others:
         - Aagaard# 6
+        - B# 722
       dav: '7760'
     metal: silver
-    metal_verified: false
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 28.5
+        source: kmk
       - value: 28.93
         source: bruun
+      - value: 29.07
+        source: ikmk
+    diameter_mm:
+      - value: 44.0
+        source: ikmk
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13110, p. 83
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250998
+        ref: IKMK Berlin 18250998
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/149615
+        ref: KMM 149615 (Inv. KP 1656.698)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291969
+        ref: KMM 291969 (Inv. RP 773.1)
     note:
       de: Reichstaler
       en: Reichstaler
@@ -4328,6 +4386,9 @@ coins:
       - herzogtum_braunschweig_lueneburg
     composed_of:
       - dk-bruun-5536
+      - ikmk-18250998
+      - kmk-149615
+      - kmk-291969
     _errata_applied:
       - source: dk-bruun-5536
         field: km
@@ -143572,30 +143633,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-149613
-  - id: unified-kmk-149615
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_first: 1627
-    year_last: 1627
-    year_label: '1627'
-    ruler: Christian 4
-    mint: Kopenhagen
-    catalog:
-      schou: '11'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/149615
-        ref: KMM 149615 (Inv. KP 1656.698)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-149615
   - id: unified-kmk-149616
     fuss: seed_unsorted
     phase: kmk

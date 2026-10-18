@@ -103049,7 +103049,7 @@ coins:
     composed_of:
       - unified-dk-bruun-5391
   - fuss: seed_unsorted
-    phase: bruun
+    phase: kmk
     kind: kurant
     nominal: 1 Speciedaler
     ruler: Christian IV.
@@ -103062,26 +103062,80 @@ coins:
     year_label: '1627'
     mint: Wolfenbüttel
     catalog:
-      km: '66'
-      bruun_collection_id: '5530'
-      sieg: '193.2'
-      schou: '6'
-      hede: 3A
+      km:
+        - '66'
+        - '67'
+      bruun_collection_id:
+        - '5530'
+        - '5533'
+        - '5534'
+        - '5535'
+      sieg:
+        - '193.2'
+        - '195'
+      schou:
+        - '5'
+        - '6'
+        - '7'
+        - '8'
+        - '9'
+        - '10'
+      hede:
+        - '3'
+        - 3A
+        - 3B
       bruun_part: II
       bruun_lot_no: 13108
       bruun_page: 83
-      dav: 7758D
+      dav:
+        - 7758D
+        - '7759'
       others:
         - Aagaard# 10
+        - Aagaard# 9
+        - Aagaard# 8
+        - Aagaard# 7
+        - B# 718
+        - B# 719
+        - B# 720
+        - B# 721
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 28.16
+        source: bruun
+      - value: 28.35
+        source: kmk
+      - value: 28.45
+        source: ikmk
+      - value: 28.55
+        source: kmk
+      - value: 28.57
+        source: bruun
       - value: 28.65
         source: bruun
+      - value: 28.71
+        source: kmk
+      - value: 28.74
+        source: bruun
+      - value: 28.74
+        source: ikmk
+      - value: 28.87
+        source: ikmk
+      - value: 28.92
+        source: ikmk
+    diameter_mm:
+      - value: 43.0
+        source: ikmk
+      - value: 44.0
+        source: ikmk
+      - value: 45.0
+        source: ikmk
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -103093,6 +103147,41 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/415743
         ref: KMM 415743 (Inv. FP 601.2)
         display: false
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 14111, p. 61
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13109, p. 83
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11199, p. 101
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250994
+        ref: IKMK Berlin 18250994
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250995
+        ref: IKMK Berlin 18250995
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250996
+        ref: IKMK Berlin 18250996
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250997
+        ref: IKMK Berlin 18250997
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290904
+        ref: KMM 290904 (Inv. RP 769.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290905
+        ref: KMM 290905 (Inv. RP 770.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291967
+        ref: KMM 291967 (Inv. RP 771.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291968
+        ref: KMM 291968 (Inv. RP 772.1)
+    inscription_obv: 'MONET : R : D : N : VIC : PHIL : REINH : C : S :'
+    inscription_rev: QVID NON PRO RELIGIONE AO 1627 -/ C 4
     note:
       de: Reichstaler
       en: Reichstaler
@@ -103109,70 +103198,6 @@ coins:
         specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - unified-dk-bruun-5530
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Christian IV.
-    issuing_entity:
-      - danish_realm
-      - herzogtum_braunschweig_lueneburg
-    id: unified-dk-bruun-5534
-    year_first: 1627
-    year_last: 1627
-    year_label: '1627'
-    mint: Wolfenbüttel
-    catalog:
-      km: '67'
-      bruun_collection_id:
-        - '5534'
-        - '5535'
-      sieg: '195'
-      schou:
-        - '9'
-        - '10'
-      hede: 3B
-      bruun_part: II
-      bruun_lot_no: 13109
-      bruun_page: 83
-      dav: '7759'
-      others:
-        - Aagaard# 8
-        - Aagaard# 7
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.16
-        source: bruun
-      - value: 28.57
-        source: bruun
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13109, p. 83
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11199, p. 101
-    note:
-      de: Reichstaler
-      en: Reichstaler
-      uk: Reichstaler
-      da: Reichstaler
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - unified-dk-bruun-5534
   - fuss: reichsdukatenfuss
     phase: III
     kind: kurant
@@ -252593,7 +252618,7 @@ coins:
     composed_of:
       - unified-dk-hede-c4h45
   - fuss: seed_unsorted
-    phase: bruun
+    phase: kmk
     kind: kurant
     nominal: 1 Speciedaler
     ruler: Christian IV.
@@ -252617,16 +252642,25 @@ coins:
       bruun_page: 83
       others:
         - Aagaard# 6
+        - B# 722
       dav: '7760'
     metal: silver
-    metal_verified: false
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 28.5
+        source: kmk
       - value: 28.93
         source: bruun
+      - value: 29.07
+        source: ikmk
+    diameter_mm:
+      - value: 44.0
+        source: ikmk
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -252634,6 +252668,17 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/149615
         ref: KMM 149615 (Inv. KP 1656.698)
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18250998
+        ref: IKMK Berlin 18250998
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291969
+        ref: KMM 291969 (Inv. RP 773.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291968
+        ref: KMM 291968 (Inv. RP 772.1)
+    inscription_obv: 'MONET : REGIS : DAN : NORW : VICARII . PHILIP . REINH : COM [:] S :'
+    inscription_rev: QVID NON PRO RELIGIONE -/ C 4
     note:
       de: Reichstaler
       en: Reichstaler
@@ -252650,7 +252695,6 @@ coins:
         specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - unified-dk-bruun-5536
-      - unified-kmk-149615
   - fuss: seed_unsorted
     phase: ikmk
     kind: kurant
