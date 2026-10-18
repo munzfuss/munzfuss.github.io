@@ -89,6 +89,8 @@ CURATED_FIELDS = frozenset({
     "year_mark",
     # Same for the ruler (schema Coin.ruler_mark → ruler_alts).
     "ruler_mark",
+    # Same for the mint (schema Coin.mint_mark → mint_alts).
+    "mint_mark",
     # V2 bidirectional seed↔curated link (Phase 6) — both fields are
     # curator-maintained or relink-script-derived audit trail of the
     # §9a multi-specimen merge. They MUST persist across regen so that:
@@ -139,6 +141,26 @@ _THINNED_FROM_KEY = "_thinned_from"
 # merge_decision naming a thinned specimen resolves through it.
 _PRESERVE_ALWAYS_KEYS = frozenset({_CURATION_HOLDS_KEY, _SOURCE_ERRATA_KEY,
                                    _THINNED_FROM_KEY})
+
+
+def apply_mint_mark(entry) -> None:
+    """Neutralise a mint the curator marked «erroneous» (schema Coin.mint_mark).
+
+    The printed value moves into `mint_mark.value` (kept there for the
+    `mint_alts` display) and `mint` is cleared, so every downstream rule — the merger's mint union and matching, entity
+    routing by mint, absorb — sees «no mint from this source», which is what
+    the source's value is worth (curator 2026-10-18: shown for honesty towards
+    the source, reacted to by nothing). Idempotent: a re-run finds `mint`
+    already empty and `value` already set. A «suspect» mark changes nothing
+    here — a suspect mint stays in play, like a suspect reading."""
+    mark = entry.get("mint_mark")
+    if not isinstance(mark, dict) or mark.get("kind") != "erroneous":
+        return
+    printed = entry.get("mint")
+    if printed and not mark.get("value"):
+        mark["value"] = ", ".join(printed) if isinstance(printed, list) else str(printed)
+    if printed is not None:
+        entry["mint"] = None
 
 
 def apply_source_errata(entry) -> None:
@@ -662,5 +684,6 @@ def merge_seed(
     for c in out:
         if isinstance(c, dict):
             apply_source_errata(c)
+            apply_mint_mark(c)
 
     return out, stats

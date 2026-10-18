@@ -347,6 +347,8 @@
       {{- coin.raw.mint|mint_label(coin.raw.year_first) -}}
       {%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
+    {%- set _mints = coin.raw.mint if coin.raw.mint is not string else [coin.raw.mint] -%}
+    {%- for a in coin.raw.mint_alts or [] if a.value not in (_mints or []) %} <span class="mint-alt">{{ a.value }} <span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   </td>
   <td class="c-entity">
     {# V2 issuing_entity may be a list (joint-jurisdiction coins per V2_PIPELINE.md
@@ -481,6 +483,8 @@
       {{- coin.raw.mint|mint_label(coin.raw.year_first) -}}
       {%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
+    {%- set _mints = coin.raw.mint if coin.raw.mint is not string else [coin.raw.mint] -%}
+    {%- for a in coin.raw.mint_alts or [] if a.value not in (_mints or []) %} <span class="mint-alt">{{ a.value }} <span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   </td>
   <td class="c-entity">
     {# V2 list-form aware (same shape as the silver coin_row macro above). #}

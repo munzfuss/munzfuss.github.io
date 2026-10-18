@@ -117,6 +117,24 @@ erratum replaces the seed's ruler, put the printed ruler in `value`. NOTE:
 `ruler` is foundation-immutable in absorb — a corrected ruler must also be set
 on the existing final entry (yaml_io line edit), or it never reaches the render.
 
+## A mark on the MINT
+
+`mint_mark: {kind, value?, reason}` on the SEED (in `CURATED_FIELDS`), the same
+shape as `ruler_mark` (2026-10-18, founding case Bruun Part V lot 14206 printing
+«Copenhagen Mint» for the Altona Rejsedaler 1788, Hede 25). The difference from
+year and ruler: an **erroneous** mint mark is presentational ONLY (curator
+2026-10-18). `seed_merge.apply_mint_mark` moves the printed mint into
+`mint_mark.value` and clears `mint` — at seed write (merge_seed) and again when
+the merger loads seeds — so the value takes part in nothing: not the class's
+mints, not matching, not entity routing. The merger emits `mint_alts`, absorb
+unions them, and the template shows the value muted beside the mint with «(!)».
+A **suspect** mint mark keeps the mint in play (like a suspect reading).
+A builder may set the mark from its own table (Bruun: `_BRUUN_LOT_MINT_MARKS`,
+routing on `route_mint` that ignores the marked value); a hand-written mark on
+a seed works too, but the seed's `issuing_entity` is only re-derived on the
+next builder run. Not a substitute for `_source_errata` when the curator wants
+the value replaced rather than shown.
+
 ## Hard rules
 
 - A mark is written on the SEED reading only. Anything in `final` without a

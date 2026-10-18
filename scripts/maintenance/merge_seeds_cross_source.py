@@ -278,6 +278,7 @@ from lib.v2_seed_writer import _canonicalise_mint
 from lib.v2_entity_classify import classify_mint_to_entity
 from lib.gen_stamp import resolve_generated_at
 from lib.seed_merge import _CURATION_MARK_KEYS
+from lib.seed_merge import apply_mint_mark
 
 
 # The Danish Krone is 4 Mark Danske: Hede names the same coin «4 Mark» where
@@ -2684,6 +2685,14 @@ def _collect_ruler_alts(members: list[dict]) -> list[dict]:
     return _collect_marked_alts(members, "ruler", "ruler")
 
 
+def _collect_mint_alts(members: list[dict]) -> list[dict]:
+    """Mint alternatives from members that carry a `mint_mark` (schema
+    Coin.mint_mark). For an «erroneous» mark the seed's `mint` is already
+    empty (`apply_mint_mark`) and the printed value sits in `mint_mark.value`,
+    so the alt is shown and the value takes part in nothing else."""
+    return _collect_marked_alts(members, "mint", "mint")
+
+
 def _collect_marked_alts(members: list[dict], key: str, label_field: str) -> list[dict]:
     out: list[dict] = []
     seen: set[tuple[str, str]] = set()
@@ -4003,6 +4012,9 @@ def build_unified(members: list[dict], unified_id: str,
     ruler_alts = _collect_ruler_alts(members)
     if ruler_alts:
         out["ruler_alts"] = ruler_alts
+    mint_alts = _collect_mint_alts(members)
+    if mint_alts:
+        out["mint_alts"] = mint_alts
 
     # Sources union
     sources = _collect_sources(members)
@@ -4224,6 +4236,9 @@ def _load_seeds_for_entity(entity_id: str) -> list[dict]:
         doc = _fast_load(path.read_text(encoding="utf-8")) or {}
         for c in doc.get("coins") or []:
             if isinstance(c, dict) and c.get("id"):
+                # An «erroneous» mint mark takes the printed mint out of play
+                # even on a seed hand-marked since its last regen.
+                apply_mint_mark(c)
                 coins.append(c)
     return coins
 
@@ -4288,6 +4303,7 @@ def _load_all_seeds() -> tuple[dict[str, dict], dict[str, str]]:
             doc = _fast_load(path.read_text(encoding="utf-8")) or {}
             for c in doc.get("coins") or []:
                 if isinstance(c, dict) and c.get("id"):
+                    apply_mint_mark(c)
                     by_id[c["id"]] = c
                     home[c["id"]] = entity
     return by_id, home

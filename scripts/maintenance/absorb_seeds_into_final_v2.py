@@ -510,9 +510,14 @@ def _apply_migrated_merge_fields(entry: dict, fid: str,
     # used to land the coin in seed_unsorted: the replace-shaped fields were
     # applied on the bulk-promote path only, and an existing host is never
     # bulk-promoted. A host that already carries a classification keeps it.
-    classes = set(migrated.get("__classes__") or [])
+    # De-duplicated by a canonical key, not by `set()`: `phase` may be a
+    # per-location dict ({denmark: …, schleswig_holstein: …}), which is
+    # unhashable — `set()` crashed absorb on royal_holstein (2026-10-18).
+    classes: dict[str, tuple] = {}
+    for cls in migrated.get("__classes__") or []:
+        classes.setdefault(_json.dumps(cls, sort_keys=True, default=str), cls)
     if len(classes) == 1 and entry.get("fuss") in (None, "", "seed_unsorted"):
-        entry["fuss"], entry["phase"], entry["kind"] = next(iter(classes))
+        entry["fuss"], entry["phase"], entry["kind"] = next(iter(classes.values()))
     for key, value in migrated.items():
         if not key.startswith("__merge__"):
             continue
@@ -736,7 +741,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # by (value, source). The merger emits them from the seeds' `year_mark` /
     # `ruler_mark`; the final never carries one the current members do not, so
     # a mark removed on the seed disappears here on the next absorb.
-    for _fld in ("year_alts", "ruler_alts"):
+    for _fld in ("year_alts", "ruler_alts", "mint_alts"):
         _alts: list[dict] = []
         _alt_seen: set[tuple[str, str]] = set()
         for _m in members:
