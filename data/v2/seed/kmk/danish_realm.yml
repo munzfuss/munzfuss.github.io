@@ -236,7 +236,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139318
         ref: KMM 139318 (Inv. KP 1715.401)
-    verification_note: &id009
+    verification_note: &id010
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
@@ -167222,7 +167222,7 @@ coins:
     nominal: 1 Skilling
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Friedrich III. von Gottorp
     year_first: 1645
     year_last: 1645
     year_label: '1645'
@@ -167236,6 +167236,37 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/133404
         ref: KMM 133404 (Inv. FP 9374.27)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM «Frederik 3» 1645 (nation «Danmark», no index) — possibly Duke Frederik III of Gottorp; KMM value kept as erroneous (!) via ruler_mark, ours shown (?).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM «Frederik 3» 1645 (nation «Danmark», no index) — possibly Duke Frederik III of Gottorp; KMM value kept as erroneous (!) via ruler_mark, ours shown (?).'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: &id009
+        de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König Friedrich III. regierte erst ab 1648 (Huldigung am 6. Juli 1648). Seine Bremer Prägung als Erzbischof reicht bei Hede bis 
+          1643, 1645 wurde Bremen-Verden schwedisch; Herzog Friedrich III. von Gottorp prägte Dütchen ab 1647 (Lange 345). Die Zuweisung an Gottorp ist eine Annahme.
+        en: The National Museum record (KMM) names «Frederik 3». King Frederik III reigned only from 1648 (homage on 6 July 1648). His Bremen coinage as Archbishop runs in Hede to 1643, and in 1645 
+          Bremen-Verden passed to Sweden; Duke Frederik III of Gottorp struck Dütchen from 1647 (Lange 345). The attribution to Gottorp is an assumption.
+        uk: Запис Національного музею (KMM) називає «Frederik 3». Король Frederik III правив лише з 1648 р. (присяга 6 липня 1648 р.). Його бременське карбування як архієпископа у Hede доходить до 
+          1643 р., а 1645 р. Бремен-Верден відійшов до Швеції; герцог Frederik III Gottorp карбував Dütchen з 1647 р. (Lange 345). Віднесення до Gottorp — припущення.
+        da: Nationalmuseets post (KMM) nævner «Frederik 3». Kong Frederik III regerede først fra 1648 (hyldning 6. juli 1648). Hans bremiske prægning som ærkebiskop går hos Hede til 1643, og i 1645 
+          kom Bremen-Verden under Sverige; hertug Frederik III af Gottorp prægede Dütchen fra 1647 (Lange 345). Henførelsen til Gottorp er en antagelse.
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-137179
     fuss: seed_unsorted
     phase: kmk
@@ -170265,7 +170296,7 @@ coins:
     nominal: 1 Dütken
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Friedrich III. von Gottorp
     year_first: 1645
     year_last: 1645
     year_label: '1645'
@@ -170279,6 +170310,29 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/355003
         ref: KMM 355003 (Inv. FP 4845.26)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM «Frederik 3» 1645 (nation «Danmark», no index) — possibly Duke Frederik III of Gottorp; KMM value kept as erroneous (!) via ruler_mark, ours shown (?).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM «Frederik 3» 1645 (nation «Danmark», no index) — possibly Duke Frederik III of Gottorp; KMM value kept as erroneous (!) via ruler_mark, ours shown (?).'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason: *id009
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-367718
     fuss: seed_unsorted
     phase: kmk
@@ -366023,7 +366077,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/150299
         ref: KMM 150299 (Inv. KP 1656.14)
-    verification_note: *id009
+    verification_note: *id010
   - id: kmk-160309
     fuss: seed_unsorted
     phase: kmk
@@ -366044,7 +366098,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/160309
         ref: KMM 160309 (Inv. FP 3312.1)
-    verification_note: *id009
+    verification_note: *id010
   - id: kmk-28296
     fuss: seed_unsorted
     phase: kmk

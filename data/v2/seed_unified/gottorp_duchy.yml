@@ -2,8 +2,8 @@
 # Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
-# Input: 815 per-source seed entries.
-# Output: 441 unified entries (one per physical coin).
+# Input: 817 per-source seed entries.
+# Output: 443 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3523,6 +3523,49 @@ coins:
         field: ruler_verified
         printed: true
         correct: false
+  - id: unified-kmk-133404
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1645
+    year_last: 1645
+    year_label: '1645'
+    ruler: Friedrich III. von Gottorp
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    ruler_alts:
+      - value: Frederik 3
+        source: kmk
+        kind: erroneous
+        reason:
+          de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König Friedrich III. regierte erst ab 1648 (Huldigung am 6. Juli 1648). Seine Bremer Prägung als Erzbischof reicht bei Hede 
+            bis 1643, 1645 wurde Bremen-Verden schwedisch; Herzog Friedrich III. von Gottorp prägte Dütchen ab 1647 (Lange 345). Die Zuweisung an Gottorp ist eine Annahme.
+          en: The National Museum record (KMM) names «Frederik 3». King Frederik III reigned only from 1648 (homage on 6 July 1648). His Bremen coinage as Archbishop runs in Hede to 1643, and in 1645 
+            Bremen-Verden passed to Sweden; Duke Frederik III of Gottorp struck Dütchen from 1647 (Lange 345). The attribution to Gottorp is an assumption.
+          uk: Запис Національного музею (KMM) називає «Frederik 3». Король Frederik III правив лише з 1648 р. (присяга 6 липня 1648 р.). Його бременське карбування як архієпископа у Hede доходить до 
+            1643 р., а 1645 р. Бремен-Верден відійшов до Швеції; герцог Frederik III Gottorp карбував Dütchen з 1647 р. (Lange 345). Віднесення до Gottorp — припущення.
+          da: Nationalmuseets post (KMM) nævner «Frederik 3». Kong Frederik III regerede først fra 1648 (hyldning 6. juli 1648). Hans bremiske prægning som ærkebiskop går hos Hede til 1643, og i 1645 
+            kom Bremen-Verden under Sverige; hertug Frederik III af Gottorp prægede Dütchen fra 1647 (Lange 345). Henførelsen til Gottorp er en antagelse.
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/133404
+        ref: KMM 133404 (Inv. FP 9374.27)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-133404
+    _errata_applied:
+      - source: kmk-133404
+        field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - source: kmk-133404
+        field: ruler_verified
+        printed: true
+        correct: false
   - id: unified-kmk-150537
     fuss: seed_unsorted
     phase: kmk
@@ -5256,6 +5299,49 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-354423
+  - id: unified-kmk-355003
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Dütken
+    year_first: 1645
+    year_last: 1645
+    year_label: '1645'
+    ruler: Friedrich III. von Gottorp
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    ruler_alts:
+      - value: Frederik 3
+        source: kmk
+        kind: erroneous
+        reason:
+          de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König Friedrich III. regierte erst ab 1648 (Huldigung am 6. Juli 1648). Seine Bremer Prägung als Erzbischof reicht bei Hede 
+            bis 1643, 1645 wurde Bremen-Verden schwedisch; Herzog Friedrich III. von Gottorp prägte Dütchen ab 1647 (Lange 345). Die Zuweisung an Gottorp ist eine Annahme.
+          en: The National Museum record (KMM) names «Frederik 3». King Frederik III reigned only from 1648 (homage on 6 July 1648). His Bremen coinage as Archbishop runs in Hede to 1643, and in 1645 
+            Bremen-Verden passed to Sweden; Duke Frederik III of Gottorp struck Dütchen from 1647 (Lange 345). The attribution to Gottorp is an assumption.
+          uk: Запис Національного музею (KMM) називає «Frederik 3». Король Frederik III правив лише з 1648 р. (присяга 6 липня 1648 р.). Його бременське карбування як архієпископа у Hede доходить до 
+            1643 р., а 1645 р. Бремен-Верден відійшов до Швеції; герцог Frederik III Gottorp карбував Dütchen з 1647 р. (Lange 345). Віднесення до Gottorp — припущення.
+          da: Nationalmuseets post (KMM) nævner «Frederik 3». Kong Frederik III regerede først fra 1648 (hyldning 6. juli 1648). Hans bremiske prægning som ærkebiskop går hos Hede til 1643, og i 1645 
+            kom Bremen-Verden under Sverige; hertug Frederik III af Gottorp prægede Dütchen fra 1647 (Lange 345). Henførelsen til Gottorp er en antagelse.
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/355003
+        ref: KMM 355003 (Inv. FP 4845.26)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-355003
+    _errata_applied:
+      - source: kmk-355003
+        field: ruler
+        printed: Frederik 3
+        correct: Friedrich III. von Gottorp
+      - source: kmk-355003
+        field: ruler_verified
+        printed: true
+        correct: false
   - id: unified-kmk-355146
     fuss: seed_unsorted
     phase: kmk
