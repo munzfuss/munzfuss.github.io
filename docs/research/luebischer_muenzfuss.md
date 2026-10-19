@@ -1138,6 +1138,35 @@ Hauberg 1885, rough approximation, `year_verified: false`); KMM's values stay vi
 `year_mark` and the new `ruler_mark` (→ `ruler_alts`, the ruler-column analogue of `year_alts`).
 Final `ruler` set to «?» by hand (foundation-immutable in absorb). `mint_verified: true` left as is.
 
+### §6e «cf.» and bare-letter typeNumbers count as no index (2026-10-19; excluded, curator «так»)
+
+The §6a-§6c selection treated a non-empty KMM `typeNumber` as «has an index». Thirteen single-KMM
+classes survived on that test although the field names no index of THE coin: a cf.-reference
+(«Sch. 189, cf.», «Schou cfr. 141-143» — a similar other coin, CLAUDE.md anti-pattern 5; the merger
+already drops it, so the finals carried no `catalog` at all) or a bare letter without a number
+(«G.», «G», «Sch. Mgl.» = Schou mangler). None has a weight, material, description or photo
+(natmus.dk checked live 2026-10-19: `defaultThumbnail` only). Each (nominal, mint, ruler) is carried
+by a class that stays. Found via KMM 274276 (FP 1667.155), curator question 2026-10-19.
+
+Rule from here on: a KMM `typeNumber` counts as an index only if it carries a catalogue number that
+is not a cf.-reference.
+
+| seed | entity | nominal, mint, years | KMM object | typeNumber |
+|---|---|---|---|---|
+| kmk-274276 | danish_norway | 1 Hvid, —, 1483-1513 | FP 1667.155 | Sch. 189, cf. |
+| kmk-273847 | danish_norway | 1 Hvid, —, 1483-1513 | FP 1667.157 | Sch. 207, cf. |
+| kmk-273648 | danish_realm | 1 Skilling, Malmø, 1483-1513 | FP 1667.90 | Sch. 44, cf. |
+| kmk-273649 | danish_realm | 1 Skilling, Malmø, 1483-1513 | FP 1667.91 | Sch. 58, cf. |
+| kmk-273750 | danish_realm | 1 Hvid, Malmø, 1483-1513 | FP 1667.121 | Sch. 130, cf. |
+| kmk-273808 | danish_realm | 1 Hvid, Malmø?, 1483-1513 | FP 1667.107 | Sch. 141, cf |
+| kmk-131470 | danish_realm | 1 Hvid, Malmø, 1481-1513 | FP 2519.66 | Schou cfr. 141-143 |
+| kmk-139306 | danish_realm | 1 Hvid, Malmø, 1481-1513 | KP 1715.413 | schou cf. 149 |
+| kmk-139307 | danish_realm | 1 Hvid, Malmø, 1481-1513 | KP 1715.412 | schou cf. 142 |
+| kmk-292019 | danish_realm | 1 Hvid, Malmø, 1481-1513 | FP 9760.98 | G. |
+| kmk-348442 | danish_realm | 1 Hvid, —, 1483-1513 | FP 5405.3 | G |
+| kmk-316694 | danish_realm | 1 Hvid, Aalborg, 1481-1513 | FP 6892.16 | G |
+| kmk-273474 | danish_realm | 1 Skilling, Kopenhagen, 1512 | FP 1667.83 | Sch. Mgl. |
+
 ## §7. Inclusion decisions on the page (curator 2026-10-15)
 
 | Territory / issuer | Verdict | Basis |
