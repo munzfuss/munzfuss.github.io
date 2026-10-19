@@ -2204,3 +2204,22 @@ which is the in-house fallback for re-verifying a quote.
 ### 13.21 Wilcke VII (1950) — text and table on the same page can disagree; cite both or neither (2026-10-14)
 
 Wilcke's running text and his own summary tables are not always reconciled. Case: the Frederik II Mark of 1560 — text s. 312 «der gik 34 1/9 M paa M fin … en Lødighed paa ca. 11» (ca. 6,855 g fine), table s. 315 «ca. 12» lod, «ca. 34 5/9 M», ca. 6,75 g fine — about one lod apart, same assay source (Kølle, *Beskrivelsen* p. LVII). Likewise one letter with two dates on one page (the Norwegian Klipping Paabud 1564: «7. Maj» in the text, «28. juni» in the footnote, s. 358). *Decision.* A figure from Wilcke VII is not safe until the text AND the table of the same chapter have been read; where they differ, the dossier records both readings in its «⚠ Source-internal discrepancies» block (template `docs/research/instruments/README.md` §8) and marks the figure ⚠ in the parameters table. The 1560 case: `docs/research/instruments/1563_klippinge_syvaarskrigen.md` §4.4.
+
+### 13.22 Re-flow diffs on a clean HEAD — HEAD was not a fixed point of absorb (2026-10-15)
+
+Every full merge + absorb on a clean tree changed three finals, and sessions
+reverted them by hand. None was a curation loss:
+
+- `erzbisthum_bremen_verden.yml`, `unified-kmk-741043`: `display: false` on the
+  coin's ONLY citation. Written by the KMM ref-rewrite commit `5560422`, not by
+  absorb. `display` on KMM sources is DERIVED — `_suppress_weightless_museum_overcollection`
+  pops/sets it from scratch every run, and a sole KMM citation is always shown.
+  So the flag in HEAD was a stray artefact that hid the coin's only source.
+- `danish_norway.yml` (Hans Bergen Goldgulden, Numista 444264): `note` was
+  hand-inserted after `composed_of`; absorb writes it before `verification_note`.
+- `danish_realm.yml` (`unified-kmk-692607`): `year_is_reign_span` key order, same cause.
+
+Fix: commit absorb's output for all three. Rule of thumb — a hand edit to a
+final must be written in absorb's key order (or by re-running absorb), and a
+`display` flag on a KMM citation is never a curator surface. Pinned by
+`tests/test_kmm_display_flag_is_derived.py`.
