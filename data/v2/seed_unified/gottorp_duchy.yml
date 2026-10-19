@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `gottorp_duchy`.
-# Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
-# Input: 817 per-source seed entries.
-# Output: 443 unified entries (one per physical coin).
+# Input: 816 per-source seed entries.
+# Output: 442 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gottorp_duchy
-generated_at: '2026-10-18'
+generated_at: '2026-10-19'
 coins:
   - id: unified-dk-bruun-14024
     fuss: seed_unsorted
@@ -5166,62 +5166,6 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-353462
-  - id: unified-kmk-353471
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling lybsk
-    ruler: Johan Friedrich af Gottorp
-    catalog:
-      others:
-        - Jungk# 316
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/353471
-        ref: KMM 353471 (Inv. FP 4964.42)
-    verification_note: *id002
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - kmk-353471
-    _entity_routing_hint:
-      rule_id: gottorp_ducal_lineage
-      matched_on:
-        ruler_lineage: af gottorp
-      would_route_to: gottorp_duchy
-      active: true
-      reasoning: Rule matched on ruler_lineage='af gottorp'; mint absent / unverified → rule re-routed.
-  - id: unified-kmk-354144
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling lybsk
-    ruler: Johan Frederik af Gottorp
-    catalog:
-      others:
-        - Jungk# 316
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/354144
-        ref: KMM 354144 (Inv. FP 4962.1)
-    verification_note: *id002
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - kmk-354144
-    _entity_routing_hint:
-      rule_id: gottorp_ducal_lineage
-      matched_on:
-        ruler_lineage: af gottorp
-      would_route_to: gottorp_duchy
-      active: true
-      reasoning: Rule matched on ruler_lineage='af gottorp'; mint absent / unverified → rule re-routed.
   - id: unified-kmk-354215
     fuss: seed_unsorted
     phase: kmk
@@ -5599,6 +5543,24 @@ coins:
       would_route_to: gottorp_duchy
       active: true
       reasoning: Rule matched on ruler_lineage='johan adolf'; mint absent / unverified → rule re-routed.
+  - id: unified-kmk-372978
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling lybsk
+    ruler: Karl Frederik
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/372978
+        ref: KMM 372978 (Inv. FP 4250.5)
+    verification_note: *id003
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-372978
   - id: unified-kmk-394023
     fuss: seed_unsorted
     phase: kmk
