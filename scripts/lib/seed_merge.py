@@ -587,6 +587,15 @@ def merge_one(
     return existing
 
 
+# Sources whose seed id names a catalogue PAGE that the parser may later break
+# out into sub-letters (danskmoent Hede «c4h117» → «c4h117a/b», Galster
+# «c3g-95» → «c3g-95a/b»). Only for these is a bare id «superseded» by fresh
+# lettered siblings. Everywhere else a lettered id is a DIFFERENT record: Bruun
+# numbers its specimens 15139c … 15139ddd beside a bare 15139ø, and the rule
+# silently dropped Part V lot 15186 when the parser lost the «ø» (2026-10-19).
+_PAGE_CATALOGUE_ID_RE = re.compile(r"^dk-(?:hede|galster)-")
+
+
 def merge_seed(
     coins_fresh: list, out_path: Path,
     extra_curated: frozenset = frozenset(),
@@ -665,7 +674,8 @@ def merge_seed(
     for c in out:
         cid = c.get("id") if isinstance(c, dict) else None
         superseded = bool(
-            cid and re.search(r"\d$", cid) and not _is_curated(c)
+            cid and _PAGE_CATALOGUE_ID_RE.match(cid)
+            and re.search(r"\d$", cid) and not _is_curated(c)
             and not _own_cat_has_subletter(c)
             and any(fid != cid and fid.startswith(cid) and fid[len(cid):].isalpha()
                     for fid in fresh_ids)
