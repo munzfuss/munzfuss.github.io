@@ -738,6 +738,36 @@ def _curated_pen_titles() -> dict[str, dict]:
     return out
 
 
+def _is_undated(c: dict) -> bool:
+    return (c.get("year_first") is None and c.get("year_last") is None
+            and not c.get("year_ranges") and c.get("year_label") is None)
+
+
+# Seed source tag of a unified / final id («unified-kmk-150268» → kmk,
+# «unified-dk-hede-c4h28» → hede, «unified-dk-tid-…» → ucoin).
+_ID_SOURCE_RE = re.compile(r"^(?:unified-)?(?:dk-|denmark-)?([a-z]+)-")
+_ID_SOURCE_ALIAS = {"tid": "ucoin"}
+
+
+def _undated_to_seed_unsorted(assembled: list[dict]) -> tuple[list[dict], list[tuple[str, str]]]:
+    """Move every undated coin that carries a real fuss into the seed_unsorted
+    pen of its source, for rendering only. Returns the new list (copies for the
+    moved coins — the cached dicts stay untouched) and (id, old fuss/phase)
+    pairs for the build log. A coin with no year cannot stand in a phase whose
+    window it must fall in, and the schema refuses a classified coin without a
+    year; the pen has no such window."""
+    out: list[dict] = []
+    moved: list[tuple[str, str]] = []
+    for c in assembled:
+        if _is_undated(c) and c.get("fuss") not in (None, "seed_unsorted"):
+            m = _ID_SOURCE_RE.match(str(c.get("id") or ""))
+            src = _ID_SOURCE_ALIAS.get(m.group(1), m.group(1)) if m else "kmk"
+            moved.append((c.get("id"), f"{c.get('fuss')}/{c.get('phase')}"))
+            c = {**c, "fuss": "seed_unsorted", "phase": src}
+        out.append(c)
+    return out, moved
+
+
 def _ensure_seed_unsorted_pens(raw: dict, assembled: list[dict]) -> None:
     """Add a holding pen for every seed_unsorted phase id the assembled coins
     carry that this page does not already declare. No-op when the page declares
@@ -987,6 +1017,11 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
     # (a page-scope jurisdiction cap, not a fuss/phase gate), a fuss absent from
     # this page, or a phase-id this page does not define. Gross year/phase
     # mismatches are surfaced as an advisory warning (see year_warn), never a drop.
+    # An undated coin is shown, not dropped (curator 2026-10-19): it lands in
+    # the un-triaged pen of its source. A classified one cannot sit in its fuss
+    # without a year (schema), so on THIS page it is shown in that pen too —
+    # the data keeps its classification; the reroute is listed below.
+    assembled, undated_rerouted = _undated_to_seed_unsorted(assembled)
     # Complete the un-triaged holding pens BEFORE the pre-filter reads them, so a
     # coin is never dropped merely because this page had not named its pen.
     _ensure_seed_unsorted_pens(raw, assembled)
@@ -998,18 +1033,12 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
         fuss = c.get("fuss")
         phase = c.get("phase")  # already scalar after _resolve_dict_fields
         cid = c.get("id")
-        # Undated guard (choke point for ALL passes). A page is a chronology:
-        # a coin with no year_first, no year_last, no year_ranges and no
-        # year_label cannot be placed in a phase, cannot contribute a timeline
-        # run, and renders as an empty row. One assembly pass already skipped
-        # these; the others did not, so ~1535 undated KMM stubs sat one bucket
-        # away from the page and crashed `compute_coin_year_runs` outright the
-        # moment a bucket for their source appeared. Dropping them here is not a
-        # data change — the stubs stay in the entity file, awaiting a year.
-        if (c.get("year_first") is None and c.get("year_last") is None
-                and not c.get("year_ranges") and c.get("year_label") is None):
-            dropped.append((cid, "no year information"))
-            continue
+        # Undated coins are NOT dropped any more (curator 2026-10-19, after the
+        # undated-coins plan cut the Denmark page's 185 to 66): they render in
+        # their source's seed_unsorted pen (`_undated_to_seed_unsorted` above)
+        # with an empty year cell and contribute no timeline run. The empty KMM
+        # stubs that once made this a necessity are excluded by
+        # `data/v2/exclusions/` (`undocumented_stub`).
         # Out-of-scope guard (choke point for ALL passes — curated, seed_unified
         # via _load_v2_curated, and seed-render): skip entries with a `metal`
         # the schema can't model (Numista/ucoin harvest paper money / Notgeld,
@@ -1121,6 +1150,14 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
             print(f"      • {cid}: {why}")
         if len(year_warn) > 5:
             print(f"      • ... and {len(year_warn) - 5} more")
+
+    if undated_rerouted:
+        print(f"   ℹ  v2/{loc_id}: {len(undated_rerouted)} undated classified coin(s) "
+              f"shown in seed_unsorted (no year — the fuss needs one):")
+        for cid, was in undated_rerouted[:5]:
+            print(f"      • {cid}: was {was}")
+        if len(undated_rerouted) > 5:
+            print(f"      • ... and {len(undated_rerouted) - 5} more")
 
     raw["coins"] = kept
     # Change 2 — shift the two OUTER year-anchors of each fuss outward to cover
