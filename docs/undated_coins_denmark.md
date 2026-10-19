@@ -26,12 +26,14 @@ by issuer (`c6202fa`, `80d1dd4`) — 1776 → 542 drops.
 | 1 | Ruler of another house, no reign table | 61 (78 by the wider match) | reign tables for Sønderborg, Plön/Norburg, Schaumburg-Pinneberg, Oldenburg, Gottorp prince-bishops, Rantzau — each with a source; or entity re-routing | **done 2026-10-17** (57 stubs excluded, Sønderborg table) |
 | 2 | Medieval rulers (before 1481) | 44 (28 truly) | dated by reign windows (?) | **done 2026-10-17** |
 | 3 | No ruler, no catalogue | 29 (36 by re-count) | Kobbersterling and MB-numbered pennies dated | **done 2026-10-17** (the rest left undated) |
-| 4 | Catalogue index matching a dated type | ~12 (4 real) | systemic merger fix first, pairs after | **analysed 2026-10-17**, waiting for the merger session |
-| 5 | «Aahuset L. Chr. Larsen» | 8 | probably a private issuer — unchecked | open |
-| 6 | Unambiguous misspellings of Danish kings | ~6 | aliases in the normaliser («Chrtistian 4», «Chritian 4», «Chrisytian 1», «Kristian 1», «Ridsrådet») | open |
-| 7 | Years printed in the ruler string | 5 | «Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622» — KMM's own reign years, as (?) | open |
-| 8 | Bare «Christian» / «Frederik» | 6 | ambiguous without other data | open |
-| 9 | Modern / foreign («Margrethe 2», «Carl 15.») | 4 | outside the page | open |
+| 4 | Catalogue index matching a dated type | ~12 (4 real) | systemic merger fix first, pairs after | **merger fixed 2026-10-18**; 3 of 4 pairs now dated through their type; `unified-kmk-307517` (Gaute Ivarsson, Galster 177) left |
+| 5 | «Aahuset L. Chr. Larsen» | 8 | probably a private issuer — unchecked | **analysed 2026-10-19** — awaiting the curator |
+| 6 | Unambiguous misspellings of Danish kings | ~6 | aliases in the normaliser («Chrtistian 4», «Chritian 4», «Chrisytian 1», «Kristian 1», «Ridsrådet») | **done 2026-10-17** (in row 2); «Johan» Hvid Malmø (690101) left — see row 8 |
+| 7 | Years printed in the ruler string | 5 | «Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622» — KMM's own reign years, as (?) | **done 2026-10-17** by the row-1 Sønderborg table |
+| 8 | Bare «Christian» / «Frederik» | 6 | ambiguous without other data | **analysed 2026-10-19** — awaiting the curator |
+| 9 | Modern / foreign («Margrethe 2», «Carl 15.») | 4 | outside the page | **analysed 2026-10-19** — awaiting the curator |
+
+Count after rows 1–4 (danskmoent build 2026-10-19): **66** undated (from 185).
 
 Groups overlap at the edges (a record can be both «other house» and «years in
 the ruler string»); counts are from one classification pass.
@@ -224,3 +226,64 @@ correctly does not match «Christian IV».
 investigates and fixes the cause systemically, respecting that numbering
 restarts differently per catalogue (proposed as «Merger: same scoped index
 fails to merge»). The four pairs are re-checked after that fix.
+
+**After the merger fix (2026-10-18):** `unified-kmk-332024`, `unified-kmk-317111`,
+`unified-kmk-307062` and `unified-kmk-317773` are no longer undated. Left:
+`unified-kmk-307517` (KMM «Gaute Ivarsson», Galster 177, Nidaros, in
+`danish_norway`) and `unified-kmk-150268` («Hans; ærkebiskop Gaute Ivarsson»,
+Hvid, Schou 6).
+
+## Row 5 — «Aahuset L. Chr. Larsen» (analysis 2026-10-19)
+
+Eight KMM objects, one accession group (KP 1332.36a–h, protocol III p. 23):
+2 Kroner, 1 Krone, 50 / 25 / 10 Øre in «messing» (brass), 5 / 2 / 1 Øre in
+«blik» (tinplate); motif «LCL»; `workDescription: Mønt`; no year, weight or
+image. `authority` is a business name, not the crown; the denominations are
+of the 1873 Kroner system, but the state struck those values in silver and
+bronze, never in brass or tinplate. A web search found nothing on the firm
+(2026-10-19). Same shape as the 33 private tokens excluded on 2026-09-13
+(`exclusions/danish_realm.yml`, `exonumia`, e.g. «Østerbros
+Husholdningsforening» 1 / 2 / 5 / 10 Øre). They escaped TODO DC's authority
+pattern because the name carries none of `selskab|forening|fabrik|…`.
+
+Options: (a) exclude the eight as `exonumia` (§9.2), like the 2026-09-13 set;
+(b) leave them undated (they stay off the page either way).
+
+## Row 8 — bare and house names (analysis 2026-10-19)
+
+| Record | KMM | Reading | Could date it |
+|---|---|---|---|
+| `kmk-133321` | «Christian», «Danmark ?», FP 9374.116 | Sæby Kirke excavation (row 3a), nothing else | no |
+| `kmk-430264` | «Frederik», Holsten-Gottorp, 4 skilling lybsk, «rytter» | Gottorp duke Friedrich — II (1586–87), III (1616–59) or IV (1694–1702) | every dated Gottorp «Friedrich» 2 / 4 Schilling lybsk in final is Friedrich III (4, 1616–1659) — an assumption by analogy, not a source |
+| `kmk-687750`, `kmk-687751` | «Frederik», Danmark, place «Gottorph», 2 schilling lybsk | same; they sit in `danish_realm` | same analogy; plus relocation to `gottorp_duchy` |
+| `kmk-372978` | «Karl Frederik», place «Slesvig-Holsten-Gottorp», Søsling lybsk | Duke Karl Friedrich (1702–1739, already in the Gottorp table) | yes, once relocated to `gottorp_duchy`; then off the page by the 1656 window |
+| `kmk-122261`, `kmk-122262`, `kmk-354144`, `kmk-353471` | «Johan Frederik (af Gottorp)», 4 skilling lybsk; two carry «Jungk 316» | Johann Friedrich of Holstein-Gottorp, archbishop of Bremen (1596–1634, Numista 129842); Jungk = *Die Bremischen Münzen* (1875) | yes, once relocated to `erzbisthum_bremen_verden` (where his other 25 coins are) with a Bremen reign entry; off the Denmark page (entity not consumed) |
+| `kmk-690101` | «Johan», Malmø, hvid | King Hans (IOHANNES), 1481–1513 | yes, ruler correction «Johan» (!) → «Hans» (?), seed `_source_errata` |
+| `kmk-83149` | «Alexander», Slesvig-Holsten, «Lange» without number, silver, 0,0 g | Duke Alexander of Sønderborg | yes, a Sønderborg table entry with a source |
+
+## Row 9 — modern and foreign (analysis 2026-10-19)
+
+| Record | KMM | Reading |
+|---|---|---|
+| `kmk-673472`, `kmk-673473` | «Carl 15.», Norge, Species | Carl XV, 1859–1872 — Norway under Sweden, after `danish_norway`'s 1814 window |
+| `kmk-716178` | «Margrethe 2», 20 kr, «påklistret billede af Jellingestenen», `Mønt/Polet` | a modern 20-krone piece with a pasted picture; after 1914 |
+| `kmk-299333` | «Frederik 9», 2 øre | 1947–1972; after 1914 |
+
+All four are outside the mission's 1914 upper bound and off the page anyway.
+Options: (a) exclude as `out_of_scope`; (b) leave undated.
+
+## Side finding — finals left behind by a vanished class (2026-10-19)
+
+Four of the 66 (`unified-kmk-740345/7/9/51`, Rytterpenning) are finals whose
+class no longer exists: the seed was thinned into a sibling (`kmk-740347` →
+`kmk-166757`). The scan over every final: **54 such finals outside
+`_unclassified`** (842 inside it), three causes — Hede sub-letter splits
+(8, e.g. `unified-dk-hede-nc5h32` next to `unified-dk-hede-nc5h32a`, July
+2026, `202a5c1`), KMM thinning (14), seed gone (32). Absorb keeps them on
+purpose (`_final_is_curated`: a fuss or a note), but never migrates that
+curation to the successor, so 22 render as duplicates of a same-class
+successor and **9 carry a classification their successor lacks** (Hede nc5h32,
+nc5h37, nc5h56, nc5h68, nc5h69 under `9_25_thaler` I while the
+`…a` class sits in `seed_unsorted`; two `9_thaler` II 1/16 Speciedaler;
+two Braunschweig ikmk). Not a row of this plan — a pipeline defect for its own
+session.
