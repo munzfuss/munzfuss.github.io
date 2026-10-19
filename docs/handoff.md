@@ -41,11 +41,13 @@
   exclusions with the curator's yes (`df35b04`); Norway reign table → they show
   1859–1872 (?) (`c47b8f5`). Still open: Hamar (Galster, KMM) and KMM spellings
   «Cristiania» / «Christinia» / «Niduras?» are not in the mint registry.
-- Pending re-flow NOT done: the kmk builder at HEAD re-thins 9 danish_realm
-  records (kmk-307062, -308807, -330825, -332024, -354854, -367973, -367974 …)
-  and reads Gotland as Visby (kmk-317111, -328312) — effect of earlier builder
-  commits (781537e, 5bd3834 …) never re-flowed. Needs its own re-seed + merge +
-  absorb + verify_reflow.
+- KMM catch-up done (`adfc364`): seed_thin.prune_stale_thinned drops
+  `_thinned_from` links the run re-decided (2 025 multi-representative →
+  0). `4f87b92`: absorb's final step drops a KMM citation from a final when
+  the specimen belongs to another final (10 073 removed, 1 moved), then
+  re-runs once so display picks / §9a ledger match. Open: duplicate classes
+  Hede 124 (`unified-kmk-402840` vs `unified-dk-hede-f3h124`) and Galster 31
+  Hvid Hans (`unified-dk-numista-108399` vs `unified-dk-galster-hg-31`).
 
 ## 2026-10-18 — Merger scoped-index rules; KMM rulers; Schou-only folds undone
 
