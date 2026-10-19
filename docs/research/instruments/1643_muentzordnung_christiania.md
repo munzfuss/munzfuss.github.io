@@ -32,7 +32,7 @@
 | A | 25 Feb 1643, København | the mint account: «Der zu Dennemarcken, Norwegen Kønigl. Maytt. Müntzordnung untern Dato Kopenhagen den 25. Februar Anno 1643, dess Müntzmeister Peter Gronners bestalling ein verleibet»; Wilcke: «Møntordning af 25. Febr. 1643», «Møntordningen af 1643», «hans Faders oprindelige Møntordinans» (kap. II.7, of Grüner's son) | Christian IV | Peter Grüner, mintmaster at Christiania (Bestalling); NO | N. R. A., Kristiania Mønts Regnskab 1. Jan. 1643 – 1. Maj 1643, Bilag Litra A 2 (Wilcke II n. 9) — not printed in Secher (DK acts only), not in Paus as far as seen |
 | A0 | 2 July 1641 (to Statholder Christoffer Urne, Bergenhus); 16 Oct 1641 (with «indlagte Mønt Ordinance paa Skrod og Lod»); 11 March 1642 | the king's Befalinger — «af det huid Sølff, Som os Aff Sølffberget tilkommer Smaa mynt lader mynte … udi Rixdalers Verdt»; «2 ß, 4 ß og 8 ß … efter indlagte Mønt Ordinance» | Christian IV | Statholder Urne; NO | R. A. Norske Tegnelser VII 1640–48 f. 76, 84, 98 b (Wilcke II n. 1) |
 | P | 9 Dec 1642 | Grüner's Memorial to Hannibal Sehested «wegen der müntze in Christiania», with a second proposal appended | Peter Grüner (petitioner) | Statholder Sehested | R. A. Norske Mønt- og Bjergværkssager indtil 1660 (Wilcke II n. 7) |
-| R | 27 Feb 1643 | Christian IV's store Reces, II. bog, 17. kap. «Borgemestere oc raads tilsiun», § 1 «med mynten» | Christian IV | DK (Secher's index files it under Møntvæsen) | Secher V nr. 143, s. 244 |
+| R | 27 Feb 1643 | Christian IV's store Reces, II. bog, 3. kap. «Kiøbstederne anlangende», § 17 «Borgemestere oc raads tilsiun», nr. 1 «med mynten» | Christian IV | DK (Secher's index files it under Møntvæsen) | Secher V nr. 143, s. 244 |
 | S | 14 Jan 1648 | Corfits Ulfeldt's reduction of the København 2 ß and 1 ß weights (Wilcke II kap. II.7) | Rigshofmester Ulfeldt | DK (København mint) | not seen; Wilcke's statement only |
 
 ## 2. Source chain
@@ -103,7 +103,7 @@ fra 1624, søgte man at bevare det ydre Skin*» (s. 172).
 … «Встановивши повну вагу 8 ß рівною ріксдалеровому 8 ß 1641 р., а чисту — кроновому 8 ß 1624
 р., прагнули зберегти зовнішню видимість».
 
-**R — Reces 27 Feb 1643, II-17-1** (Secher V nr. 143, s. 244 = PDF p. 257; the «[s. 161]» inside the text is the 1643 print's page break, not Secher's page — corrected 2026-10-19, it was cited as «s. 160–161»): «*Borgemestere oc raad
+**R — Reces 27 Feb 1643, II.3.17.1** (book II, 3. capitel «Kiøbstederne anlangende» from s. 226, § 17, nr. 1 — Secher's running head «II. 3. 16.» and his own citation form «reces 1643 1. 1. 33», «i 1. kap. §§ 2, 6»; earlier written «II-17-1» / «17. kap. § 1», corrected 2026-10-19) (Secher V nr. 143, s. 244 = PDF p. 257; the «[s. 161]» inside the text is the 1643 print's page break, not Secher's page — corrected 2026-10-19, it was cited as «s. 160–161»): «*Borgemestere oc raad
 skulle hafve indseende, at fremmede kiøbmænd handle oc afbetale med her i riget gangbar mynt,
 oc dersom nogens forseelse findis, da dennem derfore at tiltale oc dom ofver hende.*» (Secher:
 «Jfr. frdg. 1629 10. oktbr. § 11».) Переклад: «Бургомістри й рада мають наглядати, щоб чужі
@@ -198,7 +198,7 @@ reduction of 14 Jan 1648 (S).
   Bestalling 28 April 1628 (Christiania; 900 Rdl. of 100 Mark 15½ lod, later 800 of 14 1/9);
   the orders of 2 July / 16 Oct 1641 and 11 March 1642 (A0); Møntordning 14 Feb 1624
   (`1624_moentordning_kobenhavn.md`) — the grid Grüner's second proposal and the act adopt.
-- **Parallel:** Reces 27 Feb 1643 II-17-1 (R) — a policing clause, not a standard; Glückstadt
+- **Parallel:** Reces 27 Feb 1643 II.3.17.1 (R) — a policing clause, not a standard; Glückstadt
   (Timpff's Bestalling 17 Sept 1640 / 31 Dec 1641; dismissed 17 Oct 1643 — Wilcke II kap. III).
 - **Successors:** the Svenskekrig small coin at København 1644–47 «efter samme Korn og Skrot
   som hjemlet i Norge» (kap. II.7); Hebræer / Krone 1644–48; Frdg. 10 Dec 1647 (nr. 337) and
@@ -255,7 +255,7 @@ Keys added with this dossier: `wilcke-1924-kap2-3-befaling-1641-rixdalers-verdt`
   1644» — <https://www.danskmoent.dk/wilcke/w2b3.htm>, `w2b7.htm`, `w2a2.htm` (cache
   `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/pages/`).
 - Secher, V. A. (ed.): *Corpus constitutionum Daniæ* V: 1639–1650 (København 1903), nr. 143
-  s. 244 (PDF p. 257; Reces 27 Feb 1643, II-17-1); Sagregister «Møntvæsen» (PDF p. 728) — cache
+  s. 244 (PDF p. 257; Reces 27 Feb 1643, II.3.17.1); Sagregister «Møntvæsen» (PDF p. 728) — cache
   `scripts/cache/secher/bd5/pages/0257.txt`, `0728.txt`.
 - Wilcke I (1919) s. 217–218 (the 1624 grid, via `1624_moentordning_kobenhavn.md`).
 - Cited, not seen: N. R. A. Kristiania Mønts Regnskaber 1641–45, 1668; R. A. Norske Tegnelser
