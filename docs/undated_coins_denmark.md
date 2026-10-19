@@ -27,13 +27,17 @@ by issuer (`c6202fa`, `80d1dd4`) — 1776 → 542 drops.
 | 2 | Medieval rulers (before 1481) | 44 (28 truly) | dated by reign windows (?) | **done 2026-10-17** |
 | 3 | No ruler, no catalogue | 29 (36 by re-count) | Kobbersterling and MB-numbered pennies dated | **done 2026-10-17** (the rest left undated) |
 | 4 | Catalogue index matching a dated type | ~12 (4 real) | systemic merger fix first, pairs after | **merger fixed 2026-10-18**; 3 of 4 pairs now dated through their type; `unified-kmk-307517` (Gaute Ivarsson, Galster 177) left |
-| 5 | «Aahuset L. Chr. Larsen» | 8 | probably a private issuer — unchecked | **analysed 2026-10-19** — awaiting the curator |
+| 5 | «Aahuset L. Chr. Larsen» | 8 | probably a private issuer — unchecked | **done 2026-10-19** — 8 excluded as `exonumia` |
 | 6 | Unambiguous misspellings of Danish kings | ~6 | aliases in the normaliser («Chrtistian 4», «Chritian 4», «Chrisytian 1», «Kristian 1», «Ridsrådet») | **done 2026-10-17** (in row 2); «Johan» Hvid Malmø (690101) left — see row 8 |
 | 7 | Years printed in the ruler string | 5 | «Hans den Yngre af Slesvig-Holsten-Sønderborg 1564-1622» — KMM's own reign years, as (?) | **done 2026-10-17** by the row-1 Sønderborg table |
-| 8 | Bare «Christian» / «Frederik» | 6 | ambiguous without other data | **analysed 2026-10-19** — awaiting the curator |
-| 9 | Modern / foreign («Margrethe 2», «Carl 15.») | 4 | outside the page | **analysed 2026-10-19** — awaiting the curator |
+| 8 | Bare «Christian» / «Frederik» | 6 | ambiguous without other data | **done 2026-10-19** except the assumptions (three Gottorp «Frederik», two «Johan Frederik» without index) |
+| 9 | Modern / foreign («Margrethe 2», «Carl 15.») | 4 | outside the page | **done 2026-10-19** — 4 excluded as `out_of_scope` |
 
 Count after rows 1–4 (danskmoent build 2026-10-19): **66** undated (from 185).
+**Since 2026-10-19 undated coins are no longer dropped** (curator): they render
+in their source's `seed_unsorted` pen with an empty year; a classified undated
+coin is shown there on the page only (build log lists it). The table above is
+now a list of coins without a year, not of coins missing from the page.
 
 Groups overlap at the edges (a record can be both «other house» and «years in
 the ruler string»); counts are from one classification pass.
@@ -287,3 +291,26 @@ nc5h37, nc5h56, nc5h68, nc5h69 under `9_25_thaler` I while the
 `…a` class sits in `seed_unsorted`; two `9_thaler` II 1/16 Speciedaler;
 two Braunschweig ikmk). Not a row of this plan — a pipeline defect for its own
 session.
+
+**Decision and outcome, rows 5, 8, 9 (curator 2026-10-19: «роби всі крім тих
+де припущення»; «Johan» → Hans by the ruler normaliser, not by an erratum;
+undated coins must still reach the page).**
+- `33994e6` (code): Alexander of Sønderborg 1622–1627; new Bremen table,
+  Johann Friedrich 1596–1634; bare «Johan» / «Johann» = King Hans in
+  `danish_realm` / `danish_norway` only (in the duchies a bare Johann can be
+  Hans der Jüngere); «Johannes» left out.
+- `5793d28` (data): row 5 — the eight Aahuset pieces `exonumia`; row 9 — four
+  `out_of_scope`; `kmk-372978` → `gottorp_duchy` (1702–1739 (?), off the page
+  by the 1656 window); `kmk-354144` + `kmk-353471` (Jungk 316) →
+  `erzbisthum_bremen_verden` as one class (1596–1634 (?), entity not on the
+  page); `kmk-690101` Hvid Malmø now 1481–1513 (?) (the re-flow in `fea1313`
+  already carried it).
+- build fix (undated coins render, see above).
+- Left: `kmk-430264`, `kmk-687750`, `kmk-687751` (Gottorp «Frederik» — II, III
+  or IV), `kmk-122261`, `kmk-122262` («Johan Frederik» without index — Bremen
+  or Lübeck bishopric), `kmk-133321` (nothing to date it), `kmk-83149`
+  «Alexander» (in `royal_holstein`; the Sønderborg table reads only
+  `sonderburg_duchy` — a relocation would date it).
+- Found on the way: seed `kmk-122261` lists `kmk-354144` in `_thinned_from`
+  while `kmk-354144` is still its own seed, so KMM 354144 is cited on two
+  finals — KMM thinning, same family as the vanished-class finals above.
