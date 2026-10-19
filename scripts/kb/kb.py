@@ -9,16 +9,17 @@ read in full and quote verbatim from the file.
 
 Subcommands
 -----------
-  extract-htm      danskmoent .htm → plain text under scripts/cache/_derived/
+  extract-htm      danskmoent + Hede .htm → plain text under scripts/cache/_derived/
   build            read scripts/cache/_corpus.yml → SQLite FTS5 index
-  search QUERY     ranked passages (BM25) with a snippet
+  search QUERY     ranked passages (BM25) with a snippet; warns when the index is stale
+  works            the indexed works: id, kind, languages, printed-page anchoring
   offsets WORK     running-head page-number detection → PDF→printed offset
   refkeys          compare the manifest's refs_pool_keys with refs_pool.yml
 
 Layout
 ------
   scripts/cache/_corpus.yml          corpus manifest (in the harvest submodule)
-  scripts/cache/_derived/danskmoent/ text extracted from danskmoent .htm
+  scripts/cache/_derived/{danskmoent,hede}/ text extracted from the cached .htm
   scripts/kb/variants.yml            editable spelling-variant rules
   scripts/kb/_index/kb.sqlite        the index (gitignored, rebuildable)
 
@@ -29,6 +30,7 @@ from __future__ import annotations
 import argparse
 import collections
 import glob
+import hashlib
 import html
 import os
 import re
@@ -348,9 +350,10 @@ def cmd_build(args) -> int:
                  p.line_start, p.line_end, p.lang, p.text))
             con.execute("INSERT INTO fts(rowid, body) VALUES (?,?)", (cur.lastrowid, normalize(p.text)))
             total[p.work] += 1
-    con.execute("INSERT INTO meta VALUES ('normalizer_version', ?)", (str(NORMALIZER_VERSION),))
-    con.execute("INSERT INTO meta VALUES ('variants_sha', ?)",
-                (str(hash(VARIANTS.read_text(encoding='utf-8'))),))
+    for k, v in _fingerprint().items():
+        con.execute("INSERT INTO meta VALUES (?, ?)", (k, v))
+    if getattr(args, "work", None):
+        con.execute("INSERT INTO meta VALUES ('partial', ?)", (",".join(args.work),))
     con.commit()
     con.close()
     os.replace(tmp, db)
@@ -490,12 +493,36 @@ def search(con: sqlite3.Connection, q: str, *, work: list[str] | None = None,
     return rows, terms
 
 
+def _fingerprint() -> dict[str, str]:
+    """What the index was built from: normaliser version, variant rules, manifest."""
+    sha = lambda p: hashlib.sha1(p.read_bytes()).hexdigest()  # noqa: E731
+    return {"normalizer_version": str(NORMALIZER_VERSION),
+            "variants_sha": sha(VARIANTS), "manifest_sha": sha(MANIFEST)}
+
+
+def _stale_reason(con) -> str | None:
+    """Why the index no longer matches the code / rules / manifest, or None."""
+    have = dict(con.execute("SELECT key, value FROM meta").fetchall())
+    for k, v in _fingerprint().items():
+        if have.get(k) != v:
+            return {"normalizer_version": "kb.py's normaliser changed",
+                    "variants_sha": "variants.yml changed",
+                    "manifest_sha": "_corpus.yml changed"}[k]
+    if have.get("partial"):
+        return f"built with --work {have['partial']} only"
+    return None
+
+
 def cmd_search(args) -> int:
     db = Path(args.db)
     if not db.exists():
         print(f"no index at {db}; run `kb.py build` first", file=sys.stderr)
         return 2
     con = sqlite3.connect(db)
+    why = _stale_reason(con)
+    if why:
+        print(f"WARNING: index is stale ({why}) — run `kb.py build`; results may miss or misplace passages",
+              file=sys.stderr)
     rows, terms = search(con, args.query, work=args.work, lang=args.lang, limit=args.limit,
                          prefix=not args.exact, fts_raw=args.fts,
                          split=not args.no_split, per_work=args.per_work,
@@ -510,6 +537,20 @@ def cmd_search(args) -> int:
         print(f"\n{rank:2d}. {w}{volp} · {loc} · bm25 {score:.2f}")
         print(f"    scripts/cache/{path}:{l0 + off}")
         print(f"    «{snip}»")
+    return 0
+
+
+def cmd_works(args) -> int:
+    """The indexed works: id (for --work), kind (for --kind), languages, page anchoring."""
+    man = load_manifest()
+    kinds = args.kind or []
+    print(f"{'id':36s} {'kind':10s} {'lang':8s} printed page  title")
+    for w in man["works"]:
+        if kinds and w.get("kind") not in kinds:
+            continue
+        methods = {(u.get("printed_page") or {}).get("method", "none") for u in w["text_layers"]}
+        anchored = "yes" if methods - {"none"} else ("range" if any(u.get("layout") == "section" for u in w["text_layers"]) else "no")
+        print(f"{w['id']:36s} {w.get('kind', ''):10s} {'+'.join(w.get('languages', [])):8s} {anchored:12s}  {w.get('title', '')[:70]}")
     return 0
 
 
@@ -607,14 +648,16 @@ def main(argv=None) -> int:
     s = sub.add_parser("extract-htm")
     s.set_defaults(fn=cmd_extract_htm)
     s = sub.add_parser("build")
-    s.add_argument("--work", action="append", help="build only these work ids")
+    s.add_argument("--work", action="append",
+                   help="build an index of ONLY these works (replaces the whole index; search then warns)")
     s.set_defaults(fn=cmd_build)
     s = sub.add_parser("search")
     s.add_argument("query")
     s.add_argument("--work", action="append", help="restrict to work id (repeatable)")
     s.add_argument("--lang", help="restrict to a language code (da, de, la, en, sv, no)")
     s.add_argument("--kind", action="append",
-                   help="restrict to a kind of work: source, register, literature, web, extract (repeatable)")
+                   help="restrict to a kind of work: source, register, literature, catalogue, web, extract "
+                        "(repeatable; `kb.py works` lists each work's kind)")
     s.add_argument("--limit", type=int, default=10)
     s.add_argument("--exact", action="store_true", help="no prefix matching")
     s.add_argument("--no-split", action="store_true", help="no compound splitting of query words")
@@ -622,6 +665,9 @@ def main(argv=None) -> int:
                    help="at most N passages of one work in the list (0 = no cap; ignored with one --work)")
     s.add_argument("--fts", action="store_true", help="pass QUERY to FTS5 as-is (NEAR, quotes)")
     s.set_defaults(fn=cmd_search)
+    s = sub.add_parser("works")
+    s.add_argument("--kind", action="append", help="only works of this kind")
+    s.set_defaults(fn=cmd_works)
     s = sub.add_parser("offsets")
     s.add_argument("work")
     s.set_defaults(fn=cmd_offsets)

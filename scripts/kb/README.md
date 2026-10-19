@@ -8,7 +8,8 @@ quoted verbatim per CLAUDE.md §5a. No RAG, no LLM synthesis (that would
 collide with §0 / §0b and the verbatim-quote discipline).
 
 ```bash
-.venv/bin/python scripts/kb/kb.py build                    # ~10 s, 13k passages
+.venv/bin/python scripts/kb/kb.py build                    # ~9 s, 13k passages
+.venv/bin/python scripts/kb/kb.py works                    # what is indexed: ids, kinds, page anchoring
 .venv/bin/python scripts/kb/kb.py search "kobbermønt hvider blaffeter"
 .venv/bin/python scripts/kb/kb.py search "vardein smeltning" --work schou-1795
 .venv/bin/python scripts/kb/kb.py search "sølvgylden" --lang da --limit 20
@@ -20,6 +21,49 @@ collide with §0 / §0b and the verbatim-quote discipline).
 .venv/bin/python scripts/kb/measure.py                     # the grep-vs-kb measurement
 .venv/bin/python scripts/kb/audit_pages.py                 # refs_pool page hints vs the index (report)
 ```
+
+## Researching a Müntzfuß (or any subject) with kb
+
+The working recipe — used by the `research-dossier`, `fuss-description`,
+`fuss-cite-audit` and `cite-source` skills, which point here. Checked
+2026-10-19 on the Kronemønt 1618.
+
+1. **Index.** `kb.py build` once per session (~9 s). `search` warns when the
+   index is stale (normaliser, `variants.yml` or `_corpus.yml` changed, or a
+   partial `build --work`) — rebuild then.
+2. **What is searchable.** `kb.py works` lists every work: id (for `--work`),
+   kind (for `--kind`), languages, whether hits carry a printed page.
+   Kinds: `source` (editions of the acts and accounts — Secher 1558–1660, Schou
+   1670–, Hofholdningsregnskaber 1904, Galster 1934 on Junge's mint accounts),
+   `register` (Mordhorst), `literature` (Wilcke 1919 / 1924 / 1950, Galster
+   1936 / 1947 / 1973, Jensen, Denar til daler, Holst, Munro …),
+   `catalogue` (Hede pages, Bruun Parts I–V), `web` (danskmoent, Bobzin),
+   `extract`.
+3. **The act first.** Search the instrument's words with its year, restricted
+   to the editions: `kb.py search "kroner 1618 lødig mark" --kind source` →
+   Secher Bd 3 p. 529–530 (open letter 1618, «kronerne halfanden rigsdaller …
+   lødige mark»). Write period spelling or modern — both fold (Mynt/Mønt,
+   Schilling/Skilling, Thaler/Daler, th→t, æ/ø/å, OCR «guiden»).
+4. **Then the readings.** `--kind literature` for who discussed the act and
+   with which figures (dossier C3 / C4 — who reproduced whom).
+   Narrow with `--work wilcke-1919`; pin two words together with FTS:
+   `kb.py search 'NEAR(krone* lødig*, 10)' --fts --work wilcke-1919` →
+   p. 160 / 165 / 209.
+5. **Then the coins.** `--kind catalogue`: Hede type pages (dates, mint marks,
+   Schou / Sieg concordance, weight, fineness as Hede gives them) and Bruun lot
+   texts (specimen weights, cataloguer's commentary). `kb.py search "krone 1618"
+   --kind catalogue` → Hede 105A and the ¼ Krone 1618 page.
+6. **Read, never quote the snippet.** Open `path:line`, read the whole page,
+   copy verbatim; check every figure of an OCR'd work on the page image
+   (`pdftoppm -f N -l N`). Cite the printed page the hit reports; Bruun as
+   lot + printed page (`docs/SOURCES.md` §1.3).
+7. **No hit ≠ no source.** Not indexed: rigsarkivet TK 160 (handwriting), the
+   Bruun 1928 catalogue, paper-only works (Lange, Sieg, the printed Hede
+   volumes), and any web page not in `scripts/cache`. Then use the web chain
+   (CLAUDE.md «Tool fallback chain»); a page fetched for good belongs in the
+   cache and in `_corpus.yml` (`docs/HARVEST_GUIDE.md`).
+8. **Checking existing citations.** `audit_pages.py` scores every `refs_pool`
+   key's quote against its page (a report; each MISMATCH needs the page read).
 
 ## Parts
 
