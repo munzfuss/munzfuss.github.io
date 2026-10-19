@@ -96,9 +96,10 @@ with five open questions, provided each is labelled and paired.
 **WRITE mode:**
 1. Check for an existing dossier on the subject (`ls docs/research/`) — extend rather
    than fork. A second dossier on one subject splits the evidence.
-2. Gather sources FIRST, verbatim, before writing a line of analysis. Read the page;
-   don't summarise from a search snippet. If a snippet is all you have, the claim is
-   labelled as unverified until the page is opened.
+2. Gather sources FIRST, verbatim, before writing a line of analysis — start with the
+   local full-text index (section below), then the web. Read the page; don't summarise
+   from a search snippet. If a snippet is all you have, the claim is labelled as
+   unverified until the page is opened.
 3. Write. Recompute every figure you transcribe (C6) — the recomputation is what turns
    a transcription into a check.
 4. Any web fact that will ALSO reach the rendered artefact gets its `refs_pool.yml`
@@ -106,6 +107,29 @@ with five open questions, provided each is labelled and paired.
    still needs its quote + page.
 5. Re-score. Loop until ≥ threshold or until the only remaining gaps are genuinely
    unsourceable — then cap, name the ceiling, and stop.
+
+## Finding the evidence — `kb search`
+
+The harvested corpus (Secher, Schou, Mordhorst, Wilcke 1919 / 1924 / 1950, Galster,
+Jensen, Denar til daler, Munro, Hede pages, Bruun I–V, danskmoent …) is indexed for
+full-text search with old spellings and OCR slips folded. Full recipe: `scripts/kb/README.md` §«Researching a Müntzfuß».
+
+```
+.venv/bin/python scripts/kb/kb.py build                     # once per session; search warns when stale
+.venv/bin/python scripts/kb/kb.py works                     # ids and kinds of what is indexed
+.venv/bin/python scripts/kb/kb.py search "kroner 1618 lødig mark" --kind source      # the act (C3)
+.venv/bin/python scripts/kb/kb.py search "<subject words>" --kind literature          # the readings (C4)
+.venv/bin/python scripts/kb/kb.py search "<nominal> <year>" --kind catalogue         # Hede / Bruun (C6)
+.venv/bin/python scripts/kb/kb.py search 'NEAR(krone* lødig*, 10)' --fts --work wilcke-1919
+```
+
+- Order for a Fuß: the instrument (`--kind source`) → who read it and with which
+  figures (`literature`, per work) → the coins (`catalogue`). That order is C3 → C4 → C6.
+- A hit is `work · p. N · path:line`: open the file there, read the page, quote it
+  verbatim; check OCR'd figures on the page image. p. N is the printed page.
+- **No hit ≠ no source** — not indexed: rigsarkivet scans (handwriting), Bruun 1928,
+  paper-only works (Lange, Sieg, printed Hede). Name such a gap in the dossier (C2/C5)
+  and go to the web chain (CLAUDE.md «Tool fallback chain»).
 
 ## Output format (emit this every SCORE)
 

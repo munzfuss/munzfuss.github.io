@@ -1047,6 +1047,18 @@ that file is where the difference is recorded, including a **known-gaps** table
 for deferrals. Regenerating it is part of finishing a harvest, not an optional
 extra; the numbers are presence-and-volume signals, never completeness claims.
 
+## After a harvest of TEXT — register it for full-text search
+
+A cached source with a text layer (PDF text, OCR, transcribed HTML) is only
+findable by `scripts/kb/kb.py search` once it has a record in
+`scripts/cache/_corpus.yml`: id, bibliography, `kind`, text-layer glob and
+layout, the PDF→printed page mapping with its basis (`kb.py offsets <id>` reads
+the running heads), OCR note, `refs_match`. Then `kb.py build`,
+`kb.py refkeys` (manifest in step with `refs_pool.yml`) and, for a work with
+cited keys, `scripts/kb/audit_pages.py --work <id>`. HTML pages go through
+`kb.py extract-htm` first (danskmoent and Hede are wired; add the directory
+there for a new site). Details: `scripts/kb/README.md`.
+
 ## Cache directory conventions
 
 ```

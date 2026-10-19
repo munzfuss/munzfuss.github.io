@@ -423,6 +423,13 @@ Skipping either step silently regresses §0 (no invention).
 
 **Steps.**
 
+0. **Look in the local corpus first.** `scripts/kb/kb.py search "<words>"`
+   (build once per session; `kb.py works` lists what is indexed) finds the
+   passage in the harvested editions and literature with its printed page —
+   recipe in `scripts/kb/README.md`. New citations go to `refs_pool.yml` via
+   the `cite-source` skill; the legacy steps below apply to per-location
+   `[N]` refs only.
+
 1. **Identify the destination references file:**
    - Per-location prose → `data/locations/<loc>-references.yml`.
    - Landing-page Müntzfüße overview → `data/shared/german_fuesse-references.yml`.

@@ -24,7 +24,8 @@ cites, Danish-Norwegian in §1 and Imperial in §2, each with what it sets, its
 instruments our own text already discusses but nobody has written up yet, with
 the file that discusses each.
 
-**Look there before searching the web for an ordinance.** It also carries the
+**Look there before searching the web for an ordinance** — and search the
+harvested texts with `scripts/kb/kb.py search` (recipe: `scripts/kb/README.md`). It also carries the
 two rules that cost this project real rework: an instrument states a TARGET
 while an assay states an OUTCOME, and karat is the primary value with the
 permille only its conversion.

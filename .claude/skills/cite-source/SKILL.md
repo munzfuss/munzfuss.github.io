@@ -181,7 +181,8 @@ spellings, line-break hyphenation and common OCR slips, so it finds «Myndt-Ordn
 plain `grep` misses (measured: `scripts/kb/README.md`).
 
 ```
-.venv/bin/python scripts/kb/kb.py build                                     # once per session, ~8 s
+.venv/bin/python scripts/kb/kb.py build                                     # once per session, ~9 s; search warns when stale
+.venv/bin/python scripts/kb/kb.py works                                     # indexed works: ids, kinds, page anchoring
 .venv/bin/python scripts/kb/kb.py search "kobbermønt hvider" --work secher-ccd
 .venv/bin/python scripts/kb/kb.py search "vardein smeltning" --work schou-1795 --limit 20
 .venv/bin/python scripts/kb/kb.py search 'NEAR(kroner skiling*, 8)' --fts --work secher-ccd
@@ -190,7 +191,8 @@ plain `grep` misses (measured: `scripts/kb/README.md`).
 - **Restrict to the work** (`--work`, ids in `_corpus.yml`) whenever you know it — ranking
   across the whole corpus is the weak point; within one work the passage is usually rank 1.
   Not sure which work? `--kind source` limits to editions of the acts and accounts
-  (Secher, Schou, …), `--kind literature` to the studies.
+  (Secher, Schou, …), `--kind literature` to the studies, `--kind catalogue` to Hede / Bruun.
+  Research recipe (act → readings → coins): `scripts/kb/README.md`.
 - A hit prints `work · p. N · path:line`. **p. N is the PRINTED page** where the manifest
   establishes the PDF→print offset; otherwise the hit says «printed page not established» —
   then find the page on the scan, never compute one.

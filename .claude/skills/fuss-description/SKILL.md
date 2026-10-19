@@ -172,9 +172,11 @@ gap; 8-9 means substantively complete with only minor polish left.
 **EDIT mode** — «напиши/перепиши/покращ опис»:
 1. SCORE first (get the baseline + gap list).
 2. Fix each lost-point gap, lowest-hanging first:
-   - Missing founding/role/phase content → ADD it, sourced. If you must look a
-     fact up on the web, add the `refs_pool.yml` entry + inline `<sup>[ref:KEY]</sup>`
-     in the SAME edit (§5b) — never defer the citation.
+   - Missing founding/role/phase content → ADD it, sourced. Look first in the local
+     corpus — `scripts/kb/kb.py search "<instrument words> <year>" --kind source`, then
+     `--kind literature` (recipe: `scripts/kb/README.md` §«Researching a Müntzfuß»); then the web. Add the `refs_pool.yml`
+     entry + inline `<sup>[ref:KEY]</sup>` in the SAME edit (§5b, `cite-source`) —
+     never defer the citation.
    - Bare metrics (C4) → cut them (they're in Grundwerte) unless you can anchor
      them to a named law and they define the whole standard.
    - Specimen intrusions (C6) → cut; the specimen belongs on its coin row.

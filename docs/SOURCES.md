@@ -28,6 +28,7 @@ When researching a coin, consult sources in this order based on what you need:
 
 | Need | First source | Second source | Third source |
 |---|---|---|---|
+| **Any passage in a source we already hold (act text, Wilcke, Galster, Hede page, Bruun lot …)** | `scripts/kb/kb.py search` over `scripts/cache` (recipe: `scripts/kb/README.md`) | `docs/research/ordinances_register.md` | the web chain (CLAUDE.md «Tool fallback chain») |
 | **Specimen-level catalogue (KM, Hede, Sieg, Lange, Fr, Schou, Aagaard, weight, NGC grade)** | Bruun PDF (Stack's Bowers Part I/II/III) | Numista N# page | ucoin tid page |
 | **Pre-Krause «MB#» / Schleswig-Holstein-duchy 16th c. (1500-1604, before KM numbering begins for Denmark)** | NumisMaster MC_NNNNN page (§1.4) | danskmoent.dk Galster (`/chr/c2g*.htm`, `/fr/f1g*.htm`) | Bruun PDF (for specimen-level corroboration) |
 | **Hede# verbatim text + sub-variant ranges (Christian IV / V / Frederik III/IV/V/VI / Christian VI/VII)** | danskmoent.dk/chr/c{4,5,7}h{N}.htm | Hede 1957 NNUM articles via danskmoent.dk/artikler/ | (paper) Hede 1978 |

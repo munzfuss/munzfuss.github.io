@@ -115,6 +115,9 @@ Notes:
    OCR variants (ℳ→$, ‰→°/oo, broken hyphenation, spaced «G ylden») and uncached sources
    (Wikipedia, tekstnet, tidsskrift) are the usual causes. Close each miss by opening the
    source — the PDF page image for an OCR doubt, the live page for an uncached one.
+   To find where a missed quote actually sits (and whether the key's page is right),
+   `scripts/kb/kb.py search "<distinctive words>" --work <id>` folds OCR and spelling
+   variants; `scripts/kb/audit_pages.py --work <id>` checks every key's page at once.
 5. `--claims <lang>` — the claim map: for every citation point, the sentence it follows and
    the cited key's quote + translation. **This is the judgment step the script cannot do**:
    read each pair and ask «does this passage say what this sentence claims?» (cite-source:

@@ -1247,6 +1247,8 @@ Project skills live in `.claude/skills/<name>/SKILL.md` (version-controlled — 
 
 When one tool returns 403/blocked/empty, **escalate to the next tier** rather than giving up. Do not report «source X is blocked, can't verify» until you have tried the entire chain. The user has explicitly asked Claude to remember this and use the next tool when one fails.
 
+**Tier 0 — the local corpus, before any web tool.** Most sources this project cites are already harvested in `scripts/cache/` and indexed for full-text search: `.venv/bin/python scripts/kb/kb.py build` (once per session), then `kb.py search "<words>" [--kind source|literature|catalogue|register|web] [--work <id>]`; `kb.py works` lists what is indexed. Old spellings and OCR slips fold; hits give work, printed page, file and line — open the file and quote from it, never from the snippet. Recipe for researching a Fuß: `scripts/kb/README.md`. No hit ≠ no source (handwritten scans, paper-only works and uncached web pages are not indexed) — then continue with the web chain below.
+
 **For fetching public web content (preferred order — cheapest first):**
 
 1. **WebSearch** — for finding URLs and broad topical hits. Cheap, fast, no rate limits in practice. Good for «does X exist» / «what's the URL of Y».
