@@ -100,5 +100,22 @@ class HedeUnknownMintReviewTest(unittest.TestCase):
         self.assertEqual(d["mint"], "Christiansstad")
 
 
+class ChristianIIIssuersTest(unittest.TestCase):
+    """Coinage in Christian II's name after 1523 has its own issuers."""
+
+    def test_split(self):
+        from lib.mint_registry import christian_ii_entity as f
+        self.assertEqual(f("danish_realm", 1525, 1525, "Christian II"), "christian_ii_supporters")
+        self.assertEqual(f("danish_realm", 1535, 1535, "Christian 2"), "christian_ii_supporters")
+        self.assertEqual(f("danish_norway", 1531, 1532, "Christian II"), "christian_ii_reconquest")
+        self.assertEqual(f(["danish_norway", "danish_realm"], 1531, 1531, "Christian II"),
+                         "christian_ii_reconquest")
+        # his reign, a range past 1536, other issuers and other rulers stay
+        self.assertEqual(f("danish_realm", 1518, 1518, "Christian II"), "danish_realm")
+        self.assertEqual(f("danish_realm", 1534, 1559, "Christian 2. (?)."), "danish_realm")
+        self.assertEqual(f("royal_holstein", 1535, 1535, "Christian 2"), "royal_holstein")
+        self.assertEqual(f("danish_realm", 1525, 1525, "Frederik 1; Søren Norby"), "danish_realm")
+
+
 if __name__ == "__main__":
     unittest.main()

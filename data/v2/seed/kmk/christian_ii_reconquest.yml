@@ -1,0 +1,44 @@
+status: seed
+source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
+generated_at: '2026-10-19T19:53:37Z'
+entity: christian_ii_reconquest
+scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
+  (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
+  (entity_classified_via records which). Museum-attested fields carry verified=true (weight only — no diameter/fineness). Phase-4 assigns Müntzfuß/phase; cross-source merger deduplicates against 
+  Hede/Bruun/Numista/IKMK/etc.
+coins:
+  - id: kmk-684215
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: christian_ii_reconquest
+    entity_classified_via: mint
+    nominal: 1 Klipping søsling
+    metal: silver
+    metal_verified: true
+    mint: Hamar
+    mint_verified: true
+    ruler: Christian 2
+    year_first: 1531
+    year_last: 1532
+    year_label: 1531-1532
+    year_ranges:
+      -   - 1531
+          - 1532
+    weight_rough_g: 1.63
+    weight_rough_verified: true
+    catalog:
+      galster: '174'
+      schou: '1'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684215
+        ref: KMM 684215 (Inv. RP 1549.1)
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    _source_note:
+      da: c / oldenborgske våben

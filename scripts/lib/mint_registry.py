@@ -1171,6 +1171,37 @@ def norway_split_entity(entity, year_first: int | None,
     return "norway" if post and not danish_king else "danish_norway"
 
 
+_CHRISTIAN_II_RE = re.compile(r"\bchristian\s*(?:ii|2)\b", re.IGNORECASE)
+
+
+def christian_ii_entity(entity, year_first, year_last=None, ruler=None):
+    """Coinage in the name of Christian II after his deposition (1523) has
+    its own issuers (curator 2026-10-19):
+
+      * 1524-1528 and 1534-1536 → `christian_ii_supporters` (Galster
+        «Christian 2.s tilhængere»: Søren Norby; «… under Grevens Fejde»);
+      * 1531-1532 → `christian_ii_reconquest` (Galster «Christian 2.s
+        generobringsforsøg i Norge i 1531-32»).
+
+    Applies only to a Danish / Norwegian routing (scalar or a list of those
+    two) whose whole date span lies inside one window; anything else —
+    including a range running past 1536 — is returned unchanged.
+    """
+    ents = entity if isinstance(entity, list) else [entity]
+    if not ents or not set(ents) <= {"danish_realm", "danish_norway"}:
+        return entity
+    if not (isinstance(ruler, str) and _CHRISTIAN_II_RE.search(ruler)):
+        return entity
+    if not isinstance(year_first, int):
+        return entity
+    yl = year_last if isinstance(year_last, int) else year_first
+    if 1531 <= year_first and yl <= 1532:
+        return "christian_ii_reconquest"
+    if (1524 <= year_first and yl <= 1528) or (1534 <= year_first and yl <= 1536):
+        return "christian_ii_supporters"
+    return entity
+
+
 def is_known_nation(nation: str | None) -> bool:
     """True if the nation string resolves to an in-scope entity."""
     return classify_nation_to_entity(nation) is not None

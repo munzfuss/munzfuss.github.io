@@ -187,6 +187,7 @@ from lib.mint_registry import (  # noqa: E402
     ALIAS_TO_CANON as _MINT_ALIAS_TO_CANON,
     CANON_TO_DISPLAY as _MINT_CANON_TO_DISPLAY,
     NORWAY_FROM_YEAR,
+    christian_ii_entity,
     norway_split_entity,
     strip_mint_suffix as _strip_mint_suffix,
 )
@@ -1577,6 +1578,24 @@ def _apply_norway_split(coins: list[dict], source_name: str) -> int:
     return moved
 
 
+def _apply_christian_ii_split(coins: list[dict], source_name: str) -> int:
+    """Route coins in Christian II's name after 1523 to their own issuers
+    (`mint_registry.christian_ii_entity`), in place, for every source. Runs
+    before the curated-entity restore, which re-asserts a held entity."""
+    moved = 0
+    for c in coins:
+        ie = c.get("issuing_entity")
+        new = christian_ii_entity(ie, c.get("year_first"), c.get("year_last"),
+                                  c.get("ruler"))
+        if new != ie:
+            c["issuing_entity"] = new
+            moved += 1
+    if moved:
+        print(f"[{source_name}] Christian II after 1523: {moved} coin(s) "
+              f"re-routed to christian_ii_supporters / christian_ii_reconquest")
+    return moved
+
+
 def _check_entity_invariant(
     coins: list[dict],
     source_name: str,
@@ -1616,6 +1635,8 @@ def _check_entity_invariant(
         # The writer applies the same date / Danish-king split to the coin
         # itself (`_apply_norway_split`), so compare against the split value.
         expected = norway_split_entity(expected, c.get("year_first"),
+                                       c.get("year_last"), c.get("ruler"))
+        expected = christian_ii_entity(expected, c.get("year_first"),
                                        c.get("year_last"), c.get("ruler"))
         ie = c.get("issuing_entity")
         current = ie if isinstance(ie, str) else (
@@ -1895,6 +1916,7 @@ def write_v2_seed(
     # danish_norway to norway must be carried there with its curation, and a
     # curator-held entity must still win over it.
     _apply_norway_split(coins, source_name)
+    _apply_christian_ii_split(coins, source_name)
     _curated_existing = _existing_curated_entries(V2_SEED_ROOT / source_name)
     _restored_entity = 0
     _carried = 0

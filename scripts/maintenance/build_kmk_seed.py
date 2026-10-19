@@ -247,7 +247,9 @@ _MINTMASTER_PREFIX_RE = re.compile(r"^\s*møntmester\s*:\s*", re.IGNORECASE)
 
 # KMM's East-India places (Danish India, Tranquebar): not a mint name, but the
 # issuer is the colony — out of the project's scope (curator 2026-10-19).
-_KMM_COLONY_PLACES = {"ostindien": "danish_india", "ostindisk": "danish_india"}
+_KMM_COLONY_PLACES = {"ostindien": "danish_india", "ostindisk": "danish_india",
+                      "vestindien": "danish_west_indies",
+                      "vest-indien": "danish_west_indies"}
 
 # A KMM `nominal` that is not what KMM meant, corrected from a catalogue.
 # {id: (printed nominal, corrected nominal, citation)}. Curator 2026-10-19.

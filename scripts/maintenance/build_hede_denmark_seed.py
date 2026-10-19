@@ -1463,8 +1463,28 @@ def main() -> int:
             continue
         specs = d.get("specs") or {}
 
-        if "default" in specs:
-            spec = specs["default"]
+        # A page with no weight / fineness block is still a coin (CLAUDE.md
+        # §9: «Coins where the source lacks fineness or weight — add them with
+        # verified false»; curator 2026-10-19). Until then the else-branch
+        # below skipped all 86 such pages. Three exclusions apply to them, per
+        # the curator's review of the list: patterns («Prøvemønt», §9.1),
+        # jetons (exonumia, §9.2), and an undated page of a reign that runs
+        # past the 1914 bound (Christian X «løv» Øre).
+        if not specs:
+            _head = (d.get("raw_text") or "")[:700]
+            _nom = str(d.get("nominal") or "")
+            if re.search(r"prøvemønt", _head, re.IGNORECASE):
+                stats["skipped_pattern_nospec"] = stats.get("skipped_pattern_nospec", 0) + 1
+                continue
+            if re.search(r"jeton", _nom, re.IGNORECASE):
+                stats["skipped_exonumia_nospec"] = stats.get("skipped_exonumia_nospec", 0) + 1
+                continue
+            _reign = _RULER_REIGN.get(d.get("ruler_volume") or "")
+            if not d.get("years") and _reign and _reign[1] > 1914:
+                stats["skipped_post1914_nospec"] = stats.get("skipped_post1914_nospec", 0) + 1
+                continue
+        if "default" in specs or not ("by_hede" in specs):
+            spec = specs.get("default") or {}
             nums = d.get("hede_numbers_filename") or d.get("hede_numbers_title") or []
             if not nums:
                 # Derive from id («c5h120» → «120»)

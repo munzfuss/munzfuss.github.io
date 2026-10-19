@@ -1,0 +1,418 @@
+# V2 seed_unified for political entity `christian_ii_reconquest`.
+# Generated 2026-10-19 by scripts/maintenance/merge_seeds_cross_source.py
+# from data/v2/seed/<source>/christian_ii_reconquest.yml across all sources.
+#
+# Input: 10 per-source seed entries.
+# Output: 8 unified entries (one per physical coin).
+#
+# Each unified entry's `composed_of` lists the per-source seeds
+# it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
+# `fineness[]`, `diameter_mm[]` are multi-source lists preserving
+# every reading per CLAUDE.md §9a. `sources[]` is the union.
+
+id: christian_ii_reconquest
+generated_at: '2026-10-19'
+coins:
+  - id: unified-dk-bruun-9285
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 2 Skilling
+    year_first: 1531
+    year_last: 1532
+    year_ranges:
+      -   - 1531
+          - 1532
+    year_label: 1531-1532
+    ruler: Christian II
+    mint: Christiania
+    catalog:
+      sieg: 1A
+      bruun_collection_id: '9285'
+      schou: '1'
+      galster: '174'
+      nmd: '5'
+      numista: '121905'
+      skaare: '320'
+      schive: XV:15
+      others:
+        - Thesen# 6
+        - Galster UU# 174
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: false
+    fineness:
+      - value: 0.875
+        source: numista
+    weight_rough_g:
+      - value: 1.33
+        source: bruun
+      - value: 1.34
+        source: numista
+    diameter_mm:
+      - value: 12.0
+        source: numista
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14002, p. 153
+      - type: literature
+        url: https://en.numista.com/121905
+        ref: Numista N#121905 — 2 Skilling Klipping - Christian II (Siege of Oslo) - Norway
+    verification_note:
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
+    issuing_entity: christian_ii_reconquest
+    composed_of:
+      - dk-bruun-9285
+      - dk-numista-121905
+  - id: unified-dk-galster-c2g-174
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: Søsling(?)
+    year_first: 1531
+    year_last: 1531
+    year_label: '1531'
+    ruler: Christian II
+    mint:
+      - Hamar
+      - Kopenhagen
+    catalog:
+      galster: '174'
+      schou: '1'
+      schive: XV.14-15
+      galster_volume: c2g
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    year_verified: true
+    fineness:
+      - value: 0.875
+        source: galster
+    weight_rough_g:
+      - value: 1.34
+        source: galster
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nc2g174.htm
+        ref: Galster 174 (c2g) — danskmoent.dk norge_nc2g174.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: christian_ii_reconquest
+    composed_of:
+      - dk-galster-c2g-174
+  - id: unified-dk-numista-121235
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Mark = 32 Skilling
+    year_first: 1531
+    year_last: 1531
+    year_label: '1531'
+    ruler: Christian II
+    catalog:
+      numista: '121235'
+      skaare: '316'
+      others:
+        - Brekke# 1
+        - AAJT# 1
+        - Galster UU# 173
+        - Thesen# 1
+      schive: XV:5
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 13.06
+        source: numista
+    diameter_mm:
+      - value: 25.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/121235
+        ref: Numista N#121235 — 2 Mark Klipping - Christian II (Siege of Oslo) - Norway
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
+        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
+        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
+    issuing_entity: christian_ii_reconquest
+    composed_of:
+      - dk-numista-121235
+  - id: unified-dk-numista-121903
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Mark
+    year_first: 1531
+    year_last: 1532
+    year_ranges:
+      -   - 1531
+          - 1532
+    year_label: 1531-1532
+    ruler: Christian II
+    mint:
+      - Christiania
+      - Hamar
+    catalog:
+      numista: '121903'
+      skaare: '317'
+      others:
+        - Galster UU# 172
+        - Brekke# 2
+        - AAJT# 2
+        - Thesen# 3
+      galster: '172'
+      schou: '2'
+      schive: XV.5
+      galster_volume: c2g
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    year_verified: true
+    fineness:
+      - value: 0.97
+        source: numista
+    weight_rough_g:
+      - value: 6.45
+        source: numista
+    diameter_mm:
+      - value: 18.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nc2g172.htm
+        ref: Galster 172 (c2g) — danskmoent.dk norge_nc2g172.htm
+      - type: literature
+        url: https://en.numista.com/121903
+        ref: Numista N#121903 — 1 Mark Klipping - Christian II (Siege of Oslo; light) - Norway
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
+        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
+        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
+    issuing_entity: christian_ii_reconquest
+    composed_of:
+      - dk-galster-c2g-172
+      - dk-numista-121903
+  - id: unified-dk-numista-124917
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Skilling
+    year_first: 1531
+    year_last: 1532
+    year_ranges:
+      -   - 1531
+          - 1532
+    year_label: 1531-1532
+    ruler: Christian II
+    catalog:
+      numista: '124917'
+      skaare: '319'
+      schive: XV:14
+      others:
+        - Galster UU# 174
+        - Thesen# 5
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.875
+        source: numista
+    weight_rough_g:
+      - value: 1.34
+        source: numista
+    diameter_mm:
+      - value: 12.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/124917
+        ref: Numista N#124917 — 2 Skilling Klipping - Christian II (Siege of Oslo) - Norway (var)
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
+        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
+        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
+    issuing_entity: christian_ii_reconquest
+    composed_of:
+      - dk-numista-124917
+  - id: unified-dk-numista-448563
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Skilling
+    year_first: 1531
+    year_last: 1532
+    year_ranges:
+      -   - 1531
+          - 1532
+    year_label: 1531-1532
+    ruler: Christian II
+    catalog:
+      numista: '448563'
+      others:
+        - Thesen# 7
+        - Galster UU# 174
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.875
+        source: numista
+    weight_rough_g:
+      - value: 1.34
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/448563
+        ref: Numista N#448563 — 2 Skilling Klipping - Christian II (Siege of Oslo) - Norway
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
+        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
+        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
+    issuing_entity: christian_ii_reconquest
+    composed_of:
+      - dk-numista-448563
+  - id: unified-dk-numista-477387
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Mark Klipping (Siege of Oslo; heavy)
+    year_first: 1531
+    year_last: 1531
+    year_label: '1531'
+    ruler: Christian II
+    catalog:
+      numista: '477387'
+      skaare: '317'
+      others:
+        - Galster UU# 172
+        - Brekke# 1
+        - AAJT# 1
+        - Thesen# 2
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.875
+        source: numista
+    weight_rough_g:
+      - value: 6.7
+        source: numista
+    diameter_mm:
+      - value: 24.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/477387
+        ref: Numista N#477387 — 1 Mark Klipping - Christian II (Siege of Oslo; heavy) - Norway
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
+        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
+        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
+    issuing_entity: christian_ii_reconquest
+    composed_of:
+      - dk-numista-477387
+  - id: unified-kmk-684215
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Klipping søsling
+    year_first: 1531
+    year_last: 1532
+    year_ranges:
+      -   - 1531
+          - 1532
+    year_label: 1531-1532
+    ruler: Christian 2
+    mint: Hamar
+    catalog:
+      galster: '174'
+      schou: '1'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.63
+        source: kmk
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684215
+        ref: KMM 684215 (Inv. RP 1549.1)
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    issuing_entity: christian_ii_reconquest
+    composed_of:
+      - kmk-684215

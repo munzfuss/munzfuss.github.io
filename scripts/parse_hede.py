@@ -1785,6 +1785,21 @@ def parse_one(html: str, basename: str) -> dict:
     out.update({k: v for k, v in header.items() if k != "h1"})
     if "ruler" not in out and ruler_label:
         out["ruler"] = ruler_label
+    # A coin page whose H1 is a heading, not «Nominal, Mint» (f2h16
+    # «Frederik 2.s syvårskrigsklippinge», f2h34 «Schüsselpfennig lybsk»):
+    # take the first body line shaped «N denomination Mint:», else the H1
+    # line itself when it names no ruler (curator 2026-10-19 — these pages
+    # are coins, not explanations).
+    if not out.get("nominal") and header.get("h1"):
+        _body_m = re.search(r"(?m)^\s*(\d+(?:/\d+)?\s+[a-zæøåA-ZÆØÅ]+(?:\s+[a-zæøå]+)?)"
+                            r"\s+([A-ZÆØÅ][a-zæøå]+)\s*:\s*$", text)
+        _h1_lines = [l.strip() for l in header["h1"].split("\n") if l.strip()]
+        if _body_m:
+            out["nominal"] = _body_m.group(1)
+            out.setdefault("mint", _body_m.group(2))
+        elif (len(_h1_lines) == 1 and not re.search(r"\d", _h1_lines[0])
+              and not re.match(r"(?i)(christian|frederik|hans|chr|fr)\b", _h1_lines[0])):
+            out["nominal"] = _h1_lines[0].rstrip(".")
 
     # Fallback year extraction. The header path only inspects the
     # <H1>; many pages publish the year-rarity list in a paragraph

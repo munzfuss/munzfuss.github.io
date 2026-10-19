@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-19T19:18:24Z'
+generated_at: '2026-10-19T19:54:07Z'
 entity: danish_realm
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -2591,10 +2591,6 @@ coins:
         curator: serg
         reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
     _nominal_printed: korshvid
-    _errata_applied:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
     _thinned_from:
       - kmk-186404
       - kmk-186405
@@ -2713,6 +2709,10 @@ coins:
       - kmk-186538
       - kmk-186539
       - kmk-186540
+    _errata_applied:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
   - id: kmk-186399
     fuss: seed_unsorted
     phase: kmk
@@ -21910,32 +21910,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/569971
         ref: KMM 569971 (Inv. FP 10913.24)
     verification_note: *id001
-  - id: kmk-572914
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Søsling
-    metal_verified: false
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 2
-    year_first: 1524
-    year_last: 1528
-    year_label: 1524-1528
-    year_ranges:
-      -   - 1524
-          - 1528
-    weight_rough_verified: false
-    catalog:
-      galster: '63'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/572914
-        ref: KMM 572914 (Inv. FP 11008.8)
-    verification_note: *id001
   - id: kmk-577069
     fuss: seed_unsorted
     phase: kmk
@@ -25413,33 +25387,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/661820
         ref: KMM 661820 (Inv. FP 11975.2)
     verification_note: *id001
-  - id: kmk-707672
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Skilling?
-    metal: silver
-    metal_verified: true
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 2
-    year_first: 1525
-    year_last: 1525
-    year_label: '1525'
-    year_ranges:
-      -   - 1525
-          - 1525
-    weight_rough_verified: false
-    catalog:
-      galster: '61'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/707672
-        ref: KMM 707672 (Inv. FP 338.2)
-    verification_note: *id001
   - id: kmk-735119
     fuss: seed_unsorted
     phase: kmk
@@ -26108,32 +26055,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/533253
         ref: KMM 533253 (Inv. FP 10730.4)
-    verification_note: *id001
-  - id: kmk-572915
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Søsling
-    metal_verified: false
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 2
-    year_first: 1528
-    year_last: 1528
-    year_label: '1528'
-    year_ranges:
-      -   - 1528
-          - 1528
-    weight_rough_verified: false
-    catalog:
-      galster: '63'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/572915
-        ref: KMM 572915 (Inv. FP 11008.7)
     verification_note: *id001
   - id: kmk-621869
     fuss: seed_unsorted
@@ -26906,31 +26827,6 @@ coins:
     year_ranges:
       -   - 1534
           - 1534
-  - id: kmk-156735
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Hvid
-    metal: silver
-    metal_verified: true
-    mint: Kopenhagen
-    mint_verified: true
-    ruler: Christian 2
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156735
-        ref: KMM 156735 (Inv. RP 375.1)
-    verification_note: *id001
-    year_ranges:
-      -   - 1534
-          - 1536
-    year_label: 1534-1536
-    year_last: 1536
-    year_first: 1534
   - id: kmk-186515
     fuss: seed_unsorted
     phase: kmk
@@ -27098,57 +26994,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/292250
         ref: KMM 292250 (Inv. FP 10164.12)
-    verification_note: *id001
-  - id: kmk-292368
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 4 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 2 og grev Christoffer
-    year_first: 1534
-    year_last: 1536
-    year_label: 1534-1536
-    year_ranges:
-      -   - 1534
-          - 1536
-    weight_rough_verified: false
-    catalog:
-      galster: '91'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292368
-        ref: KMM 292368 (Inv. FP 9092.5)
-    verification_note: *id001
-  - id: kmk-299152
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 4 Skilling
-    metal_verified: false
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 2; Grev Christoffer af Oldenburg
-    year_first: 1534
-    year_last: 1536
-    year_label: 1534-1536
-    year_ranges:
-      -   - 1534
-          - 1536
-    weight_rough_verified: false
-    catalog:
-      galster: '91'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/299152
-        ref: KMM 299152 (Inv. FP 8563.18)
     verification_note: *id001
   - id: kmk-299339
     fuss: seed_unsorted
@@ -27321,36 +27166,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/371906
         ref: KMM 371906 (Inv. FP 10480.4)
     verification_note: *id001
-  - id: kmk-662149
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Hvid
-    metal: silver
-    metal_verified: true
-    mint: Kopenhagen
-    mint_verified: true
-    ruler: Christian 2
-    year_first: 1534
-    year_last: 1536
-    year_label: 1534-1536
-    year_ranges:
-      -   - 1534
-          - 1536
-    weight_rough_verified: false
-    catalog:
-      galster: '88'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/662149
-        ref: KMM 662149 (Inv. BP 760.1)
-    verification_note: *id001
-    _source_note:
-      da: kronet h
-    _nominal_printed: korshvid
   - id: kmk-688104
     fuss: seed_unsorted
     phase: kmk
@@ -27508,32 +27323,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/132053
         ref: KMM 132053 (Inv. FP 9599.11)
     verification_note: *id001
-  - id: kmk-132277
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Firskilling
-    metal_verified: false
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 2
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    catalog:
-      galster: '91'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/132277
-        ref: KMM 132277 (Inv. FP 9623.28)
-    verification_note: *id001
   - id: kmk-132547
     fuss: seed_unsorted
     phase: kmk
@@ -27558,32 +27347,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/132547
         ref: KMM 132547 (Inv. FP 9652.1)
-    verification_note: *id001
-  - id: kmk-132586
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Firksilling
-    metal_verified: false
-    mint: Århus
-    mint_verified: true
-    ruler: Christian 2
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    catalog:
-      galster: '94'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/132586
-        ref: KMM 132586 (Inv. FP 9656.27)
     verification_note: *id001
   - id: kmk-133170
     fuss: seed_unsorted
@@ -29326,179 +29089,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/150193
         ref: KMM 150193 (Inv. KP 1656.120)
     verification_note: *id001
-  - id: kmk-156729
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 2 Mark
-    metal: silver
-    metal_verified: true
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 2
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    catalog:
-      schou: '17'
-      others:
-        - B# 17
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156729
-        ref: KMM 156729 (Inv. RP 369.1)
-    verification_note: *id001
-  - id: kmk-156730
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 4 Skilling
-    metal: silver
-    metal_verified: true
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 2
-    weight_rough_verified: true
-    catalog:
-      schou: '6'
-      others:
-        - B# 28
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156730
-        ref: KMM 156730 (Inv. RP 370.1)
-    verification_note: *id001
-    weight_rough_g: 3.69
-    year_first: 1535
-    year_label: '1535'
-    year_last: 1535
-    year_ranges:
-      -   - 1535
-          - 1535
-  - id: kmk-156731
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 4 Skilling
-    metal: silver
-    metal_verified: true
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 2
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156731
-        ref: KMM 156731 (Inv. RP 371.1)
-    verification_note: *id001
-    catalog:
-      others:
-        - B# 26
-    year_first: 1535
-    year_label: '1535'
-    year_last: 1535
-    year_ranges:
-      -   - 1535
-          - 1535
-  - id: kmk-156732
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 4 Skilling
-    metal: silver
-    metal_verified: true
-    mint: Güstow
-    mint_verified: true
-    ruler: Christian 2
-    weight_rough_verified: false
-    catalog:
-      schou: '18'
-      others:
-        - B# 33
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156732
-        ref: KMM 156732 (Inv. RP 372.1)
-    verification_note: *id001
-    year_first: 1535
-    year_label: '1535'
-    year_last: 1535
-    year_ranges:
-      -   - 1535
-          - 1535
-  - id: kmk-156733
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 4 Skilling
-    metal: silver
-    metal_verified: true
-    mint: Güstow
-    mint_verified: true
-    ruler: Christian 2
-    weight_rough_verified: false
-    catalog:
-      schou: '34'
-      others:
-        - B# 36b
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156733
-        ref: KMM 156733 (Inv. RP 373.1)
-    verification_note: *id001
-    year_first: 1535
-    year_label: '1535'
-    year_last: 1535
-    year_ranges:
-      -   - 1535
-          - 1535
-  - id: kmk-156734
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Hvid
-    metal: silver
-    metal_verified: true
-    mint: Kopenhagen
-    mint_verified: true
-    ruler: Christian 2
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156734
-        ref: KMM 156734 (Inv. RP 374.1)
-    verification_note: *id001
-    catalog:
-      others:
-        - B# 33a
-    year_first: 1535
-    year_label: '1535'
-    year_last: 1535
-    year_ranges:
-      -   - 1535
-          - 1535
   - id: kmk-156738
     fuss: seed_unsorted
     phase: kmk
@@ -30214,31 +29804,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/315192
         ref: KMM 315192 (Inv. FP 6958.26)
     verification_note: *id001
-  - id: kmk-317776
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 4 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 2´s tilhængere
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    catalog:
-      galster: '85'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317776
-        ref: KMM 317776 (Inv. FP 6758.24)
-    verification_note: *id001
   - id: kmk-317953
     fuss: seed_unsorted
     phase: kmk
@@ -30514,31 +30079,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/368668
         ref: KMM 368668 (Inv. FP 9884.44)
     verification_note: *id001
-  - id: kmk-369313
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 4 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 2 & Grev Christoffer af Oldenburg
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    catalog:
-      galster: '91'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/369313
-        ref: KMM 369313 (Inv. FP 9779.1)
-    verification_note: *id001
   - id: kmk-369402
     fuss: seed_unsorted
     phase: kmk
@@ -30689,52 +30229,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/407396
         ref: KMM 407396 (Inv. KP 1520.19)
     verification_note: *id001
-  - id: kmk-417186
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Hvid
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 2
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/417186
-        ref: KMM 417186 (Inv. FP 1542.211)
-    verification_note: *id001
-  - id: kmk-417187
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 2
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/417187
-        ref: KMM 417187 (Inv. FP 1542.210)
-    verification_note: *id001
   - id: kmk-429986
     fuss: seed_unsorted
     phase: kmk
@@ -30861,32 +30355,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/569377
         ref: KMM 569377 (Inv. FP 10852.1)
-    verification_note: *id001
-  - id: kmk-570055
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Firskilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 2
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    catalog:
-      galster: '85'
-      schou: 18-36
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/570055
-        ref: KMM 570055 (Inv. FP 10923.4)
     verification_note: *id001
   - id: kmk-572762
     fuss: seed_unsorted
@@ -31167,31 +30635,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/692712
         ref: KMM 692712 (Inv. FP 129.60)
     verification_note: *id001
-  - id: kmk-694936
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 2
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/694936
-        ref: KMM 694936 (Inv. BP 1350.1)
-    verification_note: *id001
-    _source_note:
-      da: IMMERITI CACERIS. O L
   - id: kmk-698797
     fuss: seed_unsorted
     phase: kmk
@@ -31243,32 +30686,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/698798
         ref: KMM 698798 (Inv. FP 306.1)
-    verification_note: *id001
-  - id: kmk-709729
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 4 Skilling
-    metal_verified: false
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 2; Christoffer af Oldenburg
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    catalog:
-      galster: '91'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/709729
-        ref: KMM 709729 (Inv. FP 12320.26)
     verification_note: *id001
   - id: kmk-715342
     fuss: seed_unsorted
@@ -31375,59 +30792,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/739923
         ref: KMM 739923 (Inv. FP 12969.13)
-    verification_note: *id001
-  - id: kmk-741413
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 4 Skilling
-    metal_verified: false
-    mint: Malmø
-    mint_verified: false
-    ruler: Christian 2
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    catalog:
-      galster: '86'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/741413
-        ref: KMM 741413 (Inv. FP 12813.7)
-    verification_note: *id001
-    _mint_uncertain: true
-  - id: kmk-746354
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Hvid
-    metal_verified: false
-    mint: Kopenhagen
-    mint_verified: true
-    ruler: Christian 2
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    year_ranges:
-      -   - 1535
-          - 1535
-    weight_rough_verified: false
-    catalog:
-      galster: '87'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/746354
-        ref: KMM 746354 (Inv. FP 10950.73)
     verification_note: *id001
   - id: kmk-751485
     fuss: seed_unsorted
@@ -33199,35 +32563,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/156606
         ref: KMM 156606 (Inv. FP 2036.6)
     verification_note: *id001
-  - id: kmk-156728
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: halv sølvgylden
-    metal: silver
-    metal_verified: true
-    mint: Kopenhagen
-    mint_verified: true
-    ruler: Christian 2
-    weight_rough_verified: false
-    catalog:
-      schou: '1'
-      others:
-        - B# 38
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156728
-        ref: KMM 156728 (Inv. RP 368.1)
-    verification_note: *id001
-    year_first: 1536
-    year_label: '1536'
-    year_last: 1536
-    year_ranges:
-      -   - 1536
-          - 1536
   - id: kmk-156745
     fuss: seed_unsorted
     phase: kmk
@@ -34440,29 +33775,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/330685
         ref: KMM 330685 (Inv. FP 6253.7)
     verification_note: *id001
-  - id: kmk-331643
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 2 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 2
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    year_ranges:
-      -   - 1536
-          - 1536
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/331643
-        ref: KMM 331643 (Inv. FP 6145.25)
-    verification_note: *id001
   - id: kmk-332447
     fuss: seed_unsorted
     phase: kmk
@@ -35039,31 +34351,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/558968
         ref: KMM 558968 (Inv. FP 10759.25)
-    verification_note: *id001
-  - id: kmk-562736
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 2 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 2.
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    year_ranges:
-      -   - 1536
-          - 1536
-    weight_rough_verified: false
-    catalog:
-      galster: '105'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/562736
-        ref: KMM 562736 (Inv. FP 10796.5)
     verification_note: *id001
   - id: kmk-572831
     fuss: seed_unsorted
@@ -296283,81 +295570,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/148223
         ref: KMM 148223 (Inv. KP 1656.2090)
     verification_note: *id001
-  - id: kmk-148224
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 12 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Frederik 5
-    year_first: 1764
-    year_last: 1764
-    year_label: '1764'
-    year_ranges:
-      -   - 1764
-          - 1764
-    weight_rough_verified: false
-    catalog:
-      schou: '13'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148224
-        ref: KMM 148224 (Inv. KP 1656.2089)
-    verification_note: *id001
-  - id: kmk-148225
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 24 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Frederik 5
-    year_first: 1764
-    year_last: 1764
-    year_label: '1764'
-    year_ranges:
-      -   - 1764
-          - 1764
-    weight_rough_verified: false
-    catalog:
-      schou: '12'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148225
-        ref: KMM 148225 (Inv. KP 1656.2088)
-    verification_note: *id001
-  - id: kmk-148226
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 24 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Frederik 5
-    year_first: 1764
-    year_last: 1764
-    year_label: '1764'
-    year_ranges:
-      -   - 1764
-          - 1764
-    weight_rough_verified: false
-    catalog:
-      schou: '11'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148226
-        ref: KMM 148226 (Inv. KP 1656.2087)
-    verification_note: *id001
   - id: kmk-152116
     fuss: seed_unsorted
     phase: kmk
@@ -297011,81 +296223,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/122886
         ref: KMM 122886 (Inv. FP 3712.11)
-    verification_note: *id001
-  - id: kmk-148213
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 24 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 7
-    year_first: 1766
-    year_last: 1766
-    year_label: '1766'
-    year_ranges:
-      -   - 1766
-          - 1766
-    weight_rough_verified: false
-    catalog:
-      schou: '2'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148213
-        ref: KMM 148213 (Inv. KP 1656.2100)
-    verification_note: *id001
-  - id: kmk-148211
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 6 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 7
-    year_first: 1767
-    year_last: 1767
-    year_label: '1767'
-    year_ranges:
-      -   - 1767
-          - 1767
-    weight_rough_verified: false
-    catalog:
-      schou: '13'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148211
-        ref: KMM 148211 (Inv. KP 1656.2102)
-    verification_note: *id001
-  - id: kmk-148212
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 6 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 7
-    year_first: 1767
-    year_last: 1767
-    year_label: '1767'
-    year_ranges:
-      -   - 1767
-          - 1767
-    weight_rough_verified: false
-    catalog:
-      schou: '10'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148212
-        ref: KMM 148212 (Inv. KP 1656.2101)
     verification_note: *id001
   - id: kmk-406259
     fuss: seed_unsorted
@@ -310796,31 +309933,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/430444
         ref: KMM 430444 (Inv. FP 1496.29)
     verification_note: *id001
-  - id: kmk-494537
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 25 Skilling
-    metal_verified: false
-    mint_verified: false
-    ruler: Frederik 6
-    year_first: 1837
-    year_last: 1837
-    year_label: '1837'
-    year_ranges:
-      -   - 1837
-          - 1837
-    weight_rough_verified: false
-    catalog:
-      schou: '5'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/494537
-        ref: KMM 494537 (Inv. KP 1656.2171a)
-    verification_note: *id001
   - id: kmk-122419
     fuss: seed_unsorted
     phase: kmk
@@ -315683,28 +314795,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/740457
         ref: KMM 740457 (Inv. FP 465.13)
-    verification_note: *id001
-  - id: kmk-494683
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 5 Cents
-    metal_verified: false
-    mint_verified: false
-    year_first: 1859
-    year_last: 1859
-    year_label: '1859'
-    year_ranges:
-      -   - 1859
-          - 1859
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/494683
-        ref: KMM 494683 (Inv. KP 1501.8)
     verification_note: *id001
   - id: kmk-122632
     fuss: seed_unsorted
@@ -351462,10 +350552,6 @@ coins:
         curator: serg
         reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
     _nominal_printed: korshvid
-    _errata_applied:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
     _thinned_from:
       - kmk-642168
       - kmk-642169
@@ -352192,6 +351278,10 @@ coins:
       - kmk-642890
       - kmk-642891
       - kmk-642892
+    _errata_applied:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
   - id: kmk-642163
     fuss: seed_unsorted
     phase: kmk
