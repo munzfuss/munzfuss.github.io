@@ -118,6 +118,16 @@ table): «småmønt» → the phrase «smaa moent», which matches «Smaa-Myndt�
 `--no-split` turns this off. Ranking is BM25; AND first, then OR to fill
 the list. `--fts` passes FTS5 syntax through (quotes, `NEAR`, `OR`).
 
+**What the rules can and cannot do.** A rule folds spelling variants of ONE
+word of ONE language that actually occur in the corpus — Mynt/Mønt,
+Schilling/Skilling, Kaaber/Kobber (16th–17th-c. Danish for copper: Secher has
+kaaber 40×, kaabber 12×, kobber 36×; rule added 2026-10-19, A/B unchanged).
+Each rule is checked against the corpus and the measurement before it stays.
+Words of DIFFERENT languages are not variants and get no rule: Kobber / Kupfer /
+koppar / cuprum, Gylden / Gulden / florenus, Hvid / Witten — write them into
+the query together (`kobber kupfer koppar`; without `--fts` the words are tried
+with AND, then OR). `tests/test_kb_search.py` pins the folds that matter.
+
 ## Measurement — the go/no-go gate
 
 Two sets of passages already quoted in `refs_pool.yml`, sources across the

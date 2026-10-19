@@ -28,6 +28,8 @@ rules:
   - {pattern: 'skil+ing',         replace: 'skiling', note: 'Skilling/Skiling'}
   - {pattern: '\b(reichs|richs|riks|rix|rijks|rijx)', replace: 'rigs', note: 'Reichs-/Richs-/Riks-/Rix-/Rijks- prefix'}
   - {pattern: 'dah?l+er',         replace: 'daler',   note: 'Daller/Dahler/Daler'}
+  - {pattern: '\bkaab+er',         replace: 'kobber',  note: 'Kaaber/Kaabber/Kobber (copper), also in compounds: Kaabermønt'}
+  - {pattern: '\bkober',           replace: 'kobber',  note: 'Kober/Kobber'}
   - {pattern: '(?<![a-z])taler',  replace: 'daler',   note: 'Taler/Thaler as a word start (not «betaler»)'}
   - {pattern: '(?<=s)taler',      replace: 'daler',   note: 'Rigstaler, Speciestaler, Reichstaler in compounds'}
   - {pattern: 'g(ue|u|y)(l+|i)den', replace: 'gylden', note: 'Gulden/Gülden/Gylden/Gyllden, also inside compounds (Goldgulden); «guiden» = OCR l→i, systematic in Galster 1934 (182× vs 30× «gulden») and Wilcke («Poul Guiden» = Poul Gulden)'}
