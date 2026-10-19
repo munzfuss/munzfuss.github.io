@@ -64,12 +64,14 @@
   KMM 591617 = Søsling Landskrona, Hede pages without a ruler line parse
   (Christiansstad, Krone 1624), excluded seeds protected from thinning,
   Hede 106 KMM krone pin, NGC catch-up of 22f5b5a, hook names failed checks.
-  Open: (1) Hede pages with no weight block (89, incl. Christiansstad siege
-  coins, jetons, odd nominals) are still skipped — list prepared for the
-  curator; (2) Güstrow (Galster c2g-85, struck by Albrecht VII of Mecklenburg
-  in Christian II's name) awaits an entity decision; (3) Danish West Indies
-  («Vestindien») not decided; (4) kmk-473418, 494040, 805: excluded seeds
-  missing from seeds since before 2026-10-19.
+  Then `7cffb25`: Christian II after 1523 = own issuers on the Denmark page
+  (christian_ii_supporters — Norby 1524-28 + Count's Feud 1534-36 incl.
+  Güstrow; christian_ii_reconquest — Norway 1531-32), danish_west_indies out
+  of scope, weightless Hede pages admitted (patterns/jetons/post-1914 undated
+  skipped; f2h16, f2h34, f4h56 parsed). Open: (1) ikmk-18262362 (Christian II
+  2 Mark 1531) moves only on the next IKMK re-seed — IKMK re-seed carries
+  unrelated pending drift; (2) kmk-473418, 494040, 805 excluded but missing
+  from seeds since before 2026-10-19.
 
 ## 2026-10-18 — Merger scoped-index rules; KMM rulers; Schou-only folds undone
 
