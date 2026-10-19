@@ -4223,3 +4223,8 @@ removals:
     field: lange
     dropped: ['306-10']
     reason: 'KMM prints the elided range; the builder now expands it to the full form (_expand_abbrev_range). Same reference, full notation. Curator 2026-10-19.'
+  - seed: ngc-171222
+    kind: field
+    field: mint
+    dropped: [Thaler]
+    reason: 'A denomination in NGC''s mint field, not a mint; the writer drops denomination-shaped mints. Curator 2026-10-19 (mint-registry cleanup, group 5).'

@@ -84,5 +84,21 @@ class MintCleanupTest(unittest.TestCase):
         self.assertEqual(kmk._split_place({"place": "Hafnens", "id": 0}), ("Kopenhagen", None))
 
 
+
+class HedeUnknownMintReviewTest(unittest.TestCase):
+    def test_unknown_mint_candidates(self):
+        import parse_hede as ph
+        txt = "A) Sæby; 1596 (Hede 5A)\nB) Kongsberg, 1597\nC) Forsideomskrift: x"
+        self.assertEqual(ph.unknown_mint_candidates(txt), ["Sæby"])
+
+    def test_no_ruler_header(self):
+        import parse_hede as ph
+        html = "<H1>2 Skilling klipping, Christiansstad</H1>"
+        d = ph.parse_one(html, "c5h131")
+        self.assertEqual(d["ruler"], "Christian 5.")
+        self.assertEqual(d["nominal"], "2 Skilling klipping")
+        self.assertEqual(d["mint"], "Christiansstad")
+
+
 if __name__ == "__main__":
     unittest.main()

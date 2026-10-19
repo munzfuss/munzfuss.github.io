@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
 # Input: 499 per-source seed entries.
-# Output: 265 unified entries (one per physical coin).
+# Output: 264 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -33,15 +33,22 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
       - value: 28.96
         source: bruun
+    diameter_mm:
+      - value: 41.0
+        source: ngc
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12213, p. 245
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-24-groschen-mb-20-1589-cuid-171221-duid-386691
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://numismaster.com/MC_171221
         ref: NumisMaster
@@ -57,6 +64,7 @@ coins:
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-bruun-14788
+      - ngc-171221
       - schleswig_holstein-numismaster-171221
   - id: unified-dk-bruun-14793
     fuss: seed_unsorted
@@ -4790,6 +4798,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153426
@@ -4832,6 +4841,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18286856
@@ -4878,6 +4888,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18286846
@@ -4916,6 +4927,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153429
@@ -4953,6 +4965,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153430
@@ -4990,6 +5003,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153431
@@ -5025,6 +5039,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153432
@@ -5065,6 +5080,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153433
@@ -5104,6 +5120,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153434
@@ -5142,6 +5159,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153435
@@ -5184,6 +5202,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153530
@@ -5219,6 +5238,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153531
@@ -5250,6 +5270,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153532
@@ -5293,6 +5314,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278286
@@ -5346,6 +5368,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278287
@@ -5390,6 +5413,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153536
@@ -5433,6 +5457,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153537
@@ -5470,6 +5495,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153538
@@ -5507,6 +5533,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153539
@@ -5544,6 +5571,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153540
@@ -5578,6 +5606,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153541
@@ -5617,6 +5646,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153542
@@ -5648,6 +5678,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153650
@@ -5682,6 +5713,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153652
@@ -5720,6 +5752,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153653
@@ -5758,6 +5791,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1153654
@@ -5803,6 +5837,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-137397
@@ -5850,6 +5885,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-137320
@@ -5884,6 +5920,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1154786
@@ -5926,6 +5963,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1154787
@@ -5986,6 +6024,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18286228
@@ -6042,6 +6081,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18286798
@@ -6080,6 +6120,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-137348
@@ -6122,6 +6163,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1154791
@@ -6164,6 +6206,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1154836
@@ -6195,6 +6238,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1154837
@@ -6228,6 +6272,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1154838
@@ -6280,6 +6325,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278291
@@ -6320,6 +6366,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1154840
@@ -6378,6 +6425,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-270483
@@ -6423,6 +6471,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18286857
@@ -6471,6 +6520,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156511
@@ -6520,6 +6570,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278795
@@ -6555,6 +6606,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156513
@@ -6592,6 +6644,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156514
@@ -6631,6 +6684,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156516
@@ -6668,6 +6722,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156621
@@ -6705,6 +6760,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156622
@@ -6747,6 +6803,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156623
@@ -6796,6 +6853,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156624
@@ -6831,6 +6889,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156625
@@ -6869,6 +6928,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156626
@@ -6903,6 +6963,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156627
@@ -6955,6 +7016,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278299
@@ -6990,6 +7052,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156662
@@ -7027,6 +7090,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156745
@@ -7066,6 +7130,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156746
@@ -7105,6 +7170,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156747
@@ -7145,6 +7211,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156748
@@ -7183,6 +7250,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156749
@@ -7232,6 +7300,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-137341
@@ -7266,6 +7335,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156774
@@ -7303,6 +7373,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156896
@@ -7341,6 +7412,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156897
@@ -7382,6 +7454,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156898
@@ -7431,6 +7504,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278302
@@ -7483,6 +7557,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278298
@@ -7518,6 +7593,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156902
@@ -7556,6 +7632,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156903
@@ -7587,6 +7664,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156904
@@ -7623,6 +7701,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156905
@@ -7660,6 +7739,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156906
@@ -7694,6 +7774,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156907
@@ -7733,6 +7814,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156908
@@ -7772,6 +7854,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1156972
@@ -7818,6 +7901,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-137315
@@ -7858,6 +7942,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159633
@@ -7907,6 +7992,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278297
@@ -7949,6 +8035,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159635
@@ -7984,6 +8071,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159636
@@ -8026,6 +8114,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159637
@@ -8089,6 +8178,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ikmk-18286248
@@ -8124,6 +8214,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159639
@@ -8160,6 +8251,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159640
@@ -8195,6 +8287,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159641
@@ -8230,6 +8323,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159642
@@ -8265,6 +8359,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159736
@@ -8307,6 +8402,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278293
@@ -8343,6 +8439,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159738
@@ -8374,6 +8471,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159740
@@ -8425,6 +8523,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-278793
@@ -8463,6 +8562,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159743
@@ -8505,6 +8605,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159744
@@ -8545,6 +8646,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159746
@@ -8585,6 +8687,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1159747
@@ -8634,6 +8737,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-137399
@@ -8667,6 +8771,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1162546
@@ -8699,6 +8804,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1162547
@@ -8731,6 +8837,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1162548
@@ -8771,6 +8878,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1162549
@@ -8813,6 +8921,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1162550
@@ -8848,6 +8957,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1162551
@@ -8879,6 +8989,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1162552
@@ -8915,6 +9026,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1162553
@@ -8955,6 +9067,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1162634
@@ -9006,6 +9119,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-319276
@@ -9049,6 +9163,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1181030
@@ -9079,6 +9194,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1182147
@@ -9115,6 +9231,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1183452
@@ -9155,6 +9272,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1185765
@@ -9192,6 +9310,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1188253
@@ -9243,6 +9362,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-276028
@@ -9282,6 +9402,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1189194
@@ -9334,6 +9455,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-309994
@@ -9376,6 +9498,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1191088
@@ -9413,6 +9536,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1193261
@@ -9450,6 +9574,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206089
@@ -9490,6 +9615,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - dk-numista-137347
@@ -9536,6 +9662,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206093
@@ -9575,6 +9702,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206094
@@ -9617,6 +9745,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206095
@@ -9658,6 +9787,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206096
@@ -9689,6 +9819,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206097
@@ -9723,6 +9854,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206098
@@ -9761,6 +9893,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206099
@@ -9800,6 +9933,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206100
@@ -9840,6 +9974,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206101
@@ -9878,6 +10013,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1206102
@@ -9921,6 +10057,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171183
@@ -9957,6 +10094,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171184
@@ -9998,6 +10136,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171185
@@ -10031,6 +10170,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171187
@@ -10064,6 +10204,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171189
@@ -10105,6 +10246,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171190
@@ -10141,6 +10283,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171191
@@ -10177,6 +10320,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171192
@@ -10213,6 +10357,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171219
@@ -10260,43 +10405,11 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171220
       - schleswig_holstein-numismaster-171220
-  - id: unified-ngc-171221
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 24 Groschen
-    year_first: 1589
-    year_last: 1589
-    year_label: '1589'
-    ruler: Adolf XIII
-    catalog:
-      mb: '20'
-      dav: '8239'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    diameter_mm:
-      - value: 41.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-24-groschen-mb-20-1589-cuid-171221-duid-386691
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ngc-171221
   - id: unified-ngc-171222
     fuss: seed_unsorted
     phase: ngc
@@ -10331,6 +10444,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171222
@@ -10371,6 +10485,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171224
@@ -10409,6 +10524,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171225
@@ -10451,6 +10567,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171226
@@ -10488,6 +10605,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171227
@@ -10531,6 +10649,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171229
@@ -10565,6 +10684,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171257
@@ -10599,6 +10719,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171258
@@ -10633,6 +10754,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171259
@@ -10678,6 +10800,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171260
@@ -10712,6 +10835,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171261
@@ -10746,6 +10870,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171262
@@ -10788,6 +10913,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171265
@@ -10828,6 +10954,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171266
@@ -10863,6 +10990,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171267
@@ -10909,6 +11037,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-171269

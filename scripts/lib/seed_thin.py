@@ -327,7 +327,8 @@ def _in_input_order(coins: list, kept: list) -> list:
     return [c for c in coins if id(c) in keep]
 
 
-def thin_safe(coins: list, max_weightless: int = 3) -> tuple[list, dict]:
+def thin_safe(coins: list, max_weightless: int = 3,
+              protected: frozenset = frozenset()) -> tuple[list, dict]:
     """Seed-layer volume control that cannot change a weight envelope.
 
     §9a's own thinning — «keep min / middle / max» — belongs AFTER the merge,
@@ -371,8 +372,18 @@ def thin_safe(coins: list, max_weightless: int = 3) -> tuple[list, dict]:
     touched_buckets = 0
     assignments: dict[str, str] = {}   # dropped id → representative id
     for members in buckets.values():
+        # `protected`: ids the caller must keep as their own record — a
+        # curator-EXCLUDED seed above all (data/v2/exclusions/). Thinned away,
+        # it vanished from the seed (orphaning the exclusion, PB-12) and its
+        # citation moved onto a rendered representative (2026-10-19: 11 KMM).
+        # A protected record is never dropped but still COUNTS like any other
+        # in its bucket and goes first, so it stays the representative the
+        # bucket's duplicates are thinned into — exactly where they sat
+        # before (taking it out of the count turned its hidden duplicates
+        # into new visible coins).
         curated = [c for c in members if _is_curated(c)]
-        plain = [c for c in members if not _is_curated(c)]
+        plain = sorted((c for c in members if not _is_curated(c)),
+                       key=lambda c: c.get("id") not in protected)
         keep: list = list(curated)
         dropped: list = []
         seen_w: set = set()
@@ -383,15 +394,18 @@ def thin_safe(coins: list, max_weightless: int = 3) -> tuple[list, dict]:
                 weightless.append(c)
                 continue
             k = round(w, 2)
-            if k in seen_w:
+            if k in seen_w and c.get("id") not in protected:
                 dropped.append(c)
             else:
                 seen_w.add(k)
                 keep.append(c)
         if len(weightless) > max_weightless:
-            wl_sorted = sorted(weightless, key=lambda c: str(c.get("id")))
-            keep.extend(wl_sorted[:max_weightless])
-            dropped.extend(wl_sorted[max_weightless:])
+            wl_sorted = sorted(weightless, key=lambda c: (c.get("id") not in protected,
+                                                          str(c.get("id"))))
+            n_prot = sum(1 for c in wl_sorted if c.get("id") in protected)
+            cap = max(max_weightless, n_prot)   # protected are never dropped
+            keep.extend(wl_sorted[:cap])
+            dropped.extend(wl_sorted[cap:])
         else:
             keep.extend(weightless)
         if dropped:

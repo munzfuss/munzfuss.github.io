@@ -20,7 +20,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from lib.seed_thin import prune_stale_thinned  # noqa: E402
+from lib.seed_thin import prune_stale_thinned, thin_safe  # noqa: E402
 
 
 def _src(n):
@@ -60,6 +60,26 @@ class PruneStaleThinnedTest(unittest.TestCase):
         st = prune_stale_thinned([k], {"kmk-2", "kmk-3"}, {"kmk-3": "kmk-2"}, _sid)
         self.assertEqual(k["_thinned_from"], ["kmk-3"])
         self.assertEqual(st["links_pruned"], 0)
+
+
+class ProtectedThinningTest(unittest.TestCase):
+    """Curator-excluded seeds are never thinned away (2026-10-19: 11 KMM
+    exclusions vanished into representatives) but stay the representative
+    their duplicates are thinned into."""
+
+    def test_protected_never_dropped(self):
+        coins = [{"id": f"kmk-{i}", "nominal": "Hvid", "ruler": "Hans"} for i in range(1, 8)]
+        prot = frozenset({"kmk-3", "kmk-5", "kmk-6", "kmk-7"})
+        kept, st = thin_safe(coins, protected=prot)
+        ids = {c["id"] for c in kept}
+        self.assertTrue(prot <= ids)
+        self.assertEqual(set(st["assignments"].values()), {"kmk-3"})
+
+    def test_protected_stays_representative(self):
+        coins = [{"id": f"kmk-{i}", "nominal": "(?)", "ruler": "X"} for i in (1, 2, 3, 4, 9)]
+        kept, st = thin_safe(coins, protected=frozenset({"kmk-9"}))
+        self.assertIn("kmk-9", {c["id"] for c in kept})
+        self.assertTrue(all(v == "kmk-9" for v in st["assignments"].values()))
 
 
 if __name__ == "__main__":

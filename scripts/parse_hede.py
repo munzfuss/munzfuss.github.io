@@ -1438,6 +1438,36 @@ def _is_denomination(s: str) -> bool:
 _MINT_CAND_RE = re.compile(r"[A-ZÆØÅ][A-Za-zæøåäöü]+")
 
 
+# Words Hede writes at the head of a variant line that are descriptions, not
+# places (measured 2026-10-19 over the whole cache).
+_VARIANT_DESCRIPTOR_WORDS = frozenset({
+    "forside", "bagside", "forsideomskrift", "bagsideomskrift", "omskrift",
+    "omskrifterne", "bagsideindskriften", "valgsprog", "møntmærke",
+    "møntmestermærke", "årstallet", "portræt", "ovalt", "prøvemønt",
+})
+
+
+def unknown_mint_candidates(text: str) -> list[str]:
+    """Capitalised words standing where a variant line names its mint
+    («A) Odense; 1596») that the mint registry does not know and that are not
+    descriptor words. The parser only accepts registered mints from free text
+    (so a stray capitalised word never becomes a mint); this list makes the
+    ones it skipped visible for review instead of losing them silently
+    (curator 2026-10-19 — Odense in c4h5 was found only by chance)."""
+    out: list[str] = []
+    for m in re.finditer(r"(?m)^\s*[A-ZÆØÅ]\)\s*(.*)$", text or ""):
+        for seg in re.split(r"[;,]", m.group(1))[:3]:
+            mm = re.fullmatch(r"\s*([A-ZÆØÅ][a-zæøåäöü]+)(?:\s*\(.*)?\s*", seg)
+            if not mm:
+                continue
+            w = mm.group(1)
+            if (canon_for_alias(w) is None
+                    and w.lower() not in _VARIANT_DESCRIPTOR_WORDS
+                    and w not in out):
+                out.append(w)
+    return out
+
+
 def _first_mint_in(segment: str) -> str | None:
     """First recognised mint name (verbatim) in a text segment, else None."""
     for cand in _MINT_CAND_RE.findall(segment or ""):
@@ -1498,7 +1528,22 @@ def _parse_header(html: str) -> dict:
     # Ruler line: ends with '.', e.g. «Christian 5.»
     ruler_line = parts[0].rstrip(",").rstrip(".")
     # Sometimes «Ruler., Nominal, Mint» on one line
-    if "," in parts[0]:
+    if "," in parts[0] and _is_denomination(parts[0].split(",")[0].strip().rstrip(".")):
+        # No ruler line: the H1 opens with «Nominal, Mint» (the Christiansstad
+        # siege pages c5h131-135: «2 Skilling klipping, Christiansstad»). The
+        # ruler comes from the volume (parse_one's ruler_inferred).
+        line0 = parts[0].rstrip(".")
+        yr = re.search(r"\b\d{4}(?:\s*[-–]\s*\d{4})*\b", line0)
+        if yr:
+            out["years"] = _extract_years(yr.group(0))
+            line0 = line0[: yr.start()] + line0[yr.end():]
+        line0 = re.sub(r"\bu\.?\s*år\.?", "", line0, flags=re.IGNORECASE)
+        segs = [re.sub(r"\s+", " ", s).strip(" .") for s in line0.split(",")]
+        segs = [s for s in segs if s]
+        out["nominal"] = segs[0]
+        if len(segs) > 1:
+            out["mint"] = segs[-1]
+    elif "," in parts[0]:
         segs = [s.strip() for s in parts[0].split(",")]
         out["ruler"] = segs[0].rstrip(".") + "."
         if len(segs) > 1:
@@ -2280,8 +2325,13 @@ def main() -> int:
     overviews = 0
     failed = 0
     parsed_files: list[Path] = []
+    review: dict[str, list[str]] = {}
     for f in sorted(CACHE_DIR.glob("*.htm")):
         basename = f.stem
+        _cands = unknown_mint_candidates(
+            _strip_html(f.read_text(encoding="utf-8", errors="replace")))
+        if _cands:
+            review[basename] = _cands
         json_path = f.with_suffix(".json")
         if json_path.exists() and not args.force:
             skipped += 1
@@ -2388,6 +2438,18 @@ def main() -> int:
     print(f"Index stubs skipped (existing sidecar): {stub_skipped_existing}")
     print(f"Index stubs skipped (covered by by_hede / by_letter): {stub_skipped_covered}")
     print(f"Aggregate index: {len(index)} composite Hede keys")
+    # Review list: capitalised words in a variant line's mint position that
+    # the registry does not know (not descriptors). Each is either a mint to
+    # register or a new descriptor word to add to _VARIANT_DESCRIPTOR_WORDS.
+    review_path = CACHE_DIR / "_unknown_mint_candidates.json"
+    review_path.write_text(json.dumps(review, ensure_ascii=False, indent=2,
+                                      sort_keys=True) + "\n", encoding="utf-8")
+    if review:
+        print(f"⚠ Unknown mint candidates on {len(review)} page(s) — review "
+              f"{review_path.name}: " + ", ".join(
+                  f"{k}: {'/'.join(v)}" for k, v in sorted(review.items())[:10]))
+    else:
+        print("Unknown mint candidates: none")
     return 0
 
 

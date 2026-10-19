@@ -315,6 +315,10 @@ def _registry_display_for(part: str) -> str | None:
     return _REG_DISPLAY.get(canon) if canon else None
 
 
+# A bare place name: capitalised word(s), no digits, not «u. år» and the like.
+_PLACE_NAME_RE = re.compile(r"[A-ZÆØÅÄÖÜ][a-zæøåäöüé]+(?:[ -][A-ZÆØÅÄÖÜ][a-zæøåäöüé]+)*")
+
+
 def _normalize_mints(mint_clean: str) -> list[str] | None:
     """Map a possibly multi-mint raw Hede string to a list of
     canonical mint names. Returns the de-duplicated list in source
@@ -343,6 +347,12 @@ def _normalize_mints(mint_clean: str) -> list[str] | None:
             # So the registry decides coverage and DK_MINT_DE keeps deciding
             # spelling — same split as `f53986f` made for the region-word list.
             matched = _registry_display_for(part)
+        if matched is None and _PLACE_NAME_RE.fullmatch(part):
+            # A town the registry does not know is still the source's mint:
+            # keep it verbatim (curator 2026-10-19 — the registry normalises
+            # spelling and routes entities; it never decides whether a mint
+            # exists). Christiansstad was lost here until it was registered.
+            matched = part
         if matched is not None and matched not in out:
             out.append(matched)
     return out or None

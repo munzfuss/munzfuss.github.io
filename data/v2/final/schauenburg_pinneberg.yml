@@ -1778,7 +1778,7 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
@@ -1786,6 +1786,9 @@ coins:
         source: numista
       - value: 28.96
         source: bruun
+    diameter_mm:
+      - value: 41.0
+        source: ngc
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -1799,6 +1802,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_171221
         ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-24-groschen-mb-20-1589-cuid-171221-duid-386691
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 1 Thaler · Adolph XIV. von Schaumburg-Pinneberg, 1589
       en: 1 Thaler · Adolph XIV, Count of Schaumburg-Pinneberg, 1589
@@ -6675,40 +6681,6 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     composed_of:
       - unified-ngc-171220
-  - fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 24 Groschen
-    ruler: Adolf XIII
-    issuing_entity: schauenburg_pinneberg
-    id: unified-ngc-171221
-    year_first: 1589
-    year_last: 1589
-    year_label: '1589'
-    year_verified: false
-    catalog:
-      mb: '20'
-      dav: '8239'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    diameter_mm:
-      - value: 41.0
-        source: ngc
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-thaler-24-groschen-mb-20-1589-cuid-171221-duid-386691
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
-      en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
-      uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
-    composed_of:
-      - unified-ngc-171221
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant

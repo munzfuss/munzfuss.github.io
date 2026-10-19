@@ -174,6 +174,13 @@ _MINT_REGISTRY: dict[str, dict] = {
         "display": "Lund",
         "entity": "danish_realm",
     },
+    "tranquebar": {
+        # Danish India (Tranquebar / Trankebar). Out of the project's scope —
+        # entity `danish_india` renders on no page (curator 2026-10-19).
+        "aliases": {"tranquebar", "trankebar", "trankebar tranquebar"},
+        "display": "Tranquebar",
+        "entity": "danish_india",
+    },
     "ronneby": {
         # Danish until 1658. Frederik I's Søsling 1525-1526 (Galster f1g-67,
         # KMM ×11); KMM also writes «Rønneby» and «Romeby» (2026-10-19).
@@ -393,7 +400,9 @@ _MINT_REGISTRY: dict[str, dict] = {
         # confirms the type: «N2AB | 24 Skilling | Sølv | 1746-1765 |
         # Kongsberg», while the Danish 24 Skilling (Hede 34/35, København)
         # starts only in 1750.
-        "aliases": {"kongsberg", "konsberg", "kongberg", "kongsborg"},
+        # «konsvang» — KMM 349806, «2 skilling», Frederik 5, 1764, «H: 3B» =
+        # Hede Norge Frederik V 3, «2 Skilling, Kongsberg» (curator 2026-10-19).
+        "aliases": {"kongsberg", "konsberg", "kongberg", "kongsborg", "konsvang"},
         "display": "Kongsberg",
         "entity": "danish_norway",
         # Norway left the Danish crown by the Treaty of Kiel (14 January

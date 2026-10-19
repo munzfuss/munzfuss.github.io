@@ -119,6 +119,11 @@ fi
 # commit) iff FAIL != 0 at the end. Individual checks set FAIL=1 instead of
 # exiting, so a launched background check is always reaped before we exit
 # (no orphaned build.py holding CPU after the commit is already doomed).
+FAILED_CHECKS=()
+# Record a failed check by name, so the final line says WHICH checks blocked
+# the commit instead of only «one or more checks failed» (curator 2026-10-19:
+# the ✗ block can scroll away or be cut by a `| tail` in the caller).
+fail_check() { FAIL=1; FAILED_CHECKS+=("$1"); }
 FAIL=0
 
 # ---------------------------------------------------------------------------
@@ -223,7 +228,7 @@ for h in [x for x in d['hits'] if x['severity'] == 'error'][:12]:
         echo "scripts/audit_prose.py rather than suppressing the hit."
         echo "    $PYTHON scripts/audit_prose.py --staged   # detail"
         echo "or bypass with: git commit --no-verify"
-        FAIL=1
+        fail_check "Check 2: prose lint"
     fi
     rm -f "$PROSE_LOG"
 fi
@@ -244,7 +249,7 @@ if [ -n "$DECISIONS_RELEVANT" ]; then
         echo
         echo "A merge_decisions file is malformed (duplicate key or an entry"
         echo "missing its 'members'). Fix it, or bypass with: git commit --no-verify"
-        FAIL=1
+        fail_check "Check 5: curator decision-file integrity"
     else
         echo "  ${C_GREEN}✓${C_RST} decision files structurally valid"
 
@@ -261,7 +266,7 @@ if [ -n "$DECISIONS_RELEVANT" ]; then
             echo
             echo "A merges/no_merges member does not resolve to a seed id. Heal via the"
             echo "v2-merge-coins skill (resolve → drop/fix), or bypass: git commit --no-verify"
-            FAIL=1
+            fail_check "Check 5: curator decision-file integrity"
         else
             echo "  ${C_GREEN}✓${C_RST} all merge-decision members resolve to seed ids"
         fi
@@ -291,7 +296,7 @@ if [ -n "$SEED_RELEVANT" ]; then
         echo "Relocate the drifted entries with:"
         echo "    $PYTHON scripts/maintenance/rebucket_seeds.py --apply"
         echo "then re-run merge + absorb, or bypass with: git commit --no-verify"
-        FAIL=1
+        fail_check "Check 8: seed-bucket drift"
     else
         echo "  ${C_GREEN}✓${C_RST} every seed entry sits in its home bucket"
     fi
@@ -321,7 +326,7 @@ if [ -n "$RESID_RELEVANT" ]; then
         cat "$RES_LOG" | sed 's/^/    /'
         echo
         echo "Bypass with: git commit --no-verify"
-        FAIL=1
+        fail_check "Check 9: YAML round-trip residual"
     else
         if [ -s "$RES_LOG" ]; then sed 's/^/    /' "$RES_LOG"; fi
         echo "  ${C_GREEN}✓${C_RST} no file reformats more than it did at HEAD"
@@ -346,7 +351,7 @@ if [ -n "$BUILD_PID" ]; then
         echo
         echo "Full log: $BUILD_LOG"
         echo "Fix the build error before committing, or bypass with: git commit --no-verify"
-        FAIL=1
+        fail_check "Check 1: build validation"
     fi
 fi
 
@@ -376,7 +381,7 @@ if [ -n "$V2_PID" ]; then
         echo
         echo "Full log: $V2_LOG"
         echo "Fix the V2 invariant violation, or bypass with: git commit --no-verify"
-        FAIL=1
+        fail_check "Check 4: V2 invariants (audit_v2 --quick)"
     fi
 fi
 
@@ -397,7 +402,7 @@ if [ -n "$CIT_PID" ]; then
         echo "A reconciliation replaced sources instead of unioning. Heal with:"
         echo "    $PYTHON scripts/maintenance/audit_lost_citations.py --apply"
         echo "or bypass with: git commit --no-verify"
-        FAIL=1
+        fail_check "Check 6: lost-citation audit"
     fi
 fi
 
@@ -425,7 +430,7 @@ if [ -n "$RFL_PID" ]; then
         echo "is deliberate, make it a recognised fold (the survivor must list the"
         echo "removed id in composed_of — dedup_final_foundations.py does this),"
         echo "or bypass with: git commit --no-verify"
-        FAIL=1
+        fail_check "Check 7: reflow diff against HEAD (verify_reflow)"
     fi
 fi
 
@@ -446,12 +451,13 @@ if [ -n "$MRK_PID" ]; then
         echo
         echo "Re-flow the entity (merge --apply, then absorb --apply), or see the"
         echo "reading-marker skill; bypass with: git commit --no-verify"
-        FAIL=1
+        fail_check "Check 10: curation marks / final thinned"
     fi
 fi
 
 if [ "$FAIL" -ne 0 ]; then
-    echo "${C_RED}pre-commit: one or more checks failed — commit aborted.${C_RST}"
+    echo "${C_RED}pre-commit: commit aborted — failed: $(IFS='; '; echo "${FAILED_CHECKS[*]}")${C_RST}"
+    echo "${C_RED}(details in the ✗ block of each check above)${C_RST}"
     exit 1
 fi
 

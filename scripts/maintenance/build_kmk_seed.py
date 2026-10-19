@@ -41,7 +41,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from lib.paths import KMK_CACHE  # noqa: E402
+from lib.paths import KMK_CACHE, PROJECT_ROOT  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.entity_routing import route_entity_with_rules  # noqa: E402
 from lib.mint_registry import (  # noqa: E402
@@ -244,6 +244,23 @@ _NON_MINT_PLACES = {
 _KMM_PLACE_IS_MINTMASTER = {"samuel timpf?"}
 _MINTMASTER_PREFIX_RE = re.compile(r"^\s*møntmester\s*:\s*", re.IGNORECASE)
 
+
+# KMM's East-India places (Danish India, Tranquebar): not a mint name, but the
+# issuer is the colony — out of the project's scope (curator 2026-10-19).
+_KMM_COLONY_PLACES = {"ostindien": "danish_india", "ostindisk": "danish_india"}
+
+# A KMM `nominal` that is not what KMM meant, corrected from a catalogue.
+# {id: (printed nominal, corrected nominal, citation)}. Curator 2026-10-19.
+#   591617 — KMM prints the mint «landskrone» in `nominal` (place empty;
+#   Frederik 1, 1524, «schou 106», 1.5 g). Galster 66C «Frederik 1., Søsling,
+#   Landskrone … 1524 (Schou 100-112)»; Schou 106 is in that range.
+_KMM_NOMINAL_ERRATA = {
+    591617: ("landskrone", "Søsling", {
+        "type": "literature",
+        "url": "https://www.danskmoent.dk/fr/f1g66c.htm",
+        "ref": "Galster 66C (danskmoent.dk): «Frederik 1., Søsling, Landskrone … 1524 (Schou 100-112)»",
+    }),
+}
 
 # A KMM `place` value that is not what KMM meant, corrected from a catalogue.
 # {id: (printed place, corrected mint, citation for the coin's `sources`)}.
@@ -1142,6 +1159,17 @@ def build_entry(src) -> dict | None:
 
     mint, mintmaster = _split_place(src)
     nation = src.get("nation")
+    # A mint written in `nominal` with `place` empty («landskrone»): the town
+    # moves to `mint`; the nominal stays empty unless a curator erratum
+    # supplies it (curator 2026-10-19).
+    nominal = src.get("nominal") or None
+    _nom_err = _KMM_NOMINAL_ERRATA.get(rid)
+    if (mint is None and isinstance(nominal, str)
+            and canon_for_alias(nominal.strip().lower()) is not None):
+        mint = display_for_alias(nominal.strip().lower())
+        nominal = None
+    if _nom_err and (src.get("nominal") or "").strip() == _nom_err[0]:
+        nominal = _nom_err[1]
     # Entity routing: mint first (precise), nation fallback (coarse).
     entity = classify_mint_to_entity(mint, year=yf) if mint else None
     via = "mint" if entity else None
@@ -1167,7 +1195,7 @@ def build_entry(src) -> dict | None:
         "kind": "kurant",
         "issuing_entity": entity,             # None → _unclassified.yml
         "entity_classified_via": via,
-        "nominal": (src.get("nominal") or None),
+        "nominal": nominal,
         "metal": metal,
         "metal_verified": metal is not None,
         "mint": mint,
@@ -1207,6 +1235,12 @@ def build_entry(src) -> dict | None:
     _err = _KMM_PLACE_ERRATA.get(rid)
     if _err and (src.get("place") or "").strip() == _err[0]:
         entry["sources"].append(dict(_err[2]))
+    if _nom_err and (src.get("nominal") or "").strip() == _nom_err[0]:
+        entry["sources"].append(dict(_nom_err[2]))
+    _colony = _KMM_COLONY_PLACES.get((src.get("place") or "").strip().casefold())
+    if _colony:
+        entry["issuing_entity"] = _colony
+        entry["entity_classified_via"] = "place"
     # Tradition-driven entity rules (`data/v2/entity_routing_rules.yml`), the
     # same layer the Numista and NumisMaster builders apply. Without it the
     # Gottorp / Sonderburg ducal relocations of 66f1eb5 lived only in the seed
@@ -1235,7 +1269,7 @@ def _thin_post_merge(coins: list) -> list:
     an unchanged entity keeps its generated_at. Same rule the standalone
     thin_kmk_seed.py applies to files on disk."""
     from lib.seed_thin import prune_stale_thinned, thin_safe
-    kept, st = thin_safe(coins)
+    kept, st = thin_safe(coins, protected=_EXCLUDED_IDS)
     print(f"    thinned {st['before']} → {st['after']} "
           f"({st['thinned_buckets']} buckets)")
     if _DECIDED_IDS:
@@ -1251,6 +1285,20 @@ def _thin_post_merge(coins: list) -> list:
 # entity inside the writer, so the whole-source view the stale-link pruning
 # needs has to be handed in from here.
 _DECIDED_IDS: set[str] = set()
+
+
+def _load_excluded_ids() -> frozenset:
+    """Every seed id listed in data/v2/exclusions/*.yml (any entity)."""
+    import yaml as _yaml
+    out: set[str] = set()
+    for p in (PROJECT_ROOT / "data" / "v2" / "exclusions").glob("*.yml"):
+        for e in (_yaml.safe_load(p.read_text()) or {}).get("exclusions") or []:
+            if isinstance(e, dict) and e.get("id"):
+                out.add(str(e["id"]))
+    return frozenset(out)
+
+
+_EXCLUDED_IDS: frozenset = frozenset()
 
 _KMM_OBJECT_RE = re.compile(r"/KMM/object/(\d+)")
 
@@ -1302,6 +1350,8 @@ def build_seed(dry_run: bool, limit: int | None,
     )
     _DECIDED_IDS.clear()
     _DECIDED_IDS.update(e["id"] for e in entries if e.get("id"))
+    global _EXCLUDED_IDS
+    _EXCLUDED_IDS = _load_excluded_ids()
     write_v2_seed(
         entries,
         source_name="kmk",

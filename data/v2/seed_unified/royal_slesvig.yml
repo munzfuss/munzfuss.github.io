@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
 # Input: 158 per-source seed entries.
-# Output: 67 unified entries (one per physical coin).
+# Output: 68 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -13,6 +13,35 @@
 id: royal_slesvig
 generated_at: '2026-10-19'
 coins:
+  - id: unified-denmark-numismaster-65630
+    fuss: seed_unsorted
+    phase: numismaster
+    kind: kurant
+    nominal: 1 Portugaløser
+    year_first: 1592
+    year_last: 1592
+    year_label: '1592'
+    mint: Haderslev
+    catalog:
+      fr: '62.2'
+    metal: gold
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_65630
+        ref: NumisMaster
+    verification_note:
+      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
+      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
+      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
+      da: Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / Wilcke / Schive).
+    issuing_entity: royal_slesvig
+    composed_of:
+      - denmark-numismaster-65630
   - id: unified-dk-bruun-14708
     fuss: seed_unsorted
     phase: bruun
@@ -1122,6 +1151,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity: royal_slesvig
     composed_of:
       - dk-hede-c3h14
@@ -1188,6 +1218,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity: royal_slesvig
     composed_of:
       - dk-hede-c3h15
@@ -1262,6 +1293,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity: royal_slesvig
     hede_muentzfuss_yield:
       value: 8.982
@@ -1319,6 +1351,8 @@ coins:
         Hede 1971 and Galster 1965. Index note: «17B: bs. uden krone over skjoldet»'
       uk: 'Цей запис підтверджує лише рядок оглядової таблиці c3hede.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
         1965. Коментар з індексу: «17B: bs. uden krone over skjoldet»'
+      da: 'Kun oversigtsrækken hos c3hede.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
+        1965. Bemærkning i indekset: «17B: bs. uden krone over skjoldet»'
     issuing_entity: royal_slesvig
     composed_of:
       - dk-bruun-4301
@@ -1359,6 +1393,8 @@ coins:
       en: Only the overview-table row of c3hede.htm attests this entry; the Hede deep page is absent from danskmoent.dk. Weight and fineness are not given there; they would have to be taken from the 
         printed Hede 1971 and Galster 1965.
       uk: Цей запис підтверджує лише рядок оглядової таблиці c3hede.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та 
+        Galster 1965.
+      da: Kun oversigtsrækken hos c3hede.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og 
         Galster 1965.
     issuing_entity: royal_slesvig
     composed_of:
@@ -1452,6 +1488,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity: royal_slesvig
     hede_muentzfuss_yield:
       value: 8.982
@@ -1510,6 +1547,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity: royal_slesvig
     hede_muentzfuss_yield:
       value: 8.982
@@ -1563,6 +1601,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity: royal_slesvig
     hede_muentzfuss_yield:
       value: 9.287
@@ -1626,6 +1665,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity: royal_slesvig
     hede_muentzfuss_yield:
       value: 9.287
@@ -1719,6 +1759,8 @@ coins:
         Hede 1971 and Galster 1965. Index note: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
       uk: 'Цей запис підтверджує лише рядок оглядової таблиці c4hede.htm; поглибленої сторінки Hede на danskmoent.dk немає. Вага і проба там не наведені; їх довелося б брати з друкованих Hede 1971 та Galster
         1965. Коментар з індексу: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
+      da: 'Kun oversigtsrækken hos c4hede.htm dokumenterer denne post; Hede-dybdesiden mangler på danskmoent.dk. Vægt og finhed er ikke angivet der; de ville skulle hentes fra de trykte Hede 1971 og Galster
+        1965. Bemærkning i indekset: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
     issuing_entity: royal_slesvig
     composed_of:
       - denmark-numismaster-65627
@@ -1771,6 +1813,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity: royal_slesvig
     composed_of:
       - denmark-numismaster-65634
@@ -1792,6 +1835,7 @@ coins:
     mint:
       - Haderslev
       - Kopenhagen
+      - Odense
     catalog:
       hede:
         - '1'
@@ -1807,7 +1851,6 @@ coins:
       fr:
         - '62'
         - '62.1'
-        - '62.2'
       others:
         - B# 5
         - B# 1169
@@ -1831,9 +1874,6 @@ coins:
     sources:
       - type: literature
         url: https://numismaster.com/MC_65629
-        ref: NumisMaster
-      - type: literature
-        url: https://numismaster.com/MC_65630
         ref: NumisMaster
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -1864,12 +1904,12 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity:
       - danish_realm
       - royal_slesvig
     composed_of:
       - denmark-numismaster-65629
-      - denmark-numismaster-65630
       - dk-bruun-4595
       - dk-hede-c4h5a
       - dk-hede-c4h5b
@@ -1970,6 +2010,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity:
       - danish_realm
       - royal_slesvig
@@ -2031,6 +2072,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity: royal_slesvig
     hede_muentzfuss_yield:
       value: 10.419
@@ -2076,6 +2118,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity: royal_slesvig
     hede_muentzfuss_yield:
       value: 10.419
@@ -2148,6 +2191,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     issuing_entity: royal_slesvig
     hede_muentzfuss_yield:
       value: 10.237
@@ -3249,6 +3293,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: royal_slesvig
     composed_of:
       - ngc-167729
@@ -3294,6 +3339,7 @@ coins:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
+      da: 'NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, efterfølger til det nedlagte NumisMaster. Verifikation af den enkelte mønt mod primærkilder før optagelse.'
     issuing_entity: royal_slesvig
     composed_of:
       - dk-numista-301214
@@ -3317,7 +3363,7 @@ coins:
     fineness_verified: false
     weight_rough_verified: false
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.770833
