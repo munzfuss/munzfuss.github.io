@@ -1063,6 +1063,13 @@ _DANISH_KING_RE = re.compile(
     r"\b(?:fr[ea]de?ri[ck]+|christian|kristian|chr\.)", re.IGNORECASE)
 
 
+# Kings of Norway after 1814 — never a ruler of Norway under the Danish crown.
+# Numerals are explicit: Håkon V / VI and Karl Knutsson are medieval.
+_NORWAY_KING_RE = re.compile(
+    r"\b(?:carl|karl)\s*(?:xiii|xiv|xv|13|14|15)\b|\b(?:carl|karl)\s+johan"
+    r"|\bos[ck]ar\b|\bh[aå]a?kon\s*(?:vii|7)\b", re.IGNORECASE)
+
+
 def norway_split_entity(entity, year_first: int | None,
                         year_last: int | None = None,
                         ruler: str | None = None):
@@ -1080,12 +1087,18 @@ def norway_split_entity(entity, year_first: int | None,
     a coin of the Kingdom of Norway (e.g. KMM 148142, «1 Rigsbankdaler,
     Frederik 6, 1834, Kongsberg»).
 
-    Any other entity, a list-form entity, or a coin without a year is
-    returned unchanged.
+    An undated coin goes by its ruler: a king of Norway after 1814 (Carl
+    XIII-XV / Carl Johan, Oscar I-II, Håkon VII) sends it to `norway`
+    (KMM 673472/673473 «Carl 15.», Species, curator 2026-10-19); any other
+    undated coin is returned unchanged. So is any other entity or a
+    list-form entity.
     """
     if entity not in ("danish_norway", "norway"):
         return entity
     if not isinstance(year_first, int):
+        if (entity == "danish_norway" and isinstance(ruler, str)
+                and _NORWAY_KING_RE.search(ruler)):
+            return "norway"
         return entity
     post = year_first >= NORWAY_FROM_YEAR or (
         year_first == NORWAY_FROM_YEAR - 1

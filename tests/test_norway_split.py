@@ -51,6 +51,16 @@ class NorwaySplitTest(unittest.TestCase):
     def test_other_entities_untouched(self):
         self.assertEqual(norway_split_entity("danish_realm", 1900, 1900, None), "danish_realm")
         self.assertEqual(norway_split_entity("danish_norway", None, None, None), "danish_norway")
+        self.assertEqual(norway_split_entity("danish_realm", None, None, "Oscar 2"), "danish_realm")
+
+    def test_undated_goes_by_ruler(self):
+        # KMM 673472/673473 «Carl 15.», Species, no year
+        self.assertEqual(norway_split_entity("danish_norway", None, None, "Carl 15."), "norway")
+        self.assertEqual(norway_split_entity("danish_norway", None, None, "Oscar 2"), "norway")
+        self.assertEqual(norway_split_entity("danish_norway", None, None, "Håkon 7"), "norway")
+        # medieval kings and Danish kings stay
+        self.assertEqual(norway_split_entity("danish_norway", None, None, "Håkon 5 Magnusson"), "danish_norway")
+        self.assertEqual(norway_split_entity("danish_norway", None, None, "Christian 4"), "danish_norway")
 
     def test_kongsberg_override(self):
         self.assertEqual(classify_mint_to_entity("Kongsberg", year=1814), "danish_norway")
