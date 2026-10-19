@@ -308,9 +308,9 @@ undated coins must still reach the page).**
 - build fix (undated coins render, see above).
 - Left: `kmk-430264`, `kmk-687750`, `kmk-687751` (Gottorp «Frederik» — II, III
   or IV), `kmk-122261`, `kmk-122262` («Johan Frederik» without index — Bremen
-  or Lübeck bishopric), `kmk-133321` (nothing to date it), `kmk-83149`
-  «Alexander» (in `royal_holstein`; the Sønderborg table reads only
-  `sonderburg_duchy` — a relocation would date it).
+  or Lübeck bishopric), `kmk-133321` (nothing to date it).
+- `kmk-83149` «Alexander» relocated `royal_holstein` → `sonderburg_duchy`
+  (curator 2026-10-19), now 1622–1627 (?).
 - Found on the way: seed `kmk-122261` lists `kmk-354144` in `_thinned_from`
   while `kmk-354144` is still its own seed, so KMM 354144 is cited on two
   finals — KMM thinning, same family as the vanished-class finals above.

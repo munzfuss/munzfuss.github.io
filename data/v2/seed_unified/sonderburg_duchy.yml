@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `sonderburg_duchy`.
-# Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sonderburg_duchy.yml across all sources.
 #
-# Input: 175 per-source seed entries.
-# Output: 60 unified entries (one per physical coin).
+# Input: 176 per-source seed entries.
+# Output: 61 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sonderburg_duchy
-generated_at: '2026-10-18'
+generated_at: '2026-10-19'
 coins:
   - id: unified-dk-bruun-14662
     fuss: seed_unsorted
@@ -1763,6 +1763,29 @@ coins:
       would_route_to: sonderburg_duchy
       active: true
       reasoning: Rule matched on ruler_lineage='hans den yngre'; mint absent / unverified → rule re-routed.
+  - id: unified-kmk-83149
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Alexander
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/83149
+        ref: KMM 83149 (Inv. GP 982.173)
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    issuing_entity: sonderburg_duchy
+    composed_of:
+      - kmk-83149
   - id: unified-ngc-1157218
     fuss: seed_unsorted
     phase: ngc
