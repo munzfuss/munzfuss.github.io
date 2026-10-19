@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-17T15:48:56Z'
+generated_at: '2026-10-19T10:51:01Z'
 entity: erzbisthum_bremen_verden
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -683,12 +683,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200812
         ref: KMM 200812 (Inv. FP 3108.11738)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200815
-        ref: KMM 200815 (Inv. FP 3108.11735)
     verification_note: *id001
-    _thinned_from:
-      - kmk-200815
     catalog:
       lange:
         - '504'
@@ -737,6 +732,26 @@ coins:
       lange:
         - '504'
         - 504A
+  - id: kmk-200815
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 2 Skilling lybsk
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ærkebisp Johann Friedrich 1596 - 1634
+    weight_rough_verified: false
+    catalog:
+      lange: 504A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200815
+        ref: KMM 200815 (Inv. FP 3108.11735)
+    verification_note: *id001
   - id: kmk-200816
     fuss: seed_unsorted
     phase: kmk
@@ -1048,24 +1063,4 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/584917
         ref: KMM 584917 (Inv. FP 1668.44)
-    verification_note: *id001
-  - id: kmk-200815
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: erzbisthum_bremen_verden
-    entity_classified_via: nation
-    nominal: 2 Skilling lybsk
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ærkebisp Johann Friedrich 1596 - 1634
-    weight_rough_verified: false
-    catalog:
-      lange: 504A
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/200815
-        ref: KMM 200815 (Inv. FP 3108.11735)
     verification_note: *id001

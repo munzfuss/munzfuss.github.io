@@ -369,6 +369,7 @@ def thin_safe(coins: list, max_weightless: int = 3) -> tuple[list, dict]:
     kept: list = []
     dropped_total = 0
     touched_buckets = 0
+    assignments: dict[str, str] = {}   # dropped id → representative id
     for members in buckets.values():
         curated = [c for c in members if _is_curated(c)]
         plain = [c for c in members if not _is_curated(c)]
@@ -396,17 +397,70 @@ def thin_safe(coins: list, max_weightless: int = 3) -> tuple[list, dict]:
         if dropped:
             _salvage_unique(keep, dropped)
             _record_thinned_from(keep, dropped)
+            for d in dropped:
+                if d.get("id") and keep[0].get("id"):
+                    assignments[d["id"]] = keep[0]["id"]
             dropped_total += len(dropped)
             touched_buckets += 1
         kept.extend(keep)
     kept = _in_input_order(coins, kept)
     return kept, {"before": len(coins), "after": len(kept),
+                  "assignments": assignments,
                   "sub_variants": len(buckets), "thinned_buckets": touched_buckets,
                   "dropped": dropped_total,
                   # the safe rule has no catalogue gate — every bucket is
                   # eligible because no DISTINCT weight can be removed. Key
                   # kept so `thin_seed_dir`'s reporting stays uniform.
                   "skipped_uncatalogued_buckets": 0}
+
+
+def prune_stale_thinned(coins: list, decided_ids: set, assignments: dict,
+                        source_id_of) -> dict:
+    """Drop `_thinned_from` links (and the citations they brought) that the
+    current run has re-decided, in place.
+
+    `_thinned_from` and `sources` both survive a re-seed (`seed_merge`:
+    preserve-always / union), and `thin_safe` only ever ADDS a link. So when a
+    later run puts a specimen somewhere else — a different representative
+    after a bucket-key change, or no thinning at all — the old representative
+    keeps the link and the specimen's citation for good, and the museum object
+    ends up cited on two coins. Measured 2026-10-19 on kmk: 2 025 specimens
+    linked from two representatives at HEAD (2 250 after 781537e's new bucket
+    keys), and KMM 354144 cited on a Bremen and a Gottorp final while it is
+    its own seed.
+
+    A link `t` on representative `K` is stale when this run decided `t` —
+    `t ∈ decided_ids`, the ids the builder emitted — and did not drop it onto
+    `K` (`assignments[t] != K`): then `t` is either a live record or another
+    representative's. Ids the run did not see (gone from the cache, or carried
+    from an older chain) are kept: their link is the only record left.
+
+    `source_id_of(source_dict) -> seed id | None` names the specimen a citation
+    belongs to; citations of a pruned link go with it — the specimen keeps its
+    citation on its own record or on its current representative.
+    Returns counts.
+    """
+    links = cites = 0
+    for c in coins:
+        tf = c.get(_THINNED_FROM_KEY)
+        if not tf:
+            continue
+        cid = c.get("id")
+        gone = {t for t in tf if t in decided_ids and assignments.get(t) != cid}
+        if not gone:
+            continue
+        keep_tf = [t for t in tf if t not in gone]
+        if keep_tf:
+            c[_THINNED_FROM_KEY] = keep_tf
+        else:
+            del c[_THINNED_FROM_KEY]
+        links += len(gone)
+        srcs = c.get("sources") or []
+        kept_srcs = [e for e in srcs
+                     if not (isinstance(e, dict) and source_id_of(e) in gone)]
+        cites += len(srcs) - len(kept_srcs)
+        c["sources"] = kept_srcs
+    return {"links_pruned": links, "citations_pruned": cites}
 
 
 def thin_coins(coins: list, min_bucket: int = 5,

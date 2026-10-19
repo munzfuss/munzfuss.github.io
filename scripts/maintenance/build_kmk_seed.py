@@ -1187,11 +1187,32 @@ def _thin_post_merge(coins: list) -> list:
     write_v2_seed to each entity's merged list BEFORE the file is rendered, so
     an unchanged entity keeps its generated_at. Same rule the standalone
     thin_kmk_seed.py applies to files on disk."""
-    from lib.seed_thin import thin_safe
+    from lib.seed_thin import prune_stale_thinned, thin_safe
     kept, st = thin_safe(coins)
     print(f"    thinned {st['before']} → {st['after']} "
           f"({st['thinned_buckets']} buckets)")
+    if _DECIDED_IDS:
+        pr = prune_stale_thinned(kept, _DECIDED_IDS, st["assignments"],
+                                 _kmm_source_id)
+        if pr["links_pruned"]:
+            print(f"    pruned {pr['links_pruned']} stale _thinned_from link(s), "
+                  f"{pr['citations_pruned']} citation(s) they had carried")
     return kept
+
+
+# Ids this run emits (set by build_seed before write_v2_seed). Thinning runs per
+# entity inside the writer, so the whole-source view the stale-link pruning
+# needs has to be handed in from here.
+_DECIDED_IDS: set[str] = set()
+
+_KMM_OBJECT_RE = re.compile(r"/KMM/object/(\d+)")
+
+
+def _kmm_source_id(source: dict) -> str | None:
+    """Seed id of the KMM object a citation points at («…/KMM/object/354144»
+    → «kmk-354144»), or None for any other citation."""
+    m = _KMM_OBJECT_RE.search(str(source.get("url") or ""))
+    return f"kmk-{m.group(1)}" if m else None
 
 
 def build_seed(dry_run: bool, limit: int | None,
@@ -1232,6 +1253,8 @@ def build_seed(dry_run: bool, limit: int | None,
         "fineness). Phase-4 assigns Müntzfuß/phase; cross-source merger "
         "deduplicates against Hede/Bruun/Numista/IKMK/etc."
     )
+    _DECIDED_IDS.clear()
+    _DECIDED_IDS.update(e["id"] for e in entries if e.get("id"))
     write_v2_seed(
         entries,
         source_name="kmk",
