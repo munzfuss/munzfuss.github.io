@@ -45,6 +45,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import os
 import re
 import sys
 from collections import Counter, defaultdict
@@ -3903,6 +3904,106 @@ def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
 # ---------------------------------------------------------------------------
 
 
+_KMM_OBJECT_RE = re.compile(r"/KMM/object/(\d+)")
+
+
+def _prune_foreign_kmm_citations(entities: list[str]) -> int:
+    """Drop from each final the KMM citations of specimens that belong to
+    ANOTHER final (curator 2026-10-19).
+
+    Absorb unions a final's `sources` with its cluster's and never removes
+    one (§9a), so when a KMM specimen leaves a class — a split, a re-merge,
+    a thinning representative that changed — its citation stays on the old
+    final for good. Measured 2026-10-19: 10 316 KMM citations on 365 finals
+    whose specimen sat in another final (`unified-kmk-402840`, a Hede 124
+    2 Skilling, carried 3 362 of them, 858 of Hede 122 / 126).
+
+    A KMM citation (`…/KMM/object/N`) is foreign to final F when the seed
+    that now stands for object N — `kmk-N` itself, or the seed whose
+    `_thinned_from` lists it — is a member of a final other than F; there it
+    is cited, so nothing is lost — and when that final does not carry the
+    citation yet, it is moved there. A specimen in no final keeps its
+    citations where they are. Runs after every entity is written, so membership is the
+    one this run produced; only the processed entities' files are rewritten.
+    """
+    try:
+        from lib.v2_index import V2Index
+    except Exception:  # pragma: no cover
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+        from lib.v2_index import V2Index
+    idx = V2Index.load()
+    holder: dict[str, str] = {}
+    for sf in (V2_SEED / "kmk").glob("*.yml"):
+        for c in (_load_yaml(sf).get("coins") or []):
+            cid = c.get("id")
+            if not cid:
+                continue
+            holder[cid] = cid
+            for t in c.get("_thinned_from") or []:
+                holder.setdefault(t, cid)
+    owner: dict[str, str] = {}   # kmk object seed id → final id holding it
+    for obj, h in holder.items():
+        try:
+            pl = idx.seed(h)
+        except KeyError:
+            continue
+        if pl.final:
+            owner[obj] = pl.final
+    docs: dict[str, dict] = {}
+    where: dict[str, dict] = {}   # final id → its coin dict (processed files)
+    for ent in entities:
+        path = V2_FINAL / f"{ent}.yml"
+        if path.exists():
+            docs[ent] = _load_yaml(path)
+            for c in docs[ent].get("coins") or []:
+                if isinstance(c, dict) and c.get("id"):
+                    where[c["id"]] = c
+    changed: set[str] = set()
+    moved = dropped = 0
+    ent_of = {c["id"]: e for e, d in docs.items()
+              for c in (d.get("coins") or []) if isinstance(c, dict) and c.get("id")}
+    for ent, doc in docs.items():
+        for c in doc.get("coins") or []:
+            if not isinstance(c, dict) or not c.get("sources"):
+                continue
+            fid = c.get("id")
+            keep = []
+            for src in c["sources"]:
+                m = _KMM_OBJECT_RE.search(str(src.get("url") or "")) if isinstance(src, dict) else None
+                own = owner.get(f"kmk-{m.group(1)}") if m else None
+                if own is None or own == fid:
+                    keep.append(src)
+                    continue
+                target = where.get(own)
+                if target is None:
+                    # owner's file not processed in this (scoped) run — leave it
+                    keep.append(src)
+                    continue
+                # The specimen's own coin keeps the citation: move it there if
+                # that coin does not carry it yet (a specimen thinned before
+                # thinning carried citations left it only on the old final —
+                # KMM 402840).
+                if not any(isinstance(t, dict) and t.get("url") == src.get("url")
+                           for t in target.get("sources") or []):
+                    target.setdefault("sources", []).append(src)
+                    changed.add(ent_of[own])
+                    moved += 1
+                dropped += 1
+            if len(keep) != len(c["sources"]):
+                c["sources"] = keep
+                changed.add(ent)
+    for ent in sorted(changed):
+        (V2_FINAL / f"{ent}.yml").write_text(
+            _emit_final_yaml(ent, docs[ent].get("coins") or [], docs[ent]),
+            encoding="utf-8")
+    if dropped:
+        print(f"  KMM citations of specimens that belong to another final: "
+              f"{dropped} removed from the old final, {moved} of them moved to "
+              f"the specimen's final (which lacked them)")
+    total = dropped
+    return total
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dry-run", action="store_true", default=True,
@@ -4082,6 +4183,20 @@ def main() -> int:
                     ),
                     encoding="utf-8",
                 )
+
+    if args.apply and _prune_foreign_kmm_citations(entities):
+        # The display picks and §9a weight thinning above were computed on the
+        # lists before the prune; a second pass recomputes them on the pruned
+        # lists, so this run writes the state the next run would (checked
+        # 2026-10-19: the second pass is a fixed point). Guarded against
+        # recursion: the second pass prunes nothing.
+        if not os.environ.get("ABSORB_PRUNE_RERUN"):
+            print("\n  re-running absorb once on the pruned finals …")
+            import subprocess
+            rc = subprocess.call([sys.executable, __file__, *sys.argv[1:]],
+                                 env={**os.environ, "ABSORB_PRUNE_RERUN": "1"})
+            if rc:
+                return rc
 
     print()
     print(f"=== Totals ===")
