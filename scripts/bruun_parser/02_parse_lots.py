@@ -88,7 +88,11 @@ REF_PATTERNS = {
     "Hede":    re.compile(r"\bHede[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
     "Sieg":    re.compile(r"\bSieg[\-:]?\s*(\d+(?:\.\d+)?[A-Za-z]*)", re.IGNORECASE),
     "Lange":   re.compile(r"\bLange[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
-    "Bruun":   re.compile(r"\bBruun[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    # Bruun's 1928 numbering continues its letter suffixes into the Danish
+    # alphabet (Part V lot 15186 «Bruun-15139ø», after 15139c … 15139ddd);
+    # without æøå the ø was cut, the seed id became the bare «15139», and
+    # merge_seed's bare-Hede «superseded» rule dropped it beside 15139c.
+    "Bruun":   re.compile(r"\bBruun[\-:]?\s*(\d+[A-Za-zæøåÆØÅ]*)", re.IGNORECASE),
     "Fr":      re.compile(r"\bFr[\.\-:]?\s*(\d+[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
     "Schou":   re.compile(r"\bSchou[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
     # Aagaard cites a die-combination in a trailing paren — «74.1 (49-2/49-5)»,
