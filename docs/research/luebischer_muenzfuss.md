@@ -7,7 +7,7 @@
 > file does not repeat the survey's quotations at length; it states the standard, cites the
 > survey section, and adds what the card needs.
 >
-> **Card name (curator D20, 2026-10-15, supersedes D14's strings):** «11½-Markfod», historical name «Lybsk Møntfod».
+> **Card name (curator D21, 2026-10-19, supersedes D20):** «Lybsk Møntfod» only, no historical name. «11½-Markfod» below is the former card name (D20).
 >
 > **Card names (curator D14, 2026-10-15):** «Lübischer Müntzfuß» on munzfuss, «Lybsk Møntfod»
 > on the Danish page in every language — scholarly names; no «-Fuß / -fod» compound is

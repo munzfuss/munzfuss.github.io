@@ -312,7 +312,7 @@ class Grundwerte(_StrictBase):
                                                       # «Tarif …» block moved off the rows)
     # Full-width prose UNDER both columns (rows on the left, the right-column
     # blocks). Used when the right column holds the units of account and the
-    # system-level description of the standard needs its own row (11½-Markfod,
+    # system-level description of the standard needs its own row (Lybsk Møntfod,
     # curator 2026-10-15). Safe HTML, cites like the rest of the card.
     below_label: I18nTextOptional | None = None
     below: I18nText | None = None
