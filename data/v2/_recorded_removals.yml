@@ -4115,3 +4115,56 @@ removals:
   - seed: kmk-149085
     kind: declassify
     reason: 'KMM «1 krone» Frederik III 1660, Schou 39: no Hede type lists Schou 39 for 1660 (95A = 25-28, 98 = 24, 100B = 23). It had been folded into the Krone final dk-tid-97152 by an absorb without the Schou-ambiguity guard (62bee6f); curator (Serhii) 2026-10-18 agreed to take it out, by the record-vs-candidate table.'
+  # ── Bruun citations: PDF page → printed catalogue page, 2026-10-19 ──────
+  # Curator (Serhii) agreed in chat 2026-10-19. Six hand-added Bruun sources
+  # in gottorp_duchy carry no url, so verify_reflow keys them on the ref text;
+  # the page correction (heal_bruun_printed_pages.py) reads as a lost source.
+  # Nothing is lost: the same citation stays on the coin with the printed page.
+  - seed: dk-bruun-14479
+    kind: field
+    field: sources
+    dropped:
+      - type: auction
+        ref: Bruun Part II, lot 14224, p. 301
+        note: Stack's Bowers Zürich, 14–15 March 2025
+    reason: 'Page corrected 2026-10-19 on km-160-fr-iv-1697: the PDF page in the ref became the printed catalogue page (running head); same lot, same citation.'
+  - seed: dk-bruun-14491
+    kind: field
+    field: sources
+    dropped:
+      - type: auction
+        ref: Bruun Part II, lot 14228, p. 304
+        note: Stack's Bowers Zürich, 14–15 March 2025
+    reason: 'Page corrected 2026-10-19 on km-164-fr-iv-1698: the PDF page in the ref became the printed catalogue page (running head); same lot, same citation.'
+  - seed: dk-bruun-14493
+    kind: field
+    field: sources
+    dropped:
+      - type: auction
+        ref: Bruun Part II, lot 14229, p. 305
+        note: Stack's Bowers Zürich, 14–15 March 2025
+    reason: 'Page corrected 2026-10-19 on km-167-fr-iv-1698: the PDF page in the ref became the printed catalogue page (running head); same lot, same citation.'
+  - seed: dk-bruun-14505
+    kind: field
+    field: sources
+    dropped:
+      - type: auction
+        ref: Bruun Part II, lot 14231, p. 306
+        note: Stack's Bowers Zürich, 14–15 March 2025
+    reason: 'Page corrected 2026-10-19 on km-176-fr-iv-1700: the PDF page in the ref became the printed catalogue page (running head); same lot, same citation.'
+  - seed: dk-bruun-14527
+    kind: field
+    field: sources
+    dropped:
+      - type: auction
+        ref: Bruun Part II, lot 14233, p. 308
+        note: Stack's Bowers Zürich, 14–15 March 2025 — «Fr-cf. 3088; KM-188; Lange-444; Sieg-11.1; Bruun-14527 ... Lovely type with bold young portrait of Karl Friedrich. Very rare and in superb condition.»
+    reason: 'Page corrected 2026-10-19 on km-188-karl-fr-1705: the PDF page in the ref became the printed catalogue page (running head); same lot, same citation.'
+  - seed: dk-bruun-14528
+    kind: field
+    field: sources
+    dropped:
+      - type: auction
+        ref: Bruun Part II, lot 14234, p. 309
+        note: Stack's Bowers Zürich, 14–15 March 2025 — «Fr-3088; KM-188; Lange-444A; Sieg-11.2; Bruun-14528.... Rare and enviable despite the noted flaw.»
+    reason: 'Page corrected 2026-10-19 on km-188-karl-fr-1705-v1: the PDF page in the ref became the printed catalogue page (running head); same lot, same citation.'

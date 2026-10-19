@@ -56,6 +56,7 @@ from ruamel.yaml import YAML
 
 PROJECT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT / "scripts"))
+from lib.bruun_pages import printed_page  # noqa: E402
 from maintenance.build_bruun_denmark_seed import (  # noqa: E402
     _BRUUN_PART_PDF_URL, _BRUUN_PART_ROMAN,
 )
@@ -96,15 +97,19 @@ def _load_page_caches() -> tuple[dict[str, int], dict[tuple[int, int], int]]:
         return _PAGE_BY_COLL, _PAGE_BY_PART_LOT
     by_coll: dict[str, int] = {}
     by_part_lot: dict[tuple[int, int], int] = {}
-    for part_n in (1, 2, 3, 4):
+    # Pages are the PRINTED catalogue pages (lib.bruun_pages, curator 2026-10-19);
+    # the parser cache holds PDF pages.
+    for part_n in (1, 2, 3, 4, 5):
         p = PROJECT / "scripts" / "cache" / "bruun" / "lots" / f"part{part_n}.json"
         if not p.exists():
             continue
         for lot in json.loads(p.read_text(encoding="utf-8")):
             page_span = lot.get("page_span") or []
-            page = page_span[0] if page_span else lot.get("page")
-            if not page:
+            pdf_page = page_span[0] if page_span else lot.get("page")
+            printed = printed_page(part_n, pdf_page)
+            if not printed or not printed.isdigit():
                 continue
+            page = int(printed)
             coll = str((lot.get("refs") or {}).get("Bruun", "")).strip()
             if coll:
                 by_coll[coll] = int(page)

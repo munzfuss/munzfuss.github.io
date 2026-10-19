@@ -66,6 +66,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts" / "maintenance"))
 # line can be reconciled with the lot's own hint under the project's canonical
 # spelling policy rather than by string equality.
 from merge_seeds_cross_source import _normalise_ruler  # noqa: E402
+from lib.bruun_pages import printed_page  # noqa: E402
 from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
@@ -292,9 +293,12 @@ def _build_bruun_source(part: int, lot: dict) -> dict:
     Page numbers come from the Bruun parser's `page_span` (single page when
     the lot fits on one page; min(page_span) when it spans two — page
     numbers in auction catalogs traditionally cite the lot's first page).
+    The parser's pages are PDF pages; the citation gives the PRINTED page
+    read from that page's running head (`lib.bruun_pages`, curator
+    2026-10-19), and no page at all when the page carries none.
     """
     page_span = lot.get("page_span") or []
-    page = page_span[0] if page_span else lot.get("page")
+    page = printed_page(part, page_span[0] if page_span else lot.get("page"))
     romnum = _BRUUN_PART_ROMAN[part - 1]
     lot_no = lot.get("lot_no")
     page_str = f", p. {page}" if page else ""
@@ -899,17 +903,17 @@ _BRUUN_LOT_ERRATA: dict[tuple[int, int], list[dict]] = {
 _BRUUN_LOT_WEIGHT_MARKS: dict[tuple[int, int], dict] = {
     # Curator 2026-10-17: keep the lot, mark the weight suspect with Bruun's own words.
     (5, 14085): {"suspect": {
-        "de": "Übergewichtiges Stück. Der Katalog Bruun Part V (Los 14085, S. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» "
+        "de": "Übergewichtiges Stück. Der Katalog Bruun Part V (Los 14085, S. 35): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» "
               "(«Mit fast 20 % über dem gesetzlichen Gewicht war das vorliegende Stück wahrscheinlich als "
               "Geschenkstück gedacht, zumal keine anderen schweren Exemplare bekannt sind»). Als Gewicht des Typs ist "
               "die Angabe nicht brauchbar; ob es ein Geschenkstück war, ist nicht belegt.",
-        "en": "An overweight piece. Bruun Part V (lot 14085, p. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist». As the weight of the type the figure cannot "
+        "en": "An overweight piece. Bruun Part V (lot 14085, p. 35): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist». As the weight of the type the figure cannot "
               "serve; that it was a presentation piece is not documented.",
-        "uk": "Надважкий екземпляр. Каталог Bruun Part V (лот 14085, с. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» («Маючи вагу майже на 20 % "
+        "uk": "Надважкий екземпляр. Каталог Bruun Part V (лот 14085, с. 35): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» («Маючи вагу майже на 20 % "
               "вищу за статутну, цей екземпляр, імовірно, призначався як подарунковий, тим паче що інших важких "
               "екземплярів не відомо»). За вагу типу це значення служити не може; що це подарунковий екземпляр, не "
               "засвідчено.",
-        "da": "Et overvægtigt eksemplar. Bruun Part V (lot 14085, s. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» («Med næsten 20 % over den "
+        "da": "Et overvægtigt eksemplar. Bruun Part V (lot 14085, s. 35): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» («Med næsten 20 % over den "
               "lovbestemte vægt var det foreliggende eksemplar sandsynligvis tænkt som gaveeksemplar, især da ingen "
               "andre tunge eksemplarer kendes»). Som typens vægt kan tallet ikke bruges; at det var et gaveeksemplar, "
               "er ikke dokumenteret.",
@@ -942,18 +946,18 @@ _BRUUN_LOT_WEIGHT_MARKS: dict[tuple[int, int], dict] = {
 # matching (`seed_merge.apply_mint_mark` clears `mint`).
 _BRUUN_LOT_MINT_MARKS: dict[tuple[int, int], dict] = {
     (5, 14206): {"kind": "erroneous", "reason": {
-        "de": "Falsche Münzstätte. Bruun Part V (Los 14206, S. 93) druckt «Copenhagen Mint» («Münzstätte København»), "
+        "de": "Falsche Münzstätte. Bruun Part V (Los 14206, S. 77) druckt «Copenhagen Mint» («Münzstätte København»), "
               "doch Hede 25 (danskmoent) nennt «1 kurantdaler, Altona», Bruun Part II (Los 13248) «Altona/Poppenbüttel "
               "Mint» («Münzstätte Altona/Poppenbüttel»), und L. E. Bruuns Mønt- og Medaillesamling (1928, S. 239) führt "
               "genau dieses Stück, Bruun 7892, unter «1788 ALTONA».",
-        "en": "Wrong mint. Bruun Part V (lot 14206, p. 93) prints «Copenhagen Mint», but Hede 25 (danskmoent) gives "
+        "en": "Wrong mint. Bruun Part V (lot 14206, p. 77) prints «Copenhagen Mint», but Hede 25 (danskmoent) gives "
               "«1 kurantdaler, Altona», Bruun Part II (lot 13248) «Altona/Poppenbüttel Mint», and L. E. Bruuns Mønt- og "
               "Medaillesamling (1928, p. 239) lists this very piece, Bruun 7892, under «1788 ALTONA».",
-        "uk": "Помилкове місце карбування. Bruun Part V (лот 14206, с. 93) друкує «Copenhagen Mint» («монетний двір "
+        "uk": "Помилкове місце карбування. Bruun Part V (лот 14206, с. 77) друкує «Copenhagen Mint» («монетний двір "
               "København»), але Hede 25 (danskmoent) подає «1 kurantdaler, Altona», Bruun Part II (лот 13248) — "
               "«Altona/Poppenbüttel Mint» («монетний двір Altona/Poppenbüttel»), а L. E. Bruuns Mønt- og "
               "Medaillesamling (1928, с. 239) наводить саме цей екземпляр, Bruun 7892, під заголовком «1788 ALTONA».",
-        "da": "Forkert møntsted. Bruun Part V (lot 14206, s. 93) trykker «Copenhagen Mint» («møntstedet København»), men "
+        "da": "Forkert møntsted. Bruun Part V (lot 14206, s. 77) trykker «Copenhagen Mint» («møntstedet København»), men "
               "Hede 25 (danskmoent) angiver «1 kurantdaler, Altona», Bruun Part II (lot 13248) «Altona/Poppenbüttel Mint» "
               "(«møntstedet Altona/Poppenbüttel»), og L. E. Bruuns Mønt- og Medaillesamling (1928, s. 239) fører netop "
               "dette stykke, Bruun 7892, under «1788 ALTONA».",

@@ -845,7 +845,7 @@ class CatalogRefs(_StrictBase):
     bruun_collection_id: str | list[str] | None = None
     bruun_part: Literal["I", "II", "III", "IV", "V", "VI"] | None = None
     bruun_lot_no: int | None = None
-    bruun_page: int | None = None
+    bruun_page: int | None = None   # PDF page of the cached catalogue (machine locator); citations give the printed page (lib.bruun_pages)
     bruun_lot: str | list[str] | None = None
     # Numista N#: list-form when two N#s describe the same physical
     # coin (rare but happens — sub-variants Numista chose to split that
