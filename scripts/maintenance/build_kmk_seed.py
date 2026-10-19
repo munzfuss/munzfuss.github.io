@@ -588,6 +588,32 @@ def _append_index(out: dict, key: str, value: str) -> None:
         out[key] = [cur, value]
 
 
+_ABBREV_RANGE_RE = re.compile(r"(\d+)-(\d+)")
+
+
+def _expand_abbrev_range(val: str) -> str:
+    """«171-86» → «171-186», «503-04» → «503-504»: a range whose second number
+    is written without the leading digits it shares with the first.
+
+    Deliberately narrow — a short second number is not always an elision
+    («46-9» need not mean 46-49). Expanded only when ALL hold:
+      - the value is exactly «<number>-<number>» from a recognised catalogue
+        register (this runs only on the _catalog index path);
+      - the second number has at least TWO digits and fewer than the first
+        (one-digit tails like «46-9», «49-2» stay as printed);
+      - the expanded number is larger than the first.
+    Every KMM case 2026-10-19 has a two-digit tail: Skou 171-86, Lange 503-04,
+    306-10, H. 132-34, MB 541-46, Gaedechens 1035-36."""
+    m = _ABBREV_RANGE_RE.fullmatch(val)
+    if not m:
+        return val
+    a, b = m.groups()
+    if len(b) < 2 or len(b) >= len(a):
+        return val
+    full = a[: len(a) - len(b)] + b
+    return f"{a}-{full}" if int(full) > int(a) else val
+
+
 def _catalog(src):
     """Parse `typeNumber` → {catalog_key: ref}. Handles multi-field colon/comma
     form («H: 134B; Sch: -», «Hbg. 4, MB 558») + abbreviations. First per key,
@@ -668,12 +694,16 @@ def _catalog(src):
             # schou ranges and 11 sieg ranges, galster 81 and 1, and the schema
             # takes them as plain strings.
             #
-            # Stored verbatim, including the abbreviated form KMM sometimes
-            # prints («Lange 306-10» for 306-310, 8 segments). Expanding it
-            # would be inference about what the catalogue meant; the source's
-            # own string is what we can attest (§0).
+            # The abbreviated form KMM sometimes prints («Skou 171-86» for
+            # 171-186, «Lange 306-10» for 306-310) is the elided notation of
+            # the same range, and is expanded (_expand_abbrev_range). Stored
+            # verbatim it sat next to the full form from another source as a
+            # second, different-looking index of one coin — Galster 153 carried
+            # schou [171-186, 171-86]. Curator 2026-10-19, superseding the
+            # verbatim rule of eddd3e8.
             nm = re.match(r"\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?", rest)
-            val = re.sub(r"\s*-\s*", "-", nm.group(0)) if nm else None
+            val = (_expand_abbrev_range(re.sub(r"\s*-\s*", "-", nm.group(0)))
+                   if nm else None)
             # «H 3 B», «H. 80 A», «Galster 57 B», «Lange 504 A»: KMM often
             # prints the sub-variant letter after a space, and the match above
             # stopped at the digits — the letter of ~250 records was lost
