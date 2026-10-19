@@ -24,10 +24,12 @@
   `v2_seed_writer` to every source; details + sources in
   `docs/research/mint_year_transitions.md` §Kongsberg. 203 seeds, 197 finals,
   classifications kept. Pages unchanged (Denmark consumes danish_norway ≤1814).
-- Open for the curator: KMM 148142 «1 Rigsbankdaler, Frederik 6, 1834,
-  Kongsberg» stays in `danish_norway` by the Danish-king guard — probably a
-  Danish coin misfiled by KMM's nation; Hamar (Galster, KMM) is not in the
-  mint registry (routes via nation today).
+- Follow-ups done: Numista 421269 (counterfeit) and KMM 148142 (undocumented
+  stub) excluded (`60e5ce5`); undated coins of post-1814 kings go to `norway`
+  by ruler, Carl XV kmk-673472/3 moved there, lifting their 5793d28
+  exclusions with the curator's yes (`df35b04`); Norway reign table → they show
+  1859–1872 (?) (`c47b8f5`). Still open: Hamar (Galster, KMM) and KMM spellings
+  «Cristiania» / «Christinia» / «Niduras?» are not in the mint registry.
 - Pending re-flow NOT done: the kmk builder at HEAD re-thins 9 danish_realm
   records (kmk-307062, -308807, -330825, -332024, -354854, -367973, -367974 …)
   and reads Gotland as Visby (kmk-317111, -328312) — effect of earlier builder
