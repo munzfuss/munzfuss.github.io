@@ -171,10 +171,43 @@ Rules, each one a past failure:
   key, list every sentence that cites it (`cite_helper.py --usage KEY`) — a key is shared
   across pages.
 
+## Finding the passage — `kb search`
+
+The harvest cache has a full-text index over every work with a text layer (Secher, Schou,
+Wilcke 1919 / 1924 / 1950, Mordhorst, Galster, Denar til daler, Munro, Bobzin, danskmoent
+pages …; the list and each work's page mapping: `scripts/cache/_corpus.yml`). It folds old
+spellings, line-break hyphenation and common OCR slips, so it finds «Myndt-Ordning» for
+«møntordning», «kaabermønt» for «kobbermønt», «fir-/kantede» for «firkantede», which a
+plain `grep` misses (measured: `scripts/kb/README.md`).
+
+```
+.venv/bin/python scripts/kb/kb.py build                                     # once per session, ~8 s
+.venv/bin/python scripts/kb/kb.py search "kobbermønt hvider" --work secher-ccd
+.venv/bin/python scripts/kb/kb.py search "vardein smeltning" --work schou-1795 --limit 20
+.venv/bin/python scripts/kb/kb.py search 'NEAR(kroner skiling*, 8)' --fts --work secher-ccd
+```
+
+- **Restrict to the work** (`--work`, ids in `_corpus.yml`) whenever you know it — ranking
+  across the whole corpus is the weak point; within one work the passage is usually rank 1.
+- A hit prints `work · p. N · path:line`. **p. N is the PRINTED page** where the manifest
+  establishes the PDF→print offset; otherwise the hit says «printed page not established» —
+  then find the page on the scan, never compute one.
+- **Never quote the snippet.** It is normalised context; open the file at `path:line`, read the
+  whole passage, copy it verbatim (rule 3). For OCR'd works check doubtful letters and every
+  figure against the page image (`ocr` note in `_corpus.yml`).
+- Secher prints the SOURCE's page breaks in brackets («[s. 161]») — those are not Secher's
+  page; cite the page the hit reports (Secher's own pagination).
+- AUDIT mode: `kb search` with a distinctive phrase of a key's quote shows whether the quote
+  sits on the page the key claims.
+- No hit ≠ no passage: works outside `_corpus.yml` (Hede, Bruun, rigsarkivet scans) are not
+  indexed, and heavy OCR damage can defeat any normalisation.
+
 ## Workflow (WRITE / FIX)
 
 1. `cite_helper.py --usage KEY` (existing key) — who cites it, for which claim.
-2. Open the source; copy the passage; note the page.
+2. Find the passage — with `kb search` when the work is in the harvest cache (see «Finding
+   the passage» below). Open the file at the reported line, copy the passage from THERE,
+   take the page the hit reports. A hit is a pointer, never the quote.
 3. Search the pool for the same work and passage (`cite_helper.py --work "<url or title>"`)
    — reuse a key whose passage already carries the claim; never create an overlapping one.
 4. Find / verify the archive snapshot (rule 6).
