@@ -45,9 +45,10 @@
   `_thinned_from` links the run re-decided (2 025 multi-representative →
   0). `4f87b92`: absorb's final step drops a KMM citation from a final when
   the specimen belongs to another final (10 073 removed, 1 moved), then
-  re-runs once so display picks / §9a ledger match. Open: duplicate classes
-  Hede 124 (`unified-kmk-402840` vs `unified-dk-hede-f3h124`) and Galster 31
-  Hvid Hans (`unified-dk-numista-108399` vs `unified-dk-galster-hg-31`).
+  re-runs once so display picks / §9a ledger match. Duplicate classes merged
+  (`acb2c0b`, curator): Hede 124 = KM 158 one class; Hede 122 took the KM 157
+  «ELEC REX» sources + KMM Schou 15 (Hede 122B); Galster 31 one class (id
+  `unified-dk-numista-108399`).
 
 ## 2026-10-18 — Merger scoped-index rules; KMM rulers; Schou-only folds undone
 
