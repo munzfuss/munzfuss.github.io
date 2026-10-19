@@ -16,6 +16,24 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-19 — New entity `norway` (Kingdom of Norway after 1814)
+
+- `fea1313`: post-1814 Norwegian coins moved from `danish_norway` to the new
+  out-of-scope entity `norway` (cutoff 1815; first post-Kiel coin is the 1816
+  Skilling). Rule `mint_registry.norway_split_entity`, applied by
+  `v2_seed_writer` to every source; details + sources in
+  `docs/research/mint_year_transitions.md` §Kongsberg. 203 seeds, 197 finals,
+  classifications kept. Pages unchanged (Denmark consumes danish_norway ≤1814).
+- Open for the curator: KMM 148142 «1 Rigsbankdaler, Frederik 6, 1834,
+  Kongsberg» stays in `danish_norway` by the Danish-king guard — probably a
+  Danish coin misfiled by KMM's nation; Hamar (Galster, KMM) is not in the
+  mint registry (routes via nation today).
+- Pending re-flow NOT done: the kmk builder at HEAD re-thins 9 danish_realm
+  records (kmk-307062, -308807, -330825, -332024, -354854, -367973, -367974 …)
+  and reads Gotland as Visby (kmk-317111, -328312) — effect of earlier builder
+  commits (781537e, 5bd3834 …) never re-flowed. Needs its own re-seed + merge +
+  absorb + verify_reflow.
+
 ## 2026-10-18 — Merger scoped-index rules; KMM rulers; Schou-only folds undone
 
 - **Merger (e9cf8c6, data e4afc3a):** records sharing a scoped index now merge (Schou/Sieg range containment, index+nominal+ruler without year/metal, billon = silver, 10 % weight with agreeing index, weak PASS-2 vetoes lifted by a unifying type-level member — `_WeakVetoIndex`), but strong contradictions always stand; a Schou number that two types of one nominal list is not evidence (`_SUBVAR_CLAIMS`); Krone ≡ 4 Mark is neutral. Classification follows the seeds into renamed/split classes (`match_uncertainty/<entity>.prev_classes.json` sidecar → absorb `_inherit_classification`). Extra classes per Hede type ~1300 → ~550.
