@@ -147,8 +147,27 @@ class TestWhoseWindow(unittest.TestCase):
         self.assertEqual(reign_window_placeholder("Håkon 5 Magnusson", "danish_norway"), (1299, 1319))
         # Not resolved on purpose: a modern queen, a vague dynasty, an
         # ambiguous first name.
-        for r in ("Margrethe 2", "Valdemarerne?", "Johan"):
+        for r in ("Margrethe 2", "Valdemarerne?", "Johannes"):
             self.assertIsNone(reign_window_placeholder(r, "danish_realm"), r)
+
+    def test_johan_is_king_hans(self):
+        # Curator 2026-10-19 (plan row 8): KMM «Johan» Hvid Malmø is King Hans
+        # (IOHANNES) — by the normaliser, not by an erratum. The Saxkøbing
+        # «Johan» pennies keep their MB-concordance years (MB beats the ruler).
+        for r in ("Johan", "Johann", "Johan?"):
+            self.assertEqual(reign_window_placeholder(r, "danish_realm"), (1481, 1513), r)
+        self.assertIsNone(reign_window_placeholder("Johan", "sweden"))
+        self.assertEqual(reign_window_placeholder("Johan", "sonderburg_duchy"), (1564, 1622))
+
+    def test_alexander_of_sonderburg(self):
+        self.assertEqual(reign_window_placeholder("Alexander", "sonderburg_duchy"), (1622, 1627))
+
+    def test_johann_friedrich_archbishop_of_bremen(self):
+        for r in ("Johan Frederik af Gottorp", "Johan Friedrich af Gottorp", "Johan Frederik"):
+            self.assertEqual(
+                reign_window_placeholder(r, "erzbisthum_bremen_verden"), (1596, 1634), r)
+        # Not a Gottorp duke: the ducal table does not know him.
+        self.assertIsNone(reign_window_placeholder("Johan Frederik", "gottorp_duchy"))
 
     def test_schauenburg_ernst_iii(self):
         # NumisMaster MC_96084 ruler link «Ernst III 1601 - 1622».

@@ -140,10 +140,22 @@ HOUSE_REIGNS: dict[str, dict[str, tuple[int, int]]] = {
     # jüngsten Bruder J. ein Drittel», † 9.10.1622 (H. W. Schwarz, «Johann der
     # Jüngere», Neue Deutsche Biographie 10, 1974, S. 534 f.,
     # deutsche-biographie.de/sfz53359.html). Full rule only from 1571 (same
-    # article); the coinage window is the 1564-1622 span. His successors
-    # (Alexander and the other sons, 1622/23) are not in the table yet.
+    # article); the coinage window is the 1564-1622 span. His son Alexander
+    # took Sønderborg at the division after his death and died 13 May 1627:
+    # «Alexander (1573-1627) fik Sønderborg» (lex.dk, «sønderjyske
+    # fyrstehuse»); death date de.wikipedia «Alexander (Schleswig-Holstein-
+    # Sonderburg)». The other sons (1622/23) are not in the table yet.
     "sonderburg_duchy": {
         "Hans der Jüngere":  (1564, 1622),
+        "Alexander":         (1622, 1627),
+    },
+    # Archbishopric of Bremen: Johann Friedrich of Holstein-Gottorp, from
+    # 1596 — «gab er 1596 die Erzbischofswürde von Bremen an den
+    # sechzehnjährigen Johann Friedrich ab» — † 3 Sept 1634 (de.wikipedia
+    # «Johann Friedrich von Schleswig-Holstein-Gottorf»). Added 2026-10-19
+    # for KMM 4 Skilling lybsk Jungk 316 (undated-coins plan row 8).
+    "erzbisthum_bremen_verden": {
+        "Johann Friedrich":  (1596, 1634),
     },
     # Schauenburg-Pinneberg: NumisMaster's ruler link «Ernst III 1601 - 1622»
     # (scripts/cache/numismaster/schleswig_holstein/MC_96084.html), requested
@@ -186,6 +198,12 @@ _HOUSE_ALIASES: dict[str, dict[str, str]] = {
         "hans den yngre": "Hans der Jüngere", "hans der jüngere": "Hans der Jüngere",
         "johann der jüngere": "Hans der Jüngere", "johann": "Hans der Jüngere",
         "johan": "Hans der Jüngere", "hans": "Hans der Jüngere",
+        "alexander": "Alexander",
+    },
+    "erzbisthum_bremen_verden": {
+        "johann friedrich": "Johann Friedrich", "johan friedrich": "Johann Friedrich",
+        "johan frederik": "Johann Friedrich", "johann frederik": "Johann Friedrich",
+        "john frederick": "Johann Friedrich",
     },
 }
 
@@ -283,8 +301,11 @@ def normalise_ruler_name(raw: str | None) -> str | None:
     head = raw.split("/", 1)[0].strip()
     # A bare «Hans» (KMM, Bruun, danskmoent write the king without a numeral)
     # is unambiguous: the table has one Hans, 1481-1513. «Hans?» (KMM's
-    # uncertain attribution) is the same name with a doubt mark.
-    if re.fullmatch(r"(?i)(hans|john)\??", head):
+    # uncertain attribution) is the same name with a doubt mark. «Johan» /
+    # «Johann» are the Danish / German forms of the same king (IOHANNES on
+    # the coins; KMM «Johan», Hvid Malmø; IKMK «Johann», København 1481).
+    # «Johannes» stays out: KMM uses it for a medieval Odense penning.
+    if re.fullmatch(r"(?i)(hans|john|johann?)\??", head):
         return "Hans I"
     _bare = _EXACT_BARE.get(_bare_key(head))
     if _bare is not None and _bare in RULER_REIGNS:
@@ -338,7 +359,8 @@ def reign_window(ruler_raw: str | None,
 # (2026-10-17 survey of the Denmark-page undated coins) — each spelling exactly
 # as KMM writes it, lower-cased, punctuation dropped, spaces collapsed.
 _EXACT_BARE = {
-    "hans": "Hans I", "john": "Hans I", "rigsrådet": "Rigsrådet",
+    "hans": "Hans I", "john": "Hans I", "johan": "Hans I", "johann": "Hans I",
+    "rigsrådet": "Rigsrådet",
     "rigsraadet": "Rigsrådet", "riksrådet": "Rigsrådet", "ridsrådet": "Rigsrådet",
     "hardeknud": "Hardeknud", "hardeknuyd": "Hardeknud",
     "magnus den gode": "Magnus den Gode", "magnud den gode": "Magnus den Gode",
@@ -452,6 +474,12 @@ def reign_window_placeholder(ruler_raw: str | None,
     # The kings' table only for an issuer of the Danish crown — matched by
     # entity, never by the name alone (curator 2026-10-17).
     if houses or not (ents & DANISH_CROWN_ENTITIES):
+        return None
+    # A bare «Johan» / «Johann» is King Hans only in the kingdoms: in the
+    # duchies (royal_holstein / royal_slesvig) it can as well be Hans der
+    # Jüngere of Sønderborg, whom NGC also writes «Johann».
+    if (re.fullmatch(r"(?i)\s*johann?\s*\??\s*", ruler_raw)
+            and not (ents & {"danish_realm", "danish_norway"})):
         return None
     parts = [p.strip(" ?") for p in _ALTERNATIVE_SPLIT_RE.split(ruler_raw) if p.strip(" ?")]
     if not parts:
