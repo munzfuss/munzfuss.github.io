@@ -1,0 +1,169 @@
+# Go/no-go measurement for the kb pilot (scripts/kb/measure.py).
+#
+# Each case is a passage already quoted in data/shared/refs_pool.yml whose
+# source is in the pilot corpus. `query` is what a researcher would type —
+# a concept or keywords in MODERN spelling, not the quoted string. `grep` is
+# the single keyword or phrase the same researcher would grep for today.
+# The target is where the quoted passage actually sits in the cache:
+#   printed: [...]   printed page(s) of the passage (a quote may cross a page)
+#   path:            substring of the text-layer path (unpaginated works)
+# `probe` is a word of the quote in the SOURCE's spelling; measure.py checks it
+# is present in the target passage, so a wrong gold location fails loudly.
+#
+# Written before the first measurement run and NOT tuned afterwards: a query
+# changed to make kb win would measure nothing.
+
+cases:
+- key: secher-ccd-1-174-1563-firkantede-moent
+  query: firkantet mønt vrage
+  grep: firkantede
+  work: secher-ccd
+  printed: ['232']
+  probe: firestugede
+
+- key: secher-ccd-1-359-1567-fald-rund-mynt
+  query: fald rund mønt 3 mark sager
+  grep: rund mønt
+  work: secher-ccd
+  printed: ['332']
+  probe: rund mynt
+
+- key: secher-ccd-3-523-1619-kobbermoent
+  query: kobbermønt hvider blaffeter
+  grep: kobbermønt
+  work: secher-ccd
+  printed: ['574']
+  probe: blaffeter
+
+- key: secher-ccd-4-138-1625-afsaettelse
+  query: møntens afsættelse sexskilling
+  grep: afsættelse
+  work: secher-ccd
+  printed: ['194']
+  probe: afsettelse
+
+- key: secher-ccd-5-143-1643-reces-mynten
+  query: fremmede købmænd gangbar mønt
+  grep: gangbar mønt
+  work: secher-ccd
+  printed: ['244']
+  probe: kiøbmænd
+
+- key: schou-1795-bd1-s82-myndtordning-1671-vardin
+  query: vardein møntmester smeltning prøve
+  grep: vardein
+  work: schou-1795
+  printed: ['82']
+  probe: vardin
+
+- key: schou-1795-bd1-s80-forbud-1671-smaamoent
+  query: forbud indførsel småmønt
+  grep: småmønt
+  work: schou-1795
+  printed: ['80']
+  probe: myndt
+
+- key: mordhorst-c5mord-reskript-1692-kroner
+  query: reskript 1692 kroner markstykker
+  grep: markstykker
+  work: mordhorst-1968
+  path: c5mord
+  probe: markstykker
+
+- key: wilcke-1919-guldriddere-1611
+  query: guldridder karat 1611
+  grep: guldridder
+  work: wilcke-1919
+  printed: ['113']
+  probe: guldriddere
+
+- key: wilcke-1919-metzner-1593-bestalling
+  query: Metzner bestalling møntmester 1593
+  grep: Metzner
+  work: wilcke-1919
+  printed: ['57']
+  probe: metzner
+
+- key: wilcke-1919-flemming-1607-slagskat
+  query: slagskat Flemming gevinst
+  grep: slagskat
+  work: wilcke-1919
+  printed: ['79']
+  probe: slagskatten
+
+- key: wilcke-1924-kap2-3-gruener-forslag-1642
+  query: Grüner forslag 1642 møntordning 1624
+  grep: Grüner
+  work: wilcke-1924
+  printed: ['165-174']
+  probe: 254
+
+- key: wilcke-1924-kap1-gottorp-1610-muenz-edict
+  query: Gottorp daler 33 skilling lybsk Nabobyerne
+  grep: Nabobyer
+  work: wilcke-1924
+  path: w2ref
+  probe: nabobyerne
+
+- key: wilcke-1950-flensborg-1547-vaegt
+  query: sølvgylden 14¼ lødig finvægt
+  grep: sølvgylden
+  work: wilcke-1950
+  printed: ['283', '284']
+  probe: finvaegt
+
+- key: wilcke-1950-sundtold-1550
+  query: sundtold nobel rhinske gylden
+  grep: sundtold
+  work: wilcke-1950
+  printed: ['292', '293']
+  probe: nobel
+
+- key: galster-1934-junge-guldregnskab
+  query: Goldgulden 18 Karat 72 Stück
+  grep: Goldgulden
+  work: galster-1934-junge
+  printed: ['108']
+  probe: kraet
+
+- key: jensen-1971-hdy-guldgylden-1624-1633-underloedig
+  query: Lilliendahl underlødig lødighed Lübeck
+  grep: Lilliendahl
+  work: jensen-1971-hans-den-yngre
+  printed: ['111']
+  probe: underlødigt
+
+- key: eriksson-2017-hans-skilling-hvid-luebsk
+  query: hvid lübsk witten vikt
+  grep: witten
+  work: eriksson-2017
+  printed: ['5']
+  probe: witten
+
+- key: gullbekk-2025-haandfaestning-1483-jaffngod
+  query: jævngod mønt Bergen Oslo danske penninge
+  grep: jævngod
+  work: gullbekk-2025
+  printed: ['4']
+  probe: leylighet   # the OCR reads «jaffngod» as «slæderjcjjhgod»
+
+- key: holst-1936-lybsk-myntmark-192-penninger
+  query: lybske myntmark 192 penninger
+  grep: 192 penninger
+  work: holst-1936
+  path: holst_1936
+  probe: myntmark
+
+- key: munro-2009-marc-de-troyes
+  query: marc de Troyes grams
+  grep: marc de Troyes
+  work: munro-wp38-flanders
+  printed: ['3']
+  probe: troyes
+
+- key: galster-nobel-1524-23-karat
+  query: Jørgen Kock nobel 23 karat
+  grep: 23 karat
+  work: galster-1936-danmarks-moenter
+  path: galkult
+  probe: noble
