@@ -8,7 +8,7 @@ quoted verbatim per CLAUDE.md §5a. No RAG, no LLM synthesis (that would
 collide with §0 / §0b and the verbatim-quote discipline).
 
 ```bash
-.venv/bin/python scripts/kb/kb.py build                    # ~8 s, 10.5k passages
+.venv/bin/python scripts/kb/kb.py build                    # ~10 s, 13k passages
 .venv/bin/python scripts/kb/kb.py search "kobbermønt hvider blaffeter"
 .venv/bin/python scripts/kb/kb.py search "vardein smeltning" --work schou-1795
 .venv/bin/python scripts/kb/kb.py search "sølvgylden" --lang da --limit 20
@@ -16,8 +16,9 @@ collide with §0 / §0b and the verbatim-quote discipline).
 .venv/bin/python scripts/kb/kb.py search 'NEAR(kroner skiling*, 8)' --fts --work secher-ccd
 .venv/bin/python scripts/kb/kb.py offsets wilcke-1950      # re-derive PDF→printed offsets
 .venv/bin/python scripts/kb/kb.py refkeys                  # manifest vs refs_pool.yml drift
-.venv/bin/python scripts/kb/kb.py extract-htm              # danskmoent .htm → text
+.venv/bin/python scripts/kb/kb.py extract-htm              # danskmoent + Hede .htm → text
 .venv/bin/python scripts/kb/measure.py                     # the grep-vs-kb measurement
+.venv/bin/python scripts/kb/audit_pages.py                 # refs_pool page hints vs the index (report)
 ```
 
 ## Parts
@@ -25,10 +26,11 @@ collide with §0 / §0b and the verbatim-quote discipline).
 | Path | What |
 |---|---|
 | `scripts/cache/_corpus.yml` | Corpus manifest, in the harvest submodule: one record per work — bibliography, languages, text-layer files and layout, PDF→printed page mapping with the basis it was established on, OCR note, `refs_pool` keys citing it. |
-| `scripts/cache/_derived/danskmoent/` | Plain text of every cached danskmoent `.htm` (1029 files), one `.txt` per page, same relative path. Derived, never hand-edited; the `.htm` stays untouched. |
+| `scripts/cache/_derived/danskmoent/`, `_derived/hede/` | Plain text of every cached danskmoent `.htm` (1029 files) and Hede page (857), one `.txt` per page, same relative path. Derived, never hand-edited; the `.htm` stays untouched. |
 | `kb.py` | Normaliser, page splitter, FTS5 builder, `search`, `offsets`, `refkeys`, `extract-htm`. Stdlib `sqlite3` (FTS5 is compiled in, SQLite 3.53) + PyYAML; no other dependency. |
 | `variants.yml` | Editable spelling-variant rules (Mynt/Mønt, Schilling/Skilling, Thaler/Daler, Reichs-/Richs-/Rigs-, ck→k, th→t, dt→t, …). |
-| `eval_set.yml`, `measure.py` | The go/no-go measurement. |
+| `eval_set.yml`, `eval_set_b.yml`, `measure.py` | The go/no-go measurement (set A, held-out set B). |
+| `audit_pages.py` | Read-only audit: does each `refs_pool` key's quote sit on the page the key gives? |
 | `_index/kb.sqlite` | The index — **gitignored**. |
 
 **Why the index is gitignored, not in the submodule.** It is a pure function
@@ -44,10 +46,10 @@ and expensive-to-rediscover, so they live in the submodule.
 | Layout | Unit | Printed page |
 |---|---|---|
 | `file-per-page` (Secher, Schou) | one PDF page file | offset segments (Secher) / IIIF label (Schou) |
-| `markers` (Wilcke 1919, 1950; Denar til daler; Galster 1934, 1973) | text between page markers | offset segments, or the marker's own printed number |
+| `markers` (Wilcke 1919, 1950; Denar til daler; Galster 1934, 1973; Bruun I–V) | text between page markers | offset segments, the marker's own printed number, or a running-head label (Bruun «Page 94 Stack's Bowers …») |
 | `formfeed` (Munro, Hauberg, DCH 1904, Jensen, Eriksson, …) | form-feed page | offset segments |
-| `section` (Wilcke II 1924) | ~25-line window | the section's printed range only — the HTML has no page breaks |
-| `whole` (danskmoent, Bobzin, Mordhorst) | ~30-line window | none — web reproductions; the quote is the locator |
+| `section` (Wilcke II 1924) | ~25-line window, capped at ~1 500 characters (`chunk_chars`) — one line is one paragraph | the section's printed range only — the HTML has no page breaks |
+| `whole` (danskmoent, Hede, Bobzin, Mordhorst) | ~30-line window | none — web reproductions; the quote is the locator |
 
 A printed page is reported only where the manifest establishes it; elsewhere
 the hit says «pdf N (printed page not established)». Offsets were found with
@@ -104,6 +106,8 @@ still reads every matching line (column «lines / files»).
 | B, round 3 | 9/15 | 8 / 13 / 15 | 12 / 15 |
 | A, round 4 (`--kind`) | 12/22 | 10 / 16 / 21 — same kind: top 10 19 | 15 / 22 |
 | B, round 4 (`--kind`) | 9/15 | 8 / 13 / 15 — same kind: top 10 15 | 12 / 15 |
+| A, round 5 (+Bruun, Hede; `chunk_chars`) | 12/22 | 10 / 16 / 20 — same kind: top 10 20 | 16 / 22 |
+| B, round 5 | 9/15 | 7 / 13 / 15 — same kind: top 10 14 | 12 / 15 |
 
 Round 1 → table after the «14¼» fraction bug fix (it moved only A14).
 Round 2 on the held-out set: whole-corpus top 10 up 11 → 13, within-work
@@ -143,30 +147,69 @@ top 10 to 19/22 (A) and 15/15 (B). This is an oracle measurement — the kind
 is taken from the gold — but it is the choice a researcher makes knowingly
 («the act text» vs «what the literature says»).
 
-**Still outside the top 10 within the kind**: A7 (Schou, OCR «Smaa-N7yndt»; kind
-rank 25), A13 (Wilcke 1924, a 4 334-word section, common words; >50), A14 (Wilcke
-1950 table; 24). Within the work they are rank 1, 2 and 9.
+**Still outside the top 10 within the kind** after round 4: A7 (Schou, OCR
+«Smaa-N7yndt»; kind rank 25), A13 (Wilcke 1924, a 4 334-word section, common
+words; >50), A14 (Wilcke 1950 table; 24). Within the work they are rank 1, 2
+and 9.
 
-### Set A, round 4
+**Round 5 — corpus extended, long paragraphs split** (2026-10-19). Two
+changes, measured separately. (1) Bruun Parts I–V (Stack's Bowers text, kind
+`catalogue`, printed page from the running head; offset to the PDF page is
+constant per part: −24, −26, −18, −16, −16) and the 857 Hede pages from
+danskmoent (kind `catalogue`). Alone this moved nothing in or out of any top
+10 across the corpus; through BM25's corpus-wide term statistics it shifted
+a few ranks by one or two (A5 within the work 8 → 10, A14 9 → 10, B9 within
+the kind 10 → 11, A6 18 → 11 across the corpus). (2) `chunk_chars: 1500`
+for Wilcke 1924, whose HTML holds one paragraph per line, so a 25-line
+window ran to ~20 000 characters: A13 >50 → 15 across the corpus, >50 → 9
+within the kind, 2 → 1 within the work; nothing else changed. Net: A within
+the kind 19 → 20, B 15 → 14 (B9, rank 11).
+
+Not indexed, with the reason: the rigsarkivet folio TK 160 (219 scans) is
+16th-century German and Dutch chancery handwriting on microfilm — OCR cannot
+read it, only handwriting recognition could; the 1928 Bruun catalogue has an
+OCR layer whose columns come out interleaved.
+
+**Embeddings: not justified.** Within the work every case of A and B is in
+the top 10 (A 22/22, B 15/15). The remaining misses are ranking across works
+on the same subject, which semantic similarity would make worse, not better.
+
+## Page-hint audit — `audit_pages.py`
+
+For every indexed work with established printed pages, each `refs_pool` key's
+quote (first «<i>…</i>» of the da field) is scored against every page by the
+share of its words; the verdict compares the claimed page with the best one.
+A MISMATCH is a candidate: open the page before any fix, and fix through
+`cite-source`. First run (2026-10-19): 222 keys with a quote and a page —
+198 ok, 5 weak, 19 MISMATCH. Of the 19, six keys give a wrong page,
+confirmed on the text (Wilcke 1919 s. 86 → 78, s. 73 → 74, s. 74 → 75 and s. 81 → 80;
+Wilcke 1950 s. 184 → 183; two Wilcke 1924 keys «kap. II.7 (s. 258 ff.)»
+whose passage is in B.7, s. 198–208); the seven Bruun keys all give the PDF
+page, not the printed one (offset constant per part, quote verified on the
+PDF page); six are false alarms — three tables whose OCR breaks the figures,
+a page belonging to another work cited in the same entry, two quote words
+fused with a footnote mark or a figure by the OCR.
+
+### Set A, round 5
 
 | # | refs_pool key | query | grep | grep: gold hit | grep: lines / files | kb rank | kb rank (same kind) | kb rank (in work) |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `secher-ccd-1-174-1563-firkantede-moent` | firkantet mønt vrage | `firkantede` | ❌ | 17 / 7 | 16 | 8 | 5 |
+| 1 | `secher-ccd-1-174-1563-firkantede-moent` | firkantet mønt vrage | `firkantede` | ❌ | 17 / 7 | 22 | 9 | 5 |
 | 2 | `secher-ccd-1-359-1567-fald-rund-mynt` | fald rund mønt 3 mark sager | `rund mønt` | ❌ | 31 / 11 | 2 | 1 | 1 |
 | 3 | `secher-ccd-3-523-1619-kobbermoent` | kobbermønt hvider blaffeter | `kobbermønt` | ❌ | 43 / 11 | 1 | 1 | 1 |
 | 4 | `secher-ccd-4-138-1625-afsaettelse` | møntens afsættelse sexskilling | `afsættelse` | ❌ | 15 / 14 | 1 | 1 | 1 |
-| 5 | `secher-ccd-5-143-1643-reces-mynten` | fremmede købmænd gangbar mønt | `gangbar mønt` | ❌ | 20 / 16 | 26 | 9 | 8 |
-| 6 | `schou-1795-bd1-s82-myndtordning-1671-vardin` | vardein møntmester smeltning prøve | `vardein` | ❌ | 0 / 0 | 18 | 7 | 1 |
-| 7 | `schou-1795-bd1-s80-forbud-1671-smaamoent` | forbud indførsel småmønt | `småmønt` | ❌ | 43 / 9 | 47 | 25 | 1 |
+| 5 | `secher-ccd-5-143-1643-reces-mynten` | fremmede købmænd gangbar mønt | `gangbar mønt` | ❌ | 20 / 16 | 28 | 10 | 9 |
+| 6 | `schou-1795-bd1-s82-myndtordning-1671-vardin` | vardein møntmester smeltning prøve | `vardein` | ❌ | 0 / 0 | 17 | 5 | 1 |
+| 7 | `schou-1795-bd1-s80-forbud-1671-smaamoent` | forbud indførsel småmønt | `småmønt` | ❌ | 43 / 9 | >50 | 26 | 1 |
 | 8 | `mordhorst-c5mord-reskript-1692-kroner` | reskript 1692 kroner markstykker | `markstykker` | ✅ | 152 / 45 | 1 | 1 | 1 |
 | 9 | `wilcke-1919-guldriddere-1611` | guldridder karat 1611 | `guldridder` | ✅ | 38 / 19 | 1 | 1 | 1 |
 | 10 | `wilcke-1919-metzner-1593-bestalling` | Metzner bestalling møntmester 1593 | `Metzner` | ✅ | 24 / 9 | 1 | 1 | 1 |
 | 11 | `wilcke-1919-flemming-1607-slagskat` | slagskat Flemming gevinst | `slagskat` | ✅ | 107 / 15 | 1 | 1 | 1 |
 | 12 | `wilcke-1924-kap2-3-gruener-forslag-1642` | Grüner forslag 1642 møntordning 1624 | `Grüner` | ✅ | 42 / 10 | 1 | 1 | 1 |
-| 13 | `wilcke-1924-kap1-gottorp-1610-muenz-edict` | Gottorp daler 33 skilling lybsk Nabobyerne | `Nabobyer` | ✅ | 4 / 4 | >50 | >50 | 2 |
-| 14 | `wilcke-1950-flensborg-1547-vaegt` | sølvgylden 14¼ lødig finvægt | `sølvgylden` | ❌ | 123 / 37 | 34 | 24 | 9 |
+| 13 | `wilcke-1924-kap1-gottorp-1610-muenz-edict` | Gottorp daler 33 skilling lybsk Nabobyerne | `Nabobyer` | ✅ | 4 / 4 | 15 | 9 | 1 |
+| 14 | `wilcke-1950-flensborg-1547-vaegt` | sølvgylden 14¼ lødig finvægt | `sølvgylden` | ❌ | 123 / 37 | >50 | 31 | 10 |
 | 15 | `wilcke-1950-sundtold-1550` | sundtold nobel rhinske gylden | `sundtold` | ✅ | 46 / 15 | 2 | 2 | 2 |
-| 16 | `galster-1934-junge-guldregnskab` | Goldgulden 18 Karat 72 Stück | `Goldgulden` | ❌ | 547 / 20 | 3 | 1 | 1 |
+| 16 | `galster-1934-junge-guldregnskab` | Goldgulden 18 Karat 72 Stück | `Goldgulden` | ❌ | 547 / 20 | 4 | 1 | 1 |
 | 17 | `jensen-1971-hdy-guldgylden-1624-1633-underloedig` | Lilliendahl underlødig lødighed Lübeck | `Lilliendahl` | ✅ | 21 / 1 | 1 | 1 | 1 |
 | 18 | `eriksson-2017-hans-skilling-hvid-luebsk` | hvid lübsk witten vikt | `witten` | ✅ | 419 / 46 | 1 | 1 | 1 |
 | 19 | `gullbekk-2025-haandfaestning-1483-jaffngod` | jævngod mønt Bergen Oslo danske penninge | `jævngod` | ❌ | 6 / 4 | 2 | 2 | 1 |
@@ -174,19 +217,19 @@ rank 25), A13 (Wilcke 1924, a 4 334-word section, common words; >50), A14 (Wilck
 | 21 | `munro-2009-marc-de-troyes` | marc de Troyes grams | `marc de Troyes` | ✅ | 25 / 8 | 6 | 6 | 6 |
 | 22 | `galster-nobel-1524-23-karat` | Jørgen Kock nobel 23 karat | `23 karat` | ✅ | 34 / 22 | 4 | 2 | 2 |
 
-### Set B (held out), round 4
+### Set B (held out), round 5
 
 | # | refs_pool key | query | grep | grep: gold hit | grep: lines / files | kb rank | kb rank (same kind) | kb rank (in work) |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `secher-ccd-3-487-1618-soelvkrone` | sølvkrone 13¾ lod fint sølv halvanden rigsdaler | `sølvkrone` | ❌ | 22 / 8 | 6 | 2 | 1 |
+| 1 | `secher-ccd-3-487-1618-soelvkrone` | sølvkrone 13¾ lod fint sølv halvanden rigsdaler | `sølvkrone` | ❌ | 22 / 8 | 8 | 3 | 1 |
 | 2 | `secher-ccd-3-541-1619-rigsdaler-96-sk` | rigsdaler spansk matte otte realer skilling danske | `spansk matte` | ❌ | 1 / 1 | 1 | 1 | 1 |
-| 3 | `secher-ccd-4-20-1622-tarif` | rosenobel ungersk dukat guldgylden mark danske | `rosenobel` | ✅ | 177 / 60 | 23 | 1 | 1 |
+| 3 | `secher-ccd-4-20-1622-tarif` | rosenobel ungersk dukat guldgylden mark danske | `rosenobel` | ✅ | 177 / 60 | 22 | 1 | 1 |
 | 4 | `secher-ccd-1-210-1564-laan-klippinge` | låne klipping lensmænd rund mønt | `klippinge` | ✅ | 549 / 63 | 4 | 2 | 2 |
 | 5 | `secher-ccd-3-309-1609-fremmed-smaamoent` | fireskillingstykker søslinger Hildesheim polske dütchen | `fireskillingstykker` | ❌ | 0 / 0 | 1 | 1 | 1 |
-| 6 | `schou-1795-bd1-s81-myndtordning-1671-guld` | guldmønt dukat 23 karat 67 stykker kølnisk mark | `kølnisk mark` | ❌ | 1 / 1 | 1 | 1 | 1 |
-| 7 | `schou-1795-bd1-s80-note-regl-1692` | kroner reglement 1692 halvskilling kobber | `halvskilling` | ❌ | 25 / 16 | 3 | 1 | 1 |
+| 6 | `schou-1795-bd1-s81-myndtordning-1671-guld` | guldmønt dukat 23 karat 67 stykker kølnisk mark | `kølnisk mark` | ❌ | 1 / 1 | 2 | 1 | 1 |
+| 7 | `schou-1795-bd1-s80-note-regl-1692` | kroner reglement 1692 halvskilling kobber | `halvskilling` | ❌ | 25 / 16 | 4 | 1 | 1 |
 | 8 | `mordhorst-c5mord-reskript-1692-2-skilling` | toskilling godhed værdi kroner omkostninger | `omkostninger` | ✅ | 92 / 40 | 1 | 1 | 1 |
-| 9 | `wilcke-1950-moentordning-1541` | møntordning 1541 Crucis 14½ lod | `Crucis` | ❌ | 24 / 5 | 19 | 10 | 4 |
+| 9 | `wilcke-1950-moentordning-1541` | møntordning 1541 Crucis 14½ lod | `Crucis` | ❌ | 24 / 5 | 23 | 11 | 5 |
 | 10 | `wilcke-1950-tillaeg-1544` | guldengroschen 13½ lod 1544 | `Gyldengroschen` | ✅ | 21 / 11 | 1 | 1 | 1 |
 | 11 | `galster-1934-junge-1545-tilladelse` | Junge tilladelse guldgylden Degener Flensborg | `Degener` | ✅ | 30 / 14 | 1 | 1 | 1 |
 | 12 | `galster-1934-hertugdoemmer-lybsk-moentfod` | hertugdømmerne lybske møntfod privilegier 1460 | `lybske Møntfod` | ✅ | 2 / 2 | 1 | 1 | 1 |

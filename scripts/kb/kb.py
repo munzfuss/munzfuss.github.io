@@ -133,9 +133,9 @@ def _read_text(path: Path) -> str:
 
 
 def cmd_extract_htm(args) -> int:
-    src_root = CACHE / "danskmoent"
     n = changed = 0
-    for p in sorted(src_root.rglob("*.htm")):
+    srcs = sorted((CACHE / "danskmoent").rglob("*.htm")) + sorted((CACHE / "hede").glob("*.htm"))
+    for p in srcs:
         rel = p.relative_to(CACHE)
         out = DERIVED / rel.with_suffix(".txt")
         text = html_to_text(_read_text(p))
@@ -187,21 +187,27 @@ def _printed_from_offset(pdf: int, spec: dict) -> str | None:
     return str(p) if p >= 1 else None
 
 
-def _chunk_lines(lines: list[str], size: int, start_line: int = 1):
-    """Yield (first_line_no, last_line_no, text) windows of ~size non-empty lines."""
-    buf, first, count = [], None, 0
+def _chunk_lines(lines: list[str], size: int, start_line: int = 1, max_chars: int | None = None):
+    """Yield (first_line_no, last_line_no, text) windows of ~size non-empty lines.
+
+    max_chars caps a window by length as well: typed HTML transcriptions hold
+    one paragraph per line, so 25 lines can be 20 000 characters, and BM25's
+    length normalisation then buries the passage (README, round 5)."""
+    buf, first, count, chars = [], None, 0, 0
     for i, ln in enumerate(lines, start=start_line):
         if first is None:
             first = i
         buf.append(ln)
+        chars += len(ln)
         if ln.strip():
             count += 1
-        if count >= size and not ln.strip():
+        full = count >= size or (max_chars is not None and chars >= max_chars)
+        if full and not ln.strip():
             yield first, i, "\n".join(buf)
-            buf, first, count = [], None, 0
-        elif count >= size * 2:
+            buf, first, count, chars = [], None, 0, 0
+        elif count >= size * 2 or (max_chars is not None and chars >= 2 * max_chars):
             yield first, i, "\n".join(buf)
-            buf, first, count = [], None, 0
+            buf, first, count, chars = [], None, 0, 0
     if buf and any(x.strip() for x in buf):
         yield first, start_line + len(lines) - 1, "\n".join(buf)
 
@@ -269,6 +275,11 @@ def iter_passages(work: dict):
                         printed = mprinted if mprinted and not mprinted.startswith("-") else None
                     elif pp.get("method") == "offset" and pdf is not None:
                         printed = _printed_from_offset(pdf, pp)
+                    elif pp.get("method") == "label":
+                        # a running head printed in the page's first lines («Page 94 Stack's …»)
+                        rx_l = re.compile(pp["regex"])
+                        head = [ln for ln in cl[1:] if ln.strip()][: pp.get("lines", 3)]
+                        printed = next((m.group(1) for m in map(rx_l.search, head) if m), None)
                     body = "\n".join(cl)
                     if not body.strip():
                         continue
@@ -287,7 +298,8 @@ def iter_passages(work: dict):
                                 sec = m.group(1)
                                 break
                     sec = str(sec) if sec is not None else None
-                for a, b, body in _chunk_lines(lines, unit.get("chunk_lines", 30)):
+                for a, b, body in _chunk_lines(lines, unit.get("chunk_lines", 30),
+                                              max_chars=unit.get("chunk_chars")):
                     if sec:
                         loc = f"{page_label} {sec} (section range)"
                     else:

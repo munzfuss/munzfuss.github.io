@@ -788,14 +788,15 @@ When a session changes cache contents (typical trigger: `parse_hede.py --force` 
 
 `scripts/cache/_corpus.yml` is the corpus manifest: one record per work with a
 text layer (Secher, Schou, Wilcke I/II/1950, Mordhorst, the danskmoent PDFs and
-pages, Munro, Bobzin, …) — bibliography, languages, text-layer files and their
+pages, Munro, Bobzin, Bruun I–V, the Hede pages, …) — bibliography, languages, text-layer files and their
 page layout, the PDF→printed page mapping with the evidence it rests on, an OCR
 note and the `refs_pool.yml` keys citing the work. `scripts/cache/_derived/` holds
-text derived from cached HTML (danskmoent). `scripts/kb/kb.py` builds a SQLite
+text derived from cached HTML (danskmoent, Hede). `scripts/kb/kb.py` builds a SQLite
 FTS5 (BM25) index from them (`scripts/kb/_index/`, gitignored, ~8 s) and
 `kb.py search` returns ranked passages with printed page, path and line —
 retrieval for the `cite-source` workflow, never synthesis. Details, the
-normalisation rules and the grep-vs-kb measurement: **`scripts/kb/README.md`**.
+normalisation rules, the grep-vs-kb measurement and the page-hint audit
+(`scripts/kb/audit_pages.py`): **`scripts/kb/README.md`**.
 
 ## GitHub Actions (deploy)
 
