@@ -200,6 +200,8 @@ _ENTITY_TO_KM_REGISTER: dict[str, str] = {
     # False, silently corrupting a register-keyed km dict. Never use a YAML-bool
     # token (no/yes/true/false/on/off/n/y) as a register code.
     "danish_norway": "nor",
+    # Kingdom of Norway after 1814 — the same Krause Norway volume.
+    "norway": "nor",
     # SH territory — Krause «German States — Schleswig-Holstein»
     "royal_holstein": "sh",
     "gottorp_duchy": "sh",

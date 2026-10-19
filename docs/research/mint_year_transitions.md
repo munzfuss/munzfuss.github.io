@@ -78,6 +78,38 @@ Bruun-not-meta-tagged entries into agreement.
 
 ---
 
+## ✅ Kongsberg — 1815 (Danish-Norway → Kingdom of Norway, curator 2026-10-19)
+
+New entity `norway` (out of scope, renders on no page) for Norway after the
+Treaty of Kiel (14 January 1814). Cutoff `year_from: 1815`: the first
+Norwegian coins after 1814 are dated 1816 — Numista N# 49457, 1 Skilling
+1816, Carl XIII, KM 284, Kongsberg (https://en.numista.com/49457); Wikipedia
+EN «Norwegian speciedaler», Coins: «In 1816, coins in circulation from the
+previous currency remained in circulation, with only 1 skilling coins being
+minted.» No 1814 or 1815 Norwegian coin in any of our caches (KMM, Bruun,
+Numista, NGC, NumisMaster, ucoin; checked 2026-10-19). Curator rule: if the
+first issue is 1815 or later, the cutoff is 1815.
+
+Mints: Kongsberg is the only one operating in Norway after 1814 (no
+post-1814 coin with another mint in our data); Christiania moved to
+Kongsberg in 1686 (no.wikipedia «Den Kongelige Mynt»: «I 1686 ble
+«Mynten» flytten til Kongsberg»). The registry's other Norwegian mints
+(Christiania, Bergen, Gimsø, Nidaros) need no override.
+
+Mechanism: the Kongsberg `year_overrides` and the year-aware «Norge»
+nation rule route by mint / nation; `mint_registry.norway_split_entity`,
+applied by the seed writer to every source, routes by date whatever the
+signal (Bruun region NORWAY, Numista issuer «Norway»), counts a range that
+opens in 1814 and runs on as post-1814 (KMM 471237, 2 Krone «1814-1914»
+jubilee), and keeps a coin naming a Danish king in `danish_norway` (KMM
+148142 «1 Rigsbankdaler, Frederik 6, 1834, Kongsberg» — curator to review).
+Merger: `norway` shares Krause's Norway register `nor`.
+
+Impact 2026-10-19: 203 seeds (KMM 185, Bruun 18) → `norway`; 197 finals,
+classification kept (kronefod 121, 18_5_thaler 21, 9_25_thaler 1).
+
+---
+
 ## ⏳ Rinteln / Oldendorf / Stadthagen / Bückeburg — 1640 (deferred)
 
 The same Otto V 1640 dynastic extinction divided the **non-Pinneberg**
@@ -147,7 +179,7 @@ danskmoent.dk/nedsat.htm
 | Haderslev | Pre/post-1660 royal/Gottorp split (Karlstad treaty) | 11 entries all pre-period; per V1 convention all tagged `royal_holstein`. No flip needed in current data. |
 | Husum | 1864 Schleswig war (Danish → Prussian) | 14 entries all pre-1864 → already correct. |
 | Flensburg | Same as Husum | 1 entry pre-1864 → already correct. |
-| Christiania / Oslo / Bergen / Kongsberg | Always Danish-Norway 1380-1814 (within scope) | n/a — single-period in our window. |
+| Christiania / Oslo / Bergen / Gimsø / Nidaros / Hamar | Danish-Norway up to 1814 | No post-1814 coins: Kongsberg was the only Norwegian mint after 1814. Post-1814 coins of any Norwegian mint would still go to `norway` via `norway_split_entity` (see Kongsberg section). |
 | Hamburg, Lübeck | Always Hanseatic during scope | n/a. |
 
 All these mints would benefit from documenting their boundary years

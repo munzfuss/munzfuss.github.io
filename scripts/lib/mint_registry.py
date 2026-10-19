@@ -51,6 +51,12 @@ from __future__ import annotations
 
 import re
 
+# First year whose Norwegian coins belong to the Kingdom of Norway rather
+# than to Norway under the Danish crown (`danish_norway`). Kiel 14 Jan 1814
+# ends the Danish crown in Norway; no Norwegian coin is dated 1814 or 1815,
+# the first is the 1816 Skilling (curator 2026-10-19: cutoff 1815).
+NORWAY_FROM_YEAR = 1815
+
 
 # Per-canonical-key registry entry.
 #   - aliases: set of LOWERCASE alternate spellings the parsers actually
@@ -344,6 +350,15 @@ _MINT_REGISTRY: dict[str, dict] = {
         "aliases": {"kongsberg", "konsberg", "kongberg", "kongsborg"},
         "display": "Kongsberg",
         "entity": "danish_norway",
+        # Norway left the Danish crown by the Treaty of Kiel (14 January
+        # 1814); its first coins after that are dated 1816 (1 Skilling
+        # Carl XIII, KM 284, Kongsberg). Kongsberg was the only mint
+        # operating in Norway after 1814, so from 1815 its coins belong to
+        # the Kingdom of Norway (curator 2026-10-19). The Danish-king guard
+        # lives in `norway_split_entity`, applied by the seed writer.
+        "year_overrides": [
+            {"year_from": NORWAY_FROM_YEAR, "entity": "norway"},
+        ],
     },
     "bergen": {
         "aliases": {"bergen"},
@@ -1021,10 +1036,10 @@ def classify_nation_to_entity(nation: str | None,
 
     Ordered substring match against `_NATION_RULES` after normalising the
     dirty nation string. `year` is accepted for signature parity with
-    `classify_mint_to_entity` but is currently unused (no nation-level
-    year overrides modelled yet). Returns None for unknown / OOS / generic
-    («Tyskland», «Tysk», ancient/world realms) → caller routes to
-    `_unclassified`.
+    `classify_mint_to_entity`; its one use is «Norge» from
+    `NORWAY_FROM_YEAR` on → `norway` (Kingdom of Norway). Returns None
+    for unknown / OOS / generic («Tyskland», «Tysk», ancient/world
+    realms) → caller routes to `_unclassified`.
 
     COARSER than mint classification — callers should prefer
     `classify_mint_to_entity(place)` first and only fall back to this when
@@ -1037,8 +1052,47 @@ def classify_nation_to_entity(nation: str | None,
         return None
     for rx, entity in _NATION_RULES:
         if rx.search(norm):
+            if (entity == "danish_norway" and isinstance(year, int)
+                    and year >= NORWAY_FROM_YEAR):
+                return "norway"
             return entity
     return None
+
+
+_DANISH_KING_RE = re.compile(
+    r"\b(?:fr[ea]de?ri[ck]+|christian|kristian|chr\.)", re.IGNORECASE)
+
+
+def norway_split_entity(entity, year_first: int | None,
+                        year_last: int | None = None,
+                        ruler: str | None = None):
+    """Split Norwegian coins between `danish_norway` and `norway` by date.
+
+    A coin routed to either Norwegian entity goes to `norway` when it was
+    struck from `NORWAY_FROM_YEAR` on, else to `danish_norway`. «Struck from
+    1815» is `year_first >= 1815`, or a range that opens in 1814 and runs on
+    past it: no Norwegian coin is dated 1814, so such a range is an anchor
+    date of a later piece (KMM 471237, the 2 Krone «1814-1914» jubilee coin).
+
+    A coin whose ruler is a Danish king (Frederik / Christian) stays in
+    `danish_norway` whatever its date: Norway had no Danish king after 1814,
+    so such a record is a dating or attribution problem for the curator, not
+    a coin of the Kingdom of Norway (e.g. KMM 148142, «1 Rigsbankdaler,
+    Frederik 6, 1834, Kongsberg»).
+
+    Any other entity, a list-form entity, or a coin without a year is
+    returned unchanged.
+    """
+    if entity not in ("danish_norway", "norway"):
+        return entity
+    if not isinstance(year_first, int):
+        return entity
+    post = year_first >= NORWAY_FROM_YEAR or (
+        year_first == NORWAY_FROM_YEAR - 1
+        and isinstance(year_last, int) and year_last >= NORWAY_FROM_YEAR)
+    danish_king = bool(ruler and isinstance(ruler, str)
+                       and _DANISH_KING_RE.search(ruler))
+    return "norway" if post and not danish_king else "danish_norway"
 
 
 def is_known_nation(nation: str | None) -> bool:
