@@ -406,7 +406,7 @@ The work plan with its checklist: `luebischer_muenzfuss_plan.md`.
 
 | Question | Would be settled by |
 |---|---|
-| When did Skilling / Søsling coinage start (1495–1512)? | Märcher, «Et differentieret møntvæsen ca. 1480–1550», *Denar til Daler* (2018) s. 426–495 (paper); dated hoards in *Danmarks middelalderlige skattefund* (Jensen et al. 1992) |
+| When did Skilling / Søsling coinage start (1495–1512)? | Märcher, «Et differentieret møntvæsen ca. 1480–1550», *Denar til Daler* (2018) s. 426–495 — no longer paper-only: cached and read 2026-10-16 (`luebischer_muenzfuss.md` §3.4e; no start date given there); dated hoards in *Danmarks middelalderlige skattefund* (Jensen et al. 1992) |
 | Which 1513 figures repeat Hans-era ordinances (Galster's «ældre, tabte»)? | the 1496 goldsmiths' Skraa text (Wilcke s. 151 cites it for 14-lødig værksølv) — not seen |
 | Hans' «Marckestycker» (1542 account) — real coin or Sølvgylden? | a specimen or a second account; none known (S5, S4) |
 | Jesse's 19,392 g per Mark lübsch 1492 vs our 20,34 | Jesse's printed footnote (the coingallery text omits notes) — print edition |
@@ -521,3 +521,91 @@ standard in local units, exactly or approximately). Recomputed:
 (KMM 139310, 150297, 150298) relocated `danish_realm` → `sweden`. No Christian II Swedish
 issue is in our data (his Stockholm Klippinge 1520–23, if harvested later, are a separate case:
 Danish denomination and type).
+
+## 11. Follow-up 2026-10-19 — finds of a blind `kb search` (Wilcke 7-1 s. 115, 145–146)
+
+Found by a test of the full-text index (`scripts/kb`), run on this subject without reading
+this dossier first and then compared with it. Everything else the blind search turned up
+was already here or in `hans_rates_1481_1513.md` / `luebischer_muenzfuss.md`. The four
+documents below were not. All are Wilcke's summaries of archival items (S1), not the
+documents themselves; figures checked on the page images (PDF 85, 115, 116 of
+`wilcke_7-1.pdf`, printed = PDF + 30).
+
+### 11.1 Output: the only two money amounts tied to the Malmø mint
+
+- S1 s. 145: «*I Kong Hans' Husholdningsregnskab og i Kongens og Dronning Christines
+  Regnskabsbøger nævnes 1487: 1124½ ℳ 2 ß d., som er annammet af Møntmesteren i Malmø.*»
+- S1 s. 145–146: «*Endvidere har Hans Mikkelsen, Borgmester i Malmø, faaet Kvittering for
+  5 500 ℳ, som Møntmesteren der sammesteds myntet og hannem antvortet haver af det Sølv,
+  som Hans Naades (Christian II.s) Fader havde givet Møntmesteren, da hans Naades Søster
+  (Elisabeth) drog her af Slottet (København). Det har vel været en Del Skillinger og en
+  Masse Korshvide.*»
+
+Wilcke opens with «*Oplysninger om Mængden af Mønt, der er slaaet under Kong Hans, er
+bortset fra Fundoplysningerne højst sparsomme*» (s. 145); with the Mårten account (§3.4)
+these are the three quantitative documents he has. Gaps: Wilcke gives no date for the
+quittance (only the occasion, Elisabeth's departure) and no archive reference for either
+item on these pages; «*en Del Skillinger og en Masse Korshvide*» is his surmise, not the
+quittance's wording.
+
+Recomputation (this dossier's, under stated assumptions — **not a source figure**): if the
+1487 sum was paid in Hvide at the then rate 2 M d = 1 Gylden (`hans_rates` 1487), it is
+1124½ × 48 + 2 × 3 = 53 982 Hvide ≈ 562 Gylden; at 0,27–0,30 g fine per Hvid (6 lod,
+Eriksson tab. 7, the early reign) ≈ 14,6–16,2 kg of fine silver. Whether «annammet af
+Møntmesteren» is new coin, mint dues or a loan is not stated — open (§11.4).
+
+### 11.2 The Malmø mintmaster in September 1491 — bears on the Sever ⚠
+
+S1 s. 146: «*thi 1491 den 30. September, da Hans gav Henrik Dringenberg Kvittering for
+200 r. G. for det Sølv, han fik af os, og 50 r. G. af Mønten for i Aar, angives Dokumentet
+udstedt in curia nostra monetaria Malmogensi.*»
+
+- Dringenberg still answers for the Malmø mint («af Mønten for i Aar») on 30 Sept 1491. That
+  contradicts danskmoent `hans.htm` («Henrik Dringenberg, Malmø -1489 | Hans Sever, Malmø
+  1489-») and fits Galster's «1492 blev afløst af Hans Sever» — the open discrepancy in
+  `luebischer_muenzfuss.md` (⚠ «mintmaster Hans Sever in Malmø»). Not settled outright:
+  a quittance can close an older account, so Sever's start is pinned to after Sept 1491
+  only if «for i Aar» means the current mint year — Wilcke's wording suggests it, the
+  document is not quoted.
+- «50 r. G. af Mønten for i Aar» is the only annual mint payment of the reign on record —
+  the form (a fixed yearly sum from the mint) fits a farmed mint, but Wilcke does not use
+  that word; **hypothesis**, settled by the document (Danmarks Breve fra Middelalderen,
+  2. R., under 30 Sept 1491).
+- Recomputation: at 2 M d per Gylden (1491 lies in the 2 M d period of `hans_rates`),
+  50 r. G. = 100 Mark danske.
+
+### 11.3 The 1495 inheritance — half gold, half Danish coin
+
+S1 s. 115: «*Den 21. Juni 1495 havde Frederik og Hans som tidligere nævnt delt deres hos
+deres Moder Dronning Dorothea beroende Arv, 57 940 rhinske Gylden, saaledes at Hans skulde
+betale sin Broder 28 970 rhinske Gylden med Halvdelen i rhinsk Guld og den anden Halvdel i
+danske Penge som i Danmark gængs er.*» (footnote: «*Danmarks Breve i Middelalderen, II. R.,
+N. p. 563*»).
+
+Check: 57 940 / 2 = 28 970 ✓. The sum is denominated in Gylden and half of it payable in
+current Danish coin — the Gylden as unit of account with Danish silver as a means of
+payment, the reckoning of §3.3. No rate is stated; at 2 M d / G the silver half
+(14 485 G) would be 28 970 Mark danske (computation, not in the source). That Danish coin
+«som i Danmark gængs er» meant Hvide in June 1495 is a **hypothesis** from the
+Gribshunden purse of the same month (S8: Hvide only) — the document names no
+denomination; settled by the letter itself (Danmarks Breve, 2. R., under 21 June 1495).
+
+### 11.4 Open questions added
+
+| Question | Would be settled by |
+|---|---|
+| Date and archive reference of the Mikkelsen quittance (5 500 ℳ); was the silver Elisabeth's dowry? | the quittance itself — Wilcke's source is not named on s. 145–146; candidates: Kong Hans' Regnskabsbog / Dronning Christines regnskabsbøger (the series s. 145 names) |
+| What «1124½ ℳ 2 ß d. … annammet af Møntmesteren i Malmø» (1487) was — new coin, mint dues, a loan | the 1487 account entry (Kong Hans' Regnskabsbog 1487, Medd. fra Rentekammerarkivet — also listed as the source for the 1484–1494 rate gap in `hans_rates` §open) |
+| Did Hans Sever take over Malmø in 1489 or 1492? | the 30 Sept 1491 quittance (Danmarks Breve fra Middelalderen 2. R.); §11.2 points to after Sept 1491 |
+
+### 11.5 Literature leads named by Wilcke and not in §2
+
+- Erik Person, article on Norwegian coins of King Hans, *Numismatisk Forenings
+  Medlemsblad* XII, Oktober 1930 (S1 s. 146).
+- N. L. Rasmusson, *Studier i norsk mynthistoria under tiden 1270–1513* (S1 s. 146).
+- Th. Østergaard, «Aalborg og Ørbæk som Møntsteder», in P. Ris Møller (ed.), *Aalborg*
+  1942, p. 32, and *Fra Himmerland og Kjær Herred* XXXIII, 1944, p. 284 (S1 s. 146).
+
+None is in `scripts/cache`; Ernst 1940 (also named there) is already used (§3.4,
+`luebischer_muenzfuss.md`).
+

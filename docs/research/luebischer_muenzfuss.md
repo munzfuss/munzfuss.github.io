@@ -393,6 +393,7 @@ turn the model into a finding: closing dates of hoards with 9 / 8 / 7-lod Skilli
 af Hans Sever, der var Kong Hans' Møntmester i Malmø til 1512»; danskmoent `hans.htm`: «Henrik Dringenberg,
 Malmø -1489 | Hans Sever, Malmø 1489-». Start 1489 or 1492 — not settled; the end 1512 (his presumed death,
 Galster) coincides with the dated 1512 Skillinger of stage 3 (coincidence noted, no causal claim).
+New evidence 2026-10-19: Wilcke 7-1 s. 146 — Hans' quittance to Henrik Dringenberg of 30 Sept 1491 for silver and «*50 r. G. af Mønten for i Aar*», issued «*in curia nostra monetaria Malmogensi*»: Dringenberg still at Malmø in Sept 1491, against danskmoent's «-1489» (details and the remaining caveat: `hans_silver_1481_1513.md` §11.2).
 
 ### §3.4c Did the Danish Skilling follow Lübeck's step to 13 Mark (1502/06)? (2026-10-16, curator question — open, leaning «consistent»)
 
