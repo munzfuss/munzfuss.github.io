@@ -163,6 +163,21 @@ HOUSE_REIGNS: dict[str, dict[str, tuple[int, int]]] = {
     "schauenburg_pinneberg": {
         "Ernst III":         (1601, 1622),
     },
+    # Kingdom of Norway after 1814 (entity `norway`). Reigns as kings of
+    # Norway, en.wikipedia «List of Norwegian monarchs»: Charles II (XIII)
+    # 4 Nov 1814 – 5 Feb 1818; Charles III John (XIV John) – 8 Mar 1844;
+    # Oscar I – 8 Jul 1859; Charles IV (XV) «8 July 1859 – 18 September
+    # 1872»; Oscar II – 1905; Haakon VII 18 Nov 1905 – 21 Sep 1957. Keys use
+    # the Swedish numbering the coins and most sources print. Added
+    # 2026-10-19 for KMM 673472/673473 «Carl 15.» (curator: «так»).
+    "norway": {
+        "Carl XIII":         (1814, 1818),
+        "Carl XIV Johan":    (1818, 1844),
+        "Oscar I":           (1844, 1859),
+        "Carl XV":           (1859, 1872),
+        "Oscar II":          (1872, 1905),
+        "Haakon VII":        (1905, 1957),
+    },
 }
 
 # Observed source spellings → canonical key inside a house table. Lowercased,
@@ -199,6 +214,27 @@ _HOUSE_ALIASES: dict[str, dict[str, str]] = {
         "johann der jüngere": "Hans der Jüngere", "johann": "Hans der Jüngere",
         "johan": "Hans der Jüngere", "hans": "Hans der Jüngere",
         "alexander": "Alexander",
+    },
+    "norway": {
+        # Swedish numbering (coins, Bruun, most of KMM) and Norwegian
+        # numbering (KMM «Karl 3 Johan», «Karl 4»): Karl II = Carl XIII,
+        # Karl III Johan = Carl XIV Johan, Karl IV = Carl XV. A bare «Oscar»
+        # stays unresolved (I or II).
+        "carl xiii": "Carl XIII", "karl xiii": "Carl XIII", "carl 13": "Carl XIII",
+        "karl 13": "Carl XIII", "karl ii": "Carl XIII", "karl 2": "Carl XIII",
+        "carl xiv johan": "Carl XIV Johan", "karl xiv johan": "Carl XIV Johan",
+        "carl xiv": "Carl XIV Johan", "karl xiv": "Carl XIV Johan",
+        "carl 14": "Carl XIV Johan", "karl 14": "Carl XIV Johan",
+        "carl 14 johan": "Carl XIV Johan", "karl 14 johan": "Carl XIV Johan",
+        "carl johan": "Carl XIV Johan", "karl johan": "Carl XIV Johan",
+        "carl xiv jo": "Carl XIV Johan",
+        "karl iii johan": "Carl XIV Johan", "karl 3 johan": "Carl XIV Johan",
+        "oscar i": "Oscar I", "oscar 1": "Oscar I", "oskar i": "Oscar I", "oskar 1": "Oscar I",
+        "carl xv": "Carl XV", "karl xv": "Carl XV", "carl 15": "Carl XV",
+        "karl 15": "Carl XV", "karl iv": "Carl XV", "karl 4": "Carl XV",
+        "oscar ii": "Oscar II", "oscar 2": "Oscar II", "oskar ii": "Oscar II", "oskar 2": "Oscar II",
+        "haakon vii": "Haakon VII", "håkon vii": "Haakon VII",
+        "haakon 7": "Haakon VII", "håkon 7": "Haakon VII",
     },
     "erzbisthum_bremen_verden": {
         "johann friedrich": "Johann Friedrich", "johan friedrich": "Johann Friedrich",

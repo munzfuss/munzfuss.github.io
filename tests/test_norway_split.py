@@ -25,6 +25,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from lib.mint_registry import (  # noqa: E402
     classify_nation_to_entity, norway_split_entity,
 )
+from lib.ruler_reigns import reign_window_placeholder  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 
 
@@ -61,6 +62,14 @@ class NorwaySplitTest(unittest.TestCase):
         # medieval kings and Danish kings stay
         self.assertEqual(norway_split_entity("danish_norway", None, None, "Håkon 5 Magnusson"), "danish_norway")
         self.assertEqual(norway_split_entity("danish_norway", None, None, "Christian 4"), "danish_norway")
+
+    def test_norway_reign_placeholder(self):
+        # undated «Carl 15.» in norway gets Carl XV's reign as a (?) span
+        self.assertEqual(reign_window_placeholder("Carl 15.", "norway"), (1859, 1872))
+        self.assertEqual(reign_window_placeholder("Karl 4", "norway"), (1859, 1872))
+        self.assertEqual(reign_window_placeholder("Karl 3 Johan", "norway"), (1818, 1844))
+        self.assertIsNone(reign_window_placeholder("Oscar", "norway"))  # I or II
+        self.assertIsNone(reign_window_placeholder("Carl 15.", "danish_norway"))
 
     def test_kongsberg_override(self):
         self.assertEqual(classify_mint_to_entity("Kongsberg", year=1814), "danish_norway")
