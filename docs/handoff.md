@@ -53,13 +53,17 @@
   normalised, Hamar/Ronneby/Christiansstad/Serridslev/Næstved/Odense added,
   a source's «X?» now = town + `mint_verified: false`, «el.»/«ell.»/«+»
   split, junk out of `mint`. Hede 11 is one cross-entity class (royal_holstein,
-  both pages, phase {denmark: I, schleswig_holstein: III}). Open: (1) Hede
-  c5h131-135 Christiansstad siege coins 1677-78 are not parsed (ruler field
-  reads «2 Skilling klipping.», no seed); (2) 6 orphan NGC seeds keep junk
-  mints («Thaler», «Portugaloser» …) — clean in final, not in seed; (3) KMM
-  591617 nominal «landskrone» (mint written as nominal?); (4) Güstrow,
-  Tranquebar, «Konsvang» not in the registry, awaiting the curator; (5) hede
-  and ngc re-seeds add another session's pending «da» verification_note.
+  both pages, phase {denmark: I, schleswig_holstein: III}). Follow-up
+  `988f7f9`: danish_india (Tranquebar, out of scope), Konsvang = Kongsberg,
+  KMM 591617 = Søsling Landskrona, Hede pages without a ruler line parse
+  (Christiansstad, Krone 1624), excluded seeds protected from thinning,
+  Hede 106 KMM krone pin, NGC catch-up of 22f5b5a, hook names failed checks.
+  Open: (1) Hede pages with no weight block (89, incl. Christiansstad siege
+  coins, jetons, odd nominals) are still skipped — list prepared for the
+  curator; (2) Güstrow (Galster c2g-85, struck by Albrecht VII of Mecklenburg
+  in Christian II's name) awaits an entity decision; (3) Danish West Indies
+  («Vestindien») not decided; (4) kmk-473418, 494040, 805: excluded seeds
+  missing from seeds since before 2026-10-19.
 
 ## 2026-10-18 — Merger scoped-index rules; KMM rulers; Schou-only folds undone
 
