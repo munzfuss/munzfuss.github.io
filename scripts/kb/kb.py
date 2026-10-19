@@ -48,7 +48,7 @@ VARIANTS = Path(__file__).resolve().parent / "variants.yml"
 DB_DEFAULT = Path(__file__).resolve().parent / "_index" / "kb.sqlite"
 REFS_POOL = REPO / "data" / "shared" / "refs_pool.yml"
 
-NORMALIZER_VERSION = 2  # bump when normalize() changes; recorded in the db
+NORMALIZER_VERSION = 3  # bump when normalize() changes; recorded in the db
 
 # ---------------------------------------------------------------------------
 # Normalisation
@@ -307,6 +307,7 @@ CREATE TABLE passage(
   work TEXT, volume TEXT, path TEXT, pdf_page INTEGER, printed TEXT,
   locator TEXT, line_start INTEGER, line_end INTEGER, lang TEXT, text TEXT);
 CREATE VIRTUAL TABLE fts USING fts5(body, content='', tokenize='unicode61');
+CREATE VIRTUAL TABLE vocab USING fts5vocab(fts, row);
 CREATE TABLE work(id TEXT PRIMARY KEY, title TEXT, citation TEXT, ocr TEXT);
 """
 
@@ -357,14 +358,52 @@ def query_terms(q: str) -> list[str]:
     return _TOKEN.findall(normalize(q, join_lines=False))
 
 
-def _fts_expr(terms: list[str], op: str, prefix: bool) -> str:
-    parts = []
-    for t in terms:
-        if prefix and len(t) >= 3 and not t.isdigit():
-            parts.append(f'"{t}"*')
-        else:
-            parts.append(f'"{t}"')
-    return f" {op} ".join(parts)
+def _doc_count(con, term: str) -> int:
+    r = con.execute("SELECT doc FROM vocab WHERE term = ?", (term,)).fetchone()
+    return r[0] if r else 0
+
+
+def _prefix_count(con, term: str) -> int:
+    r = con.execute("SELECT sum(doc) FROM vocab WHERE term >= ? AND term < ?",
+                    (term, term + "\uffff")).fetchone()
+    return r[0] or 0
+
+
+def compound_splits(con, term: str, *, min_part: int = 3, min_doc: int = 3,
+                    keep: int = 3) -> list[tuple[str, str]]:
+    """Two-part splits of a query word whose parts both occur in the index.
+
+    «smaamoent» (query «småmønt») → («smaa», «moent»), which as a phrase
+    matches «Smaa-Myndt» / «Smaa Mynt» in the text. The left part must be a
+    whole indexed word, the right part may be a prefix of one (inflection).
+    Ranked by the rarer part's document count; at most `keep` are returned.
+    """
+    if len(term) < 2 * min_part + 1 or term.isdigit():
+        return []
+    out = []
+    for i in range(min_part, len(term) - min_part + 1):
+        left, right = term[:i], term[i:]
+        dl = _doc_count(con, left)
+        if dl < min_doc:
+            continue
+        dr = _prefix_count(con, right)
+        if dr < min_doc:
+            continue
+        out.append((min(dl, dr), left, right))
+    out.sort(reverse=True)
+    return [(a, b) for _, a, b in out[:keep]]
+
+
+def _term_group(con, t: str, prefix: bool, split: bool) -> str:
+    alts = [f'"{t}"*' if prefix and len(t) >= 3 and not t.isdigit() else f'"{t}"']
+    if split and con is not None:
+        for left, right in compound_splits(con, t):
+            alts.append(f'"{left} {right}"*' if prefix else f'"{left} {right}"')
+    return alts[0] if len(alts) == 1 else "(" + " OR ".join(alts) + ")"
+
+
+def _fts_expr(terms: list[str], op: str, prefix: bool, con=None, split: bool = True) -> str:
+    return f" {op} ".join(_term_group(con, t, prefix, split) for t in terms)
 
 
 def _best_snippet(text: str, terms: list[str], width: int = 1) -> tuple[int, str]:
@@ -384,7 +423,7 @@ def _best_snippet(text: str, terms: list[str], width: int = 1) -> tuple[int, str
 
 def search(con: sqlite3.Connection, q: str, *, work: list[str] | None = None,
            lang: str | None = None, limit: int = 10, prefix: bool = True,
-           fts_raw: bool = False):
+           fts_raw: bool = False, split: bool = True):
     terms = query_terms(q)
     if not terms:
         return [], terms
@@ -405,7 +444,7 @@ def search(con: sqlite3.Connection, q: str, *, work: list[str] | None = None,
     # normalised like the index, then the operators restored to upper case
     raw = re.sub(r"\b(near|and|or|not)\b", lambda m: m.group(1).upper(),
                  normalize(q, join_lines=False))
-    exprs = [raw] if fts_raw else [_fts_expr(terms, "AND", prefix), _fts_expr(terms, "OR", prefix)]
+    exprs = [raw] if fts_raw else [_fts_expr(terms, "AND", prefix, con, split), _fts_expr(terms, "OR", prefix, con, split)]
     for expr in exprs:
         for r in con.execute(sql, [expr, *params, limit]):
             if r[0] in seen:
@@ -426,7 +465,8 @@ def cmd_search(args) -> int:
         return 2
     con = sqlite3.connect(db)
     rows, terms = search(con, args.query, work=args.work, lang=args.lang, limit=args.limit,
-                         prefix=not args.exact, fts_raw=args.fts)
+                         prefix=not args.exact, fts_raw=args.fts,
+                         split=not args.no_split)
     print(f"query terms (normalised): {' '.join(terms)}")
     if not rows:
         print("no hits")
@@ -542,6 +582,7 @@ def main(argv=None) -> int:
     s.add_argument("--lang", help="restrict to a language code (da, de, la, en, sv, no)")
     s.add_argument("--limit", type=int, default=10)
     s.add_argument("--exact", action="store_true", help="no prefix matching")
+    s.add_argument("--no-split", action="store_true", help="no compound splitting of query words")
     s.add_argument("--fts", action="store_true", help="pass QUERY to FTS5 as-is (NEAR, quotes)")
     s.set_defaults(fn=cmd_search)
     s = sub.add_parser("offsets")

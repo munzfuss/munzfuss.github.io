@@ -57,7 +57,7 @@ def gold_passages(con, case: dict, quote: str) -> list[tuple]:
     probe = re.sub(r"\s+", " ", kb.normalize(str(case["probe"]), join_lines=False))
     gold = [r for r in gold if probe in re.sub(r"\s+", " ", kb.normalize(r[5]))]
     if not gold:
-        raise SystemExit(f"{case['key']}: gold passage not found (best quote-token share {best:.2f})")
+        raise LookupError(f"gold passage not found (best quote-token share {best:.2f})")
     return gold
 
 
@@ -88,17 +88,26 @@ def grep_found(hits, gold) -> bool:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--db", default=str(kb.DB_DEFAULT))
+    ap.add_argument("--set", default="a", choices=["a", "b"],
+                    help="a = eval_set.yml, b = held-out eval_set_b.yml")
     ap.add_argument("--depth", type=int, default=50, help="kb ranks looked at")
     args = ap.parse_args()
     con = sqlite3.connect(args.db)
     pool = yaml.safe_load(kb.REFS_POOL.read_text(encoding="utf-8"))
-    cases = yaml.safe_load(EVAL.read_text(encoding="utf-8"))["cases"]
+    evalf = EVAL if args.set == "a" else EVAL.with_name("eval_set_b.yml")
+    cases = yaml.safe_load(evalf.read_text(encoding="utf-8"))["cases"]
     print("| # | refs_pool key | query | grep | grep: gold hit | grep: lines / files | kb rank | kb rank (in work) |")
     print("|---|---|---|---|---|---|---|---|")
     stats = {"grep": 0, "kb1": 0, "kb5": 0, "kb10": 0, "kbw1": 0, "kbw10": 0, "kbany": 0,
              "miss_kb10": 0, "miss_kbw10": 0, "hit_kb10": 0}
+    n_err = 0
     for i, c in enumerate(cases, 1):
-        gold = gold_passages(con, c, quote_of(pool, c["key"]))
+        try:
+            gold = gold_passages(con, c, quote_of(pool, c["key"]))
+        except LookupError as e:
+            print(f"| {i} | `{c['key']}` | GOLD ERROR: {e} | | | | | |")
+            n_err += 1
+            continue
         gids = {r[0] for r in gold}
         hits = grep_hits(c["grep"])
         g = grep_found(hits, gold)
@@ -121,7 +130,7 @@ def main() -> int:
             stats["miss_kbw10"] += bool(rank_w and rank_w <= 10)
         print(f"| {i} | `{c['key']}` | {c['query']} | `{c['grep']}` | {'✅' if g else '❌'} | "
               f"{len(hits)} / {nfiles} | {rank or f'>{args.depth}'} | {rank_w or f'>{args.depth}'} |")
-    n = len(cases)
+    n = len(cases) - n_err
     print(f"\ngrep finds the gold passage in {stats['grep']}/{n} cases.")
     print(f"kb (whole corpus): rank 1 in {stats['kb1']}/{n}, top 5 in {stats['kb5']}/{n}, "
           f"top 10 in {stats['kb10']}/{n}, top {args.depth} in {stats['kbany']}/{n}; "

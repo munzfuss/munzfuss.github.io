@@ -39,3 +39,6 @@ rules:
   - {pattern: '\bkoel+n',         replace: 'koeln',   note: 'Kölln/Köln'}
   - {pattern: '\bcron',           replace: 'kron',    note: 'Crone/Krone, Croneguld/Kroneguld'}
   - {pattern: '\bfrdg\b',         replace: 'forordning', note: 'Frdg. (abbreviation in Wilcke)'}
+
+  # --- last: vowel fold ------------------------------------------------------
+  - {pattern: 'ae', replace: 'e', note: 'æ/e in old Danish (afsettelse/afsættelse, Wærdie/Werdie); runs after every rule that matches «ae»'}
