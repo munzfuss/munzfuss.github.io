@@ -15,7 +15,7 @@
 > (`../krone_muentzfuesse.md`), the 1673 Holstein edict.
 > Written 2026-10-13 from Schou, *Chronologisk Register* I (1795) s. 80–82 (page images from
 > nb.no read 2026-10-13), Mordhorst, *Dansk Pengehistorie* III Bilag (danskmoent c5mord),
-> Wilcke II (1924) kap. I.6 «22. December 1665 – 22. Marts 1671» and II B.7.
+> Wilcke II (1924) kap. II A.6 «22. December 1665 – 22. Marts 1671» and II B.7.
 
 ## 1. Identification
 
@@ -30,7 +30,7 @@
 |---|---|---|---|
 | **Printed act (digest with the operative text)** | **Schou, Jacob Henric**, *Chronologisk Register over de Kongelige Forordninger og aabne Breve samt andre trykte Anordninger som fra Aar 1670 af ere udkomne*, I. Deel: Christian V 1670–1699 (Kiøbenhavn: Breum 1795), **s. 80–82** | A's parameters and control §§ verbatim («Udtog»), with Schou's note (*) «I den trykte Myndt-Ordn. staaer ved en Trykfeil: 7 5/6 Stykker» and (**) «26 Stykker», and his 1795 footnote on what still circulates under it; B's gist | nb.no URN:NBN:no-nb_digibok_2014050824003, pp. 0130–0132; cache `scripts/cache/schou/bd1/pages/0130–0132.txt` (ALTO; figures verified on the IIIF page images 2026-10-13) |
 | Digest | **Mordhorst, Kirsten**, «Forordninger m.v. vedr. Møntvæsenet under Enevælden», *Dansk Pengehistorie* III Bilag (1968) — danskmoent.dk c5mord | the grid in «rd. pr. mark fint sølv» form; «Søslinger (1/6 skilling)» is her slip (danskmoent's note: ½ skilling) | `scripts/cache/danskmoent/mord/c5mord.htm` |
-| Reading | **Wilcke II** (1924) kap. I.6: the 1669 orders, Timpfe's report of 16 Feb 1671 (Krüger's Kroner 10 lod 9 gren instead of 10 lod 13½ gren, 4 ß 6 lod 16 gren instead of 7 lod, 2 ß 4 lod 6½ gren instead of 4 lod 9 gren), the Commercekollegium's Betænkning of 14 Feb 1671 (silver at 9½ Rdl.), the comparison table «Specier efter Frdg. 22/3 1671 … (Søsling) ½ ß» with gross / fine weights, the before/after 2 ß and 1 ß; kap. II B.7: the Norwegian 2 ß changed by it | the preparation; the grid recomputed | `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/pages/w2a6.txt`, `w2b7.txt` |
+| Reading | **Wilcke II** (1924) kap. II A.6: the 1669 orders, Timpfe's report of 16 Feb 1671 (Krüger's Kroner 10 lod 9 gren instead of 10 lod 13½ gren, 4 ß 6 lod 16 gren instead of 7 lod, 2 ß 4 lod 6½ gren instead of 4 lod 9 gren), the Commercekollegium's Betænkning of 14 Feb 1671 (silver at 9½ Rdl.), the comparison table «Specier efter Frdg. 22/3 1671 … (Søsling) ½ ß» with gross / fine weights, the before/after 2 ß and 1 ß; kap. II B.7: the Norwegian 2 ß changed by it | the preparation; the grid recomputed | `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/pages/w2a6.txt`, `w2b7.txt` |
 | Cited, not seen | Axel Nielsen, *Specier, Kroner, Kurant* (1907) — «udførlig Fremstilling»; the printed Myndt-Ordning 4to; Commercekollegiets Betænkning 14 Feb 1671; Timpfe's Beretning 16 Feb 1671 (R. A.) | | |
 
 Act vs reading: the grid in §3–4 is Schou's text of the act (checked against the page
@@ -161,11 +161,11 @@ Collegium; the Collegium assays all coin every half year).
 
 Every «kommer» figure of the act is exact; Schou's two misprint corrections (8 3/32, 67) are
 the only readings that satisfy the act's own 9¼ Rdl. and the ducat tradition. Wilcke's
-before/after (s. kap. I.6 end): 2 ß 1,218 → 1,090 g gross but 0,343 → 0,443 g fine; 1 ß
+before/after (s. kap. II A.6 end): 2 ß 1,218 → 1,090 g gross but 0,343 → 0,443 g fine; 1 ß
 0,913 → 0,812 g gross, 0,142 → 0,203 g fine — the small coin became better in silver while
 lighter.
 
-### 4.3 What the act changed (Wilcke II kap. I.6, Timpfe's table)
+### 4.3 What the act changed (Wilcke II kap. II A.6, Timpfe's table)
 
 | Coin | Before (lovmæssig / actual) | 1671 |
 |---|---|---|
@@ -180,7 +180,7 @@ lighter.
 
 The three mints named in the act. København: F. C. Herbach («den store Mønt», specie and
 Kroner) and Gotfrid Krüger («den lille Mønt», 4 / 2 / 1 ß), both exposed as «Bedragere» in
-Andreas Timpfe's report of 16 Feb 1671 (Wilcke II kap. I.6); Timpfe (ex Lüneburg 1643,
+Andreas Timpfe's report of 16 Feb 1671 (Wilcke II kap. II A.6); Timpfe (ex Lüneburg 1643,
 Fraustadt, Rostock, Posen 1652–67) the king's Wardein / adviser from 1669. Christiania:
 F. Grüner (Norwegian specie 1670, Dobbeltspecie 1671 — Wilcke II kap. II B.7). Glückstadt: not
 named in the sources read.
@@ -190,7 +190,7 @@ named in the sources read.
 - **Antecedents:** Forordning 29 March 1667 (foreign coin reduced), Forbud 18 March 1669
   (small coin import limited to 15 Rdl.), Frdg. 12 April 1670 (sharpened); the 1669 orders to
   the Kollegier and mintmasters, the Commercekollegium's Memorial 20 Feb 1669 and Betænkning
-  14 Feb 1671, Timpfe's Beretning 16 Feb 1671 (Wilcke II kap. I.6); Ulfeldt's 14 Jan 1648
+  14 Feb 1671, Timpfe's Beretning 16 Feb 1671 (Wilcke II kap. II A.6); Ulfeldt's 14 Jan 1648
   counts (`1643_muentzordnung_christiania.md`); Frdg. 10 Oct 1629 / Møntordning 21 Jan 1630
   (the Rigsdaler-small-coin line); Christian V's order 2 June 1670 to Norway (profit raised).
 - **Successors:** Reglement 1 Dec 1673 (the 2 ß and 1 ß — Schou's footnote), Frdg. 23/24 Feb
@@ -238,7 +238,7 @@ Søsling), `-grov-moent` (Specie and Krone), `-guld` (ducat, with Schou's mispri
   0130–0132); cache `scripts/cache/schou/bd1/pages/0130–0132.txt`.
 - Mordhorst, Kirsten: «Møntforordninger m.v. under Christian 5. (1670–1699)», *Dansk
   Pengehistorie* III Bilag (1968) — <https://www.danskmoent.dk/artikler/c5mord.htm>.
-- Wilcke, Julius: *Møntvæsenet under Christian IV og Frederik III 1625–1670* (1924), kap. I.6
+- Wilcke, Julius: *Møntvæsenet under Christian IV og Frederik III 1625–1670* (1924), kap. II A.6
   «22. December 1665 – 22. Marts 1671», kap. II B.7 — <https://www.danskmoent.dk/wilcke/w2a6.htm>,
   `w2b7.htm`.
 - Cited, not seen: Axel Nielsen, *Specier, Kroner, Kurant* (København 1907); the printed

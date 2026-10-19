@@ -18,7 +18,7 @@
 > (Wilcke II kap. II.1–2), the Hebræer / Krone coinage 1644–48 (`../krone_muentzfuesse.md`),
 > the 1647–48 tariff Forordninger (register rows; `1671_…` dossier to come), Glückstadt
 > (Timpff) — Wilcke II kap. III.
-> Written 2026-10-13 from Wilcke II (1924) kap. II.3 «2. Juli 1641 – 25. Maj 1644» (s. 165–174),
+> Written 2026-10-13 from Wilcke II (1924) kap. II B.3 «2. Juli 1641 – 25. Maj 1644» (s. 165–174),
 > kap. II B.7 (s. 198–199; earlier given as «II.7, s. 258 ff.», corrected 2026-10-19), kap. I.2 (the 1630 grid); Secher V nr. 143 (Reces 27 Feb 1643, s. 244).
 > **Source gap:** danskmoent.dk's transcription of Wilcke II drops the two tables of s. 172
 > («/// skema side 172 ///») and s. 173; no PDF of Wilcke II is online (`pdf2/Wilcke_2.pdf`
@@ -40,7 +40,7 @@
 | Layer | Source | What it is | Our copy |
 |---|---|---|---|
 | **Original** | N. R. A. (Riksarkivet Oslo), Kristiania Mønts Regnskab 1. Jan. – 1. Maj 1643, Bilag Litra A 2 — the Bestalling with the Müntzordnung incorporated | the act | not seen |
-| **Reading** | **Wilcke, J.**, *Møntvæsenet under Christian IV og Frederik III 1625–1670* (1924), kap. II.3 (s. 165–174): the 1641 orders quoted, Grüner's two proposals with their figures, the king's acceptance «i alt væsentligt … blot at der tilføjedes 4 ß», the title of the act, the grid as **table s. 172** (NOT transcribed), the fee / Overskud figures, the coinage 1643–44 as **table s. 173** (NOT transcribed); kap. II B.7: the 1643 standard still in the accounts to 1667 (fees quoted), Ulfeldt's 14 Jan 1648 reduction; kap. I.2: the 1630 grid (table transcribed) | the only reading of the act; quotes its title | `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/pages/w2b3.txt`, `w2b7.txt`, `w2a2.txt` (danskmoent.dk `wilcke/w2b3.htm` etc.) |
+| **Reading** | **Wilcke, J.**, *Møntvæsenet under Christian IV og Frederik III 1625–1670* (1924), kap. II B.3 (s. 165–174): the 1641 orders quoted, Grüner's two proposals with their figures, the king's acceptance «i alt væsentligt … blot at der tilføjedes 4 ß», the title of the act, the grid as **table s. 172** (NOT transcribed), the fee / Overskud figures, the coinage 1643–44 as **table s. 173** (NOT transcribed); kap. II B.7: the 1643 standard still in the accounts to 1667 (fees quoted), Ulfeldt's 14 Jan 1648 reduction; kap. I.2: the 1630 grid (table transcribed) | the only reading of the act; quotes its title | `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/pages/w2b3.txt`, `w2b7.txt`, `w2a2.txt` (danskmoent.dk `wilcke/w2b3.htm` etc.) |
 | Printed act (R) | **Secher**, *Corpus constitutionum Daniæ* V (1903), nr. 143 | the Reces | `scripts/cache/secher/bd5/pages/0257.txt` |
 | Our data | Hede Norge nc4h14, nc4h16–18, nf3h70; KMM, Bruun, Numista, NGC specimens | the coins struck under it | `data/v2/final/danish_norway.yml` |
 
@@ -177,7 +177,7 @@ The Christiania 8 ß 1641–42 (Hede nc4h14, .875, 2,386 g) and 2 ß 1641–42 (
 - Coinage 1643–44: Wilcke's table s. 173 — not transcribed; the account 1 May–31 Dec 1643 is
   lost, an extract 1 May 1643 – 1 Jan 1645 survives (s. 173). Not reproducible here.
 - The small coin stayed on this grid in the Norwegian accounts «til og med 1667» (kap.
-  II.7); in 1668 the 2 ß due was raised by 1 rigsort per Mark, which equals the difference
+  II B.7); in 1668 the 2 ß due was raised by 1 rigsort per Mark, which equals the difference
   180 → 192 pieces — Wilcke's hypothesis: the Norwegian 2 ß were by then struck like the
   Danish ones.
 
@@ -250,7 +250,7 @@ Keys added with this dossier: `wilcke-1924-kap2-3-befaling-1641-rixdalers-verdt`
 ## 9. Sources consulted
 
 - Wilcke, Julius: *Møntvæsenet under Christian IV og Frederik III 1625–1670* (Numismatisk
-  Forenings Medlemsblad, København 1924), kap. II.3 «2. Juli 1641 – 25. Maj 1644» (s.
+  Forenings Medlemsblad, København 1924), kap. II B.3 «2. Juli 1641 – 25. Maj 1644» (s.
   165–174), kap. II B.7 «1. Januar 1668 – 22. Marts 1671», kap. I.2 «10. Oktober 1629 – 3. Januar
   1644» — <https://www.danskmoent.dk/wilcke/w2b3.htm>, `w2b7.htm`, `w2a2.htm` (cache
   `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/pages/`).

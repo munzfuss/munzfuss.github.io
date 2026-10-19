@@ -63,7 +63,7 @@
 | ◐ | 1643, 27 Feb | Reces II-17-1 «med mynten» | C | `1643_…` §3 | — |
 | ☐ | 1645, 12 Dec · 1646, 26 Sept | Skrivelse / Forordning Duke Frederik III (Gottorp) on the Markstykker | B (SH-d) | fold into `1620_moentedikt_hertugdoemmerne.md` §6 or own file if a grid surfaces | Wilcke II |
 | ☐ | 1647, 10 Dec · 1648, 21 March | Frdg. om guld- og sølvmøntens kurs; Frdg. af rigens råd | B | `1647_tarif_guld_soelv.md` (to write — the two tariff acts together) | Secher V nr. 337, 339 |
-| ◐ | 1648, 14 Jan | Ulfeldt's reduction of the København 2 ß / 1 ß | A (instrument not seen) | `1643_…` §6 (S) — **added by the 1643 dossier**; upgrade to own file if the order is found | Wilcke II kap. II.7 |
+| ◐ | 1648, 14 Jan | Ulfeldt's reduction of the København 2 ß / 1 ß | A (instrument not seen) | `1643_…` §6 (S) — **added by the 1643 dossier**; upgrade to own file if the order is found | Wilcke II kap. II B.7 |
 | ✖ | 1648, 8 May / 6 July | Haandfæstning Frederik III § 48 | C | register only | — |
 | ☐ | 1651, 14 Jan · 9 May · 15/24 Oct · 1652, 19 Feb · 13 April · 20 May · 1653, 29 Aug · 1654, 16 Feb | Bestalling Frederik Grüner; the 1651–54 ordres on specie, sletdaler, rigsort, the 1653 fineness order, Wardein Herbach | A | `1651_ordrer_frederik_iii.md` (to write — one dossier for the Frederik III ordre series) | Wilcke II kap. I.3–4, II.4–5 |
 | ☐ | 1657, 15 July · 1659, 19 May | Bestalling Jacob Schwieger, Glückstadt | A (SH-k) | fold into `1640_bestalling_timpff_glueckstadt.md` §6 or own file | Wilcke II kap. III |
