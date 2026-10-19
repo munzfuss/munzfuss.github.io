@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-19T18:00:35Z'
+generated_at: '2026-10-19T19:18:24Z'
 entity: danish_realm
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -2232,108 +2232,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/186398
         ref: KMM 186398 (Inv. FP 489.19.5)
-    verification_note: *id001
-    _source_errata:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-        curator: serg
-        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
-    _errata_applied:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-  - id: kmk-186399
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Hvid
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Hans
-    year_first: 1482
-    year_last: 1513
-    year_label: 1482-1513
-    year_ranges:
-      -   - 1482
-          - 1513
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/186399
-        ref: KMM 186399 (Inv. FP 489.19.4)
-    verification_note: *id001
-    _source_errata:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-        curator: serg
-        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
-    _errata_applied:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-  - id: kmk-186400
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Hvid
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Hans
-    year_first: 1482
-    year_last: 1513
-    year_label: 1482-1513
-    year_ranges:
-      -   - 1482
-          - 1513
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/186400
-        ref: KMM 186400 (Inv. FP 489.19.7)
-    verification_note: *id001
-    _source_errata:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-        curator: serg
-        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
-    _errata_applied:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-  - id: kmk-186401
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Korshvid
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Hans
-    year_first: 1482
-    year_last: 1513
-    year_label: 1482-1513
-    year_ranges:
-      -   - 1482
-          - 1513
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/186401
-        ref: KMM 186401 (Inv. FP 489.19.6)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/186404
         ref: KMM 186404 (Inv. FP 489.19.3)
@@ -2686,6 +2584,17 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/186540
         ref: KMM 186540 (Inv. FP 489.31)
     verification_note: *id001
+    _source_errata:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
+        curator: serg
+        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
+    _nominal_printed: korshvid
+    _errata_applied:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
     _thinned_from:
       - kmk-186404
       - kmk-186405
@@ -2804,13 +2713,108 @@ coins:
       - kmk-186538
       - kmk-186539
       - kmk-186540
+  - id: kmk-186399
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 1 Hvid
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Hans
+    year_first: 1482
+    year_last: 1513
+    year_label: 1482-1513
+    year_ranges:
+      -   - 1482
+          - 1513
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/186399
+        ref: KMM 186399 (Inv. FP 489.19.4)
+    verification_note: *id001
+    _source_errata:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
+        curator: serg
+        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
+    _nominal_printed: korshvid
+    _errata_applied:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
+  - id: kmk-186400
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 1 Hvid
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Hans
+    year_first: 1482
+    year_last: 1513
+    year_label: 1482-1513
+    year_ranges:
+      -   - 1482
+          - 1513
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/186400
+        ref: KMM 186400 (Inv. FP 489.19.7)
+    verification_note: *id001
+    _source_errata:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
+        curator: serg
+        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
+    _nominal_printed: korshvid
+    _errata_applied:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
+  - id: kmk-186401
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 1 Hvid
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Hans
+    year_first: 1482
+    year_last: 1513
+    year_label: 1482-1513
+    year_ranges:
+      -   - 1482
+          - 1513
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/186401
+        ref: KMM 186401 (Inv. FP 489.19.6)
+    verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-186402
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: nation
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint_verified: false
@@ -2828,13 +2832,14 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/186402
         ref: KMM 186402 (Inv. FP 489.19.1)
     verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-186403
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: nation
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint_verified: false
@@ -2852,6 +2857,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/186403
         ref: KMM 186403 (Inv. FP 489.18.5)
     verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-294716
     fuss: seed_unsorted
     phase: kmk
@@ -13731,7 +13737,7 @@ coins:
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: nation
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint_verified: false
@@ -13766,13 +13772,14 @@ coins:
       - kmk-642134
       - kmk-642135
       - kmk-642136
+    _nominal_printed: korshvid
   - id: kmk-186514
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: nation
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint_verified: false
@@ -13790,6 +13797,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/186514
         ref: KMM 186514 (Inv. FP 489.35)
     verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-203800
     fuss: seed_unsorted
     phase: kmk
@@ -14562,7 +14570,7 @@ coins:
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: nation
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint_verified: false
@@ -14580,6 +14588,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/642132
         ref: KMM 642132 (Inv. FP 34.1538)
     verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-682785
     fuss: seed_unsorted
     phase: kmk
@@ -27318,7 +27327,7 @@ coins:
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Kopenhagen
@@ -27341,6 +27350,7 @@ coins:
     verification_note: *id001
     _source_note:
       da: kronet h
+    _nominal_printed: korshvid
   - id: kmk-688104
     fuss: seed_unsorted
     phase: kmk
@@ -325044,7 +325054,28 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/130595
         ref: KMM 130595 (Inv. FP 2413.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/643975
+        ref: KMM 643975 (Inv. FP 188.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/643976
+        ref: KMM 643976 (Inv. FP 188.5)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/643977
+        ref: KMM 643977 (Inv. FP 188.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/643978
+        ref: KMM 643978 (Inv. FP 188.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/643979
+        ref: KMM 643979 (Inv. FP 188.2)
     verification_note: *id001
+    _thinned_from:
+      - kmk-643975
+      - kmk-643976
+      - kmk-643977
+      - kmk-643978
+      - kmk-643979
   - id: kmk-130597
     fuss: seed_unsorted
     phase: kmk
@@ -340078,7 +340109,7 @@ coins:
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal_verified: false
     mint: Malmø
     mint_verified: true
@@ -340101,6 +340132,7 @@ coins:
         reason: 'KMM prints «Rigsrådet?» (uncertain attribution). Curator 2026-10-15: ruler without the question mark, ruler_verified false so the page shows (?).'
     _curation_holds:
       ruler_verified: KMM attributes it with a question mark («Rigsrådet?»); curator 2026-10-15.
+    _nominal_printed: Korshvid
     _errata_applied:
       - field: ruler
         printed: Rigsrådet?
@@ -345655,9 +345687,13 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/352859
         ref: KMM 352859 (Inv. FP 5100.12)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/407498
+        ref: KMM 407498 (Inv. FP 3164.4)
     verification_note: *id001
     _thinned_from:
       - kmk-352859
+      - kmk-407498
   - id: kmk-350064
     fuss: seed_unsorted
     phase: kmk
@@ -347689,23 +347725,6 @@ coins:
       - kmk-687811
       - kmk-687812
       - kmk-687813
-  - id: kmk-407498
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: nation
-    nominal: 1 Korshvid
-    metal_verified: false
-    mint_verified: false
-    ruler: Christian 1
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/407498
-        ref: KMM 407498 (Inv. FP 3164.4)
-    verification_note: *id001
   - id: kmk-410034
     fuss: seed_unsorted
     phase: kmk
@@ -349260,93 +349279,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/642162
         ref: KMM 642162 (Inv. FP 34.1508)
-    verification_note: *id001
-    _source_errata:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-        curator: serg
-        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
-    _errata_applied:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-  - id: kmk-642163
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Hvid
-    metal: silver
-    metal_verified: true
-    mint: Malmø
-    mint_verified: true
-    ruler: Hans
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/642163
-        ref: KMM 642163 (Inv. FP 34.1507)
-    verification_note: *id001
-    _source_errata:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-        curator: serg
-        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
-    _errata_applied:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-  - id: kmk-642164
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Hvid
-    metal: silver
-    metal_verified: true
-    mint: Malmø
-    mint_verified: true
-    ruler: Hans
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/642164
-        ref: KMM 642164 (Inv. FP 34.1506)
-    verification_note: *id001
-    _source_errata:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-        curator: serg
-        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
-    _errata_applied:
-      - field: nominal
-        printed: 1 Korshvid
-        correct: 1 Hvid
-  - id: kmk-642165
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Korshvid
-    metal: silver
-    metal_verified: true
-    mint: Malmø
-    mint_verified: true
-    ruler: Hans
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/642165
-        ref: KMM 642165 (Inv. FP 34.1505)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/642168
         ref: KMM 642168 (Inv. FP 34.1502)
@@ -351523,6 +351455,17 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/642892
         ref: KMM 642892 (Inv. FP 34.778)
     verification_note: *id001
+    _source_errata:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
+        curator: serg
+        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
+    _nominal_printed: korshvid
+    _errata_applied:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
     _thinned_from:
       - kmk-642168
       - kmk-642169
@@ -352249,13 +352192,93 @@ coins:
       - kmk-642890
       - kmk-642891
       - kmk-642892
+  - id: kmk-642163
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: mint
+    nominal: 1 Hvid
+    metal: silver
+    metal_verified: true
+    mint: Malmø
+    mint_verified: true
+    ruler: Hans
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/642163
+        ref: KMM 642163 (Inv. FP 34.1507)
+    verification_note: *id001
+    _source_errata:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
+        curator: serg
+        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
+    _nominal_printed: korshvid
+    _errata_applied:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
+  - id: kmk-642164
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: mint
+    nominal: 1 Hvid
+    metal: silver
+    metal_verified: true
+    mint: Malmø
+    mint_verified: true
+    ruler: Hans
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/642164
+        ref: KMM 642164 (Inv. FP 34.1506)
+    verification_note: *id001
+    _source_errata:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
+        curator: serg
+        reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
+    _nominal_printed: korshvid
+    _errata_applied:
+      - field: nominal
+        printed: 1 Korshvid
+        correct: 1 Hvid
+  - id: kmk-642165
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: mint
+    nominal: 1 Hvid
+    metal: silver
+    metal_verified: true
+    mint: Malmø
+    mint_verified: true
+    ruler: Hans
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/642165
+        ref: KMM 642165 (Inv. FP 34.1505)
+    verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-642166
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Malmø
@@ -352268,13 +352291,14 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/642166
         ref: KMM 642166 (Inv. FP 34.1504)
     verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-642167
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Malmø
@@ -352287,13 +352311,14 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/642167
         ref: KMM 642167 (Inv. FP 34.1503)
     verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-642893
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Aalborg
@@ -352951,13 +352976,14 @@ coins:
       - kmk-643054
       - kmk-643055
       - kmk-643056
+    _nominal_printed: korshvid
   - id: kmk-642894
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Aalborg
@@ -352970,13 +352996,14 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/642894
         ref: KMM 642894 (Inv. FP 34.776)
     verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-642895
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Aalborg
@@ -352989,13 +353016,14 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/642895
         ref: KMM 642895 (Inv. FP 34.775)
     verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-643057
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Aalborg
@@ -353012,13 +353040,14 @@ coins:
       galster: '36'
       schou: '102'
     weight_rough_g: 0.76
+    _nominal_printed: korshvid
   - id: kmk-643058
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Aalborg
@@ -353035,6 +353064,7 @@ coins:
     catalog:
       galster: '36'
       schou: '102'
+    _nominal_printed: korshvid
   - id: kmk-643059
     fuss: seed_unsorted
     phase: kmk
@@ -353083,7 +353113,7 @@ coins:
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Malmø
@@ -355067,13 +355097,14 @@ coins:
       - kmk-643553
       - kmk-643554
       - kmk-643555
+    _nominal_printed: korshvid
   - id: kmk-643062
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Malmø
@@ -355088,13 +355119,14 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/643062
         ref: KMM 643062 (Inv. FP 34.608)
     verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-643063
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Malmø
@@ -355109,13 +355141,14 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/643063
         ref: KMM 643063 (Inv. FP 34.607)
     verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-643556
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Malmø
@@ -355455,13 +355488,14 @@ coins:
       - kmk-643637
       - kmk-643638
       - kmk-643639
+    _nominal_printed: korshvid
   - id: kmk-643557
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Malmø
@@ -355478,13 +355512,14 @@ coins:
     verification_note: *id001
     _source_note:
       da: m.ringe ml.ord
+    _nominal_printed: korshvid
   - id: kmk-643558
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Malmø
@@ -355501,6 +355536,7 @@ coins:
     verification_note: *id001
     _source_note:
       da: m.ringe ml.ord
+    _nominal_printed: korshvid
   - id: kmk-643652
     fuss: seed_unsorted
     phase: kmk
@@ -356143,6 +356179,24 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/740466
         ref: KMM 740466 (Inv. FP 465.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/643965
+        ref: KMM 643965 (Inv. FP 188.16)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/643968
+        ref: KMM 643968 (Inv. FP 188.13)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/643969
+        ref: KMM 643969 (Inv. FP 188.12)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/643970
+        ref: KMM 643970 (Inv. FP 188.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/643966
+        ref: KMM 643966 (Inv. FP 188.15)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/643967
+        ref: KMM 643967 (Inv. FP 188.14)
     verification_note: *id001
     _thinned_from:
       - kmk-166874
@@ -356186,6 +356240,12 @@ coins:
       - kmk-334408
       - kmk-422298
       - kmk-422337
+      - kmk-643965
+      - kmk-643966
+      - kmk-643967
+      - kmk-643968
+      - kmk-643969
+      - kmk-643970
       - kmk-653506
       - kmk-732973
       - kmk-740466
@@ -356195,6 +356255,7 @@ coins:
         correct: 1 Hvid
         curator: serg
         reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
+    _nominal_printed: korshvid
     _errata_applied:
       - field: nominal
         printed: 1 Korshvid
@@ -356223,6 +356284,7 @@ coins:
         correct: 1 Hvid
         curator: serg
         reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
+    _nominal_printed: korshvid
     _errata_applied:
       - field: nominal
         printed: 1 Korshvid
@@ -356251,77 +356313,11 @@ coins:
         correct: 1 Hvid
         curator: serg
         reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
+    _nominal_printed: korshvid
     _errata_applied:
       - field: nominal
         printed: 1 Korshvid
         correct: 1 Hvid
-  - id: kmk-643965
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Korshvid
-    metal_verified: false
-    mint: Malmø
-    mint_verified: true
-    ruler: Hans
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/643965
-        ref: KMM 643965 (Inv. FP 188.16)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/643968
-        ref: KMM 643968 (Inv. FP 188.13)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/643969
-        ref: KMM 643969 (Inv. FP 188.12)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/643970
-        ref: KMM 643970 (Inv. FP 188.11)
-    verification_note: *id001
-    _thinned_from:
-      - kmk-643968
-      - kmk-643969
-      - kmk-643970
-  - id: kmk-643966
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Korshvid
-    metal_verified: false
-    mint: Malmø
-    mint_verified: true
-    ruler: Hans
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/643966
-        ref: KMM 643966 (Inv. FP 188.15)
-    verification_note: *id001
-  - id: kmk-643967
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Korshvid
-    metal_verified: false
-    mint: Malmø
-    mint_verified: true
-    ruler: Hans
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/643967
-        ref: KMM 643967 (Inv. FP 188.14)
-    verification_note: *id001
   - id: kmk-643971
     fuss: seed_unsorted
     phase: kmk
@@ -356346,6 +356342,7 @@ coins:
         correct: 1 Hvid
         curator: serg
         reason: "KMM «Korshvid» is a name of King Hans' Hvid (Wilcke 1950 7-2 p. 149: the coin of 2, later 2½ M d. per Gylden «var Korshviden»); renamed to the denomination used for the type. Curator 2026-10-15."
+    _nominal_printed: korshvid
     _errata_applied:
       - field: nominal
         printed: 1 Korshvid
@@ -356374,7 +356371,7 @@ coins:
     kind: kurant
     issuing_entity: danish_realm
     entity_classified_via: mint
-    nominal: 1 Korshvid
+    nominal: 1 Hvid
     metal: silver
     metal_verified: true
     mint: Malmø
@@ -356386,58 +356383,8 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/643974
         ref: KMM 643974 (Inv. FP 188.7)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/643977
-        ref: KMM 643977 (Inv. FP 188.4)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/643978
-        ref: KMM 643978 (Inv. FP 188.3)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/643979
-        ref: KMM 643979 (Inv. FP 188.2)
     verification_note: *id001
-    _thinned_from:
-      - kmk-643977
-      - kmk-643978
-      - kmk-643979
-  - id: kmk-643975
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Korshvid
-    metal: silver
-    metal_verified: true
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 1
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/643975
-        ref: KMM 643975 (Inv. FP 188.6)
-    verification_note: *id001
-  - id: kmk-643976
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Korshvid
-    metal: silver
-    metal_verified: true
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 1
-    weight_rough_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/643976
-        ref: KMM 643976 (Inv. FP 188.5)
-    verification_note: *id001
+    _nominal_printed: korshvid
   - id: kmk-647126
     fuss: seed_unsorted
     phase: kmk

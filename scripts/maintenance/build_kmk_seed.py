@@ -262,6 +262,27 @@ _KMM_NOMINAL_ERRATA = {
     }),
 }
 
+# «Korshvid» is a name of the Hvid, not another denomination: Wilcke 1950 7-2
+# s. 149 — the coin of 2, later 2½ M d. per Gylden «var Korshviden» — and
+# Jensen, Hikuin 17 s. 82, gives the classic Korshvid's four main types from
+# Christopher of Bavaria, the Rigsråd 1448, Christian I and Hans. KMM uses
+# both words for the same coin, which split one type into two classes. Renamed
+# to Hvid for rulers whose reign ends by 1523 (Christian II included); later
+# «Korshvid» records (Frederik I, Christian III, Christian IV) are left as
+# printed — Jensen has the type running on «i en meget ændret skikkelse».
+# Curator 2026-10-15 (seven records, by erratum), generalised 2026-10-19.
+_KORSHVID_LAST_REIGN_END = 1523
+
+
+def _is_korshvid_hvid(nominal, ruler) -> bool:
+    if not isinstance(nominal, str):
+        return False
+    if re.sub(r"^1\s+", "", nominal.strip()).casefold() != "korshvid":
+        return False
+    w = reign_window(ruler)
+    return w is not None and w[1] <= _KORSHVID_LAST_REIGN_END
+
+
 # A KMM `place` value that is not what KMM meant, corrected from a catalogue.
 # {id: (printed place, corrected mint, citation for the coin's `sources`)}.
 # Curator-approved 2026-10-06 (Serhii), per the §4 errata rule.
@@ -1170,6 +1191,9 @@ def build_entry(src) -> dict | None:
         nominal = None
     if _nom_err and (src.get("nominal") or "").strip() == _nom_err[0]:
         nominal = _nom_err[1]
+    _nominal_printed = None
+    if _is_korshvid_hvid(nominal, src.get("authority")):
+        _nominal_printed, nominal = nominal, "hvid"
     # Entity routing: mint first (precise), nation fallback (coarse).
     entity = classify_mint_to_entity(mint, year=yf) if mint else None
     via = "mint" if entity else None
@@ -1237,6 +1261,9 @@ def build_entry(src) -> dict | None:
         entry["sources"].append(dict(_err[2]))
     if _nom_err and (src.get("nominal") or "").strip() == _nom_err[0]:
         entry["sources"].append(dict(_nom_err[2]))
+    if _nominal_printed:
+        # What KMM printed, kept beside the renamed nominal (trace_coin why).
+        entry["_nominal_printed"] = _nominal_printed
     _colony = _KMM_COLONY_PLACES.get((src.get("place") or "").strip().casefold())
     if _colony:
         entry["issuing_entity"] = _colony
