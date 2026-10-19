@@ -847,7 +847,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # hygiene step and ensures stale foundation entries from pre-2026-05-25
     # absorb runs don't bleed legacy «X eller Y» scalars into the union.
     _AMBIG_MINT_RE = re.compile(
-        r"\s*(?:\beller\b|\boder\b|\bor\b|/)\s*", re.IGNORECASE)
+        r"\s*(?:\beller\b|\boder\b|\bor\b|\bell?\.|/)\s*", re.IGNORECASE)
 
     def _split_ambig(value):
         """Return (new_value, split_happened) — splits scalar AND list-form

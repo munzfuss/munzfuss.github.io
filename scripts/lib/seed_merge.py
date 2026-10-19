@@ -400,6 +400,23 @@ def _union_source_lists(existing_v, fresh_v) -> list:
     return out
 
 
+def _same_value_but_uncertainty(existing_v, fresh_v) -> bool:
+    """True when the two values differ only by a trailing «?» on the
+    existing side («Malmø?» vs «Malmø»). The writer now records a source's
+    «?» in `mint_verified: false` instead of the name (curator 2026-10-19);
+    the old «X?» + `true` must not win over «X» + `false` under the
+    verified-wins rule, since it is the same value with a stale claim."""
+    def _norm(v):
+        if isinstance(v, str):
+            return v[:-1].rstrip() if v.endswith("?") else v
+        if isinstance(v, list):
+            return sorted({_norm(x) for x in v if isinstance(x, str)})
+        return v
+    if existing_v == fresh_v or fresh_v is None:
+        return False
+    return _norm(existing_v) == _norm(fresh_v)
+
+
 def merge_one(
     existing: CommentedMap, fresh: CommentedMap,
     extra_curated: frozenset = frozenset(),
@@ -438,6 +455,8 @@ def merge_one(
         # value only when it is source-attested and fresh is not.
         _existing_wins = (
             _val_field in existing_keys
+            and not _same_value_but_uncertainty(existing.get(_val_field),
+                                                fresh.get(_val_field))
             and (
                 (bool(existing.get(_flag_field)) and not bool(fresh.get(_flag_field)))
                 or (
@@ -524,6 +543,7 @@ def merge_one(
                 key in existing_keys
                 and existing_verified
                 and not fresh_verified
+                and not _same_value_but_uncertainty(existing.get(key), fresh[key])
             ):
                 continue
             # A curator suspect/erroneous mark lives inside the value and is

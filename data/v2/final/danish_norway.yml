@@ -27611,6 +27611,10 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
         ref: Bruun Part V, lot 15031, p. 95
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/705760
+        ref: KMM 705760 (Inv. FP 334.4)
+        display: false
     inscription_obv: FRIDERICUS III D G DAN NOR VA GO REX
     inscription_rev: DOMINUS - PROVIDEBIT 16-49
     note:
@@ -32024,9 +32028,7 @@ coins:
           - 1510
     year_label: 1505-1510
     year_verified: false
-    mint:
-      - Nidaros
-      - Niduras?
+    mint: Nidaros
     catalog:
       bruun_collection_id: '9248'
       sieg: '7'
@@ -32050,6 +32052,10 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317773
         ref: KMM 317773 (Inv. FP 6758.27)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/307517
+        ref: KMM 307517 (Inv. FP 7683.17)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -38704,9 +38710,7 @@ coins:
       -   - 1682
           - 1683
     year_label: 1675, 1679, 1682-1683
-    mint:
-      - Christiania
-      - Christinia
+    mint: Christiania
     catalog:
       km: '131'
       schou:
@@ -46430,9 +46434,7 @@ coins:
       -   - 1646
           - 1647
     year_label: 1629-1643, 1646-1647
-    mint:
-      - Christiania
-      - Cristiania
+    mint: Christiania
     catalog:
       km: '9'
       schou:
@@ -52307,27 +52309,6 @@ coins:
     verification_note: *id002
     composed_of:
       - unified-kmk-306513
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: (?)
-    ruler: Gaute Ivarsson
-    issuing_entity: danish_norway
-    id: unified-kmk-307517
-    mint: Nidaros
-    catalog:
-      galster: '177'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/307517
-        ref: KMM 307517 (Inv. FP 7683.17)
-    verification_note: *id002
-    composed_of:
-      - unified-kmk-307517
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -79432,6 +79413,54 @@ coins:
       da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - unified-kmk-156805
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Søsling(?)
+    ruler: Christian II
+    issuing_entity:
+      - danish_norway
+      - danish_realm
+    id: unified-dk-galster-c2g-174
+    year_first: 1531
+    year_last: 1531
+    year_label: '1531'
+    year_verified: true
+    mint:
+      - Hamar
+      - Kopenhagen
+    catalog:
+      galster: '174'
+      schou: '1'
+      schive: XV.14-15
+      galster_volume: c2g
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.875
+        source: galster
+    weight_rough_g:
+      - value: 1.34
+        source: galster
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nc2g174.htm
+        ref: Galster 174 (c2g) — danskmoent.dk norge_nc2g174.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-galster-c2g-174
   - fuss: 9_25_thaler
     phase: I
     kind: kurant

@@ -85,6 +85,10 @@ _MINT_REGISTRY: dict[str, dict] = {
             "kopenhagen", "copenhagen", "københavn", "kobenhavn",
             "kjøbenhavn", "kjobenhavn", "k?benhavn", "k�benhavn",
             "hafnia", "kbh", "kbh.",
+            # Latin city name on the coin: Galster 57B «HAFNENS» (danskmoent
+            # fr_f1g57: «med tysk (57A) og latinsk (57B) bynavn»); KMM writes
+            # it as the place (2026-10-19).
+            "hafnens", "hafnensis",
             "royal danish", "royal danish mint",
             # OCR/typo variants (low-count, from seed survey 2026-06-09)
             "københavb", "københanv", "københavhn", "københavnh",
@@ -116,7 +120,8 @@ _MINT_REGISTRY: dict[str, dict] = {
     "malmoe": {
         # Danish until Treaty of Roskilde 1658, then Swedish.
         # Project anchors as Danish-era (medieval coinage subject).
-        "aliases": {"malmö", "malmø", "malmo", "malmoe", "malm?"},
+        # «mamø» — KMM 131360 (curator 2026-10-19).
+        "aliases": {"malmö", "malmø", "malmo", "malmoe", "malm?", "mamø"},
         "display": "Malmø",
         "entity": "danish_realm",
     },
@@ -132,13 +137,15 @@ _MINT_REGISTRY: dict[str, dict] = {
     "visby": {
         # Medieval Danish Gotland (then Swedish 1645+). KMM records name the
         # island («Gotland») for the Visby mint (curator 2026-10-18).
-        "aliases": {"visby", "gotland"},
+        # «gulland» — KMM 139301, Danish name of Gotland (2026-10-19).
+        "aliases": {"visby", "gotland", "gulland"},
         "display": "Visby",
         "entity": "danish_realm",
     },
     "landskrona": {
         # Danish until 1658, then Swedish.
-        "aliases": {"landskrona"},
+        # «landskrone» — Galster f1g-65 (2026-10-19).
+        "aliases": {"landskrona", "landskrone"},
         "display": "Landskrona",
         "entity": "danish_realm",
     },
@@ -167,11 +174,45 @@ _MINT_REGISTRY: dict[str, dict] = {
         "display": "Lund",
         "entity": "danish_realm",
     },
+    "ronneby": {
+        # Danish until 1658. Frederik I's Søsling 1525-1526 (Galster f1g-67,
+        # KMM ×11); KMM also writes «Rønneby» and «Romeby» (2026-10-19).
+        "aliases": {"ronneby", "rønneby", "romeby"},
+        "display": "Ronneby",
+        "entity": "danish_realm",
+    },
+    "christiansstad": {
+        # Christianstad in Skåne — Christian V's mint during the Scanian War
+        # (Hede c5h135 «Christiansstad»); the name was lost by the Hede seed
+        # until 2026-10-19.
+        "aliases": {"christiansstad", "christianstad", "kristianstad"},
+        "display": "Christiansstad",
+        "entity": "danish_realm",
+    },
+    "serridslev": {
+        # Frederik I's field mint of 1523 — KMM 46705 «Lejrskilling» (2026-10-19).
+        "aliases": {"serridslev"},
+        "display": "Serridslev",
+        "entity": "danish_realm",
+    },
+    "naestved": {
+        # Medieval Danish mint (Erik VII; Numista 348708, KMM «Næstved?»).
+        "aliases": {"næstved", "naestved"},
+        "display": "Næstved",
+        "entity": "danish_realm",
+    },
+    "odense": {
+        # Medieval Danish mint (Erik VII; Numista 476049, KMM 589138).
+        "aliases": {"odense"},
+        "display": "Odense",
+        "entity": "danish_realm",
+    },
     "aalborg": {
         # Aalborg / Ålborg — Danish royal mint. In-scope Hans / Christian II
         # coinage 1481-1525 (22 KMM / Numista types) classifies danish_realm
         # via nation; the mint entry keeps mint-driven classification aligned.
-        "aliases": {"aalborg", "ålborg", "?lborg"},
+        # «alborg» — KMM ×3 (2026-10-19).
+        "aliases": {"aalborg", "ålborg", "?lborg", "alborg"},
         "display": "Aalborg",
         "entity": "danish_realm",
     },
@@ -245,13 +286,15 @@ _MINT_REGISTRY: dict[str, dict] = {
     },
     "flensburg": {
         # Flensborg (Danish) — Royal-Danish-Schleswig pre-1864.
-        "aliases": {"flensburg", "flensborg"},
+        # «fensborg» — KMM 156108, a dropped «l» (2026-10-19).
+        "aliases": {"flensburg", "flensborg", "fensborg"},
         "display": "Flensburg",
         "entity": "royal_slesvig",
     },
     "rendsburg": {
         # Rendsborg (Danish).
-        "aliases": {"rendsburg", "rendsborg"},
+        # «rensborg» / «rensburg» — KMM ×3, a dropped «d» (2026-10-19).
+        "aliases": {"rendsburg", "rendsborg", "rensborg", "rensburg"},
         "display": "Rendsburg",
         "entity": "royal_holstein",
     },
@@ -333,7 +376,10 @@ _MINT_REGISTRY: dict[str, dict] = {
     "christiania": {
         # Christiania pre-1924, Oslo post-1925. Project window ends 1914
         # so canonical = Christiania.
-        "aliases": {"christiania", "kristiania", "oslo"},
+        # «cristiania» (Bruun 9541), «christinia» (KMM 334207), «christania»
+        # (KMM 705760) — misspellings (curator 2026-10-19).
+        "aliases": {"christiania", "kristiania", "oslo",
+                    "cristiania", "christinia", "christania"},
         "display": "Christiania",
         "entity": "danish_norway",
     },
@@ -377,8 +423,16 @@ _MINT_REGISTRY: dict[str, dict] = {
         # Bruun + Galster catalogues for medieval coinage.
         # «Trondhjem» is the Danish spelling KMM uses («Trondhjem (Nidaros)»);
         # without it the writer read the bracket as the town (2026-10-06).
-        "aliases": {"nidaros", "trondheim", "trondhjem"},
+        # «niduras» — KMM 317773 «Niduras?» (2026-10-19).
+        "aliases": {"nidaros", "trondheim", "trondhjem", "niduras"},
         "display": "Nidaros",
+        "entity": "danish_norway",
+    },
+    "hamar": {
+        # Christian II's Norwegian coinage 1531-1532 (Galster c2g-172 «1 Mark»,
+        # «Hamar»; KMM 684215 Klipping søsling 1531-1532). Curator 2026-10-19.
+        "aliases": {"hamar"},
+        "display": "Hamar",
         "entity": "danish_norway",
     },
 

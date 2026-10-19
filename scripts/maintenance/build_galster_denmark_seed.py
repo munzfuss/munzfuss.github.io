@@ -794,7 +794,7 @@ def main() -> int:
     from collections import Counter
     by_ruler = Counter(e.get("ruler") or "?" for e in entries)
     by_mint = Counter(e.get("mint") or "?" for e in entries)
-    by_realm = Counter(e.get("issuing_entity") for e in entries)
+    by_realm = Counter(str(e.get("issuing_entity")) for e in entries)
     by_metal = Counter(e.get("metal") for e in entries)
     print(f"\nTotal entries: {len(entries)}")
     print(f"By ruler:  {dict(by_ruler.most_common())}")

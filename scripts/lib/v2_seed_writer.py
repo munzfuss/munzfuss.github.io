@@ -276,7 +276,8 @@ _MINT_MOJIBAKE_FIXES = (
 # the KMM cache (2026-08-21): «Slesvig og Holsten» ×47 and «Holsten og
 # Gottorp» ×14 must NOT split (neither Slesvig nor Holsten is a mint in
 # the registry), while «København og Altona» ×12 must.
-_MINT_CONJUNCTION_RE = re.compile(r"\s+(?:og|and|und)\s+", re.IGNORECASE)
+# «+» — KMM «Kbh.+ Frederiksborg» (2026-10-19).
+_MINT_CONJUNCTION_RE = re.compile(r"\s+(?:og|and|und)\s+|\s*\+\s*", re.IGNORECASE)
 
 
 def _split_joint_mint(value: str) -> list[str] | None:
@@ -414,6 +415,12 @@ def _apply_mint_mintmaster_split(c: dict, stats: dict | None) -> None:
         c["mintmaster"] = mm
 
 
+_MINT_NOMINAL_WORDS = frozenset({
+    "thaler", "taler", "portugaloser", "portugaløser", "pfennig", "ducat",
+    "dukat", "skilling", "schilling", "groschen",
+})
+
+
 def _canonicalise_mint(raw):
     """Map an arbitrary mint string (or list) to canonical project
     spelling. Strips country-prefixes, paren tails, applies alias
@@ -498,6 +505,11 @@ def _canonicalise_mint(raw):
             # structural: should an alias for «slesvig» or «holstein» ever be
             # registered, the collision cannot come back silently.
             if key in _MINT_COUNTRY_PREFIXES and key not in _MINT_ALIAS_TO_CANON:
+                continue
+            # A denomination is not a mint: NGC puts «Thaler», «Portugaloser»,
+            # «6 Pfennig», «2 Portugaloser» in its mint field (2026-10-19). No
+            # town name starts with a digit.
+            if re.match(r"\d", key) or key in _MINT_NOMINAL_WORDS:
                 continue
             canonical = _MINT_CANONICAL.get(key, core)
             if uncertain:
@@ -1446,7 +1458,9 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         # cataloguer documents uncertainty between candidate mints. Split
         # into list-form and mark mint_verified=false so the (?) marker
         # renders in the table per CLAUDE.md §4 unconfirmed-data convention.
-        AMBIG_RE = re.compile(r"\s*(?:\beller\b|\boder\b|\bor\b|/)\s*",
+        # «el.» / «ell.» are KMM's abbreviations of «eller» («Kbh. el. Malmø»,
+        # «København ell. Altona»; 2026-10-19).
+        AMBIG_RE = re.compile(r"\s*(?:\beller\b|\boder\b|\bor\b|\bell?\.|/)\s*",
                               re.IGNORECASE)
         if isinstance(mint, str) and AMBIG_RE.search(mint):
             tokens = [t.strip() for t in AMBIG_RE.split(mint) if t.strip()]
@@ -1459,6 +1473,25 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
                 stats.setdefault("mint_ambiguity_split", 0)
                 stats["mint_ambiguity_split"] += 1
         new_mint = _canonicalise_mint(mint)
+        # A source's «?» on a mint («Malmø?», Hede «København (?)») is
+        # uncertainty about the value, which §4 records in the verified flag,
+        # not in the name: keep the town, set `mint_verified: false` (curator
+        # 2026-10-19). `_mint_uncertain` stops the sources-imply-mint rule
+        # below — and its on-disk twin on the next run — from promoting the
+        # flag back to true. Routing and the merger then see the town itself.
+        _toks = new_mint if isinstance(new_mint, list) else [new_mint]
+        if any(isinstance(t, str) and t.endswith("?") for t in _toks):
+            _clean = []
+            for t in _toks:
+                t = t[:-1].rstrip() if isinstance(t, str) and t.endswith("?") else t
+                if t and t not in _clean:
+                    _clean.append(t)
+            new_mint = (_clean[0] if len(_clean) == 1
+                        else sorted(_clean) if _clean else None)
+            c["mint_verified"] = False
+            c["_mint_uncertain"] = True
+            stats.setdefault("mint_uncertain", 0)
+            stats["mint_uncertain"] += 1
         if new_mint != mint and not (new_mint is None and mint in (None, "")):
             c["mint"] = new_mint
             stats["mint_normalised"] += 1
@@ -1503,6 +1536,7 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         # at False per the explicit hygiene-split above.
         if (c.get("mint")
                 and not isinstance(c.get("mint"), list)
+                and not c.get("_mint_uncertain")
                 and isinstance(sources, list)
                 and any(isinstance(s, dict) and s.get("url") for s in sources)
                 and not bool(c.get("mint_verified"))):
@@ -2061,6 +2095,7 @@ def write_v2_seed(
                         and isinstance(sources, list)
                         and any(isinstance(s, dict) and s.get("url") for s in sources)
                         and not bool(c.get("mint_verified"))
+                        and not c.get("_mint_uncertain")
                         and "mint_verified" not in _holds):
                     c["mint_verified"] = True
                     file_normalised += 1

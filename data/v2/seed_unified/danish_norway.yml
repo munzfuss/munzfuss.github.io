@@ -2,7 +2,7 @@
 # Generated 2026-10-19 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 4634 per-source seed entries.
+# Input: 4636 per-source seed entries.
 # Output: 1619 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -2789,9 +2789,7 @@ coins:
           - 1510
     year_label: 1505-1510
     ruler: Gaute Ivarsson
-    mint:
-      - Nidaros
-      - Niduras?
+    mint: Nidaros
     catalog:
       bruun_collection_id: '9248'
       sieg: '7'
@@ -2814,6 +2812,9 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12032, p. 156
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/307517
+        ref: KMM 307517 (Inv. FP 7683.17)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317773
         ref: KMM 317773 (Inv. FP 6758.27)
     verification_note:
@@ -2828,8 +2829,13 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-bruun-9248
+      - kmk-307517
       - kmk-317773
     _errata_applied:
+      - source: kmk-307517
+        field: ruler
+        printed: Gavte Ivarsson
+        correct: Gaute Ivarsson
       - source: kmk-317773
         field: ruler
         printed: Ærkebiskop Gante Iversen
@@ -4203,7 +4209,9 @@ coins:
     mint: Christiania
     catalog:
       km: '37'
-      hede: 8B
+      hede:
+        - '8'
+        - 8B
       sieg: '21.2'
       bruun_collection_id:
         - '9597'
@@ -4245,6 +4253,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1189, p. 235
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/705760
+        ref: KMM 705760 (Inv. FP 334.4)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -4259,6 +4270,7 @@ coins:
       - dk-bruun-9597
       - dk-bruun-9598
       - dk-bruun-9616
+      - kmk-705760
   - id: unified-dk-bruun-9600
     fuss: seed_unsorted
     phase: bruun
@@ -6431,6 +6443,54 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-galster-c2g-172
+  - id: unified-dk-galster-c2g-174
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: Søsling(?)
+    year_first: 1531
+    year_last: 1531
+    year_label: '1531'
+    ruler: Christian II
+    mint:
+      - Hamar
+      - Kopenhagen
+    catalog:
+      galster: '174'
+      schou: '1'
+      schive: XV.14-15
+      galster_volume: c2g
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    year_verified: true
+    fineness:
+      - value: 0.875
+        source: galster
+    weight_rough_g:
+      - value: 1.34
+        source: galster
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nc2g174.htm
+        ref: Galster 174 (c2g) — danskmoent.dk norge_nc2g174.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity:
+      - danish_norway
+      - danish_realm
+    composed_of:
+      - dk-galster-c2g-174
   - id: unified-dk-galster-hg-149
     fuss: seed_unsorted
     phase: galster
@@ -8116,9 +8176,7 @@ coins:
     year_label: 1629-1643, 1646-1647
     ruler: Christian IV.
     mintmaster: Anders Pedersen
-    mint:
-      - Christiania
-      - Cristiania
+    mint: Christiania
     catalog:
       km: '9'
       hede:
@@ -18023,9 +18081,7 @@ coins:
           - 1683
     year_label: 1675-1683
     ruler: Christian V.
-    mint:
-      - Christiania
-      - Christinia
+    mint: Christiania
     catalog:
       km: '131'
       hede:
@@ -58156,32 +58212,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-306513
-  - id: unified-kmk-307517
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: (?)
-    ruler: Gaute Ivarsson
-    mint: Nidaros
-    catalog:
-      galster: '177'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/307517
-        ref: KMM 307517 (Inv. FP 7683.17)
-    verification_note: *id002
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-307517
-    _errata_applied:
-      - source: kmk-307517
-        field: ruler
-        printed: Gavte Ivarsson
-        correct: Gaute Ivarsson
   - id: unified-kmk-308600
     fuss: seed_unsorted
     phase: kmk
@@ -70760,11 +70790,11 @@ coins:
           - 1670
     year_label: 1649-1670
     ruler: Frederik 3?
-    mint: Christiania?
+    mint: Christiania
     metal: silver
     metal_verified: true
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     sources:
       - type: museum

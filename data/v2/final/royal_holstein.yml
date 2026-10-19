@@ -12005,6 +12005,18 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/317176
         ref: KMM 317176 (Inv. FP 6803.16)
         display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/309010
+        ref: KMM 309010 (Inv. FP 7388.20)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/331201
+        ref: KMM 331201 (Inv. FP 6200.60)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/155221
+        ref: KMM 155221 (Inv. FP 3115.47)
+        display: false
     note:
       de: 1 Skilling Frederiks IV. von Dänemark · interimistische Prägung für die <b>besetzten Gottorpschen Lande</b> nach der dänischen Eroberung Schleswigs 1713 (während des Großen Nordischen 
         Krieges) und vor der formellen Annektierung 1721 (Frederiksborger Frieden). ucoin-Periode «Holstein-Gottorp-Rendsburg (1716–1720)» — eine eigene Münzstätten-Angabe fehlt in den Quellen. Nicht 
@@ -25660,20 +25672,26 @@ coins:
     composed_of:
       - unified-dk-hede-c8h1b
   - fuss: 18_5_thaler
-    phase: III
+    phase:
+      denmark: I
+      schleswig_holstein: III
     kind: scheide
     nominal: 4 Skilling Rigsmønt. København og Altona
     ruler: Frederik VII.
     mintmaster: Johan Friedrich Freund (FF)
-    issuing_entity: royal_holstein
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
     fraction: 1/24
     id: unified-dk-hede-f7h11a
     year_first: 1854
     year_last: 1856
     year_ranges:
       -   - 1854
+          - 1854
+      -   - 1856
           - 1856
-    year_label: 1854-1856
+    year_label: 1854, 1856
     mint:
       - Altona
       - Kopenhagen
@@ -25681,13 +25699,22 @@ coins:
       km:
         - '758.1'
         - '758'
-      hede: 11A
+        - '758.2'
+      hede:
+        - '11'
+        - 11A
+        - 11B
       hede_volume: f7h
-      schou: '8'
+      schou:
+        - '5'
+        - '8'
       sieg:
         - '10'
         - '10.1'
-      bruun_collection_id: '8228'
+        - '10.2'
+      bruun_collection_id:
+        - '8228'
+        - '8238'
       bruun_part: IV
       bruun_lot_no: 17210
       bruun_page: 108
@@ -25703,17 +25730,27 @@ coins:
       - value: 0.25
         source: hede
       - value: 0.25
+        source: ngc
+      - value: 0.25
         source: numismaster
+      - value: 0.25
+        source: ucoin
     weight_rough_g:
       - value: 1.85
         source: numista
+      - value: 1.85
+        source: ucoin
       - value: 1.856
         source: hede
+      - value: 1.856
+        source: ngc
       - value: 1.856
         source: numismaster
     diameter_mm:
       - value: 17.0
         source: numista
+      - value: 17.0
+        source: ucoin
     sources:
       - type: literature
         url: https://numismaster.com/MC_66018
@@ -25733,6 +25770,56 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-4-skilling-rigsmont-1854-1856/?tid=70687
         ref: ucoin
+      - type: literature
+        url: https://numismaster.com/MC_66020
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17217, p. 94
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122621
+        ref: KMM 122621 (Inv. FP 3711.20)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122622
+        ref: KMM 122622 (Inv. FP 3711.21)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122918
+        ref: KMM 122918 (Inv. FP 3712.43)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/122919
+        ref: KMM 122919 (Inv. FP 3712.44)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159771
+        ref: KMM 159771 (Inv. FP 3931.133)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/159773
+        ref: KMM 159773 (Inv. FP 3931.134)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/203790
+        ref: KMM 203790 (Inv. FP 6588.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/267324
+        ref: KMM 267324 (Inv. FP 10092.24)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/355685
+        ref: KMM 355685 (Inv. FP 4766.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/78541
+        ref: KMM 78541 (Inv. GP 678.205)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-4-skilling-rigsmont-km-758.1-1854-cuid-1050982-duid-1238230
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/denmark-4-skilling-rigsmont-km-758.2-1856-cuid-1050983-duid-1238232
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: Scheidemünze der Rigsmønt-Umbenennung · KM# 758.1 (Altona 1854 ♁ FF) · KM# 758.2 (Kopenhagen 1856 ♔ VS) · Bruun-Specimen für KM-758.1 (Bruun-coll. 8228, Part IV lot 17210).
       en: Petty coin of the Rigsmønt renaming · KM# 758.1 (Altona 1854 ♁ FF) · KM# 758.2 (Copenhagen 1856 ♔ VS) · Bruun specimen for KM-758.1 (Bruun-coll. 8228, Part IV lot 17210).
@@ -27162,7 +27249,6 @@ coins:
     mint:
       - Altona
       - Kopenhagen
-      - København ell. Altona
     catalog:
       km:
         - '651'
@@ -27289,6 +27375,14 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317574
         ref: KMM 317574 (Inv. FP 7044.16)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317571
+        ref: KMM 317571 (Inv. FP 7044.19)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317572
+        ref: KMM 317572 (Inv. FP 7044.18)
         display: false
     note:
       de: 'Speciedaler 1795-1801 · späte Christian-VII.-Speciedaler-Serie (Kopenhagen + Altona) · vier Stempelvarianten nach Hede 13A-D unter KM-654 zusammengefaßt: 13A 1795, 1797, 1801; 13B 1796-97; 13C

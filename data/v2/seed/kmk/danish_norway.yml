@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-19T10:50:24Z'
+generated_at: '2026-10-19T15:49:57Z'
 entity: danish_norway
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -1506,7 +1506,7 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_norway
-    entity_classified_via: nation
+    entity_classified_via: mint
     nominal: 1 Klipping søsling
     metal: silver
     metal_verified: true
@@ -21735,8 +21735,8 @@ coins:
     nominal: 1 Skilling?
     metal: silver
     metal_verified: true
-    mint: Christiania?
-    mint_verified: true
+    mint: Christiania
+    mint_verified: false
     ruler: Frederik 3?
     year_first: 1649
     year_last: 1670
@@ -21754,6 +21754,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/572401
         ref: KMM 572401 (Inv. FP 10994.1)
     verification_note: *id001
+    _mint_uncertain: true
     _thinned_from:
       - kmk-572401
   - id: kmk-572399
@@ -21765,8 +21766,8 @@ coins:
     nominal: 1 Skilling?
     metal: silver
     metal_verified: true
-    mint: Christiania?
-    mint_verified: true
+    mint: Christiania
+    mint_verified: false
     ruler: Frederik 3?
     year_first: 1649
     year_last: 1670
@@ -21781,6 +21782,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/572399
         ref: KMM 572399 (Inv. FP 10994.3)
     verification_note: *id001
+    _mint_uncertain: true
   - id: kmk-572400
     fuss: seed_unsorted
     phase: kmk
@@ -21790,8 +21792,8 @@ coins:
     nominal: 1 Skilling?
     metal: silver
     metal_verified: true
-    mint: Christiania?
-    mint_verified: true
+    mint: Christiania
+    mint_verified: false
     ruler: Frederik 3?
     year_first: 1649
     year_last: 1670
@@ -21806,6 +21808,7 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/572400
         ref: KMM 572400 (Inv. FP 10994.2)
     verification_note: *id001
+    _mint_uncertain: true
   - id: kmk-693097
     fuss: seed_unsorted
     phase: kmk
@@ -24896,6 +24899,32 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/693096
         ref: KMM 693096 (Inv. FP 280.83)
+    verification_note: *id001
+  - id: kmk-705760
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_norway
+    entity_classified_via: mint
+    nominal: 1 Species
+    metal_verified: false
+    mint: Christiania
+    mint_verified: true
+    ruler: Frederik 3
+    year_first: 1650
+    year_last: 1650
+    year_label: '1650'
+    year_ranges:
+      -   - 1650
+          - 1650
+    weight_rough_verified: false
+    catalog:
+      hede: '8'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/705760
+        ref: KMM 705760 (Inv. FP 334.4)
     verification_note: *id001
   - id: kmk-710001
     fuss: seed_unsorted
@@ -56084,10 +56113,10 @@ coins:
     phase: kmk
     kind: kurant
     issuing_entity: danish_norway
-    entity_classified_via: nation
+    entity_classified_via: mint
     nominal: 2 Skilling
     metal_verified: false
-    mint: Christinia
+    mint: Christiania
     mint_verified: true
     ruler: Christian 5
     year_first: 1681
@@ -82711,8 +82740,8 @@ coins:
     entity_classified_via: nation
     nominal: 1 Hvid
     metal_verified: false
-    mint: Niduras?
-    mint_verified: true
+    mint: Nidaros
+    mint_verified: false
     ruler: Gaute Ivarsson
     weight_rough_verified: false
     catalog:
@@ -82729,6 +82758,7 @@ coins:
         correct: Gaute Ivarsson
         curator: serg
         reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    _mint_uncertain: true
     _errata_applied:
       - field: ruler
         printed: Ærkebiskop Gante Iversen

@@ -229,7 +229,20 @@ def _ruler(src):
 # Holstein rulers. Passing the value through put them in the wrong entity.
 # Scoped deliberately to the observed value: a genuine Lübeck mint reaches us
 # as «Lübeck» through the registry's own alias set.
-_NON_MINT_PLACES = {"lybæk"}
+_NON_MINT_PLACES = {
+    "lybæk",
+    # Not places of minting (curator 2026-10-19): «undetermined», a hoard, a
+    # region, a mark or a note about the mintmaster, a Rigsbank token, the
+    # colonies as regions.
+    "ubestemmelig", "ubestemt", "ubestemmeligt", "store-magleby-skatten",
+    "sjælland", "nørrejylland", "møntmestermærke", "ulæselig møntmestermærke",
+    "møntmester ulæseligt", "rigsbanktegn", "ostindien", "ostindisk",
+    "vestindien", "vest-indien", "england",
+}
+# A mintmaster written in KMM's `place` field (2026-10-19): «Møntmester:
+# Gotfr. Krüger» (prefix) and «Samuel Timpf?» (a name alone).
+_KMM_PLACE_IS_MINTMASTER = {"samuel timpf?"}
+_MINTMASTER_PREFIX_RE = re.compile(r"^\s*møntmester\s*:\s*", re.IGNORECASE)
 
 
 # A KMM `place` value that is not what KMM meant, corrected from a catalogue.
@@ -290,6 +303,10 @@ def _split_place(src):
         return errata[1], None
     if place.casefold() in _KMM_COUNTRY_PLACES:
         return None, None
+    if _MINTMASTER_PREFIX_RE.match(place):
+        return None, _MINTMASTER_PREFIX_RE.sub("", place).strip() or None
+    if place.strip().casefold() in _KMM_PLACE_IS_MINTMASTER:
+        return None, place.strip()
     # Two mints, not «city, mintmaster»: the comma (or «&») joins a second
     # REGISTERED mint, and a mintmaster, if any, follows «;». KMM writes
     # «Zellerfeld, Goslar; Henning Schlüter» — both towns were his mints — and
