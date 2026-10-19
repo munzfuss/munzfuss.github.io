@@ -274,6 +274,7 @@ from lib.yaml_io import dump_v2_canonical
 from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared
 from lib.ruler_reigns import normalise_ruler_key as _normalise_ruler_shared
 from lib.ruler_reigns import reign_window_exact as _reign_window_exact  # noqa: E402
+from lib.ruler_reigns import is_reign_span as _is_reign_span  # noqa: E402
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices
 from lib.catalog_codes import split_multi_ref as _split_multi_ref
 from lib.v2_seed_writer import _canonicalise_mint
@@ -4814,6 +4815,25 @@ def process_entity(entity_id: str,
                 continue
             for sid in exp:
                 seeds_by_id[sid]["_year_demoted"] = True
+
+    # 1c. The same, without a decision, for every member whose year range IS
+    #     its ruler's reign window (lib.ruler_reigns.is_reign_span) — KMM's
+    #     «Hans 1483-1513», a Hede page that gives only «1670-1699». Curator
+    #     direction 2026-10-19: the reign stays visible when it is all a class
+    #     has, but any narrower date from another member wins. In-memory only,
+    #     re-derived every run; a curator `year_demote` above says the same.
+    for sid, s in seeds_by_id.items():
+        if s.get("_year_demoted"):
+            continue
+        yr = s.get("year_ranges")
+        if isinstance(yr, list) and len(yr) > 1:
+            continue
+        if isinstance(yr, list) and yr and isinstance(yr[0], (list, tuple)) and len(yr[0]) == 2:
+            yf, yl = yr[0][0], yr[0][1]
+        else:
+            yf, yl = s.get("year_first"), s.get("year_last")
+        if _is_reign_span(s.get("ruler"), s.get("issuing_entity"), yf, yl):
+            s["_year_demoted"] = True
 
     # 2. PRE-PASS: run matcher on every pair, register no_match pairs in
     #    union-find BEFORE attempting any union. This guarantees that

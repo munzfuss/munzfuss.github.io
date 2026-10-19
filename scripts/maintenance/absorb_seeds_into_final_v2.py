@@ -111,6 +111,7 @@ from lib.catalog_codes import normalise_catalog as _fold_catalog_indices  # noqa
 from lib.ruler_reigns import (  # noqa: E402
     reign_window as _reign_window,
     normalise_ruler_name as _norm_ruler,
+    is_reign_span as _is_reign_span,
 )
 
 
@@ -795,8 +796,12 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # year_verified via `_curation_holds` — an explicit curator flag wins.
     if "year_verified" not in holds_keys and authoritative_yr is not None:
         _rw = _reign_window(_norm_ruler(out.get("ruler")))
-        if (_rw is not None and len(authoritative_yr) == 1
-                and list(authoritative_yr[0]) == [_rw[0], _rw[1]]):
+        # Exact table match, or the same reign as a source writes it (KMM's
+        # «Hans 1483-1513»; lib.ruler_reigns.is_reign_span, 2026-10-19).
+        if len(authoritative_yr) == 1 and (
+                (_rw is not None and list(authoritative_yr[0]) == [_rw[0], _rw[1]])
+                or _is_reign_span(out.get("ruler"), out.get("issuing_entity"),
+                                  authoritative_yr[0][0], authoritative_yr[0][1])):
             out["year_verified"] = False
             # Flag WHICH kind of unverified this is: a reign-placeholder, not an
             # imprecise estimate (schema.year_is_reign_span). Data-only — render

@@ -533,6 +533,42 @@ def reign_window_placeholder(ruler_raw: str | None,
     return (min(w[0] for w in windows), max(w[1] for w in windows))
 
 
+# How far a source's range may sit from the reign table and still be read as
+# «the reign, not a date». KMM writes Hans as 1483-1513, 1482-1513, 1481-1513
+# and 1481-1512 (2026-10-19 survey: 250 records) — one man, the cataloguer's
+# choice of accession year — so an exact match would miss most of them. The
+# slack is also capped at a tenth of the reign: on a short reign a range a
+# year or two inside it is a real issue span (Christian VIII «1841-1847»,
+# Frederik VIII «1908-1912»), not the reign.
+REIGN_SPAN_TOLERANCE = 2
+
+
+def is_reign_span(ruler_raw: str | None, entity: str | list | None,
+                  year_first: int | None, year_last: int | None) -> bool:
+    """True when a source's year range is its ruler's reign window — a
+    placeholder for an unknown date, not a dated attestation.
+
+    Curator direction 2026-10-19: a reign window is shown when nothing better
+    exists, but any narrower date from another source in the same class takes
+    precedence. The merger uses this to hold such members back
+    (`_year_demoted`), exactly like a curator `year_demote`.
+
+    Whose reign is `reign_window_placeholder`'s call (entity-aware, exact
+    names only). A single year is never a reign span; each end may sit up to
+    `REIGN_SPAN_TOLERANCE` years — and at most a tenth of the reign — off
+    the table.
+    """
+    if not isinstance(year_first, int) or not isinstance(year_last, int):
+        return False
+    if year_first >= year_last:
+        return False
+    w = reign_window_placeholder(ruler_raw, entity)
+    if w is None:
+        return False
+    tol = min(REIGN_SPAN_TOLERANCE, (w[1] - w[0]) // 10)
+    return abs(year_first - w[0]) <= tol and abs(year_last - w[1]) <= tol
+
+
 def reign_covers_year(ruler_raw: str | None, year: int | None,
                         tolerance: int = 0) -> bool | None:
     """True/False/None: does the ruler's reign cover `year`?
