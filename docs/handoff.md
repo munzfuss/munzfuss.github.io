@@ -16,6 +16,12 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-19 — Reign-window years, Korshvid rule, Lybsk Møntfod merge candidates
+
+- **Shipped** (`bfa0534`, `6fb5bfb`, not pushed): `lib.ruler_reigns.is_reign_span` — a member whose year is its ruler's reign (±2 y, ≤ 1/10 of the reign) is auto-`_year_demoted` in the merger (step 1c), so a narrower date in the class wins (Galster 43 → 1513, Galster 29 → 1512); absorb's reign flag uses the same test. KMM «korshvid» → Hvid for reigns ending ≤ 1523 (builder rule, printed word in `_nominal_printed`); 6 weightless stubs thinned (recorded). Excluded kmk-139309 (stub) and kmk-734756 (piefort).
+- **Open, awaiting curator**: Lybsk Møntfod merge candidates by Schou→Galster ranges (Hans' Danish-Norwegian silver Schou is one continuous sequence): G149 ← dk-bruun-9223 class; G153 ← kmk-492500; G155 ← 7 KMM Bergen hvide; G36 ← kmk-273672 group, 643057/58, 173012, 308332, 311274, 311334; G31 ← kmk-150281, 307583. kmk-533276 («G 155; Sch 187-190») sits wrongly in the G36 class. Conflicts: kmk-306416 (G 35 but hvid), kmk-273659/273660 (Schou 82/83 hvid vs G29 skilling), kmk-148121 («5 Skilling» — KMM says «skilling»; builder?), kmk-307583 (G 31 Malmø vs place Ålborg). Most are weightless/photoless stubs — curator to choose merge vs exclude.
+- **Open**: Jensen Hikuin 17 s. 82 «Alle er udmøntede i Malmø, under kong Hans, fra 1490'erne, dog også i København og Aalborg» — ambiguous; `luebischer_muenzfuss.md` l. 497 reads it as Malmø-from-1490s, which is probably wrong (likely: København/Aalborg from the 1490s). Fix the dossier wording; possible 1490-1513 bound for G34/G36 is a hypothesis only.
+
 ## 2026-10-19 — Knowledge-base search pilot (`scripts/kb/`)
 
 - **Built**: corpus manifest `scripts/cache/_corpus.yml` (33 works, PDF→printed offsets from running heads, refs_pool keys per work); danskmoent `.htm` → `scripts/cache/_derived/danskmoent/**.txt` (1029); FTS5 index + CLI `scripts/kb/kb.py` (`build` / `search` / `offsets` / `refkeys` / `extract-htm`); measurement `scripts/kb/measure.py` + `eval_set.yml`. README: `scripts/kb/README.md`.
