@@ -174,7 +174,7 @@ Rules, each one a past failure:
 ## Finding the passage — `kb search`
 
 The harvest cache has a full-text index over every work with a text layer (Secher, Schou,
-Wilcke 1919 / 1924 / 1950, Mordhorst, Galster, Denar til daler, Munro, Bobzin, danskmoent
+Wilcke 1919 / 1924 / 1950, Mordhorst, Galster, Denar til daler, Munro, Bobzin, Bruun I–V, Hede, danskmoent
 pages …; the list and each work's page mapping: `scripts/cache/_corpus.yml`). It folds old
 spellings, line-break hyphenation and common OCR slips, so it finds «Myndt-Ordning» for
 «møntordning», «kaabermønt» for «kobbermønt», «fir-/kantede» for «firkantede», which a
@@ -200,9 +200,12 @@ plain `grep` misses (measured: `scripts/kb/README.md`).
 - Secher prints the SOURCE's page breaks in brackets («[s. 161]») — those are not Secher's
   page; cite the page the hit reports (Secher's own pagination).
 - AUDIT mode: `kb search` with a distinctive phrase of a key's quote shows whether the quote
-  sits on the page the key claims.
-- No hit ≠ no passage: works outside `_corpus.yml` (Hede, Bruun, rigsarkivet scans) are not
-  indexed, and heavy OCR damage can defeat any normalisation.
+  sits on the page the key claims; `scripts/kb/audit_pages.py` runs that check over every
+  key of every indexed work (a report — each MISMATCH still needs the page read).
+- Bruun Parts I–V: the hit reports the PRINTED catalogue page (running head «Page N»); the
+  PDF page is higher by a constant per part (I +24, II +26, III +18, IV +16, V +16).
+- No hit ≠ no passage: the rigsarkivet scans (handwriting, no text layer) and the 1928 Bruun
+  catalogue are not indexed, and heavy OCR damage can defeat any normalisation.
 
 ## Workflow (WRITE / FIX)
 
