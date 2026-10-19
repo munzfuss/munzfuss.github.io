@@ -30,9 +30,11 @@ rules:
   - {pattern: 'dah?l+er',         replace: 'daler',   note: 'Daller/Dahler/Daler'}
   - {pattern: '(?<![a-z])taler',  replace: 'daler',   note: 'Taler/Thaler as a word start (not «betaler»)'}
   - {pattern: '(?<=s)taler',      replace: 'daler',   note: 'Rigstaler, Speciestaler, Reichstaler in compounds'}
-  - {pattern: '\bg(ue|u|y)l+den', replace: 'gylden',  note: 'Gulden/Gülden/Gylden/Gyllden'}
+  - {pattern: 'g(ue|u|y)(l+|i)den', replace: 'gylden', note: 'Gulden/Gülden/Gylden/Gyllden, also inside compounds (Goldgulden); «guiden» = OCR l→i, systematic in Galster 1934 (182× vs 30× «gulden») and Wilcke («Poul Guiden» = Poul Gulden)'}
   - {pattern: '(?<!s)pf?en+ing',  replace: 'pening',  note: 'Penning/Pfennig/Pening, also Hvidpenning'}
-  - {pattern: 'st(oe|ue|y)k',     replace: 'styk',    note: 'Stykke/Støcke/Stück, also in compounds'}
+  - {pattern: 'st(oe|ue|y|u)k',   replace: 'styk',    note: 'Stykke/Støcke/Stück/Stucken, also in compounds'}
+  - {pattern: '\bkraet\b',       replace: 'karat',   note: 'Middle Low German «kraet» (Galster 1934 accounts)'}
+  - {pattern: '\bgolt\b',        replace: 'gold',    note: 'Middle Low German «golt» (golt gulden)'}
   - {pattern: 'spezi',            replace: 'speci',   note: 'Spezies/Species'}
   - {pattern: 'courant',          replace: 'kurant',  note: 'Courant/Kurant'}
   - {pattern: '\bcoel+n',         replace: 'koeln',   note: 'Cöln/Cölln/Köln'}

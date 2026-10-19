@@ -99,6 +99,8 @@ still reads every matching line (column «lines / files»).
 | A, round 2 | 12/22 | 10 / 15 / 20 | 14 / 21 |
 | B, before round 2 | 9/15 | 7 / 11 / 15 | 12 / 15 |
 | B, round 2 (held out) | 9/15 | 8 / 13 / 15 | 12 / 15 |
+| A, round 3 | 12/22 | 10 / 16 / 21 | 15 / 22 |
+| B, round 3 | 9/15 | 8 / 13 / 15 | 12 / 15 |
 
 Round 1 → table after the «14¼» fraction bug fix (it moved only A14).
 Round 2 on the held-out set: whole-corpus top 10 up 11 → 13, within-work
@@ -112,12 +114,23 @@ hyphenation («fir-/kantede»), old orthography («rund mynt», «kaabermønt»,
 Mark»), OCR damage («jaffngod» read as «slæderjcjjhgod», «Crucis» as
 «Grucis») and compounding («Smaa-Myndt»).
 
-**Still failing** — hypotheses, untested: A16 «Goldgulden» vs Middle Low
-German «golt gulden» (split gives «gold»+«gylden»; d/t differ); A13 and B3
-rank low across the whole corpus because the query words are common —
-whole-corpus BM25 is the weak point; restricting to a work fixes most of it.
+**Round 3 — A16 analysed** (curator 2026-10-19). The page (Galster 1934,
+s. 108) failed on five mismatches at once, not on d/t alone: «gulden» rule
+anchored at a word start, so «Goldgulden» was never folded; OCR reads
+«gulden» as «guiden» (182× vs 30× in Galster 1934, also «Poul Guiden» =
+Poul Gulden in Wilcke); «Stucken» escaped the Stück rule; Middle Low German
+«kraet» (karat) and «golt» (gold). Measured one rule at a time on a scratch
+index: «stuk» moved A16 within the work 16 → 3, «kraet» 3 → 1, «golt» put it
+3rd across the corpus (the split «gold»+«gylden» needs «golt» folded);
+«gulden» anywhere and «guiden» alone did not move A16 but are what the split
+needs. Set B: no row changed. These five rules are fitted to A16 — B shows
+they do no harm, not that they generalise.
 
-### Set A, round 2
+**Still failing**: A13 and B3 rank low across the whole corpus because the
+query words are common — whole-corpus BM25 is the weak point; restricting to
+a work fixes most of it.
+
+### Set A, round 3
 
 | # | refs_pool key | query | grep | grep: gold hit | grep: lines / files | kb rank | kb rank (in work) |
 |---|---|---|---|---|---|---|---|
@@ -136,7 +149,7 @@ whole-corpus BM25 is the weak point; restricting to a work fixes most of it.
 | 13 | `wilcke-1924-kap1-gottorp-1610-muenz-edict` | Gottorp daler 33 skilling lybsk Nabobyerne | `Nabobyer` | ✅ | 4 / 4 | >50 | 2 |
 | 14 | `wilcke-1950-flensborg-1547-vaegt` | sølvgylden 14¼ lødig finvægt | `sølvgylden` | ❌ | 123 / 37 | 34 | 9 |
 | 15 | `wilcke-1950-sundtold-1550` | sundtold nobel rhinske gylden | `sundtold` | ✅ | 46 / 15 | 2 | 2 |
-| 16 | `galster-1934-junge-guldregnskab` | Goldgulden 18 Karat 72 Stück | `Goldgulden` | ❌ | 547 / 20 | >50 | 16 |
+| 16 | `galster-1934-junge-guldregnskab` | Goldgulden 18 Karat 72 Stück | `Goldgulden` | ❌ | 547 / 20 | 3 | 1 |
 | 17 | `jensen-1971-hdy-guldgylden-1624-1633-underloedig` | Lilliendahl underlødig lødighed Lübeck | `Lilliendahl` | ✅ | 21 / 1 | 1 | 1 |
 | 18 | `eriksson-2017-hans-skilling-hvid-luebsk` | hvid lübsk witten vikt | `witten` | ✅ | 419 / 46 | 1 | 1 |
 | 19 | `gullbekk-2025-haandfaestning-1483-jaffngod` | jævngod mønt Bergen Oslo danske penninge | `jævngod` | ❌ | 6 / 4 | 2 | 1 |
@@ -144,7 +157,7 @@ whole-corpus BM25 is the weak point; restricting to a work fixes most of it.
 | 21 | `munro-2009-marc-de-troyes` | marc de Troyes grams | `marc de Troyes` | ✅ | 25 / 8 | 6 | 6 |
 | 22 | `galster-nobel-1524-23-karat` | Jørgen Kock nobel 23 karat | `23 karat` | ✅ | 34 / 22 | 4 | 2 |
 
-### Set B (held out), round 2
+### Set B (held out), rounds 2 and 3 (identical)
 
 | # | refs_pool key | query | grep | grep: gold hit | grep: lines / files | kb rank | kb rank (in work) |
 |---|---|---|---|---|---|---|---|

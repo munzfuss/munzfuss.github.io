@@ -48,7 +48,7 @@ VARIANTS = Path(__file__).resolve().parent / "variants.yml"
 DB_DEFAULT = Path(__file__).resolve().parent / "_index" / "kb.sqlite"
 REFS_POOL = REPO / "data" / "shared" / "refs_pool.yml"
 
-NORMALIZER_VERSION = 3  # bump when normalize() changes; recorded in the db
+NORMALIZER_VERSION = 4  # bump when normalize() changes; recorded in the db
 
 # ---------------------------------------------------------------------------
 # Normalisation
@@ -64,8 +64,9 @@ _HYPHEN_BREAK = re.compile(r"([^\W\d_])[-­¬]\s*\n\s*([^\W\d_])")
 _LETTERSPACED = re.compile(r"(?<!\S)((?:[^\W\d_] ){3,}[^\W\d_])(?!\S)")
 
 
-def _load_rules(path: Path = VARIANTS) -> list[tuple[re.Pattern, str]]:
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+def _load_rules(path: Path | None = None) -> list[tuple[re.Pattern, str]]:
+    # resolved at call time, so a caller that repoints VARIANTS is honoured
+    data = yaml.safe_load((path or VARIANTS).read_text(encoding="utf-8")) or {}
     return [(re.compile(r["pattern"]), r["replace"]) for r in data.get("rules", [])]
 
 
