@@ -248,7 +248,7 @@ MONETA NOVA MALMOGENSIS / FREDERICVS DEI GRACIA REX DACIE.
 |---|---|---|
 | `8_gylden_fod` | A1 (1524–1531), A2 (1532) | Sølvgylden 8/M at 14 lod — from the **Rigsraad's letter** (`wilcke-1950-tabel-1524-soelvgylden`); the Kongebrev has no Sølvgylden (see §8.2) |
 | `nobel_fod` | I | Nobel 16/M 23 kt (25/2) → 23½ kt (Kongebrev) — `wilcke-1950-rigsraadets-brev-1524`, `wilcke-1950-kongebrev-1524`, `galster-nobel-1524-*` |
-| `rhinsk_gylden_fod` | I.a | rhinsk Gylden 72/M 18 kt — `wilcke-1950-moentordning-1524`, `wilcke-rhinsk-gylden-1524-standard` |
+| `rhinsk_gylden_fod` | I.a | rhinsk Gylden 72/M 18 kt — `wilcke-1950-moentordning-1524` |
 
 Keys added with this dossier: `wilcke-1950-rigsraad-1524-klippinge`,
 `wilcke-1950-rigsraad-1524-soelvmynt`, `wilcke-1950-kongebrev-1524-markstykker`,

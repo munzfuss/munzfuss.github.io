@@ -788,13 +788,13 @@ Hans' weight); Lange for ducal pieces; NFM XII p. 10 (Flensborg 1546).
    72 Stkr.)», «p. 184»** → the Rhenish clause is in the **Kongebrev after
    25 Feb** (p. 183); the 25-Feb Rigsraadets Brev has no gulden. Affected in
    data: description, DK phase I title/description, SH hintergrund + phase 0,
-   Grundwerte row «Штук з кельнської марки», ref `wilcke-rhinsk-gylden-1524-standard`.
+   Grundwerte row «Штук з кельнської марки», ref `wilcke-rhinsk-gylden-1524-standard` (2026-10-19: that key duplicated the passage of `wilcke-1950-moentordning-1524`, s. 183; removed, its citations re-pointed).
 2. **«Christian II Møntordning, Sommeren 1514 (Dines Blicher Brev, Malmö),
    p. 152-153»** → two acts, two men: Dynes Blicher's Beskikkelsesbrev
    1 Aug 1513 (pp. 149-152, prescribes 71⅓ / 18½, never executed) and the
    summer-1514 letter to «Myntemester Dienis udi Malmo» (p. 153). «slet og ret
    18 Karat» is p. 153, not «p. 362-367». Affected: ref
-   `wilcke-rhinsk-gylden-1514-standard`.
+   `wilcke-rhinsk-gylden-1514-standard` (corrected 2026-10-19: s. 153).
 3. **«the imperial norm stood on the 1490 form … Karl V kept it 1551»** → omits
    Esslingen 1524 (89 / 22 Kt); 1551 RESTORED the 1490 form. Affected: description.
 4. **DK phase 0 description implies Worms 1495 = 72** — Worms is 71⅓; 72 arrives
