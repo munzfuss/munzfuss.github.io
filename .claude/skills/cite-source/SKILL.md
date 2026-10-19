@@ -202,8 +202,10 @@ plain `grep` misses (measured: `scripts/kb/README.md`).
 - AUDIT mode: `kb search` with a distinctive phrase of a key's quote shows whether the quote
   sits on the page the key claims; `scripts/kb/audit_pages.py` runs that check over every
   key of every indexed work (a report — each MISMATCH still needs the page read).
-- Bruun Parts I–V: the hit reports the PRINTED catalogue page (running head «Page N»); the
-  PDF page is higher by a constant per part (I +24, II +26, III +18, IV +16, V +16).
+- Bruun Parts I–V: cite **lot + PRINTED page** («Bruun Part II, lot 13163, p. 94»); the hit
+  reports the printed page (running head «Page N»). The PDF page is higher by a constant per
+  part (I +24, II +26, III +18, IV +16, V +16); `scripts/lib/bruun_pages.py` converts. Parts II
+  and V reuse lot numbers 14001–14226 — always name the part.
 - No hit ≠ no passage: the rigsarkivet scans (handwriting, no text layer) and the 1928 Bruun
   catalogue are not indexed, and heavy OCR damage can defeat any normalisation.
 

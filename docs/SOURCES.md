@@ -127,6 +127,19 @@ route: §13.3 «Part V download».
 
 Overview page: <https://stacksbowers.com/the-l-e-bruun-collection/>
 
+**How a Bruun lot is cited — lot + PRINTED page** (curator 2026-10-19):
+«Bruun Part II, lot 13163, p. 94». The printed page is the catalogue's own
+running head («Page 94 Stack's Bowers Galleries» / «Bid Online at
+www.StacksBowers.com Page 95»), the page a reader finds in any copy; the PDF
+viewer's count is higher by a constant per part (I +24, II +26, III +18,
+IV +16, V +16). The lot number is the primary locator — but in Parts II and V
+the same lot numbers recur (14001–14226), so a lot is identified only with its
+part. Before 2026-10-19 every citation gave the PDF page; healed by
+`scripts/maintenance/heal_bruun_printed_pages.py` (§13.24). The parser cache
+(`lots/partN.json` `page` / `page_span`) and `catalog.bruun_page` stay PDF
+pages — machine locators into `pages/partN.txt`, never rendered;
+`scripts/lib/bruun_pages.py::printed_page(part, pdf_page)` converts.
+
 **What each entry gives you (verbatim):**
 - Coin type, year, mint, ruler
 - KM#, Hede#, Sieg#, Lange#, Fr#, Schou#, Aagaard# (where applicable) — with `cf.` prefix for variants
@@ -2238,3 +2251,20 @@ reworked, rounded version (danskmoent says so), not a transcription error.
 *Rule.* For Wilcke I, cite and quote the scan (`danskmoent.dk/pdf2/Wilcke_1.pdf`,
 printed page = PDF + 1); use w1d only as a search aid, and check every figure
 taken from it against the page image.
+
+### 13.24 Bruun citations gave the PDF page, not the printed page (2026-10-19)
+
+From the first Bruun seed (2026-05) every citation — the canonical source refs
+«Bruun Part N, lot L, p. P» and the free-form mentions in notes, errata reasons
+and merge decisions — carried the page of the PDF file (the parser's
+`========== PAGE N ==========` marker), not the catalogue's printed page. Found
+by `scripts/kb/audit_pages.py` (the kb index reads the running heads). Curator
+decision: lot + printed page (§1.3). Fixed in the seed builder and
+`normalise_bruun_sources.py` (both via `lib/bruun_pages.py`) and healed in the
+data by `heal_bruun_printed_pages.py`: a page is rewritten only when it lies in
+the page_span of that very lot (Part II / Part V lot numbers collide, so the
+span decides), 4 972 numbers in 68 files, nothing ambiguous. Running heads sit
+in the page's first lines except on full-page feature lots (Part III PDF 82,
+114), where they stand lower; pages with no head at all are lot
+continuations, never a lot's first page. `catalog.bruun_page` deliberately
+stays the PDF page.
