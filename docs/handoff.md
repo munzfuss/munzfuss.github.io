@@ -16,6 +16,14 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-19 — Knowledge-base search pilot (`scripts/kb/`)
+
+- **Built**: corpus manifest `scripts/cache/_corpus.yml` (33 works, PDF→printed offsets from running heads, refs_pool keys per work); danskmoent `.htm` → `scripts/cache/_derived/danskmoent/**.txt` (1029); FTS5 index + CLI `scripts/kb/kb.py` (`build` / `search` / `offsets` / `refkeys` / `extract-htm`); measurement `scripts/kb/measure.py` + `eval_set.yml`. README: `scripts/kb/README.md`.
+- **Measurement (22 refs_pool passages)**: grep finds 12/22; kb within the work rank 1 in 12/22, top 10 in 19/22; whole corpus top 10 in 14/22. Of 10 grep misses kb has 7 in the work's top 10. Gains come from hyphenation joining and old-orthography folds; whole-corpus ranking is weak. **Go/no-go awaits the curator.**
+- **Finding for the curator (not acted on)**: `secher-ccd-5-143-1643-reces-mynten` cites «s. 160–161»; the quoted passage is on Secher Bd 5 printed p. 244 (pdf 257; p. 243 = pdf 256), where Secher prints the Reces's own page break «[s. 161]». The ref's page hint matches the 1643 print's pagination, not Secher's. Needs a `cite-source` decision.
+- **Submodule state**: the cache commit (manifest + derived text) is on branch `kb-pilot` of the worktree's submodule clone, based on cache `main` 2477aae; the superproject pointer on this branch points at it. Before merging this branch, push that cache commit to `munzfuss-harvest` (PB-10). Not pushed.
+- Follow-ups only after the curator's go: æ/e fold and compound splitting (cases 4, 7, 16), embeddings, rigsarkivet OCR, kb skills / source-researcher agent.
+
 ## 2026-10-16 — 11½-Markfod (Lybsk Møntfod)
 
 - **Read `docs/research/luebischer_muenzfuss.md` §0 first** — synthesis matrix (levels × stages I 1481–c.1500/03, II c.1500/03–c.1511, III 1512–13), attested vs computed vs hypothesis, and the to-do list for the card. Mark lübisch vs Mark dansk: `docs/research/mark_lybsk_mark_dansk.md`. Parallel task offered: KMM 331973 «Penning, Lund».: King Hans' silver card built and populated
