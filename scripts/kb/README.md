@@ -12,6 +12,7 @@ collide with §0 / §0b and the verbatim-quote discipline).
 .venv/bin/python scripts/kb/kb.py search "kobbermønt hvider blaffeter"
 .venv/bin/python scripts/kb/kb.py search "vardein smeltning" --work schou-1795
 .venv/bin/python scripts/kb/kb.py search "sølvgylden" --lang da --limit 20
+.venv/bin/python scripts/kb/kb.py search "rosenobel ungersk dukat" --kind source   # act texts only
 .venv/bin/python scripts/kb/kb.py search 'NEAR(kroner skiling*, 8)' --fts --work secher-ccd
 .venv/bin/python scripts/kb/kb.py offsets wilcke-1950      # re-derive PDF→printed offsets
 .venv/bin/python scripts/kb/kb.py refkeys                  # manifest vs refs_pool.yml drift
@@ -101,6 +102,8 @@ still reads every matching line (column «lines / files»).
 | B, round 2 (held out) | 9/15 | 8 / 13 / 15 | 12 / 15 |
 | A, round 3 | 12/22 | 10 / 16 / 21 | 15 / 22 |
 | B, round 3 | 9/15 | 8 / 13 / 15 | 12 / 15 |
+| A, round 4 (`--kind`) | 12/22 | 10 / 16 / 21 — same kind: top 10 19 | 15 / 22 |
+| B, round 4 (`--kind`) | 9/15 | 8 / 13 / 15 — same kind: top 10 15 | 12 / 15 |
 
 Round 1 → table after the «14¼» fraction bug fix (it moved only A14).
 Round 2 on the held-out set: whole-corpus top 10 up 11 → 13, within-work
@@ -126,59 +129,67 @@ index: «stuk» moved A16 within the work 16 → 3, «kraet» 3 → 1, «golt» 
 needs. Set B: no row changed. These five rules are fitted to A16 — B shows
 they do no harm, not that they generalise.
 
-**Still failing**: A13 and B3 rank low across the whole corpus because the
-query words are common — whole-corpus BM25 is the weak point; restricting to
-a work fixes most of it.
+**Round 4 — whole-corpus ranking analysed.** In every case where the gold
+passage ranks low across the corpus, what outranks it are OTHER works on the
+same subject (danskmoent pages, Galster, Wilcke, Denar til daler discussing
+the very act the query targets), plus query words the gold passage lacks — not
+one book flooding the list. Two remedies measured and rejected: a per-work
+cap (A/B top 10 ±1, and it HIDES a work's 4th+ passage entirely — Munro 6 →
+gone; kept as `--per-work N`, default off) and dropping single-digit query
+tokens (no change; kept, it removes fraction-half noise). Adopted: a `kind`
+per work in `_corpus.yml` (source = editions of acts / accounts, register,
+literature, web, extract) and `--kind`. Restricting to the gold's kind lifts
+top 10 to 19/22 (A) and 15/15 (B). This is an oracle measurement — the kind
+is taken from the gold — but it is the choice a researcher makes knowingly
+(«the act text» vs «what the literature says»).
 
-### Set A, round 3
+**Still outside the top 10 within the kind**: A7 (Schou, OCR «Smaa-N7yndt»; kind
+rank 25), A13 (Wilcke 1924, a 4 334-word section, common words; >50), A14 (Wilcke
+1950 table; 24). Within the work they are rank 1, 2 and 9.
 
-| # | refs_pool key | query | grep | grep: gold hit | grep: lines / files | kb rank | kb rank (in work) |
-|---|---|---|---|---|---|---|---|
-| 1 | `secher-ccd-1-174-1563-firkantede-moent` | firkantet mønt vrage | `firkantede` | ❌ | 17 / 7 | 16 | 5 |
-| 2 | `secher-ccd-1-359-1567-fald-rund-mynt` | fald rund mønt 3 mark sager | `rund mønt` | ❌ | 31 / 11 | 2 | 1 |
-| 3 | `secher-ccd-3-523-1619-kobbermoent` | kobbermønt hvider blaffeter | `kobbermønt` | ❌ | 43 / 11 | 1 | 1 |
-| 4 | `secher-ccd-4-138-1625-afsaettelse` | møntens afsættelse sexskilling | `afsættelse` | ❌ | 15 / 14 | 1 | 1 |
-| 5 | `secher-ccd-5-143-1643-reces-mynten` | fremmede købmænd gangbar mønt | `gangbar mønt` | ❌ | 20 / 16 | 26 | 8 |
-| 6 | `schou-1795-bd1-s82-myndtordning-1671-vardin` | vardein møntmester smeltning prøve | `vardein` | ❌ | 0 / 0 | 18 | 1 |
-| 7 | `schou-1795-bd1-s80-forbud-1671-smaamoent` | forbud indførsel småmønt | `småmønt` | ❌ | 43 / 9 | 47 | 1 |
-| 8 | `mordhorst-c5mord-reskript-1692-kroner` | reskript 1692 kroner markstykker | `markstykker` | ✅ | 152 / 45 | 1 | 1 |
-| 9 | `wilcke-1919-guldriddere-1611` | guldridder karat 1611 | `guldridder` | ✅ | 38 / 19 | 1 | 1 |
-| 10 | `wilcke-1919-metzner-1593-bestalling` | Metzner bestalling møntmester 1593 | `Metzner` | ✅ | 24 / 9 | 1 | 1 |
-| 11 | `wilcke-1919-flemming-1607-slagskat` | slagskat Flemming gevinst | `slagskat` | ✅ | 107 / 15 | 1 | 1 |
-| 12 | `wilcke-1924-kap2-3-gruener-forslag-1642` | Grüner forslag 1642 møntordning 1624 | `Grüner` | ✅ | 42 / 10 | 1 | 1 |
-| 13 | `wilcke-1924-kap1-gottorp-1610-muenz-edict` | Gottorp daler 33 skilling lybsk Nabobyerne | `Nabobyer` | ✅ | 4 / 4 | >50 | 2 |
-| 14 | `wilcke-1950-flensborg-1547-vaegt` | sølvgylden 14¼ lødig finvægt | `sølvgylden` | ❌ | 123 / 37 | 34 | 9 |
-| 15 | `wilcke-1950-sundtold-1550` | sundtold nobel rhinske gylden | `sundtold` | ✅ | 46 / 15 | 2 | 2 |
-| 16 | `galster-1934-junge-guldregnskab` | Goldgulden 18 Karat 72 Stück | `Goldgulden` | ❌ | 547 / 20 | 3 | 1 |
-| 17 | `jensen-1971-hdy-guldgylden-1624-1633-underloedig` | Lilliendahl underlødig lødighed Lübeck | `Lilliendahl` | ✅ | 21 / 1 | 1 | 1 |
-| 18 | `eriksson-2017-hans-skilling-hvid-luebsk` | hvid lübsk witten vikt | `witten` | ✅ | 419 / 46 | 1 | 1 |
-| 19 | `gullbekk-2025-haandfaestning-1483-jaffngod` | jævngod mønt Bergen Oslo danske penninge | `jævngod` | ❌ | 6 / 4 | 2 | 1 |
-| 20 | `holst-1936-lybsk-myntmark-192-penninger` | lybske myntmark 192 penninger | `192 penninger` | ✅ | 6 / 3 | 1 | 1 |
-| 21 | `munro-2009-marc-de-troyes` | marc de Troyes grams | `marc de Troyes` | ✅ | 25 / 8 | 6 | 6 |
-| 22 | `galster-nobel-1524-23-karat` | Jørgen Kock nobel 23 karat | `23 karat` | ✅ | 34 / 22 | 4 | 2 |
+### Set A, round 4
 
-### Set B (held out), rounds 2 and 3 (identical)
+| # | refs_pool key | query | grep | grep: gold hit | grep: lines / files | kb rank | kb rank (same kind) | kb rank (in work) |
+|---|---|---|---|---|---|---|---|---|
+| 1 | `secher-ccd-1-174-1563-firkantede-moent` | firkantet mønt vrage | `firkantede` | ❌ | 17 / 7 | 16 | 8 | 5 |
+| 2 | `secher-ccd-1-359-1567-fald-rund-mynt` | fald rund mønt 3 mark sager | `rund mønt` | ❌ | 31 / 11 | 2 | 1 | 1 |
+| 3 | `secher-ccd-3-523-1619-kobbermoent` | kobbermønt hvider blaffeter | `kobbermønt` | ❌ | 43 / 11 | 1 | 1 | 1 |
+| 4 | `secher-ccd-4-138-1625-afsaettelse` | møntens afsættelse sexskilling | `afsættelse` | ❌ | 15 / 14 | 1 | 1 | 1 |
+| 5 | `secher-ccd-5-143-1643-reces-mynten` | fremmede købmænd gangbar mønt | `gangbar mønt` | ❌ | 20 / 16 | 26 | 9 | 8 |
+| 6 | `schou-1795-bd1-s82-myndtordning-1671-vardin` | vardein møntmester smeltning prøve | `vardein` | ❌ | 0 / 0 | 18 | 7 | 1 |
+| 7 | `schou-1795-bd1-s80-forbud-1671-smaamoent` | forbud indførsel småmønt | `småmønt` | ❌ | 43 / 9 | 47 | 25 | 1 |
+| 8 | `mordhorst-c5mord-reskript-1692-kroner` | reskript 1692 kroner markstykker | `markstykker` | ✅ | 152 / 45 | 1 | 1 | 1 |
+| 9 | `wilcke-1919-guldriddere-1611` | guldridder karat 1611 | `guldridder` | ✅ | 38 / 19 | 1 | 1 | 1 |
+| 10 | `wilcke-1919-metzner-1593-bestalling` | Metzner bestalling møntmester 1593 | `Metzner` | ✅ | 24 / 9 | 1 | 1 | 1 |
+| 11 | `wilcke-1919-flemming-1607-slagskat` | slagskat Flemming gevinst | `slagskat` | ✅ | 107 / 15 | 1 | 1 | 1 |
+| 12 | `wilcke-1924-kap2-3-gruener-forslag-1642` | Grüner forslag 1642 møntordning 1624 | `Grüner` | ✅ | 42 / 10 | 1 | 1 | 1 |
+| 13 | `wilcke-1924-kap1-gottorp-1610-muenz-edict` | Gottorp daler 33 skilling lybsk Nabobyerne | `Nabobyer` | ✅ | 4 / 4 | >50 | >50 | 2 |
+| 14 | `wilcke-1950-flensborg-1547-vaegt` | sølvgylden 14¼ lødig finvægt | `sølvgylden` | ❌ | 123 / 37 | 34 | 24 | 9 |
+| 15 | `wilcke-1950-sundtold-1550` | sundtold nobel rhinske gylden | `sundtold` | ✅ | 46 / 15 | 2 | 2 | 2 |
+| 16 | `galster-1934-junge-guldregnskab` | Goldgulden 18 Karat 72 Stück | `Goldgulden` | ❌ | 547 / 20 | 3 | 1 | 1 |
+| 17 | `jensen-1971-hdy-guldgylden-1624-1633-underloedig` | Lilliendahl underlødig lødighed Lübeck | `Lilliendahl` | ✅ | 21 / 1 | 1 | 1 | 1 |
+| 18 | `eriksson-2017-hans-skilling-hvid-luebsk` | hvid lübsk witten vikt | `witten` | ✅ | 419 / 46 | 1 | 1 | 1 |
+| 19 | `gullbekk-2025-haandfaestning-1483-jaffngod` | jævngod mønt Bergen Oslo danske penninge | `jævngod` | ❌ | 6 / 4 | 2 | 2 | 1 |
+| 20 | `holst-1936-lybsk-myntmark-192-penninger` | lybske myntmark 192 penninger | `192 penninger` | ✅ | 6 / 3 | 1 | 1 | 1 |
+| 21 | `munro-2009-marc-de-troyes` | marc de Troyes grams | `marc de Troyes` | ✅ | 25 / 8 | 6 | 6 | 6 |
+| 22 | `galster-nobel-1524-23-karat` | Jørgen Kock nobel 23 karat | `23 karat` | ✅ | 34 / 22 | 4 | 2 | 2 |
 
-| # | refs_pool key | query | grep | grep: gold hit | grep: lines / files | kb rank | kb rank (in work) |
-|---|---|---|---|---|---|---|---|
-| 1 | `secher-ccd-3-487-1618-soelvkrone` | sølvkrone 13¾ lod fint sølv halvanden rigsdaler | `sølvkrone` | ❌ | 22 / 8 | 6 | 1 |
-| 2 | `secher-ccd-3-541-1619-rigsdaler-96-sk` | rigsdaler spansk matte otte realer skilling danske | `spansk matte` | ❌ | 1 / 1 | 1 | 1 |
-| 3 | `secher-ccd-4-20-1622-tarif` | rosenobel ungersk dukat guldgylden mark danske | `rosenobel` | ✅ | 177 / 60 | 23 | 1 |
-| 4 | `secher-ccd-1-210-1564-laan-klippinge` | låne klipping lensmænd rund mønt | `klippinge` | ✅ | 549 / 63 | 4 | 2 |
-| 5 | `secher-ccd-3-309-1609-fremmed-smaamoent` | fireskillingstykker søslinger Hildesheim polske dütchen | `fireskillingstykker` | ❌ | 0 / 0 | 1 | 1 |
-| 6 | `schou-1795-bd1-s81-myndtordning-1671-guld` | guldmønt dukat 23 karat 67 stykker kølnisk mark | `kølnisk mark` | ❌ | 1 / 1 | 1 | 1 |
-| 7 | `schou-1795-bd1-s80-note-regl-1692` | kroner reglement 1692 halvskilling kobber | `halvskilling` | ❌ | 25 / 16 | 3 | 1 |
-| 8 | `mordhorst-c5mord-reskript-1692-2-skilling` | toskilling godhed værdi kroner omkostninger | `omkostninger` | ✅ | 92 / 40 | 1 | 1 |
-| 9 | `wilcke-1950-moentordning-1541` | møntordning 1541 Crucis 14½ lod | `Crucis` | ❌ | 24 / 5 | 19 | 4 |
-| 10 | `wilcke-1950-tillaeg-1544` | guldengroschen 13½ lod 1544 | `Gyldengroschen` | ✅ | 21 / 11 | 1 | 1 |
-| 11 | `galster-1934-junge-1545-tilladelse` | Junge tilladelse guldgylden Degener Flensborg | `Degener` | ✅ | 30 / 14 | 1 | 1 |
-| 12 | `galster-1934-hertugdoemmer-lybsk-moentfod` | hertugdømmerne lybske møntfod privilegier 1460 | `lybske Møntfod` | ✅ | 2 / 2 | 1 | 1 |
-| 13 | `eriksson-2017-hvid-soesling-skilling-penningar` | hvid fire penninge søsling skilling hovedvalør | `huvudvalören` | ✅ | 1 / 1 | 2 | 1 |
-| 14 | `holst-norges-mynter-hamar-ingen-mynt` | Hamar biskop Magnus myntbrev Vincents Lunge | `Vincents Lunge` | ✅ | 12 / 5 | 7 | 2 |
-| 15 | `wilcke-1919-van-campen-1596` | Geert van Campen møntmester 1596 specier | `van Campen` | ✅ | 7 / 5 | 1 | 1 |
+### Set B (held out), round 4
 
-## Out of scope for the pilot
-
-Vector embeddings (e.g. local bge-m3); OCR of the `rigsarkivet/` scans; the
-`kb-ingest` / `kb-research` skills and a `source-researcher` agent; Hede and
-Bruun (coin records, not prose).
+| # | refs_pool key | query | grep | grep: gold hit | grep: lines / files | kb rank | kb rank (same kind) | kb rank (in work) |
+|---|---|---|---|---|---|---|---|---|
+| 1 | `secher-ccd-3-487-1618-soelvkrone` | sølvkrone 13¾ lod fint sølv halvanden rigsdaler | `sølvkrone` | ❌ | 22 / 8 | 6 | 2 | 1 |
+| 2 | `secher-ccd-3-541-1619-rigsdaler-96-sk` | rigsdaler spansk matte otte realer skilling danske | `spansk matte` | ❌ | 1 / 1 | 1 | 1 | 1 |
+| 3 | `secher-ccd-4-20-1622-tarif` | rosenobel ungersk dukat guldgylden mark danske | `rosenobel` | ✅ | 177 / 60 | 23 | 1 | 1 |
+| 4 | `secher-ccd-1-210-1564-laan-klippinge` | låne klipping lensmænd rund mønt | `klippinge` | ✅ | 549 / 63 | 4 | 2 | 2 |
+| 5 | `secher-ccd-3-309-1609-fremmed-smaamoent` | fireskillingstykker søslinger Hildesheim polske dütchen | `fireskillingstykker` | ❌ | 0 / 0 | 1 | 1 | 1 |
+| 6 | `schou-1795-bd1-s81-myndtordning-1671-guld` | guldmønt dukat 23 karat 67 stykker kølnisk mark | `kølnisk mark` | ❌ | 1 / 1 | 1 | 1 | 1 |
+| 7 | `schou-1795-bd1-s80-note-regl-1692` | kroner reglement 1692 halvskilling kobber | `halvskilling` | ❌ | 25 / 16 | 3 | 1 | 1 |
+| 8 | `mordhorst-c5mord-reskript-1692-2-skilling` | toskilling godhed værdi kroner omkostninger | `omkostninger` | ✅ | 92 / 40 | 1 | 1 | 1 |
+| 9 | `wilcke-1950-moentordning-1541` | møntordning 1541 Crucis 14½ lod | `Crucis` | ❌ | 24 / 5 | 19 | 10 | 4 |
+| 10 | `wilcke-1950-tillaeg-1544` | guldengroschen 13½ lod 1544 | `Gyldengroschen` | ✅ | 21 / 11 | 1 | 1 | 1 |
+| 11 | `galster-1934-junge-1545-tilladelse` | Junge tilladelse guldgylden Degener Flensborg | `Degener` | ✅ | 30 / 14 | 1 | 1 | 1 |
+| 12 | `galster-1934-hertugdoemmer-lybsk-moentfod` | hertugdømmerne lybske møntfod privilegier 1460 | `lybske Møntfod` | ✅ | 2 / 2 | 1 | 1 | 1 |
+| 13 | `eriksson-2017-hvid-soesling-skilling-penningar` | hvid fire penninge søsling skilling hovedvalør | `huvudvalören` | ✅ | 1 / 1 | 2 | 1 | 1 |
+| 14 | `holst-norges-mynter-hamar-ingen-mynt` | Hamar biskop Magnus myntbrev Vincents Lunge | `Vincents Lunge` | ✅ | 12 / 5 | 7 | 5 | 2 |
+| 15 | `wilcke-1919-van-campen-1596` | Geert van Campen møntmester 1596 specier | `van Campen` | ✅ | 7 / 5 | 1 | 1 | 1 |

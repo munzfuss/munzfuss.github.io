@@ -48,7 +48,7 @@ VARIANTS = Path(__file__).resolve().parent / "variants.yml"
 DB_DEFAULT = Path(__file__).resolve().parent / "_index" / "kb.sqlite"
 REFS_POOL = REPO / "data" / "shared" / "refs_pool.yml"
 
-NORMALIZER_VERSION = 4  # bump when normalize() changes; recorded in the db
+NORMALIZER_VERSION = 5  # bump when normalize() changes; recorded in the db
 
 # ---------------------------------------------------------------------------
 # Normalisation
@@ -309,7 +309,7 @@ CREATE TABLE passage(
   locator TEXT, line_start INTEGER, line_end INTEGER, lang TEXT, text TEXT);
 CREATE VIRTUAL TABLE fts USING fts5(body, content='', tokenize='unicode61');
 CREATE VIRTUAL TABLE vocab USING fts5vocab(fts, row);
-CREATE TABLE work(id TEXT PRIMARY KEY, title TEXT, citation TEXT, ocr TEXT);
+CREATE TABLE work(id TEXT PRIMARY KEY, title TEXT, citation TEXT, ocr TEXT, kind TEXT);
 """
 
 
@@ -326,8 +326,8 @@ def cmd_build(args) -> int:
     for w in man["works"]:
         if args.work and w["id"] not in args.work:
             continue
-        con.execute("INSERT INTO work VALUES (?,?,?,?)",
-                    (w["id"], w.get("title"), w.get("citation"), w.get("ocr")))
+        con.execute("INSERT INTO work VALUES (?,?,?,?,?)",
+                    (w["id"], w.get("title"), w.get("citation"), w.get("ocr"), w.get("kind")))
         for p in iter_passages(w):
             cur = con.execute(
                 "INSERT INTO passage(work,volume,path,pdf_page,printed,locator,line_start,line_end,lang,text)"
@@ -424,14 +424,29 @@ def _best_snippet(text: str, terms: list[str], width: int = 1) -> tuple[int, str
 
 def search(con: sqlite3.Connection, q: str, *, work: list[str] | None = None,
            lang: str | None = None, limit: int = 10, prefix: bool = True,
-           fts_raw: bool = False, split: bool = True):
+           fts_raw: bool = False, split: bool = True, per_work: int = 0,
+           kind: list[str] | None = None):
+    """Ranked passages for `q`.
+
+    per_work caps how many passages of one work enter the list (0 = no cap),
+    so one book that discusses the topic on every page does not push every
+    other work out of the top; ignored when the search is restricted to a
+    single work.
+    """
     terms = query_terms(q)
+    # single digits are mostly the halves of split fractions («14¼» → 14 1 4)
+    # and section numbers: as free terms they only add noise
+    terms = [t for t in terms if not (t.isdigit() and len(t) == 1)] or terms
     if not terms:
         return [], terms
+    cap = per_work if per_work and not (work and len(work) == 1) else 0
     where, params = [], []
     if work:
         where.append("p.work IN (%s)" % ",".join("?" * len(work)))
         params += work
+    if kind:
+        where.append("p.work IN (SELECT id FROM work WHERE kind IN (%s))" % ",".join("?" * len(kind)))
+        params += kind
     if lang:
         where.append("p.lang LIKE ?")
         params.append(f"%{lang}%")
@@ -440,17 +455,21 @@ def search(con: sqlite3.Connection, q: str, *, work: list[str] | None = None,
            " p.line_start, p.text, bm25(fts) AS score"
            " FROM fts JOIN passage p ON p.id = fts.rowid"
            f" WHERE fts MATCH ?{extra} ORDER BY score LIMIT ?")
-    seen, rows = set(), []
+    seen, rows, per = set(), [], {}
+    pool = max(limit, 1) * 50 if cap else limit
     # --fts: the query keeps FTS5 syntax (quotes, NEAR, OR); its words are
     # normalised like the index, then the operators restored to upper case
     raw = re.sub(r"\b(near|and|or|not)\b", lambda m: m.group(1).upper(),
                  normalize(q, join_lines=False))
     exprs = [raw] if fts_raw else [_fts_expr(terms, "AND", prefix, con, split), _fts_expr(terms, "OR", prefix, con, split)]
     for expr in exprs:
-        for r in con.execute(sql, [expr, *params, limit]):
+        for r in con.execute(sql, [expr, *params, pool]):
             if r[0] in seen:
                 continue
             seen.add(r[0])
+            if cap and per.get(r[1], 0) >= cap:
+                continue
+            per[r[1]] = per.get(r[1], 0) + 1
             rows.append(r)
             if len(rows) >= limit:
                 break
@@ -467,7 +486,8 @@ def cmd_search(args) -> int:
     con = sqlite3.connect(db)
     rows, terms = search(con, args.query, work=args.work, lang=args.lang, limit=args.limit,
                          prefix=not args.exact, fts_raw=args.fts,
-                         split=not args.no_split)
+                         split=not args.no_split, per_work=args.per_work,
+                         kind=args.kind)
     print(f"query terms (normalised): {' '.join(terms)}")
     if not rows:
         print("no hits")
@@ -581,9 +601,13 @@ def main(argv=None) -> int:
     s.add_argument("query")
     s.add_argument("--work", action="append", help="restrict to work id (repeatable)")
     s.add_argument("--lang", help="restrict to a language code (da, de, la, en, sv, no)")
+    s.add_argument("--kind", action="append",
+                   help="restrict to a kind of work: source, register, literature, web, extract (repeatable)")
     s.add_argument("--limit", type=int, default=10)
     s.add_argument("--exact", action="store_true", help="no prefix matching")
     s.add_argument("--no-split", action="store_true", help="no compound splitting of query words")
+    s.add_argument("--per-work", type=int, default=0,
+                   help="at most N passages of one work in the list (0 = no cap; ignored with one --work)")
     s.add_argument("--fts", action="store_true", help="pass QUERY to FTS5 as-is (NEAR, quotes)")
     s.set_defaults(fn=cmd_search)
     s = sub.add_parser("offsets")

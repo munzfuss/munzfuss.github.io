@@ -96,16 +96,17 @@ def main() -> int:
     pool = yaml.safe_load(kb.REFS_POOL.read_text(encoding="utf-8"))
     evalf = EVAL if args.set == "a" else EVAL.with_name("eval_set_b.yml")
     cases = yaml.safe_load(evalf.read_text(encoding="utf-8"))["cases"]
-    print("| # | refs_pool key | query | grep | grep: gold hit | grep: lines / files | kb rank | kb rank (in work) |")
-    print("|---|---|---|---|---|---|---|---|")
+    kinds = {w["id"]: w.get("kind") for w in kb.load_manifest()["works"]}
+    print("| # | refs_pool key | query | grep | grep: gold hit | grep: lines / files | kb rank | kb rank (same kind) | kb rank (in work) |")
+    print("|---|---|---|---|---|---|---|---|---|")
     stats = {"grep": 0, "kb1": 0, "kb5": 0, "kb10": 0, "kbw1": 0, "kbw10": 0, "kbany": 0,
-             "miss_kb10": 0, "miss_kbw10": 0, "hit_kb10": 0}
+             "miss_kb10": 0, "kbk10": 0, "miss_kbw10": 0, "hit_kb10": 0}
     n_err = 0
     for i, c in enumerate(cases, 1):
         try:
             gold = gold_passages(con, c, quote_of(pool, c["key"]))
         except LookupError as e:
-            print(f"| {i} | `{c['key']}` | GOLD ERROR: {e} | | | | | |")
+            print(f"| {i} | `{c['key']}` | GOLD ERROR: {e} | | | | | | |")
             n_err += 1
             continue
         gids = {r[0] for r in gold}
@@ -114,6 +115,8 @@ def main() -> int:
         nfiles = len({h[0] for h in hits})
         rows, _ = kb.search(con, c["query"], limit=args.depth)
         rank = next((n for n, r in enumerate(rows, 1) if r[0] in gids), None)
+        rows_k, _ = kb.search(con, c["query"], kind=[kinds[c["work"]]], limit=args.depth)
+        rank_k = next((n for n, r in enumerate(rows_k, 1) if r[0] in gids), None)
         rows_w, _ = kb.search(con, c["query"], work=[c["work"]], limit=args.depth)
         rank_w = next((n for n, r in enumerate(rows_w, 1) if r[0] in gids), None)
         stats["grep"] += g
@@ -122,6 +125,7 @@ def main() -> int:
         stats["kb10"] += bool(rank and rank <= 10)
         stats["kbw1"] += rank_w == 1
         stats["kbw10"] += bool(rank_w and rank_w <= 10)
+        stats["kbk10"] += bool(rank_k and rank_k <= 10)
         stats["kbany"] += bool(rank)
         if g:
             stats["hit_kb10"] += bool(rank and rank <= 10)
@@ -129,11 +133,12 @@ def main() -> int:
             stats["miss_kb10"] += bool(rank and rank <= 10)
             stats["miss_kbw10"] += bool(rank_w and rank_w <= 10)
         print(f"| {i} | `{c['key']}` | {c['query']} | `{c['grep']}` | {'✅' if g else '❌'} | "
-              f"{len(hits)} / {nfiles} | {rank or f'>{args.depth}'} | {rank_w or f'>{args.depth}'} |")
+              f"{len(hits)} / {nfiles} | {rank or f'>{args.depth}'} | {rank_k or f'>{args.depth}'} | {rank_w or f'>{args.depth}'} |")
     n = len(cases) - n_err
     print(f"\ngrep finds the gold passage in {stats['grep']}/{n} cases.")
     print(f"kb (whole corpus): rank 1 in {stats['kb1']}/{n}, top 5 in {stats['kb5']}/{n}, "
           f"top 10 in {stats['kb10']}/{n}, top {args.depth} in {stats['kbany']}/{n}; "
+          f"restricted to the kind: top 10 in {stats['kbk10']}/{n}; "
           f"restricted to the work: rank 1 in {stats['kbw1']}/{n}, top 10 in {stats['kbw10']}/{n}.")
     gm = n - stats["grep"]
     print(f"Of the {gm} cases grep misses, kb has the passage in the top 10 in {stats['miss_kb10']} "

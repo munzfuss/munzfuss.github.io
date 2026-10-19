@@ -189,6 +189,8 @@ plain `grep` misses (measured: `scripts/kb/README.md`).
 
 - **Restrict to the work** (`--work`, ids in `_corpus.yml`) whenever you know it — ranking
   across the whole corpus is the weak point; within one work the passage is usually rank 1.
+  Not sure which work? `--kind source` limits to editions of the acts and accounts
+  (Secher, Schou, …), `--kind literature` to the studies.
 - A hit prints `work · p. N · path:line`. **p. N is the PRINTED page** where the manifest
   establishes the PDF→print offset; otherwise the hit says «printed page not established» —
   then find the page on the scan, never compute one.
