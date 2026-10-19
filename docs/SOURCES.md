@@ -2223,3 +2223,18 @@ Fix: commit absorb's output for all three. Rule of thumb — a hand edit to a
 final must be written in absorb's key order (or by re-running absorb), and a
 `display` flag on a KMM citation is never a curator surface. Pinned by
 `tests/test_kmm_display_flag_is_derived.py`.
+
+### 13.23 danskmoent's Wilcke I transcription (`wilcke/w1d.htm`) — one figure differs from the print (2026-10-19)
+
+Wilcke I (1919) s. 74 prints the contemporary gold:silver ratio of England as
+**10,90** («I England var Tallet paa det Tidspunkt 10,90»; checked on the page
+image of `scripts/cache/wilcke/christian_iv_moentpolitik_1919/wilcke_1.pdf`, PDF 73).
+The danskmoent transcription w1d.htm gives «paa Tidspunkt 11,90» — the digit
+changed and «det» dropped. The project had carried 11,90 from the transcription
+into `fuesse.yml`, a refs_pool scope note and two dossiers; corrected to 10,90.
+All other quotes taken from w1d (six refs_pool keys) were compared with the
+print the same day and match word for word; the 1602 table in w1d is Galster's
+reworked, rounded version (danskmoent says so), not a transcription error.
+*Rule.* For Wilcke I, cite and quote the scan (`danskmoent.dk/pdf2/Wilcke_1.pdf`,
+printed page = PDF + 1); use w1d only as a search aid, and check every figure
+taken from it against the page image.

@@ -503,12 +503,21 @@ Finvægt 33,923 gr. med Daleren af Finvægt 25.983 gr., bliver
 Forholdstallet 13,021. Sammenholdes Daleren derimod med 4 Daler
 Guldklipping af Finvægt 8,119 gr., bliver Tallet 12,80*».
 
-For scale he gives the contemporary ratios elsewhere: England 11,90 ·
+For scale he gives the contemporary ratios elsewhere (s. 74): England 10,90 ⚠ ·
 Holland 11,29–11,64 · France 11,88 · South Germany 12,22–12,24 ·
 Sweden after the 1604 ordinance 13,35. The Danish 12,8 is inside that
 band — **the statutory daler value tracked bullion parity and was
 re-set when parity moved** (§1.3), which is the opposite of a fiat
 tariff.
+
+> **⚠ Source discrepancy — reproduction vs print (recorded 2026-10-19).**
+> Wilcke I (1919) s. 74, printed page image: «I England var Tallet paa det
+> Tidspunkt **10,90**». danskmoent.dk's transcription `wilcke/w1d.htm`
+> (Wayback 20250916064914) prints «paa Tidspunkt **11,90**» — the figure
+> changed and «det» dropped. The print governs; the figure above is
+> corrected from 11,90. Every other w1d quote of this period was checked
+> against the print the same day and matches. See `docs/SOURCES.md` §13.23.
+
 
 #### Why the fuss is named 115½
 

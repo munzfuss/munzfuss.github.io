@@ -340,8 +340,17 @@ at 25,983 g fine:
 | Portugaløser (17 Dlr.) | **13,02** |
 
 Wilcke's own figure for the Portugaløser is 13,021 — reproduced exactly. His
-contemporary comparanda, same page: England 11,90; Holland 11,29-11,64; France
+contemporary comparanda, same page: England 10,90 ⚠; Holland 11,29-11,64; France
 11,88; southern Germany 12,22-12,24; Sweden after its 1604 ordinance 13,35.
+
+> **⚠ Source discrepancy — reproduction vs print (recorded 2026-10-19).**
+> Wilcke I (1919) s. 74, printed page image: «I England var Tallet paa det
+> Tidspunkt **10,90**». danskmoent.dk's transcription `wilcke/w1d.htm`
+> (Wayback 20250916064914) prints «paa Tidspunkt **11,90**» — the figure
+> changed and «det» dropped. The print governs; the figure above is
+> corrected from 11,90. Every other w1d quote of this period was checked
+> against the print the same day and matches. See `docs/SOURCES.md` §13.23.
+
 
 **Consequence for the Portugaløser.** By metal it is 9,997 contemporary ducats
 (§6.1); by decreed value it is 17 / 1⅝ = **10,46**. The 4,6 % spread is a tariff
