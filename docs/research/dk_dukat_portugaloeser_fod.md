@@ -327,7 +327,7 @@ noget forringede Mønten*».
 **Wilcke on what this gold was for**: «*De Guldmønter, der fremkom, kunde ikke
 spille nogen virkelig Rolle for Handelssamkvemmet. Deres Forskelligartethed og
 indbyrdes afvigende Forholdstal til Sølv viser ogsaa, at de snarere var at anse
-for Skuemønt til festlig Lejlighed end som en konstant Handelsmønt*» (s. 73).
+for Skuemønt til festlig Lejlighed end som en konstant Handelsmønt*» (s. 74).
 
 **The mutually deviating silver ratios he names, recomputed** against the daler
 at 25,983 g fine:
@@ -600,8 +600,8 @@ Origin-of-the-standard questions moved to `ducat_origins.md` §7.
   Galster-via-Wilcke, per the page's own editorial note; the underlying scheme is
   Wilcke, *Christian IV.s Møntpolitik 1588-1625* (København 1919), s. 69.
 - **Wilcke, Julius**: *Christian IV.s Møntpolitik 1588-1625* (København 1919),
-  s. 73 (Skuemønt verdict, comparative silver ratios), s. 74 (the 20.11.1604
-  revision), s. 81 (1602 remains operative), via danskmoent.dk as above.
+  s. 74 (Skuemønt verdict, comparative silver ratios), s. 75 (the 20.11.1604
+  revision), s. 80 (1602 remains operative; pages corrected 2026-10-19 from 73 / 74 / 81), via danskmoent.dk as above.
 - **Hede** per-type specs, via the parser cache `scripts/cache/hede/*.json` and
   danskmoent's Hede pages (`danskmoent.dk/chr/c4hNN.htm`, `/fr/f2hNN.htm`).
 - **Ernst, Axel**: «Guldudmøntningen i Haderslev 1591-1593», *NNUM* 1953,

@@ -22,7 +22,7 @@
 > kap. I.3; a ducal/dowager issue, register §3), the Prinsens Daler 1590 (Gyrvhild
 > Fadersdatter's licence 27 Feb 1590 — register §3), the 1602 reform (`1602_forordninger_
 > moentreform.md`).
-> Written 2026-10-14 from Wilcke I (1919) s. 56–61, 86 (PDF 55–60, 85; table s. 60 read from
+> Written 2026-10-14 from Wilcke I (1919) s. 56–61, 78 (PDF 55–60, 77; table s. 60 read from
 > the page image), Wilcke II (1924) kap. I «Tidsrummet 1588–1625» (danskmoent `w2ref.htm`),
 > Wilcke VII (1950) s. 406–407 (table read from the image), Hede c4h44–73 (danskmoent).
 
@@ -43,7 +43,7 @@
 |---|---|---|---|
 | Archive | R. A. T. K. (B; O as Wilcke VII cites it, p. 4 no. 12); T. K. I. A. Registrerede Koncepter til Patente 1532–1610 (O as Wilcke II cites it); Kancelliets Brevbøger 1593–96, 1596–1602; Enevold Kruse's Rentemesterregnskaber 1594–98 | the acts and the accounts | not seen |
 | Print of B | Numismatisk Forenings Medlemsblad I p. 13–14 («hvor Bestallingens Ordlyd er gengiven» — Wilcke II n. 22) | the Bestalling's wording | not in hand — §8.1 |
-| **Reading 1** | **Wilcke I** (1919) *Christian IV.s Møntpolitik 1588–1625*: s. 56–57 Dalhusen and Gulden gone, no coin 1588–93 but one specie 1590 and some gold, «Først 1594 præges Toskillinger», B's §§ 1, 3, 6, M0, M1; s. 58 output 1595–1601, van Campen, the two 1596 species (coronation 29 Aug 1596; «IIII Mark danske»); s. 59 Schwabe, the 1582 Befaling as «Norm for Udmøntningen 1588–1602», the Norwegian Befaling 1 Aug 1589; **s. 60 the table** (1 Dlr. 1597, 1 Mk. 1596, 8 / 4 / 2 / 1 Sk., Hvid — with Beskrivelsen's assays) and the **output table 1595–97**; s. 61 B's 850 Dlr. against the gain; s. 86 B § 1 again; s. 46, 48 the SWEDISH ordinances of 1 Jan / 20 May 1593 | the Bestalling's content, the execution; does NOT know O (Wilcke VII s. 406: «I Christian IV.s Møntpolitik … er gaaet ud fra, at der ikke foreligger nogen Møntanordning fra de første Aar … Dette er imidlertid urigtigt») | `scripts/cache/wilcke/christian_iv_moentpolitik_1919/wilcke_1.pdf` (printed = PDF + 1), `pages/wilcke_1.txt`; live `danskmoent.dk/pdf2/Wilcke_1.pdf` (Wayback 20250916070455) |
+| **Reading 1** | **Wilcke I** (1919) *Christian IV.s Møntpolitik 1588–1625*: s. 56–57 Dalhusen and Gulden gone, no coin 1588–93 but one specie 1590 and some gold, «Først 1594 præges Toskillinger», B's §§ 1, 3, 6, M0, M1; s. 58 output 1595–1601, van Campen, the two 1596 species (coronation 29 Aug 1596; «IIII Mark danske»); s. 59 Schwabe, the 1582 Befaling as «Norm for Udmøntningen 1588–1602», the Norwegian Befaling 1 Aug 1589; **s. 60 the table** (1 Dlr. 1597, 1 Mk. 1596, 8 / 4 / 2 / 1 Sk., Hvid — with Beskrivelsen's assays) and the **output table 1595–97**; s. 61 B's 850 Dlr. against the gain; s. 78 B § 1 again (page corrected 2026-10-19, earlier given as s. 86); s. 46, 48 the SWEDISH ordinances of 1 Jan / 20 May 1593 | the Bestalling's content, the execution; does NOT know O (Wilcke VII s. 406: «I Christian IV.s Møntpolitik … er gaaet ud fra, at der ikke foreligger nogen Møntanordning fra de første Aar … Dette er imidlertid urigtigt») | `scripts/cache/wilcke/christian_iv_moentpolitik_1919/wilcke_1.pdf` (printed = PDF + 1), `pages/wilcke_1.txt`; live `danskmoent.dk/pdf2/Wilcke_1.pdf` (Wayback 20250916070455) |
 | **Reading 2** | **Wilcke II** (1924) kap. I «Tidsrummet 1588–1625», §3: Puls and Metzner at Haderslev 1591–93, the Kreis complaints, «Den 1. August 1594 udstedtes en Møntordning for Andreas Metzner …», B's purpose clause and date, Metzner's death «i Begyndelsen af Aaret 1596», notes (21)–(22) | O dated 1594 with its archive reference | `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/pages/w2ref.txt` (danskmoent HTML, no page breaks — SOURCES §13.17) |
 | **Reading 3** | **Wilcke VII** (1950) s. 406–407: O dated 1 Aug 1597, its four lines quoted, the comparison table with 1572/1582 (image-verified in the 1582 dossier §4.2), «synes udstedt efter eller ved Møntmesterens Død» | O dated 1597; the grid | `scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-6.pdf` (printed = PDF + 365); Wayback 20261013165803 |
 | Catalogue | Hede c4h44–45 (species 1596), c4h46–47 (1597, 1600), c4h67 (2 ß 1594–96), c4h68 (1 ß 1595, «REX ELECTUS … inden kroningen»), c4h69–73 (1596 series; c4h71: «4 skillingen er ikke nævnt i møntordningerne af 12. januar 1582 og 1. august 1597», c4h72: «udmøntet 157 daler») | Hede follows Wilcke VII's 1597 date | `scripts/cache/hede/c4h*.json` |
@@ -64,7 +64,7 @@ og hvor Møntmesteren da ogsaa skulde have fri Bolig.*» Переклад: «Л�
 двоскілінги. 14 вересня 1593 р. з Kolding було видано Bestalling для нового монетмайстра,
 Andreas Metzner. З § 3 Bestalling довідуємося, що йшлося про цілком новий монетний двір, який за
 § 6 належало влаштувати в København у місці, яке вкаже король, і де монетмайстер мав також
-дістати безплатне помешкання». S. 86: «*I Andreas Metzners Bestalling af 1593 § 1 nævnes en
+дістати безплатне помешкання». S. 78: «*I Andreas Metzners Bestalling af 1593 § 1 nævnes en
 Sum af 850 Dlr. til Løn, Underholdning og Besoldning.*» Переклад: «У Bestalling Andreas Metzner
 1593 р. § 1 названо суму 850 далерів на платню, утримання й жалування».
 
@@ -180,7 +180,7 @@ B's 850 Dlr. a year the gain on this output «kunde … ikke dække denne Udgift
   2 ß and 1 ß 1594–95; † Feb 1596. **Geert van Campen**, mintmaster 1596 (the Mark, 8 / 4 / 2 /
   1 ß and the two species of 1596). **Nicolaus Schwabe** of Dresden, Bildschnider und
   Contrafeyer from 14 Feb 1596; cut the 1596–97 species; delivered 100 Dlr. «Skuemynt» 29 Oct
-  1597 (the wedding specie); from 1602 mintmaster on account (Wilcke I s. 86 — the 1602
+  1597 (the wedding specie); from 1602 mintmaster on account (Wilcke I s. 78 — the 1602
   dossier). **Hans Dalhusen** had ceased coining 21 Feb 1576 (Kvittans 22 Sept 1598); **Poul
   Gulden** discharged 1585, † 1593 Königsberg (Bahrfeldt).
 - No Danish coin 1588–93 except the 1590 specie (Prinsens Daler, a private licence) and some
@@ -238,7 +238,7 @@ B's 850 Dlr. a year the gain on this output «kunde … ikke dække denne Udgift
 ## 9. Sources consulted
 
 - Wilcke, Julius: *Christian IV.s Møntpolitik 1588–1625* (Numismatisk Forenings Medlemsblad,
-  København 1919), s. 46, 48, 56–61, 86 — <https://www.danskmoent.dk/pdf2/Wilcke_1.pdf> (Wayback 20250916070455);
+  København 1919), s. 46, 48, 56–61, 78 — <https://www.danskmoent.dk/pdf2/Wilcke_1.pdf> (Wayback 20250916070455);
   cache `scripts/cache/wilcke/christian_iv_moentpolitik_1919/` (printed = PDF + 1; table s. 60
   read from a `pdftoppm` render).
 - Wilcke, Julius: *Møntvæsenet under Christian IV og Frederik III 1625–1670* (NFM, København

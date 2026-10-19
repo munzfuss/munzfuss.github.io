@@ -19,7 +19,7 @@
 > the 1647–48 tariff Forordninger (register rows; `1671_…` dossier to come), Glückstadt
 > (Timpff) — Wilcke II kap. III.
 > Written 2026-10-13 from Wilcke II (1924) kap. II.3 «2. Juli 1641 – 25. Maj 1644» (s. 165–174),
-> kap. II.7 (s. 258 ff.), kap. I.2 (the 1630 grid); Secher V nr. 143 (Reces 27 Feb 1643, s. 244).
+> kap. II B.7 (s. 198–199; earlier given as «II.7, s. 258 ff.», corrected 2026-10-19), kap. I.2 (the 1630 grid); Secher V nr. 143 (Reces 27 Feb 1643, s. 244).
 > **Source gap:** danskmoent.dk's transcription of Wilcke II drops the two tables of s. 172
 > («/// skema side 172 ///») and s. 173; no PDF of Wilcke II is online (`pdf2/Wilcke_2.pdf`
 > is 404). The grid below is therefore Wilcke's prose + the 1624 table + our coin data, with
@@ -29,18 +29,18 @@
 
 | Act | Date, place | Name as the sources give it | Issuer | Addressee / jur. | Signature |
 |---|---|---|---|---|---|
-| A | 25 Feb 1643, København | the mint account: «Der zu Dennemarcken, Norwegen Kønigl. Maytt. Müntzordnung untern Dato Kopenhagen den 25. Februar Anno 1643, dess Müntzmeister Peter Gronners bestalling ein verleibet»; Wilcke: «Møntordning af 25. Febr. 1643», «Møntordningen af 1643», «hans Faders oprindelige Møntordinans» (kap. II.7, of Grüner's son) | Christian IV | Peter Grüner, mintmaster at Christiania (Bestalling); NO | N. R. A., Kristiania Mønts Regnskab 1. Jan. 1643 – 1. Maj 1643, Bilag Litra A 2 (Wilcke II n. 9) — not printed in Secher (DK acts only), not in Paus as far as seen |
+| A | 25 Feb 1643, København | the mint account: «Der zu Dennemarcken, Norwegen Kønigl. Maytt. Müntzordnung untern Dato Kopenhagen den 25. Februar Anno 1643, dess Müntzmeister Peter Gronners bestalling ein verleibet»; Wilcke: «Møntordning af 25. Febr. 1643», «Møntordningen af 1643», «hans Faders oprindelige Møntordinans» (kap. II B.7, of Grüner's son) | Christian IV | Peter Grüner, mintmaster at Christiania (Bestalling); NO | N. R. A., Kristiania Mønts Regnskab 1. Jan. 1643 – 1. Maj 1643, Bilag Litra A 2 (Wilcke II n. 9) — not printed in Secher (DK acts only), not in Paus as far as seen |
 | A0 | 2 July 1641 (to Statholder Christoffer Urne, Bergenhus); 16 Oct 1641 (with «indlagte Mønt Ordinance paa Skrod og Lod»); 11 March 1642 | the king's Befalinger — «af det huid Sølff, Som os Aff Sølffberget tilkommer Smaa mynt lader mynte … udi Rixdalers Verdt»; «2 ß, 4 ß og 8 ß … efter indlagte Mønt Ordinance» | Christian IV | Statholder Urne; NO | R. A. Norske Tegnelser VII 1640–48 f. 76, 84, 98 b (Wilcke II n. 1) |
 | P | 9 Dec 1642 | Grüner's Memorial to Hannibal Sehested «wegen der müntze in Christiania», with a second proposal appended | Peter Grüner (petitioner) | Statholder Sehested | R. A. Norske Mønt- og Bjergværkssager indtil 1660 (Wilcke II n. 7) |
 | R | 27 Feb 1643 | Christian IV's store Reces, II. bog, 3. kap. «Kiøbstederne anlangende», § 17 «Borgemestere oc raads tilsiun», nr. 1 «med mynten» | Christian IV | DK (Secher's index files it under Møntvæsen) | Secher V nr. 143, s. 244 |
-| S | 14 Jan 1648 | Corfits Ulfeldt's reduction of the København 2 ß and 1 ß weights (Wilcke II kap. II.7) | Rigshofmester Ulfeldt | DK (København mint) | not seen; Wilcke's statement only |
+| S | 14 Jan 1648 | Corfits Ulfeldt's reduction of the København 2 ß and 1 ß weights (Wilcke II kap. II B.7) | Rigshofmester Ulfeldt | DK (København mint) | not seen; Wilcke's statement only |
 
 ## 2. Source chain
 
 | Layer | Source | What it is | Our copy |
 |---|---|---|---|
 | **Original** | N. R. A. (Riksarkivet Oslo), Kristiania Mønts Regnskab 1. Jan. – 1. Maj 1643, Bilag Litra A 2 — the Bestalling with the Müntzordnung incorporated | the act | not seen |
-| **Reading** | **Wilcke, J.**, *Møntvæsenet under Christian IV og Frederik III 1625–1670* (1924), kap. II.3 (s. 165–174): the 1641 orders quoted, Grüner's two proposals with their figures, the king's acceptance «i alt væsentligt … blot at der tilføjedes 4 ß», the title of the act, the grid as **table s. 172** (NOT transcribed), the fee / Overskud figures, the coinage 1643–44 as **table s. 173** (NOT transcribed); kap. II.7: the 1643 standard still in the accounts to 1667 (fees quoted), Ulfeldt's 14 Jan 1648 reduction; kap. I.2: the 1630 grid (table transcribed) | the only reading of the act; quotes its title | `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/pages/w2b3.txt`, `w2b7.txt`, `w2a2.txt` (danskmoent.dk `wilcke/w2b3.htm` etc.) |
+| **Reading** | **Wilcke, J.**, *Møntvæsenet under Christian IV og Frederik III 1625–1670* (1924), kap. II.3 (s. 165–174): the 1641 orders quoted, Grüner's two proposals with their figures, the king's acceptance «i alt væsentligt … blot at der tilføjedes 4 ß», the title of the act, the grid as **table s. 172** (NOT transcribed), the fee / Overskud figures, the coinage 1643–44 as **table s. 173** (NOT transcribed); kap. II B.7: the 1643 standard still in the accounts to 1667 (fees quoted), Ulfeldt's 14 Jan 1648 reduction; kap. I.2: the 1630 grid (table transcribed) | the only reading of the act; quotes its title | `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/pages/w2b3.txt`, `w2b7.txt`, `w2a2.txt` (danskmoent.dk `wilcke/w2b3.htm` etc.) |
 | Printed act (R) | **Secher**, *Corpus constitutionum Daniæ* V (1903), nr. 143 | the Reces | `scripts/cache/secher/bd5/pages/0257.txt` |
 | Our data | Hede Norge nc4h14, nc4h16–18, nf3h70; KMM, Bruun, Numista, NGC specimens | the coins struck under it | `data/v2/final/danish_norway.yml` |
 
@@ -110,7 +110,7 @@ oc dersom nogens forseelse findis, da dennem derfore at tiltale oc dom ofver hen
 купці торгували й розплачувалися ходячою в королівстві монетою, і якщо виявиться чиясь
 провина, притягати їх до відповідальності й виносити вирок».
 
-**S — 14 Jan 1648** (Wilcke II kap. II.7): «*den 14. Januar 1648 nedsatte Corfits Ulfeldt
+**S — 14 Jan 1648** (Wilcke II kap. II B.7): «*den 14. Januar 1648 nedsatte Corfits Ulfeldt
 disse Mønters Vægt til 192 Stkr. 2 ß eller 4 Rdlr. og 256 Stkr. 1 ß eller 4 Sletdaler paa
 Marken brutto. Herved blev den københavnske Skillingsmønt staaende i Kong Frederik III.s Tid.*»
 Переклад: «14 січня 1648 р. Corfits Ulfeldt знизив вагу цих монет до 192 штук 2 ß, або 4
@@ -129,14 +129,14 @@ Marken brutto. Herved blev den københavnske Skillingsmønt staaende i Kong Fred
 | 2 ß | 180 | 4½ lod | 281,25 | 1,299 | 0,365 | Wilcke s. 171 («ganske efter Anordningen af 1624»); Hede nc4h17 .281 / 1,299 g ✓ |
 | 1 ß | 254 | 2½ lod | 156,25 | 0,921 | 0,144 | same; Hede nc4h18 .156 / 0,921 g ✓ |
 
-Fees and dues (Wilcke s. 170–172, kap. II.7): specie — 32 Rdl. Mønterløn per 100 Mark
+Fees and dues (Wilcke s. 170–172, kap. II B.3; kap. II B.7): specie — 32 Rdl. Mønterløn per 100 Mark
 (unchanged since 1628); small coin — the mintmaster buys the king's fine silver at **9 Rdl.
 36 ß per Mark fine** and pays as the king's share of the «Overskud» **61 Rdl.** (8 ß), **40½
 Rdl.** (2 ß), **16 Rdl. 18 ß** (1 ß) per 100 Mark «beskikket Sølv» — the 4 ß share is not
 given in the prose; Wilcke: «Af 100 Mark 12-lødigt Sølv svarede Møntmesteren Kongen en
 Afgift af 61 Rdlr.» (s. 172 — this sentence is the strongest evidence that the 8 ß were
 12-lødig). The 2 ß share was raised by 1 rigsort per Mark (to 65½ Rdl. per 100 Mark) in the
-1668 account (kap. II.7).
+1668 account (kap. II B.7).
 
 ### 4.2 Recomputation
 
@@ -186,7 +186,7 @@ The Christiania 8 ß 1641–42 (Hede nc4h14, .875, 2,386 g) and 2 ß 1641–42 (
 Christiania (Akershus), the Kongsberg silver («det huid Sølff … Aff Sølffberget»). Anders
 Pedersen, mintmaster 28 April 1628 – 1643 (900, then 800 Rdl. per 100 Mark; left Norway c.
 Oct 1642, settled 25 Apr – 29 Oct 1643); Peter Grüner from 1 May 1643 (previously København;
-his son later — kap. II.7 «sin Faders oprindelige Møntordinans»). Statholders: Christoffer
+his son later — kap. II B.7 «sin Faders oprindelige Møntordinans»). Statholders: Christoffer
 Urne (orders 1641–42), Hannibal Sehested from 30 April 1642. København: Corfits Ulfeldt's
 reduction of 14 Jan 1648 (S).
 
@@ -201,9 +201,9 @@ reduction of 14 Jan 1648 (S).
 - **Parallel:** Reces 27 Feb 1643 II.3.17.1 (R) — a policing clause, not a standard; Glückstadt
   (Timpff's Bestalling 17 Sept 1640 / 31 Dec 1641; dismissed 17 Oct 1643 — Wilcke II kap. III).
 - **Successors:** the Svenskekrig small coin at København 1644–47 «efter samme Korn og Skrot
-  som hjemlet i Norge» (kap. II.7); Hebræer / Krone 1644–48; Frdg. 10 Dec 1647 (nr. 337) and
+  som hjemlet i Norge» (kap. II B.7); Hebræer / Krone 1644–48; Frdg. 10 Dec 1647 (nr. 337) and
   21 March 1648 (nr. 339) — tariffs; **14 Jan 1648** (S) — København 2 ß 192/M, 1 ß 256/M;
-  Haandfæstning 8 May 1648 § 48; the 1668 Rentekammer order (kap. II.7); Myndt-Ordning 22
+  Haandfæstning 8 May 1648 § 48; the 1668 Rentekammer order (kap. II B.7); Myndt-Ordning 22
   March 1671 (`1671_…`, to write).
 
 ## 7. Our data
@@ -216,7 +216,7 @@ reduction of 14 Jan 1648 (S).
 | Bruun 9470 / Numista 99116 / KMM 279764 — 4 Skilling 1643–44, .750, 1,13–1,19 g | A, 4 ß line (inferred) | `seed_unsorted` |
 | Hede nc4h14 — 8 Skilling 1641–44, .875, 2,19–2,39 g; nc4h16 — 2 Skilling 1641–42, .875, 0,588 g; NGC 4 Skilling 1641–42 .875 1,18 g | A0 + the 1630 grid («udi Rixdalers Verdt») — NOT this act; the Hede range «1641–1644» for nc4h14 spans both standards (1641–42 at 14 lod, 1643–44 at 12 lod — per-Fuß review) | `seed_unsorted` |
 | KMM 1643–48 1 / 2 / 8 Skilling Christiania (c. 50 objects, no fineness) | A | `seed_unsorted` |
-| København 2 ß / 1 ß 1644–47 and the 1648 reduction | kap. II.7 | the DK page's Skilling tiers — per-Fuß review |
+| København 2 ß / 1 ß 1644–47 and the 1648 reduction | kap. II B.7 | the DK page's Skilling tiers — per-Fuß review |
 
 No fuss in `data/shared/fuesse.yml` yet carries the 1643 standard (the Norwegian small coin
 1643–1668 at 4½ / 2½ lod sits entirely in `seed_unsorted`); candidates for the per-Fuß review:
@@ -241,7 +241,7 @@ Keys added with this dossier: `wilcke-1924-kap2-3-befaling-1641-rixdalers-verdt`
    wording.
 3. **Hede nc4h14 «8 Skilling 1641–1644» at .875** merges two standards (1641–42 at 14 lod;
    1643–44 at 12 lod — Bruun 9496 / KMM 149490 at .750). Per-Fuß review: split or annotate.
-4. **Was the 1643 ordinance ever formally extended to København?** Wilcke kap. II.7 says the
+4. **Was the 1643 ordinance ever formally extended to København?** Wilcke kap. II B.7 says the
    København 2 ß / 1 ß of the Svenskekrig were struck «efter samme Korn og Skrot som hjemlet
    i Norge» — by what instrument is not stated.
 5. **Wayback copies** of `danskmoent.dk/wilcke/w2b3.htm`, `w2b7.htm`: availability API 429
@@ -251,7 +251,7 @@ Keys added with this dossier: `wilcke-1924-kap2-3-befaling-1641-rixdalers-verdt`
 
 - Wilcke, Julius: *Møntvæsenet under Christian IV og Frederik III 1625–1670* (Numismatisk
   Forenings Medlemsblad, København 1924), kap. II.3 «2. Juli 1641 – 25. Maj 1644» (s.
-  165–174), kap. II.7 «1. Januar 1668 – 22. Marts 1671», kap. I.2 «10. Oktober 1629 – 3. Januar
+  165–174), kap. II B.7 «1. Januar 1668 – 22. Marts 1671», kap. I.2 «10. Oktober 1629 – 3. Januar
   1644» — <https://www.danskmoent.dk/wilcke/w2b3.htm>, `w2b7.htm`, `w2a2.htm` (cache
   `scripts/cache/wilcke/moentvaesenet_1625_1670_1924/pages/`).
 - Secher, V. A. (ed.): *Corpus constitutionum Daniæ* V: 1639–1650 (København 1903), nr. 143

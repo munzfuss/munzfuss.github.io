@@ -74,7 +74,7 @@ Source: Wilcke 7-2 p. 156. «*meget almindelig*» (very common) — high mintage
 
 ### 25 February 1524 ordinance (København)
 
-Source: Wilcke 7-2 p. 184-187. Verbatim p. 184: «*Vi Fr. … at slaa, i Guld: Nobler (den vegne Mark skal holde 23½ Karat og skraade 16 Stkr.), Rinske Gylden (18 Karat, 72 Stkr.) …*»
+Source: Wilcke 7-2 p. 183–187. Verbatim p. 183: «*Vi Fr. … at slaa, i Guld: Nobler (den vegne Mark skal holde 23½ Karat og skraade 16 Stkr.), Rinske Gylden (18 Karat, 72 Stkr.) …*»
 
 Master spec table (Wilcke p. 187 / file PDF-page 42 of wilcke_7-2.txt):
 

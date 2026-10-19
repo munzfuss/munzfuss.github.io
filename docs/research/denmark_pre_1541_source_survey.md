@@ -69,7 +69,7 @@ Mints active in the window (per Wilcke 1950 + Bruun lot data):
 - **Data shape**: per-entry: denomination, Stkr/cølnsk M, Bruttovægt g, Lod/Karat, ‰, Finvægt g, mintmark/mint. Excellent for ordinance-vs-specimen comparison.
 - **Strengths**: ordinance-level legal authority; verbatim quotes of source documents; specifies mintmasters (Dines Blicher, Jørgen Kock, Mårtens, Reynold Junge, Poul Fechtel). Already in our cache.
 - **Weaknesses**: thin on per-specimen specs (the «what the mint produced» vs «what the ordinance required» — Wilcke discusses the standards more than individual coins). No images.
-- **Verbatim sample**: «*Vi Fr. ... at slaa, i Guld: Nobler (den vegne Mark skal holde 23½ Karat og skraade 16 Stkr.), Rinske Gylden (18 Karat, 72 Stkr.) ...*» (Wilcke 7-2 p. 184).
+- **Verbatim sample**: «*Vi Fr. ... at slaa, i Guld: Nobler (den vegne Mark skal holde 23½ Karat og skraade 16 Stkr.), Rinske Gylden (18 Karat, 72 Stkr.) ...*» (Wilcke 7-2 p. 183).
 
 ### 2. Bruun PDFs — Stack's Bowers L. E. Bruun Collection 2024-2026
 
