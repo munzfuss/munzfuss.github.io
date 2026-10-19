@@ -232,31 +232,121 @@ def parse_note(note: str | None) -> dict:
             "note_residual": residual or None}
 
 
+# Leading year digits the coin does not show, which the catalogue supplies in
+# parentheses: «(1)604», «(16)19», «(15)93 (cc)», «(160)9 (b)». Unwrapped only
+# when a digit or Z follows, so a mintmark «(c)» or a range «(1618-22)» is left
+# alone.
+_IMPLIED_DIGITS = re.compile(r"\((\d{1,3})\)(?=[\dZ])")
+
+# A year token in which the coin's own Z-shaped 2 is printed as «Z»: «16Z4»,
+# «16ZZ», «165Z», «15Z5». Krause writes the 2 the way the die cut it, and the
+# meaning is attested twice over in our caches: NumisMaster's KM 101 Speciedaler
+# page heads its date table «1624 - 1634» and lists the rows «16Z4 … 16Z7», and
+# Numista issues carry `"year": 1622` beside `"comment": "(16)ZZ"`. Uppercase
+# only: that is the only form in the corpus, and it is the form both sources
+# resolve. Lowercase «z» or «xx» are left unread.
+_Z_YEAR = re.compile(r"(?<![0-9A-Za-z])1[0-9Z]{3}(?![0-9A-Za-z])")
+
+
+# A parenthesised prefix written in front of a year that is already complete:
+# «(1)1604 (c)» (Schaumburg KM 7, cuid 1154787; NumisMaster prints the same
+# cell). «11604» is no year, and the type's other cells — «(1)604 (p)», «1604
+# (p)» — read 1604, so the prefix is a doubled digit and is dropped.
+_DOUBLED_PREFIX = re.compile(r"\((\d{1,3})\)(?=(\d{4})(?!\d))")
+
+# An undated coin the catalogue attributes to a span or an approximate year:
+# «(1618-22)», «(1590-1616)», «(ca1566-70) (d)», «(ca1611)», «(c.1620)»,
+# «(ca.1640)». The span is carried whole; it is an attribution, not a date on
+# the coin, so the record is marked `year_attributed` (→ year_verified: false).
+# «(after 1620)» is NOT a span — see `_AFTER`.
+_ATTRIBUTED = re.compile(
+    r"\((?:c(?:a)?\.?\s*)?(1\d{3})(?:-(\d{2}|\d{4}))?\)")
+
+
+def normalise_date(s: str) -> str:
+    """NGC date cell → the same cell with the year written in plain digits.
+
+    Two Krause conventions are resolved, both verified against a second
+    source (see `_IMPLIED_DIGITS`, `_Z_YEAR`), plus the doubled prefix of
+    `_DOUBLED_PREFIX`; everything else passes through.
+    """
+    s = _DOUBLED_PREFIX.sub(
+        lambda m: "" if m.group(2).startswith(m.group(1)) else m.group(0), s)
+    s = _IMPLIED_DIGITS.sub(r"\1", s)
+    return _Z_YEAR.sub(lambda m: m.group(0).replace("Z", "2"), s)
+
+
+# «(after 1620)» — Schaumburg Kipper 12 Pfennig KM 93-95: a lower bound, not a
+# span. The bound is read as the year (curator's fallback, 2026-10-17) and kept
+# in `year_after`, so the seed can close the span on the ruler's reign end.
+_AFTER = re.compile(r"\(after\s+(1\d{3})\)")
+
+
+def _attributed_years(s: str) -> list[int] | None:
+    """Every year of an attributed span in a (normalised) cell, else None."""
+    m = _ATTRIBUTED.search(s)
+    if not m:
+        return None
+    a, b = int(m.group(1)), m.group(2)
+    if b is None:
+        return [a]
+    end = int(b) if len(b) == 4 else int(str(a)[:2] + b)
+    return list(range(a, end + 1)) if end >= a else None
+
+
 def parse_years(rec: dict) -> dict:
     """Year span from the date table, falling back to the heading date line.
 
-    NGC writes partially-legible dates as "(1)604" and illegible digits as
-    "16z0" / "166z"; the 'z' forms are deliberately NOT resolved into a year —
-    guessing the missing digit would be invention (§0).
+    «16Z4» was once treated here as an unreadable digit and dropped. It is
+    not: Z is the coin's Z-shaped 2 (curator, 2026-10-17; corroborated by
+    NumisMaster and Numista — see `_Z_YEAR`). With the «(16)19» form, which
+    was likewise unread, it left 113 records with no year at all (2026-10-17).
+    Cells still unread — «16xx», «160(0?)», «ND», «Rare»
+    — contribute no year, and a «z» left after normalisation still flags the
+    record as partially illegible.
     """
     raw = [d.get("year_mint") or "" for d in (rec.get("dates") or [])]
     if not raw and rec.get("date_line"):
         raw = [rec["date_line"]]
-    years, illegible = [], False
+    years, illegible, rewritten = [], False, []
+    attributed_only = None
+    out_after = None
     for s in raw:
-        s2 = s.replace("(1)", "1")
-        # NGC marks an unreadable digit with `z` and nothing else — «16Z0»,
-        # «166z», «16ZZ», «(15)9Z CJ». The `\d[a-z]` alternative that used to
-        # sit here read the mintmaster initials in «1711IW» as a damaged digit
-        # and flagged 12 fully legible records as partially illegible.
+        s2 = normalise_date(s)
+        if s2 != s and s not in rewritten:
+            rewritten.append(s)
+        after = _AFTER.search(s2)
+        if after:
+            out_after = int(after.group(1))
+        span = [out_after] if after else _attributed_years(s2)
+        if span:
+            years.extend(span)
+            attributed_only = attributed_only is not False
+            if s not in rewritten:
+                rewritten.append(s)
+            continue
+        # An unread digit left after normalisation — «166z». The
+        # `\d[a-z]` alternative that used to sit here read the mintmaster
+        # initials in «1711IW» as a damaged digit.
         if re.search(r"\bz\b|\dz|z\d", s2, re.I):
             illegible = True
-        years.extend(int(y) for y in _YEAR.findall(s2))
+        found = [int(y) for y in _YEAR.findall(s2)]
+        if found:
+            attributed_only = False
+        years.extend(found)
     out = {"year_first": min(years) if years else None,
            "year_last": max(years) if years else None,
            "years_all": sorted(set(years)) or None}
     if illegible:
         out["year_partially_illegible"] = True
+    if attributed_only:
+        # Every year comes from an attribution («(1618-22)», «(ca1611)»):
+        # the coin carries no date (§3a — the span stays, the (?) renders).
+        out["year_attributed"] = True
+    if out_after is not None:
+        out["year_after"] = out_after
+    if rewritten:
+        out["dates_as_printed"] = rewritten
     return out
 
 

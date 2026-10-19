@@ -81,8 +81,26 @@ def _subvariant_key(coin: dict) -> tuple:
 
     Normalising here can only MERGE buckets, never split them, so this cannot
     strand a specimen in a bucket of its own — but it does drop records, and
-    every drop is recorded on its representative via `_record_thinned_from`."""
+    every drop is recorded on its representative via `_record_thinned_from`.
+
+    Every OTHER type catalogue a record carries — mb, thomsen, bergsoe,
+    hauberg, aagaard, dav, fr, the verbatim `others` labels, … — is part of
+    the key too, as the set of its (register, value) pairs. Until 2026-10-17
+    only the six named registers above were, so ruler-less weightless KMM
+    pennies of different MB numbers shared one bucket and `_salvage_unique`
+    pinned the dropped records' numbers onto the keeper: `kmk-138263` (KMM «MB
+    285, 287; 319-320») came to carry `mb: [285, 500, 566-567]` — Erik Menved
+    and Christoffer II on one record. 19 KMM keepers carried an index of
+    another record that way (mb, thomsen, bergsoe, aagaard, JSJ#, B#,
+    Auk.Kat.#). A record WITHOUT a register and one WITH it no longer share a
+    bucket either — as for the six named ones, where an absent value already
+    keyed apart: grouping them would hand the bare record an index its source
+    never gave it. Splitting a bucket only ever keeps more records (+88 of
+    ~16 000 on KMM), so this cannot drop a specimen that was kept before."""
     cat = coin.get("catalog") or {}
+    named = ("km", "hede", "sieg", "schou", "lange", "galster")
+    extra = frozenset((k, _norm(x)) for k, x in _coin_catpairs(coin)
+                      if k not in named)
     return (
         str(cat.get("km")), str(cat.get("hede")), str(cat.get("sieg")),
         str(cat.get("schou")), str(cat.get("lange")), str(cat.get("galster")),
@@ -90,6 +108,7 @@ def _subvariant_key(coin: dict) -> tuple:
         normalise_ruler_key(coin.get("ruler")),
         coin.get("year_first"),
         str(coin.get("mint")), coin.get("metal"),
+        extra,
     )
 
 
@@ -158,9 +177,10 @@ def _salvage_unique(reps: list, dropped: list) -> None:
     """Carry the dropped specimens' DISTINGUISHING data onto the kept reps so
     the §9a thinning sheds only redundant readings, never unique information:
 
-      * every distinct catalogue index — incl. the `others` sub-catalogue
-        (dorfmann# / schrötter# / olding# / aagaard#) that is NOT in the
-        bucket key — is unioned onto reps[0];
+      * every distinct catalogue index is unioned onto reps[0]. Since every
+        type register is in the bucket key (2026-10-17), bucket members share
+        all of them and this adds nothing on a fresh bucket; it stays as the
+        guard for records whose catalogue only differs in form (`_norm`);
       * fineness / diameter_mm are preserved at the type level: the kept reps
         already carry the type's reading(s); only when the reps lack the field
         entirely is a dropped specimen's value salvaged (so the type never

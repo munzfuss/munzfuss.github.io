@@ -633,6 +633,30 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
     # rendered an empty catalog cell. Adding the mapping surfaces every
     # catalog.mb value.
     ("mb", "MB"),
+    # Regional / specialist catalogues that have a schema slot but had no
+    # render mapping — the same missing-field bug as galster / mb above.
+    # Measured 2026-10-16 across data/v2/final: behrens 216, skaare 205,
+    # nmd 159, welter 153, bergsoe 64, fiala 29, jensen_skjoldager 26,
+    # jesse 11, gaedechens 9, thomsen 7, hauberg 7, aagaard (KMM) — 47 coins
+    # on the Denmark page had an EMPTY catalogue cell because their only
+    # index sat in one of these. Labels follow the source's own print form
+    # (Bruun: «NMD-53», «JS-…», «Skaare-…», «Schive-X:14»). The three
+    # `schive: rn` values (a mis-parse of the mintmaster name «Hans Schivern
+    # Knoph») were removed 2026-10-17 before `schive` was added here.
+    ("nmd", "NMD"),
+    ("schive", "Schive"),
+    ("skaare", "Skaare"),
+    ("jensen_skjoldager", "JS"),
+    ("bergsoe", "Bergsøe"),
+    ("thomsen", "Thomsen"),
+    ("hauberg", "Hauberg"),
+    ("aagaard", "Aagaard"),
+    ("behrens", "Behrens"),
+    ("welter", "Welter"),
+    ("fiala", "Fiala"),
+    ("gaedechens", "Gaedechens"),
+    ("jesse", "Jesse"),
+    ("kreber", "Kreber"),
 ]
 
 # Register tooltip text per Krause register code. Used by
@@ -731,6 +755,10 @@ _PREFIX_PRIORITY: dict[str, int] = {
     "Aagaard": 210, "Aagaard-1": 211, "Aagaard-2": 212, "Aagaard-5": 213,
     "Saur": 220, "Diakov": 230, "Uzd": 240, "Bit": 250,
     "Brekke": 260, "Hauberg": 280,
+    # Named fields added 2026-10-16 (see _NAMED_FIELDS).
+    "NMD": 31, "Skaare": 32, "Schive": 33, "JS": 52, "Bergsøe": 53, "Thomsen": 54,
+    "Behrens": 150, "Welter": 155, "Fiala": 156, "Gaedechens": 157,
+    "Jesse": 158, "Kreber": 159,
     "Fb": 290, "J": 300,
     "Bruun": 9000,  # the Bruun collection number sits directly above Numista's
     "N": 9999,  # Numista's own ID — always last

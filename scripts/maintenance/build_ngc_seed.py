@@ -34,6 +34,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from lib.entity_routing import route_entity_with_rules  # noqa: E402
 from lib.paths import NGC_CACHE  # noqa: E402
+from lib.ruler_reigns import reign_window  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
 # NGC region -> default issuing_entity. The region IS the polity: NGC splits
@@ -172,7 +173,18 @@ def build_entry(rec: dict, scope: str) -> dict | None:
     metal, metal_ok = _metal(rec.get("composition"))
     diam, diam_raw = _diameter(rec.get("diameter_raw"))
     yf, yl = rec.get("year_first"), rec.get("year_last")
-    ranges = _year_ranges(rec.get("years_all"), yf, yl)
+    years_all = rec.get("years_all")
+    after = rec.get("year_after")
+    if after is not None:
+        # «(after 1620)»: closed on the ruler's reign end when the reign table
+        # knows the ruler for this house; otherwise the bound itself stands,
+        # marked '(?)' below (curator, 2026-10-17).
+        reign = reign_window(rec.get("ruler"),
+                             house=SCOPE_ENTITY.get(scope, ""))
+        if reign and reign[1] > after and reign[0] <= after + 1:
+            yf, yl = after + 1, reign[1]
+            years_all = list(range(yf, yl + 1))
+    ranges = _year_ranges(years_all, yf, yl)
     fineness = rec.get("fineness")
     weight = rec.get("weight_g")
     flags = rec.get("flags") or {}
@@ -225,16 +237,22 @@ def build_entry(rec: dict, scope: str) -> dict | None:
         "_ngc_cuid": str(cuid),
     }
 
-    # §4: an unreadable date digit ('16z4') is NOT resolved into a year, and a
-    # coin with no year at all cannot claim one — both render '(?)'.
-    if rec.get("year_partially_illegible") or yf is None:
+    # §4: an unread date digit ('166z') is NOT resolved into a year, and a coin
+    # with no year at all cannot claim one — both render '(?)'. A Z-shaped 2
+    # ('16Z4') IS read (parse_ngc._Z_YEAR); the cells as NGC printed them are
+    # kept in `_ngc_dates_as_printed` so the reading stays auditable (§3a: the
+    # year fields themselves carry plain digits only). An undated coin the
+    # catalogue attributes to a span («(1618-22)») keeps the span, with '(?)'.
+    if (rec.get("year_partially_illegible") or rec.get("year_attributed")
+            or yf is None):
         entry["year_verified"] = False
 
     for key, dst in (("obverse", "_obverse"), ("reverse", "_reverse"),
                      ("obverse_legend", "_obverse_legend"),
                      ("reverse_legend", "_reverse_legend"),
                      ("note_raw", "_ngc_note"),
-                     ("date_line", "_ngc_date_line")):
+                     ("date_line", "_ngc_date_line"),
+                     ("dates_as_printed", "_ngc_dates_as_printed")):
         if rec.get(key):
             entry[dst] = rec[key]
     if diam_raw:

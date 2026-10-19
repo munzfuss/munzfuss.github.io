@@ -265,7 +265,7 @@ coins:
         - 8-9
         - 39-49
       galster_volume: f1g
-    metal: billon
+    metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -275,12 +275,17 @@ coins:
       - value: 0.563
         source: galster
     weight_rough_g:
+      - value: 2.23
+        source: kmk
       - value: 2.26
         source: galster
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g120.htm
         ref: Galster 120 (f1g) — danskmoent.dk fr_f1g120.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/81439
+        ref: KMM 81439 (Inv. GP 888.17)
     verification_note:
       de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
         Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -836,11 +841,16 @@ coins:
     nominal: 1 Skilling Lybsk
     ruler: Frederik II.
     issuing_entity: royal_slesvig
+    year_is_reign_span: true
     fraction: 1/96
     id: unified-dk-hede-f2h30a
-    year_first: 1566
-    year_last: 1566
-    year_label: '1566'
+    year_first: 1559
+    year_last: 1588
+    year_ranges:
+      -   - 1559
+          - 1588
+    year_label: 1559-1588
+    year_verified: false
     mint: Flensburg
     catalog:
       hede: 30A
@@ -859,12 +869,17 @@ coins:
       - value: 0.391
         source: hede
     weight_rough_g:
+      - value: 1.482
+        source: kmk
       - value: 1.856
         source: hede
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f2h30.htm
         ref: danskmoent.dk (Hede f2h30A)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/345172
+        ref: KMM 345172 (Inv. FP 10156.1)
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -953,6 +968,8 @@ coins:
       sieg:
         - '32.1'
         - '32.2'
+      others:
+        - JSJ# 218
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -1260,12 +1277,9 @@ coins:
     issuing_entity: royal_slesvig
     year_is_reign_span: true
     id: unified-dk-numista-309419
-    year_first: 1559
-    year_last: 1588
-    year_ranges:
-      -   - 1559
-          - 1588
-    year_label: 1559-1588
+    year_first: 1565
+    year_last: 1565
+    year_label: '1565'
     year_verified: false
     mint: Flensburg
     catalog:
@@ -1281,8 +1295,6 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 1.482
-        source: kmk
       - value: 1.59
         source: numista
     sources:
@@ -1887,7 +1899,9 @@ coins:
       -   - 1514
           - 1533
     year_label: 1514-1533
+    year_verified: true
     mint:
+      - Gottorp
       - Husum
       - Schleswig
     catalog:
@@ -1895,9 +1909,13 @@ coins:
       mb: '24'
       lange: 16b
       galster: '126'
-      schou: '52'
+      schou:
+        - 1-5
+        - 50-71
+        - ej
       others:
         - B# 116d
+      galster_volume: f1g
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -1917,6 +1935,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/83081
         ref: KMM 83081 (Inv. GP 982.105)
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f1g126.htm
+        ref: Galster 126 (f1g) — danskmoent.dk fr_f1g126.htm
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -2018,6 +2039,7 @@ coins:
       da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - unified-kmk-123178
+      - unified-kmk-561643
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -2080,6 +2102,8 @@ coins:
     mint: Flensburg
     catalog:
       hede: '23'
+      others:
+        - JSJ# 216
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -2222,7 +2246,15 @@ coins:
     nominal: 1 Blaffert
     ruler: Christian 3
     issuing_entity: royal_slesvig
+    year_is_reign_span: true
     id: unified-kmk-306915
+    year_first: 1534
+    year_last: 1559
+    year_ranges:
+      -   - 1534
+          - 1559
+    year_label: 1534-1559
+    year_verified: false
     mint: Flensburg
     catalog:
       hede: '23'
@@ -2251,7 +2283,15 @@ coins:
     nominal: 1 Lybsk blaffert
     ruler: Christian 3
     issuing_entity: royal_slesvig
+    year_is_reign_span: true
     id: unified-kmk-308285
+    year_first: 1534
+    year_last: 1559
+    year_ranges:
+      -   - 1534
+          - 1559
+    year_label: 1534-1559
+    year_verified: false
     mint: Flensburg
     metal_verified: false
     weight_rough_verified: false
@@ -2303,7 +2343,15 @@ coins:
     nominal: 1 Lybsk blaffert
     ruler: Christian 3
     issuing_entity: royal_slesvig
+    year_is_reign_span: true
     id: unified-kmk-345235
+    year_first: 1534
+    year_last: 1559
+    year_ranges:
+      -   - 1534
+          - 1559
+    year_label: 1534-1559
+    year_verified: false
     mint: Flensburg
     catalog:
       hede: 23-24
@@ -2352,7 +2400,15 @@ coins:
     nominal: 1 Hulpenning
     ruler: Christian 3
     issuing_entity: royal_slesvig
+    year_is_reign_span: true
     id: unified-kmk-422297
+    year_first: 1534
+    year_last: 1559
+    year_ranges:
+      -   - 1534
+          - 1559
+    year_label: 1534-1559
+    year_verified: false
     mint: Flensburg
     metal_verified: false
     weight_rough_verified: false
@@ -2365,36 +2421,6 @@ coins:
     verification_note: *id001
     composed_of:
       - unified-kmk-422297
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    ruler: Christian 3
-    issuing_entity: royal_slesvig
-    year_is_reign_span: true
-    id: unified-kmk-497176
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
-    year_verified: false
-    mint: Gottorp
-    catalog:
-      galster: '133'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/497176
-        ref: KMM 497176 (Inv. FP 10697.11)
-    verification_note: *id001
-    composed_of:
-      - unified-kmk-497176
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -2457,42 +2483,18 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Skilling
-    ruler: Frederik 1
-    issuing_entity: royal_slesvig
-    id: unified-kmk-81439
-    year_first: 1514
-    year_last: 1515
-    year_ranges:
-      -   - 1514
-          - 1515
-    year_label: 1514-1515
-    mint: Husum
-    catalog:
-      schou: '43'
-      galster: 120A
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.23
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/81439
-        ref: KMM 81439 (Inv. GP 888.17)
-    verification_note: *id001
-    composed_of:
-      - unified-kmk-81439
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 1 Penning lybsk
     ruler: Christian 3
     issuing_entity: royal_slesvig
+    year_is_reign_span: true
     id: unified-kmk-81475
+    year_first: 1534
+    year_last: 1559
+    year_ranges:
+      -   - 1534
+          - 1559
+    year_label: 1534-1559
+    year_verified: false
     mint: Flensburg
     metal: silver
     metal_verified: true
@@ -2527,7 +2529,7 @@ coins:
       schou: 8-9
       sieg: '20'
       galster_volume: c3g
-    metal: billon
+    metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -2547,6 +2549,9 @@ coins:
         url: https://www.danskmoent.dk/pdf2/ReinhJunge.pdf
         ref: Georg Galster (udg.), Reynold Junges Møntmesterregnskaber 1534–1540 (København 1934), S. XXI, Skema nr. 3 (1534, ½ ß l., Slesvig; Schou 8—9; tungeste Ex. 1.11 g, letteste Ex. 0.95 g, 
           gennemsnit 1.03 g; Af Exx. i MK 0); Tavle XVIII, fig. 3
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/497176
+        ref: KMM 497176 (Inv. FP 10697.11)
     verification_note:
       de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
         Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -2605,48 +2610,6 @@ coins:
         stykke er endnu ikke bestemt.
     composed_of:
       - unified-dk-galster-f1g-125
-  - fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Søsling
-    ruler: Frederik I
-    issuing_entity: royal_slesvig
-    id: unified-dk-galster-f1g-126
-    year_first: 1532
-    year_last: 1533
-    year_ranges:
-      -   - 1532
-          - 1533
-    year_label: 1532-1533
-    year_verified: true
-    mint: Gottorp
-    catalog:
-      galster: '126'
-      schou:
-        - 1-5
-        - 50-71
-        - ej
-      galster_volume: f1g
-    metal: billon
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f1g126.htm
-        ref: Galster 126 (f1g) — danskmoent.dk fr_f1g126.htm
-    verification_note:
-      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
-        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
-        coinage standard of this piece is not yet determined.
-      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
-        примірника ще не визначено.
-      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
-        stykke er endnu ikke bestemt.
-    composed_of:
-      - unified-dk-galster-f1g-126
   - fuss: seed_unsorted
     phase: galster
     kind: kurant

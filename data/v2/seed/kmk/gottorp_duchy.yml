@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-15T08:20:15Z'
+generated_at: '2026-10-17T15:48:57Z'
 entity: gottorp_duchy
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -5529,6 +5529,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/184397
         ref: KMM 184397 (Inv. FP 3427.008)
     verification_note: *id001
+    catalog:
+      lange: '324'
   - id: kmk-184398
     fuss: seed_unsorted
     phase: kmk
@@ -5801,7 +5803,7 @@ coins:
     nominal: 1/16 Thaler
     metal_verified: false
     mint_verified: false
-    ruler: Frederik
+    ruler: Friedrich III. von Gottorp
     year_first: 1646
     year_last: 1646
     year_label: '1646'
@@ -5815,6 +5817,25 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/430265
         ref: KMM 430265 (Inv. FP 994.33)
     verification_note: *id001
+    _source_errata:
+      - field: ruler
+        printed: Frederik
+        correct: Friedrich III. von Gottorp
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: bare or misspelt KMM ruler resolved from the year / index; our value shown (?) where inferred. Analysis in chat 2026-10-18 (KMM «Frederik»/«Christian» pass).'
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik
+        correct: Friedrich III. von Gottorp
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-657527
     fuss: seed_unsorted
     phase: kmk
@@ -8656,6 +8677,9 @@ coins:
         records give nation as Slesvig-Holsten under Gottorp/Holstein rulers. Stop-listed in build_kmk_seed; cleared here because §4 verified-wins would keep the old value against a fresh None."
       mint_verified: false — see mint.
       issuing_entity: Karl Friedrich was Duke of Holstein-Gottorp — 31 of his coins already sit there.
+    catalog:
+      others:
+        - Storgaard# 11
   - id: kmk-351731
     fuss: seed_unsorted
     phase: kmk
@@ -8763,6 +8787,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/130560
         ref: KMM 130560 (Inv. FP 2577.59)
     verification_note: *id001
+    year_first: 1652
+    year_label: '1652'
+    year_last: 1652
+    year_ranges:
+      -   - 1652
+          - 1652
   - id: kmk-130785
     fuss: seed_unsorted
     phase: kmk
@@ -8876,6 +8906,9 @@ coins:
       would_route_to: gottorp_duchy
       active: true
       reasoning: Rule matched on ruler_lineage='af gottorp'; mint absent / unverified → rule re-routed.
+    catalog:
+      others:
+        - Jungk# 316
   - id: kmk-368459
     fuss: seed_unsorted
     phase: kmk
@@ -8920,7 +8953,7 @@ coins:
     verification_note: *id001
     catalog:
       others:
-        - Auk.Kat.# Nr
+        - Auk.Kat.# 1660
   - id: kmk-415815
     fuss: seed_unsorted
     phase: kmk
@@ -8958,9 +8991,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/584927
         ref: KMM 584927 (Inv. FP 1668.35)
     verification_note: *id001
-    catalog:
-      others:
-        - Auk.Kat.# Nr
     _thinned_from:
       - kmk-584919
       - kmk-584920
@@ -8969,6 +8999,9 @@ coins:
       - kmk-584925
       - kmk-584926
       - kmk-584927
+    catalog:
+      others:
+        - Auk.Kat.# 1582
   - id: kmk-415816
     fuss: seed_unsorted
     phase: kmk
@@ -8984,7 +9017,32 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/415816
         ref: KMM 415816 (Inv. KP 1117.96)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/584920
+        ref: KMM 584920 (Inv. FP 1668.41)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/584921
+        ref: KMM 584921 (Inv. FP 1668.40.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/584924
+        ref: KMM 584924 (Inv. FP 1668.38)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/584925
+        ref: KMM 584925 (Inv. FP 1668.37)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/584926
+        ref: KMM 584926 (Inv. FP 1668.36)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/584927
+        ref: KMM 584927 (Inv. FP 1668.35)
     verification_note: *id001
+    _thinned_from:
+      - kmk-584920
+      - kmk-584921
+      - kmk-584924
+      - kmk-584925
+      - kmk-584926
+      - kmk-584927
   - id: kmk-415817
     fuss: seed_unsorted
     phase: kmk
@@ -9010,9 +9068,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/415822
         ref: KMM 415822 (Inv. KP 1117.90)
     verification_note: *id001
-    catalog:
-      others:
-        - Auk.Kat.# Nr
     _entity_routing_hint:
       rule_id: gottorp_ducal_lineage
       matched_on:
@@ -9024,6 +9079,9 @@ coins:
       - kmk-415820
       - kmk-415821
       - kmk-415822
+    catalog:
+      others:
+        - Auk.Kat.# 1573
   - id: kmk-415818
     fuss: seed_unsorted
     phase: kmk
@@ -10120,3 +10178,121 @@ coins:
       would_route_to: gottorp_duchy
       active: true
       reasoning: Rule matched on ruler_lineage='johan adolph'; mint absent / unverified → rule re-routed.
+  - id: kmk-354144
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: gottorp_duchy
+    entity_classified_via: nation
+    nominal: 4 Skilling lybsk
+    metal_verified: false
+    mint_verified: false
+    ruler: Johan Frederik af Gottorp
+    weight_rough_verified: false
+    catalog:
+      others:
+        - Jungk# 316
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/354144
+        ref: KMM 354144 (Inv. FP 4962.1)
+    verification_note: *id001
+    _entity_routing_hint:
+      rule_id: gottorp_ducal_lineage
+      matched_on:
+        ruler_lineage: af gottorp
+      would_route_to: gottorp_duchy
+      active: true
+      reasoning: Rule matched on ruler_lineage='af gottorp'; mint absent / unverified → rule re-routed.
+  - id: kmk-415820
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: gottorp_duchy
+    entity_classified_via: nation
+    metal_verified: false
+    mint_verified: false
+    ruler: Johan Adolf
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/415820
+        ref: KMM 415820 (Inv. KP 1117.92)
+    verification_note: *id001
+    _entity_routing_hint:
+      rule_id: gottorp_ducal_lineage
+      matched_on:
+        ruler_lineage: johan adolf
+      would_route_to: gottorp_duchy
+      active: true
+      reasoning: Rule matched on ruler_lineage='johan adolf'; mint absent / unverified → rule re-routed.
+    catalog:
+      others:
+        - Auk.Kat.# 1558
+  - id: kmk-415821
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: gottorp_duchy
+    entity_classified_via: nation
+    metal_verified: false
+    mint_verified: false
+    ruler: Johan Adolf
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/415821
+        ref: KMM 415821 (Inv. KP 1117.91)
+    verification_note: *id001
+    _entity_routing_hint:
+      rule_id: gottorp_ducal_lineage
+      matched_on:
+        ruler_lineage: johan adolf
+      would_route_to: gottorp_duchy
+      active: true
+      reasoning: Rule matched on ruler_lineage='johan adolf'; mint absent / unverified → rule re-routed.
+  - id: kmk-415822
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: gottorp_duchy
+    entity_classified_via: nation
+    metal_verified: false
+    mint_verified: false
+    ruler: Johan Adolf
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/415822
+        ref: KMM 415822 (Inv. KP 1117.90)
+    verification_note: *id001
+    _entity_routing_hint:
+      rule_id: gottorp_ducal_lineage
+      matched_on:
+        ruler_lineage: johan adolf
+      would_route_to: gottorp_duchy
+      active: true
+      reasoning: Rule matched on ruler_lineage='johan adolf'; mint absent / unverified → rule re-routed.
+    catalog:
+      others:
+        - Auk.Kat.# 1537
+  - id: kmk-584919
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: gottorp_duchy
+    entity_classified_via: nation
+    metal_verified: false
+    mint_verified: false
+    ruler: Frederik 3
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/584919
+        ref: KMM 584919 (Inv. FP 1668.42)
+    verification_note: *id001

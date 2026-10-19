@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-15T08:20:14Z'
+generated_at: '2026-10-17T15:48:56Z'
 entity: erzbisthum_bremen_verden
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -223,7 +223,7 @@ coins:
     nominal: 1 Søsling
     metal_verified: false
     mint_verified: false
-    ruler: Frederik 3
+    ruler: Erzbischof Friedrich
     year_first: 1641
     year_last: 1641
     year_label: '1641'
@@ -240,6 +240,37 @@ coins:
         ref: KMM 741043 (Inv. FP 1780.330; die Webseite unter dieser Objektnummer zeigt Inv. FP 1780.329)
     verification_note: *id001
     weight_rough_g: 0.54
+    _source_errata:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv6.'
+      - field: ruler_verified
+        printed: true
+        correct: false
+        curator: serg
+        reason: 'Curator (Serhii) 2026-10-18: KMM ruler corrected, KMM value kept as erroneous (!) via ruler_mark, ours shown (?). Reason group: bremen_bv6.'
+    ruler_mark:
+      kind: erroneous
+      value: Frederik 3
+      reason:
+        de: Der Datensatz des Nationalmuseums (KMM) nennt «Frederik 3». König war Friedrich III. erst ab 1648; 1641 prägte er als Erzbischof von Bremen. Hede BV6 verzeichnet «1 Søsling lybsk» 1641 mit
+          Schou 13–16; die Schou-Nummer des Stücks liegt darin.
+        en: The National Museum record (KMM) names «Frederik 3». Frederik III was king only from 1648; in 1641 he struck coins as Archbishop of Bremen. Hede BV6 lists «1 Søsling lybsk» 1641 with Schou
+          13–16; the piece's Schou number lies within these.
+        uk: Запис Національного музею (KMM) називає «Frederik 3». Королем Frederik III став лише 1648 р.; 1641 р. він карбував як архієпископ Бремена. Hede BV6 подає «1 Søsling lybsk» 1641 з Schou 
+          13–16; номер Schou примірника лежить у цих межах.
+        da: Nationalmuseets post (KMM) nævner «Frederik 3». Konge blev Frederik III først i 1648; 1641 prægede han som ærkebiskop af Bremen. Hede BV6 opfører «1 Søsling lybsk» 1641 med Schou 13–16; 
+          stykkets Schou-nummer ligger inden for disse.
+    ruler_verified: false
+    _errata_applied:
+      - field: ruler
+        printed: Frederik 3
+        correct: Erzbischof Friedrich
+      - field: ruler_verified
+        printed: true
+        correct: false
   - id: kmk-166747
     fuss: seed_unsorted
     phase: kmk
@@ -647,8 +678,6 @@ coins:
     mint_verified: false
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     weight_rough_verified: false
-    catalog:
-      lange: '1'
     verified: false
     sources:
       - type: museum
@@ -660,6 +689,10 @@ coins:
     verification_note: *id001
     _thinned_from:
       - kmk-200815
+    catalog:
+      lange:
+        - '504'
+        - 504A
   - id: kmk-200813
     fuss: seed_unsorted
     phase: kmk
@@ -672,14 +705,16 @@ coins:
     mint_verified: false
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     weight_rough_verified: false
-    catalog:
-      lange: '1'
     verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200813
         ref: KMM 200813 (Inv. FP 3108.11737)
     verification_note: *id001
+    catalog:
+      lange:
+        - '504'
+        - 504A
   - id: kmk-200814
     fuss: seed_unsorted
     phase: kmk
@@ -692,14 +727,16 @@ coins:
     mint_verified: false
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     weight_rough_verified: false
-    catalog:
-      lange: '1'
     verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200814
         ref: KMM 200814 (Inv. FP 3108.11736)
     verification_note: *id001
+    catalog:
+      lange:
+        - '504'
+        - 504A
   - id: kmk-200816
     fuss: seed_unsorted
     phase: kmk
@@ -712,8 +749,6 @@ coins:
     mint_verified: false
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     weight_rough_verified: false
-    catalog:
-      lange: '1'
     verified: false
     sources:
       - type: museum
@@ -917,6 +952,8 @@ coins:
       - kmk-200865
       - kmk-200866
       - kmk-200867
+    catalog:
+      lange: 503-04
   - id: kmk-200817
     fuss: seed_unsorted
     phase: kmk
@@ -929,14 +966,14 @@ coins:
     mint_verified: false
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     weight_rough_verified: false
-    catalog:
-      lange: '1'
     verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200817
         ref: KMM 200817 (Inv. FP 3108.11733)
     verification_note: *id001
+    catalog:
+      lange: 503-04
   - id: kmk-200818
     fuss: seed_unsorted
     phase: kmk
@@ -949,14 +986,14 @@ coins:
     mint_verified: false
     ruler: Ærkebisp Johann Friedrich 1596 - 1634
     weight_rough_verified: false
-    catalog:
-      lange: '1'
     verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/200818
         ref: KMM 200818 (Inv. FP 3108.11732)
     verification_note: *id001
+    catalog:
+      lange: 503-04
   - id: kmk-277039
     fuss: seed_unsorted
     phase: kmk
@@ -993,6 +1030,9 @@ coins:
     verification_note: *id001
     _source_note:
       da: fraklædt hoved over 'M'-agtigt ornament
+    catalog:
+      others:
+        - JSJ# 308
   - id: kmk-584917
     fuss: seed_unsorted
     phase: kmk
@@ -1008,4 +1048,24 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/584917
         ref: KMM 584917 (Inv. FP 1668.44)
+    verification_note: *id001
+  - id: kmk-200815
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: erzbisthum_bremen_verden
+    entity_classified_via: nation
+    nominal: 2 Skilling lybsk
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ærkebisp Johann Friedrich 1596 - 1634
+    weight_rough_verified: false
+    catalog:
+      lange: 504A
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/200815
+        ref: KMM 200815 (Inv. FP 3108.11735)
     verification_note: *id001

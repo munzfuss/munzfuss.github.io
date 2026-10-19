@@ -113,37 +113,35 @@ from lib.ruler_reigns import (  # noqa: E402
 )
 
 
-def _reign_lookup_is_exact(ruler: str | None) -> bool:
-    """Did the reign lookup use the WHOLE ruler name, or drop a qualifier?
+def _set_reign_span_flag(out: dict) -> None:
+    """Set `year_is_reign_span: true` where a re-run will find it.
 
-    `normalise_ruler_name` strips territorial qualifiers, so «Frederik III. von
-    Gottorp» resolves to the Danish Frederik III and comes back with the wrong
-    reign window (1648-1670 instead of the duke's 1616-1659). A comment in
-    CURATED_FIELDS asserts these dukes simply don't resolve; they do, and the
-    window is someone else's.
+    The flag is foundation-immutable, so from the second absorb on it is
+    copied from the stored final, which places it right after
+    `issuing_entity`. Setting it fresh with `out[k] = True` appended it at the
+    END of the entry, so every coin that gained the flag moved it on the next
+    run — a two-line diff per coin that no data change caused (noticed
+    2026-10-17 after the reign-window placeholder, ~1000 coins). Insert it
+    where the copy puts it instead."""
+    if out.get("year_is_reign_span") is True:
+        return
+    if "year_is_reign_span" in out or "issuing_entity" not in out:
+        out["year_is_reign_span"] = True
+        return
+    items = list(out.items())
+    out.clear()
+    for k, v in items:
+        out[k] = v
+        if k == "issuing_entity":
+            out["year_is_reign_span"] = True
 
-    Setting a flag on that basis is a pre-existing question. CLEARING one on it
-    would silently strip a curator's own flag from a coin whose «wrong» range is
-    in fact the right reign — km-44 exactly. So the clear runs only when the
-    normalised name accounts for the entire raw name.
 
-    The normaliser is looser than one would guess — it resolves «Christian von
-    Schleswig-Holstein-Glücksburg» to Christian V and «Christian 3 eller
-    Frederik 2» to Christian III — so this test is deliberately strict and
-    conservative: an English spelling or a parenthetical simply doesn't clear.
-    The one thing it does look through is the numeral form, «Christian 4» being
-    the same man as «Christian IV» rather than a qualifier.
-    """
-    if not ruler:
-        return False
-    norm = _norm_ruler(ruler)
-    if not norm:
-        return False
-    raw = re.sub(r"[.,]", " ", str(ruler)).lower().split()
-    ref = str(norm).lower().split()
-    if raw and ref and raw[-1].isdigit():
-        raw = raw[:-1] + [ref[-1]]
-    return raw == ref
+# Shared with the merger since 2026-10-17 (lib.ruler_reigns); the name is kept
+# for the tests and the call sites below.
+from lib.ruler_reigns import reign_lookup_is_exact as _reign_lookup_is_exact  # noqa: E402
+from lib.ruler_reigns import reign_window_placeholder as _reign_window_placeholder  # noqa: E402
+from lib.ruler_reigns import DANISH_CROWN_ENTITIES as _DANISH_CROWN_ENTITIES  # noqa: E402
+from lib.mb_concordance import mb_window as _mb_window, nominal_window as _nominal_window  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -505,6 +503,21 @@ def _apply_migrated_merge_fields(entry: dict, fid: str,
                 break
     if not migrated:
         return
+    # Classification travels only onto an UNCLASSIFIED host, and only when
+    # every retired peer agrees on it (2026-10-17). A merge that renames a
+    # classified class — its seeds re-grouped under another unified id, so
+    # the old final retires into a host that was a seed_unsorted singleton —
+    # used to land the coin in seed_unsorted: the replace-shaped fields were
+    # applied on the bulk-promote path only, and an existing host is never
+    # bulk-promoted. A host that already carries a classification keeps it.
+    # De-duplicated by a canonical key, not by `set()`: `phase` may be a
+    # per-location dict ({denmark: …, schleswig_holstein: …}), which is
+    # unhashable — `set()` crashed absorb on royal_holstein (2026-10-18).
+    classes: dict[str, tuple] = {}
+    for cls in migrated.get("__classes__") or []:
+        classes.setdefault(_json.dumps(cls, sort_keys=True, default=str), cls)
+    if len(classes) == 1 and entry.get("fuss") in (None, "", "seed_unsorted"):
+        entry["fuss"], entry["phase"], entry["kind"] = next(iter(classes.values()))
     for key, value in migrated.items():
         if not key.startswith("__merge__"):
             continue
@@ -538,6 +551,22 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     out = {k: v for k, v in final_entry.items()
            if k in _FOUNDATION_IMMUTABLE_FIELDS}
     out["id"] = final_entry["id"]
+
+    # A curator's ruler correction on a member (`_source_errata` field ruler,
+    # carried up as the class's `_errata_applied`) outranks the ruler the
+    # foundation froze on an earlier absorb (curator 2026-10-18). Without it a
+    # KMM «Frederik 3» corrected to Frederik I stayed «Frederik III.» on a coin
+    # that kept its final. Only one agreed correction applies; a ruler hold on
+    # the final still wins.
+    _rh = final_entry.get("_curation_holds")
+    _rh = set(_rh.keys() if isinstance(_rh, dict) else (_rh or []))
+    if "ruler" not in _rh:
+        _rc = {str(r["correct"]) for m in members[1:] if isinstance(m, dict)
+               for r in (m.get("_errata_applied") or [])
+               if isinstance(r, dict) and r.get("field") == "ruler"
+               and r.get("correct") not in (None, "")}
+        if len(_rc) == 1:
+            out["ruler"] = next(iter(_rc))
 
     # «non-None wins over None» gap-fill: when a foundation descriptive field
     # is None, adopt the first composed_of member's non-None value. Members are
@@ -650,6 +679,47 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                 authoritative_yr = _union_year_ranges(seed_unified_members)
         else:
             authoritative_yr = _union_year_ranges(members)
+    # No member attests ANY year, but the ruler is known: give the coin its
+    # ruler's reign window as a placeholder (curator direction 2026-10-17:
+    # «вставляти роки правління з (?), щоб монета не зникала»). Without a year
+    # the page assembly drops the coin («no year information»). The reign-span
+    # override below then marks it year_verified: false + year_is_reign_span,
+    # so it renders «(?)» and never drives phase outer-span expansion. It is a
+    # final-layer placeholder only: years are re-derived from the live members
+    # on every absorb, so the first attested year replaces it. A curator year
+    # hold leaves the coin alone.
+    _reign_placeholder = False
+    if authoritative_yr is None:
+        _yh = final_entry.get("_curation_holds")
+        _yhk = set(_yh.keys() if isinstance(_yh, dict) else (_yh or []))
+        if not (_yhk & {"year_ranges", "year_first", "year_last", "year_label"}):
+            # Whose window it is matters: a Gottorp duke reads the ducal
+            # table, an open alternative («Christian I/Hans ?») spans both
+            # reigns, and a qualified name the tables do not know («Frederik 3
+            # som ærkebiskop») stays undated (lib.ruler_reigns).
+            # Before the ruler: an MB number (the Hauberg/MB concordance
+            # gives that type's own ruler and years) and a nominal struck in
+            # one period only (the Kobbersterling) — both for the Danish
+            # crown's issuers only, where those catalogues apply (curator
+            # 2026-10-17, undated-coins plan row 3; lib.mb_concordance).
+            _ie = out.get("issuing_entity")
+            _ies = set(_ie) if isinstance(_ie, list) else {_ie}
+            _rw0 = None
+            if _ies & _DANISH_CROWN_ENTITIES:
+                # `out["catalog"]` is assembled further down — read the MB
+                # numbers from the members themselves.
+                _mb = []
+                for _m in members:
+                    _v = (_m.get("catalog") or {}).get("mb")
+                    for _x in (_v if isinstance(_v, list) else [_v]):
+                        if _x and str(_x) not in _mb:
+                            _mb.append(str(_x))
+                _rw0 = (_mb_window(_mb) if _mb else None) or _nominal_window(out.get("nominal"))
+            if _rw0 is None:
+                _rw0 = _reign_window_placeholder(out.get("ruler"), _ie)
+            if _rw0 is not None:
+                authoritative_yr = [[_rw0[0], _rw0[1]]]
+                _reign_placeholder = True
     if authoritative_yr is not None:
         if len(authoritative_yr) == 1 and authoritative_yr[0][0] == authoritative_yr[0][1]:
             out["year_first"] = authoritative_yr[0][0]
@@ -687,7 +757,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # by (value, source). The merger emits them from the seeds' `year_mark` /
     # `ruler_mark`; the final never carries one the current members do not, so
     # a mark removed on the seed disappears here on the next absorb.
-    for _fld in ("year_alts", "ruler_alts"):
+    for _fld in ("year_alts", "ruler_alts", "mint_alts"):
         _alts: list[dict] = []
         _alt_seen: set[tuple[str, str]] = set()
         for _m in members:
@@ -700,9 +770,12 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                     _alts.append(dict(_a))
         # Only members[1:] (the live seed_unified side) may introduce an alt;
         # the foundation's own copy is kept only while a live member still
-        # carries it.
+        # carries it. A bulk-promoted class is enriched with itself as the
+        # only member — it IS the live side then (without this a newly
+        # promoted or relocated coin lost its KMM «(!)» ruler, 2026-10-18).
         _live = {(str(a["value"]), str(a["source"]))
-                 for _m in members[1:] for a in (_m.get(_fld) or [])
+                 for _m in (members[1:] if len(members) > 1 else members)
+                 for a in (_m.get(_fld) or [])
                  if isinstance(a, dict) and a.get("value") and a.get("source")}
         _alts = [a for a in _alts if (str(a["value"]), str(a["source"])) in _live]
         if _alts:
@@ -728,7 +801,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
             # imprecise estimate (schema.year_is_reign_span). Data-only — render
             # + expansion already key on year_verified=False; the flag lets an
             # audit tell «1588-1648 reign» apart from «1496-1497 approximate».
-            out["year_is_reign_span"] = True
+            _set_reign_span_flag(out)
         elif (_rw is not None and out.get("year_is_reign_span") is True
                 and _reign_lookup_is_exact(out.get("ruler"))):
             # …and the reverse, which the rule used to be unable to express.
@@ -758,6 +831,13 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                 out["year_verified"] = others
             elif out.get("year_verified") is False:
                 out.pop("year_verified", None)
+
+    # The placeholder is a reign span by construction, whatever the override
+    # above concluded: for a Gottorp duke or an open alternative («Christian
+    # I/Hans ?») it compares against the first KING's window and does not match.
+    if _reign_placeholder and "year_verified" not in holds_keys:
+        out["year_verified"] = False
+        _set_reign_span_flag(out)
 
     # Ambiguity-split sweep across members: any member with a scalar
     # mint containing «eller / oder / or / /» indicators (Hede/Galster
@@ -1378,7 +1458,7 @@ def _curator_no_merged(a: dict, b: dict, no_merge_pairs: set,
 
 def _revalidate_composed_of(
     final_by_id: dict, unified_by_id: dict, entity_id: str,
-    force_merge_pairs=None
+    force_merge_pairs=None, no_merge_pairs=None
 ) -> dict[str, set]:
     """Re-validate existing composed_of membership; return per-host evict set.
 
@@ -1444,6 +1524,16 @@ def _revalidate_composed_of(
             if _is_forgery_nominal(host_nom) != _is_forgery_nominal(m.get("nominal")):
                 evictions.setdefault(fid, set()).add(mid)
                 continue
+            # A curator no_merge between this member and the rest of the
+            # host binds membership already absorbed, not only new absorbs
+            # (2026-10-18: two KMM «1 Krone» stubs, 1651 Schou 43 / 1660
+            # Schou 39, that no Hede type of their year lists, had been
+            # folded into the Frederik III Krone final dk-tid-97152).
+            if no_merge_pairs:
+                rest = dict(fc, composed_of=[c for c in comp if c != mid])
+                if _curator_no_merged(m, rest, no_merge_pairs, unified_by_id):
+                    evictions.setdefault(fid, set()).add(mid)
+                    continue
             if not _nominal_genuinely_differs(host_nom, m.get("nominal")):
                 continue
             if _shares_type_level_catalog(fa, _catalog_refs(m, entity_id)):
@@ -1810,6 +1900,61 @@ def _shell_is_curated(fe: dict, cls: str) -> bool:
     return True
 
 
+def _hand_over_renamed_classes(final_by_id: dict, unified_by_id: dict,
+                               home: dict) -> list[str]:
+    """Hand a RENAMED class back to the classified final whose seeds it holds.
+
+    A class is named after its top-authority member, so a newcomer renames it
+    (`unified-dk-tid-163042` → `unified-ngc-1050065`). When an unclassified
+    standalone final already carries the new id — the newcomer's own
+    pre-merge shell — the class counts as «already absorbed» into the shell,
+    the stale purge reads the classified final's seeds as departed, and the
+    classified coin loses its members and drops out. 2026-10-17: reading
+    NGC's Z-shaped 2 («16Z4») renamed 8 classes this way, KM 93 24 Skilling
+    among them; it was worked round three times by deleting the shells by
+    hand before absorb.
+
+    Handed over only when exactly one classified final claims the class and
+    the shell is a bare `[class]` with no curation: the class joins the
+    classified final's composed_of and the shell is removed from
+    `final_by_id` (mutated in place) — a fold, since its id now sits in that
+    composed_of. Anything less clear-cut is reported, not decided.
+    Returns «class → host» lines for the log.
+    """
+    holder: dict[str, str] = {}
+    for fid, fc in final_by_id.items():
+        for cid in fc.get("composed_of") or []:
+            holder.setdefault(cid, fid)
+    cls_idx = _seed_class_index()
+    claims: dict[str, set[str]] = defaultdict(set)
+    for fid, fc in final_by_id.items():
+        if fc.get("fuss") in (None, "seed_unsorted"):
+            continue
+        for cid in fc.get("composed_of") or []:
+            if cid in unified_by_id or cid in home:
+                continue
+            cls = cls_idx.get(_seed_of(cid))
+            shell_id = holder.get(cls) if cls in unified_by_id else None
+            if not shell_id or shell_id == fid:
+                continue
+            shell = final_by_id[shell_id]
+            if (shell.get("fuss") in (None, "seed_unsorted")
+                    and list(shell.get("composed_of") or []) == [cls]):
+                claims[cls].add(fid)
+    done: list[str] = []
+    for cls, claimants in sorted(claims.items()):
+        shell_id = holder[cls]
+        if len(claimants) != 1 or _shell_is_curated(final_by_id[shell_id], cls):
+            print(f"  ⚠ renamed class {cls} held by shell {shell_id}, claimed by "
+                  f"{sorted(claimants)} — left for the curator")
+            continue
+        host = final_by_id[next(iter(claimants))]
+        host["composed_of"] = list(host.get("composed_of") or []) + [cls]
+        del final_by_id[shell_id]
+        done.append(f"{cls} → {host['id']}")
+    return done
+
+
 def _superseding_class(fe: dict, live_member_ids: set) -> str | None:
     """The live seed_unified class that has SUPERSEDED this final, or None.
 
@@ -1996,6 +2141,67 @@ _FINAL_SNAPSHOT: dict[str, list[dict]] | None = None
 _RUN_ENTITIES: set[str] = set()
 
 
+def _inherit_classification(entity_id: str, finals: list[dict]) -> int:
+    """A seed_unsorted final takes the classification of the classes its
+    seeds came from, when they all agree (2026-10-17).
+
+    A merge renames a class (its top-authority member changed) or a split
+    leaves part of a classified class in a new one; either way the new class
+    has no final of its own and lands in seed_unsorted, although every seed in
+    it was classified a run ago. The merger records the previous classes of
+    each changed class (`match_uncertainty/<entity>.prev_classes.json`); the
+    classification of the finals that held those classes before this run
+    (`_final_snapshot`) is inherited when exactly one classification is found.
+    Two or more distinct classifications mean the new class fused coins the
+    curator had classified apart — reported, never resolved here. A seed the
+    curator declassified (`_recorded_removals.yml`, kind declassify) or a coin
+    with an explicit classification decision is left alone."""
+    import json
+    side = ROOT / "data" / "v2" / "match_uncertainty" / f"{entity_id}.prev_classes.json"
+    if not side.exists():
+        return 0
+    prev_of = json.loads(side.read_text(encoding="utf-8"))
+    class_of: dict[str, set] = defaultdict(set)
+    value_of: dict[str, tuple] = {}   # hashable key → (fuss, phase, kind)
+    for fe in _final_snapshot().get(entity_id) or []:
+        if not isinstance(fe, dict) or fe.get("fuss") in (None, "", "seed_unsorted"):
+            continue
+        cls = (fe.get("fuss"), fe.get("phase"), fe.get("kind"))
+        key = json.dumps(cls, sort_keys=True, default=str)
+        value_of[key] = cls
+        for uid in [fe.get("id")] + list(fe.get("composed_of") or []):
+            if uid:
+                class_of[str(uid)].add(key)
+    removals = _load_yaml(ROOT / "data" / "v2" / "_recorded_removals.yml")
+    declassified = {str(e.get("seed")) for e in (removals.get("removals") or [])
+                    if isinstance(e, dict) and e.get("kind") == "declassify"}
+    decided = {str(a.get("coin_id")) for a in (_load_yaml(
+        V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml").get("assignments") or [])
+        if isinstance(a, dict)}
+    applied = 0
+    for fc in finals:
+        if not isinstance(fc, dict) or fc.get("fuss") not in (None, "", "seed_unsorted"):
+            continue
+        ids = [str(fc.get("id"))] + [str(m) for m in (fc.get("composed_of") or [])]
+        if decided & set(ids):
+            continue
+        if any(i.removeprefix("unified-") in declassified for i in ids):
+            continue
+        prev = {p for i in ids for p in prev_of.get(i, [])}
+        classes = {c for p in prev for c in class_of.get(p, ())}
+        if len(classes) == 1:
+            fc["fuss"], fc["phase"], fc["kind"] = value_of[next(iter(classes))]
+            applied += 1
+        elif len(classes) > 1:
+            print(f"  [{entity_id}] ⚠ {fc.get('id')}: its seeds came from "
+                  f"differently classified coins {sorted(classes)} — "
+                  "left seed_unsorted, review the merge")
+    if applied:
+        print(f"  [{entity_id}] classification followed the seeds into "
+              f"{applied} renamed / split class(es)")
+    return applied
+
+
 def _final_snapshot() -> dict[str, list[dict]]:
     """{entity → its finals} as on disk before this run wrote anything."""
     global _FINAL_SNAPSHOT
@@ -2125,6 +2331,16 @@ def process_entity(entity_id: str) -> dict:
     unified_doc = _load_yaml(V2_SEED_UNIFIED / f"{entity_id}.yml")
     unified_entries: list[dict] = unified_doc.get("coins") or []
     unified_by_id = {u["id"]: u for u in unified_entries if u.get("id")}
+    # The merger's «a Schou number that two types list is not evidence» guard
+    # reads a per-entity claims table the merger builds for its own run. Absorb
+    # calls the same match_pair against finals, so without the table here the
+    # guard was off at the final layer: KMM «1 Krone» records carrying only a
+    # Schou number, kept apart by the merger, were folded into the broad
+    # Frederik III Krone final (dk-tid-97152) on the next absorb — absorb was
+    # not idempotent (2026-10-18).
+    import maintenance.merge_seeds_cross_source as _mg_claims
+    _mg_claims._SUBVAR_CLAIMS = _mg_claims._build_subvariant_claims(
+        unified_by_id, entity_id)
 
     # Curator no_merges — loaded ONCE, up-front, because every consolidation
     # path below must honour them: the final↔final self-foundation fold, the
@@ -2167,7 +2383,10 @@ def process_entity(entity_id: str) -> dict:
     # skip below is a cheap early-out; the final filter is the source of truth.
     exclusions = _load_exclusions(entity_id)
     excluded_ids = set(exclusions)
-    member_ids = {k for k, v in exclusions.items() if v.get("scope") == "member"}
+    # An undocumented stub is a singleton in the merger (isolated like a
+    # `scope: member` id), so it too matches only its own id here.
+    member_ids = {k for k, v in exclusions.items()
+                  if v.get("scope") == "member" or v.get("category") == "undocumented_stub"}
     # ids matched ANYWHERE this run (bulk-promote skip OR final filter) — an id
     # not matched anywhere is a true orphan (typo / coin already gone from seed).
     excluded_matched: set[str] = set()
@@ -2380,6 +2599,12 @@ def process_entity(entity_id: str) -> dict:
             return
         existing = curator_migrations.get(new_host_fid) or {}
         existing.update(snapshot)
+        # Every retired peer's classification, so the applier can tell one
+        # agreed classification from a contradiction (see
+        # `_apply_migrated_merge_fields`).
+        if fe.get("fuss") not in (None, "", "seed_unsorted"):
+            existing.setdefault("__classes__", []).append(
+                (fe.get("fuss"), fe.get("phase"), fe.get("kind")))
         # Accumulate merge-field entries across multiple stale-foundations
         # pointing at the same new host.
         for k, vlist in merge_snapshot.items():
@@ -2407,7 +2632,7 @@ def process_entity(entity_id: str) -> dict:
         _migrate_classification(carried, host)
         snap = curator_migrations.get(host) or {}
         cross_carry[host] = {k: v for k, v in snap.items()
-                             if not k.startswith("__merge__")}
+                             if not k.startswith("__")}
         print(f"  [{entity_id}] cross-entity carry: {src_ent}/"
               f"{src_fe.get('id')} → {host} "
               f"({len(set(snap) - before) or len(snap)} field(s))")
@@ -2566,6 +2791,14 @@ def process_entity(entity_id: str) -> dict:
         return True
 
     self_foundation_folded = 0
+    # Self-foundations dropped on the PREDICTION that the absorb loop will
+    # fold their unified into the matched peer. When the loop does not (its
+    # match runs unified-vs-final, the prediction final-vs-final, and the two
+    # can disagree), the unified reaches the bulk-promote path as if new and
+    # loses the classification its own final carried — Hede 5B, 4 Skilling
+    # Rigsmønt, 18_5_thaler at HEAD, seed_unsorted after (2026-10-17). The
+    # promote path restores the dropped final instead.
+    _folded_self: dict[str, dict] = {}
     self_foundation_fold_skipped_multi: list[str] = []
     self_foundation_fold_skipped_clash: list[str] = []
     final_after_fold: list[dict] = []
@@ -2600,6 +2833,7 @@ def process_entity(entity_id: str) -> dict:
                 # Safe to fold. Drop self-foundation; loop below will
                 # absorb the unified into V1 via the normal match_pair path.
                 self_foundation_folded += 1
+                _folded_self[fid] = fe
                 continue
             # Classification disagreement — needs curator review.
             self_foundation_fold_skipped_clash.append(fid)
@@ -2682,6 +2916,14 @@ def process_entity(entity_id: str) -> dict:
     purged_count = 0
     departed_decontaminated = 0
     _home = _unified_home_index()
+    # A RENAMED class goes back to the classified final whose seeds it now
+    # holds, before the purge below reads them as departed — see
+    # `_hand_over_renamed_classes`.
+    renamed_handover = _hand_over_renamed_classes(final_by_id, unified_by_id, _home)
+    if renamed_handover:
+        final_entries = [f for f in final_entries if f.get("id") in final_by_id]
+        print(f"  renamed-class handover: {len(renamed_handover)} "
+              f"({'; '.join(renamed_handover[:4])})")
     for fid, fc in final_by_id.items():
         original_composed = fc.get("composed_of") or []
         kept = [cid for cid in original_composed
@@ -2701,6 +2943,29 @@ def process_entity(entity_id: str) -> dict:
                 departed_decontaminated += len(departed_recs)
             fc["composed_of"] = kept
             purged_count += len(original_composed) - len(kept)
+    # Seeds that left a class which KEPT its id (merger sidecar
+    # `<entity>.departed.json`): same surgical removal as above. The purge
+    # only sees ids that vanished, so a split that keeps the class id left
+    # the departed seeds' indices on the host final.
+    import json as _json
+    _dep_path = ROOT / "data" / "v2" / "match_uncertainty" / f"{entity_id}.departed.json"
+    _departed_by_class = (_json.loads(_dep_path.read_text(encoding="utf-8"))
+                          if _dep_path.exists() else {})
+    if _departed_by_class:
+        for fid, fc in final_by_id.items():
+            comp = fc.get("composed_of") or []
+            if not any(c in _departed_by_class for c in comp):
+                continue
+            staying = set()
+            for cid in comp:
+                staying |= set((unified_by_id.get(cid) or {}).get("composed_of") or [])
+                staying.add(_seed_of(cid))
+            gone = {s for c in comp for s in _departed_by_class.get(c, [])} - staying
+            recs = [r for r in (_seed_record(entity_id, sid) for sid in sorted(gone)) if r]
+            if recs:
+                remaining = [unified_by_id[c] for c in comp if c in unified_by_id]
+                _surgical_decontaminate(fc, recs, remaining)
+                departed_decontaminated += len(recs)
     if departed_decontaminated:
         print(f"  stale-purge: removed the exclusive contributions of "
               f"{departed_decontaminated} departed seed(s)")
@@ -2797,7 +3062,7 @@ def process_entity(entity_id: str) -> dict:
                     for _j in range(_i + 1, len(_mem)):
                         _fm_pairs.add(frozenset({_mem[_i], _mem[_j]}))
         revalid = _revalidate_composed_of(
-            final_by_id, unified_by_id, entity_id, _fm_pairs)
+            final_by_id, unified_by_id, entity_id, _fm_pairs, no_merge_pairs)
         revalid_evicted = 0
         for host_id, evict_set in revalid.items():
             fc = final_by_id.get(host_id)
@@ -2863,11 +3128,32 @@ def process_entity(entity_id: str) -> dict:
         if uid in already_absorbed:
             already_in += 1
             continue
+        # A curator-excluded class never joins an existing final: the
+        # exclusion purge below drops every final that lists an excluded
+        # member, so absorbing it would remove the host coin with it
+        # (2026-10-17: the off-strike kmk-136896 matched the Portugaløser
+        # final dk-tid-163077, an undocumented stub matched the Hvid Galster
+        # 36 class, and both hosts vanished). The excluded class itself is
+        # dropped as before.
+        if excluded_ids:
+            _x_hit = _coin_exclusion_hit(unified, excluded_ids, member_ids)
+            if _x_hit:
+                excluded_matched |= _x_hit
+                continue
         # Find match against final entries (per §5.2 hierarchy)
         candidates = []
+        _u_has_catalog = bool(_catalog_refs(unified, entity_id))
         for fid, fc in final_by_id.items():
             if _curator_no_merged(unified, fc, no_merge_pairs, unified_by_id):
                 continue  # curator no_merge: different coin — never absorb
+            # An unclassified final with no catalogue index at all (a bare
+            # KMM «1 Krone», no year) is never the host of a class that has
+            # one: matched on nominal + ruler alone it became a hub that
+            # pulled in Hede 104 (kronemont) and KM 428 (kronemont_fine)
+            # together and dropped both to seed_unsorted (2026-10-17).
+            if (_u_has_catalog and fc.get("fuss") in (None, "", "seed_unsorted")
+                    and not _catalog_refs(fc, entity_id)):
+                continue
             result = match_pair(unified, fc, entity_id, reign_index=reign_index)
             if result["decision"] == "confident":
                 candidates.append(fid)
@@ -3039,6 +3325,12 @@ def process_entity(entity_id: str) -> dict:
             # route through `_enrich_final_entry` so the output has
             # the SAME canonical field layout as V1-foundation entries
             # — guarantees idempotency on re-runs.
+            if uid in _folded_self:
+                restored = dict(_folded_self[uid])
+                restored["composed_of"] = [uid]
+                enriched, _ = _enrich_final_entry(restored, [restored, unified], entity_id)
+                enriched_entries.append(enriched)
+                continue
             promoted_stub = dict(unified)
             promoted_stub["composed_of"] = [uid]
             # Apply curator-classification migration from any V1-bootstrap
@@ -3071,6 +3363,8 @@ def process_entity(entity_id: str) -> dict:
                             existing_list.append(v_entry)
                         promoted_stub[bare] = existing_list
                         continue
+                    if field.startswith("__"):
+                        continue   # bookkeeping (e.g. «__classes__»), not a field
                     # Don't overwrite a non-trivial value the seed already
                     # carries — but DO overwrite when the seed has the
                     # default placeholder («seed_unsorted» for fuss, the
@@ -3739,6 +4033,7 @@ def main() -> int:
             # were not re-enriched this run (no current seed_unified member),
             # whose stale overflow would otherwise survive. Skips entries
             # that froze `catalog` via `_curation_holds`.
+            _inherit_classification(ent, result["enriched_final_entries"])
             for _fc in result["enriched_final_entries"]:
                 if not isinstance(_fc, dict):
                     continue

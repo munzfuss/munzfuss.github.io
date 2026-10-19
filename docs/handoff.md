@@ -24,6 +24,52 @@
 - **Submodule state**: the cache commit (manifest + derived text) is on branch `kb-pilot` of the worktree's submodule clone, based on cache `main` 2477aae; the superproject pointer on this branch points at it. Before merging this branch, push that cache commit to `munzfuss-harvest` (PB-10). Not pushed.
 - Open follow-ups (curator's call): whole-corpus ranking; embeddings; rigsarkivet OCR; kb skills / source-researcher agent.
 
+## 2026-10-19 — New entity `norway` (Kingdom of Norway after 1814)
+
+- `fea1313`: post-1814 Norwegian coins moved from `danish_norway` to the new
+  out-of-scope entity `norway` (cutoff 1815; first post-Kiel coin is the 1816
+  Skilling). Rule `mint_registry.norway_split_entity`, applied by
+  `v2_seed_writer` to every source; details + sources in
+  `docs/research/mint_year_transitions.md` §Kongsberg. 203 seeds, 197 finals,
+  classifications kept. Pages unchanged (Denmark consumes danish_norway ≤1814).
+- Follow-ups done: Numista 421269 (counterfeit) and KMM 148142 (undocumented
+  stub) excluded (`60e5ce5`); undated coins of post-1814 kings go to `norway`
+  by ruler, Carl XV kmk-673472/3 moved there, lifting their 5793d28
+  exclusions with the curator's yes (`df35b04`); Norway reign table → they show
+  1859–1872 (?) (`c47b8f5`). Still open: Hamar (Galster, KMM) and KMM spellings
+  «Cristiania» / «Christinia» / «Niduras?» are not in the mint registry.
+- Pending re-flow NOT done: the kmk builder at HEAD re-thins 9 danish_realm
+  records (kmk-307062, -308807, -330825, -332024, -354854, -367973, -367974 …)
+  and reads Gotland as Visby (kmk-317111, -328312) — effect of earlier builder
+  commits (781537e, 5bd3834 …) never re-flowed. Needs its own re-seed + merge +
+  absorb + verify_reflow.
+
+## 2026-10-18 — Merger scoped-index rules; KMM rulers; Schou-only folds undone
+
+- **Merger (e9cf8c6, data e4afc3a):** records sharing a scoped index now merge (Schou/Sieg range containment, index+nominal+ruler without year/metal, billon = silver, 10 % weight with agreeing index, weak PASS-2 vetoes lifted by a unifying type-level member — `_WeakVetoIndex`), but strong contradictions always stand; a Schou number that two types of one nominal list is not evidence (`_SUBVAR_CLAIMS`); Krone ≡ 4 Mark is neutral. Classification follows the seeds into renamed/split classes (`match_uncertainty/<entity>.prev_classes.json` sidecar → absorb `_inherit_classification`). Extra classes per Hede type ~1300 → ~550.
+- **Absorb (8a4a0f6, 7b039b5):** curator ruler `_source_errata` beats the frozen foundation ruler; Schou-claims guard built in absorb too (absorb is idempotent again — two runs leave final/ byte-identical); promoted/relocated classes keep their alts; a curator no_merge evicts an already-absorbed member.
+- **KMM rulers (bc48e95):** pre-1648 «Frederik 3» = Duke Frederik III of Gottorp («Friedrich III. von Gottorp», 7 → gottorp_duchy) or Prince Frederik as Archbishop of Bremen 1641–43 («Erzbischof Friedrich», Hede BV4/BV6, 19 → erzbisthum_bremen_verden); KMM value shown (!) via ruler_mark, ours (?) via ruler_verified false. Galster 144 Norby → Christian II., Gotland = Visby; Gaute spellings; bare Christian/Frederik by year/index.
+- **Schou-only folds (fb09986):** 15 KMM records moved to the type their YEAR names (Hede gives Schou per year), 2 back to seed_unsorted (declassify recorded). Rule for the next session: a KMM record with only Schou is placed by year + Schou, never by Schou alone.
+- **Open:** KMM «Frederik» 1645 Skilling/Dütken, 1623 records already moved as assumptions; Hede 95 split across `dk-tid-97152` and `km-194-fr-iii-1654` (pre-existing); remaining undated-coins plan rows 5–9 (`docs/undated_coins_denmark.md`). Nothing pushed.
+
+## 2026-10-18 — Bruun Part V seeded and re-flowed
+
+- `_SEEDED_PARTS = (1..5)`; bruun seed + full merge + absorb (from HEAD final). verify_reflow 0 losses, citations 0 missing, validate OK. Sweden +98 coins, danish_norway/realm/royal_holstein got the Part V specimens.
+- Curator decisions applied: 4 lots added to existing `_cross_entity.yml` groups (6301 Guldkrone, 7850 12 Mark, 8095 Frederik d'or, 7892 Rejsedaler); 7892's «Copenhagen Mint» = erroneous `mint_mark` (new mint_mark → mint_alts mechanism); Hede 28B split from Hede 31 (foundation `f3h31` reset + `no_merges`); KM B445 kept off Hede 55 (`no_merges`); Wolfenbüttel 1627 Hede 3 class fixed (merge incl. KMM 290904; KMM 291968 «Sch 10» unbound from Hede 5); Hede Norge 32A/B/C union + KM 51 moved to Hede 32 accepted, stale KM 51 removed from `nf3h33`; Hvid 1575 regroup accepted.
+- Later the same day: 21ea38e Hede 55 final reset to KM 454; 9b48792 Wolfenbüttel 1627 Speciedaler — one cross-entity class per Hede number (W3 = 3A+3B incl. KMM 291968 «Sch 10», W5), issuing_entity [danish_realm, herzogtum_braunschweig_lueneburg] (curator: «W3AB одна монета»; danskmoent c4wolfh3 / c4wolfh5); e76ef62 KMM 149615 «København» = erroneous mint_mark, W5 mint Wolfenbüttel.
+- Done 2026-10-19 (00f8ce7, 687bd70): W3/W5 = 9_thaler / II / kurant (danskmoent «Marken fin udbragt til 9,000 daler»), now on the Denmark 9-Thaler-Fuß page; KMM 415742/415743 kept apart (no number/mint); merger `_catalogue_section` scopes Hede/Schou of the Wolfenbüttel section and vetoes section-vs-main matches — the 35 Hede Norge 5 excludes are gone. All commits unpushed.
+- Also 2026-10-19: 197e058 Bruun parser reads æøå in Bruun numbers (Part V lot 15186 «Bruun-15139ø» had been silently dropped); 50eb692 merge_seed «superseded» rule limited to page catalogues (dk-hede-*, dk-galster-*); 0e0e287 `exclusions/sweden.yml` emptied (curator: post-1523 Swedish issues belong in the Swedish corpus, sweden renders nowhere) — sweden final 207.
+- Part V tally: 509 lots → 303 seeds (95 medal section, 82 undated medieval, 25 patterns/medals, 4 out of years); all 303 in final; 61 lots = 60 brand-new classes (sweden 38, danish_realm 11, danish_norway 5, royal_holstein 5, Oldenburg 1, Gottorp 1), all still `seed_unsorted`; 241 = new specimens of known types (166 in classified classes). Next: classify the 60 new classes (Fuß/phase) with the curator.
+
+## 2026-10-16 — Bruun Part V (Copenhagen 27–28 Oct 2026) harvested, parsed, NOT seeded
+
+- PDF `scripts/cache/bruun/part5.pdf` (228 pp., sha256 `21327fc0…a82eb8d`), source URL danskmoent.dk only (Stack's Bowers page still lists I–IV); Wayback copy `https://web.archive.org/web/20261016155119/https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf` (curator-approved Save Page Now 2026-10-16, sha256 identical). Lots 14001–14226 DK, 15001–15188 NO/SE/DE, 15189–15283 medals. `lots/part5.json` = 509/509.
+- Parser fixes (`02_parse_lots.py`): out-of-order lot starts (+3 in V, **+14 never-seeded lots in II–IV** — these flow into the bruun seed on the next regen by anyone), and §9.2 medal titles → `is_pattern` (91 in V, 0 in I–IV). SOURCES §13.3 has all four entries.
+- Seed builder knows Part V but `_SEEDED_PARTS = (1,2,3,4)`; `--dry-run --parts 1,2,3,4,5` → +293 entries (danish_realm +108, danish_norway +109, royal_holstein +29, sweden +37, oldenburg +7, brunswick +2, gottorp +1); ~280 share a Hede/KM/Sieg/Galster/Lange key with an existing final.
+- **All three collisions resolved from the printed 1928 catalogue (danskmoent sections, SOURCES §13.3):** 14085 = Bruun-4633; 15162 = 12928 (15163 = 12937 ✓); 15041 = 9765 and Schou 12 (12079 = 9764 ✓). Applied 2026-10-17 (curator yes) as `_BRUUN_LOT_ERRATA` in the builder + suspect «(*)» on 15041's 57.41 g. Parser now also reads comma / mislabelled weights (+21 lots, I–V).
+- **2026-10-17 curator calls, implemented:** whole MEDALS section = exonumia (parser `catalogue_section`, 95 lots); 14085 kept, weight 69.63 g suspect «(*)» with Bruun's own «presentation piece» sentence.
+- **Unknown-mint drop replaced (curator 2026-10-17):** SWEDEN → `sweden`, unresolved GERMANY → `_unclassified`; +79 Swedish entries (65 of them from Parts I–III, so they enter on the next Bruun regen by anyone), nothing else changed. Part V seeding waits until everything is prepared — nothing known still blocks it.
+
 ## 2026-10-16 — 11½-Markfod (Lybsk Møntfod)
 
 - **Read `docs/research/luebischer_muenzfuss.md` §0 first** — synthesis matrix (levels × stages I 1481–c.1500/03, II c.1500/03–c.1511, III 1512–13), attested vs computed vs hypothesis, and the to-do list for the card. Mark lübisch vs Mark dansk: `docs/research/mark_lybsk_mark_dansk.md`. Parallel task offered: KMM 331973 «Penning, Lund».: King Hans' silver card built and populated

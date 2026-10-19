@@ -14,7 +14,8 @@ that the pre-1541 window excluded — leading to 62 Bruun-citation
 losses on stale-foundation purge).
 
 This transforms the already-parsed Bruun lot JSON
-(`scripts/cache/bruun/lots/part{1-4}.json`) into project-shaped seed
+(`scripts/cache/bruun/lots/part{1-5}.json`; Part V not seeded by default —
+see `_SEEDED_PARTS`) into project-shaped seed
 entries that the cross-source merger consolidates with parallel
 Hede / Numista / NumisMaster / ucoin attestations.
 
@@ -69,6 +70,8 @@ from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 from lib.v2_seed_writer import normalise_nominal_display  # noqa: E402
+from lib.v2_seed_writer import _canonicalise_mint  # noqa: E402
+from lib.seed_merge import apply_mint_mark, apply_source_errata  # noqa: E402
 
 
 def _classify_entity(mint, is_norway: bool, meta_line: str | None = None,
@@ -258,8 +261,19 @@ _BRUUN_PART_PDF_URL: dict[int, str] = {
     2: "https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf",
     3: "https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf",
     4: "https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf",
+    # Part V (Copenhagen, 27-28 Oct 2026) — as of 2026-10-16 published only on
+    # danskmoent.dk; stacksbowers.com's Bruun page still links Parts I-IV.
+    5: "https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf",
 }
-_BRUUN_PART_ROMAN: tuple[str, ...] = ("I", "II", "III", "IV")
+_BRUUN_PART_ROMAN: tuple[str, ...] = ("I", "II", "III", "IV", "V")
+
+# Parts the seed is built from by default. Part V seeded 2026-10-18 (curator
+# go-ahead after the items below were prepared). Its printed
+# Bruun-id collisions (4632, 9764, 12937) are resolved by `_BRUUN_LOT_ERRATA`
+# (curator 2026-10-17); still open before seeding: the builder's drop of GERMANY /
+# SWEDEN lots whose mint is unknown (analysis pending). The medal section is
+# filtered at parse time (`catalogue_section`). Preview with `--parts 1,2,3,4,5 --dry-run`.
+_SEEDED_PARTS: tuple[int, ...] = (1, 2, 3, 4, 5)
 
 
 def _build_bruun_source(part: int, lot: dict) -> dict:
@@ -843,6 +857,110 @@ def parse_rarity(rarity: str | None) -> str | None:
     return None
 
 
+# Curator-approved corrections of what a Bruun lot PRINTS, keyed by
+# (part, lot_no) because the seed id itself is derived from the printed Bruun
+# collection number — a seed-level `_source_errata` alone would arrive too late
+# (two lots would already share one id). Each record is written into the
+# entry as `_source_errata` (so `trace_coin.py why` shows it) and applied at
+# build time, before the id is computed. Evidence: the printed 1928 catalogue
+# *L. E. Bruuns Mønt- og Medaillesamling* (danskmoent section PDFs, cached in
+# scripts/cache/bruun/bruun_1928/); SOURCES §13.3. Curator (Serhii) 2026-10-17.
+_SRC_1928 = "L. E. Bruuns Mønt- og Medaillesamling (København 1928)"
+_BRUUN_LOT_ERRATA: dict[tuple[int, int], list[dict]] = {
+    (5, 14085): [{
+        "field": "bruun_collection_id", "printed": "4632", "correct": "4633",
+        "curator": "Serhii", "date": "2026-10-17",
+        "reason": f"{_SRC_1928}, p. 150: 4632 is «Speciedaler» 1597 (Schou 2, sold as Bruun Part II lot 13079); "
+                  "4633 is «Dobbelt Speciedaler-Afslag. Vejer 69,63 gr.» 1600 (Schou 1) — this lot's year, "
+                  "weight and Schou number.",
+    }],
+    (5, 15162): [{
+        "field": "bruun_collection_id", "printed": "12937", "correct": "12928",
+        "curator": "Serhii", "date": "2026-10-17",
+        "reason": f"{_SRC_1928}, p. 389: 12928 is «1748. Dukat»; 12937 is «1749. Dukat … Siökrona» "
+                  "(Bruun Part V lot 15163, whose provenance names J. Siökrona).",
+    }],
+    (5, 15041): [{
+        "field": "bruun_collection_id", "printed": "9764", "correct": "9765",
+        "curator": "Serhii", "date": "2026-10-17",
+        "reason": f"{_SRC_1928}, p. 297, 1658: 9764 «— —» = Schou 10, 9765 «— — G.» = Schou 12. Galster "
+                  "(danskmoent, 2 Speciedaler) gives Hede Norge 27 = Schou 7-10 and Hede Norge 31 = Schou 11-12; "
+                  "this lot is Hede-31, so 9765. 9764 is the Hede-27 coin (Bruun Part III lot 12079). The «G.» "
+                  "mark matches this lot's Guildal provenance (Guildal 1339).",
+    }, {
+        "field": "schou", "printed": "10", "correct": "12",
+        "curator": "Serhii", "date": "2026-10-17",
+        "reason": f"{_SRC_1928}, p. 297: Bruun 9765 carries Schou 12 in the «1926» column; Galster (danskmoent) "
+                  "gives Hede Norge 31 = Schou 11-12. «Schou-10» belongs to 9764 (Hede-27).",
+    }],
+}
+
+# Curation marks on a Bruun lot's printed weight, keyed like the errata above.
+_BRUUN_LOT_WEIGHT_MARKS: dict[tuple[int, int], dict] = {
+    # Curator 2026-10-17: keep the lot, mark the weight suspect with Bruun's own words.
+    (5, 14085): {"suspect": {
+        "de": "Übergewichtiges Stück. Der Katalog Bruun Part V (Los 14085, S. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» "
+              "(«Mit fast 20 % über dem gesetzlichen Gewicht war das vorliegende Stück wahrscheinlich als "
+              "Geschenkstück gedacht, zumal keine anderen schweren Exemplare bekannt sind»). Als Gewicht des Typs ist "
+              "die Angabe nicht brauchbar; ob es ein Geschenkstück war, ist nicht belegt.",
+        "en": "An overweight piece. Bruun Part V (lot 14085, p. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist». As the weight of the type the figure cannot "
+              "serve; that it was a presentation piece is not documented.",
+        "uk": "Надважкий екземпляр. Каталог Bruun Part V (лот 14085, с. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» («Маючи вагу майже на 20 % "
+              "вищу за статутну, цей екземпляр, імовірно, призначався як подарунковий, тим паче що інших важких "
+              "екземплярів не відомо»). За вагу типу це значення служити не може; що це подарунковий екземпляр, не "
+              "засвідчено.",
+        "da": "Et overvægtigt eksemplar. Bruun Part V (lot 14085, s. 51): «At nearly 20% above the statutory weight, the present example was likely intended as a presentation piece, especially since no other heavy specimens are known to exist» («Med næsten 20 % over den "
+              "lovbestemte vægt var det foreliggende eksemplar sandsynligvis tænkt som gaveeksemplar, især da ingen "
+              "andre tunge eksemplarer kendes»). Som typens vægt kan tallet ikke bruges; at det var et gaveeksemplar, "
+              "er ikke dokumenteret.",
+    }},
+    (5, 15041): {"suspect": {
+        "de": "Das Gewicht stimmt nicht sicher zu diesem Stück. Dieselben 57,41 g druckt der Katalog Bruun Part III "
+              "(Los 12079) für ein anderes Stück, 2 Speciedaler 1658 Hede Norge 27, das auch die Nummer Bruun 9764 und "
+              "Schou 10 trägt; beides ist für dieses Stück falsch (L. E. Bruuns Mønt- og Medaillesamling 1928: Bruun 9765, "
+              "Schou 12). Dass das Gewicht mit diesen Angaben übertragen wurde, ist möglich, aber nicht erwiesen.",
+        "en": "The weight may not belong to this piece. Bruun Part III (lot 12079) prints the same 57.41 g for a different "
+              "piece, a 2 Speciedaler 1658 Hede Norge 27, which also carries the numbers Bruun 9764 and Schou 10; both are "
+              "wrong for this piece (L. E. Bruuns Mønt- og Medaillesamling 1928: Bruun 9765, Schou 12). That the weight was "
+              "carried over with them is possible but not shown.",
+        "uk": "Вага може не належати цьому екземпляру. Ті самі 57,41 г каталог Bruun Part III (лот 12079) друкує для іншого "
+              "екземпляра, 2 Speciedaler 1658 Hede Norge 27, разом із номерами Bruun 9764 і Schou 10; обидва для цього "
+              "екземпляра хибні (L. E. Bruuns Mønt- og Medaillesamling 1928: Bruun 9765, Schou 12). Що вагу перенесено "
+              "разом із ними, можливо, але не доведено.",
+        "da": "Vægten hører måske ikke til dette stykke. Bruun Part III (lot 12079) trykker de samme 57,41 g for et andet "
+              "stykke, 2 speciedaler 1658 Hede Norge 27, der også bærer numrene Bruun 9764 og Schou 10; begge er forkerte "
+              "for dette stykke (L. E. Bruuns Mønt- og Medaillesamling 1928: Bruun 9765, Schou 12). At vægten er overført "
+              "sammen med dem, er muligt, men ikke påvist.",
+    }},
+}
+
+
+# Curation marks on the MINT a Bruun lot prints, keyed like the errata above.
+# An «erroneous» mark is presentational only (curator 2026-10-18): the printed
+# mint is kept in `mint_mark.value` for display beside the real mint, and takes
+# part in nothing — not entity routing here, not the merger's mint union or
+# matching (`seed_merge.apply_mint_mark` clears `mint`).
+_BRUUN_LOT_MINT_MARKS: dict[tuple[int, int], dict] = {
+    (5, 14206): {"kind": "erroneous", "reason": {
+        "de": "Falsche Münzstätte. Bruun Part V (Los 14206, S. 93) druckt «Copenhagen Mint» («Münzstätte København»), "
+              "doch Hede 25 (danskmoent) nennt «1 kurantdaler, Altona», Bruun Part II (Los 13248) «Altona/Poppenbüttel "
+              "Mint» («Münzstätte Altona/Poppenbüttel»), und L. E. Bruuns Mønt- og Medaillesamling (1928, S. 239) führt "
+              "genau dieses Stück, Bruun 7892, unter «1788 ALTONA».",
+        "en": "Wrong mint. Bruun Part V (lot 14206, p. 93) prints «Copenhagen Mint», but Hede 25 (danskmoent) gives "
+              "«1 kurantdaler, Altona», Bruun Part II (lot 13248) «Altona/Poppenbüttel Mint», and L. E. Bruuns Mønt- og "
+              "Medaillesamling (1928, p. 239) lists this very piece, Bruun 7892, under «1788 ALTONA».",
+        "uk": "Помилкове місце карбування. Bruun Part V (лот 14206, с. 93) друкує «Copenhagen Mint» («монетний двір "
+              "København»), але Hede 25 (danskmoent) подає «1 kurantdaler, Altona», Bruun Part II (лот 13248) — "
+              "«Altona/Poppenbüttel Mint» («монетний двір Altona/Poppenbüttel»), а L. E. Bruuns Mønt- og "
+              "Medaillesamling (1928, с. 239) наводить саме цей екземпляр, Bruun 7892, під заголовком «1788 ALTONA».",
+        "da": "Forkert møntsted. Bruun Part V (lot 14206, s. 93) trykker «Copenhagen Mint» («møntstedet København»), men "
+              "Hede 25 (danskmoent) angiver «1 kurantdaler, Altona», Bruun Part II (lot 13248) «Altona/Poppenbüttel Mint» "
+              "(«møntstedet Altona/Poppenbüttel»), og L. E. Bruuns Mønt- og Medaillesamling (1928, s. 239) fører netop "
+              "dette stykke, Bruun 7892, under «1788 ALTONA».",
+    }},
+}
+
+
 def lot_id(part: int, lot: dict) -> str:
     refs = lot.get("refs") or {}
     bruun_id = refs.get("Bruun")
@@ -933,6 +1051,9 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     refs = lot.get("refs") or {}
     ruler = parse_ruler_from_meta(meta, body, lot.get("ruler"))
     mint = parse_mint(lot)
+    mint_mark = _BRUUN_LOT_MINT_MARKS.get((part, lot.get("lot_no")))
+    # An «erroneous» printed mint must not steer routing (see the table above).
+    route_mint = None if (mint_mark and mint_mark.get("kind") == "erroneous") else mint
     # parse_metal MUST see the RAW denomination (descriptive parens intact):
     # «12 Mark (Courant Ducat)» → the «Ducat» token drives the gold heuristic,
     # «8 Skilling (klippe)» → the «klippe» token drives the silver heuristic.
@@ -975,23 +1096,28 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     # Norwegian region marker
     is_norway = "NORW" in region
 
-    # Scope-gate for GERMANY / SWEDEN regions (added 2026-05-25 alongside
-    # REALM_REGIONS expansion). Bruun catalogue carries ~100 GERMANY +
-    # ~180 SWEDEN lots; only those tagging a known project entity
-    # (SH-duchy, Bremen-Verden, Hesse-Kassel, Plön, Holstein-Schauenburg,
-    # bishopric Lübeck/Osnabrück) belong in-scope. The mint→entity
-    # classifier handles cases where the lot's mint pins down an entity
-    # (Steinbeck Mint → gottorp_duchy); _classify_via_meta_line handles
-    # cases where the subnational annotation is only in meta_line. Lots
-    # that fall through to the `danish_realm` default — pure Swedish
-    # coinage (Stockholm Mint), Pomerania, Livonia, Mainz, Erfurt — are
-    # genuinely out of project scope and MUST NOT enter the seed.
+    # Entity for GERMANY / SWEDEN lots. `_classify_entity` falls back to the
+    # Danish default when neither the meta line nor the mint names an entity —
+    # right for a DENMARK / NORWAY lot, wrong for a foreign one (it would put a
+    # Pomeranian taler on the Denmark page). Until 2026-10-17 such lots were
+    # DROPPED, which lost every coin of a mint the registry does not know (79
+    # Swedish lots in Parts I-V: Svartsjö, Avesta plate money, Riga, Szczecin,
+    # Stralsund, Erfurt …). Curator 2026-10-17: never drop a lot because its
+    # mint is unknown. A SWEDEN lot goes to `sweden` (the Swedish crown is the
+    # issuer; the entity renders on no page); an unresolved GERMANY lot gets no
+    # entity, so the writer files it in `_unclassified.yml` for review.
+    region_entity: str | None = "unset"
     if region in {"GERMANY", "SWEDEN"}:
-        entity_check = _classify_entity(mint, is_norway, meta_line=meta, year=year)
+        entity_check = _classify_entity(route_mint, is_norway, meta_line=meta, year=year)
         if entity_check in {"danish_realm", "danish_norway"}:
-            return None
+            region_entity = "sweden" if region == "SWEDEN" else None
 
-    cid = lot_id(part, lot)
+    lot_errata = _BRUUN_LOT_ERRATA.get((part, lot.get("lot_no")))
+    id_lot = lot
+    for rec in lot_errata or []:
+        if rec["field"] == "bruun_collection_id":
+            id_lot = {**lot, "refs": {**(lot.get("refs") or {}), "Bruun": rec["correct"]}}
+    cid = lot_id(part, id_lot)
     # Year fields: an «ND (…)» attribution carries a range + the undated flag
     # (year_verified=False → «(?)» marker); a dated strike keeps the plain
     # single year. See parse_year_span / SOURCES.md §13.3.
@@ -1036,7 +1162,9 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         "metal_verified": metal_verified,
         "fineness": None,  # not in Bruun lot data; comes from spec tables (Wilcke)
         "weight_rough_g": lot.get("weight_g"),
-        "issuing_entity": _ENTITY_PIN.get(cid) or _classify_entity(mint, is_norway, meta_line=meta, year=year),
+        "issuing_entity": _ENTITY_PIN.get(cid) or (
+            region_entity if region_entity != "unset"
+            else _classify_entity(route_mint, is_norway, meta_line=meta, year=year)),
         "verified": False,
         "fineness_verified": False,
         "weight_rough_verified": bool(lot.get("weight_g")),
@@ -1088,16 +1216,30 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     # don't duplicate at coin top-level. Schema-strict validation
     # would reject them otherwise.
 
+    if lot_errata:
+        entry["_source_errata"] = [dict(r) for r in lot_errata]
+        apply_source_errata(entry)
+    if mint_mark:
+        entry["mint_mark"] = {"kind": mint_mark["kind"], "reason": dict(mint_mark["reason"])}
+        # The alt is shown in the mint column, so it takes the column's
+        # canonical spelling; the tooltip quotes what the catalogue printed.
+        if entry.get("mint"):
+            entry["mint"] = _canonicalise_mint(entry["mint"])
+        apply_mint_mark(entry)
+    wmark = _BRUUN_LOT_WEIGHT_MARKS.get((part, lot.get("lot_no")))
+    if wmark and entry.get("weight_rough_g") is not None:
+        entry["weight_rough_g"] = [{"value": entry["weight_rough_g"], "source": "bruun", **wmark}]
+
     return entry
 
 
 # Main pipeline -------------------------------------------------------
 
 
-def collect_entries() -> list[dict]:
+def collect_entries(parts: tuple[int, ...] = _SEEDED_PARTS) -> list[dict]:
     entries: list[dict] = []
     trial_skipped: list[tuple[int, int, str]] = []  # (part, lot_no, denomination)
-    for part in (1, 2, 3, 4):
+    for part in parts:
         path = CACHE_DIR / f"part{part}.json"
         if not path.exists():
             print(f"  warning: {path} missing — skipping", file=sys.stderr)
@@ -1132,10 +1274,14 @@ def collect_entries() -> list[dict]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--dry-run", action="store_true", help="Print summary; do not write file")
+    ap.add_argument("--parts", default=None,
+                    help="Comma-separated part numbers (default: _SEEDED_PARTS)")
     args = ap.parse_args()
+    parts = (tuple(int(x) for x in args.parts.split(",")) if args.parts
+             else _SEEDED_PARTS)
 
     print(f"Collecting Bruun pre-1541 realm entries ({YEAR_FROM}-{YEAR_TO})...")
-    entries = collect_entries()
+    entries = collect_entries(parts)
     print(f"\nTotal entries: {len(entries)}\n")
 
     # Sort by year, then by Bruun-id
@@ -1153,7 +1299,7 @@ def main() -> int:
     write_v2_seed(
         entries,
         source_name="bruun",
-        source_label="Stack's Bowers L. E. Bruun Collection (parts I-IV, 2024-2026)",
+        source_label="Stack's Bowers L. E. Bruun Collection (parts I-V, 2024-2026)",
         scope_note=(
             "§AZ Tier 1 — Bruun corpus pre-1541 realm lots, covers the gap "
             "Hede 1971 doesn't catalogue (Christian II + Frederik I + "

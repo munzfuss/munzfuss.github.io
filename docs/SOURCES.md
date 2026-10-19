@@ -100,11 +100,11 @@ The strict «no Chrome MCP» rule that briefly applied here was overly conservat
 
 **Use as:** confirmation source — when ucoin's weight/fineness/diameter agrees with our value, that counts as a confirmation suitable for `*_verified: true`. When ucoin disagrees, record the divergence via `measurement_alts`.
 
-### 1.3 Stack's Bowers — L. E. Bruun Collection (3 PDF catalogues) ⭐
+### 1.3 Stack's Bowers — L. E. Bruun Collection (5 PDF catalogues) ⭐
 
 **Coverage:** the world's largest private collection of Scandinavian numismatica (Bruun bequest, 1928), insured 500 m DKK ≈ USD 72.5 m, ~20 000 pieces, 15th–20th centuries. Sold across three Stack's Bowers auctions 2024–2025. **Most authoritative specimen-level source we have for Danish / Norwegian / Schleswig-Holstein gold and silver.**
 
-**Four parts to date, four PDFs:**
+**Five parts to date, five PDFs:**
 
 | Part | Date | Venue | URL | Pages | Lots |
 |---|---|---|---|---|---|
@@ -112,6 +112,18 @@ The strict «no Chrome MCP» rule that briefly applied here was overly conservat
 | **II** | 14–15 Mar 2025 | Baur au Lac, Zurich | [`SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf`](https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf) (mirrored on danskmoent.dk) | 356 | 13001–13263 + 14001–14287 |
 | **III** | 28–30 Oct 2025 | Odd Fellow Palæet, Copenhagen | [`SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf`](https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf) | 284 | 11001–11308 + 12001–12228 |
 | **IV** | 24–25 Mar 2026 | Kosciuszko Foundation, NYC | [`SBG_Mar2026_BruunIV_Coins_Catalog.pdf`](https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf) | 128 | 17001–17291 + 18xxx |
+| **V** | 27–28 Oct 2026 | Odd Fellow Palæet, Copenhagen | [`SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf`](https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf) (danskmoent.dk only as of 2026-10-16; [archive copy 2026-10-16](https://web.archive.org/web/20261016155119/https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf), identical sha256) | 228 | 14001–14226 (Denmark) + 15001–15188 (Norway, Sweden, Germany) + 15189–15283 (medals) |
+
+**Part V notes (harvested 2026-10-16).** 29 134 381 bytes, sha256
+`21327fc00f49c6788a377693c5c5b038303550c66ca443dbed41d1595a82eb8d`, InDesign
+export of 2026-09-23 (server Last-Modified 2026-10-02). Catalogued by Michael
+Fornitz and Henrik Berndt; lots in the order of the 1928 *L. E. Bruuns Mønt- og
+medaillesamling*. Lot text format identical to Parts I–IV. Two traps: (1)
+**lot numbers 14001–14226 repeat Part II's** — a lot number identifies a lot only
+together with its part (seed ids are keyed on the Bruun collection-id, so this
+bites only lots without one, which fall back to `dk-bruun-pt<N>-<lot>`); (2) the
+first **medal session** of the series — filtered at parse time (§13.3). Download
+route: §13.3 «Part V download».
 
 Overview page: <https://stacksbowers.com/the-l-e-bruun-collection/>
 
@@ -1410,6 +1422,34 @@ The 4 Bruun catalogue PDFs are hosted per-part on different origins: **Parts I, 
 *Fix.* Guard `.pdf` URLs onto the multi-record (url, ref, type) path BEFORE the single-page-host check — host-agnostic, so a future danskmoent mirror of any part is covered. Recovers Part-II citations everywhere (danish_norway 248→281, danish_realm 590). — commit `7abc3f1`.
 *Lesson.* A catalogue PDF is ALWAYS multi-record (one file, hundreds of lots, per-lot discriminator in `ref`) regardless of which host serves it. Don't let a host-substring whitelist override that.
 
+**Part V download — danskmoent 454 challenge; only the user's Chrome can save the file (2026-10-16).**
+`curl` with a browser UA (with or without `Referer`) got the 7 296-byte «Checking your browser…» page (`454`) — the §3 danskmoent defence. The in-app Browser pane passes the challenge and `fetch('/pdf/…')` returns the real 29 MB PDF, but the pane cannot hand it to disk: an anchor-download saves nothing, and a POST to a `127.0.0.1` receiver fails («Failed to fetch», private-network block from an https page). What worked: Claude in Chrome → open `https://www.danskmoent.dk/` → `fetch` the relative path → `Blob` + `<a download>` click → lands in `~/Downloads`. Verify with the sha256 computed in-page (`crypto.subtle.digest`) against the saved file.
+
+**Out-of-order lot STARTS dropped — 3 lots in Part V, 14 recovered in Parts II–IV (2026-10-16).**
+The two-column layout prints lot N physically after N+1 (Part V: 14046 after 14048; 14087/14088 after 14089). The 2026-07 fix taught the block-END test to break on such a descending number, but the lot-START test still skipped any number ≤ the previous lot as a «stray digit line», so the lot vanished from `lots/partN.json`. Fix in `02_parse_lots.py`: a lower number is a real lot start when its next non-blank line is a region META line and the number is not yet parsed (same signature as the block-end test). Effect: Part V 506 → 509 (complete); Parts II–IV gain 14 lots that were never in the seed (Bruun-1710, 1945, 9285, 12814, 13571, 331, 962, 3712, 5634, 9204, 9962, 10574, 7300, 7603); no existing lot changed.
+
+**Medal session (Part V 15189–15283) — §9.2 exonumia filtered at parse time (2026-10-16).**
+The seed builder had no medal filter because Parts I–IV carry no medal titles. `02_parse_lots.py` now sets `is_pattern` (the existing §9.1/§9.2 drop flag, same as the «medallic» rule) when the lot TITLE — text before the grade or the first `;` — contains «Medal»: 91 lots in Part V, 0 in Parts I–IV. Title-only on purpose: the medal session also holds coins (15207 ¼ Speciedaler 1685, 15247 Platina 1830, 15200 «Gold Largesse Money» 1671, 15256 Greenland 48 Skilling KM-Tn54), which stay in the cache unflagged.
+*Superseded 2026-10-17 (curator):* «MEDALS OF DENMARK, SWEDEN, AND GERMANY — all medals; private tokens are §9.2». The parser now records each lot's `catalogue_section` (from the upper-case section headers — `COINS` / `COINAGE` / `PLATE MONEY` / `MEDALS` / `TOKENS`, per page, because pypdf emits a header after the page's first lot) and sets `is_pattern` for every lot in a `MEDALS` / `TOKENS` section: 95 lots in Part V (incl. the four above), none in Parts I–IV.
+
+**Printed Bruun collection-ids collide across and within parts (2026-10-16).**
+The seed id is `dk-bruun-<Bruun-collection-id>`, assumed unique. Part V breaks that four times: Bruun-4632 = Part II lot 13079 (Speciedaler 1597, 29.81 g) AND Part V lot 14085 (2 Speciedaler 1600, 69.63 g); Bruun-9764 = Part III lot 12079 (2 Speciedaler 1658-FG, Hede-27, 57.41 g) AND Part V lot 15041 (2 Speciedaler 1658, Hede-31, 57.41 g — same weight, re-attributed; whether it is the same specimen re-offered is unverified); Bruun-12937 = Part V lots 15162/15163 (Swedish Ducats 1748/7 and 1749); Bruun-15599 = Part V medals 15236/15278. The first three reach the seed builder and would emit duplicate seed ids, two of them colliding with existing curated seeds. Part V was therefore held out of the seed (`_SEEDED_PARTS`) until the collisions were resolved; seeded 2026-10-18.
+*Resolved from the printed 1928 catalogue (2026-10-17).* danskmoent.dk publishes *L. E. Bruuns Mønt- og Medaillesamling* (1928) split into sections at `https://www.danskmoent.dk/LEB%201928.htm` (`pdf2/LEB 1928-NN <section>.pdf`, image + text layer); cached as `scripts/cache/bruun/bruun_1928/LEB_1928-*.pdf`. (The archive.org copy `lebruunsmntogmed00bruu` is access-restricted — only its search-inside endpoint answers, from a logged-in tab — use the danskmoent sections instead.) Columns per row: Bruun no., description, provenance mark, condition, «1791» (Beskrivelsen) and «1926» (Schou 1926) numbers. Read from the page images:
+- **4632** — C4 section p. 150: 4631 «Dobbelt Speciedaler» 1597 (Schou 1), **4632 «Speciedaler» 1597 (Schou 2)** = Part II lot 13079; **4633 «Dobbelt Speciedaler-Afslag. Vejer 69,63 gr.» 1600 (Schou 1)** = Part V lot 14085 (Stack's printed 4632).
+- **12937** — Sverige section p. 389: **12928 «1748. Dukat»** = Part V lot 15162; **12937 «1749. Dukat. … Siökrona»** = Part V lot 15163 (its provenance line names J. Siökrona).
+- **9764** — Norge section p. 297, 1658: 9762 «Tredobbelt Speciedaler. G.» (Schou 6), 9763 «Dobbelt Speciedaler. B-B.» (Schou 7), **9764 «— —» (Schou 10)**, **9765 «— — G.» (Schou 12)**. danskmoent's Galster page (`galster/2daler.htm`, cached) gives Hede Norge 27 = 1658 «Schou … 7-10» and Hede Norge 31 = «Schou 11-12». So 9764 is the Hede-27 coin = Part III lot 12079; Part V lot 15041 (Hede-31) is **9765**, and its printed «Schou-10» is wrong too (Schou 12). Corroborating: «G.» marks the Guildal provenance — 9762 and 9765 are Part V lots 15040 and 15041, published as Guildal 1338 and 1339 (reading of «G.» / «B-B.» = Guildal / Bille-Brahe is inferred from these matches, not stated in the catalogue). The 57.41 g printed on BOTH 12079 and 15041 is probably copied onto 15041 with the number — unverified; the 1928 catalogue gives no weight for these rows.
+*Applied (curator 2026-10-17):* `_BRUUN_LOT_ERRATA` in `build_bruun_denmark_seed.py`, keyed (part, lot) because the seed id is derived from the printed number — 14085 → 4633, 15162 → 12928, 15041 → 9765 + Schou 12; written into each entry as `_source_errata`. 15041's 57.41 g carries a suspect «(*)» mark (`_BRUUN_LOT_WEIGHT_MARKS`).
+
+**Weights the parser missed — decimal comma and label slips (2026-10-17).** `WEIGHT_RE` required «Weight: N.NN gms». 21 lots in Parts I–V print the specimen weight otherwise: «3,46 gms» (Swedish lots), «Weight 5.91», «Weigt:», «Weight;», «Weigh:», or a bare «15.51 gms.» right after the closing «Bruun-N». `WEIGHT_LOOSE_RE` is the fallback (bare form only directly after «Bruun-N»); exactly those 21 lots gained a weight, no other field and no existing weight changed.
+
+**GERMANY / SWEDEN lots with an unknown mint were dropped — now routed (2026-10-17).**
+`build_coin_entry` used to return None for a GERMANY / SWEDEN lot whose meta line and mint named no entity, because `_classify_entity` falls back to the Danish default and would have put the coin on the Denmark page. The side effect: every coin of a mint missing from `mint_registry` was lost — 79 Swedish lots in Parts I–V (Szczecin 17, Riga 10, Stralsund 6, Svartsjö 5, Avesta plate money 5, Erfurt 4, Reval 3, …, plus Stockholm pieces whose meta line names no mint); no GERMANY lot was affected. Curator: never drop a lot because its mint is unknown. Now: SWEDEN → `sweden` (renders on no page), unresolved GERMANY → no entity → `_unclassified.yml`. Measured old vs new builder over all five parts: +79 entries, all `sweden`; no existing entry changed. Other builders already keep unknown mints (`ikmk` / `kmk` / `numista` → `_unclassified`; `hede` / `galster` / `ucoin` → Danish default by design of their Danish scope).
+
+**Part V seeded (2026-10-18) — what the re-flow showed.** Seeding Part V (plus the 14 recovered II–IV lots, 21 recovered weights, 79 Swedish lots) gave 0 losses, but Bruun lots bridging previously separate finals produced class unions that needed review. Four lessons: (1) the cross-entity completeness guard blocks a new lot that shares a group's KM/Hede base — add it to the group (here 6301, 7850, 8095, 7892); (2) a lot can expose a stale FOUNDATION value: `f3h31` (Hede 31) still carried Bruun 6414 / KM 216.2 / the Part IV lot-17075 anchor of the Hede 28B coin, so absorb fused 28B into 31 — fixed by resetting the foundation, plus `no_merges`; (3) KM `B445` fused with Hede 55 although `B445 ≠ 445` (no shared key) — `no_merges`; (4) Wolfenbüttel 1627: the Bruun lots give the Hede ↔ Schou concordance Hede 3A = Schou 6, 8; Hede 3B = Schou 9, 10; Hede 5 = Schou 11 — used to place KMM «Sch N» records. Part V lot 14206 prints «Copenhagen Mint» for the Altona Rejsedaler: kept visible as an erroneous `mint_mark` (new mechanism, reading-marker skill), not an erratum. Also: absorb on a clean HEAD (`e4afc3a`) is not idempotent (40 danish_realm KMM folds) — a residue of that commit, not of Part V.
+
+**A Bruun number with a Danish letter was cut and the lot silently dropped (2026-10-19).**
+Bruun's numbering continues its letter suffixes into the Danish alphabet: Part V lot 15186 prints «Bruun-15139ø» beside 15139c … 15139ddd. The ref regex took `\d+[A-Za-z]*`, so the seed id became the bare `dk-bruun-15139`, and `merge_seed`'s «superseded» rule — meant for a danskmoent page broken out into sub-letters — dropped it beside the lettered siblings, with no warning. Fixed twice: the regex accepts æøå (197e058; the only such number in Parts I–V), and the rule now applies only to `dk-hede-*` / `dk-galster-*` ids (50eb692). Lesson: check that every seed a builder emits reaches the seed file (count built vs written) after any re-seed.
+
 ### 13.4 Hede catalogue (danskmoent.dk per-coin pages)
 
 **Hede silver-spec card describes a gold off-strike sub-variant inline — risk of wrong-metal weight (2026-05-13).**
@@ -2164,3 +2204,22 @@ which is the in-house fallback for re-verifying a quote.
 ### 13.21 Wilcke VII (1950) — text and table on the same page can disagree; cite both or neither (2026-10-14)
 
 Wilcke's running text and his own summary tables are not always reconciled. Case: the Frederik II Mark of 1560 — text s. 312 «der gik 34 1/9 M paa M fin … en Lødighed paa ca. 11» (ca. 6,855 g fine), table s. 315 «ca. 12» lod, «ca. 34 5/9 M», ca. 6,75 g fine — about one lod apart, same assay source (Kølle, *Beskrivelsen* p. LVII). Likewise one letter with two dates on one page (the Norwegian Klipping Paabud 1564: «7. Maj» in the text, «28. juni» in the footnote, s. 358). *Decision.* A figure from Wilcke VII is not safe until the text AND the table of the same chapter have been read; where they differ, the dossier records both readings in its «⚠ Source-internal discrepancies» block (template `docs/research/instruments/README.md` §8) and marks the figure ⚠ in the parameters table. The 1560 case: `docs/research/instruments/1563_klippinge_syvaarskrigen.md` §4.4.
+
+### 13.22 Re-flow diffs on a clean HEAD — HEAD was not a fixed point of absorb (2026-10-15)
+
+Every full merge + absorb on a clean tree changed three finals, and sessions
+reverted them by hand. None was a curation loss:
+
+- `erzbisthum_bremen_verden.yml`, `unified-kmk-741043`: `display: false` on the
+  coin's ONLY citation. Written by the KMM ref-rewrite commit `5560422`, not by
+  absorb. `display` on KMM sources is DERIVED — `_suppress_weightless_museum_overcollection`
+  pops/sets it from scratch every run, and a sole KMM citation is always shown.
+  So the flag in HEAD was a stray artefact that hid the coin's only source.
+- `danish_norway.yml` (Hans Bergen Goldgulden, Numista 444264): `note` was
+  hand-inserted after `composed_of`; absorb writes it before `verification_note`.
+- `danish_realm.yml` (`unified-kmk-692607`): `year_is_reign_span` key order, same cause.
+
+Fix: commit absorb's output for all three. Rule of thumb — a hand edit to a
+final must be written in absorb's key order (or by re-running absorb), and a
+`display` flag on a KMM citation is never a curator surface. Pinned by
+`tests/test_kmm_display_flag_is_derived.py`.

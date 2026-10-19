@@ -158,7 +158,11 @@ def _index_after_edition_year(rest: str) -> str | None:
 
 _CAT_PREFIX = [
     (re.compile(r"^(?:hede|he|h)$", re.I), "hede"),
-    (re.compile(r"^(?:schou|sch)$", re.I), "schou"),
+    # KMM's own misspellings of «Schou» (2026-10-16 survey of the Denmark-page
+    # entities: Shou ×2, Schouo ×2, Schoju ×2, Scho, Sshou, Sckou, Scou, Sachou,
+    # Schoou, Scvhou, Skou — 15 records whose Schou number was dropped). The
+    # number printed after them is the source's; only the name is misspelt.
+    (re.compile(r"^(?:schou|sch|shou|schouo|scho|schoju|sshou|sckou|scou|sachou|schoou|scvhou|skou)$", re.I), "schou"),
     (re.compile(r"^(?:galster|gal|g)$", re.I), "galster"),
     (re.compile(r"^(?:lange|l)$", re.I), "lange"),
     (re.compile(r"^(?:davenport|dav)$", re.I), "dav"),
@@ -442,6 +446,18 @@ def _weight(src):
 # «Fiala 4 nr. 325» → «4 nr. 325», not the volume «4»).
 _CAT_FULL_REMAINDER = {"aagaard", "fiala"}
 
+# typeNumber catalogues without a CatalogRefs slot that KMM cites with a
+# number — kept verbatim as `others` labels (lower-cased prefix → label).
+# Counted 2026-10-16 on the Denmark-page entities: JSJ 13 (+47 in the web
+# beskrivelser), Sømod 42 («Sømod Br3828»), single Ahlström / Brekke /
+# Storgaard / Jungk / Bjørnstad / Gaettens references.
+_OTHERS_VERBATIM = {
+    "jsj": "JSJ", "sømod": "Sømod", "ahlström": "Ahlström",
+    "ahlströhm": "Ahlström", "ahlstrøm": "Ahlström", "brekke": "Brekke",
+    "storgaard": "Storgaard", "jungk": "Jungk", "bjørnstad": "Bjørnstad",
+    "gaettens": "Gaettens",
+}
+
 # Fiala is the one catalogue KMM writes with commas INSIDE its own reference:
 # «Fiala IV, s. 194, 1144» is volume IV, page 194, number 1144. The generic
 # split below cuts on `[;,]`, so all it ever saw was «Fiala IV» — and 22 seeds
@@ -489,9 +505,77 @@ _KMM_GALSTER_ERRATA = {
 }
 
 
+# KMM writes Lange 1908/12 — a two-volume work — with the VOLUME before the
+# number: «Lange 1, 503-04», «Lange 2, 542c», «Lange I, 324». The form with
+# «nr.» («Lange 1, nr. 359») was already read right by `_join_edition_year_
+# index`; without «nr.» the split below cut on «,» and kept the volume as the
+# index, so 88 records carried `lange: '1'` / `'2'` (and 2 «Lange I» none at
+# all) and fused across types on it — Lange 2 540 / 541 / 542 / 542c in one
+# final class. Every number printed after the volume in the cache is ≥ 321
+# (2026-10-17 survey), so a volume can never be mistaken for a genuine «Lange
+# 1, 2» pair. Same shape as the Fiala volume lift above. Curator-approved
+# 2026-10-17.
+_LANGE_VOLUME_RE = re.compile(r"\b(Lange)\s+(?:1|2|I|II)\s*,\s*(?:nr\.?\s*)?(?=\d)", re.I)
+
+
+def _drop_lange_volume(type_number: str) -> str:
+    return _LANGE_VOLUME_RE.sub(r"\1 ", type_number)
+
+
+# A typeNumber that offers alternatives — «H. 86, 101, 102 eller 137?», «H.
+# 101, 102 ell. 137», «H. 134A (eller 134B, 174)» — is a cataloguer's
+# uncertain identification. Its comma-separated numbers are candidates, not
+# indices of this coin, so none of them is continued onto the catalogue.
+_UNCERTAIN_LIST_RE = re.compile(r"\beller\b|\bell\.|\?")
+
+# A sub-variant letter printed after a space, as the whole rest of a segment.
+_SPACED_LETTER_RE = re.compile(r"\s+([A-Za-z])\s*\.?\s*")
+
+# A bare number or printed range — what a continuation segment must be in
+# full. «2var.», «4 mark!», «var. 1», «tvl. 21.» are not.
+_BARE_INDEX_RE = re.compile(r"\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?")
+
+
+def _continued_index(seg: str, sep, cont_key, uncertain: bool):
+    """→ the index a bare segment adds to the PREVIOUS segment's catalogue,
+    or None when the segment is not such a continuation.
+
+    KMM lists several numbers of one catalogue after a single prefix: «Lange
+    541, 542», «Schou 85, 88-89, 93», «Hede 104, 167-169», «MB 285, 287;
+    319-320». The split on [;,] used to drop every segment after the first,
+    because it carries no prefix — 281 segments on 275 records (2026-10-17).
+
+    «;» normally separates catalogues (12 236 prefixed segments after it in
+    the cache, 4 bare), so a bare number after «;» is the rare case. Of those
+    four, two are «Sch;82» (re-joined above), one is «4 mark!» (not a number),
+    and one is «MB 285, 287; 319-320» (KMM 138263): a string naming no other
+    catalogue, whose numbers sit inside MB's own Erik Menved / Lund block (MB
+    283–326, danskmoent.dk/mb/em_lund.htm). Continuing it as MB reads the
+    source as printed; the rule is the same for both separators.
+    """
+    if cont_key is None or sep not in (",", ";") or uncertain:
+        return None
+    if not _BARE_INDEX_RE.fullmatch(seg):
+        return None
+    return re.sub(r"\s*-\s*", "-", seg)
+
+
+def _append_index(out: dict, key: str, value: str) -> None:
+    cur = out.get(key)
+    if isinstance(cur, list):
+        if value not in cur:
+            cur.append(value)
+    elif cur is None:
+        out[key] = value
+    elif cur != value:
+        out[key] = [cur, value]
+
+
 def _catalog(src):
     """Parse `typeNumber` → {catalog_key: ref}. Handles multi-field colon/comma
-    form («H: 134B; Sch: -», «Hbg. 4, MB 558») + abbreviations; first per key."""
+    form («H: 134B; Sch: -», «Hbg. 4, MB 558») + abbreviations. First per key,
+    except bare numbers continuing the previous catalogue («Lange 541, 542»
+    → both; see _continued_index)."""
     tn = src.get("typeNumber")
     if not isinstance(tn, str) or not tn.strip():
         # §DB: no ES typeNumber — use the web-rådata catalogue that
@@ -501,14 +585,56 @@ def _catalog(src):
     tn, fiala = _lift_fiala(tn)
     if fiala:
         out["fiala"] = fiala
-    for seg in re.split(r"[;,]", _join_edition_year_index(tn)):
-        seg = seg.strip()
+    # «H:99C; Sch;82» — KMM put the field separator between the catalogue and
+    # its number, so the split below tore «Sch» from «82» (2 records). Rejoin a
+    # catalogue abbreviation followed by «;» and a digit.
+    tn = re.sub(r"\b(Sch|Schou)\s*;\s*(?=\d)", r"\1 ", tn)
+    tn = _drop_lange_volume(tn)
+    others: list[str] = []
+    last_key = None
+    # The register the PREVIOUS segment wrote a number to — the catalogue a
+    # bare number after it continues (see _continued_index). Reset by every
+    # segment that wrote nothing, so a number after «Lange conf.», «Jvf.
+    # Lange I» or «Sch,» never attaches to an earlier catalogue.
+    cont_key = None
+    uncertain = bool(_UNCERTAIN_LIST_RE.search(tn))
+    parts = re.split(r"([;,])", _join_edition_year_index(tn))
+    for i in range(0, len(parts), 2):
+        seg = parts[i].strip()
+        sep = parts[i - 1] if i else None
+        cont = _continued_index(seg, sep, cont_key, uncertain)
+        if cont is not None:
+            _append_index(out, cont_key, cont)
+            continue
+        cont_key = None
+        if re.fullmatch(r"cfr?\.?", seg, re.I):
+            # Curator 2026-10-17: keep the reference WITH its «cf.» — the
+            # merger's D31 filter keeps a cf-form out of the catalogue column,
+            # the seed keeps the source's statement.
+            cur = out.get(last_key) if last_key else None
+            if isinstance(cur, list):
+                # «Schou 59, 61, cf.» — the «cf.» follows the number it
+                # qualifies, which is the list's last.
+                if not str(cur[-1]).startswith("cf."):
+                    cur[-1] = f"cf. {cur[-1]}"
+            elif cur and not str(cur).startswith("cf."):
+                out[last_key] = f"cf. {cur}"
+            continue
         m = re.match(r"^([A-Za-zÆØÅæøå]+)[\s:.]*(.+)$", seg)
         if not m:
             continue
         prefix, rest = m.group(1), m.group(2).strip()
         key = next((k for rx, k in _CAT_PREFIX if rx.match(prefix)), None)
-        if key is None or key in out:
+        if key is None:
+            # Catalogues with no schema slot, kept VERBATIM in `others`
+            # (label = the source's own abbreviation, never mapped to a named
+            # field — what «JSJ» or «Sømod Br» denotes is not verified, §0).
+            lab = _OTHERS_VERBATIM.get(prefix.lower())
+            nm = re.match(r"([A-Za-z]{0,3}\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?\??)", rest)
+            if lab and nm and not _CF_REF_RE.search(seg):
+                others.append(f"{lab}# {re.sub(r'\s*-\s*', '-', nm.group(1))}")
+            continue
+        if key in out:
             continue
         if key in _CAT_FULL_REMAINDER:
             val = rest.rstrip(" .-")
@@ -531,14 +657,31 @@ def _catalog(src):
             # own string is what we can attest (§0).
             nm = re.match(r"\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?", rest)
             val = re.sub(r"\s*-\s*", "-", nm.group(0)) if nm else None
+            # «H 3 B», «H. 80 A», «Galster 57 B», «Lange 504 A»: KMM often
+            # prints the sub-variant letter after a space, and the match above
+            # stopped at the digits — the letter of ~250 records was lost
+            # (2026-10-17). A letter that is the WHOLE remainder is part of
+            # the index. Anything longer — «151 A el. B», «119 B-C», «119 B?»,
+            # «80 e/g», «80 C og F» — offers alternatives or a span of
+            # sub-variants; only the base number is certain there, so it
+            # stays the base.
+            if val and val[-1].isdigit() and "-" not in val:
+                lm = _SPACED_LETTER_RE.fullmatch(rest[nm.end():])
+                if lm:
+                    val += lm.group(1)
         if val:
             out[key] = val
+            last_key = key
+            if key not in _CAT_FULL_REMAINDER:
+                cont_key = key
     # Galster sub-variant letters are uppercase in Galster's catalogue (the
     # dk-galster source uses 57A/57B/39A/23B); KMM's typeNumber is inconsistent
     # (57b/23a/39b). Canonicalise the suffix to uppercase so the same Galster
     # sub-variant from KMM and the Galster source share a thinning bucket key +
     # merge cleanly. Scoped to galster only — Hede/Lange/Schou sub-variant case
     # convention is not uniformly uppercase, so those are left untouched.
+    if others:
+        out["others"] = others
     errata = _KMM_GALSTER_ERRATA.get(src.get("id"))
     if errata:
         out["galster"] = errata[1]
@@ -629,6 +772,9 @@ _KMM_DROP_IDS = {
 # below and scripts/maintenance/test_seed_reseed_idempotent.py.
 
 _CF_REF_RE = re.compile(r"\bcfr?\.", re.I)
+_FORGERY_RE = re.compile(r"fals|forfalsk", re.I)
+# A trailing segment that is ONLY «cf.» / «cfr.» qualifies the index before
+# it: «Sch. 44, cf.» = «cf. Schou 44», a similar coin, not this one's index.
 
 
 def _raadata_catalog(beskrivelser) -> dict:
@@ -665,11 +811,18 @@ def _raadata_catalog(beskrivelser) -> dict:
             if m:
                 others.append(f"Bech# {m.group(1)}")
                 continue
+            m = re.match(r"JSJ\s+(\d+\w*)", seg, re.I)
+            if m:
+                others.append(f"JSJ# {m.group(1)}")
+                continue
             m = re.match(r"LEB\s+(\w+)", seg)
             if m:
                 others.append(f"LEB# {m.group(1)}")
                 continue
-            m = re.match(r"Auk\.?\s*Kat\.?\s*(?:no\.?)?\s*(\w+)", seg, re.I)
+            # «Auk. Kat. no. 4003» and «auk. Kat. Nr. 1573». Only «no.» was
+            # known until 2026-10-17, so 25 records stored the word «Nr» as
+            # the number — one shared junk value, a false edge between them.
+            m = re.match(r"Auk\.?\s*Kat\.?\s*(?:no|nr)?\.?\s*(\d\w*)", seg, re.I)
             if m:
                 others.append(f"Auk.Kat.# {m.group(1)}")
                 continue
@@ -836,11 +989,22 @@ def _enrich_from_raadata(src: dict) -> dict:
     fremst = [h for h in (rd.get("haendelser") or []) if h.get("titel") == "Fremstilling"]
     if fremst:
         h0 = fremst[0]
-        if not src.get("creationEvents") and h0.get("starttid"):
-            src["creationEvents"] = [{
-                "yearFrom": h0.get("starttid"),
-                "yearTo": h0.get("sluttid") or h0.get("starttid"),
-            }]
+        # A page may carry only `sluttid` (337 objects on the Denmark-page
+        # entities, 2026-10-16) — that single year is the coin's own date:
+        # checked against Hede's year list for every one of them that has a
+        # Hede number and a parsed Hede page, 108 of 108 fall inside it (88
+        # Danish volume, 20 Norwegian). Requiring `starttid` dropped them all.
+        es_has_year = any(
+            isinstance(e, dict) and (e.get("yearFrom") or e.get("yearTo"))
+            for e in (src.get("creationEvents") or []))
+        y_from = h0.get("starttid") or h0.get("sluttid")
+        if not es_has_year and y_from:
+            years = {"yearFrom": y_from,
+                     "yearTo": h0.get("sluttid") or h0.get("starttid")}
+            evs = [e for e in (src.get("creationEvents") or []) if isinstance(e, dict)]
+            # Keep a year-less ES event's other content; only add the years.
+            src["creationEvents"] = ([{**evs[0], **years}, *evs[1:]] if evs
+                                     else [years])
         if not (src.get("place") or "").strip():
             loc = ((h0.get("lokalitet") or {}).get("angivelser") or "").strip()
             city = _raadata_place(loc)
@@ -979,6 +1143,13 @@ def build_entry(src) -> dict | None:
         "sources": [_kmm_source(rid, src)],
         "verification_note": _VNOTE,
     }
+    # KMM's own forgery remark (typeNumber «falsk?», «Falsk som H. 52»,
+    # «samtidig forfalskning?»; workDescription «Mønt, falsk»), verbatim.
+    # Not acted on anywhere yet (curator 2026-10-17).
+    _fl = [s for s in (src.get("typeNumber"), src.get("workDescription"))
+           if isinstance(s, str) and _FORGERY_RE.search(s)]
+    if _fl:
+        entry["forgery_flag"] = "; ".join(_fl)
     _alt = _KMM_PUBLISHED_UNDER.get(str(rid))
     if _alt:
         entry["sources"].append({

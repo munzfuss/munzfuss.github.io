@@ -73,8 +73,8 @@ class I18nTextOptional(_StrictBase):
 
 
 class YearMark(_StrictBase):
-    """A curation mark on a seed's own year or ruler (see Coin.year_mark,
-    Coin.ruler_mark)."""
+    """A curation mark on a seed's own year, ruler or mint (see Coin.year_mark,
+    Coin.ruler_mark, Coin.mint_mark)."""
     kind: Literal["suspect", "erroneous"]
     # Reader-facing reason, translated like any other tooltip text (§0z).
     reason: I18nText
@@ -85,8 +85,9 @@ class YearMark(_StrictBase):
 
 
 class YearAlt(_StrictBase):
-    """One member source's marked year (or ruler) that is shown beside, not
-    inside, the displayed value (see Coin.year_alts, Coin.ruler_alts)."""
+    """One member source's marked year (or ruler, or mint) that is shown
+    beside, not inside, the displayed value (see Coin.year_alts,
+    Coin.ruler_alts, Coin.mint_alts)."""
     value: str = Field(..., min_length=1)
     source: str = Field(..., min_length=1)
     kind: Literal["suspect", "erroneous"]
@@ -816,8 +817,9 @@ class CatalogRefs(_StrictBase):
     thomsen: str | list[str] | None = None
     # Bergsøe («Bgs.») — Danish (Vilhelm Bergsøe), medals + coins.
     bergsoe: str | list[str] | None = None
-    # Hauberg («Hbg.») — P. Hauberg, «Danmarks Myntvæsen … 1146-1241»,
-    # medieval Danish (borderline; mostly era-gated out at SEED).
+    # Hauberg («Hbg.») — P. Hauberg's medieval catalogues (1885 «… 1241-1377»,
+    # numbered per ruler and mint; 1900 «… indtil 1146»; 1906 «… 1146-1241»).
+    # KMM's «Hbg. N» does not say which; see luebischer_muenzfuss.md §6d.
     hauberg: str | list[str] | None = None
     # Aagaard («Aagaard 1996 …») — Danish modern typology reference.
     aagaard: str | list[str] | None = None
@@ -984,6 +986,12 @@ class Coin(_StrictBase):
     # reason. Emitted by the cross-source merger from the members' `year_mark`,
     # unioned by absorb; never hand-written on final.
     year_alts: "list[YearAlt] | None" = None
+    # A source's own statement that the object is (or may be) a forgery,
+    # kept VERBATIM («falsk?», «H. 99 B, samtidig forfalskning?», «Falsk som
+    # H. 52»). Recorded so the information is not lost; nothing reads it yet
+    # — no render, no classification, no exclusion (curator 2026-10-17: what
+    # to do with forgeries is decided later). Emitted by the KMM seed builder.
+    forgery_flag: str | None = None
     ruler: str | None = None
     ruler_verified: bool = Field(
         True,
@@ -1024,6 +1032,17 @@ class Coin(_StrictBase):
         ),
     )
     mint_verified: bool = True
+    # The mint-column analogue of ruler_mark / ruler_alts. A curation mark on
+    # the mint a source PRINTED, written on that source's seed. An «erroneous»
+    # mark is purely presentational: `seed_merge.apply_mint_mark` moves the
+    # printed mint into `mint_mark.value` and clears `mint`, so the value takes
+    # part in nothing — not the class's mints, not matching, not entity
+    # routing — and is only shown, muted with «(!)», beside the real mint via
+    # `mint_alts` (curator 2026-10-18). A «suspect» mark keeps the mint in
+    # play. Founding case: Bruun Part V lot 14206 prints «Copenhagen Mint» for
+    # the Altona Rejsedaler 1788 (Hede 25).
+    mint_mark: "YearMark | None" = None
+    mint_alts: "list[YearAlt] | None" = None
     mintmaster: str | None = None
     mintmasters: list[MintmasterEntry] | None = Field(
         None,

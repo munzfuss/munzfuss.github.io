@@ -24,13 +24,17 @@ downstream artifacts.
 
 ## Adding a new Bruun part (Part V or beyond)
 
-1. Download the PDF to `/tmp/bruun_pdfs/partN.pdf`. URLs are listed on
+1. Download the PDF, store it as `scripts/cache/bruun/partN.pdf` and symlink it
+   to `/tmp/bruun_pdfs/partN.pdf` (stage 01's input dir). A danskmoent.dk-hosted
+   part (II, V) answers curl with a 454 JS challenge — use Claude in Chrome
+   (`docs/SOURCES.md` §13.3 «Part V download»). URLs are listed on
    <https://stacksbowers.com/the-l-e-bruun-collection/> — the per-part
    catalog covers are clickable images linking to PDFs at
    `https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/`.
    Download via Chrome MCP (Cloudflare-protected; WebFetch returns 403).
 2. Add the entry to two places:
    - `("partN", "Bruun Part N (date — venue)")` in `PARTS` list of `01_extract_text.py`
+     (run it as `01_extract_text.py partN` to extract only the new part)
    - `"partN": [(lo, hi), ...]` in `PART_LOT_RANGES` of `02_parse_lots.py`
      (the auction sale order tells you the lot ranges; e.g. Part IV is
      Session I 17001-17291 + Session II 18xxx).
@@ -42,7 +46,11 @@ downstream artifacts.
    .venv/bin/python scripts/bruun_parser/03_classify_scope.py
    .venv/bin/python scripts/bruun_parser/04_cross_match.py
    ```
-5. Inspect the new B-matches and D-candidates in `scripts/cache/bruun/cross_match.json`.
+5. Seed builder: add the part's PDF URL + roman numeral in
+   `build_bruun_denmark_seed.py` (`_BRUUN_PART_PDF_URL`, `_BRUUN_PART_ROMAN`);
+   preview with `--dry-run --parts 1,…,N`; add N to `_SEEDED_PARTS` only with the
+   curator's go-ahead, after checking for Bruun-id collisions with earlier parts.
+6. Inspect the new B-matches and D-candidates in `scripts/cache/bruun/cross_match.json`.
 
 ## Re-parsing after improvements (no new PDF)
 

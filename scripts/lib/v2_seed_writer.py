@@ -186,6 +186,8 @@ _QUANTITY_CHARS = "0123456789½¼¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞"
 from lib.mint_registry import (  # noqa: E402
     ALIAS_TO_CANON as _MINT_ALIAS_TO_CANON,
     CANON_TO_DISPLAY as _MINT_CANON_TO_DISPLAY,
+    NORWAY_FROM_YEAR,
+    norway_split_entity,
     strip_mint_suffix as _strip_mint_suffix,
 )
 from lib.nominal_synonyms import normalise_nominal as _fold_denom  # noqa: E402
@@ -1511,6 +1513,36 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
     return kept, stats
 
 
+def _apply_norway_split(coins: list[dict], source_name: str) -> int:
+    """Route Norwegian coins struck from 1815 on to `norway`, in place.
+
+    Every builder routes a Norwegian coin to `danish_norway` by mint, nation
+    («Norge») or region («NORWAY») without regard to the date; the split
+    between Norway under the Danish crown and the Kingdom of Norway is one
+    rule, `mint_registry.norway_split_entity`, applied here so every source
+    gets it. Runs before the curated-entity restore, which re-asserts a
+    curator-held `issuing_entity` over it. Scalar entities only — a joint-mint
+    list keeps its members.
+    """
+    moved = 0
+    for c in coins:
+        ie = c.get("issuing_entity")
+        if not isinstance(ie, str):
+            continue
+        if (c.get("entity_classified_via") == "curation_hold"
+                or "issuing_entity" in set(c.get("_curation_holds") or ())):
+            continue
+        new = norway_split_entity(ie, c.get("year_first"), c.get("year_last"),
+                                  c.get("ruler"))
+        if new != ie:
+            c["issuing_entity"] = new
+            moved += 1
+    if moved:
+        print(f"[{source_name}] Norway split (from {NORWAY_FROM_YEAR}): "
+              f"{moved} coin(s) re-routed between danish_norway and norway")
+    return moved
+
+
 def _check_entity_invariant(
     coins: list[dict],
     source_name: str,
@@ -1547,6 +1579,10 @@ def _check_entity_invariant(
         expected = classify_mint_to_entity(mint, year=c.get("year_first"))
         if expected is None:
             continue
+        # The writer applies the same date / Danish-king split to the coin
+        # itself (`_apply_norway_split`), so compare against the split value.
+        expected = norway_split_entity(expected, c.get("year_first"),
+                                       c.get("year_last"), c.get("ruler"))
         ie = c.get("issuing_entity")
         current = ie if isinstance(ie, str) else (
             sorted(str(e) for e in ie if e)[0] if isinstance(ie, list) and ie else None
@@ -1821,6 +1857,10 @@ def write_v2_seed(
     # `merge_one` gets to run there. Without this the hold cannot fire — see
     # `_curated_entity_overrides`. Runs post-hygiene so the restored value is
     # what the invariant check reports on.
+    # Norway split BEFORE the restore / carry pass: a coin it moves from
+    # danish_norway to norway must be carried there with its curation, and a
+    # curator-held entity must still win over it.
+    _apply_norway_split(coins, source_name)
     _curated_existing = _existing_curated_entries(V2_SEED_ROOT / source_name)
     _restored_entity = 0
     _carried = 0

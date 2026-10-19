@@ -205,12 +205,13 @@ See PB-10 for full diagnosis when `git status` shows `modified: scripts/cache (n
 
 ### Bruun PDFs — already parsed
 
-**Scope**: Stack's Bowers L. E. Bruun Collection 2024-2026, 4 PDF parts.
+**Scope**: Stack's Bowers L. E. Bruun Collection 2024-2026, 5 PDF parts (Part V parsed 2026-10-16, not yet seeded — `_SEEDED_PARTS`).
 **Coverage**: per-specimen brutto + NGC grade + rarity + cross-refs (Sieg / Schou / Galster / Fr / Lange / Dav / KM / Hede).
 
-- Parsed: `scripts/cache/bruun/lots/part{1,2,3,4}.json`
-- Page text: `scripts/cache/bruun/pages/part{1,2,3,4}.txt`
-- Raw PDFs: `scripts/cache/bruun/part{1,2,3,4}.pdf` (read via `pdf-viewer` MCP for new lots)
+- Parsed: `scripts/cache/bruun/lots/part{1..5}.json`
+- Page text: `scripts/cache/bruun/pages/part{1..5}.txt`
+- Raw PDFs: `scripts/cache/bruun/part{1..5}.pdf` (pypdf; the pdf-viewer MCP times out on these sizes — SOURCES §13.3)
+- Adding a part: `scripts/bruun_parser/README.md` § «Adding a new Bruun part». A danskmoent-hosted PDF needs the Claude-in-Chrome download route (SOURCES §13.3 «Part V download»); stage 01 takes a part slug (`01_extract_text.py part5`) so existing page dumps are not re-extracted.
 
 **Seed builder pattern**: `scripts/maintenance/build_bruun_denmark_seed.py` reads JSON, filters by year/region, normalises to project seed shape. Mirror for new scopes.
 

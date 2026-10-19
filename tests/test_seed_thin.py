@@ -1,6 +1,14 @@
 """§9a seed-thinning salvage — dropped specimens shed redundant weight +
-per-specimen sources, but their distinguishing data (catalogue indices,
-fineness, diameter) is carried onto the kept min/middle/max reps."""
+per-specimen sources, but their distinguishing data (fineness, diameter) is
+carried onto the kept min/middle/max reps.
+
+Until 2026-10-17 «distinguishing data» included catalogue indices the bucket
+key did not name — `others` labels, mb, thomsen, … — so specimens of
+DIFFERENT types shared a bucket and the keeper collected their numbers
+(`kmk-138263` came to carry MB 285, 500 and 566-567: Erik Menved and
+Christoffer II on one coin). Every type register is now in the key, and
+`test_distinct_others_not_collapsed` pins the reverse of what
+`test_salvages_all_others_refs` used to assert."""
 from __future__ import annotations
 
 import sys
@@ -13,12 +21,12 @@ from lib.seed_thin import thin_coins  # noqa: E402
 
 def _bucket(n, *, km="100", with_diameter=False):
     """n specimens of ONE sub-variant (same km/nominal/ruler/year/mint/metal),
-    each carrying a distinct `others` sub-catalogue ref + its own weight."""
+    sharing one `others` sub-catalogue ref, each with its own weight."""
     out = []
     for i in range(n):
         c = {
             "id": f"x-{i:02d}",
-            "catalog": {"km": km, "others": [f"Dorfmann# {i}"]},
+            "catalog": {"km": km, "others": ["Dorfmann# 7"]},
             "nominal": "1 Taler", "ruler": "R", "year_first": 1600,
             "mint": "M", "metal": "silver",
             "weight_rough_g": 20.0 + i * 0.1,
@@ -36,14 +44,15 @@ class TestSeedThinSalvage(unittest.TestCase):
         self.assertEqual(len(kept), 3)
         self.assertEqual(stats["thinned_buckets"], 1)
 
-    def test_salvages_all_others_refs(self):
-        kept, _ = thin_coins(_bucket(7))
-        refs = set()
+    def test_distinct_others_not_collapsed(self):
+        bucket = _bucket(10)
+        for i, c in enumerate(bucket):
+            c["catalog"]["others"] = ["Dorfmann# 1" if i < 5 else "Dorfmann# 2"]
+        kept, stats = thin_coins(bucket)
+        self.assertEqual(stats["thinned_buckets"], 2)
         for c in kept:
-            for x in (c.get("catalog") or {}).get("others") or []:
-                refs.add(str(x).replace(" ", "").lower())
-        for i in range(7):
-            self.assertIn(f"dorfmann#{i}", refs, f"Dorfmann# {i} was lost")
+            self.assertEqual(1, len(c["catalog"]["others"]),
+                             f"others bucket bled: {c['catalog']['others']}")
 
     def test_weights_thinned_not_salvaged(self):
         kept, _ = thin_coins(_bucket(7))

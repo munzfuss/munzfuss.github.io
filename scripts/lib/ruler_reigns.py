@@ -36,12 +36,46 @@ from functools import lru_cache
 # 1514-1914 because the personal union kept Danish kings on the
 # Norwegian throne until 1814.
 RULER_REIGNS: dict[str, tuple[int, int]] = {
+    # Medieval rulers, for the reign-window placeholder of undated museum
+    # pennies (curator 2026-10-17, undated-coins plan row 2). Kings from the
+    # Danish regent list, da.wikipedia.org/wiki/Danmarks_regenter: Hardeknud
+    # «1035-11-12 – 1042-06-08»; Magnus den Gode «Konge 1042 ved Hardeknuds
+    # død», † 25.10.1047; Valdemar den Store «Konge over hele Danmark 23.
+    # oktober 1157», † 12.5.1182; Christoffer 1. «Konge 29. juni 1252», †
+    # 29.5.1259; Erik Menved «Konge 22. november 1286», † 13.11.1319;
+    # Christoffer 2. 1320-1326 and 1329-† 2.8.1332 (one span here); «Den
+    # kongeløse tid … 1332–1340»; Margrete 1. «Formynder for Olav Håkonsson
+    # fra 3. maj 1376», † 28.10.1412.
+    "Hardeknud":       (1035, 1042),
+    "Magnus den Gode": (1042, 1047),
+    "Valdemar I":      (1157, 1182),
+    "Christoffer I":   (1252, 1259),
+    "Erik VI":         (1286, 1319),  # Erik Menved
+    "Christoffer II":  (1320, 1332),
+    "Kongeløs tid":    (1332, 1340),
+    "Margrete I":      (1376, 1412),
+    # Jakob Erlandsen: «I 1249 blev han af paven indsat som biskop i
+    # Roskilde», «I 1254 blev Jakob Erlandsen valgt til ærkebiskop i Lund»,
+    # † 1274 (lex.dk/Jakob_Erlandsen). The KMM pennies give Roskilde, so the
+    # span covers both sees; a rough placeholder, shown (?).
+    "Jakob Erlandsen": (1249, 1274),
+    # Norway: «Håkon 5. Magnusson var norsk konge i perioden 1299–1319»
+    # (snl.no/Håkon_5._Magnusson).
+    "Håkon V":         (1299, 1319),
+
     # Pre-1514 — relevant for the `denmark/p0_pre_lovkompleks`
     # bucket (Erik VII → Hans 1396-1513).
     "Erik VII":      (1396, 1439),
     "Christoffer III": (1440, 1448),
     "Christian I":   (1448, 1481),
     "Hans I":        (1481, 1513),  # also written «John I» in English ucoin
+    # The Rigsråd's interregnum after Christian I's death. Its Hvide are
+    # 1481-1483: «Bent Östergaard har visat att hviderna måste ha präglats
+    # först 1481-1483 (Östergaard 1995)» (Eriksson 2017, Myntstudier, s. 4).
+    # The Rigsråd's SKILLING is 1448 instead (Stefke 1995, same page) — the
+    # 1448 interregnum. Every Rigsrådet coin in the data is a Hvid
+    # (2026-10-17); a Rigsrådet skilling needs its own 1448 handling.
+    "Rigsrådet":     (1481, 1483),
 
     # Post-Lovkompleks Christian-II line.
     "Christian II":  (1513, 1523),
@@ -100,6 +134,50 @@ HOUSE_REIGNS: dict[str, dict[str, tuple[int, int]]] = {
         "Karl Peter Ulrich": (1739, 1762),
         "Paul":              (1762, 1773),
     },
+    # Sonderburg: Hans (Johann) der Jüngere received his third in the
+    # Flensburg treaty of 27 Jan 1564 and died 9 Oct 1622 — «Im Flensburger
+    # Vertrag (27.1.1564) überließ Kg. Friedrich II. von Dänemark seinem
+    # jüngsten Bruder J. ein Drittel», † 9.10.1622 (H. W. Schwarz, «Johann der
+    # Jüngere», Neue Deutsche Biographie 10, 1974, S. 534 f.,
+    # deutsche-biographie.de/sfz53359.html). Full rule only from 1571 (same
+    # article); the coinage window is the 1564-1622 span. His son Alexander
+    # took Sønderborg at the division after his death and died 13 May 1627:
+    # «Alexander (1573-1627) fik Sønderborg» (lex.dk, «sønderjyske
+    # fyrstehuse»); death date de.wikipedia «Alexander (Schleswig-Holstein-
+    # Sonderburg)». The other sons (1622/23) are not in the table yet.
+    "sonderburg_duchy": {
+        "Hans der Jüngere":  (1564, 1622),
+        "Alexander":         (1622, 1627),
+    },
+    # Archbishopric of Bremen: Johann Friedrich of Holstein-Gottorp, from
+    # 1596 — «gab er 1596 die Erzbischofswürde von Bremen an den
+    # sechzehnjährigen Johann Friedrich ab» — † 3 Sept 1634 (de.wikipedia
+    # «Johann Friedrich von Schleswig-Holstein-Gottorf»). Added 2026-10-19
+    # for KMM 4 Skilling lybsk Jungk 316 (undated-coins plan row 8).
+    "erzbisthum_bremen_verden": {
+        "Johann Friedrich":  (1596, 1634),
+    },
+    # Schauenburg-Pinneberg: NumisMaster's ruler link «Ernst III 1601 - 1622»
+    # (scripts/cache/numismaster/schleswig_holstein/MC_96084.html), requested
+    # 2026-10-17 by the NGC-dates session for NGC «(after 1620)» KM 93-95.
+    "schauenburg_pinneberg": {
+        "Ernst III":         (1601, 1622),
+    },
+    # Kingdom of Norway after 1814 (entity `norway`). Reigns as kings of
+    # Norway, en.wikipedia «List of Norwegian monarchs»: Charles II (XIII)
+    # 4 Nov 1814 – 5 Feb 1818; Charles III John (XIV John) – 8 Mar 1844;
+    # Oscar I – 8 Jul 1859; Charles IV (XV) «8 July 1859 – 18 September
+    # 1872»; Oscar II – 1905; Haakon VII 18 Nov 1905 – 21 Sep 1957. Keys use
+    # the Swedish numbering the coins and most sources print. Added
+    # 2026-10-19 for KMM 673472/673473 «Carl 15.» (curator: «так»).
+    "norway": {
+        "Carl XIII":         (1814, 1818),
+        "Carl XIV Johan":    (1818, 1844),
+        "Oscar I":           (1844, 1859),
+        "Carl XV":           (1859, 1872),
+        "Oscar II":          (1872, 1905),
+        "Haakon VII":        (1905, 1957),
+    },
 }
 
 # Observed source spellings → canonical key inside a house table. Lowercased,
@@ -126,6 +204,43 @@ _HOUSE_ALIASES: dict[str, dict[str, str]] = {
         "karl peter ulrich": "Karl Peter Ulrich",
         "paul": "Paul",
     },
+    "schauenburg_pinneberg": {
+        "ernst iii": "Ernst III", "ernst 3": "Ernst III",
+    },
+    "sonderburg_duchy": {
+        # KMM «Hans den Yngre» (several spacings), NGC «Johann», German forms.
+        # Only one Hans/Johann ruled Sonderburg.
+        "hans den yngre": "Hans der Jüngere", "hans der jüngere": "Hans der Jüngere",
+        "johann der jüngere": "Hans der Jüngere", "johann": "Hans der Jüngere",
+        "johan": "Hans der Jüngere", "hans": "Hans der Jüngere",
+        "alexander": "Alexander",
+    },
+    "norway": {
+        # Swedish numbering (coins, Bruun, most of KMM) and Norwegian
+        # numbering (KMM «Karl 3 Johan», «Karl 4»): Karl II = Carl XIII,
+        # Karl III Johan = Carl XIV Johan, Karl IV = Carl XV. A bare «Oscar»
+        # stays unresolved (I or II).
+        "carl xiii": "Carl XIII", "karl xiii": "Carl XIII", "carl 13": "Carl XIII",
+        "karl 13": "Carl XIII", "karl ii": "Carl XIII", "karl 2": "Carl XIII",
+        "carl xiv johan": "Carl XIV Johan", "karl xiv johan": "Carl XIV Johan",
+        "carl xiv": "Carl XIV Johan", "karl xiv": "Carl XIV Johan",
+        "carl 14": "Carl XIV Johan", "karl 14": "Carl XIV Johan",
+        "carl 14 johan": "Carl XIV Johan", "karl 14 johan": "Carl XIV Johan",
+        "carl johan": "Carl XIV Johan", "karl johan": "Carl XIV Johan",
+        "carl xiv jo": "Carl XIV Johan",
+        "karl iii johan": "Carl XIV Johan", "karl 3 johan": "Carl XIV Johan",
+        "oscar i": "Oscar I", "oscar 1": "Oscar I", "oskar i": "Oscar I", "oskar 1": "Oscar I",
+        "carl xv": "Carl XV", "karl xv": "Carl XV", "carl 15": "Carl XV",
+        "karl 15": "Carl XV", "karl iv": "Carl XV", "karl 4": "Carl XV",
+        "oscar ii": "Oscar II", "oscar 2": "Oscar II", "oskar ii": "Oscar II", "oskar 2": "Oscar II",
+        "haakon vii": "Haakon VII", "håkon vii": "Haakon VII",
+        "haakon 7": "Haakon VII", "håkon 7": "Haakon VII",
+    },
+    "erzbisthum_bremen_verden": {
+        "johann friedrich": "Johann Friedrich", "johan friedrich": "Johann Friedrich",
+        "johan frederik": "Johann Friedrich", "johann frederik": "Johann Friedrich",
+        "john frederick": "Johann Friedrich",
+    },
 }
 
 _HOUSE_SUFFIX_RE = re.compile(
@@ -148,7 +263,7 @@ def house_reign_window(ruler_raw: str | None,
     if not aliases:
         return None
     name = _HOUSE_SUFFIX_RE.sub("", ruler_raw.strip())
-    name = name.replace(".", "").strip().lower()
+    name = re.sub(r"\s+", " ", name.replace(".", "")).strip().lower()
     key = aliases.get(name)
     if key is None:
         return None
@@ -220,6 +335,19 @@ def normalise_ruler_name(raw: str | None) -> str | None:
     # Joint-attribution form: take the first half before « / » so
     # «Christian V / Frederick III» → «Christian V».
     head = raw.split("/", 1)[0].strip()
+    # A bare «Hans» (KMM, Bruun, danskmoent write the king without a numeral)
+    # is unambiguous: the table has one Hans, 1481-1513. «Hans?» (KMM's
+    # uncertain attribution) is the same name with a doubt mark. «Johan» /
+    # «Johann» are the Danish / German forms of the same king (IOHANNES on
+    # the coins; KMM «Johan», Hvid Malmø; IKMK «Johann», København 1481).
+    # «Johannes» stays out: KMM uses it for a medieval Odense penning.
+    if re.fullmatch(r"(?i)(hans|john|johann?)\??", head):
+        return "Hans I"
+    _bare = _EXACT_BARE.get(_bare_key(head))
+    if _bare is not None and _bare in RULER_REIGNS:
+        return _bare
+    if re.fullmatch(r"(?i)(rigsrådet|rigsraadet|riksrådet)\??", head):
+        return "Rigsrådet"
     m = _RULER_RE.search(head)
     if not m:
         return None
@@ -258,6 +386,151 @@ def reign_window(ruler_raw: str | None,
     if key is None:
         return None
     return RULER_REIGNS.get(key)
+
+
+# Names the kings' table holds under a single bearer, written without a
+# numeral in the sources (KMM «Hans», «Rigsrådet»): the bare form IS the whole
+# name, not a name with a qualifier dropped. Also the medieval names the
+# numeral regex cannot read, and KMM's misspellings of a ruler's name
+# (2026-10-17 survey of the Denmark-page undated coins) — each spelling exactly
+# as KMM writes it, lower-cased, punctuation dropped, spaces collapsed.
+_EXACT_BARE = {
+    "hans": "Hans I", "john": "Hans I", "johan": "Hans I", "johann": "Hans I",
+    "rigsrådet": "Rigsrådet",
+    "rigsraadet": "Rigsrådet", "riksrådet": "Rigsrådet", "ridsrådet": "Rigsrådet",
+    "hardeknud": "Hardeknud", "hardeknuyd": "Hardeknud",
+    "magnus den gode": "Magnus den Gode", "magnud den gode": "Magnus den Gode",
+    "valdemar i": "Valdemar I", "vardemar i": "Valdemar I",
+    "valdemar den store": "Valdemar I",
+    "christoffer 1": "Christoffer I", "chyristoffer 1": "Christoffer I",
+    "christoffer i": "Christoffer I",
+    "erik menved": "Erik VI", "ereik menved": "Erik VI", "erik vi": "Erik VI",
+    "christoffer2": "Christoffer II", "chrstoffer 2": "Christoffer II",
+    "ckristopher ii": "Christoffer II", "christopher ii": "Christoffer II",
+    "christoffer 2": "Christoffer II", "christoffer ii": "Christoffer II",
+    "kongeløs tid": "Kongeløs tid",
+    "margrethe": "Margrete I", "margrete i": "Margrete I", "margrethe i": "Margrete I",
+    "margrete 1": "Margrete I", "margrethe 1": "Margrete I",
+    "jakob erlandsen": "Jakob Erlandsen",
+    "håkon 5 magnusson": "Håkon V", "håkon v magnusson": "Håkon V",
+    "kristian 1": "Christian I", "chrisytian 1": "Christian I",
+    "chrtistian 4": "Christian IV", "chritian 4": "Christian IV",
+}
+
+
+def _bare_key(raw: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"[.,?]", " ", str(raw))).strip().lower()
+
+
+def reign_lookup_is_exact(ruler: str | None) -> bool:
+    """Did the reign lookup use the WHOLE ruler name, or drop a qualifier?
+
+    `normalise_ruler_name` strips territorial and other qualifiers, so
+    «Frederik III. von Gottorp» and «Frederik 3 som ærkebiskop» (Bremen,
+    before he was king) both resolve to King Frederik III and come back with
+    a window that is someone else's — or the same man's in another office.
+    This test is deliberately strict: it passes only when the normalised name
+    accounts for the entire raw name. It looks through the numeral form
+    («Christian 4» = «Christian IV»), a trailing period, a doubt mark «?», and
+    the single-bearer bare names in `_EXACT_BARE`. Moved here from absorb
+    2026-10-17 so the merger and absorb share it.
+    """
+    if not ruler:
+        return False
+    norm = normalise_ruler_name(ruler)
+    if not norm:
+        return False
+    if _EXACT_BARE.get(_bare_key(ruler)) == norm:
+        return True
+    raw = re.sub(r"[.,?]", " ", str(ruler)).lower().split()
+    ref = str(norm).lower().split()
+    if raw and ref and raw[-1].isdigit():
+        raw = raw[:-1] + [ref[-1]]
+    return raw == ref
+
+
+def reign_window_exact(ruler_raw: str | None) -> tuple[int, int] | None:
+    """`reign_window`, but only when the lookup used the whole name
+    (`reign_lookup_is_exact`); None otherwise. Use this wherever a reign
+    window is applied to data — a qualified name must not borrow a king's
+    window."""
+    return reign_window(ruler_raw) if reign_lookup_is_exact(ruler_raw) else None
+
+
+_ALTERNATIVE_SPLIT_RE = re.compile(
+    r"\s*(?:/|\beller\b|\bell\.|\boder\b|\bor\b|\s-\s|–)\s*", re.IGNORECASE)
+
+
+# Issuing entities whose rulers ARE the Danish kings of `RULER_REIGNS` — the
+# realm, Norway in the union, and the king's shares of Schleswig and Holstein.
+# A same-named ruler of any other issuer is someone else: «Hans» on a Swedish
+# coin is King Hans of Sweden 1497-1501, «Frederik 3» on a Bremen coin is the
+# archbishop of 1634-1645, «Frederik 3» on a Gottorp coin the duke 1616-1659.
+DANISH_CROWN_ENTITIES = frozenset({
+    "danish_realm", "danish_norway", "royal_holstein", "royal_slesvig",
+})
+
+
+def reign_window_placeholder(ruler_raw: str | None,
+                             entity: str | list | None = None) -> tuple[int, int] | None:
+    """The year span to show for a coin NO source dates, from its ruler alone.
+
+    Stricter than `reign_window` about whose window it is, looser about how
+    many rulers the source names (absorb's placeholder, curator 2026-10-17):
+
+      * the issuer decides whose table: a ducal house by `entity` or by a
+        ruler string that names it («Frederik 3 af Slesvig-Holsten-Gottorp»
+        → Duke Friedrich III, 1616-1659, not King Frederik III); the Danish
+        kings only for `DANISH_CROWN_ENTITIES`; any other issuer → None (a
+        Swedish «Hans», a Bremen «Frederik 3» are other men);
+      * an alternative the source leaves open («Christian I/Hans ?», «Hans
+        eller Christian 2», «Christian 3/4», «Frederik 7 eller Christian 9»)
+        spans from the first reign's start to the last reign's end; a bare
+        numeral («3/4») borrows the preceding name;
+      * every part must be an exact name (`reign_lookup_is_exact`), so a
+        qualified name («… som ærkebiskop», «… von Holsten-Gottorp» when the
+        house table does not know him) yields None and the coin stays undated
+        rather than borrowing someone else's reign.
+    """
+    if not ruler_raw or not isinstance(ruler_raw, str):
+        return None
+    ents = set(entity) if isinstance(entity, (list, tuple, set)) else ({entity} if entity else set())
+    # A ducal house: by the issuing entity, or by a ruler string that itself
+    # names the house («Frederik 3 af Slesvig-Holsten-Gottorp» on a
+    # royal_holstein record).
+    houses = [e for e in ents if e in HOUSE_REIGNS]
+    for _pat, _h in ((r"gottorp", "gottorp_duchy"), (r"s[øo]nderb(?:o|u)rg", "sonderburg_duchy"),
+                     (r"scha(?:u|ue)mburg|schauenburg|pinneberg", "schauenburg_pinneberg")):
+        if re.search(_pat, ruler_raw, re.IGNORECASE) and _h not in houses:
+            houses.append(_h)
+    for h in houses:
+        w = house_reign_window(ruler_raw.replace("?", "").strip(), h)
+        if w is not None:
+            return w
+    # The kings' table only for an issuer of the Danish crown — matched by
+    # entity, never by the name alone (curator 2026-10-17).
+    if houses or not (ents & DANISH_CROWN_ENTITIES):
+        return None
+    # A bare «Johan» / «Johann» is King Hans only in the kingdoms: in the
+    # duchies (royal_holstein / royal_slesvig) it can as well be Hans der
+    # Jüngere of Sønderborg, whom NGC also writes «Johann».
+    if (re.fullmatch(r"(?i)\s*johann?\s*\??\s*", ruler_raw)
+            and not (ents & {"danish_realm", "danish_norway"})):
+        return None
+    parts = [p.strip(" ?") for p in _ALTERNATIVE_SPLIT_RE.split(ruler_raw) if p.strip(" ?")]
+    if not parts:
+        return None
+    windows = []
+    prev_name = None
+    for part in parts:
+        if part.isdigit() and prev_name:
+            part = f"{prev_name} {part}"
+        w = reign_window(part) if reign_lookup_is_exact(part) else None
+        if w is None:
+            return None
+        windows.append(w)
+        prev_name = part.split()[0]
+    return (min(w[0] for w in windows), max(w[1] for w in windows))
 
 
 def reign_covers_year(ruler_raw: str | None, year: int | None,

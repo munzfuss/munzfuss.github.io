@@ -55,6 +55,10 @@ PART_LOT_RANGES: dict[str, list[tuple[int, int]]] = {
     "part2": [(13001, 13500), (14001, 14500)],  # Mar 2025 Zurich Sess I+II — 13001-13263 / 14001-14287
     "part3": [(11001, 11500), (12001, 12500)],  # Oct 2025 Zurich Sess I+II — 11001-11308 / 12001-12228
     "part4": [(17001, 17500), (18001, 18500)],  # Mar 2026 NYC Sess I+II — 17001-17291 / 18xxx
+    # Oct 2026 Copenhagen Sess I (Denmark 14001-14226) + Sess II (Norway/Sweden/
+    # Germany 15001-15188, medals 15189-15283). NB: 14001-14226 REUSES Part II's
+    # lot numbers — a lot number is only unique together with its part.
+    "part5": [(14001, 14500), (15001, 15500)],
 }
 
 
@@ -84,7 +88,11 @@ REF_PATTERNS = {
     "Hede":    re.compile(r"\bHede[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
     "Sieg":    re.compile(r"\bSieg[\-:]?\s*(\d+(?:\.\d+)?[A-Za-z]*)", re.IGNORECASE),
     "Lange":   re.compile(r"\bLange[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
-    "Bruun":   re.compile(r"\bBruun[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    # Bruun's 1928 numbering continues its letter suffixes into the Danish
+    # alphabet (Part V lot 15186 «Bruun-15139ø», after 15139c … 15139ddd);
+    # without æøå the ø was cut, the seed id became the bare «15139», and
+    # merge_seed's bare-Hede «superseded» rule dropped it beside 15139c.
+    "Bruun":   re.compile(r"\bBruun[\-:]?\s*(\d+[A-Za-zæøåÆØÅ]*)", re.IGNORECASE),
     "Fr":      re.compile(r"\bFr[\.\-:]?\s*(\d+[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
     "Schou":   re.compile(r"\bSchou[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
     # Aagaard cites a die-combination in a trailing paren — «74.1 (49-2/49-5)»,
@@ -237,6 +245,17 @@ def extract_year(meta_line: str | None, body_match: str | None) -> int | None:
 
 
 WEIGHT_RE = re.compile(r"\bWeight:\s*([\d.]+)\s*(?:gms?|grams?)\b", re.IGNORECASE)
+# Fallback for the cataloguers' slips (2026-10-17, 21 lots across Parts I-V,
+# all a specimen weight that WEIGHT_RE missed): a decimal comma («3,46 gms»,
+# the Swedish lots of Part V), a misspelt / mis-punctuated label («Weight 5.91»,
+# «Weigt:», «Weight;», «Weigh:»), or a bare «15.51 gms.» right after the
+# «Bruun-N» reference that closes the ref list. The bare form is accepted ONLY
+# in that position, so a weight mentioned in the prose is never read.
+WEIGHT_LOOSE_RE = re.compile(
+    r"\bWeig\w*\s*[:;]?\s*(\d+(?:[.,]\d+)?)\s*(?:gms?|grams?)\b"
+    r"|\bBruun-\s*\d+(?:\.\d+)?[.;]?\s+(\d+(?:[.,]\d+)?)\s*gms?\b",
+    re.IGNORECASE,
+)
 GRADE_RE = re.compile(r"\b(NGC|PCGS|ICG|ANACS)\s+([A-Z]+(?:\-\d{1,2})?(?:\s+(?:DPL|DCAM|CAM|PL|FH|UCAM))?)\b")
 RARITY_RE = re.compile(
     r"\b(EXTREMELY RARE|UNIQUE|VERY RARE|EXCESSIVELY RARE|EXTRAORDINARILY RARE|RARE|R{2,5})\b",
@@ -327,9 +346,40 @@ def split_pages(slug: str) -> list[tuple[int, str]]:
     return pages
 
 
+# Catalogue section headers («COINS OF DENMARK», «THE COINAGE OF NORW AY»,
+# «PLATE MONEY OF SWEDEN», «MEDALS OF DENMARK, SWEDEN, AND GERMANY»). Upper case
+# only: the mixed-case session banners and the table of contents repeat the same
+# words and must not switch the section.
+SECTION_HEADER_RE = re.compile(
+    r"^\s*(?:THE\s+)?(?:[A-Z]+\s+)*?(COINS|COINAGE|PLATE MONEY|MEDALS|TOKENS)\s+OF\s+[A-Z]"
+)
+# Sections whose every lot is exonumia (CLAUDE.md §9.2). Curator 2026-10-17:
+# «MEDALS OF DENMARK, SWEDEN, AND GERMANY — це дійсно все медалі», including the
+# coin-like pieces in it (Largesse money, medallic ¼ Speciedaler, «Platina»,
+# private tokens).
+EXONUMIA_SECTIONS = {"MEDALS", "TOKENS"}
+
+
+def page_sections(pages: list[tuple[int, str]]) -> dict[int, str | None]:
+    """Section kind in force on each page. pypdf emits a header wherever the
+    layout puts it in the text stream — often AFTER the page's first lot
+    (Part V p. 171: lot 15189, then «MEDALS OF …») — so a header governs its
+    whole page and every following page until the next header."""
+    out: dict[int, str | None] = {}
+    current: str | None = None
+    for page_no, txt in pages:
+        for ln in txt.splitlines():
+            m = SECTION_HEADER_RE.match(ln)
+            if m:
+                current = m.group(1)
+        out[page_no] = current
+    return out
+
+
 def parse_part(slug: str) -> list[dict]:
     """Walk pages in order; identify lot-number lines; collect text until next lot-number or page break."""
     pages = split_pages(slug)
+    section_of_page = page_sections(pages)
     lots: list[dict] = []
 
     # Build a flat (page, line) sequence
@@ -347,11 +397,25 @@ def parse_part(slug: str) -> list[dict]:
             i += 1
             continue
         lot_no = int(m.group(1))
-        # Sanity: lot number must increase monotonically (auction sequence)
+        # Sanity: lot number normally increases (auction sequence). A lower
+        # number is accepted only as a REAL out-of-order lot start — the
+        # two-column layout that the block-end test below handles also puts
+        # lot N physically after N+1 (Part V: 14046 after 14048, 14087/14088
+        # after 14089) — recognised by the same signature: next non-blank
+        # line is a region META line, and the number was not parsed yet.
         if lots and lot_no <= lots[-1]["lot_no"]:
-            # Likely a stray digit-only line; skip
-            i += 1
-            continue
+            k = i + 1
+            while k < n and not flat[k][1].strip():
+                k += 1
+            is_real_start = (
+                k < n
+                and META_LINE_RE.match(flat[k][1].strip())
+                and all(l["lot_no"] != lot_no for l in lots)
+            )
+            if not is_real_start:
+                # Likely a stray digit-only line; skip
+                i += 1
+                continue
         # Filter implausibly small/large numbers — must fall in declared ranges
         if not _in_lot_range(slug, lot_no):
             i += 1
@@ -452,6 +516,10 @@ def parse_part(slug: str) -> list[dict]:
         # Weight
         wmatch = WEIGHT_RE.search(body_match)
         weight_g = float(wmatch.group(1)) if wmatch else None
+        if weight_g is None:
+            lm = WEIGHT_LOOSE_RE.search(body_match)
+            if lm:
+                weight_g = float((lm.group(1) or lm.group(2)).replace(",", "."))
         # Grade
         gmatch = GRADE_RE.search(body_match)
         grade = f"{gmatch.group(1)} {gmatch.group(2)}" if gmatch else None
@@ -490,6 +558,19 @@ def parse_part(slug: str) -> list[dict]:
         # Sieg-Unlisted). The seed builder drops any is_pattern lot.
         if (re.search(r"\bmedallic\b", desc_match, re.IGNORECASE)
                 and not refs.get("KM") and not refs.get("Sieg")):
+            is_pattern = True
+        # §9.2 exonumia — a lot whose TITLE (the meta segment before the grade
+        # / first catalogue ref) names a «Medal». Part V (Oct 2026) is the first
+        # Bruun sale with a medal session (lots 15189-15283); 91 lots match, 0
+        # in Parts I-IV. Title-only on purpose: the medal session also holds
+        # real coins (15207 ¼ Speciedaler 1685, 15247 Platina 1830) that a
+        # lot-range or body-prose test would drop.
+        title_m = re.search(r"\b(?:NGC|PCGS|ANACS)\b|;", desc_match)
+        title = desc_match[: title_m.start()] if title_m else desc_match[:200]
+        if re.search(r"\bMedal\b", title, re.IGNORECASE):
+            is_pattern = True
+        catalogue_section = section_of_page.get(page_no)
+        if catalogue_section in EXONUMIA_SECTIONS:
             is_pattern = True
         # Mint — prefer the cataloguer's structured meta-line «<X> Mint»
         # (authoritative, positioned right after the year); fall back to the
@@ -648,6 +729,7 @@ def parse_part(slug: str) -> list[dict]:
             "weight_g": weight_g,
             "rarity": rarity,
             "is_pattern": is_pattern,
+            "catalogue_section": catalogue_section,
             "refs": refs,
             "body_excerpt": body[:600],
         })

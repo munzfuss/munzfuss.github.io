@@ -51,6 +51,38 @@ class _Base(unittest.TestCase):
                                 retracted=retracted)
 
 
+class TestSameValueOtherForm(_Base):
+    """2026-10-17, merger scoped-index re-flow: two members merging made the
+    catalogue keep «EC II 3534» where HEAD had the bare «3534», and a
+    danskmoent page moved to another coin under that coin's label — neither
+    is a loss. A genuinely vanished URL still is."""
+
+    def test_davenport_volume_prefix(self):
+        r = self.run_case([{"id": "a", "catalog": {"dav": ["3534"]}}],
+                          [{"id": "a", "catalog": {"dav": ["EC II 3534"]}}])
+        self.assertFalse(r["losses"])
+
+    def test_davenport_prefix_moved_to_bare_form(self):
+        r = self.run_case([{"id": "a", "catalog": {"dav": ["EC II 3570"]}}, {"id": "b"}],
+                          [{"id": "a"}, {"id": "b", "catalog": {"dav": ["3570"]}}])
+        self.assertFalse([m for m in r["losses"] if "CATALOG" in m])
+
+    def test_source_url_cited_by_another_coin(self):
+        u = "https://www.danskmoent.dk/chr/c4h79.htm"
+        r = self.run_case(
+            [{"id": "a", "sources": [{"ref": "Hede c4h79C", "url": u}, {"url": "u2"}]},
+             {"id": "b", "sources": [{"url": "u3"}]}],
+            [{"id": "a", "sources": [{"url": "u2"}]},
+             {"id": "b", "sources": [{"ref": "Hede c4h79A", "url": u}, {"url": "u3"}]}])
+        self.assertFalse(r["losses"])
+
+    def test_vanished_url_still_blocks(self):
+        r = self.run_case(
+            [{"id": "a", "sources": [{"url": "u1"}, {"url": "u2"}]}],
+            [{"id": "a", "sources": [{"url": "u2"}]}])
+        self.assertTrue(any("LIST SHRANK" in m for m in r["losses"]))
+
+
 class TestLosses(_Base):
     def test_coin_gone_with_no_absorber(self):
         r = self.run_case([{"id": "a", "nominal": "1 Dukat",

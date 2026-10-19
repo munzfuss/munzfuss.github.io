@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_lubeck`.
-# Generated 2026-10-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
-# Input: 416 per-source seed entries.
-# Output: 334 unified entries (one per physical coin).
+# Input: 417 per-source seed entries.
+# Output: 324 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_lubeck
-generated_at: '2026-10-06'
+generated_at: '2026-10-18'
 coins:
   - id: unified-dk-bruun-12891
     fuss: seed_unsorted
@@ -48,6 +48,8 @@ coins:
         ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
       uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
         специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: hanseatic_lubeck
     composed_of:
       - dk-bruun-12891
@@ -92,6 +94,8 @@ coins:
         ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
       uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
         специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: hanseatic_lubeck
     composed_of:
       - dk-bruun-15027
@@ -296,42 +300,6 @@ coins:
     inscription_obv: MONE NO - LVBEC
     inscription_rev: CIVITAT IMPERI 20
     mint: Lübeck
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.84
-        source: ikmk
-    diameter_mm:
-      - value: 19.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18276098
-        ref: IKMK Berlin 18276098
-    note:
-      de: 1/96 Taler
-      en: 1/96 Taler
-      uk: 1/96 Taler
-    verification_note: *id001
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ikmk-18276098
-  - id: unified-ikmk-18276104
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Sechsling
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    mintmaster: Heinrich von der Klähren
-    inscription_obv: MONE NO - LVBEC
-    inscription_rev: CIVITAT IMPERI 20
-    mint: Lübeck
     catalog:
       others:
         - Behrens# 439 b
@@ -342,12 +310,19 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 0.84
+        source: ikmk
       - value: 0.87
         source: ikmk
     diameter_mm:
       - value: 16.0
         source: ikmk
+      - value: 19.0
+        source: ikmk
     sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18276098
+        ref: IKMK Berlin 18276098
       - type: museum
         url: https://ikmk.smb.museum/object?id=18276104
         ref: IKMK Berlin 18276104
@@ -358,6 +333,7 @@ coins:
     verification_note: *id001
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - ikmk-18276098
       - ikmk-18276104
   - id: unified-ikmk-18276110
     fuss: seed_unsorted
@@ -452,6 +428,8 @@ coins:
     weight_rough_g:
       - value: 0.64
         source: ikmk
+      - value: 0.67
+        source: ikmk
     diameter_mm:
       - value: 17.0
         source: ikmk
@@ -459,39 +437,6 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18276121
         ref: IKMK Berlin 18276121
-    note:
-      de: 1/96 Taler
-      en: 1/96 Taler
-      uk: 1/96 Taler
-    verification_note: *id001
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - ikmk-18276121
-  - id: unified-ikmk-18276123
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Sechsling
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    mintmaster: Heinrich von der Klähren
-    inscription_obv: MONE NO - LVBE
-    inscription_rev: CIVITAT IMPERI 22
-    mint: Lübeck
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.67
-        source: ikmk
-    diameter_mm:
-      - value: 17.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18276123
         ref: IKMK Berlin 18276123
@@ -502,6 +447,7 @@ coins:
     verification_note: *id001
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - ikmk-18276121
       - ikmk-18276123
   - id: unified-ikmk-18276125
     fuss: seed_unsorted
@@ -630,20 +576,13 @@ coins:
     weight_rough_g:
       - value: 0.33
         source: ikmk
-      - value: 0.34
-        source: ikmk
     diameter_mm:
-      - value: 12.0
-        source: ikmk
       - value: 13.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18283283
         ref: IKMK Berlin 18283283
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18283303
-        ref: IKMK Berlin 18283303
     note:
       de: einseitig
       en: einseitig
@@ -652,7 +591,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ikmk-18283283
-      - ikmk-18283303
   - id: unified-ikmk-18283284
     fuss: seed_unsorted
     phase: ikmk
@@ -721,6 +659,40 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ikmk-18283285
+  - id: unified-ikmk-18283303
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Pfennig
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    mintmaster: Heinrich von der Klähren
+    mint: Lübeck
+    metal: copper
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.34
+        source: ikmk
+    diameter_mm:
+      - value: 12.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18283303
+        ref: IKMK Berlin 18283303
+    note:
+      de: einseitig
+      en: einseitig
+      uk: einseitig
+    verification_note: *id001
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - ikmk-18283303
   - id: unified-ikmk-18283304
     fuss: seed_unsorted
     phase: ikmk
@@ -838,7 +810,11 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/130699
         ref: KMM 130699 (Inv. FP 1217.1)
-    verification_note: *id002
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-130699
@@ -906,6 +882,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/155963
         ref: KMM 155963 (Inv. FP 2624.228)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167374
+        ref: KMM 167374 (Inv. FP 1892.44)
     verification_note: *id002
     issuing_entity: hanseatic_lubeck
     composed_of:
@@ -915,6 +894,9 @@ coins:
     phase: kmk
     kind: kurant
     nominal: (?)
+    year_first: 1500
+    year_last: 1500
+    year_label: '1500'
     mint: Lübeck
     catalog:
       jesse: '187'
@@ -1077,6 +1059,29 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-167368
+  - id: unified-kmk-167371
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling
+    year_first: 1559
+    year_last: 1559
+    year_label: '1559'
+    mint: Lübeck
+    catalog:
+      behrens: '428'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/167371
+        ref: KMM 167371 (Inv. FP 1892.45)
+    verification_note: *id002
+    issuing_entity: hanseatic_lubeck
+    composed_of:
+      - kmk-167371
   - id: unified-kmk-167372
     fuss: seed_unsorted
     phase: kmk
@@ -1218,60 +1223,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-184157
-  - id: unified-kmk-184158
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1637
-    year_last: 1637
-    year_label: '1637'
-    mint: Lübeck
-    catalog:
-      behrens: '167'
-      dav: '5449'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.93
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/184158
-        ref: KMM 184158 (Inv. FP 3427.247)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-184158
-  - id: unified-kmk-184159
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1637
-    year_last: 1637
-    year_label: '1637'
-    mint: Lübeck
-    catalog:
-      behrens: '167'
-      dav: '5449'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 27.81
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/184159
-        ref: KMM 184159 (Inv. FP 3427.246)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-184159
   - id: unified-kmk-184160
     fuss: seed_unsorted
     phase: kmk
@@ -1299,33 +1250,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-184160
-  - id: unified-kmk-184161
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1631
-    year_last: 1631
-    year_label: '1631'
-    mint: Lübeck
-    catalog:
-      behrens: '161'
-      dav: '5449'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.44
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/184161
-        ref: KMM 184161 (Inv. FP 3427.244)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-184161
   - id: unified-kmk-184162
     fuss: seed_unsorted
     phase: kmk
@@ -1380,33 +1304,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-184163
-  - id: unified-kmk-184164
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1623
-    year_last: 1623
-    year_label: '1623'
-    mint: Lübeck
-    catalog:
-      behrens: '153'
-      dav: '5449'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.76
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/184164
-        ref: KMM 184164 (Inv. FP 3427.241)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-184164
   - id: unified-kmk-184165
     fuss: seed_unsorted
     phase: kmk
@@ -1415,10 +1312,13 @@ coins:
     year_first: 1621
     year_last: 1621
     year_label: '1621'
+    ruler: Ferdinand 2
     mint: Lübeck
     catalog:
       behrens: '151'
-      dav: '5449'
+      dav:
+        - '5449'
+        - '67'
     metal_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -1426,14 +1326,20 @@ coins:
     weight_rough_g:
       - value: 28.79
         source: kmk
+      - value: 28.99
+        source: kmk
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/184165
         ref: KMM 184165 (Inv. FP 3427.240)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/187988
+        ref: KMM 187988 (Inv. FP 4271.8)
     verification_note: *id002
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-184165
+      - kmk-187988
   - id: unified-kmk-184167
     fuss: seed_unsorted
     phase: kmk
@@ -1512,60 +1418,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-184169
-  - id: unified-kmk-187987
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1637
-    year_last: 1637
-    year_label: '1637'
-    ruler: Ferdinand 2
-    mint: Lübeck
-    catalog:
-      dav: '67'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.6
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/187987
-        ref: KMM 187987 (Inv. FP 4271.9)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-187987
-  - id: unified-kmk-187988
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    ruler: Ferdinand 2
-    mint: Lübeck
-    catalog:
-      dav: '67'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.99
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/187988
-        ref: KMM 187988 (Inv. FP 4271.8)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-187988
   - id: unified-kmk-187989
     fuss: seed_unsorted
     phase: kmk
@@ -1576,7 +1428,9 @@ coins:
     year_label: '1559'
     mint: Lübeck
     catalog:
-      dav: '79'
+      dav:
+        - '79'
+        - '9408'
     metal_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -1715,6 +1569,8 @@ coins:
     mint: Lübeck
     catalog:
       behrens: '423'
+      others:
+        - JSJ# 323
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -1738,6 +1594,8 @@ coins:
     mint: Lübeck
     catalog:
       behrens: '426'
+      others:
+        - JSJ# 322
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -1772,39 +1630,14 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-298422
-  - id: unified-kmk-348619
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Daler
-    year_first: 1619
-    year_last: 1632
-    year_ranges:
-      -   - 1619
-          - 1632
-    year_label: 1619-1632
-    mint: Lübeck
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.7
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/348619
-        ref: KMM 348619 (Inv. FP 5396.191)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-348619
   - id: unified-kmk-348620
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
     nominal: 1 Daler
+    year_first: 1559
+    year_last: 1559
+    year_label: '1559'
     ruler: borgm. Amb. Meyer
     mint: Lübeck
     metal: silver
@@ -1819,10 +1652,14 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/348620
         ref: KMM 348620 (Inv. FP 5396.190)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/624181
+        ref: KMM 624181 (Inv. FP 788.78)
     verification_note: *id002
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-348620
+      - kmk-624181
   - id: unified-kmk-368632
     fuss: seed_unsorted
     phase: kmk
@@ -2195,7 +2032,7 @@ coins:
     mint: Lübeck
     catalog:
       others:
-        - Auk.Kat.# Nr
+        - Auk.Kat.# 1850
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -2217,7 +2054,7 @@ coins:
     mint: Lübeck
     catalog:
       others:
-        - Auk.Kat.# Nr
+        - Auk.Kat.# 1849
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -2424,28 +2261,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - kmk-624180
-  - id: unified-kmk-624181
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Thaler
-    year_first: 1559
-    year_last: 1559
-    year_label: '1559'
-    mint: Lübeck
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/624181
-        ref: KMM 624181 (Inv. FP 788.78)
-    verification_note: *id002
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - kmk-624181
   - id: unified-kmk-651570
     fuss: seed_unsorted
     phase: kmk
@@ -2832,75 +2647,6 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - lu-tid-102437
-  - id: unified-lu-tid-102559
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1/192 Thaler
-    year_first: 1655
-    year_last: 1668
-    year_ranges:
-      -   - 1655
-          - 1668
-    year_label: 1655-1668
-    catalog:
-      km: '88'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.41
-        source: ucoin
-    diameter_mm:
-      - value: 14.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/lubeck-1-192-thaler-1655-1668/?tid=102559
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - lu-tid-102559
-  - id: unified-lu-tid-102636
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 8 Schilling
-    year_first: 1620
-    year_last: 1621
-    year_ranges:
-      -   - 1620
-          - 1621
-    year_label: 1620-1621
-    catalog:
-      km: A51
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/lubeck-8-schilling-1620-1621/?tid=102636
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
-    issuing_entity: hanseatic_lubeck
-    composed_of:
-      - lu-tid-102636
   - id: unified-lu-tid-102697
     fuss: seed_unsorted
     phase: ucoin
@@ -3527,8 +3273,14 @@ coins:
     year_last: 1635
     year_ranges:
       -   - 1620
+          - 1623
+      -   - 1625
+          - 1629
+      -   - 1631
+          - 1633
+      -   - 1635
           - 1635
-    year_label: 1620-1635
+    year_label: 1620-1623, 1625-1629, 1631-1633, 1635
     catalog:
       km: '52'
       behrens: 224-236
@@ -3539,7 +3291,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-16-schilling-1620-1635/?tid=102677
@@ -3643,16 +3394,24 @@ coins:
     year_last: 1676
     year_ranges:
       -   - 1620
-          - 1620
+          - 1624
+      -   - 1629
+          - 1629
+      -   - 1643
+          - 1650
+      -   - 1654
+          - 1654
+      -   - 1659
+          - 1659
       -   - 1661
           - 1662
       -   - 1664
-          - 1665
+          - 1666
       -   - 1669
           - 1670
       -   - 1675
           - 1676
-    year_label: 1620, 1661-1662, 1664-1665, 1669-1670, 1675-1676
+    year_label: 1620-1624, 1629, 1643-1650, 1654, 1659, 1661-1662, 1664-1666, 1669-1670, 1675-1676
     catalog:
       km: A50
       behrens: 439-63
@@ -3689,14 +3448,14 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/16 Thaler
-    year_first: 1603
+    year_first: 1602
     year_last: 1607
     year_ranges:
-      -   - 1603
+      -   - 1602
           - 1604
       -   - 1606
           - 1607
-    year_label: 1603-1604, 1606-1607
+    year_label: 1602-1604, 1606-1607
     ruler: Johann Adolf
     catalog:
       km: '17'
@@ -3708,7 +3467,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-16-thaler-km-17-1604-1604-cuid-1137182-duid-1339176
@@ -4046,7 +3804,6 @@ coins:
     diameter_mm_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
     weight_rough_g:
       - value: 1.08
         source: ucoin
@@ -4267,8 +4024,11 @@ coins:
     kind: kurant
     nominal: 1 Thaler
     year_first: 1619
-    year_last: 1619
-    year_label: '1619'
+    year_last: 1627
+    year_ranges:
+      -   - 1619
+          - 1627
+    year_label: 1619-1627
     catalog:
       km: A44
       behrens: 139a
@@ -4280,6 +4040,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-a44-1619-27-cuid-1137382-duid-1338978
@@ -4349,8 +4110,11 @@ coins:
     kind: kurant
     nominal: 2 Thaler
     year_first: 1603
-    year_last: 1603
-    year_label: '1603'
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
     catalog:
       km: A13
       dav: LS329
@@ -4361,6 +4125,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-thaler-km-a13-1603-09-cuid-1137388-duid-1338980
@@ -4415,30 +4180,43 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Thaler
-    year_first: 1612
+    year_first: 1609
     year_last: 1619
     year_ranges:
-      -   - 1612
+      -   - 1609
           - 1617
       -   - 1619
           - 1619
-    year_label: 1612-1617, 1619
+    year_label: 1609-1617, 1619
+    mintmaster: Statius Wessel
+    inscription_obv: ADVERSVS HOSTES NVLLA - PRAETEREVNDA EST OCCASIO
+    inscription_rev: MEDIOCRITAS IN OMNI - RE EST OPTIMA
     mint: Lübeck
     catalog:
       km: '38'
       behrens: 142b
       dav: '5447'
+      others:
+        - Behrens# 137
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    diameter_mm_verified: false
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
       - value: 28.33
         source: kmk
+      - value: 29.94
+        source: ikmk
+    diameter_mm:
+      - value: 59.0
+        source: ikmk
     sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18264671
+        ref: IKMK Berlin 18264671
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/184166
         ref: KMM 184166 (Inv. FP 3427.239)
@@ -4451,6 +4229,7 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - ikmk-18264671
       - kmk-184166
       - ngc-1137442
   - id: unified-ngc-1137445
@@ -4464,24 +4243,44 @@ coins:
       -   - 1634
           - 1638
     year_label: 1634-1638
+    ruler: Ferdinand 2
+    mint: Lübeck
     catalog:
       km: A65
       behrens: 164b
-      dav: 5449D
+      dav:
+        - 5449D
+        - '5449'
+        - '67'
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 27.81
+        source: kmk
+      - value: 28.6
+        source: kmk
+      - value: 28.93
+        source: kmk
       - value: 29.0
         source: ucoin
     diameter_mm:
       - value: 41.0
         source: ucoin
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184158
+        ref: KMM 184158 (Inv. FP 3427.247)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184159
+        ref: KMM 184159 (Inv. FP 3427.246)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/187987
+        ref: KMM 187987 (Inv. FP 4271.9)
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1634-1638/?tid=102703
         ref: ucoin
@@ -4494,6 +4293,9 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - kmk-184158
+      - kmk-184159
+      - kmk-187987
       - lu-tid-102703
       - ngc-1137445
   - id: unified-ngc-1137477
@@ -4580,6 +4382,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Dreiling
+    year_first: 1671
+    year_last: 1671
+    year_label: '1671'
     catalog:
       km: PnA4
     metal: gold
@@ -4589,7 +4394,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-dreiling-km-pna4-1671-cuid-1137554-duid-1339838
@@ -4815,33 +4619,19 @@ coins:
       -   - 1603
           - 1609
     year_label: 1603-1609
-    mintmaster: Statius Wessel
-    inscription_obv: ADVERSVS HOSTES NVLLA - PRAETEREVNDA EST OCCASIO
-    inscription_rev: MEDIOCRITAS IN OMNI - RE EST OPTIMA
-    mint: Lübeck
     catalog:
       km: A12
       behrens: 136c
       dav: LS330
-      others:
-        - Behrens# 136 c
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
     verified: false
-    weight_rough_g:
-      - value: 43.58
-        source: ikmk
-    diameter_mm:
-      - value: 58.0
-        source: ikmk
+    year_verified: false
     sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18201758
-        ref: IKMK Berlin 18201758
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-1-2-thaler-km-a12-1603-09-cuid-1137620-duid-1338979
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -4851,7 +4641,6 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: hanseatic_lubeck
     composed_of:
-      - ikmk-18201758
       - ngc-1137620
   - id: unified-ngc-1137672
     fuss: seed_unsorted
@@ -4923,6 +4712,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/24 Thaler
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
     ruler: Johann Friedrich
     catalog:
       km: '46'
@@ -4934,7 +4726,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-24-thaler-km-46-1619-cuid-1137675-duid-1338963
@@ -4951,6 +4742,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/24 Thaler
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
     ruler: Johann Friedrich
     catalog:
       km: '47'
@@ -4962,7 +4756,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-24-thaler-km-47-1619-cuid-1137677-duid-1338941
@@ -5013,8 +4806,11 @@ coins:
     kind: kurant
     nominal: 2 Thaler
     year_first: 1609
-    year_last: 1609
-    year_label: '1609'
+    year_last: 1616
+    year_ranges:
+      -   - 1609
+          - 1616
+    year_label: 1609-1616
     catalog:
       km: A31
       behrens: 137d
@@ -5026,6 +4822,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-thaler-km-a31-1609-16-cuid-1137701-duid-1362949
@@ -5475,6 +5272,12 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 8 Schilling
+    year_first: 1620
+    year_last: 1621
+    year_ranges:
+      -   - 1620
+          - 1621
+    year_label: 1620-1621
     catalog:
       km: A51
       behrens: '260'
@@ -5485,8 +5288,10 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-8-schilling-1620-1621/?tid=102636
+        ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-8-schilling-km-a51-1620-16z0-cuid-1137889-duid-1339116
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -5496,6 +5301,7 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - lu-tid-102636
       - ngc-1137889
   - id: unified-ngc-1137890
     fuss: seed_unsorted
@@ -5673,9 +5479,12 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/192 Thaler
-    year_first: 1663
+    year_first: 1662
     year_last: 1663
-    year_label: '1663'
+    year_ranges:
+      -   - 1662
+          - 1663
+    year_label: 1662-1663
     ruler: Christian Albrecht
     catalog:
       km: '57'
@@ -5687,7 +5496,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-192-thaler-km-57-1663-166z-cuid-1137986-duid-1338443
@@ -5864,12 +5672,44 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/192 Thaler
-    year_first: 1620
+    year_first: 1609
     year_last: 1712
     year_ranges:
+      -   - 1609
+          - 1609
+      -   - 1612
+          - 1612
       -   - 1620
+          - 1622
+      -   - 1624
+          - 1639
+      -   - 1641
+          - 1652
+      -   - 1654
+          - 1655
+      -   - 1665
+          - 1667
+      -   - 1671
+          - 1672
+      -   - 1675
+          - 1675
+      -   - 1690
+          - 1690
+      -   - 1692
+          - 1692
+      -   - 1697
+          - 1698
+      -   - 1701
+          - 1701
+      -   - 1703
+          - 1703
+      -   - 1705
+          - 1707
+      -   - 1709
+          - 1710
+      -   - 1712
           - 1712
-    year_label: 1620-1712
+    year_label: 1609, 1612, 1620-1622, 1624-1639, 1641-1652, 1654-1655, 1665-1667, 1671-1672, 1675, 1690, 1692, 1697-1698, 1701, 1703, 1705-1707, 1709-1710, 1712
     catalog:
       km: '27'
       behrens: 473-98
@@ -5906,6 +5746,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/96 Thaler
+    year_first: 1654
+    year_last: 1654
+    year_label: '1654'
     catalog:
       km: A86
       behrens: 453a
@@ -5916,7 +5759,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-96-thaler-km-a86-1654-1654-cuid-1138001-duid-1339327
@@ -5933,12 +5775,12 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Thaler
-    year_first: 1627
+    year_first: 1619
     year_last: 1635
     year_ranges:
-      -   - 1627
+      -   - 1619
           - 1635
-    year_label: 1627-1635
+    year_label: 1619-1635
     inscription_obv: MONE NOVA - LVBECENS
     inscription_rev: FERDINAND II D G ROM IM SEMP AV
     mint: Lübeck
@@ -5949,6 +5791,7 @@ coins:
         - '5449'
       others:
         - Behrens# 161 b
+      behrens: '161'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -5957,6 +5800,10 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 28.44
+        source: kmk
+      - value: 28.7
+        source: kmk
       - value: 29.0
         source: ucoin
       - value: 29.01
@@ -5970,6 +5817,12 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18202373
         ref: IKMK Berlin 18202373
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184161
+        ref: KMM 184161 (Inv. FP 3427.244)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348619
+        ref: KMM 348619 (Inv. FP 5396.191)
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1627-1635/?tid=102702
         ref: ucoin
@@ -5983,6 +5836,8 @@ coins:
     issuing_entity: hanseatic_lubeck
     composed_of:
       - ikmk-18202373
+      - kmk-184161
+      - kmk-348619
       - lu-tid-102702
       - ngc-1138066
   - id: unified-ngc-1138070
@@ -6070,8 +5925,11 @@ coins:
     kind: kurant
     nominal: 1 Thaler
     year_first: 1617
-    year_last: 1617
-    year_label: '1617'
+    year_last: 1618
+    year_ranges:
+      -   - 1617
+          - 1618
+    year_label: 1617-1618
     catalog:
       km: A40
       behrens: '138'
@@ -6083,6 +5941,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-a40-1617-18-cuid-1138076-duid-1339470
@@ -6103,10 +5962,8 @@ coins:
     year_last: 1665
     year_ranges:
       -   - 1661
-          - 1661
-      -   - 1663
           - 1665
-    year_label: 1661, 1663-1665
+    year_label: 1661-1665
     ruler: Christian Albrecht
     catalog:
       km: '56'
@@ -6118,7 +5975,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-16-thaler-km-56-1661-166z-cuid-1138143-duid-1339204
@@ -6136,41 +5992,26 @@ coins:
     kind: kurant
     nominal: 1 Thaler
     year_first: 1606
-    year_last: 1616
+    year_last: 1610
     year_ranges:
       -   - 1606
           - 1607
-      -   - 1609
-          - 1616
-    year_label: 1606-1607, 1609-1616
+      -   - 1610
+          - 1610
+    year_label: 1606-1607, 1610
     ruler: Johann Adolf
-    mintmaster: Statius Wessel
-    inscription_obv: ADVERSVS HOSTES NVLLA - PRAETEREVNDA EST OCCASIO
-    inscription_rev: MEDIOCRITAS IN OMNI - RE EST OPTIMA
-    mint: Lübeck
     catalog:
       km: '26.1'
       behrens: '818'
       dav: '5438'
-      others:
-        - Behrens# 137
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
     verified: false
-    weight_rough_g:
-      - value: 29.94
-        source: ikmk
-    diameter_mm:
-      - value: 59.0
-        source: ikmk
     sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18264671
-        ref: IKMK Berlin 18264671
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-26.1-1606-1610-cuid-1138148-duid-1362595
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -6180,7 +6021,6 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: hanseatic_lubeck
     composed_of:
-      - ikmk-18264671
       - ngc-1138148
   - id: unified-ngc-1138149
     fuss: seed_unsorted
@@ -6320,8 +6160,11 @@ coins:
     kind: kurant
     nominal: 3 Thaler
     year_first: 1603
-    year_last: 1603
-    year_label: '1603'
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
     catalog:
       km: B17
       behrens: 136f
@@ -6333,6 +6176,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-3-thaler-km-b17-1603-09-cuid-1138163-duid-1362951
@@ -6513,22 +6357,40 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1½ Thaler
-    year_first: 1607
-    year_last: 1607
-    year_label: '1607'
+    year_first: 1603
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
     ruler: Johann Adolf
+    mintmaster: Statius Wessel
+    inscription_obv: ADVERSVS HOSTES NVLLA - PRAETEREVNDA EST OCCASIO
+    inscription_rev: MEDIOCRITAS IN OMNI - RE EST OPTIMA
+    mint: Lübeck
     catalog:
       km: '30'
       behrens: '822'
       dav: LS442
+      others:
+        - Behrens# 136 c
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 43.58
+        source: ikmk
+    diameter_mm:
+      - value: 58.0
+        source: ikmk
     sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18201758
+        ref: IKMK Berlin 18201758
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-1-2-thaler-km-30-1607-cuid-1138343-duid-1338588
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -6538,6 +6400,7 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - ikmk-18201758
       - ngc-1138343
   - id: unified-ngc-1138348
     fuss: seed_unsorted
@@ -6597,6 +6460,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     fineness:
       - value: 0.986
         source: ngc
@@ -6651,12 +6515,12 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/16 Thaler
-    year_first: 1613
+    year_first: 1612
     year_last: 1617
     year_ranges:
-      -   - 1613
+      -   - 1612
           - 1617
-    year_label: 1613-1617
+    year_label: 1612-1617
     ruler: Johann Friedrich
     catalog:
       km: '42'
@@ -6668,7 +6532,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-16-thaler-km-42-1617-161z-cuid-1138393-duid-1338973
@@ -7598,8 +7461,11 @@ coins:
     kind: kurant
     nominal: 1 Thaler
     year_first: 1609
-    year_last: 1609
-    year_label: '1609'
+    year_last: 1616
+    year_ranges:
+      -   - 1609
+          - 1616
+    year_label: 1609-1616
     catalog:
       km: A28
       behrens: 137a
@@ -7611,6 +7477,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-a28-1609-16-cuid-1138631-duid-1338977
@@ -7627,18 +7494,34 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/192 Thaler
+    year_first: 1655
+    year_last: 1668
+    year_ranges:
+      -   - 1655
+          - 1660
+      -   - 1668
+          - 1668
+    year_label: 1655-1660, 1668
     catalog:
       km: '88'
       behrens: 509b-514
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
-    year_verified: false
+    weight_rough_g:
+      - value: 0.41
+        source: ucoin
+    diameter_mm:
+      - value: 14.0
+        source: ucoin
     sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-192-thaler-1655-1668/?tid=102559
+        ref: ucoin
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-192-thaler-km-88-1655-1668-cuid-1138681-duid-1338774
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -7648,6 +7531,7 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - lu-tid-102559
       - ngc-1138681
   - id: unified-ngc-1138688
     fuss: seed_unsorted
@@ -7715,8 +7599,11 @@ coins:
     kind: kurant
     nominal: 1½ Thaler
     year_first: 1619
-    year_last: 1619
-    year_label: '1619'
+    year_last: 1627
+    year_ranges:
+      -   - 1619
+          - 1627
+    year_label: 1619-1627
     catalog:
       km: A46
       behrens: 139c
@@ -7728,6 +7615,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-1-2-thaler-km-a46-1619-27-cuid-1138786-duid-1339474
@@ -7745,8 +7633,11 @@ coins:
     kind: kurant
     nominal: 2 Thaler
     year_first: 1603
-    year_last: 1603
-    year_label: '1603'
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
     catalog:
       km: A15
       behrens: 136d
@@ -7758,6 +7649,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-thaler-km-a15-1603-09-cuid-1138787-duid-1339258
@@ -7805,8 +7697,11 @@ coins:
     kind: kurant
     nominal: 2½ Thaler
     year_first: 1603
-    year_last: 1603
-    year_label: '1603'
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
     catalog:
       km: A16
       behrens: 136e
@@ -7818,6 +7713,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-1-2-thaler-km-a16-1603-09-cuid-1138792-duid-1339478
@@ -8126,6 +8022,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/16 Thaler
+    year_first: 1620
+    year_last: 1620
+    year_label: '1620'
     ruler: Johann Friedrich
     catalog:
       km: '50'
@@ -8137,7 +8036,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-16-thaler-km-50-16z0-cuid-1138990-duid-1338862
@@ -8188,6 +8086,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Dreiling
+    year_first: 1667
+    year_last: 1667
+    year_label: '1667'
     catalog:
       km: PnA2
     metal: gold
@@ -8197,7 +8098,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-dreiling-km-pna2-1667-cuid-1139109-duid-1339925
@@ -8493,6 +8393,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/96 Thaler
+    year_first: 1646
+    year_last: 1646
+    year_label: '1646'
     catalog:
       km: A80
       behrens: 448c
@@ -8503,7 +8406,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-96-thaler-km-a80-1646-cuid-1139371-duid-1339508
@@ -8526,6 +8428,7 @@ coins:
       -   - 1620
           - 1627
     year_label: 1620-1627
+    mint: Lübeck
     catalog:
       km: '54'
       behrens: 150-168b
@@ -8535,15 +8438,20 @@ coins:
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 28.76
+        source: kmk
       - value: 29.0
         source: ucoin
     diameter_mm:
       - value: 41.0
         source: ucoin
     sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/184164
+        ref: KMM 184164 (Inv. FP 3427.241)
       - type: ucoin
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1620-1627/?tid=102701
         ref: ucoin
@@ -8556,6 +8464,7 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     issuing_entity: hanseatic_lubeck
     composed_of:
+      - kmk-184164
       - lu-tid-102701
       - ngc-1139470
   - id: unified-ngc-1139473
@@ -8721,10 +8630,8 @@ coins:
     year_last: 1616
     year_ranges:
       -   - 1609
-          - 1609
-      -   - 1616
           - 1616
-    year_label: 1609, 1616
+    year_label: 1609-1616
     catalog:
       km: A29
       behrens: 137b
@@ -8736,6 +8643,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-1-2-thaler-km-a29-1609-1616-cuid-1139546-duid-1339472
@@ -8753,8 +8661,11 @@ coins:
     kind: kurant
     nominal: 1½ Thaler
     year_first: 1609
-    year_last: 1609
-    year_label: '1609'
+    year_last: 1616
+    year_ranges:
+      -   - 1609
+          - 1616
+    year_label: 1609-1616
     catalog:
       km: A30
       dav: LS335
@@ -8765,6 +8676,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-1-2-thaler-km-a30-1609-16-cuid-1139547-duid-1339473
@@ -8782,8 +8694,11 @@ coins:
     kind: kurant
     nominal: 2 Thaler
     year_first: 1619
-    year_last: 1619
-    year_label: '1619'
+    year_last: 1627
+    year_ranges:
+      -   - 1619
+          - 1627
+    year_label: 1619-1627
     catalog:
       km: A47
       behrens: 139d
@@ -8795,6 +8710,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-thaler-km-a47-1619-27-cuid-1139552-duid-1339735
@@ -8842,8 +8758,11 @@ coins:
     kind: kurant
     nominal: 4 Thaler
     year_first: 1619
-    year_last: 1619
-    year_label: '1619'
+    year_last: 1627
+    year_ranges:
+      -   - 1619
+          - 1627
+    year_label: 1619-1627
     catalog:
       km: A48
       behrens: 139e
@@ -8855,6 +8774,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-4-thaler-km-a48-1619-27-cuid-1139559-duid-1339443
@@ -8876,7 +8796,7 @@ coins:
     year_ranges:
       -   - 1610
           - 1610
-      -   - 1613
+      -   - 1612
           - 1615
       -   - 1627
           - 1627
@@ -8928,7 +8848,7 @@ coins:
           - 1729
       -   - 1737
           - 1737
-    year_label: 1610, 1613-1615, 1627, 1629-1631, 1636, 1647, 1649, 1652, 1656-1657, 1659-1660, 1663-1664, 1667, 1672, 1674, 1677, 1683-1684, 1689-1691, 1695, 1697, 1700-1701, 1707, 1710, 1712-1714, 
+    year_label: 1610, 1612-1615, 1627, 1629-1631, 1636, 1647, 1649, 1652, 1656-1657, 1659-1660, 1663-1664, 1667, 1672, 1674, 1677, 1683-1684, 1689-1691, 1695, 1697, 1700-1701, 1707, 1710, 1712-1714, 
       1716-1717, 1727, 1729, 1737
     catalog:
       km: A36
@@ -8940,7 +8860,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     fineness:
       - value: 0.986
         source: ngc
@@ -9373,8 +9292,11 @@ coins:
     kind: kurant
     nominal: 1 Thaler
     year_first: 1603
-    year_last: 1603
-    year_label: '1603'
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
     catalog:
       km: A10
       behrens: 136a
@@ -9386,6 +9308,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-a10-1603-09-cuid-1142334-duid-1339247
@@ -9573,8 +9496,11 @@ coins:
     kind: kurant
     nominal: 2 Thaler
     year_first: 1603
-    year_last: 1603
-    year_label: '1603'
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
     catalog:
       km: '14'
       dav: LS329a
@@ -9585,6 +9511,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-thaler-km-14-1603-09-cuid-1142602-duid-1339475
@@ -9635,8 +9562,11 @@ coins:
     kind: kurant
     nominal: 2 Thaler
     year_first: 1609
-    year_last: 1609
-    year_label: '1609'
+    year_last: 1616
+    year_ranges:
+      -   - 1609
+          - 1616
+    year_label: 1609-1616
     catalog:
       km: A32
       dav: LS334
@@ -9647,6 +9577,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-2-thaler-km-a32-1609-16-cuid-1142604-duid-1338981
@@ -9937,8 +9868,11 @@ coins:
     kind: kurant
     nominal: 10 Ducat
     year_first: 1607
-    year_last: 1607
-    year_label: '1607'
+    year_last: 1634
+    year_ranges:
+      -   - 1607
+          - 1634
+    year_label: 1607-1634
     ruler: Johann Friedrich
     catalog:
       km: A33
@@ -9951,6 +9885,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-10-ducat-km-a33-1607-34-cuid-1174130-duid-1361181
@@ -10272,6 +10207,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/192 Thaler
+    year_first: 1625
+    year_last: 1625
+    year_label: '1625'
     catalog:
       km: A58
       behrens: 479b
@@ -10282,7 +10220,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-192-thaler-km-a58-1625-cuid-1194488-duid-1367615
@@ -10413,6 +10350,9 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1/24 Thaler
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
     ruler: Johann Friedrich
     catalog:
       km: '51'
@@ -10424,7 +10364,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-1-24-thaler-km-51-16z1-16z1-cuid-1203383-duid-1338913
@@ -10713,11 +10652,13 @@ coins:
     kind: kurant
     nominal: 16 Schilling
     year_first: 1608
-    year_last: 1610
+    year_last: 1612
     year_ranges:
       -   - 1608
           - 1610
-    year_label: 1608-1610
+      -   - 1612
+          - 1612
+    year_label: 1608-1610, 1612
     catalog:
       km: A26
       behrens: 219-22
@@ -10728,7 +10669,6 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-16-schilling-km-a26-1608-1610-cuid-1203407-duid-1339358
@@ -10825,8 +10765,11 @@ coins:
     kind: kurant
     nominal: 1 Thaler
     year_first: 1603
-    year_last: 1603
-    year_label: '1603'
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
     catalog:
       km: A11
       dav: LS331a
@@ -10837,6 +10780,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-thaler-km-a11-1603-09-cuid-1203424-duid-1339248
@@ -10926,8 +10870,11 @@ coins:
     kind: kurant
     nominal: 4 Thaler
     year_first: 1603
-    year_last: 1603
-    year_label: '1603'
+    year_last: 1609
+    year_ranges:
+      -   - 1603
+          - 1609
+    year_label: 1603-1609
     catalog:
       km: A19
       behrens: 136h
@@ -10939,6 +10886,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
+    year_verified: false
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-4-thaler-km-a19-1603-09-cuid-1203443-duid-1338982

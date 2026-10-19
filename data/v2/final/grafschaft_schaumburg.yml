@@ -86,7 +86,7 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 1.42
+      - value: 1.6
         source: ikmk
       - value: 1.68
         source: ikmk
@@ -136,9 +136,6 @@ coins:
         url: https://ikmk.smb.museum/object?id=18286210
         ref: IKMK Berlin 18286210
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18286206
-        ref: IKMK Berlin 18286206
-      - type: museum
         url: https://ikmk.smb.museum/object?id=18286209
         ref: IKMK Berlin 18286209
       - type: museum
@@ -171,13 +168,9 @@ coins:
         покоінне дослідження через Weinmeister 1908 + Bei der Wieden 1961 очікується.
     composed_of:
       - unified-ikmk-18285918
-      - unified-ikmk-18286204
-      - unified-ikmk-18286206
       - unified-ikmk-18286674
     v1_home_location: holstein_schauenburg
     _weights_thinned:
-      - value: 1.6
-        source: ikmk
       - value: 1.62
         source: ikmk
       - value: 1.66
@@ -1272,46 +1265,6 @@ coins:
     composed_of:
       - unified-ikmk-18286705
   - fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 4 Mariengroschen
-    ruler: Jobst Hermann
-    issuing_entity: grafschaft_schaumburg
-    id: unified-schleswig_holstein-numismaster-96073
-    year_first: 1624
-    year_last: 1624
-    year_label: '1624'
-    catalog:
-      km: '135'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 2.4
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_96073
-        ref: NumisMaster
-    verification_note:
-      de: Daten aus dem NumisMaster-Katalog (Librios), einem kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) noch nicht geprüft.
-      en: Data from the NumisMaster catalogue (Librios), a commercial Krause-Mishler work. Not yet checked against the primary sources (Hede / Sieg / Lange / Wilcke / Schive).
-      uk: Дані з каталогу NumisMaster (Librios) — комерційного видання на основі Krause-Mishler. Проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) ще не звірено.
-    composed_of:
-      - unified-schleswig_holstein-numismaster-96073
-    _entity_routing_hint:
-      rule_id: schauenburg_niedersaechsisch_denoms
-      matched_on:
-        ruler_lineage: jobst hermann
-        issuer: schaumburg-pinneberg
-        denomination: mariengroschen
-      would_route_to: grafschaft_schaumburg
-      active: true
-      reasoning: Rule matched on ruler_lineage='jobst hermann', issuer='schaumburg-pinneberg', denomination='mariengroschen'; mint absent / unverified → rule re-routed.
-  - fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 2 Mariengroschen
@@ -1374,6 +1327,7 @@ coins:
     year_first: 1567
     year_last: 1567
     year_label: '1567'
+    year_verified: false
     mint: Rinteln
     catalog:
       mb: '8'
@@ -1415,6 +1369,9 @@ coins:
     ruler: Jobst Hermann
     issuing_entity: grafschaft_schaumburg
     id: unified-ngc-1206091
+    year_first: 1624
+    year_last: 1624
+    year_label: '1624'
     year_verified: false
     catalog:
       km: '135'
@@ -1428,6 +1385,8 @@ coins:
     weight_rough_g:
       - value: 2.4
         source: ngc
+      - value: 2.4
+        source: numismaster
     diameter_mm:
       - value: 22.0
         source: ngc
@@ -1435,6 +1394,9 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-4-mariengroschen-km-135-16z4-cuid-1206091-duid-1385173
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_96073
+        ref: NumisMaster
     verification_note:
       de: 'NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, Nachfolger des eingestellten NumisMaster. Per-Münze-Verifikation gegen Primärquellen vor der Promotion.'
       en: 'NGC seed: World Coin Price Guide, Krause-Mishler-based, successor to the discontinued NumisMaster. Per-coin verification against primary sources before promotion.'
@@ -1506,6 +1468,8 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.42
+        source: ikmk
       - value: 1.44
         source: ikmk
       - value: 1.47
@@ -1527,6 +1491,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18286203
         ref: IKMK Berlin 18286203
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286206
+        ref: IKMK Berlin 18286206
     inscription_obv: ER PRI - ET C H S S
     inscription_rev: FERDINAN D G R IM S A 6Z1
     note:

@@ -81,6 +81,8 @@ coins:
         reason: attribution range, not a dated year (CLAUDE.md §3a)
         curator: serg
     year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1501-10)
     _errata_applied:
       - field: ruler
         printed: Friedrich I
@@ -176,6 +178,8 @@ coins:
         reason: attribution range, not a dated year (CLAUDE.md §3a)
         curator: serg
     year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1510)
     _errata_applied:
       - field: ruler
         printed: Friedrich I
@@ -411,17 +415,21 @@ coins:
       year_verified: NGC's date_line «(1523-33)» is an attribution window, not a struck year; the parser leaves year_verified true only because the paren-range slips its ND check. Held false to keep 
         _cross_entity year_demote from widening the merge (curator 2026-08-18); a default build_ngc_seed run drops it otherwise, since year_verified is not in seed_merge.CURATED_FIELDS. Remove once 
         the general ND→year_verified mechanism lands in the parser.
+    _ngc_dates_as_printed:
+      - (1523-33) Rare
   - id: ngc-167734
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 2 Schilling, Doppelschilling
-    year_label: '1534'
+    year_label: '1534, 1536–1537'
     year_first: 1534
-    year_last: 1534
+    year_last: 1537
     year_ranges:
       -   - 1534
           - 1534
+      -   - 1536
+          - 1537
     ruler: Christian III
     mint:
     catalog:
@@ -454,6 +462,9 @@ coins:
     _ngc_date_line: '1534'
     _ngc_flags:
       varieties_exist: true
+    _ngc_dates_as_printed:
+      - (15)36
+      - (15)37
   - id: ngc-167745
     fuss: seed_unsorted
     phase: ngc
@@ -495,6 +506,9 @@ coins:
     _reverse_legend: MO. NO. AVREA. SLESVICENSIS.
     _ngc_note: 'Fr. #16.'
     _ngc_date_line: (ca1535) Rare
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1535) Rare
   - id: ngc-167720
     fuss: seed_unsorted
     phase: ngc
@@ -536,6 +550,9 @@ coins:
     _ngc_date_line: (ca1540)
     _ngc_flags:
       uniface: true
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1540)
   - id: ngc-167740
     fuss: seed_unsorted
     phase: ngc
@@ -688,12 +705,12 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Pfennig
-    year_label: '1559'
+    year_label: '1559–1588'
     year_first: 1559
-    year_last: 1559
+    year_last: 1588
     year_ranges:
       -   - 1559
-          - 1559
+          - 1588
     ruler: Friedrich II
     mint:
     catalog:
@@ -724,6 +741,9 @@ coins:
     _ngc_date_line: (1559-88)
     _ngc_flags:
       uniface: true
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (1559-88)
   - id: ngc-167731
     fuss: seed_unsorted
     phase: ngc
@@ -765,17 +785,20 @@ coins:
     _reverse_legend: MO. DVCATV. SLES. Z HOLSA.
     _ngc_note: Ref. L#27.
     _ngc_date_line: (ca1565) (d)
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1565) (d)
   - id: ngc-167728
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 6 Pfennig
-    year_label: '1566'
+    year_label: '1566–1570'
     year_first: 1566
-    year_last: 1566
+    year_last: 1570
     year_ranges:
       -   - 1566
-          - 1566
+          - 1570
     ruler: Friedrich II
     mint:
     catalog:
@@ -808,6 +831,9 @@ coins:
     _ngc_date_line: (ca1566-70) (d)
     _ngc_flags:
       varieties_exist: true
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca1566-70) (d)
   - id: ngc-121097
     fuss: seed_unsorted
     phase: ngc
@@ -850,6 +876,9 @@ coins:
     _ngc_date_line: (ca.1640)
     _ngc_previous_km:
       - '2'
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca.1640)
   - id: ngc-121098
     fuss: seed_unsorted
     phase: ngc
@@ -892,6 +921,9 @@ coins:
     _ngc_date_line: (ca.1640)
     _ngc_previous_km:
       - '3'
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca.1640)
   - id: ngc-121095
     fuss: seed_unsorted
     phase: ngc
@@ -1099,6 +1131,9 @@ coins:
     _reverse: Crowned C5 monograms
     _ngc_note: 'Dav. #3676. Prev. Holstein KM#11.'
     _ngc_date_line: (ca.1670) Rare
+    year_verified: false
+    _ngc_dates_as_printed:
+      - (ca.1670) Rare
   - id: ngc-101324
     fuss: seed_unsorted
     phase: ngc
@@ -2268,10 +2303,12 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 6 Pfennig
-    year_label:
-    year_first:
-    year_last:
+    year_label: 1623–1625
+    year_first: 1623
+    year_last: 1625
     year_ranges:
+      -   - 1623
+          - 1625
     ruler: Christian IV
     mint:
     catalog:
@@ -2297,7 +2334,6 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '121093'
-    year_verified: false
     _obverse: Crown above large 'C' which encloses '4', divides date
     _ngc_note: Varieties exist. Prev. KM#1.
     _ngc_date_line: 16Z3
@@ -2305,15 +2341,21 @@ coins:
       - '1'
     _ngc_flags:
       varieties_exist: true
+    _ngc_dates_as_printed:
+      - (16)Z4
+      - (16)Z5
+      - 16Z3
   - id: ngc-121094
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 6 Pfennig
-    year_label:
-    year_first:
-    year_last:
+    year_label: '1642'
+    year_first: 1642
+    year_last: 1642
     year_ranges:
+      -   - 1642
+          - 1642
     ruler: Christian IV
     mint:
     catalog:
@@ -2339,22 +2381,25 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '121094'
-    year_verified: false
     _obverse: Crowned 'C' enclosing '4' within circle, titles of Christian IV
     _reverse: Inscription in circle, titles continued, date
     _ngc_note: Prev. KM#4.
     _ngc_date_line: 164Z ST
     _ngc_previous_km:
       - '4'
+    _ngc_dates_as_printed:
+      - 164Z ST
   - id: ngc-167724
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 3 Pfennig, Dreier
-    year_label:
-    year_first:
-    year_last:
+    year_label: '1557'
+    year_first: 1557
+    year_last: 1557
     year_ranges:
+      -   - 1557
+          - 1557
     ruler: Christian III
     mint:
     catalog:
@@ -2380,20 +2425,27 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '167724'
-    year_verified: false
     _obverse: Shield of Schleswig arms, date
     _reverse: Imperial eagle
     _ngc_note: Ref. Sch#1358.
     _ngc_date_line: (15)57
+    _ngc_dates_as_printed:
+      - (15)57
   - id: ngc-167727
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 6 Pfennig
-    year_label:
-    year_first:
-    year_last:
+    year_label: 1534, 1545–1546, 1554
+    year_first: 1534
+    year_last: 1554
     year_ranges:
+      -   - 1534
+          - 1534
+      -   - 1545
+          - 1546
+      -   - 1554
+          - 1554
     ruler: Christian III
     mint:
     catalog:
@@ -2419,20 +2471,28 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '167727'
-    year_verified: false
     _obverse: Holstein arms in quatrefoil superimposed on cross all within circle, titles of Christian III as King of Denmark
     _reverse: Shield of Schleswig arms divides date, titles continued as Duke of Schleswig and Holstein
     _ngc_note: Ref. Sch#1357; L#23, 23AB.
     _ngc_date_line: (15)34
+    _ngc_dates_as_printed:
+      - (15)34
+      - (15)45 (a)
+      - (15)46 (a)
+      - (15)54
   - id: ngc-167732
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Schilling
-    year_label:
-    year_first:
-    year_last:
+    year_label: 1566, 1571
+    year_first: 1566
+    year_last: 1571
     year_ranges:
+      -   - 1566
+          - 1566
+      -   - 1571
+          - 1571
     ruler: Friedrich II
     mint:
     catalog:
@@ -2458,7 +2518,6 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '167732'
-    year_verified: false
     _obverse: Holstein arms in quatrefoil superimposed on cross in circle, titles of Friedrich II
     _reverse: Shield of Schleswig arms divides date in circle
     _reverse_legend: MO. DVCATV. SLES. Z HOLSA.
@@ -2466,15 +2525,20 @@ coins:
     _ngc_date_line: (15)66 (d)
     _ngc_flags:
       varieties_exist: true
+    _ngc_dates_as_printed:
+      - (15)66 (d)
+      - (15)71
   - id: ngc-167738
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Mark
-    year_label:
-    year_first:
-    year_last:
+    year_label: '1563'
+    year_first: 1563
+    year_last: 1563
     year_ranges:
+      -   - 1563
+          - 1563
     ruler: Friedrich II
     mint:
     catalog:
@@ -2500,22 +2564,25 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '167738'
-    year_verified: false
     _obverse: Crowned 'F' in shield divides date in circle
     _reverse: Inscription in circle
     _ngc_note: Ref. L#26. Klippe.
     _ngc_date_line: (15)63
     _ngc_flags:
       klippe: true
+    _ngc_dates_as_printed:
+      - (15)63
   - id: ngc-167739
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Thaler
-    year_label:
-    year_first:
-    year_last:
+    year_label: '1522'
+    year_first: 1522
+    year_last: 1522
     year_ranges:
+      -   - 1522
+          - 1522
     ruler: Friedrich I
     mint:
     catalog:
@@ -2542,22 +2609,25 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '167739'
-    year_verified: false
     _obverse: Bust left in circle
     _reverse: Helmeted 4-fold arms with central shield of Oldenburg, date at end of legend
     _obverse_legend: FREDERICVS. DEI. GRA. SLESVICEN. ET. HOISAC. DVX.
     _reverse_legend: MONET'. NOVA * ARGENTA. HVSEMEN'
     _ngc_note: 'Dav. #8235.'
     _ngc_date_line: 15ZZ Rare
+    _ngc_dates_as_printed:
+      - 15ZZ Rare
   - id: ngc-167746
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Goldgulden
-    year_label:
-    year_first:
-    year_last:
+    year_label: '1536'
+    year_first: 1536
+    year_last: 1536
     year_ranges:
+      -   - 1536
+          - 1536
     ruler: Christian III
     mint:
     catalog:
@@ -2583,7 +2653,6 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '167746'
-    year_verified: false
     _obverse: Full-length figure of St. Andrew turned slightly right holding cross divides date, titles of Christian III
     _reverse: Floriated cross, 4 small shields of arms in angles
     _reverse_legend: MON. NOVA. AVREA. SLESVICENSIS.
@@ -2591,15 +2660,19 @@ coins:
     _ngc_date_line: (15)36
     _ngc_flags:
       varieties_exist: true
+    _ngc_dates_as_printed:
+      - (15)36
   - id: ngc-167748
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 2 Goldgulden
-    year_label:
-    year_first:
-    year_last:
+    year_label: '1546'
+    year_first: 1546
+    year_last: 1546
     year_ranges:
+      -   - 1546
+          - 1546
     ruler: Christian III
     mint:
     catalog:
@@ -2625,21 +2698,24 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '167748'
-    year_verified: false
     _obverse: Full-length figure of St. Andrew turned slightly right holding cross divides date, titles of Christian III
     _reverse: Floriated cross, 4 small shields of arms in angles
     _reverse_legend: MON. NOVA. AVREA. SLESVICENSIS.
     _ngc_note: 'Fr. #17.'
     _ngc_date_line: (15)46 (a) Rare
+    _ngc_dates_as_printed:
+      - (15)46 (a) Rare
   - id: ngc-167749
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Ducat
-    year_label:
-    year_first:
-    year_last:
+    year_label: '1563'
+    year_first: 1563
+    year_last: 1563
     year_ranges:
+      -   - 1563
+          - 1563
     ruler: Friedrich II
     mint:
     catalog:
@@ -2665,22 +2741,25 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '167749'
-    year_verified: false
     _obverse: Crowned 'F' in shield divides date
     _reverse: Facing full-length figure of the god of fortune in circle
     _ngc_note: Fr.#19. Klippe.
     _ngc_date_line: (15)63
     _ngc_flags:
       klippe: true
+    _ngc_dates_as_printed:
+      - (15)63
   - id: ngc-167751
     fuss: seed_unsorted
     phase: ngc
     kind: kurant
     nominal: 1 Portugaløser
-    year_label:
-    year_first:
-    year_last:
+    year_label: '1591'
+    year_first: 1591
+    year_last: 1591
     year_ranges:
+      -   - 1591
+          - 1591
     ruler: Christian IV
     mint:
     catalog:
@@ -2706,7 +2785,6 @@ coins:
       uk: 'NGC-seed: World Coin Price Guide, на основі Krause-Mishler, наступник закритого NumisMaster. Покоінна верифікація проти первинних джерел перед промоцією.'
     _ngc_scope: schleswig_holstein
     _ngc_cuid: '167751'
-    year_verified: false
     _obverse: Large Portuguese cross in circle divides inner legend, outer legend is titles of Christian IV
     _reverse: Crowned shield of 12-fold arms with central shield divides date, titles cont.
     _obverse_legend: 'Inner leg: NACH - PORT - VGAL - SCHR'
@@ -2716,3 +2794,5 @@ coins:
       de: 10 Ducat,
       en: 10 Ducat,
       uk: 10 Ducat,
+    _ngc_dates_as_printed:
+      - (15)91 Rare

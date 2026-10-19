@@ -40,14 +40,14 @@ Status marks: **A** = attested in a cited source; **C** = our computation from a
 | Stage | Years | What fixes the boundary | Status |
 |---|---|---|---|
 | I — start | 1481 – c. 1500/1503 | Hvide from 1481 (Rigsrådet 1481–83, Eriksson s. 4); hoards c. 1490 (Bangbostrand) and the Gribshunden purse 1495 hold Hvide only; Skilling coinage perhaps only after 1497 (Eriksson s. 10, **H**); reckoning Gylden = 2 M d (Wilcke 7-1 s. 134); 1497 «4 Hvide ß» (s. 142) | A / H |
-| II — middle | c. 1500/1503 – c. 1511 | Gylden = 2½ M d «ved Aarhundredskiftet» (Wilcke 7-1 s. 134); 1503 both 2 M d (toll, «senere 2½») and 2½ M (Queen Christina's accountant), 1508 still 2½ (s. 132, 134) → transition c. 1503; Lübeck's own Mark step to 13 in 1502/06 (Jesse, Bobzin) | A |
+| II — middle | c. 1500/1503 – c. 1511 | Gylden = 2½ M d «ved Aarhundredskiftet» (Wilcke 7-1 s. 134); 1503 both 2 M d (toll, «senere 2½») and 2½ M (Queen Christina's accountant), 1508 still 2½ (s. 132, 134) → transition c. 1503; Lübeck's own Mark step to 13 ~~in 1502/06 (Jesse, Bobzin)~~ decided Aug 1504, enacted Rezess 29 Dec 1506 (Jesse; §3.4g) | A |
 | III — end | 1512 – 1513 | the only dated silver: Skillinger 1512 at 6–7 lod, among the lowest (Eriksson s. 10, tab. 7); Søsling 1512 (Galster 30; Eriksson s. 10 «unik sösling 1512»); Hans d. Feb 1513; Haandfæstning 22 Jul 1513 ends the period | A; the II/III border rests only on the 1512 dates (**H** for where II ends) |
 
 ### §0.2 Matrix — levels × stages
 
 | Level | I (1481 – c. 1500/03) | II (c. 1500/03 – c. 1511) | III (1512 – 1513) |
 |---|---|---|---|
-| **1. Lübeck reference** (fixed by the recesses; the card's formula) | Schilling 103½ / rough 9-lot mark (1468 = 1492); Mark lübisch = 16 ß = 192 Pf; = 11½ Mark lübisch per fine mark (Jesse «11 M. 8 s») — **A** | same reference; Lübeck itself moves: Markstück 1502/06 at 13 Mark per fine mark (**A**), Lübeck ß c. 1500 «1,269 — 1,103 gr.» (Wilcke 7-2 s. 150–151, **A**) | same reference; Lübeck Schilling 1515 at 13¼ (Bobzin, **A**, after the period) |
+| **1. Lübeck reference** (fixed by the recesses; the card's formula) | Schilling 103½ / rough 9-lot mark (1468 = 1492); Mark lübisch = 16 ß = 192 Pf; = 11½ Mark lübisch per fine mark (Jesse «11 M. 8 s») — **A** | same reference; Lübeck itself moves: Markstück ~~1502/06~~ 1504/06 at 13 Mark per fine mark (**A**; 1502 ⅓/⅔ Mark still 11½, §3.4g), Lübeck ß c. 1500 «1,269 — 1,103 gr.» (Wilcke 7-2 s. 150–151, **A**) | same reference; Lübeck Schilling 1515 at 13¼ (Bobzin, **A**, after the period) |
 | **2. Danish Skilling** (the coin that tracked the Schilling; reckoned «god for lybsk Valuta», Wilcke 7-2 s. 149) | 9 lod ≈ 1,27 g fine = Lübeck level 11½ (Eriksson tab. 7 **A**; level **C**) | 8–7 lod, ≈ 0,80–1,24 g fine, ≈ 12–15 Mark lübisch per fine mark, around 13 (**C** from undated assays; placing them in II is **H**); 8-lod group brackets the 13-Mark value 1,124 g — consistent with following Lübeck's 1502/06 step, not proven (§3.4c) | 6–7 lod, dated 1512, ≈ 0,82–0,96 g, ≈ 15–18 (**A** assays, **C** level) — below Lübeck |
 | **3. Danish small change** — Hvid (4 Pf), Søsling (6 Pf); Mark dansk = 16 ß à 3 Hvide = 48 Hvide = 192 Pf (account); Penning = account (Hvid 4, Søsling 6, Skilling 12; Eriksson s. 4) | Hvid 6 → 5 lod (Eriksson tab. 9, undated); valued as a Lübeck 3-penny (Eriksson s. 5); Gylden = 2 M d = 96 Hvide; Skilling coin = 4 Hvide (1497) — **A** | Gylden = 2½ M d = 40 ß d = 120 Hvide (**A**); Skilling coin = 5 Hvide (**A** undated; placing it in II follows Wilcke's pairing 7-2 s. 149) | no new rate attested (2½ M d last seen 1508); **Søsling appears** (1512 dated; silver ≈ 0,39–0,42 g = ≈ 1½ Hvid = ≈ ½ of the 1512 Skilling — fits III, **C**); end act 1513: 2 M d per Gylden, 3 Hvide per ß again |
 | **Norway** (measure = the Danish system) | 1483 act: coin «jaffngod … wid Danske penninge» (Gullbekk s. 4, **A**); Hans strikes Gylden, Skilling, Søsling, Hvid in Norway, royal Penninge uncertain (Gullbekk s. 5); Oslo hollow penny (Galster 156); Norwegian Hvide lighter, 0,63 vs ≈ 0,75 g (Ernst 1940) | same | Bergen Søslinger (Galster 149, 150) undated — III by analogy (**H**) |
@@ -138,14 +138,14 @@ Archive copies: survey §2 + plan step 5.2 (all seven web sources archived 2026-
 
 Bobzin («Lübisches Münzsystem», hagen-bobzin.de; cache `scripts/cache/bobzin/muenzverein_wendisch.*`)
 states the Lübeck standard as the number of Mark lübisch (16 ß) struck from one fine mark,
-e.g. «*1 Ml. = 1/13 feine Mark Silber ≈ 18g Silber (13-Mark-Fuß)*» for the 1502/1506 Markstück.
+e.g. «*1 Ml. = 1/13 feine Mark Silber ≈ 18g Silber (13-Mark-Fuß)*», which he attaches to 1502 — Jesse puts the 13 at 1504/1506 (§3.4g).
 Applied to the defining coins (Bobzin's own figures where he gives them, else recomputed from §3.1):
 
 | Year | Coin / measure | ß per fine mark | Mark lübisch per fine mark | Source |
 |---|---|---:|---:|---|
 | 1461 | Kaufpreis of the fine mark | 166–172 | 10⅜–10¾ | Bobzin («10 Ml. und 6 bis 12 ßl.») |
 | 1468 = 1492 | Schilling 103½ to the 9-lot mark | 184 | **11½** | recomputed from Jesse |
-| 1502 / 1504–06 | Markstück | 208 | **13** («13-Mark-Fuß») | Bobzin; Jesse |
+| ~~1502 /~~ 1504–06 | Markstück | 208 | **13** («13-Mark-Fuß») | Bobzin; Jesse — Bobzin's «1502» is wrong: 1502 ⅓/⅔ Mark = 11½ (Jesse; §3.4g) |
 | 1506 | Markstück variants: 12¼/15-lot · 11¾/14½-lot · 12/14½-lot | 209,1 · 207,4 · 211,9 | 13,07 · 12,97 · 13,24 | Bobzin |
 | 1515 | Schilling | 212 | **13¼** | Bobzin («13¼-Mark-Fuß») |
 | Hans, early Skilling (9 lod, ≈ 1,24–1,32 g fine) | | 177–189 | ≈ 11–11¾ | recomputed (Eriksson tab. 7) — **the 1468/1492 Lübeck level** |
@@ -438,16 +438,23 @@ proof that Denmark took the 1502/06 step.
 **Lübeck after the step — did it debase further?** (Bobzin, «Lübisches Münzsystem»; Jesse)
 | Year | Lübeck coin | Mark lübisch per fine mark | Source |
 |---|---|---:|---|
-| 1502 / 1506 | Markstück | 13 | Bobzin; Jesse |
+| ~~1502 /~~ 1506 | Markstück (decided Aug 1504, Rezess 29 Dec 1506) | 13 | Jesse; Bobzin dates it 1502 — wrong (§3.4g) |
 | 1506 | Hamburg Witten (208 / 5 Lot 1 Grän) | ≈ 13 7/10 | Bobzin |
 | 1506 | three Markstück variants 12¼/15 lot · 11¾/14½ · 12/14½ | 13,07 · 12,97 · 13,24 | Bobzin («*die dritte, noch einmal verschlechterte Variante*» prevails 1515) |
+| **1512 recess (confirmed Bergedorf 1513)** | Markstück 13 from the 15-lot mark «*die aber noch mit 1/2 Lot Kupfer vermischt werden sollte*» (= 14½ lot) | **≈ 14⅓** (13 × 16 ÷ 14½ = 14,34; recomputed) | Jesse («*Ein neuer Rezeß von 1512 … setzte den Münzfuß auf 13 Stück aus der 15lötigen Mark fest*») |
+| 1512 recess | Doppelschilling 104 from the 15-lot mark («*fein 2,012 g*») | ≈ 13⅞ (104 ÷ 8 × 16 ÷ 15 = 13,87; recomputed) | Jesse — «*Außer den Witten dieses Jahres ist aber keine andere Münze bekannt*» (said of the SMALL sorts: Doppelschilling / Schilling 1512 = paper). ~~the 1512 Mark and Doppelschilling are a paper standard~~ **Corrected 2026-10-17:** that sentence does not cover the Markstück. For the Mark: no 1512-dated piece is named (Lübeck dates 1506, 1523, 1546, 1549 — but dates are type dates, §3.4g-1); Jesse weighed 33 whole, 14 half, 10 quarter Markstücke: «*Durchschnittsgewicht von 19,1 g, … durchweg zu rund 12 Stück aus der rauhen Mark*» — 13 per mark would give ≈ 18,0 g (18,55 g if the ½ lot copper is added on top; recomputed). So the 1512 Mark rate is not visible in the surviving coins (our reading of Jesse's figures, not his statement) |
+| 1515 (plan) | Schilling 106–108 from the 8-lot mark | 13¼ – 13½ (recomputed: 1,103 – 1,083 g fine) | Jesse («*1515, als ein Schilling zu 106-108 aus einer 8 lötigen Mark geplant*»); Bobzin 13¼ |
 | 1515 | Schilling | 13¼ | Bobzin («*1 feine Mark Silber = 212 ßl. = 13 Ml. 4 ßl.*») |
 | 1519 / 1528 | Taler (8 on the 15-lot mark) | 12⅘ | Bobzin |
 | 1522–30 | Doppelschillinge | 14⅜ – 15⅝ | Jesse («*wurde sie 1522-30 zu 14 M. 6 s bis 15 M. 10 s ausgemünzt*») |
 
-So within Hans' reign Lübeck stayed at 13 – 13¼ (small change ≈ 13 7/10); its next fall (14⅜–15⅝) is in
+~~So within Hans' reign Lübeck stayed at 13 – 13¼ (small change ≈ 13 7/10); its next fall (14⅜–15⅝) is in
 the 1520s. Denmark's dated 1512 Skillinger (15–18) were therefore already BELOW Lübeck's contemporary
-level — Denmark went further than Lübeck before 1513.
+level — Denmark went further than Lübeck before 1513.~~ **Corrected 2026-10-16:** the first version missed
+Jesse's 1512 recess. On paper (the recess; not visible in the surviving Markstücke, see table) Lübeck itself stepped down again in 1512 — Markstück ≈ 14⅓, Doppelschilling
+≈ 13⅞ Mark lübisch per fine mark — though Jesse knows only Witten struck that year; the 1515 Schilling plan is
+back at 13¼–13½. So the gap between Lübeck's (paper) 1512 level and the dated Danish 1512 Skillinger (15–18) is
+smaller than first stated: Denmark was still below, by ≈ 1–4 Mark rather than ≈ 2–5.
 
 **Open — what would settle each:**
 | Question | Would be settled by |
@@ -571,6 +578,243 @@ Viborg*. Kilder til numismatik og pengehistorie IV» — the publication of the 
 Skilling resumed 1480s/90s; dated Skillinger from 1512; Hvid issue to c. 1510) and names two items to obtain
 next — Risvaag 2009 (Galster 155 mint) and Märcher 2018 *Tre møntskatte* (Lemvig hoard of 190 Hans Skillinger).
 
+**Galster, *Mønt* (2. rev. oplag, København 1973) — read 2026-10-16** (curator's link to slaegtsbibliotek.dk;
+cache `scripts/cache/danskmoent/hans_1481_1513/galster_1973_moent.*`; printed page = pdf page; OCR garbles
+fractions, read from the page image). A handbook by the author of *Unionstidens udmøntninger* (1972) — the same
+reading as Galster 1972, not a second witness. **Not** Risvaag 2009 (still unread).
+- s. 23: Margrethe restores the coinage 1397 «*efter lybsk regning: 1 kølnsk mark (ca. 230 — 233.855 g) = 16
+  skilling = 192 penning*» — Galster equates the Lübeck reckoning mark with the Cologne weight mark (cf.
+  `mark_lybsk_mark_dansk.md` §2, where the mark of account is 16 ß lübisch).
+- s. 24: under Christian I «*kun hvide, der forringes fra ⅓ skilling til ¼ eller mindre*»; «*Under rustningerne
+  mod Sverige under kong Hans udmøntes atter skillinge*» (Skilling resumption tied to the Swedish armament — no
+  year); Hans' rhinsk gylden «*kun 17¾ karat mod 18½*»; the nobles «*svarer nøje til de hollandske guldrealer*».
+- s. 45: Hans' Norwegian håndfæstning 1 Feb 1483 — coin in Throndhjem «*og ligeså i Bergen og Oslo, jævngod mønt
+  med danske penge*»; «*I Bergen lod kongen slå søslinge, her og i de andre stæder tillige hvide og penninge. Men
+  al hans mønt var underlødig og ikke på nær dets pålydende værd, ligesom hans danske mønt.*» Galster here names
+  Oslo as a royal mint of Hans (the reading danskmoent follows for Galster 155).
+- s. 51: Hans' Swedish ordinance of 4 Dec 1497 — rhinsk gylden «*til en vægt af 3.38 g, svarende til hans danske
+  guldmønt; men den synes ikke at være udmøntet*» (agrees with `instruments/1497_moentanordning_stockholm.md`).
+- ⚠ Data note (not acted on): Galster 149 Bergen Søsling sits in TWO finals in `danish_norway` —
+  `unified-dk-bruun-9223` and `unified-dk-galster-hg-149` (both Galster 149 / Schou 100 / Schive XIV:2);
+  `unified-kmk-134394` is Galster 150. A §9.4 merge candidate for the curator.
+
+
+### §3.4f On what terms was Denmark tied to the Lübeck standard — and was it bound to follow Lübeck's changes? (2026-10-16, curator question)
+
+**Short answer (from the sources read):** for the KINGDOM under Christian I and Hans no instrument is known
+that binds Denmark to Lübeck's coinage, let alone to Lübeck's later changes. The one real treaty (1424) fixed
+specific coins and lapsed within years; afterwards there is only orientation («Anlehnung»), a Holstein-only
+obligation (1460), and promises to the Danish estates whose wording for the kingdom we have not seen. The first
+verbatim Danish-realm clause naming Lübeck is Frederik I's of 1523 — ten years after the «departure».
+
+**The instruments, in order:**
+
+| Date | Instrument | Who binds whom | What it says | Static or dynamic? | Source |
+|---|---|---|---|---|---|
+| 8 Oct 1424 | Queen Philippa ↔ Lübeck, Hamburg, Lüneburg, Wismar (København) | the Danish crown and the four cities, mutually | coin «*de ghenge vnde gheue wesen schal beyde in den Ryken*»; Søsling «*eluen loht vnde en quentyn*», 168 per weighed mark; Hohlpfennig 7¼ lot; old Danish pieces devalued; annual assay in København | **static** — fixes parameters, no clause on later changes | Hauberg 1886 s. 173–175 (text printed); Jesse (assay «*jährliche Prüfung … in Kopenhagen*») |
+| 1425–1435 | — | — | «*Infolge dieser Verhältnisse ist deshalb auch die Münzeinigung mit den Städten sehr bald wieder zerrissen. Nur die Anlehnung des dänischen Münzwesens an das der Städte blieb bestehen.*» (Jesse); Søsling «*omtales ikke i noget senere Aktstykke*» (Hauberg s. 176) | treaty lapsed | Jesse; Hauberg |
+| 1460 | Christian I as Count of Holstein ↔ Hamburg | Christian I and heirs, **for the duchies only** | «*forpligtede Christiern I som holstensk Greve sig til kun at bruge saadan Mynt i Hertugdømmerne, som var gjængs og gjæv i Lybek og Hamborg*» (Hauberg s. 140, after Hvitfeldt II 889); Sømod: «*ingen mønt sætte, uden den som til Lübeck og Hamburg er gængs og gæv*» | **dynamic** (whatever passes in Lübeck/Hamburg) — but Holstein, not the kingdom | Hauberg; Sømod 2002 |
+| 1474 | Christian I's complaint to the Emperor | — | «*1474 beklagte sich König Christian von Dänemark beim Kaiser, daß die vier Städte in den letzten 3 Jahren Schillinge schlügen, deren 24 bis 25 auf den Gulden gerechnet werden müßten, wodurch Zinsen, Renten und Zölle, die auf 23 ß = 1 fl. gegründet seien, beeinträchtigt würden.*» | shows the dependence ran the OTHER way: Danish dues fixed in Lübeck ß, so Lübeck's debasement cost the crown | Jesse |
+| 1 Feb 1483 | Hans' håndfæstning (Halmstad) | king → Danish-Norwegian council | each realm keeps its coin; Norway's coin «*jeffngod … wid Danske penninge*» (Gullbekk). Wilcke 7-1 s. 143 glosses this as «*jevngod Mønt med den danske, o: efter lybsk Møntfod, saa den var gænge og gæv i Hansestæderne*» — the «o:» part is **Wilcke's gloss**, not the act | ties Norway to DENMARK, not to Lübeck | Gullbekk 2025; Wilcke 7-1 s. 143 |
+| 1491, Jan 1508 | Hans; Christian (II) as elect | — | Norwegian and Danish coin «*giæng og gjæv*» in each other's realm at full value; 1508: «*vor kære Faders Mønt skal være giæng og gæv for allehaande Varer*» (Dipl. Norv. III 754) | intra-union, no Lübeck | Wilcke 7-1 s. 143 |
+| — (Christian I, Hans) | promise to keep the coin «up to» Lübeck's | ⚠ **addressee given two ways by one author**: «*som hans Fader Christian I. i sin Tid havde lovet Lybækkerne*» (7-1 s. 142) vs «*Hans saa vel som hans Fader havde lovet Rigsraaderne at holde Mønten op til den lybske i Hansestæderne, men det lykkedes ikke under Krig og Orlog*» (7-2 s. 147). No instrument or text cited at either place | unknown | Wilcke |
+| 22 Jul 1513 | Christian II's håndfæstning | king → council | Wilcke's quotation: «*hvad som myntes efter thende dag i Danmark og Norge skal myntes saa at thue mark giør fyldest for en riksdlr. (af andre Kilder en rhinsk Gylden)*» (7-2 s. 149; RA Erik Krabbes Lovarbejder I b; Aarsberetn. fra Geheimearkivet II p. 62). **No Lübeck in the quoted clause** — anchor is the Rhenish Gulden | static (2 M d = 1 fl) | Wilcke 7-2 s. 149; N. J. Jensen 1976 |
+| 26 Mar / 3 Aug 1523 | Frederik I's håndfæstning (Viborg; Roskilde) | king → nobility/council | «*item hvad som skal møntes efter thend Dag udi Danmark skal mønthes lige god ved lybsk, hamborgsk oc Landte Holsten*» (Wilcke 7-2 s. 174); Galster: «*huad ther skall myntis epther thenne dag i Danmarck, skall myntis ligegoett ved Lybsck, Hamborgh oc Lanteholstenn*» | **dynamic** («as good as» Lübeck/Hamburg/Holstein) — first verbatim realm-wide Lübeck clause found | Wilcke 7-2 s. 174; Galster, *Danmarks Mønter* (danskmoent) |
+
+⚠ **Source discrepancy — did the 1513 håndfæstning ALSO tie the coin to the cities?** Wilcke's verbatim extract
+has only the Gulden clause. But Huitfeldt (as quoted by Wilcke 7-2 s. 173): «*uanset hans Haandfæstning formelder,
+han skulde lade mønte god Mønt lige med Stædernes*», and Galster (*Danmarks Mønter*, danskmoent) introduces the 1523
+clause with «*(ligesom i Christiern II's Haandfæstning)*». Either the 1513 text has a second coin clause Wilcke did
+not quote, or Huitfeldt/Galster read the 1523 wording back into 1513. **Open — settled only by the full 1513 text**
+(Aarsberetninger fra Geheimearchivet II p. 62; Erik Krabbes Lovarbejder; Kong Christian II's håndfæstning in
+*Danske Kongers Haandfæstninger*, 1974 ed.). Not found online (web search 2026-10-16).
+
+**What «gængs og gæv / lige god ved lybsk» means as an obligation.** The formula is relational, not a
+parameter: coin must PASS at par with («be as good as») the current Lübeck coin. Read literally it is dynamic —
+if Lübeck debased (1502/06 step to 13 Mark), «as good as Lübeck» would be satisfied at the lower level. No source
+discusses whether a Danish king was held to Lübeck's OLD level after Lübeck moved; that reading is ours
+(**hypothesis** — would be settled by a contemporary complaint or ruling invoking the clause against a Lübeck change).
+Note also who could enforce it: in 1460 Hamburg (Holstein); in the håndfæstninger the Danish council — never Lübeck.
+Lübeck's own instruments against Danish coin were valuation and prohibition: Danish coin is valued or banned in
+the recesses («*dänische Dreilinge*», after 1492 complaints about «*Dänemark*»). ~~1512 a Lübeck mintmaster executed
+«*wegen des Vertriebes von dänischen und Verdener Witten*»~~ — **corrected 2026-10-16:** Jesse gives the case twice.
+In the chapter on organisation: «*in Lübeck ist 1512 ein Münzmeister wegen des Vertriebes von dänischen und Verdener
+Witten hingerichtet worden*». In the chapter on the last Witten, the context: imitations of the Hanseatic Witten
+(Stade, Otterndorf, Verden …), «*die "contrafegeden witten", vor denen in dieser Zeit immer wieder gewarnt wird und
+bei deren Vertrieb in Lübeck 1512 ein Münzmeister mit seinen Helfershelfern gefaßt wurde*». So: a mintmaster (not
+said to be Lübeck's own) and accomplices, caught in Lübeck putting **imitated («contrafegeden») Witten** into
+circulation, among them Danish and Verden pieces. Whether the «dänischen Witten» were Danish royal Hvide or
+imitations of them is not said. It is a counterfeiting case, not a measure against Danish royal coin as such.
+
+**Was Danish coin banned in Lübeck? (2026-10-17, curator question)** Not as a category. What Jesse records:
+- the recesses after 1425 drop most valuations of foreign silver and fall back on a general ban: «*Wenn dann auch
+  nach 1425 derartige Valvationen von fremden Silbermünzen mehr und mehr aus den Rezessen verschwinden und die meisten
+  sich ganz allgemein auf ein Verbot fremden Geldes beschränken, sind doch immer wieder in den einzelnen Städten …
+  bestimmte auswärtige Münzsorten hervorgehoben worden, die zu einem festen Kurs zulässig blieben*». Danish coin fell
+  under the general ban like any foreign coin; earlier (1389, regularly from 1403) Danish money is among the sorts
+  admitted at a fixed rate;
+- specific Danish sorts, named in the **Hamburg** Burspraken (not Lübeck's): «*dänische Dreilinge*» that «*zeitweise
+  wieder ganz verboten wurden*», and at the start of the 16th c. «*dänische Klippenpfennige*»; after 1492, complaints
+  about bad foreign coin «*besonders solcher von Stade, Bremervörde und Dänemark*»;
+- **hypothesis (not checked):** Galster (*Danmarks Mønter*, danskmoent) — «*Nordtyske Smaafyrster (især
+  Saksen-Lauenborg) gjorde iøvrigt gode Forretninger med at efterligne og udmønte de berygtede "densche dreelinge"*».
+  With the Danish Hvid valued as a Lübeck 3-penny (Eriksson s. 5), the «*dänische Dreilinge*» of the Hamburg bans may
+  be Danish Hvide and/or their Lauenburg imitations. Would be settled by the Burspraken texts (Hamburg) and the
+  sources in Jesse's notes (not in the coingallery reproduction).
+
+**Curator's reading (2026-10-16):** Wilcke's «*Hans saa vel som hans Fader havde lovet Rigsraaderne at holde Mønten op
+til den lybske i Hansestæderne*» (7-2 s. 147) is a strong argument that Denmark had to move with Lübeck to the
+13-Mark level. **Analysis:** «holde … op til» = keep the coin UP TO Lübeck's, i.e. not worse than the current
+Lübeck coin — a floor that moves with Lübeck. When Lübeck stepped to 13 (1502/06) and on paper to ≈ 14⅓ (1512), the
+floor dropped with it: a Danish Skilling at the 13-Mark level kept the promise; one below Lübeck's level broke it.
+The promise therefore PERMITS and benchmarks the move to 13 — it makes the 13-Mark level the expected Danish
+level once Lübeck was there — but it does not by itself COMPEL a debasement (a Danish coin better than Lübeck's would
+also have kept it). Fits the fixed position of §3.4d (Danish Skilling at the 13-Mark level at some point) and
+Wilcke's own verdict that the promise failed «*under Krig og Orlog*» (the 1512 Skillinger below Lübeck). Limits: Wilcke
+gives no instrument for the promise, and names its addressee differently at 7-1 s. 142 («*Lybækkerne*»); until the
+text is found it is Wilcke's statement, not the act's wording.
+
+**Consequences for the «departure» of 1513.**
+- What Wilcke calls the departure is in the RECKONING: «*Forholdet til den lybske ß ophævet … paa Bekostning af
+  Skillingen og dens Forbindelse med den lybske M og ß*» (7-2 s. 151) — the Danish ß reckoned 32 per Gulden (Lübeck:
+  «*vedblivende regnedes for højst 24 ß paa 1 Gylden*», s. 151, Lübeck ß then «*1,269 — 1,103 gr*» fine). It
+  departs from no treaty, because none bound the kingdom in 1513 as far as the read sources show.
+- Wilcke's Lübeck range 1,269 → 1,103 g fine per ß corresponds (our arithmetic, 233,856 g mark) to ≈ 11½ → ≈ 13¼
+  Mark lübisch per fine mark — i.e. Wilcke's own comparison already spans Lübeck's 1502/06 step.
+- In 1514 the reckoning went back to 24 ß / 72 Hvide per Gulden «*som i Hansestæderne*» (Wilcke 7-2 s. 155), Galster
+  reading it as «*Meningen at bringe det danske Møntvæsen nogenlunde paa Højde med det lybske*» (*Danmarks Mønter*).
+  So the «departure» lasted one ordinance; both 1513 and 1514 anchor on the Rhenish Gulden, and the Lübeck tie in
+  1514 is again in the count per Gulden, not in a treaty.
+- **Working reading (hypothesis):** the common yardstick was the gold Gulden. Lübeck coin and Danish coin were both
+  priced in ß per Gulden; Denmark's dues were fixed in Lübeck ß (1474); a Lübeck debasement therefore showed up in
+  Denmark as a change of the ß-per-Gulden count, which the crown resisted (1474) rather than was bound to copy.
+  Would be settled by: the toll/revenue ordinances that fixed «23 ß = 1 fl.» and any Hans-era complaint after 1502.
+
+**Open — with what would settle each:**
+| Question | Would be settled by |
+|---|---|
+| Full coin clause(s) of Christian II's 1513 håndfæstning | *Aarsberetninger fra Geheimearchivet* II p. 62; *Danske Kongers Haandfæstninger* (1974) |
+| Hans' DANISH håndfæstning 1483 coin clause (beyond the Norway article) | same edition; Kancelliets Brevbøger / RA |
+| Christian I's promise «to the Lübeckers» (Wilcke 7-1 s. 142) — which instrument? | Hanserecesse II (1431–76); Lübeck UB; Christian I's privileges for Lübeck |
+| Did anyone invoke «lige god ved lybsk» against a king after a Lübeck change? | Hanserecesse III (1477–1530); Danish herredag records |
+
+Sources read for this section: Hauberg 1886 (cache `…/hans_1481_1513/hauberg_1886_*`); Jesse (cache
+`scripts/cache/coingallery/jesse_1927/_jesse_wend_muenzverein.htm`); Wilcke 7-1, 7-2 (cache
+`scripts/cache/wilcke/renaessancens_moent_1950/pages/`); Galster, *Danmarks Mønter* (cache
+`scripts/cache/danskmoent/galster/galster_galkult.extract.txt`); Sømod 2002; N. J. Jensen, «Møntvæsenet i Danmark i
+den sene unionstid specielt under Christian 2.» (unpublished university paper 1976, danskmoent `c2njj.htm`, read
+2026-10-16 in the browser, not cached — low authority, a student survey: «*fra kong Hans forpligtes de danske
+regenter i reglen i håndfæstningerne til at slå lødig mønt, holde den norske mønt pari den danske, bringe mønten op
+på tidligere tiders stade osv.*»; «*der blev aldrig tale om en yderligere tilnærmelse til håndfæstningens krav
+endsige det uopnåelige lybske forbillede*»). Hans–Lübeck peace of Malmø (23 Apr 1512): 17 articles per Wikipedia;
+no coin article reported (secondary only; text unread).
+
+
+### §3.4g When and by which instrument did Lübeck move to 13 Mark? (2026-10-17, curator question)
+
+**Answer (Jesse, coingallery reproduction; recomputed at 233,856 g):** the 13-Mark level is the standard of
+the **Markpenning (Markstück)** of the four Wendish towns — Lübeck, Hamburg, Lüneburg, Wismar. It was
+decided in principle at the **Wendish Städtetag of August 1504** and enacted by the **Rezess of 29 December
+1506 at Hamburg**; the first Markstücke carry the date 1506. It was NOT the 1501/1502 step: the 1502 ⅓- and
+⅔-Markstücke are still on 11½ Mark.
+
+| Date | Instrument / event | What it sets | Mark lübisch per fine mark | Jesse, verbatim |
+|---|---|---|---:|---|
+| 25–26 Apr 1501 | Münztag at Mölln + Lübeck draft Münzordnung 1501 («nur abgeleitete Quellen», confirmed by Lübeck files) | ⅓ Mark («Ternarius») 34½ per **fine** mark, ⅔ Mark 17¼, 8-Witten 69 — all 15-lot; Witten 216 / 5¼-lot; Gulden 21 ß 4 Pf, fine mark valued 10 M 15 ß | **11½** (34½ ÷ 3; recomputed) — the 1468/1492 level kept for large silver | «*34½ Stück aus der Mark feinen Silbers (6,76 g fein, 1 Mark = 20,28 g fein)*» |
+| 1502 | coins: ⅓ and ⅔ Mark dated 1502 (Lübeck, Lüneburg only); Witten resumed (Lübeck, Lüneburg, Hamburg, Wismar) | struck after the 1501 plan | large silver 11½; **Witten ≈ 13¾** (216 / 5¼ lot → 0,355 g fine, 48 per Mark = 17,05 g; recomputed) | «*16 Stück nur einen Silbergehalt von 5,66 g statt 6,7 g des 1/2-Markstücks von 1502*» |
+| Aug 1504 | Wendish Städtetag — decision | «*eynen penninck von eyner mark Lubisch*» 5¼ Quentin, 15-lot, ½ and ¼ pieces | **13** (5¼ Quentin = 19,18 g, × 15/16 = 17,98 g fine; 13,00 recomputed) | «*die Mark fein zu 13 Mark, zu prägen*»; «*rund 18 g für eine Mark, während eine Mark … nach dem Münzfuß von 1492 noch 19,392 g Silber enthalten müßte*» |
+| Nov 1504 | Hamburg negotiation; Bürgermeister Langenbeck | argument for the reform | — | the Mark had sunk «*von 3 auf 11½ Mark in umlaufender Münze*»; would fall «*weiter auf 16 Mark*» without reform |
+| 13 Dec 1504 | joint Beurkundung of the towns = «die neue Münzordnung» | **no technical details**; principle: gold to be valued after silver, Mark lübisch kept «*by macht unde werde*»; Gulden cut to 21 ß 4 Pf (market 24 ß); bad and foreign coin to be got rid of by Petri 1505 (22 Feb); proclaimed in Hamburg's Thomas Bursprake (21 Dec) | (13 per the Aug decision) | «*Sie enthielt zwar keine Einzelheiten und Ausführungsbestimmungen*» |
+| 1505 | not executed; Hamburg strikes ⅓/⅔ Mark 1505 after the 1501 rules | — | Hamburg ≈ 11,7 (Jesse, from weights) | «*Auch im Münzfuß folgte Hamburg offenbar den Vorschriften von 1501, die eine bessere Prägung bedeuteten als die von 1504*» |
+| Jan–Feb 1506 | Langenbeck informs Hamburg; towns negotiate dies and legends | — | — | — |
+| **29 Dec 1506** | **Rezess at Hamburg** — «den endgültigen Abschluß der Verhandlungen» | Markpenning 15-lot, 5¼ Quentin = 19,18 g; half Markpenning, Verding, Scheidegeld (no details); Rhenish Gulden (72 per mark) current at 1½ Mark = 24 ß, its value to follow silver; bar silver admissible | **13** «*mit allen Unkosten*» | «*die Mark fein mit allen Unkosten ausgebracht zu 13 Mark … Der Münzfuß war also der gleiche wie 1504 vorgesehen geblieben. Die neue Münze war das eigentliche Währungsgeld*» |
+| 1506 | coins: ganze, ½, ¼ Mark («Semis», «Quadrans Marce Lubicensis») dated 1506 in all four towns | — | — | «*Mit der Ausführung dieses Rezesses setzt nun die Markprägung des wendischen Münzvereins ein*» |
+| «zum Jahre 1506» | hansische Münzchronik (Leibniz «Notitia») | Markstücke also 11¾ and 12 per 14½-lot mark | 12,97 · 13,24 (recomputed) | «*daß auch Markstücke zu 11¾ und 12 Stück aus der 14½lötigen Mark geprägt seien*» |
+| 1512, confirmed Bergedorf 1513 | new Rezess | Mark 13 per 15-lot mark + ½ lot copper; Doppelschilling 104 / 15 lot; quotas Lübeck 800 Mark, Hamburg 600, Lüneburg and Wismar 400 | ≈ 14⅓ (paper — only the 1512 Witten are known) | see §3.4d |
+| 1515 | decision | Mark 12 per 14½-lot mark; Schilling 106–108 / 8 lot (plan) | 13¼ (Mark); 13¼–13½ (Schilling) | «*Schon 1515 erfolgte eine neue Veränderung des Münzfußes, indem eine Ausprägung von 12 Markstücken aus einer 14½lötigen Mark beschlossen wurde*»; same level in Hamburg's Stadtrezess 1529 |
+
+Jesse's own framing: «*Gegenüber der Ausbringung der 1/3- und 2/3-Markstücke von 1502 und 1505 bedeutete …
+der 1504 und 1506 beschlossene Münzfuß bereits eine Verminderung*»; and on the recess rhythm: «*der im Entwurf
+vorgesehene Münzfuß erscheint in der endgültigen Fassung des nächsten Jahres bereits wieder verändert
+(1410/11, 1432/33, 1439/41, 1504/06)*». The motive he records is a pure silver currency independent of gold
+(«*die lübische Silbermark allein zur Grundlage der Währung … machen*», from the 1504 negotiations) — the 13
+is where the Mark was put when it was first struck as a coin, not a separate «13-Mark» reform.
+
+**Reading of the dates (our conclusion from Jesse):** «13-Mark-Fuß» = decided Aug 1504, documented without
+parameters 13 Dec 1504, enacted 29 Dec 1506, struck from 1506. The paper parameters drifted almost at once
+(1506 chronicle: 12 per 14½ lot = 13¼; 1512 Rezess ≈ 14⅓; 1515 back to 13¼). So «13» is the 1504/06 legal
+value; the practical level of the Mark 1506–1529 is 13–13¼.
+
+**Not settled from what we hold:** the text of the 1504 and 1506 recesses themselves (Jesse quotes phrases
+only; coingallery has no notes, so his archival references are lost). Would be settled by: *Hanserecesse*
+III. Abt. (vol. for 1504–1506) or Jesse 1928's Urkundenanhang (paper), or Lübeck UB. Web search 2026-10-17
+found no online text (secondary only: Reppa lexicon «Lübische Mark» gives the 1504 Mark at ≈ 14½ lot, against
+Jesse's 15 lot — secondary, not followed).
+
+> ⚠ **Source discrepancy — Bobzin vs Jesse on 1502.** Bobzin («Lübisches Münzsystem»): «*1502 werden die
+> ersten lübischen Markstücke geprägt (Mecklenburg). 1 Ml. = 1/13 feine Mark Silber ≈ 18g Silber
+> (13-Mark-Fuß)*». Jesse: the 1502 pieces are ⅓/⅔ Mark at 34½ thirds per fine mark = **11½**; the 13 is the
+> 1504/1506 Markpenning; the Mecklenburg 1502 «Grossus novus» (Magnus and Balthasar) and Heinrich/Albert's
+> piece are a ⅔-Markstück «*nach dem Muster der Hansestädte*», i.e. the 1501 standard. Bobzin is a
+> compilation after Jesse (L9) — one reading, attached by him to the wrong year. We follow Jesse.
+> **Correction of our own text:** §0.2 matrix, §3.1a table and §3.4d table carried «1502 / 1506 … 13» and
+> «Markstück 1502/06» after Bobzin — wrong for 1502; struck through and corrected there (2026-10-17).
+
+**§3.4g-1 Did Lübeck strike on the 13-Mark standard before 1506, ahead of Hamburg? Did the towns wait for
+consensus?** (2026-10-17, curator question; Jesse, coingallery reproduction)
+
+How the union worked — Jesse, verbatim:
+- Recesses are often drafts, subject to each town's decision: «*Nicht alle Münzrezesse … sind als der
+  Niederschlag endgültiger und abschließender Beschlüsse anzusehen. Sie stellen vielmehr oft neue
+  Verhandlungen oder die entscheidende Stellungnahme der einzelnen Städte in Aussicht, wie … 1492 und 1501*»;
+  the envoys' reservation «*das "torugge bringen"*» (= referring back to their council) «*hat auch die
+  Verhandlungen und Entscheidungen des Münzvereins oft arg verzögert*»; the 1492 recess was «*in einer
+  besonderen Urkunde von Hamburg und Lübeck ausdrücklich bestätigt und angenommen*».
+- Execution was each town's own: «*Die Ausführung im einzelnen freilich blieb den Städten selbst überlassen,
+  da ja innerhalb des Münzvereins keine gemeinsame Münzstätte bestand*».
+- Not all four towns always took part, and towns struck non-union sorts on their own; the rules were loosely
+  kept: «*Wie wenig bindend die Vorschriften der Rezesse oft gehandhabt sind, zeigen besonders die Gepräge des
+  16. Jahrhunderts, wo z. B. die Anbringung bestimmter Jahrzahlen auf den Markgeprägen durchaus nicht
+  gleichmäßig gehandhabt worden ist und die Prägung der Doppelschillinge nach 1522 in den Städten zu ganz
+  verschiedenen Zeiten eingesetzt hat*».
+
+The 1501–1506 case, step by step:
+| When | Who struck what | Standard | Jesse |
+|---|---|---|---|
+| 1502 | Lübeck and Lüneburg ⅓ / ⅔ Mark; all four Witten | 1501 plan (11½) | «*Zur Ausprägung der größeren Nominale hatten sich die letzteren beiden Städte* [Wismar, Hamburg] *offenbar noch nicht entschließen können, doch war ihr Anschluß nur eine Frage der Zeit*» |
+| Aug – 13 Dec 1504 | nobody — 13 decided, charter without details | 13 (paper) | — |
+| 1505 | towns: not executed; Hamburg alone ⅓ / ⅔ Mark 1505 | 1501 (≈ 11,7), i.e. NOT the 1504 decision | «*Zu einer Ausführung der Beschlüsse ist es aber auch im folgenden Jahre noch nicht gekommen*»; Hamburg «*folgte … offenbar den Vorschriften von 1501*» |
+| Jan – Mittfasten 1506 | dies and legends negotiated jointly | — | «*Noch zu Mittfasten hoffte man sie in Umlauf setzen zu können. Ob das geschehen ist, wird schwer zu entscheiden sein*» |
+| 29 Dec 1506 | final recess | 13 | «*Wahrscheinlich bedeutet aber erst der Rezeß vom 29. Dezember 1506 … den endgültigen Abschluß*» |
+| dated 1506 | first ganze / ½ / ¼ Mark in **all four** towns, common reverse with the three arms | 13 | «*tragen in allen vier Städten die Jahreszahl 1506*» |
+
+Reading (our conclusion from Jesse; no source states it in these words):
+1. **For the 13-Mark Markstück there is no sign that Lübeck began earlier.** No Lübeck Mark coin dated
+   1504 or 1505 is named; Lübeck's earliest Markstücke are 1506, the same year as the other three towns, and
+   the type is the common one (three arms). Between Aug 1504 and 1506 the decision was paper in Lübeck too
+   («*auch im folgenden Jahre noch nicht*» is said of the towns generally).
+2. **But the union did not require consensus before a town struck.** In 1502 Lübeck and Lüneburg struck the
+   large pieces while Hamburg and Wismar had not yet decided; in 1505 Hamburg struck on the old 1501 standard
+   while the 1504 decision was pending. A single town could strike on its own — on an agreed (1501) standard,
+   not ahead of an unagreed one.
+3. **The 13-Mark standard became actual only with the joint 1506 outcome.** The 1504 decision fixed it
+   («*Der Münzfuß war also der gleiche wie 1504 vorgesehen geblieben*» = the 1506 recess kept the 1504
+   value unchanged); execution followed the 1506 agreement.
+4. **Caveat on «1506» as a striking date.** The recess is of 29 Dec 1506, yet coins are dated 1506: either
+   striking began earlier in 1506 (Jesse leaves the Mittfasten hope open) or the date was a fixed type date —
+   Hamburg kept «1506» on all its Markstücke to mid-century, and dates on Mark coins were «*durchaus nicht
+   gleichmäßig*». So «dated 1506» ≠ «struck in 1506». Whether Lübeck struck Markstücke between Mittfasten
+   and December 1506 is open. Would be settled by: Lübeck mint accounts / Lübeck UB for 1506; *Hanserecesse*
+   III for 1506.
+5. The «1504/06» pair also stands in Jesse's list of drafts whose Münzfuß «*in der endgültigen Fassung des
+   nächsten Jahres bereits wieder verändert*» was — against his own «*der gleiche wie 1504*» for the Mark.
+   Unresolved inside Jesse (possibly other sorts, or the Dec 1504 charter vs the Aug 1504 decision);
+   hypothesis only.
+
+**Consequence for the Danish question (§3.4b–d):** Lübeck's large-silver step dates 1504 (decision) / 1506
+(execution), not 1502. The Lübeck small change was already near 13¾ in the 1502 Witten. A Danish Skilling at
+the 13-Mark level (8-lod group, §3.4c) therefore matches the Lübeck Markstück of 1506 and the Lübeck Schilling
+of 1515 — still undated on the Danish side; nothing changes in the curator's fixed position (§3.4d).
 
 ### §3.5 Mark coins under Hans? (2026-10-15)
 
@@ -602,7 +846,7 @@ originals (Danske Breve fra Middelalderen / Diplomatarium Danicum online).
 | 1468 / 1492 | Wendish Rezesse (1492: 31 articles) | the defining Schilling 103½ / 9 lot | Jesse; imperial §2 of the register? — plan 1.6 |
 | 1483, 1 Feb | Håndfæstning (Halmstad), Norway clause | Norway joins: «jeffngod … wid Danske penninge»; each realm keeps its own coin (Wilcke s. 143) | register §1a ☑ |
 | 1496 | Hans' Skraa for the goldsmiths of København | remedium «Quintin til Fare», 14-lødig værksølv — cited by Galster/Wilcke, text not seen | survey §9 |
-| 1501–1506 | Wendish Rezesse (Witten, Mark) | the Lübeck side moves to the Mark; Denmark does not follow under Hans | Jesse |
+| 1501–1506 | Wendish Rezesse: Mölln 1501 (⅓ Mark, 11½), Städtetag Aug 1504 + Beurkundung 13 Dec 1504, **Rezess Hamburg 29 Dec 1506** (Markpenning, 13) | the Lübeck side moves to the Mark at 13; whether Denmark followed is open (§3.4c–d) | Jesse; §3.4g |
 | 1513, 22 July / 1 Aug | Håndfæstning Christian II; Blicher's Beskikkelse | **cessation**: own Mark dansk, 32 ß = 96 Hvide = 1 Gylden | register §1a; `instruments/1514_moentordning_malmoe.md` |
 | 1514 | Møntordning (Malmø) | Denmark back to the Lübeck reckoning (24 ß / 72 Hvide per Gylden) inside a new standard (`8_5_gylden_fod`) | same |
 
@@ -919,6 +1163,8 @@ Built 2026-10-15 (card, page section, phase I, timeline bar; no coins yet). Grid
 | Start of Skilling / Søsling coinage (1495–1512) | *Denar til daler* read (§3.4e): Skilling resumed «1480'erne eller 1490'erne», dated from 1512, Søsling date not given; next: Märcher 2018 *Tre møntskatte* (Lemvig hoard), DMS 1992 |
 | Søsling mints under Hans (Aalborg / København per *Denar til daler* s. 443) vs our Søsling rows | our data vs Galster 1972b catalogue |
 | Galster 155 mint: Oslo (danskmoent) vs Trondhjem (Ingvardson) | Risvaag 2009, «Var Oslo myntsted under kong Hans?», NNUM s. 97–102 |
+| Dating the undated Hans Hvide / Skillinger by lod group (6-lod Hvid c. 1483–1500, 5-lod c. 1500–1510; 9-lod Skilling c. 1495/97–1500/03, 8-lod c. 1503/06–1510, 7/6-lod c. 1510–1512) — hypotheses from the rate register `hans_rates_1481_1513.md` §6 | Enemark 1971 I s. 113–118; DCH 1904; assays of hoard-closed pieces (Gribshunden 1495, Møllegården) |
+| Texts of the Wendish recesses Aug/13 Dec 1504 and 29 Dec 1506 (the 13-Mark step, §3.4g) — Jesse quotes phrases only | *Hanserecesse* III. Abt. (vol. for 1504–1506); Jesse 1928 Urkundenanhang (paper); Lübeck UB |
 | Which 1513 figures repeat Hans-era ordinances | the 1496 goldsmiths' Skraa text (not seen) |
 | Jesse's mark weight (≈ 223–227 g implied by 19,392 g and 1,35 g) | Jesse's print notes (omitted on coingallery) |
 | Hans' «Marckestycker» (1542 account) | a specimen or a second account (none known) |

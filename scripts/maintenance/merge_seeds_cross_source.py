@@ -107,7 +107,14 @@ def _excluded_seed_ids() -> set[str]:
     for f in sorted(V2_EXCLUSIONS.glob("*.yml")):
         doc = yaml.safe_load(f.read_text()) or {}
         for e in doc.get("exclusions") or []:
-            if isinstance(e, dict) and e.get("id") and e.get("scope") == "member":
+            # An undocumented stub is isolated too (2026-10-17): it carries
+            # nothing — no index, no weight, no photo — so whatever it joins
+            # is someone else's coin, and the plain-exclusion meaning («drop
+            # the whole coin») then deleted a real record (KMM 533276,
+            # Schou 187-190) that had matched the stub on nominal + ruler.
+            if isinstance(e, dict) and e.get("id") and (
+                    e.get("scope") == "member"
+                    or e.get("category") == "undocumented_stub"):
                 out.add(str(e["id"]))
     return out
 
@@ -193,6 +200,8 @@ _ENTITY_TO_KM_REGISTER: dict[str, str] = {
     # False, silently corrupting a register-keyed km dict. Never use a YAML-bool
     # token (no/yes/true/false/on/off/n/y) as a register code.
     "danish_norway": "nor",
+    # Kingdom of Norway after 1814 — the same Krause Norway volume.
+    "norway": "nor",
     # SH territory — Krause «German States — Schleswig-Holstein»
     "royal_holstein": "sh",
     "gottorp_duchy": "sh",
@@ -264,16 +273,36 @@ def _normalise_metal(metal, fineness):
 from lib.yaml_io import dump_v2_canonical
 from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared
 from lib.ruler_reigns import normalise_ruler_key as _normalise_ruler_shared
+from lib.ruler_reigns import reign_window_exact as _reign_window_exact  # noqa: E402
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices
 from lib.catalog_codes import split_multi_ref as _split_multi_ref
 from lib.v2_seed_writer import _canonicalise_mint
 from lib.v2_entity_classify import classify_mint_to_entity
 from lib.gen_stamp import resolve_generated_at
 from lib.seed_merge import _CURATION_MARK_KEYS
+from lib.seed_merge import apply_mint_mark
+
+
+# The Danish Krone is 4 Mark Danske: Hede names the same coin «4 Mark» where
+# NumisMaster, NGC and KMM name it «1 Krone» (curator decision on the
+# Frederik III Krone, Hede 87/91/95, merge_decisions/danish_realm.yml:
+# «1 Krone Frederik III (= 4 Mark Danske), ONE coin»). The shared synonym
+# table keeps the two apart on purpose (an accounting equivalence, which the
+# classifier must not fold). For matching the pair is NOT a nominal
+# contradiction — but not evidence either: it only lifts the veto
+# (2026-10-17; as evidence it fused KM 428.2 «1 Krone» with Hede 104
+# «4 Mark» on year + weight alone).
+_MATCH_NOMINAL_EQUIV = {"4 mark": "krone", "8 mark": "2 krone", "2 mark": "1/2 krone"}
 
 
 def _normalise_nominal(nominal):
     return _normalise_nominal_shared(nominal)
+
+
+def _nominal_equivalent(na: str, nb: str) -> bool:
+    """Normalised nominals that differ in name only (Krone ≡ 4 Mark)."""
+    return bool(na) and bool(nb) and na != nb and (
+        _MATCH_NOMINAL_EQUIV.get(na, na) == _MATCH_NOMINAL_EQUIV.get(nb, nb))
 
 
 def _nominal_wildcard_match(na: str, nb: str) -> bool:
@@ -401,7 +430,7 @@ def _coin_years(coin: dict) -> set[int]:
 #       1646 for a Frederik V coin — FR V reigned 1746-1766; the
 #       attestation is dropped so it doesn't poison the index).
 #
-# The reign window is also exposed by ruler-name (`_DK_RULER_REIGNS`)
+# The reign window is also exposed by ruler-name (`_dk_reign_window`)
 # so non-Hede sources (NumisMaster, Numista, Bruun, Galster) can use
 # the SAME filter when their seed's `ruler` field attests a king for
 # a year outside that king's reign (captured 2026-05-18:
@@ -436,25 +465,19 @@ _HEDE_VOLUME_TO_RULER: dict[str, str] = {
     "c10h": "christian x",
 }
 
-_DK_RULER_REIGNS: dict[str, tuple[int, int]] = {
-    "christian ii": (1513, 1523),
-    "frederik i": (1523, 1533),
-    "christian iii": (1534, 1559),
-    "frederik ii": (1559, 1588),
-    "christian iv": (1588, 1648),
-    "frederik iii": (1648, 1670),
-    "christian v": (1670, 1699),
-    "frederik iv": (1699, 1730),
-    "christian vi": (1730, 1746),
-    "frederik v": (1746, 1766),
-    "christian vii": (1766, 1808),
-    "frederik vi": (1808, 1839),
-    "christian viii": (1839, 1848),
-    "frederik vii": (1848, 1863),
-    "christian ix": (1863, 1906),
-    "frederik viii": (1906, 1912),
-    "christian x": (1912, 1947),
-}
+# The reign windows themselves live in ONE place, `lib.ruler_reigns`
+# (`RULER_REIGNS`, looked up through `reign_window`), so a ruler added there —
+# Hans I, the Rigsråd's 1481-1483 interregnum — reaches this matcher too. Until
+# 2026-10-17 the merger kept its own copy (Christian II → Christian X only), so
+# every pre-1513 attestation in the DK-realm entities was dropped by the strict
+# filter below as «not in the Danish chronology» (curator: «об'єднати функції,
+# щоб не додавати нових правителів в два місця»).
+def _dk_reign_window(rn: str | None) -> tuple[int, int] | None:
+    """Reign window of a normalised ruler key, from the shared kings' table —
+    exact names only, as the old private table was: «frederik 3 som
+    ærkebiskop» (Bremen, 1634-1645) is not King Frederik III, and borrowing
+    1648-1670 for it dropped its attestation and split two merges."""
+    return _reign_window_exact(rn) if rn else None
 
 
 def _hede_volume_to_ruler(coin: dict) -> str | None:
@@ -488,12 +511,14 @@ def _attestation_ruler(coin: dict) -> str | None:
 # (Danish-Norwegian personal union 1380-1814, plus Holstein-Glückstadt
 # under Danish sovereignty 1544+). For these we apply STRICT reign
 # filtering: an attestation whose normalised ruler isn't in
-# `_DK_RULER_REIGNS` is dropped entirely (treated as parser-anomaly
+# `lib.ruler_reigns` is dropped entirely (treated as parser-anomaly
 # bad data). Real example caught 2026-05-18: NumisMaster MC pages
 # for Danish 1809-1810 coins of Frederik VI rendered as «Frederick IX»
 # (FR IX reigned 1947-1972, never could have signed 1809 coins) —
 # visual VI / IX confusion in their data entry.
-_DK_REALM_ENTITIES = frozenset({"danish_realm", "danish_norway", "royal_holstein"})
+# Same set as lib.ruler_reigns.DANISH_CROWN_ENTITIES (royal_slesvig, the king's
+# share of Schleswig, was missing here until 2026-10-17).
+from lib.ruler_reigns import DANISH_CROWN_ENTITIES as _DK_REALM_ENTITIES  # noqa: E402
 
 
 def _build_reign_index(coins: list[dict], entity_id: str | None = None) -> dict[int, set[str]]:
@@ -538,7 +563,11 @@ def _build_reign_index(coins: list[dict], entity_id: str | None = None) -> dict[
         rn = _attestation_ruler(c)
         if not rn:
             continue
-        reign_window = _DK_RULER_REIGNS.get(rn)
+        # The Danish kings' windows only for an issuer of the Danish crown: a
+        # same-named ruler of another issuer is another man (curator
+        # 2026-10-17) — Bremen's archbishop «Frederik II» struck in 1641, far
+        # outside King Frederik II's 1559-1588, and that attestation is right.
+        reign_window = _dk_reign_window(rn) if (strict_dk or entity_id is None) else None
         if strict_dk and reign_window is None:
             # Strict DK-realm filter: a ruler-name not in the Danish
             # royal chronology (e.g. NumisMaster's «Frederick IX» on
@@ -726,6 +755,27 @@ _GALSTER_RULER_ALIASES = {
 }
 
 
+def _catalogue_section(coin: dict) -> str | None:
+    """A section inside one ruler's catalogue that restarts Hede and Schou.
+
+    Christian IV's 1627 Wolfenbüttel coinage is catalogued as its own section
+    (danskmoent «Hede Wolfenbüttel 3A / 3B / 5», pages `chr/c4wolfh*.htm`;
+    Schou 4 = 2 Speciedaler, 5-11 Speciedaler, 12-16 Gutergroschen), so its
+    «Hede 5» is not the Danish or Norwegian Hede 5 of the same king
+    (curator 2026-10-18). Recognised by `hede_volume` «c4wolf…» or, for the
+    sources that cite a bare number (Bruun, IKMK, KMM), by the mint
+    Wolfenbüttel under Christian IV. Returns «wolfenbüttel» or None."""
+    cat = coin.get("catalog") or {}
+    if (cat.get("hede_volume") or "").strip().lower().startswith("c4wolf"):
+        return "wolfenbüttel"
+    mint = coin.get("mint")
+    mints = mint if isinstance(mint, list) else [mint]
+    if any(isinstance(m, str) and "wolfenb" in m.lower() for m in mints):
+        if _normalise_ruler(coin.get("ruler")) == _normalise_ruler("Christian IV"):
+            return "wolfenbüttel"
+    return None
+
+
 def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
     """Return dict of {scope_key: ref_value} for every catalog ref.
     Keys encode scope so cross-volume / cross-ruler collisions don't
@@ -789,6 +839,9 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         else:
             scope = ""
         key = f"hede/{scope}" if scope else "hede"
+        _section = _catalogue_section(coin)
+        if _section:
+            key = f"{key}/{_section}"
         hede_vals = _split_multi(hede)
         refs[key] = "|".join(sorted(hede_vals)) if hede_vals else str(hede).strip()
 
@@ -863,11 +916,16 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
     # Norwegian numbering is already separated by entity).
     _reign = _normalise_ruler(coin.get("ruler")) or (
         cat.get("hede_volume") or "").strip()
+    _section = _catalogue_section(coin)
     for _ridx in ("schou", "sieg"):
         _v = cat.get(_ridx)
         if _v is None:
             continue
         _key = f"{_ridx}/{_reign}" if _reign else _ridx
+        # Schou restarts inside the Wolfenbüttel section; Sieg does not
+        # (Sieg 187-196 continue Christian IV's sequence).
+        if _section and _ridx == "schou":
+            _key = f"{_key}/{_section}"
         _vals = _split_multi(_v)
         refs[_key] = "|".join(sorted(_vals)) if _vals else str(_v).strip()
 
@@ -988,6 +1046,198 @@ def _lange_numbers(value: str) -> set[str]:
     return out
 
 
+_SUB_VARIANT_REFS = frozenset({
+    "schou", "nmd", "aagaard", "schive", "skjoldager",
+    "bruun_collection_id", "sieg",
+})
+
+
+# (sub-variant key, number, normalised nominal) → the type-level index bases
+# whose records list that number (e.g. Christian IV Schou 2 → Hede 25 AND
+# Hede 28). Built per entity by `_build_subvariant_claims`; a match resting on
+# such a number alone is not evidence (Schou restarts per type, §9.4).
+_SUBVAR_CLAIMS: dict = {}
+
+
+def _build_subvariant_claims(seeds_by_id: dict, entity_id) -> dict:
+    claims: dict = defaultdict(set)
+    for coin in seeds_by_id.values():
+        refs = _catalog_refs(coin, entity_id)
+        bases = {f"{k}={m.group(1)}" for k, v in refs.items()
+                 if k.split("/", 1)[0] in ("hede", "galster", "km")
+                 for x in str(v).split("|") if (m := re.match(r"\s*(\d+)", x))}
+        if not bases:
+            continue
+        nom = _normalise_nominal(coin.get("nominal"))
+        for k, v in refs.items():
+            if k.split("/", 1)[0] in _SUB_VARIANT_REFS:
+                for n in _lange_numbers(v):
+                    claims[(k, n, nom)].update(bases)
+    return claims
+
+
+def _subvariant_only_ambiguous(refs_a: dict, refs_b: dict, coin_a: dict) -> bool:
+    """True when the two records share only sub-variant registers and every
+    number they agree on is listed by two or more type-level indices of the
+    same nominal — the agreement then cannot tell which type it is."""
+    shared = set(refs_a) & set(refs_b)
+    if not shared or any(k.split("/", 1)[0] not in _SUB_VARIANT_REFS for k in shared):
+        return False
+    nom = _normalise_nominal(coin_a.get("nominal"))
+    for k in shared:
+        common = _lange_numbers(refs_a[k]) & _lange_numbers(refs_b[k])
+        if any(len(_SUBVAR_CLAIMS.get((k, n, nom), ())) <= 1 for n in common):
+            return False
+    return True
+
+
+def _subvariant_only_disagreement(refs_a: dict, refs_b: dict) -> list[str] | None:
+    """The shared keys on which two records disagree, when EVERY one of them
+    is a sub-variant register (Schou, Sieg, …) and nothing type-level is
+    shared; otherwise None."""
+    shared = set(refs_a) & set(refs_b)
+    if not shared or any(k.split("/", 1)[0] not in _SUB_VARIANT_REFS for k in shared):
+        return None
+    bad = [k for k in shared
+           if _catalog_chain_consistent({k: refs_a[k]}, {k: refs_b[k]})[0] == "disagree"]
+    return bad or None
+
+
+def _weak_veto_keys(result: dict, a: dict, b: dict, refs_a: dict, refs_b: dict):
+    """For a `no_match`, the catalogue keys a unifying record must cover when
+    the contradiction is WEAK (a list, possibly empty); None when it is strong.
+    Weak: only sub-variant numbers differ (Schou 50 / Schou 41), only the year
+    or mint fallback differs, or the weight differs by 5-10 %. Strong (always
+    a veto): nominal, a type-level index, both-attested metal, forgery, the
+    2.5x weight gate, the Hede series."""
+    last = (result.get("why") or [""])[-1]
+    if last.startswith("catalog disagree"):
+        return _subvariant_only_disagreement(refs_a, refs_b)
+    if last.startswith("fallback disagrees"):
+        return []
+    if last.startswith("weight:") and "Δ > 5%" in last:
+        # Up to 10 % with the same nominal is specimen wear, not a
+        # contradiction (curator 2026-10-17); beyond that the band of the
+        # class's specimens decides (`_WeakVetoIndex._continuous`).
+        if _nominals_equal(a, b) and _weight_diverges(a, b, tol_rel=0.10) is False:
+            return ["@free"]
+        return ["@weight"]
+    return None
+
+
+def _type_level_conflict(refs_a: dict, refs_b: dict) -> bool:
+    """True when the two records share a type-level register (Hede, KM,
+    Galster, Dav, Fr, …) whose BASE numbers do not overlap — two different
+    types, not sub-variants of one (§9.4)."""
+    def bases(v):
+        return {m.group(1) for x in str(v).split("|")
+                if (m := re.match(r"\s*(?:EC\s+\w+\s+)?([A-Za-z]?\d+)", x))}
+    for k in set(refs_a) & set(refs_b):
+        if k.split("/", 1)[0] in _SUB_VARIANT_REFS or k in ("hede_volume", "others", "numista"):
+            continue
+        ba, bb = bases(refs_a[k]), bases(refs_b[k])
+        if ba and bb and not (ba & bb):
+            return True
+    return False
+
+
+class _WeakVetoIndex:
+    """Per confident-connected component: decides whether a WEAK `no_match`
+    between x and y is overruled by a third member z whose type-level index
+    unifies them (`_unifies`), with z's nominal equal to both. Built once per
+    component so the per-pair test stays cheap.
+
+    Why (curator 2026-10-17, undated-coins plan row 4): PASS 2 used to turn
+    EVERY `no_match` inside a component into a transitive no_merge, so a
+    weak contradiction between two thin records (KMM «Schou 50» vs «Schou
+    41», no shared Hede; a year difference with no shared catalogue) split a
+    type whose own Hede page lists both — Hede 139A came out in eleven
+    classes. A strong contradiction (nominal, a type-level index, a
+    both-attested metal, forgery) is never overruled."""
+
+    def __init__(self, members, seeds_by_id, entity_id):
+        self.seeds = seeds_by_id
+        self.refs = {m: _catalog_refs(seeds_by_id[m], entity_id) for m in members}
+        self.nom = {m: (lambda n: _MATCH_NOMINAL_EQUIV.get(n, n))(
+                        _normalise_nominal(seeds_by_id[m].get("nominal"))) for m in members}
+        self.cands: dict = defaultdict(list)
+        for m in members:
+            if self.nom[m] and any(k.split("/", 1)[0] not in _SUB_VARIANT_REFS
+                                   for k in self.refs[m]):
+                self.cands[self.nom[m]].append(m)
+        self._agree: dict = {}
+        # Weight breaks per nominal: steps wider than 5 % in the sorted band.
+        self.breaks: dict = {}
+        by_nom: dict = defaultdict(list)
+        for m in members:
+            w = _weight_repr(seeds_by_id[m])
+            if w and self.nom[m]:
+                by_nom[self.nom[m]].append(w)
+        for n, ws in by_nom.items():
+            ws = sorted(ws)
+            self.breaks[n] = [x for x, y in zip(ws, ws[1:]) if (y - x) / ((x + y) / 2) > 0.05]
+
+    def _agrees(self, x):
+        if x not in self._agree:
+            rx = self.refs[x]
+            self._agree[x] = {z for z in self.cands.get(self.nom[x], ())
+                              if z != x and _catalog_chain_consistent(self.refs[z], rx)[0] == "agree"}
+        return self._agree[x]
+
+    def _continuous(self, nom, wa, wb):
+        lo, hi = sorted((wa, wb))
+        return not any(lo <= b < hi for b in self.breaks.get(nom, ()))
+
+    def overruled(self, result, x, y) -> bool:
+        a, b = self.seeds[x], self.seeds[y]
+        keys = _weak_veto_keys(result, a, b, self.refs[x], self.refs[y])
+        if keys is None or not self.nom[x] or self.nom[x] != self.nom[y]:
+            return False
+        # match_pair reports only the FIRST contradiction it meets: a weight
+        # gap can hide a different type-level index behind it (Hede 29 vs
+        # Hede 57, two Christian V Ducats — fused 2026-10-17 once the weight
+        # alone was judged weak). A strong conflict anywhere keeps the veto.
+        if _type_level_conflict(self.refs[x], self.refs[y]):
+            return False
+        if keys == ["@free"]:
+            return True
+        if "@weight" in keys:
+            wa, wb = _weight_repr(a), _weight_repr(b)
+            if not (wa and wb):
+                return False
+            # Worn and full-weight specimens of one type form a continuous
+            # band: the two ends may differ by more than 5 % as long as the
+            # component's specimens of this nominal leave no step wider than
+            # 5 % between them (curator 2026-10-17).
+            if not self._continuous(self.nom[x], wa, wb):
+                return False
+        for z in self._agrees(x) & self._agrees(y):
+            if _unifies(self.refs[z], self.refs[x], self.refs[y], keys):
+                return True
+        return False
+
+
+def _unifies(refs_z: dict, refs_x: dict, refs_y: dict, keys: list[str]) -> bool:
+    """True when record z carries a type-level index and, on every key in
+    `keys`, agrees with both x and y — z's catalogue (e.g. a Hede page listing
+    «Schou 41-54») makes x's and y's different Schou numbers variants of one
+    type (§9.4)."""
+    if not any(k.split("/", 1)[0] not in _SUB_VARIANT_REFS
+               and k.split("/", 1)[0] not in ("hede_volume",) for k in refs_z):
+        return False
+    for k in keys:
+        if k.startswith("@"):
+            continue
+        if k not in refs_z:
+            return False
+        if _catalog_chain_consistent({k: refs_z[k]}, {k: refs_x[k]})[0] != "agree":
+            return False
+        if _catalog_chain_consistent({k: refs_z[k]}, {k: refs_y[k]})[0] != "agree":
+            return False
+    return (_catalog_chain_consistent(refs_z, refs_x)[0] == "agree"
+            and _catalog_chain_consistent(refs_z, refs_y)[0] == "agree")
+
+
 def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     """Returns (state, has_overlap):
       state ∈ {'agree', 'disagree', 'no_overlap'}
@@ -1026,10 +1276,7 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     # identity signal — the «what coin is this» question is answered
     # by Hede / Galster / KM / Dav (parent type-level refs), and Sieg
     # follows whichever edition each source happened to cite.
-    SUB_VARIANT_REFS = {
-        "schou", "nmd", "aagaard", "schive", "skjoldager",
-        "bruun_collection_id", "sieg",
-    }
+    SUB_VARIANT_REFS = _SUB_VARIANT_REFS
 
     def _numeric_core(v: str) -> str:
         """Strip trailing alphabetic sub-variant suffix («8226A» →
@@ -1067,6 +1314,15 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
                 agreeing.append(k)
             else:
                 disagreeing.append(k)
+            continue
+        if (k.split("/", 1)[0] in ("schou", "sieg")
+                and _lange_numbers(va) & _lange_numbers(vb)):
+            # A number inside a printed range of the same scoped sub-variant
+            # catalogue («Schou 32» ∈ «Schou 29-32»), letter suffixes collapsed
+            # (§9.4; curator 2026-10-17). Not for type-level registers: a
+            # museum's «Hede 21-23» means «one of three types», not a range of
+            # die variants of one.
+            agreeing.append(k)
             continue
         sa = set(va.split("|"))
         sb = set(vb.split("|"))
@@ -1298,6 +1554,21 @@ def _same_type_but_for_weight(a: dict, b: dict) -> bool:
     return True
 
 
+def _nominals_equal(a: dict, b: dict) -> bool:
+    """Both nominals present and identical after the synonym fold (or the
+    same denomination under two names, `_nominal_equivalent`)."""
+    na = _normalise_nominal(a.get("nominal"))
+    nb = _normalise_nominal(b.get("nominal"))
+    return bool(na) and (na == nb or _nominal_equivalent(na, nb))
+
+
+def _weight_close_relaxed(a, b) -> bool:
+    """With the same nominal and an agreeing scoped index, the weight gate
+    widens from 5 % to 10 % (curator 2026-10-17): the index identifies the
+    type, the weight only has to stay within specimen wear."""
+    return _weight_diverges(a, b, tol_rel=0.10) is False
+
+
 def _weight_diverges(a, b, tol_rel: float = 0.05) -> bool | None:
     """Tier-1 weight disambiguator.
 
@@ -1483,6 +1754,10 @@ _MINT_SPELLING_ALIASES = {
     # Helsingør — English «Elsinore» variant
     "elsinore": "helsingør",
     "elseneur": "helsingør",           # French (rare, appears in old auction catalogues)
+    # KMM names the island where the coin was struck; the mint on Gotland in
+    # the Danish period was Visby (Søren Norby's skillings, Galster 144:
+    # «Visby Mint», coinvarieties.com; curator 2026-10-18).
+    "gotland": "visby",
 }
 
 
@@ -1626,6 +1901,10 @@ def _hede_series(coin: dict) -> str | None:
     """
     if not coin:
         return None
+    # The Wolfenbüttel section is a series of its own (see
+    # `_catalogue_section`); it is known even without a volume code.
+    if _catalogue_section(coin) == "wolfenbüttel":
+        return "wolfenbüttel"
     vol = ((coin.get("catalog") or {}).get("hede_volume") or "").strip()
     if not vol:
         return None
@@ -1816,6 +2095,25 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
                         f"(Danish and Norwegian Hede volumes number "
                         f"independently)"]}
 
+    # A catalogue SECTION (Christian IV's Wolfenbüttel coinage, see
+    # `_catalogue_section`) numbers Hede and Schou on its own. Once its keys
+    # carry the section, a Danish «Hede 55» and a Wolfenbüttel «Hede 3» no
+    # longer collide — and therefore no longer DISAGREE, which let nominal +
+    # year pull KMM «H 55» (København) into Hede W3. So: when exactly one side
+    # is in the section and both sides cite a Hede or Schou number, the
+    # numbers belong to different series — no match (curator 2026-10-18).
+    _seca, _secb = _catalogue_section(coin_a), _catalogue_section(coin_b)
+    if _seca != _secb:
+        _ca = coin_a.get("catalog") or {}
+        _cb = coin_b.get("catalog") or {}
+        if (any(_ca.get(k) for k in ("hede", "schou"))
+                and any(_cb.get(k) for k in ("hede", "schou"))):
+            return {"decision": "no_match",
+                    "primary": {}, "fallback": {},
+                    "why": [f"catalogue section differs: {_seca or 'main'} vs "
+                            f"{_secb or 'main'} (Hede and Schou restart "
+                            f"inside the Wolfenbüttel section)"]}
+
     # Weight tier-1 disambiguator (user-confirmed 2026-05-22, refined
     # same day to be catalog-strength-aware).
     #
@@ -1884,7 +2182,10 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     if (_weight_diverges(coin_a, coin_b, tol_rel=0.05) is True
             and not _catalog_strongly_agrees(refs_a_pre, refs_b_pre,
                                               min_shared_agreeing=2)
-            and not _same_type_but_for_weight(coin_a, coin_b)):
+            and not _same_type_but_for_weight(coin_a, coin_b)
+            and not (_nominals_equal(coin_a, coin_b)
+                     and _catalog_chain_consistent(refs_a_pre, refs_b_pre)[0] == "agree"
+                     and _weight_close_relaxed(coin_a, coin_b))):
         wa = _weight_repr(coin_a)
         wb = _weight_repr(coin_b)
         why.append(
@@ -1907,6 +2208,12 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     if ma and mb:
         if ma == mb:
             primary["metal"] = True
+        elif {ma, mb} == {"billon", "silver"}:
+            # Billon is low-grade silver; a museum record often writes «sølv»
+            # where the catalogue says billon. Not an obstacle to a merge
+            # (curator 2026-10-17) — and not evidence for one either.
+            primary["metal"] = None
+            why.append(f"metal: {ma} vs {mb} — billon/silver, not a contradiction")
         elif a_metal_verified and b_metal_verified:
             # Both sides attest a metal — genuine disagreement, no merge
             primary["metal"] = False
@@ -1940,7 +2247,7 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
         primary["nominal"] = None
     elif na == nb:
         primary["nominal"] = True
-    elif _nominal_wildcard_match(na, nb):
+    elif _nominal_wildcard_match(na, nb) or _nominal_equivalent(na, nb):
         # Bare ambiguous unit («daler»/«gylden») vs a specific compound of
         # the same unit + quantity — can't be a genuine difference.
         primary["nominal"] = None
@@ -1958,6 +2265,10 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
                 "fallback": fallback, "why": why}
     if chain_state == "agree":
         primary["catalog"] = True
+        if _subvariant_only_ambiguous(refs_a, refs_b, coin_a):
+            primary["catalog"] = None
+            why.append("catalog: agreement rests only on a sub-variant number "
+                       "that several types list — not evidence")
     else:
         # no_overlap: one or both sides lack catalog refs that intersect.
         # NOT a mismatch — can't be evaluated. Tri-state primary signal.
@@ -2192,10 +2503,15 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
                     has_authoritative = True
         return non_subvariant_agree >= 2 or has_authoritative
 
+    # Metal may be unknown on one side (KMM often records none) when the
+    # nominal agrees too: an unknown metal is an absent field, not a
+    # contradiction, and a year difference must not outweigh a shared
+    # type-level index (curator 2026-10-17).
     if (fallback_false > 0
             and primary.get("catalog") is True
             and primary.get("ruler") is True
-            and primary.get("metal") is True
+            and (primary.get("metal") is True
+                 or (primary.get("metal") is None and primary.get("nominal") is True))
             and _has_type_strong_agreement(refs_a, refs_b)):
         why.append(
             f"§9a multi-specimen promotion: catalog type-strong + ruler + "
@@ -2231,6 +2547,17 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     if primary_true >= 2 and fallback_true >= 1:
         why.append(f"primary_true={primary_true} (<3) — review")
         return {"decision": "low_confidence", "primary": primary,
+                "fallback": fallback, "why": why}
+
+    # Scoped index + nominal + ruler agree and NOTHING disagreed (every
+    # contradiction returned above) — only year and metal are unknown. That
+    # is enough (curator 2026-10-17): the index identifies the type, the
+    # missing fields can only be absent, never in conflict.
+    if (primary.get("catalog") is True
+            and primary.get("nominal") is True and primary.get("ruler") is True):
+        why.append("scoped catalogue + nominal + ruler agree; no year/metal to "
+                   "corroborate")
+        return {"decision": "confident", "primary": primary,
                 "fallback": fallback, "why": why}
 
     # Nothing DISAGREED — every contradiction path above returns early with an
@@ -2414,6 +2741,14 @@ def _collect_ruler_alts(members: list[dict]) -> list[dict]:
     """Ruler alternatives from members that carry a `ruler_mark` (schema
     Coin.ruler_mark) — the ruler-column analogue of `_collect_year_alts`."""
     return _collect_marked_alts(members, "ruler", "ruler")
+
+
+def _collect_mint_alts(members: list[dict]) -> list[dict]:
+    """Mint alternatives from members that carry a `mint_mark` (schema
+    Coin.mint_mark). For an «erroneous» mark the seed's `mint` is already
+    empty (`apply_mint_mark`) and the printed value sits in `mint_mark.value`,
+    so the alt is shown and the value takes part in nothing else."""
+    return _collect_marked_alts(members, "mint", "mint")
 
 
 def _collect_marked_alts(members: list[dict], key: str, label_field: str) -> list[dict]:
@@ -3735,6 +4070,9 @@ def build_unified(members: list[dict], unified_id: str,
     ruler_alts = _collect_ruler_alts(members)
     if ruler_alts:
         out["ruler_alts"] = ruler_alts
+    mint_alts = _collect_mint_alts(members)
+    if mint_alts:
+        out["mint_alts"] = mint_alts
 
     # Sources union
     sources = _collect_sources(members)
@@ -3956,6 +4294,9 @@ def _load_seeds_for_entity(entity_id: str) -> list[dict]:
         doc = _fast_load(path.read_text(encoding="utf-8")) or {}
         for c in doc.get("coins") or []:
             if isinstance(c, dict) and c.get("id"):
+                # An «erroneous» mint mark takes the printed mint out of play
+                # even on a seed hand-marked since its last regen.
+                apply_mint_mark(c)
                 coins.append(c)
     return coins
 
@@ -4020,6 +4361,7 @@ def _load_all_seeds() -> tuple[dict[str, dict], dict[str, str]]:
             doc = _fast_load(path.read_text(encoding="utf-8")) or {}
             for c in doc.get("coins") or []:
                 if isinstance(c, dict) and c.get("id"):
+                    apply_mint_mark(c)
                     by_id[c["id"]] = c
                     home[c["id"]] = entity
     return by_id, home
@@ -4500,6 +4842,8 @@ def process_entity(entity_id: str,
     # it (full O(n²) baseline) for the regression gate.
     _candidates = (_build_candidate_adjacency(ids, seeds_by_id, entity_id, reign_index)
                    if _MERGE_BLOCKING else None)
+    global _SUBVAR_CLAIMS
+    _SUBVAR_CLAIMS = _build_subvariant_claims(seeds_by_id, entity_id)
     _pass1_set_globals(ids, seeds_by_id, entity_id, reign_index, _explicit, _candidates)
     if len(ids) >= _PASS1_PARALLEL_THRESHOLD:
         # Parallel across worker processes. imap_unordered scrambles row
@@ -4717,15 +5061,21 @@ def process_entity(entity_id: str,
         if len(_members) < 2:
             continue
         _ms = sorted(_members)
+        # A weak contradiction a unifying member resolves is not a veto.
+        _weak = _WeakVetoIndex(_ms, seeds_by_id, entity_id)
         for _ii in range(len(_ms)):
             _ma = seeds_by_id[_ms[_ii]]
             for _jj in range(_ii + 1, len(_ms)):
                 _mb_id = _ms[_jj]
                 if not uf.can_union(_ms[_ii], _mb_id):
                     continue
-                if match_pair(_ma, seeds_by_id[_mb_id], entity_id,
-                              reign_index=reign_index)["decision"] == "no_match":
-                    uf.add_no_merge(_ms[_ii], _mb_id)
+                _r = match_pair(_ma, seeds_by_id[_mb_id], entity_id,
+                                reign_index=reign_index)
+                if _r["decision"] != "no_match":
+                    continue
+                if _weak.overruled(_r, _ms[_ii], _mb_id):
+                    continue
+                uf.add_no_merge(_ms[_ii], _mb_id)
 
     # 3. Apply confident auto-merges. union() refuses any merge that would
     #    create a class containing a no_match pair. Run this BEFORE curator
@@ -4906,6 +5256,47 @@ def _emit_unified_yaml(entity_id: str, unified_entries: list[dict],
     return header + dump_v2_canonical(payload)
 
 
+def _write_prev_classes(entity_id: str, unified_entries: list[dict]) -> None:
+    """Before overwriting seed_unified, record which PREVIOUS classes each new
+    class's seeds came from: `match_uncertainty/<entity>.prev_classes.json`,
+    {new unified id: [previous unified ids]}, only for classes that changed.
+
+    The absorb reads it so a classification follows the seeds when a merge
+    renames a class or a split leaves part of it in a new one
+    (`absorb_seeds_into_final_v2._inherit_classification`). Gitignored like
+    the rest of match_uncertainty: it describes one merge → absorb run and
+    means nothing after it."""
+    import json
+    path = V2_SEED_UNIFIED / f"{entity_id}.yml"
+    loader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+    old = (yaml.load(path.read_text(encoding="utf-8"), Loader=loader) or {}) if path.exists() else {}
+    prev_of = {m: e["id"] for e in (old.get("coins") or [])
+               for m in (e.get("composed_of") or []) if e.get("id")}
+    out = {}
+    for u in unified_entries:
+        prev = sorted({prev_of[m] for m in (u.get("composed_of") or []) if m in prev_of})
+        if prev and prev != [u.get("id")]:
+            out[u["id"]] = prev
+    V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
+    (V2_MATCH_UNCERTAINTY / f"{entity_id}.prev_classes.json").write_text(
+        json.dumps(out, indent=1, sort_keys=True), encoding="utf-8")
+    # Seeds that LEFT a class which kept its id (a split): absorb removes what
+    # they alone contributed to the host final (`_surgical_decontaminate`).
+    # Without it the final kept a departed seed's indices — Hede 87 still
+    # showed KM 192.x after the KM 192 records moved to Hede 91 (2026-10-19).
+    old_members = {e["id"]: set(e.get("composed_of") or [])
+                   for e in (old.get("coins") or []) if e.get("id")}
+    departed = {}
+    for u in unified_entries:
+        uid = u.get("id")
+        if uid in old_members:
+            gone = old_members[uid] - set(u.get("composed_of") or [])
+            if gone:
+                departed[uid] = sorted(gone)
+    (V2_MATCH_UNCERTAINTY / f"{entity_id}.departed.json").write_text(
+        json.dumps(departed, indent=1, sort_keys=True), encoding="utf-8")
+
+
 def _emit_match_uncertainty(entity_id: str, low_conf: list[dict],
                              merge_conflicts: list[dict] | None = None,
                              transitivity_blocks: list[dict] | None = None) -> str:
@@ -5064,6 +5455,7 @@ def main() -> int:
 
         if args.apply:
             V2_SEED_UNIFIED.mkdir(parents=True, exist_ok=True)
+            _write_prev_classes(ent, result["unified_entries"])
             (V2_SEED_UNIFIED / f"{ent}.yml").write_text(
                 _emit_unified_yaml(ent, result["unified_entries"],
                                    result["seeds_count"]),

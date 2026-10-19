@@ -9,6 +9,28 @@
 
 merges:
   - members:
+      - dk-numista-15669
+      - dk-tid-163034
+      - kmk-189792
+      - kmk-190729
+      - kmk-190764
+      - kmk-149961              # KMM, typeNumber «Sshou 61» (misspelt Schou), 8 Skilling 1608
+      - kmk-190730              # KMM, typeNumber «H:93a; Sch:61 (?)», 8 Skilling 1608, 1.78 g
+    reason: |
+      Curator decision 2026-10-17 (Serhii, explicit): kmk-149961 and kmk-190730
+      belong to the 8 Skilling class dk-tid-163034. §9.4 gate: schou base 61
+      links the two KMM records, and the class itself carries Schou 61 and
+      Hede 93A (kmk-190730 prints Hede 93a). After the KMM typeNumber parser
+      learned the misspelling «Sshou», the matcher paired the two records into
+      a separate seed_unsorted class instead of joining this one. The whole
+      class is listed so the force-union cannot expel an existing member.
+      CORRECTED 2026-10-17: the first version of this entry (155cb6c) listed
+      ~140 members taken from a working-tree class that had already fused
+      Hede 93, Hede 96 and Hede 122 KMM records; the force-union froze that
+      over-merge (Hede 93 ≠ 96 is an explicit curator no_merge below). The
+      members are cut back to the class as it stood before 155cb6c (5 seeds,
+      Hede 93A) plus the two approved records.
+  - members:
       - dk-galster-f1g-46       # danskmoent f1g46, Galster 46 / Schou 1, «1 Ungersk gylden» 1531, 3.49 g @ .986
       - dk-numista-428864       # N#428864, Galster 46 + Fr 11
       - kmk-575432              # KMM, typeNumber «Schou 1; G. 46», «ungarsk dukat», Malmoe/Kbh 1531, 5.62 g
@@ -67,9 +89,23 @@ merges:
   - members:
       - dk-hede-c4h25a          # anchor of the km-74-1-hede-25c cluster (Hede 25A-E, 2 Guldkrone 1619-1648)
       - kmk-149737              # KMM «dobbelt guldkrone» 1621, Schou 2
-      - kmk-137168              # KMM «2 guldkrone» 1628, Sch 4, Hede 25A (RP 29.1 + FP 8935.1, 5.29 g worn)
       - kmk-291435              # KMM «Dobbeltkrone» 1628, Hede 25A
-    reason: 'Curator (Serhii) 2026-07-17, guldkrone pass Nos. 1-2: three KMM museum specimens of the Christian IV 2 Guldkrone type Hede 25 (KM 74.x, Fr 54). kmk-149737: Schou 2 sits inside the type''s Hede-1971 Schou range «1-2» + exact nominal/ruler/year 1621. kmk-137168 + kmk-291435: both museum-tagged Hede 25A (∈ cluster''s 25A-25E), year 1628 ∈ cluster years; the Hede-28 alternative (also 1628) is excluded by the museum''s own Hede 25A tags — index beats year-adjacency. The 5.29 g reading (137168) is a worn-specimen observation, accumulates per §9a.'
+    reason: 'Curator (Serhii) 2026-07-17, guldkrone pass Nos. 1-2: three KMM museum specimens of the Christian IV 2 Guldkrone type Hede 25 (KM 74.x, Fr 54). kmk-149737: Schou 2 sits inside the type''s Hede-1971 Schou range «1-2» + exact nominal/ruler/year 1621. kmk-137168 + kmk-291435: both museum-tagged Hede 25A (∈ cluster''s 25A-25E), year 1628 ∈ cluster years; the Hede-28 alternative (also 1628) is excluded by the museum''s own Hede 25A tags — index beats year-adjacency. The 5.29 g reading (137168) is a worn-specimen observation, accumulates per §9a. CORRECTED 2026-10-17 (curator, visual comparison KMM 137168 vs danskmoent c4h28): kmk-137168 is Hede 28, not Hede 25 — removed from this entry. The «Hede 25A» tag and the 5.29 g reading belong to a different KMM object, FP 8935.1 = kmk-296435; kmk-137168 (RP 29.1) carries only «Sch 4», and Schou 4 for 1628 is Hede 28 («Schou hhv. 1-4 og 5»), while Hede 25 lists no Schou 4.'
+  - members:
+      - dk-hede-c4h28           # danskmoent c4h28, Hede 28, 2 Guldkrone 1628-1629, Schou 1-4 / 5, Sieg 141
+      - dk-bruun-5540           # Bruun, KM 111, Hede 28, Schou 2, 1628
+      - dk-bruun-5541           # Bruun, KM 111, Hede 28, Schou 3, 1628
+      - denmark-numismaster-65605  # MC_65605, KM 111, 1628-1629
+      - dk-numista-420650       # N#420650, KM 111, 1628-1629
+      - ngc-1050787             # NGC, KM 111, 1628
+      - kmk-137168              # KMM RP 29.1, «2 guldkrone» 1628, typeNumber «Sch 4»
+    reason: |
+      Curator (Serhii) 2026-10-17, visual comparison of KMM 137168 with
+      danskmoent c4h28: the same coin; Hede 25 is a different one. §9.4 key:
+      Schou 4 with year 1628 — danskmoent c4h28 «1628 (R), 1629 (RRR) …
+      (Hede 28, Schou hhv. 1-4 og 5, Sieg 141)», whereas c4h25 lists Schou
+      6 (25A) and 5 (25D) for 1628 and no Schou 4. The whole Hede 28 class
+      is listed so the force-union expels no member.
   - members:
       - dk-bruun-6175           # km-206 final (KM 206 = Hede 43A, Schou 3, Sieg 142.1, Bruun 5.97 g)
       - dk-bruun-6176           # km-206-2 final (KM 206.2 = Hede 43B, Schou 4, Sieg 142.2, Bruun 6.0 g)
@@ -392,22 +428,6 @@ merges:
 
   # Component 1 — 1 Krone Frederik III (= 4 Mark Danske): ALL one coin despite
   # two KM families (KM 186.x 1652-53 + KM 192.x 1653) and three Hede (87/91/95).
-  - members:
-      - denmark-numismaster-65272   # KM 186.1, Hede 87, Dav 3569, Schou 22
-      - denmark-numismaster-65273   # KM 186.2, Hede 87, Dav 3569A
-      - denmark-numismaster-65274   # KM 192.1, Dav 3570 (no Hede)
-      - denmark-numismaster-65276   # KM 192.3 (no Hede)
-      - dk-hede-f3h91               # KM 192.2, Hede 91, Sieg 46, Schou 37/39
-      - dk-numista-143477           # KM 186/186.3, Hede 95, Schou 59
-    reason: |
-      1 Krone Frederik III (= 4 Mark Danske), ONE coin per curator visual
-      verdict. KM-186 family (1652-53: Hede 87/95, KM 186/186.1/186.2/186.3,
-      Dav 3569/3569A) + KM-192 family (1653: Hede 91, Sieg 46, KM 192.1/192.2/
-      192.3, Dav 3570/3570A) are sub-types of one type. NOTE: dk-hede-f3h91
-      prints nominal «4 Mark» vs «1 Krone» elsewhere (1 Krone = 4 Mark Danske)
-      — nominal divergence surfaces in match_uncertainty. catalog_graph comp 1.
-
-  # Component 2 — 1 Krone Christian V: ALL one coin despite the Hede 90/94 split.
   - members:
       - dk-hede-c5h90a              # KM 401/401.3, Hede 90A, Sieg 46.1, Dav 3642
       - dk-hede-c5h90b              # KM 401.1, Hede 90B, Sieg 46.2, Dav 3642
@@ -911,7 +931,188 @@ merges:
       - denmark-numismaster-64951
     reason: 'Christian IV Denning class B = KM 62: NGC WCPG 1049834 and NumisMaster MC_64951 are the same Krause entry (KM# 62, 1619, Copenhagen, «Below horse the letter P», titles of czar Mikhail Fjodorovitsj). Curator (Serhii) 2026-10-09.'
 
+  - members:
+      - dk-hede-f3h84ab
+      - kmk-149287
+      - kmk-149289
+    reason: 'Curator (Serhii) 2026-10-18, by the record-vs-candidate table: the KMM record carries only a year and a Schou number; Hede gives Schou per year («Schou hhv.»), and in that year the number is listed by one type only. Hede 84A (danskmoent f3h84: «A) 1651, 1652 … (Hede 84A, Schou hhv. 15-33 og 12-18 …)»): KMM 149287 1651 Schou 33, 149289 1651 Schou 22. Taken out of dk-tid-97152, where a Schou-only absorb had folded them.'
+  - members:
+      - dk-hede-f3h105ab
+      - kmk-148944
+      - kmk-148945
+      - kmk-148946
+      - kmk-148947
+      - kmk-148949
+      - kmk-148950
+    reason: 'Curator (Serhii) 2026-10-18, by the record-vs-candidate table: the KMM record carries only a year and a Schou number; Hede gives Schou per year («Schou hhv.»), and in that year the number is listed by one type only. Hede 105A (f3h105: «4 Mark 1666 … A) … (Hede 105A, Schou 22-32 …)»; 1666 elsewhere: Hede 112 = Schou 34/35, 113A = 36-45, 116 = 49-72): KMM 1666 Schou 32, 31, 30, 29, 24, 22. Taken out of dk-tid-97152.'
+  - members:
+      - dk-hede-f3h113a
+      - kmk-148886
+      - kmk-148836
+      - kmk-148837
+    reason: 'Curator (Serhii) 2026-10-18, by the record-vs-candidate table: the KMM record carries only a year and a Schou number; Hede gives Schou per year («Schou hhv.»), and in that year the number is listed by one type only. Hede 113A (f3h113: «A) 1666, 1667, 1668, 1669 … (Hede 113A, Schou hhv. 36-45, 34-42, 18-30 og 22-25 …)»): KMM 148886 1667 Schou 38, 148836 1668 Schou 29, 148837 1668 Schou 24. Taken out of dk-tid-97152.'
+  - members:
+      - dk-hede-f3h116
+      - kmk-148834
+      - kmk-148835
+    reason: 'Curator (Serhii) 2026-10-18, by the record-vs-candidate table: the KMM record carries only a year and a Schou number; Hede gives Schou per year («Schou hhv.»), and in that year the number is listed by one type only. Hede 116 (f3h116: «1666, 1667, 1668, 1669, 1670 … (Hede 116, Schou hhv. 49-72, 45-50, 35-45, 29-33 og 5 …)»; 1668 elsewhere: 113A = 18-30, 113B = 31, 114 = 32-34): KMM 148834 1668 Schou 43, 148835 1668 Schou 39. Taken out of dk-tid-97152.'
+  - members:
+      - dk-hede-c4h139a
+      - kmk-149594
+      - kmk-149595
+      - kmk-149596
+      - kmk-149597
+    reason: 'Curator (Serhii) 2026-10-18, by the record-vs-candidate table: the KMM record carries only a year and a Schou number; Hede gives Schou per year («Schou hhv.»), and in that year the number is listed by one type only. Hede 139A (c4h139: «A) 1627 (R), 1628 … (Hede 139A, Schou 28 og 41-54 …)»; Hede 140: «A) 1628, 1629 … (Hede 140A, Schou 59-60 og 51-52 …)», «B) 1629 … (Hede 140B, Schou 42-50 …)»): KMM 6 Skilling 1628 Schou 51, 50, 48, 43. Taken out of km-110-chr-iv-1628 (Hede 140), where a Schou-only absorb had folded them.'
+  - members:
+      - dk-hede-f3h87ab
+      - denmark-numismaster-65272
+      - denmark-numismaster-65273
+      - dk-numista-143477
+      - dk-tid-97152
+      - ngc-1049962
+      - ngc-1050097
+    reason: 'Curator (Serhii) 2026-10-19, by the record-vs-candidate table: Hede 87, Hede 91 and Hede 95 are three coins — three Hede numbers with three reverse designs (87 «våbenskjold med bue foroven og forneden», 91 «ligesidet våbenskjold» with the chain of the Order of St Michael, 95 «ligesidet våbenskjold på kors»), one standard (22,272 g / 0,671). Supersedes the 2026-06-07 Component 1 merge, whose Hede 95 link came from KMM «Hede 95A» 1653 records auto-merged into the Numista 143477 (KM 186) class, not from a source. Hede 87 (1652–1653) = KM 186.1/186.2 (NumisMaster 65272 1652, 65273 1652–1653; Numista 143477 «KM# 186, 187», 1652–1653): no source prints both numbers; by years and by elimination (KM 192 = Hede 91, KM 194 = Hede 95).'
+  - members:
+      - dk-hede-f3h91
+      - dk-bruun-6100
+      - dk-bruun-pt5-14131
+      - denmark-numismaster-65274
+      - denmark-numismaster-65275
+      - denmark-numismaster-65276
+      - ngc-1050028
+      - ngc-1050098
+      - ngc-1060169
+    reason: 'Curator (Serhii) 2026-10-19, by the record-vs-candidate table: Hede 87, Hede 91 and Hede 95 are three coins — three Hede numbers with three reverse designs (87 «våbenskjold med bue foroven og forneden», 91 «ligesidet våbenskjold» with the chain of the Order of St Michael, 95 «ligesidet våbenskjold på kors»), one standard (22,272 g / 0,671). Supersedes the 2026-06-07 Component 1 merge, whose Hede 95 link came from KMM «Hede 95A» 1653 records auto-merged into the Numista 143477 (KM 186) class, not from a source. Hede 91 (1653) = KM 192: Bruun 6100 and Bruun Part V 14131 print «KM-192.2; Hede-91B»; KM 192.1 shows the chain of the Order of St Michael (NumisMaster 65274), KM 192.2/192.3 are the mules (NumisMaster «Mule», Hede 91B «Forside Hede 91A, bagside Hede 87A», 91C «Forside Hede 87B, bagside Hede 91A»).'
+  - members:
+      - dk-hede-f3h95ab
+      - dk-bruun-6144
+      - kmk-275360
+      - kmk-275495
+      - kmk-275496
+      - kmk-275497
+      - kmk-275498
+      - kmk-275499
+      - kmk-275500
+      - kmk-275501
+      - kmk-275502
+      - kmk-275503
+      - kmk-275504
+      - kmk-275505
+      - kmk-275506
+      - kmk-275507
+      - kmk-275509
+      - kmk-275510
+      - kmk-353009
+      - kmk-149113
+      - kmk-149153
+      - kmk-149163
+      - kmk-149199
+      - kmk-149227
+      - kmk-149229
+      - kmk-149230
+      - kmk-149231
+    reason: 'Curator (Serhii) 2026-10-19, by the record-vs-candidate table: Hede 87, Hede 91 and Hede 95 are three coins — three Hede numbers with three reverse designs (87 «våbenskjold med bue foroven og forneden», 91 «ligesidet våbenskjold» with the chain of the Order of St Michael, 95 «ligesidet våbenskjold på kors»), one standard (22,272 g / 0,671). Supersedes the 2026-06-07 Component 1 merge, whose Hede 95 link came from KMM «Hede 95A» 1653 records auto-merged into the Numista 143477 (KM 186) class, not from a source. Hede 95 (1653–1661) = KM 194: Bruun 6144 prints «KM-194; Hede-95A». KMM records tagged Hede 95/95A, and the KMM «1 krone» 1654–1659 records placed by year + Schou on 2026-10-18 (95A 1654 «12-31», 1655 «16-25 og 30», 1659 «38-43»; 95B 1656 «20-21», 1657 «33-35»), belong here.'
 no_merges:
+  # KMM 415742 / 415743 (FP 601.3 / 601.2): «speciedaler», Christian 4,
+  # 1627, place «Danmark», from the Kideris Mølles Mark find (1891-1892) —
+  # no catalogue number and no mint. In 1627 Christian IV struck the
+  # Speciedaler at København, Glückstadt and Wolfenbüttel (Hede W3, W5), so
+  # nominal + year cannot place them; they had joined Hede W3 on that alone
+  # (§9.4). Kept apart from every 1627 Speciedaler class (curator 2026-10-18)
+  # — blocked against each Speciedaler record they can auto-match by
+  # nominal + year, otherwise they slide to the next one (seen in the
+  # re-flow: blocked from 5530 they joined 5534 and split Hede W3).
+  - members:
+      - kmk-415742
+      - dk-bruun-5530
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in Hede Wolfenbüttel 3. Curator 2026-10-18.'
+  - members:
+      - kmk-415742
+      - dk-bruun-5533
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in Hede Wolfenbüttel 3. Curator 2026-10-18.'
+  - members:
+      - kmk-415742
+      - dk-bruun-5534
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in Hede Wolfenbüttel 3. Curator 2026-10-18.'
+  - members:
+      - kmk-415742
+      - dk-bruun-5535
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in Hede Wolfenbüttel 3. Curator 2026-10-18.'
+  - members:
+      - kmk-415742
+      - dk-bruun-5536
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in Hede Wolfenbüttel 5. Curator 2026-10-18.'
+  - members:
+      - kmk-415742
+      - dk-hede-c4h55
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in København Hede 55. Curator 2026-10-18.'
+  - members:
+      - kmk-415742
+      - dk-tid-97358
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in København 1 Speciedaler. Curator 2026-10-18.'
+  - members:
+      - kmk-415743
+      - dk-bruun-5530
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in Hede Wolfenbüttel 3. Curator 2026-10-18.'
+  - members:
+      - kmk-415743
+      - dk-bruun-5533
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in Hede Wolfenbüttel 3. Curator 2026-10-18.'
+  - members:
+      - kmk-415743
+      - dk-bruun-5534
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in Hede Wolfenbüttel 3. Curator 2026-10-18.'
+  - members:
+      - kmk-415743
+      - dk-bruun-5535
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in Hede Wolfenbüttel 3. Curator 2026-10-18.'
+  - members:
+      - kmk-415743
+      - dk-bruun-5536
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in Hede Wolfenbüttel 5. Curator 2026-10-18.'
+  - members:
+      - kmk-415743
+      - dk-hede-c4h55
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in København Hede 55. Curator 2026-10-18.'
+  - members:
+      - kmk-415743
+      - dk-tid-97358
+    reason: 'No catalogue number or mint on the KMM record; cannot be placed in København 1 Speciedaler. Curator 2026-10-18.'
+  # KMM 149615 is Hede Wolfenbüttel 5 (Schou 11; its «København» is an
+  # erroneous mint_mark). With the mint cleared its bare «Schou 11» matched the
+  # København Hede 55 (Schou 10-19 …) and pulled the whole W5 class into it.
+  - members:
+      - kmk-149615
+      - dk-hede-c4h55
+    reason: 'KMM 149615 «Schou 11» is Hede Wolfenbüttel 5 (danskmoent c4wolfh5), not the København Hede 55. Curator 2026-10-18.'
+
+  # Bruun Part V re-flow review (Curator Serhii, 2026-10-18). Hede 28B (2 Dukat
+  # 1664-1667, crowned portrait with inner ring, KM 216.2, Sieg 133.2 — curator
+  # 2026-07-27) and Hede 31 (2 Dukat 1667, uncrowned portrait without ring,
+  # KM 295, Sieg 136; danskmoent f3h28 / f3h31) are different coins. They fused
+  # at absorb through stale KM 216.2 / Bruun 6414 values on the f3h31 final
+  # (removed the same day). Keep the Hede 31 seed apart from the 28B lots.
+  - members:
+      - dk-hede-f3h31
+      - dk-bruun-6413
+    reason: 'Hede 31 (KM 295) is not Hede 28B (KM 216.2): danskmoent f3h31 «ukronet portræt, uden ring» vs f3h28 «kronet portræt, ring indenfor omskrift». Bruun Part V lot 14143 prints Hede-28B / KM-216.2. Curator 2026-10-18.'
+  - members:
+      - dk-hede-f3h31
+      - dk-bruun-6414
+    reason: 'Same split as above — Bruun Part IV lot 17075 prints Hede-28B / KM-216.2. Curator 2026-10-18.'
+  # KM B445 (NumisMaster MC_65801 / NGC: «Christian V on horseback, left» /
+  # «Crowned double monogram», 1696) is not Hede 55 (monogram on pyramid /
+  # prospect of København, undated; danskmoent c5h55). Fused in the Bruun Part V
+  # re-flow with no shared catalogue base. Companion to the B445 x Hede 57 block.
+  - members:
+      - dk-hede-c5h55
+      - ngc-1050901
+    reason: 'KM B445 (horseback / crowned double monogram, 1696) is a different ducat from Hede 55 (pyramid monogram / København prospect, undated). Curator 2026-10-18.'
+  - members:
+      - dk-hede-c5h55
+      - denmark-numismaster-65801
+    reason: 'Same as above — NumisMaster MC_65801 is KM B445. Curator 2026-10-18.'
+
   # §9.4 over-merge split (Curator Serhii, 2026-07-23, by image): ikmk-18219556
   # is a VISUALLY DIFFERENT coin from dk-hede-f3h39 and carries NO catalogue index
   # of its own (1658, 2 Dukaten, Kopenhagen). It auto-glued to f3h39 on
@@ -1515,6 +1716,218 @@ no_merges:
       - denmark-numismaster-64951
     reason: 'kmk-137196 (Schou 85, class F) vs denmark-numismaster-64951 (class A = Hede 104 / B = KM 62): no shared catalogue key; index-poor bridge. Curator (Serhii) 2026-10-09.'
 
+  - members:
+      - kmk-149286
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-18: KMM 149286 «1 krone» 1651, Schou 43 — no Hede type lists Schou 43 for 1651 (84A 1651 = 15-33, 84B = 34); not the Frederik III Krone family of dk-tid-97152, into which a Schou-only absorb had folded it. Left seed_unsorted (declassify recorded).'
+  - members:
+      - kmk-149085
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-18: KMM 149085 «1 krone» 1660, Schou 39 — no Hede type lists Schou 39 for 1660 (95A 1660 = 25-28, 98 = 24, 100B = 23); not the Frederik III Krone family of dk-tid-97152, into which a Schou-only absorb had folded it. Left seed_unsorted (declassify recorded).'
+  - members:
+      - dk-hede-f3h87ab
+      - dk-hede-f3h91
+    reason: 'Curator (Serhii) 2026-10-19, by the record-vs-candidate table: Hede 87, Hede 91 and Hede 95 are three coins — three Hede numbers with three reverse designs (87 «våbenskjold med bue foroven og forneden», 91 «ligesidet våbenskjold» with the chain of the Order of St Michael, 95 «ligesidet våbenskjold på kors»), one standard (22,272 g / 0,671). Supersedes the 2026-06-07 Component 1 merge, whose Hede 95 link came from KMM «Hede 95A» 1653 records auto-merged into the Numista 143477 (KM 186) class, not from a source.'
+  - members:
+      - dk-hede-f3h87ab
+      - dk-hede-f3h95ab
+    reason: 'Curator (Serhii) 2026-10-19, by the record-vs-candidate table: Hede 87, Hede 91 and Hede 95 are three coins — three Hede numbers with three reverse designs (87 «våbenskjold med bue foroven og forneden», 91 «ligesidet våbenskjold» with the chain of the Order of St Michael, 95 «ligesidet våbenskjold på kors»), one standard (22,272 g / 0,671). Supersedes the 2026-06-07 Component 1 merge, whose Hede 95 link came from KMM «Hede 95A» 1653 records auto-merged into the Numista 143477 (KM 186) class, not from a source.'
+  - members:
+      - dk-hede-f3h91
+      - dk-hede-f3h95ab
+    reason: 'Curator (Serhii) 2026-10-19, by the record-vs-candidate table: Hede 87, Hede 91 and Hede 95 are three coins — three Hede numbers with three reverse designs (87 «våbenskjold med bue foroven og forneden», 91 «ligesidet våbenskjold» with the chain of the Order of St Michael, 95 «ligesidet våbenskjold på kors»), one standard (22,272 g / 0,671). Supersedes the 2026-06-07 Component 1 merge, whose Hede 95 link came from KMM «Hede 95A» 1653 records auto-merged into the Numista 143477 (KM 186) class, not from a source.'
+  - members:
+      - kmk-275360
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275495
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275496
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275497
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275498
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275499
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275500
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275501
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275502
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275503
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275504
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275505
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275506
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275507
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275509
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275510
+      - dk-hede-f3h87ab
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A — Hede 95, not Hede 87 (three coins, see the Hede 87/91/95 merges); keeps the year-1653 auto-match from pulling it into the Hede 87 class.'
+  - members:
+      - kmk-275360
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM 275360 «Hede 95», 1653–1656, is Hede 95 (KM 194); the KM 186 records (Hede 87, 1652–1653) are another coin. Without this pin the year-1653 auto-match joined them and the Hede 95 merge dragged KM 186 into Hede 95.'
+  - members:
+      - kmk-275360
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM 275360 «Hede 95», 1653–1656, is Hede 95 (KM 194); the KM 186 records (Hede 87, 1652–1653) are another coin. Without this pin the year-1653 auto-match joined them and the Hede 95 merge dragged KM 186 into Hede 95.'
+  - members:
+      - kmk-275495
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275495
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275496
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275496
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275497
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275497
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275498
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275498
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275499
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275499
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275500
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275500
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275501
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275501
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275502
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275502
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275503
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275503
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275504
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275504
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275505
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275505
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275506
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275506
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275507
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275507
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275509
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275509
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275510
+      - dk-numista-143477
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
+  - members:
+      - kmk-275510
+      - dk-tid-97152
+    reason: 'Curator (Serhii) 2026-10-19: KMM record tagged Hede 95/95A (KM 194) vs a KM 186 record (Hede 87, 1652–1653) — different coins (Hede 87/91/95 split); stops the year-1653 auto-match from joining them.'
 year_demote:
   - member_id: kmk-714448
     reason: 'KMM FP 12405.1 (Galster 29, Hans Skilling Malmø) dates it 1512-1515; Bruun lot (dk-bruun-3837) and Galster (danskmoent hg-29) give 1512, and Hans died Feb 1513. Curator 2026-10-15: the KMM range is erroneous (year_mark), kept out of the year union so the class shows 1512.'

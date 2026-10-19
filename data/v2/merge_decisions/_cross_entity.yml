@@ -417,6 +417,7 @@ merges:
       - dk-bruun-7893
       - dk-numista-325285         # N#325285 = KM 645 «1 Kurant Daler» Chr.VII 1788 Altona silver — the same coin named in the reason; added 2026-07-08 to satisfy the cross-entity completeness guard (surfaced when bruun-7893 re-homed into royal_holstein via the recovered Altona/Poppenbüttel mint)
       - ngc-1050242                   # home: danish_realm  (NGC, km 645, 1788-1788)
+      - dk-bruun-7892                 # home: danish_realm  (Bruun V lot 14206 p. 93, KM 645, Hede 25, Schou 7; prints «Copenhagen Mint» — marked erroneous (!), Bruun 1928 p. 239 lists Bruun 7892 under «1788 ALTONA»). Curator 2026-10-18
     reason: "Curator 2026-06-28 (B2): c7h25 «1 Kurantdaler / 1 Rigsdaler Courant» Christian VII 1788, struck at Altona for Crown Prince Frederik's Norway travel — ONE coin = Hede 25 = KM 645, the same Bruun Part II lot 13248 and Numista N#325285 cited by both finals. Currently split as km-645 (royal_holstein, from the Hede seed) and unified-dk-bruun-7893 (danish_realm, bruun+numismaster). Pull the danish_realm pair into royal_holstein and force-union with the Hede-25 seed; mint=Altona alone derives issuing_entity=royal_holstein, the SH∩Denmark overlap home, so it renders on both pages (denmark consumes royal_holstein ≤1864). The two catalogues disagree on Sieg — danskmoent/Hede attests «Sieg 26», Stack's Bowers/Bruun lot 13248 attests «Sieg-19»; both are source-verified, so the union keeps sieg=[19, 26] per §9a (trust the sources)."
   - target_entity: royal_holstein
     members:
@@ -886,6 +887,7 @@ merges:
       - ngc-1060682
       - dk-bruun-8101
       - dk-numista-83069
+      - dk-bruun-8095               # home: royal_holstein  (Bruun V lot 14211 p. 94, KM 701, Hede 4B, Sieg 33, Schou 2, Altona 1834). Curator 2026-10-18
     reason: |-
       One coin — Frederik VI 1 Frederik d'Or, Hede 4 (sub-variants 4A/4B),
       struck 1828 at København and 1829-1838 at Altona.
@@ -1264,6 +1266,7 @@ merges:
       - dk-bruun-7849               # home: royal_holstein  (KM 641.1, Hede 4A, Schou 2, Bruun II lot 13240 p. 168, Altona, 1783-W/CHL)
       - dk-bruun-7837               # home: royal_holstein  (KM 641.2, Hede 4B, Sieg 27.1, Schou 7, Bruun III lot 11292 p. 147, Altona, 1783)
       - dk-bruun-7859               # home: royal_holstein  (KM 641.4, Hede 4D, Sieg 27.4, Schou 1a, Bruun II lot 13241 p. 168, Altona, 1785)
+      - dk-bruun-7850               # home: royal_holstein  (KM 641.1, Hede 4A, Schou 2, Bruun V lot 14205 p. 92, Altona, 1783-W/CHL). Curator 2026-10-18
       - denmark-numismaster-65651   # home: royal_holstein  (KM 641.1)
       - denmark-numismaster-65652   # home: royal_holstein  (KM 641.2)
       - denmark-numismaster-65653   # home: royal_holstein  (KM 641.3)
@@ -1508,6 +1511,7 @@ merges:
       - dk-bruun-6300                        # home: royal_holstein  (km 40.1, Hede 145A, 1659)
       - dk-bruun-6343                        # home: royal_holstein  (km 40.2, Hede 145A, 1660)
       - dk-bruun-6344                        # home: royal_holstein  (km 40.2, Hede 145B, 1660)
+      - dk-bruun-6301                        # home: royal_holstein  (km 40.2, Hede 145A, Schou 10, 1659, Bruun V lot 14137 p. 72). Curator 2026-10-18
       - dk-hede-f3h145                       # home: royal_holstein  (bare Hede code → f3h145a + f3h145b)
       - schleswig_holstein-numismaster-93042 # home: royal_holstein  (km 40.1)
       - schleswig_holstein-numismaster-93043 # home: royal_holstein  (km 40.2)
@@ -1665,6 +1669,8 @@ merges:
       - kmk-157804
       - kmk-157805
       - kmk-157806
+      - kmk-157807
+      - kmk-157808
       - kmk-157809
       - kmk-157810
       - kmk-157811
@@ -1787,7 +1793,7 @@ merges:
       - kmk-302377
       - kmk-302575
       - kmk-725828
-    reason: 'Curator (Serhii) 2026-10-12: one coin — 1 Skilling Frederik III, Christiania 1649-1670, Hede Norge 71 (sub-variants 71A/71B/71C), KM 29. Load-bearing key: Hede 71 / 71A-C on every member (KMM typeNumber «H 71», «H. 71B», «Hede 1978 nr. 71C», …; Numista 82133 «71A-71C» + KM 29); per §9.4 the sub-letters are variants of one base type. The KMM specimens had split into ~30 classes because single-year museum datings read as year conflicts to the matcher. Nine KMM seeds were routed to danish_realm by their «nation» (Danmark / Danmark; Norge), but nominal «Skilling» and the 71A/«71a-c» sub-letters fit only Norge Hede 71 — Danish Hede 71 (f3h71) is a 1 Speciedaler 1665 (docs/SOURCES.md §13.18). kmk-394034 and kmk-308795 join after their _source_errata (nominal 2→1 Skilling, ruler Frederik II→3), both curator-approved 2026-10-12. kmk-302377 / kmk-302575 / kmk-725828 (Norge, «1 skilling», H 71A / 71C, no ruler in KMM) added after the completeness guard named them.'
+    reason: 'Curator (Serhii) 2026-10-12: one coin — 1 Skilling Frederik III, Christiania 1649-1670, Hede Norge 71 (sub-variants 71A/71B/71C), KM 29. Load-bearing key: Hede 71 / 71A-C on every member (KMM typeNumber «H 71», «H. 71B», «Hede 1978 nr. 71C», …; Numista 82133 «71A-71C» + KM 29); per §9.4 the sub-letters are variants of one base type. The KMM specimens had split into ~30 classes because single-year museum datings read as year conflicts to the matcher. Nine KMM seeds were routed to danish_realm by their «nation» (Danmark / Danmark; Norge), but nominal «Skilling» and the 71A/«71a-c» sub-letters fit only Norge Hede 71 — Danish Hede 71 (f3h71) is a 1 Speciedaler 1665 (docs/SOURCES.md §13.18). kmk-394034 and kmk-308795 join after their _source_errata (nominal 2→1 Skilling, ruler Frederik II→3), both curator-approved 2026-10-12. kmk-302377 / kmk-302575 / kmk-725828 (Norge, «1 skilling», H 71A / 71C, no ruler in KMM) added after the completeness guard named them. kmk-157807 / kmk-157808 (Frederik 3, Oslo, «1 skilling», KMM «H 71 B») added 2026-10-17: the KMM parser now keeps the spaced sub-letter, so they no longer fold into another record at thinning and the guard named them.'
   - target_entity: danish_norway
     members:
       - dk-hede-f4h35
@@ -1842,3 +1848,182 @@ merges:
     members:
       - ngc-167719
     reason: "Curator (Serhii) 2026-10-15: RELOCATE royal_holstein → danish_realm. Crowned-F hollow pfennig, NGC MB 8 = Sch 1362 = Galster 79, Schou 40 — a number in Galster's Danish series of King Frederik I (danskmoent 1penning.htm: «U.år, ukendt møntsted»); ruler and years re-attributed by curator-approved _source_errata on the same day (Frederik I., 1523-1533). NGC had filed it under Schleswig-Holstein as Duke Friedrich ca. 1510."
+  - target_entity: gottorp_duchy
+    members:
+      - kmk-441351
+    reason: "Curator (Serhii) 2026-10-18: RELOCATE royal_holstein → gottorp_duchy. KMM «Frederik»/«Frederik 3», 1/16 Thaler 1618: before 1648 (King Frederik III's homage 6 July 1648) the reigning Frederik in the duchies was Duke Frederik III of Gottorp (1616–1659); ruler corrected by _source_errata the same day, KMM value kept as ruler_mark."
+  - target_entity: gottorp_duchy
+    members:
+      - kmk-353168
+    reason: "Curator (Serhii) 2026-10-18: RELOCATE danish_realm → gottorp_duchy. KMM «Frederik»/«Frederik 3», 1/96 Daler 1621, Lange 354: before 1648 (King Frederik III's homage 6 July 1648) the reigning Frederik in the duchies was Duke Frederik III of Gottorp (1616–1659); ruler corrected by _source_errata the same day, KMM value kept as ruler_mark."
+  - target_entity: gottorp_duchy
+    members:
+      - kmk-138193
+    reason: "Curator (Serhii) 2026-10-18: RELOCATE danish_realm → gottorp_duchy. KMM «Frederik»/«Frederik 3», 1/16 Thaler 1623-1625, Lange 340-341A: before 1648 (King Frederik III's homage 6 July 1648) the reigning Frederik in the duchies was Duke Frederik III of Gottorp (1616–1659); ruler corrected by _source_errata the same day, KMM value kept as ruler_mark."
+  - target_entity: gottorp_duchy
+    members:
+      - kmk-131619
+    reason: "Curator (Serhii) 2026-10-18: RELOCATE danish_realm → gottorp_duchy. KMM «Frederik»/«Frederik 3», 1 Daler 1625, Lange 323a: before 1648 (King Frederik III's homage 6 July 1648) the reigning Frederik in the duchies was Duke Frederik III of Gottorp (1616–1659); ruler corrected by _source_errata the same day, KMM value kept as ruler_mark."
+  - target_entity: gottorp_duchy
+    members:
+      - kmk-372489
+    reason: "Curator (Serhii) 2026-10-18: RELOCATE danish_realm → gottorp_duchy. KMM «Frederik»/«Frederik 3», 1/96 Daler 1647, Lange 357B: before 1648 (King Frederik III's homage 6 July 1648) the reigning Frederik in the duchies was Duke Frederik III of Gottorp (1616–1659); ruler corrected by _source_errata the same day, KMM value kept as ruler_mark."
+  - target_entity: gottorp_duchy
+    members:
+      - kmk-332379
+    reason: "Curator (Serhii) 2026-10-18: RELOCATE danish_realm → gottorp_duchy. KMM «Frederik»/«Frederik 3», 1/16 Thaler 1623: before 1648 (King Frederik III's homage 6 July 1648) the reigning Frederik in the duchies was Duke Frederik III of Gottorp (1616–1659); ruler corrected by _source_errata the same day, KMM value kept as ruler_mark."
+  - target_entity: gottorp_duchy
+    members:
+      - kmk-687752
+    reason: "Curator (Serhii) 2026-10-18: RELOCATE danish_realm → gottorp_duchy. KMM «Frederik»/«Frederik 3», 6 Skilling 1623: before 1648 (King Frederik III's homage 6 July 1648) the reigning Frederik in the duchies was Duke Frederik III of Gottorp (1616–1659); ruler corrected by _source_errata the same day, KMM value kept as ruler_mark."
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149355
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149356
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149357
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149358
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149359
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149360
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149361
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149362
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149363
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149364
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149365
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149366
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-149367
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Thaler 1641-1643, Schou-numbered (Hede BV4): in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-425003
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Rigsdaler 1642: in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-425005
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Rigsdaler 1641: in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-740338
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Rigsdaler 1642: in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-740339
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Rigsdaler 1642: in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-740340
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 1/16 Rigsdaler 1641: in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-575790
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → erzbisthum_bremen_verden. KMM «Frederik 3», 6 Skilling 1642: in 1641–1643 the future King Frederik III struck as Archbishop of Bremen; Hede (Frederik III, section Bremen-Verden: BV4 «3 Skilling lybsk» 1641–43 = 1/16 Rd, Schou 1641: 3-10, 1642: 2-19, 1643: 1-6). Ruler corrected by _source_errata the same day, KMM value kept as ruler_mark.'
+
+  # Wolfenbüttel 1627 Speciedaler of Christian IV — one coin per Hede number
+  # (curator 2026-10-18: «W3AB одна монета, інші каталоги просто більш дрібно
+  # її класифікують»). danskmoent c4wolfh3: «1 Speciedaler 1627, Wolfenbüttel
+  # … A) Årstal i omskrift (Hede Wolfenbüttel 3A, Schou 5-8, Sieg 187)
+  # B) Årstal ved monogram (Hede Wolfenbüttel 3B, Schou 9-10, Sieg 189)» — one
+  # number, one specification, two varieties; Krause (KM 66 / 67) and
+  # Davenport (7758D / 7759) only split it finer. Dual home per the curator's
+  # 2026-07-24 ruling (Danish denomination on a Danish standard, struck in
+  # Lower Saxony).
+  - target_entity: danish_realm
+    issuing_entity: [danish_realm, herzogtum_braunschweig_lueneburg]
+    members:
+      - dk-bruun-5530                 # home: danish_realm  (Hede 3A, KM 66, Schou 6, Bruun II lot 13108)
+      - dk-bruun-5534                 # home: danish_realm  (Hede 3B, KM 67, Schou 9, Bruun II lot 13109)
+      - dk-bruun-5535                 # home: danish_realm  (Hede 3B, KM 67, Schou 10, Bruun III lot 11199)
+      - dk-bruun-5533                 # home: herzogtum_braunschweig_lueneburg  (Hede 3A, KM 66, Schou 8, Bruun V lot 14111)
+      - ikmk-18250994                 # home: herzogtum_braunschweig_lueneburg  (IKMK «Hede (1971) 140 Nr. 3»)
+      - ikmk-18250995                 # home: herzogtum_braunschweig_lueneburg  (IKMK, Hede 3)
+      - ikmk-18250996                 # home: herzogtum_braunschweig_lueneburg  (IKMK, Hede 3)
+      - ikmk-18250997                 # home: herzogtum_braunschweig_lueneburg  (IKMK, Hede 3)
+      - kmk-290904                    # home: herzogtum_braunschweig_lueneburg  (KMM «Sch 5» = 3A)
+      - kmk-290905                    # home: herzogtum_braunschweig_lueneburg  (KMM «Sch 7» = 3A)
+      - kmk-291967                    # home: herzogtum_braunschweig_lueneburg  (KMM «Sch 8» = 3A)
+      - kmk-291968                    # home: herzogtum_braunschweig_lueneburg  (KMM «Sch 10» = 3B)
+    reason: 'One coin — Hede Wolfenbüttel 3 (varieties 3A year in legend / 3B year by monogram), danskmoent c4wolfh3 (Schou 5-8 / 9-10). Every member carries Hede 3/3A/3B or a Schou number inside 5-10. Curator 2026-10-18.'
+  # Hede Wolfenbüttel 5 — «Årstal ved skjold (Hede Wolfenbüttel 5, Schou 11,
+  # Sieg 190)», danskmoent c4wolfh5. KMM 149615 prints «Schou 11» with place
+  # «København» (Hede 5 is Wolfenbüttel) — kept here by its Schou number.
+  - target_entity: danish_realm
+    issuing_entity: [danish_realm, herzogtum_braunschweig_lueneburg]
+    members:
+      - dk-bruun-5536                 # home: danish_realm  (Hede 5, Schou 11, Bruun II lot 13110)
+      - kmk-149615                    # home: danish_realm  (KMM «Schou 11», place «København»)
+      - ikmk-18250998                 # home: herzogtum_braunschweig_lueneburg  (IKMK «Hede (1971) 140 Nr. 5»)
+      - kmk-291969                    # home: herzogtum_braunschweig_lueneburg  (KMM «Sch 11»)
+    reason: 'One coin — Hede Wolfenbüttel 5 (year by the shield), Schou 11, danskmoent c4wolfh5. Curator 2026-10-18.'
+  - target_entity: gottorp_duchy
+    members:
+      - kmk-355003
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → gottorp_duchy. KMM «Frederik 3», 1 Dütken 1645, nation «Danmark», no index: King Frederik III reigned only from 1648; his Bremen coinage as Archbishop ends in Hede in 1643 and Bremen-Verden passed to Sweden in 1645; Duke Frederik III of Gottorp struck Dütchen from 1647 (Lange 345). Attribution an assumption, shown (?); ruler corrected by _source_errata, KMM value kept as ruler_mark.'
+  - target_entity: gottorp_duchy
+    members:
+      - kmk-133404
+    reason: 'Curator (Serhii) 2026-10-18: RELOCATE danish_realm → gottorp_duchy. KMM «Frederik 3», 1 Skilling 1645, nation «Danmark», no index: King Frederik III reigned only from 1648; his Bremen coinage as Archbishop ends in Hede in 1643 and Bremen-Verden passed to Sweden in 1645; Duke Frederik III of Gottorp struck Dütchen from 1647 (Lange 345). Attribution an assumption, shown (?); ruler corrected by _source_errata, KMM value kept as ruler_mark.'
+  - target_entity: gottorp_duchy
+    members:
+      - kmk-372978                               # home: danish_realm
+    reason: |
+      KMM «Karl Frederik», place «Slesvig-Holsten-Gottorp», Søsling lybsk (FP
+      4250.5): Duke Karl Friedrich of Holstein-Gottorp, 1702-1739 (Gottorp reign
+      table, en.wikipedia «Duchy of Holstein-Gottorp»). KMM's nation «Danmark»
+      routed it to danish_realm. Curator 2026-10-19 (undated-coins plan row 8).
+  - target_entity: erzbisthum_bremen_verden
+    members:
+      - kmk-354144                               # home: gottorp_duchy
+      - kmk-353471                               # home: gottorp_duchy
+    reason: |
+      KMM «Johan Frederik af Gottorp» / «Johan Friedrich af Gottorp», 4 skilling
+      lybsk, typeNumber «Jungk 316» (FP 4962.1, FP 4964.42): Jungk, Die Bremischen
+      Münzen (1875) is the catalogue of the archbishopric and city of Bremen;
+      Johann Friedrich of Holstein-Gottorp was archbishop of Bremen 1596-1634
+      (de.wikipedia) and never a Gottorp duke. One type (same Jungk number).
+      The two KMM records of the same name without an index (kmk-122261,
+      kmk-122262) stay — he was also prince-bishop of Lübeck from 1607.
+      Curator 2026-10-19 (undated-coins plan row 8).
+  - target_entity: sonderburg_duchy
+    members:
+      - kmk-83149                                # home: royal_holstein
+    reason: |
+      KMM «Alexander», nation «Slesvig-Holsten», silver, typeNumber «Lange»
+      without a number (GP 982.173): Duke Alexander of Sønderborg, 1622-1627
+      (lex.dk «sønderjyske fyrstehuse»: «Alexander (1573-1627) fik Sønderborg»;
+      reign table 33994e6). KMM's nation fallback routed it to royal_holstein.
+      Curator 2026-10-19 (undated-coins plan row 1 leftover).

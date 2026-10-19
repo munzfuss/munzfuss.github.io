@@ -89,6 +89,8 @@ CURATED_FIELDS = frozenset({
     "year_mark",
     # Same for the ruler (schema Coin.ruler_mark → ruler_alts).
     "ruler_mark",
+    # Same for the mint (schema Coin.mint_mark → mint_alts).
+    "mint_mark",
     # V2 bidirectional seed↔curated link (Phase 6) — both fields are
     # curator-maintained or relink-script-derived audit trail of the
     # §9a multi-specimen merge. They MUST persist across regen so that:
@@ -139,6 +141,26 @@ _THINNED_FROM_KEY = "_thinned_from"
 # merge_decision naming a thinned specimen resolves through it.
 _PRESERVE_ALWAYS_KEYS = frozenset({_CURATION_HOLDS_KEY, _SOURCE_ERRATA_KEY,
                                    _THINNED_FROM_KEY})
+
+
+def apply_mint_mark(entry) -> None:
+    """Neutralise a mint the curator marked «erroneous» (schema Coin.mint_mark).
+
+    The printed value moves into `mint_mark.value` (kept there for the
+    `mint_alts` display) and `mint` is cleared, so every downstream rule — the merger's mint union and matching, entity
+    routing by mint, absorb — sees «no mint from this source», which is what
+    the source's value is worth (curator 2026-10-18: shown for honesty towards
+    the source, reacted to by nothing). Idempotent: a re-run finds `mint`
+    already empty and `value` already set. A «suspect» mark changes nothing
+    here — a suspect mint stays in play, like a suspect reading."""
+    mark = entry.get("mint_mark")
+    if not isinstance(mark, dict) or mark.get("kind") != "erroneous":
+        return
+    printed = entry.get("mint")
+    if printed and not mark.get("value"):
+        mark["value"] = ", ".join(printed) if isinstance(printed, list) else str(printed)
+    if printed is not None:
+        entry["mint"] = None
 
 
 def apply_source_errata(entry) -> None:
@@ -320,6 +342,28 @@ def _union_cat_values(existing_v, fresh_v):
     return out[0] if len(out) == 1 else out
 
 
+def _drop_bare_superseded_by_cf(v):
+    """«cf. X» supersedes a bare «X» in the same catalogue field.
+
+    The union above is accumulation, and accumulation is right for two
+    DIFFERENT readings. It is wrong when the parser re-reads the SAME source
+    statement more precisely: KMM «Sch. 44, cf.» was first stored as
+    `schou: '44'` and, once the parser kept the qualifier, re-emitted as
+    `'cf. 44'` — the union then kept both, so the seed still claimed Schou 44
+    as the coin's own index (2026-10-17, 9 KMM seeds). A cf-form names the
+    same number as a SIMILAR coin, so the bare twin is the stale reading and
+    is dropped. Values without a cf twin are untouched; a singleton collapses
+    to a scalar exactly as `_union_cat_values` does."""
+    if not isinstance(v, list):
+        return v
+    cf = {str(x).strip()[3:].strip().lower() for x in v
+          if isinstance(x, str) and str(x).strip().lower().startswith("cf.")}
+    if not cf:
+        return v
+    out = [x for x in v if not (isinstance(x, str) and str(x).strip().lower() in cf)]
+    return out[0] if len(out) == 1 else out
+
+
 # List-form fields that UNION existing + fresh entries instead of letting fresh
 # replace existing (§9a data-accumulation: «Reconciliation NEVER replaces
 # `sources` — always UNION»). A curator MAY add a primary-source citation to a
@@ -462,7 +506,8 @@ def merge_one(
                         # this branch existed.
                         ex_v[sub_k] = _union_others(ex_v[sub_k], sub_v)
                     elif sub_k in _list_cap:
-                        ex_v[sub_k] = _union_cat_values(ex_v[sub_k], sub_v)
+                        ex_v[sub_k] = _drop_bare_superseded_by_cf(
+                            _union_cat_values(ex_v[sub_k], sub_v))
             elif ex_v is None and fr_v is not None:
                 existing[key] = fr_v
             continue
@@ -540,6 +585,15 @@ def merge_one(
         _fold_cat(existing["catalog"])
 
     return existing
+
+
+# Sources whose seed id names a catalogue PAGE that the parser may later break
+# out into sub-letters (danskmoent Hede «c4h117» → «c4h117a/b», Galster
+# «c3g-95» → «c3g-95a/b»). Only for these is a bare id «superseded» by fresh
+# lettered siblings. Everywhere else a lettered id is a DIFFERENT record: Bruun
+# numbers its specimens 15139c … 15139ddd beside a bare 15139ø, and the rule
+# silently dropped Part V lot 15186 when the parser lost the «ø» (2026-10-19).
+_PAGE_CATALOGUE_ID_RE = re.compile(r"^dk-(?:hede|galster)-")
 
 
 def merge_seed(
@@ -620,7 +674,8 @@ def merge_seed(
     for c in out:
         cid = c.get("id") if isinstance(c, dict) else None
         superseded = bool(
-            cid and re.search(r"\d$", cid) and not _is_curated(c)
+            cid and _PAGE_CATALOGUE_ID_RE.match(cid)
+            and re.search(r"\d$", cid) and not _is_curated(c)
             and not _own_cat_has_subletter(c)
             and any(fid != cid and fid.startswith(cid) and fid[len(cid):].isalpha()
                     for fid in fresh_ids)
@@ -639,5 +694,6 @@ def merge_seed(
     for c in out:
         if isinstance(c, dict):
             apply_source_errata(c)
+            apply_mint_mark(c)
 
     return out, stats

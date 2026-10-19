@@ -219,10 +219,13 @@ coins:
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 27.52
+        source: bruun
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -1321,48 +1324,6 @@ coins:
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
     composed_of:
       - unified-dk-numista-26828
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ⅔ Thaler
-    ruler: Frederick V (Friedrich V)
-    issuing_entity: grafschaft_oldenburg
-    id: unified-dk-numista-268600
-    year_first: 1761
-    year_last: 1765
-    year_ranges:
-      -   - 1761
-          - 1765
-    year_label: 1761-1765
-    catalog:
-      km: '122'
-      numista: '268600'
-      hede: 2D
-      others:
-        - Kalv/Schr# 324 a
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 17.46
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/268600
-        ref: Numista N#268600 — ⅔ Thaler - Frederick V of Dänemark - County of Oldenburg
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-    composed_of:
-      - unified-dk-numista-268600
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
@@ -2640,14 +2601,16 @@ coins:
     issuing_entity: grafschaft_oldenburg
     id: unified-dk-numista-340123
     year_first: 1614
-    year_last: 1619
+    year_last: 1622
     year_ranges:
       -   - 1614
-          - 1619
-    year_label: 1614-1619
+          - 1622
+    year_label: 1614-1622
     catalog:
       km: '47'
-      numista: '340123'
+      numista:
+        - '340123'
+        - '340125'
       others:
         - Saur# 3350
     metal: silver
@@ -2660,46 +2623,12 @@ coins:
     weight_rough_g:
       - value: 6.6
         source: numista
+      - value: 6.99
+        source: numista
     sources:
       - type: literature
         url: https://en.numista.com/340123
         ref: Numista N#340123 — ¼ Thaler - Anthony Günter (In the name of Matthias) - County of Oldenburg
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-    composed_of:
-      - unified-dk-numista-340123
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ¼ Thaler
-    ruler: Anthony Günther (Anton Günther)
-    issuing_entity: grafschaft_oldenburg
-    id: unified-dk-numista-340125
-    year_first: 1619
-    year_last: 1622
-    year_ranges:
-      -   - 1619
-          - 1622
-    year_label: 1619-1622
-    catalog:
-      km: '47'
-      numista: '340125'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 6.99
-        source: numista
-    sources:
       - type: literature
         url: https://en.numista.com/340125
         ref: Numista N#340125 — 1/4 Thaler - Anthony Günter (In the name of Ferdinand II) - County of Oldenburg
@@ -2711,7 +2640,7 @@ coins:
       uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
     composed_of:
-      - unified-dk-numista-340125
+      - unified-dk-numista-340123
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
@@ -2925,48 +2854,6 @@ coins:
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
     composed_of:
       - unified-dk-numista-340860
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: ⅓ Thaler
-    ruler: Frederick V (Friedrich V)
-    issuing_entity: grafschaft_oldenburg
-    id: unified-dk-numista-341018
-    year_first: 1762
-    year_last: 1762
-    year_label: '1762'
-    catalog:
-      km: '120.2'
-      numista: '341018'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.75
-        source: numista
-    weight_rough_g:
-      - value: 8.66
-        source: numista
-    diameter_mm:
-      - value: 29.5
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/341018
-        ref: Numista N#341018 — 1/3 Thaler - Frederick V of Denmark - County of Oldenburg
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-    composed_of:
-      - unified-dk-numista-341018
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
@@ -4663,8 +4550,6 @@ coins:
     catalog:
       others:
         - Auk.Kat.# 5322
-        - Auk.Kat.# 5317
-        - Auk.Kat.# 5313
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -4723,9 +4608,6 @@ coins:
     catalog:
       others:
         - Auk.Kat.# 5307
-        - Auk.Kat.# 5304
-        - Auk.Kat.# 5302
-        - Auk.Kat.# 5297
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -5045,7 +4927,7 @@ coins:
     id: unified-kmk-415788
     catalog:
       others:
-        - Auk.Kat.# Nr
+        - Auk.Kat.# 1987
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -5067,7 +4949,7 @@ coins:
     id: unified-kmk-415789
     catalog:
       others:
-        - Auk.Kat.# Nr
+        - Auk.Kat.# 1983
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -5089,7 +4971,7 @@ coins:
     id: unified-kmk-415790
     catalog:
       others:
-        - Auk.Kat.# Nr
+        - Auk.Kat.# 1915
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -5123,7 +5005,7 @@ coins:
     id: unified-kmk-415796
     catalog:
       others:
-        - Auk.Kat.# Nr
+        - Auk.Kat.# 1883
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -6060,6 +5942,22 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/290963
         ref: KMM 290963 (Inv. KP 1590.107)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290966
+        ref: KMM 290966 (Inv. KP 1590.104)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290968
+        ref: KMM 290968 (Inv. KP 1590.102)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290969
+        ref: KMM 290969 (Inv. KP 1590.101)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290970
+        ref: KMM 290970 (Inv. KP 1590.100)
+        display: false
     verification_note: &id002
       de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
@@ -6109,6 +6007,22 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/290973
         ref: KMM 290973 (Inv. KP 1590.97)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290978
+        ref: KMM 290978 (Inv. KP 1590.92)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290979
+        ref: KMM 290979 (Inv. KP 1590.91)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290980
+        ref: KMM 290980 (Inv. KP 1590.90)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290981
+        ref: KMM 290981 (Inv. KP 1590.89)
+        display: false
     verification_note: *id002
     composed_of:
       - unified-kmk-290973
@@ -6171,3 +6085,429 @@ coins:
     verification_note: *id002
     composed_of:
       - unified-kmk-415792
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    issuing_entity: grafschaft_oldenburg
+    id: unified-kmk-290965
+    year_first: 1858
+    year_last: 1869
+    year_ranges:
+      -   - 1858
+          - 1869
+    year_label: 1858-1869
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290965
+        ref: KMM 290965 (Inv. KP 1590.105)
+    verification_note: &id003
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-kmk-290965
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    issuing_entity: grafschaft_oldenburg
+    id: unified-kmk-290967
+    year_first: 1858
+    year_last: 1869
+    year_ranges:
+      -   - 1858
+          - 1869
+    year_label: 1858-1869
+    catalog:
+      others:
+        - Auk.Kat.# 5317
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290967
+        ref: KMM 290967 (Inv. KP 1590.103)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-290967
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    issuing_entity: grafschaft_oldenburg
+    id: unified-kmk-290971
+    year_first: 1858
+    year_last: 1869
+    year_ranges:
+      -   - 1858
+          - 1869
+    year_label: 1858-1869
+    catalog:
+      others:
+        - Auk.Kat.# 5313
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290971
+        ref: KMM 290971 (Inv. KP 1590.99)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-290971
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    issuing_entity: grafschaft_oldenburg
+    id: unified-kmk-290975
+    year_first: 1849
+    year_last: 1856
+    year_ranges:
+      -   - 1849
+          - 1856
+    year_label: 1849-1856
+    catalog:
+      others:
+        - Auk.Kat.# 5304
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290975
+        ref: KMM 290975 (Inv. KP 1590.95)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-290975
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    issuing_entity: grafschaft_oldenburg
+    id: unified-kmk-290976
+    year_first: 1849
+    year_last: 1856
+    year_ranges:
+      -   - 1849
+          - 1856
+    year_label: 1849-1856
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290976
+        ref: KMM 290976 (Inv. KP 1590.94)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-290976
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    issuing_entity: grafschaft_oldenburg
+    id: unified-kmk-290977
+    year_first: 1849
+    year_last: 1856
+    year_ranges:
+      -   - 1849
+          - 1856
+    year_label: 1849-1856
+    catalog:
+      others:
+        - Auk.Kat.# 5302
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290977
+        ref: KMM 290977 (Inv. KP 1590.93)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-290977
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    issuing_entity: grafschaft_oldenburg
+    id: unified-kmk-290982
+    year_first: 1849
+    year_last: 1856
+    year_ranges:
+      -   - 1849
+          - 1856
+    year_label: 1849-1856
+    catalog:
+      others:
+        - Auk.Kat.# 5297
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/290982
+        ref: KMM 290982 (Inv. KP 1590.88)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-290982
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Anton Günther von Oldenburg
+    issuing_entity: grafschaft_oldenburg
+    id: unified-kmk-415793
+    catalog:
+      others:
+        - Auk.Kat.# 1910
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/415793
+        ref: KMM 415793 (Inv. KP 1117.119)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-415793
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Anton Günther von Oldenburg
+    issuing_entity: grafschaft_oldenburg
+    id: unified-kmk-415794
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/415794
+        ref: KMM 415794 (Inv. KP 1117.118)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-415794
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Anton Günther von Oldenburg
+    issuing_entity: grafschaft_oldenburg
+    id: unified-kmk-415795
+    catalog:
+      others:
+        - Auk.Kat.# 1890
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/415795
+        ref: KMM 415795 (Inv. KP 1117.117)
+    verification_note: *id003
+    composed_of:
+      - unified-kmk-415795
+  - fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ⅔ Taler
+    ruler: Frederik V
+    mintmaster: Johan Henrik Madelung (IHM)
+    issuing_entity: grafschaft_oldenburg
+    id: unified-dk-bruun-15139c
+    year_first: 1761
+    year_last: 1765
+    year_ranges:
+      -   - 1761
+          - 1765
+    year_label: 1761-1765
+    mint: Oldenburg
+    catalog:
+      km: '122'
+      hede:
+        - 2B
+        - 2C
+        - 2D
+      sieg:
+        - '57.2'
+        - '57.3'
+        - '57.4'
+      bruun_collection_id:
+        - 15139c
+        - 15139d
+        - 15139ddd
+        - 15139e
+        - 15139ø
+      schou:
+        - '17'
+        - '19'
+        - '21'
+        - '25'
+      numista: '268600'
+      others:
+        - Kalv/Schr# 324 a
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 16.81
+        source: bruun
+      - value: 17.35
+        source: bruun
+      - value: 17.46
+        source: numista
+      - value: 19.12
+        source: bruun
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15182, p. 167
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15183, p. 167
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15188, p. 170
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15184, p. 167
+      - type: literature
+        url: https://en.numista.com/268600
+        ref: Numista N#268600 — ⅔ Thaler - Frederick V of Dänemark - County of Oldenburg
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15186, p. 170
+    verification_note:
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-bruun-15139c
+      - unified-dk-bruun-15139ø
+    _weights_thinned:
+      - value: 17.34
+        source: bruun
+      - value: 17.36
+        source: bruun
+  - fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: ⅓ Taler
+    ruler: Frederik V
+    mintmaster: Johan Henrik Madelung (IHM)
+    issuing_entity: grafschaft_oldenburg
+    id: unified-dk-bruun-15139dd
+    year_first: 1762
+    year_last: 1762
+    year_label: '1762'
+    mint: Oldenburg
+    catalog:
+      km: '120.2'
+      hede: 3B
+      sieg: '56.2'
+      bruun_collection_id: 15139dd
+      schou: '28'
+      numista: '341018'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.75
+        source: numista
+    weight_rough_g:
+      - value: 8.66
+        source: numista
+    diameter_mm:
+      - value: 29.5
+        source: numista
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15187, p. 170
+      - type: literature
+        url: https://en.numista.com/341018
+        ref: Numista N#341018 — 1/3 Thaler - Frederick V of Denmark - County of Oldenburg
+    verification_note:
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-bruun-15139dd
+  - fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: Gold Off-Strike 1/6 Thaler
+    ruler: Frederik V
+    mintmaster: Johan Henrik Madelung
+    issuing_entity: grafschaft_oldenburg
+    id: unified-dk-bruun-15139i
+    year_first: 1761
+    year_last: 1761
+    year_label: '1761'
+    mint: Oldenburg
+    catalog:
+      km: '119'
+      hede: 4B
+      sieg: '55.5'
+      bruun_collection_id: 15139i
+      schou: 26a
+    metal: gold
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 5.21
+        source: bruun
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15185, p. 168
+    verification_note:
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-bruun-15139i

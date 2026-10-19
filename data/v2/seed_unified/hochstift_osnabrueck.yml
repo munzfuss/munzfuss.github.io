@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hochstift_osnabrueck`.
-# Generated 2026-10-09 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hochstift_osnabrueck.yml across all sources.
 #
 # Input: 238 per-source seed entries.
-# Output: 181 unified entries (one per physical coin).
+# Output: 180 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hochstift_osnabrueck
-generated_at: '2026-10-09'
+generated_at: '2026-10-18'
 coins:
   - id: unified-dk-bruun-11903
     fuss: seed_unsorted
@@ -55,6 +55,8 @@ coins:
         ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
       uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
         специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: hochstift_osnabrueck
     composed_of:
       - dk-bruun-11903
@@ -1293,6 +1295,7 @@ coins:
     catalog:
       km:
         - '172'
+        - '172.1'
         - '172.2'
       numista: '238235'
     metal: silver
@@ -1303,11 +1306,15 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 2.6
+        source: ucoin
       - value: 2.77
         source: numista
       - value: 2.77
         source: ucoin
     diameter_mm:
+      - value: 23.0
+        source: ucoin
       - value: 24.0
         source: numista
       - value: 24.0
@@ -1316,6 +1323,9 @@ coins:
       - type: literature
         url: https://en.numista.com/238235
         ref: Numista N#238235 — 1/14 Thaler - Charles of Lothringen - Bishopric of Osnabrück
+      - type: ucoin
+        url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1702-1703/?tid=173339
+        ref: ucoin
       - type: ucoin
         url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1703/?tid=173340
         ref: ucoin
@@ -1331,6 +1341,7 @@ coins:
     issuing_entity: hochstift_osnabrueck
     composed_of:
       - dk-numista-238235
+      - tid-tid-173339
       - tid-tid-173340
   - id: unified-dk-numista-238237
     fuss: seed_unsorted
@@ -6894,46 +6905,6 @@ coins:
     issuing_entity: hochstift_osnabrueck
     composed_of:
       - tid-tid-173338
-  - id: unified-tid-tid-173339
-    fuss: seed_unsorted
-    phase: ucoin
-    kind: kurant
-    nominal: 1/14 Thaler
-    year_first: 1702
-    year_last: 1703
-    year_ranges:
-      -   - 1702
-          - 1703
-    year_label: 1702-1703
-    ruler: Charles Joseph
-    mintmaster: HLO
-    catalog:
-      km: '172.1'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 2.6
-        source: ucoin
-    diameter_mm:
-      - value: 23.0
-        source: ucoin
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1702-1703/?tid=173339
-        ref: ucoin
-    verification_note:
-      de: Daten aus dem benutzergepflegten Münzkatalog ucoin.net. Gegen die Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) noch nicht geprüft.
-      en: Data from the user-edited coin catalogue ucoin.net. Not yet checked against the primary sources (Hede / Sieg / Lange / NumisMaster / Bruun).
-      uk: Дані з користувацького каталогу монет ucoin.net. Проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) ще не звірено.
-      da: Data fra det brugerredigerede møntkatalog ucoin.net. Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / Lange / NumisMaster / Bruun).
-    issuing_entity: hochstift_osnabrueck
-    composed_of:
-      - tid-tid-173339
   - id: unified-tid-tid-173342
     fuss: seed_unsorted
     phase: ucoin
