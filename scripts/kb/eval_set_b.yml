@@ -1,0 +1,115 @@
+# HELD-OUT set for the kb measurement (scripts/kb/measure.py --set b).
+#
+# Written 2026-10-19 AFTER the first measurement (eval_set.yml) but BEFORE the
+# second round of normaliser changes (æ/e fold, compound splitting), which
+# were motivated by eval_set.yml's failures. This set was never used to design
+# those changes, so it shows whether they generalise or only fit set A.
+# Same format as eval_set.yml; a case without `printed` / `path` lets the
+# quote pick its gold passage anywhere in the work.
+
+cases:
+- key: secher-ccd-3-487-1618-soelvkrone
+  query: sølvkrone 13¾ lod fint sølv halvanden rigsdaler
+  grep: sølvkrone
+  work: secher-ccd
+  printed: ['529']
+  probe: halfanden
+
+- key: secher-ccd-3-541-1619-rigsdaler-96-sk
+  query: rigsdaler spansk matte otte realer skilling danske
+  grep: spansk matte
+  work: secher-ccd
+  printed: ['599']
+  probe: realer
+
+- key: secher-ccd-4-20-1622-tarif
+  query: rosenobel ungersk dukat guldgylden mark danske
+  grep: rosenobel
+  work: secher-ccd
+  printed: ['21']
+  probe: rosenobel
+
+- key: secher-ccd-1-210-1564-laan-klippinge
+  query: låne klipping lensmænd rund mønt
+  grep: klippinge
+  work: secher-ccd
+  printed: ['244', '245']
+  probe: klippinge
+
+- key: secher-ccd-3-309-1609-fremmed-smaamoent
+  query: fireskillingstykker søslinger Hildesheim polske dütchen
+  grep: fireskillingstykker
+  work: secher-ccd
+  printed: ['264']
+  probe: hildesheim
+
+- key: schou-1795-bd1-s81-myndtordning-1671-guld
+  query: guldmønt dukat 23 karat 67 stykker kølnisk mark
+  grep: kølnisk mark
+  work: schou-1795
+  printed: ['81']
+  probe: ducat
+
+- key: schou-1795-bd1-s80-note-regl-1692
+  query: kroner reglement 1692 halvskilling kobber
+  grep: halvskilling
+  work: schou-1795
+  printed: ['80']
+  probe: kobber
+
+- key: mordhorst-c5mord-reskript-1692-2-skilling
+  query: toskilling godhed værdi kroner omkostninger
+  grep: omkostninger
+  work: mordhorst-1968
+  path: c5mord
+  probe: omkostningers
+
+- key: wilcke-1950-moentordning-1541
+  query: møntordning 1541 Crucis 14½ lod
+  grep: Crucis
+  work: wilcke-1950
+  printed: ['261', '262']
+  probe: dinstagh   # OCR reads «Crucis» as «Grucis»
+
+- key: wilcke-1950-tillaeg-1544
+  query: guldengroschen 13½ lod 1544
+  grep: Gyldengroschen
+  work: wilcke-1950
+  printed: ['270']
+  probe: '24,663'   # OCR prints «843.75»
+
+# (wilcke-1950-daler-48-skilling dropped: its quote «1 g i Mønt = 24 ß l. og 48 ß d.»
+#  has no word long enough to locate a gold passage reliably)
+
+- key: galster-1934-junge-1545-tilladelse
+  query: Junge tilladelse guldgylden Degener Flensborg
+  grep: Degener
+  work: galster-1934-junge
+  probe: degener
+
+- key: galster-1934-hertugdoemmer-lybsk-moentfod
+  query: hertugdømmerne lybske møntfod privilegier 1460
+  grep: lybske Møntfod
+  work: galster-1934-junge
+  probe: privilegierne
+
+- key: eriksson-2017-hvid-soesling-skilling-penningar
+  query: hvid fire penninge søsling skilling hovedvalør
+  grep: huvudvalören
+  work: eriksson-2017
+  printed: ['4']
+  probe: sösling
+
+- key: holst-norges-mynter-hamar-ingen-mynt
+  query: Hamar biskop Magnus myntbrev Vincents Lunge
+  grep: Vincents Lunge
+  work: holst-1936
+  path: holst_1936
+  probe: hamar
+
+- key: wilcke-1919-van-campen-1596
+  query: Geert van Campen møntmester 1596 specier
+  grep: van Campen
+  work: wilcke-1919
+  printed: ['58']
+  probe: campen

@@ -784,6 +784,19 @@ Only these workflows need the submodule:
 
 When a session changes cache contents (typical trigger: `parse_hede.py --force` after a parser fix updates 100+ Hede JSON files), follow the two-step submodule-first-then-pointer-bump dance documented in **`docs/PLAYBOOKS.md` PB-10 «Committing harvest cache changes»**.
 
+### Knowledge-base search over the cache (pilot, 2026-10-19)
+
+`scripts/cache/_corpus.yml` is the corpus manifest: one record per work with a
+text layer (Secher, Schou, Wilcke I/II/1950, Mordhorst, the danskmoent PDFs and
+pages, Munro, Bobzin, …) — bibliography, languages, text-layer files and their
+page layout, the PDF→printed page mapping with the evidence it rests on, an OCR
+note and the `refs_pool.yml` keys citing the work. `scripts/cache/_derived/` holds
+text derived from cached HTML (danskmoent). `scripts/kb/kb.py` builds a SQLite
+FTS5 (BM25) index from them (`scripts/kb/_index/`, gitignored, ~8 s) and
+`kb.py search` returns ranked passages with printed page, path and line —
+retrieval for the `cite-source` workflow, never synthesis. Details, the
+normalisation rules and the grep-vs-kb measurement: **`scripts/kb/README.md`**.
+
 ## GitHub Actions (deploy)
 
 ```yaml

@@ -1,0 +1,46 @@
+# Spelling-variant rules for the knowledge-base search (scripts/kb/).
+#
+# Applied, in order, to BOTH the indexed text and the query, AFTER the fixed
+# fold in kb.py:normalize() (lower-case; æ→ae, ø→oe, å→aa, ä→ae, ö→oe, ü→ue,
+# ß→ss, ſ→s, œ→oe; other diacritics stripped; soft hyphens and line-break
+# hyphenation joined; letter-spaced OCR «D e n a r» re-joined).
+#
+# Each rule is a Python regex on the folded text plus its replacement. The
+# same rules run on both sides, so a rule only has to map every variant onto
+# ONE shared form; that form need not be a real word. Keep rules narrow: an
+# over-broad rule silently merges unrelated words and costs precision on
+# every query.
+#
+# Edit freely; re-run `kb.py build` for a change to reach the index.
+
+rules:
+  # --- orthographic folds (early-modern Danish / German) -------------------
+  - {pattern: 'dt',  replace: 't',  note: 'Stadt/Stat, Myndt/Mynt, Møndt/Mønt'}
+  - {pattern: 'th',  replace: 't',  note: 'Thaler/Taler, Thold/Told, Mynth/Mynt'}
+  - {pattern: 'ck',  replace: 'k',  note: 'Marck/Mark, Lybeck/Lybek, Stück/Stük'}
+  - {pattern: '\bv(?=[bcdfghjklmnpqrstvwxz])', replace: 'u', note: 'vdi/udi, vnder/under (u/v before a consonant)'}
+
+  # --- coin and money vocabulary --------------------------------------------
+  - {pattern: 'myn(?=t)',         replace: 'moen',    note: 'Mynt/Mønt, also in compounds (Rigsmynt, Myntordning)'}
+  - {pattern: 'mun(?=tz)',        replace: 'muen',    note: 'Muntz/Müntz'}
+  - {pattern: 'muentz',           replace: 'muenz',   note: 'Müntz/Münz'}
+  - {pattern: 'schil+ing',        replace: 'skiling', note: 'Schilling/Skilling, also in compounds'}
+  - {pattern: 'skil+ing',         replace: 'skiling', note: 'Skilling/Skiling'}
+  - {pattern: '\b(reichs|richs|riks|rix|rijks|rijx)', replace: 'rigs', note: 'Reichs-/Richs-/Riks-/Rix-/Rijks- prefix'}
+  - {pattern: 'dah?l+er',         replace: 'daler',   note: 'Daller/Dahler/Daler'}
+  - {pattern: '(?<![a-z])taler',  replace: 'daler',   note: 'Taler/Thaler as a word start (not «betaler»)'}
+  - {pattern: '(?<=s)taler',      replace: 'daler',   note: 'Rigstaler, Speciestaler, Reichstaler in compounds'}
+  - {pattern: 'g(ue|u|y)(l+|i)den', replace: 'gylden', note: 'Gulden/Gülden/Gylden/Gyllden, also inside compounds (Goldgulden); «guiden» = OCR l→i, systematic in Galster 1934 (182× vs 30× «gulden») and Wilcke («Poul Guiden» = Poul Gulden)'}
+  - {pattern: '(?<!s)pf?en+ing',  replace: 'pening',  note: 'Penning/Pfennig/Pening, also Hvidpenning'}
+  - {pattern: 'st(oe|ue|y|u)k',   replace: 'styk',    note: 'Stykke/Støcke/Stück/Stucken, also in compounds'}
+  - {pattern: '\bkraet\b',       replace: 'karat',   note: 'Middle Low German «kraet» (Galster 1934 accounts)'}
+  - {pattern: '\bgolt\b',        replace: 'gold',    note: 'Middle Low German «golt» (golt gulden)'}
+  - {pattern: 'spezi',            replace: 'speci',   note: 'Spezies/Species'}
+  - {pattern: 'courant',          replace: 'kurant',  note: 'Courant/Kurant'}
+  - {pattern: '\bcoel+n',         replace: 'koeln',   note: 'Cöln/Cölln/Köln'}
+  - {pattern: '\bkoel+n',         replace: 'koeln',   note: 'Kölln/Köln'}
+  - {pattern: '\bcron',           replace: 'kron',    note: 'Crone/Krone, Croneguld/Kroneguld'}
+  - {pattern: '\bfrdg\b',         replace: 'forordning', note: 'Frdg. (abbreviation in Wilcke)'}
+
+  # --- last: vowel fold ------------------------------------------------------
+  - {pattern: 'ae', replace: 'e', note: 'æ/e in old Danish (afsettelse/afsættelse, Wærdie/Werdie); runs after every rule that matches «ae»'}

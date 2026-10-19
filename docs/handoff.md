@@ -16,6 +16,14 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-19 — Knowledge-base search pilot (`scripts/kb/`)
+
+- **Built**: corpus manifest `scripts/cache/_corpus.yml` (33 works, PDF→printed offsets from running heads, refs_pool keys per work); danskmoent `.htm` → `scripts/cache/_derived/danskmoent/**.txt` (1029); FTS5 index + CLI `scripts/kb/kb.py` (`build` / `search` / `offsets` / `refkeys` / `extract-htm`); measurement `scripts/kb/measure.py` + `eval_set.yml`. README: `scripts/kb/README.md`.
+- **Measurement**: set A (22 refs_pool passages) grep 12/22 vs kb within the work top 10 21/22; held-out set B (15, written before round 2) grep 9/15 vs kb within the work 15/15, whole corpus top 10 13/15. Round 2 (curator «продовжуй» 2026-10-19): æ/e fold + query compound splitting via fts5vocab — generalised to B without regressions beyond one-two ranks. Round 3 (curator, same day): five rules for A16 (gulden inside compounds, OCR «guiden», Stucken, MLG «kraet»/«golt») — A within the work top 10 22/22, B unchanged. Whole-corpus ranking stays the weak point. Tables: `scripts/kb/README.md`.
+- **Finding for the curator (not acted on)**: `secher-ccd-5-143-1643-reces-mynten` cites «s. 160–161»; the quoted passage is on Secher Bd 5 printed p. 244 (pdf 257; p. 243 = pdf 256), where Secher prints the Reces's own page break «[s. 161]». The ref's page hint matches the 1643 print's pagination, not Secher's. Needs a `cite-source` decision.
+- **Submodule state**: the cache commit (manifest + derived text) is on branch `kb-pilot` of the worktree's submodule clone, based on cache `main` 2477aae; the superproject pointer on this branch points at it. Before merging this branch, push that cache commit to `munzfuss-harvest` (PB-10). Not pushed.
+- Open follow-ups (curator's call): whole-corpus ranking; embeddings; rigsarkivet OCR; kb skills / source-researcher agent.
+
 ## 2026-10-19 — New entity `norway` (Kingdom of Norway after 1814)
 
 - `fea1313`: post-1814 Norwegian coins moved from `danish_norway` to the new
