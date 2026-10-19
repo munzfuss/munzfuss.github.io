@@ -37,6 +37,9 @@ from lib.bruun_pages import PART_OF_ROMAN, printed_page  # noqa: E402
 GLOBS = ["data/v2/**/*.yml", "data/shared/*.yml", "data/i18n/*.yml",
          "data/locations/*.yml", "scripts/maintenance/build_bruun_denmark_seed.py"]
 
+# The removals ledger records the OLD refs on purpose (verify_reflow matches them).
+SKIP = {"data/v2/_recorded_removals.yml"}
+
 _MENTION = re.compile(
     r"(?P<lotw>\b(?:lot|Lot|Los|лот))\s+(?P<lot>\d{3,5})(?:/\d{3,5})?"
     r"(?P<mid>[^\d\n]{0,30}?(?:\n[ \t]*)?[^\d\n]{0,12}?)"
@@ -91,6 +94,8 @@ def main() -> int:
     for g in GLOBS:
         for f in sorted(ROOT.glob(g)):
             rel = str(f.relative_to(ROOT))
+            if rel in SKIP:
+                continue
             text = f.read_text(encoding="utf-8")
             new, n = heal_text(text, lots, report, rel)
             if n:
