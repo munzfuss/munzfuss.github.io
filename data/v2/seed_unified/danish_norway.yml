@@ -2,8 +2,8 @@
 # Generated 2026-10-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 4635 per-source seed entries.
-# Output: 1607 unified entries (one per physical coin).
+# Input: 4636 per-source seed entries.
+# Output: 1606 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2622,22 +2622,33 @@ coins:
       sieg: '15'
       schou: '100'
       galster: '149'
-      schive: XIV:2
+      schive:
+        - XIV.2
+        - XIV:2
       nmd: '3'
+      galster_volume: hg
     metal: billon
-    metal_verified: false
-    fineness_verified: false
+    metal_verified: true
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.344
+        source: galster
     weight_rough_g:
       - value: 1.38
         source: bruun
+      - value: 1.57
+        source: galster
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12029, p. 155
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nha/g149.htm
+        ref: Galster 149 (hg) — danskmoent.dk norge_nha_g149.htm
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/273661
         ref: KMM 273661 (Inv. FP 1667.102)
@@ -2660,6 +2671,7 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-bruun-9223
+      - dk-galster-hg-149
       - kmk-273661
       - kmk-311328
     _errata_applied:
@@ -6276,54 +6288,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-galster-c2g-165
-  - id: unified-dk-galster-hg-149
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1481
-    year_last: 1513
-    year_ranges:
-      -   - 1481
-          - 1513
-    year_label: 1481-1513
-    _year_demoted: true
-    ruler: Hans
-    mint: Bergen
-    catalog:
-      galster: '149'
-      schou: '100'
-      schive: XIV.2
-      galster_volume: hg
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.344
-        source: galster
-    weight_rough_g:
-      - value: 1.57
-        source: galster
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/norge/nha/g149.htm
-        ref: Galster 149 (hg) — danskmoent.dk norge_nha_g149.htm
-    verification_note:
-      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
-        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
-        coinage standard of this piece is not yet determined.
-      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
-        примірника ще не визначено.
-      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
-        stykke er endnu ikke bestemt.
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-galster-hg-149
   - id: unified-dk-galster-hg-151
     fuss: seed_unsorted
     phase: galster
@@ -6459,13 +6423,15 @@ coins:
       - Christiania
     catalog:
       galster: '155'
-      schou: 187-213
+      schou:
+        - 187-190
+        - 187-213
       schive: XIV.12-25
       galster_volume: hg
       others:
         - Ernst 1940 3-13
     metal: billon
-    metal_verified: false
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -6503,6 +6469,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/371848
         ref: KMM 371848 (Inv. FP 10473.15)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/533276
+        ref: KMM 533276 (Inv. FP 10737.10)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/623859
         ref: KMM 623859 (Inv. FP 11708.31)
       - type: museum
@@ -6534,6 +6503,7 @@ coins:
       - kmk-354426
       - kmk-354427
       - kmk-371848
+      - kmk-533276
       - kmk-623859
       - kmk-641463
       - kmk-704130
