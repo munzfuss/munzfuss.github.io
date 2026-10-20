@@ -68,7 +68,11 @@ RULER_REIGNS: dict[str, tuple[int, int]] = {
     "Erik VII":      (1396, 1439),
     "Christoffer III": (1440, 1448),
     "Christian I":   (1448, 1481),
-    "Hans I":        (1481, 1513),  # also written «John I» in English ucoin
+    # Hans from 1483: the Rigsråd ruled 1481-1483 (below) and danskmoent dates
+    # him «Hans (1483-1513)» (hans.htm) — curator 2026-10-20: «Rigsrådet це
+    # 1481-1483, Hans 1483-1513». Sources writing 1481-1513 / 1482-1513 still
+    # read as his reign through REIGN_SPAN_TOLERANCE.
+    "Hans I":        (1483, 1513),  # also written «John I» in English ucoin
     # The Rigsråd's interregnum after Christian I's death. Its Hvide are
     # 1481-1483: «Bent Östergaard har visat att hviderna måste ha präglats
     # först 1481-1483 (Östergaard 1995)» (Eriksson 2017, Myntstudier, s. 4).

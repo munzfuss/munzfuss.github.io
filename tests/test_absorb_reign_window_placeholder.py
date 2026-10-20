@@ -49,12 +49,12 @@ def enrich(ruler="Hans", member_years=None, holds=None, entity="danish_realm"):
 
 class TestReignPlaceholder(unittest.TestCase):
     def test_bare_hans_resolves(self):
-        self.assertEqual(reign_window("Hans"), (1481, 1513))
-        self.assertEqual(reign_window("Hans?"), (1481, 1513))
+        self.assertEqual(reign_window("Hans"), (1483, 1513))
+        self.assertEqual(reign_window("Hans?"), (1483, 1513))
 
     def test_undated_coin_gets_reign_window_unverified(self):
         out = enrich()
-        self.assertEqual((out.get("year_first"), out.get("year_last")), (1481, 1513))
+        self.assertEqual((out.get("year_first"), out.get("year_last")), (1483, 1513))
         self.assertIs(out.get("year_verified"), False)
         self.assertIs(out.get("year_is_reign_span"), True)
 
@@ -155,7 +155,7 @@ class TestWhoseWindow(unittest.TestCase):
         # (IOHANNES) — by the normaliser, not by an erratum. The Saxkøbing
         # «Johan» pennies keep their MB-concordance years (MB beats the ruler).
         for r in ("Johan", "Johann", "Johan?"):
-            self.assertEqual(reign_window_placeholder(r, "danish_realm"), (1481, 1513), r)
+            self.assertEqual(reign_window_placeholder(r, "danish_realm"), (1483, 1513), r)
         self.assertIsNone(reign_window_placeholder("Johan", "sweden"))
         self.assertEqual(reign_window_placeholder("Johan", "sonderburg_duchy"), (1564, 1622))
 

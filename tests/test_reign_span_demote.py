@@ -77,5 +77,37 @@ class UnionPrefersNarrowerDate(unittest.TestCase):
         self.assertEqual(_union_year_ranges(self._demote(members)), [[1483, 1513]])
 
 
+
+class ClassShowsTableReign(unittest.TestCase):
+    """Curator 2026-10-20: Rigsrådet 1481-1483, Hans 1483-1513. A class whose
+    every member gives only Hans's reign shows the table's 1483-1513, not a
+    cataloguer's 1481 accession year; the members keep their own years."""
+
+    def _unify(self, *ranges):
+        import merge_seeds_cross_source as M
+        members = []
+        for i, (a, b) in enumerate(ranges):
+            members.append({"id": f"kmk-{i}", "ruler": "Hans", "nominal": "Hvid",
+                            "issuing_entity": "danish_realm", "year_first": a,
+                            "year_last": b, "year_ranges": [[a, b]],
+                            "_year_demoted": True,
+                            "_year_reign_window": (1483, 1513)})
+        return M.build_unified(members, "unified-kmk-0", "danish_realm")
+
+    def test_all_reign_members_take_the_table_window(self):
+        out = self._unify((1481, 1513), (1482, 1513), (1481, 1512))
+        out = out[0] if isinstance(out, tuple) else out
+        self.assertEqual((out["year_first"], out["year_last"]), (1483, 1513))
+
+    def test_rule_is_hans_only(self):
+        import merge_seeds_cross_source as M
+        self.assertEqual(M._HANS_REIGN_START, 1483)
+
+    def test_hans_reign_starts_1483(self):
+        from lib.ruler_reigns import reign_window_placeholder
+        self.assertEqual(reign_window_placeholder("Hans", "danish_realm"), (1483, 1513))
+        self.assertEqual(reign_window_placeholder("Rigsrådet", "danish_realm"), (1481, 1483))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -280,6 +280,8 @@ from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared
 from lib.ruler_reigns import normalise_ruler_key as _normalise_ruler_shared
 from lib.ruler_reigns import reign_window_exact as _reign_window_exact  # noqa: E402
 from lib.ruler_reigns import is_reign_span as _is_reign_span  # noqa: E402
+from lib.ruler_reigns import reign_window_placeholder as _reign_window_placeholder  # noqa: E402
+_HANS_REIGN_START = _reign_window_placeholder("Hans", "danish_realm")[0]
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices
 from lib.catalog_codes import split_multi_ref as _split_multi_ref
 from lib.v2_seed_writer import _canonicalise_mint
@@ -4043,6 +4045,14 @@ def build_unified(members: list[dict], unified_id: str,
     # detail so per-year specimen markers in the timeline reflect every
     # source's recorded minting year.
     union_yr = _union_year_ranges(members)
+    # Every member gives only its ruler's reign (step 1c) and they name the
+    # same reign → the class shows the reign as the central table has it
+    # (curator 2026-10-20, Hans: KMM's «1481-1513» / «1482-1513» and Bruun's
+    # «1481-1512» are one reign, 1483-1513). The members keep their own years.
+    _rws = [m.get("_year_reign_window") for m in members]
+    if (union_yr is not None and members and all(_rws)
+            and len({tuple(w) for w in _rws}) == 1):
+        union_yr = [[_rws[0][0], _rws[0][1]]]
     if union_yr is not None:
         if len(union_yr) == 1 and union_yr[0][0] == union_yr[0][1]:
             # Single-year — drop year_ranges (V1-compat: omit when trivial)
@@ -4927,6 +4937,15 @@ def process_entity(entity_id: str,
             yf, yl = s.get("year_first"), s.get("year_last")
         if _is_reign_span(s.get("ruler"), s.get("issuing_entity"), yf, yl):
             s["_year_demoted"] = True
+            # The table's own window, so a class whose every member gives
+            # only the reign shows the table's reign, not whichever accession
+            # year a cataloguer chose (build_unified).
+            # Hans only (curator 2026-10-20): other reigns keep the sources'
+            # years until the table is checked per realm (Norway's Frederik I
+            # from 1524, Frederik III's 1648/1649).
+            _w = _reign_window_placeholder(s.get("ruler"), s.get("issuing_entity"))
+            if _w and _w[0] == _HANS_REIGN_START:
+                s["_year_reign_window"] = _w
 
     # 2. PRE-PASS: run matcher on every pair, register no_match pairs in
     #    union-find BEFORE attempting any union. This guarantees that

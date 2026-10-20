@@ -86,7 +86,7 @@ YEAR_TO = 1541
 # undated entries get bare year-range as year_label + set
 # `year_verified: false` so the renderer emits `(?)`.
 _RULER_REIGN = {
-    "hg":  (1481, 1513),   # Hans
+    "hg":  (1483, 1513),   # Hans (the Rigsråd 1481-1483 before him; curator 2026-10-20)
     "c2g": (1513, 1523),   # Christian II
     "f1g": (1523, 1533),   # Frederik I
     "c3g": (1534, 1559),   # Christian III (pre-1541 portion only — YEAR_TO=1541 cuts later)
