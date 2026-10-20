@@ -2269,3 +2269,12 @@ in the page's first lines except on full-page feature lots (Part III PDF 82,
 114), where they stand lower; pages with no head at all are lot
 continuations, never a lot's first page. `catalog.bruun_page` deliberately
 stays the PDF page.
+
+### 13.25 KMM — photos are still being added; «no photo» is a snapshot (2026-10-20)
+
+The Royal Coin Cabinet keeps photographing objects: KMM 137189 had no image on
+2026-07-12 and has one on 2026-10-20. A KMM seed also folds several specimens
+of one find (one `sources` entry each), so «no photo» must be checked on every
+folded object number, not on the seed's own — four exclusions made on the head
+specimen alone were lifted on 2026-10-20. Treat «no weight, no photo» as true
+for the date of the cache only; re-check per TODO EC.

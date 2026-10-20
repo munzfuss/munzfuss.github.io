@@ -1599,6 +1599,27 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 ## Normal priority
 
+### EC. 🔵 KMM photos keep appearing — re-check «no photo» decisions periodically  *(opened 2026-10-20)* *(est: 1 session per check)* *(type: audit)*
+
+Curator 2026-10-20: the Royal Coin Cabinet is still photographing its holdings,
+so a KMM object without a photo today may have one later. Seen 2026-10-20:
+KMM 137189 (¼ Portugaløser 1602) had no image when it was excluded on
+2026-07-12 and has one now; several «stub» seeds turned out to fold specimens
+with photos (kmk-292019, 130791, 133736, 312170 — lifted in cbb0463, 91ca8b0).
+
+Decisions that rest on «no photo» and would change when one appears:
+`undocumented_stub` exclusions in `data/v2/exclusions/*.yml` (reason text says
+«no photo»); KMM citations hidden by `_suppress_weightless_museum_overcollection`
+(a bare citation becomes image-only and may be shown); type questions left
+open for want of a photo (KMM 588019 «G. 144», Rønneby; kmk-312170 Hans
+Skilling without mint, whose 31 photos may decide the type).
+
+**Check, per pass:** refresh the KMM web cache (`scripts/cache/kmk/web/`), then
+for every `undocumented_stub` exclusion test every KMM number in the seed's
+`sources` with `_kmm_specimen_has_image` / `_kmm_specimen_weight` (the scan used
+2026-10-20); surface hits to the curator, never lift on your own. Then a
+re-flow so the display thinning picks up new photos.
+
 ### EA. 🔵 Register of coinage instruments 1480–1914 + one dossier per act  *(opened 2026-10-13)* *(est: many sessions, per-case)* *(type: research)*
 
 Curator request 2026-10-13: every act that regulates coinage (Møntordning,
