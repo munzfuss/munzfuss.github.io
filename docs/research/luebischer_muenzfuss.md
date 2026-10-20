@@ -616,6 +616,16 @@ specific coins and lapsed within years; afterwards there is only orientation («
 obligation (1460), and promises to the Danish estates whose wording for the kingdom we have not seen. The first
 verbatim Danish-realm clause naming Lübeck is Frederik I's of 1523 — ten years after the «departure».
 
+**«Since when, by which act, under which ruler» (handover from the Galster session, 2026-10-20).** Put as one line:
+the standard dates from the Hamburg–Lübeck treaty of 15 June 1468 (Schilling 103½ per 9-lot mark; recesses
+1483, 1492), which binds the towns only (Jesse). Danish silver on that level starts with the Hvide of **1481 under
+the Rigsråd** (curator's reign table 2026-10-20: Rigsrådet 1481–1483, Hans 1483–1513, `lib/ruler_reigns.py`
+`ff794af`; danskmoent `rigsraad.htm`), and continues under Hans, by orientation (the post-1424 «*Anlehnung*») and
+not, as far as the read sources show, by any decree, treaty or ordinance. 1481 therefore marks the first coins,
+not an instrument. The first verbatim requirement for the kingdom is Frederik I's håndfæstning of 1523 (table
+below); whether Christian II's of 1513 already had it is open (below). A kb search of the local corpus
+(«haandfæstning mønt lybsk», «gænge og gæve Lybek Hamborg mønt», 2026-10-20) found nothing beyond this table.
+
 **The instruments, in order:**
 
 | Date | Instrument | Who binds whom | What it says | Static or dynamic? | Source |
@@ -674,7 +684,7 @@ imitations of them is not said. It is a counterfeiting case, not a measure again
 **Curator's reading (2026-10-16):** Wilcke's «*Hans saa vel som hans Fader havde lovet Rigsraaderne at holde Mønten op
 til den lybske i Hansestæderne*» (7-2 s. 147) is a strong argument that Denmark had to move with Lübeck to the
 13-Mark level. **Analysis:** «holde … op til» = keep the coin UP TO Lübeck's, i.e. not worse than the current
-Lübeck coin — a floor that moves with Lübeck. When Lübeck stepped to 13 (1502/06) and on paper to ≈ 14⅓ (1512), the
+Lübeck coin — a floor that moves with Lübeck. When Lübeck stepped to 13 (~~1502/06~~ decided Aug 1504, Rezess 29 Dec 1506, §3.4g) and on paper to ≈ 14⅓ (1512), the
 floor dropped with it: a Danish Skilling at the 13-Mark level kept the promise; one below Lübeck's level broke it.
 The promise therefore PERMITS and benchmarks the move to 13 — it makes the 13-Mark level the expected Danish
 level once Lübeck was there — but it does not by itself COMPEL a debasement (a Danish coin better than Lübeck's would
@@ -689,7 +699,7 @@ text is found it is Wilcke's statement, not the act's wording.
   «*vedblivende regnedes for højst 24 ß paa 1 Gylden*», s. 151, Lübeck ß then «*1,269 — 1,103 gr*» fine). It
   departs from no treaty, because none bound the kingdom in 1513 as far as the read sources show.
 - Wilcke's Lübeck range 1,269 → 1,103 g fine per ß corresponds (our arithmetic, 233,856 g mark) to ≈ 11½ → ≈ 13¼
-  Mark lübisch per fine mark — i.e. Wilcke's own comparison already spans Lübeck's 1502/06 step.
+  Mark lübisch per fine mark — i.e. Wilcke's own comparison already spans Lübeck's ~~1502/06~~ 1504/06 step (§3.4g).
 - In 1514 the reckoning went back to 24 ß / 72 Hvide per Gulden «*som i Hansestæderne*» (Wilcke 7-2 s. 155), Galster
   reading it as «*Meningen at bringe det danske Møntvæsen nogenlunde paa Højde med det lybske*» (*Danmarks Mønter*).
   So the «departure» lasted one ordinance; both 1513 and 1514 anchor on the Rhenish Gulden, and the Lübeck tie in
