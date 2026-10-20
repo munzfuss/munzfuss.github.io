@@ -44768,9 +44768,18 @@ coins:
     year_first: 1532
     year_last: 1532
     year_label: '1532'
+    year_verified: true
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       numista: '476687'
       galster: '47'
+      schou: '4'
+      jensen_skjoldager:
+        - T-92
+        - T-97B
+      galster_volume: f1g
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -44779,6 +44788,8 @@ coins:
     mint_verified: false
     verified: false
     weight_rough_g:
+      - value: 28.5
+        source: galster
       - value: 37.751
         source: numista
     diameter_mm:
@@ -44788,6 +44799,9 @@ coins:
       - type: literature
         url: https://en.numista.com/476687
         ref: Numista N#476687 — 1 Sølvgylden - Frederick I
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f1g48.htm
+        ref: Galster 47 (f1g) — danskmoent.dk fr_f1g48.htm
     note:
       de: Gekrönte Brustbilder König Frederik I. und Königin Sophia einander zugewandt; Blumen darüber, Säulen an den Seiten; Umschrift in vier Zeilen darunter; ein Perlring am Rand. / Eine Figur hält
         das zentrale Wappen, darüber das gekrönte Dannebrog-Kreuz; an den Seiten die gekrönten Wappen von Dänemark und Norwegen, darunter die Wappen von Schleswig, Holstein, Oldenburg und Lauenburg, 
@@ -44830,6 +44844,9 @@ coins:
       schou: '2'
       others:
         - B# 103
+      jensen_skjoldager:
+        - T-92
+        - T-97A
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -114143,55 +114160,6 @@ coins:
         specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - unified-dk-bruun-4090
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Christian II.
-    issuing_entity: danish_realm
-    id: unified-dk-bruun-4125
-    year_first: 1517
-    year_last: 1525
-    year_ranges:
-      -   - 1517
-          - 1525
-    year_label: 1517-1525
-    year_verified: false
-    mint:
-      - Landskrona
-      - Visby
-    catalog:
-      bruun_collection_id: '4125'
-      sieg: '11'
-      schou: '15'
-      galster: '144'
-    metal: billon
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.14
-        source: bruun
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13055, p. 26
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/347896
-        ref: KMM 347896 (Inv. FP 5424.61)
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - unified-dk-bruun-4125
   - fuss: 9_thaler
     phase: I
     kind: kurant
@@ -152913,15 +152881,10 @@ coins:
     nominal: 1 Skilling
     ruler: Christian II.
     issuing_entity: danish_realm
-    year_is_reign_span: true
     id: unified-kmk-150261
-    year_first: 1513
-    year_last: 1523
-    year_ranges:
-      -   - 1513
-          - 1523
-    year_label: 1513-1523
-    year_verified: false
+    year_first: 1515
+    year_last: 1515
+    year_label: '1515'
     mint: Malmø
     catalog:
       schou: '15'
@@ -152936,6 +152899,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/150261
         ref: KMM 150261 (Inv. KP 1656.52)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274264
+        ref: KMM 274264 (Inv. FP 1667.161)
     verification_note: *id005
     composed_of:
       - unified-kmk-150261
@@ -279388,30 +279354,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Mark
-    ruler: Christian IV.
-    issuing_entity: danish_realm
-    id: unified-kmk-149870
-    year_first: 1615
-    year_last: 1615
-    year_label: '1615'
-    catalog:
-      schou: '7'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/149870
-        ref: KMM 149870 (Inv. KP 1656.443)
-    verification_note: *id005
-    composed_of:
-      - unified-kmk-149870
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 1 Skilling
     ruler: Christian 2
     issuing_entity: danish_realm
@@ -279437,6 +279379,119 @@ coins:
       da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - unified-kmk-150264
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    ruler: Christian 2
+    issuing_entity: danish_realm
+    year_is_reign_span: true
+    id: unified-kmk-274302
+    year_first: 1513
+    year_last: 1523
+    year_ranges:
+      -   - 1513
+          - 1523
+    year_label: 1513-1523
+    year_verified: false
+    mint: Malmø
+    catalog:
+      schou: '6'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274302
+        ref: KMM 274302 (Inv. FP 1667.164.1)
+    verification_note: *id028
+    composed_of:
+      - unified-kmk-274302
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    ruler: Christian 2
+    issuing_entity: danish_realm
+    year_is_reign_span: true
+    id: unified-kmk-274303
+    year_first: 1513
+    year_last: 1523
+    year_ranges:
+      -   - 1513
+          - 1523
+    year_label: 1513-1523
+    year_verified: false
+    mint: Malmø
+    catalog:
+      schou: '6'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274303
+        ref: KMM 274303 (Inv. FP 1667.164.2)
+    verification_note: *id028
+    composed_of:
+      - unified-kmk-274303
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    ruler: Christian 2
+    issuing_entity: danish_realm
+    id: unified-kmk-347896
+    year_first: 1517
+    year_last: 1525
+    year_ranges:
+      -   - 1517
+          - 1525
+    year_label: 1517-1525
+    mint: Landskrona
+    catalog:
+      galster: '144'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/347896
+        ref: KMM 347896 (Inv. FP 5424.61)
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-kmk-347896
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Mark
+    ruler: Christian IV.
+    issuing_entity: danish_realm
+    id: unified-kmk-149870
+    year_first: 1615
+    year_last: 1615
+    year_label: '1615'
+    catalog:
+      schou: '7'
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/149870
+        ref: KMM 149870 (Inv. KP 1656.443)
+    verification_note: *id005
+    composed_of:
+      - unified-kmk-149870
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -279572,88 +279627,6 @@ coins:
     verification_note: *id024
     composed_of:
       - unified-kmk-158007
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Christian 2
-    issuing_entity: danish_realm
-    id: unified-kmk-274264
-    year_first: 1515
-    year_last: 1515
-    year_label: '1515'
-    mint: Malmø
-    catalog:
-      schou: '15'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/274264
-        ref: KMM 274264 (Inv. FP 1667.161)
-    verification_note: *id028
-    composed_of:
-      - unified-kmk-274264
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Christian 2
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: unified-kmk-274302
-    year_first: 1513
-    year_last: 1523
-    year_ranges:
-      -   - 1513
-          - 1523
-    year_label: 1513-1523
-    year_verified: false
-    mint: Malmø
-    catalog:
-      schou: '6'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/274302
-        ref: KMM 274302 (Inv. FP 1667.164.1)
-    verification_note: *id028
-    composed_of:
-      - unified-kmk-274302
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Christian 2
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: unified-kmk-274303
-    year_first: 1513
-    year_last: 1523
-    year_ranges:
-      -   - 1513
-          - 1523
-    year_label: 1513-1523
-    year_verified: false
-    mint: Malmø
-    catalog:
-      schou: '6'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/274303
-        ref: KMM 274303 (Inv. FP 1667.164.2)
-    verification_note: *id028
-    composed_of:
-      - unified-kmk-274303
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -279820,27 +279793,6 @@ coins:
     verification_note: *id024
     composed_of:
       - unified-kmk-277190
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Søren Nordby
-    issuing_entity: danish_realm
-    id: unified-kmk-317111
-    mint: Visby
-    catalog:
-      galster: '144'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317111
-        ref: KMM 317111 (Inv. FP 6819.1)
-    verification_note: *id028
-    composed_of:
-      - unified-kmk-317111
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant

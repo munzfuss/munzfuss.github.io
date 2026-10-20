@@ -2,7 +2,7 @@
 # Generated 2026-10-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/norby_gotland.yml across all sources.
 #
-# Input: 3 per-source seed entries.
+# Input: 7 per-source seed entries.
 # Output: 3 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -13,9 +13,9 @@
 id: norby_gotland
 generated_at: '2026-10-20'
 coins:
-  - id: unified-dk-galster-hg-143
+  - id: unified-dk-bruun-4112
     fuss: seed_unsorted
-    phase: galster
+    phase: bruun
     kind: kurant
     nominal: 1 Skilling
     year_first: 1524
@@ -25,21 +25,51 @@ coins:
           - 1525
     year_label: 1524-1525
     ruler: Søren Norby
+    mintmaster: Hans Seyer
     mint: Visby
     catalog:
-      galster: '143'
+      sieg: '12'
+      bruun_collection_id:
+        - '4112'
+        - '4114'
       schou:
         - 2-3
         - 2-5
+      galster: '143'
       others:
         - Hauberg# hhv. 125-127 og 128
     metal: billon
+    metal_verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: true
+    weight_rough_g:
+      - value: 4.24
+        source: bruun
+      - value: 4.38
+        source: bruun
+    ruler_alts:
+      - value: Christian II
+        source: bruun
+        kind: suspect
+        reason:
+          de: 'Der Katalog Bruun nennt in der Zeile des Loses «Christian II.» als Münzherrn. Søren Norby, Lehnsmann Christians II. auf Gotland, schlug die Visbyer Münzen jedoch «med eget navn og våbenskjold»
+            (dt.: «mit eigenem Namen und Wappen»; danskmoent.dk, «Søren Norby»), nicht im Namen des Königs.'
+          en: "The Bruun catalogue names «Christian II.» as the issuer in the lot line. Søren Norby, Christian II's fief-holder on Gotland, struck the Visby coins «med eget navn og våbenskjold» (transl.:
+            «with his own name and arms»; danskmoent.dk, «Søren Norby»), not in the king's name."
+          uk: 'Каталог Bruun у рядку лота називає емітентом «Christian II.». Проте Søren Norby, ленсман Christian II на Готланді, карбував монети у Visby «med eget navn og våbenskjold» (перекл.: «з власним
+            іменем і гербом»; danskmoent.dk, «Søren Norby»), а не від імені короля.'
+          da: Bruun-kataloget nævner i lotlinjen «Christian II.» som møntherre. Søren Norby, Christian 2.s lensmand på Gotland, slog dog Visby-mønterne med eget navn og våbenskjold (danskmoent.dk, 
+            «Søren Norby»), ikke i kongens navn.
     sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17036, p. 11
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11159, p. 68
       - type: literature
         url: https://www.danskmoent.dk/gotlg143.htm
         ref: Galster 143 (hg) — danskmoent.dk gotlg143.htm
@@ -49,59 +79,105 @@ coins:
       uk: Gotland
       da: Gotland
     verification_note:
-      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
-        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
-        coinage standard of this piece is not yet determined.
-      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
-        примірника ще не визначено.
-      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
-        stykke er endnu ikke bestemt.
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: norby_gotland
     composed_of:
+      - dk-bruun-4112
+      - dk-bruun-4114
       - dk-galster-hg-143
-  - id: unified-dk-galster-hg-144
+    _errata_applied:
+      - source: dk-bruun-4112
+        field: ruler
+        printed: Christian II
+        correct: Søren Norby
+      - source: dk-bruun-4114
+        field: ruler
+        printed: Christian II
+        correct: Søren Norby
+  - id: unified-dk-bruun-4125
     fuss: seed_unsorted
-    phase: galster
+    phase: bruun
     kind: kurant
     nominal: 1 Skilling
-    year_first: 1523
+    year_first: 1522
     year_last: 1523
-    year_label: '1523'
+    year_ranges:
+      -   - 1522
+          - 1523
+    year_label: 1522-1523
     ruler: Søren Norby
     mint: Visby
     catalog:
-      galster: '144'
+      bruun_collection_id: '4125'
+      sieg: '11'
       schou: 1-15
+      galster: '144'
       others:
         - Hauberg# 114-118
     metal: billon
+    metal_verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    weight_rough_g:
+      - value: 2.14
+        source: bruun
+    ruler_alts:
+      - value: Christian II
+        source: bruun
+        kind: suspect
+        reason:
+          de: 'Der Katalog Bruun nennt in der Zeile des Loses «Christian II.» als Münzherrn. Søren Norby, Lehnsmann Christians II. auf Gotland, schlug die Visbyer Münzen jedoch «med eget navn og våbenskjold»
+            (dt.: «mit eigenem Namen und Wappen»; danskmoent.dk, «Søren Norby»), nicht im Namen des Königs.'
+          en: "The Bruun catalogue names «Christian II.» as the issuer in the lot line. Søren Norby, Christian II's fief-holder on Gotland, struck the Visby coins «med eget navn og våbenskjold» (transl.:
+            «with his own name and arms»; danskmoent.dk, «Søren Norby»), not in the king's name."
+          uk: 'Каталог Bruun у рядку лота називає емітентом «Christian II.». Проте Søren Norby, ленсман Christian II на Готланді, карбував монети у Visby «med eget navn og våbenskjold» (перекл.: «з власним
+            іменем і гербом»; danskmoent.dk, «Søren Norby»), а не від імені короля.'
+          da: Bruun-kataloget nævner i lotlinjen «Christian II.» som møntherre. Søren Norby, Christian 2.s lensmand på Gotland, slog dog Visby-mønterne med eget navn og våbenskjold (danskmoent.dk, 
+            «Søren Norby»), ikke i kongens navn.
     sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13055, p. 26
       - type: literature
         url: https://www.danskmoent.dk/gotlg144.htm
         ref: Galster 144 (hg) — danskmoent.dk gotlg144.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317111
+        ref: KMM 317111 (Inv. FP 6819.1)
     note:
       de: Gotland
       en: Gotland
       uk: Gotland
       da: Gotland
     verification_note:
-      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
-        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
-        coinage standard of this piece is not yet determined.
-      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
-        примірника ще не визначено.
-      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
-        stykke er endnu ikke bestemt.
+      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
+        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
+        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
+      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
+        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
+      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
+        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: norby_gotland
     composed_of:
+      - dk-bruun-4125
       - dk-galster-hg-144
+      - kmk-317111
+    _errata_applied:
+      - source: dk-bruun-4125
+        field: ruler
+        printed: Christian II
+        correct: Søren Norby
   - id: unified-dk-galster-hg-145
     fuss: seed_unsorted
     phase: galster
