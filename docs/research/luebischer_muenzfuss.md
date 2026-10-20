@@ -1041,6 +1041,14 @@ this as the attested fact; «automatically» stays our reading.
   Christian I's Môtbok tariff [1460–74] has «*de rynse gulden xx.ß lub*» (art. 79, s. 218) — a pre-1468 /
   1460s figure; Hans' 1484 redaction copied it unchanged, so a 1480s text could carry the old 20 ß. Still a
   hypothesis that this is Wilcke's source.
+  **Bobzin checked (2026-10-20, cache `scripts/cache/bobzin/`, all pages):** no 20 ß for the Rhenish gulden in the
+  15th c. and nothing on Danish rates then. His Wendish-union page has for 1411 «*1 Rheinischer Gulden = 21 ßl.*»
+  and, under 1461, «*1 Gulden lübisch = 2 Ml. = 32 ßl. / 1 Rheinischer Gulden = ¾ Gulden lübisch = 1½ Ml. =
+  24 ßl.*» (his only 20 ß is 1583). ⚠ Bobzin's 1461 line does not agree with Jesse (1461 Mölln: Gulden 22 ß;
+  the Lübeck gulden at 2 Mark is Langenbeck's plan of 1483, adopted 1492) — Bobzin gives no source. One
+  observation (our arithmetic): the Môtbok tariff's Rhenish 20 ß : Lübeck gulden 26 ß = 0,77 ≈ Bobzin's ratio ¾;
+  so the tariff keeps the usual gold relation but at a Lübeck gulden of 26 ß, not 32 — i.e. a lower ß count than
+  Jesse's market rates, which is what Wilcke's «20 ß lybsk = 2 M dansk» needs. Not a solution; noted.
 
 **(6) 1483, Hans.** Art. 14 as listed; also art. 13 (Swedish toll in silver «*till at holde mynten oppe met*»).
 The Norwegian standard is the Danish one; no Lübeck in the act (§3.4f).
