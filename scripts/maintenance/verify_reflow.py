@@ -316,20 +316,43 @@ def _relocated_ids(entity: str) -> set[str]:
     return out
 
 
-def _member_excluded_kmm(entity: str) -> set[str]:
-    """KMM object numbers of seeds excluded with `scope: member` (2026-10-16).
+_MEMBER_KMM_CACHE: dict[str, set[str]] = {}
 
-    Such an exclusion removes ONE record from a merged class; absorb then drops
-    that record's KMM citation from the class. The citation leaving the class is
-    the recorded decision, not a loss — excused citation by citation, nothing
-    else."""
+
+def _member_excluded_kmm(entity: str) -> set[str]:
+    """KMM object numbers whose citation an isolating exclusion removes.
+
+    An exclusion with `scope: member`, or with `category: undocumented_stub`
+    (the merger and absorb isolate both, see `_excluded_seed_ids`), removes ONE
+    record from a merged class; absorb then drops that record's KMM citations
+    from the class. The citations leaving the class are the recorded decision,
+    not a loss — excused citation by citation, nothing else.
+
+    A KMM seed can carry several specimens of one find (the seed builder folds
+    them, one `sources` entry each), so every KMM object number in the excluded
+    seed's own `sources` is excused, not only the seed's id (2026-10-20: 191
+    stub seeds carried 987 specimen citations)."""
+    if entity in _MEMBER_KMM_CACHE:
+        return _MEMBER_KMM_CACHE[entity]
     path = ROOT / EXCLUSIONS_REL / f"{entity}.yml"
     if not path.exists():
         return set()
     doc = _read_yaml(path)
-    return {str(e["id"]).removeprefix("kmk-") for e in (doc.get("exclusions") or [])
-            if e.get("id") and e.get("scope") == "member"
-            and str(e["id"]).startswith("kmk-")}
+    ids = {str(e["id"]) for e in (doc.get("exclusions") or [])
+           if e.get("id") and str(e["id"]).startswith("kmk-")
+           and (e.get("scope") == "member"
+                or e.get("category") == "undocumented_stub")}
+    out = {i.removeprefix("kmk-") for i in ids}
+    seed_path = ROOT / "data" / "v2" / "seed" / "kmk" / f"{entity}.yml"
+    if ids and seed_path.exists():
+        for c in _read_yaml(seed_path).get("coins") or []:
+            if c.get("id") in ids:
+                for src in c.get("sources") or []:
+                    m = re.search(r"/KMM/object/(\d+)", str(src.get("url") or ""))
+                    if m:
+                        out.add(m.group(1))
+    _MEMBER_KMM_CACHE[entity] = out
+    return out
 
 
 def _excluded_ids(entity: str) -> set[str]:
