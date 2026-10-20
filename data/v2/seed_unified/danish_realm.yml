@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15175 per-source seed entries.
-# Output: 5906 unified entries (one per physical coin).
+# Output: 5905 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -103215,6 +103215,15 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/274188
         ref: KMM 274188 (Inv. FP 1667.147)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/292019
+        ref: KMM 292019 (Inv. FP 9760.98)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/132095
+        ref: KMM 132095 (Inv. FP 9602.9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/344409
+        ref: KMM 344409 (Inv. FP 5526.2)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/309773
         ref: KMM 309773 (Inv. FP 7300.4)
       - type: museum
@@ -104042,6 +104051,7 @@ coins:
       - kmk-274183
       - kmk-274185
       - kmk-274188
+      - kmk-292019
       - kmk-309773
       - kmk-318069
       - kmk-333076
@@ -190937,38 +190947,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-292018
-  - id: unified-kmk-292019
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1481
-    year_last: 1513
-    year_ranges:
-      -   - 1481
-          - 1513
-    year_label: 1481-1513
-    _year_demoted: true
-    ruler: Hans
-    mint: Malmø
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292019
-        ref: KMM 292019 (Inv. FP 9760.98)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/132095
-        ref: KMM 132095 (Inv. FP 9602.9)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/344409
-        ref: KMM 344409 (Inv. FP 5526.2)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-292019
   - id: unified-kmk-292222
     fuss: seed_unsorted
     phase: kmk
