@@ -35,7 +35,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.galster_parsers import (  # noqa: E402
-    article, classify, grevenfejde, hans_index, named_page, reign_index, rigsraad, standard)
+    article, classify, galst_table, grevenfejde, hans_index, named_page, reign_index, rigsraad, standard)
 from lib.galster_parsers.common import HR_SENTINEL  # noqa: E402  (re-exported)
 from lib.paths import GALSTER_CACHE as CACHE_DIR  # noqa: E402
 
@@ -54,6 +54,7 @@ _PARSERS = {
     "article": article.parse_page,
     "rigsraad": rigsraad.parse_page,
     "hans_index": hans_index.parse_page,
+    "galst_table": galst_table.parse_page,
 }
 
 
@@ -109,7 +110,57 @@ def parse_page(html_path: Path) -> dict:
         return named_page.parse_page(html_path, text, record)
     shape = classify.detect_page_shape(html_path, text)
     parser = _PARSERS[shape]
-    return parser(html_path, text)
+    data = parser(html_path, text)
+    if shape == "grevenfejde":
+        _split_numbered_bullets(data, text, html_path.name)
+    return data
+
+
+def _numbers_for(filename: str) -> list[str]:
+    manifest = CACHE_DIR / "_manifest.json"
+    if not manifest.exists():
+        return []
+    links = json.loads(manifest.read_text()).get("index_number_links") or {}
+    rec = links.get("/" + filename.replace("_", "/", 1)) or {}
+    return rec.get("numbers") or []
+
+
+def _split_numbered_bullets(data: dict, text: str, filename: str) -> None:
+    """A Grevens-Fejde page carrying TWO Galster numbers, one bullet each:
+    chr/c2g82.htm «• 1534 (Unik), Klipping, … (Galster 82, … Sieg 3)» and
+    «• 1535 (RRR), Klipping, … (Galster 83, … Sieg 4; …)» — c2galst.htm
+    links both 82 and 83 to that page. Each number takes the years and the
+    Sieg number of its own bullet; the page's own number stays in `data`, the
+    others go to `coins` (one record each). Without this the page gave Galster
+    82 the years of both bullets and Galster 83 no record at all."""
+    numbers = _numbers_for(filename)
+    if len(numbers) < 2:
+        return
+    per: dict[str, dict] = {}
+    for n in numbers:
+        m = re.search(
+            r"^\s*•\s*(?P<years>[^,(\n]*?)\s*(?:\([^)]*\))?\s*,[^\n]*?"
+            r"\(Galster\s+" + re.escape(n) + r"\b(?P<rest>[^)]*)\)",
+            text, re.MULTILINE)
+        if not m:
+            return                                  # shape not as expected
+        years = re.findall(r"(?<!\d)1[45]\d{2}(?!\d)", m.group("years"))
+        sieg = re.search(r"\bSieg\s+(\d+[A-Za-z]?)", m.group("rest"))
+        refs = {"galster": n}
+        if sieg:
+            refs["sieg"] = sieg.group(1)
+        per[n] = {"year_label": ", ".join(years) or None, "catalog_refs": refs}
+    own = data.get("galster_number")
+    extra = []
+    for n, rec in per.items():
+        if n == own:
+            data.update(rec)
+        else:
+            c = {k: v for k, v in data.items() if k not in ("coins", "raw_text_excerpt")}
+            c.update(rec)
+            c["galster_number"] = n
+            extra.append(c)
+    data["extra_coins"] = extra
 
 
 def parse_all(force: bool = False) -> None:

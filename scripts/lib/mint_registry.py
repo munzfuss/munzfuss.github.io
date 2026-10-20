@@ -1202,6 +1202,30 @@ def christian_ii_entity(entity, year_first, year_last=None, ruler=None):
     return entity
 
 
+_NORBY_RE = re.compile(r"\bs[øo]e?ren\s+nord?by\b", re.IGNORECASE)
+
+
+def norby_gotland_entity(entity, mint=None, ruler=None):
+    """Søren Norby's coins at Visby go to `norby_gotland` (curator 2026-10-20).
+
+    Christian II's fief-holder on Gotland 1517-1525 struck there «med eget navn
+    og våbenskjold» (danskmoent nordby.htm) — not in the king's name, so they
+    are neither the king's nor `christian_ii_supporters` (whose criterion is
+    coinage IN Christian II's name; Norby's Landskrona skilling of 1525 is
+    that, and stays there under ruler Christian II). Only a Danish routing
+    with ruler Søren Norby AND mint Visby moves; his Ronneby søslinge (in
+    Frederik I's name) and anything else are returned unchanged.
+    """
+    if entity != "danish_realm":
+        return entity
+    if not (isinstance(ruler, str) and _NORBY_RE.search(ruler)):
+        return entity
+    mints = mint if isinstance(mint, list) else [mint]
+    if not any(isinstance(m, str) and m.strip().lower() == "visby" for m in mints):
+        return entity
+    return "norby_gotland"
+
+
 def is_known_nation(nation: str | None) -> bool:
     """True if the nation string resolves to an in-scope entity."""
     return classify_nation_to_entity(nation) is not None

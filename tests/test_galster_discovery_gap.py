@@ -226,6 +226,56 @@ class NumberAnchoredPages(unittest.TestCase):
         self.assertEqual(d["catalog_refs"].get("schou"), "1")
 
 
+class TableRowsAndSharedPages(unittest.TestCase):
+    def test_unlinked_reign_table_row(self):
+        from lib.galster_parsers import galst_table
+        html = ("<TABLE><TR><TD>Galster</TD><TD>Schou</TD><TD>Sømod</TD><TD>Prægested</TD>"
+                "<TD>Nominal</TD><TD>Materiale</TD><TD>År</TD><TD>Bemærkninger</TD></TR>"
+                '<TR><TD><A HREF="chr/c2g37.htm">37</A></TD><TD>1</TD><TD>18</TD><TD>Malmø</TD>'
+                "<TD>1 Nobel</TD><TD>Guld</TD><TD>1516</TD><TD></TD></TR>"
+                "<TR><TD>163</TD><TD>17</TD><TD>135</TD><TD>Ukendt sted</TD><TD>Skilling</TD>"
+                "<TD>Sølv</TD><TD>u.år</TD><TD>Schive XV, 6, side 138</TD></TR></TABLE>")
+        coins = galst_table.parse_coins(html, "c2galst.htm")
+        self.assertEqual(len(coins), 1)
+        c = coins[0]
+        self.assertEqual((c["galster_number"], c["ruler"], c["mint"], c["sub_realm"],
+                          c["catalog_refs"]),
+                         ("163", "Christian II", None, "norway",
+                          {"galster": "163", "schou": "17", "schive": "XV.6"}))
+
+    def test_two_numbers_one_grevens_fejde_page(self):
+        text = ("• 1534 (Unik), Klipping, Malmø eller København (Galster 82, af Schou "
+                "henført til Christian 3, 1534-1, Sieg 3)\n\n"
+                "• 1535 (RRR), Klipping, Malmø eller København (Galster 83, af Schou "
+                "henført til Christian 3, 1535-17, Sieg 4; ligeledes Reynold Junge)\n")
+        data = {"galster_number": "82", "year_label": "1534, 1535", "ruler": "Christian II"}
+        old = pg._numbers_for
+        try:
+            pg._numbers_for = lambda name: ["82", "83"]
+            pg._split_numbered_bullets(data, text, "chr_c2g82.htm")
+        finally:
+            pg._numbers_for = old
+        self.assertEqual((data["year_label"], data["catalog_refs"]),
+                         ("1534", {"galster": "82", "sieg": "3"}))
+        (c83,) = data["extra_coins"]
+        self.assertEqual((c83["galster_number"], c83["year_label"], c83["catalog_refs"]),
+                         ("83", "1535", {"galster": "83", "sieg": "4"}))
+
+
+class NorbyRouting(unittest.TestCase):
+    """Norby's own Visby coins (own name and arms) → norby_gotland; his
+    Ronneby søslinge in Frederik I's name and anything else are untouched."""
+
+    def test_routing(self):
+        from lib.mint_registry import norby_gotland_entity as f
+        self.assertEqual(f("danish_realm", "Visby", "Søren Norby"), "norby_gotland")
+        self.assertEqual(f("danish_realm", "Visby", "Søren Nordby"), "norby_gotland")
+        self.assertEqual(f("danish_realm", "Ronneby", "Frederik I"), "danish_realm")
+        self.assertEqual(f("danish_realm", "Visby", "Christian III"), "danish_realm")
+        self.assertEqual(f("christian_ii_supporters", "Landskrona", "Christian II"),
+                         "christian_ii_supporters")
+
+
 class BuilderGuards(unittest.TestCase):
     def test_fantasy_coin_is_not_seeded(self):
         """fr/f1g257: «1 Sølvgylden - støbt fantasimønt» (curator 2026-10-20)."""

@@ -205,6 +205,8 @@ _ENTITY_TO_KM_REGISTER: dict[str, str] = {
     # Christian II after 1523 — Krause's Denmark / Norway volumes.
     "christian_ii_supporters": "dk",
     "christian_ii_reconquest": "nor",
+    # Søren Norby's own Visby issues 1523-1525 — Krause's Denmark volume.
+    "norby_gotland": "dk",
     # SH territory — Krause «German States — Schleswig-Holstein»
     "royal_holstein": "sh",
     "gottorp_duchy": "sh",

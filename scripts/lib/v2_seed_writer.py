@@ -188,6 +188,7 @@ from lib.mint_registry import (  # noqa: E402
     CANON_TO_DISPLAY as _MINT_CANON_TO_DISPLAY,
     NORWAY_FROM_YEAR,
     christian_ii_entity,
+    norby_gotland_entity,
     norway_split_entity,
     strip_mint_suffix as _strip_mint_suffix,
 )
@@ -1580,7 +1581,9 @@ def _apply_norway_split(coins: list[dict], source_name: str) -> int:
 
 def _apply_christian_ii_split(coins: list[dict], source_name: str) -> int:
     """Route coins in Christian II's name after 1523 to their own issuers
-    (`mint_registry.christian_ii_entity`), in place, for every source. Runs
+    (`mint_registry.christian_ii_entity`), and Søren Norby's Visby coins to
+    `norby_gotland` (`mint_registry.norby_gotland_entity`), in place, for every
+    source. Runs
     before the curated-entity restore, which re-asserts a held entity."""
     moved = 0
     for c in coins:
@@ -1590,10 +1593,20 @@ def _apply_christian_ii_split(coins: list[dict], source_name: str) -> int:
         if new != ie:
             c["issuing_entity"] = new
             moved += 1
+    norby = 0
+    for c in coins:
+        ie = c.get("issuing_entity")
+        new = norby_gotland_entity(ie, c.get("mint"), c.get("ruler"))
+        if new != ie:
+            c["issuing_entity"] = new
+            norby += 1
     if moved:
         print(f"[{source_name}] Christian II after 1523: {moved} coin(s) "
               f"re-routed to christian_ii_supporters / christian_ii_reconquest")
-    return moved
+    if norby:
+        print(f"[{source_name}] Søren Norby at Visby: {norby} coin(s) "
+              f"re-routed to norby_gotland")
+    return moved + norby
 
 
 def _check_entity_invariant(

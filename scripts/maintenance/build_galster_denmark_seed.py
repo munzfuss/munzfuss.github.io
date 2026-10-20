@@ -757,6 +757,14 @@ def build_entry(data: dict) -> dict | None:
     return entry
 
 
+_INDEX_PAGES = ("/hans.htm", "/c2galst.htm", "/f1galst.htm")
+
+
+def _from_index_row(entry: dict) -> bool:
+    url = ((entry.get("sources") or [{}])[0].get("url") or "")
+    return url.endswith(_INDEX_PAGES)
+
+
 def collect_entries() -> list[dict]:
     entries: list[dict] = []
     skipped_shape = 0
@@ -856,9 +864,20 @@ def collect_entries() -> list[dict]:
         entry = build_entry(data)
         if entry:
             entries.append(entry)
+        # A second Galster number on the same page (chr/c2g82.htm also
+        # carries Galster 83, one bullet each — parse_galster).
+        for extra in data.get("extra_coins") or []:
+            entry = build_entry(extra)
+            if entry:
+                entries.append(entry)
     if skipped_shape:
         print(f"  Skipped {skipped_shape} non-coin page(s) (article / reign_index)")
-    return entries
+    # An index row (hans.htm / c2galst.htm) only stands in for a coin that has
+    # no page. When a page for the same number exists — c2galst.htm lists 173
+    # without a link, norge/nc2g173.htm describes it — the page wins.
+    page_ids = {e["id"] for e in entries if not _from_index_row(e)}
+    return [e for e in entries
+            if not (_from_index_row(e) and e["id"] in page_ids)]
 
 
 def main() -> int:
