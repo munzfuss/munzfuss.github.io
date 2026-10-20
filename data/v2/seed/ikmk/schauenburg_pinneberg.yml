@@ -1,48 +1,335 @@
 status: seed
 source: IKMK Berlin (ikmk.smb.museum, json_ext)
-generated_at: '2026-09-12T18:48:13Z'
+generated_at: '2026-10-20T04:58:29Z'
 entity: schauenburg_pinneberg
 scope_note: IKMK Berlin seed — records from the Interaktiver Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0), built directly from the museum json_ext cache (scope-purged + 
   title-filtered at harvest). Coin-only (§9.2 exonumia excluded). Mint city → issuing entity via classify_mint_to_entity; museum-attested fields carry verified=true. Phase-4 assigns Müntzfuß/phase; 
   cross-source merger deduplicates against Hede/Bruun/Numista/etc.
 coins:
-  - id: ikmk-18219260
+  - id: ikmk-18286306
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
     issuing_entity: schauenburg_pinneberg
-    nominal: 1 Taler
+    nominal: 1 Arendschilling
     metal: silver
     metal_verified: true
     mint_verified: false
     ruler: Ernst III.
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
+    year_first: 1616
+    year_last: 1619
+    year_label: 1616-1619
     year_ranges:
-      -   - 1622
-          - 1622
-    inscription_obv: + ERNEST D G S R I PRINC COM HOLSAT SCHAVMB STERNB DN GEH
-    inscription_rev: OBIIT / AN CHRI MDCXXII / DIE XVII IANUAR INT / VII ET VIII MATUTINAM / CUM / VIXISSET ANOS LII / MENS III DIES XXIV H I / IN REGIMINE VERO / ANNOS XX ME VI / DIE XV HO IV
-    weight_rough_g: 29.0
+      -   - 1616
+          - 1619
+    inscription_obv: ERN-ES D G - CO HO-L S E S - D G
+    inscription_rev: MATTHIAS D G RO IM SEM AV
+    weight_rough_g: 4.61
     weight_rough_verified: true
-    diameter_mm: 42.0
+    diameter_mm: 29.0
     diameter_mm_verified: true
-    catalog:
-      dav: '3746'
-      lange: '944'
     verified: false
     sources:
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18219260
-        ref: IKMK Berlin 18219260
+        url: https://ikmk.smb.museum/object?id=18286306
+        ref: IKMK Berlin 18286306
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286372
+        ref: IKMK Berlin 18286372
     verification_note: &id001
       de: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Interactive Catalogue of the Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис з інтерактивного каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Münzkabinett Berlins interaktive katalog (ikmk.smb.museum, CC BY-SA 4.0); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     _source_note:
-      de: Dieser Sterbetaler von Holstein-Schaumburg (Schauenburg-Pinneberg) ist 1622 auf den Tod des Grafen Ernst III. geprägt worden, wahrscheinlich im Auftrage seiner Witwe Elisabeth bzw. unter 
-        seinem Nachfolger Justus Hermann (1622-1635). Auf der Vs. die Ziffer 1807 in schwarzer Tusche
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
+        Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Escalin
+      en: Escalin
+      uk: Escalin
+    _thinned_from:
+      - ikmk-18286372
+  - id: ikmk-18286307
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Arendschilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1616
+    year_last: 1619
+    year_label: 1616-1619
+    year_ranges:
+      -   - 1616
+          - 1619
+    inscription_obv: ERN-ES D G - CO HOL - S ET [S] - D G
+    inscription_rev: MATTHIAS D G RO IM SEM A
+    weight_rough_g: 4.69
+    weight_rough_verified: true
+    diameter_mm: 30.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286307
+        ref: IKMK Berlin 18286307
+    verification_note: *id001
+    _source_note:
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
+        Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Escalin
+      en: Escalin
+      uk: Escalin
+  - id: ikmk-18286326
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Arendschilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1616
+    year_last: 1619
+    year_label: 1616-1619
+    year_ranges:
+      -   - 1616
+          - 1619
+    inscription_obv: ERN-ES D G - CO [...] - S ET S - D G
+    inscription_rev: MATTHIAS D G RO IM SEM AV
+    weight_rough_g: 4.89
+    weight_rough_verified: true
+    diameter_mm: 29.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286326
+        ref: IKMK Berlin 18286326
+    verification_note: *id001
+    _source_note:
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
+        Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Escalin
+      en: Escalin
+      uk: Escalin
+  - id: ikmk-18286334
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Arendschilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1616
+    year_last: 1619
+    year_label: 1616-1619
+    year_ranges:
+      -   - 1616
+          - 1619
+    inscription_obv: ERN-ES D G - CO HOL - S ET ST - D G
+    inscription_rev: MATTHIAS D G RO IM SEM A
+    weight_rough_g: 4.66
+    weight_rough_verified: true
+    diameter_mm: 28.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286334
+        ref: IKMK Berlin 18286334
+    verification_note: *id001
+    _source_note:
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
+        Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Escalin
+      en: Escalin
+      uk: Escalin
+  - id: ikmk-18286342
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Arendschilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1616
+    year_last: 1619
+    year_label: 1616-1619
+    year_ranges:
+      -   - 1616
+          - 1619
+    inscription_obv: ERN-ES D G - CO HOL - S ET S - D G
+    inscription_rev: MATTHIAS D G RO IM SEM AV
+    weight_rough_g: 5.02
+    weight_rough_verified: true
+    diameter_mm: 30.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286342
+        ref: IKMK Berlin 18286342
+    verification_note: *id001
+    _source_note:
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
+        Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Escalin
+      en: Escalin
+      uk: Escalin
+  - id: ikmk-18286356
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Arendschilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1616
+    year_last: 1619
+    year_label: 1616-1619
+    year_ranges:
+      -   - 1616
+          - 1619
+    inscription_obv: ERN-ES D G - CO HO - S ET S - D G
+    inscription_rev: MATTHIAS D G RO IM SEM AV
+    weight_rough_g: 4.38
+    weight_rough_verified: true
+    diameter_mm: 29.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286356
+        ref: IKMK Berlin 18286356
+    verification_note: *id001
+    _source_note:
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
+        Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Escalin
+      en: Escalin
+      uk: Escalin
+  - id: ikmk-18286362
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Arendschilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1616
+    year_last: 1619
+    year_label: 1616-1619
+    year_ranges:
+      -   - 1616
+          - 1619
+    inscription_obv: ERN-EST D - G CO HO - S ET S - D G
+    inscription_rev: MATTHIAS D G RO IM SEM AV
+    weight_rough_g: 5.11
+    weight_rough_verified: true
+    diameter_mm: 29.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286362
+        ref: IKMK Berlin 18286362
+    verification_note: *id001
+    _source_note:
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
+        Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Escalin
+      en: Escalin
+      uk: Escalin
+  - id: ikmk-18286369
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Arendschilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1616
+    year_last: 1619
+    year_label: 1616-1619
+    year_ranges:
+      -   - 1616
+          - 1619
+    inscription_obv: ERN-EST D - G CO H - O S ET - S D G
+    inscription_rev: MATTHIAS D G RO IM SEM AV
+    weight_rough_g: 4.6
+    weight_rough_verified: true
+    diameter_mm: 27.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286369
+        ref: IKMK Berlin 18286369
+    verification_note: *id001
+    _source_note:
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
+        Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Escalin
+      en: Escalin
+      uk: Escalin
+  - id: ikmk-18286375
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Arendschilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1616
+    year_last: 1619
+    year_label: 1616-1619
+    year_ranges:
+      -   - 1616
+          - 1619
+    inscription_obv: ERN-ES D G - CO HO - S ET S - D G
+    inscription_rev: MATTHIAS D G R IM SEM AVG
+    weight_rough_g: 4.73
+    weight_rough_verified: true
+    diameter_mm: 29.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286375
+        ref: IKMK Berlin 18286375
+    verification_note: *id001
+    _source_note:
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
+        Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Escalin
+      en: Escalin
+      uk: Escalin
   - id: ikmk-18285689
     fuss: seed_unsorted
     phase: ikmk
@@ -121,6 +408,210 @@ coins:
         Schauenburg (zunächst Oldendorf, 1618 Rinteln, 1620 wieder Oldendorf) als der Altonaer Münze zugehörig erklärten, um rechtliche Probleme mit dem Kreis wegen des Betriebs von mehr als einer 
         Münzstätte in ihrem Territorium zu vermeiden. Der Münzmeister der Münzstätte Altona war theoretisch als Münzmeister für beide holsteinisch-schauenburgische Münzstätten verantwortlich und der 
         jeweilige Münzmeister vor Ort war…
+  - id: ikmk-18286228
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    year_ranges:
+      -   - 1618
+          - 1618
+    inscription_obv: E [...] - E S C D
+    inscription_rev: MATT I [D G] R I S A 16-18
+    weight_rough_g: 1.14
+    weight_rough_verified: true
+    diameter_mm: 19.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286228
+        ref: IKMK Berlin 18286228
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+  - id: ikmk-18286248
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    year_ranges:
+      -   - 1618
+          - 1618
+    inscription_obv: E D G H S - E S C D G
+    inscription_rev: MAT I D G R I S A 6-18
+    weight_rough_g: 1.34
+    weight_rough_verified: true
+    diameter_mm: 19.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286248
+        ref: IKMK Berlin 18286248
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+  - id: ikmk-18286251
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    year_ranges:
+      -   - 1618
+          - 1618
+    inscription_obv: E D G H S - E S C D G
+    inscription_rev: MAT I D G RO IM S A 6-18
+    weight_rough_g: 1.13
+    weight_rough_verified: true
+    diameter_mm: 19.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286251
+        ref: IKMK Berlin 18286251
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+  - id: ikmk-18286284
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    year_ranges:
+      -   - 1618
+          - 1618
+    inscription_obv: E D G H S - E S C D G
+    inscription_rev: MAT I D G RO IM S A 6-18
+    weight_rough_g: 1.5
+    weight_rough_verified: true
+    diameter_mm: 20.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286284
+        ref: IKMK Berlin 18286284
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+  - id: ikmk-18286289
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    year_ranges:
+      -   - 1618
+          - 1618
+    inscription_obv: E D G H S - [...]
+    inscription_rev: MAT[... D] G RO IM S A 16-18
+    weight_rough_g: 1.32
+    weight_rough_verified: true
+    diameter_mm: 20.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286289
+        ref: IKMK Berlin 18286289
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+  - id: ikmk-18286294
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1618
+    year_last: 1618
+    year_label: '1618'
+    year_ranges:
+      -   - 1618
+          - 1618
+    inscription_obv: E D G H S - E S C D G
+    inscription_rev: MAT I D G R IM S A 6-18
+    weight_rough_g: 1.16
+    weight_rough_verified: true
+    diameter_mm: 19.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286294
+        ref: IKMK Berlin 18286294
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
   - id: ikmk-18285708
     fuss: seed_unsorted
     phase: ikmk
@@ -529,6 +1020,249 @@ coins:
       de: 1/16 Taler
       en: 1/16 Taler
       uk: 1/16 Taler
+  - id: ikmk-18286709
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    year_ranges:
+      -   - 1619
+          - 1619
+    inscription_obv: E D G C H - S E S D G
+    inscription_rev: MAT D G RO IM S A 619
+    weight_rough_g: 1.02
+    weight_rough_verified: true
+    diameter_mm: 19.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286709
+        ref: IKMK Berlin 18286709
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286752
+        ref: IKMK Berlin 18286752
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+    _thinned_from:
+      - ikmk-18286752
+  - id: ikmk-18286716
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    year_ranges:
+      -   - 1619
+          - 1619
+    inscription_obv: E D G H S - E S C D G
+    inscription_rev: MAT I D G R IM S A 6-19
+    weight_rough_g: 1.14
+    weight_rough_verified: true
+    diameter_mm: 19.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286716
+        ref: IKMK Berlin 18286716
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+  - id: ikmk-18286720
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    year_ranges:
+      -   - 1619
+          - 1619
+    inscription_obv: E D G H S - E S C D G
+    inscription_rev: MATT I D G R I S A 6-19
+    weight_rough_g: 1.15
+    weight_rough_verified: true
+    diameter_mm: 19.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286720
+        ref: IKMK Berlin 18286720
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+  - id: ikmk-18286724
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    year_ranges:
+      -   - 1619
+          - 1619
+    inscription_obv: E D [G C H] - S E S D G
+    inscription_rev: MAT D G RO IM S A 19
+    weight_rough_g: 1.35
+    weight_rough_verified: true
+    diameter_mm: 19.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286724
+        ref: IKMK Berlin 18286724
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+  - id: ikmk-18286735
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    year_ranges:
+      -   - 1619
+          - 1619
+    inscription_obv: E D G C H - S E S D G
+    inscription_rev: '[M]AT D G RO IM S A 19'
+    weight_rough_g: 1.16
+    weight_rough_verified: true
+    diameter_mm: 19.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286735
+        ref: IKMK Berlin 18286735
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+  - id: ikmk-18286738
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    year_ranges:
+      -   - 1619
+          - 1619
+    inscription_obv: E D G C H - S E S D G
+    inscription_rev: '[M]AT D G RO IM S A 19'
+    weight_rough_g: 1.03
+    weight_rough_verified: true
+    diameter_mm: 19.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286738
+        ref: IKMK Berlin 18286738
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+  - id: ikmk-18286755
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1/24 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1619
+    year_last: 1619
+    year_label: '1619'
+    year_ranges:
+      -   - 1619
+          - 1619
+    inscription_obv: E D G C H - S H S D G
+    inscription_rev: MAT D G RO IM S A 619
+    weight_rough_g: 0.97
+    weight_rough_verified: true
+    diameter_mm: 19.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286755
+        ref: IKMK Berlin 18286755
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
   - id: ikmk-18285754
     fuss: seed_unsorted
     phase: ikmk
@@ -556,6 +1290,12 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18285754
         ref: IKMK Berlin 18285754
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285902
+        ref: IKMK Berlin 18285902
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285912
+        ref: IKMK Berlin 18285912
     verification_note: *id001
     _source_note:
       de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
@@ -563,6 +1303,9 @@ coins:
       de: 1/16 Taler
       en: 1/16 Taler
       uk: 1/16 Taler
+    _thinned_from:
+      - ikmk-18285902
+      - ikmk-18285912
   - id: ikmk-18285773
     fuss: seed_unsorted
     phase: ikmk
@@ -1006,1163 +1749,6 @@ coins:
       de: 1/16 Taler
       en: 1/16 Taler
       uk: 1/16 Taler
-  - id: ikmk-18285931
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Doppelschilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: ER PR E - C H S E S
-    inscription_rev: FERDINAN D G R IM S A Z1
-    weight_rough_g: 1.38
-    weight_rough_verified: true
-    diameter_mm: 22.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18285931
-        ref: IKMK Berlin 18285931
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-  - id: ikmk-18286200
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Doppelschilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: ER PR E - C H S E S
-    inscription_rev: FERDINAN D G R IM S A Z1
-    weight_rough_g: 1.83
-    weight_rough_verified: true
-    diameter_mm: 22.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286200
-        ref: IKMK Berlin 18286200
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-  - id: ikmk-18286228
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    year_ranges:
-      -   - 1618
-          - 1618
-    inscription_obv: E [...] - E S C D
-    inscription_rev: MATT I [D G] R I S A 16-18
-    weight_rough_g: 1.14
-    weight_rough_verified: true
-    diameter_mm: 19.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286228
-        ref: IKMK Berlin 18286228
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286248
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    year_ranges:
-      -   - 1618
-          - 1618
-    inscription_obv: E D G H S - E S C D G
-    inscription_rev: MAT I D G R I S A 6-18
-    weight_rough_g: 1.34
-    weight_rough_verified: true
-    diameter_mm: 19.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286248
-        ref: IKMK Berlin 18286248
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286251
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    year_ranges:
-      -   - 1618
-          - 1618
-    inscription_obv: E D G H S - E S C D G
-    inscription_rev: MAT I D G RO IM S A 6-18
-    weight_rough_g: 1.13
-    weight_rough_verified: true
-    diameter_mm: 19.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286251
-        ref: IKMK Berlin 18286251
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286284
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    year_ranges:
-      -   - 1618
-          - 1618
-    inscription_obv: E D G H S - E S C D G
-    inscription_rev: MAT I D G RO IM S A 6-18
-    weight_rough_g: 1.5
-    weight_rough_verified: true
-    diameter_mm: 20.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286284
-        ref: IKMK Berlin 18286284
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286289
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    year_ranges:
-      -   - 1618
-          - 1618
-    inscription_obv: E D G H S - [...]
-    inscription_rev: MAT[... D] G RO IM S A 16-18
-    weight_rough_g: 1.32
-    weight_rough_verified: true
-    diameter_mm: 20.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286289
-        ref: IKMK Berlin 18286289
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286294
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1618
-    year_last: 1618
-    year_label: '1618'
-    year_ranges:
-      -   - 1618
-          - 1618
-    inscription_obv: E D G H S - E S C D G
-    inscription_rev: MAT I D G R IM S A 6-18
-    weight_rough_g: 1.16
-    weight_rough_verified: true
-    diameter_mm: 19.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286294
-        ref: IKMK Berlin 18286294
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286306
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Arendschilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1616
-    year_last: 1619
-    year_label: 1616-1619
-    year_ranges:
-      -   - 1616
-          - 1619
-    inscription_obv: ERN-ES D G - CO HO-L S E S - D G
-    inscription_rev: MATTHIAS D G RO IM SEM AV
-    weight_rough_g: 4.61
-    weight_rough_verified: true
-    diameter_mm: 29.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286306
-        ref: IKMK Berlin 18286306
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
-        Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Escalin
-      en: Escalin
-      uk: Escalin
-  - id: ikmk-18286307
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Arendschilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1616
-    year_last: 1619
-    year_label: 1616-1619
-    year_ranges:
-      -   - 1616
-          - 1619
-    inscription_obv: ERN-ES D G - CO HOL - S ET [S] - D G
-    inscription_rev: MATTHIAS D G RO IM SEM A
-    weight_rough_g: 4.69
-    weight_rough_verified: true
-    diameter_mm: 30.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286307
-        ref: IKMK Berlin 18286307
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
-        Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Escalin
-      en: Escalin
-      uk: Escalin
-  - id: ikmk-18286326
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Arendschilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1616
-    year_last: 1619
-    year_label: 1616-1619
-    year_ranges:
-      -   - 1616
-          - 1619
-    inscription_obv: ERN-ES D G - CO [...] - S ET S - D G
-    inscription_rev: MATTHIAS D G RO IM SEM AV
-    weight_rough_g: 4.89
-    weight_rough_verified: true
-    diameter_mm: 29.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286326
-        ref: IKMK Berlin 18286326
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
-        Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Escalin
-      en: Escalin
-      uk: Escalin
-  - id: ikmk-18286334
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Arendschilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1616
-    year_last: 1619
-    year_label: 1616-1619
-    year_ranges:
-      -   - 1616
-          - 1619
-    inscription_obv: ERN-ES D G - CO HOL - S ET ST - D G
-    inscription_rev: MATTHIAS D G RO IM SEM A
-    weight_rough_g: 4.66
-    weight_rough_verified: true
-    diameter_mm: 28.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286334
-        ref: IKMK Berlin 18286334
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
-        Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Escalin
-      en: Escalin
-      uk: Escalin
-  - id: ikmk-18286342
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Arendschilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1616
-    year_last: 1619
-    year_label: 1616-1619
-    year_ranges:
-      -   - 1616
-          - 1619
-    inscription_obv: ERN-ES D G - CO HOL - S ET S - D G
-    inscription_rev: MATTHIAS D G RO IM SEM AV
-    weight_rough_g: 5.02
-    weight_rough_verified: true
-    diameter_mm: 30.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286342
-        ref: IKMK Berlin 18286342
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
-        Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Escalin
-      en: Escalin
-      uk: Escalin
-  - id: ikmk-18286356
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Arendschilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1616
-    year_last: 1619
-    year_label: 1616-1619
-    year_ranges:
-      -   - 1616
-          - 1619
-    inscription_obv: ERN-ES D G - CO HO - S ET S - D G
-    inscription_rev: MATTHIAS D G RO IM SEM AV
-    weight_rough_g: 4.38
-    weight_rough_verified: true
-    diameter_mm: 29.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286356
-        ref: IKMK Berlin 18286356
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
-        Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Escalin
-      en: Escalin
-      uk: Escalin
-  - id: ikmk-18286362
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Arendschilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1616
-    year_last: 1619
-    year_label: 1616-1619
-    year_ranges:
-      -   - 1616
-          - 1619
-    inscription_obv: ERN-EST D - G CO HO - S ET S - D G
-    inscription_rev: MATTHIAS D G RO IM SEM AV
-    weight_rough_g: 5.11
-    weight_rough_verified: true
-    diameter_mm: 29.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286362
-        ref: IKMK Berlin 18286362
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
-        Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Escalin
-      en: Escalin
-      uk: Escalin
-  - id: ikmk-18286369
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Arendschilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1616
-    year_last: 1619
-    year_label: 1616-1619
-    year_ranges:
-      -   - 1616
-          - 1619
-    inscription_obv: ERN-EST D - G CO H - O S ET - S D G
-    inscription_rev: MATTHIAS D G RO IM SEM AV
-    weight_rough_g: 4.6
-    weight_rough_verified: true
-    diameter_mm: 27.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286369
-        ref: IKMK Berlin 18286369
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
-        Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Escalin
-      en: Escalin
-      uk: Escalin
-  - id: ikmk-18286375
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Arendschilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1616
-    year_last: 1619
-    year_label: 1616-1619
-    year_ranges:
-      -   - 1616
-          - 1619
-    inscription_obv: ERN-ES D G - CO HO - S ET S - D G
-    inscription_rev: MATTHIAS D G R IM SEM AVG
-    weight_rough_g: 4.73
-    weight_rough_verified: true
-    diameter_mm: 29.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286375
-        ref: IKMK Berlin 18286375
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 455] zwischen 1616 und 1619 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige 
-        Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Escalin
-      en: Escalin
-      uk: Escalin
-  - id: ikmk-18286654
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 4 Groschen
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: ERN D - [...] R E C - H S E S
-    inscription_rev: '[FERDI]NANDVS D G R IM S AVG'
-    weight_rough_g: 2.52
-    weight_rough_verified: true
-    diameter_mm: 26.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286654
-        ref: IKMK Berlin 18286654
-    verification_note: *id001
-    _source_note:
-      de: Weinmeister (1908) Nr. 196-198 kennt ausschließlich 4 Groschen-Stücke des Jahrgangs 1621, weshalb diese Datierung hier trotz fehlender Jahreszahl übernommen wurde
-  - id: ikmk-18286660
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 4 Groschen
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: ER PR - E C H S - E S D G
-    inscription_rev: FERDINANDVS D G R IM S AV 6Z1
-    weight_rough_g: 2.7
-    weight_rough_verified: true
-    diameter_mm: 26.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286660
-        ref: IKMK Berlin 18286660
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-  - id: ikmk-18286681
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Schilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: ER-[...] - [...] - C HO - E S
-    inscription_rev: XXI ZV EINEM TALER
-    weight_rough_g: 2.27
-    weight_rough_verified: true
-    diameter_mm: 25.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286681
-        ref: IKMK Berlin 18286681
-    verification_note: *id001
-    _source_note:
-      de: Weinmeister (1908) führt diese Münze als Fürstengroschen. Von dieser Münze im Wert von 12 meißnischen Pfennigen gingen 21 auf den Gulden, es handelt sich also um einen 1/21 Gulden. Auf der 
-        vorliegenden Münze steht jedoch explizit, dass 21 auf den Taler gehen. Also handelt es sich hier um ein 1/21 Taler-Stück und nicht um einen Fürstengroschen, wie Weinmeister schreibt.- Trotz 
-        fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 462] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte 
-        nicht möglich
-    note:
-      de: 1/21 Taler
-      en: 1/21 Taler
-      uk: 1/21 Taler
-  - id: ikmk-18286687
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Schilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: ER-NES - D G P E - C HO - E S
-    inscription_rev: XXI ZV EINEM TALER
-    weight_rough_g: 1.76
-    weight_rough_verified: true
-    diameter_mm: 26.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286687
-        ref: IKMK Berlin 18286687
-    verification_note: *id001
-    _source_note:
-      de: Weinmeister (1908) führt diese Münze als Fürstengroschen. Von dieser Münze im Wert von 12 meißnischen Pfennigen gingen 21 auf den Gulden, es handelt sich also um einen 1/21 Gulden. Auf der 
-        vorliegenden Münze steht jedoch explizit, dass 21 auf den Taler gehen. Also handelt es sich hier um ein 1/21 Taler-Stück und nicht um einen Fürstengroschen, wie Weinmeister schreibt.- Trotz 
-        fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 462] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte 
-        nicht möglich
-    note:
-      de: 1/21 Taler
-      en: 1/21 Taler
-      uk: 1/21 Taler
-  - id: ikmk-18286694
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Schilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: ER-NES - D G P E - C HO - E S
-    inscription_rev: XXI THO EINEM TALER
-    weight_rough_g: 2.47
-    weight_rough_verified: true
-    diameter_mm: 25.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286694
-        ref: IKMK Berlin 18286694
-    verification_note: *id001
-    _source_note:
-      de: Weinmeister (1908) führt diese Münze als Fürstengroschen. Von dieser Münze im Wert von 12 meißnischen Pfennigen gingen 21 auf den Gulden, es handelt sich also um einen 1/21 Gulden. Auf der 
-        vorliegenden Münze steht jedoch explizit, dass 21 auf den Taler gehen. Also handelt es sich hier um ein 1/21 Taler-Stück und nicht um einen Fürstengroschen, wie Weinmeister schreibt.- Trotz 
-        fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 462] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte 
-        nicht möglich
-    note:
-      de: 1/21 Taler
-      en: 1/21 Taler
-      uk: 1/21 Taler
-  - id: ikmk-18286696
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Schilling
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: ER-NES - D G P E - C HO - E S
-    inscription_rev: XXI ZV EINEM TALER
-    weight_rough_g: 2.14
-    weight_rough_verified: true
-    diameter_mm: 25.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286696
-        ref: IKMK Berlin 18286696
-    verification_note: *id001
-    _source_note:
-      de: Weinmeister (1908) führt diese Münze als Fürstengroschen. Von dieser Münze im Wert von 12 meißnischen Pfennigen gingen 21 auf den Gulden, es handelt sich also um einen 1/21 Gulden. Auf der 
-        vorliegenden Münze steht jedoch explizit, dass 21 auf den Taler gehen. Also handelt es sich hier um ein 1/21 Taler-Stück und nicht um einen Fürstengroschen, wie Weinmeister schreibt.- Trotz 
-        fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 462] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte 
-        nicht möglich
-    note:
-      de: 1/21 Taler
-      en: 1/21 Taler
-      uk: 1/21 Taler
-  - id: ikmk-18286698
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Fürstengroschen (12 Meißnische Pfennige)
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: ERNESTVS [...] C H E S
-    inscription_rev: FVR S[CHAU] LAN MV
-    weight_rough_g: 2.23
-    weight_rough_verified: true
-    diameter_mm: 25.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286698
-        ref: IKMK Berlin 18286698
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 470] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der 
-        Münzstätte nicht möglich
-  - id: ikmk-18286700
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Fürstengroschen (12 Meißnische Pfennige)
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: '[ER]-NES - D G P E - C HO - E S'
-    inscription_rev: FVR SC[HAU] LAN MV
-    weight_rough_g: 1.81
-    weight_rough_verified: true
-    diameter_mm: 25.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286700
-        ref: IKMK Berlin 18286700
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 470] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der 
-        Münzstätte nicht möglich
-  - id: ikmk-18286703
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Fürstengroschen (12 Meißnische Pfennige)
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: '[ER]-NES - D G P E - C H - E S'
-    inscription_rev: FVR SC[HAU] LAN MV
-    weight_rough_g: 1.74
-    weight_rough_verified: true
-    diameter_mm: 23.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286703
-        ref: IKMK Berlin 18286703
-    verification_note: *id001
-    _source_note:
-      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge (Weinmeister 1908 470) 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der 
-        Münzstätte nicht möglich
-  - id: ikmk-18286704
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1 Fürstengroschen (12 Meißnische Pfennige)
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    year_ranges:
-      -   - 1621
-          - 1621
-    inscription_obv: ERNES[...] D G RO I [...]
-    inscription_rev: LANDTMVNZE ZV 1Z
-    weight_rough_g: 1.87
-    weight_rough_verified: true
-    diameter_mm: 25.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286704
-        ref: IKMK Berlin 18286704
-    verification_note: *id001
-    _source_note:
-      de: Das Zeichen am Ende der Rückseitenumschrift (retrogrades K?) ist bisher ungedeutet. Es könnte sich hier um eine Nominalbezeichnung (K) handeln, aber auch eine rudimentäre Version des 
-        Münzmeisterzeichens aufrechter Löwe (Kaspar Kohl) wäre denkbar. Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 470] 1621 geprägt worden
-  - id: ikmk-18286709
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    year_ranges:
-      -   - 1619
-          - 1619
-    inscription_obv: E D G C H - S E S D G
-    inscription_rev: MAT D G RO IM S A 619
-    weight_rough_g: 1.02
-    weight_rough_verified: true
-    diameter_mm: 19.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286709
-        ref: IKMK Berlin 18286709
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286716
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    year_ranges:
-      -   - 1619
-          - 1619
-    inscription_obv: E D G H S - E S C D G
-    inscription_rev: MAT I D G R IM S A 6-19
-    weight_rough_g: 1.14
-    weight_rough_verified: true
-    diameter_mm: 19.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286716
-        ref: IKMK Berlin 18286716
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286720
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    year_ranges:
-      -   - 1619
-          - 1619
-    inscription_obv: E D G H S - E S C D G
-    inscription_rev: MATT I D G R I S A 6-19
-    weight_rough_g: 1.15
-    weight_rough_verified: true
-    diameter_mm: 19.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286720
-        ref: IKMK Berlin 18286720
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286724
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    year_ranges:
-      -   - 1619
-          - 1619
-    inscription_obv: E D [G C H] - S E S D G
-    inscription_rev: MAT D G RO IM S A 19
-    weight_rough_g: 1.35
-    weight_rough_verified: true
-    diameter_mm: 19.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286724
-        ref: IKMK Berlin 18286724
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286735
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    year_ranges:
-      -   - 1619
-          - 1619
-    inscription_obv: E D G C H - S E S D G
-    inscription_rev: '[M]AT D G RO IM S A 19'
-    weight_rough_g: 1.16
-    weight_rough_verified: true
-    diameter_mm: 19.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286735
-        ref: IKMK Berlin 18286735
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286738
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    year_ranges:
-      -   - 1619
-          - 1619
-    inscription_obv: E D G C H - S E S D G
-    inscription_rev: '[M]AT D G RO IM S A 19'
-    weight_rough_g: 1.03
-    weight_rough_verified: true
-    diameter_mm: 19.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286738
-        ref: IKMK Berlin 18286738
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-  - id: ikmk-18286755
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: schauenburg_pinneberg
-    nominal: 1/24 Taler
-    metal: silver
-    metal_verified: true
-    mint_verified: false
-    ruler: Ernst III.
-    year_first: 1619
-    year_last: 1619
-    year_label: '1619'
-    year_ranges:
-      -   - 1619
-          - 1619
-    inscription_obv: E D G C H - S H S D G
-    inscription_rev: MAT D G RO IM S A 619
-    weight_rough_g: 0.97
-    weight_rough_verified: true
-    diameter_mm: 19.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18286755
-        ref: IKMK Berlin 18286755
-    verification_note: *id001
-    _source_note:
-      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
   - id: ikmk-18286759
     fuss: seed_unsorted
     phase: ikmk
@@ -2190,6 +1776,15 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18286759
         ref: IKMK Berlin 18286759
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286788
+        ref: IKMK Berlin 18286788
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286838
+        ref: IKMK Berlin 18286838
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286841
+        ref: IKMK Berlin 18286841
     verification_note: *id001
     _source_note:
       de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
@@ -2197,6 +1792,10 @@ coins:
       de: Groschen
       en: Groschen
       uk: Groschen
+    _thinned_from:
+      - ikmk-18286788
+      - ikmk-18286838
+      - ikmk-18286841
   - id: ikmk-18286763
     fuss: seed_unsorted
     phase: ikmk
@@ -2789,3 +2388,437 @@ coins:
     _source_note:
       de: Nach Weinmeister (1908) 471 Anm. 1 sind die schauenburgischen Kupfermünzen „mindestens teilweise erst unter" dem Nachfolger Ernsts III., Justus Hermann, geprägt worden. Eine genaue Datierung
         ist daher aufgrund fehlender Hinweise auf der Münze leider nicht möglich
+  - id: ikmk-18285931
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Doppelschilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: ER PR E - C H S E S
+    inscription_rev: FERDINAN D G R IM S A Z1
+    weight_rough_g: 1.38
+    weight_rough_verified: true
+    diameter_mm: 22.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18285931
+        ref: IKMK Berlin 18285931
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+  - id: ikmk-18286200
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Doppelschilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: ER PR E - C H S E S
+    inscription_rev: FERDINAN D G R IM S A Z1
+    weight_rough_g: 1.83
+    weight_rough_verified: true
+    diameter_mm: 22.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286200
+        ref: IKMK Berlin 18286200
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+    note:
+      de: 1/16 Taler
+      en: 1/16 Taler
+      uk: 1/16 Taler
+  - id: ikmk-18286654
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 4 Groschen
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: ERN D - [...] R E C - H S E S
+    inscription_rev: '[FERDI]NANDVS D G R IM S AVG'
+    weight_rough_g: 2.52
+    weight_rough_verified: true
+    diameter_mm: 26.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286654
+        ref: IKMK Berlin 18286654
+    verification_note: *id001
+    _source_note:
+      de: Weinmeister (1908) Nr. 196-198 kennt ausschließlich 4 Groschen-Stücke des Jahrgangs 1621, weshalb diese Datierung hier trotz fehlender Jahreszahl übernommen wurde
+  - id: ikmk-18286660
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 4 Groschen
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: ER PR - E C H S - E S D G
+    inscription_rev: FERDINANDVS D G R IM S AV 6Z1
+    weight_rough_g: 2.7
+    weight_rough_verified: true
+    diameter_mm: 26.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286660
+        ref: IKMK Berlin 18286660
+    verification_note: *id001
+    _source_note:
+      de: Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte nicht möglich
+  - id: ikmk-18286681
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Schilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: ER-[...] - [...] - C HO - E S
+    inscription_rev: XXI ZV EINEM TALER
+    weight_rough_g: 2.27
+    weight_rough_verified: true
+    diameter_mm: 25.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286681
+        ref: IKMK Berlin 18286681
+    verification_note: *id001
+    _source_note:
+      de: Weinmeister (1908) führt diese Münze als Fürstengroschen. Von dieser Münze im Wert von 12 meißnischen Pfennigen gingen 21 auf den Gulden, es handelt sich also um einen 1/21 Gulden. Auf der 
+        vorliegenden Münze steht jedoch explizit, dass 21 auf den Taler gehen. Also handelt es sich hier um ein 1/21 Taler-Stück und nicht um einen Fürstengroschen, wie Weinmeister schreibt.- Trotz 
+        fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 462] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte 
+        nicht möglich
+    note:
+      de: 1/21 Taler
+      en: 1/21 Taler
+      uk: 1/21 Taler
+  - id: ikmk-18286687
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Schilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: ER-NES - D G P E - C HO - E S
+    inscription_rev: XXI ZV EINEM TALER
+    weight_rough_g: 1.76
+    weight_rough_verified: true
+    diameter_mm: 26.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286687
+        ref: IKMK Berlin 18286687
+    verification_note: *id001
+    _source_note:
+      de: Weinmeister (1908) führt diese Münze als Fürstengroschen. Von dieser Münze im Wert von 12 meißnischen Pfennigen gingen 21 auf den Gulden, es handelt sich also um einen 1/21 Gulden. Auf der 
+        vorliegenden Münze steht jedoch explizit, dass 21 auf den Taler gehen. Also handelt es sich hier um ein 1/21 Taler-Stück und nicht um einen Fürstengroschen, wie Weinmeister schreibt.- Trotz 
+        fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 462] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte 
+        nicht möglich
+    note:
+      de: 1/21 Taler
+      en: 1/21 Taler
+      uk: 1/21 Taler
+  - id: ikmk-18286694
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Schilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: ER-NES - D G P E - C HO - E S
+    inscription_rev: XXI THO EINEM TALER
+    weight_rough_g: 2.47
+    weight_rough_verified: true
+    diameter_mm: 25.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286694
+        ref: IKMK Berlin 18286694
+    verification_note: *id001
+    _source_note:
+      de: Weinmeister (1908) führt diese Münze als Fürstengroschen. Von dieser Münze im Wert von 12 meißnischen Pfennigen gingen 21 auf den Gulden, es handelt sich also um einen 1/21 Gulden. Auf der 
+        vorliegenden Münze steht jedoch explizit, dass 21 auf den Taler gehen. Also handelt es sich hier um ein 1/21 Taler-Stück und nicht um einen Fürstengroschen, wie Weinmeister schreibt.- Trotz 
+        fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 462] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte 
+        nicht möglich
+    note:
+      de: 1/21 Taler
+      en: 1/21 Taler
+      uk: 1/21 Taler
+  - id: ikmk-18286696
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Schilling
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: ER-NES - D G P E - C HO - E S
+    inscription_rev: XXI ZV EINEM TALER
+    weight_rough_g: 2.14
+    weight_rough_verified: true
+    diameter_mm: 25.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286696
+        ref: IKMK Berlin 18286696
+    verification_note: *id001
+    _source_note:
+      de: Weinmeister (1908) führt diese Münze als Fürstengroschen. Von dieser Münze im Wert von 12 meißnischen Pfennigen gingen 21 auf den Gulden, es handelt sich also um einen 1/21 Gulden. Auf der 
+        vorliegenden Münze steht jedoch explizit, dass 21 auf den Taler gehen. Also handelt es sich hier um ein 1/21 Taler-Stück und nicht um einen Fürstengroschen, wie Weinmeister schreibt.- Trotz 
+        fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 462] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der Münzstätte 
+        nicht möglich
+    note:
+      de: 1/21 Taler
+      en: 1/21 Taler
+      uk: 1/21 Taler
+  - id: ikmk-18286698
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Fürstengroschen (12 Meißnische Pfennige)
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: ERNESTVS [...] C H E S
+    inscription_rev: FVR S[CHAU] LAN MV
+    weight_rough_g: 2.23
+    weight_rough_verified: true
+    diameter_mm: 25.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286698
+        ref: IKMK Berlin 18286698
+    verification_note: *id001
+    _source_note:
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 470] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der 
+        Münzstätte nicht möglich
+  - id: ikmk-18286700
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Fürstengroschen (12 Meißnische Pfennige)
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: '[ER]-NES - D G P E - C HO - E S'
+    inscription_rev: FVR SC[HAU] LAN MV
+    weight_rough_g: 1.81
+    weight_rough_verified: true
+    diameter_mm: 25.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286700
+        ref: IKMK Berlin 18286700
+    verification_note: *id001
+    _source_note:
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 470] 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der 
+        Münzstätte nicht möglich
+  - id: ikmk-18286703
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Fürstengroschen (12 Meißnische Pfennige)
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: '[ER]-NES - D G P E - C H - E S'
+    inscription_rev: FVR SC[HAU] LAN MV
+    weight_rough_g: 1.74
+    weight_rough_verified: true
+    diameter_mm: 23.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286703
+        ref: IKMK Berlin 18286703
+    verification_note: *id001
+    _source_note:
+      de: Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge (Weinmeister 1908 470) 1621 geprägt worden. Aufgrund des fehlenden Münzmeisterzeichens ist eine eindeutige Zuordnung der 
+        Münzstätte nicht möglich
+  - id: ikmk-18286704
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Fürstengroschen (12 Meißnische Pfennige)
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1621
+    year_last: 1621
+    year_label: '1621'
+    year_ranges:
+      -   - 1621
+          - 1621
+    inscription_obv: ERNES[...] D G RO I [...]
+    inscription_rev: LANDTMVNZE ZV 1Z
+    weight_rough_g: 1.87
+    weight_rough_verified: true
+    diameter_mm: 25.0
+    diameter_mm_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286704
+        ref: IKMK Berlin 18286704
+    verification_note: *id001
+    _source_note:
+      de: Das Zeichen am Ende der Rückseitenumschrift (retrogrades K?) ist bisher ungedeutet. Es könnte sich hier um eine Nominalbezeichnung (K) handeln, aber auch eine rudimentäre Version des 
+        Münzmeisterzeichens aufrechter Löwe (Kaspar Kohl) wäre denkbar. Trotz fehlender Jahreszahl ist diese Münze Weinmeister zufolge [Weinmeister (1908) 470] 1621 geprägt worden
+  - id: ikmk-18219260
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: schauenburg_pinneberg
+    nominal: 1 Taler
+    metal: silver
+    metal_verified: true
+    mint_verified: false
+    ruler: Ernst III.
+    year_first: 1622
+    year_last: 1622
+    year_label: '1622'
+    year_ranges:
+      -   - 1622
+          - 1622
+    inscription_obv: + ERNEST D G S R I PRINC COM HOLSAT SCHAVMB STERNB DN GEH
+    inscription_rev: OBIIT / AN CHRI MDCXXII / DIE XVII IANUAR INT / VII ET VIII MATUTINAM / CUM / VIXISSET ANOS LII / MENS III DIES XXIV H I / IN REGIMINE VERO / ANNOS XX ME VI / DIE XV HO IV
+    weight_rough_g: 29.0
+    weight_rough_verified: true
+    diameter_mm: 42.0
+    diameter_mm_verified: true
+    catalog:
+      dav: '3746'
+      lange: '944'
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18219260
+        ref: IKMK Berlin 18219260
+    verification_note: *id001
+    _source_note:
+      de: Dieser Sterbetaler von Holstein-Schaumburg (Schauenburg-Pinneberg) ist 1622 auf den Tod des Grafen Ernst III. geprägt worden, wahrscheinlich im Auftrage seiner Witwe Elisabeth bzw. unter 
+        seinem Nachfolger Justus Hermann (1622-1635). Auf der Vs. die Ziffer 1807 in schwarzer Tusche

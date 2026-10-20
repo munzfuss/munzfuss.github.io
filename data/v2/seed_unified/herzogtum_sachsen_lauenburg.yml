@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `herzogtum_sachsen_lauenburg`.
-# Generated 2026-10-18 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/herzogtum_sachsen_lauenburg.yml across all sources.
 #
-# Input: 73 per-source seed entries.
+# Input: 76 per-source seed entries.
 # Output: 45 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: herzogtum_sachsen_lauenburg
-generated_at: '2026-10-18'
+generated_at: '2026-10-20'
 coins:
   - id: unified-dk-bruun-8082
     fuss: seed_unsorted
@@ -873,6 +873,7 @@ coins:
       de: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
       en: Record from the Interactive Catalogue of the Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); the fields are museum-attested. The coinage standard of this piece is not yet determined.
       uk: Запис з інтерактивного каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Münzkabinett Berlins interaktive katalog (ikmk.smb.museum, CC BY-SA 4.0); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: herzogtum_sachsen_lauenburg
     composed_of:
       - ikmk-18283450
@@ -1459,6 +1460,7 @@ coins:
     catalog:
       others:
         - Dorfmann# 72 b
+        - Dorfmann# 75 b
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -1480,6 +1482,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18283653
         ref: IKMK Berlin 18283653
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18283666
+        ref: IKMK Berlin 18283666
     note:
       de: Groschen
       en: Groschen
@@ -1489,6 +1494,7 @@ coins:
     composed_of:
       - ikmk-18283650
       - ikmk-18283653
+      - ikmk-18283666
   - id: unified-ikmk-18283662
     fuss: seed_unsorted
     phase: ikmk
@@ -1529,6 +1535,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18283703
         ref: IKMK Berlin 18283703
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18283712
+        ref: IKMK Berlin 18283712
     note:
       de: Groschen
       en: Groschen
@@ -1538,6 +1547,7 @@ coins:
     composed_of:
       - ikmk-18283662
       - ikmk-18283703
+      - ikmk-18283712
   - id: unified-ikmk-18283663
     fuss: seed_unsorted
     phase: ikmk
@@ -1555,6 +1565,7 @@ coins:
       others:
         - Dorfmann# 73 f
         - Dorfmann# 76 a
+        - Dorfmann# 75 c
     metal: silver
     metal_verified: true
     weight_rough_verified: true
@@ -1567,6 +1578,8 @@ coins:
       - value: 0.55
         source: ikmk
     diameter_mm:
+      - value: 15.0
+        source: ikmk
       - value: 16.0
         source: ikmk
       - value: 17.0
@@ -1578,6 +1591,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18283665
         ref: IKMK Berlin 18283665
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18283667
+        ref: IKMK Berlin 18283667
     note:
       de: Groschen
       en: Groschen
@@ -1587,6 +1603,7 @@ coins:
     composed_of:
       - ikmk-18283663
       - ikmk-18283665
+      - ikmk-18283667
   - id: unified-ikmk-18283664
     fuss: seed_unsorted
     phase: ikmk
