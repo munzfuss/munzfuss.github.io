@@ -225,9 +225,10 @@ def parse_page(html_path: Path, text: str) -> dict:
     litt = _parse_litteratur(text)
     inscription = _parse_inscription(text)
 
-    # Galster number from filename (chr_c2g80.htm → 80)
+    # Galster number from filename (chr_c2g80.htm → 80; a root-level
+    # reign page c2g39.htm → 39)
     galster_num: str | None = None
-    fm = re.search(r"_(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
+    fm = re.search(r"(?:^|_)(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
     if fm:
         galster_num = fm.group(2)
     fm2 = re.search(r"^norge_n(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
@@ -259,6 +260,8 @@ def parse_page(html_path: Path, text: str) -> dict:
         out["ruler_volume"] = "c3g"
     elif html_path.name.startswith("fr_f1"):
         out["ruler_volume"] = "f1g"
+    elif re.match(r"^(c|f)\d+g\d", html_path.name):
+        out["ruler_volume"] = re.match(r"^((?:c|f)\d+g)", html_path.name).group(1)
     elif html_path.name.startswith("norge_"):
         m = re.match(r"norge_n(c\d|f\d)g", html_path.name)
         if m:

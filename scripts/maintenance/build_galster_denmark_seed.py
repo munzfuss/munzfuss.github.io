@@ -89,9 +89,17 @@ _RULER_REIGN = {
     "c2g": (1513, 1523),   # Christian II
     "f1g": (1523, 1533),   # Frederik I
     "c3g": (1534, 1559),   # Christian III (pre-1541 portion only — YEAR_TO=1541 cuts later)
+    # Christian I (1448-1481): his undated Gotland gote (gotlg139, gotlg140)
+    # sit in the «hg» filename series; dated to his own reign they fall
+    # before YEAR_FROM and are not seeded.
+    "c1g": (1448, 1481),
+    # Søren Norby, «Christian 2.s lensmand (1517-25) på Gotland» (gotlg144,
+    # gotlg145): the window the pages give for his undated Visby coins.
+    "norby": (1517, 1525),
 }
 _RULER_NAME_VOLUME = {"Hans": "hg", "Christian II": "c2g",
-                      "Frederik I": "f1g", "Christian III": "c3g"}
+                      "Frederik I": "f1g", "Christian III": "c3g",
+                      "Christian I": "c1g", "Søren Norby": "norby"}
 
 # The `c2g` volume holds two unrelated groups under one ruler name. Christian
 # II's own coins are of his reign; the Grevens-Fejde issues are struck in his
@@ -191,11 +199,16 @@ def detect_issuing_entity(sub_realm: str | None, mint: str | None,
 def coin_id(galster_number: str | None, ruler_volume: str | None, source_file: str) -> str:
     """Stable ID: dk-galster-<ruler_volume>-<number>.
 
-    Falls back to dk-galster-<source_filename> if metadata is missing.
+    A multi-coin page without a ruler volume (rigsraad.htm: Galster 21, 22,
+    81) → dk-galster-<page>-<number>. Falls back to
+    dk-galster-<source_filename> if metadata is missing.
     """
+    stem = source_file.replace('.htm', '').replace('.json', '')
     if galster_number and ruler_volume:
         return f"dk-galster-{ruler_volume}-{galster_number.lower()}"
-    return f"dk-galster-{source_file.replace('.htm', '').replace('.json', '')}"
+    if galster_number and stem == "rigsraad":
+        return f"dk-galster-{stem}-{galster_number.lower()}"
+    return f"dk-galster-{stem}"
 
 
 # «Reinhold Junge …» on a Galster page cites Galster's edition of the
@@ -413,6 +426,14 @@ def _split_nominal_mint(nominal: str | None, source_mint: str | None
         if m_lead:
             extracted_mint = m_lead.group(1)
             s = _GALSTER_MINT_PREFIX_RE.sub("", s).strip()
+        else:
+            # «Hamar/Oslo, 2 mark klipping» (norge/nc2g173): a two-mint
+            # alternative ahead of the denomination. The page body names the
+            # same pair («Hamar eller Oslo»), which stays as the mint.
+            m_alt = re.match(r"^([^,/]+)/([^,/]+?)\s*,\s*", s)
+            if (m_alt and _GALSTER_MINT_PREFIX_RE.match(m_alt.group(1) + ",")
+                    and _GALSTER_MINT_PREFIX_RE.match(m_alt.group(2) + ",")):
+                s = s[m_alt.end():].strip()
     shape_hint = None
     sm = _SHAPE_DESCRIPTORS_RE.search(s)
     if sm:
@@ -512,9 +533,21 @@ def _clean_catalogue_refs(catalog: dict) -> None:
         vals = val if isinstance(val, list) else [val]
         parts: list[str] = []
         for v in vals:
+            # A foreign reference's own «hhv.» list runs on past the comma:
+            # «147, Hauberg hhv. 132-140, 141-144 og 145» (gotlg147) — the
+            # parts after «Hauberg …» are Hauberg's, not Galster's. Each part
+            # carries a flag: does it continue the preceding foreign ref?
+            in_foreign = False
             for p in re.split(r"[,;]", str(v)):
                 p = p.strip()
                 if not p:
+                    continue
+                if _FOREIGN_CATALOGUE_RE.match(p):
+                    in_foreign = p.lower().split()[1:2] == ["hhv."]
+                    parts.append(p)
+                    continue
+                if in_foreign:
+                    parts[-1] = f"{parts[-1]}, {p}"
                     continue
                 m = _HHV_RE.match(p)
                 if m:
@@ -563,7 +596,13 @@ def build_entry(data: dict) -> dict | None:
         # CLAUDE.md §3a (renderer adds `(?)` via year_verified=false), EXCEPT
         # for the Grevens-Fejde pages, which are struck in a ruler's name
         # outside his reign and take the Feud window instead.
-        if data.get("page_shape") == "grevenfejde":
+        hint = parse_year_range(data.get("year_hint"))
+        if hint[0] is not None:
+            # The page's own tentative dating of an undated coin: «U.år
+            # (1523?)» (gotlg144), a Rigsrådet group header «1481-83» over a
+            # «Hvid U.år» (rigsraad.htm). Written as the year, unverified.
+            reign = hint
+        elif data.get("page_shape") == "grevenfejde":
             reign = _GREVENS_FEJDE_WINDOW
         else:
             # Root-level single-coin pages (halvrhin.htm, 2nobel.htm) carry
@@ -572,6 +611,8 @@ def build_entry(data: dict) -> dict | None:
             # Gotland pages (gotlg146.htm) sit in Hans's «hg» series but some
             # are struck by Frederik I («Frederik 1., Hvid u. år, Visby»).
             # Root-level pages (halvrhin.htm) carry no volume at all.
+            # Christian I and Søren Norby are in the name table so that their
+            # Gotland pages (Hans's «hg» file series) are not dated to Hans.
             reign = (_RULER_REIGN.get(_RULER_NAME_VOLUME.get(
                          (data.get("ruler") or "").strip(), ""))
                      or _RULER_REIGN.get(data.get("ruler_volume") or ""))
@@ -770,6 +811,13 @@ def collect_entries() -> list[dict]:
                 # Variant-specific schou / sieg refs override the
                 # page-level catalog_refs (which mix all variants).
                 var_data["catalog_refs"] = dict(data.get("catalog_refs") or {})
+                # Shape D (c2g39): each letter variant carries its own years,
+                # and its own Galster number (the page paren names only the
+                # first bullet's «39A»).
+                if var.get("year_label"):
+                    var_data["year_label"] = var["year_label"]
+                    if var.get("galster"):
+                        var_data["catalog_refs"]["galster"] = var["galster"]
                 if var.get("schou"):
                     var_data["catalog_refs"]["schou"] = var["schou"]
                 if var.get("sieg"):
@@ -787,6 +835,13 @@ def collect_entries() -> list[dict]:
                             "en": f"Galster variant table: {caveat}",
                             "uk": f"Galster-таблиця варіантів: {caveat}",
                         }
+                    entries.append(entry)
+            continue
+        # Multi-coin page (rigsraad.htm): one entry per coin record.
+        if data.get("coins") is not None:
+            for coin in data["coins"]:
+                entry = build_entry(coin)
+                if entry:
                     entries.append(entry)
             continue
         entry = build_entry(data)

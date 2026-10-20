@@ -53,7 +53,12 @@ _POSSESSIVE_H1_RE = re.compile(
 # by `fetch_galster.py overviews` for cross-ref extraction but NOT
 # itself a coin page; should be skipped by the parser.
 _COIN_PAGE_PREFIXES = ("chr_", "fr_", "norge_")
-_COIN_PAGE_ROOT_RE = re.compile(r"^(?:hansg|gotlg)\d+[\w\-]*\.htm$")
+# Root-level coin pages: Hans Hvid (hansg31), Gotland (gotlg143), a
+# reign-prefixed page linked root-relative (c2g39 — Christian II Skilling).
+_COIN_PAGE_ROOT_RE = re.compile(
+    r"^(?:(?:hansg|gotlg)\d+|(?:c|f)\d+g\d+)[\w\-]*\.htm$")
+# Rigsrådet (interregnum) page: Galster 21, 22 and 81 on one page.
+_RIGSRAAD_FILENAME = "rigsraad.htm"
 
 # Single-coin pages disguised as overview-named files. A handful of
 # `<denom>.htm` filenames (2nobel.htm, 3nobel.htm, …) share the exact
@@ -125,9 +130,13 @@ def detect_page_shape(html_path: Path, text: str) -> str:
       5. Default → ``standard``
 
     Returns one of: ``"standard"``, ``"grevenfejde"``, ``"reign_index"``,
-    ``"article"``.
+    ``"article"``, ``"rigsraad"``, ``"hans_index"``.
     """
     name = html_path.name
+
+    # 0. The Hans index carries coin rows that have no page of their own.
+    if name == "hans.htm":
+        return "hans_index"
 
     # 1. Reign-overview tables — explicit filename match
     if _REIGN_INDEX_FILENAME_RE.match(name):
@@ -139,6 +148,10 @@ def detect_page_shape(html_path: Path, text: str) -> str:
         return "article"
     if _ERNST_FILENAME_RE.match(name) and not _ERNST_COIN_NUM_RE.search(name):
         return "article"
+
+    # 2b. Rigsrådet multi-coin page
+    if name == _RIGSRAAD_FILENAME:
+        return "rigsraad"
 
     # 3. Filename doesn't match any per-coin URL signature → overview
     # page (1nobel.htm, guldgyld.htm, 2skill.htm, …) fetched into

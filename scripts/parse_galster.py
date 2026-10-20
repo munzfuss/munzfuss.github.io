@@ -34,7 +34,8 @@ from html import unescape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from lib.galster_parsers import article, classify, grevenfejde, reign_index, standard  # noqa: E402
+from lib.galster_parsers import (  # noqa: E402
+    article, classify, grevenfejde, hans_index, reign_index, rigsraad, standard)
 from lib.galster_parsers.common import HR_SENTINEL  # noqa: E402  (re-exported)
 from lib.paths import GALSTER_CACHE as CACHE_DIR  # noqa: E402
 
@@ -51,6 +52,8 @@ _PARSERS = {
     "grevenfejde": grevenfejde.parse_page,
     "reign_index": reign_index.parse_page,
     "article": article.parse_page,
+    "rigsraad": rigsraad.parse_page,
+    "hans_index": hans_index.parse_page,
 }
 
 

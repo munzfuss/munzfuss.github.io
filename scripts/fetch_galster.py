@@ -86,33 +86,93 @@ INDEX_PAGES = [
 # entries lacked the overview cross-ref despite being listed there.)
 TYPE_INDEX = "/type.htm"
 
-# Per-coin URL patterns to extract from index pages. The Galster
-# series uses single-letter «g» (vs Hede's «h»). Hans (1481-1513)
-# uses several conventions: `fr/hg<N>.htm` is most common,
-# `hansg<N>.htm` for the Hvid-Malmø series at root, `gotlg<N>.htm`
-# for Gotland Hvid, `norge/hansg<N>.htm` + `norge/nha_g<N>.htm` for
-# Norway. Christian II + Frederik I use the regular
-# `(?:c|f)<digit>g<N>` pattern under chr/ + fr/ + norge/.
+# Per-coin URL patterns, matched against the WHOLE href path (leading slash
+# stripped). The Galster series uses single-letter «g» (vs Hede's «h»). Hans
+# (1481-1513) uses several conventions: `fr/hg<N>.htm` is most common,
+# `hansg<N>.htm` for the Hvid-Malmø series at root, `gotlg<N>.htm` for the
+# Gotland (Visby) series, `norge/hansg<N>.htm` + `norge/nha_g<N>.htm` for
+# Norway. Christian II / III + Frederik I use `(?:c|f)<digit>g<N>` under chr/ +
+# fr/ + norge/ — and occasionally at the site ROOT (`c2g39.htm`, linked
+# root-relative from /c2galst.htm). `rigsraad.htm` is the Rigsrådet page
+# (Galster 21, 22, 81 on one page).
+#
+# Matched with `fullmatch` on each href, never with `finditer` over the raw
+# HTML: a substring search turned `norge/hansg151.htm` into a phantom root
+# `/hansg151.htm` (404) and could not tell `c2g39.htm` from `chr/c2g39.htm`.
 PERCOIN_PATTERNS = [
-    # Standard reign-prefixed under chr/ or fr/:
-    #   - chr/c2g37.htm  (Christian II)
-    #   - fr/f1g46.htm   (Frederik I)
-    #   - fr/hg24.htm    (Hans — ruler letter without digit before g)
-    r"((?:chr|fr)/(?:c\d+|f\d+|h)g[\w\-]*\.htm)",
-    # Norway sub-folder:
-    #   - norge/nc2g164.htm  (Christian II)
-    #   - norge/nf1g166.htm  (Frederik I)
-    #   - norge/nha_g149.htm (Hans, «ha_» token between «n» and «g»)
-    #   - norge/hansg151.htm (Hans, full «hans» prefix)
-    #   - norge/hansGej.htm  (Hans, special non-numbered «Gej» variant)
-    r"(norge/(?:n(?:c\d+|f\d+|ha_)g[\w\-]*\.htm|hansg\w+\.htm|hansGej\.htm))",
-    # Hans root-level Hvid + Gotland-Hans Hvid pages (no subfolder):
-    #   - hansg31.htm   (Hvid Malmø)
-    #   - gotlg141.htm  (Hvid Visby — Gotland sub-realm)
-    r"((?:hansg|gotlg)\d+[\w\-]*\.htm)",
-    # Some pages live at root or in artikler/ or galster/ subfolders
-    r"((?:artikler|galster|ernst)/[\w\-]+\.htm)",
+    # chr/c2g37.htm (Christian II), fr/f1g46.htm (Frederik I), fr/hg24.htm (Hans)
+    r"(?:chr|fr)/(?:c\d+|f\d+|h)g[\w\-]*\.htm",
+    # norge/nc2g164.htm, norge/nc3g176.htm, norge/nf1g166.htm,
+    # norge/nha_g149.htm, norge/hansg151.htm, norge/hansGej.htm
+    r"norge/(?:n(?:c\d+|f\d+|ha_)g[\w\-]*|hansg\w+|hansGej)\.htm",
+    # Root-level Hans Hvid (hansg31.htm) + Gotland series (gotlg143.htm)
+    r"(?:hansg|gotlg)\d+[\w\-]*\.htm",
+    # Root-level reign-prefixed page: c2g39.htm (Christian II, Skilling Malmø)
+    r"(?:c|f)\d+g\d+[\w\-]*\.htm",
+    # Rigsrådet (interregnum coinage, Galster 21 / 22 / 81)
+    r"rigsraad\.htm",
+    # Companion pages in artikler/ or galster/ or ernst/ subfolders
+    r"(?:artikler|galster|ernst)/[\w\-]+\.htm",
 ]
+_PERCOIN_RES = [re.compile(p, re.IGNORECASE) for p in PERCOIN_PATTERNS]
+
+# Scope floor: Hans's accession, 1481 (same as the seed builder's YEAR_FROM).
+# Galster's catalogue and danskmoent's overviews also cover the earlier
+# Union kings; their per-coin pages are dropped at discovery so they never
+# enter the cache:
+#   * Christian I (1448-1481)        c1g<N>, chr/c1g<N>, sc1g<N> (Stockholm)
+#   * Christoffer af Bayern          bajg / sbajg / fbajg<N>
+#   * Erik af Pommern, Margrethe I   epomg / spomg<N>, m1g<N>
+#   * Gotland gote before the Oldenburg kings: gotlg134-138 (Galster 134-138,
+#     1361 - c. 1448, per the pages themselves)
+# Christian I's own Gotland gote (gotlg139, gotlg140) are KEPT: Schou assigns
+# Galster 140 to Christian II (gotlg140.htm), so the page is evidence for the
+# 1481+ window; the seed builder dates each page by its ruler.
+_PRE_1481_BASENAME_RE = re.compile(
+    r"^(?:s?c1g|[sf]?bajg|[se]pomg|m1g)\d", re.IGNORECASE)
+_PRE_1481_GOTLAND_MAX = 138
+
+# Pages that match a per-coin pattern but document no real coin.
+_NOT_A_COIN = {
+    # Hans «1 Sølvgylden - støbt fantasimønt»: «Disse mønter, der aldrig har
+    # eksisteret, men er senere fantasifostre» (fr/hg253.htm).
+    "/fr/hg253.htm",
+}
+
+
+def _normalise_href(href: str) -> str | None:
+    """Site-relative path («/chr/c2g37.htm») for a danskmoent href, or None
+    for an off-site / anchor-only link."""
+    href = href.strip().split("#", 1)[0].split("?", 1)[0]
+    if not href:
+        return None
+    m = re.match(r"^https?://(?:www\.)?danskmoent\.dk/(.*)$", href, re.IGNORECASE)
+    if m:
+        href = m.group(1)
+    elif re.match(r"^[a-z]+:", href, re.IGNORECASE):
+        return None
+    while href.startswith("../"):
+        href = href[3:]
+    return "/" + href.lstrip("/")
+
+
+def _is_percoin_path(path: str) -> bool:
+    rel = path.lstrip("/")
+    return any(rx.fullmatch(rel) for rx in _PERCOIN_RES)
+
+
+def _is_out_of_scope(path: str) -> bool:
+    """True for a per-coin page before 1481 or a page that is no coin."""
+    if path in _NOT_A_COIN:
+        return True
+    base = path.rsplit("/", 1)[-1]
+    if _PRE_1481_BASENAME_RE.match(base):
+        return True
+    m = re.match(r"^gotlg(\d+)", base, re.IGNORECASE)
+    return bool(m and int(m.group(1)) <= _PRE_1481_GOTLAND_MAX)
+
+
+_HREF_RE = re.compile(r"""href\s*=\s*["']([^"']+)["']""", re.IGNORECASE)
 
 
 def _make_session():
@@ -148,19 +208,18 @@ def _try_fetch(opener, url: str, timeout: int = 30) -> str | None:
 
 
 def _extract_links(html: str) -> set[str]:
-    """Extract per-coin URL paths from a Galster index page.
+    """Per-coin page paths linked from a danskmoent page (index or overview).
 
-    Index pages use <A HREF="chr/c2g37.htm">37</A> style. Per-coin
-    pages may also link to companion artikler/* pages (Ernst, Moesgaard
-    pdfs etc.) that we want to track for harvest.
+    Index pages use <A HREF="chr/c2g37.htm">37</A> style; overviews link the
+    same way. Per-coin pages may also link companion artikler/* pages that we
+    track for harvest. Out-of-scope pages (pre-1481, non-coins) are NOT
+    filtered here — the overview cross-ref map keeps every link it sees —
+    but by the callers that decide what to fetch.
     """
     out: set[str] = set()
-    for pat in PERCOIN_PATTERNS:
-        for m in re.finditer(pat, html, re.IGNORECASE):
-            path = m.group(1)
-            # Normalise leading slash
-            if not path.startswith("/"):
-                path = "/" + path
+    for href in _HREF_RE.findall(html):
+        path = _normalise_href(href)
+        if path and _is_percoin_path(path):
             out.add(path)
     return out
 
@@ -218,6 +277,42 @@ def _extract_overview_index(html: str) -> list[tuple[str, str]]:
     return out
 
 
+def _overview_pages(opener) -> tuple[list[tuple[str, str, str]], dict]:
+    """[(path, title, html), …] for every denomination overview /type.htm
+    lists, read from the cache or fetched (and cached) when missing.
+    Returns the list plus counters {fetched, cached, failed, listed}."""
+    stats = {"fetched": 0, "cached": 0, "failed": 0, "listed": 0}
+    type_cache = CACHE_DIR / _filename_for(TYPE_INDEX)
+    type_html = _try_fetch(opener, BASE + TYPE_INDEX)
+    time.sleep(SLEEP_SECS)
+    if type_html is None:
+        if not type_cache.exists():
+            print(f"  {TYPE_INDEX} — not found; cannot enumerate overviews",
+                  file=sys.stderr)
+            return [], stats
+        type_html = type_cache.read_text(encoding="utf-8")
+    else:
+        type_cache.write_text(type_html, encoding="utf-8")
+    entries = _extract_overview_index(type_html)
+    stats["listed"] = len(entries)
+    out: list[tuple[str, str, str]] = []
+    for path, title in entries:
+        cache_file = CACHE_DIR / _filename_for(path)
+        if cache_file.exists():
+            html = cache_file.read_text(encoding="utf-8")
+            stats["cached"] += 1
+        else:
+            html = _try_fetch(opener, BASE + path)
+            time.sleep(SLEEP_SECS)
+            if html is None:
+                stats["failed"] += 1
+                continue
+            cache_file.write_text(html, encoding="utf-8")
+            stats["fetched"] += 1
+        out.append((path, title, html))
+    return out, stats
+
+
 def discover_overviews() -> dict:
     """Fetch /type.htm master index, enumerate denomination-overview
     pages, fetch each one, and extract cross-refs from each overview
@@ -236,40 +331,14 @@ def discover_overviews() -> dict:
     """
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     opener = _make_session()
-
-    # Phase 1 — fetch /type.htm master index
-    type_url = BASE + TYPE_INDEX
-    type_html = _try_fetch(opener, type_url)
-    time.sleep(SLEEP_SECS)
-    if type_html is None:
-        print(f"  {TYPE_INDEX} — not found; cannot enumerate overviews", file=sys.stderr)
+    pages, stats = _overview_pages(opener)
+    if not stats["listed"]:
         return {}
-    type_cache = CACHE_DIR / _filename_for(TYPE_INDEX)
-    type_cache.write_text(type_html, encoding="utf-8")
+    print(f"  /type.htm: enumerated {stats['listed']} denomination-overview page(s)")
 
-    overview_entries = _extract_overview_index(type_html)
-    print(f"  /type.htm: enumerated {len(overview_entries)} denomination-overview page(s)")
-
-    # Phase 2 — fetch each overview page + extract its cross-refs
     overviews_meta: list[dict] = []
     cross_refs: dict[str, list[str]] = {}  # coin_path → [overview_paths]
-    fetched_now = 0
-    cached_already = 0
-    failed = 0
-    for path, title in overview_entries:
-        cache_file = CACHE_DIR / _filename_for(path)
-        if cache_file.exists():
-            html = cache_file.read_text(encoding="utf-8")
-            cached_already += 1
-        else:
-            url = BASE + path
-            html = _try_fetch(opener, url)
-            time.sleep(SLEEP_SECS)
-            if html is None:
-                failed += 1
-                continue
-            cache_file.write_text(html, encoding="utf-8")
-            fetched_now += 1
+    for path, title, html in pages:
         overviews_meta.append({
             "path": path,
             "title": title,
@@ -297,8 +366,8 @@ def discover_overviews() -> dict:
         json.dumps(manifest, indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
-    print(f"  Overviews fetched: {fetched_now} new + {cached_already} cached "
-          f"+ {failed} failed = {len(overviews_meta)}/{len(overview_entries)}")
+    print(f"  Overviews fetched: {stats['fetched']} new + {stats['cached']} cached "
+          f"+ {stats['failed']} failed = {len(overviews_meta)}/{stats['listed']}")
     print(f"  Cross-refs: {len(cross_refs_sorted)} per-coin pages have "
           f"≥1 overview backref")
     print(f"  Manifest written: {OVERVIEW_MANIFEST.name}")
@@ -334,6 +403,31 @@ def discover() -> dict:
         links.update(new_links)
         print(f"  {path}  hits={len(new_links):4d}  new={len(new_only):4d}  cum={len(links)}")
 
+    # Phase 1b: per-coin links from the denomination overviews (/type.htm).
+    # Several in-scope pages are linked ONLY from an overview, never from a
+    # reign index — rigsraad.htm (Galster 22) from hvid.htm, the Gotland
+    # pages gotlg139-147 from hvid.htm / skilling.htm, norge/nc3g176.htm
+    # (no Christian III index exists), norge/nc2g173.htm from 2mark.htm.
+    pages, _stats = _overview_pages(opener)
+    ov_links: set[str] = set()
+    for _path, _title, html in pages:
+        ov_links |= _extract_links(html)
+    # Only coin pages from the overviews: their artikler/ galster/ ernst/
+    # links are articles (the reign-index walk keeps its own as before).
+    ov_links = {ln for ln in ov_links
+                if not ln.startswith(("/artikler/", "/galster/", "/ernst/"))}
+    new_only = ov_links - links
+    links.update(ov_links)
+    index_links_per["/type.htm (overviews)"] = sorted(ov_links)
+    print(f"  overviews ({len(pages)})  hits={len(ov_links):4d}  "
+          f"new={len(new_only):4d}  cum={len(links)}")
+
+    # Scope: drop pre-1481 pages and non-coins (see _is_out_of_scope).
+    dropped = sorted(ln for ln in links if _is_out_of_scope(ln))
+    links.difference_update(dropped)
+    if dropped:
+        print(f"  dropped {len(dropped)} out-of-scope page(s): {', '.join(dropped)}")
+
     # Phase 2: probe Christian III pre-Møntordning Galster pages directly
     # (no index page exists for Christian III pre-1541; per the survey,
     # Galster numbers 92-130 cover Grevens Fejde 1534-36 + 1537
@@ -359,6 +453,7 @@ def discover() -> dict:
         "index_files": {p: _filename_for(p) for p in indexes_found},
         "index_links_per": index_links_per,
         "links": sorted(links),
+        "out_of_scope": dropped,
         "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
     MANIFEST.write_text(json.dumps(manifest, indent=2, ensure_ascii=False))

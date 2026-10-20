@@ -101,7 +101,14 @@ def _parse_header_h1(text: str) -> dict:
         r"(?:\s+(\d+|I+|II|III|IV|VII?)\.?)?",
         h1,
     )
-    if rm:
+    # Issuer who is no king: Søren Norby, lensmand on Gotland (gotlg143-145
+    # «Søren Norby, Skilling, Visby (Gotland)»). Recorded as the page names
+    # him; how the seed routes his coins is the builder's business.
+    nm = re.match(r"(Søren\s+Nor(?:d)?by)\b", h1)
+    if nm and not rm:
+        out["ruler"] = "Søren Norby"
+        rest = h1[nm.end():].lstrip(", .").strip()
+    elif rm:
         ruler_name = rm.group(1)
         ruler_num = rm.group(2) or ""
         if ruler_num.isdigit():
@@ -137,11 +144,35 @@ def _parse_header_h1(text: str) -> dict:
     rest_clean = re.sub(r"\s*\([RU][RRSU]*\)", "", rest_clean)
     rest_clean = re.sub(r"\s+", " ", rest_clean).strip()
 
+    # Elided century «4 Skilling, (15)35, Stockholm» (chr/c3g250) → 1535.
+    rest_clean = re.sub(r"\((1[4-6])\)(\d{2})\b", r"\1\2", rest_clean)
     year_tokens = re.findall(r"(?<!\d)1[4-6]\d{2}(?:[-–]\d{4})?(?!\d)", rest_clean)
+    body_undated = False
     if not year_tokens:
         body_clean = _FORGERY_YEAR_PAREN_RE.sub("", body_after)
         body_clean = re.sub(r"\s*\([RU][RRSU]*\)", "", body_clean)
-        year_tokens = re.findall(r"(?<!\d)1[4-6]\d{2}(?:[-–]\d{4})?(?!\d)", body_clean[:150])
+        # Elided century «(15)35, (15)36» (gotlg147) → 1535, 1536.
+        body_clean = re.sub(r"\((1[4-6])\)(\d{2})\b", r"\1\2", body_clean)
+        # A line that OPENS with «U.år» dates the coin as undated; any year
+        # after it on that line is commentary, not a striking year:
+        # «U.år. … lensmand (1517-25)» (gotlg145). A questioned year in
+        # parentheses right after it — «U.år (1523?)» (gotlg144) — is the
+        # page's tentative dating: kept as `year_hint`, never as a year.
+        first_line = body_clean.strip().split("\n", 1)[0]
+        if re.match(r"\s*U\.\s*år\b", first_line, re.IGNORECASE):
+            body_undated = True
+            hint = re.match(r"\s*U\.\s*år\s*\((1[4-6]\d{2})\?\)", first_line,
+                            re.IGNORECASE)
+            if hint:
+                out["year_hint"] = hint.group(1)
+        else:
+            # A year inside a LETTER sub-variant bullet («• A) 1514, U.år …»,
+            # c2g39) dates that variant, not the type — drop those lines.
+            # Plain year bullets («• 1524 (Schou 113-125)», fr_f1g63) are the
+            # type's years and stay.
+            scan = re.sub(r"(?m)^\s*•\s*[A-Z]\).*$", "", body_clean[:150])
+            year_tokens = re.findall(r"(?<!\d)1[4-6]\d{2}(?:[-–]\d{4})?(?!\d)",
+                                     scan)
     if year_tokens:
         out["year_label"] = ", ".join(year_tokens)
         for yt in year_tokens:
@@ -149,6 +180,8 @@ def _parse_header_h1(text: str) -> dict:
     elif re.search(r"u\.\s*[åA]r|ND", rest_clean):
         out["year_label"] = "u.år"
         rest_clean = re.sub(r"u\.\s*[åA]r|ND", "", rest_clean)
+    elif body_undated:
+        out["year_label"] = "u.år"
 
     rest_clean = re.sub(r"\s*,\s*$", "", rest_clean).strip(" ,.")
 
@@ -254,6 +287,7 @@ def _galster_number_from_filename(name: str) -> str | None:
     number so prose / neighbour parens can't clobber the index paren."""
     for pat in (
         r"_(?:c|f)\d+g(\d+\w*)\.htm$",         # chr_c3g131, fr_f1g120
+        r"^(?:c|f)\d+g(\d+\w*)\.htm$",         # c2g39 (reign page at site root)
         r"^fr_hg(\d+\w*)\.htm$",               # fr_hg24 (Hans under fr/)
         r"^hansg(\d+\w*)\.htm$",               # hansg31 (Hans root)
         r"^gotlg(\d+\w*)\.htm$",               # gotlg141 (Gotland-Hans)
@@ -289,6 +323,12 @@ def _extract_refs_from_paren_content(content: str) -> dict:
             continue
         value_clean = _collapse_degenerate_hhv(value_clean)
         kw = km.group(1).lower()
+        # «Schou 51 samt Schou ej» (chr/c3g247): «ej» = not in that catalogue,
+        # a negative claim, never an index — must not overwrite «51».
+        if value_clean.lower() in ("ej", "ej."):
+            continue
+        # «Schou 51 samt Schou ej»: the connector before the next keyword.
+        value_clean = re.sub(r"\s+samt$", "", value_clean)
         kw_clean = kw.replace("/", "_").replace(" ", "_").replace(".", "")
         if kw_clean == "fr":
             kw_clean = "friedberg"
@@ -601,13 +641,53 @@ def _parse_inscription_variant_schou(text: str) -> list[str]:
     return out
 
 
+# Shape D: letter-labelled sub-variant bullets, each with its OWN years and
+# «(Galster <N><letter>, Schou …)», and ONE spec block for the whole page.
+# Example (c2g39.htm, Christian II Skilling Malmø):
+#   «• A) 1514, U.år (Unik). Kongen med glorie. … (Galster 39A, Schou hhv. 1-2 og 16)»
+#   «• B) 1514, 1515, U.år. Kongen uden glorie. … (Galster 39B, Schou hhv. 3-4, …)»
+#   «• C) 1515. Oldenborgs våben under fødderne. (Galster 39C, Schou 16-19)»
+# Each bullet becomes a variant carrying its own `year_label`; the page's
+# shared specs are overlaid by the builder. «U.år» beside a year means some
+# specimens are undated — the dated years are the striking years recorded.
+_VARIANT_YEAR_BULLET_RE = re.compile(
+    r"^\s*•\s*(?P<letter>[A-Z])\)\s*(?P<years>(?:[^.\n]|\.(?=\s*år))*?)\.\s[^\n]*?"
+    r"\(\s*Galster\s+(?P<base>\d+)(?P<suffix>[A-Z])\b"
+    r"(?:,\s*Schou\s*(?P<schou>[^)\n]+?))?\s*\)\s*$",
+    re.MULTILINE,
+)
+
+
+def _parse_variant_year_bullets_shape_d(text: str, base_galster: str | None
+                                        ) -> list[dict]:
+    variants: list[dict] = []
+    for m in _VARIANT_YEAR_BULLET_RE.finditer(text):
+        if base_galster and m.group("base") != base_galster:
+            continue
+        years_txt = re.sub(r"\([RU][RSU]*\)|\(Unik\)", "", m.group("years"))
+        years = re.findall(r"(?<!\d)1[4-6]\d{2}(?!\d)", years_txt)
+        variants.append({
+            "galster": f"{m.group('base')}{m.group('suffix')}",
+            "schou": (m.group("schou") or "").strip() or None,
+            "sieg": None,
+            "year_label": ", ".join(years) if years else "u.år",
+            "bruttovaegt_g": None,
+            "finhed": None,
+            "finvaegt_g": None,
+            "note": None,
+        })
+    return variants if len(variants) >= 2 else []
+
+
 def _parse_variants(text: str, base_galster: str | None) -> list[dict]:
-    """Try both shapes; return whichever matches (or empty list)."""
+    """Try the shapes in turn; return the first that matches (or [])."""
     a = _parse_variant_table_shape_a(text, base_galster)
     if a:
         return a
     b = _parse_variant_bullets_shape_b(text)
-    return b
+    if b:
+        return b
+    return _parse_variant_year_bullets_shape_d(text, base_galster)
 
 
 # Sub-section pattern for multi-Galster pages. E.g. `fr_f1g48.htm`
@@ -687,7 +767,7 @@ def parse_page(html_path: Path, text: str) -> dict:
     inscription = _parse_inscription(text)
 
     galster_num: str | None = None
-    fm = re.search(r"_(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
+    fm = re.search(r"(?:^|_)(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
     if fm:
         galster_num = fm.group(2)
     fm2 = re.search(r"^norge_n(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
@@ -725,9 +805,12 @@ def parse_page(html_path: Path, text: str) -> dict:
         "litteratur": litt,
         "raw_text_excerpt": text[:2000],
     }
+    if header.get("year_hint"):
+        out["year_hint"] = header["year_hint"]
     # Detect galster_number + ruler_volume + sub_realm from the cache
     # filename. Filename shapes covered:
     #   chr_c2g37.htm    → galster=37,  volume=c2g
+    #   c2g39.htm        → galster=39,  volume=c2g    (root-level, no chr/)
     #   chr_c3g92.htm    → galster=92,  volume=c3g
     #   fr_f1g46.htm     → galster=46,  volume=f1g
     #   fr_hg24.htm      → galster=24,  volume=hg     (Hans)
@@ -738,7 +821,7 @@ def parse_page(html_path: Path, text: str) -> dict:
     #   norge_nha_g149.htm → galster=149, volume=hg, sub_realm=norway (Hans, nha_g prefix)
     #   norge_hansg151.htm → galster=151, volume=hg, sub_realm=norway (Hans, hansg prefix)
     #   norge_hansGej.htm  → galster=Gej, volume=hg, sub_realm=norway (Hans, special)
-    fm = re.search(r"_(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
+    fm = re.search(r"(?:^|_)(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
     if fm:
         out["galster_number"] = fm.group(2)
     # Hans under fr/ — fr_hg24.htm style
@@ -779,6 +862,9 @@ def parse_page(html_path: Path, text: str) -> dict:
         out["ruler_volume"] = "f1g"
     elif html_path.name.startswith("fr_hg"):
         out["ruler_volume"] = "hg"
+    elif re.match(r"^(c|f)\d+g\d", html_path.name):
+        # Reign page at the site root (c2g39.htm), no chr/ or fr/ folder
+        out["ruler_volume"] = re.match(r"^((?:c|f)\d+g)", html_path.name).group(1)
     elif html_path.name.startswith("hansg") or html_path.name.startswith("gotlg"):
         out["ruler_volume"] = "hg"
     elif html_path.name.startswith("norge_"):
