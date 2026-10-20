@@ -16,6 +16,14 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-20 (late) — per-specimen KMM exclusions; bare citations hidden
+
+- **Mechanism** (`98e6ee8`): `specimens:` block in `data/v2/exclusions/<entity>.yml` ({kmm: <object number>, category, reason, curator, date}) excludes ONE KMM object folded inside a seed; `lib/specimen_exclusions.py`, applied in absorb after the sources union; never strips a specimen with weight/photo, never leaves a coin without a source; verify_reflow excuses it. Seed-level `exclusions:` code does not read the block.
+- **Display rule** (`90dc6a3`): a bare KMM citation (no weight, no photo) is hidden when the coin has another resource's source or a KMM citation with weight/photo.
+- **Data**: `1d886bb` — 291 specimens + 7 seeds (G22 stubs, Thomsen-only seeds 395808/395945/396022, kmk-480560/480561). Earlier today: `cbb0463` (kmk-292019 → G31, stale final unified-kmk-132095 removed by hand — absorb never drops a final whose class vanished), `91ca8b0` (4 stub exclusions lifted: seeds carry photos), `d256eac` (kmk-130791 → G31, 133736 → G36, kmk-273672 Malmø (*) + unverified).
+- **Known absorb behaviour**: a final keeps its old mint list after members leave (G31, G36 fixed by hand + recorded removal). ~895 finals have composed_of resolving to no seed_unified class / seed (most in `_unclassified.yml`) — not investigated; may be id-shape mismatches, not all ghosts.
+- **Open**: «Th. NNNN» meaning unverified (one number on 135 KMM objects → lot or type, not a specimen number as claimed earlier); kmk-417196/197/201 stay excluded. KMM photos keep appearing — TODO EC.
+
 ## 2026-10-20 — Lybsk Møntfod KMM stubs excluded
 
 - **Shipped, not pushed**: `da7b0f4` — `verify_reflow._member_excluded_kmm` also excuses `category: undocumented_stub` and every KMM object number in the excluded seed's own `sources` (a KMM seed folds several specimens of one find); test `tests/test_verify_reflow_stub_exclusion.py`. `9d1c0a3` — 190 `undocumented_stub` exclusions (danish_realm + danish_norway): kmk-150268; 18 one-record Hans classes whose KMM index is wrong or undecided (G. 115, Galster 3/41, Hede 31, H. 32, Thomsen numbers, G. 151-152, G 15, G 35/hvid, G 23?, 57B, Sch. 82/83/hvid); 169 merged stubs with no weight, no photo and no catalogue value or mint another remaining member carries (their seeds fold 987 specimen citations, all checked); kmk-307583/566203 (mint contradicting G31). kmk-148121 («Schou 60») joined the G29 merge. Kept on checking: kmk-294368 (folds KMM 533323, which has a photo), kmk-318069 (only 1486-1513 date of G31), kmk-497177 (only 1481 date of G22). `203e90d` — G31 final mint cleared to Malmø (absorb keeps an old final's mint list; recorded removal).
