@@ -32,7 +32,7 @@
 
 - **Shipped** (`bfa0534`, `6fb5bfb`, not pushed): `lib.ruler_reigns.is_reign_span` — a member whose year is its ruler's reign (±2 y, ≤ 1/10 of the reign) is auto-`_year_demoted` in the merger (step 1c), so a narrower date in the class wins (Galster 43 → 1513, Galster 29 → 1512); absorb's reign flag uses the same test. KMM «korshvid» → Hvid for reigns ending ≤ 1523 (builder rule, printed word in `_nominal_printed`); 6 weightless stubs thinned (recorded). Excluded kmk-139309 (stub) and kmk-734756 (piefort).
 - **Resolved 2026-10-20**: the Lybsk Møntfod merge candidates below were decided — merges `14ef43a`, `ace3ecd`, `9e53cec`, `b89257a`; the rest excluded as stubs in `9d1c0a3` (see the 2026-10-20 stub entry).
-- **Open**: Jensen Hikuin 17 s. 82 «Alle er udmøntede i Malmø, under kong Hans, fra 1490'erne, dog også i København og Aalborg» — ambiguous; `luebischer_muenzfuss.md` l. 497 reads it as Malmø-from-1490s, which is probably wrong (likely: København/Aalborg from the 1490s). Fix the dossier wording; possible 1490-1513 bound for G34/G36 is a hypothesis only.
+- **Done 2026-10-20**: Jensen Hikuin 17 s. 82 re-read on the PDF; `luebischer_muenzfuss.md` now reads «fra 1490'erne» with the København/Aalborg clause (under Hans), not with Malmø.
 
 ## 2026-10-19 — Knowledge-base search pilot (`scripts/kb/`)
 

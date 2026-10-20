@@ -494,8 +494,16 @@ cited (Numista 444265 uses it as «UU# 148» for a Norwegian Hans Skilling «150
 found under that title. Found and cached instead: Jørgen Steen Jensen, «Senmiddelalderlige mønters
 brugbarhed som dateringsgrundlag ved kirkefund», *Hikuin* 17, s. 79–84 (tidsskrift.dk; cache
 `scripts/cache/danskmoent/hans_1481_1513/jensen_hikuin17_senmiddelalderlige_moenter.*`). What it gives (s. 82):
-the Korshvid of Christopher, Rigsrådet, Christian I and Hans «*Alle er udmøntede i Malmø, under kong Hans,
-fra 1490'erne, dog også i København og Aalborg*»; their fineness «*lå mellem 200 og 250 promille*»; and a
+the classic Korshvid in four main types — Christopher (1440-48), Rigsrådet 1448 (Jensen keeps the old date;
+Galster 22 is now placed 1481-83), Christian I, Hans — «*Alle er udmøntede i Malmø, under kong Hans, fra
+1490'erne, dog også i København og Aalborg*»: all four were struck at Malmø, and under Hans, from the
+1490s, also at København and Aalborg. The «fra 1490'erne» belongs to the København/Aalborg clause, not to
+Malmø: the sentence covers Christopher's and Christian I's Korshvide, which cannot be «from the 1490s»
+(corrected 2026-10-20; an earlier reading here took it as «Malmø from the 1490s»). It agrees with Galster's
+Hans types — Hvid at København (G34) and Aalborg (G36) exist only under Hans — and with *Denar til daler*'s
+«*nok i 1480'erne eller første halvdel af 1490'erne*» for the new mints (below); Jensen's «fra 1490'erne»
+is the later of the two datings, and his sentence carries no note number. The Korshvide's fineness «*lå mellem 200 og 250 promille*»
+(same page, «Disse mønter» = these Korshvide); and a
 METHOD warning — the 1440s Korshvide still occur in large numbers in hoards deposited after 1526 or even in
 the 1540s, i.e. very long circulation, so a hoard's closing date dates the coin only loosely. Consequence:
 even DMS would bound the 8-lod Skillinger only by a terminus ante quem, not date their issue.
