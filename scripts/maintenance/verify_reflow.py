@@ -805,6 +805,13 @@ def _attestation_index(coins: dict[str, dict]) -> dict[str, set[str]]:
         for reg, vals in _catalog_registers(coin).items():
             idx["catalog"] |= {f"{reg}={v}" for v in vals}
             idx["catalog_bare"] |= {f"{reg}={_EDITION_PREFIX.sub('', str(v))}" for v in vals}
+        # A number moved into a curation mark (Coin.catalog_alts) is still
+        # shown and still attested — marked, not lost.
+        for alt in _as_list(coin.get("catalog_alts")):
+            if isinstance(alt, dict) and alt.get("register") and alt.get("value"):
+                v = _catalog_key(alt["value"])
+                idx["catalog"].add(f"{alt['register']}={v}")
+                idx["catalog_bare"].add(f"{alt['register']}={_EDITION_PREFIX.sub('', str(v))}")
         idx["source_urls"] |= {s["url"] for s in _as_list(coin.get("sources"))
                                if isinstance(s, dict) and s.get("url")}
     return idx

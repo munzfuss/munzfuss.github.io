@@ -85,11 +85,22 @@
     group (and short Aagaard number lists without the «(…)» qualifier) stays a
     single comma-separated line. `{{ v }}` is auto-escaped; the literal `<br>`
     is template text, i.e. a real line break. -#}
-{%- macro catvals(prefix, vals) -%}
+{%- macro catvals(prefix, vals, cmarks) -%}
   {%- if prefix == 'Aagaard' and vals|length >= 2 and '(' in (vals|join('')) -%}
-    {%- for v in vals -%}{{ v }}{%- if not loop.last %},<br>{% endif -%}{%- endfor -%}
+    {%- for v in vals -%}{{ catval(prefix, v, cmarks) }}{%- if not loop.last %},<br>{% endif -%}{%- endfor -%}
   {%- else -%}
-    {{- vals | join(', ') -}}
+    {%- for v in vals -%}{{ catval(prefix, v, cmarks) }}{%- if not loop.last %}, {% endif -%}{%- endfor -%}
+  {%- endif -%}
+{%- endmacro -%}
+
+{#- One catalogue number, with its mark when it carries one (ComputedCoin
+    .catalog_marks): «(?)» for a number only a curator's attribution supplies,
+    a muted number with «(*)» / «(!)» for a member source's marked number. -#}
+{%- macro catval(prefix, v, cmarks) -%}
+  {%- set m = (cmarks or {}).get(prefix ~ '|' ~ v) -%}
+  {%- if not m -%}{{ v }}
+  {%- elif m[0] == 'unverified' -%}{{ v }} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>
+  {%- else -%}<span class="cat-alt">{{ v }} <span class="{{ m[0] }}-mark" data-tooltip="{{ m[1]|t(lang) }}">{{ msign[m[0]] }}</span></span>
   {%- endif -%}
 {%- endmacro -%}
 
@@ -136,7 +147,7 @@
         {#- A tooltip given as a `marker.*` key is resolved per language; older
             catalog tooltips are literal strings and pass through unchanged. -#}
         {%- set tip = ui_get(tooltip) if tooltip and tooltip.startswith('marker.') else tooltip -%}
-        <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ catvals(prefix, vals) }}</span>
+        <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ catvals(prefix, vals, coin.catalog_marks) }}</span>
       {%- else -%}
         {%- for v in vals -%}
           <span class="cat-group cat-plain">{{ v }}</span>
@@ -430,7 +441,7 @@
         {#- A tooltip given as a `marker.*` key is resolved per language; older
             catalog tooltips are literal strings and pass through unchanged. -#}
         {%- set tip = ui_get(tooltip) if tooltip and tooltip.startswith('marker.') else tooltip -%}
-        <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ catvals(prefix, vals) }}</span>
+        <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ catvals(prefix, vals, coin.catalog_marks) }}</span>
       {%- else -%}
         {%- for v in vals -%}
           <span class="cat-group cat-plain">{{ v }}</span>

@@ -286,7 +286,7 @@ from lib.v2_seed_writer import _canonicalise_mint
 from lib.v2_entity_classify import classify_mint_to_entity
 from lib.gen_stamp import resolve_generated_at
 from lib.seed_merge import _CURATION_MARK_KEYS
-from lib.seed_merge import apply_mint_mark
+from lib.seed_merge import apply_catalog_marks, apply_mint_mark
 
 
 # The Danish Krone is 4 Mark Danske: Hede names the same coin «4 Mark» where
@@ -2757,6 +2757,91 @@ def _collect_mint_alts(members: list[dict]) -> list[dict]:
     return _collect_marked_alts(members, "mint", "mint")
 
 
+def _catalog_values(cat, register: str) -> set[str]:
+    v = (cat or {}).get(register) if isinstance(cat, dict) else None
+    if v is None:
+        return set()
+    return {str(x).strip() for x in (v if isinstance(v, list) else [v]) if x is not None}
+
+
+def _apply_catalog_marks_to_class(members: list[dict], out: dict) -> None:
+    """Carry the members' catalogue-number marks (schema Coin.catalog_marks)
+    onto the class.
+
+    A «suspect» / «erroneous» number becomes a `catalog_alts` entry — shown,
+    muted, beside the class's numbers; it is not in any member's catalog
+    (`apply_catalog_marks` took it out at load), so it never reaches the
+    class's own catalog. An «unverified» number is put into the class's
+    catalog and listed in `catalog_unverified` («(?)»), unless another member
+    carries the same number unmarked — then the attested number wins and the
+    «(?)» goes (§4 verified-wins, applied to catalogue numbers). Alts and
+    unverified entries a seed_unified member already carries pass through
+    under the same rule."""
+    alts: list[dict] = []
+    alt_seen: set[tuple[str, str, str]] = set()
+    unver: list[tuple[str, str, str]] = []
+    for m in members:
+        if not isinstance(m, dict):
+            continue
+        src = _source_label_from_id(m.get("id"))
+        for mk in m.get("catalog_marks") or []:
+            if not isinstance(mk, dict) or not mk.get("register") or mk.get("value") is None:
+                continue
+            reg, val, kind = mk["register"], str(mk["value"]).strip(), mk.get("kind")
+            if kind in ("suspect", "erroneous") and isinstance(mk.get("reason"), dict):
+                k = (reg, val, src)
+                if k not in alt_seen:
+                    alt_seen.add(k)
+                    alts.append({"register": reg, "value": val, "source": src,
+                                 "kind": kind, "reason": dict(mk["reason"])})
+            elif kind == "unverified":
+                unver.append((reg, val, src))
+        for a in m.get("catalog_alts") or []:
+            if isinstance(a, dict) and a.get("register") and a.get("value") and a.get("source"):
+                k = (a["register"], str(a["value"]), a["source"])
+                if k not in alt_seen:
+                    alt_seen.add(k)
+                    alts.append(dict(a))
+        for u in m.get("catalog_unverified") or []:
+            if isinstance(u, dict) and u.get("register") and u.get("value") and u.get("source"):
+                unver.append((u["register"], str(u["value"]), u["source"]))
+    if alts:
+        out["catalog_alts"] = alts
+    if not unver:
+        return
+    # A member attests the number when its own catalog carries it and the
+    # number is not merely its own «(?)» (a seed_unified member re-merged
+    # carries its «(?)» number inside its catalog).
+    own_unver: dict[int, set[tuple[str, str]]] = {}
+    for i, m in enumerate(members):
+        if isinstance(m, dict):
+            own_unver[i] = {(u["register"], str(u["value"]))
+                            for u in (m.get("catalog_unverified") or [])
+                            if isinstance(u, dict) and u.get("register")}
+    cat = out.setdefault("catalog", {})
+    kept: list[dict] = []
+    seen_u: set[tuple[str, str]] = set()
+    for reg, val, src in unver:
+        if (reg, val) in seen_u:
+            continue
+        seen_u.add((reg, val))
+        attested = any(
+            val in _catalog_values(m.get("catalog"), reg) and (reg, val) not in own_unver.get(i, set())
+            for i, m in enumerate(members) if isinstance(m, dict))
+        if attested:
+            continue
+        cur = cat.get(reg)
+        vals = [] if cur is None else (list(cur) if isinstance(cur, list) else [cur])
+        if val not in {str(x).strip() for x in vals}:
+            vals.append(val)
+        cat[reg] = vals[0] if len(vals) == 1 else vals
+        kept.append({"register": reg, "value": val, "source": src})
+    if kept:
+        out["catalog_unverified"] = kept
+    if not cat:
+        out.pop("catalog", None)
+
+
 def _collect_marked_alts(members: list[dict], key: str, label_field: str) -> list[dict]:
     out: list[dict] = []
     seen: set[tuple[str, str]] = set()
@@ -4079,6 +4164,7 @@ def build_unified(members: list[dict], unified_id: str,
     mint_alts = _collect_mint_alts(members)
     if mint_alts:
         out["mint_alts"] = mint_alts
+    _apply_catalog_marks_to_class(members, out)
 
     # Sources union
     sources = _collect_sources(members)
@@ -4303,6 +4389,7 @@ def _load_seeds_for_entity(entity_id: str) -> list[dict]:
                 # An «erroneous» mint mark takes the printed mint out of play
                 # even on a seed hand-marked since its last regen.
                 apply_mint_mark(c)
+                apply_catalog_marks(c)
                 coins.append(c)
     return coins
 
@@ -4368,6 +4455,7 @@ def _load_all_seeds() -> tuple[dict[str, dict], dict[str, str]]:
             for c in doc.get("coins") or []:
                 if isinstance(c, dict) and c.get("id"):
                     apply_mint_mark(c)
+                    apply_catalog_marks(c)
                     by_id[c["id"]] = c
                     home[c["id"]] = entity
     return by_id, home

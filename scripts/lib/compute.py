@@ -500,6 +500,12 @@ class ComputedCoin:
     # «KM-SH#») to explain which Krause register volume the number
     # belongs to. None for bare prefixes.
     catalog_groups: list[tuple[str, list[str], str | None]] = field(default_factory=list)
+    # Marks on single catalogue numbers, keyed «<prefix>|<value>» →
+    # (kind, reason): «suspect» / «erroneous» for a member source's marked
+    # number shown beside the class's own (Coin.catalog_alts, reason = I18nText),
+    # «unverified» for a class number only a «(?)» mark supplies
+    # (Coin.catalog_unverified, reason None → the generic «(?)» tooltip).
+    catalog_marks: dict[str, tuple[str, object]] = field(default_factory=dict)
     # True if any input (weight_rough or fineness) is unverified, in which case
     # ALL derived values (weight_fein, delta, implied_fuss) inherit the (?)
     # marker — they sit on a non-primary base.
@@ -777,6 +783,56 @@ def _parse_ref(s: str) -> tuple[str | None, str]:
     if not m:
         return None, s.strip()
     return m.group(1).strip(), m.group(2).strip()
+
+
+def _apply_catalog_value_marks(
+    coin: Coin, groups: list[tuple[str, list[str], str | None]],
+) -> dict[str, tuple[str, object]]:
+    """Hang the coin's catalogue-number marks on the rendered groups.
+
+    A marked alternative (Coin.catalog_alts) is appended to its register's
+    group — a new group, placed by prefix priority, when the class has no
+    number in that register — and keyed for the template, which shows it
+    muted with «(*)» / «(!)». A «(?)» number (Coin.catalog_unverified) is
+    already in the group; it only gets the key. Mutates `groups` in place."""
+    marks: dict[str, tuple[str, object]] = {}
+    labels = dict(_NAMED_FIELDS)
+
+    def group_for(register: str) -> tuple[str, list[str]]:
+        label = labels.get(register, register.capitalize())
+        for prefix, vals, _tip in groups:
+            if prefix == label:
+                return label, vals
+        vals: list[str] = []
+        prio = _PREFIX_PRIORITY.get(label, 500)
+        at = len(groups)
+        for i, (prefix, _v, _t) in enumerate(groups):
+            if _PREFIX_PRIORITY.get(prefix, 500) > prio:
+                at = i
+                break
+        groups.insert(at, (label, vals, None))
+        return label, vals
+
+    alts = list(coin.catalog_alts or [])
+    unver = list(coin.catalog_unverified or [])
+    # A coin rendered straight from its seed carries the marks themselves.
+    if not alts and not unver:
+        for mk in coin.catalog_marks or []:
+            if mk.kind == "unverified":
+                unver.append(mk)
+            elif mk.reason is not None:
+                alts.append(mk)
+    for a in alts:
+        label, vals = group_for(a.register)
+        if a.value not in vals:
+            vals.append(a.value)
+        marks[f"{label}|{a.value}"] = (a.kind, a.reason)
+    for u in unver:
+        label, vals = group_for(u.register)
+        if u.value not in vals:
+            vals.append(u.value)
+        marks.setdefault(f"{label}|{u.value}", ("unverified", None))
+    return marks
 
 
 def _compute_catalog_groups(
@@ -1076,6 +1132,7 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
 
     # Catalog groups for the «Каталог» column
     cc.catalog_groups = _compute_catalog_groups(coin, location_km_register)
+    cc.catalog_marks = _apply_catalog_value_marks(coin, cc.catalog_groups)
 
     # Normalise measurement fields to (value, source) lists. Scalar form
     # → single (value, None) reading; list form → one entry per source.

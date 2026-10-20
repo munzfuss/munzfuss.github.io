@@ -65,11 +65,26 @@ def _marked_readings(coin: dict):
             for k in _CURATION_MARK_KEYS:
                 if e.get(k):
                     yield (f, _key(e.get("value")), e.get("source"), k)
+    # Catalogue-number marks (schema Coin.catalog_marks on the seed). On a
+    # final a «(*)» / «(!)» number is a `catalog_alts` entry; an «unverified»
+    # number either keeps its «(?)» or was confirmed by another member — both
+    # leave it in the final's catalog, so presence there is what is checked.
+    for mk in coin.get("catalog_marks") or []:
+        if isinstance(mk, dict) and mk.get("register") and mk.get("value") is not None:
+            yield (f"catalog.{mk['register']}", str(mk["value"]).strip(), None, mk.get("kind"))
+    for a in coin.get("catalog_alts") or []:
+        if isinstance(a, dict) and a.get("register") and a.get("value") is not None:
+            yield (f"catalog.{a['register']}", str(a["value"]).strip(), None, a.get("kind"))
+    if coin.get("catalog_marks") is None:
+        for reg, v in (coin.get("catalog") or {}).items():
+            for x in (v if isinstance(v, list) else [v]):
+                if x is not None:
+                    yield (f"catalog.{reg}", str(x).strip(), None, "unverified")
 
 
 def check_marks() -> list[str]:
     # Seeds: only files that mention a mark key at all (cheap text prefilter).
-    needles = tuple(f"{k}:" for k in _CURATION_MARK_KEYS)
+    needles = tuple(f"{k}:" for k in _CURATION_MARK_KEYS) + ("catalog_marks:",)
     marked: dict[str, set] = {}
     for p in sorted((V2 / "seed").glob("*/*.yml")):
         if not any(n in p.read_text(encoding="utf-8") for n in needles):

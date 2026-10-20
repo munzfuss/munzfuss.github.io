@@ -94,6 +94,45 @@ class YearAlt(_StrictBase):
     reason: I18nText
 
 
+class CatalogMark(_StrictBase):
+    """A curation mark on one catalogue number a source printed (see
+    Coin.catalog_marks). `register` is the CatalogRefs field («galster»,
+    «schou», …), `value` the number as printed.
+
+    - «suspect» / «erroneous»: the number is shown, muted with «(*)» / «(!)»,
+      beside the class's own numbers, and takes part in nothing else —
+      `seed_merge.apply_catalog_marks` takes it out of the seed's catalog, so
+      it neither justifies nor refutes a merge.
+    - «unverified»: the number is this coin's best attribution but no source
+      prints it for this coin; it is shown with «(?)» until another member of
+      the class carries the same number unmarked. It too stays out of
+      matching (the merge comes from a curator decision, not from the guess).
+    """
+    register: str = Field(..., min_length=1)
+    value: str = Field(..., min_length=1)
+    kind: Literal["suspect", "erroneous", "unverified"]
+    # Reader-facing reason (§0z); required for suspect / erroneous.
+    reason: I18nText | None = None
+
+
+class CatalogAlt(_StrictBase):
+    """One member source's marked catalogue number, shown beside the class's
+    own numbers (see Coin.catalog_alts)."""
+    register: str = Field(..., min_length=1)
+    value: str = Field(..., min_length=1)
+    source: str = Field(..., min_length=1)
+    kind: Literal["suspect", "erroneous"]
+    reason: I18nText
+
+
+class CatalogUnverified(_StrictBase):
+    """A catalogue number of the class that only an «unverified» mark
+    supplies — rendered with «(?)» (see Coin.catalog_unverified)."""
+    register: str = Field(..., min_length=1)
+    value: str = Field(..., min_length=1)
+    source: str = Field(..., min_length=1)
+
+
 class FieldValue(_StrictBase):
     """A single measurement reading attributed to one source. Used as
     elements in list-form measurement fields (weight_rough_g,
@@ -1043,6 +1082,15 @@ class Coin(_StrictBase):
     # the Altona Rejsedaler 1788 (Hede 25).
     mint_mark: "YearMark | None" = None
     mint_alts: "list[YearAlt] | None" = None
+    # Curation marks on catalogue numbers (schema CatalogMark), written on the
+    # SEED of the source that printed the number; the merger turns them into
+    # `catalog_alts` (marked numbers shown beside the class's numbers) and
+    # `catalog_unverified` (a class number only a «(?)» mark supplies).
+    # Founding case (curator 2026-10-20): Numista 476697 / 476698 print
+    # «Galster 48» for the ½ Sølvgylden 1532, which is Galster 49.
+    catalog_marks: "list[CatalogMark] | None" = None
+    catalog_alts: "list[CatalogAlt] | None" = None
+    catalog_unverified: "list[CatalogUnverified] | None" = None
     mintmaster: str | None = None
     mintmasters: list[MintmasterEntry] | None = Field(
         None,

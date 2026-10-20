@@ -1126,6 +1126,49 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
             else:
                 out["catalog"][k] = filtered
 
+    # Catalogue-number marks (schema Coin.catalog_alts / catalog_unverified):
+    # carried only from the live seed_unified side, like year/ruler/mint alts,
+    # so a mark removed on the seed disappears from the final on the next
+    # absorb. A «(?)» number is dropped once any other live member carries
+    # the same number unmarked (§4 verified-wins on catalogue numbers).
+    _live_members = members[1:] if len(members) > 1 else members
+    _calts: list[dict] = []
+    _calt_seen: set[tuple[str, str, str]] = set()
+    for _m in _live_members:
+        for _a in (_m.get("catalog_alts") or []):
+            if isinstance(_a, dict) and _a.get("register") and _a.get("value") and _a.get("source"):
+                _k = (str(_a["register"]), str(_a["value"]), str(_a["source"]))
+                if _k not in _calt_seen:
+                    _calt_seen.add(_k)
+                    _calts.append(dict(_a))
+    if _calts:
+        out["catalog_alts"] = _calts
+    else:
+        out.pop("catalog_alts", None)
+    _cunv: list[dict] = []
+    for _i, _m in enumerate(_live_members):
+        for _u in (_m.get("catalog_unverified") or []):
+            if not (isinstance(_u, dict) and _u.get("register") and _u.get("value")):
+                continue
+            _reg, _val = str(_u["register"]), str(_u["value"]).strip()
+            _attested = False
+            for _j, _o in enumerate(_live_members):
+                if _j == _i:
+                    continue
+                _own = {(str(x.get("register")), str(x.get("value")).strip())
+                        for x in (_o.get("catalog_unverified") or []) if isinstance(x, dict)}
+                _v = (_o.get("catalog") or {}).get(_reg)
+                _vals = {str(x).strip() for x in (_v if isinstance(_v, list) else [_v]) if x is not None}
+                if _val in _vals and (_reg, _val) not in _own:
+                    _attested = True
+                    break
+            if not _attested and not any((d["register"], d["value"]) == (_reg, _val) for d in _cunv):
+                _cunv.append(dict(_u))
+    if _cunv:
+        out["catalog_unverified"] = _cunv
+    else:
+        out.pop("catalog_unverified", None)
+
     # §9.4 index hygiene on the assembled catalog: fold any `others:
     # <code># N` overflow into its typed list-field (case-insensitive
     # code) and de-dup list-form values case-insensitively («Hede 55C»

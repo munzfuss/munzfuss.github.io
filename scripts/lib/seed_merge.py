@@ -91,6 +91,9 @@ CURATED_FIELDS = frozenset({
     "ruler_mark",
     # Same for the mint (schema Coin.mint_mark → mint_alts).
     "mint_mark",
+    # Marks on catalogue numbers (schema CatalogMark → catalog_alts /
+    # catalog_unverified on the class).
+    "catalog_marks",
     # V2 bidirectional seed↔curated link (Phase 6) — both fields are
     # curator-maintained or relink-script-derived audit trail of the
     # §9a multi-specimen merge. They MUST persist across regen so that:
@@ -161,6 +164,39 @@ def apply_mint_mark(entry) -> None:
         mark["value"] = ", ".join(printed) if isinstance(printed, list) else str(printed)
     if printed is not None:
         entry["mint"] = None
+
+
+def apply_catalog_marks(entry) -> None:
+    """Take every catalogue number the curator marked (schema Coin.catalog_marks)
+    out of the entry's `catalog`, so it neither justifies nor refutes a merge.
+
+    The number itself lives on in the mark: a «suspect» / «erroneous» one is
+    shown via the class's `catalog_alts`, an «unverified» one is put back into
+    the class's catalog by the merger (`catalog_unverified`) unless another
+    member already carries it. Idempotent. Runs after `apply_source_errata`,
+    so a mark applies to the number as corrected."""
+    marks = entry.get("catalog_marks")
+    cat = entry.get("catalog")
+    if not marks or not isinstance(marks, (list, tuple)) or not isinstance(cat, dict):
+        return
+    for mk in marks:
+        if not isinstance(mk, dict) or not mk.get("register") or mk.get("value") is None:
+            continue
+        reg, val = mk["register"], str(mk["value"]).strip()
+        cur = cat.get(reg)
+        if cur is None:
+            continue
+        if isinstance(cur, list):
+            kept = [v for v in cur if str(v).strip() != val]
+            if len(kept) != len(cur):
+                cat[reg] = kept[0] if len(kept) == 1 else (kept or None)
+        elif str(cur).strip() == val:
+            cat[reg] = None
+        if cat.get(reg) is None and reg in cat:
+            del cat[reg]
+        # A volume tag left without its number goes with it.
+        if reg == "galster" and "galster" not in cat:
+            cat.pop("galster_volume", None)
 
 
 def apply_source_errata(entry) -> None:
@@ -715,5 +751,6 @@ def merge_seed(
         if isinstance(c, dict):
             apply_source_errata(c)
             apply_mint_mark(c)
+            apply_catalog_marks(c)
 
     return out, stats

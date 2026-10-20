@@ -135,6 +135,29 @@ a seed works too, but the seed's `issuing_entity` is only re-derived on the
 next builder run. Not a substitute for `_source_errata` when the curator wants
 the value replaced rather than shown.
 
+## A mark on a CATALOGUE NUMBER
+
+`catalog_marks: [{register, value, kind, reason?}]` on the SEED (in
+`CURATED_FIELDS`; schema `CatalogMark`), 2026-10-20, founding case Numista
+476697 / 476698 printing «Galster 48» for the ½ Sølvgylden 1532 (Galster 49).
+`register` is the CatalogRefs field (`galster`, `schou`, …), `value` the number.
+
+- `suspect` «(*)» / `erroneous` «(!)» (reason required): the printed number.
+  `seed_merge.apply_catalog_marks` takes it out of the seed's `catalog` (at seed
+  write and at merger load), so it neither justifies nor refutes a merge; the
+  merger emits `catalog_alts`, absorb carries them from the live members, and
+  the Catalog column shows the number muted with its mark.
+- `unverified` «(?)» (no reason): the coin's attributed number that no source
+  prints for it. Also kept out of matching (bring the merge with a
+  `merge_decision`); the merger puts it into the class catalog and lists it in
+  `catalog_unverified` — UNLESS another member carries the same number unmarked,
+  in which case the attested number wins and the «(?)» goes (§4).
+
+Check 10 verifies the marked number reaches final (as an alt, or in the
+catalog); verify_reflow counts a number moved into `catalog_alts` as attested,
+not lost. Not a substitute for `_source_errata` when the curator wants the
+printed number replaced and not shown.
+
 ## Hard rules
 
 - A mark is written on the SEED reading only. Anything in `final` without a
@@ -143,6 +166,6 @@ the value replaced rather than shown.
   replace. Replacing is `_source_errata`, with curator approval.
 - Never invent the reason. If the evidence is only «it looks odd», that is a
   suspect mark with exactly that stated, not a narrative.
-- New mark kind? Add it to `seed_merge._CURATION_MARK_KEYS`, `compute.py`'s
+- New reading-mark kind? Add it to `seed_merge._CURATION_MARK_KEYS`, `compute.py`'s
   precedence, the template's `msign`, `app.js`'s `MARK_HEAD`, and this table —
   nothing else hard-codes the list.
