@@ -649,7 +649,7 @@ below); whether Christian II's of 1513 already had it is open (below). A kb sear
 |---|---|---|---|---|---|
 | 8 Oct 1424 | Queen Philippa ↔ Lübeck, Hamburg, Lüneburg, Wismar (København) | the Danish crown and the four cities, mutually | coin «*de ghenge vnde gheue wesen schal beyde in den Ryken*»; Søsling «*eluen loht vnde en quentyn*», 168 per weighed mark; Hohlpfennig 7¼ lot; old Danish pieces devalued; annual assay in København | **static** — fixes parameters, no clause on later changes | Hauberg 1886 s. 173–175 (text printed); Jesse (assay «*jährliche Prüfung … in Kopenhagen*») |
 | 1425–1435 | — | — | «*Infolge dieser Verhältnisse ist deshalb auch die Münzeinigung mit den Städten sehr bald wieder zerrissen. Nur die Anlehnung des dänischen Münzwesens an das der Städte blieb bestehen.*» (Jesse); Søsling «*omtales ikke i noget senere Aktstykke*» (Hauberg s. 176) | treaty lapsed | Jesse; Hauberg |
-| 1460 | Christian I as Count of Holstein ↔ Hamburg | Christian I and heirs, **for the duchies only** | «*forpligtede Christiern I som holstensk Greve sig til kun at bruge saadan Mynt i Hertugdømmerne, som var gjængs og gjæv i Lybek og Hamborg*» (Hauberg s. 140, after Hvitfeldt II 889); Sømod: «*ingen mønt sætte, uden den som til Lübeck og Hamburg er gængs og gæv*» | **dynamic** (whatever passes in Lübeck/Hamburg) — but Holstein, not the kingdom | Hauberg; Sømod 2002 |
+| 1460 | Christian I as Count of Holstein ~~↔ Hamburg~~ → the Schleswig-Holstein estates (Kiel, 4 Apr 1460, art. 9; §3.4h (2a)) | Christian I and heirs, **for the duchies only** | «*forpligtede Christiern I som holstensk Greve sig til kun at bruge saadan Mynt i Hertugdømmerne, som var gjængs og gjæv i Lybek og Hamborg*» (Hauberg s. 140, after Hvitfeldt II 889); Sømod: «*ingen mønt sætte, uden den som til Lübeck og Hamburg er gængs og gæv*» | **dynamic** (whatever passes in Lübeck/Hamburg) — but Holstein, not the kingdom | Hauberg; Sømod 2002 |
 | 1474 | Christian I's complaint to the Emperor | — | «*1474 beklagte sich König Christian von Dänemark beim Kaiser, daß die vier Städte in den letzten 3 Jahren Schillinge schlügen, deren 24 bis 25 auf den Gulden gerechnet werden müßten, wodurch Zinsen, Renten und Zölle, die auf 23 ß = 1 fl. gegründet seien, beeinträchtigt würden.*» | shows the dependence ran the OTHER way: Danish dues fixed in Lübeck ß, so Lübeck's debasement cost the crown | Jesse |
 | 1 Feb 1483 | Hans' håndfæstning (Halmstad) | king → Danish-Norwegian council | each realm keeps its coin; Norway's coin «*jeffngod … wid Danske penninge*» (Gullbekk). Wilcke 7-1 s. 143 glosses this as «*jevngod Mønt med den danske, o: efter lybsk Møntfod, saa den var gænge og gæv i Hansestæderne*» — the «o:» part is **Wilcke's gloss**, not the act | ties Norway to DENMARK, not to Lübeck | Gullbekk 2025; Wilcke 7-1 s. 143 |
 | 1491, Jan 1508 | Hans; Christian (II) as elect | — | Norwegian and Danish coin «*giæng og gjæv*» in each other's realm at full value; 1508: «*vor kære Faders Mønt skal være giæng og gæv for allehaande Varer*» (Dipl. Norv. III 754) | intra-union, no Lübeck | Wilcke 7-1 s. 143 |
@@ -931,6 +931,66 @@ None of the realm acts 1448–1513 in *Rigslovgivning* has such a clause (§3.4f
 II–III and Lübeck UB (Christian I's dealings with Lübeck), or by Wilcke's own source if one turns up. Years: if the
 1460 act, 1460; otherwise unknown — the card should not give a year.
 
+**(2a) Two instruments found 2026-10-20 (curator: «збери більше даних про цю обіцянку герцога»).** Both in
+Andersen, *Den danske Rigslovgivning 1397-1513* (cache `scripts/cache/rigslovgivning/`, printed = PDF + 1).
+
+*A. The Holstein clause of 1460 — its actual text and addressee.* It is art. <9> of Christian I's letter dated
+Kiel, Friday before Palm Sunday (4 April) 1460 (nr. 27, «*Kristian 1. udvider og stadfæster de slesvigske og
+holstenske stænders privilegier*», s. 124–126, text after the sealed original A, Landesarchiv Schleswig Urk.
+Abt. 394), the supplement to the Ribe privilege of 5 March 1460:
+«*Ok scholen wy vnde vnse nakomelinge in dessen landen nene munte setten sunder sodann alse to Lubeke vnd^
+Hanzborch genge vnde geue is*» (s. 126) — «we and our successors shall set no coin in these lands other than
+such as is current and accepted in Lübeck and Hamburg».
+- **Addressee:** the bishops, prelates, knights, squires «*vnd^ den gemenen inwaneren vnses hertogdomes to
+  Sleswigk vnde vnser lande Holsten vnd^ Stormaren*» — the estates of the duchy and the counties. NOT Hamburg,
+  NOT the Danish Rigsråd. Christian I issues it as «*hertoge to Sleswick, greue to Holsten*».
+- **Binds** Christian I «*vnde vnse nakomelinge*» — in the lands (Schleswig, Holstein, Stormarn), not the kingdom.
+- **Corrections:** our §3.4f row «1460 … ↔ Hamburg» and Sømod's «*aftale … med Hamburg*» are not the act's
+  wording; Hauberg s. 189 (after Hvitfeldt II 889) gives it without an addressee: «*Kong Christiern maatte ved
+  Overtagelsen af Slesvig og Holsten Aar 1460 blandt Andet forpligte sig til at »Hånd eller hans Effterkommere
+  skulle ingen Mynt sette, vden den som til Lybke oc Hamborg er genge oc giffue«*». Hauberg's own reading
+  (s. 189): «*han kan muligvis have benyttet den indgaaede Forpligtelse til at forskaffe ikke blot
+  Hertugdømmerne, men ogsaa hele Riget den større hamborgske og lybske Mynt*» — his hypothesis, not a fact;
+  1473 Christian I asked Hamburg's council to coin silver for him «*vpp yuwer Münte*» (Hauberg s. 189 n. 3,
+  after Londorp).
+- **Afterlife:** Galster 1934 (Junge): in the duchies «*skulde den lybske Møntfod opretholdes i Henhold til
+  Privilegierne af 1460*» (Christian III's time); Wilcke 7-4 s. 283 «*Hertugerne havde lovet Hansestæderne …*»
+  (Wilcke names the Hanse towns as addressee, the act names the estates). Whether Hans as duke (from 1482)
+  re-confirmed art. 9 — not established (ducal acts are outside *Rigslovgivning*).
+
+*B. The Scanian Môtbok — a royal clause tying the KING's coin to the four towns.* Christian I's redaction
+[1460–1474] (nr. 57, s. 217–221; dated by the royal title «*hartoghe to Sleswyck, greue to Holsten*»; text after
+Langebek's Diplomatarium copy, marginal note «*Imellem 1460 og 1474*»; extract also NNÅ 1961 s. 42 nr. 800,
+§78–81). Issued «*na anwysynghe vnde rade des gemenen rykes to Denemargken*» (s. 217) — on the advice of the
+council of the realm of Denmark — for the merchants visiting Scania (Skanør, Falsterbo):
+- art. <78>–<79> (s. 218): a tariff of coin in Lübeck money — «*en swar nobel iii. lubesche margk*», «*lub. gulden
+  xxvi. schil. lub.*», «*de rynse gulden xx.ß lub*», postulat gulden 18 ß, Bishop's gulden and «schilde» 15 ß lub.,
+  Arnoldus gulden 12 ß lub. — **this is Hauberg's «Christiern I's Forordning om fremmed Mynts Værdi», «1460–74,
+  Langebek Dipl.» (s. 137, 189): same date, same copy, same content** (the gap in (4) is closed);
+- art. <81> (s. 219): «*Item schal vnse koninglyke munte gaen like der veerleye munte*» — «our royal coin shall
+  pass equal to the coin of the four» (i.e. the four towns of the Wendish union; Jesse on Margrete's Môtbok § 67:
+  «*d. h. der 4 Städte des Münzvereins*»). Variant Aa: «*mynes heren*» for «*vnse koninglyke*».
+- **Hans renewed it:** his redaction dated Falsterbo, 11 September 1484 (nr. 59, s. 224; lost Trenthorst MS,
+  Lübeck archive copy), issued again «*Na anwisinge vnde rade des gemenen rykes to Dennemarcken*», takes over
+  «*77-82*» of Christian I's text — i.e. both the Lübeck tariff and art. 81. Frederik I's redaction [1524–33]
+  (nr. 60) does not include §77–86.
+- ⚠ Jesse attributes the clause to «*das aus Margaretes Zeit stammende Môtbok*» (§ 67). In *Rigslovgivning* the
+  clause is found only in Christian I's redaction nr. 57 (full-text search; Margrete's nr. 54 and Erik's nr. 55
+  lack it — nr. 55 art. <58> has instead «*dat nene suluer munte anders schal gaen dyn syne eigene munte*»,
+  s. 200), and Schäfer's edition (*Das Buch des Lübeckischen Vogts auf Schonen* 95–99), which Jesse would have
+  used, prints the Christian I redaction (after Bal). **Hypothesis:** Jesse's «Margrete» § 67 is this
+  Christian I text. Would be settled by Schäfer's edition.
+
+**What this does to the hypothesis in (2).** The Môtbok fits Wilcke's two wordings better than the Holstein act:
+it is a royal (not ducal) undertaking that the king's coin shall go «like» the coin of the four towns; it was
+made by Christian I AND renewed by Hans («*Hans saa vel som hans Fader*»); it was issued on the advice of the
+Danish realm council («*Rigsraaderne*», 7-2 s. 147) for the Hanseatic merchants and kept in the Lübeck archive
+(«*lovet Lybækkerne*», 7-1 s. 142). **Revised hypothesis:** Wilcke's promise = Môtbok art. 81 (Christian I
+[1460–74], Hans 1484); the Holstein clause of 1460 is a separate, parallel obligation for the duchies. Caveats:
+(a) Wilcke cites neither; (b) the Môtbok governs the Scanian fair, so its reach in the kingdom at large is not
+stated in it; (c) «*gaen like*» is relational (pass at par), like «*genge vnde geue*» — no parameters. Would be
+settled by Wilcke's own source, or by a contemporary text invoking art. 81.
+
 **(3) 1468 and the recesses of 1483 and 1492 — why «confirm» at all** (Jesse, same file, «Münzfuß-Einigung von
 1468» and the following paragraphs):
 - 1467 Lübeck Rezess (15 Oct) chose a 101 / 9¾-lot Schilling; the four-town Münzordnung published 22 Feb 1468 left
@@ -952,9 +1012,9 @@ union's recesses were renewed rather than permanent, and (b) a deliberate choice
 against the falling Rhenish Gulden. The Danish card can say the 1468 standard was kept unchanged until 1506.
 
 **(4) Did Denmark take over 1468 «silently»?** No Danish act is known (§3.4f; *Rigslovgivning* 1448–1481 has no coin
-clause; Christian I's valuation of foreign coin «*c. 1460–1474*», reckoned «*i Forhold til lybske Mark og
-Schillinge*», Hauberg s. 137 after Langebek Dipl., is not in *Rigslovgivning* — **not read; would be the nearest
-thing to a Danish instrument**). What is attested: Christian I's complaint of 1474 that Lübeck's new Schillinge
+clause; ~~Christian I's valuation of foreign coin … not in *Rigslovgivning* — not read~~ **found 2026-10-20:** it
+is Christian I's Môtbok redaction [1460–74], art. 79, with art. 81 tying the royal coin to the four towns', see (2a)
+— the nearest thing to a Danish instrument, renewed by Hans in 1484). What is attested: Christian I's complaint of 1474 that Lübeck's new Schillinge
 harmed his «*Zinsen, Renten und Zölle, die auf 23 ß = 1 fl. gegründet seien*» (Jesse). 23 ß per Gulden is exactly
 the Hanseatic settlement of July 1468. So the Danish crown's revenues were fixed in Lübeck ß at the 1468 rate —
 the strongest evidence that the 1468 reckoning was adopted in Denmark, without a known act. The card may state
@@ -972,7 +1032,10 @@ this as the attested fact; «automatically» stays our reading.
   ≈ 0,35 → 0,25 g fine (Eriksson tab. 5): the early ones carry about the silver of 3 Lübeck Pf, the later ones
   less. ⚠ Wilcke 7-1 s. 142 «*En rhinsk Gylden var lig 20 ß lybsk og 2 M dansk*» gives Hvid = 2½ Pf l., not 3:
   the two do not agree. 20 ß is the Gulden of the early 1460s (Jesse: 21–22 ß 1461–68) — **hypothesis** that
-  Wilcke's 20 is an older rate. Would be settled by the source behind Wilcke's line.
+  Wilcke's 20 is an older rate. Would be settled by the source behind Wilcke's line. **Support found 2026-10-20:**
+  Christian I's Môtbok tariff [1460–74] has «*de rynse gulden xx.ß lub*» (art. 79, s. 218) — a pre-1468 /
+  1460s figure; Hans' 1484 redaction copied it unchanged, so a 1480s text could carry the old 20 ß. Still a
+  hypothesis that this is Wilcke's source.
 
 **(6) 1483, Hans.** Art. 14 as listed; also art. 13 (Swedish toll in silver «*till at holde mynten oppe met*»).
 The Norwegian standard is the Danish one; no Lübeck in the act (§3.4f).
@@ -1005,7 +1068,7 @@ The Norwegian standard is the Danish one; no Lübeck in the act (§3.4f).
 Schilling, not the Danish ß of account (3 Hvide). The card's units block should keep the two apart.
 
 **Gaps that remain** (each with what would settle it):
-- Christian I's valuation of foreign coin (c. 1460–74) — Langebek Dipl. (RA), or a printed edition (Repertorium).
+- ~~Christian I's valuation of foreign coin (c. 1460–74)~~ — found: Môtbok nr. 57 art. 79 (2a).
 - The year the «Anlehnung» sentence covers on the card — settled above (after c. 1425–35); the curator decides
   whether the card gives 1392 as the start of the orientation.
 - Wilcke's 20 ß l. = 2 M d vs Hvid = 3 Pf — Wilcke's source.
