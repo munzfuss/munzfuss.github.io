@@ -351,6 +351,11 @@ def _member_excluded_kmm(entity: str) -> set[str]:
                     m = re.search(r"/KMM/object/(\d+)", str(src.get("url") or ""))
                     if m:
                         out.add(m.group(1))
+    # Per-specimen exclusions (`specimens:` — one KMM object inside a seed):
+    # absorb strips exactly those citations (lib.specimen_exclusions).
+    for e in doc.get("specimens") or []:
+        if isinstance(e, dict) and e.get("kmm") is not None:
+            out.add(str(e["kmm"]).strip())
     _MEMBER_KMM_CACHE[entity] = out
     return out
 

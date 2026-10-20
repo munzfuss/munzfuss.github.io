@@ -67,6 +67,8 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from lib.fraction_infer import infer_fraction, load_fuss_fractions  # noqa: E402
 from lib.gen_stamp import resolve_generated_at  # noqa: E402
 from lib.seed_merge import merge_seed  # noqa: E402
+from lib.specimen_exclusions import (  # noqa: E402
+    load_excluded_specimens, strip_excluded_specimens)
 from lib.yaml_io import dump_v2_canonical  # noqa: E402
 from lib.v2_seed_writer import (  # noqa: E402
     _is_out_of_scope_nominal,
@@ -1207,6 +1209,12 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     sources = _collect_sources(members)
     if sources:
         out["sources"] = sources
+        # Curator-excluded KMM specimens (exclusions `specimens:`) leave the
+        # coin; one with a weight or a photo is never stripped (guard).
+        strip_excluded_specimens(
+            out, load_excluded_specimens(),
+            keeps=lambda nid: (_kmm_specimen_weight(nid) is not None
+                               or _kmm_specimen_has_image(nid)))
         # Hide (not delete) surplus weightless KMM specimen citations.
         _suppress_weightless_museum_overcollection(out)
 
