@@ -665,6 +665,41 @@ not quote, or Huitfeldt/Galster read the 1523 wording back into 1513. **Open —
 (Aarsberetninger fra Geheimearchivet II p. 62; Erik Krabbes Lovarbejder; Kong Christian II's håndfæstning in
 *Danske Kongers Haandfæstninger*, 1974 ed.). Not found online (web search 2026-10-16).
 
+**Settled 2026-10-20 from the critical edition** (Andersen, *Den danske Rigslovgivning 1513-1523*, 1991, nr. 1,
+s. 20–32, «*Tekst efter A*» = the sealed original, collated with the Norwegian copy B; cache
+`scripts/cache/rigslovgivning/`, curator-supplied URL). The whole 1513 håndfæstning has ONE coin clause, art. <41>,
+s. 28: «*Item hwat som myntes efftzr thenne dag i Danmark oc Norige skall myntes swo, at two mark giøre fyllest for
+en rinsk gylden*»; the apparatus has only spelling variants (Danmarck, Norge). No «lige med Stædernes», no Lübeck.
+So Huitfeldt's «*lige med Stædernes*» and Galster's «*(ligesom i Christiern II's Haandfæstning)*» read the 1523
+wording back into 1513 — as far as the sealed original goes. The ⚠ stays as a record of the discrepancy; the
+open question is closed.
+
+**Other realm acts checked in the same edition (2026-10-20; printed page = PDF page + 1):**
+- [1440–1448], Christopher's articles for the Scanian towns (*Rigslovgivning 1397-1513* nr. 11, s. 83–84): the
+  towns shall price goods «*effth^r vor mynth, som vy nw bwdeth haffue ath ganghe, ok ath the iw holde grossen for
+  ii lybske*» — the Danish grot to be taken for 2 Lübeck pence. A royal act reckoning Danish coin in Lübeck pence,
+  forty years before 1481 (supports the §3.4f correction above). The editor's note (s. 84): Erik's grot was
+  struck at 9 penninge, after Erik's fall reduced to 2.
+- 1448 (Christian I: obligation 28 Jun, provisional håndfæstning 1 Sep, king's oath 28 Sep; nr. 19–22, s. 99–107):
+  no coin clause (full-text search «mynt», 2026-10-20).
+- 1 Feb 1483, Hans' håndfæstning (nr. 37, s. 144 ff.): art. <13> (s. 151) all Swedish toll to be paid in silver
+  «*till at holde mynten oppe met*» and not to be changed without the council; art. <14> Norway's mints at
+  Trondhjem, Bergen, Oslo, «*iaffngod mynt wid danske penninge*». No Lübeck — confirms row «1 Feb 1483» above.
+- 3 Aug 1523, Frederik I's håndfæstning (*Rigslovgivning 1523-1558* nr. 4, s. 72–73, two redactions in parallel
+  columns), art. <50>: «*Item hwad som skall myntess effther thenne dag i Danmarck, skall myntess liigæ gott weed
+  Lubecks, Hamborgs oc lånte Holsten*» (second column «*lyge gott wedt lybsk*»). Confirms the 1523 row from the
+  edition itself.
+- 9–16 Aug 1523, Frederik I's coin ordinance for Sjælland (same vol., nr. 6, s. 82–83, text from the chancery
+  register B 9): valuation of the old coin per Rhenish Gulden — «*dubelthe B, som koning Christiern then siiste lod
+  mynthe, xx*», «*Christoffers huide ii mark*», «*Christoffers B ii mark*», «*hele B, som hogborne fyrste, koning
+  Christiern, vor kere herre fader, lod mynte ii mare for en rinskes gylden*»; new coin «*hele B xxiiii for i
+  rinskes gylden*», «*iiii lybske for i huid*». ⚠ «koning Christiern, vor kere herre fader» = Christian I (Frederik
+  I's father), credited with whole Skillinger — against Eriksson s. 4 («*Han lät inte prägla skillingar*») and the
+  danskmoent type list. **Open** — which coin the chancery meant (Christian I's Holstein Schillinge? a reading of
+  «fader» for an earlier Christian?). Hauberg 1886 s. 187 agrees with Eriksson: «*Udmyntningen af Skillinger standses,
+  saaledes at der i hele denne lange Periode kun udmyntes Hvide her i Danmark*». Would be settled by Galster 1972
+  and by checking the register B 9 reading.
+
 **What «gængs og gæv / lige god ved lybsk» means as an obligation.** The formula is relational, not a
 parameter: coin must PASS at par with («be as good as») the current Lübeck coin. Read literally it is dynamic —
 if Lübeck debased (1502/06 step to 13 Mark), «as good as Lübeck» would be satisfied at the lower level. No source
@@ -729,7 +764,8 @@ text is found it is Wilcke's statement, not the act's wording.
 **Open — with what would settle each:**
 | Question | Would be settled by |
 |---|---|
-| Full coin clause(s) of Christian II's 1513 håndfæstning | *Aarsberetninger fra Geheimearchivet* II p. 62; *Danske Kongers Haandfæstninger* (1974) |
+| ~~Full coin clause(s) of Christian II's 1513 håndfæstning~~ **settled 2026-10-20**: one clause, Gulden only (*Rigslovgivning 1513-1523* nr. 1 art. 41, s. 28) | — |
+| Christian I's «hele B» in Frederik I's 1523 valuation vs «no Christian I Skilling» | Galster 1972; Hauberg 1886; RA Danske Kancelli B 9 |
 | Hans' DANISH håndfæstning 1483 coin clause (beyond the Norway article) | same edition; Kancelliets Brevbøger / RA |
 | Christian I's promise «to the Lübeckers» (Wilcke 7-1 s. 142) — which instrument? | Hanserecesse II (1431–76); Lübeck UB; Christian I's privileges for Lübeck |
 | Did anyone invoke «lige god ved lybsk» against a king after a Lübeck change? | Hanserecesse III (1477–1530); Danish herredag records |
