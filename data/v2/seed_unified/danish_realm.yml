@@ -2,8 +2,8 @@
 # Generated 2026-10-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15169 per-source seed entries.
-# Output: 5910 unified entries (one per physical coin).
+# Input: 15177 per-source seed entries.
+# Output: 5911 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -592,8 +592,12 @@ coins:
         - '3.1'
         - '4'
       schou:
-        - '1'
+        - 1-15
+        - 1-2
+        - 3-4
         - 8-10
+        - 8-15
+        - 16-19
       bruun_part: II
       bruun_lot_no: 13050
       bruun_page: 51
@@ -601,7 +605,9 @@ coins:
         - '39'
         - 39A
         - 39B
+        - 39C
       numista: '153125'
+      galster_volume: c2g
       others:
         - LEB# 3942
     metal: billon
@@ -611,7 +617,10 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    year_verified: true
     fineness:
+      - value: 0.375
+        source: galster
       - value: 0.375
         source: numista
     weight_rough_g:
@@ -619,6 +628,18 @@ coins:
         source: numista
       - value: 2.46
         source: bruun
+      - value: 2.61
+        source: galster
+        template:
+          de: 'Kein Wägebefund: 2,61 g ist das vorgeschriebene Rauhgewicht des Skillings. Galster: «Selv den bedste årgang, 1514, med vægte fra 2,18-2,25g, når ikke nær op til den foreskrevne råvægt 2,61g»
+            (dt.: «Selbst der beste Jahrgang, 1514, mit Gewichten von 2,18–2,25 g, reicht nicht annähernd an das vorgeschriebene Rauhgewicht von 2,61 g heran»; Unionstidens udmøntninger, S. 26, zitiert
+            auf danskmoent.dk c2g39.htm).'
+          en: "Not a weighing: 2.61 g is the skilling's prescribed gross weight. Galster: «Selv den bedste årgang, 1514, med vægte fra 2,18-2,25g, når ikke nær op til den foreskrevne råvægt 2,61g» (transl.:
+            «Even the best year, 1514, with weights of 2.18–2.25 g, comes nowhere near the prescribed gross weight of 2.61 g»; Unionstidens udmøntninger, p. 26, quoted on danskmoent.dk c2g39.htm)."
+          uk: 'Не результат зважування: 2,61 г — приписана сира вага скіллінга. Galster: «Selv den bedste årgang, 1514, med vægte fra 2,18-2,25g, når ikke nær op til den foreskrevne råvægt 2,61g» (перекл.:
+            «Навіть найкращий рік, 1514, з вагами 2,18–2,25 г, і близько не сягає приписаної сирої ваги 2,61 г»; Unionstidens udmøntninger, с. 26, цитовано на danskmoent.dk c2g39.htm).'
+          da: 'Ikke en vejning: 2,61 g er skillingens foreskrevne råvægt. Galster: «Selv den bedste årgang, 1514, med vægte fra 2,18-2,25g, når ikke nær op til den foreskrevne råvægt 2,61g» (Unionstidens
+            udmøntninger, s. 26, citeret på danskmoent.dk c2g39.htm).'
     diameter_mm:
       - value: 26.8
         source: numista
@@ -626,6 +647,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13050, p. 25
+      - type: literature
+        url: https://www.danskmoent.dk/c2g39.htm
+        ref: Galster 39A (c2g) — danskmoent.dk c2g39.htm
       - type: literature
         url: https://en.numista.com/153125
         ref: Numista N#153125 — 1 Skilling - Christian II (Malmo; type 1)
@@ -704,6 +728,9 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-3917
+      - dk-galster-c2g-39a
+      - dk-galster-c2g-39b
+      - dk-galster-c2g-39c
       - dk-numista-153125
       - kmk-122108
       - kmk-133759
@@ -1512,26 +1539,10 @@ coins:
     weight_rough_g:
       - value: 2.14
         source: bruun
-    ruler_alts:
-      - value: Søren Nordby
-        source: kmk
-        kind: erroneous
-        reason:
-          de: Der Datensatz des Nationalmuseums (KMM) nennt «Søren Nordby». Søren Norby war Lehnsmann auf Visborg (Gotland, 1517–1525) und prägte im Namen König Christians II.; sein eigener Name steht
-            auf der Vorderseite (Galster 144).
-          en: The National Museum record (KMM) names «Søren Nordby». Søren Norby was the king's fief-holder at Visborg (Gotland, 1517–1525) and struck in the name of King Christian II; his own name is
-            on the obverse (Galster 144).
-          uk: Запис Національного музею (KMM) називає «Søren Nordby». Søren Norby був ленсманом короля у Visborg (Готланд, 1517–1525) і карбував від імені короля Christian II; його власне ім'я стоїть 
-            на аверсі (Galster 144).
-          da: Nationalmuseets post (KMM) nævner «Søren Nordby». Søren Norby var lensmand på Visborg (Gotland, 1517–1525) og prægede i kong Christian II's navn; hans eget navn står på forsiden (Galster
-            144).
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13055, p. 26
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317111
-        ref: KMM 317111 (Inv. FP 6819.1)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/347896
         ref: KMM 347896 (Inv. FP 5424.61)
@@ -1547,13 +1558,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-4125
-      - kmk-317111
       - kmk-347896
-    _errata_applied:
-      - source: kmk-317111
-        field: ruler
-        printed: Søren Nordby
-        correct: Christian II.
   - id: unified-dk-bruun-4153
     fuss: seed_unsorted
     phase: bruun
@@ -1562,12 +1567,12 @@ coins:
     year_first: 1533
     year_last: 1533
     year_label: '1533'
-    ruler: Christian III
+    ruler: Rigsrådet
     mint: Malmø
     catalog:
       bruun_collection_id: '4153'
       sieg: '1'
-      schou: '2'
+      schou: 1-2
       bruun_part: II
       bruun_lot_no: 13056
       bruun_page: 53
@@ -1578,6 +1583,7 @@ coins:
     weight_rough_verified: true
     mint_verified: true
     verified: false
+    year_verified: true
     weight_rough_g:
       - value: 1.9
         source: bruun
@@ -1585,6 +1591,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13056, p. 27
+      - type: literature
+        url: https://www.danskmoent.dk/rigsraad.htm
+        ref: Galster 81 — danskmoent.dk rigsraad.htm
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -1597,6 +1606,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-4153
+      - dk-galster-rigsraad-81
   - id: unified-dk-bruun-4155
     fuss: seed_unsorted
     phase: bruun
@@ -11835,15 +11845,6 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g41.htm
         ref: Galster 41 (c2g) — danskmoent.dk chr_c2g41.htm
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150264
-        ref: KMM 150264 (Inv. KP 1656.49)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/274302
-        ref: KMM 274302 (Inv. FP 1667.164.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/274303
-        ref: KMM 274303 (Inv. FP 1667.164.2)
     verification_note:
       de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
         Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -11856,9 +11857,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-c2g-41
-      - kmk-150264
-      - kmk-274302
-      - kmk-274303
   - id: unified-dk-galster-c2g-43
     fuss: seed_unsorted
     phase: galster
@@ -13507,6 +13505,90 @@ coins:
       - dk-galster-f1g-66c
       - kmk-307993
       - kmk-316500
+  - id: unified-dk-galster-f1g-67
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Søsling
+    year_first: 1525
+    year_last: 1525
+    year_label: '1525'
+    ruler: Frederik I
+    mint:
+      - Malmø
+      - Ronneby
+    catalog:
+      galster: '67'
+      galster_volume: f1g
+    metal: billon
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: true
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/ronneby.htm
+        ref: Galster 67 (f1g) — danskmoent.dk ronneby.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291520
+        ref: KMM 291520 (Inv. FP 7445.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/354331
+        ref: KMM 354331 (Inv. FP 4932.17)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/641994
+        ref: KMM 641994 (Inv. FP 11855.41)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/725841
+        ref: KMM 725841 (Inv. FP 5215.12,x6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/739792
+        ref: KMM 739792 (Inv. FP 12957.12)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/573275
+        ref: KMM 573275 (Inv. FP 11035.29)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/735608
+        ref: KMM 735608 (Inv. FP 12861.10)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/303055
+        ref: KMM 303055 (Inv. FP 8255.30)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/306629
+        ref: KMM 306629 (Inv. FP 7760.10)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/310055
+        ref: KMM 310055 (Inv. FP 7244.19)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/314928
+        ref: KMM 314928 (Inv. FP 6986.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/316887
+        ref: KMM 316887 (Inv. FP 6867.9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317049
+        ref: KMM 317049 (Inv. FP 6839.12)
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: danish_realm
+    composed_of:
+      - dk-galster-f1g-67
+      - kmk-291520
+      - kmk-303055
+      - kmk-306629
+      - kmk-310055
+      - kmk-314928
+      - kmk-316887
+      - kmk-317049
   - id: unified-dk-galster-f1g-67suaar31
     fuss: seed_unsorted
     phase: galster
@@ -14320,6 +14402,80 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-hg-146
+  - id: unified-dk-galster-hg-147
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1535
+    year_last: 1537
+    year_ranges:
+      -   - 1535
+          - 1537
+    year_label: 1535-1537
+    ruler: Christian III
+    mint: Visby
+    catalog:
+      galster: '147'
+      schou:
+        - '23'
+        - 120-125
+        - 241-255
+      sieg: '24'
+      others:
+        - Hauberg# hhv. 132-140, 141-144 og 145
+    metal: billon
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: true
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/gotlg147.htm
+        ref: Galster 147 (hg) — danskmoent.dk gotlg147.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150123
+        ref: KMM 150123 (Inv. KP 1656.190)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150124
+        ref: KMM 150124 (Inv. KP 1656.189)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150125
+        ref: KMM 150125 (Inv. KP 1656.188)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150126
+        ref: KMM 150126 (Inv. KP 1656.187)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150160
+        ref: KMM 150160 (Inv. KP 1656.153)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/328312
+        ref: KMM 328312 (Inv. FP 6429.4)
+    note:
+      de: Gotland
+      en: Gotland
+      uk: Gotland
+      da: Gotland
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: danish_realm
+    composed_of:
+      - dk-galster-hg-147
+      - kmk-150123
+      - kmk-150124
+      - kmk-150125
+      - kmk-150126
+      - kmk-150160
+      - kmk-328312
   - id: unified-dk-galster-hg-30
     fuss: seed_unsorted
     phase: galster
@@ -14556,6 +14712,62 @@ coins:
     composed_of:
       - dk-galster-hg-35
       - kmk-273472
+  - id: unified-dk-galster-rigsraad-22
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1481
+    year_last: 1481
+    year_label: '1481'
+    ruler: Rigsrådet
+    mint: Malmø
+    catalog:
+      galster: '22'
+    metal: billon
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/rigsraad.htm
+        ref: Galster 22 — danskmoent.dk rigsraad.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/296203
+        ref: KMM 296203 (Inv. FP 8997.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/297603
+        ref: KMM 297603 (Inv. FP 8764.62)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/311348
+        ref: KMM 311348 (Inv. FP 7135.88)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/316655
+        ref: KMM 316655 (Inv. FP 6897.9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/437662
+        ref: KMM 437662 (Inv. FP 10595.54)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/497177
+        ref: KMM 497177 (Inv. FP 10697.10)
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: danish_realm
+    composed_of:
+      - dk-galster-rigsraad-22
+      - kmk-296203
+      - kmk-297603
+      - kmk-497177
   - id: unified-dk-hede-c10h11
     fuss: seed_unsorted
     phase: hede
@@ -107973,16 +108185,20 @@ coins:
           - 1522
     year_label: 1518-1522
     ruler: Christian II
+    mint: Malmø
     catalog:
       numista: '297656'
       sieg: '8'
+      galster: '42'
+      galster_volume: c2g
     metal: billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
+    mint_verified: true
     verified: false
+    year_verified: false
     fineness:
       - value: 0.208
         source: numista
@@ -107990,6 +108206,9 @@ coins:
       - value: 2.15
         source: numista
     sources:
+      - type: literature
+        url: https://www.danskmoent.dk/18pennin.htm
+        ref: Galster 42 (c2g) — danskmoent.dk 18pennin.htm
       - type: literature
         url: https://en.numista.com/297656
         ref: Numista N#297656 — 18 Penning "Klippingar" - Christian II
@@ -108004,6 +108223,7 @@ coins:
         (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
     issuing_entity: danish_realm
     composed_of:
+      - dk-galster-c2g-42
       - dk-numista-297656
   - id: unified-dk-numista-301174
     fuss: seed_unsorted
@@ -150662,82 +150882,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-150112
-  - id: unified-kmk-150123
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    ruler: Christian 3
-    mint: Visby
-    catalog:
-      schou: '123'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150123
-        ref: KMM 150123 (Inv. KP 1656.190)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-150123
-  - id: unified-kmk-150124
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    ruler: Christian 3
-    mint: Visby
-    catalog:
-      schou: '122'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150124
-        ref: KMM 150124 (Inv. KP 1656.189)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-150124
-  - id: unified-kmk-150125
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    ruler: Christian 3
-    mint: Visby
-    catalog:
-      schou: '121'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150125
-        ref: KMM 150125 (Inv. KP 1656.188)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150126
-        ref: KMM 150126 (Inv. KP 1656.187)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-150125
-      - kmk-150126
   - id: unified-kmk-150153
     fuss: seed_unsorted
     phase: kmk
@@ -150909,30 +151053,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-150159
-  - id: unified-kmk-150160
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian 3
-    mint: Visby
-    catalog:
-      schou: '251'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150160
-        ref: KMM 150160 (Inv. KP 1656.153)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-150160
   - id: unified-kmk-150161
     fuss: seed_unsorted
     phase: kmk
@@ -152371,9 +152491,13 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Skilling
-    year_first: 1515
-    year_last: 1515
-    year_label: '1515'
+    year_first: 1513
+    year_last: 1523
+    year_ranges:
+      -   - 1513
+          - 1523
+    year_label: 1513-1523
+    _year_demoted: true
     ruler: Christian 2
     mint: Malmø
     catalog:
@@ -152389,14 +152513,10 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/150261
         ref: KMM 150261 (Inv. KP 1656.52)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/274264
-        ref: KMM 274264 (Inv. FP 1667.161)
     verification_note: *id002
     issuing_entity: danish_realm
     composed_of:
       - kmk-150261
-      - kmk-274264
   - id: unified-kmk-150262
     fuss: seed_unsorted
     phase: kmk
@@ -152452,6 +152572,30 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-150263
+  - id: unified-kmk-150264
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1517
+    year_last: 1517
+    year_label: '1517'
+    ruler: Christian 2
+    mint: Malmø
+    catalog:
+      schou: '3'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150264
+        ref: KMM 150264 (Inv. KP 1656.49)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-150264
   - id: unified-kmk-150265
     fuss: seed_unsorted
     phase: kmk
@@ -184462,6 +184606,30 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-274263
+  - id: unified-kmk-274264
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1515
+    year_last: 1515
+    year_label: '1515'
+    ruler: Christian 2
+    mint: Malmø
+    catalog:
+      schou: '15'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274264
+        ref: KMM 274264 (Inv. FP 1667.161)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-274264
   - id: unified-kmk-274265
     fuss: seed_unsorted
     phase: kmk
@@ -184636,6 +184804,62 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-274281
+  - id: unified-kmk-274302
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1513
+    year_last: 1523
+    year_ranges:
+      -   - 1513
+          - 1523
+    year_label: 1513-1523
+    _year_demoted: true
+    ruler: Christian 2
+    mint: Malmø
+    catalog:
+      schou: '6'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274302
+        ref: KMM 274302 (Inv. FP 1667.164.1)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-274302
+  - id: unified-kmk-274303
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1513
+    year_last: 1523
+    year_ranges:
+      -   - 1513
+          - 1523
+    year_label: 1513-1523
+    _year_demoted: true
+    ruler: Christian 2
+    mint: Malmø
+    catalog:
+      schou: '6'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/274303
+        ref: KMM 274303 (Inv. FP 1667.164.2)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-274303
   - id: unified-kmk-274314
     fuss: seed_unsorted
     phase: kmk
@@ -190716,74 +190940,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-291456
-  - id: unified-kmk-291520
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1525
-    year_last: 1525
-    year_label: '1525'
-    ruler: Frederik 1
-    mint:
-      - Malmø
-      - Ronneby
-    catalog:
-      galster: '67'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/291520
-        ref: KMM 291520 (Inv. FP 7445.2)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/354331
-        ref: KMM 354331 (Inv. FP 4932.17)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/641994
-        ref: KMM 641994 (Inv. FP 11855.41)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/725841
-        ref: KMM 725841 (Inv. FP 5215.12,x6)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/739792
-        ref: KMM 739792 (Inv. FP 12957.12)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/573275
-        ref: KMM 573275 (Inv. FP 11035.29)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/735608
-        ref: KMM 735608 (Inv. FP 12861.10)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/303055
-        ref: KMM 303055 (Inv. FP 8255.30)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/306629
-        ref: KMM 306629 (Inv. FP 7760.10)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/310055
-        ref: KMM 310055 (Inv. FP 7244.19)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/314928
-        ref: KMM 314928 (Inv. FP 6986.2)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/316887
-        ref: KMM 316887 (Inv. FP 6867.9)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317049
-        ref: KMM 317049 (Inv. FP 6839.12)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-291520
-      - kmk-303055
-      - kmk-306629
-      - kmk-310055
-      - kmk-314928
-      - kmk-316887
-      - kmk-317049
   - id: unified-kmk-291974
     fuss: seed_unsorted
     phase: kmk
@@ -193873,48 +194029,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-296132
-  - id: unified-kmk-296203
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1481
-    year_last: 1481
-    year_label: '1481'
-    ruler: Rigsrådet
-    mint: Malmø
-    catalog:
-      galster: '22'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/296203
-        ref: KMM 296203 (Inv. FP 8997.2)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/297603
-        ref: KMM 297603 (Inv. FP 8764.62)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/311348
-        ref: KMM 311348 (Inv. FP 7135.88)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/316655
-        ref: KMM 316655 (Inv. FP 6897.9)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/437662
-        ref: KMM 437662 (Inv. FP 10595.54)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/497177
-        ref: KMM 497177 (Inv. FP 10697.10)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-296203
-      - kmk-297603
-      - kmk-497177
   - id: unified-kmk-296266
     fuss: seed_unsorted
     phase: kmk
@@ -200273,6 +200387,27 @@ coins:
     composed_of:
       - kmk-316983
       - kmk-317048
+  - id: unified-kmk-317111
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    ruler: Søren Nordby
+    mint: Visby
+    catalog:
+      galster: '144'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317111
+        ref: KMM 317111 (Inv. FP 6819.1)
+    verification_note: *id002
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-317111
   - id: unified-kmk-317175
     fuss: seed_unsorted
     phase: kmk
@@ -203542,33 +203677,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-328262
-  - id: unified-kmk-328312
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1535
-    year_last: 1537
-    year_ranges:
-      -   - 1535
-          - 1537
-    year_label: 1535-1537
-    ruler: Christian 3
-    mint: Visby
-    catalog:
-      galster: '147'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/328312
-        ref: KMM 328312 (Inv. FP 6429.4)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-328312
   - id: unified-kmk-328348
     fuss: seed_unsorted
     phase: kmk

@@ -520,11 +520,14 @@ coins:
       -   - 1537
           - 1537
     year_label: 1533, 1537
+    year_verified: true
     mint: Bergen
     catalog:
       bruun_collection_id: '9298'
       sieg: '1'
-      schou: '21'
+      schou:
+        - 1-2
+        - 18-22
       bruun_part: II
       bruun_lot_no: 14005
       bruun_page: 180
@@ -533,6 +536,7 @@ coins:
       numista: '121758'
       schive:
         - XVII.6
+        - XVII.6-7 og 10-12
         - XVII.7
       skaare: '326'
       others:
@@ -543,6 +547,7 @@ coins:
         - Galster UU# 176
         - Thesen# 1A
         - Thesen# 1B
+      galster_volume: c3g
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -571,6 +576,17 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139674
         ref: KMM 139674 (Inv. KP 1715.45)
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nc3g176.htm
+        ref: Galster 176 (c3g) — danskmoent.dk norge_nc3g176.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150122
+        ref: KMM 150122 (Inv. KP 1656.191)
+    note:
+      de: Firehvid
+      en: Firehvid
+      uk: Firehvid
+      da: Firehvid
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -25648,6 +25664,8 @@ coins:
         - AAJT# 1
         - Galster UU# 163
         - Thesen# 1
+      schou: '17'
+      galster_volume: c2g
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -25668,6 +25686,9 @@ coins:
       - type: literature
         url: https://en.numista.com/124914
         ref: Numista N#124914 — 1 Skilling - Christian II
+      - type: literature
+        url: https://www.danskmoent.dk/c2galst.htm
+        ref: Galster 163 (c2g) — danskmoent.dk c2galst.htm
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -35464,35 +35485,6 @@ coins:
     verification_note: *id002
     composed_of:
       - unified-kmk-133330
-  - fuss: luebischer_muenzfuss
-    phase: I
-    kind: kurant
-    nominal: 1 Søsling
-    ruler: Hans
-    issuing_entity: danish_norway
-    year_is_reign_span: true
-    id: unified-kmk-134394
-    year_first: 1481
-    year_last: 1512
-    year_ranges:
-      -   - 1481
-          - 1512
-    year_label: 1481-1512
-    year_verified: false
-    mint: Bergen
-    catalog:
-      galster: '150'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/134394
-        ref: KMM 134394 (Inv. FP 9541.3)
-    verification_note: *id002
-    composed_of:
-      - unified-kmk-134394
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -46705,30 +46697,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Shilling
-    ruler: Christian III.
-    issuing_entity: danish_norway
-    id: unified-kmk-150122
-    year_first: 1537
-    year_last: 1537
-    year_label: '1537'
-    mint: Bergen
-    catalog:
-      schou: '20'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150122
-        ref: KMM 150122 (Inv. KP 1656.191)
-    verification_note: *id002
-    composed_of:
-      - unified-kmk-150122
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 1 Skilling
     ruler: Frederik I.
     issuing_entity: danish_norway
@@ -51642,70 +51610,6 @@ coins:
     verification_note: *id002
     composed_of:
       - unified-kmk-279767
-  - fuss: luebischer_muenzfuss
-    phase: I
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Hans
-    issuing_entity: danish_norway
-    year_is_reign_span: true
-    id: unified-kmk-279771
-    year_first: 1482
-    year_last: 1513
-    year_ranges:
-      -   - 1482
-          - 1513
-    year_label: 1482-1513
-    year_verified: false
-    catalog:
-      schou: '219'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.72
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279771
-        ref: KMM 279771 (Inv. RP 756.1)
-    verification_note: *id002
-    composed_of:
-      - unified-kmk-279771
-  - fuss: luebischer_muenzfuss
-    phase: I
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Hans
-    issuing_entity: danish_norway
-    year_is_reign_span: true
-    id: unified-kmk-279772
-    year_first: 1482
-    year_last: 1513
-    year_ranges:
-      -   - 1482
-          - 1513
-    year_label: 1482-1513
-    year_verified: false
-    catalog:
-      schou: '221'
-      others:
-        - B# 68
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.6
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279772
-        ref: KMM 279772 (Inv. RP 757.1)
-    verification_note: *id002
-    composed_of:
-      - unified-kmk-279772
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -62276,37 +62180,6 @@ coins:
     verification_note: *id002
     composed_of:
       - unified-kmk-647303
-  - fuss: luebischer_muenzfuss
-    phase: I
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Hans
-    issuing_entity: danish_norway
-    year_is_reign_span: true
-    id: unified-kmk-66603
-    year_first: 1482
-    year_last: 1513
-    year_ranges:
-      -   - 1482
-          - 1513
-    year_label: 1482-1513
-    year_verified: false
-    catalog:
-      schou: '170'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.8
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/66603
-        ref: KMM 66603 (Inv. GP 612.32)
-    verification_note: *id002
-    composed_of:
-      - unified-kmk-66603
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -78181,6 +78054,7 @@ coins:
       schou: '92'
       galster: '148'
       nmd: '2'
+      galster_volume: hg
     metal: billon
     metal_verified: false
     fineness_verified: false
@@ -78199,6 +78073,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/178001
         ref: KMM 178001 (Inv. BP 668.1)
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 148 (hg) — danskmoent.dk hans.htm
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -79249,6 +79126,365 @@ coins:
     verification_note: *id012
     composed_of:
       - unified-kmk-191760
+  - fuss: luebischer_muenzfuss
+    phase: I
+    kind: kurant
+    nominal: 1 Søsling
+    ruler: Hans
+    issuing_entity: danish_norway
+    year_is_reign_span: true
+    id: unified-dk-galster-hg-150
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    year_verified: false
+    mint: Bergen
+    catalog:
+      galster: '150'
+      schou: '101'
+      schive: XIV.1
+      galster_volume: hg
+    metal: billon
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 150 (hg) — danskmoent.dk hans.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/134394
+        ref: KMM 134394 (Inv. FP 9541.3)
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-galster-hg-150
+  - fuss: luebischer_muenzfuss
+    phase: I
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    issuing_entity: danish_norway
+    year_is_reign_span: true
+    id: unified-dk-galster-hg-152
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    year_verified: false
+    mint: Bergen
+    catalog:
+      galster: '152'
+      schou: '170'
+      galster_volume: hg
+      others:
+        - Ernst# 1940.1
+    metal: billon
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.8
+        source: kmk
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 152 (hg) — danskmoent.dk hans.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/66603
+        ref: KMM 66603 (Inv. GP 612.32)
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-galster-hg-152
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    issuing_entity: danish_norway
+    year_is_reign_span: true
+    id: unified-dk-galster-hg-154
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    year_verified: false
+    mint: Bergen
+    catalog:
+      galster: '154'
+      others:
+        - Ernst# 1940 side 77 fig. 3
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 154 (hg) — danskmoent.dk hans.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-galster-hg-154
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hulpenning
+    ruler: Hans
+    issuing_entity: danish_norway
+    year_is_reign_span: true
+    id: unified-dk-galster-hg-156
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    year_verified: false
+    mint: Christiania
+    catalog:
+      galster: '156'
+      schou: '226'
+      schive: XIV.37
+      galster_volume: hg
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 156 (hg) — danskmoent.dk hans.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-galster-hg-156
+  - fuss: luebischer_muenzfuss
+    phase: I
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    issuing_entity: danish_norway
+    year_is_reign_span: true
+    id: unified-dk-galster-hg-158
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    year_verified: false
+    mint: Nidaros
+    catalog:
+      galster: '158'
+      schou: '219'
+      schive: XIV.31
+      galster_volume: hg
+      others:
+        - Ernst# 1940 3-13
+    metal: billon
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.72
+        source: kmk
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 158 (hg) — danskmoent.dk hans.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279771
+        ref: KMM 279771 (Inv. RP 756.1)
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-galster-hg-158
+  - fuss: luebischer_muenzfuss
+    phase: I
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    issuing_entity: danish_norway
+    year_is_reign_span: true
+    id: unified-dk-galster-hg-160
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    year_verified: false
+    mint: Nidaros
+    catalog:
+      galster: '160'
+      schou: '221'
+      schive: XIV.34
+      galster_volume: hg
+      others:
+        - Ernst# 1940 3-13
+        - B# 68
+    metal: billon
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.6
+        source: kmk
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 160 (hg) — danskmoent.dk hans.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279772
+        ref: KMM 279772 (Inv. RP 757.1)
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-galster-hg-160
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    issuing_entity: danish_norway
+    year_is_reign_span: true
+    id: unified-dk-galster-hg-161
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    year_verified: false
+    mint: Nidaros
+    catalog:
+      galster: '161'
+      schou: 222-223
+      schive: XIV.35-36
+      galster_volume: hg
+      others:
+        - Ernst# 1940 3-13
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 161 (hg) — danskmoent.dk hans.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-galster-hg-161
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    issuing_entity: danish_norway
+    year_is_reign_span: true
+    id: unified-dk-galster-hg-162
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    year_verified: false
+    mint: Nidaros
+    catalog:
+      galster: '162'
+      others:
+        - Ernst# 1940 side 77 fig. 2
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 162 (hg) — danskmoent.dk hans.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    composed_of:
+      - unified-dk-galster-hg-162
   - fuss: 9_25_thaler
     phase: I
     kind: kurant

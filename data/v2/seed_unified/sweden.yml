@@ -2,8 +2,8 @@
 # Generated 2026-10-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sweden.yml across all sources.
 #
-# Input: 241 per-source seed entries.
-# Output: 207 unified entries (one per physical coin).
+# Input: 252 per-source seed entries.
+# Output: 215 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -18,18 +18,20 @@ coins:
     phase: bruun
     kind: kurant
     nominal: 1 Örtug
-    year_first: 1497
-    year_last: 1501
+    year_first: 1481
+    year_last: 1513
     year_ranges:
-      -   - 1497
-          - 1501
-    year_label: 1497-1501
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
     ruler: Hans
     mint: Stockholm
     catalog:
       bruun_collection_id:
         - 11316p
         - 11316q
+      galster: '230'
+      galster_volume: hg
     metal: silver
     metal_verified: false
     fineness_verified: false
@@ -49,6 +51,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14128, p. 230
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 230 (hg) — danskmoent.dk hans.htm
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -62,6 +67,7 @@ coins:
     composed_of:
       - dk-bruun-11316p
       - dk-bruun-11316q
+      - dk-galster-hg-230
   - id: unified-dk-bruun-11413
     fuss: seed_unsorted
     phase: bruun
@@ -7669,14 +7675,16 @@ coins:
     catalog:
       sieg: '24'
       bruun_collection_id: '4232'
-      schou: '55'
+      schou: 53-56
       galster: '249'
+      galster_volume: c3g
     metal: billon
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
     verified: false
+    year_verified: true
     weight_rough_g:
       - value: 3.96
         source: bruun
@@ -7684,6 +7692,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13059, p. 27
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c3g249.htm
+        ref: Galster 249 (c3g) — danskmoent.dk chr_c3g249.htm
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -7696,6 +7707,7 @@ coins:
     issuing_entity: sweden
     composed_of:
       - dk-bruun-4232
+      - dk-galster-c3g-249
   - id: unified-dk-bruun-4234
     fuss: seed_unsorted
     phase: bruun
@@ -7737,6 +7749,272 @@ coins:
     issuing_entity: sweden
     composed_of:
       - dk-bruun-4234
+  - id: unified-dk-galster-c3g-246
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Mark
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    ruler: Christian III
+    mint: Stockholm
+    catalog:
+      galster: '246'
+      schou: 46-47
+      sieg: '29'
+      galster_volume: c3g
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: true
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c3g246.htm
+        ref: Galster 246 (c3g) — danskmoent.dk chr_c3g246.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: sweden
+    composed_of:
+      - dk-galster-c3g-246
+  - id: unified-dk-galster-c3g-247
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 8 Skilling
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    ruler: Christian III
+    mint: Stockholm
+    catalog:
+      galster: '247'
+      schou: '51'
+      sieg: '27'
+      galster_volume: c3g
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: true
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c3g247.htm
+        ref: Galster 247 (c3g) — danskmoent.dk chr_c3g247.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: sweden
+    composed_of:
+      - dk-galster-c3g-247
+  - id: unified-dk-galster-c3g-248
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 8 Skilling
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    ruler: Christian III
+    mint: Stockholm
+    catalog:
+      galster: '248'
+      schou: '52'
+      sieg: '28'
+      galster_volume: c3g
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: true
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c3g248.htm
+        ref: Galster 248 (c3g) — danskmoent.dk chr_c3g248.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: sweden
+    composed_of:
+      - dk-galster-c3g-248
+  - id: unified-dk-galster-c3g-250
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 4 Skilling
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    ruler: Christian III
+    mint: Stockholm
+    catalog:
+      galster: '250'
+      schou: '57'
+      sieg: '25'
+      galster_volume: c3g
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: true
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c3g250.htm
+        ref: Galster 250 (c3g) — danskmoent.dk chr_c3g250.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: sweden
+    composed_of:
+      - dk-galster-c3g-250
+  - id: unified-dk-galster-c3g-251
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 4 Skilling
+    year_first: 1535
+    year_last: 1535
+    year_label: '1535'
+    ruler: Christian III
+    mint: Stockholm
+    catalog:
+      galster: '251'
+      schou: 58-64
+      sieg: '26'
+      galster_volume: c3g
+    metal: billon
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: true
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c3g251.htm
+        ref: Galster 251 (c3g) — danskmoent.dk chr_c3g251.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/139713
+        ref: KMM 139713 (Inv. KP 1715.6)
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: sweden
+    composed_of:
+      - dk-galster-c3g-251
+      - kmk-139713
+  - id: unified-dk-galster-hg-231
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Ørtug
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    ruler: Hans
+    mint: Stockholm
+    catalog:
+      galster: '231'
+      galster_volume: hg
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 231 (hg) — danskmoent.dk hans.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: sweden
+    composed_of:
+      - dk-galster-hg-231
+  - id: unified-dk-galster-hg-232
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: Halv ørtug
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    ruler: Hans
+    mint: Stockholm
+    catalog:
+      galster: '232'
+      galster_volume: hg
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 232 (hg) — danskmoent.dk hans.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: sweden
+    composed_of:
+      - dk-galster-hg-232
   - id: unified-dk-galster-hg-233
     fuss: seed_unsorted
     phase: galster
@@ -7821,6 +8099,44 @@ coins:
     issuing_entity: sweden
     composed_of:
       - dk-galster-hg-234
+  - id: unified-dk-galster-hg-235
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Ørtug
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    ruler: Hans
+    mint: Vesterås
+    catalog:
+      galster: '235'
+      galster_volume: hg
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 235 (hg) — danskmoent.dk hans.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: sweden
+    composed_of:
+      - dk-galster-hg-235
   - id: unified-dk-galster-hg-236
     fuss: seed_unsorted
     phase: galster
@@ -7864,6 +8180,44 @@ coins:
     issuing_entity: sweden
     composed_of:
       - dk-galster-hg-236
+  - id: unified-dk-galster-hg-237
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: Halv ørtug
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    ruler: Hans
+    mint: Vesterås
+    catalog:
+      galster: '237'
+      galster_volume: hg
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/hans.htm
+        ref: Galster 237 (hg) — danskmoent.dk hans.htm
+    verification_note:
+      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
+        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
+        coinage standard of this piece is not yet determined.
+      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
+        примірника ще не визначено.
+      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
+        stykke er endnu ikke bestemt.
+    issuing_entity: sweden
+    composed_of:
+      - dk-galster-hg-237
   - id: unified-dk-galster-hg-238
     fuss: seed_unsorted
     phase: galster
@@ -8183,30 +8537,6 @@ coins:
     issuing_entity: sweden
     composed_of:
       - kmk-139310
-  - id: unified-kmk-139713
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian 3
-    mint: Stockholm
-    catalog:
-      schou: '62'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/139713
-        ref: KMM 139713 (Inv. KP 1715.6)
-    verification_note: *id002
-    issuing_entity: sweden
-    composed_of:
-      - kmk-139713
   - id: unified-kmk-139714
     fuss: seed_unsorted
     phase: kmk

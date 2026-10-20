@@ -2,7 +2,7 @@
 # Generated 2026-10-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/christian_ii_reconquest.yml across all sources.
 #
-# Input: 11 per-source seed entries.
+# Input: 12 per-source seed entries.
 # Output: 8 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -142,6 +142,9 @@ coins:
         - Galster UU# 173
         - Thesen# 1
       schive: XV.5
+      galster: '173'
+      schou: '1'
+      galster_volume: c2g
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -149,6 +152,7 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    year_verified: true
     weight_rough_g:
       - value: 13.06
         source: ikmk
@@ -160,6 +164,9 @@ coins:
       - value: 28.0
         source: ikmk
     sources:
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nc2g173.htm
+        ref: Galster 173 (c2g) — danskmoent.dk norge_nc2g173.htm
       - type: literature
         url: https://en.numista.com/121235
         ref: Numista N#121235 — 2 Mark Klipping - Christian II (Siege of Oslo) - Norway
@@ -177,6 +184,7 @@ coins:
         (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
     issuing_entity: christian_ii_reconquest
     composed_of:
+      - dk-galster-c2g-173
       - dk-numista-121235
       - ikmk-18262362
   - id: unified-dk-numista-121903
