@@ -16,6 +16,18 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-20 (evening) — Lybsk Møntfod: legal ties and dating anchors («стопи» session)
+
+- **Dossier work, not pushed** (`fe5e4f6`…`8b1b578`, `luebischer_muenzfuss.md` §3.4f, §3.4h, new §0.5): Danish coin on
+  the Wendish system from 1392 (Margrete), 1481 is only a reign boundary; 1513 håndfæstning has ONE coin clause
+  (Gulden only) — question closed; Holstein clause = Kiel 4 Apr 1460 art. 9 to the S-H estates; Christian I's
+  Scanian Môtbok [1460-74] art. 79 (tariff in ß lub, Rhenish gulden 20 ß) + art. 81 «*vnse koninglyke munte gaen
+  like der veerleye munte*», renewed by Hans 1484 — revised hypothesis for Wilcke's «promise».
+- **New cache** `scripts/cache/rigslovgivning/` (Andersen 1989/1991/2015, Kroman 1971, Holberg 1889; in kb).
+- **Dating anchors** for undated Hans Skilling/Søsling — dossier §0.5, TODO ED (curator: base for later dating).
+- **Card not touched.** Proposals waiting for the curator: uk «спертим» → «орієнтованим»; en «dependent» →
+  «aligned with»; whether the card names 1392; Søsling dating.
+
 ## 2026-10-20 (late) — per-specimen KMM exclusions; bare citations hidden
 
 - **Mechanism** (`98e6ee8`): `specimens:` block in `data/v2/exclusions/<entity>.yml` ({kmm: <object number>, category, reason, curator, date}) excludes ONE KMM object folded inside a seed; `lib/specimen_exclusions.py`, applied in absorb after the sources union; never strips a specimen with weight/photo, never leaves a coin without a source; verify_reflow excuses it. Seed-level `exclusions:` code does not read the block.

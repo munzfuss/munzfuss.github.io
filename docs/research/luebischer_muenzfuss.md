@@ -79,6 +79,36 @@ Status marks: **A** = attested in a cited source; **C** = our computation from a
   KMM 331973 «Penning, Lund» — not Hans, declassified (§6d); «Christiania» → «Oslo» in the mint field of the Oslo coins
   (city name of the time).
 
+### §0.5 Dating anchors for undated Hans Skillinger and Søslinger (curator 2026-10-20: «на базі цього пізніше будемо датувати»)
+
+The basis on which undated Skillinger and Søslinger of Hans are to be dated later (TODO ED). Detail and quotes:
+§3.4h (7) and (8); rate register `hans_rates_1481_1513.md` §6.
+
+**Skilling — begins c. 1495–1497.**
+- Bangbostrand hoard (deposited «*så sent som ca 1490*»): many Hvide (incl. 181 Christian I, 35 Rigsråd), no
+  Skilling (Eriksson s. 9).
+- Gribshunden purse (sank June 1495): Hvide only; Ingvardson 2022: «*the sample size … is too small to draw
+  definitive conclusions*» — weak terminus post quem.
+- 1497, first written mention: «*4 Hvide ß, som Kong Hans mønte lod*» (Wilcke 7-1 s. 142) — terminus ante quem.
+- Eriksson s. 9 allows a start «*först efter 1497*»; the month of the 1497 mention is not known.
+- Silver: undated Skillinger carry the highest fineness (Eriksson: only 6 of 22 undated below 40 %); the six dated
+  1512 are among the lowest (≈ 35 %). Working groups (H): 9 lod c. 1495/97 – c. 1500/03; 8 lod c. 1503/06 – 1510
+  (= Lübeck 13-Mark ß 1,124 g = 5 Hvide at 2½ M d); 7/6 lod c. 1510–1512 (dated 1512 pieces).
+
+**Søsling — start contested.**
+- Earliest dated piece 1512 (KMM, «*unik sösling 1512*», Eriksson s. 10); no Søsling in any hoard in DMS.
+- Undated pieces: 5 lod, 1,31–1,47 g (Eriksson tab. 8) → ≈ 0,39–0,42 g fine (our arithmetic).
+- Eriksson (by weight, «*drygt hälften av skillingarnas*»): «*skulle då kunna vara samtida med de äldsta
+  skillingarna*».
+- Our reading (by fine silver): ≈ ⅓ of a 9-lod Skilling (1,27 g), ≈ ½ of a 1512 Skilling (0,82–0,96 g) → stage III
+  (c. 1510–1512).
+- Would be settled by: a dated hoard with a Søsling; Galster 1972; Märcher 2018.
+
+**Rule for dating (H, to be applied only to assayed pieces — weights overlap between groups):** place by fineness
+group; give the group's span as the dating, worded «можна вважати» on the card; never inside `year_label` (§3a
+CLAUDE.md: plain years only — the span goes to `year_label` only if the curator approves it as the coin's year
+range, with `year_verified: false`).
+
 ## §1. Sources and provenance chains
 
 | # | Source | What it gives | Chain / caveat |

@@ -3680,6 +3680,19 @@ done 2026-10-17/18 (185 → 66 undated); rows 5, 8 and 9 analysed 2026-10-19 —
 awaiting the curator. Side finding there: 54 finals of vanished classes render
 beside their successors (absorb keeps curated finals but never migrates them).
 
+### ED. 🟡 Date the undated Skillinger and Søslinger of Hans by the 2026-10-20 anchors  *(opened 2026-10-20)* *(est: large)* *(type: research + data)*
+
+Curator 2026-10-20: the start of Hans' Skilling (c. 1495–1497) and the contested Søsling start are the base on
+which every undated Hans Skilling and Søsling will be dated later. Anchors, evidence and the working fineness
+groups: `docs/research/luebischer_muenzfuss.md` §0.5 (detail §3.4h (7)–(8); rate register
+`docs/research/hans_rates_1481_1513.md` §6). FUSS_REVIEW_FINDINGS row «Hans silver 1481–1513 — undated assayed
+coins can be placed in date groups».
+
+Needs decision before data: (1) Søsling — Eriksson's «with the oldest Skillinger» vs our silver reading «stage III
+c. 1510–1512»; (2) whether a group span may go into `year_label` (with `year_verified: false`) or only into the
+coin note; (3) which pieces qualify — assayed only (Eriksson tab. 7–8), since weights overlap.
+Would strengthen the anchors: Galster 1972, Märcher 2018, a dated hoard with a Søsling.
+
 ## Low priority
 
 ### DC. 🟢 KMK seed builder — private-issuer / medal exonumia gate (forward-protection only)  *(opened 2026-09-13)* *(est: small)* *(type: builder filter + test)*
