@@ -16,6 +16,12 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-20 — Galster harvest gap (pages linked only from overviews)
+
+- **Shipped, not pushed**: cache `harvest(galster)` (submodule) + `c7c2a4d` code + `4058470` pointer bump. `fetch_galster.py` matches whole hrefs and also walks the /type.htm overviews; new pages c2g39, rigsraad (G21/22/81), norge/nc3g176, norge/nc2g173, gotlg139/140/143-145/147, chr/c3g246-251 (Stockholm 1535). Pre-1481 + fantasy fr/hg253 dropped at discovery. Every COIN link of /hans.htm is covered (curator 2026-10-20: only coin links are wanted, not the articles / PDFs the page links). hans.htm rows WITHOUT a page (Galster 148-162 Norway, 230-237 Sweden) now parse as coin records (`galster_parsers/hans_index.py`). Tests: `tests/test_galster_discovery_gap.py`.
+- **Not yet seeded**: `build_galster_denmark_seed.py` would add 31 entries and change none (simulated against a scratch copy). Waiting for the curator: data window (another session writes data/v2), Gotland routing (G143-145 Norby, G147 Christian III Visby — Visby auto-routes to danish_realm), Norby as ruler vs KMM convention «Christian II».
+- **Found, curator's call**: `dk-galster-f1g-257/258` are «støbt fantasimønt» (never existed) yet render as coins; G39 «Bruttovægt 2,61g» is per the page «den foreskrevne råvægt» (template candidate); G81 Rigsrådet (Galster) vs Christian III (Bruun 4153); `husumdal.htm` (Galster 114, Husumdaler 1522, Duke Frederik) not harvested — article-shaped single-coin page; kmk-333714 (G39B, «Christian 3») sits in its own class.
+
 ## 2026-10-19 — Reign-window years, Korshvid rule, Lybsk Møntfod merge candidates
 
 - **Shipped** (`bfa0534`, `6fb5bfb`, not pushed): `lib.ruler_reigns.is_reign_span` — a member whose year is its ruler's reign (±2 y, ≤ 1/10 of the reign) is auto-`_year_demoted` in the merger (step 1c), so a narrower date in the class wins (Galster 43 → 1513, Galster 29 → 1512); absorb's reign flag uses the same test. KMM «korshvid» → Hvid for reigns ending ≤ 1523 (builder rule, printed word in `_nominal_printed`); 6 weightless stubs thinned (recorded). Excluded kmk-139309 (stub) and kmk-734756 (piefort).
