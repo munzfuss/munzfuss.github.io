@@ -88,6 +88,21 @@ class ClassSynthesis(unittest.TestCase):
         self.assertEqual(len(out["catalog_unverified"]), 1)
 
 
+class AuditCheck10(unittest.TestCase):
+    def test_a_seed_without_marks_requires_nothing_of_its_catalog(self):
+        # dd6917b regression: every catalogue number of an unmarked seed was
+        # demanded in final as an «unverified» mark.
+        from maintenance.audit_curation_marks import _marked_readings
+        seed = {"id": "x", "catalog": {"dav": "3516A"}}
+        self.assertEqual(list(_marked_readings(seed)), [])
+
+    def test_final_carries_the_unverified_number_in_its_catalog(self):
+        from maintenance.audit_curation_marks import _marked_readings
+        fin = {"catalog": {"galster": "49"}}
+        self.assertIn(("catalog.galster", "49", None, "unverified"),
+                      set(_marked_readings(fin, final=True)))
+
+
 class Render(unittest.TestCase):
     def test_groups_carry_both_marks(self):
         coin = schema.Coin.model_construct(

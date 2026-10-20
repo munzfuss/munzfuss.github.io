@@ -53,8 +53,10 @@ def _key(v) -> float | None:
     return round(float(v), 6) if isinstance(v, (int, float)) else None
 
 
-def _marked_readings(coin: dict):
-    """(field, value, source, kind) for every marked reading of one coin."""
+def _marked_readings(coin: dict, final: bool = False):
+    """(field, value, source, kind) for every marked reading of one coin.
+    `final=True` also yields what a final may carry for an «unverified»
+    catalogue number: the number present in its catalog."""
     for f in FIELDS:
         lst = coin.get(f)
         if not isinstance(lst, list):
@@ -75,7 +77,7 @@ def _marked_readings(coin: dict):
     for a in coin.get("catalog_alts") or []:
         if isinstance(a, dict) and a.get("register") and a.get("value") is not None:
             yield (f"catalog.{a['register']}", str(a["value"]).strip(), None, a.get("kind"))
-    if coin.get("catalog_marks") is None:
+    if final:
         for reg, v in (coin.get("catalog") or {}).items():
             for x in (v if isinstance(v, list) else [v]):
                 if x is not None:
@@ -114,7 +116,7 @@ def check_marks() -> list[str]:
             hits = [s for s, u in seed_to_unified.items() if u in refs]
             hits += [s for s in marked if s in refs]
             if hits:
-                have = set(_marked_readings(c))
+                have = set(_marked_readings(c, final=True))
                 for s in hits:
                     final_for[s] = (c.get("id"), have)
 
