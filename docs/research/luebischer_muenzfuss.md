@@ -999,7 +999,8 @@ council of the realm of Denmark — for the merchants visiting Scania (Skanør, 
   qualified; Lübeck gulden 26 ß lub.; Rhenish 20 ß lub.; postulat 18 ß; «*reyoldesche*» gulden 1 M; Bishop's
   gulden 15 ß lub.; «*schilde*» 15 ß lub.; Arnoldus 12 ß lub.; false new Rhenish gulden with an orb and
   «*Didericus de Brenthorst*» «*nicht wert xiiii. ß*», passing them punishable by death). Searched online
-  2026-10-20 for Friis Johansen, NNÅ 1961 (which prints §78–81) and Schäfer's edition: neither found online.
+  2026-10-20 for Friis Johansen, NNÅ 1961 (which prints §78–81): not found online. Schäfer 1887 found (MDZ
+  bsb00006579) and cached, `scripts/cache/hanse/schaefer_1887/`.
   — **this is Hauberg's «Christiern I's Forordning om fremmed Mynts Værdi», «1460–74,
   Langebek Dipl.» (s. 137, 189): same date, same copy, same content** (the gap in (4) is closed);
 - art. <81> (s. 219): «*Item schal vnse koninglyke munte gaen like der veerleye munte*» — «our royal coin shall
@@ -1007,14 +1008,30 @@ council of the realm of Denmark — for the merchants visiting Scania (Skanør, 
   «*d. h. der 4 Städte des Münzvereins*»). Variant Aa: «*mynes heren*» for «*vnse koninglyke*».
 - **Hans renewed it:** his redaction dated Falsterbo, 11 September 1484 (nr. 59, s. 224; lost Trenthorst MS,
   Lübeck archive copy), issued again «*Na anwisinge vnde rade des gemenen rykes to Dennemarcken*», takes over
-  «*77-82*» of Christian I's text — i.e. both the Lübeck tariff and art. 81. Frederik I's redaction [1524–33]
-  (nr. 60) does not include §77–86.
+  «*77-82*» of Christian I's text ~~— i.e. both the Lübeck tariff and art. 81~~. **Corrected 2026-10-20 from
+  Schäfer 1887 (Beil. I §§ 64–67, S. 94, text after MS I = this Trenthorst MS; page image checked,
+  `scripts/cache/hanse/schaefer_1887/page_0270.jpg`):** Hans' text lists the eight gold coins («*eyn swar nobel
+  gelden / de lichte nobel, / de Lubessche gulden, / de Rynsche gulden, …*») **without any values**, and keeps
+  § 67 «*Item schal unse koninglyke munthe hir gan gelyk der veerleye munte*». The *Rigslovgivning* apparatus
+  agrees («*xx.ß lub.] mgl. Bal.*», Bal = the Wehrmann copy of the same MS). Schäfer S. XCV: «*Die Mote Johanns
+  nennt acht zulässige Goldmünzen; ihr Werth pflegte durch eine Vereinbarung des dänischen Vogts und des Zöllners
+  mit den Städten festgesetzt zu werden*». So the values (Rhenish 20 ß lub. etc.) are only in Christian I's
+  redaction. Frederik I's redaction [1524–33] (nr. 60) does not include §77–86.
+- Schäfer on the clause (S. XCVI): «*Wenn Johann ferner bestimmt, dass seine königliche Münze gehen solle gleich
+  der „veerleye munthe", so kann unter dieser wohl kaum etwas Anderes verstanden werden als das Geld der vier
+  Städte des wendischen Münzvereins: Lübeck, Hamburg, Wismar, Lüneburg*»; and (S. XCV–XCVI) «*seit dem
+  dänisch-wendischen Münzvertrage von 1424 fand eine Annäherung statt, die bis gegen Ende des Jahrhunderts den
+  Unterschied der Münzen ziemlich ausglich*» … Danish coinage «*sich ja nach dem Muster der lübischen umbildeten
+  und dann dauernd enge an diese anschlossen*». Schäfer S. 80: Hans tried to change the Môte one-sidedly; the
+  Hanseatic Vögte refused to attend the reading (1488, H. R. III, 2, 257; 279 § 6).
 - ⚠ Jesse attributes the clause to «*das aus Margaretes Zeit stammende Môtbok*» (§ 67). In *Rigslovgivning* the
   clause is found only in Christian I's redaction nr. 57 (full-text search; Margrete's nr. 54 and Erik's nr. 55
   lack it — nr. 55 art. <58> has instead «*dat nene suluer munte anders schal gaen dyn syne eigene munte*»,
   s. 200), and Schäfer's edition (*Das Buch des Lübeckischen Vogts auf Schonen* 95–99), which Jesse would have
   used, prints the Christian I redaction (after Bal). **Hypothesis:** Jesse's «Margrete» § 67 is this
-  Christian I text. Would be settled by Schäfer's edition.
+  Christian I text. Would be settled by Schäfer's edition. **Settled 2026-10-20:** Schäfer's Margrete MSS (M, M1
+  Kampen) have 54 §§ only; his §§ 55 ff., § 67 included, are printed after MS I = Hans' redaction of 1484 (S. 81,
+  94). Jesse's «Margarete» § 67 is Hans' 1484 text.
 
 **What this does to the hypothesis in (2).** The Môtbok fits Wilcke's two wordings better than the Holstein act:
 it is a royal (not ducal) undertaking that the king's coin shall go «like» the coin of the four towns; it was
@@ -1069,8 +1086,8 @@ this as the attested fact; «automatically» stays our reading.
   the two do not agree. 20 ß is the Gulden of the early 1460s (Jesse: 21–22 ß 1461–68) — **hypothesis** that
   Wilcke's 20 is an older rate. Would be settled by the source behind Wilcke's line. **Support found 2026-10-20:**
   Christian I's Môtbok tariff [1460–74] has «*de rynse gulden xx.ß lub*» (art. 79, s. 218) — a pre-1468 /
-  1460s figure; Hans' 1484 redaction copied it unchanged, so a 1480s text could carry the old 20 ß. Still a
-  hypothesis that this is Wilcke's source.
+  1460s figure; ~~Hans' 1484 redaction copied it unchanged, so a 1480s text could carry the old 20 ß~~ (wrong: Hans'
+  text has no values — Schäfer S. 94, see (2a)). Still a hypothesis that this is Wilcke's source.
   **Bobzin checked (2026-10-20, cache `scripts/cache/bobzin/`, all pages):** no 20 ß for the Rhenish gulden in the
   15th c. and nothing on Danish rates then. His Wendish-union page has for 1411 «*1 Rheinischer Gulden = 21 ßl.*»
   and, under 1461, «*1 Gulden lübisch = 2 Ml. = 32 ßl. / 1 Rheinischer Gulden = ¾ Gulden lübisch = 1½ Ml. =
@@ -1103,33 +1120,34 @@ arithmetic (Cologne mark 233,856 g), H = hypothesis. Stage III ends with Hans' d
 håndfæstning of 22 Jul 1513 («*two mark giøre fyllest for en rinsk gylden*», *Rigslovgivning 1513-1523* nr. 1
 art. 41) is the first act of the next reign — it closes the period and is NOT part of stage III.
 
+**Five periods (curator 2026-10-20):** P1 1481 – 1495/97 · P2 1495/97 – 1500/03 · P3 1503/06 – 1510 · P4 1510 – 1512
+· P5 1512 – Feb 1513. P2–P4 are the fineness groups of §0.5 (dating H); P5 holds the pieces dated 1512 (A). P4 and
+P5 meet at 1512: P4 = undated pieces placed by fineness, P5 = dated pieces. The P2/P3 borders (1500/03, 1503/06)
+are ranges, not years.
+
 *(a) Lübeck side*
 
-| | I (1481 – c. 1500) | II (c. 1500/01 – c. 1511) | III (1512 – Feb 1513) |
-|---|---|---|---|
-| Mark lübisch **[R]** | 16 ß l. = 192 Pf l. | same | same |
-| Schilling lübisch **[C]** (also the unit of account) | 103½ / 9-lot mark = **1,271 g** fine (A: 1468 = 1483 = 1492) | 1,271 g until the 13-Mark step (Aug 1504 / Rezess 29 Dec 1506); after it the ß is worth 1/16 of a Markstück at 13 per fine mark = **1,124 g** (C; Lübeck struck Markstücke, not Schillinge, at that level) | 1,124 g (C); 1512 Rezess Schilling / Doppelschilling on paper only (§3.4g) |
-| Pfennig lübisch **[R]** (struck as Blaffert / Pfennig) | 1/12 ß = 0,106 g (C) | 0,106 → 0,094 g (C) | 0,094 g (C) |
-| Rhenish Gulden in ß l. | 24 (A: Jesse, from 1470) | 24 (A: Mulich 1501 «*533 gulden 8 ß lub*» for 800 M l.) | 24 (A: Wilcke 7-2 s. 151 «*højst 24 ß*») |
-| Gulden in silver | 24 × 1,271 = 30,5 g (C) | 30,5 → 27,0 g (C) | 27,0 g (C) |
-
-⚠ Christian I's Môtbok tariff [1460–74], copied by Hans 1484: Rhenish gulden «*xx.ß lub*» (2a); Wilcke 7-1 s. 142
-«*20 ß lybsk og 2 M dansk*». Against 24 in this row — open.
+| | P1 1481 – 1495/97 | P2 1495/97 – 1500/03 | P3 1503/06 – 1510 | P4 1510 – 1512 | P5 1512 – Feb 1513 |
+|---|---|---|---|---|---|
+| Mark lübisch **[R]** | 16 ß l. = 192 Pf l. | same | same | same | same |
+| Schilling lübisch **[C]** (also **[R]**) | 103½ / 9-lot mark = **1,271 g** (A: 1468 = 1483 = 1492) | 1,271 g; 1501 Mölln draft: ⅓ Mark at 11½ (A) | 13-Mark step: decided Aug 1504, Rezess 29 Dec 1506 → ß = 1/16 Markstück = **1,124 g** (C) | 1,124 g (C) | 1512 Rezess on paper ≈ 14⅓ (Doppelschilling / Schilling not struck; Witten 1512 are) — **1,124 g** in the Markstück (C) |
+| Rhenish Gulden in ß l. | 24 (A: Jesse, since 1470); ⚠ Christian I's Môtbok [1460–74] «*xx.ß lub*» | 24 (A: Mulich 1501) | 24 (A: Lütke 1503–06; 1504 market 24, official 21 ß 4 Pf; 1506 Rezess 24) | 24 (A: Wilcke 7-2 s. 151 «*højst 24 ß*») | 24 (same) |
+| Gulden in silver | 30,5 g (C) | 30,5 g (C) | 30,5 → 27,0 g (C) | 27,0 g (C) | 27,0 g (C) |
 
 *(b) Danish side*
 
-| | I (1481 – c. 1500) | II (c. 1500/01 – c. 1511) | III (1512 – Feb 1513) |
-|---|---|---|---|
-| Mark dansk **[R]** | 16 ß d. = 48 Hvide = 192 Pf d. | same | same |
-| Skilling dansk **[R]** (unit of account) | 3 Hvide = 12 Pf d. | same | same |
-| Gulden in Mark dansk | **2** (A: Wilcke 7-1 s. 134; Viken rent under Christian I) | **2½** (A: Wilcke 7-1 s. 134; Ribe 1501 Mulich; 1508) | no rate attested (2½ last seen 1508) |
-| Gulden in Hvide | 96 (C) | 120 (C) | — |
-| **Hvid [C]** — fineness groups (Eriksson tab. 6, 9; dating of the groups H, §0.5 / hans_rates §6) | Rigsråd 1481–83: 5 lod, 0,18–0,24 g fine; Hans **6 lod, 0,27–0,30 g** (3 pieces) | Hans **5 lod, 0,14–0,27 g, mostly 0,18–0,24** (13 pieces) | Hans **4 lod, 0,16–0,21 g** (6 pieces) — placing it here is H |
-| Hvid valued in Lübeck Pf | **3** (A: «*densche drelinge*», Eriksson s. 4–5 after Galster 1972; C: 96 × 3 = 288 Pf = 24 ß l.) → silver equivalent 0,318 g | **2,4** (C: 288 / 120) → 0,254 g (to 1506) / 0,225 g (after) | — |
-| **Skilling [C]** (Hans' coin) | from c. 1495/97 (§0.5): **9 lod, 1,24–1,27 g** fine (A assays, 3 pieces) = the Lübeck ß of 1468 (C) | **8 lod, 0,99–1,24 g**, København 1,10–1,18 (A assays, 5 pieces) ≈ the Lübeck ß after 1506, 1,124 (C; placing in II is H) | **6–7 lod, 0,82–0,96 g**, dated 1512 (A) — below Lübeck |
-| Skilling coin valued in Hvide | **4** (A: 1497 «*4 Hvide ß, som Kong Hans mønte lod*», Wilcke 7-1 s. 142) = 1 ß l. = 1⅓ ß d. (C) | **5** (A: «*5 Hvide for 1 ß*», Wilcke 7-1 s. 142, undated; II by Wilcke's pairing 7-2 s. 149) = 1 ß l. = 1⅔ ß d. (C) | not attested |
-| **Søsling [C]** (nominally ½ Skilling = 6 Pf d. = 1½ Hvide [R]) | not attested in this stage (no hoard; Eriksson's «*samtida med de äldsta skillingarna*» is a reading by weight — H) | — | **dated 1512** (A); undated pieces **5 lod, 1,31–1,47 g → 0,39–0,42 g** fine (Eriksson tab. 8; fine C) ≈ ½ of a 1512 Skilling (C) — III by our silver reading (H) |
-| Mark lübisch : Mark dansk | **1⅓** (C) | **1⅔** (C; A: Mulich 800 M l. = 1333 M 5 ß 1 Hvid d.) | — |
+| | P1 1481 – 1495/97 | P2 1495/97 – 1500/03 | P3 1503/06 – 1510 | P4 1510 – 1512 | P5 1512 – Feb 1513 |
+|---|---|---|---|---|---|
+| Mark dansk **[R]** | 16 ß d. = 48 Hvide = 192 Pf d. | same | same | same | same |
+| Skilling dansk **[R]** | 3 Hvide = 12 Pf d. | same | same | same | same |
+| Gulden in Mark dansk | **2** (A: Wilcke 7-1 s. 134; Viken rent) | **2 → 2½** (A: 2½ in 1500 DCH, 1501 Mulich) | **2½** (A: 1502–1508; Lütke 1503–06 ≈ 2,58); tolls at a forced 2 (A: 1503–1507/10, Enemark via Piorr) | forced 2 abandoned c. 1510; tolls 2½ (A: Enemark via Piorr) | not attested |
+| Gulden in Hvide | 96 (C) | 96 → 120 (C) | 120 (C); 124 (Lütke, C on Schäfer's assumption) | 120 (C) | — |
+| **Hvid [C]** — lod, fine g (Eriksson tab. 6, 9) | Rigsråd 1481–83: **5 lod**, 0,18–0,24; Hans **6 lod**, 0,27–0,30 (H for the period) | Hans **6 lod**, 0,27–0,30 (H) | Hans **5 lod**, 0,14–0,27, mostly 0,18–0,24 (H) | Hans **4 lod**, 0,16–0,21 (H) | no dated Hvid |
+| Hvid valued in Lübeck Pf | **3** (A «*densche drelinge*»; C 96 × 3 = 24 ß) → 0,318 g | 3 → 2,4 (C) | **2,4** (C) → 0,254 g (to 1506) / 0,225 g (after) | 2,4 (C) → 0,225 g | — |
+| **Skilling [C]** (Hans' coin) | not yet struck (Bangbostrand, Gribshunden — §0.5) | **9 lod, 1,24–1,27 g** (A assays) = Lübeck ß 1468 (C) | **8 lod, 0,99–1,24 g**, København 1,10–1,18 (A assays) ≈ Lübeck ß after 1506 (C) | **7 lod** (A assays; placing H); «Abwertung der dänischen Schillingmünzen» c. 1510 (A: Enemark via Piorr) | **6–7 lod, 0,82–0,96 g, dated 1512** (A) |
+| Skilling coin in Hvide | — | **4** (A: 1497 «*4 Hvide ß*») = 1 ß l. = 1⅓ ß d. (C) | **5** (A: «*5 Hvide for 1 ß*», undated) = 1 ß l. = 1⅔ ß d. (C) | not attested | not attested |
+| **Søsling [C]** (nominal ½ Skilling = 6 Pf d. = 1½ Hvide **[R]**) | — | Eriksson's reading by weight («*samtida med de äldsta skillingarna*», H) | — | undated **5 lod, 1,31–1,47 g → 0,39–0,42 g** — here by our silver reading (H) | **dated 1512** (A) |
+| Mark lübisch : Mark dansk | **1⅓** (C) | 1⅓ → 1⅔ (C) | **1⅔** (C; A Mulich 1501); 1,72 (Lütke, C) | 1⅔ (C) | — |
 
 Reading the two tables together: in I and II the struck Danish Skilling is a Lübeck Schilling in value (4, then 5
 Hvide), while the Danish ß of account stays at 3 Hvide; the card's units block must keep the coin «Skilling» and the

@@ -154,6 +154,7 @@ names «Sneberger» / «Schreckenberg» for Guldengroschen in another Danish or 
 | 1503 (Ribe and Kolding toll, in the queen's account) | «*ther war eblan vdi samme swm 331 rinske guldene aff tollen … guldene regnendes fore 2 mr.*» — and the page sum «*hwer guldene fore 2½ mr.*» | **the dual rate in the primary record**: toll Gulden at 2 M d, the account at 2½ | R9 s. 11–12 |
 | 1503 / 1504 | page sums «*hwer guldene regnit fore 2½ mr.*», «*hwer guldene regnendes fore 2½ mr.*» | **2½ M d / G** | R9 s. 31, 36 |
 | 1504 | «*½ rinsk guldene i guld, 20 ß regnendes*»; editor: in the queen's account Gulden : Mark lybsk = 1 : 1½ | **40 ß d / G**; **24 ß lübisch / G** | R9 s. 107 (variant note), s. 46 (editor's note) |
+| 1503–1506 (Lübeck Vogt Bernd Lütke at Falsterbo) | «*Item 220½ mark 1 ferding 2 ß, 31 worpe pro 1 fl., ys 85½ fl., maket 128 mark 4 ß Lub.*» (Vogtsbuch, Bl. 3, entry 16, in Lütke's hand); Schäfer: if a «worp» = 4 Witten (4 Hvide), the Danish sum = exactly 85½ fl, and the Gulden is reckoned at 24 ß lub. | **124 Hvide / G ≈ 2,58 M d / G** (C, on Schäfer's assumption worp = 4 Hvide); 24 ß lub / G; 1 M l ≈ 1,72 M d (C) | Schäfer 1887 S. 4 and n. 1 (cache `hanse/schaefer_1887/`, canvas 180) |
 | c. 1504 | «*3½ mark, jegh gaff fore en vngersk guldene*» | Hungarian Gulden = 3½ M d | R9 s. 161 (Regnskab III, 1504–05) |
 | 26 Mar 1505 | «*2½ mr. gaff jeg fore en rinsk guldene*» | **2½ M d / G** | R9 s. 125 |
 | 30 May 1507 | «*3 mr. 4 ß myndre fore en Sneberger*» (as a godparent's gift) | a «Sneberger» = 2 M 12 ß d = 132 Hvide | R9 s. 246 (see §2b) |
