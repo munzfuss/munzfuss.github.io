@@ -133,7 +133,8 @@ class AuctionCatalogueNumber(unittest.TestCase):
 
 class LangeVolumeIsNotTheIndex(unittest.TestCase):
     def test_volume_before_number(self):
-        self.assertEqual({"lange": "503-04"}, cat("Lange 1, 503-04"))
+        # the elided range is expanded since be4d47c (curator 2026-10-19)
+        self.assertEqual({"lange": "503-504"}, cat("Lange 1, 503-04"))
         self.assertEqual({"lange": "504A"}, cat("Lange 1, 504 A"))
         self.assertEqual({"lange": "542c"}, cat("Lange 2, 542c"))
         self.assertEqual({"lange": "324"}, cat("Lange I, 324"))

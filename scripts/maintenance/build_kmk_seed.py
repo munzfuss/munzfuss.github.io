@@ -670,8 +670,10 @@ def _catalog(src):
         out["fiala"] = fiala
     # «H:99C; Sch;82» — KMM put the field separator between the catalogue and
     # its number, so the split below tore «Sch» from «82» (2 records). Rejoin a
-    # catalogue abbreviation followed by «;» and a digit.
-    tn = re.sub(r"\b(Sch|Schou)\s*;\s*(?=\d)", r"\1 ", tn)
+    # catalogue abbreviation followed by «;» and a digit. Same for «,»: «Sch, 1»
+    # (kmk-273643) and «Sch, 146, cf.» (kmk-273986) lost their Schou number
+    # (curator 2026-10-20).
+    tn = re.sub(r"\b(Sch|Schou)\s*[;,]\s*(?=\d)", r"\1 ", tn)
     tn = _drop_lange_volume(tn)
     others: list[str] = []
     last_key = None
