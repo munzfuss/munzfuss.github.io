@@ -888,6 +888,131 @@ Reading (our conclusion from Jesse; no source states it in these words):
 the 13-Mark level (8-lod group, §3.4c) therefore matches the Lübeck Markstück of 1506 and the Lübeck Schilling
 of 1515 — still undated on the Danish side; nothing changes in the curator's fixed position (§3.4d).
 
+### §3.4h The curator's event list for the card (2026-10-20) — checked item by item
+
+Context: the curator listed events to add to the card; this section verifies each against the sources, corrects,
+and names the gaps. Nothing here is on the card yet.
+
+**(1) Before 1468 — since when Denmark leaned on the Lübeck (Wendish) system.** Jesse (coingallery reproduction,
+cache `scripts/cache/coingallery/jesse_1927/_jesse_wend_muenzverein.htm`, «Dänemark» section) gives the dates:
+- after the Hanse's victory over Valdemar Danish minting stopped; Hanseatic Witten and Hohlpfennige filled the gap
+  (Hauberg 1886 s. 135–139: last Danish mint, Lund, closed c. 1377; deeds 1380–1410 value a «hvid» at 4 Lübeck
+  hollow pence, sums are stated in «lybske Mark»);
+- «*Als deshalb Königin Margarete daran ging, das dänische Münzwesen neu aufzubauen, geschah dies mit völliger
+  Anlehnung an das wendische Münzsystem*»: Witten at Ribe **1392**, at Næstved 1396 (Erik's name), Sterlinge
+  (3 Pf) from 1405, a Hohlpfennig with crown; «*sollten auch den gleichen Wert wie diese haben, also 4, 3 und 1
+  lübischen Pfennig gelten*»; the Scanian Môtbok: the royal coin «*gelyk der veerleye munte*»;
+- from 1403 the Danish coin proved worse; the union tariffed it (1406: Lund Sterling = 2 Lübeck Pf);
+- 8 Oct 1424 common coin with the four towns; it broke up «*sehr bald*» after Erik's return (May 1425) in the war
+  that the peace of Vordingborg ended in 1435;
+- «*Nur die Anlehnung des dänischen Münzwesens an das der Städte blieb bestehen. Das gilt besonders für Schonen,
+  wo Erichs Nachfolger Christoph (1439-48) wie Christian I. (1448-81) in Malmö Sterlinge und Witten (hvid) … sowie
+  einen unmittelbar nach hansischem Muster neu geschaffenen Schilling zu 12 Pfennigen [705] geprägt haben*».
+- Christopher [1440–48]: the Danish grot to be taken «*for ii lybske*» (Rigslovgivning 1397-1513 nr. 11, s. 84).
+So the card's sentence «after the coinage union broke up …» refers to **after c. 1425–1435**, and the orientation
+itself dates from **1392** (Margrete's Ribe Witten). ⚠ Jesse's sentence credits Christopher «wie» Christian I with
+a Schilling [705]; Hauberg s. 187 and Eriksson s. 4 say Christian I struck no Skillinger (the Rigsråd Skilling
+is 1448, Stefke via Eriksson). Jesse's «wie» is ambiguous; the Schilling [705] may be Christopher's / the 1448
+Rigsråd's. Bears on Frederik I's 1523 «hele ß … koning Christiern, vor kere herre fader» (§3.4f). Open.
+
+**Translation of «Anlehnung» on the card (uk «спертим на»).** «Сперти(й)» is also colloquial for «stolen» — a
+reading to avoid; and «Anlehnung» in Jesse means alignment / modelling on («völlige Anlehnung an das wendische
+Münzsystem» = built on the Wendish model). Candidates: uk «залишився орієнтованим на устрій міст» (pool translation
+«лишилася тільки орієнтація …»); en «remained aligned with» (now «dependent on» — stronger than Jesse); de
+«angelehnt» stays; da «knyttet til» acceptable. Curator to choose.
+
+**(2) The promise «at holde Mønten op til den lybske».** Wilcke gives no date and no instrument at either place:
+7-1 s. 142 «*som hans Fader Christian I. i sin Tid havde lovet Lybækkerne*»; 7-2 s. 147 «*Hans saa vel som hans
+Fader havde lovet Rigsraaderne*». At 7-4 s. 283 Wilcke uses the same formula for the duchies: «*Hertugerne havde
+lovet Hansestæderne at holde Mønten i Hertugdømmerne op til Hansestædernes Mønt*»; Galster 1934 (Junge) likewise:
+in the duchies «*skulde den lybske Møntfod opretholdes*». **Hypothesis:** Wilcke's Christian I promise is the 1460
+Holstein obligation (to Hamburg; Hauberg s. 140) carried over to the kingdom. Against: 7-2 names the Rigsråd.
+None of the realm acts 1448–1513 in *Rigslovgivning* has such a clause (§3.4f). Would be settled by Hanserecesse
+II–III and Lübeck UB (Christian I's dealings with Lübeck), or by Wilcke's own source if one turns up. Years: if the
+1460 act, 1460; otherwise unknown — the card should not give a year.
+
+**(3) 1468 and the recesses of 1483 and 1492 — why «confirm» at all** (Jesse, same file, «Münzfuß-Einigung von
+1468» and the following paragraphs):
+- 1467 Lübeck Rezess (15 Oct) chose a 101 / 9¾-lot Schilling; the four-town Münzordnung published 22 Feb 1468 left
+  out the coin-standard articles, because Lüneburg and Wismar refused to cut the Gulden to 21 ß. So Hamburg and
+  Lübeck alone agreed on **15 June 1468**: Schilling 103½ / 9-lot mark, Doppelschilling 69 / 12-lot, 22 ß per
+  Gulden. «*Es ist nicht ganz klar ersichtlich, ob auch dieser Vertrag nur Entwurf geblieben ist. Sicher ist,
+  daß die Ausmünzung alsbald begonnen hat. Der hier festgelegte Münzfuß der Schillinge findet sich fortan auch
+  mehrfach (so 1483 und 1492) in den Rezessen neu bekräftigt.*»
+- The Gulden rate was the moving part: 23 ß from July 1468 (Lüneburg and Wismar then joined), 24 ß from 1470,
+  the Rhenish Gulden itself debased 1477 and 1490.
+- 1483: Langenbeck's plan to anchor the silver on the Lübeck gold Gulden at 2 Mark = 32 ß «*nach dem Fuße von
+  1468*»; the Wendish Städtetag (Lübeck, May 1483) took it up.
+- 1492: the 31-article Rezess of all four towns: silver to be ordered «*na den Lubeschen gulden*», «*um nicht durch
+  die Anpassung an den "heimlich" schlechter werdenden rheinischen Gulden mit dem Münzfuß der Schillinge immer
+  weiter heruntergehen zu müssen und endlich auf den Stand der sundischen Mark zu kommen. Deshalb wurde der
+  Münzfuß von 1468 beibehalten*»; quotas per town; first common type (Doppelschilling with the other towns' arms).
+So the reconfirmations were (a) needed because 1468 was a two-town agreement of uncertain formal status and the
+union's recesses were renewed rather than permanent, and (b) a deliberate choice NOT to debase the Schilling
+against the falling Rhenish Gulden. The Danish card can say the 1468 standard was kept unchanged until 1506.
+
+**(4) Did Denmark take over 1468 «silently»?** No Danish act is known (§3.4f; *Rigslovgivning* 1448–1481 has no coin
+clause; Christian I's valuation of foreign coin «*c. 1460–1474*», reckoned «*i Forhold til lybske Mark og
+Schillinge*», Hauberg s. 137 after Langebek Dipl., is not in *Rigslovgivning* — **not read; would be the nearest
+thing to a Danish instrument**). What is attested: Christian I's complaint of 1474 that Lübeck's new Schillinge
+harmed his «*Zinsen, Renten und Zölle, die auf 23 ß = 1 fl. gegründet seien*» (Jesse). 23 ß per Gulden is exactly
+the Hanseatic settlement of July 1468. So the Danish crown's revenues were fixed in Lübeck ß at the 1468 rate —
+the strongest evidence that the 1468 reckoning was adopted in Denmark, without a known act. The card may state
+this as the attested fact; «automatically» stays our reading.
+
+**(5) 1468–1481, Christian I.** Correct as listed, with three refinements:
+- Hauberg s. 187: «*Udmyntningen af Skillinger standses, saaledes at der i hele denne lange Periode kun udmyntes
+  Hvide her i Danmark*»; Hvide «*4 Lod 15 Gren*».
+- «densche drelinge» = 3 Lübeck Pf: Eriksson s. 4–5 after Galster 1972 s. 23 (Galster 1972 not read). Hamburg
+  Burspraken name «*dänische Dreilinge*» (Jesse) — date of the Burspraken not established.
+- Ratios (our arithmetic, Lübeck ß 1468 = 1,271 g fine, Gulden 24 ß from 1470): Hvid = 3 Pf l. = 0,318 g of Lübeck
+  silver; Danish ß (3 Hvide) = 9 Pf = ¾ ß l.; Mark dansk (48 Hvide) = 12 ß l. = ¾ Mark lübisch; Gulden = 96 Hvide
+  = 2 M d = 24 ß l. — agrees with the Viken rent under Christian I «*hver 2 M pleyer at være saa godhe som 1
+  ringyllen*» (Wilcke 7-1 s. 54) — two independent figures that close. Christian I's Hvide assay 8 → 5 lod,
+  ≈ 0,35 → 0,25 g fine (Eriksson tab. 5): the early ones carry about the silver of 3 Lübeck Pf, the later ones
+  less. ⚠ Wilcke 7-1 s. 142 «*En rhinsk Gylden var lig 20 ß lybsk og 2 M dansk*» gives Hvid = 2½ Pf l., not 3:
+  the two do not agree. 20 ß is the Gulden of the early 1460s (Jesse: 21–22 ß 1461–68) — **hypothesis** that
+  Wilcke's 20 is an older rate. Would be settled by the source behind Wilcke's line.
+
+**(6) 1483, Hans.** Art. 14 as listed; also art. 13 (Swedish toll in silver «*till at holde mynten oppe met*»).
+The Norwegian standard is the Danish one; no Lübeck in the act (§3.4f).
+
+**(7) When Hans' Skilling and Søsling begin.**
+- Skilling: Bangbostrand hoard (deposited «*så sent som ca 1490*»), many Hvide, no Skilling (Eriksson s. 9); the
+  Gribshunden purse (June 1495) — Hvide only, «*the sample … too small to draw definitive conclusions*»
+  (Ingvardson 2022); first written mention 1497: «*4 Hvide ß, som Kong Hans mønte lod*» (Wilcke 7-1 s. 142). So
+  **c. 1495–1497** (the 1495 terminus post quem is weak; 1497 is a terminus ante quem). Eriksson s. 9 allows a
+  start «*först efter 1497*»; Wilcke's 1497 mention of Hans' «*4 Hvide ß*» shows Skillinger were current in 1497
+  (the month is not given).
+- Søsling: earliest dated piece 1512 (KMM, Eriksson s. 10 «*unik sösling 1512*»); no hoard contains one; undated
+  pieces 5 lod, 1,31–1,47 g (Eriksson tab. 8). ⚠ Eriksson reads them as possibly «*samtida med de äldsta
+  skillingarna*» (by weight: just over half a Skilling); by fine silver (≈ 0,39–0,42 g) they are ⅓ of a 9-lod
+  Skilling and ½ of a 1512 one — our §0.2 reading puts them in stage III. Both are readings; open. Would be
+  settled by a dated hoard with a Søsling, or Galster 1972 / Märcher 2018.
+
+**(8) Ratios in the three stages — checked** (A = attested, C = our arithmetic):
+
+| | I (1481 – c. 1500) | II (c. 1500/01 – c. 1511) | III (1512 – 1513) |
+|---|---|---|---|
+| Gulden in M dansk | 2 (A: Wilcke 7-1 s. 134; Viken rent) | 2½ (A: Wilcke; Ribe 1501 Mulich; 1508) | no rate attested; 1513 håndfæstning demands 2 (A) |
+| Gulden in Lübeck ß | 24 (A: Jesse, from 1470) | 24 (A: Mulich 1501 «*533 gulden 8 ß lub*» for 800 M l.) | 24 (A: Wilcke 7-2 s. 151 «*højst 24 ß*») |
+| Hvide per Gulden | 96 (C) | 120 (C) | — |
+| Hvid in Lübeck Pf | 3 (A: «densche drelinge»; C from the two lines above) | 2,4 (C) | — |
+| Lübeck ß in Hvide | 4 (C; A: 1497 «*4 Hvide ß*» for Hans' Skilling) | 5 (A: Wilcke 7-1 s. 142 «*5 Hvide for 1 ß*», undated) | — |
+| Mark lübisch : Mark dansk | 1⅓ (C) | 1⅔ (C; A: Mulich 800 M l. = 1333 M 5 ß 1 Hvid d.) | — |
+| Danish Skilling coin | from c. 1495/97, 9 lod ≈ 1,27 g = Lübeck ß 1468 (A assays; level C) | 8 lod, 1,10–1,18 g (København) ≈ Lübeck ß after 1506, 1,124 (C; placing in II is H) | 6–7 lod, 0,82–0,96 g, dated 1512 (A) |
+⚠ In I the Skilling coin passed for 4 Hvide = 1⅓ Danish reckoning-ß — the coin called «Skilling» was a Lübeck
+Schilling, not the Danish ß of account (3 Hvide). The card's units block should keep the two apart.
+
+**Gaps that remain** (each with what would settle it):
+- Christian I's valuation of foreign coin (c. 1460–74) — Langebek Dipl. (RA), or a printed edition (Repertorium).
+- The year the «Anlehnung» sentence covers on the card — settled above (after c. 1425–35); the curator decides
+  whether the card gives 1392 as the start of the orientation.
+- Wilcke's 20 ß l. = 2 M d vs Hvid = 3 Pf — Wilcke's source.
+- Søsling start; Skilling start within 1495–97 — dated hoards; Galster 1972; Märcher 2018.
+- Stage III rates — none attested; Enemark 1971 / toll rolls (hans_rates §8).
+
+
 ### §3.5 Mark coins under Hans? (2026-10-15)
 
 No specimen is known. The only witness is Mårten Myntskrivare's 1542 melt account (Svartsjö):
