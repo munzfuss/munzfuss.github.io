@@ -965,7 +965,12 @@ Langebek's Diplomatarium copy, marginal note «*Imellem 1460 og 1474*»; extract
 council of the realm of Denmark — for the merchants visiting Scania (Skanør, Falsterbo):
 - art. <78>–<79> (s. 218): a tariff of coin in Lübeck money — «*en swar nobel iii. lubesche margk*», «*lub. gulden
   xxvi. schil. lub.*», «*de rynse gulden xx.ß lub*», postulat gulden 18 ß, Bishop's gulden and «schilde» 15 ß lub.,
-  Arnoldus gulden 12 ß lub. — **this is Hauberg's «Christiern I's Forordning om fremmed Mynts Værdi», «1460–74,
+  Arnoldus gulden 12 ß lub. (full list s. 218: heavy noble 3 M lub.; «*de lichte nobel iii. margk*» — mark not
+  qualified; Lübeck gulden 26 ß lub.; Rhenish 20 ß lub.; postulat 18 ß; «*reyoldesche*» gulden 1 M; Bishop's
+  gulden 15 ß lub.; «*schilde*» 15 ß lub.; Arnoldus 12 ß lub.; false new Rhenish gulden with an orb and
+  «*Didericus de Brenthorst*» «*nicht wert xiiii. ß*», passing them punishable by death). Searched online
+  2026-10-20 for Friis Johansen, NNÅ 1961 (which prints §78–81) and Schäfer's edition: neither found online.
+  — **this is Hauberg's «Christiern I's Forordning om fremmed Mynts Værdi», «1460–74,
   Langebek Dipl.» (s. 137, 189): same date, same copy, same content** (the gap in (4) is closed);
 - art. <81> (s. 219): «*Item schal vnse koninglyke munte gaen like der veerleye munte*» — «our royal coin shall
   pass equal to the coin of the four» (i.e. the four towns of the Wendish union; Jesse on Margrete's Môtbok § 67:
