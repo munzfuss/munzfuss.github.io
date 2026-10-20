@@ -68,10 +68,10 @@
   (christian_ii_supporters — Norby 1524-28 + Count's Feud 1534-36 incl.
   Güstrow; christian_ii_reconquest — Norway 1531-32), danish_west_indies out
   of scope, weightless Hede pages admitted (patterns/jetons/post-1914 undated
-  skipped; f2h16, f2h34, f4h56 parsed). Open: (1) ikmk-18262362 (Christian II
-  2 Mark 1531) moves only on the next IKMK re-seed — IKMK re-seed carries
-  unrelated pending drift; (2) kmk-473418, 494040, 805 excluded but missing
-  from seeds since before 2026-10-19.
+  skipped; f2h16, f2h34, f4h56 parsed). `322a493`: IKMK re-seed catch-up
+  (ikmk-18262362 → christian_ii_reconquest). kmk-473418/494040/805 are
+  private tokens the KMM builder now filters as exonumia; their exclusions
+  stay as documentation, nothing to do.
 
 ## 2026-10-18 — Merger scoped-index rules; KMM rulers; Schou-only folds undone
 
