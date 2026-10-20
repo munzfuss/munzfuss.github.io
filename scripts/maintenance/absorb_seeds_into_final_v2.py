@@ -382,7 +382,10 @@ def _suppress_weightless_museum_overcollection(coin: dict) -> int:
       • IMAGE only (no weight) — keep 3 (lowest object-id), hide the rest.
       • NEITHER weight nor image (natmus «Genstanden er endnu ikke
         affotograferet»; 79 % of all KMM cites — bare «museum holds a
-        specimen») — keep 1, hide the rest.
+        specimen») — keep 1, hide the rest; keep NONE when the coin has
+        another resource's source, or a KMM citation with a photo or a
+        weight (curator 2026-10-20: the bare «museum holds one» adds nothing
+        beside a better attestation).
 
     Fires regardless of whether the coin has weight from other sources.
     Idempotent + deterministic. Returns the count newly hidden."""
@@ -434,7 +437,11 @@ def _suppress_weightless_museum_overcollection(coin: dict) -> int:
             s.pop("display", None)
 
     _cap(image_only, _KEEP_KMM_IMAGE_ONLY)
-    _cap(pure, _KEEP_KMM_PURE)
+    # A bare KMM citation is shown only when nothing better attests the coin:
+    # no source from another resource, no KMM specimen with weight or photo.
+    other_resource = any(isinstance(x, dict) and not _kmm_nid_from_url(x.get("url"))
+                         for x in srcs)
+    _cap(pure, 0 if (other_resource or weight_giving or image_only) else _KEEP_KMM_PURE)
 
     # Hide the weight_rough_g readings of the dropped KMM specimens. The
     # KMM weight entries carry source label "kmk" with no nid, so we match

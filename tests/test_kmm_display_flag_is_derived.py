@@ -67,5 +67,30 @@ class KmmDisplayFlagIsDerived(unittest.TestCase):
         self.assertEqual(coin, once)
 
 
+class BareKmmCitationHiddenBesideBetterAttestation(unittest.TestCase):
+    """Curator 2026-10-20: a KMM citation with neither weight nor photo is
+    hidden when the coin has another resource's source, or a KMM specimen with
+    a photo or a weight. Alone, one stays visible (the coin needs a citation)."""
+
+    _run = KmmDisplayFlagIsDerived._run
+
+    def test_hidden_beside_kmm_photo(self):
+        coin = {"sources": [_src(1), _src(2), _src(9)]}
+        self._run(coin, images={"9"})
+        self.assertEqual([s.get("display") for s in coin["sources"]],
+                         [False, False, None])
+
+    def test_hidden_beside_kmm_weight(self):
+        coin = {"sources": [_src(1), _src(9)]}
+        self._run(coin, weights={"9": 0.7})
+        self.assertEqual([s.get("display") for s in coin["sources"]], [False, None])
+
+    def test_hidden_beside_another_resource(self):
+        coin = {"sources": [{"type": "literature", "url": "https://www.danskmoent.dk/hansg31.htm"},
+                            _src(1), _src(2)]}
+        self._run(coin)
+        self.assertEqual([s.get("display") for s in coin["sources"]], [None, False, False])
+
+
 if __name__ == "__main__":
     unittest.main()
