@@ -741,7 +741,9 @@ _PREFIX_PRIORITY: dict[str, int] = {
     # `Hede Norge#` is the NORWEGIAN Hede volume — a series numbered
     # independently of the Danish one (Hede 39 = 2 Dukat gold; Hede Norge 39
     # = 1 Speciedaler silver). Sorted immediately after `Hede`.
-    "Hede": 20, "Hede Norge": 21, "Sieg": 30, "Lange": 50, "Galster": 51,
+    # Galster before Sieg, Schou before Schive and NMD, Schive before NMD
+    # (curator 2026-10-20).
+    "Hede": 20, "Hede Norge": 21, "Galster": 25, "Sieg": 30, "Lange": 50,
     "Fr": 60, "Schou": 61, "FP": 65,
     "Dav": 70,
     "Dav EC II": 71, "Dav EC III": 72, "Dav EC IV": 73, "Dav ECT": 74,
@@ -756,13 +758,15 @@ _PREFIX_PRIORITY: dict[str, int] = {
     "Saur": 220, "Diakov": 230, "Uzd": 240, "Bit": 250,
     "Brekke": 260, "Hauberg": 280,
     # Named fields added 2026-10-16 (see _NAMED_FIELDS).
-    "NMD": 31, "Skaare": 32, "Schive": 33, "JS": 52, "Bergsøe": 53, "Thomsen": 54,
+    "Schive": 62, "NMD": 63, "Skaare": 64, "JS": 52, "Bergsøe": 53, "Thomsen": 54,
     "Behrens": 150, "Welter": 155, "Fiala": 156, "Gaedechens": 157,
     "Jesse": 158, "Kreber": 159,
     "Fb": 290, "J": 300,
     "Bruun": 9000,  # the Bruun collection number sits directly above Numista's
     "N": 9999,  # Numista's own ID — always last
 }
+
+_SCHIVE_SECTION_RE = re.compile(r"^([IVXL]+)[.:]\s*(.+)$")
 
 _REF_PATTERN = re.compile(r"^([A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß0-9./\- ]*?)#\s*(.+)$")
 
@@ -905,6 +909,14 @@ def _compute_catalog_groups(
             for part in parts:
                 if not part:
                     continue
+                # Schive numbers coins within a Roman-numbered section: the
+                # section goes into the label, the number after «#» —
+                # «Schive XIV# 2» (curator 2026-10-20). Data keeps «XIV.2».
+                if field_name == "schive":
+                    sm = _SCHIVE_SECTION_RE.match(part)
+                    if sm:
+                        add(f"Schive {sm.group(1)}", sm.group(2))
+                        continue
                 # Append the Hede-1971 annotation on the FIRST sub-part only
                 # (avoids polluting every comma-split fragment with the same
                 # annotation). The annotation suppresses itself if alt ==
@@ -964,7 +976,8 @@ def _compute_catalog_groups(
             add("N", str(cat.numista))
 
     def sort_key(prefix: str) -> tuple[int, int]:
-        prio = _PREFIX_PRIORITY.get(prefix, 500)
+        prio = _PREFIX_PRIORITY.get(
+            "Schive" if prefix.startswith("Schive ") else prefix, 500)
         return (prio, order.index(prefix))
 
     # Drop generic "Dav" group if any specific "Dav <subprefix>" carries the

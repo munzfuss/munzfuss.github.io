@@ -593,6 +593,7 @@ _NUMERIC_INDEX_FIELDS: set[str] = {
     "hauberg", "jesse", "kreber", "welter", "bergsoe",
 }
 _PLAIN_RANGE_RE = re.compile(r"^(\d+)-(\d+)$")
+_SCHIVE_COLON_RE = re.compile(r"^\s*([IVXL]+)\s*:\s*")
 _PLAIN_INT_RE = re.compile(r"^(\d+)$")
 
 
@@ -759,8 +760,13 @@ def normalise_catalog(catalog: dict) -> int:
         val = catalog.get(field)
         if val is None:
             continue
+        if field == "schive":
+            # Schive's «section.number»: danskmoent prints «XIV.2», Bruun
+            # «XIV:2» — one reference, two spellings (curator 2026-10-20).
+            val = ([_SCHIVE_COLON_RE.sub(r"\1.", str(v)) for v in val]
+                   if isinstance(val, list) else _SCHIVE_COLON_RE.sub(r"\1.", str(val)))
         new_val = normalise_numeric_index(val)
-        if new_val != val:
+        if new_val != catalog.get(field):
             catalog[field] = new_val
             changes += 1
 

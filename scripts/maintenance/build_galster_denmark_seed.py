@@ -538,6 +538,21 @@ def _clean_catalogue_refs(catalog: dict) -> None:
             catalog[reg] = kept[0] if len(kept) == 1 else kept
         else:
             catalog.pop(reg, None)
+    # One spelling per foreign reference. The generic mapper writes a page's own
+    # «Hauberg» cell as «Hauberg# 103-108» (the `others` convention), while a
+    # «Hauberg 103-108» lifted out of a Danish register above came in bare — the
+    # same reference twice (gotlg142, curator 2026-10-20).
+    others = catalog.get("others")
+    if isinstance(others, list):
+        canon: list = []
+        for o in others:
+            if isinstance(o, str):
+                m = _FOREIGN_CATALOGUE_RE.match(o)
+                if m and not o[m.end():].startswith("#"):
+                    o = f"{o[:m.end()]}#{o[m.end():]}"
+            if o not in canon:
+                canon.append(o)
+        catalog["others"] = canon
 
 
 def build_entry(data: dict) -> dict | None:

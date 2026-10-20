@@ -65,12 +65,20 @@ class TestForeignReroute(unittest.TestCase):
     def test_ernst_routed_to_others_schive_kept(self):
         self.assertEqual(
             _c({"schive": ["Ernst 1940 21", "XIV.32-33"]}),
-            {"schive": "XIV.32-33", "others": ["Ernst 1940 21"]})
+            {"schive": "XIV.32-33", "others": ["Ernst# 1940 21"]})
 
     def test_existing_swedish_catalogues_still_route(self):
         self.assertEqual(
             _c({"galster": ["233", "Hildebrand 715", "Lagerqvist 4"]}),
-            {"galster": "233", "others": ["Hildebrand 715", "Lagerqvist 4"]})
+            {"galster": "233", "others": ["Hildebrand# 715", "Lagerqvist# 4"]})
+
+    def test_one_spelling_per_reference(self):
+        # gotlg142: the page's own Hauberg cell came in as «Hauberg# 103-108»,
+        # the same number lifted out of a Danish register as «Hauberg 103-108»
+        # — one reference twice (curator 2026-10-20).
+        self.assertEqual(
+            _c({"galster": ["142", "Hauberg 103-108"], "others": ["Hauberg# 103-108"]}),
+            {"galster": "142", "others": ["Hauberg# 103-108"]})
 
 
 class TestLegitValuesUntouched(unittest.TestCase):
