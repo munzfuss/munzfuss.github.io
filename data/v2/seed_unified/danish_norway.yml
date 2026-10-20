@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 4639 per-source seed entries.
-# Output: 1600 unified entries (one per physical coin).
+# Output: 1621 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2615,6 +2615,7 @@ coins:
       -   - 1481
           - 1513
     year_label: 1481-1513
+    _year_demoted: true
     ruler: Hans
     mint: Bergen
     catalog:
@@ -2647,12 +2648,6 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/norge/nha_g149.htm
         ref: Galster 149 (hg) — danskmoent.dk norge_nha_g149.htm
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273661
-        ref: KMM 273661 (Inv. FP 1667.102)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/311328
-        ref: KMM 311328 (Inv. FP 7135.108)
     note:
       de: Søsling
       en: Søsling
@@ -2670,8 +2665,6 @@ coins:
     composed_of:
       - dk-bruun-9223
       - dk-galster-hg-149
-      - kmk-273661
-      - kmk-311328
     _errata_applied:
       - source: dk-bruun-9223
         field: nominal
@@ -2798,12 +2791,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/136086
         ref: KMM 136086 (Inv. FP 3507.13)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/291626
-        ref: KMM 291626 (Inv. FP 9832.21)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/622139
-        ref: KMM 622139 (Inv. FP 2533.12)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -2818,8 +2805,6 @@ coins:
       - dk-bruun-9243
       - dk-galster-hg-159
       - kmk-136086
-      - kmk-291626
-      - kmk-622139
     _errata_applied:
       - source: dk-bruun-9243
         field: ruler
@@ -2859,12 +2844,6 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12032, p. 156
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/307517
-        ref: KMM 307517 (Inv. FP 7683.17)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317773
-        ref: KMM 317773 (Inv. FP 6758.27)
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -2877,17 +2856,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-bruun-9248
-      - kmk-307517
-      - kmk-317773
-    _errata_applied:
-      - source: kmk-307517
-        field: ruler
-        printed: Gavte Ivarsson
-        correct: Gaute Ivarsson
-      - source: kmk-317773
-        field: ruler
-        printed: Ærkebiskop Gante Iversen
-        correct: Gaute Ivarsson
   - id: unified-dk-bruun-9251
     fuss: seed_unsorted
     phase: bruun
@@ -6355,12 +6323,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/150274
         ref: KMM 150274 (Inv. KP 1656.39)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/354945
-        ref: KMM 354945 (Inv. FP 4850.4)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/372301
-        ref: KMM 372301 (Inv. FP 4324.11)
     verification_note:
       de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
         Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -6374,8 +6336,6 @@ coins:
     composed_of:
       - dk-galster-hg-151
       - kmk-150274
-      - kmk-354945
-      - kmk-372301
   - id: unified-dk-galster-hg-153
     fuss: seed_unsorted
     phase: galster
@@ -6412,20 +6372,8 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/150273
         ref: KMM 150273 (Inv. KP 1656.40)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/299430
-        ref: KMM 299430 (Inv. FP 8488.3)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/355384
-        ref: KMM 355384 (Inv. FP 4821.1)
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/492500
         ref: KMM 492500 (Inv. FP 2509.8)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/646198
-        ref: KMM 646198 (Inv. FP 11877.2)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/739818
-        ref: KMM 739818 (Inv. FP 12964.8)
     verification_note:
       de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
         Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -6440,11 +6388,7 @@ coins:
       - dk-galster-hg-153
       - kmk-139303
       - kmk-150273
-      - kmk-299430
-      - kmk-355384
       - kmk-492500
-      - kmk-646198
-      - kmk-739818
   - id: unified-dk-galster-hg-155
     fuss: seed_unsorted
     phase: galster
@@ -6505,41 +6449,11 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/274277
         ref: KMM 274277 (Inv. FP 1667.156)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/299568
-        ref: KMM 299568 (Inv. FP 8430.40)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/307674
-        ref: KMM 307674 (Inv. FP 7677.14)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/309769
-        ref: KMM 309769 (Inv. FP 7300.8)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/345289
-        ref: KMM 345289 (Inv. FP 5471.11)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/354426
-        ref: KMM 354426 (Inv. FP 4929.86)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/425401
-        ref: KMM 425401 (Inv. FP 10539.144)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/354427
-        ref: KMM 354427 (Inv. FP 4929.85)
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/371848
         ref: KMM 371848 (Inv. FP 10473.15)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/533276
         ref: KMM 533276 (Inv. FP 10737.10)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/623859
-        ref: KMM 623859 (Inv. FP 11708.31)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/641463
-        ref: KMM 641463 (Inv. FP 11812.56)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/704130
-        ref: KMM 704130 (Inv. FP 12258.2)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/740753
         ref: KMM 740753 (Inv. FP 2519.67)
@@ -6563,17 +6477,8 @@ coins:
       - kmk-150271
       - kmk-150272
       - kmk-274277
-      - kmk-299568
-      - kmk-307674
-      - kmk-309769
-      - kmk-345289
-      - kmk-354426
-      - kmk-354427
       - kmk-371848
       - kmk-533276
-      - kmk-623859
-      - kmk-641463
-      - kmk-704130
       - kmk-740753
   - id: unified-dk-hede-f3h39
     fuss: seed_unsorted
@@ -57058,6 +56963,34 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-273116
+  - id: unified-kmk-273661
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling
+    year_first: 1483
+    year_last: 1513
+    year_ranges:
+      -   - 1483
+          - 1513
+    year_label: 1483-1513
+    _year_demoted: true
+    ruler: Hans
+    mint: Bergen
+    catalog:
+      schou: '100'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273661
+        ref: KMM 273661 (Inv. FP 1667.102)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-273661
   - id: unified-kmk-273847
     fuss: seed_unsorted
     phase: kmk
@@ -58158,6 +58091,34 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-291056
+  - id: unified-kmk-291626
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1481
+    year_last: 1513
+    year_ranges:
+      -   - 1481
+          - 1513
+    year_label: 1481-1513
+    _year_demoted: true
+    ruler: Hans
+    mint: Nidaros
+    catalog:
+      galster: '159'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291626
+        ref: KMM 291626 (Inv. FP 9832.21)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-291626
   - id: unified-kmk-291972
     fuss: seed_unsorted
     phase: kmk
@@ -58303,6 +58264,56 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-299180
+  - id: unified-kmk-299430
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1481
+    year_last: 1512
+    year_ranges:
+      -   - 1481
+          - 1512
+    year_label: 1481-1512
+    _year_demoted: true
+    ruler: Hans
+    mint: Bergen
+    catalog:
+      galster: '153'
+      schou: 171-186
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/299430
+        ref: KMM 299430 (Inv. FP 8488.3)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-299430
+  - id: unified-kmk-299568
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    mint: Christiania
+    catalog:
+      galster: '155'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/299568
+        ref: KMM 299568 (Inv. FP 8430.40)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-299568
   - id: unified-kmk-300356
     fuss: seed_unsorted
     phase: kmk
@@ -58367,6 +58378,53 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-306513
+  - id: unified-kmk-307517
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: (?)
+    ruler: Gaute Ivarsson
+    mint: Nidaros
+    catalog:
+      galster: '177'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/307517
+        ref: KMM 307517 (Inv. FP 7683.17)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-307517
+    _errata_applied:
+      - source: kmk-307517
+        field: ruler
+        printed: Gavte Ivarsson
+        correct: Gaute Ivarsson
+  - id: unified-kmk-307674
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    mint: Christiania
+    catalog:
+      galster: '155'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/307674
+        ref: KMM 307674 (Inv. FP 7677.14)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-307674
   - id: unified-kmk-308600
     fuss: seed_unsorted
     phase: kmk
@@ -58413,6 +58471,27 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-308821
+  - id: unified-kmk-309769
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    mint: Christiania
+    catalog:
+      galster: '155'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/309769
+        ref: KMM 309769 (Inv. FP 7300.8)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-309769
   - id: unified-kmk-310128
     fuss: seed_unsorted
     phase: kmk
@@ -58441,6 +58520,27 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-310128
+  - id: unified-kmk-311328
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling
+    ruler: Hans
+    mint: Bergen
+    catalog:
+      galster: '149'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/311328
+        ref: KMM 311328 (Inv. FP 7135.108)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-311328
   - id: unified-kmk-317143
     fuss: seed_unsorted
     phase: kmk
@@ -58461,6 +58561,32 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-317143
+  - id: unified-kmk-317773
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Gaute Ivarsson
+    mint: Nidaros
+    catalog:
+      galster: '177'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317773
+        ref: KMM 317773 (Inv. FP 6758.27)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-317773
+    _errata_applied:
+      - source: kmk-317773
+        field: ruler
+        printed: Ærkebiskop Gante Iversen
+        correct: Gaute Ivarsson
   - id: unified-kmk-318295
     fuss: seed_unsorted
     phase: kmk
@@ -59477,6 +59603,34 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-344656
+  - id: unified-kmk-345289
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1483
+    year_last: 1513
+    year_ranges:
+      -   - 1483
+          - 1513
+    year_label: 1483-1513
+    _year_demoted: true
+    ruler: Hans
+    mint: Christiania
+    catalog:
+      galster: '155'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/345289
+        ref: KMM 345289 (Inv. FP 5471.11)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-345289
   - id: unified-kmk-345585
     fuss: seed_unsorted
     phase: kmk
@@ -59982,6 +60136,112 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-354156
+  - id: unified-kmk-354426
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1483
+    year_last: 1513
+    year_ranges:
+      -   - 1483
+          - 1513
+    year_label: 1483-1513
+    _year_demoted: true
+    ruler: Hans
+    catalog:
+      galster: '155'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/354426
+        ref: KMM 354426 (Inv. FP 4929.86)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/425401
+        ref: KMM 425401 (Inv. FP 10539.144)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-354426
+  - id: unified-kmk-354427
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1483
+    year_last: 1513
+    year_ranges:
+      -   - 1483
+          - 1513
+    year_label: 1483-1513
+    _year_demoted: true
+    ruler: Hans
+    catalog:
+      galster: '155'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/354427
+        ref: KMM 354427 (Inv. FP 4929.85)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-354427
+  - id: unified-kmk-354945
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1483
+    year_last: 1513
+    year_ranges:
+      -   - 1483
+          - 1513
+    year_label: 1483-1513
+    _year_demoted: true
+    ruler: Hans
+    mint: Bergen
+    catalog:
+      galster: '151'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/354945
+        ref: KMM 354945 (Inv. FP 4850.4)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-354945
+  - id: unified-kmk-355384
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    mint: Bergen
+    catalog:
+      galster: '153'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/355384
+        ref: KMM 355384 (Inv. FP 4821.1)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-355384
   - id: unified-kmk-355654
     fuss: seed_unsorted
     phase: kmk
@@ -60315,6 +60575,27 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-371864
+  - id: unified-kmk-372301
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    mint: Bergen
+    catalog:
+      galster: '151'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/372301
+        ref: KMM 372301 (Inv. FP 4324.11)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-372301
   - id: unified-kmk-394028
     fuss: seed_unsorted
     phase: kmk
@@ -71124,6 +71405,83 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-584942
+  - id: unified-kmk-622139
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    catalog:
+      schou: '220'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/622139
+        ref: KMM 622139 (Inv. FP 2533.12)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-622139
+  - id: unified-kmk-623859
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1481
+    year_last: 1512
+    year_ranges:
+      -   - 1481
+          - 1512
+    year_label: 1481-1512
+    _year_demoted: true
+    ruler: Hans
+    mint: Christiania
+    catalog:
+      galster: '155'
+      schou: '193'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/623859
+        ref: KMM 623859 (Inv. FP 11708.31)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-623859
+  - id: unified-kmk-641463
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1481
+    year_last: 1512
+    year_ranges:
+      -   - 1481
+          - 1512
+    year_label: 1481-1512
+    _year_demoted: true
+    ruler: Hans
+    mint: Christiania
+    catalog:
+      galster: '155'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/641463
+        ref: KMM 641463 (Inv. FP 11812.56)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-641463
   - id: unified-kmk-642129
     fuss: seed_unsorted
     phase: kmk
@@ -71169,6 +71527,34 @@ coins:
         field: nominal
         printed: 1 Korshvid
         correct: 1 Hvid
+  - id: unified-kmk-646198
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1481
+    year_last: 1512
+    year_ranges:
+      -   - 1481
+          - 1512
+    year_label: 1481-1512
+    _year_demoted: true
+    ruler: Hans
+    mint: Bergen
+    catalog:
+      galster: '153'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/646198
+        ref: KMM 646198 (Inv. FP 11877.2)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-646198
   - id: unified-kmk-646300
     fuss: seed_unsorted
     phase: kmk
@@ -71509,6 +71895,34 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-700881
+  - id: unified-kmk-704130
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1481
+    year_last: 1512
+    year_ranges:
+      -   - 1481
+          - 1512
+    year_label: 1481-1512
+    _year_demoted: true
+    ruler: Hans
+    mint: Christiania
+    catalog:
+      galster: '155'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/704130
+        ref: KMM 704130 (Inv. FP 12258.2)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-704130
   - id: unified-kmk-709960
     fuss: seed_unsorted
     phase: kmk
@@ -73072,6 +73486,34 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-726552
+  - id: unified-kmk-739818
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1481
+    year_last: 1512
+    year_ranges:
+      -   - 1481
+          - 1512
+    year_label: 1481-1512
+    _year_demoted: true
+    ruler: Hans
+    mint: Bergen
+    catalog:
+      galster: '153'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/739818
+        ref: KMM 739818 (Inv. FP 12964.8)
+    verification_note: *id002
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-739818
   - id: unified-kmk-740440
     fuss: seed_unsorted
     phase: kmk
