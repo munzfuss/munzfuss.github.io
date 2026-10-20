@@ -741,15 +741,19 @@ def _parse_subsections(text: str, galster_num: str | None) -> dict:
     return out
 
 
-def parse_page(html_path: Path, text: str) -> dict:
-    """Parse a standard Galster coin page into structured data."""
+def parse_page(html_path: Path, text: str, galster_override: str | None = None) -> dict:
+    """Parse a standard Galster coin page into structured data.
+
+    `galster_override` reads the page for ANOTHER Galster number it also
+    carries (fr/f1g48.htm: Galster 47 and 48, one sub-section each) — the
+    sub-section parser then picks that number's section."""
     header = _parse_header_h1(text)
     mint = header.get("mint_from_h1") or _parse_mint_line(text)
     # Anchor ref-extraction on the page's own Galster number (full filename
     # derivation — covers every shape). Kept separate from the partial
     # `galster_num` recomputed below for subsections/variants so their
     # input is byte-identical to before.
-    page_galster = _galster_number_from_filename(html_path.name)
+    page_galster = galster_override or _galster_number_from_filename(html_path.name)
     desc, refs = _parse_description_and_refs(text, page_galster)
     # Shape C: union Schou indices from inscription-variant bullets (each
     # die variant tagged with its own «(Schou N)») into catalog_refs.schou.
@@ -774,8 +778,30 @@ def parse_page(html_path: Path, text: str) -> dict:
     if fm2:
         galster_num = fm2.group(2)
 
+    if galster_override:
+        galster_num = galster_override
     sub = _parse_subsections(text, galster_num)
     denomination = sub.get("denomination") or header.get("denomination")
+    if sub and galster_num and not refs.get("schou"):
+        # Sub-section pages carry each number's refs on its own line, not in
+        # a paren: «Galster 47, Schou 4, Jensen/Skjoldager T-92/97B».
+        line = re.search(r"^\s*(Galster\s+" + re.escape(galster_num)
+                         + r"\b[^\n]*)$", text, re.MULTILINE)
+        if line:
+            refs = {**_extract_refs_from_paren_content(line.group(1)), **refs}
+    if galster_override:
+        # Another number's sub-section: only ITS specs, never the page's
+        # (fr/f1g48's page-level weight is Galster 48's 45,58 g). A weight the
+        # section gives as «ca. 28,5g» is kept and flagged approximate.
+        specs = {}
+        sec = re.search(r"^\s*Galster\s+" + re.escape(galster_override)
+                        + r"\b(?P<body>.*?)(?=^\s*[\d/½]+[^\n]*\n\s*Galster\s|"
+                        + HR_SENTINEL + r"|\Z)", text, re.MULTILINE | re.DOTALL)
+        if sec:
+            ca = re.search(r"Bruttov[æe]gt:\s*ca\.\s*(\d+[,.]\d+)\s*g", sec.group("body"))
+            if ca:
+                specs["bruttovaegt_g"] = float(ca.group(1).replace(",", "."))
+                specs["bruttovaegt_approx"] = True
     if sub:
         for spec_key in ("bruttovaegt_g", "finhed", "finvaegt_g", "diameter_mm"):
             if spec_key in sub:
@@ -807,6 +833,7 @@ def parse_page(html_path: Path, text: str) -> dict:
     }
     if header.get("year_hint"):
         out["year_hint"] = header["year_hint"]
+
     # Detect galster_number + ruler_volume + sub_realm from the cache
     # filename. Filename shapes covered:
     #   chr_c2g37.htm    → galster=37,  volume=c2g
@@ -877,4 +904,6 @@ def parse_page(html_path: Path, text: str) -> dict:
               or html_path.name == "norge_hansGej.htm"):
             out["ruler_volume"] = "hg"
             out["sub_realm"] = "norway"
+    if galster_override:
+        out["galster_number"] = galster_override
     return out

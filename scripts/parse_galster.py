@@ -114,7 +114,28 @@ def parse_page(html_path: Path) -> dict:
     data = parser(html_path, text)
     if shape == "grevenfejde":
         _split_numbered_bullets(data, text, html_path.name)
+    elif shape == "standard":
+        _extra_subsection_numbers(data, html_path, text)
     return data
+
+
+def _extra_subsection_numbers(data: dict, html_path: Path, text: str) -> None:
+    """A standard page carrying a second Galster number as its own
+    sub-section (fr/f1g48.htm: «1 Sølvgylden (RRR) / Galster 47, Schou 4 …»
+    above «1 1/2 Sølvgylden (Unik) / Galster 48 …»; f1galst.htm links 47 and
+    48 to that page). The extra number becomes a record of its own, read from
+    its sub-section; without one on the page the number is skipped."""
+    own = data.get("galster_number")
+    extra = []
+    for n in _numbers_for(html_path.name):
+        if n == own or not re.search(r"^\s*Galster\s+" + re.escape(n) + r"\b",
+                                    text, re.MULTILINE):
+            continue
+        rec = standard.parse_page(html_path, text, galster_override=n)
+        rec.pop("raw_text_excerpt", None)
+        extra.append(rec)
+    if extra:
+        data["extra_coins"] = extra
 
 
 def _numbers_for(filename: str) -> list[str]:

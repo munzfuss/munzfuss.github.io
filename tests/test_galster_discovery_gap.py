@@ -274,6 +274,30 @@ class IssuerTableDates(unittest.TestCase):
         self.assertEqual(issuer_table.parse_year_hints(html), {"gotlg145.htm": "1523"})
 
 
+class SecondSubsection(unittest.TestCase):
+    """fr/f1g48.htm carries Galster 47 and 48 as sub-sections; f1galst.htm
+    links both numbers to it. Galster 47 was never seeded."""
+    TEXT = ("Frederik 1., Galster 47 og 48 \n\n## Frederik 1.\n\n"
+            "Sølvgylden samt Halvanden Sølvgylden, København eller Malmø 1532\n\n"
+            "Afslag af Nobel (Galster 45).\n\n"
+            " 1 Sølvgylden (RRR)\nGalster 47, Schou 4, Jensen/Skjoldager T-92/97B \n\n"
+            "• Bruttovægt: ca. 28,5g\n\n"
+            " 1 1/2 Sølvgylden (Unik)\nGalster 48, Schou 2, Jensen/Skjoldager T-92/97A \n\n"
+            "• Bruttovægt: 45,58g\n\n§§HR§§\n")
+
+    def test_other_number_reads_its_own_section(self):
+        d = standard.parse_page(Path("fr_f1g48.htm"), self.TEXT, galster_override="47")
+        self.assertEqual((d["galster_number"], d["denomination"], d["specs"],
+                          d["catalog_refs"].get("schou")),
+                         ("47", "1 Sølvgylden",
+                          {"bruttovaegt_g": 28.5, "bruttovaegt_approx": True}, "4"))
+
+    def test_own_number_unchanged_but_gets_its_refs(self):
+        d = standard.parse_page(Path("fr_f1g48.htm"), self.TEXT)
+        self.assertEqual((d["galster_number"], d["specs"]["bruttovaegt_g"],
+                          d["catalog_refs"].get("schou")), ("48", 45.58, "2"))
+
+
 class NorbyRouting(unittest.TestCase):
     """Norby's own Visby coins (own name and arms) → norby_gotland; his
     Ronneby søslinge in Frederik I's name and anything else are untouched."""

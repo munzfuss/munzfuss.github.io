@@ -728,7 +728,10 @@ def build_entry(data: dict) -> dict | None:
         "issuing_entity": detect_issuing_entity(sub_realm, mint_value, year_first),
         "verified": False,
         "fineness_verified": bool(specs.get("finhed")),
-        "weight_rough_verified": bool(specs.get("bruttovaegt_g")),
+        # «Bruttovægt: ca. 28,5g» (fr/f1g48, Galster 47): the source's own
+        # approximation — kept, shown unverified.
+        "weight_rough_verified": bool(specs.get("bruttovaegt_g"))
+                                 and not specs.get("bruttovaegt_approx"),
         "mint_verified": bool(mint_value) and not (
             isinstance(mint_value, str)
             and re.search(r"\s*(?:\beller\b|\boder\b|\bor\b|/)\s*",
