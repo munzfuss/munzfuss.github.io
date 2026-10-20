@@ -49,8 +49,13 @@ class LayerError(LookupError):
     """
 
 
+# libyaml when present: the whole V2 tree is ~100 MB of YAML, 96 s through the
+# pure-Python loader and a fraction of that through the C one (same objects).
+_LOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+
+
 def _load(path: Path) -> dict:
-    return yaml.safe_load(path.read_text()) or {}
+    return yaml.load(path.read_text(), Loader=_LOADER) or {}
 
 
 @dataclass

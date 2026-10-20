@@ -60,7 +60,8 @@ V2 = PROJECT_ROOT / "data" / "v2"
 
 def _load(path: Path) -> dict:
     try:
-        return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        return yaml.load(path.read_text(encoding="utf-8"),
+                         Loader=getattr(yaml, "CSafeLoader", yaml.SafeLoader)) or {}
     except (OSError, yaml.YAMLError) as exc:  # surface, never swallow
         raise SystemExit(f"cannot read {path}: {exc}")
 
