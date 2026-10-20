@@ -41,7 +41,7 @@ Status marks: **A** = attested in a cited source; **C** = our computation from a
 |---|---|---|---|
 | I — start | 1481 – c. 1500/1503 | Hvide from 1481 (Rigsrådet 1481–83, Eriksson s. 4); hoards c. 1490 (Bangbostrand) and the Gribshunden purse 1495 hold Hvide only; Skilling coinage perhaps only after 1497 (Eriksson s. 10, **H**); reckoning Gylden = 2 M d (Wilcke 7-1 s. 134); 1497 «4 Hvide ß» (s. 142) | A / H |
 | II — middle | c. 1500/1503 – c. 1511 | Gylden = 2½ M d «ved Aarhundredskiftet» (Wilcke 7-1 s. 134); 1503 both 2 M d (toll, «senere 2½») and 2½ M (Queen Christina's accountant), 1508 still 2½ (s. 132, 134) → transition c. 1503; Lübeck's own Mark step to 13 ~~in 1502/06 (Jesse, Bobzin)~~ decided Aug 1504, enacted Rezess 29 Dec 1506 (Jesse; §3.4g) | A |
-| III — end | 1512 – 1513 | the only dated silver: Skillinger 1512 at 6–7 lod, among the lowest (Eriksson s. 10, tab. 7); Søsling 1512 (Galster 30; Eriksson s. 10 «unik sösling 1512»); Hans d. Feb 1513; Haandfæstning 22 Jul 1513 ends the period | A; the II/III border rests only on the 1512 dates (**H** for where II ends) |
+| III — end | 1512 – 1513 | the only dated silver: Skillinger 1512 at 6–7 lod, among the lowest (Eriksson s. 10, tab. 7); Søsling 1512 (Galster 30; Eriksson s. 10 «unik sösling 1512»); Hans d. 20 Feb 1513 ends the period; Christian II's håndfæstning of 22 Jul 1513 is the first act of the next reign, not part of III | A; the II/III border rests only on the 1512 dates (**H** for where II ends) |
 
 ### §0.2 Matrix — levels × stages
 
@@ -49,7 +49,7 @@ Status marks: **A** = attested in a cited source; **C** = our computation from a
 |---|---|---|---|
 | **1. Lübeck reference** (fixed by the recesses; the card's formula) | Schilling 103½ / rough 9-lot mark (1468 = 1492); Mark lübisch = 16 ß = 192 Pf; = 11½ Mark lübisch per fine mark (Jesse «11 M. 8 s») — **A** | same reference; Lübeck itself moves: Markstück ~~1502/06~~ 1504/06 at 13 Mark per fine mark (**A**; 1502 ⅓/⅔ Mark still 11½, §3.4g), Lübeck ß c. 1500 «1,269 — 1,103 gr.» (Wilcke 7-2 s. 150–151, **A**) | same reference; Lübeck Schilling 1515 at 13¼ (Bobzin, **A**, after the period) |
 | **2. Danish Skilling** (the coin that tracked the Schilling; reckoned «god for lybsk Valuta», Wilcke 7-2 s. 149) | 9 lod ≈ 1,27 g fine = Lübeck level 11½ (Eriksson tab. 7 **A**; level **C**) | 8–7 lod, ≈ 0,80–1,24 g fine, ≈ 12–15 Mark lübisch per fine mark, around 13 (**C** from undated assays; placing them in II is **H**); 8-lod group brackets the 13-Mark value 1,124 g — consistent with following Lübeck's 1502/06 step, not proven (§3.4c) | 6–7 lod, dated 1512, ≈ 0,82–0,96 g, ≈ 15–18 (**A** assays, **C** level) — below Lübeck |
-| **3. Danish small change** — Hvid (4 Pf), Søsling (6 Pf); Mark dansk = 16 ß à 3 Hvide = 48 Hvide = 192 Pf (account); Penning = account (Hvid 4, Søsling 6, Skilling 12; Eriksson s. 4) | Hvid 6 → 5 lod (Eriksson tab. 9, undated); valued as a Lübeck 3-penny (Eriksson s. 5); Gylden = 2 M d = 96 Hvide; Skilling coin = 4 Hvide (1497) — **A** | Gylden = 2½ M d = 40 ß d = 120 Hvide (**A**); Skilling coin = 5 Hvide (**A** undated; placing it in II follows Wilcke's pairing 7-2 s. 149) | no new rate attested (2½ M d last seen 1508); **Søsling appears** (1512 dated; silver ≈ 0,39–0,42 g = ≈ 1½ Hvid = ≈ ½ of the 1512 Skilling — fits III, **C**); end act 1513: 2 M d per Gylden, 3 Hvide per ß again |
+| **3. Danish small change** — Hvid (4 Pf), Søsling (6 Pf); Mark dansk = 16 ß à 3 Hvide = 48 Hvide = 192 Pf (account); Penning = account (Hvid 4, Søsling 6, Skilling 12; Eriksson s. 4) | Hvid 6 → 5 lod (Eriksson tab. 9, undated); valued as a Lübeck 3-penny (Eriksson s. 5); Gylden = 2 M d = 96 Hvide; Skilling coin = 4 Hvide (1497) — **A** | Gylden = 2½ M d = 40 ß d = 120 Hvide (**A**); Skilling coin = 5 Hvide (**A** undated; placing it in II follows Wilcke's pairing 7-2 s. 149) | no new rate attested (2½ M d last seen 1508); **Søsling appears** (1512 dated; silver ≈ 0,39–0,42 g = ≈ 1½ Hvid = ≈ ½ of the 1512 Skilling — fits III, **C**); after the period: Christian II's håndfæstning 22 Jul 1513 sets 2 M d per Gylden (not part of III) |
 | **Norway** (measure = the Danish system) | 1483 act: coin «jaffngod … wid Danske penninge» (Gullbekk s. 4, **A**); Hans strikes Gylden, Skilling, Søsling, Hvid in Norway, royal Penninge uncertain (Gullbekk s. 5); Oslo hollow penny (Galster 156); Norwegian Hvide lighter, 0,63 vs ≈ 0,75 g (Ernst 1940) | same | Bergen Søslinger (Galster 149, 150) undated — III by analogy (**H**) |
 
 **Rules that follow (for the card):**
@@ -1096,19 +1096,44 @@ The Norwegian standard is the Danish one; no Lübeck in the act (§3.4f).
   Skilling and ½ of a 1512 one — our §0.2 reading puts them in stage III. Both are readings; open. Would be
   settled by a dated hoard with a Søsling, or Galster 1972 / Märcher 2018.
 
-**(8) Ratios in the three stages — checked** (A = attested, C = our arithmetic):
+**(8) Ratios in the three stages — checked; reworked 2026-10-20 at the curator's request** (the first version mixed
+the Lübeck Schilling with the Danish Skilling and units of account with struck coins, and put the 1513
+håndfæstning into stage III). Marks: **[R]** unit of account, **[C]** struck coin; A = attested, C = our
+arithmetic (Cologne mark 233,856 g), H = hypothesis. Stage III ends with Hans' death (20 Feb 1513). Christian II's
+håndfæstning of 22 Jul 1513 («*two mark giøre fyllest for en rinsk gylden*», *Rigslovgivning 1513-1523* nr. 1
+art. 41) is the first act of the next reign — it closes the period and is NOT part of stage III.
 
-| | I (1481 – c. 1500) | II (c. 1500/01 – c. 1511) | III (1512 – 1513) |
+*(a) Lübeck side*
+
+| | I (1481 – c. 1500) | II (c. 1500/01 – c. 1511) | III (1512 – Feb 1513) |
 |---|---|---|---|
-| Gulden in M dansk | 2 (A: Wilcke 7-1 s. 134; Viken rent) | 2½ (A: Wilcke; Ribe 1501 Mulich; 1508) | no rate attested; 1513 håndfæstning demands 2 (A) |
-| Gulden in Lübeck ß | 24 (A: Jesse, from 1470) | 24 (A: Mulich 1501 «*533 gulden 8 ß lub*» for 800 M l.) | 24 (A: Wilcke 7-2 s. 151 «*højst 24 ß*») |
-| Hvide per Gulden | 96 (C) | 120 (C) | — |
-| Hvid in Lübeck Pf | 3 (A: «densche drelinge»; C from the two lines above) | 2,4 (C) | — |
-| Lübeck ß in Hvide | 4 (C; A: 1497 «*4 Hvide ß*» for Hans' Skilling) | 5 (A: Wilcke 7-1 s. 142 «*5 Hvide for 1 ß*», undated) | — |
-| Mark lübisch : Mark dansk | 1⅓ (C) | 1⅔ (C; A: Mulich 800 M l. = 1333 M 5 ß 1 Hvid d.) | — |
-| Danish Skilling coin | from c. 1495/97, 9 lod ≈ 1,27 g = Lübeck ß 1468 (A assays; level C) | 8 lod, 1,10–1,18 g (København) ≈ Lübeck ß after 1506, 1,124 (C; placing in II is H) | 6–7 lod, 0,82–0,96 g, dated 1512 (A) |
-⚠ In I the Skilling coin passed for 4 Hvide = 1⅓ Danish reckoning-ß — the coin called «Skilling» was a Lübeck
-Schilling, not the Danish ß of account (3 Hvide). The card's units block should keep the two apart.
+| Mark lübisch **[R]** | 16 ß l. = 192 Pf l. | same | same |
+| Schilling lübisch **[C]** (also the unit of account) | 103½ / 9-lot mark = **1,271 g** fine (A: 1468 = 1483 = 1492) | 1,271 g until the 13-Mark step (Aug 1504 / Rezess 29 Dec 1506); after it the ß is worth 1/16 of a Markstück at 13 per fine mark = **1,124 g** (C; Lübeck struck Markstücke, not Schillinge, at that level) | 1,124 g (C); 1512 Rezess Schilling / Doppelschilling on paper only (§3.4g) |
+| Pfennig lübisch **[R]** (struck as Blaffert / Pfennig) | 1/12 ß = 0,106 g (C) | 0,106 → 0,094 g (C) | 0,094 g (C) |
+| Rhenish Gulden in ß l. | 24 (A: Jesse, from 1470) | 24 (A: Mulich 1501 «*533 gulden 8 ß lub*» for 800 M l.) | 24 (A: Wilcke 7-2 s. 151 «*højst 24 ß*») |
+| Gulden in silver | 24 × 1,271 = 30,5 g (C) | 30,5 → 27,0 g (C) | 27,0 g (C) |
+
+⚠ Christian I's Môtbok tariff [1460–74], copied by Hans 1484: Rhenish gulden «*xx.ß lub*» (2a); Wilcke 7-1 s. 142
+«*20 ß lybsk og 2 M dansk*». Against 24 in this row — open.
+
+*(b) Danish side*
+
+| | I (1481 – c. 1500) | II (c. 1500/01 – c. 1511) | III (1512 – Feb 1513) |
+|---|---|---|---|
+| Mark dansk **[R]** | 16 ß d. = 48 Hvide = 192 Pf d. | same | same |
+| Skilling dansk **[R]** (unit of account) | 3 Hvide = 12 Pf d. | same | same |
+| Gulden in Mark dansk | **2** (A: Wilcke 7-1 s. 134; Viken rent under Christian I) | **2½** (A: Wilcke 7-1 s. 134; Ribe 1501 Mulich; 1508) | no rate attested (2½ last seen 1508) |
+| Gulden in Hvide | 96 (C) | 120 (C) | — |
+| **Hvid [C]** — fineness groups (Eriksson tab. 6, 9; dating of the groups H, §0.5 / hans_rates §6) | Rigsråd 1481–83: 5 lod, 0,18–0,24 g fine; Hans **6 lod, 0,27–0,30 g** (3 pieces) | Hans **5 lod, 0,14–0,27 g, mostly 0,18–0,24** (13 pieces) | Hans **4 lod, 0,16–0,21 g** (6 pieces) — placing it here is H |
+| Hvid valued in Lübeck Pf | **3** (A: «*densche drelinge*», Eriksson s. 4–5 after Galster 1972; C: 96 × 3 = 288 Pf = 24 ß l.) → silver equivalent 0,318 g | **2,4** (C: 288 / 120) → 0,254 g (to 1506) / 0,225 g (after) | — |
+| **Skilling [C]** (Hans' coin) | from c. 1495/97 (§0.5): **9 lod, 1,24–1,27 g** fine (A assays, 3 pieces) = the Lübeck ß of 1468 (C) | **8 lod, 0,99–1,24 g**, København 1,10–1,18 (A assays, 5 pieces) ≈ the Lübeck ß after 1506, 1,124 (C; placing in II is H) | **6–7 lod, 0,82–0,96 g**, dated 1512 (A) — below Lübeck |
+| Skilling coin valued in Hvide | **4** (A: 1497 «*4 Hvide ß, som Kong Hans mønte lod*», Wilcke 7-1 s. 142) = 1 ß l. = 1⅓ ß d. (C) | **5** (A: «*5 Hvide for 1 ß*», Wilcke 7-1 s. 142, undated; II by Wilcke's pairing 7-2 s. 149) = 1 ß l. = 1⅔ ß d. (C) | not attested |
+| **Søsling [C]** (nominally ½ Skilling = 6 Pf d. = 1½ Hvide [R]) | not attested in this stage (no hoard; Eriksson's «*samtida med de äldsta skillingarna*» is a reading by weight — H) | — | **dated 1512** (A); undated pieces **5 lod, 1,31–1,47 g → 0,39–0,42 g** fine (Eriksson tab. 8; fine C) ≈ ½ of a 1512 Skilling (C) — III by our silver reading (H) |
+| Mark lübisch : Mark dansk | **1⅓** (C) | **1⅔** (C; A: Mulich 800 M l. = 1333 M 5 ß 1 Hvid d.) | — |
+
+Reading the two tables together: in I and II the struck Danish Skilling is a Lübeck Schilling in value (4, then 5
+Hvide), while the Danish ß of account stays at 3 Hvide; the card's units block must keep the coin «Skilling» and the
+unit «ß dansk» apart.
 
 **Gaps that remain** (each with what would settle it):
 - ~~Christian I's valuation of foreign coin (c. 1460–74)~~ — found: Môtbok nr. 57 art. 79 (2a).
