@@ -2,8 +2,8 @@
 # Generated 2026-10-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15176 per-source seed entries.
-# Output: 5909 unified entries (one per physical coin).
+# Input: 15175 per-source seed entries.
+# Output: 5907 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -430,6 +430,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/150296
         ref: KMM 150296 (Inv. KP 1656.17)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273643
+        ref: KMM 273643 (Inv. FP 1667.86)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/273644
         ref: KMM 273644 (Inv. FP 1667.87)
       - type: museum
@@ -475,6 +478,7 @@ coins:
       - kmk-150292
       - kmk-150293
       - kmk-150296
+      - kmk-273643
       - kmk-273644
       - kmk-273645
       - kmk-273646
@@ -181260,28 +181264,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-273640
-  - id: unified-kmk-273643
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1512
-    year_last: 1512
-    year_label: '1512'
-    ruler: Hans
-    mint: Malmø
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273643
-        ref: KMM 273643 (Inv. FP 1667.86)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-273643
   - id: unified-kmk-273647
     fuss: seed_unsorted
     phase: kmk
@@ -206896,33 +206878,6 @@ coins:
       - kmk-347066
       - kmk-347067
       - kmk-347068
-  - id: unified-kmk-347896
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1517
-    year_last: 1525
-    year_ranges:
-      -   - 1517
-          - 1525
-    year_label: 1517-1525
-    ruler: Christian 2
-    mint: Landskrona
-    catalog:
-      galster: '144'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/347896
-        ref: KMM 347896 (Inv. FP 5424.61)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-347896
   - id: unified-kmk-348022
     fuss: seed_unsorted
     phase: kmk

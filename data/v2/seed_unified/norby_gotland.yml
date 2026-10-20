@@ -2,7 +2,7 @@
 # Generated 2026-10-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/norby_gotland.yml across all sources.
 #
-# Input: 7 per-source seed entries.
+# Input: 8 per-source seed entries.
 # Output: 3 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -106,12 +106,12 @@ coins:
     phase: bruun
     kind: kurant
     nominal: 1 Skilling
-    year_first: 1522
-    year_last: 1523
+    year_first: 1517
+    year_last: 1525
     year_ranges:
-      -   - 1522
-          - 1523
-    year_label: 1522-1523
+      -   - 1517
+          - 1525
+    year_label: 1517-1525
     ruler: Søren Norby
     mint: Visby
     catalog:
@@ -144,6 +144,19 @@ coins:
             іменем і гербом»; danskmoent.dk, «Søren Norby»), а не від імені короля.'
           da: Bruun-kataloget nævner i lotlinjen «Christian II.» som møntherre. Søren Norby, Christian 2.s lensmand på Gotland, slog dog Visby-mønterne med eget navn og våbenskjold (danskmoent.dk, 
             «Søren Norby»), ikke i kongens navn.
+    mint_alts:
+      - value: Landskrona
+        source: kmk
+        kind: erroneous
+        reason:
+          de: Falsche Münzstätte. Die Königliche Münz- und Medaillensammlung verzeichnet das Stück (Galster 144) unter «Landskrona», doch die Rückseite zeigt auf dem Foto das Agnus Dei des Galster 
+            144, den danskmoent (Galster 144) Visby zuweist. Der Skilling Søren Norbys aus Landskrona (Galster 80) trägt auf der Vorderseite das dänische Wappen, auf der Rückseite Norbys Wappen.
+          en: Wrong mint. The Royal Coin Cabinet records the piece (Galster 144) under «Landskrona», but the photo shows the Agnus Dei reverse of Galster 144, which danskmoent (Galster 144) gives to 
+            Visby. Søren Norby's Skilling of Landskrona (Galster 80) has the Danish arms on the obverse and Norby's arms on the reverse.
+          uk: Помилкове місце карбування. Королівський монетний кабінет вносить екземпляр (Galster 144) під «Landskrona», але на фото на реверсі Agnus Dei — ознака Galster 144, який danskmoent 
+            (Galster 144) відносить до Visby. Skilling Søren Norby з Landskrona (Galster 80) має на аверсі герб Данії, на реверсі — герб Norby.
+          da: Forkert møntsted. Den Kongelige Mønt- og Medaillesamling fører stykket (Galster 144) under «Landskrona», men fotoet viser bagsidens agnus dei fra Galster 144, som danskmoent (Galster 
+            144) henfører til Visby. Søren Norbys skilling fra Landskrona (Galster 80) har Danmarks våben på forsiden og Norbys våben på bagsiden.
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -154,6 +167,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317111
         ref: KMM 317111 (Inv. FP 6819.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/347896
+        ref: KMM 347896 (Inv. FP 5424.61)
     note:
       de: Gotland
       en: Gotland
@@ -173,6 +189,7 @@ coins:
       - dk-bruun-4125
       - dk-galster-hg-144
       - kmk-317111
+      - kmk-347896
     _errata_applied:
       - source: dk-bruun-4125
         field: ruler
