@@ -544,6 +544,10 @@ def _truncated_tail_ruler(meta: str) -> str | None:
     return tail
 
 
+_COUNCIL_OF_STATE_RE = re.compile(
+    r"Struck by the Council of State|SENATUS\s+REGNI\s+DANI", re.IGNORECASE)
+
+
 def parse_ruler_from_meta(meta_line: str | None, body: str | None,
                           ruler_hint: str | None) -> str | None:
     """Read the ruler from its slot in the catalogue line; fall back to the hint.
@@ -560,6 +564,13 @@ def parse_ruler_from_meta(meta_line: str | None, body: str | None,
             or _ruler_slot(meta)
             or _truncated_tail_ruler(meta))
     if slot is None:
+        # No ruler slot: the hint is the catalogue SECTION the lot sits in,
+        # not a statement about this coin. When the lot text names a
+        # different issuer, that wins — the interregnum 2 Skilling 1533
+        # (Galster 81, Part II lot 13056) sits under Christian III but is
+        # «Struck by the Council of State (SENATUS REGNI DANIE)».
+        if _COUNCIL_OF_STATE_RE.search(_rejoin_linebreak(body or "")):
+            return "Rigsrådet"
         return ruler_hint
     if ruler_hint and _normalise_ruler(slot) == _normalise_ruler(ruler_hint):
         return slot if len(slot.split()) > len(str(ruler_hint).split()) else ruler_hint

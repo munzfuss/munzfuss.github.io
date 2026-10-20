@@ -174,6 +174,31 @@ def _is_out_of_scope(path: str) -> bool:
 
 _HREF_RE = re.compile(r"""href\s*=\s*["']([^"']+)["']""", re.IGNORECASE)
 
+# In the reign-index TABLES the Galster number itself is the link:
+# <TD><A HREF="husumdal.htm">114</A></TD>. Such a target is that number's
+# coin page even when its name follows no pattern (husumdal.htm = Galster 114,
+# ronneby.htm = 67, 18pennin.htm = 42). Recorded in the manifest as
+# `index_number_links` {path: {"numbers": [...], "volume": "f1g"}} so the
+# parser knows the number a filename does not carry.
+_NUMBER_ANCHOR_RE = re.compile(
+    r"""<A\s+HREF\s*=\s*["']([^"']+)["'][^>]*>\s*(\d{1,3}\s*[A-Z]?)\s*</A>""",
+    re.IGNORECASE)
+_INDEX_VOLUME = {"/hans.htm": "hg", "/c2galst.htm": "c2g", "/f1galst.htm": "f1g"}
+
+
+def _number_anchor_links(html: str, index_path: str) -> dict[str, dict]:
+    out: dict[str, dict] = {}
+    for href, num in _NUMBER_ANCHOR_RE.findall(html):
+        path = _normalise_href(href)
+        if not path:
+            continue
+        rec = out.setdefault(path, {"numbers": [],
+                                    "volume": _INDEX_VOLUME.get(index_path)})
+        n = re.sub(r"\s+", "", num)
+        if n not in rec["numbers"]:
+            rec["numbers"].append(n)
+    return out
+
 
 def _make_session():
     cj = http.cookiejar.CookieJar()
@@ -383,6 +408,7 @@ def discover() -> dict:
     indexes_found: list[str] = []
     links: set[str] = set()
     index_links_per: dict[str, list[str]] = {}
+    number_links: dict[str, dict] = {}
 
     # Phase 1: walk known index pages
     for path in INDEX_PAGES:
@@ -396,6 +422,10 @@ def discover() -> dict:
         (CACHE_DIR / _filename_for(path)).write_text(html, encoding="utf-8")
         indexes_found.append(path)
         new_links = _extract_links(html)
+        for npath, rec in _number_anchor_links(html, path).items():
+            number_links.setdefault(npath, rec)
+            if not _is_percoin_path(npath):
+                new_links.add(npath)           # husumdal.htm, ronneby.htm, …
         # Filter: drop links to other ruler indexes themselves
         new_links = {ln for ln in new_links if "galst" not in ln.lower()}
         index_links_per[path] = sorted(new_links)
@@ -454,6 +484,7 @@ def discover() -> dict:
         "index_links_per": index_links_per,
         "links": sorted(links),
         "out_of_scope": dropped,
+        "index_number_links": number_links,
         "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
     MANIFEST.write_text(json.dumps(manifest, indent=2, ensure_ascii=False))

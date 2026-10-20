@@ -35,7 +35,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.galster_parsers import (  # noqa: E402
-    article, classify, grevenfejde, hans_index, reign_index, rigsraad, standard)
+    article, classify, grevenfejde, hans_index, named_page, reign_index, rigsraad, standard)
 from lib.galster_parsers.common import HR_SENTINEL  # noqa: E402  (re-exported)
 from lib.paths import GALSTER_CACHE as CACHE_DIR  # noqa: E402
 
@@ -72,6 +72,28 @@ def _normalise_text(html: str) -> str:
     return text.strip()
 
 
+_NAMED_PAGES: dict[str, dict] | None = None
+
+
+def _named_pages() -> dict[str, dict]:
+    """Cache filename → {"numbers", "volume"} for index-linked coin pages
+    whose filename carries no Galster number (`index_number_links` in the
+    discovery manifest, minus every page a filename pattern already reads)."""
+    global _NAMED_PAGES
+    if _NAMED_PAGES is None:
+        manifest = CACHE_DIR / "_manifest.json"
+        links = {}
+        if manifest.exists():
+            links = json.loads(manifest.read_text()).get("index_number_links") or {}
+        _NAMED_PAGES = {
+            path.lstrip("/").replace("/", "_", 1): rec
+            for path, rec in links.items()
+            if standard._galster_number_from_filename(
+                path.lstrip("/").replace("/", "_", 1)) is None
+        }
+    return _NAMED_PAGES
+
+
 def parse_page(html_path: Path) -> dict:
     """Parse a single Galster page into structured data.
 
@@ -82,6 +104,9 @@ def parse_page(html_path: Path) -> dict:
     """
     html = html_path.read_text(encoding="utf-8", errors="replace")
     text = _normalise_text(html)
+    record = _named_pages().get(html_path.name)
+    if record is not None:
+        return named_page.parse_page(html_path, text, record)
     shape = classify.detect_page_shape(html_path, text)
     parser = _PARSERS[shape]
     return parser(html_path, text)

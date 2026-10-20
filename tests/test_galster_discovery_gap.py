@@ -202,7 +202,47 @@ class HansIndexRows(unittest.TestCase):
                          "hans_index")
 
 
+class NumberAnchoredPages(unittest.TestCase):
+    """A reign-index number linked to a page named after the coin
+    (f1galst «114» → husumdal.htm) is that number's coin page."""
+
+    def test_number_anchor_links(self):
+        html = ('<TD><A HREF="husumdal.htm">114</A></TD>'
+                '<TD><A HREF="fr/f1g118.htm">118A</A></TD><A HREF="x.htm">Husum</A>')
+        self.assertEqual(fg._number_anchor_links(html, "/f1galst.htm"), {
+            "/husumdal.htm": {"numbers": ["114"], "volume": "f1g"},
+            "/fr/f1g118.htm": {"numbers": ["118A"], "volume": "f1g"}})
+
+    def test_article_page_identity(self):
+        from lib.galster_parsers import named_page
+        text = ("Husumdaler\n\n## Husumdaler\n\nDen senere Frederik 1. slog 1514-1522 "
+                "som hertug af Gottorp\nmønt i Husum i Slesvig.\nSærlig kendt er en "
+                "sølvgylden slået i 1522,\nden såkaldte Husumdaler (Galster 114, Schou 1).\n")
+        d = named_page.parse_page(Path("husumdal.htm"), text,
+                                  {"numbers": ["114"], "volume": "f1g"})
+        self.assertEqual((d["ruler"], d["denomination"], d["year_label"], d["mint"],
+                          d["galster_number"], d["ruler_volume"]),
+                         ("Frederik I", "Sølvgylden", "1522", "Husum", "114", "f1g"))
+        self.assertEqual(d["catalog_refs"].get("schou"), "1")
+
+
 class BuilderGuards(unittest.TestCase):
+    def test_fantasy_coin_is_not_seeded(self):
+        """fr/f1g257: «1 Sølvgylden - støbt fantasimønt» (curator 2026-10-20)."""
+        import json, tempfile
+        d = {"source_file": "fr_f1g257.htm", "ruler": "Frederik I",
+             "ruler_volume": "f1g", "galster_number": "257", "year_label": "u.år",
+             "denomination": "1 Sølvgylden",
+             "raw_text_excerpt": "## Frederik 1, 1 Sølvgylden - støbt fantasimønt"}
+        with tempfile.TemporaryDirectory() as tmp:
+            Path(tmp, "fr_f1g257.json").write_text(json.dumps(d))
+            old = bg.GALSTER_CACHE
+            try:
+                bg.GALSTER_CACHE = Path(tmp)
+                self.assertEqual(bg.collect_entries(), [])
+            finally:
+                bg.GALSTER_CACHE = old
+
     def test_named_ruler_does_not_inherit_the_filename_reign(self):
         """Christian I's Gotland gote sit in Hans's «hg» file series."""
         e = bg.build_entry({"ruler": "Christian I", "ruler_volume": "hg",

@@ -789,6 +789,15 @@ def collect_entries() -> list[dict]:
         if source_file.startswith(("ernst_", "artikler_")):
             skipped_shape += 1
             continue
+        # §9.2: a cast fantasy piece that never existed as a coin — «1
+        # Sølvgylden - støbt fantasimønt … Disse mønter, der aldrig har
+        # eksisteret, men er senere fantasifostre» (fr/f1g257, fr/f1g258;
+        # curator 2026-10-20). The entries already in the seed are removed by
+        # data/v2/exclusions/, this only stops a re-harvest emitting them.
+        if re.search(r"støbt\s+fantasimønt", (data.get("raw_text_excerpt") or "")[:400],
+                     re.IGNORECASE):
+            skipped_shape += 1
+            continue
         # Sub-variant pages (chr_c3g92 → 92/92A/92B; chr_c3g95 → 95A/95B;
         # parser-emitted `variants: [...]`): emit one entry per variant.
         # Each variant overlays its galster suffix + per-row specs onto
