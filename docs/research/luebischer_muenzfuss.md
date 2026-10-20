@@ -618,11 +618,28 @@ verbatim Danish-realm clause naming Lübeck is Frederik I's of 1523 — ten year
 
 **«Since when, by which act, under which ruler» (handover from the Galster session, 2026-10-20).** Put as one line:
 the standard dates from the Hamburg–Lübeck treaty of 15 June 1468 (Schilling 103½ per 9-lot mark; recesses
-1483, 1492), which binds the towns only (Jesse). Danish silver on that level starts with the Hvide of **1481 under
-the Rigsråd** (curator's reign table 2026-10-20: Rigsrådet 1481–1483, Hans 1483–1513, `lib/ruler_reigns.py`
-`ff794af`; danskmoent `rigsraad.htm`), and continues under Hans, by orientation (the post-1424 «*Anlehnung*») and
-not, as far as the read sources show, by any decree, treaty or ordinance. 1481 therefore marks the first coins,
-not an instrument. The first verbatim requirement for the kingdom is Frederik I's håndfæstning of 1523 (table
+1483, 1492), which binds the towns only (Jesse). ~~Danish silver on that level starts with the Hvide of 1481 under
+the Rigsråd … 1481 therefore marks the first coins, not an instrument.~~ **Corrected the same day (curator doubted
+it; checked):** no read source says Denmark did NOT strike on the Lübeck system before 1481 — they say the opposite:
+- Hauberg 1886 s. 141 (Margrete / Erik, from c. 1400): «*Med Hensyn til Myntens Inddeling fulgtes den lybske
+  Myntregning, hvorefter Marken deltes i 16 Skilling, hver paa 12 Penninge*» … «*Disse Udmyntninger skulde nærmest
+  svare til de tydske Pfennige, Blafferte, Dreilinge, Wittenpfennige, Sechslinge og Schillinge*»; Jesse (L1 s. 99–104)
+  the same, §2 above.
+- 1424: one common coin with the four towns, Søsling 11¼ lot (§3.1, table below).
+- Christian I 1448–1481: only Hvide, no Skillinger («*Han lät inte prägla skillingar då de var alltför kostsamma*»,
+  Eriksson s. 4); the Hvide «*kallades av tyskarna för "densche drelinge" … eftersom värdet motsvarade en lübsk
+  3-penning (Galster 1972, 23)*» (Eriksson s. 4–5); assayed 8 → 5 lod, ≈ 0,35 → 0,25 g fine (hans_rates §5). Rigsråd
+  Skilling of 1448 (Stefke 1995:5, via Eriksson s. 4). «*År 1448 förbjöds de danska mynten i Lübeck*» (Eriksson s. 5).
+- In Holstein Christian I bound himself in 1460 (table below).
+So the Danish coinage was on the Lübeck (Wendish) system — denominations, reckoning, valuation in Lübeck pence — from
+c. 1400, without a break at 1481. What is true in the narrower sense: (a) the 11½-Mark level is defined on the
+Lübeck Schilling of 1468, and between 1468 and 1481 Denmark struck no Skilling, only Hvide, which passed below the
+Lübeck Witten (as 3 Pf); (b) the Rigsråd Hvide of 1481–83 (5 lod, 0,18–0,24 g fine, hans_rates §5) are not
+evidence of that level either — the first Danish coin measurable against it directly is Hans' 9-lod Skilling
+(after 1495/97, §4 «I — start»). 1481 is a ruler boundary (Christian I's death, curator's reign table 2026-10-20:
+Rigsrådet 1481–1483, Hans 1483–1513, `ff794af`), not a standard boundary and not an instrument. **Open for the
+curator:** whether Christian I's Hvide 1468–1481 belong to the same card.
+ The first verbatim requirement for the kingdom is Frederik I's håndfæstning of 1523 (table
 below); whether Christian II's of 1513 already had it is open (below). A kb search of the local corpus
 («haandfæstning mønt lybsk», «gænge og gæve Lybek Hamborg mønt», 2026-10-20) found nothing beyond this table.
 
