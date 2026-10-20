@@ -99,6 +99,18 @@ class ClassShowsTableReign(unittest.TestCase):
         out = out[0] if isinstance(out, tuple) else out
         self.assertEqual((out["year_first"], out["year_last"]), (1483, 1513))
 
+    def test_undated_members_do_not_block_it(self):
+        import merge_seeds_cross_source as M
+        members = [{"id": "kmk-1", "ruler": "Hans", "nominal": "Hvid",
+                    "issuing_entity": "danish_realm", "year_first": 1481,
+                    "year_last": 1513, "year_ranges": [[1481, 1513]],
+                    "_year_demoted": True, "_year_reign_window": (1483, 1513)},
+                   {"id": "kmk-2", "ruler": "Hans", "nominal": "Hvid",
+                    "issuing_entity": "danish_realm"}]
+        out = M.build_unified(members, "unified-kmk-1", "danish_realm")
+        out = out[0] if isinstance(out, tuple) else out
+        self.assertEqual((out["year_first"], out["year_last"]), (1483, 1513))
+
     def test_rule_is_hans_only(self):
         import merge_seeds_cross_source as M
         self.assertEqual(M._HANS_REIGN_START, 1483)

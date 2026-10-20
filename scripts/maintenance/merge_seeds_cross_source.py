@@ -4045,12 +4045,15 @@ def build_unified(members: list[dict], unified_id: str,
     # detail so per-year specimen markers in the timeline reflect every
     # source's recorded minting year.
     union_yr = _union_year_ranges(members)
-    # Every member gives only its ruler's reign (step 1c) and they name the
+    # Every dated member gives only its ruler's reign (step 1c) and they name the
     # same reign → the class shows the reign as the central table has it
     # (curator 2026-10-20, Hans: KMM's «1481-1513» / «1482-1513» and Bruun's
     # «1481-1512» are one reign, 1483-1513). The members keep their own years.
-    _rws = [m.get("_year_reign_window") for m in members]
-    if (union_yr is not None and members and all(_rws)
+    # Members that give no year at all do not count against it.
+    _dated = [m for m in members
+              if m.get("year_first") is not None or m.get("year_ranges")]
+    _rws = [m.get("_year_reign_window") for m in _dated]
+    if (union_yr is not None and _rws and all(_rws)
             and len({tuple(w) for w in _rws}) == 1):
         union_yr = [[_rws[0][0], _rws[0][1]]]
     if union_yr is not None:
