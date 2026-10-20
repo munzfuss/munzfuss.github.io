@@ -2,8 +2,8 @@
 # Generated 2026-10-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15172 per-source seed entries.
-# Output: 5763 unified entries (one per physical coin).
+# Input: 15169 per-source seed entries.
+# Output: 5759 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -109401,7 +109401,9 @@ coins:
           - 1513
     year_label: 1481-1513
     ruler: Hans
-    mint: Aalborg
+    mint:
+      - Aalborg
+      - Malmø
     catalog:
       numista: '152921'
       sieg: '2'
@@ -109781,6 +109783,36 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/273692
         ref: KMM 273692 (Inv. FP 1667.111.20)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273672
+        ref: KMM 273672 (Inv. FP 1667.110.12)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273702
+        ref: KMM 273702 (Inv. FP 1667.110.9)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273703
+        ref: KMM 273703 (Inv. FP 1667.110.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273725
+        ref: KMM 273725 (Inv. FP 1667.110.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273726
+        ref: KMM 273726 (Inv. FP 1667.110.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273727
+        ref: KMM 273727 (Inv. FP 1667.110.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273728
+        ref: KMM 273728 (Inv. FP 1667.110.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273729
+        ref: KMM 273729 (Inv. FP 1667.110.5)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273730
+        ref: KMM 273730 (Inv. FP 1667.110.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273731
+        ref: KMM 273731 (Inv. FP 1667.110.7)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/273673
         ref: KMM 273673 (Inv. FP 1667.111.1)
       - type: museum
@@ -109858,6 +109890,12 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/273697
         ref: KMM 273697 (Inv. FP 1667.113.2)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273700
+        ref: KMM 273700 (Inv. FP 1667.110.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/273701
+        ref: KMM 273701 (Inv. FP 1667.110.10)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/273721
         ref: KMM 273721 (Inv. FP 1667.109.1)
@@ -109974,6 +110012,7 @@ coins:
       - kmk-273662
       - kmk-273663
       - kmk-273670
+      - kmk-273672
       - kmk-273673
       - kmk-273674
       - kmk-273686
@@ -109982,6 +110021,8 @@ coins:
       - kmk-273695
       - kmk-273696
       - kmk-273697
+      - kmk-273700
+      - kmk-273701
       - kmk-273721
       - kmk-273723
       - kmk-273724
@@ -114915,30 +114956,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ikmk-18288277
-  - id: unified-kmk-106768
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Hans
-    catalog:
-      schou: '203'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/106768
-        ref: KMM 106768 (Inv. GP 2439.1)
-    verification_note: &id002
-      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
-      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
-      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-106768
   - id: unified-kmk-106769
     fuss: seed_unsorted
     phase: kmk
@@ -114958,7 +114975,11 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/106769
         ref: KMM 106769 (Inv. GP 2439.2)
-    verification_note: *id002
+    verification_note: &id002
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     issuing_entity: danish_realm
     composed_of:
       - kmk-106769
@@ -123248,26 +123269,6 @@ coins:
     composed_of:
       - kmk-130604
       - kmk-175955
-  - id: unified-kmk-130618
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Hans
-    catalog:
-      schou: '197'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/130618
-        ref: KMM 130618 (Inv. FP 2222.2)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-130618
   - id: unified-kmk-130681
     fuss: seed_unsorted
     phase: kmk
@@ -182501,69 +182502,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-273660
-  - id: unified-kmk-273672
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1483
-    year_last: 1513
-    year_ranges:
-      -   - 1483
-          - 1513
-    year_label: 1483-1513
-    _year_demoted: true
-    ruler: Hans
-    mint: Malmø
-    catalog:
-      schou: '111'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273672
-        ref: KMM 273672 (Inv. FP 1667.110.12)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273702
-        ref: KMM 273702 (Inv. FP 1667.110.9)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273703
-        ref: KMM 273703 (Inv. FP 1667.110.8)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273725
-        ref: KMM 273725 (Inv. FP 1667.110.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273726
-        ref: KMM 273726 (Inv. FP 1667.110.2)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273727
-        ref: KMM 273727 (Inv. FP 1667.110.3)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273728
-        ref: KMM 273728 (Inv. FP 1667.110.4)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273729
-        ref: KMM 273729 (Inv. FP 1667.110.5)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273730
-        ref: KMM 273730 (Inv. FP 1667.110.6)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273731
-        ref: KMM 273731 (Inv. FP 1667.110.7)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273700
-        ref: KMM 273700 (Inv. FP 1667.110.11)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/273701
-        ref: KMM 273701 (Inv. FP 1667.110.10)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-273672
-      - kmk-273700
-      - kmk-273701
   - id: unified-kmk-273750
     fuss: seed_unsorted
     phase: kmk
@@ -228535,33 +228473,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-492499
-  - id: unified-kmk-492500
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1483
-    year_last: 1513
-    year_ranges:
-      -   - 1483
-          - 1513
-    year_label: 1483-1513
-    _year_demoted: true
-    ruler: Hans
-    catalog:
-      schou: '171'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/492500
-        ref: KMM 492500 (Inv. FP 2509.8)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-492500
   - id: unified-kmk-492515
     fuss: seed_unsorted
     phase: kmk
