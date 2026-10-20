@@ -25,6 +25,7 @@ Run:
 from __future__ import annotations
 
 import argparse
+import functools
 import json
 import re
 import sys
@@ -588,15 +589,40 @@ def _clean_catalogue_refs(catalog: dict) -> None:
         catalog["others"] = canon
 
 
+@functools.lru_cache(maxsize=1)
+def _issuer_year_hints() -> dict[str, tuple[str, str]]:
+    """{coin page filename: (year, issuer page url)} from issuer pages whose
+    coin table dates a coin its own page leaves undated (nordby.htm «U. år
+    (1523)» for Galster 145; galster_parsers.issuer_table)."""
+    out: dict[str, tuple[str, str]] = {}
+    for jp in sorted(GALSTER_CACHE.glob("*.json")):
+        if jp.name.startswith("_"):
+            continue
+        try:
+            d = json.loads(jp.read_text())
+        except (OSError, json.JSONDecodeError):
+            continue
+        if d.get("page_shape") != "issuer_table":
+            continue
+        for coin_file, year in (d.get("year_hints") or {}).items():
+            out.setdefault(coin_file, (year, d.get("source_url_hint")))
+    return out
+
+
 def build_entry(data: dict) -> dict | None:
     year_first, year_last = parse_year_range(data.get("year_label"))
     year_verified = True
+    issuer_source = None
     if year_first is None or year_last is None:
         # Undated «u.år» entry — anchor to the ruler reign window per
         # CLAUDE.md §3a (renderer adds `(?)` via year_verified=false), EXCEPT
         # for the Grevens-Fejde pages, which are struck in a ruler's name
         # outside his reign and take the Feud window instead.
         hint = parse_year_range(data.get("year_hint"))
+        issuer = _issuer_year_hints().get(data.get("source_file") or "")
+        if hint[0] is None and issuer:
+            hint = parse_year_range(issuer[0])
+            issuer_source = issuer[1]
         if hint[0] is not None:
             # The page's own tentative dating of an undated coin: «U.år
             # (1523?)» (gotlg144), a Rigsrådet group header «1481-83» over a
@@ -708,7 +734,11 @@ def build_entry(data: dict) -> dict | None:
             and re.search(r"\s*(?:\beller\b|\boder\b|\bor\b|/)\s*",
                           mint_value, re.IGNORECASE)
         ),
-        "sources": _build_sources(data),
+        "sources": _build_sources(data) + ([{
+            "type": "literature",
+            "url": issuer_source,
+            "ref": "danskmoent.dk " + issuer_source.rsplit("/", 1)[-1],
+        }] if issuer_source else []),
         "verification_note": {
             "de": (
                 "Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die "

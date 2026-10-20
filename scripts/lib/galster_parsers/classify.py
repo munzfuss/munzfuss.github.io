@@ -130,13 +130,17 @@ def detect_page_shape(html_path: Path, text: str) -> str:
       5. Default → ``standard``
 
     Returns one of: ``"standard"``, ``"grevenfejde"``, ``"reign_index"``,
-    ``"article"``, ``"rigsraad"``, ``"hans_index"``, ``"galst_table"``.
+    ``"article"``, ``"rigsraad"``, ``"hans_index"``, ``"galst_table"``, ``"issuer_table"``.
     """
     name = html_path.name
 
     # 0. The Hans index carries coin rows that have no page of their own.
     if name == "hans.htm":
         return "hans_index"
+
+    # 0a. Issuer page with a dated coin table (nordby.htm).
+    if name == "nordby.htm":
+        return "issuer_table"
 
     # 0b. Christian II / Frederik I reign tables: rows without a page.
     if name in ("c2galst.htm", "f1galst.htm"):

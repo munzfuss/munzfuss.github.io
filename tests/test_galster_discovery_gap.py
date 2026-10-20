@@ -262,6 +262,18 @@ class TableRowsAndSharedPages(unittest.TestCase):
                          ("83", "1535", {"galster": "83", "sieg": "4"}))
 
 
+class IssuerTableDates(unittest.TestCase):
+    def test_nordby_table_dates_an_undated_coin(self):
+        """gotlg145 gives no year; nordby.htm's table: «U. år (1523)»."""
+        from lib.galster_parsers import issuer_table
+        html = ("<TR>\n<TD>Visby, Gotland</TD>\n<TD><A HREF=\"gotlg145.htm\">145</A></TD>\n"
+                "<TD><A HREF=\"hbggot.htm\">119-124</TD>\n<TD>1 Hvid</TD>\n<TD>S&oslash;lv</TD>\n"
+                "<TD>U. &aring;r (1523)</TD>\n</TR>\n<TR>\n<TD>Visby, Gotland</TD>\n"
+                "<TD><A HREF=\"gotlg143.htm\">143</A></TD>\n<TD>125-128</TD>\n<TD>1 Skilling</TD>\n"
+                "<TD>S&oslash;lv</TD>\n<TD>1524, 1525</TD>\n</TR>")
+        self.assertEqual(issuer_table.parse_year_hints(html), {"gotlg145.htm": "1523"})
+
+
 class NorbyRouting(unittest.TestCase):
     """Norby's own Visby coins (own name and arms) → norby_gotland; his
     Ronneby søslinge in Frederik I's name and anything else are untouched."""

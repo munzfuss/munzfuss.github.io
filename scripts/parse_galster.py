@@ -35,7 +35,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.galster_parsers import (  # noqa: E402
-    article, classify, galst_table, grevenfejde, hans_index, named_page, reign_index, rigsraad, standard)
+    article, classify, galst_table, grevenfejde, hans_index, issuer_table, named_page, reign_index, rigsraad, standard)
 from lib.galster_parsers.common import HR_SENTINEL  # noqa: E402  (re-exported)
 from lib.paths import GALSTER_CACHE as CACHE_DIR  # noqa: E402
 
@@ -55,6 +55,7 @@ _PARSERS = {
     "rigsraad": rigsraad.parse_page,
     "hans_index": hans_index.parse_page,
     "galst_table": galst_table.parse_page,
+    "issuer_table": issuer_table.parse_page,
 }
 
 

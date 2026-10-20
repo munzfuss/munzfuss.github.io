@@ -86,6 +86,11 @@ INDEX_PAGES = [
 # entries lacked the overview cross-ref despite being listed there.)
 TYPE_INDEX = "/type.htm"
 
+# Issuer pages whose coin table dates coins their own pages leave undated
+# (nordby.htm: «U. år (1523)» for Galster 144 and 145). Fetched with the
+# coin pages; parsed by galster_parsers.issuer_table.
+ISSUER_PAGES = ["/nordby.htm"]
+
 # Per-coin URL patterns, matched against the WHOLE href path (leading slash
 # stripped). The Galster series uses single-letter «g» (vs Hede's «h»). Hans
 # (1481-1513) uses several conventions: `fr/hg<N>.htm` is most common,
@@ -457,6 +462,8 @@ def discover() -> dict:
     links.difference_update(dropped)
     if dropped:
         print(f"  dropped {len(dropped)} out-of-scope page(s): {', '.join(dropped)}")
+
+    links.update(ISSUER_PAGES)
 
     # Phase 2: probe Christian III pre-Møntordning Galster pages directly
     # (no index page exists for Christian III pre-1541; per the survey,
