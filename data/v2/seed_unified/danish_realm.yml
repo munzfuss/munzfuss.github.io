@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15175 per-source seed entries.
-# Output: 5903 unified entries (one per physical coin).
+# Output: 5901 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -104133,6 +104133,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/426485
         ref: KMM 426485 (Inv. FP 2001.3)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/480560
+        ref: KMM 480560 (Inv. FP 10681.28)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/480561
+        ref: KMM 480561 (Inv. FP 10681.27)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/643789
         ref: KMM 643789 (Inv. FP 2448.16)
     verification_note:
@@ -104191,6 +104197,8 @@ coins:
       - kmk-396022
       - kmk-410713
       - kmk-426485
+      - kmk-480560
+      - kmk-480561
       - kmk-643789
     _errata_applied:
       - source: dk-numista-108399
@@ -231041,58 +231049,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-475563
-  - id: unified-kmk-480560
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1481
-    year_last: 1513
-    year_ranges:
-      -   - 1481
-          - 1513
-    year_label: 1481-1513
-    mint: Malmø
-    catalog:
-      galster: '31'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/480560
-        ref: KMM 480560 (Inv. FP 10681.28)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-480560
-  - id: unified-kmk-480561
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1481
-    year_last: 1513
-    year_ranges:
-      -   - 1481
-          - 1513
-    year_label: 1481-1513
-    mint: Malmø
-    catalog:
-      galster: '31'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/480561
-        ref: KMM 480561 (Inv. FP 10681.27)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-480561
   - id: unified-kmk-488140
     fuss: seed_unsorted
     phase: kmk
