@@ -593,6 +593,8 @@ _NUMERIC_INDEX_FIELDS: set[str] = {
     "hauberg", "jesse", "kreber", "welter", "bergsoe",
 }
 _PLAIN_RANGE_RE = re.compile(r"^(\d+)-(\d+)$")
+_BARE_FOREIGN_REF_RE = re.compile(
+    r"^(Hildebrand|Lagerqvist|Rasmusson|Hauberg|Ernst)\s+(\S.*)$")
 _SCHIVE_COLON_RE = re.compile(r"^\s*([IVXL]+)\s*:\s*")
 _PLAIN_INT_RE = re.compile(r"^(\d+)$")
 
@@ -667,6 +669,23 @@ def normalise_catalog(catalog: dict) -> int:
     #    `others` sidesteps both. Runs first so the popped typed field can't be
     #    slash-split below.
     changes += _canonicalise_aagaard(catalog)
+
+    # 0b. One spelling per foreign reference: danskmoent cells lifted into
+    #     `others` as «Hauberg 103-108» / «Ernst 1940 3-13» beside the
+    #     «Name# value» form of the same reference (curator 2026-10-20).
+    others = catalog.get("others")
+    if isinstance(others, list) and others:
+        canon: list = []
+        for tok in others:
+            if isinstance(tok, str):
+                m = _BARE_FOREIGN_REF_RE.match(tok)
+                if m:
+                    tok = f"{m.group(1)}# {m.group(2)}"
+            if tok not in canon:
+                canon.append(tok)
+        if canon != others:
+            catalog["others"] = canon
+            changes += 1
 
     # 1. FOLD others → typed list-field
     others = catalog.get("others")

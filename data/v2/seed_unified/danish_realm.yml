@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15169 per-source seed entries.
-# Output: 5759 unified entries (one per physical coin).
+# Output: 5758 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -369,17 +369,21 @@ coins:
         - 1-13
         - 31-91
       galster: '29'
+      numista: '152926'
       galster_volume: hg
-    metal: billon
+    metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
+    diameter_mm_verified: false
     mint_verified: true
     verified: false
     year_verified: true
     weight_rough_g:
       - value: 1.96
         source: kmk
+      - value: 2.06
+        source: numista
       - value: 2.38
         source: bruun
     year_alts:
@@ -398,6 +402,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/hg29.htm
         ref: Galster 29 (hg) — danskmoent.dk fr_hg29.htm
+      - type: literature
+        url: https://en.numista.com/152926
+        ref: Numista N#152926 — Skilling - John I (Malmö) - Denmark
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/150288
         ref: KMM 150288 (Inv. KP 1656.25)
@@ -474,6 +481,7 @@ coins:
     composed_of:
       - dk-bruun-3837
       - dk-galster-hg-29
+      - dk-numista-152926
       - kmk-150288
       - kmk-150289
       - kmk-150290
@@ -495,6 +503,11 @@ coins:
       - kmk-273657
       - kmk-273658
       - kmk-714448
+    _errata_applied:
+      - source: dk-numista-152926
+        field: nominal
+        printed: 1 Skilling (= 12 Pennings)
+        correct: 1 Skilling
   - id: unified-dk-bruun-3839
     fuss: seed_unsorted
     phase: bruun
@@ -110087,54 +110100,6 @@ coins:
       - dk-numista-152925
     _errata_applied:
       - source: dk-numista-152925
-        field: nominal
-        printed: 1 Skilling (= 12 Pennings)
-        correct: 1 Skilling
-  - id: unified-dk-numista-152926
-    fuss: seed_unsorted
-    phase: numista
-    kind: scheide
-    nominal: 1 Skilling
-    year_first: 1483
-    year_last: 1513
-    year_ranges:
-      -   - 1483
-          - 1513
-    year_label: 1483-1513
-    _year_demoted: true
-    ruler: Hans
-    mint: Malmø
-    catalog:
-      numista: '152926'
-      sieg: '6'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.06
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/152926
-        ref: Numista N#152926 — Skilling - John I (Malmö) - Denmark
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-numista-152926
-    _errata_applied:
-      - source: dk-numista-152926
         field: nominal
         printed: 1 Skilling (= 12 Pennings)
         correct: 1 Skilling

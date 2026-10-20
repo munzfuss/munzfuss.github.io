@@ -710,7 +710,7 @@ def parse_page(html_path: Path, text: str) -> dict:
     out: dict = {
         "source_file": html_path.name,
         "source_url_hint": (
-            "https://www.danskmoent.dk/" + html_path.name.replace("_", "/")
+            "https://www.danskmoent.dk/" + html_path.name.replace("_", "/", 1)
         ),
         "page_shape": "standard",
         "ruler": header.get("ruler"),

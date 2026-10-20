@@ -277,6 +277,23 @@ def _kmm_nid_from_url(url):
     return m.group(1) if m else None
 
 
+def _kmm_web_record(nid: str) -> dict | None:
+    """The cached natmus object page (`kmk/web/<nid>.json`) when it describes
+    the SAME object as the API record, else None. The seed builder fills
+    weight from this page when the API record has none (`_raadata_enrich`),
+    so a reading in `weight_rough_g` can come from here — and the citation
+    selection below must see it too (2026-10-20: Galster 36 showed four KMM
+    weights and none of their four citations; all four live only on the
+    page). Same-object test is the builder's own."""
+    try:
+        rd = _json.loads((_KMK_CACHE_DIR / "web" / f"{nid}.json").read_text())
+        src = _json.loads((_KMK_CACHE_DIR / f"{nid}.json").read_text())
+    except (FileNotFoundError, ValueError):
+        return None
+    from build_kmk_seed import _raadata_other_object  # noqa: E402
+    return None if _raadata_other_object(src, rd) else rd
+
+
 def _kmm_specimen_has_image(nid: str) -> bool:
     """True when the KMM (Nationalmuseet) record has a still-photo asset.
     Memoised cache read — maintenance-side only; the build never reads cache.
@@ -293,6 +310,9 @@ def _kmm_specimen_has_image(nid: str) -> bool:
         has = any(isinstance(a, dict) and a.get("type") == "still" for a in assets)
     except (FileNotFoundError, ValueError):
         has = False
+    if not has:
+        rd = _kmm_web_record(nid)
+        has = bool(rd and rd.get("billeder"))
     _KMM_IMAGE_MEMO[nid] = has
     return has
 
@@ -316,6 +336,12 @@ def _kmm_specimen_weight(nid: str) -> float | None:
                 break
     except (FileNotFoundError, ValueError):
         val = None
+    if val is None:
+        rd = _kmm_web_record(nid)
+        for m in ((rd or {}).get("maalinger") or []):
+            if m.get("enhed") == "g" and isinstance(m.get("vaerdi"), (int, float)):
+                val = float(m["vaerdi"])
+                break
     _KMM_WEIGHT_VALUE_MEMO[nid] = val
     return val
 
