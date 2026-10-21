@@ -226,6 +226,24 @@ Hvid o; Nobel X.
     rows, loses nothing from the research.
   - (d) first look for the appendix (per-coin values + photos, s. 18): if it exists (the series' site,
     `www.archaeology.su.se/numismatiska`), every group row becomes specimens and the problem disappears.
+- **Specimen-only does NOT cover what the groups give (curator question 2026-10-21).** Eriksson bins per mint
+  per lod, so an n = 1 row is a rare bin: the extremes and the suspected forgeries. Per type (spec / in groups):
+  G 22 3/0 · G 23 2/20 (the two are 22,40 % and the 13,25 % suspected forgery) · **G 29 0/18** · G 32 1/6 (the
+  9-lod piece) · G 35 1/2 · G 30 2/0 · G 31 1/8 (the 6-lod piece) · G 34 3/0 · G 36 2/9 (one 6-lod, one 3,10 %
+  forgery) · G 38 2+1/0 · G 39 14/0 · G 41 6/0 · G 42 5/7 (all 1–2-lod pieces are in groups) · G 43 2/0.
+  Hans alone: 10 of 53 pieces, none for the main Malmø Skilling G 29 (incl. all six dated 1512). Specimen-only
+  would be a sample skewed to high fineness and forgeries — not a more precise subset.
+- **What a group row really contains.** Its min and max are each a real reading of a real coin; only the pairing
+  and the interior n − 2 values are lost. n = 2 rows (13 rows, 26 coins) therefore give EVERY value, unpaired;
+  n ≥ 3 rows (11 rows, 44 coins) give the two extremes. So the bounds can enter as ordinary readings — two
+  weights and two finenesses per row — with no new field, provided the labels never pair a weight bound with a
+  fineness bound: `compute._compute_coin` pairs a weight with the fineness whose source label shares a token
+  (`_fineness_for`), else with the highest-authority fineness. Weight labels and fineness labels of a group row
+  must share no token; n and the lod bin go into the label («Eriksson 2017, tab. 7, 8 lod, 3 St., leichtestes»).
+  Not yet checked: how such a weight reading renders its Feingewicht/Δ (it borrows another source's fineness).
+  What a new `assay_groups` field would add beyond that: n and the bin as structured data, nothing else.
+- **Only the appendix gives everything exactly** (interior values + pairing); with it the group question
+  disappears.
 - A type row spans several lod groups (G 29: 9 → 6 lod). Readings 32–53 % on one Hans Skilling row against one
   card Soll will show large Δ — the real state of the coinage, but readable only after the period split of the
   card (TODO ED).
