@@ -340,7 +340,7 @@ Series page: `https://www.su.se/enheter/numismatiska-forskningsgruppen/om-forskn
 | Issue | Author, subject | Our rows | Verdict |
 |---|---|---|---|
 | 2016:1 (+ appendix, 145 coins) | Mikael Heljeback, Danish coins c. 1400–1448: Erik of Pomerania (65), Christopher of Bavaria (77), Rigsrådet 1448 (1 Skilling, G 21, 2,08 g, 45,99 %) | **none** — no final carries Erik / Christopher / Rigsråd 1448 | context only: the pre-1481 silver of the Danish Hvid / Skilling (the `luebischer_muenzfuss` prehistory). Cached. |
-| 2017:2 | Sarah Eriksson, Swedish örtugar of Erik of Pomerania 1396–1439 | none (Sweden, pre-scope) | not useful; not cached |
+| 2017:2 | Sarah Eriksson, Swedish örtugar of Erik of Pomerania 1396–1439 | none (Sweden, pre-scope) | no rows of ours; cached with its appendix on the curator's request (2026-10-21) |
 | **2017:3 (+ appendix, 169 coins)** | **Robin Lindblad, Gotland coins c. 1150–1554** | **yes — Visby** | **useful.** Cached. |
 | 2018:1 | Eeva Jonsson, Viking-Age coins | none | not useful; not cached |
 
