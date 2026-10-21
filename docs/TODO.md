@@ -3688,6 +3688,10 @@ groups: `docs/research/luebischer_muenzfuss.md` §0.5 (detail §3.4h (7)–(8); 
 `docs/research/hans_rates_1481_1513.md` §6). FUSS_REVIEW_FINDINGS row «Hans silver 1481–1513 — undated assayed
 coins can be placed in date groups».
 
+Decided 2026-10-21 (curator): seven-period scheme accepted — 0 1481–1483 (Rigsråd, own period) · I 1483–1497 ·
+II 1497–1500 · III 1500–1506 · IV 1506–1510 · V 1510–1512 · VI 1512 – Feb 1513 (dossier §0.6). Follow-up: the
+card (denmark.yml phases of `luebischer_muenzfuss`, fuesse.yml grundwerte rows) still has the old structure —
+restructure on the curator's word. Bergen Søsling G149 → 1506–1510 (?) approved.
 Decided 2026-10-21 (curator): Skilling 7 lod = the period ending 1512 (c. 1510–1512), 6 lod = the period beginning
 1512 (1512 – Feb 1513); 1512 is the boundary year, both occur in it (dossier §0.5).
 Needs decision before data: (1) Søsling — Eriksson's «with the oldest Skillinger» vs our silver reading «stage III

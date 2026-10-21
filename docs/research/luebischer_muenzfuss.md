@@ -37,6 +37,8 @@ Status marks: **A** = attested in a cited source; **C** = our computation from a
 
 ### §0.1 Stages (years)
 
+> **Superseded 2026-10-21 by §0.6** (curator accepted the seven-period scheme). Kept as the trail.
+
 | Stage | Years | What fixes the boundary | Status |
 |---|---|---|---|
 | I — start | 1481 – c. 1500/1503 | Hvide from 1481 (Rigsrådet 1481–83, Eriksson s. 4); hoards c. 1490 (Bangbostrand) and the Gribshunden purse 1495 hold Hvide only; Skilling coinage perhaps only after 1497 (Eriksson s. 10, **H**); reckoning Gylden = 2 M d (Wilcke 7-1 s. 134); 1497 «4 Hvide ß» (s. 142) | A / H |
@@ -44,6 +46,8 @@ Status marks: **A** = attested in a cited source; **C** = our computation from a
 | III — end | 1512 – 1513 | the only dated silver: Skillinger 1512 at 6–7 lod, among the lowest (Eriksson s. 10, tab. 7); Søsling 1512 (Galster 30; Eriksson s. 10 «unik sösling 1512»); Hans d. 20 Feb 1513 ends the period; Christian II's håndfæstning of 22 Jul 1513 is the first act of the next reign, not part of III | A; the II/III border rests only on the 1512 dates (**H** for where II ends) |
 
 ### §0.2 Matrix — levels × stages
+
+> **Superseded 2026-10-21 by §0.6 and §3.4h (8).** Kept as the trail.
 
 | Level | I (1481 – c. 1500/03) | II (c. 1500/03 – c. 1511) | III (1512 – 1513) |
 |---|---|---|---|
@@ -211,9 +215,10 @@ group; give the group's span as the dating, worded «можна вважати»
 CLAUDE.md: plain years only — the span goes to `year_label` only if the curator approves it as the coin's year
 range, with `year_verified: false`).
 
-### §0.6 Periodisation 1481 – Feb 1513 — final proposal (2026-10-21, curator: «фінально спробуй вичленувати періоди»)
+### §0.6 Periodisation 1481 – Feb 1513 — ACCEPTED by the curator 2026-10-21 («1 – так, 2 – так»)
 
-Supersedes the stage borders of §0.1 / §0.2 and the five-period table of §3.4h (8) once the curator accepts it.
+Supersedes the stage borders of §0.1 / §0.2 and the five-period table of §3.4h (8). Period 0 (Rigsråd 1481–1483) is a
+period of its own (curator). The card's period structure has not been changed yet (TODO ED).
 Each border is tagged: **A** = an attested dated event; **H** = our reading. A border year belongs to both periods
 (curator rule of 2026-10-21 for 1512). Detail and quotes: §0.5, §3.4h, `hans_rates_1481_1513.md` §3, §6.
 
@@ -1252,34 +1257,33 @@ arithmetic (Cologne mark 233,856 g), H = hypothesis. Stage III ends with Hans' d
 håndfæstning of 22 Jul 1513 («*two mark giøre fyllest for en rinsk gylden*», *Rigslovgivning 1513-1523* nr. 1
 art. 41) is the first act of the next reign — it closes the period and is NOT part of stage III.
 
-**Five periods (curator 2026-10-20):** P1 1481 – 1495/97 · P2 1495/97 – 1500/03 · P3 1503/06 – 1510 · P4 1510 – 1512
-· P5 1512 – Feb 1513. P2–P4 are the fineness groups of §0.5 (dating H); P5 holds the pieces dated 1512 (A). P4 and
-P5 meet at 1512: P4 = undated pieces placed by fineness, P5 = dated pieces. The P2/P3 borders (1500/03, 1503/06)
-are ranges, not years.
+**Seven periods (accepted 2026-10-21, §0.6).** 0 1481–1483 · I 1483–1497 · II 1497–1500 · III 1500–1506 · IV 1506–1510 ·
+V 1510–1512 · VI 1512 – Feb 1513. (The five-period version of 2026-10-20 — «1495/97 – 1500/03 – 1503/06» — is
+superseded; why: §0.5 «Where 1500/03 and 1503/06 came from».)
 
 *(a) Lübeck side*
 
-| | P1 1481 – 1495/97 | P2 1495/97 – 1500/03 | P3 1503/06 – 1510 | P4 1510 – 1512 | P5 1512 – Feb 1513 |
-|---|---|---|---|---|---|
-| Mark lübisch **[R]** | 16 ß l. = 192 Pf l. | same | same | same | same |
-| Schilling lübisch **[C]** (also **[R]**) | 103½ / 9-lot mark = **1,271 g** (A: 1468 = 1483 = 1492) | 1,271 g; 1501 Mölln draft: ⅓ Mark at 11½ (A) | 13-Mark step: decided Aug 1504, Rezess 29 Dec 1506 → ß = 1/16 Markstück = **1,124 g** (C) | 1,124 g (C) | 1512 Rezess on paper ≈ 14⅓ (Doppelschilling / Schilling not struck; Witten 1512 are) — **1,124 g** in the Markstück (C) |
-| Rhenish Gulden in ß l. | 24 (A: Jesse, since 1470); ⚠ Christian I's Môtbok [1460–74] «*xx.ß lub*» | 24 (A: Mulich 1501) | 24 (A: Lütke 1503–06; 1504 market 24, official 21 ß 4 Pf; 1506 Rezess 24) | 24 (A: Wilcke 7-2 s. 151 «*højst 24 ß*») | 24 (same) |
-| Gulden in silver | 30,5 g (C) | 30,5 g (C) | 30,5 → 27,0 g (C) | 27,0 g (C) | 27,0 g (C) |
+| | 0 1481–1483 | I 1483–1497 | II 1497–1500 | III 1500–1506 | IV 1506–1510 | V 1510–1512 | VI 1512 – Feb 1513 |
+|---|---|---|---|---|---|---|---|
+| Mark lübisch **[R]** | 16 ß l. = 192 Pf l. | same | same | same | same | same | same |
+| Schilling lübisch **[C]** (also **[R]**), fine | **1,271 g** (1468) | 1,271 (Rezess 1483) | 1,271 (Rezess 1492) | 1,271; 1501 Mölln draft 11½; decision Aug 1504 | **1,124 g** (Rezess 29 Dec 1506; 1/16 Markstück, C) | 1,124 (C) | 1,124 (C); 1512 Rezess on paper ≈ 14⅓ |
+| Rhenish Gulden in ß l. | 24 (since 1470); ⚠ Môtbok [1460–74] 20 | 24 | 24 | 24 (Mulich 1501; Lütke 1503–06) | 24 | 24 («*højst 24 ß*») | 24 |
+| Gulden in silver (C) | 30,5 g | 30,5 | 30,5 | 30,5 | 27,0 | 27,0 | 27,0 |
 
 *(b) Danish side*
 
-| | P1 1481 – 1495/97 | P2 1495/97 – 1500/03 | P3 1503/06 – 1510 | P4 1510 – 1512 | P5 1512 – Feb 1513 |
-|---|---|---|---|---|---|
-| Mark dansk **[R]** | 16 ß d. = 48 Hvide = 192 Pf d. | same | same | same | same |
-| Skilling dansk **[R]** | 3 Hvide = 12 Pf d. | same | same | same | same |
-| Gulden in Mark dansk | **2** (A: Wilcke 7-1 s. 134; Viken rent) | **2 → 2½** (A: 2½ in 1500 DCH, 1501 Mulich) | **2½** (A: 1502–1508; Lütke 1503–06 ≈ 2,58); tolls at a forced 2 (A: 1503–1507/10, Enemark via Piorr) | forced 2 abandoned c. 1510; tolls 2½ (A: Enemark via Piorr) | not attested |
-| Gulden in Hvide | 96 (C) | 96 → 120 (C) | 120 (C); 124 (Lütke, C on Schäfer's assumption) | 120 (C) | — |
-| **Hvid [C]** — lod, fine g (Eriksson tab. 6, 9) | Rigsråd 1481–83: **5 lod**, 0,18–0,24; Hans **6 lod**, 0,27–0,30 (H for the period) | Hans **6 lod**, 0,27–0,30 (H) | Hans **5 lod**, 0,14–0,27, mostly 0,18–0,24 (H) | Hans **4 lod**, 0,16–0,21 (H) | no dated Hvid |
-| Hvid valued in Lübeck Pf | **3** (A «*densche drelinge*»; C 96 × 3 = 24 ß) → 0,318 g | 3 → 2,4 (C) | **2,4** (C) → 0,254 g (to 1506) / 0,225 g (after) | 2,4 (C) → 0,225 g | — |
-| **Skilling [C]** (Hans' coin) | not yet struck (Bangbostrand, Gribshunden — §0.5) | **9 lod, 1,24–1,27 g** (A assays) = Lübeck ß 1468 (C) | **8 lod, 0,99–1,24 g**, København 1,10–1,18 (A assays) ≈ Lübeck ß after 1506 (C) | **7 lod** (A assays; placing per the curator's reading 2026-10-21, §0.5); the 3 dated 1512 pieces at 7 lod fall at the end of this period; «Abwertung der dänischen Schillingmünzen» c. 1510 (A: Enemark via Piorr) | **6 lod** (curator's reading 2026-10-21, §0.5); the 3 dated 1512 pieces at 6 lod, 0,82–0,96 g (A) |
-| Skilling coin in Hvide | — | **4** (A: 1497 «*4 Hvide ß*») = 1 ß l. = 1⅓ ß d. (C) | **5** (A: «*5 Hvide for 1 ß*», undated) = 1 ß l. = 1⅔ ß d. (C) | not attested | not attested |
-| **Søsling [C]** (nominal ½ Skilling = 6 Pf d. = 1½ Hvide **[R]**) | — | Eriksson's reading by weight («*samtida med de äldsta skillingarna*», H) | — | undated **5 lod, 1,31–1,47 g → 0,39–0,42 g** — here by our silver reading (H) | **dated 1512** (A) |
-| Mark lübisch : Mark dansk | **1⅓** (C) | 1⅓ → 1⅔ (C) | **1⅔** (C; A Mulich 1501); 1,72 (Lütke, C) | 1⅔ (C) | — |
+| | 0 1481–1483 | I 1483–1497 | II 1497–1500 | III 1500–1506 | IV 1506–1510 | V 1510–1512 | VI 1512 – Feb 1513 |
+|---|---|---|---|---|---|---|---|
+| Mark dansk **[R]** | 16 ß d. = 48 Hvide = 192 Pf d. | same | same | same | same | same | same |
+| Skilling dansk **[R]** | 3 Hvide | 3 Hvide | 3 Hvide | 3 Hvide | 3 Hvide | 3 Hvide | 3 Hvide |
+| Gulden in M dansk | 2 (Christian I, Viken rent) | **2** | **2** | **2½** (1500 DCH, 1501, 1502); tolls forced 2 from 1503 | **2½** (1508); forced toll 2 | tolls 2½ after 1510 | not attested |
+| Gulden in Hvide (C) | 96 | 96 | 96 | 120 (Lütke 124) | 120 | 120 | — |
+| **Hvid [C]** lod, fine | **5 lod**, 0,18–0,24 g (Rigsråd) | **6 lod**, 0,27–0,30 g (H) | 6 lod (H) | **5 lod**, mostly 0,18–0,24 g (H) | 5 lod (H) | **4 lod**, 0,16–0,21 g (H) | — |
+| Hvid in Lübeck Pf | 3 (C) | **3** (A «*densche drelinge*») | 3 | **2,4** (C) | 2,4 (C) | 2,4 (C) | — |
+| **Skilling [C]** (Hans' coin), fine | — | not struck | **9 lod**, 1,24–1,27 g = Lübeck ß 1468 | **9 lod** = Lübeck ß 1,271 (H: parity) | **8 lod**, 0,99–1,24, København 1,10–1,18 ≈ Lübeck ß 1,124 (H) | **7 lod** (curator 2026-10-21); «Abwertung» c. 1510 | **6 lod**, dated 1512 (0,82–0,96 g) |
+| Skilling coin in Hvide | — | — | **4** (A 1497) = 1 ß l. = 1⅓ ß d. | **5** (A, undated) = 1 ß l. = 1⅔ ß d. | 5 (C) | not attested | not attested |
+| **Søsling [C]** (½ Skilling = 6 Pf d. = 1½ Hvide **[R]**) | — | — | — | — | Bergen G149, 5½ lod, 0,54 g ≈ ½ ß l. after 1506 (H) | Danish undated, 5 lod, 0,39–0,42 g — here or VI (H) | **dated 1512** |
+| Mark lübisch : Mark dansk (C) | 1⅓ | 1⅓ | 1⅓ | 1⅔ (Mulich; Lütke 1,72) | 1⅔ | 1⅔ | — |
 
 Reading the two tables together: in I and II the struck Danish Skilling is a Lübeck Schilling in value (4, then 5
 Hvide), while the Danish ß of account stays at 3 Hvide; the card's units block must keep the coin «Skilling» and the
