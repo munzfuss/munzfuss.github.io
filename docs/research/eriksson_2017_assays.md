@@ -329,3 +329,41 @@ The lod is Eriksson's reading of which whole-lod standard a coin was struck to (
 angett vikten i steg om ett lod … även om det i realiteten ofta inte var fallet*»); it belongs in dossier
 prose as an interpretation, not in `fineness` as a reading. With the appendix the measured Ag is available
 for every coin, so the question is moot.
+
+---
+
+## 8. The rest of the series — what is useful to us (checked 2026-10-21)
+
+Series page: `https://www.su.se/enheter/numismatiska-forskningsgruppen/om-forskningsgruppen/metallanalyser-av-mynt`
+(«Filer för utskrift»). Every issue has a per-coin appendix with photos in the same layout as 2017:1.
+
+| Issue | Author, subject | Our rows | Verdict |
+|---|---|---|---|
+| 2016:1 (+ appendix, 145 coins) | Mikael Heljeback, Danish coins c. 1400–1448: Erik of Pomerania (65), Christopher of Bavaria (77), Rigsrådet 1448 (1 Skilling, G 21, 2,08 g, 45,99 %) | **none** — no final carries Erik / Christopher / Rigsråd 1448 | context only: the pre-1481 silver of the Danish Hvid / Skilling (the `luebischer_muenzfuss` prehistory). Cached. |
+| 2017:2 | Sarah Eriksson, Swedish örtugar of Erik of Pomerania 1396–1439 | none (Sweden, pre-scope) | not useful; not cached |
+| **2017:3 (+ appendix, 169 coins)** | **Robin Lindblad, Gotland coins c. 1150–1554** | **yes — Visby** | **useful.** Cached. |
+| 2018:1 | Eeva Jonsson, Viking-Age coins | none | not useful; not cached |
+
+**2017:3 in detail.** Nos 88–169 (82 coins, all paired weight + Ag + lod) are the Danish-period Visby coins
+1450–1554; nos 1–87 are earlier Gotland Penninger / Gotar (out of scope). Catalogue key «LL» = Lagerqvist 1970,
+numbered per section (Norby's LL 2 ≠ the Visby Hvid LL 2). Our Visby rows (all in `danish_realm` except Norby):
+
+| Lindblad (LL, dating, n) | Our final | Link |
+|---|---|---|
+| Hvid 1450, LL 1, 3 | `unified-kmk-352426` (KMM «Gal. 139», Christian I, `seed_unsorted`); no Galster-source final for G 139 | danskmoent G 139 cites «Lagerqvist 1» — explicit, but danskmoent calls the type «Gote», Lindblad «Hvid» (to check) |
+| Hvid 1455–1480, LL 2 / 3b / 4a–d, 27 | ? | no concordance |
+| Hvid 1480–1500, LL 5, 6 | `kmk-139328` («G. 140») — danskmoent G 140 cites «Lagerqvist 5» | danskmoent, explicit; G 140 is Christian I per Galster, Schou → Christian II, Lindblad 1480–1500 — three datings |
+| Hvid 1500–1520, LL 7 / 7a / 7b, 12 | `unified-dk-galster-hg-142` (Hans, `luebischer_muenzfuss`) — danskmoent G 142 cites «Lagerqvist 7b» | explicit for 7b only |
+| Skilling Norby 1524 LL 2 (4), 1525 LL 3 (2) | `unified-dk-bruun-4112` (G 143, 1524–1525, `norby_gotland`) | by type + year (H) |
+| Skilling Norby u.å. LL 1 / 1a / 1b, 5 | `unified-dk-bruun-4125` (G 144) | by type (H) |
+| Hvid Norby u.å. LL 4a / 4b, 9 | `unified-dk-galster-hg-145` (G 145) | by type (H) |
+| Hvid ca 1530, LL 5a, 2 | `unified-dk-galster-hg-146` / `kmk-575499` (G 146, Frederik I) | by type + date (H) |
+| Skilling 1535 LL 6a (2), 1536 LL 7 (2), 1537 LL 8 (1) | `unified-dk-galster-hg-147` (G 147, 1535–1537) | by type + years (H) |
+| Skilling 1554 LL 9 (3), ½ Skilling 1554 LL 10 (3), Hvid (1554) LL 11 (4) | KMM finals `kmk-150112` (1 Skilling 1554), `kmk-150110` / `-150111` (½ Skilling 1554); Hvid: ? | by type + year (H) |
+| — | `unified-dk-galster-hg-141` (Hans Visby Hvid G 141, no LL on danskmoent) | unmapped |
+
+So 2017:3 is the **only assay source for the Visby series** (Hans G 141/142 sit under `luebischer_muenzfuss`;
+Norby, Frederik I and Christian III Visby coins are all `seed_unsorted`). Before a seed it needs an LL ↔ Galster
+concordance: three links are explicit on danskmoent (LL 1 = G 139, LL 5 = G 140, LL 7b = G 142), the rest are by
+type and year (H); Lagerqvist 1970 itself (paper) would settle them. A seed for 2017:1 and 2017:3 could share one
+builder (same table layout, different catalogue key).
