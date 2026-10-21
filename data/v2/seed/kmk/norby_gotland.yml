@@ -1,0 +1,33 @@
+status: seed
+source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
+generated_at: '2026-10-21T20:53:38Z'
+entity: norby_gotland
+scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
+  (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
+  (entity_classified_via records which). Museum-attested fields carry verified=true (weight only — no diameter/fineness). Phase-4 assigns Müntzfuß/phase; cross-source merger deduplicates against 
+  Hede/Bruun/Numista/IKMK/etc.
+coins:
+  - id: kmk-317111
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: norby_gotland
+    entity_classified_via: mint
+    nominal: 1 Skilling
+    metal_verified: false
+    mint: Visby
+    mint_verified: true
+    ruler: Søren Nordby
+    weight_rough_verified: false
+    catalog:
+      galster: '144'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317111
+        ref: KMM 317111 (Inv. FP 6819.1)
+    verification_note:
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
