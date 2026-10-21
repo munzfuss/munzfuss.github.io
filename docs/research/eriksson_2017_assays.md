@@ -389,3 +389,29 @@ reads «MONETA NOVA …NENSIS» (my reading, H). No source specific to Hans' leg
   → G 29 Skilling / G 30 Søsling), and record the printed Galster numbers as the source's values with the
   curator's reading as the reason — an index override, so a `_source_errata` per coin needs the curator's
   explicit «так» (CLAUDE.md §4).
+
+---
+
+## 9. Pipeline source `metallanalyser` — first seed (2026-10-21)
+
+Curator: «з усім згоден, однак поки не будемо робити errata на індекси або двори»; «фальшивки відфільтруй».
+
+- **SYNTHESIS** `scripts/parse_su_metallanalyser.py` → `<appendix stem>.parsed.json` beside each extract; row
+  counts self-checked (2016:1 145, 2017:1 118, 2017:3 181 — the Gotland appendix ends with 11 «Riga?» pennies,
+  nos 171–181).
+- **SEED** `scripts/maintenance/build_metallanalyser_seed.py` → `data/v2/seed/metallanalyser/danish_realm.yml`:
+  one entry per Galster type, each coin a paired reading (`weight_rough_g` + `fineness` under the label
+  «Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr N») and its own `sources` line; `fineness_verified: true`;
+  weights marked «f» / «ks» carry a `suspect` mark (nos 4, 60; no. 91 is in a held type). Undated pieces add no
+  year (the «u.å. (1518)» brackets are the author's attribution); metal is left unset.
+- **Left out** (`_SKIP_2017_1`, `_HOLD_BASES_2017_1`): forgeries nos 22, 23, 81; the ¼ gyllen no. 84 (printed
+  G 38); the 12 mint/Galster conflicts (§7a) — no erratum yet; **G 39 and G 42 held**: the matcher keeps them apart
+  from our classes — G 39 by the tier-1 weight gate (`dk-bruun-3917` 2,46 g vs Eriksson's type weight 1,90 g;
+  the 1515 pieces weigh 1,11–2,16 g), G 42 by the nominal («Skilling (kl)» vs Galster's «18 Penning»). Both need a
+  curator merge decision; then lift the hold. 2017:3: only LL 7b → G 142 (3 coins). 2016:1: not seeded.
+- **Re-flow** (from HEAD, `danish_realm`): 12 entries, 79 paired readings; all 12 auto-merged into the right
+  classes — G 22, 29, 32, 34, 35 (Hans), 31, 36, 142 (Hans Hvid), 23 (Christian I), 38, 41, 43 (Christian II).
+  `verify_reflow`: 12 coins changed, 0 losses. Thinning hid none of the readings (fineness varies within each
+  bucket, §9a condition 3).
+- Trap met on the way: a shared Python dict (`suspect` reason used twice) became a YAML anchor and renumbered
+  every anchor after it in `final/danish_realm.yml` (8 000-line diff for 12 coins) — the builder deep-copies.
