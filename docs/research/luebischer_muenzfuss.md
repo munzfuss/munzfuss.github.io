@@ -107,6 +107,11 @@ The basis on which undated Skillinger and Søslinger of Hans are to be dated lat
 - **Reading (H):** falling fineness 9 → 8 → 7 → 6 lod over time; 7 lod c. 1510–1512, 6 lod 1512 (– Feb 1513). Not
   separable into two periods on present data. Would be settled by more dated 1512 assays, or by die links between
   undated 6-lod pieces and the dated 1512 dies.
+- **Curator's reading (2026-10-21), adopted as the working dating:** fineness was lowered over time, so a higher lod
+  most probably precedes a lower one. 1512 is the boundary year of two periods: the period ending in 1512 has
+  **7 lod**, the one beginning in 1512 has **6 lod**; both fall within 1512, which is why the dated 1512 pieces show
+  both. → P4 (c. 1510 – 1512) = 7 lod; P5 (1512 – Feb 1513) = 6 lod. Still a reading of the assays (no 7/6 order
+  is attested inside 1512); it fixes the rule for dating undated pieces (TODO ED).
 - ⚠ Years in our data (found 2026-10-21, `trace_coin why` shows no curator decision): G32 (København) and G35
   (Aalborg) finals show **1512**, from KMM 273472/273473/273475 (find FP 1667, KMM «1512–1512»), while Galster
   lists both as «*u.år*»; the Bergen Skilling G148 final shows **1510**, from Bruun Part V lot 15003 «*ND
@@ -1163,7 +1168,7 @@ are ranges, not years.
 | Gulden in Hvide | 96 (C) | 96 → 120 (C) | 120 (C); 124 (Lütke, C on Schäfer's assumption) | 120 (C) | — |
 | **Hvid [C]** — lod, fine g (Eriksson tab. 6, 9) | Rigsråd 1481–83: **5 lod**, 0,18–0,24; Hans **6 lod**, 0,27–0,30 (H for the period) | Hans **6 lod**, 0,27–0,30 (H) | Hans **5 lod**, 0,14–0,27, mostly 0,18–0,24 (H) | Hans **4 lod**, 0,16–0,21 (H) | no dated Hvid |
 | Hvid valued in Lübeck Pf | **3** (A «*densche drelinge*»; C 96 × 3 = 24 ß) → 0,318 g | 3 → 2,4 (C) | **2,4** (C) → 0,254 g (to 1506) / 0,225 g (after) | 2,4 (C) → 0,225 g | — |
-| **Skilling [C]** (Hans' coin) | not yet struck (Bangbostrand, Gribshunden — §0.5) | **9 lod, 1,24–1,27 g** (A assays) = Lübeck ß 1468 (C) | **8 lod, 0,99–1,24 g**, København 1,10–1,18 (A assays) ≈ Lübeck ß after 1506 (C) | **7 lod** (A assays; placing H); «Abwertung der dänischen Schillingmünzen» c. 1510 (A: Enemark via Piorr) | **6–7 lod, 0,82–0,96 g, dated 1512** (A) |
+| **Skilling [C]** (Hans' coin) | not yet struck (Bangbostrand, Gribshunden — §0.5) | **9 lod, 1,24–1,27 g** (A assays) = Lübeck ß 1468 (C) | **8 lod, 0,99–1,24 g**, København 1,10–1,18 (A assays) ≈ Lübeck ß after 1506 (C) | **7 lod** (A assays; placing per the curator's reading 2026-10-21, §0.5); the 3 dated 1512 pieces at 7 lod fall at the end of this period; «Abwertung der dänischen Schillingmünzen» c. 1510 (A: Enemark via Piorr) | **6 lod** (curator's reading 2026-10-21, §0.5); the 3 dated 1512 pieces at 6 lod, 0,82–0,96 g (A) |
 | Skilling coin in Hvide | — | **4** (A: 1497 «*4 Hvide ß*») = 1 ß l. = 1⅓ ß d. (C) | **5** (A: «*5 Hvide for 1 ß*», undated) = 1 ß l. = 1⅔ ß d. (C) | not attested | not attested |
 | **Søsling [C]** (nominal ½ Skilling = 6 Pf d. = 1½ Hvide **[R]**) | — | Eriksson's reading by weight («*samtida med de äldsta skillingarna*», H) | — | undated **5 lod, 1,31–1,47 g → 0,39–0,42 g** — here by our silver reading (H) | **dated 1512** (A) |
 | Mark lübisch : Mark dansk | **1⅓** (C) | 1⅓ → 1⅔ (C) | **1⅔** (C; A Mulich 1501); 1,72 (Lütke, C) | 1⅔ (C) | — |

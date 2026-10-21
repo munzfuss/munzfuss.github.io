@@ -3688,6 +3688,8 @@ groups: `docs/research/luebischer_muenzfuss.md` §0.5 (detail §3.4h (7)–(8); 
 `docs/research/hans_rates_1481_1513.md` §6). FUSS_REVIEW_FINDINGS row «Hans silver 1481–1513 — undated assayed
 coins can be placed in date groups».
 
+Decided 2026-10-21 (curator): Skilling 7 lod = the period ending 1512 (c. 1510–1512), 6 lod = the period beginning
+1512 (1512 – Feb 1513); 1512 is the boundary year, both occur in it (dossier §0.5).
 Needs decision before data: (1) Søsling — Eriksson's «with the oldest Skillinger» vs our silver reading «stage III
 c. 1510–1512»; (2) whether a group span may go into `year_label` (with `year_verified: false`) or only into the
 coin note; (3) which pieces qualify — assayed only (Eriksson tab. 7–8), since weights overlap.
