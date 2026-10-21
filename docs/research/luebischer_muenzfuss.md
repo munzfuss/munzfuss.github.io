@@ -1507,6 +1507,27 @@ therefore the separate *trajectory* of a coin that started as a Lübeck denomina
 qualification 2 there. Caveat: Jesse's «§ 67 gelyk der veerleye munte», cited by him as Margrete's Môtbok,
 is the 1484 text of Hans (Schäfer; §3.4h (2a)).
 
+### §3.10 Skilling and Søsling struck before 1481 (2026-10-21, curator question for plan 8.3, ANALYSIS)
+
+All from Märcher 2018 unless stated.
+
+| Issue | Date | Evidence |
+|---|---|---|
+| Søsling of the 1424 common coinage (Queen Philippa, Lund) | Oct 1424, short-lived | agreement with Lübeck, Hamburg, Lüneburg, Wismar Oct 1424 «*schal heten en sosling*», ≈ 1,37 g, ≈ 70 %, ≈ 0,96 g fine; «*Det blev den første danske søsling*»; «*produceret i en kort periode*», tens of thousands (s. 390–392) |
+| Søsling of Christoffer (Lund) | 1440 – Sept 1442 at latest (title without Norway / Sweden) | ONE known specimen (Stockholm), 1,04 g, ≈ 75 %; «*meget kortvarig*», «*den sidste nogensinde i Lund*» (s. 400; dating s. 404) |
+| Skilling of Christoffer (Malmø) | 1440s; possibly on after Sept 1442 | «*rigets første skilling*» (s. 397); a larger, widespread issue, ≥ 10 % worse than the Hanseatic Skilling of 1432 (92 from the 10-lot mark) (s. 404); still named in deeds 1459 «*kong Christoffers Skillinger*», 1465, Feb 1474 — «*holdt længe, formentlig gennem hele Christian 1.s tid*» (s. 405) |
+| Skilling of the Rigsråd 1448 (MONETA REGNI DACIA, Malmø) | 6 Jan – 28 Sept 1448 | «*kun produceret skillinger i Malmø*», intense, many varieties (s. 406; Galster `rigsraad.htm`). Not to be confused with the Rigsråd 1481–83 Hvid (G 22) |
+| Christian I 1448–81 | — | no Skilling, no Søsling: «*Christian 1.s møntproduktion udelukkende bestod af de mindre hvide*» (s. 405; Hauberg 1886 s. 187) |
+
+So: **Skilling before 1481 = yes** (Christoffer 1440s; Rigsråd 1448). **Søsling before 1481 = 1424 and
+Christoffer ≤ 1442 only**, both short. Between 1448 and the Hans Søsling (1512 dated) no Danish Søsling is
+known; between 1448 and c. 1495/97 no Danish Skilling was struck (the older ones circulated).
+
+**Our data:** none of these four issues is in `data/v2/final` (checked 2026-10-21 by nominal + ruler).
+The Galster cache has the Rigsråd 1448 Skilling (`danskmoent/galster/rigsraad.htm`) but it did not reach
+the seed; Christoffer's and Philippa's coins have no Galster page in the cache; Numista only Christoffer's
+Hvid (303699). Adding them = harvest step (plan 8.3) and the curator's decision on the card window.
+
 ## §4. Instruments
 
 | Date | Instrument | Role for the card | Register / dossier |
