@@ -161,6 +161,10 @@ The basis on which undated Skillinger and Søslinger of Hans are to be dated lat
   assays is answered in `eriksson_2017_assays.md` §5–§6. **Unsettled again 2026-10-21:** the per-coin appendix
   (§7 there) also prints «Malmö» + «33» for both Søslinger (nos 55, 56) and shows its mint column disagreeing with
   Galster for 12 coins; the photos (appendix p. 6) decide.
+  **Photo check 2026-10-21** (`eriksson_2017_assays.md` §7a): curator, tentatively, reads the legends of the 12
+  as MALMOENSIS («наче й схоже на malmoensis … або просто здається»); nos 55b / 56b show the quartered shield of
+  the danskmoent G 30 references, not the plain shield of G 33 (my comparison, H). Working reading: **G 30**
+  again, now on the shield type plus a tentative legend reading; still not firm.
 
 **Re-examination of the P2/P3 border «1500/03 – 1503/06» (curator question 2026-10-21: does 1503–1506 deserve its
 own period?).** The fractional border mixes three different events:

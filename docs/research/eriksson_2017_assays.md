@@ -367,3 +367,25 @@ Norby, Frederik I and Christian III Visby coins are all `seed_unsorted`). Before
 concordance: three links are explicit on danskmoent (LL 1 = G 139, LL 5 = G 140, LL 7b = G 142), the rest are by
 type and year (H); Lagerqvist 1970 itself (paper) would settle them. A seed for 2017:1 and 2017:3 could share one
 builder (same table layout, different catalogue key).
+
+### 7a. Photo check of the 12 conflicting coins (2026-10-21)
+
+The appendix photos of nos 28, 30, 32, 35, 36, 41, 45, 46, 47, 49, 55, 56 were set beside danskmoent reference
+specimens (Bonde and Zinck collections on `fr/hg29.htm`, `hg30`, `hg32`, `hg33`, `hg35`). Where the mint stands:
+Märcher 2018 s. 404 gives «*MONETA MALMOI, MONETA MALMOIENS*» on the reverse of Christopher's Malmø coins, and
+s. 488 «*MONETA HAFNIENS for København*» as the late-medieval practice; on the G 32 reference the reverse legend
+reads «MONETA NOVA …NENSIS» (my reading, H). No source specific to Hans' legends is in the cache.
+
+- **Curator's reading (Serhii, 2026-10-21), tentative:** the legends of the conflicting pieces «*наче й схоже на
+  malmoensis*» — they look like MALMOENSIS, but the curator says this is hard to tell and may only seem so.
+  This is the only reading of the photos; at the appendix's resolution it cannot be made firm.
+- **Søslinger nos 55, 56 — a second, independent sign (my visual comparison, H):** the danskmoent references show
+  a **quartered** shield on the lion side for G 30 (Malmø) and a **plain** three-lion shield for G 33
+  (København); nos 55b and 56b show the quartered shield → type G 30.
+- **Working reading:** the Myntort column («Malmö») is right and the Galster column is the slip for these
+  12 coins (G 32 / G 35 / G 33 written for Malmø pieces) — two weak witnesses (a tentative legend reading and,
+  for the Søslinger, the shield type) for the mint column, none for the Galster numbers. Not settled: better
+  photos (KMK Stockholm) or the objects would settle it. For a seed this means: attach these 12 by mint (Malmø
+  → G 29 Skilling / G 30 Søsling), and record the printed Galster numbers as the source's values with the
+  curator's reading as the reason — an index override, so a `_source_errata` per coin needs the curator's
+  explicit «так» (CLAUDE.md §4).
