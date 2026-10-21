@@ -269,6 +269,68 @@ in 1500–1505» stays open, hans_rates §6).
 Skillinger (II); assays of Gribshunden Hvide (I); Enemark 1971 I s. 113–118 read directly (IV/V, which coin);
 Galster 1972 on the Søsling; a market Gulden rate for 1510–1513.
 
+### §0.7 Two lines, two tables — Hvid c. 1392–1513 and Skilling / Søsling 1468–1513; the 13-Mark check (2026-10-21, curator request, ANALYSIS)
+
+Curator's framing (2026-10-21): the Hvid is not a «Hvid standard» but the continuity of the Lübeck reckoning
+introduced c. 1400; it took root so firmly that Lübeck's later steps did not move it, and Denmark answered
+those steps only by striking Skilling / Søsling inside the Lübeck system of the day. Evidence §3.7, §3.9,
+§3.10. §0.6 stays the accepted period scheme for Hans; these tables split it by line. [C] = computed here;
+fine weights from §0.6 and §3.7 (sources there). Cologne mark 233,856 g.
+
+**When did the Lübeck reckoning enter Denmark?** No founding act is known. Earliest datable points: Danish
+deeds reckon «hvide» = 4 Lübeck hollow pennies from 1380 (Hauberg 1886 s. 136 n. 2 — the coin then was the
+Hanseatic Witten); the Ribe town Hvid, probably second half of the 1370s (Märcher 2018 s. 368); the first ROYAL
+coinage on the Wendish system, Margrete, Ribe **1392**, Næstved 1396 (Jesse 1927 S. 99). Jesse's Môtbok § 67
+for Margrete's time is Hans' 1484 text (§3.4h (2a)) and cannot date it. Working date: 1392 (A, coin), with
+1380 as the first attested Lübeck reckoning of the «hvid».
+
+**Table A — the Hvid line, c. 1392–1513**
+
+| Period | Hvid | Fine g [C] | Value attested | Lübeck reference |
+|---|---|---|---|---|
+| Margrete / Erik, Ribe 1392, Næstved 1396 – | Witten copy, rare (Märcher s. 377) | not assayed here | = 4 Pf l. (Jesse S. 100) | Witten 176 / 13½-lot mark 1379 (Märcher s. 368) |
+| Christoffer, Malmø 1440/42–48 | 6 lod (Hauberg s. 183), ≈ 0,75 g | ≈ 0,28 | 3 SWEDISH penninge (Karl Knutsson 1453, like the old sterling; the Danish Skilling 10) — Hauberg s. 183; Märcher s. 402 | Schilling 1432: 92 / 10-lot mark ≈ 1,59 g fine [C] |
+| Christian I 1448–81 | 23a 0,81 g 290–305 ‰ → 23b 0,72 g 275–280 ‰ (Märcher s. 407); «4 Lod 15 Gren» (Hauberg s. 187) | 0,23–0,25 → ≈ 0,20 | — | 1468: Schilling 1,271 g |
+| Rigsråd 1481–83 | 5 lod | 0,18–0,24 | — | 1,271 |
+| Hans, c. 1483 – c. 1500 | 6 lod | 0,27–0,30 | 3 Pf l. (1495 «denssen gelde, den Dreilingh to 3 Penning»); Gylden = 2 M d = 96 Hvide | 1,271; 1483 / 1492 reaffirm 1468 |
+| Hans, c. 1500 – c. 1510 | 5 lod | 0,18–0,24 | 2,4 Pf l. (5 Hvide = 1 ß l.); Gylden = 2½ M d = 120 Hvide | decision Aug 1504, Rezess 29 Dec 1506: 1,124 |
+| Hans, c. 1510 – 1513 | 4 lod | 0,16–0,21 | no rate | 1,124; 1512 ≈ 14⅓ (paper) |
+
+No Hvid change coincides with a Lübeck step (1432, 1468, 1504/06); the one dated Danish move of the Hvid
+(Gylden 2 → 2½ M d, 1500/01) comes before Lübeck's 1504/06 step.
+
+**Table B — the Skilling / Søsling line, 1468–1513** (pre-1468 Skillinge of Christoffer and the Rigsråd 1448
+and the Søslinge of 1424 / ≤ 1442: §3.10; they still circulated in 1474)
+
+| Period (§0.6) | Lübeck Schilling (account) | Danish Skilling (coin) | Søsling (coin) |
+|---|---|---|---|
+| 1468 – c. 1497 | 1,271 g (1468, 1483, 1492) | not struck (old Christoffer Skillinge circulate) | not struck |
+| II 1497–1500 | 1,271 | 9 lod, 1,24–1,27 g = 4 Hvide (A) | — |
+| III 1500–1506 | 1,271 → step decided Aug 1504 | 9 lod (H) = 5 Hvide = 1 ß l. | — |
+| IV 1506–1510 | 1,124 (13 Mark) | 8 lod, 0,99–1,24 g (placing H) | Bergen G149 0,54 g (H) |
+| V 1510–1512 | 1,124 | 7 lod | 5 lod 0,39–0,42 g (H) |
+| VI 1512 – Feb 1513 | 1,124; 1512 ≈ 14⅓ | 6 lod, dated 1512 | dated 1512 |
+
+**The 13-Mark check — was the Danish Skilling at or below 1,124 g before Lübeck moved?**
+
+1. *The Skilling COIN: not shown either way.* No Skilling is dated by itself before 1512. The 9-lod pieces
+   (1,24–1,27 g = the 1468 level) are placed first because they match Lübeck's 1468 Schilling and the 1497
+   «4 Hvide ß» (H); the Møllegården Skillinger (late 1490s) are not assayed. The 8-lod pieces (0,99–1,24 g,
+   around and below 1,124) are equally undated; placing them in 1506–1510 is our reading (H). The alternative «8 lod already
+   1500–1505» stays open (hans_rates §6) — settled only by a dated or hoard-closed 8-lod Skilling or Enemark's
+   toll accounts.
+2. *The Danish RECKONING in Hvide: yes, before 1504/06 — and largely before 1500.* Silver behind 1 ß lübisch
+   when paid in Hvide [C]: c. 1483–1500 (4 Hvide à 0,27–0,30) = 1,08–1,20 g; c. 1500–1510 (5 Hvide à
+   0,18–0,24) = 0,90–1,20 g. Per Gylden: 96 Hvide = 25,9–28,8 g (to 1500); 120 Hvide = 21,6–28,8 g (from
+   1500); Lütke 1503–06, 124 Hvide = 22,3–29,8 g. Lübeck: 24 ß = 30,50 g (1468), 26,98 g (13 Mark). So the
+   Hvid side of the Danish system already sat at or under the 13-Mark level in the 1480s–90s, and the 1500/01
+   rate change put the Gylden at 120 Hvide while Lübeck was still at 1468.
+3. *Reading (H, «можна вважати»):* the Hvid set the Danish level, and it ran ahead of Lübeck downwards; the
+   Skilling coin entered c. 1497 at Lübeck's 1468 parity and was worth MORE than the 4 Hvide it was first rated
+   at (1,24–1,27 against 1,08–1,20 g) — hence the re-rating to 5 Hvide c. 1500. Whether the coin itself then
+   fell to 8 lod before 1506 is exactly the open point of item 1. Spread caveat: the Hvid ranges come from few
+   assays (§0.6) and include wear; the comparison is of levels, not of single coins.
+
 ## §1. Sources and provenance chains
 
 | # | Source | What it gives | Chain / caveat |
