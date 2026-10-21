@@ -356,7 +356,7 @@ When in doubt, ask: *would this phrase appear in a peer-reviewed numismatic arti
 
 ### 3a. `year_label` field — plain decimal years only
 
-The `coins[].year_label` field accepts **only plain decimal years or year-ranges** (the «Рік(роки)» column on the rendered page). Allowed shapes:
+The `coins[].year_label` field accepts **only plain decimal years or year-ranges** (the «Роки» column on the rendered page). Allowed shapes:
 
 ```yaml
 year_label: '1603'                    # single year
