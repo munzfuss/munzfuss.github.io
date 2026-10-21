@@ -1338,6 +1338,52 @@ From the period texts Wilcke prints: Swedish Arboga 1480 «*wågen mark*» (7-1 
 texts reach us through later copies and Wilcke's partial normalisation — not settled without the
 originals (Danske Breve fra Middelalderen / Diplomatarium Danicum online).
 
+### §3.7 The Hvid 1440–1513 as a separate series — two systems, compatible in reckoning (2026-10-21, curator question, agreed)
+
+**Curator's thesis (2026-10-21):** the Hvid was struck before the 103½-Schilling standard of 1468
+existed, outlived it and the 13-Mark step of 1506, and changed little throughout; the Skilling (and the
+Søsling as its half) was struck to the Lübeck standard and «pulled towards» it with each of its steps,
+while the Hvid went on at its own, slowly drifting parameters — so Denmark had TWO systems: a Lübeck
+line (Skilling, Søsling) and a Danish line (Hvid, the mark of Hvide), compatible at the level of
+reckoning, with the Hvid acting as the small change (Scheidemünze) of the Lübeck frame in Denmark.
+This dossier's reading agrees, with the three qualifications below. It is a reading («можна вважати»),
+not a statement of any source.
+
+**What the sources attest**
+
+| Claim | Evidence |
+|---|---|
+| Hvid struck from 1440/42 (Malmø), before 1468 | Märcher 2018 s. 404: «*produktionen i Malmø må antages at være startet på et tidspunkt mellem 1440-1442*»; Karl Knutsson's Swedish ordinance 17 Sept 1453 rates «*en dansk hvid … tre svenske penninge*», the Danish Skilling 10 (s. 402) |
+| The only Danish coin 1450–80, and the dominant coin to the 1530s | Märcher s. 406: «*kun af én mønttype og kun på ét sted – hvide i Malmø*»; s. 14: hoards show «*at hvid dominerede møntomløbet frem til 1530-erne*» (Märcher 2018, 435; 458) |
+| Weight stable, fineness drifting, no reform | Christoffer ≈ 0,75 g (Numista; «*Christoffer af Bayerns hvid … klart den bedste*», s. 407); Christian I 23a → 23b 0,81 → 0,72 g, 290–305 → 275–280 ‰ (Assens hoard table, s. 407); Hans 6 → 5 lod, ≈ 0,82–0,90 g (Eriksson tab. 9; §3.4). Märcher s. 407: «*Konkret ved vi, hvordan hviden var under Christoffer af Bayern – og vi ved, hvor meget ringere den var under kong Hans. Den nedadgående udvikling sker i løbet af Christian 1.s tid – og det fortsætter derefter*». 1523 valvation: Christoffer's Hvide 2 M per Gylden (96), Christian I's 2½ M (120) — Wilcke 7-2 s. 175, 192 |
+| Hvid and Skilling change at different times | Skilling 9 → 8 lod at Lübeck's step (1504/06); Hvid 6 → 5 lod at the Danish rate change c. 1500/01 (Gylden 2 → 2½ M d) — §3.1e, §3.4c |
+| Hvid = small change in the Lübeck frame | Wilcke 7-1 s. 36: «*Hvidene i Virkeligheden kun var Skillemønt*»; in the Hanseatic area the Hvid passed as a Lübeck 3-penny («densche drelinge», Eriksson s. 5; §3.1c) — accepted in the Lübeck system at a discount, not as a Witten of 4 Pf |
+| Mark dansk = 48 Hvide (account) | Wilcke 7-2 s. 149; contracts 1476 «*30 lødige mk. danskæ hvide penge*», 1479 «*18 mk. i hele danske hvide penge sølvmønt*» (Märcher s. 410) |
+| Søsling belongs to the Skilling line, not the Hvid line | 1424 common Hanseatic Søsling (Märcher s. 390–392); Christoffer's Søsling 1,04 g @ ≈ 75 % ≈ ¾ of his Skilling (s. 400, 405); Hans' 1512 Søsling ≈ ½ of the 1512 Skilling by silver (§3.4). No source before 1513 reckons it in Hvide; Reces 1540 § 12 «*2- og 4-Hvide (Søslinger og Skillinger før Frederik 1)*» (Galster) is a retrospective valuation of 1540, not the issuing frame |
+
+**Three qualifications**
+
+1. *«Little changed» holds for the weight only.* The gross weight stayed at 0,72–0,90 g; the fineness
+   moved within ≈ 25–34 % (best under Christoffer, falling through Christian I, raised again early
+   under Hans, then 5 lod). «Unchanged» means: one denomination, one weight norm, no reform — not
+   constant parameters.
+2. *The unit is Wendish, the series is Danish.* Hvid = Witten = 4 Pf and its place in the reckoning
+   (16 ß à 12 Pf) come from the Wendish system (§2). What is Danish is the physical coin's own
+   trajectory. «Compatible in reckoning» is therefore exact: the compatibility was built in from the
+   start; the divergence is in the metal.
+3. *A separate series of parameters, not a separate ordinance.* No act with Hvid parameters survives
+   before Blicher's letter of 1 Aug 1513 (Wilcke 7-1 s. 144); the parameters are known from assays
+   only. The Skilling, too, did not merely «lag»: in 1512 it stood ⅓ below the Lübeck Schilling
+   (Eriksson s. 10) — but it answered Lübeck's steps and the Hvid did not. The asymmetry of
+   reaction, not the size of the lag, separates the two lines.
+
+**Consequence for the card (curator to confirm when the Hvid rows are sorted):** the Hvid from
+Christoffer to 1513 (Galster Christoffer; Rigsråd G 22; Christian I G 23a–d; Hans G 31 / 34 / 36 and the
+Norwegian / Gotland Hvide) is one line and should be presented as the small-change tier of the Danish
+system under the Lübeck frame, with 1468 and 1506 as background dates only — not as a Lübeck
+denomination (the fraction slot «Witten» of §3.1c stays empty). Plan step 8.3 (pre-1481 silver) is
+affected. Row added to `instruments/FUSS_REVIEW_FINDINGS.md` A1.
+
 ## §4. Instruments
 
 | Date | Instrument | Role for the card | Register / dossier |
