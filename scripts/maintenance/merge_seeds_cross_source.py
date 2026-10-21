@@ -84,6 +84,7 @@ if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
 from lib.mint_registry import strip_mint_suffix as _strip_mint_suffix  # noqa: E402
+from lib.weight_range import collect_weight_ranges  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 V2_SEED = ROOT / "data" / "v2" / "seed"
@@ -4165,6 +4166,10 @@ def build_unified(members: list[dict], unified_id: str,
     weights = _collect_field_list(members, "weight_rough_g")
     if weights:
         out["weight_rough_g"] = weights
+    # Catalogue type ranges — union, never a reading (lib/weight_range).
+    wranges = collect_weight_ranges(members)
+    if wranges:
+        out["weight_range_g"] = wranges
     diameters = _collect_field_list(members, "diameter_mm")
     if diameters:
         out["diameter_mm"] = diameters

@@ -129,6 +129,13 @@
   {{ mark((anchor_key or '').split('|'), marks) }}
 {%- endmacro %}
 
+{#- Catalogue TYPE weight (Coin.weight_range_g): a range or a «ca.» figure
+    printed for the type (first source: danskmoent.dk Galster illustration
+    captions). Its own line, never mixed with specimen readings, never in
+    Feingewicht / Δ. -#}
+{%- macro wrange(coin) -%}
+  {%- for r in coin.raw.weight_range_g or [] -%}<div class="w-range"><span class="fin-src" data-tooltip="{{ ui_get('marker.weight_range') }} — {{ r.source }}">{% if r.approx %}{{ ui_get('weight_range.approx') }}&nbsp;{% endif %}{{ fmt_num(r.min, decimals=2, unit='') }}{% if r.max is not none and r.max != r.min %}–{{ fmt_num(r.max, decimals=2, unit='') }}{% endif %}</span></div>{%- endfor -%}
+{%- endmacro -%}
 {%- macro coin_row(coin) %}
 <tr{% if coin.raw.fuss == 'seed_unsorted' %}{% elif coin.raw.kind == 'scheide' %} class="rw-sch"{% elif coin.raw.kind == 'gedenk' %} class="rw-ged"{% endif %}>
   <td class="c-nom">{%- if coin.raw.kind == 'gedenk' %}<span class="ged-mark" data-tooltip="{{ ui_get('label.gedenk') }}">✦</span>&nbsp;{% endif -%}{{ coin.raw.nominal|nominal_nbsp|safe }}</td>
@@ -228,7 +235,8 @@
       {%- endfor -%}
     {%- elif coin.raw.weight_rough_label -%}
       {{ coin.raw.weight_rough_label|t(lang) }}{%- if not coin.raw.weight_rough_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
-    {%- else -%}—{%- endif -%}
+    {%- elif not coin.raw.weight_range_g -%}—{%- endif -%}
+    {{- wrange(coin) -}}
   </td>
   <td class="c-w">
     {%- if coin.msr_n > 1 -%}
@@ -477,7 +485,8 @@
       {%- endfor -%}
     {%- elif coin.raw.weight_rough_label -%}
       {{ coin.raw.weight_rough_label|t(lang) }}{%- if not coin.raw.weight_rough_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
-    {%- else -%}—{%- endif -%}
+    {%- elif not coin.raw.weight_range_g -%}—{%- endif -%}
+    {{- wrange(coin) -}}
   </td>
   <td class="c-d">
     {%- if coin.diameter_groups -%}

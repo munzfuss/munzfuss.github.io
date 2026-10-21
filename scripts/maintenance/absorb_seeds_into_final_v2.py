@@ -66,6 +66,7 @@ V2_OVERMERGE_PURGE = ROOT / "data" / "v2" / "overmerge_purge_allowlist.yml"
 sys.path.insert(0, str(ROOT / "scripts"))
 from lib.fraction_infer import infer_fraction, load_fuss_fractions  # noqa: E402
 from lib.gen_stamp import resolve_generated_at  # noqa: E402
+from lib.weight_range import collect_weight_ranges  # noqa: E402
 from lib.seed_merge import merge_seed  # noqa: E402
 from lib.specimen_exclusions import (  # noqa: E402
     load_excluded_specimens, strip_excluded_specimens)
@@ -1003,6 +1004,10 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     weights = _collect_field_list(members, "weight_rough_g", skip_first_list=_skip_first)
     if weights:
         out["weight_rough_g"] = weights
+    # Catalogue type ranges — union over final + members (lib/weight_range).
+    wranges = collect_weight_ranges([final_entry] + list(members))
+    if wranges:
+        out["weight_range_g"] = wranges
     diameters = _collect_field_list(members, "diameter_mm", skip_first_list=_skip_first)
     if diameters:
         out["diameter_mm"] = diameters
@@ -3122,7 +3127,7 @@ def process_entity(entity_id: str) -> dict:
                     _twin.setdefault(_sc["id"], _sc)
         # Fields the over-merge accumulated onto the foundation — reset from
         # the twin so they re-derive cleanly from the post-purge member set.
-        _ACCUM = ("catalog", "weight_rough_g", "fineness", "diameter_mm",
+        _ACCUM = ("catalog", "weight_rough_g", "weight_range_g", "fineness", "diameter_mm",
                   "sources", "year_first", "year_last", "year_ranges",
                   "year_label", "year_verified")
         for host_id, evict_ids in _purge_allow.items():

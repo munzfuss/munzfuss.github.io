@@ -2278,3 +2278,18 @@ of one find (one `sources` entry each), so «no photo» must be checked on every
 folded object number, not on the seed's own — four exclusions made on the head
 specimen alone were lifted on 2026-10-20. Treat «no weight, no photo» as true
 for the date of the cache only; re-check per TODO EC.
+
+### 13.26 danskmoent Galster pages — the type's weight is in the illustration, not the text (2026-10-21)
+
+18 cached Galster pages (`grep -ho '<IMG SRC="gif/[^"]*_g[0-9]*[a-z]*\.gif"' scripts/cache/danskmoent/galster/*.htm`)
+show a drawing whose caption, printed INSIDE the GIF, gives metal, diameter and
+a weight for the type — «Hvid (G:142) / Ag, 15 mm, 0,65–0,80 gr». The HTML
+text of those pages gives no weight, so a text parser never sees it. Harvest:
+`fetch_galster.py gifs` → `galster/gif/`. Transcription: hand-read (no OCR) into
+`galster/gif_captions.yml`; the GIFs are tiny (~150 px), so read them upscaled
+4–8× — at native size 1,37/1,57, 2,30/2,90, 0,53/0,9, 1,83/1,80, G 8/G 3 and
+G 67/G 57 were all misread on 2026-10-21. The drawings' source is not stated on
+the pages; do not name a printed work for them. Only seeds with no text weight
+get the caption (`build_galster_denmark_seed.apply_caption_ranges`), into
+`Coin.weight_range_g` — a type figure, never a specimen reading. G 102 / G 103
+already carry the same figures from their own pages (`chr/c3g102.htm`, `c3g103.htm`).

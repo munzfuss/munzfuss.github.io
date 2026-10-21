@@ -557,10 +557,44 @@ def fetch_narrative(force: bool = False) -> None:
         time.sleep(SLEEP_SECS)
 
 
+# Catalogue-illustration GIFs whose caption (inside the image, not in the
+# HTML) gives metal / diameter / weight range, e.g. gif/gothans_g142.gif
+# «Hvid (G:142) / Ag, 15 mm, 0,65–0,80 gr». Transcribed by hand into
+# galster/gif_captions.yml (curator-read; no OCR) — SOURCES.md §13.
+_CAPTION_GIF_RE = re.compile(r'<IMG SRC="(gif/[^"]*_g[0-9]*[a-z]*\.gif)"', re.I)
+
+
+def fetch_caption_gifs(force: bool = False) -> None:
+    """Cache every caption GIF referenced by a cached Galster page into
+    galster/gif/<name>.gif (binary, low volume)."""
+    opener = _make_session()
+    out_dir = CACHE_DIR / "gif"
+    out_dir.mkdir(exist_ok=True)
+    names = sorted({m for f in CACHE_DIR.glob("*.htm")
+                    for m in _CAPTION_GIF_RE.findall(
+                        f.read_text(encoding="utf-8", errors="replace"))})
+    for rel in names:
+        dst = CACHE_DIR / rel
+        if dst.exists() and not force:
+            print(f"  cached: {rel}")
+            continue
+        try:
+            body = opener.open(f"{BASE}/{rel}", timeout=30).read()
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            print(f"  ✗ {rel}: {exc}", file=sys.stderr)
+            continue
+        if not body.startswith(b"GIF8"):
+            print(f"  ✗ {rel}: not a GIF", file=sys.stderr)
+            continue
+        dst.write_bytes(body)
+        print(f"  ✓ {rel}: {len(body)} bytes")
+        time.sleep(SLEEP_SECS)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("phase", nargs="?", default="all",
-                    choices=["discover", "fetch", "overviews", "narrative", "all"])
+                    choices=["discover", "fetch", "overviews", "narrative", "gifs", "all"])
     ap.add_argument("--force", action="store_true", help="Re-fetch already-cached pages")
     args = ap.parse_args()
 
@@ -576,6 +610,9 @@ def main() -> None:
     if args.phase in ("narrative", "all"):
         print("\nFetching Galster running text...")
         fetch_narrative(force=args.force)
+    if args.phase in ("gifs", "all"):
+        print("\nFetching caption GIFs...")
+        fetch_caption_gifs(force=args.force)
 
 
 if __name__ == "__main__":

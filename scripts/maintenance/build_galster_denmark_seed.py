@@ -913,6 +913,42 @@ def collect_entries() -> list[dict]:
             if not (_from_index_row(e) and e["id"] in page_ids)]
 
 
+_CAPTIONS_FILE = GALSTER_CACHE / "gif_captions.yml"
+
+
+def _load_caption_ranges() -> dict[str, dict]:
+    """Galster number → hand-transcribed illustration caption (only those
+    that print a weight). galster/gif_captions.yml; SOURCES.md §13."""
+    if not _CAPTIONS_FILE.exists():
+        return {}
+    import yaml
+    rows = (yaml.safe_load(_CAPTIONS_FILE.read_text(encoding="utf-8")) or {}).get("captions") or []
+    return {str(r["galster"]): r for r in rows if r.get("weight_min")}
+
+
+def apply_caption_ranges(entries: list[dict], captions: dict[str, dict]) -> int:
+    """Fill `weight_range_g` from an illustration caption, ONLY when the
+    page text gives no weight (curator 2026-10-21): a catalogue type range
+    is not a specimen, so it never goes into `weight_rough_g`."""
+    n = 0
+    for e in entries:
+        if e.get("weight_rough_g") is not None:
+            continue
+        g = (e.get("catalog") or {}).get("galster")
+        cap = captions.get(str(g)) if isinstance(g, (str, int)) else None
+        if not cap:
+            continue
+        e["weight_range_g"] = [{
+            "min": cap["weight_min"],
+            "max": cap.get("weight_max"),
+            "approx": bool(cap.get("approx")),
+            "source": f"danskmoent.dk {cap['page']}",
+            "url": f"https://www.danskmoent.dk/{cap['image']}",
+        }]
+        n += 1
+    return n
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--dry-run", action="store_true")
@@ -920,6 +956,8 @@ def main() -> int:
 
     print(f"Collecting Galster pre-1541 entries from {GALSTER_CACHE}...")
     entries = collect_entries()
+    n_cap = apply_caption_ranges(entries, _load_caption_ranges())
+    print(f"  Illustration-caption weight ranges applied: {n_cap}")
     entries.sort(key=lambda e: (e.get("year_first", 9999), e.get("id", "")))
 
     from collections import Counter

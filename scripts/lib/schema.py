@@ -230,6 +230,32 @@ class FieldValue(_StrictBase):
     template: I18nText | None = None
 
 
+class WeightRange(_StrictBase):
+    """A catalogue's weight figure for a TYPE — a range («0,65–0,80 gr»)
+    or a single «ca.» value — as distinct from a weighed specimen.
+
+    Not a reading: it does not enter `weight_rough_g`, the primary reading,
+    Feingewicht, Δ or the implied Fuß. The renderer shows it in the weight
+    column as its own line with the source in the tooltip. First source:
+    the captions printed inside the danskmoent.dk Galster illustration
+    GIFs (docs/SOURCES.md §13; curator decision 2026-10-21). List-form on
+    the coin so several catalogues' ranges accumulate (never collapse).
+    """
+    min: float = Field(..., gt=0)
+    # None = the catalogue gives one figure, not a range.
+    max: float | None = Field(None, gt=0)
+    # «ca.» printed before the figure.
+    approx: bool = False
+    source: str = Field(..., min_length=1)
+    url: str | None = None
+
+    @model_validator(mode="after")
+    def _ordered(self):
+        if self.max is not None and self.max < self.min:
+            raise ValueError(f"weight range max {self.max} < min {self.min}")
+        return self
+
+
 class HedeMuentzfussYield(_StrictBase):
     """Hede 1971 per-page «Marken fin udbragt til N <UNIT>» quote — the
     explicit Müntzfuß ratio Hede attested for this coin.
@@ -1130,6 +1156,9 @@ class Coin(_StrictBase):
     )
     weight_rough_label: I18nTextOptional | None = None
     weight_rough_verified: bool = True
+    # A catalogue's TYPE weight (range or «ca.» figure), never a specimen —
+    # see WeightRange. Not used in any arithmetic.
+    weight_range_g: list[WeightRange] | None = None
     diameter_mm: float | list[FieldValue] | None = Field(
         None,
         description="Same form as fineness — scalar or list of FieldValue.",

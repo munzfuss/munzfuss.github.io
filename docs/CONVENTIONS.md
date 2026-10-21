@@ -231,6 +231,15 @@ verification_note:
 
 For calculations, use midpoint or minimum with a `verification_note` explaining.
 
+**A catalogue's weight for a TYPE is not a specimen** (curator 2026-10-21). When
+a catalogue prints a range or a «ca.» figure for the type (first case: the
+danskmoent Galster illustration captions, SOURCES §13.26), it goes into
+`weight_range_g` — a list of `{min, max, approx, source, url}` (`max: null` =
+one figure) — never into `weight_rough_g` as min/max readings. Merger and
+absorb carry it by union (`lib/weight_range.collect_weight_ranges`); the
+renderer shows it as its own line in the weight column with a tooltip; it is
+not used for Feingewicht, Δ or the implied Fuß.
+
 ## Timeline display anchor vs. standard start (pre-1514 Danish fusses)
 
 The Denmark timeline (`data/v2/locations/denmark.yml::timeline`) starts at the
