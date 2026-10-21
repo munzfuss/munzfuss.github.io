@@ -717,6 +717,23 @@ def declassified(was: dict, now: dict, excused: set[str],
             for (n_ent, n_fid, ent, fid, fuss), v in sorted(hits.items())]
 
 
+_THINNED_REPS: dict[str, list[str]] | None = None
+
+
+def _thinned_reps() -> dict[str, list[str]]:
+    """{thinned-away seed id → [representative seed ids whose `_thinned_from`
+    lists it]} over the working tree's seeds. Cached per process."""
+    global _THINNED_REPS
+    if _THINNED_REPS is None:
+        out: dict[str, list[str]] = {}
+        for sf in sorted((ROOT / "data/v2/seed").glob("*/*.yml")):
+            for c in (_read_yaml(sf).get("coins") or []):
+                for dead in c.get("_thinned_from") or []:
+                    out.setdefault(dead, []).append(c.get("id"))
+        _THINNED_REPS = out
+    return _THINNED_REPS
+
+
 _GLOBAL_URLS: dict[str, tuple[str, str]] | None = None
 
 
@@ -922,6 +939,14 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
             _seed = cid[len("unified-"):]
             if _seed in home and home[_seed][1] != cid:
                 elsewhere_hit = (_seed, home[_seed])
+            elif _seed not in home:
+                # §9a thinning folded the seed into a representative whose
+                # `_thinned_from` lists it — the same identity, one hop on
+                # (absorb's `_superseding_class` follows it since 2026-10-21).
+                _rep = next((r for r in _thinned_reps().get(_seed, [])
+                             if r in home and home[r][1] != cid), None)
+                if _rep:
+                    elsewhere_hit = (_rep, home[_rep])
         if elsewhere_hit is not None:
             member, (ent, host) = elsewhere_hit
             _hf = (cur[host].get("fuss") if ent == entity and host in cur

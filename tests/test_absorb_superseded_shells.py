@@ -119,5 +119,28 @@ class CuratedShellSettled(unittest.TestCase):
         self.assertEqual(succ["note"], {"en": "Obverse: portrait"})
 
 
+class ThinnedSeedShell(unittest.TestCase):
+    """§9a thinning folded the bare seed into a representative whose
+    `_thinned_from` lists it, so the seed no longer exists and the sub-letter
+    path finds nothing. 2026-10-21: unified-kmk-130729 (thinned into
+    kmk-130791 → Galster 31) and 14 more rendered as sourceless rows."""
+
+    def setUp(self):
+        self._saved = (ab._SEED_CLASS_INDEX, ab._SUB_LETTER_INDEX, ab._THINNED_REP_INDEX)
+        ab._SEED_CLASS_INDEX = {"kmk-130791": "unified-dk-numista-108399"}
+        ab._SUB_LETTER_INDEX = {}
+        ab._THINNED_REP_INDEX = {"kmk-130729": ["kmk-130791"], "kmk-9": ["kmk-gone"]}
+
+    def tearDown(self):
+        ab._SEED_CLASS_INDEX, ab._SUB_LETTER_INDEX, ab._THINNED_REP_INDEX = self._saved
+
+    def test_thinned_seed_follows_its_representative(self):
+        fe = {"id": "unified-kmk-130729", "composed_of": [], "fuss": "luebischer_muenzfuss"}
+        self.assertEqual(ab._superseding_class(fe, set()), "unified-dk-numista-108399")
+
+    def test_representative_in_no_class_keeps_the_final(self):
+        self.assertIsNone(ab._superseding_class({"id": "unified-kmk-9", "composed_of": []}, set()))
+
+
 if __name__ == "__main__":
     unittest.main()

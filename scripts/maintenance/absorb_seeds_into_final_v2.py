@@ -2079,11 +2079,35 @@ def _superseding_class(fe: dict, live_member_ids: set) -> str | None:
         # but only when they all landed in ONE class; siblings split across
         # classes (nc5h56a / nc5h56b) are a curator question, not a rename.
         subs = {idx[k] for k in _sub_letter_seeds(bare)}
+        if not subs:
+            # §9a thinning folded the bare seed into a representative seed,
+            # whose `_thinned_from` lists it: the seed is gone, its specimen
+            # lives on in the representative's class. Same rename, one hop
+            # further (2026-10-21: unified-kmk-130729, thinned into
+            # kmk-130791 → Galster 31, rendered as a sourceless row).
+            subs = {idx[r] for r in _thinned_rep_index().get(bare, []) if r in idx}
         if len(subs) > 1 and fe.get("fuss") not in (None, "seed_unsorted"):
             _SPLIT_SUB_LETTER_SHELLS.add(fid)
         return subs.pop() if len(subs) == 1 and fid not in subs else None
     cls = idx.get(bare)
     return cls if cls and cls != fid else None
+
+
+_THINNED_REP_INDEX: dict[str, list[str]] | None = None
+
+
+def _thinned_rep_index() -> dict[str, list[str]]:
+    """{thinned-away seed id → [representative seed ids whose `_thinned_from`
+    lists it]}, across every seed file. Cached."""
+    global _THINNED_REP_INDEX
+    if _THINNED_REP_INDEX is None:
+        out: dict[str, list[str]] = {}
+        for sf in sorted(V2_SEED.glob("*/*.yml")):
+            for c in (_load_yaml(sf).get("coins") or []):
+                for dead in c.get("_thinned_from") or []:
+                    out.setdefault(dead, []).append(c.get("id"))
+        _THINNED_REP_INDEX = out
+    return _THINNED_REP_INDEX
 
 
 _SUB_LETTER_INDEX: dict[str, list[str]] | None = None
