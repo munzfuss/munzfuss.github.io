@@ -2407,7 +2407,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 [data-theme="v1"] .ent-badge.ent-herzogtum_sachsen_lauenburg { background: #d4dee8; color: #1f3045; border-color: #6e8aa8; }
 
 /* Verification & translation markers */
-.unverified { color: var(--sd-under-deep-fg); cursor: help; font-weight: 600; font-family: var(--font-sans); margin-left: 0.25em; }
+.unverified { color: var(--sd-under-deep-fg); cursor: help; font-weight: 600; font-family: var(--font-sans); }
 [data-theme="v1"] .unverified, [data-theme="v1"] .template-mark { color: var(--accent); }
 .val-source { cursor: help; }  /* primary value with explicit source — inline */
 /* Use rgba on color (not opacity) so the tooltip ::after pseudo-element
@@ -2443,15 +2443,15 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
    confirm a value, and are coloured to rank: amber for a doubt, red for a
    demonstration. */
 .suspect-mark { color: rgba(201, 122, 61, 0.9); cursor: help; font-weight: 600;
-                  font-family: var(--font-sans); margin-left: 0.25em; }
+                  font-family: var(--font-sans); }
 .erroneous-mark { color: rgba(178, 58, 58, 0.9); cursor: help; font-weight: 600;
-                  font-family: var(--font-sans); margin-left: 0.25em; }
+                  font-family: var(--font-sans); }
 /* (§) .template-mark — the reading is the standard's computed target value, not
    a measurement. Same colour as «(?)» (theme accent on light), and NO strike: nothing is wrong with the number,
    it just is not evidence about a specimen. (The `.template` value class gets
    no rule on purpose.) */
 .template-mark { color: var(--sd-under-deep-fg); cursor: help; font-weight: 600;
-                  font-family: var(--font-sans); margin-left: 0.25em; }
+                  font-family: var(--font-sans); }
 /* The value block a mark applies to — struck through, in the mark's rank colour.
    `text-decoration` on the value's own element leaves the trailing «(*)»/«(!)»
    sign (a sibling) untouched. */

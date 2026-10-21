@@ -504,9 +504,9 @@ def _fuss_spec_line(spec, lang: str):
     note = g.get("fineness_note") or {}
     note = note.get(lang) or note.get("en") or ""
     if note:
-        q = Markup(' <span class="pspec-q" data-tooltip="') + escape(note) + Markup('">(?)</span>')
+        q = Markup('&nbsp;<span class="pspec-q" data-tooltip="') + escape(note) + Markup('">(?)</span>')
     else:
-        q = Markup(' <span class="pspec-q">(?)</span>')
+        q = Markup('&nbsp;<span class="pspec-q">(?)</span>')
     out = Markup("")
     label = g.get("label")
     if label:

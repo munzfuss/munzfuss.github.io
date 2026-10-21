@@ -99,8 +99,8 @@
 {%- macro catval(prefix, v, cmarks) -%}
   {%- set m = (cmarks or {}).get(prefix ~ '|' ~ v) -%}
   {%- if not m -%}{{ v }}
-  {%- elif m[0] == 'unverified' -%}{{ v }} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>
-  {%- else -%}<span class="cat-alt">{{ v }} <span class="{{ m[0] }}-mark" data-tooltip="{{ m[1]|t(lang) }}">{{ msign[m[0]] }}</span></span>
+  {%- elif m[0] == 'unverified' -%}{{ v }}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>
+  {%- else -%}<span class="cat-alt">{{ v }}&nbsp;<span class="{{ m[0] }}-mark" data-tooltip="{{ m[1]|t(lang) }}">{{ msign[m[0]] }}</span></span>
   {%- endif -%}
 {%- endmacro -%}
 
@@ -116,7 +116,7 @@
       {%- endif -%}
     {%- endfor -%}
     {%- if ns.kind -%}
-      <span class="{{ ns.kind }}-mark" data-tooltip="{{ ns.why|t(lang) }}">{{ msign[ns.kind] }}</span>
+     &nbsp;<span class="{{ ns.kind }}-mark" data-tooltip="{{ ns.why|t(lang) }}">{{ msign[ns.kind] }}</span>
     {%- endif -%}
   {%- endif -%}
 {%- endmacro %}
@@ -135,12 +135,12 @@
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
     {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
-    {%- if not coin.raw.year_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- if not coin.raw.year_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- set shown = parts|map('trim')|list -%}
-    {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }} <span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
+    {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   {%- endif -%}</td>
-  <td class="c-ruler">{{ coin.raw.ruler|ruler(lang) }}{%- if not coin.raw.ruler_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
-    {%- for a in coin.raw.ruler_alts or [] if a.value != coin.raw.ruler %} <span class="ruler-alt">{{ a.value|ruler(lang) }} <span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
+  <td class="c-ruler">{{ coin.raw.ruler|ruler(lang) }}{%- if not coin.raw.ruler_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- for a in coin.raw.ruler_alts or [] if a.value != coin.raw.ruler %} <span class="ruler-alt">{{ a.value|ruler(lang) }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
   <td class="c-km">
     {%- for prefix, vals, tooltip in coin.catalog_groups -%}
       {%- if prefix -%}
@@ -172,7 +172,7 @@
         'bronze': ui_get('metal.bronze')
       } -%}
       {%- if coin.msr_n > 1 -%}
-        {%- set _mname -%}{{ metals[coin.raw.metal] }}{%- if not coin.raw.metal_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+        {%- set _mname -%}{{ metals[coin.raw.metal] }}{%- if not coin.raw.metal_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
         {#- проба ALIGNED with the sub-rows: one .msr-seg per distinct fineness,
             spanning exactly the weight sub-rows it applies to (fineness derived
             per-row from fein/rough, snapped to the catalogue reading). Metal
@@ -180,10 +180,10 @@
             tooltip; ≥2 divergent readings → orange (.fin-alt), each with its own
             source. -#}
         {%- set _funi = (coin.msr_fineness_segs|length) <= 1 -%}
-        {%- for s in coin.msr_fineness_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{{ _mname }}{% if s.value is not none %}&nbsp;{% set _txt = '.' ~ ((s.value * (10 ** s.decimals))|round|int) %}{% set _k = mkind(s.sources, coin.fineness_marks) %}{% if _funi %}{% if s.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{% else %}<span class="fin-alt {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% endif %}{% set _fm = mark(s.sources, coin.fineness_marks) %}{{ _fm }}{% set _fu = s.value | fin_unit(coin.raw.metal, lang) %}{% set _fq = not coin.raw.fineness_verified and not _fm|trim %}{% if _fu or _fq %}<span class="fin-eq">{{ _fu }}{% if _fq %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endif %}{% endif %}</div>{%- endfor -%}
+        {%- for s in coin.msr_fineness_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{{ _mname }}{% if s.value is not none %}&nbsp;{% set _txt = '.' ~ ((s.value * (10 ** s.decimals))|round|int) %}{% set _k = mkind(s.sources, coin.fineness_marks) %}{% if _funi %}{% if s.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{% else %}<span class="fin-alt {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% endif %}{% set _fm = mark(s.sources, coin.fineness_marks) %}{{ _fm }}{% set _fu = s.value | fin_unit(coin.raw.metal, lang) %}{% set _fq = not coin.raw.fineness_verified and not _fm|trim %}{% if _fu or _fq %}<span class="fin-eq">{{ _fu }}{% if _fq %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endif %}{% endif %}</div>{%- endfor -%}
       {%- else -%}
       {{ metals[coin.raw.metal] }}
-      {%- if not coin.raw.metal_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+      {%- if not coin.raw.metal_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
       {%- if coin.fineness_groups -%}
         {%- for g in coin.fineness_groups %}
           {%- set _dec = g.display_decimals if g.display_decimals is not none else 3 -%}
@@ -205,17 +205,17 @@
             (Karat / Lot) comes AFTER the marker so it drops to its own line while the "(?)"
             stays on the value line. Keyed to the primary (first) fineness reading. -#}
         {%- set _fu = coin.fineness_groups[0].value | fin_unit(coin.raw.metal, lang) -%}
-        {%- set _fm = mark(coin.fineness_groups[0].sources, coin.fineness_marks) -%}{%- set _fq = not coin.raw.fineness_verified and not _fm|trim -%}{%- if _fu or _fq -%}<span class="fin-eq">{{ _fu }}{% if _fq %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{%- endif -%}
+        {%- set _fm = mark(coin.fineness_groups[0].sources, coin.fineness_marks) -%}{%- set _fq = not coin.raw.fineness_verified and not _fm|trim -%}{%- if _fu or _fq -%}<span class="fin-eq">{{ _fu }}{% if _fq %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{%- endif -%}
       {%- endif -%}
       {%- endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-w{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 -%}
-      {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for s in coin.msr_weight_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.weight_groups -%}
-      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.weight_groups -%}
         {%- set _dec = g.display_decimals if g.display_decimals is not none else 2 -%}
         {%- set _txt = fmt_num(g.value, decimals=_dec, unit='') -%}
@@ -226,15 +226,15 @@
         {%- endif -%}
       {%- endfor -%}
     {%- elif coin.raw.weight_rough_label -%}
-      {{ coin.raw.weight_rough_label|t(lang) }}{%- if not coin.raw.weight_rough_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+      {{ coin.raw.weight_rough_label|t(lang) }}{%- if not coin.raw.weight_rough_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-w">
     {%- if coin.msr_n > 1 -%}
-      {%- set _qm -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qm -%}{%- if coin.derived_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for s in coin.msr_fein_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.weight_fein_groups -%}
-      {%- set _qmark -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if coin.derived_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.weight_fein_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=5, unit='') -%}
         {%- set _k = mkind_derived(g.anchor_key, coin.weight_marks) -%}
@@ -249,7 +249,7 @@
       the ROUGH weight; the tooltip says so, since the column header can't. #}
   <td class="c-delta"{% if coin.delta_basis == 'rauh' %} data-tooltip="{{ ui_get('marker.delta_rough') }}"{% endif %}>
     {%- if coin.msr_n > 1 -%}
-      {%- set _qm -%}{%- if coin.delta_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qm -%}{%- if coin.delta_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for s in coin.msr_delta_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">
         {%- if s.value is none -%}{% if coin.raw.metal == 'copper' %}<span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>{% else %}—{% endif %}
         {%- else -%}
@@ -267,7 +267,7 @@
          sources yield the same Δ (single group), drop both the
          alt-source styling AND the tooltip — same convention as the
          weight / fineness columns above (consensus = plain badge). #}
-      {%- set _qmark -%}{%- if coin.delta_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if coin.delta_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.delta_groups -%}
         {%- set dp = g.delta_pct if g.delta_pct is not none else 0 -%}
         {%- if dp < -1.0 -%}{%- set sd_cls = 'under-deep' -%}
@@ -293,10 +293,10 @@
      number is shown (2 decimals). #}
   <td class="c-stop-rough{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 -%}
-      {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for s in coin.msr_stop_rough_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.stop_rough_groups -%}
-      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.stop_rough_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=2, unit='') -%}
         {%- set _k = mkind(g.sources, coin.weight_marks) -%}
@@ -312,10 +312,10 @@
      attribution, mark_derived on anchor_key, derived_unverified «(?)». #}
   <td class="c-stop-fine{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 -%}
-      {%- set _qm -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qm -%}{%- if coin.derived_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for s in coin.msr_stop_fine_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.stop_fine_groups -%}
-      {%- set _qmark -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if coin.derived_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.stop_fine_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=2, unit='') -%}
         {%- set _k = mkind_derived(g.anchor_key, coin.weight_marks) -%}
@@ -341,7 +341,7 @@
        not a standard difference) — it keeps its own deduped column regardless of
        whether the other columns split into sub-rows. #}
     {%- if coin.diameter_groups -%}
-      {%- set _qmark -%}{%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if not coin.raw.diameter_mm_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.diameter_groups -%}
         {%- set _dec = g.display_decimals if g.display_decimals is not none else 1 -%}
         {%- set _txt = fmt_num(g.value, decimals=_dec, unit='') -%}
@@ -356,10 +356,10 @@
   <td class="c-mint">
     {%- if coin.raw.mint -%}
       {{- coin.raw.mint|mint_label(coin.raw.year_first) -}}
-      {%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+      {%- if not coin.raw.mint_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
     {%- set _mints = coin.raw.mint if coin.raw.mint is not string else [coin.raw.mint] -%}
-    {%- for a in coin.raw.mint_alts or [] if a.value not in (_mints or []) %} <span class="mint-alt">{{ a.value }} <span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
+    {%- for a in coin.raw.mint_alts or [] if a.value not in (_mints or []) %} <span class="mint-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   </td>
   <td class="c-entity">
     {# V2 issuing_entity may be a list (joint-jurisdiction coins per V2_PIPELINE.md
@@ -429,12 +429,12 @@
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
     {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
-    {%- if not coin.raw.year_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- if not coin.raw.year_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- set shown = parts|map('trim')|list -%}
-    {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }} <span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
+    {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   {%- endif -%}</td>
-  <td class="c-ruler">{{ coin.raw.ruler|ruler(lang) }}{%- if not coin.raw.ruler_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
-    {%- for a in coin.raw.ruler_alts or [] if a.value != coin.raw.ruler %} <span class="ruler-alt">{{ a.value|ruler(lang) }} <span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
+  <td class="c-ruler">{{ coin.raw.ruler|ruler(lang) }}{%- if not coin.raw.ruler_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- for a in coin.raw.ruler_alts or [] if a.value != coin.raw.ruler %} <span class="ruler-alt">{{ a.value|ruler(lang) }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
   <td class="c-km">
     {%- for prefix, vals, tooltip in coin.catalog_groups -%}
       {%- if prefix -%}
@@ -461,10 +461,10 @@
   </td>
   <td class="c-w{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 -%}
-      {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for s in coin.msr_weight_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.weight_groups -%}
-      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.weight_groups -%}
         {%- set _dec = g.display_decimals if g.display_decimals is not none else 2 -%}
         {%- set _txt = fmt_num(g.value, decimals=_dec, unit='') -%}
@@ -474,12 +474,12 @@
         {%- endif -%}
       {%- endfor -%}
     {%- elif coin.raw.weight_rough_label -%}
-      {{ coin.raw.weight_rough_label|t(lang) }}{%- if not coin.raw.weight_rough_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+      {{ coin.raw.weight_rough_label|t(lang) }}{%- if not coin.raw.weight_rough_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-d">
     {%- if coin.diameter_groups -%}
-      {%- set _qmark -%}{%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if not coin.raw.diameter_mm_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.diameter_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=1, unit='') -%}
         {%- set _k = mkind(g.sources, coin.diameter_marks) -%}
@@ -492,10 +492,10 @@
   <td class="c-mint">
     {%- if coin.raw.mint -%}
       {{- coin.raw.mint|mint_label(coin.raw.year_first) -}}
-      {%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+      {%- if not coin.raw.mint_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
     {%- set _mints = coin.raw.mint if coin.raw.mint is not string else [coin.raw.mint] -%}
-    {%- for a in coin.raw.mint_alts or [] if a.value not in (_mints or []) %} <span class="mint-alt">{{ a.value }} <span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
+    {%- for a in coin.raw.mint_alts or [] if a.value not in (_mints or []) %} <span class="mint-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   </td>
   <td class="c-entity">
     {# V2 list-form aware (same shape as the silver coin_row macro above). #}
