@@ -110,7 +110,9 @@ The basis on which undated Skillinger and Søslinger of Hans are to be dated lat
 - ⚠ Years in our data (found 2026-10-21, `trace_coin why` shows no curator decision): G32 (København) and G35
   (Aalborg) finals show **1512**, from KMM 273472/273473/273475 (find FP 1667, KMM «1512–1512»), while Galster
   lists both as «*u.år*»; the Bergen Skilling G148 final shows **1510**, from Bruun Part V lot 15003 «*ND
-  (1510)*» — an attributed date, rendered as a plain year. For the curator (FUSS_REVIEW_FINDINGS).
+  (1510)*» — an attributed date, ~~rendered as a plain year~~. **Checked 2026-10-21 (curator asked for
+  `year_verified: false` on both):** all three finals already carry `year_verified: false` (seed_unified too), so
+  the years render with «(?)»; nothing to change. My «plain year» was written without checking the flag.
 
 **Søsling — start contested.**
 - Earliest dated piece 1512 (KMM, «*unik sösling 1512*», Eriksson s. 10); no Søsling in any hoard in DMS.
