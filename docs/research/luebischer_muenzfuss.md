@@ -166,6 +166,28 @@ The 1506 border is Lübeck's Rezess, applied to the Danish Skilling by the parit
 an attested Danish act. Would be settled by a dated assay of an 8-lod Skilling, or by a Danish text tying a
 Skilling change to the Lübeck step.
 
+**Where «1500/03» and «1503/06» came from, and does 1501–1506 contradict anything? (curator, 2026-10-21)**
+- *«c. 1500/03» (end of 9-lod Skilling, start of stage II)* — from §0.1 (written 2026-10-15/16, before the DCH full
+  pass): «*Gylden = 2½ M d ved Aarhundredskiftet*» (Wilcke 7-1 s. 134) plus Wilcke's 1503 mixed rates (toll 2 M d,
+  account 2½) read as «transition c. 1503». The later reads moved the attested change earlier: DCH «*2½ mr. fore
+  en rinsk guldene*» already in **1500**, Mulich 1501, 1502; Piorr: 2½ «*zumindest zwischen 1500 und 1505*». The
+  1503 «2 M d» is the forced toll rate (Enemark via Piorr, 1503–1507/10), not the market. So «1503» was a stale,
+  low-resolution estimate; the attested lower bound is 1500 («bis etwa 1500» for 2 M d, 1500 for 2½).
+- *«c. 1503/06» (start of 8-lod Skilling)* — hans_rates §6: two readings kept side by side — (a) the 8-lod
+  Skilling = the Lübeck ß after the 13-Mark step (1506); (b) «*they could also be c. 1500–1505 debasement passing
+  the level*», with 1503 (start of the forced toll rate, read as a sign of a worse coin) as its anchor. «1503/06»
+  is the two readings written as one range.
+- *Does «9 lod = 5 Hvide, c. 1500 – 1506» contradict any source?* Checked against the register: no.
+  «*5 Hvide for 1 ß*» (Wilcke 7-1 s. 142, undated) fits; Lütke 1503–06 (124 Hvide / G, Gulden 24 ß l.) is a Hvid
+  rate and says nothing about the Skilling; the forced toll rate 1503 does not require a Skilling debasement (the
+  Hvid fall of 1500/01 is enough to explain it); Enemark's «*Abwertung der dänischen Schillingmünzen*» ends the
+  forced rate after 1510 — compatible with 8 lod from 1506 and with 7 lod by 1510. Reading (b) is NOT refuted
+  either: no 8-lod Skilling is dated, so a debasement already in 1500–1505 stays possible. The choice of 1506 rests
+  on the parity argument, not on a date.
+- *Correction to the proposal:* the 2½ rate is attested in 1500, so the boundary year is **1500**, not 1501
+  (cf. the 1512 decision: a boundary year belongs to both periods) → **1495/97 – 1500** and **1500 – 1506**.
+- Still fractional: the P1/P2 border «1495/97» (Gribshunden June 1495 weak, 1497 first mention). Not resolved.
+
 **Consequence for G149 (Bergen Søsling, 0,54 g fine).** ½ ß l. = 0,635 g before 1506, 0,562 g after: 0,54 g is −4 %
 from the post-1506 value and −15 % from the pre-1506 one → **1506 – 1510** under the proposal (not «1503 – 1510»).
 Søsling evidence checked for a contradiction (2026-10-21): no Danish or Norwegian Søsling of Hans is dated before
