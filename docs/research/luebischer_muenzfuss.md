@@ -211,6 +211,36 @@ group; give the group's span as the dating, worded «можна вважати»
 CLAUDE.md: plain years only — the span goes to `year_label` only if the curator approves it as the coin's year
 range, with `year_verified: false`).
 
+### §0.6 Periodisation 1481 – Feb 1513 — final proposal (2026-10-21, curator: «фінально спробуй вичленувати періоди»)
+
+Supersedes the stage borders of §0.1 / §0.2 and the five-period table of §3.4h (8) once the curator accepts it.
+Each border is tagged: **A** = an attested dated event; **H** = our reading. A border year belongs to both periods
+(curator rule of 2026-10-21 for 1512). Detail and quotes: §0.5, §3.4h, `hans_rates_1481_1513.md` §3, §6.
+
+| # | Years | Border at the start — what fixes it | Danish Skilling [C] | Hvid [C] | Søsling [C] | Gulden in M dansk | Lübeck side |
+|---|---|---|---|---|---|---|---|
+| 0 | **1481 – 1483** | death of Christian I (A); Rigsråd coinage 1481–83 (Østergaard via Eriksson) | not struck | **5 lod**, 0,18–0,24 g (A assays, 3) | — | 2 (Christian I's Viken rent; A) | Schilling 1468 = 1,271 g; Gulden 24 ß l. |
+| I | **1483 – 1497** | Hans' reign (A, curator's reign table) | not struck: Bangbostrand (c. 1490) and Gribshunden (June 1495) hold Hvide only (A, the 1495 purse a weak test) | **6 lod**, 0,27–0,30 g (A assays; placing H — Eriksson: Hans «*höjde halterna*») = 3 Pf l. | — | **2** (A: 1483, 1485, 1487, «bis etwa 1500») | 1,271 g; Rezess 1483 reaffirms 1468 (A); 24 ß l. |
+| II | **1497 – 1500** | first mention of Hans' Skilling: «*4 Hvide ß, som Kong Hans mønte lod*» 1497 (A; coinage may begin 1495–97); Møllegården hoard, Skillinger only, late 1490s (A, Ingvardson) | **9 lod**, 1,24–1,27 g (A assays) = Lübeck ß 1468 (C) = **4 Hvide** (A) | 6 lod (H) | not attested | **2** | 1,271 g; Rezess 1492 (A); 1501 Mölln draft still 11½ (A) |
+| III | **1500 – 1506** | Gulden 2 → 2½ M d: 2½ in 1500 (DCH), 1501 (Mulich), 1502 (A) — a fall of the Hvid, 3 → 2,4 Pf l. | **9 lod** = **5 Hvide** = 1 ß l. 1,271 g (H: parity; «*5 Hvide for 1 ß*» A, undated) | **5 lod**, mostly 0,18–0,24 g (A assays; placing H) | not attested | **2½** (A); tolls at a forced 2 from 1503 (A, Enemark via Piorr); Lütke 1503–06: 124 Hvide / G (A) | decision Aug 1504 (A) |
+| IV | **1506 – 1510** | Lübeck's 13-Mark Rezess 29 Dec 1506 (A); applied to the Danish Skilling by parity (H) | **8 lod**, 0,99–1,24, København 1,10–1,18 g (A assays; placing H) ≈ Lübeck ß 1,124 (C) = 5 Hvide | 5 lod (H) | Bergen G149, 0,54 g fine ≈ ½ ß l. after 1506 (H, one specimen) | **2½** (A: 1508); forced toll 2 continues (A) | Markstück at 13 = ß 1,124 g (C) |
+| V | **1510 – 1512** | «*Abwertung der dänischen Schillingmünzen*» ends the forced toll rate after 1510 (A, Enemark via Piorr) | **7 lod** (A assays; placing per curator 2026-10-21) | **4 lod**, 0,16–0,21 g (A assays; placing H) | Danish undated, 5 lod, 0,39–0,42 g — or VI (H) | 2½ in tolls (A); market rate not attested | 1,124 g; Lübeck–Denmark war 1510 – peace at the turn of 1511/1512 (A, Eriksson s. 1–2) |
+| VI | **1512 – Feb 1513** | first dated Skillinger and Søsling 1512 (A) | **6 lod**, dated 1512 (A; 7-lod pieces of 1512 belong to V's end — curator 2026-10-21) | — | **dated 1512** (A) | not attested | 1512 Rezess (paper) ≈ 14⅓ (A) |
+
+End: Hans dies 20 Feb 1513 (A). Christian II's håndfæstning of 22 Jul 1513 (Gulden = 2 M d) is the next reign.
+
+**Borders by strength.** Attested: 0/I (1483), II/III (1500 — the rate), V/VI (1512 — the dated coins), end (1513).
+Attested event but its coin consequence a reading: I/II (1497 — first mention, not first strike), IV/V (1510 —
+Enemark's «Abwertung» names no lod). Reading only: III/IV (1506 — parity with Lübeck; the alternative «8 lod already
+in 1500–1505» stays open, hans_rates §6).
+
+**What is NOT a border any more.** «1503» (only the forced toll rate; no coin event) and «1495/97» as a range (now
+1497, the first mention, with 1495 noted as the weak terminus post quem).
+
+**Open, with what would settle each:** a dated or hoard-closed 8-lod Skilling (III/IV); assays of the Møllegården
+Skillinger (II); assays of Gribshunden Hvide (I); Enemark 1971 I s. 113–118 read directly (IV/V, which coin);
+Galster 1972 on the Søsling; a market Gulden rate for 1510–1513.
+
 ## §1. Sources and provenance chains
 
 | # | Source | What it gives | Chain / caveat |
