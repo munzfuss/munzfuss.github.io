@@ -22,6 +22,16 @@
 - **Open, curator**: (1) DONE — curator confirmed the 6 contested readings (G8, G67, G56, G128, G144, G147) 2026-10-21; (2) DONE — caption diameter → `diameter_mm` reading where the coin had none (curator «так»): 10 seeds; G102/103/114 skipped (`diameter_use: false`, Numista diameter present); (3) DONE — curator: a range counts as two readings (lower + upper bound, tooltip names source + bound), a single figure as one ordinary reading; `lib/weight_range.range_pairs` in compute, caption weights `weight_rough_verified: true` except «ca.».
 - **Not mine, left alone**: a full absorb on HEAD drops ~26k lines of ikmk shells from `_unclassified.yml` + 481 from `herzogtum_braunschweig_lueneburg.yml` (ad08eb5 superseded-shell rule not yet re-flowed) — restored, reported to «дрібні правки».
 
+## 2026-10-21 (later) — Hvid line split: groundwork + name search («стопи» session)
+
+- Curator-agreed in the Galster session (`1be791f`, dossier §3.7): the Hvid 1440–1513 is a separate series.
+  Groundwork written as dossier `luebischer_muenzfuss.md` §3.8 — inventory (19 classified Hans Hvide on
+  `luebischer_muenzfuss`, ≈ 70 Hvide in `seed_unsorted`; «Firehvid» 1512 stays with the Skilling), what each of
+  the two cards carries, three open consequences. NOTHING applied.
+- Name search done (§0 narrow exception step a): no source names a Hvid standard/system. Period-attested:
+  «danske hvide Penge» (1476/79 Märcher s. 410; 1485 Wilcke 7-1 s. 60). Proposal to the curator: that phrase as
+  title (recommended) vs synthesised «Hvidfod» / «Hvidmøntfod». Waiting for the choice — no YAML before «так».
+
 ## 2026-10-21 — Hans 1481–1513: seven-period scheme accepted, first datings applied («стопи» session)
 
 - **Scheme** (dossier `luebischer_muenzfuss.md` §0.6, accepted): 0 1481–1483 Rigsråd · I 1483–1497 · II 1497–1500 ·

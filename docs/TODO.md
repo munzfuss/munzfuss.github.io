@@ -3698,6 +3698,10 @@ Needs decision before data: (1) Søsling — Eriksson's «with the oldest Skilli
 c. 1510–1512»; (2) whether a group span may go into `year_label` (with `year_verified: false`) or only into the
 coin note; (3) which pieces qualify — assayed only (Eriksson tab. 7–8), since weights overlap.
 Would strengthen the anchors: Galster 1972, Märcher 2018, a dated hoard with a Søsling.
+2026-10-21: the Hvid line is to become a SEPARATE card (dossier §3.7 agreed, §3.8 groundwork + name search).
+Needs from the curator before data: the card name (proposal «danske hvide Penge» vs synthesised «Hvidfod»),
+pre-1481 Skilling on the Lübeck card (plan 8.3), phase borders of the Hvid line; then re-classify the 19 Hans
+Hvide off `luebischer_muenzfuss` and add the `fuesse.yml` card.
 
 ## Low priority
 

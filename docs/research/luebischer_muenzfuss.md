@@ -1384,6 +1384,77 @@ system under the Lübeck frame, with 1468 and 1506 as background dates only — 
 denomination (the fraction slot «Witten» of §3.1c stays empty). Plan step 8.3 (pre-1481 silver) is
 affected. Row added to `instruments/FUSS_REVIEW_FINDINGS.md` A1.
 
+### §3.8 Groundwork for splitting the card in two — Skilling line vs Hvid line (2026-10-21, ANALYSIS ONLY, nothing applied)
+
+Follows §3.7 (curator-agreed: the Hvid 1440–1513 is a separate series). No data, YAML or card text
+changed; every step below needs the curator's word.
+
+**(a) Inventory — Hvid rows ≤ 1513 in `data/v2/final` (2026-10-21, after `d7ae39f`)**
+
+| Group | Rows | Where now |
+|---|---:|---|
+| Hans Hvid, DK (Numista/Galster classes) | 9 | `danish_realm`, `luebischer_muenzfuss` |
+| Hans Hvid, Norway (Bruun classes) + Gaute Ivarsson | 8 + 1 | `danish_norway`, `luebischer_muenzfuss` |
+| Rigsråd Hvid (G 22) | 1 | `danish_realm`, `luebischer_muenzfuss` |
+| Christian I Hvid / Korshvid (KMM single specimens + `unified-dk-numista-143575`) | ≈ 43 | `danish_realm`, `seed_unsorted` |
+| Christoffer (`unified-dk-numista-303699`), Interregnum (`unified-dk-numista-142836`) | 2 | `danish_realm`, `seed_unsorted` |
+| Hans Hvid, KMM single specimens / ambiguous ruler («Christian I – Hans», «Hans eller Christian 2», no ruler) | ≈ 20 | `danish_realm`, `seed_unsorted` |
+| Hans Hvid, Norway (Galster hg-154/161 …), Erik Valkendorf | 3 + 1 | `danish_norway`, `seed_unsorted` |
+
+Not Hvid line although the name says «hvid»: **«1 Firehvid» Hans 1512** (`unified-kmk-643661`, `-643665`;
+§6a B1–2) is the 4-Hvide piece = the Skilling — it stays in the Skilling line. Christian II Hvide /
+Dobbelthvid fall after the card's end (1513) and are out of both cards. The §6a stub list (KMM records
+without any data) holds ≈ 35 further «1 Hvid» classes; their fate (D8: on the page as rows) is unchanged by
+the split, only the card they land on.
+
+**(b) What each card would carry**
+
+| | Lübeck line (current `luebischer_muenzfuss`) | Hvid line (new card) |
+|---|---|---|
+| Coins | Skilling (from c. 1495/97), Søsling, Firehvid 1512 | Hvid / Korshvid: Christoffer → Interregnum / Rigsråd G 22 → Christian I G 23a–d → Hans G 31 / 34 / 36; Norwegian and Gotland Hvide of the same kings |
+| Window | 1481 (or earlier, plan 8.3) – Feb 1513 | 1440/42 – 1513 (Märcher s. 404; card end as §5) |
+| Anchors | 1468 / 1483 / 1492 Wendish Rezesse; 13-Mark step 1504/06 | none by instrument before Blicher 1 Aug 1513 (Wilcke 7-1 s. 144); parameters from assays only (Märcher s. 407; Eriksson tab. 9; Heljeback 2016) |
+| Phases | §0.6 seven-period scheme | weight-stable, fineness-drifting: Christoffer best → Christian I 23a→23b fall → Hans 6 lod → 5 lod (c. 1500/01). Phase borders are a separate curator question |
+| 1468, 1506 | defining | background dates only |
+| Witten slot (§3.1c) | stays empty | — (the Hvid is not the Lübeck Witten; it passed as a 3-Pf «densche drelinge») |
+
+Consequences to settle with the curator before any move: (1) the §0.6 periodisation keeps the Hvid
+columns («Hvid 5 lod / 6 lod») only as cross-reference, or drops them; (2) whether pre-1481 Skilling
+(Christoffer's Skilling and Søsling, 1424 Søsling) go onto the Lübeck card — plan step 8.3; (3) the
+classified Hans Hvide (19 rows above) would be RE-classified from `luebischer_muenzfuss` to the new key —
+a `classification_decisions` change plus a `fuesse.yml` card, which needs the name first.
+
+**(c) Name search — §0 «narrow exception» step (a): the search, and its result**
+
+Searched (local corpus, `kb.py search` + direct grep of the extracts): Wilcke 1950 (7-1, 7-2), Hauberg
+1886, Galster 1973 and the danskmoent Galster texts, Märcher 2018 (*Fra denar til daler*), Eriksson 2017
++ appendix, Jensen Hikuin 17 / 35, Holst 1936, Ernst «hanshvid», Rigslovgivning 1397–1513. Terms:
+hvidfod, hvidmøntfod, hvide-fod, hvidsystem, hvidmønt, hvidemønt, hvidregning, hvidrække, dansk møntfod,
+Wittenfuß, Wittensystem, Wittenpfennig, plus every «-hvid-» compound in those works.
+
+Result: **no period or modern term names a Hvid standard or system.** The literature speaks of the coin
+only («Hvide», «Korshvide», «Malmøhvide»); Hauberg 1886 s. 187 describes the period, not a system: «*i hele
+denne lange Periode kun udmyntes Hvide her i Danmark*». What IS period-attested is the money itself:
+
+- 1476 «*30 lødige mk. danskæ hvide penge, som nu i landet gænge er*», 1479 «*18 mk. i hele danske hvide
+  penge sølvmønt*» (Märcher 2018 s. 410);
+- 9 Aug 1485 «*25 M l. i gode hele danske hvide Penge som nu i N. Jylland gænge er*» (Wilcke 7-1 s. 60;
+  again s. 90, s. 134);
+- 1495 «*in denssen gelde, den Dreilingh to 3 Penning*» (Wilcke 7-1 s. 60) — the Low German side.
+
+Not resolved by this search (would need the works themselves): Galster 1936 and 1972 surveys and
+Ernst 1940 beyond the danskmoent excerpt — not in the cache.
+
+**Step (b) — proposal to the curator, flagged as such, NOT written into any YAML:**
+
+1. *Period-attested label, no «-fod»*: «danske hvide Penge» (Wilcke s. 60 / Märcher s. 410) as the card
+   title — the sources' own name for this money; it is not a Fuß name and claims none.
+2. *SYNTHESISED identifier* (§0 narrow exception, modern analogue to «Nobelfod» / «Rhinsk Gyldenfod»):
+   «Hvidfod» or «Hvidmøntfod» — no source uses either; it would carry a note that it is synthesised.
+
+Recommendation: 1 — it is attested and avoids implying a decreed standard, which §3.7 qualification 3
+says did not exist before 1513. Awaiting the curator's choice; the YAML key (e.g. `hvid_…`) follows it.
+
 ## §4. Instruments
 
 | Date | Instrument | Role for the card | Register / dossier |
