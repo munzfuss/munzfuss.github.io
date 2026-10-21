@@ -498,7 +498,7 @@ Lübeck-reckoned ß at 2 per ß l. (Wilcke's «ringere» compares face values at
   Harck, Sømod (danskmoent's literature list).
 
 ---
-Score (research-dossier rubric, self-assessed 2026-10-21): C1 1.5 · C2 2.0 (the grid complete
+Score (research-dossier rubric, self-assessed 2026-10-21, commit c92f579): C1 1.5 · C2 2.0 (the grid complete
 and recomputed from the s. 215 image; the Dütken and the output tabulated; the Sletdaler
 tariff left as a flagged gap) · C3 2.0 (P, T, K, Z, B, M, D, G each dated and sourced) ·
 C4 1.5 (no act in hand — Wilcke I paraphrase, Wilcke II's German sentences, Hede; eight
