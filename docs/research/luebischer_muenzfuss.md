@@ -121,7 +121,8 @@ The basis on which undated Skillinger and Søslinger of Hans are to be dated lat
   lists both as «*u.år*»; the Bergen Skilling G148 final shows **1510**, from Bruun Part V lot 15003 «*ND
   (1510)*» — an attributed date, ~~rendered as a plain year~~. **Checked 2026-10-21 (curator asked for
   `year_verified: false` on both):** all three finals already carry `year_verified: false` (seed_unified too), so
-  the years render with «(?)»; nothing to change. My «plain year» was written without checking the flag.
+  the years render with «(?)»; nothing to change. My «plain year» was written without checking the flag. **Curator 2026-10-21:** G32 / G35 keep KMM's 1512 for now (alternative was 1497–1513 (?) like the other
+  undated Skilling types).
 
 **Applying the anchors to our data (2026-10-21, analysis only, nothing changed).**
 - Scan of every final and every seed (all sources) for Rigsråd / Hans silver 1481–1513 with a fineness: **one coin
