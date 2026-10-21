@@ -95,6 +95,23 @@ The basis on which undated Skillinger and Søslinger of Hans are to be dated lat
   1512 are among the lowest (≈ 35 %). Working groups (H): 9 lod c. 1495/97 – c. 1500/03; 8 lod c. 1503/06 – 1510
   (= Lübeck 13-Mark ß 1,124 g = 5 Hvide at 2½ M d); 7/6 lod c. 1510–1512 (dated 1512 pieces).
 
+**Skilling 7 lod vs 6 lod — can 7 be c. 1510–1512 and 6 be 1512–1513? (curator question 2026-10-21)**
+- Eriksson tab. 7 (the only assays; our own data carry weights only, no fineness for Hans' Skillinger):
+  dated 1512, Malmø G29: **3 pieces at 7 lod** (37,72–41,63 % Ag, 2,22–3,13 g) **and 3 at 6 lod** (33,28–35,90 %,
+  2,45–2,66 g). Undated («1481-1511» in his table): 9 lod 3, 8 lod 5, 7 lod 8, 6 lod 6.
+- So 6 lod is already struck in 1512 — it cannot be confined to a later 1512–1513 stage by the dates. Whether 7 lod
+  precedes 6 lod within 1512 the year alone cannot show. No Skilling dated 1513 is known (Galster: «*1512, u.år*»);
+  Hans died 20 Feb 1513.
+- The lod groups are Eriksson's rounding of % Ag (6 lod = 37,5 %, 7 lod = 43,75 %): the 1512 «7 lod» pieces start at
+  37,72 %, a hair above 6 lod; the 1512 sample is in fact one continuous spread 33–42 %.
+- **Reading (H):** falling fineness 9 → 8 → 7 → 6 lod over time; 7 lod c. 1510–1512, 6 lod 1512 (– Feb 1513). Not
+  separable into two periods on present data. Would be settled by more dated 1512 assays, or by die links between
+  undated 6-lod pieces and the dated 1512 dies.
+- ⚠ Years in our data (found 2026-10-21, `trace_coin why` shows no curator decision): G32 (København) and G35
+  (Aalborg) finals show **1512**, from KMM 273472/273473/273475 (find FP 1667, KMM «1512–1512»), while Galster
+  lists both as «*u.år*»; the Bergen Skilling G148 final shows **1510**, from Bruun Part V lot 15003 «*ND
+  (1510)*» — an attributed date, rendered as a plain year. For the curator (FUSS_REVIEW_FINDINGS).
+
 **Søsling — start contested.**
 - Earliest dated piece 1512 (KMM, «*unik sösling 1512*», Eriksson s. 10); no Søsling in any hoard in DMS.
 - Undated pieces: 5 lod, 1,31–1,47 g (Eriksson tab. 8) → ≈ 0,39–0,42 g fine (our arithmetic).
