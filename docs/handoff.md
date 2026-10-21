@@ -16,6 +16,12 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-21 — Galster illustration captions → `weight_range_g`
+
+- **Shipped, not pushed**: new Coin field `weight_range_g` (catalogue TYPE weight: `{min, max, approx, source, url}`, list, union in merger/absorb via `lib/weight_range`), rendered as an italic own line in the weight column, tooltip «weight of the type from the illustration caption … not used in the calculation»; never in Feingewicht / Δ / Fuß. Source: 18 caption GIFs on danskmoent Galster pages (`fetch_galster.py gifs` → cache `galster/gif/`), hand transcription `galster/gif_captions.yml` (SOURCES §13.26). Builder fills only seeds without a text weight → 10 seeds (G56, 128, 141, 142, 143, 144, 145, 146, 147, 114); G102/103 have text weights; G42/G67 captions give no weight; G8/G16/G139/G140 have no seed (out of scope). Re-flow: 0 losses.
+- **Open, curator**: (1) confirm 6 readings that differ from the first native-size reading (G56 23 mm 1,83–2,34; G128 ca. 0,53; G144 2,30–2,67; G147 1,20–1,37; Lebard is G 8, Søsling is G 67); (2) caption diameters NOT yet written into `diameter_mm` — awaiting yes/no; (3) range kept out of Δ — confirm.
+- **Not mine, left alone**: a full absorb on HEAD drops ~26k lines of ikmk shells from `_unclassified.yml` + 481 from `herzogtum_braunschweig_lueneburg.yml` (ad08eb5 superseded-shell rule not yet re-flowed) — restored, reported to «дрібні правки».
+
 ## 2026-10-20 (evening) — Lybsk Møntfod: legal ties and dating anchors («стопи» session)
 
 - **Dossier work, not pushed** (`fe5e4f6`…`8b1b578`, `luebischer_muenzfuss.md` §3.4f, §3.4h, new §0.5): Danish coin on
