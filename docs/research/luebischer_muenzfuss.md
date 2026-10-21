@@ -139,6 +139,42 @@ The basis on which undated Skillinger and Søslinger of Hans are to be dated lat
 - ⚠ Eriksson tab. 8 lists both Søslinger as «*Malmö … Galster 33*»; Galster's list has 30 = Malmø, 33 = København.
   One of the two is wrong in Eriksson — not settled.
 
+**Re-examination of the P2/P3 border «1500/03 – 1503/06» (curator question 2026-10-21: does 1503–1506 deserve its
+own period?).** The fractional border mixes three different events:
+- **c. 1500/01 — Danish rate change 2 → 2½ M d per Gulden.** 2½ in 1500 (DCH), 1501 (Mulich), 1502, 1503–1508;
+  Piorr: «*zumindest zwischen 1500 und 1505 … üblicherweise 2,5 Mark*» (hans_rates §3). Since the Gulden stayed at
+  24 ß l., this is a fall of the HVID (3 → 2,4 Lübeck Pf), not of the Skilling: the struck Skilling passed for
+  1 ß l. both before (4 Hvide, 1497) and after (5 Hvide).
+- **1503 — the forced toll rate** (Kolding / Ribe tolls at the old 2 M d, accounted at 2½, 1503–1507/10; Enemark via
+  Piorr). An administrative counter-measure to the 1500/01 change, not a coin event.
+- **Aug 1504 decision / 29 Dec 1506 Rezess — Lübeck's 13-Mark step** (Lübeck ß 1,271 → 1,124 g).
+No Danish coin event dated 1503–1506 is attested. **So 1503–1506 as such does not stand as a period.**
+
+What the silver says (our arithmetic, H): the 9-lod Skilling (1,24–1,27 g) equals the Lübeck ß of 1468 (1,271), the
+8-lod Skilling (København 1,10–1,18; whole group 0,99–1,24) the Lübeck ß after the 13-Mark step (1,124). If the
+Danish Skilling kept pace with the Lübeck Schilling (it passed for 1 ß l. throughout), the 9 → 8 lod step belongs
+at Lübeck's step (1504/06), not at the Danish rate change. The Hvid steps differently: 6 lod (≈ 0,27–0,30 g, ≈ 3 Pf
+l.) before 1500/01, 5 lod (≈ 0,18–0,24 g, 2,4 Pf l.) after. **The two denominations change at different times.**
+
+**Proposal for the curator (H):** replace «1495/97 – 1500/03 / 1503/06 – 1510» by
+- P2 **1495/97 – 1500**: Skilling 9 lod = 4 Hvide; Hvid 6 lod; Gulden 2 M d.
+- P3 **1501 – 1506**: Skilling 9 lod = 5 Hvide (= 1 ß l. 1,271 g); Hvid 5 lod; Gulden 2½ M d; tolls at a forced 2 M d
+  from 1503.
+- P4 **1506 – 1510**: Skilling 8 lod (≈ Lübeck ß 1,124 g); Hvid 5 lod; Gulden 2½ M d.
+- then 1510 – 1512 (Skilling 7 lod) and 1512 – Feb 1513 (Skilling 6 lod), as decided.
+The 1506 border is Lübeck's Rezess, applied to the Danish Skilling by the parity argument above — a reading, not
+an attested Danish act. Would be settled by a dated assay of an 8-lod Skilling, or by a Danish text tying a
+Skilling change to the Lübeck step.
+
+**Consequence for G149 (Bergen Søsling, 0,54 g fine).** ½ ß l. = 0,635 g before 1506, 0,562 g after: 0,54 g is −4 %
+from the post-1506 value and −15 % from the pre-1506 one → **1506 – 1510** under the proposal (not «1503 – 1510»).
+Søsling evidence checked for a contradiction (2026-10-21): no Danish or Norwegian Søsling of Hans is dated before
+1512; none in any hoard (Eriksson; Ingvardson: possibly «*only after June 1495*»); Galster 1973 s. 45 and Holst
+1936 (Bergen Søslinger 1,684 / 1,585 / 1,455 g, mean 1,575) give no date. Nothing contradicts 1506–1510; nothing
+supports it either beyond the silver. It would make G149 the earliest Søsling of Hans placed by us — a hypothesis
+from one specimen with a fineness of unstated basis. The Bergen weights (1,38–1,684 g) run above the Danish
+undated Søslinger (1,31–1,47 g), consistent with an earlier, better issue (H).
+
 **Søsling — start contested.**
 - Earliest dated piece 1512 (KMM, «*unik sösling 1512*», Eriksson s. 10); no Søsling in any hoard in DMS.
 - Undated pieces: 5 lod, 1,31–1,47 g (Eriksson tab. 8) → ≈ 0,39–0,42 g fine (our arithmetic).
