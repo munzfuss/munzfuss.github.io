@@ -227,7 +227,7 @@ Reichsthaler; account: 192 × 600 = 115 200 ✓; − 7 200 = 108 000 = 4 500 Thl
 | 12 Dec 1618 | H — Hamburg–Lübeck Müntzmandat (40 ß l.; Schreckenberger banned) | the market closes |
 | 8 March · 8 Aug · Sept–Oct 1619 | Dirksen's arrest; the accident and Dirksen's death; Cordosa jailed; Dionis's letters to Christian IV 9 Oct 1619 | the farm collapses |
 | **7 July 1619** | **P — Privilegium Itzehoe: Denninge at Glückstadt** (`1619_privilegium_dionis_glueckstadt.md`, queued) | Dionis moves to the king's mint |
-| 24 May 1621 | Dionis's memorial to v. d. Meden (Glückstadt): the daler risen from 48 ß l. to 3 Mark 4 ß l.; a new contract for Doppeldenninge (Wilcke s. 172) | the Glückstadt sequel |
+| 14 May 1621 (Wilcke I s. 172, image; the OCR layer «b4.» was read «24» here before 2026-10-21; Wilcke II n. 73: «rettest … 14. Maj 1620») | Dionis's memorial to v. d. Meden (Glückstadt): the daler risen from 48 ß l. to 3 Mark 4 ß l.; a new contract for Doppeldenninge (Wilcke s. 172) | the Glückstadt sequel |
 | 20 July 1620 · 25 Oct 1622 · 28 Feb / 14 Dec 1623 | the ducal / royal edicts for the duchies (`1620_moentedikt_hertugdoemmerne.md`, queued); the Gottorp councillors 22 Nov 1624 on «Dionis's undervægtige Dütken fra Glückstadt» (`1624_moentordning_kobenhavn.md`) | the Kipper aftermath |
 
 ## 7. Our data
