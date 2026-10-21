@@ -87,15 +87,28 @@ Reference for consistent terminology across languages. Used when writing YAML i1
 | Rigsbankdaler | rigsbankdaler | рігсбанкдалер |
 | Krone (dänisch, 4 Mark Danske) | krone (Danish, = 4 Danish mark) | крона (данська) |
 
-**Skilling ≠ Schilling — never cross the names (curator rule 2026-10-21).** The Danish (and Danish-Norwegian)
-coin and unit is always *Skilling* (uk «скілінг», ß d. / ß dansk); the Lübeck / Hamburg / Wendish-union coin and
-unit is always *Schilling* (uk «шилінг», ß l. / ß lübisch). Never call a Danish skilling a «Schilling / шилінг»,
-and never call a Lübeck schilling a «Skilling / скілінг» — in chat, dossiers, commit messages and rendered prose
-alike, in every language. Where both appear (rates, ratio tables, the Lybsk Møntfod card), name the side every
-time: «Danish Skilling», «Lübeck Schilling» / «ß l.». Distinguish also the struck Skilling coin from the Danish ß of
-account (3 Hvide) — under Hans the coin passed for 4, later 5 Hvide (`docs/research/luebischer_muenzfuss.md`
-§3.4h (8)). The «Skilling lybsk» of later Danish/Schleswig texts is a Danish name for the Lübeck-standard unit:
-quote it as the source writes it, and gloss it.
+**Skilling / Schilling — two levels, keep them apart (curator rule 2026-10-21, refined the same day).**
+
+*Level 1 — name (linguistic-territorial): always holds.* The name says in which context the unit is used. Danish
+and Danish-Norwegian context → *Skilling* (uk «скілінг», ß d. / ß dansk); Lübeck / Hamburg / Wendish-union context →
+*Schilling* (uk «шилінг», ß l. / ß lübisch). Never call a Danish skilling «Schilling / шилінг» or a Lübeck schilling
+«Skilling / скілінг» — in chat, dossiers, commits and rendered prose, in every language. Where both sides appear,
+name the side each time («данський скілінг», «любецький шилінг»). The «Skilling lybsk» of later Danish/Schleswig
+texts is quoted as the source writes it and glossed.
+
+*Level 2 — value (mathematical / unit of account vs struck coin).* The name says nothing about whether the values
+are equal; that depends on the period and on which of two things is meant:
+- **Units of account** (Mark = 16 ß = 192 Pf on both sides). While Denmark's system was one with the Wendish towns'
+  the Danish ß of account and the Lübeck ß of account were the same quantity under two names: Margrete's coins
+  «*sollten auch den gleichen Wert wie diese haben, also 4, 3 und 1 lübischen Pfennig gelten*», the royal coin
+  «*gelyk der veerleye munte*» (Jesse, Dänemark section). Once the two drifted apart they are different quantities:
+  under Christian I and early Hans the Hvid passed for 3 Lübeck Pf, so ß d. (3 Hvide) = ¾ ß l., Mark dansk = ¾ Mark
+  lübisch; c. 1500 ß d. = ⅗ ß l. (`docs/research/luebischer_muenzfuss.md` §3.4h (8)). Write «=» between them only
+  for the period of par, and say which period.
+- **Struck coins** are never «equal» to each other or to a unit of account — at most approximately: Hans' 9-lod
+  Skilling ≈ the Lübeck Schilling of 1468 (1,24–1,27 vs 1,271 g fine); the struck Skilling passed for 4, later
+  5 Hvide while the Danish ß of account stayed 3 Hvide. Use «≈» or a stated tariff, never «=» (§3 precision
+  conventions).
 
 ## Rulers & titles (preserve literal form)
 
