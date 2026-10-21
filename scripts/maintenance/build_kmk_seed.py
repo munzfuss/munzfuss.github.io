@@ -285,6 +285,17 @@ def _is_korshvid_hvid(nominal, ruler) -> bool:
     return w is not None and w[1] <= _KORSHVID_LAST_REIGN_END
 
 
+# «Firehvid» is the Skilling of four Hvid: Wilcke 1950 7-1 s. 144 «Hans' 4
+# Hvid-Skillinger»; Galster names the Frederik I Norwegian type «1 skilling
+# (Firehvid)» (nf1g166, nf1g169) and Galster 1973 s. 46 «skillinge
+# (firehvide)». KMM prints the bare word for Hans' Skilling, which split one
+# type into two classes. Curator 2026-10-15 (seven records, by erratum),
+# generalised 2026-10-21 after two siblings of those seven were missed.
+def _is_firehvid_skilling(nominal) -> bool:
+    return (isinstance(nominal, str)
+            and re.sub(r"^1\s+", "", nominal.strip()).casefold() == "firehvid")
+
+
 # A KMM `place` value that is not what KMM meant, corrected from a catalogue.
 # {id: (printed place, corrected mint, citation for the coin's `sources`)}.
 # Curator-approved 2026-10-06 (Serhii), per the §4 errata rule.
@@ -1198,6 +1209,8 @@ def build_entry(src) -> dict | None:
     _nominal_printed = None
     if _is_korshvid_hvid(nominal, src.get("authority")):
         _nominal_printed, nominal = nominal, "hvid"
+    elif _is_firehvid_skilling(nominal):
+        _nominal_printed, nominal = nominal, "skilling"
     # Entity routing: mint first (precise), nation fallback (coarse).
     entity = classify_mint_to_entity(mint, year=yf) if mint else None
     via = "mint" if entity else None
