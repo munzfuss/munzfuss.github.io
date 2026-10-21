@@ -34,6 +34,9 @@ def _fin_authority_map() -> dict[str, int]:
         return {}
 
 
+from .weight_range import range_pairs  # noqa: E402
+
+
 def normalise_field(v) -> list[tuple[float, str | None]]:
     """Normalise a measurement field (scalar | list[FieldValue] | None)
     into a uniform list of (value, source) pairs. Scalar form means
@@ -1136,7 +1139,9 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
 
     # Normalise measurement fields to (value, source) lists. Scalar form
     # → single (value, None) reading; list form → one entry per source.
-    weight_pairs   = normalise_field(coin.weight_rough_g)
+    # A catalogue's type range counts as two readings, lower + upper bound
+    # (curator 2026-10-21); a single figure as one (lib/weight_range).
+    weight_pairs   = normalise_field(coin.weight_rough_g) + range_pairs(coin.weight_range_g)
     fineness_pairs = normalise_field(coin.fineness)
     diameter_pairs = normalise_field(coin.diameter_mm)
 

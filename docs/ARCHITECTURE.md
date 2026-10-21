@@ -151,7 +151,7 @@ class Coin(BaseModel):
     fineness_verified: bool = True
     weight_rough_g: float | list[FieldValue] | None = None
     weight_rough_label: I18nText | None = None        # for ranges like "2,54–2,60 g"
-    weight_range_g: list[WeightRange] | None = None   # catalogue TYPE weight (range / «ca.»), not a reading; no arithmetic
+    weight_range_g: list[WeightRange] | None = None   # catalogue TYPE weight (range / single); build expands to lower/upper-bound readings
     weight_rough_verified: bool = True
     diameter_mm: float | list[FieldValue] | None = None
     diameter_mm_verified: bool = True

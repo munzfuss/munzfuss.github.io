@@ -324,6 +324,12 @@ def resolve_tips(items, ui: dict, lang: str) -> str:
         for slot, value in names.items():
             text = text.replace("{" + slot + "}", value)
         out.append(text)
+    # Localisation keys embedded in a source label (lib/weight_range.ui_key),
+    # also when nested inside a derived label above.
+    from .weight_range import UI_KEY_MARK
+    if any(UI_KEY_MARK in o for o in out):
+        pat = re.compile(re.escape(UI_KEY_MARK) + r"([\w.]+)" + re.escape(UI_KEY_MARK))
+        out = [pat.sub(lambda m: i18n.ui_get(ui, m.group(1), lang), o) for o in out]
     return "\n".join(out)
 
 

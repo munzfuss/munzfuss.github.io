@@ -55,6 +55,7 @@ class BuilderRuleTest(unittest.TestCase):
         self.assertEqual(no_w["weight_range_g"][0]["min"], 0.65)
         self.assertEqual(no_w["weight_range_g"][0]["max"], 0.80)
         self.assertNotIn("weight_range_g", with_w)
+        self.assertTrue(no_w["weight_rough_verified"])
         # never turned into specimen readings
         self.assertIsNone(no_w["weight_rough_g"])
 
@@ -76,6 +77,34 @@ class DiameterRuleTest(unittest.TestCase):
         self.assertEqual(a["diameter_mm"], [{"value": 15.0, "source": "danskmoent.dk gotlg142.htm"}])
         self.assertEqual(b["diameter_mm"][0]["value"], 15.5)
         self.assertIsNone(c["diameter_mm"])
+
+
+class ExpansionTest(unittest.TestCase):
+    """Curator 2026-10-21: a range counts as two readings (lower + upper
+    bound, the tooltip says which); a single figure as one ordinary one."""
+    def test_range_two_readings(self):
+        from lib.weight_range import range_pairs, ui_key
+        p = range_pairs([{"min": 0.65, "max": 0.8, "source": "S"}])
+        self.assertEqual([v for v, _ in p], [0.65, 0.8])
+        self.assertIn(ui_key("weight_range.lower"), p[0][1])
+        self.assertIn(ui_key("weight_range.upper"), p[1][1])
+
+    def test_single_is_plain(self):
+        from lib.weight_range import range_pairs
+        self.assertEqual(range_pairs([{"min": 0.8, "max": None, "source": "S"}]), [(0.8, "S")])
+
+    def test_tooltip_resolves_key(self):
+        from lib.render import resolve_tips
+        from lib.weight_range import range_pairs
+        ui = {"weight_range.lower": {"uk": "нижня межа"}, "weight_range.upper": {"uk": "верхня межа"}}
+        p = range_pairs([{"min": 0.65, "max": 0.8, "source": "S"}])
+        self.assertEqual(resolve_tips([p[0][1]], ui, "uk"), "S (нижня межа)")
+
+    def test_compute_uses_both_bounds(self):
+        from lib.compute import normalise_field, range_pairs as rp
+        coin = schema.Coin.model_fields  # field exists
+        self.assertIn("weight_range_g", coin)
+        self.assertEqual(len(normalise_field(None) + rp([{"min": 1, "max": 2, "source": "S"}])), 2)
 
 
 class AccumulationTest(unittest.TestCase):

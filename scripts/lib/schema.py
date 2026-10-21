@@ -232,14 +232,15 @@ class FieldValue(_StrictBase):
 
 class WeightRange(_StrictBase):
     """A catalogue's weight figure for a TYPE — a range («0,65–0,80 gr»)
-    or a single «ca.» value — as distinct from a weighed specimen.
+    or a single figure — as distinct from a weighed specimen.
 
-    Not a reading: it does not enter `weight_rough_g`, the primary reading,
-    Feingewicht, Δ or the implied Fuß. The renderer shows it in the weight
-    column as its own line with the source in the tooltip. First source:
-    the captions printed inside the danskmoent.dk Galster illustration
-    GIFs (docs/SOURCES.md §13; curator decision 2026-10-21). List-form on
-    the coin so several catalogues' ranges accumulate (never collapse).
+    Kept as its own field so the provenance is not lost; the build expands
+    it into ordinary weight readings (lib/weight_range.range_pairs, curator
+    2026-10-21): a range → a lower- and an upper-bound reading, each in the
+    normal mechanism (Feingewicht, Δ, sub-rows), the tooltip naming the
+    source and the bound; a single figure → one reading. First source: the
+    danskmoent.dk Galster illustration captions (docs/SOURCES.md §13.26).
+    List-form on the coin so several catalogues' ranges accumulate.
     """
     min: float = Field(..., gt=0)
     # None = the catalogue gives one figure, not a range.
@@ -1156,8 +1157,8 @@ class Coin(_StrictBase):
     )
     weight_rough_label: I18nTextOptional | None = None
     weight_rough_verified: bool = True
-    # A catalogue's TYPE weight (range or «ca.» figure), never a specimen —
-    # see WeightRange. Not used in any arithmetic.
+    # A catalogue's TYPE weight (range or single figure) — see WeightRange;
+    # expanded into lower/upper-bound readings at build time.
     weight_range_g: list[WeightRange] | None = None
     diameter_mm: float | list[FieldValue] | None = Field(
         None,

@@ -928,8 +928,9 @@ def _load_caption_ranges() -> dict[str, dict]:
 
 def apply_caption_ranges(entries: list[dict], captions: dict[str, dict]) -> int:
     """Fill `weight_range_g` from an illustration caption, ONLY when the
-    page text gives no weight (curator 2026-10-21): a catalogue type range
-    is not a specimen, so it never goes into `weight_rough_g`."""
+    page text gives no weight (curator 2026-10-21). Stored as a type range,
+    not as `weight_rough_g` specimens; the build expands it into a lower-
+    and an upper-bound reading (lib/weight_range.range_pairs)."""
     n = 0
     for e in entries:
         if e.get("weight_rough_g") is not None:
@@ -945,6 +946,9 @@ def apply_caption_ranges(entries: list[dict], captions: dict[str, dict]) -> int:
             "source": f"danskmoent.dk {cap['page']}",
             "url": f"https://www.danskmoent.dk/{cap['image']}",
         }]
+        # The caption is a source printing the weight: attested, unless it
+        # is a «ca.» figure (same rule as a text «Bruttovægt: ca.»).
+        e["weight_rough_verified"] = not cap.get("approx")
         n += 1
     return n
 

@@ -231,14 +231,19 @@ verification_note:
 
 For calculations, use midpoint or minimum with a `verification_note` explaining.
 
-**A catalogue's weight for a TYPE is not a specimen** (curator 2026-10-21). When
-a catalogue prints a range or a «ca.» figure for the type (first case: the
-danskmoent Galster illustration captions, SOURCES §13.26), it goes into
+**A catalogue's weight for a TYPE** (curator 2026-10-21). When a catalogue
+prints a range or a single figure for the type (first case: the danskmoent
+Galster illustration captions, SOURCES §13.26), it is stored in
 `weight_range_g` — a list of `{min, max, approx, source, url}` (`max: null` =
-one figure) — never into `weight_rough_g` as min/max readings. Merger and
-absorb carry it by union (`lib/weight_range.collect_weight_ranges`); the
-renderer shows it as its own line in the weight column with a tooltip; it is
-not used for Feingewicht, Δ or the implied Fuß.
+one figure) — not in `weight_rough_g`, so the provenance «printed for the
+type» survives. Merger and absorb carry it by union
+(`lib/weight_range.collect_weight_ranges`). At build time
+`lib/weight_range.range_pairs` expands it into ordinary weight readings: a
+range → TWO readings, the lower and the upper bound, each through the normal
+mechanism (primary reading, Feingewicht, Δ, sub-rows), the tooltip naming the
+source and the bound (ui keys `weight_range.lower` / `.upper`, resolved by
+`render.resolve_tips`); a single figure → one ordinary reading. A caption
+figure is source-attested (`weight_rough_verified: true`), except «ca.».
 
 ## Timeline display anchor vs. standard start (pre-1514 Danish fusses)
 
