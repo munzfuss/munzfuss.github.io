@@ -134,8 +134,9 @@
   <td class="c-nom">{%- if coin.raw.kind == 'gedenk' %}<span class="ged-mark" data-tooltip="{{ ui_get('label.gedenk') }}">✦</span>&nbsp;{% endif -%}{{ coin.raw.nominal|nominal_nbsp|safe }}</td>
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
-    {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
-    {%- if not coin.raw.year_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {#- The (?) sits INSIDE the last chunk: `.yr-chunk` is display:block, so a
+        sibling after it starts a new line whatever space precedes it. -#}
+    {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% elif not coin.raw.year_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endfor -%}
     {%- set shown = parts|map('trim')|list -%}
     {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   {%- endif -%}</td>
@@ -172,7 +173,7 @@
         'bronze': ui_get('metal.bronze')
       } -%}
       {%- if coin.msr_n > 1 -%}
-        {%- set _mname -%}{{ metals[coin.raw.metal] }}{%- if not coin.raw.metal_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+        {%- set _mname -%}<span class="nw">{{ metals[coin.raw.metal] }}{%- if not coin.raw.metal_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}</span>{%- endset -%}
         {#- проба ALIGNED with the sub-rows: one .msr-seg per distinct fineness,
             spanning exactly the weight sub-rows it applies to (fineness derived
             per-row from fein/rough, snapped to the catalogue reading). Metal
@@ -180,7 +181,7 @@
             tooltip; ≥2 divergent readings → orange (.fin-alt), each with its own
             source. -#}
         {%- set _funi = (coin.msr_fineness_segs|length) <= 1 -%}
-        {%- for s in coin.msr_fineness_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{{ _mname }}{% if s.value is not none %}&nbsp;{% set _txt = '.' ~ ((s.value * (10 ** s.decimals))|round|int) %}{% set _k = mkind(s.sources, coin.fineness_marks) %}{% if _funi %}{% if s.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{% else %}<span class="fin-alt {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% endif %}{% set _fm = mark(s.sources, coin.fineness_marks) %}{{ _fm }}{% set _fu = s.value | fin_unit(coin.raw.metal, lang) %}{% set _fq = not coin.raw.fineness_verified and not _fm|trim %}{% if _fu or _fq %}<span class="fin-eq">{{ _fu }}{% if _fq %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endif %}{% endif %}</div>{%- endfor -%}
+        {%- for s in coin.msr_fineness_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{{ _mname }}{% if s.value is not none %}&nbsp;<span class="nw">{% set _txt = '.' ~ ((s.value * (10 ** s.decimals))|round|int) %}{% set _k = mkind(s.sources, coin.fineness_marks) %}{% if _funi %}{% if s.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{% else %}<span class="fin-alt {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% endif %}{% set _fm = mark(s.sources, coin.fineness_marks) %}{{ _fm }}{% set _fu = s.value | fin_unit(coin.raw.metal, lang) %}{% set _fq = not coin.raw.fineness_verified and not _fm|trim %}{% if _fq and not _fu %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% if _fu %}<span class="fin-eq">{{ _fu }}{% if _fq %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endif %}{% endif %}</div>{%- endfor -%}
       {%- else -%}
       {{ metals[coin.raw.metal] }}
       {%- if not coin.raw.metal_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
@@ -205,7 +206,7 @@
             (Karat / Lot) comes AFTER the marker so it drops to its own line while the "(?)"
             stays on the value line. Keyed to the primary (first) fineness reading. -#}
         {%- set _fu = coin.fineness_groups[0].value | fin_unit(coin.raw.metal, lang) -%}
-        {%- set _fm = mark(coin.fineness_groups[0].sources, coin.fineness_marks) -%}{%- set _fq = not coin.raw.fineness_verified and not _fm|trim -%}{%- if _fu or _fq -%}<span class="fin-eq">{{ _fu }}{% if _fq %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{%- endif -%}
+        {%- set _fm = mark(coin.fineness_groups[0].sources, coin.fineness_marks) -%}{%- set _fq = not coin.raw.fineness_verified and not _fm|trim -%}{%- if _fu -%}<span class="fin-eq">{{ _fu }}{% if _fq %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{%- elif _fq -%}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{%- endif -%}
       {%- endif -%}
       {%- endif -%}
     {%- else -%}—{%- endif -%}
@@ -428,8 +429,9 @@
   <td class="c-nom">{{ coin.raw.nominal|nominal_nbsp|safe }}</td>
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
-    {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
-    {%- if not coin.raw.year_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {#- The (?) sits INSIDE the last chunk: `.yr-chunk` is display:block, so a
+        sibling after it starts a new line whatever space precedes it. -#}
+    {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% elif not coin.raw.year_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endfor -%}
     {%- set shown = parts|map('trim')|list -%}
     {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   {%- endif -%}</td>
