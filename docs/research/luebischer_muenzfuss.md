@@ -1455,6 +1455,58 @@ Ernst 1940 beyond the danskmoent excerpt — not in the cache.
 Recommendation: 1 — it is attested and avoids implying a decreed standard, which §3.7 qualification 3
 says did not exist before 1513. Awaiting the curator's choice; the YAML key (e.g. `hvid_…`) follows it.
 
+### §3.9 Where the Danish Hvid comes from — origin, name, place among the earlier denominations (2026-10-21, curator question, ANALYSIS)
+
+**Not a remnant of an older Danish standard.** The old Danish penning coinage (annual renewal, separate
+regional coins in Skåne, Sjælland, Jylland) ended in the 1370s; Hauberg 1886 s. 140–141 records that it
+was restarted by Margrete and Erik on a NEW system: «*Med Hensyn til Myntens Inddeling fulgtes den
+lybske Myntregning, hvorefter Marken deltes i 16 Skilling, hver paa 12 Penninge*». Märcher 2018 s. 345:
+«*Det nye danske møntvæsen, der blev skabt i årtierne efter år 1400, byggede på det lybske møntvæsen*».
+
+**A direct copy of the Witten.** The Witten (4 Pf) was struck by the North German towns from c. 1365
+(Märcher s. 345; Bobzin, Münzsorten «Witten»: first «große Pfennige» possibly 1325), and was the main coin
+of the Wendish system: «*hovedmønten i det lybske system witten (1 hvid, 4-penning)*», 176 pieces from the
+13-lot mark 1375, 13½-lot 1379 (Märcher s. 368). Danish sequence:
+- Ribe, from c. the later 1370s: a TOWN issue of Hvide, reverse copying the Lüneburg / Hamburg Witten of the
+  1370s, prompted by the Flensburg Witten (Märcher s. 368, 371);
+- Margrete: Ribe 1392, then Næstved from 1396 under Erik's name — «*Witten … mit völliger Anlehnung an das
+  wendische Münzsystem*», valued like the town coins at 4, 3, 1 lübische Pf (Jesse 1927 S. 99–100). Märcher
+  s. 377: the Næstved Hvide are known «*kun i relativt få eksemplarer*»; c. 1400–1420 Danish circulation
+  rests on sterlings and hulpenninge, foreign coin dominates;
+- Christoffer, Malmø from 1440/42: the Korshvid that becomes the long series (§3.7). Hauberg s. 183: «*De
+  danske Firepenninge eller Hvide, hvortil det gamle Navn Witten-Penning omdannedes*».
+
+So the Hvid line of §3.7 is not continuous from Ribe 1370s: the Næstved Hvide are a short, rare issue, and
+the steady series starts with Christoffer.
+
+**The name.** «Hvid» = Low German *witt* = «white» — the Danish rendering of «Witten-Penning» (Hauberg
+s. 183; Jesse S. 99: «*“hvide (witte) penninge”*»). Before Danish Hvide circulated in number the word
+already named the Hanseatic Witten in Danish deeds, always at 4 Lübeck hollow pennies (Hauberg s. 136
+note 2): 1380 «*in bonis albis denariis, qvorum qvilibet valet IV bonos concavos Lubycenses*», 1389 «*hver
+Hvid 4 gamle og gode lybske Hulpenge værd*», 1410 «*hwidæ peninge, hwær hwid pening regnes fore iiij gothæ
+Lybeske*». White = good silver as against base black coin: the same pair in the Rhineland (Bobzin:
+«*denarius albus – oder Weißpfennig im Unterschied zum schlechten schwarzen Wittpfennig*», as the
+«*Gegenstück zum norddeutschen Witten*») and in Norway under Eirik Magnusson («*Hvite penninger, ”Albi
+rosati”*» against «*”Nigri coronati”, ”Svartkroner”*», Holst 1936). That «white» means the
+silver colour of the good coin is a reading of these pairings; no source in the cache states the etymology
+in so many words.
+
+**The earlier denominations shown before the Hvid (Numista: penning, bracteate, skærv, sterling, gros).**
+Two different things:
+- *penning* before c. 1377 — the old Danish system that ended (not a predecessor of the Hvid);
+- the restored coinage after 1400 — one Lübeck-reckoning set, denomination by number of Pfennige (Hauberg
+  s. 141): hulpenning / bracteate = 1 Pf, skærv = ½ Pf bracteate (Märcher s. 368, 378), sterling / «engelsk»
+  = 3 Pf (Dreiling), Hvid = 4 Pf (Witten), Søsling = 6 Pf (Sechsling), «Grosser» = 9 Pf, Skilling = 12 Pf —
+  «*nærmest svare til de tydske Pfennige, Blafferte, Dreilinge, Wittenpfennige, Sechslinge og Schillinge*».
+  The Hvid is one tier of that set, not a separate standard.
+
+**Consequence for §3.7 / §3.8.** The Hvid begins as the Witten of the Lübeck system (4 Pf) and drifts out
+of it: by 1453 it is rated like the old sterling at 3 Pf (Karl Knutsson's ordinance, Hauberg s. 183; Märcher
+s. 402), and in the Hanse it passes as «densche drelinge» (Eriksson s. 5). §3.7's «separate series» is
+therefore the separate *trajectory* of a coin that started as a Lübeck denomination — consistent with
+qualification 2 there. Caveat: Jesse's «§ 67 gelyk der veerleye munte», cited by him as Margrete's Môtbok,
+is the 1484 text of Hans (Schäfer; §3.4h (2a)).
+
 ## §4. Instruments
 
 | Date | Instrument | Role for the card | Register / dossier |
