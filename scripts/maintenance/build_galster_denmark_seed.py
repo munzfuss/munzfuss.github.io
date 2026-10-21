@@ -923,7 +923,7 @@ def _load_caption_ranges() -> dict[str, dict]:
         return {}
     import yaml
     rows = (yaml.safe_load(_CAPTIONS_FILE.read_text(encoding="utf-8")) or {}).get("captions") or []
-    return {str(r["galster"]): r for r in rows if r.get("weight_min")}
+    return {str(r["galster"]): r for r in rows}
 
 
 def apply_caption_ranges(entries: list[dict], captions: dict[str, dict]) -> int:
@@ -936,7 +936,7 @@ def apply_caption_ranges(entries: list[dict], captions: dict[str, dict]) -> int:
             continue
         g = (e.get("catalog") or {}).get("galster")
         cap = captions.get(str(g)) if isinstance(g, (str, int)) else None
-        if not cap:
+        if not cap or not cap.get("weight_min"):
             continue
         e["weight_range_g"] = [{
             "min": cap["weight_min"],
@@ -949,6 +949,24 @@ def apply_caption_ranges(entries: list[dict], captions: dict[str, dict]) -> int:
     return n
 
 
+def apply_caption_diameters(entries: list[dict], captions: dict[str, dict]) -> int:
+    """Caption diameter → one `diameter_mm` reading, only where the seed has
+    none and the caption row is not `diameter_use: false` (the coin already
+    has a diameter from another source; curator 2026-10-21)."""
+    n = 0
+    for e in entries:
+        if e.get("diameter_mm") is not None:
+            continue
+        g = (e.get("catalog") or {}).get("galster")
+        cap = captions.get(str(g)) if isinstance(g, (str, int)) else None
+        if not cap or not cap.get("diameter_mm") or cap.get("diameter_use") is False:
+            continue
+        e["diameter_mm"] = [{"value": float(cap["diameter_mm"]),
+                             "source": f"danskmoent.dk {cap['page']}"}]
+        n += 1
+    return n
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--dry-run", action="store_true")
@@ -956,8 +974,11 @@ def main() -> int:
 
     print(f"Collecting Galster pre-1541 entries from {GALSTER_CACHE}...")
     entries = collect_entries()
-    n_cap = apply_caption_ranges(entries, _load_caption_ranges())
+    captions = _load_caption_ranges()
+    n_cap = apply_caption_ranges(entries, captions)
     print(f"  Illustration-caption weight ranges applied: {n_cap}")
+    n_dia = apply_caption_diameters(entries, captions)
+    print(f"  Illustration-caption diameters applied: {n_dia}")
     entries.sort(key=lambda e: (e.get("year_first", 9999), e.get("id", "")))
 
     from collections import Counter

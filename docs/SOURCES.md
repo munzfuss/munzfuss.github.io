@@ -2291,5 +2291,8 @@ text of those pages gives no weight, so a text parser never sees it. Harvest:
 G 67/G 57 were all misread on 2026-10-21. The drawings' source is not stated on
 the pages; do not name a printed work for them. Only seeds with no text weight
 get the caption (`build_galster_denmark_seed.apply_caption_ranges`), into
-`Coin.weight_range_g` — a type figure, never a specimen reading. G 102 / G 103
+`Coin.weight_range_g` — a type figure, never a specimen reading. The caption
+diameter becomes one `diameter_mm` reading (source «danskmoent.dk <page>»)
+only where the coin has no diameter — rows of classes that already have one
+(G 102, 103, 114: Numista) carry `diameter_use: false` (curator 2026-10-21). G 102 / G 103
 already carry the same figures from their own pages (`chr/c3g102.htm`, `c3g103.htm`).

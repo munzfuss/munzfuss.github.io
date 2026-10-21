@@ -64,6 +64,20 @@ class BuilderRuleTest(unittest.TestCase):
         self.assertNotIn("weight_range_g", e)
 
 
+class DiameterRuleTest(unittest.TestCase):
+    def test_only_without_diameter_and_not_vetoed(self):
+        caps = {"142": dict(CAP["142"], diameter_mm=15),
+                "114": {"galster": "114", "page": "husumdal.htm",
+                        "diameter_mm": 38, "diameter_use": False}}
+        a = {"catalog": {"galster": "142"}, "diameter_mm": None}
+        b = {"catalog": {"galster": "142"}, "diameter_mm": [{"value": 15.5, "source": "x"}]}
+        c = {"catalog": {"galster": "114"}, "diameter_mm": None}
+        self.assertEqual(galster.apply_caption_diameters([a, b, c], caps), 1)
+        self.assertEqual(a["diameter_mm"], [{"value": 15.0, "source": "danskmoent.dk gotlg142.htm"}])
+        self.assertEqual(b["diameter_mm"][0]["value"], 15.5)
+        self.assertIsNone(c["diameter_mm"])
+
+
 class AccumulationTest(unittest.TestCase):
     def test_union_dedups_and_keeps_all_sources(self):
         a = {"min": 0.65, "max": 0.8, "approx": False, "source": "A"}
