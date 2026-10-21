@@ -915,45 +915,86 @@ def collect_entries() -> list[dict]:
 
 _CAPTIONS_FILE = GALSTER_CACHE / "gif_captions.yml"
 
+# Caption metal → seed metals it may describe. «Ag» covers billon: the
+# captions print Ag for every silver-alloy coin, the seeds split silver/billon.
+_CAPTION_METAL = {"Ag": {"silver", "billon"}, "Au": {"gold"},
+                  "Ae/Ag": {"billon", "copper", "silver"}}
 
-def _load_caption_ranges() -> dict[str, dict]:
-    """Galster number → hand-transcribed illustration caption (only those
-    that print a weight). galster/gif_captions.yml; SOURCES.md §13."""
+
+def _load_caption_ranges() -> dict[str, list[dict]]:
+    """Galster number → hand-transcribed drawing captions naming it
+    (galster/gif_captions.yml; SOURCES.md §13.26). One drawing may carry
+    several coins, and one number may sit under two captions (G 69 Nobel
+    Au + ½ Sølvgylden Ag) — so a list per number."""
     if not _CAPTIONS_FILE.exists():
         return {}
     import yaml
     rows = (yaml.safe_load(_CAPTIONS_FILE.read_text(encoding="utf-8")) or {}).get("captions") or []
-    return {str(r["galster"]): r for r in rows}
+    out: dict[str, list[dict]] = {}
+    for r in rows:
+        nums = r["galster"] if isinstance(r["galster"], list) else [r["galster"]]
+        for n in nums:
+            out.setdefault(str(n), []).append(r)
+    return out
 
 
-def apply_caption_ranges(entries: list[dict], captions: dict[str, dict]) -> int:
-    """Fill `weight_range_g` from an illustration caption, ONLY when the
-    page text gives no weight (curator 2026-10-21). Stored as a type range,
-    not as `weight_rough_g` specimens; the build expands it into a lower-
-    and an upper-bound reading (lib/weight_range.range_pairs)."""
+def _captions_for(entry: dict, captions: dict[str, list[dict]]) -> list[dict]:
+    """Captions that describe this seed: same Galster number (a seed with a
+    bare number also takes a caption of one of its sub-letters, «126» ←
+    «126A»), and a caption metal compatible with the seed's metal."""
+    g = (entry.get("catalog") or {}).get("galster")
+    if not isinstance(g, (str, int)):
+        return []
+    g = str(g)
+    rows = list(captions.get(g, []))
+    if not rows and g.isdigit():
+        for k, v in captions.items():
+            if k[:-1] == g and k[-1:].isalpha():
+                rows.extend(r for r in v if r not in rows)
+    metal = entry.get("metal")
+    return [r for r in rows
+            if metal is None or metal in _CAPTION_METAL.get(r.get("metal"), {metal})]
+
+
+def _caption_source(cap: dict) -> str:
+    return f"danskmoent.dk {cap['page']}"
+
+
+def apply_caption_ranges(entries: list[dict], captions: dict[str, list[dict]]) -> int:
+    """Fill `weight_range_g` from drawing captions, ONLY when the page text
+    gives no weight (curator 2026-10-21). Stored as a type range, not as
+    `weight_rough_g` specimens; the build expands it into a lower- and an
+    upper-bound reading (lib/weight_range.range_pairs)."""
     n = 0
     for e in entries:
         if e.get("weight_rough_g") is not None:
             continue
-        g = (e.get("catalog") or {}).get("galster")
-        cap = captions.get(str(g)) if isinstance(g, (str, int)) else None
-        if not cap or not cap.get("weight_min"):
+        out, seen = [], set()
+        for cap in _captions_for(e, captions):
+            if not cap.get("weight_min"):
+                continue
+            key = (cap["weight_min"], cap.get("weight_max"), bool(cap.get("approx")))
+            if key in seen:          # the same caption printed in two drawings
+                continue
+            seen.add(key)
+            out.append({
+                "min": cap["weight_min"],
+                "max": cap.get("weight_max"),
+                "approx": bool(cap.get("approx")),
+                "source": _caption_source(cap),
+                "url": f"https://www.danskmoent.dk/{cap['image']}",
+            })
+        if not out:
             continue
-        e["weight_range_g"] = [{
-            "min": cap["weight_min"],
-            "max": cap.get("weight_max"),
-            "approx": bool(cap.get("approx")),
-            "source": f"danskmoent.dk {cap['page']}",
-            "url": f"https://www.danskmoent.dk/{cap['image']}",
-        }]
+        e["weight_range_g"] = out
         # The caption is a source printing the weight: attested, unless it
         # is a «ca.» figure (same rule as a text «Bruttovægt: ca.»).
-        e["weight_rough_verified"] = not cap.get("approx")
+        e["weight_rough_verified"] = not all(r["approx"] for r in out)
         n += 1
     return n
 
 
-def apply_caption_diameters(entries: list[dict], captions: dict[str, dict]) -> int:
+def apply_caption_diameters(entries: list[dict], captions: dict[str, list[dict]]) -> int:
     """Caption diameter → one `diameter_mm` reading, only where the seed has
     none and the caption row is not `diameter_use: false` (the coin already
     has a diameter from another source; curator 2026-10-21)."""
@@ -961,13 +1002,12 @@ def apply_caption_diameters(entries: list[dict], captions: dict[str, dict]) -> i
     for e in entries:
         if e.get("diameter_mm") is not None:
             continue
-        g = (e.get("catalog") or {}).get("galster")
-        cap = captions.get(str(g)) if isinstance(g, (str, int)) else None
-        if not cap or not cap.get("diameter_mm") or cap.get("diameter_use") is False:
-            continue
-        e["diameter_mm"] = [{"value": float(cap["diameter_mm"]),
-                             "source": f"danskmoent.dk {cap['page']}"}]
-        n += 1
+        for cap in _captions_for(e, captions):
+            if cap.get("diameter_mm") and cap.get("diameter_use") is not False:
+                e["diameter_mm"] = [{"value": float(cap["diameter_mm"]),
+                                     "source": _caption_source(cap)}]
+                n += 1
+                break
     return n
 
 

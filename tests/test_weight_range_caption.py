@@ -27,9 +27,9 @@ import build_galster_denmark_seed as galster  # noqa: E402
 from lib import schema  # noqa: E402
 from lib.weight_range import collect_weight_ranges  # noqa: E402
 
-CAP = {"142": {"galster": "142", "image": "gif/gothans_g142.gif",
-               "page": "gotlg142.htm", "weight_min": 0.65,
-               "weight_max": 0.80, "approx": False}}
+CAP = {"142": [{"galster": "142", "image": "gif/gothans_g142.gif",
+                "page": "gotlg142.htm", "metal": "Ag", "weight_min": 0.65,
+                "weight_max": 0.80, "approx": False}]}
 
 
 class SchemaTest(unittest.TestCase):
@@ -65,11 +65,28 @@ class BuilderRuleTest(unittest.TestCase):
         self.assertNotIn("weight_range_g", e)
 
 
+class MatchingTest(unittest.TestCase):
+    """One drawing can carry two coins under one number in two metals
+    (G 69 Nobel Au + ½ Sølvgylden Ag); a bare seed number takes a sub-letter
+    caption («126» ← «126A»)."""
+    def test_metal_picks_caption(self):
+        caps = {"69": [{"galster": "69", "image": "i", "page": "p", "metal": "Au", "weight_min": 14.375},
+                       {"galster": "69", "image": "i", "page": "p", "metal": "Ag", "weight_min": 14.20}]}
+        gold = {"catalog": {"galster": "69"}, "metal": "gold", "weight_rough_g": None}
+        galster.apply_caption_ranges([gold], caps)
+        self.assertEqual([r["min"] for r in gold["weight_range_g"]], [14.375])
+
+    def test_sub_letter_caption(self):
+        caps = {"126A": [{"galster": "126A", "image": "i", "page": "p", "metal": "Ag", "weight_min": 1.12}]}
+        e = {"catalog": {"galster": "126"}, "metal": "billon", "weight_rough_g": None}
+        self.assertEqual(galster.apply_caption_ranges([e], caps), 1)
+
+
 class DiameterRuleTest(unittest.TestCase):
     def test_only_without_diameter_and_not_vetoed(self):
-        caps = {"142": dict(CAP["142"], diameter_mm=15),
-                "114": {"galster": "114", "page": "husumdal.htm",
-                        "diameter_mm": 38, "diameter_use": False}}
+        caps = {"142": [dict(CAP["142"][0], diameter_mm=15)],
+                "114": [{"galster": "114", "page": "husumdal.htm", "metal": "Ag",
+                         "diameter_mm": 38, "diameter_use": False}]}
         a = {"catalog": {"galster": "142"}, "diameter_mm": None}
         b = {"catalog": {"galster": "142"}, "diameter_mm": [{"value": 15.5, "source": "x"}]}
         c = {"catalog": {"galster": "114"}, "diameter_mm": None}

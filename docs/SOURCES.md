@@ -2279,22 +2279,33 @@ folded object number, not on the seed's own — four exclusions made on the head
 specimen alone were lifted on 2026-10-20. Treat «no weight, no photo» as true
 for the date of the cache only; re-check per TODO EC.
 
-### 13.26 danskmoent Galster pages — the type's weight is in the illustration, not the text (2026-10-21)
+### 13.26 danskmoent Galster pages — the type's weight is in the drawing, not the text (2026-10-21)
 
-18 cached Galster pages (`grep -ho '<IMG SRC="gif/[^"]*_g[0-9]*[a-z]*\.gif"' scripts/cache/danskmoent/galster/*.htm`)
-show a drawing whose caption, printed INSIDE the GIF, gives metal, diameter and
-a weight for the type — «Hvid (G:142) / Ag, 15 mm, 0,65–0,80 gr». The HTML
-text of those pages gives no weight, so a text parser never sees it. Harvest:
-`fetch_galster.py gifs` → `galster/gif/`. Transcription: hand-read (no OCR) into
-`galster/gif_captions.yml`; the GIFs are tiny (~150 px), so read them upscaled
-4–8× — at native size 1,37/1,57, 2,30/2,90, 0,53/0,9, 1,83/1,80, G 8/G 3 and
-G 67/G 57 were all misread on 2026-10-21. The drawings' source is not stated on
-the pages; do not name a printed work for them. Only seeds with no text weight
-get the caption (`build_galster_denmark_seed.apply_caption_ranges`), into
+Many Galster pages show a drawing whose caption, printed INSIDE the image,
+gives metal, diameter and a weight for the type — «Hvid (G:142) / Ag, 15 mm,
+0,65–0,80 gr». The HTML text of such pages often gives no weight, so a text
+parser never sees it. **Do not find these images by file name.** The first
+pass (2026-10-21) took only names matching `_gNN` and found 18; the drawings
+are also named `rigsr_48.gif` (G 21 + G 22 on rigsraad.htm — curator caught
+it), `hg24.gif` (G 24/25/26), `m1g1.gif`, `c2g44x.gif`, `epomg6.gif` … — 102
+captions in all among 329 drawings. `fetch_galster.py gifs` now caches every
+drawing (photos skipped by path: zinck/, th/, natmus/, soemod/, meyer/, jpg/)
+with an index `galster/gif/_index.json` (url → file, pages); check each one by
+eye. Transcription: hand-read (no OCR) into `galster/gif_captions.yml` at 4×
+upscale — at native size (~150 px) 1,37/1,57, 2,30/2,90, 0,53/0,9, 1,83/1,80,
+G 8/G 3, G 67/G 57 were misread. Quirks: one drawing can carry two or three
+coins (one row each); one number can sit under two captions in two metals
+(G 69 Nobel Au + ½ Sølvgylden Ag — matched by metal); some captions print no G
+number (`hg28.gif` «Halv Rhinsk gylden», `c2g44x.gif` «Sølvgylden»); a square
+klipping's «25 x 25 mm» is not a diameter; «14,38 eller 12,12» (G 92A–B) is two
+alternatives, not a range; G 130/131 print «Ag» for a gold gylden; three
+captions carry Hede numbers (`c4_h64-66`, recorded, not consumed). The
+drawings' source is not stated on the pages; do not name a printed work for
+them. Only seeds with no text weight get the caption
+(`build_galster_denmark_seed.apply_caption_ranges`), into
 `Coin.weight_range_g` — stored as a type figure; the build counts a range as
 two readings (lower and upper bound, named in the tooltip) and a single figure
-as one (curator 2026-10-21, CONVENTIONS §Ranges). The caption
-diameter becomes one `diameter_mm` reading (source «danskmoent.dk <page>»)
-only where the coin has no diameter — rows of classes that already have one
-(G 102, 103, 114: Numista) carry `diameter_use: false` (curator 2026-10-21). G 102 / G 103
-already carry the same figures from their own pages (`chr/c3g102.htm`, `c3g103.htm`).
+as one (curator 2026-10-21, CONVENTIONS §Ranges). The caption diameter becomes
+one `diameter_mm` reading (source «danskmoent.dk <page>») only where the coin
+has no diameter — rows of classes that already have one carry
+`diameter_use: false` (curator 2026-10-21).

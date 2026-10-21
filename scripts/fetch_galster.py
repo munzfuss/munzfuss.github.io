@@ -51,6 +51,7 @@ import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -557,39 +558,75 @@ def fetch_narrative(force: bool = False) -> None:
         time.sleep(SLEEP_SECS)
 
 
-# Catalogue-illustration GIFs whose caption (inside the image, not in the
-# HTML) gives metal / diameter / weight range, e.g. gif/gothans_g142.gif
-# «Hvid (G:142) / Ag, 15 mm, 0,65–0,80 gr». Transcribed by hand into
-# galster/gif_captions.yml (curator-read; no OCR) — SOURCES.md §13.
-_CAPTION_GIF_RE = re.compile(r'<IMG SRC="(gif/[^"]*_g[0-9]*[a-z]*\.gif)"', re.I)
+# Catalogue drawings on Galster pages. Some carry a caption printed INSIDE
+# the image (not in the HTML) with metal / diameter / weight, e.g.
+# gif/gothans_g142.gif «Hvid (G:142) / Ag, 15 mm, 0,65–0,80 gr», or
+# gif/rigsrg22.gif (G 22). Transcribed by hand into galster/gif_captions.yml
+# (no OCR) — SOURCES.md §13.26. Every drawing is cached, whatever its file
+# name (a «_gNN» name pattern missed rigsrg22.gif, 2026-10-21); specimen
+# PHOTOS (zinck/, th/, natmus/, soemod/, meyer/, jpg/, N-…) and page chrome
+# (mt*.gif, alfa/, *_om.gif, kongsb.gif) are skipped.
+_IMG_SRC_RE = re.compile(r'<IMG[^>]*?SRC="([^"]+)"', re.I)
+_IMG_CHROME_RE = re.compile(r"/(gif/(mt\d+|alfa/|kongsb)|[a-z]+_om\.gif)", re.I)
+_IMG_PHOTO_RE = re.compile(r"/(zinck|th|natmus|soemod|meyer|jpg)/|/N-\d", re.I)
+
+
+def drawing_urls() -> dict[str, list[str]]:
+    """Absolute URL of every drawing on a cached Galster page → the pages."""
+    from urllib.parse import urljoin
+    out: dict[str, set[str]] = {}
+    for f in sorted(CACHE_DIR.glob("*.htm")):
+        side = f.with_suffix(".json")
+        hint = None
+        if side.exists():
+            try:
+                hint = json.loads(side.read_text(encoding="utf-8")).get("source_url_hint")
+            except (ValueError, OSError):
+                hint = None
+        hint = hint or f"{BASE}/{f.name}"
+        html = f.read_text(encoding="utf-8", errors="replace")
+        for src in _IMG_SRC_RE.findall(html):
+            u = urljoin(hint, src)
+            if _IMG_CHROME_RE.search(u) or _IMG_PHOTO_RE.search(u):
+                continue
+            out.setdefault(u, set()).add(f.name)
+    return {u: sorted(p) for u, p in sorted(out.items())}
+
+
+def drawing_cache_path(url: str) -> Path:
+    """/gif/X → galster/gif/X; any other site path → galster/gif/_site/<path>."""
+    path = url.split("danskmoent.dk/", 1)[-1]
+    if path.startswith("gif/"):
+        return CACHE_DIR / path
+    return CACHE_DIR / "gif" / "_site" / path
 
 
 def fetch_caption_gifs(force: bool = False) -> None:
-    """Cache every caption GIF referenced by a cached Galster page into
-    galster/gif/<name>.gif (binary, low volume)."""
+    """Cache every drawing referenced by a cached Galster page (binary,
+    low volume) and write galster/gif/_index.json (url → cache path, pages)."""
     opener = _make_session()
-    out_dir = CACHE_DIR / "gif"
-    out_dir.mkdir(exist_ok=True)
-    names = sorted({m for f in CACHE_DIR.glob("*.htm")
-                    for m in _CAPTION_GIF_RE.findall(
-                        f.read_text(encoding="utf-8", errors="replace"))})
-    for rel in names:
-        dst = CACHE_DIR / rel
+    index = {}
+    for url, pages in drawing_urls().items():
+        dst = drawing_cache_path(url)
+        index[url] = {"file": str(dst.relative_to(CACHE_DIR)), "pages": pages}
         if dst.exists() and not force:
-            print(f"  cached: {rel}")
             continue
         try:
-            body = opener.open(f"{BASE}/{rel}", timeout=30).read()
-        except (urllib.error.URLError, TimeoutError, OSError) as exc:
-            print(f"  ✗ {rel}: {exc}", file=sys.stderr)
+            body = opener.open(urllib.parse.quote(url, safe=":/%"), timeout=30).read()
+        except (urllib.error.URLError, TimeoutError, OSError, ValueError) as exc:
+            print(f"  ✗ {url}: {exc}", file=sys.stderr)
+            index[url]["error"] = str(exc)
             continue
-        if not body.startswith(b"GIF8"):
-            print(f"  ✗ {rel}: not a GIF", file=sys.stderr)
+        if not body[:4] in (b"GIF8", b"\x89PNG") and not body.startswith(b"\xff\xd8"):
+            print(f"  ✗ {url}: not an image", file=sys.stderr)
+            index[url]["error"] = "not an image"
             continue
+        dst.parent.mkdir(parents=True, exist_ok=True)
         dst.write_bytes(body)
-        print(f"  ✓ {rel}: {len(body)} bytes")
+        print(f"  ✓ {dst.relative_to(CACHE_DIR)}: {len(body)} bytes")
         time.sleep(SLEEP_SECS)
-
+    (CACHE_DIR / "gif" / "_index.json").write_text(
+        json.dumps(index, ensure_ascii=False, indent=1), encoding="utf-8")
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
