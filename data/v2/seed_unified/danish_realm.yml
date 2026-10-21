@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-10-20 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-21 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15175 per-source seed entries.
-# Output: 5908 unified entries (one per physical coin).
+# Output: 5907 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-10-20'
+generated_at: '2026-10-21'
 coins:
   - id: unified-denmark-numismaster-65022
     fuss: seed_unsorted
@@ -14631,11 +14631,11 @@ coins:
       -   - 1481
           - 1483
     year_label: 1481-1483
-    _year_demoted: true
     ruler: Rigsrådet
     mint: Malmø
     catalog:
       galster: '22'
+      schou: '13'
     metal: billon
     metal_verified: true
     fineness_verified: false
@@ -14662,6 +14662,9 @@ coins:
         url: https://www.danskmoent.dk/rigsraad.htm
         ref: Galster 22 — danskmoent.dk rigsraad.htm
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/157278
+        ref: KMM 157278 (Inv. FP 2491.16)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/497177
         ref: KMM 497177 (Inv. FP 10697.10)
     verification_note:
@@ -14676,6 +14679,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-rigsraad-22
+      - kmk-157278
       - kmk-497177
   - id: unified-dk-hede-c10h11
     fuss: seed_unsorted
@@ -157567,27 +157571,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-157277
-  - id: unified-kmk-157278
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Rigsrådet
-    mint: Malmø
-    catalog:
-      schou: '13'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/157278
-        ref: KMM 157278 (Inv. FP 2491.16)
-    verification_note: *id002
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-157278
   - id: unified-kmk-157861
     fuss: seed_unsorted
     phase: kmk
