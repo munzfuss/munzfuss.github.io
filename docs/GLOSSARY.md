@@ -82,10 +82,20 @@ Reference for consistent terminology across languages. Used when writing YAML i1
 | Dukat | ducat | дукат |
 | Friedrich d'or / Pistole | Friedrich d'or / pistole | пістоль |
 | Louisdor | Louis d'or | луїдор |
-| Skilling / Skilling Danske | skilling (Danish) | сколінг / сколінг данске |
+| Skilling / Skilling Danske | skilling (Danish) | скілінг / скілінг данске |
 | Rigsdaler | rigsdaler | рігсдалер |
 | Rigsbankdaler | rigsbankdaler | рігсбанкдалер |
 | Krone (dänisch, 4 Mark Danske) | krone (Danish, = 4 Danish mark) | крона (данська) |
+
+**Skilling ≠ Schilling — never cross the names (curator rule 2026-10-21).** The Danish (and Danish-Norwegian)
+coin and unit is always *Skilling* (uk «скілінг», ß d. / ß dansk); the Lübeck / Hamburg / Wendish-union coin and
+unit is always *Schilling* (uk «шилінг», ß l. / ß lübisch). Never call a Danish skilling a «Schilling / шилінг»,
+and never call a Lübeck schilling a «Skilling / скілінг» — in chat, dossiers, commit messages and rendered prose
+alike, in every language. Where both appear (rates, ratio tables, the Lybsk Møntfod card), name the side every
+time: «Danish Skilling», «Lübeck Schilling» / «ß l.». Distinguish also the struck Skilling coin from the Danish ß of
+account (3 Hvide) — under Hans the coin passed for 4, later 5 Hvide (`docs/research/luebischer_muenzfuss.md`
+§3.4h (8)). The «Skilling lybsk» of later Danish/Schleswig texts is a Danish name for the Lübeck-standard unit:
+quote it as the source writes it, and gloss it.
 
 ## Rulers & titles (preserve literal form)
 
