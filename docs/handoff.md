@@ -16,6 +16,33 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-22 — full pipeline re-run (all seed builders → merge → absorb → thin → classify → relink → both sites)
+
+- **Shipped, not pushed**: `178636a` (re-seed of all ten sources) + the re-flow commit after it
+  (merge_decisions + seed_unified + final danish_realm). Run to the fixed point (two passes, hash
+  of final/seed_unified/classification_decisions stable); verify_reflow 0 losses; audit_v2 --quick,
+  audit_lost_citations, validate_decisions --check-members clean. Runner used:
+  `scripts/run_v2_pipeline.sh --apply --skip-build` in a loop — the seed builders are NOT in it
+  (ikmk/kmk need `--write`, ucoin needs `--all`, the rest write by default).
+- **What moved**: the kmk §9a seed fold was re-cut — 392 KMM specimens changed representative
+  (kmk-130791 → kmk-133858, kmk-395588 → kmk-395587, kmk-132204 → kmk-480560 …), a deferred effect
+  of builder/lib changes committed without a re-seed. On `final/` only three Hans Hvid Malmø
+  specimens were affected. kmk-317111 → new `seed/kmk/norby_gotland.yml`. Numista Schive indices
+  «XV:7» → «XV.7»; ngc gains empty `mint:` keys on 7 entries. The handoff-announced ~26k-line ikmk
+  shell drop did NOT happen (ikmk files changed `generated_at` only).
+- **Curator surface touched**: Galster 31 merge decision gets member `kmk-132095` (the curator's
+  2026-10-20 text names KMM 132095 via its old representative kmk-292019; same specimen, own id now).
+  Re-flowing from HEAD final kept the stale `unified-kmk-132095` final (removed by hand in cbb0463)
+  from re-appearing; its classification decision still exists and is inert.
+- **Open, curator**: (1) kmk-273986 (+ folded 273987, «Sch. 146, cf.», no weight/photo) left the
+  G31 class when it stopped being folded in kmk-130791 — now its own seed_unsorted coin; add to the
+  G31 decision or leave. (2) kmk-273702 («Sch. 111»), excluded 2026-10-20 as a stub through the
+  `specimens:` block inside kmk-273672 (G36 class), is its own seed now; the specimen exclusion never
+  leaves a coin without a source, so it stands as a seed_unsorted coin — needs a seed-level
+  `id: kmk-273702` exclusion or a merge, curator's call. (3) General: `specimens:` (kmm-keyed)
+  exclusions and the merge decisions name KMM specimens by the representative of a fold that
+  `thin_safe` can re-cut on any re-seed; `_load_excluded_ids` in build_kmk_seed reads `id:` only.
+
 ## 2026-10-21 — Galster illustration captions → `weight_range_g`
 
 - **Shipped, not pushed**: new Coin field `weight_range_g` (catalogue TYPE weight: `{min, max, approx, source, url}`, list, union in merger/absorb via `lib/weight_range`), expanded at build time into ordinary readings (see (3) below). Source: drawing captions on danskmoent Galster pages — first pass took only `_gNN` file names (18); curator found G 22 on rigsraad.htm missing, so `fetch_galster.py gifs` now caches all 329 drawings (index `galster/gif/_index.json`) and `galster/gif_captions.yml` holds 102 hand-read captions + 3 Hede (SOURCES §13.26). Builder: weight → 48 seeds without a text weight; diameter → 61 seeds whose class has none (22 caption rows `diameter_use: false`). Re-flow: 0 losses.
