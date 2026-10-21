@@ -225,6 +225,7 @@ same edit (every wording edit goes into all languages).
 | a foreign-language quotation alone | the quotation in the source language, then the translation in parentheses in the field's language | applies to Danish, Dutch, French, English quotes in UK / DE / EN prose; in the DA field only non-Danish quotes need a translation |
 | «Pragtmønter» without a gloss | «Pragtmønter» («парадні монети») on first mention; DE «Prunkmüntzen», EN «show coins», DA «pragtmønter» | the source's own term is kept; the gloss is ours |
 | «Lod» in prose when a WEIGHT is meant | «лот» (1/16 кельнської марки) | «Lod» stays as the period form only in formal slots (a silver fineness «14 Lod»); weight in prose is «лот» |
+| «гвіда», «цю гвіду», «вона карбована» (Hvid as feminine) | «гвід», «цей гвід», «він карбований»; pl. «гвіди», gen. pl. «гвідів» | the coin name is masculine in UK (as «скілінг», «гульден»), curator 2026-10-21 |
 | naming a decree in Ukrainian («Монетний ордонанс») | the original form in every language («Møntordning Christian II 1514», «Kongebrev», «Rigsraadets Brev») | CLAUDE.md §2 tier 1; a generic descriptor («королівський лист») may be translated |
 
 **A gap in the record.** Write «з джерел невідомо» / «в джерелах не засвідчено» (DE «ist aus den Quellen
