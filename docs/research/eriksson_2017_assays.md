@@ -278,3 +278,54 @@ a small source:
 `luebischer_muenzfuss` card has no measured fineness at all), and 45 genuine paired specimens. Best order:
 look for the appendix first (d); seed after the card's period split, so the Δ against the per-period Soll is
 meaningful.
+
+---
+
+## 7. The appendix — found 2026-10-21; it supersedes §5's group problem
+
+**Source.** «Metallanalyser av mynt 2017:1_APPENDIX», listed on
+`https://www.su.se/enheter/numismatiska-forskningsgruppen/om-forskningsgruppen/metallanalyser-av-mynt`
+(the old `archaeology.su.se` / `polopoly_fs` links are dead, 404). Cache:
+`scripts/cache/danskmoent/hans_1481_1513/eriksson_2017_metallanalyser_appendix.{pdf,extract.txt}`. 14 pp.:
+pp. 1–11 photos (obverse + reverse of every coin, numbered, with a scale), pp. 11–14 one table, nos **1–118**:
+Nr, MH (ruler), Myntort, Valör, År, Galster, Vikt, Lod, Silver, Koppar, Zink, Tenn, Antimon, Guld, Bly.
+Abbreviations: «ks kantskada»; «f» after a weight (nos 4, 60) is not explained in the list (the article's
+rule s. 18 puts fragment weights in parentheses — «f» is probably that, not verified).
+
+**What it settles.**
+- **Every coin is paired** (weight + Ag + lod per piece): the group-row question of §5 disappears. A seed can
+  take 118 specimen readings, no new field.
+- **Count:** 118 = the article's s. 1 figure; the article's tables hold 115. Missing from the tables:
+  no. 23 (Christian I Hvid, 3,09 % — the near-copper forgery of the text, s. 7), one Malmö 5-lod Hans Hvid
+  (appendix 6 pieces: nos 65, 66, 69–71, 73; tab. 9 n = 5) and one Ålborg 4-lod Hans Hvid (nos 74, 76, 79;
+  tab. 9 n = 2). The tab. 9 text (3/18/3) matches neither the table nor the appendix (3/14/7 + one 1-lod).
+- **Lod is consistent in the appendix** with the rule of s. 18 (checked for all 118: 0 mismatches). The four
+  mismatches in the article's tables (tab. 5 37,44 under 7 lod; tab. 7 row 7.5 down to 36,65; tab. 12 78,54
+  under 12 and 64,81 under 10) are slips of the article tables: the appendix has 37,44 → 6 (no. 9),
+  78,54 → 13 (no. 89), 64,81 → 11 (no. 91).
+- **Tab. 7 row 7.5 was a copy slip (H of §3 confirmed):** the four Malmö 7-lod Skillinger are nos 35, 36, 39,
+  41 with Ag 43,75 / 43,25 / 40,48 / 40,25, not «41,52–36,65».
+- **Tab. 7 row 7.1 «2,47» for n = 2:** nos 28 and 29 both weigh 2,47 g.
+- **Tab. 11 ¼ gyllen:** no. 84 «1/4 gyllen», Galster 38, 1516 — the appendix repeats G 38; still open.
+
+**What it does NOT settle — a larger mint ↔ Galster conflict.** In the appendix the Myntort and Galster
+columns disagree for **12 coins** (against tab. 1 / danskmoent: 29–31 Malmø, 32–34 København, 35–36 Ålborg):
+- Skilling «Malmö» + **G 32** (= København): nos 28, 30, 32, 35, 36, 41, 45, 46, 47 (9 coins);
+- Skilling 1512 «Malmö» + **G 35** (= Ålborg): no. 49 (the 3,13 g piece);
+- ½ skilling «Malmö» + **G 33** (= København): nos 55, 56 (the §0.5 case — the appendix repeats it).
+The article's tab. 7 counted all ten Skillinger under «Malmö 29», i.e. it followed the mint column. So the
+mint column is not a reliable witness either, and the G 30 reading of §0.5 is now **unsettled**: the
+appendix carries the same pair «Malmö / 33». **The photos decide** (mint name in the reverse legend:
+MALMOGIENSIS / HAFNENSIS / ALBORGENSIS); at the PDF's resolution (embedded JPEGs 337 px wide) I could not read
+them reliably — a curator reading of nos 28–56 is needed. Also: the Christian I sub-letters per coin (23a–d)
+do not match the article's tab. 5 title grouping (e.g. no. 6, 38,74 %, is «23a» in the appendix, «DEI G'R'D'»
+= 23d in tab. 5).
+
+**Lod as a value (curator question 2026-10-21: why not take the Lod instead of the Ag range?).** Lod N is the
+**upper bound** of a bin «(N−1)·6,25 % < Ag ≤ N·6,25 %» (s. 18: «*8 lod = 50,00-43,26%*» — the printed lower
+bound 43,26 does not match the rule's 43,76; a slip in the example). Storing «8 lod» = 0,500 would overstate
+every coin in the bin by up to 6,25 points (the three Malmö 8-lod Skillinger are 48,29 / 46,25 / 45,68 %).
+The lod is Eriksson's reading of which whole-lod standard a coin was struck to («*antas att myntordningarna
+angett vikten i steg om ett lod … även om det i realiteten ofta inte var fallet*»); it belongs in dossier
+prose as an interpretation, not in `fineness` as a reading. With the appendix the measured Ag is available
+for every coin, so the question is moot.

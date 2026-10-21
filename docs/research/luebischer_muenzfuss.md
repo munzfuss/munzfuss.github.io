@@ -158,7 +158,9 @@ The basis on which undated Skillinger and Søslinger of Hans are to be dated lat
   least one wrong cell; the G 30 reading now rests on the mint column «Malmö» plus a table shown to contain an
   error — one witness against «33», not two. Still the better reading (G 33 conflicts with tab. 1's mint for 33);
   Galster 1972 or the appendix (per-coin data, not in the PDF) would settle it. The pipeline question for these
-  assays is answered in `eriksson_2017_assays.md` §5–§6.
+  assays is answered in `eriksson_2017_assays.md` §5–§6. **Unsettled again 2026-10-21:** the per-coin appendix
+  (§7 there) also prints «Malmö» + «33» for both Søslinger (nos 55, 56) and shows its mint column disagreeing with
+  Galster for 12 coins; the photos (appendix p. 6) decide.
 
 **Re-examination of the P2/P3 border «1500/03 – 1503/06» (curator question 2026-10-21: does 1503–1506 deserve its
 own period?).** The fractional border mixes three different events:
