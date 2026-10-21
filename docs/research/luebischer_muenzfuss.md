@@ -119,6 +119,26 @@ The basis on which undated Skillinger and Søslinger of Hans are to be dated lat
   `year_verified: false` on both):** all three finals already carry `year_verified: false` (seed_unified too), so
   the years render with «(?)»; nothing to change. My «plain year» was written without checking the flag.
 
+**Applying the anchors to our data (2026-10-21, analysis only, nothing changed).**
+- Scan of every final and every seed (all sources) for Rigsråd / Hans silver 1481–1513 with a fineness: **one coin
+  only** — Bergen Søsling Galster 149 (`unified-dk-bruun-9223`, danish_norway): danskmoent `norge/nha_g149.htm`
+  «*Bruttovægt: 1,57g • Finhed: 0,344 • Finvægt: 0,54g*» (Schou 100, Schive XIV.2; «U.år»). 0,344 = 5½ lod exactly
+  (0,34375) — a lod figure, its basis (assay or literature) not stated on the page. Bruun gives a second specimen
+  at 1,38 g (no fineness). `trace_coin why` shows no curator decision on the value.
+- Against the table (fine silver, our arithmetic): ½ of a 9-lod Skilling 0,62–0,64 g (P2); ½ of an 8-lod Skilling
+  0,50–0,62 g (P3); ½ of a 7-lod 0,43–0,53 g (P4); ½ of a 1512 6-lod 0,41–0,48 g (P5); Lübeck ½ ß 0,635 g (to 1506)
+  / 0,562 g (after); Lübeck Sechsling 1492 0,62 g. **0,54 g sits in the 8-lod band → P3 (c. 1503/06 – 1510)**,
+  close to ½ of the Lübeck ß after 1506 (−4 %); P4's upper edge is next. The Danish undated Søslinger of Eriksson
+  tab. 8 (0,39–0,42 g) fall instead with ½ of a 1512 Skilling (P5). **Hypothesis**, one specimen, Norwegian mint
+  (Norwegian Hvide ran lighter than Danish, Ernst 1940), fineness basis unknown.
+- Why nothing else can be dated this way: our coin rows are TYPES (Galster numbers), and a type such as G29 (Malmø
+  Skilling) contains pieces from 9 down to 6 lod (Eriksson tab. 7). Fineness dates a SPECIMEN, not a Galster type.
+  Our Skilling rows carry no fineness at all; KMM specimens carry Schou sub-numbers (Sch. 20, 24, 25, 26 …) and
+  weights, no assays. Would become possible if (a) Eriksson's assayed pieces could be tied to Schou sub-types or
+  KMM objects (his table gives mint + Galster only), or (b) a Schou-variety ↔ fineness correlation were published.
+- ⚠ Eriksson tab. 8 lists both Søslinger as «*Malmö … Galster 33*»; Galster's list has 30 = Malmø, 33 = København.
+  One of the two is wrong in Eriksson — not settled.
+
 **Søsling — start contested.**
 - Earliest dated piece 1512 (KMM, «*unik sösling 1512*», Eriksson s. 10); no Søsling in any hoard in DMS.
 - Undated pieces: 5 lod, 1,31–1,47 g (Eriksson tab. 8) → ≈ 0,39–0,42 g fine (our arithmetic).
