@@ -102,7 +102,7 @@ The basis on which undated Skillinger and Søslinger of Hans are to be dated lat
 **Skilling 7 lod vs 6 lod — can 7 be c. 1510–1512 and 6 be 1512–1513? (curator question 2026-10-21)**
 - Eriksson tab. 7 (the only assays; our own data carry weights only, no fineness for Hans' Skillinger):
   dated 1512, Malmø G29: **3 pieces at 7 lod** (37,72–41,63 % Ag, 2,22–3,13 g) **and 3 at 6 lod** (33,28–35,90 %,
-  2,45–2,66 g). Undated («1481-1511» in his table): 9 lod 3, 8 lod 5, 7 lod 8, 6 lod 6.
+  2,45–2,66 g). Undated («1481-1511» in Eriksson's table): 9 lod 3, 8 lod 5, 7 lod 8, 6 lod 6.
 - So 6 lod is already struck in 1512 — it cannot be confined to a later 1512–1513 stage by the dates. Whether 7 lod
   precedes 6 lod within 1512 the year alone cannot show. No Skilling dated 1513 is known (Galster: «*1512, u.år*»);
   Hans died 20 Feb 1513.
@@ -139,19 +139,25 @@ The basis on which undated Skillinger and Søslinger of Hans are to be dated lat
   Skilling) contains pieces from 9 down to 6 lod (Eriksson tab. 7). Fineness dates a SPECIMEN, not a Galster type.
   Our Skilling rows carry no fineness at all; KMM specimens carry Schou sub-numbers (Sch. 20, 24, 25, 26 …) and
   weights, no assays. Would become possible if (a) Eriksson's assayed pieces could be tied to Schou sub-types or
-  KMM objects (his table gives mint + Galster only), or (b) a Schou-variety ↔ fineness correlation were published.
+  KMM objects (Eriksson's table gives mint + Galster only), or (b) a Schou-variety ↔ fineness correlation were published.
 - ⚠ Eriksson tab. 8 lists both Søslinger as «*Malmö … Galster 33*»; Galster's list has 30 = Malmø, 33 = København.
   ~~One of the two is wrong in Eriksson — not settled.~~
   **Resolved 2026-10-21 (curator asked):** Eriksson's own tab. 2 («*Tabell över de valörer Hans präglade på
   respektive präglingsort (x/o). o = finns representerat i analysmaterialet här*») marks Søsling **Malmö «O»** and
-  **Köpenhamn «X»** — København Søslinger were minted but are NOT in his material. So the mint column «Malmö» of
-  tab. 8 is confirmed by his tab. 2, and «Galster 33» is the slip: the two assayed Søslinger are **Galster 30**
+  **Köpenhamn «X»** — København Søslinger were minted but are NOT in the material. So the mint column «Malmö» of
+  tab. 8 is confirmed by Eriksson's tab. 2, and «Galster 33» is the slip: the two assayed Søslinger are **Galster 30**
   (Malmø; danskmoent `fr_hg30`: «*1512*» and undated, Schou 14 and 94–99). Two internal witnesses against one number
   (our reading of Eriksson's tables; Eriksson does not comment). Consequences: (a) Galster 33 (København Søsling,
   Schou 93, «u.år», no weight on danskmoent) has no assay and no dating evidence — it stays 1483–1513 (?);
   (b) the 5-lod, 0,39–0,42 g Søslinger belong to the G30 type, whose dated pieces are 1512 — consistent with
   placing the undated Danish Søslinger in period V/VI (§0.6); (c) Eriksson's two readings could later be added to
   G30 as specimen fineness (29,40 % / 28,87 %, 1,31 / 1,47 g) — needs a source path into the pipeline; not done.
+  **⚠ Weakened 2026-10-21** (`eriksson_2017_assays.md` §3): tab. 2 marks Ålborg Skilling «X» (not in the
+  material), yet tab. 7 lists three Ålborg G 35 Skillinger (checked on the page image, s. 5). So tab. 2 carries at
+  least one wrong cell; the G 30 reading now rests on the mint column «Malmö» plus a table shown to contain an
+  error — one witness against «33», not two. Still the better reading (G 33 conflicts with tab. 1's mint for 33);
+  Galster 1972 or the appendix (per-coin data, not in the PDF) would settle it. The pipeline question for these
+  assays is answered in `eriksson_2017_assays.md` §5–§6.
 
 **Re-examination of the P2/P3 border «1500/03 – 1503/06» (curator question 2026-10-21: does 1503–1506 deserve its
 own period?).** The fractional border mixes three different events:

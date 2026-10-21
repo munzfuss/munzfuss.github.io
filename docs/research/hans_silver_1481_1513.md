@@ -157,7 +157,7 @@ Korshvide and c. 3 600 Skillinger. In the s. 152 table he sets Hans' Skilling at
 fine** (24 = 22,32 g per Gylden) and Hans' Hvid at **0,25 g fine** (96 = 23,04 g per
 Gylden). The «Marckestycker» are why Wilcke (s. 141) supposes Hans struck lübsch
 Markstücke — no specimen is known (S5 s. 6: «*Det är dock inte känt att det skulle finnas
-några marker från Hans*»; Eriksson suggests they mean Sølvgylden — **hypothesis**, hers).
+några marker från Hans*»; Eriksson suggests they mean Sølvgylden — **hypothesis**, Eriksson's).
 
 ### 3.5 Assays — Eriksson 2017 (S5, tab. 7–9, 16)
 
@@ -173,8 +173,8 @@ några marker från Hans*»; Eriksson suggests they mean Sølvgylden — **hypot
 
 Summary (tab. 16): Skilling «9/8» at the start → «6» at the end; Søsling 5 → 5; Hvid 6 → 3.
 Eriksson: the Skilling «*sänkts med ca 1/3, vilket måste betecknas som en dramatisk
-sänkning*». Caveats she states: only Ag calibrated; surface enrichment possible; Aalborg
-over-represented; dating of undated pieces is inferential (her reasoning: dated 1512 =
+sänkning*». Caveats Eriksson states: only Ag calibrated; surface enrichment possible; Aalborg
+over-represented; dating of undated pieces is inferential (Eriksson's reasoning: dated 1512 =
 lowest).
 
 ### 3.6 When did the Skilling and Søsling start? — open
