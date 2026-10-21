@@ -415,3 +415,17 @@ Curator: «з усім згоден, однак поки не будемо ро�
   bucket, §9a condition 3).
 - Trap met on the way: a shared Python dict (`suspect` reason used twice) became a YAML anchor and renumbered
   every anchor after it in `final/danish_realm.yml` (8 000-line diff for 12 coins) — the builder deep-copies.
+
+### 9a. Second pass (2026-10-21, curator)
+
+- «не фільтруй їх, познач двір як (*)»: the 12 mint/Galster conflicts go in under the printed Galster number
+  (G 32 × 9, G 35 × 1, G 33 × 2) as their own seed entries (`…-malmoe-printed`) with `mint: Malmø`,
+  `mint_verified: false` and `mint_mark: {kind: suspect}` — the printed mint stays visible with «(*)» beside the
+  type's mint (`mint_alts`), takes no part as a verified mint, and no erratum is made.
+- «їх всі теж додавай в seed»: all 145 coins of 2016:1 (Heljeback; Erik VII, Christoffer III, Rigsråd 1448) are
+  seeded, 17 entries. Galster 1972 numbers run per ruler there, so the entries carry explicit scopes
+  (`galster1972-erik7` / `-christoffer3` / `-rigsraad1448`) — without them the merger would derive «c3g» for
+  Christoffer III and collide with Christian III's Galster numbers. Our Numista types of the period carry only
+  Sieg numbers, so no catalogue key links them; the new entries mostly stand as their own `seed_unsorted` rows.
+  No. 1 (Næstved Hvid, 0,97 g «f», no assay) enters as a weight only.
+- Still held: G 39, G 42 (merge decision).
