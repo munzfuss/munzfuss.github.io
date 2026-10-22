@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1624 active, 0 retired.
+# 1622 active, 2 retired.
 
 id: danish_norway
 classes:
@@ -592,15 +592,20 @@ classes:
   - id: c-0a210ec7
     status: active
     created: '2026-10-22'
-    label: unified-dk-hede-nc5h56b
+    label: unified-dk-hede-nc5h56a
     legacy_id: unified-dk-hede-nc5h56b
     members:
+      - denmark-numismaster-110652
       - denmark-numismaster-110653
       - dk-bruun-10260
       - dk-bruun-10276
+      - dk-hede-nc5h56a
       - dk-hede-nc5h56b
+      - dk-numista-110302
       - dk-numista-117166
+      - dk-tid-144987
       - dk-tid-144988
+      - ngc-1098044
       - ngc-1098045
   - id: c-0a32507b
     status: active
@@ -7364,14 +7369,6 @@ classes:
     legacy_id: unified-kmk-149148
     members:
       - kmk-149148
-  - id: c-66f9a317
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-nc5h32a
-    legacy_id: unified-dk-hede-nc5h32a
-    members:
-      - dk-hede-nc5h32a
-      - dk-numista-117127
   - id: c-66fef59d
     status: active
     created: '2026-10-22'
@@ -9065,17 +9062,6 @@ classes:
     legacy_id: unified-kmk-148567
     members:
       - kmk-148567
-  - id: c-79a5abd8
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-nc5h56a
-    legacy_id: unified-dk-hede-nc5h56a
-    members:
-      - denmark-numismaster-110652
-      - dk-hede-nc5h56a
-      - dk-numista-110302
-      - dk-tid-144987
-      - ngc-1098044
   - id: c-79ba52ce
     status: active
     created: '2026-10-22'
@@ -12928,12 +12914,14 @@ classes:
   - id: c-b481325b
     status: active
     created: '2026-10-22'
-    label: unified-dk-hede-nc5h32b
+    label: unified-dk-hede-nc5h32a
     legacy_id: unified-dk-hede-nc5h32b
     members:
       - denmark-numismaster-110790
       - dk-bruun-10227
+      - dk-hede-nc5h32a
       - dk-hede-nc5h32b
+      - dk-numista-117127
       - dk-numista-445302
       - dk-tid-145964
       - ngc-1114124
@@ -17802,3 +17790,26 @@ classes:
     legacy_id: unified-kmk-148631
     members:
       - kmk-148631
+  - id: c-66f9a317
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-nc5h32a
+    legacy_id: unified-dk-hede-nc5h32a
+    merged_into: c-b481325b
+    retired: '2026-10-22'
+    members:
+      - dk-hede-nc5h32a
+      - dk-numista-117127
+  - id: c-79a5abd8
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-nc5h56a
+    legacy_id: unified-dk-hede-nc5h56a
+    merged_into: c-0a210ec7
+    retired: '2026-10-22'
+    members:
+      - denmark-numismaster-110652
+      - dk-hede-nc5h56a
+      - dk-numista-110302
+      - dk-tid-144987
+      - ngc-1098044

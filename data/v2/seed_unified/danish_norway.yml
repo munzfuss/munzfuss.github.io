@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 4650 per-source seed entries.
-# Output: 1624 unified entries (one per physical coin).
+# Output: 1622 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -16629,68 +16629,9 @@ coins:
       - dk-tid-146030
       - ngc-1097949
       - ngc-1099137
-  - id: c-66f9a317
-    class_id: c-66f9a317
-    label: unified-dk-hede-nc5h32a
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 4 Speciedaler
-    year_first: 1674
-    year_last: 1674
-    year_label: '1674'
-    ruler: Christian V.
-    mint: Christiania
-    catalog:
-      hede: 32A
-      hede_volume: nc5h
-      schou: '6'
-      numista: '117127'
-      others:
-        - AAJT# 22
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: hede
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 115.57
-        source: numista
-      - value: 115.573
-        source: hede
-    diameter_mm:
-      - value: 42.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/norge/nc5h32.htm
-        ref: danskmoent.dk (Hede nc5h32A)
-      - type: literature
-        url: https://en.numista.com/117127
-        ref: Numista N#117127 — 4 Speciedaler - Christian V (Christiania type IV; tall bust) - Norway
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    issuing_entity: danish_norway
-    hede_muentzfuss_yield:
-      value: 9.25
-      unit: speciedaler
-      basis: fin
-    composed_of:
-      - dk-hede-nc5h32a
-      - dk-numista-117127
   - id: c-b481325b
     class_id: c-b481325b
-    label: unified-dk-hede-nc5h32b
+    label: unified-dk-hede-nc5h32a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -16707,7 +16648,9 @@ coins:
     mint: Christiania
     catalog:
       km: '129'
-      hede: 32B
+      hede:
+        - 32A
+        - 32B
       hede_volume: nc5h
       schou:
         - '2'
@@ -16717,8 +16660,11 @@ coins:
       bruun_collection_id: '10227'
       nmd: '36'
       dav: EC II A3654
-      numista: '445302'
+      numista:
+        - '117127'
+        - '445302'
       others:
+        - AAJT# 22
         - AAJT# 23-25
         - Rønning# 76
       skaare: '571'
@@ -16754,6 +16700,8 @@ coins:
       - value: 115.573
         source: hede
     diameter_mm:
+      - value: 42.0
+        source: numista
       - value: 43.0
         source: numista
       - value: 43.0
@@ -16767,7 +16715,10 @@ coins:
         ref: Bruun Part I, lot 1224, p. 287
       - type: literature
         url: https://www.danskmoent.dk/norge/nc5h32.htm
-        ref: danskmoent.dk (Hede nc5h32B)
+        ref: danskmoent.dk (Hede nc5h32A)
+      - type: literature
+        url: https://en.numista.com/117127
+        ref: Numista N#117127 — 4 Speciedaler - Christian V (Christiania type IV; tall bust) - Norway
       - type: literature
         url: https://en.numista.com/445302
         ref: Numista N#445302 — 4 Speciedaler - Christian V (Christiania type V) - Norway
@@ -16790,7 +16741,9 @@ coins:
     composed_of:
       - denmark-numismaster-110790
       - dk-bruun-10227
+      - dk-hede-nc5h32a
       - dk-hede-nc5h32b
+      - dk-numista-117127
       - dk-numista-445302
       - dk-tid-145964
       - ngc-1114124
@@ -19408,120 +19361,36 @@ coins:
       - kmk-148571
       - kmk-148597
       - kmk-148598
-  - id: c-79a5abd8
-    class_id: c-79a5abd8
+  - id: c-0a210ec7
+    class_id: c-0a210ec7
     label: unified-dk-hede-nc5h56a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 2 Mark
     year_first: 1681
-    year_last: 1681
-    year_label: '1681'
-    ruler: Christian V.
-    mint: Christiania
-    catalog:
-      km: '147'
-      hede: 56A
-      hede_volume: nc5h
-      schou: '35'
-      numista: '110302'
-      others:
-        - Rønning# 93
-        - AAJT# 97
-      skaare: '584'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.672
-        source: hede
-      - value: 0.672
-        source: ngc
-      - value: 0.672
-        source: numismaster
-      - value: 0.672
-        source: numista
-      - value: 0.672
-        source: ucoin
-    weight_rough_g:
-      - value: 11.136
-        source: hede
-      - value: 11.14
-        source: ngc
-      - value: 11.14
-        source: numismaster
-      - value: 11.14
-        source: numista
-      - value: 11.14
-        source: ucoin
-    diameter_mm:
-      - value: 31.0
-        source: numista
-      - value: 31.0
-        source: ucoin
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110652
-        ref: NumisMaster
-      - type: literature
-        url: https://www.danskmoent.dk/norge/nc5h56.htm
-        ref: danskmoent.dk (Hede nc5h56A)
-      - type: literature
-        url: https://en.numista.com/110302
-        ref: Numista N#110302 — 2 Mark - Christian V (Christiania type III; without PG) - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-2-mark-1681/?tid=144987
-        ref: ucoin
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-2-mark-km-147-1681-cuid-1098044-duid-1448299
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    issuing_entity: danish_norway
-    hede_muentzfuss_yield:
-      value: 10.418
-      unit: rigsdaler_kurant
-      basis: fin
-      unit_raw: rd.kr
-    composed_of:
-      - denmark-numismaster-110652
-      - dk-hede-nc5h56a
-      - dk-numista-110302
-      - dk-tid-144987
-      - ngc-1098044
-  - id: c-0a210ec7
-    class_id: c-0a210ec7
-    label: unified-dk-hede-nc5h56b
-    fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 2 Mark
-    year_first: 1682
     year_last: 1685
     year_ranges:
-      -   - 1682
+      -   - 1681
           - 1683
       -   - 1685
           - 1685
-    year_label: 1682-1683, 1685
+    year_label: 1681-1683, 1685
     ruler: Christian V.
     mint: Christiania
     catalog:
-      km: '150'
-      hede: 56B
+      km:
+        - '150'
+        - '147'
+      hede:
+        - 56A
+        - 56B
       hede_volume: nc5h
       schou:
         - '7'
         - '14'
         - '30'
+        - '35'
       bruun_collection_id:
         - '10260'
         - '10276'
@@ -19532,8 +19401,12 @@ coins:
       bruun_part: III
       bruun_lot_no: 12105
       bruun_page: 215
-      numista: '117166'
+      numista:
+        - '110302'
+        - '117166'
       others:
+        - Rønning# 93
+        - AAJT# 97
         - AAJT# 98-100
         - Rønning# 93a
       skaare: '584'
@@ -19577,6 +19450,9 @@ coins:
         source: ucoin
     sources:
       - type: literature
+        url: https://numismaster.com/MC_110652
+        ref: NumisMaster
+      - type: literature
         url: https://numismaster.com/MC_110653
         ref: NumisMaster
       - type: auction
@@ -19587,13 +19463,22 @@ coins:
         ref: Bruun Part V, lot 15076, p. 117
       - type: literature
         url: https://www.danskmoent.dk/norge/nc5h56.htm
-        ref: danskmoent.dk (Hede nc5h56B)
+        ref: danskmoent.dk (Hede nc5h56A)
+      - type: literature
+        url: https://en.numista.com/110302
+        ref: Numista N#110302 — 2 Mark - Christian V (Christiania type III; without PG) - Norway
       - type: literature
         url: https://en.numista.com/117166
         ref: Numista N#117166 — 2 Mark - Christian V (Christiania type III; with PG) - Norway
       - type: ucoin
+        url: https://en.ucoin.net/coin/norway-2-mark-1681/?tid=144987
+        ref: ucoin
+      - type: ucoin
         url: https://en.ucoin.net/coin/norway-2-mark-1682-1685/?tid=144988
         ref: ucoin
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-2-mark-km-147-1681-cuid-1098044-duid-1448299
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-mark-km-150-1682-1685-cuid-1098045-duid-1448225
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -19609,12 +19494,17 @@ coins:
       basis: fin
       unit_raw: rd.kr
     composed_of:
+      - denmark-numismaster-110652
       - denmark-numismaster-110653
       - dk-bruun-10260
       - dk-bruun-10276
+      - dk-hede-nc5h56a
       - dk-hede-nc5h56b
+      - dk-numista-110302
       - dk-numista-117166
+      - dk-tid-144987
       - dk-tid-144988
+      - ngc-1098044
       - ngc-1098045
   - id: c-d2897afd
     class_id: c-d2897afd
