@@ -3706,7 +3706,11 @@ def process_entity(entity_id: str) -> dict:
         _eid = str(e.get("id"))
         # A shell the curator folded by decision (`kind: shell` removal on its
         # head seed): its specimen lives in another class, the review is done.
-        if _is_promoted(e) and _seed_of(_eid) in _shell_removals():
+        # Only a SHELL: an id that is no live class of this entity. The record's
+        # own live class (same head seed) must never match (2026-10-22: the
+        # ikmk-18296479 removal dropped its real Braunschweig final).
+        if (_is_promoted(e) and _eid not in _live_unified_ids
+                and _seed_of(_eid) in _shell_removals()):
             shell_dropped.add(_eid)
             shell_by_decision.append(_eid)
             continue
@@ -3777,7 +3781,8 @@ def process_entity(entity_id: str) -> dict:
         if _is_vanished_stale_final(fc, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(fid))
             continue
-        if _is_promoted(fc) and _seed_of(str(fid)) in _shell_removals():
+        if (_is_promoted(fc) and str(fid) not in _live_unified_ids
+                and _seed_of(str(fid)) in _shell_removals()):
             shell_dropped.add(str(fid))
             if fid not in shell_by_decision:
                 shell_by_decision.append(str(fid))

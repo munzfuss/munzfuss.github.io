@@ -117,6 +117,9 @@ RETRACTED_REL = "data/v2/_retracted_refs.yml"
 SANITY_RETRACTED_REL = "data/v2/_source_sanity_retractions.yml"
 RECORDED_REMOVALS_REL = "data/v2/_recorded_removals.yml"
 
+sys.path.insert(0, str(ROOT / "scripts"))
+from lib.catalog_codes import normalise_catalog as _normalise_catalog  # noqa: E402
+
 # Fields whose disappearance or shrinkage is a real regression. `note` and the
 # prose fields are excluded on purpose — they are curator-edited and a rewrite
 # legitimately replaces them.
@@ -279,7 +282,15 @@ def _catalog_registers(coin: dict) -> dict[str, set[str]]:
     """catalog → {register: {values}}, so a register losing a value is visible."""
     out: dict[str, set[str]] = {}
     for reg, val in (coin.get("catalog") or {}).items():
-        out[reg] = {_catalog_key(x) for x in _as_list(val)}
+        vals = _as_list(val)
+        if reg == "others":
+            # Same token canonicalisation the merger applies, so a spelling
+            # change in catalog_codes (2026-10-22: «Ernst# 1940 3-13» →
+            # «Ernst 1940# 3-13») is not read as a lost index.
+            _c = {"others": [x for x in vals]}
+            _normalise_catalog(_c)
+            vals = _as_list(_c.get("others"))
+        out[reg] = {_catalog_key(x) for x in vals}
     return out
 
 
@@ -1024,7 +1035,12 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
             continue
         # A superseded shell the curator folded by decision (`kind: shell`,
         # keyed by the shell's head seed): its specimen lives in another class.
-        _shell_hit = sorted({_head_seed(p) for p in probe_seeds} & _shell_removals())
+        # Excused only while the specimen still lives in ANOTHER final: a
+        # removal keyed by head seed must not hide the record's own final.
+        _home = _coin_home_index()
+        _shell_hit = sorted(s for s in {_head_seed(p) for p in probe_seeds}
+                            & _shell_removals()
+                            if s in _home and _home[s][1] != cid)
         if _shell_hit:
             dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
                            f"— shell folded by curator decision: {', '.join(_shell_hit)}")
