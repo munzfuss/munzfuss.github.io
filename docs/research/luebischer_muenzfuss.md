@@ -330,6 +330,13 @@ and the Søslinge of 1424 / ≤ 1442: §3.10; they still circulated in 1474)
    at (1,24–1,27 against 1,08–1,20 g) — hence the re-rating to 5 Hvide c. 1500. Whether the coin itself then
    fell to 8 lod before 1506 is exactly the open point of item 1. Spread caveat: the Hvid ranges come from few
    assays (§0.6) and include wear; the comparison is of levels, not of single coins.
+4. *Curator's reading 2026-10-22 (adopted, supersedes the «re-rating because the Skilling was worth more» wording
+   of item 3):* the two lines are treated separately, so the re-rating of the Skilling from 4 to 5 Hvide is
+   evidence of the HVID's debasement, not of a change in the Skilling. The rates agree [C]: Gylden 2 M d = 96
+   Hvide = 24 Skilling at 4 Hvide; Gylden 2½ M d = 120 Hvide = 24 Skilling at 5 Hvide. Both steps are +25 %, and
+   the Gylden in Skilling coin stays at **24 = the Lübeck 24 ß per Gulden** across the change — the Skilling holds
+   Lübeck parity, the Hvid moves. Caveat: «5 Hvide for 1 ß» is undated (R1 s. 142); its pairing with the
+   2½ M d rate of 1500/01 is Wilcke's (7-2 s. 149), not a single dated record.
 
 ## §1. Sources and provenance chains
 
