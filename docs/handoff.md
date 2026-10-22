@@ -80,11 +80,15 @@
   byte-identical; trace_coin diff 0 real losses; verify_reflow 0; audit_v2 full ✓;
   audit_curation_loss and audit_phantom_citations unchanged (metal=9 / 140+26 pre-existing).
   Retired `dedup_final_foundations.py`, `reroute_orphan_unified_into_foundation.py`.
-  **Next: stage 4** (delete the rename / split compensations and the `unified-` prefix
-  fallbacks; drop `legacy_id` from promoted finals) — needs its own «так». Pre-existing absorb
-  notes still printed every run: 13+5 superseded shells kept (curated), 5 Hede sub-letter
-  splits in danish_norway, 3 orphan exclusion ids in danish_realm (kmk-473418, kmk-494040,
-  kmk-805). General: `specimens:` (kmm-keyed)
+  **Stage 4 SHIPPED 2026-10-22** (curator «Так» on the narrowed scope): rename compensations
+  removed (`_hand_over_renamed_classes`, `_inherit_classification`, `prev_classes.json`,
+  prefix fallback in `_is_promoted`), `legacy_id` dropped from promoted finals; the
+  registry label is the permanent old-name map and verify_reflow still translates through it.
+  **Open, curator (per case, separate task)**: the 38 curated superseded shells (13 ikmk in
+  _unclassified, 5 dk-tid 70747/70749/70752/70756/79557 in danish_realm, 5 Hede sub-letter
+  splits nc5h32/37/56/68/69 in danish_norway, …) and 3 orphan exclusion ids in danish_realm
+  (kmk-473418, kmk-494040, kmk-805) — merge-candidate table each, fold or keep. D49 is
+  otherwise complete; stage 5 (fold out of the kmk builder) optional and undecided. General: `specimens:` (kmm-keyed)
   exclusions and the merge decisions name KMM specimens by the representative of a fold that
   `thin_safe` can re-cut on any re-seed; `_load_excluded_ids` in build_kmk_seed reads `id:` only.
 

@@ -879,6 +879,17 @@ absorb / verify_reflow / build / categorize / audit_v2 / trace_coin / v2_index c
 Known residue: two `dav` catalogue lists re-ordered (member order by class id); 38 curated shells
 keep `unified-…` ids until the curator resolves them.
 
+**Stage 4 — ✅ DONE 2026-10-22** (narrowed on review: only the RENAME compensations go —
+`_hand_over_renamed_classes`, `_inherit_classification` + `prev_classes.json`, the `unified-`
+fallback in `_is_promoted`; `_superseding_class`, Shape A/D and `departed.json` stay because a
+class can still be merged away or lose a seed, and they already work through the registry).
+`legacy_id` dropped from promoted finals 2026-10-22; the registry label is the permanent
+old-name → class-id map. Left open as a separate per-case task: the 38 curated superseded
+shells (13 ikmk in _unclassified, 5 dk-tid in danish_realm, 5 Hede sub-letter splits in
+danish_norway, …) and the 3 orphan exclusion ids in danish_realm (kmk-473418, kmk-494040,
+kmk-805) — merge-candidate table each, then fold or keep. Stage 5 (fold out of the kmk seed
+builder) remains optional and undecided.
+
 **Stage 1 — classification decisions keyed by a member seed id** *(small, independent of the registry)*
 - absorb's decision resolver accepts a seed id as `coin_id` and maps it to the class containing that seed (specimens incl. `_thinned_from`); class ids keep working.
 - `scripts/maintenance/migrate_classification_keys.py`: rewrite the 498 keys to the head seed (`unified-x` → `x`); report the 238 orphans that now resolve and any that still do not (those go to the curator one by one).
