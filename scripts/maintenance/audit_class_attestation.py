@@ -7,6 +7,9 @@ diameter_mm) that no class of the final attests, grouped by cause — see
 
     moved     attested by a class of ANOTHER final (stale leftover of a seed
               that left; absorb drops these)
+    twin      as moved, but this final is on a page and every such final
+              is in seed_unsorted — kept; usually one coin split in two
+              finals, a merge candidate
     orphan    attested only by classes that reach no final (kept; curator)
     unseeded  attested by no class (curator / fold / V1 citation; kept)
 
@@ -14,8 +17,10 @@ diameter_mm) that no class of the final attests, grouped by cause — see
     .venv/bin/python scripts/maintenance/audit_class_attestation.py --entity danish_norway --examples 5
     .venv/bin/python scripts/maintenance/audit_class_attestation.py --json out.json
 
-Also lists list-form `mint` values no class of the final carries (reported
-only; mint is not dropped by absorb).
+Also lists, reported only (absorb drops neither): list-form `mint` values
+and `catalog` values (register, value) that no class of the final carries —
+the same stale-union mechanism (2026-10-22: «Ernst 1940# 3-13» stayed on the
+Galster 158/160/161 finals after an erratum removed it from their seeds).
 """
 from __future__ import annotations
 
@@ -41,6 +46,14 @@ def _mints(c) -> set[str]:
     return {str(x) for x in (m if isinstance(m, list) else [m]) if x}
 
 
+def _cat(c) -> set[tuple[str, str]]:
+    out = set()
+    for reg, v in (c.get("catalog") or {}).items():
+        vals = list(v.values()) if isinstance(v, dict) else (v if isinstance(v, list) else [v])
+        out |= {(reg, str(x).strip()) for x in vals if x not in (None, "") and not isinstance(x, dict)}
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -61,6 +74,7 @@ def main() -> int:
                 ent_of[c["id"]] = p.stem
     idx = AttestationIndex.build(unified, finals)
     cls_mint = {u["id"]: _mints(u) for u in unified if u.get("id")}
+    cls_cat = {u["id"]: _cat(u) for u in unified if u.get("id")}
 
     report = []
     totals: Counter = Counter()
@@ -87,6 +101,15 @@ def main() -> int:
                 row["fields"]["mint"] = {"unattested": extra, "class": sorted(cm)}
                 totals[("mint", "unattested")] += len(extra)
                 finals_hit[("mint", "unattested")] += 1
+        held = fc.get("_curation_holds")
+        held = set(held.keys() if isinstance(held, dict) else (held or []))
+        if own and "catalog" not in held:
+            cc = set().union(*(cls_cat.get(c, set()) for c in own))
+            extra = sorted(_cat(fc) - cc)
+            if extra and cc:
+                row["fields"]["catalog"] = {"unattested": [f"{r}={v}" for r, v in extra]}
+                totals[("catalog", "unattested")] += len(extra)
+                finals_hit[("catalog", "unattested")] += 1
         if row["fields"]:
             report.append(row)
 
@@ -97,6 +120,11 @@ def main() -> int:
     # examples: biggest offenders per (field, cause)
     for fld, cause in sorted(totals):
         rows = [r for r in report if r["fields"].get(fld, {}).get(cause)]
+        if fld in ("mint", "catalog"):
+            print(f"\n== {fld} / {cause}: top finals")
+            for r in rows[:a.examples]:
+                print(f"  {r['final']} [{r['entity']}] {r['label']}: {r['fields'][fld][cause]}")
+            continue
         rows.sort(key=lambda r: -len(r["fields"][fld][cause]))
         print(f"\n== {fld} / {cause}: top finals")
         for r in rows[:a.examples]:

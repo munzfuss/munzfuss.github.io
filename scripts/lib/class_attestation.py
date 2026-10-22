@@ -99,6 +99,8 @@ class AttestationIndex:
     final_classes: dict[str, set[str]] = field(default_factory=dict)
     # {field: {key: {final ids that carry it now}}}
     carriers: dict[str, dict] = field(default_factory=dict)
+    # final ids shown on a page: a fuss other than seed_unsorted
+    shown: set[str] = field(default_factory=set)
 
     @classmethod
     def build(cls, unified_coins, final_coins) -> "AttestationIndex":
@@ -135,6 +137,8 @@ class AttestationIndex:
             if fid in idx.class_keys:
                 reached.add(fid)
             idx.final_classes[fid] = reached
+            if fc.get("fuss") not in (None, "", "seed_unsorted"):
+                idx.shown.add(fid)
             for c in reached:
                 idx.class_final.setdefault(c, fid)
         return idx
@@ -152,10 +156,10 @@ class AttestationIndex:
         return cls.build(list(coins("seed_unified")), list(coins("final")))
 
     def classify(self, fc: dict, fld: str) -> dict[str, list]:
-        """{'moved': [(value, other final id)], 'orphan': [(value, class ids)],
-        'unseeded': [value]} for the values of `fld` on final `fc` that none
-        of its own classes attests."""
-        out = {"moved": [], "orphan": [], "unseeded": []}
+        """{'moved': [(value, other final id)], 'twin': [(value, other final
+        id)], 'orphan': [(value, class ids)], 'unseeded': [value]} for the
+        values of `fld` on final `fc` that none of its own classes attests."""
+        out = {"moved": [], "twin": [], "orphan": [], "unseeded": []}
         fid = fc.get("id")
         own = self.final_classes.get(fid, set())
         attested = set()
@@ -171,8 +175,11 @@ class AttestationIndex:
                 continue
             others = self.holders.get(fld, {}).get(k, set()) - own
             homes = self.homes(fld, k, fid)
-            if homes:
-                out["moved"].append((v, homes[0]))
+            shown_homes = [h for h in homes if h in self.shown]
+            if homes and fid in self.shown and not shown_homes:
+                out["twin"].append((v, homes[0]))
+            elif homes:
+                out["moved"].append((v, (shown_homes or homes)[0]))
             elif others:
                 out["orphan"].append((v, sorted(others)))
             else:
@@ -199,7 +206,7 @@ def prune_moved(fc: dict, idx: AttestationIndex) -> dict[str, list]:
     """Drop from final `fc` (in place) every source / reading a class of
     ANOTHER final attests and none of its own does. Returns {field: [dropped
     (value, home final id)]}. Fields held in `_curation_holds` are untouched;
-    `orphan` and `unseeded` values always stay (see module docstring)."""
+    `twin`, `orphan` and `unseeded` values always stay (module docstring)."""
     dropped: dict[str, list] = {}
     for fld in ("sources",) + READING_FIELDS:
         if _held(fc, fld):

@@ -116,6 +116,28 @@ class Causes(unittest.TestCase):
         self.assertFalse(any("ucoin" in str(v) for v in flat))
 
 
+class Twin(unittest.TestCase):
+    def test_shown_final_keeps_value_whose_home_is_unsorted(self):
+        """km-33-ernst-1603 (classified, on the page) and c-a4a6e739 (seed_unsorted)
+        are both KM 33: one coin split in two. Dropping the NumisMaster citation
+        from the shown one would take it off the page — twin, kept."""
+        fc = _g155(fuss="luebischer_muenzfuss")
+        home = dict(G36, fuss="seed_unsorted")
+        idx = _index([fc, home])
+        r = idx.classify(fc, "sources")
+        self.assertEqual(r["moved"], [])
+        self.assertEqual(len(r["twin"]), 2)
+        self.assertEqual(prune_moved(fc, idx).get("sources"), None)
+        self.assertEqual(len(fc["sources"]), 7)
+
+    def test_shown_home_or_unshown_loser_is_moved(self):
+        for f_fuss, g_fuss in (("a", "b"), ("seed_unsorted", "seed_unsorted"),
+                               ("seed_unsorted", "b")):
+            fc = _g155(fuss=f_fuss)
+            r = _index([fc, dict(G36, fuss=g_fuss)]).classify(fc, "sources")
+            self.assertEqual(len(r["moved"]), 2, (f_fuss, g_fuss))
+
+
 class Prune(unittest.TestCase):
     def test_prune_drops_only_moved(self):
         fc = _g155()
