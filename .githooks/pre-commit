@@ -131,7 +131,7 @@ FAIL=0
 # ---------------------------------------------------------------------------
 BUILD_RELEVANT=$(echo "$STAGED" | grep -E '^(data/|templates/|scripts/lib/|scripts/build\.py$|config/theme\.yml$|assets/)' || true)
 STAGED_YAML=$(echo "$STAGED" | grep -E '^data/.*\.yml$' || true)
-V2_RELEVANT=$(echo "$STAGED" | grep -E '^(data/v2/|scripts/maintenance/(seed_v2|merge_seeds|absorb_seeds|relink_promoted|bootstrap_v2)|scripts/build\.py$|scripts/lib/(schema|v2_resolver|v2_entity_classify|seed_merge)\.py$)' || true)
+V2_RELEVANT=$(echo "$STAGED" | grep -E '^(data/v2/|scripts/maintenance/(seed_v2|merge_seeds|absorb_seeds|relink_promoted|bootstrap_v2)|scripts/build\.py$|scripts/lib/(schema|v2_resolver|v2_entity_classify|seed_merge|class_registry)\.py$)' || true)
 DECISIONS_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/merge_decisions/.*\.yml$' || true)
 CLASSIFY_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/classification_decisions/.*\.yml$' || true)
 FINAL_RELEVANT=$(echo "$STAGED" | grep -E '^data/v2/final/.*\.yml$' || true)

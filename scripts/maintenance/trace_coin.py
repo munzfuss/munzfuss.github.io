@@ -126,9 +126,10 @@ def _half_applied() -> list[str]:
     """
     import subprocess
     r = subprocess.run(["git", "status", "--porcelain",
-                        "data/v2/seed", "data/v2/seed_unified", "data/v2/final"],
+                        "data/v2/seed", "data/v2/seed_unified", "data/v2/final",
+                        "data/v2/class_registry"],
                        capture_output=True, text=True, cwd=PROJECT_ROOT)
-    dirty = {"seed": False, "seed_unified": False, "final": False}
+    dirty = {"seed": False, "seed_unified": False, "final": False, "registry": False}
     for line in r.stdout.splitlines():
         p = line[3:].strip()
         if p.startswith("data/v2/seed_unified/"):
@@ -137,10 +138,15 @@ def _half_applied() -> list[str]:
             dirty["seed"] = True
         elif p.startswith("data/v2/final/"):
             dirty["final"] = True
+        elif p.startswith("data/v2/class_registry/"):
+            dirty["registry"] = True
 
     warn = []
     if dirty["seed"] and not dirty["seed_unified"]:
         warn.append("seeds are modified but seed_unified is not — the merger has not run")
+    if dirty["registry"] and not dirty["seed_unified"]:
+        warn.append("class_registry is modified but seed_unified is not — "
+                    "the registry and the classes it names are out of step")
     if dirty["seed_unified"] and not dirty["final"]:
         warn.append("seed_unified is modified but final is not — the absorb has not run")
     return warn

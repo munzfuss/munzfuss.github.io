@@ -104,6 +104,7 @@ def family_of(path) -> str:
         "data/v2/final/" in p
         or "data/v2/seed_unified/" in p
         or "data/v2/classification_decisions/" in p
+        or "data/v2/class_registry/" in p
     ):
         return "ruamel_seed"
     if "data/v2/seed/" in p:
@@ -126,7 +127,7 @@ def dump_v2_canonical(payload) -> str:
     """Serialize a plain dict/list payload to the canonical V2 string
     (ruamel width=200, seq=4/offset=2). This is the single serializer for the
     machine-emitted-AND-hand-editable V2 files — final/, seed_unified/,
-    classification_decisions/. The absorb/merger emitters call this instead of
+    classification_decisions/, class_registry/. The absorb/merger emitters call this instead of
     the old PyYAML width=120 dump, so a subsequent ruamel hand-edit is a no-op
     (no more offset0↔offset2 churn). Callers needing a header-comment banner
     prepend it to the returned string. NOT for match_uncertainty/ (PyYAML,
@@ -492,7 +493,8 @@ def _is_machine_emitted(path) -> bool:
     `dump_v2_canonical` on every re-flow."""
     p = str(path).replace("\\", "/")
     return any(d in p for d in ("data/v2/final/", "data/v2/seed_unified/",
-                                "data/v2/classification_decisions/"))
+                                "data/v2/classification_decisions/",
+                                "data/v2/class_registry/"))
 
 
 def round_trip_residual(path, raw: str | None = None) -> int:

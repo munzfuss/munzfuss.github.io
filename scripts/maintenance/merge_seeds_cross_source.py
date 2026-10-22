@@ -5359,6 +5359,40 @@ def process_entity(entity_id: str,
 # ---------------------------------------------------------------------------
 
 
+def _recognise_classes(results: dict[str, dict], all_seeds_by_id: dict[str, dict]):
+    """D49: map every emitted class to its registry record and stamp the
+    unified entries. Returns (registry, {(entity, specimens): class id}).
+
+    Membership is counted in SPECIMENS (seeds ∪ `_thinned_from`), so a §9a
+    fold re-cut does not move a class's identity. `label` keeps the
+    `unified-<head>` name — the render reads it where it used to parse `id`."""
+    from lib.class_registry import (Registry, rep_to_dead_index, specimens_of)
+    rep_dead = rep_to_dead_index(all_seeds_by_id.values())
+    registry = Registry.load_all()
+    parts: dict[str, list[tuple[frozenset, str]]] = {}
+    for ent, r in results.items():
+        parts[ent] = [(specimens_of(u.get("composed_of") or [], rep_dead), u["id"])
+                      for u in r["unified_entries"]]
+    assigned = registry.inherit(parts)
+    stats = Counter()
+    for ent, r in results.items():
+        stamped = []
+        for u in r["unified_entries"]:
+            cid = assigned[(ent, specimens_of(u.get("composed_of") or [], rep_dead))]
+            rec = registry.records[cid]
+            stats["new" if rec.created == date.today().isoformat() and rec.legacy_id is None
+                  else "inherited"] += 1
+            stamped.append({"id": u["id"], "class_id": cid, "label": u["id"],
+                            **{k: v for k, v in u.items() if k != "id"}})
+        r["unified_entries"] = stamped
+    retired = sum(1 for rec in registry.records.values()
+                  if rec.status != "active" and rec.retired == date.today().isoformat())
+    print(f"  class registry: {stats['inherited']} inherited, {stats['new']} new, "
+          f"{retired} retired today; shards touched: "
+          f"{', '.join(sorted(registry.touched)) or 'none'}\n")
+    return registry, assigned
+
+
 def _emit_unified_yaml(entity_id: str, unified_entries: list[dict],
                        seeds_count: int) -> str:
     payload = {
@@ -5561,11 +5595,13 @@ def main() -> int:
     print(f"Processing {len(entities)} entit(y/ies)...\n")
 
     totals = Counter()
+    results: dict[str, dict] = {}
     for ent in entities:
         result = process_entity(ent, member_target=member_target,
                                 pull_groups=pull_groups,
                                 all_seeds_by_id=all_by_id,
                                 member_ie=member_ie)
+        results[ent] = result
         totals["seeds"] += result["seeds_count"]
         totals["unified"] += result["unified_count"]
         totals["confident_merges"] += len(result["confident_merges"])
@@ -5593,6 +5629,24 @@ def main() -> int:
             if len(result["low_confidence_pairs"]) > 5:
                 print(f"    ? ... and {len(result['low_confidence_pairs']) - 5} more")
 
+    # D49 class identity — recognise the partition ONCE over every processed
+    # entity (a per-entity call inside the loop would depend on entity order:
+    # cross-entity pulls move specimens between entities in one run), then
+    # stamp `class_id` / `label` on the unified entries. Nothing is written
+    # before this, so a refusal leaves the tree untouched.
+    registry, assigned = _recognise_classes(results, all_by_id)
+    foreign = registry.touched - set(entities)
+    if foreign:
+        msg = (f"  ✗ class registry: this run would change the shard(s) of "
+               f"{sorted(foreign)}, which are not being processed (a class moved "
+               f"between entities). Run without --entity.")
+        if args.apply:
+            print(msg + "  BLOCKED — nothing written.")
+            return 1
+        print(msg + "  (dry-run)")
+
+    for ent in entities:
+        result = results[ent]
         if args.apply:
             V2_SEED_UNIFIED.mkdir(parents=True, exist_ok=True)
             _write_prev_classes(ent, result["unified_entries"])
@@ -5617,6 +5671,11 @@ def main() -> int:
                 stale = V2_MATCH_UNCERTAINTY / f"{ent}.yml"
                 if stale.exists():
                     stale.unlink()
+
+    if args.apply:
+        written = registry.save(entities=set(entities) | registry.touched)
+        print(f"  class registry: {len(written)} shard(s) written "
+              f"({', '.join(written) if written else 'no change'})")
 
     print()
     print(f"=== Totals ===")
