@@ -84,11 +84,27 @@
   removed (`_hand_over_renamed_classes`, `_inherit_classification`, `prev_classes.json`,
   prefix fallback in `_is_promoted`), `legacy_id` dropped from promoted finals; the
   registry label is the permanent old-name map and verify_reflow still translates through it.
-  **Open, curator (per case, separate task)**: the 38 curated superseded shells (13 ikmk in
-  _unclassified, 5 dk-tid 70747/70749/70752/70756/79557 in danish_realm, 5 Hede sub-letter
-  splits nc5h32/37/56/68/69 in danish_norway, …) and 3 orphan exclusion ids in danish_realm
-  (kmk-473418, kmk-494040, kmk-805) — merge-candidate table each, fold or keep. D49 is
-  otherwise complete; stage 5 (fold out of the kmk builder) optional and undecided. General: `specimens:` (kmm-keyed)
+  **Shell review DONE 2026-10-22** (tables: `output/review_shells_2026-10-22.md`, gitignored;
+  curator verdicts in chat): 8 Hede-page shells in danish_norway → §9.4 merges of the
+  sub-letter seeds (nc5h32, 37, 48, 56, 68, 69, nc6h4, nf5h3) with the classification
+  re-stated on the seeds; 5 dk-tid + 13 ikmk shells folded by recorded decision
+  (`_recorded_removals.yml`, `kind: shell` — absorb drops a curated shell whose head seed
+  carries one); case 24 refused (ikmk-18296479 ≠ Wilhelm zu Harburg: no_merges in
+  herzogtum_braunschweig_lueneburg + fold protection for decision members in
+  `seed_thin.thin_seed_dir`); the 3 orphan exclusion ids are «spent» (builder filters them).
+  **Still `unified-…` in final (12)**: group E — 10 KMM shells whose seed vanished
+  (KP 1332.114a–e blik/messing 10/20 Kroner 1890s imitations, BP 888.1–2 papir
+  Rigsbankdaler 1819, KP 1699.1 / 1634.2 / 1326.97 empty records) and group F — two curated
+  V1 finals `unified-km-26-chr-iv-1641-l2b1`, `unified-km-54-fr-iii-1665` (keep; `origin`
+  should read foundation). The curator asked what the question was: for E it is
+  «delete these source-less finals?», for F «keep as foundations» — one yes/no each.
+  **Curator question raised by the review**: class `unified-ikmk-18286114` (Doppelschilling
+  1618-1622) fuses Wilhelm zu Harburg ×5, Christian zu Celle ×3, Friedrich Ulrich and
+  August II zu Hitzacker — the same multi-issuer over-merge shape as the recorded Ernst III /
+  Julius Ernst split; and the entity of `unified-dk-bruun-5537` (Christian IV Groschen 1627,
+  Hede 6) in herzogtum_braunschweig_lueneburg.
+  Teammate session «дрібні правки» (2026-10-22): its `_KMM_OWN_RECORD` change was covered
+  in this run (kmk-427531/2/3 own classes, kmk-312170 pruned). D49 stage 5 optional. General: `specimens:` (kmm-keyed)
   exclusions and the merge decisions name KMM specimens by the representative of a fold that
   `thin_safe` can re-cut on any re-seed; `_load_excluded_ids` in build_kmk_seed reads `id:` only.
 

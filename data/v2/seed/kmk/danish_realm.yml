@@ -1,6 +1,6 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-22T07:51:25Z'
+generated_at: '2026-10-22T15:58:59Z'
 entity: danish_realm
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
@@ -341477,15 +341477,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/312170
         ref: KMM 312170 (Inv. FP 7117.58)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/427531
-        ref: KMM 427531 (Inv. FP 1953.36)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/427532
-        ref: KMM 427532 (Inv. FP 1953.35)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/427533
-        ref: KMM 427533 (Inv. FP 1953.34)
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/427534
         ref: KMM 427534 (Inv. FP 1953.33)
       - type: museum
@@ -341586,9 +341577,6 @@ coins:
         ref: KMM 427566 (Inv. FP 1953.1)
     verification_note: *id001
     _thinned_from:
-      - kmk-427531
-      - kmk-427532
-      - kmk-427533
       - kmk-427534
       - kmk-427535
       - kmk-427536
@@ -347312,6 +347300,57 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/427530
         ref: KMM 427530 (Inv. FP 1953.37)
+    verification_note: *id001
+  - id: kmk-427531
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 1 Skilling
+    metal_verified: false
+    mint_verified: false
+    ruler: Hans
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/427531
+        ref: KMM 427531 (Inv. FP 1953.36)
+    verification_note: *id001
+  - id: kmk-427532
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 1 Skilling
+    metal_verified: false
+    mint_verified: false
+    ruler: Hans
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/427532
+        ref: KMM 427532 (Inv. FP 1953.35)
+    verification_note: *id001
+  - id: kmk-427533
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 1 Skilling
+    metal_verified: false
+    mint_verified: false
+    ruler: Hans
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/427533
+        ref: KMM 427533 (Inv. FP 1953.34)
     verification_note: *id001
   - id: kmk-429932
     fuss: seed_unsorted

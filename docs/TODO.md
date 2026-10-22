@@ -884,11 +884,10 @@ keep `unified-…` ids until the curator resolves them.
 fallback in `_is_promoted`; `_superseding_class`, Shape A/D and `departed.json` stay because a
 class can still be merged away or lose a seed, and they already work through the registry).
 `legacy_id` dropped from promoted finals 2026-10-22; the registry label is the permanent
-old-name → class-id map. Left open as a separate per-case task: the 38 curated superseded
-shells (13 ikmk in _unclassified, 5 dk-tid in danish_realm, 5 Hede sub-letter splits in
-danish_norway, …) and the 3 orphan exclusion ids in danish_realm (kmk-473418, kmk-494040,
-kmk-805) — merge-candidate table each, then fold or keep. Stage 5 (fold out of the kmk seed
-builder) remains optional and undecided.
+old-name → class-id map. Shell review done the same day (see handoff): 8 Hede merges, 18
+shells folded by recorded decision (`kind: shell`), one ikmk fold refused; 12 `unified-…`
+finals remain (10 source-less KMM shells — curator yes/no on deleting; 2 curated km-
+foundations — keep). Stage 5 (fold out of the kmk seed builder) remains optional.
 
 **Stage 1 — classification decisions keyed by a member seed id** *(small, independent of the registry)*
 - absorb's decision resolver accepts a seed id as `coin_id` and maps it to the class containing that seed (specimens incl. `_thinned_from`); class ids keep working.
