@@ -16,6 +16,20 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-22 (late) — teammate commits re-flowed; KMM ff/var held
+
+- **Ernst 4794a6f re-flowed**: `6c906ed` (8 Galster tokens «Ernst 1940# N»). Found + fixed in `ac2968e`: a
+  `kind: shell` removal is keyed by head seed and also matched the record's LIVE final (ikmk-18296479 in
+  herzogtum_braunschweig_lueneburg was dropped). absorb now applies it only to an id that is no live class;
+  verify_reflow excuses it only while the seed lives in another final, and compares `catalog.others` through
+  `normalise_catalog`. The drop was also masked by the URL-coverage fold fallback: c-1e3ebd4b / c-294bed2e
+  still cite IKMK 18296479 (stale, «Stop stale sources» session told).
+- **KMM 39d312f re-seed NOT committed** (tree restored): `merge_seed` deep-merges `catalog`, so the 9 seeds
+  kmk-333081 154v, kmk-160866 128v, kmk-137174 1v, kmk-643788 35v, kmk-696735 1v, kmk-410713 141f,
+  kmk-410714 102f, kmk-410715 70f, kmk-426485 142f become `schou: [bare, old]`. Dropping the old value is a
+  recorded removal → awaiting curator «так» (then: re-seed, removal entries / seed fix, merge + absorb, commit).
+- data/v2 handed to «дрібні правки» for its G155 mint fix.
+
 ## 2026-10-22 — full pipeline re-run (all seed builders → merge → absorb → thin → classify → relink → both sites)
 
 - **Shipped, not pushed**: `178636a` (re-seed of all ten sources) + the re-flow commit after it
