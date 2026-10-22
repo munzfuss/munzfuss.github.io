@@ -97,6 +97,7 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     _take_first_non_none,
     _or_merge_verified,
     _source_label_from_id,
+    _source_label_of,
     _catalog_refs,
     _shares_unique_id_ref,
     _shares_type_level_catalog,
@@ -215,9 +216,8 @@ def _coin_exclusion_hit(entry: dict, excluded_ids: set,
     A `scope: member` id (`member_ids`) matches the entry's OWN id only: it
     removes that record (a singleton — the merger isolates it), never the class
     whose composed_of still names it from an earlier merge."""
-    own = str(entry.get("id") or "").removeprefix("unified-")
-    seeds = {own} | {str(m).removeprefix("unified-")
-                     for m in (entry.get("composed_of") or [])}
+    own = _seed_of(str(entry.get("id") or ""))
+    seeds = {own} | {_seed_of(str(m)) for m in (entry.get("composed_of") or [])}
     return (seeds & (excluded_ids - member_ids)) | ({own} & member_ids)
 
 
@@ -653,7 +653,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     final_id = final_entry.get("id") or ""
     composed = final_entry.get("composed_of") or []
     pure_absorbed = (
-        final_id.startswith("unified-")
+        _is_promoted(final_entry)
         and len(composed) == 1
         and composed[0] == final_id
     )
@@ -1064,7 +1064,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         def _vof(x):
             return x.get("value") if isinstance(x, dict) else x
         held_vals = {round(_vof(x), 6) for x in held_list if _vof(x) is not None}
-        own_src = _source_label_from_id(final_entry.get("id"))
+        own_src = _source_label_of(final_entry)
         collected = out.get(_hf)
         collected_list = (collected if isinstance(collected, list)
                           else ([] if collected is None else [collected]))
@@ -1270,10 +1270,21 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         # Self-reference: only meaningful if final-id is a unified-shape
         # id (the promoted-unified pattern). For other foundation entries
         # with a name-collision risk, stay safe and exclude.
-        if final_id.startswith("unified-"):
+        if _is_promoted(final_entry):
             member_ids.append(mid)
     composed = sorted(set(existing_composed) | set(member_ids))
     out["composed_of"] = composed
+
+    # D49 identity fields: the name the render reads (`label`), the id the
+    # coin carried before stage 3 (`legacy_id`), the foundation marker.
+    for k in ("label", "legacy_id", "origin"):
+        if final_entry.get(k):
+            out[k] = final_entry[k]
+    if not out.get("label"):
+        out["label"] = next((m.get("label") for m in members
+                             if isinstance(m, dict) and m.get("label")), None) or final_id
+    if not out.get("origin"):
+        out["origin"] = "promoted" if _is_promoted(final_entry) else "foundation"
 
     # Preserve other V2 bookkeeping fields from foundation
     for k in ("v1_home_location", "_migration_note", "_migration_dup_origin_id",
@@ -1478,10 +1489,54 @@ def _nominal_genuinely_differs(a, b) -> bool:
     return True
 
 
+_REGISTRY = None
+# The entity's live seed_unified classes, keyed by class id — set at the top of
+# `process_entity` so the id helpers below can read a class's label / members.
+_LIVE_UNIFIED: dict[str, dict] = {}
+
+
+def _registry():
+    """The D49 class registry (data/v2/class_registry/), loaded once."""
+    global _REGISTRY
+    if _REGISTRY is None:
+        from lib.class_registry import Registry
+        _REGISTRY = Registry.load_all()
+    return _REGISTRY
+
+
+def _is_promoted(fe: dict) -> bool:
+    """A pipeline-promoted final (its id is a class id) as opposed to a curated
+    V1 foundation. `origin` is the marker (D49 stage 3); the `unified-` prefix
+    is read only for records that predate it (old finals, test fixtures)."""
+    o = fe.get("origin") if isinstance(fe, dict) else None
+    if o:
+        return o == "promoted"
+    return str(fe.get("id") or "").startswith("unified-")
+
+
 def _seed_of(uid: str) -> str:
-    """Strip the pipeline `unified-` prefix → the underlying seed id."""
-    return uid[len("unified-"):] if isinstance(uid, str) and uid.startswith(
-        "unified-") else uid
+    """The HEAD seed an id stands for: a class id → the seed its name
+    (`label`, `unified-<top-authority member>`) was built from, read from the
+    live seed_unified entry or the registry; a `unified-<seed>` name → the
+    seed; anything else (a seed id, a curated foundation id) → itself."""
+    if not isinstance(uid, str) or not uid:
+        return uid
+    name = uid
+    u = _LIVE_UNIFIED.get(uid)
+    if u is not None and u.get("label"):
+        name = str(u["label"])
+    else:
+        rec = _registry().records.get(uid)
+        if rec is not None and rec.label:
+            name = str(rec.label)
+    return name[len("unified-"):] if name.startswith("unified-") else name
+
+
+def _resolve_class(cid: str) -> str | None:
+    """The live class id a (possibly retired) class id resolves to through the
+    registry's `merged_into` chain, or None."""
+    rec = _registry().resolve(str(cid))
+    return rec.id if rec is not None and rec.status == "active" else None
 
 
 def _load_no_merge_pairs(entity_id: str) -> set:
@@ -1895,7 +1950,9 @@ def _final_has_live_backing(fe: dict, live_unified_ids: set, live_ids: set) -> b
             continue
         if cand in live_ids:
             return True
-        if cand.startswith("unified-") and cand[len("unified-"):] in live_ids:
+        if _seed_of(cand) in live_ids:
+            return True
+        if _resolve_class(cand) in live_unified_ids:
             return True
     return False
 
@@ -1910,7 +1967,7 @@ def _is_vanished_stale_final(fe: dict, live_unified_ids: set, live_ids: set) -> 
     second line of defence (keeps a bulk-promoted entry a curator has since
     classified)."""
     return (
-        str(fe.get("id") or "").startswith("unified-")
+        _is_promoted(fe)
         and not _final_has_live_backing(fe, live_unified_ids, live_ids)
         and not _final_is_curated(fe)
     )
@@ -2069,12 +2126,16 @@ def _superseding_class(fe: dict, live_member_ids: set) -> str | None:
     composed_of members is live, and `<seed>` now sits in a class with a
     different id. Returns that class id."""
     fid = str(fe.get("id") or "")
-    if not fid.startswith("unified-"):
+    if not _is_promoted(fe):
         return None
     if any(m in live_member_ids for m in (fe.get("composed_of") or [])):
         return None
+    # D49: a retired class records where its members went.
+    _lin = _resolve_class(fid)
+    if _lin and _lin != fid and _lin in live_member_ids:
+        return _lin
     idx = _seed_class_index()
-    bare = fid[len("unified-"):]
+    bare = _seed_of(fid)
     if bare not in idx:
         # The parser split a Hede page into sub-letter seeds (`dk-hede-nc5h30`
         # → `nc5h30a`, 202a5c1): the bare seed no longer exists, so the lookup
@@ -2288,16 +2349,9 @@ def _final_is_relocated(fe: dict, relocated_out: set) -> bool:
     copy, safe to drop even if curated (the curation lives on the target host).
     Matches the head-seed (id minus the `unified-` prefix) and every
     composed_of member (raw + `unified-`-stripped) against `relocated_out`."""
-    fid = str(fe.get("id") or "")
-    if not fid.startswith("unified-"):
+    if not _is_promoted(fe):
         return False
-    keys = {fid[len("unified-"):]}
-    for c in (fe.get("composed_of") or []):
-        cs = str(c)
-        keys.add(cs)
-        if cs.startswith("unified-"):
-            keys.add(cs[len("unified-"):])
-    return bool(keys & relocated_out)
+    return bool(_final_relocation_keys(fe) & relocated_out)
 
 
 # ---------------------------------------------------------------------------
@@ -2367,7 +2421,7 @@ def _inherit_classification(entity_id: str, finals: list[dict]) -> int:
         ids = [str(fc.get("id"))] + [str(m) for m in (fc.get("composed_of") or [])]
         if decided & set(ids):
             continue
-        if any(i.removeprefix("unified-") in declassified for i in ids):
+        if any(_seed_of(i) in declassified for i in ids):
             continue
         prev = {p for i in ids for p in prev_of.get(i, [])}
         classes = {c for p in prev for c in class_of.get(p, ())}
@@ -2410,12 +2464,11 @@ def _cross_entity_member_targets() -> dict[str, str]:
 def _final_relocation_keys(fe: dict) -> set:
     """The ids `_final_is_relocated` matches a final by."""
     fid = str(fe.get("id") or "")
-    keys = {fid[len("unified-"):]} if fid.startswith("unified-") else set()
+    keys = {_seed_of(fid)} if _is_promoted(fe) else set()
     for c in (fe.get("composed_of") or []):
         cs = str(c)
         keys.add(cs)
-        if cs.startswith("unified-"):
-            keys.add(cs[len("unified-"):])
+        keys.add(_seed_of(cs))
     return keys
 
 
@@ -2478,7 +2531,7 @@ def _cross_entity_carry_in(entity_id: str, unified_entries: list[dict]
             continue
         ent_relocated_out = _cross_entity_relocated_out(ent)
         for fe in finals:
-            if not str(fe.get("id") or "").startswith("unified-"):
+            if not _is_promoted(fe):
                 continue
             # Only a final the source entity will itself DROP as relocated
             # (declared or routed). A superseded shell that absorb keeps for
@@ -2513,6 +2566,10 @@ def process_entity(entity_id: str) -> dict:
     unified_doc = _load_yaml(V2_SEED_UNIFIED / f"{entity_id}.yml")
     unified_entries: list[dict] = unified_doc.get("coins") or []
     unified_by_id = {u["id"]: u for u in unified_entries if u.get("id")}
+    _LIVE_UNIFIED.clear()
+    _LIVE_UNIFIED.update(unified_by_id)
+    # {head seed → its live class id} — what `"unified-" + seed` used to spell.
+    head_to_class = {_seed_of(u): u for u in unified_by_id}
     # The merger's «a Schou number that two types list is not evidence» guard
     # reads a per-entity claims table the merger builds for its own run. Absorb
     # calls the same match_pair against finals, so without the table here the
@@ -2868,10 +2925,10 @@ def process_entity(entity_id: str) -> dict:
                 article_page_dropped += 1
                 continue
         # Shape A: `unified-X` foundation
-        if (fid.startswith("unified-")
+        if (_is_promoted(fe)
                 and fid not in unified_by_id):
-            source_id = fid[len("unified-"):]
-            new_host = seed_to_unified.get(source_id)
+            source_id = _seed_of(fid)
+            new_host = seed_to_unified.get(source_id) or _resolve_class(fid)
             if new_host and new_host != fid:
                 _migrate_classification(fe, new_host)
                 stale_foundation_dropped += 1
@@ -2949,7 +3006,7 @@ def process_entity(entity_id: str) -> dict:
     v1_foundations_for_fold = [
         fe for fe in surviving_finals
         if isinstance(fe, dict) and fe.get("id")
-        and not fe["id"].startswith("unified-")
+        and not _is_promoted(fe)
     ]
     _CLASSIFICATION_FIELDS = ("fuss", "phase", "kind", "issuing_entity")
 
@@ -2990,7 +3047,7 @@ def process_entity(entity_id: str) -> dict:
             continue
         fid = fe.get("id")
         composed = fe.get("composed_of") or []
-        if not (fid and fid.startswith("unified-")
+        if not (fid and _is_promoted(fe)
                 and fid in unified_by_id
                 and composed == [fid]):
             final_after_fold.append(fe)
@@ -3511,11 +3568,13 @@ def process_entity(entity_id: str) -> dict:
             if uid in _folded_self:
                 restored = dict(_folded_self[uid])
                 restored["composed_of"] = [uid]
+                restored.setdefault("origin", "promoted")
                 enriched, _ = _enrich_final_entry(restored, [restored, unified], entity_id)
                 enriched_entries.append(enriched)
                 continue
             promoted_stub = dict(unified)
             promoted_stub["composed_of"] = [uid]
+            promoted_stub["origin"] = "promoted"
             # Apply curator-classification migration from any V1-bootstrap
             # foundation(s) that the merger consolidated into this unified
             # host (see `curator_migrations` build above). This ensures the
@@ -3791,8 +3850,8 @@ def process_entity(entity_id: str) -> dict:
             if um:
                 for s in um.get("composed_of") or []:
                     new_repr_ids.add(s)
-                    if not s.startswith("unified-"):
-                        new_repr_ids.add("unified-" + s)
+                    if s in head_to_class:
+                        new_repr_ids.add(head_to_class[s])
     monotonic_restored: list[str] = []
     for fc in _prior_final_for_monotonic:
         fid = fc.get("id")
@@ -3939,8 +3998,8 @@ def process_entity(entity_id: str) -> dict:
             # reference (the class no longer contains it).
             if member_ids and isinstance(fc, dict) and fc.get("composed_of"):
                 _co = [m for m in fc["composed_of"]
-                       if str(m).removeprefix("unified-") not in member_ids
-                       or str(m).removeprefix("unified-") == str(fc.get("id") or "").removeprefix("unified-")]
+                       if _seed_of(str(m)) not in member_ids
+                       or _seed_of(str(m)) == _seed_of(str(fc.get("id") or ""))]
                 if len(_co) != len(fc["composed_of"]):
                     fc["composed_of"] = _co
             # …and its citation: the record was removed, so the class must not keep
@@ -3961,7 +4020,7 @@ def process_entity(entity_id: str) -> dict:
                   f"coin(s) from final ({len(excluded_matched)} id(s) matched)")
         # A member-scope id whose singleton class exists did its job: the record
         # sits alone in seed_unified and never reached final.
-        excluded_matched |= {m for m in member_ids if f"unified-{m}" in unified_by_id}
+        excluded_matched |= {m for m in member_ids if head_to_class.get(m) in unified_by_id}
         orphan_exclusions = sorted(excluded_ids - excluded_matched)
         if orphan_exclusions:
             print(f"  ⚠ [{entity_id}] {len(orphan_exclusions)} exclusion id(s) matched "
