@@ -375,3 +375,23 @@ the final layer only (`255426e`); the seeds carry `_source_note` (da). To
 be derivable they need a source: a per-seed translation table consumed by
 the merger (or the V1 seed where the note is V1's), and a
 `verification_note` composed by one rule from the members — stage D3 / D4.
+
+## Stage N — done on the branch (2026-10-23)
+
+Code: `lib.ruler_reigns.canonical_ruler_display` + the writer's
+`_canonicalise_ruler` (fresh coins and the orphan-curated pass), 10 tests;
+`canonicalise_seed_rulers.py` (one-shot, batched line edits through
+`yaml_io`); `final_diff_candidates.py` (every differing value, seed-keyed).
+Data: 17 442 seed entries in 26 files, 82 forms; seed_unified of the four
+Danish-crown entities re-merged. **Measured:** the finals did NOT change
+(ruler is frozen on a final by P7 — the June forms are already there, and
+a final that never got the June pass keeps its old form until stage B);
+verify_reflow 0 losses; trace diff 0 real losses; munzfuss render
+byte-identical except the build date. One pipeline consequence for the
+curator: «Hans?» → «Hans» (unverified) let the merger join KMM 317652 /
+317653 / 317654 («1 Hvid(?)») to the Galster 31 Hvid class `c-bbb03d20`;
+three seed_unsorted rows gone from the Denmark page.
+
+Not landed on main yet (the curator is away; the branch carries it — see
+the handoff). Stage A code is ready (`--no-self-union`, P1 / P2 / P5,
+6 tests); stage B runs next from the stage-N commit.
