@@ -4517,3 +4517,9 @@ removals:
   - seed: ikmk-18296479
     kind: shell
     reason: 'Curator (Serhii) 2026-10-22 (merge-candidate table, case 24 — refused as a merge with the Wilhelm-zu-Harburg class): IKMK «Braunschweig-Lüneburg: Unbestimmte Kippermünzstätte» Doppelschilling 1620, August II, 1.53 g, is its own record again (fold protection + no_merges) and has its own class and final in herzogtum_braunschweig_lueneburg (label unified-ikmk-18296479). The shell final unified-ikmk-18296479 left in _unclassified is the same record twice; it is dropped, nothing is merged.'
+  - seed: dk-galster-hg-155
+    kind: field
+    field: mint
+    dropped:
+      - Bergen
+    reason: "Curator (Serhii) 2026-10-22: _source_errata mint Bergen -> Christiania on dk-galster-hg-155 (6f3dac3); hansgals.htm gives Galster 155 «Oslo eller Akershus» and Ernst 1940 assigns Schou 187-213 to Oslo. Every member seed of the class gives Christiania; Bergen stayed on the final only because absorb unions the final's earlier mint."
