@@ -760,7 +760,9 @@ def _undated_to_seed_unsorted(assembled: list[dict]) -> tuple[list[dict], list[t
     moved: list[tuple[str, str]] = []
     for c in assembled:
         if _is_undated(c) and c.get("fuss") not in (None, "seed_unsorted"):
-            m = _ID_SOURCE_RE.match(str(c.get("id") or ""))
+            # D49: the id is an opaque class id; the source signature lives in
+            # the name the class was given (`label`).
+            m = _ID_SOURCE_RE.match(str(c.get("label") or c.get("id") or ""))
             src = _ID_SOURCE_ALIAS.get(m.group(1), m.group(1)) if m else "kmk"
             moved.append((c.get("id"), f"{c.get('fuss')}/{c.get('phase')}"))
             c = {**c, "fuss": "seed_unsorted", "phase": src}
@@ -917,6 +919,8 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
             rc["issuing_entity"] = _derive_issuing_entity(rc)
             assembled.append(rc)
             seen_ids.add(cid)
+            if coin.get("legacy_id"):
+                seen_ids.add(str(coin["legacy_id"]))
 
     # ---- Pass 2: inverse-index for multi-entity coins --------------------
     for ent, coins in by_entity.items():
@@ -938,6 +942,8 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
             rc["issuing_entity"] = _derive_issuing_entity(rc)
             assembled.append(rc)
             seen_ids.add(cid)
+            if coin.get("legacy_id"):
+                seen_ids.add(str(coin["legacy_id"]))
 
     # ---- Seed entries (Phase 3 output) ---------------------------------
     # Skip any seed entry already represented in a foundation entry's

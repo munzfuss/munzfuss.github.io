@@ -127,7 +127,7 @@ class LiveCorpus(unittest.TestCase):
         self.assertEqual(len(built), len(self.idx))
         self.assertEqual(
             set(next(iter(built.values()))),
-            {"source", "seed_entity", "unified", "final", "final_entity",
+            {"source", "seed_entity", "unified", "label", "final", "final_entity",
              "fuss", "phase", "sources"})
 
 

@@ -499,7 +499,7 @@ def check_i12_hede_overview(final_coins: list[tuple[str, dict]]) -> list[str]:
     """
     out: list[str] = []
     for entity, c in final_coins:
-        cid = str(c.get("id") or "")
+        cid = str(c.get("label") or c.get("id") or "")
         if _OVERVIEW_ID_RE.match(cid):
             out.append(
                 f"I12: coin {cid!r} in {entity} is a danskmoent OVERVIEW index "

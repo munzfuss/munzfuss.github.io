@@ -81,7 +81,7 @@ def build_index() -> dict:
     """
     idx = _V2Index.load()
     return {sid: {"source": pl.source, "seed_entity": pl.seed_entity,
-                  "unified": pl.unified, "final": pl.final,
+                  "unified": pl.unified, "label": pl.label, "final": pl.final,
                   "final_entity": pl.final_entity, "fuss": pl.fuss,
                   "phase": pl.phase, "sources": pl.sources}
             for sid, pl in idx.by_seed.items()}
@@ -100,7 +100,8 @@ def cmd_trace(args) -> int:
             continue
         print(f"{i}")
         print(f"    seed     {rec['source']} / {rec['seed_entity']}.yml")
-        print(f"    unified  {rec['unified'] or '— none —'}")
+        print(f"    class    {rec['unified'] or '— none —'}"
+              + (f"  «{rec['label']}»" if rec.get('label') else ""))
         print(f"    final    {rec['final'] or '— none —'}"
               + (f"  [{rec['final_entity']}]" if rec['final_entity'] else ""))
         print(f"    class    {rec['fuss']}/{rec['phase']}"
@@ -264,9 +265,33 @@ def classify_diff(before: dict, after: dict) -> dict:
     }
 
 
+def _legacy_map() -> dict[str, str]:
+    """{old unified / final id → class id} from the class registry and the
+    finals' `legacy_id` (D49 stage 3), so a snapshot taken before the id
+    migration compares in class-id space instead of reporting every coin as
+    `renamed_class` and hiding a real reclassification behind it."""
+    out: dict[str, str] = {}
+    for path in sorted((V2 / "class_registry").glob("*.yml")):
+        for r in ((yaml.safe_load(path.read_text()) or {}).get("classes") or []):
+            for k in (r.get("legacy_id"), r.get("label")):
+                if k and r.get("id"):
+                    out.setdefault(str(k), str(r["id"]))
+    for path in sorted((V2 / "final").glob("*.yml")):
+        for c in ((yaml.safe_load(path.read_text()) or {}).get("coins") or []):
+            if isinstance(c, dict) and c.get("legacy_id") and c.get("id"):
+                out.setdefault(str(c["legacy_id"]), str(c["id"]))
+    return out
+
+
 def cmd_diff(args) -> int:
     before = json.loads(Path(args.before).read_text())
     after = json.loads(Path(args.after).read_text())
+    lm = _legacy_map()
+    if lm:
+        for rec in before.values():
+            for k in ("unified", "final"):
+                if rec.get(k) in lm:
+                    rec[k] = lm[rec[k]]
     r = classify_diff(before, after)
     gone, added = r["gone"], r["added"]
     lost_final, reclassified = r["lost_final"], r["reclassified"]

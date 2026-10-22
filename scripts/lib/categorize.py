@@ -353,6 +353,9 @@ def categorize(
                         frac if frac is not None else 0.0,
                         mag is None,
                         mag if mag is not None else 0.0,
+                        # D49: tie-break on the readable name, not the opaque
+                        # class id — keeps the row order of the unified-id era.
+                        c.raw.label or c.raw.id,
                         c.raw.id)
 
             coins_in_phase.sort(key=_row_order)

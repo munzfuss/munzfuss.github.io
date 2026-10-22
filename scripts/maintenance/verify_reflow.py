@@ -283,6 +283,85 @@ def _catalog_registers(coin: dict) -> dict[str, set[str]]:
     return out
 
 
+_LEGACY: dict[str, str] | None = None
+_SEED_CLASS: dict[str, str] | None = None
+
+
+def _legacy_map() -> dict[str, str]:
+    """{old id → class id} — the registry's `legacy_id` / `label` and every
+    current final's `legacy_id` (D49 stage 3). HEAD coins written before the
+    migration are translated through it so both sides compare in class-id
+    space; after the migration it is the identity and costs nothing."""
+    global _LEGACY
+    if _LEGACY is None:
+        out: dict[str, str] = {}
+        for path in sorted((ROOT / "data/v2/class_registry").glob("*.yml")):
+            for r in (_read_yaml(path).get("classes") or []):
+                for k in (r.get("legacy_id"), r.get("label")):
+                    if k and r.get("id"):
+                        out.setdefault(str(k), str(r["id"]))
+        for path in sorted((ROOT / FINAL_REL).glob("*.yml")):
+            for fid, c in _coins(_read_yaml(path)).items():
+                if c.get("legacy_id"):
+                    out.setdefault(str(c["legacy_id"]), fid)
+        _LEGACY = out
+    return _LEGACY
+
+
+def _translate(coins: dict[str, dict]) -> dict[str, dict]:
+    """A HEAD final dict re-keyed into class-id space (id and composed_of)."""
+    lm = _legacy_map()
+    if not lm:
+        return coins
+    out: dict[str, dict] = {}
+    for cid, c in coins.items():
+        nid = lm.get(cid, cid)
+        comp = c.get("composed_of")
+        if comp:
+            c = {**c, "composed_of": [lm.get(str(m), m) for m in comp]}
+        out[nid] = c
+    return out
+
+
+def _seed_class_map() -> dict[str, str]:
+    """{seed id → its live class id} over the working tree's seed_unified."""
+    global _SEED_CLASS
+    if _SEED_CLASS is None:
+        out: dict[str, str] = {}
+        for path in sorted((ROOT / "data/v2/seed_unified").glob("*.yml")):
+            for uid, u in _coins(_read_yaml(path)).items():
+                for m in (u.get("composed_of") or []):
+                    out.setdefault(str(m), uid)
+        _SEED_CLASS = out
+    return _SEED_CLASS
+
+
+def _head_seed(cid: str) -> str:
+    """The head seed a final / class id stands for: a class id → the seed its
+    registry label names; `unified-<seed>` → the seed; else itself."""
+    if cid.startswith("unified-"):
+        return cid[len("unified-"):]
+    lbl = _class_labels().get(cid)
+    if lbl and lbl.startswith("unified-"):
+        return lbl[len("unified-"):]
+    return cid
+
+
+_LABELS: dict[str, str] | None = None
+
+
+def _class_labels() -> dict[str, str]:
+    global _LABELS
+    if _LABELS is None:
+        out: dict[str, str] = {}
+        for path in sorted((ROOT / "data/v2/class_registry").glob("*.yml")):
+            for r in (_read_yaml(path).get("classes") or []):
+                if r.get("id") and r.get("label"):
+                    out[str(r["id"])] = str(r["label"])
+        _LABELS = out
+    return _LABELS
+
+
 def _relocated_ids(entity: str) -> set[str]:
     """Seed ids a cross-entity decision moves OUT of `entity`.
 
@@ -313,6 +392,9 @@ def _relocated_ids(entity: str) -> set[str]:
         for m in (d.get("members") or []):
             out.add(m)
             out.add(f"unified-{m}")
+            cls = _seed_class_map().get(str(m))
+            if cls:
+                out.add(cls)
     return out
 
 
@@ -398,6 +480,7 @@ def _excluded_ids(entity: str) -> set[str]:
     # to a listed id»), and drops it correctly. Mirror that convention here so the
     # deliberate drop is recognised, not hard-blocked as a phantom loss.
     raw |= {f"unified-{sid}" for sid in seed_ids}
+    raw |= {_seed_class_map()[sid] for sid in seed_ids if sid in _seed_class_map()}
     return raw
 
 
@@ -517,7 +600,7 @@ _LOADED_FINALS: dict[tuple, dict[str, dict]] = {}
 def compare_entity(entity: str, base: str) -> dict:
     """Load both sides for `entity` and delegate to `compare_coins`."""
     rel = f"{FINAL_REL}/{entity}.yml"
-    head = _coins(_git_show(base, rel))
+    head = _translate(_coins(_git_show(base, rel)))
     path = ROOT / rel
     cur = _coins(_read_yaml(path) if path.exists() else None)
     _LOADED_FINALS[(base, entity)] = head
@@ -601,9 +684,10 @@ def _head_unified_members(base: str) -> dict[str, list[str]]:
         listing = subprocess.run(
             ["git", "ls-tree", "-r", "--name-only", base, "data/v2/seed_unified/"],
             capture_output=True, text=True, cwd=ROOT).stdout.split()
+        lm = _legacy_map()
         for rel in listing:
             for uid, u in _coins(_git_show(base, rel)).items():
-                out[uid] = list(u.get("composed_of") or [])
+                out[lm.get(uid, uid)] = list(u.get("composed_of") or [])
         _HEAD_UNIFIED[base] = out
     return _HEAD_UNIFIED[base]
 
@@ -935,8 +1019,8 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
         # in ANOTHER final (any entity, this one included) — absorb drops such
         # shells since 2026-09-28. Its identity survives through the seed id,
         # the one stable handle (§9b), so this is still an identity test.
-        if elsewhere_hit is None and cid.startswith("unified-"):
-            _seed = cid[len("unified-"):]
+        if elsewhere_hit is None and _head_seed(cid) != cid:
+            _seed = _head_seed(cid)
             if _seed in home and home[_seed][1] != cid:
                 elsewhere_hit = (_seed, home[_seed])
             elif _seed not in home:
@@ -1045,8 +1129,8 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                 seeds_here = [cid, *(c.get("composed_of") or [])]
                 seeds_here += [x for m in list(seeds_here)
                                for x in (head_members or {}).get(m, [])]
-                seeds_here += [s[len("unified-"):] for s in list(seeds_here)
-                               if s.startswith("unified-")]
+                seeds_here += [_head_seed(s) for s in list(seeds_here)
+                               if _head_seed(s) != s]
                 if set(seeds_here) & _declassify_recorded():
                     retractions.append(f"{cid}.{f}: {hv!r} → seed_unsorted (recorded declassify)")
                     continue
@@ -1309,7 +1393,7 @@ def main() -> int:
         print("\nThe working tree is WORSE than the baseline on the lines above.")
         print("Fix them, or — if a removal is deliberate — make it a recognised")
         print("fold: the survivor must list the removed id in composed_of")
-        print("(dedup_final_foundations.py does this).")
+        print("(the v2-merge-coins skill does this through merge_decisions).")
         return 1
 
     print("\n✓ no losses — every change is an addition or a recognised fold.")

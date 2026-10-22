@@ -67,6 +67,7 @@ class Placement:
     source: str
     seed_entity: str
     unified: str | None = None
+    label: str | None = None      # the class's readable name (D49)
     final: str | None = None
     final_entity: str | None = None
     fuss: str | None = None
@@ -109,6 +110,7 @@ class V2Index:
                 for m in members:
                     if m in idx.by_seed:
                         idx.by_seed[m].unified = uid
+                        idx.by_seed[m].label = c.get("label")
 
         # `final[].composed_of` holds UNIFIED ids — and, for older entries,
         # sometimes a seed id directly. Both shapes are resolved here so no
