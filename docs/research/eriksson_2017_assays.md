@@ -470,3 +470,15 @@ finals with 61 KMM seeds. Causes, from the KMM records (`scripts/cache/kmk/<id>.
 
 Value of the clean-up: one Klipping row instead of up to 13 duplicates on the page; the KMM records add citations
 and find-spots, almost no weights (most «Vægt» empty).
+
+### 10a. Galster 42 merged (2026-10-22, curator)
+
+Writer bug fixed first (`169b18b`). Then one merge decision for the whole Galster 42 class: 55 seeds (Galster page,
+Numista, Eriksson, 52 KMM). Left out by the curator: `kmk-125889`, `-139319`, `-139334` (Schou 31, KMM «kobber», no
+weight, no photo) — their verified copper stopped the merger (`MetalConflictError`: copper vs silver/billon; silver
+vs billon is a thin-line pair the merger settles itself). They form their own class (merge decision + `no_merges`
+against `kmk-156471`, the Schou 31 record with photos that joined G 42). Result: `unified-dk-numista-297656` —
+«18 Penning», Christian II, billon, 19 weights (Eriksson 12, KMM 6, Numista 1), 191 sources of which 20 shown
+(thinning). `trace_coin`: the only «loss» is the KMM 156471 citation leaving the copper class for G 42.
+⚠ The class's years now read 1515-1522: KMM 274928 (authority «Christian 3») gives 1515-1522; Galster / danskmoent
+and Eriksson give 1518-1522. Candidate for a year mark on that seed (curator).
