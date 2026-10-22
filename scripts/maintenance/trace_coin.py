@@ -93,10 +93,25 @@ def cmd_trace(args) -> int:
     for i in args.ids:
         rec = idx.get(i)
         if rec is None:
+            folded = _folded_into(i)
+            if folded:
+                missing.remove(i)
+                print(f"{i}\n    FOLDED by §9a thinning into a representative "
+                      f"(no seed record of its own; CLAUDE.md §9a):")
+                for path, rep_coin in folded:
+                    r = idx.get(rep_coin.get("id")) or {}
+                    print(f"    rep      {rep_coin.get('id')}   {path.relative_to(PROJECT_ROOT)}")
+                    print(f"    class    {r.get('unified') or '— none —'}"
+                          + (f"  «{r.get('label')}»" if r.get("label") else ""))
+                    print(f"    final    {r.get('final') or '— none —'}"
+                          + (f"  [{r.get('final_entity')}]" if r.get("final_entity") else ""))
+                    print(f"    class    {r.get('fuss')}/{r.get('phase')}"
+                          f"   sources={r.get('sources')}")
+                continue
             print(f"{i}\n    NOT A SEED ID — not present in any "
-                  f"data/v2/seed/<src>/<entity>.yml.")
-            print("    (unified-* and final ids are derived and unstable; "
-                  "trace by seed id)")
+                  f"data/v2/seed/<src>/<entity>.yml, and no representative's "
+                  f"_thinned_from lists it.")
+            print("    (class and final ids are derived; trace by seed id)")
             continue
         print(f"{i}")
         print(f"    seed     {rec['source']} / {rec['seed_entity']}.yml")
@@ -484,6 +499,29 @@ def _seed_entries(coin_id: str) -> list[tuple[Path, dict]]:
     return out
 
 
+def _folded_into(coin_id: str) -> list[tuple[Path, dict]]:
+    """Representatives whose `_thinned_from` lists this id — the seed §9a
+    thinning folded it into (CLAUDE.md §9a; `lib/seed_thin`). A folded
+    specimen is not a seed record any more: its weight / citation travel on
+    the representative, and every decision naming it resolves through that
+    representative (the merger's `build_thinned_index`). Same substring screen
+    as `_seed_entries`."""
+    out = []
+    for src_dir in sorted((V2 / "seed").iterdir()):
+        if not src_dir.is_dir():
+            continue
+        for p in sorted(src_dir.glob("*.yml")):
+            try:
+                if coin_id not in p.read_text(encoding="utf-8"):
+                    continue
+            except OSError as exc:
+                raise SystemExit(f"cannot read {p}: {exc}")
+            for c in _load(p).get("coins") or []:
+                if coin_id in (c.get("_thinned_from") or []):
+                    out.append((p, c))
+    return out
+
+
 def _parser_overrides(coin_id: str) -> list[str]:
     """Parser-level curator overrides keyed by SOURCE PAGE, not by coin id.
 
@@ -606,12 +644,33 @@ def cmd_why(args) -> int:
     for cid in args.ids:
         print(f"\n{'=' * 70}\n{cid}\n{'=' * 70}")
         entries = _seed_entries(cid)
-        if not entries:
-            print("  not a seed id — `trace` it first (unified/final ids are derived)")
+        folded = _folded_into(cid) if not entries else []
+        if not entries and not folded:
+            print("  not a seed id — `trace` it first (class / final ids are derived)")
             rc = 1
             continue
+        if folded:
+            # The specimen was folded by §9a thinning: no seed record of its
+            # own, so the layers below are read off the REPRESENTATIVE, and
+            # the decisions / exclusions naming the folded id itself are
+            # still scanned by that id further down.
+            print(f"\n  FOLDED by §9a thinning (no seed record of its own) — "
+                  f"its weight / citation and every curator layer below live on "
+                  f"the representative:")
+            idx = build_index()
+            for path, rep_coin in folded:
+                rid = rep_coin.get("id")
+                pl = idx.get(rid) or {}
+                print(f"     representative {rid}   seed: {path.relative_to(PROJECT_ROOT)}")
+                print(f"        class  {pl.get('unified') or '— none —'}"
+                      + (f"  «{pl.get('label')}»" if pl.get("label") else ""))
+                print(f"        final  {pl.get('final') or '— none —'}"
+                      + (f"  [{pl.get('final_entity')}]  {pl.get('fuss')}/{pl.get('phase')}"
+                         if pl.get("final") else ""))
+            entries = folded
         for path, coin in entries:
-            print(f"\n  seed: {path.relative_to(PROJECT_ROOT)}")
+            print(f"\n  seed: {path.relative_to(PROJECT_ROOT)}"
+                  + (f"  (representative {coin.get('id')})" if folded else ""))
             if args.field:
                 print(f"  {args.field} = "
                       f"{(coin.get('catalog') or {}).get(args.field, coin.get(args.field))!r}")
@@ -644,14 +703,20 @@ def cmd_why(args) -> int:
         for line in _builder_overrides(cid):
             print(f"\n  ── seed builder\n     {line}")
 
+        # Decisions naming the id itself — and, for a folded specimen, its
+        # representative(s): an exclusion of the representative removes the
+        # folded specimen's only carrier from the render.
+        scan_ids = [cid] + [c.get("id") for _, c in folded if c.get("id")]
         for rel, key, label in (
                 ("exclusions", "exclusions", "EXCLUDED from the render"),
                 ("merge_decisions", None, "merge decision"),
                 ("classification_decisions", None, "classification decision")):
             for p in sorted((V2 / rel).glob("*.yml")):
                 blob = p.read_text(encoding="utf-8")
-                if cid in blob:
-                    print(f"\n  ── {label}: {p.relative_to(PROJECT_ROOT)} mentions it")
+                for sid in scan_ids:
+                    if sid in blob:
+                        who = "it" if sid == cid else f"its representative {sid}"
+                        print(f"\n  ── {label}: {p.relative_to(PROJECT_ROOT)} mentions {who}")
 
         rem = V2 / "_recorded_removals.yml"
         if rem.exists():
