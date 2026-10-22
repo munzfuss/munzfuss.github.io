@@ -185,6 +185,18 @@ def apply_catalog_marks(entry) -> None:
         reg, val = mk["register"], str(mk["value"]).strip()
         cur = cat.get(reg)
         if cur is None:
+            # A register with no field of its own lives in `others` as
+            # «<register># <value>» («Ernst 1940# 3-13»); the mark takes that
+            # token out, and the class shows it as a marked alternative.
+            others = cat.get("others")
+            if isinstance(others, list):
+                tok = f"{reg}# {val}"
+                kept = [o for o in others if str(o).strip() != tok]
+                if len(kept) != len(others):
+                    if kept:
+                        cat["others"] = kept
+                    else:
+                        del cat["others"]
             continue
         if isinstance(cur, list):
             kept = [v for v in cur if str(v).strip() != val]

@@ -22,6 +22,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts" / "maintenance"))
 from lib.galster_parsers.galst_table import parse_coins  # noqa: E402
 from build_galster_denmark_seed import _fold_catalogue_rows  # noqa: E402
 from lib.catalog_codes import normalise_catalog  # noqa: E402
+from lib.seed_merge import apply_catalog_marks  # noqa: E402
 
 _HEAD = ("<TR><TD>Galster</TD><TD>Schou</TD><TD>Sømod</TD><TD>Prægested</TD>"
          "<TD>Nominal</TD><TD>Materiale</TD><TD>År</TD><TD>Bemærkninger</TD></TR>")
@@ -95,6 +96,23 @@ class ErnstYearInName(unittest.TestCase):
             self.assertEqual(c["others"], [want], raw)
             normalise_catalog(c)                       # idempotent
             self.assertEqual(c["others"], [want], raw)
+
+
+
+class MarkOnOthersRegister(unittest.TestCase):
+    """A catalogue mark on a register with no field of its own («Ernst 1940»)
+    takes the «<register># <value>» token out of `others` (curator 2026-10-22:
+    wrong source numbers stay visible, marked «(!)»)."""
+
+    def test_token_taken_out_of_others(self) -> None:
+        e = {"catalog": {"galster": "160",
+                         "others": ["Ernst 1940# 3-13", "Sømod# 130", "Ernst 1940# 22-23"]},
+             "catalog_marks": [{"register": "Ernst 1940", "value": "3-13",
+                                "kind": "erroneous", "reason": {"en": "x"}}]}
+        apply_catalog_marks(e)
+        self.assertEqual(e["catalog"]["others"], ["Sømod# 130", "Ernst 1940# 22-23"])
+        apply_catalog_marks(e)                         # idempotent
+        self.assertEqual(e["catalog"]["others"], ["Sømod# 130", "Ernst 1940# 22-23"])
 
 
 if __name__ == "__main__":
