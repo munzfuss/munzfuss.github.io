@@ -847,6 +847,26 @@ Project ticket `190229723` ready to flip In review → Done — all 8 candidates
 
 **Why.** A unified / final id is `unified-<top-authority member>`, i.e. derived from composition, so it renames on every higher-authority join, §9a fold re-cut or split. 238 of 498 `classification_decisions` point at ids in no final; absorb carries ~400 lines of rename / split hand-over; `verify_reflow` parses the `unified-<seed>` string as structure. The full rationale, the recognition rule and the id form are fixed in **D49** — this entry is only the execution plan. Stages are independent commits; each needs the curator's go before code.
 
+**Plan revision 2 (2026-10-22, approved in plan mode after a strict review)** — changes against
+the D49 text, to be written as a D49 addendum in V2_DECISIONS at the start of stage 2: (1) the
+registry record is the MERGER CLASS (15 135 today; 410 finals union ≥2 classes), bootstrapped from
+`seed_unified`; a final's id = id of its head class (oldest `created`, tie → smallest id), its
+`composed_of` keeps listing the other class ids; (2) id form `c-<8 hex>` = hash of the sorted
+founding specimen set only (no entity, no date; collision → `-2`); (3) `origin: foundation |
+promoted` becomes a permanent schema field (and `legacy_id` stays on the 687 non-`unified-`
+foundations) — absorb's foundation marker once the prefix is gone; (4) `inherit` runs ONCE per
+merger run after the partition loop, before any shard is written; `--entity X --apply` refused
+when another shard would change; (5) `scope: member` exclusion = the record's members is the
+singleton {seed}; (6) `label` / `legacy_id` / `origin` are Coin schema fields (`extra="forbid"`);
+`build._ID_SOURCE_RE`, `categorize._row_order` and the merger's `_source_label_from_id` read
+`label`; (7) stage 3 needs a one-shot `migrate_final_ids.py` rewriting `id` AND every
+`composed_of` member before the first absorb, and `verify_reflow` pairs HEAD ↔ current by
+`legacy_id` for that one commit (committed first, with a test).
+
+**Stage 1 — ✅ DONE 2026-10-22** (commits: absorb resolver + validate + audit_v2 + hook + tests;
+migrate_classification_keys; data). 477 keys rewritten, 17 legacy re-keyed, 3 moved, 6 revived
+decisions held as `superseded_by` for the curator (see handoff). Finals unchanged.
+
 **Stage 1 — classification decisions keyed by a member seed id** *(small, independent of the registry)*
 - absorb's decision resolver accepts a seed id as `coin_id` and maps it to the class containing that seed (specimens incl. `_thinned_from`); class ids keep working.
 - `scripts/maintenance/migrate_classification_keys.py`: rewrite the 498 keys to the head seed (`unified-x` → `x`); report the 238 orphans that now resolve and any that still do not (those go to the curator one by one).

@@ -1,11 +1,16 @@
 # Classification decisions for entity `herzogtum_braunschweig_lueneburg` (Phase 4).
 # Curator-authoritative file (committed). Two sections:
 #
-# 1. `assignments:` — explicit fuss/phase for ambiguous coins.
-#    Each entry adds a NEW final entry on next absorb run.
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
 #    Example:
 #      assignments:
-#        - coin_id: unified-dk-numismaster-12345
+#        - coin_id: dk-numismaster-12345
 #          fuss: 9_25_thaler
 #          phase: A
 #          kind: kurant
@@ -25,12 +30,13 @@
 entity_id: herzogtum_braunschweig_lueneburg
 generated_at: '2026-10-20'
 assignments:
-  - coin_id: unified-dk-numista-67570
+  - coin_id: dk-numista-67570
     fuss: reichsgoldmuenzfuss
     phase: I
     kind: kurant
     reason: 'German Empire gold-Mark standard (Muenzgesetz 4 Dec 1871): gold = Kurant per Reichsgoldmuenzfuss; token silver 2/3/5 Mark + copper-nickel base = Scheidemuenze (metal value below face, limited
       legal tender to 20 Mark) per CLAUDE.md 6 (Wikipedia DE Goldmark).'
+    was: unified-dk-numista-67570
 pending: []
 multi_match_warnings: []
 promoted_near_peers:

@@ -1,11 +1,16 @@
 # Classification decisions for entity `sonderburg_duchy` (Phase 4).
 # Curator-authoritative file (committed). Two sections:
 #
-# 1. `assignments:` — explicit fuss/phase for ambiguous coins.
-#    Each entry adds a NEW final entry on next absorb run.
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
 #    Example:
 #      assignments:
-#        - coin_id: unified-dk-numismaster-12345
+#        - coin_id: dk-numismaster-12345
 #          fuss: 9_25_thaler
 #          phase: A
 #          kind: kurant
@@ -26,7 +31,7 @@ entity_id: sonderburg_duchy
 generated_at: '2026-09-13'
 bulk_promote_pending: all
 assignments:
-  - coin_id: unified-ngc-1161408
+  - coin_id: ngc-1161408
     fuss: rhinsk_gylden_fod
     phase:
       denmark: V
@@ -41,7 +46,8 @@ assignments:
       IV's royal phase, which becomes IV, keeping the numeric indices ordinal by start year. Curator (Serhii) 2026-09-06. RENUMBER 2026-10-10 (curator): Denmark page phase I split by grid — I (72 per mark:
       I.a, I.b) and II (71⅓, Flensborg: II.a 1546, II.b 1547); former II, III, IV become III, IV, V."
     fraction: '1'
-  - coin_id: unified-ngc-1206707
+    was: unified-ngc-1161408
+  - coin_id: ngc-1206707
     fuss: rhinsk_gylden_fod
     phase:
       denmark: V
@@ -56,7 +62,8 @@ assignments:
       IV's royal phase, which becomes IV, keeping the numeric indices ordinal by start year. Curator (Serhii) 2026-09-06. RENUMBER 2026-10-10 (curator): Denmark page phase I split by grid — I (72 per mark:
       I.a, I.b) and II (71⅓, Flensborg: II.a 1546, II.b 1547); former II, III, IV become III, IV, V."
     fraction: '1'
-  - coin_id: unified-ngc-1175224
+    was: unified-ngc-1206707
+  - coin_id: ngc-1175224
     fuss: 9_25_thaler
     phase: I
     kind: kurant
@@ -64,5 +71,6 @@ assignments:
       the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I is the only adjacent candidate: Sonderburg opens 9¼
       at 1622 and the coin's own range 1618-1622 reaches into that window, with year_first 4y short — well inside the build's 25y advisory tolerance. year_first stays 1618 per §4: phases are our annotation,
       years are the source's. Curator decision 2026-08-18."
+    was: unified-ngc-1175224
 pending: []
 multi_match_warnings: []

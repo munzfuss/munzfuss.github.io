@@ -1,11 +1,16 @@
 # Classification decisions for entity `glucksburg_duchy` (Phase 4).
 # Curator-authoritative file (committed). Two sections:
 #
-# 1. `assignments:` — explicit fuss/phase for ambiguous coins.
-#    Each entry adds a NEW final entry on next absorb run.
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
 #    Example:
 #      assignments:
-#        - coin_id: unified-dk-numismaster-12345
+#        - coin_id: dk-numismaster-12345
 #          fuss: 9_25_thaler
 #          phase: A
 #          kind: kurant
@@ -25,7 +30,7 @@
 entity_id: glucksburg_duchy
 generated_at: '2026-08-25'
 assignments:
-  - coin_id: unified-dk-bruun-14682
+  - coin_id: dk-bruun-14682
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -35,5 +40,6 @@ assignments:
       / IV 1726-1802; SH I 1600-1726 / II 1726-1771 / III 1771-1813 / IV 1813-1871). A scalar id therefore lands the coin in the wrong window on one of them. Dict form per V2_PIPELINE.md §5, as already
       used by 17 royal_holstein coins on this fuss. Both keys are mandatory even where a consumes_entities year cap means one page never shows the coin — resolve_phase_for_location raises before that filter
       runs.'
+    was: unified-dk-bruun-14682
 pending: []
 multi_match_warnings: []

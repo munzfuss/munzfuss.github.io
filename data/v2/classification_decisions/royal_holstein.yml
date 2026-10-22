@@ -1,11 +1,16 @@
 # Classification decisions for entity `royal_holstein` (Phase 4).
 # Curator-authoritative file (committed). Two sections:
 #
-# 1. `assignments:` — explicit fuss/phase for ambiguous coins.
-#    Each entry adds a NEW final entry on next absorb run.
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
 #    Example:
 #      assignments:
-#        - coin_id: unified-dk-numismaster-12345
+#        - coin_id: dk-numismaster-12345
 #          fuss: 9_25_thaler
 #          phase: A
 #          kind: kurant
@@ -26,50 +31,58 @@ entity_id: royal_holstein
 generated_at: '2026-10-19'
 bulk_promote_pending: all
 assignments:
-  - coin_id: unified-dk-hede-f3h145a
+  - coin_id: dk-hede-f3h145a
     fuss: guldkrone
     phase: I
     kind: tarif
     reason: 'Curator 2026-09-10: kind kurant→tarif. Frederik III Guldkrone, Glückstadt 1657-1660 (KM-40) — a Krone-Mønt tariff coin (1 Guldkrone = 3½ Speciedaler by royal fiat, ~15 % over metal value),
       not full-value Kurant. Uniform with the whole guldkrone fuss so the standard renders under the tariff sub-table, not "Kurant — full-value".'
-  - coin_id: unified-dk-bruun-7849
+    was: unified-dk-hede-f3h145a
+  - coin_id: dk-bruun-7849
     fuss: courantdukatenfuss
     phase: I
     kind: kurant
     reason: KM-641.1 1781-1783 Christian VII Altona, 12 Mark (Courant Ducat), .875 / 3.118 g (Kurantdukat signature).
-  - coin_id: unified-denmark-numismaster-65653
+    was: unified-dk-bruun-7849
+  - coin_id: denmark-numismaster-65653
     fuss: courantdukatenfuss
     phase: I
     kind: kurant
     reason: KM-641.3 1783 Christian VII Altona, 12 Mark, .875 / 3.118 g (Kurantdukat signature).
-  - coin_id: unified-dk-bruun-7859
+    was: unified-denmark-numismaster-65653
+  - coin_id: dk-bruun-7859
     fuss: courantdukatenfuss
     phase: I
     kind: kurant
     reason: KM-641.4 1785 Christian VII Altona, 12 Mark (Courant Ducat), Hede 4D, Sieg 27.4, Schou 1a, Fr 281, mintmaster Lyng — .875 / 3.11 g (Kurantdukat signature).
-  - coin_id: unified-dk-hede-c7h28a
+    was: unified-dk-bruun-7859
+  - coin_id: dk-hede-c7h28a
     fuss: 11_333_thaler
     phase: I
     kind: scheide
     reason: "11⅓-Thaler Kurantmøntfod. SH phase periodisation collapsed to a single I[1726-1813] on 2026-06-15 — the 1773/1788 sub-phases were political/institutional, not standard changes (Wilcke: the
       kurant was not abolished in 1788). Re-tag phase II→I so the coin renders under the single SH phase as well as DK's single phase I. Retargeted 2026-10-09 from unified-dk-hede-c7h28 to its sub-letter
       successor c7h28a (the Hede page now parses as 28A/28B; the old id matched only an empty shell)."
-  - coin_id: km-645-chr-v-1788
+    was: unified-dk-hede-c7h28a
+  - coin_id: dk-hede-c7h25
     fuss: 11_333_thaler
     phase: I
     kind: kurant
     reason: 11⅓-Thaler Kurantmøntfod; see unified-dk-hede-c7h28. SH phases collapsed to single I[1726-1813]; phase II→I.
-  - coin_id: unified-dk-hede-c7h22ab
+    was: km-645-chr-v-1788
+  - coin_id: dk-hede-c7h22ab
     fuss: 11_333_thaler
     phase: I
     kind: kurant
     reason: 11⅓-Thaler Kurantmøntfod; see unified-dk-hede-c7h28. SH phases collapsed to single I[1726-1813]; phase II→I.
-  - coin_id: unified-dk-bruun-7864
+    was: unified-dk-hede-c7h22ab
+  - coin_id: dk-bruun-7864
     fuss: 11_333_thaler
     phase: I
     kind: kurant
     reason: 11⅓-Thaler Kurantmøntfod; see unified-dk-hede-c7h28. SH phases collapsed to single I[1726-1813]; phase II→I.
-  - coin_id: unified-dk-bruun-5326
+    was: unified-dk-bruun-7864
+  - coin_id: dk-bruun-5326
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -78,52 +91,61 @@ assignments:
     reason: 'Christian IV 1 Portugaløser 1623, Hede 156, Schou 3, Fr 66, Bruun 5326. Re-phased 2026-08-14 (Serhii) into the 1623-1726 late-.986-gold window; that window was renumbered from Phase II to Phase
       III by the four-phase Dukatfod rework (fa19df4: DK now I 1531-1601 / II 1602-1611 / III 1623-1726 / IV 1726-1802). This coin was stranded on the old «II» — corrected here to the per-location dict
       its 14 royal_holstein siblings already carry: denmark III (1623-1726), schleswig_holstein I (1600-1726). Curator direction.'
-  - coin_id: unified-ngc-1050316
+    was: unified-dk-bruun-5326
+  - coin_id: ngc-1050316
     fuss: 18_5_thaler
     phase: II
     kind: kurant
     reason: 3 Rigsbankskilling 1842 — phase repair, not a new classification. The Müntzfuß 18_5_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; 
       the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase II follows CLAUDE.md §8.2 from year_first 1842 
       against this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1050417
+    was: unified-ngc-1050316
+  - coin_id: ngc-1050417
     fuss: 18_5_thaler
     phase: II
     kind: kurant
     reason: 3 Rigsbankskilling 1842 — phase repair, not a new classification. The Müntzfuß 18_5_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; 
       the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase II follows CLAUDE.md §8.2 from year_first 1842 
       against this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1168010
+    was: unified-ngc-1050417
+  - coin_id: ngc-1168010
     fuss: 18_5_thaler
     phase: I
     kind: kurant
     reason: 8 Reichsbank Schilling 1816, 1818-1819 — phase repair, not a new classification. The Müntzfuß 18_5_thaler is the curator classification that migrated onto this NGC host when its foundation
       was purged; the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first
       1816 against this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-dk-hede-f7h12a
+    was: unified-ngc-1168010
+    superseded_by: unified-dk-hede-f6h31 (royal_holstein, stored classification)
+  - coin_id: dk-hede-f7h12a
     fuss: 18_5_thaler
     phase: I
     kind: kurant
     reason: Frederik VII 1 Rigsbankskilling 1852-1853, Hede 12A/12B, KM 754. Classification carried over unchanged from the danish_realm final (18_5_thaler / I / kurant) when the coin moved to 
       royal_holstein (mints København og Altona) with the curator merge of KMM 298427, 2026-10-09; without it the move left the coin in seed_unsorted.
-  - coin_id: unified-dk-hede-c5h74
+    was: unified-dk-hede-f7h12a
+  - coin_id: dk-hede-c5h74
     fuss: 9_25_thaler
     phase: I
     kind: scheide
     reason: 'Restored 2026-10-09 (curator): the classification 9_25_thaler / I / scheide lived only on the danish_realm final and was lost when the coin moved from danish_realm to royal_holstein (no assignment
       backed it). Values as on the danish_realm final at 2026-08-20 (b47ec02).'
-  - coin_id: unified-dk-numista-107814
+    was: unified-dk-hede-c5h74
+  - coin_id: dk-numista-107814
     fuss: 9_thaler
     phase: I
     kind: scheide
     reason: 'Restored 2026-10-09 (curator): 1 Søsling Lybsk 1623-1626, Glückstadt, KM 10 (Numista N#107814). Until 2026-08-20 (b47ec02) this record was a member of the danish_realm final unified-dk-hede-c4h82
       (9_thaler / I / scheide); it split off into royal_holstein without that classification. Not a merge with Hede c4h82 — only the classification is restored.'
-  - coin_id: unified-dk-hede-f6h14
+    was: unified-dk-numista-107814
+  - coin_id: dk-hede-f6h14
     fuss: 11_333_thaler
     phase: I
     kind: scheide
     reason: Frederik VI 3 Skilling, copper, 1812, København (Hede 14, Schou 6, Sieg 5). Hede's Frederik VI index lists it without the note «Rigsbanktegn udmøntet efter statsbankerotten 1813» that 
       marks Hede 17-21, i.e. copper of the pre-1813 Courant system, like Hede 9 (2 Skilling 1809-1810) and Hede 15 (1 Skilling 1812), both 11_333_thaler / I / scheide. Its two former danish_realm 
       classes disagreed (18_5_thaler and 11_333_thaler). Curator 2026-10-09.
+    was: unified-dk-hede-f6h14
 pending: []
 multi_match_warnings: []
 promoted_near_peers:

@@ -1,11 +1,16 @@
 # Classification decisions for entity `rantzau_county` (Phase 4).
 # Curator-authoritative file (committed). Two sections:
 #
-# 1. `assignments:` — explicit fuss/phase for ambiguous coins.
-#    Each entry adds a NEW final entry on next absorb run.
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
 #    Example:
 #      assignments:
-#        - coin_id: unified-dk-numismaster-12345
+#        - coin_id: dk-numismaster-12345
 #          fuss: 9_25_thaler
 #          phase: A
 #          kind: kurant

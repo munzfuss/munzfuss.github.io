@@ -1,11 +1,16 @@
 # Classification decisions for entity `gottorp_duchy` (Phase 4).
 # Curator-authoritative file (committed). Two sections:
 #
-# 1. `assignments:` — explicit fuss/phase for ambiguous coins.
-#    Each entry adds a NEW final entry on next absorb run.
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
 #    Example:
 #      assignments:
-#        - coin_id: unified-dk-numismaster-12345
+#        - coin_id: dk-numismaster-12345
 #          fuss: 9_25_thaler
 #          phase: A
 #          kind: kurant
@@ -26,7 +31,7 @@ entity_id: gottorp_duchy
 generated_at: '2026-10-18'
 bulk_promote_pending: all
 assignments:
-  - coin_id: unified-dk-bruun-14418
+  - coin_id: dk-bruun-14418
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -34,7 +39,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: unified-dk-bruun-14529
+    was: unified-dk-bruun-14418
+  - coin_id: dk-bruun-14529
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -42,7 +48,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: unified-dk-bruun-14572
+    was: unified-dk-bruun-14529
+  - coin_id: dk-bruun-14572
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -50,7 +57,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: unified-ngc-1156100
+    was: unified-dk-bruun-14572
+  - coin_id: ngc-1156100
     fuss: rhinsk_gylden_fod
     phase:
       denmark: V
@@ -65,7 +73,8 @@ assignments:
       IV's royal phase, which becomes IV, keeping the numeric indices ordinal by start year. Curator (Serhii) 2026-09-06. RENUMBER 2026-10-10 (curator): Denmark page phase I split by grid — I (72 per mark:
       I.a, I.b) and II (71⅓, Flensborg: II.a 1546, II.b 1547); former II, III, IV become III, IV, V."
     fraction: '1'
-  - coin_id: unified-ngc-1156101
+    was: unified-ngc-1156100
+  - coin_id: ngc-1156101
     fuss: rhinsk_gylden_fod
     phase:
       denmark: V
@@ -80,7 +89,8 @@ assignments:
       IV's royal phase, which becomes IV, keeping the numeric indices ordinal by start year. Curator (Serhii) 2026-09-06. RENUMBER 2026-10-10 (curator): Denmark page phase I split by grid — I (72 per mark:
       I.a, I.b) and II (71⅓, Flensborg: II.a 1546, II.b 1547); former II, III, IV become III, IV, V."
     fraction: '1'
-  - coin_id: unified-ngc-1157533
+    was: unified-ngc-1156101
+  - coin_id: ngc-1157533
     fuss: rhinsk_gylden_fod
     phase:
       denmark: V
@@ -95,7 +105,8 @@ assignments:
       IV's royal phase, which becomes IV, keeping the numeric indices ordinal by start year. Curator (Serhii) 2026-09-06. RENUMBER 2026-10-10 (curator): Denmark page phase I split by grid — I (72 per mark:
       I.a, I.b) and II (71⅓, Flensborg: II.a 1546, II.b 1547); former II, III, IV become III, IV, V."
     fraction: '1'
-  - coin_id: unified-ngc-1165147
+    was: unified-ngc-1157533
+  - coin_id: ngc-1165147
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -103,14 +114,16 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: unified-ngc-1186433
+    was: unified-ngc-1165147
+  - coin_id: ngc-1186433
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 1 Sechsling 1682 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase
       did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1682 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1186489
+    was: unified-ngc-1186433
+  - coin_id: ngc-1186489
     fuss: reichsdukatenfuss
     phase:
       denmark: II
@@ -120,7 +133,8 @@ assignments:
       / IV 1726-1802; SH I 1600-1726 / II 1726-1771 / III 1771-1813 / IV 1813-1871). A scalar id therefore lands the coin in the wrong window on one of them. Dict form per V2_PIPELINE.md §5, as already
       used by 17 royal_holstein coins on this fuss. Both keys are mandatory even where a consumes_entities year cap means one page never shows the coin — resolve_phase_for_location raises before that filter
       runs.'
-  - coin_id: unified-ngc-1204491
+    was: unified-ngc-1186489
+  - coin_id: ngc-1204491
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -128,7 +142,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: km-94-fr-iii-1642
+    was: unified-ngc-1204491
+  - coin_id: dk-bruun-14257
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -138,7 +153,8 @@ assignments:
       / IV 1726-1802; SH I 1600-1726 / II 1726-1771 / III 1771-1813 / IV 1813-1871). A scalar id therefore lands the coin in the wrong window on one of them. Dict form per V2_PIPELINE.md §5, as already
       used by 17 royal_holstein coins on this fuss. Both keys are mandatory even where a consumes_entities year cap means one page never shows the coin — resolve_phase_for_location raises before that filter
       runs.'
-  - coin_id: km-109-ca-1664
+    was: km-94-fr-iii-1642
+  - coin_id: dk-bruun-14361
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -146,7 +162,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: km-146-chr-a-1689
+    was: km-109-ca-1664
+  - coin_id: dk-bruun-14465
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -154,7 +171,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: km-147-chr-a-1689
+    was: km-146-chr-a-1689
+  - coin_id: dk-bruun-14464
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -162,7 +180,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: unified-ngc-1162379
+    was: km-147-chr-a-1689
+  - coin_id: ngc-1162379
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -170,7 +189,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: km-169-fr-iv-1698
+    was: unified-ngc-1162379
+  - coin_id: dk-bruun-14488
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -178,7 +198,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: km-73-fr-iv-1698
+    was: km-169-fr-iv-1698
+  - coin_id: dk-bruun-14490
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -186,7 +207,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: km-170-fr-iv-1698
+    was: km-73-fr-iv-1698
+  - coin_id: dk-bruun-14486
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -194,6 +216,7 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
+    was: km-170-fr-iv-1698
   - coin_id: km-188-karl-fr-1705-v1
     fuss: reichsdukatenfuss
     phase:
@@ -202,7 +225,7 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: km-188-karl-fr-1705
+  - coin_id: dk-bruun-14527
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -210,7 +233,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: km-200-karl-fr-1708
+    was: km-188-karl-fr-1705
+  - coin_id: dk-bruun-14550
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -218,7 +242,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: unified-ngc-1149872
+    was: km-200-karl-fr-1708
+  - coin_id: ngc-1149872
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -226,7 +251,8 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: unified-ngc-1145277
+    was: unified-ngc-1149872
+  - coin_id: ngc-1145277
     fuss: reichsdukatenfuss
     phase:
       denmark: III
@@ -234,12 +260,14 @@ assignments:
     kind: kurant
     reason: 'Phase repair: a scalar «I» means 1531-1601 on the Denmark page and 1600-1726 on the Schleswig-Holstein one, so it was right on Holstein and wrong on Denmark. Dict form gives each page the id
       its own periodisation uses.'
-  - coin_id: unified-kmk-351732
+    was: unified-ngc-1145277
+  - coin_id: kmk-351732
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification 9_25_thaler / I / kurant lived only on the final unified-dk-numista-38954 and was lost when the merger renamed the class (NGC flow, 8e0f0ad);
       no assignment backed it. Values as on unified-dk-numista-38954 at 2026-08-01.'
+    was: unified-kmk-351732
 pending: []
 multi_match_warnings: []
 promoted_near_peers:

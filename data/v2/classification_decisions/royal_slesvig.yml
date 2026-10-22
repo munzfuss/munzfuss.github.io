@@ -1,11 +1,16 @@
 # Classification decisions for entity `royal_slesvig` (Phase 4).
 # Curator-authoritative file (committed). Two sections:
 #
-# 1. `assignments:` — explicit fuss/phase for ambiguous coins.
-#    Each entry adds a NEW final entry on next absorb run.
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
 #    Example:
 #      assignments:
-#        - coin_id: unified-dk-numismaster-12345
+#        - coin_id: dk-numismaster-12345
 #          fuss: 9_25_thaler
 #          phase: A
 #          kind: kurant
@@ -26,7 +31,7 @@ entity_id: royal_slesvig
 generated_at: '2026-08-26'
 bulk_promote_pending: all
 assignments:
-  - coin_id: unified-dk-bruun-14741
+  - coin_id: dk-bruun-14741
     fuss: rhinsk_gylden_fod
     phase:
       denmark: II.a
@@ -37,7 +42,8 @@ assignments:
       Gottorp-mint issue = undivided king-duke Schleswig line, the Gottorp duchy not existing before the 19 Aug 1544 Rendsburg partition. SUB-PHASE 2026-10-10 (curator): Denmark page splits rhinsk_gylden_fod
       phase I into I.a 1514-1533 (Møntordning 1514 / Kongebrev 1524, 72 / 18 Kt), I.b 1534-1539 (Junge account 72 / 18⅓), I.c 1546 (Flensborg, Junge, 71⅓ / 18), I.d 1547 (Kock bestalling 71⅓ / 18½); Schleswig-Holstein
       keeps I.'
-  - coin_id: unified-dk-bruun-14783
+    was: unified-dk-bruun-14741
+  - coin_id: dk-bruun-14783
     fuss: rhinsk_gylden_fod
     phase:
       denmark: II.b
@@ -48,7 +54,8 @@ assignments:
       phase I (curator direction 2026-07-16). Relocated gottorp_duchy→royal_slesvig 2026-08-26 (option A) — pre-1544 Gottorp-mint issue = king-duke Schleswig line. SUB-PHASE 2026-10-10 (curator): Denmark
       page splits rhinsk_gylden_fod phase I into I.a 1514-1533 (Møntordning 1514 / Kongebrev 1524, 72 / 18 Kt), I.b 1534-1539 (Junge account 72 / 18⅓), I.c 1546 (Flensborg, Junge, 71⅓ / 18), I.d 1547 (Kock
       bestalling 71⅓ / 18½); Schleswig-Holstein keeps I.'
-  - coin_id: unified-dk-hede-c3h15
+    was: unified-dk-bruun-14783
+  - coin_id: dk-hede-c3h15
     fuss: rhinsk_gylden_fod
     phase:
       denmark: III.a
@@ -60,7 +67,8 @@ assignments:
       the ambiguous post-1544 Schleswig-town mint). SUB-PHASE 2026-10-10 (curator): Denmark page splits rhinsk_gylden_fod phase I into I.a 1514-1533 (Møntordning 1514 / Kongebrev 1524, 72 / 18 Kt), I.b
       1534-1539 (Junge account 72 / 18⅓), I.c 1546 (Flensborg, Junge, 71⅓ / 18), I.d 1547 (Kock bestalling 71⅓ / 18½); Schleswig-Holstein keeps I. RENUMBER 2026-10-10 (curator): Denmark page phase I split
       by grid — I (72 per mark: I.a, I.b) and II (71⅓, Flensborg: II.a 1546, II.b 1547); former II, III, IV become III, IV, V."
-  - coin_id: unified-dk-hede-c3h14
+    was: unified-dk-hede-c3h15
+  - coin_id: dk-hede-c3h14
     fuss: rhinsk_gylden_fod
     phase:
       denmark: III.a
@@ -72,7 +80,8 @@ assignments:
       (Flensburg = royal Schleswig), so the decision filed under royal_holstein was never applied and the coin fell to seed_unsorted. SUB-PHASE 2026-10-10 (curator): Denmark page splits rhinsk_gylden_fod
       phase I into I.a 1514-1533 (Møntordning 1514 / Kongebrev 1524, 72 / 18 Kt), I.b 1534-1539 (Junge account 72 / 18⅓), I.c 1546 (Flensborg, Junge, 71⅓ / 18), I.d 1547 (Kock bestalling 71⅓ / 18½); Schleswig-Holstein
       keeps I. RENUMBER 2026-10-10 (curator): Denmark page phase I split by grid — I (72 per mark: I.a, I.b) and II (71⅓, Flensborg: II.a 1546, II.b 1547); former II, III, IV become III, IV, V.'
-  - coin_id: unified-dk-hede-c4h8a
+    was: unified-dk-hede-c3h14
+  - coin_id: dk-hede-c4h8a
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
@@ -80,7 +89,8 @@ assignments:
       1559 .986/67-Stück standard). Retargeted c4h8b→c4h8a 2026-06-25 after the 8A+8B merge made c4h8a the unified head (the old c4h8b id was unmatched). RELOCATED 2026-10-09 from 
       classification_decisions/royal_holstein.yml — the coin now lives in royal_slesvig (Haderslev = royal Schleswig; its _cross_entity target is royal_slesvig), so the decision filed under 
       royal_holstein was never applied and the coin fell to seed_unsorted.
-  - coin_id: unified-dk-hede-c4h2
+    was: unified-dk-hede-c4h8a
+  - coin_id: dk-hede-c4h2
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
@@ -88,7 +98,8 @@ assignments:
       Portugaløser class relocated → royal_holstein 2026-07-12 (Haderslev = royal Schleswig; renders on both pages). Curator (Serhii) 2026-07-12. RELOCATED 2026-10-09 from 
       classification_decisions/royal_holstein.yml — the coin now lives in royal_slesvig (Haderslev = royal Schleswig; its _cross_entity target is royal_slesvig), so the decision filed under 
       royal_holstein was never applied and the coin fell to seed_unsorted.
-  - coin_id: unified-dk-hede-c4h5a
+    was: unified-dk-hede-c4h2
+  - coin_id: dk-hede-c4h5a
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
@@ -97,87 +108,101 @@ assignments:
       (Serhii) 2026-07-12. (coin_id moved from unified-dk-bruun-4595 to the c4h5a merged head after Case 7 folded Hede 5A/5B + KMM specimens.) RELOCATED 2026-10-09 from 
       classification_decisions/royal_holstein.yml — the coin now lives in royal_slesvig (Haderslev = royal Schleswig; its _cross_entity target is royal_slesvig), so the decision filed under 
       royal_holstein was never applied and the coin fell to seed_unsorted.
-  - coin_id: unified-dk-bruun-4598
+    was: unified-dk-hede-c4h5a
+  - coin_id: dk-bruun-4598
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
     reason: Christian IV ¼ Portugaløser, Hede 3, Schou 7, Fr 64, Haderslev 1592-93. Relocated → royal_holstein 2026-07-12 with the Christian IV Haderslev Portugaløser class (via _cross_entity.yml). 
       Curator (Serhii) 2026-07-12. RELOCATED 2026-10-09 from classification_decisions/royal_holstein.yml — the coin now lives in royal_slesvig (Haderslev = royal Schleswig; its _cross_entity target is
       royal_slesvig), so the decision filed under royal_holstein was never applied and the coin fell to seed_unsorted.
-  - coin_id: unified-dk-bruun-4601
+    was: unified-dk-bruun-4598
+  - coin_id: dk-bruun-4601
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
     reason: Christian IV ¼ Portugaløser, Hede 7B, Schou 2, Fr 64, Haderslev 1593. Relocated → royal_holstein 2026-07-12 with the Christian IV Haderslev Portugaløser class (via _cross_entity.yml). 
       Curator (Serhii) 2026-07-12. RELOCATED 2026-10-09 from classification_decisions/royal_holstein.yml — the coin now lives in royal_slesvig (Haderslev = royal Schleswig; its _cross_entity target is
       royal_slesvig), so the decision filed under royal_holstein was never applied and the coin fell to seed_unsorted.
-  - coin_id: unified-dk-hede-c3h16
+    was: unified-dk-bruun-4601
+  - coin_id: dk-hede-c3h16
     fuss: 8_daler_lybsk_fod
     phase: I
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification 8_daler_lybsk_fod / I / kurant lived only on the royal_holstein final and was lost when the coin moved from royal_holstein to royal_slesvig
       (no assignment backed it). Values as on the royal_holstein final at 2026-08-20 (b47ec02).'
-  - coin_id: unified-dk-hede-c3h17ab
+    was: unified-dk-hede-c3h16
+  - coin_id: dk-hede-c3h17ab
     fuss: 8_daler_lybsk_fod
     phase: I
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification 8_daler_lybsk_fod / I / kurant lived only on the royal_holstein final and was lost when the coin moved from royal_holstein to royal_slesvig
       (no assignment backed it). Values as on the royal_holstein final at 2026-08-20 (b47ec02).'
-  - coin_id: unified-dk-hede-c3h18
+    was: unified-dk-hede-c3h17ab
+  - coin_id: dk-hede-c3h18
     fuss: 8_daler_lybsk_fod
     phase: I
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification 8_daler_lybsk_fod / I / kurant lived only on the royal_holstein final and was lost when the coin moved from royal_holstein to royal_slesvig
       (no assignment backed it). Values as on the royal_holstein final at 2026-08-20 (b47ec02).'
-  - coin_id: unified-dk-hede-c3h19
+    was: unified-dk-hede-c3h18
+  - coin_id: dk-hede-c3h19
     fuss: 8_daler_lybsk_fod
     phase: I
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification 8_daler_lybsk_fod / I / kurant lived only on the royal_holstein final and was lost when the coin moved from royal_holstein to royal_slesvig
       (no assignment backed it). Values as on the royal_holstein final at 2026-08-20 (b47ec02).'
-  - coin_id: unified-dk-hede-c3h20
+    was: unified-dk-hede-c3h19
+  - coin_id: dk-hede-c3h20
     fuss: 8_daler_lybsk_fod
     phase: I
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification 8_daler_lybsk_fod / I / kurant lived only on the royal_holstein final and was lost when the coin moved from royal_holstein to royal_slesvig
       (no assignment backed it). Values as on the royal_holstein final at 2026-08-20 (b47ec02).'
-  - coin_id: unified-dk-hede-c3h21a
+    was: unified-dk-hede-c3h20
+  - coin_id: dk-hede-c3h21a
     fuss: 8_daler_lybsk_fod
     phase: I
     kind: scheide
     reason: 'Restored 2026-10-09 (curator): the classification 8_daler_lybsk_fod / I / scheide lived only on the royal_holstein final and was lost when the coin moved from royal_holstein to royal_slesvig
       (no assignment backed it). Values as on the royal_holstein final at 2026-08-20 (b47ec02).'
-  - coin_id: unified-dk-hede-c3h22
+    was: unified-dk-hede-c3h21a
+  - coin_id: dk-hede-c3h22
     fuss: 8_daler_lybsk_fod
     phase: I
     kind: scheide
     reason: 'Restored 2026-10-09 (curator): the classification 8_daler_lybsk_fod / I / scheide lived only on the royal_holstein final and was lost when the coin moved from royal_holstein to royal_slesvig
       (no assignment backed it). Values as on the royal_holstein final at 2026-08-20 (b47ec02).'
-  - coin_id: unified-dk-hede-f2h30a
+    was: unified-dk-hede-c3h22
+  - coin_id: dk-hede-f2h30a
     fuss: 9_thaler
     phase: I
     kind: scheide
     reason: 'Restored 2026-10-09 (curator): the classification 9_thaler / I / scheide lived only on the royal_holstein final and was lost when the coin moved from royal_holstein to royal_slesvig (no assignment
       backed it). Values as on the royal_holstein final at 2026-08-20 (b47ec02).'
-  - coin_id: unified-dk-hede-f2h30b
+    was: unified-dk-hede-f2h30a
+  - coin_id: dk-hede-f2h30b
     fuss: 9_thaler
     phase: I
     kind: scheide
     reason: 'Restored 2026-10-09 (curator): the classification 9_thaler / I / scheide lived only on the royal_holstein final and was lost when the coin moved from royal_holstein to royal_slesvig (no assignment
       backed it). Values as on the royal_holstein final at 2026-08-20 (b47ec02).'
-  - coin_id: unified-dk-hede-f2h31a
+    was: unified-dk-hede-f2h30b
+  - coin_id: dk-hede-f2h31a
     fuss: 9_thaler
     phase: I
     kind: scheide
     reason: 'Restored 2026-10-09 (curator): the classification 9_thaler / I / scheide lived only on the royal_holstein final and was lost when the coin moved from royal_holstein to royal_slesvig (no assignment
       backed it). Values as on the royal_holstein final at 2026-08-20 (b47ec02).'
-  - coin_id: unified-dk-hede-c4h4
+    was: unified-dk-hede-f2h31a
+  - coin_id: dk-hede-c4h4
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification reichsdukatenfuss / I / kurant lived only on the royal_holstein final and was lost when the coin moved from royal_holstein to royal_slesvig
       (no assignment backed it). Values as on the royal_holstein final at 2026-09-01 (867da86).'
-  - coin_id: unified-ngc-167747
+    was: unified-dk-hede-c4h4
+  - coin_id: ngc-167747
     fuss: rhinsk_gylden_fod
     phase:
       denmark: III.b
@@ -190,7 +215,8 @@ assignments:
       phase I split by grid — I (72 per mark: I.a, I.b) and II (71⅓, Flensborg: II.a 1546, II.b 1547); former II, III, IV become III, IV, V. RELOCATED 2026-10-15 (curator): the coin moves from royal_holstein
       to royal_slesvig (_cross_entity.yml) — legend «MON. NOVA. AVREA. SLESVICENSIS.», mint Flensborg by the 1547 letter of appointment; the royal_holstein bucket was the NGC/NumisMaster default for a mintless
       Schleswig-Holstein record. Phase ids as renumbered 2026-10-15.'
-  - coin_id: unified-schleswig_holstein-numismaster-167747
+    was: unified-ngc-167747
+  - coin_id: schleswig_holstein-numismaster-167747
     fuss: rhinsk_gylden_fod
     phase:
       denmark: III.b
@@ -199,5 +225,6 @@ assignments:
     reason: 'Christian III «1 Goldgulden» 1547 (MB 57, NumisMaster serial-style «Sch#1352»; MC_167747). No merge candidate in any entity (the 1546 types Hede 14/15 do not overlap 1547). Standalone promotion
       per curator 2026-07-16: Goldgulden nominal → rhinsk_gylden_fod, year 1547 = tail of phase I (1496-1547). RELOCATED 2026-10-15 with the coin to royal_slesvig; phase rewritten from the scalar «I» (pre-renumbering,
       now the Hans period on the Denmark page) to the page-keyed form the current host decision (unified-ngc-167747) carries. Inactive while the class is named after the NGC member.'
+    was: unified-schleswig_holstein-numismaster-167747
 pending: []
 multi_match_warnings: []

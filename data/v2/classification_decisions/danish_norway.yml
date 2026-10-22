@@ -1,11 +1,16 @@
 # Classification decisions for entity `danish_norway` (Phase 4).
 # Curator-authoritative file (committed). Two sections:
 #
-# 1. `assignments:` — explicit fuss/phase for ambiguous coins.
-#    Each entry adds a NEW final entry on next absorb run.
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
 #    Example:
 #      assignments:
-#        - coin_id: unified-dk-numismaster-12345
+#        - coin_id: dk-numismaster-12345
 #          fuss: 9_25_thaler
 #          phase: A
 #          kind: kurant
@@ -26,20 +31,22 @@ entity_id: danish_norway
 generated_at: '2026-10-20'
 bulk_promote_pending: all
 assignments:
-  - coin_id: unified-dk-bruun-9985
+  - coin_id: dk-bruun-9985
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
     reason: 'Curator (Serhii) 2026-07-23: ½ Dukat Frederik III, Christiania, 1666 — trade Dukat at .979 fineness = Reichsdukatenfuß (Bruun III lot 12088: Fr 5, KM 80, Hede 4, Sieg 69, Schou 10). Phase III
       (Christiania trade-dukat window 1660-1697, joins the 22 existing danish_norway reichsdukatenfuss/III coins).'
-  - coin_id: unified-dk-hede-nc5h11
+    was: unified-dk-bruun-9985
+  - coin_id: dk-hede-nc5h11
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
     reason: 'Curator (Serhii) 2026-07-25: 2 Dukat 1673, Christiania, Christian V — Hede Norge 11 / KM 121 / Sieg 70 / Schou 5 / Fr 11B / NMD 12 / AAJT 12, obverse equestrian figure, reverse elephant. Trade
       Dukat at .979 = Reichsdukatenfuß, Phase III (Christiania trade-dukat window 1660-1697). Five merged members (dk-hede-nc5h11 + dk-bruun-10149 + dk-numista-433758 + denmark-numismaster-110804 + dk-tid-145749)
       — the Hede page was re-homed onto this group by the merge decision of the same date, replacing an over-merge that had glued it to two KM-119-only records.'
-  - coin_id: unified-denmark-numismaster-110802
+    was: unified-dk-hede-nc5h11
+  - coin_id: denmark-numismaster-110802
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
@@ -47,7 +54,8 @@ assignments:
       arms mounted on cross, date divided below» — no elephant; «1673 Unique / ND (1674) 2 known»). Same standard as its KM 121 / 122 / 123 siblings: gold .979, 6.98 g, Christiania trade coinage → Reichsdukatenfuß
       Phase III. Two members (denmark-numismaster-110802 + dk-tid-145748), which are the SOLE attestation of this type — the reason it was split rather than deleted. No Hede / Sieg / Schou index is published
       for it by either source, and neither attests the mint (mint_verified: false).'
-  - coin_id: unified-dk-bruun-10497
+    was: unified-denmark-numismaster-110802
+  - coin_id: dk-bruun-10497
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
@@ -59,7 +67,8 @@ assignments:
       entries, and the danskmoent Christian V overview row «N4 | 2 Dukat | Guld | U.år | Christiania | Som N3». Bruun records «only two examples recorded, and the other being in the Danish National Museum»,
       but no KMM record in the cache carries Schou 14 — the three untyped Christian V «dobbelt dukat» stubs (kmk-78366 / 78367 / 277061) hold no typeNumber, year, weight or mint, so attributing any of them
       to this type would be unsourced speculation per §0b. Left unattributed."
-  - coin_id: unified-dk-hede-f3h39
+    was: unified-dk-bruun-10497
+  - coin_id: dk-hede-f3h39
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
@@ -69,7 +78,8 @@ assignments:
       4-6+6a / Fr 5b / nmd 5A, five merged members (hede-f3h39 + bruun-6737 + bruun-6738 + numista-460032 + numismaster-204386). year_verified stays false — Hede records the type as undated (u.år); the
       1648-1670 span is the reign span (year_is_reign_span: true), while Bruun reads 1669-1670, Numista ND/1669 and NumisMaster 1670. The ucoin specimen dk-tid-145589 is explicitly NOT part of this group
       — see the no_merges block in merge_decisions/danish_norway.yml (curator split 2026-07-23); its phantom citation was removed from this entry's sources on 2026-07-25."
-  - coin_id: unified-dk-hede-nc5h6
+    was: unified-dk-hede-f3h39
+  - coin_id: dk-hede-nc5h6
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
@@ -79,7 +89,8 @@ assignments:
       bagside: norske løve i skjold (Hede Norge 6, Schou 40)» with Bruttovægt 1,745 g / Finhed 0,979 / Finvægt 1,709 g. year_verified stays false — Hede records the type as U.år; the displayed 1674 is the
       dated-specimen attribution of Numista N#117123 and ucoin tid=145745, and the Hede reign window 1670-1699 is year-demoted so those dated peers drive the year. Specimen weights span 1,49 g (ucoin, worn)
       · 1,71 g (Bruun I lot 1231 p. 296) · 1,74 g (Numista) · 1,745 g (Hede canonical), preserved list-form per §9a.'
-  - coin_id: unified-dk-hede-nc5h7
+    was: unified-dk-hede-nc5h6
+  - coin_id: dk-hede-nc5h7
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
@@ -91,7 +102,8 @@ assignments:
       publishes no Schou. The Norwegian reading rests on mint Christiania (mint_verified true), the Numista entry's own scope (N#416423 «1 Ducat - Christian V (Christiania type IV) - Norway»), AAJT 20 as
       a Norwegian catalogue, and the curator's visual confirmation that the Danish c5h7 coin is a different piece. year_verified stays false — Hede records u.år; the displayed 1674 is Numista's dated attribution
       and the Hede reign window 1670-1699 is year-demoted in its favour."
-  - coin_id: unified-dk-numista-444264
+    was: unified-dk-hede-nc5h7
+  - coin_id: dk-numista-444264
     fuss: rhinsk_gylden_fod
     phase: I
     kind: kurant
@@ -102,7 +114,8 @@ assignments:
       — the Rhenish norm of the Wormser Reichsabschied 1495 that these pieces imitate, and the figure Hans himself put in his Møntanordning of 4 Dec 1497 («guldmynt på Rhenska gulden slag», 72 to the 18½
       Karat mark). The shortfall therefore stays visible: the Nürnberg Valvationstag of 1551 found the surviving 2-Bjælker type «kun ca. 3/4 Karat» under the norm, i.e. 17¾, and Wilcke attributes the reduction
       to military pay — «søgt noget forringet i Gehalt». Curator (Serhii) 2026-09-06."
-  - coin_id: unified-dk-numista-117116
+    was: unified-dk-numista-444264
+  - coin_id: dk-numista-117116
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
@@ -113,498 +126,599 @@ assignments:
       the only record that pairs km 124 with a Hede number. The two KM-only members (NumisMaster MC_110811, ucoin tid=145797) came with it out of nc5h10, which is why they read reichsdukatenfuss/III before
       this run and seed_unsorted after — this assignment restores the classification to the class they actually belong to. NOTE: no member of this class carries hede_volume, because danskmoent publishes
       no page for Hede Norge 5 (nc5h3/4/5.htm all 404). The Hede number here is Hede NORGE 5, not Danish Hede 5.'
-  - coin_id: unified-ngc-1093502
+    was: unified-dk-numista-117116
+  - coin_id: ngc-1093502
     fuss: 11_333_thaler
     phase: I
     kind: kurant
     reason: 1 Skilling 1771, 1782, 1784-1785 — phase repair, not a new classification. The Müntzfuß 11_333_thaler is the curator classification that migrated onto this NGC host when its foundation was
       purged; the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 
       1771 against this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1094231
+    was: unified-ngc-1093502
+  - coin_id: ngc-1094231
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: ½ Skilling 1682 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase 
       did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1682 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1094232
+    was: unified-ngc-1094231
+  - coin_id: ngc-1094232
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 1 Skilling 1670 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase 
       did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1670 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1094239
+    was: unified-ngc-1094232
+  - coin_id: ngc-1094239
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 2 Mark 1687-1688 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase
       did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1687 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1094241
+    was: unified-ngc-1094239
+  - coin_id: ngc-1094241
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 2 Mark 1688 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase did 
       not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1688 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1094438
+    was: unified-ngc-1094241
+  - coin_id: ngc-1094438
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
     reason: 1 Ducat 1668 — phase repair, not a new classification. The Müntzfuß reichsdukatenfuss is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase III follows CLAUDE.md §8.2 from year_first 1668 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1095587
+    was: unified-ngc-1094438
+  - coin_id: ngc-1095587
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 1 Mark 1686 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase did 
       not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1686 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1095589
+    was: unified-ngc-1095587
+  - coin_id: ngc-1095589
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 4 Mark 1688 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase did 
       not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1688 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1095649
+    was: unified-ngc-1095589
+  - coin_id: ngc-1095649
     fuss: 9_thaler
     phase: II
     kind: kurant
     reason: 3 Specie Daler 1663-1664 — phase repair, not a new classification. The Müntzfuß 9_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase II follows CLAUDE.md §8.2 from year_first 1663 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1095651
+    was: unified-ngc-1095649
+  - coin_id: ngc-1095651
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
     reason: 2 Ducat 1673-1674 — phase repair, not a new classification. The Müntzfuß reichsdukatenfuss is the curator classification that migrated onto this NGC host when its foundation was purged; 
       the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase III follows CLAUDE.md §8.2 from year_first 1673 
       against this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1096044
+    was: unified-ngc-1095651
+  - coin_id: ngc-1096044
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 2 Skilling 1714-1718 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1714 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1096793
+    was: unified-ngc-1096044
+  - coin_id: ngc-1096793
     fuss: 9_25_thaler
     phase: II
     kind: kurant
     reason: 6 Mark 1732-1733 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase
       did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase II follows CLAUDE.md §8.2 from year_first 1732 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1097882
+    was: unified-ngc-1096793
+  - coin_id: ngc-1097882
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 2 Skilling 1719-1725 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1719 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1097940
+    was: unified-ngc-1097882
+  - coin_id: ngc-1097940
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 4 Mark 1687 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase did 
       not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1687 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1098037
+    was: unified-ngc-1097940
+  - coin_id: ngc-1098037
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 2 Skilling 1675-1683 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1675 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1099056
+    was: unified-ngc-1098037
+  - coin_id: ngc-1099056
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 1 Skilling 1686-1688 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1686 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1099122
+    was: unified-ngc-1099056
+  - coin_id: ngc-1099122
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 4 Mark 1688 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase did 
       not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1688 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1099130
+    was: unified-ngc-1099122
+  - coin_id: ngc-1099130
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 1 Specie Daler 1670 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1670 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1099226
+    was: unified-ngc-1099130
+  - coin_id: ngc-1099226
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
     reason: 1 Ducat 1673, 1680 — phase repair, not a new classification. The Müntzfuß reichsdukatenfuss is the curator classification that migrated onto this NGC host when its foundation was purged; 
       the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase III follows CLAUDE.md §8.2 from year_first 1673 
       against this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1099920
+    was: unified-ngc-1099226
+  - coin_id: ngc-1099920
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 2 Mark 1687 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase did 
       not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1687 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1099921
+    was: unified-ngc-1099920
+  - coin_id: ngc-1099921
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 2 Mark 1689-1696 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase
       did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1689 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1099922
+    was: unified-ngc-1099921
+  - coin_id: ngc-1099922
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 4 Mark 1670-1674, 1676-1680 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was 
       purged; the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 
       1670 against this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1099930
+    was: unified-ngc-1099922
+  - coin_id: ngc-1099930
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 1½ Specie Daler 1630 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1630 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1100100
+    was: unified-ngc-1099930
+  - coin_id: ngc-1100100
     fuss: 9_thaler
     phase: II
     kind: kurant
     reason: 2 Specie Daler 1670 — phase repair, not a new classification. The Müntzfuß 9_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase
       did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase II follows CLAUDE.md §8.2 from year_first 1670 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1100103
+    was: unified-ngc-1100100
+  - coin_id: ngc-1100103
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
     reason: 3 Ducat 1673 — phase repair, not a new classification. The Müntzfuß reichsdukatenfuss is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase III follows CLAUDE.md §8.2 from year_first 1673 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1100400
+    was: unified-ngc-1100103
+  - coin_id: ngc-1100400
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 2 Mark 1687 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase did 
       not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1687 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1100471
+    was: unified-ngc-1100400
+  - coin_id: ngc-1100471
     fuss: 9_thaler
     phase: I
     kind: kurant
     reason: 1 Lion Dalar 1608 — phase repair, not a new classification. The Müntzfuß 9_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase 
       did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1608 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1100476
+    was: unified-ngc-1100471
+  - coin_id: ngc-1100476
     fuss: 9_thaler
     phase: II
     kind: kurant
     reason: 2 Specie Daler 1663-1664 — phase repair, not a new classification. The Müntzfuß 9_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase II follows CLAUDE.md §8.2 from year_first 1663 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1100479
+    was: unified-ngc-1100476
+  - coin_id: ngc-1100479
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 4 Specie Daler 1657-1658 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; 
       the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1657 
       against this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1100482
+    was: unified-ngc-1100479
+  - coin_id: ngc-1100482
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
     reason: 1 Ducat 1697 — phase repair, not a new classification. The Müntzfuß reichsdukatenfuss is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase III follows CLAUDE.md §8.2 from year_first 1697 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1102016
+    was: unified-ngc-1100482
+  - coin_id: ngc-1102016
     fuss: 18_5_thaler
     phase: I
     kind: kurant
     reason: 12 Skilling 1813 — phase repair, not a new classification. The Müntzfuß 18_5_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase
       did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1813 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1102813
+    was: unified-ngc-1102016
+  - coin_id: ngc-1102813
     fuss: 18_5_thaler
     phase: I
     kind: kurant
     reason: 6 Skilling 1813 — phase repair, not a new classification. The Müntzfuß 18_5_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase 
       did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1813 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1114106
+    was: unified-ngc-1102813
+  - coin_id: ngc-1114106
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 4 Mark 1683 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; the phase did 
       not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1683 against this 
       entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1114121
+    was: unified-ngc-1114106
+  - coin_id: ngc-1114121
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 3 Specie Daler 1643-1644 — phase repair, not a new classification. The Müntzfuß 9_25_thaler is the curator classification that migrated onto this NGC host when its foundation was purged; 
       the phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase I follows CLAUDE.md §8.2 from year_first 1643 
       against this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-ngc-1114127
+    was: unified-ngc-1114121
+  - coin_id: ngc-1114127
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
     reason: 2 Ducat 1678 — phase repair, not a new classification. The Müntzfuß reichsdukatenfuss is the curator classification that migrated onto this NGC host when its foundation was purged; the 
       phase did not migrate with it and stayed at the NGC seed-source tag «ngc», which no fuss declares, so the coin rendered on no page. Phase III follows CLAUDE.md §8.2 from year_first 1678 against 
       this entity’s declared windows for the fuss. Curator 2026-08-18.
-  - coin_id: unified-dk-bruun-10357
+    was: unified-ngc-1114127
+  - coin_id: dk-bruun-10357
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification 9_25_thaler / I / kurant lived only on the final unified-dk-numista-119557 and was lost when the merger renamed the class (NGC flow, 8e0f0ad);
       no assignment backed it. Values as on unified-dk-numista-119557 at 2026-08-01.'
-  - coin_id: unified-kmk-278784
+    was: unified-dk-bruun-10357
+  - coin_id: kmk-278784
     fuss: reichsdukatenfuss
     phase: III
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification reichsdukatenfuss / kurant lived only on the final unified-dk-numista-422940 and was lost when the merger renamed the class (NGC flow, 8e0f0ad);
       no assignment backed it. Values as on unified-dk-numista-422940 at 2026-08-01. Phase III, not the II the old final carried: 1697 lies in reichsdukatenfuss III (1623-1726) on the Denmark page, the
       only page that renders danish_norway (§8.2).'
-  - coin_id: unified-ngc-1097885
+    was: unified-kmk-278784
+  - coin_id: ngc-1097885
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification 9_25_thaler / I / kurant lived only on the final unified-dk-numista-99206 and was lost when the merger renamed the class (NGC flow, 8e0f0ad);
       no assignment backed it. Values as on unified-dk-numista-99206 at 2026-08-01.'
-  - coin_id: unified-dk-hede-f4h35
+    was: unified-ngc-1097885
+  - coin_id: dk-hede-f4h35
     fuss: kronemont
     phase: II
     kind: kurant
     reason: 3 Krone 1699 Frederik IV (Hede 35). Carries over the classification the coin had in danish_realm (kronemont / II) when the 2026-10-12 cross-entity merge moved it to danish_norway 
       (København + Kongsberg joint mint, _home_entity).
-  - coin_id: unified-dk-bruun-9223
+    was: unified-dk-hede-f4h35
+  - coin_id: dk-bruun-9223
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-dk-bruun-9242
+    was: unified-dk-bruun-9223
+  - coin_id: dk-bruun-9242
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-dk-bruun-9243
+    was: unified-dk-bruun-9242
+  - coin_id: dk-bruun-9243
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-dk-bruun-9248
+    was: unified-dk-bruun-9243
+  - coin_id: dk-bruun-9248
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-dk-bruun-9251
+    was: unified-dk-bruun-9248
+  - coin_id: dk-bruun-9251
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-dk-galster-hg-149
+    was: unified-dk-bruun-9251
+  - coin_id: dk-galster-hg-149
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-dk-galster-hg-151
+    was: unified-dk-galster-hg-149
+  - coin_id: dk-galster-hg-151
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-dk-galster-hg-153
+    was: unified-dk-galster-hg-151
+  - coin_id: dk-galster-hg-153
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-dk-galster-hg-155
+    was: unified-dk-galster-hg-153
+  - coin_id: dk-galster-hg-155
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-dk-galster-hg-159
+    was: unified-dk-galster-hg-155
+  - coin_id: dk-galster-hg-159
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-134394
+    was: unified-dk-galster-hg-159
+  - coin_id: kmk-134394
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-139303
+    was: unified-kmk-134394
+  - coin_id: kmk-139303
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-139672
+    was: unified-kmk-139303
+  - coin_id: kmk-139672
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-150269
+    was: unified-kmk-139672
+  - coin_id: kmk-150269
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-150270
+    was: unified-kmk-150269
+  - coin_id: kmk-150270
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-150271
+    was: unified-kmk-150270
+  - coin_id: kmk-150271
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-150272
+    was: unified-kmk-150271
+  - coin_id: kmk-150272
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-150273
+    was: unified-kmk-150272
+  - coin_id: kmk-150273
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-150274
+    was: unified-kmk-150273
+  - coin_id: kmk-150274
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-178001
+    was: unified-kmk-150274
+  - coin_id: kmk-178001
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-273847
+    was: unified-kmk-178001
+  - coin_id: kmk-273847
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-274276
+    was: unified-kmk-273847
+  - coin_id: kmk-274276
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-274277
+    was: unified-kmk-274276
+  - coin_id: kmk-274277
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-279771
+    was: unified-kmk-274277
+  - coin_id: kmk-279771
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-279772
+    was: unified-kmk-279771
+  - coin_id: kmk-279772
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-279774
+    was: unified-kmk-279772
+  - coin_id: kmk-279774
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-369862
+    was: unified-kmk-279774
+  - coin_id: kmk-369862
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-417196
+    was: unified-kmk-369862
+  - coin_id: kmk-417196
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-417197
+    was: unified-kmk-417196
+  - coin_id: kmk-417197
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-572958
+    was: unified-kmk-417197
+  - coin_id: kmk-572958
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-622139
+    was: unified-kmk-572958
+  - coin_id: kmk-622139
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-643961
+    was: unified-kmk-622139
+  - coin_id: kmk-643961
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-66603
+    was: unified-kmk-643961
+  - coin_id: kmk-66603
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-726455
+    was: unified-kmk-66603
+  - coin_id: kmk-726455
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-740753
+    was: unified-kmk-726455
+  - coin_id: kmk-740753
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-83079
+    was: unified-kmk-740753
+  - coin_id: kmk-83079
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
-  - coin_id: unified-kmk-351551
+    was: unified-kmk-83079
+  - coin_id: kmk-351551
     fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
     reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
       як курантні, потім розберемось»).'
+    was: unified-kmk-351551
+  - coin_id: kmk-106768
+    fuss: luebischer_muenzfuss
+    phase: I
+    kind: kurant
+    reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
+      як курантні, потім розберемось»).'
+    was: unified-kmk-106768
+    moved_from: danish_realm 2026-10-22
+  - coin_id: kmk-130618
+    fuss: luebischer_muenzfuss
+    phase: I
+    kind: kurant
+    reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
+      як курантні, потім розберемось»).'
+    was: unified-kmk-130618
+    moved_from: danish_realm 2026-10-22
+  - coin_id: kmk-492500
+    fuss: luebischer_muenzfuss
+    phase: I
+    kind: kurant
+    reason: 'King Hans / Rigsrådet 1481 / Archbishop Gaute silver and billon (1481-1513) under the Lübeck Schilling standard. kind kurant provisional for all denominations (curator 2026-10-15: «всі закидай
+      як курантні, потім розберемось»).'
+    was: unified-kmk-492500
+    moved_from: danish_realm 2026-10-22
 pending: []
 multi_match_warnings: []
 promoted_near_peers:

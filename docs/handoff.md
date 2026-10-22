@@ -37,12 +37,24 @@
 - **Done after** (curator «виключати», next commit): kmk-273986, kmk-273987, kmk-273702 excluded at
   seed level as undocumented stubs (no weight/photo; «Sch. 146, cf.» is a cf-form dropped at ingest,
   Schou 111 ⊂ G36's 102-118); re-flow danish_realm, verify_reflow 0 losses / 2 excluded.
-- **Decided — id architecture (D49, TODO §EE)**: curator approved 2026-10-22 the direction from
-  the chat analysis: opaque immutable class id in `data/v2/class_registry/<entity>.yml`, recognition
-  by largest specimen overlap (ties → older; retired with `merged_into`), members counted in
-  specimens incl. `_thinned_from`, final id = class id, `unified-<head>` demoted to a label;
-  classification decisions keyed by a member seed id ship first (stage 1). **No code yet** — each
-  stage needs its own «так». General: `specimens:` (kmm-keyed)
+- **D49 / TODO §EE — stage 1 SHIPPED 2026-10-22** (plan approved in plan mode after a strict
+  review; stages 2–4 each still need their own «так»). Classification decisions are keyed by a
+  SEED id: absorb `_resolve_decision_key` / `_index_assignments` (bare Hede code and
+  `_thinned_from` specimen resolve; ASSIGN-CONFLICT; `assigned-excluded` counted apart from
+  ASSIGN-MISS; `superseded_by` entries are records, not decisions), `validate_decisions
+  --check-classification` (hook Check 5 on staged classification_decisions/**), audit_v2 I6/I13,
+  `migrate_classification_keys.py`. Migration result: 477 `unified-x` → `x`, 17 legacy `km-`
+  finals → top-authority seed, 3 kmk entries moved danish_realm → danish_norway, **6 revived
+  decisions HELD** (`superseded_by: <final> (stored classification)`) because their values
+  differ from what the final stores — all are NGC «phase repair, not a new classification»
+  entries of 2026-08-18 carrying `kind: kurant` onto scheide / tarif coins (dk-tid-70688 4 Sk
+  Rigsmont; c4h111 4 Sk 1619; f3h122a 2 Sk 1648-51; c4h108ab ¼ Krone 1618; f6h31 8 Rbs;
+  f3h145a Guldkrone where the live 2026-09-10 `tarif` decision stands). **Curator: review the
+  six** — drop the held entries or confirm the kind change (then remove `superseded_by`).
+  Finals byte-identical to before; 285 decisions applied, 0 ASSIGN-MISS, 118 inert on excluded
+  coins. Full `audit_v2` shows only the pre-existing I4 `pewter` metal on 32 NGC unified
+  entries (not stage 1). Stage 2 starts with the D49 addendum (plan file: record = merger
+  class, id `c-<8 hex>` without entity, `origin` field, inherit once per run). General: `specimens:` (kmm-keyed)
   exclusions and the merge decisions name KMM specimens by the representative of a fold that
   `thin_safe` can re-cut on any re-seed; `_load_excluded_ids` in build_kmk_seed reads `id:` only.
 

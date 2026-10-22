@@ -1,11 +1,16 @@
 # Classification decisions for entity `schauenburg_pinneberg` (Phase 4).
 # Curator-authoritative file (committed). Two sections:
 #
-# 1. `assignments:` — explicit fuss/phase for ambiguous coins.
-#    Each entry adds a NEW final entry on next absorb run.
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
 #    Example:
 #      assignments:
-#        - coin_id: unified-dk-numismaster-12345
+#        - coin_id: dk-numismaster-12345
 #          fuss: 9_25_thaler
 #          phase: A
 #          kind: kurant
@@ -25,12 +30,13 @@
 entity_id: schauenburg_pinneberg
 generated_at: '2026-10-18'
 assignments:
-  - coin_id: unified-dk-numista-137416
+  - coin_id: dk-numista-137416
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification 9_25_thaler / I / kurant lived only on the final unified-schleswig_holstein-numismaster-96114 and was lost when the merger renamed the class
       (class split); no assignment backed it. Values as on unified-schleswig_holstein-numismaster-96114 at 2026-08-20.'
+    was: unified-dk-numista-137416
 pending: []
 multi_match_warnings: []
 promoted_near_peers:
