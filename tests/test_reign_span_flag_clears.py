@@ -119,7 +119,8 @@ class TestTheLiveDataAgrees(unittest.TestCase):
         import yaml
         with open(ROOT / "data" / "v2" / "final" / "danish_realm.yml") as fh:
             d = yaml.safe_load(fh)
-        coin = next(c for c in d["coins"] if c.get("id") == "unified-dk-hede-f3h81")
+        coin = next(c for c in d["coins"]
+                    if (c.get("label") or c.get("id")) == "unified-dk-hede-f3h81")
         self.assertEqual(coin.get("year_first"), 1669)
         self.assertEqual(coin.get("year_last"), 1669)
         self.assertNotIn("year_is_reign_span", coin)

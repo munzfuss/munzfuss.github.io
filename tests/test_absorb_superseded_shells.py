@@ -36,26 +36,26 @@ class SupersededShells(unittest.TestCase):
         ab._CLASS_NOTES.update(self._saved[1])
 
     def test_shell_detected(self):
-        fe = {"id": "unified-ikmk-1", "composed_of": []}
+        fe = {"id": "unified-ikmk-1", "origin": "promoted", "composed_of": []}
         self.assertEqual(ab._superseding_class(fe, set()), "unified-dk-numista-9")
 
     def test_live_member_is_not_a_shell(self):
-        fe = {"id": "unified-ikmk-1", "composed_of": ["unified-ikmk-1"]}
+        fe = {"id": "unified-ikmk-1", "origin": "promoted", "composed_of": ["unified-ikmk-1"]}
         self.assertIsNone(ab._superseding_class(fe, {"unified-ikmk-1"}))
 
     def test_own_class_is_not_a_shell(self):
-        self.assertIsNone(ab._superseding_class({"id": "unified-ikmk-2"}, set()))
+        self.assertIsNone(ab._superseding_class({"id": "unified-ikmk-2", "origin": "promoted"}, set()))
 
     def test_curator_id_is_never_a_shell(self):
         self.assertIsNone(ab._superseding_class({"id": "km-17-ja-1690"}, set()))
 
     def test_copied_note_is_not_curation(self):
-        fe = {"id": "unified-ikmk-1", "fuss": "seed_unsorted", "phase": "ikmk",
+        fe = {"id": "unified-ikmk-1", "origin": "promoted", "fuss": "seed_unsorted", "phase": "ikmk",
               "note": "IKMK description"}
         self.assertFalse(ab._shell_is_curated(fe, "unified-dk-numista-9"))
 
     def test_own_note_and_real_fuss_are_curation(self):
-        base = {"id": "unified-ikmk-1", "phase": "ikmk"}
+        base = {"id": "unified-ikmk-1", "origin": "promoted", "phase": "ikmk"}
         self.assertTrue(ab._shell_is_curated(dict(base, fuss="seed_unsorted", note="curator text"),
                                              "unified-dk-numista-9"))
         self.assertTrue(ab._shell_is_curated(dict(base, fuss="18_5_thaler", note="IKMK description"),
@@ -86,7 +86,7 @@ class CuratedShellSettled(unittest.TestCase):
         ab._SPLIT_SUB_LETTER_SHELLS.clear()
         ab._SPLIT_SUB_LETTER_SHELLS.update(self._saved[2])
 
-    SHELL = {"id": "unified-dk-hede-nc5h30", "composed_of": ["unified-dk-hede-nc5h30"],
+    SHELL = {"id": "unified-dk-hede-nc5h30", "origin": "promoted", "composed_of": ["unified-dk-hede-nc5h30"],
              "fuss": "9_25_thaler", "phase": "I", "kind": "kurant", "fraction": "2",
              "note": {"en": "Obverse: portrait"}}
 
@@ -100,7 +100,7 @@ class CuratedShellSettled(unittest.TestCase):
         self.assertIn("unified-dk-hede-nc5h56", ab._SPLIT_SUB_LETTER_SHELLS)
 
     def test_unsorted_successor_takes_the_curation(self):
-        succ = {"id": "unified-dk-hede-nc5h30a", "fuss": "seed_unsorted", "phase": "hede"}
+        succ = {"id": "unified-dk-hede-nc5h30a", "origin": "promoted", "fuss": "seed_unsorted", "phase": "hede"}
         self.assertTrue(ab._settle_curated_shell(dict(self.SHELL), succ))
         self.assertEqual((succ["fuss"], succ["phase"], succ["kind"], succ["fraction"]),
                          ("9_25_thaler", "I", "kurant", "2"))
@@ -135,11 +135,11 @@ class ThinnedSeedShell(unittest.TestCase):
         ab._SEED_CLASS_INDEX, ab._SUB_LETTER_INDEX, ab._THINNED_REP_INDEX = self._saved
 
     def test_thinned_seed_follows_its_representative(self):
-        fe = {"id": "unified-kmk-130729", "composed_of": [], "fuss": "luebischer_muenzfuss"}
+        fe = {"id": "unified-kmk-130729", "origin": "promoted", "composed_of": [], "fuss": "luebischer_muenzfuss"}
         self.assertEqual(ab._superseding_class(fe, set()), "unified-dk-numista-108399")
 
     def test_representative_in_no_class_keeps_the_final(self):
-        self.assertIsNone(ab._superseding_class({"id": "unified-kmk-9", "composed_of": []}, set()))
+        self.assertIsNone(ab._superseding_class({"id": "unified-kmk-9", "origin": "promoted", "composed_of": []}, set()))
 
 
 if __name__ == "__main__":

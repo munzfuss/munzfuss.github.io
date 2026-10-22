@@ -58,18 +58,18 @@ class TestFinalIsRelocated(unittest.TestCase):
 
     def test_shape_a_same_id_dup(self):
         # unified-dk-hede-f7h6a survives in danish_realm as a same-id dup
-        fe = {"id": "unified-dk-hede-f7h6a",
+        fe = {"id": "unified-dk-hede-f7h6a", "origin": "promoted",
               "composed_of": ["unified-dk-hede-f7h6a"], "fuss": "18_5_thaler"}
         self.assertTrue(A._final_is_relocated(fe, self.RELOC))
 
     def test_shape_b_folded_orphan_unique_id(self):
         # unified-dk-hede-f7h6c folded into f7h6a but kept its own unique id
-        fe = {"id": "unified-dk-hede-f7h6c",
+        fe = {"id": "unified-dk-hede-f7h6c", "origin": "promoted",
               "composed_of": ["unified-dk-hede-f7h6c"], "fuss": "pistolenfuss"}
         self.assertTrue(A._final_is_relocated(fe, self.RELOC))
 
     def test_unrelated_coin_not_dropped(self):
-        fe = {"id": "unified-dk-hede-c4h62",
+        fe = {"id": "unified-dk-hede-c4h62", "origin": "promoted",
               "composed_of": ["unified-dk-hede-c4h62"], "fuss": "9_25_thaler"}
         self.assertFalse(A._final_is_relocated(fe, self.RELOC))
 
@@ -80,7 +80,7 @@ class TestFinalIsRelocated(unittest.TestCase):
 
     def test_composed_member_match(self):
         # matches a relocated seed that appears as a composed_of member
-        fe = {"id": "unified-dk-something",
+        fe = {"id": "unified-dk-something", "origin": "promoted",
               "composed_of": ["dk-hede-f7h6a", "denmark-numismaster-66090"]}
         self.assertTrue(A._final_is_relocated(fe, self.RELOC))
 
@@ -90,11 +90,11 @@ class TestRelocationCarry(unittest.TestCase):
     final, and the SOURCE keeps its copy until the target can (2026-10-15,
     MB 57: the Note lived only on the royal_holstein final and was lost)."""
 
-    SRC_FINAL = {"id": "unified-s1", "composed_of": ["unified-s1"],
+    SRC_FINAL = {"id": "unified-s1", "origin": "promoted", "composed_of": ["unified-s1"],
                  "fuss": "rhinsk_gylden_fod", "phase": {"denmark": "III.b"},
                  "kind": "kurant", "note": {"de": "N"},
                  "issuing_entity": "src"}
-    SHELL = {"id": "unified-s9", "composed_of": ["unified-s9"],
+    SHELL = {"id": "unified-s9", "origin": "promoted", "composed_of": ["unified-s9"],
              "fuss": "x_fod", "note": {"de": "shell"}}
 
     def setUp(self):
@@ -115,8 +115,8 @@ class TestRelocationCarry(unittest.TestCase):
 
     def test_target_finds_the_relocated_source_final(self):
         got = A._cross_entity_carry_in(
-            "tgt", [{"id": "unified-s1", "composed_of": ["s1", "s2"]},
-                    {"id": "unified-s9x", "composed_of": ["s9"]}])
+            "tgt", [{"id": "unified-s1", "origin": "promoted", "composed_of": ["s1", "s2"]},
+                    {"id": "unified-s9x", "origin": "promoted", "composed_of": ["s9"]}])
         self.assertEqual([(h, e, f["id"]) for h, e, f in got],
                          [("unified-s1", "src", "unified-s1")])
 
@@ -124,7 +124,7 @@ class TestRelocationCarry(unittest.TestCase):
         # unified-s9 is not relocated (only kept for review) — even though its
         # seed now lives in the target, it must not seed the target's fields.
         got = A._cross_entity_carry_in(
-            "tgt", [{"id": "unified-s9x", "composed_of": ["s9"]}])
+            "tgt", [{"id": "unified-s9x", "origin": "promoted", "composed_of": ["s9"]}])
         self.assertEqual(got, [])
 
     def test_source_keeps_copy_until_target_holds_it(self):

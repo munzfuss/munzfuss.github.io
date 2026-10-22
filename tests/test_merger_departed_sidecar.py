@@ -4,7 +4,7 @@
 unified-dk-hede-f3h87ab while the KM 192 records moved to Hede 91. Absorb only
 decontaminated finals for class ids that VANISHED, so the Hede 87 final kept
 KM 192.x. The merger now writes `match_uncertainty/<entity>.departed.json`
-({class id: [seeds that left]}) next to prev_classes.json; absorb removes what
+({class id: [seeds that left]}); absorb removes what
 those seeds alone contributed.
 """
 from __future__ import annotations
@@ -33,14 +33,13 @@ class TestDepartedSidecar(unittest.TestCase):
             old_su, old_mu = M.V2_SEED_UNIFIED, M.V2_MATCH_UNCERTAINTY
             M.V2_SEED_UNIFIED, M.V2_MATCH_UNCERTAINTY = su, mu
             try:
-                M._write_prev_classes("x", [{"id": "unified-a", "composed_of": ["a"]},
+                M._write_departed("x", [{"id": "unified-a", "composed_of": ["a"]},
                                             {"id": "unified-b", "composed_of": ["b", "c"]}])
             finally:
                 M.V2_SEED_UNIFIED, M.V2_MATCH_UNCERTAINTY = old_su, old_mu
             dep = json.loads((mu / "x.departed.json").read_text(encoding="utf-8"))
-            prev = json.loads((mu / "x.prev_classes.json").read_text(encoding="utf-8"))
+            self.assertFalse((mu / "x.prev_classes.json").exists())
         self.assertEqual(dep, {"unified-a": ["b", "c"]})
-        self.assertEqual(prev, {"unified-b": ["unified-a"]})
 
 
 if __name__ == "__main__":

@@ -147,7 +147,8 @@ class TheFiveGoldguldenKeepTheCatalogueValue(unittest.TestCase):
 
     def _coins(self):
         for entity, ids in self.IDS.items():
-            by = {c.get("id"): c for c in
+            # D49: finals are keyed by opaque class ids; the name is `label`
+            by = {c.get("label") or c.get("id"): c for c in
                   yaml.safe_load((ROOT / f"data/v2/final/{entity}.yml").read_text())["coins"]}
             for cid in ids:
                 yield cid, by[cid]
@@ -164,7 +165,7 @@ class TheFiveGoldguldenKeepTheCatalogueValue(unittest.TestCase):
     def test_the_1624_type_still_carries_the_real_weighings(self):
         c = next(x for x in yaml.safe_load(
             (ROOT / "data/v2/final/sonderburg_duchy.yml").read_text())["coins"]
-            if x["id"] == "unified-ngc-1206707")
+            if (x.get("label") or x["id"]) == "unified-ngc-1206707")
         kept = sorted(e["value"] for e in c["weight_rough_g"] if not e.get("erroneous"))
         self.assertEqual([3.08, 3.16, 3.16, 3.19, 3.22], kept)
 

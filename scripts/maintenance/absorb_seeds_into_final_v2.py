@@ -210,8 +210,8 @@ def _load_exclusions(entity_id: str) -> dict[str, dict]:
 
 def _coin_exclusion_hit(entry: dict, excluded_ids: set,
                         member_ids: set = frozenset()) -> set:
-    """Which excluded seed ids a final entry matches — its OWN unified id or ANY
-    composed_of member (each stripped of the `unified-` prefix). Empty set = the
+    """Which excluded seed ids a final entry matches — the HEAD seed of its own
+    class or of ANY composed_of member (`_seed_of`). Empty set = the
     coin is not excluded. A non-empty set means drop it and mark those ids matched.
     A `scope: member` id (`member_ids`) matches the entry's OWN id only: it
     removes that record (a singleton — the merger isolates it), never the class
@@ -1277,7 +1277,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
 
     # D49 identity fields: the name the render reads (`label`), the id the
     # coin carried before stage 3 (`legacy_id`), the foundation marker.
-    for k in ("label", "legacy_id", "origin"):
+    for k in ("label", "origin"):
         if final_entry.get(k):
             out[k] = final_entry[k]
     if not out.get("label"):
@@ -1506,12 +1506,9 @@ def _registry():
 
 def _is_promoted(fe: dict) -> bool:
     """A pipeline-promoted final (its id is a class id) as opposed to a curated
-    V1 foundation. `origin` is the marker (D49 stage 3); the `unified-` prefix
-    is read only for records that predate it (old finals, test fixtures)."""
-    o = fe.get("origin") if isinstance(fe, dict) else None
-    if o:
-        return o == "promoted"
-    return str(fe.get("id") or "").startswith("unified-")
+    V1 foundation. `origin` is the marker (D49 stage 3); a record without it is
+    a foundation. (The `unified-` prefix fallback went with stage 4.)"""
+    return isinstance(fe, dict) and fe.get("origin") == "promoted"
 
 
 def _seed_of(uid: str) -> str:
@@ -1926,17 +1923,11 @@ def _final_has_live_backing(fe: dict, live_unified_ids: set, live_ids: set) -> b
     """True if the final's own id is a current seed_unified head OR any of its
     composed_of members resolves to a current seed_unified head / seed id.
 
-    A standalone-promoted final is keyed `unified-<seed id>` and its
-    `composed_of` is SELF-referential (it lists that same `unified-…` id, not
-    the bare seed). So when the merger RENAMES the class — which it does the
-    moment a higher-authority member joins, per V2_PIPELINE §5.2 — neither the
-    id nor `composed_of` matches anything live, even though the underlying SEED
-    is alive and well inside the renamed class. Reading that as vanished
-    backing de-promotes a coin that merely MOVED: exactly the
-    class-rename-is-not-a-loss trap CLAUDE.md §9b exists to prevent, here
-    reached from inside the absorber rather than from an ad-hoc diff.
-
-    Hence the `unified-` prefix is also stripped and the bare seed re-checked.
+    A standalone-promoted final is keyed by its class id and its `composed_of`
+    is SELF-referential. Since D49 a class id never renames; what can still
+    happen is that the class was merged into another (the registry retires it
+    with `merged_into`) — hence the head seed (`_seed_of`) and the registry
+    lineage (`_resolve_class`) are checked before a final counts as unbacked.
     (Real case 2026-08-10: adding the NGC seeds renamed 98 classes whose
     top-authority member changed; every one of the 98 prior finals was dropped
     as «no backing» and the renamed class landed in `pending`, silently
@@ -1961,7 +1952,7 @@ def _is_vanished_stale_final(fe: dict, live_unified_ids: set, live_ids: set) -> 
     """A PIPELINE-PROMOTED (`unified-*`) final whose backing seed_unified entry
     has vanished and which carries no curation — safe to drop.
 
-    The `unified-*` id gate is the primary guard: a V1-bootstrap foundation
+    The `origin: promoted` gate is the primary guard: a V1-bootstrap foundation
     (real id, e.g. `dk-tid-…`) is the coin's OWN data, never seed-derived, so it
     is never dropped here regardless of backing. The curation guard is the
     second line of defence (keeps a bulk-promoted entry a curator has since
@@ -2050,61 +2041,6 @@ def _shell_is_curated(fe: dict, cls: str) -> bool:
         stripped = {k: v for k, v in fe.items() if k != "note"}
         return _final_is_curated(stripped)
     return True
-
-
-def _hand_over_renamed_classes(final_by_id: dict, unified_by_id: dict,
-                               home: dict) -> list[str]:
-    """Hand a RENAMED class back to the classified final whose seeds it holds.
-
-    A class is named after its top-authority member, so a newcomer renames it
-    (`unified-dk-tid-163042` → `unified-ngc-1050065`). When an unclassified
-    standalone final already carries the new id — the newcomer's own
-    pre-merge shell — the class counts as «already absorbed» into the shell,
-    the stale purge reads the classified final's seeds as departed, and the
-    classified coin loses its members and drops out. 2026-10-17: reading
-    NGC's Z-shaped 2 («16Z4») renamed 8 classes this way, KM 93 24 Skilling
-    among them; it was worked round three times by deleting the shells by
-    hand before absorb.
-
-    Handed over only when exactly one classified final claims the class and
-    the shell is a bare `[class]` with no curation: the class joins the
-    classified final's composed_of and the shell is removed from
-    `final_by_id` (mutated in place) — a fold, since its id now sits in that
-    composed_of. Anything less clear-cut is reported, not decided.
-    Returns «class → host» lines for the log.
-    """
-    holder: dict[str, str] = {}
-    for fid, fc in final_by_id.items():
-        for cid in fc.get("composed_of") or []:
-            holder.setdefault(cid, fid)
-    cls_idx = _seed_class_index()
-    claims: dict[str, set[str]] = defaultdict(set)
-    for fid, fc in final_by_id.items():
-        if fc.get("fuss") in (None, "seed_unsorted"):
-            continue
-        for cid in fc.get("composed_of") or []:
-            if cid in unified_by_id or cid in home:
-                continue
-            cls = cls_idx.get(_seed_of(cid))
-            shell_id = holder.get(cls) if cls in unified_by_id else None
-            if not shell_id or shell_id == fid:
-                continue
-            shell = final_by_id[shell_id]
-            if (shell.get("fuss") in (None, "seed_unsorted")
-                    and list(shell.get("composed_of") or []) == [cls]):
-                claims[cls].add(fid)
-    done: list[str] = []
-    for cls, claimants in sorted(claims.items()):
-        shell_id = holder[cls]
-        if len(claimants) != 1 or _shell_is_curated(final_by_id[shell_id], cls):
-            print(f"  ⚠ renamed class {cls} held by shell {shell_id}, claimed by "
-                  f"{sorted(claimants)} — left for the curator")
-            continue
-        host = final_by_id[next(iter(claimants))]
-        host["composed_of"] = list(host.get("composed_of") or []) + [cls]
-        del final_by_id[shell_id]
-        done.append(f"{cls} → {host['id']}")
-    return done
 
 
 def _superseding_class(fe: dict, live_member_ids: set) -> str | None:
@@ -2373,69 +2309,6 @@ def _final_is_relocated(fe: dict, relocated_out: set) -> bool:
 # ---------------------------------------------------------------------------
 _FINAL_SNAPSHOT: dict[str, list[dict]] | None = None
 _RUN_ENTITIES: set[str] = set()
-
-
-def _inherit_classification(entity_id: str, finals: list[dict]) -> int:
-    """A seed_unsorted final takes the classification of the classes its
-    seeds came from, when they all agree (2026-10-17).
-
-    A merge renames a class (its top-authority member changed) or a split
-    leaves part of a classified class in a new one; either way the new class
-    has no final of its own and lands in seed_unsorted, although every seed in
-    it was classified a run ago. The merger records the previous classes of
-    each changed class (`match_uncertainty/<entity>.prev_classes.json`); the
-    classification of the finals that held those classes before this run
-    (`_final_snapshot`) is inherited when exactly one classification is found.
-    Two or more distinct classifications mean the new class fused coins the
-    curator had classified apart — reported, never resolved here. A seed the
-    curator declassified (`_recorded_removals.yml`, kind declassify) or a coin
-    with an explicit classification decision is left alone."""
-    import json
-    side = ROOT / "data" / "v2" / "match_uncertainty" / f"{entity_id}.prev_classes.json"
-    if not side.exists():
-        return 0
-    prev_of = json.loads(side.read_text(encoding="utf-8"))
-    class_of: dict[str, set] = defaultdict(set)
-    value_of: dict[str, tuple] = {}   # hashable key → (fuss, phase, kind)
-    for fe in _final_snapshot().get(entity_id) or []:
-        if not isinstance(fe, dict) or fe.get("fuss") in (None, "", "seed_unsorted"):
-            continue
-        cls = (fe.get("fuss"), fe.get("phase"), fe.get("kind"))
-        key = json.dumps(cls, sort_keys=True, default=str)
-        value_of[key] = cls
-        for uid in [fe.get("id")] + list(fe.get("composed_of") or []):
-            if uid:
-                class_of[str(uid)].add(key)
-    removals = _load_yaml(ROOT / "data" / "v2" / "_recorded_removals.yml")
-    declassified = {str(e.get("seed")) for e in (removals.get("removals") or [])
-                    if isinstance(e, dict) and e.get("kind") == "declassify"}
-    decided: set[str] = set()
-    for a in (_load_yaml(V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml")
-              .get("assignments") or []):
-        if isinstance(a, dict) and a.get("coin_id"):
-            decided |= _decision_keys(a["coin_id"])
-    applied = 0
-    for fc in finals:
-        if not isinstance(fc, dict) or fc.get("fuss") not in (None, "", "seed_unsorted"):
-            continue
-        ids = [str(fc.get("id"))] + [str(m) for m in (fc.get("composed_of") or [])]
-        if decided & set(ids):
-            continue
-        if any(_seed_of(i) in declassified for i in ids):
-            continue
-        prev = {p for i in ids for p in prev_of.get(i, [])}
-        classes = {c for p in prev for c in class_of.get(p, ())}
-        if len(classes) == 1:
-            fc["fuss"], fc["phase"], fc["kind"] = value_of[next(iter(classes))]
-            applied += 1
-        elif len(classes) > 1:
-            print(f"  [{entity_id}] ⚠ {fc.get('id')}: its seeds came from "
-                  f"differently classified coins {sorted(classes)} — "
-                  "left seed_unsorted, review the merge")
-    if applied:
-        print(f"  [{entity_id}] classification followed the seeds into "
-              f"{applied} renamed / split class(es)")
-    return applied
 
 
 def _final_snapshot() -> dict[str, list[dict]]:
@@ -3155,14 +3028,6 @@ def process_entity(entity_id: str) -> dict:
     purged_count = 0
     departed_decontaminated = 0
     _home = _unified_home_index()
-    # A RENAMED class goes back to the classified final whose seeds it now
-    # holds, before the purge below reads them as departed — see
-    # `_hand_over_renamed_classes`.
-    renamed_handover = _hand_over_renamed_classes(final_by_id, unified_by_id, _home)
-    if renamed_handover:
-        final_entries = [f for f in final_entries if f.get("id") in final_by_id]
-        print(f"  renamed-class handover: {len(renamed_handover)} "
-              f"({'; '.join(renamed_handover[:4])})")
     for fid, fc in final_by_id.items():
         original_composed = fc.get("composed_of") or []
         kept = [cid for cid in original_composed
@@ -4395,7 +4260,6 @@ def main() -> int:
             # were not re-enriched this run (no current seed_unified member),
             # whose stale overflow would otherwise survive. Skips entries
             # that froze `catalog` via `_curation_holds`.
-            _inherit_classification(ent, result["enriched_final_entries"])
             for _fc in result["enriched_final_entries"]:
                 if not isinstance(_fc, dict):
                     continue

@@ -55,7 +55,7 @@ LIVE_IDS = LIVE_UNIFIED | {"denmark-kmk-1", "denmark-hede-2"}
 class TestLiveBacking(unittest.TestCase):
     def test_own_id_is_live_head(self):
         # bulk-promoted self-link whose head still exists
-        fe = {"id": "unified-A", "composed_of": ["unified-A"]}
+        fe = {"id": "unified-A", "origin": "promoted", "composed_of": ["unified-A"]}
         self.assertTrue(_final_has_live_backing(fe, LIVE_UNIFIED, LIVE_IDS))
 
     def test_composed_member_is_live_head(self):
@@ -68,11 +68,11 @@ class TestLiveBacking(unittest.TestCase):
         self.assertTrue(_final_has_live_backing(fe, LIVE_UNIFIED, LIVE_IDS))
 
     def test_no_backing_when_all_members_gone(self):
-        fe = {"id": "unified-GONE", "composed_of": ["unified-GONE"]}
+        fe = {"id": "unified-GONE", "origin": "promoted", "composed_of": ["unified-GONE"]}
         self.assertFalse(_final_has_live_backing(fe, LIVE_UNIFIED, LIVE_IDS))
 
     def test_no_backing_empty_composed(self):
-        fe = {"id": "unified-GONE", "composed_of": []}
+        fe = {"id": "unified-GONE", "origin": "promoted", "composed_of": []}
         self.assertFalse(_final_has_live_backing(fe, LIVE_UNIFIED, LIVE_IDS))
 
 
@@ -118,20 +118,20 @@ class TestVanishedStaleFinal(unittest.TestCase):
 
     def test_uncurated_promoted_vanished_is_dropped(self):
         # the exact 622-exonumia shape: bulk-promoted self-link, backing gone
-        fe = {"id": "unified-GONE", "composed_of": ["unified-GONE"],
+        fe = {"id": "unified-GONE", "origin": "promoted", "composed_of": ["unified-GONE"],
               "fuss": "seed_unsorted", "phase": "kmk"}
         self.assertTrue(
             _is_vanished_stale_final(fe, LIVE_UNIFIED, LIVE_IDS))
 
     def test_promoted_still_backed_is_kept(self):
-        fe = {"id": "unified-A", "composed_of": ["unified-A"],
+        fe = {"id": "unified-A", "origin": "promoted", "composed_of": ["unified-A"],
               "fuss": "seed_unsorted", "phase": "kmk"}
         self.assertFalse(
             _is_vanished_stale_final(fe, LIVE_UNIFIED, LIVE_IDS))
 
     def test_curated_vanished_is_kept(self):
         # curator classified a promoted entry; backing vanished → KEEP
-        fe = {"id": "unified-GONE", "composed_of": ["unified-GONE"],
+        fe = {"id": "unified-GONE", "origin": "promoted", "composed_of": ["unified-GONE"],
               "fuss": "9_25_thaler", "phase": "II"}
         self.assertFalse(
             _is_vanished_stale_final(fe, LIVE_UNIFIED, LIVE_IDS))
@@ -151,7 +151,7 @@ class TestVanishedStaleFinal(unittest.TestCase):
 
     def test_uncurated_promoted_partial_backing_is_kept(self):
         # one of two composed members still live → still backed → KEEP
-        fe = {"id": "unified-GONE", "composed_of": ["unified-GONE", "unified-B"],
+        fe = {"id": "unified-GONE", "origin": "promoted", "composed_of": ["unified-GONE", "unified-B"],
               "fuss": "seed_unsorted", "phase": "kmk"}
         self.assertFalse(
             _is_vanished_stale_final(fe, LIVE_UNIFIED, LIVE_IDS))

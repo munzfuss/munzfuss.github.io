@@ -5443,34 +5443,22 @@ def _emit_unified_yaml(entity_id: str, unified_entries: list[dict],
     return header + dump_v2_canonical(payload)
 
 
-def _write_prev_classes(entity_id: str, unified_entries: list[dict]) -> None:
-    """Before overwriting seed_unified, record which PREVIOUS classes each new
-    class's seeds came from: `match_uncertainty/<entity>.prev_classes.json`,
-    {new unified id: [previous unified ids]}, only for classes that changed.
+def _write_departed(entity_id: str, unified_entries: list[dict]) -> None:
+    """Before overwriting seed_unified, record the seeds that LEFT a class
+    which kept its id: `match_uncertainty/<entity>.departed.json`,
+    {class id: [departed seed ids]}. Absorb removes what they alone contributed
+    to the host final (`_surgical_decontaminate`). Without it the final kept a
+    departed seed's indices — Hede 87 still showed KM 192.x after the KM 192
+    records moved to Hede 91 (2026-10-19). Gitignored like the rest of
+    match_uncertainty: it describes one merge → absorb run.
 
-    The absorb reads it so a classification follows the seeds when a merge
-    renames a class or a split leaves part of it in a new one
-    (`absorb_seeds_into_final_v2._inherit_classification`). Gitignored like
-    the rest of match_uncertainty: it describes one merge → absorb run and
-    means nothing after it."""
+    (Until D49 stage 4 this also wrote `prev_classes.json`, the map a RENAMED
+    class's classification was inherited through; class ids are stable now,
+    so nothing renames and the map was always empty.)"""
     import json
     path = V2_SEED_UNIFIED / f"{entity_id}.yml"
     loader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
     old = (yaml.load(path.read_text(encoding="utf-8"), Loader=loader) or {}) if path.exists() else {}
-    prev_of = {m: e["id"] for e in (old.get("coins") or [])
-               for m in (e.get("composed_of") or []) if e.get("id")}
-    out = {}
-    for u in unified_entries:
-        prev = sorted({prev_of[m] for m in (u.get("composed_of") or []) if m in prev_of})
-        if prev and prev != [u.get("id")]:
-            out[u["id"]] = prev
-    V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
-    (V2_MATCH_UNCERTAINTY / f"{entity_id}.prev_classes.json").write_text(
-        json.dumps(out, indent=1, sort_keys=True), encoding="utf-8")
-    # Seeds that LEFT a class which kept its id (a split): absorb removes what
-    # they alone contributed to the host final (`_surgical_decontaminate`).
-    # Without it the final kept a departed seed's indices — Hede 87 still
-    # showed KM 192.x after the KM 192 records moved to Hede 91 (2026-10-19).
     old_members = {e["id"]: set(e.get("composed_of") or [])
                    for e in (old.get("coins") or []) if e.get("id")}
     departed = {}
@@ -5480,6 +5468,7 @@ def _write_prev_classes(entity_id: str, unified_entries: list[dict]) -> None:
             gone = old_members[uid] - set(u.get("composed_of") or [])
             if gone:
                 departed[uid] = sorted(gone)
+    V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
     (V2_MATCH_UNCERTAINTY / f"{entity_id}.departed.json").write_text(
         json.dumps(departed, indent=1, sort_keys=True), encoding="utf-8")
 
@@ -5662,7 +5651,7 @@ def main() -> int:
         result = results[ent]
         if args.apply:
             V2_SEED_UNIFIED.mkdir(parents=True, exist_ok=True)
-            _write_prev_classes(ent, result["unified_entries"])
+            _write_departed(ent, result["unified_entries"])
             (V2_SEED_UNIFIED / f"{ent}.yml").write_text(
                 _emit_unified_yaml(ent, result["unified_entries"],
                                    result["seeds_count"]),
