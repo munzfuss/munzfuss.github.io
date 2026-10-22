@@ -2786,7 +2786,7 @@ def _apply_catalog_marks_to_class(members: list[dict], out: dict) -> None:
     for m in members:
         if not isinstance(m, dict):
             continue
-        src = _source_label_from_id(m.get("id"))
+        src = _source_label_of(m)
         for mk in m.get("catalog_marks") or []:
             if not isinstance(mk, dict) or not mk.get("register") or mk.get("value") is None:
                 continue
@@ -2861,7 +2861,7 @@ def _collect_marked_alts(members: list[dict], key: str, label_field: str) -> lis
         reason = mark.get("reason")
         if kind not in ("suspect", "erroneous") or not isinstance(reason, dict):
             continue
-        src = _source_label_from_id(m.get("id"))
+        src = _source_label_of(m)
         k = (str(label), src)
         if k in seen:
             continue
@@ -2912,7 +2912,7 @@ def _collect_field_list(members: list[dict], field: str,
             if val <= 0:
                 continue
             # bare-number form — synthesise source from member id
-            entry = {"value": float(val), "source": _source_label_from_id(m.get("id"))}
+            entry = {"value": float(val), "source": _source_label_of(m)}
             key = (entry["value"], entry["source"])
             if key not in seen:
                 seen.add(key)
@@ -3029,6 +3029,15 @@ def _collect_field_list(members: list[dict], field: str,
     # Deterministic order: by value, then source
     nested_pruned.sort(key=lambda e: (e["value"], e["source"]))
     return nested_pruned
+
+
+def _source_label_of(entry: dict | None) -> str:
+    """Source label of a seed / unified / final entry. A class id (`c-<hex>`,
+    D49) carries no source signature — the entry's `label` (the
+    `unified-<top-authority member>` name) does; a seed's id is its own."""
+    if not isinstance(entry, dict):
+        return "?"
+    return _source_label_from_id(entry.get("label") or entry.get("id"))
 
 
 def _source_label_from_id(coin_id: str | None) -> str:
@@ -3373,7 +3382,7 @@ def _thin_line_consensus_metal(specimens: list[dict], pair: set) -> str:
                 continue
             if verified_only and not s.get("metal_verified"):
                 continue
-            r = _source_label_from_id(s.get("id"))
+            r = _source_label_of(s)
             by_res.setdefault(r, {})[m] = by_res.setdefault(r, {}).get(m, 0) + 1
             rep.setdefault(r, s.get("id") or "")
         score: dict[str, int] = {}
@@ -5382,8 +5391,12 @@ def _recognise_classes(results: dict[str, dict], all_seeds_by_id: dict[str, dict
             rec = registry.records[cid]
             stats["new" if rec.created == date.today().isoformat() and rec.legacy_id is None
                   else "inherited"] += 1
-            stamped.append({"id": u["id"], "class_id": cid, "label": u["id"],
+            # D49 stage 3: the class id IS the unified id; the name the class
+            # was given by its composition stays as `label`.
+            stamped.append({"id": cid, "class_id": cid, "label": u["id"],
                             **{k: v for k, v in u.items() if k != "id"}})
+        # Deterministic, human-readable order: by the name, not the hash.
+        stamped.sort(key=lambda u: (u["label"], u["id"]))
         r["unified_entries"] = stamped
     retired = sum(1 for rec in registry.records.values()
                   if rec.status != "active" and rec.retired == date.today().isoformat())
