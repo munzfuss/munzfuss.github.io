@@ -652,25 +652,50 @@ def check_i4_schema(final_coins: list[tuple[str, dict]],
     except ImportError as e:
         return [f"I4: cannot import Coin schema: {e}"]
 
+    # One line per DISTINCT defect — «field=value: reason» — with every coin
+    # that carries it, so the reader sees at once what is wrong and where,
+    # instead of a 160-char Pydantic dump cut mid-value (curator 2026-10-22:
+    # «зроби щоб аудити одразу чітко показували що не так»).
+    groups: dict[tuple[str, str, str], list[str]] = {}
+    order: list[tuple[str, str, str]] = []
+    for layer, coins in (("final", final_coins), ("unified", unified_coins)):
+        for entity_id, c in coins:
+            cid = c.get("id", "?")
+            c_clean = strip_v2_breadcrumbs(c)
+            c_clean = {k: v for k, v in c_clean.items() if not k.startswith("_")}
+            try:
+                Coin(**c_clean)
+            except Exception as e:
+                for key in _schema_defects(e):
+                    if key not in groups:
+                        groups[key] = []
+                        order.append(key)
+                    groups[key].append(f"{layer}:{entity_id}/{cid}")
     errors: list[str] = []
-    n_checked = 0
-    for entity_id, c in final_coins + unified_coins:
-        cid = c.get("id", "?")
-        c_clean = strip_v2_breadcrumbs(c)
-        # Strip private fields
-        c_clean = {k: v for k, v in c_clean.items() if not k.startswith("_")}
-        try:
-            Coin(**c_clean)
-            n_checked += 1
-        except Exception as e:
-            errors.append(
-                f"I4: schema validation failed for {entity_id}/{cid}: "
-                f"{type(e).__name__}: {str(e)[:160]}"
-            )
-            if len(errors) >= 50:
-                errors.append(f"I4: ... (truncated, {len(final_coins) + len(unified_coins) - n_checked} more)")
-                break
+    for key in order:
+        field, value, msg = key
+        ids = groups[key]
+        shown = ", ".join(ids[:6]) + (f" … (+{len(ids) - 6})" if len(ids) > 6 else "")
+        errors.append(f"I4: {field}={value} — {msg} — {len(ids)} coin(s): {shown}")
     return errors
+
+
+def _schema_defects(e: Exception) -> list[tuple[str, str, str]]:
+    """(field, value, message) per Pydantic error; a non-Pydantic exception
+    becomes one ('?', '', text) entry. Values are repr-ed and capped at 60
+    chars (long notes), never cut inside the part that names the defect."""
+    errs = getattr(e, "errors", None)
+    if not callable(errs):
+        return [("?", "", f"{type(e).__name__}: {e}")]
+    out = []
+    for err in errs():
+        loc = ".".join(str(x) for x in (err.get("loc") or ())) or "?"
+        # a missing field reports the whole coin as `input` — say «missing»
+        val = "(missing)" if err.get("type") == "missing" else repr(err.get("input"))
+        if len(val) > 60:
+            val = val[:57] + "…"
+        out.append((loc, val, str(err.get("msg") or "")))
+    return out
 
 
 def check_i5_entity_tags(coins: list[tuple[str, dict]],
@@ -973,6 +998,8 @@ def check_i13_decision_entity(final_coins: list[tuple[str, dict]],
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--all", action="store_true",
+                        help="print every violation line (default: 25 per invariant)")
     parser.add_argument("--quick", action="store_true",
                         help="Skip slow checks (I4 schema, I6 decision refs)")
     parser.add_argument("--no-fail", action="store_true",
@@ -1097,15 +1124,18 @@ def main() -> int:
         print("\n✓ All V2 invariants pass.")
         return 0
 
-    # Show details for blocking violations
+    # Show details for blocking violations — every line should say what is
+    # wrong and where; the cap keeps a flood readable and names the flag
+    # that lifts it.
+    cap = None if args.all else 25
     for invariant, errors in results.items():
         if not errors or invariant in _INFORMATIONAL_KEYS:
             continue
         print(f"\n--- {invariant} ({len(errors)} violation(s)) ---")
-        for e in errors[:10]:
+        for e in errors[:cap]:
             print(f"  {e}")
-        if len(errors) > 10:
-            print(f"  ... and {len(errors) - 10} more")
+        if cap and len(errors) > cap:
+            print(f"  ... and {len(errors) - cap} more (--all prints every line)")
 
     if args.no_fail:
         print("\n(--no-fail mode — exiting 0 despite violations)")
