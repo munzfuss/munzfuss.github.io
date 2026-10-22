@@ -65,9 +65,26 @@
   I4 now prints one grouped line per defect (`6956a72`). **Open, curator**: the two remaining
   full-audit I4 lines are NGC junk, `ngc-1046225` «10 Kroner 1900, Margrethe II, aluminium,
   KM Pr1» and `ngc-1051527` «20 Kroner 1900, aluminium, KM Pr2» — exclusion candidates, not
-  a metal to add. **Next: stage 3** (final id = head class id; `migrate_final_ids.py`,
-  absorb foundation marker `origin`, verify_reflow legacy pairing, build/categorize read
-  `label`) — needs its own «так». General: `specimens:` (kmm-keyed)
+  a metal to add. Stage 3 followed the same day.
+- **D49 stage 3 SHIPPED 2026-10-22** («далі роби наступний етап»): unified ids ARE class ids
+  (`c-<8 hex>`, `label` = the old `unified-<head>` name, entries ordered by label); promoted
+  finals (13 191) carry their head class id with `legacy_id` / `label` / `origin: promoted`;
+  curated foundations (687) KEEP their ids (`origin: foundation`; refinement of addendum 3 —
+  an id equal to a member class fused the member's readings with the foundation's own on the
+  first run); 38 superseded shells kept for curator review keep their `unified-…` ids (no live
+  class to name them). absorb: `_is_promoted` (origin), `_seed_of` = head seed via label /
+  registry, `_resolve_class` via merged_into, no `unified-` construction; verify_reflow
+  translates HEAD into class-id space (`_translate`, test); build / categorize / audit_v2 read
+  `label`; trace_coin diff translates pre-migration snapshots. Measured: finals field-identical
+  to HEAD except two `dav` list re-orderings (member order now by class id); both sites
+  byte-identical; trace_coin diff 0 real losses; verify_reflow 0; audit_v2 full ✓;
+  audit_curation_loss and audit_phantom_citations unchanged (metal=9 / 140+26 pre-existing).
+  Retired `dedup_final_foundations.py`, `reroute_orphan_unified_into_foundation.py`.
+  **Next: stage 4** (delete the rename / split compensations and the `unified-` prefix
+  fallbacks; drop `legacy_id` from promoted finals) — needs its own «так». Pre-existing absorb
+  notes still printed every run: 13+5 superseded shells kept (curated), 5 Hede sub-letter
+  splits in danish_norway, 3 orphan exclusion ids in danish_realm (kmk-473418, kmk-494040,
+  kmk-805). General: `specimens:` (kmm-keyed)
   exclusions and the merge decisions name KMM specimens by the representative of a fold that
   `thin_safe` can re-cut on any re-seed; `_load_excluded_ids` in build_kmk_seed reads `id:` only.
 

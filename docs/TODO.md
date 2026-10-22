@@ -872,6 +872,13 @@ decisions held as `superseded_by`, then aligned to the stored kind on the curato
 (15 135 records / 29 shards), merger recognises and stamps `class_id` + `label`, second run zero
 diff, finals unchanged. Addendum written into D49.
 
+**Stage 3 — ✅ DONE 2026-10-22**: unified id = class id; promoted finals carry the head class id
+(`legacy_id`, `label`, `origin`); foundations keep their ids (addendum 3 refined — see D49);
+absorb / verify_reflow / build / categorize / audit_v2 / trace_coin / v2_index converted;
+`migrate_final_ids.py`; two scripts retired, three annotated. Both sites byte-identical, 0 losses.
+Known residue: two `dav` catalogue lists re-ordered (member order by class id); 38 curated shells
+keep `unified-…` ids until the curator resolves them.
+
 **Stage 1 — classification decisions keyed by a member seed id** *(small, independent of the registry)*
 - absorb's decision resolver accepts a seed id as `coin_id` and maps it to the class containing that seed (specimens incl. `_thinned_from`); class ids keep working.
 - `scripts/maintenance/migrate_classification_keys.py`: rewrite the 498 keys to the head seed (`unified-x` → `x`); report the 238 orphans that now resolve and any that still do not (those go to the curator one by one).
