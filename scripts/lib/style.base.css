@@ -2189,12 +2189,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
    the fixed --msr-row-h makes every column's sub-rows the same height so
    they line up horizontally. Divider is LIGHTER than the inter-row border
    (--border-soft vs --border) to read as a sub-row, not a row. */
-.mt { --msr-row-h: 48px; }
-/* A проба seg with its period unit («(4½ лот)») is two lines plus padding —
-   53-55px measured, more than 48px. A seg that outgrows min-height breaks the
-   1:1 alignment with the weight columns, so the whole row gets the taller
-   sub-row height, not just the проба cell. */
-.mt tbody tr:has(.c-metal .msr-seg .fin-eq) { --msr-row-h: 56px; }
+.mt { --msr-row-h: 42px; }
 .mt tbody td:has(.msr-seg) { padding: 0; vertical-align: top; }
 .msr-seg {
   min-height: calc(var(--msr-row-h) * var(--span, 1));
@@ -2202,8 +2197,8 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
   align-items: flex-start;   /* value sits at TOP like a normal cell, not vertically centred */
   /* Horizontal padding MATCHES the normal `.mt tbody td` (8px, left) so a
      sub-row value lines up with a non-sub-row value in the same column; vertical
-     stays 6px so the 2-line Δ badge fits within --msr-row-h. */
-  padding: 6px 8px;
+     is 4px: the 2-line Δ badge (33px) fills the 42px sub-row with 4px above and below. */
+  padding: 4px 8px;
   border-bottom: var(--hairline) solid var(--border-soft);
   box-sizing: border-box;
 }
@@ -2243,7 +2238,9 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 /* A member source's marked catalogue number (Coin.catalog_alts), muted,
    with its (*) / (!) marker. */
 .c-km .cat-alt { color: var(--text-muted); }
-.c-metal { font-size: 12.5px; color: var(--text-secondary); }
+/* line-height 1.25 = the Δ badge's: a two-line проба (value + «(4½ лот)»)
+   stays within the badge's height (2 × 15.6px), so a sub-row keeps 48px. */
+.c-metal { font-size: 12.5px; color: var(--text-secondary); line-height: 1.25; }
 /* Period-unit equivalent of the fineness (Karat / Lot) + its (?) marker — own
    line, flush-left under the .xxx value, regardless of the cell's own
    text-align. The .fin-eq wrapper is the block; the unit text is muted; the
