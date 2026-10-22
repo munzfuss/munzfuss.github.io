@@ -503,6 +503,46 @@ _FOUNDATION_IMMUTABLE_FIELDS = frozenset({
 # never overridden for any field (V1 curation stays intact).
 _FOUNDATION_GAPFILL_FIELDS = _FOUNDATION_IMMUTABLE_FIELDS - {"fuss", "phase", "kind"}
 
+# What a final contributes to its OWN rebuild when the self-union is off
+# (`--no-self-union`, docs/plans/rebuild_final_from_members.md stage A).
+# Enrichment used to run on `[final] + classes`: the final was its own first
+# member, so every value it ever held was re-unioned on every run and a seed
+# that left its class left its citations, readings, catalogue numbers and
+# scalars behind (947 citations on 394 finals, 2026-10-22). With the switch
+# the final supplies only what no member can — identity, the curator's
+# classification and holds, curator prose and bookkeeping — and, for a V1
+# foundation, the descriptive scalars the V1 curator chose. On a promoted
+# final those scalars come from the class (4 261 promoted finals carried a
+# `ruler` their class had since corrected, frozen at promotion time).
+_SKELETON_CARRY = frozenset({
+    "id", "label", "origin", "composed_of", "legacy_id", "class_id",
+    "fuss", "phase", "kind", "_curation_holds",
+    "note",
+    "_weights_thinned", "_entity_routing_hint", "_migration_note",
+    "_migration_dup_origin_id", "v1_home_location", "promoted_to",
+    "mintmasters",
+})
+
+
+def _skeleton(fc: dict) -> dict:
+    """The final reduced to its own contribution (see `_SKELETON_CARRY`); a
+    held field travels with its `_verified` companion; a foundation keeps its
+    `_FOUNDATION_IMMUTABLE_FIELDS`."""
+    keep = set(_SKELETON_CARRY)
+    if not _is_promoted(fc):
+        keep |= _FOUNDATION_IMMUTABLE_FIELDS
+    h = fc.get("_curation_holds")
+    for f in (h.keys() if isinstance(h, dict) else (h or [])):
+        keep.add(f)
+        keep.add(f"{f}_verified")
+    return {k: copy.deepcopy(v) for k, v in fc.items() if k in keep}
+
+
+def _own(fc: dict) -> dict:
+    """`fc` as the enrichment's `final_entry` / first member: the skeleton
+    when the self-union is off, the stored final otherwise."""
+    return _skeleton(fc) if not SELF_UNION_ENABLED else fc
+
 
 def _apply_migrated_merge_fields(entry: dict, fid: str,
                                  composed: list[str],
@@ -1459,6 +1499,10 @@ _FUSS_FRACTIONS_CACHE: dict[str, set] | None = None
 # members per `_revalidate_composed_of`). Default on; `--no-revalidate`
 # disables for a one-off debug run that must not mutate existing membership.
 REVALIDATE_ENABLED: bool = True
+# `--no-self-union`: a final is rebuilt from its members and its skeleton
+# (`_skeleton`), never from its stored copy. Off by default until stage F of
+# docs/plans/rebuild_final_from_members.md.
+SELF_UNION_ENABLED: bool = True
 # §9a final-layer weight thinning runs inside absorb (see the write path).
 THIN_ENABLED: bool = True
 
@@ -3363,11 +3407,12 @@ def process_entity(entity_id: str) -> dict:
         # Compose member list: final itself (foundation, top priority) +
         # any unified entries in composed_of (after new links applied)
         full_composed = sorted(set(fc.get("composed_of") or []) | set(new_links.get(fid, [])))
-        members = [fc]
+        base = _own(fc)
+        members = [base]
         for mid in full_composed:
             if mid in unified_by_id:
                 members.append(unified_by_id[mid])
-        enriched, conflicts = _enrich_final_entry(fc, members, entity_id)
+        enriched, conflicts = _enrich_final_entry(base, members, entity_id)
         _apply_migrated_merge_fields(enriched, fid, full_composed,
                                      curator_migrations)
         _gapfill_cross_carry(enriched, fid, full_composed)
@@ -3469,6 +3514,7 @@ def process_entity(entity_id: str) -> dict:
                 restored = dict(_folded_self[uid])
                 restored["composed_of"] = [uid]
                 restored.setdefault("origin", "promoted")
+                restored = _own(restored)  # P2: the stored dict is a self-union entrance too
                 enriched, _ = _enrich_final_entry(restored, [restored, unified], entity_id)
                 enriched_entries.append(enriched)
                 continue
@@ -3764,6 +3810,7 @@ def process_entity(entity_id: str) -> dict:
                     if s in head_to_class:
                         new_repr_ids.add(head_to_class[s])
     monotonic_restored: list[str] = []
+    monotonic_verbatim: list[str] = []
     for fc in _prior_final_for_monotonic:
         fid = fc.get("id")
         if not fid or fid in new_repr_ids:
@@ -3814,6 +3861,16 @@ def process_entity(entity_id: str) -> dict:
                         or "/artikler/" in str(s.get("url") or ""))
                    for s in srcs):
                 continue  # article-page narrative foundation (Shape C)
+        if not SELF_UNION_ENABLED:
+            # P5: a verbatim re-add is a self-union entrance. Re-add the
+            # skeleton enriched from its live classes; with no live class the
+            # stored entry comes back as it was, but reported, never silently.
+            _live = [unified_by_id[m] for m in (fc.get("composed_of") or [])
+                     if m in unified_by_id]
+            if _live:
+                fc, _ = _enrich_final_entry(_skeleton(fc), [_skeleton(fc), *_live], entity_id)
+            else:
+                monotonic_verbatim.append(str(fid))
         enriched_entries.append(fc)
         new_repr_ids.add(fid)
         monotonic_restored.append(fid)
@@ -3841,6 +3898,10 @@ def process_entity(entity_id: str) -> dict:
               f"{len(monotonic_restored)} prior-final coin(s) a re-merge "
               f"would have de-promoted (verbatim, no merge): "
               f"{monotonic_restored[:8]}")
+    if monotonic_verbatim:
+        print(f"  [{entity_id}] monotonic guard: {len(monotonic_verbatim)} of "
+              f"those have NO live class and came back as stored "
+              f"(--no-self-union cannot rebuild them): {monotonic_verbatim[:8]}")
 
     # Cross-entity relocation filter (FINAL, post-monotonic-guard): drop any
     # source-side final whose seed was pulled to a DIFFERENT entity via
@@ -4194,6 +4255,11 @@ def main() -> int:
     parser.add_argument("--no-revalidate", action="store_true",
                         help="Skip composed_of re-validation (identity-"
                              "mismatch eviction) for this run")
+    parser.add_argument("--no-self-union", action="store_true",
+                        help="Build every final from its members and its own "
+                             "skeleton (identity, classification, holds, "
+                             "curator prose) — never from its stored copy. "
+                             "docs/plans/rebuild_final_from_members.md stage A")
     args = parser.parse_args()
     if args.apply:
         args.dry_run = False
@@ -4203,6 +4269,9 @@ def main() -> int:
     if args.no_revalidate:
         global REVALIDATE_ENABLED
         REVALIDATE_ENABLED = False
+    if args.no_self_union:
+        global SELF_UNION_ENABLED
+        SELF_UNION_ENABLED = False
 
     entities = [args.entity] if args.entity else _entities_with_seed_unified()
     if not entities:
