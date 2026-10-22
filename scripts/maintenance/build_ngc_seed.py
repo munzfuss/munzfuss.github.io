@@ -72,7 +72,15 @@ _METAL = {
     "lead": "lead", "iron": "iron", "aluminum": "aluminium",
     "aluminium": "aluminium", "nickel": "nickel", "pewter": "pewter",
     "platinum": "platinum", "silver plated": "silver", "gold plated": "gold",
+    # Alloys named in full — matched BEFORE the leading-word fallback, which
+    # would read «Aluminum-Bronze» as aluminium (2026-10-22: two Margrethe II
+    # 10 / 20 Kroner prøvemønter came through as `aluminium`). Aluminium
+    # bronze is a copper alloy: the nearest schema bucket is bronze, flagged
+    # unverified because the string says more than the bucket.
+    "aluminum-bronze": "bronze", "aluminium-bronze": "bronze",
+    "aluminum bronze": "bronze", "aluminium bronze": "bronze",
 }
+_ALLOY_UNVERIFIED = {"aluminum-bronze", "aluminium-bronze", "aluminum bronze", "aluminium bronze"}
 
 _DIAM_SINGLE = re.compile(r"^\s*([\d.]+)\s*mm\s*$", re.I)
 
@@ -82,7 +90,7 @@ def _metal(composition: str | None) -> tuple[str | None, bool]:
         return None, False
     key = composition.strip().lower()
     if key in _METAL:
-        return _METAL[key], True
+        return _METAL[key], key not in _ALLOY_UNVERIFIED
     # e.g. "Copper-Nickel", "Silver, .875" — take the leading metal word but do
     # NOT claim it as attested, since the string says more than we captured.
     head = re.split(r"[,\-/(]", key)[0].strip()
