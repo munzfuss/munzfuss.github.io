@@ -908,9 +908,63 @@ def collect_entries() -> list[dict]:
     # An index row (hans.htm / c2galst.htm) only stands in for a coin that has
     # no page. When a page for the same number exists — c2galst.htm lists 173
     # without a link, norge/nc2g173.htm describes it — the page wins.
-    page_ids = {e["id"] for e in entries if not _from_index_row(e)}
-    return [e for e in entries
+    page_ids = {e["id"] for e in entries
+                if not _from_index_row(e) and not _is_catalogue_row(e)}
+    kept = [e for e in entries
             if not (_from_index_row(e) and e["id"] in page_ids)]
+    return _fold_catalogue_rows(kept)
+
+
+# Index tables read only for their catalogue columns (galst_table._ALL_ROWS):
+# a row of hansgals.htm adds the Schou / Sømod / Schive / Ernst / Hildebrand /
+# Rasmusson / Hauberg numbers it prints to the entry the coin already has (its
+# own page, or its hans.htm row) and cites the table as a source. It fills a
+# register the entry lacks and adds cross-references to `others`; it never
+# replaces a value the entry has. A row with no other entry stands as a coin.
+_CATALOGUE_ROW_PAGES = ("/hansgals.htm",)
+
+
+def _is_catalogue_row(entry: dict) -> bool:
+    url = ((entry.get("sources") or [{}])[0].get("url") or "")
+    return url.endswith(_CATALOGUE_ROW_PAGES)
+
+
+def _fold_catalogue_rows(entries: list[dict]) -> list[dict]:
+    base = {e["id"]: e for e in entries if not _is_catalogue_row(e)}
+    # A page named for its denomination (2nobel.htm, halvrhin.htm) carries the
+    # Galster number only in its catalogue: find it by number within the
+    # ruler, not by id.
+    by_number: dict[tuple, dict] = {}
+    for e in base.values():
+        g = (e.get("catalog") or {}).get("galster")
+        for n in (g if isinstance(g, list) else [g]):
+            if n:
+                by_number.setdefault((e.get("ruler"), str(n).lower()), e)
+    out = [e for e in entries if not _is_catalogue_row(e)]
+    for row in (e for e in entries if _is_catalogue_row(e)):
+        target = base.get(row["id"]) or by_number.get(
+            (row.get("ruler"), str((row.get("catalog") or {}).get("galster")).lower()))
+        if target is None:
+            out.append(row)
+            base[row["id"]] = row
+            continue
+        cat = target.setdefault("catalog", {})
+        for reg, val in (row.get("catalog") or {}).items():
+            if reg == "others":
+                others = cat.setdefault("others", [])
+                # «Ernst# 1940.1» (hans.htm) and «Ernst# 1940 1» are one reference.
+                def _k(o):
+                    return re.sub(r"[#.\s]+", " ", str(o)).strip()
+                seen = {_k(o) for o in others}
+                for o in val:
+                    if _k(o) not in seen:
+                        others.append(o)
+            elif cat.get(reg) in (None, "", []):
+                cat[reg] = val
+        for src in row.get("sources") or []:
+            if src not in (target.get("sources") or []):
+                target.setdefault("sources", []).append(src)
+    return out
 
 
 _CAPTIONS_FILE = GALSTER_CACHE / "gif_captions.yml"

@@ -92,6 +92,13 @@ TYPE_INDEX = "/type.htm"
 # coin pages; parsed by galster_parsers.issuer_table.
 ISSUER_PAGES = ["/nordby.htm"]
 
+# Reign tables read only for their catalogue columns (galster_parsers.
+# galst_table._ALL_ROWS): hansgals.htm, «Kong Hans - oversigt efter Galster»,
+# gives Schou / Sømod / Schive / Ernst / Hildebrand / Rasmusson per Galster
+# number. Fetched with the coin pages, NOT walked as an index (its links all
+# lead to pages hans.htm already reaches).
+TABLE_PAGES = ["/hansgals.htm"]
+
 # Per-coin URL patterns, matched against the WHOLE href path (leading slash
 # stripped). The Galster series uses single-letter «g» (vs Hede's «h»). Hans
 # (1481-1513) uses several conventions: `fr/hg<N>.htm` is most common,
@@ -465,6 +472,7 @@ def discover() -> dict:
         print(f"  dropped {len(dropped)} out-of-scope page(s): {', '.join(dropped)}")
 
     links.update(ISSUER_PAGES)
+    links.update(TABLE_PAGES)
 
     # Phase 2: probe Christian III pre-Møntordning Galster pages directly
     # (no index page exists for Christian III pre-1541; per the survey,
