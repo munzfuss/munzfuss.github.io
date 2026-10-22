@@ -475,6 +475,74 @@ DANISH_CROWN_ENTITIES = frozenset({
 })
 
 
+# The canonical DISPLAY form of a Danish king's name: «Name Roman.» — the Hede
+# form, one identifier across every source and language (CLAUDE.md i18n:
+# ruler names are global identifiers). Sources write the same king as
+# «Christian 4» (KMM, IKMK, ucoin), «Christian IV» (Numista, Bruun), «Frederick
+# III» (Numista), «Christian 4.» (Galster). Until 2026-10-23 this form was
+# applied to data/v2/final/* only (the June 2026 passes 7e95732 / 917b7a6 /
+# a777b9a), so every seed still carried its source's spelling and a final
+# rebuilt from its members lost the canonical form. The writer applies it now
+# (`v2_seed_writer._apply_pre_write_hygiene`), on coins whose home entity is a
+# Danish-crown one — a «Frederik 3» of Gottorp or Bremen is another man and
+# keeps its form.
+#
+# Exactly the June scope, nothing wider: the bare king forms (name, Arabic or
+# Roman numeral, with or without a period, English «Frederick» / «John» /
+# «Eric»), a trailing «?» (uncertain attribution → `ruler_verified: false`),
+# and the single-bearer bare «Hans» / «John» / «Johan». Untouched by design:
+# German «Friedrich» / «Johann» (curator 2026-10-23: «поки не чіпати»),
+# compounds («Karl Frederik», «Frederik 3 af Slesvig-Holsten-Gottorp»),
+# annotated and alternative forms («Frederick III (Frederik III)», «X eller
+# Y», «Christian I/Hans»), bare «Christian» / «Frederik» (which king?),
+# institutions and private issuers.
+_KING_DISPLAY_RE = re.compile(
+    r"^\s*(Christian|Frederik|Frederick|Hans|John|Johan|Erik|Eric)"
+    r"(?:\s*(\d{1,2})|\s+([IVX]{1,4}))?\s*\.?\s*(\?)?\s*$",
+    re.IGNORECASE,
+)
+_KING_DISPLAY_NAME = {
+    "christian": "Christian", "frederik": "Frederik", "frederick": "Frederik",
+    "hans": "Hans", "john": "Hans", "johan": "Hans", "erik": "Erik", "eric": "Erik",
+}
+_ROMAN_TO_ARABIC = {v: k for k, v in _ARABIC_TO_ROMAN.items()}
+
+
+def canonical_ruler_display(raw, entity) -> tuple:
+    """(display form, uncertain) for a ruler string of a coin homed in
+    `entity`; the input unchanged and `False` when the rule does not apply.
+
+    «Christian 4» / «Christian IV» / «Christian 4.» → «Christian IV.»;
+    «Frederick III» → «Frederik III.»; «Frederik 3?» → («Frederik III.», True);
+    «John I» / «Johan» / «Hans?» → «Hans» (the one Hans, 1481-1513).
+    Anything outside `_KING_DISPLAY_RE`, or outside a Danish-crown entity,
+    comes back as it was.
+    """
+    if not isinstance(raw, str) or entity not in DANISH_CROWN_ENTITIES:
+        return raw, False
+    m = _KING_DISPLAY_RE.match(raw)
+    if not m:
+        return raw, False
+    name = _KING_DISPLAY_NAME[m.group(1).lower()]
+    arabic, roman, doubt = m.group(2), m.group(3), bool(m.group(4))
+    if name == "Hans":
+        # «Hans I» / «John I» / «Johan» — one king, written bare.
+        if arabic not in (None, "1") or roman not in (None, "I", "i"):
+            return raw, False
+        return "Hans", doubt
+    if arabic is not None:
+        roman = _ARABIC_TO_ROMAN.get(arabic)
+        if roman is None:
+            return raw, False
+    elif roman is not None:
+        roman = roman.upper()
+        if roman not in _ROMAN_TO_ARABIC:
+            return raw, False
+    else:
+        return raw, False  # bare «Christian» — which one?
+    return f"{name} {roman}.", doubt
+
+
 def reign_window_placeholder(ruler_raw: str | None,
                              entity: str | list | None = None) -> tuple[int, int] | None:
     """The year span to show for a coin NO source dates, from its ruler alone.
