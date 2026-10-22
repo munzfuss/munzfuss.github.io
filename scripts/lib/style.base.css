@@ -2190,6 +2190,11 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
    they line up horizontally. Divider is LIGHTER than the inter-row border
    (--border-soft vs --border) to read as a sub-row, not a row. */
 .mt { --msr-row-h: 48px; }
+/* A проба seg with its period unit («(4½ лот)») is two lines plus padding —
+   53-55px measured, more than 48px. A seg that outgrows min-height breaks the
+   1:1 alignment with the weight columns, so the whole row gets the taller
+   sub-row height, not just the проба cell. */
+.mt tbody tr:has(.c-metal .msr-seg .fin-eq) { --msr-row-h: 56px; }
 .mt tbody td:has(.msr-seg) { padding: 0; vertical-align: top; }
 .msr-seg {
   min-height: calc(var(--msr-row-h) * var(--span, 1));
