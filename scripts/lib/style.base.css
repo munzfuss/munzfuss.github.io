@@ -2241,16 +2241,12 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 /* line-height 1.25 = the Δ badge's: a two-line проба (value + «(4½ лот)»)
    stays within the badge's height (2 × 15.6px), so a sub-row keeps 48px. */
 .c-metal { font-size: 12.5px; color: var(--text-secondary); }
-.c-fin { font-size: 12.5px; color: var(--text-secondary); line-height: 1.25; }
-/* Period-unit equivalent of the fineness (Karat / Lot) + its (?) marker — own
-   line, flush-left under the .xxx value, regardless of the cell's own
-   text-align. The .fin-eq wrapper is the block; the unit text is muted; the
-   (?) trails the unit on the same line. In the multi-specimen path the
-   .msr-seg is a flex row, so flex-basis:100% (+ the seg's flex-wrap) drops the
-   wrapper onto its own line. */
-.c-fin .fin-eq { display: block; flex-basis: 100%; text-align: left; }
+.c-fin { font-size: 12.5px; color: var(--text-secondary); line-height: 1.25; white-space: nowrap; }
+/* Period-unit equivalent of the fineness (Karat / Lot) + its (?) marker, on
+   the same line as the .xxx value (curator 2026-10-22); the unit text is
+   muted, the (?) trails it. */
+.c-fin .fin-eq { margin-left: 0.3em; }
 .c-fin .fin-unit { color: var(--text-muted); }
-.c-fin .msr-seg { flex-wrap: wrap; align-content: flex-start; }
 .c-w { font-family: var(--font-mono); font-size: 12.5px; white-space: nowrap; }
 .c-d { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-muted); }
 .c-mint { font-size: 12.5px; color: var(--text-secondary); }
