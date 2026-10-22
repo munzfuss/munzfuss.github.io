@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-10-22T15:04:09Z'
+generated_at: '2026-10-22T18:44:44Z'
 entity: danish_norway
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -210,7 +210,7 @@ coins:
       schou: '170'
       galster_volume: hg
       others:
-        - Ernst# 1940.1
+        - Ernst 1940# 1
         - Sømod# 123B
     metal: billon
     fineness:
@@ -300,7 +300,7 @@ coins:
     catalog:
       galster: '154'
       others:
-        - Ernst# 1940 side 77 fig. 3
+        - Ernst 1940# side 77 fig. 3
         - Sømod# 124B
       galster_volume: hg
     metal: billon
@@ -341,14 +341,14 @@ coins:
           - 1513
     year_verified: false
     ruler: Hans
-    mint: Christiania
+    mint:
     catalog:
       galster: '155'
       schou: 187-213
       schive: XIV.12-25
       galster_volume: hg
       others:
-        - Ernst# 1940 3-13
+        - Ernst 1940# 3-13
         - Sømod# 125
     metal: billon
     fineness:
@@ -375,17 +375,18 @@ coins:
       da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
         stykke er endnu ikke bestemt.
     sub_realm: norway
-    _source_errata:
-      - field: mint
-        printed: Bergen
-        correct: Christiania
-        curator: serg
-        reason: "Curator (Serhii) 2026-10-22: norge/hansg155.htm prints «Bergen», but danskmoent's own Galster overview hansgals.htm gives Galster 155 «Oslo eller Akershus», and Ernst 1940 (NNÅ 1940 s.
-          73-93, danskmoent ernst/hanshvid.htm) assigns the hvids Schou 187-213 to Oslo: «dette gælder saaledes sikkert Hvidene Schou 187-213». Oslo is written Christiania here, as for Galster 156."
-    _errata_applied:
-      - field: mint
-        printed: Bergen
-        correct: Christiania
+    mint_mark:
+      kind: erroneous
+      reason:
+        de: 'Falsche Münzstätte. Die Seite norge/hansg155.htm auf danskmoent.dk nennt «Bergen», die Galster-Übersicht derselben Website (hansgals.htm) gibt für Galster 155 jedoch «Oslo eller Akershus» (dt.:
+          «Oslo oder Akershus») an, und Ernst 1940 weist die Hvide Schou 187–213 Oslo zu: «dette gælder saaledes sikkert Hvidene Schou 187-213» (dt.: «dies gilt somit sicher für die Hvide Schou 187–213»).'
+        en: 'Wrong mint. The page norge/hansg155.htm on danskmoent.dk gives «Bergen», but the Galster overview on the same site (hansgals.htm) gives Galster 155 as «Oslo eller Akershus» (transl.: «Oslo
+          or Akershus»), and Ernst 1940 assigns the hvids Schou 187–213 to Oslo: «dette gælder saaledes sikkert Hvidene Schou 187-213» (transl.: «this thus certainly applies to the hvids Schou 187–213»).'
+        uk: 'Помилкове місце карбування. Сторінка norge/hansg155.htm на danskmoent.dk подає «Bergen», але огляд Galster на тому ж сайті (hansgals.htm) дає для Galster 155 «Oslo eller Akershus» (перекл.:
+          «Осло або Акерсгус»), а Ernst 1940 відносить гвіди Schou 187–213 до Осло: «dette gælder saaledes sikkert Hvidene Schou 187-213» (перекл.: «це, отже, напевно стосується гвідів Schou 187–213»).'
+        da: 'Forkert møntsted. Siden norge/hansg155.htm på danskmoent.dk angiver «Bergen», men Galster-oversigten på samme side (hansgals.htm) giver Galster 155 som «Oslo eller Akershus», og Ernst 1940
+          henfører hvidene Schou 187–213 til Oslo: «dette gælder saaledes sikkert Hvidene Schou 187-213».'
+      value: Bergen
   - id: dk-galster-hg-156
     fuss: seed_unsorted
     phase: galster
@@ -453,7 +454,7 @@ coins:
       galster_volume: hg
       others:
         - Sømod# 127
-        - Ernst# 1940 14-20
+        - Ernst 1940# 14-20
     metal: billon
     fineness:
     weight_rough_g:
@@ -498,7 +499,7 @@ coins:
       schou: '219'
       schive: XIV.31
       galster_volume: hg
-      others: &id001
+      others:
         - Sømod# 129
     metal: billon
     fineness:
@@ -525,19 +526,19 @@ coins:
       da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
         stykke er endnu ikke bestemt.
     sub_realm: norway
-    _source_errata:
-      - field: others
-        printed: &id002
-          - Ernst# 1940 3-13
-          - Sømod# 129
-        correct: *id001
-        curator: serg
-        reason: "Curator (Serhii) 2026-10-22: hans.htm prints «Ernst 1940 3-13» for Galster 158 as well, which are the numbers of Galster 155 (hansg155.htm); danskmoent's Galster overview hansgals.htm gives
-          Galster 158 no Ernst number."
-    _errata_applied:
-      - field: others
-        printed: *id002
-        correct: *id001
+    catalog_marks:
+      - register: Ernst 1940
+        value: 3-13
+        kind: erroneous
+        reason:
+          de: Nummern von Galster 155. Die Seite hans.htm auf danskmoent.dk nennt «Ernst 1940 3-13» bei Galster 155, 157, 158, 160 und 161; nach der eigenen Seite von Galster 155 (norge/hansg155.htm) 
+            sind es dessen Nummern, und die Galster-Übersicht (hansgals.htm) gibt für Galster 158 keine Ernst-Nummer an.
+          en: Numbers of Galster 155. The page hans.htm on danskmoent.dk gives «Ernst 1940 3-13» for Galster 155, 157, 158, 160 and 161; by Galster 155's own page (norge/hansg155.htm) these are its 
+            numbers, and the Galster overview (hansgals.htm) gives no Ernst number for Galster 158.
+          uk: Номери Galster 155. Сторінка hans.htm на danskmoent.dk подає «Ernst 1940 3-13» для Galster 155, 157, 158, 160 і 161; за власною сторінкою Galster 155 (norge/hansg155.htm) це його номери,
+            а огляд Galster (hansgals.htm) дає для Galster 158 жодного номера Ernst.
+          da: Numrene for Galster 155. Siden hans.htm på danskmoent.dk angiver «Ernst 1940 3-13» ved Galster 155, 157, 158, 160 og 161; ifølge Galster 155's egen side (norge/hansg155.htm) er det dens 
+            numre, og Galster-oversigten (hansgals.htm) giver intet Ernst-nummer for Galster 158.
   - id: dk-galster-hg-159
     fuss: seed_unsorted
     phase: galster
@@ -558,7 +559,7 @@ coins:
       schive: XIV.32-33
       galster_volume: hg
       others:
-        - Ernst# 1940 21
+        - Ernst 1940# 21
         - Sømod# 128
     metal: billon
     fineness:
@@ -604,9 +605,9 @@ coins:
       schou: '221'
       schive: XIV.34
       galster_volume: hg
-      others: &id003
+      others:
         - Sømod# 130
-        - Ernst# 1940 22-23
+        - Ernst 1940# 22-23
     metal: billon
     fineness:
     weight_rough_g:
@@ -632,20 +633,19 @@ coins:
       da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
         stykke er endnu ikke bestemt.
     sub_realm: norway
-    _source_errata:
-      - field: others
-        printed: &id004
-          - Ernst# 1940 3-13
-          - Sømod# 130
-          - Ernst# 1940 22-23
-        correct: *id003
-        curator: serg
-        reason: "Curator (Serhii) 2026-10-22: hans.htm prints «Ernst 1940 3-13» for Galster 160 as well, which are the numbers of Galster 155 (hansg155.htm); danskmoent's Galster overview hansgals.htm gives
-          Galster 160 «Ernst 22-23»."
-    _errata_applied:
-      - field: others
-        printed: *id004
-        correct: *id003
+    catalog_marks:
+      - register: Ernst 1940
+        value: 3-13
+        kind: erroneous
+        reason:
+          de: Nummern von Galster 155. Die Seite hans.htm auf danskmoent.dk nennt «Ernst 1940 3-13» bei Galster 155, 157, 158, 160 und 161; nach der eigenen Seite von Galster 155 (norge/hansg155.htm) 
+            sind es dessen Nummern, und die Galster-Übersicht (hansgals.htm) gibt für Galster 160 «Ernst 22-23» an.
+          en: Numbers of Galster 155. The page hans.htm on danskmoent.dk gives «Ernst 1940 3-13» for Galster 155, 157, 158, 160 and 161; by Galster 155's own page (norge/hansg155.htm) these are its 
+            numbers, and the Galster overview (hansgals.htm) gives «Ernst 22-23» for Galster 160.
+          uk: Номери Galster 155. Сторінка hans.htm на danskmoent.dk подає «Ernst 1940 3-13» для Galster 155, 157, 158, 160 і 161; за власною сторінкою Galster 155 (norge/hansg155.htm) це його номери,
+            а огляд Galster (hansgals.htm) дає для Galster 160 «Ernst 22-23».
+          da: Numrene for Galster 155. Siden hans.htm på danskmoent.dk angiver «Ernst 1940 3-13» ved Galster 155, 157, 158, 160 og 161; ifølge Galster 155's egen side (norge/hansg155.htm) er det dens 
+            numre, og Galster-oversigten (hansgals.htm) giver «Ernst 22-23» for Galster 160.
   - id: dk-galster-hg-161
     fuss: seed_unsorted
     phase: galster
@@ -665,9 +665,9 @@ coins:
       schou: 222-223
       schive: XIV.35-36
       galster_volume: hg
-      others: &id005
+      others:
         - Sømod# 131
-        - Ernst# 1940 24-25
+        - Ernst 1940# 24-25
     metal: billon
     fineness:
     weight_rough_g:
@@ -693,20 +693,19 @@ coins:
       da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
         stykke er endnu ikke bestemt.
     sub_realm: norway
-    _source_errata:
-      - field: others
-        printed: &id006
-          - Ernst# 1940 3-13
-          - Sømod# 131
-          - Ernst# 1940 24-25
-        correct: *id005
-        curator: serg
-        reason: "Curator (Serhii) 2026-10-22: hans.htm prints «Ernst 1940 3-13» for Galster 161 as well, which are the numbers of Galster 155 (hansg155.htm); danskmoent's Galster overview hansgals.htm gives
-          Galster 161 «Ernst 24-25»."
-    _errata_applied:
-      - field: others
-        printed: *id006
-        correct: *id005
+    catalog_marks:
+      - register: Ernst 1940
+        value: 3-13
+        kind: erroneous
+        reason:
+          de: Nummern von Galster 155. Die Seite hans.htm auf danskmoent.dk nennt «Ernst 1940 3-13» bei Galster 155, 157, 158, 160 und 161; nach der eigenen Seite von Galster 155 (norge/hansg155.htm) 
+            sind es dessen Nummern, und die Galster-Übersicht (hansgals.htm) gibt für Galster 161 «Ernst 24-25» an.
+          en: Numbers of Galster 155. The page hans.htm on danskmoent.dk gives «Ernst 1940 3-13» for Galster 155, 157, 158, 160 and 161; by Galster 155's own page (norge/hansg155.htm) these are its 
+            numbers, and the Galster overview (hansgals.htm) gives «Ernst 24-25» for Galster 161.
+          uk: Номери Galster 155. Сторінка hans.htm на danskmoent.dk подає «Ernst 1940 3-13» для Galster 155, 157, 158, 160 і 161; за власною сторінкою Galster 155 (norge/hansg155.htm) це його номери,
+            а огляд Galster (hansgals.htm) дає для Galster 161 «Ernst 24-25».
+          da: Numrene for Galster 155. Siden hans.htm på danskmoent.dk angiver «Ernst 1940 3-13» ved Galster 155, 157, 158, 160 og 161; ifølge Galster 155's egen side (norge/hansg155.htm) er det dens 
+            numre, og Galster-oversigten (hansgals.htm) giver «Ernst 24-25» for Galster 161.
   - id: dk-galster-hg-162
     fuss: seed_unsorted
     phase: galster
@@ -724,7 +723,7 @@ coins:
     catalog:
       galster: '162'
       others:
-        - Ernst# 1940 side 77 fig. 2
+        - Ernst 1940# side 77 fig. 2
         - Sømod# 132
       galster_volume: hg
     metal: billon
