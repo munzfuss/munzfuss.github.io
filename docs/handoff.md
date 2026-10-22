@@ -34,12 +34,15 @@
   2026-10-20 text names KMM 132095 via its old representative kmk-292019; same specimen, own id now).
   Re-flowing from HEAD final kept the stale `unified-kmk-132095` final (removed by hand in cbb0463)
   from re-appearing; its classification decision still exists and is inert.
-- **Open, curator**: (1) kmk-273986 (+ folded 273987, «Sch. 146, cf.», no weight/photo) left the
-  G31 class when it stopped being folded in kmk-130791 — now its own seed_unsorted coin; add to the
-  G31 decision or leave. (2) kmk-273702 («Sch. 111»), excluded 2026-10-20 as a stub through the
-  `specimens:` block inside kmk-273672 (G36 class), is its own seed now; the specimen exclusion never
-  leaves a coin without a source, so it stands as a seed_unsorted coin — needs a seed-level
-  `id: kmk-273702` exclusion or a merge, curator's call. (3) General: `specimens:` (kmm-keyed)
+- **Done after** (curator «виключати», next commit): kmk-273986, kmk-273987, kmk-273702 excluded at
+  seed level as undocumented stubs (no weight/photo; «Sch. 146, cf.» is a cf-form dropped at ingest,
+  Schou 111 ⊂ G36's 102-118); re-flow danish_realm, verify_reflow 0 losses / 2 excluded.
+- **Open, curator — id architecture**: curator proposes immutable surrogate ids per class with
+  mutable `members` of immutable seed ids (fold is NOT an identity layer). Analysis given in chat
+  2026-10-22: 238 of 498 classification_decisions point at unified ids no longer in any final;
+  absorb carries ~400 lines of rename hand-over. Proposed: class registry with inheritance rule
+  (largest member overlap; merged ids retired with `merged_into`), members = specimens, final id =
+  class id, verify_reflow keyed by class id. Awaiting curator's go before V2_DECISIONS entry. General: `specimens:` (kmm-keyed)
   exclusions and the merge decisions name KMM specimens by the representative of a fold that
   `thin_safe` can re-cut on any re-seed; `_load_excluded_ids` in build_kmk_seed reads `id:` only.
 
