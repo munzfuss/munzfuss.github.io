@@ -100,7 +100,7 @@
   {%- set m = (cmarks or {}).get(prefix ~ '|' ~ v) -%}
   {%- if not m -%}{{ v }}
   {%- elif m[0] == 'unverified' -%}{{ v }}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>
-  {%- else -%}<span class="cat-alt">{{ v }}&nbsp;<span class="{{ m[0] }}-mark" data-tooltip="{{ m[1]|t(lang) }}">{{ msign[m[0]] }}</span></span>
+  {%- else -%}<span class="cat-alt"><span{% if m[0] == 'erroneous' %} class="erroneous"{% endif %}>{{ v }}</span>&nbsp;<span class="{{ m[0] }}-mark" data-tooltip="{{ m[1]|t(lang) }}">{{ msign[m[0]] }}</span></span>
   {%- endif -%}
 {%- endmacro -%}
 
@@ -151,7 +151,7 @@
         <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ catvals(prefix, vals, coin.catalog_marks) }}</span>
       {%- else -%}
         {%- for v in vals -%}
-          <span class="cat-group cat-plain">{{ v }}</span>
+          <span class="cat-group cat-plain">{{ catval('', v, coin.catalog_marks) }}</span>
           {%- if not loop.last %}<br>{% endif -%}
         {%- endfor -%}
       {%- endif -%}
@@ -444,7 +444,7 @@
         <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ catvals(prefix, vals, coin.catalog_marks) }}</span>
       {%- else -%}
         {%- for v in vals -%}
-          <span class="cat-group cat-plain">{{ v }}</span>
+          <span class="cat-group cat-plain">{{ catval('', v, coin.catalog_marks) }}</span>
           {%- if not loop.last %}<br>{% endif -%}
         {%- endfor -%}
       {%- endif -%}

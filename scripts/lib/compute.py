@@ -829,7 +829,27 @@ def _apply_catalog_value_marks(
                 unver.append(mk)
             elif mk.reason is not None:
                 alts.append(mk)
+    named = {f for f, _l in _NAMED_FIELDS}
+
+    def plain_group() -> list[str]:
+        for prefix, vals, _tip in groups:
+            if prefix == "":
+                return vals
+        vals: list[str] = []
+        groups.append(("", vals, None))
+        return vals
+
     for a in alts:
+        if a.register not in named:
+            # A register held in `others` («Ernst 1940») renders as a plain
+            # «others» line, so its marked number does too: its own line
+            # «Ernst 1940# 3-13», keyed «|<line>» for the template.
+            line = f"{a.register}# {a.value}"
+            vals = plain_group()
+            if line not in vals:
+                vals.append(line)
+            marks[f"|{line}"] = (a.kind, a.reason)
+            continue
         label, vals = group_for(a.register)
         if a.value not in vals:
             vals.append(a.value)
