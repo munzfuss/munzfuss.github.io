@@ -1313,7 +1313,11 @@ def _thin_post_merge(coins: list) -> list:
     an unchanged entity keeps its generated_at. Same rule the standalone
     thin_kmk_seed.py applies to files on disk."""
     from lib.seed_thin import prune_stale_thinned, thin_safe
-    kept, st = thin_safe(coins, protected=_EXCLUDED_IDS)
+    own = {f"kmk-{rid}" for rid in _KMM_OWN_RECORD}
+    kept, st = thin_safe([c for c in coins if c.get("id") not in own],
+                         protected=_EXCLUDED_IDS)
+    keep_ids = {id(c) for c in kept} | {id(c) for c in coins if c.get("id") in own}
+    kept = [c for c in coins if id(c) in keep_ids]       # input order
     print(f"    thinned {st['before']} → {st['after']} "
           f"({st['thinned_buckets']} buckets)")
     if _DECIDED_IDS:
@@ -1343,6 +1347,16 @@ def _load_excluded_ids() -> frozenset:
 
 
 _EXCLUDED_IDS: frozenset = frozenset()
+
+# KMM records the curator keeps as records of their own: the seed-layer
+# thinning never folds them into a bucket representative, and they are never
+# made one. A weightless record otherwise collapses with every weightless
+# record of the same nominal + ruler, whatever the KMM record holds beyond
+# that. Keyed by KMM object id.
+#   * 427531, 427532, 427533 (FP 1953.36, .35, .34) — Hans «skilling», no
+#     weight and no typeNumber, three photographs each; folded into kmk-312170
+#     (the undocumented Hans Skilling) by thinning. Curator (Serhii) 2026-10-22.
+_KMM_OWN_RECORD = {"427531", "427532", "427533"}
 
 _KMM_OBJECT_RE = re.compile(r"/KMM/object/(\d+)")
 
