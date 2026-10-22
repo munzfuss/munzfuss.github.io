@@ -865,7 +865,12 @@ singleton {seed}; (6) `label` / `legacy_id` / `origin` are Coin schema fields (`
 
 **Stage 1 — ✅ DONE 2026-10-22** (commits: absorb resolver + validate + audit_v2 + hook + tests;
 migrate_classification_keys; data). 477 keys rewritten, 17 legacy re-keyed, 3 moved, 6 revived
-decisions held as `superseded_by` for the curator (see handoff). Finals unchanged.
+decisions held as `superseded_by`, then aligned to the stored kind on the curator's word
+(`bf35f26`). Finals unchanged.
+
+**Stage 2 — ✅ DONE 2026-10-22** (`4e4a764`, `89ec51a`, `128fe04` + data): registry bootstrapped
+(15 135 records / 29 shards), merger recognises and stamps `class_id` + `label`, second run zero
+diff, finals unchanged. Addendum written into D49.
 
 **Stage 1 — classification decisions keyed by a member seed id** *(small, independent of the registry)*
 - absorb's decision resolver accepts a seed id as `coin_id` and maps it to the class containing that seed (specimens incl. `_thinned_from`); class ids keep working.

@@ -52,9 +52,22 @@
   f3h145a Guldkrone where the live 2026-09-10 `tarif` decision stands). **Curator: review the
   six** — drop the held entries or confirm the kind change (then remove `superseded_by`).
   Finals byte-identical to before; 285 decisions applied, 0 ASSIGN-MISS, 118 inert on excluded
-  coins. Full `audit_v2` shows only the pre-existing I4 `pewter` metal on 32 NGC unified
-  entries (not stage 1). Stage 2 starts with the D49 addendum (plan file: record = merger
-  class, id `c-<8 hex>` without entity, `origin` field, inherit once per run). General: `specimens:` (kmm-keyed)
+  coins. The six held entries were then ALIGNED on the curator's word («лиши kind будь-яким …
+  щоб не конфліктували і не зникали», `bf35f26`): kind = the stored value, `superseded_by`
+  removed, ngc-1052606 moved to royal_holstein; kind still to be reviewed.
+- **D49 stage 2 SHIPPED 2026-10-22** (`4e4a764` addendum + schema, `89ec51a` lib, `128fe04`
+  bootstrap + merger, data commit after): `data/v2/class_registry/<entity>.yml` — 15 135
+  records (57 686 specimens, 0 hash collisions, 0 shared specimens), one per seed_unified
+  class, `c-<8 hex>` id, `label` = `legacy_id` = the unified id. The merger recognises its
+  partition through `Registry.inherit` once per run and stamps `class_id` + `label` on every
+  unified entry (unified `id` unchanged); second run = zero registry diff; absorb → finals
+  byte-identical; verify_reflow 0; tests green. `pewter` is a Coin.metal (`c66ecf1`); audit_v2
+  I4 now prints one grouped line per defect (`6956a72`). **Open, curator**: the two remaining
+  full-audit I4 lines are NGC junk, `ngc-1046225` «10 Kroner 1900, Margrethe II, aluminium,
+  KM Pr1» and `ngc-1051527` «20 Kroner 1900, aluminium, KM Pr2» — exclusion candidates, not
+  a metal to add. **Next: stage 3** (final id = head class id; `migrate_final_ids.py`,
+  absorb foundation marker `origin`, verify_reflow legacy pairing, build/categorize read
+  `label`) — needs its own «так». General: `specimens:` (kmm-keyed)
   exclusions and the merge decisions name KMM specimens by the representative of a fold that
   `thin_safe` can re-cut on any re-seed; `_load_excluded_ids` in build_kmk_seed reads `id:` only.
 
