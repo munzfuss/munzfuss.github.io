@@ -170,7 +170,8 @@
         'billon': ui_get('metal.billon'),
         'copper': ui_get('metal.copper'),
         'lead':   ui_get('metal.lead'),
-        'bronze': ui_get('metal.bronze')
+        'bronze': ui_get('metal.bronze'),
+        'pewter': ui_get('metal.pewter')
       } -%}
       {%- if coin.msr_n > 1 -%}
         {%- set _mname -%}<span class="nw">{{ metals[coin.raw.metal] }}{%- if not coin.raw.metal_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}</span>{%- endset -%}

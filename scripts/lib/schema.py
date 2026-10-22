@@ -1129,7 +1129,7 @@ class Coin(_StrictBase):
         ),
     )
     catalog: CatalogRefs = Field(default_factory=CatalogRefs)
-    metal: Literal["silver", "gold", "billon", "copper", "lead", "bronze"] | None = None
+    metal: Literal["silver", "gold", "billon", "copper", "lead", "bronze", "pewter"] | None = None
     metal_verified: bool = Field(
         True,
         description=(

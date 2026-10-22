@@ -254,7 +254,7 @@ def parse_references_from_strings(items: list[str] | None) -> dict[str, str]:
 # Plus chrome's `composition_text` carrying the same forms.
 
 # Map Numista metal vocabulary → our Pydantic-allowed metal set
-# (silver / gold / billon / copper / lead / bronze per schema.py).
+# (silver / gold / billon / copper / lead / bronze / pewter per schema.py).
 # Numista emits a wider vocabulary («Gilding metal plated», «Brass»,
 # «Cupronickel», «Aluminum-bronze», …) — these compound / alloy forms
 # get folded onto the nearest schema-allowed metal, or None when no
