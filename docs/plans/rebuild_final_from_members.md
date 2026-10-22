@@ -332,3 +332,46 @@ after a seed left» driven by the same evidence (revision-1 patch
   per-field policy incl. `note`; winner rule by `origin`; group H (43);
   `v1-` seed id prefix (273 collisions); HTML diff as a hard gate; the
   no-final-only-edits guard.
+
+## Stage N — step 1 results (2026-10-23, history up to `de956d6`)
+
+**Final-only commits.** 747 commits touched `data/v2/final/*`; 298 of them
+changed NO seed / `seed_unified` file. By what they did (subject-keyed,
+`$S/classify_commits.py`): decisions re-applied by absorb (exclusions /
+classification / merges) 103 — legitimate; per-coin curator fixes written
+on the final 98 — stage C sorts them (hold, V1 seed, or stale); prose
+passes 35 — `255426e` (904 Claude-translated `_source_note`s applied to
+finals, «builder-wiring … stay follow-ups»), `064bfe9` / `a523b0f` /
+`e430d33` / `7a831dc` (Danish backfill into notes and verification notes),
+`be563e1` / `02a6eb8` (§0z scaffolding stripped) — the origin of the
+5 648 diverged `verification_note`s and most of the 801 class-less notes;
+pipeline outputs 30 — legitimate; normalisation passes 18 — `7e95732`
+(Frederik, 3 249), `917b7a6` (Christian, 4 065), `a777b9a` (annotated /
+uncertain kings + `ruler_verified`), `2e38175` (Hans — the only one that
+also fixed the builder), `0aa8b69` (numeric catalogue indices, 905),
+`24b8855` (Aagaard), `92557b3` (Davenport fold), `1612a01` / `730d93f`
+(cf / unlisted / mintmaster-in-mint strips), `f4e7bc1` (NGC grade
+markers), `46914ae` (nominal capitalisation); V1 route 14.
+
+Of the normalisation passes, the catalogue ones are already in
+`lib/catalog_codes` / the writer's `_normalise_catalog` (D31 and later);
+the nominal / mint ones in the writer; **ruler has no writer-level
+canonicaliser at all** — every seed still carries the source's form.
+
+**Ruler canonical display form — prototype measured over every seed**
+(`$S/ruler_forms.py`): 929 distinct (entity, ruler) forms; in the four
+Danish-crown entities the June rule («Name Roman.» for exact king forms,
+Arabic / Roman / English / with or without period; `?` → `ruler_verified:
+false`) would change 17 470 seed entries across 60 distinct forms
+(«Christian 4» 5 108, «Frederik 3» 3 090, «Christian V» 679, «Frederick
+III» 278, …) and leave 2 279 untouched (already canonical, Gottorp dukes
+such as «Frederik 3 af Slesvig-Holsten-Gottorp», compounds, institutions,
+«?»). Two divergences from the June passes to decide: «Friedrich I/II» (27)
+and «Johann» (2) inside Danish-crown entities — the prototype maps them to
+«Frederik …» / «Hans», the June passes left them.
+
+**Notes.** `note` and `verification_note` are generated or translated at
+the final layer only (`255426e`); the seeds carry `_source_note` (da). To
+be derivable they need a source: a per-seed translation table consumed by
+the merger (or the V1 seed where the note is V1's), and a
+`verification_note` composed by one rule from the members — stage D3 / D4.
