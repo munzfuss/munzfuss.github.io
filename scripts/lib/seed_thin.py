@@ -515,8 +515,18 @@ def thin_coins(coins: list, min_bucket: int = 5,
 
 
 def thin_seed_dir(seed_dir: Path, min_bucket: int = 5,
-                  catalogued_only: bool = True, dry_run: bool = False) -> int:
-    """Thin every ``*.yml`` under ``seed_dir`` in place. Returns 0."""
+                  catalogued_only: bool = True, dry_run: bool = False,
+                  protected: frozenset = frozenset(), source_id_of=None) -> int:
+    """Thin every ``*.yml`` under ``seed_dir`` in place. Returns 0.
+
+    `protected` ids (curator decisions name them: merge / no_merge members,
+    exclusions) are never folded into a representative, and a stale
+    `_thinned_from` link to one of them — left by a run before the decision
+    existed — is pruned (`prune_stale_thinned`), with the citation it carried.
+    2026-10-22: IKMK 18296479 («Unbestimmte Kippermünzstätte», August II) had
+    been folded under 18286113 («Wilhelm zu Harburg»); the curator called them
+    different coins, and without this the fold would have re-fused them on
+    every re-seed."""
     yaml = _make_yaml_loader()
     total_before = total_after = 0
     for f in sorted(glob.glob(str(Path(seed_dir) / "*.yml"))):
@@ -524,14 +534,23 @@ def thin_seed_dir(seed_dir: Path, min_bucket: int = 5,
         coins = doc.get("coins") or []
         if not coins:
             continue
-        kept, stats = thin_safe(coins)
+        kept, stats = thin_safe(coins, protected=protected)
+        if protected:
+            pr = prune_stale_thinned(kept, set(protected), stats["assignments"],
+                                     source_id_of or (lambda s: None))
+            if pr["links_pruned"]:
+                print(f"  {Path(f).name}: pruned {pr['links_pruned']} stale "
+                      f"_thinned_from link(s) to protected ids, "
+                      f"{pr['citations_pruned']} citation(s)")
+                stats["after"] = len(kept)
+                stats["before"] = max(stats["before"], stats["after"])
         total_before += stats["before"]
         total_after += stats["after"]
         print(f"  {Path(f).name}: {stats['before']} → {stats['after']}  "
               f"({stats['thinned_buckets']} buckets thinned, "
               f"{stats['skipped_uncatalogued_buckets']} uncatalogued ≥{min_bucket} "
               f"left whole, {stats['sub_variants']} sub-variants)")
-        if not dry_run and stats["after"] != stats["before"]:
+        if not dry_run and (stats["after"] != stats["before"] or protected):
             doc["coins"] = kept
             with open(f, "w") as fh:
                 yaml.dump(doc, fh)

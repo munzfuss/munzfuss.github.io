@@ -2196,6 +2196,41 @@ def _index_assignments(assignments: list) -> tuple[dict[str, list[dict]], list[d
     return by_key, conflicts
 
 
+_SHELL_REMOVALS: dict[str, str] | None = None
+
+
+def _shell_removals() -> dict[str, str]:
+    """{head seed → reason} of superseded shells the curator folded by
+    decision (`_recorded_removals.yml`, `kind: shell`). A curated shell is
+    otherwise kept for review forever; this is the record that the review
+    happened (2026-10-22: 17 shells from the merge-candidate tables)."""
+    global _SHELL_REMOVALS
+    if _SHELL_REMOVALS is None:
+        out: dict[str, str] = {}
+        for e in (_load_yaml(ROOT / "data" / "v2" / "_recorded_removals.yml")
+                  .get("removals") or []):
+            if isinstance(e, dict) and e.get("kind") == "shell" and e.get("seed"):
+                out[str(e["seed"])] = str(e.get("reason") or "")
+        _SHELL_REMOVALS = out
+    return _SHELL_REMOVALS
+
+
+_ALL_SEED_IDS: set[str] | None = None
+
+
+def _all_seed_ids() -> set[str]:
+    """Every seed id in data/v2/seed/, cached."""
+    global _ALL_SEED_IDS
+    if _ALL_SEED_IDS is None:
+        out: set[str] = set()
+        for sf in sorted(V2_SEED.glob("*/*.yml")):
+            for c in (_load_yaml(sf).get("coins") or []):
+                if c.get("id"):
+                    out.add(str(c["id"]))
+        _ALL_SEED_IDS = out
+    return _ALL_SEED_IDS
+
+
 def _settle_curated_shell(shell: dict, successor: dict | None) -> bool:
     """A curated shell whose class was superseded: hand its curation to the
     successor and report True (drop the shell), or report False (keep it).
@@ -3663,11 +3698,18 @@ def process_entity(entity_id: str) -> dict:
     shell_kept_curated: list[str] = []
     shell_settled: list[str] = []
     _by_member = _entries_by_member(enriched_entries)
+    shell_by_decision: list[str] = []
     for e in enriched_entries:
         if _is_vanished_stale_final(e, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(e.get("id")))
             continue
         _eid = str(e.get("id"))
+        # A shell the curator folded by decision (`kind: shell` removal on its
+        # head seed): its specimen lives in another class, the review is done.
+        if _is_promoted(e) and _seed_of(_eid) in _shell_removals():
+            shell_dropped.add(_eid)
+            shell_by_decision.append(_eid)
+            continue
         _cls = _superseding_class(e, _live_members)
         if _cls:
             if _shell_is_curated(e, _cls):
@@ -3735,6 +3777,11 @@ def process_entity(entity_id: str) -> dict:
         if _is_vanished_stale_final(fc, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(fid))
             continue
+        if _is_promoted(fc) and _seed_of(str(fid)) in _shell_removals():
+            shell_dropped.add(str(fid))
+            if fid not in shell_by_decision:
+                shell_by_decision.append(str(fid))
+            continue
         _cls = _superseding_class(fc, _live_members)
         if _cls:
             if _shell_is_curated(fc, _cls):
@@ -3768,6 +3815,10 @@ def process_entity(entity_id: str) -> dict:
     if shell_dropped:
         print(f"  [{entity_id}] superseded shells dropped: {len(shell_dropped)} "
               f"(their seed lives on in another class)")
+    if shell_by_decision:
+        print(f"  [{entity_id}] superseded shells folded by curator decision "
+              f"(_recorded_removals kind: shell): {len(shell_by_decision)}: "
+              f"{sorted(shell_by_decision)[:8]}")
     if shell_settled:
         print(f"  [{entity_id}] superseded curated shells settled: "
               f"{len(shell_settled)} (curation handed to the successor class): "
@@ -3887,6 +3938,14 @@ def process_entity(entity_id: str) -> dict:
         # sits alone in seed_unified and never reached final.
         excluded_matched |= {m for m in member_ids if head_to_class.get(m) in unified_by_id}
         orphan_exclusions = sorted(excluded_ids - excluded_matched)
+        # An exclusion whose seed no longer exists anywhere did its job and the
+        # builder now filters the record: spent, not orphaned (no ⚠).
+        _spent = [x for x in orphan_exclusions if x not in _all_seed_ids()
+                  and x not in _thinned_rep_index()]
+        orphan_exclusions = [x for x in orphan_exclusions if x not in _spent]
+        if _spent:
+            print(f"  [{entity_id}] {len(_spent)} exclusion id(s) spent — seed gone "
+                  f"from every seed file (builder filters it now): {_spent[:6]}")
         if orphan_exclusions:
             print(f"  ⚠ [{entity_id}] {len(orphan_exclusions)} exclusion id(s) matched "
                   f"nothing (orphan — check exclusions/{entity_id}.yml): "

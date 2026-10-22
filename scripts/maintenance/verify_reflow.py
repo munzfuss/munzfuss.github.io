@@ -672,6 +672,23 @@ def _recorded_removals() -> tuple[set[str], dict[str, set[str]]]:
     return _RECORDED_REMOVALS
 
 
+_SHELLS: set[str] | None = None
+
+
+def _shell_removals() -> set[str]:
+    """Head seeds of superseded shells the curator folded (`kind: shell`)."""
+    global _SHELLS
+    if _SHELLS is None:
+        out: set[str] = set()
+        path = ROOT / RECORDED_REMOVALS_REL
+        if path.exists():
+            for e in _read_yaml(path).get("removals") or []:
+                if e.get("kind") == "shell" and e.get("seed"):
+                    out.add(str(e["seed"]))
+        _SHELLS = out
+    return _SHELLS
+
+
 def _head_unified_members(base: str) -> dict[str, list[str]]:
     """{unified id → its seed members} as of the BASELINE commit.
 
@@ -1004,6 +1021,13 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
         if thin_hit:
             dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
                            f"— §9a thinning: {', '.join(thin_hit)}")
+            continue
+        # A superseded shell the curator folded by decision (`kind: shell`,
+        # keyed by the shell's head seed): its specimen lives in another class.
+        _shell_hit = sorted({_head_seed(p) for p in probe_seeds} & _shell_removals())
+        if _shell_hit:
+            dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
+                           f"— shell folded by curator decision: {', '.join(_shell_hit)}")
             continue
         # Routing-driven relocation: the coin left this entity because its
         # derived `issuing_entity` changed, with no decision file to consult.

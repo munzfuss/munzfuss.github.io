@@ -433,8 +433,37 @@ def build_seed(dry_run: bool, limit: int | None,
               "weightless excess)...")
         from lib.seed_thin import thin_seed_dir
         seed_dir = Path(__file__).resolve().parents[2] / "data" / "v2" / "seed" / "ikmk"
-        thin_seed_dir(seed_dir, dry_run=False)
+        thin_seed_dir(seed_dir, dry_run=False, protected=_protected_ids(),
+                      source_id_of=_ikmk_source_id)
     return 0
+
+
+_IKMK_OBJECT_RE = re.compile(r"ikmk\.smb\.museum/object\?id=(\d+)")
+
+
+def _ikmk_source_id(source: dict) -> str | None:
+    """Seed id of the IKMK object a citation points at, or None."""
+    m = _IKMK_OBJECT_RE.search(str(source.get("url") or ""))
+    return f"ikmk-{m.group(1)}" if m else None
+
+
+def _protected_ids() -> frozenset:
+    """Seed ids a curator decision names — never folded by §9a thinning:
+    every member of a merge / no_merge (any entity, incl. _cross_entity) and
+    every exclusion id."""
+    import yaml as _yaml
+    root = Path(__file__).resolve().parents[2] / "data" / "v2"
+    out: set[str] = set()
+    for p in (root / "merge_decisions").glob("*.yml"):
+        d = _yaml.safe_load(p.read_text()) or {}
+        for key in ("merges", "no_merges"):
+            for e in (d.get(key) or []):
+                out.update(str(m) for m in (e.get("members") or []))
+    for p in (root / "exclusions").glob("*.yml"):
+        for e in (_yaml.safe_load(p.read_text()) or {}).get("exclusions") or []:
+            if isinstance(e, dict) and e.get("id"):
+                out.add(str(e["id"]))
+    return frozenset(out)
 
 
 def main() -> int:
