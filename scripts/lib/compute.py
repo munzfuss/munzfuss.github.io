@@ -338,6 +338,10 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
     Per-value source attribution comes from fineness_groups (the fineness field's
     OWN sources), NEVER the per-specimen weight sources."""
     pf = fineness_pairs[0][0] if fineness_pairs else None
+    # More than two distinct readings → a weight-only row shows no проба
+    # (same rule as the fallback in compute_coin).
+    if len({round(v, 5) for v, _ in fineness_pairs if v is not None}) > 2:
+        pf = None
     # Canonical fineness readings (deduped values) to snap each row's derived
     # fineness onto — keeps the displayed value clean (.750, not .74999 float
     # noise) and maps it to the right catalogue reading.
@@ -1216,7 +1220,12 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     # arbitrary first-listed one — so a weight-only specimen never latches onto a
     # lower-authority (possibly erroneous) fineness. max() keeps list order on
     # ties, so an empty authority map reproduces the old first-listed behaviour.
-    if fineness_pairs:
+    # With more than two distinct fineness readings no single one represents
+    # the type, so a weight-only specimen borrows none: its fine weight and Δ
+    # stay empty instead of guessing (curator 2026-10-22). Two or fewer keep
+    # the borrow.
+    _fin_distinct = {round(v, 5) for v, _ in fineness_pairs if v is not None}
+    if fineness_pairs and len(_fin_distinct) <= 2:
         _fb = max(fineness_pairs, key=lambda p: _fin_authority(p[1]))
         fallback_f, fallback_f_src = _fb[0], _fb[1]
     else:
