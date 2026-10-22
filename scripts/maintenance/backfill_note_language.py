@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# RETIRED 2026-10-22 (D49 stage 3): the final ids this script's tables name
+# (`unified-<head>`, `km-…`) were replaced by opaque class ids; re-running it
+# would match nothing. Kept as the record of what it did.
 """Add a Danish `da:` leaf to the `verification_note` mappings already in
 `data/v2/final/**`.
 

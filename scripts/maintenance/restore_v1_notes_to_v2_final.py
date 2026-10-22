@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# RETIRED 2026-10-22 (D49 stage 3): the final ids this script's tables name
+# (`unified-<head>`, `km-…`) were replaced by opaque class ids; re-running it
+# would match nothing. Kept as the record of what it did.
 """One-time recovery: gap-fill V1 curator notes into V2 final entries.
 
 Background
