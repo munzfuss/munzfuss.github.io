@@ -37,12 +37,12 @@
 - **Done after** (curator «виключати», next commit): kmk-273986, kmk-273987, kmk-273702 excluded at
   seed level as undocumented stubs (no weight/photo; «Sch. 146, cf.» is a cf-form dropped at ingest,
   Schou 111 ⊂ G36's 102-118); re-flow danish_realm, verify_reflow 0 losses / 2 excluded.
-- **Open, curator — id architecture**: curator proposes immutable surrogate ids per class with
-  mutable `members` of immutable seed ids (fold is NOT an identity layer). Analysis given in chat
-  2026-10-22: 238 of 498 classification_decisions point at unified ids no longer in any final;
-  absorb carries ~400 lines of rename hand-over. Proposed: class registry with inheritance rule
-  (largest member overlap; merged ids retired with `merged_into`), members = specimens, final id =
-  class id, verify_reflow keyed by class id. Awaiting curator's go before V2_DECISIONS entry. General: `specimens:` (kmm-keyed)
+- **Decided — id architecture (D49, TODO §EE)**: curator approved 2026-10-22 the direction from
+  the chat analysis: opaque immutable class id in `data/v2/class_registry/<entity>.yml`, recognition
+  by largest specimen overlap (ties → older; retired with `merged_into`), members counted in
+  specimens incl. `_thinned_from`, final id = class id, `unified-<head>` demoted to a label;
+  classification decisions keyed by a member seed id ship first (stage 1). **No code yet** — each
+  stage needs its own «так». General: `specimens:` (kmm-keyed)
   exclusions and the merge decisions name KMM specimens by the representative of a fold that
   `thin_safe` can re-cut on any re-seed; `_load_excluded_ids` in build_kmk_seed reads `id:` only.
 

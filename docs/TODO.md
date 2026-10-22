@@ -843,6 +843,36 @@ Project ticket `190229723` ready to flip In review → Done — all 8 candidates
 
 > **Curator-ordered sequence (2026-06-01, user-directed «з високим пріоритетом»):** do **§CJ → §CK → §CL** in that order. §CJ + §CK are seed-/data-level work; §CL is the single coordinated propagation that ships everything (ucoin backlog re-seed + numista index-fix re-seed already done this session, plus whatever §CJ/§CK change) to the rendered pages.
 
+### EE. 🟡 Class identity — opaque immutable class id in a registry (V2_DECISIONS D49)  *(opened 2026-10-22, curator-approved direction; code awaits per-stage «так»)* *(est: large, 5 stages)* *(type: pipeline architecture)*
+
+**Why.** A unified / final id is `unified-<top-authority member>`, i.e. derived from composition, so it renames on every higher-authority join, §9a fold re-cut or split. 238 of 498 `classification_decisions` point at ids in no final; absorb carries ~400 lines of rename / split hand-over; `verify_reflow` parses the `unified-<seed>` string as structure. The full rationale, the recognition rule and the id form are fixed in **D49** — this entry is only the execution plan. Stages are independent commits; each needs the curator's go before code.
+
+**Stage 1 — classification decisions keyed by a member seed id** *(small, independent of the registry)*
+- absorb's decision resolver accepts a seed id as `coin_id` and maps it to the class containing that seed (specimens incl. `_thinned_from`); class ids keep working.
+- `scripts/maintenance/migrate_classification_keys.py`: rewrite the 498 keys to the head seed (`unified-x` → `x`); report the 238 orphans that now resolve and any that still do not (those go to the curator one by one).
+- `validate_decisions.py` learns the new key form; tests for both key forms + the orphan report.
+- Verify: `absorb --apply` on all entities from HEAD finals → `verify_reflow` 0 losses, `audit_v2 --quick` clean, fixed point in two passes.
+
+**Stage 2 — registry bootstrap and writer** *(no consumer change yet)*
+- `scripts/lib/class_registry.py`: load / save shards, `inherit(partition) → mapping` implementing D49 rules 1–4, hash id.
+- Bootstrap from HEAD finals: one record per final (13 929), `legacy_id` = current id, `members` = specimens of its `composed_of` chain via `V2Index` (+ `_thinned_from`), empty members for the 110 foundation finals.
+- Merger writes the registry on every run; finals untouched. Tests: idempotence (zero diff on a re-run), merge of two records (largest overlap wins, tie → older), split, relocation across shards, fold re-cut invisible.
+
+**Stage 3 — final id = class id** *(the big diff, one commit per entity or one commit overall, curator's call)*
+- absorb looks a foundation up by class id, falls back to `legacy_id`; writes `id: <class id>`, keeps `legacy_id`, keeps `label`.
+- `classification_decisions` migrated again where a key is still a class id (seed-keyed ones from stage 1 need nothing).
+- `verify_reflow` keyed by class id through the registry; `_coin_home_index`, `_relocated_ids`, `_excluded_ids` stop prefixing `unified-`.
+- `V2Index` gets the class layer; `trace_coin trace` prints class id + label + legacy id.
+- 34 test files mention `unified-`: update fixtures.
+- Verify: seed-keyed `trace_coin snapshot` before / `diff` after → zero REAL losses; `verify_reflow` 0; both sites rebuilt byte-identical except where a coin id is in debug output.
+
+**Stage 4 — remove the compensations**
+- Delete `_hand_over_renamed_classes`, `_is_vanished_stale_final`, absorb's renamed / split handling, the string parsing of `unified-` in `verify_reflow`; remove `legacy_id` fallback and record the removal date here.
+
+**Stage 5 (optional, separate decision)** — move the §9a fold out of the kmk seed builder into the merger's output, so every specimen is a seed-level record and `_thinned_from` disappears. Not required by D49 (rule 1 already counts specimens); revisit after stage 4.
+
+**Rules binding every stage**: re-flow from HEAD `final` / `seed_unified` while iterating (§9b); every removal of a final value is a recorded removal or a curator-agreed exclusion; pathspec commits, `-F` msgfile, English; no push without «пуш».
+
 ### CS. 🔵 Split-duplicate dedup campaign — same coin in 2+ final entries  *(opened 2026-06-03, user-flagged; ongoing, multi-root)* *(est: medium-large)* *(type: merger policy + normalization + parser + curation)*
 
 **Surfaced.** 2026-06-03, user spotted two rendered «duplicates»: 2 Ducat 1644-48 Christian IV (KM 140 vs KM-DK 139,140, both Hede 32, shared Bruun 5730) + ½ Dukat 1647 (Hede 38 vs 40, shared Bruun 5814). «потенційно є й інші».
