@@ -439,3 +439,34 @@ Galster 39 / 42; G 39's 1515 weights are Eriksson's documented lowering, G 42's 
 two names of the Klipping struck with Skilling dies (danskmoent 18pennin.htm). Re-flow: 2 coins changed, 0 losses;
 the finals carry 14 and 12 separate paired readings (one per appendix number), none hidden. G 42 remains split over
 several KMM-only finals (`kmk-132460` and ~10 single records, some with wrong rulers) — a separate clean-up.
+
+## 10. Galster 42 — why the Klipping is split over 15 finals (analysis 2026-10-22, nothing changed)
+
+Main class `unified-dk-numista-297656` (Galster page + Numista + Eriksson, «18 Penning»). Beside it 14 KMM-only
+finals with 61 KMM seeds. Causes, from the KMM records (`scripts/cache/kmk/<id>.json`) and `match_pair`:
+
+1. **Writer bug — «Klipping» becomes «1».** `lib/v2_seed_writer`: `_normalise_nominal` prepends «1 » («1 Klipping»),
+   then `_extract_mint_from_nominal` strips the trailing «klipping» as a coin-SHAPE word (`_NOMINAL_SHAPE_RE`, meant
+   for «…, klipping» after a denomination) — here it is the denomination itself. 77 KMM seeds (all `danish_realm`)
+   carry nominal «1»; KMM prints «Klipping»/«klipping». Every G 42 KMM record is hit. Fix: do not strip when the
+   remainder is only a count; measure the change over every source's nominals (CLAUDE.md §9b).
+2. **Even with «1 Klipping» the nominal differs from «18 Penning»** (danskmoent 18pennin.htm heads the page
+   «Klipping u.år, Malmø», titles it «18 Penning»). With one type-level key (Galster 42) the matcher reaches only
+   `low_confidence`. Needs a curator decision: a merge decision for the whole class, or one canonical nominal.
+3. **Wrong rulers in KMM block the Galster key.** The Galster scope is derived from the ruler, so «Christian 3»
+   gives `c3g` ≠ `c2g` and Galster 42 no longer ties. Records: FP 12146.2–.6 (`kmk-688198`…`688202`), one find
+   (Skorup Præstegård), consecutive inventory numbers, authority «Christian 3, 4, 5, 6, 7» — (H) a fill-down
+   increment in KMM's authority column; also «Christian 3» on FP 9667.10, 7179.7, 7179.8, 11831.1, 11570.2.
+   Galster 42 is Christian II's (danskmoent); the dated ones say 1518-1522 (his reign). Candidate: `ruler_mark`
+   erroneous/suspect on these seeds (curator), not an erratum.
+4. **Missing or uncertain ruler**: `kmk-578333`, `-588018` (authority empty), `-578962`, `-741208` («Christian 2?»,
+   «klipping?»), `-733358` («Chrsitan 2» typo, ruler compare fails). Join only by a merge decision.
+5. **Schou 31 group** (`kmk-125889`, `-139319`, `-139334`, `-156471`): «Sch 31», three with KMM material «kobber».
+   danskmoent: «Galster 42, Schou u. år 25-31» → Schou 31 is a G 42 variety. Joins by merge decision.
+6. **Not G 42**: `kmk-308311` (Galster 94, Christian III 4 Skilling 1535) — a different type, stays apart.
+   `kmk-302686` «Shilling/klipping», «Hede 39» — Hede has no Christian II numbers; (H) Galster 39 meant, and a
+   Skilling or a Klipping on a Skilling die is undecidable from the record; leave. `kmk-589343` «klipping(?)», no
+   type number — no key; leave.
+
+Value of the clean-up: one Klipping row instead of up to 13 duplicates on the page; the KMM records add citations
+and find-spots, almost no weights (most «Vægt» empty).
