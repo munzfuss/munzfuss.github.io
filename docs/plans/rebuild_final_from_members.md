@@ -151,3 +151,35 @@ with an HTML diff in which every change maps to an I value.
 - `catalog` merge (`_deep_merge_catalog`, sub-indices, `catalog_alts`) and
   year holds are the most intricate paths; Stage 1 measures them separately.
 - `scripts/cache` is shared with the main checkout; read-only here.
+
+## Stage 1 — results (2026-10-22, data at `de956d6`)
+
+`scripts/lib/final_derivation.py` + `scripts/maintenance/audit_final_only.py`,
+tests `tests/test_final_derivation.py` (7). Baseline check: absorb's own
+enrichment (A) reproduces the stored final for 13 871 of 13 880 finals (the 9
+others differ in `metal`, set by a pass outside enrichment) — the measurement
+is faithful. Of 13 880 finals, 11 237 show some difference between A and the
+skeleton derivation B. Categories (values / finals; foundation | promoted):
+
+- **own — only the final supplies it** (the stage-2 candidates):
+  `sources` 417/283 | 2 438/436; `catalog` 680/298 | 327/155; `mint`
+  52/46 | 88/86; `year_ranges` 116/22 | 303/16 (years); readings
+  (`weight`/`fineness`/`diameter`) ~40 values; scalars of the 687 V1
+  foundations (`nominal` 110, `ruler` 269, `metal` 111, `issuing_entity`
+  114, years 110, `fraction` 156, inscriptions ~90 each, `v1_home_location`
+  687); on promoted finals `mintmaster` 228, `year_verified` 185, `note` 749.
+- **relabel — same url, the final keeps an older ref text**: `sources`
+  86/61 | 70/68 (e.g. «Hede nc4h10» vs the member's «Hede nc4h10A»).
+- **diverged — a single-valued field the final froze, the members now give
+  another value**: `ruler` 256 | 4 292 (spelling: final «Frederik III.» vs
+  member «Frederik 3»), `verification_note` 523 | 5 648 (the per-source
+  boilerplate of whichever member came first), `nominal` 126 | 88,
+  `note` 25 | 164, verification flags ~300.
+- **hidden — a member value the self-run does not show**: `catalog` 59/32 |
+  101/38 (single-slot registers such as `bruun_lot_no`, where the final's
+  value takes the slot), 3 others.
+
+Consequence for stage 3: the own layer is not only lists. A rebuild without
+it flips ~4 500 ruler spellings and ~6 000 verification notes on the page,
+so «diverged» needs a rule (which value wins, and where that choice lives)
+as much as «own» needs a home.
