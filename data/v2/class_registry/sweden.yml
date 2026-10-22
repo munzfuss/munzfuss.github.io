@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 215 active, 0 retired.
+# 214 active, 1 retired.
 
 id: sweden
 classes:
@@ -551,9 +551,10 @@ classes:
   - id: c-507f7d36
     status: active
     created: '2026-10-22'
-    label: unified-kmk-150267
+    label: unified-dk-galster-hg-237
     legacy_id: unified-kmk-150267
     members:
+      - dk-galster-hg-237
       - kmk-150267
   - id: c-5101893c
     status: active
@@ -1317,13 +1318,6 @@ classes:
     legacy_id: unified-dk-bruun-11827
     members:
       - dk-bruun-11827
-  - id: c-e0fcf637
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-galster-hg-237
-    legacy_id: unified-dk-galster-hg-237
-    members:
-      - dk-galster-hg-237
   - id: c-e10c5a53
     status: active
     created: '2026-10-22'
@@ -1549,3 +1543,12 @@ classes:
     legacy_id: unified-dk-bruun-11871
     members:
       - dk-bruun-11871
+  - id: c-e0fcf637
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-galster-hg-237
+    legacy_id: unified-dk-galster-hg-237
+    merged_into: c-507f7d36
+    retired: '2026-10-22'
+    members:
+      - dk-galster-hg-237
