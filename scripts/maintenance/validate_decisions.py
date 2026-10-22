@@ -13,6 +13,11 @@ raising loader, and (b) checks every merges/no_merges entry carries
 `members` = a list of >= 2 non-empty ids (>= 1 in `_cross_entity.yml` merges: a RELOCATE), and every year_demote entry carries
 `member_id`/`members`. Both checks share `merge_seeds_cross_source`'s
 implementation so the merger and this gate never drift.
+`--check-classification` (D49 stage 1) does the same for
+data/v2/classification_decisions/<entity>.yml: every `coin_id` must resolve to a
+seed of the entity (bare-Hede and `_thinned_from` expansion included) or to a
+current class / final id, and no two assignments may reach one class with
+different fuss / phase / kind.
 
 Run standalone (used by .githooks/pre-commit):
     .venv/bin/python scripts/maintenance/validate_decisions.py        # all files
@@ -147,17 +152,98 @@ def check_member_resolution(entity_filter: set[str] | None = None) -> list[tuple
     return orphans
 
 
+def _layer_ids(entity: str, layer: str) -> tuple[set[str], dict[str, str]]:
+    """(ids, {composed_of member → id}) of data/v2/<layer>/<entity>.yml."""
+    import yaml
+    path = ROOT / "data" / "v2" / layer / f"{entity}.yml"
+    ids: set[str] = set()
+    member_of: dict[str, str] = {}
+    if not path.exists():
+        return ids, member_of
+    d = yaml.safe_load(path.read_text()) or {}
+    for c in (d.get("coins") if isinstance(d, dict) else d) or []:
+        if not isinstance(c, dict) or not c.get("id"):
+            continue
+        ids.add(c["id"])
+        for m in c.get("composed_of") or []:
+            member_of.setdefault(str(m), c["id"])
+    return ids, member_of
+
+
+def _cls_value(a: dict) -> tuple[str, str, str]:
+    """Hashable (fuss, phase, kind) of an assignment — a value may be a dict
+    (per-language phase label), so compare the canonical text."""
+    import json as _j
+    return tuple(_j.dumps(a.get(k), sort_keys=True, default=str, ensure_ascii=False)
+                 for k in ("fuss", "phase", "kind"))
+
+
+def check_classification_resolution(entity_filter: set[str] | None = None
+                                    ) -> tuple[list[tuple], list[tuple]]:
+    """Every classification_decisions `coin_id` must resolve (D49 stage 1), and
+    two assignments reaching one class may not disagree.
+
+    A `coin_id` resolves when it is a SEED id of the entity's processing set
+    (with the merger's bare-Hede and `_thinned_from` expansion — the same
+    `_expand_member_against` the member check uses), or, for backward
+    compatibility, a current seed_unified / final id of that entity or a
+    member a final's `composed_of` names. Anything else is an orphan absorb
+    reports as ASSIGN-MISS and never applies.
+
+    A conflict is two assignments whose keys reach the SAME class (seed_unified
+    id, via composed_of) with different (fuss, phase, kind): absorb refuses to
+    write on it. Agreeing duplicates are fine. Returns (orphans, conflicts) as
+    [(entity, coin_id)] and [(entity, class, [coin_ids], [values])]."""
+    import yaml
+    orphans: list[tuple] = []
+    conflicts: list[tuple] = []
+    pulls = _cross_entity_pulls()
+    thinned = _thinned_index()
+    for path in sorted(CLASSIFY_DIR.glob("*.yml")):
+        ent = path.stem
+        if ent.startswith("_") or (entity_filter and ent not in entity_filter):
+            continue
+        sids = _seed_ids(ent) | pulls.get(ent, set())
+        uids, seed_class = _layer_ids(ent, "seed_unified")
+        fids, final_member = _layer_ids(ent, "final")
+        known = uids | fids | set(final_member)
+        doc = yaml.safe_load(path.read_text()) or {}
+        by_class: dict[str, list[dict]] = {}
+        for a in (doc.get("assignments") or []):
+            if not isinstance(a, dict) or not a.get("coin_id") or a.get("superseded_by"):
+                continue   # superseded entries are records, not live decisions
+            cid = str(a["coin_id"])
+            seeds = _M._expand_member_against(cid, sids, thinned)
+            if not seeds and cid not in known:
+                orphans.append((ent, cid))
+                continue
+            classes = {seed_class[s] for s in seeds if s in seed_class} or {cid}
+            for cls in classes:
+                by_class.setdefault(cls, []).append(a)
+        for cls, lst in by_class.items():
+            vals = {_cls_value(a) for a in lst}
+            if len(vals) > 1:
+                conflicts.append((ent, cls, sorted(str(a["coin_id"]) for a in lst),
+                                  sorted(map(str, vals))))
+    return orphans, conflicts
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--check-members", action="store_true",
                     help="also verify every merges/no_merges member resolves to "
                          "a current seed id (orphan detector; exit 1 if any)")
-    ap.add_argument("--entity", help="restrict --check-members to this entity")
+    ap.add_argument("--check-classification", action="store_true",
+                    help="also verify every classification_decisions coin_id "
+                         "resolves and no two assignments on one class disagree "
+                         "(exit 1 if any)")
+    ap.add_argument("--entity", help="restrict the resolution checks to this entity")
     args = ap.parse_args()
+    ef = {args.entity} if args.entity else None
+    rc = 0
 
     if args.check_members:
-        ef = {args.entity} if args.entity else None
         orphans = check_member_resolution(ef)
         if orphans:
             print(f"⚠ {len(orphans)} non-resolving merge-decision member(s) "
@@ -168,10 +254,33 @@ def main() -> int:
             print("  Each must resolve to a SEED id. Re-point or drop via the "
                   "v2-merge-coins skill;\n  a non-resolving no_merges member is a "
                   "silent over-merge gap.", file=sys.stderr)
-            return 1
-        if not args.quiet:
+            rc = 1
+        elif not args.quiet:
             print("✓ all merge-decision members resolve to seed ids.")
-        return 0
+
+    if args.check_classification:
+        orphans, conflicts = check_classification_resolution(ef)
+        if orphans:
+            print(f"⚠ {len(orphans)} non-resolving classification coin_id(s) "
+                  "(absorb reports them as ASSIGN-MISS and never applies them):",
+                  file=sys.stderr)
+            for ent, cid in orphans:
+                print(f"    [{ent}] {cid}", file=sys.stderr)
+            print("  Re-key to a SEED id of the coin (scripts/maintenance/"
+                  "migrate_classification_keys.py), move the entry to the coin's "
+                  "entity, or drop it.", file=sys.stderr)
+            rc = 1
+        if conflicts:
+            print(f"⚠ {len(conflicts)} classification conflict(s) — assignments "
+                  "reaching one class with different values:", file=sys.stderr)
+            for ent, cls, cids, vals in conflicts:
+                print(f"    [{ent}] {cls}: {', '.join(cids)} → {vals}", file=sys.stderr)
+            rc = 1
+        if not orphans and not conflicts and not args.quiet:
+            print("✓ all classification coin_ids resolve, no conflicts.")
+
+    if args.check_members or args.check_classification:
+        return rc
 
     files = _decision_files()
     failed = 0

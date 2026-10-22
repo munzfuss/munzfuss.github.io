@@ -2138,6 +2138,67 @@ def _sub_letter_seeds(bare: str) -> list[str]:
 _SHELL_TRANSFER_FIELDS = ("fuss", "phase", "kind", "fraction")
 
 
+def _resolve_decision_key(cid: str, seed_class: dict[str, str],
+                          sub_letters, thinned: dict[str, list[str]]) -> set[str]:
+    """Every id a classification decision keyed `cid` may match (D49, stage 1).
+
+    `cid` is the stable form — a SEED id, which may be a bare Hede code
+    (`dk-hede-c4h112` → the sub-letter seeds) or a specimen §9a thinning folded
+    into a representative (`_thinned_from`) — or, for backward compatibility, a
+    class / final id, which still matches itself. The result is {cid} ∪ the
+    class ids (seed_unified `composed_of` holders) of every seed it resolves to,
+    so the apply block can match it against a final's `id` or `composed_of`
+    exactly as before. A seed's class changes name on every re-merge; the seed
+    does not — which is why the key is the seed (238 of 498 decisions pointed
+    at dead class ids on 2026-10-22).
+
+    Pure: the three indices are passed in so the rule can be tested on a
+    synthetic tree; `_decision_keys` binds the cached live ones."""
+    out = {cid}
+    seeds = [cid] if cid in seed_class else []
+    if not seeds:
+        seeds = list(sub_letters(cid) or [])
+    if not seeds:
+        seeds = [r for r in (thinned.get(cid) or []) if r in seed_class]
+    for sd in seeds:
+        cls = seed_class.get(sd)
+        if cls:
+            out.add(cls)
+    return out
+
+
+def _decision_keys(cid: str) -> set[str]:
+    return _resolve_decision_key(str(cid), _seed_class_index(),
+                                 _sub_letter_seeds, _thinned_rep_index())
+
+
+def _cls_value(a: dict) -> tuple[str, str, str]:
+    """Hashable (fuss, phase, kind) of an assignment — a value may be a dict
+    (per-language phase label), so compare the canonical text."""
+    import json as _j
+    return tuple(_j.dumps(a.get(k), sort_keys=True, default=str, ensure_ascii=False)
+                 for k in ("fuss", "phase", "kind"))
+
+
+def _index_assignments(assignments: list) -> tuple[dict[str, list[dict]], list[dict]]:
+    """{resolved key → [assignments]} plus the conflicts: two assignments
+    reaching one key with different fuss / phase / kind. Agreeing duplicates
+    (several seeds of one class each carrying the same decision) are fine."""
+    by_key: dict[str, list[dict]] = {}
+    for a in assignments:
+        if not isinstance(a, dict) or not a.get("coin_id") or a.get("superseded_by"):
+            continue   # `superseded_by`: kept as a record, inert (migration rule)
+        for k in _decision_keys(a["coin_id"]):
+            by_key.setdefault(k, []).append(a)
+    conflicts: list[dict] = []
+    for k, lst in by_key.items():
+        vals = {_cls_value(a) for a in lst}
+        if len(vals) > 1:
+            conflicts.append({"key": k, "coin_ids": sorted(a["coin_id"] for a in lst),
+                              "values": sorted(map(str, vals))})
+    return by_key, conflicts
+
+
 def _settle_curated_shell(shell: dict, successor: dict | None) -> bool:
     """A curated shell whose class was superseded: hand its curation to the
     successor and report True (drop the shell), or report False (keep it).
@@ -2294,9 +2355,11 @@ def _inherit_classification(entity_id: str, finals: list[dict]) -> int:
     removals = _load_yaml(ROOT / "data" / "v2" / "_recorded_removals.yml")
     declassified = {str(e.get("seed")) for e in (removals.get("removals") or [])
                     if isinstance(e, dict) and e.get("kind") == "declassify"}
-    decided = {str(a.get("coin_id")) for a in (_load_yaml(
-        V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml").get("assignments") or [])
-        if isinstance(a, dict)}
+    decided: set[str] = set()
+    for a in (_load_yaml(V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml")
+              .get("assignments") or []):
+        if isinstance(a, dict) and a.get("coin_id"):
+            decided |= _decision_keys(a["coin_id"])
     applied = 0
     for fc in finals:
         if not isinstance(fc, dict) or fc.get("fuss") not in (None, "", "seed_unsorted"):
@@ -3377,11 +3440,12 @@ def process_entity(entity_id: str) -> dict:
     # `no_basic_peer_only` when a basic peer exists) goes unapplied —
     # the assignment is the curator's explicit «yes, add this row»
     # decision, so the policy gate should be bypassed for it.
+    # Keys are resolved through `_decision_keys` (D49 stage 1): a decision on a
+    # SEED id force-promotes the pending class that holds the seed.
     _decisions_pre = _load_yaml(V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml")
-    _assignment_ids: set[str] = set()
-    for a in _decisions_pre.get("assignments") or []:
-        if isinstance(a, dict) and a.get("coin_id"):
-            _assignment_ids.add(a["coin_id"])
+    _assignment_by_key, assign_conflicts = _index_assignments(
+        _decisions_pre.get("assignments") or [])
+    _assignment_ids: set[str] = set(_assignment_by_key)
 
     bulk_promoted: list[str] = []
     bulk_skipped: list[str] = []  # mode="no_basic_peer_only" — peer-exists cases stay pending
@@ -3528,50 +3592,48 @@ def process_entity(entity_id: str) -> dict:
     # to nobel_fod/I/kurant were declared and preserved, but the final
     # entries kept fuss=seed_unsorted/phase=galster.)
     #
-    # Matching: assignment.coin_id is looked up against (a) each enriched
-    # entry's `id` directly, and (b) each enriched entry's `composed_of`
-    # member ids. Direct id match wins when both apply. Override touches
-    # only the three classification fields (fuss/phase/kind); all other
-    # data on the entry stays intact.
-    decisions_doc = _load_yaml(V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml")
-    raw_assignments = decisions_doc.get("assignments") or []
-    assignment_by_coin_id: dict[str, dict] = {}
-    for a in raw_assignments:
-        if not isinstance(a, dict):
-            continue
-        cid = a.get("coin_id")
-        if cid:
-            assignment_by_coin_id[cid] = a
+    # Matching (D49 stage 1): `coin_id` is a SEED id (the stable key — a bare
+    # Hede code and a §9a-folded specimen resolve too) or, for backward
+    # compatibility, a class / final id. `_index_assignments` expands every key
+    # to {itself} ∪ the class ids holding its seeds, and the expanded keys are
+    # looked up against each enriched entry's `id` and `composed_of`. Override
+    # touches only fuss / phase / kind; all other data on the entry stays
+    # intact. Two assignments reaching one entry with different values are a
+    # conflict — reported, nothing applied to that entry, and `main` refuses
+    # to write under --apply.
+    raw_assignments = _decisions_pre.get("assignments") or []
     applied_assignments: list[str] = []
     unapplied_assignments: list[str] = []
-    if assignment_by_coin_id:
+    inert_excluded_assignments: list[str] = []
+    reached_coin_ids: set[str] = set()
+    if _assignment_by_key:
+        conflict_keys = {c["key"] for c in assign_conflicts}
         for entry in enriched_entries:
-            eid = entry.get("id")
-            assignment: dict | None = None
-            if eid and eid in assignment_by_coin_id:
-                assignment = assignment_by_coin_id[eid]
-                applied_assignments.append(eid)
-            else:
-                for cid in entry.get("composed_of") or []:
-                    if cid in assignment_by_coin_id:
-                        assignment = assignment_by_coin_id[cid]
-                        applied_assignments.append(cid)
-                        break
-            if assignment is None:
+            keys = [entry.get("id")] + list(entry.get("composed_of") or [])
+            hits = [a for k in keys if k for a in _assignment_by_key.get(k, ())]
+            if not hits:
                 continue
+            if any(k in conflict_keys for k in keys if k):
+                continue
+            assignment = hits[0]
+            applied_assignments.append(assignment["coin_id"])
+            reached_coin_ids |= {a["coin_id"] for a in hits}
             for field in ("fuss", "phase", "kind"):
                 if assignment.get(field):
                     entry[field] = assignment[field]
-        # Diagnostic: assignments whose coin_id matched nothing.
-        all_known_ids: set[str] = set()
-        for e in enriched_entries:
-            if e.get("id"):
-                all_known_ids.add(e["id"])
-            for cid in e.get("composed_of") or []:
-                all_known_ids.add(cid)
-        for coin_id in assignment_by_coin_id:
-            if coin_id not in all_known_ids:
-                unapplied_assignments.append(coin_id)
+        # Diagnostic: assignments none of whose resolved keys matched anything.
+        # A decision on an EXCLUDED coin (exclusions/<entity>.yml) is inert by
+        # definition — counted apart, so ASSIGN-MISS names only real misses.
+        for a in raw_assignments:
+            if isinstance(a, dict) and a.get("coin_id") and not a.get("superseded_by") \
+                    and a["coin_id"] not in reached_coin_ids:
+                _reps = set(_thinned_rep_index().get(str(a["coin_id"])) or ())
+                if a["coin_id"] in (excluded_ids or ()) or (_reps & set(excluded_ids or ())):
+                    # the coin, or the representative its specimen is folded
+                    # into, is excluded: nothing to classify
+                    inert_excluded_assignments.append(a["coin_id"])
+                else:
+                    unapplied_assignments.append(a["coin_id"])
 
     # FRACTION INFERENCE — when a final entry has fuss != seed_unsorted +
     # a parseable nominal but NO fraction, derive it from the fuss+nominal
@@ -3926,6 +3988,8 @@ def process_entity(entity_id: str) -> dict:
         "enriched_final_entries": enriched_entries,
         "applied_assignments": applied_assignments,
         "unapplied_assignments": unapplied_assignments,
+        "inert_excluded_assignments": inert_excluded_assignments,
+        "assign_conflicts": assign_conflicts,
     }
 
 
@@ -3957,11 +4021,16 @@ def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
         f"# Classification decisions for entity `{entity_id}` (Phase 4).\n"
         f"# Curator-authoritative file (committed). Two sections:\n"
         f"#\n"
-        f"# 1. `assignments:` — explicit fuss/phase for ambiguous coins.\n"
-        f"#    Each entry adds a NEW final entry on next absorb run.\n"
+        f"# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on\n"
+        f"#    every absorb run to the final holding it (and promoting a pending\n"
+        f"#    class the bulk-promote gate would otherwise park).\n"
+        f"#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across\n"
+        f"#    re-merges, unlike a `unified-<head>` class id, which renames when\n"
+        f"#    a higher-authority member joins. A bare Hede code and a specimen\n"
+        f"#    folded by §9a thinning resolve too. Class / final ids still work.\n"
         f"#    Example:\n"
         f"#      assignments:\n"
-        f"#        - coin_id: unified-dk-numismaster-12345\n"
+        f"#        - coin_id: dk-numismaster-12345\n"
         f"#          fuss: 9_25_thaler\n"
         f"#          phase: A\n"
         f"#          kind: kurant\n"
@@ -4178,6 +4247,19 @@ def main() -> int:
     totals = Counter()
     for ent in entities:
         result = process_entity(ent)
+        if result.get("assign_conflicts"):
+            print(f"  [{ent}] ✗ ASSIGN-CONFLICT — assignments reaching one coin "
+                  "with different values (neither applied to it):")
+            for c in result["assign_conflicts"]:
+                print(f"      {c['key']}: {', '.join(c['coin_ids'])} → {c['values']}")
+            totals["assign_conflicts"] += len(result["assign_conflicts"])
+        if result.get("unapplied_assignments") and not args.dry_run:
+            _mu = ROOT / "data" / "v2" / "match_uncertainty"
+            _mu.mkdir(parents=True, exist_ok=True)
+            import json as _json
+            (_mu / f"{ent}.assign_miss.json").write_text(
+                _json.dumps(sorted(map(str, result["unapplied_assignments"])),
+                            indent=1) + "\n", encoding="utf-8")
         totals["unified_total"] += result["unified_total"]
         totals["final_total_after"] += result["final_total_after"]
         totals["already_absorbed"] += result["already_absorbed"]
@@ -4206,6 +4288,8 @@ def main() -> int:
             line += f"  assigned:{len(result['applied_assignments'])}"
         if result.get("unapplied_assignments"):
             line += f"  ASSIGN-MISS:{len(result['unapplied_assignments'])}"
+        if result.get("inert_excluded_assignments"):
+            line += f"  assigned-excluded:{len(result['inert_excluded_assignments'])}"
         if result["multi_match_warnings"]:
             line += f"  multi:{len(result['multi_match_warnings'])}"
         if result["enrichment_conflicts"]:
@@ -4337,6 +4421,11 @@ def main() -> int:
         print("\n--- DRY RUN — no files written. Re-run with --apply to commit. ---")
     else:
         print(f"\n✓ Wrote enriched final yamls to {V2_FINAL}/")
+    if totals.get("assign_conflicts"):
+        print(f"\n✗ {totals['assign_conflicts']} ASSIGN-CONFLICT(s) — the entries "
+              "concerned were left unclassified; resolve them in "
+              "classification_decisions/ (validate_decisions.py --check-classification).")
+        return 1
 
     return 0
 

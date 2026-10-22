@@ -809,12 +809,17 @@ def check_i6_decision_refs(unified_coins: list[tuple[str, dict]],
         for m in c.get("composed_of") or []:
             final_composed.add(m)
 
+    # A member naming a specimen §9a thinning folded into a representative
+    # (`_thinned_from`) resolves — the same rule as validate_decisions
+    # --check-members and the merger's `_expand_member_against`.
+    thinned = {dead for _, _, c in seed_coins for dead in (c.get("_thinned_from") or [])}
     if V2_MERGE_DECISIONS.exists():
         for p in V2_MERGE_DECISIONS.glob("*.yml"):
             d = _load_yaml(p)
             for entry in (d.get("merges") or []) + (d.get("no_merges") or []):
                 for mid in entry.get("members") or []:
-                    if not _expands_to_seed(mid, seed_ids) and mid not in unified_ids:
+                    if not _expands_to_seed(mid, seed_ids) and mid not in unified_ids \
+                            and mid not in thinned:
                         errors.append(
                             f"I6: merge_decisions/{p.stem}.yml references "
                             f"unknown id {mid!r}"
@@ -822,11 +827,17 @@ def check_i6_decision_refs(unified_coins: list[tuple[str, dict]],
 
     if V2_CLASSIFICATION_DECISIONS.exists():
         resolvable = unified_ids | seed_ids | final_ids | final_composed
+        # D49 stage 1: a coin_id is a SEED id — a bare Hede code and a
+        # §9a-folded specimen (`_thinned_from`) resolve the way absorb's
+        # `_decision_keys` resolves them.
         for p in V2_CLASSIFICATION_DECISIONS.glob("*.yml"):
             d = _load_yaml(p)
             for entry in d.get("assignments") or []:
                 cid = entry.get("coin_id")
-                if cid and cid not in resolvable:
+                if entry.get("superseded_by"):
+                    continue
+                if cid and cid not in resolvable and cid not in thinned \
+                        and not _expands_to_seed(cid, seed_ids):
                     errors.append(
                         f"I6: classification_decisions/{p.stem}.yml::assignments "
                         f"references unknown coin_id {cid!r}"
@@ -923,11 +934,21 @@ def check_i13_decision_entity(final_coins: list[tuple[str, dict]],
                                 f"member {s!r} is merged in {home!r} — move the "
                                 f"entry to merge_decisions/{home}.yml")
 
+    # D49 stage 1: a seed-keyed coin_id (bare Hede code / folded specimen too)
+    # lives where its seed's final lives.
+    thinned_rep: dict[str, list[str]] = {}
+    for _, _, c in seed_coins:
+        for dead in (c.get("_thinned_from") or []):
+            thinned_rep.setdefault(dead, []).append(c["id"])
     for p in sorted(classification_dir.glob("*.yml")):
         d = _load_yaml(p)
         for i, e in enumerate(d.get("assignments") or []):
             cid = e.get("coin_id")
-            ents = final_keys.get(cid) or set()
+            if e.get("superseded_by"):
+                continue   # a kept record, not a live decision
+            ents = set(final_keys.get(cid) or set())
+            for s in _expand_seed(cid, seed_ids) or thinned_rep.get(cid, []):
+                ents |= seed_final.get(s, set())
             if ents and p.stem not in ents:
                 errors.append(
                     f"I13: classification_decisions/{p.stem}.yml::assignments[{i}] "

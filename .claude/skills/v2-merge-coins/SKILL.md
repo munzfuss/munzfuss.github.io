@@ -257,8 +257,9 @@ cross-entity entry whose members are just the class's own seeds.
 1. **Plan (read-only):**
    `merge_helper.py relocate <entity> <coin-id> <target>` — prints the class's
    seeds (with their physical bucket), the siblings the completeness guard will
-   ask about, EVERY classification decision naming any id of the class (current
-   AND historical `unified-<member>` ids — a decision is matched only in its
+   ask about, EVERY classification decision naming any id of the class (seed
+   ids — the stable key since D49 stage 1, folded specimens included — and the
+   historical `unified-<member>` class ids; a decision is matched only in its
    own entity's file), the render impact (Emitent badge — it IS visible — and
    pages), and a ready `_cross_entity.yml` block. If a member already sits in
    a `_cross_entity.yml` entry, edit THAT entry's `target_entity` instead of
@@ -348,7 +349,10 @@ seed layer first; do not paper over it in the decision file.
 
 A unified class is named after its top-authority member, so merging RENAMES it
 (`unified-dk-bruun-7749` → `unified-dk-hede-c7h8`). Comparing before/after by
-unified or final id therefore reports moved coins as lost. `trace_coin.py` keys
+unified or final id therefore reports moved coins as lost, and a
+`classification_decisions` entry keyed by the class id goes dead — key it by a
+SEED id of the coin instead (D49 stage 1; `validate_decisions.py
+--check-classification` catches the rest). `trace_coin.py` keys
 on seed ids and separates real losses from id churn — see CLAUDE.md §9b, and do
 not hand-roll the check.
 

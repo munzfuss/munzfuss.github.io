@@ -385,7 +385,10 @@ def cmd_relocate(entity, coin_id, target):
         print("     none")
 
     # Classification decisions under any id of the class, in any entity.
-    ids = {coin_id} | set(members) | {"unified-" + m for m in members}
+    # D49 stage 1: decisions are keyed by a SEED id (a §9a-folded specimen
+    # resolves to its representative); class ids still match for the old files.
+    folded = {dead for m in members for dead in (seeds[m].get("_thinned_from") or [])}
+    ids = {coin_id} | set(members) | folded | {"unified-" + m for m in members}
     ids |= {u for u, x in unified.items() if set(x.get("composed_of") or []) & set(members)}
     if fin:
         ids.add(fin.get("id"))
