@@ -1270,8 +1270,14 @@ def _extract_mint_from_nominal(nominal, source_mint
     # ukendt» = «; mint unknown» — curator's provenance note, not
     # part of denomination)
     s = _NOMINAL_NARRATIVE_TAIL_RE.sub("", s).rstrip(" ,;")
-    # Coin-shape descriptor stripping
-    s = _NOMINAL_SHAPE_RE.sub("", s).rstrip(" ,")
+    # Coin-shape descriptor stripping — only when a denomination is left.
+    # «Klipping» is also the NAME of Christian II's coin (Galster 42): the
+    # implicit «1 » makes it «1 Klipping», and stripping the shape word took
+    # the denomination itself, leaving the nominal «1» on 77 KMM seeds
+    # (2026-10-22, eriksson_2017_assays.md §10).
+    stripped = _NOMINAL_SHAPE_RE.sub("", s).rstrip(" ,")
+    if re.search(r"[^\W\d_]", stripped):
+        s = stripped
     mint_value = extracted_mint or source_mint
     return (s or None, mint_value)
 
