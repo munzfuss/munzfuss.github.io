@@ -595,6 +595,11 @@ _NUMERIC_INDEX_FIELDS: set[str] = {
 _PLAIN_RANGE_RE = re.compile(r"^(\d+)-(\d+)$")
 _BARE_FOREIGN_REF_RE = re.compile(
     r"^(Hildebrand|Lagerqvist|Rasmusson|Hauberg|Ernst)\s+(\S.*)$")
+# Ernst's studies are cited by year — «Ernst 1940 3-13» is numbers 3-13 of
+# Ernst 1940 (NNÅ 1940) — so the year belongs to the catalogue NAME, not to
+# the number: «Ernst 1940# 3-13» (curator 2026-10-22). «1940.1» is no 1940.1
+# but number 1 (hans.htm spelling).
+_ERNST_YEAR_REF_RE = re.compile(r"^Ernst#?\s+(1\d{3})(?:\.(?=\d)|\s+)(\S.*)$")
 _SCHIVE_COLON_RE = re.compile(r"^\s*([IVXL]+)\s*:\s*")
 _PLAIN_INT_RE = re.compile(r"^(\d+)$")
 
@@ -678,9 +683,13 @@ def normalise_catalog(catalog: dict) -> int:
         canon: list = []
         for tok in others:
             if isinstance(tok, str):
-                m = _BARE_FOREIGN_REF_RE.match(tok)
+                m = _ERNST_YEAR_REF_RE.match(tok)
                 if m:
-                    tok = f"{m.group(1)}# {m.group(2)}"
+                    tok = f"Ernst {m.group(1)}# {m.group(2)}"
+                elif "#" not in tok:
+                    m = _BARE_FOREIGN_REF_RE.match(tok)
+                    if m:
+                        tok = f"{m.group(1)}# {m.group(2)}"
             if tok not in canon:
                 canon.append(tok)
         if canon != others:

@@ -21,6 +21,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts" / "maintenance"))
 
 from lib.galster_parsers.galst_table import parse_coins  # noqa: E402
 from build_galster_denmark_seed import _fold_catalogue_rows  # noqa: E402
+from lib.catalog_codes import normalise_catalog  # noqa: E402
 
 _HEAD = ("<TR><TD>Galster</TD><TD>Schou</TD><TD>Sømod</TD><TD>Prægested</TD>"
          "<TD>Nominal</TD><TD>Materiale</TD><TD>År</TD><TD>Bemærkninger</TD></TR>")
@@ -77,6 +78,23 @@ class HansgalsTable(unittest.TestCase):
         out = _fold_catalogue_rows([page, row])
         self.assertEqual([e["id"] for e in out], ["dk-galster-2nobel"])
         self.assertEqual(out[0]["catalog"]["others"], ["Sømod# 5"])
+
+
+class ErnstYearInName(unittest.TestCase):
+    """«Ernst 1940 3-13» is numbers 3-13 of Ernst 1940: the year is part of
+    the catalogue name (curator 2026-10-22)."""
+
+    def test_year_moves_into_the_name(self) -> None:
+        for raw, want in [("Ernst# 1940 3-13", "Ernst 1940# 3-13"),
+                          ("Ernst 1940 22-23", "Ernst 1940# 22-23"),
+                          ("Ernst# 1940.1", "Ernst 1940# 1"),
+                          ("Ernst 1940# 24-25", "Ernst 1940# 24-25"),
+                          ("Hauberg 103-108", "Hauberg# 103-108")]:
+            c = {"others": [raw]}
+            normalise_catalog(c)
+            self.assertEqual(c["others"], [want], raw)
+            normalise_catalog(c)                       # idempotent
+            self.assertEqual(c["others"], [want], raw)
 
 
 if __name__ == "__main__":
