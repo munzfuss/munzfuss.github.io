@@ -107,11 +107,12 @@ def _mint_suspect(galster: str, nrs: list[int]) -> dict:
     }}
 
 
-# Types held back until the curator decides the merge (note §9): the matcher
-# keeps them apart from our existing class — G 39 by the tier-1 weight gate
-# (the 1515 pieces weigh 1,11-2,16 g), G 42 by the nominal («Skilling (kl)» vs
-# Galster's «18 Penning»). Seeding them unmerged would add duplicate rows.
-_HOLD_BASES_2017_1 = {"39", "42"}
+# Types held back until the curator decides a merge. G 39 and G 42 were held
+# (the matcher keeps them apart: G 39 by the tier-1 weight gate — the 1515
+# pieces weigh 1,11-2,16 g — and G 42 by the nominal, «Skilling (kl)» vs
+# Galster's «18 Penning»); the curator approved both merges 2026-10-22 and they
+# are joined by merge_decisions/danish_realm.yml. Note §9b.
+_HOLD_BASES_2017_1: set[str] = set()
 
 _LL_TO_GALSTER = {"7b": "142"}           # danskmoent gotlg142: «Lagerqvist 7b»
 

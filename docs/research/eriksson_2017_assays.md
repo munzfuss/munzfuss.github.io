@@ -429,3 +429,13 @@ Curator: «з усім згоден, однак поки не будемо ро�
   Sieg numbers, so no catalogue key links them; the new entries mostly stand as their own `seed_unsorted` rows.
   No. 1 (Næstved Hvid, 0,97 g «f», no assay) enters as a weight only.
 - Still held: G 39, G 42 (merge decision).
+
+### 9b. G 39 and G 42 merged (2026-10-22, curator, on the merge-candidate tables)
+
+The hold is lifted (`_HOLD_BASES_2017_1` empty). `merge_decisions/danish_realm.yml` joins
+`metallanalyser-2017-1-g39` with the whole Galster 39 class (`unified-dk-bruun-3917`, 24 seeds) and
+`metallanalyser-2017-1-g42` with the Galster 42 class (`dk-galster-c2g-42` + `dk-numista-297656`). Load-bearing key:
+Galster 39 / 42; G 39's 1515 weights are Eriksson's documented lowering, G 42's «Skilling (kl)» and «18 Penning» are
+two names of the Klipping struck with Skilling dies (danskmoent 18pennin.htm). Re-flow: 2 coins changed, 0 losses;
+the finals carry 14 and 12 separate paired readings (one per appendix number), none hidden. G 42 remains split over
+several KMM-only finals (`kmk-132460` and ~10 single records, some with wrong rulers) — a separate clean-up.
