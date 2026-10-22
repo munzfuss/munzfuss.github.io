@@ -163,6 +163,16 @@ all `data/v2/seed/<source>/<entity>.yml` files and produces
 `data/v2/seed_unified/<entity>.yml` with **one entry per physical coin**,
 enriched with data from every source that catalogued it.
 
+**Class identity (D49, since 2026-10-22).** The unified `id`
+(`unified-<top-authority member>`) is a NAME derived from the class's
+composition and renames when the composition changes; it is kept as the
+entry's `label`. The stable handle is `class_id`, an opaque `c-<8 hex>` id
+from `data/v2/class_registry/<entity>.yml`, which the merger recognises on
+every run by specimen overlap (`lib/class_registry.Registry.inherit`): the
+same coin keeps the same `class_id` through merges, splits, fold re-cuts and
+relocations. Decisions are keyed by a member SEED id (stage 1); from stage 3
+the final's `id` is its head class's `class_id`.
+
 #### Match-strategy hierarchy
 
 A pair of seed entries are candidates for the same physical coin per

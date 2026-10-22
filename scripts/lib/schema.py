@@ -1130,6 +1130,17 @@ class Coin(_StrictBase):
     )
     catalog: CatalogRefs = Field(default_factory=CatalogRefs)
     metal: Literal["silver", "gold", "billon", "copper", "lead", "bronze", "pewter"] | None = None
+    # D49 class identity. `class_id` is the registry's opaque immutable id of
+    # the class (data/v2/class_registry/<entity>.yml); `label` is the mutable
+    # human-readable name (the `unified-<top-authority member>` string) the
+    # render reads where it used to parse `id`; `legacy_id` is the id a final
+    # carried before the stage-3 migration; `origin` says whether a final is
+    # a curated V1 foundation or a pipeline-promoted class (absorb's marker,
+    # replacing the `unified-` prefix test).
+    class_id: str | None = None
+    label: str | None = None
+    legacy_id: str | None = None
+    origin: Literal["foundation", "promoted"] | None = None
     metal_verified: bool = Field(
         True,
         description=(

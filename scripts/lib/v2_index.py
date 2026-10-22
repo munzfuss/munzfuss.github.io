@@ -4,7 +4,9 @@ WHY THIS FILE EXISTS. The layers do not link the way they look like they do:
 
     seed id        ikmk-18297645, dk-hede-c4h2      stable (§9b)
     unified id     unified-<top-authority seed id>  renames on a merge decision
-    final id       follows the unified
+                   (D49: a NAME, kept as `label`; the stable handle is
+                   `class_id` from data/v2/class_registry/, stage 2+)
+    final id       follows the unified (until D49 stage 3: the head class id)
 
     seed_unified[].composed_of  →  SEED ids
     final[].composed_of         →  UNIFIED ids, and sometimes seed ids directly
