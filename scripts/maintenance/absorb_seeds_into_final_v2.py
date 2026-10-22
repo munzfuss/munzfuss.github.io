@@ -3423,7 +3423,11 @@ def process_entity(entity_id: str) -> dict:
         full_composed = sorted(set(fc.get("composed_of") or []) | set(new_links.get(fid, [])))
         base = _own(fc)
         members = [base]
-        for mid in full_composed:
+        # With the self-union off the first class decides a scalar the
+        # skeleton no longer carries (nominal, ruler, a single-slot catalogue
+        # register); that must be the final's HEAD class (D49: the final's id
+        # is its head class's id), not whichever class id sorts first.
+        for mid in sorted(full_composed, key=lambda m: (m != fid, m)):
             if mid in unified_by_id:
                 members.append(unified_by_id[mid])
         enriched, conflicts = _enrich_final_entry(base, members, entity_id)

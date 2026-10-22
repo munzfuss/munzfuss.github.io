@@ -123,3 +123,24 @@ class KeyOrder(unittest.TestCase):
         shared = [k for k in fc if k in out]
         self.assertEqual([k for k in out if k in fc], shared)
         self.assertNotIn("__order__", out)
+
+
+class HeadClassFirst(unittest.TestCase):
+    def test_a_scalar_comes_from_the_head_class(self):
+        """A promoted final of two classes: `nominal` is the HEAD class's (the
+        one whose id the final carries), not the class whose id sorts first."""
+        head = dict(CLS, id="c-zz", label="unified-s1", nominal="1 Krone")
+        other = dict(CLS, id="c-aa", label="unified-s2", composed_of=["s2"], nominal="1 Mark")
+        fc = _promoted(id="c-zz", composed_of=["c-aa", "c-zz"], nominal="1 Krone")
+        ab._LIVE_UNIFIED.clear()
+        ab._LIVE_UNIFIED.update({"c-zz": head, "c-aa": other})
+        ab.SELF_UNION_ENABLED = False
+        try:
+            base = ab._own(fc)
+            order = sorted(fc["composed_of"], key=lambda m: (m != fc["id"], m))
+            with contextlib.redirect_stdout(io.StringIO()):
+                out, _ = ab._enrich_final_entry(base, [base] + [ab._LIVE_UNIFIED[m] for m in order], "danish_norway")
+        finally:
+            ab.SELF_UNION_ENABLED = True
+        self.assertEqual(order, ["c-zz", "c-aa"])
+        self.assertEqual(out["nominal"], "1 Krone")
