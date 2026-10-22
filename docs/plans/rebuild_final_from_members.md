@@ -395,3 +395,41 @@ three seed_unsorted rows gone from the Denmark page.
 Not landed on main yet (the curator is away; the branch carries it — see
 the handoff). Stage A code is ready (`--no-self-union`, P1 / P2 / P5,
 6 tests); stage B runs next from the stage-N commit.
+
+## Stage B — results (2026-10-23, from `cb36693`)
+
+`absorb --apply --no-self-union` over all entities from the committed
+stage-N state; merger dry-run first (seed ↔ seed_unified consistent).
+
+- **8 052 of 13 880 finals change; no coin gone or new.** Per field
+  (removed / added; foundation | promoted): `sources` 503/86 | 2 490/70;
+  `catalog` 680/59 | 316/101; `mint` 52/0 | 96/14; readings ~55 | 0;
+  `ruler` – | 1 294/1 277 (stage N already settled the Danish forms — what
+  is left is the German-states English form «John Frederick (Johann
+  Friedrich)» → the class's «Johann Friedrich», and the like);
+  `verification_note` 621/523 | 5 648/5 648 (the September Danish backfill
+  lives on the finals only); `mintmaster` – | 226/3; `nominal` – | 88/88;
+  flags: `mint_verified` – | 156/156 (true → false: absorb's P8
+  sources-imply-mint rule flipped the stored final each run and the skeleton
+  does not carry the flip), `metal_verified` 20 | 51, `diameter_mm_verified`
+  30 | 76, `year_verified` 18/23 | 176/5; V1 foundations lose their
+  bootstrap-era scalars where no member gives them: `metal` 111, `nominal` /
+  `year_*` 110, inscriptions ~100, `fineness_verified` 121, `mint_verified`
+  123, `verified` 115; `year_ranges` foundation 44 removed / **544 added**
+  (the classes carry years the V1 curator's range did not — review).
+- `verify_reflow`: 1 420 loss lines, 997 moved, 2 494 coins; `trace_coin
+  diff`: 5 066 seeds on a final with fewer sources, 0 lost finals, 0
+  reclassified. `candidates.json` has every value (seed-keyed).
+- **Transfer paths with the switch:** fold 25 / purge 9 / guard 9 as before;
+  the 9 + 1 guard re-adds have NO live class and come back as stored
+  (reported by the new counter) — these are the curated shells / V1-direct
+  entries the guard exists for.
+- **Fixed point:** a second run reproduces every coin byte-for-byte as a
+  SET; `danish_realm.yml` alone differs in ENTRY ORDER (the fold drops 25
+  entries in run 1 and 22 in run 2 and re-appends them). Pre-existing: the
+  fold / guard cycle fires every run; content is stable. Noted, not fixed
+  here. A key-order regression (the skeleton lost the stored key order and
+  moved `nominal` / `ruler` below `id`) was fixed before this run.
+- **Render:** munzfuss 125 of 146 pages, danskmoent 101 of 105 — the
+  `(?)` marker flips and citation counts reach most tables; read per
+  category in stage C, not per page.

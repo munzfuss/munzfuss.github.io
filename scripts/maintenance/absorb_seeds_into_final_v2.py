@@ -535,7 +535,13 @@ def _skeleton(fc: dict) -> dict:
     for f in (h.keys() if isinstance(h, dict) else (h or [])):
         keep.add(f)
         keep.add(f"{f}_verified")
-    return {k: copy.deepcopy(v) for k, v in fc.items() if k in keep}
+    sk = {k: copy.deepcopy(v) for k, v in fc.items() if k in keep}
+    # The stored key order, so the rebuilt entry serialises as the stored
+    # one did (the order of a final is historical, not canonical — three
+    # orders of nominal / ruler / fraction / mintmaster coexist) and a
+    # second run is byte-identical. Consumed by `_enrich_final_entry`.
+    sk["__order__"] = list(fc.keys())
+    return sk
 
 
 def _own(fc: dict) -> dict:
@@ -1341,6 +1347,14 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
             if isinstance(m, dict) and m.get("_entity_routing_hint"):
                 out["_entity_routing_hint"] = m["_entity_routing_hint"]
                 break
+
+    # A skeleton (`_skeleton`, --no-self-union) carries the stored key order;
+    # re-impose it so the rebuilt entry serialises as the stored one did.
+    order = final_entry.get("__order__")
+    if order:
+        out.pop("__order__", None)
+        out = {**{k: out[k] for k in order if k in out},
+               **{k: v for k, v in out.items() if k not in order}}
 
     return out, conflicts
 

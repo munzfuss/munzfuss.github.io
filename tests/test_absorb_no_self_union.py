@@ -104,9 +104,22 @@ class SwitchOn(unittest.TestCase):
 
     def test_skeleton_keeps_bookkeeping_only(self):
         sk = ab._skeleton(_promoted(_weights_thinned=["x"], v1_home_location="denmark"))
-        self.assertEqual(set(sk), {"id", "label", "origin", "composed_of", "fuss", "phase",
+        self.assertEqual(set(sk) - {"__order__"}, {"id", "label", "origin", "composed_of", "fuss", "phase",
                                    "kind", "note", "_weights_thinned", "v1_home_location"})
 
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class KeyOrder(unittest.TestCase):
+    def test_rebuilt_entry_keeps_the_stored_key_order(self):
+        ab.SELF_UNION_ENABLED = False
+        try:
+            fc = _promoted()
+            out = _enrich(fc)
+        finally:
+            ab.SELF_UNION_ENABLED = True
+        shared = [k for k in fc if k in out]
+        self.assertEqual([k for k in out if k in fc], shared)
+        self.assertNotIn("__order__", out)
