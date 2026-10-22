@@ -111,7 +111,7 @@ _CAT_EDITION_YEAR_RE = re.compile(r"^(19|20)\d{2}\b")
 # «no» — an unknown catalogue, silently dropped. `_join_edition_year_index`
 # below rejoins that shape BEFORE the split; this pattern then reads it.
 _CAT_INDEX_AFTER_YEAR_RE = re.compile(
-    r"^(?:19|20)\d{2}\s*,?\s*(?:nr\.?|no\.?|#)\s*(\d+(?:(?!ff|var)[A-Za-z])?(?:\s*-\s*\d+(?:(?!ff|var)[A-Za-z])?)?)",
+    r"^(?:19|20)\d{2}\s*,?\s*(?:nr\.?|no\.?|#)\s*(\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?)",
     re.IGNORECASE)
 # «Lange 1908, no. 306-312» → «Lange 306-312» — applied to the WHOLE typeNumber
 # before it is split on `[;,]`, because the split happens first and would put
@@ -599,14 +599,19 @@ _UNCERTAIN_LIST_RE = re.compile(r"\beller\b|\bell\.|\?")
 # A sub-variant letter printed after a space, as the whole rest of a segment.
 _SPACED_LETTER_RE = re.compile(r"\s+([A-Za-z])\s*\.?\s*")
 
+# The index at the head of a catalogue segment: a number, an optional
+# sub-variant letter, an optional range.
+_INDEX_RE = re.compile(r"\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?")
+# Schou only: KMM writes «sch 141ff» (141 «og følgende», and following) and
+# «Sch 154var» (a variant of 154) without a space, and read as a sub-variant
+# letter they made the phantom Schou numbers 141f / 154v. The letter is not
+# read when «ff» or «var» starts at it — the same number as the spaced «Sch 141
+# ff.» / «Sch 154 var.». Curator (Serhii) 2026-10-22, scoped to Schou.
+_SCHOU_INDEX_RE = re.compile(
+    r"\d+(?:(?!ff|var)[A-Za-z])?(?:\s*-\s*\d+(?:(?!ff|var)[A-Za-z])?)?")
 # A bare number or printed range — what a continuation segment must be in
 # full. «2var.», «4 mark!», «var. 1», «tvl. 21.» are not.
-# A sub-variant letter right after the number («39A», «23a») — but not the
-# first letter of «ff» («og følgende», and following: «sch 141ff») or «var»
-# (variant: «Sch 154var»), which KMM also writes without a space; read as a
-# letter they made the phantom Schou numbers 141f / 154v (curator 2026-10-22).
-# Same reading as the spaced «Sch 141 ff.» / «Sch 154 var.».
-_BARE_INDEX_RE = re.compile(r"\d+(?:(?!ff|var)[A-Za-z])?(?:\s*-\s*\d+(?:(?!ff|var)[A-Za-z])?)?")
+_BARE_INDEX_RE = re.compile(r"\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?")
 
 
 def _continued_index(seg: str, sep, cont_key, uncertain: bool):
@@ -731,7 +736,7 @@ def _catalog(src):
             # (label = the source's own abbreviation, never mapped to a named
             # field — what «JSJ» or «Sømod Br» denotes is not verified, §0).
             lab = _OTHERS_VERBATIM.get(prefix.lower())
-            nm = re.match(r"([A-Za-z]{0,3}\d+(?:(?!ff|var)[A-Za-z])?(?:\s*-\s*\d+(?:(?!ff|var)[A-Za-z])?)?\??)", rest)
+            nm = re.match(r"([A-Za-z]{0,3}\d+[A-Za-z]?(?:\s*-\s*\d+[A-Za-z]?)?\??)", rest)
             if lab and nm and not _CF_REF_RE.search(seg):
                 others.append(f"{lab}# {re.sub(r'\s*-\s*', '-', nm.group(1))}")
             continue
@@ -759,7 +764,7 @@ def _catalog(src):
             # second, different-looking index of one coin — Galster 153 carried
             # schou [171-186, 171-86]. Curator 2026-10-19, superseding the
             # verbatim rule of eddd3e8.
-            nm = re.match(r"\d+(?:(?!ff|var)[A-Za-z])?(?:\s*-\s*\d+(?:(?!ff|var)[A-Za-z])?)?", rest)
+            nm = (_SCHOU_INDEX_RE if key == "schou" else _INDEX_RE).match(rest)
             val = (_expand_abbrev_range(re.sub(r"\s*-\s*", "-", nm.group(0)))
                    if nm else None)
             # «H 3 B», «H. 80 A», «Galster 57 B», «Lange 504 A»: KMM often
