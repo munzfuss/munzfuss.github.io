@@ -82,6 +82,98 @@ def _blocks(commit: str, ent: str) -> dict[str, str]:
     return out
 
 
+def _load_decisions(seed_ids: set, thinned: dict) -> tuple[dict, set]:
+    """Every curator merge / no_merge decision, members expanded as the merger
+    expands them (bare Hede code → sub-letters, thinned specimen → its
+    representative). Returns ({seed: forced-group id}, {frozenset(pair)}).
+    A no_merge binds every pair across its members (the merger forbids the
+    class from holding both, directly or transitively)."""
+    from maintenance.merge_seeds_cross_source import _expand_member_against
+    parent: dict[str, str] = {}
+
+    def find(x):
+        while parent.get(x, x) != x:
+            parent[x] = parent.get(parent[x], parent[x])
+            x = parent[x]
+        return x
+
+    no_merge: set = set()
+    for p in sorted((V2 / "merge_decisions").glob("*.yml")):
+        doc = yaml.load(p.read_text(), Loader=_L) or {}
+        for m in doc.get("merges") or []:
+            ids = [x for mid in (m.get("members") or []) for x in _expand_member_against(str(mid), seed_ids, thinned)]
+            for x in ids[1:]:
+                ra, rb = find(ids[0]), find(x)
+                if ra != rb:
+                    parent[rb] = ra
+        for m in doc.get("no_merges") or []:
+            ids = [x for mid in (m.get("members") or []) for x in _expand_member_against(str(mid), seed_ids, thinned)]
+            for i, x in enumerate(ids):
+                for y in ids[i + 1:]:
+                    no_merge.add(frozenset((x, y)))
+    groups = {s: find(s) for s in list(parent)}
+    return groups, no_merge
+
+
+def _num_core(v: str) -> str:
+    m = re.match(r"^\s*([A-Za-z]{0,2}\d+)", str(v))
+    return m.group(1).lower() if m else str(v).strip().lower()
+
+
+def _loosely_covered(f: str, v: str, classes: list[dict]) -> bool:
+    """Does a class of the final carry the value in ANOTHER form — the same
+    url under another ref, the same catalogue number in another register
+    form or sub-variant, the same reading under another label, the same
+    year inside a range, any inscription / metal at all?"""
+    if not classes:
+        return False
+    if f == "sources":
+        m = re.match(r"\('([^']*)',", v)
+        url = m.group(1) if m else ""
+        return bool(url) and any(str(s.get("url") or "") == url
+                                 for c in classes for s in (c.get("sources") or []) if isinstance(s, dict))
+    if f in READING_FIELDS:
+        m = re.match(r"\(([-\d.]+),", v)
+        if not m:
+            return False
+        x = float(m.group(1))
+        for c in classes:
+            for r in (c.get(f) or []) if isinstance(c.get(f), list) else [c.get(f)]:
+                val = r.get("value") if isinstance(r, dict) else r
+                try:
+                    if abs(float(val) - x) < 0.0051:
+                        return True
+                except (TypeError, ValueError):
+                    pass
+        return False
+    if f == "catalog":
+        m = re.match(r"\('([^']*)', '(.*)'\)$", v)
+        if not m:
+            return False
+        reg, val = m.group(1), m.group(2).split(":")[-1]
+        core = _num_core(val)
+        for c in classes:
+            cv = (c.get("catalog") or {}).get(reg)
+            vals = list(cv.values()) if isinstance(cv, dict) else (cv if isinstance(cv, list) else [cv])
+            flat = [y for x in vals for y in (x if isinstance(x, list) else [x])]
+            if any(_num_core(str(y)) == core for y in flat if y not in (None, "")):
+                return True
+        return False
+    if f == "year_ranges":
+        try:
+            y = int(v)
+        except ValueError:
+            return False
+        for c in classes:
+            a, b = c.get("year_first"), c.get("year_last")
+            if isinstance(a, int) and isinstance(b, int) and a <= y <= b:
+                return True
+        return False
+    if f in ("metal", "inscription_obv", "inscription_rev", "mint", "nominal", "ruler", "mintmaster"):
+        return any(c.get(f) not in (None, "", []) for c in classes)
+    return False
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -142,6 +234,31 @@ def main() -> int:
     for s in seeds.values():
         for t in s.get("_thinned_from") or []:
             thinned[s["id"]].add(t)
+    # Curator decisions, expanded as the merger expands them.
+    thinned_idx = {t: [rep] for rep, ts in thinned.items() for t in ts}
+    forced_group, no_merge_pairs = _load_decisions(set(seeds), thinned_idx)
+
+    def _seeds_of_final(fid: str) -> set:
+        out = set()
+        for cid in (base_final.get(fid) or {}).get("composed_of") or []:
+            u = base_uni.get(cid)
+            if u:
+                for s in u.get("composed_of") or []:
+                    out.add(s)
+                    out |= thinned.get(s, set())
+        if fid in seeds:
+            out.add(fid)
+        return out
+
+    def _decision_between(fid_a: str, fid_b: str) -> str | None:
+        sa, sb = _seeds_of_final(fid_a), _seeds_of_final(fid_b)
+        if any(frozenset((x, y)) in no_merge_pairs for x in sa for y in sb):
+            return "no_merge"
+        ga = {forced_group[x] for x in sa if x in forced_group}
+        gb = {forced_group[y] for y in sb if y in forced_group}
+        if ga & gb:
+            return "merge"
+        return None
     head_departed: set[str] = set()
     for fid, fc in base_final.items():
         if fc.get("origin") != "promoted":
@@ -244,6 +361,7 @@ def main() -> int:
         ev: dict = {}
         # attest
         own_classes = [c for c in (fc.get("composed_of") or []) if c in base_uni]
+        home = None
         if f == "sources" or f in READING_FIELDS:
             cl = idx.classify(fc, f)
             # a final with no live class attests nothing itself
@@ -254,13 +372,26 @@ def main() -> int:
                     k = source_key(val) if f == "sources" else reading_key(val)
                     if k is not None and str(k) == v:
                         cause = c_name
+                        if isinstance(x, tuple) and isinstance(x[1], str):
+                            home = x[1]
             ev["attest"] = cause
         elif f in ("catalog", "mint", "year_ranges", "nominal", "ruler", "mintmaster",
                    "issuing_entity", "metal", "inscription_obv", "inscription_rev"):
             holders = other_class_vals.get((f, v), set())
             ev["attest"] = "own" if fid in holders else ("moved" if holders else "unseeded")
+            if holders and fid not in holders:
+                home = sorted(holders)[0]
         else:
             ev["attest"] = "n/a"
+        if home:
+            ev["home"] = home
+            d = _decision_between(fid, home)
+            if d:
+                ev["decision"] = d
+        # loose coverage: the harvests carry the value in another form
+        base_classes = [base_uni[c] for c in own_classes]
+        ev["covered"] = _loosely_covered(f, v, base_classes)
+        ev["memberless"] = not own_classes
         # relabel (sources): the same url still cited on the rebuilt final
         # under another ref text (added back, or already there)
         if f == "sources":
@@ -272,8 +403,11 @@ def main() -> int:
                 ev["relabel"] = True
         # a memberless V1 foundation whose own id is a seed now living in a
         # class homed on ANOTHER final: a stale V1 twin of that coin
-        if not own_classes and fid in seed_home and seed_home[fid] != fid:
-            ev["twin_of"] = seed_home[fid]
+        if not own_classes:
+            twin_seed = next((s for s in (fid, *(fid[len(p):] for p in ("hs-", "dk-", "hb-", "lu-") if fid.startswith(p)))
+                              if s in seed_home), None)
+            if twin_seed and seed_home[twin_seed] != fid:
+                ev["twin_of"] = seed_home[twin_seed]
         # why
         why = []
         for sid in r.get("seeds") or []:
@@ -312,20 +446,29 @@ def main() -> int:
             b = "S-relabel"
         elif any(w.startswith("recorded") for w in why):
             b = "S-recorded"
+        elif ev.get("decision") == "merge":
+            b = "R-merge-decision-not-applied"
+        elif ev["attest"] in ("moved", "twin") and ev.get("decision") == "no_merge":
+            b = "S-moved-no_merge"
         elif ev["attest"] == "moved" and rk in ("pipeline", "n/a", "unknown"):
             b = "S-moved"
         elif ev["attest"] == "moved" and rk == "v1":
             b = "R-v1-but-moved"
-        elif ev["attest"] == "unseeded" and rk == "v1":
-            b = "L-v1"
         elif ev["attest"] == "unseeded" and any(w.startswith(("hold", "errata")) for w in why):
             b = "L-curated"
         elif ev["attest"] == "twin":
             b = "R-twin"
         elif ev["attest"] == "orphan":
             b = "R-orphan"
+        elif ev["attest"] == "unseeded" and org == "foundation":
+            b = ("R-v1-memberless" if ev["memberless"]
+                 else ("S-v1-covered" if ev["covered"] else "R-v1-uncovered"))
+        elif ev["attest"] == "unseeded" and rk == "v1":
+            b = "L-v1"
         elif ev["attest"] == "unseeded" and rk == "edit":
             b = "L-edit"
+        elif ev["attest"] == "unseeded" and ev["covered"]:
+            b = "S-covered"
         else:
             b = "R"
         buckets[(b, f, org)] += 1

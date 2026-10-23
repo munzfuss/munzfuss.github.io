@@ -463,3 +463,50 @@ route (`classify_self_union_diff.py --no-history`):
 Skeleton refinement that follows from D-foundation: a V1 foundation keeps
 `verification_note`, `inscription_obv/rev` and its years as its own (they
 are the V1 curator's), which empties most of that bucket without a seed.
+
+## Stage C, second pass — curator decisions and harvest coverage (2026-10-23)
+
+Curator: **D1 deferred — V1 is not touched**; the expectation is that the
+harvests made after V1 cover the V1 data in full. And: merge / no_merge
+decisions bind. Measured:
+
+- **Decisions as evidence.** Every `merges` / `no_merges` entry (all
+  entities + `_cross_entity`), members expanded as the merger expands them.
+  20 moved values sit across a curator **no_merge** (the separation is
+  deliberate — stale, confirmed); 1 moved value sits across a curator
+  **merge** (`dk-tid-163034`'s ucoin citation lives on a final whose seeds
+  the curator joined with this one — the pipeline did not apply it; review).
+- **Harvest coverage of V1 foundation data** (`_loosely_covered`: same url
+  under another ref, same catalogue number in another register form /
+  sub-variant, same reading under another label, a year inside the class's
+  range): of the foundation values the rebuild removes and no class attests
+  exactly, 3 are covered loosely, **437 are not** (`catalog` 269, `sources`
+  168 — on foundations that HAVE classes), and **103 sit on foundations with
+  no class at all**.
+- **The 110 memberless foundations** (`audit_memberless_foundations.py`,
+  against HEAD): **78 are V1 twins of a harvested seed** (`hs-ikmk-NNN` ↔
+  `ikmk-NNN`, `dk-tid-NNN` ↔ ucoin; the seed's class has its OWN promoted
+  final — the coin renders twice; 1 006 removed values belong to these
+  twins, bucket H-stale-v1-twin); **13 have a same-entity class sharing a
+  type-level catalogue number** (km-104-hede-56b → Hede 56a `c-5d564c17`,
+  km-395-1 → Hede 23ab, km-750-1 → Hede f7h1a, km-760 → Hede f7h8, …; absorb's
+  self-foundation fold had skipped several of them as «curator classification
+  clash» — the join is a merge decision + a classification call, not a V1
+  seed); 3 have a candidate in another entity (km-733 → `c-58969558`
+  danish_realm, km-695 → f6h26a, km-683-1 → Bruun 8026); **16 have no
+  harvested counterpart** (10 without a catalogue number, 6 without a
+  candidate — the genuinely V1-only coins, e.g. the five Frederik VI
+  Rigsbanktegn `hede-18…22`, `hede-134b`, `dk-tid-79158`).
+
+So the harvests do cover the memberless coins in 94 of 110 cases — through a
+twin or a catalogue tie — and the 437 + 103 uncovered VALUES are mostly the
+V1 curator's own citations (coinsbook, NGC price guide, Bruun lots as
+`bruun_lot_no`) and catalogue registers the harvests never carry (`others:
+Brekke# 31–36`, `bruun_collection_id`). Those stay the curator's call
+(stage E), unless a V1 seed is revisited later.
+
+**Bucket totals, this pass:** D-promoted 7 709 · S-moved 1 437 (+20 no_merge)
+· R-orphan 1 390 · H-stale-v1-twin 1 006 · D-foundation 637 · R 440 ·
+R-v1-uncovered 437 · S-relabel 128 · S-recorded 106 · R-v1-memberless 103 ·
+R-twin 96 · H 89 · S-covered 39 · FLAG 38 · S-v1-covered 3 ·
+R-merge-decision-not-applied 1.

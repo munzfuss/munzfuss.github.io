@@ -48,6 +48,8 @@ tools, head class first, final-only-edit guard), then the P8 normalisation on th
   used); stages D–G; `audit_final_only_edits.py` is written, not wired into the hook; the
   danish_realm entry-order churn of the fold / re-append cycle (pre-existing).
 
+- **2026-10-23, after the curator's word**: D1 deferred (V1 untouched; harvests expected to cover it). Memberless foundations audited against HEAD (`audit_memberless_foundations.py`): 78 of 110 are V1 twins of harvested seeds (duplicate rows), 16 have a same-entity / other-entity catalogue candidate, 16 are V1-only. Decisions (merge / no_merge) are evidence in the classifier now. Plan §«Stage C, second pass».
+
 ## 2026-10-22 (late) — teammate commits re-flowed; KMM ff/var held
 
 - **Ernst 4794a6f re-flowed**: `6c906ed` (8 Galster tokens «Ernst 1940# N»). Found + fixed in `ac2968e`: a
