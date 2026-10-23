@@ -629,8 +629,8 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
     # priority bug. 120 final entries carry catalog.galster; 54 of
     # those have NO other rendered catalog field.
     ("galster", "Galster"),
-    # FP — Friberg-Pedersen «Skillingen, Specien og Kronen 1761-1813»
-    # (Christian VII-specific Danish-Norwegian catalogue). Routinely cited
+    # FP — Frank Pedersen, «Christian den VII's mønter 1766-1808/1812»
+    # (Copenhagen 2017; Bruun bibliography). Routinely cited
     # alongside Hede/Sieg/Schou in the Bruun PDFs on Christian VII issues.
     # `_PREFIX_PRIORITY` slot 65 places it between Fr (60) and Dav (70) —
     # both are gold-trade-coin / world-crowns adjacencies that pair well

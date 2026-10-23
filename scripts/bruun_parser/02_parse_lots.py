@@ -186,8 +186,9 @@ REF_PATTERNS = {
     "Schive":            re.compile(
         r"\bSchive\b[\-:]?\s*(?:pl\.\s*)?"
         r"(?P<plate>[IVX]+|T)\s*[:\-,]\s*(?P<nums>\d+(?:\s*[-/]\s*\d+)?)"),
-    # FP — Friberg-Pedersen catalogue (Christian VII-specific Danish-Norwegian
-    # «Skillingen, Specien og Kronen 1761-1813» by Bent Friberg & Tom Pedersen).
+    # FP — Frank Pedersen, «Christian den VII's mønter 1766-1808/1812»
+    # (Copenhagen 2017), per the Bruun catalogues' own bibliography
+    # («FP – Frank Pedersen. …», Parts I, II, III, V).
     # Cited as «FP-44.3», «FP-9.3», «FP-36». Appears on 42 Bruun lots, all
     # under Christian VII (1766-1808). Sub-variant decimals («.X») captured.
     "FP":                re.compile(r"\bFP[\-:]?\s*(\d+(?:\.\d+)?[A-Za-z]*)"),

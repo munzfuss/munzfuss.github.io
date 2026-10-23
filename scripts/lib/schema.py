@@ -870,9 +870,9 @@ class CatalogRefs(_StrictBase):
     # in the Bruun PDFs (esp. pre-1541 Norway lots). Cited as «NMD-1»,
     # «NMD-2», etc.
     nmd: str | list[str] | None = None
-    # FP — Friberg-Pedersen catalogue (Bent Friberg & Tom Pedersen),
-    # «Skillingen, Specien og Kronen 1761-1813». Christian VII-specific
-    # Danish + Norwegian catalogue cited alongside Hede/Sieg/Schou on
+    # FP — Frank Pedersen, «Christian den VII's mønter 1766-1808/1812»
+    # (Copenhagen 2017), per the Bruun catalogues' bibliography. Christian
+    # VII-specific Danish + Norwegian catalogue cited alongside Hede/Sieg/Schou on
     # 1766-1808 lots in the Bruun PDFs. Cited as «FP-9.3», «FP-44.6»,
     # «FP-36», etc. Both base-numbers and sub-variant decimals appear.
     fp: str | list[str] | None = None
