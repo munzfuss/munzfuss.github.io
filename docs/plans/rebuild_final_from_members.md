@@ -545,3 +545,45 @@ schauenburg_pinneberg 133, royal_holstein 119, herzogtum_braunschweig_
 lueneburg 117, danish_norway 104, gottorp_duchy 90, danish_india 74.
 Classified in `self_union_removals_review.md`: S (stale) 1 714 values,
 H / H-stale-v1-twin 1 095, R 2 466 + R-orphan 1 390, D 8 346, FLAG 38.
+
+## «Not everything applied» — the search, and switch run 3 (2026-10-23)
+
+Curator: the flag case shows the rebuild had not applied everything that
+forms a final; look for more. Method: every place absorb reads the STORED
+final — directly (`final_entry.get`: holds, id, composed_of, a held
+`year_label` only) or as `members[0]` (`_take_first_non_none`, the year
+union, the mint-flag guard) — and every field the later passes read
+(P8, fraction inference, assignments, guards). Each read that is neither
+member data nor a curator decision is state the self-union used to carry.
+Found and fixed in the switch, with tests (13):
+
+| carried now | why it is the final's own, not a member's |
+|---|---|
+| `year_is_reign_span` (all finals) | absorb's own bookkeeping; the reign-span override recognises a placeholder by it |
+| `*_verified` on a foundation | the V1 curator's claims |
+| every explicit `*_verified: false` (all finals) | a claim of non-attestation no member can supply; the schema default is true, so dropping it upgrades the value silently (§4); a member that attests still wins through the OR-merge |
+| `fraction` (all finals) | never seed data: absorb's inference or the curator; inference re-runs and corrects legacy shapes |
+| `inscription_obv/rev`, `weight_rough_label`, `verification_note`, `year_first/last/ranges/label` on a foundation | V1 curator prose and years, read from `members[0]`; the same set `_MIGRATION_PRESERVED_FIELDS` carries on a purge |
+
+Deliberately NOT carried: a foundation's `sources`, `catalog`, readings,
+`mint`, `metal` — source data the harvests are expected to cover (curator
+2026-10-23); and the P3 residue — values once migrated from purged V1
+foundations onto their hosts (`mintmaster: «Trankebar»` ×74, inscriptions
+and flags on promoted finals) — which only the self-union kept alive;
+`note` among them IS carried.
+
+**Switch run 3 (full chain, `8264777`):** 7 665 finals change (from
+7 994), 0 gone / new, fixed point as coin sets; substantive 1 269.
+Marks: Check 10 clean, `*_alts` and reading marks identical to HEAD.
+Notes: 27 on Nobelfod / Guldgyldenfod coins and 2 383 elsewhere — all
+identical (curator 2026-10-23: the Nobelfod / Guldgyldenfod notes are
+verified and never go on a removal list). Flags left: promoted
+`mint_verified` true→false 156, `diameter_mm_verified` 63, `metal_verified`
+43, `weight_rough_verified` 39, `fineness_verified` 16 — the class's claim
+under the 2026-10-06 `_members_decline` rule; foundation `mint_verified`
+true→false 40 — their V1 `mint` (no class) is gone and the empty-mint rule
+resets the flag; `year_verified` 7. Buckets: D-promoted 7 484, S-moved
+1 429 (+20 no_merge), R-orphan 1 390, R-v1-uncovered 437, H-stale-v1-twin
+268 (the twins' own-record values now stay: 1 006 → 268), R 195, S-relabel
+128, S-recorded 106, R-v1-memberless 103, R-twin 96, H 88, S-covered 39,
+D-foundation 37, FLAG 25.

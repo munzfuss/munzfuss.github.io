@@ -1,9 +1,9 @@
-# Self-union removals — curator review (stage B run 4, 2026-10-23)
+# Self-union removals — curator review (full chain, switch run 3, 2026-10-23)
 
 Every value below is one the `--no-self-union` rebuild removes from a final at `HEAD` of branch `rebuild-from-members`. Source: `B_classified_nh.json` (classify_self_union_diff.py --no-history). Buckets starting with **S** are proposed for the removal list (stage E); **D** are a promoted final's frozen scalar replaced by the class's; **R** / **H** need a decision.
 
 
-## S-moved — 1437 values on 531 finals
+## S-moved — 1429 values on 529 finals
 
 | field | origin | values |
 |---|---|---|
@@ -13,7 +13,6 @@ Every value below is one the `--no-self-union` rebuild removes from a final at `
 | mint | promoted | 36 |
 | sources | foundation | 95 |
 | sources | promoted | 816 |
-| year_ranges | foundation | 8 |
 
 Examples:
 
@@ -29,8 +28,6 @@ Examples:
 - `dk-tid-79082` [danish_realm] catalog: `('bruun_page', '86')` — home c-561c542f
 - `dk-tid-79082` [danish_realm] catalog: `('bruun_part', 'IV')` — home c-0008432e
 - `hede-134b-chr-v-1677` [danish_realm] mint: `"Christiansstad"` — home c-1c5e2813
-- `hs-ikmk-18286372` [grafschaft_schaumburg] year_ranges: `1616` — home c-036ff789
-- `hs-ikmk-18286372` [grafschaft_schaumburg] year_ranges: `1617` — home c-036ff789
 
 ## S-moved-no_merge — 20 values on 11 finals
 
@@ -109,13 +106,12 @@ Examples:
 - `km-696-1-fr-vi-1826` [royal_holstein] catalog: `('km', 'sh:696')`
 - `km-696-1-fr-vi-1826` [royal_holstein] catalog: `('km', 'sh:696.1')`
 
-## D-promoted-class-wins — 7709 values on 7063 finals
+## D-promoted-class-wins — 7484 values on 6976 finals
 
 | field | origin | values |
 |---|---|---|
-| diameter_mm_verified | promoted | 74 |
-| fineness_verified | promoted | 18 |
-| fraction | promoted | 48 |
+| diameter_mm_verified | promoted | 71 |
+| fineness_verified | promoted | 17 |
 | inscription_obv | promoted | 13 |
 | inscription_rev | promoted | 10 |
 | metal | promoted | 19 |
@@ -129,7 +125,7 @@ Examples:
 | year_first | promoted | 1 |
 | year_label | promoted | 1 |
 | year_last | promoted | 1 |
-| year_verified | promoted | 176 |
+| year_verified | promoted | 3 |
 
 Examples:
 
@@ -151,71 +147,35 @@ Examples:
 - `c-864e23b4` [_unclassified] mintmaster: `"Rudolf Bornemann"` — home c-0def855b
 - `c-69d58126` [christian_ii_supporters] metal_verified: `true`
 - `c-ddefc984` [christian_ii_supporters] metal_verified: `true`
-- `c-039fa112` [danish_india] year_verified: `false`
-- `c-04b837f2` [danish_india] year_verified: `false`
 - `c-1a0998a0` [danish_norway] fineness_verified: `true`
 - `c-2a619cb8` [danish_norway] fineness_verified: `true`
 - `c-49ea148b` [danish_norway] metal: `"silver"` — home bruun-14444-ca-1681
 - `c-5f490fda` [danish_norway] nominal: `"12 Skilling"` — home c-0752a8bd
 - `c-8e850e11` [danish_norway] nominal: `"16 Skilling"` — home c-00f72248
 - `c-abc3425a` [danish_norway] metal: `"silver"` — home bruun-14444-ca-1681
-- `c-c2e82886` [danish_norway] fraction: `"1"`
-- `c-d9906291` [danish_norway] fraction: `"1/96"`
+- `c-42f4b301` [danish_realm] year_verified: `true`
+- `c-51d19d46` [danish_realm] year_verified: `true`
 - `c-551b645c` [danish_realm] year_first: `1629`
 - `c-551b645c` [danish_realm] year_last: `1629`
 - `c-551b645c` [danish_realm] year_label: `"1629"`
 
-## D-foundation — 637 values on 547 finals
+## D-foundation — 37 values on 37 finals
 
 | field | origin | values |
 |---|---|---|
-| diameter_mm_verified | foundation | 5 |
-| fineness_verified | foundation | 2 |
-| inscription_obv | foundation | 5 |
-| inscription_rev | foundation | 5 |
-| metal_verified | foundation | 2 |
-| mint_verified | foundation | 16 |
-| verification_note | foundation | 523 |
-| verified | foundation | 18 |
-| weight_rough_verified | foundation | 4 |
-| year_first | foundation | 20 |
-| year_label | foundation | 20 |
-| year_last | foundation | 17 |
+| mint_verified | foundation | 37 |
 
 Examples:
 
-- `dk-tid-55898` [danish_norway] verification_note: `{"da": "Flyttet hertil fra Schleswig-Holstein-artefaktet — KM# 250 / Hede# 12A–12B / Brekke# 31–36 hører til C`
-- `dk-tid-101038` [danish_realm] verification_note: `{"da": "Tildeling af møntfod og verifikation af den enkelte mønt mod Hede / Schön / Bruun udestår stadig.", "d`
 - `dk-tid-101040` [danish_realm] mint_verified: `true`
-- `dk-tid-163059` [danish_realm] verified: `true`
-- `dk-tid-163410` [danish_realm] verified: `true`
 - `dk-tid-70759` [danish_realm] mint_verified: `true`
-- `dk-tid-97364` [danish_realm] diameter_mm_verified: `true`
-- `dk-tid-97369` [danish_realm] diameter_mm_verified: `true`
-- `hede-134b-chr-v-1677` [danish_realm] year_first: `1677`
-- `hede-134b-chr-v-1677` [danish_realm] year_last: `1678`
-- `hede-134b-chr-v-1677` [danish_realm] year_label: `"1677-1678"`
-- `hede-18-fr-v-1749` [danish_realm] year_first: `1749`
-- `hede-18-fr-v-1749` [danish_realm] year_last: `1749`
-- `hede-18-fr-v-1749` [danish_realm] year_label: `"1749"`
-- `km-16-2-chr-iv-1618` [danish_realm] metal_verified: `true`
-- `km-16-2-chr-iv-1618` [danish_realm] weight_rough_verified: `true`
-- `km-5-fr-iv-1719` [danish_realm] weight_rough_verified: `true`
-- `km-x015-chr-iv-1648` [danish_realm] fineness_verified: `true`
-- `km-x016-chr-iv-1622` [danish_realm] fineness_verified: `true`
-- `bruun-L12177-unknown-1670` [erzbisthum_bremen_verden] metal_verified: `true`
-- `km-46-fr-iii-1617` [gottorp_duchy] inscription_obv: `"E D G C H - S E S D G"` — home c-0aa98956
-- `km-46-fr-iii-1617` [gottorp_duchy] inscription_rev: `"MATTHIAS D G R IM S A 19"` — home hs-ikmk-18285708
-- `hs-ikmk-18285714` [schauenburg_pinneberg] inscription_rev: `"MATTHIAS D G R IM S A 19"` — home hs-ikmk-18285708
-- `hs-ikmk-18285924` [schauenburg_pinneberg] inscription_obv: `"ER PRI - ET C H S S"` — home c-023f3975
 
-## H — 89 values on 31 finals
+## H — 88 values on 31 finals
 
 | field | origin | values |
 |---|---|---|
 | catalog | promoted | 16 |
 | diameter_mm_verified | promoted | 2 |
-| fraction | promoted | 1 |
 | inscription_rev | promoted | 1 |
 | mintmaster | promoted | 1 |
 | nominal | promoted | 2 |
@@ -234,36 +194,23 @@ Examples:
 - `c-4710f90c` [danish_norway] verification_note: `{"da": "Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er `
 - `c-4dda9342` [danish_norway] mintmaster: `"Henning Christopher Meyer, the elder"` — home c-0d78dbf8
 - `c-553363f8` [danish_norway] nominal: `"1 Speciedaler"`
-- `c-553363f8` [danish_norway] fraction: `"1"`
 - `c-553363f8` [danish_norway] inscription_rev: `"DOMINUS - PROVIDEBIT // 1659"` — home c-6b72a94b
 - `c-f4db95a5` [danish_realm] ruler: `"Christian IV"` — home c-08c0fcf7
 - `c-f4db95a5` [danish_realm] diameter_mm_verified: `true`
 - `c-4ac05937` [royal_holstein] diameter_mm_verified: `true`
 
-## H-stale-v1-twin — 1006 values on 78 finals
+## H-stale-v1-twin — 268 values on 78 finals
 
 | field | origin | values |
 |---|---|---|
 | catalog | foundation | 83 |
 | diameter_mm | foundation | 4 |
-| diameter_mm_verified | foundation | 3 |
 | fineness | foundation | 6 |
-| fineness_verified | foundation | 78 |
-| inscription_obv | foundation | 75 |
-| inscription_rev | foundation | 75 |
 | metal | foundation | 78 |
-| metal_verified | foundation | 3 |
 | mint | foundation | 5 |
-| mint_verified | foundation | 78 |
+| mint_verified | foundation | 3 |
 | sources | foundation | 83 |
-| verification_note | foundation | 78 |
-| verified | foundation | 78 |
 | weight_rough_g | foundation | 6 |
-| weight_rough_verified | foundation | 3 |
-| year_first | foundation | 78 |
-| year_label | foundation | 78 |
-| year_last | foundation | 78 |
-| year_ranges | foundation | 36 |
 
 Examples:
 
@@ -277,36 +224,12 @@ Examples:
 - `dk-tid-70750` [danish_realm] catalog: `('km', '729')` — home c-e40c23a1, decision merge, twin of c-e40c23a1
 - `dk-tid-70750` [danish_realm] mint: `"Altona"` — home c-029d697b, twin of c-e40c23a1, recorded removal / retraction
 - `dk-tid-70750` [danish_realm] mint: `"Kopenhagen"` — home c-0008432e, twin of c-e40c23a1, recorded removal / retraction
-- `dk-tid-70750` [danish_realm] year_first: `1842` — twin of c-e40c23a1
-- `dk-tid-70750` [danish_realm] year_last: `1842` — twin of c-e40c23a1
-- `dk-tid-70750` [danish_realm] year_label: `"1842"` — twin of c-e40c23a1
 - `dk-tid-70750` [danish_realm] metal: `"silver"` — home bruun-14444-ca-1681, twin of c-e40c23a1
-- `dk-tid-70750` [danish_realm] metal_verified: `true` — twin of c-e40c23a1
-- `dk-tid-70750` [danish_realm] fineness_verified: `true` — twin of c-e40c23a1
-- `dk-tid-70750` [danish_realm] weight_rough_verified: `true` — twin of c-e40c23a1
-- `dk-tid-70750` [danish_realm] diameter_mm_verified: `true` — twin of c-e40c23a1
 - `dk-tid-70750` [danish_realm] mint_verified: `true` — twin of c-e40c23a1
-- `dk-tid-70750` [danish_realm] verified: `false` — twin of c-e40c23a1
-- `dk-tid-70750` [danish_realm] verification_note: `{"da": "Tildeling af møntfod og verifikation af den enkelte mønt mod Hede / Schön / Bruun udestår stadig.", "d` — twin of c-e40c23a1
 - `dk-tid-70751` [danish_realm] diameter_mm: `(15.5, 'ucoin')` — twin of c-d3ce70e2
 - `dk-tid-70751` [danish_realm] catalog: `('km', 'A730')` — home c-d3ce70e2, decision merge, twin of c-d3ce70e2
-- `dk-tid-70751` [danish_realm] year_first: `1842` — twin of c-d3ce70e2
-- `dk-tid-70751` [danish_realm] year_last: `1842` — twin of c-d3ce70e2
-- `dk-tid-70751` [danish_realm] year_label: `"1842"` — twin of c-d3ce70e2
 - `dk-tid-70751` [danish_realm] metal: `"silver"` — home bruun-14444-ca-1681, twin of c-d3ce70e2
-- `dk-tid-70751` [danish_realm] metal_verified: `true` — twin of c-d3ce70e2
-- `dk-tid-70751` [danish_realm] fineness_verified: `true` — twin of c-d3ce70e2
-- `dk-tid-70751` [danish_realm] weight_rough_verified: `true` — twin of c-d3ce70e2
-- `dk-tid-70751` [danish_realm] diameter_mm_verified: `true` — twin of c-d3ce70e2
 - `dk-tid-70751` [danish_realm] mint_verified: `true` — twin of c-d3ce70e2
-- `dk-tid-70751` [danish_realm] verified: `false` — twin of c-d3ce70e2
-- `dk-tid-70751` [danish_realm] verification_note: `{"da": "Tildeling af møntfod og verifikation af den enkelte mønt mod Hede / Schön / Bruun udestår stadig.", "d` — twin of c-d3ce70e2
-- `hs-ikmk-18286306` [grafschaft_schaumburg] year_ranges: `1616` — home c-036ff789, twin of c-b1d7ac00
-- `hs-ikmk-18286306` [grafschaft_schaumburg] year_ranges: `1617` — home c-036ff789, twin of c-b1d7ac00
-- `hs-ikmk-18286306` [grafschaft_schaumburg] inscription_obv: `"ERN-ES D G - CO HO-L S E S - D G"` — home c-b1d7ac00, twin of c-b1d7ac00
-- `hs-ikmk-18286306` [grafschaft_schaumburg] inscription_rev: `"MATTHIAS D G RO IM SEM AV"` — home c-0d7e5fae, twin of c-b1d7ac00
-- `hs-ikmk-18286307` [grafschaft_schaumburg] inscription_obv: `"ERN-ES D G - CO HOL - S ET [S] - D G"` — twin of c-b1d7ac00
-- `hs-ikmk-18286307` [grafschaft_schaumburg] inscription_rev: `"MATTHIAS D G RO IM SEM A"` — twin of c-b1d7ac00
 
 ## R-merge-decision-not-applied — 1 values on 1 finals
 
@@ -383,27 +306,14 @@ Examples:
 - `km-577-1-fr-v-1755` [danish_realm] diameter_mm: `(20.5, 'ucoin')`
 - `km-750-1-fr-vii-1850` [danish_realm] fineness: `(0.896, 'numismaster')`
 
-## R — 440 values on 203 finals
+## R — 195 values on 154 finals
 
 | field | origin | values |
 |---|---|---|
 | catalog | promoted | 46 |
-| diameter_mm_verified | foundation | 22 |
-| fineness_verified | foundation | 41 |
-| inscription_obv | foundation | 15 |
-| inscription_rev | foundation | 16 |
 | metal | foundation | 33 |
-| metal_verified | foundation | 15 |
 | mint | promoted | 19 |
-| mint_verified | foundation | 29 |
 | sources | promoted | 97 |
-| verification_note | foundation | 20 |
-| verified | foundation | 19 |
-| weight_rough_verified | foundation | 14 |
-| year_first | foundation | 12 |
-| year_label | foundation | 12 |
-| year_last | foundation | 12 |
-| year_verified | foundation | 18 |
 
 Examples:
 
@@ -413,42 +323,14 @@ Examples:
 - `c-a21e6343` [danish_norway] sources: `('https://en.numista.com/328513', 'Numista N#328513')`
 - `c-013899a0` [danish_realm] mint: `"Ulæselig møntmestermærke"`
 - `c-0bd34cbf` [danish_realm] mint: `"Hamborg"`
-- `dk-tid-163034` [danish_realm] fineness_verified: `true`
-- `dk-tid-163034` [danish_realm] diameter_mm_verified: `true`
-- `dk-tid-170107` [danish_realm] year_verified: `false`
-- `dk-tid-79088` [danish_realm] diameter_mm_verified: `true`
-- `dk-tid-79162` [danish_realm] inscription_obv: `"FRIDERICVS V D G DAN NOR V G REX"` — home c-01e29c44
-- `dk-tid-79162` [danish_realm] inscription_rev: `"PRUDENTIA E-T CONSTANTIA // 17-64"` — home c-01e29c44
-- `dk-tid-94158` [danish_realm] inscription_obv: `"FRIDERICUS V - DEI GRATIA"` — home c-676e2936, decision no_merge
-- `dk-tid-94158` [danish_realm] inscription_rev: `"DAN NOR VAN GOT REX"` — home c-676e2936, decision no_merge
-- `dk-tid-97089` [danish_realm] year_verified: `false`
 - `hede-134b-chr-v-1677` [danish_realm] metal: `"lead"` — home c-1352d07f
-- `hede-134b-chr-v-1677` [danish_realm] metal_verified: `true`
-- `hede-134b-chr-v-1677` [danish_realm] mint_verified: `true`
 - `hede-18-fr-v-1749` [danish_realm] metal: `"gold"` — home c-002b7e6e
-- `hede-18-fr-v-1749` [danish_realm] metal_verified: `true`
-- `hede-18-fr-v-1749` [danish_realm] fineness_verified: `true`
-- `hede-18-fr-v-1749` [danish_realm] mint_verified: `true`
-- `km-104-hede-56b-chr-iv-1627` [danish_realm] weight_rough_verified: `true`
-- `km-104-hede-56b-chr-iv-1627` [danish_realm] verified: `false`
-- `km-104-hede-56b-chr-iv-1627` [danish_realm] verification_note: `{"da": "Data fra NumisMaster-kataloget (Librios), et kommercielt Krause-Mishler-værk. Endnu ikke efterprøvet m`
-- `km-395-1-chr-v-1688` [danish_realm] verification_note: `{"da": "Finheden er ikke direkte belagt; overtaget fra den kanoniske møntfodsstandard (Reichsdukatenfuß, anker`
-- `km-577-1-fr-v-1755` [danish_realm] weight_rough_verified: `true`
-- `km-577-1-fr-v-1755` [danish_realm] verified: `false`
-- `hs-ikmk-18286372` [grafschaft_schaumburg] year_first: `1616`
-- `hs-ikmk-18286372` [grafschaft_schaumburg] year_last: `1619`
-- `hs-ikmk-18286372` [grafschaft_schaumburg] year_label: `"1616-1619"`
-- `km-168-1-1752` [hanseatic_lubeck] year_first: `1752`
-- `km-168-1-1752` [hanseatic_lubeck] year_last: `1752`
-- `km-168-1-1752` [hanseatic_lubeck] year_label: `"1752"`
 
-## FLAG-own-attested-but-removed — 38 values on 30 finals
+## FLAG-own-attested-but-removed — 25 values on 22 finals
 
 | field | origin | values |
 |---|---|---|
 | catalog | foundation | 5 |
-| inscription_obv | foundation | 7 |
-| inscription_rev | foundation | 6 |
 | mintmaster | promoted | 1 |
 | nominal | promoted | 5 |
 | ruler | promoted | 6 |
@@ -467,10 +349,6 @@ Examples:
 - `c-10972209` [grafschaft_oldenburg] ruler: `"Anthony Guenther (Anton Guenther) (1603-1667), Emperor Matthias"`
 - `c-129b6467` [grafschaft_oldenburg] ruler: `"Anthony Günther (Anton Günther)"`
 - `c-ca430328` [royal_holstein] mintmaster: `"Johan Friedrich Freund (IFF)"`
-- `hs-ikmk-18285708` [schauenburg_pinneberg] inscription_obv: `"E D G C H - S E S D G"`
-- `hs-ikmk-18285708` [schauenburg_pinneberg] inscription_rev: `"MATTHIA[S D] G R IM S A 19"`
-- `hs-ikmk-18286248` [schauenburg_pinneberg] inscription_obv: `"E D G H S - E S C D G"`
-- `hs-ikmk-18286248` [schauenburg_pinneberg] inscription_rev: `"MAT I D G R I S A 6-18"`
 - `c-4225815c` [sweden] sources: `('https://www.danskmoent.dk/hansgals.htm', 'Galster 231 (hg) — danskmoent.dk hansgals.htm')`
 
 ## Per-case lists
