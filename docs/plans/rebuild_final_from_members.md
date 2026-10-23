@@ -716,3 +716,153 @@ Groups, in the order the curator can walk them:
 Next: walk the groups with the curator — B is the removal list (stage E),
 C gets its surfaces (stage D), D needs the one decision on `metal` / `mint`
 for foundations, E is per case.
+
+## Group C — the surface for each value (2026-10-23, Denmark page)
+
+Curator: walk the C groups and decide the surface for each. Every row was
+traced to its seed, its class, the final that holds it now, the exclusions
+and the decisions (`C_facts.py` in the session scratchpad). What a final
+can carry under the switch: a field in `_curation_holds` travels with its
+`_verified` companion and wins as a scalar (nominal, ruler, mintmaster,
+verification_note) or is unioned as a list (sources, catalog) — a hold
+KEEPS a value, it never removes one that a class still carries.
+
+### C0 — hand edits (48 rows / 26 finals): what is left after the facts
+
+| case | fact | surface |
+|---|---|---|
+| `c-551b645c` (Hede c4h144a) loses its years | the hold names `year_ranges` only; the stored final has no `year_ranges` key (single year), so the skeleton carries nothing and the year-hold path reads None | **switch defect — fix**: a hold on any `year_*` carries the whole year family (`year_first/last/label/ranges`); 14 finals in scope hold years, this is the only one without the family |
+| `km-a47-chr-iv-1608` Stack's Bowers auction link (8266c1e) | no seed carries the url | `_curation_holds: {sources: …}` on the final (kept and unioned) |
+| `c-2a9ecadd` (c7h13a) Bruun anchor lot 11295 / page 147 / part III | the Part III specimen is `dk-bruun-7928`, IN the class, cited in `sources`; the class anchor is now 7940 (lot 1155) | B8 — nothing lost; the anchor rule can be fixed later |
+| `c-2a9ecadd` ucoin 79169 + NumisMaster MC_65502 | both sit in `c-9a93ce8c` (NGC 1050294, danish_realm, seed_unsorted) — the same 1 Speciedaler 1795-1801 | **decision**: cross-entity merge of `c-9a93ce8c` into c7h13a (`_cross_entity.yml`), or no_merge |
+| `c-2a9ecadd` MC_145357 | a no_merge decision sends it to `c-b20deed6` | B — garbage on main |
+| `c-131a7eb9` (c4h38 ½ Dukat 1647) Bruun anchor 5814 / lot 1046 | `dk-bruun-5814` now sits with Hede c4h40 (`c-360d09ec`, also ½ Dukat 1647); the class keeps 5815 | **decision**: is Bruun 5814 c4h38 or c4h40 (merge-candidate table), else B8 |
+| `km-577-1-fr-v-1755` Bruun 7656 (typo fix 58f1a4b) | 7656 sits with Hede f5h40a whose final is the V1 twin `dk-tid-78763` | D1 — two V1 foundations of one coin; the fold decision |
+| `km-104-hede-56b` Bruun 5607 | 5607 sits with Hede c4h56a (`c-5d564c17`) | D1 — V1 twin |
+| `dk-tid-70750/1` ucoin readings | V1 twins (H-stale-v1-twin) | D1 |
+| `dk-tid-130240` cites Hede c9h1 (784179d) | the coin is Christian VIII 2 D'Or 1841-47 (Hede c8h1); the rebuild cites c8h1 | B — the hand citation was wrong |
+| Aagaard# ×3, Harck-29.1 (V1 foundations' `others`) | V1 catalogue refs the harvests do not carry | D3 — the foundation-catalog decision (or `catalog` holds) |
+| `km-105` others «KM# 73», «Numista N#308517» | duplicates of `km` / `sources` | B |
+| `km-733-chr-v-1842` mint Altona | foundation mint not carried | D4 |
+| `c-43d7dead` NumisMaster MC_110722 | the merger places it with Hede nf3h21 | B2 unless the curator disagrees with the class |
+| relabels (KMM 137163 / 156724 / 156783, Numista 420365, f5h37b, c4h25, ucoin 163663, Numista 308517) | same url, the class's ref text; the hand refs' «(Inv. …, Schou N)» annotations go | A4 |
+| mintmaster «the elder» → «the Elder», «Jacob Schwieger» → «… (IS)» | class richer | A |
+| `km-105` Numista 301630 (old url) | no seed | D5 |
+
+### C1 — nominal (34)
+
+- **Dual-denomination forms from the class (11)** — «⅛ Speciedaler = 12
+  Skilling», «16 Skilling = 1 Mark», «¼ Ducat (3 Mark)», «½ Kurant Dukat
+  (1 Rixdaler)», «1 Rigsdaler Courant (6 Mark Rejsedaler)», «1 Hvid = 4
+  Pennings», «Gros = 9 Pennings», «1 Sterling = 3 Pennings», «1 Reisedaler =
+  6 Mark», «1/24 Specie, 2½ schilling», «6 Pfennig, Sechsling». The writer
+  keeps a dual equivalence on purpose (`split_nominal_annotations` leaves
+  «X = Y» and «(N denom)», §9.5); the hand forms were simplifications.
+  Nothing to decide unless one separator is wanted («X / Y» — 72 Numista
+  «=» seeds in scope; then a writer rule).
+- **Head-class choice (5)** — «1 Speciedaler» → «1 Taler» ×2 (the final's
+  id is the IKMK class while its label names Hede nf3h8/nf3h33; four other
+  classes say Speciedaler), «(?)» ×2 (a nominal-less KMM head), «1
+  Sechsling» → «1 Søsling lybsk». **Switch fix**: the head class is the one
+  the final's `label` names, else the highest-authority class; «(?)» / None
+  never wins a scalar. Same fix removes most of B9.
+- **Curator forms (7)** — «1 Goldgulden» ×5 (Hede «Rhinsk Gylden», Bruun
+  «Gold Gulden», Numista «Gulden», NumisMaster «Guilder»; curator baa587f /
+  eefddf5), «1 Ungersk Gylden» (Galster «Ungersk gylden», KMM «Guldgylden»
+  / «Ungarsk dukat»; 9a3a0e4), «2 Christian d’Or» (typography). Surface:
+  `_curation_holds: {nominal: <reason>}` on the 7 finals now; a writer
+  synonym («Rhinsk Gylden» → «Goldgulden») if the family grows.
+- **Class wins (5)** — «5 Ducat» → «½ Portugaløser» ×2, «20 Ducat» → «2
+  Portugaløser» (NGC, the Portugaløser rule), «2 Dukat» → «3 Dukat» (Hede
+  c5h43), «1 Landskrone» → «1 Søsling» (KMM 591617). A.
+- **Writer strip rule (1)** — «1½ Gulden (1.5)»: Numista's «(N)» suffix, 9
+  seeds in scope («¼ Ducat (0.875)», «1 Goldgulden (1.5)»). Writer.
+- **Per case (3)** — «8 Rigsbankskilling» vs Hede «8 Skilling» (f6h31;
+  Bruun / Numista / NGC say Rigsbankskilling — hold, or a Hede-level
+  erratum); «½ Sølvgylden» (KMM, Galster «Halv Sølvgylden») vs Numista «½
+  Gulden» (authority picks Numista — hold if the Danish name is wanted);
+  «5 Skilling» vs KMM «0,5 Skilling» (kmk-326593, 1751-1762 — which is
+  right?).
+
+### C2 — ruler regressions (7)
+
+103 Numista seeds in scope carry annotated forms («Frederick III (Frederik
+III)», «Frederick I (Friedrich I)», «Frederick VI of Denmark (Friedrich VI
+von Dänemark)») that `_KING_DISPLAY_RE` does not match; they surface on a
+final only where Numista is the sole class (5). **Surface**: extend
+`canonical_ruler_display` — strip « of Denmark / of Norway», take the
+parenthesised alternative when it is the Danish form — and re-run the seed
+migration (stage N, pass 2). The two KMM typos («Frederikg 4» kmk-349954,
+«Frederik VVI» kmk-309754; the only ones in the KMM seeds) need an erratum
+— a KMM builder table keyed by record id, or `_source_errata` on the seed —
+which needs the curator's yes (§4).
+
+### C3 — ruler lost (14)
+
+Classes made only of NGC / NumisMaster records (`ruler: None` — the NGC
+page and listing carry no ruler; 611 + 528 such seeds in danish_realm, 268
++ 252 in danish_norway). The finals' rulers came from the June gap-fill /
+V1. **Surface options**: (a) a writer rule for Danish-crown entities —
+when every year of the record falls inside one reign, `ruler` = that king
+(canonical) with `ruler_verified: false` (inferred from the date, not read;
+renders «(?)»); transition years stay None; (b) holds on the 14 finals.
+(a) covers the ~1 700 seeds and every future harvest; (b) covers these 14.
+
+### C4 — `da` lost (5)
+
+Seven seeds (3 Bruun, 3 KMM, 1 Numista) still carry the pre-`da` builder
+note; every other seed in scope has `da`. **Surface**: re-generate the
+note on those seeds (builder output, not curated) — no decision.
+
+### C5 — curated notes (5)
+
+Nobelfod / Guldgyldenfod fineness notes («Finheden er ikke attesteret på
+stykket; …», «Finheden .770 = den kanoniske finhed …») on `c-3fc323e5`,
+`c-59881f83`, `c-621e8b09`, `c-bc790ea1`, `c-f9c15578` (c3bd650, 7a831dc).
+**Surface**: `_curation_holds: {verification_note: …}` on the 5 finals.
+
+### C6 — mintmaster (6)
+
+«Christian Wineke, the Elder» (c5h56, c5h58), «lensmand Søren Norby»
+(Galster f1g-67), «Ole Varberg» (f6h17): no seed carries them — holds (4).
+«Hans Schierven Knoph (HSK)» vs Bruun 7752 «Hans Schievern Knoph» (a
+letter swap in one Bruun record wins by id order) and «Johan Friedrich
+Freund (IFF)» vs «… Freund» (two Bruun records, initials present / absent):
+**surface** either an erratum on dk-bruun-7752 + a hold, or a mintmaster
+alias table in the writer (name ↔ initials, the stage N «mint / mintmaster»
+item) that settles both and the next ones.
+
+### C7 — hand deletions that return (39)
+
+- rulers (7) → C2; «Christian 4» ×2 are A2 (both finals are «Christian IV.»
+  on the rebuild — a join artefact in the report).
+- nominals (7) → the C1 holds.
+- catalog (24): 18 are Sieg / Schou numbers Hede 1971 prints, which the
+  Hede builder emits under `sieg` / `schou` and the June edit moved to
+  `sieg_hede1971` / `schou_hede1971`; the merger now lists both editions
+  under `sieg` («['100', '116']» = Bruun's modern number beside Hede's).
+  **Surface**: the Hede builder writes `sieg_hede1971` (and
+  `schou_hede1971` for a Hede range such as «3-4», «10-12») — a stage N
+  catalogue rule; no per-coin decision. `c-af6febe0` sieg 108 is the same
+  case; km-15 Aagaard is list-form now (A).
+- `km-105` ucoin 163663 returns because the merger keeps `dk-tid-163663` in
+  the c5h120 class; the June edit called it foreign — **decision**: a
+  no_merge [dk-tid-163663, dk-hede-c5h120], or accept.
+
+### Decisions asked
+
+1. C1 curator forms: holds on the 7 finals (Goldgulden ×5, Ungersk Gylden,
+   Christian d’Or) — yes / writer synonym instead.
+2. C1 dual-denomination forms: keep the class form (writer rule as is) or
+   one canonical separator.
+3. C1 per case: «8 Rigsbankskilling», «½ Sølvgylden», «0,5 Skilling».
+4. C2: the two KMM typo errata.
+5. C3: writer rule (a) with `ruler_verified: false`, or holds (b).
+6. C5 / C6: the 5 note holds and the 4 mintmaster holds; errata vs alias
+   table for Knoph / Freund.
+7. C0: cross-entity merge of `c-9a93ce8c` into c7h13a; Bruun 5814 — c4h38
+   or c4h40; no_merge for ucoin 163663 on c5h120.
+8. C7: Hede builder → `sieg_hede1971` / `schou_hede1971`.
+
+No decision needed (switch defects, done next): the year-family hold, the
+head-class choice + «(?)» rule, the `da` re-generation, the «(N)» strip.
