@@ -756,12 +756,19 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     for _fld in _FOUNDATION_GAPFILL_FIELDS:
         if out.get(_fld) is None or (isinstance(out.get(_fld), str)
                                      and out[_fld].strip() in _PLACEHOLDERS):
+            _ph = None
             for _m in members[1:]:
                 _mv = _m.get(_fld)
-                if _mv in (None, []) or (isinstance(_mv, str) and _mv.strip() in _PLACEHOLDERS):
+                if _mv in (None, []):
+                    continue
+                if isinstance(_mv, str) and _mv.strip() in _PLACEHOLDERS:
+                    _ph = _ph or _mv   # a real value anywhere beats it; else it stays
                     continue
                 out[_fld] = _mv
                 break
+            else:
+                if out.get(_fld) is None and _ph is not None:
+                    out[_fld] = _ph
 
     # issuing_entity — subset-scalar → joint upgrade (2026-07-10). A foundation
     # freezes issuing_entity verbatim (it is in _FOUNDATION_IMMUTABLE_FIELDS), so

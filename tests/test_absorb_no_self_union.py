@@ -256,3 +256,22 @@ class PlaceholderNeverWins(unittest.TestCase):
             ab.SELF_UNION_ENABLED = True
         self.assertEqual(out["nominal"], "1 Lejrskilling")
         self.assertIsNone(ab._first_real([{"nominal": "(?)"}, {"nominal": ""}], "nominal"))
+
+
+class PlaceholderStaysWhenAlone(unittest.TestCase):
+    """When no class has a real nominal the placeholder itself stays — the
+    schema requires the field (run 4: two _unclassified finals lost it)."""
+
+    def test_placeholder_kept_without_a_real_value(self):
+        head = dict(CLS, id="c-h", label="unified-kmk-1", nominal="(?)")
+        fc = _promoted(id="c-h", label="unified-kmk-1", composed_of=["c-h"], nominal="(?)")
+        ab._LIVE_UNIFIED.clear()
+        ab._LIVE_UNIFIED.update({"c-h": head})
+        ab.SELF_UNION_ENABLED = False
+        try:
+            base = ab._own(fc)
+            with contextlib.redirect_stdout(io.StringIO()):
+                out, _ = ab._enrich_final_entry(base, [base, head], "danish_realm")
+        finally:
+            ab.SELF_UNION_ENABLED = True
+        self.assertEqual(out["nominal"], "(?)")
