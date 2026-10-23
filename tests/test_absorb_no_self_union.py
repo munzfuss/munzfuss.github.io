@@ -126,6 +126,35 @@ class CatalogKmHold(unittest.TestCase):
         self.assertEqual(out["catalog"]["km"], ["73", "105"])
 
 
+class EmptyDuplicateRelease(unittest.TestCase):
+    """`kind: empty_duplicate` drops a memberless final only while every
+    recorded host is a final (2026-10-23)."""
+
+    def setUp(self):
+        self._saved = (ab._EMPTY_DUPLICATES, ab._ALL_FINAL_IDS)
+        ab._EMPTY_DUPLICATES = {"km-1": ["host-a", "host-b"]}
+        ab._ALL_FINAL_IDS = {"host-a"}
+
+    def tearDown(self):
+        ab._EMPTY_DUPLICATES, ab._ALL_FINAL_IDS = self._saved
+
+    def test_released_when_all_hosts_exist(self):
+        self.assertTrue(ab._is_released_empty_duplicate(
+            {"id": "km-1", "composed_of": []}, set(), {"host-b"}))
+
+    def test_kept_when_a_host_is_missing(self):
+        self.assertFalse(ab._is_released_empty_duplicate(
+            {"id": "km-1", "composed_of": []}, set(), set()))
+
+    def test_kept_when_a_member_is_live(self):
+        self.assertFalse(ab._is_released_empty_duplicate(
+            {"id": "km-1", "composed_of": ["c-x"]}, {"c-x"}, {"host-b"}))
+
+    def test_unrecorded_final_untouched(self):
+        self.assertFalse(ab._is_released_empty_duplicate(
+            {"id": "km-2", "composed_of": []}, set(), {"host-a", "host-b"}))
+
+
 if __name__ == "__main__":
     unittest.main()
 

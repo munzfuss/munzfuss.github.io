@@ -4595,3 +4595,41 @@ removals:
     dropped:
       - Ernst 1940# 3-13
     reason: "Curator (Serhii) 2026-10-22: _source_errata on dk-galster-hg-161 (6f3dac3) — hans.htm prints «Ernst 1940 3-13», the numbers of Galster 155, for Galster 161; hansgals.htm gives «Ernst 24-25». The class no longer has it; it stayed on the final only because absorb unions the final's earlier catalogue."
+
+  # ── empty duplicates, Denmark page (rebuild from members) ─────────────────
+  # Memberless V1 foundations: after the rebuild they keep only a skeleton and
+  # render an empty row. find_empty_duplicates.py showed every value each one
+  # carried on main (source URLs, catalogue values, readings, metal) sitting on
+  # the hosts below; absorb drops the record only while every host is a final.
+  - final: dk-tid-70750
+    kind: empty_duplicate
+    hosts: [c-e40c23a1]
+    reason: 'Curator (Serhii) 2026-10-23: 3 Rigsbankskilling 1842, danish_realm — empty duplicate of royal_holstein c-e40c23a1; nothing on main is missing there.'
+  - final: dk-tid-70751
+    kind: empty_duplicate
+    hosts: [c-d3ce70e2]
+    reason: 'Curator (Serhii) 2026-10-23: 3 Rigsbankskilling 1842, danish_realm — empty duplicate of royal_holstein c-d3ce70e2; nothing on main is missing there.'
+  - final: dk-tid-79158
+    kind: empty_duplicate
+    hosts: [c-44a9c52f]
+    reason: 'Curator (Serhii) 2026-10-23: ½ Speciedaler 1769, danish_realm — empty duplicate of royal_holstein c-44a9c52f; nothing on main is missing there.'
+  - final: km-104-hede-56b-chr-iv-1627
+    kind: empty_duplicate
+    hosts: [c-5d564c17, km-x035-chr-iv-1647]
+    reason: 'Curator (Serhii) 2026-10-23: 2 Speciedaler 1624–1634, danish_realm — empty duplicate; its values sit on c-5d564c17 and km-x035-chr-iv-1647 (Hede-1971 Sieg / Schou as sieg / schou).'
+  - final: km-577-1-fr-v-1755
+    kind: empty_duplicate
+    hosts: [dk-tid-78763, c-44a9c52f]
+    reason: 'Curator (Serhii) 2026-10-23: ½ Skilling 1751–1762, danish_realm — empty duplicate; its values sit on dk-tid-78763 and royal_holstein c-44a9c52f.'
+  - final: km-760-fr-vi-1854
+    kind: empty_duplicate
+    hosts: [c-5cab1a08]
+    reason: 'Curator (Serhii) 2026-10-23: 1 Rigsdaler Rigsmønt 1854, royal_holstein — empty duplicate of c-5cab1a08; nothing on main is missing there.'
+  - final: km-797-1-chr-ix-1875
+    kind: empty_duplicate
+    hosts: [c-dbaa3e31, km-797-2-chr-ix-1898]
+    reason: 'Curator (Serhii) 2026-10-23: 1 Krone 1875, danish_realm — empty duplicate; its values sit on c-dbaa3e31 and km-797-2-chr-ix-1898. Only the V1 metal «gold» differs; both hosts carry silver.'
+  - final: km-90-fr-iii-dk-1658
+    kind: empty_duplicate
+    hosts: [c-1ca3c112, c-3774a0e1]
+    reason: 'Curator (Serhii) 2026-10-23: 1 Sechsling 1658–1660, royal_holstein — empty duplicate; its values sit on c-1ca3c112 and c-3774a0e1. Only the V1 metal «billon» differs; both hosts carry silver.'

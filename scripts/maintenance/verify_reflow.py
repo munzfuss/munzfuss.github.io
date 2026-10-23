@@ -686,6 +686,23 @@ def _recorded_removals() -> tuple[set[str], dict[str, set[str]]]:
 _SHELLS: set[str] | None = None
 
 
+_EMPTY_DUPS: dict[str, list[str]] | None = None
+
+
+def _empty_duplicate_removals() -> dict[str, list[str]]:
+    """{final id → host final ids} of empty duplicates (`kind: empty_duplicate`)."""
+    global _EMPTY_DUPS
+    if _EMPTY_DUPS is None:
+        out: dict[str, list[str]] = {}
+        path = ROOT / RECORDED_REMOVALS_REL
+        if path.exists():
+            for e in _read_yaml(path).get("removals") or []:
+                if e.get("kind") == "empty_duplicate" and e.get("final"):
+                    out[str(e["final"])] = [str(h) for h in e.get("hosts") or []]
+        _EMPTY_DUPS = out
+    return _EMPTY_DUPS
+
+
 def _shell_removals() -> set[str]:
     """Head seeds of superseded shells the curator folded (`kind: shell`)."""
     global _SHELLS
@@ -1006,6 +1023,16 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
             dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
                            f"— curator exclusion: {', '.join(sorted(hit))}")
             continue
+        # An empty duplicate the curator let go (`kind: empty_duplicate`, keyed
+        # by FINAL id, 2026-10-23): a memberless V1 foundation whose every
+        # value lives on its hosts. Excused only while every host is a final.
+        _ed_hosts = _empty_duplicate_removals().get(cid)
+        if _ed_hosts:
+            _home = _coin_home_index()
+            if all(h in _home for h in _ed_hosts):
+                dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
+                               f"— empty duplicate, curator decision; lives in {', '.join(_ed_hosts)}")
+                continue
         # A cross-entity merge moves the coin to another entity's final. It is
         # gone from THIS file and alive in that one; per-entity differencing
         # cannot see the survivor, so consult the decision that moved it.

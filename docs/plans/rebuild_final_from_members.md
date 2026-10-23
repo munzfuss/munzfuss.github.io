@@ -937,3 +937,5 @@ hede-22-fr-vi-1815 (12 / 6 / 4 / 3 Skilling Rigsbanktegn, Bruun 8006 / 8007 /
 gottorp km-x009-fr-iv-1701 (4 Schilling 1701–1702, numisbids lot 1676). None
 of these Bruun numbers is in the Bruun lot cache, in any seed or in any
 other final. Removing the shell removes the coin from the page.
+
+**Done 2026-10-23 (curator «так»):** the 8 empty duplicates are recorded in `data/v2/_recorded_removals.yml` as `kind: empty_duplicate` (keyed by final id, with hosts). Absorb drops such a final only while it has no live member and every host is a final; verify_reflow excuses it on the same condition. Re-run on danish_realm + royal_holstein removed exactly these 8 and changed nothing else.

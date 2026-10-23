@@ -2404,6 +2404,57 @@ def _shell_removals() -> dict[str, str]:
     return _SHELL_REMOVALS
 
 
+_EMPTY_DUPLICATES: dict[str, list[str]] | None = None
+_ALL_FINAL_IDS: set[str] | None = None
+
+
+def _empty_duplicate_removals() -> dict[str, list[str]]:
+    """{final id → host final ids} of empty duplicates the curator let go
+    (`_recorded_removals.yml`, `kind: empty_duplicate`, 2026-10-23). A V1
+    foundation with no member left keeps only its skeleton and renders as
+    an empty row; every value it carried on `main` was shown to sit on its
+    hosts (`find_empty_duplicates.py`). Keyed by FINAL id: such a record
+    has no seed of its own."""
+    global _EMPTY_DUPLICATES
+    if _EMPTY_DUPLICATES is None:
+        out: dict[str, list[str]] = {}
+        for e in (_load_yaml(ROOT / "data" / "v2" / "_recorded_removals.yml")
+                  .get("removals") or []):
+            if isinstance(e, dict) and e.get("kind") == "empty_duplicate" and e.get("final"):
+                out[str(e["final"])] = [str(h) for h in e.get("hosts") or []]
+        _EMPTY_DUPLICATES = out
+    return _EMPTY_DUPLICATES
+
+
+def _all_final_ids() -> set[str]:
+    """Every final id on disk across all entities (read once, before any
+    write of this run), for checking that an empty duplicate's hosts exist."""
+    global _ALL_FINAL_IDS
+    if _ALL_FINAL_IDS is None:
+        out: set[str] = set()
+        for ff in sorted((ROOT / "data" / "v2" / "final").glob("*.yml")):
+            for c in (_load_yaml(ff).get("coins") or []):
+                if c.get("id"):
+                    out.add(str(c["id"]))
+        _ALL_FINAL_IDS = out
+    return _ALL_FINAL_IDS
+
+
+def _is_released_empty_duplicate(fe: dict, live_ids: set[str],
+                                 entity_ids: set[str]) -> bool:
+    """True when `fe` is a recorded empty duplicate that may go now: no live
+    member, and every recorded host is a final (this entity's output or any
+    entity on disk). A host that vanished keeps the record — its values
+    would otherwise have nowhere left to live."""
+    hosts = _empty_duplicate_removals().get(str(fe.get("id")))
+    if hosts is None:
+        return False
+    if any(m in live_ids for m in (fe.get("composed_of") or [])):
+        return False
+    known = entity_ids | _all_final_ids()
+    return bool(hosts) and all(h in known for h in hosts)
+
+
 _ALL_SEED_IDS: set[str] | None = None
 
 
@@ -3916,11 +3967,17 @@ def process_entity(entity_id: str) -> dict:
     shell_settled: list[str] = []
     _by_member = _entries_by_member(enriched_entries)
     shell_by_decision: list[str] = []
+    _entity_final_ids = {str(x.get("id")) for x in enriched_entries}
     for e in enriched_entries:
         if _is_vanished_stale_final(e, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(e.get("id")))
             continue
         _eid = str(e.get("id"))
+        # A V1 foundation the curator let go as an empty duplicate (2026-10-23).
+        if _is_released_empty_duplicate(e, _live_ids, _entity_final_ids):
+            shell_dropped.add(_eid)
+            shell_by_decision.append(_eid)
+            continue
         # A shell the curator folded by decision (`kind: shell` removal on its
         # head seed): its specimen lives in another class, the review is done.
         # Only a SHELL: an id that is no live class of this entity. The record's
@@ -3999,8 +4056,9 @@ def process_entity(entity_id: str) -> dict:
         if _is_vanished_stale_final(fc, _live_unified_ids, _live_ids):
             stale_dropped_ids.add(str(fid))
             continue
-        if (_is_promoted(fc) and str(fid) not in _live_unified_ids
-                and _seed_of(str(fid)) in _shell_removals()):
+        if ((_is_promoted(fc) and str(fid) not in _live_unified_ids
+                and _seed_of(str(fid)) in _shell_removals())
+                or _is_released_empty_duplicate(fc, _live_ids, _entity_final_ids)):
             shell_dropped.add(str(fid))
             if fid not in shell_by_decision:
                 shell_by_decision.append(str(fid))
