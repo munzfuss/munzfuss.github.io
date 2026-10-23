@@ -4,15 +4,15 @@ Scope: the entities the `denmark` page consumes — `christian_ii_reconquest`, `
 
 Every row is one value that differs between the finals at `main` and the finals rebuilt on this branch (`--no-self-union`, full chain). «removed» = on the base, not on the rebuild; «added» = the reverse. The group letter says what the difference means for the finals' legal form: **A** nothing to decide · **B** garbage on the base · **C** keep, needs a surface · **D** V1 record, deferred · **E** review.
 
-Values: 4970 on 2020 finals; coins gone 1, new 0. Finals that lose `metal` with nothing in its place: 42 (D2-v1-memberless 20, D6-v1-values-on-promoted 18, D1-v1-twin 3, D4-v1-own-record 1).
+Values: 4954 on 2019 finals; coins gone 1, new 0. Finals that lose `metal` with nothing in its place: 42 (D2-v1-memberless 20, D6-v1-values-on-promoted 18, D1-v1-twin 3, D4-v1-own-record 1).
 
 | class | values | finals |
 |---|---|---|
 | A | 1336 | 1293 |
-| B | 2601 | 571 |
-| C | 158 | 115 |
+| B | 2590 | 560 |
+| C | 150 | 109 |
 | D | 773 | 398 |
-| E | 102 | 59 |
+| E | 105 | 60 |
 
 | group | class | values | finals | entities |
 |---|---|---|---|---|
@@ -25,12 +25,12 @@ Values: 4970 on 2020 finals; coins gone 1, new 0. Finals that lose `metal` with 
 | B3-recorded-removal | B | 42 | 40 | danish_realm 22, royal_holstein 12, gottorp_duchy 4, norburg_plon_duchy 2 … |
 | B4-mintmaster-place | B | 15 | 15 | royal_holstein 9, gottorp_duchy 4, danish_realm 2 |
 | B5-covered-other-form | B | 40 | 24 | danish_realm 20, royal_holstein 19, danish_norway 1 |
-| B6-flag-class-claim | B | 214 | 167 | danish_realm 176, danish_norway 23, royal_holstein 6, christian_ii_supporters 3 … |
+| B6-flag-class-claim | B | 213 | 166 | danish_realm 176, danish_norway 23, royal_holstein 5, christian_ii_supporters 3 … |
 | D6-v1-values-on-promoted | D | 61 | 58 | danish_realm 56, danish_norway 4, gottorp_duchy 1 |
 | B8-bruun-anchor | B | 23 | 20 | danish_realm 17, royal_holstein 5, danish_norway 1 |
-| B9-note-template-swap | B | 92 | 92 | danish_realm 65, royal_holstein 16, danish_norway 8, royal_slesvig 3 |
-| C0-hand-edit | C | 48 | 26 | danish_realm 32, royal_holstein 14, danish_norway 2 |
-| C1-nominal-form | C | 34 | 34 | danish_realm 26, danish_norway 5, gottorp_duchy 1, royal_holstein 1 … |
+| B9-note-template-swap | B | 82 | 82 | danish_realm 63, royal_holstein 16, royal_slesvig 3 |
+| C0-hand-edit | C | 45 | 25 | danish_realm 29, royal_holstein 14, danish_norway 2 |
+| C1-nominal-form | C | 29 | 29 | danish_realm 24, danish_norway 3, gottorp_duchy 1, royal_holstein 1 |
 | C2-ruler-regression | C | 7 | 7 | danish_norway 3, danish_realm 3, royal_holstein 1 |
 | C3-ruler-lost | C | 14 | 14 | danish_realm 13, danish_norway 1 |
 | C4-note-da-lost | C | 5 | 5 | danish_realm 4, danish_norway 1 |
@@ -44,7 +44,7 @@ Values: 4970 on 2020 finals; coins gone 1, new 0. Finals that lose `metal` with 
 | D5-v1-citations-on-promoted | D | 109 | 75 | royal_holstein 60, danish_realm 31, gottorp_duchy 10, danish_norway 5 … |
 | E1-ruler-other | E | 14 | 14 | gottorp_duchy 8, danish_realm 4, danish_norway 1, sonderburg_duchy 1 |
 | E2-head-departed | E | 71 | 31 | danish_norway 52, danish_realm 12, royal_holstein 7 |
-| E3-own-attested-removed | E | 10 | 7 | danish_realm 9, royal_holstein 1 |
+| E3-own-attested-removed | E | 13 | 8 | danish_realm 12, royal_holstein 1 |
 | E4-residual | E | 6 | 6 | danish_realm 3, danish_norway 2, royal_holstein 1 |
 | E5-stage-N-automerge | E | 1 | 1 | danish_realm 1 |
 
@@ -729,7 +729,7 @@ Per entity: danish_realm 20, royal_holstein 19, danish_norway 1.
 
 ## B6-flag-class-claim — `*_verified` true → the class's false
 
-**B** · 214 values on 167 finals. **Legal form:** Accept the class's claim — the final's `true` had no member attesting it (2026-10-06 `_members_decline` rule); the value renders with (?) instead of as verified. A hold is the exception, per case.
+**B** · 213 values on 166 finals. **Legal form:** Accept the class's claim — the final's `true` had no member attesting it (2026-10-06 `_members_decline` rule); the value renders with (?) instead of as verified. A hold is the exception, per case.
 
 | field | origin | direction | values |
 |---|---|---|---|
@@ -739,9 +739,9 @@ Per entity: danish_realm 20, royal_holstein 19, danish_norway 1.
 | mint_verified | foundation | removed | 14 |
 | mint_verified | promoted | removed | 46 |
 | weight_rough_verified | promoted | removed | 33 |
-| year_verified | promoted | removed | 3 |
+| year_verified | promoted | removed | 2 |
 
-Per entity: danish_realm 176, danish_norway 23, royal_holstein 6, christian_ii_supporters 3, royal_slesvig 3, gottorp_duchy 1, norburg_plon_duchy 1, sonderburg_duchy 1.
+Per entity: danish_realm 176, danish_norway 23, royal_holstein 5, christian_ii_supporters 3, royal_slesvig 3, gottorp_duchy 1, norburg_plon_duchy 1, sonderburg_duchy 1.
 
 Examples:
 
@@ -765,7 +765,6 @@ Examples:
 - `dk-tid-101040` [danish_realm] mint_verified: `true` — → false
 - `dk-tid-70759` [danish_realm] mint_verified: `true` — → false
 - `dk-tid-96999` [danish_realm] mint_verified: `true` — → false
-- `c-9f0ea0a4` [royal_holstein] year_verified: `true` — → false
 
 ## D6-v1-values-on-promoted — mint / metal / inscriptions on promoted finals, migrated from purged V1 foundations
 
@@ -878,23 +877,23 @@ Per entity: danish_realm 17, royal_holstein 5, danish_norway 1.
 
 ## B9-note-template-swap — verification_note: one generated template replaced by another
 
-**B** · 92 values on 92 finals. **Legal form:** Nothing lost — absorb's promotion boilerplate («Hede seed: … still pending») vs the class's source template (IKMK / KMM / Numista record); both are generated. The hand-backfilled `da` is replaced by the class template's own `da`.
+**B** · 82 values on 82 finals. **Legal form:** Nothing lost — absorb's promotion boilerplate («Hede seed: … still pending») vs the class's source template (IKMK / KMM / Numista record); both are generated. The hand-backfilled `da` is replaced by the class template's own `da`.
 
 | field | origin | direction | values |
 |---|---|---|---|
-| verification_note | promoted | removed | 92 |
+| verification_note | promoted | removed | 82 |
 
-Per entity: danish_realm 65, royal_holstein 16, danish_norway 8, royal_slesvig 3.
+Per entity: danish_realm 63, royal_holstein 16, royal_slesvig 3.
 
 Examples:
 
-- `c-20390e5a` [danish_norway] verification_note: `{"da": "Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udes` — → {"da": "Post fra Münzkabinett Berlins interaktive katalog (ikmk.smb.mu; edit 064bfe9
-- `c-4710f90c` [danish_norway] verification_note: `{"da": "Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udes` — → {"da": "Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, Kø; edit 064bfe9
-- `c-4dda9342` [danish_norway] verification_note: `{"da": "Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udes` — → {"da": "Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, Kø; edit 064bfe9
+- `c-013e4512` [danish_realm] verification_note: `{"da": "Kun oversigtsrækken i f2hede.htm belægger denne post; Hede-dybdesiden mangler på d` — → {"da": "Kun oversigtsrækken hos f2hede.htm dokumenterer denne post; He; edit a523b0f
+- `c-013ec728` [danish_realm] verification_note: `{"da": "Kun oversigtsrækken i c5hede1.htm belægger denne post; Hede-dybdesiden mangler på ` — → {"da": "Kun oversigtsrækken hos c5hede1.htm dokumenterer denne post; H; edit a523b0f
+- `c-084f5f0c` [danish_realm] verification_note: `{"da": "Kun oversigtsrækken i f2hede.htm belægger denne post; Hede-dybdesiden mangler på d` — → {"da": "Kun oversigtsrækken hos f2hede.htm dokumenterer denne post; He; edit a523b0f
 
 ## C0-hand-edit — a hand edit on the final (per commit)
 
-**C** · 48 values on 26 finals. **Legal form:** Keep — needs the surface named per commit below (hold / writer rule / merge decision / errata).
+**C** · 45 values on 25 finals. **Legal form:** Keep — needs the surface named per commit below (hold / writer rule / merge decision / errata).
 
 | field | origin | direction | values |
 |---|---|---|---|
@@ -907,11 +906,8 @@ Examples:
 | sources | foundation | removed | 8 |
 | sources | promoted | removed | 8 |
 | weight_rough_g | foundation | removed | 2 |
-| year_first | promoted | removed | 1 |
-| year_label | promoted | removed | 1 |
-| year_last | promoted | removed | 1 |
 
-Per entity: danish_realm 32, royal_holstein 14, danish_norway 2.
+Per entity: danish_realm 29, royal_holstein 14, danish_norway 2.
 
 | commit | date | subject | values | finals |
 |---|---|---|---|---|
@@ -933,7 +929,6 @@ Per entity: danish_realm 32, royal_holstein 14, danish_norway 2.
 | `95f4d35` | 2026-06-23 | data: clean Hede-3/Hede-8 over-merge residue from c5h56 (Christian V 2 Dukat) | 2 | 1 |
 | `69255e4` | 2026-06-26 | data: fold 4 confirmed Pattern-A duplicate final foundations | 5 | 2 |
 | `fc5a619` | 2026-06-28 | data: c7h13 — restore dropped Bruun Part III (KM 651.1) source + drop foreign N# | 3 | 1 |
-| `d410c68` | 2026-07-09 | data: foundation-reset kmk-158132 — split the 1643 Schou-58 specimen off the Hed | 3 | 1 |
 | `8266c1e` | 2026-07-19 | data: sovereign trial pieces display + km-a47 auction source | 1 | 1 |
 
 
@@ -1050,30 +1045,23 @@ Per entity: danish_realm 32, royal_holstein 14, danish_norway 2.
 - `c-2a9ecadd` [royal_holstein] sources: `('https://numismaster.com/MC_145357', 'NumisMaster')` — edit efbc228,fc5a619
 - `c-2a9ecadd` [royal_holstein] sources: `('https://numismaster.com/MC_65502', 'NumisMaster')` — edit efbc228,fc5a619
 
-`d410c68` data: foundation-reset kmk-158132 — split the 1643 Schou-58 specimen off the Hede-144 core
-
-- `c-551b645c` [danish_realm] year_first: `1629` — edit d410c68
-- `c-551b645c` [danish_realm] year_last: `1629` — edit d410c68
-- `c-551b645c` [danish_realm] year_label: `"1629"` — edit d410c68
-
 `8266c1e` data: sovereign trial pieces display + km-a47 auction source
 
 - `km-a47-chr-iv-1608` [danish_realm] sources: `('https://auctions.stacksbowers.com/lots/view/3-1AKR2G/denmark-sovereign-1608-elsinore-min` — edit 8266c1e
 
 ## C1-nominal-form — nominal: the final's form vs the class's form
 
-**C** · 34 values on 34 finals. **Legal form:** Decide per pair — the writer's nominal normalisation (stage N) or a hold on the final; several class forms are junk («1 Ducat (3.5)»).
+**C** · 29 values on 29 finals. **Legal form:** Decide per pair — the writer's nominal normalisation (stage N) or a hold on the final; several class forms are junk («1 Ducat (3.5)»).
 
 | field | origin | direction | values |
 |---|---|---|---|
-| nominal | promoted | removed | 34 |
+| nominal | promoted | removed | 29 |
 
-Per entity: danish_realm 26, danish_norway 5, gottorp_duchy 1, royal_holstein 1, royal_slesvig 1.
+Per entity: danish_realm 24, danish_norway 3, gottorp_duchy 1, royal_holstein 1.
 
 | final form (base) | class form (rebuild) | n |
 |---|---|---|
 | "1 Goldgulden" | "1 Rhinsk Gylden" | 4 |
-| "1 Speciedaler" | "1 Taler" | 2 |
 | "5 Ducat" | "½ Portugaløser" | 2 |
 | "12 Skilling" | "⅛ Speciedaler = 12 Skilling" | 1 |
 | "16 Skilling" | "16 Skilling = 1 Mark" | 1 |
@@ -1091,19 +1079,14 @@ Per entity: danish_realm 26, danish_norway 5, gottorp_duchy 1, royal_holstein 1,
 | "1 Hvid" | "1 Hvid = 4 Pennings" | 1 |
 | "1 Sechsling" | "1 Søsling lybsk" | 1 |
 | "1 Gros" | "Gros = 9 Pennings" | 1 |
-| "1 Lejrskilling" | "(?)" | 1 |
 | "5 Skilling" | "0,5 Skilling" | 1 |
-| "1½ Gulden" | "1½ Gulden (1.5)" | 1 |
 | "1 Rigsdaler Courant" | "½ Kurant Dukat (1 Rixdaler)" | 1 |
 | "18 Mark" | "1 Guldkrone" | 1 |
 | "6 Mark" | "1 Reisedaler = 6 Mark" | 1 |
 | "1 Sterling" | "1 Sterling = 3 Pennings" | 1 |
 | "1 Sechsling" | "6 Pfennig, Sechsling" | 1 |
 | "8 Rigsbankskilling" | "8 Skilling" | 1 |
-| "1 Lybsk blaffert" | "(?)" | 1 |
 
-- `c-20390e5a` [danish_norway] nominal: `"1 Speciedaler"` — → "1 Taler"; edit e157ce2
-- `c-553363f8` [danish_norway] nominal: `"1 Speciedaler"` — → "1 Taler"; edit e157ce2
 - `c-5f490fda` [danish_norway] nominal: `"12 Skilling"` — → "⅛ Speciedaler = 12 Skilling"
 - `c-8e850e11` [danish_norway] nominal: `"16 Skilling"` — → "16 Skilling = 1 Mark"
 - `c-a80e70cb` [danish_norway] nominal: `"6 Mark Rejsedaler"` — → "1 Rigsdaler Courant (6 Mark Rejsedaler)"
@@ -1126,16 +1109,13 @@ Per entity: danish_realm 26, danish_norway 5, gottorp_duchy 1, royal_holstein 1,
 - `c-83fa9e4d` [danish_realm] nominal: `"1 Goldgulden"` — → "1 Rhinsk Gylden"; edit baa587f
 - `c-897476a3` [danish_realm] nominal: `"5 Ducat"` — → "½ Portugaløser"
 - `c-913f9b9d` [danish_realm] nominal: `"1 Gros"` — → "Gros = 9 Pennings"
-- `c-9ee87074` [danish_realm] nominal: `"1 Lejrskilling"` — → "(?)"; edit 88aa100
 - `c-a8790e31` [danish_realm] nominal: `"5 Skilling"` — → "0,5 Skilling"; edit 88aa100
-- `c-b87e0aec` [danish_realm] nominal: `"1½ Gulden"` — → "1½ Gulden (1.5)"
 - `c-c5990b01` [danish_realm] nominal: `"1 Rigsdaler Courant"` — → "½ Kurant Dukat (1 Rixdaler)"
 - `c-cebf5953` [danish_realm] nominal: `"18 Mark"` — → "1 Guldkrone"
 - `c-cebfa214` [danish_realm] nominal: `"6 Mark"` — → "1 Reisedaler = 6 Mark"
 - `c-ea17009c` [danish_realm] nominal: `"1 Sterling"` — → "1 Sterling = 3 Pennings"
 - `c-64fe16d1` [gottorp_duchy] nominal: `"1 Sechsling"` — → "6 Pfennig, Sechsling"
 - `c-034963a9` [royal_holstein] nominal: `"8 Rigsbankskilling"` — → "8 Skilling"
-- `c-66488a70` [royal_slesvig] nominal: `"1 Lybsk blaffert"` — → "(?)"
 
 ## C2-ruler-regression — ruler: an annotated or misspelt source form comes back
 
@@ -1678,9 +1658,9 @@ Per entity: danish_norway 52, danish_realm 12, royal_holstein 7.
 - `c-05eb9690` [danish_norway] sources: `('https://www.ngccoin.com/price-guide/world/norway-8-skilling-km-26.3-1644-cuid-1095583-du` — → ('https://www.danskmoent.dk/norge/nc4h14.htm', 'danskmoent.dk (Hede nc
 - `c-0d78dbf8` [danish_norway] sources: `('https://www.danskmoent.dk/norge/nf4h1.htm', 'danskmoent.dk (Hede nf4h1)')` — → ('https://www.danskmoent.dk/norge/nf4h1.htm', 'danskmoent.dk (Hede nf4
 - `c-108d9a7e` [danish_norway] sources: `('https://www.danskmoent.dk/norge/nc4h7.htm', 'danskmoent.dk (Hede nc4h7)')` — → ('https://www.danskmoent.dk/norge/nc4h7.htm', 'danskmoent.dk (Hede nc4
-- `c-20390e5a` [danish_norway] catalog: `('bruun_lot_no', '12065')` — → ('bruun_lot_no', '14036')
-- `c-20390e5a` [danish_norway] catalog: `('bruun_page', '191')` — → ('bruun_lot_no', '14036')
-- `c-20390e5a` [danish_norway] catalog: `('bruun_part', 'III')` — → ('bruun_lot_no', '14036')
+- `c-20390e5a` [danish_norway] catalog: `('bruun_lot_no', '12065')` — → ('bruun_lot_no', '14037')
+- `c-20390e5a` [danish_norway] catalog: `('bruun_page', '191')` — → ('bruun_lot_no', '14037')
+- `c-20390e5a` [danish_norway] catalog: `('bruun_part', 'III')` — → ('bruun_lot_no', '14037')
 - `c-20390e5a` [danish_norway] sources: `('https://www.danskmoent.dk/norge/nf3h8.htm', 'danskmoent.dk (Hede nf3h8)')` — → ('https://www.danskmoent.dk/norge/nf3h8.htm', 'danskmoent.dk (Hede nf3
 - `c-305bc5e0` [danish_norway] sources: `('https://en.ucoin.net/coin/denmark-2-speciedaler-1649-1650/?tid=97375', 'ucoin tid 97375'` — → ('https://www.danskmoent.dk/norge/nf3h9.htm', 'danskmoent.dk (Hede nf3; edit 4831c21
 - `c-305bc5e0` [danish_norway] sources: `('https://www.danskmoent.dk/fr/f3h50.htm', 'Hede 51 / danskmoent.dk')` — → ('https://www.danskmoent.dk/norge/nf3h9.htm', 'danskmoent.dk (Hede nf3; edit 4831c21
@@ -1742,18 +1722,21 @@ Per entity: danish_norway 52, danish_realm 12, royal_holstein 7.
 
 ## E3-own-attested-removed — a value the final's own class attests, yet removed
 
-**E** · 10 values on 7 finals. **Legal form:** Review — a switch defect or a class value filtered later (KMM specimen drop, thinning).
+**E** · 13 values on 8 finals. **Legal form:** Review — a switch defect or a class value filtered later (KMM specimen drop, thinning).
 
 | field | origin | direction | values |
 |---|---|---|---|
-| catalog | foundation | removed | 5 |
+| catalog | foundation | removed | 8 |
 | sources | foundation | removed | 4 |
 | sources | promoted | removed | 1 |
 
-Per entity: danish_realm 9, royal_holstein 1.
+Per entity: danish_realm 12, royal_holstein 1.
 
 - `c-023a9d78` [danish_realm] sources: `('https://www.danskmoent.dk/c4hede2.htm', 'danskmoent.dk overview c4hede2 (Hede c4h146 — T` — → ('https://www.danskmoent.dk/c4hede2.htm', 'danskmoent.dk overview c4he
 - `dk-tid-130240` [danish_realm] sources: `('https://www.danskmoent.dk/chr/c8h1.htm', 'danskmoent.dk (Hede c8h1A)')` — → ('https://www.danskmoent.dk/chr/c8h1.htm', 'danskmoent.dk (Hede c8h1C)
+- `dk-tid-173646` [danish_realm] catalog: `('bruun_lot_no', '17093')` — → ('bruun_lot_no', '1110')
+- `dk-tid-173646` [danish_realm] catalog: `('bruun_page', '64')` — → ('bruun_lot_no', '1110')
+- `dk-tid-173646` [danish_realm] catalog: `('bruun_part', 'IV')` — → ('bruun_lot_no', '1110')
 - `dk-tid-70760` [danish_realm] sources: `('https://www.danskmoent.dk/fr/f6h27.htm', 'danskmoent.dk (Hede f6h27C)')` — → ('https://www.danskmoent.dk/fr/f6h27.htm', 'danskmoent.dk (Hede f6h27B
 - `km-452-chr-v-1699` [danish_realm] catalog: `('hede_volume', 'c5h')` — → ('hede_volume', 'f4h'); edit 214f991
 - `km-795-1-chr-ix-1874` [danish_realm] catalog: `('bruun_lot_no', '17235')` — → ('bruun_lot_no', '17259'); edit 214f991
@@ -1802,7 +1785,7 @@ Per entity: danish_realm 3, danish_norway 2, royal_holstein 1.
 | `4093197` | 2026-05-19 | edit | data(v2): D40 first application — 543 D+E entries bulk-promoted | +8 −0 | E2-head-departed 4, B2-moved-to-another-final 2, C1-nominal-form 1, A2-ruler-canonical 1 |
 | `05b5b5e` | 2026-05-19 | edit | data(v2): D39 first application — 535 N-cases bulk-promoted across 8 e | +5 −0 | A2-ruler-canonical 3, B2-moved-to-another-final 1, A4-relabel 1 |
 | `ace1c6a` | 2026-05-19 | edit | docs+data: source-ref label convention + cleanup of 9 verbose offender | +1 −0 | C0-hand-edit 1 |
-| `e157ce2` | 2026-05-19 | edit | data(v2): D37 first application — danish_norway 438 entries bulk-promo | +5 −0 | C1-nominal-form 2, A4-relabel 2, B2-moved-to-another-final 1 |
+| `e157ce2` | 2026-05-19 | edit | data(v2): D37 first application — danish_norway 438 entries bulk-promo | +3 −0 | A4-relabel 2, B2-moved-to-another-final 1 |
 | `f58b867` | 2026-05-20 | edit | build(v2): foundation sources list flush — same skip_first_list rule | +5 −0 | B2-moved-to-another-final 3, E3-own-attested-removed 1 |
 | `577ea14` | 2026-05-23 | edit | data(v2-final): systematic re-route of 115 orphan unified entries into | +19 −0 | B2-moved-to-another-final 10, D2-v1-memberless 3, D1-v1-twin 2, A4-relabel 2, B8-bruun-anchor 1, D5-v1-citations-on-promoted 1 |
 | `e210ed6` | 2026-05-24 | edit | data: restore 838 V1 curator-added sources into V2 final entries | +213 −0 | D3-v1-uncovered 117, A4-relabel 52, D2-v1-memberless 9, C0-hand-edit 4, B2-moved-to-another-final 1, D1-v1-twin 1 |
@@ -1819,10 +1802,10 @@ Per entity: danish_realm 3, danish_norway 2, royal_holstein 1.
 | `a293a31` | 2026-05-30 | pipeline | data: regenerate seed_unified + final after Numista dup consolidation | +3 −0 | B2-moved-to-another-final 3 |
 | `a2e1952` | 2026-05-31 | edit | fix: tighten over-merge split — require no shared type-level catalog r | +11 −1 | C0-hand-edit 11, C7-hand-deletion-returns 1 |
 | `bab0d82` | 2026-05-31 | pipeline | fix: split 50 over-merged different-KM members in absorb (§9.4) + guar | +14 −0 | B2-moved-to-another-final 10, E2-head-departed 3, D1-v1-twin 1 |
-| `4f22f45` | 2026-06-01 | pipeline | data: §CL-3 absorb → final (7018 entries, builds clean) | +413 −0 | C0-hand-edit 6, D6-v1-values-on-promoted 3, D2-v1-memberless 3, E2-head-departed 1, E4-residual 1, B2-moved-to-another-final 1, B3-recorded-removal 1, D1-v1-twin 1 |
+| `4f22f45` | 2026-06-01 | pipeline | data: §CL-3 absorb → final (7018 entries, builds clean) | +424 −0 | C0-hand-edit 6, D6-v1-values-on-promoted 3, D2-v1-memberless 3, E2-head-departed 1, E4-residual 1, B2-moved-to-another-final 1, B3-recorded-removal 1, D1-v1-twin 1 |
 | `399c954` | 2026-06-03 | pipeline | data: absorb re-merged seed_unified into final — §CS propagation | +73 −19 | B3-recorded-removal 6, B6-flag-class-claim 5, B2-moved-to-another-final 2, A4-relabel 1, B1-excluded-stub-citations 1, A2-ruler-canonical 1 |
 | `58f1a4b` | 2026-06-03 | edit | data: §CS fix 7 V1 bruun collection-id typos (adjacent-lot mis-cites) | +1 −0 | C0-hand-edit 1 |
-| `88aa100` | 2026-06-03 | pipeline | data: absorb KMK + recovered Bruun into V2 final (9947 bulk-promoted,  | +190 −0 | A2-ruler-canonical 78, B6-flag-class-claim 62, D6-v1-values-on-promoted 29, B5-covered-other-form 9, E1-ruler-other 4, C1-nominal-form 4, E4-residual 1, B4-mintmaster-place 1 |
+| `88aa100` | 2026-06-03 | pipeline | data: absorb KMK + recovered Bruun into V2 final (9947 bulk-promoted,  | +189 −0 | A2-ruler-canonical 78, B6-flag-class-claim 62, D6-v1-values-on-promoted 29, B5-covered-other-form 9, E1-ruler-other 4, C1-nominal-form 3, E4-residual 1, B4-mintmaster-place 1 |
 | `51a609c` | 2026-06-09 | edit | build: re-validate composed_of membership (evict identity-mismatched m | +1 −0 | A2-ruler-canonical 1 |
 | `24b8855` | 2026-06-12 | edit | data: consolidate duplicated/truncated Aagaard refs (179 entries) | +4 −1 | C0-hand-edit 4, C7-hand-deletion-returns 1 |
 | `eefddf5` | 2026-06-12 | edit | data: reclassify Frederik I 1527 Goldgulden as Rhinsk Gylden (rhinsk_g | +0 −1 | C7-hand-deletion-returns 1 |
@@ -1840,13 +1823,13 @@ Per entity: danish_realm 3, danish_norway 2, royal_holstein 1.
 | `95f4d35` | 2026-06-23 | edit | data: clean Hede-3/Hede-8 over-merge residue from c5h56 (Christian V 2 | +2 −0 | C0-hand-edit 2 |
 | `69255e4` | 2026-06-26 | edit | data: fold 4 confirmed Pattern-A duplicate final foundations | +5 −0 | C0-hand-edit 5 |
 | `fc5a619` | 2026-06-28 | edit | data: c7h13 — restore dropped Bruun Part III (KM 651.1) source + drop  | +3 −0 | C0-hand-edit 3 |
-| `d410c68` | 2026-07-09 | edit | data: foundation-reset kmk-158132 — split the 1643 Schou-58 specimen o | +4 −1 | C0-hand-edit 3, A2-ruler-canonical 1, C7-hand-deletion-returns 1 |
+| `d410c68` | 2026-07-09 | edit | data: foundation-reset kmk-158132 — split the 1643 Schou-58 specimen o | +1 −1 | A2-ruler-canonical 1, C7-hand-deletion-returns 1 |
 | `baa587f` | 2026-07-11 | edit | data: Denmark rhinsk_gylden_fod — nominal + timeline label "Rhinsk Gyl | +5 −4 | C1-nominal-form 5, C7-hand-deletion-returns 4 |
 | `16491cb` | 2026-07-12 | edit | data: exclude kmk-137189 — anomalous ¼ Portugaløser stub (danish_realm | +0 −1 | C7-hand-deletion-returns 1 |
 | `8266c1e` | 2026-07-19 | edit | data: sovereign trial pieces display + km-a47 auction source | +1 −0 | C0-hand-edit 1 |
 | `2098ed8` | 2026-07-29 | pipeline | data(v2): absorb — the fifteen duplicated coins render once | +22 −1 | B2-moved-to-another-final 15, B6-flag-class-claim 4, A2-ruler-canonical 1, E2-head-departed 1, D5-v1-citations-on-promoted 1 |
-| `43fe1be` | 2026-08-25 | edit | data(v2): drain all 1627 pending into the unsorted pens | +310 −0 | D5-v1-citations-on-promoted 5 |
-| `064bfe9` | 2026-09-19 | edit | data: backfill Danish into the existing verification notes | +19 −5 | B9-note-template-swap 14, C4-note-da-lost 5 |
+| `43fe1be` | 2026-08-25 | edit | data(v2): drain all 1627 pending into the unsorted pens | +324 −0 | D5-v1-citations-on-promoted 5 |
+| `064bfe9` | 2026-09-19 | edit | data: backfill Danish into the existing verification notes | +9 −5 | C4-note-da-lost 5, B9-note-template-swap 4 |
 | `7a831dc` | 2026-09-20 | edit | data: the last 32 verification notes on the Denmark page speak Danish | +2 −0 | C5-note-curated-text 2 |
 | `a523b0f` | 2026-09-20 | edit | data: Danish for the Denmark page's generated coin notes | +78 −0 | B9-note-template-swap 78 |
 | `c3bd650` | 2026-09-27 | edit | data: drop the 1514 fineness anchor from Nobelfod Phase 0 coins | +3 −0 | C5-note-curated-text 3 |

@@ -866,3 +866,24 @@ item) that settles both and the next ones.
 
 No decision needed (switch defects, done next): the year-family hold, the
 head-class choice + «(?)» rule, the `da` re-generation, the «(N)» strip.
+
+### Switch run 6 — the four defects fixed (2026-10-23, `9e35959` … `da6e9e3`)
+
+Fixed with tests: a hold on any `year_*` carries the year family (c4h144a
+keeps 1629); the head class is the class the final's `label` names (exact
+or its sub-letter class), then by authority, then the final's own id — an
+IKMK class no longer outranks the Hede class of `unified-dk-hede-nf3h8`;
+a placeholder «(?)» never wins a scalar when another class has a value,
+and stays only when no class has one (the schema requires `nominal`; run 4
+lost it on two `_unclassified` finals); the writer strips Numista's
+bare-number value tail («1½ Gulden (1.5)», 44 seeds re-written in place).
+Full chain twice from the committed state: 0 coins gone / new, 7 664
+finals change against HEAD, marks Check 10 clean, both sites build;
+danish_realm still differs between the two passes by entry order only.
+
+Denmark page against `main`: 4 954 values on 2 019 finals — A 1 336 ·
+B 2 590 · C 150 · D 773 · E 105 (was 4 970 / A 1 336 · B 2 601 · C 158 ·
+D 773 · E 102). C1 29 (the «1 Taler» pair, the two «(?)» and the «(1.5)»
+are gone), B9 82 (the Hede-headed multi-class finals keep absorb's
+boilerplate's head now; the rest are single-class finals whose own
+template replaces the boilerplate). The decisions asked above stand.
