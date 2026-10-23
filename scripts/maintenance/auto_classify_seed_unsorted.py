@@ -1188,7 +1188,9 @@ def main() -> int:
     by_signal: Counter = Counter()
     by_outcome: Counter = Counter()
 
-    paths = [V2_FINAL / f"{args.entity}.yml"] if args.entity else sorted(V2_FINAL.glob("*.yml"))
+    # `--entity a,b,c` — several entities in one process (2026-10-23).
+    paths = ([V2_FINAL / f"{e.strip()}.yml" for e in args.entity.split(",") if e.strip()]
+             if args.entity else sorted(V2_FINAL.glob("*.yml")))
     for path in paths:
         if not path.exists():
             print(f"  [skip] {path} not found")

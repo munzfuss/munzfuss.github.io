@@ -4505,7 +4505,18 @@ def main() -> int:
         global SELF_UNION_ENABLED
         SELF_UNION_ENABLED = False
 
-    entities = [args.entity] if args.entity else _entities_with_seed_unified()
+    # `--entity a,b,c`: several entities in ONE process — the global seed /
+    # unified / final indices are built once (2026-10-23: ~50 s of overhead
+    # per single-entity run), and the «before this run wrote anything»
+    # snapshot spans all of them, as in the full runner.
+    _ent_list = [e.strip() for e in (args.entity or "").split(",") if e.strip()]
+    if _ent_list:
+        _known = set(_entities_with_seed_unified())
+        _unknown = [e for e in _ent_list if e not in _known]
+        if _unknown:
+            print(f"Unknown entity {', '.join(repr(e) for e in _unknown)} — no seed_unified file.")
+            return 2
+    entities = _ent_list or _entities_with_seed_unified()
     if not entities:
         print("No V2 seed_unified files found.")
         return 0

@@ -1,6 +1,6 @@
 """An --entity nobody has a seed for must fail, not succeed over zero coins.
 
-`--entity danish_realm,danish_norway` looks like it ought to work and doesn't:
+`--entity danish_realm,danish_norway` used to look like it ought to work and did not:
 the flag takes ONE entity, so the comma-joined string matches no seed file. The
 run then completed normally, wrote the unified yamls, and reported
 
@@ -40,10 +40,12 @@ class TestUnknownEntityIsRejected(unittest.TestCase):
         r = run("--entity", "danish_ralm")
         self.assertIn("danish_realm", r.stdout)
 
-    def test_the_comma_form_says_why_it_failed(self):
-        r = run("--entity", "danish_realm,danish_norway")
+    def test_a_comma_list_rejects_its_unknown_member(self):
+        # Since 2026-10-23 `--entity a,b` runs several entities in one
+        # process; an unknown name inside the list still fails, by name.
+        r = run("--entity", "danish_realm,danish_ralm")
         self.assertEqual(r.returncode, 2)
-        self.assertIn("once per run", r.stdout)
+        self.assertIn("danish_ralm", r.stdout)
 
     def test_nothing_is_written_on_rejection(self):
         # The rejection happens before any output path is touched.
