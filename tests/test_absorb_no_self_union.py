@@ -161,3 +161,29 @@ class Flags(unittest.TestCase):
     def test_reign_span_flag_travels_on_a_promoted_final(self):
         sk = ab._skeleton(_promoted(year_is_reign_span=True))
         self.assertIs(sk["year_is_reign_span"], True)
+
+
+class FoundationOwnRecord(unittest.TestCase):
+    """What the enrichment reads from the foundation itself — its prose, its
+    years, a curator fraction — is the foundation's own record, not member
+    data; a V1 foundation keeps it. Source data (citations, catalogue
+    numbers, readings) it does not keep: the harvests supply that."""
+
+    def test_prose_years_and_fraction_stay_on_a_foundation(self):
+        fc = _promoted(id="km-1", origin="foundation", composed_of=[],
+                       inscription_obv="CHRISTIANVS", year_first=1624, year_last=1634,
+                       year_ranges=[[1624, 1634]], year_label="1624-1634",
+                       verification_note={"en": "V1 curator"}, fraction="1/2")
+        sk = ab._skeleton(fc)
+        for k in ("inscription_obv", "year_first", "year_last", "year_ranges", "year_label",
+                  "verification_note", "fraction"):
+            self.assertEqual(sk[k], fc[k], k)
+        for k in ("sources", "metal", "mint"):
+            self.assertNotIn(k, sk, k)
+
+    def test_promoted_keeps_fraction_only(self):
+        sk = ab._skeleton(_promoted(fraction="1/2", inscription_obv="X", year_first=1624,
+                                    verification_note={"en": "boilerplate"}))
+        self.assertEqual(sk["fraction"], "1/2")
+        for k in ("inscription_obv", "year_first", "verification_note"):
+            self.assertNotIn(k, sk, k)

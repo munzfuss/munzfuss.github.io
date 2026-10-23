@@ -521,6 +521,12 @@ _SKELETON_CARRY = frozenset({
     "_weights_thinned", "_entity_routing_hint", "_migration_note",
     "_migration_dup_origin_id", "v1_home_location", "promoted_to",
     "mintmasters",
+    # `fraction` is never member data (no seed carries it): absorb infers it
+    # from fuss + nominal, or the curator set it. The inference re-runs on
+    # the rebuilt entry and corrects a legacy shape, so carrying the stored
+    # value keeps only what inference cannot derive (49 curator fractions on
+    # promoted finals in stage B run 4).
+    "fraction",
     # absorb's own bookkeeping of the reign-window placeholder: the override
     # in `_enrich_final_entry` recognises a placeholder year by this flag
     # (`_set_reign_span_flag`: «where a re-run will find it»), so without it
@@ -539,6 +545,19 @@ _FOUNDATION_FLAGS = frozenset({
     "verified",
 })
 
+# A V1 foundation's own record that the enrichment reads from `members[0]`
+# (`_take_first_non_none`) or from `[final_entry]` when it has no class: the
+# curator's prose and the years the V1 curator recorded (CLAUDE.md «source
+# years are immutable»; `_MIGRATION_PRESERVED_FIELDS` carries the same set
+# when a foundation is purged). Source data a harvest can supply — citations,
+# catalogue numbers, readings, mint, metal — is deliberately NOT here
+# (curator 2026-10-23: V1 untouched, the harvests are expected to cover it).
+_FOUNDATION_OWN = frozenset({
+    "inscription_obv", "inscription_rev", "weight_rough_label",
+    "verification_note",
+    "year_first", "year_last", "year_ranges", "year_label",
+})
+
 
 def _skeleton(fc: dict) -> dict:
     """The final reduced to its own contribution (see `_SKELETON_CARRY`); a
@@ -546,7 +565,7 @@ def _skeleton(fc: dict) -> dict:
     `_FOUNDATION_IMMUTABLE_FIELDS`."""
     keep = set(_SKELETON_CARRY)
     if not _is_promoted(fc):
-        keep |= _FOUNDATION_IMMUTABLE_FIELDS | _FOUNDATION_FLAGS
+        keep |= _FOUNDATION_IMMUTABLE_FIELDS | _FOUNDATION_FLAGS | _FOUNDATION_OWN
     h = fc.get("_curation_holds")
     for f in (h.keys() if isinstance(h, dict) else (h or [])):
         keep.add(f)
