@@ -643,6 +643,29 @@ def _skeleton(fc: dict) -> dict:
     return sk
 
 
+def _apply_catalog_km_hold(enriched: dict, fc: dict) -> None:
+    """`_curation_holds: {catalog.km: "why"}` freezes ONLY the KM register of
+    a final, in the exact shape stored (2026-10-23, km-105-chr-v-1683). A
+    hold on the whole `catalog` would also freeze every other index; the
+    point is the Krause VOLUME tags (`{dk: '73', sh: '105'}`), which no seed
+    carries — the merger reads a bare KM's volume from the entity, so a
+    Glückstadt coin's Danish KM 73 and German KM 105 both land in `sh` and
+    the tags a curator set are lost on every rebuild. The other registers
+    keep following the members."""
+    h = fc.get("_curation_holds")
+    held = set(h.keys() if isinstance(h, dict) else (h or []))
+    if "catalog.km" not in held:
+        return
+    km = (fc.get("catalog") or {}).get("km")
+    if km is None:
+        return
+    cat = enriched.get("catalog")
+    if not isinstance(cat, dict):
+        cat = {}
+        enriched["catalog"] = cat
+    cat["km"] = copy.deepcopy(km)
+
+
 def _own(fc: dict) -> dict:
     """`fc` as the enrichment's `final_entry` / first member: the skeleton
     when the self-union is off, the stored final otherwise."""
@@ -3559,6 +3582,7 @@ def process_entity(entity_id: str) -> dict:
         _apply_migrated_merge_fields(enriched, fid, full_composed,
                                      curator_migrations)
         _gapfill_cross_carry(enriched, fid, full_composed)
+        _apply_catalog_km_hold(enriched, fc)
         enriched_entries.append(enriched)
         if conflicts:
             enrichment_conflicts.append({
@@ -3657,10 +3681,12 @@ def process_entity(entity_id: str) -> dict:
                 restored = dict(_folded_self[uid])
                 restored["composed_of"] = [uid]
                 restored.setdefault("origin", "promoted")
+                _stored = _folded_self[uid]
                 restored = _own(restored)  # P2: the stored dict is a self-union entrance too
                 enriched, _ = _enrich_final_entry(restored, [restored, unified], entity_id)
                 if not SELF_UNION_ENABLED:
                     _normalise_final_entry(enriched, unified_by_id)
+                _apply_catalog_km_hold(enriched, _stored)
                 enriched_entries.append(enriched)
                 continue
             promoted_stub = dict(unified)

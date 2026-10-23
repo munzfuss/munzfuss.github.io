@@ -108,6 +108,24 @@ class SwitchOn(unittest.TestCase):
                                    "kind", "note", "_weights_thinned", "v1_home_location"})
 
 
+class CatalogKmHold(unittest.TestCase):
+    """`_curation_holds: {catalog.km}` keeps the stored KM shape (volume
+    tags); the other registers still follow the members (km-105, 2026-10-23)."""
+
+    def test_held_km_overrides_rebuilt_km_only(self):
+        fc = {"id": "f", "catalog": {"km": {"dk": "73", "sh": "105"}, "hede": "120"},
+              "_curation_holds": {"catalog.km": "volume tags"}}
+        out = {"id": "f", "catalog": {"km": ["73", "105"], "hede": "120", "sieg": "140"}}
+        ab._apply_catalog_km_hold(out, fc)
+        self.assertEqual(out["catalog"], {"km": {"dk": "73", "sh": "105"}, "hede": "120", "sieg": "140"})
+
+    def test_no_hold_no_change(self):
+        fc = {"id": "f", "catalog": {"km": {"dk": "73"}}}
+        out = {"id": "f", "catalog": {"km": ["73", "105"]}}
+        ab._apply_catalog_km_hold(out, fc)
+        self.assertEqual(out["catalog"]["km"], ["73", "105"])
+
+
 if __name__ == "__main__":
     unittest.main()
 
