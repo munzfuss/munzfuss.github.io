@@ -581,11 +581,15 @@ def _head_class_order(fc: dict, composed, unified_by_id: dict) -> list[str]:
 
     def _key(mid: str):
         u = unified_by_id.get(mid) or {}
-        is_label = bool(label) and u.get("label") == label
-        is_self = mid == fid
         lab = str(u.get("label") or mid)
+        # exact label, or the label's sub-letter class (a final labelled
+        # `unified-dk-hede-nf3h8` whose Hede class is `…-nf3h8b`)
+        is_label = bool(label) and (lab == label or lab.startswith(str(label)))
+        is_self = mid == fid
         auth = _authority_score(lab[len("unified-"):] if lab.startswith("unified-") else lab)
-        return (not is_label, not is_self, -auth, mid)
+        # authority before the final's own id: D49 gave the final the id of
+        # whichever class came first, which is no statement about the coin
+        return (not is_label, -auth, not is_self, mid)
     return sorted(composed, key=_key)
 
 

@@ -226,14 +226,20 @@ class HeadClassByLabel(unittest.TestCase):
                "c-zz": dict(CLS, id="c-zz", label="unified-dk-hede-nf3h8b"),
                "c-mm": dict(CLS, id="c-mm", label="unified-dk-bruun-9")}
         fc = _promoted(id="c-aa", label="unified-dk-hede-nf3h8b", composed_of=["c-aa", "c-mm", "c-zz"])
-        self.assertEqual(ab._head_class_order(fc, fc["composed_of"], uni), ["c-zz", "c-aa", "c-mm"])
+        self.assertEqual(ab._head_class_order(fc, fc["composed_of"], uni), ["c-zz", "c-mm", "c-aa"])
 
-    def test_without_a_label_match_authority_decides_after_self(self):
+    def test_without_a_label_match_authority_decides_before_self(self):
         uni = {"c-aa": dict(CLS, id="c-aa", label="unified-ikmk-1"),
                "c-mm": dict(CLS, id="c-mm", label="unified-dk-bruun-9"),
                "c-hh": dict(CLS, id="c-hh", label="unified-dk-hede-x")}
-        fc = _promoted(id="c-mm", label="unified-dk-hede-nf3h8", composed_of=["c-aa", "c-mm", "c-hh"])
-        self.assertEqual(ab._head_class_order(fc, fc["composed_of"], uni), ["c-mm", "c-hh", "c-aa"])
+        fc = _promoted(id="c-mm", label="unified-dk-hede-nf3h9", composed_of=["c-aa", "c-mm", "c-hh"])
+        self.assertEqual(ab._head_class_order(fc, fc["composed_of"], uni), ["c-hh", "c-mm", "c-aa"])
+
+    def test_sub_letter_class_matches_a_bare_hede_label(self):
+        uni = {"c-aa": dict(CLS, id="c-aa", label="unified-ikmk-1"),
+               "c-hh": dict(CLS, id="c-hh", label="unified-dk-hede-nf3h8b")}
+        fc = _promoted(id="c-aa", label="unified-dk-hede-nf3h8", composed_of=["c-aa", "c-hh"])
+        self.assertEqual(ab._head_class_order(fc, fc["composed_of"], uni), ["c-hh", "c-aa"])
 
 
 class PlaceholderNeverWins(unittest.TestCase):
