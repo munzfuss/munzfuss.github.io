@@ -37,6 +37,9 @@ the last only with an explicit «так», §4).
 - **Sources: the link, not the label.** Two citations with the same URL are
   the same citation, whatever their `ref` text says. A URL present on one
   side only is a row.
+- **One catalogue reference, two spellings, is not a difference.** «Harck-15.1.2»
+  (V1 form) and «Harck# 15.1.2» (seed builder form) compare equal; the helper
+  folds «Code-N» / «Code: N» to «Code# N» before comparing (curator 2026-10-23).
 - **The Bruun anchor is never shown** (`catalog.bruun_part`, `bruun_lot_no`,
   `bruun_page`): one single-valued pointer to one specimen, not rendered; every
   specimen stays in `bruun_collection_id` and `sources`, which ARE compared

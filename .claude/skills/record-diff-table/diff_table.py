@@ -32,6 +32,7 @@ from __future__ import annotations
 import argparse
 import glob
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -96,7 +97,22 @@ def load(spec: str) -> tuple[str, dict]:
     raise SystemExit(f"bad spec {spec!r}: kind must be final / unified / seed")
 
 
+_CODE_TOKEN = re.compile(r"^([^\d#\-:]+?)\s*[#\-:]\s*(?=[A-Za-z]{0,3}\d)")
+
+
+def _norm_token(x):
+    """«Harck-15.1.2» (V1 form) and «Harck# 15.1.2» (seed builder form) are
+    one catalogue reference — compare them as equal (curator 2026-10-23)."""
+    if isinstance(x, str):
+        return _CODE_TOKEN.sub(lambda m: m.group(1).strip() + "# ", x.strip())
+    return x
+
+
 def _canon(v):
+    if isinstance(v, list):
+        v = [_norm_token(x) for x in v]
+    else:
+        v = _norm_token(v)
     return json.dumps(v, ensure_ascii=False, sort_keys=True, default=str)
 
 
