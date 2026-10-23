@@ -433,3 +433,33 @@ stage-N state; merger dry-run first (seed ↔ seed_unified consistent).
 - **Render:** munzfuss 125 of 146 pages, danskmoent 101 of 105 — the
   `(?)` marker flips and citation counts reach most tables; read per
   category in stage C, not per page.
+
+## Stage B (run 4) + stage C — results (2026-10-23, from `ff62927` + P8 fix)
+
+Two switch fixes after run 2 / 3: the HEAD class is the first member (28
+nominals / 6 rulers on two-class finals came from the wrong class), and
+absorb's in-place normalisation of a final (`_normalise_final_entry`:
+nominal adoption / hygiene, mint split and spelling, catalogue, flag rules)
+runs on the rebuilt entry too. Run 4: **7 994 finals change, 0 coins gone or
+new; fixed point as coin sets** (danish_realm entry order still shifts by
+the fold / re-append cycle). Removed values classified without the git
+route (`classify_self_union_diff.py --no-history`):
+
+| bucket | values | what it is | next |
+|---|---|---|---|
+| D-promoted-class-wins | 7 709 | a promoted final's frozen scalar / flag where its class now says otherwise: `verification_note` 5 557 (which member's boilerplate), `ruler` 1 285 — **«Christian 4» → «Christian IV.» 220, «Frederik 3» → «Frederik III.» 175 … i.e. finals the June passes missed now get the canonical form from stage N**; `mintmaster` 225 (mint names in the mintmaster field: «Trankebar» 74, «Lübeck» 27 — class has none); `mint_verified` 156 true→false (the 2026-10-06 `_members_decline` guard, correct); `nominal` 53 («1 Ducat» vs class «1 Ducat (3.5)», «1 Thaler» vs «1 Thaler = 36 Grote» — the class's form needs the writer's splitter, D3) | accept as the class's; list the 53 nominals for the curator |
+| R (foundation) | ~1 600 | V1 foundation data no class carries: `catalog` 375, `sources` 278, `metal` 108, years 87, inscriptions 90+91, flags ~330 — the V1 curator's record | → **D1 V1 seed** (dry run: 676 entries, 14 entities, `build_v1_seed.py`) |
+| R (promoted) | ~300 | `sources` 97, `catalog` 67, `mint` 37 («Christiania?», «Ulæselig møntmestermærke») with no attesting class and no curator layer | curator review, or the git route (slow pass) |
+| S-moved | 1 494 | attested by ANOTHER final's class: `sources` 835 + 96, `catalog` 208 + 265, `mint` 36 + 10, `year_ranges` 44 | stale — removal list |
+| R-orphan | 1 390 | only a class with no final attests it (1 387 on `c-afd707d6` / `c-bbb03d20`: the KMM korshvid under excluded `kmk-642893`) | curator: exclusion or merge |
+| D-foundation | 637 | `verification_note` 523 (V1 curator prose), years 20, flags ~50 | carry on foundations (skeleton gains `verification_note`, inscriptions, years for `origin: foundation`), or V1 seed |
+| S-relabel | 128 | same url, older ref text | stale |
+| S-recorded | 106 | named in `_recorded_removals` / `_retracted_refs` | stale, already agreed |
+| R-twin | 96 | home only in `seed_unsorted` | curator (merge candidates) |
+| H | 89 | the 43 head-departed finals (Hede sub-letter split) | `v2-merge-coins`, per case |
+| H-stale-v1-twin | 70 | 3 memberless V1 foundations whose own id is a seed living in a class homed on another final (`dk-tid-70750` → `c-e40c23a1` royal_holstein) | fold / delete |
+| FLAG | 38 | class-attested yet removed: single-page-url relabels the dedup keeps under the other ref, two-class scalars, Oldenburg English rulers | inspect one by one |
+
+Skeleton refinement that follows from D-foundation: a V1 foundation keeps
+`verification_note`, `inscription_obv/rev` and its years as its own (they
+are the V1 curator's), which empties most of that bucket without a seed.
