@@ -30,6 +30,10 @@ the last only with an explicit «так», §4).
   proposal for that row (curator 2026-10-23: a separate field column keeps
   the comment clear).
 - **Rows = only what differs.** An equal field is not a row.
+- **Bold the differing part.** When only part of a row differs (a list with
+  some elements on one side only), those elements are **bold** on the side
+  that has them; the shared elements stay plain (curator 2026-10-23). The
+  helper does this; keep it when retyping a cell.
 - **Sources: the link, not the label.** Two citations with the same URL are
   the same citation, whatever their `ref` text says. A URL present on one
   side only is a row.

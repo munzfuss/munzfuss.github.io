@@ -156,12 +156,37 @@ def diff(a: dict, b: dict, order: bool, ignore: list[str]) -> list[dict]:
     return rows
 
 
+def _elem(x) -> str:
+    """One list element as text: a reading {value, source} reads «value (source)»."""
+    if isinstance(x, dict) and "value" in x:
+        return f"{x['value']} ({x.get('source')})" if x.get("source") else str(x["value"])
+    return x if isinstance(x, str) else _canon(x)
+
+
+def _cell(v, other, full: bool) -> str:
+    """A list cell with the elements absent from the other side in bold
+    (curator 2026-10-23: when only part of a row differs, show which part).
+    A scalar, or a list facing a non-list, is shown whole."""
+    if v is None:
+        return "—"
+    if isinstance(v, list) and isinstance(other, list):
+        theirs = {_canon(x) for x in other}
+        parts = []
+        for x in v:
+            t = _short(_elem(x), full)
+            parts.append(t if _canon(x) in theirs else f"**{t}**")
+        return ", ".join(parts) if parts else "[]"
+    if isinstance(v, list):
+        return ", ".join(_short(_elem(x), full) for x in v) or "[]"
+    return _short(v, full)
+
+
 def render(sa: str, sb: str, rows: list[dict], full: bool) -> str:
     lines = [f"A = `{sa}`", f"B = `{sb}`", "",
              "| поле | A | B | коментар |", "|---|---|---|---|"]
     for r in rows:
-        a = "—" if r["a"] is None else _short(r["a"], full)
-        b = "—" if r["b"] is None else _short(r["b"], full)
+        a = _cell(r["a"], r["b"], full)
+        b = _cell(r["b"], r["a"], full)
         field = r["field"]
         if field.startswith("sources["):
             a, b = (field[8:-1] if r["a"] == "✓" else "—"), (field[8:-1] if r["b"] == "✓" else "—")
