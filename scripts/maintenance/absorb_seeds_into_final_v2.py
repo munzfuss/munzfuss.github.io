@@ -2512,6 +2512,103 @@ def _cross_entity_carry_in(entity_id: str, unified_entries: list[dict]
     return out
 
 
+def _normalise_final_entry(fe: dict, unified_by_id: dict) -> None:
+    """Absorb's in-place normalisation of a final (nominal adoption and
+    hygiene, mint split and canonical spelling, catalogue normalisation,
+    the flag rules). Runs on every stored final before enrichment, as it
+    always did, and — with the self-union off — on the REBUILT entry as
+    well, because the skeleton carries none of these transforms and the
+    class's raw value would otherwise come back (stage B run 3: 60
+    nominals and ~300 flags differed for this reason alone)."""
+    raw_nom = fe.get("nominal")
+    # Placeholder-nominal adoption: when foundation carries a
+    # literal «(?)» (or empty) nominal AND the matching unified
+    # entry now publishes a real nominal (e.g. after a builder
+    # fix supplied title-derived value), adopt that nominal.
+    # Foundation-immutable per DF1 normally — but a placeholder
+    # is by definition unset; replacing it isn't a curator
+    # override, it's a gap-fill.
+    # Same rule extended: foundation nominal with the
+    # «X og Y» Danish-conjunction pattern is an obsolete
+    # multi-coin merged form from before the Hede multi-Hede
+    # parser fix. The unified entry now publishes the clean
+    # single-coin nominal — adopt it. Concrete case:
+    # `unified-dk-hede-nf3h39` foundation had «1 Og 2
+    # Speciedaler» (merged Hede 39 + Hede 40); fresh Hede
+    # parser splits into `nf3h39` (1 Speciedaler) +
+    # `nf3h40` (2 Speciedaler) — foundation adopts the
+    # clean Hede 39's «1 Speciedaler».
+    fid = fe.get("id")
+    needs_adoption = False
+    if raw_nom in ("(?)", "", None):
+        needs_adoption = True
+    elif isinstance(raw_nom, str) and re.search(
+            r"\b[Oo]g\b", raw_nom):
+        needs_adoption = True
+    if (needs_adoption
+            and fid and fid in unified_by_id):
+        ue = unified_by_id[fid]
+        ue_nom = ue.get("nominal")
+        if ue_nom and ue_nom not in ("(?)", "") and ue_nom != raw_nom:
+            fe["nominal"] = ue_nom
+            raw_nom = ue_nom
+    # Mint-from-nominal extraction first (so the string-level
+    # normaliser sees the clean nominal).
+    nom_after_mint, mint_after_split = _extract_mint_from_nominal(
+        raw_nom, fe.get("mint"))
+    if nom_after_mint != raw_nom:
+        fe["nominal"] = nom_after_mint
+        raw_nom = nom_after_mint
+    if mint_after_split != fe.get("mint"):
+        fe["mint"] = mint_after_split
+    new_nom = _normalise_nominal(raw_nom)
+    if new_nom is not None and new_nom != raw_nom:
+        fe["nominal"] = new_nom
+    raw_mint = fe.get("mint")
+    new_mint = _canonicalise_mint(raw_mint)
+    if (new_mint != raw_mint
+            and not (new_mint is None and raw_mint in (None, ""))):
+        fe["mint"] = new_mint
+    cat = fe.get("catalog")
+    if isinstance(cat, dict):
+        _normalise_catalog(cat)
+    # fineness-implies-metal rule (parallel to seed-writer hygiene)
+    if (fe.get("metal")
+            and bool(fe.get("fineness_verified"))
+            and not bool(fe.get("metal_verified"))):
+        fe["metal_verified"] = True
+    # sources-imply-mint rule — with the guards its seed-writer twin
+    # carries. It exists for V1 under-claims; it must not overrule a
+    # class whose own members decline to vouch for the mint. Without
+    # these, every absorb re-promoted the «Clausthal-Zellerfeld» finals
+    # that f7527f2 set unverified and whose seeds hold
+    # `mint_verified: false` (2026-10-06): the flag came back on a
+    # plain re-flow, the value unchanged, only the claim about it.
+    sources_fe = fe.get("sources") or []
+    _fe_holds = set(fe.get("_curation_holds") or [])
+    _members = [unified_by_id[x] for x in [fe.get("id"), *(fe.get("composed_of") or [])]
+                if x in unified_by_id]
+    _members_decline = bool(_members) and all(
+        m.get("mint_verified") is False for m in _members)
+    if (fe.get("mint")
+            and not isinstance(fe.get("mint"), list)
+            and isinstance(sources_fe, list)
+            and any(isinstance(s, dict) and s.get("url") for s in sources_fe)
+            and not bool(fe.get("mint_verified"))
+            and "mint_verified" not in _fe_holds
+            and not _members_decline):
+        fe["mint_verified"] = True
+    # A verified flag attests a value (§4): with the mint empty, the
+    # OR-merge above must not leave it `true` (a member seed that still
+    # carried a stale flag re-verified the emptied mint of 5614fad's
+    # «Tysk» finals on every re-flow, 2026-10-09).
+    # Scoped to `mint`; other flag/value pairs show the same shape on
+    # ~180 finals and have not been examined.
+    if (fe.get("mint_verified") is True and fe.get("mint") in (None, "", [])
+            and "mint_verified" not in _fe_holds and "mint" not in _fe_holds):
+        fe["mint_verified"] = False
+
+
 def process_entity(entity_id: str) -> dict:
     """Returns:
       {
@@ -2607,93 +2704,7 @@ def process_entity(entity_id: str) -> dict:
             out_of_scope_final_dropped += 1
             continue
         if isinstance(fe, dict):
-            raw_nom = fe.get("nominal")
-            # Placeholder-nominal adoption: when foundation carries a
-            # literal «(?)» (or empty) nominal AND the matching unified
-            # entry now publishes a real nominal (e.g. after a builder
-            # fix supplied title-derived value), adopt that nominal.
-            # Foundation-immutable per DF1 normally — but a placeholder
-            # is by definition unset; replacing it isn't a curator
-            # override, it's a gap-fill.
-            # Same rule extended: foundation nominal with the
-            # «X og Y» Danish-conjunction pattern is an obsolete
-            # multi-coin merged form from before the Hede multi-Hede
-            # parser fix. The unified entry now publishes the clean
-            # single-coin nominal — adopt it. Concrete case:
-            # `unified-dk-hede-nf3h39` foundation had «1 Og 2
-            # Speciedaler» (merged Hede 39 + Hede 40); fresh Hede
-            # parser splits into `nf3h39` (1 Speciedaler) +
-            # `nf3h40` (2 Speciedaler) — foundation adopts the
-            # clean Hede 39's «1 Speciedaler».
-            fid = fe.get("id")
-            needs_adoption = False
-            if raw_nom in ("(?)", "", None):
-                needs_adoption = True
-            elif isinstance(raw_nom, str) and re.search(
-                    r"\b[Oo]g\b", raw_nom):
-                needs_adoption = True
-            if (needs_adoption
-                    and fid and fid in unified_by_id):
-                ue = unified_by_id[fid]
-                ue_nom = ue.get("nominal")
-                if ue_nom and ue_nom not in ("(?)", "") and ue_nom != raw_nom:
-                    fe["nominal"] = ue_nom
-                    raw_nom = ue_nom
-            # Mint-from-nominal extraction first (so the string-level
-            # normaliser sees the clean nominal).
-            nom_after_mint, mint_after_split = _extract_mint_from_nominal(
-                raw_nom, fe.get("mint"))
-            if nom_after_mint != raw_nom:
-                fe["nominal"] = nom_after_mint
-                raw_nom = nom_after_mint
-            if mint_after_split != fe.get("mint"):
-                fe["mint"] = mint_after_split
-            new_nom = _normalise_nominal(raw_nom)
-            if new_nom is not None and new_nom != raw_nom:
-                fe["nominal"] = new_nom
-            raw_mint = fe.get("mint")
-            new_mint = _canonicalise_mint(raw_mint)
-            if (new_mint != raw_mint
-                    and not (new_mint is None and raw_mint in (None, ""))):
-                fe["mint"] = new_mint
-            cat = fe.get("catalog")
-            if isinstance(cat, dict):
-                _normalise_catalog(cat)
-            # fineness-implies-metal rule (parallel to seed-writer hygiene)
-            if (fe.get("metal")
-                    and bool(fe.get("fineness_verified"))
-                    and not bool(fe.get("metal_verified"))):
-                fe["metal_verified"] = True
-            # sources-imply-mint rule — with the guards its seed-writer twin
-            # carries. It exists for V1 under-claims; it must not overrule a
-            # class whose own members decline to vouch for the mint. Without
-            # these, every absorb re-promoted the «Clausthal-Zellerfeld» finals
-            # that f7527f2 set unverified and whose seeds hold
-            # `mint_verified: false` (2026-10-06): the flag came back on a
-            # plain re-flow, the value unchanged, only the claim about it.
-            sources_fe = fe.get("sources") or []
-            _fe_holds = set(fe.get("_curation_holds") or [])
-            _members = [unified_by_id[x] for x in [fe.get("id"), *(fe.get("composed_of") or [])]
-                        if x in unified_by_id]
-            _members_decline = bool(_members) and all(
-                m.get("mint_verified") is False for m in _members)
-            if (fe.get("mint")
-                    and not isinstance(fe.get("mint"), list)
-                    and isinstance(sources_fe, list)
-                    and any(isinstance(s, dict) and s.get("url") for s in sources_fe)
-                    and not bool(fe.get("mint_verified"))
-                    and "mint_verified" not in _fe_holds
-                    and not _members_decline):
-                fe["mint_verified"] = True
-            # A verified flag attests a value (§4): with the mint empty, the
-            # OR-merge above must not leave it `true` (a member seed that still
-            # carried a stale flag re-verified the emptied mint of 5614fad's
-            # «Tysk» finals on every re-flow, 2026-10-09).
-            # Scoped to `mint`; other flag/value pairs show the same shape on
-            # ~180 finals and have not been examined.
-            if (fe.get("mint_verified") is True and fe.get("mint") in (None, "", [])
-                    and "mint_verified" not in _fe_holds and "mint" not in _fe_holds):
-                fe["mint_verified"] = False
+            _normalise_final_entry(fe, unified_by_id)
         kept_finals.append(fe)
     final_entries = kept_finals
 
@@ -3431,6 +3442,8 @@ def process_entity(entity_id: str) -> dict:
             if mid in unified_by_id:
                 members.append(unified_by_id[mid])
         enriched, conflicts = _enrich_final_entry(base, members, entity_id)
+        if not SELF_UNION_ENABLED:
+            _normalise_final_entry(enriched, unified_by_id)
         _apply_migrated_merge_fields(enriched, fid, full_composed,
                                      curator_migrations)
         _gapfill_cross_carry(enriched, fid, full_composed)
@@ -3534,6 +3547,8 @@ def process_entity(entity_id: str) -> dict:
                 restored.setdefault("origin", "promoted")
                 restored = _own(restored)  # P2: the stored dict is a self-union entrance too
                 enriched, _ = _enrich_final_entry(restored, [restored, unified], entity_id)
+                if not SELF_UNION_ENABLED:
+                    _normalise_final_entry(enriched, unified_by_id)
                 enriched_entries.append(enriched)
                 continue
             promoted_stub = dict(unified)
@@ -3887,6 +3902,7 @@ def process_entity(entity_id: str) -> dict:
                      if m in unified_by_id]
             if _live:
                 fc, _ = _enrich_final_entry(_skeleton(fc), [_skeleton(fc), *_live], entity_id)
+                _normalise_final_entry(fc, unified_by_id)
             else:
                 monotonic_verbatim.append(str(fid))
         enriched_entries.append(fc)
