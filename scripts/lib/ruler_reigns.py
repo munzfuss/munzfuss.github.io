@@ -474,6 +474,16 @@ DANISH_CROWN_ENTITIES = frozenset({
     "danish_realm", "danish_norway", "royal_holstein", "royal_slesvig",
 })
 
+# Where a king's NAME is written in the canonical display form. Wider than
+# DANISH_CROWN_ENTITIES: Christian II's reconquest (1531-1532) and his
+# supporters' coinage name the same king (curator 2026-10-23), but they must
+# stay OUT of the reign-window rules that read DANISH_CROWN_ENTITIES — those
+# coins are dated after his deposition in 1523, and the strict reign filter /
+# the undated-coin window would treat them as out of reign.
+DISPLAY_NAME_ENTITIES = DANISH_CROWN_ENTITIES | frozenset({
+    "christian_ii_reconquest", "christian_ii_supporters",
+})
+
 
 # The canonical DISPLAY form of a Danish king's name: «Name Roman.» — the Hede
 # form, one identifier across every source and language (CLAUDE.md i18n:
@@ -518,7 +528,7 @@ def canonical_ruler_display(raw, entity) -> tuple:
     Anything outside `_KING_DISPLAY_RE`, or outside a Danish-crown entity,
     comes back as it was.
     """
-    if not isinstance(raw, str) or entity not in DANISH_CROWN_ENTITIES:
+    if not isinstance(raw, str) or entity not in DISPLAY_NAME_ENTITIES:
         return raw, False
     m = _KING_DISPLAY_RE.match(raw)
     if not m:

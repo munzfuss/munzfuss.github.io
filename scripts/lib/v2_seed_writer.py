@@ -1370,31 +1370,6 @@ def _is_out_of_scope_catalog(catalog) -> bool:
     return False
 
 
-def _canonicalise_ruler(c: dict) -> bool:
-    """Write a Danish king's name in its canonical display form on `c`
-    (`lib.ruler_reigns.canonical_ruler_display`, home entity of the coin);
-    a trailing «?» becomes `ruler_verified: false`. A `ruler` hold freezes
-    the spelling, a `ruler_verified` hold the flag. Returns True on a change.
-    Until 2026-10-23 the form lived on data/v2/final/* only (June passes);
-    every seed kept the source's spelling."""
-    from lib.ruler_reigns import canonical_ruler_display
-    raw = c.get("ruler")
-    if not isinstance(raw, str):
-        return False
-    holds = set(c.get("_curation_holds") or ())
-    if "ruler" in holds:
-        return False
-    new, doubt = canonical_ruler_display(raw, _home_entity(c))
-    changed = False
-    if new != raw:
-        c["ruler"] = new
-        changed = True
-    if doubt and "ruler_verified" not in holds and c.get("ruler_verified") is not False:
-        c["ruler_verified"] = False
-        changed = True
-    return changed
-
-
 def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, int]]:
     """Run mint + nominal + catalog normalisation in-place and filter
     out coins whose nominal puts them out-of-scope. Returns
@@ -1531,9 +1506,9 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         if new_mint != mint and not (new_mint is None and mint in (None, "")):
             c["mint"] = new_mint
             stats["mint_normalised"] += 1
-        if _canonicalise_ruler(c):
-            stats.setdefault("ruler_canonicalised", 0)
-            stats["ruler_canonicalised"] += 1
+        # The ruler is NOT normalised here: a seed keeps the source's spelling;
+        # the merger writes the canonical display form into seed_unified, by
+        # the coin's entity (curator 2026-10-23, `_canonical_ruler_out`).
         catalog = c.get("catalog")
         if isinstance(catalog, dict):
             _, n_split = _normalise_catalog(catalog)
@@ -2126,8 +2101,6 @@ def write_v2_seed(
                 if (new_mint != mint
                         and not (new_mint is None and mint in (None, ""))):
                     c["mint"] = new_mint
-                if _canonicalise_ruler(c):
-                    file_normalised += 1
                 catalog = c.get("catalog")
                 if isinstance(catalog, dict):
                     _, n_cat = _normalise_catalog(catalog)

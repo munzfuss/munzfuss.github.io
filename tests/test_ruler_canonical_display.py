@@ -6,8 +6,9 @@ canonical display form «Name Roman.» (Hede's) was applied in June 2026 to
 data/v2/final/* only (7e95732, 917b7a6, a777b9a), so every seed kept its
 source's spelling — measured 2026-10-23: «Frederik 3» 1 074× in the KMM seed of
 danish_norway, 410× in seed_unified, 60× in final — and a final rebuilt from its
-members lost the form. `lib.ruler_reigns.canonical_ruler_display` is the rule,
-`v2_seed_writer._canonicalise_ruler` applies it at the writer. The scope is the
+members lost the form. `lib.ruler_reigns.canonical_ruler_display` is the rule;
+the merger applies it (`_canonical_ruler_out`, curator 2026-10-23: a seed keeps
+the source's spelling, the merger knows the entity). The scope is the
 June one: Danish-crown entities only, bare king forms only; «Friedrich» and
 «Johann» stay (curator 2026-10-23).
 """
@@ -21,6 +22,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from lib import v2_seed_writer as W  # noqa: E402
+sys.path.insert(0, str(ROOT / "scripts" / "maintenance"))
+import merge_seeds_cross_source as M  # noqa: E402
 from lib.ruler_reigns import canonical_ruler_display as cd  # noqa: E402
 
 
@@ -56,38 +59,50 @@ class Rule(unittest.TestCase):
         self.assertEqual(cd("Christian IV.", "danish_realm"), ("Christian IV.", False))
 
 
-class Writer(unittest.TestCase):
-    def test_applies_by_home_entity(self):
-        c = {"id": "x", "issuing_entity": "danish_realm", "ruler": "Frederik 3"}
-        self.assertTrue(W._canonicalise_ruler(c))
-        self.assertEqual(c["ruler"], "Frederik III.")
-        self.assertNotIn("ruler_verified", c)
-        g = {"id": "y", "issuing_entity": "gottorp_duchy", "ruler": "Frederik 3"}
-        self.assertFalse(W._canonicalise_ruler(g))
-        self.assertEqual(g["ruler"], "Frederik 3")
+class Merger(unittest.TestCase):
+    """The merger writes the form into seed_unified, by the file's entity
+    (curator 2026-10-23); the seed keeps the source's spelling."""
+
+    def _out(self, ruler, entity, **member):
+        out = {"ruler": ruler}
+        M._canonical_ruler_out(out, [dict(member, ruler=ruler)], entity)
+        return out
+
+    def test_applies_by_entity(self):
+        self.assertEqual(self._out("Frederik 3", "danish_realm"), {"ruler": "Frederik III."})
+        self.assertEqual(self._out("Frederik 3", "gottorp_duchy"), {"ruler": "Frederik 3"})
+
+    def test_christian_ii_entities(self):
+        for e in ("christian_ii_reconquest", "christian_ii_supporters"):
+            self.assertEqual(self._out("Christian 2", e)["ruler"], "Christian II.", e)
+            self.assertEqual(self._out("Christian II", e)["ruler"], "Christian II.", e)
 
     def test_doubt_flips_the_flag_unless_held(self):
-        c = {"id": "x", "issuing_entity": "danish_norway", "ruler": "Christian 3?",
-             "ruler_verified": True}
-        self.assertTrue(W._canonicalise_ruler(c))
-        self.assertEqual((c["ruler"], c["ruler_verified"]), ("Christian III.", False))
-        h = {"id": "x", "issuing_entity": "danish_norway", "ruler": "Christian 3?",
-             "ruler_verified": True, "_curation_holds": {"ruler_verified": "curator"}}
-        W._canonicalise_ruler(h)
-        self.assertEqual((h["ruler"], h["ruler_verified"]), ("Christian III.", True))
+        self.assertEqual(self._out("Christian 3?", "danish_norway"),
+                         {"ruler": "Christian III.", "ruler_verified": False})
+        held = self._out("Christian 3?", "danish_norway",
+                         _curation_holds={"ruler_verified": "curator"})
+        self.assertEqual(held, {"ruler": "Christian III."})
 
     def test_ruler_hold_freezes_the_spelling(self):
-        c = {"id": "x", "issuing_entity": "danish_realm", "ruler": "Frederik 3",
-             "_curation_holds": ["ruler"]}
-        self.assertFalse(W._canonicalise_ruler(c))
-        self.assertEqual(c["ruler"], "Frederik 3")
+        self.assertEqual(self._out("Frederik 3", "danish_realm", _curation_holds=["ruler"]),
+                         {"ruler": "Frederik 3"})
 
-    def test_hygiene_pass_counts_it(self):
+
+class WriterKeepsSourceForm(unittest.TestCase):
+    def test_hygiene_pass_leaves_the_ruler(self):
         kept, stats = W._apply_pre_write_hygiene([
             {"id": "a", "issuing_entity": "danish_realm", "ruler": "Christian 5",
              "nominal": "1 Krone", "metal": "silver"}])
-        self.assertEqual(kept[0]["ruler"], "Christian V.")
-        self.assertEqual(stats.get("ruler_canonicalised"), 1)
+        self.assertEqual(kept[0]["ruler"], "Christian 5")
+        self.assertNotIn("ruler_canonicalised", stats)
+
+
+class ReignRulesUnchanged(unittest.TestCase):
+    def test_christian_ii_entities_stay_out_of_reign_rules(self):
+        from lib.ruler_reigns import DANISH_CROWN_ENTITIES, DISPLAY_NAME_ENTITIES
+        self.assertNotIn("christian_ii_reconquest", DANISH_CROWN_ENTITIES)
+        self.assertIn("christian_ii_reconquest", DISPLAY_NAME_ENTITIES)
 
 
 if __name__ == "__main__":

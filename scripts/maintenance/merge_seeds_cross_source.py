@@ -3999,6 +3999,34 @@ def _or_merge_verified(members: list[dict], field: str) -> bool | None:
     return seen_any_attestation
 
 
+def _canonical_ruler_out(out: dict, members: list[dict],
+                         entity_id: str | None) -> None:
+    """Write a Danish king's name on the unified entry in its canonical
+    display form (`lib.ruler_reigns.canonical_ruler_display`, «Christian IV.»).
+
+    Here and not in the seed writer (curator 2026-10-23): a seed keeps the
+    spelling its source printed, and only the merger knows the coin's entity
+    for certain — it works on one entity's file. The writer normalised BEFORE
+    entity routing, so four Bruun Christian II lots got the form as
+    danish_realm coins and kept it after moving to christian_ii_*. A member
+    holding `ruler` freezes the spelling; a trailing «?» (the source's own
+    doubt) sets `ruler_verified: false` unless a member holds that flag."""
+    from lib.ruler_reigns import canonical_ruler_display
+    raw = out.get("ruler")
+    if not isinstance(raw, str):
+        return
+
+    def _held(m, f):
+        h = m.get("_curation_holds")
+        return f in (h.keys() if isinstance(h, dict) else (h or []))
+    if any(_held(m, "ruler") for m in members):
+        return
+    new, doubt = canonical_ruler_display(raw, entity_id)
+    out["ruler"] = new
+    if doubt and not any(_held(m, "ruler_verified") for m in members):
+        out["ruler_verified"] = False
+
+
 def build_unified(members: list[dict], unified_id: str,
                   entity_id: str | None = None
                   ) -> tuple[dict, list]:
@@ -4124,6 +4152,8 @@ def build_unified(members: list[dict], unified_id: str,
                     seen.append(mv_repr)
                     seen_keys.add(mv_key)
                     conflicts.append((field, seen[0], mv_repr))
+
+    _canonical_ruler_out(out, members, entity_id)
 
     # Multi-mint union
     mint = _collect_mints(members)
@@ -5544,7 +5574,11 @@ def main() -> int:
     if args.apply:
         args.dry_run = False
 
-    entities = [args.entity] if args.entity else _all_entities()
+    # `--entity a,b,c` runs several entities in ONE process: the global seed
+    # load and indices are built once (2026-10-23: 11 single-entity runs of
+    # the Denmark page cost ~10 s of overhead each).
+    _ent_list = [e.strip() for e in args.entity.split(",") if e.strip()] if args.entity else []
+    entities = _ent_list if _ent_list else _all_entities()
     if not entities:
         print("No V2 seed files found under data/v2/seed/.")
         return 0
@@ -5553,13 +5587,12 @@ def main() -> int:
     # only sign. That is the §9b failure exactly: a measurement against a
     # baseline that isn't what the caller thinks it is. Costs nothing to catch,
     # and the comma-separated form (--entity a,b) is the way to hit it.
-    if args.entity:
+    if _ent_list:
         known = _all_entities()
-        if args.entity not in known:
-            hint = ("  (no comma-separated list — pass --entity once per run)"
-                    if "," in args.entity else "")
-            print(f"Unknown entity '{args.entity}' — no seed under data/v2/seed/.{hint}\n"
-                  f"Known: {', '.join(known)}")
+        unknown = [e for e in _ent_list if e not in known]
+        if unknown:
+            print(f"Unknown entity {', '.join(repr(e) for e in unknown)} — no seed under "
+                  f"data/v2/seed/.\nKnown: {', '.join(known)}")
             return 2
 
     # Cross-entity curator merges: scan ONCE, globally, before the per-entity
@@ -5574,9 +5607,9 @@ def main() -> int:
     _thinned_all = build_thinned_index(all_by_id.values())
     pull_groups, member_target, member_ie = _load_cross_entity_decisions(
         set(all_by_id), _thinned_all)
-    if member_target and args.entity:
-        affected = {args.entity} | {member_target[m] for m in member_target}
-        if affected - {args.entity}:
+    if member_target and _ent_list:
+        affected = set(_ent_list) | {member_target[m] for m in member_target}
+        if affected - set(_ent_list):
             print("  ⚠ --entity with active cross-entity merges: run WITHOUT "
                   "--entity (or process every affected entity) so source-side "
                   "excludes also apply — single-entity --apply can leave a "
