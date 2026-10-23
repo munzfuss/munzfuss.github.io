@@ -144,3 +144,20 @@ class HeadClassFirst(unittest.TestCase):
             ab.SELF_UNION_ENABLED = True
         self.assertEqual(order, ["c-zz", "c-aa"])
         self.assertEqual(out["nominal"], "1 Krone")
+
+
+class Flags(unittest.TestCase):
+    """The «(?)» flags are not all member data: a V1 foundation's are the
+    curator's claims, and `year_is_reign_span` is absorb's own bookkeeping."""
+
+    def test_foundation_keeps_its_unverified_claim(self):
+        fc = _promoted(id="km-1", origin="foundation", composed_of=["c-cls"],
+                       fineness_verified=False, verified=False)
+        sk = ab._skeleton(fc)
+        self.assertIs(sk["fineness_verified"], False)
+        self.assertIs(sk["verified"], False)
+        self.assertNotIn("fineness_verified", ab._skeleton(_promoted(fineness_verified=False)))
+
+    def test_reign_span_flag_travels_on_a_promoted_final(self):
+        sk = ab._skeleton(_promoted(year_is_reign_span=True))
+        self.assertIs(sk["year_is_reign_span"], True)

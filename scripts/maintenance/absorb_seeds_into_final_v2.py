@@ -521,6 +521,22 @@ _SKELETON_CARRY = frozenset({
     "_weights_thinned", "_entity_routing_hint", "_migration_note",
     "_migration_dup_origin_id", "v1_home_location", "promoted_to",
     "mintmasters",
+    # absorb's own bookkeeping of the reign-window placeholder: the override
+    # in `_enrich_final_entry` recognises a placeholder year by this flag
+    # (`_set_reign_span_flag`: «where a re-run will find it»), so without it
+    # 191 placeholder years lost their «(?)» on the first switch run.
+    "year_is_reign_span",
+})
+
+# A V1 foundation's verification flags are the V1 curator's claims («this
+# value is / is not attested»), not member data: the skeleton keeps them, and
+# the enrichment OR-merges them with the members' as it always did. Without
+# this the first switch run dropped `fineness_verified: false` on 102
+# foundations — and the schema default is true, so the «(?)» vanished.
+_FOUNDATION_FLAGS = frozenset({
+    "metal_verified", "fineness_verified", "weight_rough_verified",
+    "diameter_mm_verified", "mint_verified", "year_verified", "ruler_verified",
+    "verified",
 })
 
 
@@ -530,7 +546,7 @@ def _skeleton(fc: dict) -> dict:
     `_FOUNDATION_IMMUTABLE_FIELDS`."""
     keep = set(_SKELETON_CARRY)
     if not _is_promoted(fc):
-        keep |= _FOUNDATION_IMMUTABLE_FIELDS
+        keep |= _FOUNDATION_IMMUTABLE_FIELDS | _FOUNDATION_FLAGS
     h = fc.get("_curation_holds")
     for f in (h.keys() if isinstance(h, dict) else (h or [])):
         keep.add(f)
