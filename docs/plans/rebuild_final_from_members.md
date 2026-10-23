@@ -587,3 +587,39 @@ resets the flag; `year_verified` 7. Buckets: D-promoted 7 484, S-moved
 268 (the twins' own-record values now stay: 1 006 → 268), R 195, S-relabel
 128, S-recorded 106, R-v1-memberless 103, R-twin 96, H 88, S-covered 39,
 D-foundation 37, FLAG 25.
+
+## Curator decisions without a surface — `audit_final_edit_survival.py` (2026-10-23)
+
+Every decision surface the pipeline applies was checked on the switch
+output against HEAD and reproduces exactly: exclusions (511 coins — 8
+prøvemønter, 193 undocumented stubs, 39 off-strikes, 45 exonumia, 6
+counterfeits — and 291 KMM specimens: 0 violations), merges / no_merges /
+year_demote (`seed_unified` byte-identical after the merger re-run),
+absorb's own matching and folds (`composed_of` identical on all 13 880),
+classifications and promotions (fuss / phase / kind identical, 0 coins gone
+or new), recorded removals (688 field removals: 682 clean, 2 present on
+HEAD already), retractions (0 citations left), seed-level errata / holds /
+marks (Check 10), final-level holds (carried).
+
+What no surface covers is an edit made on a final by hand. The new tool
+walks every final-only commit (298 since the V2 bootstrap) and reports
+what a rebuild undoes in both directions — an added value HEAD still holds
+that the rebuild lacks, a deleted value absent at HEAD that the rebuild
+brings back — attributed to its commit. Totals: 209 493 edited values kept,
+3 217 added-then-undone, 70 deleted-then-back; 59 commits concerned. Most
+of the 3 217 are pipeline outputs or the known R-v1 / D buckets (the 758
+promotions' boilerplate `verification_note` 683, the pending drain 310, the
+V1 restores 213 + 69 + 56 + 24, the Danish note backfill 78 + 19). The
+genuine per-coin curator decisions the rebuild undoes are few and concrete:
+
+| commit | decision | undone | surface it needs |
+|---|---|---|---|
+| `baa587f`, `edf779c`, `9a3a0e4`, `eefddf5` | Guldgyldenfod nominals: «1 Rhinsk Gylden» → «1 Goldgulden» (c4h29, f2h3, f2h7g, f2h6), «1 Gulden» → «1 Ungersk Gylden» (numista 428864), «1 Gold Gulden» (bruun-4057), «8 Skilling» (f6h31), c9h1a «2 Christian D'or» / «Christian VIII.» | class form comes back | `_curation_holds: {nominal}` on the final, or the writer's nominal synonyms |
+| `0aa8b69` (18), `24b8855` (5) | Sieg / Schou numbers moved to an edition register (`sieg_hede1971`), Aagaard refs consolidated | the class's `sieg: 116` etc. come back beside | the edition split belongs in the writer / `catalog_codes` (stage N, catalogue) |
+| `7e95732`, `a777b9a` (7) | annotated kings «Frederick III (Frederik III)», «Frederick I (Friedrich I)», «Frederick VI of Denmark (…)», and the KMM typos «Frederikg 4», «Frederik VVI» | source form comes back | extend `canonical_ruler_display` to the annotated Danish-king forms (June pass A); the two typos → KMM builder errata |
+| `d410c68` | c4h144a year 1629 after the Schou-58 split; kmk-158132 ruler | class years come back | hold on `year_*`, or the split as a merge decision |
+| `95f4d35`, `fc5a619`, `a2e1952`, `69255e4`, `26c903d`, `e07029d`, `efbc228`, `15e398c` | over-merge residue removed by hand (c5h56 Bruun lot 1122, c7h13a NumisMaster MC_65502 / MC_145357, f3h68a KM 261, c7h7 Bruun lot 17138, km-104-hede-56b Bruun 5607 …) | the class still carries it, so it comes back | the residue lives in the CLASS: a merge decision (split) or seed errata; a ledger entry alone is not applied by absorb — proposal: absorb applies `kind: field` removals from `_recorded_removals` at enrichment, then a recorded hand deletion reproduces itself |
+| `1a2e482`, `aab9d06`, `8266c1e`, `ace1c6a`, `58f1a4b` | curator-added citations on finals (KMM 137163 / 156724 / 156783 by merge, Stack's Bowers auction link on km-a47, Numista 420365, Bruun 7656) | not on any class | the KMM ones are merge decisions whose seeds should be in the class — check why not; the rest are V1-style curator citations (R-v1) |
+
+Totals for the curator: ~25 commits, ~120 values. The rest of the undone
+values are the buckets already on the review.
