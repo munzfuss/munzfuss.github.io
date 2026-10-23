@@ -457,7 +457,10 @@ def _flatten_str_repr_list(vals: list) -> list:
 
 # Any value that begins with the Aagaard label, in any of the three forms
 # producers emit: «Aagaard# 14.1 …», «Aagaard-14.1 …», «Aagaard 14.1».
-_AAGAARD_OTHERS_RE = re.compile(r"^\s*Aagaard\b\s*[#\-]?\s*(.+?)\s*$", re.IGNORECASE)
+# «Aagaard & Märcher» (Frederik II's Speciedaler 1572) is a DIFFERENT work
+# that merely starts with the name; without the `&` lookahead it was rewritten
+# to «Aagaard# & Märcher# 72.10».
+_AAGAARD_OTHERS_RE = re.compile(r"^\s*Aagaard\b(?!\s*[#\-]?\s*&)\s*[#\-]?\s*(.+?)\s*$", re.IGNORECASE)
 # Leading catalogue number of an Aagaard value («14.1 (53-1/53.1)» → «14.1»,
 # truncated «14.1 (53-1» → «14.1»), used to group variant forms of one ref.
 _AAGAARD_NUM_RE = re.compile(r"^([\d]+(?:\.[\d]+)*)")
