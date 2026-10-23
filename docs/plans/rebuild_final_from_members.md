@@ -510,3 +510,38 @@ Brekke# 31–36`, `bruun_collection_id`). Those stay the curator's call
 R-v1-uncovered 437 · S-relabel 128 · S-recorded 106 · R-v1-memberless 103 ·
 R-twin 96 · H 89 · S-covered 39 · FLAG 38 · S-v1-covered 3 ·
 R-merge-decision-not-applied 1.
+
+## The whole chain, from the committed state (2026-10-23) — verdict
+
+Curator question: is the difference huge because not everything was
+applied, or is it the real difference to work with? Measured with
+`scripts/run_v2_pipeline.sh --apply --skip-build` (merge → absorb → §9a thin
+→ classify → relink), twice each, from the committed data:
+
+- **Control (today's absorb, self-union on): ZERO change** after pass 1 and
+  pass 2. HEAD is the pipeline's fixed point — there is nothing left to
+  apply; thinning, classification and relink add nothing.
+- **With the self-union off (`ABSORB_NO_SELF_UNION=1`): exactly the stage-B
+  run-4 table** — 7 994 finals, same values field by field; the other
+  steps change nothing on top of absorb. Fixed point as coin sets
+  (danish_realm entry order only).
+
+**So the difference is real, and it is not huge where it matters.** Of the
+7 994 finals:
+
+| what changed on the final | finals | nature |
+|---|---|---|
+| only the derived `verification_note` text (which member's boilerplate) | 5 241 | derived; the class's choice is as good as the frozen one |
+| derived text + verification flags, nothing else | 5 505 (incl. the row above) | derived |
+| `ruler` form, no data change | 1 200 | 1 199 of the 1 292 ruler pairs are the canonical Danish-king form reaching finals the June passes missed — a stage-N improvement, not a loss |
+| **substantive data or scalar changes** | **1 289** | the working set |
+
+The 1 289: `sources` removed on 800 finals (2 993 values), `catalog` on 447
+(986), `mint` on 140 (148), readings on ~40, `year_ranges` on 12; scalars —
+`mintmaster` 227 (mint names in the wrong field), `nominal` 59, V1
+foundations losing `metal` 111 / years 110 / inscriptions 102 (mostly the
+78 V1 twins and the 16 V1-only coins). By entity: danish_realm 438,
+schauenburg_pinneberg 133, royal_holstein 119, herzogtum_braunschweig_
+lueneburg 117, danish_norway 104, gottorp_duchy 90, danish_india 74.
+Classified in `self_union_removals_review.md`: S (stale) 1 714 values,
+H / H-stale-v1-twin 1 095, R 2 466 + R-orphan 1 390, D 8 346, FLAG 38.

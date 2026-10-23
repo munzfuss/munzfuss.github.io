@@ -4303,7 +4303,9 @@ def main() -> int:
     if args.no_revalidate:
         global REVALIDATE_ENABLED
         REVALIDATE_ENABLED = False
-    if args.no_self_union:
+    if args.no_self_union or os.environ.get("ABSORB_NO_SELF_UNION") == "1":
+        # the env form lets `scripts/run_v2_pipeline.sh` and the prune-rerun
+        # child run the switch without a flag
         global SELF_UNION_ENABLED
         SELF_UNION_ENABLED = False
 
