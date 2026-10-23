@@ -15,7 +15,7 @@ description: >-
   pairs a re-flow auto-merged, a `v2-merge-coins graph` «NO shared base»
   warning, a `verify_reflow` fold or COIN GONE that turns out to be a new union,
   a suspected over-merge before a split. Trigger
-  phrases: "порівняй ці монети", "побудуй таблицю порівняння", "таблиця
+  phrases: "порівняй ці монети", "таблиця порівняння для мерджу", "таблиця
   мердж-кандидатів", "record vs merge-candidate", "compare coin records", "is
   this the same coin as", "дай таблицю по цих записах".
 ---
