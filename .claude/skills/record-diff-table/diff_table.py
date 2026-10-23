@@ -40,6 +40,10 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[3]
 _SKIP_ALWAYS = {"__order__"}
+# The Bruun anchor (§9a «fast-lookup anchor» on one specimen): single-valued,
+# never rendered, every specimen still sits in `bruun_collection_id` and
+# `sources`. Not shown to the curator (2026-10-23).
+_SKIP_PATHS = {"catalog.bruun_part", "catalog.bruun_lot_no", "catalog.bruun_page"}
 
 
 def _read(path: str, ref: str | None) -> str:
@@ -107,6 +111,8 @@ def _flatten(rec: dict, prefix: str = "", other: dict | None = None) -> dict[str
         if k in _SKIP_ALWAYS:
             continue
         path = f"{prefix}{k}"
+        if path in _SKIP_PATHS:
+            continue
         o = other.get(k)
         if isinstance(v, dict) and k in other and not isinstance(o, dict):
             out[path] = v
