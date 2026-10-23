@@ -623,3 +623,96 @@ genuine per-coin curator decisions the rebuild undoes are few and concrete:
 
 Totals for the curator: ~25 commits, ~120 values. The rest of the undone
 values are the buckets already on the review.
+
+## `main` vs the rebuild — decision groups (2026-10-23)
+
+Curator: compare what the rebuild produces here with the finals on the main
+branch (its local commits included), together with the hand-edit findings;
+analyse and group, then walk the groups and fix the finals' legal form —
+useful values get a hold or the like so they survive, and the difference of
+that branch from this one is declared garbage on that branch. **Only the
+finals the Denmark page renders count** (curator, same day): the entities in
+`data/v2/locations/denmark.yml::consumes_entities` — danish_realm,
+danish_norway, royal_holstein, royal_slesvig, gottorp_duchy, sonderburg_duchy,
+norburg_plon_duchy, glucksburg_duchy, christian_ii_supporters,
+christian_ii_reconquest, norby_gotland; the other entities are unprocessed
+and their state does not matter.
+
+**Base.** `main` is `de956d6` exactly: no commits past the branch point, the
+main checkout's `data/v2` byte-identical to it (checked as files). This branch
+adds one data commit over it, stage N (`9b603b5`, canonical Danish kings in
+every seed + re-flow), so «main vs rebuild» = «HEAD vs rebuild» + the stage N
+delta. The delta is 1 194 ruler forms on the finals and ONE class change:
+«Hans?» «1 Hvid(?)» (`unified-kmk-317652`, three KMM records) became «Hans»
+with `ruler_verified: false`, which the matcher may no longer treat as a
+disagreement (§4), so it joined the documented Hvid class (`c-bbb03d20`,
+46 members, luebischer_muenzfuss) — the one coin «gone».
+
+**Tool.** `scripts/maintenance/group_rebuild_diff.py` takes the per-value diff
+(`final_diff_candidates.py --base main`), the evidence buckets
+(`classify_self_union_diff.py --base main --no-history`) and the hand-edit
+audit (`audit_final_edit_survival.py --json`) and sorts every value into a
+decision group; `--location denmark` keeps the page's entities; every row
+carries the hand-edit commit(s) that put or took the value. Report:
+`docs/plans/main_vs_rebuild_groups.md` (counts, per entity, per field, the
+legal form proposed per group, full lists for the C / E groups, the
+per-commit landing table). The join covers all 3 217 undone additions and 42
+of the 70 undone deletions (the other 28 are the «added» partners of rows
+counted on the removed side). Whole corpus for reference: 11 895 values on
+7 666 finals (A 6 825 · B 3 587 · C 197 · D 1 172 · E 114).
+
+Denmark page — 4 970 values on 2 020 finals, 1 coin gone, 0 new:
+
+| class | meaning | values | finals |
+|---|---|---|---|
+| A | nothing to decide (gain or same value in another form) | 1 336 | 1 293 |
+| B | garbage on main — the self-union kept it alive | 2 601 | 571 |
+| C | keep — needs a surface | 158 | 115 |
+| D | V1 record not carried — deferred («v1 поки не чіпаємо») | 773 | 398 |
+| E | review | 102 | 59 |
+
+Groups, in the order the curator can walk them:
+
+- **A1** 29 notes gain `da` from the class; **A2** 1 194 canonical rulers;
+  **A4** 107 relabels; **A5** 6 pure gains.
+- **B1** 1 390 citations on 7 finals are the KMM undocumented stubs the
+  curator EXCLUDED on 2026-10-16/20 (`undocumented_stub`, scope member:
+  kmk-642162 ×725 urls, 395587, 186398, 642893 …) — all 502 classes that
+  reach no final are explained by an exclusion; main still shows their
+  citations on the Numista / Galster Hvid finals only because of the
+  self-union. **B2** 785 values of members now in another final; **B3** 42
+  recorded removals; **B4** 15 place names in `mintmaster`; **B5** 40 covered
+  in another form; **B6** 214 `*_verified` true → the class's false; **B8**
+  23 Bruun anchor specimens (the final still cites Bruun); **B9** 92
+  template-for-template notes (absorb's «Hede seed: … pending» boilerplate
+  vs the class's source template — the 2026-09 Danish backfill landed on the
+  boilerplate, the class template has its own `da`).
+- **C0** 48 values / 26 finals from the hand-edit commits (table per commit
+  in the report: a2e1952 over-merge split residue 11, 11f2f2a gap-fill,
+  51ff425 ucoin readings on dk-tid-70750/1, 69255e4 fold 5, 24b8855
+  Aagaard 4, 26c903d / d410c68 / fc5a619 3 each, …); **C1** 34 nominal
+  pairs (writer normalisation or hold — several class forms are junk:
+  «1 Ducat (3.5)»); **C2** 7 ruler regressions («Frederick III (Frederik
+  III)», «Frederikg 4», «Frederik VVI»); **C3** 14 finals lose their ruler
+  outright (NGC / Bruun / KMM singletons whose builder sets none); **C4** 5
+  notes lose `da`; **C5** 5 curated note texts (Nobelfod fineness notes,
+  c3bd650 / 7a831dc); **C6** 6 real mintmaster names; **C7** 39 hand-deleted
+  values that come back from the class (0aa8b69 Sieg registers 18, 7e95732 /
+  a777b9a annotated kings 7, edf779c 5, baa587f 4 …).
+- **D1** 117 values on 51 V1 twins; **D2** 132 on 20 memberless foundations;
+  **D3** 341 V1 sources / catalog on seeded foundations; **D4** 13 own-record
+  readings; **D5** 109 V1 citations restored onto promoted hosts (restore-v1
+  2026-05-27: old `catalogue/pieces` urls, bare «Numista» / «ucoin», NGC
+  price guide, «KM-DK#»); **D6** 61 V1 values migrated onto promoted hosts
+  (inscriptions, mint, metal). **Visible:** 42 finals lose `metal` with
+  nothing in its place (D2 20, D6 18, D1 3, D4 1) — the empty metal column
+  is the one D consequence a reader sees.
+- **E1** 14 rulers where the class names another person («Adolf» → «Johann
+  Adolf», «Hans» → «Alexander», «Frederik III» → «Christian August» …);
+  **E2** 71 values on 31 head-departed finals; **E3** 10
+  own-attested-yet-removed; **E4** 6 residual; **E5** the stage-N
+  auto-merge.
+
+Next: walk the groups with the curator — B is the removal list (stage E),
+C gets its surfaces (stage D), D needs the one decision on `metal` / `mint`
+for foundations, E is per case.
