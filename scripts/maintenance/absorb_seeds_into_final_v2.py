@@ -570,6 +570,16 @@ def _skeleton(fc: dict) -> dict:
     for f in (h.keys() if isinstance(h, dict) else (h or [])):
         keep.add(f)
         keep.add(f"{f}_verified")
+    # An explicit «not attested» (`*_verified: false`) is a claim about a
+    # value, made by the curator or by an absorb pass (the undated-coin
+    # placeholders, the NGC attributed spans); no member can supply it and
+    # the schema default is true, so dropping it would silently upgrade the
+    # value to «attested» (§4). Carried on every final; a member that does
+    # attest the value still wins through the OR-merge in the enrichment.
+    # (First switch run: 173 promoted finals lost the «(?)» on their year.)
+    for k, v in fc.items():
+        if v is False and (k.endswith("_verified") or k == "verified"):
+            keep.add(k)
     sk = {k: copy.deepcopy(v) for k, v in fc.items() if k in keep}
     # The stored key order, so the rebuilt entry serialises as the stored
     # one did (the order of a final is historical, not canonical — three

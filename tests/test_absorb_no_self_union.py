@@ -156,7 +156,7 @@ class Flags(unittest.TestCase):
         sk = ab._skeleton(fc)
         self.assertIs(sk["fineness_verified"], False)
         self.assertIs(sk["verified"], False)
-        self.assertNotIn("fineness_verified", ab._skeleton(_promoted(fineness_verified=False)))
+        self.assertIn("fineness_verified", ab._skeleton(_promoted(fineness_verified=False)))  # an explicit false travels everywhere
 
     def test_reign_span_flag_travels_on_a_promoted_final(self):
         sk = ab._skeleton(_promoted(year_is_reign_span=True))
@@ -187,3 +187,14 @@ class FoundationOwnRecord(unittest.TestCase):
         self.assertEqual(sk["fraction"], "1/2")
         for k in ("inscription_obv", "year_first", "verification_note"):
             self.assertNotIn(k, sk, k)
+
+
+class ExplicitUnverified(unittest.TestCase):
+    """A stored `*_verified: false` is a claim of non-attestation; the
+    rebuild must not turn it into the schema default (true)."""
+
+    def test_false_flags_travel_on_a_promoted_final(self):
+        sk = ab._skeleton(_promoted(year_verified=False, mint_verified=True, metal_verified=False))
+        self.assertIs(sk["year_verified"], False)
+        self.assertIs(sk["metal_verified"], False)
+        self.assertNotIn("mint_verified", sk)
