@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Difference table between two coin records — READ-ONLY.
 
-Three columns: record A, record B, comment. One row per field that differs;
+Four columns: field, record A, record B, comment. One row per field that differs;
 equal fields are not shown. `sources` are compared by URL only — the
 `ref` label is ignored (curator 2026-10-23), so a relabelled citation is
 not a difference and a citation present on one side only is.
@@ -158,7 +158,7 @@ def diff(a: dict, b: dict, order: bool, ignore: list[str]) -> list[dict]:
 
 def render(sa: str, sb: str, rows: list[dict], full: bool) -> str:
     lines = [f"A = `{sa}`", f"B = `{sb}`", "",
-             "| A | B | коментар |", "|---|---|---|"]
+             "| поле | A | B | коментар |", "|---|---|---|---|"]
     for r in rows:
         a = "—" if r["a"] is None else _short(r["a"], full)
         b = "—" if r["b"] is None else _short(r["b"], full)
@@ -166,9 +166,9 @@ def render(sa: str, sb: str, rows: list[dict], full: bool) -> str:
         if field.startswith("sources["):
             a, b = (field[8:-1] if r["a"] == "✓" else "—"), (field[8:-1] if r["b"] == "✓" else "—")
             field = "sources"
-        lines.append(f"| {a} | {b} | `{field}`: {r['tag']} |")
+        lines.append(f"| `{field}` | {a} | {b} | {r['tag']} |")
     if not rows:
-        lines.append("| — | — | відмінностей немає |")
+        lines.append("| — | — | — | відмінностей немає |")
     return "\n".join(lines)
 
 

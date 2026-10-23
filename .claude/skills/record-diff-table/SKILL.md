@@ -1,8 +1,8 @@
 ---
 name: record-diff-table
 description: >-
-  Build a DIFFERENCE table between two coin records: three columns — record A,
-  record B, comment / proposal — one row per field that differs, equal fields
+  Build a DIFFERENCE table between two coin records: four columns — field,
+  record A, record B, comment / proposal — one row per field that differs, equal fields
   omitted. Source citations are compared by URL only; the citation label
   (`ref`) is ignored. Works on any two records at any layer and any revision:
   a final on `main` vs the same final in the working tree, a final vs another
@@ -25,14 +25,14 @@ the last only with an explicit «так», §4).
 
 ## Shape (curator direction 2026-10-23)
 
-- **Three columns:** A · B · коментар. The two records go in the first two
-  columns; the third holds the judgment or the proposal for that row.
+- **Four columns:** поле · A · B · коментар. The field name comes first, the
+  two records next, and the last column holds only the judgment or the
+  proposal for that row (curator 2026-10-23: a separate field column keeps
+  the comment clear).
 - **Rows = only what differs.** An equal field is not a row.
 - **Sources: the link, not the label.** Two citations with the same URL are
   the same citation, whatever their `ref` text says. A URL present on one
   side only is a row.
-- The field name opens the comment cell (`catalog.km`: …), since the table has
-  no separate field column.
 - No group letters or internal codes in the table or around it. Say in plain
   words what a row means.
 
