@@ -16,6 +16,38 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-23 — branch `rebuild-from-members`: a final rebuilt from its members (overnight run)
+
+Worktree `.claude/worktrees/rebuild-from-members` (`scripts/cache`, `.venv` symlinked to the main
+checkout). **Nothing of this is on main yet.** Plan with every measurement:
+`docs/plans/rebuild_final_from_members.md` (rev. 3 + stage results). Commits on the branch, in order:
+plan + rev.-1 measurement (`dd15775`); stage N code `76dfb5e` + data `9b603b5` (Danish kings' names
+canonical at the seed writer; 17 442 seed entries; re-flow: finals unchanged but one class — KMM
+317652/3/4 «Hans?»→«Hans» joined Galster 31 `c-bbb03d20`, for the curator); stage A `cb36693`
+(`absorb --no-self-union`: skeleton on P1 / P2 / P5), `2c5eb84` (key order), `ff62927` (stage C
+tools, head class first, final-only-edit guard), then the P8 normalisation on the rebuilt entry +
+`build_v1_seed.py` (D1 dry run), and the plan with stage B/C results.
+
+- **Where it stands**: stage B run 4 done — 7 994 finals change under the switch, 0 coins gone/new,
+  fixed point as coin sets. Stage C table (plan §«Stage B (run 4) + stage C»): D-promoted 7 709
+  (class wins — incl. 1 285 rulers the June passes missed, now canonical), S-moved 1 494, R-orphan
+  1 390 (the korshvid under excluded kmk-642893), R foundation ~1 600 (→ V1 seed), R promoted ~300,
+  D-foundation 637, S-relabel 128, S-recorded 106, R-twin 96, H 89, H-stale-v1-twin 70, FLAG 38.
+- **The working tree holds the run-4 output uncommitted** (`git diff --stat -- data/v2/final`: 28
+  files) so the diff can be read at once; `stage_B.sh` in the session scratchpad
+  (`/private/tmp/claude-501/-Users-serg-projects-muentzfuesse/4a4f093e-ca40-4eca-95c9-9b8fe5f9361c/scratchpad`)
+  reproduces it from HEAD in ~25 min; there also `B_candidates.json`, `B_classified_nh.json`,
+  `B_classify_nh.log`, `B_site_diff_*.log`, `v1_seed_dry/` (the V1 seed as it would be written, 676
+  entries, 14 entities).
+- **Curator decisions needed (plan §Curator decision points)**: D1 — V1 corpus as a seed source
+  (`v1-<id>`, recommended; dry run ready) vs carrying everything on foundations; the R groups
+  (orphans, twins, promoted R, the 53 nominal forms); H cases (43 head-departed finals →
+  `v2-merge-coins`; 3 stale V1 twins); the removal list (S buckets) for stage E; the landing window
+  (stage N first, on its own).
+- **Not done**: the git-route pass of the classifier (pickaxe per value is hours; `--no-history`
+  used); stages D–G; `audit_final_only_edits.py` is written, not wired into the hook; the
+  danish_realm entry-order churn of the fold / re-append cycle (pre-existing).
+
 ## 2026-10-22 (late) — teammate commits re-flowed; KMM ff/var held
 
 - **Ernst 4794a6f re-flowed**: `6c906ed` (8 Galster tokens «Ernst 1940# N»). Found + fixed in `ac2968e`: a
