@@ -887,3 +887,53 @@ D 773 · E 102). C1 29 (the «1 Taler» pair, the two «(?)» and the «(1.5)»
 are gone), B9 82 (the Hede-headed multi-class finals keep absorb's
 boilerplate's head now; the rest are single-class finals whose own
 template replaces the boilerplate). The decisions asked above stand.
+
+## Empty duplicates — memberless finals of the Denmark page (2026-10-23)
+
+`scripts/maintenance/find_empty_duplicates.py [main] [out.json]`. A final with
+no member after the rebuild keeps only its skeleton. It is an EMPTY DUPLICATE
+when every value it had on `main` (source URLs, catalogue values, readings,
+metal) sits on another final of the rebuild (the host: found by a specific
+URL — one shared by ≤4 finals — or by Bruun-collection / Numista number).
+Hede-1971 keys count as covered by the host's `sieg` / `schou`. Mint,
+mintmaster and nominal are reported, never decisive. Curator: an empty
+duplicate's disappearance is fine once its data is proven to live elsewhere;
+collect them, do not walk them one by one.
+
+23 memberless finals on the page.
+
+**Empty duplicates — candidates to mark «disappearance OK» (8)**
+
+| final | coin | host |
+|---|---|---|
+| danish_realm dk-tid-70750 | 3 Rigsbankskilling 1842 | royal_holstein c-e40c23a1 |
+| danish_realm dk-tid-70751 | 3 Rigsbankskilling 1842 | royal_holstein c-d3ce70e2 |
+| danish_realm dk-tid-79158 | ½ Speciedaler 1769 | royal_holstein c-44a9c52f |
+| danish_realm km-104-hede-56b-chr-iv-1627 | 2 Speciedaler 1624–1634 | c-5d564c17, km-x035-chr-iv-1647 |
+| danish_realm km-577-1-fr-v-1755 | ½ Skilling 1751–1762 | dk-tid-78763, royal_holstein c-44a9c52f |
+| royal_holstein km-760-fr-vi-1854 | 1 Rigsdaler Rigsmønt 1854 | c-5cab1a08 |
+| danish_realm km-797-1-chr-ix-1875 | 1 Krone 1875 | c-dbaa3e31, km-797-2-chr-ix-1898 — only «metal gold» differs; both hosts silver |
+| royal_holstein km-90-fr-iii-dk-1658 | 1 Sechsling 1658–1660 | c-1ca3c112, c-3774a0e1 — only «metal billon» differs; hosts silver |
+
+**A host exists, but values on `main` are on no other final (8)** — values
+V1 carried that no seed and no other final has:
+
+| final | values found nowhere else |
+|---|---|
+| hede-18-fr-v-1749 (2 Ducat 1749) | Bruun 7670 |
+| hede-18-fr-vi-1814 (16 Skilling Rigsbanktegn 1814) | metal silver; its only URL-host dk-tid-79558 is a 12 Skilling copper — host suspect |
+| km-750-1-fr-vii-1850 (2 Frederik d'Or) | Bruun 8203 |
+| gottorp km-188-karl-fr-1705-v1 (1 Dukat 1705) | Bruun lot 14528 |
+| royal_holstein km-733-chr-v-1842 | NGC page duid-1238262 (the seed carries duid-1238261) |
+| royal_holstein km-683-1-fr-vi-1813 | Heritage + Stack's auction URLs, Bruun 8025 (a pattern in the lot cache), KM 683.2 |
+| royal_holstein km-695-fr-vi-1820 | Heritage + Stack's auction URLs, Bruun lot 8110, Sieg 30 |
+| royal_holstein km-721-chr-v-1841 | infinitycoins.com URL |
+
+**No host at all — the coin itself exists only as this record (7)**:
+hede-134b-chr-v-1677 (4 Skilling 1677–1678, lead, Bruun 6905),
+hede-19-fr-vi-1813 / hede-20-fr-vi-1813 / hede-21-fr-vi-1815 /
+hede-22-fr-vi-1815 (12 / 6 / 4 / 3 Skilling Rigsbanktegn, Bruun 8006 / 8007 /
+8023 / 8024), km-395-1-chr-v-1688 (2 Ducats 1688, Bruun 7081, KM 395.1),
+gottorp km-x009-fr-iv-1701 (4 Schilling 1701–1702, numisbids lot 1676). None
+of these Bruun numbers is in the Bruun lot cache, in any seed or in any
+other final. Removing the shell removes the coin from the page.
