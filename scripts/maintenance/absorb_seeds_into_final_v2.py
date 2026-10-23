@@ -95,6 +95,7 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     _union_year_ranges,
     _format_year_label,
     _take_first_non_none,
+    _authority_score,
     _or_merge_verified,
     _source_label_from_id,
     _source_label_of,
@@ -559,6 +560,48 @@ _FOUNDATION_OWN = frozenset({
 })
 
 
+_YEAR_FAMILY = frozenset({"year_first", "year_last", "year_label", "year_ranges",
+                          "year_verified", "year_is_reign_span"})
+
+# A value a class can carry in a scalar slot that is not a value at all.
+_PLACEHOLDERS = frozenset({"(?)", ""})
+
+
+def _head_class_order(fc: dict, composed, unified_by_id: dict) -> list[str]:
+    """The final's classes with its HEAD class first — the one the final's
+    `label` names (D49: the label is the head class's), else the class with
+    the final's own id, else the highest-authority class — the rest by
+    authority, then id. With the self-union off the first class decides a
+    scalar the skeleton no longer carries (nominal, the note template, a
+    single-slot catalogue register); by id alone an IKMK class outranked
+    the Hede class of a final labelled `unified-dk-hede-nf3h8` (2026-10-23:
+    «1 Taler» for «1 Speciedaler», 98 Hede-headed finals with the IKMK /
+    KMM note template)."""
+    fid, label = fc.get("id"), fc.get("label")
+
+    def _key(mid: str):
+        u = unified_by_id.get(mid) or {}
+        is_label = bool(label) and u.get("label") == label
+        is_self = mid == fid
+        lab = str(u.get("label") or mid)
+        auth = _authority_score(lab[len("unified-"):] if lab.startswith("unified-") else lab)
+        return (not is_label, not is_self, -auth, mid)
+    return sorted(composed, key=_key)
+
+
+def _first_real(members, field):
+    """`_take_first_non_none` that also skips a placeholder («(?)»): a class
+    whose head record has no nominal carries the literal «(?)», and as the
+    head class it won over the other class's real value (2 finals,
+    2026-10-23)."""
+    for m in members:
+        v = m.get(field)
+        if v is None or (isinstance(v, str) and v.strip() in _PLACEHOLDERS):
+            continue
+        return v
+    return None
+
+
 def _skeleton(fc: dict) -> dict:
     """The final reduced to its own contribution (see `_SKELETON_CARRY`); a
     held field travels with its `_verified` companion; a foundation keeps its
@@ -567,9 +610,16 @@ def _skeleton(fc: dict) -> dict:
     if not _is_promoted(fc):
         keep |= _FOUNDATION_IMMUTABLE_FIELDS | _FOUNDATION_FLAGS | _FOUNDATION_OWN
     h = fc.get("_curation_holds")
-    for f in (h.keys() if isinstance(h, dict) else (h or [])):
+    held = set(h.keys() if isinstance(h, dict) else (h or []))
+    for f in held:
         keep.add(f)
         keep.add(f"{f}_verified")
+    # A year hold names one field («year_ranges», «year_first», …) but the
+    # enrichment reads the frozen years as a family: a stored single year has
+    # no `year_ranges` key, so a hold on `year_ranges` alone carried nothing
+    # and the year-hold path read None (c4h144a lost its 1629, 2026-10-23).
+    if held & _YEAR_FAMILY:
+        keep |= _YEAR_FAMILY
     # An explicit «not attested» (`*_verified: false`) is a claim about a
     # value, made by the curator or by an absorb pass (the undated-coin
     # placeholders, the NGC attributed spans); no member can supply it and
@@ -704,12 +754,14 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # year ruler-null rule). Never overrides a non-None foundation value;
     # never touches fuss/phase/kind (see _FOUNDATION_GAPFILL_FIELDS).
     for _fld in _FOUNDATION_GAPFILL_FIELDS:
-        if out.get(_fld) is None:
+        if out.get(_fld) is None or (isinstance(out.get(_fld), str)
+                                     and out[_fld].strip() in _PLACEHOLDERS):
             for _m in members[1:]:
                 _mv = _m.get(_fld)
-                if _mv not in (None, []):
-                    out[_fld] = _mv
-                    break
+                if _mv in (None, []) or (isinstance(_mv, str) and _mv.strip() in _PLACEHOLDERS):
+                    continue
+                out[_fld] = _mv
+                break
 
     # issuing_entity — subset-scalar → joint upgrade (2026-07-10). A foundation
     # freezes issuing_entity verbatim (it is in _FOUNDATION_IMMUTABLE_FIELDS), so
@@ -2590,13 +2642,17 @@ def _normalise_final_entry(fe: dict, unified_by_id: dict) -> None:
     elif isinstance(raw_nom, str) and re.search(
             r"\b[Oo]g\b", raw_nom):
         needs_adoption = True
-    if (needs_adoption
-            and fid and fid in unified_by_id):
-        ue = unified_by_id[fid]
-        ue_nom = ue.get("nominal")
-        if ue_nom and ue_nom not in ("(?)", "") and ue_nom != raw_nom:
-            fe["nominal"] = ue_nom
-            raw_nom = ue_nom
+    if needs_adoption:
+        # The head class first, then the other classes: a head whose own
+        # nominal is the placeholder must not keep the final at «(?)» when
+        # another class of the final names the coin.
+        for mid in _head_class_order(fe, [x for x in [fid, *(fe.get("composed_of") or [])]
+                                          if x and x in unified_by_id], unified_by_id):
+            ue_nom = unified_by_id[mid].get("nominal")
+            if ue_nom and ue_nom not in _PLACEHOLDERS and ue_nom != raw_nom:
+                fe["nominal"] = ue_nom
+                raw_nom = ue_nom
+                break
     # Mint-from-nominal extraction first (so the string-level
     # normaliser sees the clean nominal).
     nom_after_mint, mint_after_split = _extract_mint_from_nominal(
@@ -3483,7 +3539,7 @@ def process_entity(entity_id: str) -> dict:
         # skeleton no longer carries (nominal, ruler, a single-slot catalogue
         # register); that must be the final's HEAD class (D49: the final's id
         # is its head class's id), not whichever class id sorts first.
-        for mid in sorted(full_composed, key=lambda m: (m != fid, m)):
+        for mid in _head_class_order(fc, full_composed, unified_by_id):
             if mid in unified_by_id:
                 members.append(unified_by_id[mid])
         enriched, conflicts = _enrich_final_entry(base, members, entity_id)

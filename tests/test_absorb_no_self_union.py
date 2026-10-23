@@ -198,3 +198,61 @@ class ExplicitUnverified(unittest.TestCase):
         self.assertIs(sk["year_verified"], False)
         self.assertIs(sk["metal_verified"], False)
         self.assertNotIn("mint_verified", sk)
+
+
+class YearHoldFamily(unittest.TestCase):
+    """A hold on one year field carries the whole year family: a stored
+    single year has no `year_ranges` key, so a hold on `year_ranges` alone
+    carried nothing and the year-hold path read None (c4h144a, 2026-10-23)."""
+
+    def test_hold_on_year_ranges_carries_first_last_label(self):
+        fc = _promoted(year_first=1629, year_last=1629, year_label="1629",
+                       _curation_holds={"year_ranges": "1629 only"})
+        sk = ab._skeleton(fc)
+        self.assertEqual((sk["year_first"], sk["year_last"], sk["year_label"]), (1629, 1629, "1629"))
+
+    def test_no_year_hold_carries_no_years_on_a_promoted_final(self):
+        sk = ab._skeleton(_promoted(year_first=1629, year_label="1629"))
+        self.assertNotIn("year_first", sk)
+
+
+class HeadClassByLabel(unittest.TestCase):
+    """The head class is the one the final's `label` names, then the class
+    with the final's id, then the highest-authority class — never the id
+    that sorts first."""
+
+    def test_label_outranks_id_and_authority(self):
+        uni = {"c-aa": dict(CLS, id="c-aa", label="unified-ikmk-1"),
+               "c-zz": dict(CLS, id="c-zz", label="unified-dk-hede-nf3h8b"),
+               "c-mm": dict(CLS, id="c-mm", label="unified-dk-bruun-9")}
+        fc = _promoted(id="c-aa", label="unified-dk-hede-nf3h8b", composed_of=["c-aa", "c-mm", "c-zz"])
+        self.assertEqual(ab._head_class_order(fc, fc["composed_of"], uni), ["c-zz", "c-aa", "c-mm"])
+
+    def test_without_a_label_match_authority_decides_after_self(self):
+        uni = {"c-aa": dict(CLS, id="c-aa", label="unified-ikmk-1"),
+               "c-mm": dict(CLS, id="c-mm", label="unified-dk-bruun-9"),
+               "c-hh": dict(CLS, id="c-hh", label="unified-dk-hede-x")}
+        fc = _promoted(id="c-mm", label="unified-dk-hede-nf3h8", composed_of=["c-aa", "c-mm", "c-hh"])
+        self.assertEqual(ab._head_class_order(fc, fc["composed_of"], uni), ["c-mm", "c-hh", "c-aa"])
+
+
+class PlaceholderNeverWins(unittest.TestCase):
+    """A head class whose record has no nominal carries the literal «(?)»;
+    another class's real value must win the scalar."""
+
+    def test_gapfill_skips_the_placeholder(self):
+        head = dict(CLS, id="c-h", label="unified-kmk-1", nominal="(?)")
+        other = dict(CLS, id="c-o", label="unified-kmk-2", composed_of=["s2"], nominal="1 Lejrskilling")
+        fc = _promoted(id="c-h", label="unified-kmk-1", composed_of=["c-h", "c-o"], nominal="(?)")
+        ab._LIVE_UNIFIED.clear()
+        ab._LIVE_UNIFIED.update({"c-h": head, "c-o": other})
+        ab.SELF_UNION_ENABLED = False
+        try:
+            base = ab._own(fc)
+            with contextlib.redirect_stdout(io.StringIO()):
+                out, _ = ab._enrich_final_entry(base, [base, head, other], "danish_realm")
+            ab._normalise_final_entry(out, {"c-h": head, "c-o": other})
+        finally:
+            ab.SELF_UNION_ENABLED = True
+        self.assertEqual(out["nominal"], "1 Lejrskilling")
+        self.assertIsNone(ab._first_real([{"nominal": "(?)"}, {"nominal": ""}], "nominal"))

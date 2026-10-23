@@ -707,14 +707,17 @@ def _normalise_nominal(raw):
     }
     while True:
         m = re.search(
-            r"\s*\(([A-Za-zæøåüÆØÅÜ]+|\d+)\)\s*$",
+            r"\s*\(([A-Za-zæøåüÆØÅÜ]+|\d+(?:[.,]\d+)?)\)\s*$",
             s,
         )
         if not m:
             break
         token = m.group(1)
-        # Numeric category — strip unconditionally
-        if token.isdigit():
+        # Numeric — strip unconditionally: Numista's category number «(7)»
+        # and its bare-number value tail «1½ Gulden (1.5)», «¼ Ducat
+        # (0.875)», «1 Ducat (3.5)» (44 seeds, 2026-10-23); a number with
+        # a denomination word, «(3 Mark)», is a dual denomination and stays.
+        if re.fullmatch(r"\d+(?:[.,]\d+)?", token):
             s = s[:m.start()].rstrip()
             continue
         # Word — strip ONLY when it's a same-denomination language/plural
