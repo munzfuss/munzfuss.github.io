@@ -73,6 +73,41 @@ def _in_lot_range(slug: str, lot_no: int) -> bool:
 # full. The earlier `[A-Za-z]?` pattern stopped after one letter and silently
 # collapsed «430AA» → «430A», which bridged distinct Krause types under the
 # same parsed token (TODO J item 1, surfaced via km-165 / KM-166 audit).
+# ── Further catalogues from the Bruun bibliography (added 2026-10-23) ──────
+# Every key below is an abbreviation the catalogue's own bibliography defines
+# («SM – Carlberg, Hemmingson, Wijk. Sveriges Mynt 1521-2021», «Kold – Karsten
+# Kold. Anton Meybusch …», …) and that the lot reference chains cite with a
+# numeric index. Before these patterns the builder's REF_FIELDS already mapped
+# Llt / Delzanno / SM / Hagander / Appelgren / MB / Hauberg / Malmer, but the
+# parser never extracted them, so those mappings were dead.
+#
+# The value is one catalogue token: an optional letter prefix (Poulsen «SK3.a»,
+# Tingström «A4», Sømod «N2190»), digits, a letter suffix, and «.»/«:»/«/»-
+# joined continuations (Malmer «9.217.1114», Llt «1A:1a», Weinmeister
+# «30/31»). A sentence-final «.» is not part of it.
+#
+# The lookbehinds keep three non-references out:
+#   * «cf. Hild-20», «cf. Hauberg Collection-1318», «cf. LS-2-136» point at a
+#     similar OTHER coin (CLAUDE.md anti-pattern 5) — the search moves on to a
+#     positive citation if the lot has one;
+#   * «Jensen & Skjoldager-S-01/S-05» — the «S-05» is Skjoldager's series
+#     letter, not Seaby «S» (hence no match after «-», «/» or «&»);
+#   * a name inside a longer word or compound («Hild» in «Hildebrand» via
+#     `\b`, «Hauberg» in «Hauberg Collection» via the negative lookahead).
+# Short (≤ 4-letter) abbreviations require the hyphen, so «SM» never fires on
+# running text; they are case-sensitive for the same reason.
+_REF_VALUE = r"([A-Za-z]{0,3}\d+[A-Za-z]*(?:[.:/][0-9A-Za-z]+)*)"
+_REF_LB = r"(?<![\w\-/&])(?<!cf\. )(?<!cf\.)"
+
+
+def _ref_long(name: str) -> "re.Pattern":
+    return re.compile(_REF_LB + name + r"\b[\-:]?\s*" + _REF_VALUE)
+
+
+def _ref_short(name: str) -> "re.Pattern":
+    return re.compile(_REF_LB + name + r"-\s*" + _REF_VALUE)
+
+
 REF_PATTERNS = {
     # PREFIX capture is `[A-Za-z]{0,3}` — Krause prefixes the number with a
     # register code on its non-circulation series: `Tn6` (token — the Danish
@@ -104,6 +139,17 @@ REF_PATTERNS = {
     "Dav":     re.compile(r"\bDav[\.\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Brekke":  re.compile(r"\bBrekke[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Wilcke":  re.compile(r"\bWilcke[\-:]?\s*(\d+(?:\.\d+)?)", re.IGNORECASE),
+    # Anders Harck, «Christian IV's mønter» (online catalogue) — cited on
+    # Christian IV lots as a dotted number of one to three levels:
+    # «Harck-3», «Harck-29.1», «Harck-15.1.2», «Harck-27.16.1». The PDF also
+    # prints «Harck 2.2.2» (lot with no hyphen), «Harck- 6.13.1» and a line
+    # break after the hyphen («Harck-\n32.8.1»); whitespace is collapsed
+    # before matching, so `\s*` covers all three. A digit is REQUIRED after
+    # the name: the bibliography line «Harck – Anders Harck. …» (en-dash),
+    # the prose «(Harck) this is the only known example» and «recorded by
+    # Anders Harck.» carry no index and must not become one. `\.\d+` only —
+    # a sentence-final «.» after the number is not part of it.
+    "Harck":   re.compile(r"\bHarck\b[\-:]?\s*(\d+(?:\.\d+)*)"),
     # Krause's pattern / presentation register. The number may carry a SERIES
     # letter between «Pn» and the digits — `PnA16`, `PnH16`, `PnJ16`, `PnG16`
     # are all Frederik III 1659 pieces struck from the Ebenezerkrone dies. The
@@ -167,6 +213,69 @@ REF_PATTERNS = {
         # let `[A-Z]` swallow a lowercase prose word before the number.
         r"\b(?i:Skjoldager)[\-:]?\s*"
         r"((?:[A-Z]-?\s*)?\d+[A-Za-z]*(?:\s*/\s*(?:[A-Z]-?\s*)?\d+[A-Za-z]*)*)"),
+    # ── see the comment above `_REF_VALUE` ─────────────────────────────────
+    # Swedish
+    "SM":                 _ref_short("SM"),     # Sveriges Mynt 1521-2021
+    "SB":                 _ref_short("SB"),     # Sveriges Besittningsmynt
+    "SG":                 _ref_short("SG"),     # Delzanno, Sveriges Guldmynt
+    "SMH":                _ref_short("SMH"),    # Malmer, Den Svenska Mynthistorien
+    "MB":                 _ref_short("MB"),
+    "Llt":                _ref_short("Llt"),    # Lagerqvist, Svenska Mynt … 995-1521
+    "Delzanno":           _ref_long("Delzanno"),
+    "Hagander":           _ref_long("Hagander"),
+    "Appelgren":          _ref_long("Appelgren"),
+    "Malmer":             _ref_long("Malmer"),
+    "Ossbahr":            _ref_long("Ossbahr"),
+    "Frösell":            _ref_long("Frösell"),
+    "Tingström":          _ref_long("Tingström"),
+    "Bruun auction":      _ref_long("Bruun (?:[Aa]uction|Auktion)"),  # Hess 1913, Swedish coins
+    # Danish medieval and medals
+    "Hauberg":            _ref_long("Hauberg(?! Collection)"),
+    "Hauberg Collection": _ref_long("Hauberg Collection"),  # 1929 auction catalogue
+    "Poulsen":            _ref_long("Poulsen"),
+    "Moltke":             _ref_long("Moltke"),
+    "Moesgaard":          _ref_long("Moesgaard"),
+    "Mackeprang":         _ref_long("Mackeprang"),
+    # «C. J. Becker-87», «C. J. Becker-H 46/174» (a hoard / plate reference)
+    "Becker":             re.compile(_REF_LB + r"Becker\b[\-:]?\s*(H\s?\d+(?:/\d+)?|\d+[A-Za-z]*)"),
+    "FL":                 _ref_short("FL"),     # Lindahl, Danmarks Mønter 1377-1448
+    "Kold":               _ref_long("Kold"),    # Meybusch medals
+    "JS":                 _ref_short("JS"),     # Sømod, Danske og norske medailler
+    "LS":                 re.compile(_REF_LB + r"LS-\s*(\d+(?:-\d+)*)"),  # Stevnsborg, «LS-2-002»
+    "K&N":                _ref_long("K&N"),     # Knudsen & Nielsen, Christian IV variants
+    "Aagaard & Märcher":  _ref_long("Aagaard & Märcher"),  # Frederik II Speciedaler 1572
+    "UBJ":                _ref_short("UBJ"),    # Trankebar
+    # Norwegian
+    "NM":                 _ref_short("NM"),     # Norges Mynter
+    "NMH":                _ref_short("NMH"),    # Skaare, Norges Mynthistorie
+    "Skaare":             _ref_long("Skaare"),
+    "Rønning":            _ref_long("Rønning"),
+    # German and Baltic
+    "JSJ":                _ref_short("JSJ"),    # Jensen, Hertug Hans den Yngre
+    "Weinmeister":        _ref_long("Weinmeister"),  # Holstein-Schauenburg
+    "Trippler/Kalvelage": _ref_long(r"Trippler/\s?Kalvelage"),  # Oldenburg
+    "Jesse":              _ref_long("Jesse"),   # Wendischer Münzverein
+    "Joseph":             _ref_long("Joseph"),  # Solms
+    "Merseburger":        _ref_long("Merseburger"),
+    "Dassdorf":           _ref_long("Dassdorf"),
+    "Marienburg":         _ref_long("Marienburg"),
+    "AKS":                _ref_short("AKS"),
+    "Haljak":             _ref_long("Haljak"),  # Livonia
+    # English, Polish, Russian, world
+    "S":                  _ref_short("S"),      # Seaby / Spink
+    "North":              _ref_long("North"),
+    "SCBI Cop":           _ref_long("SCBI Cop"),
+    "Hild":               _ref_long("Hild"),
+    "Hildebrand":         _ref_long("Hildebrand"),
+    "Blackburn":          _ref_long("Blackburn"),
+    "Kop":                _ref_long("Kop(?:icki)?"),  # printed «Kop-» and «Kopicki-»
+    "Hütten-Czapski":     _ref_long("H[uü]tten-Czapski"),
+    "Diakov":             _ref_long("Diakov"),
+    "Bitkin":             _ref_long("Bitkin"),
+    "Salvesen":           _ref_long("Salvesen"),
+    # Davenport & Søndergaard «Large Size Silver Coins» — its own register;
+    # the «Dav» pattern needs a digit right after «Dav-» and so skips these.
+    "Dav-LS":             re.compile(_REF_LB + r"Dav-\s*LS-?\s*(\d+[A-Za-z]*)"),
 }
 
 def _schive_value(m: "re.Match") -> str:
