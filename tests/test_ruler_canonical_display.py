@@ -84,6 +84,31 @@ class Merger(unittest.TestCase):
                          _curation_holds={"ruler_verified": "curator"})
         self.assertEqual(held, {"ruler": "Christian III."})
 
+    def test_years_settle_a_doubted_king(self):
+        # «Christian 3?» on a coin dated 1541 — the years are Christian III's.
+        out = {"ruler": "Christian 3?", "year_first": 1541, "year_last": 1541}
+        M._canonical_ruler_out(out, [{"ruler": "Christian 3?"}], "danish_realm")
+        self.assertEqual(out, {"ruler": "Christian III.", "year_first": 1541, "year_last": 1541})
+        # the years name ANOTHER king than the source guessed: the years win
+        out = {"ruler": "Christian 3?", "year_first": 1600, "year_last": 1602}
+        M._canonical_ruler_out(out, [{"ruler": "Christian 3?"}], "danish_realm")
+        self.assertEqual(out["ruler"], "Christian IV.")
+        self.assertNotIn("ruler_verified", out)
+
+    def test_years_that_prove_nothing_keep_the_doubt(self):
+        # an undated coin whose span is the guessed king's own reign
+        out = {"ruler": "Hans?", "year_first": 1483, "year_last": 1513}
+        M._canonical_ruler_out(out, [{"ruler": "Hans?"}], "danish_realm")
+        self.assertEqual((out["ruler"], out["ruler_verified"]), ("Hans", False))
+        # a span that crosses two reigns
+        out = {"ruler": "Frederik 3?", "year_first": 1645, "year_last": 1652}
+        M._canonical_ruler_out(out, [{"ruler": "Frederik 3?"}], "danish_realm")
+        self.assertEqual((out["ruler"], out["ruler_verified"]), ("Frederik III.", False))
+        # unverified years
+        out = {"ruler": "Christian 3?", "year_first": 1541, "year_last": 1541}
+        M._canonical_ruler_out(out, [{"ruler": "Christian 3?", "year_verified": False}], "danish_realm")
+        self.assertEqual(out["ruler_verified"], False)
+
     def test_ruler_hold_freezes_the_spelling(self):
         self.assertEqual(self._out("Frederik 3", "danish_realm", _curation_holds=["ruler"]),
                          {"ruler": "Frederik 3"})

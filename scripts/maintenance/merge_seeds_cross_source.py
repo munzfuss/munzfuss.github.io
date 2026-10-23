@@ -4023,8 +4023,41 @@ def _canonical_ruler_out(out: dict, members: list[dict],
         return
     new, doubt = canonical_ruler_display(raw, entity_id)
     out["ruler"] = new
-    if doubt and not any(_held(m, "ruler_verified") for m in members):
+    if not doubt:
+        return
+    # The source doubts the king («Christian 1?»). The coin's own years settle
+    # it when they are a real date and fall in ONE king's reign (curator
+    # 2026-10-24: «за роками вивести правителя»). Not a real date: a demoted
+    # or unverified year, or a span that is just a reign window (an undated
+    # coin whose years were borrowed from that very guess).
+    by_years = (_ruler_from_years(out, raw, entity_id)
+                if any(m.get("year_verified", True) is not False for m in members)
+                else None)
+    if by_years:
+        out["ruler"] = by_years
+        return
+    if not any(_held(m, "ruler_verified") for m in members):
         out["ruler_verified"] = False
+
+
+def _ruler_from_years(out: dict, raw: str, entity_id: str | None) -> str | None:
+    """The one Danish king whose reign covers every year of `out`, in display
+    form; None when the years are no real date or two kings share them."""
+    from lib.ruler_reigns import (RULER_REIGNS, _KING_DISPLAY_RE,
+                                  canonical_ruler_display, is_reign_span)
+    if out.get("_year_demoted") or out.get("year_verified") is False:
+        return None
+    yf, yl = out.get("year_first"), out.get("year_last")
+    if not isinstance(yf, int) or not isinstance(yl, int):
+        return None
+    if is_reign_span(raw.rstrip(" ?"), entity_id, yf, yl):
+        return None
+    kings = [k for k, (a, b) in RULER_REIGNS.items()
+             if _KING_DISPLAY_RE.match(k) and a <= yf and yl <= b]
+    if len(kings) != 1:
+        return None
+    name, _ = canonical_ruler_display(kings[0], entity_id)
+    return name
 
 
 def build_unified(members: list[dict], unified_id: str,
