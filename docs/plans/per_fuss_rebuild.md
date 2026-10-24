@@ -176,10 +176,12 @@ accepted by the curator. What differs from main:
     carried them here through the self-union.
   - Galster 36 (`c-6b8170bb`): KMM 371867 gone — a specimen of a stub the
     curator excluded (below).
-  - Skilling 1510 Galster 148 (`c-eb940dae`): «delzanno# 2» from Bruun 9222
-    (Part V lot 15003 prints «Delzanno-2»; Bruun's abbreviation list:
-    «Roberto Delzanno. Sveriges Myntbok 1 and 2. Stockholm. 2020»). The
-    lower-case label is the Bruun builder's mapped name; open, see below.
+  - Skilling 1510 Galster 148 (`c-eb940dae`): «Delzanno# 2» from Bruun 9222
+    (Part V lot 15003 prints «Delzanno-2»). Bruun's abbreviation lists give
+    two works under «Delzanno»: «Sveriges Myntbok 1 and 2» (2020) and «Norges
+    Myntbok / Coins of Norway 995-2025»; which one lot 15003 means is not
+    stated (for a Norwegian skilling the second is the likelier — hypothesis).
+    The label was the builder's lower-case «delzanno» until the fix below.
 - In the data only: per-source `verification_note` template gone on all 28;
   1061 (`c-bbb03d20`) and 163 + 163 (`c-6b8170bb`, `c-afd707d6`) hidden
   (`display: false`) KMM citations gone — specimens of the KMM stubs the
@@ -189,7 +191,14 @@ accepted by the curator. What differs from main:
 - `c-afd707d6`: `diameter_mm_verified` true -> unset; no member gives a
   diameter.
 
-Open, outside this Fuß: Bruun's Swedish catalogues reach `catalog.others`
-with the builder's lower-case field names («delzanno#», «lott#», «malmer#»)
-instead of the printed label; on this branch 48 delzanno / 3 lott / 1 malmer
-in the Denmark-page finals, 1 of them in this Fuß; main has none.
+Fixed 2026-10-24 (curator «роби»): Bruun's Swedish catalogues reached
+`catalog.others` with the builder's lower-case field names («delzanno#»,
+«lott#», «sm#», «hagander#», «appelgren#», «malmer#»). The Bruun builder now
+writes the printed code («Delzanno#», «Llt#», «SM#», …;
+`catalog_from_ref_dict(printed_label=True)`), and `normalise_catalog`
+rewrites stored tokens, so finals outside the scope get it too.
+`mb_swedish#` stays: a printed «MB» would fold into the typed `mb`. Bruun
+seeds re-built from cache b6d04485e; besides the labels, `dk-bruun-5814`
+lost `catalog.km: 151` — `merge_seed` takes a number marked «(!)» out of
+`catalog` (it lives on in `catalog_marks`); `54f330b` had edited the seed by
+hand. No change downstream other than the labels; `verify_reflow`: no losses.
