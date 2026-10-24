@@ -1085,7 +1085,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     # mb_swedish/hauberg/malmer, mapped to non-schema names in REF_FIELDS) AND
     # any code our schema doesn't type (Aagaard, Pn, future catalogues) →
     # `others` as «Label# value». Nothing dropped, nothing breaks validation.
-    catalog: dict[str, Any] = catalog_from_ref_dict(refs, REF_FIELDS)
+    catalog: dict[str, Any] = catalog_from_ref_dict(refs, REF_FIELDS, printed_label=True)
     # Special: Jensen-Skjoldager key in Bruun refs (cited as "Jensen & Skjoldager-...")
     #
     # The value must be a WELL-FORMED index — an optional single-letter series

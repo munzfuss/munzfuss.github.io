@@ -233,6 +233,7 @@ def catalog_from_ref_dict(
     key_field_map: dict | None = None,
     *,
     drop_keys=frozenset(),
+    printed_label: bool = False,
 ) -> dict:
     """GENERIC source-refs-dict → CatalogRefs-shaped dict.
 
@@ -305,6 +306,13 @@ def catalog_from_ref_dict(
             mapped = k.lower() if k.lower() in schema_fields else None
         field = mapped if (mapped and mapped in schema_fields) else None
         label = (key_field_map.get(k) if key_field_map else None) or k
+        # `printed_label`: an `others` token carries the code the source
+        # PRINTED («Delzanno# 2»), not the builder's internal name
+        # («delzanno»), unless the printed code would fold into a typed field
+        # of another catalogue (Bruun's Swedish «MB» vs the typed `mb`) —
+        # then the internal name keeps them apart (curator 2026-10-24).
+        if printed_label and field is None and k.lower() not in schema_fields:
+            label = k
         values = v if isinstance(v, list) else [v]
         for elem in values:
             _emit(field, label, elem)
@@ -602,6 +610,19 @@ _BARE_FOREIGN_REF_RE = re.compile(
 # Ernst 1940 (NNÅ 1940) — so the year belongs to the catalogue NAME, not to
 # the number: «Ernst 1940# 3-13» (curator 2026-10-22). «1940.1» is no 1940.1
 # but number 1 (hans.htm spelling).
+# Bruun's Swedish catalogues reached `others` under the seed builder's
+# internal names («delzanno# 2», «lott# 18») until 2026-10-24; Bruun prints
+# «Delzanno-2», «Llt-18» (its abbreviation list: Delzanno = Roberto Delzanno,
+# Sveriges Myntbok / Norges Myntbok; Llt = Lars Lagerqvist; SM = Sveriges Mynt
+# 1521-2021; Hagander; Appelgren; Malmer = Brita Malmer). Stored tokens get the
+# printed code back (curator 2026-10-24). `mb_swedish` stays: printed «MB»
+# would fold into the typed `mb`, another catalogue.
+_BUILDER_NAME_TO_PRINTED = {
+    "delzanno": "Delzanno", "lott": "Llt", "sm": "SM", "hagander": "Hagander",
+    "appelgren": "Appelgren", "malmer": "Malmer",
+}
+_BUILDER_NAME_REF_RE = re.compile(
+    r"^(%s)#\s*(\S.*)$" % "|".join(_BUILDER_NAME_TO_PRINTED))
 _ERNST_YEAR_REF_RE = re.compile(r"^Ernst#?\s+(1\d{3})(?:\.(?=\d)|\s+)(\S.*)$")
 _SCHIVE_COLON_RE = re.compile(r"^\s*([IVXL]+)\s*:\s*")
 _PLAIN_INT_RE = re.compile(r"^(\d+)$")
@@ -686,6 +707,9 @@ def normalise_catalog(catalog: dict) -> int:
         canon: list = []
         for tok in others:
             if isinstance(tok, str):
+                m = _BUILDER_NAME_REF_RE.match(tok)
+                if m:
+                    tok = f"{_BUILDER_NAME_TO_PRINTED[m.group(1)]}# {m.group(2)}"
                 m = _ERNST_YEAR_REF_RE.match(tok)
                 if m:
                     tok = f"Ernst {m.group(1)}# {m.group(2)}"
