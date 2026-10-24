@@ -328,3 +328,48 @@ class PlaceholderStaysWhenAlone(unittest.TestCase):
         finally:
             ab.SELF_UNION_ENABLED = True
         self.assertEqual(out["nominal"], "(?)")
+
+
+class SwitchByFuss(unittest.TestCase):
+    """`--rebuild-fuss` / ABSORB_REBUILD_FUSS / `_rebuild_scope.yml`: with the
+    self-union on, only the finals of the scoped Fuß are rebuilt (curator
+    2026-10-24, docs/plans/per_fuss_rebuild.md)."""
+
+    def setUp(self):
+        ab.SELF_UNION_ENABLED = True
+        ab.REBUILD_FUSS = frozenset({"nobel_fod"})
+        ab._SCOPE_DECISION_KEYS = {"seed-moved-in"}
+
+    def tearDown(self):
+        ab.REBUILD_FUSS = frozenset()
+        ab._SCOPE_DECISION_KEYS = None
+
+    def test_a_scoped_final_is_rebuilt(self):
+        fc = _promoted(fuss="nobel_fod")
+        self.assertTrue(ab._rebuilds(fc))
+        out = _enrich(fc)
+        self.assertEqual({(s["url"], s["ref"]) for s in out["sources"]}, {(N, "Numista")})
+        self.assertEqual(out["ruler"], "Frederik III.")
+
+    def test_a_final_outside_the_scope_keeps_the_self_union(self):
+        fc = _promoted(fuss="9_25_thaler")
+        self.assertFalse(ab._rebuilds(fc))
+        self.assertIs(ab._own(fc), fc)
+        out = _enrich(fc)
+        self.assertIn(("https://x/hg36.htm", "Galster 36"),
+                      {(s["url"], s["ref"]) for s in out["sources"]})
+
+    def test_an_assignment_into_the_fuss_puts_the_final_in_scope(self):
+        fc = _promoted(fuss="seed_unsorted", composed_of=["seed-moved-in"])
+        self.assertTrue(ab._rebuilds(fc))
+
+    def test_an_empty_scope_rebuilds_nothing(self):
+        ab.REBUILD_FUSS = frozenset()
+        self.assertFalse(ab._rebuilds(_promoted(fuss="nobel_fod")))
+
+    def test_switch_off_rebuilds_every_final_whatever_the_scope(self):
+        ab.SELF_UNION_ENABLED = False
+        try:
+            self.assertTrue(ab._rebuilds(_promoted(fuss="9_25_thaler")))
+        finally:
+            ab.SELF_UNION_ENABLED = True

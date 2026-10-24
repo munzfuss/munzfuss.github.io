@@ -666,10 +666,42 @@ def _apply_catalog_km_hold(enriched: dict, fc: dict) -> None:
     cat["km"] = copy.deepcopy(km)
 
 
+def _scope_decision_keys() -> set[str]:
+    """Every id an assignment INTO a scoped Fuß resolves to, across all
+    entities: a final the curator moves into the Fuß is in scope before
+    absorb applies the move, and so is one whose stored `fuss` the rebuild
+    would lose (the Lybsk final c-bbb03d20 went to seed_unsorted, 2026-10-24)."""
+    global _SCOPE_DECISION_KEYS
+    if _SCOPE_DECISION_KEYS is None:
+        keys: set[str] = set()
+        for p in sorted(V2_CLASSIFICATION_DECISIONS.glob("*.yml")):
+            for a in _load_yaml(p).get("assignments") or []:
+                if (isinstance(a, dict) and a.get("coin_id")
+                        and not a.get("superseded_by")
+                        and a.get("fuss") in REBUILD_FUSS):
+                    keys |= _decision_keys(a["coin_id"])
+        _SCOPE_DECISION_KEYS = keys
+    return _SCOPE_DECISION_KEYS
+
+
+def _rebuilds(fc: dict) -> bool:
+    """Is this final rebuilt from its members (its skeleton, never its stored
+    copy)? Every final with the self-union off; else a final of a scoped Fuß
+    — by its stored `fuss` or by an assignment reaching its id or classes."""
+    if not SELF_UNION_ENABLED:
+        return True
+    if not REBUILD_FUSS:
+        return False
+    if fc.get("fuss") in REBUILD_FUSS:
+        return True
+    ids = {str(fc.get("id"))} | {str(m) for m in fc.get("composed_of") or []}
+    return bool(ids & _scope_decision_keys())
+
+
 def _own(fc: dict) -> dict:
     """`fc` as the enrichment's `final_entry` / first member: the skeleton
-    when the self-union is off, the stored final otherwise."""
-    return _skeleton(fc) if not SELF_UNION_ENABLED else fc
+    when the final is rebuilt (`_rebuilds`), the stored final otherwise."""
+    return _skeleton(fc) if _rebuilds(fc) else fc
 
 
 def _apply_migrated_merge_fields(entry: dict, fid: str,
@@ -1648,6 +1680,14 @@ REVALIDATE_ENABLED: bool = True
 # (`_skeleton`), never from its stored copy. Off by default until stage F of
 # docs/plans/rebuild_final_from_members.md.
 SELF_UNION_ENABLED: bool = True
+# The rebuild for some Fuß only (curator 2026-10-24, docs/plans/
+# per_fuss_rebuild.md): with the self-union on, a final whose Fuß is in
+# REBUILD_FUSS is still rebuilt from its members. Set from `--rebuild-fuss`,
+# else `ABSORB_REBUILD_FUSS`, else `data/v2/_rebuild_scope.yml::fuss` — the
+# file is the record of which Fuß a branch has reviewed and ships rebuilt.
+REBUILD_FUSS: frozenset[str] = frozenset()
+REBUILD_SCOPE_FILE = ROOT / "data" / "v2" / "_rebuild_scope.yml"
+_SCOPE_DECISION_KEYS: set[str] | None = None
 # §9a final-layer weight thinning runs inside absorb (see the write path).
 THIN_ENABLED: bool = True
 
@@ -3628,7 +3668,7 @@ def process_entity(entity_id: str) -> dict:
             if mid in unified_by_id:
                 members.append(unified_by_id[mid])
         enriched, conflicts = _enrich_final_entry(base, members, entity_id)
-        if not SELF_UNION_ENABLED:
+        if _rebuilds(fc):
             _normalise_final_entry(enriched, unified_by_id)
         _apply_migrated_merge_fields(enriched, fid, full_composed,
                                      curator_migrations)
@@ -3735,7 +3775,7 @@ def process_entity(entity_id: str) -> dict:
                 _stored = _folded_self[uid]
                 restored = _own(restored)  # P2: the stored dict is a self-union entrance too
                 enriched, _ = _enrich_final_entry(restored, [restored, unified], entity_id)
-                if not SELF_UNION_ENABLED:
+                if _rebuilds(_stored):
                     _normalise_final_entry(enriched, unified_by_id)
                 _apply_catalog_km_hold(enriched, _stored)
                 enriched_entries.append(enriched)
@@ -4090,7 +4130,7 @@ def process_entity(entity_id: str) -> dict:
                         or "/artikler/" in str(s.get("url") or ""))
                    for s in srcs):
                 continue  # article-page narrative foundation (Shape C)
-        if not SELF_UNION_ENABLED:
+        if _rebuilds(fc):
             # P5: a verbatim re-add is a self-union entrance. Re-add the
             # skeleton enriched from its live classes; with no live class the
             # stored entry comes back as it was, but reported, never silently.
@@ -4490,6 +4530,12 @@ def main() -> int:
                              "skeleton (identity, classification, holds, "
                              "curator prose) — never from its stored copy. "
                              "docs/plans/rebuild_final_from_members.md stage A")
+    parser.add_argument("--rebuild-fuss",
+                        help="Comma list of Fuß whose finals are rebuilt from "
+                             "their members while every other final keeps the "
+                             "self-union (default: ABSORB_REBUILD_FUSS, else "
+                             "data/v2/_rebuild_scope.yml). --no-self-union "
+                             "rebuilds all and overrides this.")
     args = parser.parse_args()
     if args.apply:
         args.dry_run = False
@@ -4504,6 +4550,18 @@ def main() -> int:
         # child run the switch without a flag
         global SELF_UNION_ENABLED
         SELF_UNION_ENABLED = False
+    global REBUILD_FUSS
+    _scope = args.rebuild_fuss
+    if _scope is None:
+        _scope = os.environ.get("ABSORB_REBUILD_FUSS")
+    if _scope is None and REBUILD_SCOPE_FILE.exists():
+        _scope = ",".join(map(str, _load_yaml(REBUILD_SCOPE_FILE).get("fuss") or []))
+    REBUILD_FUSS = frozenset(f.strip() for f in (_scope or "").split(",") if f.strip())
+    if not SELF_UNION_ENABLED:
+        print("Rebuild from members: every final (--no-self-union).")
+    elif REBUILD_FUSS:
+        print(f"Rebuild from members: finals of {', '.join(sorted(REBUILD_FUSS))}; "
+              f"every other final keeps the self-union.")
 
     # `--entity a,b,c`: several entities in ONE process — the global seed /
     # unified / final indices are built once (2026-10-23: ~50 s of overhead

@@ -9,7 +9,9 @@
 #   scripts/run_v2_page.sh denmark --apply --twice   # + fixed-point check
 #
 # thin_final_weight_lists and relink_promoted_v2 have no entity scope and run
-# over every final; both are idempotent. Honours ABSORB_NO_SELF_UNION.
+# over every final; both are idempotent. Honours ABSORB_NO_SELF_UNION (rebuild
+# every final) and ABSORB_REBUILD_FUSS / data/v2/_rebuild_scope.yml (rebuild
+# the finals of those Fuß only).
 set -e
 LOC="$1"; shift || true
 APPLY=""; TWICE=""
