@@ -227,7 +227,7 @@ OOS records are never even downloaded.
 | `inscription_obv/rev` | — | KMM has none (~0 %) |
 | `sources[]` | `{type:"museum", url:f"https://samlinger.natmus.dk/KMM/object/{id}", ref:f"KMM {id} (Inv. {objectIdentification})"}` | url verified live |
 | `images` (optional tier) | `related.assets[]` → `https://samlinger.natmus.dk/kmm/asset/<n>.jpg?maxsize=org&download=true` | CC BY-SA; `<n>`=asset id numeric |
-| `verification_note` | KMM-seed boilerplate (de/en/uk) | |
+| `verification_note` | none — the KMM boilerplate was removed 2026-10-24 (CLAUDE.md §4) | |
 
 ### §9 exclusions at seed
 - `workDescription == "Regnepenning"` → reckoning jeton = exonumia §9.2 → skip.

@@ -1137,10 +1137,10 @@ Required fields per coin entry (mirror existing `data/seed/hede/denmark.yml`):
     - type: literature
       url: https://...               # if applicable
       ref: …
-  verification_note:
-    de: …                            # source-specific note
-    en: …
-    uk: …
+  verification_note:                 # OPTIONAL — only a note about THIS
+    de: …                            # record; never a per-source template
+    en: …                            # (not rendered; removed from every
+    uk: …                            # builder 2026-10-24, CLAUDE.md §4)
 ```
 
 Optional source-specific enrichment fields (carry through if present):

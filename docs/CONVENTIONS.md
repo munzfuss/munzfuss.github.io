@@ -280,7 +280,12 @@ verification_note:
   uk: "Проба не задокументована в онлайн-джерелах. Оцінка .500–.625 (білон) за аналогією до KM-186."
 ```
 
-Build script renders `(?)` marker next to the value; tooltip shows the note.
+The build renders the `(?)` marker next to the value from the `*_verified`
+flag; its tooltip is the generic `marker.unverified` string
+(`data/i18n/ui.yml`), the same on every coin. `verification_note` itself is
+rendered nowhere — it is the record's internal rationale (CLAUDE.md §4).
+Write it only when it says something about this record; never a per-source
+template (removed from the seed builders and seeds 2026-10-24).
 
 Per-field verified flags currently supported by the schema:
 `verified` (overall), `mint_verified`, `fineness_verified`,
@@ -296,13 +301,14 @@ Coins imported in bulk from ucoin (currently in `denmark.yml`,
 fuss: seed_unsorted          # placeholder — no fractions, no soll/delta
 phase: A                     # single placeholder phase
 verified: false              # plus all per-field _verified: false
-verification_note:
-  de: "Bulk-Import aus ucoin tid NNNN als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt)."
 ```
 
+(No `verification_note`: since 2026-10-24 the seed builders write none —
+the per-source template said nothing about the record.)
+
 When triaging a seed coin into its proper Müntzfuß: change `fuss` to the
-real one, set `phase` accordingly, replace the bulk-import
-`verification_note` with the per-coin rationale, and flip the
+real one, set `phase` accordingly, add a `verification_note` only when there
+is a per-coin rationale to record, and flip the
 `*_verified` flags for each field that's now source-attested.
 A location's landing card reappears automatically once it has zero
 seed_unsorted coins (see `scripts/build.py::build_landing`).

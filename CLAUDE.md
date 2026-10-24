@@ -379,7 +379,9 @@ year_label: '1646, 1648'              # comma-separated discrete years
 
 ### 4. Unconfirmed data marker `(?)`
 
-When a value is estimated, unverified, or based on analogy rather than a primary source, mark the field as unverified. In YAML: `verified: false` with a `verification_note`. The build script renders this as `(?)` with a tooltip.
+When a value is estimated, unverified, or based on analogy rather than a primary source, mark the field as unverified. In YAML: `<field>_verified: false` (or `verified: false` for the record as a whole). The build renders `(?)` next to the value with ONE generic tooltip, `marker.unverified` in `data/i18n/ui.yml` — the same text on every coin.
+
+**`verification_note` is not rendered anywhere** — no template and no part of `build.py` reads it. It is the record's internal rationale, for the curator and the audits: why a value is inferred or unattested, which source attests what. Write one only when it says something about THIS record (the inference and its Δ, a source conflict, «only the overview row attests this entry»). Never a per-source boilerplate: seed builders emitted one template per source («Numista seed: …», «Data taken from the Bruun auction catalogue …») on every record; it said nothing the record's fields and `sources` do not, the Bruun one asserted a fineness «follows from» Wilcke 1950 on records that have none, and it was removed from the builders and the seeds (curator 2026-10-24, `1d41e14`). A new builder must not reintroduce one.
 
 **Never fake certainty.** Better to have 10 rows with `(?)` markers than 10 rows of plausible-looking fabrication.
 
@@ -393,7 +395,7 @@ The same applies to *modifying* a value: do not edit a field marked `verified: t
 A source may publish *some* fields but not others (e.g. a ucoin entry gives weight + diameter but no fineness). For the unsourced field, you may still record the value our project would expect from the standard — but only when **both** of these hold:
 1. The fineness (or other missing field) is the **canonical value of the Münzfuß** the coin clearly belongs to (e.g. .500 for an 18½-Fuß Rigsbankskilling, .875 for a 9¼-Fuß Speciedaler) — i.e. the value is *known to us from the standard*, not invented.
 2. The arithmetic check using that canonical value × the sourced weight produces a Feingewicht that **falls within the standard's typical Δ envelope** (≤ ~2 % off the soll) — i.e. nothing in the sourced data contradicts the assumption.
-In that case write the canonical value and mark **`<field>_verified: false`** with a `verification_note` such as «assumed canonical .500 fineness for 18½-Fuß; ucoin tid X attests weight only, fineness inferred from standard». The `(?)` marker correctly signals to the reader that *this specific field* is inferred, while preserving the coin's place in the table.
+In that case write the canonical value and mark **`<field>_verified: false`** with a `verification_note` (internal, not rendered) such as «assumed canonical .500 fineness for 18½-Fuß; ucoin tid X attests weight only, fineness inferred from standard». The `(?)` marker correctly signals to the reader that *this specific field* is inferred, while preserving the coin's place in the table.
 
 **`verified: true` is wrong** in any of these cases: (a) the value comes purely from a back-computation we performed (no source published it directly), (b) the value comes from analogy with another type, (c) the value matches the standard «too neatly» without an explicit source — neat fits are evidence the value is *plausible*, not *attested*.
 
