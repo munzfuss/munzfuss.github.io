@@ -31,17 +31,49 @@ ce = yaml.safe_load(open('data/v2/locations/$LOC.yml'))['consumes_entities']
 print(','.join(e['entity'] if isinstance(e, dict) else e for e in ce))")
 [ -n "$ENTS" ] || { echo "no consumes_entities for $LOC"; exit 2; }
 echo "entities: $ENTS"
-run_pass() {
-  echo "──[1/5] merge";    $PY scripts/maintenance/merge_seeds_cross_source.py --entity "$ENTS" ${APPLY:---dry-run}
-  echo "──[2/5] absorb";   $PY scripts/maintenance/absorb_seeds_into_final_v2.py --entity "$ENTS" ${APPLY:---dry-run}
-  echo "──[3/5] thin";     $PY scripts/maintenance/thin_final_weight_lists.py ${APPLY:---dry-run}
-  echo "──[4/5] classify"; $PY scripts/maintenance/auto_classify_seed_unsorted.py --entity "$ENTS" $APPLY
-  echo "──[5/5] relink";   $PY scripts/maintenance/relink_promoted_v2.py ${APPLY:---dry-run}
+# Hash of every derived file a step can write; on the second pass of --twice
+# each step reports which of them it changed, so the step that really needs
+# a second run can be told from the ones that only repeat themselves.
+snap() {
+  $PY - <<'EOF'
+import hashlib, pathlib
+for d in ("final", "seed_unified", "classification_decisions", "class_registry", "seed"):
+    for p in sorted(pathlib.Path("data/v2", d).rglob("*.yml")):
+        print(hashlib.md5(p.read_bytes()).hexdigest(), p)
+EOF
 }
+PASS=1
+step() {
+  local label="$1"; shift
+  echo "──$label"
+  local before="" t0 t1
+  [ "$PASS" = 2 ] && before=$(snap)
+  t0=$(date +%s)
+  "$@"
+  t1=$(date +%s)
+  if [ "$PASS" = 2 ]; then
+    local changed
+    changed=$(diff <(echo "$before") <(snap) | sed -n 's/^> [0-9a-f]* //p' | tr '\n' ' ')
+    echo "  ⏱ pass $PASS $label: $((t1 - t0)) s; changed: ${changed:-nothing}"
+  else
+    echo "  ⏱ pass $PASS $label: $((t1 - t0)) s"
+  fi
+  TIMES="$TIMES
+  pass $PASS $label $((t1 - t0)) s${changed:+ — changed: $changed}"
+}
+run_pass() {
+  step "[1/5] merge"    $PY scripts/maintenance/merge_seeds_cross_source.py --entity "$ENTS" ${APPLY:---dry-run}
+  step "[2/5] absorb"   $PY scripts/maintenance/absorb_seeds_into_final_v2.py --entity "$ENTS" ${APPLY:---dry-run}
+  step "[3/5] thin"     $PY scripts/maintenance/thin_final_weight_lists.py ${APPLY:---dry-run}
+  step "[4/5] classify" $PY scripts/maintenance/auto_classify_seed_unsorted.py --entity "$ENTS" $APPLY
+  step "[5/5] relink"   $PY scripts/maintenance/relink_promoted_v2.py ${APPLY:---dry-run}
+}
+TIMES=""
 run_pass
 if [ -n "$TWICE" ] && [ -n "$APPLY" ]; then
   TMP=$(mktemp -d)
   cp -R data/v2/final/. "$TMP/"
+  PASS=2
   run_pass
   if diff -rq "$TMP" data/v2/final > /dev/null; then
     echo "FIXED POINT"
@@ -68,3 +100,4 @@ for a in sorted(a_dir.glob("*.yml")):
 EOF
   fi
 fi
+echo "step times:$TIMES"
