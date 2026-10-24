@@ -88,3 +88,30 @@ the page on danskmoent.github.io).
 (one line per final: id · verdict · surface used · commit)
 
 ### nobel_fod
+
+Rebuild vs main, 2026-10-24 (record-diff-table). `note` is identical on all
+seven; every difference is in fields no page renders.
+
+- `c-6e11667e` 1 Nobel 1532 · `verification_note` gone (Numista template) · accepted · `1d41e14`
+- `c-fabbb039` 1 Nobel 1524-1525 · `verification_note` gone (Galster template) · accepted · `1d41e14`
+- `c-ba11e1f9` 1 Nobel 1524 (Galster 68, no specimen known) · `verification_note` gone (Galster template); `metal_verified` absent = schema default true; `weight_rough_verified` false from the Galster seed (no weight on either side) · accepted · `1d41e14`
+- `c-3fc323e5` 1 Nobel 1516, 1518 (Christian II) · `verification_note` gone, incl. the curator sentence on the .979 anchor (`40c5dd8`); the .979 itself stays, inferred, `fineness_verified: false`, under its hold · accepted · `1d41e14`
+- `c-bc790ea1` 1 Nobel 1496, 1502 · `verification_note` gone, incl. the curator sentence «fineness of the pre-1514 Nobler not given in the sources» (`c3bd650`); the hold keeping an empty fineness removed (no member gives a fineness, so it was a no-op) · accepted · `1d41e14` + hold removal in the uncommitted rebuild
+- `c-f9c15578` 2 Nobel 1502 · as `c-bc790ea1` · accepted
+- `c-59881f83` 3 Nobel 1496 · as `c-bc790ea1` · accepted
+
+Curator decisions behind these lines (2026-10-24):
+- The .979 on the Nobels was never a source value: no member seed (Galster,
+  Numista, Bruun, KMM) carries a fineness. It was an inferred anchor
+  (`40c5dd8`), removed from the three Hans Nobels in `c3bd650`. The holds that
+  kept the empty field are dropped: the rebuild leaves it empty by itself.
+- `verification_note` is not rendered anywhere. The builders' per-source
+  template is removed from the builders and the seeds (`1d41e14`); only notes
+  about the record stay (Hede index stubs, NGC norm notes, Metallanalyser).
+  For the switch: on main, finals outside the scope keep their stored note
+  (self-union) — only the rebuilt Fuß lose it.
+- Open, outside this review: CLAUDE.md §4 still says `verified: false` comes
+  with a `verification_note` that renders as the «(?)» tooltip; the build
+  never did that.
+- The hold removals live only in the uncommitted rebuild; they are recorded
+  here so the shipping run in the new branch repeats them.
