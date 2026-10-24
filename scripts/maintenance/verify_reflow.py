@@ -484,6 +484,23 @@ def _member_excluded_kmm(entity: str) -> set[str]:
     return out
 
 
+def _member_excluded_kmm_any() -> set[str]:
+    """`_member_excluded_kmm` over EVERY entity's exclusions file.
+
+    A KMM stub excluded in one entity can have left its citations on a final
+    of another: the class it sat in moved, and the old self-union carried the
+    citations along (2026-10-24: 161 KMM citations of stubs excluded in
+    danish_realm on 2026-10-16, still on the danish_norway Hvid c-afd707d6 at
+    HEAD; a rebuild from members drops them). The exclusion is about the KMM
+    object, not about the file it is listed in, so the citation leaving is
+    the recorded decision wherever it sat (curator 2026-10-24)."""
+    out: set[str] = set()
+    for p in sorted((ROOT / EXCLUSIONS_REL).glob("*.yml")):
+        if not p.stem.startswith("_"):
+            out |= _member_excluded_kmm(p.stem)
+    return out
+
+
 def _excluded_ids(entity: str) -> set[str]:
     """Seed ids the curator has excluded for `entity` (data/v2/exclusions/).
 
@@ -1332,7 +1349,7 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                             for v in sorted(trimmed))
                         gone -= trimmed
                 if gone and f == "sources":
-                    _mx = _member_excluded_kmm(entity)
+                    _mx = _member_excluded_kmm_any()
                     if _mx:
                         member_gone = {v for v in gone
                                        if any(f"/KMM/object/{n}\"" in v for n in _mx)}
