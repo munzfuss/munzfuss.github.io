@@ -332,13 +332,44 @@ merges:
   # divergent KM accumulate to list-form per §9a. The auto-matcher returns
   # no_match on the KM divergence, so these need explicit merges to survive
   # re-runs (were absorb-level over-merges before this). ---
+  # ½ Dukat 1647 «Brilledukat», Hede 38 (crowned C4 monogram) and Hede 40
+  # (king standing) — the whole class of each named (curator 2026-10-24).
+  # Krause (NumisMaster): KM 151 «Crowned C4 monogram», KM 152 «Christian IV
+  # standing right in inner circle»; ucoin agrees (97394 «Monogram on
+  # obverse» KM 151, 97395 «Standing Christian IV on obverse» KM 152);
+  # Numista 388109 KM 151 «Crowned C4 monogram». Bruun prints KM-151 for BOTH
+  # (Part I lot 1046 = Bruun 5814 = Hede-40; Part III lot 11210 = Bruun 5815 =
+  # Hede-38): the KM-151 of lot 1046 is marked «(!)» on dk-bruun-5814, and the
+  # records that publish only a KM follow Krause. Before this, that KM-151
+  # tied KM 151 to Hede 40 and every KM-only record landed in the other type
+  # (the previous reason here, «Bruun I lot 1046 coll 5814/5815», mixed the
+  # two lots). KMM by Schou: 137184 «Sch 5» = Hede 38, 137186 «Sch 4» = Hede 40.
   - members:
       - dk-hede-c4h38
       - dk-bruun-5815
+      - dk-numista-388109
+      - kmk-137184
+      - denmark-numismaster-65697
+      - ngc-1050262
+      - dk-tid-97394
     reason: |
-      ½ Dukat Christian IV, Hede 38, 1647. Host KM 152 vs member KM 151 —
-      same Hede 38 type (Bruun I lot 1046 coll 5814/5815, Numista N#388109
-      shared). danskmoent.dk/chr/c4h38.htm.
+      ½ Dukat Christian IV 1647, Hede 38 = Schou 5 = crowned C4 monogram =
+      Krause KM 151 (NumisMaster MC_65697; NGC KM-151; ucoin 97394 «Monogram
+      on obverse»; Numista N#388109). Bruun 5815 (Part III lot 11210,
+      Hede-38). danskmoent.dk/chr/c4h38.htm.
+
+  - members:
+      - dk-hede-c4h40
+      - dk-bruun-5814
+      - kmk-137186
+      - denmark-numismaster-65698
+      - ngc-1050352
+      - dk-tid-97395
+    reason: |
+      ½ Dukat Christian IV 1647, Hede 40 = Schou 4 = king standing = Krause
+      KM 152 (NumisMaster MC_65698; NGC KM-152; ucoin 97395 «Standing
+      Christian IV on obverse»). Bruun 5814 (Part I lot 1046, Hede-40; its
+      printed KM-151 marked «(!)»). danskmoent.dk/chr/c4h40.htm.
 
   - members:
       - dk-hede-c4h49
@@ -1728,6 +1759,98 @@ merges:
       class of their own, apart from the Galster 42 class (their verified
       copper conflicts with its silver/billon). eriksson_2017_assays.md §10.
 no_merges:
+  # ½ Dukat 1647 «Brilledukat»: Hede 38 (crowned C4 monogram, Krause KM 151,
+  # Schou 5) and Hede 40 (king standing, Krause KM 152, Schou 4) never unite
+  # (curator 2026-10-24; see the two merges above). Every Hede 38 member ×
+  # every Hede 40 member: the KM-only records (NumisMaster, NGC, ucoin) and
+  # the KMM Schou records match EITHER type's Hede page on metal + nominal +
+  # ruler (nothing to disagree on), and the auto-unions run before the
+  # curator merges, so a partial block let them land in the wrong type.
+  # `merge_seeds_cross_source.py --explain <seeds>` shows those edges.
+  - members: [dk-hede-c4h38, dk-hede-c4h40]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-hede-c4h38, dk-bruun-5814]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-hede-c4h38, kmk-137186]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-hede-c4h38, denmark-numismaster-65698]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-hede-c4h38, ngc-1050352]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-hede-c4h38, dk-tid-97395]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-bruun-5815, dk-hede-c4h40]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-bruun-5815, dk-bruun-5814]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-bruun-5815, kmk-137186]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-bruun-5815, denmark-numismaster-65698]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-bruun-5815, ngc-1050352]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-bruun-5815, dk-tid-97395]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-numista-388109, dk-hede-c4h40]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-numista-388109, dk-bruun-5814]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-numista-388109, kmk-137186]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-numista-388109, denmark-numismaster-65698]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-numista-388109, ngc-1050352]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-numista-388109, dk-tid-97395]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [kmk-137184, dk-hede-c4h40]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [kmk-137184, dk-bruun-5814]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [kmk-137184, kmk-137186]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [kmk-137184, denmark-numismaster-65698]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [kmk-137184, ngc-1050352]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [kmk-137184, dk-tid-97395]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [denmark-numismaster-65697, dk-hede-c4h40]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [denmark-numismaster-65697, dk-bruun-5814]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [denmark-numismaster-65697, kmk-137186]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [denmark-numismaster-65697, denmark-numismaster-65698]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [denmark-numismaster-65697, ngc-1050352]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [denmark-numismaster-65697, dk-tid-97395]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [ngc-1050262, dk-hede-c4h40]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [ngc-1050262, dk-bruun-5814]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [ngc-1050262, kmk-137186]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [ngc-1050262, denmark-numismaster-65698]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [ngc-1050262, ngc-1050352]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [ngc-1050262, dk-tid-97395]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-tid-97394, dk-hede-c4h40]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-tid-97394, dk-bruun-5814]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-tid-97394, kmk-137186]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-tid-97394, denmark-numismaster-65698]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-tid-97394, ngc-1050352]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
+  - members: [dk-tid-97394, dk-tid-97395]
+    reason: '½ Dukat 1647: Hede 38 member vs Hede 40 member (curator 2026-10-24).'
   - members:
       - kmk-156471
       - kmk-125889
