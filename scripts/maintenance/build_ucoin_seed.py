@@ -544,28 +544,6 @@ def _build_entry_from_cache(cache: dict, entity: str,
                 "ref": "ucoin",
             }
         ],
-        "verification_note": {
-            "de": (
-                "Daten aus dem benutzergepflegten Münzkatalog "
-                "ucoin.net. Gegen die Primärquellen (Hede / Sieg / "
-                "Lange / NumisMaster / Bruun) noch nicht geprüft."
-            ),
-            "en": (
-                "Data from the user-edited coin catalogue ucoin.net. "
-                "Not yet checked against the primary sources (Hede / "
-                "Sieg / Lange / NumisMaster / Bruun)."
-            ),
-            "uk": (
-                "Дані з користувацького каталогу монет ucoin.net. "
-                "Проти первинних джерел (Hede / Sieg / Lange / "
-                "NumisMaster / Bruun) ще не звірено."
-            ),
-            "da": (
-                "Data fra det brugerredigerede møntkatalog ucoin.net. "
-                "Endnu ikke efterprøvet mod primærkilderne (Hede / Sieg / "
-                "Lange / NumisMaster / Bruun)."
-            ),
-        },
     }
     # Cache audit fields, underscore-prefixed so build.py's schema validator
     # strips them at render time but they survive seed merge for inspection.
@@ -658,12 +636,6 @@ def _build_entry_from_v1(v1_coin: dict, entity: str) -> dict | None:
         "weight_rough_verified": False,
         "mint_verified": False,
         "sources": v1_coin.get("sources") or [],
-        "verification_note": {
-            "de": "ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.",
-            "en": "ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.",
-            "uk": "ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.",
-            "da": "ucoin-seed (V1-overførsel): V1-kuratorpost fra før cachen, uden cache-dækning.",
-        },
     }
     return entry
 

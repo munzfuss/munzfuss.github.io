@@ -227,20 +227,6 @@ def build_entry(rec: dict, scope: str) -> dict | None:
             "url": rec.get("url"),
             "ref": "NGC World Coin Price Guide (powered by NumisMaster)",
         }],
-        "verification_note": {
-            "de": ("NGC-Seed: World Coin Price Guide, Krause-Mishler-basiert, "
-                   "Nachfolger des eingestellten NumisMaster. Per-Münze-"
-                   "Verifikation gegen Primärquellen vor der Promotion."),
-            "en": ("NGC seed: World Coin Price Guide, Krause-Mishler-based, "
-                   "successor to the discontinued NumisMaster. Per-coin "
-                   "verification against primary sources before promotion."),
-            "uk": ("NGC-seed: World Coin Price Guide, на основі Krause-Mishler, "
-                   "наступник закритого NumisMaster. Покоінна верифікація "
-                   "проти первинних джерел перед промоцією."),
-            "da": ("NGC-seed: World Coin Price Guide, baseret på Krause-Mishler, "
-                   "efterfølger til det nedlagte NumisMaster. Verifikation af "
-                   "den enkelte mønt mod primærkilder før optagelse."),
-        },
         "_ngc_scope": scope,
         "_ngc_cuid": str(cuid),
     }

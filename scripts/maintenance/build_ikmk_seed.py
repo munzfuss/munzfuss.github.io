@@ -224,22 +224,6 @@ def _catalog(rec) -> dict:
     return out
 
 
-_VNOTE = {
-    "de": ("Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin "
-           "(ikmk.smb.museum, CC BY-SA 4.0); die Felder sind museumsbelegt. Der "
-           "Müntzfuß dieses Stücks ist noch nicht bestimmt."),
-    "en": ("Record from the Interactive Catalogue of the Münzkabinett Berlin "
-           "(ikmk.smb.museum, CC BY-SA 4.0); the fields are museum-attested. "
-           "The coinage standard of this piece is not yet determined."),
-    "uk": ("Запис з інтерактивного каталогу Münzkabinett Berlin "
-           "(ikmk.smb.museum, CC BY-SA 4.0); поля засвідчені музеєм. Стопу "
-           "цього примірника ще не визначено."),
-    "da": ("Post fra Münzkabinett Berlins interaktive katalog "
-           "(ikmk.smb.museum, CC BY-SA 4.0); felterne er dokumenteret af "
-           "museet. Møntfoden for dette stykke er endnu ikke bestemt."),
-}
-
-
 # IKMK `title` → V2 issuing_entity, for the records that name no mint city.
 #
 # Routing by mint alone sent every mintless record to `_unclassified`, which no
@@ -364,7 +348,6 @@ def build_entry(rec) -> dict | None:
                 f" (Inv. {rec['inventory_number'].strip()})"
                 if (rec.get("inventory_number") or "").strip() else ""),
         }],
-        "verification_note": _VNOTE,
     }
     # _source_note candidate (Phase-1, commit 80a1b62): IKMK's `comment`
     # (German), cleaned + language-tagged for the later note-selector. Non-schema

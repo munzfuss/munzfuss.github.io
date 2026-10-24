@@ -1185,36 +1185,6 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         "weight_rough_verified": bool(lot.get("weight_g")),
         "mint_verified": bool(mint),
         "sources": [_build_bruun_source(part, lot)],
-        "verification_note": {
-            "de": (
-                "Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, "
-                "L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht "
-                "ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, "
-                "er folgt aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. "
-                "Der Müntzfuß dieses Stücks ist noch nicht bestimmt."
-            ),
-            "en": (
-                "Data taken from the Bruun auction catalogue (Stack's Bowers, "
-                "L. E. Bruun Collection 2024-2026). The gross weight is a "
-                "single-specimen value; Bruun gives no fineness, so it follows "
-                "from the ordinance specification table in Wilcke 1950. The "
-                "coinage standard of this piece is not yet determined."
-            ),
-            "uk": (
-                "Дані взято з аукціонного каталогу Bruun (Stack's Bowers, "
-                "L. E. Bruun Collection 2024-2026). Повна вага — значення одного "
-                "примірника; проби Bruun не подає, вона випливає з таблиці "
-                "специфікацій ордонансів у Wilcke 1950. Стопу цього "
-                "примірника ще не визначено."
-            ),
-            "da": (
-                "Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, "
-                "L. E. Bruun Collection 2024-2026). Bruttovægten er en "
-                "enkeltstyksværdi; Bruun angiver ingen finhed, den følger af "
-                "specifikationstabellen for forordningerne hos Wilcke 1950. "
-                "Møntfoden for dette stykke er endnu ikke bestemt."
-            ),
-        },
     }
 
     # Carry mintmaster as a note field (project schema doesn't have dedicated)

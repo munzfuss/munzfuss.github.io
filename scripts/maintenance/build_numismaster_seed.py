@@ -432,30 +432,6 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
                 "ref": "NumisMaster",
             }
         ],
-        "verification_note": {
-            "de": (
-                "Daten aus dem NumisMaster-Katalog (Librios), einem "
-                "kommerziellen Krause-Mishler-Werk. Gegen die Primärquellen "
-                "(Hede / Sieg / Lange / Wilcke / Schive) noch nicht "
-                "geprüft."
-            ),
-            "en": (
-                "Data from the NumisMaster catalogue (Librios), a "
-                "commercial Krause-Mishler work. Not yet checked against "
-                "the primary sources (Hede / Sieg / Lange / Wilcke / "
-                "Schive)."
-            ),
-            "uk": (
-                "Дані з каталогу NumisMaster (Librios) — комерційного "
-                "видання на основі Krause-Mishler. Проти первинних джерел "
-                "(Hede / Sieg / Lange / Wilcke / Schive) ще не звірено."
-            ),
-            "da": (
-                "Data fra NumisMaster-kataloget (Librios), et kommercielt "
-                "Krause-Mishler-værk. Endnu ikke efterprøvet mod "
-                "primærkilderne (Hede / Sieg / Lange / Wilcke / Schive)."
-            ),
-        },
     }
     # UNDATED coin: the year is the «ND(…)» attribution range, not a struck date —
     # flag year_verified: false so the renderer shows «(?)» AND the coin is excluded

@@ -1073,8 +1073,11 @@ def _build_coin(
     if fineness is not None or brutto is not None or metal_from_index or metal_from_text:
         cm["metal_verified"] = True
     cm["mint_verified"] = False  # parser-heuristic; not flipped here
-    vn = CommentedMap()
+    # Only an index stub carries a note: what it says is about this record.
+    # The generic «Hede seed: …» line said nothing a record's own fields do
+    # not, and no page renders the field (curator 2026-10-24).
     if is_index_stub:
+        vn = CommentedMap()
         # Index-stub: danskmoent.dk overview-table attestation only;
         # deep page absent. Weight + fineness unknown; nominal, metal,
         # year, mint and Sieg-ref carry over from the index row. Full
@@ -1115,26 +1118,7 @@ def _build_coin(
             f"1971 og Galster 1965."
             + (f" Bemærkning i indekset: «{index_note}»" if index_note else "")
         )
-    else:
-        vn["de"] = (
-            "Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation "
-            "stehen noch aus; Daten direkt aus danskmoent.dk übernommen."
-        )
-        vn["en"] = (
-            "Hede seed: coinage-standard assignment, phase and per-coin "
-            "verification are still outstanding; data lifted directly "
-            "from danskmoent.dk."
-        )
-        vn["uk"] = (
-            "Hede-seed: призначення стопи, фази та покоінна верифікація "
-            "ще очікуються; дані взято безпосередньо з danskmoent.dk."
-        )
-        vn["da"] = (
-            "Hede-seed: tildeling af møntfod og fase samt verifikation af "
-            "den enkelte mønt udestår stadig; data er hentet direkte fra "
-            "danskmoent.dk."
-        )
-    cm["verification_note"] = vn
+        cm["verification_note"] = vn
     # _source_note candidate (Phase-1, commit 80a1b62): danskmoent's coin
     # `description` (Danish), cleaned + language-tagged for the later note-
     # selector. Non-schema (underscore) → stripped before the strict Coin schema

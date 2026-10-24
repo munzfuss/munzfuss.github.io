@@ -828,22 +828,6 @@ def _inventory(src):
     return joined or None
 
 
-_VNOTE = {
-    "de": ("Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet "
-           "Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der "
-           "Müntzfuß dieses Stücks ist noch nicht bestimmt."),
-    "en": ("Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, "
-           "api.natmus.dk); the fields are museum-attested. The coinage "
-           "standard of this piece is not yet determined."),
-    "uk": ("Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, "
-           "api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника "
-           "ще не визначено."),
-    "da": ("Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, "
-           "København, api.natmus.dk); felterne er dokumenteret af museet. "
-           "Møntfoden for dette stykke er endnu ikke bestemt."),
-}
-
-
 # Confirmed-noise museum tray specimens — KMM records with NO catalogue
 # index, NO denomination/material, a wrong/box-level ruler, and an artificial
 # broad creationEvent span (the whole denomination era, e.g. 1874-1945) that
@@ -1267,7 +1251,6 @@ def build_entry(src) -> dict | None:
         "catalog": catalog or None,
         "verified": False,
         "sources": [_kmm_source(rid, src)],
-        "verification_note": _VNOTE,
     }
     # KMM's own forgery remark (typeNumber «falsk?», «Falsk som H. 52»,
     # «samtidig forfalskning?»; workDescription «Mønt, falsk»), verbatim.

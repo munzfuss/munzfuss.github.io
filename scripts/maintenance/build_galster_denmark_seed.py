@@ -742,33 +742,6 @@ def build_entry(data: dict) -> dict | None:
             "url": issuer_source,
             "ref": "danskmoent.dk " + issuer_source.rsplit("/", 1)[-1],
         }] if issuer_source else []),
-        "verification_note": {
-            "de": (
-                "Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die "
-                "Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) "
-                "stammen aus der Überschrift und dem Beschreibungsblock der Seite. "
-                "Der Müntzfuß dieses Stücks ist noch nicht bestimmt."
-            ),
-            "en": (
-                "Data taken from the Galster pages on danskmoent.dk; the "
-                "catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, "
-                "Schive and others) come from the page heading and description "
-                "block. The coinage standard of this piece is not yet determined."
-            ),
-            "uk": (
-                "Дані взято зі сторінок Galster на danskmoent.dk; каталожні "
-                "перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive "
-                "та інші) походять із заголовка та блоку опису сторінки. "
-                "Стопу цього примірника ще не визначено."
-            ),
-            "da": (
-                "Data hentet fra Galster-siderne på danskmoent.dk; "
-                "kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, "
-                "Schive m.fl.) stammer fra sidens overskrift og "
-                "beskrivelsesblok. Møntfoden for dette stykke er endnu "
-                "ikke bestemt."
-            ),
-        },
     }
 
     # Inscription as literary attachment

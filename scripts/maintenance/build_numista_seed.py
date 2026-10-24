@@ -467,40 +467,6 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
                 "ref": f"Numista N#{nid} — {canonical.get('title') or '?'}",
             }
         ],
-        "verification_note": {
-            "de": (
-                "Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung "
-                "sowie Per-Münze-Verifikation stehen noch aus; Daten direkt "
-                "aus der HTML-Katalogseite (en.numista.com) übernommen. "
-                "Numista ist Benutzer-editiert; Cross-references (SIEG, "
-                "Galster, Schou, Fr) müssen gegen Primärquellen geprüft "
-                "werden bevor in kuratierte Einträge promotet."
-            ),
-            "en": (
-                "Numista seed: coinage-standard and phase assignment plus per-coin "
-                "verification are still outstanding; data taken directly "
-                "from the HTML catalog page (en.numista.com). Numista is "
-                "user-edited; cross-references (SIEG, Galster, Schou, Fr) "
-                "must be checked against primary sources before promotion "
-                "into curated entries."
-            ),
-            "uk": (
-                "Numista-seed: призначення стопи і фази та покоінна "
-                "верифікація ще очікуються; дані взято безпосередньо з "
-                "HTML-каталог-сторінки (en.numista.com). Numista редагується "
-                "користувачами; cross-references (SIEG, Galster, Schou, Fr) "
-                "треба перевірити проти первинних джерел перед промоцією у "
-                "кур'єйтед-записи."
-            ),
-            "da": (
-                "Numista-seed: tildeling af møntfod og fase samt verifikation "
-                "af den enkelte mønt udestår stadig; data er hentet direkte "
-                "fra katalogsiden (en.numista.com). Numista redigeres af "
-                "brugerne; krydshenvisningerne (Sieg, Galster, Schou, Fr) skal "
-                "efterprøves mod primærkilder før optagelse i kuraterede "
-                "poster."
-            ),
-        },
     }
 
     # Apply entity routing — two-step process:
