@@ -43,6 +43,28 @@ if [ -n "$TWICE" ] && [ -n "$APPLY" ]; then
   TMP=$(mktemp -d)
   cp -R data/v2/final/. "$TMP/"
   run_pass
-  if diff -rq "$TMP" data/v2/final > /dev/null; then echo "FIXED POINT"; else echo "NOT A FIXED POINT:"; diff -rq "$TMP" data/v2/final | head; fi
-  rm -rf "$TMP"
+  if diff -rq "$TMP" data/v2/final > /dev/null; then
+    echo "FIXED POINT"
+    rm -rf "$TMP"
+  else
+    # Keep the first pass and name the coins the second pass changed — a
+    # bare «files differ» left nothing to analyse without a third run.
+    echo "NOT A FIXED POINT — first pass kept in $TMP; coins the second pass changed:"
+    $PY - "$TMP" <<'EOF'
+import sys, yaml, pathlib
+a_dir = pathlib.Path(sys.argv[1])
+for a in sorted(a_dir.glob("*.yml")):
+    b = pathlib.Path("data/v2/final") / a.name
+    if a.read_bytes() == b.read_bytes():
+        continue
+    ca = {c["id"]: c for c in (yaml.safe_load(a.read_text()) or {}).get("coins") or []}
+    cb = {c["id"]: c for c in (yaml.safe_load(b.read_text()) or {}).get("coins") or []}
+    gone = sorted(set(ca) - set(cb)); new = sorted(set(cb) - set(ca))
+    changed = sorted(i for i in set(ca) & set(cb) if ca[i] != cb[i])
+    fields = {i: sorted(k for k in set(ca[i]) | set(cb[i]) if ca[i].get(k) != cb[i].get(k)) for i in changed}
+    print(f"  {a.stem}: gone {gone[:10]} new {new[:10]} changed {len(changed)}")
+    for i in changed[:15]:
+        print(f"    {i}: {fields[i]}")
+EOF
+  fi
 fi
