@@ -3999,10 +3999,30 @@ def _or_merge_verified(members: list[dict], field: str) -> bool | None:
     return seen_any_attestation
 
 
+def _canonical_nominal_out(out: dict, members: list[dict],
+                           entity_id: str | None) -> None:
+    """Write a gold gulden's nominal on the unified entry as «Goldgulden»
+    (`lib.nominal_synonyms.canonical_nominal_display`, curator 2026-10-24).
+    The seed keeps its source's spelling. A member holding `nominal`
+    freezes it. The class is gold when every member that gives a metal
+    says gold (`out["metal"]` is set further down)."""
+    from lib.nominal_synonyms import canonical_nominal_display
+    raw = out.get("nominal")
+    if not isinstance(raw, str):
+        return
+    for m in members:
+        h = m.get("_curation_holds")
+        if "nominal" in (h.keys() if isinstance(h, dict) else (h or [])):
+            return
+    if {m.get("metal") for m in members if m.get("metal")} != {"gold"}:
+        return
+    out["nominal"] = canonical_nominal_display(raw, "gold", entity_id)
+
+
 def _canonical_ruler_out(out: dict, members: list[dict],
                          entity_id: str | None) -> None:
     """Write a Danish king's name on the unified entry in its canonical
-    display form (`lib.ruler_reigns.canonical_ruler_display`, «Christian IV.»).
+    display form (`lib.ruler_reigns.canonical_ruler_display`, «Christian IV»).
 
     Here and not in the seed writer (curator 2026-10-23): a seed keeps the
     spelling its source printed, and only the merger knows the coin's entity
@@ -4187,6 +4207,7 @@ def build_unified(members: list[dict], unified_id: str,
                     conflicts.append((field, seen[0], mv_repr))
 
     _canonical_ruler_out(out, members, entity_id)
+    _canonical_nominal_out(out, members, entity_id)
 
     # Multi-mint union
     mint = _collect_mints(members)

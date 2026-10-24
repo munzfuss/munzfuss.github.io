@@ -2,7 +2,8 @@
 
 Sources spell the same king «Christian 4» (KMM, IKMK, ucoin), «Christian IV»
 (Numista, Bruun), «Christian 4.» (Galster), «Frederick III» (Numista). The
-canonical display form «Name Roman.» (Hede's) was applied in June 2026 to
+canonical display form — «Name Roman.» until 2026-10-24, «Name Roman» since
+(curator: «Christian IV», as Bruun and Numista) — was applied in June 2026 to
 data/v2/final/* only (7e95732, 917b7a6, a777b9a), so every seed kept its
 source's spelling — measured 2026-10-23: «Frederik 3» 1 074× in the KMM seed of
 danish_norway, 410× in seed_unified, 60× in final — and a final rebuilt from its
@@ -30,14 +31,14 @@ from lib.ruler_reigns import canonical_ruler_display as cd  # noqa: E402
 class Rule(unittest.TestCase):
     def test_arabic_roman_period_english_forms(self):
         for raw in ("Christian 4", "Christian IV", "Christian 4.", "Christian iv", "Christian  4"):
-            self.assertEqual(cd(raw, "danish_realm"), ("Christian IV.", False), raw)
-        self.assertEqual(cd("Frederick III", "danish_norway"), ("Frederik III.", False))
-        self.assertEqual(cd("Christian 10", "danish_realm"), ("Christian X.", False))
-        self.assertEqual(cd("Frederik4", "royal_holstein"), ("Frederik IV.", False))
-        self.assertEqual(cd("Eric VII", "danish_realm"), ("Erik VII.", False))
+            self.assertEqual(cd(raw, "danish_realm"), ("Christian IV", False), raw)
+        self.assertEqual(cd("Frederick III", "danish_norway"), ("Frederik III", False))
+        self.assertEqual(cd("Christian 10", "danish_realm"), ("Christian X", False))
+        self.assertEqual(cd("Frederik4", "royal_holstein"), ("Frederik IV", False))
+        self.assertEqual(cd("Eric VII", "danish_realm"), ("Erik VII", False))
 
     def test_uncertain_marker(self):
-        self.assertEqual(cd("Frederik 3?", "danish_realm"), ("Frederik III.", True))
+        self.assertEqual(cd("Frederik 3?", "danish_realm"), ("Frederik III", True))
         self.assertEqual(cd("Hans?", "danish_realm"), ("Hans", True))
 
     def test_hans_forms(self):
@@ -56,7 +57,8 @@ class Rule(unittest.TestCase):
         self.assertEqual(cd(None, "danish_realm"), (None, False))
 
     def test_already_canonical_is_a_fixed_point(self):
-        self.assertEqual(cd("Christian IV.", "danish_realm"), ("Christian IV.", False))
+        self.assertEqual(cd("Christian IV", "danish_realm"), ("Christian IV", False))
+        self.assertEqual(cd("Christian IV.", "danish_realm"), ("Christian IV", False))
 
 
 class Merger(unittest.TestCase):
@@ -69,30 +71,30 @@ class Merger(unittest.TestCase):
         return out
 
     def test_applies_by_entity(self):
-        self.assertEqual(self._out("Frederik 3", "danish_realm"), {"ruler": "Frederik III."})
+        self.assertEqual(self._out("Frederik 3", "danish_realm"), {"ruler": "Frederik III"})
         self.assertEqual(self._out("Frederik 3", "gottorp_duchy"), {"ruler": "Frederik 3"})
 
     def test_christian_ii_entities(self):
         for e in ("christian_ii_reconquest", "christian_ii_supporters"):
-            self.assertEqual(self._out("Christian 2", e)["ruler"], "Christian II.", e)
-            self.assertEqual(self._out("Christian II", e)["ruler"], "Christian II.", e)
+            self.assertEqual(self._out("Christian 2", e)["ruler"], "Christian II", e)
+            self.assertEqual(self._out("Christian II", e)["ruler"], "Christian II", e)
 
     def test_doubt_flips_the_flag_unless_held(self):
         self.assertEqual(self._out("Christian 3?", "danish_norway"),
-                         {"ruler": "Christian III.", "ruler_verified": False})
+                         {"ruler": "Christian III", "ruler_verified": False})
         held = self._out("Christian 3?", "danish_norway",
                          _curation_holds={"ruler_verified": "curator"})
-        self.assertEqual(held, {"ruler": "Christian III."})
+        self.assertEqual(held, {"ruler": "Christian III"})
 
     def test_years_settle_a_doubted_king(self):
         # «Christian 3?» on a coin dated 1541 — the years are Christian III's.
         out = {"ruler": "Christian 3?", "year_first": 1541, "year_last": 1541}
         M._canonical_ruler_out(out, [{"ruler": "Christian 3?"}], "danish_realm")
-        self.assertEqual(out, {"ruler": "Christian III.", "year_first": 1541, "year_last": 1541})
+        self.assertEqual(out, {"ruler": "Christian III", "year_first": 1541, "year_last": 1541})
         # the years name ANOTHER king than the source guessed: the years win
         out = {"ruler": "Christian 3?", "year_first": 1600, "year_last": 1602}
         M._canonical_ruler_out(out, [{"ruler": "Christian 3?"}], "danish_realm")
-        self.assertEqual(out["ruler"], "Christian IV.")
+        self.assertEqual(out["ruler"], "Christian IV")
         self.assertNotIn("ruler_verified", out)
 
     def test_years_that_prove_nothing_keep_the_doubt(self):
@@ -103,7 +105,7 @@ class Merger(unittest.TestCase):
         # a span that crosses two reigns
         out = {"ruler": "Frederik 3?", "year_first": 1645, "year_last": 1652}
         M._canonical_ruler_out(out, [{"ruler": "Frederik 3?"}], "danish_realm")
-        self.assertEqual((out["ruler"], out["ruler_verified"]), ("Frederik III.", False))
+        self.assertEqual((out["ruler"], out["ruler_verified"]), ("Frederik III", False))
         # unverified years
         out = {"ruler": "Christian 3?", "year_first": 1541, "year_last": 1541}
         M._canonical_ruler_out(out, [{"ruler": "Christian 3?", "year_verified": False}], "danish_realm")

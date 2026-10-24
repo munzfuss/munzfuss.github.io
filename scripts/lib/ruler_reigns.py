@@ -485,17 +485,20 @@ DISPLAY_NAME_ENTITIES = DANISH_CROWN_ENTITIES | frozenset({
 })
 
 
-# The canonical DISPLAY form of a Danish king's name: «Name Roman.» — the Hede
-# form, one identifier across every source and language (CLAUDE.md i18n:
-# ruler names are global identifiers). Sources write the same king as
-# «Christian 4» (KMM, IKMK, ucoin), «Christian IV» (Numista, Bruun), «Frederick
-# III» (Numista), «Christian 4.» (Galster). Until 2026-10-23 this form was
-# applied to data/v2/final/* only (the June 2026 passes 7e95732 / 917b7a6 /
-# a777b9a), so every seed still carried its source's spelling and a final
-# rebuilt from its members lost the canonical form. The writer applies it now
-# (`v2_seed_writer._apply_pre_write_hygiene`), on coins whose home entity is a
-# Danish-crown one — a «Frederik 3» of Gottorp or Bremen is another man and
-# keeps its form.
+# The canonical DISPLAY form of a Danish king's name: «Name Roman», no period
+# — one identifier across every source and language (CLAUDE.md i18n: ruler
+# names are global identifiers). Curator 2026-10-24: «Christian IV», as Bruun
+# and Numista write it; read the same way in da / de / en / uk. Sources write
+# the same king as «Christian 4» (KMM, ucoin), «Christian IV» (Numista, Bruun),
+# «Frederick III» (Numista), «Christian 4.» (danskmoent: Hede and Galster page
+# titles — the Danish ordinal), «Friedrich I.» (IKMK, German). Correction of
+# the record: from June 2026 (7e95732 / 917b7a6 / a777b9a) to 2026-10-24 the
+# form was «Name Roman.» and was described here as «the Hede form»; it is not —
+# danskmoent writes «Christian 4.», and a Roman numeral with a period is the
+# German ordinal. The merger applies the form to the unified entry
+# (`merge_seeds_cross_source._canonical_ruler_out`), on coins whose entity is
+# a Danish-crown one — a «Frederik 3» of Gottorp or Bremen is another man and
+# keeps its form; a seed keeps the spelling its source printed.
 #
 # Exactly the June scope, nothing wider: the bare king forms (name, Arabic or
 # Roman numeral, with or without a period, English «Frederick» / «John» /
@@ -522,8 +525,8 @@ def canonical_ruler_display(raw, entity) -> tuple:
     """(display form, uncertain) for a ruler string of a coin homed in
     `entity`; the input unchanged and `False` when the rule does not apply.
 
-    «Christian 4» / «Christian IV» / «Christian 4.» → «Christian IV.»;
-    «Frederick III» → «Frederik III.»; «Frederik 3?» → («Frederik III.», True);
+    «Christian 4» / «Christian IV.» / «Christian 4.» → «Christian IV»;
+    «Frederick III» → «Frederik III»; «Frederik 3?» → («Frederik III», True);
     «John I» / «Johan» / «Hans?» → «Hans» (the one Hans, 1481-1513).
     Anything outside `_KING_DISPLAY_RE`, or outside a Danish-crown entity,
     comes back as it was.
@@ -550,7 +553,7 @@ def canonical_ruler_display(raw, entity) -> tuple:
             return raw, False
     else:
         return raw, False  # bare «Christian» — which one?
-    return f"{name} {roman}.", doubt
+    return f"{name} {roman}", doubt
 
 
 def reign_window_placeholder(ruler_raw: str | None,

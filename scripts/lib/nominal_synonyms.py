@@ -327,3 +327,39 @@ def normalise_nominal(nominal: str | None) -> str:
     # otherwise «1½ Daler» would collapse to «1/2 daler».
     s = re.sub(r"^1\s+(?!\d)", "", s)
     return s
+
+
+# ---------------------------------------------------------------------------
+# Display form of the gold gulden (curator 2026-10-24): the class writes
+# «Goldgulden» whatever its top member printed — Hede «Rhinsk Gylden», Bruun
+# «Gold Gulden», Numista «Gulden» / «Guldens», NumisMaster «Guilder». The
+# seed keeps its source's spelling; the merger applies this to the unified
+# entry, gold only, on the entities of the Denmark page. Ungersk / Ungarsk /
+# Hungarian gylden is the ducat and is never touched, nor is a nominal that
+# carries anything besides the count and the name (glosses, «=» forms).
+# ---------------------------------------------------------------------------
+GOLDGULDEN_ENTITIES = frozenset({
+    "danish_realm", "christian_ii_supporters", "christian_ii_reconquest",
+    "norby_gotland", "danish_norway", "royal_holstein", "royal_slesvig",
+    "gottorp_duchy", "sonderburg_duchy", "norburg_plon_duchy", "glucksburg_duchy",
+})
+_GOLDGULDEN_RE = re.compile(
+    r"^\s*(?P<count>\d+(?:[/⁄]\d+)?|[½¼¾⅓⅔]|\d+[½¼¾])?\s*"
+    r"(?:rhinsk\s+g[uy]lden|gold\s*gulden|guldens?|gylden|guilders?)\s*$",
+    re.IGNORECASE)
+
+
+def canonical_nominal_display(raw, metal, entity):
+    """«Goldgulden» form of a gold gulden's nominal on a Denmark-page entity;
+    the input unchanged when the rule does not apply.
+
+    «1 Rhinsk Gylden» → «1 Goldgulden»; «2 Guldens» → «2 Goldgulden»;
+    «½ Gulden» → «½ Goldgulden»; «1 Ungersk Gylden», silver «1 Gulden»,
+    «1 Goldgulden (3.25)» come back as they were.
+    """
+    if not isinstance(raw, str) or metal != "gold" or entity not in GOLDGULDEN_ENTITIES:
+        return raw
+    m = _GOLDGULDEN_RE.match(raw)
+    if not m:
+        return raw
+    return f"{m.group('count') or '1'} Goldgulden"
