@@ -20,7 +20,7 @@ the page on danskmoent.github.io).
 |---|---|---|
 | nobel_fod ✅ | 7 | danish_realm 7 |
 | rhinsk_gylden_fod ✅ | 20 | danish_realm 9, royal_slesvig 5, gottorp_duchy 3, sonderburg_duchy 2, danish_norway 1 |
-| luebischer_muenzfuss | 28 | danish_realm 15, danish_norway 13 |
+| luebischer_muenzfuss ✅ | 28 | danish_realm 15, danish_norway 13 |
 
 ## State on 2026-10-24
 
@@ -135,7 +135,8 @@ accepted by the curator. What differs from main:
 - `c-2d8327a8` (Hans, Bergen): the danskmoent hansGej link text is the Galster
   seed's «danskmoent.dk norge_hansGej.htm»; main showed the label written by
   hand into the final, «danskmoent.dk (norge/hansGej) — Hans Rhinsk Gylden /
-  Goldgulden, Bergen». Same URL. Open: curator to decide.
+  Goldgulden, Bergen». Same URL. Accepted as the seed gives it (curator
+  2026-10-24).
 - `c-329482ca` (Hede 29): Harck# 25.3 (Bruun 5458 / 5459 / 5505) and
   Harck# 35.2 (Bruun 5613) added — the Bruun parser reads Harck (`0b20d78`).
 - `c-51d19d46` (Bruun 4057 alone) removed: a final written 2026-06-12
@@ -158,3 +159,37 @@ Curator decisions behind these lines (2026-10-24):
   what its final stores, as before. Correction (2026-10-24): the renderer
   had stripped the period on da / en / uk since `79d0ef1` (2026-05-02), so
   the Danish page never showed it; only de changes.
+
+### luebischer_muenzfuss
+
+Rebuild vs main, 2026-10-24 (28 finals, same 153 seeds in the same 28
+finals; nominal, years, weight, fineness, note and ruler unchanged). All 28
+accepted by the curator. What differs from main:
+
+- On the page (all four languages):
+  - «(?)» after «Billon» on Hvid Galster 157 (`c-b0280aa1`), 159
+    (`c-5de9afc1`), 177 (`c-88b8007d`): no member attests the metal — the
+    Galster pages hg157 / hg159 name none, Bruun has `metal_verified: false`;
+    main's `true` had no member behind it.
+  - Hvid Galster 155 (`c-afd707d6`): the Numista 152921 and danskmoent hg36
+    citations belong to Galster 36 (`c-6b8170bb`), which keeps them; main
+    carried them here through the self-union.
+  - Galster 36 (`c-6b8170bb`): KMM 371867 gone — a specimen of a stub the
+    curator excluded (below).
+  - Skilling 1510 Galster 148 (`c-eb940dae`): «delzanno# 2» from Bruun 9222
+    (Part V lot 15003 prints «Delzanno-2»; Bruun's abbreviation list:
+    «Roberto Delzanno. Sveriges Myntbok 1 and 2. Stockholm. 2020»). The
+    lower-case label is the Bruun builder's mapped name; open, see below.
+- In the data only: per-source `verification_note` template gone on all 28;
+  1061 (`c-bbb03d20`) and 163 + 163 (`c-6b8170bb`, `c-afd707d6`) hidden
+  (`display: false`) KMM citations gone — specimens of the KMM stubs the
+  curator excluded as `undocumented_stub` (e.g. `kmk-642893`, 2026-10-16),
+  kept on main only by the self-union. `verify_reflow` now excuses a stub
+  excluded in any entity (curator 2026-10-24).
+- `c-afd707d6`: `diameter_mm_verified` true -> unset; no member gives a
+  diameter.
+
+Open, outside this Fuß: Bruun's Swedish catalogues reach `catalog.others`
+with the builder's lower-case field names («delzanno#», «lott#», «malmer#»)
+instead of the printed label; on this branch 48 delzanno / 3 lott / 1 malmer
+in the Denmark-page finals, 1 of them in this Fuß; main has none.
