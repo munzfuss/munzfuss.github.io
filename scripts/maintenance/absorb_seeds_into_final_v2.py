@@ -1823,13 +1823,31 @@ def _curator_no_merged(a: dict, b: dict, no_merge_pairs: set,
     pipeline layer (unified→final absorb, final↔final fold, re-absorb)."""
     if not no_merge_pairs:
         return False
-    sa = _entry_seed_ids(a, unified_by_id)
+    by = _no_merge_index(no_merge_pairs)
+    sa = [x for x in _entry_seed_ids(a, unified_by_id) if x in by]
+    if not sa:
+        return False
     sb = _entry_seed_ids(b, unified_by_id)
-    for x in sa:
-        for y in sb:
-            if x != y and frozenset({x, y}) in no_merge_pairs:
-                return True
-    return False
+    return any(not by[x].isdisjoint(sb - {x}) for x in sa)
+
+
+_NM_INDEX: tuple[int, int, dict] | None = None
+
+
+def _no_merge_index(pairs: set) -> dict[str, set[str]]:
+    """{seed → seeds it is no_merged with} for one pair set, rebuilt when the
+    set changes (identity or size). `_curator_no_merged` ran 1.4 M times per
+    Denmark-page absorb, each a full cross product (38 s, 2026-10-24)."""
+    global _NM_INDEX
+    if _NM_INDEX is None or _NM_INDEX[0] != id(pairs) or _NM_INDEX[1] != len(pairs):
+        idx: dict[str, set[str]] = {}
+        for p in pairs:
+            if len(p) == 2:
+                x, y = tuple(p)
+                idx.setdefault(x, set()).add(y)
+                idx.setdefault(y, set()).add(x)
+        _NM_INDEX = (id(pairs), len(pairs), idx)
+    return _NM_INDEX[2]
 
 
 def _revalidate_composed_of(
@@ -2327,16 +2345,29 @@ def _superseding_class(fe: dict, live_member_ids: set) -> str | None:
 _THINNED_REP_INDEX: dict[str, list[str]] | None = None
 
 
+_SEED_COINS: list[dict] | None = None
+
+
+def _seed_coins_once() -> list[dict]:
+    """Every coin of every seed file, read once per run (seeds do not change
+    during absorb). Read-only for the callers: the two seed-wide indices
+    below each read all ~130 files themselves, ~12 s apiece (2026-10-24)."""
+    global _SEED_COINS
+    if _SEED_COINS is None:
+        _SEED_COINS = [c for sf in sorted(V2_SEED.glob("*/*.yml"))
+                       for c in (_load_yaml(sf).get("coins") or [])]
+    return _SEED_COINS
+
+
 def _thinned_rep_index() -> dict[str, list[str]]:
     """{thinned-away seed id → [representative seed ids whose `_thinned_from`
     lists it]}, across every seed file. Cached."""
     global _THINNED_REP_INDEX
     if _THINNED_REP_INDEX is None:
         out: dict[str, list[str]] = {}
-        for sf in sorted(V2_SEED.glob("*/*.yml")):
-            for c in (_load_yaml(sf).get("coins") or []):
-                for dead in c.get("_thinned_from") or []:
-                    out.setdefault(dead, []).append(c.get("id"))
+        for c in _seed_coins_once():
+            for dead in c.get("_thinned_from") or []:
+                out.setdefault(dead, []).append(c.get("id"))
         _THINNED_REP_INDEX = out
     return _THINNED_REP_INDEX
 
@@ -2503,10 +2534,9 @@ def _all_seed_ids() -> set[str]:
     global _ALL_SEED_IDS
     if _ALL_SEED_IDS is None:
         out: set[str] = set()
-        for sf in sorted(V2_SEED.glob("*/*.yml")):
-            for c in (_load_yaml(sf).get("coins") or []):
-                if c.get("id"):
-                    out.add(str(c["id"]))
+        for c in _seed_coins_once():
+            if c.get("id"):
+                out.add(str(c["id"]))
         _ALL_SEED_IDS = out
     return _ALL_SEED_IDS
 
@@ -4328,6 +4358,18 @@ def _emit_final_yaml(entity_id: str, coins: list[dict],
         "migrated_from_v1": (prior_doc or {}).get("migrated_from_v1") or "",
         "coins": coins,
     }
+    # Unchanged content → the file as it is: the ruamel dump was ~40 s of a
+    # Denmark-page absorb that changed nothing (2026-10-24). Only an exact
+    # match of the data loaded from the file on disk skips it.
+    _path = V2_FINAL / f"{entity_id}.yml"
+    if _path.exists():
+        try:
+            _text = _path.read_text(encoding="utf-8")
+            _old = yaml.load(_text, Loader=_FASTLOADER) or {}
+            if all(_old.get(k) == payload[k] for k in payload):
+                return _text
+        except Exception:
+            pass
     # Canonical ruamel width=200/offset=2 (unified 2026-07, see lib/yaml_io).
     return dump_v2_canonical(payload)
 

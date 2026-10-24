@@ -2631,7 +2631,14 @@ class UnionFind:
         # union reports stays the same). Replaces an O(N) scan of every
         # id per union — 17 s of a 30 s danish_norway run (2026-10-08).
         self._members: dict[str, list[str]] = {}
+        self._member_set: dict[str, set[str]] = {}
         self._seq: dict[str, int] = {}
+        # id → the ids it has a no_merge with (auto or explicit), kept in
+        # step with `no_merge`. The cross-class check walks one class and
+        # intersects, instead of testing every member pair — the pair loop
+        # was 42 s of a 204 s Denmark-page merge (2026-10-24; KMM classes run
+        # to hundreds of members).
+        self._nm_by: dict[str, set[str]] = {}
         # Seeds that never join a class (curator exclusions) — see
         # `_excluded_seed_ids`. Both `union` and `force_union` refuse them.
         self.isolated: set[str] = set()
@@ -2641,6 +2648,7 @@ class UnionFind:
             self.parent[x] = x
             self._seq[x] = len(self._seq)
             self._members[x] = [x]
+            self._member_set[x] = {x}
         while self.parent[x] != x:
             self.parent[x] = self.parent[self.parent[x]]
             x = self.parent[x]
@@ -2660,6 +2668,7 @@ class UnionFind:
         merged = self._members[keep] + self._members.pop(gone)
         merged.sort(key=self._seq.__getitem__)
         self._members[keep] = merged
+        self._member_set[keep] |= self._member_set.pop(gone)
 
     def union(self, x, y) -> tuple[bool, frozenset | None]:
         """Returns (succeeded, conflicting_pair_or_None).
@@ -2675,13 +2684,16 @@ class UnionFind:
             return (False, frozenset({x, y}))
         # Cross-class check: any member of rx's class has a no_merge
         # with any member of ry's class?
+        # Same first pair as the full member×member scan: rx's members in
+        # order, then ry's members in order.
         if self.no_merge:
-            members_x = self._class_members(rx)
-            members_y = self._class_members(ry)
-            for mx in members_x:
-                for my in members_y:
-                    if frozenset({mx, my}) in self.no_merge:
-                        return (False, frozenset({mx, my}))
+            set_y = self._member_set[ry]
+            for mx in self._class_members(rx):
+                partners = self._nm_by.get(mx)
+                if partners and not partners.isdisjoint(set_y):
+                    for my in self._class_members(ry):
+                        if my in partners:
+                            return (False, frozenset({mx, my}))
         # Stable root choice: lexicographically smaller wins
         self._link(rx, ry)
         return (True, None)
@@ -2689,6 +2701,8 @@ class UnionFind:
     def add_no_merge(self, x, y, explicit: bool = False):
         fs = frozenset({x, y})
         self.no_merge.add(fs)
+        self._nm_by.setdefault(x, set()).add(y)
+        self._nm_by.setdefault(y, set()).add(x)
         if explicit:
             self.explicit_no_merge.add(fs)
         # Touch both ids so they appear as singleton classes if not
@@ -2718,9 +2732,18 @@ class UnionFind:
                     return (False, frozenset({mx, my}))
         # Clear AUTO no_merges between the two classes (heuristic opinions
         # overridden by the curator merge).
+        set_y = self._member_set[ry]
         for mx in members_x:
-            for my in members_y:
-                self.no_merge.discard(frozenset({mx, my}))
+            partners = self._nm_by.get(mx)
+            if not partners:
+                continue
+            for my in partners & set_y:
+                fs = frozenset({mx, my})
+                if fs in self.explicit_no_merge:
+                    continue
+                self.no_merge.discard(fs)
+                partners.discard(my)
+                self._nm_by[my].discard(mx)
         self._link(rx, ry)
         return (True, None)
 
@@ -5539,10 +5562,12 @@ def _emit_unified_yaml(entity_id: str, unified_entries: list[dict],
     # byte-identical instead of a daily one-line churn (`generated_at` is
     # informational — nothing branches on it). See lib/gen_stamp.py.
     existing = None
+    _existing_text = None
     _existing_path = V2_SEED_UNIFIED / f"{entity_id}.yml"
     if _existing_path.exists():
         try:
-            existing = _fast_load(_existing_path.read_text(encoding="utf-8"))
+            _existing_text = _existing_path.read_text(encoding="utf-8")
+            existing = _fast_load(_existing_text)
         except Exception:
             existing = None
     stamp = resolve_generated_at(payload, existing)
@@ -5560,6 +5585,15 @@ def _emit_unified_yaml(entity_id: str, unified_entries: list[dict],
         f"# `fineness[]`, `diameter_mm[]` are multi-source lists preserving\n"
         f"# every reading per CLAUDE.md §9a. `sources[]` is the union.\n\n"
     )
+    # Unchanged content → the file as it is: the ruamel dump was ~20 s of a
+    # Denmark-page merge that changed nothing (2026-10-24). Only an exact
+    # match of the loaded data and of the header skips it.
+    if (existing is not None and _existing_text is not None
+            and _existing_text.startswith(header)
+            and existing.get("generated_at") == stamp
+            and existing.get("id") == entity_id
+            and existing.get("coins") == unified_entries):
+        return _existing_text
     # Canonical ruamel width=200/offset=2 (unified 2026-07, see lib/yaml_io).
     return header + dump_v2_canonical(payload)
 
@@ -5627,6 +5661,21 @@ def _emit_match_uncertainty(entity_id: str, low_conf: list[dict],
         "merge_conflicts": merge_conflicts or [],
         "transitivity_blocks": transitivity_blocks or [],
     }
+    # Unchanged diagnostics → the file as it is (its «Regenerated» date then
+    # names the run that last changed it). Dumping — or even loading — the
+    # 74 MB danish_realm file was ~20-30 s of a no-op Denmark-page merge
+    # (2026-10-24), so the content is compared by a hash kept beside it.
+    import hashlib
+    import json as _json
+    _p = V2_MATCH_UNCERTAINTY / f"{entity_id}.yml"
+    _h = V2_MATCH_UNCERTAINTY / f".{entity_id}.sha1"
+    digest = hashlib.sha1(_json.dumps(
+        {k: v for k, v in payload.items() if k != "generated_at"},
+        sort_keys=True, default=str).encode("utf-8")).hexdigest()
+    if _p.exists() and _h.exists() and _h.read_text().strip() == digest:
+        return _p.read_text(encoding="utf-8")
+    V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
+    _h.write_text(digest + "\n")
     # CDumper: byte-identical to the pure-Python Dumper on this payload
     # (checked 2026-10-08), ~3x faster on the 10 MB danish_norway file.
     return header + yaml.dump(payload, Dumper=getattr(yaml, "CDumper", yaml.Dumper),

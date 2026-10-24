@@ -168,11 +168,23 @@ def _record_thinned_weights(coin: dict, removed: list) -> None:
         acc, key=lambda e: (str(_k(e)[1]), _k(e)[0] is None, _k(e)[0] or 0.0))
 
 
+def _needs_thinning(text: str) -> bool:
+    """Whether any coin of the file has something to thin — decided on a
+    fast plain load, so the round-trip loader (the whole cost of a run that
+    changes nothing: 41 s, 2026-10-24) only opens a file that changes."""
+    import yaml as _pyyaml
+    doc = _pyyaml.load(text, Loader=getattr(_pyyaml, "CSafeLoader", _pyyaml.SafeLoader)) or {}
+    return any(isinstance(c, dict) and thin_coin(c) for c in doc.get("coins") or [])
+
+
 def run(dry_run: bool) -> int:
     yaml = _make_yaml_loader()
     total_coins = total_dropped = touched = 0
     for path in sorted(glob.glob(str(FINAL_DIR / "*.yml"))):
-        doc = yaml.load(Path(path).read_text())
+        text = Path(path).read_text()
+        if not _needs_thinning(text):
+            continue
+        doc = yaml.load(text)
         coins = (doc or {}).get("coins") or []
         if not coins:
             continue

@@ -62,8 +62,14 @@ def _rt_yaml() -> ruamel.yaml.YAML:
     return y
 
 
+# libyaml's C loader — same documents as SafeLoader, several times faster;
+# parsing ~160 seed/final files was ~all of a relink run (measured
+# 2026-10-24: 80 s of 80 s).
+_FASTLOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+
+
 def _load_yaml(p: Path) -> dict:
-    return yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+    return yaml.load(p.read_text(encoding="utf-8"), Loader=_FASTLOADER) or {}
 
 
 def _ruamel_to_dict(c):
@@ -100,22 +106,6 @@ def _build_composed_of_index() -> dict[str, str]:
     return seed_to_curated
 
 
-def _walk_seed_yamls_rt() -> dict[Path, object]:
-    """Returns {path: round-trip-loaded doc} for every seed yaml. Round-trip
-    mode preserves comments + key order, so a `promoted_to` add doesn't
-    erase the regroup-emitted header. Used for the apply path."""
-    out: dict[Path, object] = {}
-    if not V2_SEED.exists():
-        return out
-    rt = _rt_yaml()
-    for src_dir in sorted(V2_SEED.iterdir()):
-        if not src_dir.is_dir():
-            continue
-        for p in sorted(src_dir.glob("*.yml")):
-            out[p] = rt.load(p.read_text(encoding="utf-8"))
-    return out
-
-
 def _walk_seed_yamls() -> dict[Path, dict]:
     """Plain-load version for read-only scans (composed_of audit etc.)."""
     out: dict[Path, dict] = {}
@@ -147,9 +137,11 @@ def _relink(
         "missing_seed_ids": [],       # composed_of refs a non-existent seed
     }
 
-    # Use round-trip loader when applying (preserves headers + comments
-    # + key order); plain loader is enough for dry-run.
-    docs = _walk_seed_yamls_rt() if apply_changes else _walk_seed_yamls()
+    # Decide on the fast plain load; only a file that actually changes is
+    # round-trip loaded (preserving headers, comments, key order) and
+    # rewritten. Round-trip loading EVERY seed file on every apply was the
+    # bulk of the run even when nothing changed (2026-10-24).
+    docs = _walk_seed_yamls()
 
     # Index seeds by id for missing-ref detection.
     seed_id_index: dict[str, tuple[Path, int]] = {}
@@ -169,6 +161,7 @@ def _relink(
     for path, doc in docs.items():
         coins = doc.get("coins") or []
         modified = False
+        changes: dict[str, str | None] = {}   # seed id -> new promoted_to (None = drop)
         for c in coins:
             stats["seeds_total"] += 1
             sid = c.get("id")
@@ -186,7 +179,7 @@ def _relink(
                 # Stale link — composed_of no longer references this seed
                 stats["cleared_promoted_to"].append((sid, current))
                 if apply_changes:
-                    c.pop("promoted_to", None)
+                    changes[sid] = None
                     modified = True
                 continue
             if current is None:
@@ -194,12 +187,20 @@ def _relink(
             else:
                 stats["updated_promoted_to"].append((sid, current, target))
             if apply_changes:
-                c["promoted_to"] = target
+                changes[sid] = target
                 modified = True
         if modified and apply_changes:
             stats["files_modified"].append(path)
+            rt_doc = rt.load(path.read_text(encoding="utf-8"))
+            for rc in rt_doc.get("coins") or []:
+                rid = rc.get("id")
+                if rid in changes:
+                    if changes[rid] is None:
+                        rc.pop("promoted_to", None)
+                    else:
+                        rc["promoted_to"] = changes[rid]
             with path.open("w", encoding="utf-8") as f:
-                rt.dump(doc, f)
+                rt.dump(rt_doc, f)
 
     return stats
 
