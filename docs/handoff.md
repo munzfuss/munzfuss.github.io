@@ -16,6 +16,28 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-24 — branch `rebuild-from-members`: three Fuß rebuilt; shared cache moved ahead of main
+
+- **Reviewed and committed** on the branch: Nobelfod, Guldgyldenfod, Lybsk
+  møntfod, all in `data/v2/_rebuild_scope.yml`; review log and every curator
+  decision in `docs/plans/per_fuss_rebuild.md`. Procedure for the next Fuß
+  and for promoting a `seed_unsorted` coin into a reviewed one: the
+  `fuss-rebuild-review` skill. main untouched (de956d6); nothing pushed.
+- **Shared harvest cache is at b6d04485e, main records 5a978e4.** The curator
+  fast-forwarded the cache repo's `main` to the Bruun «Harck» commits
+  (2026-10-24; harvest routines are not running). Sessions on main therefore
+  see `scripts/cache (new commits)`. Do NOT commit that pointer on main
+  without the curator, and do NOT re-run the Bruun parser
+  (`bruun_parser/02_parse_lots.py`) or `build_bruun_denmark_seed.py` on main
+  before rebuild-from-members is merged: the new lots read «H-N» as Hede and
+  add Harck / Delzanno / …, and on main nothing accompanies that — on the
+  branch it split the Hede 150 class and needed a merge decision (`2c0f167`).
+- **Open on the branch:** Bruun's Swedish catalogues reach `catalog.others`
+  with the builder's lower-case field names («delzanno# 2», «lott#»,
+  «malmer#»; 52 in Denmark-page finals here, none on main) — fix the label
+  in `build_bruun_denmark_seed.py` before shipping; it needs a Bruun re-seed,
+  which is now safe here (cache = b6d04485e).
+
 ## 2026-10-23 — branch `rebuild-from-members`: a final rebuilt from its members (overnight run)
 
 Worktree `.claude/worktrees/rebuild-from-members` (`scripts/cache`, `.venv` symlinked to the main
