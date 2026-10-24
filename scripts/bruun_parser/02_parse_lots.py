@@ -186,8 +186,9 @@ REF_PATTERNS = {
     "Schive":            re.compile(
         r"\bSchive\b[\-:]?\s*(?:pl\.\s*)?"
         r"(?P<plate>[IVX]+|T)\s*[:\-,]\s*(?P<nums>\d+(?:\s*[-/]\s*\d+)?)"),
-    # FP — Friberg-Pedersen catalogue (Christian VII-specific Danish-Norwegian
-    # «Skillingen, Specien og Kronen 1761-1813» by Bent Friberg & Tom Pedersen).
+    # FP — Frank Pedersen, «Christian den VII's mønter 1766-1808/1812»
+    # (Copenhagen 2017), per the Bruun catalogues' own bibliography
+    # («FP – Frank Pedersen. …», Parts I, II, III, V).
     # Cited as «FP-44.3», «FP-9.3», «FP-36». Appears on 42 Bruun lots, all
     # under Christian VII (1766-1808). Sub-variant decimals («.X») captured.
     "FP":                re.compile(r"\bFP[\-:]?\s*(\d+(?:\.\d+)?[A-Za-z]*)"),
@@ -277,6 +278,12 @@ REF_PATTERNS = {
     # the «Dav» pattern needs a digit right after «Dav-» and so skips these.
     "Dav-LS":             re.compile(_REF_LB + r"Dav-\s*LS-?\s*(\d+[A-Za-z]*)"),
 }
+
+# Hede abbreviated to «H-» (see the fallback in `parse_part`). Same value
+# shape as REF_PATTERNS["Hede"]; the hyphen is required and the lookbehind of
+# the other short codes applies, so «Becker-H 46/174» or «NGC …» never match.
+HEDE_SHORT_RE = re.compile(_REF_LB + r"H-\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)")
+
 
 def _schive_value(m: "re.Match") -> str:
     """Canonical «PLATE:NUMS» from a Schive match.
@@ -618,6 +625,15 @@ def parse_part(slug: str) -> list[dict]:
                     refs[k] = _schive_value(mm)
                 else:
                     refs[k] = mm.group(1)
+        # «H-150», «H-14B»: on 13 lots Bruun abbreviates Hede to a bare «H»,
+        # in the slot Hede normally takes (after KM, before Sieg). It is not in
+        # the bibliography, but every one of the 13 matches a Hede page of the
+        # same nominal, mint and year (curator confirmed 2026-10-23). Read only
+        # when the lot prints no «Hede-», so it can never override a full one.
+        if "Hede" not in refs:
+            mm = HEDE_SHORT_RE.search(body_for_refs)
+            if mm:
+                refs["Hede"] = mm.group(1)
         # Year — meta_line first (cataloguer's authoritative dating),
         # body_match fallback. See `extract_year` for the failure modes
         # this guards against (pre-1500 floor + catalog-year traps).

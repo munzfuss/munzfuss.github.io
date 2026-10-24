@@ -99,5 +99,23 @@ class TestBruunBibliographyRefs(unittest.TestCase):
         self.assertEqual(ref("S", "type; S-1157; North-781;"), "1157")
 
 
+class TestBruunHedeShortForm(unittest.TestCase):
+    """«H-N» is Hede when the lot prints no «Hede-» (lots 13116, 12060, …)."""
+
+    def h(self, text: str) -> str | None:
+        m = _mod.HEDE_SHORT_RE.search(re.sub(r"\s+", " ", text))
+        return m.group(1) if m else None
+
+    def test_shapes(self):
+        self.assertEqual(self.h("KM-133.1; H-150; Sieg-47.2; Schou-89;"), "150")
+        self.assertEqual(self.h("KM-26; H-14B; Sieg-5.3; NMD-124B;"), "14B")
+
+    def test_not_inside_other_tokens(self):
+        self.assertIsNone(self.h("C. J. Becker-H 46/174; Hildebrand-139"))
+        self.assertIsNone(self.h("Hede-150; Sieg-53"))
+        self.assertIsNone(self.h("NGC MS-64. KM-133.1; Sieg-47.2;"))
+        self.assertIsNone(self.h("Jensen & Skjoldager-T-22/H-26;"))
+
+
 if __name__ == "__main__":
     unittest.main()

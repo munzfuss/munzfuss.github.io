@@ -289,7 +289,7 @@ from lib.v2_seed_writer import _canonicalise_mint
 from lib.v2_entity_classify import classify_mint_to_entity
 from lib.gen_stamp import resolve_generated_at
 from lib.seed_merge import _CURATION_MARK_KEYS
-from lib.seed_merge import apply_catalog_marks, apply_mint_mark
+from lib.seed_merge import apply_catalog_marks, apply_mint_mark, apply_ruler_mark
 
 
 # The Danish Krone is 4 Mark Danske: Hede names the same coin «4 Mark» where
@@ -4479,6 +4479,7 @@ def _load_seeds_for_entity(entity_id: str) -> list[dict]:
                 # An «erroneous» mint mark takes the printed mint out of play
                 # even on a seed hand-marked since its last regen.
                 apply_mint_mark(c)
+                apply_ruler_mark(c)
                 apply_catalog_marks(c)
                 coins.append(c)
     return coins
@@ -4545,6 +4546,7 @@ def _load_all_seeds() -> tuple[dict[str, dict], dict[str, str]]:
             for c in doc.get("coins") or []:
                 if isinstance(c, dict) and c.get("id"):
                     apply_mint_mark(c)
+                    apply_ruler_mark(c)
                     apply_catalog_marks(c)
                     by_id[c["id"]] = c
                     home[c["id"]] = entity

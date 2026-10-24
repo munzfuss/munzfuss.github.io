@@ -239,7 +239,7 @@ REF_FIELDS = {
     "Hede": "hede",
     "Schive": "schive",
     "NMD": "nmd",
-    "FP": "fp",  # Friberg-Pedersen «Skillingen, Specien og Kronen 1761-1813»
+    "FP": "fp",  # Frank Pedersen «Christian den VII's mønter 1766-1808/1812» (2017)
     "Skjoldager": "jensen_skjoldager",  # parser key for «Jensen & Skjoldager»
     "Llt": "lott",
     "Delzanno": "delzanno",
