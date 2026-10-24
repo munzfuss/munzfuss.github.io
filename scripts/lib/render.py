@@ -196,14 +196,40 @@ def nb_dashes(s: str | None) -> str:
     return _NB_DASH_RE.sub("\\1⁠\\2⁠\\3", s)
 
 
-def ruler_for_lang(name: str | None, lang: str) -> str:
+# A Danish king written exactly as `canonical_ruler_display` writes him,
+# «Christian IV» — the DE page adds the period. Compound and annotated forms
+# («Christian I/Hans», «Christian V / Frederick III») keep their stored form.
+_DE_KING_ORDINAL_RE = re.compile(r"^((?:Christian|Frederik|Erik)[ \u00a0][IVX]+)$")
+
+
+_REBUILD_SCOPE: frozenset[str] | None = None
+
+
+def _rebuild_scope() -> frozenset[str]:
+    """The Fuß of data/v2/_rebuild_scope.yml — the finals rebuilt from their
+    members, which carry the period-less king's name."""
+    global _REBUILD_SCOPE
+    if _REBUILD_SCOPE is None:
+        import yaml
+        p = Path(__file__).resolve().parents[2] / "data" / "v2" / "_rebuild_scope.yml"
+        doc = yaml.safe_load(p.read_text(encoding="utf-8")) if p.exists() else {}
+        _REBUILD_SCOPE = frozenset((doc or {}).get("fuss") or [])
+    return _REBUILD_SCOPE
+
+
+def ruler_for_lang(name: str | None, lang: str, fuss: str | None = None) -> str:
     """Render a ruler name appropriate to the target language.
 
-    The YAML stores rulers in canonical German form, where Roman-numeral
-    ordinals carry a trailing period (Christian IV. = "Christian der IV.").
-    English, Ukrainian and Danish don't use this convention — strip the
-    period from Roman numerals for non-DE rendering. (Danish numismatic
-    literature writes «Christian IV», and danskmoent.dk does the same.)
+    A Roman-numeral ordinal carries a trailing period in German only
+    («Christian IV.» = «Christian der IV.»); English, Ukrainian and Danish
+    write «Christian IV». The data stores the period-less form for the
+    Danish kings (curator 2026-10-24, `lib.ruler_reigns.canonical_ruler_display`;
+    finals not yet rebuilt still carry the older «Christian IV.»), so the
+    period is the renderer's: added on DE for a Danish king written without
+    it, stripped everywhere else. Other rulers keep their stored form on DE.
+    The DE period is added only to a coin of a Fuß in data/v2/_rebuild_scope.yml
+    (curator 2026-10-24: the change applies to the listed Fuß only); outside
+    it a DE row shows what the final stores, as before.
     """
     if not name:
         return "—"
@@ -216,6 +242,8 @@ def ruler_for_lang(name: str | None, lang: str) -> str:
     # sufficient for monarchs); trailing period optional, token-boundary anchored.
     name = re.sub(r"\s+([IVX]+\.?)(?=\s|$)", " \\1", name)
     if lang == "de":
+        if fuss in _rebuild_scope():
+            return _DE_KING_ORDINAL_RE.sub(r"\1.", name)
         return name
     # en/uk/da: Roman-numeral ordinals don't carry the German trailing period.
     return re.sub(r"( [IVX]+)\.", r"\1", name)

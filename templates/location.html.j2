@@ -140,8 +140,8 @@
     {%- set shown = parts|map('trim')|list -%}
     {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   {%- endif -%}</td>
-  <td class="c-ruler">{{ coin.raw.ruler|ruler(lang) }}{%- if not coin.raw.ruler_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
-    {%- for a in coin.raw.ruler_alts or [] if a.value != coin.raw.ruler %} <span class="ruler-alt">{{ a.value|ruler(lang) }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
+  <td class="c-ruler">{{ coin.raw.ruler|ruler(lang, coin.raw.fuss) }}{%- if not coin.raw.ruler_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- for a in coin.raw.ruler_alts or [] if a.value != coin.raw.ruler %} <span class="ruler-alt">{{ a.value|ruler(lang, coin.raw.fuss) }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
   <td class="c-km">
     {%- for prefix, vals, tooltip in coin.catalog_groups -%}
       {%- if prefix -%}
@@ -433,8 +433,8 @@
     {%- set shown = parts|map('trim')|list -%}
     {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   {%- endif -%}</td>
-  <td class="c-ruler">{{ coin.raw.ruler|ruler(lang) }}{%- if not coin.raw.ruler_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
-    {%- for a in coin.raw.ruler_alts or [] if a.value != coin.raw.ruler %} <span class="ruler-alt">{{ a.value|ruler(lang) }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
+  <td class="c-ruler">{{ coin.raw.ruler|ruler(lang, coin.raw.fuss) }}{%- if not coin.raw.ruler_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- for a in coin.raw.ruler_alts or [] if a.value != coin.raw.ruler %} <span class="ruler-alt">{{ a.value|ruler(lang, coin.raw.fuss) }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
   <td class="c-km">
     {%- for prefix, vals, tooltip in coin.catalog_groups -%}
       {%- if prefix -%}

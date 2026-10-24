@@ -126,8 +126,16 @@ accepted by the curator. What differs from main:
   `c-621e8b09` (Hede 7G) the note was about the record (.770 inferred from the
   standard, Hede gives the weight only); the same text stays in
   `_curation_holds.fineness`, and .770 / `fineness_verified: false` stay.
-- Ruler without a period on 7 (Christian III, Christian IV, Frederik I,
-  Frederik II), the display form since `e4a2d38`.
+- Ruler stored without a period on 7 (Christian III, Christian IV, Frederik
+  I, Frederik II), `e4a2d38`. On the page: da / en / uk as on main (the
+  renderer never showed the period there); de shows the period on every
+  Danish king of the Fuß — 4 rows that showed «Christian III» / «Frederik I»
+  on main (their final stored no period) now read «Christian III.» /
+  «Frederik I.» like the rest.
+- `c-2d8327a8` (Hans, Bergen): the danskmoent hansGej link text is the Galster
+  seed's «danskmoent.dk norge_hansGej.htm»; main showed the label written by
+  hand into the final, «danskmoent.dk (norge/hansGej) — Hans Rhinsk Gylden /
+  Goldgulden, Bergen». Same URL. Open: curator to decide.
 - `c-329482ca` (Hede 29): Harck# 25.3 (Bruun 5458 / 5459 / 5505) and
   Harck# 35.2 (Bruun 5613) added — the Bruun parser reads Harck (`0b20d78`).
 - `c-51d19d46` (Bruun 4057 alone) removed: a final written 2026-06-12
@@ -142,8 +150,11 @@ Curator decisions behind these lines (2026-10-24):
   Gylden», Bruun «Gold Gulden», Numista «Gulden», NumisMaster «Guilder» fold
   to it (merger `_canonical_nominal_out`, `e4a2d38`). Without it the four
   rebuilt Hede finals showed «1 Rhinsk Gylden» beside 15 «1 Goldgulden».
-- Ruler: «Christian IV», no period, as Bruun and Numista write it; the
-  period form was the German ordinal, not Hede's (danskmoent writes
-  «Christian 4.»). For the switch: finals outside the scope keep their
-  stored «Christian IV.» until their Fuß is rebuilt, so the page shows both
-  forms meanwhile.
+- Ruler: the data stores «Christian IV», no period, as Bruun and Numista
+  write it; the period form was the German ordinal, not Hede's (danskmoent
+  writes «Christian 4.»). «No point storing a period only to strip it»: the
+  renderer adds it on DE only (`lib.render.ruler_for_lang`), and only for
+  coins of a Fuß in `_rebuild_scope.yml` — outside the scope a DE row shows
+  what its final stores, as before. Correction (2026-10-24): the renderer
+  had stripped the period on da / en / uk since `79d0ef1` (2026-05-02), so
+  the Danish page never showed it; only de changes.
