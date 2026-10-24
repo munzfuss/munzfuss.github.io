@@ -278,6 +278,37 @@ def _catalog_key(v) -> str:
     return str(v).strip().upper()
 
 
+# The Bruun anchor (§9a «fast-lookup anchor»): ONE pointer to one specimen,
+# never rendered; every specimen stays in `bruun_collection_id` and `sources`.
+_BRUUN_ANCHOR = ("bruun_part", "bruun_lot_no", "bruun_page")
+
+
+def _bruun_lot_refs(coin: dict) -> set[tuple[str, str]]:
+    """(part, lot) of every Bruun lot the coin cites in `sources`."""
+    out = set()
+    for s in coin.get("sources") or []:
+        m = re.search(r"Bruun Part\s+([IVX]+),\s*lot\s+(\d+)", str((s or {}).get("ref") or ""))
+        if m:
+            out.add((m.group(1), m.group(2)))
+    return out
+
+
+def _bruun_anchor_moved(head: dict, cur: dict) -> str | None:
+    """«Part I lot 1037 → Part II lot 13103» when the anchor points at another
+    specimen and BOTH lots are still cited in the coin's `sources` — the
+    rebuild picked the anchor from another member, nothing was lost (curator
+    2026-10-24). None otherwise, and the anchor fields compare as before."""
+    hc, cc = head.get("catalog") or {}, cur.get("catalog") or {}
+    ha = (str(hc.get("bruun_part") or ""), str(hc.get("bruun_lot_no") or ""))
+    ca = (str(cc.get("bruun_part") or ""), str(cc.get("bruun_lot_no") or ""))
+    if ha == ca or not all(ha) or not all(ca):
+        return None
+    lots = _bruun_lot_refs(cur)
+    if ha in lots and ca in lots:
+        return f"Part {ha[0]} lot {ha[1]} → Part {ca[0]} lot {ca[1]} (both still cited)"
+    return None
+
+
 def _catalog_registers(coin: dict) -> dict[str, set[str]]:
     """catalog → {register: {values}}, so a register losing a value is visible."""
     out: dict[str, set[str]] = {}
@@ -1317,9 +1348,14 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                     moved_only += 1
 
         hcat, ccat = _catalog_registers(h), _catalog_registers(c)
+        _anchor_moved = _bruun_anchor_moved(h, c)
+        if _anchor_moved:
+            changes.append(f"{cid}.catalog: Bruun anchor {_anchor_moved}")
         for reg in sorted(set(hcat) | set(ccat)):
             hv, cv = hcat.get(reg, set()), ccat.get(reg, set())
             if hv == cv:
+                continue
+            if _anchor_moved and reg in _BRUUN_ANCHOR:
                 continue
             moved.setdefault("catalog", []).append(reg)
             dropped = hv - cv
