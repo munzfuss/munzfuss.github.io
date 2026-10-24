@@ -191,6 +191,8 @@ accepted by the curator. What differs from main:
 - `c-afd707d6`: `diameter_mm_verified` true -> unset; no member gives a
   diameter.
 
+Next for this Fuß (after shipping, not yet started): extend it before 1481. Curator direction 2026-10-24: the Hvid line follows its own standard from the start of the Lübeck system in Denmark, c. 1400 (found in another session), so the Fuß is not cut at 1481; the Skilling and Søsling of 1468–1513 belong to the Lübeck 11½- and 13-mark systems and did not affect the Hvid — they are to become separate Fuß later (not in this session). Needs first a phase (or phases) before 1481 on the Denmark page and the card text, sourced from `docs/research/luebischer_muenzfuss.md`; then the seed_unsorted candidates (Hans, Rigsrådet, 1400–1481, coins with a ruler but no years or the reverse — survey 2026-10-24).
+
 Fixed 2026-10-24 (curator «роби»): Bruun's Swedish catalogues reached
 `catalog.others` with the builder's lower-case field names («delzanno#»,
 «lott#», «sm#», «hagander#», «appelgren#», «malmer#»). The Bruun builder now

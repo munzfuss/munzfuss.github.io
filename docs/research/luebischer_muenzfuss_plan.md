@@ -115,7 +115,7 @@
 |---|---|---|
 | ☐ | 8.1 `instruments/FUSS_REVIEW_FINDINGS.md` — entries opened / closed by this work | — |
 | ☐ | 8.2 `docs/handoff.md` | — |
-| ☐ | 8.3 Later, not in this plan unless the curator asks: Christian I / Christoffer / Erik of Pomerania silver under the same card (Hvid since c. 1440) | — |
+| ☐ | 8.3 Christian I / Christoffer / Erik of Pomerania silver under the same card (Hvid since c. 1440). Curator direction 2026-10-24: the Hvid line follows its own standard from the start of the Lübeck system in Denmark, c. 1400 (found in another session), so the Fuß is not cut at 1481; the Skilling and Søsling of 1468–1513 belong to the Lübeck 11½- and 13-mark systems and did not affect the Hvid — they are to become separate Fuß later (not in this session). Candidates: `output/lybsk_candidates.md` group C (regenerate; gitignored). | denmark.yml phases, fuesse.yml card, classification_decisions |
 
 ## Log
 
