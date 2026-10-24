@@ -4848,6 +4848,40 @@ def _pass1_eval_i(i: int):
 _PASS1_PARALLEL_THRESHOLD = int(os.environ.get("MERGE_PARALLEL_THRESHOLD", "4000"))
 
 
+def _explain_seeds() -> set[str]:
+    """Seeds named by `--explain a,b` (carried in MERGE_EXPLAIN so PASS-1
+    worker processes see it too)."""
+    return {s.strip() for s in os.environ.get("MERGE_EXPLAIN", "").split(",") if s.strip()}
+
+
+def _explain_pairs(entity_id, classes, confident_pairs, seeds_by_id, reign_index) -> None:
+    """`--explain`: for each named seed, print the class it ended in, every
+    automatic confident pair it took part in (the edges that pulled it), and
+    `match_pair`'s decision + reasons against every other named seed and every
+    member of its class. Added 2026-10-24: a curator merge «left separate»
+    by a no_merge says nothing about WHICH auto edge had already joined the
+    classes; this prints it."""
+    want = _explain_seeds() & set(seeds_by_id)
+    if not want:
+        return
+    cls_of = {m: root for root, ms in classes.items() for m in ms}
+    print(f"\n  ── explain [{entity_id}] ──")
+    for s in sorted(want):
+        root = cls_of.get(s)
+        members = sorted(classes.get(root, ())) if root is not None else []
+        print(f"  {s}  → class of {len(members)}: {', '.join(members)}")
+        for cp in confident_pairs:
+            if s in (cp["a"], cp["b"]):
+                other = cp["b"] if cp["a"] == s else cp["a"]
+                prim = {k: v for k, v in (cp.get("primary") or {}).items() if v is not None}
+                print(f"      auto-confident with {other}  primary={prim}")
+        peers = (want | set(members)) - {s}
+        for o in sorted(peers):
+            r = match_pair(seeds_by_id[s], seeds_by_id[o], entity_id, reign_index=reign_index)
+            why = "; ".join(r.get("why") or [])
+            print(f"      vs {o}: {r['decision']}  {why[:300]}")
+
+
 def process_entity(entity_id: str,
                    member_target: dict[str, str] | None = None,
                    pull_groups: dict[str, list[list[str]]] | None = None,
@@ -5353,6 +5387,7 @@ def process_entity(entity_id: str,
 
     # 4. Build unified entries from equivalence classes
     classes = uf.classes()
+    _explain_pairs(entity_id, classes, confident_pairs, seeds_by_id, reign_index)
     unified_entries: list[dict] = []
     merge_conflicts: list[dict] = []  # data-loss visibility: per-unified conflicts
     for class_root, member_ids in sorted(classes.items()):
@@ -5603,7 +5638,13 @@ def main() -> int:
     parser.add_argument("--entity", help="Process only this entity")
     parser.add_argument("--verbose", "-v", action="store_true",
                         help="Show all low-confidence pairs (default: top 10 per entity)")
+    parser.add_argument("--explain", metavar="SEED[,SEED…]",
+                        help="Print, for each named seed, its final class, the automatic "
+                             "confident pairs that pulled it there, and the match decision "
+                             "with reasons against the other named seeds and its class")
     args = parser.parse_args()
+    if args.explain:
+        os.environ["MERGE_EXPLAIN"] = args.explain
     if args.apply:
         args.dry_run = False
 
