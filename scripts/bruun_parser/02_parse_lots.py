@@ -279,6 +279,12 @@ REF_PATTERNS = {
     "Dav-LS":             re.compile(_REF_LB + r"Dav-\s*LS-?\s*(\d+[A-Za-z]*)"),
 }
 
+# Hede abbreviated to «H-» (see the fallback in `parse_part`). Same value
+# shape as REF_PATTERNS["Hede"]; the hyphen is required and the lookbehind of
+# the other short codes applies, so «Becker-H 46/174» or «NGC …» never match.
+HEDE_SHORT_RE = re.compile(_REF_LB + r"H-\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)")
+
+
 def _schive_value(m: "re.Match") -> str:
     """Canonical «PLATE:NUMS» from a Schive match.
 
@@ -619,6 +625,15 @@ def parse_part(slug: str) -> list[dict]:
                     refs[k] = _schive_value(mm)
                 else:
                     refs[k] = mm.group(1)
+        # «H-150», «H-14B»: on 13 lots Bruun abbreviates Hede to a bare «H»,
+        # in the slot Hede normally takes (after KM, before Sieg). It is not in
+        # the bibliography, but every one of the 13 matches a Hede page of the
+        # same nominal, mint and year (curator confirmed 2026-10-23). Read only
+        # when the lot prints no «Hede-», so it can never override a full one.
+        if "Hede" not in refs:
+            mm = HEDE_SHORT_RE.search(body_for_refs)
+            if mm:
+                refs["Hede"] = mm.group(1)
         # Year — meta_line first (cataloguer's authoritative dating),
         # body_match fallback. See `extract_year` for the failure modes
         # this guards against (pre-1500 floor + catalog-year traps).

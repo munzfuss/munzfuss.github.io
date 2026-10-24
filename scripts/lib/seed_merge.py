@@ -166,6 +166,34 @@ def apply_mint_mark(entry) -> None:
         entry["mint"] = None
 
 
+def apply_ruler_mark(entry) -> None:
+    """Neutralise a ruler the curator marked «erroneous» (schema
+    Coin.ruler_mark) — the ruler-column analogue of `apply_mint_mark`.
+
+    The printed ruler moves into `ruler_mark.value` (shown as a `ruler_alts`
+    entry with «(!)») and `ruler` is cleared, so the merger's ruler matching,
+    absorb and the displayed ruler never use it (curator 2026-10-24, founding
+    case dk-bruun-10726: Bruun prints «Christian VI» for a 24 Skilling 1753,
+    struck under Frederik V). Without this the mark was invisible — the
+    template hides an alt equal to the displayed ruler — and the wrong ruler
+    still took part in matching.
+
+    A ruler that a `_source_errata` already replaced is the CURATOR's value,
+    not the source's: when `value` is set and differs from `ruler`, the ruler
+    is kept (the kmk «Hans» → «?» pattern). Idempotent. A «suspect» mark
+    changes nothing here."""
+    mark = entry.get("ruler_mark")
+    if not isinstance(mark, dict) or mark.get("kind") != "erroneous":
+        return
+    printed = entry.get("ruler")
+    if printed is None:
+        return
+    if not mark.get("value"):
+        mark["value"] = str(printed)
+    if str(mark["value"]) == str(printed):
+        entry["ruler"] = None
+
+
 def apply_catalog_marks(entry) -> None:
     """Take every catalogue number the curator marked (schema Coin.catalog_marks)
     out of the entry's `catalog`, so it neither justifies nor refutes a merge.
@@ -763,6 +791,7 @@ def merge_seed(
         if isinstance(c, dict):
             apply_source_errata(c)
             apply_mint_mark(c)
+            apply_ruler_mark(c)
             apply_catalog_marks(c)
 
     return out, stats
