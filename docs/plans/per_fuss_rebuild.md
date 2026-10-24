@@ -18,8 +18,8 @@ the page on danskmoent.github.io).
 
 | Fuß | finals on the Denmark page (main = here, 2026-10-24) | entities |
 |---|---|---|
-| nobel_fod | 7 | danish_realm 7 |
-| rhinsk_gylden_fod | 20 | danish_realm 9, royal_slesvig 5, gottorp_duchy 3, sonderburg_duchy 2, danish_norway 1 |
+| nobel_fod ✅ | 7 | danish_realm 7 |
+| rhinsk_gylden_fod ✅ | 20 | danish_realm 9, royal_slesvig 5, gottorp_duchy 3, sonderburg_duchy 2, danish_norway 1 |
 | luebischer_muenzfuss | 28 | danish_realm 15, danish_norway 13 |
 
 ## State on 2026-10-24
@@ -115,3 +115,35 @@ Curator decisions behind these lines (2026-10-24):
   never did that.
 - The hold removals live only in the uncommitted rebuild; they are recorded
   here so the shipping run in the new branch repeats them.
+
+### rhinsk_gylden_fod
+
+Rebuild vs main, 2026-10-24 (record-diff-table, 20 finals; scope
+`nobel_fod, rhinsk_gylden_fod`, fixed point from the second pass). All 20
+accepted by the curator. What differs from main:
+
+- `verification_note` gone on 16 (per-source template, `1d41e14`). On
+  `c-621e8b09` (Hede 7G) the note was about the record (.770 inferred from the
+  standard, Hede gives the weight only); the same text stays in
+  `_curation_holds.fineness`, and .770 / `fineness_verified: false` stay.
+- Ruler without a period on 7 (Christian III, Christian IV, Frederik I,
+  Frederik II), the display form since `e4a2d38`.
+- `c-329482ca` (Hede 29): Harck# 25.3 (Bruun 5458 / 5459 / 5505) and
+  Harck# 35.2 (Bruun 5613) added — the Bruun parser reads Harck (`0b20d78`).
+- `c-51d19d46` (Bruun 4057 alone) removed: a final written 2026-06-12
+  (`eefddf5`) with a hand-set `promoted_to` so the twin of `c-0f63747e`
+  did not render. `c-0f63747e` composes its class (Bruun 4056 / 4057,
+  Galster 59, Numista 433743); it was the only final carrying `promoted_to`,
+  a seed-level field.
+- Sønderborg `c-cdefe8ab`, `c-e18cff90`: no difference.
+
+Curator decisions behind these lines (2026-10-24):
+- Nominal: the class writes «Goldgulden» after the seed level — Hede «Rhinsk
+  Gylden», Bruun «Gold Gulden», Numista «Gulden», NumisMaster «Guilder» fold
+  to it (merger `_canonical_nominal_out`, `e4a2d38`). Without it the four
+  rebuilt Hede finals showed «1 Rhinsk Gylden» beside 15 «1 Goldgulden».
+- Ruler: «Christian IV», no period, as Bruun and Numista write it; the
+  period form was the German ordinal, not Hede's (danskmoent writes
+  «Christian 4.»). For the switch: finals outside the scope keep their
+  stored «Christian IV.» until their Fuß is rebuilt, so the page shows both
+  forms meanwhile.
