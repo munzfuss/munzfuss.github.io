@@ -10,7 +10,10 @@ description: >-
   docs/plans/per_fuss_rebuild.md and commit. PROMOTE: a coin still in
   seed_unsorted that belongs to a reviewed Fuß — evidence table, curator
   verdict, classification (and merge) decision by seed id, re-flow, the same
-  comparison, commit. Use for «розбери стопу», «переходимо до стопи X»,
+  comparison, commit. A curator saying a Fuß is NEXT («опрацьовуємо
+  наступну стопу», «беремось за стопу X») means exactly this: the Fuß is
+  rebuilt from members and joins the scope list (CLAUDE.md §9c). Use for
+  «розбери стопу», «переходимо до стопи X», «опрацюємо наступну стопу»,
   «перебудуй стопу з членів», «порівняй стопу з main», «що змінилось у стопі»,
   «додай стопу в список», «переведи цю монету з seed_unsorted у стопу»,
   «знайшли кандидата в стопу». Helper `fuss_compare.py` (data / build-base /

@@ -1224,6 +1224,22 @@ files across `scripts/` walk `composed_of` by hand, and in one session
 
 **Never report a loss from an exploratory script alone.** `audit_lost_citations.py` (citations) and `audit_curation_loss.py` (field-level curation) are the dedicated auditors. When a hand-written check disagrees with them, the hand-written check is wrong until proven otherwise — resolve the contradiction BEFORE stating anything as fact. In exploratory analysis code a missing key must raise, not default; a fallback that fabricates a plausible value is worse than a crash, because it ships as a conclusion (§0b).
 
+### 9c. «Опрацьовуємо наступну стопу» = the Fuß joins the rebuild-from-members list
+
+When the curator says a Fuß is next — «опрацьовуємо / розбираємо наступну
+стопу», «беремось за стопу X», «переходимо до стопи X» — that ALWAYS means:
+its finals are to be rebuilt from their members, discarding what the old
+self-union kept (stale citations, values no member gives, a hand-written
+`promoted_to`, an inferred flag), and the Fuß is added to
+`data/v2/_rebuild_scope.yml` once its review is accepted (curator
+2026-10-24). It is never a prose task or a one-off look at the finals. The
+procedure is the `fuss-rebuild-review` skill (re-flow with the Fuß in scope,
+comparison with `main` by seed id, field by field and on the rendered page in
+every language, the curator's verdict, the scope file, the plan log
+`docs/plans/per_fuss_rebuild.md`). A Fuß outside the list keeps the
+self-union, so a fix that a Fuß needs reaches its finals only when the Fuß
+is in the list.
+
 ## Project audit tooling
 
 Four scripts cover the project's mechanical-quality checks. Use them at session start (`audit_health.py`), at session end (`audit_prose.py` / `audit_i18n.py`), and continuously via the pre-commit hook.
