@@ -191,7 +191,24 @@ accepted by the curator. What differs from main:
 - `c-afd707d6`: `diameter_mm_verified` true -> unset; no member gives a
   diameter.
 
-Next for this Fuß (after shipping, not yet started): extend it before 1481. Curator direction 2026-10-24: the Hvid line follows its own standard from the start of the Lübeck system in Denmark, c. 1400 (found in another session), so the Fuß is not cut at 1481; the Skilling and Søsling of 1468–1513 belong to the Lübeck 11½- and 13-mark systems and did not affect the Hvid — they are to become separate Fuß later (not in this session). Needs first a phase (or phases) before 1481 on the Denmark page and the card text, sourced from `docs/research/luebischer_muenzfuss.md`; then the seed_unsorted candidates (Hans, Rigsrådet, 1400–1481, coins with a ruler but no years or the reverse — survey 2026-10-24).
+Phase 0, 2026-10-24 (curator: «просто створити фазу 0 для всіх цих до-1481
+монет, а вже потім на мейні більш ґрунтовно опрацюємо»): `denmark.yml` phase
+`0` (1396–1481, title «Periode 0 · før 1481» etc., no description yet), and
+85 classification assignments by seed id — 83 coins of 1376–1481 to phase 0
+(Erik VII, Christoffer III, Christian I, Interregnum 1448, Margrethe
+brakteats, three Kobbersterling without ruler; `kind: scheide` for the 6
+copper / Kobbersterling, `kurant` otherwise; one in royal_holstein, NGC MB#5
+Pfennig), and the two Rigsrådet coins of 1481–1483 to phase I (KMM 331520
+«Ridsrådet» Hvid, Metallanalyser Galster 21 Skilling). Left unclassified:
+the 8 KMM Hvide «Christian I / Hans» (1448–1513), Frederik I Søsling Galster
+63 (1481–1528), a Søsling 1481–1533. On the page: 88 new rows; the phase
+header reads «1376 → 1481» (coin years). Open for main: the card text and
+the phase description; KMM singletons that may belong to one Galster type
+(merges); Numista nominals with the value gloss («Gros = 9 Pennings», «1 Hvid
+= 4 Pennings», «1 Sterling = 3 Pennings» — the rebuilt class takes the seed's
+form, main showed «1 Gros» etc.).
+
+Earlier plan for this extension: Curator direction 2026-10-24: the Hvid line follows its own standard from the start of the Lübeck system in Denmark, c. 1400 (found in another session), so the Fuß is not cut at 1481; the Skilling and Søsling of 1468–1513 belong to the Lübeck 11½- and 13-mark systems and did not affect the Hvid — they are to become separate Fuß later (not in this session). Needs first a phase (or phases) before 1481 on the Denmark page and the card text, sourced from `docs/research/luebischer_muenzfuss.md`; then the seed_unsorted candidates (Hans, Rigsrådet, 1400–1481, coins with a ruler but no years or the reverse — survey 2026-10-24).
 
 Fixed 2026-10-24 (curator «роби»): Bruun's Swedish catalogues reached
 `catalog.others` with the builder's lower-case field names («delzanno#»,
