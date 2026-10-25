@@ -419,6 +419,18 @@ _EXACT_BARE = {
     "håkon 5 magnusson": "Håkon V", "håkon v magnusson": "Håkon V",
     "kristian 1": "Christian I", "chrisytian 1": "Christian I",
     "chrtistian 4": "Christian IV", "chritian 4": "Christian IV",
+    # The Union kings as the sources name them (2026-10-25): Numista «Eric
+    # VII», Bruun «Erik VII of Pomerania» / «Christopher III of Bavaria»,
+    # danskmoent «Erik af Pommern» / «Christoffer af Bajern», KMM «Erik 7 af
+    # Pommern», IKMK «Erich von Pommern» / «Christoph von Bayern».
+    "eric vii": "Erik VII", "erik 7": "Erik VII",
+    "erik af pommern": "Erik VII", "erik 7 af pommern": "Erik VII",
+    "erik vii of pomerania": "Erik VII", "eric vii of pomerania": "Erik VII",
+    "erich von pommern": "Erik VII",
+    "christoffer 3": "Christoffer III", "christopher iii": "Christoffer III",
+    "christopher iii of bavaria": "Christoffer III",
+    "christoffer af bayern": "Christoffer III", "christoffer af bajern": "Christoffer III",
+    "christoph von bayern": "Christoffer III",
 }
 
 

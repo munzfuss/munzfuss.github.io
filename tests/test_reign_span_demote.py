@@ -123,3 +123,30 @@ class ClassShowsTableReign(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class UnionKingsNamedAsTheSourcesDo(unittest.TestCase):
+    """2026-10-25: Numista «Eric VII» 1397-1439 beside Galster 7 «ca. 1422»
+    kept the reign as the class year, because the table did not know the
+    English form. Curator: a dated (even uncertain) year wins over the reign;
+    the rule existed, the name did not reach it."""
+
+    def test_spellings_resolve(self):
+        for name in ("Eric VII", "Erik VII of Pomerania", "Erik af Pommern",
+                     "Erik 7 af Pommern", "Erich von Pommern"):
+            self.assertTrue(is_reign_span(name, "danish_realm", 1397, 1439), name)
+        for name in ("Christopher III of Bavaria", "Christoffer af Bajern",
+                     "Christoph von Bayern"):
+            self.assertTrue(is_reign_span(name, "danish_realm", 1440, 1448), name)
+
+    def test_kobbersterling_takes_the_galster_year(self):
+        members = [{"ruler": "Eric VII", "issuing_entity": "danish_realm",
+                    "year_first": 1397, "year_last": 1439},
+                   {"ruler": "Erik VII", "issuing_entity": "danish_realm",
+                    "year_first": 1422, "year_last": 1422,
+                    "year_verified": False}]
+        demoted = [dict(m, _year_demoted=True)
+                   if is_reign_span(m["ruler"], m["issuing_entity"],
+                                    m["year_first"], m["year_last"]) else m
+                   for m in members]
+        self.assertEqual(_union_year_ranges(demoted), [[1422, 1422]])
