@@ -1,12 +1,153 @@
 status: seed
 source: KMK Copenhagen (Nationalmuseet, api.natmus.dk)
-generated_at: '2026-10-22T15:58:59Z'
+generated_at: '2026-10-25T07:23:31Z'
 entity: danish_realm
 scope_note: KMK Copenhagen seed — records from the Royal Coin Cabinet (Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), built directly from the whole-record _source cache 
   (nation-scoped at harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated kept). Mint city → entity via classify_mint_to_entity; realm fallback via classify_nation_to_entity 
   (entity_classified_via records which). Museum-attested fields carry verified=true (weight only — no diameter/fineness). Phase-4 assigns Müntzfuß/phase; cross-source merger deduplicates against 
   Hede/Bruun/Numista/IKMK/etc.
 coins:
+  - id: kmk-299036
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 1 Kobbertserling
+    metal_verified: false
+    mint_verified: false
+    ruler: Erik 7 af Pommern
+    year_first: 1396
+    year_last: 1439
+    year_label: 1396-1439
+    year_ranges:
+      -   - 1396
+          - 1439
+    year_verified: false
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/299036
+        ref: KMM 299036 (Inv. FP 8580.7)
+  - id: kmk-299037
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 1 Kobbertserling
+    metal_verified: false
+    mint_verified: false
+    ruler: Erik 7 af Pommern
+    year_first: 1396
+    year_last: 1439
+    year_label: 1396-1439
+    year_ranges:
+      -   - 1396
+          - 1439
+    year_verified: false
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/299037
+        ref: KMM 299037 (Inv. FP 8580.6)
+  - id: kmk-139318
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: mint
+    nominal: 1 Hvid
+    metal_verified: false
+    mint: Malmø
+    mint_verified: true
+    ruler: Christian 1
+    weight_rough_verified: true
+    catalog:
+      schou: '4'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/139318
+        ref: KMM 139318 (Inv. KP 1715.401)
+    year_label: 1448-1481
+    year_last: 1481
+    year_ranges:
+      -   - 1448
+          - 1481
+    year_first: 1448
+    weight_rough_g: 0.59
+  - id: kmk-150299
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: mint
+    metal_verified: false
+    mint: Visby
+    mint_verified: true
+    ruler: Christian 1
+    weight_rough_verified: true
+    catalog:
+      schou: '130'
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150299
+        ref: KMM 150299 (Inv. KP 1656.14)
+    year_label: 1449-1480
+    year_last: 1480
+    year_ranges:
+      -   - 1449
+          - 1480
+    year_first: 1449
+    nominal: 1 Hvid
+    weight_rough_g: 0.62
+  - id: kmk-589224
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 1 Hvid
+    metal_verified: false
+    mint_verified: false
+    ruler: Hans
+    year_first: 1480
+    year_last: 1513
+    year_label: 1480-1513
+    year_ranges:
+      -   - 1480
+          - 1513
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/589224
+        ref: KMM 589224 (Inv. FP 11593.10)
+  - id: kmk-682885
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    issuing_entity: danish_realm
+    entity_classified_via: nation
+    nominal: 1 Søsling
+    metal_verified: false
+    mint_verified: false
+    year_first: 1480
+    year_last: 1536
+    year_label: 1480-1536
+    year_ranges:
+      -   - 1480
+          - 1536
+    weight_rough_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/682885
+        ref: KMM 682885 (Inv. FP 12133.5)
   - id: kmk-132095
     fuss: seed_unsorted
     phase: kmk
@@ -349511,43 +349652,6 @@ coins:
     catalog:
       others:
         - Bech# 51
-  - id: kmk-139318
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    nominal: 1 Hvid
-    metal_verified: false
-    mint: Malmø
-    mint_verified: true
-    ruler: Christian 1
-    weight_rough_verified: false
-    catalog:
-      schou: '4'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/139318
-        ref: KMM 139318 (Inv. KP 1715.401)
-  - id: kmk-150299
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    issuing_entity: danish_realm
-    entity_classified_via: mint
-    metal_verified: false
-    mint: Visby
-    mint_verified: true
-    ruler: Christian 1
-    weight_rough_verified: false
-    catalog:
-      schou: '130'
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150299
-        ref: KMM 150299 (Inv. KP 1656.14)
   - id: kmk-152032
     fuss: seed_unsorted
     phase: kmk

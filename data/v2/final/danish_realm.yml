@@ -108912,6 +108912,8 @@ coins:
     catalog:
       numista: '287318'
       sieg: '14'
+      galster: '13'
+      galster_volume: galster1972-erik7
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -108920,9 +108922,29 @@ coins:
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.1753
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 65
+      - value: 0.1797
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 64
+      - value: 0.1919
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 62
+      - value: 0.2085
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 59
       - value: 0.232
         source: numista
+      - value: 0.2509
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 53
     weight_rough_g:
+      - value: 1.1
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 62
+      - value: 1.11
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 64
+      - value: 1.11
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 65
+      - value: 1.17
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 53
+      - value: 1.18
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 59
       - value: 1.22
         source: numista
     diameter_mm:
@@ -108930,8 +108952,26 @@ coins:
         source: numista
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/epomg13.htm
+        ref: Galster 13 (epomg) — danskmoent.dk epomg13.htm
+      - type: literature
         url: https://en.numista.com/287318
         ref: Numista N#287318 — Gros - Erik of Pommern (Lund) - Denmark
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 53, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 59, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 62, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 64, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 65, Appendix (XRF)
     note:
       de: 9 Pennings (Rechnungs-Äquivalent)
       en: 9 Pennings (accounting equivalent)
@@ -108940,6 +108980,16 @@ coins:
       - c-913f9b9d
     label: unified-dk-numista-287318
     origin: promoted
+    year_verified: false
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -131126,7 +131176,7 @@ coins:
     catalog:
       schou: '4'
     metal_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     sources:
@@ -131137,6 +131187,9 @@ coins:
       - c-20676b26
     label: unified-kmk-139318
     origin: promoted
+    weight_rough_g:
+      - value: 0.59
+        source: kmk
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -151063,23 +151116,23 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
-    nominal: (?)
+    nominal: 1 Hvid
     ruler: Christian I
     issuing_entity: danish_realm
     year_is_reign_span: true
     id: c-27b95413
-    year_first: 1448
-    year_last: 1481
+    year_first: 1449
+    year_last: 1480
     year_ranges:
-      -   - 1448
-          - 1481
-    year_label: 1448-1481
+      -   - 1449
+          - 1480
+    year_label: 1449-1480
     year_verified: false
     mint: Visby
     catalog:
       schou: '130'
     metal_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     sources:
@@ -151090,6 +151143,9 @@ coins:
       - c-27b95413
     label: unified-kmk-150299
     origin: promoted
+    weight_rough_g:
+      - value: 0.62
+        source: kmk
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -282845,34 +282901,22 @@ coins:
     nominal: 1 Kobbersterling
     ruler: Erik VII
     issuing_entity: danish_realm
-    year_is_reign_span: true
     id: c-01a90515
-    year_first: 1420
-    year_last: 1435
-    year_ranges:
-      -   - 1420
-          - 1435
-    year_label: 1420-1435
+    year_first: 1422
+    year_last: 1422
+    year_label: '1422'
     year_verified: false
-    mint:
-      - Lund
-      - Næstved
-      - Odense
-      - Randers
+    mint: Lund
     catalog:
-      galster:
-        - '7'
-        - '10'
-        - '14'
-        - '15'
+      galster: '10'
+      others:
+        - Fritze Lindahl# 34-41
       galster_volume: galster1972-erik7
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
     fineness:
-      - value: 0.0042
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 43
       - value: 0.0042
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
       - value: 0.0043
@@ -282883,24 +282927,21 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
       - value: 0.0052
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
-      - value: 0.0052
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39
     weight_rough_g:
       - value: 0.56
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
-      - value: 0.72
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39
       - value: 0.84
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
       - value: 0.86
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
-      - value: 0.9
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 43
       - value: 0.91
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
       - value: 1.37
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
     sources:
+      - type: literature
+        url: https://www.danskmoent.dk/epomg10.htm
+        ref: Galster 10 (epomg) — danskmoent.dk epomg10.htm
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38, Appendix (XRF)
@@ -282916,12 +282957,6 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 43, Appendix (XRF)
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
@@ -282935,24 +282970,28 @@ coins:
       - c-01a90515
     label: unified-metallanalyser-2016-1-g10-lund-kopparsterling
     origin: promoted
+    metal: silver
+    metal_verified: true
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
     nominal: 1 Søsling
-    ruler: Erik VII
+    ruler: Erik VII of Pomerania
     issuing_entity: danish_realm
     year_is_reign_span: true
     id: c-713b1d5b
-    year_first: 1396
-    year_last: 1439
-    year_ranges:
-      -   - 1396
-          - 1439
-    year_label: 1396-1439
+    year_first: 1424
+    year_last: 1424
+    year_label: '1424'
     year_verified: false
     mint: Lund
     catalog:
+      sieg: '13.1'
+      bruun_collection_id: '3712'
       galster: '11'
+      others:
+        - FL# 59
+      jesse: '484'
       galster_volume: galster1972-erik7
     fineness_verified: true
     weight_rough_verified: true
@@ -282972,7 +283011,12 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 45
       - value: 1.29
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 46
+      - value: 1.37
+        source: bruun
     sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11145, p. 60
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 45, Appendix (XRF)
@@ -282995,6 +283039,8 @@ coins:
       - c-713b1d5b
     label: unified-metallanalyser-2016-1-g11-lund-sosling
     origin: promoted
+    metal: billon
+    metal_verified: true
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -283071,91 +283117,16 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
-    nominal: 1 Gros
+    nominal: 1 Gros (9 Penning)
     ruler: Erik VII
     issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-bcc09e1d
-    year_first: 1396
-    year_last: 1439
-    year_ranges:
-      -   - 1396
-          - 1439
-    year_label: 1396-1439
-    year_verified: false
-    mint: Lund
-    catalog:
-      galster: '13'
-      galster_volume: galster1972-erik7
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.1753
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 65
-      - value: 0.1797
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 64
-      - value: 0.1919
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 62
-      - value: 0.2085
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 59
-      - value: 0.2509
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 53
-    weight_rough_g:
-      - value: 1.1
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 62
-      - value: 1.11
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 64
-      - value: 1.11
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 65
-      - value: 1.17
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 53
-      - value: 1.18
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 59
-    sources:
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 53, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 59, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 62, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 64, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 65, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    composed_of:
-      - c-bcc09e1d
-    label: unified-metallanalyser-2016-1-g13-lund-gros
-    origin: promoted
-  - fuss: luebischer_muenzfuss
-    phase: '0'
-    kind: kurant
-    nominal: 1 Gros
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    year_is_reign_span: true
     id: c-cefeec5b
-    year_first: 1396
+    year_first: 1430
     year_last: 1439
     year_ranges:
-      -   - 1396
+      -   - 1430
           - 1439
-    year_label: 1396-1439
+    year_label: 1430-1439
     year_verified: false
     mint: Gurre
     catalog:
@@ -283209,6 +283180,9 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 57
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/epomg16.htm
+        ref: Galster 16 (epomg) — danskmoent.dk epomg16.htm
+      - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 52, Appendix (XRF)
       - type: literature
@@ -283251,20 +283225,30 @@ coins:
       - c-cefeec5b
     label: unified-metallanalyser-2016-1-g16-gurre-gros
     origin: promoted
+    metal: billon
+    weight_range_g:
+      - min: 1.5
+        max: 1.6
+        approx: true
+        source: danskmoent.dk gros.htm
+        url: https://www.danskmoent.dk/gif/epom_gurre.gif
+    diameter_mm:
+      - value: 22.0
+        source: danskmoent.dk gros.htm
+    metal_verified: true
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
     nominal: 1 Søsling
     ruler: Christoffer III
     issuing_entity: danish_realm
-    year_is_reign_span: true
     id: c-862e32aa
     year_first: 1440
-    year_last: 1448
+    year_last: 1442
     year_ranges:
       -   - 1440
-          - 1448
-    year_label: 1440-1448
+          - 1442
+    year_label: 1440-1442
     year_verified: false
     mint: Lund
     catalog:
@@ -283282,6 +283266,9 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 73
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/bajg17.htm
+        ref: Galster 17 (bajg) — danskmoent.dk bajg17.htm
+      - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 73, Appendix (XRF)
     verification_note:
@@ -283297,20 +283284,21 @@ coins:
       - c-862e32aa
     label: unified-metallanalyser-2016-1-g17-lund-sosling
     origin: promoted
+    metal: billon
+    metal_verified: true
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
     nominal: 1 Skilling
     ruler: Christoffer III
     issuing_entity: danish_realm
-    year_is_reign_span: true
     id: c-54480815
     year_first: 1440
-    year_last: 1448
+    year_last: 1442
     year_ranges:
       -   - 1440
-          - 1448
-    year_label: 1440-1448
+          - 1442
+    year_label: 1440-1442
     year_verified: false
     mint: Lund
     catalog:
@@ -283361,6 +283349,9 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 71
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/bajg18.htm
+        ref: Galster 18 (bajg) — danskmoent.dk bajg18.htm
+      - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 67, Appendix (XRF)
       - type: literature
@@ -283391,6 +283382,8 @@ coins:
       - c-54480815
     label: unified-metallanalyser-2016-1-g18-lund-skilling
     origin: promoted
+    metal: billon
+    metal_verified: true
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -283409,6 +283402,7 @@ coins:
     mint: Malmø
     catalog:
       galster: '19'
+      sieg: '1'
       galster_volume: galster1972-christoffer3
     fineness_verified: true
     weight_rough_verified: true
@@ -283430,9 +283424,14 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 76
       - value: 0.65
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 74
+      - value: 0.67
+        source: galster
       - value: 0.71
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 75
     sources:
+      - type: literature
+        url: https://www.danskmoent.dk/bajg19.htm
+        ref: Galster 19 (bajg) — danskmoent.dk bajg19.htm
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 74, Appendix (XRF); Treklöver
@@ -283458,20 +283457,18 @@ coins:
       - c-a4e8afcd
     label: unified-metallanalyser-2016-1-g19-malmo-sterling
     origin: promoted
+    metal: silver
+    metal_verified: true
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
     nominal: 1 Hvid
     ruler: Erik VII
     issuing_entity: danish_realm
-    year_is_reign_span: true
     id: c-11a2b578
-    year_first: 1396
-    year_last: 1439
-    year_ranges:
-      -   - 1396
-          - 1439
-    year_label: 1396-1439
+    year_first: 1424
+    year_last: 1424
+    year_label: '1424'
     year_verified: false
     mint: Næstved
     catalog:
@@ -283494,6 +283491,9 @@ coins:
             er ikke angivet.
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/epomg2.htm
+        ref: Galster 2 (epomg) — danskmoent.dk epomg2.htm
+      - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 1, Appendix (XRF)
     verification_note:
@@ -283509,6 +283509,7 @@ coins:
       - c-11a2b578
     label: unified-metallanalyser-2016-1-g2-nastved-hvid
     origin: promoted
+    metal: billon
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -283527,6 +283528,7 @@ coins:
     mint: Malmø
     catalog:
       galster: '20'
+      sieg: '2'
       galster_volume: galster1972-christoffer3
     fineness_verified: true
     weight_rough_verified: true
@@ -283716,6 +283718,8 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 113
       - value: 0.79
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 80
+      - value: 0.79
+        source: galster
       - value: 0.8
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 118
       - value: 0.8
@@ -283803,6 +283807,9 @@ coins:
       - value: 1.06
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 86
     sources:
+      - type: literature
+        url: https://www.danskmoent.dk/bajg20.htm
+        ref: Galster 20 (bajg) — danskmoent.dk bajg20.htm
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 78, Appendix (XRF); DSN
@@ -284017,6 +284024,8 @@ coins:
       - c-df58ec36
     label: unified-metallanalyser-2016-1-g20-malmo-hvid
     origin: promoted
+    metal: billon
+    metal_verified: true
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -284066,17 +284075,16 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
-    nominal: 1 Sterling
+    nominal: 1 Sterling (3 Penning)
     ruler: Erik VII
     issuing_entity: danish_realm
-    year_is_reign_span: true
     id: c-c5d732b6
-    year_first: 1396
-    year_last: 1439
+    year_first: 1403
+    year_last: 1412
     year_ranges:
-      -   - 1396
-          - 1439
-    year_label: 1396-1439
+      -   - 1403
+          - 1412
+    year_label: 1403-1412
     year_verified: false
     mint: Næstved
     catalog:
@@ -284087,6 +284095,8 @@ coins:
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.606
+        source: galster
       - value: 0.6591
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 15
       - value: 0.6733
@@ -284121,6 +284131,9 @@ coins:
       - value: 0.72
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 4
     sources:
+      - type: literature
+        url: https://www.danskmoent.dk/epomg4.htm
+        ref: Galster 4 (epomg) — danskmoent.dk epomg4.htm
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 3, Appendix (XRF); Stjärna
@@ -284158,6 +284171,8 @@ coins:
       - c-c5d732b6
     label: unified-metallanalyser-2016-1-g4-nastved-sterling
     origin: promoted
+    metal: billon
+    metal_verified: true
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -284429,17 +284444,16 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
-    nominal: 1 Sterling
+    nominal: 1 Sterling (3 Penning)
     ruler: Erik VII
     issuing_entity: danish_realm
-    year_is_reign_span: true
     id: c-3f22c79f
-    year_first: 1396
-    year_last: 1439
+    year_first: 1413
+    year_last: 1420
     year_ranges:
-      -   - 1396
-          - 1439
-    year_label: 1396-1439
+      -   - 1413
+          - 1420
+    year_label: 1413-1420
     year_verified: false
     mint: Lund
     catalog:
@@ -284450,6 +284464,8 @@ coins:
     mint_verified: true
     verified: false
     fineness:
+      - value: 0.5
+        source: galster
       - value: 0.5202
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22
       - value: 0.5215
@@ -284510,6 +284526,9 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 16
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/epomg9.htm
+        ref: Galster 9 (epomg) — danskmoent.dk epomg9.htm
+      - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 2, Appendix (XRF); Ros
       - type: literature
@@ -284561,6 +284580,8 @@ coins:
       - c-3f22c79f
     label: unified-metallanalyser-2016-1-g9-lund-sterling
     origin: promoted
+    metal: billon
+    metal_verified: true
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -284796,6 +284817,706 @@ coins:
     composed_of:
       - c-43ceeeff-2
     label: unified-kmk-317652
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Witten
+    ruler: Erik VII of Pomerania
+    issuing_entity: danish_realm
+    id: c-cd2c0b3c
+    year_first: 1400
+    year_last: 1400
+    year_label: '1400'
+    year_verified: false
+    mint: Næstved
+    catalog:
+      sieg: '11'
+      bruun_collection_id: '3725'
+      galster: '2'
+      others:
+        - FL# 2
+      jesse: '694'
+    metal: silver
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.09
+        source: bruun
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11146, p. 60
+    composed_of:
+      - c-cd2c0b3c
+    label: unified-dk-bruun-3725
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Sterling
+    ruler: Christopher III of Bavaria
+    mintmaster: Hans Myndel
+    issuing_entity: danish_realm
+    id: c-38685a70
+    year_first: 1440
+    year_last: 1448
+    year_ranges:
+      -   - 1440
+          - 1448
+    year_label: 1440-1448
+    year_verified: false
+    mint: Malmø
+    catalog:
+      sieg: '1.1'
+      bruun_collection_id: '3757'
+      galster: 19a
+      others:
+        - FL# 17
+      jesse: '704'
+    metal: silver
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.65
+        source: bruun
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11147, p. 61
+    composed_of:
+      - c-38685a70
+    label: unified-dk-bruun-3757
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Skilling
+    ruler: Christopher III of Bavaria
+    issuing_entity: danish_realm
+    id: c-f24f5875
+    year_first: 1440
+    year_last: 1442
+    year_ranges:
+      -   - 1440
+          - 1442
+    year_label: 1440-1442
+    year_verified: false
+    mint: Lund
+    catalog:
+      sieg: '4'
+      bruun_collection_id: '3763'
+      galster: '18'
+      others:
+        - FL# 11
+      jesse: '705'
+    metal: billon
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.87
+        source: bruun
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11148, p. 61
+    composed_of:
+      - c-f24f5875
+    label: unified-dk-bruun-3763
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 1 Skilling
+    ruler: Rigsrådet
+    issuing_entity: danish_realm
+    id: c-202d275b
+    year_first: 1448
+    year_last: 1448
+    year_label: '1448'
+    year_verified: false
+    mint: Malmø
+    catalog:
+      sieg: '1'
+      bruun_collection_id: '3777'
+      schou: '4'
+      galster: '21'
+    metal: billon
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 2.1
+        source: bruun
+    diameter_mm:
+      - value: 25.0
+        source: danskmoent.dk rigsraad.htm
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11149, p. 61
+      - type: literature
+        url: https://www.danskmoent.dk/rigsraad.htm
+        ref: Galster 21 — danskmoent.dk rigsraad.htm
+    composed_of:
+      - c-202d275b
+    label: unified-dk-bruun-3777
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Christian I
+    issuing_entity: danish_realm
+    year_is_reign_span: true
+    id: c-8443f8c8
+    year_first: 1448
+    year_last: 1481
+    year_ranges:
+      -   - 1448
+          - 1481
+    year_label: 1448-1481
+    year_verified: false
+    mint: Malmø
+    catalog:
+      galster: 23A-D
+      galster_volume: c1g
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/c1g23.htm
+        ref: Galster 23 (c1g) — danskmoent.dk c1g23.htm
+    composed_of:
+      - c-8443f8c8
+    label: unified-dk-galster-c1g-23
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Kobbersterling
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    id: c-18a36b28
+    year_first: 1422
+    year_last: 1422
+    year_label: '1422'
+    year_verified: false
+    mint: Odense
+    catalog:
+      galster: '14'
+      galster_volume: galster1972-erik7
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/epomg14.htm
+        ref: Galster 14 (epomg) — danskmoent.dk epomg14.htm
+    composed_of:
+      - c-18a36b28
+    label: unified-dk-galster-epomg-14
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Kobbersterling
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    id: c-6f18dcfc
+    year_first: 1422
+    year_last: 1422
+    year_label: '1422'
+    year_verified: false
+    mint: Randers
+    catalog:
+      galster: '15'
+      others:
+        - Fritze Lindahl# 54-58
+      galster_volume: galster1972-erik7
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/epomg15.htm
+        ref: Galster 15 (epomg) — danskmoent.dk epomg15.htm
+    composed_of:
+      - c-6f18dcfc
+    label: unified-dk-galster-epomg-15
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    id: c-e1012e0e
+    year_first: 1424
+    year_last: 1424
+    year_label: '1424'
+    year_verified: false
+    mint: Næstved
+    catalog:
+      galster: '3'
+      galster_volume: galster1972-erik7
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/epomg3.htm
+        ref: Galster 3 (epomg) — danskmoent.dk epomg3.htm
+    composed_of:
+      - c-e1012e0e
+    label: unified-dk-galster-epomg-3
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hulpenning
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    id: c-2035f4fa
+    year_first: 1400
+    year_last: 1420
+    year_ranges:
+      -   - 1400
+          - 1420
+    year_label: 1400-1420
+    year_verified: false
+    mint:
+      - Lund
+      - Næstved
+    catalog:
+      galster: '5'
+      galster_volume: galster1972-erik7
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/epomg5.htm
+        ref: Galster 5 (epomg) — danskmoent.dk epomg5.htm
+    composed_of:
+      - c-2035f4fa
+    label: unified-dk-galster-epomg-5
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Kobbersterling
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    id: c-9c9cf144
+    year_first: 1422
+    year_last: 1422
+    year_label: '1422'
+    year_verified: false
+    mint: Næstved
+    catalog:
+      galster: '7'
+      others:
+        - Fritze Lindahl# 42-49
+      galster_volume: galster1972-erik7
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/epomg7.htm
+        ref: Galster 7 (epomg) — danskmoent.dk epomg7.htm
+    composed_of:
+      - c-9c9cf144
+    label: unified-dk-galster-epomg-7
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Gote
+    issuing_entity: danish_realm
+    id: c-3a4c6dbd
+    year_first: 1380
+    year_last: 1420
+    year_ranges:
+      -   - 1380
+          - 1420
+    year_label: 1380-1420
+    year_verified: false
+    mint: Visby
+    catalog:
+      galster: '135'
+      others:
+        - Hauberg# 33-46
+      galster_volume: hg
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/gotlg135.htm
+        ref: Galster 135 (hg) — danskmoent.dk gotlg135.htm
+    composed_of:
+      - c-3a4c6dbd
+    label: unified-dk-galster-hg-135
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Gote
+    issuing_entity: danish_realm
+    id: c-a979b251
+    year_first: 1420
+    year_last: 1440
+    year_ranges:
+      -   - 1420
+          - 1440
+    year_label: 1420-1440
+    year_verified: false
+    mint: Visby
+    catalog:
+      galster: '136'
+      others:
+        - Hauberg# 47-80
+      galster_volume: hg
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/gotlg136.htm
+        ref: Galster 136 (hg) — danskmoent.dk gotlg136.htm
+    composed_of:
+      - c-a979b251
+    label: unified-dk-galster-hg-136
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hulpenning
+    issuing_entity: danish_realm
+    id: c-87275be0
+    year_first: 1400
+    year_last: 1499
+    year_ranges:
+      -   - 1400
+          - 1499
+    year_label: 1400-1499
+    year_verified: false
+    mint: Visby
+    catalog:
+      galster: '137'
+      others:
+        - Lagerqvist# 2a-e
+      galster_volume: hg
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/gotlg137.htm
+        ref: Galster 137 (hg) — danskmoent.dk gotlg137.htm
+    composed_of:
+      - c-87275be0
+    label: unified-dk-galster-hg-137
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Gote
+    issuing_entity: danish_realm
+    id: c-65aab3fb
+    year_first: 1448
+    year_last: 1448
+    year_label: '1448'
+    year_verified: false
+    mint: Visby
+    catalog:
+      galster: '138'
+      others:
+        - Hauberg# 14
+      galster_volume: hg
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/gotlg138.htm
+        ref: Galster 138 (hg) — danskmoent.dk gotlg138.htm
+    composed_of:
+      - c-65aab3fb
+    label: unified-dk-galster-hg-138
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Gote
+    ruler: Christian I
+    issuing_entity: danish_realm
+    year_is_reign_span: true
+    id: c-d8764e2c
+    year_first: 1448
+    year_last: 1481
+    year_ranges:
+      -   - 1448
+          - 1481
+    year_label: 1448-1481
+    year_verified: false
+    mint: Visby
+    catalog:
+      galster: '139'
+      schou: 100-132
+      galster_volume: hg
+      others:
+        - Hauberg# 85-101
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_range_g:
+      - min: 0.55
+        max: 0.87
+        approx: false
+        source: danskmoent.dk gotlg139.htm
+        url: https://www.danskmoent.dk/gif/gotc1_g139.gif
+    diameter_mm:
+      - value: 16.5
+        source: danskmoent.dk gotlg139.htm
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/gotlg139.htm
+        ref: Galster 139 (hg) — danskmoent.dk gotlg139.htm
+    composed_of:
+      - c-d8764e2c
+    label: unified-dk-galster-hg-139
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Gote
+    ruler: Christian I
+    issuing_entity: danish_realm
+    year_is_reign_span: true
+    id: c-367725f4
+    year_first: 1448
+    year_last: 1481
+    year_ranges:
+      -   - 1448
+          - 1481
+    year_label: 1448-1481
+    year_verified: false
+    mint: Visby
+    catalog:
+      galster: '140'
+      others:
+        - Hauberg# 109-113
+      galster_volume: hg
+    metal: silver
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_range_g:
+      - min: 0.75
+        max: 0.8
+        approx: false
+        source: danskmoent.dk gotlg140.htm
+        url: https://www.danskmoent.dk/gif/gotc1_g140.gif
+    diameter_mm:
+      - value: 16.0
+        source: danskmoent.dk gotlg140.htm
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/gotlg140.htm
+        ref: Galster 140 (hg) — danskmoent.dk gotlg140.htm
+    composed_of:
+      - c-367725f4
+    label: unified-dk-galster-hg-140
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Margrethe I
+    issuing_entity: danish_realm
+    id: c-a65a2415
+    year_first: 1380
+    year_last: 1380
+    year_label: '1380'
+    year_verified: false
+    mint: Ribe
+    catalog:
+      galster: '1'
+      galster_volume: galster1972-margrethe1
+    metal: billon
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    weight_range_g:
+      - min: 1.19
+        max:
+        approx: true
+        source: danskmoent.dk ernst/ribeaxe1.htm
+        url: https://www.danskmoent.dk/gif/m1g1.gif
+    diameter_mm:
+      - value: 18.0
+        source: danskmoent.dk ernst/ribeaxe1.htm
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/m1g1.htm
+        ref: Galster 1 (m1g) — danskmoent.dk m1g1.htm
+    composed_of:
+      - c-a65a2415
+    label: unified-dk-galster-m1g-1
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Sterling
+    ruler: Erich von Pommern
+    issuing_entity: danish_realm
+    id: c-d5631196
+    year_first: 1405
+    year_last: 1420
+    year_ranges:
+      -   - 1405
+          - 1420
+    year_label: 1405-1420
+    mint: Lund
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.67
+        source: ikmk
+    diameter_mm:
+      - value: 16.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18206588
+        ref: IKMK Berlin 18206588
+    inscription_obv: ERICVS REX D S N
+    inscription_rev: MONETA LVNDENSI
+    note:
+      de: Engelsk
+      en: Engelsk
+      uk: Engelsk
+      da: Engelsk
+    composed_of:
+      - c-d5631196
+    label: unified-ikmk-18206588
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Schilling
+    ruler: Christoph von Bayern
+    issuing_entity: danish_realm
+    id: c-1d0195c8
+    year_first: 1440
+    year_last: 1442
+    year_ranges:
+      -   - 1440
+          - 1442
+    year_label: 1440-1442
+    mint: Kopenhagen
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 2.38
+        source: ikmk
+    diameter_mm:
+      - value: 24.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18206589
+        ref: IKMK Berlin 18206589
+    inscription_obv: CRISTOFER D G REX DACI
+    inscription_rev: GLORIA IN EXCELSIS DEO
+    composed_of:
+      - c-1d0195c8
+    label: unified-ikmk-18206589
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1 Witten
+    ruler: Christian I
+    issuing_entity: danish_realm
+    year_is_reign_span: true
+    id: c-8b8d368f
+    year_first: 1448
+    year_last: 1481
+    year_ranges:
+      -   - 1448
+          - 1481
+    year_label: 1448-1481
+    year_verified: false
+    mint: Malmø
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.72
+        source: ikmk
+    diameter_mm:
+      - value: 17.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18206590
+        ref: IKMK Berlin 18206590
+    inscription_obv: CRISTIERN REX D
+    inscription_rev: MON-MAL-MOI-ENS
+    composed_of:
+      - c-8b8d368f
+    label: unified-ikmk-18206590
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -285149,6 +285870,60 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
+    nominal: 1 Kobbertserling
+    ruler: Erik 7 af Pommern
+    issuing_entity: danish_realm
+    year_is_reign_span: true
+    id: c-7adec28c
+    year_first: 1396
+    year_last: 1439
+    year_ranges:
+      -   - 1396
+          - 1439
+    year_label: 1396-1439
+    year_verified: false
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/299036
+        ref: KMM 299036 (Inv. FP 8580.7)
+    composed_of:
+      - c-7adec28c
+    label: unified-kmk-299036
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Kobbertserling
+    ruler: Erik 7 af Pommern
+    issuing_entity: danish_realm
+    year_is_reign_span: true
+    id: c-81eb6daa
+    year_first: 1396
+    year_last: 1439
+    year_ranges:
+      -   - 1396
+          - 1439
+    year_label: 1396-1439
+    year_verified: false
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/299037
+        ref: KMM 299037 (Inv. FP 8580.6)
+    composed_of:
+      - c-81eb6daa
+    label: unified-kmk-299037
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
     nominal: 1 Hvid
     ruler: Christian 4
     issuing_entity: danish_realm
@@ -285176,6 +285951,55 @@ coins:
     composed_of:
       - c-ff4843d8
     label: unified-kmk-352760
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    issuing_entity: danish_realm
+    id: c-c572f267
+    year_first: 1480
+    year_last: 1513
+    year_ranges:
+      -   - 1480
+          - 1513
+    year_label: 1480-1513
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/589224
+        ref: KMM 589224 (Inv. FP 11593.10)
+    composed_of:
+      - c-c572f267
+    label: unified-kmk-589224
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Søsling
+    issuing_entity: danish_realm
+    id: c-4f7b80c4
+    year_first: 1480
+    year_last: 1536
+    year_ranges:
+      -   - 1480
+          - 1536
+    year_label: 1480-1536
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/682885
+        ref: KMM 682885 (Inv. FP 12133.5)
+    composed_of:
+      - c-4f7b80c4
+    label: unified-kmk-682885
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -285536,6 +286360,67 @@ coins:
     composed_of:
       - c-632645aa
     label: unified-kmk-78534
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: metallanalyser
+    kind: kurant
+    nominal: 1 Kobbersterling
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    year_is_reign_span: true
+    id: c-0b5c934a
+    year_first: 1420
+    year_last: 1435
+    year_ranges:
+      -   - 1420
+          - 1435
+    year_label: 1420-1435
+    year_verified: false
+    mint:
+      - Lund
+      - Næstved
+      - Odense
+      - Randers
+    catalog:
+      galster:
+        - '7'
+        - '10'
+        - '14'
+        - '15'
+      galster_volume: galster1972-erik7
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.0042
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 43
+      - value: 0.0052
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39
+    weight_rough_g:
+      - value: 0.72
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39
+      - value: 0.9
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 43
+    sources:
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 43, Appendix (XRF)
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
+    composed_of:
+      - c-0b5c934a
+    label: unified-metallanalyser-2016-1-g7-10-14-15-nastved-lund-odense-randers-kopparsterling
     origin: promoted
   - id: unified-kmk-463985
     label: unified-kmk-463985

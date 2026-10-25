@@ -16,6 +16,42 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-25 — Lybsk Møntfod data from c. 1370 (Galster 1); `ship/rebuild-3-fuss` merged
+
+- **Merged** `ship/rebuild-3-fuss` into main (fast-forward, 72 commits) on the
+  curator's «так»; `verify_reflow` 0 losses after it. `rebuild-from-members`
+  merged (`4bd8e78`), its worktree and branch removed (session archived).
+  Not pushed.
+- **Scope** (curator): every Danish coin on the Lübeck system from the Ribe
+  hvid c. 1380 (Galster 1) — Danish only, plus the lands ruled with Denmark
+  (Norway, Schleswig, Holstein from 1460; vassals count). Floor 1370.
+- **Done**: Galster harvest of the Union kings before Hans (`9e0aecc`, cache
+  `07809ff6a`, `8e2b17b9f`), Bruun / IKMK / KMM builder floors 1370
+  (`e57462f`), decade-prose fix (`bdb76f7`). New in the seed: 24 Galster +
+  6 Bruun + 3 IKMK + 4 KMM records for the Danish pages; 14 union ørtug in
+  `sweden` (not rendered). Numista has nothing more (12 types 1396-1448,
+  all seeded). Source survey: SOURCES §13.27.
+- **Curator merge 2026-10-25**: Numista 287318 = Galster 13 (merge_decisions).
+- **Curator split 2026-10-25**: Kobbersterling G 7 / 10 / 14 / 15 are four
+  types (no_merges ×14); Heljeback Nr 39/43 («7/10/14/15») stand alone in
+  seed_unsorted (declassify recorded). G 7 / 14 / 15 are new seed_unsorted
+  finals; whether they belong to Lybsk: dossier §3.11 (yes as tiers of the
+  set, but copper → `scheide`, not `kurant`; Hauberg «1 Penning» vs Märcher
+  «3 Penninge» ⚠). Numista 348708 (Næstved) and 476049 (Odense) stay
+  separate phase-0 finals beside G 7 / G 14 — merge tables pending.
+- **Open**: (1) KMM union-era harvest — ~15-17k objects via
+  `api/Objectbrowse` (comma = AND), mostly unnumbered hoard kobbersterlinge;
+  needs a rådata → seed path in `build_kmk_seed.py`; curator to choose
+  full / typed-only / later. (2) Galster 134 (Visby gote 1320-1380) stays
+  out by year_first < 1370 — ask. (4) New pre-1481 finals are in
+  `seed_unsorted`; Bruun G 2 / 18 / 19a and the IKMK records did not join
+  their Galster classes (nominal «Witten» vs «Hvid» etc.) — merge tables
+  pending. (5) `kind` of Gros G 13 / G 16 and the Kobbersterlinge (kurant →
+  scheide?) — dossier §3.11; the Gros comparison with 9 Lübeck Pf of the
+  1430s not yet computed. (6) Hauberg 1886
+  «3 Lod 10 Gren» printed for both the gros and the crown bracteates — check
+  the scan.
+
 ## 2026-10-24 — branch `rebuild-from-members`: three Fuß rebuilt; shared cache moved ahead of main
 
 - **2026-10-25: ready for main, not merged, not pushed.** Shipping branch

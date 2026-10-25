@@ -2309,3 +2309,54 @@ as one (curator 2026-10-21, CONVENTIONS §Ranges). The caption diameter becomes
 one `diameter_mm` reading (source «danskmoent.dk <page>») only where the coin
 has no diameter — rows of classes that already have one carry
 `diameter_use: false` (curator 2026-10-21).
+
+### 13.27 Danish coins before 1481 — which source has them (2026-10-25)
+
+Measured when the Lybsk Møntfod was extended back to Galster 1 (Ribe hvid,
+c. 1380). Earlier harvests and seed builders stopped at 1481 (Galster, Bruun,
+IKMK, KMM) or 1514 (Hede, NumisMaster, ucoin), so «not in the seed» did not
+mean «not in the source».
+
+- **danskmoent Galster** — the Union kings before Hans have their own reign
+  pages (`m1.htm`, `erikpomm.htm`, `bajern.htm`, `c1.htm`; there is no
+  `margrete.htm`) linking coin pages `m1g1`, `epomg2–16`, `bajg17–20`,
+  `c1g23`, Swedish `spomg195–202`, `sbajg203/205`, `sc1g215`, Finnish
+  `fbajg207`, and Gotland `gotlg134–138`. Harvested 2026-10-25. Header
+  shapes differ from the Hans era: «## Erik af Pommern» + type on the next
+  line; m1g1 «Margrethe 1.» title + «## Hvid, Ribe, ca. 1380»; «u. år
+  (1440-1442)»; «1400-tallet». The literature list names places as authors
+  («Flensborg, Peter:») — never read a mint from it.
+- **Numista** — complete for this window: an API search (issuer `danemark`,
+  q = rulers and denominations, 27 calls) returns the same 12 Danish types
+  from 1396 to 1448 already cached; everything else it holds is pre-1340.
+  The API's `year` parameter does nothing; `date` and `q` do.
+- **Bruun** (parts I–V) — six lots 1380–1448 (Erik VII, Christopher III,
+  the 1448 Rigsråd skilling, Olav IV's Norwegian penny). Bruun writes «Erik
+  VII of Pomerania» — «of» is a name particle for the ruler slot.
+- **IKMK Berlin** — three Danish records 1405–1448; the discovery queries
+  never asked for the Union kings by name.
+- **NGC, NumisMaster, Hede** — nothing: their Danish ranges start 1591 /
+  1591 / 1541.
+- **KMM (Nationalmuseet)** — the largest holding and not harvested: the ES
+  endpoint is gone (§13.14; on 2026-10-25 it serves an Azure certificate for
+  `*.azurewebsites.net`). Enumeration works through the web app's JSON
+  `samlinger.natmus.dk/api/Objectbrowse?collection=KMM&keyword=<t1>,<t2>&size=N&from=K`
+  — the §13.14 syntax holds for the API too: terms are ANDed with a COMMA, a
+  space-separated phrase is matched loosely. Counts on 2026-10-25:
+  «Pommern,Danmark» 14 572, «Christoffer,Bajern» 17 (vs «Christoffer,Bayern»
+  190), «Rigsrådet» 311, «Valdemar,Atterdag» 221, «Ribe,hvid» 19,
+  «kobbersterling,Danmark» 9 730. A random sample of «Pommern,Danmark» gave
+  Erik VII kobbersterlinge with no type number in the rådata — find material.
+  Rapid requests got «Connection refused» once; keep ≥ 0.6 s between calls.
+  The builder seeds only ES-cached objects, so a web-only harvest also needs a
+  rådata → seed path.
+- **Hauberg 1886** («Danmarks Myntvæsen i Tidsrummet 1377–1481», Aarbøger
+  1886 s. 135–189, cached under `danskmoent/hans_1481_1513/`) — a narrative
+  per ruler with 25 figure types («Fig. N»: denomination + its penning value,
+  a weight «V. 0,76 Gr.», obverse / reverse, legend variants, find-spots
+  with counts) and a register of 40 hoards. No catalogue number beyond the
+  figure; fineness only in the prose («4 Lod 15 Gren lødige»); the OCR of the
+  legends is unusable and several figure headings are lost (Fig. 7–9, 11–15,
+  18–19). It covers the Flensborg wittens of the Holstein counts (Fig. 1–2)
+  and a Ribe witten (Fig. 5, «MONETA RIPENS» — the legend of Galster 1; that
+  the two are one type is our reading, stated by neither source).

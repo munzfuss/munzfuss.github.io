@@ -1797,7 +1797,54 @@ merges:
       II tagged Schou 31 with material «kobber» (no weight, no photo) form one
       class of their own, apart from the Galster 42 class (their verified
       copper conflicts with its silver/billon). eriksson_2017_assays.md §10.
+  - members:
+      - dk-galster-epomg-13     # danskmoent epomg13, Galster 13, Erik af Pommern, Gros (9 penning), Lund
+      - metallanalyser-2016-1-g13-lund-gros   # Heljeback 2016:1, G 13, Lund, gros (5 XRF rows)
+      - dk-numista-287318       # N#287318, Gros - Erik of Pommern (Lund), 1430-1439, Sieg E7-14
+    reason: |
+      Curator decision 2026-10-25 (Serhii, explicit: «зливай, це одна
+      монета»): Numista 287318 is the Galster 13 coin. No catalogue key links
+      them (Numista prints only Sieg E7-14, Galster / Heljeback only G 13);
+      the match is ruler + nominal + mint + date — Erik VII's only Lund gros
+      (Gurre is Galster 16). The re-flow of 2026-10-25 had joined them
+      automatically; this entry keeps the union when a matcher change would
+      separate them.
 no_merges:
+  # Erik VII Kobbersterling, c. 1422: Galster 7 (Næstved), 10 (Lund), 14
+  # (Odense), 15 (Randers) are four types — Galster and Fritze Lindahl 1955
+  # number them apart (FL 42-49 / 34-41 / 50-53 / 54-58) and no catalogue
+  # unites them (curator 2026-10-25, «так»). Heljeback 2016:1 Nr 39 and 43,
+  # printed «Næstved/Lund/Odense/Randers», «7/10/14/15», are specimens the
+  # author could not attribute: they stand alone (seed_unsorted) and must not
+  # bridge the four types (§4 — an unsettled attribution unites nothing).
+  - members: [dk-galster-epomg-7, dk-galster-epomg-10]
+    reason: 'Erik VII Kobbersterling: G7 vs G10 (curator 2026-10-25).'
+  - members: [dk-galster-epomg-7, metallanalyser-2016-1-g10-lund-kopparsterling]
+    reason: 'Erik VII Kobbersterling: G7 vs G10 (curator 2026-10-25).'
+  - members: [dk-galster-epomg-7, dk-galster-epomg-14]
+    reason: 'Erik VII Kobbersterling: G7 vs G14 (curator 2026-10-25).'
+  - members: [dk-galster-epomg-7, dk-galster-epomg-15]
+    reason: 'Erik VII Kobbersterling: G7 vs G15 (curator 2026-10-25).'
+  - members: [dk-galster-epomg-7, metallanalyser-2016-1-g7-10-14-15-nastved-lund-odense-randers-kopparsterling]
+    reason: 'Erik VII Kobbersterling: G7 vs Heljeback Nr 39/43 (curator 2026-10-25).'
+  - members: [dk-galster-epomg-10, dk-galster-epomg-14]
+    reason: 'Erik VII Kobbersterling: G10 vs G14 (curator 2026-10-25).'
+  - members: [metallanalyser-2016-1-g10-lund-kopparsterling, dk-galster-epomg-14]
+    reason: 'Erik VII Kobbersterling: G10 vs G14 (curator 2026-10-25).'
+  - members: [dk-galster-epomg-10, dk-galster-epomg-15]
+    reason: 'Erik VII Kobbersterling: G10 vs G15 (curator 2026-10-25).'
+  - members: [metallanalyser-2016-1-g10-lund-kopparsterling, dk-galster-epomg-15]
+    reason: 'Erik VII Kobbersterling: G10 vs G15 (curator 2026-10-25).'
+  - members: [dk-galster-epomg-10, metallanalyser-2016-1-g7-10-14-15-nastved-lund-odense-randers-kopparsterling]
+    reason: 'Erik VII Kobbersterling: G10 vs Heljeback Nr 39/43 (curator 2026-10-25).'
+  - members: [metallanalyser-2016-1-g10-lund-kopparsterling, metallanalyser-2016-1-g7-10-14-15-nastved-lund-odense-randers-kopparsterling]
+    reason: 'Erik VII Kobbersterling: G10 vs Heljeback Nr 39/43 (curator 2026-10-25).'
+  - members: [dk-galster-epomg-14, dk-galster-epomg-15]
+    reason: 'Erik VII Kobbersterling: G14 vs G15 (curator 2026-10-25).'
+  - members: [dk-galster-epomg-14, metallanalyser-2016-1-g7-10-14-15-nastved-lund-odense-randers-kopparsterling]
+    reason: 'Erik VII Kobbersterling: G14 vs Heljeback Nr 39/43 (curator 2026-10-25).'
+  - members: [dk-galster-epomg-15, metallanalyser-2016-1-g7-10-14-15-nastved-lund-odense-randers-kopparsterling]
+    reason: 'Erik VII Kobbersterling: G15 vs Heljeback Nr 39/43 (curator 2026-10-25).'
   # ½ Dukat 1647 «Brilledukat»: Hede 38 (crowned C4 monogram, Krause KM 151,
   # Schou 5) and Hede 40 (king standing, Krause KM 152, Schou 4) never unite
   # (curator 2026-10-24; see the two merges above). Every Hede 38 member ×

@@ -1601,6 +1601,47 @@ The Galster cache has the Rigsråd 1448 Skilling (`danskmoent/galster/rigsraad.h
 the seed; Christoffer's and Philippa's coins have no Galster page in the cache; Numista only Christoffer's
 Hvid (303699). Adding them = harvest step (plan 8.3) and the curator's decision on the card window.
 
+**Update 2026-10-25:** the Galster pages of Erik, Christoffer, the Rigsråd 1448 and Christian I are now
+harvested and seeded (Galster 1-23), with Bruun lots 3712, 3725, 3757, 3763, 3777.
+
+### §3.11 Erik VII's Kobbersterling (Galster 7, 10, 14, 15) and Gros (Galster 13, 16) — part of the Lybsk set? (2026-10-25, curator question, ANALYSIS)
+
+**Four types, one issue.** One coinage of c. 1422 at four mints — Lund, Næstved, Odense, Randers —
+«*Kong Eriks Kobbermynter vare fra alle fire Stæder af samme Typ, kun forskjellige ved deres Myntsteders
+Navne*» (Hauberg 1886 s. 170); Galster numbers them 7 (Næstved), 10 (Lund), 14 (Odense), 15 (Randers),
+Fritze Lindahl 1955 42-49 / 34-41 / 50-53 / 54-58 (danskmoent `epomg7/10/14/15`). Kept as four classes
+(curator 2026-10-25); Heljeback 2016:1 Nr 39 and 43 («Næstved/Lund/Odense/Randers», «7/10/14/15») are
+unattributed specimens and stand alone.
+
+**Metal.** Copper: Heljeback XRF 0,42-0,52 % Ag on seven specimens; «*af fuldt Kobber*» (Hauberg s. 171,
+paraphrasing Hermann Korner's chronicle, «*Chronicon Herm. Corneri*»).
+
+**Place in the reckoning — [A] for the account, sources split on the value.**
+- It replaced the 9-lod sterling: «*han lod slaa Kobbermynt, skjøndt Riget havde en god 9-lødig Mynt; den
+  har saaledes utvivlsomt afløst Sterlingen*» (Hauberg s. 170).
+- Payments are fixed against it in Lübeck marks: 1423 «*500 mr. Lubic. in albis sterlingis bonis … anteqvam
+  cuprei sterlingi moderni cudebantur*» (Hauberg s. 170 n. 2).
+- Withdrawal promised: 1423 «*und de copperpenning schal in den vorscr. riken gåen bette to pinxten*»
+  (Bunge, Liv-, Esth- u. Curl. Urk. V 958, via Hauberg s. 170).
+
+> ⚠ **The two secondary sources disagree on the coin's nominal value.** Hauberg 1886 s. 170: «*Mynten har
+> utvivlsomt skullet gjælde en Penning … benævnes en Kobbersterling … kun … begrundet i Størrelsen og i den
+> med Sterlingen fælles Revers-Typ*» (one Penning; the name from size and reverse). Märcher 2018 s. 385:
+> «*for så vidt blev udgivet som en sterling, altså svarende til tre penninge (sølv)*» (issued as a sterling
+> = 3 Penninge); s. 370 «*(teoretisk = 3-penning)*». Neither cites an ordinance; no ordinance text is
+> cached. Open — settled only by the 1422/23 instrument or a contemporary rate.
+
+**Gros (G 13 Lund, G 16 Gurre), for comparison.** «*skulde den nye Mynt gjælde 9 Penninge eller 3
+Sterlinge*», «*kun 3 Lod 10 Gren lødig*» (Hauberg s. 178); «*huer stycke for 9 Lybske*» (the 1439
+complaint, via Hauberg s. 178); Märcher s. 370 «*(teoretisk) en 9-penning, men dens sølvindhold svarede
+slet ikke dertil*».
+
+**Conclusion (C, our reading).** Both are tiers of the same Danish set of the restored coinage after 1400
+(§3.9: 1 / 3 / 4 / 6 / 9 / 12 Pf), valued in it, and so belong to the Lybsk card's phase 0 — but neither is
+full-value: the Kobbersterling is a copper coin at a decreed value, the Gros an underweight billon piece.
+`kind: kurant` (the provisional phase-0 placement of 2026-10-24) is therefore not right for them; `scheide`
+fits the §6 definition (nominal above metal content). Curator's call.
+
 ## §4. Instruments
 
 | Date | Instrument | Role for the card | Register / dossier |
