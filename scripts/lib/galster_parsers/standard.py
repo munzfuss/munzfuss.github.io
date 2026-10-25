@@ -206,6 +206,13 @@ def _parse_header_h1(text: str) -> dict:
             # Plain year bullets («• 1524 (Schou 113-125)», fr_f1g63) are the
             # type's years and stay.
             scan = re.sub(r"(?m)^\s*•\s*[A-Z]\).*$", "", body_clean[:150])
+            # «indførtes … i 1430erne» (epomg13): a decade in the prose is a
+            # dating window, not a striking year.
+            dec = re.search(r"(?<!\d)(1[3-6]\d0)erne\b", scan)
+            if dec:
+                out.setdefault("year_hint", f"{dec.group(1)}-{int(dec.group(1)) + 9}")
+                scan = scan[:dec.start()] + scan[dec.end():]
+                body_undated = True
             year_tokens = re.findall(r"(?<!\d)1[3-6]\d{2}(?:[-–]\d{4})?(?!\d)",
                                      scan)
     if year_tokens:

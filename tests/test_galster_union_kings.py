@@ -56,6 +56,13 @@ class UnionPageHeaders(unittest.TestCase):
                           d["year_hint"]),
                          ("Christoffer III", "Søsling", "u.år", "1440-1442"))
 
+    def test_decade_in_prose_is_a_window(self):
+        """epomg13: «indførtes af Erik af Pommern i 1430erne» is no year."""
+        d = _parse("epomg13.htm", "## Erik af Pommern, Gros (9 penning), Lund\n\n"
+                                  "Forside: krone, bagside: (Galster 13)\n\n"
+                                  "Denne mønttype … indførtes af Erik af Pommern i 1430erne.\n")
+        self.assertEqual((d["year_label"], d["year_hint"]), ("u.år", "1430-1439"))
+
     def test_single_year_in_parentheses_stays_the_year(self):
         """chr/c3g130 «u.år (1534)» — unchanged behaviour."""
         h = standard._parse_header_h1("## Christian 3., 1 Rhinsk gylden, u.år (1534) Gottorp\n")
