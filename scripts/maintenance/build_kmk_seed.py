@@ -1168,6 +1168,23 @@ def _kmm_source(rid, src: dict) -> dict:
             "ref": _kmm_ref(rid, src)}
 
 
+# Lower bound 1370 (curator 2026-10-25): the Lybsk Møntfod reaches back to
+# Galster 1, the Ribe hvid of c. 1380. A record dated before 1481 enters only
+# when it belongs to the Danish realm or a land ruled with it — Norway, the
+# duchy of Schleswig (a Danish fief), Holstein from 1460 (Christian I) — not
+# the German or Swedish coins of those years.
+_EARLY_YEAR_FROM = 1370
+_EARLY_ENTITIES = {"danish_realm", "danish_norway", "royal_slesvig"}
+
+
+def _early_out_of_scope(yf: int | None, entity) -> bool:
+    if yf is None or yf > 1480:
+        return False
+    ents = set(entity) if isinstance(entity, list) else {entity}
+    allowed = _EARLY_ENTITIES | ({"royal_holstein"} if yf >= 1460 else set())
+    return not ents or not ents <= allowed
+
+
 def build_entry(src) -> dict | None:
     if _is_exonumia_workdesc(src.get("workDescription")):
         return None
@@ -1184,7 +1201,7 @@ def build_entry(src) -> dict | None:
     yf, yl, year_verified = _year(src)
     # Era scope gate (mission lower bound 1481 / upper 1914). Undated kept —
     # finer dual-anchor (DK 1514 / German 1559) left to Phase 4.
-    if yf is not None and (yf < 1481 or yf > 1914):
+    if yf is not None and (yf < _EARLY_YEAR_FROM or yf > 1914):
         return None
 
     mint, mintmaster = _split_place(src)
@@ -1288,6 +1305,8 @@ def build_entry(src) -> dict | None:
     routed_ent, hint = route_entity_with_rules(dict(entry), default_entity=entry["issuing_entity"])
     if routed_ent != entry["issuing_entity"]:
         entry["issuing_entity"] = routed_ent
+    if _early_out_of_scope(yf, entry["issuing_entity"]):
+        return None
     if hint is not None:
         entry["_entity_routing_hint"] = hint
     # _source_note candidate (Phase-1, commit 80a1b62): KMM's `motif` (Danish),

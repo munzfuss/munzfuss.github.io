@@ -211,8 +211,15 @@ def _classify_via_meta_line(meta: str | None) -> str | None:
 # original §BI anchor; expanded to 1514-1914 to recover the 62 lost
 # Bruun citations on Christian IV-era Speciedaler / 17-18th c Krone /
 # Rigsbankdaler / Krone-era entries from V1).
-YEAR_FROM = 1481
+YEAR_FROM = 1370
 YEAR_TO = 1914
+# Lower bound 1370 (curator 2026-10-25): the Lybsk Møntfod reaches back to
+# Galster 1, the Ribe hvid of c. 1380. Before 1481 only the Danish and
+# Norwegian lots enter (`_EARLY_REGIONS`): the coins of the realm and of the
+# lands ruled with it, not the German or Swedish pieces of those years.
+_EARLY_YEAR_TO = 1480
+_EARLY_REGIONS = {"DENMARK", "NORW AY", "NORWAY", "DENMARK-NORWAY"}
+# Earlier note (1481 bound), kept for the record:
 # Lower bound 1481 = Hans's earliest documented coinage (Hans Goldgulden
 # Numista N#355730 «de facto 1481»). The project's mission-scope anchor
 # is 1514 (Christian II Lovkompleks), but the Nobelfod and reichsdukatenfuss
@@ -221,7 +228,8 @@ YEAR_TO = 1914
 # V2 nobel_fod / reichsdukatenfuss. Bruun catalogue carries authoritative
 # specimen attestations for these (Bruun-3831 Hans Nobel, Bruun-3840
 # Hans Goldgulden) — must enter seed for cross-source attestation parity.
-# Earlier than 1481 (Erik VII, Christopher III, true medieval) remains OOS.
+# Earlier than 1481 (Erik VII, Christopher III, true medieval) remained OOS
+# until 2026-10-25.
 
 # Map Bruun ref-key to project catalog field. Keys NOT present in
 # `CatalogRefs` schema (lott, delzanno, sm, hagander, appelgren,
@@ -448,7 +456,9 @@ _GRADER_RE = re.compile(r"\b(NGC|PCGS|ANACS)\b")
 # Segments that are never a ruler: mint clauses, privy/assayer marks, and the
 # «<Type>, <year>» segment (always carries digits).
 _NOT_RULER_RE = re.compile(r"\bMint\b|\bmm\s*:|\bMark\s*:|\bAssayer|\bPrivy\b|\d", re.I)
-_NAME_PARTICLES = {"von", "van", "af", "der", "de", "til", "the"}
+# «of»: «Erik VII of Pomerania», «Christopher III of Bavaria» (the Union kings
+# before Hans, in the seed since 2026-10-25).
+_NAME_PARTICLES = {"von", "van", "af", "der", "de", "til", "the", "of"}
 _TRUNCATED_TAIL_RE = re.compile(r"[-–]\s*$")
 _LINEBREAK_HYPHEN_RE = re.compile(r"([a-zäöüæøåA-ZÆØÅ]) [-–] ([a-zäöüæøå])")
 
@@ -1049,6 +1059,8 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         return None
     region = (lot.get("region") or "").strip()
     if region not in REALM_REGIONS:
+        return None
+    if year <= _EARLY_YEAR_TO and region not in _EARLY_REGIONS:
         return None
 
     # CLAUDE.md §9.1 — patterns / trial strikes / off-metal strikes never

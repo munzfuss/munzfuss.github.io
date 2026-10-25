@@ -275,6 +275,23 @@ def _entity_from_title(rec: dict) -> str | None:
     return _TITLE_REGION_TO_ENTITY.get(title.split(":", 1)[0].strip().lower())
 
 
+# Lower bound 1370 (curator 2026-10-25): the Lybsk Møntfod reaches back to
+# Galster 1, the Ribe hvid of c. 1380. A record dated before 1481 enters only
+# when it belongs to the Danish realm or a land ruled with it — Norway, the
+# duchy of Schleswig (a Danish fief), Holstein from 1460 (Christian I) — not
+# the German or Swedish coins of those years.
+_EARLY_YEAR_FROM = 1370
+_EARLY_ENTITIES = {"danish_realm", "danish_norway", "royal_slesvig"}
+
+
+def _early_out_of_scope(yf: int | None, entity) -> bool:
+    if yf is None or yf > 1480:
+        return False
+    ents = set(entity) if isinstance(entity, list) else {entity}
+    allowed = _EARLY_ENTITIES | ({"royal_holstein"} if yf >= 1460 else set())
+    return not ents or not ents <= allowed
+
+
 def build_entry(rec) -> dict | None:
     if not _is_coin(rec):
         return None
@@ -296,13 +313,15 @@ def build_entry(rec) -> dict | None:
     # (yf is None) is KEPT — it may be an in-scope coin the parser couldn't
     # date; the finer dual-anchor (DK 1514 / German 1559) is left to Phase-4
     # classification since these are seed_unsorted.
-    if yf is not None and (yf < 1481 or yf > 1914):
+    if yf is not None and (yf < _EARLY_YEAR_FROM or yf > 1914):
         return None
 
     mint = _mint_city(rec)
     entity = classify_mint_to_entity(mint, year=yf) if mint else None
     if entity is None:
         entity = _entity_from_title(rec)
+    if _early_out_of_scope(yf, entity):
+        return None
     metal = _METAL.get(_first(rec.get("material")).get("material_name_de"))
     w = _num(rec.get("weight"))
     d = _num(rec.get("diameter"))
