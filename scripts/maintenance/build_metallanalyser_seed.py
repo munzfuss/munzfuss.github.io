@@ -116,6 +116,17 @@ _HOLD_BASES_2017_1: set[str] = set()
 
 _LL_TO_GALSTER = {"7b": "142"}           # danskmoent gotlg142: «Lagerqvist 7b»
 
+# 2017:3 Gotland hvide with no printed Galster concordance (curator
+# 2026-10-25: «хіба що ті що вписуються в lybsk møntfod»). Lindblad s. 4:
+# «Omkring 1450 infördes dansk mynträkning på Gotland … den nya valören hvid
+# introducerades och ersatte gotarna … En hvid motsvarade fyra penningar» —
+# the hvid belongs to the Danish (Lybsk) set; the gote (ørtug) and the
+# W-brakteat penning before it to the Gotlandic reckoning, and stay out.
+# Windows as Lindblad dates the groups (tab. 8-11), Lybsk card window (to
+# 1520); each LL number its own row, no Galster number asserted.
+_LL_HVID_WINDOWS = {"1450": (1450, 1450), "1455-1480": (1455, 1480),
+                    "1480-1500": (1480, 1500), "1500-1520": (1500, 1520)}
+
 _RULER = {"KI": "Christian I", "RR": "Rigsrådet", "H": "Hans", "KII": "Christian II",
           # 2016:1 (Heljeback): Erik of Pomerania, Christopher of Bavaria,
           # the Rigsråd's 1448 Skilling
@@ -228,9 +239,17 @@ def collect() -> tuple[list[dict], list[str]]:
                 ruler_code = "RR1448" if r["ruler"] == "RR" else r["ruler"]
             else:
                 ll = (r.get("cat") or "").strip()
-                if r["mint"] != "Gotland" or ll not in _LL_TO_GALSTER:
+                if r["mint"] != "Gotland":
                     continue
-                gal = base = _LL_TO_GALSTER[ll]
+                if ll in _LL_TO_GALSTER:
+                    gal = base = _LL_TO_GALSTER[ll]
+                else:
+                    window = (r.get("year") or "").replace("\u2010", "-")
+                    if r["denom"] != "Hvid" or window not in _LL_HVID_WINDOWS:
+                        continue
+                    # «4 a?» / «4 a??» (Lindblad's own doubt) stay apart from «4a»
+                    gal, base = None, "ll" + re.sub(r"\s+", "", ll).replace("?", "q").lower()
+                    r = dict(r, _ll=ll, _window=_LL_HVID_WINDOWS[window])
                 ruler_code = None
             r = dict(r, _gal=gal, _base=base, _ruler=ruler_code)
             # group by the NORMALISED mint: «Naestved» / «Næstved» (and the
@@ -242,7 +261,10 @@ def collect() -> tuple[list[dict], list[str]]:
     coins: list[dict] = []
     for (issue, base, ruler_code, mint, denom), rows in sorted(groups.items()):
         meta = _ISSUE[issue]
-        if issue == "2016_1":
+        lagerqvist = rows[0].get("_ll")
+        if lagerqvist is not None:
+            gal_values = []
+        elif issue == "2016_1":
             gal_values = sorted({g for r in rows for g in r["_gal"].split("/")},
                                 key=lambda v: (len(v), v))
         else:
@@ -266,7 +288,7 @@ def collect() -> tuple[list[dict], list[str]]:
                 # above (a number here would bypass the page's decimal format)
                 "ref": (f"{label}, Appendix (XRF)"
                         + (f"; Galster {r['_gal']} as printed"
-                           if "/" in r["_gal"] and issue != "2016_1" else "")
+                           if r["_gal"] and "/" in r["_gal"] and issue != "2016_1" else "")
                         + (f"; {r['var']}" if r.get("var") else "")),
             })
         conflict = issue == "2017_1" and all(r["nr"] in _MINT_CONFLICT_2017_1 for r in rows)
@@ -275,9 +297,18 @@ def collect() -> tuple[list[dict], list[str]]:
             raise SystemExit(f"mixed mint-conflict group {issue} G {base} {mint}")
         ranges = _ranges(_years(rows))
         undated = any(not re.fullmatch(r"\d{4}", r.get("year") or "") for r in rows)
+        # Lindblad dates the Gotland hvid groups by period («Hvider ca 1450»,
+        # tab. 8-11) — an attribution, never a year on the coin.
+        window_dated = lagerqvist is not None
+        if lagerqvist is not None and not ranges:
+            # Lindblad's dating window for the group (tab. 9-11), not a year
+            # on the coin: written as the year, unverified.
+            lo, hi = rows[0]["_window"]
+            ranges, undated = [[lo, hi]], False
         mints = mint.split("/")
         entry = {
-            "id": f"{SOURCE}-{issue.replace('_', '-')}-g{base}"
+            "id": f"{SOURCE}-{issue.replace('_', '-')}-"
+                  + (base if lagerqvist is not None else f"g{base}")
                   + ("" if ruler_code else "-gotland")
                   + (f"-{_slug(mint)}-{_slug(denom)}" if issue == "2016_1" else ""),
             "fuss": "seed_unsorted",
@@ -290,10 +321,12 @@ def collect() -> tuple[list[dict], list[str]]:
             "year_ranges": ranges,
             "ruler": _RULER.get(ruler_code),
             "mint": mints[0] if len(mints) == 1 else mints,
-            "catalog": {"galster": gal_values[0] if len(gal_values) == 1 else gal_values,
-                        **({"galster_volume": _VOLUME[ruler_code]}
-                           if ruler_code in _VOLUME else
-                           {"galster_volume": "hg"} if not ruler_code else {})},
+            "catalog": ({"others": [f"Lagerqvist# {lagerqvist}"]}
+                        if lagerqvist is not None else
+                        {"galster": gal_values[0] if len(gal_values) == 1 else gal_values,
+                         **({"galster_volume": _VOLUME[ruler_code]}
+                            if ruler_code in _VOLUME else
+                            {"galster_volume": "hg"} if not ruler_code else {})}),
             "fineness": finenesses or None,
             "weight_rough_g": weights,
             "issuing_entity": "danish_realm",
@@ -305,6 +338,8 @@ def collect() -> tuple[list[dict], list[str]]:
             "verification_note": copy.deepcopy(_NOTE),
             "_metallanalyser_rows": [f"{issue}:{r['nr']}" for r in rows],
         }
+        if window_dated:
+            entry["year_verified"] = False
         if ranges and undated:
             # the year range covers the dated pieces only; undated ones exist
             entry["_metallanalyser_undated_rows"] = [
@@ -328,7 +363,7 @@ def main() -> int:
     print(f"entries: {len(coins)}  (weights: {sum(len(c['weight_rough_g']) for c in coins)}, finenesses: {sum(len(c['fineness'] or []) for c in coins)})")
     for c in coins:
         print(f"  {c['id']:<36} {c['nominal']:<12} {str(c['mint']):<11} "
-              f"G {c['catalog']['galster']}  n={len(c['weight_rough_g'])}  {c['year_label']}")
+              f"G {c['catalog'].get('galster') or c['catalog'].get('others')}  n={len(c['weight_rough_g'])}  {c['year_label']}")
     print(f"skipped rows: {len(skipped)}")
     for s in skipped:
         print("  " + s)
