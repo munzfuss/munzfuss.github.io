@@ -99,6 +99,14 @@ files if main moved meanwhile — re-run the chain.
   re-check after each decision.
 - Deferred, outside the three Fuß: the KMM «24 Skilling» Hede Norge 2 class
   `c-691aa453` broke up after merge `1b8c617`.
+- Discarded 2026-10-25 (curator): an uncommitted 2026-10-22 experiment that
+  made absorb DROP, on every run, the citations and readings a class of
+  another final attests (`_prune_moved_values`, with a `verify_reflow` excuse
+  `_homed_elsewhere`) — the Galster 155 case. The rebuild from members does
+  this for every Fuß in the scope; the read-only report of the same cases
+  stays in main (`scripts/maintenance/audit_class_attestation.py`,
+  `lib/class_attestation.py`). Not kept as code (untested, written against
+  the pre-switch absorb).
 
 ## Review log
 
