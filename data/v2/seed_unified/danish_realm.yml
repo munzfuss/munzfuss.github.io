@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15261 per-source seed entries.
-# Output: 5950 unified entries (one per physical coin).
+# Output: 5948 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -362,6 +362,7 @@ coins:
       -   - 1440
           - 1448
     year_label: 1440-1448
+    _year_demoted: true
     ruler: Christopher III of Bavaria
     mintmaster: Hans Myndel
     mint: Malmø
@@ -12365,34 +12366,6 @@ coins:
     composed_of:
       - dk-galster-epomg-10
       - metallanalyser-2016-1-g10-lund-kopparsterling
-  - id: c-18a36b28
-    class_id: c-18a36b28
-    label: unified-dk-galster-epomg-14
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Kobbersterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    mint: Odense
-    catalog:
-      galster: '14'
-      galster_volume: galster1972-erik7
-    metal: silver
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg14.htm
-        ref: Galster 14 (epomg) — danskmoent.dk epomg14.htm
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-14
   - id: c-6f18dcfc
     class_id: c-6f18dcfc
     label: unified-dk-galster-epomg-15
@@ -12760,36 +12733,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-epomg-5
-  - id: c-9c9cf144
-    class_id: c-9c9cf144
-    label: unified-dk-galster-epomg-7
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Kobbersterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    mint: Næstved
-    catalog:
-      galster: '7'
-      others:
-        - Fritze Lindahl# 42-49
-      galster_volume: galster1972-erik7
-    metal: silver
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg7.htm
-        ref: Galster 7 (epomg) — danskmoent.dk epomg7.htm
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-7
   - id: c-3f22c79f
     class_id: c-3f22c79f
     label: unified-dk-galster-epomg-9
@@ -103473,6 +103416,7 @@ coins:
       -   - 1396
           - 1439
     year_label: 1396-1439
+    _year_demoted: true
     ruler: Erik VII
     catalog:
       numista: '143452'
@@ -108193,6 +108137,7 @@ coins:
       -   - 1440
           - 1448
     year_label: 1440-1448
+    _year_demoted: true
     ruler: Christopher III of Bavaria
     mint: Malmø
     catalog:
@@ -108341,17 +108286,18 @@ coins:
     phase: numista
     kind: scheide
     nominal: 1 Sterling = 3 Pennings
-    year_first: 1397
-    year_last: 1439
-    year_ranges:
-      -   - 1397
-          - 1439
-    year_label: 1397-1439
+    year_first: 1422
+    year_last: 1422
+    year_label: '1422'
     ruler: Erik VII
     mint: Næstved
     catalog:
       numista: '348708'
       sieg: '9.2'
+      galster: '7'
+      others:
+        - Fritze Lindahl# 42-49
+      galster_volume: galster1972-erik7
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -108359,6 +108305,7 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    year_verified: false
     weight_rough_g:
       - value: 0.8
         source: numista
@@ -108366,6 +108313,9 @@ coins:
       - value: 16.0
         source: numista
     sources:
+      - type: literature
+        url: https://www.danskmoent.dk/epomg7.htm
+        ref: Galster 7 (epomg) — danskmoent.dk epomg7.htm
       - type: literature
         url: https://en.numista.com/348708
         ref: Numista N#348708 — Kobbersterling - Erik of Pomerania (Naestved) - Denmark
@@ -108375,6 +108325,7 @@ coins:
       uk: 3 Pennings (розрахунковий еквівалент)
     issuing_entity: danish_realm
     composed_of:
+      - dk-galster-epomg-7
       - dk-numista-348708
   - id: c-43b64c09
     class_id: c-43b64c09
@@ -108607,6 +108558,7 @@ coins:
       -   - 1397
           - 1439
     year_label: 1397-1439
+    _year_demoted: true
     ruler: Erik VII
     mint: Lund
     catalog:
@@ -109442,6 +109394,7 @@ coins:
       -   - 1396
           - 1439
     year_label: 1396-1439
+    _year_demoted: true
     ruler: Erik VII
     catalog:
       numista: '475742'
@@ -109473,17 +109426,16 @@ coins:
     phase: numista
     kind: scheide
     nominal: 1 Sterling = 3 Pennings
-    year_first: 1397
-    year_last: 1439
-    year_ranges:
-      -   - 1397
-          - 1439
-    year_label: 1397-1439
+    year_first: 1422
+    year_last: 1422
+    year_label: '1422'
     ruler: Erik VII
     mint: Odense
     catalog:
       numista: '476049'
       sieg: '9.2'
+      galster: '14'
+      galster_volume: galster1972-erik7
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -109491,15 +109443,20 @@ coins:
     diameter_mm_verified: false
     mint_verified: true
     verified: false
+    year_verified: false
     weight_rough_g:
       - value: 1.05
         source: numista
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/epomg14.htm
+        ref: Galster 14 (epomg) — danskmoent.dk epomg14.htm
+      - type: literature
         url: https://en.numista.com/476049
         ref: Numista N#476049 — Kobbersterling - Erik of Pomerania (Odense) - Denmark
     issuing_entity: danish_realm
     composed_of:
+      - dk-galster-epomg-14
       - dk-numista-476049
   - id: c-32d9665d
     class_id: c-32d9665d
@@ -196762,6 +196719,7 @@ coins:
       -   - 1396
           - 1439
     year_label: 1396-1439
+    _year_demoted: true
     ruler: Erik 7 af Pommern
     metal_verified: false
     weight_rough_verified: false
@@ -196788,6 +196746,7 @@ coins:
       -   - 1396
           - 1439
     year_label: 1396-1439
+    _year_demoted: true
     ruler: Erik 7 af Pommern
     metal_verified: false
     weight_rough_verified: false

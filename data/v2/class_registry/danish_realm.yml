@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 5950 active, 5 retired.
+# 5948 active, 7 retired.
 
 id: danish_realm
 classes:
@@ -7876,12 +7876,6 @@ classes:
     legacy_id: unified-kmk-106797
     members:
       - kmk-106797
-  - id: c-18a36b28
-    status: active
-    created: '2026-10-25'
-    label: unified-dk-galster-epomg-14
-    members:
-      - dk-galster-epomg-14
   - id: c-18a88ce5
     status: active
     created: '2026-10-22'
@@ -42365,6 +42359,7 @@ classes:
     label: unified-dk-numista-476049
     legacy_id: unified-dk-numista-476049
     members:
+      - dk-galster-epomg-14
       - dk-numista-476049
   - id: c-8f454b49
     status: active
@@ -45822,12 +45817,6 @@ classes:
       - dk-bruun-7577
       - dk-hede-c6h5
       - ngc-1050095
-  - id: c-9c9cf144
-    status: active
-    created: '2026-10-25'
-    label: unified-dk-galster-epomg-7
-    members:
-      - dk-galster-epomg-7
   - id: c-9cb5ce78
     status: active
     created: '2026-10-22'
@@ -66414,6 +66403,7 @@ classes:
     label: unified-dk-numista-348708
     legacy_id: unified-dk-numista-348708
     members:
+      - dk-galster-epomg-7
       - dk-numista-348708
   - id: c-ea17f67f
     status: active
@@ -71272,6 +71262,14 @@ classes:
     members:
       - dk-hede-f2h14
       - dk-numista-108820
+  - id: c-18a36b28
+    status: retired
+    created: '2026-10-25'
+    label: unified-dk-galster-epomg-14
+    merged_into: c-8f3b9eaf
+    retired: '2026-10-25'
+    members:
+      - dk-galster-epomg-14
   - id: c-3218c6bf
     status: retired
     created: '2026-10-22'
@@ -71323,6 +71321,14 @@ classes:
       - kmk-317652
       - kmk-317653
       - kmk-317654
+  - id: c-9c9cf144
+    status: retired
+    created: '2026-10-25'
+    label: unified-dk-galster-epomg-7
+    merged_into: c-ea17009c
+    retired: '2026-10-25'
+    members:
+      - dk-galster-epomg-7
   - id: c-bcc09e1d
     status: retired
     created: '2026-10-22'
