@@ -2350,6 +2350,21 @@ mean «not in the source».
   Rapid requests got «Connection refused» once; keep ≥ 0.6 s between calls.
   The builder seeds only ES-cached objects, so a web-only harvest also needs a
   rådata → seed path.
+- **Metallanalyser av mynt** (NFG, Stockholm; five issues): 2016:1 Heljeback
+  (Denmark c. 1400–1448) and 2017:1 Eriksson (1448–1523) are fully seeded;
+  2017:2 Eriksson (Erik VII's Swedish ørtug) is cached, not seeded (Swedish
+  mints); 2017:3 Lindblad (Gotland 1150–1554) is seeded only for the hvid
+  1450–1520 (curator 2026-10-25: only what fits the Lybsk Møntfod). Lindblad
+  numbers by Lagerqvist 1970 (LL), not Galster; the one printed concordance is
+  LL 7b = G 142, so the other hvid rows enter as «Lagerqvist# N» with the
+  group's period (tab. 8–11) as an unverified year. Lindblad s. 4: «Omkring
+  1450 infördes dansk mynträkning på Gotland … den nya valören hvid … En hvid
+  motsvarade fyra penningar»; the gote and the W-brakteat penning before it
+  are Gotlandic reckoning. Gotland under Denmark: 1361–1645, except 1394–98
+  (Victual Brothers), 1398–1409 (Teutonic Order), 1439–49 (Erik VII after his
+  deposition), 1525–30 (Lübeck); 1518 Søren Norby as Christian II's pledge
+  holder (Lindblad s. 2). Marcus Frid's 2016 essay on the Norrtäljeviken
+  hoards (Erik VII and the Rigsråd) is listed by NFG but not online.
 - **Hauberg 1886** («Danmarks Myntvæsen i Tidsrummet 1377–1481», Aarbøger
   1886 s. 135–189, cached under `danskmoent/hans_1481_1513/`) — a narrative
   per ruler with 25 figure types («Fig. N»: denomination + its penning value,

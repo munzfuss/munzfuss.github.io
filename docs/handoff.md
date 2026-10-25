@@ -31,6 +31,9 @@
   6 Bruun + 3 IKMK + 4 KMM records for the Danish pages; 14 union ørtug in
   `sweden` (not rendered). Numista has nothing more (12 types 1396-1448,
   all seeded). Source survey: SOURCES §13.27.
+- **Lindblad 2017:3 Gotland**: only the hvid 1450-1520 seeded (12 rows,
+  «Lagerqvist# N», no Galster asserted; curator: only what fits Lybsk).
+  Gotland Danish 1449-1525; gote / W-brakteat out (Gotlandic reckoning).
 - **Curator merge 2026-10-25**: Numista 287318 = Galster 13 (merge_decisions).
 - **Curator split 2026-10-25**: Kobbersterling G 7 / 10 / 14 / 15 are four
   types (no_merges ×14); Heljeback Nr 39/43 («7/10/14/15») stand alone in
