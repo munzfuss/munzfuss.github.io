@@ -18,6 +18,12 @@
 
 ## 2026-10-24 — branch `rebuild-from-members`: three Fuß rebuilt; shared cache moved ahead of main
 
+- **2026-10-25: ready for main, not merged, not pushed.** Shipping branch
+  `ship/rebuild-3-fuss` = the tip of rebuild-from-members; main is still
+  `de956d6` (fast-forward). What goes in and the checks:
+  `docs/plans/per_fuss_rebuild.md` § «State 2026-10-25». The merge and the
+  push wait for the curator's word.
+
 - **Reviewed and committed** on the branch: Nobelfod, Guldgyldenfod, Lybsk
   møntfod, all in `data/v2/_rebuild_scope.yml`; review log and every curator
   decision in `docs/plans/per_fuss_rebuild.md`. Procedure for the next Fuß

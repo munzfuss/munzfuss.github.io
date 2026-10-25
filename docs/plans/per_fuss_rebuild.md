@@ -71,6 +71,23 @@ the page on danskmoent.github.io).
 4. Into the new branch (and later main, on the curator's word) by merge; conflicts in derived files are resolved by re-running the
    chain, never by text merge.
 
+### State 2026-10-25 — ready, not merged
+
+Prepared on the curator's word («підготуй гілку до перенесення в main … без
+злиття і пушу»). main has not moved since the merge base `de956d6`, so the
+branch goes in as a fast-forward; the shipping branch `ship/rebuild-3-fuss`
+points at this branch's tip. Nothing merged, nothing pushed.
+
+What main gets: the code of the per-Fuß switch and every fix on this branch;
+`_rebuild_scope.yml` = nobel_fod, rhinsk_gylden_fod, luebischer_muenzfuss;
+the derived data of a full pipeline run of every entity (`72f2093`) plus the
+Lybsk phase 0 (`37ce3a2`). Checks at the tip: `build --validate-only`,
+`audit_v2 --quick`, `audit_lost_citations` (0 missing), `validate_decisions
+--check-members`, `audit_curation_marks`, and `verify_reflow --base main`:
+517 changed coins, 25 gains, 0 losses. After the merge, main reproduces the
+state from the scope file by running the chain; do not text-merge derived
+files if main moved meanwhile — re-run the chain.
+
 ## Risks
 
 - Background of the new code on unreviewed Fuß: class moves make stale-purge
