@@ -67,8 +67,13 @@ def _load_overview_cross_refs() -> tuple[dict[str, list[str]], dict[str, str]]:
     return cross_refs, titles
 
 
-YEAR_FROM = 1481
+YEAR_FROM = 1370
 YEAR_TO = 1541
+# Lower bound 1370 (curator 2026-10-25): the Lybsk Møntfod reaches back to
+# Galster 1, the Ribe hvid of c. 1380 («Fra 1370/80-erne kendes en hvid med
+# omskriften MONETA RIPENS (Ribes mønt, Galster 1)», danskmoent ribe.htm).
+# The pages of Margrethe I, Erik af Pommern, Christoffer af Bayern and
+# Christian I enter with it. Earlier note, kept for the record:
 # Lower bound 1481 matches Bruun builder + project Phase-pre-I scope
 # anchor (Hans's reign start = 1481). Galster catalogue covers Hans
 # 1481-1513 + Christian II 1513-1523 + Frederik I 1523-1533, so the
@@ -86,6 +91,12 @@ YEAR_TO = 1541
 # undated entries get bare year-range as year_label + set
 # `year_verified: false` so the renderer emits `(?)`.
 _RULER_REIGN = {
+    # The Union kings before Hans (danskmoent m1.htm, erikpomm.htm,
+    # bajern.htm: «Margrethe 1. (1375-1412)», «Erik af Pommern (1396-1439)»,
+    # «Christoffer af Bajern (1440-1448)»).
+    "m1g": (1375, 1412),
+    "epomg": (1396, 1439),
+    "bajg": (1440, 1448),
     "hg":  (1483, 1513),   # Hans (the Rigsråd 1481-1483 before him; curator 2026-10-20)
     "c2g": (1513, 1523),   # Christian II
     "f1g": (1523, 1533),   # Frederik I
@@ -98,7 +109,9 @@ _RULER_REIGN = {
     # gotlg145): the window the pages give for his undated Visby coins.
     "norby": (1517, 1525),
 }
-_RULER_NAME_VOLUME = {"Hans": "hg", "Christian II": "c2g",
+_RULER_NAME_VOLUME = {"Margrethe I": "m1g", "Erik VII": "epomg",
+                      "Christoffer III": "bajg",
+                      "Hans": "hg", "Christian II": "c2g",
                       "Frederik I": "f1g", "Christian III": "c3g",
                       "Christian I": "c1g", "Søren Norby": "norby"}
 
@@ -126,7 +139,7 @@ def parse_year_range(year_label: str | None) -> tuple[int | None, int | None]:
     """
     if not year_label:
         return None, None
-    years = [int(m) for m in re.findall(r"\b(1[4-6]\d{2})\b", year_label)]
+    years = [int(m) for m in re.findall(r"\b(1[3-6]\d{2})\b", year_label)]
     if not years:
         return None, None
     return min(years), max(years)
@@ -150,7 +163,7 @@ def parse_year_ranges(year_label: str | None) -> list[list[int]]:
         return []
     ranges: list[list[int]] = []
     for token in re.split(r"[,;]", year_label):
-        yrs = [int(m) for m in re.findall(r"\b(1[4-6]\d{2})\b", token)]
+        yrs = [int(m) for m in re.findall(r"\b(1[3-6]\d{2})\b", token)]
         if not yrs:
             continue
         ranges.append([min(yrs), max(yrs)])
@@ -194,7 +207,19 @@ def detect_issuing_entity(sub_realm: str | None, mint: str | None,
             return result
     if sub_realm == "norway":
         return "danish_norway"
+    # The Swedish (and Finnish) union pages — spomg, sbajg, fbajg, sc1g.
+    if sub_realm in ("sweden", "finland"):
+        return "sweden"
     return "danish_realm"
+
+
+# The Galster scope the other sources of the period already carry for these
+# rulers (build_metallanalyser_seed._VOLUME, Heljeback 2016:1), so one Galster
+# number from both sources compares in one scope. Christian I's «c1g» is the
+# merger's own ruler-derived scope.
+_GALSTER_SCOPE = {"m1g": "galster1972-margrethe1",
+                  "epomg": "galster1972-erik7",
+                  "bajg": "galster1972-christoffer3"}
 
 
 def coin_id(galster_number: str | None, ruler_volume: str | None, source_file: str) -> str:
@@ -663,8 +688,20 @@ def build_entry(data: dict) -> dict | None:
     # which Galster volume the number belongs to). Without a real galster index
     # it is orphaned metadata — skip it for the non-numbered «Gej» placeholder.
     if data.get("ruler_volume") and _is_real_galster_index(catalog.get("galster")):
-        catalog["galster_volume"] = data["ruler_volume"]
+        catalog["galster_volume"] = _GALSTER_SCOPE.get(data["ruler_volume"],
+                                                       data["ruler_volume"])
     _clean_catalogue_refs(catalog)
+    # «135, Hauberg 33-46» is a real Galster index only once the cleaning
+    # above has moved Hauberg to `others`.
+    # Limited to the pages added with the 1370 bound (the Union kings before
+    # Hans, Gotland 134-140), so no earlier entry changes merge scope.
+    _early = (data.get("ruler_volume") in ("m1g", "epomg", "bajg", "c1g")
+              or (str(data.get("galster_number") or "").isdigit()
+                  and 134 <= int(data["galster_number"]) <= 140))
+    if (_early and data.get("ruler_volume") and "galster_volume" not in catalog
+            and _is_real_galster_index(catalog.get("galster"))):
+        catalog["galster_volume"] = _GALSTER_SCOPE.get(data["ruler_volume"],
+                                                       data["ruler_volume"])
     # _clean_catalogue_refs drops non-index tokens from the galster cell (the
     # «Gej» filename placeholder is not a real Galster number → removed). A
     # galster_volume left with no surviving galster index is orphaned — drop it
@@ -683,6 +720,9 @@ def build_entry(data: dict) -> dict | None:
     # descriptors like «klipping» that leak from page titles.
     nominal_clean, mint_value, shape_hint = _split_nominal_mint(
         data.get("denomination"), data.get("mint"))
+    # «Næstved og Lund» (epomg5): struck at both mints — a two-mint list.
+    if isinstance(mint_value, str) and re.search(r"\s+og\s+", mint_value):
+        mint_value = [m.strip() for m in re.split(r"\s+og\s+", mint_value)]
 
     # Render year_label per CLAUDE.md §3a: bare decimal years/range,
     # no «u.år» prefix. For undated entries we use the reign-window
@@ -707,6 +747,9 @@ def build_entry(data: dict) -> dict | None:
         yr_ranges = parse_year_ranges(data.get("year_label")) or [[year_first, year_last]]
     else:
         yr_ranges = [[year_first, year_last]]
+    # «ca. 1380» (m1g1): the year the page gives, flagged as its approximation.
+    if data.get("year_approx"):
+        year_verified = False
 
     entry: dict = {
         "id": cid,
@@ -725,7 +768,9 @@ def build_entry(data: dict) -> dict | None:
         "metal": metal,
         "fineness": specs.get("finhed"),
         "weight_rough_g": specs.get("bruttovaegt_g"),
-        "issuing_entity": detect_issuing_entity(sub_realm, mint_value, year_first),
+        "issuing_entity": detect_issuing_entity(
+            sub_realm, mint_value[0] if isinstance(mint_value, list) else mint_value,
+            year_first),
         "verified": False,
         "fineness_verified": bool(specs.get("finhed")),
         # «Bruttovægt: ca. 28,5g» (fr/f1g48, Galster 47): the source's own
@@ -1054,7 +1099,8 @@ def main() -> int:
 
     from collections import Counter
     by_ruler = Counter(e.get("ruler") or "?" for e in entries)
-    by_mint = Counter(e.get("mint") or "?" for e in entries)
+    by_mint = Counter(" + ".join(e["mint"]) if isinstance(e.get("mint"), list)
+                      else (e.get("mint") or "?") for e in entries)
     by_realm = Counter(str(e.get("issuing_entity")) for e in entries)
     by_metal = Counter(e.get("metal") for e in entries)
     print(f"\nTotal entries: {len(entries)}")

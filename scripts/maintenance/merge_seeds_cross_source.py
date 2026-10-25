@@ -755,6 +755,14 @@ _CATALOG_REFS_MEMO: dict[int, dict[str, str]] = {}
 _CATALOG_REFS_MEMO_ENABLED: bool = False
 
 
+_GALSTER_UNION_SCOPES = {
+    # keys POST-_normalise_ruler, like the aliases below
+    "margrethe i": "galster1972-margrethe1", "margrete i": "galster1972-margrethe1",
+    "erik vii": "galster1972-erik7",
+    "christoffer iii": "galster1972-christoffer3",
+    "christopher iii": "galster1972-christoffer3",   # Bruun, Numista (English)
+}
+
 _GALSTER_RULER_ALIASES = {
     # source spelling (as _normalise_ruler leaves it) -> canonical
     # keys are POST-_normalise_ruler (lowercased, ordinal romanised)
@@ -977,7 +985,11 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
                 # Listed explicitly rather than fuzzy-matched: an alias table
                 # is auditable, a similarity threshold silently mis-maps.
                 ruler_norm = _GALSTER_RULER_ALIASES.get(ruler_norm, ruler_norm)
-                m = re.match(r"(christian|frederik|hans|erik|knud)"
+                # The Union kings before Hans carry the scope the Galster and
+                # metal-analysis seeds write explicitly (galster1972-*); the
+                # initial+ordinal rule below would give Erik VII «e7g».
+                vol = _GALSTER_UNION_SCOPES.get(ruler_norm, "")
+                m = None if vol else re.match(r"(christian|frederik|hans|erik|knud)"
                              r"(?:\s+([ivx]+|\d+))?\.?", ruler_norm,
                              flags=re.IGNORECASE)
                 if m:

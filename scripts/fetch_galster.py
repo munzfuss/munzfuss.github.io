@@ -69,6 +69,13 @@ BASE = "https://www.danskmoent.dk"
 # Christian III pre-1541 index does NOT exist, so we walk c3g*
 # per-coin pages via probe pattern in `discover`.
 INDEX_PAGES = [
+    # The Union kings before Hans (curator 2026-10-25: the Lybsk Møntfod
+    # reaches back to Galster 1, the Ribe hvid c. 1380). Their reign pages
+    # link the per-coin pages through the coin images, not a number table.
+    "/m1.htm",
+    "/erikpomm.htm",
+    "/bajern.htm",
+    "/c1.htm",
     "/hans.htm",
     "/c2galst.htm",
     "/f1galst.htm",
@@ -122,28 +129,22 @@ PERCOIN_PATTERNS = [
     r"(?:hansg|gotlg)\d+[\w\-]*\.htm",
     # Root-level reign-prefixed page: c2g39.htm (Christian II, Skilling Malmø)
     r"(?:c|f)\d+g\d+[\w\-]*\.htm",
-    # Rigsrådet (interregnum coinage, Galster 21 / 22 / 81)
+    # Rigsrådet (interregnum coinage, Galster 21 / 22 / 81) + its 1448 Skilling
     r"rigsraad\.htm",
+    r"skil1448\.htm",
+    # Union kings before Hans: Margrethe I (m1g1), Erik af Pommern (epomg,
+    # Swedish spomg), Christoffer af Bayern (bajg, Swedish sbajg, fbajg),
+    # Christian I (c1g; Swedish sc1g). chr/c1g<N> is matched above.
+    r"(?:[sf]?bajg|[se]pomg|m1g|sc1g)\d+[\w\-]*\.htm",
     # Companion pages in artikler/ or galster/ or ernst/ subfolders
     r"(?:artikler|galster|ernst)/[\w\-]+\.htm",
 ]
 _PERCOIN_RES = [re.compile(p, re.IGNORECASE) for p in PERCOIN_PATTERNS]
 
-# Scope floor: Hans's accession, 1481 (same as the seed builder's YEAR_FROM).
-# Galster's catalogue and danskmoent's overviews also cover the earlier
-# Union kings; their per-coin pages are dropped at discovery so they never
-# enter the cache:
-#   * Christian I (1448-1481)        c1g<N>, chr/c1g<N>, sc1g<N> (Stockholm)
-#   * Christoffer af Bayern          bajg / sbajg / fbajg<N>
-#   * Erik af Pommern, Margrethe I   epomg / spomg<N>, m1g<N>
-#   * Gotland gote before the Oldenburg kings: gotlg134-138 (Galster 134-138,
-#     1361 - c. 1448, per the pages themselves)
-# Christian I's own Gotland gote (gotlg139, gotlg140) are KEPT: Schou assigns
-# Galster 140 to Christian II (gotlg140.htm), so the page is evidence for the
-# 1481+ window; the seed builder dates each page by its ruler.
-_PRE_1481_BASENAME_RE = re.compile(
-    r"^(?:s?c1g|[sf]?bajg|[se]pomg|m1g)\d", re.IGNORECASE)
-_PRE_1481_GOTLAND_MAX = 138
+# No year floor at harvest (curator 2026-10-25): the pages of the Union kings
+# before Hans — Margrethe I, Erik af Pommern, Christoffer af Bayern, Christian
+# I, the Gotland gote 134-138 — are cached like the rest. The seed builder
+# decides which years and which realm enter the seed.
 
 # Pages that match a per-coin pattern but document no real coin.
 _NOT_A_COIN = {
@@ -175,14 +176,8 @@ def _is_percoin_path(path: str) -> bool:
 
 
 def _is_out_of_scope(path: str) -> bool:
-    """True for a per-coin page before 1481 or a page that is no coin."""
-    if path in _NOT_A_COIN:
-        return True
-    base = path.rsplit("/", 1)[-1]
-    if _PRE_1481_BASENAME_RE.match(base):
-        return True
-    m = re.match(r"^gotlg(\d+)", base, re.IGNORECASE)
-    return bool(m and int(m.group(1)) <= _PRE_1481_GOTLAND_MAX)
+    """True for a page that matches a coin pattern but documents no coin."""
+    return path in _NOT_A_COIN
 
 
 _HREF_RE = re.compile(r"""href\s*=\s*["']([^"']+)["']""", re.IGNORECASE)
@@ -196,7 +191,9 @@ _HREF_RE = re.compile(r"""href\s*=\s*["']([^"']+)["']""", re.IGNORECASE)
 _NUMBER_ANCHOR_RE = re.compile(
     r"""<A\s+HREF\s*=\s*["']([^"']+)["'][^>]*>\s*(\d{1,3}\s*[A-Z]?)\s*</A>""",
     re.IGNORECASE)
-_INDEX_VOLUME = {"/hans.htm": "hg", "/c2galst.htm": "c2g", "/f1galst.htm": "f1g"}
+_INDEX_VOLUME = {"/m1.htm": "m1g", "/erikpomm.htm": "epomg",
+                 "/bajern.htm": "bajg", "/c1.htm": "c1g",
+                 "/hans.htm": "hg", "/c2galst.htm": "c2g", "/f1galst.htm": "f1g"}
 
 
 def _number_anchor_links(html: str, index_path: str) -> dict[str, dict]:
@@ -250,7 +247,7 @@ def _extract_links(html: str) -> set[str]:
 
     Index pages use <A HREF="chr/c2g37.htm">37</A> style; overviews link the
     same way. Per-coin pages may also link companion artikler/* pages that we
-    track for harvest. Out-of-scope pages (pre-1481, non-coins) are NOT
+    track for harvest. Non-coin pages are NOT
     filtered here — the overview cross-ref map keeps every link it sees —
     but by the callers that decide what to fetch.
     """
@@ -465,7 +462,7 @@ def discover() -> dict:
     print(f"  overviews ({len(pages)})  hits={len(ov_links):4d}  "
           f"new={len(new_only):4d}  cum={len(links)}")
 
-    # Scope: drop pre-1481 pages and non-coins (see _is_out_of_scope).
+    # Scope: drop non-coins (see _is_out_of_scope).
     dropped = sorted(ln for ln in links if _is_out_of_scope(ln))
     links.difference_update(dropped)
     if dropped:

@@ -169,6 +169,13 @@ _MINT_REGISTRY: dict[str, dict] = {
         "display": "Vesterås",
         "entity": "sweden",
     },
+    "aabo": {
+        # Åbo (Turku), Finland under the Swedish crown — Swedish standard, same
+        # rule as Stockholm (Erik VII Galster 200-202, Christoffer III 207).
+        "aliases": {"åbo", "aabo", "abo", "turku"},
+        "display": "Åbo",
+        "entity": "sweden",
+    },
     "lund": {
         "aliases": {"lund"},
         "display": "Lund",
@@ -206,6 +213,19 @@ _MINT_REGISTRY: dict[str, dict] = {
         # Medieval Danish mint (Erik VII; Numista 348708, KMM «Næstved?»).
         "aliases": {"næstved", "naestved"},
         "display": "Næstved",
+        "entity": "danish_realm",
+    },
+    "randers": {
+        # Medieval Danish mint (Erik VII's Kobbersterling, Galster 15).
+        "aliases": {"randers"},
+        "display": "Randers",
+        "entity": "danish_realm",
+    },
+    "gurre": {
+        # Erik VII's mint at Gurre castle (Gros, Galster 16; Hauberg 1886
+        # s. 178: «Gurre Slot, hvortil Myntstedet i Sjælland blev henflyttet»).
+        "aliases": {"gurre"},
+        "display": "Gurre",
         "entity": "danish_realm",
     },
     "odense": {

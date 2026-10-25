@@ -52,11 +52,14 @@ class DiscoveryPatterns(unittest.TestCase):
         self.assertFalse(fg._is_percoin_path("/myst/aag1.htm"))
         self.assertFalse(fg._is_percoin_path("/hbg4.htm"))
 
-    def test_pre_1481_pages_are_out_of_scope(self):
+    def test_pre_1481_pages_are_harvested(self):
+        """No year floor at harvest since 2026-10-25 (the Lybsk Møntfod reaches
+        back to Galster 1): the Union kings' pages are coin pages in scope."""
         for path in ("/c1g23.htm", "/chr/c1g214.htm", "/sc1g215.htm",
                      "/bajg18.htm", "/epomg2.htm", "/spomg202.htm", "/m1g1.htm",
                      "/gotlg134.htm", "/gotlg138.htm"):
-            self.assertTrue(fg._is_out_of_scope(path), path)
+            self.assertTrue(fg._is_percoin_path(path), path)
+            self.assertFalse(fg._is_out_of_scope(path), path)
 
     def test_in_scope_pages_are_kept(self):
         for path in ("/c2g39.htm", "/rigsraad.htm", "/norge/nc3g176.htm",
@@ -166,8 +169,9 @@ class RigsraadPage(unittest.TestCase):
     def test_seed_dates_and_ids(self):
         d = pg._PARSERS["rigsraad"](Path("rigsraad.htm"), self.TEXT)
         entries = [bg.build_entry(c) for c in d["coins"]]
-        self.assertIsNone(entries[0])                  # Galster 21, 1448: before 1481
-        g22, g81 = entries[1], entries[2]
+        g21, g22, g81 = entries                         # Galster 21, 1448: in scope
+        self.assertEqual((g21["year_first"], g21["year_last"],
+                          g21["year_verified"]), (1448, 1448, False))
         self.assertEqual(g22["id"], "dk-galster-rigsraad-22")
         self.assertEqual((g22["year_first"], g22["year_last"],
                           g22["year_verified"]), (1481, 1483, False))
@@ -334,7 +338,8 @@ class BuilderGuards(unittest.TestCase):
         e = bg.build_entry({"ruler": "Christian I", "ruler_volume": "hg",
                             "year_label": "u.år", "galster_number": "139",
                             "source_file": "gotlg139.htm", "denomination": "Gote"})
-        self.assertIsNone(e)                           # 1448-1481 → before scope
+        # Christian I's reign, not Hans's from the filename series.
+        self.assertEqual((e["year_first"], e["year_last"]), (1448, 1481))
 
     def test_foreign_hhv_list_stays_with_its_catalogue(self):
         cat = {"galster": "147, Hauberg hhv. 132-140, 141-144 og 145"}

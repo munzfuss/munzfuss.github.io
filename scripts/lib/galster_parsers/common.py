@@ -65,7 +65,10 @@ MINT_WORD = (
     # three legacy copies, which is what produced the misreads above.
     r"Hamar|Christiania|Nidaros|Kongsberg|"
     # Grevens-Fejde only: the Mecklenburg strikes.
-    r"Güstrow|Mecklenburg)"
+    r"Güstrow|Mecklenburg|"
+    # The Union kings before Hans (Erik af Pommern, Christoffer af Bayern)
+    # and their Swedish / Finnish mints.
+    r"Næstved|Naestved|Odense|Randers|Gurre|Aalborg|Vesterås|Åbo|Århus|Ronneby)"
 )
 
 # «A eller B» — Galster's own marker that the mint is not settled. Both

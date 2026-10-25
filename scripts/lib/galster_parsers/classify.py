@@ -23,7 +23,10 @@ from pathlib import Path
 # The `galst` token is the reign-overview marker for Christian/Frederik
 # (vs. coin-page `g37`, `g46` etc. which use single-letter `g`). Hans
 # requires an explicit filename match.
-_REIGN_INDEX_FILENAME_RE = re.compile(r"^(c|f)\d+galst\.htm$|^hans\.htm$")
+_REIGN_INDEX_FILENAME_RE = re.compile(
+    r"^(c|f)\d+galst\.htm$|^hans\.htm$"
+    # The reign pages of the Union kings before Hans.
+    r"|^(?:m1|erikpomm|bajern|c1)\.htm$")
 
 # Article-folder filename prefixes. `artikler_*` (danskmoent.dk blog
 # articles) always skip. `ernst_*` is more nuanced — Ernst-Hede sometimes
@@ -55,8 +58,12 @@ _POSSESSIVE_H1_RE = re.compile(
 _COIN_PAGE_PREFIXES = ("chr_", "fr_", "norge_")
 # Root-level coin pages: Hans Hvid (hansg31), Gotland (gotlg143), a
 # reign-prefixed page linked root-relative (c2g39 — Christian II Skilling).
+# The Union kings before Hans: Margrethe I (m1g1), Erik af Pommern (epomg,
+# Swedish spomg), Christoffer af Bayern (bajg, Swedish sbajg, Finnish fbajg),
+# Christian I's Swedish ørtug (sc1g).
 _COIN_PAGE_ROOT_RE = re.compile(
-    r"^(?:(?:hansg|gotlg)\d+|(?:c|f)\d+g\d+)[\w\-]*\.htm$")
+    r"^(?:(?:hansg|gotlg)\d+|(?:c|f)\d+g\d+"
+    r"|(?:m1g|[se]pomg|[sf]?bajg|sc1g)\d+)[\w\-]*\.htm$")
 # Rigsrådet (interregnum) page: Galster 21, 22 and 81 on one page.
 _RIGSRAAD_FILENAME = "rigsraad.htm"
 
