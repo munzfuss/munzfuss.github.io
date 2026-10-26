@@ -7,6 +7,7 @@ render time.
 
 Full design + decisions → `docs/V2_PIPELINE.md`.
 Full architecture → `docs/ARCHITECTURE.md` §«V2 entity-keyed pipeline».
+**Which layer a change belongs to** → `docs/ARCHITECTURE.md` §«Layers — what each one is for, and where a change belongs».
 **Canonical decisions journal** → `docs/V2_DECISIONS.md` (38 architectural decisions D1-D38 + 4 deferred DF1-DF4, each with rationale + code locations).
 
 ## Pipeline at a glance

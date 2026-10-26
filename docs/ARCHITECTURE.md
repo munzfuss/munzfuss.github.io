@@ -529,6 +529,44 @@ data/locations/<loc>.yml  ──[init_v2_locations.py]────────�
 ```
 
 Every script is idempotent + merge-aware per D25; every transition preserves data per D17 «Data-accumulation principle». Audit (`scripts/audit_v2.py`) hard-blocks pre-commit on V2 path touches per D26.
+
+### Layers — what each one is for, and where a change belongs
+
+> **Read this before writing any transformation or curator decision.** The
+> question «at which layer do I do this?» has cost whole sessions (2026-10-26:
+> a curator nominal was put first in a seed, then in `merge_decisions`, before
+> it landed in `classification_decisions`, D50). The rule of thumb: **a layer
+> may only decide what its own question is about.** If the change answers
+> another layer's question, it goes there — even when the code you have open
+> would make it easy here.
+
+| Layer | Question it answers | Writes | May do | Must NOT do |
+|---|---|---|---|---|
+| **1 HARVEST** `fetch_<src>.py` | What does the source publish? | `scripts/cache/<src>/` raw | fetch everything reachable; no year / scope floor (the cache is wider than the project on purpose) | filter by project scope, edit content |
+| **2 SYNTHESIS** `parse_<src>.py`, `lib/galster_parsers/` | What does the page / record SAY, in fields? | `scripts/cache/<src>/*.json` | read the printed text faithfully into typed fields (ruler, denomination, years, mint, catalogue refs, specs); source-page typo maps (`_KNOWN_HEDE_TYPOS`) on the curator's word | interpret, normalise across sources, decide a type, read data from unrelated text (a mint from the literature list) |
+| **3.1 SEED** `build_<src>_seed.py` → `lib/v2_seed_writer.write_v2_seed` | Which records of this source are in project scope, and as what Coin record? | `data/v2/seed/<src>/<entity>.yml` | project scope (years, §9 patterns / off-strikes / exonumia), entity routing (`lib/mint_registry`, `entity_routing_rules.yml`), schema mapping and display-neutral normalisation of the source's own value, builder errata tables keyed by record id, `_source_errata` (§4, curator only), reading marks «(!)/(*)/(§)» on the publishing source's reading, §9a thinning of one source's specimens, `_curation_holds` to keep a curated field of THIS record across a re-seed (§«Manual-override preservation») | decide that records of DIFFERENT sources are one coin; decide how a CLASS is presented — fuss / phase / kind / reader-facing nominal (layer 4; a seed edit for that hides what the source printed, §0b-1) |
+| **3.2 MERGE** `merge_seeds_cross_source.py` | Which seeds are the same physical coin? | `data/v2/seed_unified/<entity>.yml`, `class_registry/` | class partition (matcher, §9.4 index graph), cross-source accumulation (§9a lists, year union, sources union, verified-wins §4), reign-span demotion of years, Galster / KM scopes; curator: `merge_decisions/<entity>.yml` `merges` / `no_merges` / `year_demote`, `_cross_entity.yml` (classes spanning buckets, issuing-entity override) | choose fuss / phase / kind or a reader-facing nominal; remove a coin from the page |
+| **4 ABSORB** `absorb_seeds_into_final_v2.py` (+ thin, classify, relink) | Where does this coin stand on the pages, and how is it presented? | `data/v2/final/<entity>.yml` | foundation enrichment, rebuild from members for Fuß in `_rebuild_scope.yml`; curator: `classification_decisions/<entity>.yml` assignments (`fuss`, `phase`, `kind`, `nominal` — D50), keyed by any member seed (D49 stage 1); `exclusions/<entity>.yml` (§9, PB-12; `scope: member` for one record of a class) | change class membership (that is 3.2), edit a final by hand |
+| **RENDER** `scripts/build.py` | What does this page show? | `site*/` | `data/v2/locations/<loc>.yml` (`consumes_entities`, phases, prose), display formatting (`normalise_nominal_display`, decimal separator, «(?)» from `*_verified`) | change data; anything that must survive into other pages or sites |
+
+**Choosing the layer — a change of …**
+
+| … this kind | goes to | example |
+|---|---|---|
+| what a source page says (a field misread) | 2 SYNTHESIS — fix the parser | «i 1430erne» read as the year 1430 (`bdb76f7`) |
+| which records of one source are in scope | 3.1 SEED — the builder | the 1370 floor for the Union kings (`9e0aecc`, `e57462f`) |
+| a value the source printed that is wrong | 3.1 SEED — `_source_errata` or a reading mark, curator only (§4, `reading-marker`) | — |
+| same coin / not the same coin | 3.2 MERGE — `merge_decisions` | Numista 287318 = Galster 13; G 7 / 10 / 14 / 15 apart |
+| a coin's issuing entity when its seeds disagree | 3.2 MERGE — `_cross_entity.yml` | c3h15 royal Schleswig issue |
+| which year a class shows when members disagree | 3.2 MERGE — the year rules / `year_demote` | «1422 (?)» over the reign 1397–1439 |
+| fuss, phase, kind, reader-facing nominal of a class | 4 ABSORB — `classification_decisions` | Kobbersterling «1 Sterling» (D50) |
+| a coin that must not render | 4 ABSORB — `exclusions/` (+ the builder filter so a re-harvest does not bring it back, PB-12) | — |
+| which entities / phases a page shows | RENDER — `data/v2/locations/` | — |
+
+Two consequences that are easy to miss:
+
+- **Foundation-immutable fields** (`fuss, phase, kind, fraction, nominal, ruler, mintmaster, issuing_entity`) are not overwritten by absorb on an existing final. A value set at 3.2 therefore reaches only finals rebuilt from members (`_rebuild_scope.yml`); a curator decision on one of these fields belongs to 4 (`classification_decisions`), which absorb applies to every final.
+- **Ledgers are not transformations.** `_recorded_removals.yml`, `_retracted_refs.yml` and `_source_sanity_retractions.yml` record agreed losses for `verify_reflow` / `trace_coin`; they excuse a change, they do not make one.
 >
 > **V1 is reframed as a verification anchor**, not a bootstrap input.
 > V1 curated (`data/locations/`) is frozen after the 2026-05-18 bootstrap.
@@ -575,13 +613,9 @@ Every script is idempotent + merge-aware per D25; every transition preserves dat
   All Phase 3.2+4 phases chained via scripts/run_v2_pipeline.sh
 ```
 
-Where the curator can intervene (decision files, NEVER field-edits):
-
-| Phase | Decision-file path | What it carries |
-|---|---|---|
-| 3 (cross-source merge) | `data/v2/merge_decisions/<entity>.yml` | Explicit `merge: [seed_id_a, seed_id_b]` + `no_merge: [...]` pairs for low-confidence cases the script can't auto-decide |
-| 4 (fuss classification) | `data/v2/classification_decisions/<entity>.yml` | Explicit `assign: {coin_id: {fuss: X, phase: Y}}` for ambiguous coins; preferred path is generalising the rule |
-| 5 (display assembly) | `data/v2/locations/<loc>.yml` `consumes_entities: [...]` | Which entities feed each rendered page (init_v2_locations preserves manual overrides) |
+Where the curator can intervene (decision files, NEVER field-edits): see
+§«Layers — what each one is for, and where a change belongs» above — the
+«Choosing the layer» table is the authoritative list.
 
 ### Idempotency invariant
 
