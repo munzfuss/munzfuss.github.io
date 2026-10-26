@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15282 per-source seed entries.
-# Output: 6029 unified entries (one per physical coin).
+# Output: 6028 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -103539,6 +103539,9 @@ coins:
         url: https://ikmk.smb.museum/object?id=18206590
         ref: IKMK Berlin 18206590
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/136087
+        ref: KMM 136087 (Inv. FP 3507.12)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139317
         ref: KMM 139317 (Inv. KP 1715.402)
       - type: museum
@@ -103666,6 +103669,7 @@ coins:
       - dk-galster-c1g-23
       - dk-numista-143575
       - ikmk-18206590
+      - kmk-136087
       - kmk-139317
       - kmk-292783
       - metallanalyser-2017-1-g23
@@ -125518,27 +125522,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-134458
-  - id: c-93062484
-    class_id: c-93062484
-    label: unified-kmk-136087
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: (?)
-    ruler: Christian I
-    catalog:
-      galster: '23'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/136087
-        ref: KMM 136087 (Inv. FP 3507.12)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-136087
   - id: c-3cea0e51
     class_id: c-3cea0e51
     label: unified-kmk-136896
