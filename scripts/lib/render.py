@@ -94,6 +94,7 @@ _FIN_UNITS = {
     "gold": (24, {"de": "Karat", "en": "Karat", "uk": "карат", "da": "karat"}),
     "silver": (16, {"de": "Lot", "en": "Lot", "uk": "лот", "da": "lod"}),
     "billon": (16, {"de": "Lot", "en": "Lot", "uk": "лот", "da": "lod"}),
+    "silver_billon": (16, {"de": "Lot", "en": "Lot", "uk": "лот", "da": "lod"}),
 }
 
 
@@ -112,11 +113,6 @@ def fin_unit(value, metal: str | None, lang: str):
     import math
     from markupsafe import Markup
 
-    # A coin with no metal of its own whose fineness comes from a silver
-    # assay (Heljeback 2016 / Lindblad 2017 «Ag %», the only such records):
-    # the fineness IS a silver fraction, so it takes the silver unit.
-    if metal is None:
-        metal = "silver"
     if value is None or metal not in _FIN_UNITS:
         return ""
     try:
@@ -337,6 +333,22 @@ def group_timeline_bars(bars):
     return groups
 
 
+# A reading with no label of its own is labelled by the merger with its
+# pipeline source id (`_source_label_from_id`). Those ids are internal; the
+# tooltip names the source as the reader knows it (curator 2026-10-26). «kmk»
+# is the Copenhagen KMM, not the Berlin Münzkabinett our prose calls «KMK».
+_SOURCE_DISPLAY = {
+    "kmk": "KMM",
+    "ikmk": "IKMK Berlin",
+    "numista": "Numista",
+    "numismaster": "NumisMaster",
+    "ngc": "NGC",
+    "hede": "Hede",
+    "bruun": "Bruun",
+    "galster": "Galster",
+}
+
+
 def resolve_tips(items, ui: dict, lang: str) -> str:
     """Join a tooltip's lines, resolving any that are a localisation KEY.
 
@@ -357,9 +369,10 @@ def resolve_tips(items, ui: dict, lang: str) -> str:
     out: list[str] = []
     for item in items or []:
         if not isinstance(item, str) or DERIVED_SEP not in item:
-            out.append(item)
+            out.append(_SOURCE_DISPLAY.get(item, item) if isinstance(item, str) else item)
             continue
         key, *args = item.split(DERIVED_SEP)
+        args = [_SOURCE_DISPLAY.get(a, a) for a in args]
         text = i18n.ui_get(ui, key, lang)
         if text.startswith("["):          # ui_get's not-found form
             out.append(DERIVED_SEP.join(args))

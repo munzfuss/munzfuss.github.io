@@ -288,7 +288,7 @@ def _seg_rle(rows: list[dict], field: str, ndigits: int, base_dec: int = 0,
     .972) each keep their own sub-row instead of collapsing into one span.
     """
     segs: list[dict] = []
-    for r in rows:
+    for i, r in enumerate(rows):
         v = r.get(field)
         key = round(v, ndigits) if v is not None else None
         gkey = None
@@ -307,7 +307,7 @@ def _seg_rle(rows: list[dict], field: str, ndigits: int, base_dec: int = 0,
                 segs[-1]["delta_pct"] = r.get("delta_pct")
         else:
             dec = _natural_decimals(v, base_dec, base_dec + 3) if v is not None else base_dec
-            segs.append({"_key": key, "_gkey": gkey, "value": v, "span": 1,
+            segs.append({"_key": key, "_gkey": gkey, "value": v, "span": 1, "r0": i,
                          "sources": [s for s in (r.get(src_field) or []) if s],
                          # `anchor` is always the raw WEIGHT source, even on the
                          # derived columns whose `sources` is a «computed from …»
@@ -440,6 +440,45 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
     for seg in cc.msr_fineness_segs:
         v = seg.get("value")
         seg["sources"] = fin_src.get(round(v, 5), []) if v is not None else []
+    # Shortened list: each segment also carries how many KEPT sub-rows it
+    # covers (`span_s`; 0 → hidden while shortened). Segments are contiguous
+    # row ranges, so the kept rows of one segment still share its value.
+    keep = _msr_short_rows(deduped, cc.weight_marks)
+    cc.msr_short_n = len(keep) if keep else 0
+    if keep:
+        for segs in (cc.msr_weight_segs, cc.msr_fein_segs, cc.msr_delta_segs,
+                     cc.msr_fineness_segs, cc.msr_stop_rough_segs,
+                     cc.msr_stop_fine_segs):
+            for seg in segs:
+                seg["span_s"] = sum(1 for i in range(seg["r0"], seg["r0"] + seg["span"])
+                                    if i in keep)
+
+
+# A coin whose specimens show this many distinct finenesses or more opens with
+# a shortened list (curator 2026-10-26); «show all» expands it in place.
+MSR_SHORT_MIN_FINENESSES = 6
+
+
+def _msr_short_rows(rows: list[dict], weight_marks: dict) -> set[int] | None:
+    """Indices of the sub-rows the shortened list keeps: the two highest and
+    the two lowest finenesses, the two heaviest and the two lightest weights
+    (a weight marked «(*)» or «(!)» — a fragment, a shown error — does not
+    count as lightest). One specimen may answer several of these. None when
+    the coin has fewer than MSR_SHORT_MIN_FINENESSES finenesses or the
+    selection is every row anyway."""
+    fins = {round(r["fineness"], 5) for r in rows if r.get("fineness") is not None}
+    if len(fins) < MSR_SHORT_MIN_FINENESSES:
+        return None
+    marked = {src for src, (kind, _) in (weight_marks or {}).items()
+              if kind in ("suspect", "erroneous")}
+    idx = range(len(rows))
+    by_fin = sorted((i for i in idx if rows[i].get("fineness") is not None),
+                    key=lambda i: rows[i]["fineness"])
+    by_w = sorted((i for i in idx if rows[i].get("rough") is not None),
+                  key=lambda i: rows[i]["rough"])
+    light = [i for i in by_w if not set(rows[i].get("sources") or []) & marked]
+    keep = set(by_fin[:2] + by_fin[-2:] + by_w[-2:] + light[:2])
+    return keep if len(keep) < len(rows) else None
 
 
 @dataclass
@@ -559,6 +598,7 @@ class ComputedCoin:
     # dict: {value, span, sources, delta_pct, decimals}. Diameter is NOT a
     # sub-row axis (see _build_measurement_rows) — it keeps diameter_groups.
     msr_n: int = 0
+    msr_short_n: int = 0          # rows of the shortened list; 0 = no shortening
     msr_weight_segs: list[dict] = field(default_factory=list)
     msr_fein_segs: list[dict] = field(default_factory=list)
     msr_delta_segs: list[dict] = field(default_factory=list)

@@ -29,6 +29,19 @@
   document.addEventListener("mouseover", hydrate, true);
   document.addEventListener("focusin", hydrate, true);
 })();
+// Specimen sub-rows: a coin with many finenesses opens shortened; the button
+// under its fineness column switches the whole row between the two views.
+(function () {
+  document.addEventListener("click", function (ev) {
+    var b = ev.target.closest && ev.target.closest(".msr-toggle");
+    if (!b) return;
+    var tr = b.closest("tr");
+    if (!tr) return;
+    var short = tr.classList.toggle("msr-sh");
+    b.textContent = short ? b.getAttribute("data-all") : b.getAttribute("data-short");
+    b.setAttribute("aria-expanded", short ? "false" : "true");
+  });
+})();
 (function () {
   "use strict";
 
