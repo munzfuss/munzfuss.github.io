@@ -43661,6 +43661,10 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167337
         ref: KMM 167337 (Inv. FP 1892.3)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/312565
+        ref: KMM 312565 (Inv. FP 7070.9)
+        display: false
     note:
       de: Dreiviertel-Brustbild des geharnischten Christian III. nach rechts, Schwert und Zepter haltend. Der Kopf teilt die Umschrift und durchbricht den Perlring. Von einer Umschrift umgeben, mit 
         einem weiteren Perlring am Rand. / Die drei Schilde von Dänemark, Norwegen und dem Dannebrog-Kreuz in einem dreieckigen Rahmen, zu den Ecken weisend; die Buchstaben C, R und D zwischen den 
@@ -47278,54 +47282,6 @@ coins:
     composed_of:
       - c-4b0c7fd0
     label: unified-dk-galster-f1g-61
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Frederik I.
-    issuing_entity: danish_realm
-    id: c-fa10fe66
-    year_first: 1524
-    year_last: 1524
-    year_label: '1524'
-    year_verified: true
-    mint: Malmø
-    catalog:
-      galster: '64'
-      schou: '133'
-      galster_volume: f1g
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_range_g:
-      - min: 1.83
-        max: 2.28
-        approx: false
-        source: danskmoent.dk fr/f1g64.htm
-        url: https://www.danskmoent.dk/gif/f1_g64.gif
-    diameter_mm:
-      - value: 18.0
-        source: danskmoent.dk fr/f1g64.htm
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f1g64.htm
-        ref: Galster 64 (f1g) — danskmoent.dk fr_f1g64.htm
-    verification_note:
-      de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
-        Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Galster pages on danskmoent.dk; the catalogue cross-references (Schou, Sieg, Jensen-Skjoldager, Schive and others) come from the page heading and description block. The 
-        coinage standard of this piece is not yet determined.
-      uk: Дані взято зі сторінок Galster на danskmoent.dk; каталожні перехресні посилання (Schou, Sieg, Jensen-Skjoldager, Schive та інші) походять із заголовка та блоку опису сторінки. Стопу цього 
-        примірника ще не визначено.
-      da: Data hentet fra Galster-siderne på danskmoent.dk; kataloghenvisningerne (Schou, Sieg, Jensen-Skjoldager, Schive m.fl.) stammer fra sidens overskrift og beskrivelsesblok. Møntfoden for dette 
-        stykke er endnu ikke bestemt.
-    composed_of:
-      - c-fa10fe66
-    label: unified-dk-galster-f1g-64
     origin: promoted
   - fuss: seed_unsorted
     phase: galster
@@ -105523,7 +105479,7 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
-    nominal: ½ Penning
+    nominal: 1 Skærv
     ruler: Erik VII
     issuing_entity: danish_realm
     id: c-cc6867e5
@@ -108398,8 +108354,12 @@ coins:
     mint: Kopenhagen
     catalog:
       galster: '58'
-      schou: '34'
+      schou:
+        - '34'
+        - 34a
       galster_volume: f1g
+      others:
+        - B# 125
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -108412,6 +108372,17 @@ coins:
     weight_rough_g:
       - value: 0.77
         source: galster
+      - value: 2.25
+        source: kmk
+        suspect:
+          de: 'Ungewöhnlich schweres Stück. Mit 2,25 g wiegt das Stück rund das Dreifache des Hvid Galster 58, den danskmoent.dk mit «Bruttovægt: 0,77g» angibt; die Abbildungen bei KMM zeigen denselben
+            Typ. Ein besonders schweres Exemplar und ein Fehler in der Gewichtsangabe sind gleichermaßen möglich; keines ist erwiesen.'
+          en: 'An unusually heavy specimen. At 2.25 g the piece weighs about three times the Hvid Galster 58, which danskmoent.dk gives as «Bruttovægt: 0,77g»; the KMM photographs show the same type. An
+            unusually heavy specimen and an error in the recorded weight are equally possible, and neither has been shown.'
+          uk: 'Надважкий екземпляр. Вага 2,25 г приблизно втричі більша за вагу хвіда Galster 58, яку danskmoent.dk подає як «Bruttovægt: 0,77g»; зображення в KMM показують той самий тип. Надважкий екземпляр
+            і помилка в записі ваги однаково можливі, і жодне з них не доведене.'
+          da: "Et usædvanligt tungt eksemplar. Med 2,25 g vejer stykket omkring tre gange så meget som hviden Galster 58, som danskmoent.dk angiver med «Bruttovægt: 0,77g»; KMM's billeder viser samme type.
+            Et usædvanligt tungt eksemplar og en fejl i den registrerede vægt er lige mulige, og ingen af dem er påvist."
     diameter_mm:
       - value: 18.5
         source: danskmoent.dk fr/f1g58.htm
@@ -108419,6 +108390,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g58.htm
         ref: Galster 58 (f1g) — danskmoent.dk fr_f1g58.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/717148
+        ref: KMM 717148 (Inv. RP 1768.1)
     verification_note:
       de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
         Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -123493,10 +123467,22 @@ coins:
       others:
         - JSJ# 213
       schou: '40'
+      galster_volume: f1g
+    metal: billon
     metal_verified: false
-    weight_rough_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
     mint_verified: false
     verified: false
+    weight_range_g:
+      - min: 0.4
+        max: 0.53
+        approx: false
+        source: danskmoent.dk fr/f1g79.htm
+        url: https://www.danskmoent.dk/gif/f1_g79.gif
+    diameter_mm:
+      - value: 16.0
+        source: danskmoent.dk fr/f1g79.htm
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/131361
@@ -123513,7 +123499,45 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/734441
         ref: KMM 734441 (Inv. FP 12747.1)
         display: false
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f1g79.htm
+        ref: Galster 79 (f1g) — danskmoent.dk fr_f1g79.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/306124
+        ref: KMM 306124 (Inv. FP 7879.3)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/335006
+        ref: KMM 335006 (Inv. FP 5699.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/352764
+        ref: KMM 352764 (Inv. FP 5113.10)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/575500
+        ref: KMM 575500 (Inv. FP 11280.8)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/747684
+        ref: KMM 747684 (Inv. FP 10953.16)
+        display: false
     verification_note: *id005
+    note:
+      de: 'Hohlpfennig im Wert eines Blafferts, d. h. 2 Penning: «Blafferten var oprindelig, dvs. i 1400-1500-tallet en nordtysk hulpenning med værdien 2 penning» («Der Blaffert war ursprünglich, d. h.
+        im 15. und 16. Jahrhundert, ein norddeutscher Hohlpfennig im Wert von 2 Penning»)<sup>[ref:danskmoent-blaffert-hulpenning-2-penning]</sup>. Mit 0,40–0,53 g wiegt er doppelt so viel wie ein Penning
+        nach der Müntzordnung von 1524 (0,24 g)<sup>[ref:danskmoent-galster-f1g79-vaegt-2-penning]</sup>. Die Müntzstätte ist unbekannt; wegen des gekrönten F wird das Stück dem Königreich zugewiesen, könnte
+        aber ebensogut in den Herzogtümern (Gottorp) geschlagen sein<sup>[ref:danskmoent-galster-f1g79-kongeriget]</sup>.'
+      en: 'A bracteate penning of the value of a blaffert, i.e. 2 penning: «Blafferten var oprindelig, dvs. i 1400-1500-tallet en nordtysk hulpenning med værdien 2 penning» («the blaffert was originally,
+        i.e. in the 1400s–1500s, a North German bracteate penning worth 2 penning»)<sup>[ref:danskmoent-blaffert-hulpenning-2-penning]</sup>. At 0.40–0.53 g it weighs twice as much as a penning under the
+        coinage ordinance of 1524 (0.24 g)<sup>[ref:danskmoent-galster-f1g79-vaegt-2-penning]</sup>. The mint is unknown; because of the crowned F the piece is assigned to the kingdom, although it could
+        just as well have been struck in the duchies (Gottorp)<sup>[ref:danskmoent-galster-f1g79-kongeriget]</sup>.'
+      uk: 'Хульпенінг вартістю блафферта, тобто 2 пенінги: «Blafferten var oprindelig, dvs. i 1400-1500-tallet en nordtysk hulpenning med værdien 2 penning» («блафферт спочатку, тобто в 1400–1500-х роках,
+        був північнонімецьким хульпенінгом вартістю 2 пенінги»)<sup>[ref:danskmoent-blaffert-hulpenning-2-penning]</sup>. Вага 0,40–0,53 г удвічі більша за вагу пенінга за монетним статутом 1524 р. (0,24
+        г)<sup>[ref:danskmoent-galster-f1g79-vaegt-2-penning]</sup>. Монетний двір невідомий; через корону над F монету віднесено до королівства, хоча її так само могли карбувати в герцогствах (Gottorp)<sup>[ref:danskmoent-galster-f1g79-kongeriget]</sup>.'
+      da: 'Hulpenning af en blafferts værdi, dvs. 2 penning: «Blafferten var oprindelig, dvs. i 1400-1500-tallet en nordtysk hulpenning med værdien 2 penning»<sup>[ref:danskmoent-blaffert-hulpenning-2-penning]</sup>.
+        Med 0,40–0,53 g vejer den dobbelt så meget som en penning efter møntordningen 1524 (0,24 g)<sup>[ref:danskmoent-galster-f1g79-vaegt-2-penning]</sup>. Møntstedet er ukendt; på grund af det kronede
+        F er den henført til kongeriget, skønt den ligeså godt kunne være slået i hertugdømmerne (Gottorp)<sup>[ref:danskmoent-galster-f1g79-kongeriget]</sup>.'
     composed_of:
       - c-0fa91a61
     label: unified-kmk-131361
@@ -177624,36 +177648,6 @@ coins:
       - c-c6859bd4
     label: unified-kmk-306117
     origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Blaffent
-    ruler: Frederik I.
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-8cff29b4
-    year_first: 1523
-    year_last: 1533
-    year_ranges:
-      -   - 1523
-          - 1533
-    year_label: 1523-1533
-    year_verified: false
-    catalog:
-      galster: '79'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/306124
-        ref: KMM 306124 (Inv. FP 7879.3)
-    verification_note: *id005
-    composed_of:
-      - c-8cff29b4
-    label: unified-kmk-306124
-    origin: promoted
   - fuss: 18_5_thaler
     phase: I
     kind: kurant
@@ -179451,32 +179445,6 @@ coins:
     composed_of:
       - c-17551d17
     label: unified-kmk-312268
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: (?)
-    ruler: Christian III.
-    issuing_entity: danish_realm
-    id: c-f7f4a27b
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    mint: Kopenhagen
-    catalog:
-      galster: '105'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/312565
-        ref: KMM 312565 (Inv. FP 7070.9)
-    verification_note: *id005
-    composed_of:
-      - c-f7f4a27b
-    label: unified-kmk-312565
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -183149,36 +183117,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: (?)
-    ruler: Frederik I.
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-953d147f
-    year_first: 1523
-    year_last: 1533
-    year_ranges:
-      -   - 1523
-          - 1533
-    year_label: 1523-1533
-    year_verified: false
-    catalog:
-      galster: '79'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/335006
-        ref: KMM 335006 (Inv. FP 5699.1)
-    verification_note: *id005
-    composed_of:
-      - c-953d147f
-    label: unified-kmk-335006
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 1 Blafferts lybsk
     ruler: Christian III.
     issuing_entity: danish_realm
@@ -185917,7 +185855,7 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
-    nominal: (?)
+    nominal: 1 Gote
     ruler: Christian I
     issuing_entity: danish_realm
     year_is_reign_span: true
@@ -185932,6 +185870,10 @@ coins:
     mint: Visby
     catalog:
       galster: '139'
+      schou: 100-132
+      galster_volume: hg
+      others:
+        - Hauberg# 85-101
     metal_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -185940,6 +185882,9 @@ coins:
       - value: 0.6
         source: kmk
     sources:
+      - type: literature
+        url: https://www.danskmoent.dk/gotlg139.htm
+        ref: Galster 139 (hg) — danskmoent.dk gotlg139.htm
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/352426
         ref: KMM 352426 (Inv. FP 5144.4)
@@ -185947,6 +185892,17 @@ coins:
       - c-f729eba8
     label: unified-kmk-352426
     origin: promoted
+    metal: silver
+    fineness_verified: false
+    weight_range_g:
+      - min: 0.55
+        max: 0.87
+        approx: false
+        source: danskmoent.dk gotlg139.htm
+        url: https://www.danskmoent.dk/gif/gotc1_g139.gif
+    diameter_mm:
+      - value: 16.5
+        source: danskmoent.dk gotlg139.htm
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -186021,40 +185977,6 @@ coins:
     composed_of:
       - c-3c08a3a3
     label: unified-kmk-352738
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hulpenning blaffert
-    ruler: Frederik I.
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-0d9e1d62
-    year_first: 1523
-    year_last: 1533
-    year_ranges:
-      -   - 1523
-          - 1533
-    year_label: 1523-1533
-    year_verified: false
-    catalog:
-      galster: '79'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/352764
-        ref: KMM 352764 (Inv. FP 5113.10)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575500
-        ref: KMM 575500 (Inv. FP 11280.8)
-        display: false
-    verification_note: *id005
-    composed_of:
-      - c-0d9e1d62
-    label: unified-kmk-352764
     origin: promoted
   - fuss: 18_5_thaler
     phase: I
@@ -216384,69 +216306,46 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: (?)
-    ruler: Frederik I.
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-c814e2e4
-    year_first: 1523
-    year_last: 1533
-    year_ranges:
-      -   - 1523
-          - 1533
-    year_label: 1523-1533
-    year_verified: false
-    mint: Kopenhagen
-    catalog:
-      galster: '58'
-      schou: 34a
-      others:
-        - B# 125
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.25
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/717148
-        ref: KMM 717148 (Inv. RP 1768.1)
-    verification_note: *id005
-    composed_of:
-      - c-c814e2e4
-    label: unified-kmk-717148
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: (?)
+    nominal: 1 Hvid
     ruler: Frederik I.
     issuing_entity: danish_realm
     id: c-ad295cbf
     year_first: 1524
     year_last: 1524
     year_label: '1524'
+    year_verified: true
     mint: Malmø
     catalog:
       galster: '64'
       schou: '133'
       others:
         - B# 47
-    metal: silver
+      galster_volume: f1g
+    metal: billon
     metal_verified: true
+    fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
     verified: false
     weight_rough_g:
       - value: 2.28
         source: kmk
+    weight_range_g:
+      - min: 1.83
+        max: 2.28
+        approx: false
+        source: danskmoent.dk fr/f1g64.htm
+        url: https://www.danskmoent.dk/gif/f1_g64.gif
+    diameter_mm:
+      - value: 18.0
+        source: danskmoent.dk fr/f1g64.htm
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/717149
         ref: KMM 717149 (Inv. RP 1769.1)
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f1g64.htm
+        ref: Galster 64 (f1g) — danskmoent.dk fr_f1g64.htm
     verification_note: *id005
     composed_of:
       - c-ad295cbf
@@ -220812,36 +220711,6 @@ coins:
       mint: removed — KMM `place` recorded the mint as 'ulæselig' («illegible»), which is the museum stating it could NOT read the mint, not a place of striking. The record carries no typeNumber, so 
         no catalogue page names the mint either. Per CLAUDE.md §4 an unreadable mint is an ABSENT mint, never a mint named «illegible» (curator 2026-09-21).
       mint_verified: false — nothing attests a mint for this coin; the flag must not claim otherwise (CLAUDE.md §4). Held so a re-seed's verified-wins cannot restore the KMM non-place.
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hulpenning
-    ruler: Frederik I.
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-f7d58732
-    year_first: 1523
-    year_last: 1533
-    year_ranges:
-      -   - 1523
-          - 1533
-    year_label: 1523-1533
-    year_verified: false
-    catalog:
-      galster: '79'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/747684
-        ref: KMM 747684 (Inv. FP 10953.16)
-    verification_note: *id005
-    composed_of:
-      - c-f7d58732
-    label: unified-kmk-747684
-    origin: promoted
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -279315,53 +279184,8 @@ coins:
       - c-87275be0
     label: unified-dk-galster-hg-137
     origin: promoted
-  - fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Gote
-    ruler: Christian I
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-d8764e2c
-    year_first: 1448
-    year_last: 1481
-    year_ranges:
-      -   - 1448
-          - 1481
-    year_label: 1448-1481
-    year_verified: false
-    mint: Visby
-    catalog:
-      galster: '139'
-      schou: 100-132
-      galster_volume: hg
-      others:
-        - Hauberg# 85-101
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_range_g:
-      - min: 0.55
-        max: 0.87
-        approx: false
-        source: danskmoent.dk gotlg139.htm
-        url: https://www.danskmoent.dk/gif/gotc1_g139.gif
-    diameter_mm:
-      - value: 16.5
-        source: danskmoent.dk gotlg139.htm
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/gotlg139.htm
-        ref: Galster 139 (hg) — danskmoent.dk gotlg139.htm
-    composed_of:
-      - c-d8764e2c
-    label: unified-dk-galster-hg-139
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: galster
+  - fuss: luebischer_muenzfuss
+    phase: '0'
     kind: kurant
     nominal: 1 Gote
     ruler: Christian I
