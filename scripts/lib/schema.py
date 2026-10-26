@@ -1064,6 +1064,11 @@ class Coin(_StrictBase):
     # reason. Emitted by the cross-source merger from the members' `year_mark`,
     # unioned by absorb; never hand-written on final.
     year_alts: "list[YearAlt] | None" = None
+    # Reader-facing explanation of an estimated year, shown as the tooltip of
+    # the year's «(?)» in place of the generic one. Set by the merger from a
+    # curator `year_window` (merge_decisions), when the shown year compiles
+    # several sources' datings; carried to final by absorb.
+    year_note: I18nText | None = None
     # A source's own statement that the object is (or may be) a forgery,
     # kept VERBATIM («falsk?», «H. 99 B, samtidig forfalskning?», «Falsk som
     # H. 52»). Recorded so the information is not lost; nothing reads it yet

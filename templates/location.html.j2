@@ -145,7 +145,7 @@
     {%- set parts = coin.raw.year_label.split(',') -%}
     {#- The (?) sits INSIDE the last chunk: `.yr-chunk` is display:block, so a
         sibling after it starts a new line whatever space precedes it. -#}
-    {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% elif not coin.raw.year_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endfor -%}
+    {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% elif not coin.raw.year_verified %}&nbsp;<span class="unverified" data-tooltip="{{ coin.raw.year_note|t(lang) if coin.raw.year_note else ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endfor -%}
     {%- set shown = parts|map('trim')|list -%}
     {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   {%- endif -%}</td>
@@ -439,7 +439,7 @@
     {%- set parts = coin.raw.year_label.split(',') -%}
     {#- The (?) sits INSIDE the last chunk: `.yr-chunk` is display:block, so a
         sibling after it starts a new line whatever space precedes it. -#}
-    {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% elif not coin.raw.year_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endfor -%}
+    {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% elif not coin.raw.year_verified %}&nbsp;<span class="unverified" data-tooltip="{{ coin.raw.year_note|t(lang) if coin.raw.year_note else ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endfor -%}
     {%- set shown = parts|map('trim')|list -%}
     {%- for a in coin.raw.year_alts or [] if a.value not in shown %} <span class="yr-chunk yr-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   {%- endif -%}</td>

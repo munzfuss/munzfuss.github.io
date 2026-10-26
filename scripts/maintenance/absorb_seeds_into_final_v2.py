@@ -1004,6 +1004,14 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     if yv is not None:
         out["year_verified"] = yv
 
+    # year_note (a curator year_window's explanation) comes from the live
+    # members only, so it leaves with the window.
+    out.pop("year_note", None)
+    for _m in (members[1:] if len(members) > 1 else members):
+        if isinstance(_m, dict) and _m.get("year_note"):
+            out["year_note"] = dict(_m["year_note"])
+            break
+
     # nominal_equiv / nominal_verified travel with the nominal they belong to:
     # taken from the live member whose nominal the final shows (2026-10-26).
     for _k in ("nominal_equiv", "nominal_verified"):

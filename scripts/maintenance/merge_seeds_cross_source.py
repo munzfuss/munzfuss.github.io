@@ -4580,6 +4580,16 @@ def validate_decisions_doc(doc: dict, path) -> list[str]:
     for i, e in enumerate(doc.get("year_demote") or []):
         if not isinstance(e, dict) or not (e.get("member_id") or e.get("members")):
             errs.append(f"{path}::year_demote[{i}] needs 'member_id' or 'members'")
+    for i, e in enumerate(doc.get("year_window") or []):
+        yrs = e.get("years") if isinstance(e, dict) else None
+        note = e.get("note") if isinstance(e, dict) else None
+        if not isinstance(e, dict) or not e.get("members"):
+            errs.append(f"{path}::year_window[{i}] needs 'members'")
+        elif not (isinstance(yrs, list) and len(yrs) == 2
+                  and all(isinstance(y, int) for y in yrs) and yrs[0] <= yrs[1]):
+            errs.append(f"{path}::year_window[{i}] 'years' must be [first, last]")
+        elif not (isinstance(note, dict) and all(note.get(k) for k in ("de", "en", "uk", "da"))):
+            errs.append(f"{path}::year_window[{i}] 'note' needs de/en/uk/da")
     return errs
 
 
@@ -4598,6 +4608,27 @@ def load_decisions_yaml(path) -> dict:
     return doc
 
 
+def _apply_year_window(unified: dict, member_ids: set[str], windows: list[dict],
+                       expand=lambda mid: [mid]) -> None:
+    """A curator `year_window` (merge_decisions) sets the year a class shows
+    when its members' datings are to be compiled rather than unioned, and the
+    reader-facing explanation of it (`year_note`, the tooltip of the year's
+    «(?)»). The window is an estimate, so the year stays unverified. Founding
+    case: Galster 1, the Ribe hvid — Ernst 1948's start, Horsnæs, Moesgaard
+    and Märcher 2018's end (curator 2026-10-26)."""
+    for w in windows:
+        ids = {sid for mid in w.get("members") or [] for sid in (expand(mid) or [mid])}
+        if not ids & member_ids:
+            continue
+        first, last = w["years"]
+        unified["year_first"], unified["year_last"] = first, last
+        unified["year_ranges"] = [[first, last]]
+        unified["year_label"] = str(first) if first == last else f"{first}-{last}"
+        unified["year_verified"] = False
+        unified["year_note"] = dict(w["note"])
+        return
+
+
 def _load_decisions(entity_id: str) -> dict:
     """Load explicit merge_decisions/<entity>.yml if present.
     Returns {merges: [{members, reason}], no_merges: [...],
@@ -4611,12 +4642,13 @@ def _load_decisions(entity_id: str) -> dict:
     force-merge (see DecisionsIntegrityError)."""
     path = V2_MERGE_DECISIONS / f"{entity_id}.yml"
     if not path.exists():
-        return {"merges": [], "no_merges": [], "year_demote": []}
+        return {"merges": [], "no_merges": [], "year_demote": [], "year_window": []}
     doc = load_decisions_yaml(path)
     return {
         "merges": doc.get("merges", []) or [],
         "no_merges": doc.get("no_merges", []) or [],
         "year_demote": doc.get("year_demote", []) or [],
+        "year_window": doc.get("year_window", []) or [],
     }
 
 
@@ -5560,6 +5592,8 @@ def process_entity(entity_id: str,
         member_coins = [seeds_by_id[mid] for mid in sorted(member_ids)]
         unified_id = _unified_id_for_class(member_coins)
         unified, conflicts = build_unified(member_coins, unified_id, entity_id)
+        _apply_year_window(unified, set(member_ids), decisions.get("year_window", []),
+                           _expand_member)
         # Cross-entity stamp: a class containing a member curator-pulled into
         # this entity is a real coin of this jurisdiction. Derive its
         # issuing_entity from the merged MINT (the circulation signal) rather
