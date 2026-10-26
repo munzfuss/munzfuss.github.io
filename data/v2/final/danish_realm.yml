@@ -106235,6 +106235,8 @@ coins:
       galster: '7'
       others:
         - Fritze Lindahl# 42-49
+        - Jesse# 697
+        - Jesse# 698
       galster_volume: galster1972-erik7
     metal: copper
     metal_verified: true
@@ -106256,6 +106258,9 @@ coins:
       - type: literature
         url: https://en.numista.com/348708
         ref: Numista N#348708 — Kobbersterling - Erik of Pomerania (Naestved) - Denmark
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 42-49
     note:
       de: 3 Pennings (Rechnungs-Äquivalent)
       en: 3 Pennings (accounting equivalent)
@@ -106266,6 +106271,10 @@ coins:
     origin: promoted
     year_verified: false
     nominal_equiv: 3 Penning
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        source: Lindahl 1955 (NNÅ 1955), s. 80
   - fuss: nobel_fod
     phase: I
     kind: kurant
@@ -106454,6 +106463,10 @@ coins:
       sieg: '9.2'
       galster: '14'
       galster_volume: galster1972-erik7
+      others:
+        - Jesse# 697
+        - Jesse# 698
+        - Fritze Lindahl# 50-53
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -106471,12 +106484,24 @@ coins:
       - type: literature
         url: https://en.numista.com/476049
         ref: Numista N#476049 — Kobbersterling - Erik of Pomerania (Odense) - Denmark
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 50-53
     composed_of:
       - c-8f3b9eaf
     label: unified-dk-numista-476049
     origin: promoted
     year_verified: false
     nominal_equiv: 3 Penning
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        source: Lindahl 1955 (NNÅ 1955), s. 80
+    note:
+      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
+      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
+      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
+      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
   - fuss: reichsdukatenfuss
     phase: II
     kind: kurant
@@ -169312,15 +169337,10 @@ coins:
     nominal: 2 Skilling
     ruler: Frederik III.
     issuing_entity: danish_realm
-    year_is_reign_span: true
     id: c-7bb0dd89
-    year_first: 1648
-    year_last: 1670
-    year_ranges:
-      -   - 1648
-          - 1670
-    year_label: 1648-1670
-    year_verified: false
+    year_first: 1667
+    year_last: 1667
+    year_label: '1667'
     mint: Kopenhagen
     catalog:
       others:
@@ -169333,6 +169353,10 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/266466
         ref: KMM 266466 (Inv. FP 10024.32)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/266467
+        ref: KMM 266467 (Inv. FP 10024.31)
+        display: false
     verification_note: *id005
     composed_of:
       - c-7bb0dd89
@@ -258051,33 +258075,6 @@ coins:
     nominal: 2 Skilling
     ruler: Frederik 3
     issuing_entity: danish_realm
-    id: c-9d3d1e0f
-    year_first: 1667
-    year_last: 1667
-    year_label: '1667'
-    mint: Kopenhagen
-    catalog:
-      others:
-        - Aagaard# 1996 T 80
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/266467
-        ref: KMM 266467 (Inv. FP 10024.31)
-    verification_note: *id018
-    composed_of:
-      - c-9d3d1e0f
-    label: unified-kmk-266467
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    ruler: Frederik 3
-    issuing_entity: danish_realm
     id: c-8aabe568
     year_first: 1649
     year_last: 1649
@@ -278092,7 +278089,7 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: scheide
-    nominal: 1 Kobbersterling
+    nominal: 1 Sterling
     ruler: Erik VII
     issuing_entity: danish_realm
     id: c-01a90515
@@ -278105,22 +278102,13 @@ coins:
       galster: '10'
       others:
         - Fritze Lindahl# 34-41
+        - Jesse# 697
+        - Jesse# 698
       galster_volume: galster1972-erik7
-    fineness_verified: true
+    fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
     verified: false
-    fineness:
-      - value: 0.0042
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
-      - value: 0.0043
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
-      - value: 0.0045
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
-      - value: 0.0048
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
-      - value: 0.0052
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
     weight_rough_g:
       - value: 0.56
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
@@ -278136,6 +278124,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/epomg10.htm
         ref: Galster 10 (epomg) — danskmoent.dk epomg10.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 34-41
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38, Appendix (XRF)
@@ -278164,8 +278155,17 @@ coins:
       - c-01a90515
     label: unified-metallanalyser-2016-1-g10-lund-kopparsterling
     origin: promoted
-    metal: billon
+    metal: copper
     metal_verified: true
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        source: Lindahl 1955 (NNÅ 1955), s. 80
+    note:
+      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
+      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
+      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
+      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -278676,13 +278676,18 @@ coins:
     ruler: Erik VII
     issuing_entity: danish_realm
     id: c-11a2b578
-    year_first: 1424
+    year_first: 1400
     year_last: 1424
-    year_label: '1424'
+    year_label: 1400, 1424
     year_verified: false
     mint: Næstved
     catalog:
+      sieg: '11'
+      bruun_collection_id: '3725'
       galster: '2'
+      others:
+        - FL# 2
+      jesse: '694'
       galster_volume: galster1972-erik7
     fineness_verified: false
     weight_rough_verified: true
@@ -278696,7 +278701,12 @@ coins:
           en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
           uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
           da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
+      - value: 1.09
+        source: bruun
     sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11146, p. 60
       - type: literature
         url: https://www.danskmoent.dk/epomg2.htm
         ref: Galster 2 (epomg) — danskmoent.dk epomg2.htm
@@ -278716,8 +278726,13 @@ coins:
       - c-11a2b578
     label: unified-metallanalyser-2016-1-g2-nastved-hvid
     origin: promoted
-    metal: billon
+    metal: silver
     metal_verified: false
+    year_ranges:
+      -   - 1400
+          - 1400
+      -   - 1424
+          - 1424
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -280020,42 +280035,6 @@ coins:
   - fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: 1 Witten
-    ruler: Erik VII of Pomerania
-    issuing_entity: danish_realm
-    id: c-cd2c0b3c
-    year_first: 1400
-    year_last: 1400
-    year_label: '1400'
-    year_verified: false
-    mint: Næstved
-    catalog:
-      sieg: '11'
-      bruun_collection_id: '3725'
-      galster: '2'
-      others:
-        - FL# 2
-      jesse: '694'
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.09
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11146, p. 60
-    composed_of:
-      - c-cd2c0b3c
-    label: unified-dk-bruun-3725
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
     nominal: 1 Sterling
     ruler: Christopher III of Bavaria
     mintmaster: Hans Myndel
@@ -280194,7 +280173,7 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
-    nominal: 1 Kobbersterling
+    nominal: 1 Sterling
     ruler: Erik VII
     issuing_entity: danish_realm
     id: c-6f18dcfc
@@ -280207,20 +280186,35 @@ coins:
       galster: '15'
       others:
         - Fritze Lindahl# 54-58
+        - Jesse# 697
+        - Jesse# 698
       galster_volume: galster1972-erik7
-    metal: silver
+    metal: copper
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg15.htm
         ref: Galster 15 (epomg) — danskmoent.dk epomg15.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 54-58
     composed_of:
       - c-6f18dcfc
     label: unified-dk-galster-epomg-15
     origin: promoted
+    metal_verified: true
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        source: Lindahl 1955 (NNÅ 1955), s. 80
+    note:
+      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
+      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
+      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
+      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -280318,8 +280312,8 @@ coins:
     kind: kurant
     nominal: 1 Hulpenning
     issuing_entity: danish_realm
-    id: c-87275be0
     ruler: Erik VII
+    id: c-87275be0
     year_first: 1400
     year_last: 1499
     year_ranges:
@@ -280728,17 +280722,12 @@ coins:
         - '14'
         - '15'
       galster_volume: galster1972-erik7
-    metal: billon
+    metal: copper
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
-    fineness:
-      - value: 0.0042
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 43
-      - value: 0.0052
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39
     weight_rough_g:
       - value: 0.72
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39
@@ -280751,6 +280740,11 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 43, Appendix (XRF)
+    note:
+      de: 'Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39, 43 (Röntgenfluoreszenz): Silber 0,42–0,52 %.'
+      en: 'Heljeback 2016 (Metallanalyser av mynt 2016:1), no. 39, 43 (X-ray fluorescence): silver 0.42–0.52 %.'
+      uk: 'Heljeback 2016 (Metallanalyser av mynt 2016:1), № 39, 43 (рентгенофлуоресцентний аналіз): срібло 0,42–0,52 %.'
+      da: 'Heljeback 2016 (Metallanalyser av mynt 2016:1), nr. 39, 43 (røntgenfluorescens): sølv 0,42–0,52 %.'
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
@@ -281569,6 +281563,359 @@ coins:
     label: unified-dk-galster-epomg-6
     origin: promoted
   - fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: ½ Penning
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    id: c-e8de91ec
+    year_first: 1405
+    year_last: 1424
+    year_ranges:
+      -   - 1405
+          - 1424
+    year_label: 1405-1424
+    year_verified: false
+    catalog:
+      others:
+        - Fritze Lindahl# 33a
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 0.12
+        source: Lindahl 1955 (NNÅ 1955), s. 79
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 79; FL 33a
+    composed_of:
+      - c-e8de91ec
+    label: unified-lindahl-1955-halvpenning
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: 1 Lebard
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    id: c-d57df4df
+    year_first: 1424
+    year_last: 1424
+    year_label: '1424'
+    year_verified: false
+    mint:
+      - Lund
+      - Næstved
+    catalog:
+      others:
+        - Jesse# 485
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.453
+        source: Lindahl 1955 (NNÅ 1955), s. 82
+    weight_range_g:
+      - min: 0.2
+        max: 0.39
+        source: Lindahl 1955 (NNÅ 1955), s. 82
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 82
+    composed_of:
+      - c-d57df4df
+    label: unified-lindahl-1955-lebard
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: 1 Søsling
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    id: c-13e893f2
+    year_first: 1424
+    year_last: 1424
+    year_label: '1424'
+    year_verified: false
+    mint: Lund
+    catalog:
+      others:
+        - Jesse# 484
+        - Fritze Lindahl# 59-62
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.703
+        source: Lindahl 1955 (NNÅ 1955), s. 82
+    weight_range_g:
+      - min: 1.0
+        max: 1.34
+        source: Lindahl 1955 (NNÅ 1955), s. 82
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 82; FL 59-62
+    composed_of:
+      - c-13e893f2
+    label: unified-lindahl-1955-lund-soesling
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: 1 Søsling
+    ruler: Christoffer III
+    issuing_entity: danish_realm
+    id: c-455034f7
+    year_first: 1440
+    year_last: 1440
+    year_label: '1440'
+    year_verified: false
+    mint: Lund
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.75
+        source: Lindahl 1955 (NNÅ 1955), s. 84 (after Rasmusson)
+    weight_rough_g:
+      - value: 1.04
+        source: Lindahl 1955 (NNÅ 1955), s. 84
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 84
+    composed_of:
+      - c-455034f7
+    label: unified-lindahl-1955-lund-soesling-christopher
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: 1 Sterling
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    id: c-0a887a92
+    year_first: 1405
+    year_last: 1405
+    year_label: '1405'
+    year_verified: false
+    mint: Lund
+    catalog:
+      others:
+        - Jesse# 695
+        - Fritze Lindahl# 3-15
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.532
+        source: Lindahl 1955 (NNÅ 1955), s. 78
+    weight_range_g:
+      - min: 0.5
+        max: 1.0
+        source: Lindahl 1955 (NNÅ 1955), s. 78
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 78; FL 3-15
+    composed_of:
+      - c-0a887a92
+    label: unified-lindahl-1955-lund-sterling
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: 1 Sterling
+    ruler: Christoffer III
+    issuing_entity: danish_realm
+    id: c-7d936cd6
+    year_first: 1444
+    year_last: 1444
+    year_label: '1444'
+    year_verified: false
+    mint: Malmø
+    catalog:
+      others:
+        - Jesse# 704
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_range_g:
+      - min: 0.61
+        max: 0.73
+        source: Lindahl 1955 (NNÅ 1955), s. 85
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 85
+    composed_of:
+      - c-7d936cd6
+    label: unified-lindahl-1955-malmoe-sterling
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: 1 Witten
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    id: c-4ca2f0b9
+    year_first: 1400
+    year_last: 1400
+    year_label: '1400'
+    year_verified: false
+    mint: Næstved
+    catalog:
+      others:
+        - Jesse# 694
+        - Fritze Lindahl# 2
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 78; FL 2
+    composed_of:
+      - c-4ca2f0b9
+    label: unified-lindahl-1955-naestved-witten-krone
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: 1 Witten
+    ruler: Erik VII
+    issuing_entity: danish_realm
+    id: c-7c503c16
+    year_first: 1397
+    year_last: 1405
+    year_ranges:
+      -   - 1397
+          - 1405
+    year_label: 1397-1405
+    year_verified: false
+    mint: Næstved
+    catalog:
+      others:
+        - Jesse# 693
+        - Fritze Lindahl# 1
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 1.15
+        source: Lindahl 1955 (NNÅ 1955), s. 77
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 77; FL 1
+    composed_of:
+      - c-7c503c16
+    label: unified-lindahl-1955-naestved-witten-krumstav
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: 1 Witten
+    issuing_entity: danish_realm
+    id: c-d9626c61
+    year_first: 1373
+    year_last: 1396
+    year_ranges:
+      -   - 1373
+          - 1396
+    year_label: 1373-1396
+    year_verified: false
+    mint: Ribe
+    catalog:
+      others:
+        - Jesse# 692
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.8
+        source: Lindahl 1955 (NNÅ 1955), s. 76
+    weight_range_g:
+      - min: 1.09
+        max: 1.3
+        source: Lindahl 1955 (NNÅ 1955), s. 76
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 76
+    composed_of:
+      - c-d9626c61
+    label: unified-lindahl-1955-ribe-witten
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: 1 Skilling
+    ruler: Christoffer III
+    issuing_entity: danish_realm
+    year_is_reign_span: true
+    id: c-e372cfee
+    year_first: 1440
+    year_last: 1448
+    year_ranges:
+      -   - 1440
+          - 1448
+    year_label: 1440-1448
+    year_verified: false
+    mint:
+      - Lund
+      - Malmø
+    catalog:
+      others:
+        - Jesse# 705
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.5
+        source: Lindahl 1955 (NNÅ 1955), s. 85 (after Rasmusson)
+    weight_range_g:
+      - min: 1.87
+        max: 2.38
+        source: Lindahl 1955 (NNÅ 1955), s. 85
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 85
+    composed_of:
+      - c-e372cfee
+    label: unified-lindahl-1955-skilling-christopher
+    origin: promoted
+  - fuss: seed_unsorted
     phase: kmk
     kind: kurant
     nominal: 1 Mark
@@ -282307,519 +282654,6 @@ coins:
     composed_of:
       - c-632645aa
     label: unified-kmk-78534
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: ½ Penning
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-e8de91ec
-    year_first: 1405
-    year_last: 1424
-    year_ranges:
-      -   - 1405
-          - 1424
-    year_label: 1405-1424
-    year_verified: false
-    catalog:
-      others:
-        - Fritze Lindahl# 33a
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.12
-        source: Lindahl 1955 (NNÅ 1955), s. 79
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 79; FL 33a
-    composed_of:
-      - c-e8de91ec
-    label: unified-lindahl-1955-halvpenning
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Lebard
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-d57df4df
-    year_first: 1424
-    year_last: 1424
-    year_label: '1424'
-    year_verified: false
-    mint:
-      - Lund
-      - Næstved
-    catalog:
-      others:
-        - Jesse# 485
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.453
-        source: Lindahl 1955 (NNÅ 1955), s. 82
-    weight_range_g:
-      - min: 0.2
-        max: 0.39
-        source: Lindahl 1955 (NNÅ 1955), s. 82
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 82
-    composed_of:
-      - c-d57df4df
-    label: unified-lindahl-1955-lebard
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Kobbersterling
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-f0e6d23c
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    year_verified: false
-    mint: Lund
-    catalog:
-      others:
-        - Jesse# 697
-        - Jesse# 698
-        - Fritze Lindahl# 34-41
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 34-41
-    note:
-      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
-      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
-      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
-      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
-    composed_of:
-      - c-f0e6d23c
-    label: unified-lindahl-1955-lund-kobbersterling
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Søsling
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-13e893f2
-    year_first: 1424
-    year_last: 1424
-    year_label: '1424'
-    year_verified: false
-    mint: Lund
-    catalog:
-      others:
-        - Jesse# 484
-        - Fritze Lindahl# 59-62
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.703
-        source: Lindahl 1955 (NNÅ 1955), s. 82
-    weight_range_g:
-      - min: 1.0
-        max: 1.34
-        source: Lindahl 1955 (NNÅ 1955), s. 82
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 82; FL 59-62
-    composed_of:
-      - c-13e893f2
-    label: unified-lindahl-1955-lund-soesling
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Søsling
-    ruler: Christoffer III
-    issuing_entity: danish_realm
-    id: c-455034f7
-    year_first: 1440
-    year_last: 1440
-    year_label: '1440'
-    year_verified: false
-    mint: Lund
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.75
-        source: Lindahl 1955 (NNÅ 1955), s. 84 (after Rasmusson)
-    weight_rough_g:
-      - value: 1.04
-        source: Lindahl 1955 (NNÅ 1955), s. 84
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 84
-    composed_of:
-      - c-455034f7
-    label: unified-lindahl-1955-lund-soesling-christopher
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Sterling
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-0a887a92
-    year_first: 1405
-    year_last: 1405
-    year_label: '1405'
-    year_verified: false
-    mint: Lund
-    catalog:
-      others:
-        - Jesse# 695
-        - Fritze Lindahl# 3-15
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.532
-        source: Lindahl 1955 (NNÅ 1955), s. 78
-    weight_range_g:
-      - min: 0.5
-        max: 1.0
-        source: Lindahl 1955 (NNÅ 1955), s. 78
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 78; FL 3-15
-    composed_of:
-      - c-0a887a92
-    label: unified-lindahl-1955-lund-sterling
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Sterling
-    ruler: Christoffer III
-    issuing_entity: danish_realm
-    id: c-7d936cd6
-    year_first: 1444
-    year_last: 1444
-    year_label: '1444'
-    year_verified: false
-    mint: Malmø
-    catalog:
-      others:
-        - Jesse# 704
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_range_g:
-      - min: 0.61
-        max: 0.73
-        source: Lindahl 1955 (NNÅ 1955), s. 85
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 85
-    composed_of:
-      - c-7d936cd6
-    label: unified-lindahl-1955-malmoe-sterling
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Kobbersterling
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-2dcf15e0
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    year_verified: false
-    mint: Næstved
-    catalog:
-      others:
-        - Jesse# 697
-        - Jesse# 698
-        - Fritze Lindahl# 42-49
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 42-49
-    note:
-      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
-      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
-      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
-      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
-    composed_of:
-      - c-2dcf15e0
-    label: unified-lindahl-1955-naestved-kobbersterling
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Witten
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-4ca2f0b9
-    year_first: 1400
-    year_last: 1400
-    year_label: '1400'
-    year_verified: false
-    mint: Næstved
-    catalog:
-      others:
-        - Jesse# 694
-        - Fritze Lindahl# 2
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 78; FL 2
-    composed_of:
-      - c-4ca2f0b9
-    label: unified-lindahl-1955-naestved-witten-krone
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Witten
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-7c503c16
-    year_first: 1397
-    year_last: 1405
-    year_ranges:
-      -   - 1397
-          - 1405
-    year_label: 1397-1405
-    year_verified: false
-    mint: Næstved
-    catalog:
-      others:
-        - Jesse# 693
-        - Fritze Lindahl# 1
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.15
-        source: Lindahl 1955 (NNÅ 1955), s. 77
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 77; FL 1
-    composed_of:
-      - c-7c503c16
-    label: unified-lindahl-1955-naestved-witten-krumstav
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Kobbersterling
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-46db6f47
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    year_verified: false
-    mint: Odense
-    catalog:
-      others:
-        - Jesse# 697
-        - Jesse# 698
-        - Fritze Lindahl# 50-53
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 50-53
-    note:
-      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
-      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
-      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
-      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
-    composed_of:
-      - c-46db6f47
-    label: unified-lindahl-1955-odense-kobbersterling
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Kobbersterling
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-41328f35
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    year_verified: false
-    mint: Randers
-    catalog:
-      others:
-        - Jesse# 697
-        - Jesse# 698
-        - Fritze Lindahl# 54-58
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 54-58
-    note:
-      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
-      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
-      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
-      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
-    composed_of:
-      - c-41328f35
-    label: unified-lindahl-1955-randers-kobbersterling
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Witten
-    issuing_entity: danish_realm
-    id: c-d9626c61
-    year_first: 1373
-    year_last: 1396
-    year_ranges:
-      -   - 1373
-          - 1396
-    year_label: 1373-1396
-    year_verified: false
-    mint: Ribe
-    catalog:
-      others:
-        - Jesse# 692
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.8
-        source: Lindahl 1955 (NNÅ 1955), s. 76
-    weight_range_g:
-      - min: 1.09
-        max: 1.3
-        source: Lindahl 1955 (NNÅ 1955), s. 76
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 76
-    composed_of:
-      - c-d9626c61
-    label: unified-lindahl-1955-ribe-witten
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Christoffer III
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-e372cfee
-    year_first: 1440
-    year_last: 1448
-    year_ranges:
-      -   - 1440
-          - 1448
-    year_label: 1440-1448
-    year_verified: false
-    mint:
-      - Lund
-      - Malmø
-    catalog:
-      others:
-        - Jesse# 705
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.5
-        source: Lindahl 1955 (NNÅ 1955), s. 85 (after Rasmusson)
-    weight_range_g:
-      - min: 1.87
-        max: 2.38
-        source: Lindahl 1955 (NNÅ 1955), s. 85
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 85
-    composed_of:
-      - c-e372cfee
-    label: unified-lindahl-1955-skilling-christopher
     origin: promoted
   - id: unified-kmk-463985
     label: unified-kmk-463985

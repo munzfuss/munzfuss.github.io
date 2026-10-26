@@ -737,6 +737,10 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/81766
         ref: KMM 81766 (Inv. GP 888.344)
         display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/369863
+        ref: KMM 369863 (Inv. FP 4379.31)
+        display: false
     inscription_obv: IOHANS / VAN GOTT / GNA ERWE / ZV NORWE / HER ZV SC/HL HOL
     note:
       de: "2 Schilling Lübisch = 1/30 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1620-1625\n\nSub-Stempelvarianten Lange 542 c und 542 d (Vorderseiten-Aufschriftvarianten des Reuterpfennigs)
@@ -3434,39 +3438,6 @@ coins:
     composed_of:
       - c-2ee92a6a
     label: unified-kmk-329767
-    origin: promoted
-    _entity_routing_hint:
-      rule_id: sonderburg_ducal_lineage
-      matched_on:
-        ruler_lineage: hans den yngre
-      would_route_to: sonderburg_duchy
-      active: true
-      reasoning: Rule matched on ruler_lineage='hans den yngre'; mint absent / unverified → rule re-routed.
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling lybsk
-    ruler: Hans den Yngre af Sønderborg
-    issuing_entity: sonderburg_duchy
-    id: c-b8240a06
-    year_first: 1621
-    year_last: 1621
-    year_label: '1621'
-    catalog:
-      others:
-        - JSJ# 13a
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/369863
-        ref: KMM 369863 (Inv. FP 4379.31)
-    verification_note: *id003
-    composed_of:
-      - c-b8240a06
-    label: unified-kmk-369863
     origin: promoted
     _entity_routing_hint:
       rule_id: sonderburg_ducal_lineage

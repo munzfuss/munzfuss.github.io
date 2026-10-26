@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `herzogtum_braunschweig_lueneburg`.
-# Generated 2026-10-24 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-26 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/herzogtum_braunschweig_lueneburg.yml across all sources.
 #
 # Input: 2905 per-source seed entries.
-# Output: 2443 unified entries (one per physical coin).
+# Output: 2431 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: herzogtum_braunschweig_lueneburg
-generated_at: '2026-10-24'
+generated_at: '2026-10-26'
 coins:
   - id: c-3ae84baf
     class_id: c-3ae84baf
@@ -9100,12 +9100,17 @@ coins:
       - value: 3.5
         source: ucoin
     diameter_mm:
+      - value: 21.0
+        source: ikmk
       - value: 22.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18204531
         ref: IKMK Berlin 18204531
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18316515
+        ref: IKMK Berlin 18316515
       - type: ucoin
         url: https://en.ucoin.net/coin/brunswick_luneburg-1-ducat-1791-1800/?tid=92448
         ref: ucoin
@@ -9116,6 +9121,7 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - ikmk-18204531
+      - ikmk-18316515
       - tid-tid-92448
   - id: c-53692332
     class_id: c-53692332
@@ -12393,6 +12399,7 @@ coins:
     year_first: 1620
     year_last: 1620
     year_label: '1620'
+    mintmaster: Paul Becker
     inscription_rev: I / FLIT/TER / 6Z0
     mint: Braunschweig
     catalog:
@@ -12405,9 +12412,13 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 0.55
+        source: ikmk
       - value: 0.6
         source: ikmk
     diameter_mm:
+      - value: 13.0
+        source: ikmk
       - value: 14.0
         source: ikmk
     sources:
@@ -12417,9 +12428,13 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18274005
         ref: IKMK Berlin 18274005
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18274004
+        ref: IKMK Berlin 18274004
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - ikmk-18236490
+      - ikmk-18274004
   - id: c-3861e976
     class_id: c-3861e976
     label: unified-ikmk-18236491
@@ -12428,8 +12443,11 @@ coins:
     kind: kurant
     nominal: 1 Flitter
     year_first: 1621
-    year_last: 1621
-    year_label: '1621'
+    year_last: 1622
+    year_ranges:
+      -   - 1621
+          - 1622
+    year_label: 1621-1622
     inscription_rev: I / FLIT/TER / 6Z1
     mint: Braunschweig
     catalog:
@@ -12452,45 +12470,12 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18236491
         ref: IKMK Berlin 18236491
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18236491
-  - id: c-611f26a4
-    class_id: c-611f26a4
-    label: unified-ikmk-18236492
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Flitter
-    year_first: 1621
-    year_last: 1622
-    year_ranges:
-      -   - 1621
-          - 1622
-    year_label: 1621-1622
-    inscription_rev: I / FLIT/TER
-    mint: Braunschweig
-    catalog:
-      others:
-        - Jesse# 97
-    metal: copper
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.43
-        source: ikmk
-    diameter_mm:
-      - value: 13.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18236492
         ref: IKMK Berlin 18236492
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - ikmk-18236491
       - ikmk-18236492
   - id: c-f0988087
     class_id: c-f0988087
@@ -12646,8 +12631,8 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - ikmk-18264692
-  - id: c-ad990051
-    class_id: c-ad990051
+  - id: c-038078b8
+    class_id: c-038078b8
     label: unified-ikmk-18273995
     fuss: seed_unsorted
     phase: ikmk
@@ -12670,212 +12655,41 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 1.65
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18273995
-        ref: IKMK Berlin 18273995
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18273995
-  - id: c-8ef3938c
-    class_id: c-8ef3938c
-    label: unified-ikmk-18273998
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    mintmaster: Paul Becker
-    inscription_obv: MON NO REIPUB BRUNS
-    inscription_rev: FERDI II D G RO I S A 6Z0
-    mint: Braunschweig
-    catalog:
-      others:
-        - Jesse# 92
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.58
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18273998
-        ref: IKMK Berlin 18273998
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18273998
-  - id: c-86c94fa3
-    class_id: c-86c94fa3
-    label: unified-ikmk-18273999
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    mintmaster: Paul Becker
-    inscription_obv: MON NO REIPUB BRUNS
-    inscription_rev: FERDI II D G RO I S A 6Z0
-    mint: Braunschweig
-    catalog:
-      others:
-        - Jesse# 92
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.67
-        source: ikmk
-    diameter_mm:
-      - value: 24.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18273999
-        ref: IKMK Berlin 18273999
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18273999
-  - id: c-c64daaad
-    class_id: c-c64daaad
-    label: unified-ikmk-18274001
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    mintmaster: Paul Becker
-    inscription_obv: MON NO REIPUB BRUN
-    inscription_rev: FERDI II D G RO I S A 6Z0
-    mint: Braunschweig
-    catalog:
-      others:
-        - Jesse# 92
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.59
-        source: ikmk
-    diameter_mm:
-      - value: 24.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18274001
-        ref: IKMK Berlin 18274001
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18274001
-  - id: c-3f52b249
-    class_id: c-3f52b249
-    label: unified-ikmk-18274002
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    mintmaster: Paul Becker
-    inscription_obv: MON NO REIPUB BRUN
-    inscription_rev: FERDI II D G RO I S A 6Z0
-    mint: Braunschweig
-    catalog:
-      others:
-        - Jesse# 92
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
       - value: 1.43
         source: ikmk
-    diameter_mm:
-      - value: 24.0
+      - value: 1.58
         source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18274002
-        ref: IKMK Berlin 18274002
-    note:
-      de: 1/16 Taler
-      en: 1/16 Taler
-      uk: 1/16 Taler
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18274002
-  - id: c-038078b8
-    class_id: c-038078b8
-    label: unified-ikmk-18274003
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Doppelschilling
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    mintmaster: Paul Becker
-    inscription_obv: MON NO REIPUB BRUNS
-    inscription_rev: FERDI II D G RO I S A 6Z0
-    mint: Braunschweig
-    catalog:
-      others:
-        - Jesse# 92
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
+      - value: 1.59
+        source: ikmk
+      - value: 1.65
+        source: ikmk
+      - value: 1.67
+        source: ikmk
       - value: 2.08
         source: ikmk
     diameter_mm:
       - value: 21.0
         source: ikmk
+      - value: 23.0
+        source: ikmk
+      - value: 24.0
+        source: ikmk
     sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18273995
+        ref: IKMK Berlin 18273995
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18273998
+        ref: IKMK Berlin 18273998
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18273999
+        ref: IKMK Berlin 18273999
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18274001
+        ref: IKMK Berlin 18274001
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18274002
+        ref: IKMK Berlin 18274002
       - type: museum
         url: https://ikmk.smb.museum/object?id=18274003
         ref: IKMK Berlin 18274003
@@ -12885,42 +12699,12 @@ coins:
       uk: 1/16 Taler
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - ikmk-18273995
+      - ikmk-18273998
+      - ikmk-18273999
+      - ikmk-18274001
+      - ikmk-18274002
       - ikmk-18274003
-  - id: c-c9bcbef0
-    class_id: c-c9bcbef0
-    label: unified-ikmk-18274004
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Flitter
-    year_first: 1620
-    year_last: 1620
-    year_label: '1620'
-    mintmaster: Paul Becker
-    inscription_rev: I / FLIT/TER / 6Z0
-    mint: Braunschweig
-    catalog:
-      others:
-        - Jesse# 94
-    metal: copper
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.55
-        source: ikmk
-    diameter_mm:
-      - value: 13.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18274004
-        ref: IKMK Berlin 18274004
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18274004
   - id: c-99ccc8fb
     class_id: c-99ccc8fb
     label: unified-ikmk-18274006
@@ -12956,47 +12740,9 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - ikmk-18274006
-  - id: c-8f2e8f62
-    class_id: c-8f2e8f62
-    label: unified-ikmk-18274008
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Flitter
-    year_first: 1620
-    year_last: 1622
-    year_ranges:
-      -   - 1620
-          - 1622
-    year_label: 1620-1622
-    mintmaster: Paul Becker
-    inscription_rev: I / FLIT/TER
-    mint: Braunschweig
-    catalog:
-      others:
-        - Jesse# 97
-    metal: copper
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.75
-        source: ikmk
-    diameter_mm:
-      - value: 13.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18274008
-        ref: IKMK Berlin 18274008
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18274008
   - id: c-3c7b7f5f
     class_id: c-3c7b7f5f
-    label: unified-ikmk-18274009
+    label: unified-ikmk-18274008
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -13022,18 +12768,26 @@ coins:
     weight_rough_g:
       - value: 0.4
         source: ikmk
+      - value: 0.75
+        source: ikmk
     diameter_mm:
       - value: 12.0
         source: ikmk
+      - value: 13.0
+        source: ikmk
     sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18274008
+        ref: IKMK Berlin 18274008
       - type: museum
         url: https://ikmk.smb.museum/object?id=18274009
         ref: IKMK Berlin 18274009
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - ikmk-18274008
       - ikmk-18274009
-  - id: c-8931d8ed
-    class_id: c-8931d8ed
+  - id: c-392f7bde
+    class_id: c-392f7bde
     label: unified-ikmk-18274028
     fuss: seed_unsorted
     phase: ikmk
@@ -13056,15 +12810,27 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.71
+        source: ikmk
       - value: 1.97
+        source: ikmk
+      - value: 2.23
         source: ikmk
     diameter_mm:
       - value: 22.0
+        source: ikmk
+      - value: 23.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18274028
         ref: IKMK Berlin 18274028
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18274032
+        ref: IKMK Berlin 18274032
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18274034
+        ref: IKMK Berlin 18274034
     note:
       de: Groschen
       en: Groschen
@@ -13072,128 +12838,10 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - ikmk-18274028
-  - id: c-392f7bde
-    class_id: c-392f7bde
-    label: unified-ikmk-18274032
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1/24 Taler
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    mintmaster: Paul Becker
-    inscription_obv: MON NO RE-IP BRUNSV
-    inscription_rev: FERDI II D G ROM IMP SEM A
-    mint: Braunschweig
-    catalog:
-      others:
-        - Jesse# 203
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.23
-        source: ikmk
-    diameter_mm:
-      - value: 23.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18274032
-        ref: IKMK Berlin 18274032
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
       - ikmk-18274032
-  - id: c-49f8f323
-    class_id: c-49f8f323
-    label: unified-ikmk-18274034
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1/24 Taler
-    year_first: 1618
-    year_last: 1623
-    year_ranges:
-      -   - 1618
-          - 1623
-    year_label: 1618-1623
-    ruler: Frederick Ulrich
-    mintmaster: Paul Becker
-    inscription_obv: MON NO RE-IP BRUNSV
-    inscription_rev: FERDI II D G ROM IMP SE AU
-    mint: Braunschweig
-    catalog:
-      km: '337'
-      others:
-        - Jesse# 203
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.7
-        source: ikmk
-      - value: 1.71
-        source: ikmk
-      - value: 1.74
-        source: ikmk
-      - value: 1.75
-        source: ikmk
-      - value: 1.76
-        source: ucoin
-      - value: 1.83
-        source: ikmk
-    diameter_mm:
-      - value: 18.0
-        source: ikmk
-      - value: 21.0
-        source: ikmk
-      - value: 22.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18274034
-        ref: IKMK Berlin 18274034
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18293958
-        ref: IKMK Berlin 18293958
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18293959
-        ref: IKMK Berlin 18293959
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18293976
-        ref: IKMK Berlin 18293976
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18297583
-        ref: IKMK Berlin 18297583
-      - type: ucoin
-        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-1-24-thaler-1622-1623/?tid=190569
-        ref: ucoin
-    note:
-      de: Groschen
-      en: Groschen
-      uk: Groschen
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
       - ikmk-18274034
-      - ikmk-18293958
-      - ikmk-18293959
-      - ikmk-18293976
-      - ikmk-18297583
-      - tid-tid-190569
-  - id: c-7317f5e8
-    class_id: c-7317f5e8
+  - id: c-13cb0ba5
+    class_id: c-13cb0ba5
     label: unified-ikmk-18274037
     fuss: seed_unsorted
     phase: ikmk
@@ -13216,89 +12864,31 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 1.33
+        source: ikmk
+      - value: 1.54
+        source: ikmk
       - value: 2.0
         source: ikmk
     diameter_mm:
+      - value: 21.0
+        source: ikmk
       - value: 22.0
         source: ikmk
     sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18274037
         ref: IKMK Berlin 18274037
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18274037
-  - id: c-13cb0ba5
-    class_id: c-13cb0ba5
-    label: unified-ikmk-18274039
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Mariengroschen
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    mintmaster: Paul Becker
-    inscription_obv: MONETA NOVA BRUNSV 1622
-    inscription_rev: MARIA MAT-ER DOMIN
-    mint: Braunschweig
-    catalog:
-      others:
-        - Jesse# 206
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.33
-        source: ikmk
-    diameter_mm:
-      - value: 21.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18274039
         ref: IKMK Berlin 18274039
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18274039
-  - id: c-3a79d95f
-    class_id: c-3a79d95f
-    label: unified-ikmk-18274040
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Mariengroschen
-    year_first: 1622
-    year_last: 1622
-    year_label: '1622'
-    mintmaster: Paul Becker
-    inscription_obv: MONETA NOVA BRUNSV 1622
-    inscription_rev: MARIA MAT-ER DOMIN
-    mint: Braunschweig
-    catalog:
-      others:
-        - Jesse# 206
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.54
-        source: ikmk
-    diameter_mm:
-      - value: 22.0
-        source: ikmk
-    sources:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18274040
         ref: IKMK Berlin 18274040
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
+      - ikmk-18274037
+      - ikmk-18274039
       - ikmk-18274040
   - id: c-d845b0d9
     class_id: c-d845b0d9
@@ -39107,6 +38697,74 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - ikmk-18293956
+  - id: c-49f8f323
+    class_id: c-49f8f323
+    label: unified-ikmk-18293958
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    nominal: 1/24 Taler
+    year_first: 1618
+    year_last: 1623
+    year_ranges:
+      -   - 1618
+          - 1623
+    year_label: 1618-1623
+    ruler: Frederick Ulrich
+    catalog:
+      km: '337'
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    weight_rough_g:
+      - value: 1.7
+        source: ikmk
+      - value: 1.74
+        source: ikmk
+      - value: 1.75
+        source: ikmk
+      - value: 1.76
+        source: ucoin
+      - value: 1.83
+        source: ikmk
+    diameter_mm:
+      - value: 18.0
+        source: ikmk
+      - value: 21.0
+        source: ikmk
+      - value: 22.0
+        source: ikmk
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18293958
+        ref: IKMK Berlin 18293958
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18293959
+        ref: IKMK Berlin 18293959
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18293976
+        ref: IKMK Berlin 18293976
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18297583
+        ref: IKMK Berlin 18297583
+      - type: ucoin
+        url: https://en.ucoin.net/coin/brunswick_wolfenbuttel-1-24-thaler-1622-1623/?tid=190569
+        ref: ucoin
+    note:
+      de: Groschen
+      en: Groschen
+      uk: Groschen
+    issuing_entity: herzogtum_braunschweig_lueneburg
+    composed_of:
+      - ikmk-18293958
+      - ikmk-18293959
+      - ikmk-18293976
+      - ikmk-18297583
+      - tid-tid-190569
   - id: c-6d2b6a68
     class_id: c-6d2b6a68
     label: unified-ikmk-18293960
@@ -50905,47 +50563,6 @@ coins:
     issuing_entity: herzogtum_braunschweig_lueneburg
     composed_of:
       - ikmk-18301271
-  - id: c-57b73cea
-    class_id: c-57b73cea
-    label: unified-ikmk-18316515
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Dukat
-    year_first: 1799
-    year_last: 1799
-    year_label: '1799'
-    ruler: Georg III.
-    mintmaster: Philipp Ludwig Magius
-    inscription_obv: GEORG III D G M BR F & H REX F D BR & L DUX S R I A T H & EL
-    inscription_rev: EX AURO HERC / 1799
-    mint: Clausthal
-    catalog:
-      others:
-        - Welter# 2794
-    metal: gold
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 3.49
-        source: ikmk
-    diameter_mm:
-      - value: 21.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18316515
-        ref: IKMK Berlin 18316515
-    note:
-      de: Harzgolddukat
-      en: Harzgolddukat
-      uk: Harzgolddukat
-    issuing_entity: herzogtum_braunschweig_lueneburg
-    composed_of:
-      - ikmk-18316515
   - id: c-fe0deb72
     class_id: c-fe0deb72
     label: unified-kmk-130639

@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 61 active, 0 retired.
+# 60 active, 1 retired.
 
 id: sonderburg_duchy
 classes:
@@ -381,13 +381,6 @@ classes:
     legacy_id: unified-kmk-133196
     members:
       - kmk-133196
-  - id: c-b8240a06
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-369863
-    legacy_id: unified-kmk-369863
-    members:
-      - kmk-369863
   - id: c-c0068674
     status: active
     created: '2026-10-22'
@@ -570,6 +563,7 @@ classes:
       - kmk-296098
       - kmk-354886
       - kmk-355088
+      - kmk-369863
       - kmk-370043
       - kmk-714773
       - kmk-714774
@@ -694,3 +688,12 @@ classes:
     legacy_id: unified-kmk-159563
     members:
       - kmk-159563
+  - id: c-b8240a06
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-369863
+    legacy_id: unified-kmk-369863
+    merged_into: c-cd88eb54
+    retired: '2026-10-26'
+    members:
+      - kmk-369863

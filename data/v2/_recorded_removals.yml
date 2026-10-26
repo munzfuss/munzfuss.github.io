@@ -4609,6 +4609,31 @@ removals:
       - 134-135
     reason: "Curator (Serhii) 2026-10-26: KMM records of kmm-triage category 2.2 excluded (undocumented_stub, scope member); kmk-309773 was the only source of Schou 134-135 in its class."
 
+  - seed: metallanalyser-2016-1-g10-lund-kopparsterling
+    kind: field
+    field: fineness
+    dropped:
+      - source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
+        value: 0.0052
+      - source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
+        value: 0.0048
+      - source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
+        value: 0.0045
+      - source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
+        value: 0.0043
+      - source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
+        value: 0.0042
+    reason: "Curator (Serhii) 2026-10-26: «Кобберстерлінги мідні, вистав всім мідь як метал, попри те що там знайдена проба — значення можна додати в note». Heljeback 2016:1 Nr 38, 40-42, 44 (Ag 0,42-0,52 %) moved from the fineness column to the coin's note; metal copper."
+  - seed: metallanalyser-2016-1-g7-10-14-15-nastved-lund-odense-randers-kopparsterling
+    kind: field
+    field: fineness
+    dropped:
+      - source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39
+        value: 0.0052
+      - source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 43
+        value: 0.0042
+    reason: "Curator (Serhii) 2026-10-26: the Kobbersterling is a copper coin; Heljeback 2016:1 Nr 39 and 43 (Ag 0,52 / 0,42 %) moved from the fineness column to the note; metal copper."
+
   # ── empty duplicates, Denmark page (rebuild from members) ─────────────────
   # Memberless V1 foundations: after the rebuild they keep only a skeleton and
   # render an empty row. find_empty_duplicates.py showed every value each one

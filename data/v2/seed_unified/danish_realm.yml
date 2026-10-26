@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15283 per-source seed entries.
-# Output: 6048 unified entries (one per physical coin).
+# Output: 6042 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -317,16 +317,21 @@ coins:
       - dk-bruun-3712
       - dk-galster-epomg-11
       - metallanalyser-2016-1-g11-lund-sosling
-  - id: c-cd2c0b3c
-    class_id: c-cd2c0b3c
+  - id: c-11a2b578
+    class_id: c-11a2b578
     label: unified-dk-bruun-3725
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: 1 Witten
+    nominal: 1 Hvid
     year_first: 1400
-    year_last: 1400
-    year_label: '1400'
+    year_last: 1424
+    year_ranges:
+      -   - 1400
+          - 1400
+      -   - 1424
+          - 1424
+    year_label: 1400, 1424
     ruler: Erik VII
     mint: Næstved
     catalog:
@@ -336,6 +341,7 @@ coins:
       others:
         - FL# 2
       jesse: '694'
+      galster_volume: galster1972-erik7
     metal: silver
     metal_verified: false
     fineness_verified: false
@@ -344,15 +350,39 @@ coins:
     verified: false
     year_verified: false
     weight_rough_g:
+      - value: 0.97
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 1
+        fragment:
+          de: 'Anhang, Abkürzungsliste: «f fragment». Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
+          uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
+          da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
       - value: 1.09
         source: bruun
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11146, p. 60
+      - type: literature
+        url: https://www.danskmoent.dk/epomg2.htm
+        ref: Galster 2 (epomg) — danskmoent.dk epomg2.htm
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 1, Appendix (XRF)
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-3725
+      - dk-galster-epomg-2
+      - metallanalyser-2016-1-g2-nastved-hvid
   - id: c-38685a70
     class_id: c-38685a70
     label: unified-dk-bruun-3757
@@ -12234,7 +12264,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: 1 Kobbersterling
+    nominal: 1 Sterling
     year_first: 1422
     year_last: 1422
     year_label: '1422'
@@ -12244,25 +12274,16 @@ coins:
       galster: '10'
       others:
         - Fritze Lindahl# 34-41
+        - Jesse# 697
+        - Jesse# 698
       galster_volume: galster1972-erik7
-    metal: billon
+    metal: copper
     metal_verified: true
-    fineness_verified: true
+    fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
-    fineness:
-      - value: 0.0042
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
-      - value: 0.0043
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
-      - value: 0.0045
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
-      - value: 0.0048
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
-      - value: 0.0052
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
     weight_rough_g:
       - value: 0.56
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
@@ -12274,10 +12295,17 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
       - value: 1.37
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        source: Lindahl 1955 (NNÅ 1955), s. 80
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg10.htm
         ref: Galster 10 (epomg) — danskmoent.dk epomg10.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 34-41
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38, Appendix (XRF)
@@ -12293,6 +12321,11 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44, Appendix (XRF)
+    note:
+      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
+      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
+      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
+      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
@@ -12305,6 +12338,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-epomg-10
+      - lindahl-1955-lund-kobbersterling
       - metallanalyser-2016-1-g10-lund-kopparsterling
   - id: c-29707f67
     class_id: c-29707f67
@@ -12382,7 +12416,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: 1 Kobbersterling
+    nominal: 1 Sterling
     year_first: 1422
     year_last: 1422
     year_label: '1422'
@@ -12392,70 +12426,36 @@ coins:
       galster: '15'
       others:
         - Fritze Lindahl# 54-58
+        - Jesse# 697
+        - Jesse# 698
       galster_volume: galster1972-erik7
-    metal: silver
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg15.htm
-        ref: Galster 15 (epomg) — danskmoent.dk epomg15.htm
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-15
-  - id: c-11a2b578
-    class_id: c-11a2b578
-    label: unified-dk-galster-epomg-2
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1424
-    year_last: 1424
-    year_label: '1424'
-    ruler: Erik VII
-    mint: Næstved
-    catalog:
-      galster: '2'
-      galster_volume: galster1972-erik7
-    metal: billon
-    metal_verified: false
+    metal: copper
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
-    weight_rough_g:
-      - value: 0.97
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 1
-        fragment:
-          de: 'Anhang, Abkürzungsliste: «f fragment». Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
-          en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
-          uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
-          da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        source: Lindahl 1955 (NNÅ 1955), s. 80
     sources:
       - type: literature
-        url: https://www.danskmoent.dk/epomg2.htm
-        ref: Galster 2 (epomg) — danskmoent.dk epomg2.htm
+        url: https://www.danskmoent.dk/epomg15.htm
+        ref: Galster 15 (epomg) — danskmoent.dk epomg15.htm
       - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 1, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 54-58
+    note:
+      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
+      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
+      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
+      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
     issuing_entity: danish_realm
     composed_of:
-      - dk-galster-epomg-2
-      - metallanalyser-2016-1-g2-nastved-hvid
+      - dk-galster-epomg-15
+      - lindahl-1955-randers-kobbersterling
   - id: c-e1012e0e
     class_id: c-e1012e0e
     label: unified-dk-galster-epomg-3
@@ -106183,6 +106183,8 @@ coins:
       galster: '7'
       others:
         - Fritze Lindahl# 42-49
+        - Jesse# 697
+        - Jesse# 698
       galster_volume: galster1972-erik7
     metal: copper
     metal_verified: true
@@ -106195,6 +106197,10 @@ coins:
     weight_rough_g:
       - value: 0.8
         source: numista
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        source: Lindahl 1955 (NNÅ 1955), s. 80
     diameter_mm:
       - value: 16.0
         source: numista
@@ -106205,6 +106211,9 @@ coins:
       - type: literature
         url: https://en.numista.com/348708
         ref: Numista N#348708 — Kobbersterling - Erik of Pomerania (Naestved) - Denmark
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 42-49
     note:
       de: 3 Pennings (Rechnungs-Äquivalent)
       en: 3 Pennings (accounting equivalent)
@@ -106213,6 +106222,7 @@ coins:
     composed_of:
       - dk-galster-epomg-7
       - dk-numista-348708
+      - lindahl-1955-naestved-kobbersterling
   - id: c-43b64c09
     class_id: c-43b64c09
     label: unified-dk-numista-355730
@@ -107323,6 +107333,10 @@ coins:
       sieg: '9.2'
       galster: '14'
       galster_volume: galster1972-erik7
+      others:
+        - Jesse# 697
+        - Jesse# 698
+        - Fritze Lindahl# 50-53
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -107334,6 +107348,10 @@ coins:
     weight_rough_g:
       - value: 1.05
         source: numista
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        source: Lindahl 1955 (NNÅ 1955), s. 80
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg14.htm
@@ -107341,10 +107359,19 @@ coins:
       - type: literature
         url: https://en.numista.com/476049
         ref: Numista N#476049 — Kobbersterling - Erik of Pomerania (Odense) - Denmark
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 50-53
+    note:
+      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
+      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
+      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
+      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-epomg-14
       - dk-numista-476049
+      - lindahl-1955-odense-kobbersterling
   - id: c-32d9665d
     class_id: c-32d9665d
     label: unified-dk-numista-476659
@@ -109869,7 +109896,7 @@ coins:
     fuss: seed_unsorted
     phase: ikmk
     kind: kurant
-    nominal: 1 Witten
+    nominal: 1 Hvid
     year_first: 1448
     year_last: 1481
     year_ranges:
@@ -172890,7 +172917,7 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Kobbersterling
+    nominal: 1 Sterling
     nominal_verified: false
     metal_verified: false
     weight_rough_verified: false
@@ -179991,36 +180018,6 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 2 Skilling
-    year_first: 1648
-    year_last: 1670
-    year_ranges:
-      -   - 1648
-          - 1670
-    year_label: 1648-1670
-    _year_demoted: true
-    ruler: Frederik III
-    mint: Kopenhagen
-    catalog:
-      others:
-        - Aagaard# 1996 T 80
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/266466
-        ref: KMM 266466 (Inv. FP 10024.32)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-266466
-  - id: c-9d3d1e0f
-    class_id: c-9d3d1e0f
-    label: unified-kmk-266467
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
     year_first: 1667
     year_last: 1667
     year_label: '1667'
@@ -180035,10 +180032,14 @@ coins:
     verified: false
     sources:
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/266466
+        ref: KMM 266466 (Inv. FP 10024.32)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/266467
         ref: KMM 266467 (Inv. FP 10024.31)
     issuing_entity: danish_realm
     composed_of:
+      - kmk-266466
       - kmk-266467
   - id: c-3d3863ee
     class_id: c-3d3863ee
@@ -194527,7 +194528,7 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Kobbersterling
+    nominal: 1 Sterling
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -194545,7 +194546,7 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Kobbersterling
+    nominal: 1 Sterling
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -239053,7 +239054,7 @@ coins:
     fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Witten
+    nominal: 1 Hvid
     year_first: 1500
     year_last: 1600
     year_ranges:
@@ -266572,46 +266573,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - lindahl-1955-lebard
-  - id: c-f0e6d23c
-    class_id: c-f0e6d23c
-    label: unified-lindahl-1955-lund-kobbersterling
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Kobbersterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    mint: Lund
-    catalog:
-      others:
-        - Jesse# 697
-        - Jesse# 698
-        - Fritze Lindahl# 34-41
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 34-41
-    note:
-      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
-      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
-      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
-      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-lund-kobbersterling
   - id: c-13e893f2
     class_id: c-13e893f2
     label: unified-lindahl-1955-lund-soesling
@@ -266750,53 +266711,13 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - lindahl-1955-malmoe-sterling
-  - id: c-2dcf15e0
-    class_id: c-2dcf15e0
-    label: unified-lindahl-1955-naestved-kobbersterling
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Kobbersterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    mint: Næstved
-    catalog:
-      others:
-        - Jesse# 697
-        - Jesse# 698
-        - Fritze Lindahl# 42-49
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 42-49
-    note:
-      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
-      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
-      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
-      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-naestved-kobbersterling
   - id: c-4ca2f0b9
     class_id: c-4ca2f0b9
     label: unified-lindahl-1955-naestved-witten-krone
     fuss: seed_unsorted
     phase: lindahl
     kind: kurant
-    nominal: 1 Witten
+    nominal: 1 Hvid
     year_first: 1400
     year_last: 1400
     year_label: '1400'
@@ -266825,7 +266746,7 @@ coins:
     fuss: seed_unsorted
     phase: lindahl
     kind: kurant
-    nominal: 1 Witten
+    nominal: 1 Hvid
     year_first: 1397
     year_last: 1405
     year_ranges:
@@ -266854,93 +266775,13 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - lindahl-1955-naestved-witten-krumstav
-  - id: c-46db6f47
-    class_id: c-46db6f47
-    label: unified-lindahl-1955-odense-kobbersterling
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Kobbersterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    mint: Odense
-    catalog:
-      others:
-        - Jesse# 697
-        - Jesse# 698
-        - Fritze Lindahl# 50-53
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 50-53
-    note:
-      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
-      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
-      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
-      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-odense-kobbersterling
-  - id: c-41328f35
-    class_id: c-41328f35
-    label: unified-lindahl-1955-randers-kobbersterling
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Kobbersterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    mint: Randers
-    catalog:
-      others:
-        - Jesse# 697
-        - Jesse# 698
-        - Fritze Lindahl# 54-58
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 54-58
-    note:
-      de: 'Lindahl 1955 (S. 80): «Finhed: spor af sølv» (Feingehalt: Spuren von Silber).'
-      en: 'Lindahl 1955 (p. 80): «Finhed: spor af sølv» (fineness: traces of silver).'
-      uk: 'Lindahl 1955 (с. 80): «Finhed: spor af sølv» (проба: сліди срібла).'
-      da: 'Lindahl 1955 (s. 80): «Finhed: spor af sølv».'
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-randers-kobbersterling
   - id: c-d9626c61
     class_id: c-d9626c61
     label: unified-lindahl-1955-ribe-witten
     fuss: seed_unsorted
     phase: lindahl
     kind: kurant
-    nominal: 1 Witten
+    nominal: 1 Hvid
     year_first: 1373
     year_last: 1396
     year_ranges:
@@ -267020,7 +266861,7 @@ coins:
     fuss: seed_unsorted
     phase: metallanalyser
     kind: kurant
-    nominal: 1 Kobbersterling
+    nominal: 1 Sterling
     ruler: Erik VII
     mint:
       - Lund
@@ -267034,17 +266875,12 @@ coins:
         - '14'
         - '15'
       galster_volume: galster1972-erik7
-    metal: billon
+    metal: copper
     metal_verified: true
-    fineness_verified: true
+    fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
     verified: false
-    fineness:
-      - value: 0.0042
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 43
-      - value: 0.0052
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39
     weight_rough_g:
       - value: 0.72
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39
@@ -267057,6 +266893,11 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 43, Appendix (XRF)
+    note:
+      de: 'Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 39, 43 (Röntgenfluoreszenz): Silber 0,42–0,52 %.'
+      en: 'Heljeback 2016 (Metallanalyser av mynt 2016:1), no. 39, 43 (X-ray fluorescence): silver 0.42–0.52 %.'
+      uk: 'Heljeback 2016 (Metallanalyser av mynt 2016:1), № 39, 43 (рентгенофлуоресцентний аналіз): срібло 0,42–0,52 %.'
+      da: 'Heljeback 2016 (Metallanalyser av mynt 2016:1), nr. 39, 43 (røntgenfluorescens): sølv 0,42–0,52 %.'
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
