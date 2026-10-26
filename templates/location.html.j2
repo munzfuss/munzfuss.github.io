@@ -130,10 +130,17 @@
 {%- endmacro %}
 
 {%- macro coin_row(coin) %}
+{#- A Fuß rebuilt from members (data/v2/_rebuild_scope.yml) shows one table
+    per phase: only copper rows are shaded, Scheidemünze rows are not
+    (curator 2026-10-26). Elsewhere the Scheidemünze shading stays. -#}
+{%- if coin.raw.fuss in rebuild_scope -%}
+{%- set _rw = 'rw-cu' if coin.raw.metal in ('copper', 'bronze', 'brass') else ('rw-ged' if coin.raw.kind == 'gedenk' else '') -%}
+{%- else -%}
 {%- set _rw = '' if coin.raw.fuss == 'seed_unsorted' else ('rw-sch' if coin.raw.kind == 'scheide' else ('rw-ged' if coin.raw.kind == 'gedenk' else '')) -%}
+{%- endif -%}
 {%- set _rcls = (_rw ~ (' msr-sh' if coin.msr_short_n else ''))|trim -%}
 <tr{% if _rcls %} class="{{ _rcls }}"{% endif %}>
-  <td class="c-nom">{%- if coin.raw.kind == 'gedenk' %}<span class="ged-mark" data-tooltip="{{ ui_get('label.gedenk') }}">✦</span>&nbsp;{% endif -%}{{ coin.raw.nominal|nominal_nbsp|safe }}</td>
+  <td class="c-nom">{%- if coin.raw.kind == 'gedenk' %}<span class="ged-mark" data-tooltip="{{ ui_get('label.gedenk') }}">✦</span>&nbsp;{% endif -%}{{ coin.raw.nominal|nominal_nbsp|safe }}{% if not coin.raw.nominal_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</td>
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
     {#- The (?) sits INSIDE the last chunk: `.yr-chunk` is display:block, so a
@@ -378,7 +385,7 @@
       {%- endfor -%}
     {%- endif -%}
   </td>
-  <td class="c-note">{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
+  <td class="c-note">{%- if coin.raw.nominal_equiv -%}<span class="nom-equiv nw">{{ coin.raw.nominal }} = {{ coin.raw.nominal_equiv }}</span>{%- if coin.raw.note %}<br>{% endif -%}{%- endif -%}{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-ref">
     {%- for s in coin.raw.sources if s.display -%}
       <span class="ref-line{% if s.ref in coin.msr_cut_refs %} msr-cut{% endif %}">
@@ -427,7 +434,7 @@
    are dropped entirely. Fine-weight column is also omitted (always zero for copper). #}
 {%- macro coin_row_copper(coin) %}
 <tr class="rw-cp">
-  <td class="c-nom">{{ coin.raw.nominal|nominal_nbsp|safe }}</td>
+  <td class="c-nom">{{ coin.raw.nominal|nominal_nbsp|safe }}{% if not coin.raw.nominal_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</td>
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
     {#- The (?) sits INSIDE the last chunk: `.yr-chunk` is display:block, so a
@@ -515,7 +522,7 @@
       {%- endfor -%}
     {%- endif -%}
   </td>
-  <td class="c-note">{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
+  <td class="c-note">{%- if coin.raw.nominal_equiv -%}<span class="nom-equiv nw">{{ coin.raw.nominal }} = {{ coin.raw.nominal_equiv }}</span>{%- if coin.raw.note %}<br>{% endif -%}{%- endif -%}{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-ref">
     {%- for s in coin.raw.sources if s.display -%}
       <span class="ref-line{% if s.ref in coin.msr_cut_refs %} msr-cut{% endif %}">
@@ -1160,6 +1167,11 @@
          (scheide / copper). This puts the headline coin of the standard first
          and its petty subdivisions after — the standard numismatic-catalogue
          convention. #}
+      {% if sg.fuss.id in rebuild_scope and not pg.tarif_coins %}
+        {#- One table per phase for a Fuß rebuilt from members: Kurant, then
+            Scheidemünze, then copper (shaded), no sub-table headers. -#}
+        {{ coin_table(pg.kurant_coins + pg.scheide_coins + pg.copper_coins) }}
+      {% else %}
       {% if pg.kurant_coins %}
         {% if pg.is_mixed or pg.tarif_coins %}
         <div class="mt-subcat kurant">
@@ -1210,6 +1222,7 @@
           <span class="sc-desc">{{ ui_get('copper.desc') }}</span>
         </div>
         {{ coin_table_copper(pg.copper_coins) }}
+      {% endif %}
       {% endif %}
 
       <div class="ph-foot"><button type="button" class="ph-fold-bottom"><span class="ph-fold-icon" aria-hidden="true">▴</span> {{ ui_get('phase.hide_details') }}</button></div>

@@ -4073,7 +4073,8 @@ def _canonical_nominal_out(out: dict, members: list[dict],
     The seed keeps its source's spelling. A member holding `nominal`
     freezes it. The class is gold when every member that gives a metal
     says gold (`out["metal"]` is set further down)."""
-    from lib.nominal_synonyms import canonical_nominal_display
+    from lib.nominal_synonyms import canonical_nominal_display, split_nominal
+    from lib.ruler_reigns import DISPLAY_NAME_ENTITIES
     raw = out.get("nominal")
     if not isinstance(raw, str):
         return
@@ -4081,6 +4082,15 @@ def _canonical_nominal_out(out: dict, members: list[dict],
         h = m.get("_curation_holds")
         if "nominal" in (h.keys() if isinstance(h, dict) else (h or [])):
             return
+    # Danish-crown entities: a penning equivalent leaves the nominal for the
+    # note, a plain «1 Hvid?» becomes «1 Hvid» with «(?)» (curator 2026-10-26).
+    if entity_id in DISPLAY_NAME_ENTITIES:
+        raw, equiv, doubt = split_nominal(raw)
+        out["nominal"] = raw
+        if equiv:
+            out["nominal_equiv"] = equiv
+        if doubt:
+            out["nominal_verified"] = False
     if {m.get("metal") for m in members if m.get("metal")} != {"gold"}:
         return
     out["nominal"] = canonical_nominal_display(raw, "gold", entity_id)

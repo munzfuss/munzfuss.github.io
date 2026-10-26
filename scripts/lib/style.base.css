@@ -2182,7 +2182,7 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 .mt tbody tr:hover td { background: rgba(212, 168, 90, 0.04); }
 [data-theme="v1"] .mt tbody tr:hover td { background: rgba(163, 124, 44, 0.06); }
 
-.mt tbody tr.rw-sch td { background: rgba(196, 139, 75, 0.05); }
+.mt tbody tr.rw-sch td, .mt tbody tr.rw-cu td { background: rgba(196, 139, 75, 0.05); }
 
 /* Measurement sub-rows (повна / чиста / Δ / проба / Ø) — one per specimen,
    aligned across the separate <td>s. Each segment spans `--span` sub-rows;
@@ -2226,9 +2226,9 @@ tr.msr-sh .msr-cut { display: none; }
 }
 .msr-toggle:hover, .msr-toggle:focus-visible { color: var(--text-primary); text-decoration-style: solid; }
 .msr-seg .sd { margin: 0; }
-[data-theme="v1"] .mt tbody tr.rw-sch td { background: rgba(196, 165, 100, 0.06); }
+[data-theme="v1"] .mt tbody tr.rw-sch td, [data-theme="v1"] .mt tbody tr.rw-cu td { background: rgba(196, 165, 100, 0.06); }
 
-.mt tbody tr.rw-sch:hover td { background: rgba(212, 168, 90, 0.08); }
+.mt tbody tr.rw-sch:hover td, .mt tbody tr.rw-cu:hover td { background: rgba(212, 168, 90, 0.08); }
 
 /* Commemorative (gedenk) rows sit INLINE in the main table (no separate
    sub-table) — distinguished by a faint warm-gold cast plus the ✦ marker in

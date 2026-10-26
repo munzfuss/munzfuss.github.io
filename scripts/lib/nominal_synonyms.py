@@ -363,3 +363,44 @@ def canonical_nominal_display(raw, metal, entity):
     if not m:
         return raw
     return f"{m.group('count') or '1'} Goldgulden"
+
+
+# A penning equivalent written into the nominal by the cataloguer — Numista
+# «1 Sterling (= 3 Pennings)», «Gros = 9 Pennings», Galster «1 Gros (9
+# Penning)». It is not on the coin (CLAUDE.md §1), so the display nominal
+# drops it and the note carries it (curator 2026-10-26). Penning equivalents
+# only: «1 Krone (4 Mark)» and «¼ Ducat / 3 Mark» name the same value twice
+# and stay as printed.
+_PENNING_EQUIV_RE = re.compile(
+    r"^\s*(?P<base>.+?)\s*(?:\(\s*=?\s*(?P<n1>\d+)\s+Penn(?:ing|y)s?\s*\)"
+    r"|=\s*(?P<n2>\d+)\s+Penn(?:ing|y)s?)\s*$",
+    re.IGNORECASE)
+_LEADING_COUNT_RE = re.compile(r"^\s*(\d|[½⅓¼⅙⅛])")
+_PLAIN_DOUBT_RE = re.compile(
+    r"^[\d½⅓¼⅙⅛/]+\s+[A-Za-zÆØÅæøåÄÖÜäöüß.]+(?:\s+[a-zæøå]+)?\s*\?$")
+
+
+def split_nominal(raw):
+    """(nominal, penning equivalent or None, uncertain) for a display nominal.
+
+    «1 Sterling (= 3 Pennings)» → («1 Sterling», «3 Penning», False);
+    «Gros = 9 Pennings» → («1 Gros», «9 Penning», False);
+    «1 Kobbersterling?» → («1 Kobbersterling», None, True) — the source's own
+    doubt, shown as «(?)». Anything else comes back as it was.
+    """
+    if not isinstance(raw, str):
+        return raw, None, False
+    s, doubt = raw.strip(), False
+    # Only «count + denomination» («1 Hvid?», «1 Søsling ?»): a «?» after
+    # «… samtidig forfalskning?» or «søsling el. 14 Penning??» doubts
+    # something else and the nominal stays as printed.
+    if _PLAIN_DOUBT_RE.match(s):
+        s, doubt = s.rstrip("?").rstrip(), True
+    equiv = None
+    m = _PENNING_EQUIV_RE.match(s)
+    if m:
+        s = m.group("base").strip()
+        equiv = f"{m.group('n1') or m.group('n2')} Penning"
+        if not _LEADING_COUNT_RE.match(s):
+            s = f"1 {s}"
+    return s, equiv, doubt

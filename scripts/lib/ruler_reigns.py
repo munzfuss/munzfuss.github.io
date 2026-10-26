@@ -521,14 +521,24 @@ DISPLAY_NAME_ENTITIES = DANISH_CROWN_ENTITIES | frozenset({
 # annotated and alternative forms («Frederick III (Frederik III)», «X eller
 # Y», «Christian I/Hans»), bare «Christian» / «Frederik» (which king?),
 # institutions and private issuers.
+#
+# Widened 2026-10-26 (curator: «правителі не нормалізовані»): the Danish
+# spelling «Kristian», the Union kings' epithets as Bruun / Numista print them
+# («Erik VII of Pomerania», «Christopher III of Bavaria» — the two dynastic
+# bynames only, not «af …» duchy compounds), and «Christopher» → «Christoffer»
+# (the Danish form Galster and danskmoent use).
 _KING_DISPLAY_RE = re.compile(
-    r"^\s*(Christian|Frederik|Frederick|Hans|John|Johan|Erik|Eric)"
-    r"(?:\s*(\d{1,2})|\s+([IVX]{1,4}))?\s*\.?\s*(\?)?\s*$",
+    r"^\s*(Christian|Kristian|Frederik|Frederick|Hans|John|Johan|Erik|Eric|"
+    r"Christoffer|Christopher)"
+    r"(?:\s*(\d{1,2})|\s+([IVX]{1,4}))?\s*\.?"
+    r"(?:\s+of\s+(?:Pomerania|Pommern|Bavaria))?\s*(\?)?\s*$",
     re.IGNORECASE,
 )
 _KING_DISPLAY_NAME = {
-    "christian": "Christian", "frederik": "Frederik", "frederick": "Frederik",
+    "christian": "Christian", "kristian": "Christian",
+    "frederik": "Frederik", "frederick": "Frederik",
     "hans": "Hans", "john": "Hans", "johan": "Hans", "erik": "Erik", "eric": "Erik",
+    "christoffer": "Christoffer", "christopher": "Christoffer",
 }
 _ROMAN_TO_ARABIC = {v: k for k, v in _ARABIC_TO_ROMAN.items()}
 

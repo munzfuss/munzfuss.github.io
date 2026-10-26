@@ -803,6 +803,10 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                for r in (m.get("_errata_applied") or [])
                if isinstance(r, dict) and r.get("field") == "ruler"
                and r.get("correct") not in (None, "")}
+        # in the display form the merger writes (an erratum may spell the
+        # king «Christian I.», the German ordinal — 2026-10-26)
+        from lib.ruler_reigns import canonical_ruler_display
+        _rc = {canonical_ruler_display(r, entity_id)[0] for r in _rc}
         if len(_rc) == 1:
             out["ruler"] = next(iter(_rc))
 
@@ -999,6 +1003,18 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     yv = _or_merge_verified(members, "year_verified")
     if yv is not None:
         out["year_verified"] = yv
+
+    # nominal_equiv / nominal_verified travel with the nominal they belong to:
+    # taken from the live member whose nominal the final shows (2026-10-26).
+    for _k in ("nominal_equiv", "nominal_verified"):
+        out.pop(_k, None)
+    for _m in (members[1:] if len(members) > 1 else members):
+        if isinstance(_m, dict) and _m.get("nominal") == out.get("nominal"):
+            if _m.get("nominal_equiv"):
+                out["nominal_equiv"] = _m["nominal_equiv"]
+            if _m.get("nominal_verified") is False:
+                out["nominal_verified"] = False
+            break
 
     # year_alts / ruler_alts — union across members (foundation first), deduped
     # by (value, source). The merger emits them from the seeds' `year_mark` /

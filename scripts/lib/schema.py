@@ -983,6 +983,12 @@ class Coin(_StrictBase):
     )
     kind: Literal["kurant", "scheide", "tarif", "tarif_subunit", "gedenk"]
     nominal: str = Field(..., description="Literal inscription or closest transcription")
+    # The source doubts the denomination («1 Hvid?»): the nominal is shown
+    # with «(?)» (curator 2026-10-26, lib.nominal_synonyms.split_nominal).
+    nominal_verified: bool = True
+    # A penning equivalent the cataloguer wrote into the nominal («(= 3
+    # Pennings)»); not on the coin (§1), so the note shows it instead.
+    nominal_equiv: str | None = None
     # year_label / year_first are REQUIRED for classified coins, but OPTIONAL for
     # `fuss == seed_unsorted` — undated KMM museum specimens (no year, no KM) are
     # legitimately yearless and never render; enforced by `_check_year_required`.
