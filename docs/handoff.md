@@ -16,6 +16,29 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-26 (main session, evening) — Galster nominal-less KMM merges, gote, year_window
+
+**State.** All local, not pushed. data/v2 window handed back to «дрібні правки»
+after `e0f139f` (its danish_norway decisions + final are uncommitted, theirs).
+
+**Done:** rebuilt-Fuß phase table strictly by year (`dfd10c7`); silver+billon
+coin: rows without fineness read as billon (`e168fa6`); KMM nominal-less merges
+G23 (`327aae1`), G64/G58/G105/G139/G79 (`6e7f0e7`), G105 +3 / G140 (`e0f139f`),
+KMM 314762 excluded; G58's 2,25 g marked (*). New merge_decisions key
+`year_window` + `Coin.year_note` (tooltip of the year's «(?)», `3e11a5a`);
+Galster 1 = 1373–1381 compiled from Ernst 1948 + Horsnæs et al. 2018
+(`c959dad`). Galster parser reads no mint from a hedged sentence / specimen
+line (`d787c29`; G79 lost its false «Gottorp» and left royal_slesvig).
+Merger: a year_mark'd year stays out of the union even when all members are
+muted (`3d515dd`). G139/G140 → Lybsk 0 (gote = hvid under Christian I); 135,
+136, 137 stay unsorted (Gotlandic reckoning). Erik VII skærv → nominal
+«1 Skærv» (classification nominal). Dossier `docs/research/gotland_gote.md`.
+
+**Open:** a coin note on G139/G140 («Gote» = hvid by Danish reckoning) needs a
+refs_pool key for *Fra Denar til Daler* s. 398 (no pool entry for the book
+yet); Galster 6 «1 Halvpenning» → «1 Skærv»? asked, unanswered; Jesse 1928
+has no open copy (archive.org lending only).
+
 ## 2026-10-26 (session «дрібні правки») — Lybsk Møntfod clean-up, Lindahl 1955, matcher
 
 **State.** All commits local, not pushed (push only on «пуш»). Coordinate every
