@@ -25,6 +25,8 @@ and pre-commit Check 10 all read that one list.
 - A reading does not fit its type and the cause is unknown → **suspect (*)**.
 - A reading has been **shown** to be wrong (a source's arithmetic, a transferred
   standard value, a demonstrable misprint) → **erroneous (!)**.
+- The source says the weighed piece is a **fragment** (an appendix's «f
+  fragment») → **fragment (f)**.
 - A source prints the standard's computed **target** as if it were a specimen
   figure (e.g. Galster's 14,375 g / .979 for the Nobel) → **template (§)**.
 - An existing mark's reason is outdated or needs another language.
@@ -46,8 +48,9 @@ and pre-commit Check 10 all read that one list.
 | `erroneous` | (!) | struck through | **excluded** | excluded | never dropped |
 | `suspect` | (*) | struck through | kept | kept | never dropped |
 | `template` | (§) | normal | kept (Δ ≈ 0 by construction) | kept | never dropped |
+| `fragment` | (f) | struck through (muted) | kept | kept | never dropped |
 
-Precedence in one display group: erroneous > suspect > template. The tooltip
+Precedence in one display group: erroneous > suspect > fragment > template. The tooltip
 opens with a generic bold headline per kind («Помилкове / Підозріле / Шаблонне
 значення.»), rendered by `assets/app.js` — do NOT repeat it in the reason.
 

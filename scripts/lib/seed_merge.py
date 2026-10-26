@@ -307,7 +307,7 @@ _VERIFIABLE_FIELDS = {
 # it carries a mark the fresh value lacks. (Caught 2026-09-13: the 5.62 g KMM
 # suspect on the 1531 Ungersk Gylden was clobbered by a re-seed's verified
 # scalar — no `_curation_holds` had been placed on the field.)
-_CURATION_MARK_KEYS = ("suspect", "erroneous", "template")
+_CURATION_MARK_KEYS = ("suspect", "erroneous", "fragment", "template")
 
 
 def _carries_curation_mark(value) -> bool:

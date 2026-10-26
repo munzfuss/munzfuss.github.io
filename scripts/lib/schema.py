@@ -225,9 +225,15 @@ class FieldValue(_StrictBase):
     # f1g45/f1g69 and Numista 428544 = Galster's conversion of the 1514/1524
     # Møntordning on a 230 g Cologne mark (docs/research/nobel_fod.md §4.3).
     #
-    # Precedence within one display group: erroneous > suspect > template.
-    # Like the others, the reason is required reader-facing prose (§0z).
+    # Precedence within one display group: erroneous > suspect > fragment >
+    # template. Like the others, the reason is required reader-facing prose (§0z).
     template: I18nText | None = None
+    # `fragment` marks the weight of a piece the source says is a FRAGMENT
+    # (an appendix's «f fragment»): a true weighing, but of part of a coin, so
+    # it is no evidence of the standard. Struck through and rendered «(f)» —
+    # its own sign, so it is never read as the «(*)» of a doubtful figure
+    # (curator 2026-10-26). Like `suspect`, it stays in the arithmetic.
+    fragment: I18nText | None = None
 
 
 class WeightRange(_StrictBase):

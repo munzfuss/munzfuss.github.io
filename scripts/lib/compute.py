@@ -104,7 +104,7 @@ def marker_reasons(v) -> dict[str, tuple[str, object]]:
         src = getattr(fv, "source", None)
         if not src:
             continue
-        for kind in ("erroneous", "suspect", "template"):
+        for kind in ("erroneous", "suspect", "fragment", "template"):
             why = getattr(fv, kind, None)
             if why is not None:
                 out[src] = (kind, why)
@@ -493,7 +493,7 @@ def _msr_short_rows(rows: list[dict], weight_marks: dict) -> set[int] | None:
     if len(fins) < MSR_SHORT_MIN_FINENESSES:
         return None
     marked = {src for src, (kind, _) in (weight_marks or {}).items()
-              if kind in ("suspect", "erroneous")}
+              if kind in ("suspect", "erroneous", "fragment")}
     idx = range(len(rows))
     by_fin = sorted((i for i in idx if rows[i].get("fineness") is not None),
                     key=lambda i: rows[i]["fineness"])
