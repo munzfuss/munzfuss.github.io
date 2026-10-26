@@ -378,7 +378,7 @@
   <td class="c-note">{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-ref">
     {%- for s in coin.raw.sources if s.display -%}
-      <span class="ref-line">
+      <span class="ref-line{% if s.ref in coin.msr_cut_refs %} msr-cut{% endif %}">
       {%- if s.url -%}
         <a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.ref or s.type }}</a>
       {%- else -%}
@@ -515,7 +515,7 @@
   <td class="c-note">{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-ref">
     {%- for s in coin.raw.sources if s.display -%}
-      <span class="ref-line">
+      <span class="ref-line{% if s.ref in coin.msr_cut_refs %} msr-cut{% endif %}">
       {%- if s.url -%}
         <a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.ref or s.type }}</a>
       {%- else -%}

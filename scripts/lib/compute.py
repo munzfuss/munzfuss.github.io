@@ -446,6 +446,20 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
     keep = _msr_short_rows(deduped, cc.weight_marks)
     cc.msr_short_n = len(keep) if keep else 0
     if keep:
+        # A citation that belongs only to hidden specimens is hidden with them:
+        # its ref opens with the reading's source label («…, Nr 78») followed
+        # by a non-alphanumeric character, so «Nr 7» never claims «Nr 78».
+        shown = {lb for i in keep for lb in deduped[i].get("sources") or []}
+        cut = {lb for i, r in enumerate(deduped) if i not in keep
+               for lb in r.get("sources") or []} - shown
+
+        def _owned(ref: str, labels: set) -> bool:
+            return any(ref == lb or (ref.startswith(lb) and not ref[len(lb)].isalnum())
+                       for lb in labels)
+
+        cc.msr_cut_refs = {src.ref for src in (cc.raw.sources or [])
+                           if src.ref and _owned(src.ref, cut)
+                           and not _owned(src.ref, shown)}
         for segs in (cc.msr_weight_segs, cc.msr_fein_segs, cc.msr_delta_segs,
                      cc.msr_fineness_segs, cc.msr_stop_rough_segs,
                      cc.msr_stop_fine_segs):
@@ -599,6 +613,7 @@ class ComputedCoin:
     # sub-row axis (see _build_measurement_rows) — it keeps diameter_groups.
     msr_n: int = 0
     msr_short_n: int = 0          # rows of the shortened list; 0 = no shortening
+    msr_cut_refs: set = field(default_factory=set)   # citations hidden with them
     msr_weight_segs: list[dict] = field(default_factory=list)
     msr_fein_segs: list[dict] = field(default_factory=list)
     msr_delta_segs: list[dict] = field(default_factory=list)
