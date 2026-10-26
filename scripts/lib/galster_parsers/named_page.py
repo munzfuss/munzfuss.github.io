@@ -69,6 +69,19 @@ def parse_page(html_path: Path, text: str, record: dict) -> dict:
         tail = title.rsplit(",", 1)[-1].strip()
         if re.match(r"\d", tail):
             denom = f"{tail} klipping"
+    qm = re.match(r"Dronning\s+[A-ZÆØÅ]\w+s\s+(\w+)", denom)
+    if qm:
+        # «Dronning Philippas søsling, 1424» (philsosl.htm, Galster 11): the
+        # heading names the coin after the queen who struck it; the coin line
+        # «Lund U.år (1424), (Galster 11) = Dronning Philippas søsling» stands
+        # under «Erik af Pommern (1396-1439)», whose reign it belongs to.
+        denom = qm.group(1).capitalize()
+        if not d.get("ruler") and re.search(r"^\s*Erik af Pommern \(1396-1439\)", text, re.M):
+            d["ruler"] = "Erik VII"
+        um = re.search(r"\bU\.\s*år\s*\((1[34]\d\d)\)", text)
+        if um:
+            d["year_label"] = "u.år"
+            d["year_hint"] = um.group(1)
     d["denomination"] = denom
     d["page_shape"] = "named_page"
     return d

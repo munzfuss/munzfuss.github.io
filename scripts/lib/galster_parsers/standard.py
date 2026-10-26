@@ -961,6 +961,11 @@ def parse_page(html_path: Path, text: str, galster_override: str | None = None) 
             # The header says «u. år»; a year the prose below names (the
             # conquest of 1361) is no striking year.
             out["year_label"] = "u.år"
+        # Galster 138 names its issuer only in the legend: «Mønten, der bærer
+        # indskriften ERIC GOTOR REX (Erik, Gotlændernes konge), er slået
+        # under kong Eriks tid som sørøverkonge på Gotland» (gotlg138).
+        if not out.get("ruler") and re.search(r"\bERIC\s+GOTOR\s+REX\b", text):
+            out["ruler"] = "Erik VII"
     # Norway under norge/ — multiple Hans shapes + standard reign-prefixed
     fm2 = re.search(r"^norge_n(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
     if fm2:

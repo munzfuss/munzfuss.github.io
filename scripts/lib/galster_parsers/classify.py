@@ -151,7 +151,7 @@ def detect_page_shape(html_path: Path, text: str) -> str:
 
     # 0b. Christian II / Frederik I reign tables: rows without a page;
     #     Hans' table (hansgals.htm): every row, see galst_table.
-    if name in ("c2galst.htm", "f1galst.htm", "hansgals.htm"):
+    if name in ("c2galst.htm", "f1galst.htm", "hansgals.htm", "pommgals.htm"):
         return "galst_table"
 
     # 1. Reign-overview tables — explicit filename match

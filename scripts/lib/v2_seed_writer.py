@@ -188,6 +188,7 @@ from lib.mint_registry import (  # noqa: E402
     CANON_TO_DISPLAY as _MINT_CANON_TO_DISPLAY,
     NORWAY_FROM_YEAR,
     christian_ii_entity,
+    erik_gotland_entity,
     norby_gotland_entity,
     norway_split_entity,
     strip_mint_suffix as _strip_mint_suffix,
@@ -1594,8 +1595,9 @@ def _apply_norway_split(coins: list[dict], source_name: str) -> int:
 def _apply_christian_ii_split(coins: list[dict], source_name: str) -> int:
     """Route coins in Christian II's name after 1523 to their own issuers
     (`mint_registry.christian_ii_entity`), and Søren Norby's Visby coins to
-    `norby_gotland` (`mint_registry.norby_gotland_entity`), in place, for every
-    source. Runs
+    `norby_gotland` (`mint_registry.norby_gotland_entity`), and Erik VII's
+    coins after his deposition in 1439 to `erik_gotland`
+    (`mint_registry.erik_gotland_entity`), in place, for every source. Runs
     before the curated-entity restore, which re-asserts a held entity."""
     moved = 0
     for c in coins:
@@ -1612,13 +1614,23 @@ def _apply_christian_ii_split(coins: list[dict], source_name: str) -> int:
         if new != ie:
             c["issuing_entity"] = new
             norby += 1
+    erik = 0
+    for c in coins:
+        ie = c.get("issuing_entity")
+        new = erik_gotland_entity(ie, c.get("ruler"), c.get("year_first"))
+        if new != ie:
+            c["issuing_entity"] = new
+            erik += 1
     if moved:
         print(f"[{source_name}] Christian II after 1523: {moved} coin(s) "
               f"re-routed to christian_ii_supporters / christian_ii_reconquest")
     if norby:
         print(f"[{source_name}] Søren Norby at Visby: {norby} coin(s) "
               f"re-routed to norby_gotland")
-    return moved + norby
+    if erik:
+        print(f"[{source_name}] Erik VII after 1439: {erik} coin(s) "
+              f"re-routed to erik_gotland")
+    return moved + norby + erik
 
 
 def _check_entity_invariant(
@@ -1663,6 +1675,8 @@ def _check_entity_invariant(
                                        c.get("year_last"), c.get("ruler"))
         expected = christian_ii_entity(expected, c.get("year_first"),
                                        c.get("year_last"), c.get("ruler"))
+        expected = norby_gotland_entity(expected, mint, c.get("ruler"))
+        expected = erik_gotland_entity(expected, c.get("ruler"), c.get("year_first"))
         ie = c.get("issuing_entity")
         current = ie if isinstance(ie, str) else (
             sorted(str(e) for e in ie if e)[0] if isinstance(ie, list) and ie else None

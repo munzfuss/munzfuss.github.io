@@ -1246,6 +1246,29 @@ def norby_gotland_entity(entity, mint=None, ruler=None):
     return "norby_gotland"
 
 
+_ERIK_VII_RE = re.compile(r"^\s*eri[ck]\s+(?:vii|7)\b", re.IGNORECASE)
+# Erik af Pommern, King of Denmark 1396-1439 (danskmoent erikpomm.htm); after
+# his deposition he held Gotland until 1449.
+_ERIK_VII_REIGN_END = 1439
+
+
+def erik_gotland_entity(entity, ruler=None, year_first=None):
+    """Coins of Erik VII struck after he had ceased to be King of Denmark go to
+    `erik_gotland`, which the Denmark page does not consume (curator
+    2026-10-26: «монети еріка коли він вже не був королем не повинні бути на
+    сторінці данії»). Galster 138, the Visby gote «ERIC GOTOR REX», c. 1448
+    (danskmoent gotlg138.htm). A coin of his Danish reign, or one whose first
+    year is unknown, is returned unchanged.
+    """
+    if entity != "danish_realm":
+        return entity
+    if not (isinstance(ruler, str) and _ERIK_VII_RE.search(ruler)):
+        return entity
+    if not isinstance(year_first, int) or year_first <= _ERIK_VII_REIGN_END:
+        return entity
+    return "erik_gotland"
+
+
 def is_known_nation(nation: str | None) -> bool:
     """True if the nation string resolves to an in-scope entity."""
     return classify_nation_to_entity(nation) is not None

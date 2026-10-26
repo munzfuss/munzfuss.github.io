@@ -208,6 +208,8 @@ _ENTITY_TO_KM_REGISTER: dict[str, str] = {
     "christian_ii_reconquest": "nor",
     # Søren Norby's own Visby issues 1523-1525 — Krause's Denmark volume.
     "norby_gotland": "dk",
+    # Erik VII on Gotland after his deposition (1439-1449) — Denmark volume.
+    "erik_gotland": "dk",
     # SH territory — Krause «German States — Schleswig-Holstein»
     "royal_holstein": "sh",
     "gottorp_duchy": "sh",

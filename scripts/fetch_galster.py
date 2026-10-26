@@ -76,6 +76,10 @@ INDEX_PAGES = [
     "/erikpomm.htm",
     "/bajern.htm",
     "/c1.htm",
+    # Erik af Pommern «oversigt efter Galster»: the one table that gives Galster
+    # 6, 8 and 12 (no page of their own; the numbers link to the halvpenn.htm /
+    # lebard.htm overviews) and links Galster 11 to philsosl.htm.
+    "/pommgals.htm",
     "/hans.htm",
     "/c2galst.htm",
     "/f1galst.htm",
@@ -191,7 +195,8 @@ _HREF_RE = re.compile(r"""href\s*=\s*["']([^"']+)["']""", re.IGNORECASE)
 _NUMBER_ANCHOR_RE = re.compile(
     r"""<A\s+HREF\s*=\s*["']([^"']+)["'][^>]*>\s*(\d{1,3}\s*[A-Z]?)\s*</A>""",
     re.IGNORECASE)
-_INDEX_VOLUME = {"/m1.htm": "m1g", "/erikpomm.htm": "epomg",
+_OVERVIEW_LINKED_TABLES = {"/pommgals.htm"}
+_INDEX_VOLUME = {"/m1.htm": "m1g", "/erikpomm.htm": "epomg", "/pommgals.htm": "epomg",
                  "/bajern.htm": "bajg", "/c1.htm": "c1g",
                  "/hans.htm": "hg", "/c2galst.htm": "c2g", "/f1galst.htm": "f1g"}
 
@@ -419,6 +424,7 @@ def discover() -> dict:
     links: set[str] = set()
     index_links_per: dict[str, list[str]] = {}
     number_links: dict[str, dict] = {}
+    overview_linked: set[str] = set()
 
     # Phase 1: walk known index pages
     for path in INDEX_PAGES:
@@ -433,6 +439,8 @@ def discover() -> dict:
         indexes_found.append(path)
         new_links = _extract_links(html)
         for npath, rec in _number_anchor_links(html, path).items():
+            if path in _OVERVIEW_LINKED_TABLES:
+                overview_linked.add(npath)
             number_links.setdefault(npath, rec)
             if not _is_percoin_path(npath):
                 new_links.add(npath)           # husumdal.htm, ronneby.htm, …
@@ -459,6 +467,15 @@ def discover() -> dict:
     new_only = ov_links - links
     links.update(ov_links)
     index_links_per["/type.htm (overviews)"] = sorted(ov_links)
+    # In pommgals.htm a number linked to a denomination overview («6» →
+    # halvpenn.htm, «8» / «12» → lebard.htm, «13» / «16» → gros.htm) has no
+    # page of its own: the overview spans several numbers and rulers, so it is
+    # not that number's coin page. The table row stands for the coin instead.
+    # (In the other tables an overview link IS the coin page: c2galst.htm
+    # «42» → 18pennin.htm.)
+    for _path, _title, _html in pages:
+        if _path in overview_linked:
+            number_links.pop(_path, None)
     print(f"  overviews ({len(pages)})  hits={len(ov_links):4d}  "
           f"new={len(new_only):4d}  cum={len(links)}")
 

@@ -32,7 +32,8 @@ from .common import HR_SENTINEL  # noqa: F401  (shape-module convention)
 
 _VOLUME = {"c2galst.htm": ("c2g", "Christian II"),
            "f1galst.htm": ("f1g", "Frederik I"),
-           "hansgals.htm": ("hg", "Hans")}
+           "hansgals.htm": ("hg", "Hans"),
+           "pommgals.htm": ("epomg", "Erik VII")}
 # Pages whose linked rows are read too (as catalogue folds, see above).
 _ALL_ROWS = {"hansgals.htm"}
 _H2_RE = re.compile(r"<H2[^>]*>(.*?)</H2>", re.IGNORECASE | re.DOTALL)
@@ -59,6 +60,16 @@ def parse_coins(html: str, filename: str) -> list[dict]:
     m_fake = re.search(r"<H2[^>]*>\s*Falske\s+m(?:ø|&oslash;)nter", html, re.IGNORECASE)
     if m_fake:
         html = html[:m_fake.start()]
+    overview_row = filename in _OVERVIEW_LINKED
+    if overview_row:
+        # pommgals.htm: only the «Danmark» table. The Gotland, Swedish and
+        # Finnish rows that follow all have pages of their own (gotlg135-138,
+        # spomg195-202, 6penning.htm).
+        m_next = re.search(r"<H2[^>]*>\s*Gotland", html, re.IGNORECASE)
+        if m_next:
+            html = html[:m_next.start()]
+        overviews = _overview_files()
+        dating = _reign_page_dating(filename)
     for row in _ROW_RE.findall(html):
         raw = _CELL_RE.findall(row)
         cells = [_cell_text(c) for c in raw]
@@ -67,7 +78,10 @@ def parse_coins(html: str, filename: str) -> list[dict]:
             continue
         if not header or not cells or not re.fullmatch(r"\d+\s*[A-Z]?", cells[0]):
             continue
-        has_page = bool(re.search(r"<A\s+HREF", raw[0], re.IGNORECASE))
+        link = re.search(r"""<A\s+HREF\s*=\s*["']?([^"' >]+)""", raw[0], re.IGNORECASE)
+        has_page = bool(link)
+        if overview_row and link and link.group(1).lower() in overviews:
+            has_page = False                  # the number links an overview
         if has_page and not all_rows:
             continue                                   # has its own coin page
         col = dict(zip(header, cells))
@@ -95,6 +109,14 @@ def parse_coins(html: str, filename: str) -> list[dict]:
                 refs[key] = re.sub(r"\s*-\s*", "-", val)
         place = col.get("Prægested") or ""
         year = col.get("År") or ""
+        approx = False
+        if overview_row and refs["galster"] in dating:
+            # The table has no year column; the reign page's line for the
+            # number gives the dating and the one mint of that number
+            # (erikpomm.htm «ca. 1400-1420, Næstved. … (Galster 6)» against
+            # the table's «Næstved og Lund»: Lund is «note efter Galster 9A»).
+            year, place = dating[refs["galster"]]
+            approx = True
         coins.append({
             "ruler": ruler,
             "ruler_volume": volume,
@@ -106,9 +128,46 @@ def parse_coins(html: str, filename: str) -> list[dict]:
             "description": remark,
             "catalog_refs": refs,
             "specs": {},
+            **({"year_approx": True} if approx else {}),
             **({"index_has_page": True} if has_page else {}),
         })
     return coins
+
+
+# Tables whose numbers may link a denomination overview instead of a coin
+# page (pommgals.htm «6» → halvpenn.htm); such a row is the coin's record.
+_OVERVIEW_LINKED = {"pommgals.htm": "erikpomm.htm"}
+_LI_RE = re.compile(r"<LI>(.*?)(?=<LI>|</UL>)", re.IGNORECASE | re.DOTALL)
+_LI_DATING_RE = re.compile(
+    r"^ca\.\s*(1[34]\d\d(?:\s*-\s*1[34]\d\d)?)\s*,\s*([A-ZÆØÅ][\wæøå]+)\.")
+
+
+def _overview_files() -> set[str]:
+    """Filenames of the /type.htm denomination overviews (fetch_galster)."""
+    from lib.paths import GALSTER_CACHE
+    f = GALSTER_CACHE / "_overview_cross_refs.json"
+    if not f.exists():
+        return set()
+    import json
+    return {o["path"].lstrip("/").lower()
+            for o in json.loads(f.read_text(encoding="utf-8")).get("overviews") or []}
+
+
+def _reign_page_dating(filename: str) -> dict[str, tuple[str, str]]:
+    """Galster number → (years, mint) from the reign page's list line that
+    ends «(Galster N)» and starts «ca. YYYY[-YYYY], Mint.»."""
+    from lib.paths import GALSTER_CACHE
+    page = GALSTER_CACHE / _OVERVIEW_LINKED[filename]
+    if not page.exists():
+        return {}
+    out: dict[str, tuple[str, str]] = {}
+    for li in _LI_RE.findall(page.read_text(encoding="utf-8", errors="replace")):
+        t = _cell_text(li)
+        m_n = re.search(r"\(Galster\s+(\d+)\)\s*$", t)
+        m_d = _LI_DATING_RE.match(t)
+        if m_n and m_d:
+            out.setdefault(m_n.group(1), (re.sub(r"\s+", "", m_d.group(1)), m_d.group(2)))
+    return out
 
 
 def parse_page(html_path: Path, text: str) -> dict:
