@@ -3918,6 +3918,15 @@ def process_entity(entity_id: str) -> dict:
             for field in ("fuss", "phase", "kind"):
                 if assignment.get(field):
                     entry[field] = assignment[field]
+            # Curator nominal for the class (`assignments[].nominal`,
+            # 2026-10-26): the reader-facing nominal, set here rather than in
+            # a seed, which keeps what its source printed. Any hit of the
+            # class may carry it; two different ones are left unapplied.
+            _noms = {a["nominal"] for a in hits if a.get("nominal")}
+            if len(_noms) == 1:
+                entry["nominal"] = _noms.pop()
+            elif _noms:
+                print(f"  ⚠ ASSIGN-NOMINAL-CONFLICT {entry.get('id')}: {sorted(_noms)}")
         # Diagnostic: assignments none of whose resolved keys matched anything.
         # A decision on an EXCLUDED coin (exclusions/<entity>.yml) is inert by
         # definition — counted apart, so ASSIGN-MISS names only real misses.

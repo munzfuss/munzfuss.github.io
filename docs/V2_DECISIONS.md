@@ -671,6 +671,16 @@
   Stage 3 additionally needs a one-shot `migrate_final_ids.py` rewriting `id` AND every `composed_of` member before the first absorb (absorb keys membership by unified id: `already_absorbed`, enrichment, `_revalidate_composed_of`), and `verify_reflow` pairing HEAD ↔ current by `legacy_id` for that one commit, committed first with a test.
 - **Code (stage 2)**: `scripts/lib/class_registry.py` (`Record`, `Registry.inherit`, `make_id`, `specimens_of`), `scripts/maintenance/bootstrap_class_registry.py`, the merger's `main` (collect every entity's partition → `inherit` → write shards + `class_id` / `label` on unified entries), `tests/test_class_registry.py`.
 
+
+---
+
+### D50 — A curator nominal for a class lives in `classification_decisions`, not in a seed and not in `merge_decisions`
+
+- **Decision (2026-10-26, curator: «можливо краще на в seed, а на наступному рівні» … «чи не краще на рівні seed absorb?»)**: an assignment in `classification_decisions/<entity>.yml` may carry `nominal:` (with a `nominal_reason:`); absorb sets it on the final reached by the assignment, beside `fuss` / `phase` / `kind`. First use: the two Kobbersterling classes (Galster 7 + Numista 348708, Galster 14 + Numista 476049) → «1 Sterling», where Numista prints «1 Sterling = 3 Pennings».
+- **Why not the seed**: the seed records what the source printed; overwriting it (even with a `_curation_holds`) hides the printed form and is a §0b-1 layer the next reader must know to look for.
+- **Why not `merge_decisions`**: a merge entry answers «same coin or not»; the reader-facing nominal is a presentation decision like fuss / phase / kind. And `nominal` is foundation-immutable in absorb, so a value set on the unified class reaches only the finals rebuilt from members (`_rebuild_scope.yml`), never the rest. Tried and reverted the same day.
+- **Rule**: any assignment that reaches the class may carry it; two different nominals reaching one final are not applied (`ASSIGN-NOMINAL-CONFLICT` in the absorb log).
+- **Code**: `absorb_seeds_into_final_v2.py`, the assignment apply loop.
 ---
 
 ## Deferred decisions
