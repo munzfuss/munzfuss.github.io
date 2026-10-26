@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 324 active, 0 retired.
+# 322 active, 2 retired.
 
 id: hanseatic_lubeck
 classes:
@@ -286,13 +286,6 @@ classes:
     legacy_id: unified-ngc-1138152
     members:
       - ngc-1138152
-  - id: c-1cf401fa
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-159800
-    legacy_id: unified-kmk-159800
-    members:
-      - kmk-159800
   - id: c-1d53271f
     status: active
     created: '2026-10-22'
@@ -1277,13 +1270,6 @@ classes:
     legacy_id: unified-ngc-1138631
     members:
       - ngc-1138631
-  - id: c-8f1e2561
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-159801
-    legacy_id: unified-kmk-159801
-    members:
-      - kmk-159801
   - id: c-92933122
     status: active
     created: '2026-10-22'
@@ -2251,6 +2237,8 @@ classes:
     legacy_id: unified-kmk-159799
     members:
       - kmk-159799
+      - kmk-159800
+      - kmk-159801
       - kmk-159802
       - kmk-266843
   - id: c-f3f7d526
@@ -2371,3 +2359,21 @@ classes:
     legacy_id: unified-kmk-393947
     members:
       - kmk-393947
+  - id: c-1cf401fa
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-159800
+    legacy_id: unified-kmk-159800
+    merged_into: c-f363b5a9
+    retired: '2026-10-26'
+    members:
+      - kmk-159800
+  - id: c-8f1e2561
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-159801
+    legacy_id: unified-kmk-159801
+    merged_into: c-f363b5a9
+    retired: '2026-10-26'
+    members:
+      - kmk-159801

@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15283 per-source seed entries.
-# Output: 6042 unified entries (one per physical coin).
+# Output: 6032 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -262,6 +262,8 @@ coins:
       galster: '11'
       others:
         - FL# 59
+        - Jesse# 484
+        - Fritze Lindahl# 59-62
       jesse: '484'
       galster_volume: galster1972-erik7
     metal: silver
@@ -272,6 +274,8 @@ coins:
     verified: false
     year_verified: false
     fineness:
+      - value: 0.703
+        source: Lindahl 1955 (NNÅ 1955), s. 82
       - value: 0.7615
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 47
       - value: 0.7819
@@ -287,6 +291,10 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 46
       - value: 1.37
         source: bruun
+    weight_range_g:
+      - min: 1.0
+        max: 1.34
+        source: Lindahl 1955 (NNÅ 1955), s. 82
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -294,6 +302,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/philsosl.htm
         ref: Galster 11 (epomg) — danskmoent.dk philsosl.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 82; FL 59-62
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 45, Appendix (XRF)
@@ -316,6 +327,7 @@ coins:
     composed_of:
       - dk-bruun-3712
       - dk-galster-epomg-11
+      - lindahl-1955-lund-soesling
       - metallanalyser-2016-1-g11-lund-sosling
   - id: c-11a2b578
     class_id: c-11a2b578
@@ -338,6 +350,8 @@ coins:
       galster: '2'
       others:
         - FL# 2
+        - Jesse# 694
+        - Fritze Lindahl# 2
       jesse: '694'
       galster_volume: galster1972-erik7
     metal: silver
@@ -378,6 +392,9 @@ coins:
         url: https://www.danskmoent.dk/epomg2.htm
         ref: Galster 2 (epomg) — danskmoent.dk epomg2.htm
       - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 78; FL 2
+      - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 1, Appendix (XRF)
     verification_note:
@@ -393,6 +410,7 @@ coins:
     composed_of:
       - dk-bruun-3725
       - dk-galster-epomg-2
+      - lindahl-1955-naestved-witten-krone
       - metallanalyser-2016-1-g2-nastved-hvid
   - id: c-38685a70
     class_id: c-38685a70
@@ -11109,13 +11127,20 @@ coins:
     fineness:
       - value: 0.5943
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 73
+      - value: 0.75
+        source: Lindahl 1955 (NNÅ 1955), s. 84 (after Rasmusson)
     weight_rough_g:
       - value: 1.04
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 73
+      - value: 1.04
+        source: Lindahl 1955 (NNÅ 1955), s. 84
     sources:
       - type: literature
         url: https://www.danskmoent.dk/bajg17.htm
         ref: Galster 17 (bajg) — danskmoent.dk bajg17.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 84
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 73, Appendix (XRF)
@@ -11131,6 +11156,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-bajg-17
+      - lindahl-1955-lund-soesling-christopher
       - metallanalyser-2016-1-g17-lund-sosling
   - id: c-54480815
     class_id: c-54480815
@@ -11150,6 +11176,9 @@ coins:
     catalog:
       galster: '18'
       galster_volume: galster1972-christoffer3
+      others:
+        - Jesse# 705
+      jesse: '705'
     metal: silver_billon
     metal_verified: true
     fineness_verified: true
@@ -11162,6 +11191,8 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 72
       - value: 0.4521
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 71
+      - value: 0.5
+        source: Lindahl 1955 (NNÅ 1955), s. 85 (after Rasmusson)
       - value: 0.5225
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 70
       - value: 0.6434
@@ -11193,10 +11224,17 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 69
       - value: 2.25
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 71
+    weight_range_g:
+      - min: 1.87
+        max: 2.38
+        source: Lindahl 1955 (NNÅ 1955), s. 85
     sources:
       - type: literature
         url: https://www.danskmoent.dk/bajg18.htm
         ref: Galster 18 (bajg) — danskmoent.dk bajg18.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 85
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 67, Appendix (XRF)
@@ -11227,6 +11265,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-bajg-18
+      - lindahl-1955-skilling-christopher
       - metallanalyser-2016-1-g18-lund-skilling
   - id: c-a4e8afcd
     class_id: c-a4e8afcd
@@ -11235,18 +11274,18 @@ coins:
     phase: galster
     kind: kurant
     nominal: 1 Sterling
-    year_first: 1440
-    year_last: 1448
-    year_ranges:
-      -   - 1440
-          - 1448
-    year_label: 1440-1448
+    year_first: 1444
+    year_last: 1444
+    year_label: '1444'
     ruler: Christoffer III
     mint: Malmø
     catalog:
       galster: '19'
       sieg: '1'
       galster_volume: galster1972-christoffer3
+      others:
+        - Jesse# 704
+      jesse: '704'
     metal: silver_billon
     metal_verified: true
     fineness_verified: true
@@ -11274,10 +11313,17 @@ coins:
         source: galster
       - value: 0.71
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 75
+    weight_range_g:
+      - min: 0.61
+        max: 0.73
+        source: Lindahl 1955 (NNÅ 1955), s. 85
     sources:
       - type: literature
         url: https://www.danskmoent.dk/bajg19.htm
         ref: Galster 19 (bajg) — danskmoent.dk bajg19.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 85
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 74, Appendix (XRF); Treklöver
@@ -11302,6 +11348,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-bajg-19
+      - lindahl-1955-malmoe-sterling
       - metallanalyser-2016-1-g19-malmo-sterling
   - id: c-df58ec36
     class_id: c-df58ec36
@@ -11321,6 +11368,7 @@ coins:
       galster_volume: galster1972-christoffer3
       others:
         - Jesse# 703
+      jesse: '703'
     metal: silver_billon
     metal_verified: true
     fineness_verified: true
@@ -12290,6 +12338,7 @@ coins:
         - Jesse# 697
         - Jesse# 698
       galster_volume: galster1972-erik7
+      jesse: '697'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -12372,6 +12421,9 @@ coins:
         - '8'
         - '12'
       galster_volume: galster1972-erik7
+      others:
+        - Jesse# 485
+      jesse: '485'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -12380,6 +12432,8 @@ coins:
     verified: false
     year_verified: false
     fineness:
+      - value: 0.453
+        source: Lindahl 1955 (NNÅ 1955), s. 82
       - value: 0.6156
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 50
       - value: 0.6661
@@ -12399,10 +12453,17 @@ coins:
           en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
           uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
           da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
+    weight_range_g:
+      - min: 0.2
+        max: 0.39
+        source: Lindahl 1955 (NNÅ 1955), s. 82
     sources:
       - type: literature
         url: https://www.danskmoent.dk/pommgals.htm
         ref: Galster 12 (epomg) — danskmoent.dk pommgals.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 82
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 49, Appendix (XRF)
@@ -12421,6 +12482,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-epomg-12
+      - lindahl-1955-lebard
       - metallanalyser-2016-1-g12-lund-lebard
       - metallanalyser-2016-1-g8-12-nastved-lund-lebard
   - id: c-6f18dcfc
@@ -12442,6 +12504,7 @@ coins:
         - Jesse# 697
         - Jesse# 698
       galster_volume: galster1972-erik7
+      jesse: '697'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -12487,13 +12550,20 @@ coins:
     catalog:
       galster: '3'
       galster_volume: galster1972-erik7
+      others:
+        - Jesse# 693
+        - Fritze Lindahl# 1
+      jesse: '693'
     metal: billon
     metal_verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    weight_rough_g:
+      - value: 1.15
+        source: Lindahl 1955 (NNÅ 1955), s. 77
     year_alts:
       - value: '1424'
         source: galster
@@ -12511,9 +12581,13 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/epomg3.htm
         ref: Galster 3 (epomg) — danskmoent.dk epomg3.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 77; FL 1
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-epomg-3
+      - lindahl-1955-naestved-witten-krumstav
   - id: c-e1a1f8b6
     class_id: c-e1a1f8b6
     label: unified-dk-galster-epomg-5
@@ -12522,11 +12596,11 @@ coins:
     kind: kurant
     nominal: 1 Hulpenning
     year_first: 1400
-    year_last: 1420
+    year_last: 1424
     year_ranges:
       -   - 1400
-          - 1420
-    year_label: 1400-1420
+          - 1424
+    year_label: 1400-1424
     ruler: Erik VII
     mint:
       - Lund
@@ -12534,6 +12608,10 @@ coins:
     catalog:
       galster: '5'
       galster_volume: galster1972-erik7
+      others:
+        - Jesse# 696
+        - Fritze Lindahl# 33
+      jesse: '696'
     metal: silver_billon
     metal_verified: true
     fineness_verified: true
@@ -12550,6 +12628,8 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 35
       - value: 0.1821
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 34
+      - value: 0.212
+        source: Lindahl 1955 (NNÅ 1955), s. 79
       - value: 0.2378
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33
       - value: 0.2996
@@ -12643,10 +12723,17 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 34
       - value: 0.41
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33
+    weight_range_g:
+      - min: 0.21
+        max: 0.37
+        source: Lindahl 1955 (NNÅ 1955), s. 79
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg5.htm
         ref: Galster 5 (epomg) — danskmoent.dk epomg5.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 79; FL 33
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 23, Appendix (XRF)
@@ -12704,6 +12791,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-epomg-5
+      - lindahl-1955-hulpenning
       - metallanalyser-2016-1-g5-nastved-lund-penning
   - id: c-b55315e2
     class_id: c-b55315e2
@@ -12713,23 +12801,28 @@ coins:
     kind: kurant
     nominal: 1 Halvpenning
     year_first: 1400
-    year_last: 1420
+    year_last: 1424
     year_ranges:
       -   - 1400
-          - 1420
-    year_label: 1400-1420
+          - 1424
+    year_label: 1400-1424
     ruler: Erik VII
     mint: Næstved
     catalog:
       galster: '6'
       galster_volume: galster1972-erik7
+      others:
+        - Fritze Lindahl# 33a
     metal: billon
     metal_verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    weight_rough_g:
+      - value: 0.12
+        source: Lindahl 1955 (NNÅ 1955), s. 79
     weight_range_g:
       - min: 0.14
         max:
@@ -12743,6 +12836,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/pommgals.htm
         ref: Galster 6 (epomg) — danskmoent.dk pommgals.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 79; FL 33a
     note:
       de: skærv
       en: skærv
@@ -12751,6 +12847,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-epomg-6
+      - lindahl-1955-halvpenning
   - id: c-14aae01f
     class_id: c-14aae01f
     label: unified-dk-galster-epomg-8
@@ -14941,40 +15038,26 @@ coins:
       -   - 1400
           - 1499
     year_label: 1400-1499
-    ruler: Erik VII
     mint: Visby
     catalog:
       galster: '137'
       others:
         - Lagerqvist# 2a-e
-        - Jesse# 696
-        - Fritze Lindahl# 33
       galster_volume: hg
     metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: false
     mint_verified: true
     verified: false
     year_verified: false
-    fineness:
-      - value: 0.212
-        source: Lindahl 1955 (NNÅ 1955), s. 79
-    weight_range_g:
-      - min: 0.21
-        max: 0.37
-        source: Lindahl 1955 (NNÅ 1955), s. 79
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg137.htm
         ref: Galster 137 (hg) — danskmoent.dk gotlg137.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 79; FL 33
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-hg-137
-      - lindahl-1955-hulpenning
   - id: c-d8764e2c
     class_id: c-d8764e2c
     label: unified-dk-galster-hg-139
@@ -15776,27 +15859,39 @@ coins:
     phase: galster
     kind: kurant
     nominal: 1 Hvid
-    year_first: 1380
-    year_last: 1380
-    year_label: '1380'
+    year_first: 1373
+    year_last: 1396
+    year_ranges:
+      -   - 1373
+          - 1396
+    year_label: 1373-1396
     ruler: Margrethe I
     mint: Ribe
     catalog:
       galster: '1'
       galster_volume: galster1972-margrethe1
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+      others:
+        - Jesse# 692
+      jesse: '692'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.8
+        source: Lindahl 1955 (NNÅ 1955), s. 76
     weight_range_g:
       - min: 1.19
         max:
         approx: true
         source: danskmoent.dk ernst/ribeaxe1.htm
         url: https://www.danskmoent.dk/gif/m1g1.gif
+      - min: 1.09
+        max: 1.3
+        source: Lindahl 1955 (NNÅ 1955), s. 76
     diameter_mm:
       - value: 18.0
         source: danskmoent.dk ernst/ribeaxe1.htm
@@ -15804,9 +15899,13 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/m1g1.htm
         ref: Galster 1 (m1g) — danskmoent.dk m1g1.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 76
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-m1g-1
+      - lindahl-1955-ribe-witten
   - id: c-715646fe
     class_id: c-715646fe
     label: unified-dk-galster-rigsraad-22
@@ -103190,6 +103289,7 @@ coins:
       others:
         - Jesse# 695
         - Fritze Lindahl# 16-31
+      jesse: '695'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -104173,6 +104273,7 @@ coins:
       others:
         - Jesse# 699
         - Fritze Lindahl# 75-99
+      jesse: '699'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -104950,6 +105051,7 @@ coins:
       others:
         - Jesse# 699
         - Fritze Lindahl# 64-74
+      jesse: '699'
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -106235,6 +106337,7 @@ coins:
         - Jesse# 697
         - Jesse# 698
       galster_volume: galster1972-erik7
+      jesse: '697'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -107386,6 +107489,7 @@ coins:
         - Jesse# 697
         - Jesse# 698
         - Fritze Lindahl# 50-53
+      jesse: '697'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -108779,12 +108883,14 @@ coins:
     phase: numista
     kind: scheide
     nominal: 1 Sterling
-    year_first: 1413
+    year_first: 1405
     year_last: 1420
     year_ranges:
+      -   - 1405
+          - 1405
       -   - 1413
           - 1420
-    year_label: 1413-1420
+    year_label: 1405, 1413-1420
     ruler: Erik VII
     nominal_equiv: 3 Penning
     mint: Lund
@@ -108793,6 +108899,10 @@ coins:
       sieg: '6'
       galster: '9'
       galster_volume: galster1972-erik7
+      others:
+        - Jesse# 695
+        - Fritze Lindahl# 3-15
+      jesse: '695'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -108808,6 +108918,8 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22
       - value: 0.5215
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 21
+      - value: 0.532
+        source: Lindahl 1955 (NNÅ 1955), s. 78
       - value: 0.54
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 20
       - value: 0.5788
@@ -108864,6 +108976,10 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22
       - value: 0.89
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 16
+    weight_range_g:
+      - min: 0.5
+        max: 1.0
+        source: Lindahl 1955 (NNÅ 1955), s. 78
     diameter_mm:
       - value: 17.8
         source: numista
@@ -108874,6 +108990,9 @@ coins:
       - type: literature
         url: https://en.numista.com/76322
         ref: Numista N#76322 — Sterling - Erik of Pommern (Lund) - Denmark
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 78; FL 3-15
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 2, Appendix (XRF); Ros
@@ -108926,6 +109045,7 @@ coins:
     composed_of:
       - dk-galster-epomg-9
       - dk-numista-76322
+      - lindahl-1955-lund-sterling
       - metallanalyser-2016-1-g9-lund-sterling
   - id: c-31bb88e8
     class_id: c-31bb88e8
@@ -266551,359 +266671,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-86275
-  - id: c-e8de91ec
-    class_id: c-e8de91ec
-    label: unified-lindahl-1955-halvpenning
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: ½ Penning
-    year_first: 1405
-    year_last: 1424
-    year_ranges:
-      -   - 1405
-          - 1424
-    year_label: 1405-1424
-    ruler: Erik VII
-    catalog:
-      others:
-        - Fritze Lindahl# 33a
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 0.12
-        source: Lindahl 1955 (NNÅ 1955), s. 79
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 79; FL 33a
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-halvpenning
-  - id: c-d57df4df
-    class_id: c-d57df4df
-    label: unified-lindahl-1955-lebard
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Lebard
-    year_first: 1424
-    year_last: 1424
-    year_label: '1424'
-    ruler: Erik VII
-    mint:
-      - Lund
-      - Næstved
-    catalog:
-      others:
-        - Jesse# 485
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.453
-        source: Lindahl 1955 (NNÅ 1955), s. 82
-    weight_range_g:
-      - min: 0.2
-        max: 0.39
-        source: Lindahl 1955 (NNÅ 1955), s. 82
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 82
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-lebard
-  - id: c-13e893f2
-    class_id: c-13e893f2
-    label: unified-lindahl-1955-lund-soesling
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1424
-    year_last: 1424
-    year_label: '1424'
-    ruler: Erik VII
-    mint: Lund
-    catalog:
-      others:
-        - Jesse# 484
-        - Fritze Lindahl# 59-62
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.703
-        source: Lindahl 1955 (NNÅ 1955), s. 82
-    weight_range_g:
-      - min: 1.0
-        max: 1.34
-        source: Lindahl 1955 (NNÅ 1955), s. 82
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 82; FL 59-62
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-lund-soesling
-  - id: c-455034f7
-    class_id: c-455034f7
-    label: unified-lindahl-1955-lund-soesling-christopher
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Søsling
-    year_first: 1440
-    year_last: 1440
-    year_label: '1440'
-    ruler: Christoffer III
-    mint: Lund
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.75
-        source: Lindahl 1955 (NNÅ 1955), s. 84 (after Rasmusson)
-    weight_rough_g:
-      - value: 1.04
-        source: Lindahl 1955 (NNÅ 1955), s. 84
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 84
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-lund-soesling-christopher
-  - id: c-0a887a92
-    class_id: c-0a887a92
-    label: unified-lindahl-1955-lund-sterling
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Sterling
-    year_first: 1405
-    year_last: 1405
-    year_label: '1405'
-    ruler: Erik VII
-    mint: Lund
-    catalog:
-      others:
-        - Jesse# 695
-        - Fritze Lindahl# 3-15
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.532
-        source: Lindahl 1955 (NNÅ 1955), s. 78
-    weight_range_g:
-      - min: 0.5
-        max: 1.0
-        source: Lindahl 1955 (NNÅ 1955), s. 78
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 78; FL 3-15
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-lund-sterling
-  - id: c-7d936cd6
-    class_id: c-7d936cd6
-    label: unified-lindahl-1955-malmoe-sterling
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Sterling
-    year_first: 1444
-    year_last: 1444
-    year_label: '1444'
-    ruler: Christoffer III
-    mint: Malmø
-    catalog:
-      others:
-        - Jesse# 704
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_range_g:
-      - min: 0.61
-        max: 0.73
-        source: Lindahl 1955 (NNÅ 1955), s. 85
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 85
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-malmoe-sterling
-  - id: c-4ca2f0b9
-    class_id: c-4ca2f0b9
-    label: unified-lindahl-1955-naestved-witten-krone
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1400
-    year_last: 1400
-    year_label: '1400'
-    ruler: Erik VII
-    mint: Næstved
-    catalog:
-      others:
-        - Jesse# 694
-        - Fritze Lindahl# 2
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 78; FL 2
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-naestved-witten-krone
-  - id: c-7c503c16
-    class_id: c-7c503c16
-    label: unified-lindahl-1955-naestved-witten-krumstav
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1397
-    year_last: 1405
-    year_ranges:
-      -   - 1397
-          - 1405
-    year_label: 1397-1405
-    ruler: Erik VII
-    mint: Næstved
-    catalog:
-      others:
-        - Jesse# 693
-        - Fritze Lindahl# 1
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 1.15
-        source: Lindahl 1955 (NNÅ 1955), s. 77
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 77; FL 1
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-naestved-witten-krumstav
-  - id: c-d9626c61
-    class_id: c-d9626c61
-    label: unified-lindahl-1955-ribe-witten
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1373
-    year_last: 1396
-    year_ranges:
-      -   - 1373
-          - 1396
-    year_label: 1373-1396
-    mint: Ribe
-    catalog:
-      others:
-        - Jesse# 692
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.8
-        source: Lindahl 1955 (NNÅ 1955), s. 76
-    weight_range_g:
-      - min: 1.09
-        max: 1.3
-        source: Lindahl 1955 (NNÅ 1955), s. 76
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 76
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-ribe-witten
-  - id: c-e372cfee
-    class_id: c-e372cfee
-    label: unified-lindahl-1955-skilling-christopher
-    fuss: seed_unsorted
-    phase: lindahl
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1440
-    year_last: 1448
-    year_ranges:
-      -   - 1440
-          - 1448
-    year_label: 1440-1448
-    _year_demoted: true
-    ruler: Christoffer III
-    mint:
-      - Lund
-      - Malmø
-    catalog:
-      others:
-        - Jesse# 705
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.5
-        source: Lindahl 1955 (NNÅ 1955), s. 85 (after Rasmusson)
-    weight_range_g:
-      - min: 1.87
-        max: 2.38
-        source: Lindahl 1955 (NNÅ 1955), s. 85
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 85
-    issuing_entity: danish_realm
-    composed_of:
-      - lindahl-1955-skilling-christopher
   - id: c-0b5c934a
     class_id: c-0b5c934a
     label: unified-metallanalyser-2016-1-g7-10-14-15-nastved-lund-odense-randers-kopparsterling
