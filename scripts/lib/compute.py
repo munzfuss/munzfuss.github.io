@@ -5,6 +5,7 @@ Pure functions over the input data. No template concerns.
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -650,6 +651,8 @@ class ComputedCoin:
 # out the «Каталог» column with one prefix per row.
 # ---------------------------------------------------------------------
 
+_OTHERS_PREFIX_ALIASES = {"FL": "Fritze Lindahl"}
+
 import re  # noqa: E402
 
 # Display label for each named catalog field. Ordering doesn't matter
@@ -927,6 +930,51 @@ def _apply_catalog_value_marks(
     return marks
 
 
+_GALSTER_LETTER_RE = re.compile(r"^(\d+)\s*([A-Za-z])$")
+_GALSTER_LETTER_RANGE_RE = re.compile(
+    r"^(\d+)\s*([A-Za-z])\s*-\s*(?:\1\s*)?([A-Za-z])$")
+
+
+def _galster_display_tokens(value):
+    """Display form of Galster numbers (curator 2026-10-26). The sub-letter is
+    a capital written straight after the number, a sub-letter range «23A-D»
+    — the form danskmoent.dk prints («Galster 23A-D», «124A-C», «66A-B»,
+    «118A»); Eriksson 2017's «23 a-d» / «23a» and KMM's «G. 23a» are the same
+    indices. A token a letter range covers is not shown: the bare type
+    number and each letter inside it («23», «23A» … «23D» under «23A-D»).
+    Display only — the data keeps every value with its source."""
+    raw = value if isinstance(value, list) else [value]
+    toks: list[str] = []
+    for t in raw:
+        t = str(t).strip()
+        m = _GALSTER_LETTER_RANGE_RE.match(t)
+        if m:
+            t = f"{m.group(1)}{m.group(2).upper()}-{m.group(3).upper()}"
+        else:
+            m = _GALSTER_LETTER_RE.match(t)
+            if m:
+                t = f"{m.group(1)}{m.group(2).upper()}"
+        if t and t not in toks:
+            toks.append(t)
+    spans = {}
+    for t in toks:
+        m = _GALSTER_LETTER_RANGE_RE.match(t)
+        if m:
+            spans.setdefault(m.group(1), []).append((m.group(2), m.group(3)))
+
+    def covered(t: str) -> bool:
+        if _GALSTER_LETTER_RANGE_RE.match(t):
+            return False
+        if t in spans:
+            return True
+        m = _GALSTER_LETTER_RE.match(t)
+        return bool(m) and any(lo <= m.group(2) <= hi
+                               for lo, hi in spans.get(m.group(1), []))
+
+    kept = [t for t in toks if not covered(t)]
+    return kept[0] if len(kept) == 1 else kept
+
+
 def _compute_catalog_groups(
     coin: Coin, location_km_register: str | None = None,
 ) -> list[tuple[str, list[str], str | None]]:
@@ -1028,6 +1076,8 @@ def _compute_catalog_groups(
         # normalise_catalog, applied at the single render chokepoint.
         if v is not None and field_name in _NUMERIC_INDEX_FIELDS:
             v = normalise_numeric_index(v)
+        if v is not None and field_name == "galster":
+            v = _galster_display_tokens(v)
         if v:
             # Companion *_hede1971 field: if set AND differs from the
             # primary value, append "(Hede-1971: X)" to the rendered
@@ -1088,6 +1138,16 @@ def _compute_catalog_groups(
     other_groups: dict[str, list[str]] = {}
     for raw in cat.others or []:
         prefix, value = _parse_ref(raw)
+        if prefix is not None:
+            # Bruun prints Lindahl's legend numbers as «FL», the Galster and
+            # Lindahl seeds as «Fritze Lindahl» — one register, one line.
+            prefix = _OTHERS_PREFIX_ALIASES.get(prefix, prefix)
+            # The same number already given in its typed register («Jesse#
+            # 692» beside catalog.jesse 692) is not repeated.
+            typed = getattr(cat, prefix.casefold(), None)
+            if typed is not None and value in (
+                    typed if isinstance(typed, list) else [typed]):
+                continue
         if prefix is None:
             plain_lines.append(value)
         elif not (prefix == "Pn" or prefix.startswith("Dav")
