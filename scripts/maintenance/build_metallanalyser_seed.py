@@ -217,6 +217,13 @@ def _galster_value(raw: str) -> str:
     return re.sub(r"[a-d]$", lambda m: m.group(0).upper(), raw)
 
 
+def _row_key(issue: str, row: dict) -> str:
+    """«2016:1 nr 38» — the issue as the series prints it plus the row number.
+    Not «2016_1:38»: YAML 1.1 readers (PyYAML) resolve that as a base-60
+    integer whenever the row number is below 60."""
+    return f"{issue.replace('_', ':')} nr {row['nr']}"
+
+
 def collect() -> tuple[list[dict], list[str]]:
     groups: dict[tuple, list[dict]] = defaultdict(list)
     skipped: list[str] = []
@@ -336,14 +343,14 @@ def collect() -> tuple[list[dict], list[str]]:
             "mint_verified": not conflict,
             "sources": sources,
             "verification_note": copy.deepcopy(_NOTE),
-            "_metallanalyser_rows": [f"{issue}:{r['nr']}" for r in rows],
+            "_metallanalyser_rows": [_row_key(issue, r) for r in rows],
         }
         if window_dated:
             entry["year_verified"] = False
         if ranges and undated:
             # the year range covers the dated pieces only; undated ones exist
             entry["_metallanalyser_undated_rows"] = [
-                f"{issue}:{r['nr']}" for r in rows
+                _row_key(issue, r) for r in rows
                 if not re.fullmatch(r"\d{4}", r.get("year") or "")]
         if conflict:
             entry["id"] += "-malmoe-printed"
