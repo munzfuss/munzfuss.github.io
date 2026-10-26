@@ -115,9 +115,9 @@ def collect() -> list[dict]:
     for (key, nominal, ruler, mint, (y0, y1), page, jesse, fl, rng, single,
          fins, assayer, mint_sure, note) in TYPES:
         label = _label(page)
-        others = [f"Jesse# {j}" for j in jesse]
-        if fl:
-            others.append(f"Fritze Lindahl# {fl}")
+        # Jesse in the named register, as Bruun writes it; Lindahl's legend
+        # numbers in `others` under the name the Galster seeds use.
+        others = [f"Fritze Lindahl# {fl}"] if fl else []
         fin_label = f"{label} (after Rasmusson)" if assayer == "Rasmusson" else label
         entry = {
             "id": f"{SOURCE}-1955-{key}",
@@ -133,7 +133,8 @@ def collect() -> list[dict]:
             "ruler": ruler,
             "mint": mint,
             "mint_verified": mint_sure,
-            "catalog": {"others": others} if others else {},
+            "catalog": ({**({"jesse": jesse[0] if len(jesse) == 1 else jesse} if jesse else {}),
+                         **({"others": others} if others else {})}),
             "metal": _metal(fins, note),
             "metal_verified": _metal(fins, note) is not None,
             "fineness": [{"value": f / 1000, "source": fin_label} for f in fins] or None,

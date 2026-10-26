@@ -894,7 +894,10 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
     }
     for field in ("lange", "fr", "dav", "mb",
                   "jensen_skjoldager", "schive", "skaare", "friedberg",
-                  "davenport", "numista", "bruun_collection_id"):
+                  "davenport", "numista", "bruun_collection_id",
+                  # Jesse, Der wendische Münzverein (1928): Bruun and Lindahl
+                  # (NNÅ 1955) cite it per type (2026-10-26)
+                  "jesse"):
         val = cat.get(field)
         if val is None:
             continue
@@ -1441,6 +1444,10 @@ def _year_last(coin):
     return coin.get("year_last") or coin.get("year_first")
 
 
+# One register written two ways: Bruun «FL# 2», the Galster seeds «Fritze
+# Lindahl# 34-41» (Lindahl, NNÅ 1955).
+_OTHERS_REGISTER_ALIASES = {"fl": "fritze lindahl"}
+
 _OTHERS_RE = re.compile(r"^\s*(.*?)\s*#\s*(.+?)\s*$")
 
 
@@ -1452,7 +1459,9 @@ def _others_registers(coin: dict) -> dict[str, set[str]]:
     for t in (oth if isinstance(oth, list) else [oth]):
         m = _OTHERS_RE.match(str(t))
         if m and m.group(1):
-            out.setdefault(m.group(1).casefold(), set()).add(m.group(2).casefold())
+            reg = m.group(1).casefold()
+            reg = _OTHERS_REGISTER_ALIASES.get(reg, reg)
+            out.setdefault(reg, set()).add(m.group(2).casefold())
     return out
 
 
