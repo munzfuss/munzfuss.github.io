@@ -16,6 +16,57 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-26 (session «дрібні правки») — Lybsk Møntfod clean-up, Lindahl 1955, matcher
+
+**State.** All commits local, not pushed (push only on «пуш»). Coordinate every
+data/v2 write window with the `main` session (local_018244b6-…) — it rebuilds
+the Galster seed in parallel and owns `build_galster_denmark_seed.py`.
+
+**Done this session (newest last):**
+- KMM clean-up of `luebischer_muenzfuss` with the new skill `kmm-triage`
+  (categories 1 / 2.1 / 2.2 / 3 / 4): excluded 1 + 2.1 (117, `00ef87b`) and
+  2.2 (38, `c6f91a1`); then 59 KMM of Lybsk-era rulers in seed_unsorted
+  (`4fcd4d0`). Registry fixes so an excluded seed never takes a live class's
+  id (`c275300`, `e12f4e7`).
+- Lindahl, NNÅ 1955 «Danmarks mønter 1377-1448»: cached + kb (`lindahl-1955`),
+  seed `data/v2/seed/lindahl/` (builder `build_lindahl_1955_seed.py`, Jesse in
+  `catalog.jesse`, FL numbers, metal by the 50 % line, Kobbersterling copper).
+  All 19 types now in Lybsk classes (auto + curator merges `9476e40`); no_merge
+  Lindahl hulpenning vs Galster 137 (Visby).
+- Matcher: `catalog.others` confirms a catalogue match (never disagrees);
+  `catalog.jesse` compared; «FL#» = «Fritze Lindahl#»; Witten→Hvid and
+  Kobbersterling→Sterling only for Denmark-page entities (`denmark_page_entities`).
+- Metal: assays ≥ 50 % Ag silver, below billon, both `silver_billon` (render
+  splits it per sub-row); Kobbersterling copper with the XRF silver in the note.
+- Render: shortened specimen list (≥ 6 finenesses), one table per phase in
+  rebuild-scope Fuß (copper rows shaded), tooltip source names (kmk→KMM …),
+  reading mark «(f)» fragment, ruler / nominal display forms (penning
+  equivalents to the note, «?»→«(?)»), KMM misprints as (!) + correct value.
+- Docs: dossier §3.12 (Erik VII / Christoffer III after Lindahl and Galster
+  «Næstved Mønt»); plan `docs/plans/ruler_nominal_normalisation.md`.
+
+**In progress — next steps, in order:**
+1. **Five curator-approved merges (2026-10-26, «так») — NOT yet written**:
+   Bruun 3757 → class G 19 (c-a4e8afcd); Bruun 3763 → G 18 (c-54480815);
+   IKMK 18206588 → G 9 (c-3f22c79f); IKMK 18206590 → G 23 (c-5be595df) — these
+   two rest on «one type per mint» only; KMM 741278 → Galster 182 class
+   (c-0ca3cad8, danish_norway) = **cross-entity** (`_cross_entity.yml`).
+   List the whole target class in `members`. Then merge + absorb (all),
+   verify_reflow, commit.
+2. **Curator decisions pending on Lybsk scope** (ask): Norwegian Hans hvide /
+   hulpenning G 154, 156, 161, 162 (danish_norway, seed_unsorted); Erik
+   Valkendorf (Nidaros 1510-1522) Skilling G 182 / G 183, Hvid G 184; Gotland
+   gote G 135 / 136 / 139 / 140, hulpenning G 137, Lindblad LL hvide (13);
+   IKMK Christoph «Schilling» and «Johann» Schilling, both København (no
+   Galster København type); KMM 427531-3 (Hans Skilling, no mint) and KMM
+   371120 (Hvid «Christian 1 / Hans», weight + image). Post-1513 (Rigsrådet
+   1533, Interregnum 1523-35, «Hans Mule») are not Lybsk.
+3. Then: page text for phase 0 from dossier §3.12 via `cite-source` (1396
+   levy, reckoning, mints, 1402 first mention) — curator said yes.
+4. Open from earlier: group B (pre-1373 pennings in seed_unsorted, ~28) and
+   C (later rulers with year ≤ 1513, ~17) — curator to decide; the 11 KMM
+   «(?)»-nominal records were excluded in the clean-up.
+
 ## 2026-10-26 — every Union-era Galster number end to end; `erik_gotland`
 
 - Inventory (cache → seed → final): every cached Galster coin page has a seed
