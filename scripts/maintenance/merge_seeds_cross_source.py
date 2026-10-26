@@ -3801,6 +3801,10 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
         "schive", "skaare", "friedberg", "davenport",
         "mb", "bruun_collection_id", "bruun_lot", "numista", "lange",
         "nmd", "fp",
+        # registers typed after the merger's list was written (2026-10-26:
+        # the second Jesse number of the Lindahl kobbersterling was dropped)
+        "jesse", "thomsen", "bergsoe", "hauberg", "aagaard", "welter",
+        "fiala", "behrens", "gaedechens", "kreber",
     }
     # Fields that stay single-value (specimen-level or strict literal).
     # Conflict = log; top-auth wins for output.
