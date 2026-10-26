@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15283 per-source seed entries.
-# Output: 6020 unified entries (one per physical coin).
+# Output: 6017 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -15162,8 +15162,8 @@ coins:
     composed_of:
       - dk-galster-hg-139
       - kmk-352426
-  - id: c-367725f4
-    class_id: c-367725f4
+  - id: c-11338096
+    class_id: c-11338096
     label: unified-dk-galster-hg-140
     fuss: seed_unsorted
     phase: galster
@@ -15183,6 +15183,8 @@ coins:
       others:
         - Hauberg# 109-113
       galster_volume: hg
+      schou: '33'
+      hauberg: '110'
     metal: silver
     metal_verified: false
     fineness_verified: false
@@ -15199,13 +15201,30 @@ coins:
     diameter_mm:
       - value: 16.0
         source: danskmoent.dk gotlg140.htm
+    year_alts:
+      - value: '1520'
+        source: kmk
+        kind: suspect
+        reason:
+          de: 'Datierung nach Schou, der die Müntze Christian II. zuweist. danskmoent.dk (Galster 140): «Schou henfører mønten til Christian 2. (u. år 32-37)» («Schou weist die Müntze Christian II. zu,
+            ohne Jahr, Nr. 32–37»); Galster und Hauberg weisen sie Christian I. zu.'
+          en: 'Dated after Schou, who assigns the coin to Christian II. danskmoent.dk (Galster 140): «Schou henfører mønten til Christian 2. (u. år 32-37)» («Schou assigns the coin to Christian II, undated,
+            nos. 32–37»); Galster and Hauberg assign it to Christian I.'
+          uk: 'Датування за Schou, який відносить монету до Christian II. danskmoent.dk (Galster 140): «Schou henfører mønten til Christian 2. (u. år 32-37)» («Schou відносить монету до Christian II, без
+            року, № 32–37»); Galster і Hauberg відносять її до Christian I.'
+          da: 'Dateret efter Schou, der henfører mønten til Christian 2. danskmoent.dk (Galster 140): «Schou henfører mønten til Christian 2. (u. år 32-37)»; Galster og Hauberg henfører den til Christian
+            1.'
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg140.htm
         ref: Galster 140 (hg) — danskmoent.dk gotlg140.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/139328
+        ref: KMM 139328 (Inv. KP 1715.391)
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-hg-140
+      - kmk-139328
   - id: c-d8e0333d
     class_id: c-d8e0333d
     label: unified-dk-galster-hg-141
@@ -104175,8 +104194,17 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/533321
         ref: KMM 533321 (Inv. FP 10743.11)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/641542
+        ref: KMM 641542 (Inv. FP 11811.24)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/682913
+        ref: KMM 682913 (Inv. FP 12140.1)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/688190
         ref: KMM 688190 (Inv. FP 12144.6)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/709875
+        ref: KMM 709875 (Inv. FP 12345.2)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/717349
         ref: KMM 717349 (Inv. FP 12521.2)
@@ -104220,7 +104248,10 @@ coins:
       - kmk-331216
       - kmk-367973
       - kmk-533321
+      - kmk-641542
+      - kmk-682913
       - kmk-688190
+      - kmk-709875
       - kmk-717349
       - kmk-733113
     _errata_applied:
@@ -126826,32 +126857,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-139318
-  - id: c-11338096
-    class_id: c-11338096
-    label: unified-kmk-139328
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1520
-    year_last: 1520
-    year_label: '1520'
-    mint: Visby
-    catalog:
-      schou: '33'
-      hauberg: '110'
-      galster: '140'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/139328
-        ref: KMM 139328 (Inv. KP 1715.391)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-139328
   - id: c-73639a2d
     class_id: c-73639a2d
     label: unified-kmk-139624
@@ -241801,34 +241806,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-641458
-  - id: c-48ee01df
-    class_id: c-48ee01df
-    label: unified-kmk-641542
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    mint: Kopenhagen
-    catalog:
-      galster: '105'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/641542
-        ref: KMM 641542 (Inv. FP 11811.24)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/709875
-        ref: KMM 709875 (Inv. FP 12345.2)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-641542
-      - kmk-709875
   - id: c-981f5ef6
     class_id: c-981f5ef6
     label: unified-kmk-641558
@@ -248774,32 +248751,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-682885
-  - id: c-e431f5ee
-    class_id: c-e431f5ee
-    label: unified-kmk-682913
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Toskilling
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    ruler: Christian III
-    mint: Kopenhagen
-    catalog:
-      galster: '105'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/682913
-        ref: KMM 682913 (Inv. FP 12140.1)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-682913
   - id: c-38a61e87
     class_id: c-38a61e87
     label: unified-kmk-683147

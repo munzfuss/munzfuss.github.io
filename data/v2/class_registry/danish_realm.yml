@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 6020 active, 43 retired.
+# 6017 active, 46 retired.
 
 id: danish_realm
 classes:
@@ -4409,9 +4409,10 @@ classes:
   - id: c-11338096
     status: active
     created: '2026-10-22'
-    label: unified-kmk-139328
+    label: unified-dk-galster-hg-140
     legacy_id: unified-kmk-139328
     members:
+      - dk-galster-hg-140
       - kmk-139328
   - id: c-11415e54
     status: active
@@ -14856,12 +14857,6 @@ classes:
     legacy_id: unified-kmk-106820
     members:
       - kmk-106820
-  - id: c-367725f4
-    status: active
-    created: '2026-10-25'
-    label: unified-dk-galster-hg-140
-    members:
-      - dk-galster-hg-140
   - id: c-368603ea
     status: active
     created: '2026-10-22'
@@ -20056,14 +20051,6 @@ classes:
     legacy_id: unified-kmk-329830
     members:
       - kmk-329830
-  - id: c-48ee01df
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-641542
-    legacy_id: unified-kmk-641542
-    members:
-      - kmk-641542
-      - kmk-709875
   - id: c-48f15aab
     status: active
     created: '2026-10-22'
@@ -25885,9 +25872,12 @@ classes:
       - kmk-574165
       - kmk-574379
       - kmk-614
+      - kmk-641542
       - kmk-641550
+      - kmk-682913
       - kmk-688190
       - kmk-702898
+      - kmk-709875
       - kmk-709904
       - kmk-717349
       - kmk-733066
@@ -62402,13 +62392,6 @@ classes:
     legacy_id: unified-kmk-533299
     members:
       - kmk-533299
-  - id: c-e431f5ee
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-682913
-    legacy_id: unified-kmk-682913
-    members:
-      - kmk-682913
   - id: c-e4384bc4
     status: active
     created: '2026-10-22'
@@ -68504,6 +68487,14 @@ classes:
       - dk-tid-97394
       - kmk-137186
       - ngc-1050262
+  - id: c-367725f4
+    status: retired
+    created: '2026-10-25'
+    label: unified-dk-galster-hg-140
+    merged_into: c-11338096
+    retired: '2026-10-26'
+    members:
+      - dk-galster-hg-140
   - id: c-38685a70
     status: retired
     created: '2026-10-25'
@@ -68556,6 +68547,16 @@ classes:
     retired: '2026-10-26'
     members:
       - lindahl-1955-odense-kobbersterling
+  - id: c-48ee01df
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-641542
+    legacy_id: unified-kmk-641542
+    merged_into: c-5dc0f6c9
+    retired: '2026-10-26'
+    members:
+      - kmk-641542
+      - kmk-709875
   - id: c-4ca2f0b9
     status: retired
     created: '2026-10-26'
@@ -68737,6 +68738,15 @@ classes:
     retired: '2026-10-26'
     members:
       - lindahl-1955-skilling-christopher
+  - id: c-e431f5ee
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-682913
+    legacy_id: unified-kmk-682913
+    merged_into: c-5dc0f6c9
+    retired: '2026-10-26'
+    members:
+      - kmk-682913
   - id: c-e8de91ec
     status: retired
     created: '2026-10-26'

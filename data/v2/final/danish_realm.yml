@@ -43665,6 +43665,18 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/312565
         ref: KMM 312565 (Inv. FP 7070.9)
         display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/641542
+        ref: KMM 641542 (Inv. FP 11811.24)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/682913
+        ref: KMM 682913 (Inv. FP 12140.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/709875
+        ref: KMM 709875 (Inv. FP 12345.2)
+        display: false
     note:
       de: Dreiviertel-Brustbild des geharnischten Christian III. nach rechts, Schwert und Zepter haltend. Der Kopf teilt die Umschrift und durchbricht den Perlring. Von einer Umschrift umgeben, mit 
         einem weiteren Perlring am Rand. / Die drei Schilde von Dänemark, Norwegen und dem Dannebrog-Kreuz in einem dreieckigen Rahmen, zu den Ecken weisend; die Buchstaben C, R und D zwischen den 
@@ -123522,7 +123534,6 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/747684
         ref: KMM 747684 (Inv. FP 10953.16)
         display: false
-    verification_note: *id005
     note:
       de: 'Hohlpfennig im Wert eines Blafferts, d. h. 2 Penning: «Blafferten var oprindelig, dvs. i 1400-1500-tallet en nordtysk hulpenning med værdien 2 penning» («Der Blaffert war ursprünglich, d. h.
         im 15. und 16. Jahrhundert, ein norddeutscher Hohlpfennig im Wert von 2 Penning»)<sup>[ref:danskmoent-blaffert-hulpenning-2-penning]</sup>. Mit 0,40–0,53 g wiegt er doppelt so viel wie ein Penning
@@ -123538,6 +123549,7 @@ coins:
       da: 'Hulpenning af en blafferts værdi, dvs. 2 penning: «Blafferten var oprindelig, dvs. i 1400-1500-tallet en nordtysk hulpenning med værdien 2 penning»<sup>[ref:danskmoent-blaffert-hulpenning-2-penning]</sup>.
         Med 0,40–0,53 g vejer den dobbelt så meget som en penning efter møntordningen 1524 (0,24 g)<sup>[ref:danskmoent-galster-f1g79-vaegt-2-penning]</sup>. Møntstedet er ukendt; på grund af det kronede
         F er den henført til kongeriget, skønt den ligeså godt kunne være slået i hertugdømmerne (Gottorp)<sup>[ref:danskmoent-galster-f1g79-kongeriget]</sup>.'
+    verification_note: *id005
     composed_of:
       - c-0fa91a61
     label: unified-kmk-131361
@@ -127960,33 +127972,68 @@ coins:
     weight_rough_g:
       - value: 0.59
         source: kmk
-  - fuss: seed_unsorted
-    phase: kmk
+  - fuss: luebischer_muenzfuss
+    phase: '0'
     kind: kurant
-    nominal: 1 Hvid
+    nominal: 1 Gote
     issuing_entity: danish_realm
     id: c-11338096
-    year_first: 1520
-    year_last: 1520
-    year_label: '1520'
+    year_first: 1448
+    year_last: 1481
+    year_label: 1448-1481
     mint: Visby
     catalog:
-      schou: '33'
       galster: '140'
+      others:
+        - Hauberg# 109-113
+      galster_volume: hg
+      schou: '33'
       hauberg: '110'
     metal_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     sources:
+      - type: literature
+        url: https://www.danskmoent.dk/gotlg140.htm
+        ref: Galster 140 (hg) — danskmoent.dk gotlg140.htm
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139328
         ref: KMM 139328 (Inv. KP 1715.391)
-    verification_note: *id005
     composed_of:
       - c-11338096
     label: unified-kmk-139328
     origin: promoted
+    ruler: Christian I
+    year_is_reign_span: true
+    year_ranges:
+      -   - 1448
+          - 1481
+    year_verified: false
+    year_alts:
+      - value: '1520'
+        source: kmk
+        kind: suspect
+        reason:
+          de: 'Datierung nach Schou, der die Müntze Christian II. zuweist. danskmoent.dk (Galster 140): «Schou henfører mønten til Christian 2. (u. år 32-37)» («Schou weist die Müntze Christian II. zu,
+            ohne Jahr, Nr. 32–37»); Galster und Hauberg weisen sie Christian I. zu.'
+          en: 'Dated after Schou, who assigns the coin to Christian II. danskmoent.dk (Galster 140): «Schou henfører mønten til Christian 2. (u. år 32-37)» («Schou assigns the coin to Christian II, undated,
+            nos. 32–37»); Galster and Hauberg assign it to Christian I.'
+          uk: 'Датування за Schou, який відносить монету до Christian II. danskmoent.dk (Galster 140): «Schou henfører mønten til Christian 2. (u. år 32-37)» («Schou відносить монету до Christian II, без
+            року, № 32–37»); Galster і Hauberg відносять її до Christian I.'
+          da: 'Dateret efter Schou, der henfører mønten til Christian 2. danskmoent.dk (Galster 140): «Schou henfører mønten til Christian 2. (u. år 32-37)»; Galster og Hauberg henfører den til Christian
+            1.'
+    metal: silver
+    fineness_verified: false
+    weight_range_g:
+      - min: 0.75
+        max: 0.8
+        approx: false
+        source: danskmoent.dk gotlg140.htm
+        url: https://www.danskmoent.dk/gif/gotc1_g140.gif
+    diameter_mm:
+      - value: 16.0
+        source: danskmoent.dk gotlg140.htm
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -179505,37 +179552,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 4 Skilling
-    ruler: Christian III.
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-febdf829
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
-    year_verified: false
-    mint: Kopenhagen
-    catalog:
-      galster: '105'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/314762
-        ref: KMM 314762 (Inv. FP 7013.29)
-    verification_note: *id005
-    composed_of:
-      - c-febdf829
-    label: unified-kmk-314762
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 1 Penning
     ruler: Frederik I.
     issuing_entity: danish_realm
@@ -206468,35 +206484,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 2 Skilling
-    issuing_entity: danish_realm
-    id: c-48ee01df
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    mint: Kopenhagen
-    catalog:
-      galster: '105'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/641542
-        ref: KMM 641542 (Inv. FP 11811.24)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/709875
-        ref: KMM 709875 (Inv. FP 12345.2)
-        display: false
-    verification_note: *id005
-    composed_of:
-      - c-48ee01df
-    label: unified-kmk-641542
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 1 Skilling
     ruler: Frederik VI.
     issuing_entity: danish_realm
@@ -223591,33 +223578,6 @@ coins:
     composed_of:
       - c-4627e182
     label: unified-kmk-572405
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Toskilling
-    ruler: Christian III.
-    issuing_entity: danish_realm
-    id: c-e431f5ee
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    mint: Kopenhagen
-    catalog:
-      galster: '105'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/682913
-        ref: KMM 682913 (Inv. FP 12140.1)
-    verification_note: *id006
-    composed_of:
-      - c-e431f5ee
-    label: unified-kmk-682913
     origin: promoted
   - fuss: kronemont_chr_iv
     phase: I
@@ -279183,50 +279143,6 @@ coins:
     composed_of:
       - c-87275be0
     label: unified-dk-galster-hg-137
-    origin: promoted
-  - fuss: luebischer_muenzfuss
-    phase: '0'
-    kind: kurant
-    nominal: 1 Gote
-    ruler: Christian I
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-367725f4
-    year_first: 1448
-    year_last: 1481
-    year_ranges:
-      -   - 1448
-          - 1481
-    year_label: 1448-1481
-    year_verified: false
-    mint: Visby
-    catalog:
-      galster: '140'
-      others:
-        - Hauberg# 109-113
-      galster_volume: hg
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_range_g:
-      - min: 0.75
-        max: 0.8
-        approx: false
-        source: danskmoent.dk gotlg140.htm
-        url: https://www.danskmoent.dk/gif/gotc1_g140.gif
-    diameter_mm:
-      - value: 16.0
-        source: danskmoent.dk gotlg140.htm
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/gotlg140.htm
-        ref: Galster 140 (hg) — danskmoent.dk gotlg140.htm
-    composed_of:
-      - c-367725f4
-    label: unified-dk-galster-hg-140
     origin: promoted
   - fuss: luebischer_muenzfuss
     phase: '0'
