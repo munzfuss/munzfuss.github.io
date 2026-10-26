@@ -8,6 +8,43 @@
 # union-find. IDs reference V2 seed-layer entries (data/v2/seed/<src>/<entity>.yml).
 
 merges:
+  # Erik VII / Rigsrådet types and the Heljeback 2016:1 assays: before the
+  # assay metal (curator 2026-10-26) these unions were never weighed; the
+  # curator confirmed them on 2026-10-26 («ок, зливай»).
+  - members:
+      - dk-galster-epomg-9
+      - metallanalyser-2016-1-g9-lund-sterling
+      - dk-numista-76322
+    reason: >-
+      Sterling Lund, Erik VII, ca. 1413-1420: Galster 9 and Numista 76322
+      (Sieg E7-6) carry no shared number, but each source has exactly two
+      Erik VII sterlings and they pair one to one by mint and years (Sieg
+      E7-5 Næstved 1404-1413 = Galster 4 Næstved ca. 1403-1412/13; Sieg E7-6
+      Lund 1413-1420 = Galster 9 Lund ca. 1413-1420); weight 0.70 g on both.
+      Curator 2026-10-26.
+  - members:
+      - dk-galster-epomg-4
+      - metallanalyser-2016-1-g4-nastved-sterling
+      - dk-numista-143451
+    reason: >-
+      Sterling Næstved, Erik VII: Numista 143451 (Sieg E7-5, Næstved
+      1404-1413) is Galster 4 (Næstved ca. 1403-1412/13) by the same one-to-one
+      pairing as Galster 9 = Sieg E7-6. Curator 2026-10-26.
+  - members:
+      - dk-galster-rigsraad-21
+      - metallanalyser-2016-1-g21-malmo-skilling
+      - dk-bruun-3777
+    reason: >-
+      Skilling Malmø, Rigsrådet 1448: Galster 21 on all three (Bruun 3777
+      prints Galster 21, Schou 4, Sieg 1). Curator 2026-10-26.
+  - members:
+      - dk-galster-epomg-5
+      - metallanalyser-2016-1-g5-nastved-lund-penning
+    reason: >-
+      Galster 5, Erik VII, Næstved and Lund: danskmoent names it
+      «Hulpenning ... Ensidet brakteat; krone», Heljeback 2016:1 «penning»,
+      «ensidigt präglade (brakteat)» (Galster 5; the halvpenning is Galster
+      6). One type named by fabric and by denomination. Curator 2026-10-26.
   - members:
       - dk-numista-15669
       - dk-tid-163034
@@ -1826,6 +1863,28 @@ merges:
       приклади»): Numista 476049 is the Galster 14 coin — the same reasoning
       as Galster 7 / Numista 348708 above (mint, not Sieg 9.2).
 no_merges:
+  # Gotland hvide (Lindblad 2017:3): distinct Lagerqvist numbers are distinct
+  # types, and the only printed Galster concordance is danskmoent's (LL 1 =
+  # G 139, LL 5 = G 140, LL 7b = G 142). None of these may join another or
+  # Galster 141 on nominal, mint and window alone. Curator 2026-10-26.
+  - members:
+      - metallanalyser-2017-3-ll1-gotland
+      - metallanalyser-2017-3-ll2-gotland
+      - metallanalyser-2017-3-ll3b-gotland
+      - metallanalyser-2017-3-ll4a-gotland
+      - metallanalyser-2017-3-ll4aq-gotland
+      - metallanalyser-2017-3-ll4aqq-gotland
+      - metallanalyser-2017-3-ll4b-gotland
+      - metallanalyser-2017-3-ll4c-gotland
+      - metallanalyser-2017-3-ll4d-gotland
+      - metallanalyser-2017-3-ll5-gotland
+      - metallanalyser-2017-3-ll7-gotland
+      - metallanalyser-2017-3-ll7a-gotland
+      - metallanalyser-2017-3-g142-gotland
+      - dk-galster-hg-141
+    reason: >-
+      Gotland hvide: each Lagerqvist number is its own type; no source
+      concords them with each other or with Galster 141 (curator 2026-10-26).
   # Erik VII Kobbersterling, c. 1422: Galster 7 (Næstved), 10 (Lund), 14
   # (Odense), 15 (Randers) are four types — Galster and Fritze Lindahl 1955
   # number them apart (FL 42-49 / 34-41 / 50-53 / 54-58) and no catalogue

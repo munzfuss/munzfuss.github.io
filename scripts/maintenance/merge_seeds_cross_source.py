@@ -258,6 +258,10 @@ def _normalise_metal(metal, fineness):
             f_val = min(vals)
     if m == "silver" and f_val is not None and f_val < 0.5:
         return "billon"
+    # a type assayed on both sides of 50 % Ag compares as billon: against
+    # silver that is the billon/silver «no contradiction» case
+    if m == "silver_billon":
+        return "billon"
     # bronze / brass collapse to the copper base-metal tier FOR COMPARISON
     # (mirrors lib/categorize.py grouping copper/bronze/brass together).
     # A source's precise «bronze» (danskmoent.dk Rigsmønt 1856+) and a
@@ -3369,6 +3373,26 @@ def _flatten_metal_leaves(members: list[dict]) -> list[dict]:
     return out
 
 
+_SILVER_BILLON = frozenset({"silver", "billon", "silver_billon"})
+
+
+def _assay_metal(specimens: list[dict]) -> str | None:
+    """Metal of the assayed leaf specimens (Metallanalyser av mynt), combined:
+    one kind → that kind; silver and billon together → silver_billon."""
+    kinds: set[str] = set()
+    for s in specimens:
+        if _source_label_of(s) != "metallanalyser" or not s.get("metal_verified"):
+            continue
+        m = s.get("metal")
+        if m == "silver_billon":
+            kinds |= {"silver", "billon"}
+        elif m in _SILVER_BILLON:
+            kinds.add(m)
+    if not kinds:
+        return None
+    return "silver_billon" if len(kinds) > 1 else kinds.pop()
+
+
 def _thin_line_fineness_floats(specimens: list[dict]) -> list[float]:
     out: list[float] = []
     for s in specimens:
@@ -3493,6 +3517,14 @@ def _collect_metal(members: list[dict], *, foundation_first: bool = False,
     # the absorb run; identity in the merger run).
     _specimens = _flatten_metal_leaves(members)
     _distinct = {s.get("metal") for s in _specimens if s.get("metal")}
+    # An assayed composition decides a silver/billon question outright
+    # (curator 2026-10-26): its metal follows the 50 % Ag line per coin, and
+    # the umbrella «silver» / «billon» of a catalogue or museum record does
+    # not outvote it. Any other metal in the class keeps the rules below.
+    _assay = _assay_metal(_specimens)
+    if (_assay is not None and _distinct <= _SILVER_BILLON
+            and "metal" not in foundation_holds):
+        return _assay
     _thin = next((p for p in _THIN_LINE_METAL_PAIRS if _distinct == p), None)
     if _thin is not None:
         return _thin_line_consensus_metal(_specimens, _thin)

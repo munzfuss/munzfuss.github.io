@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 5948 active, 7 retired.
+# 5944 active, 11 retired.
 
 id: danish_realm
 classes:
@@ -7173,13 +7173,6 @@ classes:
     legacy_id: unified-kmk-310875
     members:
       - kmk-310875
-  - id: c-15978e2c
-    status: active
-    created: '2026-10-22'
-    label: unified-metallanalyser-2016-1-g21-malmo-skilling
-    legacy_id: unified-metallanalyser-2016-1-g21-malmo-skilling
-    members:
-      - metallanalyser-2016-1-g21-malmo-skilling
   - id: c-15ac15e7
     status: active
     created: '2026-10-22'
@@ -9877,12 +9870,7 @@ classes:
     members:
       - dk-bruun-3777
       - dk-galster-rigsraad-21
-  - id: c-2035f4fa
-    status: active
-    created: '2026-10-25'
-    label: unified-dk-galster-epomg-5
-    members:
-      - dk-galster-epomg-5
+      - metallanalyser-2016-1-g21-malmo-skilling
   - id: c-20378670
     status: active
     created: '2026-10-22'
@@ -17641,10 +17629,11 @@ classes:
   - id: c-3f22c79f
     status: active
     created: '2026-10-22'
-    label: unified-dk-galster-epomg-9
+    label: unified-dk-numista-76322
     legacy_id: unified-metallanalyser-2016-1-g9-lund-sterling
     members:
       - dk-galster-epomg-9
+      - dk-numista-76322
       - metallanalyser-2016-1-g9-lund-sterling
   - id: c-3f2bb7c0
     status: active
@@ -18640,13 +18629,6 @@ classes:
     legacy_id: unified-kmk-106818
     members:
       - kmk-106818
-  - id: c-4083f842
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-76322
-    legacy_id: unified-dk-numista-76322
-    members:
-      - dk-numista-76322
   - id: c-4085f932
     status: active
     created: '2026-10-22'
@@ -56173,10 +56155,11 @@ classes:
   - id: c-c5d732b6
     status: active
     created: '2026-10-22'
-    label: unified-dk-galster-epomg-4
+    label: unified-dk-numista-143451
     legacy_id: unified-metallanalyser-2016-1-g4-nastved-sterling
     members:
       - dk-galster-epomg-4
+      - dk-numista-143451
       - metallanalyser-2016-1-g4-nastved-sterling
   - id: c-c5da0bd1
     status: active
@@ -59406,13 +59389,6 @@ classes:
       - kmk-699198
       - kmk-699199
       - kmk-699200
-  - id: c-d25c1bdd
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-143451
-    legacy_id: unified-dk-numista-143451
-    members:
-      - dk-numista-143451
   - id: c-d25cdb27
     status: active
     created: '2026-10-22'
@@ -63900,9 +63876,10 @@ classes:
   - id: c-e1a1f8b6
     status: active
     created: '2026-10-22'
-    label: unified-metallanalyser-2016-1-g5-nastved-lund-penning
+    label: unified-dk-galster-epomg-5
     legacy_id: unified-metallanalyser-2016-1-g5-nastved-lund-penning
     members:
+      - dk-galster-epomg-5
       - metallanalyser-2016-1-g5-nastved-lund-penning
   - id: c-e1a411c2
     status: active
@@ -71262,6 +71239,15 @@ classes:
     members:
       - dk-hede-f2h14
       - dk-numista-108820
+  - id: c-15978e2c
+    status: retired
+    created: '2026-10-22'
+    label: unified-metallanalyser-2016-1-g21-malmo-skilling
+    legacy_id: unified-metallanalyser-2016-1-g21-malmo-skilling
+    merged_into: c-202d275b
+    retired: '2026-10-26'
+    members:
+      - metallanalyser-2016-1-g21-malmo-skilling
   - id: c-18a36b28
     status: retired
     created: '2026-10-25'
@@ -71270,6 +71256,14 @@ classes:
     retired: '2026-10-25'
     members:
       - dk-galster-epomg-14
+  - id: c-2035f4fa
+    status: retired
+    created: '2026-10-25'
+    label: unified-dk-galster-epomg-5
+    merged_into: c-e1a1f8b6
+    retired: '2026-10-26'
+    members:
+      - dk-galster-epomg-5
   - id: c-3218c6bf
     status: retired
     created: '2026-10-22'
@@ -71310,6 +71304,15 @@ classes:
       - dk-tid-97394
       - kmk-137186
       - ngc-1050262
+  - id: c-4083f842
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-76322
+    legacy_id: unified-dk-numista-76322
+    merged_into: c-3f22c79f
+    retired: '2026-10-26'
+    members:
+      - dk-numista-76322
   - id: c-43ceeeff
     status: retired
     created: '2026-10-22'
@@ -71351,3 +71354,12 @@ classes:
       - dk-bruun-5749
       - dk-numista-71918
       - ngc-1050581
+  - id: c-d25c1bdd
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-143451
+    legacy_id: unified-dk-numista-143451
+    merged_into: c-c5d732b6
+    retired: '2026-10-26'
+    members:
+      - dk-numista-143451

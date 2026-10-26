@@ -21,6 +21,12 @@ own `sources` line (§9a). Analysis and decisions: docs/research/eriksson_2017_a
   they get explicit scopes (`_VOLUME`); our Numista types of the period carry
   Sieg numbers only, so these mostly stand as their own seed_unsorted rows.
 
+**Metal from the assay (curator 2026-10-26).** A coin with ≥ 50 % Ag is silver,
+below that billon; a type whose assayed coins fall on both sides is
+`silver_billon`. The appendices give the full composition of every coin, so
+the metal is source-attested (`metal_verified`); a weight-only row votes for
+nothing. `_assay_metal`.
+
 **No catalogue or mint is corrected here** (curator: no index / mint errata for
 now). The appendix's Galster number, mint and date go in as printed; rows where
 the mint and the Galster number contradict each other are skipped instead.
@@ -181,6 +187,17 @@ _SUSPECT = {
         "da": "Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, er ikke angivet.",
     },
 }
+# 2016:1 (Heljeback) explains «f» in its own list of abbreviations
+# («f fragment»), unlike 2017:1, so there the mark states it (curator
+# 2026-10-26).
+_SUSPECT_BY_ISSUE = {
+    ("2016_1", "f"): {
+        "de": "Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.",
+        "en": "A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.",
+        "uk": "Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.",
+        "da": "Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.",
+    },
+}
 
 
 def _years(rows: list[dict]) -> list[int]:
@@ -215,6 +232,15 @@ def _label(ranges) -> str | None:
 def _galster_value(raw: str) -> str:
     """«23c» → «23C» (the case our Galster sub-letters are kept in)."""
     return re.sub(r"[a-d]$", lambda m: m.group(0).upper(), raw)
+
+
+def _assay_metal(rows: list[dict]) -> str | None:
+    """silver (≥ 50 % Ag) / billon (< 50 %) per assayed coin; both → silver_billon."""
+    kinds = {"silver" if r["ag_pct"] >= 50 else "billon"
+             for r in rows if r["ag_pct"] is not None}
+    if len(kinds) > 1:
+        return "silver_billon"
+    return kinds.pop() if kinds else None
 
 
 def _row_key(issue: str, row: dict) -> str:
@@ -285,7 +311,9 @@ def collect() -> tuple[list[dict], list[str]]:
             if r["weight_flag"]:
                 # a copy per reading: a shared dict becomes a YAML anchor and
                 # renumbers every anchor after it in the final file
-                w["suspect"] = copy.deepcopy(_SUSPECT[r["weight_flag"]])
+                w["suspect"] = copy.deepcopy(
+                    _SUSPECT_BY_ISSUE.get((issue, r["weight_flag"]))
+                    or _SUSPECT[r["weight_flag"]])
             weights.append(w)
             if r["ag_pct"] is not None:            # 2016:1 nr 1: weight only
                 finenesses.append({"value": round(r["ag_pct"] / 100, 6), "source": label})
@@ -334,11 +362,13 @@ def collect() -> tuple[list[dict], list[str]]:
                          **({"galster_volume": _VOLUME[ruler_code]}
                             if ruler_code in _VOLUME else
                             {"galster_volume": "hg"} if not ruler_code else {})}),
+            "metal": _assay_metal(rows),
             "fineness": finenesses or None,
             "weight_rough_g": weights,
             "issuing_entity": "danish_realm",
             "verified": False,
             "fineness_verified": bool(finenesses),
+            "metal_verified": bool(finenesses),
             "weight_rough_verified": True,
             "mint_verified": not conflict,
             "sources": sources,

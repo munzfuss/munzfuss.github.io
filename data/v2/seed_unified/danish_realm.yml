@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-10-25 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-26 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15261 per-source seed entries.
-# Output: 5948 unified entries (one per physical coin).
+# Output: 5944 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-10-25'
+generated_at: '2026-10-26'
 coins:
   - id: c-da3c53ad
     class_id: c-da3c53ad
@@ -264,8 +264,8 @@ coins:
         - FL# 59
       jesse: '484'
       galster_volume: galster1972-erik7
-    metal: billon
-    metal_verified: false
+    metal: silver
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -446,14 +446,20 @@ coins:
       bruun_collection_id: '3777'
       schou: '4'
       galster: '21'
+      galster_volume: galster1972-rigsraad1448
     metal: billon
-    metal_verified: false
-    fineness_verified: false
+    metal_verified: true
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.4599
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 145
     weight_rough_g:
+      - value: 2.08
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 145
       - value: 2.1
         source: bruun
     diameter_mm:
@@ -466,10 +472,23 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/rigsraad.htm
         ref: Galster 21 — danskmoent.dk rigsraad.htm
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 145, Appendix (XRF)
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-3777
       - dk-galster-rigsraad-21
+      - metallanalyser-2016-1-g21-malmo-skilling
   - id: c-bc790ea1
     class_id: c-bc790ea1
     label: unified-dk-bruun-3831
@@ -587,7 +606,7 @@ coins:
       galster_volume: hg
       others:
         - Sømod# 13
-    metal: silver
+    metal: silver_billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -886,7 +905,7 @@ coins:
       galster_volume: c2g
       others:
         - LEB# 3942
-    metal: billon
+    metal: silver_billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -1157,7 +1176,7 @@ coins:
       galster: '41'
       galster_volume: c2g
     metal: billon
-    metal_verified: false
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -11099,7 +11118,8 @@ coins:
     catalog:
       galster: '17'
       galster_volume: galster1972-christoffer3
-    metal: billon
+    metal: silver
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -11149,7 +11169,8 @@ coins:
     catalog:
       galster: '18'
       galster_volume: galster1972-christoffer3
-    metal: billon
+    metal: silver_billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -11172,13 +11193,10 @@ coins:
       - value: 1.79
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 68
         suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
       - value: 1.85
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 72
       - value: 1.93
@@ -11248,7 +11266,8 @@ coins:
       galster: '19'
       sieg: '1'
       galster_volume: galster1972-christoffer3
-    metal: silver
+    metal: silver_billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -11322,7 +11341,8 @@ coins:
       galster: '20'
       sieg: '2'
       galster_volume: galster1972-christoffer3
-    metal: billon
+    metal: silver_billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -12306,7 +12326,8 @@ coins:
       others:
         - Fritze Lindahl# 34-41
       galster_volume: galster1972-erik7
-    metal: silver
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -12415,6 +12436,7 @@ coins:
       galster: '16'
       galster_volume: galster1972-erik7
     metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -12534,6 +12556,7 @@ coins:
       galster: '2'
       galster_volume: galster1972-erik7
     metal: billon
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -12543,13 +12566,10 @@ coins:
       - value: 0.97
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 1
         suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg2.htm
@@ -12598,110 +12618,8 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-epomg-3
-  - id: c-c5d732b6
-    class_id: c-c5d732b6
-    label: unified-dk-galster-epomg-4
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Sterling (3 Penning)
-    year_first: 1403
-    year_last: 1412
-    year_ranges:
-      -   - 1403
-          - 1412
-    year_label: 1403-1412
-    ruler: Erik VII
-    mint: Næstved
-    catalog:
-      galster: '4'
-      galster_volume: galster1972-erik7
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.606
-        source: galster
-      - value: 0.6591
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 15
-      - value: 0.6733
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 12
-      - value: 0.6747
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 11
-      - value: 0.6862
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 10
-      - value: 0.71
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 7
-      - value: 0.723
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 6
-      - value: 0.7921
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 4
-      - value: 0.8096
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 3
-    weight_rough_g:
-      - value: 0.52
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 12
-      - value: 0.62
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 7
-      - value: 0.69
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 6
-      - value: 0.7
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 15
-      - value: 0.7
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 3
-      - value: 0.71
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 10
-      - value: 0.72
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 11
-      - value: 0.72
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 4
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg4.htm
-        ref: Galster 4 (epomg) — danskmoent.dk epomg4.htm
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 3, Appendix (XRF); Stjärna
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 4, Appendix (XRF); Stjärna
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 6, Appendix (XRF); Stjärna
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 7, Appendix (XRF); Stjärna
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 10, Appendix (XRF); Stjärna
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 11, Appendix (XRF); Stjärna
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 12, Appendix (XRF); Stjärna
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 15, Appendix (XRF); Stjärna
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-4
-      - metallanalyser-2016-1-g4-nastved-sterling
-  - id: c-2035f4fa
-    class_id: c-2035f4fa
+  - id: c-e1a1f8b6
+    class_id: c-e1a1f8b6
     label: unified-dk-galster-epomg-5
     fuss: seed_unsorted
     phase: galster
@@ -12720,38 +12638,7 @@ coins:
     catalog:
       galster: '5'
       galster_volume: galster1972-erik7
-    metal: billon
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg5.htm
-        ref: Galster 5 (epomg) — danskmoent.dk epomg5.htm
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-5
-  - id: c-3f22c79f
-    class_id: c-3f22c79f
-    label: unified-dk-galster-epomg-9
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Sterling (3 Penning)
-    year_first: 1413
-    year_last: 1420
-    year_ranges:
-      -   - 1413
-          - 1420
-    year_label: 1413-1420
-    ruler: Erik VII
-    mint: Lund
-    catalog:
-      galster: '9'
-      galster_volume: galster1972-erik7
-    metal: billon
+    metal: silver_billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -12759,109 +12646,156 @@ coins:
     verified: false
     year_verified: false
     fineness:
-      - value: 0.5
-        source: galster
-      - value: 0.5202
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22
-      - value: 0.5215
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 21
-      - value: 0.54
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 20
-      - value: 0.5788
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 19
-      - value: 0.5878
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 18
-      - value: 0.6025
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 17
-      - value: 0.6534
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 16
-      - value: 0.6701
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 14
-      - value: 0.6711
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 13
-      - value: 0.6885
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 9
-      - value: 0.7002
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 8
-      - value: 0.7475
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 5
-      - value: 0.8102
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 2
+      - value: 0.0047
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 37
+      - value: 0.0051
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 36
+      - value: 0.0054
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 35
+      - value: 0.1821
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 34
+      - value: 0.2378
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33
+      - value: 0.2996
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 32
+      - value: 0.3255
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 31
+      - value: 0.3398
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 30
+      - value: 0.3568
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 29
+      - value: 0.3767
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 28
+      - value: 0.4044
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 27
+      - value: 0.4842
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 26
+      - value: 0.5948
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 25
+      - value: 0.6067
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 24
+      - value: 0.676
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 23
     weight_rough_g:
-      - value: 0.49
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 8
-      - value: 0.5
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 14
-      - value: 0.51
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 5
-      - value: 0.59
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 13
-      - value: 0.64
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 20
-      - value: 0.67
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 19
+      - value: 0.09
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 29
+        suspect:
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
+      - value: 0.12
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 26
+        suspect:
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
+      - value: 0.14
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 35
+        suspect:
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
+      - value: 0.15
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 23
+        suspect:
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
+      - value: 0.18
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 25
         suspect:
           de: 'Randbeschädigtes Stück (Anhang: «ks kantskada»). Das Gewicht kann daher unter dem eines unbeschädigten Stücks liegen; ob und wie viel, ist nicht angegeben.'
           en: 'A piece with a damaged edge (appendix: «ks kantskada»). Its weight may therefore lie below that of an undamaged piece; whether and by how much is not stated.'
           uk: 'Монета з пошкодженим краєм (додаток: «ks kantskada»). Тому її вага може бути нижчою за вагу непошкодженої монети; чи так і наскільки, не вказано.'
           da: 'Et stykke med beskadiget rand (appendiks: «ks kantskada»). Vægten kan derfor ligge under et ubeskadiget stykkes; om og hvor meget, er ikke angivet.'
-      - value: 0.69
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 21
-      - value: 0.69
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 9
-      - value: 0.74
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 2
-      - value: 0.79
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 18
-      - value: 0.8
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 17
-      - value: 0.88
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22
-      - value: 0.89
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 16
+      - value: 0.18
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 27
+        suspect:
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
+      - value: 0.21
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 24
+        suspect:
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
+      - value: 0.21
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 31
+      - value: 0.23
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 30
+      - value: 0.25
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 32
+        suspect:
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
+      - value: 0.28
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 36
+      - value: 0.31
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 28
+      - value: 0.31
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 37
+      - value: 0.36
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 34
+      - value: 0.41
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33
     sources:
       - type: literature
-        url: https://www.danskmoent.dk/epomg9.htm
-        ref: Galster 9 (epomg) — danskmoent.dk epomg9.htm
+        url: https://www.danskmoent.dk/epomg5.htm
+        ref: Galster 5 (epomg) — danskmoent.dk epomg5.htm
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 2, Appendix (XRF); Ros
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 23, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 5, Appendix (XRF); Ros
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 24, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 8, Appendix (XRF); Ros
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 25, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 9, Appendix (XRF); Ros
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 26, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 13, Appendix (XRF); Stjärna
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 27, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 14, Appendix (XRF); Ros
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 28, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 16, Appendix (XRF); Ros
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 29, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 17, Appendix (XRF); Ros
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 30, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 18, Appendix (XRF); Ros
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 31, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 19, Appendix (XRF); ?
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 32, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 20, Appendix (XRF); Ros
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 21, Appendix (XRF); Ros
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 34, Appendix (XRF)
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22, Appendix (XRF); Ros
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 35, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 36, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 37, Appendix (XRF)
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
@@ -12873,8 +12807,8 @@ coins:
         publikationens appendiks.
     issuing_entity: danish_realm
     composed_of:
-      - dk-galster-epomg-9
-      - metallanalyser-2016-1-g9-lund-sterling
+      - dk-galster-epomg-5
+      - metallanalyser-2016-1-g5-nastved-lund-penning
   - id: c-2538a267
     class_id: c-2538a267
     label: unified-dk-galster-f1g-257
@@ -15191,6 +15125,7 @@ coins:
         - Hauberg# 103-108
         - Sømod# 163
     metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -15425,8 +15360,8 @@ coins:
       galster_volume: hg
       others:
         - Sømod# 10
-    metal: billon
-    metal_verified: false
+    metal: silver_billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -15622,6 +15557,7 @@ coins:
       others:
         - Sømod# 11
     metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -15698,7 +15634,7 @@ coins:
       others:
         - Sømod# 12
     metal: billon
-    metal_verified: false
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -15782,7 +15718,7 @@ coins:
       others:
         - Sømod# 16
     metal: billon
-    metal_verified: false
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -102611,7 +102547,7 @@ coins:
       galster_volume: hg
       others:
         - Sømod# 15
-    metal: silver
+    metal: billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -103365,44 +103301,120 @@ coins:
       - kmk-693174
       - kmk-714955
       - kmk-714957
-  - id: c-d25c1bdd
-    class_id: c-d25c1bdd
+  - id: c-c5d732b6
+    class_id: c-c5d732b6
     label: unified-dk-numista-143451
     fuss: seed_unsorted
     phase: numista
     kind: scheide
     nominal: 1 Sterling (= 3 Pennings)
-    year_first: 1404
+    year_first: 1403
     year_last: 1413
     year_ranges:
-      -   - 1404
+      -   - 1403
           - 1413
-    year_label: 1404-1413
+    year_label: 1403-1413
     ruler: Erik VII
     mint: Næstved
     catalog:
       numista: '143451'
       sieg: '5'
+      galster: '4'
+      galster_volume: galster1972-erik7
     metal: silver
     metal_verified: true
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    year_verified: false
+    fineness:
+      - value: 0.606
+        source: galster
+      - value: 0.6591
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 15
+      - value: 0.6733
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 12
+      - value: 0.6747
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 11
+      - value: 0.6862
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 10
+      - value: 0.71
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 7
+      - value: 0.723
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 6
+      - value: 0.7921
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 4
+      - value: 0.8096
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 3
     weight_rough_g:
+      - value: 0.52
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 12
       - value: 0.61
         source: numista
+      - value: 0.62
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 7
+      - value: 0.69
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 6
+      - value: 0.7
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 15
+      - value: 0.7
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 3
+      - value: 0.71
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 10
+      - value: 0.72
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 11
+      - value: 0.72
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 4
     diameter_mm:
       - value: 18.6
         source: numista
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/epomg4.htm
+        ref: Galster 4 (epomg) — danskmoent.dk epomg4.htm
+      - type: literature
         url: https://en.numista.com/143451
         ref: Numista N#143451 — Sterling - Erik of Pommern (Naestved) - Denmark
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 3, Appendix (XRF); Stjärna
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 4, Appendix (XRF); Stjärna
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 6, Appendix (XRF); Stjärna
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 7, Appendix (XRF); Stjärna
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 10, Appendix (XRF); Stjärna
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 11, Appendix (XRF); Stjärna
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 12, Appendix (XRF); Stjärna
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 15, Appendix (XRF); Stjärna
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: danish_realm
     composed_of:
+      - dk-galster-epomg-4
       - dk-numista-143451
+      - metallanalyser-2016-1-g4-nastved-sterling
   - id: c-cc6867e5
     class_id: c-cc6867e5
     label: unified-dk-numista-143452
@@ -103473,7 +103485,7 @@ coins:
         - 23C
         - 23D
       schou: '13'
-    metal: silver
+    metal: billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -106328,7 +106340,7 @@ coins:
       others:
         - Sømod# 17
         - B# 51
-    metal: silver
+    metal: billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -110809,8 +110821,8 @@ coins:
       - kmk-317890
       - kmk-353266
       - kmk-411794
-  - id: c-4083f842
-    class_id: c-4083f842
+  - id: c-3f22c79f
+    class_id: c-3f22c79f
     label: unified-dk-numista-76322
     fuss: seed_unsorted
     phase: numista
@@ -110827,26 +110839,142 @@ coins:
     catalog:
       numista: '76322'
       sieg: '6'
+      galster: '9'
+      galster_volume: galster1972-erik7
     metal: silver
     metal_verified: true
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: true
     verified: false
+    year_verified: false
+    fineness:
+      - value: 0.5
+        source: galster
+      - value: 0.5202
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22
+      - value: 0.5215
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 21
+      - value: 0.54
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 20
+      - value: 0.5788
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 19
+      - value: 0.5878
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 18
+      - value: 0.6025
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 17
+      - value: 0.6534
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 16
+      - value: 0.6701
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 14
+      - value: 0.6711
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 13
+      - value: 0.6885
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 9
+      - value: 0.7002
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 8
+      - value: 0.7475
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 5
+      - value: 0.8102
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 2
     weight_rough_g:
+      - value: 0.49
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 8
+      - value: 0.5
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 14
+      - value: 0.51
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 5
+      - value: 0.59
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 13
+      - value: 0.64
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 20
+      - value: 0.67
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 19
+        suspect:
+          de: 'Randbeschädigtes Stück (Anhang: «ks kantskada»). Das Gewicht kann daher unter dem eines unbeschädigten Stücks liegen; ob und wie viel, ist nicht angegeben.'
+          en: 'A piece with a damaged edge (appendix: «ks kantskada»). Its weight may therefore lie below that of an undamaged piece; whether and by how much is not stated.'
+          uk: 'Монета з пошкодженим краєм (додаток: «ks kantskada»). Тому її вага може бути нижчою за вагу непошкодженої монети; чи так і наскільки, не вказано.'
+          da: 'Et stykke med beskadiget rand (appendiks: «ks kantskada»). Vægten kan derfor ligge under et ubeskadiget stykkes; om og hvor meget, er ikke angivet.'
+      - value: 0.69
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 21
+      - value: 0.69
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 9
       - value: 0.7
         source: numista
+      - value: 0.74
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 2
+      - value: 0.79
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 18
+      - value: 0.8
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 17
+      - value: 0.88
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22
+      - value: 0.89
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 16
     diameter_mm:
       - value: 17.8
         source: numista
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/epomg9.htm
+        ref: Galster 9 (epomg) — danskmoent.dk epomg9.htm
+      - type: literature
         url: https://en.numista.com/76322
         ref: Numista N#76322 — Sterling - Erik of Pommern (Lund) - Denmark
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 2, Appendix (XRF); Ros
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 5, Appendix (XRF); Ros
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 8, Appendix (XRF); Ros
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 9, Appendix (XRF); Ros
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 13, Appendix (XRF); Stjärna
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 14, Appendix (XRF); Ros
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 16, Appendix (XRF); Ros
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 17, Appendix (XRF); Ros
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 18, Appendix (XRF); Ros
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 19, Appendix (XRF); ?
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 20, Appendix (XRF); Ros
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 21, Appendix (XRF); Ros
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22, Appendix (XRF); Ros
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: danish_realm
     composed_of:
+      - dk-galster-epomg-9
       - dk-numista-76322
+      - metallanalyser-2016-1-g9-lund-sterling
   - id: c-31bb88e8
     class_id: c-31bb88e8
     label: unified-dk-numista-84844
@@ -264278,6 +264406,8 @@ coins:
         - '8'
         - '12'
       galster_volume: galster1972-erik7
+    metal: silver
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -264291,23 +264421,17 @@ coins:
       - value: 0.06
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 50
         suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
       - value: 0.09
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 49
         suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
     sources:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
@@ -264328,243 +264452,6 @@ coins:
     composed_of:
       - metallanalyser-2016-1-g12-lund-lebard
       - metallanalyser-2016-1-g8-12-nastved-lund-lebard
-  - id: c-15978e2c
-    class_id: c-15978e2c
-    label: unified-metallanalyser-2016-1-g21-malmo-skilling
-    fuss: seed_unsorted
-    phase: metallanalyser
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Rigsrådet
-    mint: Malmø
-    catalog:
-      galster: '21'
-      galster_volume: galster1972-rigsraad1448
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.4599
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 145
-    weight_rough_g:
-      - value: 2.08
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 145
-    sources:
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 145, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - metallanalyser-2016-1-g21-malmo-skilling
-  - id: c-e1a1f8b6
-    class_id: c-e1a1f8b6
-    label: unified-metallanalyser-2016-1-g5-nastved-lund-penning
-    fuss: seed_unsorted
-    phase: metallanalyser
-    kind: kurant
-    nominal: 1 Penning
-    ruler: Erik VII
-    mint:
-      - Lund
-      - Næstved
-    catalog:
-      galster: '5'
-      galster_volume: galster1972-erik7
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.0047
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 37
-      - value: 0.0051
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 36
-      - value: 0.0054
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 35
-      - value: 0.1821
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 34
-      - value: 0.2378
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33
-      - value: 0.2996
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 32
-      - value: 0.3255
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 31
-      - value: 0.3398
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 30
-      - value: 0.3568
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 29
-      - value: 0.3767
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 28
-      - value: 0.4044
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 27
-      - value: 0.4842
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 26
-      - value: 0.5948
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 25
-      - value: 0.6067
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 24
-      - value: 0.676
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 23
-    weight_rough_g:
-      - value: 0.09
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 29
-        suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
-      - value: 0.12
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 26
-        suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
-      - value: 0.14
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 35
-        suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
-      - value: 0.15
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 23
-        suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
-      - value: 0.18
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 25
-        suspect:
-          de: 'Randbeschädigtes Stück (Anhang: «ks kantskada»). Das Gewicht kann daher unter dem eines unbeschädigten Stücks liegen; ob und wie viel, ist nicht angegeben.'
-          en: 'A piece with a damaged edge (appendix: «ks kantskada»). Its weight may therefore lie below that of an undamaged piece; whether and by how much is not stated.'
-          uk: 'Монета з пошкодженим краєм (додаток: «ks kantskada»). Тому її вага може бути нижчою за вагу непошкодженої монети; чи так і наскільки, не вказано.'
-          da: 'Et stykke med beskadiget rand (appendiks: «ks kantskada»). Vægten kan derfor ligge under et ubeskadiget stykkes; om og hvor meget, er ikke angivet.'
-      - value: 0.18
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 27
-        suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
-      - value: 0.21
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 24
-        suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
-      - value: 0.21
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 31
-      - value: 0.23
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 30
-      - value: 0.25
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 32
-        suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
-      - value: 0.28
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 36
-      - value: 0.31
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 28
-      - value: 0.31
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 37
-      - value: 0.36
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 34
-      - value: 0.41
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33
-    sources:
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 23, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 24, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 25, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 26, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 27, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 28, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 29, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 30, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 31, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 32, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 34, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 35, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 36, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 37, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - metallanalyser-2016-1-g5-nastved-lund-penning
   - id: c-0b5c934a
     class_id: c-0b5c934a
     label: unified-metallanalyser-2016-1-g7-10-14-15-nastved-lund-odense-randers-kopparsterling
@@ -264585,6 +264472,8 @@ coins:
         - '14'
         - '15'
       galster_volume: galster1972-erik7
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -264630,6 +264519,8 @@ coins:
     catalog:
       galster: '8'
       galster_volume: galster1972-erik7
+    metal: silver
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -264643,13 +264534,10 @@ coins:
       - value: 0.13
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48
         suspect:
-          de: Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob 
-            das Stück unvollständig ist, ist nicht angegeben.
-          en: The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the
-            piece is incomplete is not stated.
-          uk: Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.
-          da: Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, 
-            er ikke angivet.
+          de: 'Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.'
+          uk: 'Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.'
+          da: 'Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.'
       - value: 0.23
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51
     sources:
@@ -264685,6 +264573,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 1
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -264743,6 +264633,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 2
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -264808,6 +264700,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 3b
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -264880,6 +264774,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 4a
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -264973,6 +264869,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 4 a?
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -265017,6 +264915,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 4 a??
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -265061,6 +264961,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 4b
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -265105,6 +265007,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 4c
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -265163,6 +265067,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 4d
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -265207,6 +265113,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 5
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -265286,6 +265194,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 7
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -265337,6 +265247,8 @@ coins:
     catalog:
       others:
         - Lagerqvist# 7a
+    metal: billon
+    metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
