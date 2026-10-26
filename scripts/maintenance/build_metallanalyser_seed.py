@@ -188,14 +188,15 @@ _SUSPECT = {
     },
 }
 # 2016:1 (Heljeback) explains «f» in its own list of abbreviations
-# («f fragment»), unlike 2017:1, so there the mark states it (curator
-# 2026-10-26).
-_SUSPECT_BY_ISSUE = {
+# («f fragment»), unlike 2017:1, so there the weight carries the `fragment`
+# mark «(f)», not the doubt «(*)» (curator 2026-10-26). The tooltip's headline
+# already says «Fragment.», so the reason gives only the evidence.
+_FRAGMENT_BY_ISSUE = {
     ("2016_1", "f"): {
-        "de": "Fragment (Anhang, Abkürzungsliste: «f fragment»). Das Gewicht ist das des Fragments, nicht einer ganzen Münze.",
-        "en": "A fragment (appendix, list of abbreviations: «f fragment»). The weight is that of the fragment, not of a whole coin.",
-        "uk": "Фрагмент (додаток, список скорочень: «f fragment»). Вага належить фрагменту, а не цілій монеті.",
-        "da": "Et fragment (appendiks, forkortelsesliste: «f fragment»). Vægten er fragmentets, ikke en hel mønts.",
+        "de": "Anhang, Abkürzungsliste: «f fragment». Das Gewicht ist das des Fragments, nicht einer ganzen Münze.",
+        "en": "Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.",
+        "uk": "Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.",
+        "da": "Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.",
     },
 }
 
@@ -311,9 +312,11 @@ def collect() -> tuple[list[dict], list[str]]:
             if r["weight_flag"]:
                 # a copy per reading: a shared dict becomes a YAML anchor and
                 # renumbers every anchor after it in the final file
-                w["suspect"] = copy.deepcopy(
-                    _SUSPECT_BY_ISSUE.get((issue, r["weight_flag"]))
-                    or _SUSPECT[r["weight_flag"]])
+                frag = _FRAGMENT_BY_ISSUE.get((issue, r["weight_flag"]))
+                if frag:
+                    w["fragment"] = copy.deepcopy(frag)
+                else:
+                    w["suspect"] = copy.deepcopy(_SUSPECT[r["weight_flag"]])
             weights.append(w)
             if r["ag_pct"] is not None:            # 2016:1 nr 1: weight only
                 finenesses.append({"value": round(r["ag_pct"] / 100, 6), "source": label})
