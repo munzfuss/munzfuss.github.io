@@ -244,6 +244,28 @@ def _assay_metal(rows: list[dict]) -> str | None:
     return kinds.pop() if kinds else None
 
 
+def _copper_type(rows: list[dict], cite: str) -> dict:
+    """A Kobbersterling is a copper coin (curator 2026-10-26: «Кобберстерлінги
+    мідні, вистав всім мідь як метал, попри те що там знайдена проба — значення
+    можна додати в note»): metal copper, no fineness column; the assayed silver
+    traces go into the note."""
+    ag = sorted(r["ag_pct"] for r in rows if r["ag_pct"] is not None)
+    nrs = ", ".join(str(r["nr"]) for r in rows if r["ag_pct"] is not None)
+    out = {"metal": "copper", "metal_verified": True,
+           "fineness": None, "fineness_verified": False}
+    if ag:
+        lo, hi = ag[0], ag[-1]
+        rng = (lambda d: f"{lo:.2f}".replace(".", d) if lo == hi else
+               f"{lo:.2f}".replace(".", d) + "–" + f"{hi:.2f}".replace(".", d))
+        out["note"] = {
+            "de": f"{cite}, Nr {nrs} (Röntgenfluoreszenz): Silber {rng(',')} %.",
+            "en": f"{cite}, no. {nrs} (X-ray fluorescence): silver {rng('.')} %.",
+            "uk": f"{cite}, № {nrs} (рентгенофлуоресцентний аналіз): срібло {rng(',')} %.",
+            "da": f"{cite}, nr. {nrs} (røntgenfluorescens): sølv {rng(',')} %.",
+        }
+    return out
+
+
 def _row_key(issue: str, row: dict) -> str:
     """«2016:1 nr 38» — the issue as the series prints it plus the row number.
     Not «2016_1:38»: YAML 1.1 readers (PyYAML) resolve that as a base-60
@@ -372,6 +394,7 @@ def collect() -> tuple[list[dict], list[str]]:
             "verified": False,
             "fineness_verified": bool(finenesses),
             "metal_verified": bool(finenesses),
+            **(_copper_type(rows, meta["cite"]) if denom.lower() == "kopparsterling" else {}),
             "weight_rough_verified": True,
             "mint_verified": not conflict,
             "sources": sources,

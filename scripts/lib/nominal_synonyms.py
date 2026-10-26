@@ -404,3 +404,32 @@ def split_nominal(raw):
         if not _LEADING_COUNT_RE.match(s):
             s = f"1 {s}"
     return s, equiv, doubt
+
+
+_WITTEN_RE = re.compile(r"\bWitten\b")
+_KOBBERSTERLING_RE = re.compile(r"\bKobbersterling\b")
+
+
+@lru_cache(maxsize=1)
+def denmark_page_entities() -> frozenset:
+    """The entities the Denmark page consumes (data/v2/locations/denmark.yml
+    `consumes_entities`)."""
+    from pathlib import Path
+    import yaml
+    p = Path(__file__).resolve().parents[2] / "data" / "v2" / "locations" / "denmark.yml"
+    doc = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+    return frozenset(e if isinstance(e, str) else e.get("entity")
+                     for e in doc.get("consumes_entities") or [])
+
+
+def danish_display_nominal(raw, entity):
+    """The Danish name of a denomination for an entity of the Denmark page:
+    «Witten» → «Hvid» (the Danish hvid is the Wendish witten; Lindahl writes
+    «Witten» where Galster writes «Hvid»), «Kobbersterling» → «Sterling» (the
+    metal column says copper) — curator 2026-10-26, «лише для файлів що на
+    сторінці Данії». A seed keeps its source's word; the merger writes this on
+    the class and compares nominals in this form. Other entities come back as
+    they were (a Lübeck witten stays a witten)."""
+    if not isinstance(raw, str) or entity not in denmark_page_entities():
+        return raw
+    return _KOBBERSTERLING_RE.sub("Sterling", _WITTEN_RE.sub("Hvid", raw))

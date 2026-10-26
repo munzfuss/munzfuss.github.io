@@ -1441,6 +1441,51 @@ def _year_last(coin):
     return coin.get("year_last") or coin.get("year_first")
 
 
+_OTHERS_RE = re.compile(r"^\s*(.*?)\s*#\s*(.+?)\s*$")
+
+
+def _others_registers(coin: dict) -> dict[str, set[str]]:
+    """`catalog.others` («Jesse# 484», «Fritze Lindahl# 34-41») as
+    {register (case-folded): {values}}."""
+    out: dict[str, set[str]] = {}
+    oth = (coin.get("catalog") or {}).get("others") or []
+    for t in (oth if isinstance(oth, list) else [oth]):
+        m = _OTHERS_RE.match(str(t))
+        if m and m.group(1):
+            out.setdefault(m.group(1).casefold(), set()).add(m.group(2).casefold())
+    return out
+
+
+def _span(v: str):
+    m = re.fullmatch(r"(\d+)(?:\s*-\s*(\d+))?", v)
+    return (int(m.group(1)), int(m.group(2) or m.group(1))) if m else None
+
+
+def _others_agree(a: dict, b: dict) -> str | None:
+    """The first register both records give in `others` with a common value —
+    equal, or overlapping printed numbers / ranges («34-41» and «34-41», «23»
+    inside «10-50»). Agreement only: a register both give with different values
+    is NOT a disagreement, because `others` mixes concordances of every
+    granularity (curator 2026-10-26: «матчер не читає регістр others»).
+    Matching is per entity, so a register name shared by two works in
+    different entities (IKMK's «Jesse» for Braunschweig kipper coins vs Jesse's
+    Wendischer Münzverein) never meets the other. Reviewed 2026-10-26: the 31
+    pairs this joins across all entities are specimens of one type (same
+    number, nominal and year) — IKMK Braunschweig 1620-22, Aagaard, B, Jungk,
+    JSJ, Lindahl."""
+    ra, rb = _others_registers(a), _others_registers(b)
+    for reg in sorted(set(ra) & set(rb)):
+        if ra[reg] & rb[reg]:
+            return reg
+        for x in ra[reg]:
+            sx = _span(x)
+            for y in rb[reg]:
+                sy = _span(y)
+                if sx and sy and max(sx[0], sy[0]) <= min(sx[1], sy[1]):
+                    return reg
+    return None
+
+
 def _years_overlap(a, b):
     af, al = _year_first(a), _year_last(a)
     bf, bl = _year_first(b), _year_last(b)
@@ -2268,8 +2313,9 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     # Verdict made later: if catalog strongly agrees, accept the merge;
     # if catalog has no overlap, fall through to fallback-driven low-
     # confidence path.
-    na = _normalise_nominal(coin_a.get("nominal"))
-    nb = _normalise_nominal(coin_b.get("nominal"))
+    from lib.nominal_synonyms import danish_display_nominal
+    na = _normalise_nominal(danish_display_nominal(coin_a.get("nominal"), entity_id))
+    nb = _normalise_nominal(danish_display_nominal(coin_b.get("nominal"), entity_id))
     if not na or not nb:
         primary["nominal"] = None
     elif na == nb:
@@ -2300,6 +2346,10 @@ def _match_pair_core(coin_a: dict, coin_b: dict, entity_id: str | None = None,
         # no_overlap: one or both sides lack catalog refs that intersect.
         # NOT a mismatch — can't be evaluated. Tri-state primary signal.
         primary["catalog"] = None
+        _oreg = _others_agree(coin_a, coin_b)
+        if _oreg:
+            primary["catalog"] = True
+            why.append(f"catalog: both give {_oreg!r} with a common number (others)")
 
     # Nominal-mismatch handling (refined 2026-05-22 per user direction):
     # only HARD-fail nominal disagreement when catalog ALSO can't carry
@@ -4075,7 +4125,8 @@ def _canonical_nominal_out(out: dict, members: list[dict],
     The seed keeps its source's spelling. A member holding `nominal`
     freezes it. The class is gold when every member that gives a metal
     says gold (`out["metal"]` is set further down)."""
-    from lib.nominal_synonyms import canonical_nominal_display, split_nominal
+    from lib.nominal_synonyms import (canonical_nominal_display, danish_display_nominal,
+                                      split_nominal)
     from lib.ruler_reigns import DISPLAY_NAME_ENTITIES
     raw = out.get("nominal")
     if not isinstance(raw, str):
@@ -4087,7 +4138,7 @@ def _canonical_nominal_out(out: dict, members: list[dict],
     # Danish-crown entities: a penning equivalent leaves the nominal for the
     # note, a plain «1 Hvid?» becomes «1 Hvid» with «(?)» (curator 2026-10-26).
     if entity_id in DISPLAY_NAME_ENTITIES:
-        raw, equiv, doubt = split_nominal(raw)
+        raw, equiv, doubt = split_nominal(danish_display_nominal(raw, entity_id))
         out["nominal"] = raw
         if equiv:
             out["nominal_equiv"] = equiv
