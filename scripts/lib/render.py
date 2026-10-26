@@ -59,6 +59,7 @@ def build_env(template_dir: str) -> Environment:
     env.filters["mint_label"] = mint_label
     env.filters["nb_dashes"] = nb_dashes
     env.filters["fin_unit"] = fin_unit
+    env.filters["fin_txt"] = fin_txt
     env.filters["fuss_spec"] = fuss_spec
     env.filters["phase_spec"] = phase_spec
     env.filters["strip_phase_marker"] = strip_phase_marker
@@ -111,6 +112,11 @@ def fin_unit(value, metal: str | None, lang: str):
     import math
     from markupsafe import Markup
 
+    # A coin with no metal of its own whose fineness comes from a silver
+    # assay (Heljeback 2016 / Lindblad 2017 «Ag %», the only such records):
+    # the fineness IS a silver fraction, so it takes the silver unit.
+    if metal is None:
+        metal = "silver"
     if value is None or metal not in _FIN_UNITS:
         return ""
     try:
@@ -136,6 +142,17 @@ def fin_unit(value, metal: str | None, lang: str):
     else:
         num = f"{whole}{glyph}"
     return Markup(f'<span class="fin-unit">({num}&nbsp;{unit})</span>')
+
+
+def fin_txt(value, decimals: int = 3) -> str:
+    """A fineness fraction as the table prints it: «.986», «.2378», and a
+    sub-per-cent assay with its leading zeros, «.0054» (0.54 % Ag). Rounding
+    the scaled value to an integer dropped those zeros, so 0.0054 read «.54»."""
+    d = max(int(decimals), 1)
+    v = float(value)
+    if v >= 1:
+        return f"{v:.{d}f}"
+    return f"{v:.{d}f}"[1:]
 
 
 def nominal_nbsp(s: str | None) -> str:

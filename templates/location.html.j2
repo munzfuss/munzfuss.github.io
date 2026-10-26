@@ -185,16 +185,11 @@
             readings → orange (.fin-alt), each with its own source. A sub-row
             without a fineness (a weight-only specimen) shows «—». -#}
         {%- set _funi = (coin.msr_fineness_segs|length) <= 1 -%}
-        {%- for s in coin.msr_fineness_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{% if s.value is not none %}<span class="nw">{% set _txt = '.' ~ ((s.value * (10 ** s.decimals))|round|int) %}{% set _k = mkind(s.sources, coin.fineness_marks) %}{% if _funi %}{% if s.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{% else %}<span class="fin-alt {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% endif %}{% set _fm = mark(s.sources, coin.fineness_marks) %}{{ _fm }}{% set _fu = s.value | fin_unit(coin.raw.metal, lang) %}{% set _fq = not coin.raw.fineness_verified and not _fm|trim %}{% if _fq and not _fu %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% if _fu %}<span class="fin-eq">{{ _fu }}{% if _fq %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endif %}{% else %}—{% endif %}</div>{%- endfor -%}
+        {%- for s in coin.msr_fineness_segs -%}<div class="msr-seg" style="--span:{{ s.span }}">{% if s.value is not none %}<span class="nw">{% set _txt = s.value|fin_txt(s.decimals) %}{% set _k = mkind(s.sources, coin.fineness_marks) %}{% if _funi %}{% if s.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{% else %}<span class="fin-alt {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% endif %}{% set _fm = mark(s.sources, coin.fineness_marks) %}{{ _fm }}{% set _fu = s.value | fin_unit(coin.raw.metal, lang) %}{% set _fq = not coin.raw.fineness_verified and not _fm|trim %}{% if _fq and not _fu %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% if _fu %}<span class="fin-eq">{{ _fu }}{% if _fq %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endif %}{% else %}—{% endif %}</div>{%- endfor -%}
       {%- elif coin.fineness_groups -%}
         {%- for g in coin.fineness_groups %}
           {%- set _dec = g.display_decimals if g.display_decimals is not none else 3 -%}
-          {%- if _dec <= 3 -%}
-            {%- set _txt = '.' ~ ((g.value * 1000)|round|int) %}
-          {%- else -%}
-            {%- set _scale = 10 ** _dec -%}
-            {%- set _txt = '.' ~ ((g.value * _scale)|round|int) %}
-          {%- endif %}
+          {%- set _txt = g.value|fin_txt([_dec, 3]|max) %}
           {%- set _k = mkind(g.sources, coin.fineness_marks) -%}
           {%- if g.is_unanimous %} {% if g.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(g.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{{ mark(g.sources, coin.fineness_marks) }}
           {%- else %} <span class="alt-source {{ _k }}" data-tooltip="{{ tips(g.sources) }}">{{ _txt }}</span>{{ mark(g.sources, coin.fineness_marks) }}
