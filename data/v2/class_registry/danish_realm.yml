@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 6034 active, 29 retired.
+# 6029 active, 34 retired.
 
 id: danish_realm
 classes:
@@ -12890,13 +12890,6 @@ classes:
     legacy_id: unified-kmk-122249
     members:
       - kmk-122249
-  - id: c-2fcd0341
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-741278
-    legacy_id: unified-kmk-741278
-    members:
-      - kmk-741278
   - id: c-2fd3ed32
     status: active
     created: '2026-10-22'
@@ -15232,12 +15225,6 @@ classes:
     legacy_id: unified-ngc-1051679
     members:
       - ngc-1051679
-  - id: c-38685a70
-    status: active
-    created: '2026-10-25'
-    label: unified-dk-bruun-3757
-    members:
-      - dk-bruun-3757
   - id: c-38741a94
     status: active
     created: '2026-10-22'
@@ -16923,6 +16910,7 @@ classes:
     members:
       - dk-galster-epomg-9
       - dk-numista-76322
+      - ikmk-18206588
       - lindahl-1955-lund-sterling
       - metallanalyser-2016-1-g9-lund-sterling
   - id: c-3f2bb7c0
@@ -23864,9 +23852,10 @@ classes:
   - id: c-54480815
     status: active
     created: '2026-10-22'
-    label: unified-dk-galster-bajg-18
+    label: unified-dk-bruun-3763
     legacy_id: unified-metallanalyser-2016-1-g18-lund-skilling
     members:
+      - dk-bruun-3763
       - dk-galster-bajg-18
       - lindahl-1955-skilling-christopher
       - metallanalyser-2016-1-g18-lund-skilling
@@ -25519,6 +25508,7 @@ classes:
     members:
       - dk-galster-c1g-23
       - dk-numista-143575
+      - ikmk-18206590
       - kmk-139317
       - kmk-292783
       - kmk-299591
@@ -39180,12 +39170,6 @@ classes:
     legacy_id: unified-kmk-308332
     members:
       - kmk-308332
-  - id: c-8b8d368f
-    status: active
-    created: '2026-10-25'
-    label: unified-ikmk-18206590
-    members:
-      - ikmk-18206590
   - id: c-8b8f38b5
     status: active
     created: '2026-10-22'
@@ -45192,9 +45176,10 @@ classes:
   - id: c-a4e8afcd
     status: active
     created: '2026-10-22'
-    label: unified-dk-galster-bajg-19
+    label: unified-dk-bruun-3757
     legacy_id: unified-metallanalyser-2016-1-g19-malmo-sterling
     members:
+      - dk-bruun-3757
       - dk-galster-bajg-19
       - lindahl-1955-malmoe-sterling
       - metallanalyser-2016-1-g19-malmo-sterling
@@ -57459,12 +57444,6 @@ classes:
     legacy_id: unified-kmk-327807
     members:
       - kmk-327807
-  - id: c-d5631196
-    status: active
-    created: '2026-10-25'
-    label: unified-ikmk-18206588
-    members:
-      - ikmk-18206588
   - id: c-d5641155
     status: active
     created: '2026-10-22'
@@ -65282,12 +65261,6 @@ classes:
     legacy_id: unified-kmk-132010
     members:
       - kmk-132010
-  - id: c-f24f5875
-    status: active
-    created: '2026-10-25'
-    label: unified-dk-bruun-3763
-    members:
-      - dk-bruun-3763
   - id: c-f253278d
     status: active
     created: '2026-10-22'
@@ -68524,6 +68497,15 @@ classes:
     retired: '2026-10-26'
     members:
       - lindahl-1955-naestved-kobbersterling
+  - id: c-2fcd0341
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-741278
+    legacy_id: unified-kmk-741278
+    merged_into: c-0ca3cad8
+    retired: '2026-10-26'
+    members:
+      - kmk-741278
   - id: c-3218c6bf
     status: retired
     created: '2026-10-22'
@@ -68564,6 +68546,14 @@ classes:
       - dk-tid-97394
       - kmk-137186
       - ngc-1050262
+  - id: c-38685a70
+    status: retired
+    created: '2026-10-25'
+    label: unified-dk-bruun-3757
+    merged_into: c-a4e8afcd
+    retired: '2026-10-26'
+    members:
+      - dk-bruun-3757
   - id: c-4083f842
     status: retired
     created: '2026-10-22'
@@ -68640,6 +68630,14 @@ classes:
     retired: '2026-10-26'
     members:
       - dk-galster-c1g-23
+  - id: c-8b8d368f
+    status: retired
+    created: '2026-10-25'
+    label: unified-ikmk-18206590
+    merged_into: c-5be595df
+    retired: '2026-10-26'
+    members:
+      - ikmk-18206590
   - id: c-9c9cf144
     status: retired
     created: '2026-10-25'
@@ -68705,6 +68703,14 @@ classes:
     retired: '2026-10-26'
     members:
       - dk-numista-143451
+  - id: c-d5631196
+    status: retired
+    created: '2026-10-25'
+    label: unified-ikmk-18206588
+    merged_into: c-3f22c79f
+    retired: '2026-10-26'
+    members:
+      - ikmk-18206588
   - id: c-d57df4df
     status: retired
     created: '2026-10-26'
@@ -68745,3 +68751,11 @@ classes:
     retired: '2026-10-26'
     members:
       - lindahl-1955-lund-kobbersterling
+  - id: c-f24f5875
+    status: retired
+    created: '2026-10-25'
+    label: unified-dk-bruun-3763
+    merged_into: c-54480815
+    retired: '2026-10-26'
+    members:
+      - dk-bruun-3763

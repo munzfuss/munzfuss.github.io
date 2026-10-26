@@ -105665,6 +105665,8 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 1
       - value: 0.72
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 20
+      - value: 0.72
+        source: ikmk
       - value: 0.75
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 3
       - value: 0.79
@@ -105695,6 +105697,8 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 11
     diameter_mm:
       - value: 17.0
+        source: ikmk
+      - value: 17.0
         source: numista
     sources:
       - type: literature
@@ -105703,6 +105707,9 @@ coins:
       - type: literature
         url: https://en.numista.com/143575
         ref: Numista N#143575 — 1 Hvid - Christian I (Malmö) - Denmark
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18206590
+        ref: IKMK Berlin 18206590
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139317
         ref: KMM 139317 (Inv. KP 1715.402)
@@ -105851,6 +105858,8 @@ coins:
       -   - 1448
           - 1481
     year_verified: false
+    inscription_obv: CRISTIERN REX D
+    inscription_rev: MON-MAL-MOI-ENS
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -220585,31 +220594,6 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Skilling
-    ruler: Erik Valkendorf
-    issuing_entity: danish_realm
-    id: c-2fcd0341
-    year_first: 1519
-    year_last: 1519
-    year_label: '1519'
-    catalog:
-      schou: '1'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/741278
-        ref: KMM 741278 (Inv. FP 3144.12)
-    verification_note: *id005
-    composed_of:
-      - c-2fcd0341
-    label: unified-kmk-741278
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
     nominal: 1 Kurant-dukat
     issuing_entity: danish_realm
     id: c-a23ee74e
@@ -277510,11 +277494,14 @@ coins:
     year_verified: false
     mint: Lund
     catalog:
+      sieg: '4'
+      bruun_collection_id: '3763'
       galster: '18'
-      galster_volume: galster1972-christoffer3
       others:
+        - FL# 11
         - Jesse# 705
       jesse: '705'
+      galster_volume: galster1972-christoffer3
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -277544,6 +277531,8 @@ coins:
           da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
       - value: 1.85
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 72
+      - value: 1.87
+        source: bruun
       - value: 1.93
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 67
         suspect:
@@ -277558,6 +277547,9 @@ coins:
       - value: 2.25
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 71
     sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11148, p. 61
       - type: literature
         url: https://www.danskmoent.dk/bajg18.htm
         ref: Galster 18 (bajg) — danskmoent.dk bajg18.htm
@@ -277614,12 +277606,18 @@ coins:
     year_verified: false
     mint: Malmø
     catalog:
-      galster: '19'
-      sieg: '1'
-      galster_volume: galster1972-christoffer3
+      sieg:
+        - '1'
+        - '1.1'
+      bruun_collection_id: '3757'
+      galster:
+        - '19'
+        - 19a
       others:
+        - FL# 17
         - Jesse# 704
       jesse: '704'
+      galster_volume: galster1972-christoffer3
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
@@ -277640,11 +277638,16 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 76
       - value: 0.65
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 74
+      - value: 0.65
+        source: bruun
       - value: 0.67
         source: galster
       - value: 0.71
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 75
     sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11147, p. 61
       - type: literature
         url: https://www.danskmoent.dk/bajg19.htm
         ref: Galster 19 (bajg) — danskmoent.dk bajg19.htm
@@ -277682,6 +277685,7 @@ coins:
       - min: 0.61
         max: 0.73
         source: Lindahl 1955 (NNÅ 1955), s. 85
+    mintmaster: Hans Myndel
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -278698,10 +278702,8 @@ coins:
     year_last: 1420
     year_ranges:
       -   - 1405
-          - 1405
-      -   - 1413
           - 1420
-    year_label: 1405, 1413-1420
+    year_label: 1405-1420
     year_verified: false
     mint: Lund
     catalog:
@@ -278766,6 +278768,8 @@ coins:
           en: 'A piece with a damaged edge (appendix: «ks kantskada»). Its weight may therefore lie below that of an undamaged piece; whether and by how much is not stated.'
           uk: 'Монета з пошкодженим краєм (додаток: «ks kantskada»). Тому її вага може бути нижчою за вагу непошкодженої монети; чи так і наскільки, не вказано.'
           da: 'Et stykke med beskadiget rand (appendiks: «ks kantskada»). Vægten kan derfor ligge under et ubeskadiget stykkes; om og hvor meget, er ikke angivet.'
+      - value: 0.67
+        source: ikmk
       - value: 0.69
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 21
       - value: 0.69
@@ -278789,6 +278793,9 @@ coins:
       - type: literature
         url: https://en.numista.com/76322
         ref: Numista N#76322 — Sterling - Erik of Pommern (Lund) - Denmark
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18206588
+        ref: IKMK Berlin 18206588
       - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 78; FL 3-15
@@ -278848,6 +278855,8 @@ coins:
     metal_verified: true
     diameter_mm_verified: true
     diameter_mm:
+      - value: 16.0
+        source: ikmk
       - value: 17.8
         source: numista
     nominal_equiv: 3 Penning
@@ -278855,6 +278864,13 @@ coins:
       - min: 0.5
         max: 1.0
         source: Lindahl 1955 (NNÅ 1955), s. 78
+    inscription_obv: ERICVS REX D S N
+    inscription_rev: MONETA LVNDENSI
+    note:
+      de: Engelsk
+      en: Engelsk
+      uk: Engelsk
+      da: Engelsk
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -279053,86 +279069,6 @@ coins:
     composed_of:
       - c-15b68440
     label: unified-dk-hede-c4h40
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Sterling
-    ruler: Christopher III of Bavaria
-    mintmaster: Hans Myndel
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-38685a70
-    year_first: 1440
-    year_last: 1448
-    year_ranges:
-      -   - 1440
-          - 1448
-    year_label: 1440-1448
-    year_verified: false
-    mint: Malmø
-    catalog:
-      sieg: '1.1'
-      bruun_collection_id: '3757'
-      galster: 19a
-      others:
-        - FL# 17
-      jesse: '704'
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.65
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11147, p. 61
-    composed_of:
-      - c-38685a70
-    label: unified-dk-bruun-3757
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 1 Skilling
-    ruler: Christopher III of Bavaria
-    issuing_entity: danish_realm
-    id: c-f24f5875
-    year_first: 1440
-    year_last: 1442
-    year_ranges:
-      -   - 1440
-          - 1442
-    year_label: 1440-1442
-    year_verified: false
-    mint: Lund
-    catalog:
-      sieg: '4'
-      bruun_collection_id: '3763'
-      galster: '18'
-      others:
-        - FL# 11
-      jesse: '705'
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.87
-        source: bruun
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11148, p. 61
-    composed_of:
-      - c-f24f5875
-    label: unified-dk-bruun-3763
     origin: promoted
   - fuss: luebischer_muenzfuss
     phase: I
@@ -279542,47 +279478,6 @@ coins:
   - fuss: seed_unsorted
     phase: ikmk
     kind: kurant
-    nominal: 1 Sterling
-    ruler: Erich von Pommern
-    issuing_entity: danish_realm
-    id: c-d5631196
-    year_first: 1405
-    year_last: 1420
-    year_ranges:
-      -   - 1405
-          - 1420
-    year_label: 1405-1420
-    mint: Lund
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.67
-        source: ikmk
-    diameter_mm:
-      - value: 16.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18206588
-        ref: IKMK Berlin 18206588
-    inscription_obv: ERICVS REX D S N
-    inscription_rev: MONETA LVNDENSI
-    note:
-      de: Engelsk
-      en: Engelsk
-      uk: Engelsk
-      da: Engelsk
-    composed_of:
-      - c-d5631196
-    label: unified-ikmk-18206588
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
     nominal: 1 Schilling
     ruler: Christoph von Bayern
     issuing_entity: danish_realm
@@ -279615,44 +279510,6 @@ coins:
     composed_of:
       - c-1d0195c8
     label: unified-ikmk-18206589
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Witten
-    ruler: Christian I
-    issuing_entity: danish_realm
-    year_is_reign_span: true
-    id: c-8b8d368f
-    year_first: 1448
-    year_last: 1481
-    year_ranges:
-      -   - 1448
-          - 1481
-    year_label: 1448-1481
-    year_verified: false
-    mint: Malmø
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.72
-        source: ikmk
-    diameter_mm:
-      - value: 17.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18206590
-        ref: IKMK Berlin 18206590
-    inscription_obv: CRISTIERN REX D
-    inscription_rev: MON-MAL-MOI-ENS
-    composed_of:
-      - c-8b8d368f
-    label: unified-ikmk-18206590
     origin: promoted
   - fuss: seed_unsorted
     phase: metallanalyser

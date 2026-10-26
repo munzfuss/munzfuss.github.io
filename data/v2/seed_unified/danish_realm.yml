@@ -2,8 +2,8 @@
 # Generated 2026-10-26 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15283 per-source seed entries.
-# Output: 6034 unified entries (one per physical coin).
+# Input: 15282 per-source seed entries.
+# Output: 6029 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -412,49 +412,104 @@ coins:
       - dk-galster-epomg-2
       - lindahl-1955-naestved-witten-krone
       - metallanalyser-2016-1-g2-nastved-hvid
-  - id: c-38685a70
-    class_id: c-38685a70
+  - id: c-a4e8afcd
+    class_id: c-a4e8afcd
     label: unified-dk-bruun-3757
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
     nominal: 1 Sterling
-    year_first: 1440
-    year_last: 1448
-    year_ranges:
-      -   - 1440
-          - 1448
-    year_label: 1440-1448
-    _year_demoted: true
+    year_first: 1444
+    year_last: 1444
+    year_label: '1444'
     ruler: Christoffer III
     mintmaster: Hans Myndel
     mint: Malmø
     catalog:
-      sieg: '1.1'
+      sieg:
+        - '1'
+        - '1.1'
       bruun_collection_id: '3757'
-      galster: 19a
+      galster:
+        - '19'
+        - 19a
       others:
         - FL# 17
+        - Jesse# 704
       jesse: '704'
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
+      galster_volume: galster1972-christoffer3
+    metal: silver_billon
+    metal_verified: true
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.4055
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 77
+      - value: 0.479
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 76
+      - value: 0.515
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 75
+      - value: 0.5495
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 74
     weight_rough_g:
+      - value: 0.51
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 77
+      - value: 0.62
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 76
+      - value: 0.65
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 74
       - value: 0.65
         source: bruun
+      - value: 0.67
+        source: galster
+      - value: 0.71
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 75
+    weight_range_g:
+      - min: 0.61
+        max: 0.73
+        source: Lindahl 1955 (NNÅ 1955), s. 85
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11147, p. 61
+      - type: literature
+        url: https://www.danskmoent.dk/bajg19.htm
+        ref: Galster 19 (bajg) — danskmoent.dk bajg19.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 85
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 74, Appendix (XRF); Treklöver
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 75, Appendix (XRF); Treklöver
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 76, Appendix (XRF); Treklöver
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 77, Appendix (XRF); Treklöver
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-3757
-  - id: c-f24f5875
-    class_id: c-f24f5875
+      - dk-galster-bajg-19
+      - lindahl-1955-malmoe-sterling
+      - metallanalyser-2016-1-g19-malmo-sterling
+  - id: c-54480815
+    class_id: c-54480815
     label: unified-dk-bruun-3763
     fuss: seed_unsorted
     phase: bruun
@@ -474,24 +529,103 @@ coins:
       galster: '18'
       others:
         - FL# 11
+        - Jesse# 705
       jesse: '705'
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
+      galster_volume: galster1972-christoffer3
+    metal: silver_billon
+    metal_verified: true
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.435
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 72
+      - value: 0.4521
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 71
+      - value: 0.5
+        source: Lindahl 1955 (NNÅ 1955), s. 85 (after Rasmusson)
+      - value: 0.5225
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 70
+      - value: 0.6434
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 69
+      - value: 0.6754
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 68
+      - value: 0.7199
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 67
     weight_rough_g:
+      - value: 1.79
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 68
+        fragment:
+          de: 'Anhang, Abkürzungsliste: «f fragment». Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
+          uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
+          da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
+      - value: 1.85
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 72
       - value: 1.87
         source: bruun
+      - value: 1.93
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 67
+        suspect:
+          de: 'Randbeschädigtes Stück (Anhang: «ks kantskada»). Das Gewicht kann daher unter dem eines unbeschädigten Stücks liegen; ob und wie viel, ist nicht angegeben.'
+          en: 'A piece with a damaged edge (appendix: «ks kantskada»). Its weight may therefore lie below that of an undamaged piece; whether and by how much is not stated.'
+          uk: 'Монета з пошкодженим краєм (додаток: «ks kantskada»). Тому її вага може бути нижчою за вагу непошкодженої монети; чи так і наскільки, не вказано.'
+          da: 'Et stykke med beskadiget rand (appendiks: «ks kantskada»). Vægten kan derfor ligge under et ubeskadiget stykkes; om og hvor meget, er ikke angivet.'
+      - value: 2.15
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 70
+      - value: 2.23
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 69
+      - value: 2.25
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 71
+    weight_range_g:
+      - min: 1.87
+        max: 2.38
+        source: Lindahl 1955 (NNÅ 1955), s. 85
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11148, p. 61
+      - type: literature
+        url: https://www.danskmoent.dk/bajg18.htm
+        ref: Galster 18 (bajg) — danskmoent.dk bajg18.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 85
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 67, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 68, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 69, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 70, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 71, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 72, Appendix (XRF)
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: danish_realm
     composed_of:
       - dk-bruun-3763
+      - dk-galster-bajg-18
+      - lindahl-1955-skilling-christopher
+      - metallanalyser-2016-1-g18-lund-skilling
   - id: c-202d275b
     class_id: c-202d275b
     label: unified-dk-bruun-3777
@@ -11158,198 +11292,6 @@ coins:
       - dk-galster-bajg-17
       - lindahl-1955-lund-soesling-christopher
       - metallanalyser-2016-1-g17-lund-sosling
-  - id: c-54480815
-    class_id: c-54480815
-    label: unified-dk-galster-bajg-18
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1440
-    year_last: 1442
-    year_ranges:
-      -   - 1440
-          - 1442
-    year_label: 1440-1442
-    ruler: Christoffer III
-    mint: Lund
-    catalog:
-      galster: '18'
-      galster_volume: galster1972-christoffer3
-      others:
-        - Jesse# 705
-      jesse: '705'
-    metal: silver_billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.435
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 72
-      - value: 0.4521
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 71
-      - value: 0.5
-        source: Lindahl 1955 (NNÅ 1955), s. 85 (after Rasmusson)
-      - value: 0.5225
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 70
-      - value: 0.6434
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 69
-      - value: 0.6754
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 68
-      - value: 0.7199
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 67
-    weight_rough_g:
-      - value: 1.79
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 68
-        fragment:
-          de: 'Anhang, Abkürzungsliste: «f fragment». Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
-          en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
-          uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
-          da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
-      - value: 1.85
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 72
-      - value: 1.93
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 67
-        suspect:
-          de: 'Randbeschädigtes Stück (Anhang: «ks kantskada»). Das Gewicht kann daher unter dem eines unbeschädigten Stücks liegen; ob und wie viel, ist nicht angegeben.'
-          en: 'A piece with a damaged edge (appendix: «ks kantskada»). Its weight may therefore lie below that of an undamaged piece; whether and by how much is not stated.'
-          uk: 'Монета з пошкодженим краєм (додаток: «ks kantskada»). Тому її вага може бути нижчою за вагу непошкодженої монети; чи так і наскільки, не вказано.'
-          da: 'Et stykke med beskadiget rand (appendiks: «ks kantskada»). Vægten kan derfor ligge under et ubeskadiget stykkes; om og hvor meget, er ikke angivet.'
-      - value: 2.15
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 70
-      - value: 2.23
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 69
-      - value: 2.25
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 71
-    weight_range_g:
-      - min: 1.87
-        max: 2.38
-        source: Lindahl 1955 (NNÅ 1955), s. 85
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/bajg18.htm
-        ref: Galster 18 (bajg) — danskmoent.dk bajg18.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 85
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 67, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 68, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 69, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 70, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 71, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 72, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-bajg-18
-      - lindahl-1955-skilling-christopher
-      - metallanalyser-2016-1-g18-lund-skilling
-  - id: c-a4e8afcd
-    class_id: c-a4e8afcd
-    label: unified-dk-galster-bajg-19
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Sterling
-    year_first: 1444
-    year_last: 1444
-    year_label: '1444'
-    ruler: Christoffer III
-    mint: Malmø
-    catalog:
-      galster: '19'
-      sieg: '1'
-      galster_volume: galster1972-christoffer3
-      others:
-        - Jesse# 704
-      jesse: '704'
-    metal: silver_billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.4055
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 77
-      - value: 0.479
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 76
-      - value: 0.515
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 75
-      - value: 0.5495
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 74
-    weight_rough_g:
-      - value: 0.51
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 77
-      - value: 0.62
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 76
-      - value: 0.65
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 74
-      - value: 0.67
-        source: galster
-      - value: 0.71
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 75
-    weight_range_g:
-      - min: 0.61
-        max: 0.73
-        source: Lindahl 1955 (NNÅ 1955), s. 85
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/bajg19.htm
-        ref: Galster 19 (bajg) — danskmoent.dk bajg19.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 85
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 74, Appendix (XRF); Treklöver
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 75, Appendix (XRF); Treklöver
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 76, Appendix (XRF); Treklöver
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 77, Appendix (XRF); Treklöver
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-bajg-19
-      - lindahl-1955-malmoe-sterling
-      - metallanalyser-2016-1-g19-malmo-sterling
   - id: c-df58ec36
     class_id: c-df58ec36
     label: unified-dk-galster-bajg-20
@@ -103452,6 +103394,8 @@ coins:
           - 1481
     year_label: 1448-1481
     ruler: Christian I
+    inscription_obv: CRISTIERN REX D
+    inscription_rev: MON-MAL-MOI-ENS
     nominal_equiv: 4 Penning
     mint: Malmø
     catalog:
@@ -103545,6 +103489,8 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 1
       - value: 0.72
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 20
+      - value: 0.72
+        source: ikmk
       - value: 0.75
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 3
       - value: 0.79
@@ -103575,6 +103521,8 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 11
     diameter_mm:
       - value: 17.0
+        source: ikmk
+      - value: 17.0
         source: numista
     sources:
       - type: literature
@@ -103583,6 +103531,9 @@ coins:
       - type: literature
         url: https://en.numista.com/143575
         ref: Numista N#143575 — 1 Hvid - Christian I (Malmö) - Denmark
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18206590
+        ref: IKMK Berlin 18206590
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139317
         ref: KMM 139317 (Inv. KP 1715.402)
@@ -103710,6 +103661,7 @@ coins:
     composed_of:
       - dk-galster-c1g-23
       - dk-numista-143575
+      - ikmk-18206590
       - kmk-139317
       - kmk-292783
       - metallanalyser-2017-1-g23
@@ -108887,11 +108839,11 @@ coins:
     year_last: 1420
     year_ranges:
       -   - 1405
-          - 1405
-      -   - 1413
           - 1420
-    year_label: 1405, 1413-1420
+    year_label: 1405-1420
     ruler: Erik VII
+    inscription_obv: ERICVS REX D S N
+    inscription_rev: MONETA LVNDENSI
     nominal_equiv: 3 Penning
     mint: Lund
     catalog:
@@ -108960,6 +108912,8 @@ coins:
           en: 'A piece with a damaged edge (appendix: «ks kantskada»). Its weight may therefore lie below that of an undamaged piece; whether and by how much is not stated.'
           uk: 'Монета з пошкодженим краєм (додаток: «ks kantskada»). Тому її вага може бути нижчою за вагу непошкодженої монети; чи так і наскільки, не вказано.'
           da: 'Et stykke med beskadiget rand (appendiks: «ks kantskada»). Vægten kan derfor ligge under et ubeskadiget stykkes; om og hvor meget, er ikke angivet.'
+      - value: 0.67
+        source: ikmk
       - value: 0.69
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 21
       - value: 0.69
@@ -108981,6 +108935,8 @@ coins:
         max: 1.0
         source: Lindahl 1955 (NNÅ 1955), s. 78
     diameter_mm:
+      - value: 16.0
+        source: ikmk
       - value: 17.8
         source: numista
     sources:
@@ -108990,6 +108946,9 @@ coins:
       - type: literature
         url: https://en.numista.com/76322
         ref: Numista N#76322 — Sterling - Erik of Pommern (Lund) - Denmark
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18206588
+        ref: IKMK Berlin 18206588
       - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 78; FL 3-15
@@ -109032,6 +108991,11 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22, Appendix (XRF); Ros
+    note:
+      de: Engelsk
+      en: Engelsk
+      uk: Engelsk
+      da: Engelsk
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
@@ -109045,6 +109009,7 @@ coins:
     composed_of:
       - dk-galster-epomg-9
       - dk-numista-76322
+      - ikmk-18206588
       - lindahl-1955-lund-sterling
       - metallanalyser-2016-1-g9-lund-sterling
   - id: c-31bb88e8
@@ -109982,47 +109947,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ikmk-18203664
-  - id: c-d5631196
-    class_id: c-d5631196
-    label: unified-ikmk-18206588
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Sterling
-    year_first: 1405
-    year_last: 1420
-    year_ranges:
-      -   - 1405
-          - 1420
-    year_label: 1405-1420
-    ruler: Erich von Pommern
-    inscription_obv: ERICVS REX D S N
-    inscription_rev: MONETA LVNDENSI
-    mint: Lund
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.67
-        source: ikmk
-    diameter_mm:
-      - value: 16.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18206588
-        ref: IKMK Berlin 18206588
-    note:
-      de: Engelsk
-      en: Engelsk
-      uk: Engelsk
-      da: Engelsk
-    issuing_entity: danish_realm
-    composed_of:
-      - ikmk-18206588
   - id: c-1d0195c8
     class_id: c-1d0195c8
     label: unified-ikmk-18206589
@@ -110059,43 +109983,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ikmk-18206589
-  - id: c-8b8d368f
-    class_id: c-8b8d368f
-    label: unified-ikmk-18206590
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1448
-    year_last: 1481
-    year_ranges:
-      -   - 1448
-          - 1481
-    year_label: 1448-1481
-    _year_demoted: true
-    ruler: Christian I
-    inscription_obv: CRISTIERN REX D
-    inscription_rev: MON-MAL-MOI-ENS
-    mint: Malmø
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.72
-        source: ikmk
-    diameter_mm:
-      - value: 17.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18206590
-        ref: IKMK Berlin 18206590
-    issuing_entity: danish_realm
-    composed_of:
-      - ikmk-18206590
   - id: c-7eaa565d
     class_id: c-7eaa565d
     label: unified-ikmk-18206591
@@ -263182,30 +263069,6 @@ coins:
     composed_of:
       - kmk-741251
       - kmk-741347
-  - id: c-2fcd0341
-    class_id: c-2fcd0341
-    label: unified-kmk-741278
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1519
-    year_last: 1519
-    year_label: '1519'
-    ruler: Erik Valkendorf
-    catalog:
-      schou: '1'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/741278
-        ref: KMM 741278 (Inv. FP 3144.12)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-741278
   - id: c-0253182f
     class_id: c-0253182f
     label: unified-kmk-741348
