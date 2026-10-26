@@ -195,7 +195,8 @@ class Registry:
 
     # ---- the recognition rule -------------------------------------------
     def inherit(self, partitions: dict[str, list[tuple[frozenset[str], str]]],
-                today: str | None = None) -> dict[tuple[str, frozenset[str]], str]:
+                today: str | None = None,
+                weak: set | frozenset = frozenset()) -> dict[tuple[str, frozenset[str]], str]:
         """Recognise the merger's partition. `partitions` = {entity: [(specimens,
         label)]} for every entity processed in this run. Returns {(entity,
         specimens): record id}. Mutates the registry; `self.touched` lists the
@@ -228,7 +229,9 @@ class Registry:
         labels = {key: label for ent, cl in partitions.items() for spec, label in cl
                   for key in [(ent, spec)]}
         for rid, keys in claims.items():
-            keys.sort(key=lambda k: (-overlap[k][rid], -len(k[1]), labels[k], k[0]))
+            # `weak` classes (all members excluded from the render) yield to
+            # every live claimant, whatever the overlap
+            keys.sort(key=lambda k: (k in weak, -overlap[k][rid], -len(k[1]), labels[k], k[0]))
             keeper, *others = keys
             assigned[keeper] = rid
             rec = self.records[rid]

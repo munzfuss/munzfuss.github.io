@@ -5640,7 +5640,8 @@ def _recognise_classes(results: dict[str, dict], all_seeds_by_id: dict[str, dict
     registry = Registry.load_all()
     # A seed excluded from the render (`scope: member`, undocumented stub) is
     # isolated as a singleton; it claims a class identity by itself only, not
-    # with the specimens §9a thinning folded into it. Otherwise a thinned KMM
+    # with the specimens §9a thinning folded into it, and only after every
+    # live class (`weak`). Otherwise a thinned KMM
     # representative excluded from a class outweighs the class it left and
     # walks off with its id (2026-10-26: c-5be595df, Galster 23, went to the
     # excluded kmk-643061 and the class's assignment with it).
@@ -5652,10 +5653,19 @@ def _recognise_classes(results: dict[str, dict], all_seeds_by_id: dict[str, dict
             return frozenset(members)
         return specimens_of(members, rep_dead)
 
+    def _weak(u: dict) -> bool:
+        members = u.get("composed_of") or []
+        return bool(members) and all(m in excluded for m in members)
+
     parts: dict[str, list[tuple[frozenset, str]]] = {}
+    weak: set[tuple[str, frozenset]] = set()
     for ent, r in results.items():
         parts[ent] = [(_spec(u), u["id"]) for u in r["unified_entries"]]
-    assigned = registry.inherit(parts)
+        weak |= {(ent, _spec(u)) for u in r["unified_entries"] if _weak(u)}
+    # An all-excluded class yields an old id to any live class that shares it,
+    # even on a tie (2026-10-26: kmk-290997 lost its final when the excluded
+    # kmk-290995 kept the id of their old three-member class).
+    assigned = registry.inherit(parts, weak=weak)
     stats = Counter()
     for ent, r in results.items():
         stamped = []
