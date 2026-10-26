@@ -269,6 +269,11 @@ def _undated_hint(line: str) -> str | None:
     return None
 
 
+_HEDGED_SENTENCE_RE = re.compile(r"[^.\n]*\b(?:kunne|muligvis|måske|maaske)\b[^.\n]*\.?",
+                                 re.IGNORECASE)
+_SPECIMEN_LINE_RE = re.compile(r"^[\s#]*Eksemplar(?:er)?\s+fra\b.*$", re.IGNORECASE | re.MULTILINE)
+
+
 def _parse_mint_line(text: str) -> str | None:
     """The line after H1 typically has the mint.
 
@@ -278,6 +283,13 @@ def _parse_mint_line(text: str) -> str | None:
     the vocabulary — came back as the bare second arm «Oslo», dropping
     Galster's own statement that the mint is unsettled (§4).
     """
+    # A mint named only as a possibility is not the page's mint: fr/f1g79
+    # «skønt den ligeså godt kunne være slået i hertugdømmerne (Gottorp)» —
+    # the overview gives «ukendt møntsted» (curator 2026-10-26). Specimen
+    # lines name a holding museum's town («Eksemplar fra Kulturhistorisk
+    # Museum, Oslo»), not a mint.
+    text = _HEDGED_SENTENCE_RE.sub(" ", text)
+    text = _SPECIMEN_LINE_RE.sub(" ", text)
     m = re.search(MINT_ALTERNATIVE, text, re.IGNORECASE)
     if m:
         return re.sub(r"\s+", " ", m.group(0)).strip()
