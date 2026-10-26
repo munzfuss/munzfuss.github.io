@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15264 per-source seed entries.
-# Output: 6026 unified entries (one per physical coin).
+# Output: 6034 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -102428,7 +102428,6 @@ coins:
       galster: '31'
       schou:
         - 124-167
-        - 134-135
         - 142-144
       galster_volume: hg
       others:
@@ -102546,9 +102545,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/150281
         ref: KMM 150281 (Inv. KP 1656.32)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/309773
-        ref: KMM 309773 (Inv. FP 7300.4)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/333076
         ref: KMM 333076 (Inv. FP 10352.3)
@@ -102745,7 +102741,6 @@ coins:
       - kmk-140143
       - kmk-150275
       - kmk-150281
-      - kmk-309773
       - kmk-333076
       - kmk-333077
       - kmk-333078
@@ -120564,17 +120559,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/131463
         ref: KMM 131463 (Inv. FP 2519.59)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150307
-        ref: KMM 150307 (Inv. KP 1656.6)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150308
-        ref: KMM 150308 (Inv. KP 1656.5)
     issuing_entity: danish_realm
     composed_of:
       - kmk-131463
-      - kmk-150307
-      - kmk-150308
   - id: c-5cf7b15b
     class_id: c-5cf7b15b
     label: unified-kmk-131464
@@ -151861,6 +151848,48 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-150306
+  - id: c-615318ca
+    class_id: c-615318ca
+    label: unified-kmk-150307
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Christian I
+    catalog:
+      schou: '18'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150307
+        ref: KMM 150307 (Inv. KP 1656.6)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-150307
+  - id: c-76472670
+    class_id: c-76472670
+    label: unified-kmk-150308
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Christian I
+    catalog:
+      schou: '18'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/150308
+        ref: KMM 150308 (Inv. KP 1656.5)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-150308
   - id: c-c82b7e31
     class_id: c-c82b7e31
     label: unified-kmk-150309
@@ -151890,26 +151919,19 @@ coins:
     kind: kurant
     nominal: 1 Hvid
     ruler: Christian I
-    mint: Malmø
     catalog:
       schou: '1'
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/150310
         ref: KMM 150310 (Inv. KP 1656.3)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/830522
-        ref: KMM 830522 (Inv. FP 2481.87)
-      - type: museum
-        ref: KMM 404262 (Inv. FP 2481.87)
     issuing_entity: danish_realm
     composed_of:
       - kmk-150310
-      - kmk-404262
   - id: c-e502944b
     class_id: c-e502944b
     label: unified-kmk-150312
@@ -152682,13 +152704,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/155167
         ref: KMM 155167 (Inv. FP 4570.3)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/355602
-        ref: KMM 355602 (Inv. FP 4791.6)
     issuing_entity: danish_realm
     composed_of:
       - kmk-155167
-      - kmk-355602
   - id: c-69d326cb
     class_id: c-69d326cb
     label: unified-kmk-155175
@@ -171724,13 +171742,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/168055
         ref: KMM 168055 (Inv. FP 2533.9)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/296900
-        ref: KMM 296900 (Inv. FP 2608.37)
     issuing_entity: danish_realm
     composed_of:
       - kmk-168055
-      - kmk-296900
   - id: c-125499b3
     class_id: c-125499b3
     label: unified-kmk-168062
@@ -195527,6 +195541,28 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-296899
+  - id: c-aec7c87e
+    class_id: c-aec7c87e
+    label: unified-kmk-296900
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Christian I
+    mint: Malmø
+    catalog:
+      schou: '20'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/296900
+        ref: KMM 296900 (Inv. FP 2608.37)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-296900
   - id: c-43c55aa3
     class_id: c-43c55aa3
     label: unified-kmk-297226
@@ -200045,6 +200081,28 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-309772
+  - id: c-3ee189c3
+    class_id: c-3ee189c3
+    label: unified-kmk-309773
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Hans
+    mint: Malmø
+    catalog:
+      schou: 134-135
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/309773
+        ref: KMM 309773 (Inv. FP 7300.4)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-309773
   - id: c-e976251e
     class_id: c-e976251e
     label: unified-kmk-309979
@@ -212157,6 +212215,28 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-355593
+  - id: c-347586b4
+    class_id: c-347586b4
+    label: unified-kmk-355602
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Christian I
+    mint: Malmø
+    catalog:
+      galster: '33'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/355602
+        ref: KMM 355602 (Inv. FP 4791.6)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-355602
   - id: c-02ed0bbe
     class_id: c-02ed0bbe
     label: unified-kmk-355610
@@ -218499,13 +218579,33 @@ coins:
         ref: KMM 830521 (Inv. FP 2481.88)
       - type: museum
         ref: KMM 404261 (Inv. FP 2481.88)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/622141
-        ref: KMM 622141 (Inv. FP 2533.10)
     issuing_entity: danish_realm
     composed_of:
       - kmk-404261
-      - kmk-622141
+  - id: c-adf376de
+    class_id: c-adf376de
+    label: unified-kmk-404262
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Christian I
+    mint: Malmø
+    catalog:
+      schou: '1'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/830522
+        ref: KMM 830522 (Inv. FP 2481.87)
+      - type: museum
+        ref: KMM 404262 (Inv. FP 2481.87)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-404262
   - id: c-a7f7c949
     class_id: c-a7f7c949
     label: unified-kmk-404373
@@ -220707,12 +220807,30 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/422300
         ref: KMM 422300 (Inv. FP 2427.27)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-422300
+  - id: c-29f2a279
+    class_id: c-29f2a279
+    label: unified-kmk-422301
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Christian I
+    mint: Malmø
+    catalog:
+      schou: '27'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/422301
         ref: KMM 422301 (Inv. FP 2427.26)
     issuing_entity: danish_realm
     composed_of:
-      - kmk-422300
       - kmk-422301
   - id: c-0dfc42ef
     class_id: c-0dfc42ef
@@ -240689,6 +240807,28 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-622138
+  - id: c-c0f243e0
+    class_id: c-c0f243e0
+    label: unified-kmk-622141
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    ruler: Christian I
+    mint: Malmø
+    catalog:
+      schou: '71'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/622141
+        ref: KMM 622141 (Inv. FP 2533.10)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-622141
   - id: c-7539b8d3
     class_id: c-7539b8d3
     label: unified-kmk-624528

@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 4651 per-source seed entries.
-# Output: 1647 unified entries (one per physical coin).
+# Output: 1648 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -6163,16 +6163,14 @@ coins:
     ruler: Hans
     catalog:
       galster: '155'
-      schou:
-        - 187-190
-        - 187-213
+      schou: 187-213
       schive: XIV.12-25
       galster_volume: hg
       others:
         - Ernst 1940# 3-13
         - Sømod# 125
     metal: billon
-    metal_verified: true
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -6202,14 +6200,10 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/371848
         ref: KMM 371848 (Inv. FP 10473.15)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/533276
-        ref: KMM 533276 (Inv. FP 10737.10)
     issuing_entity: danish_norway
     composed_of:
       - dk-galster-hg-155
       - kmk-371848
-      - kmk-533276
   - id: c-de626989
     class_id: c-de626989
     label: unified-dk-galster-hg-156
@@ -71340,6 +71334,36 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-494539
+  - id: c-d5826f14
+    class_id: c-d5826f14
+    label: unified-kmk-533276
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1483
+    year_last: 1513
+    year_ranges:
+      -   - 1483
+          - 1513
+    year_label: 1483-1513
+    _year_demoted: true
+    ruler: Hans
+    catalog:
+      galster: '155'
+      schou: 187-190
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/533276
+        ref: KMM 533276 (Inv. FP 10737.10)
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-533276
   - id: c-017aa46b
     class_id: c-017aa46b
     label: unified-kmk-562553
