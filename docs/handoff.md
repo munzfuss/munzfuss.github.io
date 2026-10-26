@@ -16,6 +16,25 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-26 — every Union-era Galster number end to end; `erik_gotland`
+
+- Inventory (cache → seed → final): every cached Galster coin page has a seed
+  and every Galster seed reaches final (G257/258 excluded as cast fantasy,
+  G134 out by year — open). Numbers absent from danskmoent altogether:
+  110-113, 178-191, 208-213, 217-229, 239-245; table-only and not seeded:
+  G175 (Oslo 1536, skilling.htm), G204 / G206 (Sweden, bajern.htm);
+  252-256 forgeries.
+- `3691a60`: `pommgals.htm` harvested (Erik «oversigt efter Galster»); its
+  rows give G6 / G8 / G12 (numbers link overviews, no own page), dated from
+  erikpomm.htm lines; G11 = `philsosl.htm` (Søsling, u.år 1424). Curator:
+  Erik's coins after he ceased to be king stay off the Denmark page → new
+  entity `erik_gotland` (`mint_registry.erik_gotland_entity`, Erik VII,
+  year_first > 1439), not consumed by denmark.yml; G138 «ERIC GOTOR REX».
+- `7b5bc4f`: G1, G3, G6, G15 → luebischer_muenzfuss phase 0 kurant (rule
+  2026-10-24). G8 / G11 / G12 / G23 joined other sources' classes already in
+  phase 0. Open: Gotland gote G135/136/139/140 and hulpenning G137 left
+  unsorted (own system); G15 nominal stays «1 Kobbersterling».
+
 ## 2026-10-25 — Lybsk Møntfod data from c. 1370 (Galster 1); `ship/rebuild-3-fuss` merged
 
 - **Merged** `ship/rebuild-3-fuss` into main (fast-forward, 72 commits) on the
