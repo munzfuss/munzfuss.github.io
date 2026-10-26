@@ -44,5 +44,22 @@ class YearWindow(unittest.TestCase):
         self.assertEqual(len(errs), 2)
 
 
+class MarkedYearOutOfUnion(unittest.TestCase):
+    """Every member muted: a year a curator marked (year_mark) stays out of
+    the class's year (Galster 140, curator 2026-10-26)."""
+
+    def test_marked_member_excluded(self):
+        reign = {"year_first": 1448, "year_last": 1481, "year_ranges": [[1448, 1481]],
+                 "year_verified": False, "_year_demoted": True}
+        kmm = {"year_first": 1520, "year_last": 1520, "year_ranges": [[1520, 1520]],
+               "_year_demoted": True, "year_mark": {"kind": "suspect", "reason": NOTE}}
+        self.assertEqual(M._union_year_ranges([reign, kmm]), [[1448, 1481]])
+
+    def test_marked_member_alone_still_counts(self):
+        kmm = {"year_first": 1520, "year_last": 1520, "year_ranges": [[1520, 1520]],
+               "_year_demoted": True, "year_mark": {"kind": "suspect", "reason": NOTE}}
+        self.assertEqual(M._union_year_ranges([kmm]), [[1520, 1520]])
+
+
 if __name__ == "__main__":
     unittest.main()

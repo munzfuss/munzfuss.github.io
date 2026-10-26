@@ -4047,8 +4047,13 @@ def _union_year_ranges(members: list[dict]) -> list[list[int]] | None:
     discrete_years, loose_ranges = _collect(
         [m for m in members if not m.get("_year_demoted")])
     if not discrete_years and not loose_ranges:
+        # A year a curator marked (`year_mark`) is shown as an alternative,
+        # never as the class's year — even here, when every member is muted
+        # (Galster 140: the Christian I reign span vs KMM's 1520 after Schou,
+        # curator 2026-10-26). It counts only if no unmarked year is left.
+        muted = [m for m in members if m.get("_year_demoted")]
         discrete_years, loose_ranges = _collect(
-            [m for m in members if m.get("_year_demoted")])
+            [m for m in muted if not m.get("year_mark")] or muted)
 
     if not discrete_years and not loose_ranges:
         return None
