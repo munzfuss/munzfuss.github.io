@@ -1,0 +1,66 @@
+# Curator per-coin EXCLUSIONS — entity `sonderburg_duchy`.
+#
+# Coins the curator has decided are out-of-scope and must NOT render even in the
+# `seed_unsorted` bucket — patterns / Prøvemønter, off-strikes, exonumia,
+# undocumented stubs — that the rule-based §9 seed filters missed (usually
+# because the SOURCE mislabelled the piece). Distinct from the other decision
+# surfaces: merge_decisions RESHAPE, classification_decisions CLASSIFY, this one
+# REMOVES a coin with a recorded reason.
+#
+# `id` is a SEED id (as in data/v2/seed/<src>/<entity>.yml). A final is dropped
+# when its own unified id OR any composed_of member resolves to a listed id. The
+# coin's seed / seed_unified SURVIVE (provenance / audit trail); the absorb drops
+# it from `final` so it never reaches the render.
+#
+# category vocab: pattern | off_strike | off_nominal | exonumia |
+#                 undocumented_stub | out_of_scope | duplicate_noise
+#
+# Consumed by scripts/maintenance/absorb_seeds_into_final_v2.py (_load_exclusions
+# + the exclusion purge in process_entity). Applied on every absorb run.
+
+entity_id: sonderburg_duchy
+exclusions:
+  - id: kmk-200939
+    category: undocumented_stub
+    scope: member
+    reason: 'KMM FP 3108.11611: no catalogue index, no weight, no image (kmm-triage category 1, seed_unsorted, Lybsk-era rulers). Curator (Serhii) 2026-10-26: «так».'
+  - id: kmk-200940
+    category: undocumented_stub
+    scope: member
+    reason: 'KMM FP 3108.11610: no catalogue index, no weight, no image (kmm-triage category 1, seed_unsorted, Lybsk-era rulers). Curator (Serhii) 2026-10-26: «так».'
+  - id: kmk-328158
+    category: undocumented_stub
+    scope: member
+    reason: 'KMM FP 6454.13: its only content is the index jesse 11, 13-14, given by no other source — no weight, no image (kmm-triage 2.2). Curator (Serhii) 2026-10-26: «так».'
+  - id: kmk-367913
+    category: undocumented_stub
+    scope: member
+    reason: 'KMM FP 4655.1: no catalogue index, no weight, no image (kmm-triage category 1, seed_unsorted, Lybsk-era rulers). Curator (Serhii) 2026-10-26: «так».'
+  - id: kmk-372979
+    category: undocumented_stub
+    scope: member
+    reason: 'KMM FP 4250.4: no catalogue index, no weight, no image (kmm-triage category 1, seed_unsorted, Lybsk-era rulers). Curator (Serhii) 2026-10-26: «так».'
+  - id: kmk-575715
+    category: undocumented_stub
+    scope: member
+    reason: 'KMM FP 533.195: no catalogue index, no weight, no image (kmm-triage category 1, seed_unsorted, Lybsk-era rulers). Curator (Serhii) 2026-10-26: «так».'
+  - id: kmk-575716
+    category: undocumented_stub
+    scope: member
+    reason: 'KMM FP 533.194: no catalogue index, no weight, no image (kmm-triage category 1, seed_unsorted, Lybsk-era rulers). Curator (Serhii) 2026-10-26: «так».'
+  - id: kmk-575717
+    category: undocumented_stub
+    scope: member
+    reason: 'KMM FP 533.193: no catalogue index, no weight, no image (kmm-triage category 1, seed_unsorted, Lybsk-era rulers). Curator (Serhii) 2026-10-26: «так».'
+  - id: kmk-575726
+    category: undocumented_stub
+    scope: member
+    reason: 'KMM FP 533.184: no catalogue index, no weight, no image (kmm-triage category 1, seed_unsorted, Lybsk-era rulers). Curator (Serhii) 2026-10-26: «так».'
+  - id: kmk-575727
+    category: undocumented_stub
+    scope: member
+    reason: 'KMM FP 533.183: no catalogue index, no weight, no image (kmm-triage category 1, seed_unsorted, Lybsk-era rulers). Curator (Serhii) 2026-10-26: «так».'
+  - id: kmk-575728
+    category: undocumented_stub
+    scope: member
+    reason: 'KMM FP 533.182: no catalogue index, no weight, no image (kmm-triage category 1, seed_unsorted, Lybsk-era rulers). Curator (Serhii) 2026-10-26: «так».'

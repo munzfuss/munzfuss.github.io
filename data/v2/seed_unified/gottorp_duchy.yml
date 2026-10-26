@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `gottorp_duchy`.
-# Generated 2026-10-24 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-26 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 816 per-source seed entries.
-# Output: 442 unified entries (one per physical coin).
+# Output: 444 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gottorp_duchy
-generated_at: '2026-10-24'
+generated_at: '2026-10-26'
 coins:
   - id: c-3f6e23f9
     class_id: c-3f6e23f9
@@ -4039,8 +4039,8 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-290994
-  - id: c-0f1952f7
-    class_id: c-0f1952f7
+  - id: c-50ddf7da
+    class_id: c-50ddf7da
     label: unified-kmk-290995
     fuss: seed_unsorted
     phase: kmk
@@ -4055,8 +4055,6 @@ coins:
       lange: 759-762
       others:
         - Auk.Kat.# 5033
-        - Auk.Kat.# 5032
-        - Auk.Kat.# 5031
     metal_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -4065,16 +4063,62 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/290995
         ref: KMM 290995 (Inv. KP 1590.75)
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-290995
+  - id: c-2b13214b
+    class_id: c-2b13214b
+    label: unified-kmk-290996
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: ⅔ Thaler
+    year_first: 1690
+    year_last: 1690
+    year_label: '1690'
+    ruler: Hans Adolf
+    mint: Pløn
+    catalog:
+      lange: 759-762
+      others:
+        - Auk.Kat.# 5032
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/290996
         ref: KMM 290996 (Inv. KP 1590.74)
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - kmk-290996
+  - id: c-0f1952f7
+    class_id: c-0f1952f7
+    label: unified-kmk-290997
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: ⅔ Thaler
+    year_first: 1690
+    year_last: 1690
+    year_label: '1690'
+    ruler: Hans Adolf
+    mint: Pløn
+    catalog:
+      lange: 759-762
+      others:
+        - Auk.Kat.# 5031
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/290997
         ref: KMM 290997 (Inv. KP 1590.73)
     issuing_entity: gottorp_duchy
     composed_of:
-      - kmk-290995
-      - kmk-290996
       - kmk-290997
   - id: c-3e1390f0
     class_id: c-3e1390f0

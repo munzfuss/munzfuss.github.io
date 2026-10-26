@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 4651 per-source seed entries.
-# Output: 1648 unified entries (one per physical coin).
+# Output: 1649 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2985,16 +2985,12 @@ coins:
         url: https://ikmk.smb.museum/object?id=18244024
         ref: IKMK Berlin 18244024
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/330923
-        ref: KMM 330923 (Inv. FP 6225.1)
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/679617
         ref: KMM 679617 (Inv. RP 1538.1)
     issuing_entity: danish_norway
     composed_of:
       - dk-bruun-9261
       - ikmk-18244024
-      - kmk-330923
       - kmk-679617
   - id: c-7090a1ff
     class_id: c-7090a1ff
@@ -58396,6 +58392,33 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-330444
+  - id: c-6c457301
+    class_id: c-6c457301
+    label: unified-kmk-330923
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1510
+    year_last: 1522
+    year_ranges:
+      -   - 1510
+          - 1522
+    year_label: 1510-1522
+    ruler: Erik Valkendorf
+    catalog:
+      galster: '183'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/330923
+        ref: KMM 330923 (Inv. FP 6225.1)
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-330923
   - id: c-ee6e94ef
     class_id: c-ee6e94ef
     label: unified-kmk-331170

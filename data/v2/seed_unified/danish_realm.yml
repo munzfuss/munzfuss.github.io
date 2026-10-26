@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15283 per-source seed entries.
-# Output: 6032 unified entries (one per physical coin).
+# Output: 6034 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -203131,16 +203131,64 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317652
         ref: KMM 317652 (Inv. FP 7609.9)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-317652
+  - id: c-d9e70054
+    class_id: c-d9e70054
+    label: unified-kmk-317653
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid(?)
+    year_first: 1483
+    year_last: 1513
+    year_ranges:
+      -   - 1483
+          - 1513
+    year_label: 1483-1513
+    _year_demoted: true
+    ruler: Hans
+    ruler_verified: false
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317653
         ref: KMM 317653 (Inv. FP 7609.8)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-317653
+  - id: c-443cd6d2
+    class_id: c-443cd6d2
+    label: unified-kmk-317654
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Hvid(?)
+    year_first: 1483
+    year_last: 1513
+    year_ranges:
+      -   - 1483
+          - 1513
+    year_label: 1483-1513
+    _year_demoted: true
+    ruler: Hans
+    ruler_verified: false
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317654
         ref: KMM 317654 (Inv. FP 7609.7)
     issuing_entity: danish_realm
     composed_of:
-      - kmk-317652
-      - kmk-317653
       - kmk-317654
   - id: c-d832d320
     class_id: c-d832d320
