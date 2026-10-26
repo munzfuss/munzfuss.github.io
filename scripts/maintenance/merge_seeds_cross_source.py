@@ -5578,16 +5578,29 @@ def _recognise_classes(results: dict[str, dict], all_seeds_by_id: dict[str, dict
     from lib.class_registry import (Registry, rep_to_dead_index, specimens_of)
     rep_dead = rep_to_dead_index(all_seeds_by_id.values())
     registry = Registry.load_all()
+    # A seed excluded from the render (`scope: member`, undocumented stub) is
+    # isolated as a singleton; it claims a class identity by itself only, not
+    # with the specimens §9a thinning folded into it. Otherwise a thinned KMM
+    # representative excluded from a class outweighs the class it left and
+    # walks off with its id (2026-10-26: c-5be595df, Galster 23, went to the
+    # excluded kmk-643061 and the class's assignment with it).
+    excluded = _excluded_seed_ids()
+
+    def _spec(u: dict) -> frozenset:
+        members = u.get("composed_of") or []
+        if members and all(m in excluded for m in members):
+            return frozenset(members)
+        return specimens_of(members, rep_dead)
+
     parts: dict[str, list[tuple[frozenset, str]]] = {}
     for ent, r in results.items():
-        parts[ent] = [(specimens_of(u.get("composed_of") or [], rep_dead), u["id"])
-                      for u in r["unified_entries"]]
+        parts[ent] = [(_spec(u), u["id"]) for u in r["unified_entries"]]
     assigned = registry.inherit(parts)
     stats = Counter()
     for ent, r in results.items():
         stamped = []
         for u in r["unified_entries"]:
-            cid = assigned[(ent, specimens_of(u.get("composed_of") or [], rep_dead))]
+            cid = assigned[(ent, _spec(u))]
             rec = registry.records[cid]
             stats["new" if rec.created == date.today().isoformat() and rec.legacy_id is None
                   else "inherited"] += 1
