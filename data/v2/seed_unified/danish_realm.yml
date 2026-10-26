@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-10-26 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-27 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15283 per-source seed entries.
-# Output: 6017 unified entries (one per physical coin).
+# Output: 6014 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-10-26'
+generated_at: '2026-10-27'
 coins:
   - id: c-da3c53ad
     class_id: c-da3c53ad
@@ -15169,29 +15169,55 @@ coins:
     phase: galster
     kind: kurant
     nominal: 1 Gote
-    year_first: 1448
-    year_last: 1481
+    year_first: 1480
+    year_last: 1500
     year_ranges:
-      -   - 1448
-          - 1481
-    year_label: 1448-1481
-    _year_demoted: true
+      -   - 1480
+          - 1500
+    year_label: 1480-1500
     ruler: Christian I
     mint: Visby
     catalog:
       galster: '140'
       others:
         - Hauberg# 109-113
+        - Lagerqvist# 5
       galster_volume: hg
       schou: '33'
       hauberg: '110'
-    metal: silver
-    metal_verified: false
-    fineness_verified: false
+    metal: billon
+    metal_verified: true
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.2678
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 120
+      - value: 0.2703
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 119
+      - value: 0.2754
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 118
+      - value: 0.2784
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 117
+      - value: 0.4037
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 116
+      - value: 0.4552
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 115
+    weight_rough_g:
+      - value: 0.67
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 120
+      - value: 0.75
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 115
+      - value: 0.75
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 119
+      - value: 0.85
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 117
+      - value: 0.87
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 116
+      - value: 0.96
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 118
     weight_range_g:
       - min: 0.75
         max: 0.8
@@ -15221,10 +15247,38 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139328
         ref: KMM 139328 (Inv. KP 1715.391)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 115, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 116, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 117, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 118, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 119, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 120, Appendix (XRF)
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-hg-140
       - kmk-139328
+      - metallanalyser-2017-3-ll5-gotland
   - id: c-d8e0333d
     class_id: c-d8e0333d
     label: unified-dk-galster-hg-141
@@ -15282,12 +15336,12 @@ coins:
     phase: galster
     kind: kurant
     nominal: 1 Hvid
-    year_first: 1483
-    year_last: 1513
+    year_first: 1500
+    year_last: 1520
     year_ranges:
-      -   - 1483
-          - 1513
-    year_label: 1483-1513
+      -   - 1500
+          - 1520
+    year_label: 1500-1520
     ruler: Hans
     mint: Visby
     catalog:
@@ -15297,6 +15351,8 @@ coins:
       others:
         - Hauberg# 103-108
         - Sømod# 163
+        - Lagerqvist# 7
+        - Lagerqvist# 7a
     metal: billon
     metal_verified: true
     fineness_verified: true
@@ -15305,15 +15361,51 @@ coins:
     verified: false
     year_verified: false
     fineness:
+      - value: 0.0904
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 132
+      - value: 0.1184
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 131
       - value: 0.1198
         source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 130
       - value: 0.1274
         source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 129
+      - value: 0.132
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 127
+      - value: 0.1322
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 128
+      - value: 0.1349
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 126
+      - value: 0.1396
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 125
+      - value: 0.1401
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 124
+      - value: 0.1487
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 123
+      - value: 0.1524
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 122
       - value: 0.1638
         source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 121
     weight_rough_g:
+      - value: 0.41
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 127
+      - value: 0.48
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 132
+      - value: 0.51
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 126
+      - value: 0.55
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 122
+      - value: 0.57
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 124
+      - value: 0.57
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 125
+      - value: 0.58
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 131
+      - value: 0.63
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 123
       - value: 0.66
         source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 121
+      - value: 0.67
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 128
       - value: 0.7
         source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 129
       - value: 0.7
@@ -15343,6 +15435,33 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
         ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 130, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 122, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 132, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 123, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 124, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 125, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 126, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 127, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 128, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 131, Appendix (XRF)
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
@@ -15356,6 +15475,8 @@ coins:
     composed_of:
       - dk-galster-hg-142
       - metallanalyser-2017-3-g142-gotland
+      - metallanalyser-2017-3-ll7-gotland
+      - metallanalyser-2017-3-ll7a-gotland
   - id: c-335589dd
     class_id: c-335589dd
     label: unified-dk-galster-hg-146
@@ -266997,228 +267118,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - metallanalyser-2017-3-ll4d-gotland
-  - id: c-d205652c
-    class_id: c-d205652c
-    label: unified-metallanalyser-2017-3-ll5-gotland
-    fuss: seed_unsorted
-    phase: metallanalyser
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1480
-    year_last: 1500
-    year_ranges:
-      -   - 1480
-          - 1500
-    year_label: 1480-1500
-    mint: Visby
-    catalog:
-      others:
-        - Lagerqvist# 5
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.2678
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 120
-      - value: 0.2703
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 119
-      - value: 0.2754
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 118
-      - value: 0.2784
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 117
-      - value: 0.4037
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 116
-      - value: 0.4552
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 115
-    weight_rough_g:
-      - value: 0.67
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 120
-      - value: 0.75
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 115
-      - value: 0.75
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 119
-      - value: 0.85
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 117
-      - value: 0.87
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 116
-      - value: 0.96
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 118
-    sources:
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 115, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 116, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 117, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 118, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 119, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 120, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - metallanalyser-2017-3-ll5-gotland
-  - id: c-f02766b2
-    class_id: c-f02766b2
-    label: unified-metallanalyser-2017-3-ll7-gotland
-    fuss: seed_unsorted
-    phase: metallanalyser
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1500
-    year_last: 1520
-    year_ranges:
-      -   - 1500
-          - 1520
-    year_label: 1500-1520
-    mint: Visby
-    catalog:
-      others:
-        - Lagerqvist# 7
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.0904
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 132
-      - value: 0.1524
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 122
-    weight_rough_g:
-      - value: 0.48
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 132
-      - value: 0.55
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 122
-    sources:
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 122, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 132, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - metallanalyser-2017-3-ll7-gotland
-  - id: c-757d43d8
-    class_id: c-757d43d8
-    label: unified-metallanalyser-2017-3-ll7a-gotland
-    fuss: seed_unsorted
-    phase: metallanalyser
-    kind: kurant
-    nominal: 1 Hvid
-    year_first: 1500
-    year_last: 1520
-    year_ranges:
-      -   - 1500
-          - 1520
-    year_label: 1500-1520
-    mint: Visby
-    catalog:
-      others:
-        - Lagerqvist# 7a
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.1184
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 131
-      - value: 0.132
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 127
-      - value: 0.1322
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 128
-      - value: 0.1349
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 126
-      - value: 0.1396
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 125
-      - value: 0.1401
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 124
-      - value: 0.1487
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 123
-    weight_rough_g:
-      - value: 0.41
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 127
-      - value: 0.51
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 126
-      - value: 0.57
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 124
-      - value: 0.57
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 125
-      - value: 0.58
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 131
-      - value: 0.63
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 123
-      - value: 0.67
-        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 128
-    sources:
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 123, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 124, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 125, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 126, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 127, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 128, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
-        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 131, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - metallanalyser-2017-3-ll7a-gotland
   - id: c-9f88dd8b
     class_id: c-9f88dd8b
     label: unified-ngc-1046225
