@@ -433,6 +433,13 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
         for r in deduped:
             f = r.get("fineness")
             r["metal_code"] = None if f is None else (1 if f >= 0.5 else 0)
+        # Rows without a fineness on a type that shows both metals read as
+        # billon (curator 2026-10-26); they sort last, so they join the
+        # billon segment.
+        if {r["metal_code"] for r in deduped} >= {0, 1}:
+            for r in deduped:
+                if r["metal_code"] is None:
+                    r["metal_code"] = 0
         cc.msr_metal_segs = _seg_rle(deduped, "metal_code", 0)
     # N/Marck sub-columns mirror the weight columns' source attribution:
     # повна reads the raw WEIGHT source (default src_field), чиста reads the
