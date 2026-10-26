@@ -424,6 +424,15 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
     cc.msr_fein_segs     = _seg_rle(deduped, "fine", 7, base_dec=5, src_field="fine_src", group_field="fineness")
     cc.msr_delta_segs    = _seg_rle(deduped, "delta", 7, base_dec=5, src_field="delta_src", group_field="fineness")
     cc.msr_fineness_segs = _seg_rle(deduped, "fineness", 5, base_dec=3)
+    # A silver_billon type names each sub-row's own metal by the same 50 %
+    # line the assay metal uses (curator 2026-10-26): 1 = silver, 0 = billon,
+    # None on a row without a fineness.
+    cc.msr_metal_segs = []
+    if cc.raw.metal == "silver_billon":
+        for r in deduped:
+            f = r.get("fineness")
+            r["metal_code"] = None if f is None else (1 if f >= 0.5 else 0)
+        cc.msr_metal_segs = _seg_rle(deduped, "metal_code", 0)
     # N/Marck sub-columns mirror the weight columns' source attribution:
     # повна reads the raw WEIGHT source (default src_field), чиста reads the
     # «weight × fineness» derived-source label (src_field="fine_src").
@@ -462,7 +471,7 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
                            and not _owned(src.ref, shown)}
         for segs in (cc.msr_weight_segs, cc.msr_fein_segs, cc.msr_delta_segs,
                      cc.msr_fineness_segs, cc.msr_stop_rough_segs,
-                     cc.msr_stop_fine_segs):
+                     cc.msr_stop_fine_segs, cc.msr_metal_segs):
             for seg in segs:
                 seg["span_s"] = sum(1 for i in range(seg["r0"], seg["r0"] + seg["span"])
                                     if i in keep)
@@ -618,6 +627,7 @@ class ComputedCoin:
     msr_fein_segs: list[dict] = field(default_factory=list)
     msr_delta_segs: list[dict] = field(default_factory=list)
     msr_fineness_segs: list[dict] = field(default_factory=list)
+    msr_metal_segs: list[dict] = field(default_factory=list)   # silver_billon only
     # N pieces per Cöllnische Marck (fraction-normalised), one from the rough
     # (rauh) weight, one from the fine (fein) weight — the actual coins-per-mark
     # implied by each specimen. Per-specimen run-length segments mirror

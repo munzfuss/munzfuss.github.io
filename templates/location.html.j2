@@ -160,8 +160,11 @@
       {%- if not loop.last %}<br>{% endif -%}
     {%- endfor -%}
   </td>
-  <td class="c-metal">
-    {%- if coin.raw.metal -%}
+  <td class="c-metal{% if coin.msr_n > 1 and coin.msr_metal_segs %} c-msr{% endif %}">
+    {%- if coin.msr_n > 1 and coin.msr_metal_segs -%}
+      {#- silver_billon: each sub-row names its own metal (≥ .500 silver). -#}
+      {%- for s in coin.msr_metal_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% if s.value is none %}—{% else %}<span class="nw">{{ ui_get('metal.silver') if s.value == 1 else ui_get('metal.billon') }}{% if not coin.raw.metal_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endif %}</div>{%- endfor -%}
+    {%- elif coin.raw.metal -%}
       {#- The names come from data/i18n/ui.yml so they cover every language
           the site renders; they used to be spelled here per language, which
           left the cell blank for any language the literal map omitted. An
