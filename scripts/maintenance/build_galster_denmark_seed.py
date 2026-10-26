@@ -127,6 +127,26 @@ _RULER_NAME_VOLUME = {"Margrethe I": "m1g", "Erik VII": "epomg",
 # only the undated ones (Galster 88, 89, 90) do.
 _GREVENS_FEJDE_WINDOW = (1534, 1536)
 
+# A coin page whose printed year the other datings contradict (curator
+# 2026-10-26: marked «(*)», suspect, not «(!)»). The printed year stays as a
+# year_mark; the seed carries the window the
+# curator set from the other datings. Erik VII's Næstved hvid, Galster 2 and 3:
+# epomg2.htm / epomg3.htm print «Hvid, ca. 1424, Næstved», while erikpomm.htm
+# and hvid.htm date both «ca. 1400» (Galster 1972) and Bruun Part III «1400»;
+# Stefke 1995 (artikler/stefke.htm) has the Næstved mint only «1403-1412/13
+# und 1422/23», Lindahl 1955 n. 8 ties the younger hvid hypothetically to
+# 1411. Window: Erik's accession 1396 to the end of the Næstved mint 1413.
+_NAESTVED_HVID_REASON = {
+    "de": "Die Münzseite bei danskmoent.dk gibt «ca. 1424». Dieselbe Website datiert den Typ in ihren Übersichten «ca. 1400» (nach Galster 1972), ebenso der Katalog Bruun; nach Stefke 1995 bestand die Münzstätte Næstved nur 1403–1412/13 und 1422/23.",
+    "en": "The coin page at danskmoent.dk gives «ca. 1424». The same website dates the type «ca. 1400» in its overviews (after Galster 1972), as does the Bruun catalogue; according to Stefke 1995 the Næstved mint existed only in 1403–1412/13 and 1422/23.",
+    "uk": "Сторінка монети на danskmoent.dk подає «ca. 1424». Той самий сайт в оглядах датує тип «ca. 1400» (за Galster 1972), так само каталог Bruun; за Stefke 1995, монетний двір у Næstved існував лише в 1403–1412/13 і 1422/23 рр.",
+    "da": "Møntsiden på danskmoent.dk angiver «ca. 1424». Samme websted daterer typen «ca. 1400» i sine oversigter (efter Galster 1972), ligesom Bruun-kataloget; ifølge Stefke 1995 fandtes Næstved mønt kun 1403–1412/13 og 1422/23.",
+}
+_PAGE_YEAR_MARKS = {
+    "epomg2.htm": {"years": (1396, 1413), "printed": "1424", "kind": "suspect", "reason": _NAESTVED_HVID_REASON},
+    "epomg3.htm": {"years": (1396, 1413), "printed": "1424", "kind": "suspect", "reason": _NAESTVED_HVID_REASON},
+}
+
 
 def parse_year_range(year_label: str | None) -> tuple[int | None, int | None]:
     """Extract (year_first, year_last) from a Galster page year_label.
@@ -174,6 +194,10 @@ def detect_metal(denom: str | None) -> str:
     if not denom:
         return "silver"
     d = denom.lower()
+    # «Kobbersterling» (epomg7/10/14/15): the name says copper, and
+    # pommgals.htm prints «Kobber» for those four rows.
+    if "kobber" in d:
+        return "copper"
     if any(t in d for t in ["nobel", "goldgulden", "ungersk gylden", "rhinsk gylden", "ducat", "guldreal", "krone", "goldreal"]):
         return "gold"
     if any(t in d for t in ["hvid", "penning", "blaffert"]):
@@ -751,6 +775,13 @@ def build_entry(data: dict) -> dict | None:
     if data.get("year_approx"):
         year_verified = False
 
+    page_mark = _PAGE_YEAR_MARKS.get(data.get("source_file"))
+    if page_mark:
+        year_first, year_last = page_mark["years"]
+        year_label_out = f"{year_first}-{year_last}"
+        yr_ranges = [[year_first, year_last]]
+        year_verified = False
+
     entry: dict = {
         "id": cid,
         "fuss": "seed_unsorted",
@@ -766,6 +797,9 @@ def build_entry(data: dict) -> dict | None:
         "mint": mint_value,
         "catalog": catalog,
         "metal": metal,
+        # Read from the denomination name, not printed as a metal by the page
+        # (the schema default would show the guess as attested, §4).
+        "metal_verified": False,
         "fineness": specs.get("finhed"),
         "weight_rough_g": specs.get("bruttovaegt_g"),
         "issuing_entity": detect_issuing_entity(
@@ -788,6 +822,10 @@ def build_entry(data: dict) -> dict | None:
             "ref": "danskmoent.dk " + issuer_source.rsplit("/", 1)[-1],
         }] if issuer_source else []),
     }
+
+    if page_mark:
+        entry["year_mark"] = {"kind": page_mark["kind"], "value": page_mark["printed"],
+                              "reason": dict(page_mark["reason"])}
 
     # Inscription as literary attachment
     if data.get("inscription"):

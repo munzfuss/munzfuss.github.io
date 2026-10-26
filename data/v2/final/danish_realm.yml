@@ -36259,6 +36259,7 @@ coins:
       galster_volume: f1g
       sieg: '29'
     metal: silver
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -37233,6 +37234,7 @@ coins:
     catalog:
       schou: u.år 31
     metal: billon
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -37271,6 +37273,7 @@ coins:
       schou: 15-22
       galster_volume: f1g
     metal: billon
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -37530,6 +37533,7 @@ coins:
       schou: '3'
       galster_volume: f1g
     metal: billon
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -47292,6 +47296,7 @@ coins:
       schou: '133'
       galster_volume: f1g
     metal: billon
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -108325,6 +108330,7 @@ coins:
       schou: '2'
       galster_volume: c2g
     metal: silver
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: false
@@ -108456,6 +108462,7 @@ coins:
       year_first:
       year_last:
       year_is_reign_span:
+    metal_verified: false
   - fuss: nobel_fod
     phase: III
     kind: kurant
@@ -108741,6 +108748,7 @@ coins:
     _curation_holds:
       note: "2026-09-20: the note was a source fragment, not prose — a seed builder's leftover after splitting one source string into a field plus a remainder. Frozen so a re-seed cannot restore it; see
         repair_fragment_notes.py for the full diagnosis."
+    metal_verified: false
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -108848,6 +108856,7 @@ coins:
       others:
         - Hauberg# 129-130
     metal: billon
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -108920,6 +108929,7 @@ coins:
       - c-c0aa17e0
     label: unified-dk-galster-hg-30
     origin: promoted
+    metal_verified: false
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -109354,6 +109364,7 @@ coins:
       jensen_skjoldager: F-51 - F-58
       galster_volume: f1g
     metal: billon
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -226059,6 +226070,7 @@ coins:
       galster: 66A-B
       galster_volume: f1g
     metal: billon
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -269176,6 +269188,7 @@ coins:
       year_label:
       year_first:
       year_last:
+    metal_verified: false
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -269278,6 +269291,7 @@ coins:
       galster_volume: c2g
       schou: 1515/20
     metal: billon
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -278676,9 +278690,9 @@ coins:
     ruler: Erik VII
     issuing_entity: danish_realm
     id: c-11a2b578
-    year_first: 1400
-    year_last: 1424
-    year_label: 1400, 1424
+    year_first: 1396
+    year_last: 1413
+    year_label: 1396-1413
     year_verified: false
     mint: Næstved
     catalog:
@@ -278729,10 +278743,21 @@ coins:
     metal: silver
     metal_verified: false
     year_ranges:
-      -   - 1400
-          - 1400
-      -   - 1424
-          - 1424
+      -   - 1396
+          - 1413
+    year_alts:
+      - value: '1424'
+        source: galster
+        kind: suspect
+        reason:
+          de: Die Münzseite bei danskmoent.dk gibt «ca. 1424». Dieselbe Website datiert den Typ in ihren Übersichten «ca. 1400» (nach Galster 1972), ebenso der Katalog Bruun; nach Stefke 1995 bestand 
+            die Münzstätte Næstved nur 1403–1412/13 und 1422/23.
+          en: The coin page at danskmoent.dk gives «ca. 1424». The same website dates the type «ca. 1400» in its overviews (after Galster 1972), as does the Bruun catalogue; according to Stefke 1995 
+            the Næstved mint existed only in 1403–1412/13 and 1422/23.
+          uk: Сторінка монети на danskmoent.dk подає «ca. 1424». Той самий сайт в оглядах датує тип «ca. 1400» (за Galster 1972), так само каталог Bruun; за Stefke 1995, монетний двір у Næstved 
+            існував лише в 1403–1412/13 і 1422/23 рр.
+          da: Møntsiden på danskmoent.dk angiver «ca. 1424». Samme websted daterer typen «ca. 1400» i sine oversigter (efter Galster 1972), ligesom Bruun-kataloget; ifølge Stefke 1995 fandtes Næstved 
+            mønt kun 1403–1412/13 og 1422/23.
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -280222,9 +280247,9 @@ coins:
     ruler: Erik VII
     issuing_entity: danish_realm
     id: c-e1012e0e
-    year_first: 1424
-    year_last: 1424
-    year_label: '1424'
+    year_first: 1396
+    year_last: 1413
+    year_label: 1396-1413
     year_verified: false
     mint: Næstved
     catalog:
@@ -280243,6 +280268,23 @@ coins:
       - c-e1012e0e
     label: unified-dk-galster-epomg-3
     origin: promoted
+    year_ranges:
+      -   - 1396
+          - 1413
+    year_alts:
+      - value: '1424'
+        source: galster
+        kind: suspect
+        reason:
+          de: Die Münzseite bei danskmoent.dk gibt «ca. 1424». Dieselbe Website datiert den Typ in ihren Übersichten «ca. 1400» (nach Galster 1972), ebenso der Katalog Bruun; nach Stefke 1995 bestand 
+            die Münzstätte Næstved nur 1403–1412/13 und 1422/23.
+          en: The coin page at danskmoent.dk gives «ca. 1424». The same website dates the type «ca. 1400» in its overviews (after Galster 1972), as does the Bruun catalogue; according to Stefke 1995 
+            the Næstved mint existed only in 1403–1412/13 and 1422/23.
+          uk: Сторінка монети на danskmoent.dk подає «ca. 1424». Той самий сайт в оглядах датує тип «ca. 1400» (за Galster 1972), так само каталог Bruun; за Stefke 1995, монетний двір у Næstved 
+            існував лише в 1403–1412/13 і 1422/23 рр.
+          da: Møntsiden på danskmoent.dk angiver «ca. 1424». Samme websted daterer typen «ca. 1400» i sine oversigter (efter Galster 1972), ligesom Bruun-kataloget; ifølge Stefke 1995 fandtes Næstved 
+            mønt kun 1403–1412/13 og 1422/23.
+    metal_verified: false
   - fuss: seed_unsorted
     phase: galster
     kind: kurant
@@ -280263,6 +280305,7 @@ coins:
         - Hauberg# 33-46
       galster_volume: hg
     metal: silver
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -280295,6 +280338,7 @@ coins:
         - Hauberg# 47-80
       galster_volume: hg
     metal: silver
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -280376,6 +280420,7 @@ coins:
       others:
         - Hauberg# 85-101
     metal: silver
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -280419,6 +280464,7 @@ coins:
         - Hauberg# 109-113
       galster_volume: hg
     metal: silver
+    metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -280477,6 +280523,7 @@ coins:
       - c-a65a2415
     label: unified-dk-galster-m1g-1
     origin: promoted
+    metal_verified: false
   - fuss: seed_unsorted
     phase: ikmk
     kind: kurant
@@ -281562,6 +281609,7 @@ coins:
       - c-b55315e2
     label: unified-dk-galster-epomg-6
     origin: promoted
+    metal_verified: false
   - fuss: seed_unsorted
     phase: lindahl
     kind: kurant
