@@ -1,6 +1,6 @@
 """Shared §9a intra-sub-variant thinning for over-sampled museum sources.
 
-Museum cabinets (KMK Copenhagen, IKMK Berlin) over-sample common types —
+Museum cabinets (KMM Copenhagen, IKMK Berlin) over-sample common types —
 dozens to hundreds of specimens of one sub-variant. After the §9a multi-
 specimen merge their weights all collapse into one coin's ``weight_rough_g``
 list; the intermediate readings between the lightest and heaviest add no

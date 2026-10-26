@@ -1408,7 +1408,7 @@ def build_seed(dry_run: bool, limit: int | None,
           f"{len(entries) - classified} → _unclassified")
 
     scope_note = (
-        "KMK Copenhagen seed — records from the Royal Coin Cabinet "
+        "KMM Copenhagen seed — records from the Royal Coin Cabinet "
         "(Den Kgl. Mønt- og Medaillesamling, Nationalmuseet; api.natmus.dk), "
         "built directly from the whole-record _source cache (nation-scoped at "
         "harvest). Coin-only (§9.2 exonumia excluded; era 1481-1914, undated "
@@ -1425,7 +1425,7 @@ def build_seed(dry_run: bool, limit: int | None,
     write_v2_seed(
         entries,
         source_name="kmk",
-        source_label="KMK Copenhagen (Nationalmuseet, api.natmus.dk)",
+        source_label="KMM (Nationalmuseet, api.natmus.dk)",
         scope_note=scope_note,
         dry_run=dry_run,
         post_merge=None if no_thin else _thin_post_merge,
