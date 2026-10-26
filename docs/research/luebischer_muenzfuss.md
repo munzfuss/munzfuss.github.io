@@ -351,6 +351,9 @@ and the Søslinge of 1424 / ≤ 1442: §3.10; they still circulated in 1474)
 | L7 | Sømod 2002 (danskmoent soemod/c1holst.htm) | Holstein: Christian I's 1460 promise to strike only coin current in Lübeck and Hamburg; Christian I's and Hans' Holstein hollow pieces | Sømod after Hauberg 1886 s. 189 and Friis Johansen NNÅ 1961 (not seen) |
 | L9 | Bobzin, hagen-bobzin.de «Lübisches Münzsystem» (cache `scripts/cache/bobzin/`) | chronology 1255–1620 of the Lübeck standard in «N-Mark-Fuß» form; 1461, 1502, 1506 variants, 1515 | amateur compilation after Jesse 1928, Stefke 2002, Witthöft 1989; cross-checked |
 | L8 | Ingvardson et al., *JAS: Reports* 43 (2022) | Gribshunden purse June 1495: only Hvide | sample small (their caveat) |
+| L10 | Lindahl, «Danmarks mønter 1377–1448», NNÅ 1955 s. 73–92 (danskmoent `pdf2/NNA_1955_Lindahl.pdf`; cache `…/hans_1481_1513/lindahl_1955_nnaa_1377_1448.*`, kb `lindahl-1955`) | per type: Jesse no., legend variants («FL»), weight range and average, find list, **assays** (statsguardein Johs. Siggaard; Erik's Lund Gros, Christopher's Skilling and Søsling after N. L. Rasmusson, s. 73) | re-edits Hauberg 1886's figures and legends for 1377–1448 «*hvor intet andet udtrykkeligt er angivet, er Haubergs opfattelse*» (s. 73) — so not independent of Hauberg on attribution; the assays are new |
+| L11 | Galster, «Næstved Mønt» (Sparekassen for Næstved og Omegn 1966; danskmoent `galster/nestved.htm`) | the 1396 tax, the reckoning 1 mark = 16 ß, the Næstved mint house, the 1402 first mention, the 1398 rate «45 skilling lybsk» per lødig mark | Galster's narrative after Hauberg 1886, Mørkholm and Lindahl NNÅ 1955 (his bibliography) |
+| L12 | Steen Jensen, «Erik af Pommerns guldmønt» (Møntsamlernyt 1/1975 s. XXIII; danskmoent `epomguld.htm`) | the gold off-strike of the Lund sterling, 9,55 g, piedfort | after Luxdorph 1765 and Lindahl 1955 |
 
 Archive copies: survey §2 + plan step 5.2 (all seven web sources archived 2026-10-15).
 
@@ -1641,6 +1644,65 @@ slet ikke dertil*».
 full-value: the Kobbersterling is a copper coin at a decreed value, the Gros an underweight billon piece.
 `kind: kurant` (the provisional phase-0 placement of 2026-10-24) is therefore not right for them; `scheide`
 fits the §6 definition (nominal above metal content). Curator's call.
+
+### §3.12 Erik VII and Christoffer III, c. 1396–1448 — Lindahl 1955, Galster «Næstved Mønt», the gold off-strike (2026-10-26)
+
+**The restored coinage, 1396 [A, secondary].** «*fik hun på landstingene bevilget en ekstraskat til at
+genoptage møntprægningen … På Fyn vedtog man at udrede 10 lødige mark sølv fra hvert sogn*» (L11). In
+Jutland the levy was «*8 grot til Midfaste og 4 grot til Mortensdag af hvert hus*» (Lindahl s. 83). Galster's
+total («*omved 20.000 lødige mark eller omtrent 4.600 kg sølv*») is his extrapolation («*Hvis skatten har
+været ligeså høj i de øvrige landsdele*»), not a recorded sum.
+
+**The reckoning [A, secondary].** «*Man regnede derefter med mark til 16 skilling … Skillingen deltes i to
+søslinge eller tre hvide eller fire sterlinge eller 12 penninge. Penningen kunne atter deles i to skærv.
+Mark, skilling og søsling (indtil 1424) var regningsmønt; kun de mindre nominaler blev udmøntet*» (L11).
+This is the 1 / 3 / 4 / 6 / 12 Pf set of §3.9, with the Skilling and (before 1424) the Søsling as money of
+account only. A rate: «*en tønde [smør] 1398 regnedes for en lødig mark eller 45 skilling lybsk*» (L11).
+
+**Mints.** Næstved, in a house of the Roskilde bishop by the Suså — «*Den kaldtes derefter Møntergården og
+gaden Møntergade*»; Lund re-established (L11). First certain mention of the new coin: «*32 mark sølv i
+hvid, lovlig og gængse Sjællands mønt*», Copenhagen pantebrev of 1 October 1402 (L11). Lund still striking
+early in Christopher's reign — the Dalby 1942 Skilling, «*dette unicum, som viser, at møntværkstedet i Lund
+var virksomt endnu i begyndelsen af Christopher af Bajerns kongetid*» (Lindahl s. 84 n. 22, after
+Rasmusson); a new mint-master in Malmø first named 1444 (Lindahl s. 85 n. 24, after Gamby).
+
+**Lindahl's assays (L10) against our data.** Lindahl gives no Galster numbers; the type → Galster column is
+our reading (by mint, denomination, date). Seeded as `data/v2/seed/lindahl/` (no Galster key, curator
+2026-10-26: let the merger match).
+
+| Lindahl (s.) | type | weight (gn.) | fineness | ours (2026-10-26) |
+|---|---|---|---|---|
+| 76 | Witten, Ribe 1373/77–96, Jesse 692 | 1,09–1,30 (1,19) | 800 | G 1: none |
+| 77–78 | Witten, Næstved (crozier; crown), Jesse 693, 694 | 1,15 / ? | — | — |
+| 78 | Sterling, Lund, Jesse 695, FL 3–15 | 0,50–1,00 (0,70) | 532 | G 9: Galster 500 (page «0,50–0,560»); Heljeback 520–810 |
+| 78 | Sterling, Næstved, FL 16–31 | same | 629–857 | G 4: Galster 606 (page «0,606–0,857»); Heljeback 659–810 |
+| 79 | Hulpenning, Næstved and Lund?, Jesse 696, FL 33 | 0,21–0,37 (0,29) | 0–212 | G 5: Heljeback 5–676; Galster page «0,000–0,212» not in our data |
+| 80 | Kobbersterling c. 1422, Jesse 697–698, FL 34–58 | 0,75–1,33 (1,01) | «*spor af sølv*» | G 10: Heljeback 4–5; G 7 / 14 / 15 none |
+| 82 | Søsling, Lund, after 1424, Jesse 484, FL 59–62 | 1,00–1,34 | 703 | G 11: Heljeback 762–798 |
+| 82 | Lebard, Lund and Næstved, after 1424, Jesse 485 | 0,20–0,39 (0,27) | 453 | G 8, G 8/12: Heljeback 604–667 |
+| 83 | Gros, Lund, 1430s, Jesse 699, FL 64–74 | 0,93–1,75 (1,27) | 232 (Rasmusson) | G 13: Numista 232; Heljeback 175–251 |
+| 83 | Gros, Gurre, FL 75–99 | same | 415 | G 16: Heljeback 25–255 |
+| 84 | Søsling?, Lund, c. 1440 (Christopher) | 1,04 | 750 (Rasmusson) | G 17: Heljeback 594 |
+| 85 | Skilling, Lund or Malmø (Christopher), Jesse 705 | 1,87–2,38 (2,11) | 500 (Rasmusson) | G 18: Heljeback 435–720 |
+| 85 | Sterling, Malmø c. 1444, Jesse 704 | 0,61–0,73 (0,67) | — | — |
+| 86 | Hvid, Malmø after 1444, Jesse 703 | 0,48–1,06 (0,79) | 370–400 | G 20: Heljeback 7–598 |
+
+> ⚠ **Galster's pages and Lindahl differ on the two sterlings.** danskmoent `epomg4` «Finhed: 0,606–0,857»
+> vs Lindahl «629/1000–857/1000» (Næstved); `epomg9` «0,50–0,560» vs Lindahl «532/1000» (Lund). The source
+> of Galster's lower figures is not given on the pages. Open — settled by the assays behind Galster 1972.
+
+> ⚠ **Lindahl's single assays sit outside Heljeback's XRF range for the Søsling 1424 (703 vs 762–798) and the
+> Lebard (453 vs 604–667).** Different methods (wet assay of one piece vs surface XRF of several) and
+> different pieces; neither is our error. Recorded, not resolved.
+
+**The gold off-strike of the Lund sterling.** «*I Den kongelige Møntsamling findes et guldafslag af denne
+sterling. Dette vejer 9,6 g og holder efter Luxdorphs stregprøve 23½ til 23¾ karat … Der vides intet om
+møntens fremkomst eller om formålet med den*» (Lindahl s. 78 n. 11); «*et unikt afslag … 9.55 gram … en
+såkaldt piedfort*» (L12); «*Der er ikke tale om en rigtig mønt*», fineness 979–986 ‰, possibly a piece for
+royal approval c. 1412–13 (Märcher, *Denar til daler* 2018 s. 378); Galster «*passer ikke ind i noget
+myntsystem*» (L11). Numista 426966 (9,85 g) is this piece: excluded as `off_strike` (§9 item 3), curator
+2026-10-26 (the 2026-07-17 reason «before 1514» no longer held once the card starts c. 1400). Weights
+differ by source: 9,55 / 9,6 / 9,85 g.
 
 ## §4. Instruments
 
