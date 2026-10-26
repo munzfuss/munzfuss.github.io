@@ -171,26 +171,13 @@ _NOTE = {
            "Vægt og finhed for hvert stykke stammer fra publikationens appendiks."),
 }
 
-# «ks» = «kantskada» (edge damage, the appendix's own abbreviation list); «f»
-# is not explained in that list. Both readings stay visible, marked (*).
-_SUSPECT = {
-    "ks": {
-        "de": "Randbeschädigtes Stück (Anhang: «ks kantskada»). Das Gewicht kann daher unter dem eines unbeschädigten Stücks liegen; ob und wie viel, ist nicht angegeben.",
-        "en": "A piece with a damaged edge (appendix: «ks kantskada»). Its weight may therefore lie below that of an undamaged piece; whether and by how much is not stated.",
-        "uk": "Монета з пошкодженим краєм (додаток: «ks kantskada»). Тому її вага може бути нижчою за вагу непошкодженої монети; чи так і наскільки, не вказано.",
-        "da": "Et stykke med beskadiget rand (appendiks: «ks kantskada»). Vægten kan derfor ligge under et ubeskadiget stykkes; om og hvor meget, er ikke angivet.",
-    },
-    "f": {
-        "de": "Das Gewicht trägt im Anhang die Marke «f», die in dessen Abkürzungsliste nicht erklärt ist; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Ob das Stück unvollständig ist, ist nicht angegeben.",
-        "en": "The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. Whether the piece is incomplete is not stated.",
-        "uk": "Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Чи монета неповна, не вказано.",
-        "da": "Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Om stykket er ufuldstændigt, er ikke angivet.",
-    },
-}
-# 2016:1 (Heljeback) explains «f» in its own list of abbreviations
-# («f fragment»), unlike 2017:1, so there the weight carries the `fragment`
-# mark «(f)», not the doubt «(*)» (curator 2026-10-26). The tooltip's headline
-# already says «Fragment.», so the reason gives only the evidence.
+# Weight flags of the appendices, all rendered as the fragment mark «(f)»
+# (curator 2026-10-26). 2016:1 explains «f» in its own list of abbreviations
+# («f fragment»); 2017:1 does not, but by the editorial rule it marks the
+# weights of fragmentary pieces separately. «ks» = «kantskada» (edge damage,
+# both appendices' abbreviation lists): the weight is not that of a whole
+# coin. The tooltip's headline already says «Fragment.», so the reason gives
+# only the evidence.
 _FRAGMENT_BY_ISSUE = {
     ("2016_1", "f"): {
         "de": "Anhang, Abkürzungsliste: «f fragment». Das Gewicht ist das des Fragments, nicht einer ganzen Münze.",
@@ -198,6 +185,18 @@ _FRAGMENT_BY_ISSUE = {
         "uk": "Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.",
         "da": "Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.",
     },
+    ("2017_1", "f"): {
+        "de": "Das Gewicht trägt im Anhang die Marke «f», die dessen Abkürzungsliste nicht erklärt; nach der Redaktionsregel werden Gewichte fragmentarischer Stücke gesondert gekennzeichnet. Das Gewicht ist daher nicht das einer ganzen Münze.",
+        "en": "The weight carries the mark «f» in the appendix, which its list of abbreviations does not explain; by the editorial rule, weights of fragmentary pieces are marked separately. The weight is therefore not that of a whole coin.",
+        "uk": "Вага в додатку має позначку «f», яку його список скорочень не пояснює; за редакційним правилом вагу фрагментованих монет позначають окремо. Тому це вага не цілої монети.",
+        "da": "Vægten bærer i appendikset mærket «f», som dets forkortelsesliste ikke forklarer; efter redaktionens regel mærkes vægten af fragmentariske stykker særskilt. Vægten er derfor ikke en hel mønts.",
+    },
+}
+_FRAGMENT_KS = {
+    "de": "Randbeschädigtes Stück (Anhang: «ks kantskada»). Das Gewicht ist daher nicht das einer ganzen Münze.",
+    "en": "A piece with a damaged edge (appendix: «ks kantskada»). Its weight is therefore not that of a whole coin.",
+    "uk": "Монета з пошкодженим краєм (додаток: «ks kantskada»). Тому це вага не цілої монети.",
+    "da": "Et stykke med beskadiget rand (appendiks: «ks kantskada»). Vægten er derfor ikke en hel mønts.",
 }
 
 
@@ -334,11 +333,9 @@ def collect() -> tuple[list[dict], list[str]]:
             if r["weight_flag"]:
                 # a copy per reading: a shared dict becomes a YAML anchor and
                 # renumbers every anchor after it in the final file
-                frag = _FRAGMENT_BY_ISSUE.get((issue, r["weight_flag"]))
-                if frag:
-                    w["fragment"] = copy.deepcopy(frag)
-                else:
-                    w["suspect"] = copy.deepcopy(_SUSPECT[r["weight_flag"]])
+                frag = (_FRAGMENT_KS if r["weight_flag"] == "ks"
+                        else _FRAGMENT_BY_ISSUE[(issue, r["weight_flag"])])
+                w["fragment"] = copy.deepcopy(frag)
             weights.append(w)
             if r["ag_pct"] is not None:            # 2016:1 nr 1: weight only
                 finenesses.append({"value": round(r["ag_pct"] / 100, 6), "source": label})

@@ -2480,12 +2480,10 @@ tr.msr-sh .msr-cut { display: none; }
 .suspect { text-decoration: line-through; text-decoration-color: rgba(201, 122, 61, 0.75); }
 .erroneous { text-decoration: line-through; text-decoration-color: rgba(178, 58, 58, 0.75); }
 /* (f) .fragment-mark — the weight of a fragment (the source says so): a real
-   weighing of part of a coin, struck through like a doubt but with its own
-   sign and a muted colour, so it is not read as «(*)». */
+   weighing of part of a coin. Not struck through (curator 2026-10-26): its own
+   sign in a muted colour says it is not a whole coin's weight. */
 .fragment-mark { color: var(--text-muted); cursor: help; font-weight: 600;
                   font-family: var(--font-sans); }
-.fragment { text-decoration: line-through; text-decoration-color: var(--text-muted); }
-.fragment .sd-pct { text-decoration: line-through; text-decoration-color: var(--text-muted); }
 /* The Δ percentage line (.sd-pct) is inline-block, so an ancestor's line-through
    does not reach it (atomic inline boxes are not decorated by their parents) —
    re-apply it explicitly when the Δ badge itself is marked. */
