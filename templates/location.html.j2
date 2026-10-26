@@ -1168,9 +1168,10 @@
          and its petty subdivisions after — the standard numismatic-catalogue
          convention. #}
       {% if sg.fuss.id in rebuild_scope and not pg.tarif_coins %}
-        {#- One table per phase for a Fuß rebuilt from members: Kurant, then
-            Scheidemünze, then copper (shaded), no sub-table headers. -#}
-        {{ coin_table(pg.kurant_coins + pg.scheide_coins + pg.copper_coins) }}
+        {#- One table per phase for a Fuß rebuilt from members, strictly by
+            year (curator 2026-10-26); copper rows shaded, no sub-table
+            headers. -#}
+        {{ coin_table(pg.year_ordered_coins) }}
       {% else %}
       {% if pg.kurant_coins %}
         {% if pg.is_mixed or pg.tarif_coins %}

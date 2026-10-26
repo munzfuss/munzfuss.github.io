@@ -560,7 +560,7 @@ The build's post-render pass (`scripts/lib/refs_pool.py::process_html`):
 
 In `coin.kind`: one of `kurant | scheide | tarif | gedenk`. Build script renders these into separate sub-tables within each phase (green divider for Kurant, amber for Scheide). This distinction is **mandatory**: conflating them obscures the economic logic.
 
-**Exception — a Fuß rebuilt from members** (`data/v2/_rebuild_scope.yml`; curator 2026-10-26): its phase is ONE table — Kurant, then Scheidemünze, then copper rows, with no sub-table headers; only the copper rows are shaded, Scheidemünze rows are not. The `kind` stays in the data and keeps the row order. Kronemønt's tarif sub-tables are not changed.
+**Exception — a Fuß rebuilt from members** (`data/v2/_rebuild_scope.yml`; curator 2026-10-26): its phase is ONE table, rows strictly by year (curator 2026-10-26, replacing the earlier Kurant → Scheidemünze → copper order), with no sub-table headers; only the copper rows are shaded, Scheidemünze rows are not. The `kind` stays in the data and decides only that shading. Kronemønt's tarif sub-tables are not changed.
 
 ### 7. Münzfüße are global; phases are local
 

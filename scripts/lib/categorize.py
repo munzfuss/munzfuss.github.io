@@ -191,6 +191,10 @@ class PhaseGroup:
     # at .859 carry up to ~2× the silver of strict 1/96-Krone). Rendered as
     # its own sub-block, contrasting with the at-tariff main coins.
     gedenk_coins: list[ComputedCoin] = field(default_factory=list)
+    # Kurant, Scheidemünze and copper rows together, in the phase's year
+    # order — the single table of a Fuß rebuilt from members (curator
+    # 2026-10-26: one table strictly by year; `kind` only shades copper rows).
+    year_ordered_coins: list[ComputedCoin] = field(default_factory=list)
 
     @property
     def total(self) -> int:
@@ -370,7 +374,9 @@ def categorize(
                     pg.kurant_coins.append(cc)
                 elif cc.raw.kind == "kurant":
                     pg.kurant_coins.append(cc)
+                    pg.year_ordered_coins.append(cc)
                 elif cc.raw.kind == "scheide":
+                    pg.year_ordered_coins.append(cc)
                     # Pure copper tokens (no precious metal content) get their own sub-group
                     # since Δ is undefined and the economic logic differs from billon scheidemünzen.
                     if cc.raw.metal in ("copper", "bronze", "brass"):
