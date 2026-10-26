@@ -232,7 +232,7 @@ description disagree; not resolved.
   same volume, ch. 2 —
   https://www.riksbank.se/globalassets/media/forskning/monetar-statistik/volym1/2.pdf
   (p. 58).
-- Horsnæs, H. W.; Moesgaard, J. C.; Märcher, M.: *Fra Denar til Daler* (2018),
+- Horsnæs, H. W.; Moesgaard, J. C.; Märcher, M.: *Denar til daler. Danmarks mønthistorie indtil 1550* (Danmarks Nationalbank, København 2018; PDF https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf),
   s. 398 — local cache
   `scripts/cache/danskmoent/hans_1481_1513/denar_til_daler_2018.extract.txt`.
 - Wilcke, J.: *Møntvæsenet under Christian III og Frederik II* (1950?),
