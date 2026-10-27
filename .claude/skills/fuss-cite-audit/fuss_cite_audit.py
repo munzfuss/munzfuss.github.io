@@ -223,29 +223,41 @@ def key_checks(pool: dict, key: str, langs: list[str]) -> list[tuple[str, str]]:
 
 
 # ---------------------------------------------------------------- verbatim
-def verbatim(pool: dict, keys: list[str]) -> dict[str, list[str]]:
+def verbatim(pool: dict, keys: list[str]) -> dict[str, list[tuple[str, str]]]:
+    """Each quote fragment checked against the cache, in two text layers.
+
+    The corpus extracts are plain pdftotext, which can interleave columns on a
+    contents page, a table or beside marginal notes; scripts/kb/layout_extract.py
+    keeps a `-layout` copy of every cached PDF under _derived/layout/. A
+    fragment found ONLY in the layout copy is the mark of such a page: the
+    plain extract has the words in another order, and whatever was read from
+    it (a figure, an author) must be checked on the page (`kb.py page`).
+    Returns {key: [(kind, fragment)]}, kind «missing» or «layout_only»."""
     def norm(s):
         s = _html.unescape(re.sub(r"<[^>]+>", " ", s))
-        s = unicodedata.normalize("NFC", s).replace("­", "")
+        s = unicodedata.normalize("NFC", s).replace("\u00ad", "")
         s = re.sub(r"-\s*\n\s*", "", s)
         return re.sub(r"\s+", " ", s).lower()
-    corpus = {}
+    layout_dir = str(ROOT / "scripts/cache/_derived/layout")
+    plain, layout = {}, {}
     for f in glob.glob(str(ROOT / "scripts/cache/**/*"), recursive=True):
         if f.endswith((".htm", ".html", ".txt", ".json")) and os.path.getsize(f) < 3e7:
             raw = open(f, encoding="utf-8", errors="ignore").read()
             if f.endswith(".json") and "\\u" in raw:
                 raw = raw.encode().decode("unicode_escape", "ignore")
-            corpus[f] = norm(raw)
+            (layout if f.startswith(layout_dir) else plain)[f] = norm(raw)
     res = {}
     for k in keys:
         e = pool.get(k) or {}
-        miss = []
+        out = []
         for q in ch.QUOTE_RE.findall(e.get("da") or e.get("de") or ""):
             frags = [norm(x).strip(" .,;") for x in re.split(r"…|\[…\]|·", q)]
             for fr in [x for x in frags if len(x) >= 8]:
-                if not any(fr in c for c in corpus.values()):
-                    miss.append(fr[:70])
-        res[k] = miss
+                if any(fr in c for c in plain.values()):
+                    continue
+                kind = "layout_only" if any(fr in c for c in layout.values()) else "missing"
+                out.append((kind, fr[:70]))
+        res[k] = out
     return res
 
 
@@ -340,8 +352,12 @@ def main():
     tally = Counter()
     for k in keys:
         iss = key_checks(pool, k, langs) if k in pool else [("high", "not in refs_pool")]
-        for f in vb.get(k, []):
-            iss.append(("medium", f"verbatim not found in cache (OCR? source not cached?): «{f}»"))
+        for kind, f in vb.get(k, []):
+            if kind == "layout_only":
+                iss.append(("medium", f"verbatim found only in the -layout text layer — the plain "
+                                      f"extract interleaves this page; check it with kb.py page: «{f}»"))
+            else:
+                iss.append(("medium", f"verbatim not found in cache (OCR? source not cached?): «{f}»"))
         if iss:
             print(f"{order.get(k, '-'):>4}  {k}")
             for p, m in sorted(iss, key=lambda x: ("high", "medium", "low").index(x[0])):

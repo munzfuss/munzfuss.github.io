@@ -2375,3 +2375,16 @@ mean «not in the source».
   18–19). It covers the Flensborg wittens of the Holstein counts (Fig. 1–2)
   and a Ribe witten (Fig. 5, «MONETA RIPENS» — the legend of Galster 1; that
   the two are one type is our reading, stated by neither source).
+
+### 13.28 Plain pdftotext interleaves columns on contents pages, tables and marginal notes (2026-10-27)
+
+Every corpus extract is plain `pdftotext`. On the Denar til daler (2018) contents
+page (pdf 13) it put «Jens Christian Moesgaard» — chapter 4's author, left column —
+under «KAPITEL 6», whose author is Michael Märcher (right column); a session
+therefore could not attribute pp. 372 / 398 and cited the three book authors.
+`pdftotext -layout` and `-raw` both read the page correctly. The same risk applies
+to any table (figures from the wrong column), captions, and Secher's marginal
+variants («och eniste» landing inside a line of the 1619 ordinance). Check such
+pages with `kb.py page <pdf> <n> --mode layout`; a `-layout` copy of every cached
+PDF sits under `scripts/cache/_derived/layout/` (`scripts/kb/layout_extract.py`).
+

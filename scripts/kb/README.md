@@ -85,6 +85,30 @@ undiffable history to the private submodule each time a rule is tuned. The
 manifest and the derived danskmoent text, by contrast, are small, diffable
 and expensive-to-rediscover, so they live in the submodule.
 
+## Second text layer — `-layout` (2026-10-27)
+
+The extracts the index reads are plain `pdftotext`, which guesses a reading order.
+On running text that is right; on a page whose columns are not one text — a contents
+page, a table, a page with marginal notes or variant readings (Secher) — it can
+interleave them. Found on the Denar til daler (2018) contents page: plain mode put
+«Jens Christian Moesgaard» (chapter 4, left column) under «KAPITEL 6» (right column),
+whose author is Michael Märcher; `-layout` and `-raw` both read it right.
+
+- `layout_extract.py` writes `pdftotext -layout` of every cached PDF to
+  `scripts/cache/_derived/layout/<pdf path>.layout.txt` (form feed per page). Not in
+  the manifest, so never indexed: a hit does not appear twice.
+- `kb.py page <pdf> <n> [--mode layout|raw|plain|all]` prints one PDF page in each
+  mode — the PDF path relative to `scripts/cache/`, the PDF page (not the printed one).
+- `fuss_cite_audit.py --verbatim` checks each quote in both layers; a quote found
+  only in the layout copy marks a page the plain extract interleaves.
+
+Rule: a figure from a table, an author or attribution from a contents page or a
+caption is checked in `-layout` (or on the page image) before it enters data.
+A scan of all 69 cached PDFs for pages with two text runs side by side (a coarse
+signal: columns, tables and marginal notes alike) found most such pages in Secher
+(40–55 % per volume), Wilcke 1950, Munro, the Bruun catalogues, Andersen's
+Rigslovgivning, Denar til daler and the Metallanalyser reports.
+
 ## Passage unit and page anchoring
 
 | Layout | Unit | Printed page |

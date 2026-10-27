@@ -15,6 +15,9 @@ Subcommands
   works            the indexed works: id, kind, languages, printed-page anchoring
   offsets WORK     running-head page-number detection → PDF→printed offset
   refkeys          compare the manifest's refs_pool_keys with refs_pool.yml
+  page PDF N       one PDF page as pdftotext prints it in each mode (layout / raw /
+                   plain) — check a table, a contents page or marginal notes, where
+                   the plain extract may interleave columns (layout_extract.py)
 
 Layout
 ------
@@ -640,6 +643,31 @@ def cmd_refkeys(args) -> int:
 
 # ---------------------------------------------------------------------------
 
+def cmd_page(args) -> int:
+    """Print one page of a cached PDF in the chosen pdftotext mode(s). The
+    corpus extracts are plain mode, which guesses a reading order and can
+    interleave columns on a contents page, a table or beside marginal notes;
+    `layout` keeps the columns as printed, `raw` follows the PDF's own text
+    order. Read the page here before taking a figure from a table or an
+    author from a contents page."""
+    import subprocess
+    pdf = Path(args.pdf)
+    if not pdf.is_absolute() and not pdf.exists():
+        pdf = CACHE / args.pdf
+    if not pdf.exists():
+        raise SystemExit(f"no such PDF: {args.pdf}")
+    modes = ["layout", "raw", "plain"] if args.mode == "all" else [args.mode]
+    for m in modes:
+        cmd = ["pdftotext", "-f", str(args.n), "-l", str(args.n)]
+        if m != "plain":
+            cmd.append(f"-{m}")
+        out = subprocess.run(cmd + [str(pdf), "-"], capture_output=True, text=True).stdout
+        if len(modes) > 1:
+            print(f"===== {m} =====")
+        print(out.rstrip("\f\n"))
+    return 0
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="kb", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -674,6 +702,11 @@ def main(argv=None) -> int:
     s = sub.add_parser("refkeys")
     s.add_argument("--print", action="store_true", help="print the keys each work's refs_match finds")
     s.set_defaults(fn=cmd_refkeys)
+    s = sub.add_parser("page")
+    s.add_argument("pdf", help="path of the PDF (absolute, or relative to scripts/cache)")
+    s.add_argument("n", type=int, help="PDF page number (1-based)")
+    s.add_argument("--mode", choices=["layout", "raw", "plain", "all"], default="layout")
+    s.set_defaults(fn=cmd_page)
     args = ap.parse_args(argv)
     return args.fn(args)
 

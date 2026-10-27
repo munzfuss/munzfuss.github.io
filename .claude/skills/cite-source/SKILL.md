@@ -208,6 +208,14 @@ plain `grep` misses (measured: `scripts/kb/README.md`).
   reports the printed page (running head «Page N»). The PDF page is higher by a constant per
   part (I +24, II +26, III +18, IV +16, V +16); `scripts/lib/bruun_pages.py` converts. Parts II
   and V reuse lot numbers 14001–14226 — always name the part.
+- **Tables, contents pages, marginal notes: read the page in `-layout` before taking anything
+  from it.** The indexed text is plain pdftotext, which guesses a reading order and can
+  interleave columns: the Denar til daler (2018) contents page put chapter 4's author under
+  chapter 6's heading (2026-10-27). A figure from a table, an author or attribution from a
+  contents page or a caption, a word beside a marginal note — check it with
+  `kb.py page <pdf> <n> --mode layout` (or `--mode all`); every cached PDF also has a
+  `-layout` copy under `scripts/cache/_derived/layout/` (`scripts/kb/layout_extract.py`,
+  not indexed). `fuss_cite_audit.py --verbatim` flags a quote found only in that copy.
 - No hit ≠ no passage: the rigsarkivet scans (handwriting, no text layer) and the 1928 Bruun
   catalogue are not indexed, and heavy OCR damage can defeat any normalisation.
 
