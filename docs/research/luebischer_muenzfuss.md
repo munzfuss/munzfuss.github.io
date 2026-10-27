@@ -280,8 +280,8 @@ fine weights from §0.6 and §3.7 (sources there). Cologne mark 233,856 g.
 **When did the Lübeck reckoning enter Denmark?** No founding act is known. Earliest datable points: Danish
 deeds reckon «hvide» = 4 Lübeck hollow pennies from 1380 (Hauberg 1886 s. 136 n. 2 — the coin then was the
 Hanseatic Witten); the Ribe town Hvid, probably second half of the 1370s (Märcher 2018 s. 368); the first ROYAL
-coinage on the Wendish system, Margrete, Ribe **1392**, Næstved 1396 (Jesse 1927 S. 99). Jesse's Môtbok § 67
-for Margrete's time is Hans' 1484 text (§3.4h (2a)) and cannot date it. Working date: 1392 (A, coin), with
+coinage on the Wendish system, Margrete, Ribe **1392**, Næstved 1396 (Jesse 1927 S. 99) — **superseded by §3.11 (2026-10-27)**: act 24 Jan 1396, first royal coin 1396–1403. Jesse's Môtbok § 67
+for Margrete's time is Hans' 1484 text (§3.4h (2a)) and cannot date it. Working date (superseded, see §3.11): 1392 (A, coin), with
 1380 as the first attested Lübeck reckoning of the «hvid».
 
 **Table A — the Hvid line, c. 1392–1513**
@@ -1703,6 +1703,31 @@ royal approval c. 1412–13 (Märcher, *Denar til daler* 2018 s. 378); Galster �
 myntsystem*» (L11). Numista 426966 (9,85 g) is this piece: excluded as `off_strike` (§9 item 3), curator
 2026-10-26 (the 2026-07-17 reason «before 1514» no longer held once the card starts c. 1400). Weights
 differ by source: 9,55 / 9,6 / 9,85 g.
+
+### §3.11 When Denmark took up the Lübeck / Wendish system — the narrowest datable window (2026-10-27, curator question, ANALYSIS)
+
+**No act adopting the Lübeck system is known.** The only royal act on the restart of coinage names no
+standard. What can be dated:
+
+| Point | Date | What it shows | Source |
+|---|---|---|---|
+| Ribe town Witten (CIVITAS REGNI / MONETA RIPENS) | 1373 – c. 1377 (Ernst); «før 1381» / «ca. 1380» (Galster) | a TOWN coinage on the Witten pattern, not a royal decision | Ernst, NNÅ 1948 (danskmoent `ernst_ribeaxe1`): «*Udmøntningen skulde da mest sandsynligt kunne dateres til Aarene 1373 eller kort derefter til 1377*»; Märcher 2018 s. 368, 371 |
+| Lübeck reckoning in Danish deeds | 1380, 1389, 1393, 1394, 1397, 1405, 1410 | «hvide» = 4 Lübeck hollow pennies — the unit used, coin still Hanseatic | Hauberg 1886 s. 136 n. 2 |
+| **Margrete's forordning, Viborg, 24 Jan 1396** (Nørrejylland redaction) | **24 Jan 1396** | the first ROYAL act for a national coinage: a levy of 8 grot per house by Midfaste, 4 grot at Mortensdag, «*een hielpp till then mynt*», because «*hær i alle landæ er vanskæ om mynth*». Fyn redaction (after 24 Jan 1396): 10 lødige mark per parish to Nyborg before Walpurgis 1396. **No standard, unit or coin type named.** | Kroman 1971 nr. 35 § 16 (s. 338) and nr. 36 § 16 (s. 343); Hauberg 1886 s. 158 |
+| Plan not carried out at once | 1396 → | «*blev det formentlig ikke umiddelbart til noget*» | Märcher 2018 s. 379 |
+| First royal coins: Erik's Næstved Hvid (Witten) + crown hollow penny | «1400-tallets allerførste år» / «ca 1400» | the Witten copy itself — the first royal coin on the Wendish pattern | Moesgaard, NNUM 2005 nr. 2 s. 79–86 (danskmoent `artikler_pommjcm`); Lindahl 1955 fig. 6–7 |
+| First certain royal production; first Hanseatic complaints | **1403** | «*Først i 1403 er der med sikkerhed møntproduktion i gang i riget*» (sterlings of Næstved) | Märcher 2018 s. 379; Galster (danskmoent `sterling`): Næstved «ca. 1403–1412/13» |
+| Comhaer (Dutch mintmasters) in royal service | by 1407 at the latest | organisation of the Næstved mint | Märcher 2018 s. 380 |
+| Hanserecess sets the Danish sterling at 2 Pf l. | 1406 | Lübeck's valuation of the new Danish coin | danskmoent `artikler_filippa` n. 38 |
+
+**Answer.** The DECISION to restart a national coinage is dated: **24 January 1396** (Viborg). That the restarted
+coinage followed the Wendish / Lübeck system is shown only by the coins and their reckoning, not by the act: the
+narrowest window for the first royal coin on that system is **24 Jan 1396 – 1403** (terminus post quem the levy,
+terminus ante quem the first certain production and the Hanseatic complaints), with the Næstved Hvid placed
+«in the first years of the 1400s» (Moesgaard). Correction to §0.7: «Margrete, Ribe 1392» (Jesse 1927 S. 99) is
+superseded — Ernst 1948 and Galster date the Ribe Witten to the 1370s as a town coinage; Jesse's «Næstved 1396» is
+the year of the levy, not of a coin. Open: the exact date of the first Hanseatic complaint of 1403 (Hanserecesse I,
+vol. 5 — not read) and any accounts of the 1396 levy's use (Kroman gives none).
 
 ## §4. Instruments
 
