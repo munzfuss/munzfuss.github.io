@@ -1,0 +1,105 @@
+# The Lübeck / Wendish coin system c. 1365–1424 — the system Denmark took up c. 1400
+
+> **Status:** internal research dossier (role-1), opened 2026-10-27 at the curator's request: what the system
+> in Lübeck was in 1400, the one Denmark went over to (`luebischer_muenzfuss.md` §3.9, §3.11: Danish take-up
+> c. 1400, first royal striking c. 1400–1403). Analysis only; nothing on any card.
+
+## §0. Scope
+
+**Settles:** the reckoning, the struck denominations and their parameters, the governing recesses and the
+member towns of the Lübeck system from the first Witten (1350s/1365) to the Danish–Hanseatic recess of
+8 Oct 1424 — with the state **c. 1400** as the focus, since that is what Denmark copied.
+
+**Excluded, with their home:** the 1432 Schilling and later (1468 103½ ß, 1506 13-Mark step) —
+`luebischer_muenzfuss.md`; Danish coins themselves — `luebischer_muenzfuss.md` §3.9–§3.11; gold
+(Lübeck Gulden 1340/41) — mentioned only as context; the sundish (Rostock / Stralsund) system beyond its
+relation to the Lübeck one.
+
+**Terminology.** «Wendischer Münzverein» is the modern name for the union founded 1379 (Jesse 1928; Märcher:
+«Den Vendiske Møntunion»). The SYSTEM is called «Lübisches Münzsystem» / «Mark lübisch» (Bobzin); period deeds
+reckon in «Lubycenses», «lybske», «Lubeske» pennies and marks (Hauberg 1886 s. 136 n. 2). Use by territory:
+- **lübisch** — the four towns Lübeck, Hamburg, Wismar, Lüneburg (the «veer stede», Danish «veerleye munte»);
+  followed by Holstein and Schleswig town mints (Kiel, Itzehoe, Oldesloe, Rendsburg, Flensburg) and from c. 1400
+  by Denmark;
+- **sundisch** — Stralsund, Greifswald, Anklam (and, by Bobzin, Rostock): its own penny, **3 sundische = 2
+  lübische Pfennige** (Jesse 1927 S. 100, from the Môtbok).
+
+## §1. Sources and provenance
+
+| Short | Work | Locator / form | Notes |
+|---|---|---|---|
+| J | Jesse, W., *Der wendische Münzverein* (Lübeck 1928) | only S. 99–104 cached (`scripts/cache/danskmoent/jesse_1927/`, danskmoent PDF via Wayback) | the standard work; most recess texts are in it. **Not read beyond S. 99–104** — the main gap of this dossier |
+| M | Märcher, M., *Fra denar til daler* (2018) | `danskmoent/hans_1481_1513/denar_til_daler_2018.extract.txt`, book pages | secondary, Danish view; parameters at s. 345, 368 |
+| B | Bobzin, H., «Lübisches Münzsystem» (hagen-bobzin.de/hobby/muenzverein_wendisch.html) | web page, no pagination | secondary, compiled from Jesse 1928, Stefke 2002, Witthöft 1989; gives recess figures |
+| Hb | Hauberg, P., *Danmarks Myntvæsen 1377–1481* (1886) | s. 136 n. 2, s. 141 | deeds 1380–1410; the Danish denomination set |
+| L | Lindahl, F., NNÅ 1955 (1377–1448) | `lindahl_1955_nnaa_1377_1448.extract.txt` | dates coins «efter reces 1379/81», «efter reces 1392» |
+| W | Wikipedia DE «Lübecker Münzgeschichte», after Dummler 2012 S. 16–21 | web | tertiary; Witten «from 1356», 1,33 g @ 875 ‰ |
+
+Provenance: B and W are both downstream of Jesse (B names Jesse, Stefke, Witthöft; W names Dummler). M cites
+the recesses independently but gives fewer figures. Where B and M differ (below, ⚠), neither is the primary
+text; the recess texts (Hanserecesse I / Jesse's appendix) would settle it.
+
+## §2. Reckoning (unchanged throughout)
+
+1 Mark lübisch = 16 Schilling = 192 Pfennig; 1 ß = 12 Pf (B; M s. 368). The Mark and the Schilling were units
+of account only — the Schilling first struck 1432, the Mark 1502 (B; M s. 368). Denominations by pennies
+(Hb s. 141; M s. 368): Pfennig / Hohlpfennig 1 · Blaffert 2 (B: «etwa ab 1410») · Dreiling 3 · **Witten 4** ·
+Sechsling 6 · (Schilling 12, account). M s. 368: «*Skillingen kunne deles i to søslinge/sechslinge, tre
+hvide/witten, fire sterlinge eller 12 penninge*». Hauberg s. 141 gives the Danish equivalents: «*Pfennige,
+Blafferte, Dreilinge, Wittenpfennige, Sechslinge og Schillinge*».
+
+## §3. Chronology of instruments and parameters
+
+Fine weights recomputed here [C] on the Cologne mark 233,856 g; M uses 230 g, so his gram figures are ≈ 1,7 %
+lower for the same pieces per mark.
+
+| Date | Instrument / event | Coin, pieces per mark, fineness | Fine g per piece [C] | Fine mark in M lüb. [C] | Source |
+|---|---|---|---|---|---|
+| 1356 / c. 1365 | Lübeck begins the Witten | Witten 4 Pf, 1,33 g @ 875 ‰ (W) | 1,16 (W) | — | W: «ab 1356»; B and M: 1365 / «omkring 1365» ⚠ |
+| 1375 | Lübeck standard | Witten 176 / 13-lot mark | 1,10 | 4 M 3 ß (B) | M s. 368 |
+| **1379** | **Rezess Lübeck–Hamburg–Wismar** — foundation of the union (similar already 1373, B) | Witten 176 / 13½-lot mark (M); Viertelwitten (1 Pf) 516 / 9-lot mark (M) | Witten 1,12; Viertelwitten 0,25 | ≈ 4,2 | M s. 368 |
+| 1379 (as B) | same Rezess | 16 lot of «lübisch» silver (14¼-lot) + 3 lot copper → 12-lot alloy; 152 Witten per weighed mark | 1,15 | 4 M 3 ß 7 Pf = 4,22 | B ⚠ (gross 1,54 g vs M's ≈ 1,33 g) |
+| **1381** | union extended | Lüneburg (W, after Dummler) — or Lüneburg, Rostock, Stralsund (M s. 368) ⚠ | — | — | W; M |
+| 1384, 1387 | Witten 180 per «marca puri» (14¼-lot) | 1,16 | ≈ 4,2 | B |
+| 1388 | Lübeck strikes Sechslinge | Sechsling 6 Pf | — | — | Berlin Münzkabinett after Jesse / Stefke (web search); W «ab 1388» |
+| **1392** | **Rezess** — Dreiling and Sechsling enter the union's set; both sides city arms (M s. 368) | Dreiling 3 Pf, **230 / 12-lot mark** | 0,763 (= 0,254 per Pf) | 4,79 | J S. 100 («die hansischen Dreilinge von 1392 12lötig und zu 230 Stück»); L (Dreling «efter reces 1392») |
+| late 1390s | «standarden forringet senere i 1300-tallet» | — | — | — | M s. 368 |
+| 1403 | Wismar coinage | 70 ß (account) per 12½-lot mark; probably pennies only struck (B) | ß = 2,61 (Pf 0,218) | 5,6 | B |
+| 1406 | Rezess values the Danish sterling at 2 Pf l. | Danish sterling assayed 10-lot, 288 / mark (0,81 g) | 0,508 = ⅔ of the 1392 Dreiling | — | J S. 100 |
+| 1410, 1411, 1418 | same rating of Danish coin kept | Danish coin 9¾-lot (1410) | — | — | J S. 100 |
+| **1411** | **Rezess Hamburg–Lüneburg–Lübeck** — last Rezess with precise Witten rules (Berlin) | Witten 208 / 12-lot mark; 1 ß = 3 Witten = 12 Pf | 0,843 (Pf 0,211) | 5,78 | B |
+| Jul 1423 | four towns resolve a common Sechsling | — | — | — | J S. 101 |
+| **8 Oct 1424** | **Danish–Hanseatic Rezess** (Queen Philippa) | Sechsling 168 / 11¾-lot mark (1,35 g); Hohlpfennig 696 / 7½-lot mark (0,33 g); Hanseatic Witten keep 4 Pf | Sechsling 1,04; Hohlpfennig 0,16 | — | J S. 102 |
+| Oct 1425 | Rostock, Stralsund, Greifswald join the 1424 Rezess; Witten 3 = 2 Sechslinge | — | — | — | J S. 103 |
+
+## §4. The system c. 1400 — what Denmark copied
+
+- **Reckoning:** Mark lübisch = 16 ß = 192 Pf, Mark and ß of account.
+- **Struck set:** Hohlpfennig (1), Dreiling (3), **Witten (4)**, Sechsling (6); Blaffert (2) only from c. 1410.
+- **Governing level:** the 1392 Rezess — Dreiling 230 per 12-lot mark = 0,254 g fine per penny [C], a fine mark
+  of ≈ 4,8 M lüb. [C]; down from ≈ 4,2 M (1379) and on the way to ≈ 5,6–5,8 M (1403 / 1411).
+- **Witten level c. 1400:** not attested for the 1390s in the cached sources; by the 1392 penny value a Witten
+  would be ≈ 1,02 g fine [C, 4 × 0,254] — a computation, not a recess figure. 1411: 0,84 g.
+- **Membership:** lübisch four towns; sundish towns separate (3 : 2) until 1425.
+
+Danish match (from `luebischer_muenzfuss.md` §3.11 and J S. 100): Erik's first coins (Næstved Witten,
+crown hollow penny, c. 1400; sterlings from 1403) were meant to pass at **4, 3 and 1 lübische Pf**; the
+1406 Rezess found the sterling at ⅔ of the Dreiling and rated it 2 Pf. So Denmark took the lübisch, not the
+sundish, reckoning — the Danish 3-penny sterling against the Hanseatic Dreiling of 1392 is the direct test.
+
+## §5. Open questions (with what would settle each)
+
+| Question | Would be settled by |
+|---|---|
+| ⚠ 1379 Witten: 176 / 13½-lot (M) or 152 / 12-lot alloy (B)? Gross 1,33 vs 1,54 g | the Rezess text (Hanserecesse I, Bd. 2; Jesse 1928 appendix) |
+| ⚠ Who joined in 1381: Lüneburg only (Dummler via W) or also Rostock and Stralsund (M)? | Jesse 1928 ch. 3; Hanserecesse I |
+| ⚠ First Witten: 1356 (Dummler) or c. 1365 (B, M)? | Dummler 2012 S. 19–20; Jesse 1929 «Das lübeckische Münzbuch 1365–1376» |
+| Witten parameters in the 1390s (the coin Denmark copied) | Jesse 1928 (recesses 1392, 1398?); L's coin weights for Witten «efter reces 1379/81» (1,14–1,27 g, mean 1,22 — Jesse 371) give gross only |
+| Was there a Rezess 1398 (L dates a hoard «nedlagt efter 1398»)? | Jesse 1928; Hanserecesse I, Bd. 4 |
+| Jesse 1928 itself (289 pp.) — not digitised in a source found (web search 2026-10-27) | a library copy; or Hanserecesse I Bd. 2–6 on archive.org (OCR quality to be checked) |
+
+## §6. Our data
+
+Not inventoried: no Wendish (Lübeck / Hamburg / Wismar / Lüneburg) coins of 1365–1424 are in the
+project's scope (German lands start 1559). The Danish coins of 1392–1424 are not in our data either
+(`luebischer_muenzfuss.md` §3.10).
