@@ -71,7 +71,7 @@ and different account; recorded here as a discrepancy, not reconciled.
 - **1361 changed nothing.** Lindblad, s. 4: «Intressant nog påverkades inte
   myntningen av den danska erövringen 1361 utan Visby behöll sin mynträtt»
   (данське завоювання 1361 р. на карбування не вплинуло, Visby зберіг право
-  монети). Horsnæs, Moesgaard, Märcher 2018, s. 398: «Det selvstændige
+  монети). Märcher 2018 (Denar til daler, kap. 6), s. 398: «Det selvstændige
   gotlandske møntvæsen blev ikke umiddelbart påvirket af den danske erobring
   i 1361» (самостійне готландське монетне господарство данське завоювання 1361 р.
   одразу не зачепило).
@@ -121,7 +121,7 @@ before the 1340s, Gotland adopted the Hansaetic system, where one Gotlandic
   och vägde mellan 0,87 och 0,75 g» (близько 1450 р. на Готланді запровадили
   данську лічбу: 12 пенінгів на скілінг, новий номінал хвід замінив готи; хвід
   дорівнював чотирьом пенінгам і важив 0,87–0,75 г).
-- Horsnæs, Moesgaard, Märcher 2018, s. 398: «Under Christian 1. (1449-1481) kom
+- Märcher 2018 (Denar til daler, kap. 6), s. 398: «Under Christian 1. (1449-1481) kom
   der igen gang i møntsmedjen i Visby … Der blev samtidig indført dansk
   møntregning, således at goten blev til en hvid (4-penning)» (за Christian I
   карбування у Visby відновилося … тоді ж запровадили данську лічбу, і гота
@@ -132,7 +132,7 @@ before the 1340s, Gotland adopted the Hansaetic system, where one Gotlandic
 
 ⚠ **Naming discrepancy.** danskmoent.dk titles the Christian I pieces
 «Gote» (Galster 139: «Christian 1., Gote u. år, Visby»; Galster 140), while
-Horsnæs, Moesgaard, Märcher and Lindblad («Hvider ca 1450», «ca 1455–1480»)
+Märcher (Denar til daler, kap. 6) and Lindblad («Hvider ca 1450», «ca 1455–1480»)
 treat the Christian I issue as hvid. The data keeps danskmoent's «Gote» as
 printed.
 
@@ -232,7 +232,7 @@ description disagree; not resolved.
   same volume, ch. 2 —
   https://www.riksbank.se/globalassets/media/forskning/monetar-statistik/volym1/2.pdf
   (p. 58).
-- Horsnæs, H. W.; Moesgaard, J. C.; Märcher, M.: *Denar til daler. Danmarks mønthistorie indtil 1550* (Danmarks Nationalbank, København 2018; PDF https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf),
+- Märcher, M.: «En ny start i en krisetid – ca. 1380-1480», kap. 6 (s. 354–425) in Horsnæs, H. W.; Moesgaard, J. C.; Märcher, M.: *Denar til daler. Danmarks mønthistorie indtil 1550* (Danmarks Nationalbank, København 2018; PDF https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf),
   s. 398 — local cache
   `scripts/cache/danskmoent/hans_1481_1513/denar_til_daler_2018.extract.txt`.
 - Wilcke, J.: *Møntvæsenet under Christian III og Frederik II* (1950?),
