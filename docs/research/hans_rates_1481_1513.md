@@ -1,8 +1,8 @@
 # Danish coin rates 1481–1513: Gulden, Lübeck money, Hvid, Skilling, and the silver they imply
 
-> **Status:** internal research dossier (role-1), opened 2026-10-17 at the curator's request («збери всі можливі
-> дані про курс данських монет до будь-чого іншого … за кожен рік … можливо вдасться визначити роки монет
-> які мають вагу/пробу але недатовані … чи був перехід вслід за любеком»). Feeds `luebischer_muenzfuss.md`
+> **Status:** internal research dossier (role-1), opened 2026-10-17 at the curator's request («gather all possible
+> data on the rate of Danish coins against anything else … for every year … perhaps the years of coins
+> that have a weight / fineness but no date can be determined … whether there was a step following Lübeck»). Feeds `luebischer_muenzfuss.md`
 > (§3.4b–g, the card stages) and `mark_lybsk_mark_dansk.md` (§4).
 >
 > **Question:** (1) every dated rate of Danish money against a yardstick whose silver (or gold) is known —
