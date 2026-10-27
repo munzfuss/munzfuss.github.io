@@ -34,7 +34,7 @@ reckon in «Lubycenses», «lybske», «Lubeske» pennies and marks (Hauberg 188
 | Hb | Hauberg, P., *Danmarks Myntvæsen 1377–1481* (1886) | s. 136 n. 2, s. 141 | deeds 1380–1410; the Danish denomination set |
 | L | Lindahl, F., NNÅ 1955 (1377–1448) | `lindahl_1955_nnaa_1377_1448.extract.txt` | dates coins «efter reces 1379/81», «efter reces 1392» |
 | W | Wikipedia DE «Lübecker Münzgeschichte», after Dummler 2012 S. 16–21 | web | tertiary; Witten «from 1356», 1,33 g @ 875 ‰ |
-| **HR** | *Hanserecesse*, 1. Abt. (ed. K. Koppmann): Bd. 2 (1872), Bd. 4 (1877), Bd. 5 (1880) | archive.org Google scans `bub_gb_X4sNAAAAQAAJ` (Bd. 2), `hanserecesse12roppgoog` (Bd. 4), `bub_gb_c5HNCEy9ZXwC` (Bd. 5); page images read via IIIF 2026-10-27 | **PRIMARY texts** (recesses, assay record) with the editor's computations; not yet saved to `scripts/cache` |
+| **HR** | *Hanserecesse*, 1. Abt. (ed. K. Koppmann): Bd. 2 (1872), Bd. 4 (1877), Bd. 5 (1880) | archive.org Google scans `bub_gb_X4sNAAAAQAAJ` (Bd. 2), `hanserecesse12roppgoog` (Bd. 4), `bub_gb_c5HNCEy9ZXwC` (Bd. 5); page images read via IIIF 2026-10-27; cached 2026-10-27 as `hanse/hanserecesse/koppmann_18{72,77,80}_hanserecesse_1_bd{2,4,5}.pdf` + extracts, corpus ids `hanserecesse-1-2`, `-1-4`, `-1-5` (printed pages mapped) | **PRIMARY texts** (recesses, assay record) with the editor's computations |
 
 Provenance: B and W are both downstream of Jesse (B names Jesse, Stefke, Witthöft; W names Dummler). M cites
 the recesses independently but gives fewer figures. Where B and M differ (below, ⚠), neither is the primary
