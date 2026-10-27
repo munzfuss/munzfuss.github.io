@@ -83,7 +83,7 @@ Status marks: **A** = attested in a cited source; **C** = our computation from a
   KMM 331973 «Penning, Lund» — not Hans, declassified (§6d); «Christiania» → «Oslo» in the mint field of the Oslo coins
   (city name of the time).
 
-### §0.5 Dating anchors for undated Hans Skillinger and Søslinger (curator 2026-10-20: «на базі цього пізніше будемо датувати»)
+### §0.5 Dating anchors for undated Hans Skillinger and Søslinger (curator 2026-10-20: these anchors are to be the base for dating later)
 
 The basis on which undated Skillinger and Søslinger of Hans are to be dated later (TODO ED). Detail and quotes:
 §3.4h (7) and (8); rate register `hans_rates_1481_1513.md` §6.
@@ -162,7 +162,7 @@ The basis on which undated Skillinger and Søslinger of Hans are to be dated lat
   (§7 there) also prints «Malmö» + «33» for both Søslinger (nos 55, 56) and shows its mint column disagreeing with
   Galster for 12 coins; the photos (appendix p. 6) decide.
   **Photo check 2026-10-21** (`eriksson_2017_assays.md` §7a): curator, tentatively, reads the legends of the 12
-  as MALMOENSIS («наче й схоже на malmoensis … або просто здається»); nos 55b / 56b show the quartered shield of
+  as MALMOENSIS (curator: «looks like malmoensis … or it just seems so»); nos 55b / 56b show the quartered shield of
   the danskmoent G 30 references, not the plain shield of G 33 (my comparison, H). Working reading: **G 30**
   again, now on the shield type plus a tentative legend reading; still not firm.
 
@@ -234,11 +234,11 @@ undated Søslinger (1,31–1,47 g), consistent with an earlier, better issue (H)
 - Would be settled by: a dated hoard with a Søsling; Galster 1972; Märcher 2018.
 
 **Rule for dating (H, to be applied only to assayed pieces — weights overlap between groups):** place by fineness
-group; give the group's span as the dating, worded «можна вважати» on the card; never inside `year_label` (§3a
+group; give the group's span as the dating, worded as the project's own conclusion («it can be considered») on the card; never inside `year_label` (§3a
 CLAUDE.md: plain years only — the span goes to `year_label` only if the curator approves it as the coin's year
 range, with `year_verified: false`).
 
-### §0.6 Periodisation 1481 – Feb 1513 — ACCEPTED by the curator 2026-10-21 («1 – так, 2 – так»)
+### §0.6 Periodisation 1481 – Feb 1513 — ACCEPTED by the curator 2026-10-21 («1 – yes, 2 – yes»)
 
 Supersedes the stage borders of §0.1 / §0.2 and the five-period table of §3.4h (8). Period 0 (Rigsråd 1481–1483) is a
 period of its own (curator). The card's period structure has not been changed yet (TODO ED).
@@ -325,7 +325,7 @@ and the Søslinge of 1424 / ≤ 1442: §3.10; they still circulated in 1474)
    1500); Lütke 1503–06, 124 Hvide = 22,3–29,8 g. Lübeck: 24 ß = 30,50 g (1468), 26,98 g (13 Mark). So the
    Hvid side of the Danish system already sat at or under the 13-Mark level in the 1480s–90s, and the 1500/01
    rate change put the Gylden at 120 Hvide while Lübeck was still at 1468.
-3. *Reading (H, «можна вважати»):* the Hvid set the Danish level, and it ran ahead of Lübeck downwards; the
+3. *Reading (H, «it can be considered»):* the Hvid set the Danish level, and it ran ahead of Lübeck downwards; the
    Skilling coin entered c. 1497 at Lübeck's 1468 parity and was worth MORE than the 4 Hvide it was first rated
    at (1,24–1,27 against 1,08–1,20 g) — hence the re-rating to 5 Hvide c. 1500. Whether the coin itself then
    fell to 8 lod before 1506 is exactly the open point of item 1. Spread caveat: the Hvid ranges come from few
@@ -636,8 +636,8 @@ Witten 245–280 ‰ vs Lübeck Witten 1502 1,08 g @ ≈ 328 ‰). Not in cache,
 corpus (Jensen et al. 1992) for closing dates of hoards with 9/8/7-lod Skillinger, Østergaard 1995,
 Stefke on the Lübeck side.
 
-**Working model for the next card update (hypothesis — not yet on the card; curator 2026-10-15: «на базі
-цього будемо потім оновлювати картку стопи»).** Three stages of Hans' Skilling, each with its evidence
+**Working model for the next card update (hypothesis — not yet on the card; curator 2026-10-15: the card of the
+standard is to be updated later on this basis).** Three stages of Hans' Skilling, each with its evidence
 and its weak point:
 
 | Stage | Skilling | Mark lübisch / fine mark | Evidence | Weak point |
@@ -1177,10 +1177,11 @@ a Schilling [705]; Hauberg s. 187 and Eriksson s. 4 say Christian I struck no Sk
 is 1448, Stefke via Eriksson). Jesse's «wie» is ambiguous; the Schilling [705] may be Christopher's / the 1448
 Rigsråd's. Bears on Frederik I's 1523 «hele ß … koning Christiern, vor kere herre fader» (§3.4f). Open.
 
-**Translation of «Anlehnung» on the card (uk «спертим на»).** «Сперти(й)» is also colloquial for «stolen» — a
-reading to avoid; and «Anlehnung» in Jesse means alignment / modelling on («völlige Anlehnung an das wendische
-Münzsystem» = built on the Wendish model). Candidates: uk «залишився орієнтованим на устрій міст» (pool translation
-«лишилася тільки орієнтація …»); en «remained aligned with» (now «dependent on» — stronger than Jesse); de
+**Translation of «Anlehnung» on the card (uk field: the current verb means «propped on», but is also colloquial
+for «stolen»).** That reading is to be avoided; «Anlehnung» in Jesse means alignment / modelling on («völlige
+Anlehnung an das wendische Münzsystem» = built on the Wendish model). Candidates: uk field — a verb meaning
+«remained oriented to the system of the towns» (the pool translation likewise «only the orientation remained …»);
+en «remained aligned with» (now «dependent on» — stronger than Jesse); de
 «angelehnt» stays; da «knyttet til» acceptable. Curator to choose.
 
 **(2) The promise «at holde Mønten op til den lybske».** Wilcke gives no date and no instrument at either place:
@@ -1193,7 +1194,7 @@ None of the realm acts 1448–1513 in *Rigslovgivning* has such a clause (§3.4f
 II–III and Lübeck UB (Christian I's dealings with Lübeck), or by Wilcke's own source if one turns up. Years: if the
 1460 act, 1460; otherwise unknown — the card should not give a year.
 
-**(2a) Two instruments found 2026-10-20 (curator: «збери більше даних про цю обіцянку герцога»).** Both in
+**(2a) Two instruments found 2026-10-20 (curator: gather more data on this «duke's promise»).** Both in
 Andersen, *Den danske Rigslovgivning 1397-1513* (cache `scripts/cache/rigslovgivning/`, printed = PDF + 1).
 
 *A. The Holstein clause of 1460 — its actual text and addressee.* It is art. <9> of Christian I's letter dated
@@ -1422,7 +1423,7 @@ Søsling as its half) was struck to the Lübeck standard and «pulled towards» 
 while the Hvid went on at its own, slowly drifting parameters — so Denmark had TWO systems: a Lübeck
 line (Skilling, Søsling) and a Danish line (Hvid, the mark of Hvide), compatible at the level of
 reckoning, with the Hvid acting as the small change (Scheidemünze) of the Lübeck frame in Denmark.
-This dossier's reading agrees, with the three qualifications below. It is a reading («можна вважати»),
+This dossier's reading agrees, with the three qualifications below. It is a reading («it can be considered»),
 not a statement of any source.
 
 **What the sources attest**
@@ -1729,6 +1730,13 @@ superseded — Ernst 1948 and Galster date the Ribe Witten to the 1370s as a tow
 the year of the levy, not of a coin. Open: the exact date of the first Hanseatic complaint of 1403 (Hanserecesse I,
 vol. 5 — not read) and any accounts of the 1396 levy's use (Kroman gives none).
 
+**Curator decision 2026-10-27 — dates for the card:** the card takes **c. 1400** as the approximate year Denmark took
+up the Lübeck system for its coinage, and places the start of striking at **c. 1400–1403**. Reasoning (curator,
+recorded as a reading, «it can be considered»): if Lübeck was already complaining about the Danish coin in 1403, the coin
+was probably struck somewhat earlier — time is needed for striking, circulation, the coin's reaching Lübeck, the
+finding that it was probably worse than Lübeck's, and the drafting of the complaint. Consistent with Moesgaard's
+«1400-tallets allerførste år» for the Næstved Hvid (Witten). In card prose «c. 1400» must stay marked approximate.
+
 ## §4. Instruments
 
 | Date | Instrument | Role for the card | Register / dossier |
@@ -1765,7 +1773,7 @@ Moves made: Swedish Ørtug of Hans (5) and Christian I (3) → `sweden` (`a266ff
 Frederik I 1523–33, now `danish_realm`) (`03f5859`, `a266ff7`). Anomalies still open: survey
 §4.3.
 
-### §6a Undocumented-stub candidates (2026-10-15, curator question — NOT excluded, awaiting «так»)
+### §6a Undocumented-stub candidates (2026-10-15, curator question — NOT excluded, awaiting the curator's «yes»)
 
 Selection: classes under `luebischer_muenzfuss` whose every member is a KMM record with no weight/diameter
 (`measurements` empty), no catalogue index (`typeNumber`), no description or motif, no drawing, and no photo.
@@ -1848,7 +1856,7 @@ photos although the cache has none — removed from the list.
 - mint/place values unique to B: «Århus» (kmk-326039 — not a Hans mint in Galster's list), «Kbh. el. Malmø»,
   «Ubestemmelig» ×2, «Alborg» (spelling of Aalborg, which stays). No other mint is lost.
 
-### §6b Category C — stubs whose removal loses nothing unique (2026-10-15, awaiting «так»)
+### §6b Category C — stubs whose removal loses nothing unique (2026-10-15, awaiting the curator's «yes»)
 
 Recomputed after the Korshvid → Hvid, Firehvid → Skilling, «Malmø» → Hvid renames (the renamed KMM groups
 with a mint joined the documented class of their mint and are no longer stubs). Uniqueness is tested
@@ -1962,7 +1970,7 @@ id and its `composed_of` unified ids).
 | 21 | `unified-dk-numista-152926` | 1 Skilling · Malmø | [kmk-643664](https://samlinger.natmus.dk/KMM/object/643664) (FP 34.6) |
 | 22 | `unified-dk-numista-152926` | 1 Skilling · Malmø | [kmk-643666](https://samlinger.natmus.dk/KMM/object/643666) (FP 34.4) |
 
-**Outcome (2026-10-16, curator «так»):** 19 of the 22 excluded with `scope: member` (new: the merger
+**Outcome (2026-10-16, curator «yes»):** 19 of the 22 excluded with `scope: member` (new: the merger
 keeps such a seed a singleton, absorb drops it and its KMM citation from the class, verify_reflow
 excuses that citation). Kept — the first filter read only the KMM cache, not the seed, and missed
 catalogue data: kmk-395587 (Thomsen 11172/11171/11169), kmk-643057 / kmk-643058 (Galster 36, Schou
@@ -2023,14 +2031,14 @@ be recovered from the record. It is not an 11½-Markfod coin.
 **Cached** (2026-10-16): `scripts/cache/danskmoent/hans_1481_1513/hauberg_1886_myntvaesen_1377_1481.{pdf,extract.txt}`
 (Aarbøger 1886 s. 135–189) and `…/jensen_2008_hikuin35_regionale_forskelle.{pdf,extract.txt}`.
 
-**Outcome (curator 2026-10-16: «у seed_unsorted, виправ правителя і роки»).** Declassified to
+**Outcome (curator 2026-10-16: «to seed_unsorted, fix the ruler and the years»).** Declassified to
 `seed_unsorted` (classification decision removed; `_recorded_removals.yml` `kind: declassify`). Seed
 `kmk-331973`: `_source_errata` ruler Hans → «?», years 1483–1513 → **1241–1377** (the period of
 Hauberg 1885, rough approximation, `year_verified: false`); KMM's values stay visible as **(!)** via
 `year_mark` and the new `ruler_mark` (→ `ruler_alts`, the ruler-column analogue of `year_alts`).
 Final `ruler` set to «?» by hand (foundation-immutable in absorb). `mint_verified: true` left as is.
 
-### §6e «cf.» and bare-letter typeNumbers count as no index (2026-10-19; excluded, curator «так»)
+### §6e «cf.» and bare-letter typeNumbers count as no index (2026-10-19; excluded, curator «yes»)
 
 The §6a-§6c selection treated a non-empty KMM `typeNumber` as «has an index». Thirteen single-KMM
 classes survived on that test although the field names no index of THE coin: a cf.-reference
