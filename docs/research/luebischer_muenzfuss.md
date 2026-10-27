@@ -1177,13 +1177,6 @@ a Schilling [705]; Hauberg s. 187 and Eriksson s. 4 say Christian I struck no Sk
 is 1448, Stefke via Eriksson). Jesse's «wie» is ambiguous; the Schilling [705] may be Christopher's / the 1448
 Rigsråd's. Bears on Frederik I's 1523 «hele ß … koning Christiern, vor kere herre fader» (§3.4f). Open.
 
-**Translation of «Anlehnung» on the card (uk field: the current verb means «propped on», but is also colloquial
-for «stolen»).** That reading is to be avoided; «Anlehnung» in Jesse means alignment / modelling on («völlige
-Anlehnung an das wendische Münzsystem» = built on the Wendish model). Candidates: uk field — a verb meaning
-«remained oriented to the system of the towns» (the pool translation likewise «only the orientation remained …»);
-en «remained aligned with» (now «dependent on» — stronger than Jesse); de
-«angelehnt» stays; da «knyttet til» acceptable. Curator to choose.
-
 **(2) The promise «at holde Mønten op til den lybske».** Wilcke gives no date and no instrument at either place:
 7-1 s. 142 «*som hans Fader Christian I. i sin Tid havde lovet Lybækkerne*»; 7-2 s. 147 «*Hans saa vel som hans
 Fader havde lovet Rigsraaderne*». At 7-4 s. 283 Wilcke uses the same formula for the duchies: «*Hertugerne havde
