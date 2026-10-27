@@ -197,6 +197,35 @@ SBL / DBL or the 1449 deed. Not found: the 1361 privilege to Visby, any
 KMM 139328 prints «G 140» on a «1 Hvid, 1520, Visby» — the number and the
 description disagree; not resolved.
 
+### 7.1 Hvide 1450–1520: Lagerqvist ↔ Hauberg ↔ Galster (2026-10-27)
+
+Hauberg 1891 (s. 64–67, the catalogue with drawings) orders the Visby hvide;
+Lindblad 2017:3 groups its assays by Lagerqvist 1970 («LL»); danskmoent names
+Galster. No source prints the full concordance. The rows rest on: the Bonde
+specimen labels on danskmoent (gotlg139 «Lagerqvist 1», gotlg140
+«Lagerqvist 5», gotlg142 «Lagerqvist 7b»); the curator's reading of the
+types (LL 2 and 3 lamb left — 2 with WISBY, 3 with MONETA on the lamb side;
+LL 4 and sub-types lamb right; 2026-10-27); Lindblad's description of LL 6;
+and the matching date, weight and type.
+
+| Hauberg | date, denomination (Hauberg) | weight, g | type | Galster | LL |
+|---|---|---|---|---|---|
+| 85–87 | c. 1450, 3-penning | 0,55–0,65 | shield with one bar / lamb left, pointed pennant | 139 A (Schou 100–102 «trepenning») | 1 (Bonde label) |
+| 88–91 | c. 1455–1480, 4-penning hvid | 0,76–0,87 | shield / lamb left | 139 B (Schou 103–115) | 2, 3 (curator) |
+| 92–101 | same | same | shield / lamb right | 139 C (Schou 116–132) | 4, 4a–4d (curator) |
+| 102 | c. 1490, korshvid | 0,80 | crowned h / cross on shield | 141 | 6 (Lindblad's description) |
+| 103–108 | c. 1510, hvid | 0,65–0,80 | lily bush / lamb with banner and chalice | 142 | 7, 7a, 7b (Bonde label 7b) |
+| 109–113 | c. 1520, hvid | 0,75–0,80 | shield with one bar / lamb with banner and chalice | 140 | 5 (Bonde label) |
+
+⚠ **Dating of Galster 140.** Hauberg c. 1520; Schou to Christian II (danskmoent
+gotlg140); KMM 139328 «1520»; Lindblad LL 5 1480–1500; danskmoent Christian I.
+The data places it in Lybsk phase 0 on the danskmoent attribution — open.
+
+⚠ **Galster 139 spans two denominations.** 139 A (Hauberg 85–87) is a
+3-penning still in the gote's reckoning («MONETA SIVITATIS»), 139 B–C a
+4-penning hvid (Hauberg s. 46). Merged so far: LL 2–4d into Galster 139
+(curator 2026-10-27); LL 1 not yet.
+
 ## 8. Open questions
 
 1. Was Visby ever party to a Wendish monetary recess? Not found. Riksbank
@@ -208,8 +237,9 @@ description disagree; not resolved.
    search-only; the work is in copyright until 2041 (Jesse † 1971).
 2. The rates of 1343, 1402, 1424 are taken from Riksbank's secondary account;
    settled by Hyötyniemi 1999 / 2000 (NNUM) and Lundholm 1956.
-3. Hauberg 1891 («Gullands Myntvæsen», Aarbøger 1891, s. 1–72) not found in
-   digital form.
+3. Hauberg 1891 («Gullands Myntvæsen», Aarbøger 1891, s. 1–72): found
+   2026-10-27 on danskmoent (pdf2/Hauberg Gulland.pdf), cached as corpus work
+   `hauberg-1891`; used in §7.1.
 4. Hypothesis, not checked: the early gote (c. 1,3 g) weighs about as much as
    the Witten and the Swedish örtug (1,3 g, Riksbank ch. 3, s. 91). No source
    compares the gote with the Witten by standard.
@@ -237,5 +267,9 @@ description disagree; not resolved.
   `scripts/cache/danskmoent/hans_1481_1513/denar_til_daler_2018.extract.txt`.
 - Wilcke, J.: *Møntvæsenet under Christian III og Frederik II* (1950?),
   s. 301–303 — local cache (via kb).
+- Hauberg, P.: «Gullands Myntvæsen», *Aarbøger for nordisk Oldkyndighed og
+  Historie* 1891, s. 1–72 — https://www.danskmoent.dk/pdf2/Hauberg%20Gulland.pdf
+  (s. 46, 64–67); local cache
+  `scripts/cache/danskmoent/hans_1481_1513/hauberg_1891_gullands_myntvaesen.extract.txt`.
 - danskmoent.dk: gotlg139.htm, gotlg140.htm, gotlg135–138.htm — local cache
   `scripts/cache/danskmoent/galster/`.
