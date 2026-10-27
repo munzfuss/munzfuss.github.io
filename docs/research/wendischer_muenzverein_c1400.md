@@ -34,6 +34,7 @@ reckon in «Lubycenses», «lybske», «Lubeske» pennies and marks (Hauberg 188
 | Hb | Hauberg, P., *Danmarks Myntvæsen 1377–1481* (1886) | s. 136 n. 2, s. 141 | deeds 1380–1410; the Danish denomination set |
 | L | Lindahl, F., NNÅ 1955 (1377–1448) | `lindahl_1955_nnaa_1377_1448.extract.txt` | dates coins «efter reces 1379/81», «efter reces 1392» |
 | W | Wikipedia DE «Lübecker Münzgeschichte», after Dummler 2012 S. 16–21 | web | tertiary; Witten «from 1356», 1,33 g @ 875 ‰ |
+| **HR** | *Hanserecesse*, 1. Abt. (ed. K. Koppmann): Bd. 2 (1872), Bd. 4 (1877), Bd. 5 (1880) | archive.org Google scans `bub_gb_X4sNAAAAQAAJ` (Bd. 2), `hanserecesse12roppgoog` (Bd. 4), `bub_gb_c5HNCEy9ZXwC` (Bd. 5); page images read via IIIF 2026-10-27 | **PRIMARY texts** (recesses, assay record) with the editor's computations; not yet saved to `scripts/cache` |
 
 Provenance: B and W are both downstream of Jesse (B names Jesse, Stefke, Witthöft; W names Dummler). M cites
 the recesses independently but gives fewer figures. Where B and M differ (below, ⚠), neither is the primary
@@ -50,6 +51,46 @@ Blafferte, Dreilinge, Wittenpfennige, Sechslinge og Schillinge*».
 
 ## §3. Chronology of instruments and parameters
 
+**Primary texts read 2026-10-27 (HR, page images):**
+
+- **Recess Lübeck, 9 Feb 1379** (HR I Bd. 2 Nr. 172, S. 187; after Grautoff 3 S. 176, the original lost) —
+  Lübeck, Hamburg, Wismar: «*enen penningh van veer penninghen, unde enen penningh van enen penningh … dat men
+  spisen schal uppe 16 lot sulvers Lubesches tekens … dree lot kopperes, uppe den penningh van veer penninghe;
+  unde schal de schrodinghe holden de weghene mark uppe 3 mark unde 32 penninghe*». The small penny (now flat, not
+  hollow): «*9 lot sulvers 7 lot kopperes … de schrodinghe van der weghenen mark schal wesen 43 schillinghe*».
+  Stars on both sides; «*verlinghe unde hellinghe*» (¼ and ½ Pf) free to each town. Editor's note b) at «16»:
+  «*Lies: 13?*» — the editor's own doubt, which matches Märcher's «13-lødige»; the editor of 1384 (below)
+  nevertheless computes with 16 + 3.
+- **Assay 1384** (HR I Bd. 2 Nr. 288, S. 341; after Grautoff 3 S. 182): «*Examinatio facta de moneta, videlicet
+  quot albos continuit marca puri argenti*». Witten per mark of Lübeck-sign silver (= 19 lot rough): Lübeck 44 Wurf
+  3 (= 179), Lüneburg 178, Rostock 178, Wismar 179, Stralsund 180, Hamburg 178. Editor: Lübeck-sign silver was
+  14¼-lot (Grautoff 3 S. 128–129), so 16 lot rough = 12 lot fine — «*die Vierlinge oder Witte wurden 12löthig
+  geprägt*»; the 1379 standard was kept. Rostock and Stralsund struck the same Witten in 1384.
+- **Skanör / Falsterbo, c. 20 May 1395** (HR I Bd. 4 S. 260, the ransom treaty for King Albrecht): «*vor yslike
+  lodige marc, de mark to rekende vor 5 ß grote, schal bereden 45 ß Lubisch in guden witten penningen, alse nu tho
+  desser tid in der stad tho Lubeke genge und geve sin*». A rate (1 lødig mark = 5 ß groot Flemish = 45 ß lüb. in
+  Witten); what «lodige marc» means here (weight, fineness) is open — not used for the parameters below.
+- **Münzvertrag of six towns, Wismar, 6 Feb 1403**, for ten years (Lübeck, Hamburg, Rostock, Stralsund, Wismar,
+  Lüneburg; HR I Bd. 5 Nr. 115, confirmed 6 Dec 1403 Nr. 158 § 1). Text not read (OCR gap); parameters from the
+  editor's note to 1406 (Bd. 5 S. 230): «*1403 hatte man vereinbart, dass die Witten 12½ löthig gemünzt und von
+  der gewogenen Mark von 16 Loth 4 ℳ (= 192 Witten) geschrotet werden*» — fine mark 5 3/25 ℳ.
+- **Münzrecess, 31 Mar 1406** (Lübeck, Hamburg, Lüneburg, Wismar, Hannover; HR I Bd. 5 Nr. 310, S. 230–231;
+  after Grautoff 3 S. 192 = Lüb. UB 5 Nr. 141): «*to slande enen
+  witten penningh van 4 penningen, van 12 loden in der gude, in der scrodinge to holdende 49 wurpe*» (= 196);
+  hollow pennies 9-lot, 3 ℳ per weighed mark. Editor: Witten «*etwas gröber und etwas leichter*», fine mark 5 4/9 ℳ.
+  Same text: Rostock and Stralsund money set equal to Greifswald and Anklam; assays — Rostock / sundish 11¼-lot,
+  5 ℳ per mark; Prussian 13-lot; «*dat Densche geldt holt 10 lot, upp de mark scrodet 10 mark 2 schillinge, so is de Lubesche
+  mark nicht beter den 12 schillinge … de penningh 2 penninghe*» (⚠ Jesse S. 100 gives the Danish Schrot as «4½
+  Mark = 288 Sterlinge»; the recess prints «10 mark 2 schillinge» — which reckoning is open); Livonian 8-lot; gold
+  (image checked): «*de Engelsche nobele 2 mark 4 penninghe, de Vlamesche nobele 32 schillinge. De Rinsche gulden 13
+  schillinge 4 penninghe, de Ghelrische gulden 7 schillinge 4 penninge, de Lubesche ghulden to 16 schillinge*».
+
+**Corrections from the primary texts:** the 1379 Witten is **152 per weighed mark of the 12-lot alloy** (B is right;
+M's «176 / 13½-lot» and «176 / 13-lot 1375» are not the 1379 Rezess — possibly Lübeck's own Münzbuch figures,
+open). The «1403 Wismar 70 ß / 12½-lot» of B does not match the 1403 Vertrag (192 Witten = 64 ß) — B's figure may
+be the Wismar mint alone, open. The 1381 enlargement is not in HR I Bd. 2 (searched); open.
+
+
 Fine weights recomputed here [C] on the Cologne mark 233,856 g; M uses 230 g, so his gram figures are ≈ 1,7 %
 lower for the same pieces per mark.
 
@@ -58,14 +99,14 @@ lower for the same pieces per mark.
 | 1356 / c. 1365 | Lübeck begins the Witten | Witten 4 Pf, 1,33 g @ 875 ‰ (W) | 1,16 (W) | — | W: «ab 1356»; B and M: 1365 / «omkring 1365» ⚠ |
 | 1375 | Lübeck standard | Witten 176 / 13-lot mark | 1,10 | 4 M 3 ß (B) | M s. 368 |
 | **1379** | **Rezess Lübeck–Hamburg–Wismar** — foundation of the union (similar already 1373, B) | Witten 176 / 13½-lot mark (M); Viertelwitten (1 Pf) 516 / 9-lot mark (M) | Witten 1,12; Viertelwitten 0,25 | ≈ 4,2 | M s. 368 |
-| 1379 (as B) | same Rezess | 16 lot of «lübisch» silver (14¼-lot) + 3 lot copper → 12-lot alloy; 152 Witten per weighed mark | 1,15 | 4 M 3 ß 7 Pf = 4,22 | B ⚠ (gross 1,54 g vs M's ≈ 1,33 g) |
+| 1379 (primary) | Rezess 9 Feb 1379, HR I 2 Nr. 172 | 16 lot Lübeck-sign silver (14¼-lot) + 3 lot copper → 12-lot alloy; **152 Witten** per weighed mark (3 ℳ 32 Pf); Pfennig 9-lot, 43 ß = 516 per mark | Witten 1,15 (gross 1,54); Pf 0,26 | 4,22 | HR; B agrees; M's 176 / 13½ not confirmed |
 | **1381** | union extended | Lüneburg (W, after Dummler) — or Lüneburg, Rostock, Stralsund (M s. 368) ⚠ | — | — | W; M |
-| 1384, 1387 | Witten 180 per «marca puri» (14¼-lot) | 1,16 | ≈ 4,2 | B |
+| 1384 | assay of six towns' Witten (HR I 2 Nr. 288) | 178–180 per mark of Lübeck-sign silver | 1,16 | ≈ 4,2 | HR; B also gives 1387 |
 | 1388 | Lübeck strikes Sechslinge | Sechsling 6 Pf | — | — | Berlin Münzkabinett after Jesse / Stefke (web search); W «ab 1388» |
 | **1392** | **Rezess** — Dreiling and Sechsling enter the union's set; both sides city arms (M s. 368) | Dreiling 3 Pf, **230 / 12-lot mark** | 0,763 (= 0,254 per Pf) | 4,79 | J S. 100 («die hansischen Dreilinge von 1392 12lötig und zu 230 Stück»); L (Dreling «efter reces 1392») |
 | late 1390s | «standarden forringet senere i 1300-tallet» | — | — | — | M s. 368 |
-| 1403 | Wismar coinage | 70 ß (account) per 12½-lot mark; probably pennies only struck (B) | ß = 2,61 (Pf 0,218) | 5,6 | B |
-| 1406 | Rezess values the Danish sterling at 2 Pf l. | Danish sterling assayed 10-lot, 288 / mark (0,81 g) | 0,508 = ⅔ of the 1392 Dreiling | — | J S. 100 |
+| **6 Feb 1403** | **Münzvertrag of six towns for ten years** (HR I 5 Nr. 115) | Witten 12½-lot, **192** per weighed mark | 0,95 (gross 1,22) | 5,12 | HR editor S. 230 (B: Wismar 70 ß / 12½-lot ⚠) |
+| **31 Mar 1406** | **Rezess** (Lübeck, Hamburg, Lüneburg, Wismar, Hannover; HR I 5 S. 230–231) | Witten 12-lot, **196** per weighed mark; Hohlpfennig 9-lot, 576; Danish money assayed 10-lot → its penny = 2 Pf l. | Witten 0,89 (gross 1,19); Hohlpf. 0,23; Danish sterling 0,51 | Witten 5,44; Hohlpf. 5,33 | HR; J S. 100 |
 | 1410, 1411, 1418 | same rating of Danish coin kept | Danish coin 9¾-lot (1410) | — | — | J S. 100 |
 | **1411** | **Rezess Hamburg–Lüneburg–Lübeck** — last Rezess with precise Witten rules (Berlin) | Witten 208 / 12-lot mark; 1 ß = 3 Witten = 12 Pf | 0,843 (Pf 0,211) | 5,78 | B |
 | Jul 1423 | four towns resolve a common Sechsling | — | — | — | J S. 101 |
@@ -78,8 +119,10 @@ lower for the same pieces per mark.
 - **Struck set:** Hohlpfennig (1), Dreiling (3), **Witten (4)**, Sechsling (6); Blaffert (2) only from c. 1410.
 - **Governing level:** the 1392 Rezess — Dreiling 230 per 12-lot mark = 0,254 g fine per penny [C], a fine mark
   of ≈ 4,8 M lüb. [C]; down from ≈ 4,2 M (1379) and on the way to ≈ 5,6–5,8 M (1403 / 1411).
-- **Witten level c. 1400:** not attested for the 1390s in the cached sources; by the 1392 penny value a Witten
-  would be ≈ 1,02 g fine [C, 4 × 0,254] — a computation, not a recess figure. 1411: 0,84 g.
+- **Witten level c. 1400:** bracketed by primary texts — 1379/1384 **1,15–1,16 g** fine (152 per 12-lot mark) and
+  **6 Feb 1403: 0,95 g** (192 per 12½-lot mark); 1406 0,89 g; 1411 0,84 g. No Witten figure for 1385–1402 is
+  read; by the 1392 Dreiling's penny a Witten would be ≈ 1,02 g fine [C, 4 × 0,254] — a computation, not a
+  recess figure. **The Danish Witten of c. 1400 was made against a Lübeck Witten between ≈ 1,0 and 0,95 g fine.**
 - **Membership:** lübisch four towns; sundish towns separate (3 : 2) until 1425.
 
 Danish match (from `luebischer_muenzfuss.md` §3.11 and J S. 100): Erik's first coins (Næstved Witten,
@@ -91,10 +134,12 @@ sundish, reckoning — the Danish 3-penny sterling against the Hanseatic Dreilin
 
 | Question | Would be settled by |
 |---|---|
-| ⚠ 1379 Witten: 176 / 13½-lot (M) or 152 / 12-lot alloy (B)? Gross 1,33 vs 1,54 g | the Rezess text (Hanserecesse I, Bd. 2; Jesse 1928 appendix) |
+| ~~1379 Witten: 176 / 13½-lot (M) or 152 / 12-lot (B)?~~ Settled 2026-10-27: 152 per mark of 16 + 3 lot (HR I 2 Nr. 172); the editor's «Lies: 13?» stays as a reading question | — |
 | ⚠ Who joined in 1381: Lüneburg only (Dummler via W) or also Rostock and Stralsund (M)? | Jesse 1928 ch. 3; Hanserecesse I |
 | ⚠ First Witten: 1356 (Dummler) or c. 1365 (B, M)? | Dummler 2012 S. 19–20; Jesse 1929 «Das lübeckische Münzbuch 1365–1376» |
-| Witten parameters in the 1390s (the coin Denmark copied) | Jesse 1928 (recesses 1392, 1398?); L's coin weights for Witten «efter reces 1379/81» (1,14–1,27 g, mean 1,22 — Jesse 371) give gross only |
+| Witten parameters 1385–1402, and the 1392 Rezess text itself (not in HR I Bd. 3–4 — searched 2026-10-27) | Jesse 1928 appendix; Grautoff, *Historische Schriften* 3 (Lübeck 1836) — prints the town Münzrecesse; Lübeckisches Urkundenbuch Bd. 4 |
+| Text of the 1403 Münzvertrag (Nr. 115) | HR I Bd. 5 page image (the OCR skipped it) |
+| «lodige marc … 45 ß Lubisch in guden witten penningen» (1395): which mark | context of the ransom treaty; HR I Bd. 4 notes |
 | Was there a Rezess 1398 (L dates a hoard «nedlagt efter 1398»)? | Jesse 1928; Hanserecesse I, Bd. 4 |
 | Jesse 1928 itself (289 pp.) — not digitised in a source found (web search 2026-10-27) | a library copy; or Hanserecesse I Bd. 2–6 on archive.org (OCR quality to be checked) |
 
