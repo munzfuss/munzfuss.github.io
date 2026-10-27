@@ -61,7 +61,8 @@ The working recipe — used by the `research-dossier`, `fuss-description`,
    Bruun 1928 catalogue, paper-only works (Lange, Sieg, the printed Hede
    volumes), and any web page not in `scripts/cache`. Then use the web chain
    (CLAUDE.md «Tool fallback chain»); a page fetched for good belongs in the
-   cache and in `_corpus.yml` (`docs/HARVEST_GUIDE.md`).
+   cache and in `_corpus.yml` (`docs/HARVEST_GUIDE.md`); a PDF goes in through
+   the `add-source-work` skill.
 8. **Checking existing citations.** `audit_pages.py` scores every `refs_pool`
    key's quote against its page (a report; each MISMATCH needs the page read).
 
