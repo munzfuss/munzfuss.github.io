@@ -2259,10 +2259,12 @@ tr.msr-sh .msr-cut { display: none; }
 /* A member source's marked catalogue number (Coin.catalog_alts), muted,
    with its (*) / (!) marker. */
 .c-km .cat-alt { color: var(--text-muted); }
-/* line-height 1.25 = the Δ badge's: a two-line проба (value + «(4½ лот)»)
-   stays within the badge's height (2 × 15.6px), so a sub-row keeps 48px. */
 .c-metal { font-size: 12.5px; color: var(--text-secondary); }
-.c-fin { font-size: 12.5px; color: var(--text-secondary); line-height: 1.25; white-space: nowrap; }
+/* The проба (Spectral) sits on the same line as the weight columns
+   (JetBrains Mono 12.5px, line-height 20.625px): 13.75px Spectral matches the
+   mono digit height, and the same line-height puts both baselines level
+   (measured Δ 0.5px; curator 2026-10-27). One line — the unit is inline. */
+.c-fin { font-size: 13.75px; color: var(--text-secondary); line-height: 20.625px; white-space: nowrap; }
 /* Period-unit equivalent of the fineness (Karat / Lot) + its (?) marker, on
    the same line as the .xxx value (curator 2026-10-22); the unit text is
    muted, the (?) trails it. */
