@@ -223,6 +223,15 @@ def key_checks(pool: dict, key: str, langs: list[str]) -> list[tuple[str, str]]:
 
 
 # ---------------------------------------------------------------- verbatim
+_NOTATION = [("½", " 1/2"), ("¼", " 1/4"), ("¾", " 3/4"), ("⅓", " 1/3"), ("⅔", " 2/3"),
+             ("⅛", " 1/8"), ("⅜", " 3/8"), ("ℳ", "m"), ("ſ", "s"), ("—", "-"), ("–", "-"),
+             ("’", "'"), ("„", '"'), ("“", '"'), ("”", '"'),
+             # «Aar» / «år», «Mønt» / «Moent» — the old and the transliterated
+             # spellings fold together (the same table as scripts/kb/kb.py).
+             ("æ", "ae"), ("ø", "oe"), ("å", "aa"), ("ä", "ae"), ("ö", "oe"),
+             ("ü", "ue"), ("ß", "ss")]
+
+
 def verbatim(pool: dict, keys: list[str]) -> dict[str, list[tuple[str, str]]]:
     """Each quote fragment checked against the cache, in two text layers.
 
@@ -237,7 +246,15 @@ def verbatim(pool: dict, keys: list[str]) -> dict[str, list[tuple[str, str]]]:
         s = _html.unescape(re.sub(r"<[^>]+>", " ", s))
         s = unicodedata.normalize("NFC", s).replace("\u00ad", "")
         s = re.sub(r"-\s*\n\s*", "", s)
-        return re.sub(r"\s+", " ", s).lower()
+        s = re.sub(r"\s+", " ", s).lower()
+        # The same figure written two ways is the same text: «½» / «1/2»,
+        # «ℳ» / «m», «ſ» / «s» (2026-10-27: 111 of 402 «missing» fragments
+        # were only this).
+        for a, b in _NOTATION:
+            s = s.replace(a, b)
+        # Letters and digits only: OCR spacing, line breaks, interpuncts and
+        # punctuation do not make a quote a different text.
+        return re.sub(r"[\W_]+", "", s)
     layout_dir = str(ROOT / "scripts/cache/_derived/layout")
     plain, layout = {}, {}
     for f in glob.glob(str(ROOT / "scripts/cache/**/*"), recursive=True):
@@ -252,7 +269,7 @@ def verbatim(pool: dict, keys: list[str]) -> dict[str, list[tuple[str, str]]]:
         out = []
         for q in ch.QUOTE_RE.findall(e.get("da") or e.get("de") or ""):
             frags = [norm(x).strip(" .,;") for x in re.split(r"…|\[…\]|·", q)]
-            for fr in [x for x in frags if len(x) >= 8]:
+            for fr in [x for x in frags if len(x) >= 10]:
                 if any(fr in c for c in plain.values()):
                     continue
                 kind = "layout_only" if any(fr in c for c in layout.values()) else "missing"
