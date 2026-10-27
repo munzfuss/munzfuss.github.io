@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 6014 active, 49 retired.
+# 6006 active, 57 retired.
 
 id: danish_realm
 classes:
@@ -2994,12 +2994,6 @@ classes:
       - dk-bruun-7628
       - dk-hede-f5h16
       - ngc-1050363
-  - id: c-0df128b9
-    status: active
-    created: '2026-10-25'
-    label: unified-metallanalyser-2017-3-ll2-gotland
-    members:
-      - metallanalyser-2017-3-ll2-gotland
   - id: c-0dfc42ef
     status: active
     created: '2026-10-22'
@@ -6767,12 +6761,6 @@ classes:
       - dk-hede-c5h60
       - dk-numista-328512
       - ngc-1050719
-  - id: c-16544455
-    status: active
-    created: '2026-10-25'
-    label: unified-metallanalyser-2017-3-ll3b-gotland
-    members:
-      - metallanalyser-2017-3-ll3b-gotland
   - id: c-1666e924
     status: active
     created: '2026-10-22'
@@ -8771,12 +8759,6 @@ classes:
       - denmark-numismaster-65569
       - dk-bruun-5845
       - ngc-1050185
-  - id: c-1e62058e
-    status: active
-    created: '2026-10-25'
-    label: unified-metallanalyser-2017-3-ll4b-gotland
-    members:
-      - metallanalyser-2017-3-ll4b-gotland
   - id: c-1e6dd34b
     status: active
     created: '2026-10-22'
@@ -20753,12 +20735,6 @@ classes:
     legacy_id: unified-kmk-122106
     members:
       - kmk-122106
-  - id: c-4a2c1f3c
-    status: active
-    created: '2026-10-25'
-    label: unified-metallanalyser-2017-3-ll4a-gotland
-    members:
-      - metallanalyser-2017-3-ll4a-gotland
   - id: c-4a2e2168
     status: active
     created: '2026-10-22'
@@ -46444,12 +46420,6 @@ classes:
     legacy_id: unified-kmk-149950
     members:
       - kmk-149950
-  - id: c-a8dc7a3c
-    status: active
-    created: '2026-10-25'
-    label: unified-metallanalyser-2017-3-ll4d-gotland
-    members:
-      - metallanalyser-2017-3-ll4d-gotland
   - id: c-a8e63b4b
     status: active
     created: '2026-10-22'
@@ -54253,12 +54223,6 @@ classes:
     legacy_id: unified-kmk-149347
     members:
       - kmk-149347
-  - id: c-c801cd9a
-    status: active
-    created: '2026-10-25'
-    label: unified-metallanalyser-2017-3-ll4aqq-gotland
-    members:
-      - metallanalyser-2017-3-ll4aqq-gotland
   - id: c-c8147585
     status: active
     created: '2026-10-22'
@@ -64158,12 +64122,6 @@ classes:
     legacy_id: unified-kmk-133419
     members:
       - kmk-133419
-  - id: c-ecabd1b4
-    status: active
-    created: '2026-10-25'
-    label: unified-metallanalyser-2017-3-ll4c-gotland
-    members:
-      - metallanalyser-2017-3-ll4c-gotland
   - id: c-ecabf46c
     status: active
     created: '2026-10-22'
@@ -65718,12 +65676,6 @@ classes:
     legacy_id: unified-ngc-1051758
     members:
       - ngc-1051758
-  - id: c-f4871d8a
-    status: active
-    created: '2026-10-25'
-    label: unified-metallanalyser-2017-3-ll4aq-gotland
-    members:
-      - metallanalyser-2017-3-ll4aq-gotland
   - id: c-f488705a
     status: active
     created: '2026-10-22'
@@ -66121,6 +66073,14 @@ classes:
     members:
       - dk-galster-hg-139
       - kmk-352426
+      - metallanalyser-2017-3-ll2-gotland
+      - metallanalyser-2017-3-ll3b-gotland
+      - metallanalyser-2017-3-ll4a-gotland
+      - metallanalyser-2017-3-ll4aq-gotland
+      - metallanalyser-2017-3-ll4aqq-gotland
+      - metallanalyser-2017-3-ll4b-gotland
+      - metallanalyser-2017-3-ll4c-gotland
+      - metallanalyser-2017-3-ll4d-gotland
   - id: c-f72d86a7
     status: active
     created: '2026-10-22'
@@ -68382,6 +68342,14 @@ classes:
     members:
       - kmk-352764
       - kmk-575500
+  - id: c-0df128b9
+    status: retired
+    created: '2026-10-25'
+    label: unified-metallanalyser-2017-3-ll2-gotland
+    merged_into: c-f729eba8
+    retired: '2026-10-27'
+    members:
+      - metallanalyser-2017-3-ll2-gotland
   - id: c-13e893f2
     status: retired
     created: '2026-10-26'
@@ -68399,6 +68367,14 @@ classes:
     retired: '2026-10-26'
     members:
       - metallanalyser-2016-1-g21-malmo-skilling
+  - id: c-16544455
+    status: retired
+    created: '2026-10-25'
+    label: unified-metallanalyser-2017-3-ll3b-gotland
+    merged_into: c-f729eba8
+    retired: '2026-10-27'
+    members:
+      - metallanalyser-2017-3-ll3b-gotland
   - id: c-18a36b28
     status: retired
     created: '2026-10-25'
@@ -68407,6 +68383,14 @@ classes:
     retired: '2026-10-25'
     members:
       - dk-galster-epomg-14
+  - id: c-1e62058e
+    status: retired
+    created: '2026-10-25'
+    label: unified-metallanalyser-2017-3-ll4b-gotland
+    merged_into: c-f729eba8
+    retired: '2026-10-27'
+    members:
+      - metallanalyser-2017-3-ll4b-gotland
   - id: c-2035f4fa
     status: retired
     created: '2026-10-25'
@@ -68542,6 +68526,14 @@ classes:
     members:
       - kmk-641542
       - kmk-709875
+  - id: c-4a2c1f3c
+    status: retired
+    created: '2026-10-25'
+    label: unified-metallanalyser-2017-3-ll4a-gotland
+    merged_into: c-f729eba8
+    retired: '2026-10-27'
+    members:
+      - metallanalyser-2017-3-ll4a-gotland
   - id: c-4ca2f0b9
     status: retired
     created: '2026-10-26'
@@ -68634,6 +68626,14 @@ classes:
     retired: '2026-10-26'
     members:
       - kmk-266467
+  - id: c-a8dc7a3c
+    status: retired
+    created: '2026-10-25'
+    label: unified-metallanalyser-2017-3-ll4d-gotland
+    merged_into: c-f729eba8
+    retired: '2026-10-27'
+    members:
+      - metallanalyser-2017-3-ll4d-gotland
   - id: c-af2efb76
     status: retired
     created: '2026-10-22'
@@ -68652,6 +68652,14 @@ classes:
     retired: '2026-10-25'
     members:
       - metallanalyser-2016-1-g13-lund-gros
+  - id: c-c801cd9a
+    status: retired
+    created: '2026-10-25'
+    label: unified-metallanalyser-2017-3-ll4aqq-gotland
+    merged_into: c-f729eba8
+    retired: '2026-10-27'
+    members:
+      - metallanalyser-2017-3-ll4aqq-gotland
   - id: c-c814e2e4
     status: retired
     created: '2026-10-22'
@@ -68756,6 +68764,14 @@ classes:
     retired: '2026-10-26'
     members:
       - lindahl-1955-halvpenning
+  - id: c-ecabd1b4
+    status: retired
+    created: '2026-10-25'
+    label: unified-metallanalyser-2017-3-ll4c-gotland
+    merged_into: c-f729eba8
+    retired: '2026-10-27'
+    members:
+      - metallanalyser-2017-3-ll4c-gotland
   - id: c-f02766b2
     status: retired
     created: '2026-10-25'
@@ -68780,6 +68796,14 @@ classes:
     retired: '2026-10-26'
     members:
       - dk-bruun-3763
+  - id: c-f4871d8a
+    status: retired
+    created: '2026-10-25'
+    label: unified-metallanalyser-2017-3-ll4aq-gotland
+    merged_into: c-f729eba8
+    retired: '2026-10-27'
+    members:
+      - metallanalyser-2017-3-ll4aq-gotland
   - id: c-f7d58732
     status: retired
     created: '2026-10-22'
