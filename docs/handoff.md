@@ -39,56 +39,53 @@ refs_pool key for *Fra Denar til Daler* s. 398 (no pool entry for the book
 yet); Galster 6 «1 Halvpenning» → «1 Skærv»? asked, unanswered; Jesse 1928
 has no open copy (archive.org lending only).
 
-## 2026-10-26 (session «дрібні правки») — Lybsk Møntfod clean-up, Lindahl 1955, matcher
+## 2026-10-27 (session «дрібні правки») — Lybsk Møntfod scope, Gotland hvide, add-source-work
 
 **State.** All commits local, not pushed (push only on «пуш»). Coordinate every
-data/v2 write window with the `main` session (local_018244b6-…) — it rebuilds
-the Galster seed in parallel and owns `build_galster_denmark_seed.py`.
+data/v2 write window with the `main` session (local_018244b6-…) by
+SendMessage; it works in parallel on refs_pool, location prose and Galster.
 
-**Done this session (newest last):**
-- KMM clean-up of `luebischer_muenzfuss` with the new skill `kmm-triage`
-  (categories 1 / 2.1 / 2.2 / 3 / 4): excluded 1 + 2.1 (117, `00ef87b`) and
-  2.2 (38, `c6f91a1`); then 59 KMM of Lybsk-era rulers in seed_unsorted
-  (`4fcd4d0`). Registry fixes so an excluded seed never takes a live class's
+**Done (2026-10-26 … 27):**
+- KMM clean-up of `luebischer_muenzfuss` with skill `kmm-triage` (`00ef87b`,
+  `c6f91a1`, `4fcd4d0`); registry: an excluded seed never takes a live class
   id (`c275300`, `e12f4e7`).
-- Lindahl, NNÅ 1955 «Danmarks mønter 1377-1448»: cached + kb (`lindahl-1955`),
-  seed `data/v2/seed/lindahl/` (builder `build_lindahl_1955_seed.py`, Jesse in
-  `catalog.jesse`, FL numbers, metal by the 50 % line, Kobbersterling copper).
-  All 19 types now in Lybsk classes (auto + curator merges `9476e40`); no_merge
-  Lindahl hulpenning vs Galster 137 (Visby).
-- Matcher: `catalog.others` confirms a catalogue match (never disagrees);
-  `catalog.jesse` compared; «FL#» = «Fritze Lindahl#»; Witten→Hvid and
-  Kobbersterling→Sterling only for Denmark-page entities (`denmark_page_entities`).
-- Metal: assays ≥ 50 % Ag silver, below billon, both `silver_billon` (render
-  splits it per sub-row); Kobbersterling copper with the XRF silver in the note.
-- Render: shortened specimen list (≥ 6 finenesses), one table per phase in
-  rebuild-scope Fuß (copper rows shaded), tooltip source names (kmk→KMM …),
-  reading mark «(f)» fragment, ruler / nominal display forms (penning
-  equivalents to the note, «?»→«(?)»), KMM misprints as (!) + correct value.
-- Docs: dossier §3.12 (Erik VII / Christoffer III after Lindahl and Galster
-  «Næstved Mønt»); plan `docs/plans/ruler_nominal_normalisation.md`.
+- Lindahl NNÅ 1955 cached + seeded (`data/v2/seed/lindahl/`); all 19 types in
+  Lybsk classes. Matcher: `catalog.others` confirms, `jesse` compared, FL =
+  Fritze Lindahl. Metal by the 50 % assay line; Kobbersterling copper.
+- Five merges: Bruun 3757 → G 19, Bruun 3763 → G 18, IKMK 18206588 → G 9,
+  IKMK 18206590 → G 23, KMM 741278 → G 182 (cross-entity) (`ce4715e`).
+- Catalogue column: no «Jesse# N» beside `catalog.jesse` N, FL# folds into
+  Fritze Lindahl# (`2882559`, display only). Merger kept only the first value
+  of jesse / thomsen / bergsoe / hauberg / aagaard / welter / fiala / behrens /
+  gaedechens / kreber — now list-form (`6ebbb07`; 56 finals gained values).
+- Metallanalyser: «ks kantskada» and 2017:1 «f» weights → fragment «(f)»;
+  fragments no longer struck through (`c0f4c1c`).
+- Lybsk scope: Norwegian Hans G 154 / 156 / 161 / 162 → phase I (`2121acd`);
+  Erik Valkendorf G 182–184 → NOT Lybsk, next period with Christian II
+  (stay `seed_unsorted`); Gotland hvide: LL 5 → G 140, LL 7 / 7a → G 142
+  (`3f1f46d`), LL 2–4d → G 139 B–C (`70a1c48`), LL 1 → G 139 A (`6c73a87`);
+  pair no_merges keep G 141 apart (the matcher otherwise joins it to LL 5).
+  G 140 stays phase 0 (Christian I, late — Galster 1972b, Märcher 2018);
+  other datings in its note; the 1520 year-mark tooltip no longer says
+  Hauberg = Christian I (`1595706`).
+- Hauberg 1891 «Gullands Myntvæsen» cached, corpus id `hauberg-1891`
+  (`dbfcebb`); concordance Lagerqvist ↔ Hauberg ↔ Galster in
+  `docs/research/gotland_gote.md` §7.1 (`7d005d9`).
+- New skill `add-source-work` (PDF → cache → corpus search; `f22795c`).
 
-**In progress — next steps, in order:**
-1. **Five curator-approved merges (2026-10-26, «так») — NOT yet written**:
-   Bruun 3757 → class G 19 (c-a4e8afcd); Bruun 3763 → G 18 (c-54480815);
-   IKMK 18206588 → G 9 (c-3f22c79f); IKMK 18206590 → G 23 (c-5be595df) — these
-   two rest on «one type per mint» only; KMM 741278 → Galster 182 class
-   (c-0ca3cad8, danish_norway) = **cross-entity** (`_cross_entity.yml`).
-   List the whole target class in `members`. Then merge + absorb (all),
-   verify_reflow, commit.
-2. **Curator decisions pending on Lybsk scope** (ask): Norwegian Hans hvide /
-   hulpenning G 154, 156, 161, 162 (danish_norway, seed_unsorted); Erik
-   Valkendorf (Nidaros 1510-1522) Skilling G 182 / G 183, Hvid G 184; Gotland
-   gote G 135 / 136 / 139 / 140, hulpenning G 137, Lindblad LL hvide (13);
-   IKMK Christoph «Schilling» and «Johann» Schilling, both København (no
-   Galster København type); KMM 427531-3 (Hans Skilling, no mint) and KMM
-   371120 (Hvid «Christian 1 / Hans», weight + image). Post-1513 (Rigsrådet
-   1533, Interregnum 1523-35, «Hans Mule») are not Lybsk.
-3. Then: page text for phase 0 from dossier §3.12 via `cite-source` (1396
-   levy, reckoning, mints, 1402 first mention) — curator said yes.
-4. Open from earlier: group B (pre-1373 pennings in seed_unsorted, ~28) and
-   C (later rulers with year ≤ 1513, ~17) — curator to decide; the 11 KMM
-   «(?)»-nominal records were excluded in the clean-up.
+**Next, in order:**
+1. Ask the curator: KMM 150299 (Christian I hvid, Schou 130 = G 139 C) into
+   class G 139?
+2. Ask the curator (Lybsk scope, still unasked): IKMK Christoph «Schilling»
+   and «Johann» Schilling, both København (no Galster København type); KMM
+   427531-3 (Hans Skilling, no mint) and KMM 371120 (Hvid «Christian 1 /
+   Hans», weight + image).
+3. Page text for phase 0 from dossier §3.12 via `cite-source` (1396 levy,
+   reckoning, mints, 1402 first mention) — curator said yes.
+4. seed_unsorted group B (pre-1373 pennings, ~28) and C (later rulers with
+   year ≤ 1513, ~17) — curator to decide.
+5. When the post-1514 period is reviewed: Valkendorf G 182–184 go with
+   Christian II's Skilling / Hvid (FUSS_REVIEW_FINDINGS §B).
 
 ## 2026-10-26 — every Union-era Galster number end to end; `erik_gotland`
 
