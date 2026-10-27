@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 6006 active, 57 retired.
+# 6005 active, 58 retired.
 
 id: danish_realm
 classes:
@@ -54578,12 +54578,6 @@ classes:
     members:
       - kmk-140422
       - kmk-140447
-  - id: c-c9888fe0
-    status: active
-    created: '2026-10-25'
-    label: unified-metallanalyser-2017-3-ll1-gotland
-    members:
-      - metallanalyser-2017-3-ll1-gotland
   - id: c-c98ad2ca
     status: active
     created: '2026-10-22'
@@ -66073,6 +66067,7 @@ classes:
     members:
       - dk-galster-hg-139
       - kmk-352426
+      - metallanalyser-2017-3-ll1-gotland
       - metallanalyser-2017-3-ll2-gotland
       - metallanalyser-2017-3-ll3b-gotland
       - metallanalyser-2017-3-ll4a-gotland
@@ -68669,6 +68664,14 @@ classes:
     retired: '2026-10-26'
     members:
       - kmk-717148
+  - id: c-c9888fe0
+    status: retired
+    created: '2026-10-25'
+    label: unified-metallanalyser-2017-3-ll1-gotland
+    merged_into: c-f729eba8
+    retired: '2026-10-27'
+    members:
+      - metallanalyser-2017-3-ll1-gotland
   - id: c-cd2c0b3c
     status: retired
     created: '2026-10-25'
