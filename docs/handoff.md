@@ -16,6 +16,17 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-28 — Lübeck / Wendish standard: full chronology 1226–1622 («стопи» session)
+
+- New dossier `docs/research/luebeck_standard_chronology_1226_1622.md`: every coin formula (N from the X-lot mark),
+  fine weight and fine mark in ℳ lüb. 1226–1622; c. 1400 detail in `wendischer_muenzverein_c1400.md`.
+- Sources cached + corpus: Hanserecesse I 2, 4–8, II 1–3, III 1, 3, 5 (`hanserecesse-*`), Grautoff 1836 Bd. 3
+  (`grautoff-1836-3`, Fraktur — read figures from images; table S. 265–266), Gaedechens 1854 (`gaedechens-1854-…`,
+  S. 175–193). Key new facts: 1398 Satzung (Witten 13-lot, 4 ℳ 4 ₰ per mark = the coin Denmark copied c. 1400);
+  1381 Lüneburg, Rostock, Stralsund join; 1468 treaties 22 Feb / 22 Jul (vs «15 Jun» in luebischer dossier — open).
+- Open (§4 of the new dossier): 1410 49/50 Wurf, 1424 fineness, 1461 / 1468 texts (HR II 5–6 not cached), Jesse 1928
+  (archive.org lending copy, needs the curator's login).
+
 ## 2026-10-26 (main session, evening) — Galster nominal-less KMM merges, gote, year_window
 
 **State.** All local, not pushed. data/v2 window handed back to «дрібні правки»
