@@ -4105,6 +4105,9 @@ coins:
           - 1652
     year_label: 1651-1652
     ruler: Frederik III
+    mintmaster: Frederik Grüner
+    inscription_obv: FRIDERICUS III D G DAN NOR VAN GO REX
+    inscription_rev: DOMINUS - PROVIDEBIT 16-51
     mint: Christiania
     catalog:
       km: '44'
@@ -4130,6 +4133,7 @@ coins:
         - Thesen# 36
         - Thesen# 37
         - Rønning# 37c
+        - BM# 44
       dav: '3589'
       numista: '118193'
       skaare: '532'
@@ -4150,6 +4154,8 @@ coins:
       - value: 0.875
         source: ucoin
     weight_rough_g:
+      - value: 56.81
+        source: ikmk
       - value: 57.21
         source: bruun
       - value: 57.43
@@ -4165,6 +4171,8 @@ coins:
     diameter_mm:
       - value: 44.0
         source: numista
+      - value: 45.0
+        source: ikmk
       - value: 45.0
         source: ucoin
     sources:
@@ -4183,6 +4191,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-2-speciedaler-1651-1652/?tid=145476
         ref: ucoin
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18219584
+        ref: IKMK Berlin 18219584
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-44-1651-1652-cuid-1100474-duid-1448989
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -4193,6 +4204,7 @@ coins:
       - dk-bruun-9645
       - dk-numista-118193
       - dk-tid-145476
+      - ikmk-18219584
       - ngc-1100474
   - id: c-c8801117
     class_id: c-c8801117
@@ -33539,30 +33551,24 @@ coins:
     kind: kurant
     nominal: 1 Speciedaler
     year_first: 1649
-    year_last: 1652
+    year_last: 1651
     year_ranges:
       -   - 1649
-          - 1652
-    year_label: 1649-1652
+          - 1651
+    year_label: 1649-1651
     ruler: Frederik III
     mintmaster: Peter Grüner
     inscription_obv: FRIDERICUS III D G DAN NOR VA GO REX
     inscription_rev: DOMINUS - PROVIDEBIT 16-49
     mint: Christiania
     catalog:
-      km:
-        - '37'
-        - '40'
+      km: '37'
       hede:
         - '8'
         - 8B
-        - 8C
-        - 8D
       hede_volume: nf3h
       schou:
         - '5'
-        - 6-7
-        - 7-8
         - 17-20
         - 19-23
       bruun_collection_id:
@@ -33593,14 +33599,11 @@ coins:
         - Thesen# 69B
         - Rønning# 43a
         - BM# 37
-        - BM# 40
       dav:
         - EC II 3583
         - EC II 3588
-        - EC II 3590
       numista:
         - '444847'
-        - '55888'
         - '82384'
       skaare: '537'
     metal: silver
@@ -33629,8 +33632,6 @@ coins:
       - value: 28.44
         source: bruun
       - value: 28.52
-        source: ikmk
-      - value: 28.64
         source: ikmk
       - value: 28.717
         source: hede
@@ -33662,14 +33663,9 @@ coins:
         source: numista
       - value: 44.0
         source: ucoin
-      - value: 45.0
-        source: ikmk
     sources:
       - type: literature
         url: https://numismaster.com/MC_110719
-        ref: NumisMaster
-      - type: literature
-        url: https://numismaster.com/MC_110720
         ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -33693,16 +33689,10 @@ coins:
         url: https://en.numista.com/444847
         ref: 'Numista N#444847 — 1 Speciedaler - Frederik III (Type I.A: 5 lines in crown; date outside inner ring) - Norway'
       - type: literature
-        url: https://en.numista.com/55888
-        ref: Numista N#55888 — NO 1 Speciedaler - Frederik III Type I.B 1651-1652
-      - type: literature
         url: https://en.numista.com/82384
         ref: Numista N#82384 — NO 1 Speciedaler - Frederik III Type I.B (3 lines in crown; legend starts below bust) 1649-1651
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-1-speciedaler-1649-1651/?tid=145428
-        ref: ucoin
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-speciedaler-1651-1658/?tid=145429
         ref: ucoin
       - type: museum
         url: https://ikmk.smb.museum/object?id=18219598
@@ -33711,17 +33701,11 @@ coins:
         url: https://ikmk.smb.museum/object?id=18219599
         ref: IKMK Berlin 18219599
       - type: museum
-        url: https://ikmk.smb.museum/object?id=18219600
-        ref: IKMK Berlin 18219600
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/197260
         ref: KMM 197260 (Inv. FP 3108.7024)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/705760
         ref: KMM 705760 (Inv. FP 334.4)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-40-1651-1652-cuid-1095597-duid-1466128
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-37-1649-1651-cuid-1114115-duid-1448303
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -33733,27 +33717,122 @@ coins:
       unit_raw: spdl
     composed_of:
       - denmark-numismaster-110719
-      - denmark-numismaster-110720
       - dk-bruun-9596
       - dk-bruun-9597
       - dk-bruun-9598
       - dk-bruun-9599
       - dk-bruun-9616
       - dk-hede-nf3h8b
-      - dk-hede-nf3h8c
-      - dk-hede-nf3h8d
       - dk-numista-444847
-      - dk-numista-55888
       - dk-numista-82384
       - dk-tid-145428
-      - dk-tid-145429
       - ikmk-18219598
       - ikmk-18219599
-      - ikmk-18219600
       - kmk-197260
       - kmk-705760
-      - ngc-1095597
       - ngc-1114115
+  - id: c-ff6e54c7
+    class_id: c-ff6e54c7
+    label: unified-dk-hede-nf3h8c
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_first: 1651
+    year_last: 1652
+    year_ranges:
+      -   - 1651
+          - 1652
+    year_label: 1651-1652
+    ruler: Frederik III
+    mintmaster: Frederik Grüner
+    inscription_obv: FRIDERICUS III D G DA NOR VAN GOT REX
+    inscription_rev: DOMINUS - PROVIDEBIT 16-51
+    mint: Christiania
+    catalog:
+      km: '40'
+      hede:
+        - 8C
+        - 8D
+      hede_volume: nf3h
+      schou:
+        - 6-7
+        - 7-8
+      dav: EC II 3590
+      numista: '55888'
+      others:
+        - BM# 40
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.875
+        source: hede
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+      - value: 0.875
+        source: numista
+      - value: 0.875
+        source: ucoin
+    weight_rough_g:
+      - value: 28.64
+        source: ikmk
+      - value: 28.717
+        source: hede
+      - value: 28.72
+        source: ngc
+      - value: 28.72
+        source: numismaster
+      - value: 28.72
+        source: numista
+      - value: 28.72
+        source: ucoin
+    diameter_mm:
+      - value: 44.0
+        source: numista
+      - value: 44.0
+        source: ucoin
+      - value: 45.0
+        source: ikmk
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_110720
+        ref: NumisMaster
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nf3h8.htm
+        ref: danskmoent.dk (Hede nf3h8C)
+      - type: literature
+        url: https://en.numista.com/55888
+        ref: Numista N#55888 — NO 1 Speciedaler - Frederik III Type I.B 1651-1652
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-speciedaler-1651-1658/?tid=145429
+        ref: ucoin
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18219600
+        ref: IKMK Berlin 18219600
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-40-1651-1652-cuid-1095597-duid-1466128
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: danish_norway
+    hede_muentzfuss_yield:
+      value: 9.306
+      unit: speciedaler
+      basis: fin
+      unit_raw: spdl
+    composed_of:
+      - denmark-numismaster-110720
+      - dk-hede-nf3h8c
+      - dk-hede-nf3h8d
+      - dk-numista-55888
+      - dk-tid-145429
+      - ikmk-18219600
+      - ngc-1095597
   - id: c-305bc5e0
     class_id: c-305bc5e0
     label: unified-dk-hede-nf3h9ab
@@ -38800,44 +38879,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-tid-145589
-  - id: c-36792049
-    class_id: c-36792049
-    label: unified-ikmk-18219584
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 2 Taler
-    year_first: 1651
-    year_last: 1651
-    year_label: '1651'
-    ruler: Frederik III
-    mintmaster: Frederik Grüner
-    inscription_obv: FRIDERICUS III D G DAN NOR VAN GO REX
-    inscription_rev: DOMINUS - PROVIDEBIT 16-51
-    mint: Christiania
-    catalog:
-      hede: 9B
-      others:
-        - BM# 44
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 56.81
-        source: ikmk
-    diameter_mm:
-      - value: 45.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18219584
-        ref: IKMK Berlin 18219584
-    issuing_entity: danish_norway
-    composed_of:
-      - ikmk-18219584
   - id: c-eda0be96
     class_id: c-eda0be96
     label: unified-ikmk-18219602

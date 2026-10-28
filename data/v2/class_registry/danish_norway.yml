@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1641 active, 25 retired.
+# 1641 active, 26 retired.
 
 id: danish_norway
 classes:
@@ -3364,13 +3364,6 @@ classes:
     legacy_id: unified-kmk-148761
     members:
       - kmk-148761
-  - id: c-36792049
-    status: active
-    created: '2026-10-22'
-    label: unified-ikmk-18219584
-    legacy_id: unified-ikmk-18219576
-    members:
-      - ikmk-18219584
   - id: c-36983dc1
     status: active
     created: '2026-10-22'
@@ -9018,6 +9011,7 @@ classes:
       - dk-bruun-9645
       - dk-numista-118193
       - dk-tid-145476
+      - ikmk-18219584
       - ngc-1100474
   - id: c-77efa15a
     status: active
@@ -14695,28 +14689,23 @@ classes:
     created: '2026-10-22'
     label: unified-dk-hede-nf3h8b
     legacy_id: unified-dk-hede-nf3h8b
+    split_into:
+      - c-ff6e54c7
     members:
       - denmark-numismaster-110719
-      - denmark-numismaster-110720
       - dk-bruun-9596
       - dk-bruun-9597
       - dk-bruun-9598
       - dk-bruun-9599
       - dk-bruun-9616
       - dk-hede-nf3h8b
-      - dk-hede-nf3h8c
-      - dk-hede-nf3h8d
       - dk-numista-444847
-      - dk-numista-55888
       - dk-numista-82384
       - dk-tid-145428
-      - dk-tid-145429
       - ikmk-18219598
       - ikmk-18219599
-      - ikmk-18219600
       - kmk-197260
       - kmk-705760
-      - ngc-1095597
       - ngc-1114115
   - id: c-cfb89c28
     status: active
@@ -17903,6 +17892,18 @@ classes:
     legacy_id: unified-kmk-423430
     members:
       - kmk-423430
+  - id: c-ff6e54c7
+    status: active
+    created: '2026-10-28'
+    label: unified-dk-hede-nf3h8c
+    members:
+      - denmark-numismaster-110720
+      - dk-hede-nf3h8c
+      - dk-hede-nf3h8d
+      - dk-numista-55888
+      - dk-tid-145429
+      - ikmk-18219600
+      - ngc-1095597
   - id: c-ffeb8e93
     status: active
     created: '2026-10-22'
@@ -17949,6 +17950,15 @@ classes:
       - ikmk-18219598
       - ikmk-18219599
       - ikmk-18219600
+  - id: c-36792049
+    status: retired
+    created: '2026-10-22'
+    label: unified-ikmk-18219584
+    legacy_id: unified-ikmk-18219576
+    merged_into: c-77d4bd3c
+    retired: '2026-10-28'
+    members:
+      - ikmk-18219584
   - id: c-3c1d6d51
     status: retired
     created: '2026-10-22'
