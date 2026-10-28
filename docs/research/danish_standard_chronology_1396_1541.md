@@ -62,9 +62,13 @@ there on 233,856 g). «R» act text read; «W» Wilcke prints the act; «a» ass
 | c. 1400 – 1403 | first royal coins: Næstved Witten (crozier / crown), crown hollow penny | Witten 1,15 g (L, one piece; no assay) | — | 5,12 (1403 Witten 192 / 12½) | M s. 377–379; L s. 77–78 |
 | 1 Oct 1402 | first mention of the new coin: «*32 mark sølv i hvid, lovlig og gængse Sjællands mønt*» | — | — | — | L11 |
 | **1403** | first certain royal production (Næstved sterlings); first Hanseatic complaints | — | — | — | M s. 379 |
+| **6 Dec 1403** | Recess of the Wendish towns, Lübeck (HR I 5 Nr. 158 § 8, S. 107): complaint «*umme dat pagyment, dat in Denemarken geslagen wert, dat der koninginnen lude vor vul udgeven unde nicht vor vul untfangen willen*»; a day with the queen at Lübeck planned | no parameter — the queen's officials pay the Danish coin out at full value and refuse it at full value (R) | — | 5,12 (1403 Witten; § 1 confirms the Feb. 1403 Münzvertrag) | HR I 5 S. 107, read from the page image 2026-10-28 |
+| **2 Mar 1404** | Recess Marienburg (HR I 5 Nr. 181 § 2, S. 119): the Prussian envoy to Lübeck is to ask the towns to write to the queen «*das sy keyne muntze slon losse, sy welle sy denne vorder lossen nemen*» | no parameter (R) | — | — | HR I 5 S. 119 (page image) |
+| **8 Apr 1404** | Recess Lübeck (HR I 5, S. 124 § 4): to be raised at the next day with the queen — «*um de munte, de de vrowe koninginne unde de ere slan laten unde utgeven unde nicht wedder nemen willen*» | no parameter (R) | — | — | HR I 5 S. 124 (page image) |
 | c. 1403–1412/13 | Erik's sterling (3 Pf), Næstved and Lund | Næstved 629–857 ‰, Lund 532 ‰ (L, a); 0,50–1,00 g (0,70); Hb «9-lødig» (562 ‰) | ⚠ at 0,70 g × 532–857 ‰ = 0,37–0,60 g per 3 Pf (4 to the ß) → **6,1–9,8**; at Hb's 9 lod 9,3 (O) | 5,4 (1406) | §3.12 |
-| **31 Mar 1406** | Recess Lübeck, Hamburg, Lüneburg, Wismar, Hannover (HR I 5 Nr. 310) — Danish money assayed | «*dat Densche geldt holt 10 lot, upp de mark scrodet 10 mark 2 schillinge*», «*de penningh 2 penninghe*» (R) | editor: fine mark **16 ℳ 3 ß 2⅖ ₰ = 16,2** in the coin's own count (R, HR-ed) | 5,44 (Witten 196 / 12) | HR I 5 S. 230–231 |
+| **31 Mar 1406** | Recess Lübeck, Hamburg, Lüneburg, Wismar, Hannover (HR I 5 Nr. 310) — Danish money assayed | «*dat Densche geldt holt 10 lot, upp de mark scrodet 10 mark 2 schillinge, so is de Lubesche mark nicht beter den 12 schillinge, de halve Lubesche mark 6 schillinge, de 4 Lubesche schillinge 3 schillinge, de penningh 2 penninghe*» (R) | editor: fine mark **16 ℳ 3 ß 2⅖ ₰ = 16,2** in the coin's own count (R, HR-ed; the editor calls the four assays «*mir nicht verständlich*»). Recomputed [C]: the piece at 2 Pf l. and 10 lot → 0,716 g rough — the attested sterling weight (0,50–1,00 g, mean 0,70); the count 10 ℳ 2 ß is twice that (⚠ §4) | 5,44 (Witten 196 / 12) | HR I 5 S. 230–231 |
 | 1406 | the union tariffs the Lund sterling at 2 Pf l. | — | — | — | J; `artikler_filippa` n. 38 |
+| 1410 | M: «*i 1410 blev den i riget udbredte sterling (=tre penninge) kun vurderet til to lybske penninge, mens den også udbredte kronehulpenning kun blev fastsat til ½ lybsk penning*» | rate (s) | — | — | M s. 381 (n. 32: Johansen 1961 nr. 630 — not in our corpus; the 2-Pf rating is already in the 1406 recess) |
 | c. 1412–13 | gold off-strike of the Lund sterling (9,55–9,85 g, 23½–23¾ kt) — not a coin | — | — | — | §3.12; excluded §9.3 |
 | c. 1422 (to Whitsun 1423) | Erik's «Kobbersterling», four mints — copper (Hj 0,42–0,52 % Ag) | ⚠ value 1 Pf (Hb s. 170) or 3 Pf (M s. 385) | — (copper, decreed value) | 1422 Hohlpfennig 684 / 8 | §3.11 (Erik VII) |
 
@@ -80,7 +84,7 @@ there on 233,856 g). «R» act text read; «W» Wilcke prints the act; «a» ass
 | 1440s (Malmø from 1440/42) | Christopher's Skilling — «*rigets første skilling*», ≥ 10 % worse than the Hanseatic 1432 Schilling | 1,87–2,38 g (2,11), 500 ‰ (L, a) | **13,9** (O) | 9,2–9,6 | §3.10; M s. 397, 404 |
 | 1440/42–48 | Christopher's Hvid (Malmø) — start of the long Hvid series | ≈ 0,75 g, 6 lod (Hb s. 183); 0,48–1,06 g, 370–400 ‰ (L) | **17,3** (O, Hb) | 9,6 | §3.7, §3.9 |
 | 1440–48 | Christopher: the Danish grot to be taken «*for ii lybske*» | — | — | — | RL nr. 11 s. 84 (via J) |
-| 6 Jan – 28 Sept 1448 | Rigsråd Skilling (MONETA REGNI DACIA, Malmø) | no assay in our sources | — | 10 (1450/51) | §3.10 |
+| 6 Jan – 28 Sept 1448 | Rigsråd Skilling (MONETA REGNI DACIA, Malmø) — «*så vidt vides kun … skillinger i Malmø*» (M s. 406) | one piece, G 21: 2,08 g, 45,99 % Ag (Hj, XRF, surface) | 2,08 × 0,4599 = 0,957 g fine per ß → **15,3** (O, one piece) | 10 (1450/51) | Hj 2016:1 table «Malmö 1448 G 21 … 1 2,08 8 [lod] 45,99» (`heljeback_2016_metallanalyser_1400_1448`, checked 2026-10-28); M s. 406 |
 | 17 Sept 1453 | Karl Knutsson's Swedish ordinance: «*en dansk hvid … tre svenske penninge*», the Danish Skilling 10 | — | — | — | §3.7 (Hb s. 183; M s. 402) |
 | 1448–81 | Christian I strikes Hvide only, Malmø | 23a 0,81 g 290–305 ‰ → 23b 0,72 g 275–280 ‰ (M s. 407); Hb «4 Lod 15 Gren» (296 ‰); E 8 → 5 lod | **20,2 → 24,4** (O) | 10 → 11,5 (1468) | §3.7; §3.4h (5) |
 | **4 Apr 1460** | Christian I's privilege for the estates of Schleswig-Holstein, art. 9: «*nene munte setten sunder sodann alse to Lubeke vnde Hanzborch genge vnde geue is*» | no parameter — duchies only (R) | — | — | RL nr. 27 s. 126; §3.4h (2a) |
@@ -134,7 +138,7 @@ does not; the Gulden stays at 24 Skilling coins across the 2 → 2½ M d step (+
 | **30 Oct 1536** | Haandfæstning Christian III: a coin «*lidelig og gavnlig … lige ved Fyrstendømmernes Mønt*» (the duchies — themselves bound to Lübeck/Hamburg by 1460) | promise, no parameter | — | — | — | W s. 249, 309 |
 | **21 Oct 1537** | Reces / «Afsætning»: all coin since the accession halved (2 M → 1 M …) | tariff | — | — | — | `instruments/1537_reces_moentens_afsaettelse.md` |
 | 18 Oct 1540 | Reces cap. 12: «*een rhinsk Gylden eller en Jochimsdaler ikke dyrere wedtzles end for III Mark Danske*» | rate | — | **3 M d** | — | W 7-3 |
-| **20 Sep 1541** | Møntordning: Mark dansk 24 / 14½ lod (8,830 g fine), 8 ß 48, 4 ß 96; Daler = 3 M = 48 ß | Mark **26,5**; 1544 supplement Mark 24 / 13 lod → **29,5** | **3 M d = 48 ß d**; «*angivelser af mark og skilling i dansk mønt, ikke lybsk hvoraf der nu gik 2 danske skilling på 1 lybsk skilling*» (M s. 488) | 1546 Schilling 120 / 6 lot 2 gr = **19,6**, Doppelschilling 60 / 7 lot 2 gr = 16,9; Taler 30 ß l. (J S. 140–141) | act (T.K. 160); W 7-4 prints |
+| **20 Sep 1541** | Møntordning: Mark dansk 24 / 14½ lod (8,830 g fine), 8 ß 48, 4 ß 96; Daler = 3 M = 48 ß | Mark **26,5**; 1544 supplement Mark 24 / 13 lod → **29,5** | **3 M d = 48 ß d**; «*angivelser af mark og skilling i dansk mønt, ikke lybsk hvoraf der nu gik 2 danske skilling på 1 lybsk skilling*» (M s. 488) | 1537 Lübeck resolution Doppelschilling 60 / 7½ lot = **16,0**; Hamburg 1541 Doppelschilling 63 / 7 lot = **18,0** (J S. 138, «*offenbar … das Ergebnis einer Münzprobe*»); 1546 Schilling 120 / 6 lot 2 gr = 19,6, Doppelschilling 60 / 7 lot 2 gr = 16,9; Taler 30 ß l. (J S. 140–141) | act (T.K. 160); W 7-4 prints |
 
 ### 2g. Denomination × act, 1396–1541
 
@@ -173,25 +177,33 @@ Møntordning 1514, and the 1524 pair. Before 1513 the only formula binding Danis
 4. **1541 is the first act whose unit is not the Lübeck one.** Daler = 3 M d = 48 ß d; the Danish ß reckoned at
    ½ ß lübisch (M s. 488). By silver [C]: the Lübeck Schilling of 1546 stands at 19,6 Lübeck marks per fine mark,
    which at 2 ß d per ß l. is 39,3 Danish marks; the Danish Mark of 1541 stands at 26,5 — Danish coin better than
-   the 2 : 1 implies. The 2 : 1 is a reckoning rate, not a silver equality.
+   the 2 : 1 implies. The 2 : 1 is a reckoning rate, not a silver equality. Against the contemporary Wendish coin
+   [C]: Hamburg's Doppelschilling of 1541 (18,0, J S. 138) gives 1 ß l. = 26,5 / 18,0 = **1,47** sk d, the Lübeck
+   resolution of 1537 (16,0) **1,66** sk d — both short of 2.
 5. **Before 1424 the Danish coin sat about 1½ × below Lübeck**: sterling 6,1–9,8 against 5,4 (1406) [C], matching
-   the 1406 tariff of the sterling at 2 instead of 3 Pf l.; the 1406 editor's 16,2 does not fit this and is
-   flagged in §4.
+   the 1406 tariff of the sterling at 2 instead of 3 Pf l. The 1406 assay's own fineness and piece rating fit this
+   exactly (10 lot at 2 Pf l. = 0,716 g, the attested sterling); only its count «10 mark 2 schillinge» and the
+   editor's 16,2 built on it do not (§4).
+6. **The Hanseatic complaints of 1403–04 are about acceptance, not about a standard**: the queen's officials paid
+   the Danish coin out at full value and would not take it back at full value (HR I 5 Nr. 158 § 8; Nr. 181 § 2;
+   S. 124 § 4). None names a fineness or weight; the first Hanseatic statement of Danish parameters is the 1406
+   assay.
 
 ## §4. Discrepancies — resolved and remaining
 
 | Point | State |
 |---|---|
-| ⚠ 1406 HR: Danish money 10-lot, 10⅛ ℳ per weighed mark (editor: 16,2 fine) vs the valuation «Lübeck mark … 12 ß», «penning 2 Pf» | the count of «10 mark 2 schillinge» (Danish nominal or Lübeck value?) is not stated; the editor reckons it as the coin's own count. Open — Grautoff's copy (the Hamburg original lost 1842) would not settle it; a second assay of Danish sterlings of 1403–06 would |
+| ⚠ 1406 HR: Danish money 10-lot, 10⅛ ℳ per weighed mark (editor: 16,2 fine) vs the valuation «Lübeck mark … 12 ß», «penning 2 Pf» | Recomputed 2026-10-28 from the page image [C]: Lübeck 5 4/9 ℳ per fine mark → 1 Pf l. = 0,2237 g fine; the Danish penning at 2 Pf l. = 0,447 g fine, at 10 lot **0,716 g rough** = 326 pieces per weighed mark — the attested sterling (0,50–1,00 g, mean 0,70). The count 10 ℳ 2 ß = 1944 Pf is 648 pieces at 3 Pf (0,361 g) — twice the pieces the rating implies; «5 ℳ 1 ß» would give 324. Second inconsistency inside the article: the mark is rated 12 ß (¾) but the penning 2 Pf (⅔). Hypothesis (unverified): a slip in the count, or a count in a unit not stated. The editor already calls all four assays «*mir nicht verständlich*». Would settle: a second contemporary assay or count of Danish sterlings of 1403–10 (Johansen 1961 nr. 630, the 1410 rating — not in our corpus) |
+| ⚠ M «*i foråret i 1403 forlangte*» (the demand that Margrete strike only coin she would take back) | the passage M quotes («*das sy keyne muntse slon lasse …*», n. 30 → Johansen & Mørkholm 1960 nr. 572) is HR I 5 Nr. 181 § 2, **Recess Marienburg 2 Mar 1404** (page image S. 119); the Lübeck complaint M quotes first (n. 29, nr. 569) is Nr. 158 § 8, **6 Dec 1403**. M's «spring 1403» is spring 1404 by the edition's dating — resolved |
 | ⚠ Erik's sterling fineness: Hb «9-lødig» (562 ‰) vs L 532 (Lund) / 629–857 (Næstved) vs Galster pages 500 / 606 | recorded in `luebischer_muenzfuss.md` §3.12; settled only by the assays behind Galster 1972 |
-| ⚠ Kobbersterling value 1 Pf (Hb) vs 3 Pf (M) | open; the 1422/23 instrument is not known |
+| ⚠ Kobbersterling value 1 Pf (Hb) vs 3 Pf (M) | Hb s. 170: «*Mynten har utvivlsomt skullet gjælde en Penning*» — his inference, no source; he explains the contemporary name away («*kun … begrundet i Størrelsen*»). M s. 384–385: «*udgivet som en sterling, altså svarende til tre penninge*» (n. 40 → Galster 1972b, 48 — not in our corpus) and the 1423 deed's «*cuprei sterlingi*», reckoned in «*gode hvide sterlinge, fra før de nye kobbersterlinge kom*». The only period evidence is the name «sterling» → 3 Pf can be held as the better-founded reading; no tariff or act survives. Open until Galster 1972b, 48 is read |
 | ⚠ Lindahl single assays vs Hj XRF (Søsling 703 vs 762–798; Lebard 453 vs 604–667) | different method and pieces; not resolved. Lindahl's 703 = the 1424 formula's 11¼ lot exactly [C] |
 | ⚠ Wilcke «Gylden = 20 ß lybsk = 2 M dansk» vs Gulden 23–24 ß l. under Christian I | hypothesis: the Môtbok tariff's «*rynse gulden xx.ß lub*» [1460–74] is his source; not proven (`luebischer_muenzfuss.md` §3.4h (5)) |
 | 1513 grid attributed to 1514 on the Denmark page | recorded in `instruments/1514_moentordning_malmoe.md` §8; this file uses the 1514 letter (88 / 6, 220 / 5) |
 | ⚠ 1514 Blaffert 496 (Galster, the Kast count) vs Wilcke's table 0,498 g (= 470) | hypothesis: a slip in Wilcke's table line; not verified |
 | ⚠ 1524 Mark piece: 16 ß (2-Mark = 32 ß) or 12 ß (the 1523 reckoning) | open — `instruments/1524_moentordning_frederik_i.md` §8.4 |
 | ⚠ 1523 Lejrskilling: «hele ß» of the act or a 10-Hvid piece (Dansk Mønt) | 10 Hvide by the silver arithmetic (`instruments/1523_valvation_klippinge.md` §4.3); open |
-| ⚠ 1541 «2 danske skilling på 1 lybsk» (M) vs Taler 30 ß l. (1546, J) and Danish Daler 48 ß d → 1,6 : 1 [C] | the 2 : 1 is M's statement for 1541; the Lübeck Taler rate of 1541 itself is not in our sources (Lübeck file §2b gives 1546). Settled by a Lübeck daler rate for 1540–41 |
+| ⚠ 1541 «2 danske skilling på 1 lybsk» (M) vs Taler 30 ß l. (1546, J) and Danish Daler 48 ß d → 1,6 : 1 [C] | the 2 : 1 is M's statement for 1541. By silver [C]: Hamburg Doppelschilling 1541 63 / 7 lot = 18,0 (J S. 138) → 1,47 : 1; Lübeck 1537 resolution 60 / 7½ = 16,0 → 1,66 : 1. So no contemporary Wendish coin gives 2 : 1 by metal; the rate is a reckoning convention. A Lübeck daler RATE of 1540–41 is still not in our sources (Gaedechens / Langermann / Jesse searched 2026-10-28) |
 | Jesse's «Christoph … wie Christian I» Schilling [705] | Christian I struck no Skilling (Hb s. 187, M s. 405); [705] is Christopher's or the Rigsråd's 1448 — open |
 | No Danish act with parameters 1396–1513 | a gap of the sources, not of the search: RL 1397–1513 holds none (§3.4f of `luebischer_muenzfuss.md`); Hvid parameters before 1513 are assays only |
 
@@ -216,12 +228,13 @@ rate in ß lybsk.
 
 | Question | Would be settled by |
 |---|---|
-| Content of the first Hanseatic complaint against the Danish coin, 1403 | HR I 5 (cached, OCR poor) read from the page images around Nr. 115 (S. 78 ff.) |
-| What «10 mark 2 schillinge» counts in the 1406 assay | a second contemporary assay or valuation of Danish sterlings |
-| Rigsråd Skilling 1448 — fineness and weight | an assay (Galster 1972; Hj) |
+| ~~Content of the first Hanseatic complaint, 1403~~ | **closed 2026-10-28**: HR I 5 Nr. 158 § 8 (6 Dec 1403), Nr. 181 § 2 (2 Mar 1404), S. 124 § 4 (8 Apr 1404) — acceptance at full value, no parameters (§2a, §3.6) |
+| What «10 mark 2 schillinge» counts in the 1406 assay | narrowed 2026-10-28: fineness + piece rating fit the sterling, the count is double (§4). A second contemporary assay or count; Johansen 1961 nr. 630 (1410) |
+| ~~Rigsråd Skilling 1448 — fineness and weight~~ | **closed 2026-10-28** (one piece): Hj G 21 2,08 g, 45,99 % → 15,3 (§2b). More pieces would make it a range |
+| Kobbersterling 1 or 3 Pf | Galster 1972b, 48 (M's source); any tariff of 1422–23 |
 | Christian I's Hvid series by date (8 → 5 lod) | dated or hoard-closed assays (E tab. 5 is undated) |
 | Danish Skilling 8 lod before or after 1506 | a dated / hoard-closed 8-lod Skilling; Enemark 1971 I s. 113–118 |
-| The Lübeck daler rate in 1541 (for the 2 : 1) | Lübeck/Hamburg valuation of 1540–41 (Langermann; HR III — not read for 1541) |
+| The Lübeck daler rate in 1541 (for the 2 : 1) | narrowed 2026-10-28: by silver 1,47–1,66 : 1 (§4). A Lübeck/Hamburg valuation of 1540–41 (HR III Bd. 6–9 not cached) |
 | Christian II's Klippinge 1518–23 — any grid | the lost act (register §4 says none survives) |
 
 ## §7. Our data

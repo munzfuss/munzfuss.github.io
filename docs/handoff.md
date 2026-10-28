@@ -24,6 +24,13 @@
   denomination × act matrix, discrepancies, open questions. **Awaits the curator:** the END of the Lübeck
   orientation (§5) — working end 1541 (units «i dansk mønt, ikke lybsk», Märcher s. 488); candidates 1513, 1523–24,
   1536, and «after 1541» (the 2 sk d = 1 ß l. rate restated in acts to 1625).
+  Open questions pass (same day): 1403 complaint = HR I 5 Nr. 158 § 8 (6 Dec 1403) + Nr. 181 § 2 (2 Mar 1404) —
+  Märcher's «spring 1403» is spring 1404; Rigsråd Skilling 1448 = Heljeback 2,08 g / 45,99 % → 15,3; 1406 assay
+  recomputed (fineness + 2-Pf rating fit the 0,70 g sterling, the «10 mark 2 ß» count is double — hypothesis only);
+  2 : 1 of 1541 vs metal 1,47–1,66 : 1 (Hamburg 1541 / Lübeck 1537, Jesse S. 138). Still open: Kobbersterling
+  (Galster 1972b, 48), Christian I Hvid dates, 8-lod Skilling vs 1506, 1524 Mark piece.
+- **Dossier index**: `docs/research/README.md` §«Index» now lists every dossier; pointer in CLAUDE.md header;
+  `tests/test_research_index.py` fails when a new dossier has no row.
 
 - New dossier `docs/research/luebeck_standard_chronology_1226_1622.md`: every coin formula (N from the X-lot mark),
   fine weight and fine mark in ℳ lüb. 1226–1622; c. 1400 detail in `wendischer_muenzverein_c1400.md`.
