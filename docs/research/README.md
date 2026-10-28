@@ -35,6 +35,80 @@ The register's rows point at **[`instruments/`](instruments/README.md)** — one
 dossier per act (`<yyyy>_<slug>.md`, fixed nine-section template in that
 folder's README). `moentordning_1541.md` predates the folder and stays here.
 
+## Index — every dossier in this folder
+
+**Start here for the silver standard before 1622:** the two chronologies give the formula series year by year and
+point to the detailed dossiers. Read them before opening a period dossier or searching the web.
+Every new dossier gets a row here in the same commit (`tests/test_research_index.py` fails otherwise).
+
+### Chronologies (entry points)
+
+| File | Covers |
+|---|---|
+| [`luebeck_standard_chronology_1226_1622.md`](luebeck_standard_chronology_1226_1622.md) | Lübeck / Wendish coin formulas 1226–1622, denomination × act table, levels per fine mark |
+| [`danish_standard_chronology_1396_1541.md`](danish_standard_chronology_1396_1541.md) | Danish coin formulas under the Lübeck orientation 1396–1541: acts, assays, rates, the three kinds of tie, end-point candidates (§5, curator decision pending) |
+
+### Danish and Lübeck silver before 1541
+
+| File | Covers |
+|---|---|
+| [`wendischer_muenzverein_c1400.md`](wendischer_muenzverein_c1400.md) | the Wendish system c. 1365–1424 that Denmark took up |
+| [`mark_lybsk_mark_dansk.md`](mark_lybsk_mark_dansk.md) | Mark lübisch vs Mark dansk c. 1300–1514, the ratio and why two |
+| [`gotland_gote.md`](gotland_gote.md) | the gote and Gotlandic reckoning c. 1340–1450 |
+| [`luebischer_muenzfuss.md`](luebischer_muenzfuss.md) | the Lübeck standard and King Hans' silver 1481–1513 (accepted periodisation §0.6, assays §3) |
+| [`luebischer_muenzfuss_plan.md`](luebischer_muenzfuss_plan.md) | work plan for the lübischer Münzfuß card |
+| [`hans_silver_1481_1513.md`](hans_silver_1481_1513.md) | Hans' silver and billon: standard, sources, data |
+| [`hans_rates_1481_1513.md`](hans_rates_1481_1513.md) | Gulden / Lübeck money / Hvid / Skilling rates 1481–1513 and the silver they imply |
+| [`eriksson_2017_assays.md`](eriksson_2017_assays.md) | XRF assays 1448–1523 (Eriksson; Heljeback 1400–1448 noted) matched to our data |
+| [`sh_ducal_zone_husum_1514.md`](sh_ducal_zone_husum_1514.md) | Schleswig-Holstein ducal silver 1474–1547 |
+| [`wilcke_1514_1541_specs.md`](wilcke_1514_1541_specs.md) | Wilcke 1950's ordinance specifications 1514–1541 |
+| [`moentordning_1541.md`](moentordning_1541.md) | the Møntordning of 20 Sept 1541 |
+| [`christian_iii_danish_coinage_1534_1572.md`](christian_iii_danish_coinage_1534_1572.md) | Christian III and early Frederik II coinage 1534–1572 |
+| [`denmark_pre_1541_source_survey.md`](denmark_pre_1541_source_survey.md) | sources for pre-1541 Denmark other than Hede |
+| [`pre_1541_silver_seed_inventory.md`](pre_1541_silver_seed_inventory.md) | pre-1541 silver in our seeds (2026-05-21 snapshot) |
+| [`cologne_mark_weight_16c.md`](cologne_mark_weight_16c.md) | the Cologne mark in 16th-c. Denmark: 230 g vs 233,855 g |
+
+### Gold standards
+
+| File | Covers |
+|---|---|
+| [`nobel_fod.md`](nobel_fod.md) | Danish gold Nobel 1496–1532 |
+| [`burgundian_gold_real_1487.md`](burgundian_gold_real_1487.md) | the Burgundian gold real of 1487, model of the Nobel |
+| [`rhinsk_gylden_fod.md`](rhinsk_gylden_fod.md) | the Rhenish gold-gulden standard, German and Danish tracks |
+| [`frederik_i_gottorp_goldgulden_dating.md`](frederik_i_gottorp_goldgulden_dating.md) | dating of Frederik I's Gottorp Goldgulden (Galster 122) |
+| [`ducat_origins.md`](ducat_origins.md) | where the northern ducat standard comes from |
+| [`de_reichsdukatenfuss.md`](de_reichsdukatenfuss.md) | the imperial ducat standard 1340–1876 |
+| [`dk_dukat_portugaloeser_fod.md`](dk_dukat_portugaloeser_fod.md) | Ungersk Gylden, Dukat, Portugaløser |
+| [`danish_royal_gold_1560_1648.md`](danish_royal_gold_1560_1648.md) | Danish royal gold 1560–1648 |
+| [`f2_guldmoent_1584_gavesaet.md`](f2_guldmoent_1584_gavesaet.md) | Frederik II's 1584 gold set |
+| [`daler_klippe_1604.md`](daler_klippe_1604.md) | Christian IV's Daler-Klippe gold 1604–1605 |
+| [`courantdukatenfuss.md`](courantdukatenfuss.md) | Courantdukatenfuß |
+| [`pistolen_fuss.md`](pistolen_fuss.md) | Pistolen-Fuß |
+| [`vereinsgoldmuenze.md`](vereinsgoldmuenze.md) | Vereinsgoldmünze (Krone) |
+
+### Later silver and the Krone
+
+| File | Covers |
+|---|---|
+| [`9_thalerfuss.md`](9_thalerfuss.md) | 9-Thalerfuß / Reichsmüntzfuß |
+| [`krone_muentzfuesse.md`](krone_muentzfuesse.md) | Krone-Müntzfüße 1618–1771 |
+| [`dk_kronefod_1873_research.md`](dk_kronefod_1873_research.md) | Danish Kronefod 1873–1914 |
+| [`dk_kronefod_unity_analysis.md`](dk_kronefod_unity_analysis.md) | Kronefod — one standard or two |
+| [`denmark_fuesse_year_boundaries.md`](denmark_fuesse_year_boundaries.md) | year boundaries of the Denmark-track Füße 1497–1873 |
+
+### Locations, entities, method
+
+| File | Covers |
+|---|---|
+| [`altona.md`](altona.md) | Altona — Münz- und Bankwesen |
+| [`hamburg.md`](hamburg.md) | Hamburg — Münz- und Bankwesen |
+| [`duchy_of_schleswig_entity.md`](duchy_of_schleswig_entity.md) | the Duchy of Schleswig as a V2 entity |
+| [`denomination_lineages.md`](denomination_lineages.md) | denomination lineages above the Füße |
+| [`hierarchical_metal_tiers.md`](hierarchical_metal_tiers.md) | metal tiers within one Fuß (convention) |
+| [`mint_year_transitions.md`](mint_year_transitions.md) | mint year-aware classification dates |
+| [`numismaster_dk_sh_1514_1914_harvest_surface.md`](numismaster_dk_sh_1514_1914_harvest_surface.md) | NumisMaster harvest surface DK / SH |
+| [`ordinances_register.md`](ordinances_register.md) | register of every coinage act (not a dossier, see above) |
+
 ## How it differs from other doc surfaces
 
 | Surface | Purpose | Mutability |
