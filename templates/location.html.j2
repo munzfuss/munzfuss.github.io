@@ -160,7 +160,8 @@
         <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ catvals(prefix, vals, coin.catalog_marks) }}</span>
       {%- else -%}
         {%- for v in vals -%}
-          <span class="cat-group cat-plain">{{ catval('', v, coin.catalog_marks) }}</span>
+          {%- set ptk = tooltip[loop.index0] if tooltip else none -%}
+          <span class="cat-group cat-plain"{% if ptk %} data-tooltip="{{ ui_get(ptk) }}"{% endif %}>{{ catval('', v, coin.catalog_marks) }}</span>
           {%- if not loop.last %}<br>{% endif -%}
         {%- endfor -%}
       {%- endif -%}
@@ -454,7 +455,8 @@
         <span class="cat-group"><span class="cat-prefix"{% if tip %} data-tooltip="{{ tip }}"{% endif %}>{{ prefix }}#</span> {{ catvals(prefix, vals, coin.catalog_marks) }}</span>
       {%- else -%}
         {%- for v in vals -%}
-          <span class="cat-group cat-plain">{{ catval('', v, coin.catalog_marks) }}</span>
+          {%- set ptk = tooltip[loop.index0] if tooltip else none -%}
+          <span class="cat-group cat-plain"{% if ptk %} data-tooltip="{{ ui_get(ptk) }}"{% endif %}>{{ catval('', v, coin.catalog_marks) }}</span>
           {%- if not loop.last %}<br>{% endif -%}
         {%- endfor -%}
       {%- endif -%}

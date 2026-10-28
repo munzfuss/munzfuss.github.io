@@ -418,6 +418,27 @@ def _union_cat_values(existing_v, fresh_v):
     return out[0] if len(out) == 1 else out
 
 
+def _drop_bare_superseded_by_letter(v, fresh_v):
+    """A bare «N» is dropped when the parser now reads the same statement as
+    «N<letter>» — the same re-reading case as `_drop_bare_superseded_by_cf`.
+    IKMK prints «Hede … Nr. 9 b»; the builder used to cut it to «9» and,
+    once it kept the letter, the union held `['9', '9B']`, so the stale base
+    still tied the coin to its sibling type (2026-10-27, 19 IKMK seeds).
+    Only a bare value the FRESH reading no longer gives is dropped, and only
+    when fresh gives a lettered value on that base; anything else is the
+    ordinary accumulation of different readings."""
+    if not isinstance(v, list):
+        return v
+    fr = [str(x).strip() for x in (fresh_v if isinstance(fresh_v, list) else [fresh_v])
+          if isinstance(x, (str, int))]
+    lettered = {m.group(1) for x in fr for m in [re.fullmatch(r"(\d+)[A-Za-z]+", x)] if m}
+    if not lettered:
+        return v
+    out = [x for x in v if not (isinstance(x, (str, int)) and str(x).strip() in lettered
+                                and str(x).strip() not in fr)]
+    return out[0] if len(out) == 1 else out
+
+
 def _drop_bare_superseded_by_cf(v):
     """«cf. X» supersedes a bare «X» in the same catalogue field.
 
@@ -602,7 +623,8 @@ def merge_one(
                         ex_v[sub_k] = _union_others(ex_v[sub_k], sub_v)
                     elif sub_k in _list_cap:
                         ex_v[sub_k] = _drop_bare_superseded_by_cf(
-                            _union_cat_values(ex_v[sub_k], sub_v))
+                            _drop_bare_superseded_by_letter(
+                                _union_cat_values(ex_v[sub_k], sub_v), sub_v))
             elif ex_v is None and fr_v is not None:
                 existing[key] = fr_v
             continue

@@ -778,6 +778,26 @@ _KM_REGISTER_TOOLTIP: dict[str, str] = {
 # text and must never be able to look like a delimiter.
 DERIVED_SEP = "\x1f"
 
+# Tooltip KEYS naming the catalogue behind a «Label#» in the Catalogue column
+# (curator 2026-10-27: «додати на каталоги тултіп з поясненням який
+# каталог»). Only labels that name ONE work: «Jesse#» in `others` is left out
+# — IKMK uses it for the Braunschweig catalogue, older seeds for the Wendische
+# Münzverein. Titles from the IKMK literature fields (§2 tier 1, untranslated).
+CATALOG_TOOLTIP = {
+    "Hede": "marker.cat_hede",
+    "Schou": "marker.cat_schou",
+    "Galster": "marker.cat_galster",
+    "Jesse": "marker.cat_jesse",            # the typed register = Wendische Münzverein
+    "Skaare": "marker.cat_skaare",            # Numista / Bruun seeds
+    "BM": "marker.cat_bm",
+    "Weinmeister": "marker.cat_weinmeister",
+    "Bahrfeldt Stade": "marker.cat_bahrfeldt_stade",
+    "Jungk": "marker.cat_jungk",
+    "Grote Verden": "marker.cat_grote_verden",
+    "Behrens": "marker.cat_behrens",
+}
+_PLAIN_TOOLTIP = {k: v for k, v in CATALOG_TOOLTIP.items() if k != "Jesse"}
+
 _HEDE_NORGE_TOOLTIP_ATTESTED = "marker.hede_norge_attested"
 _HEDE_NORGE_TOOLTIP_INFERRED = "marker.hede_norge_inferred"
 
@@ -1275,13 +1295,17 @@ def _compute_catalog_groups(
 
     sorted_prefixes = sorted(groups.keys(), key=sort_key)
     out: list[tuple[str, list[str], str | None]] = [
-        (p, groups[p], group_tooltip.get(p)) for p in sorted_prefixes
+        (p, groups[p], group_tooltip.get(p) or CATALOG_TOOLTIP.get(p))
+        for p in sorted_prefixes
     ]
 
     for p, vals in other_groups.items():
         plain_lines.append(f"{p}# {', '.join(collapse_runs(vals))}")
     if plain_lines:
-        out.append(("", plain_lines, None))
+        # the plain group carries one tooltip key per line (or None)
+        out.append(("", plain_lines,
+                    [_PLAIN_TOOLTIP.get(ln.split("#", 1)[0]) if "#" in ln else None
+                     for ln in plain_lines]))
 
     return out
 

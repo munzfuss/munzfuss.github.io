@@ -72,6 +72,12 @@ _CAT_AUTHORS = [
     (re.compile(r"\bSieg\b", re.I), "sieg"),
     (re.compile(r"\bSchou\b", re.I), "schou"),
     (re.compile(r"\bFriedberg\b", re.I), "fr"),
+    # Matched by TITLE, not surname: Galster and Jesse each wrote several
+    # works, and only these are the catalogues our registers mean
+    # (2026-10-27 — the Galster numbers of seven Danish records were being
+    # dropped).
+    (re.compile(r"Unionstidens\s+udm", re.I), "galster"),
+    (re.compile(r"\bJesse\b.*Wendische", re.I), "jesse"),
 ]
 
 # §CJ-IKMK: extra catalogue authors our schema doesn't TYPE but which IKMK's
@@ -90,7 +96,9 @@ _EXTRA_CAT_AUTHORS = [
     (re.compile(r"\bWelter\b"), "Welter"),        # Die Münzen der Welfen
     (re.compile(r"\bFiala\b"), "Fiala"),          # Münzen/Medaillen Welfische Lande
     (re.compile(r"\bDuve\b"), "Duve"),            # Braunschweig-Lüneburg Löser-Taler
-    (re.compile(r"\bJesse\b"), "Jesse"),          # Münzen der Stadt Braunschweig
+    # Münzen der Stadt Braunschweig; his «Der Wendische Münzverein» is the
+    # typed `jesse` register above, not this one
+    (re.compile(r"\bJesse\b(?!.*Wendische)"), "Jesse"),
     (re.compile(r"\bDorfmann\b"), "Dorfmann"),    # Münzwesen Hzm. Lauenburg
     (re.compile(r"\bSchön\b"), "Schön"),          # Weltmünzkatalog 19. Jahrhundert
     (re.compile(r"\bJaeger\b"), "Jaeger"),        # Die deutschen Münzen seit 1871
@@ -98,6 +106,20 @@ _EXTRA_CAT_AUTHORS = [
     (re.compile(r"\bArnold\b"), "AKS"),           # Arnold-Küthmann-Steinhilber (1800+)
     (re.compile(r"\bSchrötter\b"), "Schrötter"),  # Das preußische Münzwesen
     (re.compile(r"\bOlding\b"), "Olding"),        # Die Münzen Friedrichs des Großen
+    # Matched by TITLE (curator 2026-10-27): the authors wrote other works,
+    # or (Bahrfeldt, Grote) the surname is excluded above as ambiguous.
+    # Bruce – Michael 1601–1700 goes to `others`, not to the typed `km`: its
+    # numbers differ from our Krause numbers on 5 of 25 records (Hede 73b →
+    # 289 against our 287/288). In `others` it only confirms a match.
+    # Skaare is deliberately NOT read: one Skaare number spans several Hede
+    # types (537 = Hede Norge 8B, 8D, 14, 17 and 21), and `normalise_catalog`
+    # folds «Skaare#» back into the typed `skaare` register, where it chained
+    # those types into one class (2026-10-27).
+    (re.compile(r"Bruce\s*-\s*Michael"), "BM"),
+    (re.compile(r"\bWeinmeister\b.*Holstein-Schauenburg"), "Weinmeister"),
+    (re.compile(r"Münzen der Stadt Stade"), "Bahrfeldt Stade"),
+    (re.compile(r"\bJungk\b.*Bremischen Münzen"), "Jungk"),
+    (re.compile(r"Münzen des Bistums Verden"), "Grote Verden"),
 ]
 
 # «Nr. N» extractor for the extra authors — handles plain («471»), letter-suffix
@@ -203,11 +225,14 @@ def _catalog(rec) -> dict:
         for rx, key in _CAT_AUTHORS:
             if key in out or not rx.search(seg):
                 continue
-            m = re.search(r"\bNr\.\s*(\d+[A-Za-z]?)", seg)
+            # A sub-letter may stand apart («Hede … Nr. 9 b», 19 of 67 Hede
+            # cites): keep it, as the catalogue's own «9B», not the bare base
+            # that joins the coin to its sibling type (IKMK 18219584).
+            m = re.search(r"\bNr\.\s*(\d+(?:\s?[A-Za-z](?![A-Za-z]))?)", seg)
             if not m:
-                m = re.search(r"(\d+[A-Za-z]?)\s*\.?\s*$", seg)
+                m = re.search(r"(\d+(?:\s?[A-Za-z](?![A-Za-z]))?)\s*\.?\s*$", seg)
             if m:
-                out[key] = m.group(1)
+                out[key] = re.sub(r"\s+([A-Za-z])$", lambda x: x.group(1).upper(), m.group(1))
         # §CJ-IKMK: extra German-states catalogues → others «Label# Nr».
         for rx, label in _EXTRA_CAT_AUTHORS:
             if not rx.search(seg):
@@ -215,6 +240,9 @@ def _catalog(rec) -> dict:
             m = _EXTRA_NR_RE.search(seg)
             if m:
                 val = re.sub(r"\s+", " ", m.group(1)).strip().rstrip(".,;").strip()
+                if label == "BM":   # «Nr. 264,1» is the sub-type 264.1
+                    mm = re.search(r"\bNr\.\s*(\d+(?:,\d+)?)", seg)
+                    val = mm.group(1).replace(",", ".") if mm else val
                 tok = f"{label}# {val}"
                 if tok and tok not in others:
                     others.append(tok)
