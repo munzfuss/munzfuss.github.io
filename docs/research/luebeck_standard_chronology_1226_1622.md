@@ -139,12 +139,26 @@ carried out (Jesse). A row marked «plan» did not govern any coinage.
 | 30 Jun 1568; 8 Feb 1569 | Lüneburg Kreistag; Lübeck recess (last Münztag) | circle; 4 towns | — | — | — | Gd S. 187–188 |
 | **26 Apr 1572** | Lower Saxon Kreismünzordnung | circle | Doppelschilling 114 / 12 lot 13½ gr; **Schilling 145 / 8**; Sechsling 187½ / 5 lot 2½ gr; Dreiling 232 / 3 lot 3 gr; Pfennig 654 / 2 lot 15½ gr | 1,621; 0,805; 0,399; 0,069 | 18; **18-2**; 18-12; Pf 19 | J; Gd S. 188 |
 
-### 2c. After the union (1580–1622, Hamburg, from Gd S. 190–193)
+### 2c. After the union (1580–1622) — Gd S. 190–193 (read from the page images 2026-10-28), Langermann S. 416
 
-1580–87 assays: Schillinge 7 lot 17 gr – 8 lot 2 gr, 145–146; Sechslinge 5 lot 2–4 gr, 188–190 · 1592 Doppelschillinge
-8–9 lot, ~70 · 13 Mar 1609 treaty (no small coin for 6 years; Taler 33 ß) · 1610 circle: 153 Doppel- / 306
-Schillinge per 14 lot 4 gr mark (21,5 ℳ) · 1614/15 Hamburg 96 Doppelschillinge per 7 lot 10 gr · 30 Dec 1617
-Braunschweig: 90 per 7½-lot (24 ℳ) · 12 Jun 1622 Lüneburg: 108½ per 8-lot (27,1 ℳ).
+Gd S. 190 n. 1: from 1609 on Gd (and Langermann before him) follow the *Nachricht von der … 1725 beliebten
+Münz-Verordnung*. «Fine mark» = ℳ lüb. struck from a fine mark, recomputed here [C] unless Gd gives it.
+
+| Date | Instrument | Parties | Coin: formula (as printed) | Fine mark [C] | Source |
+|---|---|---|---|---|---|
+| 1580–1587 | assays of the Hamburg Münzwardein Hieronymus Wiedmann | Hamburg | Schilling 7 lot 17 gr – 8 lot 2 gr fine, 145–146 per mark; Sechsling 5 lot 2–4 gr, 188–190 per «gemischte Mark»; Taler (1583–86) 8 per mark, 14 lot 4 gr; Dukat 67 / 23 kt 8 gr; Goldgulden 72 / 18½ kt | Schilling 17-14 – 18-6; Sechsling 18-0 – 18-9 | Gd S. 190 |
+| 1592 | Hamburg (first Achteltaler and Doppelschillinge found) | Hamburg | Doppelschilling 8–9 lot fine, «einige und 70» per rough mark — «nicht mehr nach dem vorgeschriebenen Gehalte» | ≈ 15-12 (71 / 9 lot) – 19-12 (79 / 8 lot) | Gd S. 190 |
+| **13 Mar 1609** | Vertrag | Lübeck, Hamburg, dukes of Mecklenburg and Holstein | **no** Doppelschillinge, Schillinge, Sechslinge for 6 years; Taler 33 ß; joint assay at Lübeck 10 Apr | — | Gd S. 190; Langermann S. 416 (also Münz-Mandat 29 Jul 1609; Gardelegen Münzabschied 25 Nov 1609) |
+| 1610 | Lower Saxon circle | circle (few mints, Hamburg among them) | small coin «nach dem Thalerfusse»: 153 Doppelschillinge, 306 Schillinge «aus der 14 Loth 4 Grän feinen Mark» | 21-8 | Gd S. 190 |
+| 1614 / 1615 – | Hamburg (from autumn 1615 «vertragsmässig») | Hamburg | Doppelschilling 96 «aus der 7 Loth 10 Grän feinen Mark»; Taler rises to 38 ß (1615) | 25-6 | Gd S. 190 |
+| **30 Dec 1617** | Kreisabschied Braunschweig | circle | Doppelschilling 90 / 7½ lot; Schilling 160 / 6½ lot (20 and 40 to the Reichstaler); small sorts only by mint lords with own mines | 24-0; 24-10 | Gd S. 190–191 |
+| **12 Dec 1618** | Mandat (after the English Court's complaint) | Lübeck, Hamburg | Taler fixed at 40 ß; Doppelschilling 90 per «gemischte Mark», 20 to the Taler (fineness not given); old Doppelschillinge countermarked with their value in Pfennige | — | Gd S. 191; Langermann S. 416 («gemeinschaftliche Münz-Verordnung») |
+| 1619 | foundation of the Hamburger Bank | Hamburg | Species-Banco reckoning (1000 ₰ Species Banco = 1001 ₰ 10 ß Banco) | — | Gd S. 191 |
+| **23 Apr 1620** | Vertrag | Lübeck, Hamburg, Bremen, dukes of Mecklenburg | Taler 48 ß; small coin by weight only; Schillinge «mit der Zahl 48», Sechslinge «96» (to the Reichstaler); Doppelschillinge «24» excepted; fine mark 25 ℳ, Werksilber 14-lot. Coins of 1620 found: Sechsling 5 lot 2½ gr, 231 per rough mark (prob. the 1572 rule, Gd); Vierschilling 8 lot, 54 per rough mark | 25 (decreed); Sechsl. 22-8; 4-ß 27-0 | Gd S. 191–192 |
+| 1621 | Hamburg (Achtschilling, Doppelschilling, Schilling, Sechsling with 2, 1, ½) | Hamburg | Achtschilling as the Vierschilling; the fine small sorts 14–15 lot («wahrscheinlich 14 Loth 4 Grän»), 128 Doppelschillinge / 256 Schillinge / 512 Sechslinge per mark — underweight (Lübeck bans them 5 Jun 1621: 36 ℳ light per 100 ℳ); Sechsling «I SOESLING» 6-lot, «vermuthlich» 320 per mark | 18-0; Sechsl. 26-11 | Gd S. 192 (Dreyer S. 190) |
+| **11 Mar 1622** | assembly at Hamburg | Denmark for Holstein, Pommern, Mecklenburg, Lauenburg, Lübeck, Bremen | Taler 48 ß (= 3 ℳ, kept thereafter) | — | Gd S. 192–193 |
+| **12 Jun 1622** | Kreisabschied Lüneburg (Hamburg from 1623) | circle | Doppelschilling 8 lot, 108½ per «gemischte Mark» (= the Groschen); Taler, ½, ¼, ⅛ after the Reichsfuß | 27-2 | Gd S. 193 |
+| 21 Jul 1622 | Lüneburg abolishes the «Hamb. Wehrung» | Lüneburg | — | — | Langermann S. 416 |
 
 ## §3. What the series shows [C, «можна вважати»]
 
