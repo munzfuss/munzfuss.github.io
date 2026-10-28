@@ -11,7 +11,7 @@
 fine weight, fine mark in ℳ lüb. — from the earliest dated value (1226) to the Lower Saxon circle rules of
 1617/1622, with the c. 1350–1600 span complete as far as the sources go.
 
-**Excluded, with their home:** Danish coins (`luebischer_muenzfuss.md`); gold except where a recess ties the
+**Excluded, with their home:** Danish coins (`luebischer_muenzfuss.md`; the Danish series 1396–1541 beside these levels: `danish_standard_chronology_1396_1541.md`); gold except where a recess ties the
 Gulden to the Mark; the sundish (Rostock / Stralsund) system beyond its assays; 1622–1726 (Bobzin page, not
 researched here).
 

@@ -18,6 +18,13 @@
 
 ## 2026-10-28 — Lübeck / Wendish standard: full chronology 1226–1622 («стопи» session)
 
+- **Danish counterpart** `docs/research/danish_standard_chronology_1396_1541.md` (compilation of the Hans / 1514 /
+  1523 / 1524 / 1537 / 1541 dossiers + HR I 5 1406 assay of Danish money, read from the page image): every
+  Danish act / rate / assay 1396–1541 with its level in marks per fine mark [C] beside the Lübeck level, a
+  denomination × act matrix, discrepancies, open questions. **Awaits the curator:** the END of the Lübeck
+  orientation (§5) — working end 1541 (units «i dansk mønt, ikke lybsk», Märcher s. 488); candidates 1513, 1523–24,
+  1536, and «after 1541» (the 2 sk d = 1 ß l. rate restated in acts to 1625).
+
 - New dossier `docs/research/luebeck_standard_chronology_1226_1622.md`: every coin formula (N from the X-lot mark),
   fine weight and fine mark in ℳ lüb. 1226–1622; c. 1400 detail in `wendischer_muenzverein_c1400.md`.
 - Sources cached + corpus: Hanserecesse I 2, 4–8, II 1–3, III 1, 3, 5 (`hanserecesse-*`), Grautoff 1836 Bd. 3
