@@ -74,8 +74,11 @@ Blafferte, Dreilinge, Wittenpfennige, Sechslinge og Schillinge*».
   desser tid in der stad tho Lubeke genge und geve sin*». A rate (1 lødig mark = 5 ß groot Flemish = 45 ß lüb. in
   Witten); what «lodige marc» means here (weight, fineness) is open — not used for the parameters below.
 - **Münzvertrag of six towns, Wismar, 6 Feb 1403**, for ten years (Lübeck, Hamburg, Rostock, Stralsund, Wismar,
-  Lüneburg; HR I Bd. 5 Nr. 115, confirmed 6 Dec 1403 Nr. 158 § 1). Text not read (OCR gap); parameters from the
-  editor's note to 1406 (Bd. 5 S. 230): «*1403 hatte man vereinbart, dass die Witten 12½ löthig gemünzt und von
+  Lüneburg; HR I Bd. 5 Nr. 115, confirmed 6 Dec 1403 Nr. 158 § 1). Text read 2026-10-28 in **Lüb. UB 5 Nr. 66, S. 65–67** (image checked): Witten of 4 ₰ «drutteindehalf loet fynes
+  lodiges suluers» (12½ lot) + 3½ lot copper, «van der wegenen mark veir mark» (192); Hohlpfennig 9-lot, 3 ℳ per mark;
+  Scherf («hellinge») 8-lot, 3 ℳ; Rostock / Stralsund Hohlpfennig 9-lot, 4½ ℳ 9 ₰ sund.; silver «vif mark myn enen
+  Schilling», mintmaster 27 ₰; ten years from Mittfasten. ⚠ the same sentence prints «negen penninge fyner zaye» before
+  «dat is drutteindehalf loet» — quoted, not resolved. The editor's note to 1406 (Bd. 5 S. 230): «*1403 hatte man vereinbart, dass die Witten 12½ löthig gemünzt und von
   der gewogenen Mark von 16 Loth 4 ℳ (= 192 Witten) geschrotet werden*» — fine mark 5 3/25 ℳ.
 - **Münzrecess, 31 Mar 1406** (Lübeck, Hamburg, Lüneburg, Wismar, Hannover; HR I Bd. 5 Nr. 310, S. 230–231;
   after Grautoff 3 S. 192 = Lüb. UB 5 Nr. 141): «*to slande enen
@@ -143,7 +146,7 @@ recess says «12 lod lodighes sulvers na dem stale», which the editor reckons a
 | 12 Dec 1455 | Münzrecess (II 4) | Lübeck, Hamburg, Wismar | prohibitions only | — | — | — | — |
 | 1468 | (Rezess Lübeck–Hamburg; text not read) | — | confirmed by the 1492 recess as «1468 geordinert» | — | — | — | — |
 | 8 May 1483 | Städtetag § 29 (III 1, S. 351–352) — proposal for a «bestendige mark» | Lübeck, Hamburg | Lübeck gulden 65 per gold mark, 23½ grain = 2 ℳ; 16 ß «so gud van sulver so nu ghaen» = 1 ℳ, **103½ per weighed mark** | — | — | — | — |
-| **23 May 1492** | **Münztag (III 3 n. 87, S. 70–71)** — re-enacts 1468 | Lübeck, Hamburg, Wismar, Lüneburg | double Schilling 69, 12-lot (8 = 1 ℳ); **Schilling 103½, 9-lot**; Sechsling 188, 8-lot (32 = 1 ℳ); Blaffert and Pfennig 4½ ℳ per mark («vefftehalve marck»), 6-lot | 2,542; **1,271**; 0,622; Pf 0,102 | 0,106 | **11,5** [C]; small coin 12 («van eyner marck lodigen sulvers 12 marck Lubesch») | Lübeck gulden 65 per mark, 24 karat = 2 ℳ |
+| **23 May 1492** | **Münztag (III 3 n. 87, S. 70–71)** — re-enacts 1468 | Lübeck, Hamburg, Wismar, Lüneburg | double Schilling 69, 12-lot (8 = 1 ℳ); **Schilling 103½, 9-lot**; Sechsling 188, 8-lot (32 = 1 ℳ; the recess n. 86 § 8 has 190); Blaffert and Pfennig 4½ ℳ per mark («vefftehalve marck»), 6-lot | 2,542; **1,271**; 0,622; Pf 0,102 | 0,106 | **11,5** [C]; small coin 12 («van eyner marck lodigen sulvers 12 marck Lubesch») | Lübeck gulden 65 per mark, 24 karat = 2 ℳ |
 | 27 Aug 1504 | Münzartikel (III 5 n. 26, S. 84) | Wendish towns | Mark, half Mark, Verding; 15-lot; «de fyne mark schall uthkamen uppe 13 mark Lub.»; ⚠ «de mark penninck wegen viff lôth eyn quentyn» (printed so; 5 lot 1 q ≈ 77 g contradicts 13 ℳ per fine mark → ≈ 19,2 g) | Mark 17,99 | 0,094 | **13** | — |
 | 29 Dec 1506 | Münzrecess Hamburg (III 5 n. 151, S. 250–251) | Lübeck, Lüneburg, Hamburg (Wismar informed) | Markpenning 15-lot, «5 quentin unnde eyn orth» (≈ 19,2 g); half Mark, Verding, small coin | 17,99 | 0,094 | **13** «mit aller unkost» | Rhenish gulden (72 per gold mark) at 1½ ℳ |
 
@@ -176,10 +179,10 @@ sundish, reckoning — the Danish 3-penny sterling against the Hanseatic Dreilin
 | ⚠ Who joined in 1381: Lüneburg only (Dummler via W) or also Rostock and Stralsund (M)? | Jesse 1928 ch. 3; Hanserecesse I |
 | ⚠ First Witten: 1356 (Dummler) or c. 1365 (B, M)? | Dummler 2012 S. 19–20; Jesse 1929 «Das lübeckische Münzbuch 1365–1376» |
 | ~~1392 Rezess text~~ found 2026-10-27: HR I 8 Nr. 949 (Nachträge), § 3a. Still open: a WITTEN figure for 1385–1402 (1392 sets Sechsling / Dreiling only) | Grautoff 3 (Fraktur, OCR unusable on archive.org — read from page images); Lüb. UB 4 |
-| 1468 Rezess text (only its re-enactment of 1492 read) | HR II Bd. 6 (not found on archive.org with usable OCR, 2026-10-27); Grautoff 3 |
-| 1504 «viff lôth eyn quentyn» vs 13 ℳ per fine mark | another copy of the 1504 articles (RA Wismar n. 23 is the source); the 1506 text gives 5 quentin 1 orth |
+| ~~1468 Rezess text~~ read 2026-10-28 from page images of HR II 6 (`hanserecesse07roppgoog`, no OCR): n. 92, «Lübeck-Hamburgischer Entwurf eines Münzrecesses — 1468 Juni 15», Schilling 103½ / 9, Doppelschilling 69 / 12 — see `luebeck_standard_chronology_1226_1622.md` | — |
+| ~~1504 «viff löth eyn quentyn»~~ settled 2026-10-28 by computation (13 ℳ at 15 lot = 19,188 g = 5¼ quentin) and the 1506 text «5 quentin unnde eyn orth»; the print stays quoted | — |
 | 1450 Schrot figures | HR II 3 S. 515–516 page image (only the first articles read) |
-| Text of the 1403 Münzvertrag — HR I 5 Nr. 115 (S. 78, image read 2026-10-27) prints only the regest; the text is in **Lüb. UB 5 Nr. 66** (original StA Lübeck, 6 seals) | Lübeckisches Urkundenbuch Bd. 5 |
+| ~~Text of the 1403 Münzvertrag~~ read 2026-10-28: Lüb. UB 5 Nr. 66, S. 65–67 (cache `hanse/luebeck_ub/`) | — |
 | «lodige marc … 45 ß Lubisch in guden witten penningen» (1395): which mark | context of the ransom treaty; HR I Bd. 4 notes |
 | Was there a Rezess 1398 (L dates a hoard «nedlagt efter 1398»)? | Jesse 1928; Hanserecesse I, Bd. 4 |
 | Jesse 1928 itself (289 pp.) — not digitised in a source found (web search 2026-10-27) | a library copy; or Hanserecesse I Bd. 2–6 on archive.org (OCR quality to be checked) |

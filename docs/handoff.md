@@ -24,8 +24,12 @@
   (`grautoff-1836-3`, Fraktur — read figures from images; table S. 265–266), Gaedechens 1854 (`gaedechens-1854-…`,
   S. 175–193). Key new facts: 1398 Satzung (Witten 13-lot, 4 ℳ 4 ₰ per mark = the coin Denmark copied c. 1400);
   1381 Lüneburg, Rostock, Stralsund join; 1468 treaties 22 Feb / 22 Jul (vs «15 Jun» in luebischer dossier — open).
-- Open (§4 of the new dossier): 1410 49/50 Wurf, 1424 fineness, 1461 / 1468 texts (HR II 5–6 not cached), Jesse 1928
-  (archive.org lending copy, needs the curator's login).
+- Later the same day: Jesse 1928 integrated; then the last open points closed from originals — HR II 6 (image-only,
+  cached `ropp_1890_hanserecesse_2_bd6`): 15 Oct 1467 n. 57 = concluded recess (not a draft), 22 Feb 1468 n. 58 =
+  valuation only, 15 Jun 1468 n. 92 = Lübeck–Hamburg «Entwurf» (103½ / 9; 69 / 12), Dreyer's 22 Jul explains Gd;
+  1492 Sechsling 190 (recess n. 86 § 8) vs 188 (letter n. 87); 1504 5¼ quentin settled by computation + 1506 text;
+  1546 from Evers I S. 369 (Gd's «(240)», «11½» not in Evers); Lüb. UB 5 Nr. 66 (1403) cached + read. Only Langermann
+  1753 unread (IA lending-only). Also cached HR III 4 (`hanserecesse-3-4`) — not yet read for Hans' rates.
 
 ## 2026-10-26 (main session, evening) — Galster nominal-less KMM merges, gote, year_window
 
