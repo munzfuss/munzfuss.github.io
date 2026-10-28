@@ -13808,20 +13808,20 @@ coins:
     ruler: Frederik III.
     issuing_entity: danish_norway
     id: c-84755def
-    year_first: 1651
-    year_last: 1658
+    year_first: 1652
+    year_last: 1657
     year_ranges:
-      -   - 1651
-          - 1658
-    year_label: 1651-1658
+      -   - 1652
+          - 1653
+      -   - 1657
+          - 1657
+    year_label: 1652-1653, 1657
     mint: Christiania
     catalog:
       km:
         - '48'
-        - '40'
-      hede:
-        - 8C
-        - '14'
+        - A46
+      hede: '14'
       hede_volume: nf3h
       schou:
         - 8-9
@@ -13836,17 +13836,21 @@ coins:
       bruun_part: I
       bruun_lot_no: 1193
       bruun_page: 263
-      dav:
-        - EC II 3590
-        - EC II 3592
+      dav: EC II 3592
       numista:
         - '486792'
-        - '55888'
+        - '118915'
       others:
         - Aagaard# 41.1 (52-3/52-3)
         - Aagaard# 41.4 (53-2/53-2)
         - AAJT# 75A
         - Thesen# 81B
+        - Brekke# 67
+        - Brekke# 68
+        - Thesen# 73
+        - Thesen# 74
+        - Rønning# 44
+      skaare: '537'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -13863,59 +13867,58 @@ coins:
         source: numismaster
       - value: 0.875
         source: numista
-      - value: 0.875
-        source: ucoin
     weight_rough_g:
       - value: 28.46
         source: bruun
       - value: 28.69
         source: bruun
-      - value: 28.72
-        source: ngc
-      - value: 28.72
-        source: numismaster
-      - value: 28.72
-        source: numista
-      - value: 28.72
-        source: ucoin
       - value: 28.775
         source: hede
+      - value: 28.78
+        source: ngc
+      - value: 28.78
+        source: numismaster
       - value: 28.78
         source: numista
     diameter_mm:
       - value: 42.0
         source: numista
-      - value: 44.0
+      - value: 46.0
         source: numista
-      - value: 44.0
-        source: ucoin
+    catalog_alts:
+      - register: km
+        value: '48'
+        source: bruun
+        kind: erroneous
+        reason:
+          de: 'KM 48 ist der Typ Hede Norge 17 (Bruun 9660; IKMK 18219601 und 18219602: Hede 17, Bruce – Michael 48); diese Müntze ist Hede Norge 14 (1653).'
+          en: 'KM 48 is the type Hede Norge 17 (Bruun 9660; IKMK 18219601 and 18219602: Hede 17, Bruce – Michael 48); this coin is Hede Norge 14 (1653).'
+          uk: 'KM 48 — це тип Hede Norge 17 (Bruun 9660; IKMK 18219601 і 18219602: Hede 17, Bruce – Michael 48); ця монета — Hede Norge 14 (1653).'
+          da: 'KM 48 er typen Hede Norge 17 (Bruun 9660; IKMK 18219601 og 18219602: Hede 17, Bruce – Michael 48); denne mønt er Hede Norge 14 (1653).'
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12073, p. 179
-      - type: literature
-        url: https://numismaster.com/MC_110720
-        ref: NumisMaster
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1193, p. 239
       - type: literature
         url: https://www.danskmoent.dk/norge/nf3h14.htm
         ref: danskmoent.dk (Hede nf3h14)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-speciedaler-1651-1658/?tid=145429
-        ref: ucoin
       - type: literature
         url: https://en.numista.com/486792
         ref: Numista N#486792 — 1 Speciedaler - Frederik III (Type V&IV) - Norway
-      - type: literature
-        url: https://en.numista.com/55888
-        ref: Numista N#55888 — NO 1 Speciedaler - Frederik III Type I.B 1651-1652
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/394329
         ref: KMM 394329 (Inv. FP 4227.1393)
       - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-40-1651-1652-cuid-1095597-duid-1466128
+        url: https://numismaster.com/MC_110721
+        ref: NumisMaster
+      - type: literature
+        url: https://en.numista.com/118915
+        ref: Numista N#118915 — 1 Speciedaler - Frederik III (Type II) - Norway
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-a46-1652-1653-cuid-1114116-duid-1450252
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     note:
       de: 'Vorderseite: Porträt, die Krone durchbricht die Umschrift nicht; Rückseite: norwegischer Löwe'
@@ -14022,25 +14025,23 @@ coins:
       - c-21d2bf35
     label: unified-dk-hede-nf3h16
     origin: promoted
-  - fuss: seed_unsorted
-    phase: hede
+  - fuss: 9_25_thaler
+    phase: I
     kind: kurant
     nominal: 1 Speciedaler
     ruler: Frederik III.
     issuing_entity: danish_norway
     mintmaster: Frederik Grüner
     id: c-43d7dead
-    year_first: 1652
+    year_first: 1653
     year_last: 1656
     year_ranges:
-      -   - 1652
+      -   - 1653
           - 1656
-    year_label: 1652-1656
+    year_label: 1653-1656
     mint: Christiania
     catalog:
-      km:
-        - '48'
-        - A46
+      km: '48'
       hede: '17'
       hede_volume: nf3h
       schou:
@@ -14063,9 +14064,7 @@ coins:
       bruun_part: II
       bruun_lot_no: 14041
       bruun_page: 206
-      dav:
-        - EC II 3595
-        - EC II 3592
+      dav: EC II 3595
       others:
         - Aagaard# 45.2 (53-4/53-3)
         - Aagaard# 45.1 (53-6/53-3)
@@ -14076,6 +14075,7 @@ coins:
         - Brekke# 69-71
         - Thesen# 75-77
         - Rønning# 44
+        - BM# 48
       numista: '100607'
       skaare: '537'
     metal: silver
@@ -14101,6 +14101,8 @@ coins:
         source: ikmk
       - value: 28.29
         source: bruun
+      - value: 28.29
+        source: kmk
       - value: 28.61
         source: ikmk
       - value: 28.63
@@ -14140,9 +14142,6 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12076, p. 181
       - type: literature
-        url: https://numismaster.com/MC_110721
-        ref: NumisMaster
-      - type: literature
         url: https://www.danskmoent.dk/norge/nf3h17.htm
         ref: danskmoent.dk (Hede nf3h17)
       - type: ucoin
@@ -14151,9 +14150,6 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18219601
         ref: IKMK Berlin 18219601
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18219602
-        ref: IKMK Berlin 18219602
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14042, p. 180
@@ -14167,11 +14163,14 @@ coins:
         url: https://en.numista.com/100607
         ref: Numista N#100607 — 1 Speciedaler - Frederik III (Type III) - Norway
       - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-a46-1652-1653-cuid-1114116-duid-1450252
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-48-1653-1656-cuid-1097944-duid-1448466
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/131616
+        ref: KMM 131616 (Inv. FP 3537.22)
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18219602
+        ref: IKMK Berlin 18219602
     inscription_obv: FRIDERICUS III D G DAN NOR VAN GO REX
     inscription_rev: DOMINUS - PROVIDEBIT 16-54
     note:
@@ -14191,9 +14190,10 @@ coins:
       unit_raw: spdl
     composed_of:
       - c-43d7dead
-      - c-4b9a9926
+      - c-eda0be96
     label: unified-dk-hede-nf3h17
     origin: promoted
+    fraction: '1'
     _weights_thinned:
       - value: 28.52
         source: bruun
@@ -14310,12 +14310,12 @@ coins:
     issuing_entity: danish_norway
     fraction: '1'
     id: c-8a0bd288
-    year_first: 1653
+    year_first: 1655
     year_last: 1657
     year_ranges:
-      -   - 1653
+      -   - 1655
           - 1657
-    year_label: 1653-1657
+    year_label: 1655-1657
     mint: Christiania
     catalog:
       km:
@@ -14337,9 +14337,7 @@ coins:
       bruun_part: II
       bruun_lot_no: 14049
       bruun_page: 212
-      dav:
-        - '3597'
-        - '3595'
+      dav: '3597'
       numista: '118916'
       others:
         - Aagaard# 50.2 (55-1/56-4)
@@ -14406,9 +14404,6 @@ coins:
       - type: literature
         url: https://en.numista.com/118916
         ref: Numista N#118916 — 1 Speciedaler - Frederik III (Type IV) - Norway
-      - type: literature
-        url: https://numismaster.com/MC_110722
-        ref: NumisMaster
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14050, p. 187
@@ -14815,187 +14810,6 @@ coins:
     composed_of:
       - c-9052afd5
     label: unified-dk-hede-nf3h30
-    origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Frederik III.
-    issuing_entity: danish_norway
-    fraction: '1'
-    mintmaster: Frederik Grüner
-    id: c-553363f8
-    year_first: 1659
-    year_last: 1662
-    year_ranges:
-      -   - 1659
-          - 1662
-    year_label: 1659-1662
-    mint: Christiania
-    catalog:
-      km:
-        - '56'
-        - '54'
-      hede:
-        - '33'
-        - 33A
-        - 33B
-      hede_volume: nf3h
-      schou:
-        - 13-20
-        - 19-23
-        - 20-25
-        - 23-24
-      bruun_collection_id:
-        - '9798'
-        - '9799'
-        - '9828'
-        - '9831'
-        - '9858'
-        - '9802'
-        - '9801'
-        - '9856'
-      sieg:
-        - '40.1'
-        - '40.2'
-      bruun_part: II
-      bruun_lot_no: 14057
-      bruun_page: 216
-      dav: EC II 3607
-      nmd:
-        - 89A
-        - 89B
-        - '90'
-        - '91'
-      others:
-        - Aagaard# 67.1
-        - Aagaard# 65.1
-        - Aagaard# 70.1
-        - Aagaard# 70.2
-        - Aagaard# 70.4
-        - Aagaard# 70.6
-        - Aagaard# 70.14
-        - Aagaard# 70.13 (60-1/61-3)
-        - Brekke# 83A
-        - Thesen# 89A
-        - Rønning# 45d-45f
-      numista: '114453'
-      skaare: '539'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: hede
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 28.65
-        source: ikmk
-      - value: 28.69
-        source: bruun
-      - value: 28.72
-        source: bruun
-      - value: 28.775
-        source: hede
-      - value: 28.78
-        source: ikmk
-      - value: 28.78
-        source: ngc
-      - value: 28.78
-        source: numismaster
-      - value: 28.78
-        source: numista
-      - value: 28.8
-        source: bruun
-      - value: 28.83
-        source: bruun
-    diameter_mm:
-      - value: 42.0
-        source: numista
-      - value: 44.0
-        source: ikmk
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_110726
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1201, p. 253
-      - type: literature
-        url: https://www.danskmoent.dk/norge/nf3h33.htm
-        ref: danskmoent.dk (Hede nf3h33)
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18219604
-        ref: IKMK Berlin 18219604
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18219609
-        ref: IKMK Berlin 18219609
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18219610
-        ref: IKMK Berlin 18219610
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-51-1658-1659-cuid-1098148-duid-1466130
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
-        url: https://numismaster.com/MC_110727
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14055, p. 190
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12082, p. 185
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15043, p. 102
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14056, p. 190
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1204, p. 258
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15046, p. 103
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14057, p. 190
-      - type: literature
-        url: https://en.numista.com/114453
-        ref: Numista N#114453 — 1 Speciedaler - Frederik III (Type IX) - Norway
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-54-1659-1662-cuid-1095646-duid-1448467
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    inscription_obv: FRIDERICUS III D G DAN NOR VAN GOTT REX
-    inscription_rev: DOMINUS - PROVIDEBIT // 1659
-    note:
-      de: 'Vorderseite: schwebendes Porträt; Rückseite: norwegischer Löwe im Blätterkranz'
-      en: 'Obverse: floating portrait; reverse: the Norwegian lion in a wreath of leaves'
-      uk: 'Аверс: ширяюче погруддя; реверс: норвезький лев у листяному вінку'
-      da: 'Forside: portræt (svævende), bagside: norske løve i bladkrans.'
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 9.288
-      unit: speciedaler
-      basis: fin
-      unit_raw: spdl
-    composed_of:
-      - c-553363f8
-      - c-723ee881
-    label: unified-dk-hede-nf3h33
     origin: promoted
   - fuss: seed_unsorted
     phase: hede
@@ -16129,6 +15943,7 @@ coins:
         - Rønning# 48
         - Brekke# 103
         - Thesen# 109
+        - BM# 74
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -16259,6 +16074,7 @@ coins:
         - Brekke# 104-106
         - Thesen# 110-112
         - Rønning# 48
+        - BM# 74
       skaare: '544'
     metal: silver
     metal_verified: true
@@ -27531,197 +27347,6 @@ coins:
       - value: 5.41
         source: kmk
         display: false
-  - fuss: seed_unsorted
-    phase: hede
-    kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Frederik III.
-    issuing_entity: danish_norway
-    mintmaster: Peter Grüner
-    id: c-20390e5a
-    year_first: 1649
-    year_last: 1652
-    year_ranges:
-      -   - 1649
-          - 1652
-    year_label: 1649-1652
-    mint: Christiania
-    catalog:
-      km: '37'
-      hede:
-        - '8'
-        - 8B
-        - 8C
-        - 8D
-      hede_volume: nf3h
-      schou:
-        - '5'
-        - 6-7
-        - 7-8
-        - 17-20
-        - 19-23
-      bruun_collection_id:
-        - '9596'
-        - '9598'
-        - '9599'
-        - '9616'
-        - '9597'
-      sieg: '21.2'
-      nmd:
-        - 69A
-        - 69B
-        - 69C
-        - '70'
-      bruun_part: III
-      bruun_lot_no: 12065
-      bruun_page: 191
-      dav:
-        - EC II 3588
-        - EC II 3583
-      numista:
-        - '444847'
-        - '82384'
-      others:
-        - Aagaard# 15.1 (49-1/49-2)
-        - Aagaard# 17.1 (49-2/49-9)
-        - Aagaard# 21.1 (49-3/49-19)
-        - Aagaard# 21.3 (49-5/49-15)
-        - Aagaard# 21.4 (49-3/50-2)
-        - AAJT# 63A
-        - Rønning# 43
-        - Thesen# 69A
-        - Brekke# 63
-        - Thesen# 69B
-        - Rønning# 43a
-      skaare: '537'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: hede
-      - value: 0.875
-        source: ngc
-      - value: 0.875
-        source: numismaster
-      - value: 0.875
-        source: numista
-      - value: 0.875
-        source: ucoin
-    weight_rough_g:
-      - value: 28.31
-        source: ikmk
-      - value: 28.41
-        source: bruun
-      - value: 28.44
-        source: bruun
-      - value: 28.52
-        source: ikmk
-      - value: 28.64
-        source: ikmk
-      - value: 28.717
-        source: hede
-      - value: 28.72
-        source: ngc
-      - value: 28.72
-        source: numismaster
-      - value: 28.72
-        source: numista
-      - value: 28.72
-        source: ucoin
-      - value: 56.66
-        source: bruun
-    diameter_mm:
-      - value: 43.0
-        source: ikmk
-      - value: 44.0
-        source: ikmk
-      - value: 44.0
-        source: numista
-      - value: 44.0
-        source: ucoin
-      - value: 45.0
-        source: ikmk
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12065, p. 173
-      - type: literature
-        url: https://numismaster.com/MC_110719
-        ref: NumisMaster
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14036, p. 177
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1189, p. 235
-      - type: literature
-        url: https://www.danskmoent.dk/norge/nf3h8.htm
-        ref: danskmoent.dk (Hede nf3h8)
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-1-speciedaler-1649-1651/?tid=145428
-        ref: ucoin
-      - type: literature
-        url: https://en.numista.com/444847
-        ref: 'Numista N#444847 — 1 Speciedaler - Frederik III (Type I.A: 5 lines in crown; date outside inner ring) - Norway'
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18219598
-        ref: IKMK Berlin 18219598
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14037, p. 177
-      - type: literature
-        url: https://en.numista.com/82384
-        ref: Numista N#82384 — NO 1 Speciedaler - Frederik III Type I.B (3 lines in crown; legend starts below bust) 1649-1651
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/197260
-        ref: KMM 197260 (Inv. FP 3108.7024)
-        display: false
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18219599
-        ref: IKMK Berlin 18219599
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18219600
-        ref: IKMK Berlin 18219600
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-37-1649-1651-cuid-1114115-duid-1448303
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15031, p. 95
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/705760
-        ref: KMM 705760 (Inv. FP 334.4)
-        display: false
-    inscription_obv: FRIDERICUS III D G DAN NOR VA GO REX
-    inscription_rev: DOMINUS - PROVIDEBIT 16-49
-    note:
-      de: 'Vorderseite: Porträt; Rückseite: norwegischer Löwe'
-      en: 'Obverse: portrait; reverse: the Norwegian lion'
-      uk: 'Аверс: портрет; реверс: норвезький лев'
-      da: 'Forside: portræt, bagside: norske løve.'
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: coinage-standard assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення стопи, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-      da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
-    hede_muentzfuss_yield:
-      value: 9.306
-      unit: speciedaler
-      basis: fin
-      unit_raw: spdl
-    composed_of:
-      - c-20390e5a
-      - c-69dd6122
-      - c-9fa6936f
-      - c-a1e9cde1
-      - c-cf8751cb
-    label: unified-dk-hede-nf3h8
-    origin: promoted
   - fuss: 9_thaler
     phase: II
     kind: kurant
@@ -27741,9 +27366,9 @@ coins:
     catalog:
       km: '38'
       hede:
-        - '9'
         - 9A
         - 9AB
+        - 9B
       hede_volume: nf3h
       schou:
         - 2-3
@@ -27777,6 +27402,8 @@ coins:
         - Rønning# 37
         - AAJT# 34A
         - Thesen# 34A
+        - BM# 38
+        - BM# 44
       skaare: '532'
     metal: silver
     metal_verified: true
@@ -33288,65 +32915,6 @@ coins:
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Frederik III.
-    issuing_entity: danish_norway
-    id: c-c8bc4663
-    year_first: 1652
-    year_last: 1653
-    year_ranges:
-      -   - 1652
-          - 1653
-    year_label: 1652-1653
-    mint: Christiania
-    catalog:
-      km: A46
-      numista: '118915'
-      dav: EC II 3592
-      hede: '14'
-      others:
-        - Brekke# 67
-        - Brekke# 68
-        - Thesen# 73
-        - Thesen# 74
-        - Rønning# 44
-      skaare: '537'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 28.78
-        source: numista
-    diameter_mm:
-      - value: 46.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/118915
-        ref: Numista N#118915 — 1 Speciedaler - Frederik III (Type II) - Norway
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: coinage-standard and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited;
-        cross-references (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення стопи і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-      da: 'Numista-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra katalogsiden (en.numista.com). Numista redigeres af brugerne; krydshenvisningerne
-        (Sieg, Galster, Schou, Fr) skal efterprøves mod primærkilder før optagelse i kuraterede poster.'
-    composed_of:
-      - c-c8bc4663
-    label: unified-dk-numista-118915
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
-    kind: kurant
     nominal: 1 Skilling
     ruler: Frederik I.
     issuing_entity: danish_norway
@@ -34886,35 +34454,6 @@ coins:
     composed_of:
       - c-e6e78264
     label: unified-kmk-122401
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Frederik III.
-    issuing_entity: danish_norway
-    id: c-001ff86b
-    year_first: 1654
-    year_last: 1654
-    year_label: '1654'
-    catalog:
-      schou: '6'
-      hede: '17'
-    metal_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 28.29
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/131616
-        ref: KMM 131616 (Inv. FP 3537.22)
-    verification_note: *id002
-    composed_of:
-      - c-001ff86b
-    label: unified-kmk-131616
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -79561,71 +79100,6 @@ coins:
       - c-ba233a56
     label: unified-dk-bruun-9735
     origin: promoted
-  - fuss: 9_25_thaler
-    phase: I
-    kind: kurant
-    nominal: 1 Speciedaler
-    ruler: Frederik III
-    mintmaster: Frederik Grüner
-    issuing_entity: danish_norway
-    fraction: '1'
-    id: c-6b72a94b
-    year_first: 1659
-    year_last: 1659
-    year_label: '1659'
-    mint: Christiania
-    catalog:
-      km: '51'
-      bruun_collection_id: '9802'
-      sieg: '40.2'
-      schou: '24'
-      hede:
-        - '33'
-        - 33B
-      nmd: 89B
-      bruun_part: I
-      bruun_lot_no: 1201
-      bruun_page: 277
-      others:
-        - Aagaard# 67.1
-      dav: '3604'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 28.78
-        source: bruun
-      - value: 28.78
-        source: ikmk
-    diameter_mm:
-      - value: 44.0
-        source: ikmk
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1201, p. 253
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18219604
-        ref: IKMK Berlin 18219604
-    inscription_obv: FRIDERICUS III D G DAN NOR VAN GOTT REX
-    inscription_rev: DOMINUS - PROVIDEBIT // 1659
-    verification_note:
-      de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
-        aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
-      en: Data taken from the Bruun auction catalogue (Stack's Bowers, L. E. Bruun Collection 2024-2026). The gross weight is a single-specimen value; Bruun gives no fineness, so it follows from the 
-        ordinance specification table in Wilcke 1950. The coinage standard of this piece is not yet determined.
-      uk: Дані взято з аукціонного каталогу Bruun (Stack's Bowers, L. E. Bruun Collection 2024-2026). Повна вага — значення одного примірника; проби Bruun не подає, вона випливає з таблиці 
-        специфікацій ордонансів у Wilcke 1950. Стопу цього примірника ще не визначено.
-      da: Data hentet fra Bruun-auktionskatalogen (Stack's Bowers, L. E. Bruun Collection 2024-2026). Bruttovægten er en enkeltstyksværdi; Bruun angiver ingen finhed, den følger af 
-        specifikationstabellen for forordningerne hos Wilcke 1950. Møntfoden for dette stykke er endnu ikke bestemt.
-    composed_of:
-      - c-6b72a94b
-    label: unified-dk-bruun-9802
-    origin: promoted
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -81721,6 +81195,395 @@ coins:
     composed_of:
       - c-83818f45
     label: unified-dk-bruun-9217
+    origin: promoted
+  - fuss: 9_25_thaler
+    phase: I
+    kind: kurant
+    nominal: 1 Speciedaler
+    ruler: Frederik III
+    mintmaster: Frederik Grüner
+    issuing_entity: danish_norway
+    fraction: '1'
+    id: c-723ee881
+    year_first: 1659
+    year_last: 1662
+    year_ranges:
+      -   - 1659
+          - 1662
+    year_label: 1659-1662
+    mint: Christiania
+    catalog:
+      km:
+        - '54'
+        - '51'
+      hede:
+        - 33A
+        - 33B
+      hede_volume: nf3h
+      schou:
+        - 13-20
+        - 19-23
+        - 20-25
+        - 23-24
+      bruun_collection_id:
+        - '9798'
+        - '9799'
+        - '9801'
+        - '9802'
+        - '9828'
+        - '9831'
+        - '9856'
+        - '9858'
+      sieg:
+        - '40.1'
+        - '40.2'
+      nmd:
+        - 89A
+        - 89B
+        - '90'
+        - '91'
+      bruun_part: II
+      bruun_lot_no: 14055
+      bruun_page: 216
+      others:
+        - Aagaard# 65.1
+        - Aagaard# 70.1
+        - Aagaard# 70.2
+        - Aagaard# 67.1
+        - Aagaard# 70.4
+        - Aagaard# 70.6
+        - Aagaard# 70.14
+        - Aagaard# 70.13 (60-1/61-3)
+        - Brekke# 83A
+        - Thesen# 89A
+        - Rønning# 45d-45f
+        - BM# 54
+      dav:
+        - EC II 3604
+        - EC II 3607
+      numista: '114453'
+      skaare: '539'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.875
+        source: hede
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+      - value: 0.875
+        source: numista
+    weight_rough_g:
+      - value: 28.65
+        source: ikmk
+      - value: 28.69
+        source: bruun
+      - value: 28.775
+        source: hede
+      - value: 28.78
+        source: bruun
+      - value: 28.78
+        source: ikmk
+      - value: 28.78
+        source: ngc
+      - value: 28.78
+        source: numismaster
+      - value: 28.78
+        source: numista
+      - value: 28.83
+        source: bruun
+    diameter_mm:
+      - value: 42.0
+        source: numista
+      - value: 44.0
+        source: ikmk
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_110727
+        ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14055, p. 190
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12082, p. 185
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15043, p. 102
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1201, p. 253
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14056, p. 190
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1204, p. 258
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15046, p. 103
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14057, p. 190
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nf3h33.htm
+        ref: danskmoent.dk (Hede nf3h33A)
+      - type: literature
+        url: https://en.numista.com/114453
+        ref: Numista N#114453 — 1 Speciedaler - Frederik III (Type IX) - Norway
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18219604
+        ref: IKMK Berlin 18219604
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18219609
+        ref: IKMK Berlin 18219609
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18219610
+        ref: IKMK Berlin 18219610
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-54-1659-1662-cuid-1095646-duid-1448467
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_110726
+        ref: NumisMaster
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-51-1658-1659-cuid-1098148-duid-1466130
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    inscription_obv: FRIDERICUS III D G DAN NOR VAN GOTT REX
+    inscription_rev: DOMINUS - PROVIDEBIT // 1659
+    note:
+      de: 'Vorderseite: schwebendes Porträt; Rückseite: norwegischer Löwe im Blätterkranz'
+      en: 'Obverse: floating portrait; reverse: the Norwegian lion in a wreath of leaves'
+      uk: 'Аверс: ширяюче погруддя; реверс: норвезький лев у листяному вінку'
+      da: 'Forside: portræt (svævende), bagside: norske løve i bladkrans.'
+    hede_muentzfuss_yield:
+      value: 9.288
+      unit: speciedaler
+      basis: fin
+      unit_raw: spdl
+    composed_of:
+      - c-723ee881
+    label: unified-dk-hede-nf3h33a
+    origin: promoted
+    _weights_thinned:
+      - value: 28.72
+        source: bruun
+      - value: 28.8
+        source: bruun
+  - fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Speciedaler
+    ruler: Frederik III
+    mintmaster: Peter Grüner
+    issuing_entity: danish_norway
+    id: c-cf8751cb
+    year_first: 1649
+    year_last: 1658
+    year_ranges:
+      -   - 1649
+          - 1658
+    year_label: 1649-1658
+    mint: Christiania
+    catalog:
+      km:
+        - '37'
+        - '40'
+      hede:
+        - '8'
+        - 8B
+        - 8C
+        - 8D
+      hede_volume: nf3h
+      schou:
+        - '5'
+        - 6-7
+        - 7-8
+        - 17-20
+        - 19-23
+      bruun_collection_id:
+        - '9596'
+        - '9597'
+        - '9598'
+        - '9599'
+        - '9616'
+      sieg: '21.2'
+      nmd:
+        - 69A
+        - 69B
+        - 69C
+        - '70'
+      bruun_part: III
+      bruun_lot_no: 12065
+      bruun_page: 191
+      others:
+        - Aagaard# 15.1 (49-1/49-2)
+        - Aagaard# 21.1 (49-3/49-19)
+        - Aagaard# 21.3 (49-5/49-15)
+        - Aagaard# 17.1 (49-2/49-9)
+        - Aagaard# 21.4 (49-3/50-2)
+        - AAJT# 63A
+        - Rønning# 43
+        - Thesen# 69A
+        - Brekke# 63
+        - Thesen# 69B
+        - Rønning# 43a
+        - BM# 37
+        - BM# 40
+      dav:
+        - EC II 3583
+        - EC II 3588
+        - EC II 3590
+      numista:
+        - '444847'
+        - '55888'
+        - '82384'
+      skaare: '537'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.875
+        source: hede
+      - value: 0.875
+        source: ngc
+      - value: 0.875
+        source: numismaster
+      - value: 0.875
+        source: numista
+      - value: 0.875
+        source: ucoin
+    weight_rough_g:
+      - value: 28.31
+        source: ikmk
+      - value: 28.41
+        source: bruun
+      - value: 28.44
+        source: bruun
+      - value: 28.52
+        source: ikmk
+      - value: 28.64
+        source: ikmk
+      - value: 28.717
+        source: hede
+      - value: 28.72
+        source: ngc
+      - value: 28.72
+        source: numismaster
+      - value: 28.72
+        source: numista
+      - value: 28.72
+        source: ucoin
+      - value: 56.66
+        source: bruun
+        suspect:
+          de: 'Gewicht eines 2-Speciedalers. Bruun druckt beim Speciedaler 1649 (Hede Norge 8B) «Weight: 56.66 gms»; die übrigen Speciedaler desselben Typs wiegen 28,41–28,44 g (Bruun 9597, 9598, 9599,
+            9616), Hede gibt 28,717 g. Ob ein Druckfehler oder ein anderes Stück vorliegt, ist nicht festzustellen.'
+          en: 'The weight of a 2-Speciedaler. Bruun prints «Weight: 56.66 gms» for the Speciedaler 1649 (Hede Norge 8B); the other Speciedaler of the same type weigh 28.41–28.44 g (Bruun 9597, 9598, 9599,
+            9616), Hede gives 28.717 g. Whether it is a misprint or another piece cannot be established.'
+          uk: 'Вага 2-Speciedaler. Bruun друкує для Speciedaler 1649 (Hede Norge 8B) «Weight: 56.66 gms»; інші Speciedaler того самого типу важать 28,41–28,44 г (Bruun 9597, 9598, 9599, 9616), Hede подає
+            28,717 г. Чи це помилка друку, чи інший екземпляр, встановити неможливо.'
+          da: 'Vægten af en 2-speciedaler. Bruun trykker «Weight: 56.66 gms» ved speciedaleren 1649 (Hede Norge 8B); de øvrige speciedalere af samme type vejer 28,41–28,44 g (Bruun 9597, 9598, 9599, 9616),
+            Hede angiver 28,717 g. Om det er en trykfejl eller et andet stykke, kan ikke afgøres.'
+    diameter_mm:
+      - value: 43.0
+        source: ikmk
+      - value: 44.0
+        source: ikmk
+      - value: 44.0
+        source: numista
+      - value: 44.0
+        source: ucoin
+      - value: 45.0
+        source: ikmk
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_110719
+        ref: NumisMaster
+      - type: literature
+        url: https://numismaster.com/MC_110720
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12065, p. 173
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15031, p. 95
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14036, p. 177
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14037, p. 177
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1189, p. 235
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nf3h8.htm
+        ref: danskmoent.dk (Hede nf3h8B)
+      - type: literature
+        url: https://en.numista.com/444847
+        ref: 'Numista N#444847 — 1 Speciedaler - Frederik III (Type I.A: 5 lines in crown; date outside inner ring) - Norway'
+      - type: literature
+        url: https://en.numista.com/55888
+        ref: Numista N#55888 — NO 1 Speciedaler - Frederik III Type I.B 1651-1652
+      - type: literature
+        url: https://en.numista.com/82384
+        ref: Numista N#82384 — NO 1 Speciedaler - Frederik III Type I.B (3 lines in crown; legend starts below bust) 1649-1651
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-speciedaler-1649-1651/?tid=145428
+        ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-1-speciedaler-1651-1658/?tid=145429
+        ref: ucoin
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18219598
+        ref: IKMK Berlin 18219598
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18219599
+        ref: IKMK Berlin 18219599
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18219600
+        ref: IKMK Berlin 18219600
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/197260
+        ref: KMM 197260 (Inv. FP 3108.7024)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/705760
+        ref: KMM 705760 (Inv. FP 334.4)
+        display: false
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-40-1651-1652-cuid-1095597-duid-1466128
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-specie-daler-km-37-1649-1651-cuid-1114115-duid-1448303
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    inscription_obv: FRIDERICUS III D G DAN NOR VA GO REX
+    inscription_rev: DOMINUS - PROVIDEBIT 16-49
+    note:
+      de: 'Vorderseite: Porträt; Rückseite: norwegischer Löwe'
+      en: 'Obverse: portrait; reverse: the Norwegian lion'
+      uk: 'Аверс: портрет; реверс: норвезький лев'
+      da: 'Forside: portræt, bagside: norske løve.'
+    hede_muentzfuss_yield:
+      value: 9.306
+      unit: speciedaler
+      basis: fin
+      unit_raw: spdl
+    composed_of:
+      - c-cf8751cb
+    label: unified-dk-hede-nf3h8b
     origin: promoted
   - id: unified-kmk-473642
     label: unified-kmk-473642

@@ -1,6 +1,6 @@
 status: seed
 source: IKMK Berlin (ikmk.smb.museum, json_ext)
-generated_at: '2026-10-22T15:56:53Z'
+generated_at: '2026-10-27T19:38:56Z'
 entity: grafschaft_schaumburg
 scope_note: IKMK Berlin seed — records from the Interaktiver Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0), built directly from the museum json_ext cache (scope-purged + 
   title-filtered at harvest). Coin-only (§9.2 exonumia excluded). Mint city → issuing entity via classify_mint_to_entity; museum-attested fields carry verified=true. Phase-4 assigns Müntzfuß/phase; 
@@ -49,6 +49,9 @@ coins:
         jeweilige Münzmeister vor Ort war…
     _thinned_from:
       - ikmk-18286208
+    catalog:
+      others:
+        - Weinmeister# 220
   - id: ikmk-18285924
     fuss: seed_unsorted
     phase: ikmk
@@ -86,6 +89,9 @@ coins:
       de: 1/16 Taler
       en: 1/16 Taler
       uk: 1/16 Taler
+    catalog:
+      others:
+        - Weinmeister# 223
   - id: ikmk-18286201
     fuss: seed_unsorted
     phase: ikmk
@@ -114,6 +120,9 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18286201
         ref: IKMK Berlin 18286201
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18286208
+        ref: IKMK Berlin 18286208
     _source_note:
       de: Das Münzmeisterzeichen Zainhaken lässt sich bisher nicht eindeutig zuordnen, da sowohl der schauenburgische Münzmeister Kaspar Kohl als auch sein Nachfolger Justus Arnoldi einen solchen als 
         ihr Münzmeisterzeichen führten, und beide im Jahr 1621 an der Münze Oldendorf tätig waren. - Die Münzmeisterstelle für die beiden von den Grafen von Holstein-Schauenburg betriebenen 
@@ -123,6 +132,8 @@ coins:
       de: 1/16 Taler
       en: 1/16 Taler
       uk: 1/16 Taler
+    _thinned_from:
+      - ikmk-18286208
   - id: ikmk-18286202
     fuss: seed_unsorted
     phase: ikmk

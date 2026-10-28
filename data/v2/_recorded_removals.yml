@@ -4696,3 +4696,12 @@ removals:
   - seed: metallanalyser-2016-1-g7-10-14-15-nastved-lund-odense-randers-kopparsterling
     kind: declassify
     reason: 'Heljeback 2016:1 Nr 39 and 43, printed «Næstved/Lund/Odense/Randers», «7/10/14/15»: unattributed Kobbersterling specimens. They had joined the Galster 10 (Lund) class in Lybsk phase 0 and through it bridged Galster 7, 14 and 15; split by no_merges, they stand alone in seed_unsorted. Curator (Serhii) 2026-10-25.'
+
+  # IKMK builder kept the sub-letter of a catalogue number printed apart
+  # («Nr. 9576 b»); the bare base it used to store is the stale reading of the
+  # same statement and gives way to the lettered one (seed_merge
+  # `_drop_bare_superseded_by_letter`). Curator (Serhii) 2026-10-28.
+  - {seed: ikmk-18202031, kind: field, field: dav, dropped: ['9576'], reason: 'IKMK prints «Davenport … Nr. 9576 b»; the coin now carries 9576B'}
+  - {seed: ikmk-18206361, kind: field, field: fr, dropped: ['1152'], reason: 'IKMK prints «Friedberg … Nr. 1152 c»; the coin now carries 1152C'}
+  - {seed: ikmk-18239610, kind: field, field: lange, dropped: ['9'], reason: 'IKMK prints «Lange … Nr. 9 A»; the coin now carries 9A'}
+  - {seed: ikmk-18219260, kind: field, field: lange, dropped: ['944'], reason: 'IKMK prints «Lange … Nr. 944 a»; the coin now carries 944A'}

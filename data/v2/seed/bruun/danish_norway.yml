@@ -4030,7 +4030,18 @@ coins:
         - Aagaard# 15.1 (49-1/49-2)
     metal: silver
     fineness:
-    weight_rough_g: 56.66
+    weight_rough_g:
+      - value: 56.66
+        source: bruun
+        suspect:
+          de: 'Gewicht eines 2-Speciedalers. Bruun druckt beim Speciedaler 1649 (Hede Norge 8B) «Weight: 56.66 gms»; die übrigen Speciedaler desselben Typs wiegen 28,41–28,44 g (Bruun 9597, 9598, 9599,
+            9616), Hede gibt 28,717 g. Ob ein Druckfehler oder ein anderes Stück vorliegt, ist nicht festzustellen.'
+          en: 'The weight of a 2-Speciedaler. Bruun prints «Weight: 56.66 gms» for the Speciedaler 1649 (Hede Norge 8B); the other Speciedaler of the same type weigh 28.41–28.44 g (Bruun 9597, 9598, 9599,
+            9616), Hede gives 28.717 g. Whether it is a misprint or another piece cannot be established.'
+          uk: 'Вага 2-Speciedaler. Bruun друкує для Speciedaler 1649 (Hede Norge 8B) «Weight: 56.66 gms»; інші Speciedaler того самого типу важать 28,41–28,44 г (Bruun 9597, 9598, 9599, 9616), Hede подає
+            28,717 г. Чи це помилка друку, чи інший екземпляр, встановити неможливо.'
+          da: 'Vægten af en 2-speciedaler. Bruun trykker «Weight: 56.66 gms» ved speciedaleren 1649 (Hede Norge 8B); de øvrige speciedalere af samme type vejer 28,41–28,44 g (Bruun 9597, 9598, 9599, 9616),
+            Hede angiver 28,717 g. Om det er en trykfejl eller et andet stykke, kan ikke afgøres.'
     issuing_entity: danish_norway
     verified: false
     fineness_verified: false
@@ -4967,7 +4978,7 @@ coins:
       sieg: '24'
       schou: '23'
       davenport: '3592'
-      km: '40'
+      km: '48'
       hede: '14'
       nmd: '74'
       bruun_part: III
@@ -4988,17 +4999,15 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 12073, p. 179
     metal_verified: false
-    _source_errata:
-      - field: km
-        printed: '48'
-        correct: '40'
-        reason: Bruun Part III, lot 12073, p.179 prints «KM-48» on a Hede-14 / Sieg-24 / Dav-3592 / 1653 coin. KM 48 = Hede 17 (Dav 3595); Hede 14 = KM 40 (NumisMaster MC_110720 + ucoin tid 145429; 
-          specimen image = KM 40). Adjacent-KM mis-citation (same error class as KM-240, commit 37f5b6d). Curator-verified by image 2026-06-01.
-        curator: serg
-    _errata_applied:
-      - field: km
-        printed: '48'
-        correct: '40'
+    catalog_marks:
+      - register: km
+        value: '48'
+        kind: erroneous
+        reason:
+          de: 'KM 48 ist der Typ Hede Norge 17 (Bruun 9660; IKMK 18219601 und 18219602: Hede 17, Bruce – Michael 48); diese Müntze ist Hede Norge 14 (1653).'
+          en: 'KM 48 is the type Hede Norge 17 (Bruun 9660; IKMK 18219601 and 18219602: Hede 17, Bruce – Michael 48); this coin is Hede Norge 14 (1653).'
+          uk: 'KM 48 — це тип Hede Norge 17 (Bruun 9660; IKMK 18219601 і 18219602: Hede 17, Bruce – Michael 48); ця монета — Hede Norge 14 (1653).'
+          da: 'KM 48 er typen Hede Norge 17 (Bruun 9660; IKMK 18219601 og 18219602: Hede 17, Bruce – Michael 48); denne mønt er Hede Norge 14 (1653).'
   - id: dk-bruun-9664
     fuss: seed_unsorted
     phase: bruun
