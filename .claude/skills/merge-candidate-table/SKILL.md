@@ -220,6 +220,37 @@ browser headers are sent). A `000` is genuinely dead. Label each link ✅ verifi
 / 🟡 blocks curl but works in a browser / ❌ dead, so the curator knows what to
 expect instead of discovering it by clicking.
 
+## Step 4 — the comparison image (when the call rests on the design)
+
+When types differ only in the design — mintmaster mark, crown over or inside
+the ring, wreath, portrait — links alone make the curator open six tabs. Put
+the specimens side by side in one PNG, one row per type, and send it with
+`SendUserFile` (`display: render`) next to the table. The curator asked for
+this form (2026-10-28: «покажи зображенням … дуже корисно»).
+
+```bash
+.venv/bin/python .claude/skills/merge-candidate-table/compose_images.py spec.json out.png
+```
+
+`spec.json` is `{"rows": [{"title", "caption", "images": [...]}]}`; each image
+is one of:
+
+- `{"url": …}` — danskmoent Zinck GIF (`danskmoent.dk/zinck/zinckN/<file>.gif`;
+  grep the cached Hede page for `IMG SRC`). The helper sends a browser
+  User-Agent, which danskmoent requires.
+- `{"pdf": "scripts/cache/bruun/partN.pdf", "page": P, "crop60": [x0,y0,x1,y1]}`
+  — a Bruun catalogue plate. Render the page once at 60 dpi
+  (`pdftoppm -f P -l P -r 60 -png …`), read the box off it; the helper
+  re-renders at 160 dpi and crops.
+- `{"path": …}` — a local file. Numista photos answer 403 to scripts: open the
+  type page in Claude in Chrome, `zoom` the photo region with `save_to_disk`,
+  copy the saved PNG from the session's `tool-results/` and pass it here.
+
+Title each row with the catalogue key that is being decided («Hede Norge 8B ·
+KM 37 · PG og kløver»); the caption names each image's source in order.
+Helvetica has no «→» — use «=» or words. Write the PNG to the scratchpad, not
+the repo.
+
 ## Worked example (the one the user approved, 2026-07-13)
 
 📍 `kmk-137159` (KMM, «2 Ungarsk gylden», Schou 2, Chr IV, no year/weight) vs
