@@ -24,6 +24,7 @@ researched here).
 | **Gr** | Grautoff, *Historische Schriften* 3 (Lübeck 1836) — «Geschichte des lübeckischen Münzfusses» (S. ~120–150) and the table «Die Mark fein damals ausgeprägt zu» (S. 265–266, 1226–1462) | secondary, from the Lübeck archive: Münzrechnungsbuch 1372–1374 ff., Münzquittungen, recesses (several of which survive only through him) | `hanse/grautoff/`, `grautoff-1836-3` (Fraktur — figures read from page images) |
 | **Gd** | Gaedechens, *Hamburgische Münzen und Medaillen* II (1854), Einleitung S. 170–195 | secondary, from Langermann 1753, Evers, Dreyer, Lübeck MSS, Bode, Hamburg archive | `hanse/gaedechens/`, `gaedechens-1854-hamburgische-muenzen-2` |
 | **UB** | *Urkundenbuch der Stadt Lübeck* (Codex diplomaticus Lubecensis I) 5 (Lübeck 1877) | PRIMARY, printed from the originals (1403 Münzrecess Nr. 66, S. 65–67) | `hanse/luebeck_ub/luebeck_ub_1877_teil5` |
+| **L** | Langermann, *Hamburgisches Münz- und Medaillen-Vergnügen* (Hamburg: Piscator 1753) | secondary, from Hamburg recesses, Schröder (Wismar), Köhler, a Wismar Wardein's note of 1617 | SLUB Dresden, PURL http://digital.slub-dresden.de/id365001112 (public domain); `hanse/langermann/` |
 | **Ev** | Evers, *Mecklenburgische Münz-Verfassung* I (Schwerin 1798), S. 369 | secondary, Gd's source for 1537 and 1546 | not cached; archive.org `10742037bsb`, leaf 398 (read from the image) |
 | B | Bobzin, «Lübisches Münzsystem» (web) | tertiary, from Jesse 1928, Stefke 2002, Witthöft 1989, Grautoff | `bobzin/muenzverein_wendisch.extract.txt` |
 | M | Märcher 2018 | secondary | `danskmoent/hans_1481_1513/denar_til_daler_2018` |
@@ -117,11 +118,11 @@ carried out (Jesse). A row marked «plan» did not govern any coinage.
 | **29 Dec 1506** | Münzrecess Hamburg | Lübeck, Lüneburg, Hamburg | Markstück 15-lot, 5¼ quentin (19,183 g); variants 11¾ and 12 / 14½ (Münzchronik) | 18; 17,0–17,6 | **13** | R (HR III 5 n. 151) + J |
 | 18 Nov 1512 (confirmed Bergedorf 1513) | Münzvertrag | Lübeck, Hamburg, Lüneburg, Wismar | Mark 13 per 15-lot + ½ lot Cu (14½-lot), ½ 26, ¼ 52, ⅛ 104; Doppelschilling 104 / 15 **planned**; silver 12 ℳ 12 ß | 16,22 (J 1512/13) | 13; Doppel 14 | J S. 130; Gd S. 183 |
 | 1515 | — | 4 towns | Markstück 12 / 14½; **Schilling 106 / 8**; silver 12 ℳ 12–14 ß | 17,64; 1,103 | 13 ℳ 4 ß | J (Archiv Lüneburg, Chronik) |
-| 1522–1530 | Doppelschillinge (Lübeck 1522, Wismar 1523, Hamburg 1524, Lüneburg 1530) | — | 56–58 / 7⅞–7¾; silver 14 ℳ – 14 ℳ 8 ß | 1,958–1,952 | 14-14 – 15 ℳ 3 ß 4 ₰ | J; Gd S. 184 |
+| 1522–1530 | Doppelschillinge (Lübeck 1522, Wismar 1523, Hamburg 1524, Lüneburg 1530) | — | 56–58 / 7⅞–7¾; silver 14 ℳ – 14 ℳ 8 ß | 1,958–1,952 | 14-14 – 15 ℳ 3 ß 4 ₰ | J; Gd S. 184. Langermann S. 416 (from *Gründliche Nachricht vom deutschen Münz-Wesen* c. 5 § 2 S. 133): «A. 1525 münzte die Stadt Hamburg … doppelte ß 7 Loth und 3 Gr. fein, und 56, 57, und 58 Stück auf die ℳ» = 15 ℳ 10 ß, 15 ℳ 14 ß, 16 ℳ 2 ß per fine mark (L.'s figures) |
 | 1523 (Wismar) | 58 after blanching instead of 57 | — | — | — | silver 14 ℳ 8–11 ß | J |
 | 1529 | Hamburg Stadtrezess | Hamburg | Markstück 12 / 14½ | 17,64 | 13-4 | J |
 | 1530–1537 | silver 15 ℳ and 15 ℳ 4 ß | — | — | — | — | J (Wismar) |
-| 1537 | — | 4 towns | Doppelschilling 60 / 7½; Sechsling 184 / 5 5/9 lot 2 gr; silver 16 ℳ 2 ß (Gd) | 1,827; 0,445 | 16; 16-6-6 | J; Gd S. 185 |
+| 1537 | — | 4 towns | Doppelschilling 60 / 7½; Sechsling 184 / 5 5/9 lot 2 gr; silver 16 ℳ 2 ß (Gd) | 1,827; 0,445 | 16; 16-6-6 | J; Gd S. 185. **Langermann S. 416** (image, SLUB): from a Wismar Wardein's note of 1617 and Schröder, *Beschreibung der Stadt Wismar* S. 151 — «im Jahre 1537 in den vier Städten Schill. gemünzet …, die 7 Loth 2 Quentin, und Sechslinge die 5 Loth 2 Quent. fein gehalten. Der Einkauf des Silbers ist gewesen 16 ℳ 2 ß». ⚠ L. writes «Schill.» at 7½ lot — the fineness of J's Doppelschilling; no piece count |
 | 1540 | Lübeck and Wismar | — | Sechsling 181 / 5½ | 0,44 | 16-7 | J |
 | 1541 | Hamburg | — | Doppelschilling 63 / 7 | 1,62 | 18-6 | J |
 | 1543 | Lübeck assay; Mölln treaty | — | Markstück 12 / 15; Sechsling 181 / 6⅝ (?) | 18,25; 0,52 | 12-12; 14 | J |
@@ -133,7 +134,7 @@ carried out (Jesse). A row marked «plan» did not govern any coinage.
 | 1554 | Münzmeister agreement; silver 17 ℳ | 4 towns | — | — | — | J; Gd |
 | 1556 | Lübeck | — | Doppelschilling 60 / 9½ | 2,313 | 12-10 | J |
 | 1556 / 1557 | — | — | Doppelschilling 66 / 7 | 1,549 | 18-12 | J |
-| 1560 | — | — | Sechsling 180 / 5⅝; Schilling (Wismar) 120 / 6 lot 1¼ q; silver 17 ℳ 4 ß | 0,421; 0,768 | 15-10; 19-4 (Tab. VI 19 ℳ 1 ₰) | J |
+| 1560 | — | — | Sechsling 180 / 5⅝; Schilling (Wismar) 120 / 6 lot 1¼ q; silver 17 ℳ 4 ß | 0,421; 0,768 | 15-10; 19-4 (Tab. VI 19 ℳ 1 ₰) | J; Langermann S. 416 (Wismar MS via Schröder): «1560 vier Städter Schill. … von 6 Loth und 1 Gr. fein, der Einkauf des Silbers sey 17 ℳ 4 ß» |
 | (1567) | Mölln 17 Feb 1567 (uncertain figures) | 4 towns | Schilling 106 / 6; Doppelschilling 61½ / 7; Sechsling 177 / 5 | 0,826; 1,562; 0,412 | 17-10; 15-12; 17-11 | J (in brackets); Gd S. 187 |
 | 30 Jun 1568; 8 Feb 1569 | Lüneburg Kreistag; Lübeck recess (last Münztag) | circle; 4 towns | — | — | — | Gd S. 187–188 |
 | **26 Apr 1572** | Lower Saxon Kreismünzordnung | circle | Doppelschilling 114 / 12 lot 13½ gr; **Schilling 145 / 8**; Sechsling 187½ / 5 lot 2½ gr; Dreiling 232 / 3 lot 3 gr; Pfennig 654 / 2 lot 15½ gr | 1,621; 0,805; 0,399; 0,069 | 18; **18-2**; 18-12; Pf 19 | J; Gd S. 188 |
@@ -178,7 +179,7 @@ fine), between 1392 (penny 0,254 g) and 1403 (0,952 g). Hans' Skilling of c. 149
 | 1546 Schilling «120 (240)» (Gd) | resolved: Gd's source Evers I S. 369 (image) prints «die einfachen Schillinge 6 Loth 2 Grän und 120 Stück auf die Mark» and Markstücke «11¼» — Gd's «(240)» and «11½» are not in Evers. Computed: Schilling 19 ℳ 10 ß per fine mark vs Doppelschilling 16 ℳ 14 ß. J gives only the 1545/46 talks (Doppelschilling 61–63 / 7½) |
 | 1567 figures | J brackets them as uncertain |
 | Read in the original 2026-10-28 | HR II 6 n. 56–58, 92 (images; the scan has no OCR on most pages); Lüb. UB 5 Nr. 66 (text + image); Evers I S. 369 |
-| Still not read | Langermann 1753 — archive.org copy (hamburgischesmnz00lang) is lending-only (401); no other scan found (MDZ, Google Books quota). What Gd takes from it for 1468 (S. 399 = HR II 6 n. 58) is covered by HR; for 1537 (Gd S. 185 n. 2 = Langermann S. 416: Schilling 7 lot 2 quentin, Sechsling 5 lot 2 quentin, silver 16 ℳ 2 ß) Langermann remains the only witness |
+| Langermann 1753 | read 2026-10-28 in the SLUB Dresden scan (id365001112, curator's find): S. 399 = the 1468 Münzverordnung in High German (heavy noble 4 ℳ 2 ß, light 3 ℳ 5 ß, Philippsschild 15 ß — exactly HR II 6 n. 58's variant notes «Langermann 4 / 5 / 15»); S. 416 = 1525, 1537, 1543, 1545, 1549/50, 1560 and the end of the union (13 Mar 1609 Münz-Recess of the dukes of Mecklenburg and Schleswig-Holstein with Lübeck and Hamburg; 29 Jul 1609 Münz-Mandat; 12 Dec 1618 Lübeck–Hamburg Münzverordnung; 1620 interim with the dukes, Bremen and Hamburg; Lüneburg 21 Jul 1622 abolishes «Hamb. Wehrung»; Gardelegen Münzabschied 25 Nov 1609). The 1537 figures rest on a Wismar Wardein's note of 1617 / Schröder S. 151, not on a recess |
 
 ## §5. Our data
 
