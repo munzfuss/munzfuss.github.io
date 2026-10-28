@@ -13809,18 +13809,14 @@ coins:
     issuing_entity: danish_norway
     id: c-84755def
     year_first: 1652
-    year_last: 1657
+    year_last: 1653
     year_ranges:
       -   - 1652
           - 1653
-      -   - 1657
-          - 1657
-    year_label: 1652-1653, 1657
+    year_label: 1652-1653
     mint: Christiania
     catalog:
-      km:
-        - '48'
-        - A46
+      km: A46
       hede: '14'
       hede_volume: nf3h
       schou:
@@ -13837,14 +13833,10 @@ coins:
       bruun_lot_no: 1193
       bruun_page: 263
       dav: EC II 3592
-      numista:
-        - '486792'
-        - '118915'
+      numista: '118915'
       others:
         - Aagaard# 41.1 (52-3/52-3)
         - Aagaard# 41.4 (53-2/53-2)
-        - AAJT# 75A
-        - Thesen# 81B
         - Brekke# 67
         - Brekke# 68
         - Thesen# 73
@@ -13881,8 +13873,6 @@ coins:
       - value: 28.78
         source: numista
     diameter_mm:
-      - value: 42.0
-        source: numista
       - value: 46.0
         source: numista
     catalog_alts:
@@ -13905,9 +13895,6 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/norge/nf3h14.htm
         ref: danskmoent.dk (Hede nf3h14)
-      - type: literature
-        url: https://en.numista.com/486792
-        ref: Numista N#486792 — 1 Speciedaler - Frederik III (Type V&IV) - Norway
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/394329
         ref: KMM 394329 (Inv. FP 4227.1393)
@@ -13937,7 +13924,6 @@ coins:
       unit_raw: spdl
     composed_of:
       - c-84755def
-      - c-f13133ff
     label: unified-dk-hede-nf3h14
     origin: promoted
   - fuss: seed_unsorted
@@ -14032,6 +14018,7 @@ coins:
     ruler: Frederik III.
     issuing_entity: danish_norway
     mintmaster: Frederik Grüner
+    fraction: '1'
     id: c-43d7dead
     year_first: 1653
     year_last: 1656
@@ -14193,7 +14180,6 @@ coins:
       - c-eda0be96
     label: unified-dk-hede-nf3h17
     origin: promoted
-    fraction: '1'
     _weights_thinned:
       - value: 28.52
         source: bruun
@@ -14318,9 +14304,7 @@ coins:
     year_label: 1655-1657
     mint: Christiania
     catalog:
-      km:
-        - A41
-        - '40'
+      km: A41
       hede: '21'
       hede_volume: nf3h
       schou:
@@ -81385,11 +81369,11 @@ coins:
     issuing_entity: danish_norway
     id: c-cf8751cb
     year_first: 1649
-    year_last: 1658
+    year_last: 1652
     year_ranges:
       -   - 1649
-          - 1658
-    year_label: 1649-1658
+          - 1652
+    year_label: 1649-1652
     mint: Christiania
     catalog:
       km:
@@ -81584,6 +81568,46 @@ coins:
     composed_of:
       - c-cf8751cb
     label: unified-dk-hede-nf3h8b
+    origin: promoted
+  - fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Speciedaler
+    ruler: Frederick III (Frederik III)
+    issuing_entity: danish_norway
+    id: c-f13133ff
+    year_first: 1657
+    year_last: 1657
+    year_label: '1657'
+    mint: Christiania
+    catalog:
+      numista: '486792'
+      others:
+        - AAJT# 75A
+        - Thesen# 81B
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.875
+        source: numista
+    weight_rough_g:
+      - value: 28.78
+        source: numista
+    diameter_mm:
+      - value: 42.0
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/486792
+        ref: Numista N#486792 — 1 Speciedaler - Frederik III (Type V&IV) - Norway
+    composed_of:
+      - c-f13133ff
+    label: unified-dk-numista-486792
     origin: promoted
   - id: unified-kmk-473642
     label: unified-kmk-473642
