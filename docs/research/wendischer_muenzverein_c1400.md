@@ -4,6 +4,9 @@
 > in Lübeck was in 1400, the one Denmark went over to (`luebischer_muenzfuss.md` §3.9, §3.11: Danish take-up
 > c. 1400, first royal striking c. 1400–1403). Analysis only; nothing on any card.
 
+
+> **2026-10-28:** the full series 1226–1622 (incl. the 1398 Satzung — Witten 13-lot, 4 ℳ 4 ₰ per mark — Grautoff's table, Gaedechens 1432–1622) is in `luebeck_standard_chronology_1226_1622.md`; §3a here is kept as the c. 1400 working table.
+
 ## §0. Scope
 
 **Settles:** the reckoning, the struck denominations and their parameters, the governing recesses and the
