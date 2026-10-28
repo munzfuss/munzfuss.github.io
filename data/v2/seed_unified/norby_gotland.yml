@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `norby_gotland`.
-# Generated 2026-10-26 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-28 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/norby_gotland.yml across all sources.
 #
-# Input: 8 per-source seed entries.
+# Input: 11 per-source seed entries.
 # Output: 3 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: norby_gotland
-generated_at: '2026-10-26'
+generated_at: '2026-10-28'
 coins:
   - id: c-d18e52b6
     class_id: c-d18e52b6
@@ -44,14 +44,40 @@ coins:
         - Llt# 3
         - Delzanno# 79
         - Hauberg# hhv. 125-127 og 128
+      galster_volume: hg
     metal: billon
-    metal_verified: false
-    fineness_verified: false
+    metal_verified: true
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: true
+    fineness:
+      - value: 0.1227
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 136
+      - value: 0.1375
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 138
+      - value: 0.1401
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 137
+      - value: 0.1569
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 135
+      - value: 0.174
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 134
+      - value: 0.3784
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 133
     weight_rough_g:
+      - value: 3.63
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 134
+      - value: 3.67
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 135
+      - value: 3.68
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 136
+      - value: 3.88
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 133
+      - value: 3.92
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 138
+      - value: 3.96
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 137
       - value: 4.24
         source: bruun
       - value: 4.38
@@ -88,16 +114,44 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/gotlg143.htm
         ref: Galster 143 (hg) — danskmoent.dk gotlg143.htm
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 133, Appendix (XRF); Lagerqvist 2
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 134, Appendix (XRF); Lagerqvist 2
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 135, Appendix (XRF); Lagerqvist 2
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 136, Appendix (XRF); Lagerqvist 2
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 137, Appendix (XRF); Lagerqvist 3
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 138, Appendix (XRF); Lagerqvist 3
     note:
       de: Gotland
       en: Gotland
       uk: Gotland
       da: Gotland
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: norby_gotland
     composed_of:
       - dk-bruun-4112
       - dk-bruun-4114
       - dk-galster-hg-143
+      - metallanalyser-2017-3-g143-gotland
     _errata_applied:
       - source: dk-bruun-4112
         field: ruler
@@ -130,16 +184,38 @@ coins:
       others:
         - Delzanno# 76
         - Hauberg# 114-118
+      galster_volume: hg
     metal: billon
-    metal_verified: false
-    fineness_verified: false
+    metal_verified: true
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.0883
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 143
+      - value: 0.0903
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 142
+      - value: 0.1167
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 141
+      - value: 0.1432
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 140
+      - value: 0.1956
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 139
     weight_rough_g:
+      - value: 1.96
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 140
+      - value: 2.11
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 142
       - value: 2.14
         source: bruun
+      - value: 2.35
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 139
+      - value: 2.4
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 141
+      - value: 2.43
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 143
     weight_range_g:
       - min: 2.3
         max: 2.67
@@ -188,17 +264,42 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/347896
         ref: KMM 347896 (Inv. FP 5424.61)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 139, Appendix (XRF); Lagerqvist 1a
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 140, Appendix (XRF); Lagerqvist 1a
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 141, Appendix (XRF); Lagerqvist 1a
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 142, Appendix (XRF); Lagerqvist 1b
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 143, Appendix (XRF); Lagerqvist 1
     note:
       de: Gotland
       en: Gotland
       uk: Gotland
       da: Gotland
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: norby_gotland
     composed_of:
       - dk-bruun-4125
       - dk-galster-hg-144
       - kmk-317111
       - kmk-347896
+      - metallanalyser-2017-3-g144-gotland
     _errata_applied:
       - source: dk-bruun-4125
         field: ruler
@@ -221,13 +322,52 @@ coins:
       schou: 16-27
       others:
         - Hauberg# 119-124
+      galster_volume: hg
     metal: billon
-    metal_verified: false
-    fineness_verified: false
+    metal_verified: true
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.1116
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 152
+      - value: 0.1217
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 151
+      - value: 0.1236
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 150
+      - value: 0.1287
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 149
+      - value: 0.1721
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 148
+      - value: 0.1815
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 147
+      - value: 0.1931
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 146
+      - value: 0.1994
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 145
+      - value: 0.3191
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 144
+    weight_rough_g:
+      - value: 0.44
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 145
+      - value: 0.57
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 148
+      - value: 0.57
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 149
+      - value: 0.61
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 150
+      - value: 0.65
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 147
+      - value: 0.67
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 144
+      - value: 0.69
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 152
+      - value: 0.72
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 146
+      - value: 0.77
+        source: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 151
     weight_range_g:
       - min: 0.7
         max: 0.75
@@ -244,11 +384,48 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/nordby.htm
         ref: danskmoent.dk nordby.htm
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 144, Appendix (XRF); Lagerqvist 4b
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 145, Appendix (XRF); Lagerqvist 4b
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 146, Appendix (XRF); Lagerqvist 4b
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 147, Appendix (XRF); Lagerqvist 4b
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 148, Appendix (XRF); Lagerqvist 4b
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 149, Appendix (XRF); Lagerqvist 4a
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 150, Appendix (XRF); Lagerqvist 4b
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 151, Appendix (XRF); Lagerqvist 4?
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
+        ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 152, Appendix (XRF); Lagerqvist 4a
     note:
       de: Gotland
       en: Gotland
       uk: Gotland
       da: Gotland
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: norby_gotland
     composed_of:
       - dk-galster-hg-145
+      - metallanalyser-2017-3-g145-gotland

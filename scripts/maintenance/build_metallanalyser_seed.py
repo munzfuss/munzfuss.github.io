@@ -12,10 +12,11 @@ own `sources` line (§9a). Analysis and decisions: docs/research/eriksson_2017_a
 - 2017:1 (Eriksson, Denmark 1448–1523), all rows except those listed in
   `_SKIP_2017_1` with the reason for each.
 - 2017:3 (Lindblad, Gotland): only rows whose Lagerqvist (LL) number has a
-  printed Galster concordance — `_LL_TO_GALSTER`. danskmoent's Galster pages
-  give three (LL 1 = G 139, LL 5 = G 140, LL 7b = G 142); LL 1 and LL 5 are held
-  back because danskmoent names those types «Gote» while Lindblad lists the
-  coins as «Hvid» (note §8). Other LL numbers wait for a concordance.
+  Galster concordance — `_LL_TO_GALSTER` (LL 7b = G 142 printed by danskmoent;
+  the Norby, ca-1530 and 1535-1537 coins = G 143-147 from Lindblad's text,
+  curator 2026-10-28) — plus the hvide 1450-1520 as their own LL rows
+  (`_LL_HVID_WINDOWS`), joined to Galster 139 / 140 / 142 by merge decisions.
+  The 1554 Copenhagen coins (LL 9-11) have no Galster number and stay out.
 - 2016:1 (Heljeback, Denmark 1396–1448), all 145 rows (curator 2026-10-21:
   «їх всі теж додавай в seed»). Galster 1972 numbers there run per ruler, so
   they get explicit scopes (`_VOLUME`); our Numista types of the period carry
@@ -120,7 +121,30 @@ def _mint_suspect(galster: str, nrs: list[int]) -> dict:
 # are joined by merge_decisions/danish_realm.yml. Note §9b.
 _HOLD_BASES_2017_1: set[str] = set()
 
-_LL_TO_GALSTER = {"7b": "142"}           # danskmoent gotlg142: «Lagerqvist 7b»
+# Lagerqvist (LL) → Galster, keyed by (appendix denomination, LL): LL numbers
+# restart per period, so «2», «4a», «4b» and «7» stand for a hvid of 1455-1520
+# AND for a Norby or 1530s coin. Only 7b has a printed concordance (danskmoent
+# gotlg142: «Lagerqvist 7b»). The post-1520 rows (curator 2026-10-28) follow
+# from Lindblad's own text, which names the issuer, the year and the reverse,
+# against danskmoent gotlg143-147 (each of which lists Lindblad 2017:3 under
+# «Litteratur»); Galster has one type per issuer and denomination there:
+#   tab. 12  Norby skilling u.å. (LL 1, 1a, 1b), agnus dei   → G 144
+#   tab. 12  Norby skilling 1524 / 1525 (LL 2, 3)            → G 143
+#   tab. 13  Norby hvid u.å. (LL 4a, 4b, «4?»)               → G 145
+#   tab. 14  hvid ca 1530 (LL 5a, Hauberg 1891 s. 69)        → G 146
+#   tab. 15  skilling 1535 / 1536 / 1537 (LL 6a, 7, 8)       → G 147
+# The 1554 Copenhagen coins (LL 9-11) have no Galster number and stay out.
+# docs/research/gotland_gote.md §«Lindblad LL and Galster».
+_LL_TO_GALSTER = {
+    ("hvid", "7b"): "142",
+    ("skilling sören norby", "1"): "144", ("skilling sören norby", "1a"): "144",
+    ("skilling sören norby", "1b"): "144",
+    ("skilling sören norby", "2"): "143", ("skilling sören norby", "3"): "143",
+    ("hvid sören norby", "4a"): "145", ("hvid sören norby", "4b"): "145",
+    ("hvid sören norby", "4?"): "145",
+    ("hvid", "5a"): "146",
+    ("skilling", "6a"): "147", ("skilling", "7"): "147", ("skilling", "8"): "147",
+}
 
 # 2017:3 Gotland hvide with no printed Galster concordance (curator
 # 2026-10-25: «хіба що ті що вписуються в lybsk møntfod»). Lindblad s. 4:
@@ -150,6 +174,7 @@ _MINT = {"Malmö": "Malmø", "Köpenhamn": "Kopenhagen", "Ålborg": "Aalborg",
          "Maestved": "Næstved",                 # 2016:1 nr 41, a typo for Næstved
          "Odense": "Odense", "Randers": "Randers"}
 _NOMINAL = {"hvid": "1 Hvid", "skilling": "1 Skilling",
+            "hvid sören norby": "1 Hvid", "skilling sören norby": "1 Skilling",
             "½ skilling": "1 Søsling", "silvergyllen": "1 Sølvgylden",
             "skilling (kl)": "1 Skilling",
             "sterling": "1 Sterling", "gros": "1 Gros", "sösling": "1 Søsling",
@@ -296,8 +321,9 @@ def collect() -> tuple[list[dict], list[str]]:
                 ll = (r.get("cat") or "").strip()
                 if r["mint"] != "Gotland":
                     continue
-                if ll in _LL_TO_GALSTER:
-                    gal = base = _LL_TO_GALSTER[ll]
+                if (r["denom"].lower(), ll) in _LL_TO_GALSTER:
+                    gal = base = _LL_TO_GALSTER[(r["denom"].lower(), ll)]
+                    r = dict(r, _ll_printed=ll)
                 else:
                     window = (r.get("year") or "").replace("\u2010", "-")
                     if r["denom"] != "Hvid" or window not in _LL_HVID_WINDOWS:
@@ -346,6 +372,7 @@ def collect() -> tuple[list[dict], list[str]]:
                 "ref": (f"{label}, Appendix (XRF)"
                         + (f"; Galster {r['_gal']} as printed"
                            if r["_gal"] and "/" in r["_gal"] and issue != "2016_1" else "")
+                        + (f"; Lagerqvist {r['_ll_printed']}" if r.get("_ll_printed") else "")
                         + (f"; {r['var']}" if r.get("var") else "")),
             })
         conflict = issue == "2017_1" and all(r["nr"] in _MINT_CONFLICT_2017_1 for r in rows)

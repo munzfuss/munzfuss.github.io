@@ -223,8 +223,36 @@ The data places it in Lybsk phase 0 on the danskmoent attribution — open.
 
 ⚠ **Galster 139 spans two denominations.** 139 A (Hauberg 85–87) is a
 3-penning still in the gote's reckoning («MONETA SIVITATIS»), 139 B–C a
-4-penning hvid (Hauberg s. 46). Merged so far: LL 2–4d into Galster 139
-(curator 2026-10-27); LL 1 not yet.
+4-penning hvid (Hauberg s. 46). Merged: LL 1 and LL 2–4d into Galster 139
+(curator 2026-10-27).
+
+### 7.2 After 1520: Lindblad LL ↔ Galster 143–147 (2026-10-28)
+
+Lagerqvist restarts his numbers after the hvide 1450–1520, so «LL 2», «4a»,
+«4b», «7» stand for two different coins each; the appendix tells them apart by
+the denomination column («Skilling Sören Norby», «Hvid Sören Norby», «Hvid»,
+«Skilling») and the date. No source prints LL = Galster for these. The rows
+rest on Lindblad's text (issuer, date, reverse, Hauberg dating), on danskmoent
+gotlg143–147 (each lists Lindblad 2017:3 under «Litteratur»), and on Galster
+having one type per issuer and denomination in this group. Curator
+2026-10-28.
+
+| Lindblad 2017:3 | LL | appendix denomination, date | Galster (danskmoent) |
+|---|---|---|---|
+| tab. 12, s. 13 | 1, 1a, 1b | Skilling Sören Norby, u.å. (1522–1523), agnus dei | 144 (Hauberg 114–118, Schou 1–15) |
+| tab. 12, s. 13 | 2, 3 | Skilling Sören Norby, 1524 / 1525, crowned Danish arms | 143 (Hauberg 125–127 / 128) |
+| tab. 13, s. 14 | 4a, 4b, «4?» | Hvid Sören Norby, u.å. | 145 (Hauberg 119–124, Schou 16–27) |
+| tab. 14, s. 14 | 5a | Hvid, ca 1530 (Hauberg 1891 s. 69; Lagerqvist 1520s) | 146 (Frederik I, Hauberg 129–130) |
+| tab. 15, s. 15 | 6a, 7, 8 | Skilling 1535 / 1536 / 1537 | 147 (Christian III, Hauberg 132–145) |
+| tab. 16–17, s. 15 | 9, 10, 11 | Skilling, ½ skilling, hvid 1554, Köpenhamn | none in our data |
+
+In the data: builder `build_metallanalyser_seed._LL_TO_GALSTER` (keyed by
+denomination and LL), seeds `metallanalyser-2017-3-g143…g147-gotland`, merged
+with the Galster classes (`_cross_entity.yml` for 143–145 into
+`norby_gotland`, `merge_decisions/danish_realm.yml` for 146–147). All stay in
+`seed_unsorted` until the Fuß of the 1520s–1530s is reviewed. LL «4?» is
+Lindblad's own doubt about the sub-type, not about the Norby hvid; it goes to
+145 with the rest.
 
 ## 8. Open questions
 
