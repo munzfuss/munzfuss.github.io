@@ -64,6 +64,8 @@ carried out (Jesse). A row marked «plan» did not govern any coinage.
 | c. 1365–1370 | Schilling 57 / 15 | 4,10 / 3,84 | 3-12-9 | Chronik and Lüb. UB III 529 |
 | 1366–1369 | Witten 15 → 14¼ lot (Münzbuch); silver 3 ℳ 9 ß – 3 ℳ 10 ß 10 ₰ | — | — | Münzbuch |
 | 1367 | Pfennig 8-lot | — | — | Münzbuch |
+| 1373 | Pfennig 576 (rough 0,405 g), fineness not given | 0,405 / — | — | J Tab. I |
+| 1376 | Witten 13-lot (Lübeck), count not given | — | — | J Tab. II n. 1 |
 | 1372 / 1374 / 1376 | average reckonings (Gr S. 128–130) | — | Gr 4-2-4; 4-1-3*; 4-2-6* | Münzbuch |
 | **1375** | **Witten 176 / 13** («3¾ mr. 2 ß 2 Witten» per mark, J S. 80); Viertelwitten 9-lot | 1,328 / 1,079 | **4 ℳ 8 ß** (Gr: in Schillingen 4-3, Pfennige 4-10-1) | Münzbuch |
 
@@ -103,7 +105,7 @@ carried out (Jesse). A row marked «plan» did not govern any coinage.
 | 7 Dec 1461 | Recess — **plan** | 4 towns | Doppelschilling 70 / 12; Schilling 104 / 9; Hohlgeld forbidden | 2,50; 1,265 | 11-10-7; 11-9 | J («nur geplant»); Gd |
 | 3 Feb 1463 | Recess — **not carried out** (J S. 116) | Lübeck, Hamburg, Lüneburg | Doppelschilling 75 / 15, Schilling 150 / 15 (10½ and 21 to the gulden) | 2,92; 1,46 | 10 | J; Gd; Gr S. 239 |
 | Sep 1467 | Münztag Lübeck (HR II 6 n. 56) — **draft with a choice**: Schilling 100 / 158 per fine mark (20 to the gulden) or 101 (21) | 4 towns | — | 1,48 / 1,41 | — | J S. 118 (n. 484) |
-| **15 Oct 1467** | **Münzrecess zu Lübeck** (HR II 6 n. 57, RA Wismar Recesshandschrift 4 S. 73–76) — concluded, superseded before coinage | Lübeck, Hamburg, Wismar, Lüneburg | **Schilling 101 / «10 lot myn 1 quentin»** (= 9¾), 21 to the Rhenish gulden; **Doppelschilling 67½ («achtundesostigestehalven») / 13**, 10½ to the gulden; Sechslinge «twe vor enen enckelen … de teynden margk» (1/10 of the sum); mintmaster 14½ ß per 2 fine marks; remedy ½ quentin | 1,411; 2,81 | 10-5-9; 10-6 | **R read in the original (HR II 6 S. 38–40, image)** + J S. 118 (n. 485: «Rezeß … abgeschlossen») |
+| **15 Oct 1467** | **Münzrecess zu Lübeck** (HR II 6 n. 57, RA Wismar Recesshandschrift 4 S. 73–76) — superseded before coinage (J text «abgeschlossen», J Tab. IV «nur geplant», Tab. VI «Rezeßentwurf») | Lübeck, Hamburg, Wismar, Lüneburg | **Schilling 101 / «10 lot myn 1 quentin»** (= 9¾), 21 to the Rhenish gulden; **Doppelschilling 67½ («achtundesostigestehalven») / 13**, 10½ to the gulden; Sechslinge «twe vor enen enckelen … de teynden margk» (1/10 of the sum); mintmaster 14½ ß per 2 fine marks; remedy ½ quentin | 1,411; 2,81 | 10-5-9; 10-6 | **R read in the original (HR II 6 S. 38–40, image)** + J S. 118 (n. 485: «Rezeß … abgeschlossen») |
 | 22 Feb 1468 | Münzverordnung of Lübeck, Hamburg, Wismar, Lüneburg (HR II 6 n. 58, «Tenor tabule»; also Langermann S. 399 in High German) | 4 towns | valuation only — Lübeck gulden 28 ß, Rhenish gulden 21 ß, Hungarian 27 ß, heavy noble 3½ ℳ 2 ß, light noble 3 ℳ 4½ ß (§ 8); **no coin formula** | — | — | **R read in the original (HR II 6 S. 40–41, image)** + J S. 118 |
 | **15 Jun 1468** | **Lübeck-Hamburg Münzrecess** — HR II 6 n. 92 heads it «Lübeck-Hamburgischer **Entwurf** eines Münzrecesses — 1468 Juni 15» (StA Lübeck Recesse v. 3 n. 160; copy sent to Lüneburg); J S. 118 «Münzvertrag verabredet» | Lübeck, Hamburg (Lüneburg, Wismar refused 21 ß; whether they accepted «steht dahin», ed.) | **Schilling «hundert unde 3½» / 9 lot**, 22 to the Rhenish gulden (L first wrote XXIII); Doppelschilling 69 / 12, «11» (Lg «twelftehalve») to the gulden; Sechslinge «de twintigeste mark» (1/20 of the sum) — **no count in n. 92**, J's «207 / 9» is his reckoning «offenbar zum gleichen Münzfuß»; Blafferte and Pfennige named **only in § 5** (mintmaster 18 ß per 2 fine marks for all sorts; in L a later insertion, absent in Lg) — **no formula**; silver 10 ℳ 12 ß | **1,269**; 2,543; 0,63 | **11 ℳ 8 ß** | **R read in the original (HR II 6 S. 66, image)** + J S. 118–119. Coined: Reimar Kock («Anno 1468 word nye ordenunge … enckelde schillinge … van 9 lod, dubbelde … van 12 lod») and Hamburg accounts (ed. note). Dreyer lists a Münzrecess «1468 Marie Magdalene (Juli 22)» — the source of Gd's 22 Jul; Gd's «22 Feb, Doppelschilling 68» not followed |
 | July 1468; 1470 | gulden 23 ß (Ratschronik); 1470 24 ß | — | — | — | — | J S. 119–120 |
@@ -122,22 +124,83 @@ carried out (Jesse). A row marked «plan» did not govern any coinage.
 | 1523 (Wismar) | 58 after blanching instead of 57 | — | — | — | silver 14 ℳ 8–11 ß | J |
 | 1529 | Hamburg Stadtrezess | Hamburg | Markstück 12 / 14½ | 17,64 | 13-4 | J |
 | 1530–1537 | silver 15 ℳ and 15 ℳ 4 ß | — | — | — | — | J (Wismar) |
-| 1537 | — | 4 towns | Doppelschilling 60 / 7½; Sechsling 184 / 5 5/9 lot 2 gr; silver 16 ℳ 2 ß (Gd) | 1,827; 0,445 | 16; 16-6-6 | J; Gd S. 185. **Langermann S. 416** (image, SLUB): from a Wismar Wardein's note of 1617 and Schröder, *Beschreibung der Stadt Wismar* S. 151 — «im Jahre 1537 in den vier Städten Schill. gemünzet …, die 7 Loth 2 Quentin, und Sechslinge die 5 Loth 2 Quent. fein gehalten. Der Einkauf des Silbers ist gewesen 16 ℳ 2 ß». ⚠ L. writes «Schill.» at 7½ lot — the fineness of J's Doppelschilling; no piece count |
+| 1537 | — | 4 towns | Doppelschilling 60 / 7½; Sechsling 184 / «5½ L. 2 Gr.» (J Tab. III, image); silver 16 ℳ 2 ß (Gd) | 1,827; 0,445 | 16; 16-6-6 | J; Gd S. 185. **Langermann S. 416** (image, SLUB): from a Wismar Wardein's note of 1617 and Schröder, *Beschreibung der Stadt Wismar* S. 151 — «im Jahre 1537 in den vier Städten Schill. gemünzet …, die 7 Loth 2 Quentin, und Sechslinge die 5 Loth 2 Quent. fein gehalten. Der Einkauf des Silbers ist gewesen 16 ℳ 2 ß». ⚠ L. writes «Schill.» at 7½ lot — the fineness of J's Doppelschilling; no piece count |
 | 1540 | Lübeck and Wismar | — | Sechsling 181 / 5½ | 0,44 | 16-7 | J |
 | 1541 | Hamburg | — | Doppelschilling 63 / 7 | 1,62 | 18-6 | J |
-| 1543 | Lübeck assay; Mölln treaty | — | Markstück 12 / 15; Sechsling 181 / 6⅝ (?) | 18,25; 0,52 | 12-12; 14 | J |
+| 1543 | Lübeck assay; Mölln treaty | — | Markstück 12 / 15; Sechsling 181 / **6½** (J Tab. III, image; corrected 2026-10-28 from an OCR reading «6⅝ (?)») | 18,25; 0,52 | 12-12; 14 | J |
 | 1544 | Wismar | — | Markstück 14⅝-lot | — | — | J |
 | 1545 | Lübeck circular; silver 16 ℳ | — | — | — | — | J; Gd |
 | 1546 | «Münzveränderung» of the 4 towns (Evers I S. 369); not followed for the Doppelschilling, Schilling and Sechsling | 4 towns | **Evers: Doppelschilling 60 / 7 lot 2 gr; Schilling 120 / 6 lot 2 gr; Sechsling 5 lot 6 gr (count not given); Markstück 11¼ / 14**; J S. 140–141 (image; 1542–46 talks): Doppelschilling **61–63 / 7½**, Sechsling 184–190 / 5½, Markstück «Korn … 14½ Lot beibehalten», Taler (not a union coin) **8 per 14¼-lot mark** after the Saxon, valued 30 ß (in trade 31 ß); Rhenish gulden 72 per mark = 32 ß; Blaffert 480 / 4 (J Tab. I) | Ds 1,73; S 0,72; Bl. 0,12 | Ds 16-14; S 19-10; Mark at 20 ß 16-1; Bl. 20 | Evers I S. 369 (image) via Gd S. 185 (n. 5); J S. 140–141. Gd's «(240)» and «11½» are not in Evers |
 | 1547/48 | Wismar | — | Sechsling 184–188 | — | — | J |
 | 1551 | Reichsmünzordnung (Reichsprobation) | Empire | Markstück 12 / 14 lot 8 gr; Lübeck Schilling 7-lot 109½; Pfennig 3½-lot 654 | 17,6 | 13-3 | J; Gd S. 186 |
-| 1554 | Münzmeister agreement; silver 17 ℳ | 4 towns | — | — | — | J; Gd |
-| 1556 | Lübeck | — | Doppelschilling 60 / 9½ | 2,313 | 12-10 | J |
-| 1556 / 1557 | — | — | Doppelschilling 66 / 7 | 1,549 | 18-12 | J |
-| 1560 | — | — | Sechsling 180 / 5⅝; Schilling (Wismar) 120 / 6 lot 1¼ q; silver 17 ℳ 4 ß | 0,421; 0,768 | 15-10; 19-4 (Tab. VI 19 ℳ 1 ₰) | J; Langermann S. 416 (Wismar MS via Schröder): «1560 vier Städter Schill. … von 6 Loth und 1 Gr. fein, der Einkauf des Silbers sey 17 ℳ 4 ß» |
+| 1554 | Münzmeister agreement; silver 17 ℳ; Nov 1554 Braunschweig assay of Lübeck Schillinge | 4 towns | Schilling 120 / 6¼ (assay) | 0,761 [C] | 19-3 [C] | J S. 142 (image); Gd |
+| 1556 | Lüneburg assay of Lübeck coins (J S. 142, image: «60 Stück aus der 9¼ Lot und ½ Quentchen feinen Mark», Sechslinge «180 Stück und 5¾ lötig … darup nicht wol munten kann»; J Tab. IV gives 9½) | — | Doppelschilling 60 / 9½ (text 9⅜); Sechsling 180 / 5¾ | 2,313 | 12-10 | J |
+| 1557 | Hamburg (J Tab. IV n. 6; S. 142 «66 Doppelschillinge aus der 7 Lot 1 Grän feinen Mark») | — | Doppelschilling 66 / 7 lot 1 gr | 1,549 | 18-12 | J |
+| 1560 | Apr 1560 Hamburg informs Bremen of the Wendish rule (J S. 142): Doppelschilling 64 / 7¼, Schilling 115 / 6½ | — | Sechsling 180 / **5¾** (J Tab. III, image; corrected from «5⅝»; 180 at 5¾ lot = 15 ℳ 10 ß [C], as J); Schilling (Wismar) 120 / 6 lot 1¼ q (J Tab. IV «6 L. 1¼ Qu.»; J S. 142 text «6 Lot 1¼ Grän» ⚠ — J's 19 ℳ 1 ₰ fits the quentin: 120 at 6 lot 1¼ q = 19,01 ℳ, at 6 lot 1¼ gr = 19,77 ℳ [C]); silver 17 ℳ 4 ß | 0,421; 0,768 | 15-10; 19-4 (Tab. VI 19 ℳ 1 ₰) | J; Langermann S. 416 (Wismar MS via Schröder): «1560 vier Städter Schill. … von 6 Loth und 1 Gr. fein, der Einkauf des Silbers sey 17 ℳ 4 ß» |
 | (1567) | Mölln 17 Feb 1567 (uncertain figures) | 4 towns | Schilling 106 / 6; Doppelschilling 61½ / 7; Sechsling 177 / 5 | 0,826; 1,562; 0,412 | 17-10; 15-12; 17-11 | J (in brackets); Gd S. 187 |
 | 30 Jun 1568; 8 Feb 1569 | Lüneburg Kreistag; Lübeck recess (last Münztag) | circle; 4 towns | — | — | — | Gd S. 187–188 |
 | **26 Apr 1572** | Lower Saxon Kreismünzordnung | circle | Doppelschilling 114 / 12 lot 13½ gr; **Schilling 145 / 8**; Sechsling 187½ / 5 lot 2½ gr; Dreiling 232 / 3 lot 3 gr; Pfennig 654 / 2 lot 15½ gr | 1,621; 0,805; 0,399; 0,069 | 18; **18-2**; 18-12; Pf 19 | J; Gd S. 188 |
+
+### 2d. Denomination × act, 1365–1572 (checked against J Tab. I–VI read from the page images, 2026-10-28)
+
+Cell: «N / lot» = pieces per rough mark / fineness; **f** = fineness only; **n** = named in the act without a formula;
+**q** = quota or mint charge only; «—» = not in the act / not struck. A cell is filled only from a source named in
+§2a–2b; an empty or «n / f / q» cell is a gap of the sources (searched: J text and tables, HR, Langermann, Gd, Evers,
+Dreyer), not of this file. *plan* = not carried out.
+
+| Act | Witten | ¼ Witten | Dreiling | Sechsling | Schilling | Doppel-ß | Mark pieces | Blaffert | Pfennig | Scherf |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1365–69 Münzbuch | f 15 → 14¼ | — | — | — | 57 / 15 (c. 1365–70) | — | — | — | f 8 (1367) | — |
+| 1373 | — | — | — | — | — | — | — | — | 576 / — | — |
+| 1375 | 176 / 13 | f 9 | — | — | — | — | — | — | — | — |
+| 1376 | f 13 | — | — | — | — | — | — | — | — | — |
+| 1379 | 176 / 13½ | 516 / 9 | — | — | — | — | — | — | — | — |
+| 1384 | 178–180 / 13½ | — | — | — | — | — | — | — | — | — |
+| 1387 | 180 / 13½ | — | — | — | — | — | — | — | — | — |
+| 1388 | — | — | f 12 | f 14 | — | — | — | — | — | — |
+| 1392 | — | — | 230 / 12 | 114 / 12 | — | — | — | — | 558 / 9 | — |
+| 1398 | 193 / 13 | — | — | — | — | — | — | — | 576 / 9 | 1152 / 8 |
+| 1403 | 192 / 12½ | — | — | — | — | — | — | — | 576 / 9 | 1152 / 8 |
+| 1406 | 196 / 12 | — | — | — | — | — | — | — | 576 / 9 | — |
+| 1410 (draft) | 200 / 12 | — | — | — | — | — | — | — | — | — |
+| 1411 | 208 / 12 | — | — | — | — | — | — | — | — | — |
+| 1422 | n («bisherige Weise») | — | n | n | — | — | — | — | 684 / 8 | — |
+| 1423 | — | — | — | 168 / 12 | — | — | — | — | — | — |
+| 1424 | — | — | — | 168 / 11¼ | — | — | — | — | 696 / 7¼ | — |
+| 1432 | — | — | — | 184 / 10 | 92 / 10 | — | — | — | 744 / 7 | — |
+| 1433 | — | — | — | 195 / 10 | 95 / 10 | — | — | — | 768 / 6½ | — |
+| 1439 | — | — | — | — | 96 / 10 | — | — | forbidden | forbidden | forbidden |
+| 1441 | — | — | — | — | 94–95 / 10 | — | — | forbidden | forbidden | forbidden |
+| 1450 / 51 | — | — | — | — | 100 / 10 (HR 1450 § 16: 147 / 15) | — | — | f 6 | — | — |
+| 1461 *plan* | — | — | — | — | 104 / 9 | 70 / 12 | — | forbidden | forbidden | — |
+| 1463 *not carried out* | — | — | — | — | 150 / 15 | 75 / 15 | — | — | — | — |
+| 1467 (n. 57) | — | — | — | n (1/10 of the sum) | 101 / 9¾ | 67½ / 13 | — | — | — | — |
+| 1468 | — | — | — | n (1/20; J reckons 207 / 9) | 103½ / 9 | 69 / 12 | — | n (§ 5) | n (§ 5) | — |
+| 1492 | — | — | — | 190 / 8 (letter: 188) | 103½ / 9 | 69 / 12 | — | 432 / 6 | 864 / 6 | — |
+| 1497 | — | — | — | — | — | — | — | n (text unpublished) | n | — |
+| 1498 | — | — | — | — | — | — | — | 456 / 6 (Lüneburg) | — | — |
+| 1501 *plan* (Mölln) | — | — | — | — | — | — | ⅔ 16¼ / 15, ⅓ 32¾ / 15, 8-Witten 65½ / 15 | 4 ℳ 11 ß from the 6-lot mark | same | — |
+| 1502 | 216 / 5¼ | — | — | — | — | — | ⅓ and ⅔ Mark, 15-lot, 34½ ⅓-pieces per fine mark | 438 / 6 | n | — |
+| 1504 | — | — | — | — | — | — | Mark 15-lot, 5¼ quentin; ½, Verding | — | — | — |
+| 1506 | — | — | — | — | — | — | as 1504; Chronik 12¾ / 15, 11¾–12 / 14½ | — («schedegeld» n) | — | — |
+| 1512 / 13 | — | — | — | — | — | 104 / 15 *plan* | Mark 13 per 15-lot + ½ lot Cu; ½ 26, ¼ 52, ⅛ 104 | q | q | — |
+| 1515 | — | — | — | — | 106 / 8 | — | 12 / 14½ | — (Lübeck against) | — | — |
+| 1522–30 | — | — | — | — | — | 56–58 / 7¾–7⅞ | — | — | — | — |
+| 1529 | — | — | — | — | — | — | 12 / 14½ (Hamburg) | — | — | — |
+| 1537 | — | — | — | 184 / 5½ L 2 gr | f 7 lot 2 q (L.; = J's Doppel-ß?) | 60 / 7½ | — | — | — | — |
+| 1540 | — | — | — | 181 / 5½ | — | — | — | — | — | — |
+| 1541 | — | — | — | — | — | 63 / 7 (Hamburg) | — | — | — | — |
+| 1543 | — | — | — | 181 / 6½ | — | — | 12 / 15 (assay) | — | — | — |
+| 1544 | — | — | — | — | — | — | f 14⅝ (Wismar) | n (talks) | — | — |
+| 1546 | — | — | — | f 5 lot 6 gr (Evers) | 120 / 6 lot 2 gr (Evers) | 60 / 7 lot 2 gr (Evers); J 61–63 / 7½ | 11¼ / 14 (Evers) | 480 / 4 | — | — |
+| 1547 / 48 | — | — | — | 184–188 (Wismar) | — | — | — | — | — | — |
+| 1551 | — | — | — | — | 109½ / 7 (Lübeck) | — | 12 / 14 lot 8 gr | — | 654 / 3½ | — |
+| 1554 | — | — | — | — | assay 120 / 6¼ (Braunschweig) | — | — | — | — | — |
+| 1556 | — | — | — | assay 180 / 5¾ (Lübeck coins, Lüneburg assay) | — | 60 / 9½ (J Tab.); text: 9¼ lot ½ q | — | — | — | — |
+| 1557 | — | — | — | — | — | 66 / 7 lot 1 gr (Hamburg) | — | — | — | — |
+| 1560 | — | — | — | 180 / 5¾ (J Tab.) | Wendish rule (Hamburg to Bremen, Apr): 115 / 6½; Wismar 120 / 6 L 1¼ q | 64 / 7¼ (Hamburg to Bremen) | — | — | — | — | — |
+| (1567) | — | — | — | 177 / 5 | 106 / 6 | 61½ / 7 | — | — | — | — |
+| 1572 | — | — | 232 / 3 L 3 gr | 187½ / 5 L 2½ gr | 145 / 8 | 114 / 12 L 13½ gr | — | — | 654 / 2 L 15½ gr | — |
 
 ### 2c. After the union (1580–1622) — Gd S. 190–193 (read from the page images 2026-10-28), Langermann S. 416
 
@@ -185,7 +248,7 @@ fine), between 1392 (penny 0,254 g) and 1403 (0,952 g). Hans' Skilling of c. 149
 | 1433 Hohlpfennig | resolved: 768 / 6½ (J) |
 | 1450 / 1451 Schilling | HR 1450 § 16 «147 … 15 lot in ghewerde» vs Münzchronik «100 / 10» (c. 1450, another source 1451) — both quoted; same level ≈ 10 ℳ |
 | 1461, 1463, 1501, 1512 Doppelschilling | **plans / drafts** — did not govern coinage (J) |
-| 1467 | corrected 2026-10-28: Sep 1467 (n. 56) was the draft with a choice; **15 Oct 1467 (n. 57) a concluded recess** (J S. 118 «abgeschlossen»; HR «Münzrecess»), superseded by 1468 before coinage. The earlier «1467 draft» label in this file was wrong |
+| 1467 | Sep 1467 (n. 56) was the draft with a choice. For **15 Oct 1467 (n. 57)** Jesse is not consistent: text S. 118 «Der Rezeß, der … am 15. Oktober 1467 in Lübeck abgeschlossen ist»; Tab. IV n. 2 «Nur geplant»; Tab. VI source «Rezeßentwurf». HR II 6 prints it as «Münzrecess» (Wismar Recesshandschrift). Either way it was superseded by 1468 before coinage. (Entry of 2026-10-28 morning, «the earlier draft label was wrong», revised: the label follows Jesse's own tables) |
 | 1468: 22 Feb vs 15 Jun vs 22 Jul; 68 vs 69 | resolved from HR II 6 (images): 22 Feb = valuation-only Münzverordnung (n. 58); 15 Jun = Lübeck–Hamburg recess text, edited as «Entwurf» (n. 92): Schilling 103½ / 9, 22 to the gulden, Doppelschilling 69 / 12; 22 Jul = Dreyer's date (Marie Magdalene) for the Münzrecess of the July assembly, to which HR assigns n. 92. Lübeck and Hamburg coined to it (Kock; Hamburg accounts). Gd's 68 not followed |
 | 1492 Schilling 103½ vs 104; Sechsling 188 vs 190 | resolved: Schilling 103½ (HR image, J); Sechsling **190** in the recess (HR III 3 n. 86 § 8, in words), 188 in the treaty letter (n. 87, both copies, digits); the editor notes the variance (n. 87 n. 1). J follows the recess |
 | 1504 «viff löth eyn quentyn» | resolved by computation and the 1506 text: 13 ℳ per fine mark at 15 lot gives 19,188 g = 5¼ quentin; HR III 5 n. 151 § 1 (1506) prints «5 quentin unnde eyn orth»; J S. 127 reads 1504 as «5¼ Quentin». The 1504 print (n. 26 § 5) stays quoted ⚠ |
