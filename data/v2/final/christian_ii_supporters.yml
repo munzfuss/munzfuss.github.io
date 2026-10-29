@@ -13,6 +13,14 @@ coins:
     year_last: 1525
     year_label: '1525'
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-c2g-80
     mint: Landskrona
     catalog:
       sieg: '1'
@@ -70,6 +78,14 @@ coins:
     year_last: 1535
     year_label: '1535'
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Hvid
+          value: billon
+          seed: dk-galster-c2g-87
     mint: Kopenhagen
     catalog:
       sieg:
@@ -142,6 +158,27 @@ coins:
         - seed: dk-bruun-4149
           source: bruun
           years: '1535'
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1535)
+          value: '1535'
+          seed: dk-bruun-4149
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c2g-91
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '4.1'
+          seed: dk-galster-c2g-91
     mint: Kopenhagen
     catalog:
       sieg:
@@ -202,6 +239,21 @@ coins:
     year_last: 1534
     year_label: '1534'
     year_verified: true
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-c2g-82
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Mark, Klipping
+          value: silver
+          seed: dk-galster-c2g-82
     mint: Malmø
     catalog:
       galster: '82'
@@ -247,6 +299,14 @@ coins:
     year_last: 1536
     year_label: '1536'
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Halv Sølvgylden
+          value: silver
+          seed: dk-galster-c2g-84
     mint: Kopenhagen
     catalog:
       galster: '84'
@@ -301,6 +361,20 @@ coins:
     year_last: 1535
     year_label: '1535'
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c2g-85
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '3.35'
+          seed: dk-galster-c2g-85
     mint:
       - Güstrow
       - Mecklenburg
@@ -352,6 +426,20 @@ coins:
     year_last: 1535
     year_label: '1535'
     year_verified: true
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-741413
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c2g-86
     mint: Malmø
     catalog:
       galster: '86'
@@ -411,6 +499,28 @@ coins:
         - seed: dk-galster-c2g-88
           source: galster
           years: 1534-1536
+    uncertainty:
+      year:
+        - kind: inferred
+          how: feud_window
+          source: galster
+          as_printed: u.år
+          value: 1534-1536
+          seed: dk-galster-c2g-88
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 2 (?)
+          value: Christian 2
+          seed: kmk-662149
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Hvid
+          value: billon
+          seed: dk-galster-c2g-88
     mint: Kopenhagen
     catalog:
       galster: '88'
@@ -476,6 +586,28 @@ coins:
           - 1536
     year_label: 1534-1536
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: feud_window
+          source: galster
+          as_printed: U.år
+          value: 1534-1536
+          seed: dk-galster-c2g-89
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-c2g-89
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Ungersk gylden
+          value: gold
+          seed: dk-galster-c2g-89
     mint: Malmø
     catalog:
       galster: '89'
@@ -536,6 +668,28 @@ coins:
           - 1536
     year_label: 1534-1536
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: feud_window
+          source: galster
+          as_printed: U.år
+          value: 1534-1536
+          seed: dk-galster-c2g-90
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-c2g-90
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Ungersk gylden
+          value: gold
+          seed: dk-galster-c2g-90
     mint:
       - Kopenhagen
       - Malmø
@@ -1073,6 +1227,21 @@ coins:
     year_last: 1535
     year_label: '1535'
     year_verified: true
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-c2g-83
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Mark, Klipping
+          value: silver
+          seed: dk-galster-c2g-83
     mint: Malmø
     catalog:
       galster: '83'

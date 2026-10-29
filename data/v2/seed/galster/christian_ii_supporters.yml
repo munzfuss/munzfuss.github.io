@@ -46,6 +46,13 @@ coins:
       - value: 26.0
         source: danskmoent.dk chr/c2g80.htm
     metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
   - id: dk-galster-c2g-82
     fuss: seed_unsorted
     phase: galster
@@ -85,6 +92,19 @@ coins:
         source: danskmoent.dk chr/c2g82.htm
         url: https://www.danskmoent.dk/gif/grevefejden_g82-83.gif
     metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Mark, Klipping
+          value: silver
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
   - id: dk-galster-c2g-88
     fuss: seed_unsorted
     phase: galster
@@ -124,6 +144,19 @@ coins:
       - value: 16.0
         source: danskmoent.dk chr/c2g88.htm
     metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Hvid
+          value: billon
+      year:
+        - kind: inferred
+          how: feud_window
+          source: galster
+          as_printed: u.år
+          value: 1534-1536
   - id: dk-galster-c2g-89
     fuss: seed_unsorted
     phase: galster
@@ -167,6 +200,25 @@ coins:
       - value: 23.0
         source: danskmoent.dk chr/c2g89.htm
     metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Ungersk gylden
+          value: gold
+      year:
+        - kind: inferred
+          how: feud_window
+          source: galster
+          as_printed: U.år
+          value: 1534-1536
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
   - id: dk-galster-c2g-90
     fuss: seed_unsorted
     phase: galster
@@ -210,6 +262,25 @@ coins:
       - value: 25.0
         source: danskmoent.dk chr/c2g90.htm
     metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Ungersk gylden
+          value: gold
+      year:
+        - kind: inferred
+          how: feud_window
+          source: galster
+          as_printed: U.år
+          value: 1534-1536
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
   - id: dk-galster-c2g-83
     fuss: seed_unsorted
     phase: galster
@@ -249,6 +320,19 @@ coins:
         source: danskmoent.dk chr/c2g82.htm
         url: https://www.danskmoent.dk/gif/grevefejden_g82-83.gif
     metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Mark, Klipping
+          value: silver
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
   - id: dk-galster-c2g-85
     fuss: seed_unsorted
     phase: galster
@@ -292,6 +376,18 @@ coins:
       - value: 28.0
         source: danskmoent.dk chr/c2g85.htm
     metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '3.35'
   - id: dk-galster-c2g-86
     fuss: seed_unsorted
     phase: galster
@@ -327,6 +423,13 @@ coins:
       - value: 28.0
         source: danskmoent.dk chr/c2g86.htm
     metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
   - id: dk-galster-c2g-87
     fuss: seed_unsorted
     phase: galster
@@ -368,6 +471,13 @@ coins:
       - value: 14.0
         source: danskmoent.dk chr/c2g87.htm
     metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Hvid
+          value: billon
   - id: dk-galster-c2g-91
     fuss: seed_unsorted
     phase: galster
@@ -411,6 +521,18 @@ coins:
       - value: 28.0
         source: danskmoent.dk chr/c2g91.htm
     metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '4.1'
   - id: dk-galster-c2g-84
     fuss: seed_unsorted
     phase: galster
@@ -452,3 +574,10 @@ coins:
       - value: 35.0
         source: danskmoent.dk chr/c2g84.htm
     metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Halv Sølvgylden
+          value: silver

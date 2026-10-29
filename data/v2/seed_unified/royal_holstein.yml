@@ -144,6 +144,14 @@ coins:
     weight_rough_g:
       - value: 2.3
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1516-32)
+          value: 1516-1532
+          seed: dk-bruun-14757
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -937,6 +945,14 @@ coins:
     diameter_mm:
       - value: 22.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona/Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7877
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -1012,6 +1028,14 @@ coins:
     weight_rough_g:
       - value: 69.22
         source: bruun
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona / Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7894
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -1613,6 +1637,13 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1588-1648
+          seed: dk-hede-c4h104
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c4hede2.htm
@@ -2848,6 +2879,14 @@ coins:
         source: numista
       - value: 18.0
         source: ucoin
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1588-1648
+          seed: dk-hede-c4h167
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h167.htm
@@ -3052,6 +3091,18 @@ coins:
         source: kmk
       - value: 1.11
         source: kmk
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1588-1648
+          seed: dk-hede-c4h168ab
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1620-1623
+          seed: schleswig_holstein-numismaster-92977
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c4hede2.htm
@@ -3352,6 +3403,26 @@ coins:
         source: kmk
       - value: 0.487
         source: hede
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1619-1620)
+          value: 1619-1620
+          seed: dk-bruun-5937
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (c.1620) Rare
+          value: '1620'
+          seed: ngc-1052532
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (c.1620) Rare
+          value: '1620'
+          seed: ngc-1063126
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -7059,6 +7130,26 @@ coins:
     diameter_mm:
       - value: 40.05
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København ell. Altona
+          value: København, Altona
+          seed: kmk-317570
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København ell. Altona
+          value: København, Altona
+          seed: kmk-317571
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København ell. Altona
+          value: København, Altona
+          seed: kmk-317572
     sources:
       - type: literature
         url: https://numismaster.com/MC_65508
@@ -7259,6 +7350,14 @@ coins:
         source: bruun
       - value: 28.05
         source: bruun
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona / Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7863
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -7349,6 +7448,14 @@ coins:
     diameter_mm:
       - value: 39.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona/Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7893
     mint_alts:
       - value: Kopenhagen
         source: bruun
@@ -7437,6 +7544,18 @@ coins:
     weight_rough_g:
       - value: 12.228
         source: hede
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1766-1808
+          seed: dk-hede-c7h26a
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1766-1808
+          seed: dk-hede-c7h26b
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h26.htm
@@ -7630,6 +7749,13 @@ coins:
         source: ucoin
       - value: 18.3
         source: numista
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: kmk
+          value: 1766-1808
+          seed: kmk-122886
     sources:
       - type: literature
         url: https://numismaster.com/MC_58047
@@ -8054,6 +8180,26 @@ coins:
         source: numista
       - value: 39.0
         source: ucoin
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona/Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7866
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona/Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7888
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona / Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7911
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -8237,6 +8383,14 @@ coins:
         source: numista
       - value: 35.0
         source: ucoin
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona/Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7867
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -8359,6 +8513,20 @@ coins:
         source: ucoin
       - value: 32.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona/Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7870
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona/Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7871
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -8462,6 +8630,14 @@ coins:
         source: bruun
       - value: 6.129
         source: hede
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona/Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7872
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -8526,6 +8702,14 @@ coins:
     weight_rough_g:
       - value: 4.214
         source: hede
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Altona/Poppenbüttel Mint
+          value: Altona, Poppenbüttel Mint
+          seed: dk-bruun-7875
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -8922,6 +9106,14 @@ coins:
         source: bruun
       - value: 6.681
         source: hede
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1771)
+          value: '1771'
+          seed: dk-bruun-7983
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -12600,6 +12792,13 @@ coins:
     weight_rough_g:
       - value: 2.436
         source: hede
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1808-1839
+          seed: dk-hede-f6h14
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h14.htm
@@ -14238,6 +14437,14 @@ coins:
         source: numista
       - value: 17.0
         source: ucoin
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København ell. Altona
+          value: København, Altona
+          seed: kmk-203790
     sources:
       - type: literature
         url: https://numismaster.com/MC_66018
@@ -31190,6 +31397,14 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1670) Rare
+          value: '1670'
+          seed: ngc-101329
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-thaler-km-100-ca.1670-cuid-101329-duid-266370
@@ -31388,6 +31603,32 @@ coins:
         source: ngc
       - value: 0.888
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (c.1620) Rare
+          value: '1620'
+          seed: ngc-1051946
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (c.1620) Rare
+          value: '1620'
+          seed: ngc-1051967
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (c.1620) Rare
+          value: '1620'
+          seed: ngc-1051968
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (c.1620) Rare
+          value: '1620'
+          seed: ngc-1069323
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-denning-km-5.4-c.1620-cuid-1051946-duid-1239713
@@ -31466,6 +31707,14 @@ coins:
         source: ngc
       - value: 0.888
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (c.1620) Rare
+          value: '1620'
+          seed: ngc-1051947
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-denning-km-7-c.1620-cuid-1051947-duid-1239717
@@ -32197,6 +32446,14 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1640)
+          value: '1640'
+          seed: ngc-121097
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-schilling-doppelschilling-km-82-ca.1640-cuid-121097-duid-309966
@@ -32225,6 +32482,14 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1640)
+          value: '1640'
+          seed: ngc-121098
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-4-schilling-l%C3%BCbsch-km-85-ca.1640-cuid-121098-duid-309967
@@ -32259,6 +32524,14 @@ coins:
     weight_rough_g:
       - value: 0.37
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca1501-10)
+          value: 1501-1510
+          seed: ngc-167718
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-pfennig-mb-5-ca1501-10-cuid-167718-duid-380782
@@ -32322,6 +32595,19 @@ coins:
         source: ngc
       - value: 0.37
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca1540)
+          value: '1540'
+          seed: ngc-167720
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: '1540'
+          seed: schleswig_holstein-numismaster-167720
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-pfennig-mb-45-ca1540-cuid-167720-duid-380784
@@ -32368,6 +32654,19 @@ coins:
         source: ngc
       - value: 0.37
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1559-88)
+          value: 1559-1588
+          seed: ngc-167721
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1559-1588
+          seed: schleswig_holstein-numismaster-167721
     sources:
       - type: literature
         url: https://en.numista.com/309418
@@ -32546,6 +32845,14 @@ coins:
         source: ngc
       - value: 1.0
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca1566-70) (d)
+          value: 1566-1570
+          seed: ngc-167728
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-6-pfennig-mb-72-ca1566-70-cuid-167728-duid-380801
@@ -32584,6 +32891,19 @@ coins:
         source: ngc
       - value: 1.9
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca1565) (d)
+          value: '1565'
+          seed: ngc-167731
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: '1565'
+          seed: schleswig_holstein-numismaster-167731
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-schilling-mb-70-ca1565-cuid-167731-duid-380804
@@ -32971,6 +33291,13 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: '1523'
+          seed: schleswig_holstein-numismaster-167733
     sources:
       - type: literature
         url: https://numismaster.com/MC_167733
@@ -33073,6 +33400,13 @@ coins:
     weight_rough_g:
       - value: 1.008
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1620-1623
+          seed: schleswig_holstein-numismaster-92978
     sources:
       - type: literature
         url: https://numismaster.com/MC_92978
@@ -33109,6 +33443,13 @@ coins:
     weight_rough_g:
       - value: 1.008
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1620-1623
+          seed: schleswig_holstein-numismaster-92979
     sources:
       - type: literature
         url: https://numismaster.com/MC_92979
@@ -33145,6 +33486,13 @@ coins:
     weight_rough_g:
       - value: 1.008
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1620-1623
+          seed: schleswig_holstein-numismaster-92980
     sources:
       - type: literature
         url: https://numismaster.com/MC_92980
@@ -33181,6 +33529,13 @@ coins:
     weight_rough_g:
       - value: 1.008
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1620-1623
+          seed: schleswig_holstein-numismaster-92981
     sources:
       - type: literature
         url: https://numismaster.com/MC_92981
@@ -33217,6 +33572,13 @@ coins:
     weight_rough_g:
       - value: 1.008
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1624-1630
+          seed: schleswig_holstein-numismaster-92982
     sources:
       - type: literature
         url: https://numismaster.com/MC_92982
@@ -33253,6 +33615,13 @@ coins:
     weight_rough_g:
       - value: 2.016
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1620-1623
+          seed: schleswig_holstein-numismaster-92985
     sources:
       - type: literature
         url: https://numismaster.com/MC_92985
@@ -33289,6 +33658,13 @@ coins:
     weight_rough_g:
       - value: 2.016
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1624-1630
+          seed: schleswig_holstein-numismaster-92986
     sources:
       - type: literature
         url: https://numismaster.com/MC_92986

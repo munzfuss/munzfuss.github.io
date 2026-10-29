@@ -1223,6 +1223,14 @@ coins:
     year_first: 1627
     year_last: 1627
     year_label: '1627'
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Reinfeldt or Sonderburg Mint
+          value: Reinfeldt, Sonderburg Mint
+          seed: dk-bruun-14678
     mint:
       - Reinfeldt
       - Sønderborg
@@ -1633,6 +1641,19 @@ coins:
           - 1622
     year_label: 1618-1622
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1618-22)
+          value: 1618-1622
+          seed: ngc-1171377
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1618-1622
+          seed: schleswig_holstein-numismaster-120991
     mint: Reinfeld
     catalog:
       km: '4'
@@ -1767,6 +1788,14 @@ coins:
     year_first: 1626
     year_last: 1626
     year_label: '1626'
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: bruun
+          as_printed: Reinfeldt or Sonderburg Mint
+          value: Reinfeldt, Sonderburg Mint
+          seed: dk-bruun-14677
     mint:
       - Reinfeldt
       - Sønderborg
@@ -1895,6 +1924,14 @@ coins:
       -   - 1620
           - 1621
     year_label: 1620-1621
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Han d. Yngre?
+          value: Han d. Yngre?
+          seed: kmk-367971
     mint: Sønderborg
     metal_verified: false
     weight_rough_verified: false
@@ -2261,6 +2298,19 @@ coins:
           - 1622
     year_label: 1618-1622
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1618-22)
+          value: 1618-1622
+          seed: ngc-1175224
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1618-1622
+          seed: schleswig_holstein-numismaster-120994
     catalog:
       km: '13'
       lange: '539'
@@ -2697,6 +2747,19 @@ coins:
           - 1622
     year_label: 1618-1622
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1618-22) (r)
+          value: 1618-1622
+          seed: ngc-1161492
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1618-1622
+          seed: schleswig_holstein-numismaster-101370
     catalog:
       km: '7'
     metal: silver
@@ -3262,6 +3325,12 @@ coins:
           - 1627
     year_label: 1622-1627
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1622-1627
     metal: silver
     metal_verified: true
     weight_rough_verified: true

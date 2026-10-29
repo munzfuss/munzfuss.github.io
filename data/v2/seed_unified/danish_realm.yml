@@ -209,6 +209,14 @@ coins:
         source: numista
       - value: 3.37
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Rhinsk gylden
+          value: gold
+          seed: dk-galster-c3g-131
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -295,6 +303,33 @@ coins:
       - min: 1.0
         max: 1.34
         source: Lindahl 1955 (NNÅ 1955), s. 82
+    uncertainty:
+      year:
+        - kind: inferred
+          how: text_year
+          source: bruun
+          as_printed: ND
+          value: '1424'
+          seed: dk-bruun-3712
+        - kind: hedged
+          how: attributed
+          source: galster
+          as_printed: U.år (1424)
+          value: '1424'
+          seed: dk-galster-epomg-11
+        - kind: hedged
+          how: after
+          source: lindahl
+          as_printed: efter reces 1424
+          value: '1424'
+          seed: lindahl-1955-lund-soesling
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling
+          value: billon
+          seed: dk-galster-epomg-11
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -384,6 +419,32 @@ coins:
             існував лише в 1403–1412/13 і 1422/23 рр.
           da: Møntsiden på danskmoent.dk angiver «ca. 1424». Samme websted daterer typen «ca. 1400» i sine oversigter (efter Galster 1972), ligesom Bruun-kataloget; ifølge Stefke 1995 fandtes Næstved 
             mønt kun 1403–1412/13 og 1422/23.
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: bruun
+          as_printed: ND (c. 1400)
+          value: '1400'
+          seed: dk-bruun-3725
+        - kind: inferred
+          how: curator_window
+          source: galster
+          value: 1396-1413
+          seed: dk-galster-epomg-2
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: Witten ca 1400
+          value: '1400'
+          seed: lindahl-1955-naestved-witten-krone
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-epomg-2
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -471,6 +532,33 @@ coins:
       - min: 0.61
         max: 0.73
         source: Lindahl 1955 (NNÅ 1955), s. 85
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1440-48)
+          value: 1440-1448
+          seed: dk-bruun-3757
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u. år
+          value: 1440-1448
+          seed: dk-galster-bajg-19
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1444
+          value: '1444'
+          seed: lindahl-1955-malmoe-sterling
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Sterling
+          value: silver
+          seed: dk-galster-bajg-19
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -583,6 +671,32 @@ coins:
       - min: 1.87
         max: 2.38
         source: Lindahl 1955 (NNÅ 1955), s. 85
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1440-42)
+          value: 1440-1442
+          seed: dk-bruun-3763
+        - kind: hedged
+          how: attributed
+          source: galster
+          as_printed: u. år (1440-1442)
+          value: 1440-1442
+          seed: dk-galster-bajg-18
+        - kind: inferred
+          how: reign
+          source: lindahl
+          value: 1440-1448
+          seed: lindahl-1955-skilling-christopher
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Skilling
+          value: billon
+          seed: dk-galster-bajg-18
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -662,6 +776,27 @@ coins:
     diameter_mm:
       - value: 25.0
         source: danskmoent.dk rigsraad.htm
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1448)
+          value: '1448'
+          seed: dk-bruun-3777
+        - kind: hedged
+          how: attributed
+          source: galster
+          as_printed: '1448'
+          value: '1448'
+          seed: dk-galster-rigsraad-21
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Skilling
+          value: billon
+          seed: dk-galster-rigsraad-21
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -744,6 +879,21 @@ coins:
     diameter_mm:
       - value: 40.0
         source: danskmoent.dk 3nobel.htm
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-hg-24
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Nobel
+          value: gold
+          seed: dk-galster-hg-24
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -860,6 +1010,14 @@ coins:
           en: The National Museum record (KMM, FP 12405.1, Galster 29) gives 1512–1515. Bruun and Galster date this type to 1512; King Hans died in February 1513 (Eriksson 2017).
           uk: Запис Національного музею (KMM, FP 12405.1, Galster 29) подає 1512–1515. Bruun і Galster датують цей тип 1512 р.; король Hans помер у лютому 1513 р. (Eriksson 2017).
           da: Nationalmuseets post (KMM, FP 12405.1, Galster 29) angiver 1512–1515. Bruun og Galster daterer denne type til 1512; kong Hans døde i februar 1513 (Eriksson 2017).
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-hg-29
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -974,6 +1132,40 @@ coins:
     diameter_mm:
       - value: 23.0
         source: ikmk
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1496-1497)
+          value: 1496-1497
+          seed: dk-bruun-3839
+        - kind: hedged
+          how: circa
+          source: bruun
+          as_printed: ND (ca. 1496-1497)
+          value: 1496-1497
+          seed: dk-bruun-3840
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: U.år
+          value: 1483-1513
+          seed: dk-galster-hg-27
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-hg-27
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Rhinsk gylden
+          value: gold
+          seed: dk-galster-hg-27
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -1132,6 +1324,26 @@ coins:
     diameter_mm:
       - value: 26.8
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-c2g-39a
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-c2g-39b
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-c2g-39c
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -1503,6 +1715,14 @@ coins:
     diameter_mm:
       - value: 30.0
         source: danskmoent.dk fr/f1g51.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Skilling (10 hvide), -24
+          value: billon
+          seed: dk-galster-f1g-51
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -1557,6 +1777,14 @@ coins:
     diameter_mm:
       - value: 27.0
         source: danskmoent.dk ernst/ribeaxe1.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Skilling
+          value: billon
+          seed: dk-galster-f1g-70
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -1734,6 +1962,14 @@ coins:
     diameter_mm:
       - value: 24.0
         source: danskmoent.dk fr/f1g62.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 14 Penning
+          value: billon
+          seed: dk-galster-f1g-62
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -1884,6 +2120,14 @@ coins:
     diameter_mm:
       - value: 24.0
         source: danskmoent.dk fr/f1g59.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Rhinsk gylden
+          value: gold
+          seed: dk-galster-f1g-59
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -2027,6 +2271,14 @@ coins:
     weight_rough_g:
       - value: 3.72
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1532)
+          value: '1532'
+          seed: dk-bruun-4090
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -2064,6 +2316,14 @@ coins:
     weight_rough_g:
       - value: 1.9
         source: bruun
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Toskilling
+          value: billon
+          seed: dk-galster-rigsraad-81
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -2120,6 +2380,14 @@ coins:
         source: bruun
       - value: 12.12
         source: galster
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Mark klipping
+          value: silver
+          seed: dk-galster-c3g-92b
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -2239,6 +2507,14 @@ coins:
     diameter_mm:
       - value: 37.0
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Mark
+          value: silver
+          seed: dk-galster-c3g-97
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -2391,6 +2667,14 @@ coins:
     diameter_mm:
       - value: 40.0
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Joachimstaler
+          value: silver
+          seed: dk-galster-c3g-102
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -2473,6 +2757,14 @@ coins:
     diameter_mm:
       - value: 34.0
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1/2 Joachimstaler
+          value: silver
+          seed: dk-galster-c3g-103
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -4164,6 +4456,25 @@ coins:
     diameter_mm:
       - value: 60.0
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1614
+          seed: denmark-numismaster-65590
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1607-1610)
+          value: 1607-1610
+          seed: dk-bruun-5844
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-14) Rare
+          value: 1607-1614
+          seed: ngc-1069046
     sources:
       - type: literature
         url: https://numismaster.com/MC_65590
@@ -4219,6 +4530,25 @@ coins:
     weight_rough_g:
       - value: 86.4
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1614
+          seed: denmark-numismaster-65569
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1607-1614)
+          value: 1607-1614
+          seed: dk-bruun-5845
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-14) Rare
+          value: 1607-1614
+          seed: ngc-1050185
     sources:
       - type: literature
         url: https://numismaster.com/MC_65569
@@ -4306,6 +4636,25 @@ coins:
     diameter_mm:
       - value: 51.0
         source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1614
+          seed: denmark-numismaster-65536
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1607-11)
+          value: 1607-1611
+          seed: dk-bruun-5846
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-14)
+          value: 1607-1614
+          seed: ngc-1050079
     sources:
       - type: literature
         url: https://numismaster.com/MC_65536
@@ -4362,6 +4711,25 @@ coins:
     weight_rough_g:
       - value: 57.58
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1614
+          seed: denmark-numismaster-65516
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1611)
+          value: '1611'
+          seed: dk-bruun-5847
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-14) Rare
+          value: 1607-1614
+          seed: ngc-1060266
     sources:
       - type: literature
         url: https://numismaster.com/MC_65516
@@ -4453,6 +4821,25 @@ coins:
         source: ucoin
       - value: 51.3
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: '1611'
+          seed: denmark-numismaster-65537
+        - kind: hedged
+          how: circa
+          source: bruun
+          as_printed: ND (ca. 1611)
+          value: '1611'
+          seed: dk-bruun-5849
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca1611)
+          value: '1611'
+          seed: ngc-1060267
     sources:
       - type: literature
         url: https://numismaster.com/MC_65537
@@ -4510,6 +4897,14 @@ coins:
     weight_rough_g:
       - value: 48.51
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1607-14)
+          value: 1607-1614
+          seed: dk-bruun-5851
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -6254,6 +6649,14 @@ coins:
     weight_rough_g:
       - value: 34.46
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1668-69)
+          value: 1668-1669
+          seed: dk-bruun-6736
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -6338,6 +6741,14 @@ coins:
         source: numista
       - value: 50.0
         source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1669)
+          value: '1669'
+          seed: dk-bruun-6744
     sources:
       - type: literature
         url: https://numismaster.com/MC_65463
@@ -6425,6 +6836,14 @@ coins:
     diameter_mm:
       - value: 41.3
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: MDCLXXI (1671) GK 6 known
+          value: '1671'
+          seed: ngc-1060684
     sources:
       - type: literature
         url: https://numismaster.com/MC_66298
@@ -7378,6 +7797,14 @@ coins:
         source: ngc
       - value: 6.98
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1670-99)
+          value: 1670-1699
+          seed: dk-bruun-7240
     sources:
       - type: literature
         url: https://numismaster.com/MC_65892
@@ -7447,6 +7874,14 @@ coins:
         source: ngc
       - value: 6.98
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1696)
+          value: '1696'
+          seed: dk-bruun-7242
     sources:
       - type: literature
         url: https://numismaster.com/MC_65888
@@ -7515,6 +7950,14 @@ coins:
         source: ngc
       - value: 3.49
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1685)
+          value: '1685'
+          seed: dk-bruun-7247
     sources:
       - type: literature
         url: https://numismaster.com/MC_65778
@@ -7580,6 +8023,14 @@ coins:
         source: ngc
       - value: 3.49
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1696)
+          value: '1696'
+          seed: dk-bruun-7253
     sources:
       - type: literature
         url: https://numismaster.com/MC_65800
@@ -7628,6 +8079,14 @@ coins:
     weight_rough_g:
       - value: 16.84
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1677-1678)
+          value: 1677-1678
+          seed: dk-bruun-7277
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -8441,6 +8900,14 @@ coins:
         source: ngc
       - value: 6.981
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1746)
+          value: '1746'
+          seed: dk-bruun-7601
     sources:
       - type: literature
         url: https://numismaster.com/MC_65901
@@ -8508,6 +8975,14 @@ coins:
         source: ngc
       - value: 3.49
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1746)
+          value: '1746'
+          seed: dk-bruun-7602
     sources:
       - type: literature
         url: https://numismaster.com/MC_65820
@@ -11388,6 +11863,27 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 73
       - value: 1.04
         source: Lindahl 1955 (NNÅ 1955), s. 84
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: galster
+          as_printed: u. år (1440-1442)
+          value: 1440-1442
+          seed: dk-galster-bajg-17
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1440
+          value: '1440'
+          seed: lindahl-1955-lund-soesling-christopher
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling
+          value: billon
+          seed: dk-galster-bajg-17
     sources:
       - type: literature
         url: https://www.danskmoent.dk/bajg17.htm
@@ -11718,6 +12214,27 @@ coins:
       - min: 0.48
         max: 1.06
         source: Lindahl 1955 (NNÅ 1955), s. 86
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1440-1448
+          seed: dk-galster-bajg-20
+        - kind: hedged
+          how: after
+          source: lindahl
+          as_printed: efter 1444
+          value: '1444'
+          seed: lindahl-1955-malmoe-hvid
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-bajg-20
     sources:
       - type: literature
         url: https://www.danskmoent.dk/bajg20.htm
@@ -11991,6 +12508,14 @@ coins:
         source: kmk
       - value: 29.26
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 82
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Sølvgylden
+          value: silver
+          seed: dk-galster-c2g-38
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g38.htm
@@ -12045,6 +12570,14 @@ coins:
     mint_verified: true
     verified: false
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling , Malmø (?)
+          value: billon
+          seed: dk-galster-c2g-40
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g40.htm
@@ -12086,6 +12619,14 @@ coins:
     weight_rough_g:
       - value: 2.61
         source: galster
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-c2g-41
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g41.htm
@@ -12130,6 +12671,14 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 117
       - value: 1.04
         source: galster
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Hvid
+          value: billon
+          seed: dk-galster-c2g-43
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g43.htm
@@ -12222,6 +12771,21 @@ coins:
     diameter_mm:
       - value: 39.0
         source: danskmoent.dk chr/c2g44.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: U.år
+          value: 1513-1523
+          seed: dk-galster-c2g-44
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Sølvgylden U.år
+          value: silver
+          seed: dk-galster-c2g-44
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g44.htm
@@ -12259,6 +12823,14 @@ coins:
     weight_rough_g:
       - value: 28.75
         source: galster
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Joachimstaler
+          value: silver
+          seed: dk-galster-c3g-101
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g101.htm
@@ -12307,6 +12879,14 @@ coins:
     diameter_mm:
       - value: 30.0
         source: danskmoent.dk chr/c3g132.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Skilling
+          value: billon
+          seed: dk-galster-c3g-132
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g132.htm
@@ -12354,6 +12934,14 @@ coins:
     weight_rough_g:
       - value: 7.19
         source: galster
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Mark
+          value: silver
+          seed: dk-galster-c3g-98
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g98.htm
@@ -12425,6 +13013,27 @@ coins:
       - min: 0.75
         max: 1.33
         source: Lindahl 1955 (NNÅ 1955), s. 80
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
+          seed: dk-galster-epomg-10
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-lund-kobbersterling
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-10
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg10.htm
@@ -12521,6 +13130,26 @@ coins:
       - min: 0.2
         max: 0.39
         source: Lindahl 1955 (NNÅ 1955), s. 82
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '1424'
+          seed: dk-galster-epomg-12
+        - kind: hedged
+          how: after
+          source: lindahl
+          as_printed: efter reces 1424
+          value: '1424'
+          seed: lindahl-1955-lebard
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Lebard
+          value: silver
+          seed: dk-galster-epomg-12
     sources:
       - type: literature
         url: https://www.danskmoent.dk/pommgals.htm
@@ -12582,6 +13211,27 @@ coins:
       - min: 0.75
         max: 1.33
         source: Lindahl 1955 (NNÅ 1955), s. 80
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
+          seed: dk-galster-epomg-15
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-randers-kobbersterling
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-15
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg15.htm
@@ -12643,6 +13293,26 @@ coins:
             існував лише в 1403–1412/13 і 1422/23 рр.
           da: Møntsiden på danskmoent.dk angiver «ca. 1424». Samme websted daterer typen «ca. 1400» i sine oversigter (efter Galster 1972), ligesom Bruun-kataloget; ifølge Stefke 1995 fandtes Næstved 
             mønt kun 1403–1412/13 og 1422/23.
+    uncertainty:
+      year:
+        - kind: inferred
+          how: curator_window
+          source: galster
+          value: 1396-1413
+          seed: dk-galster-epomg-3
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: 1397—ca. 1405
+          value: 1397-1405
+          seed: lindahl-1955-naestved-witten-krumstav
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-epomg-3
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg3.htm
@@ -12793,6 +13463,27 @@ coins:
       - min: 0.21
         max: 0.37
         source: Lindahl 1955 (NNÅ 1955), s. 79
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1400-1420
+          value: 1400-1420
+          seed: dk-galster-epomg-5
+        - kind: hedged
+          how: after
+          source: lindahl
+          as_printed: efter ca. 1405, før 1424
+          value: 1405-1424
+          seed: lindahl-1955-hulpenning
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hulpenning
+          value: billon
+          seed: dk-galster-epomg-5
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg5.htm
@@ -12898,6 +13589,32 @@ coins:
     diameter_mm:
       - value: 12.0
         source: danskmoent.dk halvpenn.htm
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: 1400-1420
+          seed: dk-galster-epomg-6
+        - kind: hedged
+          how: after
+          source: lindahl
+          as_printed: efter ca. 1405, før 1424
+          value: 1405-1424
+          seed: lindahl-1955-halvpenning
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Halvpenning (skærv)
+          value: billon
+          seed: dk-galster-epomg-6
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '0.14'
+          seed: dk-galster-epomg-6
     sources:
       - type: literature
         url: https://www.danskmoent.dk/pommgals.htm
@@ -12960,6 +13677,20 @@ coins:
     diameter_mm:
       - value: 10.0
         source: danskmoent.dk lebard.htm
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '1424'
+          seed: dk-galster-epomg-8
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Lebard
+          value: silver
+          seed: dk-galster-epomg-8
     sources:
       - type: literature
         url: https://www.danskmoent.dk/pommgals.htm
@@ -13083,6 +13814,20 @@ coins:
     diameter_mm:
       - value: 33.0
         source: danskmoent.dk fr/f1g52.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1/4 Sølvgylden
+          value: silver
+          seed: dk-galster-f1g-52
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '7.0'
+          seed: dk-galster-f1g-52
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g52.htm
@@ -13124,6 +13869,14 @@ coins:
     diameter_mm:
       - value: 29.0
         source: danskmoent.dk fr/f1g54.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-f1g-54
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g54.htm
@@ -13187,6 +13940,14 @@ coins:
     diameter_mm:
       - value: 25.0
         source: danskmoent.dk fr/f1g55.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-f1g-55
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g55.htm
@@ -13228,6 +13989,14 @@ coins:
     diameter_mm:
       - value: 23.0
         source: danskmoent.dk 14pennin.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 14 Penning
+          value: billon
+          seed: dk-galster-f1g-56
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g56.htm
@@ -13272,6 +14041,14 @@ coins:
     diameter_mm:
       - value: 21.0
         source: danskmoent.dk fr/f1g57.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling
+          value: billon
+          seed: dk-galster-f1g-57
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g57.htm
@@ -13658,6 +14435,21 @@ coins:
     diameter_mm:
       - value: 18.5
         source: danskmoent.dk fr/f1g58.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1523-1533
+          seed: dk-galster-f1g-58
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Hvid
+          value: billon
+          seed: dk-galster-f1g-58
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g58.htm
@@ -13705,6 +14497,21 @@ coins:
     diameter_mm:
       - value: 29.0
         source: danskmoent.dk fr/f1g60.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1523-1533
+          seed: dk-galster-f1g-60
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-f1g-60
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g60.htm
@@ -13766,6 +14573,14 @@ coins:
     diameter_mm:
       - value: 25.0
         source: danskmoent.dk galster/galkult.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-f1g-61
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g61.htm
@@ -13818,6 +14633,30 @@ coins:
     diameter_mm:
       - value: 21.0
         source: danskmoent.dk fr/f1g63.htm
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-134352
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-318234
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Københanv?
+          seed: kmk-355101
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling
+          value: billon
+          seed: dk-galster-f1g-63
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g63.htm
@@ -14175,6 +15014,14 @@ coins:
     diameter_mm:
       - value: 18.0
         source: danskmoent.dk fr/f1g64.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Hvid
+          value: billon
+          seed: dk-galster-f1g-64
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g64.htm
@@ -14218,6 +15065,20 @@ coins:
     diameter_mm:
       - value: 24.0
         source: danskmoent.dk fr/f1g65.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 14 Penning
+          value: billon
+          seed: dk-galster-f1g-65
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '1.65'
+          seed: dk-galster-f1g-65
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g65.htm
@@ -14247,6 +15108,14 @@ coins:
     mint_verified: true
     verified: false
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling
+          value: billon
+          seed: dk-galster-f1g-66
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g66.htm
@@ -14290,6 +15159,14 @@ coins:
     diameter_mm:
       - value: 21.0
         source: danskmoent.dk fr/f1g66c.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling
+          value: billon
+          seed: dk-galster-f1g-66c
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g66c.htm
@@ -14332,6 +15209,14 @@ coins:
     diameter_mm:
       - value: 22.0
         source: danskmoent.dk ronneby.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling
+          value: billon
+          seed: dk-galster-f1g-67
     sources:
       - type: literature
         url: https://www.danskmoent.dk/ronneby.htm
@@ -14406,6 +15291,14 @@ coins:
     mint_verified: true
     verified: false
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling, Ronneby (?)
+          value: billon
+          seed: dk-galster-f1g-67suaar31
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g67suaar31.htm
@@ -14445,6 +15338,21 @@ coins:
     diameter_mm:
       - value: 38.0
         source: danskmoent.dk fr/f1g68.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1523-1533
+          seed: dk-galster-f1g-68
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Nobel
+          value: gold
+          seed: dk-galster-f1g-68
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g68.htm
@@ -14514,6 +15422,21 @@ coins:
     diameter_mm:
       - value: 38.0
         source: danskmoent.dk fr/f1g69.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1523-1533
+          seed: dk-galster-f1g-69
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Nobel
+          value: gold
+          seed: dk-galster-f1g-69
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g69.htm
@@ -14562,6 +15485,14 @@ coins:
     diameter_mm:
       - value: 23.0
         source: danskmoent.dk fr/f1g71.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 14 Penning
+          value: billon
+          seed: dk-galster-f1g-71
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g71.htm
@@ -14601,6 +15532,14 @@ coins:
     diameter_mm:
       - value: 21.0
         source: danskmoent.dk ernst/ribeaxe1.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Søsling
+          value: billon
+          seed: dk-galster-f1g-72
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g72.htm
@@ -14648,6 +15587,30 @@ coins:
     diameter_mm:
       - value: 21.0
         source: danskmoent.dk fr/f1g73.htm
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Ribe(?)
+          seed: kmk-279232
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Ribe(?)
+          seed: kmk-279233
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Ribe?
+          seed: kmk-370778
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling
+          value: billon
+          seed: dk-galster-f1g-73
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g73.htm
@@ -14824,6 +15787,20 @@ coins:
     diameter_mm:
       - value: 23.0
         source: danskmoent.dk fr/f1g74.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 14 Penning , Ålborg
+          value: billon
+          seed: dk-galster-f1g-74
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '1.65'
+          seed: dk-galster-f1g-74
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g74.htm
@@ -14858,6 +15835,14 @@ coins:
     weight_rough_g:
       - value: 0.9
         source: kmk
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Søsling , Ålborg
+          value: billon
+          seed: dk-galster-f1g-75
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g75.htm
@@ -14897,6 +15882,20 @@ coins:
     diameter_mm:
       - value: 21.0
         source: danskmoent.dk fr/f1g76.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          value: 1523-1533
+          seed: dk-galster-f1g-76
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling, Ålborg
+          value: billon
+          seed: dk-galster-f1g-76
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g76.htm
@@ -14982,6 +15981,21 @@ coins:
     diameter_mm:
       - value: 16.0
         source: danskmoent.dk fr/f1g77.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1523-1533
+          seed: dk-galster-f1g-77
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Hvid, , Ålborg
+          value: billon
+          seed: dk-galster-f1g-77
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g77.htm
@@ -15033,6 +16047,21 @@ coins:
     diameter_mm:
       - value: 16.0
         source: danskmoent.dk fr/f1g79.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1523-1533
+          seed: dk-galster-f1g-79
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hulpenning; Blaffert
+          value: billon
+          seed: dk-galster-f1g-79
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g79.htm
@@ -15122,6 +16151,28 @@ coins:
     diameter_mm:
       - value: 20.0
         source: Horsnæs, Moesgaard, Märcher, Fra Denar til Daler (2018) s. 448 — illustration caption on danskmoent.dk halvrhin.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-halvrhin
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-halvrhin
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1/2 Rhinsk gylden
+          value: gold
+          seed: dk-galster-halvrhin
     sources:
       - type: literature
         url: https://www.danskmoent.dk/halvrhin.htm
@@ -15158,6 +16209,21 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1380-1420
+          value: 1380-1420
+          seed: dk-galster-hg-135
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Gote u. år
+          value: silver
+          seed: dk-galster-hg-135
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg135.htm
@@ -15191,6 +16257,21 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1420-1440
+          value: 1420-1440
+          seed: dk-galster-hg-136
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Gote u. år
+          value: silver
+          seed: dk-galster-hg-136
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg136.htm
@@ -15224,6 +16305,21 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: century
+          source: galster
+          as_printed: 1400-tallet
+          value: 1400-1499
+          seed: dk-galster-hg-137
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hulpenning
+          value: billon
+          seed: dk-galster-hg-137
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg137.htm
@@ -15391,6 +16487,66 @@ coins:
     diameter_mm:
       - value: 16.5
         source: danskmoent.dk gotlg139.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u. år
+          value: 1448-1481
+          seed: dk-galster-hg-139
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: '1450'
+          seed: metallanalyser-2017-3-ll1-gotland
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: 1455-1480
+          seed: metallanalyser-2017-3-ll2-gotland
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: 1455-1480
+          seed: metallanalyser-2017-3-ll3b-gotland
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: 1455-1480
+          seed: metallanalyser-2017-3-ll4a-gotland
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: 1455-1480
+          seed: metallanalyser-2017-3-ll4aq-gotland
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: 1455-1480
+          seed: metallanalyser-2017-3-ll4aqq-gotland
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: 1455-1480
+          seed: metallanalyser-2017-3-ll4b-gotland
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: 1455-1480
+          seed: metallanalyser-2017-3-ll4c-gotland
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: 1455-1480
+          seed: metallanalyser-2017-3-ll4d-gotland
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Gote
+          value: silver
+          seed: dk-galster-hg-139
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg139.htm
@@ -15579,6 +16735,26 @@ coins:
             року, № 32–37»); так само Hauberg 1891 (близько 1520); Galster відносить її до Christian I.'
           da: 'Dateret efter Schou, der henfører mønten til Christian 2. danskmoent.dk (Galster 140): «Schou henfører mønten til Christian 2. (u. år 32-37)»; ligeså Hauberg 1891 (ca. 1520); Galster henfører
             den til Christian 1.'
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u. år
+          value: 1448-1481
+          seed: dk-galster-hg-140
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: 1480-1500
+          seed: metallanalyser-2017-3-ll5-gotland
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Gote
+          value: silver
+          seed: dk-galster-hg-140
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg140.htm
@@ -15658,6 +16834,21 @@ coins:
     diameter_mm:
       - value: 16.0
         source: danskmoent.dk gotlg141.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u. år
+          value: 1483-1513
+          seed: dk-galster-hg-141
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-141
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg141.htm
@@ -15758,6 +16949,31 @@ coins:
     diameter_mm:
       - value: 15.0
         source: danskmoent.dk gotlg142.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u. år
+          value: 1483-1513
+          seed: dk-galster-hg-142
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: 1500-1520
+          seed: metallanalyser-2017-3-ll7-gotland
+        - kind: hedged
+          how: window
+          source: metallanalyser
+          value: 1500-1520
+          seed: metallanalyser-2017-3-ll7a-gotland
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-142
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg142.htm
@@ -15872,6 +17088,21 @@ coins:
     diameter_mm:
       - value: 16.0
         source: danskmoent.dk gotlg146.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u. år
+          value: 1523-1533
+          seed: dk-galster-hg-146
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-146
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg146.htm
@@ -15958,6 +17189,14 @@ coins:
     diameter_mm:
       - value: 21.0
         source: danskmoent.dk gotlg147.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Skilling
+          value: billon
+          seed: dk-galster-hg-147
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg147.htm
@@ -16049,6 +17288,14 @@ coins:
     weight_rough_g:
       - value: 1.43
         source: galster
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling
+          value: billon
+          seed: dk-galster-hg-30
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/hg30.htm
@@ -16150,6 +17397,21 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 33
       - value: 2.65
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 43
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: U.år
+          value: 1483-1513
+          seed: dk-galster-hg-32
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling, U.år
+          value: billon
+          seed: dk-galster-hg-32
     mint_alts:
       - value: Malmø
         source: metallanalyser
@@ -16274,6 +17536,21 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 55
       - value: 1.47
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 56
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-33
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Søsling
+          value: billon
+          seed: dk-galster-hg-33
     mint_alts:
       - value: Malmø
         source: metallanalyser
@@ -16355,6 +17632,21 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 80
       - value: 0.82
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 57
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-34
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-34
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/hg34.htm
@@ -16427,6 +17719,21 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 44
       - value: 3.13
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 49
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-35
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling , Ålborg
+          value: billon
+          seed: dk-galster-hg-35
     mint_alts:
       - value: Malmø
         source: metallanalyser
@@ -16515,6 +17822,37 @@ coins:
     diameter_mm:
       - value: 18.0
         source: danskmoent.dk ernst/ribeaxe1.htm
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1380
+          value: '1380'
+          seed: dk-galster-m1g-1
+        - kind: hedged
+          how: attributed
+          source: lindahl
+          as_printed: 1373/77—96
+          value: 1373-1396
+          seed: lindahl-1955-ribe-witten
+        - kind: inferred
+          how: compiled
+          source: merge_decisions
+          value: 1373-1381
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-m1g-1
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '1.19'
+          seed: dk-galster-m1g-1
     sources:
       - type: literature
         url: https://www.danskmoent.dk/m1g1.htm
@@ -16598,6 +17936,21 @@ coins:
     diameter_mm:
       - value: 16.5
         source: danskmoent.dk rigsraad.htm
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: galster
+          as_printed: 1481-1483
+          value: 1481-1483
+          seed: dk-galster-rigsraad-22
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-rigsraad-22
     sources:
       - type: literature
         url: https://www.danskmoent.dk/rigsraad.htm
@@ -17480,6 +18833,14 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1534-1559
+          seed: dk-hede-c3h23
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3h23.htm
@@ -17974,6 +19335,14 @@ coins:
     diameter_mm:
       - value: 16.0
         source: numista
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1534-1559
+          seed: dk-hede-c3h7
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3h7.htm
@@ -18435,6 +19804,13 @@ coins:
         source: ngc
       - value: 0.564
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1618-1619
+          seed: denmark-numismaster-64960
     sources:
       - type: literature
         url: https://numismaster.com/MC_64960
@@ -22751,6 +24127,13 @@ coins:
         source: numismaster
       - value: 0.53
         source: ucoin
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1588-1648
+          seed: dk-hede-c4h120
     sources:
       - type: literature
         url: https://numismaster.com/MC_64955
@@ -25375,6 +26758,13 @@ coins:
         source: numista
       - value: 18.0
         source: ucoin
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: kmk
+          value: 1588-1648
+          seed: kmk-326946
     sources:
       - type: literature
         url: https://numismaster.com/MC_65046
@@ -37553,6 +38943,14 @@ coins:
         source: kmk
       - value: 22.64
         source: numista
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1588-1648
+          seed: dk-hede-c4h20
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h20.htm
@@ -39504,6 +40902,19 @@ coins:
         source: ngc
       - value: 0.873
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1646-48)
+          value: 1646-1648
+          seed: dk-bruun-5843
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1588-1648
+          seed: dk-hede-c4h41
     sources:
       - type: literature
         url: https://numismaster.com/MC_65679
@@ -39726,6 +41137,14 @@ coins:
     diameter_mm:
       - value: 41.0
         source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1596)
+          value: '1596'
+          seed: dk-bruun-5852
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -41585,6 +43004,14 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1588-1648
+          seed: dk-hede-c4h63
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h63.htm
@@ -41628,6 +43055,20 @@ coins:
     weight_rough_g:
       - value: 48.8
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1611)
+          value: '1611'
+          seed: dk-bruun-5850
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1588-1648
+          seed: dk-hede-c4h64
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -43818,6 +45259,19 @@ coins:
     diameter_mm:
       - value: 16.5
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1609
+          seed: denmark-numismaster-117787
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-09)
+          value: 1607-1609
+          seed: ngc-1069703
     sources:
       - type: literature
         url: https://numismaster.com/MC_117787
@@ -44397,6 +45851,14 @@ coins:
     diameter_mm:
       - value: 40.0
         source: ikmk
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1604-1607)
+          value: 1604-1607
+          seed: dk-bruun-5839
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -50111,6 +51573,14 @@ coins:
         source: numismaster
       - value: 3.49
         source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1685)
+          value: '1685'
+          seed: dk-bruun-7249
     sources:
       - type: literature
         url: https://numismaster.com/MC_165458
@@ -50220,6 +51690,14 @@ coins:
     weight_rough_g:
       - value: 20.27
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1677-1678)
+          value: 1677-1678
+          seed: dk-bruun-7275
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -50279,6 +51757,14 @@ coins:
     weight_rough_g:
       - value: 14.72
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1677-78)
+          value: 1677-1678
+          seed: dk-bruun-7276
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
@@ -50339,6 +51825,14 @@ coins:
     weight_rough_g:
       - value: 14.48
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1677-1678)
+          value: 1677-1678
+          seed: dk-bruun-7280
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -50409,6 +51903,14 @@ coins:
     weight_rough_g:
       - value: 8.91
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1677-1678)
+          value: 1677-1678
+          seed: dk-bruun-7285
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -50878,6 +52380,13 @@ coins:
     diameter_mm:
       - value: 25.5
         source: ucoin
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1670-1699
+          seed: dk-hede-c5h19
     sources:
       - type: literature
         url: https://numismaster.com/MC_165455
@@ -53535,6 +55044,14 @@ coins:
         source: numismaster
       - value: 6.981
         source: hede
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1696)
+          value: '1696'
+          seed: dk-bruun-7241
     sources:
       - type: literature
         url: https://numismaster.com/MC_65887
@@ -53626,6 +55143,14 @@ coins:
     diameter_mm:
       - value: 17.5
         source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1696)
+          value: '1696'
+          seed: dk-bruun-7263
     sources:
       - type: literature
         url: https://numismaster.com/MC_65710
@@ -53684,6 +55209,13 @@ coins:
         source: ngc
       - value: 3.49
         source: numismaster
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1670-1699
+          seed: dk-hede-c5h52
     sources:
       - type: literature
         url: https://numismaster.com/MC_65779
@@ -53915,6 +55447,14 @@ coins:
     diameter_mm:
       - value: 25.0
         source: numista
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1670-1699
+          seed: dk-hede-c5h55
     sources:
       - type: literature
         url: https://numismaster.com/MC_65803
@@ -53973,6 +55513,20 @@ coins:
         source: bruun
       - value: 6.981
         source: hede
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1670-99)
+          value: 1670-1699
+          seed: dk-bruun-7243
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1670-1699
+          seed: dk-hede-c5h56
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -54040,6 +55594,20 @@ coins:
         source: ngc
       - value: 3.49
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1699)
+          value: '1699'
+          seed: dk-bruun-7244
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1670-1699
+          seed: dk-hede-c5h57
     sources:
       - type: literature
         url: https://numismaster.com/MC_65804
@@ -54092,6 +55660,14 @@ coins:
     weight_rough_g:
       - value: 6.981
         source: hede
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1670-1699
+          seed: dk-hede-c5h58
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h57.htm
@@ -54132,6 +55708,14 @@ coins:
     weight_rough_g:
       - value: 6.981
         source: hede
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1670-1699
+          seed: dk-hede-c5h59
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h59.htm
@@ -54393,6 +55977,14 @@ coins:
         source: numista
       - value: 41.75
         source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1670)
+          value: '1670'
+          seed: dk-bruun-7264
     sources:
       - type: literature
         url: https://numismaster.com/MC_65465
@@ -55416,6 +57008,14 @@ coins:
         source: numista
       - value: 17.2
         source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1675)
+          value: '1675'
+          seed: dk-bruun-7254
     sources:
       - type: literature
         url: https://numismaster.com/MC_65775
@@ -55839,6 +57439,13 @@ coins:
     weight_rough_g:
       - value: 0.921
         source: hede
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1670-1699
+          seed: dk-hede-c5h75
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h75.htm
@@ -56524,6 +58131,14 @@ coins:
         source: numismaster
       - value: 6.981
         source: hede
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1675)
+          value: '1675'
+          seed: dk-bruun-7236
     sources:
       - type: literature
         url: https://numismaster.com/MC_65876
@@ -61096,6 +62711,20 @@ coins:
         source: numista
       - value: 31.0
         source: ucoin
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-569284
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-569285
     sources:
       - type: literature
         url: https://numismaster.com/MC_66267
@@ -61295,6 +62924,14 @@ coins:
         source: numista
       - value: 25.0
         source: ucoin
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-569283
     sources:
       - type: literature
         url: https://numismaster.com/MC_66261
@@ -61579,6 +63216,14 @@ coins:
         source: numista
       - value: 17.0
         source: ucoin
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-569282
     sources:
       - type: literature
         url: https://numismaster.com/MC_41844
@@ -61687,6 +63332,26 @@ coins:
     diameter_mm:
       - value: 16.0
         source: ngc
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-569276
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-569277
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-569278
     sources:
       - type: literature
         url: https://numismaster.com/MC_66256
@@ -62294,6 +63959,14 @@ coins:
         source: numista
       - value: 21.0
         source: ucoin
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-569275
     sources:
       - type: literature
         url: https://numismaster.com/MC_41770
@@ -64278,6 +65951,13 @@ coins:
     diameter_mm:
       - value: 26.2
         source: numista
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: kmk
+          value: 1559-1588
+          seed: kmk-308010
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f2h11.htm
@@ -66112,6 +67792,13 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1559-1588
+          seed: dk-hede-f2h34
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f2h34.htm
@@ -81425,6 +83112,13 @@ coins:
     diameter_mm:
       - value: 16.25
         source: numista
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1648-1670
+          seed: dk-hede-f3h131
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h131.htm
@@ -82245,6 +83939,14 @@ coins:
         source: kmk
       - value: 1.218
         source: hede
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3(?)
+          value: Frederik 3
+          seed: kmk-133407
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h139.htm
@@ -83131,6 +84833,14 @@ coins:
         source: ikmk
       - value: 25.0
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1659-60)
+          value: 1659-1660
+          seed: dk-bruun-6740
     sources:
       - type: literature
         url: https://numismaster.com/MC_65762
@@ -88909,6 +90619,14 @@ coins:
         source: ucoin
       - value: 42.0
         source: ikmk
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1668-69)
+          value: 1668-1669
+          seed: dk-bruun-6745
     sources:
       - type: literature
         url: https://numismaster.com/MC_65460
@@ -89189,6 +90907,14 @@ coins:
         source: ngc
       - value: 29.232
         source: numismaster
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1648-1670
+          seed: dk-hede-f3h82
     sources:
       - type: literature
         url: https://numismaster.com/MC_65427
@@ -89250,6 +90976,14 @@ coins:
         source: ngc
       - value: 115.1
         source: numismaster
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1648-1670
+          seed: dk-hede-f3h83
     sources:
       - type: literature
         url: https://numismaster.com/MC_65593
@@ -91943,6 +93677,14 @@ coins:
         source: numista
       - value: 21.6
         source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: bruun
+          as_printed: ND (ca. 1705)
+          value: '1705'
+          seed: dk-bruun-7543
     sources:
       - type: literature
         url: https://numismaster.com/MC_65809
@@ -93017,6 +94759,26 @@ coins:
         source: ngc
       - value: 3.49
         source: numismaster
+    uncertainty:
+      year:
+        - kind: inferred
+          how: text_year
+          source: bruun
+          as_printed: ND
+          value: '1710'
+          seed: dk-bruun-7550
+        - kind: inferred
+          how: text_year
+          source: bruun
+          as_printed: ND
+          value: '1710'
+          seed: dk-bruun-7551
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1699-1730
+          seed: dk-hede-f4h23
     sources:
       - type: literature
         url: https://numismaster.com/MC_65815
@@ -93109,6 +94871,20 @@ coins:
         source: ngc
       - value: 6.981
         source: numismaster
+    uncertainty:
+      year:
+        - kind: inferred
+          how: text_year
+          source: bruun
+          as_printed: ND
+          value: '1710'
+          seed: dk-bruun-7542
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1699-1730
+          seed: dk-hede-f4h24
     sources:
       - type: literature
         url: https://numismaster.com/MC_65899
@@ -93173,6 +94949,20 @@ coins:
         source: numismaster
       - value: 1.81
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1699-1730)
+          value: 1699-1730
+          seed: dk-bruun-7557
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1699-1730
+          seed: dk-hede-f4h25
     sources:
       - type: literature
         url: https://numismaster.com/MC_65712
@@ -93227,6 +95017,13 @@ coins:
         source: ngc
       - value: 0.873
         source: numismaster
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1699-1730
+          seed: dk-hede-f4h26
     sources:
       - type: literature
         url: https://numismaster.com/MC_65693
@@ -93313,6 +95110,14 @@ coins:
         source: numismaster
       - value: 6.981
         source: hede
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1699)
+          value: '1699'
+          seed: dk-bruun-7291
     sources:
       - type: literature
         url: https://numismaster.com/MC_65893
@@ -93997,6 +95802,14 @@ coins:
     diameter_mm:
       - value: 21.0
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1699)
+          value: '1699'
+          seed: dk-bruun-7290
     sources:
       - type: literature
         url: https://numismaster.com/MC_65927
@@ -98397,6 +100210,20 @@ coins:
         source: numismaster
       - value: 45.35
         source: bruun
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1746)
+          value: '1746'
+          seed: dk-bruun-7603
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: ND (1747)
+          value: '1747'
+          seed: ngc-1050104
     sources:
       - type: literature
         url: https://numismaster.com/MC_65368
@@ -99198,6 +101025,13 @@ coins:
         source: numista
       - value: 15.0
         source: ucoin
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: kmk
+          value: 1746-1766
+          seed: kmk-354431
     sources:
       - type: literature
         url: https://numismaster.com/MC_58031
@@ -100337,6 +102171,14 @@ coins:
         source: ngc
       - value: 6.981
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: ND (1746) Unique
+          value: '1746'
+          seed: ngc-1050972
     sources:
       - type: literature
         url: https://numismaster.com/MC_65902
@@ -103742,6 +105584,27 @@ coins:
     diameter_mm:
       - value: 17.0
         source: numista
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-31
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-31
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '0.75'
+          seed: dk-galster-hg-31
     sources:
       - type: literature
         url: https://www.danskmoent.dk/hansg31.htm
@@ -104398,6 +106261,27 @@ coins:
     diameter_mm:
       - value: 18.6
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1403-1412
+          value: 1403-1412
+          seed: dk-galster-epomg-4
+        - kind: hedged
+          how: after
+          source: lindahl
+          as_printed: efter ca. 1405
+          value: '1405'
+          seed: lindahl-1955-naestved-sterling
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Sterling (3 penning)
+          value: billon
+          seed: dk-galster-epomg-4
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg4.htm
@@ -104633,6 +106517,21 @@ coins:
         source: ikmk
       - value: 17.0
         source: numista
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u. år
+          value: 1448-1481
+          seed: dk-galster-c1g-23
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-c1g-23
     sources:
       - type: literature
         url: https://www.danskmoent.dk/c1g23.htm
@@ -104817,6 +106716,14 @@ coins:
     diameter_mm:
       - value: 29.4
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c3g-99
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g99.htm
@@ -104917,6 +106824,20 @@ coins:
     diameter_mm:
       - value: 21.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: København?
+          seed: kmk-167337
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Skilling
+          value: billon
+          seed: dk-galster-c3g-105
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g105.htm
@@ -105423,6 +107344,33 @@ coins:
         source: danskmoent.dk gros.htm
       - value: 22.0
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: decade
+          source: galster
+          as_printed: 1430erne
+          value: 1430-1439
+          seed: dk-galster-epomg-16
+        - kind: hedged
+          how: decade
+          source: lindahl
+          as_printed: Gros 1430-erne
+          value: 1430-1439
+          seed: lindahl-1955-gurre-gros
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Gros (9 penning)
+          value: billon
+          seed: dk-galster-epomg-16
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: 1.5-1.6
+          seed: dk-galster-epomg-16
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg16.htm
@@ -105577,6 +107525,21 @@ coins:
     diameter_mm:
       - value: 17.0
         source: numista
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-36
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid, Ålborg
+          value: billon
+          seed: dk-galster-hg-36
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/hg36.htm
@@ -106176,6 +108139,27 @@ coins:
     diameter_mm:
       - value: 21.0
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: decade
+          source: galster
+          as_printed: i 1430erne
+          value: 1430-1439
+          seed: dk-galster-epomg-13
+        - kind: hedged
+          how: decade
+          source: lindahl
+          as_printed: Gros 1430-erne
+          value: 1430-1439
+          seed: lindahl-1955-lund-gros
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Gros (9 penning)
+          value: billon
+          seed: dk-galster-epomg-13
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg13.htm
@@ -106388,6 +108372,34 @@ coins:
             11, за Galster 1936) карбування кліпінгів у Malmø почалося у квітні 1518 р. На чому ґрунтується рік 1515 у записі музею, із самого запису не видно.
           da: Nationalmuseets post (KMM, FP 9667.10) angiver 1515–1522. Ifølge danskmoent.dk (18pennin.htm) blev klippingene (Galster 42) præget «i årene 1518-1522»; ifølge Eriksson 2017 (s. 11, efter
             Galster 1936) begyndte klippingudmøntningen i Malmø i april 1518. Hvad postens 1515 bygger på, fremgår ikke af posten.
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: galster
+          as_printed: 1518-1522
+          value: 1518-1522
+          seed: dk-galster-c2g-42
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 2?
+          value: Christian 2?
+          seed: kmk-578962
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 2?
+          value: Christian 2?
+          seed: kmk-741208
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 18 Penning klipping
+          value: billon
+          seed: dk-galster-c2g-42
     sources:
       - type: literature
         url: https://www.danskmoent.dk/18pennin.htm
@@ -107129,6 +109141,14 @@ coins:
     diameter_mm:
       - value: 28.8
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c3g-95b
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g95.htm
@@ -107448,6 +109468,27 @@ coins:
     diameter_mm:
       - value: 16.0
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
+          seed: dk-galster-epomg-7
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-naestved-kobbersterling
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-7
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg7.htm
@@ -107863,6 +109904,21 @@ coins:
     diameter_mm:
       - value: 38.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: København eller Malmø
+          value: København, Malmø
+          seed: dk-galster-f1g-45
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Nobel
+          value: gold
+          seed: dk-galster-f1g-45
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g45.htm
@@ -107942,6 +109998,21 @@ coins:
     diameter_mm:
       - value: 22.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: København eller Malmø
+          value: København, Malmø
+          seed: dk-galster-f1g-46
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Ungersk gylden
+          value: gold
+          seed: dk-galster-f1g-46
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g46.htm
@@ -107995,6 +110066,14 @@ coins:
     weight_rough_g:
       - value: 14.53
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Nobel
+          value: gold
+          seed: dk-galster-c2g-37
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g37.htm
@@ -108054,6 +110133,21 @@ coins:
     diameter_mm:
       - value: 40.0
         source: danskmoent.dk 3nobel.htm
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-2nobel
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Nobel
+          value: gold
+          seed: dk-galster-2nobel
     sources:
       - type: literature
         url: https://www.danskmoent.dk/2nobel.htm
@@ -108122,6 +110216,21 @@ coins:
     diameter_mm:
       - value: 40.0
         source: danskmoent.dk 3nobel.htm
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-3nobel
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 3 Nobel
+          value: gold
+          seed: dk-galster-3nobel
     sources:
       - type: literature
         url: https://www.danskmoent.dk/3nobel.htm
@@ -108348,6 +110457,14 @@ coins:
     diameter_mm:
       - value: 29.0
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c3g-104
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g104.htm
@@ -108473,6 +110590,25 @@ coins:
     diameter_mm:
       - value: 21.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Ribe?
+          seed: kmk-131362
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Ribe?
+          seed: kmk-279451
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-c3g-109
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g109.htm
@@ -108599,6 +110735,27 @@ coins:
       - min: 0.75
         max: 1.33
         source: Lindahl 1955 (NNÅ 1955), s. 80
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
+          seed: dk-galster-epomg-14
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-odense-kobbersterling
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-14
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg14.htm
@@ -108658,6 +110815,14 @@ coins:
     diameter_mm:
       - value: 28.0
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c3g-107
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g107.htm
@@ -108734,6 +110899,20 @@ coins:
     diameter_mm:
       - value: 23.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Ribe?
+          seed: kmk-316651
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Skilling
+          value: billon
+          seed: dk-galster-c3g-108
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g108.htm
@@ -108818,6 +110997,20 @@ coins:
         source: galster
       - value: 14.38
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Mark klipping
+          value: silver
+          seed: dk-galster-c3g-92
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Mark klipping
+          value: silver
+          seed: dk-galster-c3g-92a
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g92.htm
@@ -108869,6 +111062,14 @@ coins:
         source: galster
       - value: 3.32
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 8 Skilling klipping
+          value: billon
+          seed: dk-galster-c3g-93
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g93.htm
@@ -108917,6 +111118,14 @@ coins:
         source: galster
       - value: 1.51
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling klipping
+          value: billon
+          seed: dk-galster-c3g-94
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g94.htm
@@ -108997,6 +111206,14 @@ coins:
     diameter_mm:
       - value: 29.0
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c3g-95a
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g95.htm
@@ -109073,6 +111290,14 @@ coins:
     diameter_mm:
       - value: 23.0
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Skilling
+          value: billon
+          seed: dk-galster-c3g-96
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g96.htm
@@ -109157,6 +111382,14 @@ coins:
     diameter_mm:
       - value: 27.0
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Skilling
+          value: billon
+          seed: dk-galster-c3g-100
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g100.htm
@@ -109222,6 +111455,21 @@ coins:
     diameter_mm:
       - value: 38.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: København eller Malmø
+          value: København, Malmø
+          seed: dk-galster-f1g-47
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Sølvgylden
+          value: silver
+          seed: dk-galster-f1g-47
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g48.htm
@@ -109275,6 +111523,21 @@ coins:
     diameter_mm:
       - value: 41.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: København eller Malmø
+          value: København, Malmø
+          seed: dk-galster-f1g-48
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 1/2 Sølvgylden
+          value: silver
+          seed: dk-galster-f1g-48
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g48.htm
@@ -109333,6 +111596,21 @@ coins:
     diameter_mm:
       - value: 38.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: København eller Malmø
+          value: København, Malmø
+          seed: dk-galster-f1g-49
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Halv Sølvgylden
+          value: silver
+          seed: dk-galster-f1g-49
     catalog_alts:
       - register: galster
         value: '48'
@@ -109401,6 +111679,21 @@ coins:
     diameter_mm:
       - value: 40.0
         source: numista
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: København eller Malmø
+          value: København, Malmø
+          seed: dk-galster-f1g-50
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Halv Sølvgylden
+          value: silver
+          seed: dk-galster-f1g-50
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g50.htm
@@ -109456,6 +111749,14 @@ coins:
     diameter_mm:
       - value: 32.0
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1/2 eller 1 Mark
+          value: silver
+          seed: dk-galster-f1g-53
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g53.htm
@@ -110081,6 +112382,27 @@ coins:
         source: ikmk
       - value: 17.8
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1413-1420
+          value: 1413-1420
+          seed: dk-galster-epomg-9
+        - kind: hedged
+          how: after
+          source: lindahl
+          as_printed: efter ca. 1405
+          value: '1405'
+          seed: lindahl-1955-lund-sterling
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Sterling (3 penning)
+          value: billon
+          seed: dk-galster-epomg-9
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg9.htm
@@ -110198,6 +112520,14 @@ coins:
     diameter_mm:
       - value: 21.0
         source: numista
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-c3g-106
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g106.htm
@@ -123474,6 +125804,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 1(?)
+          value: Frederik 1
+          seed: kmk-132932
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/132932
@@ -123576,6 +125914,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 1(?)
+          value: Frederik 1
+          seed: kmk-133117
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133117
@@ -123696,6 +126042,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 1(?)
+          value: Frederik 1
+          seed: kmk-133182
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133182
@@ -124245,6 +126599,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 4?
+          value: Christian 4?
+          seed: kmk-133293
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133293
@@ -125119,6 +127481,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 4?
+          value: Christian 4?
+          seed: kmk-133403
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133403
@@ -125138,6 +127508,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3(?)
+          value: Frederik 3
+          seed: kmk-133408
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133408
@@ -125157,6 +127535,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3(?)
+          value: Frederik 3
+          seed: kmk-133409
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133409
@@ -125184,6 +127570,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 7?
+          value: Christian 7?
+          seed: kmk-344340
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133417
@@ -125534,6 +127928,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 6(?)
+          value: Frederik 6
+          seed: kmk-133427
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133427
@@ -125556,6 +127958,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 6(?)
+          value: Frederik 6
+          seed: kmk-133429
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133429
@@ -125901,6 +128311,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Næstved?
+          seed: kmk-133841
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133841
@@ -125924,6 +128341,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Næstved?
+          seed: kmk-133842
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133842
@@ -125947,6 +128371,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Næstved?
+          seed: kmk-133843
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133843
@@ -125970,6 +128401,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: København?
+          seed: kmk-133844
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133844
@@ -126189,6 +128627,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 1?
+          value: Christian 1?
+          seed: kmk-133856
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/133856
@@ -172752,6 +175198,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 3?
+          value: Christian 3?
+          seed: kmk-167398
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/167398
@@ -180880,6 +183334,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 3 eller Frederik 2(?)
+          value: Christian 3 eller Frederik 2
+          seed: kmk-264876
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/264876
@@ -181303,6 +183765,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3(?)
+          value: Frederik 3
+          seed: kmk-266474
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/266474
@@ -181354,6 +183824,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 1(?)
+          value: Frederik 1
+          seed: kmk-266794
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/266794
@@ -181547,6 +184025,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9(?)
+          value: Christian 9
+          seed: kmk-267320
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/267320
@@ -184751,6 +187237,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-273808
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/273808
@@ -192813,6 +195306,14 @@ coins:
     mint_verified: false
     verified: false
     ruler_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-291455
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/291455
@@ -192867,6 +195368,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans(?)
+          value: Hans
+          seed: kmk-291456
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/291456
@@ -195780,6 +198289,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: '?'
+          value: '?'
+          seed: kmk-295434
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/295434
@@ -196326,6 +198843,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Ribe?
+          seed: kmk-296324
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/296324
@@ -197162,6 +199686,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3?
+          value: Frederik 3?
+          seed: kmk-298433
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/298433
@@ -197504,6 +200036,13 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: kmk
+          value: 1396-1439
+          seed: kmk-299036
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/299036
@@ -197531,6 +200070,13 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: kmk
+          value: 1396-1439
+          seed: kmk-299037
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/299037
@@ -199018,6 +201564,14 @@ coins:
     mint_verified: true
     verified: false
     ruler_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Rigsrådet?
+          value: Rigsrådet?
+          seed: kmk-306131
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/306131
@@ -199045,6 +201599,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: '?'
+          value: '?'
+          seed: kmk-306180
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/306180
@@ -199111,6 +201673,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: '?'
+          value: '?'
+          seed: kmk-306271
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/306271
@@ -199418,6 +201988,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Ålborg?
+          seed: kmk-306416
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/306416
@@ -200697,6 +203274,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 4 (?)
+          value: Christian 4
+          seed: kmk-308618
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/308618
@@ -201214,6 +203799,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: '?'
+          value: '?'
+          seed: kmk-309771
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/309771
@@ -201234,6 +203827,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-309772
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/309772
@@ -201399,6 +203999,14 @@ coins:
     weight_rough_g:
       - value: 0.42
         source: kmk
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 1?
+          value: Christian 1?
+          seed: kmk-310250
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/310250
@@ -202044,6 +204652,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian I/Hans ?
+          value: Christian I/Hans ?
+          seed: kmk-311343
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/311343
@@ -202063,6 +204679,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian I/Hans ?
+          value: Christian I/Hans ?
+          seed: kmk-311344
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/311344
@@ -202082,6 +204706,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian I/Hans ?
+          value: Christian I/Hans ?
+          seed: kmk-311345
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/311345
@@ -203924,6 +206556,14 @@ coins:
     mint_verified: false
     verified: false
     ruler_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-317649
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317649
@@ -203970,6 +206610,14 @@ coins:
     mint_verified: false
     verified: false
     ruler_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-317650
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317650
@@ -203998,6 +206646,14 @@ coins:
     mint_verified: false
     verified: false
     ruler_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-317651
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317651
@@ -204026,6 +206682,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-317652
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317652
@@ -204054,6 +206718,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-317653
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317653
@@ -204082,6 +206754,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-317654
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/317654
@@ -206920,6 +209600,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: '?'
+          value: '?'
+          seed: kmk-328099
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/328099
@@ -207000,6 +209688,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København el. Ribe
+          value: København, Ribe
+          seed: kmk-328504
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/328504
@@ -207088,6 +209784,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-328562
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/328562
@@ -207293,6 +209996,14 @@ coins:
     mint_verified: true
     verified: false
     ruler_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-330624
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/330624
@@ -207318,6 +210029,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø (?)
+          seed: kmk-330687
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/330687
@@ -208004,6 +210722,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Rønneby?
+          seed: kmk-333073
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/333073
@@ -208027,6 +210752,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 1?
+          value: Frederik 1?
+          seed: kmk-333107
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/333107
@@ -208078,6 +210811,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Ribe?
+          seed: kmk-333226
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/333226
@@ -209171,6 +211911,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Kbh. el. Malmø
+          value: Kbh., Malmø
+          seed: kmk-340458
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/340458
@@ -209564,6 +212312,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3?
+          value: Frederik 3?
+          seed: kmk-344425
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/344425
@@ -210541,6 +213297,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 3?
+          value: Christian 3?
+          seed: kmk-348214
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/348214
@@ -211495,6 +214259,19 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: (Christopher af Bayern?)
+          seed: kmk-351474
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-351474
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/351474
@@ -212074,6 +214851,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø(?)
+          seed: kmk-352954
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/352954
@@ -212321,6 +215105,14 @@ coins:
     weight_rough_g:
       - value: 0.42
         source: kmk
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-353422
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/353422
@@ -212752,6 +215544,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København el. Ribe
+          value: København, Ribe
+          seed: kmk-354460
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/354460
@@ -212801,6 +215601,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 2?
+          value: Christian 2?
+          seed: kmk-354755
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/354755
@@ -214715,6 +217523,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 3?
+          value: Christian 3?
+          seed: kmk-368250
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/368250
@@ -232587,6 +235403,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 4?
+          value: Frederik 4?
+          seed: kmk-438115
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/438115
@@ -236292,6 +239116,13 @@ coins:
     mint_verified: false
     verified: false
     ruler_verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-480560
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/480560
@@ -237876,6 +240707,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-553
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/553
@@ -238169,6 +241007,14 @@ coins:
     weight_rough_g:
       - value: 1.36
         source: kmk
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-569267
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/569267
@@ -238199,6 +241045,14 @@ coins:
     weight_rough_g:
       - value: 0.36
         source: kmk
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-569268
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/569268
@@ -238607,6 +241461,14 @@ coins:
     weight_rough_g:
       - value: 1.2
         source: kmk
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-572395
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/572395
@@ -238637,6 +241499,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 9?
+          value: Christian 9?
+          seed: kmk-572405
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/572405
@@ -238831,6 +241701,20 @@ coins:
     weight_rough_g:
       - value: 1.51
         source: kmk
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 3?
+          value: Christian 3?
+          seed: kmk-572934
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: København?
+          seed: kmk-572934
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/572934
@@ -238879,6 +241763,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Roskilde?
+          seed: kmk-573613
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/573613
@@ -239115,6 +242006,14 @@ coins:
     mint_verified: false
     verified: false
     ruler_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-575659
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/575659
@@ -240156,6 +243055,14 @@ coins:
     weight_rough_g:
       - value: 0.92
         source: kmk
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Johannes(?)
+          value: Johannes
+          seed: kmk-589138
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/589138
@@ -240287,6 +243194,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 1?
+          value: Frederik 1?
+          seed: kmk-589271
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/589271
@@ -240314,6 +243229,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 2(?)
+          value: Christian 2
+          seed: kmk-589343
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/589343
@@ -240341,6 +243264,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-591463
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/591463
@@ -241294,6 +244224,14 @@ coins:
     weight_rough_verified: false
     mint_verified: true
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 4?
+          value: Frederik 4?
+          seed: kmk-621827
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/621827
@@ -242704,6 +245642,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik?
+          value: Frederik?
+          seed: kmk-638108
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/638108
@@ -242808,6 +245754,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3?
+          value: Frederik 3?
+          seed: kmk-641992
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/641992
@@ -248954,6 +251908,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christna 4 ?
+          value: Christna 4 ?
+          seed: kmk-655672
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/655672
@@ -249184,6 +252146,14 @@ coins:
     weight_rough_g:
       - value: 0.5
         source: kmk
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans/Frederik 1?
+          value: Hans/Frederik 1?
+          seed: kmk-669949
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/669949
@@ -249726,6 +252696,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Valdemarerne?
+          value: Valdemarerne?
+          seed: kmk-683147
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/683147
@@ -249746,6 +252724,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Valdemarerne?
+          value: Valdemarerne?
+          seed: kmk-683148
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/683148
@@ -251637,6 +254623,13 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: kmk
+          value: 1534-1559
+          seed: kmk-688104
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/688104
@@ -256609,6 +259602,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 4?
+          value: Christian 4?
+          seed: kmk-700781
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/700781
@@ -257451,6 +260452,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Chrisitan IV?
+          value: Chrisitan IV?
+          seed: kmk-715282
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/715282
@@ -259810,6 +262819,14 @@ coins:
     mint_verified: false
     verified: false
     ruler_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-734050
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/734050
@@ -260080,6 +263097,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 7?
+          value: Christian 7?
+          seed: kmk-735610
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/735610
@@ -260103,6 +263128,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Ribe?
+          seed: kmk-736249
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/736249
@@ -260125,6 +263157,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 7?
+          value: Frederik 7?
+          seed: kmk-736269
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/736269
@@ -263762,6 +266802,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-741073
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/741073
@@ -263813,6 +266860,14 @@ coins:
     mint_verified: false
     verified: false
     ruler_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans?
+          value: Hans?
+          seed: kmk-741189
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/741189
@@ -263843,6 +266898,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 3?
+          value: Christian 3?
+          seed: kmk-741205
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/741205
@@ -264042,6 +267105,14 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Hans ?
+          value: Hans ?
+          seed: kmk-746409
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/746409
@@ -269190,6 +272261,19 @@ coins:
     diameter_mm:
       - value: 16.5
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1609
+          seed: denmark-numismaster-64971
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-09)(a)
+          value: 1607-1609
+          seed: ngc-1049979
     sources:
       - type: literature
         url: https://numismaster.com/MC_64971
@@ -269229,6 +272313,14 @@ coins:
     weight_rough_g:
       - value: 1.0
         source: kmk
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 4(?)
+          value: Christian 4
+          seed: kmk-559016
     sources:
       - type: literature
         url: https://numismaster.com/MC_64976
@@ -270735,6 +273827,19 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: '1611'
+          seed: denmark-numismaster-65521
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1611) Rare
+          value: '1611'
+          seed: ngc-1050078
     sources:
       - type: literature
         url: https://numismaster.com/MC_65521
@@ -270779,6 +273884,19 @@ coins:
     diameter_mm:
       - value: 60.0
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1614
+          seed: denmark-numismaster-65595
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-14) Unique
+          value: 1607-1614
+          seed: ngc-1050083
     sources:
       - type: literature
         url: https://numismaster.com/MC_65595
@@ -271538,6 +274656,19 @@ coins:
         source: ngc
       - value: 29.232
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1614
+          seed: denmark-numismaster-65422
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-14) Unique
+          value: 1607-1614
+          seed: ngc-1050179
     sources:
       - type: literature
         url: https://numismaster.com/MC_65422
@@ -271628,6 +274759,19 @@ coins:
     weight_rough_g:
       - value: 86.98
         source: numista
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: '1611'
+          seed: denmark-numismaster-65570
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1611) Rare
+          value: '1611'
+          seed: ngc-1050186
     sources:
       - type: literature
         url: https://numismaster.com/MC_65570
@@ -272050,6 +275194,13 @@ coins:
         source: numista
       - value: 19.7
         source: ucoin
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: kmk
+          value: 1588-1648
+          seed: kmk-191584
     sources:
       - type: literature
         url: https://numismaster.com/MC_65050
@@ -273889,6 +277040,19 @@ coins:
         source: ucoin
       - value: 15.0
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1618-1619
+          seed: denmark-numismaster-64961
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1618-19)
+          value: 1618-1619
+          seed: ngc-1050498
     sources:
       - type: literature
         url: https://numismaster.com/MC_64961
@@ -275772,6 +278936,19 @@ coins:
         source: ngc
       - value: 29.232
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: '1611'
+          seed: denmark-numismaster-65424
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca.1611) Unique
+          value: '1611'
+          seed: ngc-1050713
     sources:
       - type: literature
         url: https://numismaster.com/MC_65424
@@ -276824,6 +280001,14 @@ coins:
         - seed: ngc-1051604
           source: ngc
           years: '1784'
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: 1771 (1784)
+          value: '1784'
+          seed: ngc-1051604
     sources:
       - type: literature
         url: https://numismaster.com/MC_85473
@@ -276900,6 +280085,14 @@ coins:
     weight_rough_g:
       - value: 1.008
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1620-23)
+          value: 1620-1623
+          seed: ngc-1051679
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.1-1620-23-cuid-1051679-duid-1239748
@@ -277161,6 +280354,14 @@ coins:
     weight_rough_g:
       - value: 1.008
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1620-23)
+          value: 1620-1623
+          seed: ngc-1051727
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.4-1620-23-cuid-1051727-duid-1239751
@@ -277482,6 +280683,14 @@ coins:
         - seed: ngc-1051865
           source: ngc
           years: '1773'
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: 1771 (1773)
+          value: '1773'
+          seed: ngc-1051865
     sources:
       - type: literature
         url: https://numismaster.com/MC_85471
@@ -277594,6 +280803,14 @@ coins:
     weight_rough_g:
       - value: 1.008
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1620-23)
+          value: 1620-1623
+          seed: ngc-1051970
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.3-1620-23-cuid-1051970-duid-1239750
@@ -278026,6 +281243,14 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: MDCLXXXIII (1683)
+          value: '1683'
+          seed: ngc-1052025
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-speciedaler-km-73-mdclxxxiii-1683-cuid-1052025-duid-1239845
@@ -278299,6 +281524,14 @@ coins:
     weight_rough_g:
       - value: 1.008
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1620-23)
+          value: 1620-1623
+          seed: ngc-1052598
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.2-1620-23-cuid-1052598-duid-1239749
@@ -278336,6 +281569,14 @@ coins:
     weight_rough_g:
       - value: 1.008
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1620-23)
+          value: 1620-1623
+          seed: ngc-1052599
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.5-1620-23-cuid-1052599-duid-1239752
@@ -278373,6 +281614,14 @@ coins:
     weight_rough_g:
       - value: 1.008
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1624-30)
+          value: 1624-1630
+          seed: ngc-1052600
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-2-skilling-lybsk-km-8.6-1624-30-cuid-1052600-duid-1239753
@@ -278861,6 +282110,19 @@ coins:
         source: ngc
       - value: 17.0
         source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1609
+          seed: denmark-numismaster-117788
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-09)
+          value: 1607-1609
+          seed: ngc-1053891
     sources:
       - type: literature
         url: https://numismaster.com/MC_117788
@@ -280271,6 +283533,19 @@ coins:
     diameter_mm:
       - value: 16.5
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: numismaster
+          value: 1607-1609
+          seed: denmark-numismaster-64973
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1607-09)
+          value: 1607-1609
+          seed: ngc-1059867
     sources:
       - type: literature
         url: https://numismaster.com/MC_64973
@@ -282851,6 +286126,13 @@ coins:
         source: ngc
       - value: 11.711
         source: numismaster
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: København ?
+          seed: kmk-569371
     sources:
       - type: literature
         url: https://numismaster.com/MC_65108
@@ -284046,6 +287328,14 @@ coins:
     weight_rough_g:
       - value: 2.016
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1620-23)
+          value: 1620-1623
+          seed: ngc-1069324
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-skilling-lybsk-km-9.1-1620-23-cuid-1069324-duid-1239755
@@ -284083,6 +287373,14 @@ coins:
     weight_rough_g:
       - value: 2.016
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: (1624-30)
+          value: 1624-1630
+          seed: ngc-1069325
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/denmark-gl%C3%BCckstadt-4-skilling-lybsk-km-9.2-1624-30-cuid-1069325-duid-1239756
@@ -284308,6 +287606,14 @@ coins:
     weight_rough_g:
       - value: 0.37
         source: ngc
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: ngc
+          as_printed: (ca1510)
+          value: '1510'
+          seed: ngc-167719
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-pfennig-mb-8-ca1510-cuid-167719-duid-380783

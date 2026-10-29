@@ -13,6 +13,21 @@ coins:
     year_last: 1523
     year_label: '1523'
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: other_page
+          source: galster
+          as_printed: '1523'
+          value: '1523'
+          seed: dk-galster-hg-145
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-145
     mint: Visby
     catalog:
       galster: '145'
@@ -140,6 +155,14 @@ coins:
           - 1525
     year_label: 1524-1525
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Skilling
+          value: billon
+          seed: dk-galster-hg-143
     ruler_alts:
       - value: Christian II
         source: bruun
@@ -275,6 +298,27 @@ coins:
           - 1525
     year_label: 1517-1525
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1522-1523)
+          value: 1522-1523
+          seed: dk-bruun-4125
+        - kind: hedged
+          how: query
+          source: galster
+          as_printed: U.år (1523?)
+          value: '1523'
+          seed: dk-galster-hg-144
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Skilling
+          value: billon
+          seed: dk-galster-hg-144
     ruler_alts:
       - value: Christian II
         source: bruun

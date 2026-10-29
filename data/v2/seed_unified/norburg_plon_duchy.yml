@@ -157,6 +157,14 @@ coins:
         source: ngc
       - value: 3.5
         source: numismaster
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: ngc
+          as_printed: MDCCLX (1760) G
+          value: '1760'
+          seed: ngc-1140635
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf

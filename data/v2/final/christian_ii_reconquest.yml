@@ -16,6 +16,14 @@ coins:
           - 1532
     year_label: 1531-1532
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1531-32)
+          value: 1531-1532
+          seed: dk-bruun-9285
     mint: Christiania
     catalog:
       sieg: 1A
@@ -78,6 +86,21 @@ coins:
     year_last: 1531
     year_label: '1531'
     year_verified: true
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Hamar (Norge) eller København
+          value: Hamar (Norge), København
+          seed: dk-galster-c2g-174
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hamar (Norge) eller København, Søsling(?) (klipping), u. år (-32)?
+          value: billon
+          seed: dk-galster-c2g-174
     mint:
       - Hamar
       - Kopenhagen
@@ -126,6 +149,21 @@ coins:
     year_last: 1531
     year_label: '1531'
     year_verified: true
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Hamar eller Oslo
+          value: Hamar, Oslo
+          seed: dk-galster-c2g-173
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hamar/Oslo, 2 mark klipping
+          value: silver
+          seed: dk-galster-c2g-173
     mint: Christiania
     catalog:
       numista: '121235'
@@ -202,6 +240,21 @@ coins:
           - 1532
     year_label: 1531-1532
     year_verified: true
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Hamar eller Oslo
+          value: Hamar, Oslo
+          seed: dk-galster-c2g-172
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hamar/Oslo, mark klipping
+          value: silver
+          seed: dk-galster-c2g-172
     mint:
       - Christiania
       - Hamar

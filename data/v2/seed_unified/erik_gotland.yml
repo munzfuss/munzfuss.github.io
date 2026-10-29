@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `erik_gotland`.
-# Generated 2026-10-26 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-29 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/erik_gotland.yml across all sources.
 #
 # Input: 1 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: erik_gotland
-generated_at: '2026-10-26'
+generated_at: '2026-10-29'
 coins:
   - id: c-65aab3fb
     class_id: c-65aab3fb
@@ -37,6 +37,21 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca.1448
+          value: '1448'
+          seed: dk-galster-hg-138
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Gote
+          value: silver
+          seed: dk-galster-hg-138
     sources:
       - type: literature
         url: https://www.danskmoent.dk/gotlg138.htm

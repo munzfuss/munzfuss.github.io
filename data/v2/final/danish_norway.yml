@@ -224,6 +224,19 @@ coins:
           - 1533
     year_label: 1524-1533
     year_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: skilling
+          value: billon
+          seed: dk-galster-f1g-167
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1524-1533
     mint: Christiania
     catalog:
       bruun_collection_id: '9268'
@@ -343,6 +356,14 @@ coins:
     year_last: 1530
     year_label: '1530'
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 skilling (Firehvid)
+          value: billon
+          seed: dk-galster-f1g-169
     mint: Bergen
     catalog:
       bruun_collection_id: '9271'
@@ -534,6 +555,14 @@ coins:
           - 1537
     year_label: 1533, 1537
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling (Firehvid)
+          value: billon
+          seed: dk-galster-c3g-176
     mint: Bergen
     catalog:
       bruun_collection_id: '9298'
@@ -20538,6 +20567,13 @@ coins:
           - 1670
     year_label: 1649-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: kmk
+          value: 1648-1670
+          seed: kmk-301822
     mint: Christiania
     catalog:
       km: '30'
@@ -21404,6 +21440,12 @@ coins:
           - 1670
     year_label: 1649-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1649-1670
     mint: Christiania
     catalog:
       km: '29'
@@ -24836,6 +24878,12 @@ coins:
           - 1765
     year_label: 1746-1765
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1746-1765
     mint: Kongsberg
     catalog:
       km: '241'
@@ -25492,6 +25540,12 @@ coins:
           - 1523
     year_label: 1513-1523
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1513-1523
     mint: Christiania
     catalog:
       numista: '110323'
@@ -25551,6 +25605,21 @@ coins:
           - 1523
     year_label: 1513-1523
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1513-1523
+          seed: dk-galster-c2g-163
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Skilling
+          value: billon
+          seed: dk-galster-c2g-163
     catalog:
       numista: '124914'
       skaare: '307'
@@ -25610,6 +25679,14 @@ coins:
     year_last: 1531
     year_label: '1531'
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 skilling
+          value: billon
+          seed: dk-galster-f1g-168
     mint: Christiania
     catalog:
       numista: '444429'
@@ -25666,6 +25743,14 @@ coins:
     year_last: 1525
     year_label: '1525'
     year_verified: true
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 skilling (Firehvid)
+          value: billon
+          seed: dk-galster-f1g-166
     mint: Christiania
     catalog:
       numista: '477551'
@@ -28332,6 +28417,14 @@ coins:
         - seed: dk-bruun-10082
           source: bruun
           years: '1661'
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1661)
+          value: '1661'
+          seed: dk-bruun-10082
     mint: Christiania
     catalog:
       km: '65'
@@ -31449,6 +31542,14 @@ coins:
           - 1679
     year_label: 1673, 1675, 1679
     year_verified: true
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1670-99)
+          value: 1670-1699
+          seed: dk-bruun-10497
     mint: Christiania
     catalog:
       km: '138'
@@ -31555,6 +31656,20 @@ coins:
         - seed: dk-bruun-10502
           source: bruun
           years: 1670-1675
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1670-99)
+          value: 1670-1699
+          seed: dk-bruun-10501
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1670-75)
+          value: 1670-1675
+          seed: dk-bruun-10502
     mint: Christiania
     catalog:
       km: '117'
@@ -31706,6 +31821,27 @@ coins:
       year_first:
       year_last:
       year_verified: false — dating by fineness, not a source year.
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1481-1512)
+          value: 1481-1512
+          seed: dk-bruun-9223
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: U.år
+          value: 1483-1513
+          seed: dk-galster-hg-149
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Søsling
+          value: billon
+          seed: dk-galster-hg-149
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -31763,6 +31899,27 @@ coins:
       - c-b0280aa1
     label: unified-dk-bruun-9242
     origin: promoted
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1483-1505)
+          value: 1483-1505
+          seed: dk-bruun-9242
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: U.år
+          value: 1483-1513
+          seed: dk-galster-hg-157
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-157
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -31832,6 +31989,27 @@ coins:
       - c-5de9afc1
     label: unified-dk-bruun-9243
     origin: promoted
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1505-10)
+          value: 1505-1510
+          seed: dk-bruun-9243
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: U.år
+          value: 1483-1513
+          seed: dk-galster-hg-159
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-159
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -31871,6 +32049,14 @@ coins:
       - c-88b8007d
     label: unified-dk-bruun-9248
     origin: promoted
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1505-1510)
+          value: 1505-1510
+          seed: dk-bruun-9248
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -31910,6 +32096,14 @@ coins:
       - c-431ae620
     label: unified-dk-bruun-9251
     origin: promoted
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1505-10)
+          value: 1505-1510
+          seed: dk-bruun-9251
   - fuss: seed_unsorted
     phase: bruun
     kind: kurant
@@ -31925,6 +32119,27 @@ coins:
           - 1523
     year_label: 1513-1523
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1513-1523)
+          value: 1513-1523
+          seed: dk-bruun-9255
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u. år
+          value: 1513-1523
+          seed: dk-galster-c2g-164
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Oslo, Skilling
+          value: billon
+          seed: dk-galster-c2g-164
     mint: Christiania
     catalog:
       bruun_collection_id: '9255'
@@ -32008,6 +32223,14 @@ coins:
         - seed: dk-bruun-9259
           source: bruun
           years: 1510-1522
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1510-22)
+          value: 1510-1522
+          seed: dk-bruun-9259
     mint: Nidaros
     catalog:
       bruun_collection_id: '9259'
@@ -32089,6 +32312,14 @@ coins:
         - seed: dk-bruun-9261
           source: bruun
           years: 1510-1522
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1510-1522)
+          value: 1510-1522
+          seed: dk-bruun-9261
     mint: Nidaros
     catalog:
       bruun_collection_id: '9261'
@@ -32153,6 +32384,14 @@ coins:
           - 1522
     year_label: 1510-1522
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1510-22)
+          value: 1510-1522
+          seed: dk-bruun-9262
     mint: Nidaros
     catalog:
       bruun_collection_id: '9262'
@@ -32201,6 +32440,14 @@ coins:
           - 1524
     year_label: 1523-1524
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1523-24)
+          value: 1523-1524
+          seed: dk-bruun-9264
     mint: Christiania
     catalog:
       bruun_collection_id: '9264'
@@ -32251,6 +32498,27 @@ coins:
           - 1533
     year_label: 1524-1533
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1524-33)
+          value: 1524-1533
+          seed: dk-bruun-9275
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u. år
+          value: 1523-1533
+          seed: dk-galster-f1g-170
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: skilling
+          value: billon
+          seed: dk-galster-f1g-170
     mint: Bergen
     catalog:
       bruun_collection_id: '9275'
@@ -32330,6 +32598,27 @@ coins:
           - 1533
     year_label: 1523-1533
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1523-33)
+          value: 1523-1533
+          seed: dk-bruun-9282
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u. år
+          value: 1523-1533
+          seed: dk-galster-f1g-171
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: hvid
+          value: billon
+          seed: dk-galster-f1g-171
     mint: Bergen
     catalog:
       bruun_collection_id: '9282'
@@ -32404,6 +32693,14 @@ coins:
           - 1538
     year_label: 1522-1538
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1522-38)
+          value: 1522-1538
+          seed: dk-bruun-9293
     mint: Nidaros
     catalog:
       bruun_collection_id: '9293'
@@ -32452,6 +32749,20 @@ coins:
           - 1523
     year_label: 1513-1523
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          value: 1513-1523
+          seed: dk-galster-c2g-165
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Oslo, Dobbelthvid
+          value: billon
+          seed: dk-galster-c2g-165
     mint: Christiania
     catalog:
       galster: '165'
@@ -32521,6 +32832,21 @@ coins:
       - c-b5343992
     label: unified-dk-galster-hg-151
     origin: promoted
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: U.år
+          value: 1483-1513
+          seed: dk-galster-hg-151
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-151
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -32561,6 +32887,21 @@ coins:
       - c-729bcac0
     label: unified-dk-galster-hg-153
     origin: promoted
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: U.år
+          value: 1483-1513
+          seed: dk-galster-hg-153
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-153
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -32618,6 +32959,20 @@ coins:
       - c-afd707d6
     label: unified-dk-galster-hg-155
     origin: promoted
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          value: 1483-1513
+          seed: dk-galster-hg-155
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-155
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
@@ -33282,6 +33637,12 @@ coins:
           - 1533
     year_label: 1524-1533
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1524-1533
     catalog:
       numista: '444482'
       galster: UU 171
@@ -34550,6 +34911,12 @@ coins:
           - 1766
     year_label: 1746-1766
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1746-1766
     mint: Kongsberg
     metal_verified: false
     weight_rough_verified: false
@@ -34603,6 +34970,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     mint: Christiania
     metal_verified: false
     weight_rough_verified: false
@@ -34656,6 +35029,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       others:
@@ -34689,6 +35068,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       others:
@@ -34722,6 +35107,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       others:
@@ -44644,6 +45035,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '158'
@@ -44675,6 +45072,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '155'
@@ -44710,6 +45113,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '150'
@@ -44741,6 +45150,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '139'
@@ -44772,6 +45187,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '138'
@@ -44803,6 +45224,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '136'
@@ -44834,6 +45261,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '133'
@@ -44869,6 +45302,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '130'
@@ -44900,6 +45339,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '124'
@@ -44931,6 +45376,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '122'
@@ -44962,6 +45413,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '121'
@@ -44993,6 +45450,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '120'
@@ -45024,6 +45487,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '119'
@@ -45055,6 +45524,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '118'
@@ -45086,6 +45561,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '115'
@@ -45117,6 +45598,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '114'
@@ -45148,6 +45635,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '109'
@@ -45179,6 +45672,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '105'
@@ -45210,6 +45709,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '103'
@@ -45241,6 +45746,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '102'
@@ -45272,6 +45783,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '101'
@@ -45303,6 +45820,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '98'
@@ -45334,6 +45857,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '93'
@@ -45365,6 +45894,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '73'
@@ -45396,6 +45931,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '71'
@@ -45427,6 +45968,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '70'
@@ -45458,6 +46005,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '69'
@@ -45489,6 +46042,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '66'
@@ -45520,6 +46079,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '65'
@@ -45551,6 +46116,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '60'
@@ -45582,6 +46153,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     mint: Christiania
     catalog:
       schou: '38'
@@ -48020,6 +48597,12 @@ coins:
           - 1730
     year_label: 1699-1730
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1699-1730
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -48367,6 +48950,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     catalog:
       hede: '46'
     metal_verified: false
@@ -51012,6 +51601,12 @@ coins:
           - 1670
     year_label: 1649-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1649-1670
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -51072,6 +51667,14 @@ coins:
       -   - 1620
           - 1629
     year_label: 1620-1629
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 4(?)
+          value: Christian 4
+          seed: kmk-264871
     mint: Christiania
     metal_verified: false
     weight_rough_verified: false
@@ -51101,6 +51704,12 @@ coins:
           - 1523
     year_label: 1513-1523
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1513-1523
     mint: Christiania
     catalog:
       others:
@@ -51125,6 +51734,14 @@ coins:
     ruler: Øystein?
     issuing_entity: danish_norway
     id: c-aab7b19e
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Øystein?
+          value: Øystein?
+          seed: kmk-273116
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -51609,6 +52226,12 @@ coins:
           - 1699
     year_label: 1670-1699
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1670-1699
     catalog:
       schou: '41'
       others:
@@ -52172,6 +52795,12 @@ coins:
           - 1533
     year_label: 1524-1533
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1524-1533
     mint: Bergen
     metal_verified: false
     weight_rough_verified: false
@@ -52224,6 +52853,12 @@ coins:
           - 1559
     year_label: 1534-1559
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1534-1559
     catalog:
       galster: '165'
     metal_verified: false
@@ -53515,6 +54150,19 @@ coins:
           - 1699
     year_label: 1670-1699
     year_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 5?
+          value: Christian 5?
+          seed: kmk-349998
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1670-1699
     catalog:
       hede: '47'
     metal_verified: false
@@ -53691,6 +54339,19 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3?
+          value: Frederik 3?
+          seed: kmk-353223
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -53791,6 +54452,12 @@ coins:
           - 1808
     year_label: 1766-1808
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1766-1808
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -53819,6 +54486,12 @@ coins:
           - 1808
     year_label: 1766-1808
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1766-1808
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -53847,6 +54520,12 @@ coins:
           - 1730
     year_label: 1699-1730
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1699-1730
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -53875,6 +54554,12 @@ coins:
           - 1730
     year_label: 1699-1730
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1699-1730
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -53903,6 +54588,12 @@ coins:
           - 1730
     year_label: 1699-1730
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1699-1730
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -53931,6 +54622,12 @@ coins:
           - 1699
     year_label: 1670-1699
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1670-1699
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -54104,6 +54801,12 @@ coins:
           - 1670
     year_label: 1649-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1649-1670
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -54248,6 +54951,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -54400,6 +55109,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     catalog:
       others:
         - Auk.Kat.# 633
@@ -54431,6 +55146,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     catalog:
       others:
         - Auk.Kat.# 548
@@ -54462,6 +55183,12 @@ coins:
           - 1533
     year_label: 1523-1533
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1523-1533
     mint: Christiania
     catalog:
       others:
@@ -58409,6 +59136,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     mint: Kongsberg
     metal_verified: false
     weight_rough_verified: false
@@ -58442,6 +59175,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     mint: Kongsberg
     metal_verified: false
     weight_rough_verified: false
@@ -58471,6 +59210,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     mint: Kongsberg
     metal_verified: false
     weight_rough_verified: false
@@ -58500,6 +59245,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     mint: Kongsberg
     metal_verified: false
     weight_rough_verified: false
@@ -62715,6 +63466,47 @@ coins:
           - 1670
     year_label: 1649-1670
     year_verified: false
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3?
+          value: Frederik 3?
+          seed: kmk-572398
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3?
+          value: Frederik 3?
+          seed: kmk-572399
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3?
+          value: Frederik 3?
+          seed: kmk-572400
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christiania?
+          seed: kmk-572398
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christiania?
+          seed: kmk-572399
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christiania?
+          seed: kmk-572400
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1649-1670
     mint: Christiania?
     metal: silver
     metal_verified: true
@@ -62784,6 +63576,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -62820,6 +63618,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -62848,6 +63652,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -62876,6 +63686,12 @@ coins:
           - 1648
     year_label: 1588-1648
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1588-1648
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -62904,6 +63720,12 @@ coins:
           - 1533
     year_label: 1523-1533
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1523-1533
     mint: Bergen
     catalog:
       galster: '171'
@@ -62931,6 +63753,14 @@ coins:
     year_first: 1666
     year_last: 1666
     year_label: '1666'
+    uncertainty:
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3?
+          value: Frederik 3?
+          seed: kmk-646300
     mint: Christiania
     metal: silver
     metal_verified: true
@@ -62961,6 +63791,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -63038,6 +63874,12 @@ coins:
           - 1523
     year_label: 1513-1523
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1513-1523
     mint: Christiania
     catalog:
       schou: '24'
@@ -63165,6 +64007,12 @@ coins:
           - 1730
     year_label: 1699-1730
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1699-1730
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64211,6 +65059,12 @@ coins:
           - 1808
     year_label: 1766-1808
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1766-1808
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64239,6 +65093,12 @@ coins:
           - 1808
     year_label: 1766-1808
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1766-1808
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64267,6 +65127,12 @@ coins:
           - 1808
     year_label: 1766-1808
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1766-1808
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64295,6 +65161,12 @@ coins:
           - 1808
     year_label: 1766-1808
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1766-1808
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64627,6 +65499,12 @@ coins:
           - 1766
     year_label: 1746-1766
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1746-1766
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64675,6 +65553,12 @@ coins:
           - 1730
     year_label: 1699-1730
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1699-1730
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64703,6 +65587,12 @@ coins:
           - 1730
     year_label: 1699-1730
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1699-1730
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64731,6 +65621,12 @@ coins:
           - 1730
     year_label: 1699-1730
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1699-1730
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64759,6 +65655,12 @@ coins:
           - 1730
     year_label: 1699-1730
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1699-1730
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64787,6 +65689,12 @@ coins:
           - 1730
     year_label: 1699-1730
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1699-1730
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64815,6 +65723,12 @@ coins:
           - 1730
     year_label: 1699-1730
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1699-1730
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -64980,6 +65894,12 @@ coins:
           - 1319
     year_label: 1299-1319
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1299-1319
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -65009,6 +65929,12 @@ coins:
           - 1319
     year_label: 1299-1319
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1299-1319
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -65038,6 +65964,12 @@ coins:
           - 1533
     year_label: 1523-1533
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1523-1533
     metal: silver
     metal_verified: true
     weight_rough_verified: false
@@ -65097,6 +66029,12 @@ coins:
           - 1533
     year_label: 1524-1533
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1524-1533
     mint: Bergen
     catalog:
       schou: '21'
@@ -65596,6 +66534,21 @@ coins:
       - c-2d8327a8
     label: unified-dk-numista-444264
     origin: promoted
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-gej
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Rhinsk gylden
+          value: gold
+          seed: dk-galster-hg-gej
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
@@ -66027,6 +66980,26 @@ coins:
         - seed: dk-bruun-6738
           source: bruun
           years: 1669-1670
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1669-70?)
+          value: 1669-1670
+          seed: dk-bruun-6737
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1669-1670?)
+          value: 1669-1670
+          seed: dk-bruun-6738
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1648-1670
+          seed: dk-hede-f3h39
     mint:
       - Christiania
       - Kopenhagen
@@ -67973,6 +68946,14 @@ coins:
     year_last: 1671
     year_label: '1671'
     year_verified: true
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1670-1699
+          seed: dk-hede-nc5h1
     mint: Christiania
     catalog:
       km: '111'
@@ -68053,6 +69034,14 @@ coins:
     year_last: 1671
     year_label: '1671'
     year_verified: true
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1670-1699
+          seed: dk-hede-nc5h2
     mint: Christiania
     catalog:
       km: '112'
@@ -68139,6 +69128,20 @@ coins:
     year_last: 1674
     year_label: '1674'
     year_verified: true
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1670-99)
+          value: 1670-1699
+          seed: dk-bruun-10509
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: U.år
+          value: 1670-1699
+          seed: dk-hede-nc5h6
     mint: Christiania
     catalog:
       km: '103'
@@ -68231,6 +69234,14 @@ coins:
           - 1699
     year_label: 1670-1699
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1670-1699
+          seed: dk-hede-nc5h64
     mint: Christiania
     catalog:
       hede: '64'
@@ -68280,6 +69291,14 @@ coins:
     year_last: 1674
     year_label: '1674'
     year_verified: true
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1670-1699
+          seed: dk-hede-nc5h7
     mint: Christiania
     catalog:
       hede: '7'
@@ -68356,6 +69375,20 @@ coins:
         - seed: dk-bruun-10498
           source: bruun
           years: '1676'
+    uncertainty:
+      year:
+        - kind: inferred
+          how: text_year
+          source: bruun
+          as_printed: ND
+          value: '1676'
+          seed: dk-bruun-10498
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u.år
+          value: 1670-1699
+          seed: dk-hede-nc5h8
     mint: Christiania
     catalog:
       km: '120'
@@ -68453,6 +69486,13 @@ coins:
     year_last: 1687
     year_label: '1687'
     year_verified: true
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          value: 1670-1699
+          seed: dk-hede-nc5h66
     mint: Kongsberg
     catalog:
       km: '171'
@@ -72649,6 +73689,14 @@ coins:
     year_last: 1674
     year_label: '1674'
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: text_year
+          source: bruun
+          as_printed: ND
+          value: '1674'
+          seed: dk-bruun-10504
     mint: Christiania
     catalog:
       hede: 19B
@@ -74845,6 +75893,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     mint: Kongsberg
     metal_verified: false
     weight_rough_verified: false
@@ -74874,6 +75928,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     mint: Kongsberg
     metal_verified: false
     weight_rough_verified: false
@@ -76335,6 +77395,12 @@ coins:
           - 1670
     year_label: 1648-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1648-1670
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -76363,6 +77429,12 @@ coins:
           - 1808
     year_label: 1766-1808
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1766-1808
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -76391,6 +77463,12 @@ coins:
           - 1808
     year_label: 1766-1808
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1766-1808
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -76419,6 +77497,12 @@ coins:
           - 1766
     year_label: 1746-1766
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1746-1766
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -76447,6 +77531,12 @@ coins:
           - 1766
     year_label: 1746-1766
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1746-1766
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -76475,6 +77565,12 @@ coins:
           - 1699
     year_label: 1670-1699
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1670-1699
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -76503,6 +77599,12 @@ coins:
           - 1699
     year_label: 1670-1699
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1670-1699
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
@@ -78290,6 +79392,12 @@ coins:
           - 1670
     year_label: 1649-1670
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1649-1670
     catalog:
       km:
         - '85'
@@ -78989,6 +80097,27 @@ coins:
       - c-eb940dae
     label: unified-dk-bruun-9222
     origin: promoted
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1510)
+          value: '1510'
+          seed: dk-bruun-9222
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-148
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-hg-148
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
@@ -79301,6 +80430,14 @@ coins:
           - 1699
     year_label: 1670-1699
     year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: hede
+          as_printed: u. år
+          value: 1670-1699
+          seed: dk-hede-nc5h20
     mint: Christiania
     catalog:
       hede: '20'
@@ -80045,6 +81182,21 @@ coins:
       year_first:
       year_last:
       year_verified: false — a lower bound from the coin system, not a source year.
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-150
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Søsling
+          value: billon
+          seed: dk-galster-hg-150
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -80091,6 +81243,21 @@ coins:
       - c-bdabd565
     label: unified-dk-galster-hg-152
     origin: promoted
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-152
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-152
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -80130,6 +81297,21 @@ coins:
       - c-bbfe91f4
     label: unified-dk-galster-hg-154
     origin: promoted
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-154
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-154
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -80170,6 +81352,20 @@ coins:
       - c-de626989
     label: unified-dk-galster-hg-156
     origin: promoted
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          value: 1483-1513
+          seed: dk-galster-hg-156
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hulpenning
+          value: billon
+          seed: dk-galster-hg-156
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -80230,6 +81426,21 @@ coins:
       - c-45d45048
     label: unified-dk-galster-hg-158
     origin: promoted
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-158
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-158
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -80292,6 +81503,21 @@ coins:
       - c-f735782e
     label: unified-dk-galster-hg-160
     origin: promoted
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-160
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-160
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -80347,6 +81573,21 @@ coins:
       - c-22b314cc
     label: unified-dk-galster-hg-161
     origin: promoted
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-161
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-161
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -80386,6 +81627,21 @@ coins:
       - c-98650919
     label: unified-dk-galster-hg-162
     origin: promoted
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: galster
+          as_printed: u.år
+          value: 1483-1513
+          seed: dk-galster-hg-162
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-hg-162
   - fuss: 9_25_thaler
     phase: I
     kind: kurant
@@ -81255,6 +82511,14 @@ coins:
           - 1387
     year_label: 1380-1387
     year_verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1380-87)
+          value: 1380-1387
+          seed: dk-bruun-9217
     mint: Christiania
     catalog:
       bruun_collection_id: '9217'

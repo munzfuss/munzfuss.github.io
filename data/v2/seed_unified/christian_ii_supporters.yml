@@ -50,6 +50,14 @@ coins:
     diameter_mm:
       - value: 26.0
         source: danskmoent.dk chr/c2g80.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Skilling
+          value: billon
+          seed: dk-galster-c2g-80
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -101,6 +109,14 @@ coins:
     diameter_mm:
       - value: 14.0
         source: danskmoent.dk chr/c2g87.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Hvid
+          value: billon
+          seed: dk-galster-c2g-87
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -167,6 +183,27 @@ coins:
     diameter_mm:
       - value: 28.0
         source: danskmoent.dk chr/c2g91.htm
+    uncertainty:
+      year:
+        - kind: hedged
+          how: attributed
+          source: bruun
+          as_printed: ND (1535)
+          value: '1535'
+          seed: dk-bruun-4149
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c2g-91
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '4.1'
+          seed: dk-galster-c2g-91
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -209,6 +246,21 @@ coins:
         approx: false
         source: danskmoent.dk chr/c2g82.htm
         url: https://www.danskmoent.dk/gif/grevefejden_g82-83.gif
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-c2g-82
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Mark, Klipping
+          value: silver
+          seed: dk-galster-c2g-82
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g82.htm
@@ -248,6 +300,21 @@ coins:
         approx: false
         source: danskmoent.dk chr/c2g82.htm
         url: https://www.danskmoent.dk/gif/grevefejden_g82-83.gif
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-c2g-83
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Mark, Klipping
+          value: silver
+          seed: dk-galster-c2g-83
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g82.htm
@@ -294,6 +361,14 @@ coins:
     diameter_mm:
       - value: 35.0
         source: danskmoent.dk chr/c2g84.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Halv Sølvgylden
+          value: silver
+          seed: dk-galster-c2g-84
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g84.htm
@@ -340,6 +415,20 @@ coins:
     diameter_mm:
       - value: 28.0
         source: danskmoent.dk chr/c2g85.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c2g-85
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '3.35'
+          seed: dk-galster-c2g-85
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g85.htm
@@ -374,6 +463,20 @@ coins:
     diameter_mm:
       - value: 28.0
         source: danskmoent.dk chr/c2g86.htm
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Malmø?
+          seed: kmk-741413
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 4 Skilling
+          value: billon
+          seed: dk-galster-c2g-86
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g86.htm
@@ -430,6 +533,28 @@ coins:
     diameter_mm:
       - value: 16.0
         source: danskmoent.dk chr/c2g88.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: feud_window
+          source: galster
+          as_printed: u.år
+          value: 1534-1536
+          seed: dk-galster-c2g-88
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christian 2 (?)
+          value: Christian 2
+          seed: kmk-662149
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Hvid
+          value: billon
+          seed: dk-galster-c2g-88
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g88.htm
@@ -489,6 +614,28 @@ coins:
     diameter_mm:
       - value: 23.0
         source: danskmoent.dk chr/c2g89.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: feud_window
+          source: galster
+          as_printed: U.år
+          value: 1534-1536
+          seed: dk-galster-c2g-89
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-c2g-89
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Ungersk gylden
+          value: gold
+          seed: dk-galster-c2g-89
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g89.htm
@@ -540,6 +687,28 @@ coins:
     diameter_mm:
       - value: 25.0
         source: danskmoent.dk chr/c2g90.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: feud_window
+          source: galster
+          as_printed: U.år
+          value: 1534-1536
+          seed: dk-galster-c2g-90
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: dk-galster-c2g-90
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 2 Ungersk gylden
+          value: gold
+          seed: dk-galster-c2g-90
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g90.htm
