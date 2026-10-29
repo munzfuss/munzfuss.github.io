@@ -268,7 +268,8 @@ def make_display_groups(
 
 
 def _seg_rle(rows: list[dict], field: str, ndigits: int, base_dec: int = 0,
-             src_field: str = "sources", group_field: str | None = None) -> list[dict]:
+             src_field: str = "sources", group_field: str | None = None,
+             fin_anchor: bool = False) -> list[dict]:
     """Run-length-encode `rows` by the rounded value of `field`.
 
     Consecutive rows whose `field` value rounds equal collapse into ONE
@@ -301,7 +302,7 @@ def _seg_rle(rows: list[dict], field: str, ndigits: int, base_dec: int = 0,
             for s in r.get(src_field) or []:
                 if s and s not in segs[-1]["sources"]:
                     segs[-1]["sources"].append(s)
-            for s in r.get("sources") or []:
+            for s in (r.get("sources") or []) + ((r.get("fin_anchor") or []) if fin_anchor else []):
                 if s and s not in segs[-1]["anchor"]:
                     segs[-1]["anchor"].append(s)
             if segs[-1].get("delta_pct") is None and r.get("delta_pct") is not None:
@@ -316,7 +317,8 @@ def _seg_rle(rows: list[dict], field: str, ndigits: int, base_dec: int = 0,
                          # fine weight and a Δ derived from a marked reading
                          # carry the mark, exactly as «(?)» propagates, while a
                          # sub-row computed from an unmarked specimen stays clean.
-                         "anchor": [s for s in (r.get("sources") or []) if s],
+                         "anchor": [s for s in (r.get("sources") or [])
+                                    + ((r.get("fin_anchor") or []) if fin_anchor else []) if s],
                          "delta_pct": r.get("delta_pct"), "decimals": dec})
     return segs
 
@@ -367,6 +369,8 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
         "delta_src": ([cc.primary_weight_source] if cc.primary_weight_source else [])
                      if cc.delta_basis == "rauh" else
                      ([cc.primary_derived_source] if cc.primary_derived_source else []),
+        "fin_anchor": ([f"fin:{cc.primary_fin_used_source}"]
+                       if cc.primary_fin_used_source else []),
     }]
     for ca in cc.alts:
         r_rough = ca.weight_rough_g if ca.weight_rough_g is not None else cc.primary_weight_rough_g
@@ -380,6 +384,7 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
             "delta_src": ([ca.source] if ca.source else [])
                          if cc.delta_basis == "rauh" else
                          ([ca.derived_source] if ca.derived_source else []),
+            "fin_anchor": [f"fin:{ca.fin_source}"] if ca.fin_source else [],
         })
     # Dedup TRUE duplicates (identical across all four fields) — union every
     # per-column source list so a merged sub-row keeps all its provenance.
@@ -389,7 +394,7 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
                   for f in ("rough", "fine", "delta", "fineness"))
         for d in deduped:
             if d["_k"] == k:
-                for sf in ("sources", "fine_src", "delta_src"):
+                for sf in ("sources", "fine_src", "delta_src", "fin_anchor"):
                     for s in r.get(sf) or []:
                         if s not in d[sf]:
                             d[sf].append(s)
@@ -422,8 +427,9 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
     # NOT collapsed into one span. проба itself IS the grouping axis (no
     # group_field) and keeps its spanning merge.
     cc.msr_weight_segs   = _seg_rle(deduped, "rough", 4, base_dec=2, group_field="fineness")
-    cc.msr_fein_segs     = _seg_rle(deduped, "fine", 7, base_dec=5, src_field="fine_src", group_field="fineness")
-    cc.msr_delta_segs    = _seg_rle(deduped, "delta", 7, base_dec=5, src_field="delta_src", group_field="fineness")
+    cc.msr_fein_segs     = _seg_rle(deduped, "fine", 7, base_dec=5, src_field="fine_src", group_field="fineness", fin_anchor=True)
+    cc.msr_delta_segs    = _seg_rle(deduped, "delta", 7, base_dec=5, src_field="delta_src", group_field="fineness",
+                                    fin_anchor=cc.delta_basis != "rauh")
     cc.msr_fineness_segs = _seg_rle(deduped, "fineness", 5, base_dec=3)
     # A silver_billon type names each sub-row's own metal by the same 50 %
     # line the assay metal uses (curator 2026-10-26): 1 = silver, 0 = billon,
@@ -447,7 +453,7 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
     cc.msr_stop_rough_segs = _seg_rle(deduped, "n_rough", 2, base_dec=2,
                                       group_field="fineness")
     cc.msr_stop_fine_segs = _seg_rle(deduped, "n_fine", 2, base_dec=2,
-                                     src_field="fine_src", group_field="fineness")
+                                     src_field="fine_src", group_field="fineness", fin_anchor=True)
     # проба source attribution: the fineness's OWN sources (fineness_groups),
     # keyed by value — NEVER the per-specimen weight sources. A single reading
     # (curator-inferred or single-sourced) still carries its source so the
@@ -538,6 +544,9 @@ class ComputedAlt:
     # Tooltip label naming BOTH sources used for the derived Feingewicht
     # (weight source + the fineness source actually used, own or fallback).
     derived_source: str | None = None
+    # The fineness reading the derived values were computed with (its source
+    # label), so a mark on that reading reaches them as one on the weight does.
+    fin_source: str | None = None
 
 
 @dataclass
@@ -552,6 +561,8 @@ class ComputedCoin:
     primary_weight_source: str | None = None
     primary_fineness: float | None = None
     primary_fineness_source: str | None = None
+    # The fineness reading the PRIMARY derived values used (see ComputedAlt.fin_source).
+    primary_fin_used_source: str | None = None
     primary_diameter_mm: float | None = None
     primary_diameter_source: str | None = None
     # Source label for derived weight_fein_g / delta. When the same source
@@ -1328,6 +1339,9 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     # Per-source markers — the readings themselves compute as normal.
     cc.weight_marks   = marker_reasons(coin.weight_rough_g)
     cc.fineness_marks = marker_reasons(coin.fineness)
+    # A derived value is anchored to its weight source AND to «fin:<source>» of
+    # the fineness it used, so both readings' marks reach it (see `_anch`).
+    cc.weight_marks.update({f"fin:{k}": v for k, v in cc.fineness_marks.items()})
     cc.diameter_marks = marker_reasons(coin.diameter_mm)
 
     # Primary values (first list entry) drive the table's main display
@@ -1440,6 +1454,7 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
 
     cc.primary_derived_source = _derived_label(cc.primary_weight_source,
                                                primary_f_used_src)
+    cc.primary_fin_used_source = cc_primary_fin_src = primary_f_used_src
 
     # Propagate the unverified marker: any derived metric is only as solid as
     # its inputs. If the rough weight or fineness is unverified, mark all
@@ -1599,6 +1614,7 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         ca.diameter_mm = _diameter_for(w_src)
         _fill_alt_derived(ca, w, f_used)
         ca.derived_source = _derived_label(w_src, f_used_src)
+        ca.fin_source = f_used_src
         cc.alts.append(ca)
         if w_src:
             seen_alt_srcs.add(w_src)
@@ -1616,6 +1632,7 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         ca.diameter_mm = _diameter_for(f_src)
         _fill_alt_derived(ca, primary_w, fv)
         ca.derived_source = _derived_label(cc.primary_weight_source, f_src)
+        ca.fin_source = f_src
         cc.alts.append(ca)
         seen_alt_srcs.add(f_src)
 
@@ -1648,10 +1665,20 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     fein_pairs: list[tuple[float, str | None, str | None]] = []
     delta_pairs: list[tuple[float, str | None, str | None]] = []
     impl_pairs: list[tuple[float, str | None, float]] = []  # (value, src, delta_pct)
+    # A derived value's anchor names its WEIGHT source and, as «fin:<source>»,
+    # the fineness reading it used: a mark on either input reaches it
+    # (curator 2026-10-29: a weight with no fineness of its own times a (§)
+    # fineness gives (§) derived values). `weight_marks` carries both kinds.
+    def _anch(w_src, f_src):
+        a = w_src or ""
+        return (a + ("\n" if a else "") + f"fin:{f_src}") if f_src else (a or None)
     if cc.weight_fein_g is not None:
-        fein_pairs.append((cc.weight_fein_g, cc.primary_derived_source, cc.primary_weight_source))
+        fein_pairs.append((cc.weight_fein_g, cc.primary_derived_source,
+                           _anch(cc.primary_weight_source, cc_primary_fin_src)))
+    _d_fin = cc.delta_basis != "rauh"     # a rough-basis Δ uses no fineness
     if cc.delta_g is not None:
-        delta_pairs.append((cc.delta_g, cc.primary_derived_source, cc.primary_weight_source))
+        delta_pairs.append((cc.delta_g, cc.primary_derived_source,
+                            _anch(cc.primary_weight_source, cc_primary_fin_src if _d_fin else None)))
     if (cc.implied_fuss is not None and cc.delta_pct is not None
             and abs(cc.delta_pct) > 2):
         impl_pairs.append((cc.implied_fuss, cc.primary_derived_source, cc.delta_pct))
@@ -1670,11 +1697,13 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         # (own reading, ca.weight_rough_g set) anchors to its own source; a
         # fineness-only alt derives from the PRIMARY weight, so it anchors to
         # the primary weight source.
-        alt_anchor = ca.source if ca.weight_rough_g is not None else cc.primary_weight_source
+        alt_anchor = _anch(ca.source if ca.weight_rough_g is not None else cc.primary_weight_source,
+                           ca.fin_source)
         if ca.weight_fein_g is not None:
             fein_pairs.append((ca.weight_fein_g, alt_label, alt_anchor))
         if ca.delta_g is not None:
-            delta_pairs.append((ca.delta_g, alt_label, alt_anchor))
+            delta_pairs.append((ca.delta_g, alt_label, alt_anchor if _d_fin else
+                                (ca.source if ca.weight_rough_g is not None else cc.primary_weight_source)))
         if (ca.implied_fuss is not None and ca.delta_pct is not None
                 and abs(ca.delta_pct) > 2):
             impl_pairs.append((ca.implied_fuss, alt_label, ca.delta_pct))
