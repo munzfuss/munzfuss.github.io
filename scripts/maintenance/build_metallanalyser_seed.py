@@ -49,6 +49,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from lib.paths import HARVEST_ROOT  # noqa: E402
+from lib import uncertainty as unc  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
 CACHE = HARVEST_ROOT / "danskmoent" / "hans_1481_1513"
@@ -427,6 +428,10 @@ def collect() -> tuple[list[dict], list[str]]:
         }
         if window_dated:
             entry["year_verified"] = False
+            # Lindblad's period for the hvid group (tab. 8-11), not a year on
+            # the coin.
+            unc.add(entry, "year", "window", "metallanalyser",
+                    value=unc.year_value(entry.get("year_first"), entry.get("year_last")))
         if ranges and undated:
             # the year range covers the dated pieces only; undated ones exist
             entry["_metallanalyser_undated_rows"] = [

@@ -70,6 +70,7 @@ from lib.bruun_pages import printed_page  # noqa: E402
 from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+from lib import uncertainty as unc  # noqa: E402
 from lib.v2_seed_writer import normalise_nominal_display  # noqa: E402
 from lib.v2_seed_writer import _canonicalise_mint  # noqa: E402
 from lib.seed_merge import apply_mint_mark, apply_source_errata  # noqa: E402
@@ -419,6 +420,18 @@ def parse_year_span(lot: dict) -> tuple[int, int, bool] | None:
     if yl < yf:
         yf, yl = yl, yf
     return (yf, yl, False)
+
+
+def nd_printed(lot: dict) -> tuple[str, str] | None:
+    """(how, verbatim text) of the lot's «ND» dating, for Coin.uncertainty:
+    «ND (ca. 1496-97)» → circa, «ND (1607-11)» → attributed. None when the
+    meta line has no «ND (…)»."""
+    meta = lot.get("meta_line") or ""
+    m = re.search(r"\bND\s*\(([^)]*)\)", meta)
+    if not m:
+        return None
+    how = "circa" if re.match(r"\s*c(?:a|irca)?\.?\s*\d", m.group(1)) else "attributed"
+    return how, m.group(0)
 
 
 # --- ruler, read from its slot in the catalogue line ------------------------
@@ -1149,6 +1162,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     # (year_verified=False → «(?)» marker); a dated strike keeps the plain
     # single year. See parse_year_span / SOURCES.md §13.3.
     span = parse_year_span(lot)
+    year_unc = None
     if span:
         yf, yl, yv = span
         year_fields: dict[str, Any] = {
@@ -1158,6 +1172,9 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
             "year_ranges": [[yf, yl]],
             "year_verified": yv,
         }
+        printed = nd_printed(lot)
+        year_unc = (printed[0] if printed else "attributed",
+                    printed[1] if printed else None, unc.year_value(yf, yl))
     else:
         year_fields = {
             "year_label": str(year),
@@ -1175,6 +1192,9 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         # year) still wins per verified-wins; this only sets the bruun member.
         if re.search(r"\bND\b", meta):
             year_fields["year_verified"] = False
+            # «ND» without a range: the year is read from the lot's text (the
+            # upstream parser's verdict), not printed as the coin's date.
+            year_unc = ("text_year", "ND", unc.year_value(year, year))
     entry: dict[str, Any] = {
         "id": cid,
         "fuss": "seed_unsorted",
@@ -1226,6 +1246,9 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     wmark = _BRUUN_LOT_WEIGHT_MARKS.get((part, lot.get("lot_no")))
     if wmark and entry.get("weight_rough_g") is not None:
         entry["weight_rough_g"] = [{"value": entry["weight_rough_g"], "source": "bruun", **wmark}]
+    if year_unc and entry.get("year_verified") is False:
+        unc.add(entry, "year", year_unc[0], "bruun", as_printed=year_unc[1],
+                value=year_unc[2])
 
     return entry
 

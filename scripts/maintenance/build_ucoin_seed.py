@@ -59,6 +59,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import PROJECT_ROOT, UCOIN_CACHE  # noqa: E402
+from lib import uncertainty as unc  # noqa: E402
 from lib.ruler_reigns import reign_covers_year  # noqa: E402
 from lib.seed_merge import merge_seed  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
@@ -637,6 +638,13 @@ def _build_entry_from_v1(v1_coin: dict, entity: str) -> dict | None:
         "mint_verified": False,
         "sources": v1_coin.get("sources") or [],
     }
+    # Coin.uncertainty: a carried-over value no source backs.
+    for fld, key in (("metal", "metal"), ("fineness", "fineness"),
+                     ("weight", "weight_rough_g"), ("mint", "mint"),
+                     ("ruler", "ruler")):
+        v = entry.get(key)
+        if v not in (None, "", []) and not isinstance(v, (list, dict)):
+            unc.add(entry, fld, "uncited", "ucoin", value=v)
     return entry
 
 

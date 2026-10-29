@@ -4489,6 +4489,11 @@ def build_unified(members: list[dict], unified_id: str,
     year_alts = _collect_year_alts(members)
     if year_alts:
         out["year_alts"] = year_alts
+    # Coin.uncertainty: every member's entries, each with its seed id.
+    from lib import uncertainty as _unc
+    uncertainty = _unc.union(members)
+    if uncertainty:
+        out["uncertainty"] = uncertainty
     ruler_alts = _collect_ruler_alts(members)
     if ruler_alts:
         out["ruler_alts"] = ruler_alts
@@ -4703,6 +4708,12 @@ def _apply_year_window(unified: dict, member_ids: set[str], windows: list[dict],
         unified["year_label"] = str(first) if first == last else f"{first}-{last}"
         unified["year_verified"] = False
         unified["year_note"] = dict(w["note"])
+        # The window is the curator's compilation of the members' datings.
+        from lib import uncertainty as _unc
+        unified.setdefault("uncertainty", {})["year"] = (
+            [e for e in (unified.get("uncertainty") or {}).get("year") or []]
+            + [dict(_unc.make("compiled", "merge_decisions",
+                              value=unified["year_label"]))])
         return
 
 

@@ -1371,7 +1371,7 @@ def _is_out_of_scope_catalog(catalog) -> bool:
     return False
 
 
-def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, int]]:
+def _apply_pre_write_hygiene(coins: list[dict], source_name: str = "") -> tuple[list[dict], dict[str, int]]:
     """Run mint + nominal + catalog normalisation in-place and filter
     out coins whose nominal puts them out-of-scope. Returns
     (kept, stats)."""
@@ -1477,6 +1477,11 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         if isinstance(mint, str) and AMBIG_RE.search(mint):
             tokens = [t.strip() for t in AMBIG_RE.split(mint) if t.strip()]
             if len(tokens) >= 2:
+                if source_name:
+                    # Coin.uncertainty: the source names alternatives itself.
+                    from lib import uncertainty as _unc
+                    _unc.add(c, "mint", "alternatives", source_name,
+                             as_printed=c["mint"], value=", ".join(tokens))
                 mint = tokens
                 c["mint"] = mint
                 # When the SOURCE itself documents uncertainty, the value
@@ -1493,6 +1498,12 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         # flag back to true. Routing and the merger then see the town itself.
         _toks = new_mint if isinstance(new_mint, list) else [new_mint]
         if any(isinstance(t, str) and t.endswith("?") for t in _toks):
+            if source_name:
+                # Coin.uncertainty: the source's own «?», verbatim.
+                from lib import uncertainty as _unc
+                _unc.add(c, "mint", "doubt", source_name,
+                         as_printed=(mint if isinstance(mint, str) else
+                                     ", ".join(t for t in mint or [] if isinstance(t, str))))
             _clean = []
             for t in _toks:
                 t = t[:-1].rstrip() if isinstance(t, str) and t.endswith("?") else t
@@ -1922,7 +1933,7 @@ def write_v2_seed(
     # trade coins (Piastre / Rupee / Fanam / Cash). Runs in-place so
     # all builders benefit uniformly. Returns the kept list +
     # per-source counts of how many entries were touched.
-    coins, hygiene_stats = _apply_pre_write_hygiene(list(coins))
+    coins, hygiene_stats = _apply_pre_write_hygiene(list(coins), source_name)
     if any(hygiene_stats.values()):
         # Report EVERY filter counter, not just the nominal one. The three
         # filters are independent and the KM/year ones routinely dominate: the

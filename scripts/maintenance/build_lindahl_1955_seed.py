@@ -37,6 +37,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+from lib import uncertainty as unc  # noqa: E402
 
 SOURCE = "lindahl"
 URL = "https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf"
@@ -92,6 +93,33 @@ TYPES = [
     ("malmoe-hvid", "1 Hvid", "Christoffer III", "Malmø", (1444, 1444), 86, ["703"], None,
      (0.48, 1.06, 0.79), None, [370, 400], None, True, None),
 ]
+
+
+# Lindahl's own dating of each type, verbatim from the extract (the heading in
+# parentheses, or the figure caption where the heading gives none) — for
+# Coin.uncertainty (curator 2026-10-29). Christopher's skilling has none: its
+# year is his reign.
+_DATING_PRINTED = {
+    "ribe-witten": ("attributed", "1373/77—96"),
+    "naestved-witten-krumstav": ("circa", "1397—ca. 1405"),
+    "naestved-witten-krone": ("circa", "Witten ca 1400"),
+    "lund-sterling": ("after", "efter ca. 1405"),
+    "naestved-sterling": ("after", "efter ca. 1405"),
+    "hulpenning": ("after", "efter ca. 1405, før 1424"),
+    "halvpenning": ("after", "efter ca. 1405, før 1424"),
+    "lund-kobbersterling": ("circa", "ca. 1422"),
+    "naestved-kobbersterling": ("circa", "ca. 1422"),
+    "odense-kobbersterling": ("circa", "ca. 1422"),
+    "randers-kobbersterling": ("circa", "ca. 1422"),
+    "lund-soesling": ("after", "efter reces 1424"),
+    "lebard": ("after", "efter reces 1424"),
+    "lund-gros": ("decade", "Gros 1430-erne"),
+    "gurre-gros": ("decade", "Gros 1430-erne"),
+    "lund-soesling-christopher": ("circa", "ca. 1440"),
+    "skilling-christopher": ("reign", None),
+    "malmoe-sterling": ("circa", "ca. 1444"),
+    "malmoe-hvid": ("after", "efter 1444"),
+}
 
 
 def _metal(fins: list[int], note) -> str | None:
@@ -150,6 +178,9 @@ def collect() -> list[dict]:
             entry["weight_range_g"] = [{"min": rng[0], "max": rng[1], "source": label}]
         if note:
             entry["note"] = dict(note)
+        how, printed = _DATING_PRINTED[key]
+        unc.add(entry, "year", how, SOURCE, as_printed=printed,
+                value=unc.year_value(y0, y1))
         coins.append(entry)
     return coins
 

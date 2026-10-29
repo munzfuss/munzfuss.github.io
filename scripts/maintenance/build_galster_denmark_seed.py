@@ -37,6 +37,7 @@ from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
 from lib.paths import GALSTER_CACHE  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+from lib import uncertainty as unc  # noqa: E402
 
 _OVERVIEW_MANIFEST = GALSTER_CACHE / "_overview_cross_refs.json"
 _DANSKMOENT_BASE = "https://www.danskmoent.dk"
@@ -658,10 +659,36 @@ def _issuer_year_hints() -> dict[str, tuple[str, str]]:
     return out
 
 
+# The page's own dating phrase, read verbatim from the cached page text so the
+# tooltip can quote it (Coin.uncertainty, curator 2026-10-29). First match wins.
+_PRINTED_DATING = [
+    ("query", re.compile(r"[Uu]\.\s*år\.?\s*\(\s*1[3-6]\d{2}\s*\?\s*\)")),
+    ("attributed", re.compile(r"[Uu]\.\s*år\.?\s*\(\s*(?:ca\.?\s*)?1[3-6]\d{2}"
+                              r"(?:\s*[-–]\s*1[3-6]\d{2})?\s*\)")),
+    ("century", re.compile(r"\b1[3-6]00-tallet\b")),
+    ("decade", re.compile(r"(?:i\s+)?\b1[3-6]\d0erne\b")),
+    ("circa", re.compile(r"\bca\.?\s*1[3-6]\d{2}(?:\s*[-–]\s*\d{2,4})?")),
+]
+_PRINTED_UNDATED = re.compile(r"\b[Uu]\.\s*år\b")
+
+
+def _printed_dating(data: dict, only: tuple[str, ...] | None = None) -> tuple[str | None, str | None]:
+    """(how, verbatim phrase) of the page's dating, or (None, None)."""
+    text = data.get("raw_text_excerpt") or ""
+    for how, rx in _PRINTED_DATING:
+        if only and how not in only:
+            continue
+        m = rx.search(text)
+        if m:
+            return how, m.group(0)
+    return None, None
+
+
 def build_entry(data: dict) -> dict | None:
     year_first, year_last = parse_year_range(data.get("year_label"))
     year_verified = True
     issuer_source = None
+    year_unc: list[tuple[str, str | None, str]] = []   # (how, as_printed, source)
     if year_first is None or year_last is None:
         # Undated «u.år» entry — anchor to the ruler reign window per
         # CLAUDE.md §3a (renderer adds `(?)` via year_verified=false), EXCEPT
@@ -677,8 +704,17 @@ def build_entry(data: dict) -> dict | None:
             # (1523?)» (gotlg144), a Rigsrådet group header «1481-83» over a
             # «Hvid U.år» (rigsraad.htm). Written as the year, unverified.
             reign = hint
+            if issuer_source:
+                year_unc.append(("other_page", issuer[0], "galster"))
+            else:
+                how, printed = _printed_dating(
+                    data, ("query", "attributed", "century", "decade", "circa"))
+                year_unc.append((how or "attributed",
+                                 printed or data.get("year_hint"), "galster"))
         elif data.get("page_shape") == "grevenfejde":
             reign = _GREVENS_FEJDE_WINDOW
+            m = _PRINTED_UNDATED.search(data.get("raw_text_excerpt") or "")
+            year_unc.append(("feud_window", m.group(0) if m else None, "galster"))
         else:
             # Root-level single-coin pages (halvrhin.htm, 2nobel.htm) carry
             # no volume prefix in the filename → fall back to the ruler name.
@@ -695,6 +731,10 @@ def build_entry(data: dict) -> dict | None:
             return None
         year_first, year_last = reign
         year_verified = False
+        if not year_unc:
+            m = _PRINTED_UNDATED.search(data.get("raw_text_excerpt") or "")
+            year_unc.append(("reign", m.group(0) if m else data.get("year_label"),
+                             "galster"))
     if not (YEAR_FROM <= year_first <= YEAR_TO):
         return None
 
@@ -774,6 +814,7 @@ def build_entry(data: dict) -> dict | None:
     # «ca. 1380» (m1g1): the year the page gives, flagged as its approximation.
     if data.get("year_approx"):
         year_verified = False
+        year_unc.append(("circa", _printed_dating(data, ("circa",))[1], "galster"))
 
     page_mark = _PAGE_YEAR_MARKS.get(data.get("source_file"))
     if page_mark:
@@ -781,6 +822,7 @@ def build_entry(data: dict) -> dict | None:
         year_label_out = f"{year_first}-{year_last}"
         yr_ranges = [[year_first, year_last]]
         year_verified = False
+        year_unc = [("curator_window", None, "galster")]
 
     entry: dict = {
         "id": cid,
@@ -843,6 +885,14 @@ def build_entry(data: dict) -> dict | None:
     # entries were absorbed into unified foundation entries (build.py
     # `absorbed_seed_ids`); new sub-variant entries surface the issue.
 
+    if entry.get("metal") and entry.get("metal_verified") is False:
+        # Read from the denomination name, not printed as a metal.
+        unc.add(entry, "metal", "from_name", "galster",
+                as_printed=data.get("denomination"), value=entry["metal"])
+    if not year_verified:
+        for how, printed, src in year_unc:
+            unc.add(entry, "year", how, src, as_printed=printed,
+                    value=unc.year_value(year_first, year_last))
     return entry
 
 
@@ -1100,6 +1150,10 @@ def apply_caption_ranges(entries: list[dict], captions: dict[str, list[dict]]) -
         # The caption is a source printing the weight: attested, unless it
         # is a «ca.» figure (same rule as a text «Bruttovægt: ca.»).
         e["weight_rough_verified"] = not all(r["approx"] for r in out)
+        if not e["weight_rough_verified"]:
+            for r in out:
+                unc.add(e, "weight", "circa", "galster", value=(
+                    f"{r['min']}" if not r.get("max") else f"{r['min']}-{r['max']}"))
         n += 1
     return n
 

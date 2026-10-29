@@ -33,6 +33,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from lib.entity_routing import route_entity_with_rules  # noqa: E402
+from lib import uncertainty as unc  # noqa: E402
 from lib.paths import NGC_CACHE  # noqa: E402
 from lib.ruler_reigns import reign_window  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
@@ -240,6 +241,23 @@ def build_entry(rec: dict, scope: str) -> dict | None:
     if (rec.get("year_partially_illegible") or rec.get("year_attributed")
             or yf is None):
         entry["year_verified"] = False
+        # How NGC prints it, verbatim (Coin.uncertainty). A coin with no year
+        # at all shows none, so it records nothing.
+        printed = ("; ".join(rec.get("dates_as_printed") or [])
+                   or "; ".join(d.get("year_mint") for d in rec.get("dates") or []
+                                if isinstance(d, dict) and d.get("year_mint"))
+                   or rec.get("date_line") or None)
+        if yf is not None:
+            if after is not None:
+                how = "after"
+            elif rec.get("year_partially_illegible"):
+                how = "illegible"
+            elif printed and re.search(r"\(\s*c(?:a)?\.?\s*\d", printed):
+                how = "circa"
+            else:
+                how = "attributed"
+            unc.add(entry, "year", how, "ngc", as_printed=printed,
+                    value=unc.year_value(yf, entry.get("year_last")))
 
     for key, dst in (("obverse", "_obverse"), ("reverse", "_reverse"),
                      ("obverse_legend", "_obverse_legend"),

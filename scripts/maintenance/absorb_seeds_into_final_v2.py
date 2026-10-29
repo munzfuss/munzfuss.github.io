@@ -1027,6 +1027,15 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     if _yc["confident"] and _yc["uncertain"]:
         out["year_conflict"] = _yc
 
+    # Coin.uncertainty: unioned from the live members only, never the final's
+    # stored copy (docs/plans/uncertainty_markers.md).
+    from lib import uncertainty as _unc
+    out.pop("uncertainty", None)
+    _u = _unc.union([_m for _m in (members[1:] if len(members) > 1 else members)
+                     if isinstance(_m, dict)])
+    if _u:
+        out["uncertainty"] = _u
+
     # nominal_equiv / nominal_verified travel with the nominal they belong to:
     # taken from the live member whose nominal the final shows (2026-10-26).
     for _k in ("nominal_equiv", "nominal_verified"):
@@ -1129,6 +1138,13 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         out["year_verified"] = False
         _set_reign_span_flag(out)
 
+    # A year that is the ruler's reign is an inference; say so in
+    # Coin.uncertainty when no member already recorded it.
+    if out.get("year_is_reign_span") and out.get("year_verified") is False:
+        _yu = (out.get("uncertainty") or {}).get("year") or []
+        if not any(e.get("how") == "reign" for e in _yu):
+            out.setdefault("uncertainty", {})["year"] = _yu + [
+                _unc.make("reign", "ruler_reigns", value=out.get("year_label"))]
     # Ambiguity-split sweep across members: any member with a scalar
     # mint containing «eller / oder / or / /» indicators (Hede/Galster
     # cataloguer-documented uncertainty) is split in-place to list-form

@@ -110,6 +110,7 @@ _NOMINAL_LOWERCASE_WORDS = {"og", "und", "and"}
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
+from lib import uncertainty as unc  # noqa: E402
 from lib.paths import HEDE_CACHE, PROJECT_ROOT as PROJECT  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
@@ -949,6 +950,10 @@ def _build_coin(
         cm["year_first"] = reign[0]
         cm["year_last"] = reign[1]
         cm["year_verified"] = False
+        _ua = re.search(r"\b[Uu]\.\s*å(?:r|\.)", parsed.get("raw_text") or "")
+        cm["uncertainty"] = unc.add({}, "year", "reign", "hede",
+                                    as_printed=_ua.group(0) if _ua else None,
+                                    value=unc.year_value(*reign))["uncertainty"]
     if ruler:
         cm["ruler"] = ruler
     if isinstance(mint_normalised, list):

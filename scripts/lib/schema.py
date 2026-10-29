@@ -94,6 +94,30 @@ class YearAlt(_StrictBase):
     reason: I18nText
 
 
+class UncertainReading(_StrictBase):
+    """How and by whom one field's value is uncertain (see Coin.uncertainty).
+
+    `kind` hedged: the source gives the value and marks it uncertain itself
+    («ca. 1380», «ND (1607-11)», «U.år (1523?)», «Christian 1?»). `kind`
+    inferred: the source gives no value and the pipeline supplies one (the
+    reign of an undated coin, the standard's fineness, a curator window).
+    `as_printed` is the source's own text, verbatim; `value` is what the field
+    carries because of it. `seed` is set by the merger when it unions the
+    members' entries."""
+    kind: Literal["hedged", "inferred"]
+    how: Literal[
+        # hedged — the source's own qualifier
+        "circa", "attributed", "query", "decade", "century", "illegible",
+        "after", "window", "doubt", "possibly", "alternatives",
+        # inferred — the pipeline's basis
+        "reign", "other_page", "feud_window", "text_year", "standard",
+        "default", "compiled", "curator_window", "from_name", "uncited"]
+    source: str = Field(..., min_length=1)
+    as_printed: str | None = None
+    value: str | None = None
+    seed: str | None = None
+
+
 class YearReading(_StrictBase):
     """One member source's year in a `YearConflict`."""
     seed: str = Field(..., min_length=1)
@@ -1089,6 +1113,14 @@ class Coin(_StrictBase):
     # 2026-10-29). A KMM year is listed but never settles it. Set by the
     # merger, carried to final by absorb from the live members; not rendered.
     year_conflict: "YearConflict | None" = None
+    # Per field («year», «ruler», «mint», «metal», «fineness», «weight»,
+    # «diameter»): every source that gives the value uncertainly, or the basis
+    # on which the pipeline inferred it — kept whole, one entry per source,
+    # never collapsed (curator 2026-10-29). Written by the seed builder where it
+    # sets `<field>_verified: False`; unioned by the merger; carried to final
+    # by absorb from the live members only. Drives «(?)» (hedged) vs «[ … ]»
+    # (inferred) and the tooltip (docs/plans/uncertainty_markers.md).
+    uncertainty: "dict[Literal['year', 'ruler', 'mint', 'metal', 'fineness', 'weight', 'diameter'], list[UncertainReading]] | None" = None
     # A source's own statement that the object is (or may be) a forgery,
     # kept VERBATIM («falsk?», «H. 99 B, samtidig forfalskning?», «Falsk som
     # H. 52»). Recorded so the information is not lost; nothing reads it yet

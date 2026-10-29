@@ -42,6 +42,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from lib.paths import KMK_CACHE, PROJECT_ROOT  # noqa: E402
+from lib import uncertainty as unc  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.entity_routing import route_entity_with_rules  # noqa: E402
 from lib.mint_registry import (  # noqa: E402
@@ -1269,6 +1270,13 @@ def build_entry(src) -> dict | None:
         "verified": False,
         "sources": [_kmm_source(rid, src)],
     }
+    # Coin.uncertainty (curator 2026-10-29): a reign-window year is ours; a
+    # ruler KMM itself questions («Christian 1?») is the museum's own doubt.
+    if not year_verified:
+        unc.add(entry, "year", "reign", "kmk", value=unc.year_value(yf, yl))
+    if "?" in (src.get("authority") or ""):
+        unc.add(entry, "ruler", "doubt", "kmk",
+                as_printed=src["authority"].strip(), value=entry.get("ruler"))
     # KMM's own forgery remark (typeNumber «falsk?», «Falsk som H. 52»,
     # «samtidig forfalskning?»; workDescription «Mønt, falsk»), verbatim.
     # Not acted on anywhere yet (curator 2026-10-17).

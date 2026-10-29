@@ -40,6 +40,7 @@ import ruamel.yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import NUMISMASTER_CACHE, PROJECT_ROOT  # noqa: E402
+from lib import uncertainty as unc  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 from lib.entity_routing import route_entity_with_rules  # noqa: E402
 from lib.note_extract import source_note  # noqa: E402
@@ -439,6 +440,11 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
     # timeline.derive_mint_overrides). Curator direction 2026-07-09 (Serhii).
     if undated:
         entry["year_verified"] = False
+        # The parsed record keeps the ND marker's range, not its text (`date_raw`
+        # is the collapsed Date field), so `as_printed` stays empty until
+        # parse_numismaster records the marker verbatim.
+        unc.add(entry, "year", "attributed", "numismaster",
+                value=unc.year_value(entry.get("year_first"), entry.get("year_last")))
     # Enrichment fields not in Coin schema — prefix with `_` so build.py's
     # seed-merger strips them at validation time (line 343 in build.py). The
     # canonical raw record lives in MC_<N>.parsed.json; these `_`-keys keep
