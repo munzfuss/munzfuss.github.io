@@ -674,6 +674,12 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
     if inferred and hedged:
         push(i18n.ui_get(ui, "uncertainty.inferred_also", lang))
     for e in inferred:
+        if e.get("how") == "compiled" and e.get("as_printed"):
+            # An attribution compiled from works: the basis once, then each
+            # work with its quote.
+            push(f"{how(e)}: {e.get('value') or ''}")
+            push(f"{src(e)}: «{e['as_printed']}»{tr(e)}")
+            continue
         basis = how(e)
         val = e.get("value") or ""
         line = f"{basis}: {val}" if val else basis
