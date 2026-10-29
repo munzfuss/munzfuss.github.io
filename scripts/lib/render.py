@@ -666,27 +666,45 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
         txt = t.get(lang) or t.get("en") or t.get("de")
         return f" («{txt}»)" if txt else ""
 
-    for e in hedged:
-        if e.get("as_printed"):
-            push(f"{src(e)}: «{e['as_printed']}»{tr(e)}")
+    # Tooltip markup read by assets/app.js: [b]…[/b] bold (the work or
+    # source), [i]…[/i] italic (its quote). One entry: the source on its own
+    # line, the quote and its translation on the next (curator 2026-10-29).
+    quoted: set[str] = set()
+
+    def entry(e, prefix: str = ""):
+        q = e.get("as_printed")
+        if q and any(q in x or x in q for x in quoted):
+            return                      # the same passage reached twice
+        if q:
+            quoted.add(q)
+            lines.append(f"{prefix}[b]{src(e)}[/b]")
+            lines.append(f"[i]«{q}»[/i]{tr(e)}")
         else:
-            push(f"{src(e)}: {e.get('value') or ''} ({how(e)})".replace(" ()", ""))
+            lines.append(f"{prefix}[b]{src(e)}[/b]: {e.get('value') or ''}"
+                         + (f" ({how(e)})" if how(e) else ""))
+
+    for e in hedged:
+        entry(e)
     if inferred and hedged:
         push(i18n.ui_get(ui, "uncertainty.inferred_also", lang))
+    compiled_head = False
     for e in inferred:
         if e.get("how") == "compiled" and e.get("as_printed"):
             # An attribution compiled from works: the basis once, then each
             # work with its quote.
-            push(f"{how(e)}: {e.get('value') or ''}")
-            push(f"{src(e)}: «{e['as_printed']}»{tr(e)}")
+            if not compiled_head:
+                lines.append(f"{how(e)}: {e.get('value') or ''}")
+                compiled_head = True
+            entry(e)
             continue
         basis = how(e)
         val = e.get("value") or ""
         line = f"{basis}: {val}" if val else basis
-        if e.get("as_printed") and e.get("source") not in ("ruler_reigns", "merge_decisions", "standard"):
-            line += f" ({src(e)}: «{e['as_printed']}»{tr(e)})"
-        elif e.get("source") not in ("ruler_reigns", "merge_decisions", "standard"):
-            line += f" ({src(e)})"
+        own = e.get("source") not in ("ruler_reigns", "merge_decisions", "standard")
+        if e.get("as_printed") and own:
+            line += f" — [b]{src(e)}[/b]: [i]«{e['as_printed']}»[/i]{tr(e)}"
+        elif own:
+            line += f" — [b]{src(e)}[/b]"
         push(line)
     if field == "year":
         yc = _plain(_get(raw, "year_conflict")) or {}
@@ -694,5 +712,5 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
         if conf:
             push(i18n.ui_get(ui, "uncertainty.confident", lang))
             for r in conf:
-                push(f"{_UNC_SOURCE.get(r.get('source'), r.get('source'))}: {r.get('years') or ''}")
+                push(f"[b]{_UNC_SOURCE.get(r.get('source'), r.get('source'))}[/b]: {r.get('years') or ''}")
     return {"kind": "hedged" if hedged else "inferred", "tip": "\n".join(lines)}

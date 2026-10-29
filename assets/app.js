@@ -524,6 +524,28 @@
       box.appendChild(h);
       box.appendChild(document.createTextNode("\n"));
     }
+    if (kind === "hedged" || kind === "inferred") {
+      // Coin.uncertainty tooltips carry [b]…[/b] (the work / source) and
+      // [i]…[/i] (its quote); built as elements, never as HTML.
+      var parts = text.split(/(\[\/?[bi]\])/);
+      var bold = false, ital = false;
+      for (var p = 0; p < parts.length; p++) {
+        var tok = parts[p];
+        if (tok === "[b]") { bold = true; continue; }
+        if (tok === "[/b]") { bold = false; continue; }
+        if (tok === "[i]") { ital = true; continue; }
+        if (tok === "[/i]") { ital = false; continue; }
+        if (!tok) continue;
+        var node = document.createTextNode(tok);
+        if (bold || ital) {
+          var el = document.createElement(bold ? "b" : "i");
+          if (bold && ital) { var inner = document.createElement("i"); inner.appendChild(node); el.appendChild(inner); }
+          else el.appendChild(node);
+          box.appendChild(el);
+        } else box.appendChild(node);
+      }
+      return;
+    }
     box.appendChild(document.createTextNode(text));
   }
   function ensurePortal() {
