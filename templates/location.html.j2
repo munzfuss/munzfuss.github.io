@@ -105,6 +105,9 @@
   {%- else -%}&nbsp;<span class="unverified{% if u %} unc-{{ u.kind }}{% endif %}" data-tooltip="{{ u.tip if u else (fallback or ui_get('marker.unverified')) }}">(?)</span>
   {%- endif -%}
 {%- endmacro -%}
+{#- A derived value's marker: «[?]» when every unverified input is our
+    inference (tooltip: those inputs), else the generic «(?)». -#}
+{%- macro dq(d) -%}&nbsp;<span class="unverified{% if d %} unc-derived{% endif %}" data-tooltip="{{ d.tip if d else ui_get('marker.derived_unverified') }}">{{ '[?]' if d else '(?)' }}</span>{%- endmacro -%}
 {%- macro uopen(u) -%}{%- if u and u.kind == 'inferred' -%}{{ ubr(u, '[') }}{%- endif -%}{%- endmacro -%}
 
 {#- One catalogue number, with its mark when it carries one (ComputedCoin
@@ -259,10 +262,10 @@
   </td>
   <td class="c-w">
     {%- if coin.msr_n > 1 -%}
-      {%- set _qm -%}{%- if coin.derived_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qm -%}{%- if coin.derived_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for s in coin.msr_fein_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.weight_fein_groups -%}
-      {%- set _qmark -%}{%- if coin.derived_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if coin.derived_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for g in coin.weight_fein_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=5, unit='') -%}
         {%- set _k = mkind_derived(g.anchor_key, coin.weight_marks) -%}
@@ -277,7 +280,7 @@
       the ROUGH weight; the tooltip says so, since the column header can't. #}
   <td class="c-delta"{% if coin.delta_basis == 'rauh' %} data-tooltip="{{ ui_get('marker.delta_rough') }}"{% endif %}>
     {%- if coin.msr_n > 1 -%}
-      {%- set _qm -%}{%- if coin.delta_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qm -%}{%- if coin.delta_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for s in coin.msr_delta_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">
         {%- if s.value is none -%}{% if coin.raw.metal == 'copper' %}<span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>{% else %}—{% endif %}
         {%- else -%}
@@ -295,7 +298,7 @@
          sources yield the same Δ (single group), drop both the
          alt-source styling AND the tooltip — same convention as the
          weight / fineness columns above (consensus = plain badge). #}
-      {%- set _qmark -%}{%- if coin.delta_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if coin.delta_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for g in coin.delta_groups -%}
         {%- set dp = g.delta_pct if g.delta_pct is not none else 0 -%}
         {%- if dp < -1.0 -%}{%- set sd_cls = 'under-deep' -%}
@@ -340,10 +343,10 @@
      attribution, mark_derived on anchor_key, derived_unverified «(?)». #}
   <td class="c-stop-fine{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 -%}
-      {%- set _qm -%}{%- if coin.derived_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qm -%}{%- if coin.derived_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for s in coin.msr_stop_fine_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.stop_fine_groups -%}
-      {%- set _qmark -%}{%- if coin.derived_unverified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if coin.derived_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for g in coin.stop_fine_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=2, unit='') -%}
         {%- set _k = mkind_derived(g.anchor_key, coin.weight_marks) -%}

@@ -714,3 +714,27 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
             for r in conf:
                 push(f"[b]{_UNC_SOURCE.get(r.get('source'), r.get('source'))}[/b]: {r.get('years') or ''}")
     return {"kind": "hedged" if hedged else "inferred", "tip": "\n".join(lines)}
+
+
+def derived_mark(raw, ui: dict, lang: str) -> dict | None:
+    """How a DERIVED value (fine weight, Δ, pieces per mark) is marked when an
+    input is unverified (curator 2026-10-29). When every unverified input is
+    our inference (the standard's fineness, «[ ]»), the derived value carries
+    «[?]» and a tooltip naming those inputs; otherwise None — the generic
+    «(?)» of `marker.derived_unverified` stays (a source's own reservation, or
+    an input without an entry)."""
+    def _get(obj, key):
+        return obj.get(key) if isinstance(obj, dict) else getattr(obj, key, None)
+
+    inputs = [f for f, flag in (("fineness", "fineness_verified"),
+                                ("weight", "weight_rough_verified"))
+              if _get(raw, flag) is False]
+    if not inputs:
+        return None
+    tips = []
+    for f in inputs:
+        m = uncertainty_mark(raw, f, ui, lang)
+        if not m or m["kind"] != "inferred":
+            return None
+        tips.append(m["tip"])
+    return {"kind": "derived", "tip": "\n".join(tips)}

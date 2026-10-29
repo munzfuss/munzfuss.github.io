@@ -40,7 +40,7 @@ from lib.timeline import (
     founding_mint_start, _mint_sync_scope,
 )
 from lib.compute import compute_location
-from lib.render import build_env, generate_css, resolve_tips, uncertainty_mark
+from lib.render import build_env, generate_css, resolve_tips, uncertainty_mark, derived_mark
 from lib.schema import Location, Fuss, I18nText, Coin
 from lib.sites import DEFAULT_SITE, SiteProfileError, load_site, page_urls
 from lib.v2_seed_writer import normalise_nominal_display
@@ -1520,6 +1520,7 @@ def build_location(
             tips=lambda items, l=lang: resolve_tips(items, ui, l),
             # Coin.uncertainty marker + tooltip — lib/render.py::uncertainty_mark.
             umark=lambda raw, f, l=lang: uncertainty_mark(raw, f, ui, l),
+            dmark=lambda raw, l=lang: derived_mark(raw, ui, l),
         )
 
         # Inline-refs post-processing pass (introduced 2026-05-25, see
