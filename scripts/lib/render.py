@@ -620,6 +620,17 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
         t = i18n.ui_get(ui, f"uncertainty.how.{e.get('how')}", lang)
         return "" if t.startswith("[") else t
 
+    if field in ("metal", "mint"):
+        # Only an entry about the value the cell shows decides its mark: a
+        # member that inferred «billon» from the name says nothing about the
+        # «silver» another source gave the class.
+        shown = _get(raw, field)
+        shown = ", ".join(map(str, shown)) if isinstance(shown, list) else str(shown or "")
+        entries = [e for e in entries if e.get("value") in (None, shown)
+                   or (field == "mint" and e.get("value") and set(
+                       str(e["value"]).split(", ")) & set(shown.split(", ")))]
+        if not entries:
+            return None
     if field == "metal":
         # The value is a metal key («billon»); show it as the column does.
         for e in entries:
