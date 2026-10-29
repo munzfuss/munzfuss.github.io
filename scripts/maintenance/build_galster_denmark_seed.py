@@ -386,6 +386,30 @@ def _drop_junge_page_refs(catalog: dict) -> None:
         catalog.pop("others", None)
 
 
+def _add_titled_type_number(catalog: dict, data: dict) -> None:
+    """Keep the page's own type number beside the sub-group letter it cites.
+
+    A danskmoent Galster page describes one type: its title prints «Frederik
+    1., Galster 57» and its sub-groups cite «Galster 57A» / «57B». The parser
+    takes the first sub-group's refs, so `catalog_refs` gives «57B» alone and
+    the type number fell out once `seed_merge._drop_bare_superseded_by_letter`
+    read the bare «57» as a stale reading of the same statement (curator
+    2026-10-29: a base the source itself prints must not vanish). Added only
+    when the page title prints «Galster N»: `hg27` («gh27») prints 27A / 27B
+    and no bare 27, so nothing is added there."""
+    num = str(data.get("galster_number") or "").strip()
+    if not re.fullmatch(r"\d+", num):
+        return
+    title = (data.get("raw_text_excerpt") or "").split("\n", 1)[0]
+    if not re.search(rf"\bGalster\s+{num}\b(?![A-Za-z])", title):
+        return
+    cur = catalog.get("galster")
+    vals = [str(x).strip() for x in (cur if isinstance(cur, list) else [cur]) if x]
+    if num in vals or not any(re.fullmatch(rf"{num}[A-Za-z]+", v) for v in vals):
+        return
+    catalog["galster"] = [num] + vals
+
+
 def _is_real_galster_index(num: str | None) -> bool:
     """A real Galster catalogue number contains a digit («27», «27A»).
 
@@ -670,6 +694,10 @@ _PRINTED_DATING = [
     ("circa", re.compile(r"\bca\.?\s*1[3-6]\d{2}(?:\s*[-–]\s*\d{2,4})?")),
 ]
 _PRINTED_UNDATED = re.compile(r"\b[Uu]\.\s*år\b")
+# A dating the page gives in its prose for an undated coin, with its own
+# reservation: «blev formentlig slået omkring 1497» (fr_hg27, quoting Zinck I
+# s. 9). Read as the year, unverified, the phrase kept verbatim (2026-10-29).
+_PROSE_DATING = re.compile(r"(?:formentlig\s+)?slået\s+omkring\s+(1[3-6]\d{2})")
 
 
 def _printed_dating(data: dict, only: tuple[str, ...] | None = None,
@@ -703,6 +731,10 @@ def build_entry(data: dict) -> dict | None:
         # for the Grevens-Fejde pages, which are struck in a ruler's name
         # outside his reign and take the Feud window instead.
         hint = parse_year_range(data.get("year_hint"))
+        prose = _PROSE_DATING.search(data.get("raw_text_excerpt") or "")
+        if hint[0] is None and prose:
+            hint = (int(prose.group(1)), int(prose.group(1)))
+            year_unc.append(("circa", prose.group(0), "galster"))
         issuer = _issuer_year_hints().get(data.get("source_file") or "")
         if hint[0] is None and issuer:
             hint = parse_year_range(issuer[0])
@@ -712,7 +744,9 @@ def build_entry(data: dict) -> dict | None:
             # (1523?)» (gotlg144), a Rigsrådet group header «1481-83» over a
             # «Hvid U.år» (rigsraad.htm). Written as the year, unverified.
             reign = hint
-            if issuer_source:
+            if year_unc:
+                pass                      # the prose dating, recorded above
+            elif issuer_source:
                 year_unc.append(("other_page", issuer[0], "galster"))
             else:
                 how, printed = _printed_dating(
@@ -781,6 +815,7 @@ def build_entry(data: dict) -> dict | None:
     # so the non-numbered hansGej.htm page keeps no galster catalogue at all.
     if "galster" not in catalog:
         catalog.pop("galster_volume", None)
+    _add_titled_type_number(catalog, data)
 
     specs = data.get("specs") or {}
     sub_realm = data.get("sub_realm")
@@ -1113,14 +1148,18 @@ def _captions_for(entry: dict, captions: dict[str, list[dict]]) -> list[dict]:
     bare number also takes a caption of one of its sub-letters, «126» ←
     «126A»), and a caption metal compatible with the seed's metal."""
     g = (entry.get("catalog") or {}).get("galster")
-    if not isinstance(g, (str, int)):
-        return []
-    g = str(g)
-    rows = list(captions.get(g, []))
-    if not rows and g.isdigit():
-        for k, v in captions.items():
-            if k[:-1] == g and k[-1:].isalpha():
-                rows.extend(r for r in v if r not in rows)
+    # a list when the page's type number stands beside its sub-group letter
+    # (`_add_titled_type_number`: ['57', '57B'])
+    vals = [str(x) for x in (g if isinstance(g, list) else [g])
+            if isinstance(x, (str, int))]
+    rows: list[dict] = []
+    for v in vals:
+        rows.extend(r for r in captions.get(v, []) if r not in rows)
+    if not rows:
+        for v in (v for v in vals if v.isdigit()):
+            for k, cs in captions.items():
+                if k[:-1] == v and k[-1:].isalpha():
+                    rows.extend(r for r in cs if r not in rows)
     metal = entry.get("metal")
     return [r for r in rows
             if metal is None or metal in _CAPTION_METAL.get(r.get("metal"), {metal})]
