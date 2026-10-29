@@ -115,6 +115,10 @@ DEEP_MERGE_FIELDS = frozenset({
 # Per-entry meta-field listing additional frozen fields. Stripped from output
 # entry (private to merge logic; survives via existing across regen).
 _CURATION_HOLDS_KEY = "_curation_holds"
+# Coin field name → its Coin.uncertainty key (lib/uncertainty.FIELDS).
+_UNC_KEY_OF = {"weight_rough_g": "weight", "diameter_mm": "diameter",
+               "year_label": "year", "year_first": "year", "year_ranges": "year"}
+_UNC_FIELDS = ("year", "ruler", "mint", "metal", "fineness", "weight", "diameter")
 
 # §CN — inline source-index errata. A curator-recorded list, on the seed entry
 # itself, of catalogue-index values a SOURCE mis-printed:
@@ -544,6 +548,13 @@ def merge_one(
     # is replaced. Non-curated companion flags (fineness_verified, …) already
     # default to fresh-wins, but computing the set uniformly keeps the rule
     # explicit and covers the drop-when-fresh-omits-flag case below.
+    # Coin.uncertainty entries that explain a FROZEN field (a curator-set
+    # fineness «17¾ Karat — the standard's fineness») belong to the hold: they
+    # survive regen with it, whatever the builder now emits for that field.
+    _held_unc_keys = {_UNC_KEY_OF.get(h, h) for h in holds} & set(_UNC_FIELDS)
+    _held_unc = {k: v for k, v in (existing.get("uncertainty") or {}).items()
+                 if k in _held_unc_keys and v}
+
     _flag_follows_fresh: set[str] = set()
     for _val_field, _flag_field in _VERIFIABLE_FIELDS.items():
         if _val_field not in fresh_keys or _val_field in holds:
@@ -673,6 +684,11 @@ def merge_one(
         if key in _LIST_UNION_FIELDS:
             continue  # §9a accumulation: a union field is never silently dropped
         del existing[key]
+
+    if _held_unc:
+        unc = dict(existing.get("uncertainty") or {})
+        unc.update(_held_unc)
+        existing["uncertainty"] = unc
 
     # A verified flag attests a VALUE (§4); with no value left it attests
     # nothing. `_flag_follows_fresh` only fires when fresh carries the value

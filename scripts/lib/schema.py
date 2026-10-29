@@ -251,10 +251,13 @@ class FieldValue(_StrictBase):
     #
     # Like `erroneous`, the reason is required and is reader-facing prose (§0z).
     suspect: I18nText | None = None
-    # `template` marks a reading a named source publishes that is NOT a
-    # measurement at all: it is the TARGET value computed from the standard
-    # (pieces per mark x fineness of the ordinance), printed on the type page
-    # as if it were a specimen figure. Nothing about it is wrong or doubtful —
+    # `template` marks a reading a named source publishes that is the
+    # standard's TARGET value (pieces per mark x fineness of the ordinance),
+    # whether the source presents it as the standard or beside the type as if
+    # it were a specimen figure (curator 2026-10-29: the mark says «the source
+    # prints the target value», with no stress on «as if measured»). A target
+    # WE assign because no source gives one is not this mark — it is an
+    # inferred Coin.uncertainty entry (`standard`, «[ ]»). Nothing about it is wrong or doubtful —
     # it is simply not evidence of what a coin weighs. It computes like any
     # other reading (Δ ≈ 0 by construction, which is why the reader must be
     # told), is NOT struck through, and renders «(§)».

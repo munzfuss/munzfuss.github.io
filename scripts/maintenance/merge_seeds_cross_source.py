@@ -4499,7 +4499,13 @@ def build_unified(members: list[dict], unified_id: str,
         out["year_alts"] = year_alts
     # Coin.uncertainty: every member's entries, each with its seed id.
     from lib import uncertainty as _unc
-    uncertainty = _unc.union(members)
+    uncertainty = _unc.union(members) or {}
+    # A member whose fineness the curator froze as the standard's value.
+    for m in members:
+        e = _unc.held_standard_fineness(m, m.get("_curation_holds"))
+        if e and not any(x.get("how") == "standard" and x.get("seed") == m.get("id")
+                         for x in uncertainty.get("fineness") or []):
+            uncertainty.setdefault("fineness", []).append({**e, "seed": m.get("id")})
     if uncertainty:
         out["uncertainty"] = uncertainty
     ruler_alts = _collect_ruler_alts(members)

@@ -27,8 +27,11 @@ and pre-commit Check 10 all read that one list.
   standard value, a demonstrable misprint) → **erroneous (!)**.
 - The source says the weighed piece is a **fragment** (an appendix's «f
   fragment») → **fragment (f)**.
-- A source prints the standard's computed **target** as if it were a specimen
-  figure (e.g. Galster's 14,375 g / .979 for the Nobel) → **template (§)**.
+- A source prints the standard's **target** value — beside the type as if it
+  were a specimen figure, or simply as the standard's value (e.g. Galster's
+  14,375 g / .979 for the Nobel) → **template (§)**. A target WE assign because
+  no source gives one is not (§): it is an inferred `Coin.uncertainty` entry
+  (`standard`), rendered «[ ]».
 - An existing mark's reason is outdated or needs another language.
 
 ## When NOT to use

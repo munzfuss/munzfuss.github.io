@@ -658,9 +658,9 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
         basis = how(e)
         val = e.get("value") or ""
         line = f"{basis}: {val}" if val else basis
-        if e.get("as_printed") and e.get("source") not in ("ruler_reigns", "merge_decisions"):
+        if e.get("as_printed") and e.get("source") not in ("ruler_reigns", "merge_decisions", "standard"):
             line += f" ({src(e)}: «{e['as_printed']}»)"
-        elif e.get("source") not in ("ruler_reigns", "merge_decisions"):
+        elif e.get("source") not in ("ruler_reigns", "merge_decisions", "standard"):
             line += f" ({src(e)})"
         push(line)
     if field == "year":

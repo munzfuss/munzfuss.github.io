@@ -1145,6 +1145,15 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         if not any(e.get("how") == "reign" for e in _yu):
             out.setdefault("uncertainty", {})["year"] = _yu + [
                 _unc.make("reign", "ruler_reigns", value=out.get("year_label"))]
+
+    # A fineness the curator froze on the FINAL as the standard's value (§4
+    # canonical anchor): the rebuild keeps it through `_skeleton`, and this
+    # names it as inferred, so it renders in «[ ]».
+    _sf = _unc.held_standard_fineness(out, final_entry.get("_curation_holds"))
+    if _sf:
+        _fu = (out.get("uncertainty") or {}).get("fineness") or []
+        if not any(e.get("how") == "standard" for e in _fu):
+            out.setdefault("uncertainty", {})["fineness"] = _fu + [_sf]
     # Ambiguity-split sweep across members: any member with a scalar
     # mint containing «eller / oder / or / /» indicators (Hede/Galster
     # cataloguer-documented uncertainty) is split in-place to list-form

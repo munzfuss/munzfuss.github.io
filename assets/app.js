@@ -473,10 +473,10 @@
   // Built from text nodes, never innerHTML — tooltip text is data.
   // Every marker tooltip opens with a bold headline naming the marker kind;
   var MARK_HEAD = {
-    uk: {template: "Шаблонне значення.", fragment: "Фрагмент.", suspect: "Підозріле значення.", unverified: "Прогнозоване значення.", erroneous: "Помилкове значення.", hedged: "Джерело подає значення непевно.", inferred: "Виведене значення."},
-    de: {template: "Schablonenwert.", fragment: "Fragment.", suspect: "Verdächtiger Wert.", unverified: "Geschätzter Wert.", erroneous: "Fehlerhafter Wert.", hedged: "Die Quelle gibt den Wert unter Vorbehalt.", inferred: "Abgeleiteter Wert."},
-    en: {template: "Template value.", fragment: "Fragment.", suspect: "Suspect value.", unverified: "Estimated value.", erroneous: "Erroneous value.", hedged: "The source gives the value with reservation.", inferred: "Inferred value."},
-    da: {template: "Skabelonværdi.", fragment: "Fragment.", suspect: "Mistænkelig værdi.", unverified: "Anslået værdi.", erroneous: "Fejlagtig værdi.", hedged: "Kilden angiver værdien med forbehold.", inferred: "Udledt værdi."}
+    uk: {template: "Цільове значення стандарту.", fragment: "Фрагмент.", suspect: "Підозріле значення.", unverified: "Прогнозоване значення.", erroneous: "Помилкове значення.", hedged: "Джерело подає значення непевно.", inferred: "Виведене значення."},
+    de: {template: "Sollwert des Münzfußes.", fragment: "Fragment.", suspect: "Verdächtiger Wert.", unverified: "Geschätzter Wert.", erroneous: "Fehlerhafter Wert.", hedged: "Die Quelle gibt den Wert unter Vorbehalt.", inferred: "Abgeleiteter Wert."},
+    en: {template: "Target value of the standard.", fragment: "Fragment.", suspect: "Suspect value.", unverified: "Estimated value.", erroneous: "Erroneous value.", hedged: "The source gives the value with reservation.", inferred: "Inferred value."},
+    da: {template: "Møntfodens målværdi.", fragment: "Fragment.", suspect: "Mistænkelig værdi.", unverified: "Anslået værdi.", erroneous: "Fejlagtig værdi.", hedged: "Kilden angiver værdien med forbehold.", inferred: "Udledt værdi."}
   };
   function markKind(trigger) {
     var c = trigger && trigger.className;

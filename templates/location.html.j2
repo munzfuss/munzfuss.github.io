@@ -216,16 +216,18 @@
             readings → orange (.fin-alt), each with its own source. A sub-row
             without a fineness (a weight-only specimen) shows «—». -#}
         {%- set _funi = (coin.msr_fineness_segs|length) <= 1 -%}
-        {%- for s in coin.msr_fineness_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% if s.value is not none %}<span class="nw">{% set _txt = s.value|fin_txt(s.decimals) %}{% set _k = mkind(s.sources, coin.fineness_marks) %}{% if _funi %}{% if s.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{% else %}<span class="fin-alt {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% endif %}{% set _fm = mark(s.sources, coin.fineness_marks) %}{{ _fm }}{% set _fu = s.value | fin_unit(coin.raw.metal, lang) %}{% set _fq = not coin.raw.fineness_verified and not _fm|trim %}{% if _fq and not _fu %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% if _fu %}<span class="fin-eq">{{ _fu }}{% if _fq %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{% endif %}{% else %}—{% endif %}</div>{%- endfor -%}
+        {%- for s in coin.msr_fineness_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% if s.value is not none %}<span class="nw">{% set _txt = s.value|fin_txt(s.decimals) %}{% set _k = mkind(s.sources, coin.fineness_marks) %}{% if _funi %}{% if s.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{% else %}<span class="fin-alt {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% endif %}{% set _fm = mark(s.sources, coin.fineness_marks) %}{{ _fm }}{% set _fu = s.value | fin_unit(coin.raw.metal, lang) %}{% set _fq = not coin.raw.fineness_verified and not _fm|trim %}{% if _fq and not _fu %}{{ uq(umark(coin.raw, 'fineness'), br=False) }}{% endif %}</span>{% if _fu %}<span class="fin-eq">{{ _fu }}{% if _fq %}{{ uq(umark(coin.raw, 'fineness'), br=False) }}{% endif %}</span>{% endif %}{% else %}—{% endif %}</div>{%- endfor -%}
         {#- ≥ 6 finenesses: the row opens shortened; this switches it (app.js). -#}
         {%- if coin.msr_short_n -%}<button type="button" class="msr-toggle" data-all="{{ ui_get('msr.show_all') }} ({{ coin.msr_n }})" data-short="{{ ui_get('msr.show_short') }}">{{ ui_get('msr.show_all') }} ({{ coin.msr_n }})</button>{%- endif -%}
       {%- elif coin.fineness_groups -%}
+        {%- set _fm0 = mark(coin.fineness_groups[0].sources, coin.fineness_marks) -%}
+        {%- set _fx = umark(coin.raw, 'fineness') if not coin.raw.fineness_verified and not _fm0|trim else none -%}
         {%- for g in coin.fineness_groups %}
           {%- set _dec = g.display_decimals if g.display_decimals is not none else 3 -%}
           {%- set _txt = g.value|fin_txt([_dec, 3]|max) %}
           {%- set _k = mkind(g.sources, coin.fineness_marks) -%}
-          {%- if g.is_unanimous %} {% if g.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(g.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{{ mark(g.sources, coin.fineness_marks) }}
-          {%- else %} <span class="alt-source {{ _k }}" data-tooltip="{{ tips(g.sources) }}">{{ _txt }}</span>{{ mark(g.sources, coin.fineness_marks) }}
+          {%- if g.is_unanimous %} {% if loop.first %}{{ uopen(_fx) }}{% endif %}{% if g.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(g.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{{ mark(g.sources, coin.fineness_marks) }}
+          {%- else %} {% if loop.first %}{{ uopen(_fx) }}{% endif %}<span class="alt-source {{ _k }}" data-tooltip="{{ tips(g.sources) }}">{{ _txt }}</span>{{ mark(g.sources, coin.fineness_marks) }}
           {%- endif %}
         {%- endfor %}
         {#- The fineness-unverified marker and the period-unit equivalent (Karat /
@@ -233,7 +235,7 @@
             AFTER the marker so it drops to its own line while the "(?)" stays on
             the value line. No fineness at all → «—», no marker. -#}
         {%- set _fu = coin.fineness_groups[0].value | fin_unit(coin.raw.metal, lang) -%}
-        {%- set _fm = mark(coin.fineness_groups[0].sources, coin.fineness_marks) -%}{%- set _fq = not coin.raw.fineness_verified and not _fm|trim -%}{%- if _fu -%}<span class="fin-eq">{{ _fu }}{% if _fq %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</span>{%- elif _fq -%}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{%- endif -%}
+        {%- set _fq = not coin.raw.fineness_verified and not _fm0|trim -%}{%- if _fu -%}<span class="fin-eq">{{ _fu }}{% if _fq %}{{ uq(_fx) }}{% endif %}</span>{%- elif _fq -%}{{ uq(_fx) }}{%- endif -%}
       {%- else -%}—{%- endif -%}
   </td>
   <td class="c-w{% if coin.msr_n > 1 %} c-msr{% endif %}">

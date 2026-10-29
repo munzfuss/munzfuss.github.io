@@ -41,6 +41,22 @@ class Entries(unittest.TestCase):
                              "metal": "silver", **e})
 
 
+class HeldFieldKeepsItsEntry(unittest.TestCase):
+    def test_entry_explaining_a_frozen_field_survives_regen(self):
+        from lib.seed_merge import merge_one
+        from ruamel.yaml.comments import CommentedMap
+        existing = CommentedMap({
+            "id": "dk-bruun-3839", "fineness": 0.739583,
+            "_curation_holds": ["fineness", "fineness_verified"],
+            "uncertainty": {"fineness": [U.make("standard", "standard", value="17¾ Karat")],
+                            "year": [U.make("circa", "bruun", value="1497")]}})
+        fresh = {"id": "dk-bruun-3839", "fineness": None,
+                 "uncertainty": {"year": [U.make("circa", "bruun", value="1496-1497")]}}
+        out = merge_one(existing, fresh)
+        self.assertEqual(out["uncertainty"]["fineness"][0]["how"], "standard")
+        self.assertEqual(out["uncertainty"]["year"][0]["value"], "1496-1497")
+
+
 class GalsterPrinted(unittest.TestCase):
     def test_dating_phrase_is_verbatim(self):
         import build_galster_denmark_seed as G

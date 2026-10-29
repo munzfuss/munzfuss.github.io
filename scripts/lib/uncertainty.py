@@ -76,3 +76,29 @@ def union(members: list[dict]) -> dict | None:
                 seen.add(k)
                 out.setdefault(field, []).append(e)
     return {f: out[f] for f in FIELDS if f in out} or None
+
+
+def karat_label(fineness) -> str | None:
+    """«18½ Karat» for a gold fineness that is a whole quarter-carat, else the
+    decimal — the standard's own unit when it has one."""
+    try:
+        k = float(fineness) * 24
+    except (TypeError, ValueError):
+        return None
+    q = round(k * 4) / 4
+    if abs(k - q) > 0.005:
+        return f"{float(fineness):g}"
+    whole, frac = int(q), q - int(q)
+    return f"{whole}{ {0: '', 0.25: '¼', 0.5: '½', 0.75: '¾'}[frac] } Karat".replace("  ", " ")
+
+
+def held_standard_fineness(entry: dict, holds) -> dict | None:
+    """The inferred `standard` entry for a fineness the curator froze as the
+    standard's canonical value (§4 canonical anchor: held, `fineness_verified`
+    false). None when the fineness is not such an anchor."""
+    held = set(holds.keys() if isinstance(holds, dict) else (holds or []))
+    fin = entry.get("fineness")
+    if "fineness" not in held or entry.get("fineness_verified") is not False or fin in (None, []):
+        return None
+    first = fin[0].get("value") if isinstance(fin, list) and isinstance(fin[0], dict) else fin
+    return make("standard", "standard", value=karat_label(first))
