@@ -526,7 +526,17 @@ def thin_seed_dir(seed_dir: Path, min_bucket: int = 5,
     2026-10-22: IKMK 18296479 («Unbestimmte Kippermünzstätte», August II) had
     been folded under 18286113 («Wilhelm zu Harburg»); the curator called them
     different coins, and without this the fold would have re-fused them on
-    every re-seed."""
+    every re-seed.
+
+    The same pruning covers links the file itself contradicts: a link to an
+    id that is a live record of the file, or that this run dropped onto a
+    different representative. A re-seed with changed bucket keys brings such
+    specimens back as their own records while the old representative keeps
+    the link (`_thinned_from` is preserve-always), so the specimen is counted
+    in two classes and the class registry re-cuts them on every merger run.
+    2026-10-29: IKMK 18288000/07/09/10 (Stade Doppelschilling 1620) were live
+    records and links of 18236465 at once — four erzbisthum_bremen_verden
+    classes retired and re-created with a «-2» id on each run."""
     yaml = _make_yaml_loader()
     total_before = total_after = 0
     for f in sorted(glob.glob(str(Path(seed_dir) / "*.yml"))):
@@ -535,22 +545,23 @@ def thin_seed_dir(seed_dir: Path, min_bucket: int = 5,
         if not coins:
             continue
         kept, stats = thin_safe(coins, protected=protected)
-        if protected:
-            pr = prune_stale_thinned(kept, set(protected), stats["assignments"],
-                                     source_id_of or (lambda s: None))
-            if pr["links_pruned"]:
-                print(f"  {Path(f).name}: pruned {pr['links_pruned']} stale "
-                      f"_thinned_from link(s) to protected ids, "
-                      f"{pr['citations_pruned']} citation(s)")
-                stats["after"] = len(kept)
-                stats["before"] = max(stats["before"], stats["after"])
+        decided = (set(protected) | {c.get("id") for c in kept}
+                   | set(stats["assignments"]))
+        pr = prune_stale_thinned(kept, decided, stats["assignments"],
+                                 source_id_of or (lambda s: None))
+        if pr["links_pruned"]:
+            print(f"  {Path(f).name}: pruned {pr['links_pruned']} stale "
+                  f"_thinned_from link(s), {pr['citations_pruned']} citation(s)")
+            stats["after"] = len(kept)
+            stats["before"] = max(stats["before"], stats["after"])
         total_before += stats["before"]
         total_after += stats["after"]
         print(f"  {Path(f).name}: {stats['before']} → {stats['after']}  "
               f"({stats['thinned_buckets']} buckets thinned, "
               f"{stats['skipped_uncatalogued_buckets']} uncatalogued ≥{min_bucket} "
               f"left whole, {stats['sub_variants']} sub-variants)")
-        if not dry_run and (stats["after"] != stats["before"] or protected):
+        if not dry_run and (stats["after"] != stats["before"] or pr["links_pruned"]
+                            or protected):
             doc["coins"] = kept
             with open(f, "w") as fh:
                 yaml.dump(doc, fh)

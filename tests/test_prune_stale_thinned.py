@@ -20,7 +20,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from lib.seed_thin import prune_stale_thinned, thin_safe  # noqa: E402
+import tempfile  # noqa: E402
+
+import yaml  # noqa: E402
+
+from lib.seed_thin import prune_stale_thinned, thin_safe, thin_seed_dir  # noqa: E402
 
 
 def _src(n):
@@ -80,6 +84,38 @@ class ProtectedThinningTest(unittest.TestCase):
         kept, st = thin_safe(coins, protected=frozenset({"kmk-9"}))
         self.assertIn("kmk-9", {c["id"] for c in kept})
         self.assertTrue(all(v == "kmk-9" for v in st["assignments"].values()))
+
+
+class ThinSeedDirLiveLinkTest(unittest.TestCase):
+    """A link to a live record of the same file is pruned with no curator
+    decision behind it (2026-10-29: IKMK 18288000/07/09/10 were records and
+    links of 18236465 at once; the class registry re-cut four Bremen classes
+    on every merger run)."""
+
+    def test_link_to_live_record_pruned(self):
+        def isrc(n):
+            return {"type": "museum", "url": f"https://ikmk.smb.museum/object?id={n}"}
+
+        def iid(e):
+            u = e.get("url", "")
+            return "ikmk-" + u.rsplit("=", 1)[-1] if "object?id=" in u else None
+
+        doc = {"coins": [
+            {"id": "ikmk-1", "nominal": "A", "weight_rough_g": 1.5,
+             "_thinned_from": ["ikmk-2", "ikmk-9"],
+             "sources": [isrc(1), isrc(2), isrc(9)]},
+            {"id": "ikmk-2", "nominal": "A", "weight_rough_g": 1.7,
+             "sources": [isrc(2)]},
+        ]}
+        with tempfile.TemporaryDirectory() as td:
+            f = Path(td) / "e.yml"
+            f.write_text(yaml.safe_dump(doc))
+            thin_seed_dir(Path(td), source_id_of=iid)
+            out = {c["id"]: c for c in yaml.safe_load(f.read_text())["coins"]}
+        # ikmk-2 is its own record → unlinked; ikmk-9 unseen → kept
+        self.assertEqual(out["ikmk-1"]["_thinned_from"], ["ikmk-9"])
+        self.assertEqual(out["ikmk-1"]["sources"], [isrc(1), isrc(9)])
+        self.assertEqual(out["ikmk-2"]["sources"], [isrc(2)])
 
 
 if __name__ == "__main__":

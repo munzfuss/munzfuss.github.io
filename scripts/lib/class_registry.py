@@ -16,8 +16,9 @@ existing record is it?
      a representative's `_thinned_from`. A fold re-cut is thereby invisible.
   2. Candidates are the active records (any entity) whose specimens intersect
      the class. One candidate inherits. Several (classes merged): the one with
-     the LARGEST intersection inherits, ties → the OLDER record (`created`),
-     then the smaller id; the others are retired with `merged_into`. One record
+     the LARGEST intersection inherits, ties → the record the class covers
+     most completely (intersection / record size), then the OLDER record
+     (`created`), then the smaller id; the others are retired with `merged_into`. One record
      claimed by several classes (a split): the class with the largest
      intersection keeps the id, the others get new ids, the record notes
      `split_into`. No candidate → new record.
@@ -215,8 +216,17 @@ class Registry:
                         counts[rid] = counts.get(rid, 0) + 1
                 overlap[key] = counts
                 if counts:
+                    # ties on the intersection → the record this class covers
+                    # most completely, then the older one. Without the
+                    # coverage step a specimen counted in two classes (a
+                    # stale `_thinned_from` link) let the 8-member record
+                    # out-age the singleton that held it alone, and four
+                    # Bremen singletons were re-created with «-2» on every
+                    # run (2026-10-29).
                     best[key] = min(counts, key=lambda rid: (
-                        -counts[rid], self.records[rid].created, rid))
+                        -counts[rid],
+                        -counts[rid] / max(1, len(self.records[rid].members)),
+                        self.records[rid].created, rid))
                 else:
                     best[key] = None
         # 2. one record claimed by several classes → the largest keeps it
