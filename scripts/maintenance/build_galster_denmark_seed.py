@@ -1169,14 +1169,34 @@ def _caption_source(cap: dict) -> str:
     return f"danskmoent.dk {cap['page']}"
 
 
-def apply_caption_ranges(entries: list[dict], captions: dict[str, list[dict]]) -> int:
+def _held_fields() -> dict[str, set[str]]:
+    """Fields each existing Galster seed entry freezes in `_curation_holds`.
+    merge_seed restores those values AFTER this builder runs, so a caption
+    filler that only looks at the fresh entry would add a second copy of a
+    weight the curator already entered (dk-galster-halvrhin, 2026-10-30)."""
+    import yaml
+    out: dict[str, set[str]] = {}
+    for p in sorted((PROJECT_ROOT / "data/v2/seed/galster").glob("*.yml")):
+        for c in (yaml.safe_load(p.read_text()) or {}).get("coins") or []:
+            holds = c.get("_curation_holds")
+            if holds:
+                out[c["id"]] = set(holds)
+    return out
+
+
+def apply_caption_ranges(entries: list[dict], captions: dict[str, list[dict]],
+                         held: dict[str, set[str]] | None = None) -> int:
     """Fill `weight_range_g` from drawing captions, ONLY when the page text
-    gives no weight (curator 2026-10-21). Stored as a type range, not as
+    gives no weight (curator 2026-10-21) and the curator has not entered one
+    (a held `weight_rough_g`). Stored as a type range, not as
     `weight_rough_g` specimens; the build expands it into a lower- and an
     upper-bound reading (lib/weight_range.range_pairs)."""
+    held = held or {}
     n = 0
     for e in entries:
         if e.get("weight_rough_g") is not None:
+            continue
+        if "weight_rough_g" in held.get(e.get("id"), ()):
             continue
         out, seen = [], set()
         for cap in _captions_for(e, captions):
@@ -1232,7 +1252,7 @@ def main() -> int:
     print(f"Collecting Galster pre-1541 entries from {GALSTER_CACHE}...")
     entries = collect_entries()
     captions = _load_caption_ranges()
-    n_cap = apply_caption_ranges(entries, captions)
+    n_cap = apply_caption_ranges(entries, captions, _held_fields())
     print(f"  Illustration-caption weight ranges applied: {n_cap}")
     n_dia = apply_caption_diameters(entries, captions)
     print(f"  Illustration-caption diameters applied: {n_dia}")
