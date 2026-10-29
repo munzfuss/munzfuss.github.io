@@ -1644,6 +1644,11 @@ coins:
     uncertainty:
       year:
         - kind: hedged
+          how: span
+          source: numista
+          value: 1618-1622
+          seed: dk-numista-151523
+        - kind: hedged
           how: attributed
           source: ngc
           as_printed: (1618-22)
@@ -2168,6 +2173,13 @@ coins:
       active: false
       agrees_with_active: true
       reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'sonderburg_duchy'; active entity is 'sonderburg_duchy'.
+    uncertainty:
+      fineness:
+        - kind: inferred
+          how: standard
+          source: standard
+          value: 18½ Karat
+          seed: ngc-1161408
   - fuss: seed_unsorted
     phase: ngc
     kind: kurant
@@ -2476,6 +2488,13 @@ coins:
         gulden at 72 pieces to the 18½-carat mark, and these ducal issues are imperial and post-edict."
       fineness_verified: false — canonical anchor, not a source reading.
       verification_note: Explains the anchor to the reader.
+    uncertainty:
+      fineness:
+        - kind: inferred
+          how: standard
+          source: standard
+          value: 18½ Karat
+          seed: ngc-1206707
   - fuss: seed_unsorted
     phase: ikmk
     kind: kurant

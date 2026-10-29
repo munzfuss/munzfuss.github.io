@@ -637,6 +637,16 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
             t = i18n.ui_get(ui, f"metal.{e.get('value')}", lang)
             if e.get("value") and not t.startswith("["):
                 e["value"] = t
+    if field == "year":
+        # An inference explains the cell only when the cell shows it: a reign
+        # placeholder set aside for a source's own year («Numista 1505-1510»
+        # over Galster's «u. år» → 1483-1513) is not the shown value's basis
+        # (curator 2026-10-29). A source's own reservation is always listed.
+        shown_year = str(_get(raw, "year_label") or "")
+        entries = [e for e in entries if e.get("kind") != "inferred"
+                   or str(e.get("value") or "") == shown_year]
+        if not entries:
+            return None
     hedged = [e for e in entries if e.get("kind") == "hedged"]
     inferred = [e for e in entries if e.get("kind") == "inferred"]
     lines: list[str] = []

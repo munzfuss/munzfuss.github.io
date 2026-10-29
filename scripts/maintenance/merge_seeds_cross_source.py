@@ -4134,6 +4134,17 @@ def _year_reading(m: dict) -> dict:
                                           m.get("year_last") or m.get("year_first")]])}
 
 
+def _unc_add_year(m: dict, how: str, src: str) -> None:
+    """Stamp a not-counted year onto the member (in memory) so the union
+    in build_unified carries it with the member's seed id."""
+    from lib import uncertainty as _u
+    ys = (m.get("uncertainty") or {}).get("year") or []
+    if any(e.get("how") == how for e in ys):
+        return
+    e = _u.make(how, src, value=_year_reading(m)["years"])
+    m.setdefault("uncertainty", {}).setdefault("year", []).append(e)
+
+
 def _year_attestation(members: list[dict]) -> tuple[bool | None, dict | None]:
     """(year_verified, year_conflict) of a class.
 
@@ -4187,6 +4198,14 @@ def _year_attestation(members: list[dict]) -> tuple[bool | None, dict | None]:
                                           or m.get("_year_demoted") for m in held)
     attesting = [m for m in plain
                  if not (_source_label_from_id(m.get("id")) == "kmk" and uncertain_other)]
+    # Years a member gives that are not counted as attestation stay visible
+    # as Coin.uncertainty (curator 2026-10-29: a Numista «1505-1510» shown
+    # under a Galster reign placeholder is the source's year, not ours).
+    _not_counted = [m for m in live if m.get("year_verified", True) is not False
+                    and m not in attesting]
+    for m in _not_counted:
+        src = _source_label_from_id(m.get("id"))
+        _unc_add_year(m, "museum" if src == "kmk" else "span", src)
     conflict = None
     if plain and hedged:
         conflict = {"confident": [_year_reading(m) for m in plain],

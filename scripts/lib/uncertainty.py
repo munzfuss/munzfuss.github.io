@@ -11,7 +11,7 @@ from __future__ import annotations
 
 HEDGED = frozenset({"circa", "attributed", "query", "decade", "century",
                     "illegible", "after", "window", "doubt", "possibly",
-                    "alternatives"})
+                    "alternatives", "span", "museum"})
 INFERRED = frozenset({"reign", "other_page", "feud_window", "text_year",
                       "standard", "default", "compiled", "curator_window",
                       "from_name", "uncited"})
@@ -100,5 +100,15 @@ def held_standard_fineness(entry: dict, holds) -> dict | None:
     fin = entry.get("fineness")
     if "fineness" not in held or entry.get("fineness_verified") is not False or fin in (None, []):
         return None
-    first = fin[0].get("value") if isinstance(fin, list) and isinstance(fin[0], dict) else fin
+    if isinstance(fin, list):
+        # A reading marked erroneous / suspect / template is a source's figure,
+        # not the curator's anchor.
+        vals = [r.get("value") if isinstance(r, dict) else r for r in fin
+                if not (isinstance(r, dict) and (r.get("erroneous") or r.get("suspect")
+                                                 or r.get("template")))]
+        if not vals:
+            return None
+        first = vals[0]
+    else:
+        first = fin
     return make("standard", "standard", value=karat_label(first))

@@ -109,6 +109,9 @@ class UncertainReading(_StrictBase):
         # hedged — the source's own qualifier
         "circa", "attributed", "query", "decade", "century", "illegible",
         "after", "window", "doubt", "possibly", "alternatives",
+        # a year a source gives that does not count as attested: a span from a
+        # catalogue that never flags undated coins, a museum's dating
+        "span", "museum",
         # inferred — the pipeline's basis
         "reign", "other_page", "feud_window", "text_year", "standard",
         "default", "compiled", "curator_window", "from_name", "uncited"]
