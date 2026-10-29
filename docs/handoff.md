@@ -16,6 +16,20 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-10-29 — Uncertainty markers: (?) hedged vs [ ] inferred (D51, plan docs/plans/uncertainty_markers.md)
+
+- **Shipped (local, unpushed):** ef7f9cd / 040c269 (merger year_verified rule: absent flag = attested; KMM never
+  settles; Numista/ucoin/KMM/IKMK span not an attestation; `year_conflict`), e5de2e4 / 52ac105 (`Coin.uncertainty`
+  in 9 builders + seed writer; 671 seed entries, 1306 finals), 5a4bcec / bca7ea5 / render fix (template «(?)» /
+  «[ ]» + tooltips; inferred member years are placeholders, not conflicts), f2fe621 (docs).
+- **Open:** 74 year conflicts (one source plain, another hedged) — curator undecided what to do, data kept for
+  review; NumisMaster ND marker text (parse_numismaster must record it); `standard` fineness basis not written;
+  finals whose year «(?)» is only their stored stale flag go with their Fuß's rebuild (no hand edits).
+- **Builder drift, not ours, reported to the curator by the peer session:** a full run of the KMM / Galster /
+  Bruun builders changes data nobody re-seeded (KMM `_thin_post_merge` pruning 26 records, Hede sub-letter catalogue
+  collapse on 158, two rulers; 3 Galster + 1 Bruun catalogue values). The uncertainty commit inserted ONLY the new
+  field into HEAD's seeds; the next builder run will surface that drift again.
+
 ## 2026-10-28 — Lübeck / Wendish standard: full chronology 1226–1622 («стопи» session)
 
 - **Danish counterpart** `docs/research/danish_standard_chronology_1396_1541.md` (compilation of the Hans / 1514 /
