@@ -4120,6 +4120,72 @@ def _format_year_label(year_ranges) -> str | None:
     return ", ".join(parts)
 
 
+# Sources whose builders never flag an undated coin: their year carries no
+# `year_verified` even when it is an attribution span («Hans 1505-1510» on
+# Numista), so a span from them is not an attestation (it still is when it
+# stands alone — then nothing contradicts it).
+_YEAR_UNFLAGGED_SOURCES = frozenset({"numista", "ucoin", "kmk", "ikmk"})
+
+
+def _year_reading(m: dict) -> dict:
+    return {"seed": m.get("id"), "source": _source_label_from_id(m.get("id")),
+            "years": m.get("year_label") or _format_year_label(
+                m.get("year_ranges") or [[m.get("year_first"),
+                                          m.get("year_last") or m.get("year_first")]])}
+
+
+def _year_attestation(members: list[dict]) -> tuple[bool | None, dict | None]:
+    """(year_verified, year_conflict) of a class.
+
+    A member attests the year when it gives one, it is not held out of the
+    year union (a reign span, a curator `year_demote`, a `year_mark`) and its
+    `year_verified` is not False — the key absent means attested (schema
+    default; builders flag only the unverified case). Not counted as an
+    attestation: a single span from a source in `_YEAR_UNFLAGGED_SOURCES`,
+    and a KMM year whenever another member is uncertain (KMM writes
+    approximate museum datings as plain years; curator 2026-10-29).
+
+    Only a class with a False member is decided here; otherwise the plain
+    OR-merge stands. Before 2026-10-29 the OR-merge counted an absent key as
+    «no information», so one undated member, or one without any year (NGC),
+    put «(?)» on a year four other sources print (Christian V 1671, Hede
+    «u. år» against Numista, ucoin, NGC and NumisMaster).
+
+    A source that prints the year uncertainly (`year_verified: False`, not a
+    reign placeholder) next to a source that prints it plainly is a conflict:
+    the year stays unverified and the class records both sides in
+    `year_conflict`, for review (curator 2026-10-29: the confident source is
+    not necessarily right)."""
+    if not any(m.get("year_verified") is False for m in members):
+        return _or_merge_verified(members, "year_verified"), None
+
+    def _has_year(m):
+        return isinstance(m.get("year_first"), int) or bool(m.get("year_ranges"))
+
+    def _span(m):
+        yr = m.get("year_ranges")
+        if isinstance(yr, list) and yr:
+            return yr
+        return [[m.get("year_first"), m.get("year_last") or m.get("year_first")]]
+
+    dated = [m for m in members if _has_year(m)]
+    held = [m for m in dated if m.get("_year_demoted") or m.get("year_mark")]
+    live = [m for m in dated if m not in held]
+    hedged = [m for m in live if m.get("year_verified") is False]
+    plain = [m for m in live if m.get("year_verified", True) is not False
+             and not (_source_label_from_id(m.get("id")) in _YEAR_UNFLAGGED_SOURCES
+                      and len(_span(m)) == 1 and _span(m)[0][0] != _span(m)[0][1])]
+    uncertain_other = bool(hedged) or any(m.get("year_verified") is False
+                                          or m.get("_year_demoted") for m in held)
+    attesting = [m for m in plain
+                 if not (_source_label_from_id(m.get("id")) == "kmk" and uncertain_other)]
+    conflict = None
+    if plain and hedged:
+        conflict = {"confident": [_year_reading(m) for m in plain],
+                    "uncertain": [_year_reading(m) for m in hedged]}
+    return bool(attesting) and not hedged, conflict
+
+
 def _or_merge_verified(members: list[dict], field: str) -> bool | None:
     """OR-merge for verification flags: if ANY source attests (True),
     the unified entry is `True`. False otherwise (no source confirmed)."""
@@ -4382,11 +4448,17 @@ def build_unified(members: list[dict], unified_id: str,
 
     # Verification flags — OR-merge (any source attests counts)
     for field in ("metal_verified", "fineness_verified", "weight_rough_verified",
-                  "diameter_mm_verified", "mint_verified", "verified",
-                  "year_verified"):
+                  "diameter_mm_verified", "mint_verified", "verified"):
         v = _or_merge_verified(sorted_members, field)
         if v is not None:
             out[field] = v
+    # year_verified: written explicitly, True included, so absorb's OR-merge
+    # sees the attestation over a final's stored False.
+    yv, year_conflict = _year_attestation(sorted_members)
+    if yv is not None:
+        out["year_verified"] = yv
+    if year_conflict:
+        out["year_conflict"] = year_conflict
     # ruler_verified on a SEED is mostly a matching signal (ucoin flips it when
     # its ruler name falls outside a reign window — often a name collision, e.g.
     # Hesse-Kassel «Frederick I»), not a display flag. It reaches the unified

@@ -94,6 +94,20 @@ class YearAlt(_StrictBase):
     reason: I18nText
 
 
+class YearReading(_StrictBase):
+    """One member source's year in a `YearConflict`."""
+    seed: str = Field(..., min_length=1)
+    source: str = Field(..., min_length=1)
+    years: str | None = None
+
+
+class YearConflict(_StrictBase):
+    """A class where one source prints the year plainly and another prints it
+    uncertainly (see Coin.year_conflict)."""
+    confident: list[YearReading]
+    uncertain: list[YearReading]
+
+
 class CatalogMark(_StrictBase):
     """A curation mark on one catalogue number a source printed (see
     Coin.catalog_marks). `register` is the CatalogRefs field («galster»,
@@ -1069,6 +1083,12 @@ class Coin(_StrictBase):
     # curator `year_window` (merge_decisions), when the shown year compiles
     # several sources' datings; carried to final by absorb.
     year_note: I18nText | None = None
+    # One source prints the year plainly, another uncertainly (Bruun «ND (ca.
+    # …)», NGC «(ca1611)»): the year stays unverified and both sides are kept
+    # for review — the plain one is not necessarily right (curator
+    # 2026-10-29). A KMM year is listed but never settles it. Set by the
+    # merger, carried to final by absorb from the live members; not rendered.
+    year_conflict: "YearConflict | None" = None
     # A source's own statement that the object is (or may be) a forgery,
     # kept VERBATIM («falsk?», «H. 99 B, samtidig forfalskning?», «Falsk som
     # H. 52»). Recorded so the information is not lost; nothing reads it yet

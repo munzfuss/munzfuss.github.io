@@ -1012,6 +1012,21 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
             out["year_note"] = dict(_m["year_note"])
             break
 
+    # year_conflict (merger's `_year_attestation`): the live members' sides,
+    # unioned by seed — never the final's stored copy.
+    out.pop("year_conflict", None)
+    _yc: dict[str, list[dict]] = {"confident": [], "uncertain": []}
+    _yc_seen: set[tuple[str, str]] = set()
+    for _m in (members[1:] if len(members) > 1 else members):
+        for _side in ("confident", "uncertain"):
+            for _r in ((_m.get("year_conflict") or {}).get(_side) or []
+                       if isinstance(_m, dict) else []):
+                if isinstance(_r, dict) and (_side, _r.get("seed")) not in _yc_seen:
+                    _yc_seen.add((_side, _r.get("seed")))
+                    _yc[_side].append(dict(_r))
+    if _yc["confident"] and _yc["uncertain"]:
+        out["year_conflict"] = _yc
+
     # nominal_equiv / nominal_verified travel with the nominal they belong to:
     # taken from the live member whose nominal the final shows (2026-10-26).
     for _k in ("nominal_equiv", "nominal_verified"):
