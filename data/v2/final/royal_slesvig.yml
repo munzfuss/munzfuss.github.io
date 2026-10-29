@@ -1515,7 +1515,7 @@ coins:
       -   - 1534
           - 1535
     year_label: 1534-1535
-    year_verified: true
+    year_verified: false
     mint: Gottorp
     catalog:
       bruun_collection_id: '14783'
@@ -1591,6 +1591,21 @@ coins:
       - c-c32f2572
     label: unified-dk-bruun-14783
     origin: promoted
+    year_conflict:
+      confident:
+        - seed: dk-numista-461448
+          source: numista
+          years: '1534'
+        - seed: dk-galster-c3g-130
+          source: galster
+          years: '1534'
+      uncertain:
+        - seed: dk-bruun-14783
+          source: bruun
+          years: '1534'
+        - seed: ngc-167745
+          source: ngc
+          years: '1535'
   - fuss: seed_unsorted
     phase: galster
     kind: kurant

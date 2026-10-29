@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-10-28 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-29 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1895 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-10-28'
+generated_at: '2026-10-29'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -2796,7 +2796,7 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
+    year_verified: true
     fineness:
       - value: 0.888
         source: hede
@@ -2983,6 +2983,15 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-tid-163588
+          source: ucoin
+          years: '1620'
+      uncertain:
+        - seed: schleswig_holstein-numismaster-92977
+          source: numismaster
+          years: 1620–1623
     fineness:
       - value: 0.888
         source: numismaster
@@ -3306,6 +3315,27 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-hede-c4h169
+          source: hede
+          years: '1619'
+        - seed: schleswig_holstein-numismaster-92964
+          source: numismaster
+          years: '1620'
+        - seed: schleswig_holstein-numismaster-92965
+          source: numismaster
+          years: '1620'
+      uncertain:
+        - seed: dk-bruun-5937
+          source: bruun
+          years: 1619-1620
+        - seed: ngc-1052532
+          source: ngc
+          years: '1620'
+        - seed: ngc-1063126
+          source: ngc
+          years: '1620'
     fineness:
       - value: 0.888
         source: hede
@@ -7572,7 +7602,7 @@ coins:
     diameter_mm_verified: true
     mint_verified: true
     verified: false
-    year_verified: false
+    year_verified: true
     fineness:
       - value: 0.343
         source: hede
@@ -8872,6 +8902,18 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-hede-c7h5
+          source: hede
+          years: 1771, 1775
+        - seed: dk-bruun-7784
+          source: bruun
+          years: '1775'
+      uncertain:
+        - seed: dk-bruun-7983
+          source: bruun
+          years: '1771'
     fineness:
       - value: 0.903
         source: hede
@@ -31308,6 +31350,39 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: ngc-1052531
+          source: ngc
+          years: '1619'
+        - seed: schleswig_holstein-numismaster-92959
+          source: numismaster
+          years: '1619'
+        - seed: schleswig_holstein-numismaster-92960
+          source: numismaster
+          years: '1620'
+        - seed: schleswig_holstein-numismaster-92961
+          source: numismaster
+          years: '1620'
+        - seed: schleswig_holstein-numismaster-92962
+          source: numismaster
+          years: '1620'
+        - seed: schleswig_holstein-numismaster-92963
+          source: numismaster
+          years: '1620'
+      uncertain:
+        - seed: ngc-1051946
+          source: ngc
+          years: '1620'
+        - seed: ngc-1051967
+          source: ngc
+          years: '1620'
+        - seed: ngc-1051968
+          source: ngc
+          years: '1620'
+        - seed: ngc-1069323
+          source: ngc
+          years: '1620'
     fineness:
       - value: 0.888
         source: ngc
@@ -31377,6 +31452,15 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: schleswig_holstein-numismaster-92966
+          source: numismaster
+          years: '1620'
+      uncertain:
+        - seed: ngc-1051947
+          source: ngc
+          years: '1620'
     fineness:
       - value: 0.888
         source: ngc
@@ -32448,6 +32532,15 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: schleswig_holstein-numismaster-167728
+          source: numismaster
+          years: '1566'
+      uncertain:
+        - seed: ngc-167728
+          source: ngc
+          years: 1566–1570
     weight_rough_g:
       - value: 1.0
         source: ngc

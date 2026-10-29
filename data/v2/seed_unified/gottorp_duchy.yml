@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `gottorp_duchy`.
-# Generated 2026-10-28 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-29 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 816 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gottorp_duchy
-generated_at: '2026-10-28'
+generated_at: '2026-10-29'
 coins:
   - id: c-3f6e23f9
     class_id: c-3f6e23f9
@@ -1278,6 +1278,15 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: ngc-99439
+          source: ngc
+          years: '1681'
+      uncertain:
+        - seed: dk-bruun-14473
+          source: bruun
+          years: '1681'
     weight_rough_g:
       - value: 22.0
         source: bruun
@@ -1812,6 +1821,21 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-bruun-14510
+          source: bruun
+          years: '1702'
+        - seed: dk-numista-301632
+          source: numista
+          years: '1702'
+        - seed: schleswig_holstein-numismaster-167369
+          source: numismaster
+          years: '1702'
+      uncertain:
+        - seed: ngc-1177479
+          source: ngc
+          years: '1702'
     weight_rough_g:
       - value: 43.9
         source: ngc
@@ -14624,7 +14648,7 @@ coins:
     diameter_mm_verified: false
     mint_verified: false
     verified: false
-    year_verified: false
+    year_verified: true
     weight_rough_g:
       - value: 2.04
         source: numista
@@ -16139,6 +16163,15 @@ coins:
     mint_verified: false
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: schleswig_holstein-numismaster-167366
+          source: numismaster
+          years: '1702'
+      uncertain:
+        - seed: ngc-1209916
+          source: ngc
+          years: '1702'
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-thaler-km-180-mdccii-1702-cuid-1209916-duid-1395833

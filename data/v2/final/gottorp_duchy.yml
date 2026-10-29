@@ -3425,7 +3425,7 @@ coins:
     year_first: 1655
     year_last: 1655
     year_label: '1655'
-    year_verified: false
+    year_verified: true
     catalog:
       km: '44'
       numista: '313342'
@@ -6192,6 +6192,21 @@ coins:
     year_last: 1702
     year_label: '1702'
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-bruun-14510
+          source: bruun
+          years: '1702'
+        - seed: dk-numista-301632
+          source: numista
+          years: '1702'
+        - seed: schleswig_holstein-numismaster-167369
+          source: numismaster
+          years: '1702'
+      uncertain:
+        - seed: ngc-1177479
+          source: ngc
+          years: '1702'
     mint:
       - Gottorp
       - Tönning
@@ -12189,6 +12204,15 @@ coins:
     year_last: 1681
     year_label: '1681'
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: ngc-99439
+          source: ngc
+          years: '1681'
+      uncertain:
+        - seed: dk-bruun-14473
+          source: bruun
+          years: '1681'
     mint: Gottorp
     catalog:
       km: '135'
@@ -14786,6 +14810,15 @@ coins:
     year_last: 1702
     year_label: '1702'
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: schleswig_holstein-numismaster-167366
+          source: numismaster
+          years: '1702'
+      uncertain:
+        - seed: ngc-1209916
+          source: ngc
+          years: '1702'
     catalog:
       km: '180'
       lange: 428A
