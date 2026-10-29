@@ -681,6 +681,14 @@
 - **Why not `merge_decisions`**: a merge entry answers «same coin or not»; the reader-facing nominal is a presentation decision like fuss / phase / kind. And `nominal` is foundation-immutable in absorb, so a value set on the unified class reaches only the finals rebuilt from members (`_rebuild_scope.yml`), never the rest. Tried and reverted the same day.
 - **Rule**: any assignment that reaches the class may carry it; two different nominals reaching one final are not applied (`ASSIGN-NOMINAL-CONFLICT` in the absorb log).
 - **Code**: `absorb_seeds_into_final_v2.py`, the assignment apply loop.
+
+### D51 — Uncertainty is recorded per source: hedged vs inferred (`Coin.uncertainty`), and a year is verified when any source prints it plainly
+
+- **Decision** (curator 2026-10-29): one «(?)» covered two things — a source that prints a value with its own reservation («ND (ca. 1496-97)», «U.år (1523?)», «Christian 1?», «Malmø eller København») and a value the pipeline supplies when the source gives none (the reign of an undated coin, the metal read from the denomination name, a curator window). `uncertainty: {field: [UncertainReading]}` keeps, per field and per source, the kind (`hedged` / `inferred`), the basis (`how`), the source's text verbatim (`as_printed`) and the value. The page shows «(?)» for hedged, «[ … ]» for inferred, and the tooltip lists every entry.
+- **Accumulation**: the merger unions every member's entries with their seed id; different ranges from different sources all stay. Absorb unions from the live members only, never the final's stored copy, so the field is correct in every Fuß, not only those in `_rebuild_scope.yml`.
+- **Year verified**: `_year_attestation` — attested when a member gives a year, is not held out (reign span, `year_demote`, `year_mark`, a year whose entries are all inferred) and is not flagged False; an absent flag is attested. Not an attestation: a single span from Numista / ucoin / KMM / IKMK (they never flag undated coins), and a KMM year whenever another member is uncertain. Before this the OR-merge read an absent flag as «no information», so one undated member, or one without a year, put «(?)» on years four sources print.
+- **Conflict**: a source that prints the year plainly next to one that hedges it keeps «(?)» and records both sides in `year_conflict` — the plain source is not necessarily right; review deferred (volume unknown).
+- **Code**: `lib/uncertainty.py`, the builders (where they set `*_verified: False`; `inventory_unverified_sites.py` lists the sites), `lib/v2_seed_writer.py` (a source's mint doubt), `merge_seeds_cross_source._year_attestation`, absorb, `lib/render.uncertainty_mark`, `templates/location.html.j2` (`uq` / `uopen`). Plan: `docs/plans/uncertainty_markers.md`.
 ---
 
 ## Deferred decisions

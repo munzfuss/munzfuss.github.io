@@ -34,7 +34,9 @@ and pre-commit Check 10 all read that one list.
 ## When NOT to use
 
 - The field is merely unsourced or inferred → `<field>_verified: false`, which
-  renders «(?)». Not a reading mark.
+  renders «(?)», plus a `Coin.uncertainty` entry from the seed builder (hedged:
+  the source's own reservation, «(?)»; inferred: our basis, «[ … ]»; D51). Not
+  a reading mark.
 - The **value or catalogue index** printed by the source is wrong and must be
   replaced → `_source_errata` (needs the curator's explicit in-chat approval,
   CLAUDE.md §4). A mark keeps the value visible; an erratum replaces it.

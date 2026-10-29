@@ -672,15 +672,23 @@ _PRINTED_DATING = [
 _PRINTED_UNDATED = re.compile(r"\b[Uu]\.\s*år\b")
 
 
-def _printed_dating(data: dict, only: tuple[str, ...] | None = None) -> tuple[str | None, str | None]:
-    """(how, verbatim phrase) of the page's dating, or (None, None)."""
+def _printed_dating(data: dict, only: tuple[str, ...] | None = None,
+                    years: tuple[int | None, ...] = ()) -> tuple[str | None, str | None]:
+    """(how, verbatim phrase) of the page's dating, or (None, None). With
+    `years`, only a phrase that prints the first of them counts — a page names
+    other datings too (a predecessor's, a hoard's), and quoting one of those
+    beside this coin's value would misattribute it."""
     text = data.get("raw_text_excerpt") or ""
+    want = str(years[0]) if years and years[0] is not None else None
     for how, rx in _PRINTED_DATING:
         if only and how not in only:
             continue
-        m = rx.search(text)
-        if m:
-            return how, m.group(0)
+        for m in rx.finditer(text):
+            first = re.search(r"1[3-6]\d{2}", m.group(0))
+            if want is None or (first and (
+                    first.group(0) == want
+                    or (how in ("century", "decade") and first.group(0)[:3] == want[:3]))):
+                return how, m.group(0)
     return None, None
 
 
@@ -708,7 +716,8 @@ def build_entry(data: dict) -> dict | None:
                 year_unc.append(("other_page", issuer[0], "galster"))
             else:
                 how, printed = _printed_dating(
-                    data, ("query", "attributed", "century", "decade", "circa"))
+                    data, ("query", "attributed", "century", "decade", "circa"),
+                    years=hint)
                 year_unc.append((how or "attributed",
                                  printed or data.get("year_hint"), "galster"))
         elif data.get("page_shape") == "grevenfejde":
@@ -814,7 +823,8 @@ def build_entry(data: dict) -> dict | None:
     # «ca. 1380» (m1g1): the year the page gives, flagged as its approximation.
     if data.get("year_approx"):
         year_verified = False
-        year_unc.append(("circa", _printed_dating(data, ("circa",))[1], "galster"))
+        year_unc.append(("circa", _printed_dating(data, ("circa",),
+                                                  years=(year_first,))[1], "galster"))
 
     page_mark = _PAGE_YEAR_MARKS.get(data.get("source_file"))
     if page_mark:

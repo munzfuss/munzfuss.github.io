@@ -38,6 +38,10 @@ conflicts; 8 have only a Numista/ucoin/KMM span and keep «(?)». Only those in
 rebuild-scope Fuß (or with a class now carrying an explicit True) change at
 once.
 
+## Status 2026-10-29
+
+A ef7f9cd / 040c269; B e5de2e4 / 52ac105 (671 seed entries, 1306 finals); D 5a4bcec, bca7ea5 (inferred member years no longer make a conflict) and the metal / mint relevance fix. Open: NumisMaster ND marker text (needs parse_numismaster to record it); fineness from the standard (`standard`) not yet written anywhere; the 74 year conflicts await a review decision; finals whose year flag is stale with no unverified member wait for their Fuß's rebuild.
+
 ## Stage B — record HOW and BY WHOM a value is uncertain
 
 New schema field `uncertainty: {field: [entry]}` on seeds (and, unioned, on
