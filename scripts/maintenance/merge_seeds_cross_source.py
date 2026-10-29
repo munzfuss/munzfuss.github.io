@@ -4168,8 +4168,16 @@ def _year_attestation(members: list[dict]) -> tuple[bool | None, dict | None]:
             return yr
         return [[m.get("year_first"), m.get("year_last") or m.get("year_first")]]
 
+    def _inferred_only(m):
+        # Coin.uncertainty says the member's year is the pipeline's own
+        # inference (reign, a year read from text, …), not the source's
+        # reservation: a placeholder, like a reign span.
+        ys = (m.get("uncertainty") or {}).get("year") or []
+        return bool(ys) and all(e.get("kind") == "inferred" for e in ys)
+
     dated = [m for m in members if _has_year(m)]
-    held = [m for m in dated if m.get("_year_demoted") or m.get("year_mark")]
+    held = [m for m in dated if m.get("_year_demoted") or m.get("year_mark")
+            or (m.get("year_verified") is False and _inferred_only(m))]
     live = [m for m in dated if m not in held]
     hedged = [m for m in live if m.get("year_verified") is False]
     plain = [m for m in live if m.get("year_verified", True) is not False

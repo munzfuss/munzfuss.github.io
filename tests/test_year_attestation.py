@@ -66,6 +66,13 @@ class YearAttestation(unittest.TestCase):
         self.assertIs(yv, False)
         self.assertEqual([r["source"] for r in conflict["confident"]], ["kmk"])
 
+    def test_inferred_year_is_a_placeholder_not_a_conflict(self):
+        # Bruun «ND» with the year read from text (inferred) vs a dated source.
+        b = m("dk-bruun-9", 1676, year_verified=False,
+              uncertainty={"year": [{"kind": "inferred", "how": "text_year",
+                                      "source": "bruun"}]})
+        self.assertEqual(M._year_attestation([b, m("dk-numista-1", 1674)]), (True, None))
+
     def test_no_false_member_keeps_or_merge(self):
         self.assertIsNone(M._year_attestation([m("dk-hede-a", 1600)])[0])
 

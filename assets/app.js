@@ -473,14 +473,18 @@
   // Built from text nodes, never innerHTML — tooltip text is data.
   // Every marker tooltip opens with a bold headline naming the marker kind;
   var MARK_HEAD = {
-    uk: {template: "Шаблонне значення.", fragment: "Фрагмент.", suspect: "Підозріле значення.", unverified: "Прогнозоване значення.", erroneous: "Помилкове значення."},
-    de: {template: "Schablonenwert.", fragment: "Fragment.", suspect: "Verdächtiger Wert.", unverified: "Geschätzter Wert.", erroneous: "Fehlerhafter Wert."},
-    en: {template: "Template value.", fragment: "Fragment.", suspect: "Suspect value.", unverified: "Estimated value.", erroneous: "Erroneous value."},
-    da: {template: "Skabelonværdi.", fragment: "Fragment.", suspect: "Mistænkelig værdi.", unverified: "Anslået værdi.", erroneous: "Fejlagtig værdi."}
+    uk: {template: "Шаблонне значення.", fragment: "Фрагмент.", suspect: "Підозріле значення.", unverified: "Прогнозоване значення.", erroneous: "Помилкове значення.", hedged: "Джерело подає значення непевно.", inferred: "Виведене значення."},
+    de: {template: "Schablonenwert.", fragment: "Fragment.", suspect: "Verdächtiger Wert.", unverified: "Geschätzter Wert.", erroneous: "Fehlerhafter Wert.", hedged: "Die Quelle gibt den Wert unter Vorbehalt.", inferred: "Abgeleiteter Wert."},
+    en: {template: "Template value.", fragment: "Fragment.", suspect: "Suspect value.", unverified: "Estimated value.", erroneous: "Erroneous value.", hedged: "The source gives the value with reservation.", inferred: "Inferred value."},
+    da: {template: "Skabelonværdi.", fragment: "Fragment.", suspect: "Mistænkelig værdi.", unverified: "Anslået værdi.", erroneous: "Fejlagtig værdi.", hedged: "Kilden angiver værdien med forbehold.", inferred: "Udledt værdi."}
   };
   function markKind(trigger) {
-    var m = trigger && trigger.className &&
-      /(?:^|\s)(suspect|erroneous|template|fragment)-mark(?:\s|$)|(?:^|\s)(unverified)(?:\s|$)/.exec(trigger.className);
+    var c = trigger && trigger.className;
+    if (!c) return null;
+    // Coin.uncertainty: «(?)» a source's own reservation, «[ ]» an inference.
+    var u = /(?:^|\s)unc-(hedged|inferred)(?:\s|$)/.exec(c);
+    if (u) return u[1];
+    var m = /(?:^|\s)(suspect|erroneous|template|fragment)-mark(?:\s|$)|(?:^|\s)(unverified)(?:\s|$)/.exec(c);
     return m ? (m[1] || m[2]) : null;
   }
   function setTipText(box, text, trigger) {

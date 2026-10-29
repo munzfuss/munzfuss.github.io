@@ -581,3 +581,82 @@ def _fuss_spec_line(spec, lang: str):
     if g.get("fineness_unverified") or g.get("unverified"):
         out += q
     return Markup(out)
+
+
+_UNC_SOURCE = {
+    **_SOURCE_DISPLAY,
+    "galster": "Galster (danskmoent.dk)",
+    "lindahl": "Lindahl 1955",
+    "metallanalyser": "Lindblad, Metallanalyser",
+    "ucoin": "ucoin",
+}
+
+
+def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
+    """How the page marks an unverified value from Coin.uncertainty
+    (docs/plans/uncertainty_markers.md, curator 2026-10-29).
+
+    Returns None when the coin records nothing for `field` (the caller keeps
+    the generic «(?)»). Otherwise `{"kind": "hedged" | "inferred", "tip": …}`:
+    hedged when any source prints the value uncertainly — the value is the
+    source's, so «(?)»; inferred when every entry is the pipeline's own basis
+    — «[ … ]». The tooltip lists every entry: each source with its own text,
+    then each basis with its value; for a year in conflict, the sources that
+    print it plainly as well."""
+    def _get(obj, key):
+        return obj.get(key) if isinstance(obj, dict) else getattr(obj, key, None)
+
+    def _plain(obj):
+        return obj.model_dump(exclude_none=True) if hasattr(obj, "model_dump") else obj
+
+    entries = [_plain(e) for e in (_get(raw, "uncertainty") or {}).get(field) or []]
+    if not entries:
+        return None
+
+    def src(e):
+        return _UNC_SOURCE.get(e.get("source"), e.get("source") or "")
+
+    def how(e):
+        t = i18n.ui_get(ui, f"uncertainty.how.{e.get('how')}", lang)
+        return "" if t.startswith("[") else t
+
+    if field == "metal":
+        # The value is a metal key («billon»); show it as the column does.
+        for e in entries:
+            t = i18n.ui_get(ui, f"metal.{e.get('value')}", lang)
+            if e.get("value") and not t.startswith("["):
+                e["value"] = t
+    hedged = [e for e in entries if e.get("kind") == "hedged"]
+    inferred = [e for e in entries if e.get("kind") == "inferred"]
+    lines: list[str] = []
+    seen: set[str] = set()
+
+    def push(line: str):
+        if line and line not in seen:
+            seen.add(line)
+            lines.append(line)
+
+    for e in hedged:
+        if e.get("as_printed"):
+            push(f"{src(e)}: «{e['as_printed']}»")
+        else:
+            push(f"{src(e)}: {e.get('value') or ''} ({how(e)})".replace(" ()", ""))
+    if inferred and hedged:
+        push(i18n.ui_get(ui, "uncertainty.inferred_also", lang))
+    for e in inferred:
+        basis = how(e)
+        val = e.get("value") or ""
+        line = f"{basis}: {val}" if val else basis
+        if e.get("as_printed") and e.get("source") not in ("ruler_reigns", "merge_decisions"):
+            line += f" ({src(e)}: «{e['as_printed']}»)"
+        elif e.get("source") not in ("ruler_reigns", "merge_decisions"):
+            line += f" ({src(e)})"
+        push(line)
+    if field == "year":
+        yc = _plain(_get(raw, "year_conflict")) or {}
+        conf = yc.get("confident") or []
+        if conf:
+            push(i18n.ui_get(ui, "uncertainty.confident", lang))
+            for r in conf:
+                push(f"{_UNC_SOURCE.get(r.get('source'), r.get('source'))}: {r.get('years') or ''}")
+    return {"kind": "hedged" if hedged else "inferred", "tip": "\n".join(lines)}
