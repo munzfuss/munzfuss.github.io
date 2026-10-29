@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-10-26T19:12:36Z'
+generated_at: '2026-10-29T20:33:51Z'
 entity: danish_realm
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -1547,60 +1547,6 @@ coins:
           source: galster
           as_printed: u. år
           value: 1483-1513
-  - id: dk-galster-hg-27
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Rhinsk gylden
-    year_label: 1483-1513
-    year_first: 1483
-    year_last: 1513
-    year_ranges:
-      -   - 1483
-          - 1513
-    year_verified: false
-    ruler: Hans
-    mint:
-      - Kopenhagen
-      - Malmø
-    catalog:
-      galster:
-        - '27'
-        - 27A
-      galster_volume: hg
-      schou: 1-6
-    metal: gold
-    fineness:
-    weight_rough_g:
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/hg27.htm
-        ref: Galster 27 (hg) — danskmoent.dk fr_hg27.htm
-    metal_verified: false
-    uncertainty:
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: 1 Rhinsk gylden
-          value: gold
-      year:
-        - kind: inferred
-          how: reign
-          source: galster
-          as_printed: U.år
-          value: 1483-1513
-      mint:
-        - kind: hedged
-          how: alternatives
-          source: galster
-          as_printed: Malmø eller København
-          value: Malmø, København
   - id: dk-galster-hg-31
     fuss: seed_unsorted
     phase: galster
@@ -2022,6 +1968,58 @@ coins:
           source: galster
           as_printed: 1 Nobel
           value: gold
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: galster
+          as_printed: Malmø eller København
+          value: Malmø, København
+  - id: dk-galster-hg-27
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Rhinsk gylden
+    year_label: '1497'
+    year_first: 1497
+    year_last: 1497
+    year_ranges:
+      -   - 1497
+          - 1497
+    year_verified: false
+    ruler: Hans
+    mint:
+      - Kopenhagen
+      - Malmø
+    catalog:
+      galster: 27A
+      galster_volume: hg
+      schou: 1-6
+    metal: gold
+    fineness:
+    weight_rough_g:
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/hg27.htm
+        ref: Galster 27 (hg) — danskmoent.dk fr_hg27.htm
+    metal_verified: false
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: 1 Rhinsk gylden
+          value: gold
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: formentlig slået omkring 1497
+          value: '1497'
       mint:
         - kind: hedged
           how: alternatives

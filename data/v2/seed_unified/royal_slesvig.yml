@@ -614,7 +614,9 @@ coins:
     ruler: Frederik I
     mint: Husum
     catalog:
-      galster: 118A
+      galster:
+        - '118'
+        - 118A
       schou: '5'
       galster_volume: f1g
     metal: billon
@@ -670,7 +672,9 @@ coins:
     ruler: Frederik I
     mint: Husum
     catalog:
-      galster: 119BCD
+      galster:
+        - '119'
+        - 119BCD
       schou:
         - 1-3
         - '4'
@@ -680,10 +684,19 @@ coins:
     metal: billon
     metal_verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: true
+    weight_range_g:
+      - min: 3.19
+        max: 3.75
+        approx: false
+        source: danskmoent.dk fr/f1g119.htm
+        url: https://www.danskmoent.dk/gif/f1_g119.gif
+    diameter_mm:
+      - value: 29.0
+        source: danskmoent.dk fr/f1g119.htm
     uncertainty:
       metal:
         - kind: inferred
@@ -717,7 +730,9 @@ coins:
     ruler: Frederik I
     mint: Husum
     catalog:
-      galster: 120A
+      galster:
+        - '120'
+        - 120A
       schou:
         - '1'
         - 8-9

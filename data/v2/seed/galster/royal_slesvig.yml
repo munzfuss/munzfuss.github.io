@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-10-26T15:30:38Z'
+generated_at: '2026-10-29T20:33:52Z'
 entity: royal_slesvig
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -151,7 +151,9 @@ coins:
     ruler: Frederik I
     mint: Husum
     catalog:
-      galster: 118A
+      galster:
+        - '118'
+        - 118A
       schou: '5'
       galster_volume: f1g
     metal: billon
@@ -198,7 +200,9 @@ coins:
     ruler: Frederik I
     mint: Husum
     catalog:
-      galster: 119BCD
+      galster:
+        - '119'
+        - 119BCD
       schou:
         - 1-3
         - '4'
@@ -211,7 +215,7 @@ coins:
     issuing_entity: royal_slesvig
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -225,6 +229,15 @@ coins:
           source: galster
           as_printed: 2 Skilling
           value: billon
+    diameter_mm:
+      - value: 29.0
+        source: danskmoent.dk fr/f1g119.htm
+    weight_range_g:
+      - min: 3.19
+        max: 3.75
+        approx: false
+        source: danskmoent.dk fr/f1g119.htm
+        url: https://www.danskmoent.dk/gif/f1_g119.gif
   - id: dk-galster-f1g-120
     fuss: seed_unsorted
     phase: galster
@@ -242,7 +255,9 @@ coins:
     ruler: Frederik I
     mint: Husum
     catalog:
-      galster: 120A
+      galster:
+        - '120'
+        - 120A
       schou:
         - '1'
         - 8-9
