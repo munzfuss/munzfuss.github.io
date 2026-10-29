@@ -90,6 +90,7 @@ ROOT = Path(__file__).resolve().parents[2]
 V2_SEED = ROOT / "data" / "v2" / "seed"
 V2_SEED_UNIFIED = ROOT / "data" / "v2" / "seed_unified"
 V2_MERGE_DECISIONS = ROOT / "data" / "v2" / "merge_decisions"
+V2_ATTRIBUTIONS = ROOT / "data" / "v2" / "attributions"
 V2_MATCH_UNCERTAINTY = ROOT / "data" / "v2" / "match_uncertainty"
 V2_EXCLUSIONS = ROOT / "data" / "v2" / "exclusions"
 
@@ -4695,16 +4696,9 @@ def validate_decisions_doc(doc: dict, path) -> list[str]:
     for i, e in enumerate(doc.get("year_demote") or []):
         if not isinstance(e, dict) or not (e.get("member_id") or e.get("members")):
             errs.append(f"{path}::year_demote[{i}] needs 'member_id' or 'members'")
-    for i, e in enumerate(doc.get("year_window") or []):
-        yrs = e.get("years") if isinstance(e, dict) else None
-        note = e.get("note") if isinstance(e, dict) else None
-        if not isinstance(e, dict) or not e.get("members"):
-            errs.append(f"{path}::year_window[{i}] needs 'members'")
-        elif not (isinstance(yrs, list) and len(yrs) == 2
-                  and all(isinstance(y, int) for y in yrs) and yrs[0] <= yrs[1]):
-            errs.append(f"{path}::year_window[{i}] 'years' must be [first, last]")
-        elif not (isinstance(note, dict) and all(note.get(k) for k in ("de", "en", "uk", "da"))):
-            errs.append(f"{path}::year_window[{i}] 'note' needs de/en/uk/da")
+    if doc.get("year_window"):
+        errs.append(f"{path}::year_window is retired — a class's year from works "
+                    f"is an attribution (data/v2/attributions/<entity>.yml, D52)")
     return errs
 
 
@@ -4723,31 +4717,140 @@ def load_decisions_yaml(path) -> dict:
     return doc
 
 
-def _apply_year_window(unified: dict, member_ids: set[str], windows: list[dict],
-                       expand=lambda mid: [mid]) -> None:
-    """A curator `year_window` (merge_decisions) sets the year a class shows
-    when its members' datings are to be compiled rather than unioned, and the
-    reader-facing explanation of it (`year_note`, the tooltip of the year's
-    «(?)»). The window is an estimate, so the year stays unverified. Founding
-    case: Galster 1, the Ribe hvid — Ernst 1948's start, Horsnæs, Moesgaard
-    and Märcher 2018's end (curator 2026-10-26)."""
-    for w in windows:
-        ids = {sid for mid in w.get("members") or [] for sid in (expand(mid) or [mid])}
-        if not ids & member_ids:
+# ---------------------------------------------------------------------------
+# Attributions (data/v2/attributions/<entity>.yml, curator 2026-10-29, D52)
+# ---------------------------------------------------------------------------
+#
+# The value a class shows for a field when it rests on scholarly WORKS rather
+# than on the specimen sources that are its members: «Hans' gulden 1497»
+# (Zinck, Galster 1936, Märcher 2018), the Ribe hvid's 1373-1381 (Ernst 1948 +
+# Märcher 2018). A record names the TYPE by its catalogue number(s), the way
+# the works name it, and is found by the same scoped catalogue keys the
+# matcher uses (`_catalog_refs`: «galster/<volume>», «hede/<ruler>», …;
+# sub-letters and case folded), so no seed id it could outlive is involved.
+# Applied after the class is built; the members' own values stay in the data.
+# Only `year` is implemented: the merger builds it from the members and
+# absorb rebuilds the final's year from the class, so it reaches every final.
+# A foundation-immutable field (ruler, nominal) would be applied in absorb.
+
+ATTRIBUTION_FIELDS = ("year",)
+ATTRIBUTION_BASES = ("given", "compiled")
+
+
+def load_attributions(entity_id: str) -> list[dict]:
+    path = V2_ATTRIBUTIONS / f"{entity_id}.yml"
+    if not path.exists():
+        return []
+    doc = yaml.load(path.read_text(encoding="utf-8"), Loader=_StrictDecisionsLoader) or {}
+    errs = validate_attributions_doc(doc, path.name)
+    if errs:
+        raise DecisionsIntegrityError(
+            f"attributions integrity check FAILED for {path}:\n  - " + "\n  - ".join(errs))
+    return doc.get("attributions") or []
+
+
+def validate_attributions_doc(doc: dict, path: str = "<attributions>") -> list[str]:
+    from lib import uncertainty as _u
+    errs: list[str] = []
+    for i, a in enumerate((doc or {}).get("attributions") or []):
+        w = f"{path}::attributions[{i}]"
+        if not isinstance(a, dict):
+            errs.append(f"{w} must be a mapping")
             continue
-        first, last = w["years"]
-        unified["year_first"], unified["year_last"] = first, last
-        unified["year_ranges"] = [[first, last]]
-        unified["year_label"] = str(first) if first == last else f"{first}-{last}"
-        unified["year_verified"] = False
-        unified["year_note"] = dict(w["note"])
-        # The window is the curator's compilation of the members' datings.
-        from lib import uncertainty as _unc
-        unified.setdefault("uncertainty", {})["year"] = (
-            [e for e in (unified.get("uncertainty") or {}).get("year") or []]
-            + [dict(_unc.make("compiled", "merge_decisions",
-                              value=unified["year_label"]))])
-        return
+        if not isinstance(a.get("type"), dict) or not a["type"]:
+            errs.append(f"{w} needs 'type' (catalogue number(s) naming the type)")
+        if a.get("field") not in ATTRIBUTION_FIELDS:
+            errs.append(f"{w} 'field' must be one of {ATTRIBUTION_FIELDS}")
+        if a.get("basis") not in ATTRIBUTION_BASES:
+            errs.append(f"{w} 'basis' must be one of {ATTRIBUTION_BASES}")
+        v = a.get("value")
+        if a.get("field") == "year" and not (
+                isinstance(v, int) or (isinstance(v, list) and len(v) == 2
+                                       and all(isinstance(y, int) for y in v) and v[0] <= v[1])):
+            errs.append(f"{w} year 'value' must be a year or [first, last]")
+        works = a.get("works")
+        if not isinstance(works, list) or not works:
+            errs.append(f"{w} needs 'works'")
+            continue
+        for j, wk in enumerate(works):
+            if not isinstance(wk, dict) or not wk.get("work") or not wk.get("quote"):
+                errs.append(f"{w}.works[{j}] needs 'work' and 'quote'")
+            elif wk.get("how") not in _u.HEDGED | {"plain"}:
+                errs.append(f"{w}.works[{j}] 'how' must be 'plain' or a hedged basis")
+            tr = wk.get("translation") if isinstance(wk, dict) else None
+            if tr is not None and not (isinstance(tr, dict) and all(tr.get(k) for k in ("de", "en", "uk"))):
+                errs.append(f"{w}.works[{j}] 'translation' needs de/en/uk")
+        note = a.get("note")
+        if note is not None and not (isinstance(note, dict) and all(note.get(k) for k in ("de", "en", "uk", "da"))):
+            errs.append(f"{w} 'note' needs de/en/uk/da")
+    return errs
+
+
+def _attribution_matches(attr: dict, member_coins: list[dict], entity_id: str) -> bool:
+    """Every catalogue register the attribution names is carried, with the
+    same type-level number, by some member of the class."""
+    spec = _catalog_refs({"catalog": dict(attr["type"])}, entity_id)
+    if not spec:
+        return False
+    member_refs = [_catalog_refs(m, entity_id) for m in member_coins]
+    for key, val in spec.items():
+        want = {_type_level_numeric_core(x.lower()) for x in str(val).split("|")}
+        if not any(key in r and want & {_type_level_numeric_core(x.strip().lower())
+                                        for x in str(r[key]).split("|")}
+                   for r in member_refs):
+            return False
+    return True
+
+
+def _work_label(wk: dict) -> str:
+    return wk["work"] + (f", s. {wk['page']}" if wk.get("page") else "")
+
+
+def apply_attribution(unified: dict, attr: dict) -> None:
+    """Set the class's field from the attribution, record each work in
+    Coin.uncertainty (with its quote) and in `sources` (literature)."""
+    from lib import uncertainty as _u
+    v = attr["value"]
+    first, last = (v, v) if isinstance(v, int) else (v[0], v[1])
+    unified["year_first"], unified["year_last"] = first, last
+    unified["year_ranges"] = [[first, last]]
+    unified["year_label"] = str(first) if first == last else f"{first}-{last}"
+    plain = attr["basis"] == "given" and all(wk.get("how") == "plain" for wk in attr["works"])
+    unified["year_verified"] = plain
+    unified.pop("year_conflict", None)
+    if attr.get("note"):
+        unified["year_note"] = dict(attr["note"])
+    else:
+        unified.pop("year_note", None)
+    entries = []
+    for wk in attr["works"]:
+        if attr["basis"] == "compiled":
+            e = _u.make("compiled", _work_label(wk), as_printed=wk["quote"],
+                        value=unified["year_label"])
+        elif wk.get("how") == "plain":
+            continue
+        else:
+            e = _u.make(wk["how"], _work_label(wk), as_printed=wk["quote"],
+                        value=unified["year_label"])
+        if wk.get("translation"):
+            e["translation"] = dict(wk["translation"])
+        e["seed"] = "attribution"
+        entries.append(e)
+    unc = unified.setdefault("uncertainty", {})
+    unc["year"] = entries + [e for e in unc.get("year") or [] if e.get("seed") != "attribution"]
+    if not unc["year"]:
+        unc.pop("year")
+    srcs = unified.setdefault("sources", [])
+    have = {(s.get("ref") if isinstance(s, dict) else s) for s in srcs}
+    for wk in attr["works"]:
+        ref = _work_label(wk)
+        if ref in have:
+            continue
+        src = {"type": "literature", "ref": ref}
+        if wk.get("url"):
+            src["url"] = wk["url"]
+        srcs.append(src)
+        have.add(ref)
 
 
 def _load_decisions(entity_id: str) -> dict:
@@ -4763,13 +4866,12 @@ def _load_decisions(entity_id: str) -> dict:
     force-merge (see DecisionsIntegrityError)."""
     path = V2_MERGE_DECISIONS / f"{entity_id}.yml"
     if not path.exists():
-        return {"merges": [], "no_merges": [], "year_demote": [], "year_window": []}
+        return {"merges": [], "no_merges": [], "year_demote": []}
     doc = load_decisions_yaml(path)
     return {
         "merges": doc.get("merges", []) or [],
         "no_merges": doc.get("no_merges", []) or [],
         "year_demote": doc.get("year_demote", []) or [],
-        "year_window": doc.get("year_window", []) or [],
     }
 
 
@@ -5275,6 +5377,8 @@ def process_entity(entity_id: str,
         mid for grp in pull_groups.get(entity_id, []) for mid in grp}
 
     decisions = _load_decisions(entity_id)
+    attributions = load_attributions(entity_id)
+    attribution_hits: dict[int, list[str]] = {}
 
     # D33 reign index — built ONCE per entity from members that DO
     # carry an attested ruler. Used by `match_pair` to fill ruler=null
@@ -5713,8 +5817,10 @@ def process_entity(entity_id: str,
         member_coins = [seeds_by_id[mid] for mid in sorted(member_ids)]
         unified_id = _unified_id_for_class(member_coins)
         unified, conflicts = build_unified(member_coins, unified_id, entity_id)
-        _apply_year_window(unified, set(member_ids), decisions.get("year_window", []),
-                           _expand_member)
+        for _ai, _attr in enumerate(attributions):
+            if _attribution_matches(_attr, member_coins, entity_id):
+                apply_attribution(unified, _attr)
+                attribution_hits.setdefault(_ai, []).append(unified_id)
         # Cross-entity stamp: a class containing a member curator-pulled into
         # this entity is a real coin of this jurisdiction. Derive its
         # issuing_entity from the merged MINT (the circulation signal) rather
@@ -5764,6 +5870,15 @@ def process_entity(entity_id: str,
                     for (f, t, o) in conflicts
                 ],
             })
+
+    # An attribution must name exactly one class: none (its catalogue number
+    # left the data) or several (the type is split) is reported, never applied
+    # silently to the wrong coin.
+    for _ai, _attr in enumerate(attributions):
+        _hits = attribution_hits.get(_ai, [])
+        if len(_hits) != 1:
+            print(f"  ⚠ ATTRIBUTION-{'MISS' if not _hits else 'AMBIGUOUS'} "
+                  f"{entity_id} attributions[{_ai}] type={_attr.get('type')} → {_hits}")
 
     # Deterministic order
     unified_entries.sort(key=lambda u: u["id"])

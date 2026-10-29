@@ -559,6 +559,7 @@ Every script is idempotent + merge-aware per D25; every transition preserves dat
 | same coin / not the same coin | 3.2 MERGE — `merge_decisions` | Numista 287318 = Galster 13; G 7 / 10 / 14 / 15 apart |
 | a coin's issuing entity when its seeds disagree | 3.2 MERGE — `_cross_entity.yml` | c3h15 royal Schleswig issue |
 | which year a class shows when members disagree | 3.2 MERGE — the year rules / `year_demote` | «1422 (?)» over the reign 1397–1439 |
+| a class's value that rests on scholarly works, not on its specimen sources (a dating, later a mint / ruler / fineness) | `attributions/<entity>.yml` (D52) — the type named by its catalogue number(s), the works with quote and page; applied by 3.2 for fields the merger builds (year), by 4 for foundation-immutable ones (ruler, nominal — not yet implemented) | Hans' gulden 1497 (Zinck, Märcher 2018, Galster 1936); Galster 1 1373–1381 |
 | fuss, phase, kind, reader-facing nominal of a class | 4 ABSORB — `classification_decisions` | Kobbersterling «1 Sterling» (D50) |
 | a coin that must not render | 4 ABSORB — `exclusions/` (+ the builder filter so a re-harvest does not bring it back, PB-12) | — |
 | which entities / phases a page shows | RENDER — `data/v2/locations/` | — |

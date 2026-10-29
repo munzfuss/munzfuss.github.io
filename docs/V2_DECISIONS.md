@@ -689,6 +689,15 @@
 - **Year verified**: `_year_attestation` — attested when a member gives a year, is not held out (reign span, `year_demote`, `year_mark`, a year whose entries are all inferred) and is not flagged False; an absent flag is attested. Not an attestation: a single span from Numista / ucoin / KMM / IKMK (they never flag undated coins), and a KMM year whenever another member is uncertain. Before this the OR-merge read an absent flag as «no information», so one undated member, or one without a year, put «(?)» on years four sources print.
 - **Conflict**: a source that prints the year plainly next to one that hedges it keeps «(?)» and records both sides in `year_conflict` — the plain source is not necessarily right; review deferred (volume unknown).
 - **Code**: `lib/uncertainty.py`, the builders (where they set `*_verified: False`; `inventory_unverified_sites.py` lists the sites), `lib/v2_seed_writer.py` (a source's mint doubt), `merge_seeds_cross_source._year_attestation`, absorb, `lib/render.uncertainty_mark`, `templates/location.html.j2` (`uq` / `uopen`). Plan: `docs/plans/uncertainty_markers.md`.
+
+### D52 — Attributions: a class's value from scholarly works, keyed by the type's catalogue number
+
+- **Decision** (curator 2026-10-29): a value a class shows because scholarly WORKS give it — not the specimen sources that are its members — is recorded in `data/v2/attributions/<entity>.yml`: `type` (catalogue number(s), as the works name the type), `field`, `value`, `basis` (`given`: a work states it; `compiled`: the curator's compilation), `works` (work, page, url, how the work hedges it, verbatim quote, translation de/en/uk), optional reader-facing `note`, `curator`. The general home for «why this record shows this value beyond its specimen sources».
+- **Why not `refs_pool`**: that is the page bibliography for prose; a coin row cites its works in its own Sources column, as Lindahl 1955 is cited.
+- **Why the catalogue number, not a seed id**: the works date the TYPE; a seed can be thinned away, split into sub-letters, or excluded. The merger resolves the type with the scoped catalogue keys the matcher uses (`_catalog_refs`, «galster/<volume>», sub-letters and case folded); a type found in no class or in several is reported (`ATTRIBUTION-MISS / -AMBIGUOUS`) and not applied.
+- **Layer**: the year is the merger's (3.2) and reaches every final because absorb rebuilds the final's year from the class — no final hold needed. A foundation-immutable field (ruler, nominal) would be applied in absorb; not implemented until needed.
+- **Render**: each work becomes a `Coin.uncertainty` entry (hedged with its quote for `given`, inferred `compiled` for `compiled`), so the tooltip names the works; each work is added to `sources` as literature. `year_window` (merge_decisions) is retired; Galster 1 moved here.
+- **Code**: `merge_seeds_cross_source` (`load_attributions`, `validate_attributions_doc`, `_attribution_matches`, `apply_attribution`), `validate_decisions.py`, pre-commit Check 5, `tests/test_attributions.py`.
 ---
 
 ## Deferred decisions

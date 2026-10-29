@@ -283,8 +283,17 @@ def main() -> int:
         return rc
 
     files = _decision_files()
+    attr_files = sorted((ROOT / "data" / "v2" / "attributions").glob("*.yml"))
     failed = 0
-    for path in files:
+    for path in attr_files:
+        # Attributions (D52): strict-load + structural validate.
+        try:
+            _M.load_attributions(path.stem)
+        except Exception as e:  # noqa: BLE001
+            failed += 1
+            print(f"✗ {path.relative_to(ROOT)}: {type(e).__name__}: {e}", file=sys.stderr)
+    files = files + attr_files
+    for path in [p for p in files if p not in attr_files]:
         try:
             _M.load_decisions_yaml(path)  # strict-load + structural validate
         except _M.DecisionsIntegrityError as e:

@@ -1086,12 +1086,12 @@ coins:
     phase: bruun
     kind: kurant
     nominal: 1 Goldgulden
-    year_first: 1496
+    year_first: 1497
     year_last: 1497
     year_ranges:
-      -   - 1496
+      -   - 1497
           - 1497
-    year_label: 1496-1497
+    year_label: '1497'
     ruler: Hans
     mintmaster: Herman van Nassau or Hans Sever
     inscription_obv: IOhS DEI GR - REX DACIE
@@ -1134,6 +1134,26 @@ coins:
         source: ikmk
     uncertainty:
       year:
+        - kind: hedged
+          how: circa
+          source: Zinck I, s. 9, cit. danskmoent.dk (Galster 27)
+          as_printed: blev formentlig slået omkring 1497
+          value: '1497'
+          translation:
+            de: wurde vermutlich um 1497 geschlagen
+            en: was probably struck around 1497
+            uk: карбовано, імовірно, близько 1497 року
+          seed: attribution
+        - kind: hedged
+          how: possibly
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 447'
+          as_printed: blev der produceret 150.000 gylden til betaling af tyske lejetropper i forbindelse med den svenske konflikt i 1497. Tidsmæssigt og variantmæssigt kan det godt passe sammen
+          value: '1497'
+          translation:
+            de: wurden 150 000 Gulden zur Bezahlung deutscher Söldner im Zusammenhang mit dem schwedischen Konflikt 1497 hergestellt. Zeitlich und nach den Varianten kann das gut zusammenpassen
+            en: 150,000 gulden were produced to pay German mercenaries in connection with the Swedish conflict of 1497. In time and in variants this may well fit together
+            uk: було вироблено 150 000 гульденів для оплати німецьких найманців у зв'язку зі шведським конфліктом 1497 року. За часом і за варіантами це цілком може збігатися
+          seed: attribution
         - kind: hedged
           how: attributed
           source: bruun
@@ -1185,6 +1205,15 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18206592
         ref: IKMK Berlin 18206592
+      - type: literature
+        ref: Zinck I, s. 9, cit. danskmoent.dk (Galster 27)
+        url: https://www.danskmoent.dk/fr/hg27.htm
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 447'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
+      - type: literature
+        ref: Galster, Danmarks Mønter (Nordisk Kultur XXIX, 1936), cit. danskmoent.dk
+        url: https://www.danskmoent.dk/galster/galkult.htm
     note:
       de: Rhinsk Gulden
       en: Rhinsk Gulden
@@ -16148,12 +16177,12 @@ coins:
     phase: galster
     kind: kurant
     nominal: ½ Goldgulden
-    year_first: 1483
-    year_last: 1513
+    year_first: 1497
+    year_last: 1497
     year_ranges:
-      -   - 1483
-          - 1513
-    year_label: 1483-1513
+      -   - 1497
+          - 1497
+    year_label: '1497'
     _year_demoted: true
     ruler: Hans
     mint:
@@ -16190,6 +16219,26 @@ coins:
     uncertainty:
       year:
         - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 447'
+          as_printed: en nu uhyre sjælden ½ gylden, der formodentlig er produceret på samme tid som de andre
+          value: '1497'
+          translation:
+            de: ein heute äußerst seltener ½ Gulden, der vermutlich zur selben Zeit wie die anderen hergestellt wurde
+            en: a now extremely rare ½ gulden, presumably produced at the same time as the others
+            uk: нині надзвичайно рідкісний ½ гульден, імовірно вироблений водночас з іншими
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 447'
+          as_printed: blev der produceret 150.000 gylden til betaling af tyske lejetropper i forbindelse med den svenske konflikt i 1497. Tidsmæssigt og variantmæssigt kan det godt passe sammen
+          value: '1497'
+          translation:
+            de: wurden 150 000 Gulden zur Bezahlung deutscher Söldner im Zusammenhang mit dem schwedischen Konflikt 1497 hergestellt. Zeitlich und nach den Varianten kann das gut zusammenpassen
+            en: 150,000 gulden were produced to pay German mercenaries in connection with the Swedish conflict of 1497. In time and in variants this may well fit together
+            uk: було вироблено 150 000 гульденів для оплати німецьких найманців у зв'язку зі шведським конфліктом 1497 року. За часом і за варіантами це цілком може збігатися
+          seed: attribution
+        - kind: inferred
           how: reign
           source: galster
           as_printed: u.år
@@ -16222,6 +16271,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/hansgals.htm
         ref: Galster 28 (hg) — danskmoent.dk hansgals.htm
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 447'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-halvrhin
@@ -17871,6 +17923,26 @@ coins:
         source: danskmoent.dk ernst/ribeaxe1.htm
     uncertainty:
       year:
+        - kind: inferred
+          how: compiled
+          source: Ernst, Bidrag til Ribe Mønts Historie (Nordisk Numismatisk Årsskrift 1948), cit. danskmoent.dk
+          as_printed: Udmøntningen skulde da mest sandsynligt kunne dateres til Aarene 1373 eller kort derefter til 1377
+          value: 1373-1381
+          translation:
+            de: die Ausmüntzung ließe sich dann am wahrscheinlichsten auf das Jahr 1373 oder kurz danach bis 1377 datieren
+            en: the coinage could then most probably be dated to the year 1373 or shortly after, to 1377
+            uk: карбування тоді найімовірніше можна датувати 1373 роком або невдовзі після нього, до 1377
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 372'
+          as_printed: En datering af udmøntningen til ca. 1376-1381 synes på nuværende tidspunkt at være det mest oplagte
+          value: 1373-1381
+          translation:
+            de: eine Datierung der Ausmüntzung auf ca. 1376–1381 scheint derzeit am naheliegendsten
+            en: a dating of the coinage to c. 1376–1381 currently seems the most obvious
+            uk: датування карбування приблизно 1376–1381 роками наразі видається найочевиднішим
+          seed: attribution
         - kind: hedged
           how: circa
           source: galster
@@ -17883,10 +17955,6 @@ coins:
           as_printed: 1373/77—96
           value: 1373-1396
           seed: lindahl-1955-ribe-witten
-        - kind: inferred
-          how: compiled
-          source: merge_decisions
-          value: 1373-1381
       metal:
         - kind: inferred
           how: from_name
@@ -17907,6 +17975,12 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 76
+      - type: literature
+        ref: Ernst, Bidrag til Ribe Mønts Historie (Nordisk Numismatisk Årsskrift 1948), cit. danskmoent.dk
+        url: https://www.danskmoent.dk/ernst/ribeaxe1.htm
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 372'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-m1g-1

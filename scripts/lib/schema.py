@@ -117,6 +117,9 @@ class UncertainReading(_StrictBase):
         "default", "compiled", "curator_window", "from_name", "uncited"]
     source: str = Field(..., min_length=1)
     as_printed: str | None = None
+    # A translation of `as_printed` in the reader's language (attributions
+    # quoting a work in Danish).
+    translation: I18nText | None = None
     value: str | None = None
     seed: str | None = None
 

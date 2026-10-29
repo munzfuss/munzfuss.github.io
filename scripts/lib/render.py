@@ -657,9 +657,18 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
             seen.add(line)
             lines.append(line)
 
+    def tr(e):
+        # A translation of a quoted work, in the page language; a Danish page
+        # reads the Danish quote as it stands.
+        t = e.get("translation") or {}
+        if not t or lang == "da":
+            return ""
+        txt = t.get(lang) or t.get("en") or t.get("de")
+        return f" («{txt}»)" if txt else ""
+
     for e in hedged:
         if e.get("as_printed"):
-            push(f"{src(e)}: «{e['as_printed']}»")
+            push(f"{src(e)}: «{e['as_printed']}»{tr(e)}")
         else:
             push(f"{src(e)}: {e.get('value') or ''} ({how(e)})".replace(" ()", ""))
     if inferred and hedged:
@@ -669,7 +678,7 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
         val = e.get("value") or ""
         line = f"{basis}: {val}" if val else basis
         if e.get("as_printed") and e.get("source") not in ("ruler_reigns", "merge_decisions", "standard"):
-            line += f" ({src(e)}: «{e['as_printed']}»)"
+            line += f" ({src(e)}: «{e['as_printed']}»{tr(e)})"
         elif e.get("source") not in ("ruler_reigns", "merge_decisions", "standard"):
             line += f" ({src(e)})"
         push(line)
