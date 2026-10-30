@@ -386,6 +386,54 @@ def _drop_junge_page_refs(catalog: dict) -> None:
         catalog.pop("others", None)
 
 
+def _add_subgroup_letters(catalog: dict, data: dict) -> None:
+    """Lettered variants of a type page that the parser does not split out
+    (curator 2026-10-30; regression-checked on every Galster page):
+
+    * a sub-group that cites «Galster N<letter>» itself («B) HAENIENSIS
+      (Galster 55B, …)») contributes exactly that letter — the parser keeps
+      only the first sub-group's refs, so 55B was lost;
+    * sub-groups that cite no Galster number at all («A) Indskrift REX
+      DAC'», «B) Indskrift REX D'S'N» on bajg19.htm) contribute their own
+      letter — but only when the page writes «Galster N<letter>» somewhere
+      («Galster 19A:» under its drawing), which shows the sub-groups ARE
+      Galster's lettered variants;
+    * sub-groups citing the bare «Galster N» (nc2g174) add nothing, and the
+      sub-group letter is never taken where the page cites Galster letters
+      per group (f1g57: groups A-C are Galster 57B, 57B, 57A — no «57C»).
+    The letters must run once from A; an overview page that repeats A), B)
+    for several types is left alone."""
+    num = str(data.get("galster_number") or "").strip()
+    if not re.fullmatch(r"\d+", num):
+        return
+    src = GALSTER_CACHE / str(data.get("source_file") or "")
+    if not src.is_file():
+        return
+    text = re.sub(r"<[^>]+>", " ", src.read_text(encoding="latin-1", errors="replace"))
+    text = text.replace("&nbsp;", " ")
+    groups = re.findall(r"(?:^|\n|•)\s*([A-H])\)\s([^\n]*)", text)
+    letters = [g[0] for g in groups]
+    if len(letters) < 2 or letters != [chr(ord("A") + i) for i in range(len(letters))]:
+        return
+    cited = [re.findall(rf"\bGalster\s+{num}\s?([A-Ha-h]?)\b", line) for _l, line in groups]
+    if any(c for c in cited):
+        if not all(c and all(x for x in c) for c in cited if c):
+            return                      # a sub-group cites the bare number
+        add = sorted({x.upper() for c in cited for x in c})
+    else:
+        if not re.search(rf"\bGalster\s+{num}\s?[A-Ha-h]\b", text):
+            return
+        add = letters
+    cur = catalog.get("galster")
+    vals = [str(x).strip() for x in (cur if isinstance(cur, list) else [cur]) if x]
+    if num not in vals:
+        return
+    for L in add:
+        if f"{num}{L}".lower() not in {v.lower() for v in vals}:
+            vals.append(f"{num}{L}")
+    catalog["galster"] = vals[0] if len(vals) == 1 else vals
+
+
 def _add_titled_type_number(catalog: dict, data: dict) -> None:
     """Keep the page's own type number beside the sub-group letter it cites.
 
@@ -816,6 +864,7 @@ def build_entry(data: dict) -> dict | None:
     if "galster" not in catalog:
         catalog.pop("galster_volume", None)
     _add_titled_type_number(catalog, data)
+    _add_subgroup_letters(catalog, data)
 
     specs = data.get("specs") or {}
     sub_realm = data.get("sub_realm")
