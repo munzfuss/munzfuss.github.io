@@ -250,7 +250,12 @@
       {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %}{{ uq(umark(coin.raw, 'weight'), br=False) }}{% endif -%}{%- endset -%}
       {%- for s in coin.msr_weight_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}{{ nv() }}{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.weight_groups -%}
-      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %}{{ uq(umark(coin.raw, 'weight'), br=False) }}{% endif -%}{%- endset -%}
+      {#- One weight the pipeline inferred (e.g. the standard's rough weight)
+          sits in «[ ]» like an inferred fineness; several keep «(?)». -#}
+      {%- set _wu = umark(coin.raw, 'weight') if not coin.raw.weight_rough_verified else none -%}
+      {%- set _wbr = _wu and _wu.kind == 'inferred' and coin.weight_groups|length == 1 -%}
+      {%- if _wbr %}{{ uopen(_wu) }}{% endif -%}
+      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %}{{ uq(_wu, br=_wbr) }}{% endif -%}{%- endset -%}
       {%- for g in coin.weight_groups -%}
         {%- set _dec = g.display_decimals if g.display_decimals is not none else 2 -%}
         {%- set _txt = fmt_num(g.value, decimals=_dec, unit='') -%}
@@ -328,10 +333,10 @@
      number is shown (2 decimals). #}
   <td class="c-stop-rough{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 -%}
-      {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %}{{ uq(umark(coin.raw, 'weight'), br=False) }}{% endif -%}{%- endset -%}
+      {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %}{% set _wu = umark(coin.raw, 'weight') %}{% if _wu and _wu.kind == 'inferred' %}{{ dq({'tip': _wu.tip}) }}{% else %}{{ uq(_wu, br=False) }}{% endif %}{% endif -%}{%- endset -%}
       {%- for s in coin.msr_stop_rough_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}{{ nv(True) }}{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.stop_rough_groups -%}
-      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %}{{ uq(umark(coin.raw, 'weight'), br=False) }}{% endif -%}{%- endset -%}
+      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %}{% set _wu = umark(coin.raw, 'weight') %}{% if _wu and _wu.kind == 'inferred' %}{{ dq({'tip': _wu.tip}) }}{% else %}{{ uq(_wu, br=False) }}{% endif %}{% endif -%}{%- endset -%}
       {%- for g in coin.stop_rough_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=2, unit='') -%}
         {%- set _k = mkind(g.sources, coin.weight_marks) -%}

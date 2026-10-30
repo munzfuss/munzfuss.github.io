@@ -13,7 +13,7 @@ HEDGED = frozenset({"circa", "attributed", "query", "decade", "century",
                     "illegible", "after", "window", "doubt", "possibly",
                     "alternatives", "span", "museum"})
 INFERRED = frozenset({"reign", "other_page", "feud_window", "text_year",
-                      "standard", "default", "compiled", "curator_window",
+                      "standard", "standard_weight", "default", "compiled", "curator_window",
                       "from_name", "uncited"})
 FIELDS = ("year", "ruler", "mint", "metal", "fineness", "weight", "diameter")
 
