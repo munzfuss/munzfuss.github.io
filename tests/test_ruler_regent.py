@@ -25,27 +25,27 @@ class RulerRegent(unittest.TestCase):
     def test_regency_span(self):
         for first, last in ((1396, 1413), (1403, 1413), (1400, 1400)):
             self.assertEqual(render.ruler_regent(coin(first, last), "uk"),
-                             f" (Margrete{NB}I)")
+                             (f"Margrete{NB}I", "ruler.regent.margrete_i"))
 
     def test_de_period_in_scope(self):
         saved = render._REBUILD_SCOPE
         render._REBUILD_SCOPE = frozenset({"luebischer_muenzfuss"})
         try:
             self.assertEqual(render.ruler_regent(coin(1396, 1413), "de"),
-                             f" (Margrete{NB}I.)")
+                             (f"Margrete{NB}I.", "ruler.regent.margrete_i"))
         finally:
             render._REBUILD_SCOPE = saved
 
     def test_span_past_regency(self):
         for first, last in ((1400, 1424), (1396, 1439), (1422, 1422)):
-            self.assertEqual(render.ruler_regent(coin(first, last), "uk"), "")
+            self.assertIsNone(render.ruler_regent(coin(first, last), "uk"))
 
     def test_other_ruler_or_entity(self):
-        self.assertEqual(render.ruler_regent(coin(1400, 1400, ruler="Hans"), "uk"), "")
-        self.assertEqual(render.ruler_regent(coin(1400, 1400, entity="sweden"), "uk"), "")
+        self.assertIsNone(render.ruler_regent(coin(1400, 1400, ruler="Hans"), "uk"))
+        self.assertIsNone(render.ruler_regent(coin(1400, 1400, entity="sweden"), "uk"))
         self.assertEqual(render.ruler_regent(
             coin(1400, 1400, entity=["danish_realm", "royal_holstein"]), "en"),
-            f" (Margrete{NB}I)")
+            (f"Margrete{NB}I", "ruler.regent.margrete_i"))
 
 
 if __name__ == "__main__":

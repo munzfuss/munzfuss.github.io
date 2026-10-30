@@ -270,25 +270,26 @@ def ruler_for_lang(name: str | None, lang: str, fuss: str | None = None) -> str:
 # the name the sources print; the regent is the renderer's, in brackets
 # (curator 2026-10-30). Only coins whose whole span falls in the regency —
 # Galster dates its first issues «1396-1413», hence the 1413 bound.
-_REGENCIES = (("Erik VII", "Margrete I", 1412, 1413),)
+# The last item is the ui.yml key of the bracket's tooltip.
+_REGENCIES = (("Erik VII", "Margrete I", 1412, 1413, "ruler.regent.margrete_i"),)
 
 
-def ruler_regent(raw, lang: str) -> str:
-    """« (Margrete I)» after the ruler of a coin struck under a regency,
-    else «»."""
+def ruler_regent(raw, lang: str) -> tuple[str, str] | None:
+    """(regent display name, tooltip ui key) for a coin struck under a
+    regency, else None."""
     from .ruler_reigns import DANISH_CROWN_ENTITIES
     get = raw.get if isinstance(raw, dict) else (lambda k: getattr(raw, k, None))
     ie = get("issuing_entity")
     ents = set(ie) if isinstance(ie, (list, tuple)) else {ie}
     if not ents & DANISH_CROWN_ENTITIES:
-        return ""
+        return None
     first, last = get("year_first"), get("year_last") or get("year_first")
     if not isinstance(first, int) or not isinstance(last, int):
-        return ""
-    for king, regent, first_max, last_max in _REGENCIES:
+        return None
+    for king, regent, first_max, last_max, tip in _REGENCIES:
         if get("ruler") == king and first <= first_max and last <= last_max:
-            return f" ({ruler_for_lang(regent, lang, get('fuss'))})"
-    return ""
+            return ruler_for_lang(regent, lang, get("fuss")), tip
+    return None
 
 
 # Every language's word for a period (formerly «phase» — renamed 2026-10-11;
