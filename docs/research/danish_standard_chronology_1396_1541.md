@@ -160,6 +160,118 @@ f = formula given · r = rate / value only · a = assays only · — = not struc
 Only three Danish instruments before 1541 set a full silver grid: Blicher 1513 (not carried out), the
 Møntordning 1514, and the 1524 pair. Before 1513 the only formula binding Danish coin is the Lübeck one of 1424.
 
+### 2h. Standard-setting events, Danish and Wendish, in one series (curator request 2026-10-30)
+
+Purpose: one chronological list of the events that **set or changed the standard** of the Danish coin — Danish
+acts, Danish changes visible only in the coins, Wendish (Lübeck) changes the Danish coin was measured against,
+and the tie clauses and rates that bound the two. A bare fact of striking is not an item; a new denomination or
+a fineness step counts only as a change of standard. Dates of events without a surviving text are approximate
+and say so.
+
+Status column: **A** = act text survives (read or printed); **R** = rate or tie clause without coin parameters;
+**L** = no text survives — the change is reconstructed from coins, assays or accounts (approximate date);
+**P** = plan / draft / act not carried out. Side: **D** Denmark (Norway where named), **W** Wendish union /
+Lübeck. Level = marks of 16 ß per fine Cologne mark [C], from §2a–2f here and §2b of
+`luebeck_standard_chronology_1226_1622.md`; T/O as there (an act gives a target, an assay an outcome). Quotes are
+copied from the rows of §2a–2f and from the dossiers named in the source column, where the full context stands.
+
+#### 1392–1424 — the restart and the common formula
+
+| Date | Side | St. | Event | What it sets or changes (quote) | Level W / D | Source |
+|---|---|---|---|---|---|---|
+| 10 Mar 1392 | W | A | Münzrecess of six towns, 6 years — the Wendish rule in force when the Danish coinage restarts | Sechsling 114 / 12, Dreiling 230 / 12, Hohlpfennig 558 / 9 | 4,8 / — | HR I 8 Nr. 949 + J (`luebeck_…` §2b) |
+| **24 Jan 1396** | D | A | Margrete's forordning, Viborg (Jutland and Fyn redactions) — the decision to restore a royal coinage | a levy «*een hielpp till then mynt*» because «*hær i alle landæ er vanskæ om mynth*»; **no standard, unit or coin named**. M s. 379: «*blev det formentlig ikke umiddelbart til noget*» | — | Kr nr. 35 § 16 (s. 338), nr. 36 § 16 (s. 343); `luebischer_muenzfuss.md` §3.11 |
+| 1398 | W | A | Münzsatzung of the united towns | Witten 193 / 13, Hohlpfennig 576 / 9, Scherf 1152 / 8 | 4,9 / — | Gr S. 133 + J |
+| **c. 1400** (window 24 Jan 1396 – 1403) | D | L | **Denmark takes up the Wendish system of denominations**: the royal Hvid copies the Witten (4 Pf), beside the crown hollow penny; the unit of account was already Lübeck's | no act known — «*No act adopting the Lübeck system is known*» (our §3.11 finding); first royal coin dated «*1400-tallets allerførste år*» (Moesgaard); deeds 1380–1410 reckon «hvide» = 4 Lübeck hollow pennies (Hb s. 136 n. 2). Curator decision 2026-10-27: c. 1400, marked approximate | — | Moesgaard, NNUM 2005 nr. 2 s. 79–86; Hb s. 136 n. 2; `luebischer_muenzfuss.md` §3.11 |
+| 6 Feb 1403 | W | A | Münzrecess of six towns, 10 years from Mittfasten | Witten 192 / 12½ — «*drutteindehalf loet fynes lodiges suluers*»; Hohlpfennig 576 / 9 | 5,1 / — | Lüb. UB 5 Nr. 66, S. 65–67 (read in the original) |
+| **c. 1403** | D | L | Erik's sterling of 3 Pf (Næstved, then Lund) — the Danish coin set lighter than the Wendish | no act; M s. 379: «*Først i 1403 er der med sikkerhed møntproduktion i gang i riget*»; Hb: «9-lødig» | 5,1 / 6,1–9,8 (O) | M s. 379; L; §3.12 of `luebischer_muenzfuss.md` |
+| 6 Dec 1403 – 8 Apr 1404 | W→D | R | Hanseatic complaints about the Danish coin | acceptance, not a standard: «*dat der koninginnen lude vor vul udgeven unde nicht vor vul untfangen willen*» (6 Dec 1403); demand that the queen strike only coin «*sy welle sy denne vorder lossen nemen*» (2 Mar 1404) | — | HR I 5 Nr. 158 § 8 (S. 107), Nr. 181 § 2 (S. 119), S. 124 § 4 |
+| **31 Mar 1406** | W | A + R | Münzrecess; Danish money assayed and rated — the first Hanseatic statement of Danish parameters | Witten 196 / 12. Danish: «*dat Densche geldt holt 10 lot … de penningh 2 penninghe*» — the Danish penny (sterling) rated at 2 Lübeck Pf, not 3 | 5,44 / 16,2 ed. (⚠ §4) | HR I 5 Nr. 310, S. 230–231 |
+| 1410 | W→D | R | the sterling again rated at 2 Lübeck Pf, the crown hollow penny at ½ | M s. 381: «*den i riget udbredte sterling (=tre penninge) kun vurderet til to lybske penninge … kronehulpenning kun … ½ lybsk penning*» | — | M s. 381 (n. 32 → Johansen 1961 nr. 630, not cached) |
+| Dec 1410 (P) · 29 Sep 1411 | W | P · A | draft recess, then Münzrecess of three towns | Witten 200 / 12 (draft); Witten 208 / 12 | 5,6 → 5,8 / — | HR I 5, I 6; J S. 96 |
+| 5 Aug 1422 | W | A | Münzrecess of the four towns | Witten, Sechslinge, Dreilinge «*in der bisherigen Weise*»; Hohlpfennig 684 / 8 | 7,1 / — | HR I 7 Nr. 527 + J |
+| **c. 1422 – Whitsun 1423** | D | L | Erik's Kobbersterling at four mints (Lund, Næstved, Odense, Randers) — a copper coin at a decreed value, in place of the 9-lod sterling | no act; Hb s. 170: «*han lod slaa Kobbermynt, skjøndt Riget havde en god 9-lødig Mynt*»; withdrawal 1423: «*und de copperpenning schal in den vorscr. riken gåen bette to pinxten*». ⚠ value 1 Pf (Hb) or 3 Pf (M s. 385 «*udgivet som en sterling*») | — (copper) | Hb s. 170 (Bunge V 958); M s. 385; `luebischer_muenzfuss.md` §3.11 (Erik VII) |
+| 16 Jul 1423 | W | A | Recess § 12 | Sechsling 168 / 12 | 7,0 / — | HR I 7 |
+| **8 Oct 1424** | W + D | A | **Danish–Hanseatic Münzrezess** (Queen Philippa and the four towns) — the only common formula | Sechsling 168 / 11¼, Hohlpfennig 696 / 7¼, to circulate «*in allen drei Reichen außer in Bergen gleichmäßig*»; old Danish 4-Pf pieces cut to 2 new Pf, crown hollow pennies to ½ | **7,47 / 7,47** (T) | J (via `mark_lybsk_mark_dansk.md` §4); M s. 390–392 |
+| 9 Oct 1425 | W | A | Rostock, Stralsund, Greifswald join the 1424 rule | as 1424 | 7,47 / — | HR I 7 Nr. 850 |
+
+#### 1425–1481 — the two series diverge
+
+| Date | Side | St. | Event | What it sets or changes (quote) | Level W / D | Source |
+|---|---|---|---|---|---|---|
+| 1425–1435 | W + D | — | the union with Denmark breaks after Erik's return (war to Vordingborg 1435); no further common formula | J: «*Nur die Anlehnung des dänischen Münzwesens an das der Städte blieb bestehen*» | — | J |
+| 1430s | D | L | Erik's Gros of 9 Pf (Lund, Gurre) — a new tier of the set, underweight | Hb s. 178: «*skulde den nye Mynt gjælde 9 Penninge eller 3 Sterlinge*», «*kun 3 Lod 10 Gren lødig*»; 1439 complaint «*huer stycke for 9 Lybske*» | 9,2 / 20,8–37,2 (O) | Hb s. 178; L; `luebischer_muenzfuss.md` §3.11 |
+| **18 Sep 1432** · 13 Jan 1433 | W | A | Recesses — the Wendish Schilling appears | Schilling 92 / 10, then 95 / 10; Sechsling 184 / 10 → 195 / 10 | 9,2 → 9,5 / — | HR II 1 Nr. 148; J |
+| 16 May 1439 · 14 Oct 1441 | W | A | Münzrecesses | Schilling 96 / 10; 94–95 / 10; Blafferte and Pfennige forbidden | 9,4–9,6 / — | HR II 2 Nr. 302, 521 |
+| **1440/42** | D | L | Christopher: the first Danish Skilling, set ≥ 10 % worse than the Wendish of 1432; the Hvid at 6 lod | no act; M s. 397 «*rigets første skilling*», s. 404 (≥ 10 % worse); Hvid ≈ 0,75 g at 6 lod (Hb s. 183, paraphrased) | 9,2–9,6 / Skilling 13,9, Hvid 17,3 (O) | M s. 397, 404; Hb s. 183; §3.10 of `luebischer_muenzfuss.md` |
+| 1440–48 | D | R | Christopher's rate for the Danish grot | to be taken «*for ii lybske*» | — | RL nr. 11 s. 84 (via J) |
+| 1448 | D | L | the Rigsråd's coinage in the interregnum (MONETA REGNI DACIA, Malmø) | no act; M s. 406 «*så vidt vides kun … skillinger i Malmø*»; one assay: 2,08 g, 45,99 % Ag | 10 / 15,3 (O, one piece) | Hj 2016:1 (G 21); M s. 406 |
+| 25 Nov 1450 · c. 1450/51 | W | A | Münzrecess; Münzchronik | § 16 «*van der mark sulvers … enen schilling 15 lot in ghewerde … 147 stucke*»; Schilling 100 / 10, Blaffert 6-lot | 9,8–10 / — | HR II 3 Nr. 676; J S. 108 |
+| 1448–1481 (undated within the reign) | D | L | Christian I strikes Hvide only; their fineness lowered from 8 to 5 lod | no act; M s. 407 (types 23a 290–305 ‰ → 23b 275–280 ‰); Hb «4 Lod 15 Gren» | 10 → 11,5 / 20,2 → 24,4 (O) | M s. 407; Hb; E; §3.7 of `luebischer_muenzfuss.md` |
+| **4 Apr 1460** | D (duchies) | R | Christian I's privilege for the estates of Schleswig-Holstein, art. 9 | «*nene munte setten sunder sodann alse to Lubeke vnde Hanzborch genge vnde geue is*» — the ducal coin tied to Lübeck and Hamburg | — | RL nr. 27 s. 126 |
+| [1460–1474] | D | R | Scanian Môtbok, Christian I's redaction, on the Rigsråd's advice | art. 81 «*schal vnse koninglyke munte gaen like der veerleye munte*»; gold tariffed in Lübeck ß (Rhenish gulden 20 ß lub.) | — | RL nr. 57 s. 218–219 |
+| 7 Dec 1461 · 3 Feb 1463 · Sep / 15 Oct 1467 | W | P | Wendish plans and drafts not carried out | Schilling 104 / 9 (1461); 150 / 15 (1463); 1467 «*10 lot myn 1 quentin*», 101 to the mark | 11,6 · 10 · 10,4 / — | J S. 116–118; HR II 6 n. 56–57 |
+| **15 Jun 1468** | W | A (P?) | Lübeck–Hamburg Münzrecess (HR heads it «Entwurf»; J: «Münzvertrag verabredet») — the Schilling that defines the Lübeck level for half a century | Schilling «*hundert unde 3½*» / 9 lot, 22 to the Rhenish gulden; Doppelschilling 69 / 12 | **11,5** / — | HR II 6 n. 92; J S. 118 |
+| 1468 → 1474 | D | R | Christian I's revenues fixed in Lübeck ß at the July 1468 rate | complaint 1474 that his rents «*auf 23 ß = 1 fl. gegründet seien*» | — | J; `luebischer_muenzfuss.md` §3.4h (4) |
+| Christian I | D | R | the Viken rent | «*hver 2 M pleyer at være saa godhe som 1 ringyllen*» → Gulden = 2 M d = 96 Hvide = 24 ß l. | — | W 7-1 s. 54 |
+
+#### 1481–1513 — King Hans
+
+| Date | Side | St. | Event | What it sets or changes (quote) | Level W / D | Source |
+|---|---|---|---|---|---|---|
+| 1481–83 | D | L | the Rigsråd's coinage after Christian I: Hvid at 5 lod | no act; assays | 11,5 / Hvid 20,3–27,1 (O) | `luebischer_muenzfuss.md` §0.6 |
+| **1 Feb 1483** | D + N | R | Håndfæstning (Halmstad), Norway clause — Norway's coin bound to Denmark's, not to Lübeck | «*jeffngod … wid Danske penninge*»; «*o: efter lybsk Møntfod*» is Wilcke's gloss, not the act | — | W s. 143; Gullbekk s. 3–4; register §1a |
+| 1483 | D | L | the Hvid raised to 6 lod | no act; assays | 11,5 / Hvid 16,2–18,0 (O) | `luebischer_muenzfuss.md` §0.6 |
+| **11 Sep 1484** | D | R | Hans' Môtbok (Falsterbo) | § 67 «*schal unse koninglyke munthe hir gan gelyk der veerleye munte*» | — | Sch (Schäfer 1887) |
+| **23 May 1492** | W | A | Münztag re-enacts 1468 | Schilling 103½ / 9; Sechsling «*hundert unde negentich*» / 8; Blaffert 432 / 6; Pfennig 864 / 6 | 11,5 / — | HR III 3 n. 86 § 8, n. 87 |
+| 12 Oct 1497 | W | A (text lost) | recess of Lübeck, Hamburg, Lüneburg on Blafferte and Pfennige | Gd S. 180: «*ist uns der Inhalt unbekannt geblieben*»; HambUB regest only | — | `luebeck_…` §2b |
+| **c. 1497** | D | L | Hans' 4-Hvid Skilling at 9 lod — at the level of the Wendish Schilling of 1468/1492 | no act; first mention 1497 «*4 Hvide ß, som Kong Hans mønte lod*»; W 7-2 s. 149: Hans' Skillinger «*regnedes god for lybsk Valuta*» | 11,5 / **11,5–11,8** (O) | W 7-2 s. 149; `luebischer_muenzfuss.md` §0.6, §3.1d |
+| 1500–1506 | D | L + R | the Gulden 2 → 2½ M d (Hvid +25 %); Hvid back to 5 lod | rates from accounts and tolls (1500 DCH, 1501 Mulich, 1502); no act | 11,5 / Hvid 20,3–27,1 (O) | `hans_rates_1481_1513.md`; §0.6 |
+| 1501 | W | P | Mölln plan | Blafferte and Pfennige «bisher» 4 ℳ 8 ß from the 6-lot mark, henceforth 4 ℳ 11 ß; Mark pieces 15-lot | 11½ (Mark) / — | J S. 127, 133 n. 559 |
+| 1502 | W | A | treaty (Lübeck, Lüneburg ratify) — the first Mark pieces | ⅓ Mark «*TERNARIUS MARCE LUBICENSIS*» and ⅔ Mark, 15-lot, 34½ per fine mark; Witten 216 / 5¼; Blaffert 438 / 6 | 11½ (Witten 13,7) / — | J S. 127; Gd S. 181 |
+| **27 Aug 1504 · 29 Dec 1506** | W | A | Münzartikel; Münzrecess Hamburg — the step to 13 | «*de fyne mark … 13 mark*»; Markstück 15-lot, 5¼ quentin; small coin «*na notturfft*», no formula | **13** / — | HR III 5 n. 26, n. 151 |
+| **c. 1506–1510** | D | L | the Danish Skilling lowered to 8 lod, near the new Wendish level | no act; assays; «*No act, letter or account says Denmark took the 1502–1506 step*»; **before or after 1506 — open** (§6) | 13 / 11,8–14,8 (O) | `luebischer_muenzfuss.md` §0.6, §3.1d |
+| **1510–1512** | D | L | debasement: Skilling 7 lod, Hvid 4 lod | Enemark: «*Abwertung der dänischen Schillingmünzen*» (names no lod) | 13 / Hvid 23,2–30,5 (O) | Enemark via P; `luebischer_muenzfuss.md` §0.6 |
+| 18 Nov 1512 | W | A | Münzvertrag of the four towns | Mark 13 from the 14½-lot mark; Doppelschilling 104 / 15 planned; small coin by quota only | 13 / — | Langermann S. 413; J |
+| 1512 – Feb 1513 | D | L | Skilling at 6 lod | no act; assays | 13 / 15,2–17,8 (O) | `luebischer_muenzfuss.md` §0.6 |
+
+Whether Hans issued an ordinance is itself disputed: Wilcke 7-1 s. 128 «*I Danmark synes netop ingen Møntordning
+at være udstedt*»; Galster «*Der er ikke bevaret nogen dansk Møntordning fra Kong Hans*» and reads the 1513 grid as
+repeating «*ældre, tabte danske Møntordninger*» (`luebischer_muenzfuss.md` §3.1d). A lost act cannot be excluded;
+its content is unknown.
+
+#### 1513–1541 — the Danish grids
+
+| Date | Side | St. | Event | What it sets or changes (quote) | Level W / D | Source |
+|---|---|---|---|---|---|---|
+| **22 Jul 1513** | D | R | Haandfæstning Christian II | «*thue mark giør fyldest for en* [rhinsk Gylden]» — Gylden = 2 M = 32 ß | — | W 7-2 s. 149–150 |
+| **1 Aug 1513** | D | A, P | Beskikkelsesbrev for Dynes Blicher, Malmø | Skilling 96 / 5¾, Hvid 222 / 4½; 1 ß = 3 Hvide, 32 ß per Gylden; W: «*Forholdet til den lybske ß ophævet*»; not carried out | 13 / 16,7 (T) | W 7-2 s. 151–152 |
+| **summer 1514** | D | A | Møntordning («Dienis Blicher Brev»), Malmø, with the Rigsråd | full grid on one level: Sølvgylden 8½ / 14 lod … Penning 864 / 4; 24 ß = 72 Hvide per Gylden (the Lübeck count) | 13 / **14,67** (T) | W prints; `instruments/1514_moentordning_malmoe.md` |
+| 3 Aug 1514 · 24 Aug 1515 | D + N | A | Møntordning for Norge; Aabent Brev for Sjælland | Norwegian coin as good as Danish; 1514 renewed, old Korshvid re-rated 4 → 5 → 6 to the ß | — | W 7-2 s. 156–158 |
+| 1515 | W | A | rule of the four towns | Schilling 106 / 8 — «*einfache Schillinge … 8 Loth … feine Mark … 13 Mk. 4 Schill.*» | 13,25 / — | J; Langermann S. 414–415 |
+| **1518–1523** | D | L | Christian II's war Klippinge — the act is lost | W: «*ydel Kobber*»; Gylden «*i Klippinge endog 5 M*» (W s. 193) | — | W; register §4 |
+| 1522–1530 | W | A (accounts) | Doppelschillinge of the towns (Lübeck 1522 … Lüneburg 1530) | 56–58 / 7¾–7⅞; Hamburg 1525 «*doppelte ß 7 Loth und 3 Gr. fein, und 56, 57, und 58 Stück auf die ℳ*» | 14,9–15,2 / — | J; Langermann S. 416 |
+| **26 Mar / 3 Aug 1523** | D | R | Haandfæstning Frederik I — the last explicit tie to Lübeck | «*hvad som skal møntes efter thend Dag udi Danmark skal mønthes lige god ved lybsk, hamborgsk oc Landte Holsten*» | — | W s. 174, 309 |
+| **10 Aug 1523** | D | A (rates) | Valvation with the Rigsråd | **Mark = 12 ß**, 24 new ß per Gylden, 4 Hvide = 1 ß; old coin re-rated; Klippinge worthless from 1 Sept. W: the aim was «*samme Kurs som Hansestædernes, specielt Lübecks*»; «*en ejendommelig Blanding af dansk og lybsk „Wehrung“*» | — | W s. 175, 192–193; `instruments/1523_valvation_klippinge.md` |
+| **25 Feb 1524** + 1524 | D | A | Rigsraadets Brev to Jørgen Kock; Kongebrev | Sølvgylden 8 / 14 lod; 2-Mark 11 / 14, Mark 22 / 14; 4-Hvid ß 96 / 5 lod 2 gren; Hvid 300 / 4 | 15,9 / 13,71 · 18,8 (T); Mark piece ⚠ 16 or 12 ß | W 7-2 s. 183, 187; `instruments/1524_moentordning_frederik_i.md` |
+| 1524–1532 | N | A | Norwegian mint letters (Hamar 1524, Oslo 1525, Bergen 1530) | Hamar 4-Hvid ß 96 / 5; Oslo Penning 112 / 4, 30 per Gylden; Bergen 1530 «*lige goed udi korn oc pagementhe medt then mynth som wy lade slaa her i wort rige Danmark*» | — / 19,2 · 28,0 | W s. 198; register §1a |
+| 1534–1539 | D | L | Christian III's war coin — no act; figures from Junge's accounts | 2 M Klippinge 16 / 10–7 lod; 4 ß 62–75 / 5–3½; 1 ß 200 / 2½ | — / ≥ 51 (O) | W 7-3 s. 242, 249–250 |
+| **30 Oct 1536** | D | R | Haandfæstning Christian III — the tie clause now names the duchies, not Lübeck | «*lidelig og gavnlig … lige ved Fyrstendømmernes Mønt*» | — | W s. 249, 309 |
+| 1537 | W | A (assay note) | Lübeck resolution of the four towns | «*Schill. gemünzet …, die 7 Loth 2 Quentin, und Sechslinge die 5 Loth 2 Quent. fein gehalten*»; Doppelschilling 60 / 7½ | 16,0 / — | Langermann S. 416; J |
+| **21 Oct 1537** | D | A (Koncept) | Reces / «Afsætning» | all coin struck since the accession halved: 2 Mark → 1 Mark, Mark → 8 ß … | — | `instruments/1537_reces_moentens_afsaettelse.md` |
+| 18 Oct 1540 | D | R | Reces cap. 12 | «*een rhinsk Gylden eller en Jochimsdaler ikke dyrere wedtzles end for III Mark Danske*» | — | W 7-3 |
+| 1541 | W | A (assay) | Hamburg Doppelschilling | 63 / 7 lot — J S. 138 «*offenbar … das Ergebnis einer Münzprobe*» | 18,0 / — | J S. 138 |
+| **20 Sep 1541** | D | A | Møntordning Christian III — the first Danish unit system not defined by the Lübeck mark | Mark dansk 24 / 14½ lod; Daler = 3 M = 48 ß d; M s. 488: «*angivelser af mark og skilling i dansk mønt, ikke lybsk hvoraf der nu gik 2 danske skilling på 1 lybsk skilling*» | 18,0 / **26,5** (T) | T.K. 160; W 7-4; `moentordning_1541.md` |
+| 1544 | D | A | supplement | Mark 24 / 13 lod | — / 29,5 (T) | W 7-4 |
+
+**Reading of the series [C].** Before 1513 only one event sets a Danish formula in writing — the common one of 1424.
+Every other change of the Danish standard before 1513 is an **L** row: visible in the coins, dated by them,
+without a surviving act (the Hans ordinance is disputed above). What ties the Danish coin to the Wendish between
+1425 and 1523 are **R** rows — par clauses (1460, 1460–74, 1484, 1523) and reckoning rates (1440–48, Christian I,
+1474) — none with parameters. The Wendish side has an act or recess for nearly every step from 1392 to 1515 for its
+head coin, but its small coin after 1450 is often named without a formula (1468, 1497, 1506, 1512). From 1513 the
+Danish grids are written; from 1536 the tie clause no longer names Lübeck, and 1541 changes the unit.
+
 ## §3. What the series shows [C, «можна вважати»]
 
 1. **Three kinds of tie, in sequence.** (a) 1424: a common formula — Danish coin = Lübeck coin by treaty (the only
