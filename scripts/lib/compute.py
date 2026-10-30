@@ -1013,6 +1013,36 @@ def _galster_display_tokens(value):
     return kept[0] if len(kept) == 1 else kept
 
 
+_LETTER_TOKEN_RE = re.compile(r"^(\d+)([A-Za-z])$")
+
+
+def _collapse_letter_runs(tokens: list[str], keep: set[str] = frozenset()) -> list[str]:
+    """Collapse ≥3 sub-letters of one number that follow each other in the
+    alphabet into a letter range: «4a, 4b, 4c, 4d» → «4a-d», «124A, 124B,
+    124C» → «124A-C» (curator 2026-10-30; the same threshold as number runs).
+    Letters of one case only; a token in `keep` (a marked number) never joins
+    a run. Display only — the data keeps every value."""
+    by_base: dict[tuple[str, bool], list[str]] = {}
+    for t in tokens:
+        m = _LETTER_TOKEN_RE.match(t)
+        if m and t not in keep:
+            by_base.setdefault((m.group(1), m.group(2).isupper()), []).append(m.group(2))
+    drop: set[str] = set()
+    ranges: list[str] = []
+    for (num, _up), letters in by_base.items():
+        ls = sorted(set(letters))
+        i = 0
+        while i < len(ls):
+            j = i
+            while j + 1 < len(ls) and ord(ls[j + 1]) == ord(ls[j]) + 1:
+                j += 1
+            if j - i + 1 >= 3:
+                ranges.append(f"{num}{ls[i]}-{ls[j]}")
+                drop.update(f"{num}{c}" for c in ls[i:j + 1])
+            i = j + 1
+    return [t for t in tokens if t not in drop] + ranges
+
+
 def _compute_catalog_groups(
     coin: Coin, location_km_register: str | None = None,
 ) -> list[tuple[str, list[str], str | None]]:
@@ -1261,6 +1291,13 @@ def _compute_catalog_groups(
                     out.append((1, 0, t.lower()))
         return out
 
+    # A number carrying a mark («(?)», «(*)», «(!)») keeps its own token: the
+    # template hangs the mark on that exact value.
+    marked_vals = {str(m.value) for m in [*(coin.catalog_marks or []),
+                                          *(coin.catalog_alts or []),
+                                          *(coin.catalog_unverified or [])]
+                   if getattr(m, "value", None) is not None}
+
     def collapse_runs(values: list[str]) -> list[str]:
         """Sort an index-value list and collapse runs of ≥3 consecutive
         bare integers into 'min-max' ranges. Every value is first expanded
@@ -1298,7 +1335,7 @@ def _compute_catalog_groups(
             else:
                 tokens.extend(str(n) for n in run)
             i = j + 1
-        tokens.extend(complex_toks)
+        tokens.extend(_collapse_letter_runs(complex_toks, marked_vals))
         return sorted(dict.fromkeys(tokens), key=value_key)
 
     for p in groups:
