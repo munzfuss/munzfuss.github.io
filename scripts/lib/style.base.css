@@ -2451,6 +2451,8 @@ tr.msr-sh .msr-cut { display: none; }
 
 /* Verification & translation markers */
 .unverified { color: var(--sd-under-deep-fg); cursor: help; font-weight: 600; font-family: var(--font-sans); }
+/* «?» in an empty measurement cell: value not known from the sources. */
+.unknown { color: var(--text-muted); cursor: help; font-family: var(--font-sans); }
 /* «[ … ]» around a value the pipeline inferred (Coin.uncertainty), coloured as
    «(?)»; the brackets carry the tooltip. */
 .unc-br { color: var(--sd-under-deep-fg); cursor: help; font-weight: 600; font-family: var(--font-sans); }

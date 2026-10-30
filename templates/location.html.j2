@@ -108,6 +108,10 @@
 {#- A derived value's marker: «[?]» when every unverified input is our
     inference (tooltip: those inputs), else the generic «(?)». -#}
 {%- macro dq(d) -%}&nbsp;<span class="unverified{% if d %} unc-derived{% endif %}" data-tooltip="{{ d.tip if d else ui_get('marker.derived_unverified') }}">{{ '[?]' if d else '(?)' }}</span>{%- endmacro -%}
+{#- An empty measurement cell: the value is not known from the sources
+    (derived=True: it cannot be computed, an input is unknown). «?» rather
+    than «—», which reads as «does not exist» (curator 2026-10-30). -#}
+{%- macro nv(derived=False) -%}<span class="unknown" data-tooltip="{{ ui_get('marker.unknown_derived' if derived else 'marker.unknown') }}">?</span>{%- endmacro -%}
 {%- macro uopen(u) -%}{%- if u and u.kind == 'inferred' -%}{{ ubr(u, '[') }}{%- endif -%}{%- endmacro -%}
 
 {#- One catalogue number, with its mark when it carries one (ComputedCoin
@@ -189,7 +193,7 @@
   <td class="c-metal{% if coin.msr_n > 1 and coin.msr_metal_segs %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 and coin.msr_metal_segs -%}
       {#- silver_billon: each sub-row names its own metal (≥ .500 silver). -#}
-      {%- for s in coin.msr_metal_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% if s.value is none %}—{% else %}<span class="nw">{{ ui_get('metal.silver') if s.value == 1 else ui_get('metal.billon') }}</span>{% endif %}</div>{%- endfor -%}
+      {%- for s in coin.msr_metal_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% if s.value is none %}{{ nv() }}{% else %}<span class="nw">{{ ui_get('metal.silver') if s.value == 1 else ui_get('metal.billon') }}</span>{% endif %}</div>{%- endfor -%}
     {%- elif coin.raw.metal -%}
       {#- The names come from data/i18n/ui.yml so they cover every language
           the site renders; they used to be spelled here per language, which
@@ -208,7 +212,7 @@
       {#- No «(?)» / «[ ]» on the metal: not useful to the reader (curator
           2026-10-29); metal_verified and Coin.uncertainty stay in the data. -#}
       <span class="nw">{{ metals[coin.raw.metal] }}</span>
-    {%- else -%}—{%- endif -%}
+    {%- else -%}{{ nv() }}{%- endif -%}
   </td>
   <td class="c-fin{% if coin.msr_n > 1 %} c-msr{% endif %}">
       {%- if coin.msr_n > 1 -%}
@@ -219,7 +223,7 @@
             readings → orange (.fin-alt), each with its own source. A sub-row
             without a fineness (a weight-only specimen) shows «—». -#}
         {%- set _funi = (coin.msr_fineness_segs|length) <= 1 -%}
-        {%- for s in coin.msr_fineness_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% if s.value is not none %}<span class="nw">{% set _fm = mark(s.sources, coin.fineness_marks) %}{% set _fq = not coin.raw.fineness_verified and not _fm|trim %}{% set _fxs = umark(coin.raw, 'fineness') if _fq else none %}{{ uopen(_fxs) }}{% set _txt = s.value|fin_txt(s.decimals) %}{% set _k = mkind(s.sources, coin.fineness_marks) %}{% if _funi %}{% if s.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{% else %}<span class="fin-alt {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% endif %}{{ _fm }}{% set _fu = s.value | fin_unit(coin.raw.metal, lang) %}{% if _fq and not _fu %}{{ uq(_fxs) }}{% endif %}</span>{% if _fu %}<span class="fin-eq">{{ _fu }}{% if _fq %}{{ uq(_fxs) }}{% endif %}</span>{% endif %}{% else %}—{% endif %}</div>{%- endfor -%}
+        {%- for s in coin.msr_fineness_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% if s.value is not none %}<span class="nw">{% set _fm = mark(s.sources, coin.fineness_marks) %}{% set _fq = not coin.raw.fineness_verified and not _fm|trim %}{% set _fxs = umark(coin.raw, 'fineness') if _fq else none %}{{ uopen(_fxs) }}{% set _txt = s.value|fin_txt(s.decimals) %}{% set _k = mkind(s.sources, coin.fineness_marks) %}{% if _funi %}{% if s.sources %}<span class="fin-src {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% else %}{{ sv(_txt, _k) }}{% endif %}{% else %}<span class="fin-alt {{ _k }}" data-tooltip="{{ tips(s.sources) }}">{{ _txt }}</span>{% endif %}{{ _fm }}{% set _fu = s.value | fin_unit(coin.raw.metal, lang) %}{% if _fq and not _fu %}{{ uq(_fxs) }}{% endif %}</span>{% if _fu %}<span class="fin-eq">{{ _fu }}{% if _fq %}{{ uq(_fxs) }}{% endif %}</span>{% endif %}{% else %}{{ nv() }}{% endif %}</div>{%- endfor -%}
         {#- ≥ 6 finenesses: the row opens shortened; this switches it (app.js). -#}
         {%- if coin.msr_short_n -%}<button type="button" class="msr-toggle" data-all="{{ ui_get('msr.show_all') }} ({{ coin.msr_n }})" data-short="{{ ui_get('msr.show_short') }}">{{ ui_get('msr.show_all') }} ({{ coin.msr_n }})</button>{%- endif -%}
       {%- elif coin.fineness_groups -%}
@@ -239,12 +243,12 @@
             the value line. No fineness at all → «—», no marker. -#}
         {%- set _fu = coin.fineness_groups[0].value | fin_unit(coin.raw.metal, lang) -%}
         {%- set _fq = not coin.raw.fineness_verified and not _fm0|trim -%}{%- if _fu -%}<span class="fin-eq">{{ _fu }}{% if _fq %}{{ uq(_fx) }}{% endif %}</span>{%- elif _fq -%}{{ uq(_fx) }}{%- endif -%}
-      {%- else -%}—{%- endif -%}
+      {%- else -%}{{ nv() }}{%- endif -%}
   </td>
   <td class="c-w{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 -%}
       {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %}{{ uq(umark(coin.raw, 'weight'), br=False) }}{% endif -%}{%- endset -%}
-      {%- for s in coin.msr_weight_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
+      {%- for s in coin.msr_weight_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}{{ nv() }}{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.weight_groups -%}
       {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %}{{ uq(umark(coin.raw, 'weight'), br=False) }}{% endif -%}{%- endset -%}
       {%- for g in coin.weight_groups -%}
@@ -258,12 +262,12 @@
       {%- endfor -%}
     {%- elif coin.raw.weight_rough_label -%}
       {{ coin.raw.weight_rough_label|t(lang) }}{%- if not coin.raw.weight_rough_verified %}{{ uq(umark(coin.raw, 'weight'), br=False) }}{% endif -%}
-    {%- else -%}—{%- endif -%}
+    {%- else -%}{{ nv() }}{%- endif -%}
   </td>
   <td class="c-w">
     {%- if coin.msr_n > 1 -%}
       {%- set _qm -%}{%- if coin.derived_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
-      {%- for s in coin.msr_fein_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
+      {%- for s in coin.msr_fein_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}{{ nv(True) }}{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=s.decimals, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.weight_fein_groups -%}
       {%- set _qmark -%}{%- if coin.derived_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for g in coin.weight_fein_groups -%}
@@ -274,7 +278,7 @@
         {%- else %}<span class="alt-source" data-tooltip="{{ tips(g.sources) }}">{{ sv(_txt, _k) }}{% set _m = mark_derived(g.anchor_key, coin.weight_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}</span>
         {%- endif -%}
       {%- endfor -%}
-    {%- else -%}—{%- endif -%}
+    {%- else -%}{{ nv(True) }}{%- endif -%}
   </td>
   {#- A phase with unknown fineness (soll_fein_by_phase null) measures Δ on
       the ROUGH weight; the tooltip says so, since the column header can't. #}
@@ -282,7 +286,7 @@
     {%- if coin.msr_n > 1 -%}
       {%- set _qm -%}{%- if coin.delta_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for s in coin.msr_delta_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">
-        {%- if s.value is none -%}{% if coin.raw.metal == 'copper' %}<span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>{% else %}—{% endif %}
+        {%- if s.value is none -%}{% if coin.raw.metal == 'copper' %}<span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>{% else %}{{ nv(True) }}{% endif %}
         {%- else -%}
           {%- set dp = s.delta_pct if s.delta_pct is not none else 0 -%}
           {%- if dp < -1.0 -%}{%- set sd_cls = 'under-deep' -%}{%- elif dp < 0 -%}{%- set sd_cls = 'under-mild' -%}{%- elif dp <= 1.0 -%}{%- set sd_cls = 'over-mild' -%}{%- else -%}{%- set sd_cls = 'over-strong' -%}{%- endif -%}
@@ -315,7 +319,7 @@
       {%- endfor -%}
     {%- elif coin.raw.metal == 'copper' -%}
       <span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>
-    {%- else -%}—{%- endif -%}
+    {%- else -%}{{ nv(True) }}{%- endif -%}
   </td>
   {# N/Marck повна — coins-per-Cöllnische-Marck from the ROUGH weight, fraction-
      normalised (grid_unit_g / (rough / k)). Mirrors the rough weight column
@@ -325,7 +329,7 @@
   <td class="c-stop-rough{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 -%}
       {%- set _qm -%}{%- if not coin.raw.weight_rough_verified %}{{ uq(umark(coin.raw, 'weight'), br=False) }}{% endif -%}{%- endset -%}
-      {%- for s in coin.msr_stop_rough_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
+      {%- for s in coin.msr_stop_rough_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}{{ nv(True) }}{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.stop_rough_groups -%}
       {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %}{{ uq(umark(coin.raw, 'weight'), br=False) }}{% endif -%}{%- endset -%}
       {%- for g in coin.stop_rough_groups -%}
@@ -336,7 +340,7 @@
         {%- else %}<span class="alt-source" data-tooltip="{{ tips(g.sources) }}">{{ sv(_txt, _k) }}</span>{% set _m = mark(g.sources, coin.weight_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}
         {%- endif -%}
       {%- endfor -%}
-    {%- else -%}—{%- endif -%}
+    {%- else -%}{{ nv(True) }}{%- endif -%}
   </td>
   {# N/Marck чиста — coins-per-Cöllnische-Marck from the FINE weight, fraction-
      normalised. Mirrors the fine weight column (c-w above): derived-source
@@ -344,7 +348,7 @@
   <td class="c-stop-fine{% if coin.msr_n > 1 %} c-msr{% endif %}">
     {%- if coin.msr_n > 1 -%}
       {%- set _qm -%}{%- if coin.derived_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
-      {%- for s in coin.msr_stop_fine_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}—{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
+      {%- for s in coin.msr_stop_fine_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}{{ nv(True) }}{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.stop_fine_groups -%}
       {%- set _qmark -%}{%- if coin.derived_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for g in coin.stop_fine_groups -%}
@@ -355,17 +359,17 @@
         {%- else %}<span class="alt-source" data-tooltip="{{ tips(g.sources) }}">{{ sv(_txt, _k) }}{% set _m = mark_derived(g.anchor_key, coin.weight_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}</span>
         {%- endif -%}
       {%- endfor -%}
-    {%- else -%}—{%- endif -%}
+    {%- else -%}{{ nv(True) }}{%- endif -%}
   </td>
   <td class="c-soll">
     {%- if coin.soll_rau_g -%}
       {{ fmt_num(coin.soll_rau_g, decimals=5, unit='') }}
-    {%- else -%}—{%- endif -%}
+    {%- else -%}{{ nv() }}{%- endif -%}
   </td>
   <td class="c-soll">
     {%- if coin.soll_fein_g -%}
       {{ fmt_num(coin.soll_fein_g, decimals=5, unit='') }}
-    {%- else -%}—{%- endif -%}
+    {%- else -%}{{ nv() }}{%- endif -%}
   </td>
   <td class="c-d">
     {# Diameter is NOT a measurement sub-row axis (specimen spread is wear noise,
@@ -382,14 +386,14 @@
         {%- else %}<span class="alt-source" data-tooltip="{{ tips(g.sources) }}">{{ sv(_txt, _k) }}</span>{% set _m = mark(g.sources, coin.diameter_marks) %}{% if not _m|trim %}{{ _qmark|safe }}{% endif %}{{ _m }}
         {%- endif -%}
       {%- endfor -%}
-    {%- else -%}—{%- endif -%}
+    {%- else -%}{{ nv() }}{%- endif -%}
   </td>
   <td class="c-mint">
     {%- if coin.raw.mint -%}
       {%- set _nu = umark(coin.raw, 'mint') if not coin.raw.mint_verified else none -%}
       {{- uopen(_nu) }}{{ coin.raw.mint|mint_label(coin.raw.year_first) -}}
       {%- if not coin.raw.mint_verified %}{{ uq(_nu) }}{% endif -%}
-    {%- else -%}—{%- endif -%}
+    {%- else -%}{{ nv() }}{%- endif -%}
     {%- set _mints = coin.raw.mint if coin.raw.mint is not string else [coin.raw.mint] -%}
     {%- for a in coin.raw.mint_alts or [] if a.value not in (_mints or []) %} <span class="mint-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   </td>
