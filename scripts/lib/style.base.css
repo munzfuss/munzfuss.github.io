@@ -2325,6 +2325,22 @@ tr.msr-sh .msr-cut { display: none; }
 .c-delta .sd.dev { color: var(--sd-under-deep-fg);  background: var(--sd-under-deep-bg);  padding: 1px 6px; border-radius: 2px; }
 .c-delta .sd.dev-pos { color: var(--sd-over-strong-fg); background: var(--sd-over-strong-bg); padding: 1px 6px; border-radius: 2px; }
 .c-delta .sd-na { color: var(--text-muted); font-style: italic; cursor: help; }
+/* The badge's colour sits on .sd-wrap, so a trailing marker ((?) [?] (§) …)
+   shares the value's background and every row of a column is one box of the
+   same width, with or without a marker (curator 2026-10-30). */
+.c-delta .sd-wrap:has(> .sd) { border-radius: 2px; padding-right: 6px; }
+.c-delta .sd-wrap > .sd { background: none !important; }
+.c-delta .sd-wrap:has(> .sd.under-deep) { background: var(--sd-under-deep-bg); }
+.c-delta .sd-wrap:has(> .sd.under-mild) { background: var(--sd-under-mild-bg); }
+.c-delta .sd-wrap:has(> .sd.over-mild) { background: var(--sd-over-mild-bg); }
+.c-delta .sd-wrap:has(> .sd.over-strong) { background: var(--sd-over-strong-bg); }
+.c-delta .sd-wrap:has(> .sd.ok) { background: var(--sd-over-mild-bg); }
+.c-delta .sd-wrap:has(> .sd.dev) { background: var(--sd-under-deep-bg); }
+.c-delta .sd-wrap:has(> .sd.dev-pos) { background: var(--sd-over-strong-bg); }
+[data-theme="v1"] .c-delta .sd-wrap:has(> .sd.under-deep) { background: rgba(201, 122, 61, 0.18); }
+[data-theme="v1"] .c-delta .sd-wrap:has(> .sd.under-mild) { background: rgba(160, 137, 102, 0.16); }
+[data-theme="v1"] .c-delta .sd-wrap:has(> .sd.over-mild) { background: rgba(104, 162, 87, 0.18); }
+[data-theme="v1"] .c-delta .sd-wrap:has(> .sd.over-strong) { background: rgba(146, 210, 76, 0.22); }
 
 .c-fuss { font-size: 12.5px; color: var(--text-secondary); line-height: 1.4; }
 .c-fuss .fuss-nominal { display: block; color: var(--text-primary); white-space: nowrap; }
