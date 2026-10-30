@@ -2210,6 +2210,8 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
    (curator 2026-10-30). */
 .msr-seg { padding-top: 8px; }
 .c-delta .msr-seg { padding-top: 4px; }
+/* …but a sub-row whose Δ is not computed («?», «—») is a one-line value. */
+.c-delta .msr-seg:not(:has(.sd)) { padding-top: 8px; }
 /* Shortened specimen list (≥ 6 finenesses): a segment spans only its kept
    sub-rows (--span-s); a segment with none is hidden. The toggle sits under
    the fineness column as a low text button. */
