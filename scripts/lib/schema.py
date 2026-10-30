@@ -114,7 +114,7 @@ class UncertainReading(_StrictBase):
         "span", "museum",
         # inferred — the pipeline's basis
         "reign", "other_page", "feud_window", "text_year", "standard",
-        "standard_weight",
+        "standard_weight", "reign_holstein",
         "default", "compiled", "curator_window", "from_name", "uncited"]
     source: str = Field(..., min_length=1)
     as_printed: str | None = None
