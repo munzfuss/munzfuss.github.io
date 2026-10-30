@@ -406,7 +406,10 @@ def collect() -> tuple[list[dict], list[str]]:
             "year_ranges": ranges,
             "ruler": _RULER.get(ruler_code),
             "mint": mints[0] if len(mints) == 1 else mints,
-            "catalog": ({"others": [f"Lagerqvist# {lagerqvist}"]}
+            # The catalogue value drops Lindblad's «?» / «??» and the space
+            # before the sub-letter («4 a??» → «4a», as other catalogues write
+            # it; curator 2026-10-30); the source citation keeps the print.
+            "catalog": ({"others": [f"Lagerqvist# {re.sub(r'[?\s]+', '', lagerqvist)}"]}
                         if lagerqvist is not None else
                         {"galster": gal_values[0] if len(gal_values) == 1 else gal_values,
                          **({"galster_volume": _VOLUME[ruler_code]}
