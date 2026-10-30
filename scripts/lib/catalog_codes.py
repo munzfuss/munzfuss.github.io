@@ -794,6 +794,18 @@ def normalise_catalog(catalog: dict) -> int:
             catalog[field] = new_val
             changes += 1
 
+    # 1c. Jensen & Skjoldager series codes in one form: letter, hyphen,
+    #     number. Bruun prints «T21/25» beside «T-22/26», danskmoent «T-91/96»
+    #     and «F63»; «T21» and «T-21» are one index (curator 2026-10-30).
+    js = catalog.get("jensen_skjoldager")
+    if js is not None:
+        def _js(v):
+            return re.sub(r"^([A-Z])\s*-?\s*(\d)", r"\1-\2", v.strip()) if isinstance(v, str) else v
+        new_js = [_js(v) for v in js] if isinstance(js, list) else _js(js)
+        if new_js != js:
+            catalog["jensen_skjoldager"] = new_js
+            changes += 1
+
     # 2. DEDUP list-form values case-insensitively + collapse singletons
     for field in list(catalog.keys()):
         if field == "others" or field not in list_fields:
