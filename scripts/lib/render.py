@@ -680,8 +680,10 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
             lines.append(f"{prefix}[b]{src(e)}[/b]")
             lines.append(f"[i]«{q}»[/i]{tr(e)}")
         else:
-            lines.append(f"{prefix}[b]{src(e)}[/b]: {e.get('value') or ''}"
-                         + (f" ({how(e)})" if how(e) else ""))
+            # The same source and value reached from several members (nine
+            # Lindblad rows of one Gote) is one line.
+            push(f"{prefix}[b]{src(e)}[/b]: {e.get('value') or ''}"
+                 + (f" ({how(e)})" if how(e) else ""))
 
     for e in hedged:
         entry(e)
