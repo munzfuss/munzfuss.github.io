@@ -903,6 +903,13 @@ coins:
     year_first: 1566
     year_last: 1566
     year_label: '1566'
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1559-1588
+          seed: kmk-345172
     mint: Flensburg
     catalog:
       hede: 30A
@@ -1008,6 +1015,18 @@ coins:
     year_first: 1566
     year_last: 1566
     year_label: '1566'
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1559-1588
+          seed: kmk-203799
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1559-1588
+          seed: kmk-348823
     mint: Flensburg
     catalog:
       hede:
@@ -2286,6 +2305,18 @@ coins:
       -   - 1546
           - 1554
     year_label: 1546-1554
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1534-1559
+          seed: kmk-569933
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1534-1559
+          seed: kmk-569947
     mint: Flensburg
     catalog:
       schou: '8'
@@ -2380,6 +2411,23 @@ coins:
       -   - 1544
           - 1556
     year_label: 1544-1556
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1534-1559
+          seed: kmk-639379
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1534-1559
+          seed: kmk-646196
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1534-1559
+          seed: kmk-646197
     mint: Flensburg
     catalog:
       hede: '23'
@@ -2510,10 +2558,11 @@ coins:
     year_verified: false
     uncertainty:
       year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
+        - kind: hedged
+          how: museum
+          source: kmk
           value: 1534-1559
+          seed: kmk-578455
     mint: Flensburg
     catalog:
       hede: '23'
@@ -2632,10 +2681,16 @@ coins:
     year_verified: false
     uncertainty:
       year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
+        - kind: hedged
+          how: museum
+          source: kmk
           value: 1534-1559
+          seed: kmk-345231
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1534-1559
+          seed: kmk-345232
     mint: Flensburg
     catalog:
       hede: 23-24
@@ -2775,10 +2830,11 @@ coins:
     year_verified: false
     uncertainty:
       year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
+        - kind: hedged
+          how: museum
+          source: kmk
           value: 1534-1559
+          seed: kmk-627335
     mint: Flensburg
     metal_verified: false
     weight_rough_verified: false
@@ -2849,6 +2905,11 @@ coins:
           source: galster
           value: 1534-1559
           seed: dk-galster-c3g-133
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1534-1559
+          seed: kmk-497176
       metal:
         - kind: inferred
           how: from_name

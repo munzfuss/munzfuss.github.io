@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `gottorp_duchy`.
-# Generated 2026-10-29 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-30 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 816 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gottorp_duchy
-generated_at: '2026-10-29'
+generated_at: '2026-10-30'
 coins:
   - id: c-3f6e23f9
     class_id: c-3f6e23f9
@@ -4979,6 +4979,13 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1590-1616
+          seed: kmk-354215
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/354215
@@ -13249,9 +13256,19 @@ coins:
           value: 1616-1659
           seed: ngc-1180482
         - kind: hedged
+          how: span
+          source: ngc
+          value: 1616–1659
+          seed: ngc-1180482
+        - kind: hedged
           how: attributed
           source: numismaster
           value: 1616-1659
+          seed: schleswig_holstein-numismaster-167256
+        - kind: hedged
+          how: span
+          source: numismaster
+          value: 1616–1659
           seed: schleswig_holstein-numismaster-167256
     sources:
       - type: literature
@@ -14697,9 +14714,19 @@ coins:
           value: 1616-1659
           seed: ngc-1186463
         - kind: hedged
+          how: span
+          source: ngc
+          value: 1616–1659
+          seed: ngc-1186463
+        - kind: hedged
           how: attributed
           source: numismaster
           value: 1616-1659
+          seed: schleswig_holstein-numismaster-167284
+        - kind: hedged
+          how: span
+          source: numismaster
+          value: 1616–1659
           seed: schleswig_holstein-numismaster-167284
     sources:
       - type: literature
@@ -16663,15 +16690,30 @@ coins:
     uncertainty:
       year:
         - kind: hedged
+          how: span
+          source: numista
+          value: 1590-1616
+          seed: dk-numista-292424
+        - kind: hedged
           how: attributed
           source: ngc
           as_printed: (1590-1616)
           value: 1590-1616
           seed: ngc-167367
         - kind: hedged
+          how: span
+          source: ngc
+          value: 1590–1616
+          seed: ngc-167367
+        - kind: hedged
           how: attributed
           source: numismaster
           value: 1590-1616
+          seed: schleswig_holstein-numismaster-167367
+        - kind: hedged
+          how: span
+          source: numismaster
+          value: 1590–1616
           seed: schleswig_holstein-numismaster-167367
     sources:
       - type: literature
