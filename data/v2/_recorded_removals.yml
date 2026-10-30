@@ -4717,3 +4717,10 @@ removals:
   # source citation keeps the printed «4 a?» / «4 a??».
   - {seed: metallanalyser-2017-3-ll4aq-gotland, kind: field, field: others, dropped: ['Lagerqvist# 4 a?'], reason: 'printed «4 a?» in Lindblad 2017; catalogue value normalised to 4a, the doubt mark dropped on curator direction'}
   - {seed: metallanalyser-2017-3-ll4aqq-gotland, kind: field, field: others, dropped: ['Lagerqvist# 4 a??'], reason: 'printed «4 a??» in Lindblad 2017; catalogue value normalised to 4a, the doubt mark dropped on curator direction'}
+
+  # Jensen & Skjoldager codes in one form, letter-hyphen-number (curator,
+  # Serhii, 2026-10-30: «нормалізуй»). Bruun prints «T21/25» and «F63/F67»
+  # beside «T-22/26», «F-53/F-57»; the class now carries T-21, T-25, F-63,
+  # F-67 — the same indices, rewritten, nothing dropped.
+  - {seed: dk-bruun-4056, kind: field, field: jensen_skjoldager, dropped: ['T21', 'T25'], reason: 'rewritten as T-21, T-25 (normalised form of the same Jensen & Skjoldager codes)'}
+  - {seed: dk-bruun-4000, kind: field, field: jensen_skjoldager, dropped: ['F63', 'F67'], reason: 'rewritten as F-63, F-67 (normalised form of the same Jensen & Skjoldager codes)'}
