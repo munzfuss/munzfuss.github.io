@@ -745,7 +745,7 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
     ("nmd", "NMD"),
     ("schive", "Schive"),
     ("skaare", "Skaare"),
-    ("jensen_skjoldager", "JS"),
+    ("jensen_skjoldager", "Jensen/Skjoldager"),
     ("bergsoe", "Bergsøe"),
     ("thomsen", "Thomsen"),
     ("hauberg", "Hauberg"),
@@ -877,7 +877,7 @@ _PREFIX_PRIORITY: dict[str, int] = {
     "Saur": 220, "Diakov": 230, "Uzd": 240, "Bit": 250,
     "Brekke": 260, "Hauberg": 280,
     # Named fields added 2026-10-16 (see _NAMED_FIELDS).
-    "Schive": 62, "NMD": 63, "Skaare": 64, "JS": 52, "Bergsøe": 53, "Thomsen": 54,
+    "Schive": 62, "NMD": 63, "Skaare": 64, "Jensen/Skjoldager": 52, "Bergsøe": 53, "Thomsen": 54,
     "Behrens": 150, "Welter": 155, "Fiala": 156, "Gaedechens": 157,
     "Jesse": 158, "Kreber": 159,
     "Fb": 290, "J": 300,
