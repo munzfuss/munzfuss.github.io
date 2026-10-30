@@ -2302,8 +2302,11 @@ tr.msr-sh .msr-cut { display: none; }
    keeps its top position within the sub-row while the marker centres against it.
    Inter-badge spacing lives on the wrap (moved off .sd). */
 .c-delta .sd-wrap { display: flex; align-items: center; gap: 5px; margin-bottom: 2px; }
-.c-delta .msr-seg .sd-wrap { margin-bottom: 0; }
+.c-delta .msr-seg .sd-wrap { margin-bottom: 0; flex: 1 1 auto; }  /* .msr-seg is a flex row: let the wrap span it */
 .c-delta .sd-wrap .unverified { flex: none; margin-left: 0; }  /* the 5px flex gap already spaces it */
+/* The badge fills the row, so in one column every coloured box ends at the
+   same edge and every marker sits flush right (curator 2026-10-30). */
+.c-delta .sd-wrap > .sd { flex: 1 1 auto; }
 /* .sd-pct is inline-block (not block) so the trailing unverified "(?)" marker
    sits inline right after the percentage instead of wrapping to a third line
    — keeps the Δ badge two lines tall (grams / percent + marker). */
