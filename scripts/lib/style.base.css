@@ -2204,6 +2204,12 @@ summary.fuss-summary:hover .fs-toggle { filter: brightness(1.08); }
 }
 
 .msr-seg:last-child { border-bottom: 0; }
+/* Single-line values keep the normal cell's 8px top, so a row with several
+   specimens sets its values at the same height as a one-specimen row; only
+   the two-line Δ badge uses the 4px that lets it fill the 42px sub-row
+   (curator 2026-10-30). */
+.msr-seg { padding-top: 8px; }
+.c-delta .msr-seg { padding-top: 4px; }
 /* Shortened specimen list (≥ 6 finenesses): a segment spans only its kept
    sub-rows (--span-s); a segment with none is hidden. The toggle sits under
    the fineness column as a low text button. */
