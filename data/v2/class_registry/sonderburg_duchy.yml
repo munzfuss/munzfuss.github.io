@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 65 active, 1 retired.
+# 64 active, 2 retired.
 
 id: sonderburg_duchy
 classes:
@@ -32,10 +32,11 @@ classes:
   - id: c-1f81f360
     status: active
     created: '2026-10-22'
-    label: unified-ikmk-18284701
+    label: unified-ngc-1167501
     legacy_id: unified-ikmk-18284701
     members:
       - ikmk-18284701
+      - ngc-1167501
       - schleswig_holstein-numismaster-120992
   - id: c-1fb2fdc8
     status: active
@@ -253,13 +254,6 @@ classes:
     members:
       - ngc-1164738
       - schleswig_holstein-numismaster-120995
-  - id: c-789310c5
-    status: active
-    created: '2026-10-22'
-    label: unified-ngc-1167501
-    legacy_id: unified-ngc-1167501
-    members:
-      - ngc-1167501
   - id: c-793f23ec
     status: active
     created: '2026-10-22'
@@ -710,6 +704,15 @@ classes:
     legacy_id: unified-kmk-159563
     members:
       - kmk-159563
+  - id: c-789310c5
+    status: retired
+    created: '2026-10-22'
+    label: unified-ngc-1167501
+    legacy_id: unified-ngc-1167501
+    merged_into: c-1f81f360
+    retired: '2026-10-30'
+    members:
+      - ngc-1167501
   - id: c-b8240a06
     status: retired
     created: '2026-10-22'

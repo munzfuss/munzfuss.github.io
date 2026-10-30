@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 444 active, 0 retired.
+# 444 active, 2 retired.
 
 id: gottorp_duchy
 classes:
@@ -441,11 +441,10 @@ classes:
   - id: c-233326f8
     status: active
     created: '2026-10-22'
-    label: unified-ngc-1180579
+    label: unified-dk-numista-313754
     legacy_id: unified-ngc-1180579
     members:
       - dk-numista-313754
-      - ngc-1180579
   - id: c-23973194
     status: active
     created: '2026-10-22'
@@ -1018,15 +1017,6 @@ classes:
     legacy_id: unified-kmk-705835
     members:
       - kmk-705835
-  - id: c-4a7774b0
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-368442
-    legacy_id: unified-kmk-368442
-    members:
-      - kmk-368442
-      - kmk-368460
-      - schleswig_holstein-numismaster-167365
   - id: c-4b18eced
     status: active
     created: '2026-10-22'
@@ -1141,6 +1131,8 @@ classes:
     legacy_id: unified-dk-bruun-14118
     members:
       - dk-bruun-14118
+      - kmk-368442
+      - kmk-368460
       - ngc-1177480
       - schleswig_holstein-numismaster-167370
   - id: c-51d13b3f
@@ -1949,9 +1941,12 @@ classes:
     created: '2026-10-22'
     label: unified-ngc-1189705
     legacy_id: unified-ngc-1189705
+    split_into:
+      - c-c12f40e1
     members:
       - dk-numista-313235
       - ngc-1189705
+      - schleswig_holstein-numismaster-167365
   - id: c-841bc04d
     status: active
     created: '2026-10-22'
@@ -2023,10 +2018,11 @@ classes:
     created: '2026-10-22'
     label: unified-ngc-1177476
     legacy_id: unified-ngc-1177476
+    split_into:
+      - c-c3b3a1d7
     members:
       - dk-numista-301545
       - ngc-1177476
-      - ngc-167333
       - schleswig_holstein-numismaster-167333
   - id: c-889272b6
     status: active
@@ -2957,6 +2953,12 @@ classes:
       - dk-numista-319100
       - ngc-1181669
       - schleswig_holstein-numismaster-167299
+  - id: c-c3b3a1d7
+    status: active
+    created: '2026-10-30'
+    label: unified-ngc-167333
+    members:
+      - ngc-167333
   - id: c-c43aade4
     status: active
     created: '2026-10-22'
@@ -3062,9 +3064,10 @@ classes:
   - id: c-cacdb7fa
     status: active
     created: '2026-10-22'
-    label: unified-schleswig_holstein-numismaster-167305
+    label: unified-ngc-1180579
     legacy_id: unified-schleswig_holstein-numismaster-167305
     members:
+      - ngc-1180579
       - schleswig_holstein-numismaster-167305
   - id: c-cae25a2e
     status: active
@@ -3935,3 +3938,22 @@ classes:
       - dk-numista-564126
       - ngc-1165146
       - schleswig_holstein-numismaster-99487
+  - id: c-4a7774b0
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-368442
+    legacy_id: unified-kmk-368442
+    merged_into: c-5124f8b1
+    retired: '2026-10-30'
+    members:
+      - kmk-368442
+      - kmk-368460
+      - schleswig_holstein-numismaster-167365
+  - id: c-c12f40e1
+    status: retired
+    created: '2026-10-30'
+    label: unified-dk-numista-313235
+    merged_into: c-82e070db
+    retired: '2026-10-30'
+    members:
+      - dk-numista-313235

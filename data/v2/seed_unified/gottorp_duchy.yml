@@ -155,18 +155,31 @@ coins:
       sieg: '12.1'
       others:
         - Dav-LS# 439
-      lange: 264B
+      lange:
+        - 264A
+        - 264B
     metal: silver
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     diameter_mm_verified: false
     mint_verified: true
     verified: false
+    weight_rough_g:
+      - value: 57.05
+        source: kmk
+      - value: 59.96
+        source: kmk
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14203, p. 265
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/368442
+        ref: KMM 368442 (Inv. KP 605.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/368460
+        ref: KMM 368460 (Inv. BP 20.1)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-2-thaler-km-17-1607-cuid-1177480-duid-1395992
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -176,8 +189,17 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - dk-bruun-14118
+      - kmk-368442
+      - kmk-368460
       - ngc-1177480
       - schleswig_holstein-numismaster-167370
+    _entity_routing_hint:
+      rule_id: gottorp_ducal_lineage
+      matched_on:
+        ruler_lineage: johan adolph
+      would_route_to: gottorp_duchy
+      active: true
+      reasoning: Rule matched on ruler_lineage='johan adolph'; mint absent / unverified → rule re-routed.
   - id: c-7d682a8e
     class_id: c-7d682a8e
     label: unified-dk-bruun-14121
@@ -202,8 +224,8 @@ coins:
       km: '25'
       bruun_collection_id: '14121'
       sieg: '8.1'
-      numista: '301092'
       lange: 276-77
+      numista: '301092'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -1913,10 +1935,10 @@ coins:
       lange:
         - '444'
         - 444A
+      fr: '3088'
       numista:
         - '319169'
         - '319272'
-      fr: '3088'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -1992,8 +2014,8 @@ coins:
         - '14533'
       sieg: '11.3'
       lange: '445'
-      numista: '276019'
       fr: '3089'
+      numista: '276019'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -2062,8 +2084,8 @@ coins:
       bruun_collection_id: '14550'
       sieg: '10.2'
       lange: '449'
-      numista: '276021'
       fr: '3094'
+      numista: '276021'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -2134,8 +2156,8 @@ coins:
       lange:
         - '447'
         - 447B
-      numista: '307281'
       fr: '3092'
+      numista: '307281'
     metal: gold
     metal_verified: true
     fineness_verified: true
@@ -2535,6 +2557,44 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - dk-numista-313340
+  - id: c-233326f8
+    class_id: c-233326f8
+    label: unified-dk-numista-313754
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 3 Pfennigs
+    year_first: 1645
+    year_last: 1653
+    year_ranges:
+      -   - 1645
+          - 1646
+      -   - 1653
+          - 1653
+    year_label: 1645-1646, 1653
+    ruler: Frederick III
+    mint: Schleswig
+    catalog:
+      km: '91'
+      numista: '313754'
+      lange: 358 C IV
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 0.59
+        source: numista
+    sources:
+      - type: literature
+        url: https://en.numista.com/313754
+        ref: Numista N#313754 — 1⁄192 Thaler - Frederick III
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - dk-numista-313754
   - id: c-fbce7b71
     class_id: c-fbce7b71
     label: unified-dk-numista-319277
@@ -5171,56 +5231,6 @@ coins:
     issuing_entity: gottorp_duchy
     composed_of:
       - kmk-355855
-  - id: c-4a7774b0
-    class_id: c-4a7774b0
-    label: unified-kmk-368442
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Specie/breddaler
-    year_first: 1607
-    year_last: 1607
-    year_label: '1607'
-    ruler: Johan Adolph
-    catalog:
-      km: '16'
-      lange:
-        - 264A
-        - 264B
-        - 264c
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 57.05
-        source: kmk
-      - value: 59.96
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/368442
-        ref: KMM 368442 (Inv. KP 605.11)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/368460
-        ref: KMM 368460 (Inv. BP 20.1)
-      - type: literature
-        url: https://numismaster.com/MC_167365
-        ref: NumisMaster
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - kmk-368442
-      - kmk-368460
-      - schleswig_holstein-numismaster-167365
-    _entity_routing_hint:
-      rule_id: gottorp_ducal_lineage
-      matched_on:
-        ruler_lineage: johan adolph
-      would_route_to: gottorp_duchy
-      active: true
-      reasoning: Rule matched on ruler_lineage='johan adolph'; mint absent / unverified → rule re-routed.
   - id: c-f370e72d
     class_id: c-f370e72d
     label: unified-kmk-368444
@@ -11099,8 +11109,8 @@ coins:
     ruler: Karl Friedrich
     catalog:
       km: '208'
-      numista: '276025'
       fr: '3087'
+      numista: '276025'
       lange: '452'
     metal: gold
     metal_verified: true
@@ -11196,8 +11206,8 @@ coins:
     ruler: Karl Friedrich
     catalog:
       km: '207'
-      numista: '276023'
       fr: '3087'
+      numista: '276023'
       lange: '450'
     metal: gold
     metal_verified: true
@@ -12882,8 +12892,8 @@ coins:
     mint: Tönning
     catalog:
       km: '220'
-      numista: '319268'
       lange: '479'
+      numista: '319268'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -12927,10 +12937,10 @@ coins:
     mint: Schleswig
     catalog:
       km: '132'
-      numista: '301095'
       lange:
         - 404A
         - '405'
+      numista: '301095'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -12973,10 +12983,12 @@ coins:
     mint: Tönning
     catalog:
       km: '174'
-      numista: '319103'
       lange:
         - 439A
         - 440-441
+      others:
+        - Schön# 2 (1699)
+      numista: '319103'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -13017,12 +13029,12 @@ coins:
     ruler: Johann Adolf
     catalog:
       km: '8'
-      numista: '301545'
       lange:
         - 295A
         - 298-300
         - '301'
         - 303A
+      numista: '301545'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -13044,16 +13056,12 @@ coins:
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-1-24-thaler-km-8-1601-160z-cuid-1177476-duid-1394349
         ref: NGC World Coin Price Guide (powered by NumisMaster)
       - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-1-24-thaler-groschen-km-8-1599-cuid-167333-duid-380017
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: literature
         url: https://numismaster.com/MC_167333
         ref: NumisMaster
     issuing_entity: gottorp_duchy
     composed_of:
       - dk-numista-301545
       - ngc-1177476
-      - ngc-167333
       - schleswig_holstein-numismaster-167333
   - id: c-befe87ea
     class_id: c-befe87ea
@@ -13151,10 +13159,10 @@ coins:
     mint: Schleswig
     catalog:
       km: '149'
-      numista: '317502'
       lange:
         - '409'
         - 409a-409b
+      numista: '317502'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -13316,8 +13324,8 @@ coins:
     composed_of:
       - ngc-1180483
       - schleswig_holstein-numismaster-167266
-  - id: c-233326f8
-    class_id: c-233326f8
+  - id: c-cacdb7fa
+    class_id: c-cacdb7fa
     label: unified-ngc-1180579
     fuss: seed_unsorted
     phase: ngc
@@ -13334,34 +13342,36 @@ coins:
           - 1653
     year_label: 1642, 1645-1646, 1653
     ruler: Friedrich III
-    mint: Schleswig
     catalog:
       km: '91'
-      numista: '313754'
-      lange: 358 C IV
+      lange:
+        - 358CIV
+        - 358D
+        - 358DI
+        - 358DII
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 0.46
         source: ngc
-      - value: 0.59
-        source: numista
+      - value: 0.46
+        source: numismaster
     sources:
-      - type: literature
-        url: https://en.numista.com/313754
-        ref: Numista N#313754 — 1⁄192 Thaler - Frederick III
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-1-192-thaler-km-91-1645-1653-cuid-1180579-duid-1407502
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_167305
+        ref: NumisMaster
     issuing_entity: gottorp_duchy
     composed_of:
-      - dk-numista-313754
       - ngc-1180579
+      - schleswig_holstein-numismaster-167305
   - id: c-be1fd311
     class_id: c-be1fd311
     label: unified-ngc-1180584
@@ -13378,6 +13388,9 @@ coins:
     ruler: Johann Adolf
     catalog:
       km: '5'
+      lange: 280-290
+      others:
+        - Roeper# 3069 (1594)
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -13454,8 +13467,8 @@ coins:
     ruler: Christian Albrecht
     catalog:
       km: '140'
-      numista: '48549'
       lange: 407a-407b
+      numista: '48549'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -13578,8 +13591,8 @@ coins:
     ruler: Friedrich IV
     catalog:
       km: '158'
-      numista: '317503'
       lange: '433'
+      numista: '317503'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -13619,10 +13632,10 @@ coins:
     mint: Tönning
     catalog:
       km: '212'
-      numista: '301664'
       lange:
         - 462-63
         - '463'
+      numista: '301664'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -13694,10 +13707,10 @@ coins:
     ruler: Friedrich III
     catalog:
       km: '59'
-      numista: '313518'
       lange:
         - 354A
         - 355A
+      numista: '313518'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -13743,10 +13756,10 @@ coins:
     mint: Schleswig
     catalog:
       km: '6'
-      numista: '301812'
       lange:
         - '304'
         - 304-305A
+      numista: '301812'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -13867,10 +13880,10 @@ coins:
     mint: Schleswig
     catalog:
       km: '62'
-      numista: '313521'
       lange:
         - '329'
         - 331a
+      numista: '313521'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -13968,8 +13981,8 @@ coins:
     mint: Kiel
     catalog:
       km: '204'
-      numista: '292243'
       lange: '481'
+      numista: '292243'
     metal: billon
     metal_verified: true
     fineness_verified: false
@@ -14047,8 +14060,8 @@ coins:
     mint: Tönning
     catalog:
       km: '193'
-      numista: '143519'
       lange: 472-478
+      numista: '143519'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -14088,11 +14101,13 @@ coins:
     mint: Tönning
     catalog:
       km: '155'
-      numista: '301828'
       lange:
         - 431-32
         - '434'
         - 436-38
+      others:
+        - Schön# 1 (1702)
+      numista: '301828'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -14164,8 +14179,10 @@ coins:
     mint: Tönning
     catalog:
       km: '185'
-      numista: '38955'
       lange: 458-461
+      others:
+        - Schön# 9 (1707)
+      numista: '38955'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -14285,8 +14302,8 @@ coins:
     ruler: Friedrich III
     catalog:
       km: '75'
-      numista: '313684'
       lange: 336-338A
+      numista: '313684'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -14323,10 +14340,10 @@ coins:
     mint: Schleswig
     catalog:
       km: '32'
-      numista: '313239'
       lange:
         - 277A
         - '278'
+      numista: '313239'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -14398,8 +14415,8 @@ coins:
     mint: Tönning
     catalog:
       km: '194'
-      numista: '233862'
       lange: '480'
+      numista: '233862'
     metal: copper
     metal_verified: true
     fineness_verified: false
@@ -14548,8 +14565,8 @@ coins:
     ruler: Karl Friedrich
     catalog:
       km: '218'
-      numista: '38954'
       lange: 454-457
+      numista: '38954'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -14692,8 +14709,8 @@ coins:
     ruler: Friedrich III
     catalog:
       km: '44'
-      numista: '313342'
       lange: 358E
+      numista: '313342'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -14757,8 +14774,8 @@ coins:
     mint: Tönning
     catalog:
       km: '186'
-      numista: '301150'
       lange: 463A
+      numista: '301150'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -14847,10 +14864,10 @@ coins:
     mint: Burg auf Fehmarn
     catalog:
       km: '46'
-      numista: '301663'
       lange:
         - '339'
         - 339C
+      numista: '301663'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -14886,8 +14903,8 @@ coins:
     ruler: Friedrich III
     catalog:
       km: A46
-      numista: '313366'
       lange: 339Aa
+      numista: '313366'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -14937,8 +14954,8 @@ coins:
     ruler: Johann Adolf
     catalog:
       km: '4'
-      numista: '312875'
       lange: 307-312
+      numista: '312875'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -15036,11 +15053,11 @@ coins:
     ruler: Friedrich III
     catalog:
       km: '69'
-      numista: '301813'
       lange:
         - '340'
         - 340-341A
         - 340a
+      numista: '301813'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -15193,10 +15210,10 @@ coins:
     mint: Schleswig
     catalog:
       km: '61'
-      numista: '301094'
       lange:
         - '333'
         - 333a
+      numista: '301094'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -15273,13 +15290,13 @@ coins:
     mint: Steinbeck
     catalog:
       km: '71'
-      numista: '301534'
       lange:
         - '330'
         - '331'
         - 331b
         - '332'
         - 332A
+      numista: '301534'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -15315,8 +15332,8 @@ coins:
     ruler: Christian Albrecht
     catalog:
       km: '131'
-      numista: '276520'
       lange: '406'
+      numista: '276520'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -15362,10 +15379,12 @@ coins:
     mint: Tönning
     catalog:
       km: '183'
-      numista: '73161'
       lange:
         - 463B-467
         - '464'
+      others:
+        - Schön# 8
+      numista: '73161'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -15457,8 +15476,8 @@ coins:
     ruler: Friedrich III
     catalog:
       km: '93'
-      numista: '85360'
       lange: 342-353
+      numista: '85360'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -15508,8 +15527,10 @@ coins:
     mint: Schleswig
     catalog:
       km: '16'
+      lange:
+        - 264c
+        - 268a
       numista: '313235'
-      lange: 268a
       dav: CCT 5438
       others:
         - Behr# 818
@@ -15530,10 +15551,14 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-thaler-km-16-1607-cuid-1189705-duid-1395319
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://numismaster.com/MC_167365
+        ref: NumisMaster
     issuing_entity: gottorp_duchy
     composed_of:
       - dk-numista-313235
       - ngc-1189705
+      - schleswig_holstein-numismaster-167365
   - id: c-4fbd122f
     class_id: c-4fbd122f
     label: unified-ngc-1189706
@@ -16064,12 +16089,12 @@ coins:
       - Schleswig
     catalog:
       km: '55'
-      numista: '313367'
       lange:
         - '354'
         - 354a-354b
         - 354b
         - '356'
+      numista: '313367'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -16171,8 +16196,8 @@ coins:
     mint: Schleswig
     catalog:
       km: '60'
-      numista: '313520'
       lange: '335'
+      numista: '313520'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -16549,6 +16574,38 @@ coins:
     composed_of:
       - ngc-167317
       - schleswig_holstein-numismaster-167317
+  - id: c-c3b3a1d7
+    class_id: c-c3b3a1d7
+    label: unified-ngc-167333
+    fuss: seed_unsorted
+    phase: ngc
+    kind: kurant
+    nominal: 1/24 Thaler, Groschen
+    year_first: 1599
+    year_last: 1599
+    year_label: '1599'
+    ruler: Johann Adolf
+    catalog:
+      km: '8'
+      lange:
+        - 295A
+        - 298-300
+        - '301'
+        - 303A
+    metal: silver
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verified: false
+    sources:
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-gottorp-1-24-thaler-groschen-km-8-1599-cuid-167333-duid-380017
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: gottorp_duchy
+    composed_of:
+      - ngc-167333
   - id: c-c50fd670
     class_id: c-c50fd670
     label: unified-ngc-167337
@@ -16566,10 +16623,12 @@ coins:
     mint: Schleswig
     catalog:
       km: '5'
-      numista: '301149'
       lange:
         - 280-290
         - 280-90
+      others:
+        - Roeper# 3069 (1594)
+      numista: '301149'
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -16673,9 +16732,9 @@ coins:
     ruler: Johann Adolf
     catalog:
       km: '3'
+      lange: 264D
       numista: '292424'
       dav: Lg 444
-      lange: 264D
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -16730,44 +16789,3 @@ coins:
       - dk-numista-292424
       - ngc-167367
       - schleswig_holstein-numismaster-167367
-  - id: c-cacdb7fa
-    class_id: c-cacdb7fa
-    label: unified-schleswig_holstein-numismaster-167305
-    fuss: seed_unsorted
-    phase: numismaster
-    kind: kurant
-    nominal: 1/192 Thaler
-    year_first: 1642
-    year_last: 1653
-    year_ranges:
-      -   - 1642
-          - 1642
-      -   - 1645
-          - 1646
-      -   - 1653
-          - 1653
-    year_label: 1642, 1645-1646, 1653
-    ruler: Friedrich III
-    catalog:
-      km: '91'
-      lange:
-        - 358CIV
-        - 358D
-        - 358DI
-        - 358DII
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.46
-        source: numismaster
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_167305
-        ref: NumisMaster
-    issuing_entity: gottorp_duchy
-    composed_of:
-      - schleswig_holstein-numismaster-167305

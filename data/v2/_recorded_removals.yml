@@ -4746,3 +4746,9 @@ removals:
   - {seed: dk-galster-f1g-45, kind: field, field: jensen_skjoldager, dropped: ['T-91', 'T-96'], reason: 'replaced by the die coupling T-91/96, kept whole'}
   - {seed: dk-galster-f1g-47, kind: field, field: jensen_skjoldager, dropped: ['T-92', 'T-97B'], reason: 'replaced by the die coupling T-92/97B, kept whole'}
   - {seed: dk-galster-f1g-48, kind: field, field: jensen_skjoldager, dropped: ['T-92', 'T-97A'], reason: 'replaced by the die coupling T-92/97A, kept whole'}
+
+  # Lange «16» subsumed by the range «13-16» NGC now gives for the same coin
+  # (normalise_numeric_index drops a plain number inside a plain range).
+  # Curator 2026-10-30: «це ок якщо не породить регресій» — the only Lange
+  # value so subsumed in the re-flow.
+  - {seed: dk-numista-301214, kind: field, field: lange, dropped: ['16'], reason: 'covered by Lange 13-16 (NGC «Ref. Sch#1542-43; L#13-16») on the same class'}

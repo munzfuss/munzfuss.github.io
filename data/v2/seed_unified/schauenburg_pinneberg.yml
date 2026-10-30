@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `schauenburg_pinneberg`.
-# Generated 2026-10-29 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-30 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
 # Input: 504 per-source seed entries.
-# Output: 260 unified entries (one per physical coin).
+# Output: 259 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: schauenburg_pinneberg
-generated_at: '2026-10-29'
+generated_at: '2026-10-30'
 coins:
   - id: c-a208b610
     class_id: c-a208b610
@@ -31,6 +31,7 @@ coins:
       lange: '790'
       others:
         - Weinmeister# 30/31
+        - Weinmeister# 30
       mb: '20'
       dav: '8239'
     metal: silver
@@ -8742,12 +8743,23 @@ coins:
     phase: ngc
     kind: kurant
     nominal: 1 Goldgulden
-    year_first: 1600
+    year_first: 1593
     year_last: 1600
-    year_label: '1600'
+    year_ranges:
+      -   - 1593
+          - 1593
+      -   - 1595
+          - 1595
+      -   - 1600
+          - 1600
+    year_label: 1593, 1595, 1600
     ruler: Adolf XIII
     catalog:
       mb: '48'
+      fr: '3061'
+      others:
+        - Weinmeister# 17
+        - Weinmeister# 17a
     metal: gold
     metal_verified: true
     fineness_verified: false
@@ -8759,9 +8771,13 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-goldgulden-mb-48-1600-cuid-1182147-duid-1397030
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-goldgulden-mb-48-1593-1596-cuid-171267-duid-386787
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: schauenburg_pinneberg
     composed_of:
       - ngc-1182147
+      - ngc-171267
   - id: c-8da1686d
     class_id: c-8da1686d
     label: unified-ngc-1183452
@@ -8779,6 +8795,10 @@ coins:
     mint: Rinteln
     catalog:
       mb: '14'
+      others:
+        - Weinmeister# 57-78
+        - S# 3165
+        - S# 3168
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -8852,6 +8872,9 @@ coins:
     mint: Rinteln
     catalog:
       mb: '12'
+      others:
+        - Weinmeister# 42-51
+        - Weinmeister# 54-56
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9561,6 +9584,8 @@ coins:
     ruler: Otto V
     catalog:
       mb: '2'
+      others:
+        - Weinmeister# 5-9
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9609,6 +9634,8 @@ coins:
     ruler: Otto V
     catalog:
       mb: '4'
+      others:
+        - Weinmeister# 10
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9643,6 +9670,8 @@ coins:
     ruler: Otto V
     catalog:
       mb: '5'
+      others:
+        - Weinmeister# 11
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9682,6 +9711,8 @@ coins:
     ruler: Otto V
     catalog:
       mb: '6'
+      others:
+        - Weinmeister# 12
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9713,6 +9744,8 @@ coins:
     ruler: Otto V
     catalog:
       mb: '10'
+      others:
+        - Weinmeister# 4
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9752,6 +9785,9 @@ coins:
     mint: Rinteln
     catalog:
       mb: '12'
+      others:
+        - Weinmeister# 42-51
+        - Weinmeister# 54-56
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9786,6 +9822,10 @@ coins:
     mint: Rinteln
     catalog:
       mb: '14'
+      others:
+        - Weinmeister# 57-78
+        - S# 3165
+        - S# 3168
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9820,6 +9860,8 @@ coins:
     mint: Altona
     catalog:
       mb: '52'
+      others:
+        - Weinmeister# 52-53
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9854,6 +9896,8 @@ coins:
     ruler: Adolf XIII
     catalog:
       mb: '16'
+      others:
+        - Weinmeister# 39-41
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9891,6 +9935,8 @@ coins:
     mint: Altona
     catalog:
       mb: '18'
+      others:
+        - Weinmeister# 38-38a
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9932,6 +9978,8 @@ coins:
     catalog:
       mb: '21'
       dav: '8240'
+      others:
+        - Weinmeister# 31
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -9970,6 +10018,9 @@ coins:
     catalog:
       mb: '29'
       dav: '8243'
+      others:
+        - Weinmeister# 33
+        - Weinmeister# 35
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10006,6 +10057,8 @@ coins:
     catalog:
       mb: '30'
       dav: '8242'
+      others:
+        - Weinmeister# 34
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10046,6 +10099,9 @@ coins:
     catalog:
       mb: '50'
       dav: '8244'
+      others:
+        - Weinmeister# 36
+        - Weinmeister# 37
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10081,6 +10137,8 @@ coins:
     mint: Altona
     catalog:
       mb: '32'
+      others:
+        - Weinmeister# 28
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10117,6 +10175,8 @@ coins:
     catalog:
       mb: '23'
       dav: '8238'
+      others:
+        - Weinmeister# 27
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10157,6 +10217,8 @@ coins:
     mint: Altona
     catalog:
       mb: '34'
+      others:
+        - Weinmeister# 22
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10189,6 +10251,8 @@ coins:
     mint: Altona
     catalog:
       mb: '42'
+      others:
+        - Weinmeister# 23
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10221,6 +10285,8 @@ coins:
     mint: Altona
     catalog:
       mb: '56'
+      others:
+        - Weinmeister# 24
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10256,6 +10322,8 @@ coins:
     mint: Altona
     catalog:
       mb: '36'
+      others:
+        - Weinmeister# 21
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10296,6 +10364,8 @@ coins:
     mint: Altona
     catalog:
       mb: '38'
+      others:
+        - Weinmeister# 19
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10328,6 +10398,8 @@ coins:
     mint: Altona
     catalog:
       mb: '44'
+      others:
+        - Weinmeister# 20
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10360,6 +10432,8 @@ coins:
     mint: Altona
     catalog:
       mb: '46'
+      others:
+        - Weinmeister# 18
     metal: silver
     metal_verified: true
     fineness_verified: false
@@ -10406,6 +10480,9 @@ coins:
     catalog:
       mb: '25'
       fr: '3061'
+      others:
+        - Weinmeister# 15
+        - Weinmeister# 16
     metal: gold
     metal_verified: true
     fineness_verified: false
@@ -10424,38 +10501,6 @@ coins:
     composed_of:
       - ngc-171266
       - schleswig_holstein-numismaster-171266
-  - id: c-c3799e84
-    class_id: c-c3799e84
-    label: unified-ngc-171267
-    fuss: seed_unsorted
-    phase: ngc
-    kind: kurant
-    nominal: 1 Goldgulden
-    year_first: 1593
-    year_last: 1595
-    year_ranges:
-      -   - 1593
-          - 1593
-      -   - 1595
-          - 1595
-    year_label: 1593, 1595
-    ruler: Adolf XIII
-    catalog:
-      mb: '48'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/german-states-schaumburg-pinneberg-goldgulden-mb-48-1593-1596-cuid-171267-duid-386787
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: schauenburg_pinneberg
-    composed_of:
-      - ngc-171267
   - id: c-41b95ce2
     class_id: c-41b95ce2
     label: unified-ngc-171269
@@ -10471,6 +10516,8 @@ coins:
     catalog:
       mb: '40'
       fr: '3060'
+      others:
+        - Weinmeister# 14
     metal: gold
     metal_verified: true
     fineness_verified: false
