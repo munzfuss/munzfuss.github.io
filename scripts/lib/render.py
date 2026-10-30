@@ -645,6 +645,13 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
         shown_year = str(_get(raw, "year_label") or "")
         entries = [e for e in entries if e.get("kind") != "inferred"
                    or str(e.get("value") or "") == shown_year]
+        # A year shown beside the label as a marked alternative («1501-1510
+        # (*)») carries its own tooltip; its entry does not explain the label
+        # (curator 2026-10-30).
+        alt_years = {str(_get(a, "value") or "") for a in (_get(raw, "year_alts") or [])}
+        entries = [e for e in entries
+                   if not (e.get("value") and str(e["value"]) in alt_years
+                           and str(e["value"]) != shown_year)]
         if not entries:
             return None
     hedged = [e for e in entries if e.get("kind") == "hedged"]
