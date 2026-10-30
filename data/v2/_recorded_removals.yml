@@ -4711,3 +4711,9 @@ removals:
   # 2026-10-28 («почисть вручну»).
   - {seed: denmark-numismaster-110722, kind: field, field: km, dropped: ['40'], reason: 'its withdrawn erratum (48 -> 40) had put KM 40 on the Hede Norge 21 final; the record is Hede 17, KM 48'}
   - {seed: dk-bruun-9663, kind: field, field: km, dropped: ['48'], reason: 'Bruun prints KM-48 on a Hede Norge 14 coin (= KM A46); the value is marked (!) on the seed and shown as such, not as a KM of the class'}
+
+  # Lagerqvist values without Lindblad's «?» / «??» (curator, Serhii,
+  # 2026-10-30: «знаки питання відкинути»). The seed now carries «4a»; the
+  # source citation keeps the printed «4 a?» / «4 a??».
+  - {seed: metallanalyser-2017-3-ll4aq-gotland, kind: field, field: others, dropped: ['Lagerqvist# 4 a?'], reason: 'printed «4 a?» in Lindblad 2017; catalogue value normalised to 4a, the doubt mark dropped on curator direction'}
+  - {seed: metallanalyser-2017-3-ll4aqq-gotland, kind: field, field: others, dropped: ['Lagerqvist# 4 a??'], reason: 'printed «4 a??» in Lindblad 2017; catalogue value normalised to 4a, the doubt mark dropped on curator direction'}
