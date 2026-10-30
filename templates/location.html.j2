@@ -89,7 +89,12 @@
   {%- if prefix == 'Aagaard' and vals|length >= 2 and '(' in (vals|join('')) -%}
     {%- for v in vals -%}{{ catval(prefix, v, cmarks) }}{%- if not loop.last %},<br>{% endif -%}{%- endfor -%}
   {%- else -%}
-    {%- for v in vals -%}{{ catval(prefix, v, cmarks) }}{%- if not loop.last %}, {% endif -%}{%- endfor -%}
+    {#- A long Bruun / Aagaard list breaks after its first values; the rest
+        continue on a new line under the first value (curator 2026-10-30). -#}
+    {%- set brk = 3 if prefix == 'Bruun' and vals|length >= 5 else (4 if prefix == 'Aagaard' and vals|length >= 6 else 0) -%}
+    {%- if brk %}<span class="cat-vals">{% endif -%}
+    {%- for v in vals -%}{{ catval(prefix, v, cmarks) }}{%- if not loop.last %},{% if loop.index == brk %}<br>{% else %} {% endif %}{% endif -%}{%- endfor -%}
+    {%- if brk %}</span>{% endif -%}
   {%- endif -%}
 {%- endmacro -%}
 
