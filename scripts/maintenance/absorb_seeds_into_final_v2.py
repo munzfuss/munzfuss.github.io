@@ -1142,7 +1142,11 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # Coin.uncertainty when no member already recorded it.
     if out.get("year_is_reign_span") and out.get("year_verified") is False:
         _yu = (out.get("uncertainty") or {}).get("year") or []
-        if not any(e.get("how") == "reign" for e in _yu):
+        # A member that prints this very span (merger: a source's dating that
+        # matches the reign) already explains it; the reign is not ours then.
+        if not any(e.get("how") == "reign"
+                   or str(e.get("value") or "") == str(out.get("year_label") or "")
+                   for e in _yu):
             out.setdefault("uncertainty", {})["year"] = _yu + [
                 _unc.make("reign", "ruler_reigns", value=out.get("year_label"))]
 

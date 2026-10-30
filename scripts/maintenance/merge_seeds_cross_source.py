@@ -5474,6 +5474,15 @@ def process_entity(entity_id: str,
             yf, yl = s.get("year_first"), s.get("year_last")
         if _is_reign_span(s.get("ruler"), s.get("issuing_entity"), yf, yl):
             s["_year_demoted"] = True
+            # The span is the SOURCE's own dating, even when it matches the
+            # reign (KMM «1449-1480» for Christian I): record it as the
+            # source's, so the page shows «(?)» with that source, not «[ ]»
+            # as our reign inference (curator 2026-10-30). A seed whose builder
+            # already called its year an inference keeps that entry.
+            _ys = (s.get("uncertainty") or {}).get("year") or []
+            if not any(e.get("kind") == "inferred" for e in _ys):
+                _src = _source_label_from_id(sid)
+                _unc_add_year(s, "museum" if _src == "kmk" else "span", _src)
             # The table's own window, so a class whose every member gives
             # only the reign shows the table's reign, not whichever accession
             # year a cataloguer chose (build_unified).
