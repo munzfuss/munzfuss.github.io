@@ -1166,6 +1166,9 @@ def _compute_catalog_groups(
             # multiple sub-letters need to be represented.
             if isinstance(v, list):
                 parts = [str(p).strip() for p in v if p]
+            elif field_name == "jensen_skjoldager":
+                # «T-21/25» is one die coupling, not two numbers.
+                parts = [p.strip() for p in str(v).split(",") if p.strip()]
             else:
                 parts = [
                     p.strip()
