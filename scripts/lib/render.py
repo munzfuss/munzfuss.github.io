@@ -56,6 +56,7 @@ def build_env(template_dir: str) -> Environment:
     env.filters["group_bars"] = group_timeline_bars
     env.filters["first_sentence"] = first_sentence
     env.filters["ruler"] = ruler_for_lang
+    env.filters["ruler_regent"] = ruler_regent
     env.filters["nominal_nbsp"] = nominal_nbsp
     env.filters["mint_label"] = mint_label
     env.filters["nb_dashes"] = nb_dashes
@@ -213,7 +214,7 @@ def nb_dashes(s: str | None) -> str:
 # A Danish king written exactly as `canonical_ruler_display` writes him,
 # «Christian IV» — the DE page adds the period. Compound and annotated forms
 # («Christian I/Hans», «Christian V / Frederick III») keep their stored form.
-_DE_KING_ORDINAL_RE = re.compile(r"^((?:Christian|Frederik|Erik)[ \u00a0][IVX]+)$")
+_DE_KING_ORDINAL_RE = re.compile(r"^((?:Christian|Frederik|Erik|Margrete)[ \u00a0][IVX]+)$")
 
 
 _REBUILD_SCOPE: frozenset[str] | None = None
@@ -261,6 +262,33 @@ def ruler_for_lang(name: str | None, lang: str, fuss: str | None = None) -> str:
         return name
     # en/uk/da: Roman-numeral ordinals don't carry the German trailing period.
     return re.sub(r"( [IVX]+)\.", r"\1", name)
+
+
+# Coins struck in Erik VII's name while Margrete I was the actual regent
+# (Galster 1973 p. 23: «Dronning Margrethe genopretter møntvæsenet i Erik af
+# Pommerns navn 1397»; she died in October 1412). The data keeps «Erik VII»,
+# the name the sources print; the regent is the renderer's, in brackets
+# (curator 2026-10-30). Only coins whose whole span falls in the regency —
+# Galster dates its first issues «1396-1413», hence the 1413 bound.
+_REGENCIES = (("Erik VII", "Margrete I", 1412, 1413),)
+
+
+def ruler_regent(raw, lang: str) -> str:
+    """« (Margrete I)» after the ruler of a coin struck under a regency,
+    else «»."""
+    from .ruler_reigns import DANISH_CROWN_ENTITIES
+    get = raw.get if isinstance(raw, dict) else (lambda k: getattr(raw, k, None))
+    ie = get("issuing_entity")
+    ents = set(ie) if isinstance(ie, (list, tuple)) else {ie}
+    if not ents & DANISH_CROWN_ENTITIES:
+        return ""
+    first, last = get("year_first"), get("year_last") or get("year_first")
+    if not isinstance(first, int) or not isinstance(last, int):
+        return ""
+    for king, regent, first_max, last_max in _REGENCIES:
+        if get("ruler") == king and first <= first_max and last <= last_max:
+            return f" ({ruler_for_lang(regent, lang, get('fuss'))})"
+    return ""
 
 
 # Every language's word for a period (formerly «phase» — renamed 2026-10-11;
