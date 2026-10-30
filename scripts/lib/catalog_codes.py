@@ -761,7 +761,7 @@ def normalise_catalog(catalog: dict) -> int:
     # 1b. SLASH-SPLIT multi-value scalars + clean Davenport «#» artefacts.
     #     A «/» in a list-capable catalogue field reads as «and» — two catalogue
     #     numbers (ucoin/Numista pack sub-variants «125A / 125B», «138.1 / 138.2»,
-    #     «3679 / 3679A»; Jensen-Skjoldager «T-91/96» = «T-91» AND «T-96»). Left
+    #     «3679 / 3679A»). Jensen & Skjoldager is NOT split (die couplings). Left
     #     unsplit the value matches NEITHER half, silently blocking a cross-source
     #     merge AND rendering an ugly joined string. `split_multi_ref` splits on
     #     «/», re-attaching a shared prefix to a bare continuation («T-91/96» →
@@ -773,6 +773,11 @@ def normalise_catalog(catalog: dict) -> int:
     #     suffices (curator 2026-06-25); see `_strip_variant_qualifier`.
     for field in list_fields:
         if field == "km" or field in _VERBATIM_REF_FIELDS:
+            continue
+        # Jensen & Skjoldager number DIES: «T-21/25» is the obverse/reverse
+        # coupling of one specimen, not two indices (curator 2026-10-30;
+        # danskmoent «stempelnumrene Ro00-997, 998 og 999»). Kept whole.
+        if field == "jensen_skjoldager":
             continue
         val = catalog.get(field)
         if val is None:
@@ -794,13 +799,20 @@ def normalise_catalog(catalog: dict) -> int:
             catalog[field] = new_val
             changes += 1
 
-    # 1c. Jensen & Skjoldager series codes in one form: letter, hyphen,
-    #     number. Bruun prints «T21/25» beside «T-22/26», danskmoent «T-91/96»
-    #     and «F63»; «T21» and «T-21» are one index (curator 2026-10-30).
+    # 1c. Jensen & Skjoldager codes in one form: letter, hyphen, number, and
+    #     a die coupling with the series letter written once — danskmoent's
+    #     «T-91/96». Bruun prints «T21/25», «T-81/T-86», «F63/F67» for the same
+    #     shapes (curator 2026-10-30). A range «F-51 - F-58» stays as printed.
     js = catalog.get("jensen_skjoldager")
     if js is not None:
         def _js(v):
-            return re.sub(r"^([A-Z])\s*-?\s*(\d)", r"\1-\2", v.strip()) if isinstance(v, str) else v
+            if not isinstance(v, str):
+                return v
+            v = v.strip()
+            m = re.fullmatch(r"([A-Z])\s*-?\s*(\d+[A-Za-z]*)\s*/\s*(?:\1\s*-?\s*)?(\d+[A-Za-z]*)", v)
+            if m:
+                return f"{m.group(1)}-{m.group(2)}/{m.group(3)}"
+            return re.sub(r"^([A-Z])\s*-?\s*(\d)", r"\1-\2", v)
         new_js = [_js(v) for v in js] if isinstance(js, list) else _js(js)
         if new_js != js:
             catalog["jensen_skjoldager"] = new_js
