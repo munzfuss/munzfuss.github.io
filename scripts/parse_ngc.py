@@ -47,9 +47,24 @@ from fetch_ngc import region_dir  # noqa: E402
 _BEHRENS_HEAD = re.compile(r"\bB[-#]\s?(\d[\w,.\-\s]*?)(?=(?:;|$|\.\s+[A-Z(]|\bDav\b|\bFr\b|\bPrev))",
                            re.IGNORECASE)
 _DAV = re.compile(r"\bDav\.?\s*#?\s*((?:LS)?[A-Z]?\d+[A-Z]?)", re.IGNORECASE)
-_FR = re.compile(r"\bFr\.?\s*(\d+[A-Za-z]?)")
+# «Fr. 1475», «Fr. #3061», «Fr.#3089», «Fr#3099» (the «#» forms were missed
+# until 2026-10-30).
+_FR = re.compile(r"\bFr\.?\s*#?\s*(\d+[A-Za-z]?)")
 _PREV_KM = re.compile(r"\bPrev(?:ious)?\.?\s*KM\s*#?\s*([\w.]+)", re.IGNORECASE)
-_PREV_FR = re.compile(r"\bPrev(?:ious)?\.?\s*Fr\.?\s*#?\s*([\w.]+)", re.IGNORECASE)
+_PREV_FR = re.compile(r"\bPrev(?:ious)?\.?\s*(?:number\s*)?Fr\.?\s*#?\s*([\w.]+)", re.IGNORECASE)
+# Further «Ref.» catalogues (curator 2026-10-30, «бери всі»): Lange «L#23,
+# 23AB», Weinmeister «W#57-78», the uninterpreted «Sch#1357» (not Schou — a
+# block running across reigns; NumisMaster keeps it the same way) and «S#3165,
+# 3168», Meyer «Meyer 1, 2», Schön «Schön#1 for 1702» and the Roeper sale
+# «Slg. Roeper #3069 for 1594» (year kept with the number).
+_REF_LIST = r"(\d+[A-Za-z]*(?:\s*-\s*\d+[A-Za-z]*)?(?:\s*,\s*\d+[A-Za-z]*(?:\s*-\s*\d+[A-Za-z]*)?)*)"
+_LANGE = re.compile(r"\bL\s*#\s*" + _REF_LIST)
+_WEINM = re.compile(r"\bW\s*#\s*" + _REF_LIST)
+_SCH = re.compile(r"\bSch\s*#\s*" + _REF_LIST)
+_S = re.compile(r"\bS\s*#\s*" + _REF_LIST)
+_MEYER = re.compile(r"\bMeyer\s+" + _REF_LIST)
+_SCHOEN = re.compile(r"\bSch(?:ö|\?|oe)n\s*#\s*(\d+[A-Za-z]*(?:\s+for\s+\d{4})?)")
+_ROEPER = re.compile(r"\b(?:Slg\.\s*)?Roeper\s*#\s*(\d+[A-Za-z]*(?:\s+for\s+\d{4})?)")
 _BARE_KM = re.compile(r"(?<!Prev)(?<!Previous)\bKM\s*#\s*([\w.]+)", re.IGNORECASE)
 
 # Descriptive flags that matter for §9 (fabric / strike) and §9.4 (variants).
@@ -152,6 +167,17 @@ _MAYOR = re.compile(
 _YEAR = re.compile(r"(?<!\d)(1[3-9]\d{2})(?!\d)")
 
 
+def _split_ref_list(blob: str) -> list[str]:
+    """«431-32, 434, 436-38» → [«431-32», «434», «436-38»]; ranges verbatim."""
+    return [re.sub(r"\s*-\s*", "-", t.strip()) for t in blob.split(",") if t.strip()]
+
+
+def _year_qualified(blob: str) -> list[str]:
+    """«1 for 1702» → [«1 (1702)»]: the number holds for that year's issue."""
+    m = re.fullmatch(r"(\S+)\s+for\s+(\d{4})", blob.strip())
+    return [f"{m.group(1)} ({m.group(2)})" if m else blob.strip()]
+
+
 def _split_behrens(blob: str) -> list[str]:
     """Expand a Behrens blob into individual index tokens.
 
@@ -204,9 +230,16 @@ def parse_note(note: str | None) -> dict:
 
     claim(_BEHRENS_HEAD, "behrens", _split_behrens)
     claim(_DAV, "dav")
+    claim(_PREV_FR, "previous_fr")     # before _FR: «Previous number Fr. #63»
     claim(_FR, "fr")
     claim(_PREV_KM, "previous_km")
-    claim(_PREV_FR, "previous_fr")
+    claim(_LANGE, "lange", _split_ref_list)
+    claim(_WEINM, "weinmeister", _split_ref_list)
+    claim(_SCHOEN, "schoen", _year_qualified)
+    claim(_SCH, "sch", _split_ref_list)
+    claim(_S, "s", _split_ref_list)
+    claim(_MEYER, "meyer", _split_ref_list)
+    claim(_ROEPER, "roeper", _year_qualified)
     claim(_BARE_KM, "km_cross_ref")
 
     flags: dict[str, object] = {}

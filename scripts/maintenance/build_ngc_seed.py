@@ -161,7 +161,8 @@ def _catalog(rec: dict) -> dict:
         else:                       # 'c' (Christensen) has no schema field
             cat.setdefault("others", []).append(f"{scheme.upper()} {val}")
     refs = rec.get("catalog_refs") or {}
-    for src_key, dst in (("behrens", "behrens"), ("dav", "dav"), ("fr", "fr")):
+    for src_key, dst in (("behrens", "behrens"), ("dav", "dav"), ("fr", "fr"),
+                         ("lange", "lange")):
         vals = [v.lstrip("#") for v in (refs.get(src_key) or [])]
         if not vals:
             continue
@@ -169,6 +170,14 @@ def _catalog(rec: dict) -> dict:
             cat.setdefault("others", []).extend(f"{dst.upper()} {v}" for v in vals)
         else:
             cat[dst] = vals[0] if len(vals) == 1 else vals
+    # Catalogues without a schema field, written as NGC prints them («Sch#»,
+    # «S#» uninterpreted; curator 2026-10-30).
+    for src_key, label in (("weinmeister", "Weinmeister"), ("sch", "Sch"), ("s", "S"),
+                           ("meyer", "Meyer"), ("schoen", "Schön"), ("roeper", "Roeper")):
+        for v in refs.get(src_key) or []:
+            tok = f"{label}# {v}"
+            if tok not in cat.setdefault("others", []):
+                cat["others"].append(tok)
     return cat
 
 
