@@ -251,11 +251,12 @@ def ruler_for_lang(name: str | None, lang: str, fuss: str | None = None) -> str:
     import re
     # NBSP-glue the space before a Roman-numeral ordinal (Christian III,
     # Friedrich III. von Gottorp) so the numeral never wraps onto its own line
-    # away from the name in the narrow Ruler column.   is a literal NBSP
+    # away from the name in the narrow Ruler column — also inside an
+    # alternative («Christian I/Frederik I/Christian III»).   is a literal NBSP
     # char — the ruler cell renders WITHOUT |safe, so an &nbsp; entity would be
     # escaped, but the char is not. Roman numerals: I, V, X combos (1..30 —
     # sufficient for monarchs); trailing period optional, token-boundary anchored.
-    name = re.sub(r"\s+([IVX]+\.?)(?=\s|$)", " \\1", name)
+    name = re.sub(r"\s+([IVX]+\.?)(?=[\s/,;)]|$)", " \\1", name)
     if lang == "de":
         if fuss in _rebuild_scope():
             return _DE_KING_ORDINAL_RE.sub(r"\1.", name)
