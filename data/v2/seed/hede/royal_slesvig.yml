@@ -12,11 +12,12 @@ coins:
     phase: hede
     kind: kurant
     nominal: 1 Blaffert Lybsk
-    year_label: 1534-1559
-    year_first: 1534
+    year_label: 1448-1559
+    year_first: 1448
     year_last: 1559
     year_verified: false
-    ruler: Christian III.
+    ruler: Christian I/Frederik I/Christian III
+    ruler_verified: false
     mint: Flensburg
     catalog:
       hede: '24'
@@ -38,7 +39,22 @@ coins:
           how: reign
           source: hede
           as_printed: u.år
-          value: 1534-1559
+          value: 1448-1559
+      ruler:
+        - kind: hedged
+          how: alternatives
+          source: hede
+          as_printed: Henført til Christian 1. (Sømod), Frederik 1. (Schou) og Christian 3. (Hede)
+          value: Christian I/Frederik I/Christian III
+    _curation_holds:
+      ruler: 'Curator (Serhii) 2026-10-31: danskmoent c3h24 prints «Henført til Christian 1. (Sømod), Frederik 1. (Schou) og Christian 3. (Hede)» - three attributions in the literature, all kept as alternatives
+        with (?); the page itself and Sieg 42 follow Sømod (Christian I). The builder writes the page ruler, Christian III.'
+      ruler_verified:
+      uncertainty: 'Ruler alternatives as printed on the page (see ruler); year span covers all three reigns.'
+      year_label: 'Curator (Serhii) 2026-10-31: undated (u.år); span from Christian I''s accession to Christian III''s death (lib.ruler_reigns 1448-1559) so that every attribution is covered.'
+      year_first:
+      year_last:
+      year_verified:
   - id: dk-hede-c3h25
     fuss: seed_unsorted
     phase: hede

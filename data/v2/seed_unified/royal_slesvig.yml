@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `royal_slesvig`.
-# Generated 2026-10-30 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-10-31 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_slesvig.yml across all sources.
 #
 # Input: 166 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_slesvig
-generated_at: '2026-10-30'
+generated_at: '2026-10-31'
 coins:
   - id: c-d317065a
     class_id: c-d317065a
@@ -1756,14 +1756,14 @@ coins:
     phase: hede
     kind: kurant
     nominal: 1 Blaffert Lybsk
-    year_first: 1534
+    year_first: 1448
     year_last: 1559
     year_ranges:
-      -   - 1534
+      -   - 1448
           - 1559
-    year_label: 1534-1559
+    year_label: 1448-1559
     _year_demoted: true
-    ruler: Christian III
+    ruler: Christian I/Frederik I/Christian III
     mint: Flensburg
     catalog:
       hede: '24'
@@ -1775,13 +1775,21 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    ruler_verified: false
     uncertainty:
       year:
         - kind: inferred
           how: reign
           source: hede
           as_printed: u.år
-          value: 1534-1559
+          value: 1448-1559
+          seed: dk-hede-c3h24
+      ruler:
+        - kind: hedged
+          how: alternatives
+          source: hede
+          as_printed: Henført til Christian 1. (Sømod), Frederik 1. (Schou) og Christian 3. (Hede)
+          value: Christian I/Frederik I/Christian III
           seed: dk-hede-c3h24
     sources:
       - type: literature

@@ -3946,16 +3946,16 @@ coins:
     phase: hede
     kind: kurant
     nominal: 1 Blaffert Lybsk
-    ruler: Christian III.
+    ruler: Christian I/Frederik I/Christian III
     issuing_entity: royal_slesvig
     year_is_reign_span: true
     id: c-a6e126da
-    year_first: 1534
+    year_first: 1448
     year_last: 1559
     year_ranges:
-      -   - 1534
+      -   - 1448
           - 1559
-    year_label: 1534-1559
+    year_label: 1448-1559
     year_verified: false
     uncertainty:
       year:
@@ -3963,7 +3963,14 @@ coins:
           how: reign
           source: hede
           as_printed: u.år
-          value: 1534-1559
+          value: 1448-1559
+          seed: dk-hede-c3h24
+      ruler:
+        - kind: hedged
+          how: alternatives
+          source: hede
+          as_printed: Henført til Christian 1. (Sømod), Frederik 1. (Schou) og Christian 3. (Hede)
+          value: Christian I/Frederik I/Christian III
           seed: dk-hede-c3h24
     mint: Flensburg
     catalog:
@@ -3975,6 +3982,7 @@ coins:
     metal: silver
     mint_verified: true
     verified: false
+    ruler_verified: false
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3h24.htm
