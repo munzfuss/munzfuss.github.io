@@ -541,6 +541,12 @@ _KING_DISPLAY_NAME = {
     "christoffer": "Christoffer", "christopher": "Christoffer",
 }
 _ROMAN_TO_ARABIC = {v: k for k, v in _ARABIC_TO_ROMAN.items()}
+# Queen Margrete I in the spelling of the kings' table (da.wikipedia
+# «Margrete 1.», see RULER_REIGNS); KMM, NGC and Galster print «Margrethe»
+# (curator 2026-10-31: «нормалізуй»). The bare name is hers, as in
+# `_EXACT_BARE`; «Margrethe 2» / «II» is the present queen and stays.
+_MARGRETE_I_RE = re.compile(
+    r"^\s*Margreth?e(?:\s*(?:1|I))?\s*\.?\s*(\?)?\s*$", re.IGNORECASE)
 
 
 def canonical_ruler_display(raw, entity) -> tuple:
@@ -555,6 +561,9 @@ def canonical_ruler_display(raw, entity) -> tuple:
     """
     if not isinstance(raw, str) or entity not in DISPLAY_NAME_ENTITIES:
         return raw, False
+    q = _MARGRETE_I_RE.match(raw)
+    if q:
+        return "Margrete I", bool(q.group(1))
     m = _KING_DISPLAY_RE.match(raw)
     if not m:
         return raw, False
