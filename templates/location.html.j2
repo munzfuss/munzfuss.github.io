@@ -362,7 +362,10 @@
      normalised. Mirrors the fine weight column (c-w above): derived-source
      attribution, mark_derived on anchor_key, derived_unverified «(?)». #}
   <td class="c-stop-fine{% if coin.msr_n > 1 %} c-msr{% endif %}">
-    {%- if coin.msr_n > 1 -%}
+    {#- Copper: pieces per fine mark of silver is not shown, even where an
+        assay gives traces of silver (curator 2026-10-31). -#}
+    {%- if coin.raw.metal == 'copper' -%}
+    {%- elif coin.msr_n > 1 -%}
       {%- set _qm -%}{%- if coin.derived_unverified %}{{ dq(dmark(coin.raw)) }}{% endif -%}{%- endset -%}
       {%- for s in coin.msr_stop_fine_segs -%}<div class="msr-seg{% if coin.msr_short_n and not s.span_s %} msr-cut{% endif %}" style="--span:{{ s.span }}{% if coin.msr_short_n %};--span-s:{{ s.span_s }}{% endif %}">{% set _k = mkind(s.anchor, coin.weight_marks) %}{% if s.value is none %}{{ nv(True) }}{% elif s.sources %}<span class="alt-source" data-tooltip="{{ tips(s.sources) }}">{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}</span>{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% else %}{{ sv(fmt_num(s.value, decimals=2, unit=''), _k) }}{% set _m = mark(s.anchor, coin.weight_marks) %}{% if not _m|trim %}{{ _qm|safe }}{% endif %}{{ _m }}{% endif %}</div>{%- endfor -%}
     {%- elif coin.stop_fine_groups -%}
