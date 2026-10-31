@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 6005 active, 58 retired.
+# 6003 active, 60 retired.
 
 id: danish_realm
 classes:
@@ -8380,12 +8380,6 @@ classes:
       - dk-bruun-4626
       - dk-hede-c4h70
       - kmk-137621
-  - id: c-1d0195c8
-    status: active
-    created: '2026-10-25'
-    label: unified-ikmk-18206589
-    members:
-      - ikmk-18206589
   - id: c-1d07e9c5
     status: active
     created: '2026-10-22'
@@ -23820,6 +23814,7 @@ classes:
     members:
       - dk-bruun-3763
       - dk-galster-bajg-18
+      - ikmk-18206589
       - lindahl-1955-skilling-christopher
       - metallanalyser-2016-1-g18-lund-skilling
   - id: c-5452575a
@@ -36440,13 +36435,6 @@ classes:
     legacy_id: unified-kmk-149286
     members:
       - kmk-149286
-  - id: c-7eaa565d
-    status: active
-    created: '2026-10-22'
-    label: unified-ikmk-18206591
-    legacy_id: unified-ikmk-18206591
-    members:
-      - ikmk-18206591
   - id: c-7ecb61fe
     status: active
     created: '2026-10-22'
@@ -53951,6 +53939,7 @@ classes:
       - c-e502944b
     members:
       - dk-galster-hg-32
+      - ikmk-18206591
       - kmk-203841
       - metallanalyser-2017-1-g32
       - metallanalyser-2017-1-g32-malmoe-printed
@@ -68380,6 +68369,14 @@ classes:
     retired: '2026-10-25'
     members:
       - dk-galster-epomg-14
+  - id: c-1d0195c8
+    status: retired
+    created: '2026-10-25'
+    label: unified-ikmk-18206589
+    merged_into: c-54480815
+    retired: '2026-10-31'
+    members:
+      - ikmk-18206589
   - id: c-1e62058e
     status: retired
     created: '2026-10-25'
@@ -68563,6 +68560,15 @@ classes:
     retired: '2026-10-26'
     members:
       - lindahl-1955-malmoe-sterling
+  - id: c-7eaa565d
+    status: retired
+    created: '2026-10-22'
+    label: unified-ikmk-18206591
+    legacy_id: unified-ikmk-18206591
+    merged_into: c-c726ff67
+    retired: '2026-10-31'
+    members:
+      - ikmk-18206591
   - id: c-8443f8c8
     status: retired
     created: '2026-10-25'

@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15285 per-source seed entries.
-# Output: 6005 unified entries (one per physical coin).
+# Output: 6003 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -616,6 +616,8 @@ coins:
           - 1442
     year_label: 1440-1442
     ruler: Christoffer III
+    inscription_obv: CRISTOFER D G REX DACI
+    inscription_rev: GLORIA IN EXCELSIS DEO
     mint: Lund
     catalog:
       sieg: '4'
@@ -630,6 +632,7 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     year_verified: false
@@ -673,10 +676,15 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 69
       - value: 2.25
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 71
+      - value: 2.38
+        source: ikmk
     weight_range_g:
       - min: 1.87
         max: 2.38
         source: Lindahl 1955 (NNÅ 1955), s. 85
+    diameter_mm:
+      - value: 24.0
+        source: ikmk
     uncertainty:
       year:
         - kind: hedged
@@ -691,6 +699,11 @@ coins:
           as_printed: u. år (1440-1442)
           value: 1440-1442
           seed: dk-galster-bajg-18
+        - kind: hedged
+          how: span
+          source: ikmk
+          value: 1440-1442
+          seed: ikmk-18206589
         - kind: inferred
           how: reign
           source: lindahl
@@ -703,6 +716,18 @@ coins:
           as_printed: Skilling
           value: billon
           seed: dk-galster-bajg-18
+    mint_alts:
+      - value: Kopenhagen
+        source: ikmk
+        kind: suspect
+        reason:
+          de: 'IKMK gibt die Münzstätte «Kopenhagen» an und zitiert Galster 1972 Nr. 18; Galster 18 ist der Skilling aus Lund (danskmoent: «Skilling u. år (1440-1442), Lund»). Welche der beiden Angaben
+            falsch ist, ist aus den Quellen nicht bekannt.'
+          en: 'IKMK gives the mint «Kopenhagen» and cites Galster 1972 no. 18; Galster 18 is the Lund skilling (danskmoent: «Skilling u. år (1440-1442), Lund»). Which of the two is wrong is not known from
+            the sources.'
+          uk: 'IKMK подає двір «Kopenhagen» і цитує Galster 1972 № 18; Galster 18 — скілінг із Lund (danskmoent: «Skilling u. år (1440-1442), Lund»). Котре з двох значень хибне, з джерел невідомо.'
+          da: 'IKMK angiver møntstedet «Kopenhagen» og citerer Galster 1972 nr. 18; Galster 18 er skillingen fra Lund (danskmoent: «Skilling u. år (1440-1442), Lund»). Hvilken af de to angivelser der er
+            forkert, vides ikke ud fra kilderne.'
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -710,6 +735,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/bajg18.htm
         ref: Galster 18 (bajg) — danskmoent.dk bajg18.htm
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18206589
+        ref: IKMK Berlin 18206589
       - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 85
@@ -744,6 +772,7 @@ coins:
     composed_of:
       - dk-bruun-3763
       - dk-galster-bajg-18
+      - ikmk-18206589
       - lindahl-1955-skilling-christopher
       - metallanalyser-2016-1-g18-lund-skilling
   - id: c-202d275b
@@ -17564,6 +17593,8 @@ coins:
     year_last: 1512
     year_label: '1512'
     ruler: Hans
+    inscription_obv: IOhS - DEI GR - A REX - DACIE
+    inscription_rev: MONETA NOVA hAFNIENSIS
     mint: Kopenhagen
     catalog:
       galster: '32'
@@ -17575,6 +17606,7 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: true
     verified: false
     year_verified: false
@@ -17644,6 +17676,11 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 33
       - value: 2.65
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 43
+      - value: 2.9
+        source: ikmk
+    diameter_mm:
+      - value: 27.0
+        source: ikmk
     uncertainty:
       year:
         - kind: inferred
@@ -17652,6 +17689,11 @@ coins:
           as_printed: U.år
           value: 1483-1513
           seed: dk-galster-hg-32
+        - kind: hedged
+          how: span
+          source: ikmk
+          value: 1481-1513
+          seed: ikmk-18206591
         - kind: hedged
           how: museum
           source: kmk
@@ -17684,6 +17726,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/hansgals.htm
         ref: Galster 32 (hg) — danskmoent.dk hansgals.htm
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18206591
+        ref: IKMK Berlin 18206591
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/203841
         ref: KMM 203841 (Inv. FP 856.5.1)
@@ -17747,6 +17792,7 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-hg-32
+      - ikmk-18206591
       - kmk-203841
       - metallanalyser-2017-1-g32
       - metallanalyser-2017-1-g32-malmoe-printed
@@ -115661,90 +115707,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - ikmk-18203664
-  - id: c-1d0195c8
-    class_id: c-1d0195c8
-    label: unified-ikmk-18206589
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Schilling
-    year_first: 1440
-    year_last: 1442
-    year_ranges:
-      -   - 1440
-          - 1442
-    year_label: 1440-1442
-    ruler: Christoph von Bayern
-    inscription_obv: CRISTOFER D G REX DACI
-    inscription_rev: GLORIA IN EXCELSIS DEO
-    mint: Kopenhagen
-    catalog:
-      galster: '18'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.38
-        source: ikmk
-    diameter_mm:
-      - value: 24.0
-        source: ikmk
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18206589
-        ref: IKMK Berlin 18206589
-    issuing_entity: danish_realm
-    composed_of:
-      - ikmk-18206589
-  - id: c-7eaa565d
-    class_id: c-7eaa565d
-    label: unified-ikmk-18206591
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    nominal: 1 Schilling
-    year_first: 1483
-    year_last: 1513
-    year_ranges:
-      -   - 1483
-          - 1513
-    year_label: 1483-1513
-    _year_demoted: true
-    ruler: Johann
-    inscription_obv: IOhS - DEI GR - A REX - DACIE
-    inscription_rev: MONETA NOVA hAFNIENSIS
-    mint: Kopenhagen
-    catalog:
-      galster: '32'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 2.9
-        source: ikmk
-    diameter_mm:
-      - value: 27.0
-        source: ikmk
-    uncertainty:
-      year:
-        - kind: hedged
-          how: span
-          source: ikmk
-          value: 1481-1513
-          seed: ikmk-18206591
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18206591
-        ref: IKMK Berlin 18206591
-    issuing_entity: danish_realm
-    composed_of:
-      - ikmk-18206591
   - id: c-051e2fd2
     class_id: c-051e2fd2
     label: unified-ikmk-18219569
