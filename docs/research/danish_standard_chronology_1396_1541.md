@@ -37,7 +37,8 @@ followed past 1541, in §5, for the end-point question.
 | **Sch** | Schäfer, *Das Buch des Lübeckischen Vogts auf Schonen* (1887) | PRIMARY edition of Hans' Môtbok 1484 | `hanse/schaefer_1887/` |
 | **Kr** | Kroman, *Den danske Rigslovgivning indtil 1400* (1971) nr. 35–36 | PRIMARY (Viborg 1396) | via `luebischer_muenzfuss.md` §3.11 |
 | **W** | Wilcke, *Renæssancens Mønt- og Pengeforhold 1481–1588* (1950), chapters 7-1 … 7-4 | secondary; PRINTS the acts of 1513–1541 | `wilcke-1950` |
-| **E** | Eriksson 2017 (assays of Hans' coins) | outcomes | `eriksson_2017_assays.md` |
+| **E** | Eriksson 2017 (XRF assays, Christian I to Christian II; Christian I's Hvid tab. 5) | outcomes | `eriksson_2017_assays.md` |
+| **GJ** | Galster, *Reynold Junges Møntmesterregnskaber 1534–1540* (1934), introduction | secondary, from the mint accounts (blanching) | `galster-1934-junge` |
 | **P** | Piorr 2021 after Enemark 2003 and the Ribe toll accounts | secondary | `hans_rates_1481_1513.md` |
 | **Gr** | Grautoff, *Historische Schriften* 3 (Lübeck 1836), «Geschichte des lübeckischen Münzfusses» | secondary, from the Lübeck archive (some recesses survive only through him) | `grautoff-1836-3` (tags as in `luebeck_standard_chronology_1226_1622.md` §1) |
 | **Gd** | Gaedechens, *Hamburgische Münzen und Medaillen* II (1854), Einleitung S. 170–195 | secondary | `gaedechens-1854-hamburgische-muenzen-2` |
@@ -280,6 +281,82 @@ without a surviving act (the Hans ordinance is disputed above). What ties the Da
 head coin, but its small coin after 1450 is often named without a formula (1468, 1497, 1506, 1512). From 1513 the
 Danish grids are written; from 1536 the tie clause no longer names Lübeck, and 1541 changes the unit.
 
+### 2i. Wide fineness spread within one type — controlled steps or drift? (curator request 2026-10-31)
+
+Question (curator): when the specimens of one undated type spread over 5–11 lod (Erik VII's Sterling and Penning,
+Christopher's Hvid on the Denmark page), was the output fineness uncontrolled, or was it lowered on purpose — and
+if on purpose, do the highest-fineness specimens belong to the start of the striking period and the lowest to its
+end, the rest in between by falling fineness? Material: Hj (XRF, 145 coins, KMK Stockholm) and E (Christian I's
+Hvid, same method and series). Page numbers are the printed pages of the 2016:1 / 2017 issues (PDF page = printed
+page, checked 2026-10-31).
+
+**(1) The mint could hold a fineness within about one lod.** The test is the coinage under the common recess of
+8 Oct 1424 (§2a), the one Danish issue of the period with a known target. Søsling: three specimens, all 13 lod;
+Lebard: four, 11–10 lod (66,74–61,56 %, 60,44 %). Hj s. 9: «*De små variationerna talar för att halten har
+hållits på en oförändrat hög nivå*» [the small variations speak for the fineness having been held at an unchanged
+high level]. Christopher's Sterling: three of four at 9/8 lod (54,95–47,90 %), one at 7 lod — Hj s. 12 reads it
+as «*en kortvarig utmyntning*» [a short-lived issue]. A spread of 5–11 lod within one type is therefore not the
+scatter of one issue [C, from these two controls].
+
+**(2) What the authors read into the three wide series.**
+
+| Type (Galster) | n (Hj) | Spread | Author's reading | Source |
+|---|---:|---|---|---|
+| Sterling, Erik VII (4 Næstved / 9 Lund) | 21 | 13 → 9 lod (81,02–52,02 %) in lod groups 3 / 5 / 7 / 3 / 3 | begun near 14 lod, «*ett flertal sänkningar av halten ner till ca 9 lod*» [several reductions down to c. 9 lod]; tempo uneven: «*snabbt i början för att sedan ligga still under en tid och därefter sjunka snabbt under slutet*» [fast at first, then still for a while, then falling fast at the end] — with the caveat «*som emellertid bygger på ett litet material*» [which however rests on a small material]. Motive given as a hypothesis: «*kan antas bero på behoven att finansiera krigsinsatserna*» [may be assumed to be due to the need to finance the war] | Hj s. 7–8, tab. 5 |
+| Penning (bracteate), Erik VII (5) | 15 | 11 → 0 lod (67,60–0,47 %) | «*en mycket kraftig försämring under myntningens gång*» [a very strong debasement in the course of the striking]; the copper pieces «*bör tillhöra perioden ca 1420-1424*» [should belong to c. 1420–1424] — an attribution by analogy with the Kobbersterling, not a date on the coin | Hj s. 9, tab. 6 |
+| Hvid, Christopher (19/20, Malmö) | 68 | 10 → 5 lod (59,81–28,42 %) + one at 0,66 % | the two titles (DACIE / DSN) are «*påfallande jämt fördelade mellan olika silverhalter*» [strikingly evenly spread over the fineness levels], hence «*Titlarna kan därför inte ha kronologiska orsaker*» [the titles cannot therefore have chronological causes]; the spread itself «*måste tolkas som att det skett en haltförsämring under regeringsperioden*» [must be read as a debasement during the reign], begun only after the move from Lund to Malmö; no war link — «*anledningen måste vara en annan*» [the reason must be another] | Hj s. 12, tab. 14 |
+| Hvid, Christian I (23a–d) — comparison | 22 | 8 → 5 lod, 2 outliers | titles correlate with fineness, read as chronology, but «*eftersom stamparna t.ex. efterhand har blandats kan vissa titlar ha präglats parallellt*» [since the dies were mixed over time, some titles may have been struck in parallel]; two pieces (13,25 %, 3 %) identified as contemporary forgeries by confused legends and style | E s. 8, tab. 5 |
+
+Correction to the chat reading of 2026-10-31: Hj's «evenly spread» refers to the TITLES across fineness levels,
+not to the fineness values across their range. Tab. 14 counts 1 / 9 / 11 / 24 / 16 / 5 specimens at 10 / 9 / 8 /
+7 / 6 / 5 lod — a single peak at 7 lod, not a flat spread.
+
+⚠ **Hj text vs Hj appendix (Sterling).** Hj s. 8: «*Två ex. från Lund har höga värden (80,96% resp. 74,75%)*»
+[two pieces from Lund have high values]. The appendix (`heljeback_2016_metallanalyser_1400_1448_appendix.parsed.json`)
+gives 80,96 % to Nr 3, **Næstved**, Galster 4; the high Lund pieces are Nr 2 (81,02 %) and Nr 5 (74,75 %). The
+argument (Lund also struck high-fineness sterlings) holds with either figure; the number in the text is the
+Næstved piece's.
+
+**(3) Why the specimens cannot be ranked year by year by fineness [C, «можна вважати»].**
+
+1. *No dates.* None of these types carries a year; chronology comes only from hoards (t.p.q.), mints, legends
+   and marks. A specimen's «year» in the proposed ranking cannot be checked against anything.
+2. *Steps, not a slope.* Ordinances set fineness in lod (Hj s. 18: values are reported «*per jämna lod*» on the
+   assumption that the ordinances did so). Inside one step the specimens should be alike; their order within a
+   step is noise. Where the tempo is visible (Sterling) it is uneven — the distribution in time is not linear.
+3. *Surface method.* XRF on the obverse only: «*Analysen görs alltid på myntens åtsida*» (Hj s. 17). Error:
+   «*Felmarginalen är begränsad till +/- 0,8%*» (Jonsson, Hj s. 18); calibration «*relative deviation was found to
+   be 6.3 ± 3.9 %*» (Isaksson, Hj s. 17). Corrosion and an inhomogeneous alloy are named by Hj s. 18–19.
+4. *Blanching.* Coins were boiled white after striking: «*hvidkogt i en Lud af Salt og Vinsten. Derved fjernedes
+   Kobberet i Overfladen*» [blanched in a lye of salt and tartar; this removed the copper from the surface] (GJ,
+   introduction, PDF p. 18, Danish practice of 1534–40). A surface reading therefore stands above the alloy, the
+   more so the lower the fineness. Hj s. 9 explains the Søsling and Lebard exceeding the 1424 target the same way:
+   «*en förklaring kan vara att de vitkokades*» [one explanation may be that they were blanched]. Differences of
+   under ~1 lod between two specimens carry no order.
+5. *Outliers outside the series.* Penning Nr 35–37 (0,54–0,47 %) and Hvid Nr 144 (0,66 %, Cu 98,06 %, title DSN,
+   0,93 g) are copper. Hj assigns the copper Pennings to a copper phase (above) and gives Nr 144 without comment
+   (tab. 14). E shows that a copper piece among Hvide can be a contemporary forgery. Neither belongs at the end of
+   a fineness ranking without a check of style and legend.
+6. *Parallel mints.* Lindahl's assays: «*en högre silverhalt för Næstved (85,7-62,9%) än för Lund (53.2%)*»
+   (Lindahl 1957 [= NNÅ 1955, published 1957], 78–79, quoted by Hj s. 7). Two mints at different levels at the
+   same time would break any single ranking; Hj s. 8 leaves open whether they struck in sequence or overlapped.
+
+**(4) Answer [C].** The spread is read by every author who measured these types as several issues at a falling
+fineness, not as uncontrolled output; the 1424 control shows the mint held a fineness to about one lod. The
+proposed ranking holds at the level of **lod groups** — a 13-lod group is earlier than a 9-lod group — and even
+there only as a hypothesis, with an uneven tempo; at the level of single specimens it is not supported. What
+would test it: assays of specimens from hoards with a t.p.q.; correlation of fineness with mint, legend variant,
+interpunction and the marks beside the shield (Hj s. 11 suggests the trefoil / cross on Christopher's Skilling
+«*betecknar olika halter*» [denote different finenesses] but «*det skulle krävas ett större undersökningsmaterial*»
+[a larger material would be needed]).
+
+**Our data.** The three rows on the Denmark page carry these assays per specimen (`danish_realm.yml`):
+`c-3f22c79f` Sterling, Galster 9 — Hj Nr 2, 5, 8, 9, 13, 14, 16–22 (all Lund) + L s. 78 (53,2 %) + Galster 0,500;
+`c-e1a1f8b6` Penning, Galster 5 — Hj Nr 23–37 + L s. 79 (21,2 %); `c-df58ec36` Hvid, Galster 20 — Hj Nr 78–144
++ L s. 86 (37 %, 40 %). The Lund sterlings alone span 13 → 9 lod (Nr 2 81,02 % … Nr 22 52,02 %), so the spread
+is not an artefact of pooling Næstved and Lund. The rows show the readings ungrouped; nothing in the data ties a
+reading to a year.
+
 ## §3. What the series shows [C, «можна вважати»]
 
 1. **Three kinds of tie, in sequence.** (a) 1424: a common formula — Danish coin = Lübeck coin by treaty (the only
@@ -356,6 +433,8 @@ rate in ß lybsk.
 | Danish Skilling 8 lod before or after 1506 | a dated / hoard-closed 8-lod Skilling; Enemark 1971 I s. 113–118 |
 | The Lübeck daler rate in 1541 (for the 2 : 1) | narrowed 2026-10-28: by silver 1,47–1,66 : 1 (§4). A Lübeck/Hamburg valuation of 1540–41 (HR III Bd. 6–9 not cached) |
 | Christian II's Klippinge 1518–23 — any grid | the lost act (register §4 says none survives) |
+| Order of the fineness groups within Erik VII's Sterling and Penning and Christopher's Hvid (§2i) | assays of specimens from hoards with a t.p.q.; fineness vs mint, legend, interpunction and shield marks on a larger sample |
+| Hvid Christopher Nr 144 (0,66 % Ag) — copper issue or forgery | style and legend check of the coin (Hj appendix photo); Hj gives no comment |
 
 ## §7. Our data
 
