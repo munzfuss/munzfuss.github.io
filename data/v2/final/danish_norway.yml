@@ -12887,11 +12887,11 @@ coins:
     fraction: 1/96
     id: c-7643388f
     year_first: 1779
-    year_last: 1782
+    year_last: 1780
     year_ranges:
       -   - 1779
-          - 1782
-    year_label: 1779-1782
+          - 1780
+    year_label: 1779-1780
     mint: Kongsberg
     catalog:
       km: '258'
@@ -16840,14 +16840,22 @@ coins:
     nominal: 2 Mark
     ruler: Frederik III.
     issuing_entity: danish_norway
+    year_is_reign_span: true
     fraction: 2/3
     id: c-462fe1c6
     year_first: 1649
-    year_last: 1688
+    year_last: 1669
     year_ranges:
       -   - 1649
-          - 1688
-    year_label: 1649-1688
+          - 1669
+    year_label: 1649-1669
+    year_verified: false
+    uncertainty:
+      year:
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
+          value: 1649-1669
     mint:
       - Christiania
       - Kongsberg
@@ -48931,12 +48939,18 @@ coins:
     ruler: Christian IV.
     issuing_entity: danish_norway
     id: c-3bf7a158
-    year_first: 1681
-    year_last: 1695
+    year_first: 1682
+    year_last: 1694
     year_ranges:
-      -   - 1681
-          - 1695
-    year_label: 1681-1695
+      -   - 1682
+          - 1685
+      -   - 1687
+          - 1687
+      -   - 1689
+          - 1691
+      -   - 1693
+          - 1694
+    year_label: 1682-1685, 1687, 1689-1691, 1693-1694
     catalog:
       hede: '55'
     metal_verified: false
@@ -49071,12 +49085,18 @@ coins:
     ruler: Christian IV.
     issuing_entity: danish_norway
     id: c-8f9a3019
-    year_first: 1688
-    year_last: 1699
+    year_first: 1690
+    year_last: 1697
     year_ranges:
-      -   - 1688
-          - 1699
-    year_label: 1688-1699
+      -   - 1690
+          - 1690
+      -   - 1692
+          - 1692
+      -   - 1694
+          - 1694
+      -   - 1697
+          - 1697
+    year_label: 1690, 1692, 1694, 1697
     catalog:
       hede: '73'
     metal_verified: false
@@ -49516,14 +49536,9 @@ coins:
     ruler: Christian V.
     issuing_entity: danish_norway
     id: c-a95babc2
-    year_first: 1670
+    year_first: 1697
     year_last: 1697
-    year_ranges:
-      -   - 1670
-          - 1671
-      -   - 1697
-          - 1697
-    year_label: 1670-1671, 1697
+    year_label: '1697'
     catalog:
       hede: '76'
     metal_verified: false
