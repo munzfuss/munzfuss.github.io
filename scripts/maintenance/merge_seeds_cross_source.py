@@ -84,7 +84,7 @@ if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
 from lib.mint_registry import strip_mint_suffix as _strip_mint_suffix  # noqa: E402
-from lib.weight_range import collect_weight_ranges  # noqa: E402
+from lib.weight_range import collect_fineness_traces, collect_weight_ranges  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 V2_SEED = ROOT / "data" / "v2" / "seed"
@@ -4511,6 +4511,10 @@ def build_unified(members: list[dict], unified_id: str,
     wranges = collect_weight_ranges(members)
     if wranges:
         out["weight_range_g"] = wranges
+    # Silver in traces, no figure (FinenessTrace) — union, never a reading.
+    ftrace = collect_fineness_traces(members)
+    if ftrace:
+        out["fineness_trace"] = ftrace
     diameters = _collect_field_list(members, "diameter_mm")
     if diameters:
         out["diameter_mm"] = diameters

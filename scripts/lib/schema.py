@@ -284,6 +284,17 @@ class FieldValue(_StrictBase):
     fragment: I18nText | None = None
 
 
+class FinenessTrace(_StrictBase):
+    """A source that assayed the coin and found silver only in traces, with
+    no figure («Finhed: spor af sølv», Lindahl 1955 p. 80). The fineness
+    column shows «traces of Ag» with the source instead of «?» (unknown),
+    and nothing is computed from it (curator 2026-10-31). List-form on the
+    coin so several sources accumulate."""
+    source: str = Field(..., min_length=1)
+    # The source's own words, verbatim.
+    as_printed: str = Field(..., min_length=1)
+
+
 class WeightRange(_StrictBase):
     """A catalogue's weight figure for a TYPE — a range («0,65–0,80 gr»)
     or a single figure — as distinct from a weighed specimen.
@@ -1252,6 +1263,8 @@ class Coin(_StrictBase):
     # A catalogue's TYPE weight (range or single figure) — see WeightRange;
     # expanded into lower/upper-bound readings at build time.
     weight_range_g: list[WeightRange] | None = None
+    # Silver found only in traces, no figure — see FinenessTrace.
+    fineness_trace: list[FinenessTrace] | None = None
     diameter_mm: float | list[FieldValue] | None = Field(
         None,
         description="Same form as fineness — scalar or list of FieldValue.",

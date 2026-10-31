@@ -39,6 +39,25 @@ def collect_weight_ranges(members: list[dict]) -> list[dict]:
     return out
 
 
+def collect_fineness_traces(members: list[dict]) -> list[dict]:
+    """Union of every member's `fineness_trace` (schema.FinenessTrace —
+    silver found only in traces), deduped, first-seen order. Kept beside the
+    weight ranges: both are a source's statement about a type that is not a
+    reading."""
+    out: list[dict] = []
+    seen: set[tuple] = set()
+    for m in members or []:
+        for t in (m or {}).get("fineness_trace") or []:
+            if not isinstance(t, dict):
+                continue
+            k = (t.get("source"), t.get("as_printed"))
+            if k in seen:
+                continue
+            seen.add(k)
+            out.append(dict(t))
+    return out
+
+
 def range_pairs(ranges) -> list[tuple[float, str]]:
     """Expand `weight_range_g` into (value, source-label) weight readings:
     a range → lower bound + upper bound; a single figure → one reading.

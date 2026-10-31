@@ -99,9 +99,13 @@ _NOMINAL_PERIODS = {
 }
 
 
-def nominal_window(nominal) -> tuple[int, int] | None:
+def nominal_window(nominal, metal=None) -> tuple[int, int] | None:
     """Year window for a nominal struck in one period only, or None. KMM's
     doubt mark («1 Kobbersterling?») does not change the window; the result
-    is a placeholder shown (?) either way."""
+    is a placeholder shown (?) either way. A copper «Sterling» is the
+    Kobbersterling under its curated display name (nominal_synonyms, D50);
+    a silver Sterling is not one-period."""
     s = re.sub(r"^\s*\d+\s+", "", str(nominal or "")).strip(" ?").lower()
+    if s == "sterling" and metal == "copper":
+        s = "kobbersterling"
     return _NOMINAL_PERIODS.get(s)

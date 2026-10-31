@@ -66,7 +66,7 @@ V2_OVERMERGE_PURGE = ROOT / "data" / "v2" / "overmerge_purge_allowlist.yml"
 sys.path.insert(0, str(ROOT / "scripts"))
 from lib.fraction_infer import infer_fraction, load_fuss_fractions  # noqa: E402
 from lib.gen_stamp import resolve_generated_at  # noqa: E402
-from lib.weight_range import collect_weight_ranges  # noqa: E402
+from lib.weight_range import collect_fineness_traces, collect_weight_ranges  # noqa: E402
 from lib.seed_merge import merge_seed  # noqa: E402
 from lib.specimen_exclusions import (  # noqa: E402
     load_excluded_specimens, strip_excluded_specimens)
@@ -965,7 +965,9 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                     for _x in (_v if isinstance(_v, list) else [_v]):
                         if _x and str(_x) not in _mb:
                             _mb.append(str(_x))
-                _rw0 = (_mb_window(_mb) if _mb else None) or _nominal_window(out.get("nominal"))
+                _rw0 = (_mb_window(_mb) if _mb else None) or _nominal_window(
+                    out.get("nominal"), out.get("metal") or next(
+                        (_m.get("metal") for _m in members if _m.get("metal")), None))
             if _rw0 is None:
                 _rw0 = _reign_window_placeholder(out.get("ruler"), _ie)
             if _rw0 is not None:
@@ -1277,6 +1279,10 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     wranges = collect_weight_ranges([final_entry] + list(members))
     if wranges:
         out["weight_range_g"] = wranges
+    # Silver in traces, no figure (FinenessTrace) — union, never a reading.
+    ftrace = collect_fineness_traces([final_entry] + list(members))
+    if ftrace:
+        out["fineness_trace"] = ftrace
     diameters = _collect_field_list(members, "diameter_mm", skip_first_list=_skip_first)
     if diameters:
         out["diameter_mm"] = diameters

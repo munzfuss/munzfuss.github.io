@@ -176,7 +176,12 @@ def collect() -> list[dict]:
         }
         if rng:
             entry["weight_range_g"] = [{"min": rng[0], "max": rng[1], "source": label}]
-        if note:
+        if note is _TRACES:
+            # an assay without a figure: the fineness column shows it
+            # (curator 2026-10-31), so no note repeating it
+            entry["fineness_trace"] = [{"source": label,
+                                        "as_printed": "Finhed: spor af sølv"}]
+        elif note:
             entry["note"] = dict(note)
         how, printed = _DATING_PRINTED[key]
         unc.add(entry, "year", how, SOURCE, as_printed=printed,
