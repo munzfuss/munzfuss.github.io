@@ -487,6 +487,28 @@
     var m = /(?:^|\s)(suspect|erroneous|template|fragment)-mark(?:\s|$)|(?:^|\s)(unverified)(?:\s|$)/.exec(c);
     return m ? (m[1] || m[2]) : null;
   }
+  // Tooltip text may carry [b]…[/b] (the work / source) and [i]…[/i] (its
+  // quote) — Coin.uncertainty tooltips and ui.yml texts such as the regent
+  // bracket; built as elements, never as HTML.
+  function appendMarkup(box, text) {
+    var parts = text.split(/(\[\/?[bi]\])/);
+    var bold = false, ital = false;
+    for (var p = 0; p < parts.length; p++) {
+      var tok = parts[p];
+      if (tok === "[b]") { bold = true; continue; }
+      if (tok === "[/b]") { bold = false; continue; }
+      if (tok === "[i]") { ital = true; continue; }
+      if (tok === "[/i]") { ital = false; continue; }
+      if (!tok) continue;
+      var node = document.createTextNode(tok);
+      if (bold || ital) {
+        var el = document.createElement(bold ? "b" : "i");
+        if (bold && ital) { var inner = document.createElement("i"); inner.appendChild(node); el.appendChild(inner); }
+        else el.appendChild(node);
+        box.appendChild(el);
+      } else box.appendChild(node);
+    }
+  }
   function setTipText(box, text, trigger) {
     var kind = markKind(trigger);
     box.textContent = "";
@@ -515,7 +537,11 @@
       }
       return;
     }
-    if (!kind) { box.textContent = text; return; }
+    if (!kind) {
+      if (/\[\/?[bi]\]/.test(text)) appendMarkup(box, text);
+      else box.textContent = text;
+      return;
+    }
     var lang = (document.documentElement.lang || "en").slice(0, 2);
     var head = (MARK_HEAD[lang] || MARK_HEAD.en)[kind];
     if (head) {
@@ -525,25 +551,7 @@
       box.appendChild(document.createTextNode("\n"));
     }
     if (kind === "hedged" || kind === "inferred" || kind === "derived") {
-      // Coin.uncertainty tooltips carry [b]…[/b] (the work / source) and
-      // [i]…[/i] (its quote); built as elements, never as HTML.
-      var parts = text.split(/(\[\/?[bi]\])/);
-      var bold = false, ital = false;
-      for (var p = 0; p < parts.length; p++) {
-        var tok = parts[p];
-        if (tok === "[b]") { bold = true; continue; }
-        if (tok === "[/b]") { bold = false; continue; }
-        if (tok === "[i]") { ital = true; continue; }
-        if (tok === "[/i]") { ital = false; continue; }
-        if (!tok) continue;
-        var node = document.createTextNode(tok);
-        if (bold || ital) {
-          var el = document.createElement(bold ? "b" : "i");
-          if (bold && ital) { var inner = document.createElement("i"); inner.appendChild(node); el.appendChild(inner); }
-          else el.appendChild(node);
-          box.appendChild(el);
-        } else box.appendChild(node);
-      }
+      appendMarkup(box, text);
       return;
     }
     box.appendChild(document.createTextNode(text));
