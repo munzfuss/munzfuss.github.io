@@ -287,9 +287,10 @@ class FieldValue(_StrictBase):
 class FinenessTrace(_StrictBase):
     """A source that assayed the coin and found silver only in traces, with
     no figure («Finhed: spor af sølv», Lindahl 1955 p. 80). The fineness
-    column shows «traces of Ag» with the source instead of «?» (unknown),
-    and nothing is computed from it (curator 2026-10-31). List-form on the
-    coin so several sources accumulate."""
+    column keeps «?», its tooltip saying the source gives the fineness only
+    as traces of silver and naming it, and nothing is computed from it
+    (curator 2026-10-31). List-form on the coin so several sources
+    accumulate."""
     source: str = Field(..., min_length=1)
     # The source's own words, verbatim.
     as_printed: str = Field(..., min_length=1)

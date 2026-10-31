@@ -117,11 +117,12 @@
     (derived=True: it cannot be computed, an input is unknown). «?» rather
     than «—», which reads as «does not exist» (curator 2026-10-30). -#}
 {%- macro nv(derived=False) -%}<span class="unknown" data-tooltip="{{ ui_get('marker.unknown_derived' if derived else 'marker.unknown') }}">?</span>{%- endmacro -%}
-{#- No fineness figure: «?» (unknown), unless a source assayed the coin and
-    found silver only in traces (Coin.fineness_trace, curator 2026-10-31) —
-    then «traces of Ag» with the source, and the values computed from the
-    fineness say why they are not computed. -#}
-{%- macro nvf(raw) -%}{%- if raw.fineness_trace -%}<span class="fin-trace" data-tooltip="{{ ui_get('fineness.trace_tip') }}{% for t in raw.fineness_trace %}&#10;[b]{{ t.source }}[/b]: [i]«{{ t.as_printed }}»[/i]{% endfor %}">{{ ui_get('fineness.trace') }}</span>{%- else -%}{{ nv() }}{%- endif -%}{%- endmacro -%}
+{#- No fineness figure: «?». Where a source assayed the coin and found silver
+    only in traces (Coin.fineness_trace) the tooltip says so and names the
+    source (curator 2026-10-31: «?» with that tooltip, no «traces of Ag»
+    text in the cell); the values computed from the fineness say why they
+    are not computed. -#}
+{%- macro nvf(raw) -%}{%- if raw.fineness_trace -%}<span class="unknown" data-tooltip="{{ ui_get('marker.trace') }}{% for t in raw.fineness_trace %}&#10;[b]{{ t.source }}[/b]: [i]«{{ t.as_printed }}»[/i]{% endfor %}">?</span>{%- else -%}{{ nv() }}{%- endif -%}{%- endmacro -%}
 {%- macro nvd(raw) -%}{%- if raw.fineness_trace -%}<span class="unknown" data-tooltip="{{ ui_get('marker.trace_derived') }}">?</span>{%- else -%}{{ nv(True) }}{%- endif -%}{%- endmacro -%}
 {%- macro uopen(u) -%}{%- if u and u.kind == 'inferred' -%}{{ ubr(u, '[') }}{%- endif -%}{%- endmacro -%}
 

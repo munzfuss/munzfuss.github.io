@@ -550,11 +550,9 @@
       box.appendChild(h);
       box.appendChild(document.createTextNode("\n"));
     }
-    if (kind === "hedged" || kind === "inferred" || kind === "derived") {
-      appendMarkup(box, text);
-      return;
-    }
-    box.appendChild(document.createTextNode(text));
+    // Every marker tooltip reads the [b]/[i] markup (curator 2026-10-31:
+    // sources bold, quotes italic — the `tooltip-text` skill).
+    appendMarkup(box, text);
   }
   function ensurePortal() {
     if (portalEl) return portalEl;
