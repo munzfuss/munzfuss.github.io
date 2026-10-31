@@ -5476,7 +5476,13 @@ def process_entity(entity_id: str,
             yf, yl = yr[0][0], yr[0][1]
         else:
             yf, yl = s.get("year_first"), s.get("year_last")
-        if _is_reign_span(s.get("ruler"), s.get("issuing_entity"), yf, yl):
+        # A span that contains the whole reign (KMM «1500-1599» for a
+        # Frederik II coin) says no more than the reign does (curator
+        # 2026-10-31, Hede f2h12: the century widened «1562, 1563»).
+        _w0 = (_reign_window_placeholder(s.get("ruler"), s.get("issuing_entity"))
+               if isinstance(yf, int) and isinstance(yl, int) and yf < yl else None)
+        if (_is_reign_span(s.get("ruler"), s.get("issuing_entity"), yf, yl)
+                or (_w0 and yf <= _w0[0] and yl >= _w0[1])):
             s["_year_demoted"] = True
             # The span is the SOURCE's own dating, even when it matches the
             # reign (KMM «1449-1480» for Christian I): record it as the

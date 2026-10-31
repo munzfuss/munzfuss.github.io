@@ -67811,12 +67811,12 @@ coins:
     phase: hede
     kind: scheide
     nominal: 1 Skilling
-    year_first: 1500
-    year_last: 1599
+    year_first: 1562
+    year_last: 1563
     year_ranges:
-      -   - 1500
-          - 1599
-    year_label: 1500-1599
+      -   - 1562
+          - 1563
+    year_label: 1562-1563
     ruler: Frederik II
     mint: Kopenhagen
     catalog:
@@ -67851,6 +67851,11 @@ coins:
         source: numista
     uncertainty:
       year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1500-1599
+          seed: kmk-307645
         - kind: hedged
           how: museum
           source: kmk
@@ -202347,11 +202352,19 @@ coins:
       -   - 1601
           - 1699
     year_label: 1601-1699
+    _year_demoted: true
     ruler: Frederik III
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1601-1699
+          seed: kmk-296350
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/296350
@@ -247276,17 +247289,25 @@ coins:
     phase: kmk
     kind: kurant
     nominal: 1 Hvid
-    year_first: 1480
+    year_first: 1483
     year_last: 1513
     year_ranges:
-      -   - 1480
+      -   - 1483
           - 1513
-    year_label: 1480-1513
+    year_label: 1483-1513
+    _year_demoted: true
     ruler: Hans
     metal_verified: false
     weight_rough_verified: false
     mint_verified: false
     verified: false
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1480-1513
+          seed: kmk-589224
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/589224
