@@ -4045,8 +4045,27 @@ def _union_year_ranges(members: list[dict]) -> list[list[int]] | None:
     # widens the union. Last-resort fallback: muted members are consulted ONLY
     # when no non-muted member contributes any year — their years are demoted,
     # never deleted (§CU curator-mute; see docs/TODO.md).
+    # Within them, a museum's own dating span (KMM, IKMK) and a bare terminus
+    # post quem («efter ca. 1405») yield to any other source that dates the
+    # coin (curator 2026-10-31, Galster 9: «датування від kmm/ikmk варто
+    # сприймати одразу з низьким пріоритетом якщо є інші джерела … роки
+    # galster мають перекривати»); they still count when nothing else does.
+    def _low_priority(m):
+        # A museum's dating SPAN, not a year it records: a KMM specimen dated
+        # 1782 is the year on the coin and keeps counting.
+        if _source_label_from_id(m.get("id")) in ("kmk", "ikmk"):
+            yr = m.get("year_ranges")
+            if isinstance(yr, list) and len(yr) == 1 and isinstance(yr[0], (list, tuple)):
+                return yr[0][0] != yr[0][1]
+            yf, yl = m.get("year_first"), m.get("year_last")
+            return isinstance(yf, int) and isinstance(yl, int) and yf != yl
+        ys = (m.get("uncertainty") or {}).get("year") or []
+        return bool(ys) and all(e.get("how") == "after" for e in ys)
+    _live = [m for m in members if not m.get("_year_demoted")]
     discrete_years, loose_ranges = _collect(
-        [m for m in members if not m.get("_year_demoted")])
+        [m for m in _live if not _low_priority(m)])
+    if not discrete_years and not loose_ranges:
+        discrete_years, loose_ranges = _collect(_live)
     if not discrete_years and not loose_ranges:
         # A year a curator marked (`year_mark`) is shown as an alternative,
         # never as the class's year — even here, when every member is muted
