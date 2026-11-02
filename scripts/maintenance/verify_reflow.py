@@ -1060,6 +1060,17 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
     # in a survivor's composed_of, or a survivor carries all of its source URLs.
     # That is exactly the dedup_final_foundations fold, and exactly what makes a
     # deliberate dedup distinguishable from data quietly falling on the floor.
+    def _declassified(fid: str, coin: dict) -> bool:
+        # A curator-agreed declassify (`kind: declassify`, keyed by seed)
+        # excuses a demotion that happens in a move too — same ledger and seed
+        # expansion as the in-place DEMOTED check below.
+        seeds_here = [fid, *(coin.get("composed_of") or [])]
+        seeds_here += [x for m in list(seeds_here)
+                       for x in (head_members or {}).get(m, [])]
+        seeds_here += [_head_seed(x) for x in list(seeds_here)
+                       if _head_seed(x) != x]
+        return bool(set(seeds_here) & _declassify_recorded())
+
     for cid in sorted(set(head) - set(cur)):
         was = head[cid]
         # A curator exclusion removes the coin ON PURPOSE, with a recorded
@@ -1088,7 +1099,8 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
         if moved:
             _home = _coin_home_index()
             _host = next((_home[m] for m in sorted(moved) if m in _home), None)
-            if _host and _demoted_in_move(was, _ELSEWHERE_FUSS.get(_host)):
+            if (_host and _demoted_in_move(was, _ELSEWHERE_FUSS.get(_host))
+                    and not _declassified(cid, was)):
                 losses.append(f"DEMOTED IN MOVE  {cid}.fuss: {was.get('fuss')!r} → "
                               f"seed_unsorted as {_host[1]} [{_host[0]}] (cross-entity merge)")
                 continue
@@ -1150,7 +1162,7 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
             member, (ent, host) = elsewhere_hit
             _hf = (cur[host].get("fuss") if ent == entity and host in cur
                    else _ELSEWHERE_FUSS.get((ent, host)))
-            if _demoted_in_move(was, _hf):
+            if _demoted_in_move(was, _hf) and not _declassified(cid, was):
                 losses.append(f"DEMOTED IN MOVE  {cid}.fuss: {was.get('fuss')!r} → "
                               f"seed_unsorted as {host} [{ent}]")
                 continue
@@ -1162,7 +1174,7 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
         for sid, sc in cur.items():
             if cid in (sc.get("composed_of") or []):
                 absorbed_by = sid
-                if _demoted_in_move(was, sc.get("fuss")):
+                if _demoted_in_move(was, sc.get("fuss")) and not _declassified(cid, was):
                     losses.append(f"DEMOTED IN MOVE  {cid}.fuss: {was.get('fuss')!r} → "
                                   f"seed_unsorted as {sid} (folded)")
                     absorbed_by = "__demoted__"

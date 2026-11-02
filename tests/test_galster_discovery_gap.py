@@ -315,6 +315,18 @@ class NorbyRouting(unittest.TestCase):
         self.assertEqual(f("christian_ii_supporters", "Landskrona", "Christian II"),
                          "christian_ii_supporters")
 
+    def test_visby_is_gotlandic_coin(self):
+        """Visby routes to `gotland` («gullandsk mønt», curator 2026-11-02);
+        Norby's own and Erik's post-1439 coins still go to their entities."""
+        from lib.v2_entity_classify import classify_mint_to_entity
+        from lib.mint_registry import norby_gotland_entity, erik_gotland_entity
+        self.assertEqual(classify_mint_to_entity("Visby"), "gotland")
+        self.assertEqual(classify_mint_to_entity("Gulland"), "gotland")
+        self.assertEqual(norby_gotland_entity("gotland", "Visby", "Søren Norby"), "norby_gotland")
+        self.assertEqual(norby_gotland_entity("gotland", "Visby", "Christian III"), "gotland")
+        self.assertEqual(erik_gotland_entity("gotland", "Erik VII", 1448), "erik_gotland")
+        self.assertEqual(erik_gotland_entity("gotland", "Erik VII", 1420), "gotland")
+
 
 class BuilderGuards(unittest.TestCase):
     def test_fantasy_coin_is_not_seeded(self):

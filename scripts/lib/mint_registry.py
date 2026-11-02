@@ -140,7 +140,12 @@ _MINT_REGISTRY: dict[str, dict] = {
         # «gulland» — KMM 139301, Danish name of Gotland (2026-10-19).
         "aliases": {"visby", "gotland", "gulland"},
         "display": "Visby",
-        "entity": "danish_realm",
+        # Gotlandic coin («gullandsk mønt»), its own reckoning — not on the
+        # Denmark page (curator 2026-11-02; docs/research/gotland_gote.md
+        # §7a-7b). The one Danish coin with mint Visby, Galster 141 (Hans'
+        # korshvid of the Danish type), is pulled back to danish_realm in
+        # merge_decisions/_cross_entity.yml.
+        "entity": "gotland",
     },
     "landskrona": {
         # Danish until 1658, then Swedish.
@@ -1234,9 +1239,11 @@ def norby_gotland_entity(entity, mint=None, ruler=None):
     coinage IN Christian II's name; Norby's Landskrona skilling of 1525 is
     that, and stays there under ruler Christian II). Only a Danish routing
     with ruler Søren Norby AND mint Visby moves; his Ronneby søslinge (in
-    Frederik I's name) and anything else are returned unchanged.
+    Frederik I's name) and anything else are returned unchanged. A Visby coin
+    arrives here already routed to `gotland` (mint registry), so that routing
+    is accepted too.
     """
-    if entity != "danish_realm":
+    if entity not in ("danish_realm", "gotland"):
         return entity
     if not (isinstance(ruler, str) and _NORBY_RE.search(ruler)):
         return entity
@@ -1258,9 +1265,10 @@ def erik_gotland_entity(entity, ruler=None, year_first=None):
     2026-10-26: «монети еріка коли він вже не був королем не повинні бути на
     сторінці данії»). Galster 138, the Visby gote «ERIC GOTOR REX», c. 1448
     (danskmoent gotlg138.htm). A coin of his Danish reign, or one whose first
-    year is unknown, is returned unchanged.
+    year is unknown, is returned unchanged. The Visby gote arrives already
+    routed to `gotland` (mint registry), so that routing is accepted too.
     """
-    if entity != "danish_realm":
+    if entity not in ("danish_realm", "gotland"):
         return entity
     if not (isinstance(ruler, str) and _ERIK_VII_RE.search(ruler)):
         return entity

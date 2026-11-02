@@ -211,6 +211,8 @@ _ENTITY_TO_KM_REGISTER: dict[str, str] = {
     "norby_gotland": "dk",
     # Erik VII on Gotland after his deposition (1439-1449) — Denmark volume.
     "erik_gotland": "dk",
+    # Gotlandic coin struck at Visby («gullandsk mønt») — Denmark volume.
+    "gotland": "dk",
     # SH territory — Krause «German States — Schleswig-Holstein»
     "royal_holstein": "sh",
     "gottorp_duchy": "sh",
