@@ -109045,21 +109045,20 @@ coins:
     ruler: Erik VII
     issuing_entity: danish_realm
     id: c-f157b78e
-    year_first: 1396
-    year_last: 1439
-    year_ranges:
-      -   - 1396
-          - 1439
-    year_label: 1396-1439
+    year_first: 1424
+    year_last: 1424
+    year_label: '1424'
     catalog:
       numista: '475742'
       sieg: '2'
+      galster: '12'
+      galster_volume: galster1972-erik7
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     weight_rough_g:
       - value: 0.3
@@ -109069,21 +109068,36 @@ coins:
         source: numista
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/pommgals.htm
+        ref: Galster 12 (epomg) — danskmoent.dk pommgals.htm
+      - type: literature
         url: https://en.numista.com/475742
         ref: Numista N#475742 — Bracteate Hulpenning - Erik of Pomerania - Denmark
     composed_of:
       - c-f157b78e
     label: unified-dk-numista-475742
     origin: promoted
-    year_is_reign_span: true
     year_verified: false
     uncertainty:
       year:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '1424'
+          seed: dk-galster-epomg-12
         - kind: hedged
           how: span
           source: numista
           value: 1396-1439
           seed: dk-numista-475742
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Lebard
+          value: silver
+          seed: dk-galster-epomg-12
+    mint: Lund
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: scheide
@@ -126483,7 +126497,7 @@ coins:
   - fuss: seed_unsorted
     phase: kmk
     kind: kurant
-    nominal: 1 Blaffert
+    nominal: 1 Hulpenning
     ruler: Frederik I.
     issuing_entity: danish_realm
     year_is_reign_span: true
@@ -126530,6 +126544,20 @@ coins:
           as_printed: Hulpenning; Blaffert
           value: billon
           seed: dk-galster-f1g-79
+      nominal:
+        - kind: hedged
+          how: alternatives
+          source: danskmoent.dk 1penning.htm
+          as_printed: U.år, ukendt møntsted. Hulpenning, kronet F. Undertiden anført som Blaffert. (Galster 79, Schou 40)
+          value: 1 Penning
+          seed: dk-galster-f1g-79
+        - kind: hedged
+          how: alternatives
+          source: danskmoent.dk blaflybs.htm
+          as_printed: 'U.år, ukendt møntsted. Hulpenning: kronet F (Galster 79, Schou 40)'
+          value: 1 Blaffert
+          seed: dk-galster-f1g-79
+    nominal_verified: false
     catalog:
       galster: '79'
       others:
@@ -284580,7 +284608,7 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
-    nominal: 1 Hulpenning
+    nominal: 1 Penning
     ruler: Erik VII
     issuing_entity: danish_realm
     id: c-29707f67
@@ -284641,7 +284669,7 @@ coins:
     sources:
       - type: literature
         url: https://www.danskmoent.dk/pommgals.htm
-        ref: Galster 12 (epomg) — danskmoent.dk pommgals.htm
+        ref: Galster 8 (epomg) — danskmoent.dk pommgals.htm
       - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 82
@@ -284687,11 +284715,6 @@ coins:
           how: circa
           source: galster
           value: '1424'
-          seed: dk-galster-epomg-12
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '1424'
           seed: dk-galster-epomg-8
         - kind: hedged
           how: after
@@ -284700,12 +284723,6 @@ coins:
           value: '1424'
           seed: lindahl-1955-lebard
       metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Lebard
-          value: silver
-          seed: dk-galster-epomg-12
         - kind: inferred
           how: from_name
           source: galster

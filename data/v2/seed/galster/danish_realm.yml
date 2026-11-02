@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-10-30T13:55:33Z'
+generated_at: '2026-11-02T14:24:32Z'
 entity: danish_realm
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -276,7 +276,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: 1 Hulpenning
+    nominal: 1 Penning
     year_label: 1400-1420
     year_first: 1400
     year_last: 1420
@@ -2618,7 +2618,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: 1 Hulpenning; Blaffert
+    nominal: 1 Hulpenning
     year_label: 1523-1533
     year_first: 1523
     year_last: 1533
@@ -2655,6 +2655,17 @@ coins:
       - value: 16.0
         source: danskmoent.dk fr/f1g79.htm
     uncertainty:
+      nominal:
+        - kind: hedged
+          how: alternatives
+          source: danskmoent.dk 1penning.htm
+          as_printed: U.år, ukendt møntsted. Hulpenning, kronet F. Undertiden anført som Blaffert. (Galster 79, Schou 40)
+          value: 1 Penning
+        - kind: hedged
+          how: alternatives
+          source: danskmoent.dk blaflybs.htm
+          as_printed: 'U.år, ukendt møntsted. Hulpenning: kronet F (Galster 79, Schou 40)'
+          value: 1 Blaffert
       metal:
         - kind: inferred
           how: from_name
@@ -2667,6 +2678,7 @@ coins:
           source: galster
           as_printed: u.år
           value: 1523-1533
+    nominal_verified: false
   - id: dk-galster-f1g-56
     fuss: seed_unsorted
     phase: galster
