@@ -1,0 +1,95 @@
+# Curator merge decisions — entity `gotland` (Visby, «gullandsk mønt»).
+# Moved from danish_realm.yml when Visby became its own entity (2026-11-02);
+# the no_merges against Galster 141 stay as recorded (141 is relocated back
+# to danish_realm in _cross_entity.yml).
+#
+# Loaded by merge_seeds_cross_source.py::_load_decisions. Surfaces:
+#   merges:      force member-ids into one unified class
+#   no_merges:   forbid member pairs from uniting
+#   year_demote: hold reign-window / undated-specimen year ranges to a
+#                last-resort pass in _union_year_ranges (§CU year-mute).
+
+year_demote:
+  - member_id: kmk-139328
+    reason: >-
+      Galster 140: KMM 139328 dates the piece 1520 after Schou's attribution
+      to Christian II; danskmoent / Galster give Christian I. Kept visible as a
+      marked alternative (year_mark on the KMM seed), not the class's year.
+      Curator (Serhii) 2026-10-26.
+merges:
+  - members:
+      - dk-galster-hg-140
+      - kmk-139328
+      - metallanalyser-2017-3-ll5-gotland
+    reason: >-
+      Christian I, Visby: Galster 140 = Hauberg 109-113, «Schou henfører
+      mønten til Christian 2. (u. år 32-37)» (danskmoent gotlg140); KMM 139328
+      (KP 1715.391) prints «Schou 33; Hbg. 110; G. 140», hvid, 1520 — the
+      same type under Schou's Christian II attribution. Its 1520 is demoted
+      and shown marked (*). Curator (Serhii) 2026-10-26.
+      Lindblad 2017:3 LL 5 (Nr 115-120, hvid 1480-1500) joins: danskmoent
+      gotlg140 labels its Bonde specimen «Lagerqvist 5»; the photographs show
+      the same shield and lamb with banner and chalice. Curator (Serhii)
+      2026-10-27.
+  - members:
+      - dk-galster-hg-142
+      - metallanalyser-2017-3-g142-gotland
+      - metallanalyser-2017-3-ll7-gotland
+      - metallanalyser-2017-3-ll7a-gotland
+    reason: >-
+      Hans, Visby, hvid: Galster 142 (liljebusk / agnus dei med fane og kalk,
+      Hauberg 103-108, Schou 228-235). danskmoent gotlg142 labels its Bonde
+      specimen «Lagerqvist 7b»; Lindblad 2017:3 groups 7a-b in one table
+      (tab. 11) and its appendix photographs of LL 7, 7a and 7b (Nr 121-132)
+      show one type. LL 7a / 7b are sub-variants of Lagerqvist 7 (§9.4).
+      Curator (Serhii) 2026-10-27 («LL 7 = Galster 142»).
+  - members:
+      - dk-galster-hg-139
+      - kmk-352426
+      - metallanalyser-2017-3-ll1-gotland
+      - metallanalyser-2017-3-ll2-gotland
+      - metallanalyser-2017-3-ll3b-gotland
+      - metallanalyser-2017-3-ll4a-gotland
+      - metallanalyser-2017-3-ll4aq-gotland
+      - metallanalyser-2017-3-ll4aqq-gotland
+      - metallanalyser-2017-3-ll4b-gotland
+      - metallanalyser-2017-3-ll4c-gotland
+      - metallanalyser-2017-3-ll4d-gotland
+    reason: >-
+      Christian I, Visby: Galster 139 (danskmoent gotlg139, Schou 100-132);
+      KMM 352426 (FP 5144.4) prints «Gal. 139», no nominal. Curator (Serhii)
+      2026-10-26. Lindblad 2017:3 LL 2, 3b, 4, 4a-4d (Nr 91-114, hvid
+      1455-1480) join as Galster 139 B and C = Hauberg 1891 Nr 88-101
+      (s. 64-65: 4-penning hvid c. 1455-1480, 0,76-0,87 g; lamb left 88-91,
+      lamb right 92-101; danskmoent: 139 B lamb left, Schou 103-115, 139 C
+      lamb right, Schou 116-132). Concordance by the curator 2026-10-27:
+      LL 2 and 3 lamb left (2 with WISBY, 3 with MONETA on the lamb side),
+      LL 4 and its sub-types lamb right. LL 1 (Nr 88-90, c. 1450) joins as
+      Galster 139 A = Hauberg 85-87, the 3-penning (0,55-0,65 g); danskmoent
+      labels the Bonde specimen of Galster 139 «Lagerqvist 1». Curator
+      (Serhii) 2026-10-27.
+  - members:
+      - dk-galster-hg-146
+      - metallanalyser-2017-3-g146-gotland
+    reason: >-
+      Frederik I, Visby, hvid u.år: Galster 146 (danskmoent gotlg146, Hauberg
+      129-130, Schou 41-44; Lindblad 2017:3 under «Litteratur»). Lindblad
+      2017 (Metallanalyser av mynt 2017:3), tab. 14 and appendix LL 5a, «Hvid
+      ca 1530», dated after Hauberg 1891 s. 69; Galster has one Gotland hvid
+      of Frederik I. Curator (Serhii) 2026-10-28.
+  - members:
+      - dk-galster-hg-147
+      - kmk-150123
+      - kmk-150124
+      - kmk-150125
+      - kmk-150126
+      - kmk-150160
+      - kmk-328312
+      - metallanalyser-2017-3-g147-gotland
+    reason: >-
+      Christian III, Visby, skilling (15)35, (15)36, (15)37: Galster 147
+      (danskmoent gotlg147, Hauberg 132-140, 141-144 and 145; Lindblad 2017:3
+      under «Litteratur»). Lindblad 2017 (Metallanalyser av mynt 2017:3),
+      tab. 15 and appendix LL 6a (1535), 7 (1536), 8 (1537). The six KMM
+      records were already in the class by the matcher. Curator (Serhii)
+      2026-10-28.
