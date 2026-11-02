@@ -30,7 +30,7 @@ class Attributions(unittest.TestCase):
                     "catalog": {"galster": "27", "galster_volume": "c3g"}}]
         self.assertFalse(M._attribution_matches(ATTR, members, "danish_realm"))
 
-    def test_apply_sets_year_records_work_and_source(self):
+    def test_apply_sets_year_records_work_not_source(self):
         u = {"year_first": 1496, "year_last": 1497, "year_label": "1496-1497",
              "year_ranges": [[1496, 1497]], "sources": []}
         M.apply_attribution(u, ATTR)
@@ -38,7 +38,8 @@ class Attributions(unittest.TestCase):
         e = u["uncertainty"]["year"][0]
         self.assertEqual((e["kind"], e["source"], e["as_printed"]),
                          ("hedged", "Zinck I, s. 9", "blev formentlig slået omkring 1497"))
-        self.assertEqual(u["sources"], [{"type": "literature", "ref": "Zinck I, s. 9"}])
+        # a work that dates the type is not a source of specimen data (curator 2026-11-02)
+        self.assertEqual(u["sources"], [])
 
     def test_compiled_basis_is_inferred(self):
         a = dict(ATTR, basis="compiled", value=[1373, 1381])

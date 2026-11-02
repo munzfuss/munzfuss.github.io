@@ -4841,7 +4841,7 @@ def _work_label(wk: dict) -> str:
 
 def apply_attribution(unified: dict, attr: dict) -> None:
     """Set the class's field from the attribution, record each work in
-    Coin.uncertainty (with its quote) and in `sources` (literature)."""
+    Coin.uncertainty (with its quote). The works do not enter `sources`."""
     from lib import uncertainty as _u
     v = attr["value"]
     first, last = (v, v) if isinstance(v, int) else (v[0], v[1])
@@ -4873,17 +4873,9 @@ def apply_attribution(unified: dict, attr: dict) -> None:
     unc["year"] = entries + [e for e in unc.get("year") or [] if e.get("seed") != "attribution"]
     if not unc["year"]:
         unc.pop("year")
-    srcs = unified.setdefault("sources", [])
-    have = {(s.get("ref") if isinstance(s, dict) else s) for s in srcs}
-    for wk in attr["works"]:
-        ref = _work_label(wk)
-        if ref in have:
-            continue
-        src = {"type": "literature", "ref": ref}
-        if wk.get("url"):
-            src["url"] = wk["url"]
-        srcs.append(src)
-        have.add(ref)
+    # The works are NOT added to `sources`: that column lists the sources of
+    # the specimen data, and a study that dates the type is not one (curator
+    # 2026-11-02). The works reach the reader through the year's tooltip.
 
 
 def _load_decisions(entity_id: str) -> dict:
