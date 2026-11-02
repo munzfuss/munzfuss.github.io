@@ -1142,7 +1142,7 @@ class Coin(_StrictBase):
     # sets `<field>_verified: False`; unioned by the merger; carried to final
     # by absorb from the live members only. Drives «(?)» (hedged) vs «[ … ]»
     # (inferred) and the tooltip (docs/plans/uncertainty_markers.md).
-    uncertainty: "dict[Literal['year', 'ruler', 'mint', 'metal', 'fineness', 'weight', 'diameter'], list[UncertainReading]] | None" = None
+    uncertainty: "dict[Literal['year', 'ruler', 'mint', 'metal', 'fineness', 'weight', 'diameter', 'nominal'], list[UncertainReading]] | None" = None
     # A source's own statement that the object is (or may be) a forgery,
     # kept VERBATIM («falsk?», «H. 99 B, samtidig forfalskning?», «Falsk som
     # H. 52»). Recorded so the information is not lost; nothing reads it yet

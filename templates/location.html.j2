@@ -173,7 +173,7 @@
 {%- endif -%}
 {%- set _rcls = (_rw ~ (' msr-sh' if coin.msr_short_n else ''))|trim -%}
 <tr{% if _rcls %} class="{{ _rcls }}"{% endif %}>
-  <td class="c-nom">{%- if coin.raw.kind == 'gedenk' %}<span class="ged-mark" data-tooltip="{{ ui_get('label.gedenk') }}">✦</span>&nbsp;{% endif -%}{{ coin.raw.nominal|nominal_nbsp|safe }}{% if not coin.raw.nominal_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</td>
+  <td class="c-nom">{%- if coin.raw.kind == 'gedenk' %}<span class="ged-mark" data-tooltip="{{ ui_get('label.gedenk') }}">✦</span>&nbsp;{% endif -%}{%- set _nu = umark(coin.raw, 'nominal') if not coin.raw.nominal_verified else none -%}{{ uopen(_nu) }}{{ coin.raw.nominal|nominal_nbsp|safe }}{% if not coin.raw.nominal_verified %}{{ uq(_nu) }}{% endif %}</td>
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
     {#- The (?) sits INSIDE the last chunk: `.yr-chunk` is display:block, so a
@@ -482,7 +482,7 @@
    are dropped entirely. Fine-weight column is also omitted (always zero for copper). #}
 {%- macro coin_row_copper(coin) %}
 <tr class="rw-cp">
-  <td class="c-nom">{{ coin.raw.nominal|nominal_nbsp|safe }}{% if not coin.raw.nominal_verified %}&nbsp;<span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif %}</td>
+  <td class="c-nom">{%- set _nu = umark(coin.raw, 'nominal') if not coin.raw.nominal_verified else none -%}{{ uopen(_nu) }}{{ coin.raw.nominal|nominal_nbsp|safe }}{% if not coin.raw.nominal_verified %}{{ uq(_nu) }}{% endif %}</td>
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
     {#- The (?) sits INSIDE the last chunk: `.yr-chunk` is display:block, so a

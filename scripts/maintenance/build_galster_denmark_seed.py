@@ -43,6 +43,76 @@ _OVERVIEW_MANIFEST = GALSTER_CACHE / "_overview_cross_refs.json"
 _DANSKMOENT_BASE = "https://www.danskmoent.dk"
 
 
+# Denomination overview pages of danskmoent (curator 2026-11-02): a hollow
+# penny («Hulpenning» names the form, not the value) takes its nominal from
+# the page that lists it. A type only on «1 Penning» (1penning.htm) is
+# «1 Penning»; a type on both «1 Penning» and «Blaffert» (blaflybs.htm, the
+# 2-penning hollow coin) keeps «1 Hulpenning» with «(?)», each page's line
+# recorded as an alternative. Entries are matched by the coin page they link
+# (cache name) or, for an unlinked line, by «Galster N» under the ruler's
+# section heading.
+_DENOM_PAGES = {"1 Penning": "1penning.htm", "1 Blaffert": "blaflybs.htm"}
+_SECTION_VOLUME = {"erikpomm.htm": "epomg", "bajern.htm": "bajg", "hans.htm": "hg",
+                   "f1.htm": "f1g", "c1.htm": "c1g", "c2.htm": "c2g", "c3.htm": "c3g"}
+
+
+def _denomination_listings() -> dict[str, list[tuple[str, str]]]:
+    """{value: [(key, line)]}; key is a cache file name or «vol:N»."""
+    import html as _html
+    out: dict[str, list[tuple[str, str]]] = {}
+    for value, page in _DENOM_PAGES.items():
+        path = GALSTER_CACHE / page
+        if not path.exists():
+            continue
+        raw = path.read_bytes().decode("cp1252", "replace")
+        rows: list[tuple[str, str]] = []
+        vol = None
+        # one line of the listing per <li> (the ruler heading sits between lists)
+        for chunk in re.split(r"(?i)<br\s*/?>|</?p[^>]*>|<li[^>]*>|</?ul[^>]*>", raw):
+            sec = re.search(r'(?i)href="?([^" >]+)"?[^>]*>[^<]*\(1[0-9]{3}-1[0-9]{3}\)', chunk)
+            if sec and sec.group(1) in _SECTION_VOLUME:
+                vol = _SECTION_VOLUME[sec.group(1)]
+                continue
+            line = re.sub(r"\s+", " ", _html.unescape(re.sub(r"<[^>]+>", " ", chunk))).strip()
+            if not line:
+                continue
+            for href in re.findall(r'(?i)href="?([^" >]+\.htm)', chunk):
+                if href not in _SECTION_VOLUME and ("/" in href or href.startswith(("epomg", "gotlg", "bajg"))):
+                    rows.append((href.replace("/", "_"), line))
+            for n in re.findall(r"Galster (\d+)", line):
+                if vol:
+                    rows.append((f"{vol}:{n}", line))
+        out[value] = rows
+    return out
+
+
+_DENOM_LISTINGS: dict[str, list[tuple[str, str]]] | None = None
+
+
+def _hollow_penny_nominal(data: dict, nominal: str | None):
+    """(nominal, alternatives) for a Galster hollow penny; alternatives is
+    [(value, page, line)] when the overview pages disagree."""
+    global _DENOM_LISTINGS
+    if not (isinstance(nominal, str) and re.search(r"(?i)\bhulpenning", nominal)):
+        return nominal, None
+    if _DENOM_LISTINGS is None:
+        _DENOM_LISTINGS = _denomination_listings()
+    keys = {str(data.get("source_file") or ""),
+            f"{data.get('ruler_volume')}:{data.get('galster_number')}"}
+    hits = [(value, _DENOM_PAGES[value], line)
+            for value, rows in _DENOM_LISTINGS.items()
+            for key, line in rows if key in keys]
+    seen, uniq = set(), []
+    for h in hits:
+        if h[0] not in seen:
+            seen.add(h[0]); uniq.append(h)
+    if len(uniq) == 1:
+        return uniq[0][0], None
+    if len(uniq) > 1:
+        return "1 Hulpenning", uniq
+    return nominal, None
+
+
 def _load_overview_cross_refs() -> tuple[dict[str, list[str]], dict[str, str]]:
     """Load `_overview_cross_refs.json` produced by `fetch_galster.py overviews`.
 
@@ -877,6 +947,7 @@ def build_entry(data: dict) -> dict | None:
     # descriptors like «klipping» that leak from page titles.
     nominal_clean, mint_value, shape_hint = _split_nominal_mint(
         data.get("denomination"), data.get("mint"))
+    nominal_clean, nominal_alts = _hollow_penny_nominal(data, nominal_clean)
     # «Næstved og Lund» (epomg5): struck at both mints — a two-mint list.
     if isinstance(mint_value, str) and re.search(r"\s+og\s+", mint_value):
         mint_value = [m.strip() for m in re.split(r"\s+og\s+", mint_value)]
@@ -979,6 +1050,11 @@ def build_entry(data: dict) -> dict | None:
     # entries were absorbed into unified foundation entries (build.py
     # `absorbed_seed_ids`); new sub-variant entries surface the issue.
 
+    if nominal_alts:
+        entry["nominal_verified"] = False
+        for value, page, line in nominal_alts:
+            unc.add(entry, "nominal", "alternatives", f"danskmoent.dk {page}",
+                    as_printed=line, value=value)
     if entry.get("metal") and entry.get("metal_verified") is False:
         # Read from the denomination name, not printed as a metal.
         unc.add(entry, "metal", "from_name", "galster",

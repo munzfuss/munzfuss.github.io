@@ -4265,6 +4265,11 @@ def _canonical_nominal_out(out: dict, members: list[dict],
     raw = out.get("nominal")
     if not isinstance(raw, str):
         return
+    # A member that gives this nominal with its own doubt (Galster 79: the
+    # denomination pages disagree, 2026-11-02) passes the «(?)» on.
+    if any(m.get("nominal") == raw and m.get("nominal_verified") is False
+           for m in members):
+        out["nominal_verified"] = False
     for m in members:
         h = m.get("_curation_holds")
         if "nominal" in (h.keys() if isinstance(h, dict) else (h or [])):

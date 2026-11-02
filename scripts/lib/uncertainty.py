@@ -15,7 +15,7 @@ HEDGED = frozenset({"circa", "attributed", "query", "decade", "century",
 INFERRED = frozenset({"reign", "other_page", "feud_window", "text_year",
                       "standard", "standard_weight", "reign_holstein", "default", "compiled", "curator_window",
                       "from_name", "uncited"})
-FIELDS = ("year", "ruler", "mint", "metal", "fineness", "weight", "diameter")
+FIELDS = ("year", "ruler", "mint", "metal", "fineness", "weight", "diameter", "nominal")
 
 
 def make(how: str, source: str, *, as_printed: str | None = None,

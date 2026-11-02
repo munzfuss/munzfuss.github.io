@@ -118,7 +118,7 @@ _CURATION_HOLDS_KEY = "_curation_holds"
 # Coin field name → its Coin.uncertainty key (lib/uncertainty.FIELDS).
 _UNC_KEY_OF = {"weight_rough_g": "weight", "diameter_mm": "diameter",
                "year_label": "year", "year_first": "year", "year_ranges": "year"}
-_UNC_FIELDS = ("year", "ruler", "mint", "metal", "fineness", "weight", "diameter")
+_UNC_FIELDS = ("year", "ruler", "mint", "metal", "fineness", "weight", "diameter", "nominal")
 
 # §CN — inline source-index errata. A curator-recorded list, on the seed entry
 # itself, of catalogue-index values a SOURCE mis-printed:
