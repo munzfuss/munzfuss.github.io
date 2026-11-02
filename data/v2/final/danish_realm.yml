@@ -111798,12 +111798,9 @@ coins:
     ruler: Hans
     issuing_entity: danish_realm
     id: c-e673d91b
-    year_first: 1500
-    year_last: 1520
-    year_ranges:
-      -   - 1500
-          - 1520
-    year_label: 1500-1520
+    year_first: 1510
+    year_last: 1510
+    year_label: '1510'
     year_verified: false
     mint: Visby
     catalog:
@@ -111931,6 +111928,12 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247c7/1759930030292/Metallanalyser%20av%20mynt%202017:3_APPENDIXMetallanalyser%20av%20mynt_2017_3_APPENDIX.pdf
         ref: Lindblad 2017 (Metallanalyser av mynt 2017:3), Nr 131, Appendix (XRF)
+      - type: literature
+        ref: Hauberg, Gullands Myntvæsen (Aarbøger for nordisk Oldkyndighed og Historie 1891), s. 66
+        url: https://www.danskmoent.dk/pdf2/Hauberg%20Gulland.pdf
+      - type: literature
+        ref: Hauberg, Gullands Myntvæsen (Aarbøger for nordisk Oldkyndighed og Historie 1891), s. 47–48
+        url: https://www.danskmoent.dk/pdf2/Hauberg%20Gulland.pdf
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
@@ -111950,6 +111953,22 @@ coins:
     metal_verified: true
     uncertainty:
       year:
+        - kind: hedged
+          how: circa
+          source: Hauberg, Gullands Myntvæsen (Aarbøger for nordisk Oldkyndighed og Historie 1891), s. 66
+          as_printed: c. 1510
+          value: '1510'
+          seed: attribution
+        - kind: hedged
+          how: possibly
+          source: Hauberg, Gullands Myntvæsen (Aarbøger for nordisk Oldkyndighed og Historie 1891), s. 47–48
+          as_printed: Formentlig i Begyndelsen af det 16de Aarhundrede, under Kong Hans, gjenoptoges atter den gamle Typ med Lilien og Lammet
+          value: '1510'
+          translation:
+            de: Vermutlich zu Beginn des 16. Jahrhunderts, unter König Hans, wurde der alte Typ mit der Lilie und dem Lamm wieder aufgenommen
+            en: Presumably at the beginning of the 16th century, under King Hans, the old type with the lily and the lamb was taken up again
+            uk: Імовірно, на початку XVI століття, за короля Hans, знову відновили старий тип з лілією і ягням
+          seed: attribution
         - kind: inferred
           how: reign
           source: galster
@@ -111973,6 +111992,24 @@ coins:
           as_printed: Hvid
           value: billon
           seed: dk-galster-hg-142
+    year_note:
+      de: "Das Jahr nach [b]Hauberg 1891, S. 66[/b]: [i]«c. 1510»[/i]. Ebenda, [b]S. 47–48[/b], wird der Typ der Zeit König Hans' zugewiesen: [i]«Formentlig i Begyndelsen af det 16de Aarhundrede, under
+        Kong Hans, gjenoptoges atter den gamle Typ med Lilien og Lammet»[/i] (dt.: «Vermutlich zu Beginn des 16. Jahrhunderts, unter König Hans, wurde der alte Typ mit der Lilie und dem Lamm wieder aufgenommen»);
+        nach [b]S. 48[/b] wird er unter Christian II. aufgegeben: [i]«Under Christian II. forlades helt Typen med Liliebusken»[/i] (dt.: «Unter Christian II. wird der Typ mit dem Lilienbusch ganz verlassen»).
+        [b]danskmoent.dk (Galster 142)[/b]: [i]«Hans, Hvid u. år, Visby (Gotland)»[/i] (dt.: «Hans, Hvid o. J., Visby (Gotland)»). [b]Lindblad 2017 (Metallanalyser av mynt 2017:3), S. 12[/b] datiert die
+        Gruppe: [i]«Hvider (ca 1500-1520)»[/i] (dt.: «Hvide (ca. 1500–1520)»)."
+      en: 'The year after [b]Hauberg 1891, p. 66[/b]: [i]«c. 1510»[/i]. In the same work, [b]pp. 47–48[/b], the type is assigned to the time of King Hans: [i]«Formentlig i Begyndelsen af det 16de Aarhundrede,
+        under Kong Hans, gjenoptoges atter den gamle Typ med Lilien og Lammet»[/i] (transl.: «Presumably at the beginning of the 16th century, under King Hans, the old type with the lily and the lamb was
+        taken up again»); according to [b]p. 48[/b] it is abandoned under Christian II: [i]«Under Christian II. forlades helt Typen med Liliebusken»[/i] (transl.: «Under Christian II the type with the lily
+        bush is abandoned entirely»). [b]danskmoent.dk (Galster 142)[/b]: [i]«Hans, Hvid u. år, Visby (Gotland)»[/i] (transl.: «Hans, Hvid, undated, Visby (Gotland)»). [b]Lindblad 2017 (Metallanalyser av
+        mynt 2017:3), p. 12[/b] dates the group: [i]«Hvider (ca 1500-1520)»[/i] (transl.: «Hvide (c. 1500–1520)»).'
+      uk: 'Рік за [b]Hauberg 1891, с. 66[/b]: [i]«c. 1510»[/i]. Там само, [b]с. 47–48[/b], тип віднесено до часу короля Hans: [i]«Formentlig i Begyndelsen af det 16de Aarhundrede, under Kong Hans, gjenoptoges
+        atter den gamle Typ med Lilien og Lammet»[/i] (перекл.: «Імовірно, на початку XVI століття, за короля Hans, знову відновили старий тип з лілією і ягням»); за [b]с. 48[/b], за Christian II його полишено:
+        [i]«Under Christian II. forlades helt Typen med Liliebusken»[/i] (перекл.: «За Christian II тип з лілійним кущем повністю полишено»). [b]danskmoent.dk (Galster 142)[/b]: [i]«Hans, Hvid u. år, Visby
+        (Gotland)»[/i] (перекл.: «Hans, Hvid без року, Visby (Gotland)»). [b]Lindblad 2017 (Metallanalyser av mynt 2017:3), с. 12[/b] датує групу: [i]«Hvider (ca 1500-1520)»[/i] (перекл.: «Hvide (бл. 1500–1520)»).'
+      da: "Året efter [b]Hauberg 1891, s. 66[/b]: [i]«c. 1510»[/i]. Samme sted, [b]s. 47–48[/b], henføres typen til kong Hans' tid: [i]«Formentlig i Begyndelsen af det 16de Aarhundrede, under Kong Hans,
+        gjenoptoges atter den gamle Typ med Lilien og Lammet»[/i]; efter [b]s. 48[/b] opgives den under Christian II: [i]«Under Christian II. forlades helt Typen med Liliebusken»[/i]. [b]danskmoent.dk (Galster
+        142)[/b]: [i]«Hans, Hvid u. år, Visby (Gotland)»[/i]. [b]Lindblad 2017 (Metallanalyser av mynt 2017:3), s. 12[/b] daterer gruppen: [i]«Hvider (ca 1500-1520)»[/i] (overs.: «Hvide (ca. 1500–1520)»)."
   - fuss: seed_unsorted
     phase: galster
     kind: kurant
