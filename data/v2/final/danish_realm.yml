@@ -284580,7 +284580,7 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
-    nominal: 1 Lebard
+    nominal: 1 Hulpenning
     ruler: Erik VII
     issuing_entity: danish_realm
     id: c-29707f67
@@ -284606,10 +284606,14 @@ coins:
     fineness:
       - value: 0.453
         source: Lindahl 1955 (NNÅ 1955), s. 82
+      - value: 0.6044
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51
       - value: 0.6156
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 50
       - value: 0.6661
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 49
+      - value: 0.6674
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48
     weight_rough_g:
       - value: 0.06
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 50
@@ -284625,6 +284629,15 @@ coins:
           en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
           uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
           da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
+      - value: 0.13
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48
+        fragment:
+          de: 'Anhang, Abkürzungsliste: «f fragment». Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
+          uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
+          da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
+      - value: 0.23
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51
     sources:
       - type: literature
         url: https://www.danskmoent.dk/pommgals.htm
@@ -284638,6 +284651,12 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 50, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51, Appendix (XRF)
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
@@ -284654,6 +284673,11 @@ coins:
     metal: silver
     metal_verified: true
     weight_range_g:
+      - min: 0.34
+        max:
+        approx: false
+        source: danskmoent.dk lebard.htm
+        url: https://www.danskmoent.dk/gif/epom_g8.gif
       - min: 0.2
         max: 0.39
         source: Lindahl 1955 (NNÅ 1955), s. 82
@@ -284664,6 +284688,11 @@ coins:
           source: galster
           value: '1424'
           seed: dk-galster-epomg-12
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '1424'
+          seed: dk-galster-epomg-8
         - kind: hedged
           how: after
           source: lindahl
@@ -284677,6 +284706,15 @@ coins:
           as_printed: Lebard
           value: silver
           seed: dk-galster-epomg-12
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Lebard
+          value: silver
+          seed: dk-galster-epomg-8
+    diameter_mm:
+      - value: 10.0
+        source: danskmoent.dk lebard.htm
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
@@ -286261,88 +286299,6 @@ coins:
           as_printed: Hulpenning
           value: billon
           seed: dk-galster-epomg-5
-  - fuss: luebischer_muenzfuss
-    phase: '0'
-    kind: kurant
-    nominal: 1 Lebard
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-14aae01f
-    year_first: 1424
-    year_last: 1424
-    year_label: '1424'
-    year_verified: false
-    mint: Næstved
-    catalog:
-      galster: '8'
-      galster_volume: galster1972-erik7
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.6044
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51
-      - value: 0.6674
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48
-    weight_rough_g:
-      - value: 0.13
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48
-        fragment:
-          de: 'Anhang, Abkürzungsliste: «f fragment». Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
-          en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
-          uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
-          da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
-      - value: 0.23
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pommgals.htm
-        ref: Galster 8 (epomg) — danskmoent.dk pommgals.htm
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    composed_of:
-      - c-14aae01f
-    label: unified-metallanalyser-2016-1-g8-nastved-lebard
-    origin: promoted
-    metal: silver
-    metal_verified: true
-    weight_range_g:
-      - min: 0.34
-        max:
-        approx: false
-        source: danskmoent.dk lebard.htm
-        url: https://www.danskmoent.dk/gif/epom_g8.gif
-    diameter_mm:
-      - value: 10.0
-        source: danskmoent.dk lebard.htm
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '1424'
-          seed: dk-galster-epomg-8
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Lebard
-          value: silver
-          seed: dk-galster-epomg-8
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant

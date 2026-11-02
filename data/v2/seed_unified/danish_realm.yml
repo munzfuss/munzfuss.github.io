@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15222 per-source seed entries.
-# Output: 5964 unified entries (one per physical coin).
+# Output: 5963 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -13173,7 +13173,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: 1 Lebard
+    nominal: 1 Hulpenning
     year_first: 1424
     year_last: 1424
     year_label: '1424'
@@ -13199,10 +13199,14 @@ coins:
     fineness:
       - value: 0.453
         source: Lindahl 1955 (NNÅ 1955), s. 82
+      - value: 0.6044
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51
       - value: 0.6156
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 50
       - value: 0.6661
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 49
+      - value: 0.6674
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48
     weight_rough_g:
       - value: 0.06
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 50
@@ -13218,10 +13222,27 @@ coins:
           en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
           uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
           da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
+      - value: 0.13
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48
+        fragment:
+          de: 'Anhang, Abkürzungsliste: «f fragment». Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
+          en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
+          uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
+          da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
+      - value: 0.23
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51
     weight_range_g:
+      - min: 0.34
+        max:
+        approx: false
+        source: danskmoent.dk lebard.htm
+        url: https://www.danskmoent.dk/gif/epom_g8.gif
       - min: 0.2
         max: 0.39
         source: Lindahl 1955 (NNÅ 1955), s. 82
+    diameter_mm:
+      - value: 10.0
+        source: danskmoent.dk lebard.htm
     uncertainty:
       year:
         - kind: hedged
@@ -13229,6 +13250,11 @@ coins:
           source: galster
           value: '1424'
           seed: dk-galster-epomg-12
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '1424'
+          seed: dk-galster-epomg-8
         - kind: hedged
           how: after
           source: lindahl
@@ -13242,6 +13268,12 @@ coins:
           as_printed: Lebard
           value: silver
           seed: dk-galster-epomg-12
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Lebard
+          value: silver
+          seed: dk-galster-epomg-8
     sources:
       - type: literature
         url: https://www.danskmoent.dk/pommgals.htm
@@ -13255,6 +13287,12 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 50, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51, Appendix (XRF)
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
@@ -13267,9 +13305,11 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-epomg-12
+      - dk-galster-epomg-8
       - lindahl-1955-lebard
       - metallanalyser-2016-1-g12-lund-lebard
       - metallanalyser-2016-1-g8-12-nastved-lund-lebard
+      - metallanalyser-2016-1-g8-nastved-lebard
   - id: c-6f18dcfc
     class_id: c-6f18dcfc
     label: unified-dk-galster-epomg-15
@@ -13721,89 +13761,6 @@ coins:
     composed_of:
       - dk-galster-epomg-6
       - lindahl-1955-halvpenning
-  - id: c-14aae01f
-    class_id: c-14aae01f
-    label: unified-dk-galster-epomg-8
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Lebard
-    year_first: 1424
-    year_last: 1424
-    year_label: '1424'
-    ruler: Erik VII
-    mint: Næstved
-    catalog:
-      galster: '8'
-      galster_volume: galster1972-erik7
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.6044
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51
-      - value: 0.6674
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48
-    weight_rough_g:
-      - value: 0.13
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48
-        fragment:
-          de: 'Anhang, Abkürzungsliste: «f fragment». Das Gewicht ist das des Fragments, nicht einer ganzen Münze.'
-          en: 'Appendix, list of abbreviations: «f fragment». The weight is that of the fragment, not of a whole coin.'
-          uk: 'Додаток, список скорочень: «f fragment». Вага належить фрагменту, а не цілій монеті.'
-          da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
-      - value: 0.23
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51
-    weight_range_g:
-      - min: 0.34
-        max:
-        approx: false
-        source: danskmoent.dk lebard.htm
-        url: https://www.danskmoent.dk/gif/epom_g8.gif
-    diameter_mm:
-      - value: 10.0
-        source: danskmoent.dk lebard.htm
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '1424'
-          seed: dk-galster-epomg-8
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Lebard
-          value: silver
-          seed: dk-galster-epomg-8
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pommgals.htm
-        ref: Galster 8 (epomg) — danskmoent.dk pommgals.htm
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 48, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 51, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-8
-      - metallanalyser-2016-1-g8-nastved-lebard
   - id: c-2538a267
     class_id: c-2538a267
     label: unified-dk-galster-f1g-257

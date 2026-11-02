@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 5964 active, 61 retired.
+# 5963 active, 62 retired.
 
 id: danish_realm
 classes:
@@ -6433,14 +6433,6 @@ classes:
     legacy_id: unified-kmk-158180
     members:
       - kmk-158180
-  - id: c-14aae01f
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-galster-epomg-8
-    legacy_id: unified-metallanalyser-2016-1-g8-nastved-lebard
-    members:
-      - dk-galster-epomg-8
-      - metallanalyser-2016-1-g8-nastved-lebard
   - id: c-14ab745e
     status: active
     created: '2026-10-22'
@@ -11555,9 +11547,11 @@ classes:
     legacy_id: unified-metallanalyser-2016-1-g12-lund-lebard
     members:
       - dk-galster-epomg-12
+      - dk-galster-epomg-8
       - lindahl-1955-lebard
       - metallanalyser-2016-1-g12-lund-lebard
       - metallanalyser-2016-1-g8-12-nastved-lund-lebard
+      - metallanalyser-2016-1-g8-nastved-lebard
   - id: c-29830a09
     status: active
     created: '2026-10-22'
@@ -68050,6 +68044,16 @@ classes:
     retired: '2026-10-26'
     members:
       - lindahl-1955-lund-soesling
+  - id: c-14aae01f
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-galster-epomg-8
+    legacy_id: unified-metallanalyser-2016-1-g8-nastved-lebard
+    merged_into: c-29707f67
+    retired: '2026-11-02'
+    members:
+      - dk-galster-epomg-8
+      - metallanalyser-2016-1-g8-nastved-lebard
   - id: c-15978e2c
     status: retired
     created: '2026-10-22'
