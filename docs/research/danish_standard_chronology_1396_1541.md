@@ -39,6 +39,7 @@ followed past 1541, in §5, for the end-point question.
 | **W** | Wilcke, *Renæssancens Mønt- og Pengeforhold 1481–1588* (1950), chapters 7-1 … 7-4 | secondary; PRINTS the acts of 1513–1541 | `wilcke-1950` |
 | **E** | Eriksson 2017 (XRF assays, Christian I to Christian II; Christian I's Hvid tab. 5) | outcomes | `eriksson_2017_assays.md` |
 | **GJ** | Galster, *Reynold Junges Møntmesterregnskaber 1534–1540* (1934), introduction | secondary, from the mint accounts (blanching) | `galster-1934-junge` |
+| **SH** | Schive [and Holmboe], *Norges Mynter i Middelalderen* (Christiania 1865), s. 119–120 — Nasjonalbiblioteket, free access: [nb.no URN:NBN:no-nb_digibok_2014070848094](https://www.nb.no/items/e778604e41b707d57c265ff1125f0346) (p. 119 = image `_0231`, p. 120 = `_0232`) | secondary; reads the 1406 recess after Grautoff and recomputes it. Dedication signed «Forfatterne»; Hb s. 163 n. 2 cites the passage as «Holmboe's Fortale», but p. 119 lies in the main text («Første Afdeling» begins p. 1) — the author of the page is not established beyond the two co-authors | not cached (page images read 2026-11-02) |
 | **P** | Piorr 2021 after Enemark 2003 and the Ribe toll accounts | secondary | `hans_rates_1481_1513.md` |
 | **Gr** | Grautoff, *Historische Schriften* 3 (Lübeck 1836), «Geschichte des lübeckischen Münzfusses» | secondary, from the Lübeck archive (some recesses survive only through him) | `grautoff-1836-3` (tags as in `luebeck_standard_chronology_1226_1622.md` §1) |
 | **Gd** | Gaedechens, *Hamburgische Münzen und Medaillen* II (1854), Einleitung S. 170–195 | secondary | `gaedechens-1854-hamburgische-muenzen-2` |
@@ -74,7 +75,7 @@ there on 233,856 g). «R» act text read; «W» Wilcke prints the act; «a» ass
 | **2 Mar 1404** | Recess Marienburg (HR I 5 Nr. 181 § 2, S. 119): the Prussian envoy to Lübeck is to ask the towns to write to the queen «*das sy keyne muntze slon losse, sy welle sy denne vorder lossen nemen*» | no parameter (R) | — | — | HR I 5 S. 119 (page image) |
 | **8 Apr 1404** | Recess Lübeck (HR I 5, S. 124 § 4): to be raised at the next day with the queen — «*um de munte, de de vrowe koninginne unde de ere slan laten unde utgeven unde nicht wedder nemen willen*» | no parameter (R) | — | — | HR I 5 S. 124 (page image) |
 | c. 1403–1412/13 | Erik's sterling (3 Pf), Næstved and Lund | Næstved 629–857 ‰, Lund 532 ‰ (L, a); 0,50–1,00 g (0,70); Hb «9-lødig» (562 ‰) | ⚠ at 0,70 g × 532–857 ‰ = 0,37–0,60 g per 3 Pf (4 to the ß) → **6,1–9,8**; at Hb's 9 lod 9,3 (O) | 5,4 (1406) | §3.12 |
-| **31 Mar 1406** | Recess Lübeck, Hamburg, Lüneburg, Wismar, Hannover (HR I 5 Nr. 310) — Danish money assayed | «*dat Densche geldt holt 10 lot, upp de mark scrodet 10 mark 2 schillinge, so is de Lubesche mark nicht beter den 12 schillinge, de halve Lubesche mark 6 schillinge, de 4 Lubesche schillinge 3 schillinge, de penningh 2 penninghe*» (R) | editor: fine mark **16 ℳ 3 ß 2⅖ ₰ = 16,2** in the coin's own count (R, HR-ed; the editor calls the four assays «*mir nicht verständlich*»). Recomputed [C]: the piece at 2 Pf l. and 10 lot → 0,716 g rough — the attested sterling weight (0,50–1,00 g, mean 0,70); the count 10 ℳ 2 ß is twice that (⚠ §4) | 5,44 (Witten 196 / 12) | HR I 5 S. 230–231 |
+| **31 Mar 1406** | Recess Lübeck, Hamburg, Lüneburg, Wismar, Hannover (HR I 5 Nr. 310) — Danish money assayed | «*dat Densche geldt holt 10 lot, upp de mark scrodet 10 mark 2 schillinge, so is de Lubesche mark nicht beter den 12 schillinge, de halve Lubesche mark 6 schillinge, de 4 Lubesche schillinge 3 schillinge, de penningh 2 penninghe*» (R) | editor: fine mark **16 ℳ 3 ß 2⅖ ₰ = 16,2** in the coin's own count (R, HR-ed; the editor calls the four assays «*mir nicht verständlich*»). Recomputed [C]: the piece at 2 Pf l. and 10 lot → 0,716 g rough — the attested sterling weight (0,50–1,00 g, mean 0,70); the count 10 ℳ 2 ß is twice that (⚠ §4); SH s. 119 n. 7 emends it to «V̶ = 4½» ℳ 2 ß = 296 pieces, 0,790 g — fits (§2j (5)) | 5,44 (Witten 196 / 12) | HR I 5 S. 230–231 |
 | 1406 | the union tariffs the Lund sterling at 2 Pf l. | — | — | — | J; `artikler_filippa` n. 38 |
 | 1410 | M: «*i 1410 blev den i riget udbredte sterling (=tre penninge) kun vurderet til to lybske penninge, mens den også udbredte kronehulpenning kun blev fastsat til ½ lybsk penning*» | rate (s) | — | — | M s. 381 (n. 32: Johansen 1961 nr. 630 — not in our corpus; the 2-Pf rating is already in the 1406 recess) |
 | c. 1412–13 | gold off-strike of the Lund sterling (9,55–9,85 g, 23½–23¾ kt) — not a coin | — | — | — | §3.12; excluded §9.3 |
@@ -357,6 +358,89 @@ interpunction and the marks beside the shield (Hj s. 11 suggests the trefoil / c
 is not an artefact of pooling Næstved and Lund. The rows show the readings ungrouped; nothing in the data ties a
 reading to a year.
 
+### 2j. Erik VII's Sterling — a Lübeck-system coin or an English one? (curator request 2026-11-02)
+
+Question (curator): does the Danish sterling (Galster 4 / 9, c. 1403–1420) fit the lybsk møntfod, or is it a
+coin of the English system?
+
+**Answer [C, «можна вважати»]: Lübeck system. English are the name and the 3-Pf rate the name had carried in
+Scania since 1357; the metal is about half an English penny.**
+
+**(1) Reckoning — a tier of the Lübeck set.** The sterling is 3 Pf, 4 to the ß, 64 to the mark of 16 ß — the
+Dreiling place in the 1 / 3 / 4 / 6 / 12 Pf set (§2 of `wendischer_muenzverein_c1400.md`). The English sterling is
+the penny itself, 1/12 s, 1/240 £; nothing in the sources reckons the Danish piece in s/d.
+- Hb s. 163: «*Den nye Mynt sluttede sig i Virkeligheden til de nordtydske Dreilinge, hvorved man vedblivende
+  beholdt den samme Myntregning som tidligere*» [the new coin in fact joined the North German Dreilinge, so the
+  same reckoning was kept].
+- J S. 100: «*Diese neuen und völlig dem hansischen Münzsystem angepaßten Münzen sollten auch den gleichen Wert
+  wie diese haben, also 4, 3 und 1 lübischen Pfennig gelten*».
+- SH s. 119: «*at Myntvæsenet blev sat omtrent paa samme Fod som det lybske, og cöllnsk Vægt optaget ved
+  Udmyntningen*» [that the coinage was set on about the same footing as the Lübeck one, and Cologne weight taken up
+  for the minting]; the sterling «*blev udgivet som Trepenning*».
+- Deeds reckon it through the Lübeck penny (Hb s. 164 n. 4): 1407 «*Een Ængilsk eller thre smaa pænningae, som j
+  Landet tha gangæ*»; 1423 «*computando IV sterl. pro I sol. Lub.*»; 1429 «*qvilibet Sterlingus tres argenteos
+  Lybicenses æqviparatur et ponderatur*» [each sterling equals three Lübeck silver pennies in value and weight].
+- The Hanse rates it as a Dreiling — at 2 Pf instead of 3 in 1406, 1410, 1411, 1418 (Hb s. 163–165; SH s. 120
+  n. 3).
+
+**(2) The name — an English penny's Baltic rate, older than the Danish coin.** English sterlings circulated in
+Denmark in the 14th century (Hb s. 143: hoards with 220 and 22 English sterlings; `jensen_1972_…` source note).
+J S. 82: «*1357 entsprechen auf Schonen bereits 10 Schilling lübisch = 40 Sterlingen, der Sterling also 3 lübischen
+Pfennigen*», and the Pfundzoll of 1376 / 1377 «*enen enghelsen penningh alze gut alze dre Lubische penninghe*»; J
+ties the Lübeck Dreiling (after 1374) and the Danish «*Trepenning oder Engelsk*» to that 1 : 3. SH s. 119 n. 5:
+«*3 Skilling Sterling = 9 Skilling dansk lybsk = 1 Skilling Grot … idet 1 Sterling var = 3 Penninge d. l.*» — the
+Danish coin fills a value slot that already bore the English name.
+
+**(3) Metal [C].**
+
+| Coin | Fine silver, g | Source |
+|---|---|---|
+| English penny, 1370s | 1,068 | J S. 82 |
+| English penny after 1412 | 0,77 | J S. 82 («*auf 15 Grän … 0,77 g fein*»; the rough figure is garbled in our text layer) |
+| Lübeck Dreiling 1392 | 0,764 | J S. 82 |
+| Lübeck Dreiling 1406 | 0,671 [C] (Witten 196 per 12-lot mark, ¾ of it) | HR I 5 S. 230 |
+| **Danish sterling, 1406 assay** | **0,494** [C] (296 per weighed mark = 0,790 g, 10 lot — reading of SH, below) | SH s. 119 |
+| Danish sterling, specimen assays | ≈ 0,35–0,60 [C] (0,50–1,00 g, mean 0,70; 500–857 ‰) | Galster pages G4 / G9; L |
+
+So the Danish sterling holds ≈ 46 % of the English penny before 1412 and ≈ 64 % after; ≈ 74 % of the 1406 Dreiling;
+≈ 110 % of the 2 Pf l. the Hanse allowed it. J S. 82: «*die dänischen Sterlinge wohl noch weniger*» [than the
+0,764 g of the 1392 Dreiling]. SH s. 119: the coin was named sterling «*omendskjönt den, paa langt nær, ikke
+svarede til sin engelske Navne*» [although it by far did not answer to its English namesake].
+
+**SH's own recomputation of 1406 and 1410 (s. 119–120), checked [C].** In the Æs of 256 per lot (4096 per
+mark): 1406 — the 10-lot mark at 74 ß dansk lybsk → 2560 / 74 = 34,59 Æs per Danish ß, the Lübeck ß at a fine
+mark of 5 ℳ 7 ß 1 Pf (after Grautoff) = 47,035 Æs → Danish Trepenning 8,64 against 2 Pf l. 7,84 Æs (my ratio
+1,10 ✓). 1410 — «*hold X lot sulvers myn 1 Quentyn*» = 9¾ lot; SH supplies the count 320 per mark (5 ℳ = 80 ß)
+from later sources, explicitly as an assumption («*kan man ansee som givet*»), → 31,2 Æs per ß, Trepenning 7,8
+against 2 Pf l. 7,6 (fine mark 5 ℳ 9 ß 10 Pf). On SH's figures the 2-Pf rating is a fair one in both years.
+
+**(4) What is interpretation, not record.**
+- Hb s. 163 «*bragtes Myntens Værdi i nær Overensstemmelse med de engelske Sterlinge*» does not hold for the metal
+  (0,49 against 1,07 g); it fits only the reckoning value 3 Pf, the old rate of the English penny. SH s. 119 says
+  the opposite on the metal (above).
+- Hb s. 163 «*Stemning i Danmark for en Tilslutning til England*» and SH s. 119 «*maaskee den engelske Prindsesse
+  Philippas Ægteskab med Kong Erik har været medvirkende Aarsag*» are each author's inference from the name; no
+  document is cited. Hypothesis — and the 1357 / 1376–77 Scanian rate already explains the name without a motive.
+- J S. 100 «*in Anlehnung an die englischen Sterlinge*» does not say what was borrowed beyond name and rate; the
+  type (crown / cross) is not compared with the English penny in any of our sources.
+
+**(5) Side result — the 1406 count «10 mark 2 schillinge» (⚠ §4) is a known misreading.** SH s. 119 reads the
+recess «*upp de mark scrodet* V̶ *(d. e. 4½) mark II s.*», n. 7: «*Her staaer vistnok hos Grautoff l. c.: „scrodet X
+mark" etc. Men dette er aabenbart urigtigt, fordi 10 Mark 2 Skilling af Bruttomarken giver et usandsynligt og
+urimeligt Resultat … Dette har udenvivl havt Talbetegnelsen* V̶ *for 4½, og den sidste Tverstreg paa Femtallet tör
+da enten være forsvunden af Dokumentet eller den er bleven overseet*» [Grautoff has «X mark», which is plainly
+wrong … the document doubtless had the numeral V̶ for 4½, and the last cross-stroke on the five has either
+vanished from the document or been overlooked]. Hb s. 163 prints «V̶» with n. 2 «*4½ Mk. Den trykte Text har x
+mark, hvilket er en Misforstaaelse*»; J S. 100 n. 387 «4½ Mark = 288 Sterlinge (0,81 g)». Recomputed [C]: 4½ ℳ 2 ß
+= 74 ß = 888 Pf = 296 pieces of 3 Pf → 0,790 g rough, 0,494 g fine at 10 lot — the attested sterling weight, and
+the fine content fits the 2-Pf rating. **Status: an emendation by SH (adopted by Hb and J) from the metrology,
+not a reading of the manuscript** — HR I 5 (Koppmann 1880) still prints «10 mark». It removes the doubled count;
+the editor's 16,2 fine-mark figure built on «10 mark» falls with it (on 4½ ℳ 2 ß [C]: 74 ß × 16/10 = 118,4 ß =
+7,4 ℳ per fine mark in the coin's own count).
+⚠ **Source discrepancy, recorded:** HR I 5 S. 230 (printed edition, page image) «10 mark 2 schillinge» vs SH s. 119
+n. 7 / Hb s. 163 n. 2 «V̶ = 4½». Would settle: an image of the original recess (Lübeck archive) or of the
+Grautoff source text.
+
 ## §3. What the series shows [C, «можна вважати»]
 
 1. **Three kinds of tie, in sequence.** (a) 1424: a common formula — Danish coin = Lübeck coin by treaty (the only
@@ -380,7 +464,8 @@ reading to a year.
 5. **Before 1424 the Danish coin sat about 1½ × below Lübeck**: sterling 6,1–9,8 against 5,4 (1406) [C], matching
    the 1406 tariff of the sterling at 2 instead of 3 Pf l. The 1406 assay's own fineness and piece rating fit this
    exactly (10 lot at 2 Pf l. = 0,716 g, the attested sterling); only its count «10 mark 2 schillinge» and the
-   editor's 16,2 built on it do not (§4).
+   editor's 16,2 built on it do not (§4) — and that count is SH's «V̶ = 4½» emendation away from fitting too
+   (4½ ℳ 2 ß → 296 pieces, 0,790 g; §2j (5)).
 6. **The Hanseatic complaints of 1403–04 are about acceptance, not about a standard**: the queen's officials paid
    the Danish coin out at full value and would not take it back at full value (HR I 5 Nr. 158 § 8; Nr. 181 § 2;
    S. 124 § 4). None names a fineness or weight; the first Hanseatic statement of Danish parameters is the 1406
@@ -390,7 +475,7 @@ reading to a year.
 
 | Point | State |
 |---|---|
-| ⚠ 1406 HR: Danish money 10-lot, 10⅛ ℳ per weighed mark (editor: 16,2 fine) vs the valuation «Lübeck mark … 12 ß», «penning 2 Pf» | Recomputed 2026-10-28 from the page image [C]: Lübeck 5 4/9 ℳ per fine mark → 1 Pf l. = 0,2237 g fine; the Danish penning at 2 Pf l. = 0,447 g fine, at 10 lot **0,716 g rough** = 326 pieces per weighed mark — the attested sterling (0,50–1,00 g, mean 0,70). The count 10 ℳ 2 ß = 1944 Pf is 648 pieces at 3 Pf (0,361 g) — twice the pieces the rating implies; «5 ℳ 1 ß» would give 324. Second inconsistency inside the article: the mark is rated 12 ß (¾) but the penning 2 Pf (⅔). Hypothesis (unverified): a slip in the count, or a count in a unit not stated. The editor already calls all four assays «*mir nicht verständlich*». Would settle: a second contemporary assay or count of Danish sterlings of 1403–10 (Johansen 1961 nr. 630, the 1410 rating — not in our corpus) |
+| ⚠ 1406 HR: Danish money 10-lot, 10⅛ ℳ per weighed mark (editor: 16,2 fine) vs the valuation «Lübeck mark … 12 ß», «penning 2 Pf» | Recomputed 2026-10-28 from the page image [C]: Lübeck 5 4/9 ℳ per fine mark → 1 Pf l. = 0,2237 g fine; the Danish penning at 2 Pf l. = 0,447 g fine, at 10 lot **0,716 g rough** = 326 pieces per weighed mark — the attested sterling (0,50–1,00 g, mean 0,70). The count 10 ℳ 2 ß = 1944 Pf is 648 pieces at 3 Pf (0,361 g) — twice the pieces the rating implies; «5 ℳ 1 ß» would give 324. Second inconsistency inside the article: the mark is rated 12 ß (¾) but the penning 2 Pf (⅔). Hypothesis (unverified): a slip in the count, or a count in a unit not stated. The editor already calls all four assays «*mir nicht verständlich*». Would settle: a second contemporary assay or count of Danish sterlings of 1403–10 (Johansen 1961 nr. 630, the 1410 rating — not in our corpus). **Narrowed 2026-11-02 (§2j (5)):** SH 1865 s. 119 n. 7 reads «V̶ (= 4½) mark II s.» and calls Grautoff's «X» a misreading; Hb s. 163 n. 2 and J S. 100 n. 387 follow (4½ ℳ). On 4½ ℳ 2 ß = 296 pieces, 0,790 g [C] — the doubling disappears. An emendation from the metrology, not a manuscript reading; open until the original is seen. The ¾ vs ⅔ inconsistency (mark 12 ß, penning 2 Pf) remains |
 | ⚠ M «*i foråret i 1403 forlangte*» (the demand that Margrete strike only coin she would take back) | the passage M quotes («*das sy keyne muntse slon lasse …*», n. 30 → Johansen & Mørkholm 1960 nr. 572) is HR I 5 Nr. 181 § 2, **Recess Marienburg 2 Mar 1404** (page image S. 119); the Lübeck complaint M quotes first (n. 29, nr. 569) is Nr. 158 § 8, **6 Dec 1403**. M's «spring 1403» is spring 1404 by the edition's dating — resolved |
 | ⚠ Erik's sterling fineness: Hb «9-lødig» (562 ‰) vs L 532 (Lund) / 629–857 (Næstved) vs Galster pages 500 / 606 | recorded in `luebischer_muenzfuss.md` §3.12; settled only by the assays behind Galster 1972 |
 | ⚠ Kobbersterling value 1 Pf (Hb) vs 3 Pf (M) | Hb s. 170: «*Mynten har utvivlsomt skullet gjælde en Penning*» — his inference, no source; he explains the contemporary name away («*kun … begrundet i Størrelsen*»). M s. 384–385: «*udgivet som en sterling, altså svarende til tre penninge*» (n. 40 → Galster 1972b, 48 — not in our corpus) and the 1423 deed's «*cuprei sterlingi*», reckoned in «*gode hvide sterlinge, fra før de nye kobbersterlinge kom*». The only period evidence is the name «sterling» → 3 Pf can be held as the better-founded reading; no tariff or act survives. Open until Galster 1972b, 48 is read |
@@ -426,7 +511,8 @@ rate in ß lybsk.
 | Question | Would be settled by |
 |---|---|
 | ~~Content of the first Hanseatic complaint, 1403~~ | **closed 2026-10-28**: HR I 5 Nr. 158 § 8 (6 Dec 1403), Nr. 181 § 2 (2 Mar 1404), S. 124 § 4 (8 Apr 1404) — acceptance at full value, no parameters (§2a, §3.6) |
-| What «10 mark 2 schillinge» counts in the 1406 assay | narrowed 2026-10-28: fineness + piece rating fit the sterling, the count is double (§4). A second contemporary assay or count; Johansen 1961 nr. 630 (1410) |
+| What «10 mark 2 schillinge» counts in the 1406 assay | narrowed 2026-10-28: fineness + piece rating fit the sterling, the count is double (§4); narrowed 2026-11-02: SH s. 119 n. 7 emends to «V̶ = 4½» (296 pieces, fits; §2j (5)). An image of the original recess or of Grautoff's source; Johansen 1961 nr. 630 (1410) |
+| Was anything of the English penny copied in the Danish sterling beyond name and 3-Pf rate (type, weight)? | a type comparison crown/cross vs the English penny in a published study; J S. 100's «*Anlehnung*» names nothing specific (§2j (4)) |
 | ~~Rigsråd Skilling 1448 — fineness and weight~~ | **closed 2026-10-28** (one piece): Hj G 21 2,08 g, 45,99 % → 15,3 (§2b). More pieces would make it a range |
 | Kobbersterling 1 or 3 Pf | Galster 1972b, 48 (M's source); any tariff of 1422–23 |
 | Christian I's Hvid series by date (8 → 5 lod) | dated or hoard-closed assays (E tab. 5 is undated) |
