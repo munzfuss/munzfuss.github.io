@@ -2138,6 +2138,17 @@ def _index_clean_cell(html_cell: str) -> str:
     return _index_decode_entities(bare)
 
 
+# «U.år (1687)» — the coin carries no date; Hede gives the year he attributes
+# it to in parentheses (c5hede1: Hede 13 «U.år (1685)», Hede 19 «U.år (1687)»).
+_INDEX_UAR_ATTRIBUTED = re.compile(r"^[Uu]\.?\s*[åa]r\s*\((\d{4})\)\s*$")
+
+
+def _index_year_hedge(year_cell: str) -> str | None:
+    """The printed cell when it is an attributed year on an undated coin."""
+    s = (year_cell or "").strip()
+    return s if _INDEX_UAR_ATTRIBUTED.match(s) else None
+
+
 def _index_parse_years(year_cell: str) -> list[dict]:
     """Parse the index «year» cell into the deep-page years[] shape.
 
@@ -2148,13 +2159,17 @@ def _index_parse_years(year_cell: str) -> list[dict]:
       "1924-1926"        → [{year:1924},…,{year:1926}]
       "1781-96"          → [{year:1781},…,{year:1796}]
       "U.år" / "u.år"    → []  (undated)
+      "U.år (1687)"      → [{year:1687}]  (undated coin, year attributed by
+                           Hede in parentheses; `_index_year_hedge` records
+                           the printed form so the seed marks it uncertain)
       "1939, 1940"       → [{year:1939},{year:1940}]
     """
     if not year_cell:
         return []
     s = year_cell.strip()
     if re.match(r"^[Uu]\.?\s*[åa]r", s):
-        return []
+        m = _INDEX_UAR_ATTRIBUTED.match(s)
+        return [{"year": int(m.group(1)), "rarity": None}] if m else []
     # Century-abbrev form «(15)45» → 1545
     s = _expand_century_abbr(s)
     # Short-range form «1781-96» → «1781-1796»
@@ -2218,6 +2233,7 @@ def _index_classify_columns(cells: list[str]) -> dict | None:
         "nominal": nominal.strip(),
         "metal": metal,
         "years": _index_parse_years(years_cell),
+        "year_hedge": _index_year_hedge(years_cell),
         "mint": mint.strip().rstrip(",.;"),
         "note": note.strip(),
     }
@@ -2325,6 +2341,8 @@ def _extract_index_stubs(html: str, basename: str) -> list[dict]:
             "metal_from_index": parsed_row["metal"],
             "index_note": parsed_row["note"],
         }
+        if parsed_row["year_hedge"]:
+            stub["year_as_printed"] = parsed_row["year_hedge"]
         stubs.append(stub)
     return stubs
 

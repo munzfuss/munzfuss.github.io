@@ -924,6 +924,14 @@ def _build_coin(
                 inner.fa.set_flow_style()
                 yr_seq.append(inner)
             cm["year_ranges"] = yr_seq
+        # Index stub of an undated coin whose year Hede gives in parentheses
+        # («U.år (1687)»): the year is Hede's attribution, not a date on the coin.
+        if is_index_stub and parsed.get("year_as_printed") and not years_override:
+            cm["year_verified"] = False
+            cm["uncertainty"] = unc.add({}, "year", "attributed", "hede",
+                                        as_printed=parsed["year_as_printed"],
+                                        value=unc.year_value(cm["year_first"],
+                                                             cm.get("year_last")))["uncertainty"]
     else:
         # Undated Hede entry («u. år» — uden årstal). Anchor to the
         # ruler's reign window so the placeholder year_first sits
