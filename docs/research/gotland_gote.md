@@ -311,7 +311,7 @@ the debasement Lindblad dates to the group 1500–1520.
   рахувати за 1 данську марку). Christian III's Reces for Gotland 1537 § 7
   (Hauberg s. 53–54) names it «Lantzens mynt» beside «wor mynt».
 - Wilcke s. 300–301: Visborg account 25 April 1542 kept «udi gullandts mønt»
-  and separately in «lubisk mynt»; a Rentemester account (year unreadable in the OCR, «755/»; to be read on the page): «gullandsk
+  and separately in «lubisk mynt»; Rentemester account 1551 (read on the page image): «gullandsk
   Mønt, beregnet 6 M gottlands for 1 Dlr.» (against 3 M dansk per daler).
 - Wilcke s. 301, 304 (1554, struck in København by Povel Fechtel, Hauberg
   146–152): «At det ikke var Kongens nye danske Mønt fra Riget, viser
@@ -336,6 +336,35 @@ Galster 139 (no king's name) is Danish by value, the 1554 and 1565 coins
 3. KMM «2 Skilling Christian III, Visby» 1557–1559 (14 records): Hauberg
    s. 56 «Der hengik nu over 20 Aar, inden der igjen sloges Mynt paa Øen»
    (after 1554). Not checked against the records.
+
+## 7b. The middle period is Gotlandic coin equated to Danish; the entity `gotland` (2026-11-02)
+
+Curator's criterion (2026-11-02): a coin of the Gotlandic type is Gotlandic
+even when it is equated in value to a Danish denomination; only a coin of the
+Danish type is Danish. Applied to c. 1450–1490:
+
+- **Galster 139** (Hauberg 85–101): Gotlandic. Hauberg s. 43: «istedetfor
+  3-Penninge herefter myntede 4-Penninge, svarende til de danske, saakaldte
+  Korshvide» (замість 3-пенінгів карбували 4-пенінги, що відповідали данським
+  корошвідам) — an equation, after 1453; the first issue (85–87) still a
+  3-penning with the old reverse die (s. 46). Own type (lamb / shield with one
+  bar), town legend, struck in Visby, «Gote» in Galster.
+- **Galster 141** (Hauberg 102): Danish. Hauberg s. 47 «efter Korshvidens
+  almindelige Typ»; king's name and title of Denmark; Lindblad 2017:3 s. 12:
+  Hans is «myntherre och Visby nämns bara som myntort», never found on
+  Gotland, «måste vara präglad i Danmark».
+
+So Gullandsk mønt runs c. 1340–1565 without a Danish interval; Galster 141 is
+the one Danish coin with mint Visby.
+
+In the data (curator «так, роби»): mint Visby routes to entity `gotland`
+(`mint_registry`), not consumed by the Denmark page; Galster 141 is pulled
+back to `danish_realm` (`_cross_entity.yml`); Norby (`norby_gotland`) is no
+longer consumed by the Denmark page; Erik (`erik_gotland`) never was.
+Galster 139, 140, 142 and KMM 150299 leave Lybsk møntfod (declassify
+recorded). The Fuß «Gullandsk mønt» (curator's name) has no card yet: a card
+needs the Gotlandic mark's weight and the coins' grid, which the sources read
+here do not give; the coins wait in `seed_unsorted` of their entities.
 
 ## 8. Open questions
 
