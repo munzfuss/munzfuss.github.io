@@ -57,12 +57,20 @@ tooltip OUTSIDE the tables (timeline bars, filter chips, card rows) is a CSS
 5. **One source per statement.** «[b]A[/b]: [i]«…»[/i]. [b]B[/b]: …» — never
    «A and B say …». A computation is attributed as such («errechnet aus …»),
    not dressed as a source.
-6. **No headline.** The marker kinds open with their own bold line («Підозріле
+6. **Each source on its own line** (curator 2026-11-02). Every statement that
+   opens with a new bold source starts a new line; a plain connecting sentence
+   before the first source («Датування зведене з датувань джерел.») keeps the
+   first line. Further passages of the SAME work («Там само, [b]с. 47–48[/b]…»)
+   stay on that work's line. In YAML the break is a real newline: `\n` inside a
+   double-quoted scalar, or a line of a `|` block — never `\n` in a
+   single-quoted scalar, which stays literal. Write it through `yaml_io` (it
+   picks the quoting); a hand-typed `'…\n…'` renders the backslash.
+7. **No headline.** The marker kinds open with their own bold line («Підозріле
    значення.», «Прогнозоване значення.», …, `MARK_HEAD` in app.js); do not
    repeat it.
-7. **All four languages in the same edit** (de / en / uk / da), same sources,
+8. **All four languages in the same edit** (de / en / uk / da), same sources,
    same quotes, same markup.
-8. **No project meta** (§0z): no «we», no field names, no «curator decided».
+9. **No project meta** (§0z): no «we», no field names, no «curator decided».
 
 ## Where tooltip text lives (edit it there, never in `site/`)
 
