@@ -98,6 +98,9 @@ DENMARK_NUMS = [
     444429,  # 1 Skilling Frederik I Oslo 1531
     444496,  # 1 Skilling Christian III Oslo 1535
     121758,  # 1 Skilling Christian III Bergen 1533-1537
+    # Flensborg, curator request 2026-11-02 (Lindahl 1955 Flensborg types)
+    179715,
+    241401,
 ]
 
 

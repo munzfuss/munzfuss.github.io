@@ -322,6 +322,13 @@ _MINT_REGISTRY: dict[str, dict] = {
         "aliases": {"flensburg", "flensborg", "fensborg"},
         "display": "Flensburg",
         "entity": "royal_slesvig",
+        "year_overrides": [
+            # The town's own 14th-century coinage («moneta holsacie», under
+            # the Sønderjylland dukes and the Holstein counts) is not the
+            # king's share of Schleswig (curator 2026-11-02). year < 1448 →
+            # flensborg_medieval; the Hede Blaffert from 1448 stays royal.
+            {"year_to": 1448, "entity": "flensborg_medieval"},
+        ],
     },
     "rendsburg": {
         # Rendsborg (Danish).
@@ -919,6 +926,9 @@ _ISSUER_REGISTRY: dict[str, str | None] = {
     # ───────────────────────── Denmark / Norway ────────────────────────
     "denmark": "danish_realm",
     "norway": "danish_norway",
+    # The town's own 14th-century coinage; Numista's only Flensburg issuer
+    # (curator 2026-11-02).
+    "city of flensburg (german states)": "flensborg_medieval",
 
     # API v3 code prefixes (issuer.code values verbatim, lower-case)
     "danemark": "danish_realm",

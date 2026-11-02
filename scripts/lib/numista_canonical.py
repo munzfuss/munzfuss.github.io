@@ -83,6 +83,10 @@ _NUMISTA_REF_CODE_MAP.update({
     "jensen": "jensen_skjoldager",
     "skjoldager": "jensen_skjoldager",
     "fp": "fp",
+    # Jesse 1928 («Der wendische Münzverein»), which Numista cites as
+    # «Jesse Wend#»; typed field `jesse`, as Bruun and Lindahl write it.
+    "jesse wend": "jesse",
+    "jesse": "jesse",
 })
 
 # Codes that are NOT real numismatic catalogues — the ONLY thing dropped.

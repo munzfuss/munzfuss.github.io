@@ -1,0 +1,214 @@
+# V2 seed_unified for political entity `flensborg_medieval`.
+# Generated 2026-11-02 by scripts/maintenance/merge_seeds_cross_source.py
+# from data/v2/seed/<source>/flensborg_medieval.yml across all sources.
+#
+# Input: 6 per-source seed entries.
+# Output: 4 unified entries (one per physical coin).
+#
+# Each unified entry's `composed_of` lists the per-source seeds
+# it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
+# `fineness[]`, `diameter_mm[]` are multi-source lists preserving
+# every reading per CLAUDE.md §9a. `sources[]` is the union.
+
+id: flensborg_medieval
+generated_at: '2026-11-02'
+coins:
+  - id: c-9ed6691b
+    class_id: c-9ed6691b
+    label: unified-dk-numista-179715
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Witten
+    year_first: 1350
+    year_last: 1381
+    year_ranges:
+      -   - 1350
+          - 1381
+    year_label: 1350-1381
+    mint: Flensburg
+    catalog:
+      numista: '179715'
+      jesse: '339'
+      lange: 6a
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: false
+    fineness:
+      - value: 0.779
+        source: Lindahl 1955 (NNÅ 1955), s. 74
+      - value: 0.779
+        source: numista
+    weight_rough_g:
+      - value: 1.27
+        source: numista
+    weight_range_g:
+      - min: 0.98
+        max: 1.33
+        source: Lindahl 1955 (NNÅ 1955), s. 74
+    uncertainty:
+      year:
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1359-1378
+          seed: dk-numista-179715
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1350 til reces 1379/81
+          value: 1350-1381
+          seed: lindahl-1955-flensborg-witten-leoparder
+    sources:
+      - type: literature
+        url: https://en.numista.com/179715
+        ref: Numista N#179715 — 1 Witten - City of Flensburg
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 74
+    issuing_entity: flensborg_medieval
+    composed_of:
+      - dk-numista-179715
+      - lindahl-1955-flensborg-witten-leoparder
+  - id: c-fae94ebf
+    class_id: c-fae94ebf
+    label: unified-dk-numista-241401
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Dreiling
+    year_first: 1392
+    year_last: 1392
+    year_label: '1392'
+    mint: Flensburg
+    catalog:
+      numista: '241401'
+      jesse: '427'
+      lange: 6b
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: true
+    verified: false
+    year_verified: false
+    fineness:
+      - value: 0.675
+        source: Lindahl 1955 (NNÅ 1955), s. 76
+      - value: 0.759
+        source: Lindahl 1955 (NNÅ 1955), s. 76
+    weight_rough_g:
+      - value: 0.81
+        source: numista
+    weight_range_g:
+      - min: 0.73
+        max: 1.04
+        source: Lindahl 1955 (NNÅ 1955), s. 76
+    uncertainty:
+      year:
+        - kind: hedged
+          how: after
+          source: lindahl
+          as_printed: efter reces 1392
+          value: '1392'
+          seed: lindahl-1955-flensborg-dreling
+    sources:
+      - type: literature
+        url: https://en.numista.com/241401
+        ref: Numista N#241401 — 1 Dreiling - City of Flensburg
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 76
+    issuing_entity: flensborg_medieval
+    composed_of:
+      - dk-numista-241401
+      - lindahl-1955-flensborg-dreling
+  - id: c-6f2070e7
+    class_id: c-6f2070e7
+    label: unified-lindahl-1955-flensborg-viertelwitten
+    fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: 1 Viertelwitten
+    year_first: 1350
+    year_last: 1381
+    year_ranges:
+      -   - 1350
+          - 1381
+    year_label: 1350-1381
+    mint: Flensburg
+    catalog:
+      jesse: '340'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: false
+    fineness:
+      - value: 0.53
+        source: Lindahl 1955 (NNÅ 1955), s. 75
+    weight_range_g:
+      - min: 0.28
+        max: 0.37
+        source: Lindahl 1955 (NNÅ 1955), s. 75
+    uncertainty:
+      year:
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1350 til reces 1379/81
+          value: 1350-1381
+          seed: lindahl-1955-flensborg-viertelwitten
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 75
+    issuing_entity: flensborg_medieval
+    composed_of:
+      - lindahl-1955-flensborg-viertelwitten
+  - id: c-f7114763
+    class_id: c-f7114763
+    label: unified-lindahl-1955-flensborg-witten-naeldeblad
+    fuss: seed_unsorted
+    phase: lindahl
+    kind: kurant
+    nominal: 1 Witten
+    year_first: 1379
+    year_last: 1379
+    year_label: '1379'
+    mint: Flensburg
+    catalog:
+      jesse: '371'
+    metal_verified: false
+    fineness_verified: false
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: false
+    weight_range_g:
+      - min: 1.14
+        max: 1.27
+        source: Lindahl 1955 (NNÅ 1955), s. 75
+    uncertainty:
+      year:
+        - kind: hedged
+          how: after
+          source: lindahl
+          as_printed: efter reces 1379/81
+          value: '1379'
+          seed: lindahl-1955-flensborg-witten-naeldeblad
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 75
+    issuing_entity: flensborg_medieval
+    composed_of:
+      - lindahl-1955-flensborg-witten-naeldeblad

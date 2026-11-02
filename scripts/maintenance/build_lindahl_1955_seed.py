@@ -6,7 +6,10 @@ Christopher af Bajern): the weight range Lindahl prints for the type (with
 the average, «gn.»), a single weight where only one piece is given, and the
 fineness of the assays she publishes (statsguardein Johs. Siggaard; for Erik's
 Lund gros and Christopher's skilling and søsling after N. L. Rasmusson, s. 73).
-The Flensborg wittens of the Holstein counts are not taken (another issuer).
+The Flensborg section (s. 74-76: wittens, viertelwitten, dreling, struck by
+the town as «moneta holsacie» in the Danish fief of Schleswig, under the
+Sønderjylland dukes and, after 1375, the Holstein counts) goes to its own
+entity, `flensborg_medieval` (curator 2026-11-02); its coins name no ruler.
 
 **No Galster number is assigned** (curator 2026-10-26: «зроби сідами, а там
 побачимо чи мерджер сам впорається»): Lindahl cites Jesse numbers and numbers
@@ -54,6 +57,14 @@ _TRACES = {
 # weight range (min, max, avg) or None, single weight or None,
 # finenesses (‰), fineness note (assayer) or None, mint certain?, note
 TYPES = [
+    ("flensborg-witten-leoparder", "1 Witten", None, "Flensborg", (1350, 1381), 74, ["339"], None,
+     (0.98, 1.33, 1.29), None, [779], None, True, None),
+    ("flensborg-viertelwitten", "1 Viertelwitten", None, "Flensborg", (1350, 1381), 75, ["340"], None,
+     (0.28, 0.37, 0.34), None, [530], None, True, None),
+    ("flensborg-witten-naeldeblad", "1 Witten", None, "Flensborg", (1379, 1379), 75, ["371"], None,
+     (1.14, 1.27, 1.22), None, [], None, True, None),
+    ("flensborg-dreling", "1 Dreling", None, "Flensborg", (1392, 1392), 76, ["427"], None,
+     (0.73, 1.04, 0.90), None, [675, 759], None, True, None),
     ("ribe-witten", "1 Witten", None, "Ribe", (1373, 1396), 76, ["692"], None,
      (1.09, 1.30, 1.19), None, [800], None, True, None),
     ("naestved-witten-krumstav", "1 Witten", "Erik VII", "Næstved", (1397, 1405), 77, ["693"], "1",
@@ -100,6 +111,10 @@ TYPES = [
 # Coin.uncertainty (curator 2026-10-29). Christopher's skilling has none: its
 # year is his reign.
 _DATING_PRINTED = {
+    "flensborg-witten-leoparder": ("circa", "ca. 1350 til reces 1379/81"),
+    "flensborg-viertelwitten": ("circa", "ca. 1350 til reces 1379/81"),
+    "flensborg-witten-naeldeblad": ("after", "efter reces 1379/81"),
+    "flensborg-dreling": ("after", "efter reces 1392"),
     "ribe-witten": ("attributed", "1373/77—96"),
     "naestved-witten-krumstav": ("circa", "1397—ca. 1405"),
     "naestved-witten-krone": ("circa", "Witten ca 1400"),
@@ -169,7 +184,8 @@ def collect() -> list[dict]:
             "fineness_verified": bool(fins),
             "weight_rough_g": ([{"value": single, "source": label}] if single else None),
             "weight_rough_verified": bool(single or rng),
-            "issuing_entity": "danish_realm",
+            "issuing_entity": ("flensborg_medieval" if key.startswith("flensborg-")
+                               else "danish_realm"),
             "verified": False,
             "sources": [{"type": "literature", "url": URL,
                          "ref": label + (f"; FL {fl}" if fl else "")}],

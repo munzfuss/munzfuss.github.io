@@ -1,0 +1,71 @@
+status: seed
+source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
+generated_at: '2026-11-02T18:57:20Z'
+entity: flensborg_medieval
+scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
+  is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
+coins:
+  - id: dk-numista-179715
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Witten
+    year_label: 1359-1378
+    year_first: 1359
+    year_last: 1378
+    year_ranges:
+      -   - 1359
+          - 1378
+    ruler:
+    mint:
+    catalog:
+      numista: '179715'
+      jesse: '339'
+      lange: 6a
+    metal: silver
+    fineness: 0.779
+    weight_rough_g: 1.27
+    diameter_mm:
+    issuing_entity: flensborg_medieval
+    verified: false
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/179715
+        ref: Numista N#179715 — 1 Witten - City of Flensburg
+  - id: dk-numista-241401
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Dreiling
+    year_label: 1400-1425
+    year_first: 1400
+    year_last: 1425
+    year_ranges:
+      -   - 1400
+          - 1425
+    ruler:
+    mint:
+    catalog:
+      numista: '241401'
+      jesse: '427'
+      lange: 6b
+    metal: silver
+    fineness:
+    weight_rough_g: 0.81
+    diameter_mm:
+    issuing_entity: flensborg_medieval
+    verified: false
+    metal_verified: true
+    fineness_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: false
+    mint_verified: false
+    sources:
+      - type: literature
+        url: https://en.numista.com/241401
+        ref: Numista N#241401 — 1 Dreiling - City of Flensburg
