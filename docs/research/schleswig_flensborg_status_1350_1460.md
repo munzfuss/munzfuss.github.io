@@ -104,6 +104,14 @@ the counts held the town. The coins name the town and the Holstein lords
    The curator decides; the consumes `year_to` in `denmark.yml` then becomes
    either the entity's removal or an exclusion of Jesse 371 alone.
 
+**Curator decision 2026-11-03: the formal-fief reading, without the 1375-1386
+exception.** The duchy is treated as formally Danish for the whole window,
+because the crown regarded it as its fief and never renounced it or accepted
+that it was no longer its territory — the counts' untitled tenure 1375-1386
+included. All four Flensborg types (leopard hvid, viertelwitten, nettle-leaf
+witten, dreling) are on the Denmark page; the interim `year_to: 1375` filter
+on the `flensborg_medieval` consumes entry was removed.
+
 ## §5. Open questions
 
 - **Who held Flensborg 1350-1357 exactly — the counts or duke Valdemar?** The
