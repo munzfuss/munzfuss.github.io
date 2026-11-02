@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 5963 active, 62 retired.
+# 5962 active, 63 retired.
 
 id: danish_realm
 classes:
@@ -60989,10 +60989,11 @@ classes:
   - id: c-e1a1f8b6
     status: active
     created: '2026-10-22'
-    label: unified-dk-galster-epomg-5
+    label: unified-dk-numista-475742
     legacy_id: unified-metallanalyser-2016-1-g5-nastved-lund-penning
     members:
       - dk-galster-epomg-5
+      - dk-numista-475742
       - lindahl-1955-hulpenning
       - metallanalyser-2016-1-g5-nastved-lund-penning
   - id: c-e1a411c2
@@ -64581,13 +64582,6 @@ classes:
     legacy_id: unified-kmk-148205
     members:
       - kmk-148205
-  - id: c-f157b78e
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-475742
-    legacy_id: unified-dk-numista-475742
-    members:
-      - dk-numista-475742
   - id: c-f15b5501
     status: active
     created: '2026-10-22'
@@ -68518,6 +68512,15 @@ classes:
     retired: '2026-10-26'
     members:
       - lindahl-1955-lund-kobbersterling
+  - id: c-f157b78e
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-475742
+    legacy_id: unified-dk-numista-475742
+    merged_into: c-e1a1f8b6
+    retired: '2026-11-02'
+    members:
+      - dk-numista-475742
   - id: c-f24f5875
     status: retired
     created: '2026-10-25'

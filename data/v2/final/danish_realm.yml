@@ -109040,52 +109040,6 @@ coins:
           seed: dk-galster-3nobel
   - fuss: luebischer_muenzfuss
     phase: '0'
-    kind: kurant
-    nominal: 1 Penning
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-f157b78e
-    year_first: 1396
-    year_last: 1439
-    year_label: 1396-1439
-    catalog:
-      numista: '475742'
-      sieg: '2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.3
-        source: numista
-    diameter_mm:
-      - value: 16.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/475742
-        ref: Numista N#475742 — Bracteate Hulpenning - Erik of Pomerania - Denmark
-    composed_of:
-      - c-f157b78e
-    label: unified-dk-numista-475742
-    origin: promoted
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1396-1439
-          seed: dk-numista-475742
-    year_is_reign_span: true
-    year_ranges:
-      -   - 1396
-          - 1439
-  - fuss: luebischer_muenzfuss
-    phase: '0'
     kind: scheide
     nominal: 1 Sterling
     ruler: Erik VII
@@ -286107,6 +286061,8 @@ coins:
       - Lund
       - Næstved
     catalog:
+      numista: '475742'
+      sieg: '2'
       galster: '5'
       galster_volume: galster1972-erik7
       others:
@@ -286213,6 +286169,8 @@ coins:
           da: 'Appendiks, forkortelsesliste: «f fragment». Vægten er fragmentets, ikke en hel mønts.'
       - value: 0.28
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 36
+      - value: 0.3
+        source: numista
       - value: 0.31
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 28
       - value: 0.31
@@ -286225,6 +286183,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/epomg5.htm
         ref: Galster 5 (epomg) — danskmoent.dk epomg5.htm
+      - type: literature
+        url: https://en.numista.com/475742
+        ref: Numista N#475742 — Bracteate Hulpenning - Erik of Pomerania - Denmark
       - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 79; FL 33
@@ -286301,6 +286262,11 @@ coins:
           value: 1400-1420
           seed: dk-galster-epomg-5
         - kind: hedged
+          how: span
+          source: numista
+          value: 1396-1439
+          seed: dk-numista-475742
+        - kind: hedged
           how: after
           source: lindahl
           as_printed: efter ca. 1405, før 1424
@@ -286313,6 +286279,10 @@ coins:
           as_printed: Hulpenning
           value: billon
           seed: dk-galster-epomg-5
+    diameter_mm_verified: true
+    diameter_mm:
+      - value: 16.0
+        source: numista
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
