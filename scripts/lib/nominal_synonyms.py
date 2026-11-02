@@ -430,10 +430,12 @@ def danish_display_nominal(raw, entity):
     metal column says copper) — curator 2026-10-26, «лише для файлів що на
     сторінці Данії». A seed keeps its source's word; the merger writes this on
     the class and compares nominals in this form. Other entities come back as
-    they were (a Lübeck witten stays a witten). «Lebard» → «Hulpenning»: the
-    lebard is the hollow penny named for its leopard, Lindahl 1955 s. 82
-    «Hulpenning (lebard)» (curator 2026-11-02)."""
+    they were (a Lübeck witten stays a witten). «Lebard» → «Penning»: the
+    lebard is the hollow penny of the 1424 recess, named for its leopard
+    («de holen pennning enen lebaren», Denar til daler 2018 s. 391), worth one
+    penning; the nominal gives the value, not the hollow form (curator
+    2026-11-02)."""
     if not isinstance(raw, str) or entity not in denmark_page_entities():
         return raw
-    raw = _LEBARD_RE.sub("Hulpenning", raw)
+    raw = _LEBARD_RE.sub("Penning", raw)
     return _KOBBERSTERLING_RE.sub("Sterling", _WITTEN_RE.sub("Hvid", raw))

@@ -2,8 +2,8 @@
 (`lib.nominal_synonyms.danish_display_nominal`).
 
 - «Witten» → «Hvid», «Kobbersterling» → «Sterling» (curator 2026-10-26).
-- «Lebard» → «Hulpenning»: the lebard is the hollow penny named for its
-  leopard, Lindahl 1955 s. 82 «Hulpenning (lebard)» (curator 2026-11-02).
+- «Lebard» → «Penning»: the lebard is the hollow penny of the 1424 recess,
+  worth one penning; the nominal gives the value (curator 2026-11-02).
 - Entities off the Denmark page keep the source's word.
 """
 from __future__ import annotations
@@ -22,7 +22,7 @@ class DanishDisplayNominal(unittest.TestCase):
     def test_denmark_page_entity(self):
         self.assertEqual(danish_display_nominal("1 Witten", "danish_realm"), "1 Hvid")
         self.assertEqual(danish_display_nominal("1 Kobbersterling", "danish_realm"), "1 Sterling")
-        self.assertEqual(danish_display_nominal("1 Lebard", "danish_realm"), "1 Hulpenning")
+        self.assertEqual(danish_display_nominal("1 Lebard", "danish_realm"), "1 Penning")
 
     def test_other_entity_keeps_the_source_word(self):
         self.assertEqual(danish_display_nominal("1 Lebard", "hanseatic_lubeck"), "1 Lebard")
