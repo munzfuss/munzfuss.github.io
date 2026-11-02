@@ -409,6 +409,13 @@ def split_nominal(raw):
 _WITTEN_RE = re.compile(r"\bWitten\b")
 _KOBBERSTERLING_RE = re.compile(r"\bKobbersterling\b")
 _LEBARD_RE = re.compile(r"\bLebard\b")
+# Danish forms for one entity only, where the same German word stays German on
+# the other Denmark-page entities: the Flensborg dreling (Lindahl 1955 s. 76
+# «Dreling»; Numista «Dreiling») — curator 2026-11-02. The royal Schleswig-
+# Holstein Dreilinge of later centuries keep their word.
+_ENTITY_DANISH_FORMS = {
+    "flensborg_medieval": ((re.compile(r"\bDreiling\b"), "Dreling"),),
+}
 
 
 @lru_cache(maxsize=1)
@@ -438,4 +445,6 @@ def danish_display_nominal(raw, entity):
     if not isinstance(raw, str) or entity not in denmark_page_entities():
         return raw
     raw = _LEBARD_RE.sub("Penning", raw)
+    for rx, word in _ENTITY_DANISH_FORMS.get(entity, ()):
+        raw = rx.sub(word, raw)
     return _KOBBERSTERLING_RE.sub("Sterling", _WITTEN_RE.sub("Hvid", raw))

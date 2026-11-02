@@ -20,8 +20,12 @@ consumes_entities:
   # The town coinage of Flensborg in the Danish fief of Schleswig, second half
   # of the 14th century, under the Sønderjylland dukes and, from 1375, the
   # Holstein counts (enfeoffed 1386); on the Lübeck witten pattern (curator
-  # 2026-11-02, Lindahl 1955 s. 74-76).
-  - flensborg_medieval
+  # 2026-11-02, Lindahl 1955 s. 74-76). Only coins begun while the duke lived
+  # (he died 1375, Hauberg 1886 s. 153): from then the counts held the duchy,
+  # so a type dated wholly after 1375 is not shown (curator 2026-11-02).
+  # year_to is INCLUSIVE on year_first — 1350-1381 stays, 1379 and 1392 go.
+  - entity: flensborg_medieval
+    year_to: 1375
   # Søren Norby's own Visby coins 1523-1525 (`norby_gotland`) are Gotlandic
   # coin («gullandsk mønt») and, like `gotland` and `erik_gotland`, are not
   # consumed here (curator 2026-11-02).
@@ -1945,9 +1949,9 @@ phases:
         da: Mønten i byen Ribe prægede under Frederik 1. kun i årene 1524–1526<sup>[ref:ernst-1948-ribe-frederik-1-1524-1526]</sup>; de udaterede nobler fra Ribe henfører Ernst til 1524 eller 1525 og kalder dem pragtmønter<sup>[ref:ernst-1948-ribe-pragtmoenter-1524-1525]</sup>, som han med forbehold sætter i forbindelse med kongens underskrivelse i Ribe i november 1524 af den norske håndfæstning, hvorved kongen anerkendte Norge som et arverige<sup>[ref:ernst-1948-ribe-nobel-haandfaestning-1524]</sup>. Wilcke anser noblerne fra Ribe for formentlig prøver (Prøver), da midlerne til egentlig prægning ikke synes at have foreligget på det tidspunkt<sup>[ref:wilcke-1950-ribe-nobler-proever]</sup>. Nobelerne fra 1532 blev præget, da man rustede imod Christian 2.<sup>[ref:galster-nobel-1532-rustning-christian-ii]</sup>, som efter sin flugt 13. april 1523<sup>[ref:wilcke-1950-christian-ii-flugt-1523]</sup> landede i Norge 5. november 1531<sup>[ref:wilcke-1950-christian-ii-landgang-norge-1531]</sup>. Prægningen 1532–33 under Frederik 1. skete af guld og sølv, der i 1531 var indkrævet fra alle rigets kirker; ifølge det bevarede regnskab for disse prægninger blev der af guldmønt kun slået nobler<sup>[ref:galster-nobel-1532-kirkesoelv]</sup>. Ifølge Wilcke var nobelerne særdeles vægtige, i gennemsnit tredobbelte, og de skulle sikkert gives til de højere befalingsmænd<sup>[ref:wilcke-1950-nobler-1532-vaegtige]</sup>. Ernst, der behandler regnskabet for disse prægninger, antager, at tallet «21» deri formentlig er en fejlskrift (for «61»), og så ville der være tale om almindelige nobler og én «tyk», formentlig tredobbelt nobel<sup>[ref:ernst-1938-nobler-1532-regnskab-fejlskrift]</sup>.
   luebischer_muenzfuss:
     - id: '0'
-      year_from: 1396
+      year_from: 1350
       year_to: 1481
-      from_label: '1396'
+      from_label: '1350'
       to_label: '1481'
       title:
         de: Periode 0 · vor 1481

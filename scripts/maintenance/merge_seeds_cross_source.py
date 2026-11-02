@@ -4276,7 +4276,10 @@ def _canonical_nominal_out(out: dict, members: list[dict],
             return
     # Danish-crown entities: a penning equivalent leaves the nominal for the
     # note, a plain «1 Hvid?» becomes «1 Hvid» with «(?)» (curator 2026-10-26).
-    if entity_id in DISPLAY_NAME_ENTITIES:
+    # flensborg_medieval: the town coinage on the Denmark page takes the same
+    # Danish names (curator 2026-11-02); it names no king, so it stays out of
+    # DISPLAY_NAME_ENTITIES.
+    if entity_id in DISPLAY_NAME_ENTITIES or entity_id == "flensborg_medieval":
         raw, equiv, doubt = split_nominal(danish_display_nominal(raw, entity_id))
         out["nominal"] = raw
         if equiv:
