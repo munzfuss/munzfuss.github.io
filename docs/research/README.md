@@ -54,7 +54,7 @@ Every new dossier gets a row here in the same commit (`tests/test_research_index
 |---|---|
 | [`wendischer_muenzverein_c1400.md`](wendischer_muenzverein_c1400.md) | the Wendish system c. 1365–1424 that Denmark took up |
 | [`mark_lybsk_mark_dansk.md`](mark_lybsk_mark_dansk.md) | Mark lübisch vs Mark dansk c. 1300–1514, the ratio and why two |
-| [`gotland_gote.md`](gotland_gote.md) | the gote and Gotlandic reckoning c. 1340–1450 |
+| [`gotland_gote.md`](gotland_gote.md) | the gote and Gotlandic reckoning c. 1340–1450; Danish reckoning c. 1450–1490; «gullandsk mønt» again c. 1500/1510–1565 |
 | [`luebischer_muenzfuss.md`](luebischer_muenzfuss.md) | the Lübeck standard and King Hans' silver 1481–1513 (accepted periodisation §0.6, assays §3) |
 | [`luebischer_muenzfuss_plan.md`](luebischer_muenzfuss_plan.md) | work plan for the lübischer Münzfuß card |
 | [`hans_silver_1481_1513.md`](hans_silver_1481_1513.md) | Hans' silver and billon: standard, sources, data |

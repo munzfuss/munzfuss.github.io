@@ -254,6 +254,89 @@ with the Galster classes (`_cross_entity.yml` for 143–145 into
 Lindblad's own doubt about the sub-type, not about the Norby hvid; it goes to
 145 with the rest.
 
+## 7a. The Gotlandic coin again separate from Danish, c. 1500/1510 – 1565 (2026-11-02)
+
+Question from the curator: is there a period after c. 1450 in which Visby
+coins follow a reckoning separate from the Danish one, and which coins fall
+in it? Consequence: a separate Fuß (not shown on the Denmark page) vs the
+Danish Füße.
+
+**Finding.** Three periods, not two:
+
+| period | reckoning | evidence |
+|---|---|---|
+| c. 1340 – c. 1449 | Gotlandic (gote = örtug, §2–3) | §2–5 |
+| c. 1450 – c. 1490 | Danish: hvid = 4 penning, value of the Malmø korshvid | Märcher 2018 s. 398; Lindblad s. 4; Hauberg s. 46, 47 |
+| c. 1500/1510 – 1565 | Gotlandic again: «gullandsk mønt», its own mark, beside «lubisk mynt» | Wilcke 1950 s. 116, 299–305; Hauberg s. 48, 56 |
+
+No ordinance marks the second break; it is attested by value and by
+accounts, so its start is fixed only to «by c. 1510» (Styffe via Wilcke) and
+the debasement Lindblad dates to the group 1500–1520.
+
+### Evidence, c. 1450 – c. 1490 (Danish)
+
+- Hauberg 1891, s. 46 (hvid c. 1455–1480): «svare omtrent i Værdi til
+  Christian I.'s Korshvide fra Malmø» (приблизно відповідають за вартістю
+  корошвідам Christian I з Malmø).
+- Hauberg s. 47 (Hans' korshvid, Galster 141): «Den gullandske Korshvid er
+  omtrent af samme Værdi som de samtidige danske Hvide, der ere af 4 Lod
+  4 Green lødigt Sølv» (готландський корошвід приблизно тієї ж вартості, що й
+  сучасні данські гвіди 4 лота 4 грена проби).
+
+### Evidence, c. 1500/1510 onward (Gotlandic)
+
+- Hauberg s. 48 (Galster 142, c. 1510): «Disse Hvide ere altsaa af ringere
+  Værdi end Kong Hans's Hvide fra Malmø» (ці гвіди, отже, нижчої вартості,
+  ніж гвіди короля Hans з Malmø); a late piece assayed 2 lod 10 green.
+  Galster 140 (Hauberg 109–113, c. 1520): 2 lod 8 green, «svare saaledes til
+  de yngre af de foregaaende Hvide» (s. 49).
+- Lindblad 2017:3, s. 12 (hvide c. 1500–1520): weight down to 0,70–0,41 g,
+  silver 16,38–9,04 %; «Förändringarna och försämringen i myntningen
+  1500-1520 får betraktas som relativt radikala» (зміни і погіршення в
+  карбуванні 1500–1520 слід вважати відносно радикальними).
+- Wilcke 1950, s. 116 (after Styffe, c. 1510, Sweden): the Danish coin was
+  worse than the Swedish, «men endnu mere den i Visby prægede »gutiske«
+  Mønt, som var gangbar i Østergøtland og en Del af Smaaland, hvor saadan
+  Mønt toges til 3 M paa 1 svensk» (але ще гіршою була «готська» монета,
+  карбована у Visby, що ходила в Östergötland і частині Småland, де таку
+  монету брали по 3 марки за 1 шведську).
+- Wilcke s. 302 (Frederik I's hvid c. 1530, Galster 146): «Det er altsaa den
+  særlige gullandske Mønt, der her er Tale om og da ganske specielt
+  Frederik I.s Hvid fra ca. 1530» (отже, йдеться про особливу готландську
+  монету, зокрема гвід Frederik I близько 1530); its value «3 eller 4
+  Penning», disputed.
+- Wilcke s. 299–300 (skillings 1535–37, Galster 147): «Gullandsk ß 1535»;
+  the royal letter of 1 July 1541 reduces them to «6 Pfennige» and «32 Stkr.
+  af samme mynte regnes og udgives for 1 M d.» (32 штуки цієї монети
+  рахувати за 1 данську марку). Christian III's Reces for Gotland 1537 § 7
+  (Hauberg s. 53–54) names it «Lantzens mynt» beside «wor mynt».
+- Wilcke s. 300–301: Visborg account 25 April 1542 kept «udi gullandts mønt»
+  and separately in «lubisk mynt»; a Rentemester account (year unreadable in the OCR, «755/»; to be read on the page): «gullandsk
+  Mønt, beregnet 6 M gottlands for 1 Dlr.» (against 3 M dansk per daler).
+- Wilcke s. 301, 304 (1554, struck in København by Povel Fechtel, Hauberg
+  146–152): «At det ikke var Kongens nye danske Mønt fra Riget, viser
+  Tabellen ganske klart» (що це не була нова данська монета короля з
+  королівства, таблиця показує цілком ясно).
+- Wilcke s. 305 (Jens Bille's coin 1565, Hauberg 153): the 5,70 g piece
+  «maa … snarere regnes for 1 M gullandsk» (має радше вважатися 1 готландською
+  маркою), not 8 skilling as Hauberg.
+
+Hauberg (s. 47–56) names the king on the coins of 1554 and 1565 and on
+Galster 141; the coins of c. 1450–1537 other than 141 carry only the town or
+island (§7.1). The legend therefore does not coincide with the reckoning:
+Galster 139 (no king's name) is Danish by value, the 1554 and 1565 coins
+(king's name and title) are Gotlandic.
+
+⚠ **Open, decides the boundary coin by coin.**
+1. Galster 140: Hauberg c. 1520, 2 lod 8 green (Gotlandic side) vs
+   danskmoent Christian I and Lindblad LL 5 «1480–1500» (§7.1).
+2. Start of the second period: Styffe (c. 1510) is read through Wilcke;
+   Styffe's own text not opened. Lindblad's group window 1500–1520 is not a
+   date of a decision.
+3. KMM «2 Skilling Christian III, Visby» 1557–1559 (14 records): Hauberg
+   s. 56 «Der hengik nu over 20 Aar, inden der igjen sloges Mynt paa Øen»
+   (after 1554). Not checked against the records.
+
 ## 8. Open questions
 
 1. Was Visby ever party to a Wendish monetary recess? Not found. Riksbank
