@@ -371,12 +371,12 @@ coins:
     phase: bruun
     kind: kurant
     nominal: 1 Hvid
-    year_first: 1396
+    year_first: 1403
     year_last: 1413
     year_ranges:
-      -   - 1396
+      -   - 1403
           - 1413
-    year_label: 1396-1413
+    year_label: 1403-1413
     ruler: Erik VII
     mint: Næstved
     catalog:
@@ -409,18 +409,69 @@ coins:
     year_alts:
       - value: '1424'
         source: galster
-        kind: suspect
+        kind: erroneous
         reason:
-          de: Die Münzseite bei danskmoent.dk gibt «ca. 1424». Dieselbe Website datiert den Typ in ihren Übersichten «ca. 1400» (nach Galster 1972), ebenso der Katalog Bruun; nach Stefke 1995 bestand 
-            die Münzstätte Næstved nur 1403–1412/13 und 1422/23.
-          en: The coin page at danskmoent.dk gives «ca. 1424». The same website dates the type «ca. 1400» in its overviews (after Galster 1972), as does the Bruun catalogue; according to Stefke 1995 
-            the Næstved mint existed only in 1403–1412/13 and 1422/23.
-          uk: Сторінка монети на danskmoent.dk подає «ca. 1424». Той самий сайт в оглядах датує тип «ca. 1400» (за Galster 1972), так само каталог Bruun; за Stefke 1995, монетний двір у Næstved 
-            існував лише в 1403–1412/13 і 1422/23 рр.
-          da: Møntsiden på danskmoent.dk angiver «ca. 1424». Samme websted daterer typen «ca. 1400» i sine oversigter (efter Galster 1972), ligesom Bruun-kataloget; ifølge Stefke 1995 fandtes Næstved 
-            mønt kun 1403–1412/13 og 1422/23.
+          de: "Das Jahr widerspricht der Tätigkeit der Münzstätte.\nDie Münzseite bei [b]danskmoent.dk[/b] gibt [i]«ca. 1424»[/i], die Übersichten derselben Website [i]«ca. 1400»[/i], ebenso der Katalog
+            [b]Bruun[/b].\n[b]Stefke 1995[/b]: die Münzstätte Næstved bestand nur [i]«1403-1412/13 und 1422/23»[/i]; 1422/23 wurden dort nur Kupfersterlinge geprägt.\n[b]Märcher 2018 (Denar til daler, Kap.
+            6, S. 368)[/b]: Hvide wurden [i]«kun i Næstved»[/i] (dt.: «nur in Næstved») geprägt; nach [b]S. 380[/b] wurde die Münzstätte Næstved geschlossen, als um 1412–1413 die Münzstätte Lund eröffnet
+            wurde."
+          en: "The year contradicts the period in which the mint worked.\nThe coin page at [b]danskmoent.dk[/b] gives [i]«ca. 1424»[/i], the overviews of the same website [i]«ca. 1400»[/i], as does the
+            [b]Bruun[/b] catalogue.\n[b]Stefke 1995[/b]: the Næstved mint existed only [i]«1403-1412/13 und 1422/23»[/i] (transl.: «1403–1412/13 and 1422/23»); in 1422/23 only copper sterlings were struck
+            there.\n[b]Märcher 2018 (Denar til daler, ch. 6, p. 368)[/b]: hvide were struck [i]«kun i Næstved»[/i] (transl.: «only in Næstved»); according to [b]p. 380[/b] the Næstved mint was closed when
+            the Lund mint opened around 1412–1413."
+          uk: "Рік суперечить часу роботи монетного двору.\nСторінка монети на [b]danskmoent.dk[/b] подає [i]«ca. 1424»[/i], огляди того самого сайту — [i]«ca. 1400»[/i], так само каталог [b]Bruun[/b].\n\
+            [b]Stefke 1995[/b]: монетний двір у Næstved існував лише [i]«1403-1412/13 und 1422/23»[/i] (перекл.: «1403–1412/13 і 1422/23»); у 1422/23 там карбували тільки мідні стерлінги.\n[b]Märcher 2018
+            (Denar til daler, розд. 6, с. 368)[/b]: гвіди карбували [i]«kun i Næstved»[/i] (перекл.: «лише в Næstved»); за [b]с. 380[/b], двір у Næstved закрили, коли близько 1412–1413 відкрився двір у
+            Lund."
+          da: "Året strider mod den tid, møntstedet var i drift.\nMøntsiden på [b]danskmoent.dk[/b] angiver [i]«ca. 1424»[/i], samme websteds oversigter [i]«ca. 1400»[/i], ligesom [b]Bruun[/b]-kataloget.\n\
+            [b]Stefke 1995[/b]: Næstved mønt fandtes kun [i]«1403-1412/13 und 1422/23»[/i] (overs.: «1403–1412/13 og 1422/23»); i 1422/23 blev der kun slået kobbersterlinge dér.\n[b]Märcher 2018 (Denar
+            til daler, kap. 6, s. 368)[/b]: hvide blev slået [i]«kun i Næstved»[/i]; efter [b]s. 380[/b] blev møntstedet i Næstved lukket, da møntstedet i Lund åbnede omkring 1412–1413."
     uncertainty:
       year:
+        - kind: inferred
+          how: compiled
+          source: Lindahl, Danmarks mønter 1377–1448 (Nordisk Numismatisk Årsskrift 1955), s. 77
+          as_printed: Witten fra Næstved (1397—ca. 1405)
+          value: 1403-1413
+          translation:
+            de: Witten aus Næstved (1397 – ca. 1405)
+            en: Witten from Næstved (1397 – c. 1405)
+            uk: витен з Næstved (1397 — бл. 1405)
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: Stefke, Der Beginn der Sterling-Prägung in Lund und das Ende der Münzstätte Næstved (Studia Numismatica, Tallinn 1995), cit. danskmoent.dk
+          as_printed: 'Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23'
+          value: 1403-1413
+          translation:
+            de: 'Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23'
+            en: 'On the whole I consider it most probable that in fifteenth-century Næstved there was a mint only twice: 1403–1412/13 and 1422/23'
+            uk: 'Загалом я вважаю найімовірнішим, що в Næstved у XV ст. монетний двір існував лише двічі: 1403–1412/13 і 1422/23'
+            da: 'Alt i alt anser jeg det for højst sandsynligt, at der i 1400-tallets Næstved kun to gange var et møntsted: 1403–1412/13 og 1422/23'
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 368'
+          as_printed: før ca. 1403, hvor udmøntningerne i Næstved startede
+          value: 1403-1413
+          translation:
+            de: vor ca. 1403, als die Ausmüntzung in Næstved begann
+            en: before c. 1403, when coinage began in Næstved
+            uk: до бл. 1403, коли почалося карбування в Næstved
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 380'
+          as_printed: der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring 1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i 
+            Næstved til fordel for det i Lund
+          value: 1403-1413
+          translation:
+            de: es scheint keine unmittelbaren Anzeichen zu geben, daß die Lunder Münzstätte früher als um 1412–1413 öffnete. Vermutlich handelte es sich um eine ungefähr gleichzeitige Schließung der 
+              Münzstätte in Næstved zugunsten derjenigen in Lund
+            en: there seems to be no immediate sign that the Lund mint opened earlier than around 1412–1413. Presumably the Næstved mint was closed at roughly the same time in favour of the one in 
+              Lund
+            uk: немає явних ознак, що монетний двір у Lund відкрився раніше ніж близько 1412–1413. Імовірно, йшлося про приблизно одночасне закриття монетного двору в Næstved на користь двору в Lund
+          seed: attribution
         - kind: hedged
           how: circa
           source: bruun
@@ -430,7 +481,7 @@ coins:
         - kind: inferred
           how: curator_window
           source: galster
-          value: 1396-1413
+          value: 1403-1413
           seed: dk-galster-epomg-2
         - kind: hedged
           how: circa
@@ -458,6 +509,18 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 1, Appendix (XRF)
+      - type: literature
+        ref: Lindahl, Danmarks mønter 1377–1448 (Nordisk Numismatisk Årsskrift 1955), s. 77
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+      - type: literature
+        ref: Stefke, Der Beginn der Sterling-Prägung in Lund und das Ende der Münzstätte Næstved (Studia Numismatica, Tallinn 1995), cit. danskmoent.dk
+        url: https://www.danskmoent.dk/artikler/stefke.htm
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 368'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 380'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
@@ -473,6 +536,35 @@ coins:
       - dk-galster-epomg-2
       - lindahl-1955-naestved-witten-krone
       - metallanalyser-2016-1-g2-nastved-hvid
+    year_note:
+      de: "Die Datierung ist aus den Datierungen der Quellen zusammengestellt.\n[b]Lindahl 1955 (NNÅ 1955, S. 77)[/b]: [i]«Witten fra Næstved (1397—ca. 1405)»[/i] (dt.: «Witten aus Næstved (1397 – ca. 1405)»).\n\
+        [b]Stefke 1995[/b]: [i]«Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i]; 1422/23 wurden dort
+        nur Kupfersterlinge geprägt.\n[b]Märcher 2018 (Denar til daler, Kap. 6, S. 368)[/b]: die Münzen von Ribe waren die einzigen im Reich [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i]
+        (dt.: «vor ca. 1403, als die Ausmüntzung in Næstved begann»); Hvide wurden nur in Næstved geprägt; nach [b]S. 380[/b]: [i]«der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere
+        end omkring 1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i Næstved til fordel for det i Lund»[/i] (dt.: «es scheint keine unmittelbaren Anzeichen zu geben,
+        daß die Lunder Münzstätte früher als um 1412–1413 öffnete. Vermutlich handelte es sich um eine ungefähr gleichzeitige Schließung der Münzstätte in Næstved zugunsten derjenigen in Lund»).\nDaraus
+        läßt sich der Zeitraum 1403–1413 ableiten: der Beginn nach Stefke und Märcher, das Ende mit der Schließung der Münzstätte Næstved."
+      en: "The dating is compiled from the datings of the sources.\n[b]Lindahl 1955 (NNÅ 1955, p. 77)[/b]: [i]«Witten fra Næstved (1397—ca. 1405)»[/i] (transl.: «Witten from Næstved (1397 – c. 1405)»).\n\
+        [b]Stefke 1995[/b]: [i]«Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i] (transl.: «On the whole
+        I consider it most probable that in fifteenth-century Næstved there was a mint only twice: 1403–1412/13 and 1422/23»); in 1422/23 only copper sterlings were struck there.\n[b]Märcher 2018 (Denar
+        til daler, ch. 6, p. 368)[/b]: the Ribe coins were the only ones in the realm [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i] (transl.: «before c. 1403, when coinage began in Næstved»);
+        hvide were struck only in Næstved; according to [b]p. 380[/b]: [i]«der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring 1412-1413. Formentlig var der tale om en
+        nogenlunde samtidig lukning af møntstedet i Næstved til fordel for det i Lund»[/i] (transl.: «there seems to be no immediate sign that the Lund mint opened earlier than around 1412–1413. Presumably
+        the Næstved mint was closed at roughly the same time in favour of the one in Lund»).\nFrom these the period 1403–1413 can be derived: the start after Stefke and Märcher, the end with the closing
+        of the Næstved mint."
+      uk: "Датування зведене з датувань джерел.\n[b]Lindahl 1955 (NNÅ 1955, с. 77)[/b]: [i]«Witten fra Næstved (1397—ca. 1405)»[/i] (перекл.: «витен з Næstved (1397 — бл. 1405)»).\n[b]Stefke 1995[/b]: [i]«Insgesamt
+        halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i] (перекл.: «Загалом я вважаю найімовірнішим, що в Næstved
+        у XV ст. монетний двір існував лише двічі: 1403–1412/13 і 1422/23»); у 1422/23 там карбували тільки мідні стерлінги.\n[b]Märcher 2018 (Denar til daler, розд. 6, с. 368)[/b]: монети Ribe були єдиними
+        в королівстві [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i] (перекл.: «до бл. 1403, коли почалося карбування в Næstved»); гвіди карбували лише в Næstved; за [b]с. 380[/b]: [i]«der
+        synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring 1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i Næstved til fordel for det
+        i Lund»[/i] (перекл.: «немає явних ознак, що монетний двір у Lund відкрився раніше ніж близько 1412–1413. Імовірно, йшлося про приблизно одночасне закриття монетного двору в Næstved на користь двору
+        в Lund»).\nЗвідси можна вивести період 1403–1413: початок за Stefke і Märcher, кінець — закриття монетного двору в Næstved."
+      da: "Dateringen er sammenstillet af kildernes dateringer.\n[b]Lindahl 1955 (NNÅ 1955, s. 77)[/b]: [i]«Witten fra Næstved (1397—ca. 1405)»[/i].\n[b]Stefke 1995[/b]: [i]«Insgesamt halte ich es für höchstwahrscheinlich,
+        daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i] (overs.: «Alt i alt anser jeg det for højst sandsynligt, at der i 1400-tallets Næstved kun to
+        gange var et møntsted: 1403–1412/13 og 1422/23»); i 1422/23 blev der kun slået kobbersterlinge dér.\n[b]Märcher 2018 (Denar til daler, kap. 6, s. 368)[/b]: Ribes mønter var de eneste i riget [i]«før
+        ca. 1403, hvor udmøntningerne i Næstved startede»[/i]; hvide blev kun slået i Næstved; efter [b]s. 380[/b]: [i]«der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring
+        1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i Næstved til fordel for det i Lund»[/i].\nHeraf kan perioden 1403–1413 udledes: begyndelsen efter Stefke og Märcher,
+        slutningen med lukningen af møntstedet i Næstved."
   - id: c-a4e8afcd
     class_id: c-a4e8afcd
     label: unified-dk-bruun-3757
@@ -13385,12 +13477,12 @@ coins:
     phase: galster
     kind: kurant
     nominal: 1 Hvid
-    year_first: 1396
+    year_first: 1403
     year_last: 1413
     year_ranges:
-      -   - 1396
+      -   - 1403
           - 1413
-    year_label: 1396-1413
+    year_label: 1403-1413
     ruler: Erik VII
     mint: Næstved
     catalog:
@@ -13413,22 +13505,73 @@ coins:
     year_alts:
       - value: '1424'
         source: galster
-        kind: suspect
+        kind: erroneous
         reason:
-          de: Die Münzseite bei danskmoent.dk gibt «ca. 1424». Dieselbe Website datiert den Typ in ihren Übersichten «ca. 1400» (nach Galster 1972), ebenso der Katalog Bruun; nach Stefke 1995 bestand 
-            die Münzstätte Næstved nur 1403–1412/13 und 1422/23.
-          en: The coin page at danskmoent.dk gives «ca. 1424». The same website dates the type «ca. 1400» in its overviews (after Galster 1972), as does the Bruun catalogue; according to Stefke 1995 
-            the Næstved mint existed only in 1403–1412/13 and 1422/23.
-          uk: Сторінка монети на danskmoent.dk подає «ca. 1424». Той самий сайт в оглядах датує тип «ca. 1400» (за Galster 1972), так само каталог Bruun; за Stefke 1995, монетний двір у Næstved 
-            існував лише в 1403–1412/13 і 1422/23 рр.
-          da: Møntsiden på danskmoent.dk angiver «ca. 1424». Samme websted daterer typen «ca. 1400» i sine oversigter (efter Galster 1972), ligesom Bruun-kataloget; ifølge Stefke 1995 fandtes Næstved 
-            mønt kun 1403–1412/13 og 1422/23.
+          de: "Das Jahr widerspricht der Tätigkeit der Münzstätte.\nDie Münzseite bei [b]danskmoent.dk[/b] gibt [i]«ca. 1424»[/i], die Übersichten derselben Website [i]«ca. 1400»[/i], ebenso der Katalog
+            [b]Bruun[/b].\n[b]Stefke 1995[/b]: die Münzstätte Næstved bestand nur [i]«1403-1412/13 und 1422/23»[/i]; 1422/23 wurden dort nur Kupfersterlinge geprägt.\n[b]Märcher 2018 (Denar til daler, Kap.
+            6, S. 368)[/b]: Hvide wurden [i]«kun i Næstved»[/i] (dt.: «nur in Næstved») geprägt; nach [b]S. 380[/b] wurde die Münzstätte Næstved geschlossen, als um 1412–1413 die Münzstätte Lund eröffnet
+            wurde."
+          en: "The year contradicts the period in which the mint worked.\nThe coin page at [b]danskmoent.dk[/b] gives [i]«ca. 1424»[/i], the overviews of the same website [i]«ca. 1400»[/i], as does the
+            [b]Bruun[/b] catalogue.\n[b]Stefke 1995[/b]: the Næstved mint existed only [i]«1403-1412/13 und 1422/23»[/i] (transl.: «1403–1412/13 and 1422/23»); in 1422/23 only copper sterlings were struck
+            there.\n[b]Märcher 2018 (Denar til daler, ch. 6, p. 368)[/b]: hvide were struck [i]«kun i Næstved»[/i] (transl.: «only in Næstved»); according to [b]p. 380[/b] the Næstved mint was closed when
+            the Lund mint opened around 1412–1413."
+          uk: "Рік суперечить часу роботи монетного двору.\nСторінка монети на [b]danskmoent.dk[/b] подає [i]«ca. 1424»[/i], огляди того самого сайту — [i]«ca. 1400»[/i], так само каталог [b]Bruun[/b].\n\
+            [b]Stefke 1995[/b]: монетний двір у Næstved існував лише [i]«1403-1412/13 und 1422/23»[/i] (перекл.: «1403–1412/13 і 1422/23»); у 1422/23 там карбували тільки мідні стерлінги.\n[b]Märcher 2018
+            (Denar til daler, розд. 6, с. 368)[/b]: гвіди карбували [i]«kun i Næstved»[/i] (перекл.: «лише в Næstved»); за [b]с. 380[/b], двір у Næstved закрили, коли близько 1412–1413 відкрився двір у
+            Lund."
+          da: "Året strider mod den tid, møntstedet var i drift.\nMøntsiden på [b]danskmoent.dk[/b] angiver [i]«ca. 1424»[/i], samme websteds oversigter [i]«ca. 1400»[/i], ligesom [b]Bruun[/b]-kataloget.\n\
+            [b]Stefke 1995[/b]: Næstved mønt fandtes kun [i]«1403-1412/13 und 1422/23»[/i] (overs.: «1403–1412/13 og 1422/23»); i 1422/23 blev der kun slået kobbersterlinge dér.\n[b]Märcher 2018 (Denar
+            til daler, kap. 6, s. 368)[/b]: hvide blev slået [i]«kun i Næstved»[/i]; efter [b]s. 380[/b] blev møntstedet i Næstved lukket, da møntstedet i Lund åbnede omkring 1412–1413."
     uncertainty:
       year:
         - kind: inferred
+          how: compiled
+          source: Lindahl, Danmarks mønter 1377–1448 (Nordisk Numismatisk Årsskrift 1955), s. 77
+          as_printed: Witten fra Næstved (1397—ca. 1405)
+          value: 1403-1413
+          translation:
+            de: Witten aus Næstved (1397 – ca. 1405)
+            en: Witten from Næstved (1397 – c. 1405)
+            uk: витен з Næstved (1397 — бл. 1405)
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: Stefke, Der Beginn der Sterling-Prägung in Lund und das Ende der Münzstätte Næstved (Studia Numismatica, Tallinn 1995), cit. danskmoent.dk
+          as_printed: 'Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23'
+          value: 1403-1413
+          translation:
+            de: 'Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23'
+            en: 'On the whole I consider it most probable that in fifteenth-century Næstved there was a mint only twice: 1403–1412/13 and 1422/23'
+            uk: 'Загалом я вважаю найімовірнішим, що в Næstved у XV ст. монетний двір існував лише двічі: 1403–1412/13 і 1422/23'
+            da: 'Alt i alt anser jeg det for højst sandsynligt, at der i 1400-tallets Næstved kun to gange var et møntsted: 1403–1412/13 og 1422/23'
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 368'
+          as_printed: før ca. 1403, hvor udmøntningerne i Næstved startede
+          value: 1403-1413
+          translation:
+            de: vor ca. 1403, als die Ausmüntzung in Næstved begann
+            en: before c. 1403, when coinage began in Næstved
+            uk: до бл. 1403, коли почалося карбування в Næstved
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 380'
+          as_printed: der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring 1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i 
+            Næstved til fordel for det i Lund
+          value: 1403-1413
+          translation:
+            de: es scheint keine unmittelbaren Anzeichen zu geben, daß die Lunder Münzstätte früher als um 1412–1413 öffnete. Vermutlich handelte es sich um eine ungefähr gleichzeitige Schließung der 
+              Münzstätte in Næstved zugunsten derjenigen in Lund
+            en: there seems to be no immediate sign that the Lund mint opened earlier than around 1412–1413. Presumably the Næstved mint was closed at roughly the same time in favour of the one in 
+              Lund
+            uk: немає явних ознак, що монетний двір у Lund відкрився раніше ніж близько 1412–1413. Імовірно, йшлося про приблизно одночасне закриття монетного двору в Næstved на користь двору в Lund
+          seed: attribution
+        - kind: inferred
           how: curator_window
           source: galster
-          value: 1396-1413
+          value: 1403-1413
           seed: dk-galster-epomg-3
         - kind: hedged
           how: circa
@@ -13450,10 +13593,51 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 77; FL 1
+      - type: literature
+        ref: Lindahl, Danmarks mønter 1377–1448 (Nordisk Numismatisk Årsskrift 1955), s. 77
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+      - type: literature
+        ref: Stefke, Der Beginn der Sterling-Prägung in Lund und das Ende der Münzstätte Næstved (Studia Numismatica, Tallinn 1995), cit. danskmoent.dk
+        url: https://www.danskmoent.dk/artikler/stefke.htm
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 368'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 380'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-epomg-3
       - lindahl-1955-naestved-witten-krumstav
+    year_note:
+      de: "Die Datierung ist aus den Datierungen der Quellen zusammengestellt.\n[b]Lindahl 1955 (NNÅ 1955, S. 77)[/b]: [i]«Witten fra Næstved (1397—ca. 1405)»[/i] (dt.: «Witten aus Næstved (1397 – ca. 1405)»).\n\
+        [b]Stefke 1995[/b]: [i]«Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i]; 1422/23 wurden dort
+        nur Kupfersterlinge geprägt.\n[b]Märcher 2018 (Denar til daler, Kap. 6, S. 368)[/b]: die Münzen von Ribe waren die einzigen im Reich [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i]
+        (dt.: «vor ca. 1403, als die Ausmüntzung in Næstved begann»); Hvide wurden nur in Næstved geprägt; nach [b]S. 380[/b]: [i]«der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere
+        end omkring 1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i Næstved til fordel for det i Lund»[/i] (dt.: «es scheint keine unmittelbaren Anzeichen zu geben,
+        daß die Lunder Münzstätte früher als um 1412–1413 öffnete. Vermutlich handelte es sich um eine ungefähr gleichzeitige Schließung der Münzstätte in Næstved zugunsten derjenigen in Lund»).\nDaraus
+        läßt sich der Zeitraum 1403–1413 ableiten: der Beginn nach Stefke und Märcher, das Ende mit der Schließung der Münzstätte Næstved."
+      en: "The dating is compiled from the datings of the sources.\n[b]Lindahl 1955 (NNÅ 1955, p. 77)[/b]: [i]«Witten fra Næstved (1397—ca. 1405)»[/i] (transl.: «Witten from Næstved (1397 – c. 1405)»).\n\
+        [b]Stefke 1995[/b]: [i]«Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i] (transl.: «On the whole
+        I consider it most probable that in fifteenth-century Næstved there was a mint only twice: 1403–1412/13 and 1422/23»); in 1422/23 only copper sterlings were struck there.\n[b]Märcher 2018 (Denar
+        til daler, ch. 6, p. 368)[/b]: the Ribe coins were the only ones in the realm [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i] (transl.: «before c. 1403, when coinage began in Næstved»);
+        hvide were struck only in Næstved; according to [b]p. 380[/b]: [i]«der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring 1412-1413. Formentlig var der tale om en
+        nogenlunde samtidig lukning af møntstedet i Næstved til fordel for det i Lund»[/i] (transl.: «there seems to be no immediate sign that the Lund mint opened earlier than around 1412–1413. Presumably
+        the Næstved mint was closed at roughly the same time in favour of the one in Lund»).\nFrom these the period 1403–1413 can be derived: the start after Stefke and Märcher, the end with the closing
+        of the Næstved mint."
+      uk: "Датування зведене з датувань джерел.\n[b]Lindahl 1955 (NNÅ 1955, с. 77)[/b]: [i]«Witten fra Næstved (1397—ca. 1405)»[/i] (перекл.: «витен з Næstved (1397 — бл. 1405)»).\n[b]Stefke 1995[/b]: [i]«Insgesamt
+        halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i] (перекл.: «Загалом я вважаю найімовірнішим, що в Næstved
+        у XV ст. монетний двір існував лише двічі: 1403–1412/13 і 1422/23»); у 1422/23 там карбували тільки мідні стерлінги.\n[b]Märcher 2018 (Denar til daler, розд. 6, с. 368)[/b]: монети Ribe були єдиними
+        в королівстві [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i] (перекл.: «до бл. 1403, коли почалося карбування в Næstved»); гвіди карбували лише в Næstved; за [b]с. 380[/b]: [i]«der
+        synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring 1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i Næstved til fordel for det
+        i Lund»[/i] (перекл.: «немає явних ознак, що монетний двір у Lund відкрився раніше ніж близько 1412–1413. Імовірно, йшлося про приблизно одночасне закриття монетного двору в Næstved на користь двору
+        в Lund»).\nЗвідси можна вивести період 1403–1413: початок за Stefke і Märcher, кінець — закриття монетного двору в Næstved."
+      da: "Dateringen er sammenstillet af kildernes dateringer.\n[b]Lindahl 1955 (NNÅ 1955, s. 77)[/b]: [i]«Witten fra Næstved (1397—ca. 1405)»[/i].\n[b]Stefke 1995[/b]: [i]«Insgesamt halte ich es für höchstwahrscheinlich,
+        daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i] (overs.: «Alt i alt anser jeg det for højst sandsynligt, at der i 1400-tallets Næstved kun to
+        gange var et møntsted: 1403–1412/13 og 1422/23»); i 1422/23 blev der kun slået kobbersterlinge dér.\n[b]Märcher 2018 (Denar til daler, kap. 6, s. 368)[/b]: Ribes mønter var de eneste i riget [i]«før
+        ca. 1403, hvor udmøntningerne i Næstved startede»[/i]; hvide blev kun slået i Næstved; efter [b]s. 380[/b]: [i]«der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring
+        1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i Næstved til fordel for det i Lund»[/i].\nHeraf kan perioden 1403–1413 udledes: begyndelsen efter Stefke og Märcher,
+        slutningen med lukningen af møntstedet i Næstved."
   - id: c-2538a267
     class_id: c-2538a267
     label: unified-dk-galster-f1g-257
@@ -106929,12 +107113,12 @@ coins:
     phase: numista
     kind: scheide
     nominal: ½ Penning
-    year_first: 1400
-    year_last: 1420
+    year_first: 1403
+    year_last: 1413
     year_ranges:
-      -   - 1400
-          - 1420
-    year_label: 1400-1420
+      -   - 1403
+          - 1413
+    year_label: 1403-1413
     ruler: Erik VII
     mint: Næstved
     catalog:
@@ -106970,6 +107154,50 @@ coins:
         source: numista
     uncertainty:
       year:
+        - kind: inferred
+          how: compiled
+          source: Lindahl, Danmarks mønter 1377–1448 (Nordisk Numismatisk Årsskrift 1955), s. 79
+          as_printed: Hulpenning fra Næstved og Lund? (efter ca. 1405, før 1424)
+          value: 1403-1413
+          translation:
+            de: Hohlpfennig aus Næstved und Lund? (nach ca. 1405, vor 1424)
+            en: Hollow penny from Næstved and Lund? (after c. 1405, before 1424)
+            uk: порожнистий пфеніг з Næstved і Lund? (після бл. 1405, до 1424)
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: Stefke, Der Beginn der Sterling-Prägung in Lund und das Ende der Münzstätte Næstved (Studia Numismatica, Tallinn 1995), cit. danskmoent.dk
+          as_printed: 'Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23'
+          value: 1403-1413
+          translation:
+            de: 'Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23'
+            en: 'On the whole I consider it most probable that in fifteenth-century Næstved there was a mint only twice: 1403–1412/13 and 1422/23'
+            uk: 'Загалом я вважаю найімовірнішим, що в Næstved у XV ст. монетний двір існував лише двічі: 1403–1412/13 і 1422/23'
+            da: 'Alt i alt anser jeg det for højst sandsynligt, at der i 1400-tallets Næstved kun to gange var et møntsted: 1403–1412/13 og 1422/23'
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 368'
+          as_printed: nogle meget sjældne halvpenninge (en skærv, kun i Næstved) og hvide (kun i Næstved)
+          value: 1403-1413
+          translation:
+            de: einige sehr seltene Halbpfennige (ein Skærv, nur in Næstved) und Hvide (nur in Næstved)
+            en: some very rare half pennies (a skærv, only in Næstved) and hvide (only in Næstved)
+            uk: кілька дуже рідкісних півпфенігів (скерв, лише в Næstved) і гвіди (лише в Næstved)
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 380'
+          as_printed: der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring 1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i 
+            Næstved til fordel for det i Lund
+          value: 1403-1413
+          translation:
+            de: es scheint keine unmittelbaren Anzeichen zu geben, daß die Lunder Münzstätte früher als um 1412–1413 öffnete. Vermutlich handelte es sich um eine ungefähr gleichzeitige Schließung der 
+              Münzstätte in Næstved zugunsten derjenigen in Lund
+            en: there seems to be no immediate sign that the Lund mint opened earlier than around 1412–1413. Presumably the Næstved mint was closed at roughly the same time in favour of the one in 
+              Lund
+            uk: немає явних ознак, що монетний двір у Lund відкрився раніше ніж близько 1412–1413. Імовірно, йшлося про приблизно одночасне закриття монетного двору в Næstved на користь двору в Lund
+          seed: attribution
         - kind: hedged
           how: circa
           source: galster
@@ -107009,6 +107237,18 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 79; FL 33a
+      - type: literature
+        ref: Lindahl, Danmarks mønter 1377–1448 (Nordisk Numismatisk Årsskrift 1955), s. 79
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+      - type: literature
+        ref: Stefke, Der Beginn der Sterling-Prägung in Lund und das Ende der Münzstätte Næstved (Studia Numismatica, Tallinn 1995), cit. danskmoent.dk
+        url: https://www.danskmoent.dk/artikler/stefke.htm
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 368'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 380'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
     note:
       de: Skærv
       en: Skærv
@@ -107018,6 +107258,29 @@ coins:
       - dk-galster-epomg-6
       - dk-numista-143452
       - lindahl-1955-halvpenning
+    year_note:
+      de: "Die Datierung ist aus den Datierungen der Quellen zusammengestellt.\n[b]Lindahl 1955 (NNÅ 1955, S. 79)[/b] führt Hohlpfennig und Halbpfennig unter einer Überschrift: [i]«Hulpenning fra Næstved
+        og Lund? (efter ca. 1405, før 1424)»[/i] (dt.: «Hohlpfennig aus Næstved und Lund? (nach ca. 1405, vor 1424)»).\n[b]Stefke 1995[/b]: [i]«Insgesamt halte ich es für höchstwahrscheinlich, daß es im
+        Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i].\n[b]Märcher 2018 (Denar til daler, Kap. 6, S. 368)[/b]: [i]«nogle meget sjældne halvpenninge (en skærv,
+        kun i Næstved) og hvide (kun i Næstved)»[/i] (dt.: «einige sehr seltene Halbpfennige (ein Skærv, nur in Næstved) und Hvide (nur in Næstved)»); nach [b]S. 380[/b] wurde die Münzstätte Næstved geschlossen,
+        als um 1412–1413 die Münzstätte Lund eröffnet wurde.\nDaraus läßt sich der Zeitraum 1403–1413 ableiten: der Skærv ist nur aus Næstved bekannt."
+      en: "The dating is compiled from the datings of the sources.\n[b]Lindahl 1955 (NNÅ 1955, p. 79)[/b] lists the hollow penny and the half penny under one heading: [i]«Hulpenning fra Næstved og Lund?
+        (efter ca. 1405, før 1424)»[/i] (transl.: «Hollow penny from Næstved and Lund? (after c. 1405, before 1424)»).\n[b]Stefke 1995[/b]: [i]«Insgesamt halte ich es für höchstwahrscheinlich, daß es im
+        Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i] (transl.: «On the whole I consider it most probable that in fifteenth-century Næstved there was a mint
+        only twice: 1403–1412/13 and 1422/23»).\n[b]Märcher 2018 (Denar til daler, ch. 6, p. 368)[/b]: [i]«nogle meget sjældne halvpenninge (en skærv, kun i Næstved) og hvide (kun i Næstved)»[/i] (transl.:
+        «some very rare half pennies (a skærv, only in Næstved) and hvide (only in Næstved)»); according to [b]p. 380[/b] the Næstved mint was closed when the Lund mint opened around 1412–1413.\nFrom these
+        the period 1403–1413 can be derived: the skærv is known only from Næstved."
+      uk: "Датування зведене з датувань джерел.\n[b]Lindahl 1955 (NNÅ 1955, с. 79)[/b] подає порожнистий пфеніг і півпфеніг під одним заголовком: [i]«Hulpenning fra Næstved og Lund? (efter ca. 1405, før
+        1424)»[/i] (перекл.: «порожнистий пфеніг з Næstved і Lund? (після бл. 1405, до 1424)»).\n[b]Stefke 1995[/b]: [i]«Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur
+        zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i] (перекл.: «Загалом я вважаю найімовірнішим, що в Næstved у XV ст. монетний двір існував лише двічі: 1403–1412/13 і 1422/23»).\n\
+        [b]Märcher 2018 (Denar til daler, розд. 6, с. 368)[/b]: [i]«nogle meget sjældne halvpenninge (en skærv, kun i Næstved) og hvide (kun i Næstved)»[/i] (перекл.: «кілька дуже рідкісних півпфенігів
+        (скерв, лише в Næstved) і гвіди (лише в Næstved)»); за [b]с. 380[/b], двір у Næstved закрили, коли близько 1412–1413 відкрився двір у Lund.\nЗвідси можна вивести період 1403–1413: скерв відомий
+        лише з Næstved."
+      da: "Dateringen er sammenstillet af kildernes dateringer.\n[b]Lindahl 1955 (NNÅ 1955, s. 79)[/b] fører hulpenning og halvpenning under én overskrift: [i]«Hulpenning fra Næstved og Lund? (efter ca.
+        1405, før 1424)»[/i].\n[b]Stefke 1995[/b]: [i]«Insgesamt halte ich es für höchstwahrscheinlich, daß es im Næstved des 15. Jh. nur zweimal eine Münzstätte gegeben hat: 1403-1412/13 und 1422/23»[/i]
+        (overs.: «Alt i alt anser jeg det for højst sandsynligt, at der i 1400-tallets Næstved kun to gange var et møntsted: 1403–1412/13 og 1422/23»).\n[b]Märcher 2018 (Denar til daler, kap. 6, s. 368)[/b]:
+        [i]«nogle meget sjældne halvpenninge (en skærv, kun i Næstved) og hvide (kun i Næstved)»[/i]; efter [b]s. 380[/b] blev møntstedet i Næstved lukket, da møntstedet i Lund åbnede omkring 1412–1413.\n\
+        Heraf kan perioden 1403–1413 udledes: skærven kendes kun fra Næstved."
   - id: c-5be595df
     class_id: c-5be595df
     label: unified-dk-numista-143575
@@ -111578,12 +111841,12 @@ coins:
     phase: numista
     kind: scheide
     nominal: 1 Penning
-    year_first: 1400
-    year_last: 1420
+    year_first: 1403
+    year_last: 1424
     year_ranges:
-      -   - 1400
-          - 1420
-    year_label: 1400-1420
+      -   - 1403
+          - 1424
+    year_label: 1403-1424
     ruler: Erik VII
     mint:
       - Lund
@@ -111720,6 +111983,47 @@ coins:
         source: numista
     uncertainty:
       year:
+        - kind: inferred
+          how: compiled
+          source: danskmoent.dk (Galster 5)
+          as_printed: Hulpenning, Næstved og Lund, ca. 1400-1420
+          value: 1403-1424
+          translation:
+            de: Hohlpfennig, Næstved und Lund, ca. 1400–1420
+            en: Hollow penny, Næstved and Lund, c. 1400–1420
+            uk: порожнистий пфеніг, Næstved і Lund, бл. 1400–1420
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: Lindahl, Danmarks mønter 1377–1448 (Nordisk Numismatisk Årsskrift 1955), s. 79
+          as_printed: Hulpenning fra Næstved og Lund? (efter ca. 1405, før 1424)
+          value: 1403-1424
+          translation:
+            de: Hohlpfennig aus Næstved und Lund? (nach ca. 1405, vor 1424)
+            en: Hollow penny from Næstved and Lund? (after c. 1405, before 1424)
+            uk: порожнистий пфеніг з Næstved і Lund? (після бл. 1405, до 1424)
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 368'
+          as_printed: før ca. 1403, hvor udmøntningerne i Næstved startede
+          value: 1403-1424
+          translation:
+            de: vor ca. 1403, als die Ausmüntzung in Næstved begann
+            en: before c. 1403, when coinage began in Næstved
+            uk: до бл. 1403, коли почалося карбування в Næstved
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: Stefke, Der Beginn der Sterling-Prägung in Lund und das Ende der Münzstätte Næstved (Studia Numismatica, Tallinn 1995), cit. danskmoent.dk
+          as_printed: Eine Variantengruppe der seit Ende 1424 geprägten "Lebarden"-Hohlpfennige
+          value: 1403-1424
+          translation:
+            de: Eine Variantengruppe der seit Ende 1424 geprägten "Lebarden"-Hohlpfennige
+            en: A variant group of the «Lebard» hollow pennies struck from the end of 1424
+            uk: Група варіантів «лебардових» порожнистих пфенігів, що їх карбували з кінця 1424
+            da: En variantgruppe af de «lebard»-hulpenninge, der blev præget fra slutningen af 1424
+          seed: attribution
         - kind: hedged
           how: circa
           source: galster
@@ -111799,6 +112103,18 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 37, Appendix (XRF)
+      - type: literature
+        ref: danskmoent.dk (Galster 5)
+        url: https://www.danskmoent.dk/epomg5.htm
+      - type: literature
+        ref: Lindahl, Danmarks mønter 1377–1448 (Nordisk Numismatisk Årsskrift 1955), s. 79
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 368'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
+      - type: literature
+        ref: Stefke, Der Beginn der Sterling-Prägung in Lund und das Ende der Münzstätte Næstved (Studia Numismatica, Tallinn 1995), cit. danskmoent.dk
+        url: https://www.danskmoent.dk/artikler/stefke.htm
     verification_note:
       de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
         stammen aus dem Anhang der Veröffentlichung.
@@ -111814,6 +112130,26 @@ coins:
       - dk-numista-475742
       - lindahl-1955-hulpenning
       - metallanalyser-2016-1-g5-nastved-lund-penning
+    year_note:
+      de: "Die Datierung ist aus den Datierungen der Quellen zusammengestellt.\n[b]danskmoent.dk (Galster 5)[/b]: [i]«Hulpenning, Næstved og Lund, ca. 1400-1420»[/i] (dt.: «Hohlpfennig, Næstved und Lund,
+        ca. 1400–1420»).\n[b]Lindahl 1955 (NNÅ 1955, S. 79)[/b]: [i]«Hulpenning fra Næstved og Lund? (efter ca. 1405, før 1424)»[/i] (dt.: «Hohlpfennig aus Næstved und Lund? (nach ca. 1405, vor 1424)»).\n\
+        [b]Märcher 2018 (Denar til daler, Kap. 6, S. 368)[/b]: die Münzen von Ribe waren die einzigen im Reich [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i] (dt.: «vor ca. 1403, als die
+        Ausmüntzung in Næstved begann»).\n[b]Stefke 1995[/b]: [i]«Eine Variantengruppe der seit Ende 1424 geprägten \"Lebarden\"-Hohlpfennige»[/i].\nDaraus läßt sich der Zeitraum 1403–1424 ableiten: der
+        Beginn nach Märcher, das Ende nach Lindahl."
+      en: "The dating is compiled from the datings of the sources.\n[b]danskmoent.dk (Galster 5)[/b]: [i]«Hulpenning, Næstved og Lund, ca. 1400-1420»[/i] (transl.: «Hollow penny, Næstved and Lund, c. 1400–1420»).\n\
+        [b]Lindahl 1955 (NNÅ 1955, p. 79)[/b]: [i]«Hulpenning fra Næstved og Lund? (efter ca. 1405, før 1424)»[/i] (transl.: «Hollow penny from Næstved and Lund? (after c. 1405, before 1424)»).\n[b]Märcher
+        2018 (Denar til daler, ch. 6, p. 368)[/b]: the Ribe coins were the only ones in the realm [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i] (transl.: «before c. 1403, when coinage began
+        in Næstved»).\n[b]Stefke 1995[/b]: [i]«Eine Variantengruppe der seit Ende 1424 geprägten \"Lebarden\"-Hohlpfennige»[/i] (transl.: «A variant group of the «Lebard» hollow pennies struck from the
+        end of 1424»).\nFrom these the period 1403–1424 can be derived: the start after Märcher, the end after Lindahl."
+      uk: "Датування зведене з датувань джерел.\n[b]danskmoent.dk (Galster 5)[/b]: [i]«Hulpenning, Næstved og Lund, ca. 1400-1420»[/i] (перекл.: «порожнистий пфеніг, Næstved і Lund, бл. 1400–1420»).\n[b]Lindahl
+        1955 (NNÅ 1955, с. 79)[/b]: [i]«Hulpenning fra Næstved og Lund? (efter ca. 1405, før 1424)»[/i] (перекл.: «порожнистий пфеніг з Næstved і Lund? (після бл. 1405, до 1424)»).\n[b]Märcher 2018 (Denar
+        til daler, розд. 6, с. 368)[/b]: монети Ribe були єдиними в королівстві [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i] (перекл.: «до бл. 1403, коли почалося карбування в Næstved»).\n\
+        [b]Stefke 1995[/b]: [i]«Eine Variantengruppe der seit Ende 1424 geprägten \"Lebarden\"-Hohlpfennige»[/i] (перекл.: «Група варіантів «лебардових» порожнистих пфенігів, що їх карбували з кінця 1424»).\n\
+        Звідси можна вивести період 1403–1424: початок за Märcher, кінець за Lindahl."
+      da: "Dateringen er sammenstillet af kildernes dateringer.\n[b]danskmoent.dk (Galster 5)[/b]: [i]«Hulpenning, Næstved og Lund, ca. 1400-1420»[/i].\n[b]Lindahl 1955 (NNÅ 1955, s. 79)[/b]: [i]«Hulpenning
+        fra Næstved og Lund? (efter ca. 1405, før 1424)»[/i].\n[b]Märcher 2018 (Denar til daler, kap. 6, s. 368)[/b]: Ribes mønter var de eneste i riget [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i].\n\
+        [b]Stefke 1995[/b]: [i]«Eine Variantengruppe der seit Ende 1424 geprägten \"Lebarden\"-Hohlpfennige»[/i] (overs.: «En variantgruppe af de «lebard»-hulpenninge, der blev præget fra slutningen af
+        1424»).\nHeraf kan perioden 1403–1424 udledes: begyndelsen efter Märcher, slutningen efter Lindahl."
   - id: c-8f3b9eaf
     class_id: c-8f3b9eaf
     label: unified-dk-numista-476049
@@ -113394,12 +113730,12 @@ coins:
     phase: numista
     kind: scheide
     nominal: 1 Sterling
-    year_first: 1413
+    year_first: 1412
     year_last: 1420
     year_ranges:
-      -   - 1413
+      -   - 1412
           - 1420
-    year_label: 1413-1420
+    year_label: 1412-1420
     ruler: Erik VII
     inscription_obv: ERICVS REX D S N
     inscription_rev: MONETA LVNDENSI
@@ -113500,6 +113836,50 @@ coins:
         source: numista
     uncertainty:
       year:
+        - kind: inferred
+          how: compiled
+          source: danskmoent.dk (Galster 9)
+          as_printed: Sterling (3 penning), Lund, ca. 1413-1420
+          value: 1412-1420
+          translation:
+            de: Sterling (3 Pfennig), Lund, ca. 1413–1420
+            en: Sterling (3 penning), Lund, c. 1413–1420
+            uk: стерлінг (3 пфеніги), Lund, бл. 1413–1420
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: Stefke, Der Beginn der Sterling-Prägung in Lund und das Ende der Münzstätte Næstved (Studia Numismatica, Tallinn 1995), cit. danskmoent.dk
+          as_printed: Was den Beginn der Münzproduktion in Lund angeht, wird man am ehesten daran denken wollen, daß er nicht vor Ende 1412 stattfand
+          value: 1412-1420
+          translation:
+            de: Was den Beginn der Münzproduktion in Lund angeht, wird man am ehesten daran denken wollen, daß er nicht vor Ende 1412 stattfand
+            en: As for the beginning of coin production in Lund, one will most readily think that it did not take place before the end of 1412
+            uk: Щодо початку карбування в Lund, найімовірніше слід вважати, що воно почалося не раніше кінця 1412
+            da: Hvad begyndelsen af møntproduktionen i Lund angår, vil man helst tænke, at den ikke fandt sted før slutningen af 1412
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 380'
+          as_printed: der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring 1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i 
+            Næstved til fordel for det i Lund
+          value: 1412-1420
+          translation:
+            de: es scheint keine unmittelbaren Anzeichen zu geben, daß die Lunder Münzstätte früher als um 1412–1413 öffnete. Vermutlich handelte es sich um eine ungefähr gleichzeitige Schließung der 
+              Münzstätte in Næstved zugunsten derjenigen in Lund
+            en: there seems to be no immediate sign that the Lund mint opened earlier than around 1412–1413. Presumably the Næstved mint was closed at roughly the same time in favour of the one in 
+              Lund
+            uk: немає явних ознак, що монетний двір у Lund відкрився раніше ніж близько 1412–1413. Імовірно, йшлося про приблизно одночасне закриття монетного двору в Næstved на користь двору в Lund
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 379'
+          as_printed: Sterlingen blev som antydet den vigtigste danskproducerede mønt fra ca. 1403-1420
+          value: 1412-1420
+          translation:
+            de: Der Sterling wurde, wie angedeutet, die wichtigste in Dänemark hergestellte Münze von ca. 1403–1420
+            en: As indicated, the sterling became the most important Danish-produced coin from c. 1403–1420
+            uk: Як зазначено, стерлінг став найважливішою монетою данського виробництва бл. 1403–1420
+          seed: attribution
         - kind: hedged
           how: circa
           source: galster
@@ -113581,6 +113961,18 @@ coins:
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22, Appendix (XRF); Ros
+      - type: literature
+        ref: danskmoent.dk (Galster 9)
+        url: https://www.danskmoent.dk/epomg9.htm
+      - type: literature
+        ref: Stefke, Der Beginn der Sterling-Prägung in Lund und das Ende der Münzstätte Næstved (Studia Numismatica, Tallinn 1995), cit. danskmoent.dk
+        url: https://www.danskmoent.dk/artikler/stefke.htm
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 380'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
+      - type: literature
+        ref: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 379'
+        url: https://www.nationalbanken.dk/media/5nznzynp/denar-til-daler-danmarks-moenthistorie-indtil-1550-danmarks-nationalbank.pdf
     note:
       de: Engelsk
       en: Engelsk
@@ -113602,6 +113994,33 @@ coins:
       - ikmk-18206588
       - lindahl-1955-lund-sterling
       - metallanalyser-2016-1-g9-lund-sterling
+    year_note:
+      de: "Die Datierung ist aus den Datierungen der Quellen zusammengestellt.\n[b]danskmoent.dk (Galster 9)[/b]: [i]«Sterling (3 penning), Lund, ca. 1413-1420»[/i] (dt.: «Sterling (3 Pfennig), Lund, ca.
+        1413–1420»).\n[b]Stefke 1995[/b]: [i]«Was den Beginn der Münzproduktion in Lund angeht, wird man am ehesten daran denken wollen, daß er nicht vor Ende 1412 stattfand»[/i].\n[b]Märcher 2018 (Denar
+        til daler, Kap. 6, S. 380)[/b]: [i]«der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring 1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af
+        møntstedet i Næstved til fordel for det i Lund»[/i] (dt.: «es scheint keine unmittelbaren Anzeichen zu geben, daß die Lunder Münzstätte früher als um 1412–1413 öffnete. Vermutlich handelte es sich
+        um eine ungefähr gleichzeitige Schließung der Münzstätte in Næstved zugunsten derjenigen in Lund»); nach [b]S. 379[/b]: [i]«Sterlingen blev som antydet den vigtigste danskproducerede mønt fra ca.
+        1403-1420»[/i] (dt.: «Der Sterling wurde, wie angedeutet, die wichtigste in Dänemark hergestellte Münze von ca. 1403–1420»).\nDaraus läßt sich der Zeitraum 1412–1420 ableiten: der Beginn nach Stefke
+        und Märcher, das Ende nach Märcher und danskmoent.dk."
+      en: "The dating is compiled from the datings of the sources.\n[b]danskmoent.dk (Galster 9)[/b]: [i]«Sterling (3 penning), Lund, ca. 1413-1420»[/i] (transl.: «Sterling (3 penning), Lund, c. 1413–1420»).\n\
+        [b]Stefke 1995[/b]: [i]«Was den Beginn der Münzproduktion in Lund angeht, wird man am ehesten daran denken wollen, daß er nicht vor Ende 1412 stattfand»[/i] (transl.: «As for the beginning of coin
+        production in Lund, one will most readily think that it did not take place before the end of 1412»).\n[b]Märcher 2018 (Denar til daler, ch. 6, p. 380)[/b]: [i]«der synes ikke umiddelbart at være
+        tegn på, at Lundemønten åbnede tidligere end omkring 1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i Næstved til fordel for det i Lund»[/i] (transl.: «there
+        seems to be no immediate sign that the Lund mint opened earlier than around 1412–1413. Presumably the Næstved mint was closed at roughly the same time in favour of the one in Lund»); according to
+        [b]p. 379[/b]: [i]«Sterlingen blev som antydet den vigtigste danskproducerede mønt fra ca. 1403-1420»[/i] (transl.: «As indicated, the sterling became the most important Danish-produced coin from
+        c. 1403–1420»).\nFrom these the period 1412–1420 can be derived: the start after Stefke and Märcher, the end after Märcher and danskmoent.dk."
+      uk: "Датування зведене з датувань джерел.\n[b]danskmoent.dk (Galster 9)[/b]: [i]«Sterling (3 penning), Lund, ca. 1413-1420»[/i] (перекл.: «стерлінг (3 пфеніги), Lund, бл. 1413–1420»).\n[b]Stefke 1995[/b]:
+        [i]«Was den Beginn der Münzproduktion in Lund angeht, wird man am ehesten daran denken wollen, daß er nicht vor Ende 1412 stattfand»[/i] (перекл.: «Щодо початку карбування в Lund, найімовірніше
+        слід вважати, що воно почалося не раніше кінця 1412»).\n[b]Märcher 2018 (Denar til daler, розд. 6, с. 380)[/b]: [i]«der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end
+        omkring 1412-1413. Formentlig var der tale om en nogenlunde samtidig lukning af møntstedet i Næstved til fordel for det i Lund»[/i] (перекл.: «немає явних ознак, що монетний двір у Lund відкрився
+        раніше ніж близько 1412–1413. Імовірно, йшлося про приблизно одночасне закриття монетного двору в Næstved на користь двору в Lund»); за [b]с. 379[/b]: [i]«Sterlingen blev som antydet den vigtigste
+        danskproducerede mønt fra ca. 1403-1420»[/i] (перекл.: «Як зазначено, стерлінг став найважливішою монетою данського виробництва бл. 1403–1420»).\nЗвідси можна вивести період 1412–1420: початок за
+        Stefke і Märcher, кінець за Märcher і danskmoent.dk."
+      da: "Dateringen er sammenstillet af kildernes dateringer.\n[b]danskmoent.dk (Galster 9)[/b]: [i]«Sterling (3 penning), Lund, ca. 1413-1420»[/i].\n[b]Stefke 1995[/b]: [i]«Was den Beginn der Münzproduktion
+        in Lund angeht, wird man am ehesten daran denken wollen, daß er nicht vor Ende 1412 stattfand»[/i] (overs.: «Hvad begyndelsen af møntproduktionen i Lund angår, vil man helst tænke, at den ikke fandt
+        sted før slutningen af 1412»).\n[b]Märcher 2018 (Denar til daler, kap. 6, s. 380)[/b]: [i]«der synes ikke umiddelbart at være tegn på, at Lundemønten åbnede tidligere end omkring 1412-1413. Formentlig
+        var der tale om en nogenlunde samtidig lukning af møntstedet i Næstved til fordel for det i Lund»[/i]; efter [b]s. 379[/b]: [i]«Sterlingen blev som antydet den vigtigste danskproducerede mønt fra
+        ca. 1403-1420»[/i].\nHeraf kan perioden 1412–1420 udledes: begyndelsen efter Stefke og Märcher, slutningen efter Märcher og danskmoent.dk."
   - id: c-31bb88e8
     class_id: c-31bb88e8
     label: unified-dk-numista-84844

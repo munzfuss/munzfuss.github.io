@@ -198,24 +198,26 @@ _RULER_NAME_VOLUME = {"Margrethe I": "m1g", "Erik VII": "epomg",
 # only the undated ones (Galster 88, 89, 90) do.
 _GREVENS_FEJDE_WINDOW = (1534, 1536)
 
-# A coin page whose printed year the other datings contradict (curator
-# 2026-10-26: marked «(*)», suspect, not «(!)»). The printed year stays as a
-# year_mark; the seed carries the window the
+# A coin page whose printed year the sources show to be impossible (curator
+# 2026-10-26 marked it «(*)», suspect; 2026-11-02 made it «(!)», erroneous).
+# The printed year stays as a year_mark; the seed carries the window the
 # curator set from the other datings. Erik VII's Næstved hvid, Galster 2 and 3:
 # epomg2.htm / epomg3.htm print «Hvid, ca. 1424, Næstved», while erikpomm.htm
-# and hvid.htm date both «ca. 1400» (Galster 1972) and Bruun Part III «1400»;
+# and hvid.htm date both «ca. 1400» (Galster 1972) and Bruun Part III «1400».
 # Stefke 1995 (artikler/stefke.htm) has the Næstved mint only «1403-1412/13
-# und 1422/23», Lindahl 1955 n. 8 ties the younger hvid hypothetically to
-# 1411. Window: Erik's accession 1396 to the end of the Næstved mint 1413.
+# und 1422/23» (1422/23 = copper sterlings); Märcher 2018 (Denar til daler,
+# p. 368) has the hvide «kun i Næstved» and Næstved starting «ca. 1403», and
+# p. 380 the Næstved mint closing as Lund opened «omkring 1412-1413».
+# Window 1403-1413, as data/v2/attributions/danish_realm.yml.
 _NAESTVED_HVID_REASON = {
-    "de": "Die Münzseite bei danskmoent.dk gibt «ca. 1424». Dieselbe Website datiert den Typ in ihren Übersichten «ca. 1400» (nach Galster 1972), ebenso der Katalog Bruun; nach Stefke 1995 bestand die Münzstätte Næstved nur 1403–1412/13 und 1422/23.",
-    "en": "The coin page at danskmoent.dk gives «ca. 1424». The same website dates the type «ca. 1400» in its overviews (after Galster 1972), as does the Bruun catalogue; according to Stefke 1995 the Næstved mint existed only in 1403–1412/13 and 1422/23.",
-    "uk": "Сторінка монети на danskmoent.dk подає «ca. 1424». Той самий сайт в оглядах датує тип «ca. 1400» (за Galster 1972), так само каталог Bruun; за Stefke 1995, монетний двір у Næstved існував лише в 1403–1412/13 і 1422/23 рр.",
-    "da": "Møntsiden på danskmoent.dk angiver «ca. 1424». Samme websted daterer typen «ca. 1400» i sine oversigter (efter Galster 1972), ligesom Bruun-kataloget; ifølge Stefke 1995 fandtes Næstved mønt kun 1403–1412/13 og 1422/23.",
+    "de": "Das Jahr widerspricht der Tätigkeit der Münzstätte.\nDie Münzseite bei [b]danskmoent.dk[/b] gibt [i]«ca. 1424»[/i], die Übersichten derselben Website [i]«ca. 1400»[/i], ebenso der Katalog [b]Bruun[/b].\n[b]Stefke 1995[/b]: die Münzstätte Næstved bestand nur [i]«1403-1412/13 und 1422/23»[/i]; 1422/23 wurden dort nur Kupfersterlinge geprägt.\n[b]Märcher 2018 (Denar til daler, Kap. 6, S. 368)[/b]: Hvide wurden [i]«kun i Næstved»[/i] (dt.: «nur in Næstved») geprägt; nach [b]S. 380[/b] wurde die Münzstätte Næstved geschlossen, als um 1412–1413 die Münzstätte Lund eröffnet wurde.",
+    "en": "The year contradicts the period in which the mint worked.\nThe coin page at [b]danskmoent.dk[/b] gives [i]«ca. 1424»[/i], the overviews of the same website [i]«ca. 1400»[/i], as does the [b]Bruun[/b] catalogue.\n[b]Stefke 1995[/b]: the Næstved mint existed only [i]«1403-1412/13 und 1422/23»[/i] (transl.: «1403–1412/13 and 1422/23»); in 1422/23 only copper sterlings were struck there.\n[b]Märcher 2018 (Denar til daler, ch. 6, p. 368)[/b]: hvide were struck [i]«kun i Næstved»[/i] (transl.: «only in Næstved»); according to [b]p. 380[/b] the Næstved mint was closed when the Lund mint opened around 1412–1413.",
+    "uk": "Рік суперечить часу роботи монетного двору.\nСторінка монети на [b]danskmoent.dk[/b] подає [i]«ca. 1424»[/i], огляди того самого сайту — [i]«ca. 1400»[/i], так само каталог [b]Bruun[/b].\n[b]Stefke 1995[/b]: монетний двір у Næstved існував лише [i]«1403-1412/13 und 1422/23»[/i] (перекл.: «1403–1412/13 і 1422/23»); у 1422/23 там карбували тільки мідні стерлінги.\n[b]Märcher 2018 (Denar til daler, розд. 6, с. 368)[/b]: гвіди карбували [i]«kun i Næstved»[/i] (перекл.: «лише в Næstved»); за [b]с. 380[/b], двір у Næstved закрили, коли близько 1412–1413 відкрився двір у Lund.",
+    "da": "Året strider mod den tid, møntstedet var i drift.\nMøntsiden på [b]danskmoent.dk[/b] angiver [i]«ca. 1424»[/i], samme websteds oversigter [i]«ca. 1400»[/i], ligesom [b]Bruun[/b]-kataloget.\n[b]Stefke 1995[/b]: Næstved mønt fandtes kun [i]«1403-1412/13 und 1422/23»[/i] (overs.: «1403–1412/13 og 1422/23»); i 1422/23 blev der kun slået kobbersterlinge dér.\n[b]Märcher 2018 (Denar til daler, kap. 6, s. 368)[/b]: hvide blev slået [i]«kun i Næstved»[/i]; efter [b]s. 380[/b] blev møntstedet i Næstved lukket, da møntstedet i Lund åbnede omkring 1412–1413.",
 }
 _PAGE_YEAR_MARKS = {
-    "epomg2.htm": {"years": (1396, 1413), "printed": "1424", "kind": "suspect", "reason": _NAESTVED_HVID_REASON},
-    "epomg3.htm": {"years": (1396, 1413), "printed": "1424", "kind": "suspect", "reason": _NAESTVED_HVID_REASON},
+    "epomg2.htm": {"years": (1403, 1413), "printed": "1424", "kind": "erroneous", "reason": _NAESTVED_HVID_REASON},
+    "epomg3.htm": {"years": (1403, 1413), "printed": "1424", "kind": "erroneous", "reason": _NAESTVED_HVID_REASON},
 }
 
 
