@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 5962 active, 63 retired.
+# 5961 active, 64 retired.
 
 id: danish_realm
 classes:
@@ -48962,9 +48962,10 @@ classes:
   - id: c-b55315e2
     status: active
     created: '2026-10-26'
-    label: unified-dk-galster-epomg-6
+    label: unified-dk-numista-143452
     members:
       - dk-galster-epomg-6
+      - dk-numista-143452
       - lindahl-1955-halvpenning
   - id: c-b5557c34
     status: active
@@ -54910,13 +54911,6 @@ classes:
       - kmk-622127
       - kmk-622128
       - kmk-622129
-  - id: c-cc6867e5
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-143452
-    legacy_id: unified-dk-numista-143452
-    members:
-      - dk-numista-143452
   - id: c-cc6b8296
     status: active
     created: '2026-10-22'
@@ -68393,6 +68387,15 @@ classes:
     retired: '2026-10-27'
     members:
       - metallanalyser-2017-3-ll1-gotland
+  - id: c-cc6867e5
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-143452
+    legacy_id: unified-dk-numista-143452
+    merged_into: c-b55315e2
+    retired: '2026-11-02'
+    members:
+      - dk-numista-143452
   - id: c-cd2c0b3c
     status: retired
     created: '2026-10-25'

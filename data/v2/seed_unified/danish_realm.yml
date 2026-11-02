@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15222 per-source seed entries.
-# Output: 5962 unified entries (one per physical coin).
+# Output: 5961 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -13454,87 +13454,6 @@ coins:
     composed_of:
       - dk-galster-epomg-3
       - lindahl-1955-naestved-witten-krumstav
-  - id: c-b55315e2
-    class_id: c-b55315e2
-    label: unified-dk-galster-epomg-6
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Halvpenning
-    year_first: 1400
-    year_last: 1420
-    year_ranges:
-      -   - 1400
-          - 1420
-    year_label: 1400-1420
-    ruler: Erik VII
-    mint: Næstved
-    catalog:
-      galster: '6'
-      galster_volume: galster1972-erik7
-      others:
-        - Fritze Lindahl# 33a
-    metal: billon
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 0.12
-        source: Lindahl 1955 (NNÅ 1955), s. 79
-    weight_range_g:
-      - min: 0.14
-        max:
-        approx: true
-        source: danskmoent.dk halvpenn.htm
-        url: https://www.danskmoent.dk/gif/epomg6.gif
-    diameter_mm:
-      - value: 12.0
-        source: danskmoent.dk halvpenn.htm
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: 1400-1420
-          seed: dk-galster-epomg-6
-        - kind: hedged
-          how: after
-          source: lindahl
-          as_printed: efter ca. 1405, før 1424
-          value: 1405-1424
-          seed: lindahl-1955-halvpenning
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Halvpenning (skærv)
-          value: billon
-          seed: dk-galster-epomg-6
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '0.14'
-          seed: dk-galster-epomg-6
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pommgals.htm
-        ref: Galster 6 (epomg) — danskmoent.dk pommgals.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 79; FL 33a
-    note:
-      de: skærv
-      en: skærv
-      uk: skærv
-      da: skærv
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-6
-      - lindahl-1955-halvpenning
   - id: c-2538a267
     class_id: c-2538a267
     label: unified-dk-galster-f1g-257
@@ -107003,55 +106922,102 @@ coins:
       - dk-numista-143451
       - lindahl-1955-naestved-sterling
       - metallanalyser-2016-1-g4-nastved-sterling
-  - id: c-cc6867e5
-    class_id: c-cc6867e5
+  - id: c-b55315e2
+    class_id: c-b55315e2
     label: unified-dk-numista-143452
     fuss: seed_unsorted
     phase: numista
     kind: scheide
     nominal: ½ Penning
-    year_first: 1396
-    year_last: 1439
+    year_first: 1400
+    year_last: 1420
     year_ranges:
-      -   - 1396
-          - 1439
-    year_label: 1396-1439
-    _year_demoted: true
+      -   - 1400
+          - 1420
+    year_label: 1400-1420
     ruler: Erik VII
+    mint: Næstved
     catalog:
       numista: '143452'
       sieg: '2'
+      galster: '6'
+      galster_volume: galster1972-erik7
+      others:
+        - Fritze Lindahl# 33a
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
+    year_verified: false
     weight_rough_g:
+      - value: 0.12
+        source: Lindahl 1955 (NNÅ 1955), s. 79
       - value: 0.14
         source: numista
+    weight_range_g:
+      - min: 0.14
+        max:
+        approx: true
+        source: danskmoent.dk halvpenn.htm
+        url: https://www.danskmoent.dk/gif/epomg6.gif
     diameter_mm:
+      - value: 12.0
+        source: danskmoent.dk halvpenn.htm
       - value: 13.8
         source: numista
     uncertainty:
       year:
         - kind: hedged
+          how: circa
+          source: galster
+          value: 1400-1420
+          seed: dk-galster-epomg-6
+        - kind: hedged
           how: span
           source: numista
           value: 1396-1439
           seed: dk-numista-143452
+        - kind: hedged
+          how: after
+          source: lindahl
+          as_printed: efter ca. 1405, før 1424
+          value: 1405-1424
+          seed: lindahl-1955-halvpenning
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Halvpenning (skærv)
+          value: billon
+          seed: dk-galster-epomg-6
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '0.14'
+          seed: dk-galster-epomg-6
     sources:
+      - type: literature
+        url: https://www.danskmoent.dk/pommgals.htm
+        ref: Galster 6 (epomg) — danskmoent.dk pommgals.htm
       - type: literature
         url: https://en.numista.com/143452
         ref: Numista N#143452 — Skærv - Erik of Pommern - Denmark
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 79; FL 33a
     note:
       de: Skærv
       en: Skærv
       uk: Skærv
     issuing_entity: danish_realm
     composed_of:
+      - dk-galster-epomg-6
       - dk-numista-143452
+      - lindahl-1955-halvpenning
   - id: c-5be595df
     class_id: c-5be595df
     label: unified-dk-numista-143575

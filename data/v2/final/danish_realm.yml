@@ -107971,57 +107971,6 @@ coins:
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
-    nominal: 1 Skærv
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-cc6867e5
-    year_first: 1396
-    year_last: 1439
-    year_ranges:
-      -   - 1396
-          - 1439
-    year_label: 1396-1439
-    catalog:
-      numista: '143452'
-      sieg: '2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.14
-        source: numista
-    diameter_mm:
-      - value: 13.8
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/143452
-        ref: Numista N#143452 — Skærv - Erik of Pommern - Denmark
-    note:
-      de: Skærv
-      en: Skærv
-      uk: Skærv
-      da: Skærv
-    composed_of:
-      - c-cc6867e5
-    label: unified-dk-numista-143452
-    origin: promoted
-    year_is_reign_span: true
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1396-1439
-          seed: dk-numista-143452
-  - fuss: luebischer_muenzfuss
-    phase: '0'
-    kind: kurant
     nominal: 1 Hvid
     ruler: Christian I
     issuing_entity: danish_realm
@@ -286941,11 +286890,13 @@ coins:
     year_verified: false
     mint: Næstved
     catalog:
+      numista: '143452'
+      sieg: '2'
       galster: '6'
       galster_volume: galster1972-erik7
       others:
         - Fritze Lindahl# 33a
-    metal: billon
+    metal: silver
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: true
@@ -286959,10 +286910,15 @@ coins:
     diameter_mm:
       - value: 12.0
         source: danskmoent.dk halvpenn.htm
+      - value: 13.8
+        source: numista
     sources:
       - type: literature
         url: https://www.danskmoent.dk/pommgals.htm
         ref: Galster 6 (epomg) — danskmoent.dk pommgals.htm
+      - type: literature
+        url: https://en.numista.com/143452
+        ref: Numista N#143452 — Skærv - Erik of Pommern - Denmark
       - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 79; FL 33a
@@ -286975,10 +286931,12 @@ coins:
       - c-b55315e2
     label: unified-dk-galster-epomg-6
     origin: promoted
-    metal_verified: false
+    metal_verified: true
     weight_rough_g:
       - value: 0.12
         source: Lindahl 1955 (NNÅ 1955), s. 79
+      - value: 0.14
+        source: numista
     uncertainty:
       year:
         - kind: hedged
@@ -286986,6 +286944,11 @@ coins:
           source: galster
           value: 1400-1420
           seed: dk-galster-epomg-6
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1396-1439
+          seed: dk-numista-143452
         - kind: hedged
           how: after
           source: lindahl
@@ -287005,6 +286968,7 @@ coins:
           source: galster
           value: '0.14'
           seed: dk-galster-epomg-6
+    diameter_mm_verified: true
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: kurant
