@@ -800,7 +800,8 @@ def _catalogue_section(coin: dict) -> str | None:
     return None
 
 
-def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
+def _catalog_refs(coin: dict, entity_id: str | None = None, *,
+                  fresh: bool = False) -> dict[str, str]:
     """Return dict of {scope_key: ref_value} for every catalog ref.
     Keys encode scope so cross-volume / cross-ruler collisions don't
     false-match (per user reminder: KM-DK#1 ≠ KM-SH#1; Hede#1 of
@@ -820,7 +821,7 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         jensen_skjoldager/schive/skaare/friedberg/davenport) — verbatim
         field name (publication-stable scope, no ruler clash).
     """
-    if _CATALOG_REFS_MEMO_ENABLED:
+    if _CATALOG_REFS_MEMO_ENABLED and not fresh:
         _cached = _CATALOG_REFS_MEMO.get(id(coin))
         if _cached is not None:
             return _cached
@@ -1021,7 +1022,7 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         else:
             refs[key] = str(galster).strip()
 
-    if _CATALOG_REFS_MEMO_ENABLED:
+    if _CATALOG_REFS_MEMO_ENABLED and not fresh:
         _CATALOG_REFS_MEMO[id(coin)] = refs
     return refs
 
@@ -4812,7 +4813,9 @@ def validate_attributions_doc(doc: dict, path: str = "<attributions>") -> list[s
 def _attribution_matches(attr: dict, member_coins: list[dict], entity_id: str) -> bool:
     """Every catalogue register the attribution names is carried, with the
     same type-level number, by some member of the class."""
-    spec = _catalog_refs({"catalog": dict(attr["type"])}, entity_id)
+    # fresh: the spec dict is transient, so its id() may be one the memo
+    # already holds for a freed coin — a cached hit would be another coin's refs.
+    spec = _catalog_refs({"catalog": dict(attr["type"])}, entity_id, fresh=True)
     if not spec:
         return False
     member_refs = [_catalog_refs(m, entity_id) for m in member_coins]
