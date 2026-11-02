@@ -104,15 +104,15 @@
     inferred sits in «[ ]», the tooltip naming the basis. No entry: the generic
     «(?)». `br=False` for cells whose value is split into segments (weight,
     fineness, diameter): «(?)» with the entries' tooltip. -#}
-{%- macro ubr(u, side) -%}<span class="unc-br unc-inferred" data-tooltip="{{ u.tip }}">{{ side }}</span>{%- endmacro -%}
+{%- macro ubr(u, side) -%}<span class="unc-br unc-inferred" data-tooltip="{{ u.tip|replace('"', '&quot;') }}">{{ side }}</span>{%- endmacro -%}
 {%- macro uq(u, br=True, fallback=None) -%}
   {%- if u and u.kind == 'inferred' and br -%}{{ ubr(u, ']') }}
-  {%- else -%}&nbsp;<span class="unverified{% if u %} unc-{{ u.kind }}{% endif %}" data-tooltip="{{ u.tip if u else (fallback or ui_get('marker.unverified')) }}">(?)</span>
+  {%- else -%}&nbsp;<span class="unverified{% if u %} unc-{{ u.kind }}{% endif %}" data-tooltip="{{ (u.tip if u else (fallback or ui_get('marker.unverified')))|replace('"', '&quot;') }}">(?)</span>
   {%- endif -%}
 {%- endmacro -%}
 {#- A derived value's marker: «[?]» when every unverified input is our
     inference (tooltip: those inputs), else the generic «(?)». -#}
-{%- macro dq(d) -%}&nbsp;<span class="unverified{% if d %} unc-derived{% endif %}" data-tooltip="{{ d.tip if d else ui_get('marker.derived_unverified') }}">{{ '[?]' if d else '(?)' }}</span>{%- endmacro -%}
+{%- macro dq(d) -%}&nbsp;<span class="unverified{% if d %} unc-derived{% endif %}" data-tooltip="{{ (d.tip if d else ui_get('marker.derived_unverified'))|replace('"', '&quot;') }}">{{ '[?]' if d else '(?)' }}</span>{%- endmacro -%}
 {#- An empty measurement cell: the value is not known from the sources
     (derived=True: it cannot be computed, an input is unknown). «?» rather
     than «—», which reads as «does not exist» (curator 2026-10-30). -#}
