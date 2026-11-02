@@ -25324,11 +25324,6 @@ coins:
     year_verified: false
     uncertainty:
       year:
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1745-1765
-          seed: kmk-317555
         - kind: inferred
           how: reign
           source: ruler_reigns
@@ -25359,8 +25354,6 @@ coins:
       numista: '82388'
       others:
         - Brekke# 20-22
-        - B# 37
-        - B# 36
         - B# 26
     metal: silver
     metal_verified: true
@@ -25400,10 +25393,6 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/norge/nf5h2.htm
         ref: danskmoent.dk (Hede nf5h2)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317555
-        ref: KMM 317555 (Inv. FP 7044.35)
-        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/351768
         ref: KMM 351768 (Inv. FP 5149 5149.590)
@@ -25448,20 +25437,6 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-24-skilling-km-241-1763-1765-cuid-1095575-duid-1445427
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/334109
-        ref: KMM 334109 (Inv. RP 964.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/334108
-        ref: KMM 334108 (Inv. RP 963.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148302
-        ref: KMM 148302 (Inv. KP 1656.2011)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/334107
-        ref: KMM 334107 (Inv. RP 962.1)
-        display: false
     note:
       de: 'Vorderseite: Doppelmonogramm, Rückseite: norwegischer Löwe. Bei einer Variante durchbricht das Monogramm die Umschrift unten nicht; Müntzmeisterinitialen TL.'
       en: "Obverse: double monogram; reverse: Norwegian lion. On one variant the monogram does not break the legend at the bottom; mintmaster's initials TL."
@@ -25473,9 +25448,6 @@ coins:
       da: 'Hede-seed: tildeling af møntfod og fase samt verifikation af den enkelte mønt udestår stadig; data er hentet direkte fra danskmoent.dk.'
     composed_of:
       - c-691aa453
-      - c-7525649e
-      - c-7b3b5185
-      - c-b9e0b593
     label: unified-dk-hede-nf5h2
     origin: promoted
   - fuss: seed_unsorted
@@ -31285,21 +31257,11 @@ coins:
     mint: Christiania
     catalog:
       km: '76'
-      bruun_collection_id:
-        - '9956'
-        - '9986'
-      sieg:
-        - '59'
-        - '61'
-      schou:
-        - '13'
-        - '18'
-      hede:
-        - '56'
-        - '58'
-      nmd:
-        - '61'
-        - '63'
+      bruun_collection_id: '9956'
+      sieg: '59'
+      schou: '18'
+      hede: '56'
+      nmd: '61'
       bruun_part: II
       bruun_lot_no: 14063
       bruun_page: 219
@@ -31307,11 +31269,9 @@ coins:
       numista: '444711'
       others:
         - Aagaard# 101.1
-        - Aagaard# 105.2 (65-4/66-3)
         - Brekke# 55
         - Rønning# 42
         - Thesen# 61
-        - Delzanno# 66
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -31329,8 +31289,6 @@ coins:
       - value: 0.875
         source: ucoin
     weight_rough_g:
-      - value: 57.38
-        source: bruun
       - value: 57.55
         source: ngc
       - value: 57.55
@@ -31368,9 +31326,6 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-2-specie-daler-km-76-1665-1667-cuid-1099932-duid-1448611
         ref: NGC World Coin Price Guide (powered by NumisMaster)
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15053, p. 106
     verification_note:
       de: Daten aus dem Bruun-Auktionskatalog (Stack's Bowers, L. E. Bruun Collection 2024-2026) übernommen. Das Brutto-Gewicht ist ein Einzelstück-Wert; einen Feingehalt gibt Bruun nicht an, er folgt
         aus der Ordonnanz-Spezifikationstabelle bei Wilcke 1950. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -33754,8 +33709,8 @@ coins:
       - c-3e86251f
     label: unified-dk-numista-102382
     origin: promoted
-  - fuss: seed_unsorted
-    phase: numista
+  - fuss: 9_25_thaler
+    phase: I
     kind: kurant
     nominal: 2 Speciedaler
     ruler: Frederik III.
@@ -33767,6 +33722,7 @@ coins:
       -   - 1665
           - 1667
     year_label: 1665-1667
+    mint: Christiania
     catalog:
       km: '76'
       numista: '10494'
@@ -33775,18 +33731,27 @@ coins:
         - Brekke# 56-58
         - Thesen# 62-64
         - Rønning# 42
+        - Aagaard# 105.2 (65-4/66-3)
+        - Delzanno# 66
       skaare: '534'
+      sieg: '61'
+      bruun_collection_id: '9986'
+      schou: '13'
+      nmd: '63'
+      dav: '3622'
     metal: silver
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: false
+    mint_verified: true
     verified: false
     fineness:
       - value: 0.875
         source: numista
     weight_rough_g:
+      - value: 57.38
+        source: bruun
       - value: 57.55
         source: numista
     diameter_mm:
@@ -33796,6 +33761,9 @@ coins:
       - type: literature
         url: https://en.numista.com/10494
         ref: Numista N#10494 — 2 Speciedaler - Frederik III (Type XXII) - Norway
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15053, p. 106
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -33809,6 +33777,7 @@ coins:
       - c-b98670c1
     label: unified-dk-numista-10494
     origin: promoted
+    fraction: '2'
   - fuss: seed_unsorted
     phase: numista
     kind: kurant
@@ -82387,6 +82356,13 @@ coins:
       -   - 1746
           - 1763
     year_label: 1746-1763
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1745-1765
+          seed: kmk-317555
     ruler_alts:
       - value: Christian VI
         source: bruun
@@ -82405,15 +82381,23 @@ coins:
       km: '236'
       bruun_collection_id: '10726'
       sieg: '3.1'
-      schou: '4'
+      schou:
+        - '3'
+        - '4'
+        - '6'
       nmd: '10'
       bruun_part: III
       bruun_lot_no: 12128
       bruun_page: 225
-      hede: 2A
+      hede:
+        - '2'
+        - 2A
       numista: '55890'
       others:
         - Brekke# 2-19
+        - B# 26
+        - B# 36
+        - B# 37
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -82462,6 +82446,24 @@ coins:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-24-skilling-km-236-1746-1763-cuid-1097187-duid-1445782
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148302
+        ref: KMM 148302 (Inv. KP 1656.2011)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317555
+        ref: KMM 317555 (Inv. FP 7044.35)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/334107
+        ref: KMM 334107 (Inv. RP 962.1)
+        display: false
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/334108
+        ref: KMM 334108 (Inv. RP 963.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/334109
+        ref: KMM 334109 (Inv. RP 964.1)
     composed_of:
       - c-8f9586a7
     label: unified-dk-bruun-10726

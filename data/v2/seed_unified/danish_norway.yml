@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 4652 per-source seed entries.
-# Output: 1641 unified entries (one per physical coin).
+# Output: 1638 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2139,15 +2139,23 @@ coins:
       km: '236'
       bruun_collection_id: '10726'
       sieg: '3.1'
-      schou: '4'
+      schou:
+        - '3'
+        - '4'
+        - '6'
       nmd: '10'
       bruun_part: III
       bruun_lot_no: 12128
       bruun_page: 225
-      hede: 2A
+      hede:
+        - '2'
+        - 2A
       numista: '55890'
       others:
         - Brekke# 2-19
+        - B# 26
+        - B# 36
+        - B# 37
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -2180,6 +2188,13 @@ coins:
         source: numista
       - value: 29.5
         source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1745-1765
+          seed: kmk-317555
     ruler_alts:
       - value: Christian VI
         source: bruun
@@ -2206,6 +2221,21 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/norway-24-skilling-1746-1763/?tid=88723
         ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148302
+        ref: KMM 148302 (Inv. KP 1656.2011)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317555
+        ref: KMM 317555 (Inv. FP 7044.35)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/334107
+        ref: KMM 334107 (Inv. RP 962.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/334108
+        ref: KMM 334108 (Inv. RP 963.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/334109
+        ref: KMM 334109 (Inv. RP 964.1)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-24-skilling-km-236-1746-1763-cuid-1097187-duid-1445782
         ref: NGC World Coin Price Guide (powered by NumisMaster)
@@ -2215,6 +2245,11 @@ coins:
       - dk-bruun-10726
       - dk-numista-55890
       - dk-tid-88723
+      - kmk-148302
+      - kmk-317555
+      - kmk-334107
+      - kmk-334108
+      - kmk-334109
       - ngc-1097187
   - id: c-56f7f930
     class_id: c-56f7f930
@@ -5964,28 +5999,16 @@ coins:
     mint: Christiania
     catalog:
       km: '76'
-      bruun_collection_id:
-        - '9956'
-        - '9986'
-      sieg:
-        - '59'
-        - '61'
-      schou:
-        - '13'
-        - '18'
-      hede:
-        - '56'
-        - '58'
-      nmd:
-        - '61'
-        - '63'
+      bruun_collection_id: '9956'
+      sieg: '59'
+      schou: '18'
+      hede: '56'
+      nmd: '61'
       bruun_part: II
       bruun_lot_no: 14063
       bruun_page: 219
       others:
         - Aagaard# 101.1
-        - Aagaard# 105.2 (65-4/66-3)
-        - Delzanno# 66
         - Brekke# 55
         - Rønning# 42
         - Thesen# 61
@@ -6008,8 +6031,6 @@ coins:
       - value: 0.875
         source: ucoin
     weight_rough_g:
-      - value: 57.38
-        source: bruun
       - value: 57.55
         source: ngc
       - value: 57.55
@@ -6032,9 +6053,6 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 14063, p. 193
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
-        ref: Bruun Part V, lot 15053, p. 106
       - type: literature
         url: https://en.numista.com/444711
         ref: Numista N#444711 — 2 Speciedaler - Frederik III (Type XXI) - Norway
@@ -6048,7 +6066,6 @@ coins:
     composed_of:
       - denmark-numismaster-110767
       - dk-bruun-9956
-      - dk-bruun-9986
       - dk-numista-444711
       - dk-tid-145510
       - ngc-1099932
@@ -6135,6 +6152,66 @@ coins:
       - dk-numista-117342
       - dk-tid-145473
       - ngc-1098152
+  - id: c-b98670c1
+    class_id: c-b98670c1
+    label: unified-dk-bruun-9986
+    fuss: seed_unsorted
+    phase: bruun
+    kind: kurant
+    nominal: 2 Speciedaler
+    year_first: 1665
+    year_last: 1667
+    year_ranges:
+      -   - 1665
+          - 1667
+    year_label: 1665-1667
+    ruler: Frederik III
+    mint: Christiania
+    catalog:
+      km: '76'
+      hede: '58'
+      sieg: '61'
+      bruun_collection_id: '9986'
+      schou: '13'
+      nmd: '63'
+      others:
+        - Aagaard# 105.2 (65-4/66-3)
+        - Delzanno# 66
+        - Brekke# 56-58
+        - Thesen# 62-64
+        - Rønning# 42
+      numista: '10494'
+      skaare: '534'
+      dav: '3622'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.875
+        source: numista
+    weight_rough_g:
+      - value: 57.38
+        source: bruun
+      - value: 57.55
+        source: numista
+    diameter_mm:
+      - value: 42.0
+        source: numista
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Oct2026_BruunPartV_WebCat_LR_2.pdf
+        ref: Bruun Part V, lot 15053, p. 106
+      - type: literature
+        url: https://en.numista.com/10494
+        ref: Numista N#10494 — 2 Speciedaler - Frederik III (Type XXII) - Norway
+    issuing_entity: danish_norway
+    composed_of:
+      - dk-bruun-9986
+      - dk-numista-10494
   - id: c-9bb794e9
     class_id: c-9bb794e9
     label: unified-dk-galster-c2g-165
@@ -36970,13 +37047,6 @@ coins:
         source: numista
       - value: 29.5
         source: ucoin
-    uncertainty:
-      year:
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1745-1765
-          seed: kmk-317555
     sources:
       - type: literature
         url: https://numismaster.com/MC_86245
@@ -36999,9 +37069,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148228
         ref: KMM 148228 (Inv. KP 1656.2085)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317555
-        ref: KMM 317555 (Inv. FP 7044.35)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/351768
         ref: KMM 351768 (Inv. FP 5149 5149.590)
@@ -37029,7 +37096,6 @@ coins:
       - kmk-148216
       - kmk-148227
       - kmk-148228
-      - kmk-317555
       - kmk-351768
       - kmk-351769
       - kmk-351770
@@ -37930,52 +37996,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - dk-numista-102382
-  - id: c-b98670c1
-    class_id: c-b98670c1
-    label: unified-dk-numista-10494
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Speciedaler
-    year_first: 1665
-    year_last: 1667
-    year_ranges:
-      -   - 1665
-          - 1667
-    year_label: 1665-1667
-    ruler: Frederik III
-    catalog:
-      km: '76'
-      numista: '10494'
-      hede: '58'
-      others:
-        - Brekke# 56-58
-        - Thesen# 62-64
-        - Rønning# 42
-      skaare: '534'
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 57.55
-        source: numista
-    diameter_mm:
-      - value: 42.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/10494
-        ref: Numista N#10494 — 2 Speciedaler - Frederik III (Type XXII) - Norway
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-numista-10494
   - id: c-2fc38382
     class_id: c-2fc38382
     label: unified-dk-numista-110323
@@ -41878,38 +41898,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-148301
-  - id: c-b9e0b593
-    class_id: c-b9e0b593
-    label: unified-kmk-148302
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 24 Skilling
-    year_first: 1748
-    year_last: 1748
-    year_label: '1748'
-    ruler: Frederik V
-    mint: Kongsberg
-    catalog:
-      schou: '6'
-      others:
-        - B# 26
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148302
-        ref: KMM 148302 (Inv. KP 1656.2011)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/334107
-        ref: KMM 334107 (Inv. RP 962.1)
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-148302
-      - kmk-334107
   - id: c-eabd6179
     class_id: c-eabd6179
     label: unified-kmk-148306
@@ -60482,62 +60470,6 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-334106
-  - id: c-7b3b5185
-    class_id: c-7b3b5185
-    label: unified-kmk-334108
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 24 Skilling
-    year_first: 1749
-    year_last: 1749
-    year_label: '1749'
-    ruler: Frederik V
-    mint: Kongsberg
-    catalog:
-      schou: '3'
-      others:
-        - B# 36
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/334108
-        ref: KMM 334108 (Inv. RP 963.1)
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-334108
-  - id: c-7525649e
-    class_id: c-7525649e
-    label: unified-kmk-334109
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 24 Skilling
-    year_first: 1749
-    year_last: 1749
-    year_label: '1749'
-    ruler: Frederik V
-    mint: Kongsberg
-    catalog:
-      schou: '4'
-      others:
-        - B# 37
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/334109
-        ref: KMM 334109 (Inv. RP 964.1)
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-334109
   - id: c-0b870ac4
     class_id: c-0b870ac4
     label: unified-kmk-334984

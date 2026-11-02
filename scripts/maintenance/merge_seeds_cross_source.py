@@ -802,6 +802,36 @@ def _catalogue_section(coin: dict) -> str | None:
     return None
 
 
+def _scope_ruler(coin: dict):
+    """The ruler that scopes this coin's reign-numbered catalogue refs
+    (Hede, Schou, Sieg, Galster): its own `ruler`, else the one its years
+    name unambiguously in the entity's reign index (`_catalog_scope_ruler`,
+    stamped in memory by `_stamp_catalog_scope_rulers`). Without the
+    fallback a record that names no ruler — Numista 474449 «Hede 7,
+    Sieg 32» — keyed its refs bare `hede` / `sieg`, which never meets the
+    `hede/<ruler>` of the Hede page itself."""
+    return coin.get("ruler") or coin.get("_catalog_scope_ruler")
+
+
+def _stamp_catalog_scope_rulers(seeds: list[dict],
+                                reign_index: dict[int, set[str]]) -> int:
+    """Stamp `_catalog_scope_ruler` (in memory) on every seed that names no
+    ruler, gives no `hede_volume`, and whose years resolve to exactly one
+    ruler under D33's `_infer_ruler`. Transition-year or unknown-year
+    records stay unscoped. Returns how many were stamped."""
+    n = 0
+    for s in seeds:
+        if _normalise_ruler(s.get("ruler")):
+            continue
+        if ((s.get("catalog") or {}).get("hede_volume") or "").strip():
+            continue
+        r = _infer_ruler(s, reign_index)
+        if r:
+            s["_catalog_scope_ruler"] = r
+            n += 1
+    return n
+
+
 def _catalog_refs(coin: dict, entity_id: str | None = None, *,
                   fresh: bool = False) -> dict[str, str]:
     """Return dict of {scope_key: ref_value} for every catalog ref.
@@ -857,7 +887,7 @@ def _catalog_refs(coin: dict, entity_id: str | None = None, *,
         # Scope = ruler-canonical first (preferred since ruler field is
         # the authoritative «which king's Hede catalog» signal); fall
         # back to hede_volume code from URL; finally bare-key.
-        ruler_norm = _normalise_ruler(coin.get("ruler"))
+        ruler_norm = _normalise_ruler(_scope_ruler(coin))
         vol = (cat.get("hede_volume") or "").strip()
         if ruler_norm:
             scope = ruler_norm
@@ -944,14 +974,23 @@ def _catalog_refs(coin: dict, entity_id: str | None = None, *,
     # else the hede_volume code which encodes the reign). Within the
     # per-entity matcher the ruler is the right granularity (Danish vs
     # Norwegian numbering is already separated by entity).
-    _reign = _normalise_ruler(coin.get("ruler")) or (
+    _reign = _normalise_ruler(_scope_ruler(coin)) or (
+        cat.get("hede_volume") or "").strip()
+    # Sieg takes only a ruler the record itself names: Hede 1971 prints the
+    # Sieg numbers of its day and Bruun / Numista the modern ones (Christian
+    # IV's Speciedaler 1590: Sieg 109 on the Hede page, Sieg 93 at Bruun and
+    # Numista, docs/SOURCES.md §13.12). A record with no ruler of its own kept
+    # its Sieg number bare and so out of that conflict; scoping it by the
+    # inferred ruler would turn the edition shift into a veto.
+    _reign_own = _normalise_ruler(coin.get("ruler")) or (
         cat.get("hede_volume") or "").strip()
     _section = _catalogue_section(coin)
     for _ridx in ("schou", "sieg"):
         _v = cat.get(_ridx)
         if _v is None:
             continue
-        _key = f"{_ridx}/{_reign}" if _reign else _ridx
+        _r = _reign if _ridx == "schou" else _reign_own
+        _key = f"{_ridx}/{_r}" if _r else _ridx
         # Schou restarts inside the Wolfenbüttel section; Sieg does not
         # (Sieg 187-196 continue Christian IV's sequence).
         if _section and _ridx == "schou":
@@ -978,7 +1017,7 @@ def _catalog_refs(coin: dict, entity_id: str | None = None, *,
             # «Frederik I» → «f1g», «Christian II» → «c2g». For Erik VII
             # and other less-common rulers no mapping yet — fall through
             # to bare scope.
-            ruler_norm = _normalise_ruler(coin.get("ruler"))
+            ruler_norm = _normalise_ruler(_scope_ruler(coin))
             if ruler_norm:
                 # _normalise_ruler returns lowercase, so match case-insens.
                 # The ordinal is OPTIONAL: Hans (1481-1513) carries no
@@ -5412,6 +5451,8 @@ def process_entity(entity_id: str,
     # sets and stay null per user direction («краще null ніж
     # неправдивий nonull»).
     reign_index = _build_reign_index(seeds, entity_id)
+    _stamp_catalog_scope_rulers(seeds, reign_index)
+    _CATALOG_REFS_MEMO.clear()
 
     seeds_by_id: dict[str, dict] = {c["id"]: c for c in seeds}
     uf = UnionFind()
