@@ -408,6 +408,7 @@ def split_nominal(raw):
 
 _WITTEN_RE = re.compile(r"\bWitten\b")
 _KOBBERSTERLING_RE = re.compile(r"\bKobbersterling\b")
+_LEBARD_RE = re.compile(r"\bLebard\b")
 
 
 @lru_cache(maxsize=1)
@@ -429,7 +430,10 @@ def danish_display_nominal(raw, entity):
     metal column says copper) — curator 2026-10-26, «лише для файлів що на
     сторінці Данії». A seed keeps its source's word; the merger writes this on
     the class and compares nominals in this form. Other entities come back as
-    they were (a Lübeck witten stays a witten)."""
+    they were (a Lübeck witten stays a witten). «Lebard» → «Hulpenning»: the
+    lebard is the hollow penny named for its leopard, Lindahl 1955 s. 82
+    «Hulpenning (lebard)» (curator 2026-11-02)."""
     if not isinstance(raw, str) or entity not in denmark_page_entities():
         return raw
+    raw = _LEBARD_RE.sub("Hulpenning", raw)
     return _KOBBERSTERLING_RE.sub("Sterling", _WITTEN_RE.sub("Hvid", raw))
