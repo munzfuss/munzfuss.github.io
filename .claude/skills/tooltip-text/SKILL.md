@@ -71,6 +71,20 @@ tooltip OUTSIDE the tables (timeline bars, filter chips, card rows) is a CSS
 8. **All four languages in the same edit** (de / en / uk / da), same sources,
    same quotes, same markup.
 9. **No project meta** (§0z): no «we», no field names, no «curator decided».
+10. **A measurement's `source` label is a designation only** (curator
+    2026-11-02). The `source` of a `weight_rough_g` / `fineness` /
+    `diameter_mm` reading is ONE string shown in every language (the
+    «Обчислено з вагою з: …» tooltip prints it as is), so it carries no prose
+    in any language — only what a reader can look up: publisher or author,
+    year, and the number or page — «Bruun Part III, lot 11304», «Lindblad 2017
+    (Metallanalyser av mynt 2017:3), Nr 88», «danskmoent.dk (Galster 28)».
+    Name the source we actually read the figure in: a weight printed only in
+    danskmoent's image caption is «danskmoent.dk (Galster N)», not the book
+    whose illustration the page reproduces. A value set from the standard
+    (no source prints it) is labelled with the Fuß name alone, which never
+    translates — «Guldgyldenfod». Why a value is what it is («not stated on
+    …», «illustration caption», «entered on curator request») belongs in
+    `_curation_holds` / `verification_note`, never in the label.
 
 ## Where tooltip text lives (edit it there, never in `site/`)
 
