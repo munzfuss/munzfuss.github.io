@@ -109045,20 +109045,18 @@ coins:
     ruler: Erik VII
     issuing_entity: danish_realm
     id: c-f157b78e
-    year_first: 1424
-    year_last: 1424
-    year_label: '1424'
+    year_first: 1396
+    year_last: 1439
+    year_label: 1396-1439
     catalog:
       numista: '475742'
       sieg: '2'
-      galster: '12'
-      galster_volume: galster1972-erik7
     metal: silver
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 0.3
@@ -109067,9 +109065,6 @@ coins:
       - value: 16.0
         source: numista
     sources:
-      - type: literature
-        url: https://www.danskmoent.dk/pommgals.htm
-        ref: Galster 12 (epomg) — danskmoent.dk pommgals.htm
       - type: literature
         url: https://en.numista.com/475742
         ref: Numista N#475742 — Bracteate Hulpenning - Erik of Pomerania - Denmark
@@ -109081,23 +109076,14 @@ coins:
     uncertainty:
       year:
         - kind: hedged
-          how: circa
-          source: galster
-          value: '1424'
-          seed: dk-galster-epomg-12
-        - kind: hedged
           how: span
           source: numista
           value: 1396-1439
           seed: dk-numista-475742
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Lebard
-          value: silver
-          seed: dk-galster-epomg-12
-    mint: Lund
+    year_is_reign_span: true
+    year_ranges:
+      -   - 1396
+          - 1439
   - fuss: luebischer_muenzfuss
     phase: '0'
     kind: scheide
@@ -284669,7 +284655,7 @@ coins:
     sources:
       - type: literature
         url: https://www.danskmoent.dk/pommgals.htm
-        ref: Galster 8 (epomg) — danskmoent.dk pommgals.htm
+        ref: Galster 12 (epomg) — danskmoent.dk pommgals.htm
       - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 82
@@ -284715,6 +284701,11 @@ coins:
           how: circa
           source: galster
           value: '1424'
+          seed: dk-galster-epomg-12
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '1424'
           seed: dk-galster-epomg-8
         - kind: hedged
           how: after
@@ -284723,6 +284714,12 @@ coins:
           value: '1424'
           seed: lindahl-1955-lebard
       metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Lebard
+          value: silver
+          seed: dk-galster-epomg-12
         - kind: inferred
           how: from_name
           source: galster
