@@ -73,6 +73,7 @@ from lib.specimen_exclusions import (  # noqa: E402
     load_excluded_specimens, strip_excluded_specimens)
 from lib.yaml_io import dump_v2_canonical  # noqa: E402
 from lib import confident_blocking as _cblock  # noqa: E402
+from lib import yaml_cache as _yaml_cache  # noqa: E402
 from lib.v2_seed_writer import (  # noqa: E402
     _is_out_of_scope_nominal,
     _is_out_of_scope_catalog,
@@ -181,7 +182,7 @@ def _load_yaml(p: Path) -> dict:
     hit = _PARSED.get(key)
     if hit is not None and hit[0] == text:
         return pickle.loads(hit[1])
-    doc = yaml.load(text, Loader=_FASTLOADER) or {}
+    doc = _yaml_cache.load(text) or {}
     _PARSED[key] = (text, pickle.dumps(doc, protocol=pickle.HIGHEST_PROTOCOL))
     return doc
 

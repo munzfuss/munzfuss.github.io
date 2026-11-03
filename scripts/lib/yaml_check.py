@@ -37,11 +37,19 @@ def find_duplicate_keys(yaml_path: Path) -> list[tuple[str, str | int, int, int]
     Empty list = clean.
     """
     with open(yaml_path) as fp:
-        loader = _FastLoader(fp)
-        try:
-            node = loader.get_single_node()
-        finally:
-            loader.dispose()
+        text = fp.read()
+    # A pure function of the file's text: cached across runs with it
+    # (lib/yaml_cache.py), so an unchanged file is not composed again.
+    from lib import yaml_cache
+    return yaml_cache.memo("dupkeys", text, lambda: _duplicate_keys_of(text))
+
+
+def _duplicate_keys_of(text: str) -> list[tuple[str, str | int, int, int]]:
+    loader = _FastLoader(text)
+    try:
+        node = loader.get_single_node()
+    finally:
+        loader.dispose()
 
     if node is None:
         return []

@@ -74,7 +74,10 @@ _FASTLOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 
 
 def _fast_load(text):
-    return yaml.load(text, Loader=_FASTLOADER)
+    # Through the cross-run parse cache (lib/yaml_cache.py): same document,
+    # unpickled when this exact text was parsed before.
+    from lib import yaml_cache
+    return yaml_cache.load(text)
 
 # Ensure `scripts/` is on sys.path so `from lib.nominal_synonyms ...`
 # below resolves regardless of how the script is invoked (direct
@@ -6244,8 +6247,7 @@ def _write_departed(entity_id: str, unified_entries: list[dict]) -> None:
     so nothing renames and the map was always empty.)"""
     import json
     path = V2_SEED_UNIFIED / f"{entity_id}.yml"
-    loader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
-    old = (yaml.load(path.read_text(encoding="utf-8"), Loader=loader) or {}) if path.exists() else {}
+    old = (_fast_load(path.read_text(encoding="utf-8")) or {}) if path.exists() else {}
     old_members = {e["id"]: set(e.get("composed_of") or [])
                    for e in (old.get("coins") or []) if e.get("id")}
     departed = {}

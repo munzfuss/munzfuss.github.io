@@ -271,8 +271,8 @@ _VALID_COIN_METALS: frozenset[str] = frozenset(
 def _parse_v2_file(path: str):
     """One V2 file's document, or the exception it raised (pool worker)."""
     try:
-        with open(path, encoding="utf-8") as f:
-            return yaml.load(f, Loader=_FASTLOADER)
+        from lib import yaml_cache
+        return yaml_cache.load_path(Path(path))
     except Exception as e:  # re-raised where the serial parse would raise it
         return _ParseFailed(e)
 
