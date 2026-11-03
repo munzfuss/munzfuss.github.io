@@ -928,8 +928,13 @@ invocation starts with empty caches — your YAML edits are picked up.
 Verified via empirical test (commit `0feccaa` body): mutating
 `data/v2/final/<entity>.yml` between runs produces a different
 rendered HTML hash; restoring the file returns to baseline. There is
-NO disk cache, no persistent-state file, no shared-memory layer —
-purely Python module globals.
+no disk cache of BUILD STATE, no shared-memory layer — those four are
+purely Python module globals. One disk cache does sit underneath them:
+`lib/yaml_cache.py` (`output/yaml_cache/`, gitignored) keeps parsed YAML
+keyed by the SHA-1 of each file's TEXT, so an edited file is always
+parsed afresh and an unchanged one is unpickled instead; the build, the
+merger, absorb and the pre-commit checks share it. `MUNZFUSS_YAML_CACHE=0`
+turns it off; deleting the directory is always safe.
 
 **Read-only contract.** Callers MUST treat cached objects as
 read-only. The `_resolve_dict_fields_per_location` path uses

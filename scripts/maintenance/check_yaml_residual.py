@@ -87,13 +87,16 @@ def _residual(task) -> int:
 
 
 def _residuals(tasks: list[tuple[str, str]]) -> list[int]:
-    """`_residual` of each task, in order; several in forked workers (a
-    ruamel round-trip of a 9 MB final is about a minute)."""
+    """`_residual` of each task, in order; several in forked workers. A ruamel
+    round-trip of the 9 MB danish_realm final is ~35 s and ~0.8 GB, and the
+    hook runs this beside every other check, so the workers are capped
+    (RESIDUAL_WORKERS, default 3)."""
     if len(tasks) < 2:
         return [_residual(t) for t in tasks]
     import multiprocessing as mp
     import os
-    n = max(1, min(len(tasks), (os.cpu_count() or 2) - 1))
+    cap = int(os.environ.get("RESIDUAL_WORKERS", "3"))
+    n = max(1, min(len(tasks), cap, (os.cpu_count() or 2) - 1))
     with mp.get_context("fork").Pool(n) as pool:
         return pool.map(_residual, tasks, chunksize=1)
 

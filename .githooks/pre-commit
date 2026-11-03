@@ -73,13 +73,18 @@
 # ----------------------------------------------------------------------
 # This runs on the machine that makes the commit — it is a LOCAL git hook
 # and NEVER runs in CI (.github/workflows/deploy.yml invokes build.py
-# directly, not this hook). Running the heavy checks concurrently assumes
-# a developer box with, roughly:
-#   • RAM  — combined peak ≈ 4.5 GB (build.py --validate-only alone is
-#            ≈ 2.7 GB, the rest are ≤ 0.5 GB each). Comfortable on ≥ 8 GB,
-#            trivial on the 24 GB box this was tuned on (2026-09).
-#   • CPU  — up to 5 Python processes at once; benefits from ≥ 4 cores,
-#            wall time is floored by build.py (~55–60 s under contention).
+# directly, not this hook). Running the checks concurrently assumes a
+# developer box with, roughly (peak RSS per check measured 2026-11-03):
+#   • RAM  — a commit touching seeds, finals and decision files starts all
+#            of them: audit_v2 ≈ 1.1 GB, verify_reflow ≈ 0.9, rebucket ≈ 0.8,
+#            validate_decisions ≈ 0.7 ×2, build --validate-only ≈ 0.5,
+#            marks / i18n / citations / prose ≈ 0.3–0.5 each, and the
+#            residual check up to 3 ruamel round-trips at ≈ 0.8 GB each
+#            (RESIDUAL_WORKERS caps them). Worst case ≈ 9 GB; comfortable
+#            on the 24 GB box this was tuned on, tight below 16 GB.
+#   • CPU  — up to ~12 Python processes at once; wall time is floored by
+#            the residual round-trip of the largest staged file (~35 s
+#            when its text was never measured before, ~0 s from the cache).
 # If this hook is OOM-killed, thrashing, or a check dies with no clear
 # error on a memory-constrained machine, that concurrency is the likely
 # cause: run the checks sequentially instead (launch each heavy block,
