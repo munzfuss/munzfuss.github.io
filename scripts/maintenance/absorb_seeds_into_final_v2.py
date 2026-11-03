@@ -47,7 +47,6 @@ import argparse
 import copy
 import gc
 import os
-import pickle
 import re
 import sys
 from collections import Counter, defaultdict
@@ -169,27 +168,14 @@ _FASTLOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 def _load_yaml(p: Path) -> dict:
     """The file's document, as a FRESH object (callers mutate it).
 
-    A file whose text is the same as when this run last parsed it is
-    unpickled from that first parse instead of parsed again: the finals are
-    read by the snapshot, by their entity, before the write and by the KMM
-    prune, the seed_unified files by the shared index and by their entity —
-    re-parsing was ~2/3 of an absorb run (2026-11-03). Same objects: these
-    files hold only plain YAML scalars, lists and dicts, and pickle keeps a
-    document's aliased nodes shared. A changed text is parsed again."""
+    Through lib/yaml_cache: a text parsed before — by this run (the finals
+    are read by the snapshot, by their entity, before the write and by the
+    KMM prune; the seed_unified files by the shared index and by their
+    entity) or by an earlier one — is unpickled instead of parsed again.
+    Re-parsing was ~2/3 of an absorb run (2026-11-03)."""
     if not p.exists():
         return {}
-    text = p.read_text(encoding="utf-8")
-    key = str(p)
-    hit = _PARSED.get(key)
-    if hit is not None and hit[0] == text:
-        return pickle.loads(hit[1])
-    doc = _yaml_cache.load(text) or {}
-    _PARSED[key] = (text, pickle.dumps(doc, protocol=pickle.HIGHEST_PROTOCOL))
-    return doc
-
-
-# path → (text, pickle of its first parse) — see `_load_yaml`.
-_PARSED: dict[str, tuple[str, bytes]] = {}
+    return _yaml_cache.load(p.read_text(encoding="utf-8")) or {}
 
 
 _UNIFIED_DOCS: list[tuple[Path, dict]] | None = None

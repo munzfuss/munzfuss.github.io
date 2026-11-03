@@ -78,7 +78,8 @@ def _yaml() -> ruamel.yaml.YAML:
 def _scan() -> list[dict]:
     """Return drift records: entries whose `_home_entity` ≠ their file stem.
 
-    Each record: {source, from_entity, to_entity, id, coin (ruamel node)}."""
+    Each record: {source, from_entity, to_entity, id} — the entry itself is
+    re-read by `_apply` through ruamel, which keeps the file's formatting."""
     drift: list[dict] = []
     if not V2_SEED_ROOT.exists():
         return drift

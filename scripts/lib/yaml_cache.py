@@ -72,7 +72,7 @@ def memo(namespace: str, text: str, compute):
         tmp = path.with_suffix(f".{os.getpid()}.tmp")
         tmp.write_bytes(pickle.dumps(value, protocol=pickle.HIGHEST_PROTOCOL))
         os.replace(tmp, path)
-        _prune()
+        _maybe_prune()
     except OSError:
         pass
     return value
@@ -83,12 +83,37 @@ def load_path(path: Path):
     return load(Path(path).read_text(encoding="utf-8"))
 
 
+# Misses since this process last pruned: the directory is scanned on the
+# first miss and then every _PRUNE_EVERY misses, not on each one.
+_MISSES = 0
+_PRUNE_EVERY = 200
+
+
+def _maybe_prune() -> None:
+    global _MISSES
+    if _MISSES % _PRUNE_EVERY == 0:
+        _prune()
+    _MISSES += 1
+
+
 def _prune() -> None:
-    try:
-        entries = [(p.stat().st_mtime, p.stat().st_size, p)
-                   for p in _DIR.glob("*.pickle")]
-    except OSError:
-        return
+    import time
+    entries = []
+    for p in _DIR.iterdir():
+        try:
+            st = p.stat()
+        except OSError:
+            continue
+        if p.suffix == ".tmp":
+            # left by a process killed between write and rename
+            if time.time() - st.st_mtime > 3600:
+                try:
+                    p.unlink()
+                except OSError:
+                    pass
+            continue
+        if p.suffix == ".pickle":
+            entries.append((st.st_mtime, st.st_size, p))
     total = sum(e[1] for e in entries)
     if total <= _MAX_BYTES:
         return
