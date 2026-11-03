@@ -335,7 +335,7 @@ Sletdalere (Wilcke's second table). The Bruchsilber and the Kongsberg silver are
   Beskr. p. LIV; Jørgensen *Beskrivelse*; Devegge II p. 162; Aagaard & Märcher NNUM 2016/4.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-03): C1 1.5 · C2 2.0 (the whole grid
+Score (research-dossier rubric, self-assessed 2026-11-03, commit 6f53356): C1 1.5 · C2 2.0 (the whole grid
 recomputed; the output reconciled with Hede to the daler; the acts' own texts a labelled gap)
 · C3 2.0 · C4 1.5 (Wilcke II's paraphrase and his table are the only witnesses; seven
 discrepancies tabled) · C5 1.0 · C6 1.0 = **9.0/10**.
