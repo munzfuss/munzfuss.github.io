@@ -268,6 +268,51 @@ _VALID_COIN_METALS: frozenset[str] = frozenset(
     {"silver", "gold", "billon", "silver_billon", "copper", "lead", "bronze", "pewter"})
 
 
+def _parse_v2_file(path: str):
+    """One V2 file's document, or the exception it raised (pool worker)."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            return yaml.load(f, Loader=_FASTLOADER)
+    except Exception as e:  # re-raised where the serial parse would raise it
+        return _ParseFailed(e)
+
+
+class _ParseFailed:
+    def __init__(self, exc):
+        self.exc = exc
+
+
+_V2_DOCS: dict[str, object] | None = None
+
+
+def _v2_doc(path: Path):
+    """The parsed document of one `data/v2/{final,seed,seed_unified}` file.
+
+    The first call parses every file of the three layers at once in worker
+    processes (largest first) — read one after another they were ~40 s of a
+    danskmoent build (2026-11-03). Each document is handed out once, as the
+    fresh object a parse would give; a file that failed to parse, or that is
+    not in the prefetch, is parsed here, so an error surfaces where it did."""
+    global _V2_DOCS
+    if _V2_DOCS is None:
+        paths = (sorted(V2_FINAL_DIR.glob("*.yml"))
+                 + sorted(V2_SEED_DIR.glob("*/*.yml"))
+                 + sorted((DATA_DIR / "v2" / "seed_unified").glob("*.yml")))
+        paths.sort(key=lambda p: -p.stat().st_size)
+        _V2_DOCS = {}
+        if paths:
+            import multiprocessing as mp
+            n = max(1, min(len(paths), (os.cpu_count() or 2) - 1))
+            with mp.get_context("fork").Pool(n) as pool:
+                docs = pool.map(_parse_v2_file, [str(p) for p in paths], chunksize=1)
+            _V2_DOCS = {str(p): d for p, d in zip(paths, docs)}
+    doc = _V2_DOCS.pop(str(path), None)
+    if doc is None or isinstance(doc, _ParseFailed):
+        with open(path, encoding="utf-8") as f:
+            doc = yaml.load(f, Loader=_FASTLOADER)
+    return doc
+
+
 def _load_v2_curated() -> dict[str, list[dict]]:
     """Load every `data/v2/final/<entity>.yml` once per process and return
     {entity_id: [coin_dict, ...]}. Each coin dict is the raw YAML value
@@ -279,8 +324,7 @@ def _load_v2_curated() -> dict[str, list[dict]]:
     cache: dict[str, list[dict]] = {}
     if V2_FINAL_DIR.exists():
         for path in sorted(V2_FINAL_DIR.glob("*.yml")):
-            with open(path, encoding="utf-8") as f:
-                doc = yaml.load(f, Loader=_FASTLOADER) or {}
+            doc = _v2_doc(path) or {}
             cache[doc.get("id", path.stem)] = doc.get("coins", []) or []
     _V2_FINAL_CACHE = cache
     return cache
@@ -307,8 +351,7 @@ def _load_v2_seed_entries() -> list[dict]:
         if not source_dir.is_dir():
             continue
         for path in sorted(source_dir.glob("*.yml")):
-            with open(path, encoding="utf-8") as f:
-                doc = yaml.load(f, Loader=_FASTLOADER) or {}
+            doc = _v2_doc(path) or {}
             for c in doc.get("coins", []) or []:
                 c = dict(c)
                 c["_v2_seed_source"] = source_dir.name
@@ -336,8 +379,7 @@ def _load_v2_seed_unified() -> list[dict]:
         _V2_UNIFIED_CACHE = out
         return out
     for path in sorted(unified_dir.glob("*.yml")):
-        with open(path, encoding="utf-8") as f:
-            doc = yaml.load(f, Loader=_FASTLOADER) or {}
+        doc = _v2_doc(path) or {}
         for uc in (doc.get("coins") or []):
             out.append(uc)
     _V2_UNIFIED_CACHE = out
