@@ -1286,6 +1286,13 @@ def _unifies(refs_z: dict, refs_x: dict, refs_y: dict, keys: list[str]) -> bool:
             and _catalog_chain_consistent(refs_z, refs_y)[0] == "agree")
 
 
+# `_catalog_chain_consistent`'s two value patterns, compiled once (it runs
+# ~25 M times in a full merge; `re.match` with a pattern string pays the
+# re-module cache lookup on every call).
+_CHAIN_CORE_RE = re.compile(r"^(\d+(?:\.\d+)?)[A-Za-z]{1,2}$")
+_CHAIN_DOTNUM_RE = re.compile(r"^(\d+)\.\d+$")
+
+
 def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     """Returns (state, has_overlap):
       state ∈ {'agree', 'disagree', 'no_overlap'}
@@ -1332,7 +1339,7 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
         two) appended to a base catalogue number marks a die-variant
         or sub-type of the same parent. Tolerated as same when the
         broader catalogue chain confirms identity."""
-        m = re.match(r"^(\d+(?:\.\d+)?)[A-Za-z]{1,2}$", v.strip())
+        m = _CHAIN_CORE_RE.match(v.strip())
         return m.group(1) if m else v.strip()
 
     def _parent_of_dotnum(v: str) -> str | None:
@@ -1347,7 +1354,7 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
         sub-variants («70.1» and «70.2») remain different so curator
         sub-variant distinctions stay intact. Same applies to KM «1.1»
         ↔ «1» (parent type) but NOT KM «1.1» ↔ «1.2»."""
-        m = re.match(r"^(\d+)\.\d+$", v.strip())
+        m = _CHAIN_DOTNUM_RE.match(v.strip())
         return m.group(1) if m else None
 
     agreeing: list[str] = []
@@ -5196,6 +5203,82 @@ def _check_cross_entity_completeness(all_by_id: dict, home: dict,
 # reproduces the serial (i<j) ordering EXACTLY, so PASS 2 / 2b / union see
 # byte-identical input → byte-identical output. Each worker memoises
 # _catalog_refs in its own address space (one entity per pool, coins stable).
+# ---------------------------------------------------------------------------
+# Per-record memo for PASS 1 / PASS 2
+# ---------------------------------------------------------------------------
+# PASS 1 calls match_pair on ~28 M candidate pairs of danish_realm, and these
+# helpers — each a pure function of ONE record — were recomputed on every
+# pair: _catalogue_section 111 M calls, _hede_series 55 M, _weight_repr 118 M
+# (serial profile, 2026-11-03: about a quarter of PASS 1). Between the start
+# of PASS 1 (`_pass1_set_globals`) and the end of PASS 2 (`_pass2_no_merges`)
+# no record is changed (step 2b only edits its own pair dicts), so inside that
+# window each value is computed once per record. Outside it — and in absorb,
+# which mutates records — the wrappers call straight through. Each memo entry
+# keeps the record itself, so an id() can never be reused for another dict
+# while its entry lives. The wrappers are applied here, not on the
+# definitions, so the functions' bodies stay as they are.
+_PER_RECORD_MEMO_ON = False
+_PER_RECORD_MEMOS: list[dict] = []
+
+
+def _per_record_memo(fn):
+    memo: dict = {}
+    _PER_RECORD_MEMOS.append(memo)
+
+    def wrapper(coin):
+        if not _PER_RECORD_MEMO_ON:
+            return fn(coin)
+        hit = memo.get(id(coin))
+        if hit is not None and hit[0] is coin:
+            return hit[1]
+        val = fn(coin)
+        memo[id(coin)] = (coin, val)
+        return val
+    wrapper.__name__ = fn.__name__
+    wrapper.__doc__ = fn.__doc__
+    wrapper.__wrapped__ = fn
+    return wrapper
+
+
+def _per_record_memo_window(on: bool) -> None:
+    """Open (on=True) or close the window; either way the memos start empty."""
+    global _PER_RECORD_MEMO_ON
+    for m in _PER_RECORD_MEMOS:
+        m.clear()
+    _PER_RECORD_MEMO_ON = on
+
+
+_catalogue_section = _per_record_memo(_catalogue_section)
+_hede_series = _per_record_memo(_hede_series)
+_weight_repr = _per_record_memo(_weight_repr)
+_fineness_repr = _per_record_memo(_fineness_repr)
+_others_registers = _per_record_memo(_others_registers)
+
+
+def _string_memo(fn):
+    """Memo for a pure function of hashable (string) arguments. A set result
+    is handed out as a fresh copy, so a caller can never alter the cached one."""
+    cache: dict = {}
+
+    def wrapper(*args):
+        try:
+            hit = cache.get(args)
+        except TypeError:          # an unhashable argument — compute directly
+            return fn(*args)
+        if hit is None:
+            hit = fn(*args)
+            cache[args] = frozenset(hit) if isinstance(hit, set) else hit
+        return set(hit) if isinstance(hit, frozenset) else hit
+    wrapper.__name__ = fn.__name__
+    wrapper.__doc__ = fn.__doc__
+    wrapper.__wrapped__ = fn
+    return wrapper
+
+
+_lange_numbers = _string_memo(_lange_numbers)
+_nominal_wildcard_match = _string_memo(_nominal_wildcard_match)
+
+
 _MP_IDS: list = []
 _MP_SEEDS: dict = {}
 _MP_ENTITY = None
@@ -5283,6 +5366,7 @@ def _pass1_set_globals(ids, seeds_by_id, entity_id, reign_index, explicit_no_mer
     _MP_CANDIDATES = candidates
     _CATALOG_REFS_MEMO.clear()
     _CATALOG_REFS_MEMO_ENABLED = True
+    _per_record_memo_window(True)
 
 
 def _pass1_eval_i(i: int):
@@ -5393,6 +5477,7 @@ def _pass2_no_merges(components, uf, seeds_by_id, entity_id, reign_index):
     finally:
         _P2_COMPONENTS = []
         _P2_SEEDS = {}
+        _per_record_memo_window(False)
     return [pair for row in rows for pair in row]
 
 

@@ -444,6 +444,14 @@ def danish_display_nominal(raw, entity):
     2026-11-02)."""
     if not isinstance(raw, str) or entity not in denmark_page_entities():
         return raw
+    return _danish_display_str(raw, entity)
+
+
+@lru_cache(maxsize=None)
+def _danish_display_str(raw: str, entity) -> str:
+    """`danish_display_nominal` for a string on a Denmark-page entity — a pure
+    function of the two, memoised (the merger asks it twice per candidate
+    pair, ~40 M times for danish_realm)."""
     raw = _LEBARD_RE.sub("Penning", raw)
     for rx, word in _ENTITY_DANISH_FORMS.get(entity, ()):
         raw = rx.sub(word, raw)
