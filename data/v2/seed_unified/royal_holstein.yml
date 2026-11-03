@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-02 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-03 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1895 per-source seed entries.
-# Output: 750 unified entries (one per physical coin).
+# Output: 751 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-02'
+generated_at: '2026-11-03'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -32459,26 +32459,37 @@ coins:
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
-    diameter_mm_verified: true
+    diameter_mm_verified: false
     mint_verified: false
     verified: false
     fineness:
       - value: 0.0375
         source: ngc
+        erroneous:
+          de: Verschobenes Komma. [b]Hede 16[/b] und [b]ucoin[/b] geben .375; 2,809 g × .375 = 1,0534 g, genau 1/24 der 25,28 g Feinsilber eines Speciedalers nach dem 9¼-Thaler-Fuß. [b]NumisMaster[/b]
+            druckt .0375, der [b]NGC World Coin Price Guide[/b] übernimmt die Angabe von dort.
+          en: A shifted decimal point. [b]Hede 16[/b] and [b]ucoin[/b] give .375; 2.809 g × .375 = 1.0534 g, exactly 1/24 of the 25.28 g of fine silver in a Speciedaler under the 9¼-Thaler-Fuß. 
+            [b]NumisMaster[/b] prints .0375, and the [b]NGC World Coin Price Guide[/b] takes the figure from there.
+          uk: Зсунута кома. [b]Hede 16[/b] і [b]ucoin[/b] подають .375; 2,809 г × .375 = 1,0534 г, рівно 1/24 від 25,28 г чистого срібла Speciedaler за 9¼-Thaler-Fuß. [b]NumisMaster[/b] друкує .0375, 
+            [b]NGC World Coin Price Guide[/b] бере це значення звідти.
+          da: Et forskudt komma. [b]Hede 16[/b] og [b]ucoin[/b] angiver .375; 2,809 g × .375 = 1,0534 g, nøjagtig 1/24 af de 25,28 g finsølv i en speciedaler efter 9¼-Thaler-Fuß. [b]NumisMaster[/b] 
+            trykker .0375, og [b]NGC World Coin Price Guide[/b] overtager tallet derfra.
       - value: 0.0375
         source: numismaster
-      - value: 0.375
-        source: ucoin
+        erroneous:
+          de: Verschobenes Komma. [b]Hede 16[/b] und [b]ucoin[/b] geben .375; 2,809 g × .375 = 1,0534 g, genau 1/24 der 25,28 g Feinsilber eines Speciedalers nach dem 9¼-Thaler-Fuß. [b]NumisMaster[/b]
+            druckt .0375, der [b]NGC World Coin Price Guide[/b] übernimmt die Angabe von dort.
+          en: A shifted decimal point. [b]Hede 16[/b] and [b]ucoin[/b] give .375; 2.809 g × .375 = 1.0534 g, exactly 1/24 of the 25.28 g of fine silver in a Speciedaler under the 9¼-Thaler-Fuß. 
+            [b]NumisMaster[/b] prints .0375, and the [b]NGC World Coin Price Guide[/b] takes the figure from there.
+          uk: Зсунута кома. [b]Hede 16[/b] і [b]ucoin[/b] подають .375; 2,809 г × .375 = 1,0534 г, рівно 1/24 від 25,28 г чистого срібла Speciedaler за 9¼-Thaler-Fuß. [b]NumisMaster[/b] друкує .0375, 
+            [b]NGC World Coin Price Guide[/b] бере це значення звідти.
+          da: Et forskudt komma. [b]Hede 16[/b] og [b]ucoin[/b] angiver .375; 2,809 g × .375 = 1,0534 g, nøjagtig 1/24 af de 25,28 g finsølv i en speciedaler efter 9¼-Thaler-Fuß. [b]NumisMaster[/b] 
+            trykker .0375, og [b]NGC World Coin Price Guide[/b] overtager tallet derfra.
     weight_rough_g:
       - value: 2.809
         source: ngc
       - value: 2.809
         source: numismaster
-      - value: 2.81
-        source: ucoin
-    diameter_mm:
-      - value: 22.0
-        source: ucoin
     sources:
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/german-states-schleswig-holstein-2-1-2-schilling-km-150-1809-1812-cuid-1174494-duid-1391598
@@ -32486,14 +32497,10 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_120075
         ref: NumisMaster
-      - type: ucoin
-        url: https://en.ucoin.net/coin/schleswig_holstein-2-1-2-schillng-1809-1812/?tid=90742
-        ref: ucoin
     issuing_entity: royal_holstein
     composed_of:
       - ngc-1174494
       - schleswig_holstein-numismaster-120075
-      - sh-tid-90742
   - id: c-c35e2201
     class_id: c-c35e2201
     label: unified-ngc-1199959
@@ -34324,3 +34331,42 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - schleswig_holstein-numismaster-93040
+  - id: c-2b57ace5
+    class_id: c-2b57ace5
+    label: unified-sh-tid-90742
+    fuss: seed_unsorted
+    phase: ucoin
+    kind: kurant
+    nominal: 2½ schillng
+    year_first: 1809
+    year_last: 1812
+    year_ranges:
+      -   - 1809
+          - 1812
+    year_label: 1809-1812
+    ruler: Frederik VI
+    catalog:
+      km: '150'
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: false
+    verified: false
+    fineness:
+      - value: 0.375
+        source: ucoin
+    weight_rough_g:
+      - value: 2.81
+        source: ucoin
+    diameter_mm:
+      - value: 22.0
+        source: ucoin
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/schleswig_holstein-2-1-2-schillng-1809-1812/?tid=90742
+        ref: ucoin
+    issuing_entity: royal_holstein
+    composed_of:
+      - sh-tid-90742
