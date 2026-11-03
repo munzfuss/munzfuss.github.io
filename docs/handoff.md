@@ -16,6 +16,22 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-03 — Reign gate, classification carry, weight-gate corrections (D53; branch claude/relaxed-mendeleev-72593f)
+
+- **Shipped on the branch (not merged into main, unpushed):** Hede index stubs dated by Hede's attributed year;
+  catalogue scope for records naming no ruler; reign gate on by default (`REIGN_GATE=0` to compare); classification
+  carry for split-off classes (`carried_classifications` in classification_decisions); suspect weights out of type
+  comparison, Schou/Sieg ranges and same-base sub-variants as agreement; Hede parser accepts a sub-variant line
+  missing its «(» (nf5h2 → 2A / 2B); curator decisions 14, 16, 18 + Galster 38 / Numista 108782 (weight marked (!)),
+  six KMM undocumented stubs excluded. The cache commit sits on a submodule branch — `git submodule update` after
+  merging into main.
+- **Open:** four KMM 24 Skilling Frederik V records with only a Schou number (148302, 334107, 334108, 334109) left
+  the KM 236 / Hede Norge 2A class — Hede prints «Schou varia» for 2A; the per-year Schou is only in the
+  Zincksamlingen list on the page. 22 records stay out of their class on an unmarked 2.5x weight gap (e.g. Bruun 10866
+  «KM 255» 3.1 g vs 1.18 g; KMM «Hede 134a» 0.49 / 0.58 g) — per-reading review, not a rule change.
+- **Parallel:** session «Прискорити перезбирання V2» (branch claude/reflow-speed-b93d94) made re-flow and builds
+  faster byte-identically; after merging both, run absorb once with `CONFIDENT_BLOCKING_VERIFY=1`.
+
 ## 2026-10-29 — Uncertainty markers: (?) hedged vs [ ] inferred (D51, plan docs/plans/uncertainty_markers.md)
 
 - **Shipped (local, unpushed):** ef7f9cd / 040c269 (merger year_verified rule: absent flag = attested; KMM never

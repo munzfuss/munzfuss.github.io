@@ -2388,3 +2388,19 @@ variants («och eniste» landing inside a line of the 1619 ordinance). Check suc
 pages with `kb.py page <pdf> <n> --mode layout`; a `-layout` copy of every cached
 PDF sits under `scripts/cache/_derived/layout/` (`scripts/kb/layout_extract.py`).
 
+
+### 13.29 danskmoent Hede pages that drop a parenthesis; Numista weights that are a Finvægt (2026-11-03)
+
+- **Hede Norge 2 (Frederik V, 24 Skilling)** prints sub-variant B as «B) 1763,
+  1764, 1765; … forneden; Hede Norge 2B, Schou hhv. 11, 8 og 5, Sieg Norge 3)» —
+  no opening «(». The letter-group parser found the anchor only inside balanced
+  parentheses, so the page stayed whole and its record drifted between KM 236
+  (2A) and KM 241 (2B). `_extract_letter_groups` now accepts the anchor in an
+  UNBALANCED line; a balanced line naming another sub-variant in prose
+  («Som Hede 57A (Hede 58A …)», f3h57) is not taken. Measured over every cached
+  Hede page: only nf5h2 changes.
+- **Numista 108782 (1 Sølvgylden, Christian II, Galster 38)** gives 23.68 g —
+  exactly the «Finvægt: 23,68g» danskmoent prints for Galster 38 beside
+  «Bruttovægt: 27,06g». A Numista weight that equals a page's fine weight is the
+  fine weight, not the coin's; it is marked erroneous on the seed. Check the
+  other Numista weights against danskmoent's Finvægt before trusting a light one.
