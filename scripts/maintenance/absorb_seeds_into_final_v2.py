@@ -71,6 +71,7 @@ from lib.seed_merge import merge_seed  # noqa: E402
 from lib.specimen_exclusions import (  # noqa: E402
     load_excluded_specimens, strip_excluded_specimens)
 from lib.yaml_io import dump_v2_canonical  # noqa: E402
+from lib import confident_blocking as _cblock  # noqa: E402
 from lib.v2_seed_writer import (  # noqa: E402
     _is_out_of_scope_nominal,
     _is_out_of_scope_catalog,
@@ -3350,6 +3351,7 @@ def process_entity(entity_id: str) -> dict:
     self_foundation_fold_skipped_multi: list[str] = []
     self_foundation_fold_skipped_clash: list[str] = []
     final_after_fold: list[dict] = []
+    _fold_blocker = _cblock.ConfidentBlocker(v1_foundations_for_fold, entity_id)
     for fe in surviving_finals:
         if not isinstance(fe, dict):
             final_after_fold.append(fe)
@@ -3363,7 +3365,12 @@ def process_entity(entity_id: str) -> dict:
             continue
         # Self-foundation candidate. Find V1-peer matches via match_pair.
         matches = []
-        for vf in v1_foundations_for_fold:
+        # Only peers sharing a ruler or catalogue token can be confident
+        # (lib/confident_blocking.py) — the verdicts are match_pair's own.
+        _cblock.verify(_fold_blocker, fe, v1_foundations_for_fold,
+                       lambda vf: not _curator_no_merged(fe, vf, no_merge_pairs, unified_by_id)
+                       and match_pair(fe, vf, entity_id).get("decision") == "confident")
+        for vf in _cblock.select(_fold_blocker, fe, v1_foundations_for_fold):
             # Curator no_merge outranks any content match. Without this the
             # fold re-glues at the FINAL layer a pair the merger correctly
             # kept apart at seed_unified — the failure only surfaces once the
@@ -3660,6 +3667,8 @@ def process_entity(entity_id: str) -> dict:
     unmatched: list[str] = []
     multi_match: list[dict] = []
     already_in = 0
+    _cand_finals = list(final_by_id.values())
+    _cand_blocker = _cblock.ConfidentBlocker(_cand_finals, entity_id, reign_index)
 
     for unified in unified_entries:
         uid = unified.get("id")
@@ -3683,7 +3692,14 @@ def process_entity(entity_id: str) -> dict:
         # Find match against final entries (per §5.2 hierarchy)
         candidates = []
         _u_has_catalog = bool(_catalog_refs(unified, entity_id))
-        for fid, fc in final_by_id.items():
+        _cblock.verify(_cand_blocker, unified, _cand_finals,
+                       lambda fc: not _curator_no_merged(unified, fc, no_merge_pairs, unified_by_id)
+                       and not (_u_has_catalog and fc.get("fuss") in (None, "", "seed_unsorted")
+                                and not _catalog_refs(fc, entity_id))
+                       and match_pair(unified, fc, entity_id,
+                                      reign_index=reign_index)["decision"] == "confident")
+        for fc in _cblock.select(_cand_blocker, unified, _cand_finals):
+            fid = fc["id"]
             if _curator_no_merged(unified, fc, no_merge_pairs, unified_by_id):
                 continue  # curator no_merge: different coin — never absorb
             # An unclassified final with no catalogue index at all (a bare
