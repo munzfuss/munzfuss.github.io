@@ -111,6 +111,13 @@ _MINT_REGISTRY: dict[str, dict] = {
         "aliases": {"ribe"},
         "display": "Ribe",
         "entity": "danish_realm",
+        "year_overrides": [
+            # The town's own witten of the 1370s («CIVITAS REGNI – MONETA
+            # RIPENS», a «byudmøntning», Märcher 2018 s. 371) names no king
+            # (curator 2026-11-03). year < 1397 → ribe_medieval; the crown's
+            # Ribe coinage resumes after Margrethe's 1396 reform.
+            {"year_to": 1397, "entity": "ribe_medieval"},
+        ],
     },
     "aarhus": {
         "aliases": {"aarhus", "århus", "?rhus"},

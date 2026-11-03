@@ -1,0 +1,66 @@
+status: seed
+source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
+generated_at: '2026-11-03T10:40:08Z'
+entity: ribe_medieval
+scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
+  and v2/seed/hede/ (existing main). §BF promotion uses all three.
+scope_year_from: 1370
+scope_year_to: 1541
+coins:
+  - id: dk-galster-m1g-1
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hvid
+    year_label: '1380'
+    year_first: 1380
+    year_last: 1380
+    year_ranges:
+      -   - 1380
+          - 1380
+    year_verified: false
+    ruler: Margrethe I
+    mint: Ribe
+    catalog:
+      galster: '1'
+      galster_volume: galster1972-margrethe1
+    metal: billon
+    metal_verified: false
+    fineness:
+    weight_rough_g:
+    issuing_entity: ribe_medieval
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/m1g1.htm
+        ref: Galster 1 (m1g) — danskmoent.dk m1g1.htm
+    uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+      year:
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1380
+          value: '1380'
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '1.19'
+    weight_range_g:
+      - min: 1.19
+        max:
+        approx: true
+        source: danskmoent.dk ernst/ribeaxe1.htm
+        url: https://www.danskmoent.dk/gif/m1g1.gif
+    diameter_mm:
+      - value: 18.0
+        source: danskmoent.dk ernst/ribeaxe1.htm

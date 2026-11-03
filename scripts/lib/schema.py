@@ -115,7 +115,9 @@ class UncertainReading(_StrictBase):
         # inferred — the pipeline's basis
         "reign", "other_page", "feud_window", "text_year", "standard",
         "standard_weight", "reign_holstein",
-        "default", "compiled", "curator_window", "from_name", "uncited"]
+        "default", "compiled", "curator_window", "from_name", "uncited",
+        # a source's assay of the coin TYPE, applied to this coin
+        "type_assay"]
     source: str = Field(..., min_length=1)
     as_printed: str | None = None
     # A translation of `as_printed` in the reader's language (attributions

@@ -164,8 +164,8 @@ class DerivedTooltipsAreLocalised(unittest.TestCase):
         self.assertEqual(len(set(got.values())), 4, got)
         for lang, text in got.items():
             with self.subTest(lang=lang):
-                self.assertIn("bruun", text)
-                self.assertIn("hede", text)
+                self.assertIn("bruun", text.lower())
+                self.assertIn("hede", text.lower())
 
     def test_no_language_gets_the_ukrainian_one(self):
         for lang in ("de", "en", "da"):
@@ -174,12 +174,13 @@ class DerivedTooltipsAreLocalised(unittest.TestCase):
 
     def test_a_plain_source_label_passes_through_untouched(self):
         """Most tooltip lines are source names, not keys."""
-        self.assertEqual(resolve_tips(["kmk", "numista"], UI, "de"), "kmk\nnumista")
+        self.assertEqual(resolve_tips(["Bruun Part III, lot 11304", "Lindahl 1955"], UI, "de"),
+                         "Bruun Part III, lot 11304\nLindahl 1955")
 
     def test_an_unknown_key_shows_the_sources_not_a_bracketed_key(self):
         """A tooltip is an aid; «[marker.nope]» in place of it is worse than
         the bare label."""
-        self.assertEqual(self.tip("de", "marker.nope", "kmk"), "kmk")
+        self.assertEqual(self.tip("de", "marker.nope", "Lindahl 1955"), "Lindahl 1955")
 
     def test_a_source_label_containing_a_brace_survives(self):
         """`.format` would raise on it; the substitution is a plain replace."""

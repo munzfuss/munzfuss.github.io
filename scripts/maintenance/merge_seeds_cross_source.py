@@ -4375,7 +4375,11 @@ def _canonical_nominal_out(out: dict, members: list[dict],
             return
     # Danish-crown entities: a penning equivalent leaves the nominal for the
     # note, a plain «1 Hvid?» becomes «1 Hvid» with «(?)» (curator 2026-10-26).
-    if entity_id in DISPLAY_NAME_ENTITIES:
+    # TOWN_ENTITIES: the town coinages on the Denmark page take the same
+    # Danish names (curator 2026-11-02); they name no king, so they stay out
+    # of DISPLAY_NAME_ENTITIES.
+    from lib.ruler_reigns import TOWN_ENTITIES
+    if entity_id in DISPLAY_NAME_ENTITIES or entity_id in TOWN_ENTITIES:
         raw, equiv, doubt = split_nominal(danish_display_nominal(raw, entity_id))
         out["nominal"] = raw
         if equiv:
@@ -4399,7 +4403,14 @@ def _canonical_ruler_out(out: dict, members: list[dict],
     danish_realm coins and kept it after moving to christian_ii_*. A member
     holding `ruler` freezes the spelling; a trailing «?» (the source's own
     doubt) sets `ruler_verified: false` unless a member holds that flag."""
-    from lib.ruler_reigns import canonical_ruler_display
+    from lib.ruler_reigns import TOWN_ENTITIES, canonical_ruler_display
+    if entity_id in TOWN_ENTITIES:
+        # A town coinage names no king (curator 2026-11-03): a source that
+        # files it under a reign (Galster 1 under Margrethe I) keeps that in
+        # the seed, the class shows none.
+        out.pop("ruler", None)
+        out.pop("ruler_verified", None)
+        return
     raw = out.get("ruler")
     if not isinstance(raw, str):
         return

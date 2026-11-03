@@ -60,6 +60,7 @@ def build_env(template_dir: str) -> Environment:
     env.filters["nominal_nbsp"] = nominal_nbsp
     env.filters["mint_label"] = mint_label
     env.filters["nb_dashes"] = nb_dashes
+    env.filters["plain_tip"] = plain_tip
     env.filters["fin_unit"] = fin_unit
     env.filters["fin_txt"] = fin_txt
     env.filters["fuss_spec"] = fuss_spec
@@ -184,6 +185,12 @@ def nominal_nbsp(s: str | None) -> str:
         right = re.sub(r"\s+", "&nbsp;", right, count=1)
         return f"{left} =<br>{right}"
     return re.sub(r"\s+", "&nbsp;", escaped, count=1)
+
+
+def plain_tip(s: str | None) -> str | None:
+    """Drop the tooltip markup tags ([b]…[/b], [i]…[/i]) for a tooltip that
+    is a CSS ::after (outside the portal), which would show them raw."""
+    return re.sub(r"\[/?[bi]\]", "", s) if s else s
 
 
 _NB_DASH_RE = None  # lazy-compiled — see nb_dashes()
@@ -397,13 +404,24 @@ def resolve_tips(items, ui: dict, lang: str) -> str:
     """
     from .compute import DERIVED_SEP
 
+    # A label that is a Fuß name marks a value set from the standard
+    # (tooltip-text rule 10); the tooltip says so instead of the bare name.
+    fuss_labels = {n for v in _fuss_names().values()
+                   for n in ((v.values() if isinstance(v, dict) else [v]))}
+
+    def fuss_label(label: str, key: str) -> str:
+        if label not in fuss_labels:
+            return _SOURCE_DISPLAY.get(label, label)
+        return i18n.ui_get(ui, key, lang).replace("{fuss}", label)
+
     out: list[str] = []
+    derived_head = False
     for item in items or []:
         if not isinstance(item, str) or DERIVED_SEP not in item:
-            out.append(_SOURCE_DISPLAY.get(item, item) if isinstance(item, str) else item)
+            out.append(fuss_label(item, "source.fuss_value") if isinstance(item, str) else item)
             continue
         key, *args = item.split(DERIVED_SEP)
-        args = [_SOURCE_DISPLAY.get(a, a) for a in args]
+        args = [fuss_label(a, "source.fuss_basis") for a in args]
         text = i18n.ui_get(ui, key, lang)
         if text.startswith("["):          # ui_get's not-found form
             out.append(DERIVED_SEP.join(args))
@@ -412,6 +430,11 @@ def resolve_tips(items, ui: dict, lang: str) -> str:
         # `.format` would choke on a source label containing a brace.
         for slot, value in names.items():
             text = text.replace("{" + slot + "}", value)
+        if not derived_head:
+            derived_head = True
+            head = i18n.ui_get(ui, "marker.derived_head", lang)
+            if not head.startswith("["):
+                out.append(head)
         out.append(text)
     # Localisation keys embedded in a source label (lib/weight_range.ui_key),
     # also when nested inside a derived label above.
@@ -622,6 +645,73 @@ _UNC_SOURCE = {
 }
 
 
+# Inferences whose tooltip is a sentence naming the basis
+# (ui.yml uncertainty.basis.*); every other kind keeps «basis: value».
+_BASIS_HOWS = ("standard", "standard_weight", "from_name", "reign",
+               "reign_holstein", "feud_window", "type_assay")
+# Of those, the ones that open with «the sources give no …»: a type assay is
+# a source's figure, only not of this specimen.
+_NOSRC_HOWS = frozenset(_BASIS_HOWS) - {"type_assay"}
+_FUSS_NAMES: dict | None = None
+
+
+def _fuss_names() -> dict:
+    """{fuss id: name} from data/shared/fuesse.yml — the name only, read once."""
+    global _FUSS_NAMES
+    if _FUSS_NAMES is None:
+        import yaml
+        path = Path(__file__).resolve().parents[2] / "data" / "shared" / "fuesse.yml"
+        with open(path, encoding="utf-8") as f:
+            raw = yaml.safe_load(f) or {}
+        _FUSS_NAMES = {k: v.get("name") for k, v in raw.items()
+                       if isinstance(v, dict) and v.get("name")}
+    return _FUSS_NAMES
+
+
+def _fuss_name(fuss_id, lang: str) -> str:
+    return i18n.t(_fuss_names().get(fuss_id), lang) or str(fuss_id or "")
+
+
+def _ruler_text(ruler, entity=None) -> str:
+    """The ruler whose reign gives the years, for the tooltip sentence.
+
+    The class's ruler is often a museum's raw spelling («Chritian 4», «Christian
+    IV.»); the reign window was looked up under the canonical key of the
+    kings' table, so that key is the name shown (curator 2026-11-03: the
+    group's normalised ruler, where there is one). A ducal ruler the house
+    table resolves keeps its own name without the trailing dot. Anything else
+    — no ruler, «?», a name the tables do not hold whole, «Kongeløs tid» —
+    returns "" and the sentence names no ruler."""
+    from . import ruler_reigns as R
+    if isinstance(ruler, list) or not isinstance(ruler, str):
+        return ""
+    if R.reign_lookup_is_exact(ruler):
+        key = R.normalise_ruler_name(ruler)
+        if key in ("Kongeløs tid", "Rigsrådet"):
+            return ""
+        return "Hans" if key == "Hans I" else key
+    for house in (entity if isinstance(entity, list) else [entity]):
+        if R.house_reign_window(ruler, house):
+            return ruler.strip().rstrip(".")
+    return ""
+
+
+# Translations of a source's own short date mark, keyed by its folded form
+# (lower case, no spaces or dots). No entry in the mark's own language: the
+# Danish «u.år» stays as it is on the Danish page, «ND» on the English one.
+# Here rather than in ui.yml, whose every key carries all four languages.
+_PRINTED_MARK_TR = {
+    "uår": {"de": "ohne Jahr", "en": "no year", "uk": "без року"},
+    "nd": {"de": "ohne Jahr", "uk": "без дати", "da": "uden år"},
+}
+
+
+def _printed_tr(ui: dict, q: str, lang: str) -> str:
+    """« («translation»)» for a source's short date mark («u.år», «ND»)."""
+    txt = _PRINTED_MARK_TR.get(re.sub(r"[\s.]", "", q.lower()), {}).get(lang)
+    return f" («{txt}»)" if txt else ""
+
+
 def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
     """How the page marks an unverified value from Coin.uncertainty
     (docs/plans/uncertainty_markers.md, curator 2026-10-29).
@@ -639,7 +729,9 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
     def _plain(obj):
         return obj.model_dump(exclude_none=True) if hasattr(obj, "model_dump") else obj
 
-    entries = [_plain(e) for e in (_get(raw, "uncertainty") or {}).get(field) or []]
+    # Copies: the metal branch below rewrites a value for display, and the
+    # same coin renders once per language.
+    entries = [dict(_plain(e)) for e in (_get(raw, "uncertainty") or {}).get(field) or []]
     if not entries:
         return None
 
@@ -726,6 +818,35 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
         entry(e)
     if inferred and hedged:
         push(i18n.ui_get(ui, "uncertainty.inferred_also", lang))
+    # A value the pipeline supplies says where it comes from, not what it is —
+    # the cell shows the value (curator 2026-11-03): «the sources give no
+    # fineness. It is derived from the parameters of the standard X.», then
+    # each source's own words. A dating compiled from works keeps its form.
+    if not any(e.get("how") in ("compiled", "curator_window") for e in inferred):
+        groups: dict[str, list] = {}
+        for e in inferred:
+            if e.get("how") in _BASIS_HOWS:
+                groups.setdefault(e["how"], []).append(e)
+        for h, es in groups.items():
+            ruler = _ruler_text(_get(raw, "ruler"), _get(raw, "issuing_entity"))
+            lead = "" if hedged or h not in _NOSRC_HOWS else i18n.ui_get(
+                ui, f"uncertainty.nosrc.{field}", lang, " ").strip()
+            if h == "reign" and not ruler:
+                h = "reign_unnamed"
+            basis = i18n.ui_get(ui, f"uncertainty.basis.{h}", lang)
+            basis = (basis.replace("{fuss}", _fuss_name(_get(raw, "fuss"), lang))
+                          .replace("{ruler}", ruler)
+                          .replace("{value}", str(es[0].get("value") or "")))
+            push(f"{lead} {basis}".strip())
+            for e in es:
+                if e.get("source") in ("ruler_reigns", "merge_decisions", "standard"):
+                    continue
+                q = e.get("as_printed")
+                if q:
+                    push(f"[b]{src(e)}[/b]: [i]«{q}»[/i]{tr(e) or _printed_tr(ui, q, lang)}")
+                else:
+                    push(f"[b]{src(e)}[/b]")
+        inferred = [e for e in inferred if e.get("how") not in _BASIS_HOWS]
     compiled_head = False
     for e in inferred:
         if e.get("how") == "compiled" and e.get("as_printed"):

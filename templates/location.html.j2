@@ -185,6 +185,22 @@
   {%- endif -%}</td>
   <td class="c-ruler">{%- set _ru = umark(coin.raw, 'ruler') if not coin.raw.ruler_verified else none -%}{{ uopen(_ru) }}{{ coin.raw.ruler|ruler(lang, coin.raw.fuss) }}{%- set _rg = coin.raw|ruler_regent(lang) %}{% if _rg %} <span class="regent" data-tooltip="{{ ui_get(_rg[1]) }}">({{ _rg[0] }})</span>{% endif -%}{%- if not coin.raw.ruler_verified %}{{ uq(_ru) }}{% endif -%}
     {%- for a in coin.raw.ruler_alts or [] if a.value != coin.raw.ruler %} <span class="ruler-alt">{{ a.value|ruler(lang, coin.raw.fuss) }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
+  <td class="c-entity">
+    {# V2 issuing_entity may be a list (joint-jurisdiction coins per V2_PIPELINE.md
+       §3.10). Render one badge per entity in order; scalar shows a single badge. #}
+    {%- set ie_raw = coin.raw.issuing_entity -%}
+    {%- if ie_raw is none -%}—
+    {%- else -%}
+      {%- if ie_raw is string -%}{%- set ie_tags = [ie_raw] -%}
+      {%- else -%}{%- set ie_tags = ie_raw -%}{%- endif -%}
+      {%- for tag in ie_tags -%}
+        {%- set ent = issuing_entities.get(tag) -%}
+        {%- if ent -%}
+          <span class="ent-badge ent-{{ tag }}" data-tooltip="{{ ('[b]' ~ (ent.name|t(lang)) ~ '[/b]' ~ (('\n' ~ ((ent.description|t(lang))|striptags)) if ent.description else '')) | nb_dashes }}">{{ ent.abbrev }}</span>{% if not loop.last %} {% endif %}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </td>
   <td class="c-km">
     {%- for prefix, vals, tooltip in coin.catalog_groups -%}
       {%- if prefix -%}
@@ -417,22 +433,6 @@
     {%- set _mints = coin.raw.mint if coin.raw.mint is not string else [coin.raw.mint] -%}
     {%- for a in coin.raw.mint_alts or [] if a.value not in (_mints or []) %} <span class="mint-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   </td>
-  <td class="c-entity">
-    {# V2 issuing_entity may be a list (joint-jurisdiction coins per V2_PIPELINE.md
-       §3.10). Render one badge per entity in order; scalar shows a single badge. #}
-    {%- set ie_raw = coin.raw.issuing_entity -%}
-    {%- if ie_raw is none -%}—
-    {%- else -%}
-      {%- if ie_raw is string -%}{%- set ie_tags = [ie_raw] -%}
-      {%- else -%}{%- set ie_tags = ie_raw -%}{%- endif -%}
-      {%- for tag in ie_tags -%}
-        {%- set ent = issuing_entities.get(tag) -%}
-        {%- if ent -%}
-          <span class="ent-badge ent-{{ tag }}" data-tooltip="{{ ((ent.name|t(lang)) ~ ' — ' ~ ((ent.description|t(lang))|striptags if ent.description else '')) | nb_dashes }}">{{ ent.abbrev }}</span>{% if not loop.last %} {% endif %}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endif -%}
-  </td>
   <td class="c-note">{%- if coin.raw.nominal_equiv -%}<span class="nom-equiv nw">{{ coin.raw.nominal }} = {{ coin.raw.nominal_equiv }}</span>{%- if coin.raw.note %}<br>{% endif -%}{%- endif -%}{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-ref">
     {%- for s in coin.raw.sources if s.display -%}
@@ -455,6 +455,7 @@
       <th>{{ ui_get('col.nominal') }}</th>
       <th>{{ ui_get('col.year') }}</th>
       <th>{{ ui_get('col.ruler') }}</th>
+      <th data-tooltip="{{ ui_get('col.entity_tooltip') }}">{{ ui_get('col.entity') }}</th>
       <th>{{ ui_get('col.catalog') }}</th>
       <th>{{ ui_get('col.metal') }}</th>
       <th>{{ ui_get('col.fineness') }}</th>
@@ -467,7 +468,6 @@
       <th data-tooltip="{{ ui_get('col.soll_tooltip') }}">{{ ui_get('col.soll') }}</th>
       <th>{{ ui_get('col.diameter') }}</th>
       <th>{{ ui_get('col.mint') }}</th>
-      <th data-tooltip="{{ ui_get('col.entity_tooltip') }}">{{ ui_get('col.entity') }}</th>
       <th>{{ ui_get('col.note') }}</th>
       <th>{{ ui_get('col.source') }}</th>
     </tr>
@@ -494,6 +494,21 @@
   {%- endif -%}</td>
   <td class="c-ruler">{%- set _ru = umark(coin.raw, 'ruler') if not coin.raw.ruler_verified else none -%}{{ uopen(_ru) }}{{ coin.raw.ruler|ruler(lang, coin.raw.fuss) }}{%- set _rg = coin.raw|ruler_regent(lang) %}{% if _rg %} <span class="regent" data-tooltip="{{ ui_get(_rg[1]) }}">({{ _rg[0] }})</span>{% endif -%}{%- if not coin.raw.ruler_verified %}{{ uq(_ru) }}{% endif -%}
     {%- for a in coin.raw.ruler_alts or [] if a.value != coin.raw.ruler %} <span class="ruler-alt">{{ a.value|ruler(lang, coin.raw.fuss) }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}</td>
+  <td class="c-entity">
+    {# V2 list-form aware (same shape as the silver coin_row macro above). #}
+    {%- set ie_raw = coin.raw.issuing_entity -%}
+    {%- if ie_raw is none -%}—
+    {%- else -%}
+      {%- if ie_raw is string -%}{%- set ie_tags = [ie_raw] -%}
+      {%- else -%}{%- set ie_tags = ie_raw -%}{%- endif -%}
+      {%- for tag in ie_tags -%}
+        {%- set ent = issuing_entities.get(tag) -%}
+        {%- if ent -%}
+          <span class="ent-badge ent-{{ tag }}" data-tooltip="{{ ent.name|t(lang) }}">{{ ent.abbrev }}</span>{% if not loop.last %} {% endif %}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </td>
   <td class="c-km">
     {%- for prefix, vals, tooltip in coin.catalog_groups -%}
       {%- if prefix -%}
@@ -558,21 +573,6 @@
     {%- set _mints = coin.raw.mint if coin.raw.mint is not string else [coin.raw.mint] -%}
     {%- for a in coin.raw.mint_alts or [] if a.value not in (_mints or []) %} <span class="mint-alt">{{ a.value }}&nbsp;<span class="{{ a.kind }}-mark" data-tooltip="{{ a.reason|t(lang) }}">{{ msign[a.kind] }}</span></span>{% endfor -%}
   </td>
-  <td class="c-entity">
-    {# V2 list-form aware (same shape as the silver coin_row macro above). #}
-    {%- set ie_raw = coin.raw.issuing_entity -%}
-    {%- if ie_raw is none -%}—
-    {%- else -%}
-      {%- if ie_raw is string -%}{%- set ie_tags = [ie_raw] -%}
-      {%- else -%}{%- set ie_tags = ie_raw -%}{%- endif -%}
-      {%- for tag in ie_tags -%}
-        {%- set ent = issuing_entities.get(tag) -%}
-        {%- if ent -%}
-          <span class="ent-badge ent-{{ tag }}" data-tooltip="{{ ent.name|t(lang) }}">{{ ent.abbrev }}</span>{% if not loop.last %} {% endif %}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endif -%}
-  </td>
   <td class="c-note">{%- if coin.raw.nominal_equiv -%}<span class="nom-equiv nw">{{ coin.raw.nominal }} = {{ coin.raw.nominal_equiv }}</span>{%- if coin.raw.note %}<br>{% endif -%}{%- endif -%}{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-ref">
     {%- for s in coin.raw.sources if s.display -%}
@@ -595,12 +595,12 @@
       <th>{{ ui_get('col.nominal') }}</th>
       <th>{{ ui_get('col.year') }}</th>
       <th>{{ ui_get('col.ruler') }}</th>
+      <th data-tooltip="{{ ui_get('col.entity_tooltip') }}">{{ ui_get('col.entity') }}</th>
       <th>{{ ui_get('col.catalog') }}</th>
       <th>{{ ui_get('col.metal') }}</th>
       <th>{{ ui_get('col.rough') }}</th>
       <th>{{ ui_get('col.diameter') }}</th>
       <th>{{ ui_get('col.mint') }}</th>
-      <th data-tooltip="{{ ui_get('col.entity_tooltip') }}">{{ ui_get('col.entity') }}</th>
       <th>{{ ui_get('col.note') }}</th>
       <th>{{ ui_get('col.source') }}</th>
     </tr>
@@ -929,7 +929,7 @@
               {%- set ns = namespace(parts=[_years_lbl]) -%}
               {%- for ent_id, cnt in variant.entity_counts -%}
                 {%- if issuing_entities.get(ent_id) -%}
-                  {%- set _name = issuing_entities.get(ent_id).name|t(lang) -%}
+                  {%- set _name = issuing_entities.get(ent_id).name|t(lang)|plain_tip -%}
                   {%- set ns.parts = ns.parts + [_name ~ ': ' ~ cnt|string] -%}
                 {%- endif -%}
               {%- endfor -%}

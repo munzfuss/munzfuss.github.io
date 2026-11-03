@@ -778,29 +778,37 @@ phase.label:
 # These were a literal Ukrainian string inside compute.py, which runs once per
 # location for every language — so every German and English page carried
 # «Обчислено з вагою з:» until 2026-09-19.
+# One line per derived reading; resolve_tips puts marker.derived_head above
+# the first of them (curator 2026-11-03: «Обчислено з: вага — …; проба — …»).
+marker.derived_head:
+  de: "Errechnet aus:"
+  en: "Computed from:"
+  uk: "Обчислено з:"
+  da: "Beregnet af:"
+
 marker.derived_both:
-  de: "Errechnet aus Gewicht × Feingehalt von:\n{w}"
-  en: "Computed from weight × fineness of:\n{w}"
-  uk: "Обчислено з вагою × пробою з:\n{w}"
-  da: "Beregnet af vægt × finhed fra:\n{w}"
+  de: "Gewicht und Feingehalt — {w}"
+  en: "weight and fineness — {w}"
+  uk: "вага і проба — {w}"
+  da: "vægt og finhed — {w}"
 
 marker.derived_split:
-  de: "Errechnet aus Gewicht von:\n{w}\nmit Feingehalt von:\n{f}"
-  en: "Computed from weight from:\n{w}\nwith fineness from:\n{f}"
-  uk: "Обчислено з вагою з:\n{w}\nз пробою з:\n{f}"
-  da: "Beregnet af vægt fra:\n{w}\nmed finhed fra:\n{f}"
+  de: "Gewicht — {w}; Feingehalt — {f}"
+  en: "weight — {w}; fineness — {f}"
+  uk: "вага — {w}; проба — {f}"
+  da: "vægt — {w}; finhed — {f}"
 
 marker.derived_weight:
-  de: "Errechnet aus Gewicht von:\n{w}"
-  en: "Computed from weight from:\n{w}"
-  uk: "Обчислено з вагою з:\n{w}"
-  da: "Beregnet af vægt fra:\n{w}"
+  de: "Gewicht — {w}"
+  en: "weight — {w}"
+  uk: "вага — {w}"
+  da: "vægt — {w}"
 
 marker.derived_fineness:
-  de: "Errechnet aus Feingehalt von:\n{f}"
-  en: "Computed from fineness from:\n{f}"
-  uk: "Обчислено з пробою з:\n{f}"
-  da: "Beregnet af finhed fra:\n{f}"
+  de: "Feingehalt — {f}"
+  en: "fineness — {f}"
+  uk: "проба — {f}"
+  da: "finhed — {f}"
 
 # Coin.uncertainty tooltips (docs/plans/uncertainty_markers.md, 2026-10-29).
 
@@ -941,6 +949,99 @@ uncertainty.how.uncited:
   en: "carried over without a source"
   uk: "перенесено без джерела"
   da: "overført uden kilde"
+
+# A value the pipeline supplies because the sources give none: the tooltip
+# says that, then where the shown value comes from — never the value itself,
+# which stands in the cell (curator 2026-11-03). {fuss} the Fuß name,
+# {ruler} the ruler, {value} a basis the cell does not show (the weight's
+# fraction of the mark). lib/render.py::uncertainty_mark.
+uncertainty.nosrc.year:
+  de: "Die Quellen geben kein Jahr an."
+  en: "The sources give no year."
+  uk: "Джерела року не подають."
+  da: "Kilderne angiver intet år."
+
+uncertainty.nosrc.metal:
+  de: "Die Quellen geben kein Metall an."
+  en: "The sources give no metal."
+  uk: "Джерела металу не подають."
+  da: "Kilderne angiver intet metal."
+
+uncertainty.nosrc.fineness:
+  de: "Die Quellen geben keinen Feingehalt an."
+  en: "The sources give no fineness."
+  uk: "Джерела проби не подають."
+  da: "Kilderne angiver ingen finhed."
+
+uncertainty.nosrc.weight:
+  de: "Die Quellen geben kein Gewicht an."
+  en: "The sources give no weight."
+  uk: "Джерела ваги не подають."
+  da: "Kilderne angiver ingen vægt."
+
+uncertainty.basis.standard:
+  de: "Er ist aus den Parametern des Müntzfußes [b]{fuss}[/b] abgeleitet."
+  en: "It is derived from the parameters of the standard [b]{fuss}[/b]."
+  uk: "Її виведено з параметрів стопи [b]{fuss}[/b]."
+  da: "Den er udledt af parametrene for [b]{fuss}[/b]."
+
+uncertainty.basis.standard_weight:
+  de: "Es ist aus den Parametern des Müntzfußes [b]{fuss}[/b] abgeleitet: {value}."
+  en: "It is derived from the parameters of the standard [b]{fuss}[/b]: {value}."
+  uk: "Її виведено з параметрів стопи [b]{fuss}[/b]: {value}."
+  da: "Den er udledt af parametrene for [b]{fuss}[/b]: {value}."
+
+uncertainty.basis.type_assay:
+  de: "Der Feingehalt ist für den Münztyp belegt, nicht an diesem Stück bestimmt."
+  en: "The fineness is attested for the coin type, not determined on this specimen."
+  uk: "Пробу засвідчено для типу монети, а не визначено на цьому екземплярі."
+  da: "Finheden er belagt for mønttypen, ikke bestemt på dette eksemplar."
+
+uncertainty.basis.from_name:
+  de: "Es ist aus dem Namen des Nominals abgeleitet."
+  en: "It is derived from the name of the denomination."
+  uk: "Його виведено з назви номіналу."
+  da: "Det er udledt af møntsortens navn."
+
+uncertainty.basis.reign:
+  de: "Angegeben sind die Regierungsjahre: {ruler}."
+  en: "The years shown are the reign of {ruler}."
+  uk: "Наведено роки правління {ruler}."
+  da: "Angivet er regeringsårene: {ruler}."
+
+uncertainty.basis.reign_unnamed:
+  de: "Angegeben sind die Regierungsjahre."
+  en: "The years shown are those of the reign."
+  uk: "Наведено роки правління."
+  da: "Angivet er regeringsårene."
+
+uncertainty.basis.reign_holstein:
+  de: "Angegeben sind die Regierungsjahre in Holstein: {ruler}."
+  en: "The years shown are the reign of {ruler} in Holstein."
+  uk: "Наведено роки правління {ruler} у Гольштейні."
+  da: "Angivet er regeringsårene i Holsten: {ruler}."
+
+uncertainty.basis.feud_window:
+  de: "Angegeben sind die Jahre der Grafenfehde."
+  en: "The years shown are those of the Count's Feud."
+  uk: "Наведено роки Графської війни."
+  da: "Angivet er årene for Grevens Fejde."
+
+# A measurement whose source label is a Fuß name (tooltip-text rule 10: a
+# value set from the standard is labelled with the Fuß name alone). The
+# value's own tooltip, and the «computed from» tooltip of the values derived
+# from it, name the basis — lib/render.py::resolve_tips (curator 2026-11-03).
+source.fuss_value:
+  de: "Der Wert ist aus den Parametern des Müntzfußes [b]{fuss}[/b] abgeleitet."
+  en: "The value is derived from the parameters of the standard [b]{fuss}[/b]."
+  uk: "Значення виведено з параметрів стопи [b]{fuss}[/b]."
+  da: "Værdien er udledt af parametrene for [b]{fuss}[/b]."
+
+source.fuss_basis:
+  de: "nach den Parametern des Müntzfußes [b]{fuss}[/b]"
+  en: "from the parameters of the standard [b]{fuss}[/b]"
+  uk: "за параметрами стопи [b]{fuss}[/b]"
+  da: "efter parametrene for [b]{fuss}[/b]"
 
 uncertainty.inferred_also:
   de: "Abgeleitet:"

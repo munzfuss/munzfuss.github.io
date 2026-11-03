@@ -14,7 +14,7 @@ HEDGED = frozenset({"circa", "attributed", "query", "decade", "century",
                     "alternatives", "span", "museum"})
 INFERRED = frozenset({"reign", "other_page", "feud_window", "text_year",
                       "standard", "standard_weight", "reign_holstein", "default", "compiled", "curator_window",
-                      "from_name", "uncited"})
+                      "from_name", "uncited", "type_assay"})
 FIELDS = ("year", "ruler", "mint", "metal", "fineness", "weight", "diameter", "nominal")
 
 
@@ -97,6 +97,11 @@ def held_standard_fineness(entry: dict, holds) -> dict | None:
     standard's canonical value (§4 canonical anchor: held, `fineness_verified`
     false). None when the fineness is not such an anchor."""
     held = set(holds.keys() if isinstance(holds, dict) else (holds or []))
+    # A held fineness that already says where it comes from (a source's assay
+    # of the type, `type_assay`) is not the standard's value.
+    if any(e.get("how") not in ("standard", None) and e.get("kind") == "inferred"
+           for e in ((entry.get("uncertainty") or {}).get("fineness") or [])):
+        return None
     fin = entry.get("fineness")
     if "fineness" not in held or entry.get("fineness_verified") is not False or fin in (None, []):
         return None

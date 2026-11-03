@@ -46,7 +46,7 @@ Every new dossier gets a row here in the same commit (`tests/test_research_index
 | File | Covers |
 |---|---|
 | [`luebeck_standard_chronology_1226_1622.md`](luebeck_standard_chronology_1226_1622.md) | Lübeck / Wendish coin formulas 1226–1622, denomination × act table, levels per fine mark |
-| [`danish_standard_chronology_1396_1541.md`](danish_standard_chronology_1396_1541.md) | Danish coin formulas under the Lübeck orientation 1396–1541: acts, assays, rates, the three kinds of tie, end-point candidates (§5, curator decision pending) |
+| [`danish_standard_chronology_1396_1541.md`](danish_standard_chronology_1396_1541.md) | Danish coin formulas under the Lübeck orientation 1396–1541: acts, assays, rates, the three kinds of tie, end-point candidates (§5, curator decision pending); §2i fineness spread within a type; §2j Erik VII's sterling — Lübeck system, not English (with the 1406 «V̶ = 4½» emendation) |
 
 ### Danish and Lübeck silver before 1541
 
@@ -103,6 +103,7 @@ Every new dossier gets a row here in the same commit (`tests/test_research_index
 | [`altona.md`](altona.md) | Altona — Münz- und Bankwesen |
 | [`hamburg.md`](hamburg.md) | Hamburg — Münz- und Bankwesen |
 | [`duchy_of_schleswig_entity.md`](duchy_of_schleswig_entity.md) | the Duchy of Schleswig as a V2 entity |
+| [`schleswig_flensborg_status_1350_1460.md`](schleswig_flensborg_status_1350_1460.md) | who held Schleswig and the town of Flensborg 1350-1460, under which title (Flensborg coins on the Denmark page) |
 | [`denomination_lineages.md`](denomination_lineages.md) | denomination lineages above the Füße |
 | [`hierarchical_metal_tiers.md`](hierarchical_metal_tiers.md) | metal tiers within one Fuß (convention) |
 | [`mint_year_transitions.md`](mint_year_transitions.md) | mint year-aware classification dates |
