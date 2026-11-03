@@ -35,5 +35,15 @@ class Ruler(unittest.TestCase):
         self.assertTrue(out.get("ruler"))
 
 
+class Nominal(unittest.TestCase):
+    def test_viertelwitten_is_one_penning_on_the_denmark_page(self):
+        from lib.nominal_synonyms import danish_display_nominal
+        self.assertEqual(danish_display_nominal("1 Viertelwitten", "flensborg_medieval"),
+                         "1 Penning")
+        self.assertEqual(danish_display_nominal("1 Witten", "flensborg_medieval"), "1 Hvid")
+        self.assertEqual(danish_display_nominal("1 Viertelwitten", "hanseatic_lubeck"),
+                         "1 Viertelwitten")
+
+
 if __name__ == "__main__":
     unittest.main()
