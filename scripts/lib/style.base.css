@@ -546,6 +546,8 @@ h2[style] {
 .tl-filter-grafschaft_oldenburg { color: #78c490; }
 .tl-filter-herzogtum_braunschweig_lueneburg { color: #d4ac38; }
 .tl-filter-herzogtum_sachsen_lauenburg { color: #98a8c8; }
+.tl-filter-flensborg_medieval { color: #d0c8a0; }
+.tl-filter-ribe_medieval { color: #e0a8a0; }
 [data-theme="v1"] .tl-filter-royal_holstein { color: #6b2424; }
 [data-theme="v1"] .tl-filter-royal_slesvig { color: #21496f; }
 [data-theme="v1"] .tl-filter-gottorp_duchy { color: #3d5a25; }
@@ -558,6 +560,8 @@ h2[style] {
 [data-theme="v1"] .tl-filter-norburg_plon_duchy { color: #1f4055; }
 [data-theme="v1"] .tl-filter-glucksburg_duchy { color: #1f5840; }
 [data-theme="v1"] .tl-filter-rantzau_county { color: #4a4818; }
+[data-theme="v1"] .tl-filter-flensborg_medieval { color: #48442a; }
+[data-theme="v1"] .tl-filter-ribe_medieval { color: #5a2a24; }
 [data-theme="v1"] .tl-filter-hanseatic_hamburg { color: #5a3520; }
 [data-theme="v1"] .tl-filter-hanseatic_lubeck { color: #5a1f5a; }
 [data-theme="v1"] .tl-filter-fuerstbisthum_luebeck { color: #202065; }
@@ -1141,6 +1145,8 @@ h2[style] {
 .tl-coin-year-herzogtum_braunschweig_lueneburg { background: rgb(225, 185, 65); }
 .tl-coin-year-herzogtum_sachsen_lauenburg { background: rgb(150, 165, 200); }
 .tl-coin-year-german_empire { background: rgb(165, 120, 245); }
+.tl-coin-year-flensborg_medieval { background: rgb(205, 195, 150); }
+.tl-coin-year-ribe_medieval { background: rgb(230, 150, 140); }
 /* Light-theme variants — fully-opaque, mid-saturation hues lifted ~30
    units per channel from the deepest base, so each entity reads as a
    distinct stripe but doesn't sit so dark as to clash with the cream
@@ -1158,6 +1164,8 @@ h2[style] {
 [data-theme="v1"] .tl-coin-year-schauenburg_pinneberg { background: rgb(130, 90, 160); }
 [data-theme="v1"] .tl-coin-year-norburg_plon_duchy { background: rgb(60, 120, 160); }
 [data-theme="v1"] .tl-coin-year-sonderburg_duchy { background: rgb(60, 135, 125); }
+[data-theme="v1"] .tl-coin-year-flensborg_medieval { background: rgb(120, 112, 80); }
+[data-theme="v1"] .tl-coin-year-ribe_medieval { background: rgb(150, 75, 65); }
 [data-theme="v1"] .tl-coin-year-glucksburg_duchy { background: rgb(60, 145, 105); }
 [data-theme="v1"] .tl-coin-year-rantzau_county { background: rgb(140, 130, 60); }
 [data-theme="v1"] .tl-coin-year-hanseatic_hamburg { background: rgb(170, 90, 60); }
@@ -2431,6 +2439,9 @@ tr.msr-sh .msr-cut { display: none; }
 .ent-badge.ent-grafschaft_oldenburg { background: #152a18; color: #78c490; border-color: #3a7048; }
 .ent-badge.ent-herzogtum_braunschweig_lueneburg { background: #322c14; color: #d4ac38; border-color: #7a6c30; }
 .ent-badge.ent-herzogtum_sachsen_lauenburg { background: #1f263a; color: #98a8c8; border-color: #3e4e72; }
+/* Medieval town coinages on the Denmark page: Flensborg stone, Ribe brick. */
+.ent-badge.ent-flensborg_medieval { background: #2b2a22; color: #d0c8a0; border-color: #6a6650; }
+.ent-badge.ent-ribe_medieval { background: #34201d; color: #e0a8a0; border-color: #7a4a42; }
 /* Light-theme per-entity tints — warm pastels keyed off each entity's
    Noir hue, restated for the cream paper palette so the colour story
    («royal-Holstein burgundy», «Gottorp sage», «Danish-realm blue» …)
@@ -2459,6 +2470,8 @@ tr.msr-sh .msr-cut { display: none; }
 [data-theme="v1"] .ent-badge.ent-grafschaft_oldenburg { background: #d0e0d4; color: #1f4a2c; border-color: #6ea888; }
 [data-theme="v1"] .ent-badge.ent-herzogtum_braunschweig_lueneburg { background: #ece0a0; color: #5a481f; border-color: #b09858; }
 [data-theme="v1"] .ent-badge.ent-herzogtum_sachsen_lauenburg { background: #d4dee8; color: #1f3045; border-color: #6e8aa8; }
+[data-theme="v1"] .ent-badge.ent-flensborg_medieval { background: #e8e4d0; color: #48442a; border-color: #a8a080; }
+[data-theme="v1"] .ent-badge.ent-ribe_medieval { background: #f0dcd6; color: #5a2a24; border-color: #b88078; }
 
 /* Verification & translation markers */
 .unverified { color: var(--sd-under-deep-fg); cursor: help; font-weight: 600; font-family: var(--font-sans); }

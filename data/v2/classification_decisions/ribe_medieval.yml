@@ -1,0 +1,41 @@
+# Classification decisions for entity `ribe_medieval` (Phase 4).
+# Curator-authoritative file (committed). Two sections:
+#
+# 1. `assignments:` — explicit fuss/phase/kind for a coin, applied on
+#    every absorb run to the final holding it (and promoting a pending
+#    class the bulk-promote gate would otherwise park).
+#    `coin_id` is a SEED id of the coin (D49 stage 1): stable across
+#    re-merges, unlike a `unified-<head>` class id, which renames when
+#    a higher-authority member joins. A bare Hede code and a specimen
+#    folded by §9a thinning resolve too. Class / final ids still work.
+#    Example:
+#      assignments:
+#        - coin_id: dk-numismaster-12345
+#          fuss: 9_25_thaler
+#          phase: A
+#          kind: kurant
+#          reason: 'specimen Δ ambiguous; per Hede assignment'
+#
+# 2. `pending:` — auto-populated diagnostic list of unified
+#    entries with no match in current final. Curator either:
+#    moves an entry to `assignments:` with classification,
+#    OR fixes the matcher rules so the coin gets absorbed,
+#    OR confirms it's a genuinely new coin needing addition
+#    (will be auto-routed by §8a once that's built).
+#
+# This file is REGENERATED on every absorb run for the
+# `pending:` section; existing `assignments:` entries are
+# preserved.
+
+entity_id: ribe_medieval
+generated_at: '2026-11-03'
+assignments:
+  - coin_id: dk-galster-m1g-1
+    fuss: luebischer_muenzfuss
+    phase: '0'
+    kind: kurant
+    reason: "Moved from danish_realm with the coin (curator 2026-11-03: the Ribe witten is the town's coinage). Curator (Serhii) 2026-10-24: Lybsk møntfod phase 0 — the Hvid line follows its own standard
+      from the start of the Lübeck system in Denmark, c. 1400, so the Fuß is not cut at 1481; provisional placement of every pre-1481 coin, to be worked through on main. Galster coin with no other source
+      (curator 2026-10-25: the Fuß reaches back to Galster 1, the Ribe hvid c. 1380)."
+pending: []
+multi_match_warnings: []

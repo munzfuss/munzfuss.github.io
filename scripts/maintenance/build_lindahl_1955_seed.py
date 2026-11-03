@@ -10,6 +10,8 @@ The Flensborg section (s. 74-76: wittens, viertelwitten, dreling, struck by
 the town as «moneta holsacie» in the Danish fief of Schleswig, under the
 Sønderjylland dukes and, after 1375, the Holstein counts) goes to its own
 entity, `flensborg_medieval` (curator 2026-11-02); its coins name no ruler.
+The Ribe witten, the town's own coinage, goes to `ribe_medieval` (curator
+2026-11-03).
 
 **No Galster number is assigned** (curator 2026-10-26: «зроби сідами, а там
 побачимо чи мерджер сам впорається»): Lindahl cites Jesse numbers and numbers
@@ -185,6 +187,7 @@ def collect() -> list[dict]:
             "weight_rough_g": ([{"value": single, "source": label}] if single else None),
             "weight_rough_verified": bool(single or rng),
             "issuing_entity": ("flensborg_medieval" if key.startswith("flensborg-")
+                               else "ribe_medieval" if key.startswith("ribe-")
                                else "danish_realm"),
             "verified": False,
             "sources": [{"type": "literature", "url": URL,

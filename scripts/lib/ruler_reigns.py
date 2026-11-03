@@ -496,6 +496,11 @@ DISPLAY_NAME_ENTITIES = DANISH_CROWN_ENTITIES | frozenset({
     "christian_ii_reconquest", "christian_ii_supporters",
 })
 
+# Town coinages on the Denmark page (curator 2026-11-02 / 2026-11-03): Danish
+# nominal names like the crown's, but no ruler — the coins name the town, not
+# a king (Märcher 2018 s. 371 for Ribe).
+TOWN_ENTITIES = frozenset({"flensborg_medieval", "ribe_medieval"})
+
 
 # The canonical DISPLAY form of a Danish king's name: «Name Roman», no period
 # — one identifier across every source and language (CLAUDE.md i18n: ruler
