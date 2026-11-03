@@ -187,6 +187,7 @@ coins:
     mint: Flensburg
     catalog:
       jesse: '371'
+    metal: silver
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
@@ -204,6 +205,13 @@ coins:
           source: lindahl
           as_printed: efter reces 1379/81
           value: '1379'
+          seed: lindahl-1955-flensborg-witten-naeldeblad
+      metal:
+        - kind: inferred
+          how: from_name
+          source: lindahl
+          as_printed: 1 Witten
+          value: silver
           seed: lindahl-1955-flensborg-witten-naeldeblad
     sources:
       - type: literature

@@ -202,6 +202,15 @@ def collect() -> list[dict]:
                                         "as_printed": "Finhed: spor af sølv"}]
         elif note:
             entry["note"] = dict(note)
+        if (entry["metal"] is None and key.startswith("flensborg-")
+                and nominal.endswith(" Witten")):
+            # The unassayed Flensborg Witten: silver read from the
+            # denomination name (curator 2026-11-03); Lindahl's other
+            # Flensborg Witten assays 779 ‰. Not the Næstved Wittens, whose
+            # Galster classes read billon from «Hvid».
+            entry["metal"] = "silver"
+            unc.add(entry, "metal", "from_name", SOURCE, as_printed=nominal,
+                    value="silver")
         how, printed = _DATING_PRINTED[key]
         unc.add(entry, "year", how, SOURCE, as_printed=printed,
                 value=unc.year_value(y0, y1))
