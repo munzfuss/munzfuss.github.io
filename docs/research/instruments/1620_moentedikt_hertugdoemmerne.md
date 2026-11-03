@@ -519,7 +519,7 @@ daler) = 2 ℳ l. = 32 ß l. = 64 ß d.
   XIII (1881) p. 128; Lange I–II.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-03): C1 1.5 · C2 2.0 (eight acts and
+Score (research-dossier rubric, self-assessed 2026-11-03, commit 8232bf2): C1 1.5 · C2 2.0 (eight acts and
 four agreements tabulated as the tariff chain they are; the four grid-shaped figures
 recomputed; E's Specifikation and K's full list labelled gaps) · C3 2.0 · C4 1.5 (no act in
 hand — Wilcke I / II paraphrase, Jensen, Gaedechens; nine discrepancies tabled; the imperial
