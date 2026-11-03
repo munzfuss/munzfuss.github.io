@@ -1,6 +1,6 @@
 status: seed
 source: lindahl
-generated_at: '2026-11-02T18:57:34Z'
+generated_at: '2026-11-03T14:26:47Z'
 entity: flensborg_medieval
 scope_note: 'Lindahl, Fritze: Danmarks mønter 1377-1448, Nordisk Numismatisk Årsskrift 1955, s. 73-93 — weight ranges and assays per coin type (danskmoent.dk pdf2/NNA_1955_Lindahl.pdf).'
 coins:
@@ -105,7 +105,7 @@ coins:
     mint_verified: true
     catalog:
       jesse: '371'
-    metal:
+    metal: silver
     metal_verified: false
     fineness:
     fineness_verified: false
@@ -122,6 +122,12 @@ coins:
         max: 1.27
         source: Lindahl 1955 (NNÅ 1955), s. 75
     uncertainty:
+      metal:
+        - kind: inferred
+          how: from_name
+          source: lindahl
+          as_printed: 1 Witten
+          value: silver
       year:
         - kind: hedged
           how: after

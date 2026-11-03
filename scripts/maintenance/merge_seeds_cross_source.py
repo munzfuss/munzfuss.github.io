@@ -3352,6 +3352,9 @@ def _source_label_from_id(coin_id: str | None) -> str:
     return "?"
 
 
+_GALSTER_REF_RE = re.compile(r"Galster (\d+)")
+
+
 def _collect_sources(members: list[dict],
                        skip_first_list: bool = False) -> list[dict]:
     """Union members' source lists with smart de-duplication.
@@ -3389,6 +3392,15 @@ def _collect_sources(members: list[dict],
         "numismaster.com",
         "ikmk.smb.museum",
     )
+    galster_bases: dict[str, set[str]] = {}
+    for idx, m in enumerate(members):
+        if idx == 0 and skip_first_list:
+            continue
+        for s in m.get("sources") or []:
+            if isinstance(s, dict):
+                g = _GALSTER_REF_RE.match(s.get("ref") or "")
+                if g:
+                    galster_bases.setdefault(s.get("url") or "", set()).add(g.group(1))
     seen_keys: set[tuple] = set()
     out: list[dict] = []
     for idx, m in enumerate(members):
@@ -3417,7 +3429,15 @@ def _collect_sources(members: list[dict],
             if url.lower().endswith(".pdf"):
                 key = ("trip", url, ref, stype)
             elif any(host in url for host in _SINGLE_PAGE_HOSTS):
-                key = ("url", url)
+                # A danskmoent Galster index page (pommgals.htm, hans.htm …)
+                # carries several Galster numbers: each base number is its
+                # own citation (Galster 8 and 12 both on pommgals.htm,
+                # 2026-11-03). A page with one base number keeps url-only
+                # dedup, so «92» / «92A» and unlabelled refs stay one.
+                g = _GALSTER_REF_RE.match(ref)
+                key = (("url", url, g.group(1))
+                       if g and len(galster_bases.get(url, ())) > 1
+                       else ("url", url))
             else:
                 key = ("trip", url, ref, stype)
             if key in seen_keys:
