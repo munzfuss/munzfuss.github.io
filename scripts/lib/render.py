@@ -135,8 +135,12 @@ def fin_unit(value, metal: str | None, lang: str):
         whole += 1
         glyph = ""
 
+    # Below 1 % silver the content is «0 lod» (Heljeback 2016, Metallanalyser
+    # av mynt 2016:1), not the nearest eighth of a Lot (curator 2026-11-03).
+    if factor == 16 and v < 0.01:
+        num = "0"
     # "0⅝" reads oddly for very low finenesses — show the bare fraction "⅝".
-    if whole == 0 and glyph:
+    elif whole == 0 and glyph:
         num = glyph
     else:
         num = f"{whole}{glyph}"

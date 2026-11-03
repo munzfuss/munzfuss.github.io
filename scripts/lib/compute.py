@@ -310,6 +310,9 @@ def _seg_rle(rows: list[dict], field: str, ndigits: int, base_dec: int = 0,
         else:
             dec = _natural_decimals(v, base_dec, base_dec + 3) if v is not None else base_dec
             segs.append({"_key": key, "_gkey": gkey, "value": v, "span": 1, "r0": i,
+                         # a copper sub-row (fineness < COPPER_MAX_FINENESS):
+                         # its cells are shaded and its derived values blank
+                         "cu": r.get("metal_code") == 2,
                          "sources": [s for s in (r.get(src_field) or []) if s],
                          # `anchor` is always the raw WEIGHT source, even on the
                          # derived columns whose `sources` is a «computed from …»
@@ -422,6 +425,33 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
                             if _rw and _rw > 0 else None)
             r["n_fine"] = (grid_unit_g / (_fw / frac_k)
                            if _fw and _fw > 0 else None)
+    # Each sub-row names its own metal when the readings of a silver-standard
+    # type fall into more than one class (curator 2026-10-26, copper added
+    # 2026-11-03): 1 = silver (≥ .500), 0 = billon, 2 = copper (< .010 —
+    # Heljeback 2016 records a silver content below 1 % as «0 lod» and calls
+    # such pieces «mer eller mindre ren koppar»), None without a fineness.
+    cc.msr_metal_segs = []
+    build_metal_segs = False
+    if cc.raw.metal in ("silver", "billon", "silver_billon"):
+        for r in deduped:
+            f = r.get("fineness")
+            r["metal_code"] = (None if f is None else 1 if f >= 0.5
+                               else 2 if f < COPPER_MAX_FINENESS else 0)
+        codes = {r["metal_code"] for r in deduped} - {None}
+        if len(codes) > 1 or cc.raw.metal == "silver_billon":
+            # Rows without a fineness on a type that shows several metals
+            # read as billon (curator 2026-10-26).
+            if len(codes) > 1:
+                for r in deduped:
+                    if r["metal_code"] is None:
+                        r["metal_code"] = 0
+            build_metal_segs = True
+        # Copper sub-rows: no silver target, so the fine weight, Δ and pieces
+        # per fine mark are not shown (Heljeback 2016 on the copper sterlings:
+        # weight and fine weight «saknar … betydelse»).
+        for r in deduped:
+            if r.get("metal_code") == 2:
+                r["fine"] = r["delta"] = r["delta_pct"] = r["n_fine"] = None
     # повна / чиста / Δ merge only WITHIN a проба group (group_field="fineness")
     # — a weight shared by two specimens under different fineness readings is
     # NOT collapsed into one span. проба itself IS the grouping axis (no
@@ -431,21 +461,7 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
     cc.msr_delta_segs    = _seg_rle(deduped, "delta", 7, base_dec=5, src_field="delta_src", group_field="fineness",
                                     fin_anchor=cc.delta_basis != "rauh")
     cc.msr_fineness_segs = _seg_rle(deduped, "fineness", 5, base_dec=3)
-    # A silver_billon type names each sub-row's own metal by the same 50 %
-    # line the assay metal uses (curator 2026-10-26): 1 = silver, 0 = billon,
-    # None on a row without a fineness.
-    cc.msr_metal_segs = []
-    if cc.raw.metal == "silver_billon":
-        for r in deduped:
-            f = r.get("fineness")
-            r["metal_code"] = None if f is None else (1 if f >= 0.5 else 0)
-        # Rows without a fineness on a type that shows both metals read as
-        # billon (curator 2026-10-26); they sort last, so they join the
-        # billon segment.
-        if {r["metal_code"] for r in deduped} >= {0, 1}:
-            for r in deduped:
-                if r["metal_code"] is None:
-                    r["metal_code"] = 0
+    if build_metal_segs:
         cc.msr_metal_segs = _seg_rle(deduped, "metal_code", 0)
     # N/Marck sub-columns mirror the weight columns' source attribution:
     # повна reads the raw WEIGHT source (default src_field), чиста reads the
@@ -490,6 +506,11 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
                 seg["span_s"] = sum(1 for i in range(seg["r0"], seg["r0"] + seg["span"])
                                     if i in keep)
 
+
+# A reading below this fineness is copper, not billon: Heljeback 2016
+# (Metallanalyser av mynt 2016:1) records a silver content under 1 % as
+# «0 lod» (curator 2026-11-03).
+COPPER_MAX_FINENESS = 0.01
 
 # A coin whose specimens show this many distinct finenesses or more opens with
 # a shortened list (curator 2026-10-26); «show all» expands it in place.
