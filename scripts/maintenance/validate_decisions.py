@@ -52,11 +52,27 @@ def _decision_files() -> list[Path]:
     return files
 
 
+_DATA_DOCS: dict = {}
+
+
+def _data_doc(path: Path):
+    """A seed / seed_unified / final file's document, read once per run and
+    shared READ-ONLY by the id collectors below (each entity used to re-parse
+    every seed file through the pure-Python loader: 65-97 s of a pre-commit
+    hook, 2026-11-03), through the cross-run parse cache — the same document
+    as yaml.safe_load."""
+    key = str(path)
+    if key not in _DATA_DOCS:
+        from lib import yaml_cache
+        _DATA_DOCS[key] = yaml_cache.load(path.read_text()) or {}
+    return _DATA_DOCS[key]
+
+
 def _seed_ids(entity: str) -> set[str]:
     import yaml
     out: set[str] = set()
     for f in sorted(SEED_DIR.glob(f"*/{entity}.yml")):
-        d = yaml.safe_load(f.read_text()) or {}
+        d = _data_doc(f)
         for c in (d.get("coins") if isinstance(d, dict) else d) or []:
             if c.get("id"):
                 out.add(c["id"])
@@ -74,7 +90,7 @@ def _thinned_index() -> dict[str, list[str]]:
     import yaml
     coins = []
     for f in sorted(SEED_DIR.glob("*/*.yml")):
-        d = yaml.safe_load(f.read_text()) or {}
+        d = _data_doc(f)
         coins.extend((d.get("coins") if isinstance(d, dict) else d) or [])
     return _M.build_thinned_index(coins)
 
@@ -160,7 +176,7 @@ def _layer_ids(entity: str, layer: str) -> tuple[set[str], dict[str, str]]:
     member_of: dict[str, str] = {}
     if not path.exists():
         return ids, member_of
-    d = yaml.safe_load(path.read_text()) or {}
+    d = _data_doc(path)
     for c in (d.get("coins") if isinstance(d, dict) else d) or []:
         if not isinstance(c, dict) or not c.get("id"):
             continue

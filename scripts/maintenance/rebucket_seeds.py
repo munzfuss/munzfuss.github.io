@@ -82,7 +82,11 @@ def _scan() -> list[dict]:
     drift: list[dict] = []
     if not V2_SEED_ROOT.exists():
         return drift
-    y = _yaml()
+    # Read-only: drift depends only on each entry's `issuing_entity`, so the
+    # scan reads through libyaml and the cross-run parse cache instead of the
+    # ruamel round-trip loader (63 s → seconds); only `_apply` rewrites files
+    # and keeps ruamel for that.
+    from lib import yaml_cache
     for src_dir in sorted(V2_SEED_ROOT.iterdir()):
         if not src_dir.is_dir():
             continue
@@ -90,7 +94,7 @@ def _scan() -> list[dict]:
             stem = path.stem
             if stem.startswith("_"):
                 continue  # _unclassified / synthetic buckets
-            doc = y.load(path.read_text(encoding="utf-8")) or {}
+            doc = yaml_cache.load(path.read_text(encoding="utf-8")) or {}
             for c in doc.get("coins") or []:
                 if not isinstance(c, dict):
                     continue

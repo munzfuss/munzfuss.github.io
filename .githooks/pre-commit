@@ -60,8 +60,10 @@
 # --------------------------------------------------
 # The five heavy checks (1 build-validate, 3 i18n, 4 audit_v2,
 # 6 lost-citations, 7 reflow) are independent, read-only passes over the
-# same tree, so they are launched concurrently; the fast checks (2 prose,
-# 5 decisions, 8 rebucket, 9 residual) run sequentially alongside them.
+# same tree, so they are launched concurrently, together with 5 decisions,
+# 8 rebucket (each reads the whole seed corpus) and 9 residual (a ruamel
+# round-trip per staged file) and 2 prose; every check is still reported in
+# its place, in the original order.
 # The final verdict is unchanged from a sequential run — the commit is
 # blocked iff ANY check fails — only the fail-FAST behaviour is dropped:
 # every launched check runs to completion, then failures are reported
@@ -184,6 +186,45 @@ if [ -n "$FINAL_RELEVANT$SEED_RELEVANT" ]; then
     MRK_PID=$!
 fi
 
+# The decision-file and seed-bucket checks read the whole seed corpus too, so
+# they start here with the heavy ones and are reported at their usual place
+# below (2026-11-03: run one after another they were ~3.5 min of a re-flow
+# commit). The member-resolution check is reported only when the structural
+# check passed, exactly as when it ran after it.
+DEC_PID=""; DEC_LOG=""; MEMB_PID=""; MEMB_LOG=""
+if [ -n "$DECISIONS_RELEVANT" ]; then
+    DEC_LOG=$(mktemp -t precommit-decisions.XXXXXX)
+    "$PYTHON" scripts/maintenance/validate_decisions.py --quiet > "$DEC_LOG" 2>&1 &
+    DEC_PID=$!
+    MEMB_LOG=$(mktemp -t precommit-members.XXXXXX)
+    "$PYTHON" scripts/maintenance/validate_decisions.py --check-members --quiet > "$MEMB_LOG" 2>&1 &
+    MEMB_PID=$!
+fi
+CLS_PID=""; CLS_LOG=""
+if [ -n "$CLASSIFY_RELEVANT" ]; then
+    CLS_LOG=$(mktemp -t precommit-classify.XXXXXX)
+    "$PYTHON" scripts/maintenance/validate_decisions.py --check-classification --quiet > "$CLS_LOG" 2>&1 &
+    CLS_PID=$!
+fi
+PROSE_PID=""; PROSE_LOG=""
+if [ -n "$STAGED_YAML" ]; then
+    PROSE_LOG=$(mktemp -t precommit-prose.XXXXXX)
+    "$PYTHON" scripts/audit_prose.py --staged --json > "$PROSE_LOG" 2>&1 &
+    PROSE_PID=$!
+fi
+RES_PID=""; RES_LOG=""
+if [ -n "$RESID_RELEVANT" ]; then
+    RES_LOG=$(mktemp -t precommit-residual.XXXXXX)
+    "$PYTHON" scripts/maintenance/check_yaml_residual.py --staged > "$RES_LOG" 2>&1 &
+    RES_PID=$!
+fi
+RBK_PID=""; RBK_LOG=""
+if [ -n "$SEED_RELEVANT" ]; then
+    RBK_LOG=$(mktemp -t precommit-rebucket.XXXXXX)
+    "$PYTHON" scripts/maintenance/rebucket_seeds.py --check > "$RBK_LOG" 2>&1 &
+    RBK_PID=$!
+fi
+
 if [ -n "$BUILD_PID$I18N_PID$V2_PID$CIT_PID$RFL_PID$MRK_PID" ]; then
     echo "▶ Heavy checks running in parallel (build / i18n / v2 / citations / reflow / marks, as relevant)…"
 fi
@@ -199,8 +240,7 @@ fi
 # ---------------------------------------------------------------------------
 if [ -n "$STAGED_YAML" ]; then
     echo "▶ Prose lint (staged YAMLs)..."
-    PROSE_LOG=$(mktemp -t precommit-prose.XXXXXX)
-    if "$PYTHON" scripts/audit_prose.py --staged --json > "$PROSE_LOG" 2>&1; then
+    if wait "$PROSE_PID"; then
         # Exit 0 = no ERRORs in the staged files.
         WARN=$("$PYTHON" -c "import json,sys;d=json.load(open('$PROSE_LOG'));print(d['summary']['warning'])" 2>/dev/null || echo 0)
         if [ "$WARN" = "0" ]; then
@@ -243,8 +283,8 @@ fi
 # validate every decisions file whenever the commit touches one.
 if [ -n "$DECISIONS_RELEVANT" ]; then
     echo "▶ Decision-file integrity..."
-    DEC_LOG=$(mktemp -t precommit-decisions.XXXXXX)
-    if ! "$PYTHON" scripts/maintenance/validate_decisions.py --quiet > "$DEC_LOG" 2>&1; then
+    if ! wait "$DEC_PID"; then
+        wait "$MEMB_PID" || true
         echo "${C_RED}✗ Decision-file integrity FAILED.${C_RST}"
         cat "$DEC_LOG" | sed 's/^/    /'
         echo
@@ -260,8 +300,7 @@ if [ -n "$DECISIONS_RELEVANT" ]; then
         # over-merge gap; a non-resolving merge member is a folded/typo id. Heal via
         # the v2-merge-coins skill (resolve → drop-if-redundant / fix), never by
         # re-pointing a bare Hede code to a flat sub-variant list.
-        MEMB_LOG=$(mktemp -t precommit-members.XXXXXX)
-        if ! "$PYTHON" scripts/maintenance/validate_decisions.py --check-members --quiet > "$MEMB_LOG" 2>&1; then
+        if ! wait "$MEMB_PID"; then
             echo "${C_RED}✗ Merge-decision member-resolution FAILED.${C_RST}"
             cat "$MEMB_LOG" | sed 's/^/    /'
             echo
@@ -273,7 +312,7 @@ if [ -n "$DECISIONS_RELEVANT" ]; then
         fi
         rm -f "$MEMB_LOG"
     fi
-    rm -f "$DEC_LOG"
+    rm -f "$DEC_LOG" "$MEMB_LOG"
 fi
 
 # Classification-key resolution (D49 stage 1, HARD BLOCK). Every
@@ -283,8 +322,7 @@ fi
 # never applies it, and refuses to write on the second.
 if [ -n "$CLASSIFY_RELEVANT" ]; then
     echo "▶ Classification-key resolution..."
-    CLS_LOG=$(mktemp -t precommit-classify.XXXXXX)
-    if ! "$PYTHON" scripts/maintenance/validate_decisions.py --check-classification --quiet > "$CLS_LOG" 2>&1; then
+    if ! wait "$CLS_PID"; then
         echo "${C_RED}✗ Classification-key resolution FAILED.${C_RST}"
         cat "$CLS_LOG" | sed 's/^/    /'
         echo
@@ -310,8 +348,7 @@ fi
 # instead. Heal with `rebucket_seeds.py --apply`.
 if [ -n "$SEED_RELEVANT" ]; then
     echo "▶ Seed-bucket drift..."
-    RBK_LOG=$(mktemp -t precommit-rebucket.XXXXXX)
-    if ! "$PYTHON" scripts/maintenance/rebucket_seeds.py --check > "$RBK_LOG" 2>&1; then
+    if ! wait "$RBK_PID"; then
         echo "${C_RED}✗ Seed-bucket drift — a seed entry is not in its _home_entity file.${C_RST}"
         tail -20 "$RBK_LOG" | sed 's/^/    /'
         echo
@@ -342,8 +379,7 @@ fi
 # yaml_io.edit_coin_field().
 if [ -n "$RESID_RELEVANT" ]; then
     echo "▶ YAML round-trip residual..."
-    RES_LOG=$(mktemp -t precommit-residual.XXXXXX)
-    if ! "$PYTHON" scripts/maintenance/check_yaml_residual.py --staged > "$RES_LOG" 2>&1; then
+    if ! wait "$RES_PID"; then
         echo "${C_RED}✗ A staged YAML would reformat more than it did at HEAD.${C_RST}"
         cat "$RES_LOG" | sed 's/^/    /'
         echo
