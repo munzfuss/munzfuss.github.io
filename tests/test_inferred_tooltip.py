@@ -52,6 +52,15 @@ class Basis(unittest.TestCase):
         self.assertEqual(render.uncertainty_mark(c, "year", UI, "uk")["tip"],
                          "Джерела року не подають. Наведено роки правління.")
 
+    def test_reign_names_the_normalised_ruler(self):
+        for raw, shown in (("Chritian 4", "Christian IV"), ("Christian IV.", "Christian IV"),
+                           ("Johan", "Hans"), ("Kongeløs tid", None)):
+            c = coin("year", {"kind": "inferred", "how": "reign", "source": "ruler_reigns"},
+                     ruler=raw, issuing_entity="danish_realm")
+            tip = render.uncertainty_mark(c, "year", UI, "uk")["tip"]
+            with self.subTest(raw=raw):
+                self.assertTrue(tip.endswith(f"правління {shown}." if shown else "правління."), tip)
+
     def test_metal_entry_survives_rendering_in_another_language(self):
         c = coin("metal", {"kind": "inferred", "how": "from_name", "source": "galster",
                            "as_printed": "Hvid", "value": "billon"}, metal="billon")
@@ -76,6 +85,9 @@ class FussLabel(unittest.TestCase):
         d = render.resolve_tips([DERIVED_SEP.join(
             ["marker.derived_weight", "Guldgyldenfod"])], UI, "en")
         self.assertIn("the parameters of the standard [b]Guldgyldenfod[/b]", d)
+        two = render.resolve_tips([DERIVED_SEP.join(["marker.derived_split", "Bruun", "Hede"]),
+                                   DERIVED_SEP.join(["marker.derived_both", "Numista"])], UI, "uk")
+        self.assertEqual(two, "Обчислено з:\nвага — Bruun; проба — Hede\nвага і проба — Numista")
         self.assertEqual(render.resolve_tips(["Bruun Part III, lot 11304"], UI, "uk"),
                          "Bruun Part III, lot 11304")
 

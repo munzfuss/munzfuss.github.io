@@ -778,29 +778,37 @@ phase.label:
 # These were a literal Ukrainian string inside compute.py, which runs once per
 # location for every language — so every German and English page carried
 # «Обчислено з вагою з:» until 2026-09-19.
+# One line per derived reading; resolve_tips puts marker.derived_head above
+# the first of them (curator 2026-11-03: «Обчислено з: вага — …; проба — …»).
+marker.derived_head:
+  de: "Errechnet aus:"
+  en: "Computed from:"
+  uk: "Обчислено з:"
+  da: "Beregnet af:"
+
 marker.derived_both:
-  de: "Errechnet aus Gewicht × Feingehalt von:\n{w}"
-  en: "Computed from weight × fineness of:\n{w}"
-  uk: "Обчислено з вагою × пробою з:\n{w}"
-  da: "Beregnet af vægt × finhed fra:\n{w}"
+  de: "Gewicht und Feingehalt — {w}"
+  en: "weight and fineness — {w}"
+  uk: "вага і проба — {w}"
+  da: "vægt og finhed — {w}"
 
 marker.derived_split:
-  de: "Errechnet aus Gewicht von:\n{w}\nmit Feingehalt von:\n{f}"
-  en: "Computed from weight from:\n{w}\nwith fineness from:\n{f}"
-  uk: "Обчислено з вагою з:\n{w}\nз пробою з:\n{f}"
-  da: "Beregnet af vægt fra:\n{w}\nmed finhed fra:\n{f}"
+  de: "Gewicht — {w}; Feingehalt — {f}"
+  en: "weight — {w}; fineness — {f}"
+  uk: "вага — {w}; проба — {f}"
+  da: "vægt — {w}; finhed — {f}"
 
 marker.derived_weight:
-  de: "Errechnet aus Gewicht von:\n{w}"
-  en: "Computed from weight from:\n{w}"
-  uk: "Обчислено з вагою з:\n{w}"
-  da: "Beregnet af vægt fra:\n{w}"
+  de: "Gewicht — {w}"
+  en: "weight — {w}"
+  uk: "вага — {w}"
+  da: "vægt — {w}"
 
 marker.derived_fineness:
-  de: "Errechnet aus Feingehalt von:\n{f}"
-  en: "Computed from fineness from:\n{f}"
-  uk: "Обчислено з пробою з:\n{f}"
-  da: "Beregnet af finhed fra:\n{f}"
+  de: "Feingehalt — {f}"
+  en: "fineness — {f}"
+  uk: "проба — {f}"
+  da: "finhed — {f}"
 
 # Coin.uncertainty tooltips (docs/plans/uncertainty_markers.md, 2026-10-29).
 
@@ -1013,19 +1021,6 @@ uncertainty.basis.feud_window:
   uk: "Наведено роки Графської війни."
   da: "Angivet er årene for Grevens Fejde."
 
-# Translations of a source's own short date mark, keyed by its folded form
-# (lower case, no spaces or dots). A Danish mark stays untranslated on the
-# Danish page (no da field).
-uncertainty.printed.uår:
-  de: "ohne Jahr"
-  en: "no year"
-  uk: "без року"
-
-uncertainty.printed.nd:
-  de: "ohne Jahr"
-  uk: "без дати"
-  da: "uden år"
-
 # A measurement whose source label is a Fuß name (tooltip-text rule 10: a
 # value set from the standard is labelled with the Fuß name alone). The
 # value's own tooltip, and the «computed from» tooltip of the values derived
@@ -1037,10 +1032,10 @@ source.fuss_value:
   da: "Værdien er udledt af parametrene for [b]{fuss}[/b]."
 
 source.fuss_basis:
-  de: "Parameter des Müntzfußes [b]{fuss}[/b]"
-  en: "the parameters of the standard [b]{fuss}[/b]"
-  uk: "параметри стопи [b]{fuss}[/b]"
-  da: "parametrene for [b]{fuss}[/b]"
+  de: "nach den Parametern des Müntzfußes [b]{fuss}[/b]"
+  en: "from the parameters of the standard [b]{fuss}[/b]"
+  uk: "за параметрами стопи [b]{fuss}[/b]"
+  da: "efter parametrene for [b]{fuss}[/b]"
 
 uncertainty.inferred_also:
   de: "Abgeleitet:"

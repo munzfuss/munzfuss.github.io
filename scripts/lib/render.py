@@ -408,6 +408,7 @@ def resolve_tips(items, ui: dict, lang: str) -> str:
         return i18n.ui_get(ui, key, lang).replace("{fuss}", label)
 
     out: list[str] = []
+    derived_head = False
     for item in items or []:
         if not isinstance(item, str) or DERIVED_SEP not in item:
             out.append(fuss_label(item, "source.fuss_value") if isinstance(item, str) else item)
@@ -422,6 +423,11 @@ def resolve_tips(items, ui: dict, lang: str) -> str:
         # `.format` would choke on a source label containing a brace.
         for slot, value in names.items():
             text = text.replace("{" + slot + "}", value)
+        if not derived_head:
+            derived_head = True
+            head = i18n.ui_get(ui, "marker.derived_head", lang)
+            if not head.startswith("["):
+                out.append(head)
         out.append(text)
     # Localisation keys embedded in a source label (lib/weight_range.ui_key),
     # also when nested inside a derived label above.
@@ -656,18 +662,43 @@ def _fuss_name(fuss_id, lang: str) -> str:
     return i18n.t(_fuss_names().get(fuss_id), lang) or str(fuss_id or "")
 
 
-def _ruler_text(ruler) -> str:
-    """The ruler as the column gives it, without the trailing ordinal dot
-    («Christian II.»), which the sentence's own full stop follows."""
-    names = ruler if isinstance(ruler, list) else [ruler]
-    return ", ".join(str(r).rstrip(".") for r in names if r)
+def _ruler_text(ruler, entity=None) -> str:
+    """The ruler whose reign gives the years, for the tooltip sentence.
+
+    The class's ruler is often a museum's raw spelling («Chritian 4», «Christian
+    IV.»); the reign window was looked up under the canonical key of the
+    kings' table, so that key is the name shown (curator 2026-11-03: the
+    group's normalised ruler, where there is one). A ducal ruler the house
+    table resolves keeps its own name without the trailing dot. Anything else
+    — no ruler, «?», a name the tables do not hold whole, «Kongeløs tid» —
+    returns "" and the sentence names no ruler."""
+    from . import ruler_reigns as R
+    if isinstance(ruler, list) or not isinstance(ruler, str):
+        return ""
+    if R.reign_lookup_is_exact(ruler):
+        key = R.normalise_ruler_name(ruler)
+        if key in ("Kongeløs tid", "Rigsrådet"):
+            return ""
+        return "Hans" if key == "Hans I" else key
+    for house in (entity if isinstance(entity, list) else [entity]):
+        if R.house_reign_window(ruler, house):
+            return ruler.strip().rstrip(".")
+    return ""
+
+
+# Translations of a source's own short date mark, keyed by its folded form
+# (lower case, no spaces or dots). No entry in the mark's own language: the
+# Danish «u.år» stays as it is on the Danish page, «ND» on the English one.
+# Here rather than in ui.yml, whose every key carries all four languages.
+_PRINTED_MARK_TR = {
+    "uår": {"de": "ohne Jahr", "en": "no year", "uk": "без року"},
+    "nd": {"de": "ohne Jahr", "uk": "без дати", "da": "uden år"},
+}
 
 
 def _printed_tr(ui: dict, q: str, lang: str) -> str:
-    """Translation of a source's short date mark («u.år», «ND»), from
-    ui.yml uncertainty.printed.<folded mark>; none in the mark's own language."""
-    key = "uncertainty.printed." + re.sub(r"[\s.]", "", q.lower())
-    txt = (ui.get(key) or {}).get(lang)
+    """« («translation»)» for a source's short date mark («u.år», «ND»)."""
+    txt = _PRINTED_MARK_TR.get(re.sub(r"[\s.]", "", q.lower()), {}).get(lang)
     return f" («{txt}»)" if txt else ""
 
 
@@ -787,11 +818,12 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
             if e.get("how") in _BASIS_HOWS:
                 groups.setdefault(e["how"], []).append(e)
         for h, es in groups.items():
-            if h == "reign" and not _ruler_text(_get(raw, "ruler")).strip(" ?"):
+            ruler = _ruler_text(_get(raw, "ruler"), _get(raw, "issuing_entity"))
+            if h == "reign" and not ruler:
                 h = "reign_unnamed"
             basis = i18n.ui_get(ui, f"uncertainty.basis.{h}", lang)
             basis = (basis.replace("{fuss}", _fuss_name(_get(raw, "fuss"), lang))
-                          .replace("{ruler}", _ruler_text(_get(raw, "ruler")))
+                          .replace("{ruler}", ruler)
                           .replace("{value}", str(es[0].get("value") or "")))
             lead = "" if hedged else i18n.ui_get(ui, f"uncertainty.nosrc.{field}", lang, " ").strip()
             push(f"{lead} {basis}".strip())
