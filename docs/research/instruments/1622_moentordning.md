@@ -340,7 +340,7 @@ for «flere mynter» in the realm — Johan Engelbrecht's farm from Oct 1620 (Wi
   Scharling p. 94; Dähnert III p. 656, 661.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-03): C1 1.5 · C2 2.0 (the act in full,
+Score (research-dossier rubric, self-assessed 2026-11-03, commit f274cf2): C1 1.5 · C2 2.0 (the act in full,
 every tariff recomputed against the 1616–18 grids; the by-weight pound resolved to 208 × 4 ß)
 · C3 2.0 · C4 1.5 (the act is Secher's print; O / R1–R3 are Wilcke's quotations; five
 discrepancies tabled incl. the blank «otte» and the Pomeranian 10 May 1622) · C5 1.0 · C6 1.0
