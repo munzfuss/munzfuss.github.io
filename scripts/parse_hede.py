@@ -1738,17 +1738,28 @@ def _extract_letter_groups(text: str, page_hede: str) -> dict | None:
             _HEDE_ANCHOR + rf"{re.escape(page_hede)}{letter}\b",
             re.IGNORECASE,
         )
-        refs_m = None
+        refs_text = refs_start = None
         for inner in re.finditer(r"\(([^()]+)\)", body):
             if anchor_re.search(inner.group(1)):
-                refs_m = inner
+                refs_text, refs_start = inner.group(1), inner.start()
                 break
-        if not refs_m:
+        if refs_text is None and body.count(")") > body.count("("):
+            # The page dropped the opening parenthesis: nf5h2 prints
+            # «B) 1763, 1764, 1765; … forneden; Hede Norge 2B, Schou hhv.
+            # 11, 8 og 5, Sieg Norge 3)». The anchor still names the
+            # sub-variant; the refs run from it to the closing parenthesis.
+            # Only an unbalanced line qualifies: a balanced one that names
+            # the anchor in prose («Som Hede 57A (Hede 58A …)», f3h57) is
+            # another coin's line.
+            am = anchor_re.search(body)
+            if am and ")" in body[am.start():]:
+                refs_start = am.start()
+                refs_text = body[refs_start: body.index(")", refs_start)]
+        if refs_text is None:
             continue
-        refs_text = refs_m.group(1)
         refs = _extract_refs(refs_text)
         # Years: scan the body up to the tail parenthesis
-        years_text = body[: refs_m.start()]
+        years_text = body[: refs_start]
         years = _extract_years(years_text)
         # Mintmaster: tail of years_text, last non-empty alphabetic
         # token. The page tends to write «...; CS» or «...VBP» — a
