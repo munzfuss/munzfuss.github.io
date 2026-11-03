@@ -942,6 +942,100 @@ uncertainty.how.uncited:
   uk: "перенесено без джерела"
   da: "overført uden kilde"
 
+# A value the pipeline supplies because the sources give none: the tooltip
+# says that, then where the shown value comes from — never the value itself,
+# which stands in the cell (curator 2026-11-03). {fuss} the Fuß name,
+# {ruler} the ruler, {value} a basis the cell does not show (the weight's
+# fraction of the mark). lib/render.py::uncertainty_mark.
+uncertainty.nosrc.year:
+  de: "Die Quellen geben kein Jahr an."
+  en: "The sources give no year."
+  uk: "Джерела року не подають."
+  da: "Kilderne angiver intet år."
+
+uncertainty.nosrc.metal:
+  de: "Die Quellen geben kein Metall an."
+  en: "The sources give no metal."
+  uk: "Джерела металу не подають."
+  da: "Kilderne angiver intet metal."
+
+uncertainty.nosrc.fineness:
+  de: "Die Quellen geben keinen Feingehalt an."
+  en: "The sources give no fineness."
+  uk: "Джерела проби не подають."
+  da: "Kilderne angiver ingen finhed."
+
+uncertainty.nosrc.weight:
+  de: "Die Quellen geben kein Gewicht an."
+  en: "The sources give no weight."
+  uk: "Джерела ваги не подають."
+  da: "Kilderne angiver ingen vægt."
+
+uncertainty.basis.standard:
+  de: "Er ist aus den Parametern des Müntzfußes [b]{fuss}[/b] abgeleitet."
+  en: "It is derived from the parameters of the standard [b]{fuss}[/b]."
+  uk: "Її виведено з параметрів стопи [b]{fuss}[/b]."
+  da: "Den er udledt af parametrene for [b]{fuss}[/b]."
+
+uncertainty.basis.standard_weight:
+  de: "Es ist aus den Parametern des Müntzfußes [b]{fuss}[/b] abgeleitet: {value}."
+  en: "It is derived from the parameters of the standard [b]{fuss}[/b]: {value}."
+  uk: "Її виведено з параметрів стопи [b]{fuss}[/b]: {value}."
+  da: "Den er udledt af parametrene for [b]{fuss}[/b]: {value}."
+
+uncertainty.basis.from_name:
+  de: "Es ist aus dem Namen des Nominals abgeleitet."
+  en: "It is derived from the name of the denomination."
+  uk: "Його виведено з назви номіналу."
+  da: "Det er udledt af møntsortens navn."
+
+uncertainty.basis.reign:
+  de: "Angegeben sind die Regierungsjahre: {ruler}."
+  en: "The years shown are the reign of {ruler}."
+  uk: "Наведено роки правління {ruler}."
+  da: "Angivet er regeringsårene: {ruler}."
+
+uncertainty.basis.reign_holstein:
+  de: "Angegeben sind die Regierungsjahre in Holstein: {ruler}."
+  en: "The years shown are the reign of {ruler} in Holstein."
+  uk: "Наведено роки правління {ruler} у Гольштейні."
+  da: "Angivet er regeringsårene i Holsten: {ruler}."
+
+uncertainty.basis.feud_window:
+  de: "Angegeben sind die Jahre der Grafenfehde."
+  en: "The years shown are those of the Count's Feud."
+  uk: "Наведено роки Графської війни."
+  da: "Angivet er årene for Grevens Fejde."
+
+# Translations of a source's own short date mark, keyed by its folded form
+# (lower case, no spaces or dots). A Danish mark stays untranslated on the
+# Danish page (no da field).
+uncertainty.printed.uår:
+  de: "ohne Jahr"
+  en: "no year"
+  uk: "без року"
+
+uncertainty.printed.nd:
+  de: "ohne Jahr"
+  uk: "без дати"
+  da: "uden år"
+
+# A measurement whose source label is a Fuß name (tooltip-text rule 10: a
+# value set from the standard is labelled with the Fuß name alone). The
+# value's own tooltip, and the «computed from» tooltip of the values derived
+# from it, name the basis — lib/render.py::resolve_tips (curator 2026-11-03).
+source.fuss_value:
+  de: "Der Wert ist aus den Parametern des Müntzfußes [b]{fuss}[/b] abgeleitet."
+  en: "The value is derived from the parameters of the standard [b]{fuss}[/b]."
+  uk: "Значення виведено з параметрів стопи [b]{fuss}[/b]."
+  da: "Værdien er udledt af parametrene for [b]{fuss}[/b]."
+
+source.fuss_basis:
+  de: "Parameter des Müntzfußes [b]{fuss}[/b]"
+  en: "the parameters of the standard [b]{fuss}[/b]"
+  uk: "параметри стопи [b]{fuss}[/b]"
+  da: "parametrene for [b]{fuss}[/b]"
+
 uncertainty.inferred_also:
   de: "Abgeleitet:"
   en: "Inferred:"

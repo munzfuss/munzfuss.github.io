@@ -397,13 +397,23 @@ def resolve_tips(items, ui: dict, lang: str) -> str:
     """
     from .compute import DERIVED_SEP
 
+    # A label that is a Fuß name marks a value set from the standard
+    # (tooltip-text rule 10); the tooltip says so instead of the bare name.
+    fuss_labels = {n for v in _fuss_names().values()
+                   for n in ((v.values() if isinstance(v, dict) else [v]))}
+
+    def fuss_label(label: str, key: str) -> str:
+        if label not in fuss_labels:
+            return _SOURCE_DISPLAY.get(label, label)
+        return i18n.ui_get(ui, key, lang).replace("{fuss}", label)
+
     out: list[str] = []
     for item in items or []:
         if not isinstance(item, str) or DERIVED_SEP not in item:
-            out.append(_SOURCE_DISPLAY.get(item, item) if isinstance(item, str) else item)
+            out.append(fuss_label(item, "source.fuss_value") if isinstance(item, str) else item)
             continue
         key, *args = item.split(DERIVED_SEP)
-        args = [_SOURCE_DISPLAY.get(a, a) for a in args]
+        args = [fuss_label(a, "source.fuss_basis") for a in args]
         text = i18n.ui_get(ui, key, lang)
         if text.startswith("["):          # ui_get's not-found form
             out.append(DERIVED_SEP.join(args))
@@ -622,6 +632,45 @@ _UNC_SOURCE = {
 }
 
 
+# Inferences whose tooltip is a sentence naming the basis
+# (ui.yml uncertainty.basis.*); every other kind keeps «basis: value».
+_BASIS_HOWS = ("standard", "standard_weight", "from_name", "reign",
+               "reign_holstein", "feud_window")
+_FUSS_NAMES: dict | None = None
+
+
+def _fuss_names() -> dict:
+    """{fuss id: name} from data/shared/fuesse.yml — the name only, read once."""
+    global _FUSS_NAMES
+    if _FUSS_NAMES is None:
+        import yaml
+        path = Path(__file__).resolve().parents[2] / "data" / "shared" / "fuesse.yml"
+        with open(path, encoding="utf-8") as f:
+            raw = yaml.safe_load(f) or {}
+        _FUSS_NAMES = {k: v.get("name") for k, v in raw.items()
+                       if isinstance(v, dict) and v.get("name")}
+    return _FUSS_NAMES
+
+
+def _fuss_name(fuss_id, lang: str) -> str:
+    return i18n.t(_fuss_names().get(fuss_id), lang) or str(fuss_id or "")
+
+
+def _ruler_text(ruler) -> str:
+    """The ruler as the column gives it, without the trailing ordinal dot
+    («Christian II.»), which the sentence's own full stop follows."""
+    names = ruler if isinstance(ruler, list) else [ruler]
+    return ", ".join(str(r).rstrip(".") for r in names if r)
+
+
+def _printed_tr(ui: dict, q: str, lang: str) -> str:
+    """Translation of a source's short date mark («u.år», «ND»), from
+    ui.yml uncertainty.printed.<folded mark>; none in the mark's own language."""
+    key = "uncertainty.printed." + re.sub(r"[\s.]", "", q.lower())
+    txt = (ui.get(key) or {}).get(lang)
+    return f" («{txt}»)" if txt else ""
+
+
 def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
     """How the page marks an unverified value from Coin.uncertainty
     (docs/plans/uncertainty_markers.md, curator 2026-10-29).
@@ -639,7 +688,9 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
     def _plain(obj):
         return obj.model_dump(exclude_none=True) if hasattr(obj, "model_dump") else obj
 
-    entries = [_plain(e) for e in (_get(raw, "uncertainty") or {}).get(field) or []]
+    # Copies: the metal branch below rewrites a value for display, and the
+    # same coin renders once per language.
+    entries = [dict(_plain(e)) for e in (_get(raw, "uncertainty") or {}).get(field) or []]
     if not entries:
         return None
 
@@ -726,6 +777,31 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
         entry(e)
     if inferred and hedged:
         push(i18n.ui_get(ui, "uncertainty.inferred_also", lang))
+    # A value the pipeline supplies says where it comes from, not what it is —
+    # the cell shows the value (curator 2026-11-03): «the sources give no
+    # fineness. It is derived from the parameters of the standard X.», then
+    # each source's own words. A dating compiled from works keeps its form.
+    if not any(e.get("how") in ("compiled", "curator_window") for e in inferred):
+        groups: dict[str, list] = {}
+        for e in inferred:
+            if e.get("how") in _BASIS_HOWS:
+                groups.setdefault(e["how"], []).append(e)
+        for h, es in groups.items():
+            basis = i18n.ui_get(ui, f"uncertainty.basis.{h}", lang)
+            basis = (basis.replace("{fuss}", _fuss_name(_get(raw, "fuss"), lang))
+                          .replace("{ruler}", _ruler_text(_get(raw, "ruler")))
+                          .replace("{value}", str(es[0].get("value") or "")))
+            lead = "" if hedged else i18n.ui_get(ui, f"uncertainty.nosrc.{field}", lang, " ").strip()
+            push(f"{lead} {basis}".strip())
+            for e in es:
+                if e.get("source") in ("ruler_reigns", "merge_decisions", "standard"):
+                    continue
+                q = e.get("as_printed")
+                if q:
+                    push(f"[b]{src(e)}[/b]: [i]«{q}»[/i]{tr(e) or _printed_tr(ui, q, lang)}")
+                else:
+                    push(f"[b]{src(e)}[/b]")
+        inferred = [e for e in inferred if e.get("how") not in _BASIS_HOWS]
     compiled_head = False
     for e in inferred:
         if e.get("how") == "compiled" and e.get("as_printed"):
