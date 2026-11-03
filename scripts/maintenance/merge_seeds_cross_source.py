@@ -5291,6 +5291,79 @@ def _pass1_eval_i(i: int):
     return conf, low
 
 
+# PASS 2 (auto no_merge within confident-connected components) is the same
+# kind of work: every pair's verdict depends only on the two coins, the
+# entity's reign_index and the component's _WeakVetoIndex. The original loop
+# tested `uf.can_union` before each pair; the only no_merges PASS 2 itself adds
+# are for the pair just tested, and a pair belongs to one component and is
+# visited once, so testing against the no_merge set as it stood before PASS 2
+# is the same test. Workers return the pairs to register; the parent
+# registers them in the serial order (components in order, then i<j), so
+# UnionFind sees the identical call sequence. The _WeakVetoIndex objects are
+# built in the parent before the fork — as the serial loop built them, so the
+# parent's _catalog_refs memo ends up holding the same entries.
+_P2_COMPONENTS: list = []
+_P2_BLOCKED: frozenset = frozenset()
+_P2_SEEDS: dict = {}
+_P2_ENTITY = None
+_P2_REIGN = None
+
+# PASS 2 runs in worker processes from this many within-component pairs on.
+_PASS2_PARALLEL_PAIRS = int(os.environ.get("MERGE_PASS2_PARALLEL_PAIRS", "200000"))
+
+
+def _pass2_eval_row(task):
+    """No_merge pairs of row `ii` of component `ci`, in j order."""
+    ci, ii = task
+    ms, weak = _P2_COMPONENTS[ci]
+    seeds = _P2_SEEDS
+    a_id = ms[ii]
+    coin_a = seeds[a_id]
+    out = []
+    for jj in range(ii + 1, len(ms)):
+        b_id = ms[jj]
+        if frozenset({a_id, b_id}) in _P2_BLOCKED:
+            continue
+        r = match_pair(coin_a, seeds[b_id], _P2_ENTITY, reign_index=_P2_REIGN)
+        if r["decision"] != "no_match":
+            continue
+        if weak.overruled(r, a_id, b_id):
+            continue
+        out.append((a_id, b_id))
+    return out
+
+
+def _pass2_no_merges(components, uf, seeds_by_id, entity_id, reign_index):
+    """Ordered (a, b) pairs PASS 2 registers as auto no_merge."""
+    global _P2_COMPONENTS, _P2_BLOCKED, _P2_SEEDS, _P2_ENTITY, _P2_REIGN
+    comps = []
+    for members in components:
+        if len(members) < 2:
+            continue
+        ms = sorted(members)
+        # A weak contradiction a unifying member resolves is not a veto.
+        comps.append((ms, _WeakVetoIndex(ms, seeds_by_id, entity_id)))
+    _P2_COMPONENTS = comps
+    _P2_BLOCKED = frozenset(uf.no_merge)
+    _P2_SEEDS = seeds_by_id
+    _P2_ENTITY = entity_id
+    _P2_REIGN = reign_index
+    tasks = [(ci, ii) for ci, (ms, _w) in enumerate(comps) for ii in range(len(ms) - 1)]
+    n_pairs = sum(len(ms) * (len(ms) - 1) // 2 for ms, _w in comps)
+    try:
+        if n_pairs >= _PASS2_PARALLEL_PAIRS:
+            n_workers = max(1, (os.cpu_count() or 2) - 1)
+            ctx = mp.get_context("fork")
+            with ctx.Pool(n_workers) as pool:
+                rows = pool.map(_pass2_eval_row, tasks, chunksize=16)
+        else:
+            rows = [_pass2_eval_row(t) for t in tasks]
+    finally:
+        _P2_COMPONENTS = []
+        _P2_SEEDS = {}
+    return [pair for row in rows for pair in row]
+
+
 # Entities at/above this seed count run PASS 1 across worker processes; below
 # it the pool spawn/pickle overhead outweighs the gain, so we stay serial.
 # Override via MERGE_PARALLEL_THRESHOLD (e.g. =0 forces parallel for tests).
@@ -5769,25 +5842,11 @@ def process_entity(entity_id: str,
     _components: dict[str, list[str]] = defaultdict(list)
     for cid in _comp_parent:
         _components[_cfind(cid)].append(cid)
-    for _members in _components.values():
-        if len(_members) < 2:
-            continue
-        _ms = sorted(_members)
-        # A weak contradiction a unifying member resolves is not a veto.
-        _weak = _WeakVetoIndex(_ms, seeds_by_id, entity_id)
-        for _ii in range(len(_ms)):
-            _ma = seeds_by_id[_ms[_ii]]
-            for _jj in range(_ii + 1, len(_ms)):
-                _mb_id = _ms[_jj]
-                if not uf.can_union(_ms[_ii], _mb_id):
-                    continue
-                _r = match_pair(_ma, seeds_by_id[_mb_id], entity_id,
-                                reign_index=reign_index)
-                if _r["decision"] != "no_match":
-                    continue
-                if _weak.overruled(_r, _ms[_ii], _mb_id):
-                    continue
-                uf.add_no_merge(_ms[_ii], _mb_id)
+    # The verdicts are computed by _pass2_no_merges (in worker processes for a
+    # large entity) and registered here in the serial (component, i<j) order.
+    for _a, _b in _pass2_no_merges(_components.values(), uf, seeds_by_id,
+                                   entity_id, reign_index):
+        uf.add_no_merge(_a, _b)
 
     # 3. Apply confident auto-merges. union() refuses any merge that would
     #    create a class containing a no_match pair. Run this BEFORE curator
