@@ -46,7 +46,9 @@ _Loader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 
 
 def _load(path: Path) -> dict:
-    return yaml.load(path.read_text(encoding="utf-8"), Loader=_Loader) or {}
+    # Cross-run parse cache (lib/yaml_cache.py): the same document as _Loader.
+    from lib import yaml_cache
+    return yaml_cache.load(path.read_text(encoding="utf-8")) or {}
 
 
 def _key(v) -> float | None:

@@ -37,6 +37,7 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 from lib import yaml_io  # noqa: E402
+from lib import yaml_cache  # noqa: E402  (cross-run parse cache, same documents)
 
 _L = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 _MUSEUM = ("natmus", "samlinger")
@@ -45,7 +46,7 @@ _MUSEUM = ("natmus", "samlinger")
 def _load_unified() -> dict:
     out = {}
     for f in glob.glob(str(ROOT / "data/v2/seed_unified/*.yml")):
-        for c in (yaml.load(open(f), Loader=_L) or {}).get("coins", []):
+        for c in (yaml_cache.load(open(f).read()) or {}).get("coins", []):
             if c.get("id"):
                 out[c["id"]] = c
     return out
@@ -86,7 +87,7 @@ def main() -> int:
         if args.apply:
             ctx, doc = yaml_io.load(Path(path))
         else:
-            ctx, doc = None, (yaml.load(open(path), Loader=_L) or {})
+            ctx, doc = None, (yaml_cache.load(open(path).read()) or {})
         changed = False
         for c in doc.get("coins") or []:
             total_finals += 1

@@ -178,6 +178,16 @@ _GIT_CACHE: dict[tuple[str, str], dict | None] = {}
 _FILE_CACHE: dict[str, tuple[int, dict]] = {}
 
 
+def _yaml_cache():
+    """lib/yaml_cache — the cross-run parse cache: the same document as
+    CSafeLoader, unpickled when this exact text was parsed before (HEAD's
+    blobs and the just-written finals usually were, by absorb)."""
+    if str(ROOT / "scripts") not in sys.path:
+        sys.path.insert(0, str(ROOT / "scripts"))
+    from lib import yaml_cache
+    return yaml_cache
+
+
 def _git_show(ref: str, rel: str) -> dict | None:
     """Parse `<ref>:<rel>` as YAML; None when the path does not exist there."""
     key = (ref, rel)
@@ -185,7 +195,7 @@ def _git_show(ref: str, rel: str) -> dict | None:
         r = subprocess.run(["git", "show", f"{ref}:{rel}"],
                            capture_output=True, text=True, cwd=ROOT)
         _GIT_CACHE[key] = (None if r.returncode != 0 else
-                           yaml.load(io.StringIO(r.stdout), Loader=_FASTLOADER) or {})
+                           _yaml_cache().load(r.stdout) or {})
     return _GIT_CACHE[key]
 
 
@@ -194,7 +204,7 @@ def _read_yaml(path: Path) -> dict:
     st = path.stat().st_mtime_ns
     hit = _FILE_CACHE.get(str(path))
     if hit is None or hit[0] != st:
-        hit = (st, yaml.load(path.read_text(), Loader=_FASTLOADER) or {})
+        hit = (st, _yaml_cache().load(path.read_text()) or {})
         _FILE_CACHE[str(path)] = hit
     return hit[1]
 

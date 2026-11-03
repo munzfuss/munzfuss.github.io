@@ -96,7 +96,10 @@ from lib.v2_seed_writer import _home_entity  # noqa: E402
 def _load_yaml(p: Path) -> dict:
     if not p.exists():
         return {}
-    return yaml.load(p.read_text(encoding="utf-8"), Loader=_FASTLOADER) or {}
+    # Cross-run parse cache (lib/yaml_cache.py): the same document as
+    # _FASTLOADER, unpickled when this text was parsed before.
+    from lib import yaml_cache
+    return yaml_cache.load(p.read_text(encoding="utf-8")) or {}
 
 
 def _all_v2_final_coins() -> list[tuple[str, dict]]:
