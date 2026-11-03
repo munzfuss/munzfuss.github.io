@@ -7,6 +7,10 @@ merger as the class's `_errata_applied`. `ruler` is foundation-immutable in
 absorb, so a coin that kept its final kept the old ruler. The curator decided
 (2026-10-18) that his correction outranks the frozen value; a `_curation_holds`
 on ruler still wins.
+
+Since 0619fee (2026-10-26) absorb puts the corrected ruler through
+`canonical_ruler_display`, so an erratum written «Frederik I.» (German ordinal)
+lands as the display form «Frederik I».
 """
 from __future__ import annotations
 
@@ -41,7 +45,7 @@ def enrich(holds=None, corrections=("Frederik I.",)):
 
 class TestRulerErrataWins(unittest.TestCase):
     def test_correction_replaces_frozen_ruler(self):
-        self.assertEqual(enrich()["ruler"], "Frederik I.")
+        self.assertEqual(enrich()["ruler"], "Frederik I")
 
     def test_ruler_hold_wins(self):
         self.assertEqual(enrich(holds={"ruler": "kept"})["ruler"], "Frederik III.")
