@@ -60,6 +60,7 @@ def build_env(template_dir: str) -> Environment:
     env.filters["nominal_nbsp"] = nominal_nbsp
     env.filters["mint_label"] = mint_label
     env.filters["nb_dashes"] = nb_dashes
+    env.filters["plain_tip"] = plain_tip
     env.filters["fin_unit"] = fin_unit
     env.filters["fin_txt"] = fin_txt
     env.filters["fuss_spec"] = fuss_spec
@@ -184,6 +185,12 @@ def nominal_nbsp(s: str | None) -> str:
         right = re.sub(r"\s+", "&nbsp;", right, count=1)
         return f"{left} =<br>{right}"
     return re.sub(r"\s+", "&nbsp;", escaped, count=1)
+
+
+def plain_tip(s: str | None) -> str | None:
+    """Drop the tooltip markup tags ([b]…[/b], [i]…[/i]) for a tooltip that
+    is a CSS ::after (outside the portal), which would show them raw."""
+    return re.sub(r"\[/?[bi]\]", "", s) if s else s
 
 
 _NB_DASH_RE = None  # lazy-compiled — see nb_dashes()

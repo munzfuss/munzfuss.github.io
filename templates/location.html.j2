@@ -196,7 +196,7 @@
       {%- for tag in ie_tags -%}
         {%- set ent = issuing_entities.get(tag) -%}
         {%- if ent -%}
-          <span class="ent-badge ent-{{ tag }}" data-tooltip="{{ ((ent.name|t(lang)) ~ ' — ' ~ ((ent.description|t(lang))|striptags if ent.description else '')) | nb_dashes }}">{{ ent.abbrev }}</span>{% if not loop.last %} {% endif %}
+          <span class="ent-badge ent-{{ tag }}" data-tooltip="{{ ('[b]' ~ (ent.name|t(lang)) ~ '[/b]' ~ (('\n' ~ ((ent.description|t(lang))|striptags)) if ent.description else '')) | nb_dashes }}">{{ ent.abbrev }}</span>{% if not loop.last %} {% endif %}
         {%- endif -%}
       {%- endfor -%}
     {%- endif -%}
@@ -929,7 +929,7 @@
               {%- set ns = namespace(parts=[_years_lbl]) -%}
               {%- for ent_id, cnt in variant.entity_counts -%}
                 {%- if issuing_entities.get(ent_id) -%}
-                  {%- set _name = issuing_entities.get(ent_id).name|t(lang) -%}
+                  {%- set _name = issuing_entities.get(ent_id).name|t(lang)|plain_tip -%}
                   {%- set ns.parts = ns.parts + [_name ~ ': ' ~ cnt|string] -%}
                 {%- endif -%}
               {%- endfor -%}

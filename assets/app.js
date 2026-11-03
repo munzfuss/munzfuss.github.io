@@ -614,13 +614,13 @@
   document.addEventListener("mouseover", function (ev) {
     var t = ev.target && ev.target.closest && ev.target.closest("[data-tooltip]");
     if (!t) return;
-    if (!t.closest(".mt-scroll")) return;
+    if (!t.closest(".mt-scroll, .tl-filters")) return;
     showPortal(t);
   });
   document.addEventListener("mouseout", function (ev) {
     var t = ev.target && ev.target.closest && ev.target.closest("[data-tooltip]");
     if (!t) return;
-    if (!t.closest(".mt-scroll")) return;
+    if (!t.closest(".mt-scroll, .tl-filters")) return;
     // Only hide when the pointer actually leaves the trigger (not when it
     // moves to a child element of the same trigger).
     var related = ev.relatedTarget;
@@ -921,7 +921,7 @@
     var t = ev.target && ev.target.closest && ev.target.closest("[data-tooltip]");
     if (!t) return;
     // Skip table-cell tooltips — those use the portal system above.
-    if (t.closest(".mt-scroll")) return;
+    if (t.closest(".mt-scroll, .tl-filters")) return;
     fit(t);
     // Zones of one bar share a width (below); settle it before placing.
     if (t.classList.contains("tl-bar-hover-zone")) unifyZoneWidths(t);
@@ -931,7 +931,7 @@
   document.addEventListener("mouseout", function (ev) {
     var t = ev.target && ev.target.closest && ev.target.closest("[data-tooltip]");
     if (!t) return;
-    if (t.closest(".mt-scroll")) return;
+    if (t.closest(".mt-scroll, .tl-filters")) return;
     var related = ev.relatedTarget;
     if (related && t.contains(related)) return;
     t.classList.remove("tt-anchor-px");
