@@ -409,6 +409,7 @@ def split_nominal(raw):
 _WITTEN_RE = re.compile(r"\bWitten\b")
 _KOBBERSTERLING_RE = re.compile(r"\bKobbersterling\b")
 _LEBARD_RE = re.compile(r"\bLebard\b")
+_VIERTELWITTEN_RE = re.compile(r"\bViertelwitten\b")
 # Danish forms for one entity only, where the same German word stays German on
 # the other Denmark-page entities: the Flensborg dreling (Lindahl 1955 s. 76
 # «Dreling»; Numista «Dreiling») — curator 2026-11-02. The royal Schleswig-
@@ -441,7 +442,9 @@ def danish_display_nominal(raw, entity):
     lebard is the hollow penny of the 1424 recess, named for its leopard
     («de holen pennning enen lebaren», Denar til daler 2018 s. 391), worth one
     penning; the nominal gives the value, not the hollow form (curator
-    2026-11-02)."""
+    2026-11-02). «Viertelwitten» → «Penning»: the quarter witten is one
+    penning («viertelwitten (= 1 penning)», Denar til daler 2018 s. 368;
+    curator 2026-11-03)."""
     if not isinstance(raw, str) or entity not in denmark_page_entities():
         return raw
     return _danish_display_str(raw, entity)
@@ -453,6 +456,7 @@ def _danish_display_str(raw: str, entity) -> str:
     function of the two, memoised (the merger asks it twice per candidate
     pair, ~40 M times for danish_realm)."""
     raw = _LEBARD_RE.sub("Penning", raw)
+    raw = _VIERTELWITTEN_RE.sub("Penning", raw)
     for rx, word in _ENTITY_DANISH_FORMS.get(entity, ()):
         raw = rx.sub(word, raw)
     return _KOBBERSTERLING_RE.sub("Sterling", _WITTEN_RE.sub("Hvid", raw))

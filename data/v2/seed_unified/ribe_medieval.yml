@@ -1,0 +1,141 @@
+# V2 seed_unified for political entity `ribe_medieval`.
+# Generated 2026-11-03 by scripts/maintenance/merge_seeds_cross_source.py
+# from data/v2/seed/<source>/ribe_medieval.yml across all sources.
+#
+# Input: 2 per-source seed entries.
+# Output: 1 unified entries (one per physical coin).
+#
+# Each unified entry's `composed_of` lists the per-source seeds
+# it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
+# `fineness[]`, `diameter_mm[]` are multi-source lists preserving
+# every reading per CLAUDE.md §9a. `sources[]` is the union.
+
+id: ribe_medieval
+generated_at: '2026-11-03'
+coins:
+  - id: c-a65a2415
+    class_id: c-a65a2415
+    label: unified-dk-galster-m1g-1
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: 1 Hvid
+    year_first: 1373
+    year_last: 1381
+    year_ranges:
+      -   - 1373
+          - 1381
+    year_label: 1373-1381
+    mint: Ribe
+    catalog:
+      galster: '1'
+      galster_volume: galster1972-margrethe1
+      jesse: '692'
+      others:
+        - Jesse# 692
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    year_verified: false
+    fineness:
+      - value: 0.8
+        source: Lindahl 1955 (NNÅ 1955), s. 76
+    weight_range_g:
+      - min: 1.19
+        max:
+        approx: true
+        source: danskmoent.dk ernst/ribeaxe1.htm
+        url: https://www.danskmoent.dk/gif/m1g1.gif
+      - min: 1.09
+        max: 1.3
+        source: Lindahl 1955 (NNÅ 1955), s. 76
+    diameter_mm:
+      - value: 18.0
+        source: danskmoent.dk ernst/ribeaxe1.htm
+    uncertainty:
+      year:
+        - kind: inferred
+          how: compiled
+          source: Ernst, Bidrag til Ribe Mønts Historie (Nordisk Numismatisk Årsskrift 1948), cit. danskmoent.dk
+          as_printed: Udmøntningen skulde da mest sandsynligt kunne dateres til Aarene 1373 eller kort derefter til 1377
+          value: 1373-1381
+          translation:
+            de: die Ausmüntzung ließe sich dann am wahrscheinlichsten auf das Jahr 1373 oder kurz danach bis 1377 datieren
+            en: the coinage could then most probably be dated to the year 1373 or shortly after, to 1377
+            uk: карбування тоді найімовірніше можна датувати 1373 роком або невдовзі після нього, до 1377
+          seed: attribution
+        - kind: inferred
+          how: compiled
+          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 372'
+          as_printed: En datering af udmøntningen til ca. 1376-1381 synes på nuværende tidspunkt at være det mest oplagte
+          value: 1373-1381
+          translation:
+            de: eine Datierung der Ausmüntzung auf ca. 1376–1381 scheint derzeit am naheliegendsten
+            en: a dating of the coinage to c. 1376–1381 currently seems the most obvious
+            uk: датування карбування приблизно 1376–1381 роками наразі видається найочевиднішим
+          seed: attribution
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1380
+          value: '1380'
+          seed: dk-galster-m1g-1
+        - kind: hedged
+          how: attributed
+          source: lindahl
+          as_printed: 1373/77—96
+          value: 1373-1396
+          seed: lindahl-1955-ribe-witten
+      metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Hvid
+          value: billon
+          seed: dk-galster-m1g-1
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '1.19'
+          seed: dk-galster-m1g-1
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/m1g1.htm
+        ref: Galster 1 (m1g) — danskmoent.dk m1g1.htm
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 76
+    issuing_entity: ribe_medieval
+    composed_of:
+      - dk-galster-m1g-1
+      - lindahl-1955-ribe-witten
+    year_note:
+      de: "Die Datierung ist aus den Datierungen der Quellen zusammengestellt.\n[b]danskmoent.dk (Galster 1)[/b]: [i]«slået i Ribe ca. 1380»[/i] («um 1380 in Ribe geschlagen»).\n[b]Ernst 1948 (NNÅ 1948,
+        S. 9–15)[/b] setzt den Beginn vor die Sternwitten der wendischen Städte von 1379: [i]«Udmøntningen skulde da mest sandsynligt kunne dateres til Aarene 1373 eller kort derefter til 1377»[/i] («die
+        Ausmüntzung ließe sich dann am wahrscheinlichsten auf das Jahr 1373 oder kurz danach bis 1377 datieren»).\n[b]Lindahl 1955 (NNÅ 1955, S. 76)[/b] gibt [i]«1373/77—96»[/i].\nDie Grenze 1396 folgt
+        [b]Galster 1947 («Ribe Mønt», S. 605–606, nach Ernst 1948)[/b]: [i]«Udmøntningen maa rimeligvis være standset før 1396»[/i] («die Ausmüntzung ist vermutlich vor 1396 eingestellt worden»).\n[b]Märcher
+        2018 (in: Horsnæs, Moesgaard, Märcher, Denar til daler, Kap. 6, S. 372)[/b]: [i]«En datering af udmøntningen til ca. 1376-1381 synes på nuværende tidspunkt at være det mest oplagte»[/i] («eine Datierung
+        der Ausmüntzung auf ca. 1376–1381 scheint derzeit am naheliegendsten»); eine Fortsetzung in die 1380er–1390er Jahre hält er für [i]«mindre sandsynlig»[/i] («weniger wahrscheinlich»).\nDaraus läßt
+        sich der Zeitraum 1373–1381 ableiten: der Beginn nach Ernst, das Ende nach Märcher."
+      en: "The dating is compiled from the datings of the sources.\n[b]danskmoent.dk (Galster 1)[/b]: [i]«slået i Ribe ca. 1380»[/i] («struck in Ribe c. 1380»).\n[b]Ernst 1948 (NNÅ 1948, pp. 9–15)[/b] places
+        the start before the Sternwitten of the Wendish towns of 1379: [i]«Udmøntningen skulde da mest sandsynligt kunne dateres til Aarene 1373 eller kort derefter til 1377»[/i] («the coinage could then
+        most probably be dated to the year 1373 or shortly after, to 1377»).\n[b]Lindahl 1955 (NNÅ 1955, p. 76)[/b] gives [i]«1373/77—96»[/i].\nThe limit 1396 follows [b]Galster 1947 («Ribe Mønt», pp. 605–606,
+        after Ernst 1948)[/b]: [i]«Udmøntningen maa rimeligvis være standset før 1396»[/i] («the coinage must probably have stopped before 1396»).\n[b]Märcher 2018 (in: Horsnæs, Moesgaard, Märcher, Denar
+        til daler, ch. 6, p. 372)[/b]: [i]«En datering af udmøntningen til ca. 1376-1381 synes på nuværende tidspunkt at være det mest oplagte»[/i] («a dating of the coinage to c. 1376–1381 currently seems
+        the most obvious»); he regards a continuation into the 1380s–1390s as [i]«mindre sandsynlig»[/i] («less likely»).\nFrom these the period 1373–1381 can be derived: the start after Ernst, the end
+        after Märcher."
+      uk: "Датування зведене з датувань джерел.\n[b]danskmoent.dk (Galster 1)[/b]: [i]«slået i Ribe ca. 1380»[/i] («карбований у Ribe близько 1380»).\n[b]Ernst 1948 (NNÅ 1948, с. 9–15)[/b] ставить початок
+        перед «Sternwitten» вендських міст 1379 р.: [i]«Udmøntningen skulde da mest sandsynligt kunne dateres til Aarene 1373 eller kort derefter til 1377»[/i] («карбування тоді найімовірніше можна датувати
+        1373 роком або невдовзі після нього, до 1377»).\n[b]Lindahl 1955 (NNÅ 1955, с. 76)[/b] подає [i]«1373/77—96»[/i].\nМежа 1396 походить від [b]Galster 1947 («Ribe Mønt», с. 605–606, за Ernst 1948)[/b]:
+        [i]«Udmøntningen maa rimeligvis være standset før 1396»[/i] («карбування, ймовірно, припинилося до 1396»).\n[b]Märcher 2018 (у: Horsnæs, Moesgaard, Märcher, Denar til daler, розд. 6, с. 372)[/b]:
+        [i]«En datering af udmøntningen til ca. 1376-1381 synes på nuværende tidspunkt at være det mest oplagte»[/i] («датування карбування приблизно 1376–1381 роками наразі видається найочевиднішим»);
+        продовження карбування в 1380–1390-х роках він вважає [i]«mindre sandsynlig»[/i] («менш імовірним»).\nЗвідси можна вивести період 1373–1381: початок за Ernst, кінець за Märcher."
+      da: "Dateringen er sammenstillet af kildernes dateringer.\n[b]danskmoent.dk (Galster 1)[/b]: [i]«slået i Ribe ca. 1380»[/i].\n[b]Ernst 1948 (NNÅ 1948, s. 9–15)[/b] lægger begyndelsen før de vendiske
+        stæders «Sternwitten» fra 1379: [i]«Udmøntningen skulde da mest sandsynligt kunne dateres til Aarene 1373 eller kort derefter til 1377»[/i].\n[b]Lindahl 1955 (NNÅ 1955, s. 76)[/b] angiver [i]«1373/77—96»[/i].\n\
+        Grænsen 1396 følger [b]Galster 1947 («Ribe Mønt», s. 605–606, efter Ernst 1948)[/b]: [i]«Udmøntningen maa rimeligvis være standset før 1396»[/i].\n[b]Märcher 2018 (i: Horsnæs, Moesgaard, Märcher,
+        Denar til daler, kap. 6, s. 372)[/b]: [i]«En datering af udmøntningen til ca. 1376-1381 synes på nuværende tidspunkt at være det mest oplagte»[/i]; en fortsættelse ind i 1380’erne–1390’erne anser
+        han for [i]«mindre sandsynlig»[/i].\nHeraf kan perioden 1373–1381 udledes: begyndelsen efter Ernst, slutningen efter Märcher."
