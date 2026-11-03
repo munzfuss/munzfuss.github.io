@@ -269,17 +269,19 @@ _VALID_COIN_METALS: frozenset[str] = frozenset(
 
 
 def _parse_v2_file(path: str):
-    """One V2 file's document, or the exception it raised (pool worker)."""
+    """One V2 file's document (pool worker). A file that does not parse comes
+    back as `_ParseFailed` — no exception object crosses the pool, where it
+    might not pickle — and `_v2_doc` parses it again in the parent, so the
+    original YAML error surfaces there, at the loader, as before."""
     try:
         from lib import yaml_cache
         return yaml_cache.load_path(Path(path))
-    except Exception as e:  # re-raised where the serial parse would raise it
-        return _ParseFailed(e)
+    except Exception:
+        return _ParseFailed()
 
 
 class _ParseFailed:
-    def __init__(self, exc):
-        self.exc = exc
+    """Marker: this file failed to parse in the prefetch pool."""
 
 
 _V2_DOCS: dict[str, object] | None = None
