@@ -70,23 +70,55 @@ def staged_paths() -> list[str]:
             and not p.startswith(SKIP)]
 
 
+def _residual(task) -> int:
+    """`round_trip_residual` of one (path, text), cached across runs by the
+    text (lib/yaml_cache.memo). The result depends on the text, the path's
+    serializer family and machine-emitted flag, and the serializer code, so
+    all of those are in the key: a change to lib/yaml_io.py or to ruamel
+    starts a fresh cache."""
+    p, raw = task
+    import hashlib
+    import ruamel.yaml
+    from lib import yaml_cache, yaml_io
+    code = hashlib.sha1(Path(yaml_io.__file__).read_bytes()).hexdigest()[:12]
+    ns = (f"residual|{yaml_io.family_of(REPO / p)}|"
+          f"{yaml_io._is_machine_emitted(REPO / p)}|{ruamel.yaml.__version__}|{code}")
+    return yaml_cache.memo(ns, raw, lambda: round_trip_residual(REPO / p, raw=raw))
+
+
+def _residuals(tasks: list[tuple[str, str]]) -> list[int]:
+    """`_residual` of each task, in order; several in forked workers (a
+    ruamel round-trip of a 9 MB final is about a minute)."""
+    if len(tasks) < 2:
+        return [_residual(t) for t in tasks]
+    import multiprocessing as mp
+    import os
+    n = max(1, min(len(tasks), (os.cpu_count() or 2) - 1))
+    with mp.get_context("fork").Pool(n) as pool:
+        return pool.map(_residual, tasks, chunksize=1)
+
+
 def check_staged() -> int:
     paths = staged_paths()
     if not paths:
         return 0
     grew: list[tuple[str, int, int]] = []
     fresh: list[tuple[str, int]] = []
-    for p in paths:
-        now_raw = _blob(":0", p)
-        if now_raw is None:
-            continue
-        now = round_trip_residual(REPO / p, raw=now_raw)
-        head_raw = _blob("HEAD", p)
-        if head_raw is None:
+    staged = [(p, raw) for p in paths if (raw := _blob(":0", p)) is not None]
+    nows = dict(zip((p for p, _ in staged), _residuals(staged)))
+    # HEAD's residual matters only where the staged one is above 0: a staged
+    # residual of 0 cannot have grown, so that round-trip is skipped.
+    heads = {p: _blob("HEAD", p) for p, _ in staged}
+    need = [(p, heads[p]) for p, _ in staged
+            if heads[p] is not None and nows[p] > 0]
+    wases = dict(zip((p for p, _ in need), _residuals(need)))
+    for p, _raw in staged:
+        now = nows[p]
+        if heads[p] is None:
             if now:
                 fresh.append((p, now))
             continue
-        was = round_trip_residual(REPO / p, raw=head_raw)
+        was = wases.get(p, 0)
         if now > was:
             grew.append((p, was, now))
     for p, n in fresh:
