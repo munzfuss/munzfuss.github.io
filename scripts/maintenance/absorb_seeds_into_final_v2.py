@@ -45,7 +45,9 @@ from __future__ import annotations
 
 import argparse
 import copy
+import gc
 import os
+import pickle
 import re
 import sys
 from collections import Counter, defaultdict
@@ -71,6 +73,8 @@ from lib.seed_merge import merge_seed  # noqa: E402
 from lib.specimen_exclusions import (  # noqa: E402
     load_excluded_specimens, strip_excluded_specimens)
 from lib.yaml_io import dump_v2_canonical  # noqa: E402
+from lib import confident_blocking as _cblock  # noqa: E402
+from lib import yaml_cache as _yaml_cache  # noqa: E402
 from lib.v2_seed_writer import (  # noqa: E402
     _is_out_of_scope_nominal,
     _is_out_of_scope_catalog,
@@ -163,9 +167,29 @@ _FASTLOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 
 
 def _load_yaml(p: Path) -> dict:
+    """The file's document, as a FRESH object (callers mutate it).
+
+    A file whose text is the same as when this run last parsed it is
+    unpickled from that first parse instead of parsed again: the finals are
+    read by the snapshot, by their entity, before the write and by the KMM
+    prune, the seed_unified files by the shared index and by their entity —
+    re-parsing was ~2/3 of an absorb run (2026-11-03). Same objects: these
+    files hold only plain YAML scalars, lists and dicts, and pickle keeps a
+    document's aliased nodes shared. A changed text is parsed again."""
     if not p.exists():
         return {}
-    return yaml.load(p.read_text(encoding="utf-8"), Loader=_FASTLOADER) or {}
+    text = p.read_text(encoding="utf-8")
+    key = str(p)
+    hit = _PARSED.get(key)
+    if hit is not None and hit[0] == text:
+        return pickle.loads(hit[1])
+    doc = _yaml_cache.load(text) or {}
+    _PARSED[key] = (text, pickle.dumps(doc, protocol=pickle.HIGHEST_PROTOCOL))
+    return doc
+
+
+# path → (text, pickle of its first parse) — see `_load_yaml`.
+_PARSED: dict[str, tuple[str, bytes]] = {}
 
 
 _UNIFIED_DOCS: list[tuple[Path, dict]] | None = None
@@ -2336,6 +2360,19 @@ def _is_vanished_stale_final(fe: dict, live_unified_ids: set, live_ids: set) -> 
     )
 
 
+_CROSS_ENTITY_DOC: dict | None = None
+
+
+def _cross_entity_doc() -> dict:
+    """`_cross_entity.yml`, parsed once per run (absorb never writes it;
+    `_cross_entity_relocated_out` is called ~1000 times, ~3 s of re-parsing).
+    Read-only for the callers."""
+    global _CROSS_ENTITY_DOC
+    if _CROSS_ENTITY_DOC is None:
+        _CROSS_ENTITY_DOC = _load_yaml(V2_MERGE_DECISIONS / "_cross_entity.yml")
+    return _CROSS_ENTITY_DOC
+
+
 def _cross_entity_relocated_out(entity_id: str) -> set:
     """Member seed ids that `_cross_entity.yml` pulls OUT of `entity_id` into a
     DIFFERENT target entity.
@@ -2354,7 +2391,7 @@ def _cross_entity_relocated_out(entity_id: str) -> set:
     Members are matched as the explicit seed ids written in `_cross_entity.yml`
     (every current entry lists sub-variant seeds explicitly; a bare Hede code
     would need sub-letter expansion — add it when such a case appears)."""
-    doc = _load_yaml(V2_MERGE_DECISIONS / "_cross_entity.yml")
+    doc = _cross_entity_doc()
     out: set = set()
     for e in (doc.get("merges") or []):
         if e.get("target_entity") == entity_id:
@@ -2480,8 +2517,22 @@ def _seed_coins_once() -> list[dict]:
     global _SEED_COINS
     if _SEED_COINS is None:
         _SEED_COINS = [c for sf in sorted(V2_SEED.glob("*/*.yml"))
-                       for c in (_load_yaml(sf).get("coins") or [])]
+                       for c in (_seed_doc(sf).get("coins") or [])]
     return _SEED_COINS
+
+
+_SEED_DOCS: dict[str, dict] = {}
+
+
+def _seed_doc(path: Path) -> dict:
+    """A seed file, parsed once per run and shared READ-ONLY by every seed-wide
+    reader here (`_seed_coins_once`, the leaf index, the KMM prune): absorb
+    never writes seeds, and each of them used to parse all ~140 files on its
+    own (2026-11-03)."""
+    key = str(path)
+    if key not in _SEED_DOCS:
+        _SEED_DOCS[key] = _load_yaml(path)
+    return _SEED_DOCS[key]
 
 
 def _thinned_rep_index() -> dict[str, list[str]]:
@@ -2815,9 +2866,47 @@ def _final_relocation_keys(fe: dict) -> set:
     return keys
 
 
+# entity → the process writing its final (see `_start_final_write`).
+_PENDING_FINAL_WRITES: dict = {}
+
+
+def _start_final_write(ent: str, write) -> None:
+    """Run `write()` — fold, thin, dump and write `ent`'s final — in a forked
+    process, so the ruamel dump (~10 s for danish_realm) and the thinning
+    overlap the next entities. Everything that reads another entity's final
+    from disk waits for that entity's writer first (`_await_final_writes`):
+    `_target_holds_relocated` for one target, the KMM prune for all.
+    ABSORB_BACKGROUND_WRITES=0 writes in-process."""
+    if os.environ.get("ABSORB_BACKGROUND_WRITES") == "0":
+        write()
+        return
+    import multiprocessing as mp
+    # A forked child flushes the stdio buffers it inherited when it exits;
+    # empty them first, or the parent's pending output would appear twice.
+    sys.stdout.flush()
+    sys.stderr.flush()
+    proc = mp.get_context("fork").Process(target=write)
+    proc.start()
+    _PENDING_FINAL_WRITES[ent] = proc
+
+
+def _await_final_writes(ents=None) -> None:
+    """Wait for the final writers of `ents` (all when None); fail the run if
+    one failed."""
+    for ent in (list(_PENDING_FINAL_WRITES) if ents is None else ents):
+        proc = _PENDING_FINAL_WRITES.pop(ent, None)
+        if proc is None:
+            continue
+        proc.join()
+        if proc.exitcode != 0:
+            raise RuntimeError(f"final writer for {ent} failed "
+                               f"(exit code {proc.exitcode})")
+
+
 def _target_holds_relocated(target: str, members: set) -> bool:
     """True when `target`'s final ON DISK already carries a coin built from
     any of `members` — i.e. the relocation has landed there."""
+    _await_final_writes([target])
     for fe in (_load_yaml(V2_FINAL / f"{target}.yml").get("coins") or []):
         if _final_relocation_keys(fe) & members:
             return True
@@ -3399,6 +3488,7 @@ def process_entity(entity_id: str) -> dict:
     self_foundation_fold_skipped_multi: list[str] = []
     self_foundation_fold_skipped_clash: list[str] = []
     final_after_fold: list[dict] = []
+    _fold_blocker = _cblock.ConfidentBlocker(v1_foundations_for_fold, entity_id)
     for fe in surviving_finals:
         if not isinstance(fe, dict):
             final_after_fold.append(fe)
@@ -3412,7 +3502,12 @@ def process_entity(entity_id: str) -> dict:
             continue
         # Self-foundation candidate. Find V1-peer matches via match_pair.
         matches = []
-        for vf in v1_foundations_for_fold:
+        # Only peers sharing a ruler or catalogue token can be confident
+        # (lib/confident_blocking.py) — the verdicts are match_pair's own.
+        _cblock.verify(_fold_blocker, fe, v1_foundations_for_fold,
+                       lambda vf: not _curator_no_merged(fe, vf, no_merge_pairs, unified_by_id)
+                       and match_pair(fe, vf, entity_id).get("decision") == "confident")
+        for vf in _cblock.select(_fold_blocker, fe, v1_foundations_for_fold):
             # Curator no_merge outranks any content match. Without this the
             # fold re-glues at the FINAL layer a pair the merger correctly
             # kept apart at seed_unified — the failure only surfaces once the
@@ -3709,6 +3804,8 @@ def process_entity(entity_id: str) -> dict:
     unmatched: list[str] = []
     multi_match: list[dict] = []
     already_in = 0
+    _cand_finals = list(final_by_id.values())
+    _cand_blocker = _cblock.ConfidentBlocker(_cand_finals, entity_id, reign_index)
 
     for unified in unified_entries:
         uid = unified.get("id")
@@ -3737,7 +3834,14 @@ def process_entity(entity_id: str) -> dict:
         # re-hosted by an unclassified final, which would drop it into
         # seed_unsorted after all (sonderburg KMM 200983-5, 2026-11-03).
         _u_carries = _split_parent_classification(uid, _prior_final_for_monotonic)
-        for fid, fc in final_by_id.items():
+        _cblock.verify(_cand_blocker, unified, _cand_finals,
+                       lambda fc: not _curator_no_merged(unified, fc, no_merge_pairs, unified_by_id)
+                       and not (_u_has_catalog and fc.get("fuss") in (None, "", "seed_unsorted")
+                                and not _catalog_refs(fc, entity_id))
+                       and match_pair(unified, fc, entity_id,
+                                      reign_index=reign_index)["decision"] == "confident")
+        for fc in _cblock.select(_cand_blocker, unified, _cand_finals):
+            fid = fc["id"]
             if _curator_no_merged(unified, fc, no_merge_pairs, unified_by_id):
                 continue  # curator no_merge: different coin — never absorb
             if _u_carries and fc.get("fuss") in (None, "", "seed_unsorted"):
@@ -4517,7 +4621,7 @@ def _emit_final_yaml(entity_id: str, coins: list[dict],
     if _path.exists():
         try:
             _text = _path.read_text(encoding="utf-8")
-            _old = yaml.load(_text, Loader=_FASTLOADER) or {}
+            _old = _load_yaml(_path)
             if all(_old.get(k) == payload[k] for k in payload):
                 return _text
         except Exception:
@@ -4641,10 +4745,13 @@ def _prune_foreign_kmm_citations(entities: list[str]) -> int:
     except Exception:  # pragma: no cover
         sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
         from lib.v2_index import V2Index
-    idx = V2Index.load()
+    _unified_docs = {str(p): d for p, d in _all_unified_docs()}
+    idx = V2Index.load(loader=lambda p: (
+        _seed_doc(p) if p.parent.parent == V2_SEED
+        else _unified_docs.get(str(p)) or _load_yaml(p)))
     holder: dict[str, str] = {}
     for sf in (V2_SEED / "kmk").glob("*.yml"):
-        for c in (_load_yaml(sf).get("coins") or []):
+        for c in (_seed_doc(sf).get("coins") or []):
             cid = c.get("id")
             if not cid:
                 continue
@@ -4796,7 +4903,7 @@ def main() -> int:
     import maintenance.merge_seeds_cross_source as _mgmod
     _leaf_idx: dict[str, dict] = {}
     for _sf in V2_SEED.rglob("*/*.yml"):
-        for _c in (_load_yaml(_sf).get("coins") or []):
+        for _c in (_seed_doc(_sf).get("coins") or []):
             if _c.get("id"):
                 _leaf_idx.setdefault(_c["id"], _c)
     for _uf, _udoc in _all_unified_docs():
@@ -4808,6 +4915,11 @@ def main() -> int:
 
     totals = Counter()
     for ent in entities:
+        # Keep what is alive now — the parsed seeds, unified docs, snapshot —
+        # out of the cyclic collector's full passes: they were ~25 s of a
+        # ~70 s absorb (2026-11-03), walking data dicts that never become
+        # garbage. Frozen objects are still freed by reference counting.
+        gc.freeze()
         result = process_entity(ent)
         if result.get("assign_conflicts"):
             print(f"  [{ent}] ✗ ASSIGN-CONFLICT — assignments reaching one coin "
@@ -4889,40 +5001,44 @@ def main() -> int:
             # list per the «existing wins when present» rule). Direct
             # write is correct here because we read+enrich every existing
             # entry — no orphan curator data possible.
-            V2_FINAL.mkdir(parents=True, exist_ok=True)
-            final_path = V2_FINAL / f"{ent}.yml"
-            prior_doc = _load_yaml(final_path)
-            # §9.4 blanket index hygiene: fold `others: <code># N` → typed
-            # list-field + case-insensitive value de-dup on EVERY final
-            # entry — including V1-carryover / prior-absorb foundations that
-            # were not re-enriched this run (no current seed_unified member),
-            # whose stale overflow would otherwise survive. Skips entries
-            # that froze `catalog` via `_curation_holds`.
-            for _fc in result["enriched_final_entries"]:
-                if not isinstance(_fc, dict):
-                    continue
-                if isinstance(_fc.get("catalog"), dict):
-                    _h = _fc.get("_curation_holds")
-                    _hk = set(_h.keys() if isinstance(_h, dict)
-                              else (_h or []))
-                    if "catalog" not in _hk:
-                        _fold_catalog_indices(_fc["catalog"])
-                # Uninformative-KMM thinning on EVERY final entry (incl.
-                # V1-carryover foundations not re-enriched this run).
-                _suppress_weightless_museum_overcollection(_fc)
-                # §9a envelope thinning (min / middle / max per resource).
-                # Absorb re-derives every weight list from seed_unified, so
-                # without this the written final carries the full un-thinned
-                # envelope and reads as thousands of lines of churn. Running
-                # it here makes the thinner a part of absorb rather than a
-                # separate step that has been forgotten three times.
-                if THIN_ENABLED:
-                    _thin_weights(_fc)
-            final_path.write_text(
-                _emit_final_yaml(ent, result["enriched_final_entries"],
-                                  prior_doc),
-                encoding="utf-8",
-            )
+            # Fold, thin and write this entity's final in a forked process
+            # while the next entity is processed (`_start_final_write`).
+            def _write_this_final(ent=ent, result=result):
+                V2_FINAL.mkdir(parents=True, exist_ok=True)
+                final_path = V2_FINAL / f"{ent}.yml"
+                prior_doc = _load_yaml(final_path)
+                # §9.4 blanket index hygiene: fold `others: <code># N` → typed
+                # list-field + case-insensitive value de-dup on EVERY final
+                # entry — including V1-carryover / prior-absorb foundations that
+                # were not re-enriched this run (no current seed_unified member),
+                # whose stale overflow would otherwise survive. Skips entries
+                # that froze `catalog` via `_curation_holds`.
+                for _fc in result["enriched_final_entries"]:
+                    if not isinstance(_fc, dict):
+                        continue
+                    if isinstance(_fc.get("catalog"), dict):
+                        _h = _fc.get("_curation_holds")
+                        _hk = set(_h.keys() if isinstance(_h, dict)
+                                  else (_h or []))
+                        if "catalog" not in _hk:
+                            _fold_catalog_indices(_fc["catalog"])
+                    # Uninformative-KMM thinning on EVERY final entry (incl.
+                    # V1-carryover foundations not re-enriched this run).
+                    _suppress_weightless_museum_overcollection(_fc)
+                    # §9a envelope thinning (min / middle / max per resource).
+                    # Absorb re-derives every weight list from seed_unified, so
+                    # without this the written final carries the full un-thinned
+                    # envelope and reads as thousands of lines of churn. Running
+                    # it here makes the thinner a part of absorb rather than a
+                    # separate step that has been forgotten three times.
+                    if THIN_ENABLED:
+                        _thin_weights(_fc)
+                final_path.write_text(
+                    _emit_final_yaml(ent, result["enriched_final_entries"],
+                                      prior_doc),
+                    encoding="utf-8",
+                )
+            _start_final_write(ent, _write_this_final)
 
             # Write classification_decisions pending list (always — regenerated).
             # Also rewrite when the file ALREADY EXISTS even if pending is
@@ -4948,6 +5064,7 @@ def main() -> int:
                     encoding="utf-8",
                 )
 
+    _await_final_writes()
     if args.apply and _prune_foreign_kmm_citations(entities):
         # The display picks and §9a weight thinning above were computed on the
         # lists before the prune; a second pass recomputes them on the pruned

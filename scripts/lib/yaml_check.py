@@ -37,11 +37,19 @@ def find_duplicate_keys(yaml_path: Path) -> list[tuple[str, str | int, int, int]
     Empty list = clean.
     """
     with open(yaml_path) as fp:
-        loader = _FastLoader(fp)
-        try:
-            node = loader.get_single_node()
-        finally:
-            loader.dispose()
+        text = fp.read()
+    # A pure function of the file's text: cached across runs with it
+    # (lib/yaml_cache.py), so an unchanged file is not composed again.
+    from lib import yaml_cache
+    return yaml_cache.memo("dupkeys", text, lambda: _duplicate_keys_of(text))
+
+
+def _duplicate_keys_of(text: str) -> list[tuple[str, str | int, int, int]]:
+    loader = _FastLoader(text)
+    try:
+        node = loader.get_single_node()
+    finally:
+        loader.dispose()
 
     if node is None:
         return []
@@ -67,6 +75,26 @@ def find_duplicate_keys(yaml_path: Path) -> list[tuple[str, str | int, int, int]
     return issues
 
 
+def _scan_all(files: list[Path]) -> list[list]:
+    """`find_duplicate_keys` for each file, in order. Each file is independent,
+    so a large set is scanned in worker processes, the biggest files first:
+    the full data/ scan was ~45 s single-threaded (2026-11-03, the 20 MB V2
+    finals / seed_unified dominate). The issues are reported in file order
+    by the caller, as before."""
+    if len(files) < 8:
+        return [find_duplicate_keys(f) for f in files]
+    import multiprocessing as mp
+    import os
+    order = sorted(range(len(files)), key=lambda i: -files[i].stat().st_size)
+    n = max(1, min(len(files), (os.cpu_count() or 2) - 1))
+    with mp.get_context("fork").Pool(n) as pool:
+        got = pool.map(find_duplicate_keys, [files[i] for i in order], chunksize=1)
+    out: list = [None] * len(files)
+    for i, issues in zip(order, got):
+        out[i] = issues
+    return out
+
+
 def check_data_directory(root: Path = Path("data"),
                          files: list[Path] | None = None) -> int:
     """Report duplicate keys across a set of YAML files.
@@ -86,8 +114,7 @@ def check_data_directory(root: Path = Path("data"),
     else:
         scan = sorted(f for f in files if f.suffix == ".yml" and f.is_file())
     total = 0
-    for f in scan:
-        issues = find_duplicate_keys(f)
+    for f, issues in zip(scan, _scan_all(scan)):
         for path, key, first_line, dup_line in issues:
             rel = f.relative_to(Path.cwd()) if f.is_absolute() else f
             print(

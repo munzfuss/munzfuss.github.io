@@ -56,8 +56,10 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import gc
 import multiprocessing as mp
 import os
+import pickle
 import re
 import sys
 from collections import Counter, defaultdict
@@ -73,7 +75,10 @@ _FASTLOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 
 
 def _fast_load(text):
-    return yaml.load(text, Loader=_FASTLOADER)
+    # Through the cross-run parse cache (lib/yaml_cache.py): same document,
+    # unpickled when this exact text was parsed before.
+    from lib import yaml_cache
+    return yaml_cache.load(text)
 
 # Ensure `scripts/` is on sys.path so `from lib.nominal_synonyms ...`
 # below resolves regardless of how the script is invoked (direct
@@ -102,7 +107,20 @@ def _excluded_seed_ids() -> set[str]:
     absorb drops the singleton by its own id. Plain exclusions (no scope) keep
     the old meaning — the whole coin the seed belongs to is removed — because
     earlier curator decisions rely on it: isolating them surfaced 5 coins the
-    curator had removed and dropped 3 finals (measured 2026-10-16)."""
+    curator had removed and dropped 3 finals (measured 2026-10-16).
+
+    Read once per run (the files do not change during it; every entity used
+    to re-parse them, ~0.5 s each); each call returns a fresh set."""
+    global _EXCLUDED_SEED_IDS
+    if _EXCLUDED_SEED_IDS is None:
+        _EXCLUDED_SEED_IDS = frozenset(_read_excluded_seed_ids())
+    return set(_EXCLUDED_SEED_IDS)
+
+
+_EXCLUDED_SEED_IDS: frozenset | None = None
+
+
+def _read_excluded_seed_ids() -> set[str]:
     out: set[str] = set()
     if not V2_EXCLUSIONS.exists():
         return out
@@ -1311,6 +1329,13 @@ def _unifies(refs_z: dict, refs_x: dict, refs_y: dict, keys: list[str]) -> bool:
             and _catalog_chain_consistent(refs_z, refs_y)[0] == "agree")
 
 
+# `_catalog_chain_consistent`'s two value patterns, compiled once (it runs
+# ~25 M times in a full merge; `re.match` with a pattern string pays the
+# re-module cache lookup on every call).
+_CHAIN_CORE_RE = re.compile(r"^(\d+(?:\.\d+)?)[A-Za-z]{1,2}$")
+_CHAIN_DOTNUM_RE = re.compile(r"^(\d+)\.\d+$")
+
+
 def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     """Returns (state, has_overlap):
       state ∈ {'agree', 'disagree', 'no_overlap'}
@@ -1357,7 +1382,7 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
         two) appended to a base catalogue number marks a die-variant
         or sub-type of the same parent. Tolerated as same when the
         broader catalogue chain confirms identity."""
-        m = re.match(r"^(\d+(?:\.\d+)?)[A-Za-z]{1,2}$", v.strip())
+        m = _CHAIN_CORE_RE.match(v.strip())
         return m.group(1) if m else v.strip()
 
     def _parent_of_dotnum(v: str) -> str | None:
@@ -1372,7 +1397,7 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
         sub-variants («70.1» and «70.2») remain different so curator
         sub-variant distinctions stay intact. Same applies to KM «1.1»
         ↔ «1» (parent type) but NOT KM «1.1» ↔ «1.2»."""
-        m = re.match(r"^(\d+)\.\d+$", v.strip())
+        m = _CHAIN_DOTNUM_RE.match(v.strip())
         return m.group(1) if m else None
 
     agreeing: list[str] = []
@@ -5015,6 +5040,22 @@ def _load_decisions(entity_id: str) -> dict:
 # ---------------------------------------------------------------------------
 
 
+# Each seed file as parsed by `_load_all_seeds`, pickled before anything
+# touched it. `_load_seeds_for_entity` needs FRESH dicts (process_entity
+# stamps `_year_demoted`, uncertainty, … on them), and unpickling one is ~30x
+# faster than parsing the YAML again — re-parsing was ~10 s of a full merge
+# (2026-11-03). Same objects: the seed YAML holds only plain scalars, lists
+# and dicts, and pickle keeps a document's shared (aliased) nodes shared.
+_SEED_DOC_PICKLES: dict[str, bytes] = {}
+
+
+def _seed_doc_fresh(path: Path) -> dict:
+    blob = _SEED_DOC_PICKLES.get(str(path))
+    if blob is not None:
+        return pickle.loads(blob)
+    return _fast_load(path.read_text(encoding="utf-8")) or {}
+
+
 def _load_seeds_for_entity(entity_id: str) -> list[dict]:
     """Walk data/v2/seed/<source>/<entity>.yml across all sources.
     Returns flat list of coin dicts; each dict has its `id` for identification."""
@@ -5027,7 +5068,7 @@ def _load_seeds_for_entity(entity_id: str) -> list[dict]:
         path = src_dir / f"{entity_id}.yml"
         if not path.exists():
             continue
-        doc = _fast_load(path.read_text(encoding="utf-8")) or {}
+        doc = _seed_doc_fresh(path)
         for c in doc.get("coins") or []:
             if isinstance(c, dict) and c.get("id"):
                 # An «erroneous» mint mark takes the printed mint out of play
@@ -5097,6 +5138,8 @@ def _load_all_seeds() -> tuple[dict[str, dict], dict[str, str]]:
         for path in sorted(src_dir.glob("*.yml")):
             entity = path.stem
             doc = _fast_load(path.read_text(encoding="utf-8")) or {}
+            _SEED_DOC_PICKLES[str(path)] = pickle.dumps(
+                doc, protocol=pickle.HIGHEST_PROTOCOL)
             for c in doc.get("coins") or []:
                 if isinstance(c, dict) and c.get("id"):
                     apply_mint_mark(c)
@@ -5271,6 +5314,82 @@ def _check_cross_entity_completeness(all_by_id: dict, home: dict,
 # reproduces the serial (i<j) ordering EXACTLY, so PASS 2 / 2b / union see
 # byte-identical input → byte-identical output. Each worker memoises
 # _catalog_refs in its own address space (one entity per pool, coins stable).
+# ---------------------------------------------------------------------------
+# Per-record memo for PASS 1 / PASS 2
+# ---------------------------------------------------------------------------
+# PASS 1 calls match_pair on ~28 M candidate pairs of danish_realm, and these
+# helpers — each a pure function of ONE record — were recomputed on every
+# pair: _catalogue_section 111 M calls, _hede_series 55 M, _weight_repr 118 M
+# (serial profile, 2026-11-03: about a quarter of PASS 1). Between the start
+# of PASS 1 (`_pass1_set_globals`) and the end of PASS 2 (`_pass2_no_merges`)
+# no record is changed (step 2b only edits its own pair dicts), so inside that
+# window each value is computed once per record. Outside it — and in absorb,
+# which mutates records — the wrappers call straight through. Each memo entry
+# keeps the record itself, so an id() can never be reused for another dict
+# while its entry lives. The wrappers are applied here, not on the
+# definitions, so the functions' bodies stay as they are.
+_PER_RECORD_MEMO_ON = False
+_PER_RECORD_MEMOS: list[dict] = []
+
+
+def _per_record_memo(fn):
+    memo: dict = {}
+    _PER_RECORD_MEMOS.append(memo)
+
+    def wrapper(coin):
+        if not _PER_RECORD_MEMO_ON:
+            return fn(coin)
+        hit = memo.get(id(coin))
+        if hit is not None and hit[0] is coin:
+            return hit[1]
+        val = fn(coin)
+        memo[id(coin)] = (coin, val)
+        return val
+    wrapper.__name__ = fn.__name__
+    wrapper.__doc__ = fn.__doc__
+    wrapper.__wrapped__ = fn
+    return wrapper
+
+
+def _per_record_memo_window(on: bool) -> None:
+    """Open (on=True) or close the window; either way the memos start empty."""
+    global _PER_RECORD_MEMO_ON
+    for m in _PER_RECORD_MEMOS:
+        m.clear()
+    _PER_RECORD_MEMO_ON = on
+
+
+_catalogue_section = _per_record_memo(_catalogue_section)
+_hede_series = _per_record_memo(_hede_series)
+_weight_repr = _per_record_memo(_weight_repr)
+_fineness_repr = _per_record_memo(_fineness_repr)
+_others_registers = _per_record_memo(_others_registers)
+
+
+def _string_memo(fn):
+    """Memo for a pure function of hashable (string) arguments. A set result
+    is handed out as a fresh copy, so a caller can never alter the cached one."""
+    cache: dict = {}
+
+    def wrapper(*args):
+        try:
+            hit = cache.get(args)
+        except TypeError:          # an unhashable argument — compute directly
+            return fn(*args)
+        if hit is None:
+            hit = fn(*args)
+            cache[args] = frozenset(hit) if isinstance(hit, set) else hit
+        return set(hit) if isinstance(hit, frozenset) else hit
+    wrapper.__name__ = fn.__name__
+    wrapper.__doc__ = fn.__doc__
+    wrapper.__wrapped__ = fn
+    return wrapper
+
+
+_lange_numbers = _string_memo(_lange_numbers)
+_nominal_wildcard_match = _string_memo(_nominal_wildcard_match)
+
+
 _MP_IDS: list = []
 _MP_SEEDS: dict = {}
 _MP_ENTITY = None
@@ -5358,6 +5477,14 @@ def _pass1_set_globals(ids, seeds_by_id, entity_id, reign_index, explicit_no_mer
     _MP_CANDIDATES = candidates
     _CATALOG_REFS_MEMO.clear()
     _CATALOG_REFS_MEMO_ENABLED = True
+    _per_record_memo_window(True)
+    # Move everything alive now (the seed corpus, this entity's records) out
+    # of the cyclic collector's reach: the full collections kept walking
+    # millions of data dicts that never become garbage (~27 s of a full
+    # merge, 2026-11-03), and the PASS-1 / PASS-2 workers fork from here, so
+    # a frozen heap is also not copied page by page when a collection would
+    # touch it. Frozen objects are still freed by reference counting.
+    gc.freeze()
 
 
 def _pass1_eval_i(i: int):
@@ -5396,6 +5523,80 @@ def _pass1_eval_i(i: int):
                         "fallback": result["fallback"],
                         "why": result["why"]})
     return conf, low
+
+
+# PASS 2 (auto no_merge within confident-connected components) is the same
+# kind of work: every pair's verdict depends only on the two coins, the
+# entity's reign_index and the component's _WeakVetoIndex. The original loop
+# tested `uf.can_union` before each pair; the only no_merges PASS 2 itself adds
+# are for the pair just tested, and a pair belongs to one component and is
+# visited once, so testing against the no_merge set as it stood before PASS 2
+# is the same test. Workers return the pairs to register; the parent
+# registers them in the serial order (components in order, then i<j), so
+# UnionFind sees the identical call sequence. The _WeakVetoIndex objects are
+# built in the parent before the fork — as the serial loop built them, so the
+# parent's _catalog_refs memo ends up holding the same entries.
+_P2_COMPONENTS: list = []
+_P2_BLOCKED: frozenset = frozenset()
+_P2_SEEDS: dict = {}
+_P2_ENTITY = None
+_P2_REIGN = None
+
+# PASS 2 runs in worker processes from this many within-component pairs on.
+_PASS2_PARALLEL_PAIRS = int(os.environ.get("MERGE_PASS2_PARALLEL_PAIRS", "200000"))
+
+
+def _pass2_eval_row(task):
+    """No_merge pairs of row `ii` of component `ci`, in j order."""
+    ci, ii = task
+    ms, weak = _P2_COMPONENTS[ci]
+    seeds = _P2_SEEDS
+    a_id = ms[ii]
+    coin_a = seeds[a_id]
+    out = []
+    for jj in range(ii + 1, len(ms)):
+        b_id = ms[jj]
+        if frozenset({a_id, b_id}) in _P2_BLOCKED:
+            continue
+        r = match_pair(coin_a, seeds[b_id], _P2_ENTITY, reign_index=_P2_REIGN)
+        if r["decision"] != "no_match":
+            continue
+        if weak.overruled(r, a_id, b_id):
+            continue
+        out.append((a_id, b_id))
+    return out
+
+
+def _pass2_no_merges(components, uf, seeds_by_id, entity_id, reign_index):
+    """Ordered (a, b) pairs PASS 2 registers as auto no_merge."""
+    global _P2_COMPONENTS, _P2_BLOCKED, _P2_SEEDS, _P2_ENTITY, _P2_REIGN
+    comps = []
+    for members in components:
+        if len(members) < 2:
+            continue
+        ms = sorted(members)
+        # A weak contradiction a unifying member resolves is not a veto.
+        comps.append((ms, _WeakVetoIndex(ms, seeds_by_id, entity_id)))
+    _P2_COMPONENTS = comps
+    _P2_BLOCKED = frozenset(uf.no_merge)
+    _P2_SEEDS = seeds_by_id
+    _P2_ENTITY = entity_id
+    _P2_REIGN = reign_index
+    tasks = [(ci, ii) for ci, (ms, _w) in enumerate(comps) for ii in range(len(ms) - 1)]
+    n_pairs = sum(len(ms) * (len(ms) - 1) // 2 for ms, _w in comps)
+    try:
+        if n_pairs >= _PASS2_PARALLEL_PAIRS:
+            n_workers = max(1, (os.cpu_count() or 2) - 1)
+            ctx = mp.get_context("fork")
+            with ctx.Pool(n_workers) as pool:
+                rows = pool.map(_pass2_eval_row, tasks, chunksize=16)
+        else:
+            rows = [_pass2_eval_row(t) for t in tasks]
+    finally:
+        _P2_COMPONENTS = []
+        _P2_SEEDS = {}
+        _per_record_memo_window(False)
+    return [pair for row in rows for pair in row]
 
 
 # Entities at/above this seed count run PASS 1 across worker processes; below
@@ -5930,25 +6131,11 @@ def process_entity(entity_id: str,
     _components: dict[str, list[str]] = defaultdict(list)
     for cid in _comp_parent:
         _components[_cfind(cid)].append(cid)
-    for _members in _components.values():
-        if len(_members) < 2:
-            continue
-        _ms = sorted(_members)
-        # A weak contradiction a unifying member resolves is not a veto.
-        _weak = _WeakVetoIndex(_ms, seeds_by_id, entity_id)
-        for _ii in range(len(_ms)):
-            _ma = seeds_by_id[_ms[_ii]]
-            for _jj in range(_ii + 1, len(_ms)):
-                _mb_id = _ms[_jj]
-                if not uf.can_union(_ms[_ii], _mb_id):
-                    continue
-                _r = match_pair(_ma, seeds_by_id[_mb_id], entity_id,
-                                reign_index=reign_index)
-                if _r["decision"] != "no_match":
-                    continue
-                if _weak.overruled(_r, _ms[_ii], _mb_id):
-                    continue
-                uf.add_no_merge(_ms[_ii], _mb_id)
+    # The verdicts are computed by _pass2_no_merges (in worker processes for a
+    # large entity) and registered here in the serial (component, i<j) order.
+    for _a, _b in _pass2_no_merges(_components.values(), uf, seeds_by_id,
+                                   entity_id, reign_index):
+        uf.add_no_merge(_a, _b)
 
     # 3. Apply confident auto-merges. union() refuses any merge that would
     #    create a class containing a no_match pair. Run this BEFORE curator
@@ -6229,8 +6416,7 @@ def _write_departed(entity_id: str, unified_entries: list[dict]) -> None:
     so nothing renames and the map was always empty.)"""
     import json
     path = V2_SEED_UNIFIED / f"{entity_id}.yml"
-    loader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
-    old = (yaml.load(path.read_text(encoding="utf-8"), Loader=loader) or {}) if path.exists() else {}
+    old = (_fast_load(path.read_text(encoding="utf-8")) or {}) if path.exists() else {}
     old_members = {e["id"]: set(e.get("composed_of") or [])
                    for e in (old.get("coins") or []) if e.get("id")}
     departed = {}
@@ -6303,6 +6489,99 @@ def _emit_match_uncertainty(entity_id: str, low_conf: list[dict],
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
+
+
+_WRITE_RESULTS: dict = {}
+
+
+def _write_entity_output(task) -> None:
+    """One file group of one entity: «unified» (departed sidecar, then the
+    seed_unified yaml it is computed against) or «uncertainty»."""
+    ent, part = task
+    result = _WRITE_RESULTS[ent]
+    if part == "unified":
+        V2_SEED_UNIFIED.mkdir(parents=True, exist_ok=True)
+        _write_departed(ent, result["unified_entries"])
+        (V2_SEED_UNIFIED / f"{ent}.yml").write_text(
+            _emit_unified_yaml(ent, result["unified_entries"],
+                               result["seeds_count"]),
+            encoding="utf-8",
+        )
+    elif (result["low_confidence_pairs"] or result.get("merge_conflicts")
+            or result.get("transitivity_blocks")):
+        V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
+        (V2_MATCH_UNCERTAINTY / f"{ent}.yml").write_text(
+            _emit_match_uncertainty(
+                ent,
+                result["low_confidence_pairs"],
+                result.get("merge_conflicts"),
+                result.get("transitivity_blocks"),
+            ),
+            encoding="utf-8",
+        )
+    else:
+        stale = V2_MATCH_UNCERTAINTY / f"{ent}.yml"
+        if stale.exists():
+            stale.unlink()
+
+
+def _write_outputs(entities: list[str], results: dict) -> None:
+    """Write every entity's seed_unified + match_uncertainty. Each file group
+    depends only on its own entity's result and its own files on disk, so the
+    groups are dumped in parallel worker processes (fork: `results` is
+    inherited, not pickled); a single entity is written in-process. The
+    danish_realm uncertainty dump alone is ~20 s, the unified dumps another
+    ~15 s (2026-11-03)."""
+    global _WRITE_RESULTS
+    _WRITE_RESULTS = results
+    V2_SEED_UNIFIED.mkdir(parents=True, exist_ok=True)
+    V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
+    # Largest entities first, so the long dumps start at once.
+    order = sorted(entities, key=lambda e: -results[e]["seeds_count"])
+    tasks = [(e, part) for e in order for part in ("uncertainty", "unified")
+             if not (part == "uncertainty" and e in _EARLY_UNCERTAINTY)]
+    try:
+        if len(entities) > 1:
+            n_workers = max(1, min(len(tasks), (os.cpu_count() or 2) - 1))
+            with mp.get_context("fork").Pool(n_workers) as pool:
+                pool.map(_write_entity_output, tasks, chunksize=1)
+        else:
+            for t in tasks:
+                _write_entity_output(t)
+    finally:
+        _WRITE_RESULTS = {}
+    for ent, proc in _EARLY_UNCERTAINTY.items():
+        proc.join()
+        if proc.exitcode != 0:
+            raise RuntimeError(f"match_uncertainty writer for {ent} failed "
+                               f"(exit code {proc.exitcode})")
+
+
+# entity → the process writing its match_uncertainty (see below).
+_EARLY_UNCERTAINTY: dict = {}
+
+
+def _start_early_uncertainty(ent: str, result: dict) -> None:
+    """Write `ent`'s match_uncertainty in a forked process as soon as its
+    process_entity has returned, while the parent goes on with the next
+    entities — danish_realm's 74 MB dump alone is ~20 s. Only on a full run:
+    there the class-registry check after the loop can never refuse the write
+    (no shard of an unprocessed entity can be touched), so the file is the
+    one the end-of-run writer would have produced. `_write_outputs` waits for
+    these processes and fails the run if one failed."""
+    global _WRITE_RESULTS
+    _WRITE_RESULTS = {ent: result}
+    # A forked child flushes the stdio buffers it inherited when it exits;
+    # empty them first, or the parent's pending output would appear twice.
+    sys.stdout.flush()
+    sys.stderr.flush()
+    try:
+        proc = mp.get_context("fork").Process(
+            target=_write_entity_output, args=((ent, "uncertainty"),))
+        proc.start()
+    finally:
+        _WRITE_RESULTS = {}
+    _EARLY_UNCERTAINTY[ent] = proc
 
 
 def _all_entities() -> list[str]:
@@ -6400,6 +6679,8 @@ def main() -> int:
                                 all_seeds_by_id=all_by_id,
                                 member_ie=member_ie)
         results[ent] = result
+        if args.apply and not _ent_list:
+            _start_early_uncertainty(ent, result)
         totals["seeds"] += result["seeds_count"]
         totals["unified"] += result["unified_count"]
         totals["confident_merges"] += len(result["confident_merges"])
@@ -6443,32 +6724,8 @@ def main() -> int:
             return 1
         print(msg + "  (dry-run)")
 
-    for ent in entities:
-        result = results[ent]
-        if args.apply:
-            V2_SEED_UNIFIED.mkdir(parents=True, exist_ok=True)
-            _write_departed(ent, result["unified_entries"])
-            (V2_SEED_UNIFIED / f"{ent}.yml").write_text(
-                _emit_unified_yaml(ent, result["unified_entries"],
-                                   result["seeds_count"]),
-                encoding="utf-8",
-            )
-            if (result["low_confidence_pairs"] or result.get("merge_conflicts")
-                    or result.get("transitivity_blocks")):
-                V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
-                (V2_MATCH_UNCERTAINTY / f"{ent}.yml").write_text(
-                    _emit_match_uncertainty(
-                        ent,
-                        result["low_confidence_pairs"],
-                        result.get("merge_conflicts"),
-                        result.get("transitivity_blocks"),
-                    ),
-                    encoding="utf-8",
-                )
-            else:
-                stale = V2_MATCH_UNCERTAINTY / f"{ent}.yml"
-                if stale.exists():
-                    stale.unlink()
+    if args.apply:
+        _write_outputs(entities, results)
 
     if args.apply:
         written = registry.save(entities=set(entities) | registry.touched)
