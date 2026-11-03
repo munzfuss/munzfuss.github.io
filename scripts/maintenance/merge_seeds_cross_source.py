@@ -6520,8 +6520,8 @@ def _emit_match_uncertainty(entity_id: str, low_conf: list[dict],
         sort_keys=True, default=str).encode("utf-8")).hexdigest()
     if _p.exists() and _h.exists() and _h.read_text().strip() == digest:
         return _p.read_text(encoding="utf-8")
-    V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
-    _h.write_text(digest + "\n")
+    _UNC_OUT_DIR.mkdir(parents=True, exist_ok=True)
+    (_UNC_OUT_DIR / _h.name).write_text(digest + "\n")
     # CDumper: byte-identical to the pure-Python Dumper on this payload
     # (checked 2026-10-08), ~3x faster on the 10 MB danish_norway file.
     return header + yaml.dump(payload, Dumper=getattr(yaml, "CDumper", yaml.Dumper),
@@ -6552,8 +6552,8 @@ def _write_entity_output(task) -> None:
         )
     elif (result["low_confidence_pairs"] or result.get("merge_conflicts")
             or result.get("transitivity_blocks")):
-        V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
-        (V2_MATCH_UNCERTAINTY / f"{ent}.yml").write_text(
+        _UNC_OUT_DIR.mkdir(parents=True, exist_ok=True)
+        (_UNC_OUT_DIR / f"{ent}.yml").write_text(
             _emit_match_uncertainty(
                 ent,
                 result["low_confidence_pairs"],
@@ -6562,6 +6562,10 @@ def _write_entity_output(task) -> None:
             ),
             encoding="utf-8",
         )
+    elif _UNC_OUT_DIR != V2_MATCH_UNCERTAINTY:
+        # staged (early) writer: the removal is done at commit time
+        _UNC_OUT_DIR.mkdir(parents=True, exist_ok=True)
+        (_UNC_OUT_DIR / f"{ent}.unlink").write_text("")
     else:
         stale = V2_MATCH_UNCERTAINTY / f"{ent}.yml"
         if stale.exists():
@@ -6598,10 +6602,28 @@ def _write_outputs(entities: list[str], results: dict) -> None:
         if proc.exitcode != 0:
             raise RuntimeError(f"match_uncertainty writer for {ent} failed "
                                f"(exit code {proc.exitcode})")
+    # The early writers wrote into the staging directory; move their files
+    # into place now that the run has reached its writing stage.
+    for ent in _EARLY_UNCERTAINTY:
+        yml, sha = f"{ent}.yml", f".{ent}.sha1"
+        if (_UNC_STAGE / f"{ent}.unlink").exists():
+            (V2_MATCH_UNCERTAINTY / yml).unlink(missing_ok=True)
+            continue
+        if (_UNC_STAGE / sha).exists():
+            os.replace(_UNC_STAGE / sha, V2_MATCH_UNCERTAINTY / sha)
+        os.replace(_UNC_STAGE / yml, V2_MATCH_UNCERTAINTY / yml)
+    if _EARLY_UNCERTAINTY:
+        import shutil
+        shutil.rmtree(_UNC_STAGE, ignore_errors=True)
 
 
 # entity → the process writing its match_uncertainty (see below).
 _EARLY_UNCERTAINTY: dict = {}
+# Where the uncertainty writer puts its files: the real directory, or — in an
+# early writer — a staging directory that `_write_outputs` moves into place,
+# so a run that fails after the entity loop leaves match_uncertainty as it was.
+_UNC_STAGE = V2_MATCH_UNCERTAINTY / ".early"
+_UNC_OUT_DIR = V2_MATCH_UNCERTAINTY
 
 
 def _start_early_uncertainty(ent: str, result: dict) -> None:
@@ -6610,10 +6632,15 @@ def _start_early_uncertainty(ent: str, result: dict) -> None:
     entities — danish_realm's 74 MB dump alone is ~20 s. Only on a full run:
     there the class-registry check after the loop can never refuse the write
     (no shard of an unprocessed entity can be touched), so the file is the
-    one the end-of-run writer would have produced. `_write_outputs` waits for
-    these processes and fails the run if one failed."""
-    global _WRITE_RESULTS
+    one the end-of-run writer would have produced. The process writes into
+    `_UNC_STAGE`; `_write_outputs` waits for it, fails the run if it failed,
+    and only then moves the files into place."""
+    global _WRITE_RESULTS, _UNC_OUT_DIR
+    if not _EARLY_UNCERTAINTY:
+        import shutil
+        shutil.rmtree(_UNC_STAGE, ignore_errors=True)   # an aborted run's leftovers
     _WRITE_RESULTS = {ent: result}
+    _UNC_OUT_DIR = _UNC_STAGE
     # A forked child flushes the stdio buffers it inherited when it exits;
     # empty them first, or the parent's pending output would appear twice.
     sys.stdout.flush()
@@ -6624,6 +6651,7 @@ def _start_early_uncertainty(ent: str, result: dict) -> None:
         proc.start()
     finally:
         _WRITE_RESULTS = {}
+        _UNC_OUT_DIR = V2_MATCH_UNCERTAINTY
     _EARLY_UNCERTAINTY[ent] = proc
 
 
