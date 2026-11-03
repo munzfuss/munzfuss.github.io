@@ -56,6 +56,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import gc
 import multiprocessing as mp
 import os
 import pickle
@@ -5370,6 +5371,13 @@ def _pass1_set_globals(ids, seeds_by_id, entity_id, reign_index, explicit_no_mer
     _CATALOG_REFS_MEMO.clear()
     _CATALOG_REFS_MEMO_ENABLED = True
     _per_record_memo_window(True)
+    # Move everything alive now (the seed corpus, this entity's records) out
+    # of the cyclic collector's reach: the full collections kept walking
+    # millions of data dicts that never become garbage (~27 s of a full
+    # merge, 2026-11-03), and the PASS-1 / PASS-2 workers fork from here, so
+    # a frozen heap is also not copied page by page when a collection would
+    # touch it. Frozen objects are still freed by reference counting.
+    gc.freeze()
 
 
 def _pass1_eval_i(i: int):

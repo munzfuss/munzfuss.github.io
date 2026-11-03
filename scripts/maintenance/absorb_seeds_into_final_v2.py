@@ -45,6 +45,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import gc
 import os
 import pickle
 import re
@@ -4799,6 +4800,11 @@ def main() -> int:
 
     totals = Counter()
     for ent in entities:
+        # Keep what is alive now — the parsed seeds, unified docs, snapshot —
+        # out of the cyclic collector's full passes: they were ~25 s of a
+        # ~70 s absorb (2026-11-03), walking data dicts that never become
+        # garbage. Frozen objects are still freed by reference counting.
+        gc.freeze()
         result = process_entity(ent)
         if result.get("assign_conflicts"):
             print(f"  [{ent}] ✗ ASSIGN-CONFLICT — assignments reaching one coin "
