@@ -1628,8 +1628,16 @@ def _fineness_within(a, b, tol=0.05):
 
 def _weight_repr(coin) -> float | None:
     """Single representative weight from `weight_rough_g`. Mirrors
-    `_fineness_repr` shape: scalar OR list-of-FieldValue."""
+    `_fineness_repr` shape: scalar OR list-of-FieldValue.
+
+    A weight marked `suspect` is left out here, unlike in `_accepted`: the
+    mark records that the reading cannot stand for the TYPE's weight (a
+    clipped or corroded piece), and every caller of this function compares
+    types. The reading still renders with its mark (curator 2026-11-03:
+    KMM «H 151B» at 0.31 g kept apart from Hede 151 by the 2.5x gate)."""
     w = _accepted(coin.get("weight_rough_g"))
+    if isinstance(w, list):
+        w = [e for e in w if not (isinstance(e, dict) and e.get("suspect"))]
     if isinstance(w, (int, float)):
         return float(w)
     if isinstance(w, list):
@@ -1753,6 +1761,17 @@ def _shares_unique_id_ref(refs_a: dict, refs_b: dict) -> bool:
     return False
 
 
+def _index_bases(value) -> set[str]:
+    """Base numbers of a type-level index value: «99D» → 99, «340.2» → 340,
+    «92AB» → 92; tokens split on «|» and «,»."""
+    out = set()
+    for tok in re.split(r"[|,]", str(value)):
+        mb = re.match(r"\s*(\d+)", tok)
+        if mb:
+            out.add(mb.group(1))
+    return out
+
+
 def _catalog_strongly_agrees(refs_a: dict, refs_b: dict,
                               min_shared_agreeing: int = 2) -> bool:
     """Strong catalog-agreement test for the weight tier-1 disambiguator.
@@ -1819,6 +1838,7 @@ def _catalog_strongly_agrees(refs_a: dict, refs_b: dict,
         va, vb = refs_a[k], refs_b[k]
         sa = set(va.split("|")) if isinstance(va, str) else {str(va)}
         sb = set(vb.split("|")) if isinstance(vb, str) else {str(vb)}
+        _reg = k.split("/", 1)[0]
         if sa & sb:
             n_agreeing += 1
             if (k in AUTHORITATIVE_TYPE_DEFINING
@@ -1826,6 +1846,19 @@ def _catalog_strongly_agrees(refs_a: dict, refs_b: dict,
                     or k.startswith("galster/")
                     or k.startswith("hede/")):
                 has_authoritative_agreement = True
+        elif _reg in _SUB_VARIANT_REFS and (_lange_numbers(va) & _lange_numbers(vb)
+                                            or _index_bases(va) & _index_bases(vb)):
+            # A number inside the other side's range («Schou 20» against
+            # Hede 99D's «20-21») agrees (curator 2026-11-03).
+            n_agreeing += 1
+        elif _reg in ("hede", "galster", "km") and _index_bases(va) & _index_bases(vb):
+            # Same base, different sub-variant (Hede 99D / 99, KM 340.1 /
+            # 340.2): §9.4 one coin. A weaker agreement than the full index —
+            # it counts, but cannot carry the merge alone; a real
+            # disagreement on another shared index still refuses it
+            # (Hede 999A = KM 999 against Hede 999B = KM 998; curator
+            # 2026-11-03).
+            n_agreeing += 1
         else:
             # Any disagreement on a shared key disqualifies — strong
             # agreement requires zero disagreements across shared keys.
@@ -2114,19 +2147,46 @@ def _index_equiv_graph() -> set:
 
 
 def _index_equivalence_corroborated(coin_a: dict, coin_b: dict,
-                                    entity_id: str | None) -> bool:
+                                    entity_id: str | None,
+                                    skip: tuple = ()) -> bool:
     """True when some third record attests that a register/value of A names
     the same coin as a register/value of B."""
     g = _index_equiv_graph()
     na = {(k, v) for k, vv in _catalog_refs(coin_a, entity_id).items()
-          for v in _ref_value_variants(vv)}
+          if not k.startswith(skip) for v in _ref_value_variants(vv)}
     nb = {(k, v) for k, vv in _catalog_refs(coin_b, entity_id).items()
-          for v in _ref_value_variants(vv)}
+          if not k.startswith(skip) for v in _ref_value_variants(vv)}
     for x in na:
         for y in nb:
             if x[0] != y[0] and frozenset({x, y}) in g:
                 return True
     return False
+
+
+def _shared_value_unscoped(coin_a, coin_b, entity_id) -> bool:
+    """A register value both sides give, ignoring the ruler / volume scope
+    suffix (a record without a ruler carries bare «hede»)."""
+    def _n(c):
+        return {(k.split("/")[0], v) for k, vv in _catalog_refs(c, entity_id).items()
+                if k.split("/")[0] not in ("numista", "bruun_collection_id")
+                for v in _ref_value_variants(vv)}
+    return bool(_n(coin_a) & _n(coin_b))
+
+
+# Reign gate (curator 2026-11-03): a record dated only by its ruler's reign
+# says nothing about WHICH coin of that reign it is. `REIGN_GATE=0` switches
+# it off for a comparison run.
+_REIGN_GATE = os.environ.get("REIGN_GATE", "1") != "0"
+
+
+def _reign_gate_blocks(coin_a, coin_b, primary, entity_id) -> bool:
+    """A side dated only by its ruler's reign says nothing about WHICH coin of
+    that reign it is: without a catalogue tie the pair is not evidenced."""
+    return bool((coin_a.get("_year_demoted") or coin_b.get("_year_demoted"))
+                and primary.get("catalog") is not True
+                and not _index_equivalence_corroborated(
+                    coin_a, coin_b, entity_id, skip=("schou",))
+                and not _shared_value_unscoped(coin_a, coin_b, entity_id))
 
 
 def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
@@ -5625,6 +5685,55 @@ def process_entity(entity_id: str,
             low_confidence.extend(low)
         # no_match → deferred to PASS 2 (within-component only)
 
+    # 2a. Reign gate (curator 2026-11-03): a record dated only by its ruler's
+    #     reign (`_year_demoted`) joins a class without a catalogue tie only
+    #     when ONE type is on offer. Its partners are grouped by the tied /
+    #     dated pairs; more than one group means the reign says nothing about
+    #     which coin it is, and its untied pairs drop to low_confidence. Before
+    #     this, whichever pair the union reached first decided (Hede Chr V 52,
+    #     a reign-dated Dukat page, had 89 candidates and landed on KM 375).
+    if _REIGN_GATE:
+        _gated = [cp for cp in confident_pairs
+                  if _reign_gate_blocks(seeds_by_id[cp["a"]], seeds_by_id[cp["b"]],
+                                        cp["primary"], entity_id)]
+        _gk = {(cp["a"], cp["b"]) for cp in _gated}
+        _par: dict[str, str] = {}
+        def _f(x):
+            _par.setdefault(x, x)
+            while _par[x] != x:
+                _par[x] = _par[_par[x]]
+                x = _par[x]
+            return x
+        for cp in confident_pairs:
+            if (cp["a"], cp["b"]) not in _gk:
+                _par[_f(cp["a"])] = _f(cp["b"])
+        _offer: dict[str, set] = defaultdict(set)
+        for cp in _gated:
+            for d, o in ((cp["a"], cp["b"]), (cp["b"], cp["a"])):
+                if seeds_by_id[d].get("_year_demoted"):
+                    _offer[d].add(_f(o))
+        # A type the record is tied to by catalogue counts as an offer too:
+        # KMM «H 81» dated 1602-1648 must not join KM 123 (1631) on nominal
+        # and reign alone when Hede 81 is on offer (curator 2026-11-03).
+        for cp in confident_pairs:
+            if (cp["a"], cp["b"]) in _gk:
+                continue
+            for d, o in ((cp["a"], cp["b"]), (cp["b"], cp["a"])):
+                if d in _offer and (cp.get("primary") or {}).get("catalog") is True:
+                    _offer[d].add(_f(o))
+        _drop = set()
+        for cp in _gated:
+            if any(len(_offer[d]) > 1 for d in (cp["a"], cp["b"]) if d in _offer):
+                _drop.add((cp["a"], cp["b"]))
+                low_confidence.append({"members": [cp["a"], cp["b"]],
+                                       "primary": cp["primary"],
+                                       "fallback": cp["fallback"],
+                                       "why": ["REIGN_GATE: reign-span year, no catalogue tie, "
+                                               "more than one candidate type"]})
+        confident_pairs = [cp for cp in confident_pairs
+                           if (cp["a"], cp["b"]) not in _drop]
+        print(f"  REIGN_GATE: {len(_gated)} untied reign pairs, {len(_drop)} held back")
+
     # 2b. POST-PRE-PASS: Single-candidate promotion for null primary
     # signals (`ruler`, `nominal`).
     #
@@ -5661,6 +5770,9 @@ def process_entity(entity_id: str,
     null_attribute_coins: dict[tuple[str, str], list[dict]] = defaultdict(list)
     for lcp in low_confidence:
         a_id, b_id = lcp["members"]
+        if _REIGN_GATE and _reign_gate_blocks(
+                seeds_by_id[a_id], seeds_by_id[b_id], lcp["primary"], entity_id):
+            continue
         for field in ("ruler", "nominal"):
             # The pair must be at the «one null one attested» pattern
             # for this specific field — primary[field] is None in the

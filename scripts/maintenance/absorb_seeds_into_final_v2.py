@@ -1603,6 +1603,55 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
 # ---------------------------------------------------------------------------
 
 
+_SPLIT_PARENTS: dict[str, list[str]] | None = None
+
+
+def _split_parents() -> dict[str, list[str]]:
+    """{class id → registry records that split into it or retired into it}."""
+    global _SPLIT_PARENTS
+    if _SPLIT_PARENTS is None:
+        _SPLIT_PARENTS = defaultdict(list)
+        for r in _registry().records.values():
+            for c in r.split_into or []:
+                _SPLIT_PARENTS[c].append(r.id)
+            if r.merged_into:
+                _SPLIT_PARENTS[r.merged_into].append(r.id)
+    return _SPLIT_PARENTS
+
+
+def _split_parent_classification(uid: str, prior_finals: list[dict]):
+    """((fuss, phase), [parent final ids]) for a class the merger split off
+    classified finals, or None.
+
+    A seed that leaves a classified class (a reign-dated record held back by
+    the merger, a curator split) used to land in seed_unsorted and vanish from
+    its standard's table. Its parents are the registry records whose
+    `split_into` names it, or that retired `merged_into` it. When every parent
+    sits in a prior final, and all those finals carry the same real fuss and
+    phase, the class keeps them (curator 2026-11-03). `kind` is not compared:
+    it is nowhere recorded with confidence yet. A parent without a classified
+    final, or a disagreement, leaves the class in seed_unsorted."""
+    parents = _split_parents().get(uid)
+    if not parents:
+        return None
+    classes: dict[str, tuple] = {}
+    froms: list[str] = []
+    for pid in parents:
+        hosts = [fe for fe in prior_finals
+                 if fe.get("id") == pid or pid in (fe.get("composed_of") or [])]
+        if not hosts:
+            return None
+        for fe in hosts:
+            if fe.get("fuss") in (None, "", "seed_unsorted"):
+                return None
+            cls = (fe.get("fuss"), fe.get("phase"))
+            classes.setdefault(_json.dumps(cls, sort_keys=True, default=str), cls)
+            froms.append(fe["id"])
+    if len(classes) != 1:
+        return None
+    return next(iter(classes.values())), sorted(set(froms))
+
+
 def _bulk_promote_mode(entity_id: str) -> str | None:
     """Curator-decision flag — returns the promote mode or None.
 
@@ -3683,9 +3732,16 @@ def process_entity(entity_id: str) -> dict:
         # Find match against final entries (per §5.2 hierarchy)
         candidates = []
         _u_has_catalog = bool(_catalog_refs(unified, entity_id))
+        # A class the merger split off classified finals keeps their
+        # classification (`_split_parent_classification`); it must not be
+        # re-hosted by an unclassified final, which would drop it into
+        # seed_unsorted after all (sonderburg KMM 200983-5, 2026-11-03).
+        _u_carries = _split_parent_classification(uid, _prior_final_for_monotonic)
         for fid, fc in final_by_id.items():
             if _curator_no_merged(unified, fc, no_merge_pairs, unified_by_id):
                 continue  # curator no_merge: different coin — never absorb
+            if _u_carries and fc.get("fuss") in (None, "", "seed_unsorted"):
+                continue
             # An unclassified final with no catalogue index at all (a bare
             # KMM «1 Krone», no year) is never the host of a class that has
             # one: matched on nominal + ruler alone it became a hub that
@@ -3816,6 +3872,7 @@ def process_entity(entity_id: str) -> dict:
     bulk_promoted: list[str] = []
     bulk_skipped: list[str] = []  # mode="no_basic_peer_only" — peer-exists cases stay pending
     promoted_near_peers: list[str] = []  # mode="all" — promoted despite a metal+nominal peer
+    carried_classifications: list[dict] = []  # split-off classes that kept their parents' fuss/phase
     if bulk_promote_mode is not None:
         existing_finals_for_peer_check = list(final_by_id.values())
         for uid in unmatched:
@@ -3938,6 +3995,15 @@ def process_entity(entity_id: str) -> dict:
                     elif seed_val in (None, "", [], {}):
                         promoted_stub[field] = value
                     # else: seed already has a curator-set value; keep it.
+            if promoted_stub.get("fuss") in (None, "", "seed_unsorted"):
+                _carried = _split_parent_classification(uid, _prior_final_for_monotonic)
+                if _carried:
+                    (promoted_stub["fuss"], promoted_stub["phase"]), _from = _carried
+                    carried_classifications.append(
+                        {"class": uid, "fuss": promoted_stub["fuss"],
+                         "phase": promoted_stub["phase"], "from": _from})
+                    print(f"  [{entity_id}] carried {promoted_stub['fuss']}/"
+                          f"{promoted_stub['phase']} onto split-off {uid} from {_from}")
             enriched, _ = _enrich_final_entry(
                 promoted_stub, [promoted_stub], entity_id
             )
@@ -4418,6 +4484,7 @@ def process_entity(entity_id: str) -> dict:
         "unmatched_unified_ids": unmatched,
         "multi_match_warnings": multi_match,
         "promoted_near_peers": promoted_near_peers,
+        "carried_classifications": carried_classifications,
         "enrichment_conflicts": enrichment_conflicts,
         "enriched_final_entries": enriched_entries,
         "applied_assignments": applied_assignments,
@@ -4461,7 +4528,8 @@ def _emit_final_yaml(entity_id: str, coins: list[dict],
 
 def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
                                     multi_match: list[dict],
-                                    near_peers: list[str] | None = None) -> str:
+                                    near_peers: list[str] | None = None,
+                                    carried: list[dict] | None = None) -> str:
     today = date.today().isoformat()
     header = (
         f"# Classification decisions for entity `{entity_id}` (Phase 4).\n"
@@ -4522,6 +4590,15 @@ def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
     _np = sorted(set(existing.get("promoted_near_peers") or []) | set(near_peers or []))
     if _np:
         payload["promoted_near_peers"] = _np
+    # Split-off classes that kept their parents' fuss/phase
+    # (`_split_parent_classification`) — for the curator to confirm or move.
+    # Accumulated like `promoted_near_peers`: the carry happens once, at the
+    # promotion; the curator prunes the list as each case is settled.
+    _cc = {c["class"]: c for c in (existing.get("carried_classifications") or [])}
+    for c in carried or []:
+        _cc[c["class"]] = c
+    if _cc:
+        payload["carried_classifications"] = [_cc[k] for k in sorted(_cc)]
     # Content-stable timestamp: reuse the prior `generated_at` when the payload
     # (pending / multi_match_warnings / assignments) is unchanged, so a no-op
     # absorb re-run leaves this committed file byte-identical instead of a
@@ -4866,6 +4943,7 @@ def main() -> int:
                         result["unmatched_unified_ids"],
                         result["multi_match_warnings"],
                         result.get("promoted_near_peers") or [],
+                        result.get("carried_classifications") or [],
                     ),
                     encoding="utf-8",
                 )
