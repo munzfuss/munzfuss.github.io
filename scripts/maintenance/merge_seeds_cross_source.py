@@ -5340,14 +5340,16 @@ def _check_cross_entity_completeness(all_by_id: dict, home: dict,
 # PASS 1 calls match_pair on ~28 M candidate pairs of danish_realm, and these
 # helpers — each a pure function of ONE record — were recomputed on every
 # pair: _catalogue_section 111 M calls, _hede_series 55 M, _weight_repr 118 M
-# (serial profile, 2026-11-03: about a quarter of PASS 1). Between the start
-# of PASS 1 (`_pass1_set_globals`) and the end of PASS 2 (`_pass2_no_merges`)
-# no record is changed (step 2b only edits its own pair dicts), so inside that
-# window each value is computed once per record. Outside it — and in absorb,
-# which mutates records — the wrappers call straight through. Each memo entry
-# keeps the record itself, so an id() can never be reused for another dict
-# while its entry lives. The wrappers are applied here, not on the
-# definitions, so the functions' bodies stay as they are.
+# (serial profile, 2026-11-03: about a quarter of PASS 1). The memo is live
+# only while a PASS-1 row (`_pass1_eval_i`) or a PASS-2 row (`_pass2_eval_row`)
+# is being evaluated — pure match_pair work that changes no record — and the
+# memos are emptied when PASS 1 starts and when PASS 2 starts and ends. The
+# steps in between (2a reign gate, 2b promotions) and everything else, absorb
+# included, call straight through, so a record changed there is never served
+# a value memoised before the change. Each memo entry keeps the record
+# itself, so an id() can never be reused for another dict while its entry
+# lives. The wrappers are applied here, not on the definitions, so the
+# functions' bodies stay as they are.
 _PER_RECORD_MEMO_ON = False
 _PER_RECORD_MEMOS: list[dict] = []
 
@@ -5371,12 +5373,28 @@ def _per_record_memo(fn):
     return wrapper
 
 
-def _per_record_memo_window(on: bool) -> None:
-    """Open (on=True) or close the window; either way the memos start empty."""
-    global _PER_RECORD_MEMO_ON
+def _per_record_memo_reset() -> None:
+    """Empty every per-record memo (a new pass starts, or one ended)."""
     for m in _PER_RECORD_MEMOS:
         m.clear()
-    _PER_RECORD_MEMO_ON = on
+
+
+def _with_record_memo(fn):
+    """Run `fn` (a PASS-1 / PASS-2 row evaluator) with the per-record memo
+    live. Keeps fn's name, so the worker pool still pickles it by name."""
+    def wrapper(*args):
+        global _PER_RECORD_MEMO_ON
+        _PER_RECORD_MEMO_ON = True
+        try:
+            return fn(*args)
+        finally:
+            _PER_RECORD_MEMO_ON = False
+    wrapper.__name__ = fn.__name__
+    wrapper.__qualname__ = fn.__qualname__
+    wrapper.__module__ = fn.__module__
+    wrapper.__doc__ = fn.__doc__
+    wrapper.__wrapped__ = fn
+    return wrapper
 
 
 _catalogue_section = _per_record_memo(_catalogue_section)
@@ -5497,7 +5515,7 @@ def _pass1_set_globals(ids, seeds_by_id, entity_id, reign_index, explicit_no_mer
     _MP_CANDIDATES = candidates
     _CATALOG_REFS_MEMO.clear()
     _CATALOG_REFS_MEMO_ENABLED = True
-    _per_record_memo_window(True)
+    _per_record_memo_reset()
     # Move everything alive now (the seed corpus, this entity's records) out
     # of the cyclic collector's reach: the full collections kept walking
     # millions of data dicts that never become garbage (~27 s of a full
@@ -5587,9 +5605,14 @@ def _pass2_eval_row(task):
     return out
 
 
+_pass1_eval_i = _with_record_memo(_pass1_eval_i)
+_pass2_eval_row = _with_record_memo(_pass2_eval_row)
+
+
 def _pass2_no_merges(components, uf, seeds_by_id, entity_id, reign_index):
     """Ordered (a, b) pairs PASS 2 registers as auto no_merge."""
     global _P2_COMPONENTS, _P2_BLOCKED, _P2_SEEDS, _P2_ENTITY, _P2_REIGN
+    _per_record_memo_reset()   # nothing memoised in PASS 1 carries over
     comps = []
     for members in components:
         if len(members) < 2:
@@ -5615,7 +5638,7 @@ def _pass2_no_merges(components, uf, seeds_by_id, entity_id, reign_index):
     finally:
         _P2_COMPONENTS = []
         _P2_SEEDS = {}
-        _per_record_memo_window(False)
+        _per_record_memo_reset()
     return [pair for row in rows for pair in row]
 
 
