@@ -2288,6 +2288,19 @@ def _is_vanished_stale_final(fe: dict, live_unified_ids: set, live_ids: set) -> 
     )
 
 
+_CROSS_ENTITY_DOC: dict | None = None
+
+
+def _cross_entity_doc() -> dict:
+    """`_cross_entity.yml`, parsed once per run (absorb never writes it;
+    `_cross_entity_relocated_out` is called ~1000 times, ~3 s of re-parsing).
+    Read-only for the callers."""
+    global _CROSS_ENTITY_DOC
+    if _CROSS_ENTITY_DOC is None:
+        _CROSS_ENTITY_DOC = _load_yaml(V2_MERGE_DECISIONS / "_cross_entity.yml")
+    return _CROSS_ENTITY_DOC
+
+
 def _cross_entity_relocated_out(entity_id: str) -> set:
     """Member seed ids that `_cross_entity.yml` pulls OUT of `entity_id` into a
     DIFFERENT target entity.
@@ -2306,7 +2319,7 @@ def _cross_entity_relocated_out(entity_id: str) -> set:
     Members are matched as the explicit seed ids written in `_cross_entity.yml`
     (every current entry lists sub-variant seeds explicitly; a bare Hede code
     would need sub-letter expansion — add it when such a case appears)."""
-    doc = _load_yaml(V2_MERGE_DECISIONS / "_cross_entity.yml")
+    doc = _cross_entity_doc()
     out: set = set()
     for e in (doc.get("merges") or []):
         if e.get("target_entity") == entity_id:
@@ -2432,8 +2445,22 @@ def _seed_coins_once() -> list[dict]:
     global _SEED_COINS
     if _SEED_COINS is None:
         _SEED_COINS = [c for sf in sorted(V2_SEED.glob("*/*.yml"))
-                       for c in (_load_yaml(sf).get("coins") or [])]
+                       for c in (_seed_doc(sf).get("coins") or [])]
     return _SEED_COINS
+
+
+_SEED_DOCS: dict[str, dict] = {}
+
+
+def _seed_doc(path: Path) -> dict:
+    """A seed file, parsed once per run and shared READ-ONLY by every seed-wide
+    reader here (`_seed_coins_once`, the leaf index, the KMM prune): absorb
+    never writes seeds, and each of them used to parse all ~140 files on its
+    own (2026-11-03)."""
+    key = str(path)
+    if key not in _SEED_DOCS:
+        _SEED_DOCS[key] = _load_yaml(path)
+    return _SEED_DOCS[key]
 
 
 def _thinned_rep_index() -> dict[str, list[str]]:
@@ -4580,10 +4607,13 @@ def _prune_foreign_kmm_citations(entities: list[str]) -> int:
     except Exception:  # pragma: no cover
         sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
         from lib.v2_index import V2Index
-    idx = V2Index.load()
+    _unified_docs = {str(p): d for p, d in _all_unified_docs()}
+    idx = V2Index.load(loader=lambda p: (
+        _seed_doc(p) if p.parent.parent == V2_SEED
+        else _unified_docs.get(str(p)) or _load_yaml(p)))
     holder: dict[str, str] = {}
     for sf in (V2_SEED / "kmk").glob("*.yml"):
-        for c in (_load_yaml(sf).get("coins") or []):
+        for c in (_seed_doc(sf).get("coins") or []):
             cid = c.get("id")
             if not cid:
                 continue
@@ -4735,7 +4765,7 @@ def main() -> int:
     import maintenance.merge_seeds_cross_source as _mgmod
     _leaf_idx: dict[str, dict] = {}
     for _sf in V2_SEED.rglob("*/*.yml"):
-        for _c in (_load_yaml(_sf).get("coins") or []):
+        for _c in (_seed_doc(_sf).get("coins") or []):
             if _c.get("id"):
                 _leaf_idx.setdefault(_c["id"], _c)
     for _uf, _udoc in _all_unified_docs():

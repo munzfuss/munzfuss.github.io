@@ -56,7 +56,7 @@ class LayerError(LookupError):
 _LOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 
 
-def _load(path: Path) -> dict:
+def _load_file(path: Path) -> dict:
     return yaml.load(path.read_text(), Loader=_LOADER) or {}
 
 
@@ -88,8 +88,11 @@ class V2Index:
 
     # ── construction ──────────────────────────────────────────────────────
     @classmethod
-    def load(cls, root: Path | None = None) -> "V2Index":
+    def load(cls, root: Path | None = None, loader=None) -> "V2Index":
+        """`loader(path) -> dict` replaces the file parse — a caller that holds
+        the parsed files already (absorb) passes its own. Read-only use."""
         v2 = root or V2
+        _load = loader or _load_file
         idx = cls()
         for src_dir in sorted((v2 / "seed").iterdir()):
             if not src_dir.is_dir():

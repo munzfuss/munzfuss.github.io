@@ -102,7 +102,20 @@ def _excluded_seed_ids() -> set[str]:
     absorb drops the singleton by its own id. Plain exclusions (no scope) keep
     the old meaning — the whole coin the seed belongs to is removed — because
     earlier curator decisions rely on it: isolating them surfaced 5 coins the
-    curator had removed and dropped 3 finals (measured 2026-10-16)."""
+    curator had removed and dropped 3 finals (measured 2026-10-16).
+
+    Read once per run (the files do not change during it; every entity used
+    to re-parse them, ~0.5 s each); each call returns a fresh set."""
+    global _EXCLUDED_SEED_IDS
+    if _EXCLUDED_SEED_IDS is None:
+        _EXCLUDED_SEED_IDS = frozenset(_read_excluded_seed_ids())
+    return set(_EXCLUDED_SEED_IDS)
+
+
+_EXCLUDED_SEED_IDS: frozenset | None = None
+
+
+def _read_excluded_seed_ids() -> set[str]:
     out: set[str] = set()
     if not V2_EXCLUSIONS.exists():
         return out
