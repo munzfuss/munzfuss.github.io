@@ -412,7 +412,12 @@ def _build_measurement_rows(cc, fineness_pairs, grid_unit_g=None, frac_k=1.0) ->
     # reading — e.g. c3h2: .986 on both 6.981 and 6.98, .968 on a 6.981 that
     # would otherwise split the two .986 rows apart. Higher fineness first;
     # heaviest weight first within a fineness group.
-    deduped.sort(key=lambda r: (-(r["fineness"] or 0.0), -(r["rough"] or 0.0)))
+    # A sub-row without a fineness reads as billon on a silver-standard type,
+    # so it closes the billon block and copper sub-rows follow it (curator
+    # 2026-11-03); elsewhere it still sorts last.
+    _nofin = COPPER_MAX_FINENESS if cc.raw.metal in ("silver", "billon", "silver_billon") else 0.0
+    deduped.sort(key=lambda r: (-(r["fineness"] if r["fineness"] is not None else _nofin),
+                                -(r["rough"] or 0.0)))
     cc.msr_n = len(deduped)
     # N/Marck per specimen (fraction-normalised): grid_unit_g / (weight / k),
     # one from the rough weight, one from the fine. Same source/anchor keys as
