@@ -555,7 +555,7 @@ with the act in its phase text, is a classification question for the curator (FI
   Carl Bruun *København* I; Dahl, MMA 330 (2005).
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-03): C1 1.5 · C2 2.0 (the grid recomputed
+Score (research-dossier rubric, self-assessed 2026-11-03, commit 66ef319): C1 1.5 · C2 2.0 (the grid recomputed
 from the acts' own figures; the output table checked column by column; the specie remedium a
 labelled gap) · C3 2.0 (three acts in hand, three in Wilcke's quotation) · C4 1.5 (Secher's
 apparatus and Wilcke's reading both named; ten discrepancies tabled) · C5 1.0 · C6 1.0 =
