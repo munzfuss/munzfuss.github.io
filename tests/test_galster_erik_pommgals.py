@@ -79,8 +79,9 @@ class GalsterMetalGuess(unittest.TestCase):
 
 
 class NaestvedHvidYear(unittest.TestCase):
-    """Galster 2 / 3: the coin pages' «ca. 1424» is marked suspect (curator
-    2026-10-26, «(*)»); the seed carries the curator's window 1396-1413 (?)."""
+    """Galster 2 / 3: the coin pages' «ca. 1424» is marked erroneous «(!)» and
+    the seed carries the Næstved window 1403-1413 (?) after Stefke 1995 and
+    Märcher 2018 (curator 2026-11-02, b6797c0; was suspect / 1396-1413)."""
 
     def test_window_and_mark(self):
         sys.path.insert(0, str(ROOT / "scripts" / "maintenance"))
@@ -88,9 +89,9 @@ class NaestvedHvidYear(unittest.TestCase):
         for page in ("epomg2", "epomg3"):
             d = json.loads((GALSTER_CACHE / f"{page}.json").read_text(encoding="utf-8"))
             e = bg.build_entry(d)
-            self.assertEqual((e["year_label"], e["year_verified"]), ("1396-1413", False))
+            self.assertEqual((e["year_label"], e["year_verified"]), ("1403-1413", False))
             self.assertEqual((e["year_mark"]["kind"], e["year_mark"]["value"]),
-                             ("suspect", "1424"))
+                             ("erroneous", "1424"))
 
 
 if __name__ == "__main__":

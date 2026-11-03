@@ -36,6 +36,11 @@ from lib.compute import _compute_catalog_groups  # noqa: E402
 from lib.schema import Coin  # noqa: E402
 
 
+# A plain Hede number carries only the catalogue-name tooltip (curator
+# 2026-10-27, CATALOG_TOOLTIP) — never a Hede Norge marker.
+_PLAIN_HEDE_TIP = "marker.cat_hede"
+
+
 def _coin(hede, volume=None, entity=None):
     return Coin.model_validate({
         "id": "t", "nominal": "1 Speciedaler", "metal": "silver",
@@ -64,7 +69,7 @@ class TestAttestedSeries(unittest.TestCase):
     def test_danish_volume_stays_plain(self):
         prefix, _, tip = _group(_coin("39", "f3h", "danish_realm"))
         self.assertEqual(prefix, "Hede")
-        self.assertIsNone(tip)
+        self.assertEqual(tip, _PLAIN_HEDE_TIP)
 
     def test_attested_danish_volume_beats_the_norwegian_entity(self):
         """dk-hede-f5h36a: Kongsberg mint, Danish volume, Norwegian entity.
@@ -86,7 +91,7 @@ class TestInferredSeries(unittest.TestCase):
     def test_volumeless_danish_coin_stays_plain(self):
         prefix, _, tip = _group(_coin("60", None, "danish_realm"))
         self.assertEqual(prefix, "Hede")
-        self.assertIsNone(tip)
+        self.assertEqual(tip, _PLAIN_HEDE_TIP)
 
     def test_joint_entity_including_norway_is_qualified(self):
         prefix, _, _ = _group(
@@ -96,7 +101,7 @@ class TestInferredSeries(unittest.TestCase):
     def test_no_entity_stays_plain(self):
         prefix, _, tip = _group(_coin("60", None, None))
         self.assertEqual(prefix, "Hede")
-        self.assertIsNone(tip)
+        self.assertEqual(tip, _PLAIN_HEDE_TIP)
 
 
 class TestTooltipKeysAreTranslated(unittest.TestCase):

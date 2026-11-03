@@ -82,10 +82,13 @@ class TestSplitMultiRefHelper(unittest.TestCase):
 class TestNormaliseCatalogWriteSide(unittest.TestCase):
     """`normalise_catalog` expands «/» to a number list in a typed field."""
 
-    def test_jensen_skjoldager_and_split_with_reattach(self):
-        cat = {"jensen_skjoldager": "T-91/96"}
-        normalise_catalog(cat)
-        self.assertEqual(sorted(cat["jensen_skjoldager"]), ["T-91", "T-96"])
+    def test_jensen_skjoldager_die_coupling_kept_whole(self):
+        # «T-91/96» is an obverse/reverse die coupling, not two indices
+        # (curator 2026-10-30, d90d8e7); Bruun's «T91/T96» takes the same form.
+        for raw in ("T-91/96", "T91/T96"):
+            cat = {"jensen_skjoldager": raw}
+            normalise_catalog(cat)
+            self.assertEqual(cat["jensen_skjoldager"], "T-91/96")
 
     def test_schive_dash_range_preserved(self):
         cat = {"schive": "XIV.32-33"}
