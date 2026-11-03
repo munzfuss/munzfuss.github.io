@@ -6203,6 +6203,66 @@ def _emit_match_uncertainty(entity_id: str, low_conf: list[dict],
 # ---------------------------------------------------------------------------
 
 
+_WRITE_RESULTS: dict = {}
+
+
+def _write_entity_output(task) -> None:
+    """One file group of one entity: «unified» (departed sidecar, then the
+    seed_unified yaml it is computed against) or «uncertainty»."""
+    ent, part = task
+    result = _WRITE_RESULTS[ent]
+    if part == "unified":
+        V2_SEED_UNIFIED.mkdir(parents=True, exist_ok=True)
+        _write_departed(ent, result["unified_entries"])
+        (V2_SEED_UNIFIED / f"{ent}.yml").write_text(
+            _emit_unified_yaml(ent, result["unified_entries"],
+                               result["seeds_count"]),
+            encoding="utf-8",
+        )
+    elif (result["low_confidence_pairs"] or result.get("merge_conflicts")
+            or result.get("transitivity_blocks")):
+        V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
+        (V2_MATCH_UNCERTAINTY / f"{ent}.yml").write_text(
+            _emit_match_uncertainty(
+                ent,
+                result["low_confidence_pairs"],
+                result.get("merge_conflicts"),
+                result.get("transitivity_blocks"),
+            ),
+            encoding="utf-8",
+        )
+    else:
+        stale = V2_MATCH_UNCERTAINTY / f"{ent}.yml"
+        if stale.exists():
+            stale.unlink()
+
+
+def _write_outputs(entities: list[str], results: dict) -> None:
+    """Write every entity's seed_unified + match_uncertainty. Each file group
+    depends only on its own entity's result and its own files on disk, so the
+    groups are dumped in parallel worker processes (fork: `results` is
+    inherited, not pickled); a single entity is written in-process. The
+    danish_realm uncertainty dump alone is ~20 s, the unified dumps another
+    ~15 s (2026-11-03)."""
+    global _WRITE_RESULTS
+    _WRITE_RESULTS = results
+    V2_SEED_UNIFIED.mkdir(parents=True, exist_ok=True)
+    V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
+    # Largest entities first, so the long dumps start at once.
+    order = sorted(entities, key=lambda e: -results[e]["seeds_count"])
+    tasks = [(e, part) for e in order for part in ("uncertainty", "unified")]
+    try:
+        if len(entities) > 1:
+            n_workers = max(1, min(len(tasks), (os.cpu_count() or 2) - 1))
+            with mp.get_context("fork").Pool(n_workers) as pool:
+                pool.map(_write_entity_output, tasks, chunksize=1)
+        else:
+            for t in tasks:
+                _write_entity_output(t)
+    finally:
+        _WRITE_RESULTS = {}
+
+
 def _all_entities() -> list[str]:
     """All entity ids that have at least one seed yaml."""
     seen: set[str] = set()
@@ -6341,32 +6401,8 @@ def main() -> int:
             return 1
         print(msg + "  (dry-run)")
 
-    for ent in entities:
-        result = results[ent]
-        if args.apply:
-            V2_SEED_UNIFIED.mkdir(parents=True, exist_ok=True)
-            _write_departed(ent, result["unified_entries"])
-            (V2_SEED_UNIFIED / f"{ent}.yml").write_text(
-                _emit_unified_yaml(ent, result["unified_entries"],
-                                   result["seeds_count"]),
-                encoding="utf-8",
-            )
-            if (result["low_confidence_pairs"] or result.get("merge_conflicts")
-                    or result.get("transitivity_blocks")):
-                V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
-                (V2_MATCH_UNCERTAINTY / f"{ent}.yml").write_text(
-                    _emit_match_uncertainty(
-                        ent,
-                        result["low_confidence_pairs"],
-                        result.get("merge_conflicts"),
-                        result.get("transitivity_blocks"),
-                    ),
-                    encoding="utf-8",
-                )
-            else:
-                stale = V2_MATCH_UNCERTAINTY / f"{ent}.yml"
-                if stale.exists():
-                    stale.unlink()
+    if args.apply:
+        _write_outputs(entities, results)
 
     if args.apply:
         written = registry.save(entities=set(entities) | registry.touched)
