@@ -364,7 +364,7 @@ mark of 15½-lot Brandsølv.
   Jørgensen *Beskrivelse* 92–95.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-03): C1 1.5 · C2 2.0 (B's grid recomputed
+Score (research-dossier rubric, self-assessed 2026-11-03, commit d47bcab): C1 1.5 · C2 2.0 (B's grid recomputed
 and set against the Reichsthaler and the København specie; the 1629 interim grids and the
 output tabulated) · C3 2.0 · C4 1.5 (no act in hand — Wilcke's clauses and quotations; seven
 discrepancies tabled) · C5 1.0 · C6 1.0 = **9.0/10**.
