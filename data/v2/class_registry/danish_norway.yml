@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 1638 active, 29 retired.
+# 1642 active, 30 retired.
 
 id: danish_norway
 classes:
@@ -6551,6 +6551,7 @@ classes:
     label: unified-ngc-1099232
     legacy_id: unified-ngc-1099232
     members:
+      - dk-numista-387243
       - ngc-1099232
   - id: c-56708db8
     status: active
@@ -7621,7 +7622,7 @@ classes:
   - id: c-691aa453
     status: active
     created: '2026-10-22'
-    label: unified-dk-hede-nf5h2
+    label: unified-dk-hede-nf5h2b
     legacy_id: unified-dk-hede-nf5h2
     split_into:
       - c-10b5bda0
@@ -7651,17 +7652,12 @@ classes:
       - c-ebfb04d6
     members:
       - denmark-numismaster-86245
-      - dk-hede-nf5h2
+      - dk-hede-nf5h2b
       - dk-numista-82388
       - dk-tid-88736
       - kmk-148216
       - kmk-148227
       - kmk-148228
-      - kmk-351768
-      - kmk-351769
-      - kmk-351770
-      - kmk-351771
-      - kmk-351772
       - ngc-1095575
   - id: c-693ad783
     status: active
@@ -7921,6 +7917,7 @@ classes:
       - kmk-394042
       - kmk-394043
       - kmk-394044
+      - kmk-394045
       - kmk-394047
       - kmk-394048
       - kmk-394049
@@ -8371,10 +8368,9 @@ classes:
   - id: c-72d516d8
     status: active
     created: '2026-10-22'
-    label: unified-dk-numista-387243
+    label: unified-kmk-279773
     legacy_id: unified-dk-numista-387243
     members:
-      - dk-numista-387243
       - kmk-279773
       - kmk-291973
   - id: c-72da1303
@@ -8502,6 +8498,12 @@ classes:
     legacy_id: unified-kmk-646198
     members:
       - kmk-646198
+  - id: c-7525649e-2
+    status: active
+    created: '2026-11-03'
+    label: unified-kmk-334109
+    members:
+      - kmk-334109
   - id: c-754a2d65
     status: active
     created: '2026-10-22'
@@ -9165,6 +9167,12 @@ classes:
     members:
       - kmk-148628
       - kmk-175905
+  - id: c-7b3b5185-2
+    status: active
+    created: '2026-11-03'
+    label: unified-kmk-334108
+    members:
+      - kmk-334108
   - id: c-7b54f3da
     status: active
     created: '2026-10-22'
@@ -10437,17 +10445,23 @@ classes:
   - id: c-8f9586a7
     status: active
     created: '2026-10-24'
-    label: unified-dk-bruun-10726
+    label: unified-dk-hede-nf5h2a
+    split_into:
+      - c-7525649e-2
+      - c-7b3b5185-2
+      - c-b9e0b593-2
     members:
       - denmark-numismaster-86244
       - dk-bruun-10726
+      - dk-hede-nf5h2a
       - dk-numista-55890
       - dk-tid-88723
-      - kmk-148302
       - kmk-317555
-      - kmk-334107
-      - kmk-334108
-      - kmk-334109
+      - kmk-351768
+      - kmk-351769
+      - kmk-351770
+      - kmk-351771
+      - kmk-351772
       - ngc-1097187
   - id: c-8f9a3019
     status: active
@@ -13171,6 +13185,12 @@ classes:
       - kmk-159793
       - kmk-301818
       - ngc-1100394
+  - id: c-b743375f
+    status: active
+    created: '2026-11-03'
+    label: unified-kmk-572400
+    members:
+      - kmk-572400
   - id: c-b74edfcd
     status: active
     created: '2026-10-22'
@@ -13316,6 +13336,13 @@ classes:
     legacy_id: unified-kmk-148326
     members:
       - kmk-148326
+  - id: c-b9e0b593-2
+    status: active
+    created: '2026-11-03'
+    label: unified-kmk-148302
+    members:
+      - kmk-148302
+      - kmk-334107
   - id: c-ba233a56
     status: active
     created: '2026-10-22'
@@ -15109,6 +15136,12 @@ classes:
     members:
       - kmk-148454
       - kmk-148455
+  - id: c-d6abd54c
+    status: active
+    created: '2026-11-03'
+    label: unified-kmk-572399
+    members:
+      - kmk-572399
   - id: c-d6f088eb
     status: active
     created: '2026-10-22'
@@ -15123,13 +15156,6 @@ classes:
     legacy_id: unified-kmk-148327
     members:
       - kmk-148327
-  - id: c-d7379154
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-394045
-    legacy_id: unified-kmk-394045
-    members:
-      - kmk-394045
   - id: c-d7569488
     status: active
     created: '2026-10-22'
@@ -16393,10 +16419,11 @@ classes:
     created: '2026-10-22'
     label: unified-kmk-572398
     legacy_id: unified-kmk-572398
+    split_into:
+      - c-b743375f
+      - c-d6abd54c
     members:
       - kmk-572398
-      - kmk-572399
-      - kmk-572400
       - kmk-572401
   - id: c-e61fcc9a
     status: active
@@ -18177,6 +18204,15 @@ classes:
     retired: '2026-10-28'
     members:
       - dk-numista-118915
+  - id: c-d7379154
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-394045
+    legacy_id: unified-kmk-394045
+    merged_into: c-69d3c74c
+    retired: '2026-11-03'
+    members:
+      - kmk-394045
   - id: c-e3ee7a46
     status: retired
     created: '2026-10-22'

@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 64 active, 2 retired.
+# 67 active, 2 retired.
 
 id: sonderburg_duchy
 classes:
@@ -347,6 +347,12 @@ classes:
     members:
       - ngc-1171100
       - schleswig_holstein-numismaster-120997
+  - id: c-9734f9b4
+    status: active
+    created: '2026-11-03'
+    label: unified-kmk-200984
+    members:
+      - kmk-200984
   - id: c-9d85d892
     status: active
     created: '2026-10-22'
@@ -440,6 +446,10 @@ classes:
     created: '2026-10-22'
     label: unified-ngc-1172866
     legacy_id: unified-ngc-1172866
+    split_into:
+      - c-9734f9b4
+      - c-d66a1d2e
+      - c-ea888681
     members:
       - dk-numista-151528
       - ikmk-18284712
@@ -487,18 +497,6 @@ classes:
       - kmk-200980
       - kmk-200981
       - kmk-200982
-      - kmk-200983
-      - kmk-200984
-      - kmk-200985
-      - kmk-200986
-      - kmk-200987
-      - kmk-200988
-      - kmk-200989
-      - kmk-200990
-      - kmk-200991
-      - kmk-200992
-      - kmk-200993
-      - kmk-200994
       - kmk-200995
       - kmk-200996
       - kmk-200997
@@ -624,6 +622,21 @@ classes:
       - kmk-81778
       - ngc-1206707
       - schleswig_holstein-numismaster-101383
+  - id: c-d66a1d2e
+    status: active
+    created: '2026-11-03'
+    label: unified-kmk-200983
+    members:
+      - kmk-200983
+      - kmk-200986
+      - kmk-200987
+      - kmk-200988
+      - kmk-200989
+      - kmk-200990
+      - kmk-200991
+      - kmk-200992
+      - kmk-200993
+      - kmk-200994
   - id: c-d721bcaa
     status: active
     created: '2026-10-22'
@@ -683,6 +696,12 @@ classes:
       - dk-bruun-14666
       - ngc-1206705
       - schleswig_holstein-numismaster-101373
+  - id: c-ea888681
+    status: active
+    created: '2026-11-03'
+    label: unified-kmk-200985
+    members:
+      - kmk-200985
   - id: c-ec31b496
     status: active
     created: '2026-10-22'

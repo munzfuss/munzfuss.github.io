@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-11-02 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-03 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 4652 per-source seed entries.
-# Output: 1638 unified entries (one per physical coin).
+# Input: 4653 per-source seed entries.
+# Output: 1642 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-11-02'
+generated_at: '2026-11-03'
 coins:
   - id: c-acdfcb4f
     class_id: c-acdfcb4f
@@ -2120,137 +2120,6 @@ coins:
       - dk-numista-101118
       - dk-tid-145855
       - ngc-1095576
-  - id: c-8f9586a7
-    class_id: c-8f9586a7
-    label: unified-dk-bruun-10726
-    fuss: seed_unsorted
-    phase: bruun
-    kind: kurant
-    nominal: 24 Skilling
-    year_first: 1746
-    year_last: 1763
-    year_ranges:
-      -   - 1746
-          - 1763
-    year_label: 1746-1763
-    ruler: Frederik V
-    mint: Kongsberg
-    catalog:
-      km: '236'
-      bruun_collection_id: '10726'
-      sieg: '3.1'
-      schou:
-        - '3'
-        - '4'
-        - '6'
-      nmd: '10'
-      bruun_part: III
-      bruun_lot_no: 12128
-      bruun_page: 225
-      hede:
-        - '2'
-        - 2A
-      numista: '55890'
-      others:
-        - Brekke# 2-19
-        - B# 26
-        - B# 36
-        - B# 37
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    fineness:
-      - value: 0.562
-        source: ngc
-      - value: 0.562
-        source: numismaster
-      - value: 0.562
-        source: numista
-      - value: 0.563
-        source: ucoin
-    weight_rough_g:
-      - value: 9.17
-        source: ngc
-      - value: 9.17
-        source: numismaster
-      - value: 9.17
-        source: numista
-      - value: 9.17
-        source: ucoin
-      - value: 14.05
-        source: bruun
-    diameter_mm:
-      - value: 29.5
-        source: numista
-      - value: 29.5
-        source: ucoin
-    uncertainty:
-      year:
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1745-1765
-          seed: kmk-317555
-    ruler_alts:
-      - value: Christian VI
-        source: bruun
-        kind: erroneous
-        reason:
-          de: Der Katalog Bruun nennt in der Zeile des Loses «Christian VI» als Münzherrn. Christian VI. regierte 1730–1746; König im Jahr 1753 war Frederik V. (1746–1766; Mordhorst, Dansk 
-            Pengehistorie III, 1968). Hede führt die 24 Skilling Kongsberg 1753 unter Frederik V. (Hede Norge 2A, 1746–1763).
-          en: The Bruun catalogue names «Christian VI» as the issuer in the lot line. Christian VI reigned 1730–1746; the king in 1753 was Frederik V (1746–1766; Mordhorst, Dansk Pengehistorie III, 
-            1968). Hede lists the 24 Skilling Kongsberg 1753 under Frederik V (Hede Norge 2A, 1746–1763).
-          uk: Каталог Bruun у рядку лота називає емітентом «Christian VI». Christian VI правив у 1730–1746 рр.; королем у 1753 р. був Frederik V (1746–1766; Mordhorst, Dansk Pengehistorie III, 1968). 
-            Hede подає 24 Skilling Kongsberg 1753 р. під Frederik V (Hede Norge 2A, 1746–1763).
-          da: Bruun-kataloget nævner i lotlinjen «Christian VI» som møntherre. Christian 6. regerede 1730–1746; konge i 1753 var Frederik 5. (1746–1766; Mordhorst, Dansk Pengehistorie III, 1968). Hede
-            fører 24 skilling Kongsberg 1753 under Frederik 5. (Hede Norge 2A, 1746–1763).
-    sources:
-      - type: literature
-        url: https://numismaster.com/MC_86244
-        ref: NumisMaster
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 12128, p. 207
-      - type: literature
-        url: https://en.numista.com/55890
-        ref: Numista N#55890 — 24 Skilling - Frederik V (Type I) - Norway
-      - type: ucoin
-        url: https://en.ucoin.net/coin/norway-24-skilling-1746-1763/?tid=88723
-        ref: ucoin
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/148302
-        ref: KMM 148302 (Inv. KP 1656.2011)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317555
-        ref: KMM 317555 (Inv. FP 7044.35)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/334107
-        ref: KMM 334107 (Inv. RP 962.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/334108
-        ref: KMM 334108 (Inv. RP 963.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/334109
-        ref: KMM 334109 (Inv. RP 964.1)
-      - type: literature
-        url: https://www.ngccoin.com/price-guide/world/norway-24-skilling-km-236-1746-1763-cuid-1097187-duid-1445782
-        ref: NGC World Coin Price Guide (powered by NumisMaster)
-    issuing_entity: danish_norway
-    composed_of:
-      - denmark-numismaster-86244
-      - dk-bruun-10726
-      - dk-numista-55890
-      - dk-tid-88723
-      - kmk-148302
-      - kmk-317555
-      - kmk-334107
-      - kmk-334108
-      - kmk-334109
-      - ngc-1097187
   - id: c-56f7f930
     class_id: c-56f7f930
     label: unified-dk-bruun-10866
@@ -36973,42 +36842,169 @@ coins:
       - dk-numista-100314
       - dk-tid-88745
       - ngc-1097887
-  - id: c-691aa453
-    class_id: c-691aa453
-    label: unified-dk-hede-nf5h2
+  - id: c-8f9586a7
+    class_id: c-8f9586a7
+    label: unified-dk-hede-nf5h2a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
     nominal: 24 Skilling
     year_first: 1746
-    year_last: 1765
+    year_last: 1763
     year_ranges:
       -   - 1746
+          - 1763
+    year_label: 1746-1763
+    ruler: Frederik V
+    mint: Kongsberg
+    catalog:
+      km: '236'
+      hede:
+        - '2'
+        - 2A
+      hede_volume: nf5h
+      sieg:
+        - '3'
+        - '3.1'
+      bruun_collection_id: '10726'
+      schou: '4'
+      nmd: '10'
+      bruun_part: III
+      bruun_lot_no: 12128
+      bruun_page: 225
+      numista: '55890'
+      others:
+        - Brekke# 2-19
+    metal: silver
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    verified: false
+    fineness:
+      - value: 0.562
+        source: hede
+      - value: 0.562
+        source: ngc
+      - value: 0.562
+        source: numismaster
+      - value: 0.562
+        source: numista
+      - value: 0.563
+        source: ucoin
+    weight_rough_g:
+      - value: 9.17
+        source: ngc
+      - value: 9.17
+        source: numismaster
+      - value: 9.17
+        source: numista
+      - value: 9.17
+        source: ucoin
+      - value: 9.171
+        source: hede
+      - value: 14.05
+        source: bruun
+    diameter_mm:
+      - value: 29.5
+        source: numista
+      - value: 29.5
+        source: ucoin
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1745-1765
+          seed: kmk-317555
+    ruler_alts:
+      - value: Christian VI
+        source: bruun
+        kind: erroneous
+        reason:
+          de: Der Katalog Bruun nennt in der Zeile des Loses «Christian VI» als Münzherrn. Christian VI. regierte 1730–1746; König im Jahr 1753 war Frederik V. (1746–1766; Mordhorst, Dansk 
+            Pengehistorie III, 1968). Hede führt die 24 Skilling Kongsberg 1753 unter Frederik V. (Hede Norge 2A, 1746–1763).
+          en: The Bruun catalogue names «Christian VI» as the issuer in the lot line. Christian VI reigned 1730–1746; the king in 1753 was Frederik V (1746–1766; Mordhorst, Dansk Pengehistorie III, 
+            1968). Hede lists the 24 Skilling Kongsberg 1753 under Frederik V (Hede Norge 2A, 1746–1763).
+          uk: Каталог Bruun у рядку лота називає емітентом «Christian VI». Christian VI правив у 1730–1746 рр.; королем у 1753 р. був Frederik V (1746–1766; Mordhorst, Dansk Pengehistorie III, 1968). 
+            Hede подає 24 Skilling Kongsberg 1753 р. під Frederik V (Hede Norge 2A, 1746–1763).
+          da: Bruun-kataloget nævner i lotlinjen «Christian VI» som møntherre. Christian 6. regerede 1730–1746; konge i 1753 var Frederik 5. (1746–1766; Mordhorst, Dansk Pengehistorie III, 1968). Hede
+            fører 24 skilling Kongsberg 1753 under Frederik 5. (Hede Norge 2A, 1746–1763).
+    sources:
+      - type: literature
+        url: https://numismaster.com/MC_86244
+        ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 12128, p. 207
+      - type: literature
+        url: https://www.danskmoent.dk/norge/nf5h2.htm
+        ref: danskmoent.dk (Hede nf5h2A)
+      - type: literature
+        url: https://en.numista.com/55890
+        ref: Numista N#55890 — 24 Skilling - Frederik V (Type I) - Norway
+      - type: ucoin
+        url: https://en.ucoin.net/coin/norway-24-skilling-1746-1763/?tid=88723
+        ref: ucoin
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317555
+        ref: KMM 317555 (Inv. FP 7044.35)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/351768
+        ref: KMM 351768 (Inv. FP 5149 5149.590)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/351769
+        ref: KMM 351769 (Inv. FP 5149 5149.589)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/351770
+        ref: KMM 351770 (Inv. FP 5149 5149.588)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/351771
+        ref: KMM 351771 (Inv. FP 5149 5149.587)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/351772
+        ref: KMM 351772 (Inv. FP 5149 5149.586)
+      - type: literature
+        url: https://www.ngccoin.com/price-guide/world/norway-24-skilling-km-236-1746-1763-cuid-1097187-duid-1445782
+        ref: NGC World Coin Price Guide (powered by NumisMaster)
+    issuing_entity: danish_norway
+    composed_of:
+      - denmark-numismaster-86244
+      - dk-bruun-10726
+      - dk-hede-nf5h2a
+      - dk-numista-55890
+      - dk-tid-88723
+      - kmk-317555
+      - kmk-351768
+      - kmk-351769
+      - kmk-351770
+      - kmk-351771
+      - kmk-351772
+      - ngc-1097187
+  - id: c-691aa453
+    class_id: c-691aa453
+    label: unified-dk-hede-nf5h2b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 24 Skilling
+    year_first: 1763
+    year_last: 1765
+    year_ranges:
+      -   - 1763
           - 1765
-    year_label: 1746-1765
+    year_label: 1763-1765
     ruler: Frederik V
     mint: Kongsberg
     catalog:
       km: '241'
-      hede:
-        - '2'
-        - 2B
-        - 2a
+      hede: 2B
       hede_volume: nf5h
       schou:
-        - '1'
-        - '3'
-        - '4'
         - '5'
-        - '6'
-        - '7'
         - '8'
-        - '9'
-        - '10'
         - '11'
-        - '13'
-        - '17'
-        - '18'
       sieg: '3'
       numista: '82388'
       others:
@@ -37053,7 +37049,7 @@ coins:
         ref: NumisMaster
       - type: literature
         url: https://www.danskmoent.dk/norge/nf5h2.htm
-        ref: danskmoent.dk (Hede nf5h2)
+        ref: danskmoent.dk (Hede nf5h2B)
       - type: literature
         url: https://en.numista.com/82388
         ref: Numista N#82388 — 24 Skilling - Frederik V (Type II) - Norway
@@ -37069,38 +37065,18 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148228
         ref: KMM 148228 (Inv. KP 1656.2085)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/351768
-        ref: KMM 351768 (Inv. FP 5149 5149.590)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/351769
-        ref: KMM 351769 (Inv. FP 5149 5149.589)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/351770
-        ref: KMM 351770 (Inv. FP 5149 5149.588)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/351771
-        ref: KMM 351771 (Inv. FP 5149 5149.587)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/351772
-        ref: KMM 351772 (Inv. FP 5149 5149.586)
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-24-skilling-km-241-1763-1765-cuid-1095575-duid-1445427
         ref: NGC World Coin Price Guide (powered by NumisMaster)
     issuing_entity: danish_norway
     composed_of:
       - denmark-numismaster-86245
-      - dk-hede-nf5h2
+      - dk-hede-nf5h2b
       - dk-numista-82388
       - dk-tid-88736
       - kmk-148216
       - kmk-148227
       - kmk-148228
-      - kmk-351768
-      - kmk-351769
-      - kmk-351770
-      - kmk-351771
-      - kmk-351772
       - ngc-1095575
   - id: c-bf63f998
     class_id: c-bf63f998
@@ -38266,75 +38242,6 @@ coins:
     composed_of:
       - dk-galster-c2g-163
       - dk-numista-124914
-  - id: c-72d516d8
-    class_id: c-72d516d8
-    label: unified-dk-numista-387243
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Portugaløser
-    year_first: 1668
-    year_last: 1668
-    year_label: '1668'
-    ruler: Frederik III
-    mint: Christiania
-    catalog:
-      km: PnD20
-      numista: '387243'
-      hede: '62'
-      others:
-        - Rønning# P10
-        - Thesen# 3
-        - B# 883
-      schou: '2'
-    metal: gold
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 34.47
-        source: kmk
-      - value: 34.5
-        source: kmk
-      - value: 35.5
-        source: numista
-    diameter_mm:
-      - value: 42.0
-        source: numista
-    uncertainty:
-      year:
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1648-1670
-          seed: kmk-279773
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1648-1679
-          seed: kmk-291973
-    sources:
-      - type: literature
-        url: https://en.numista.com/387243
-        ref: Numista N#387243 — 1 Portugaløser - Frederik III (Type XXIII) - Norway
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/279773
-        ref: KMM 279773 (Inv. RP 758.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/291973
-        ref: KMM 291973 (Inv. RP 777.1)
-    note:
-      de: '20'
-      en: '20'
-      uk: '20'
-    issuing_entity: danish_norway
-    composed_of:
-      - dk-numista-387243
-      - kmk-279773
-      - kmk-291973
   - id: c-63d96cb6
     class_id: c-63d96cb6
     label: unified-dk-numista-417633
@@ -41898,6 +41805,38 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-148301
+  - id: c-b9e0b593-2
+    class_id: c-b9e0b593-2
+    label: unified-kmk-148302
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 24 Skilling
+    year_first: 1748
+    year_last: 1748
+    year_label: '1748'
+    ruler: Frederik V
+    mint: Kongsberg
+    catalog:
+      schou: '6'
+      others:
+        - B# 26
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/148302
+        ref: KMM 148302 (Inv. KP 1656.2011)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/334107
+        ref: KMM 334107 (Inv. RP 962.1)
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-148302
+      - kmk-334107
   - id: c-eabd6179
     class_id: c-eabd6179
     label: unified-kmk-148306
@@ -54890,6 +54829,15 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
+      - value: 0.501
+        source: kmk
+        suspect:
+          de: Deutlich unter dem Gewicht der beiden Schwesterstücke derselben Nummer (1.023 g und 1.412 g). Bei dünnem, niedrighaltigem Silber dieser Jahre ist ein solcher Verlust durch Beschneiden, 
+            Korrosion oder Bruch möglich, und das Verzeichnis nennt keinen Erhaltungszustand — als Wägewert dieses Stückes bleibt die Angabe stehen, als Typengewicht ist sie nicht brauchbar.
+          en: Well below what the two sister pieces of the same number weigh (1.023 g and 1.412 g). On thin, base silver of these years such a loss to clipping, corrosion or breakage is possible, and 
+            the record states no condition — so the figure stands as the weight of this piece, but it cannot serve as the weight of the type.
+          uk: Істотно нижче за вагу двох сестринських екземплярів того самого номера (1.023 г і 1.412 г). Для тонкого низькопробного срібла цих років така втрата через обрізання, корозію чи злам 
+            можлива, а запис не подає стану збереження — тож як вага цього екземпляра значення лишається, але за вагу типу служити не може.
       - value: 0.748
         source: kmk
       - value: 0.775
@@ -55083,6 +55031,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/394044
         ref: KMM 394044 (Inv. FP 4227.1678)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/394045
+        ref: KMM 394045 (Inv. FP 4227.1677)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/394047
         ref: KMM 394047 (Inv. FP 4227.1675)
@@ -55933,6 +55884,7 @@ coins:
       - kmk-394042
       - kmk-394043
       - kmk-394044
+      - kmk-394045
       - kmk-394047
       - kmk-394048
       - kmk-394049
@@ -58766,6 +58718,59 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-279767
+  - id: c-72d516d8
+    class_id: c-72d516d8
+    label: unified-kmk-279773
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Portugaløser
+    year_first: 1648
+    year_last: 1679
+    year_ranges:
+      -   - 1648
+          - 1679
+    year_label: 1648-1679
+    _year_demoted: true
+    ruler: Frederik III
+    mint: Christiania
+    catalog:
+      schou: '2'
+      others:
+        - B# 883
+    metal: gold
+    metal_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    verified: false
+    weight_rough_g:
+      - value: 34.47
+        source: kmk
+      - value: 34.5
+        source: kmk
+    uncertainty:
+      year:
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1648-1670
+          seed: kmk-279773
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1648-1679
+          seed: kmk-291973
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/279773
+        ref: KMM 279773 (Inv. RP 758.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/291973
+        ref: KMM 291973 (Inv. RP 777.1)
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-279773
+      - kmk-291973
   - id: c-c3468c7d
     class_id: c-c3468c7d
     label: unified-kmk-291024
@@ -60470,6 +60475,62 @@ coins:
     issuing_entity: danish_norway
     composed_of:
       - kmk-334106
+  - id: c-7b3b5185-2
+    class_id: c-7b3b5185-2
+    label: unified-kmk-334108
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 24 Skilling
+    year_first: 1749
+    year_last: 1749
+    year_label: '1749'
+    ruler: Frederik V
+    mint: Kongsberg
+    catalog:
+      schou: '3'
+      others:
+        - B# 36
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/334108
+        ref: KMM 334108 (Inv. RP 963.1)
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-334108
+  - id: c-7525649e-2
+    class_id: c-7525649e-2
+    label: unified-kmk-334109
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 24 Skilling
+    year_first: 1749
+    year_last: 1749
+    year_label: '1749'
+    ruler: Frederik V
+    mint: Kongsberg
+    catalog:
+      schou: '4'
+      others:
+        - B# 37
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/334109
+        ref: KMM 334109 (Inv. RP 964.1)
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-334109
   - id: c-0b870ac4
     class_id: c-0b870ac4
     label: unified-kmk-334984
@@ -61699,41 +61760,6 @@ coins:
       - kmk-394028
       - kmk-394029
       - kmk-394030
-  - id: c-d7379154
-    class_id: c-d7379154
-    label: unified-kmk-394045
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1668
-    year_last: 1668
-    year_label: '1668'
-    ruler: Frederik III
-    catalog:
-      hede: 70E
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    weight_rough_g:
-      - value: 0.501
-        source: kmk
-        suspect:
-          de: Deutlich unter dem Gewicht der beiden Schwesterstücke derselben Nummer (1.023 g und 1.412 g). Bei dünnem, niedrighaltigem Silber dieser Jahre ist ein solcher Verlust durch Beschneiden, 
-            Korrosion oder Bruch möglich, und das Verzeichnis nennt keinen Erhaltungszustand — als Wägewert dieses Stückes bleibt die Angabe stehen, als Typengewicht ist sie nicht brauchbar.
-          en: Well below what the two sister pieces of the same number weigh (1.023 g and 1.412 g). On thin, base silver of these years such a loss to clipping, corrosion or breakage is possible, and 
-            the record states no condition — so the figure stands as the weight of this piece, but it cannot serve as the weight of the type.
-          uk: Істотно нижче за вагу двох сестринських екземплярів того самого номера (1.023 г і 1.412 г). Для тонкого низькопробного срібла цих років така втрата через обрізання, корозію чи злам 
-            можлива, а запис не подає стану збереження — тож як вага цього екземпляра значення лишається, але за вагу типу служити не може.
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/394045
-        ref: KMM 394045 (Inv. FP 4227.1677)
-    issuing_entity: danish_norway
-    composed_of:
-      - kmk-394045
   - id: c-4710f90c
     class_id: c-4710f90c
     label: unified-kmk-394101
@@ -72762,11 +72788,104 @@ coins:
           source: kmk
           value: 1649-1670
           seed: kmk-572398
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3?
+          value: Frederik 3?
+          seed: kmk-572398
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christiania?
+          seed: kmk-572398
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/572398
+        ref: KMM 572398 (Inv. FP 10994.4)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/572401
+        ref: KMM 572401 (Inv. FP 10994.1)
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-572398
+  - id: c-d6abd54c
+    class_id: c-d6abd54c
+    label: unified-kmk-572399
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1649
+    year_last: 1670
+    year_ranges:
+      -   - 1649
+          - 1670
+    year_label: 1649-1670
+    _year_demoted: true
+    ruler: Frederik III
+    ruler_verified: false
+    nominal_verified: false
+    mint: Christiania
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    uncertainty:
+      year:
         - kind: hedged
           how: museum
           source: kmk
           value: 1649-1670
           seed: kmk-572399
+      ruler:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Frederik 3?
+          value: Frederik 3?
+          seed: kmk-572399
+      mint:
+        - kind: hedged
+          how: doubt
+          source: kmk
+          as_printed: Christiania?
+          seed: kmk-572399
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/572399
+        ref: KMM 572399 (Inv. FP 10994.3)
+    issuing_entity: danish_norway
+    composed_of:
+      - kmk-572399
+  - id: c-b743375f
+    class_id: c-b743375f
+    label: unified-kmk-572400
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1649
+    year_last: 1670
+    year_ranges:
+      -   - 1649
+          - 1670
+    year_label: 1649-1670
+    _year_demoted: true
+    ruler: Frederik III
+    ruler_verified: false
+    nominal_verified: false
+    mint: Christiania
+    metal: silver
+    metal_verified: true
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    uncertainty:
+      year:
         - kind: hedged
           how: museum
           source: kmk
@@ -72778,30 +72897,8 @@ coins:
           source: kmk
           as_printed: Frederik 3?
           value: Frederik 3?
-          seed: kmk-572398
-        - kind: hedged
-          how: doubt
-          source: kmk
-          as_printed: Frederik 3?
-          value: Frederik 3?
-          seed: kmk-572399
-        - kind: hedged
-          how: doubt
-          source: kmk
-          as_printed: Frederik 3?
-          value: Frederik 3?
           seed: kmk-572400
       mint:
-        - kind: hedged
-          how: doubt
-          source: kmk
-          as_printed: Christiania?
-          seed: kmk-572398
-        - kind: hedged
-          how: doubt
-          source: kmk
-          as_printed: Christiania?
-          seed: kmk-572399
         - kind: hedged
           how: doubt
           source: kmk
@@ -72809,21 +72906,10 @@ coins:
           seed: kmk-572400
     sources:
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/572398
-        ref: KMM 572398 (Inv. FP 10994.4)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/572401
-        ref: KMM 572401 (Inv. FP 10994.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/572399
-        ref: KMM 572399 (Inv. FP 10994.3)
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/572400
         ref: KMM 572400 (Inv. FP 10994.2)
     issuing_entity: danish_norway
     composed_of:
-      - kmk-572398
-      - kmk-572399
       - kmk-572400
   - id: c-2bbbf904
     class_id: c-2bbbf904
@@ -77949,21 +78035,41 @@ coins:
     year_first: 1668
     year_last: 1668
     year_label: '1668'
+    ruler: Frederik III
     catalog:
       km: PnD20
+      numista: '387243'
+      hede: '62'
+      others:
+        - Rønning# P10
+        - Thesen# 3
     metal: gold
     metal_verified: true
     fineness_verified: false
-    weight_rough_verified: false
-    diameter_mm_verified: false
+    weight_rough_verified: true
+    diameter_mm_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 35.5
+        source: numista
+    diameter_mm:
+      - value: 42.0
+        source: numista
     sources:
+      - type: literature
+        url: https://en.numista.com/387243
+        ref: Numista N#387243 — 1 Portugaløser - Frederik III (Type XXIII) - Norway
       - type: literature
         url: https://www.ngccoin.com/price-guide/world/norway-10-ducat-km-pnd20-1668-cuid-1099232-duid-1450594
         ref: NGC World Coin Price Guide (powered by NumisMaster)
+    note:
+      de: '20'
+      en: '20'
+      uk: '20'
     issuing_entity: danish_norway
     composed_of:
+      - dk-numista-387243
       - ngc-1099232
   - id: c-31f18ea9
     class_id: c-31f18ea9
