@@ -1330,6 +1330,33 @@ def dump_debug_computed(loc_id: str, computed) -> None:
     print(f"   ↳ Wrote {path.relative_to(REPO_ROOT)}")
 
 
+_LANG_RENDER = None
+
+
+def _lang_render_entry(lang):
+    return _LANG_RENDER(lang)
+
+
+def _render_languages(render_one, languages):
+    """[render_one(lang) for lang in languages], in that order — each language
+    in a forked worker process when there are several (2026-11-03: the four
+    danskmoent languages rendered one after another were ~25 s). The workers
+    inherit the page's computed tree through fork; only each result (the
+    written path, plus the root copy's HTML) comes back. BUILD_LANG_PARALLEL=0
+    renders serially."""
+    global _LANG_RENDER
+    langs = list(languages)
+    if len(langs) < 2 or os.environ.get("BUILD_LANG_PARALLEL") == "0":
+        return [render_one(lang) for lang in langs]
+    import multiprocessing as mp
+    _LANG_RENDER = render_one
+    try:
+        with mp.get_context("fork").Pool(min(len(langs), max(1, (os.cpu_count() or 2) - 1))) as pool:
+            return pool.map(_lang_render_entry, langs, chunksize=1)
+    finally:
+        _LANG_RENDER = None
+
+
 def build_location(
     loc: Location,
     fuesse: dict[str, Fuss],
@@ -1516,7 +1543,10 @@ def build_location(
     # chosen below or the page advertises a URL that does not exist.
     page_prefix = "" if mount == "root" else f"/{loc.id}"
 
-    for lang in languages:
+    # One language's page: render, post-process, write. The languages are
+    # independent (each writes only its own `<lang>/` tree), so they render
+    # in parallel — see `_render_languages`.
+    def _render_lang(lang):
         # Pre-resolve references for this language
         refs_for_lang = None
         if references_data:
@@ -1627,9 +1657,13 @@ def build_location(
                 (_frag_dir / f"{_fid}.html").write_text(_body, encoding="utf-8")
         with open(out_file, "w", encoding="utf-8") as f:
             f.write(html)
-        print(f"   → {out_file.relative_to(REPO_ROOT)}")
-        if mount == "root" and lang == root_lang:
-            root_html = html
+        return (str(out_file.relative_to(REPO_ROOT)),
+                html if (mount == "root" and lang == root_lang) else None)
+
+    for _rel, _html in _render_languages(_render_lang, languages):
+        print(f"   → {_rel}")
+        if _html is not None:
+            root_html = _html
 
     # Root-mounted site: the default language ALSO lives at «/», served
     # directly rather than via a redirect — the root URL must accumulate
