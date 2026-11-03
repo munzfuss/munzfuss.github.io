@@ -46,6 +46,12 @@ class Basis(unittest.TestCase):
         da = render.uncertainty_mark(c, "year", UI, "da")["tip"]
         self.assertTrue(da.endswith("[i]«u.år»[/i]"))   # Danish mark, Danish page
 
+    def test_reign_without_a_ruler_name(self):
+        c = coin("year", {"kind": "inferred", "how": "reign", "source": "ruler_reigns"},
+                 ruler="?")
+        self.assertEqual(render.uncertainty_mark(c, "year", UI, "uk")["tip"],
+                         "Джерела року не подають. Наведено роки правління.")
+
     def test_metal_entry_survives_rendering_in_another_language(self):
         c = coin("metal", {"kind": "inferred", "how": "from_name", "source": "galster",
                            "as_printed": "Hvid", "value": "billon"}, metal="billon")

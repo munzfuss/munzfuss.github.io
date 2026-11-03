@@ -787,6 +787,8 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
             if e.get("how") in _BASIS_HOWS:
                 groups.setdefault(e["how"], []).append(e)
         for h, es in groups.items():
+            if h == "reign" and not _ruler_text(_get(raw, "ruler")).strip(" ?"):
+                h = "reign_unnamed"
             basis = i18n.ui_get(ui, f"uncertainty.basis.{h}", lang)
             basis = (basis.replace("{fuss}", _fuss_name(_get(raw, "fuss"), lang))
                           .replace("{ruler}", _ruler_text(_get(raw, "ruler")))
