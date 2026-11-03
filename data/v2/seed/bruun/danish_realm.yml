@@ -288,7 +288,9 @@ coins:
       friedberg: '4'
     metal: gold
     metal_verified: true
-    fineness: 0.739583
+    fineness:
+      - value: 0.739583
+        source: danskmoent.dk (Wilcke 6)
     weight_rough_g: 3.17
     issuing_entity: danish_realm
     verified: false
@@ -310,6 +312,8 @@ coins:
         paid troops and was «søgt noget forringet i Gehalt». Stays verified:false — the assay is of the TYPE and the identification, though Wilcke's own, is applied by us. Both of Hans' issues predate the
         Møntordning of 1514 whose 18 Karat the phase target uses."
       fineness_verified: false — the assay is of the type; the identification is ours.
+      uncertainty: "2026-11-03: names the fineness as Wilcke's assay of the type (the Valvationstag 1551, «17 Karat 9 Gren», on danskmoent.dk Wilcke 6), so the bracket tooltip does not call it the standard's
+        value; the Bruun builder writes only the year entry."
     uncertainty:
       year:
         - kind: hedged
@@ -317,6 +321,16 @@ coins:
           source: bruun
           as_printed: ND (1496-1497)
           value: 1496-1497
+      fineness:
+        - kind: inferred
+          how: type_assay
+          source: danskmoent.dk (Wilcke 6)
+          as_printed: Valvationsdagen som Resultat af Prøven ansætter fornævnte danske Guldgylden til kun at holde 17 Karat 9 Gren
+          value: 17¾ Karat
+          translation:
+            de: der Valvationstag setzt als Ergebnis der Probe den genannten dänischen Goldgulden auf nur 17 Karat 9 Grän an
+            en: the Valvationstag, as the result of the assay, rates the said Danish gold gulden at only 17 carats 9 grains
+            uk: Valvationstag за результатом проби визначає згаданий данський золотий гульден лише в 17 карат 9 гран
   - id: dk-bruun-3840
     fuss: seed_unsorted
     phase: bruun

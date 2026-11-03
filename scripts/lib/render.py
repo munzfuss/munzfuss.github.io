@@ -641,7 +641,10 @@ _UNC_SOURCE = {
 # Inferences whose tooltip is a sentence naming the basis
 # (ui.yml uncertainty.basis.*); every other kind keeps «basis: value».
 _BASIS_HOWS = ("standard", "standard_weight", "from_name", "reign",
-               "reign_holstein", "feud_window")
+               "reign_holstein", "feud_window", "type_assay")
+# Of those, the ones that open with «the sources give no …»: a type assay is
+# a source's figure, only not of this specimen.
+_NOSRC_HOWS = frozenset(_BASIS_HOWS) - {"type_assay"}
 _FUSS_NAMES: dict | None = None
 
 
@@ -819,13 +822,14 @@ def uncertainty_mark(raw: dict, field: str, ui: dict, lang: str) -> dict | None:
                 groups.setdefault(e["how"], []).append(e)
         for h, es in groups.items():
             ruler = _ruler_text(_get(raw, "ruler"), _get(raw, "issuing_entity"))
+            lead = "" if hedged or h not in _NOSRC_HOWS else i18n.ui_get(
+                ui, f"uncertainty.nosrc.{field}", lang, " ").strip()
             if h == "reign" and not ruler:
                 h = "reign_unnamed"
             basis = i18n.ui_get(ui, f"uncertainty.basis.{h}", lang)
             basis = (basis.replace("{fuss}", _fuss_name(_get(raw, "fuss"), lang))
                           .replace("{ruler}", ruler)
                           .replace("{value}", str(es[0].get("value") or "")))
-            lead = "" if hedged else i18n.ui_get(ui, f"uncertainty.nosrc.{field}", lang, " ").strip()
             push(f"{lead} {basis}".strip())
             for e in es:
                 if e.get("source") in ("ruler_reigns", "merge_decisions", "standard"):

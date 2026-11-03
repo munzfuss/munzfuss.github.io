@@ -88,7 +88,9 @@ tooltip OUTSIDE the tables (timeline bars, filter chips, card rows) is a CSS
 11. **An inferred value's «[ ]» tooltip says where it comes from, not what it
     is** (curator 2026-11-03). The cell shows the value; the tooltip says that
     the sources give none and names the basis — the Fuß's parameters, the
-    ruler's reign, the denomination's name — then each source's own words
+    ruler's reign, the denomination's name, a source's assay of the coin
+    type (`type_assay`: «attested for the type, not determined on this
+    specimen», no «the sources give no …») — then each source's own words
     («u.år» with its translation). A basis the cell does not show stays (the
     weight's «1/71⅓ Cöllnische Marck»); the computed number does not. A
     dating compiled from several works keeps its own form. Texts:

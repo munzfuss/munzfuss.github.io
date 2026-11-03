@@ -61,6 +61,23 @@ class Basis(unittest.TestCase):
             with self.subTest(raw=raw):
                 self.assertTrue(tip.endswith(f"правління {shown}." if shown else "правління."), tip)
 
+    def test_type_assay_is_a_source_figure_not_the_standard(self):
+        c = coin("fineness", {"kind": "inferred", "how": "type_assay",
+                              "source": "danskmoent.dk (Wilcke 6)",
+                              "as_printed": "17 Karat 9 Gren", "value": "17¾ Karat"})
+        tip = render.uncertainty_mark(c, "fineness", UI, "uk")["tip"].split("\n")
+        self.assertEqual(tip[0], "Пробу засвідчено для типу монети, а не визначено на цьому екземплярі.")
+        self.assertEqual(tip[1], "[b]danskmoent.dk (Wilcke 6)[/b]: [i]«17 Karat 9 Gren»[/i]")
+
+    def test_held_fineness_with_a_named_basis_is_not_the_standard(self):
+        from lib import uncertainty as U
+        e = {"fineness": 0.739583, "fineness_verified": False,
+             "uncertainty": {"fineness": [{"kind": "inferred", "how": "type_assay",
+                                           "source": "x"}]}}
+        self.assertIsNone(U.held_standard_fineness(e, {"fineness": "why"}))
+        del e["uncertainty"]
+        self.assertEqual(U.held_standard_fineness(e, {"fineness": "why"})["how"], "standard")
+
     def test_metal_entry_survives_rendering_in_another_language(self):
         c = coin("metal", {"kind": "inferred", "how": "from_name", "source": "galster",
                            "as_printed": "Hvid", "value": "billon"}, metal="billon")

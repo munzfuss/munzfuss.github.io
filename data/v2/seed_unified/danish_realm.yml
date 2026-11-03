@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-02 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-03 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15222 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-02'
+generated_at: '2026-11-03'
 coins:
   - id: c-da3c53ad
     class_id: c-da3c53ad
@@ -1244,7 +1244,7 @@ coins:
     year_verified: false
     fineness:
       - value: 0.739583
-        source: bruun
+        source: danskmoent.dk (Wilcke 6)
     weight_rough_g:
       - value: 3.17
         source: bruun
@@ -1309,9 +1309,14 @@ coins:
           seed: dk-galster-hg-27
       fineness:
         - kind: inferred
-          how: standard
-          source: standard
+          how: type_assay
+          source: danskmoent.dk (Wilcke 6)
+          as_printed: Valvationsdagen som Resultat af Prøven ansætter fornævnte danske Guldgylden til kun at holde 17 Karat 9 Gren
           value: 17¾ Karat
+          translation:
+            de: der Valvationstag setzt als Ergebnis der Probe den genannten dänischen Goldgulden auf nur 17 Karat 9 Grän an
+            en: the Valvationstag, as the result of the assay, rates the said Danish gold gulden at only 17 carats 9 grains
+            uk: Valvationstag за результатом проби визначає згаданий данський золотий гульден лише в 17 карат 9 гран
           seed: dk-bruun-3839
     sources:
       - type: auction
