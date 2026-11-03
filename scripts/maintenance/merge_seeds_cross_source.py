@@ -58,6 +58,7 @@ from __future__ import annotations
 import argparse
 import multiprocessing as mp
 import os
+import pickle
 import re
 import sys
 from collections import Counter, defaultdict
@@ -4921,6 +4922,22 @@ def _load_decisions(entity_id: str) -> dict:
 # ---------------------------------------------------------------------------
 
 
+# Each seed file as parsed by `_load_all_seeds`, pickled before anything
+# touched it. `_load_seeds_for_entity` needs FRESH dicts (process_entity
+# stamps `_year_demoted`, uncertainty, … on them), and unpickling one is ~30x
+# faster than parsing the YAML again — re-parsing was ~10 s of a full merge
+# (2026-11-03). Same objects: the seed YAML holds only plain scalars, lists
+# and dicts, and pickle keeps a document's shared (aliased) nodes shared.
+_SEED_DOC_PICKLES: dict[str, bytes] = {}
+
+
+def _seed_doc_fresh(path: Path) -> dict:
+    blob = _SEED_DOC_PICKLES.get(str(path))
+    if blob is not None:
+        return pickle.loads(blob)
+    return _fast_load(path.read_text(encoding="utf-8")) or {}
+
+
 def _load_seeds_for_entity(entity_id: str) -> list[dict]:
     """Walk data/v2/seed/<source>/<entity>.yml across all sources.
     Returns flat list of coin dicts; each dict has its `id` for identification."""
@@ -4933,7 +4950,7 @@ def _load_seeds_for_entity(entity_id: str) -> list[dict]:
         path = src_dir / f"{entity_id}.yml"
         if not path.exists():
             continue
-        doc = _fast_load(path.read_text(encoding="utf-8")) or {}
+        doc = _seed_doc_fresh(path)
         for c in doc.get("coins") or []:
             if isinstance(c, dict) and c.get("id"):
                 # An «erroneous» mint mark takes the printed mint out of play
@@ -5003,6 +5020,8 @@ def _load_all_seeds() -> tuple[dict[str, dict], dict[str, str]]:
         for path in sorted(src_dir.glob("*.yml")):
             entity = path.stem
             doc = _fast_load(path.read_text(encoding="utf-8")) or {}
+            _SEED_DOC_PICKLES[str(path)] = pickle.dumps(
+                doc, protocol=pickle.HIGHEST_PROTOCOL)
             for c in doc.get("coins") or []:
                 if isinstance(c, dict) and c.get("id"):
                     apply_mint_mark(c)
