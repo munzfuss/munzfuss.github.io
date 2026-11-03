@@ -2817,9 +2817,47 @@ def _final_relocation_keys(fe: dict) -> set:
     return keys
 
 
+# entity → the process writing its final (see `_start_final_write`).
+_PENDING_FINAL_WRITES: dict = {}
+
+
+def _start_final_write(ent: str, write) -> None:
+    """Run `write()` — fold, thin, dump and write `ent`'s final — in a forked
+    process, so the ruamel dump (~10 s for danish_realm) and the thinning
+    overlap the next entities. Everything that reads another entity's final
+    from disk waits for that entity's writer first (`_await_final_writes`):
+    `_target_holds_relocated` for one target, the KMM prune for all.
+    ABSORB_BACKGROUND_WRITES=0 writes in-process."""
+    if os.environ.get("ABSORB_BACKGROUND_WRITES") == "0":
+        write()
+        return
+    import multiprocessing as mp
+    # A forked child flushes the stdio buffers it inherited when it exits;
+    # empty them first, or the parent's pending output would appear twice.
+    sys.stdout.flush()
+    sys.stderr.flush()
+    proc = mp.get_context("fork").Process(target=write)
+    proc.start()
+    _PENDING_FINAL_WRITES[ent] = proc
+
+
+def _await_final_writes(ents=None) -> None:
+    """Wait for the final writers of `ents` (all when None); fail the run if
+    one failed."""
+    for ent in (list(_PENDING_FINAL_WRITES) if ents is None else ents):
+        proc = _PENDING_FINAL_WRITES.pop(ent, None)
+        if proc is None:
+            continue
+        proc.join()
+        if proc.exitcode != 0:
+            raise RuntimeError(f"final writer for {ent} failed "
+                               f"(exit code {proc.exitcode})")
+
+
 def _target_holds_relocated(target: str, members: set) -> bool:
     """True when `target`'s final ON DISK already carries a coin built from
     any of `members` — i.e. the relocation has landed there."""
+    _await_final_writes([target])
     for fe in (_load_yaml(V2_FINAL / f"{target}.yml").get("coins") or []):
         if _final_relocation_keys(fe) & members:
             return True
@@ -4886,40 +4924,44 @@ def main() -> int:
             # list per the «existing wins when present» rule). Direct
             # write is correct here because we read+enrich every existing
             # entry — no orphan curator data possible.
-            V2_FINAL.mkdir(parents=True, exist_ok=True)
-            final_path = V2_FINAL / f"{ent}.yml"
-            prior_doc = _load_yaml(final_path)
-            # §9.4 blanket index hygiene: fold `others: <code># N` → typed
-            # list-field + case-insensitive value de-dup on EVERY final
-            # entry — including V1-carryover / prior-absorb foundations that
-            # were not re-enriched this run (no current seed_unified member),
-            # whose stale overflow would otherwise survive. Skips entries
-            # that froze `catalog` via `_curation_holds`.
-            for _fc in result["enriched_final_entries"]:
-                if not isinstance(_fc, dict):
-                    continue
-                if isinstance(_fc.get("catalog"), dict):
-                    _h = _fc.get("_curation_holds")
-                    _hk = set(_h.keys() if isinstance(_h, dict)
-                              else (_h or []))
-                    if "catalog" not in _hk:
-                        _fold_catalog_indices(_fc["catalog"])
-                # Uninformative-KMM thinning on EVERY final entry (incl.
-                # V1-carryover foundations not re-enriched this run).
-                _suppress_weightless_museum_overcollection(_fc)
-                # §9a envelope thinning (min / middle / max per resource).
-                # Absorb re-derives every weight list from seed_unified, so
-                # without this the written final carries the full un-thinned
-                # envelope and reads as thousands of lines of churn. Running
-                # it here makes the thinner a part of absorb rather than a
-                # separate step that has been forgotten three times.
-                if THIN_ENABLED:
-                    _thin_weights(_fc)
-            final_path.write_text(
-                _emit_final_yaml(ent, result["enriched_final_entries"],
-                                  prior_doc),
-                encoding="utf-8",
-            )
+            # Fold, thin and write this entity's final in a forked process
+            # while the next entity is processed (`_start_final_write`).
+            def _write_this_final(ent=ent, result=result):
+                V2_FINAL.mkdir(parents=True, exist_ok=True)
+                final_path = V2_FINAL / f"{ent}.yml"
+                prior_doc = _load_yaml(final_path)
+                # §9.4 blanket index hygiene: fold `others: <code># N` → typed
+                # list-field + case-insensitive value de-dup on EVERY final
+                # entry — including V1-carryover / prior-absorb foundations that
+                # were not re-enriched this run (no current seed_unified member),
+                # whose stale overflow would otherwise survive. Skips entries
+                # that froze `catalog` via `_curation_holds`.
+                for _fc in result["enriched_final_entries"]:
+                    if not isinstance(_fc, dict):
+                        continue
+                    if isinstance(_fc.get("catalog"), dict):
+                        _h = _fc.get("_curation_holds")
+                        _hk = set(_h.keys() if isinstance(_h, dict)
+                                  else (_h or []))
+                        if "catalog" not in _hk:
+                            _fold_catalog_indices(_fc["catalog"])
+                    # Uninformative-KMM thinning on EVERY final entry (incl.
+                    # V1-carryover foundations not re-enriched this run).
+                    _suppress_weightless_museum_overcollection(_fc)
+                    # §9a envelope thinning (min / middle / max per resource).
+                    # Absorb re-derives every weight list from seed_unified, so
+                    # without this the written final carries the full un-thinned
+                    # envelope and reads as thousands of lines of churn. Running
+                    # it here makes the thinner a part of absorb rather than a
+                    # separate step that has been forgotten three times.
+                    if THIN_ENABLED:
+                        _thin_weights(_fc)
+                final_path.write_text(
+                    _emit_final_yaml(ent, result["enriched_final_entries"],
+                                      prior_doc),
+                    encoding="utf-8",
+                )
+            _start_final_write(ent, _write_this_final)
 
             # Write classification_decisions pending list (always — regenerated).
             # Also rewrite when the file ALREADY EXISTS even if pending is
@@ -4944,6 +4986,7 @@ def main() -> int:
                     encoding="utf-8",
                 )
 
+    _await_final_writes()
     if args.apply and _prune_foreign_kmm_citations(entities):
         # The display picks and §9a weight thinning above were computed on the
         # lists before the prune; a second pass recomputes them on the pruned

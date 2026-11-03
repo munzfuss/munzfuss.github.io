@@ -6377,7 +6377,8 @@ def _write_outputs(entities: list[str], results: dict) -> None:
     V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
     # Largest entities first, so the long dumps start at once.
     order = sorted(entities, key=lambda e: -results[e]["seeds_count"])
-    tasks = [(e, part) for e in order for part in ("uncertainty", "unified")]
+    tasks = [(e, part) for e in order for part in ("uncertainty", "unified")
+             if not (part == "uncertainty" and e in _EARLY_UNCERTAINTY)]
     try:
         if len(entities) > 1:
             n_workers = max(1, min(len(tasks), (os.cpu_count() or 2) - 1))
@@ -6388,6 +6389,38 @@ def _write_outputs(entities: list[str], results: dict) -> None:
                 _write_entity_output(t)
     finally:
         _WRITE_RESULTS = {}
+    for ent, proc in _EARLY_UNCERTAINTY.items():
+        proc.join()
+        if proc.exitcode != 0:
+            raise RuntimeError(f"match_uncertainty writer for {ent} failed "
+                               f"(exit code {proc.exitcode})")
+
+
+# entity → the process writing its match_uncertainty (see below).
+_EARLY_UNCERTAINTY: dict = {}
+
+
+def _start_early_uncertainty(ent: str, result: dict) -> None:
+    """Write `ent`'s match_uncertainty in a forked process as soon as its
+    process_entity has returned, while the parent goes on with the next
+    entities — danish_realm's 74 MB dump alone is ~20 s. Only on a full run:
+    there the class-registry check after the loop can never refuse the write
+    (no shard of an unprocessed entity can be touched), so the file is the
+    one the end-of-run writer would have produced. `_write_outputs` waits for
+    these processes and fails the run if one failed."""
+    global _WRITE_RESULTS
+    _WRITE_RESULTS = {ent: result}
+    # A forked child flushes the stdio buffers it inherited when it exits;
+    # empty them first, or the parent's pending output would appear twice.
+    sys.stdout.flush()
+    sys.stderr.flush()
+    try:
+        proc = mp.get_context("fork").Process(
+            target=_write_entity_output, args=((ent, "uncertainty"),))
+        proc.start()
+    finally:
+        _WRITE_RESULTS = {}
+    _EARLY_UNCERTAINTY[ent] = proc
 
 
 def _all_entities() -> list[str]:
@@ -6485,6 +6518,8 @@ def main() -> int:
                                 all_seeds_by_id=all_by_id,
                                 member_ie=member_ie)
         results[ent] = result
+        if args.apply and not _ent_list:
+            _start_early_uncertainty(ent, result)
         totals["seeds"] += result["seeds_count"]
         totals["unified"] += result["unified_count"]
         totals["confident_merges"] += len(result["confident_merges"])
