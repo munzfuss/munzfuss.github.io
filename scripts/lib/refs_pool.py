@@ -47,7 +47,11 @@ def load_refs_pool(path: Path) -> dict[str, dict[str, str]]:
     or empty dict if file is missing/empty."""
     if not path.exists():
         return {}
-    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    # libyaml's loader: the same objects as safe_load (checked == and
+    # pickle-equal, 2026-11-03), 3 s → 0.1 s for the 2 MB pool, which the
+    # build loads once per language.
+    data = yaml.load(path.read_text(encoding="utf-8"),
+                     Loader=getattr(yaml, "CSafeLoader", yaml.SafeLoader))
     return data or {}
 
 
