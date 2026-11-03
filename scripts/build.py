@@ -2139,6 +2139,15 @@ def main():
             print("\n❌ V2 validation failed. Fix errors above and rerun.")
             sys.exit(1)
         print("   ✓ V2 cross-references OK")
+        from lib.entity_palette import missing_palette
+        gaps = missing_palette()
+        if gaps:
+            print("\n❌ Issuing entities without colours in style.base.css "
+                  "(see lib/entity_palette.py):")
+            for ent, miss in gaps.items():
+                print(f"   {ent}: {', '.join(miss)}")
+            sys.exit(1)
+        print("   ✓ Entity palette complete")
     print()
 
     if args.validate_only:
