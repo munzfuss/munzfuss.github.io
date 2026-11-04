@@ -1912,6 +1912,27 @@ account inside it, and later Schleswig-Holstein Courant. Those coins are on the 
 later cards (9-Thaler-Fuß, 9¼-Thaler-Fuß, Kronemønt, …) where classified; ~250 royal-Holstein classes
 1600–1699 still in `seed_unsorted`. Not this card.
 
+**Gottorp and the real end of the formula — 1568/69, not 1571 (2026-11-04, analysis).**
+- Gottorp struck on the same footing as the royal part: Wilcke 7-5 s. 355 — the Blafferte and Pfennige without
+  a lord's name may be the Holstein lords' joint coin, struck «*i nøje Overensstemmelse med det nærliggende
+  Hamburgs Blafferte og Pfennige*»; a joint coin edict of Frederik II, Johan and Adolf «*om forskellige Mønter i
+  begge Fyrstendømmer*» is mentioned in 1572 (s. 354); Thomsen lists a Sechsling «*MONETA NOVA SLESVI*» of duke
+  Adolf 1544–86 (s. 354). No Gottorp formula of its own is attested.
+- The Wendish formula itself ended with the Lower Saxon circle. Jesse 1928 S. 147–148: the circle constituted
+  itself at Lüneburg, 7–11 Jan 1567 — Doppelschilling, Schilling, Sechsling, Dreiling «*zu 61½, 106, 177 und
+  219 Stück sowie ein Korn von 7, 6, 5 und 4 Lot*»; circle Münzordnung, Probationsordnung and Valvation of
+  31 Jan 1568; Lübeck and Lüneburg struck their 1568 Taler at the circle's 27 ß 6 Pf; «*Der Münztag vom
+  7. Februar 1569 ist offenbar der letzte des wendischen Münzvereins gewesen … indem man die Kreisordnungen
+  für das Münzwesen von 1568 und 1572 annahm und nach ihren Bestimmungen münzte, war der Bund von selbst
+  gegenstandslos geworden*». Holstein lay in that circle (Wilcke 1924 s. 208).
+- The circle Schilling 106 / 6 lot = 17,67 Mark lübisch per fine mark [C] against the Wendish 1546 Schilling
+  120 / 6 lot 2 gr = 19,6 [C] — a new, better formula under the Reich frame, i.e. the small coin of the
+  Reichsmünzordnung (`9_thaler`), not a further step of this card.
+- So Flensborg's 1569–1571 coins «*som Lybecksk og Hamburgsk Skrot*» followed towns that themselves now struck
+  by the circle ordinance; the circle's general wardein judged them (9 Pf for 12). The formula of period II ends
+  with the circle ordinance of 31 Jan 1568 (last Wendish Münztag 7 Feb 1569); Flensborg 1571 and Gottorp after
+  1568 belong to the circle standard. Proposal to the curator: period II 1514–1568.
+
 **Timeline consequence.** Minting stripe extends to 1571 once period II's coins are classified (it follows the
 coins); status stays 1396–1514 (kingdom); circulation unchanged.
 
