@@ -13,7 +13,7 @@
 > Brabantsk krone 9½ Mark, Dobbelt crussade 6 Rdl. 1½ ort; the **Goldgylden 8 Mark** stands in the
 > print only and is enacted by the **Åbent Brev of 10 July 1639** (Secher V nr. 41, Glücksborg). Gold :
 > silver (Rdl. = 96 ß d. = 25,578 g fine): Dukat **15,08**, Guldgylden 13,81, Guldkrone 14,86
-> (Wilcke: 14,74 ⚠). The ducat «*strømmet ind i Landet og Specierne ud igen*»; the king stops gold
+> (Wilcke: 14,74 — on the double Guldkrone's 5,496 g, D3 corrected 2026-11-04). The ducat «*strømmet ind i Landet og Specierne ud igen*»; the king stops gold
 > at the Renteri (3 Dec 1639), Norway reduces 16 Dec 1639, the Rigsraad's Erklæringer of 15–31 Dec
 > 1639 all for the old value; the **Forordning of 18 May 1640** (Secher V nr. 56, full text) reduces
 > the gold «*til sin førrige værd, som den udi vaar, før end fornefnte voris forordning udgik*» —
@@ -284,7 +284,7 @@ Gold : silver (fine g of silver the coin buys ÷ its fine gold; Rdl. = 25,578 g)
 |---|---|---|---|
 | Dukat (3,393 g at 23⅓; 3,418 at 23½) | 168 ß = 1,75 Rdl. = 44,76 g → **13,19** (13,10) | 192 ß = 2 Rdl. = 51,16 g → **15,08** (14,97) | 184 ß = 1,9167 Rdl. = 49,02 g → **14,45** (14,34) |
 | Guldgylden (2,470 g) | 120 ß = 31,97 g → **12,94** (Wilcke 12,95) | 128 ß = 34,10 g → **13,81** | — |
-| Guldkrone (2,725 g) | 144 ß = 38,37 g → **14,08** | 152 ß = 40,50 g → **14,86** (Wilcke: 14,74 ⚠ D3) | — |
+| Guldkrone (2,725 g single; 5,496 g double, Hede 25) | 144 ß = 38,37 g → **14,08** | 152 ß = 40,50 g → **14,86**; on the double (304 ß / 5,496 g) **14,74** = Wilcke (D3, corrected) | — |
 
 Wilcke's reading of the rise: «*det er den almindelige Dukat, der er stegen saa stærkt i Værdi,
 nemlig til 12 Mark eller 2 Specier … Den er først af Rigsraadet foreslaaet forhøjet med 20 ß fra 10
@@ -306,7 +306,7 @@ Hede 31 (1637, RRR) is the only København ducat of the years 1635–41 known to
 |---|---|---|---|---|
 | D1 | **The ducat's fineness** | H (Secher's regest): 23 karat 4 «gruner» = 23⅓ kt (972,22 ‰; 3,393 g fine); the 1628 Müntzordnung's Dukat 67/M 23⅓ kt | Hede 32–40 and Wilcke's 1648–52 table: 23½ kt (979,17 ‰; 3,418 g); our `reichsdukatenfuss` card: 23 kt 8 grän (986,11 ‰; 3,442 g) | the act of 1635 gives 23⅓; Hede's 0,979 is Wilcke's 1648 formula applied to the whole family; the card's 986 is the Reichsmünzordnung's — three values, none a measurement; Hede 31 (the only 1635–41 ducat) has no figures |
 | D2 | **«gruner»** | Secher prints «23 karat 4 gruner» (page image checked) | the unit is gren (1/12 karat); «gruner» is not a weight unit | a print or Register slip; the arithmetic (23⅓ kt) is the 1628 grid's |
-| D3 | **Guldkrone ratio 1639** | Wilcke: 14,74 | 9½ Mark = 152 ß = 1,5833 Rdl. × 25,578 = 40,50 g ÷ 2,725 = 14,86 (Wilcke's own inputs); 14,74 would need 150,8 ß or 2,748 g fine | Wilcke's other two ratios (13,81, 15,08) recompute exactly; 14,74 does not |
+| D3 | **Guldkrone ratio 1639** | Wilcke: 14,74 | 9½ Mark = 152 ß = 1,5833 Rdl. × 25,578 = 40,50 g ÷ 2,725 = 14,86 (on the SINGLE Guldkrone, Hede 26) | **Corrected 2026-11-04 (`1647_tarif_guld_soelv.md` D7): 14,74 recomputes exactly on the DOUBLE Guldkrone — 19 Mark = 304 ß = 3,1667 Rdl. × 25,578 = 80,997 g ÷ 5,496 g (Hede 25) = 14,737. Hede 25's 5,496 is 2 × 2,748, not 2 × Hede 26's 2,725; the «⚠» was this dossier's error, not Wilcke's** |
 | D4 | **Jacobus 1639** | F (page image): «*En jacobus femb rixdaller*» = 5 Rdl. | Wilcke's table: «Jacobus (engelsk Mønt) 5 Rdlr. 16 ß d.» | the act has no 16 ß; the HTML and Wilcke's print both carry it (the raw `w2a2.htm` agrees with the text file) — a slip in Wilcke or in the transcription |
 | D5 | **Dukat 1639 in Wilcke's table** | F: «tolf mark eller to rixdaller» = 192 ß | Wilcke's table: «Ungarsk eller spansk Dukat (12 Mark) 2 Rdlr. 72 ß d.»; «Dobbelt do. 4 Rdlr. 72 ß d.» | 2 Rdl. 72 ß = 264 ß ≠ 12 Mark; Wilcke's own text and ratio (15,08) use 2 Rdl. = 12 Mark; the «72 ß» is an artefact of the table (perhaps a column slip) — the act is the figure |
 | D6 | **The Goldgylden in F** | the print T: «[En goldgylden otte mark danske.]» | the chancery's copy of T, the original O and the Register R: no such line; G of 10 July 1639 raises the Goldgylden to 8 Mark «*foruden de der udi benefnede*» (beyond those named in the mandate) | G's own wording confirms the line was NOT in the act of 8 June; one print added it after G |
@@ -362,7 +362,7 @@ question (§ 8, Q1; FINDINGS §C).
 | Q2 | Were ducats struck under H at all before 1644? | the Møntmester-Regnskab 1630–35 and 1635–36 (Wilcke's table has no ducat column); Hede 31's rarity (RRR) |
 | Q3 | The text of H and of U (regests only in Secher) | Sjæll. Register 19 f. 323; Sjæll. Tegnelser 31 f. 353; the prints Mørsing sign. Ij, Gøde sign. Dd iij, Paus s. 874 |
 | Q4 | The Norwegian acts of 20 June and 16 Dec 1639 | Norske Tegnelser VI f. 438; Paus *Forordninger for Norge* |
-| Q5 | Wilcke's 14,74 for the Guldkrone (D3) and his «5 Rdlr. 16 ß» Jacobus, «2 Rdlr. 72 ß» Dukat (D4–D5) — print or transcription? | the printed NFM 1924 pages (no page image in our cache) |
+| Q5 | Wilcke's «5 Rdlr. 16 ß» Jacobus and «2 Rdlr. 72 ß» Dukat (D4–D5) — print or transcription? (The 14,74 of D3 is resolved.) | the printed NFM 1924 pages (no page image in our cache) |
 | Q6 | Did the 1650 reduction (11½ Mark) hold, and when did the ducat return to 2 Rdl.? | Wilcke afsn. II A.5–7; the 1651 Åb. Breve; Frederik III's later tariffs (PLAN) |
 
 ## 9. Sources consulted
