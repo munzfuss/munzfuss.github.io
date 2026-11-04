@@ -8,12 +8,13 @@ quoted verbatim per CLAUDE.md §5a. No RAG, no LLM synthesis (that would
 collide with §0 / §0b and the verbatim-quote discipline).
 
 ```bash
-.venv/bin/python scripts/kb/kb.py build                    # ~9 s, 13k passages
+.venv/bin/python scripts/kb/kb.py build                    # ~35 s, 30k passages (cache + docs/research dossiers)
 .venv/bin/python scripts/kb/kb.py works                    # what is indexed: ids, kinds, page anchoring
 .venv/bin/python scripts/kb/kb.py search "kobbermønt hvider blaffeter"
 .venv/bin/python scripts/kb/kb.py search "vardein smeltning" --work schou-1795
 .venv/bin/python scripts/kb/kb.py search "sølvgylden" --lang da --limit 20
 .venv/bin/python scripts/kb/kb.py search "rosenobel ungersk dukat" --kind source   # act texts only
+.venv/bin/python scripts/kb/kb.py search "Timpff 13-lødige 8 ß" --kind dossier   # what a dossier already established
 .venv/bin/python scripts/kb/kb.py search 'NEAR(kroner skiling*, 8)' --fts --work secher-ccd
 .venv/bin/python scripts/kb/kb.py offsets wilcke-1950      # re-derive PDF→printed offsets
 .venv/bin/python scripts/kb/kb.py refkeys                  # manifest vs refs_pool.yml drift
@@ -38,7 +39,14 @@ The working recipe — used by the `research-dossier`, `fuss-description`,
    `register` (Mordhorst), `literature` (Wilcke 1919 / 1924 / 1950, Galster
    1936 / 1947 / 1973, Jensen, Denar til daler, Holst, Munro …),
    `catalogue` (Hede pages, Bruun Parts I–V), `web` (danskmoent, Bobzin),
-   `extract`.
+   `extract`, and `dossier` — the project's own research dossiers
+   (`docs/research/*.md`, `instruments/*.md`, `sources/*.md`: three built-in
+   works `research-dossiers`, `instrument-dossiers`, `research-sources`, one
+   passage per heading section, hits as `docs/research/…:line` with the
+   section in the locator). A dossier hit says what an earlier session
+   established and which keys / cache files it rests on — read it, then go
+   to the source it cites; it is never itself a citable source (§5). The
+   index goes stale when any dossier changes (`dossiers_sha`); rebuild.
 3. **The act first.** Search the instrument's words with its year, restricted
    to the editions: `kb.py search "kroner 1618 lødig mark" --kind source` →
    Secher Bd 3 p. 529–530 (open letter 1618, «kronerne halfanden rigsdaller …
@@ -72,7 +80,7 @@ The working recipe — used by the `research-dossier`, `fuss-description`,
 |---|---|
 | `scripts/cache/_corpus.yml` | Corpus manifest, in the harvest submodule: one record per work — bibliography, languages, text-layer files and layout, PDF→printed page mapping with the basis it was established on, OCR note, `refs_pool` keys citing it. |
 | `scripts/cache/_derived/danskmoent/`, `_derived/hede/` | Plain text of every cached danskmoent `.htm` (1029 files) and Hede page (857), one `.txt` per page, same relative path. Derived, never hand-edited; the `.htm` stays untouched. |
-| `kb.py` | Normaliser, page splitter, FTS5 builder, `search`, `offsets`, `refkeys`, `extract-htm`. Stdlib `sqlite3` (FTS5 is compiled in, SQLite 3.53) + PyYAML; no other dependency. |
+| `kb.py` | Normaliser, page splitter, FTS5 builder, `search`, `offsets`, `refkeys`, `extract-htm`; `DOSSIER_WORKS` — the three project-side works over `docs/research` (layout `markdown`, split at headings). Stdlib `sqlite3` (FTS5 is compiled in, SQLite 3.53) + PyYAML; no other dependency. |
 | `variants.yml` | Editable spelling-variant rules (Mynt/Mønt, Schilling/Skilling, Thaler/Daler, Reichs-/Richs-/Rigs-, ck→k, th→t, dt→t, …). |
 | `eval_set.yml`, `eval_set_b.yml`, `measure.py` | The go/no-go measurement (set A, held-out set B). |
 | `audit_pages.py` | Read-only audit: does each `refs_pool` key's quote sit on the page the key gives? |

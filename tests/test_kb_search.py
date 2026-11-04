@@ -55,7 +55,7 @@ class IndexStaleness(unittest.TestCase):
 
     def test_changed_rules_and_manifest_are_reported(self):
         for key, words in (("variants_sha", "variants.yml"), ("manifest_sha", "_corpus.yml"),
-                           ("normalizer_version", "normaliser")):
+                           ("normalizer_version", "normaliser"), ("dossiers_sha", "dossier")):
             meta = dict(kb._fingerprint(), **{key: "something else"})
             self.assertIn(words, kb._stale_reason(_meta_db(meta)))
 
@@ -150,6 +150,17 @@ class LiveIndex(unittest.TestCase):
     def test_modern_spelling_finds_the_old_one(self):
         rows, _ = kb.search(self.con, "kobbermønt", work=["secher-ccd"], limit=30)
         self.assertTrue(any("kaab" in r[8].lower() for r in rows))
+
+    def test_dossiers_are_indexed_and_resolve_to_docs(self):
+        """The research dossiers are a kind of their own; a hit's path is
+        repo-relative (docs/…), not under scripts/cache (added 2026-11-04)."""
+        rows, _ = kb.search(self.con, "Bestalling Timpff Glückstadt 1640", kind=["dossier"], limit=5)
+        self.assertTrue(rows, "the 1640 Timpff dossier is findable")
+        self.assertTrue(all(r[1] in {w["id"] for w in kb.DOSSIER_WORKS} for r in rows))
+        path = rows[0][3]
+        self.assertTrue(path.startswith("docs/research/"), path)
+        self.assertTrue((kb.REPO / kb.passage_path(path)).exists(), path)
+        self.assertIn("§", rows[0][6], "the locator names the section")
 
     def test_act_is_found_among_the_sources(self):
         rows, _ = kb.search(self.con, "kroner 1618 lødig mark", kind=["source"], limit=5)

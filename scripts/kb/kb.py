@@ -10,7 +10,7 @@ read in full and quote verbatim from the file.
 Subcommands
 -----------
   extract-htm      danskmoent + Hede .htm → plain text under scripts/cache/_derived/
-  build            read scripts/cache/_corpus.yml → SQLite FTS5 index
+  build            read scripts/cache/_corpus.yml (+ docs/research dossiers) → SQLite FTS5 index
   search QUERY     ranked passages (BM25) with a snippet; warns when the index is stale
   works            the indexed works: id, kind, languages, printed-page anchoring
   offsets WORK     running-head page-number detection → PDF→printed offset
@@ -23,6 +23,7 @@ Layout
 ------
   scripts/cache/_corpus.yml          corpus manifest (in the harvest submodule)
   scripts/cache/_derived/{danskmoent,hede}/ text extracted from the cached .htm
+  docs/research/{,instruments/,sources/}*.md  the dossiers — kind «dossier», built in (DOSSIER_WORKS)
   scripts/kb/variants.yml            editable spelling-variant rules
   scripts/kb/_index/kb.sqlite        the index (gitignored, rebuildable)
 
@@ -52,6 +53,56 @@ DERIVED = CACHE / "_derived"
 VARIANTS = Path(__file__).resolve().parent / "variants.yml"
 DB_DEFAULT = Path(__file__).resolve().parent / "_index" / "kb.sqlite"
 REFS_POOL = REPO / "data" / "shared" / "refs_pool.yml"
+DOCS_RESEARCH = REPO / "docs" / "research"
+
+# Project-side works (not in the harvest cache): the research dossiers. They
+# are indexed as kind «dossier» so a search can find what an earlier session
+# already established about an act, a standard or a coin group — and the
+# dossier's own citations lead back to the cached source. Paths of these
+# passages are relative to the REPO, not to scripts/cache (see `passage_path`).
+DOSSIER_WORKS = [
+    {"id": "research-dossiers", "kind": "dossier", "languages": ["en"], "page_label": "§",
+     "title": "Research dossiers (docs/research/*.md — one per standard, period or coin group)",
+     "citation": "docs/research/<file>.md § <section>",
+     "text_layers": [{"glob": "docs/research/*.md", "layout": "markdown", "base": "repo"}]},
+    {"id": "instrument-dossiers", "kind": "dossier", "languages": ["en"], "page_label": "§",
+     "title": "Instrument dossiers (docs/research/instruments/*.md — one per coinage act 1480–1700; the register, PLAN, FINDINGS)",
+     "citation": "docs/research/instruments/<file>.md § <section>",
+     "text_layers": [{"glob": "docs/research/instruments/*.md", "layout": "markdown", "base": "repo"}]},
+    {"id": "research-sources", "kind": "dossier", "languages": ["en"], "page_label": "§",
+     "title": "Source captures (docs/research/sources/*.md — primary-source notes with verbatim passages)",
+     "citation": "docs/research/sources/<file>.md § <section>",
+     "text_layers": [{"glob": "docs/research/sources/*.md", "layout": "markdown", "base": "repo"}]},
+]
+
+
+def all_works(man: dict) -> list[dict]:
+    """The manifest's works plus the project-side dossier works."""
+    return list(man["works"]) + DOSSIER_WORKS
+
+
+def passage_path(path: str) -> str:
+    """Where a passage's `path` lives on disk, relative to the repo root."""
+    return path if path.startswith("docs/") else f"scripts/cache/{path}"
+
+
+_MD_HEADING = re.compile(r"^(#{1,4})\s+(.*)$")
+
+
+def _md_sections(lines: list[str]):
+    """Split a Markdown file into (heading, first_line_no, lines) blocks; the
+    text before the first heading is the «(head)» block."""
+    heading, first, buf = "(head)", 1, []
+    for i, ln in enumerate(lines, start=1):
+        m = _MD_HEADING.match(ln)
+        if m:
+            if any(x.strip() for x in buf):
+                yield heading, first, buf
+            heading, first, buf = m.group(2).strip(), i, [ln]
+        else:
+            buf.append(ln)
+    if any(x.strip() for x in buf):
+        yield heading, first, buf
 
 NORMALIZER_VERSION = 5  # bump when normalize() changes; recorded in the db
 
@@ -231,15 +282,25 @@ def iter_passages(work: dict):
     for unit in work["text_layers"]:
         layout = unit["layout"]
         vol = unit.get("volume")
-        files = sorted(glob.glob(str(CACHE / unit["glob"])))
+        base = REPO if unit.get("base") == "repo" else CACHE
+        files = sorted(glob.glob(str(base / unit["glob"])))
         if not files:
             print(f"warning: {wid}: no files for {unit['glob']}", file=sys.stderr)
         for f in files:
             fp = Path(f)
-            rel = str(fp.relative_to(CACHE))
+            rel = str(fp.relative_to(base))
             text = _read_text(fp)
             lines = text.split("\n")
-            if layout == "file-per-page":
+            if layout == "markdown":
+                # one passage per heading section, long sections windowed; the
+                # locator names the file and the section so a hit reads as
+                # «1640_bestalling_timpff_glueckstadt § 4.3 ⚠ Source-internal …»
+                for heading, first, sec_lines in _md_sections(lines):
+                    for a, b, body in _chunk_lines(sec_lines, unit.get("chunk_lines", 40),
+                                                  start_line=first, max_chars=unit.get("chunk_chars", 4000)):
+                        loc = f"{fp.stem} {page_label} {heading[:70]}"
+                        yield Passage(wid, None, rel, None, None, loc, a, b, lang, body)
+            elif layout == "file-per-page":
                 pdf = int(re.sub(r"\D", "", fp.stem) or 0)
                 printed = None
                 pp = unit.get("printed_page", {})
@@ -340,7 +401,7 @@ def cmd_build(args) -> int:
     con = sqlite3.connect(tmp)
     con.executescript(SCHEMA)
     total = collections.Counter()
-    for w in man["works"]:
+    for w in all_works(man):
         if args.work and w["id"] not in args.work:
             continue
         con.execute("INSERT INTO work VALUES (?,?,?,?,?)",
@@ -500,7 +561,20 @@ def _fingerprint() -> dict[str, str]:
     """What the index was built from: normaliser version, variant rules, manifest."""
     sha = lambda p: hashlib.sha1(p.read_bytes()).hexdigest()  # noqa: E731
     return {"normalizer_version": str(NORMALIZER_VERSION),
-            "variants_sha": sha(VARIANTS), "manifest_sha": sha(MANIFEST)}
+            "variants_sha": sha(VARIANTS), "manifest_sha": sha(MANIFEST),
+            "dossiers_sha": _dossiers_fingerprint()}
+
+
+def _dossiers_fingerprint() -> str:
+    """A hash over every dossier file's path, size and mtime: an edited or
+    added dossier makes the index stale (a rebuild is ~10 s)."""
+    h = hashlib.sha1()
+    for w in DOSSIER_WORKS:
+        for unit in w["text_layers"]:
+            for f in sorted(glob.glob(str(REPO / unit["glob"]))):
+                st = os.stat(f)
+                h.update(f"{Path(f).relative_to(REPO)}|{st.st_size}|{st.st_mtime_ns}\n".encode())
+    return h.hexdigest()
 
 
 def _stale_reason(con) -> str | None:
@@ -510,7 +584,8 @@ def _stale_reason(con) -> str | None:
         if have.get(k) != v:
             return {"normalizer_version": "kb.py's normaliser changed",
                     "variants_sha": "variants.yml changed",
-                    "manifest_sha": "_corpus.yml changed"}[k]
+                    "manifest_sha": "_corpus.yml changed",
+                    "dossiers_sha": "a docs/research dossier changed"}[k]
     if have.get("partial"):
         return f"built with --work {have['partial']} only"
     return None
@@ -538,7 +613,7 @@ def cmd_search(args) -> int:
         off, snip = _best_snippet(text, terms)
         volp = (f" Bd {vol}" if str(vol).isdigit() else f" {vol}") if vol else ""
         print(f"\n{rank:2d}. {w}{volp} · {loc} · bm25 {score:.2f}")
-        print(f"    scripts/cache/{path}:{l0 + off}")
+        print(f"    {passage_path(path)}:{l0 + off}")
         print(f"    «{snip}»")
     return 0
 
@@ -548,11 +623,11 @@ def cmd_works(args) -> int:
     man = load_manifest()
     kinds = args.kind or []
     print(f"{'id':36s} {'kind':10s} {'lang':8s} printed page  title")
-    for w in man["works"]:
+    for w in all_works(man):
         if kinds and w.get("kind") not in kinds:
             continue
         methods = {(u.get("printed_page") or {}).get("method", "none") for u in w["text_layers"]}
-        anchored = "yes" if methods - {"none"} else ("range" if any(u.get("layout") == "section" for u in w["text_layers"]) else "no")
+        anchored = "yes" if methods - {"none"} else ("range" if any(u.get("layout") == "section" for u in w["text_layers"]) else ("section" if w.get("kind") == "dossier" else "no"))
         print(f"{w['id']:36s} {w.get('kind', ''):10s} {'+'.join(w.get('languages', [])):8s} {anchored:12s}  {w.get('title', '')[:70]}")
     return 0
 
@@ -684,7 +759,7 @@ def main(argv=None) -> int:
     s.add_argument("--work", action="append", help="restrict to work id (repeatable)")
     s.add_argument("--lang", help="restrict to a language code (da, de, la, en, sv, no)")
     s.add_argument("--kind", action="append",
-                   help="restrict to a kind of work: source, register, literature, catalogue, web, extract "
+                   help="restrict to a kind of work: source, register, literature, catalogue, web, extract, dossier "
                         "(repeatable; `kb.py works` lists each work's kind)")
     s.add_argument("--limit", type=int, default=10)
     s.add_argument("--exact", action="store_true", help="no prefix matching")
