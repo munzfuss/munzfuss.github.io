@@ -421,7 +421,7 @@ to the gram (18,909 · 16,250; 22,272 · 14,964; 11,136 · 7,482; 1,218 · 0,343
   Møntregnskaber 1648–55 and Antegnelser; Jørgensen 1888; Aagaard.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-04): C1 1.5 · C2 2.0 (every grid the ordres
+Score (research-dossier rubric, self-assessed 2026-11-04, commit b0521ae): C1 1.5 · C2 2.0 (every grid the ordres
 set or revive recomputed from Wilcke's tables and Hede and checked against the one act in full; the
 accounts tabled; the texts of O and S labelled gaps) · C3 2.0 · C4 1.5 (Secher headings vs Wilcke's
 readings; Hede's 9,518 shown to be Wilcke's own slip copied; the «Guldkrone» of the acts identified
