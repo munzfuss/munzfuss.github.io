@@ -319,6 +319,49 @@ Evidence (7-1 pp. 36-43):
 So the standard is present in Denmark as **money of account and payment**
 from the 15th century; as **Danish coinage** only from ~1496.
 
+### 4.2 Re-check of the start of use ~1400 (2026-11-04)
+
+Curator asked whether `first_adoption.anywhere` ~1400 is supported or should
+change. Result: **supported; no change.**
+
+- **Diplomatarium Danicum, full sweep to 1406** via the tekstnet API
+  (`https://tekstnet.dk/api/search?q=…&size=50&from_=…&to_year=1406`; terms
+  rhinske, gylden, floriner, renenses, rynsche, rynescher, rinsche, rinske,
+  rynske, florenos/-is/-i/-orum, gulden, guldene, gulde, ghulden). Every hit
+  naming the Rhenish gulden explicitly before 11 Nov 1406 is foreign: Bremen
+  16 Aug 1387 (dd_13870816001), Lübeck 1 Sep 1399 (dd_13990901002), Prussian
+  towns to Lübeck 10 Aug 1405 «rynsche» (dd_14050810003), Lübeck 14 Sep 1406
+  (dd_14060914001, Margrete's proxy). The Danish-side «florenos/gylden» hits
+  before 1406 are papal servitia in camera florins (Lund, Roskilde, Odense,
+  Ribe, Århus, Børglum, Viborg bishops), the will of Ove Åstredsen 1 Feb 1396
+  (dd_13960201003: «iii. florenos», type not named), and a Copenhagen plot
+  leased 23 Jun 1385 for «twe gůde ghuldene» payable in Deventer
+  (dd_13850623001; light gulden, type not named, lessors from Deventer). Other
+  «gylden» hits are the adjective (golden rings, chains). So the 1406 treaty
+  of Lund stays the earliest Danish document naming the Rhenish gulden.
+- **Denar til daler (2018) p. 386**: gold coins in the realm «fra slutningen
+  af 1300-tallet og frem», use intensified «især i anden fjerdedel af
+  1400-tallet»; hoards with gold c. 1380-1480; the gold in use was
+  «nærmest udelukkende nederlandske og tyske gylden samt engelske nobler».
+  **p. 348**: only two Danish hoards of the 1370s hold gold (Vejby c. 1377:
+  109 nobles + 1 Lübeck gulden; Slagelse 1883: 186 gold, 269 silver), and
+  gold «må have spillet en meget begrænset rolle … før et stykke inde i
+  1400-tallet». Hauberg 1886 p. 146: the Slagelse gold = 37 French écus of
+  Philip VI, Hungarian and German gulden, «deriblandt fra Lybek 144» — no
+  Rhenish gulden named.
+- **Wilcke 7-1 p. 63**: «den gamle Markregning under 1300-Tallet
+  fortrængtes af Gyldenregning» — gold reckoning generally, not the Rhenish
+  gulden by name.
+- Context bound: the Rhenish gulden as a joint electoral coinage dates from
+  the union of 1386 (§2.2), so a Danish start of use before the late 1380s
+  would be anachronistic for this standard in any case.
+
+Reading: late 14th c. for foreign gold generally (secondary literature),
+1406 for the Rhenish gulden by name (primary). ~1400 sits between and stays
+approximate. Alternative values considered and rejected: exact 1406 (would
+read as firm, but use precedes the first mention); ~1380 (the gold hoards
+of that date are nobles, écus, Lübeck and Hungarian gulden, not Rhenish).
+
 ---
 
 ## 5. Danish track II — the royal coinage and its instruments, 1496-1632
