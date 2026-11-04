@@ -214,7 +214,7 @@ Keys added with this dossier: `danskmoent-hede-c5h113-8-skilling-1695`,
 `danskmoent-c5mord`, `mordhorst-c5mord-reskript-1692-2-skilling`.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-04): C1 2.0 · C2 1.5 (the grid certain
+Score (research-dossier rubric, self-assessed 2026-11-04, commit cc174ab): C1 2.0 · C2 1.5 (the grid certain
 from the coins, the act's own text absent; the 24 / 4 ß reach of R undecided) · C3 2.0 · C4 1.5
 (Schou the sole witness; Hede's figures shown to be grid values) · C5 1.0 · C6 1.0 = **9.0/10**;
 R's text and the 1726 Forordning are the unread layers.
