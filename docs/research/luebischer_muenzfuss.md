@@ -1943,11 +1943,27 @@ later cards (9-Thaler-Fuß, 9¼-Thaler-Fuß, Kronemønt, …) where classified; 
 - Flensborg 1570–71 (Wegener, appointed 26 Oct 1570 for one year): no parameters of his own known; the circle
   wardein Hans Walter found the Schilling «*3 Penninge for ringe*» (s. 353) — measured against the circle
   standard, i.e. struck when the towns already coined by the circle ordinance. [C] 9 Pf of a circle Schilling
-  = 23,6 Mark per fine mark. → circle period, debased; not period II.
+  = 23,6 Mark per fine mark. → debased below the circle norm; first read as «not period II», revised below (curator 2026-11-04: period II to 1571).
 - Adolf's Pfennige «1560, 1566, 1570-1571» (NGC) and «1571-1572»: no assay or ordinance figure in our sources;
   placed by first year (§8.2): the 1560 class in period II, the 1571–72 class after it.
 - Last attested striking on the Wendish formula: Flensborg, 2 Dec 1567. The circle Münzordnung follows on
   31 Jan 1568. Proposal: period II 1514–1567.
+
+**Curator decision 2026-11-04 — period II ends 1571, not 1567.** The parameters across the 1568 border are
+unknown or undifferentiated for every coin except Flensborg's Skilling: Hede 30A/30B carry one set of figures
+(the 1567 assay), Numista 313332 / NGC MB 75 / MB 72 / MB 2 give weights for «1566, 1571», «1566–1570»,
+«1560, 1566, 1570–1571» without separating years, Blaffert Hede 32 and Penning Hede 33 have no figures. The one
+comparison — the wardein's «3 Penninge for ringe» — shows the 1571 Skilling WORSE than the 1566 one
+(≈ 9 Pf against ≈ 10,5 Pf of a circle Schilling, computed), i.e. below the circle norm too. It therefore belongs
+to no other standard than the Lübeck one, further debased: the old nominals and the old formula continued by
+inertia after the circle ordinance of 31 Jan 1568, with further deterioration. Logic adopted: the period is
+defined by the small coin's metrological lineage, not by the legal frame (consistent with 1544–1567, where the
+small coin was placed here although the full-value coin was the Daler). So: period II 1514–1571 (last striking,
+Wegener's Flensborg Skilling 1571); Hede 30B (c-e84168b2) moved from `9_thaler` I to period II, reversing the
+2026-10-09 restoration. The 1568 change is a change of legal frame inside the period. The «1571» weight on
+Hede 30B's seed is the 1567 assay as danskmoent prints it for the whole Hede 30 entry, not a 1571 measurement.
+Still open: the Gottorp Pfennig «1571–1572» (NGC, c-41ae6959, seed_unsorted) and the KMM 1571 Skilling /
+Schilling / Blaffert / Penning records in danish_realm seed_unsorted (likely duplicates of the Flensborg classes).
 
 **Timeline consequence.** Minting stripe extends to 1571 once period II's coins are classified (it follows the
 coins); status stays 1396–1514 (kingdom); circulation unchanged.
