@@ -4209,6 +4209,20 @@ def process_entity(entity_id: str) -> dict:
             continue  # curator-pinned, never touch
         existing = entry.get("fraction")
         cand = infer_fraction(entry, fuss_fractions_cache)
+        # A stored fraction the coin's CURRENT fuss does not define is stale:
+        # it was inferred under a former fuss (a Flensborg Skilling 1566 kept
+        # the 9-Thaler-Fuß «1/96» after moving to the Lybsk Møntfod —
+        # curator 2026-11-04). Replace it with the fresh inference, or drop
+        # it when none applies; the build's cross-reference check rejects it.
+        fuss_fracs = fuss_fractions_cache.get(entry.get("fuss"))
+        if (existing and fuss_fracs
+                and str(existing) not in {str(x) for x in fuss_fracs}):
+            if cand:
+                entry["fraction"] = cand
+            else:
+                entry.pop("fraction", None)
+            corrected_fractions_count += 1
+            continue
         if not cand:
             continue
         if not existing:
