@@ -398,7 +398,7 @@ grid values to the gram — «(§)» candidates on the readings sourced «hede»
   Bricka & Fridericia V–VI; Jørgensen 1888; Secher V nr. 346, 348 (§ 48).
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-04): C1 1.5 · C2 2.0 (both acts verbatim from
+Score (research-dossier rubric, self-assessed 2026-11-04, commit 35d6906): C1 1.5 · C2 2.0 (both acts verbatim from
 the page images, every valuation in ß and in fine silver, the Hebræer grid recomputed from Wilcke's
 table and Hede, Wilcke's 21,489 / 22,670 / 4/13 / 7/24 verified; the Hebræer instrument itself a
 labelled gap) · C3 2.0 · C4 1.5 (Secher's apparatus on T; Wilcke's list against the act — the Fransk
