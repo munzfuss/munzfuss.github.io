@@ -1863,6 +1863,58 @@ lübischem Fuß geprägt werden*» (Jesse 1928 S. 138) — but not in the kingdo
 - The real break in the Hvid line is 1514: Hvid 220/M at 5 lod = 0,332 g fine, 72 per Gylden.
 - Classified `luebischer_muenzfuss` I, kind kurant (provisional) — curator 2026-11-04.
 
+### §3.15 The duchies after 1514 — formula, end of minting, which polities (2026-11-04, curator questions)
+
+**Curator's frame (2026-11-04).** Duchy coins cannot be left off the Denmark page; they get their own PERIOD of
+this card after 1514 (a separate card only if their formula proves different). The STATUS layer stays at the
+kingdom level (1396–1514) — a duchy standard belongs to the duchies' page; the Denmark page shows what concerns
+the realm. Coins of a polity tied to the crown (crown land, vassal, fief) belong on the page; one not tied, not.
+
+**Formula — the Wendish towns' own, by instrument.**
+| Date | Instrument | What it sets | Source |
+|---|---|---|---|
+| 1460 | Ribe privilege | the duchies' coinage «*følger møntvæsenet i Hamburg og Lübeck*»; Danish : lybsk «*som oftest … som 2:1*»; duchy coin «*normalt ikke præget i Kongeriget*» | Jensen, Hikuin 35 (2008) s. 158 |
+| 1544 | Christian III to the burgomasters of Hamburg and Lübeck, before opening Flensborg | «*at rette sin Møntordning efter den af dem prægede Mønt i Halt, Korn og Skrot*»; asks for samples of double and single Skillinger, Søslinge, Witten, Blafferte, Penninge | Nöbbe 1930 s. 9 (Seidelin S. 963) |
+| 22 Jan 1547 | Møntordning for Jørgen Koch, Kolding | Gyldengroschen 8 / Lübeck mark at 14 lod 1 quintin fine; small coin «*som i Lybæk, Hamborg og Lyneborg*», by the towns' prescriptions; Slagskat 4 ß per fine mark | Nöbbe s. 11 (Seidelin S. 484–86) |
+| 1 Mar 1566 | appointment of Hans Køppelin, Flensborg | «*at slaa smaa Mønt som Lybecksk og Hamburgsk Skrot*» | Wilcke 7-5 s. 351 |
+- Jesse 1928 S. 138–139: Holstein Doppelschillinge of Frederik I (from 1522) and Christian III (1534–1537),
+  ≈ 3,8 g, «*offenbar … gefolgt*»; Sechslinge from 1532 «*im Typ und Münzfuß an die Städte angelehnt*».
+- So the duchy formula IS the Wendish one at each of its steps (1506 13 Mark; 1515 Schilling 106 / 8 lot;
+  1522–30 Doppelschilling 56–58 / 7¾–7⅞; 1537 Doppelschilling 60 / 7½, Sechsling 184 / 5½; 1546 Schilling
+  120 / 6 lot 2 gr, Doppelschilling 60 / 7 lot 2 gr — `danish_standard_chronology_1396_1541.md`, Jesse
+  S. 138–141). No separate duchy formula is attested → a period of this card, not a separate card.
+- The large coin (Gyldengroschen / Daler 1547 Flensborg) follows the taler, not this card.
+
+**End of minting — 1571 (royal part).** Mints (Nöbbe s. 10, 12): Husum 1514–1529, Gottorp 1522–1534,
+Flensborg 1544/45–1556 and 1566–1571. 1567: Køppelin's Søslinge accused of being worse than the towns'; the
+assay found «*de tilsvarende Præg fra Stæderne ingenlunde var bedre*». The Lower Saxon general wardein found
+Flensborg Skillinger «*kun … 9 i Stedet for 12 Penninge værd*»; April 1571 the estates asked the king to stop;
+«*Endnu samme Aar gik Mønten ind, og i Flensborg er ikke siden blevet udmøntet*» (Nöbbe s. 12). Last coin:
+Balthasar Wegener's Skilling 1571 (acorn; Nöbbe s. 18 table). In our data: Flensborg Skilling / Søsling
+Lybsk 1566 and Skilling 1571 sit under `9_thaler` I (c-0f59252a, c-e84168b2, c-92caf7d6) — to move;
+Schilling 1565 / 1566, 1571 and Blaffert Lybsk 1566, 1571 in `seed_unsorted`.
+
+**Which polities.**
+- Royal part of Schleswig and Holstein (`royal_slesvig`, `royal_holstein`): the king as duke — in.
+- Gottorp (`gottorp_duchy`): Schleswig a Danish fief — lex.dk «Adolf 1. – hertug»: in 1580 he «*måtte …
+  nødtvungent acceptere, at hertugdømmet Slesvig (og dermed hans derværende besiddelser) var et dansk len*»;
+  sovereignty only from Roskilde 1658 (lex.dk «Slesvig-Holstens historie»). Already on the Denmark page to 1656
+  (`denmark.yml` consumes_entities, earlier curator decision). Its Lübeck-type small coin in our data:
+  Sechsling 1565, Pfennig 1560–1572 (Adolf), and ~90 classes 1575–1599 in `seed_unsorted` — Gottorp went on
+  striking after the royal mint closed, so its END is later than 1571 and still to be fixed (open, §9).
+- Holstein was an imperial fief («*en Del af det tyske Kejserrige og dettes nedersachsiske Kreds*», Wilcke
+  1924 s. 208, of Glückstadt) — held by the king as duke; the tie is the king's person, as for the royal part.
+
+**After 1571 — the Lübeck reckoning in the duchies.** The duchies are crown-tied, so their coins stay on the
+page; but after 1571 the royal coinage is no longer struck on the Wendish formula — from 1566 the Reichsabschied
+standard governs (`9_thaler`, Holstein first_mint 1567), the Mark lübisch / Schilling surviving as units of
+account inside it, and later Schleswig-Holstein Courant. Those coins are on the Denmark page already under the
+later cards (9-Thaler-Fuß, 9¼-Thaler-Fuß, Kronemønt, …) where classified; ~250 royal-Holstein classes
+1600–1699 still in `seed_unsorted`. Not this card.
+
+**Timeline consequence.** Minting stripe extends to 1571 once period II's coins are classified (it follows the
+coins); status stays 1396–1514 (kingdom); circulation unchanged.
+
 ## §4. Instruments
 
 | Date | Instrument | Role for the card | Register / dossier |
@@ -2246,5 +2298,6 @@ Cologne mark @ 9 Lot (Jesse: treaty Hamburg–Lübeck 15 June 1468, «so 1483 un
 | Written mention of Korshvide in 1580 — a Malmø probate inventory (Jensen, Hikuin 35 s. 158 n. 28); which estate, how many Hvide | Bager & Jensen, «Papir-skattefund» fra Frederik II's og Christian IV's Malmø, NNUM 1987 s. 2–6 (not in the corpus) |
 | Lübeck coin in Danish deeds from 1330 — the underlying list | Hauberg 1884 now in the corpus (`hauberg-1884`, s. 217–374; s. 238 and 241 missing from the scan); its tables s. 256–259, 264 ff. (OCR of figures unreliable — read from the images) not yet worked through |
 | Holstein standard — a numerical norm behind «12 sol. Vlensbergenses : 10 sol. Lubicenses»? (§3.13) | Nöbbe 1930 read — none given; NNÅ 1942 s. 101 (no copy found) |
-| Duchy coins on the Lübeck standard 1514–1559 (Witten, Schilling, Doppelschilling, Sechsling, «Blaffert lybsk»; all `seed_unsorted`) — this card (status / mint in the duchies) or another | curator; Jesse S. 138; Wilcke 7-3 / 7-4 for Flensburg 1544 |
+| Duchy coins 1514–1571 → period II of this card (curator 2026-11-04, §3.15) — classification not yet done | curator «так» on the coin list |
+| End of Gottorp's Lübeck-type small coin (Adolf 1544–1586, Johann Adolf; ~90 classes 1575–1599 in `seed_unsorted`) | Lange 1908/12; Jesse; Wilcke 1919 s. 62, 87 (bad Gottorp coin c. 1600) |
 | Small coin 1514–1540 (Skilling, Hvid, Klipping, Søsling; `seed_unsorted`) — belongs to 8½- / 8-Gylden-Fod by the acts (§3.14) | per-Fuß review of those cards |
