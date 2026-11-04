@@ -388,7 +388,7 @@ question (§ 8, Q1; FINDINGS §C).
   II; Bricka & Fridericia III–IV; Shaw; le Blanc; Harck NR 93 (2007); Mørsing, Gøde, Paus.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-04): C1 1.5 · C2 2.0 (every valuation in ß and
+Score (research-dossier rubric, self-assessed 2026-11-04, commit a2a12c6): C1 1.5 · C2 2.0 (every valuation in ß and
 in fine silver, the three ratios recomputed, the ducat grid from the act; the two regest-only acts a
 labelled gap) · C3 2.0 · C4 1.5 (Secher's apparatus on the Goldgylden line; Wilcke's table slips
 named; nine discrepancies) · C5 1.0 · C6 1.0 = **9.0/10**.
