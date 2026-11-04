@@ -284,7 +284,7 @@ as the reason the 1658–60 output is not the king's).
   Kammer accounts; Gøde; Paus s. 926.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-04): C1 1.5 · C2 2.0 (F verbatim from the
+Score (research-dossier rubric, self-assessed 2026-11-04, commit ab91104): C1 1.5 · C2 2.0 (F verbatim from the
 page image, D's one clause, A and R from Wilcke; the grids they invoke recomputed in `1651_…` and
 cross-checked here; the accounts 1657–60 tabled; the private share a labelled gap) · C3 2.0 · C4 1.5
 (Secher's apparatus on F; Paus's 1659; the Antegnelser against F's dates; eight discrepancies) ·
