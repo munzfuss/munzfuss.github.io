@@ -81,7 +81,7 @@
 | ✖ | 1684, 28 May → 1695, 19 Feb | Forordninger om Opgelt | C | register only | — |
 | ☑ | 1692, 31 Dec | Reskript: ny møntanordning (+ minting order) | A | `1692_reskript_ny_moentanordning.md` | act text not in hand; 2-ß grid a gap |
 | ☐ | 1693, 25 Feb | Forordning om Specie Rixdaler … Kongsberg (6 Mk 8 ß) | B | fold into the 1692 dossier §6 on next revision | Schou I s. 665; Mordhorst |
-| ☐ | 1695, 4 May | Reglement for the 24 / 8 / 4 ß | A | `1695_reglement_24_8_4_skilling.md` (to write) — **found by the 1671 dossier** (Schou s. 80 note; not in Mordhorst) | Schou I (locate the page) |
+| ☑ | 1695, 4 May | **Reglement for the 24 / 8 / 4 ß** — Schou's footnote only; the grid read off Hede 113 / 127 / F4 42 / 52 / C6 7: 8 ß 76½ and 24 ß 25½ to the 9-lot mark, 4 ß 85 to the 5-lot mark = 1 088 ß = **11⅓ Rdl. kurant per mark fine** — the Kurantmøntfod's rate on the coins from 1694/95, 31 years before the 1726 Forordning (the `11_333_thaler` card's «1726 → 1813» start) | A | `1695_reglement_24_8_4_skilling.md` (2026-11-04) | Schou I s. 80 n. (*), s. 665–667 (no entry); Mordhorst c5 (none); Hede c5h113, 114, 127, 128, f4h42, 52, 58, nf4h6, c6h6, 7; Galster type pages; 8 ⚠; R's text and the 1726 dossier (§1d) are the unread layers |
 | ✖ | 1699, 14 Feb | Told in specie (12 % agio) | C | register only | — |
 
 ## §2 · Imperial / German anchors
