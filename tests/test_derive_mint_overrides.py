@@ -52,8 +52,9 @@ def fuss(fm_any=None, lm_any=None, fm_hol=None, lm_hol=None,
     ))
 
 
-def coin(fid, year_first, year_last=None):
-    return NS(fuss=fid, year_first=year_first, year_last=year_last)
+def coin(fid, year_first, year_last=None, year_verified=True):
+    return NS(fuss=fid, year_first=year_first, year_last=year_last,
+              year_verified=year_verified)
 
 
 def denmark(coins):
@@ -88,6 +89,23 @@ class TestDenmarkAnywhereSync(unittest.TestCase):
         ov = derive_mint_overrides(loc, fuesse)
         self.assertEqual(ov["k"].events.first_mint.anywhere, 1644)
         self.assertFalse(ov["k"].events.first_mint.approx_anywhere)
+
+    def test_unverified_earliest_year_keeps_start_approx(self):
+        """The earliest coin's year is itself uncertain («1350-1381 (?)»):
+        the synced start renders faded (curator 2026-11-04)."""
+        loc = denmark([coin("l", 1350, 1381, year_verified=False),
+                       coin("l", 1403, 1513)])
+        fuesse = {"l": fuss(fm_any=1380, lm_any=1513)}
+        ov = derive_mint_overrides(loc, fuesse)
+        self.assertEqual(ov["l"].events.first_mint.anywhere, 1350)
+        self.assertTrue(ov["l"].events.first_mint.approx_anywhere)
+
+    def test_verified_coin_at_earliest_year_makes_start_sharp(self):
+        loc = denmark([coin("l", 1350, 1381, year_verified=False),
+                       coin("l", 1350)])
+        fuesse = {"l": fuss(fm_any=1380, lm_any=1381)}
+        ov = derive_mint_overrides(loc, fuesse)
+        self.assertFalse(ov["l"].events.first_mint.approx_anywhere)
 
     def test_none_anywhere_stays_none(self):
         """A curator-None anywhere mint endpoint is not promoted."""

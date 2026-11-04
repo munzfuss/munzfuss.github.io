@@ -165,6 +165,11 @@ def derive_mint_overrides(loc: Location, fuesse: dict) -> dict:
 
     spans: dict[str, list[int | None]] = {}   # fuss -> [dated_cmin, cmax]  (non-reign)
     reign_min: dict[str, int] = {}            # fuss -> earliest reign-span coin year_first
+    # fuss -> True while EVERY coin at the earliest dated year has
+    # year_verified False (the source hedges or the pipeline infers the year,
+    # «1350-1381 (?)»): such a start is itself uncertain and renders faded
+    # (curator 2026-11-04, Lybsk Møntfod's Flensborg Witten «ca. 1350»).
+    first_unverified: dict[str, bool] = {}
     for c in loc.coins:
         if c.year_first is None:
             continue
@@ -183,9 +188,15 @@ def derive_mint_overrides(loc: Location, fuesse: dict) -> dict:
                 reign_min[c.fuss] = c.year_first
             continue
         yl = c.year_last if c.year_last is not None else c.year_first
+        unverified = getattr(c, "year_verified", True) is False
+        if c.fuss not in spans:
+            first_unverified[c.fuss] = unverified
         cur = spans.setdefault(c.fuss, [c.year_first, yl])
         if c.year_first < cur[0]:
             cur[0] = c.year_first
+            first_unverified[c.fuss] = unverified
+        elif c.year_first == cur[0] and not unverified:
+            first_unverified[c.fuss] = False
         if yl > cur[1]:
             cur[1] = yl
 
@@ -216,6 +227,9 @@ def derive_mint_overrides(loc: Location, fuesse: dict) -> dict:
         firm = getattr(fa, firm_attr, True) if fa is not None else True
         cmin, cmin_approx = founding_mint_start(
             reign_min.get(fid), dated_cmin, adoption_year, firm)
+        if (not cmin_approx and cmin is not None and cmin == dated_cmin
+                and first_unverified.get(fid)):
+            cmin_approx = True
         # Clamp only the UPPER bound to the timeline's right edge: a stripe
         # cannot render past year_to, so a tooltip year beyond it — a
         # 1913-1931 straddle type, or a reign-window placeholder masking a
