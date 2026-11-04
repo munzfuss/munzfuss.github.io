@@ -290,7 +290,7 @@ Keys added with this dossier: `schou-1795-bd1-s122-vdn-1673-holstein`,
 `schou-1795-bd1-s81-myndtordning-1671-smaamoent`, `danskmoent-c5mord`.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-04): C1 2.0 · C2 1.5 (R's grid is a
+Score (research-dossier rubric, self-assessed 2026-11-04, commit 46ddadf): C1 2.0 · C2 1.5 (R's grid is a
 reconstruction, labelled; E's figures absent) · C3 2.0 · C4 1.5 (Mordhorst → Nielsen chain named;
 Nielsen unread) · C5 1.0 · C6 1.0 = **9.0/10**; the Reglement's text and Nielsen 1907 are the
 unread layers.
