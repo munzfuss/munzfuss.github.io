@@ -410,13 +410,16 @@ _WITTEN_RE = re.compile(r"\bWitten\b")
 _KOBBERSTERLING_RE = re.compile(r"\bKobbersterling\b")
 _LEBARD_RE = re.compile(r"\bLebard\b")
 _VIERTELWITTEN_RE = re.compile(r"\bViertelwitten\b")
-# Danish forms for one entity only, where the same German word stays German on
-# the other Denmark-page entities: the Flensborg dreling (Lindahl 1955 s. 76
-# «Dreling»; Numista «Dreiling») — curator 2026-11-02. The royal Schleswig-
-# Holstein Dreilinge of later centuries keep their word.
-_ENTITY_DANISH_FORMS = {
-    "flensborg_medieval": ((re.compile(r"\bDreiling\b"), "Dreling"),),
+# Per-entity forms that override the Denmark-page Danish names. Flensborg's
+# town coins carry «MONETA HOLSACIE» and belong to the Holstein (Wendish)
+# coinage — Lindahl 1955 s. 74 n. 3, s. 76 n. 6 — so they keep the German
+# names Witten and Dreiling (Lindahl prints «Dreling», Numista «Dreiling»);
+# the quarter witten still shows as one Penning (curator 2026-11-04,
+# replacing the Hvid / Dreling forms of 2026-10-26 and 2026-11-02).
+_ENTITY_FORMS = {
+    "flensborg_medieval": ((re.compile(r"\bDreling\b"), "Dreiling"),),
 }
+_ENTITY_KEEP_WITTEN = frozenset({"flensborg_medieval"})
 
 
 @lru_cache(maxsize=1)
@@ -457,6 +460,8 @@ def _danish_display_str(raw: str, entity) -> str:
     pair, ~40 M times for danish_realm)."""
     raw = _LEBARD_RE.sub("Penning", raw)
     raw = _VIERTELWITTEN_RE.sub("Penning", raw)
-    for rx, word in _ENTITY_DANISH_FORMS.get(entity, ()):
+    for rx, word in _ENTITY_FORMS.get(entity, ()):
         raw = rx.sub(word, raw)
-    return _KOBBERSTERLING_RE.sub("Sterling", _WITTEN_RE.sub("Hvid", raw))
+    if entity not in _ENTITY_KEEP_WITTEN:
+        raw = _WITTEN_RE.sub("Hvid", raw)
+    return _KOBBERSTERLING_RE.sub("Sterling", raw)

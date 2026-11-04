@@ -40,7 +40,10 @@ class Nominal(unittest.TestCase):
         from lib.nominal_synonyms import danish_display_nominal
         self.assertEqual(danish_display_nominal("1 Viertelwitten", "flensborg_medieval"),
                          "1 Penning")
-        self.assertEqual(danish_display_nominal("1 Witten", "flensborg_medieval"), "1 Hvid")
+        # Flensborg is Holstein coinage: German names (curator 2026-11-04)
+        self.assertEqual(danish_display_nominal("1 Witten", "flensborg_medieval"), "1 Witten")
+        self.assertEqual(danish_display_nominal("1 Dreling", "flensborg_medieval"), "1 Dreiling")
+        self.assertEqual(danish_display_nominal("1 Witten", "ribe_medieval"), "1 Hvid")
         self.assertEqual(danish_display_nominal("1 Viertelwitten", "hanseatic_lubeck"),
                          "1 Viertelwitten")
 
