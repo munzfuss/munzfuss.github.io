@@ -242,7 +242,7 @@ Keys added with this dossier: `mordhorst-c5mord-reskript-1684-kongsberg-kroner`,
 `schou-1795-bd1-s81-myndtordning-1671-grov-moent`.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-04): C1 2.0 · C2 1.5 (K2's rate and the
+Score (research-dossier rubric, self-assessed 2026-11-04, commit 41a6b71): C1 2.0 · C2 1.5 (K2's rate and the
 coins' grid, the acts' own counts absent) · C3 2.0 · C4 1.5 (Mordhorst the sole witness; Hede's
 output figures shown to be the order's sums) · C5 1.0 · C6 1.0 = **9.0/10**; the four texts are
 the unread layer.
