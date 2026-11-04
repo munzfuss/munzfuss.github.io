@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-03 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-04 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15220 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-03'
+generated_at: '2026-11-04'
 coins:
   - id: c-da3c53ad
     class_id: c-da3c53ad
@@ -1207,12 +1207,12 @@ coins:
     phase: bruun
     kind: kurant
     nominal: 1 Goldgulden
-    year_first: 1497
+    year_first: 1496
     year_last: 1497
     year_ranges:
-      -   - 1497
+      -   - 1496
           - 1497
-    year_label: '1497'
+    year_label: 1496-1497
     ruler: Hans
     mintmaster: Herman van Nassau or Hans Sever
     inscription_obv: IOhS DEI GR - REX DACIE
@@ -1256,20 +1256,26 @@ coins:
     uncertainty:
       year:
         - kind: hedged
-          how: circa
-          source: Zinck I, s. 9, cit. danskmoent.dk (Galster 27)
-          as_printed: blev formentlig slået omkring 1497
-          value: '1497'
+          how: attributed
+          source: Stack's Bowers Galleries, The L. E. Bruun Collection, Part III (2025), lot 11151, s. 63
+          as_printed: Goldgulden (Rhinsk Gulden), ND (1496-1497)
+          value: 1496-1497
+          seed: attribution
+        - kind: hedged
+          how: possibly
+          source: Galster, Danmarks Mønter (Nordisk Kultur XXIX, 1936), cit. danskmoent.dk
+          as_printed: Samtidig er sandsynligvis de rhinske Gylden blevet udmøntet
+          value: 1496-1497
           translation:
-            de: wurde vermutlich um 1497 geschlagen
-            en: was probably struck around 1497
-            uk: карбовано, імовірно, близько 1497 року
+            de: Gleichzeitig sind wahrscheinlich die rheinischen Gulden ausgemüntzt worden
+            en: The Rhenish gulden were probably struck at the same time
+            uk: Імовірно, одночасно було викарбувано й рейнські гульдени
           seed: attribution
         - kind: hedged
           how: possibly
           source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 447'
           as_printed: blev der produceret 150.000 gylden til betaling af tyske lejetropper i forbindelse med den svenske konflikt i 1497. Tidsmæssigt og variantmæssigt kan det godt passe sammen
-          value: '1497'
+          value: 1496-1497
           translation:
             de: wurden 150 000 Gulden zur Bezahlung deutscher Söldner im Zusammenhang mit dem schwedischen Konflikt 1497 hergestellt. Zeitlich und nach den Varianten kann das gut zusammenpassen
             en: 150,000 gulden were produced to pay German mercenaries in connection with the Swedish conflict of 1497. In time and in variants this may well fit together
@@ -15857,12 +15863,12 @@ coins:
     phase: galster
     kind: kurant
     nominal: ½ Goldgulden
-    year_first: 1497
+    year_first: 1496
     year_last: 1497
     year_ranges:
-      -   - 1497
+      -   - 1496
           - 1497
-    year_label: '1497'
+    year_label: 1496-1497
     _year_demoted: true
     ruler: Hans
     mint:
@@ -15896,7 +15902,7 @@ coins:
           how: compiled
           source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 447'
           as_printed: en nu uhyre sjælden ½ gylden, der formodentlig er produceret på samme tid som de andre
-          value: '1497'
+          value: 1496-1497
           translation:
             de: ein heute äußerst seltener ½ Gulden, der vermutlich zur selben Zeit wie die anderen hergestellt wurde
             en: a now extremely rare ½ gulden, presumably produced at the same time as the others
@@ -15904,13 +15910,9 @@ coins:
           seed: attribution
         - kind: inferred
           how: compiled
-          source: 'Märcher, in: Horsnæs, Moesgaard, Märcher (red.), Denar til daler (2018), s. 447'
-          as_printed: blev der produceret 150.000 gylden til betaling af tyske lejetropper i forbindelse med den svenske konflikt i 1497. Tidsmæssigt og variantmæssigt kan det godt passe sammen
-          value: '1497'
-          translation:
-            de: wurden 150 000 Gulden zur Bezahlung deutscher Söldner im Zusammenhang mit dem schwedischen Konflikt 1497 hergestellt. Zeitlich und nach den Varianten kann das gut zusammenpassen
-            en: 150,000 gulden were produced to pay German mercenaries in connection with the Swedish conflict of 1497. In time and in variants this may well fit together
-            uk: було вироблено 150 000 гульденів для оплати німецьких найманців у зв'язку зі шведським конфліктом 1497 року. За часом і за варіантами це цілком може збігатися
+          source: Stack's Bowers Galleries, The L. E. Bruun Collection, Part III (2025), lot 11151, s. 63
+          as_printed: Goldgulden (Rhinsk Gulden), ND (1496-1497)
+          value: 1496-1497
           seed: attribution
         - kind: inferred
           how: reign
