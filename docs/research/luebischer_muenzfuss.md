@@ -1784,8 +1784,14 @@ Question: does that make Flensborg's coins (period 0, 1350–1392) a different s
 denominations, type and reckoning in Lübeck ß — struck about 15–17 % worse by the period rates; no separate standard
 is attested. Flensborg's coins stay in the Lybsk Møntfod, phase 0, like the debased Danish coins of 1403–1440s.
 Hypothesis left open: the 10 : 12 rate may reflect a deliberately lower norm rather than poor execution; no numerical
-norm is known. Would settle it: E. Nöbbe, «Flensborg som Møntsted», Num. F. Mbl. XII s. 1 ff.; NNÅ 1942 s. 101 (both
-not in the corpus).
+norm is known. **Nöbbe 1930 read (corpus `noebbe-1930`, 2026-11-04)** — no Holstein norm either: the Holstein
+counts, then holding Flensborg in pledge, set up mints at Rendsburg, Kiel, Itzehoe, Oldesloe, Neustadt «*hvor der
+blev slaaet Witten efter hanseatisk Mønster*» (s. 1–2); «*Lybækker og Flensborger denarii argentei (Witten)
+betegnes 1360 som af samme Værd. Men derefter er de holstenske Stæders og ogsaa Flensborgs Penge blevet
+forringet*» (s. 2); the Flensborg coins «*i deres Præg svarer til Hansestædernes Mønt*» (s. 2); the Dreiling
+«*ganske svarende til Lybæks Dreilinge efter, maaske allerede før, 1392*», struck «*senest … mellem 1392 og
+1400*» (s. 3–4). Fig. 2 is captioned «*Penning eller 1/4 Witten*» (s. 2) — the page's «1 Penning» for the
+Viertelwitten matches Nöbbe's name. Still open: NNÅ 1942 s. 101 (probably Galster on the Aarhus hoard — no copy found).
 
 **Nominals (curator 2026-11-04).** Flensborg's coins carry «MONETA HOLSACIE» on the Lübeck type, so they keep the
 German names on the Denmark page: Witten, Dreiling (Lindahl «Dreling», Numista «Dreiling»); the Viertelwitten shows as
@@ -1799,7 +1805,12 @@ German names on the Denmark page: Witten, Dreiling (Lindahl «Dreling», Numista
   Urkunden nicht vor*». Denar til daler 2018 s. 345: with the collapse of the royal coinage hoards c. 1330–1380
   are «*fuldkommen domineret af udenlandske mønter*» — sterlings, gros tournois and «*nordtyske hulpenninge*»
   — and «*omtaler af mønter eller beløb efter lybsk (Lübecks, altså nordtysk) system efterhånden på banen*»;
-  from c. 1370 Witten dominate. The hollow penny is the 1/12 Schilling of the same system. Curator's point
+  from c. 1370 Witten dominate. The hollow penny is the 1/12 Schilling of the same system. Hauberg 1884
+  (Aarbøger, corpus `hauberg-1884`) s. 267: «*De lybske Penge begynde først paa en lidt senere Tid, efter
+  1340, ret at trænge igjennem her i Landet; men tilsidst faa de Overvægten baade over de engelske og de
+  franske*»; in 1400–1409 the Lübeck coin occurs three times as often as French and English together, and the
+  restored coinage under Erik is ordered «*i Overensstemmelse med det tilvante lybske Myntsystem*». So: in
+  deeds from c. 1330, in general use from after 1340. Curator's point
   (2026-11-04): the coin must have circulated before Flensborg struck it (c. 1350) — confirmed.
 - Legal stages: 1364 truce with Valdemar, «*Grote, Engelsche und lübische Pfennige*» admitted on Scania;
   1369 herring toll «*in Witten, Groten oder Engelschen*»; after the Stralsund peace the Wendish coin
@@ -2233,7 +2244,7 @@ Cologne mark @ 9 Lot (Jesse: treaty Hamburg–Lübeck 15 June 1468, «so 1483 un
 | Weight base in Norway before 1514 (Holst's inference) | Norwegian accounts or a Norwegian ordinance of Hans (none known) |
 | Card grid: Schilling 103½/9-lot as the defining value, or the Mark lübsch | curator, at plan step 3.2 |
 | Written mention of Korshvide in 1580 — a Malmø probate inventory (Jensen, Hikuin 35 s. 158 n. 28); which estate, how many Hvide | Bager & Jensen, «Papir-skattefund» fra Frederik II's og Christian IV's Malmø, NNUM 1987 s. 2–6 (not in the corpus) |
-| Lübeck coin in Danish deeds from 1330 — the underlying list | Hauberg, Aarbøger 1884 s. 217 ff., 265 (not in the corpus) |
-| Holstein standard — a numerical norm behind «12 sol. Vlensbergenses : 10 sol. Lubicenses»? (§3.13) | Nöbbe, «Flensborg som Møntsted», Num. F. Mbl. XII; NNÅ 1942 s. 101 |
+| Lübeck coin in Danish deeds from 1330 — the underlying list | Hauberg 1884 now in the corpus (`hauberg-1884`, s. 217–374; s. 238 and 241 missing from the scan); its tables s. 256–259, 264 ff. (OCR of figures unreliable — read from the images) not yet worked through |
+| Holstein standard — a numerical norm behind «12 sol. Vlensbergenses : 10 sol. Lubicenses»? (§3.13) | Nöbbe 1930 read — none given; NNÅ 1942 s. 101 (no copy found) |
 | Duchy coins on the Lübeck standard 1514–1559 (Witten, Schilling, Doppelschilling, Sechsling, «Blaffert lybsk»; all `seed_unsorted`) — this card (status / mint in the duchies) or another | curator; Jesse S. 138; Wilcke 7-3 / 7-4 for Flensburg 1544 |
 | Small coin 1514–1540 (Skilling, Hvid, Klipping, Søsling; `seed_unsorted`) — belongs to 8½- / 8-Gylden-Fod by the acts (§3.14) | per-Fuß review of those cards |
