@@ -318,7 +318,7 @@ Keys added with this dossier: `hede-1957-kronemoenten-2-krone-1675-vaegt`,
 `schou-1795-bd1-s81-myndtordning-1671-grov-moent`.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-04): C1 2.0 · C2 1.5 (R's own
+Score (research-dossier rubric, self-assessed 2026-11-04, commit 6497c1a): C1 2.0 · C2 1.5 (R's own
 parameters absent; Hede's formula is a labelled reconstruction) · C3 2.0 · C4 1.5 (Hede →
 Thomsen / Nielsen chain named; neither read) · C5 1.0 · C6 1.0 = **9.0/10**; R's text and
 Aagaard 2018 are the unread layers.
