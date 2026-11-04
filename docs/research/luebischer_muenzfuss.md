@@ -13,6 +13,12 @@
 > on the Danish page in every language — scholarly names; no «-Fuß / -fod» compound is
 > attested for the 15th–16th c. (survey §10.3). Key `luebischer_muenzfuss`.
 >
+> **Scope widened 2026-11-04 (curator):** the card now runs 1350–1513 on the Denmark page —
+> period 0 1350–1392 «town coinage of Flensborg and Ribe», period I 1403–1513 (Erik VII to Hans
+> and Christian II's Hvid 1513, Galster 43). Timeline layers: circulation c. 1330 – c. 1580,
+> status 1396 – 1514, minting c. 1350 – 1513 (§3.14). The exclusion lines below that still say
+> «Hans only» / «Erik … later» / «1513 grid → 8_5_gylden_fod» are superseded by §3.13–§3.14.
+>
 > **Question this dossier settles:** the standard by which Hans' Danish and Norwegian silver
 > and billon were struck — its model (the Wendish/Lübeck system), what is known of its
 > parameters without any Danish ordinance, the instruments that bind Denmark, Norway and
@@ -1771,6 +1777,63 @@ German names on the Denmark page: Witten, Dreiling (Lindahl «Dreling», Numista
 1 Penning (its value). Ribe's Witten, «civitas regni» (Lindahl s. 76 n. 6), stays Hvid. Code:
 `nominal_synonyms._ENTITY_KEEP_WITTEN` / `_ENTITY_FORMS`.
 
+### §3.14 Timeline layers and the end of the standard; Galster 43 (2026-11-04, curator questions, agreed)
+
+**Circulation — c. 1330 to c. 1580 (both approximate).**
+- Start. Jesse 1928 n. 278 (after Hauberg, Aarb. 1884 S. 265): «*Lübisches Geld kommt vor 1330 in dänischen
+  Urkunden nicht vor*». Denar til daler 2018 s. 345: with the collapse of the royal coinage hoards c. 1330–1380
+  are «*fuldkommen domineret af udenlandske mønter*» — sterlings, gros tournois and «*nordtyske hulpenninge*»
+  — and «*omtaler af mønter eller beløb efter lybsk (Lübecks, altså nordtysk) system efterhånden på banen*»;
+  from c. 1370 Witten dominate. The hollow penny is the 1/12 Schilling of the same system. Curator's point
+  (2026-11-04): the coin must have circulated before Flensborg struck it (c. 1350) — confirmed.
+- Legal stages: 1364 truce with Valdemar, «*Grote, Engelsche und lübische Pfennige*» admitted on Scania;
+  1369 herring toll «*in Witten, Groten oder Engelschen*»; after the Stralsund peace the Wendish coin
+  «*gesetzlich umlaufsfähiges Geld*», listed in the 1376 recess (Jesse S. 85). 1380 / 1382 Danish deeds
+  (Hauberg 1886 s. 136 n. 2, s. 139 n. 1) — an established state, not the start (first set as
+  first_adoption 1380 and corrected the same day: adoption cannot follow minting).
+- End. No act withdraws the coin; the 1540 Reces and 1541 Møntordning re-rate it (Denar til daler s. 488,
+  tab. 7.8 «*Gamle danske 2 skillinger — 4 hvide*»). Hvide «*dominerede store dele af møntomløbet frem til
+  1520-1530'erne*» (Denar til daler s. 458). Hoards: Voldtofte (after 1526), ~1520 Hvide Christoffer → Frederik I,
+  protocol «*hvormeget de endnu maa have cirkuleret paa den Tid, Fundet er nedlagt*» (Wilcke 7-1 s. 39);
+  Svinninge — Korshvide of Christoffer 1, Interregnum 11, Christian I 73, Hans 124 with Christian II 2,
+  Christian III 8 (s. 46); Faaborg with Grevens Fejde 1535 (s. 45). Jensen, Hikuin 17 s. 82: the 1440s
+  Korshvide «*træffes endnu i stort tal i skattefund … efter 1526*», singly in «*1540'rnes skattefund*», and a
+  written mention of 1580 «*kunne … tyde på en langvarig, reel cirkulation*» (n. 6: Bager & Jensen, NNUM 1987
+  s. 4 — not in the corpus). Set ~1580; the conservative hoard-only bound would be ~1560.
+
+**Status — 1396 to 1514 (both firm).**
+- Start 24 Jan 1396 (Margrete's forordning, Viborg; §3.11) — the dated royal act restarting the national
+  coinage; it names no standard, the system is shown by the coins. Alternatives weighed: 1403 (first certain
+  production, Hanseatic complaints), 8 Oct 1424 (the only written common formula).
+- End 1514, the Møntordning of summer 1514 (first executed Danish grid, `8_5_gylden_fod`). The 1513 acts are
+  a stage: the Haandfæstning (22 July) sets 2 M d = 1 Gylden — the old Korshvid rate (Wilcke 7-1 s. 54
+  «*hver 2 M pleyer at være saa godhe som 1 ringyllen*»; 7-2 s. 149); Blicher's grid (1 Aug) cuts the
+  Skilling's link — «*Forholdet til den lybske ß ophævet*» (7-2 s. 151) — but «*der ikke er udmøntet
+  Skillinger til 32 Stkr. paa … Gyldenen*» (s. 152). Card row 1513 relabelled «Kurs», new row «Møntordning
+  1514 · Ende».
+- 1514–1540 is NOT Lübeck status: the 1514 and 1524 acts each set Sølvgylden and small coin in one grid on
+  one silver level (24 ß = 23,904 g = 72 Hvide per Gylden, Wilcke 7-2 s. 154), so the small coin belongs to
+  `8_5_gylden_fod` / `8_gylden_fod` (instrument dossiers 1514 §4, 1524 §7). The 1523 clause «*lige god ved
+  lybsk, hamborgsk oc Landte Holsten*» is a par promise without a formula. Option «extend status to 1541»
+  proposed and withdrawn.
+
+**Minting — c. 1350 to 1513.** First Flensborg Witten (Lindahl s. 74); last issue Christian II's Hvid 1513.
+After 1513 the Lübeck standard was still struck in the duchies — Holstein Doppelschillinge of Frederik I
+(from 1522) and Christian III (1534–1537) «*offenbar … gefolgt*», Flensburg 1544 «*sollte ausdrücklich nach
+lübischem Fuß geprägt werden*» (Jesse 1928 S. 138) — but not in the kingdom; those coins sit in
+`seed_unsorted` (open, §9).
+
+**Galster 43 — Hvid 1513, Malmø (Schou 1–3) → this card, period I.**
+- danskmoent `chr/c2g43.htm`: «*Denne hvid er den eneste type fra Christian 2.s første møntordning*»; 1,04 g,
+  0,246 — the ordinance target (Hvid 222/M at 4½ lod «værksølv» = 246 ‰), not an assay.
+- Galster (galkult): «*af bevarede Mønter kendes kun Hvide med Aarstal 1513 … 230-250 Tusinddele … 0,59-0,82g*».
+- Target fine weight: Galster (230 g mark, værksølv) 0,25 g «*den samme som Kong Hans'*»; Wilcke (233,855 g,
+  face lod) 0,296 g vs Hans 0,25 g, «*nogen virkelig Forbedring af Mønten var det ikke, kun en Forenkling og
+  Enhed*» (7-2 s. 151–152). Specimens [C]: 0,59–0,82 g × 230–250 ‰ = 0,14–0,20 g fine; Hans' late 4-lod Hvide
+  0,72–0,90 g × 250 ‰ = 0,18–0,22 g. Reckoning 96 Hvide = 1 Gylden = the old Korshvid rate.
+- The real break in the Hvid line is 1514: Hvid 220/M at 5 lod = 0,332 g fine, 72 per Gylden.
+- Classified `luebischer_muenzfuss` I, kind kurant (provisional) — curator 2026-11-04.
+
 ## §4. Instruments
 
 | Date | Instrument | Role for the card | Register / dossier |
@@ -1786,12 +1849,14 @@ German names on the Denmark page: Witten, Dreiling (Lindahl «Dreling», Numista
 
 ## §5. Cessation
 
-The card ends for Denmark in **1513**: Christian II's håndfæstning («*thue mark giør fyldest
-for en … rhinsk Gylden*») and Blicher's grid set a Danish mark of 32 ß = 96 Hvide per Gylden
-detached from the Lübeck ß (Wilcke 7-2 s. 149–151: «*Forholdet til den lybske ß ophævet*»);
-1514 returns to 24/72 per Gylden but with the Sølvgylden as head coin — a new standard
-(`8_5_gylden_fod`). Indirect end by the curator's rule for undeclared ends (2026-10-11):
-mark approximate if the card shows it as a status end.
+**Revised 2026-11-04 (§3.14): the status ends in 1514**, with the Møntordning of summer 1514 — the first
+executed Danish grid (`8_5_gylden_fod`). The 1513 acts are a stage: Christian II's håndfæstning
+(«*thue mark giør fyldest for en … rhinsk Gylden*») restates the old Korshvid rate; Blicher's grid
+(32 ß = 96 Hvide per Gylden, Wilcke 7-2 s. 149–151: «*Forholdet til den lybske ß ophævet*») was executed
+only for the Hvid, at Hans' level (Galster 43), and its Skilling was not struck. Minting ends 1513;
+circulation of the old coin runs on to c. 1580.
+
+*Superseded (2026-10-11 … 2026-11-04):* the card ended in 1513 as an indirect end, marked approximate.
 
 ## §6. Our data (2026-10-15, after the relocations)
 
@@ -2134,3 +2199,8 @@ Built 2026-10-15 (card, page section, phase I, timeline bar; no coins yet). Grid
 | Hans' Holstein Blaffert (Sømod D103) in our data | a harvest of Lange / NGC / KMM entries with the Oldenburg bars alone |
 | Weight base in Norway before 1514 (Holst's inference) | Norwegian accounts or a Norwegian ordinance of Hans (none known) |
 | Card grid: Schilling 103½/9-lot as the defining value, or the Mark lübsch | curator, at plan step 3.2 |
+| Written mention of Korshvide in 1580 (end of circulation) | Bager & Jensen, «Papir-skattefund» fra Frederik II's og Christian IV's Malmø, NNUM 1987 s. 2–6 (not in the corpus) |
+| Lübeck coin in Danish deeds from 1330 — the underlying list | Hauberg, Aarbøger 1884 s. 217 ff., 265 (not in the corpus) |
+| Holstein standard — a numerical norm behind «12 sol. Vlensbergenses : 10 sol. Lubicenses»? (§3.13) | Nöbbe, «Flensborg som Møntsted», Num. F. Mbl. XII; NNÅ 1942 s. 101 |
+| Duchy coins on the Lübeck standard 1514–1559 (Witten, Schilling, Doppelschilling, Sechsling, «Blaffert lybsk»; all `seed_unsorted`) — this card (status / mint in the duchies) or another | curator; Jesse S. 138; Wilcke 7-3 / 7-4 for Flensburg 1544 |
+| Small coin 1514–1540 (Skilling, Hvid, Klipping, Søsling; `seed_unsorted`) — belongs to 8½- / 8-Gylden-Fod by the acts (§3.14) | per-Fuß review of those cards |
