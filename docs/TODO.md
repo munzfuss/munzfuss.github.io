@@ -1671,6 +1671,20 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 ## Normal priority
 
+### EF. 🟡 Schleswig-Holstein page: show the duchy coins of Lybsk Møntfod period II  *(opened 2026-11-04)* *(est: 1 session)* *(type: data)*
+
+Curator 2026-11-04: «запиши щоб ми не забули». On 2026-11-04 (`214287a`) 44 duchy classes 1514–1567
+(royal Schleswig 26, royal Holstein 16, Gottorp 2) were classified `luebischer_muenzfuss` / II on the
+Denmark page. The Schleswig-Holstein page (munzfuss) has no Lybsk Møntfod card, so the build drops them
+there («fuss 'luebischer_muenzfuss' not on this page») — before, they showed among the unsorted coins, and
+the Flensborg Skilling / Søsling Lybsk 1566 (c-0f59252a, c-92caf7d6) under `9_thaler` I.
+
+**To do when the SH page is worked on:** give these coins a classification valid on the SH page too —
+the phase dict-form per V2_PIPELINE.md §5 (fuss/phase per location), or a Lübeck-standard card / phase on
+the SH page. List of classes: commit `214287a` message and `data/v2/classification_decisions/
+{royal_slesvig,royal_holstein,gottorp_duchy}.yml` entries with reason «… Period II, by first year (curator
+2026-11-04 …)». Background: `docs/research/luebischer_muenzfuss.md` §3.15.
+
 ### EC. 🔵 KMM photos keep appearing — re-check «no photo» decisions periodically  *(opened 2026-10-20)* *(est: 1 session per check)* *(type: audit)*
 
 Curator 2026-10-20: the Royal Coin Cabinet is still photographing its holdings,
