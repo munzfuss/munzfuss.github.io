@@ -603,7 +603,7 @@ grid to the gram are «(§)» candidates on the readings sourced «hede» (D8).
   Harck NR 84 (2005); Jørgensen 1888; Sorterup, *Kreber Myntsamling* 1841.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-04): C1 1.5 · C2 2.0 (the five-sort grid from
+Score (research-dossier rubric, self-assessed 2026-11-04, commit 1037bef): C1 1.5 · C2 2.0 (the five-sort grid from
 the Bestalling and its renewal, every cell recomputed and checked against Wilcke's table and Hede; the
 three outside assays and Hamburg's valuations recomputed to fine silver; the Afgift a labelled gap) ·
 C3 2.0 · C4 1.5 (Wilcke's paraphrase named as the only reading; the HTML table's artefacts, Wilcke's
