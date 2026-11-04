@@ -1955,15 +1955,36 @@ unknown or undifferentiated for every coin except Flensborg's Skilling: Hede 30A
 «1560, 1566, 1570–1571» without separating years, Blaffert Hede 32 and Penning Hede 33 have no figures. The one
 comparison — the wardein's «3 Penninge for ringe» — shows the 1571 Skilling WORSE than the 1566 one
 (≈ 9 Pf against ≈ 10,5 Pf of a circle Schilling, computed), i.e. below the circle norm too. It therefore belongs
-to no other standard than the Lübeck one, further debased: the old nominals and the old formula continued by
-inertia after the circle ordinance of 31 Jan 1568, with further deterioration. Logic adopted: the period is
+to no other standard than the Lübeck one: the old nominals and the old formula continued by inertia after the
+circle ordinance of 31 Jan 1568, possibly with further deterioration.
+⚠ **Correction (2026-11-04, same day).** The two 1571 visitations disagree. Wilcke 7-5 s. 353, Rantzau to the king,
+11 May 1571: the circle wardein «*for 8 Dage siden (altsaa formentlig paany) har prøvet hans Mønt og fundet den fuld
+og vigtig*» (transl.: «8 days ago (so presumably again) tested his coin and found it full and of correct weight»).
+So «worse than 1566» rests on the FIRST test only and is not established; the second found the coin up to the
+circle standard (another batch, or a corrected striking — the source does not say). The period end does not depend
+on it: it rests on the continuity of nominals and type.
+**Weights (Nöbbe 1938, tables reproduced as images on danskmoent, transcribed 2026-11-04,
+`scripts/cache/danskmoent/galster/gif_specimen_tables.yml`).** Blaffert «II D» 1566: 0,44–0,65 g (7 specimens),
+1571: 0,61 g; Penning «I D» 1566: 0,36 g, 1571: 0,40 g. No fall across 1568: the small coin was struck as before,
+within the new legal frame (Nöbbe 1938: the 1571 Blaffert «*kun adskiller sig ved Aarstallet*» from Køppelin's).
+For comparison (Jesse 1928 s. 209): Wendish Blaffert 1546 480/M, 4 lot, 0,49 g, Mark fein = 20 M; circle Pfennig
+26 Apr 1572 654/M, 2 L 15½ gr, 0,388 g, Mark fein = 19 M — the smallest coin's norm barely moved. No fineness of
+any Flensborg piece is known, so no Mark-fein figure for them. The 1571 weights (nobbe7) are printed only in the
+article, not on the coin pages, so they are not attached to the coins. Logic adopted: the period is
 defined by the small coin's metrological lineage, not by the legal frame (consistent with 1544–1567, where the
 small coin was placed here although the full-value coin was the Daler). So: period II 1514–1571 (last striking,
 Wegener's Flensborg Skilling 1571); Hede 30B (c-e84168b2) moved from `9_thaler` I to period II, reversing the
 2026-10-09 restoration. The 1568 change is a change of legal frame inside the period. The «1571» weight on
 Hede 30B's seed is the 1567 assay as danskmoent prints it for the whole Hede 30 entry, not a 1571 measurement.
-Still open: the Gottorp Pfennig «1571–1572» (NGC, c-41ae6959, seed_unsorted) and the KMM 1571 Skilling /
-Schilling / Blaffert / Penning records in danish_realm seed_unsorted (likely duplicates of the Flensborg classes).
+Gottorp MB 1 / MB 2 (NGC / NumisMaster, «Adolf») resolved the same day: same types as Hede 33 / Hede 32
+(identical description; Lange II s. 302 attributes the group to Duke Adolf, Nöbbe 1938 to Flensborg under
+Frederik II by Wegener's acorn; the Flensborg mint was royal — Frederik II appointed Køppelin 1566 through his
+Amtmand, Wegener 1570, and the Slesvig Landdag petitioned the king to stop it, Nöbbe 1930 s. 12, Wilcke 7-5
+s. 353). Merged into the Hede classes (royal_slesvig); «Adolf» marked (!) on the seeds; MB 2's years 1560 / 1570
+marked (!) (Nöbbe 1938 n. 2: misread 1566); NumisMaster's «1571–1572» for MB 1 marked (*) (1572 attested nowhere
+else, mint closed 1571). Still open: the KMM 1571 Skilling / Schilling / Blaffert / Penning records in
+danish_realm seed_unsorted (likely duplicates of the Flensborg classes; kmk-156812 / -156813 may be the
+«MK København» 1571 Blaffert 0,61 g / Penning 0,40 g of Nöbbe's table — hypothesis, KMM gives no weight).
 
 **Timeline consequence.** Minting stripe extends to 1571 once period II's coins are classified (it follows the
 coins); status stays 1396–1514 (kingdom); circulation unchanged.

@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 72 active, 1 retired.
+# 72 active, 3 retired.
 
 id: royal_slesvig
 classes:
@@ -42,13 +42,6 @@ classes:
       - dk-numista-309416
       - ngc-167741
       - schleswig_holstein-numismaster-167741
-  - id: c-0ed8c44f
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-f2h33
-    legacy_id: unified-dk-hede-f2h33
-    members:
-      - dk-hede-f2h33
   - id: c-0f59252a
     status: active
     created: '2026-10-22'
@@ -214,6 +207,15 @@ classes:
       - kmk-736276
       - kmk-736277
       - kmk-736278
+  - id: c-41ae6959
+    status: active
+    created: '2026-10-22'
+    label: unified-dk-hede-f2h33
+    legacy_id: unified-ngc-166851
+    members:
+      - dk-hede-f2h33
+      - ngc-166851
+      - schleswig_holstein-numismaster-166851
   - id: c-4362cae3
     status: active
     created: '2026-10-22'
@@ -317,6 +319,15 @@ classes:
     legacy_id: unified-dk-galster-f1g-78
     members:
       - dk-galster-f1g-78
+  - id: c-793e1d8d
+    status: active
+    created: '2026-10-22'
+    label: unified-dk-hede-f2h32
+    legacy_id: unified-ngc-166852
+    members:
+      - dk-hede-f2h32
+      - ngc-166852
+      - schleswig_holstein-numismaster-166852
   - id: c-7c72fcb2
     status: active
     created: '2026-10-22'
@@ -485,13 +496,6 @@ classes:
     legacy_id: unified-dk-galster-f1g-129
     members:
       - dk-galster-f1g-129
-  - id: c-c4209752
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-hede-f2h32
-    legacy_id: unified-dk-hede-f2h32
-    members:
-      - dk-hede-f2h32
   - id: c-c4b899ff
     status: active
     created: '2026-10-22'
@@ -624,3 +628,21 @@ classes:
     retired: '2026-10-26'
     members:
       - dk-galster-f1g-79
+  - id: c-0ed8c44f
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-f2h33
+    legacy_id: unified-dk-hede-f2h33
+    merged_into: c-41ae6959
+    retired: '2026-11-04'
+    members:
+      - dk-hede-f2h33
+  - id: c-c4209752
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-hede-f2h32
+    legacy_id: unified-dk-hede-f2h32
+    merged_into: c-793e1d8d
+    retired: '2026-11-04'
+    members:
+      - dk-hede-f2h32

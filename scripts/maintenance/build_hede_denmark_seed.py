@@ -793,6 +793,51 @@ _DANSKMOENT_BASE = "https://www.danskmoent.dk"
 from fetch_hede import IRREGULAR_COIN_PAGES as _IRREGULAR_COIN_PAGES  # noqa: E402
 
 
+def _page_basename(cm) -> str | None:
+    """Cache basename of the danskmoent page a coin was built from (the
+    stem of its first source URL), or None for an overview-page citation."""
+    srcs = cm.get("sources") or []
+    url = (srcs[0].get("url") if srcs else None) or ""
+    base = url.rsplit("/", 1)[-1].removesuffix(".htm")
+    if not base or re.match(r"^n?[cf]\d+hede\d*$", base):
+        return None
+    return base
+
+
+def _apply_page_specimen_tables(coins: list) -> int:
+    """Add the specimen weights printed in an image on the coin's OWN page
+    (lib.danskmoent_specimen_tables; curator 2026-11-04 — Nöbbe 1938's
+    tables on f2h32 / f2h33 / c3h24 / c3h25). A page that yields several
+    coins takes a table only when the table names its coin."""
+    from lib.danskmoent_specimen_tables import readings_for_page
+    per_page: dict[str, int] = {}
+    for cm in coins:
+        b = _page_basename(cm)
+        if b:
+            per_page[b] = per_page.get(b, 0) + 1
+    n = 0
+    for cm in coins:
+        b = _page_basename(cm)
+        if not b:
+            continue
+        cat = cm.get("catalog") or {}
+        key = f"hede {cat.get('hede_volume', '')}{cat.get('hede', '')}".lower()
+        readings = readings_for_page(HEDE_CACHE / f"{b}.htm", {key}, per_page[b])
+        if not readings:
+            continue
+        existing = cm.get("weight_rough_g")
+        lst = []
+        if isinstance(existing, (int, float)):
+            lst.append({"value": float(existing), "source": cm["sources"][0]["ref"]})
+        elif isinstance(existing, list):
+            lst.extend(existing)
+        lst.extend(readings)
+        cm["weight_rough_g"] = lst
+        cm["weight_rough_verified"] = True   # printed by the source (the image)
+        n += 1
+    return n
+
+
 def _danskmoent_url(basename: str) -> str:
     """Reconstruct the per-coin URL from a cache basename.
 
@@ -1633,6 +1678,10 @@ def main() -> int:
         else:
             stats["skipped_no_specs"] += 1
             continue
+
+    n_tab = _apply_page_specimen_tables(coins)
+    if n_tab:
+        print(f"  specimen tables (images on the coin's own page): {n_tab} coin(s)")
 
     # V2-native write: delegate to shared `write_v2_seed`, which groups
     # by `issuing_entity`, applies lib.seed_merge.merge_seed per-entity

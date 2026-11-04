@@ -1371,6 +1371,53 @@ def apply_caption_diameters(entries: list[dict], captions: dict[str, list[dict]]
     return n
 
 
+_COIN_PAGE_RE = re.compile(r"/((?:chr|fr)/[cf]\d+g[0-9a-z]+)\.htm$", re.I)
+
+
+def apply_page_specimen_tables(entries: list[dict],
+                               held: dict[str, set[str]] | None = None) -> int:
+    """Add the specimen weights printed in an image on the coin's OWN
+    Galster page (`fr/f1g128.htm` → cache `fr_f1g128.htm`;
+    lib.danskmoent_specimen_tables, curator 2026-11-04). Denomination
+    overview pages (blaflybs.htm, 1penlybs.htm …) show several coins and
+    are not a coin's own page, so they are never read here. Skipped when
+    the curator holds `weight_rough_g`."""
+    from lib.danskmoent_specimen_tables import readings_for_page
+    held = held or {}
+
+    def _pages(e):
+        out = []
+        for s in e.get("sources") or []:
+            m = _COIN_PAGE_RE.search(s.get("url") or "")
+            if m:
+                out.append(m.group(1).replace("/", "_").lower())
+        return out
+
+    per_page: dict[str, int] = {}
+    for e in entries:
+        for pg in _pages(e):
+            per_page[pg] = per_page.get(pg, 0) + 1
+    n = 0
+    for e in entries:
+        if "weight_rough_g" in held.get(e.get("id"), ()):
+            continue
+        g = (e.get("catalog") or {}).get("galster")
+        keys = {f"galster {v}".lower() for v in (g if isinstance(g, list) else [g]) if v}
+        readings = []
+        for pg in _pages(e):
+            readings += readings_for_page(GALSTER_CACHE / f"{pg}.htm", keys, per_page[pg])
+        if not readings:
+            continue
+        existing = e.get("weight_rough_g")
+        lst = list(existing) if isinstance(existing, list) else (
+            [{"value": float(existing), "source": e["sources"][0]["ref"]}]
+            if isinstance(existing, (int, float)) else [])
+        e["weight_rough_g"] = lst + readings
+        e["weight_rough_verified"] = True
+        n += 1
+    return n
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--dry-run", action="store_true")
@@ -1383,6 +1430,8 @@ def main() -> int:
     print(f"  Illustration-caption weight ranges applied: {n_cap}")
     n_dia = apply_caption_diameters(entries, captions)
     print(f"  Illustration-caption diameters applied: {n_dia}")
+    n_tab = apply_page_specimen_tables(entries, _held_fields())
+    print(f"  Specimen tables (images on the coin's own page): {n_tab}")
     entries.sort(key=lambda e: (e.get("year_first", 9999), e.get("id", "")))
 
     from collections import Counter

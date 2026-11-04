@@ -2310,6 +2310,14 @@ one `diameter_mm` reading (source «danskmoent.dk <page>») only where the coin
 has no diameter — rows of classes that already have one carry
 `diameter_use: false` (curator 2026-10-21).
 
+**Specimen tables in images (2026-11-04).** Besides type captions, some coin pages show an image
+that is a TABLE of individual specimens (collection + weight) — Nöbbe 1938's Flensborg Blafferte
+and Penninge (`gif/nobbe1–7.gif`) on Hede c3h24 / c3h25 / f2h32 / f2h33 and Galster f1g128.
+Transcribed by hand into `galster/gif_specimen_tables.yml`; `lib/danskmoent_specimen_tables.py`
+gives a table's weights ONLY to the coin whose own cached page embeds the image (curator: read
+from the coin's page, not from the article that reproduces every table). Used by the Hede and
+Galster seed builders. An image shown only in the article (nobbe7, the 1571 pieces) reaches no coin.
+
 ### 13.27 Danish coins before 1481 — which source has them (2026-10-25)
 
 Measured when the Lybsk Møntfod was extended back to Galster 1 (Ribe hvid,
