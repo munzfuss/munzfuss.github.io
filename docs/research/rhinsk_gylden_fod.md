@@ -377,6 +377,23 @@ of that date are nobles, écus, Lübeck and Hungarian gulden, not Rhenish).
   lejetropper i krigen mod Sten Sture» (danskmoent hg27 after Zinck).
   Hvitfeldt: «150,000 rhinske Gylden til Toget mod Sverige 1497» (Wilcke 6);
   the cavalry alone cost «15,000 Gylden maanedlig i Sold» (Wilcke 6 n. 23).
+- **Strike year, all datings (2026-11-04).** No source gives a documented
+  strike year; the pieces are undated. Bruun Part III lot 11151 «ND
+  (1496-1497)», Part I lot 1002 «ND (ca. 1496-1497)»; danskmoent hg27 after
+  Zinck I p. 9 «formentlig slået omkring 1497»; Denar til daler 2018 p. 447:
+  Huitfeldt's 150 000 gulden for the conflict of 1497, «Tidsmæssigt og
+  variantmæssigt kan det godt passe sammen»; Galster 1936 (Nordisk Kultur,
+  danskmoent galkult), after the Nobel 1496: «Samtidig er sandsynligvis de
+  rhinske Gylden blevet udmøntet», and the gulden paid the troops «til Toget
+  mod Sverige 1497». Numista 355730 and IKMK 18206592 give the reign only.
+  The ½ gulden (Galster 28) has no year in any source; Denar til daler p. 447
+  ties it to the full gulden («formodentlig er produceret på samme tid som de
+  andre»). **Curator 2026-11-04:** both are dated 1496-1497 (?) — Galster 27
+  as given by Bruun, Galster 28 compiled from it — replacing the 1497 of
+  2026-10-10 (`49adeda`); `first_mint.anywhere` and the Denmark-page card,
+  phase I and timeline move from ~1497 to ~1496. The 1496-1497 window is the
+  armament for the Swedish campaign of 1497; Galster's «samtidig» with the
+  Nobel is his hypothesis («sandsynligvis»), not a document.
 - **Norm it imitates:** the imperial 71⅓ / 18½. Wilcke 6: Hans «var den første
   danske Konge, der lod slaa Guldmønt»; the gulden «var holdt i Skrot, men
   ingenlunde … i Korn». Schive weighed it 3,283 g — «paa det nærmeste … 72
