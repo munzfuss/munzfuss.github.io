@@ -81,9 +81,9 @@ consumes_entities:
   - entity: glucksburg_duchy
     year_to: 1779
 fuss_order:
-  - nobel_fod
-  - reichsdukatenfuss
   - rhinsk_gylden_fod
+  - reichsdukatenfuss
+  - nobel_fod
   - f2_guldkrone_fod
   - rosenobel_fod
   - 115_5_daler_fod
@@ -121,7 +121,7 @@ timeline:
     - circulation
   bars:
     - id: nobel_fod
-      order: 0
+      order: 1
       label:
         de: Nobelfod · Nobel
         en: Nobelfod · Nobel
@@ -149,7 +149,7 @@ timeline:
         - scope: anywhere
           kind: circulation
     - id: rhinsk_gylden_fod
-      order: 1
+      order: 0
       label:
         de: Guldgyldenfod · Goldgulden
         en: Guldgyldenfod · Goldgulden
