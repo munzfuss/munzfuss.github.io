@@ -1931,7 +1931,23 @@ later cards (9-Thaler-Fuß, 9¼-Thaler-Fuß, Kronemønt, …) where classified; 
 - So Flensborg's 1569–1571 coins «*som Lybecksk og Hamburgsk Skrot*» followed towns that themselves now struck
   by the circle ordinance; the circle's general wardein judged them (9 Pf for 12). The formula of period II ends
   with the circle ordinance of 31 Jan 1568 (last Wendish Münztag 7 Feb 1569); Flensborg 1571 and Gottorp after
-  1568 belong to the circle standard. Proposal to the curator: period II 1514–1568.
+  1568 belong to the circle standard. Proposal to the curator: period II 1514–1568 — refined below to 1514–1567.
+
+**The border coins — which formula (2026-11-04, curator question).**
+- Flensborg 1566–67 (Køppelin), Wilcke 7-5 s. 352 table: Hamburg Schilling 128 / M at 6 lod 1 quintin, 1,827 g,
+  0,714 g fine; Flensborg Schilling «*efter Prøve*» 126 / M, 1,856 g, 0,725 g fine; Flensborg Søsling 208 / M at
+  5 lod 1 quintin, 0,369 g fine. The 22 Apr 1567 assay: «*Lubecks og Hamburgs Mønt var ikke bedre*», the king
+  (11 June 1567): the coin «*var lige god med Lybæk og Hamburgs*». Struck 17 Apr 1566 – 13 Mar 1567 and
+  18 June – 2 Dec 1567 (Gopelius account, s. 353). [C] Mark lübisch per fine mark: Flensborg Schilling 20,2,
+  Søsling 19,8, Hamburg Schilling 20,5 — the Wendish level (1546: 19,6), NOT the circle's 17,7. → old formula.
+- Flensborg 1570–71 (Wegener, appointed 26 Oct 1570 for one year): no parameters of his own known; the circle
+  wardein Hans Walter found the Schilling «*3 Penninge for ringe*» (s. 353) — measured against the circle
+  standard, i.e. struck when the towns already coined by the circle ordinance. [C] 9 Pf of a circle Schilling
+  = 23,6 Mark per fine mark. → circle period, debased; not period II.
+- Adolf's Pfennige «1560, 1566, 1570-1571» (NGC) and «1571-1572»: no assay or ordinance figure in our sources;
+  placed by first year (§8.2): the 1560 class in period II, the 1571–72 class after it.
+- Last attested striking on the Wendish formula: Flensborg, 2 Dec 1567. The circle Münzordnung follows on
+  31 Jan 1568. Proposal: period II 1514–1567.
 
 **Timeline consequence.** Minting stripe extends to 1571 once period II's coins are classified (it follows the
 coins); status stays 1396–1514 (kingdom); circulation unchanged.
