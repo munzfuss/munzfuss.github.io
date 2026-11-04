@@ -1730,6 +1730,47 @@ was probably struck somewhat earlier — time is needed for striking, circulatio
 finding that it was probably worse than Lübeck's, and the drafting of the complaint. Consistent with Moesgaard's
 «1400-tallets allerførste år» for the Næstved Hvid (Witten). In card prose «c. 1400» must stay marked approximate.
 
+### §3.13 Flensborg's «Holstein standard» — a standard of its own or the Lübeck one struck worse? (2026-11-04, curator question, agreed)
+
+Trigger: Lindahl 1955 s. 74 n. 3 on the legend «MONETA HOLSACIE» of the Flensborg Witten: «*mønten er slået efter
+den holstenske møntfod, der ikke nøjagtig kendes, men som i kilder nævnes som lidt ringere end den lybske*» [the coin
+is struck on the Holstein standard, not exactly known, but named in the sources as somewhat worse than the Lübeck one].
+Question: does that make Flensborg's coins (period 0, 1350–1392) a different standard, out of the Lybsk Møntfod?
+
+**Evidence**
+- Type and denominations follow Lübeck. Lindahl n. 3: «*Denne og de følgende typer svarer med hensyn til korsformen
+  nøje til de lybske før og efter recessen 1379*». Jesse 1928 S. 79: the Witten of Kiel, Rendsburg, Itzehoe and
+  Flensburg «*die dem Beispiel der Hansestädte folgend Witten nach gleichem Typ prägten, erreichten ähnliche
+  Gewichte*»; S. 80: the Viertelwitten of Flensburg «*schließen sich an*». Witten 4 Pf / Viertelwitten 1 Pf / Dreiling
+  3 Pf — the Wendish set.
+- Where a separate standard existed, Jesse names it: same paragraph S. 79, Rostock, Gnoien, Güstrow struck
+  «*gleichzeitig nach dem leichteren slavischen Fuß (0,73 —0,85 g)*». For Holstein he gives no Fuß — only bad money.
+  Lindahl himself: the Holstein standard «*ikke nøjagtig kendes*». No act or parameter for it is known.
+- Orientation on the towns: Jesse S. 86 — after the ban of Kiel and Flensburg money (Lübeck, March 1369) Kiel asked
+  the towns «*ihr eine Silberprobe als Stal zu überlassen, um sich danach richten zu können*».
+- Size of the shortfall, period rates: 1374 «Holsten ghelt» 26 Mark = 22 Mark Hamburg pennies (84,6 %), «Kyler
+  ghelt» 13½ = 11 (81,5 %) (Jesse S. 86, text garbled in our layer); 1380 Urban VI «*12 sol. Vlensbergenses: 10 sol.
+  Lubicenses*» (83,3 %; Lindahl n. 3, Dipl. Norv. 17 nr 923). Lübeck 1367 / 1369: Flensburg and Kiel money
+  «*minderwertig*», banned (Jesse S. 86).
+- Assays [C] (Lindahl mean weight × fineness; worn specimens, indicative): Flensborg Witten before 1379 1,29 g × 779
+  = 1,005 g fine vs Lübeck Witten 1375 176 / 13 = 1,079 (≈ 93 %); Ribe Witten 1,19 × 800 = 0,952 (≈ 88 %); Flensborg
+  Dreling 0,90 × 675–759 = 0,61–0,68 vs Lübeck Dreiling 1392 230 / 12 = 0,762 (80–90 %); Viertelwitten 0,34 × 530 =
+  0,18 vs Lübeck 516 / 9 ≈ 0,25 (≈ 71 %).
+- Comparison inside the card: Erik VII's sterling 6,1–9,8 Mark per fine mark against Lübeck's 5,1, the 1430s Gros
+  20,8–37,2 (§3.11, §3.12) — larger departures, already kept in the Lybsk Møntfod.
+
+**Conclusion (curator agreed 2026-11-04).** The «Holstein standard» is the Lübeck (Wendish) system — same mark,
+denominations, type and reckoning in Lübeck ß — struck about 15–17 % worse by the period rates; no separate standard
+is attested. Flensborg's coins stay in the Lybsk Møntfod, phase 0, like the debased Danish coins of 1403–1440s.
+Hypothesis left open: the 10 : 12 rate may reflect a deliberately lower norm rather than poor execution; no numerical
+norm is known. Would settle it: E. Nöbbe, «Flensborg som Møntsted», Num. F. Mbl. XII s. 1 ff.; NNÅ 1942 s. 101 (both
+not in the corpus).
+
+**Nominals (curator 2026-11-04).** Flensborg's coins carry «MONETA HOLSACIE» on the Lübeck type, so they keep the
+German names on the Denmark page: Witten, Dreiling (Lindahl «Dreling», Numista «Dreiling»); the Viertelwitten shows as
+1 Penning (its value). Ribe's Witten, «civitas regni» (Lindahl s. 76 n. 6), stays Hvid. Code:
+`nominal_synonyms._ENTITY_KEEP_WITTEN` / `_ENTITY_FORMS`.
+
 ## §4. Instruments
 
 | Date | Instrument | Role for the card | Register / dossier |
