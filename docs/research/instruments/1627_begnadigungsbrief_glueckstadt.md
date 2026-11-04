@@ -435,7 +435,7 @@ Q1 (§8 Q1; FINDINGS §D). The 1617 Mark in the same final needs separating (D3)
   Benzon II; Jørgensen 1888; Hobbes Gedenckbuch; Bendixen 1974.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-04): C1 1.5 · C2 2.0 (the Mark grid and its
+Score (research-dossier rubric, self-assessed 2026-11-04, commit 3eaacbf): C1 1.5 · C2 2.0 (the Mark grid and its
 tolerances recomputed, every fraction of Wilcke's scheme and commentary verified, the København Marks
 of 1616–25 set beside it; the Afgift and the output labelled gaps) · C3 2.0 · C4 1.5 (Wilcke II's
 paraphrase as the only reading, Wilcke I's pages checked — his own p. 114 is p. 112; Hede's bundling
