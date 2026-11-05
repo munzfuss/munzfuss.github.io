@@ -16,6 +16,23 @@
 > `docs/TODO.md` (with full context).
 
 
+## 2026-11-05 — KMM «A eller B» mint places (branch claude/blissful-kirch-7b7be3)
+
+- **Shipped (local, unpushed):** d4dfde0 (builder keeps alternative mints as an unverified list; `seed_merge`
+  lets a source-hedged fresh mint beat a stale verified one; SOURCES §13.30; test), c773198 (seeds, no_merges
+  Galster 45 / kmk-156725, 31 stale final mints reset). Class membership equals a re-flow of clean HEAD.
+- **Open — KMM builder drift:** a full `build_kmk_seed.py --write` on HEAD's cache changes far more than this fix
+  (≈158 catalog collapses like `hede ['130','130B'] → '130B'`, 41 `_thinned_from` / sources changes, 26 seeds
+  removed, 2 ruler errata applied). Not applied; needs its own review before the next KMM regen.
+- **Open — HEAD finals are not a fixed point of absorb:** a merger+absorb of clean HEAD changes 14 final files
+  (medieval year ranges 1259-1360 emptied → verify_reflow blocks; KMM citation `display: False` flags). c773198
+  took only the 43 touched coins from the re-flow.
+- **Open — union-find over-merge:** the merger joins classes through a third record even when two members are a
+  pairwise `no_match` on distinct catalogue bases (Galster 45 vs 69). Curator chose a no_merges for now; a
+  class-level guard was proposed but not measured.
+- `build_bruun_denmark_seed.py` reads `scripts/cache/bruun` by the worktree path, not `MUNZFUSS_HARVEST_DIR` — in a
+  worktree without the submodule it reads 0 lots and writes nothing.
+
 ## 2026-11-03 — Reign gate, classification carry, weight-gate corrections (D53; branch claude/relaxed-mendeleev-72593f)
 
 - **Shipped on the branch (not merged into main, unpushed):** Hede index stubs dated by Hede's attributed year;
