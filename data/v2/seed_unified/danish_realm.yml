@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-04 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-05 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15220 per-source seed entries.
+# Input: 15225 per-source seed entries.
 # Output: 5920 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-04'
+generated_at: '2026-11-05'
 coins:
   - id: c-da3c53ad
     class_id: c-da3c53ad
@@ -14223,6 +14223,19 @@ coins:
           as_printed: 1 Skilling
           value: billon
           seed: dk-galster-f1g-61
+    ruler_alts:
+      - value: Christian 2
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer desselben Datensatzes gehört zu einer Münze Frederik I.\n[b]KMM 707672[/b]: Regent [i]«Christian 2»[/i], Typnummer [i]«G 61?»[/i].\n[b]danskmoent.dk (Galster 61)[/b]: Frederik
+            I, 1 Skilling, Malmø 1525, 1531."
+          en: "The type number in the same record belongs to a coin of Frederik I.\n[b]KMM 707672[/b]: ruler [i]«Christian 2»[/i], type number [i]«G 61?»[/i].\n[b]danskmoent.dk (Galster 61)[/b]: Frederik
+            I, 1 Skilling, Malmø 1525, 1531."
+          uk: "Номер типу в тому самому записі належить монеті Frederik I.\n[b]KMM 707672[/b]: правитель [i]«Christian 2»[/i], номер типу [i]«G 61?»[/i].\n[b]danskmoent.dk (Galster 61)[/b]: Frederik I,
+            1 Skilling, Malmø 1525, 1531."
+          da: "Typenummeret i samme post hører til en mønt fra Frederik 1.\n[b]KMM 707672[/b]: regent [i]«Christian 2»[/i], typenummer [i]«G 61?»[/i].\n[b]danskmoent.dk (Galster 61)[/b]: Frederik 1., 1
+            Skilling, Malmø 1525, 1531."
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g61.htm
@@ -14230,10 +14243,14 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/173820
         ref: KMM 173820 (Inv. FP 9827.547)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/707672
+        ref: KMM 707672 (Inv. FP 338.2)
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-f1g-61
       - kmk-173820
+      - kmk-707672
   - id: c-1eba9f4e
     class_id: c-1eba9f4e
     label: unified-dk-galster-f1g-63
@@ -14330,6 +14347,19 @@ coins:
           as_printed: Søsling
           value: billon
           seed: dk-galster-f1g-63
+    ruler_alts:
+      - value: Christian 2
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer desselben Datensatzes gehört zu einer Münze Frederik I.\n[b]KMM 572914[/b]: Regent [i]«Christian 2»[/i], Typnummer [i]«G. 63»[/i].\n[b]danskmoent.dk (Galster 63)[/b]: Frederik
+            I, 1 Søsling, Malmø 1524–1528."
+          en: "The type number in the same record belongs to a coin of Frederik I.\n[b]KMM 572914[/b]: ruler [i]«Christian 2»[/i], type number [i]«G. 63»[/i].\n[b]danskmoent.dk (Galster 63)[/b]: Frederik
+            I, 1 Søsling, Malmø 1524–1528."
+          uk: "Номер типу в тому самому записі належить монеті Frederik I.\n[b]KMM 572914[/b]: правитель [i]«Christian 2»[/i], номер типу [i]«G. 63»[/i].\n[b]danskmoent.dk (Galster 63)[/b]: Frederik I,
+            1 Søsling, Malmø 1524–1528."
+          da: "Typenummeret i samme post hører til en mønt fra Frederik 1.\n[b]KMM 572914[/b]: regent [i]«Christian 2»[/i], typenummer [i]«G. 63»[/i].\n[b]danskmoent.dk (Galster 63)[/b]: Frederik 1., 1
+            Søsling, Malmø 1524–1528."
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g63.htm
@@ -14596,6 +14626,12 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/559017
         ref: KMM 559017 (Inv. FP 10760.14)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/572914
+        ref: KMM 572914 (Inv. FP 11008.8)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/572915
+        ref: KMM 572915 (Inv. FP 11008.7)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/609076
         ref: KMM 609076 (Inv. FP 11671.2)
       - type: museum
@@ -14638,6 +14674,8 @@ coins:
       - kmk-371287
       - kmk-533253
       - kmk-559017
+      - kmk-572914
+      - kmk-572915
       - kmk-609076
       - kmk-621869
       - kmk-641996
@@ -109178,6 +109216,19 @@ coins:
           as_printed: 2 Skilling
           value: billon
           seed: dk-galster-c3g-105
+    ruler_alts:
+      - value: Christian 2.
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer desselben Datensatzes gehört zu einer Münze Christian III.\n[b]KMM 562736[/b]: Regent [i]«Christian 2.»[/i], Typnummer [i]«G 105»[/i].\n[b]danskmoent.dk (Galster 105)[/b]: Christian
+            III, 2 Skilling, København 1536."
+          en: "The type number in the same record belongs to a coin of Christian III.\n[b]KMM 562736[/b]: ruler [i]«Christian 2.»[/i], type number [i]«G 105»[/i].\n[b]danskmoent.dk (Galster 105)[/b]: Christian
+            III, 2 Skilling, København 1536."
+          uk: "Номер типу в тому самому записі належить монеті Christian III.\n[b]KMM 562736[/b]: правитель [i]«Christian 2.»[/i], номер типу [i]«G 105»[/i].\n[b]danskmoent.dk (Galster 105)[/b]: Christian
+            III, 2 Skilling, København 1536."
+          da: "Typenummeret i samme post hører til en mønt fra Christian 3.\n[b]KMM 562736[/b]: regent [i]«Christian 2.»[/i], typenummer [i]«G 105»[/i].\n[b]danskmoent.dk (Galster 105)[/b]: Christian 3.,
+            2 Skilling, København 1536."
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g105.htm
@@ -109403,6 +109454,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/533321
         ref: KMM 533321 (Inv. FP 10743.11)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/562736
+        ref: KMM 562736 (Inv. FP 10796.5)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/641542
         ref: KMM 641542 (Inv. FP 11811.24)
       - type: museum
@@ -109457,6 +109511,7 @@ coins:
       - kmk-331216
       - kmk-367973
       - kmk-533321
+      - kmk-562736
       - kmk-641542
       - kmk-682913
       - kmk-688190
@@ -113908,6 +113963,19 @@ coins:
           as_printed: 4 Skilling klipping
           value: billon
           seed: dk-galster-c3g-94
+    ruler_alts:
+      - value: Christian 2
+        source: kmk
+        kind: erroneous
+        reason:
+          de: "Die Typnummer desselben Datensatzes gehört zu einer Münze Christian III.\n[b]KMM 132586[/b]: Regent [i]«Christian 2»[/i], Typnummer [i]«G. 94»[/i].\n[b]danskmoent.dk (Galster 94)[/b]: Christian
+            III, 4 Skilling (klipping), Århus 1535."
+          en: "The type number in the same record belongs to a coin of Christian III.\n[b]KMM 132586[/b]: ruler [i]«Christian 2»[/i], type number [i]«G. 94»[/i].\n[b]danskmoent.dk (Galster 94)[/b]: Christian
+            III, 4 Skilling (klipping), Århus 1535."
+          uk: "Номер типу в тому самому записі належить монеті Christian III.\n[b]KMM 132586[/b]: правитель [i]«Christian 2»[/i], номер типу [i]«G. 94»[/i].\n[b]danskmoent.dk (Galster 94)[/b]: Christian
+            III, 4 Skilling (klipping), Århus 1535."
+          da: "Typenummeret i samme post hører til en mønt fra Christian 3.\n[b]KMM 132586[/b]: regent [i]«Christian 2»[/i], typenummer [i]«G. 94»[/i].\n[b]danskmoent.dk (Galster 94)[/b]: Christian 3.,
+            4 Skilling (klipping), Århus 1535."
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g94.htm
@@ -113922,6 +113990,9 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/132053
         ref: KMM 132053 (Inv. FP 9599.11)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/132586
+        ref: KMM 132586 (Inv. FP 9656.27)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/156740
         ref: KMM 156740 (Inv. RP 380.1)
@@ -113942,6 +114013,7 @@ coins:
       - dk-galster-c3g-94
       - dk-numista-476671
       - kmk-132053
+      - kmk-132586
       - kmk-156740
       - kmk-298795
       - kmk-370073
