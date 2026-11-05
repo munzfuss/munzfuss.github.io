@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `christian_ii_reconquest`.
-# Generated 2026-10-29 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-05 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/christian_ii_reconquest.yml across all sources.
 #
 # Input: 12 per-source seed entries.
-# Output: 8 unified entries (one per physical coin).
+# Output: 3 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: christian_ii_reconquest
-generated_at: '2026-10-29'
+generated_at: '2026-11-05'
 coins:
   - id: c-b6cb4ca2
     class_id: c-b6cb4ca2
@@ -27,19 +27,32 @@ coins:
           - 1532
     year_label: 1531-1532
     ruler: Christian II
-    mint: Christiania
+    mint:
+      - Christiania
+      - Hamar
     catalog:
       sieg: 1A
       bruun_collection_id: '9285'
       schou: '1'
       galster: '174'
       nmd: '5'
-      numista: '121905'
-      skaare: '320'
-      schive: XV.15
+      numista:
+        - '121905'
+        - '124917'
+        - '448563'
+      skaare:
+        - '319'
+        - '320'
+      schive:
+        - XV.14
+        - XV.14-15
+        - XV.15
       others:
         - Thesen# 6
         - Galster UU# 174
+        - Thesen# 5
+        - Thesen# 7
+      galster_volume: c2g
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -48,14 +61,29 @@ coins:
     mint_verified: true
     verified: false
     year_verified: false
+    year_conflict:
+      confident:
+        - seed: dk-galster-c2g-174
+          source: galster
+          years: '1531'
+      uncertain:
+        - seed: dk-bruun-9285
+          source: bruun
+          years: 1531-1532
     fineness:
+      - value: 0.875
+        source: galster
       - value: 0.875
         source: numista
     weight_rough_g:
       - value: 1.33
         source: bruun
       - value: 1.34
+        source: galster
+      - value: 1.34
         source: numista
+      - value: 1.63
+        source: kmk
     diameter_mm:
       - value: 12.0
         source: numista
@@ -72,50 +100,21 @@ coins:
           source: numista
           value: 1531-1532
           seed: dk-numista-121905
-    sources:
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 14002, p. 153
-      - type: literature
-        url: https://en.numista.com/121905
-        ref: Numista N#121905 — 2 Skilling Klipping - Christian II (Siege of Oslo) - Norway
-    issuing_entity: christian_ii_reconquest
-    composed_of:
-      - dk-bruun-9285
-      - dk-numista-121905
-  - id: c-7ffaee0f
-    class_id: c-7ffaee0f
-    label: unified-dk-galster-c2g-174
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: Søsling(?)
-    year_first: 1531
-    year_last: 1531
-    year_label: '1531'
-    ruler: Christian II
-    mint:
-      - Hamar
-      - Kopenhagen
-    catalog:
-      galster: '174'
-      schou: '1'
-      schive: XV.14-15
-      galster_volume: c2g
-    metal: billon
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verified: false
-    year_verified: true
-    fineness:
-      - value: 0.875
-        source: galster
-    weight_rough_g:
-      - value: 1.34
-        source: galster
-    uncertainty:
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1531-1532
+          seed: dk-numista-124917
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1531-1532
+          seed: dk-numista-448563
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1531-1532
+          seed: kmk-684215
       mint:
         - kind: hedged
           how: alternatives
@@ -131,12 +130,32 @@ coins:
           value: billon
           seed: dk-galster-c2g-174
     sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 14002, p. 153
       - type: literature
         url: https://www.danskmoent.dk/norge/nc2g174.htm
         ref: Galster 174 (c2g) — danskmoent.dk norge_nc2g174.htm
+      - type: literature
+        url: https://en.numista.com/121905
+        ref: Numista N#121905 — 2 Skilling Klipping - Christian II (Siege of Oslo) - Norway
+      - type: literature
+        url: https://en.numista.com/124917
+        ref: Numista N#124917 — 2 Skilling Klipping - Christian II (Siege of Oslo) - Norway (var)
+      - type: literature
+        url: https://en.numista.com/448563
+        ref: Numista N#448563 — 2 Skilling Klipping - Christian II (Siege of Oslo) - Norway
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/684215
+        ref: KMM 684215 (Inv. RP 1549.1)
     issuing_entity: christian_ii_reconquest
     composed_of:
+      - dk-bruun-9285
       - dk-galster-c2g-174
+      - dk-numista-121905
+      - dk-numista-124917
+      - dk-numista-448563
+      - kmk-684215
   - id: c-fdd1733d
     class_id: c-fdd1733d
     label: unified-dk-numista-121235
@@ -227,13 +246,18 @@ coins:
       - Christiania
       - Hamar
     catalog:
-      numista: '121903'
+      numista:
+        - '121903'
+        - '477387'
       skaare: '317'
       others:
         - Galster UU# 172
         - Brekke# 2
         - AAJT# 2
         - Thesen# 3
+        - Brekke# 1
+        - AAJT# 1
+        - Thesen# 2
       galster: '172'
       schou: '2'
       schive: XV.5
@@ -247,13 +271,19 @@ coins:
     verified: false
     year_verified: true
     fineness:
+      - value: 0.875
+        source: numista
       - value: 0.97
         source: numista
     weight_rough_g:
       - value: 6.45
         source: numista
+      - value: 6.7
+        source: numista
     diameter_mm:
       - value: 18.0
+        source: numista
+      - value: 24.0
         source: numista
     uncertainty:
       mint:
@@ -277,165 +307,11 @@ coins:
       - type: literature
         url: https://en.numista.com/121903
         ref: Numista N#121903 — 1 Mark Klipping - Christian II (Siege of Oslo; light) - Norway
-    issuing_entity: christian_ii_reconquest
-    composed_of:
-      - dk-galster-c2g-172
-      - dk-numista-121903
-  - id: c-79bb6035
-    class_id: c-79bb6035
-    label: unified-dk-numista-124917
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1531
-    year_last: 1532
-    year_ranges:
-      -   - 1531
-          - 1532
-    year_label: 1531-1532
-    ruler: Christian II
-    catalog:
-      numista: '124917'
-      skaare: '319'
-      schive: XV.14
-      others:
-        - Galster UU# 174
-        - Thesen# 5
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 1.34
-        source: numista
-    diameter_mm:
-      - value: 12.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/124917
-        ref: Numista N#124917 — 2 Skilling Klipping - Christian II (Siege of Oslo) - Norway (var)
-    issuing_entity: christian_ii_reconquest
-    composed_of:
-      - dk-numista-124917
-  - id: c-1b1bd2e9
-    class_id: c-1b1bd2e9
-    label: unified-dk-numista-448563
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 2 Skilling
-    year_first: 1531
-    year_last: 1532
-    year_ranges:
-      -   - 1531
-          - 1532
-    year_label: 1531-1532
-    ruler: Christian II
-    catalog:
-      numista: '448563'
-      others:
-        - Thesen# 7
-        - Galster UU# 174
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 1.34
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/448563
-        ref: Numista N#448563 — 2 Skilling Klipping - Christian II (Siege of Oslo) - Norway
-    issuing_entity: christian_ii_reconquest
-    composed_of:
-      - dk-numista-448563
-  - id: c-7c7cd5ba
-    class_id: c-7c7cd5ba
-    label: unified-dk-numista-477387
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Mark Klipping (Siege of Oslo; heavy)
-    year_first: 1531
-    year_last: 1531
-    year_label: '1531'
-    ruler: Christian II
-    catalog:
-      numista: '477387'
-      skaare: '317'
-      others:
-        - Galster UU# 172
-        - Brekke# 1
-        - AAJT# 1
-        - Thesen# 2
-    metal: silver
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: false
-    verified: false
-    fineness:
-      - value: 0.875
-        source: numista
-    weight_rough_g:
-      - value: 6.7
-        source: numista
-    diameter_mm:
-      - value: 24.0
-        source: numista
-    sources:
       - type: literature
         url: https://en.numista.com/477387
         ref: Numista N#477387 — 1 Mark Klipping - Christian II (Siege of Oslo; heavy) - Norway
     issuing_entity: christian_ii_reconquest
     composed_of:
+      - dk-galster-c2g-172
+      - dk-numista-121903
       - dk-numista-477387
-  - id: c-c9ba140b
-    class_id: c-c9ba140b
-    label: unified-kmk-684215
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Klipping søsling
-    year_first: 1531
-    year_last: 1532
-    year_ranges:
-      -   - 1531
-          - 1532
-    year_label: 1531-1532
-    ruler: Christian II
-    mint: Hamar
-    catalog:
-      galster: '174'
-      schou: '1'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.63
-        source: kmk
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/684215
-        ref: KMM 684215 (Inv. RP 1549.1)
-    issuing_entity: christian_ii_reconquest
-    composed_of:
-      - kmk-684215

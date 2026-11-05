@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/christian_ii_supporters.yml across all sources.
 #
 # Input: 37 per-source seed entries.
-# Output: 25 unified entries (one per physical coin).
+# Output: 16 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -144,7 +144,9 @@ coins:
     year_label: '1535'
     ruler: Christian II
     mintmaster: Jørgen Kock
-    mint: Kopenhagen
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       sieg:
         - '1'
@@ -166,6 +168,15 @@ coins:
       confident:
         - seed: dk-galster-c2g-91
           source: galster
+          years: '1535'
+        - seed: kmk-132277
+          source: kmk
+          years: '1535'
+        - seed: kmk-369313
+          source: kmk
+          years: '1535'
+        - seed: kmk-709729
+          source: kmk
           years: '1535'
       uncertain:
         - seed: dk-bruun-4149
@@ -191,6 +202,31 @@ coins:
           as_printed: ND (1535)
           value: '1535'
           seed: dk-bruun-4149
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1535'
+          seed: kmk-132277
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1534-1536
+          seed: kmk-292368
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: 1534-1536
+          seed: kmk-299152
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1535'
+          seed: kmk-369313
+        - kind: hedged
+          how: museum
+          source: kmk
+          value: '1535'
+          seed: kmk-709729
       metal:
         - kind: inferred
           how: from_name
@@ -211,10 +247,30 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g91.htm
         ref: Galster 91 (c2g) — danskmoent.dk chr_c2g91.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/132277
+        ref: KMM 132277 (Inv. FP 9623.28)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/292368
+        ref: KMM 292368 (Inv. FP 9092.5)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/299152
+        ref: KMM 299152 (Inv. FP 8563.18)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/369313
+        ref: KMM 369313 (Inv. FP 9779.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/709729
+        ref: KMM 709729 (Inv. FP 12320.26)
     issuing_entity: christian_ii_supporters
     composed_of:
       - dk-bruun-4149
       - dk-galster-c2g-91
+      - kmk-132277
+      - kmk-292368
+      - kmk-299152
+      - kmk-369313
+      - kmk-709729
   - id: c-ddefc984
     class_id: c-ddefc984
     label: unified-dk-galster-c2g-82
@@ -392,6 +448,7 @@ coins:
     year_label: '1535'
     ruler: Christian II
     mint:
+      - Güstow
       - Güstrow
       - Mecklenburg
     catalog:
@@ -399,8 +456,11 @@ coins:
       schou: 18-36
       sieg: '1'
       galster_volume: c2g
+      others:
+        - B# 33
+        - B# 36b
     metal: billon
-    metal_verified: false
+    metal_verified: true
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: true
@@ -433,9 +493,25 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g85.htm
         ref: Galster 85 (c2g) — danskmoent.dk chr_c2g85.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156732
+        ref: KMM 156732 (Inv. RP 372.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156733
+        ref: KMM 156733 (Inv. RP 373.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/317776
+        ref: KMM 317776 (Inv. FP 6758.24)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/570055
+        ref: KMM 570055 (Inv. FP 10923.4)
     issuing_entity: christian_ii_supporters
     composed_of:
       - dk-galster-c2g-85
+      - kmk-156732
+      - kmk-156733
+      - kmk-317776
+      - kmk-570055
   - id: c-d9b1339d
     class_id: c-d9b1339d
     label: unified-dk-galster-c2g-86
@@ -723,31 +799,6 @@ coins:
     composed_of:
       - dk-galster-c2g-90
       - kmk-156727
-  - id: c-9ec49a24
-    class_id: c-9ec49a24
-    label: unified-kmk-132277
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Firskilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian II
-    mint: Malmø
-    catalog:
-      galster: '91'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/132277
-        ref: KMM 132277 (Inv. FP 9623.28)
-    issuing_entity: christian_ii_supporters
-    composed_of:
-      - kmk-132277
   - id: c-9dd8075b
     class_id: c-9dd8075b
     label: unified-kmk-156730
@@ -784,141 +835,6 @@ coins:
     composed_of:
       - kmk-156730
       - kmk-156731
-  - id: c-93f47815
-    class_id: c-93f47815
-    label: unified-kmk-156732
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian II
-    mint: Güstow
-    catalog:
-      schou: '18'
-      others:
-        - B# 33
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156732
-        ref: KMM 156732 (Inv. RP 372.1)
-    issuing_entity: christian_ii_supporters
-    composed_of:
-      - kmk-156732
-  - id: c-f3f9287b
-    class_id: c-f3f9287b
-    label: unified-kmk-156733
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian II
-    mint: Güstow
-    catalog:
-      schou: '34'
-      others:
-        - B# 36b
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156733
-        ref: KMM 156733 (Inv. RP 373.1)
-    issuing_entity: christian_ii_supporters
-    composed_of:
-      - kmk-156733
-  - id: c-95eae681
-    class_id: c-95eae681
-    label: unified-kmk-292368
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1534
-    year_last: 1536
-    year_ranges:
-      -   - 1534
-          - 1536
-    year_label: 1534-1536
-    ruler: Christian 2 og grev Christoffer
-    catalog:
-      galster: '91'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/292368
-        ref: KMM 292368 (Inv. FP 9092.5)
-    issuing_entity: christian_ii_supporters
-    composed_of:
-      - kmk-292368
-  - id: c-de441a83
-    class_id: c-de441a83
-    label: unified-kmk-299152
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1534
-    year_last: 1536
-    year_ranges:
-      -   - 1534
-          - 1536
-    year_label: 1534-1536
-    ruler: Christian 2; Grev Christoffer af Oldenburg
-    mint: Malmø
-    catalog:
-      galster: '91'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/299152
-        ref: KMM 299152 (Inv. FP 8563.18)
-    issuing_entity: christian_ii_supporters
-    composed_of:
-      - kmk-299152
-  - id: c-45048c76
-    class_id: c-45048c76
-    label: unified-kmk-317776
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian 2´s tilhængere
-    catalog:
-      galster: '85'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/317776
-        ref: KMM 317776 (Inv. FP 6758.24)
-    issuing_entity: christian_ii_supporters
-    composed_of:
-      - kmk-317776
   - id: c-f7be1e3d
     class_id: c-f7be1e3d
     label: unified-kmk-331643
@@ -941,30 +857,6 @@ coins:
     issuing_entity: christian_ii_supporters
     composed_of:
       - kmk-331643
-  - id: c-40542ab7
-    class_id: c-40542ab7
-    label: unified-kmk-369313
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian 2 & Grev Christoffer af Oldenburg
-    catalog:
-      galster: '91'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/369313
-        ref: KMM 369313 (Inv. FP 9779.1)
-    issuing_entity: christian_ii_supporters
-    composed_of:
-      - kmk-369313
   - id: c-0c9e74a9
     class_id: c-0c9e74a9
     label: unified-kmk-417186
@@ -1009,31 +901,6 @@ coins:
     issuing_entity: christian_ii_supporters
     composed_of:
       - kmk-417187
-  - id: c-7f402d7e
-    class_id: c-7f402d7e
-    label: unified-kmk-570055
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Firskilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian II
-    catalog:
-      galster: '85'
-      schou: 18-36
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/570055
-        ref: KMM 570055 (Inv. FP 10923.4)
-    issuing_entity: christian_ii_supporters
-    composed_of:
-      - kmk-570055
   - id: c-3fdac63e
     class_id: c-3fdac63e
     label: unified-kmk-694936
@@ -1056,28 +923,3 @@ coins:
     issuing_entity: christian_ii_supporters
     composed_of:
       - kmk-694936
-  - id: c-6334074e
-    class_id: c-6334074e
-    label: unified-kmk-709729
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian 2; Christoffer af Oldenburg
-    mint: Malmø
-    catalog:
-      galster: '91'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/709729
-        ref: KMM 709729 (Inv. FP 12320.26)
-    issuing_entity: christian_ii_supporters
-    composed_of:
-      - kmk-709729
