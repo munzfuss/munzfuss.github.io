@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-11-02T17:25:34Z'
+generated_at: '2026-11-05T17:55:07Z'
 entity: danish_realm
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -127,18 +127,22 @@ coins:
       galster: '5'
       galster_volume: galster1972-erik7
     metal: billon
-    fineness: 0.0
+    fineness:
+      - value: 0.0
+        source: danskmoent.dk (Galster 5)
+      - value: 0.212
+        source: danskmoent.dk (Galster 5)
     weight_rough_g:
     issuing_entity: danish_realm
     verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    fineness_verified: true
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
         url: https://www.danskmoent.dk/epomg5.htm
         ref: Galster 5 (epomg) — danskmoent.dk epomg5.htm
-    metal_verified: false
+    metal_verified: true
     uncertainty:
       metal:
         - kind: inferred
@@ -152,6 +156,12 @@ coins:
           source: galster
           as_printed: ca. 1400-1420
           value: 1400-1420
+    weight_range_g:
+      - min: 0.21
+        max: 0.37
+        approx: false
+        source: danskmoent.dk (Galster 5)
+        url: https://www.danskmoent.dk/epomg5.htm
   - id: dk-galster-epomg-6
     fuss: seed_unsorted
     phase: galster
@@ -349,12 +359,16 @@ coins:
       galster: '4'
       galster_volume: galster1972-erik7
     metal: billon
-    fineness: 0.606
+    fineness:
+      - value: 0.606
+        source: danskmoent.dk (Galster 4)
+      - value: 0.857
+        source: danskmoent.dk (Galster 4)
     weight_rough_g:
     issuing_entity: danish_realm
     verified: false
     fineness_verified: true
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -374,6 +388,12 @@ coins:
           source: galster
           as_printed: ca. 1403-1412
           value: 1403-1412
+    weight_range_g:
+      - min: 0.5
+        max: 1.0
+        approx: false
+        source: danskmoent.dk (Galster 4)
+        url: https://www.danskmoent.dk/epomg4.htm
   - id: dk-galster-epomg-9
     fuss: seed_unsorted
     phase: galster
@@ -392,12 +412,16 @@ coins:
       galster: '9'
       galster_volume: galster1972-erik7
     metal: billon
-    fineness: 0.5
+    fineness:
+      - value: 0.5
+        source: danskmoent.dk (Galster 9)
+      - value: 0.56
+        source: danskmoent.dk (Galster 9)
     weight_rough_g:
     issuing_entity: danish_realm
     verified: false
     fineness_verified: true
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -417,6 +441,12 @@ coins:
           source: galster
           as_printed: ca. 1413-1420
           value: 1413-1420
+    weight_range_g:
+      - min: 0.5
+        max: 1.0
+        approx: false
+        source: danskmoent.dk (Galster 9)
+        url: https://www.danskmoent.dk/epomg9.htm
   - id: dk-galster-epomg-10
     fuss: seed_unsorted
     phase: galster
@@ -442,7 +472,7 @@ coins:
     issuing_entity: danish_realm
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -462,6 +492,12 @@ coins:
           source: galster
           as_printed: ca. 1422
           value: '1422'
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 10)
+        url: https://www.danskmoent.dk/epomg10.htm
   - id: dk-galster-epomg-14
     fuss: seed_unsorted
     phase: galster
@@ -485,7 +521,7 @@ coins:
     issuing_entity: danish_realm
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -505,6 +541,12 @@ coins:
           source: galster
           as_printed: ca. 1422
           value: '1422'
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 14)
+        url: https://www.danskmoent.dk/epomg14.htm
   - id: dk-galster-epomg-15
     fuss: seed_unsorted
     phase: galster
@@ -530,7 +572,7 @@ coins:
     issuing_entity: danish_realm
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -550,6 +592,12 @@ coins:
           source: galster
           as_printed: ca. 1422
           value: '1422'
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 15)
+        url: https://www.danskmoent.dk/epomg15.htm
   - id: dk-galster-epomg-7
     fuss: seed_unsorted
     phase: galster
@@ -575,7 +623,7 @@ coins:
     issuing_entity: danish_realm
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -595,6 +643,12 @@ coins:
           source: galster
           as_printed: ca. 1422
           value: '1422'
+    weight_range_g:
+      - min: 0.75
+        max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 7)
+        url: https://www.danskmoent.dk/epomg7.htm
   - id: dk-galster-epomg-11
     fuss: seed_unsorted
     phase: galster
@@ -797,7 +851,7 @@ coins:
     issuing_entity: danish_realm
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -817,6 +871,12 @@ coins:
           source: galster
           as_printed: u. år (1440-1442)
           value: 1440-1442
+    weight_range_g:
+      - min: 1.87
+        max: 2.38
+        approx: false
+        source: danskmoent.dk (Galster 18)
+        url: https://www.danskmoent.dk/bajg18.htm
   - id: dk-galster-bajg-19
     fuss: seed_unsorted
     phase: galster
@@ -1146,10 +1206,16 @@ coins:
         - Sømod# 15
     metal: billon
     fineness:
+      - value: 0.245
+        source: danskmoent.dk (Galster 31), Schou 125
+      - value: 0.26
+        source: danskmoent.dk (Galster 31), Schou 125
+      - value: 0.28
+        source: danskmoent.dk (Galster 31), Schou 153
     weight_rough_g:
     issuing_entity: danish_realm
     verified: false
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: false
     mint_verified: true
     sources:
@@ -1165,7 +1231,7 @@ coins:
         approx: true
         source: danskmoent.dk hansg31.htm
         url: https://www.danskmoent.dk/gif/hg31.gif
-    metal_verified: false
+    metal_verified: true
     uncertainty:
       metal:
         - kind: inferred
@@ -1357,7 +1423,7 @@ coins:
     issuing_entity: danish_realm
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -1380,6 +1446,12 @@ coins:
           source: galster
           as_printed: u.år
           value: 1483-1513
+    weight_range_g:
+      - min: 2.34
+        max: 2.59
+        approx: false
+        source: danskmoent.dk (Galster 35)
+        url: https://www.danskmoent.dk/fr/hg35.htm
   - id: dk-galster-hg-36
     fuss: seed_unsorted
     phase: galster
@@ -1693,7 +1765,7 @@ coins:
     issuing_entity: danish_realm
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -1710,6 +1782,12 @@ coins:
           source: galster
           as_printed: 1 Skilling
           value: billon
+    weight_range_g:
+      - min: 1.96
+        max: 2.95
+        approx: false
+        source: danskmoent.dk (Galster 29)
+        url: https://www.danskmoent.dk/fr/hg29.htm
   - id: dk-galster-hg-30
     fuss: seed_unsorted
     phase: galster
@@ -2668,8 +2746,8 @@ coins:
       - min: 1.83
         max: 2.34
         approx: false
-        source: danskmoent.dk 14pennin.htm
-        url: https://www.danskmoent.dk/gif/f1_g56.gif
+        source: danskmoent.dk (Galster 56)
+        url: https://www.danskmoent.dk/fr/f1g56.htm
     diameter_mm:
       - value: 23.0
         source: danskmoent.dk 14pennin.htm
@@ -2705,11 +2783,11 @@ coins:
       sieg: '10.1'
       jensen_skjoldager: gruppe 4xx
     metal: billon
-    fineness:
+    fineness: 0.14
     weight_rough_g:
     issuing_entity: danish_realm
     verified: false
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     sources:
@@ -2720,12 +2798,12 @@ coins:
       - min: 1.5
         max: 2.37
         approx: false
-        source: danskmoent.dk fr/f1g57.htm
-        url: https://www.danskmoent.dk/gif/f1_g57.gif
+        source: danskmoent.dk (Galster 57)
+        url: https://www.danskmoent.dk/fr/f1g57.htm
     diameter_mm:
       - value: 21.0
         source: danskmoent.dk fr/f1g57.htm
-    metal_verified: false
+    metal_verified: true
     uncertainty:
       metal:
         - kind: inferred
@@ -2771,8 +2849,8 @@ coins:
       - min: 1.64
         max: 2.2
         approx: false
-        source: danskmoent.dk fr/f1g62.htm
-        url: https://www.danskmoent.dk/gif/f1_g62.gif
+        source: danskmoent.dk (Galster 62)
+        url: https://www.danskmoent.dk/fr/f1g62.htm
     diameter_mm:
       - value: 24.0
         source: danskmoent.dk fr/f1g62.htm
@@ -2870,8 +2948,8 @@ coins:
       - min: 1.83
         max: 2.28
         approx: false
-        source: danskmoent.dk fr/f1g64.htm
-        url: https://www.danskmoent.dk/gif/f1_g64.gif
+        source: danskmoent.dk (Galster 64)
+        url: https://www.danskmoent.dk/fr/f1g64.htm
     diameter_mm:
       - value: 18.0
         source: danskmoent.dk fr/f1g64.htm
@@ -2907,13 +2985,18 @@ coins:
     issuing_entity: danish_realm
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g65.htm
         ref: Galster 65 (f1g) — danskmoent.dk fr_f1g65.htm
     weight_range_g:
+      - min: 1.57
+        max: 1.7
+        approx: false
+        source: danskmoent.dk (Galster 65)
+        url: https://www.danskmoent.dk/fr/f1g65.htm
       - min: 1.65
         max:
         approx: true
@@ -2930,11 +3013,6 @@ coins:
           source: galster
           as_printed: 14 Penning
           value: billon
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '1.65'
   - id: dk-galster-f1g-66
     fuss: seed_unsorted
     phase: galster
@@ -3745,6 +3823,11 @@ coins:
         ref: Galster 47 (f1g) — danskmoent.dk fr_f1g48.htm
     metal_verified: false
     uncertainty:
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '28.5'
       metal:
         - kind: inferred
           how: from_name
@@ -3882,13 +3965,18 @@ coins:
     issuing_entity: danish_realm
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f1g52.htm
         ref: Galster 52 (f1g) — danskmoent.dk fr_f1g52.htm
     weight_range_g:
+      - min: 6.75
+        max: 7.19
+        approx: false
+        source: danskmoent.dk (Galster 52)
+        url: https://www.danskmoent.dk/fr/f1g52.htm
       - min: 7.0
         max:
         approx: true
@@ -3905,11 +3993,6 @@ coins:
           source: galster
           as_printed: 1/4 Sølvgylden
           value: silver
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '7.0'
   - id: dk-galster-f1g-54
     fuss: seed_unsorted
     phase: galster

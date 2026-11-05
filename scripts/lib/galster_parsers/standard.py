@@ -21,7 +21,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from .common import HR_SENTINEL, MINT_ALTERNATIVE, MINT_WORD, SPEC_PATTERNS
+from .common import HR_SENTINEL, MINT_ALTERNATIVE, MINT_WORD, SPEC_PATTERNS, parse_extra_specs, parse_schou_find_table
 
 # Forgery-year parenthetical: «(1508 er falsk)» — danskmoent.dk flags a
 # year whose only surviving specimens are forgeries (no genuine striking
@@ -541,6 +541,10 @@ def _parse_specs(text: str) -> dict:
             specs["mintage"] = int(mm.group(1).replace(".", ""))
         except ValueError:
             pass
+    parse_extra_specs(text, specs)
+    find_table = parse_schou_find_table(text)
+    if find_table:
+        specs["schou_find_table"] = find_table
     return specs
 
 

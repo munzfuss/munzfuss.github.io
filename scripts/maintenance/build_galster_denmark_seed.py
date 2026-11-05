@@ -1051,6 +1051,44 @@ def build_entry(data: dict) -> dict | None:
             entry["fineness"] = f_list
             entry["fineness_verified"] = True
 
+    # Spec lines printed as a range / a «ca.» figure / an assay instead of one
+    # figure (lib/galster_parsers/common.parse_extra_specs; curator
+    # 2026-11-05). Labelled «danskmoent.dk (Galster N)» like Galster 172.
+    #   weight range  → `weight_range_g` (a type range: the build expands it
+    #                   into a lower- and an upper-bound reading);
+    #   fineness range → both bounds as readings, as Lindahl 1955 is stored
+    #                   («0,000-0,212» keeps its printed 0: the merger drops a
+    #                   non-positive reading, the seed records the print);
+    #   «Lødighed (prøve af Schou 60) 0,140» → the fineness, only when the
+    #                   page gives no «Finhed» (curator: an assay of one
+    #                   sub-type stands in only where nothing else does);
+    #   the Assens-find table (hansg31) → each group's fineness, labelled by
+    #                   its Schou number. Average weights are not carried.
+    gnum = data.get("galster_number")
+    label = f"danskmoent.dk (Galster {gnum})"
+    if specs.get("bruttovaegt_range_g"):
+        lo, hi = specs["bruttovaegt_range_g"]
+        entry["weight_range_g"] = [{"min": lo, "max": hi, "approx": False,
+                                    "source": label,
+                                    "url": data.get("source_url_hint")}]
+        entry["weight_rough_verified"] = True
+    if specs.get("bruttovaegt_approx") and entry.get("weight_rough_g") is not None:
+        unc.add(entry, "weight", "circa", "galster",
+                value=f"{entry['weight_rough_g']}")
+    if specs.get("finhed_range"):
+        entry["fineness"] = [{"value": v, "source": label}
+                             for v in specs["finhed_range"]]
+        entry["fineness_verified"] = True
+    elif specs.get("loedighed") and entry.get("fineness") is None:
+        entry["fineness"] = specs["loedighed"]
+        entry["fineness_verified"] = True
+    if specs.get("schou_find_table") and entry.get("fineness") is None:
+        f_list = [{"value": v, "source": f"{label}, Schou {row['schou']}"}
+                  for row in specs["schou_find_table"] for v in row.get("finhed") or []]
+        if f_list:
+            entry["fineness"] = f_list
+            entry["fineness_verified"] = True
+
     if page_mark:
         entry["year_mark"] = {"kind": page_mark["kind"], "value": page_mark["printed"],
                               "reason": dict(page_mark["reason"])}
@@ -1333,8 +1371,10 @@ def _held_fields() -> dict[str, set[str]]:
 def apply_caption_ranges(entries: list[dict], captions: dict[str, list[dict]],
                          held: dict[str, set[str]] | None = None) -> int:
     """Fill `weight_range_g` from drawing captions, ONLY when the page text
-    gives no weight (curator 2026-10-21) and the curator has not entered one
-    (a held `weight_rough_g`). Stored as a type range, not as
+    gives no single weight (curator 2026-10-21) and the curator has not
+    entered one (a held `weight_rough_g`). A weight RANGE the text prints
+    stays, and a caption with the same figures is dropped as its duplicate
+    (curator 2026-11-05). Stored as a type range, not as
     `weight_rough_g` specimens; the build expands it into a lower- and an
     upper-bound reading (lib/weight_range.range_pairs)."""
     held = held or {}
@@ -1344,12 +1384,20 @@ def apply_caption_ranges(entries: list[dict], captions: dict[str, list[dict]],
             continue
         if "weight_rough_g" in held.get(e.get("id"), ()):
             continue
+        # A range the page TEXT prints (parse_extra_specs) stays first; a
+        # caption repeating the same figures adds nothing, a caption with
+        # other figures is a separate print and is kept beside it (curator
+        # 2026-11-05: G52 «ca. 7,0» beside «6,75-7,19»).
+        text_ranges = list(e.get("weight_range_g") or [])
+        text_figs = {(r["min"], r.get("max")) for r in text_ranges}
         out, seen = [], set()
         for cap in _captions_for(e, captions):
             if not cap.get("weight_min"):
                 continue
             key = (cap["weight_min"], cap.get("weight_max"), bool(cap.get("approx")))
             if key in seen:          # the same caption printed in two drawings
+                continue
+            if (cap["weight_min"], cap.get("weight_max")) in text_figs:
                 continue
             seen.add(key)
             out.append({
@@ -1361,10 +1409,10 @@ def apply_caption_ranges(entries: list[dict], captions: dict[str, list[dict]],
             })
         if not out:
             continue
-        e["weight_range_g"] = out
+        e["weight_range_g"] = text_ranges + out
         # The caption is a source printing the weight: attested, unless it
         # is a «ca.» figure (same rule as a text «Bruttovægt: ca.»).
-        e["weight_rough_verified"] = not all(r["approx"] for r in out)
+        e["weight_rough_verified"] = not all(r["approx"] for r in text_ranges + out)
         if not e["weight_rough_verified"]:
             for r in out:
                 unc.add(e, "weight", "circa", "galster", value=(

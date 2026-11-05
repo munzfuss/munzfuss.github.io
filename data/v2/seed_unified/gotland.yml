@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `gotland`.
-# Generated 2026-11-02 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-05 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gotland.yml across all sources.
 #
 # Input: 63 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gotland
-generated_at: '2026-11-02'
+generated_at: '2026-11-05'
 coins:
   - id: c-6f48798e
     class_id: c-6f48798e
@@ -168,10 +168,16 @@ coins:
     metal: billon
     metal_verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    weight_range_g:
+      - min: 0.12
+        max: 0.17
+        approx: false
+        source: danskmoent.dk (Galster 137)
+        url: https://www.danskmoent.dk/gotlg137.htm
     uncertainty:
       year:
         - kind: hedged

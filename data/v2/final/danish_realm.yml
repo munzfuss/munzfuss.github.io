@@ -36574,12 +36574,6 @@ coins:
           as_printed: 14 Penning
           value: billon
           seed: dk-galster-f1g-65
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '1.65'
-          seed: dk-galster-f1g-65
     mint:
       - Kopenhagen
       - Landskrona
@@ -36612,6 +36606,11 @@ coins:
         approx: true
         source: danskmoent.dk fr/f1g65.htm
         url: https://www.danskmoent.dk/gif/f1_g65.gif
+      - min: 1.57
+        max: 1.7
+        approx: false
+        source: danskmoent.dk (Galster 65)
+        url: https://www.danskmoent.dk/fr/f1g65.htm
     diameter_mm:
       - value: 24.0
         source: danskmoent.dk fr/f1g65.htm
@@ -36734,8 +36733,8 @@ coins:
       - min: 1.64
         max: 2.2
         approx: false
-        source: danskmoent.dk fr/f1g62.htm
-        url: https://www.danskmoent.dk/gif/f1_g62.gif
+        source: danskmoent.dk (Galster 62)
+        url: https://www.danskmoent.dk/fr/f1g62.htm
     diameter_mm:
       - value: 24.0
         source: danskmoent.dk fr/f1g62.htm
@@ -37423,12 +37422,6 @@ coins:
           as_printed: 1/4 Sølvgylden
           value: silver
           seed: dk-galster-f1g-52
-      weight:
-        - kind: hedged
-          how: circa
-          source: galster
-          value: '7.0'
-          seed: dk-galster-f1g-52
     mint: Kopenhagen
     catalog:
       galster: '52'
@@ -37439,7 +37432,7 @@ coins:
     metal: silver
     metal_verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     verified: false
     weight_range_g:
@@ -37448,6 +37441,11 @@ coins:
         approx: true
         source: danskmoent.dk fr/f1g52.htm
         url: https://www.danskmoent.dk/gif/f1_g52.gif
+      - min: 6.75
+        max: 7.19
+        approx: false
+        source: danskmoent.dk (Galster 52)
+        url: https://www.danskmoent.dk/fr/f1g52.htm
     diameter_mm:
       - value: 33.0
         source: danskmoent.dk fr/f1g52.htm
@@ -37515,16 +37513,19 @@ coins:
       jensen_skjoldager: gruppe 4xx
     metal: billon
     metal_verified: true
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: true
     verified: false
+    fineness:
+      - value: 0.14
+        source: galster
     weight_range_g:
       - min: 1.5
         max: 2.37
         approx: false
-        source: danskmoent.dk fr/f1g57.htm
-        url: https://www.danskmoent.dk/gif/f1_g57.gif
+        source: danskmoent.dk (Galster 57)
+        url: https://www.danskmoent.dk/fr/f1g57.htm
     diameter_mm:
       - value: 21.0
         source: danskmoent.dk fr/f1g57.htm
@@ -48049,6 +48050,12 @@ coins:
           source: galster
           as_printed: 1 Sølvgylden
           value: silver
+          seed: dk-galster-f1g-47
+      weight:
+        - kind: hedged
+          how: circa
+          source: galster
+          value: '28.5'
           seed: dk-galster-f1g-47
     mint:
       - Kopenhagen
@@ -68219,7 +68226,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/174304
         ref: KMM 174304 (Inv. FP 8166.88)
-        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/174308
         ref: KMM 174308 (Inv. FP 8166.89)
@@ -69527,6 +69533,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/131169
         ref: KMM 131169 (Inv. FP 2630.12)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/422296
         ref: KMM 422296 (Inv. FP 2427.31)
@@ -101821,6 +101828,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148357
         ref: KMM 148357 (Inv. KP 1656.1956)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148358
         ref: KMM 148358 (Inv. KP 1656.1955)
@@ -101839,7 +101847,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/152185
         ref: KMM 152185 (Inv. FP 3574.109)
-        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/175851
         ref: KMM 175851 (Inv. FP 2374.49)
@@ -108832,10 +108839,14 @@ coins:
     fineness:
       - value: 0.239
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 78
+      - value: 0.245
+        source: danskmoent.dk (Galster 31), Schou 125
       - value: 0.2464
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 77
       - value: 0.2479
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 75
+      - value: 0.26
+        source: danskmoent.dk (Galster 31), Schou 125
       - value: 0.2621
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 73
       - value: 0.2672
@@ -108846,6 +108857,8 @@ coins:
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 69
       - value: 0.2798
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 66
+      - value: 0.28
+        source: danskmoent.dk (Galster 31), Schou 153
       - value: 0.2804
         source: Eriksson 2017 (Metallanalyser av mynt 2017:1), Nr 65
       - value: 0.319
@@ -111463,6 +111476,12 @@ coins:
           as_printed: 1 Skilling
           value: billon
           seed: dk-galster-hg-29
+    weight_range_g:
+      - min: 1.96
+        max: 2.95
+        approx: false
+        source: danskmoent.dk (Galster 29)
+        url: https://www.danskmoent.dk/fr/hg29.htm
   - fuss: rhinsk_gylden_fod
     phase: I
     kind: kurant
@@ -113207,6 +113226,12 @@ coins:
           as_printed: 1 Skilling , Ålborg
           value: billon
           seed: dk-galster-hg-35
+    weight_range_g:
+      - min: 2.34
+        max: 2.59
+        approx: false
+        source: danskmoent.dk (Galster 35)
+        url: https://www.danskmoent.dk/fr/hg35.htm
   - fuss: 8_gylden_fod
     phase: A1
     kind: scheide
@@ -113243,8 +113268,8 @@ coins:
       - min: 1.83
         max: 2.34
         approx: false
-        source: danskmoent.dk 14pennin.htm
-        url: https://www.danskmoent.dk/gif/f1_g56.gif
+        source: danskmoent.dk (Galster 56)
+        url: https://www.danskmoent.dk/fr/f1g56.htm
     diameter_mm:
       - value: 23.0
         source: danskmoent.dk 14pennin.htm
@@ -218678,8 +218703,8 @@ coins:
       - min: 1.83
         max: 2.28
         approx: false
-        source: danskmoent.dk fr/f1g64.htm
-        url: https://www.danskmoent.dk/gif/f1_g64.gif
+        source: danskmoent.dk (Galster 64)
+        url: https://www.danskmoent.dk/fr/f1g64.htm
     diameter_mm:
       - value: 18.0
         source: danskmoent.dk fr/f1g64.htm
@@ -282363,6 +282388,26 @@ coins:
     weight_range_g:
       - min: 0.75
         max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 10)
+        url: https://www.danskmoent.dk/epomg10.htm
+      - min: 0.75
+        max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 14)
+        url: https://www.danskmoent.dk/epomg14.htm
+      - min: 0.75
+        max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 15)
+        url: https://www.danskmoent.dk/epomg15.htm
+      - min: 0.75
+        max: 1.33
+        approx: false
+        source: danskmoent.dk (Galster 7)
+        url: https://www.danskmoent.dk/epomg7.htm
+      - min: 0.75
+        max: 1.33
         source: Lindahl 1955 (NNÅ 1955), s. 80
     uncertainty:
       year:
@@ -283113,6 +283158,11 @@ coins:
     metal: silver_billon
     metal_verified: true
     weight_range_g:
+      - min: 1.87
+        max: 2.38
+        approx: false
+        source: danskmoent.dk (Galster 18)
+        url: https://www.danskmoent.dk/bajg18.htm
       - min: 1.87
         max: 2.38
         source: Lindahl 1955 (NNÅ 1955), s. 85
@@ -283893,7 +283943,7 @@ coins:
     verified: false
     fineness:
       - value: 0.606
-        source: galster
+        source: danskmoent.dk (Galster 4)
       - value: 0.629
         source: Lindahl 1955 (NNÅ 1955), s. 78
       - value: 0.6591
@@ -283914,6 +283964,8 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 3
       - value: 0.857
         source: Lindahl 1955 (NNÅ 1955), s. 78
+      - value: 0.857
+        source: danskmoent.dk (Galster 4)
     weight_rough_g:
       - value: 0.52
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 12
@@ -283988,6 +284040,11 @@ coins:
         source: numista
     nominal_equiv: 3 Penning
     weight_range_g:
+      - min: 0.5
+        max: 1.0
+        approx: false
+        source: danskmoent.dk (Galster 4)
+        url: https://www.danskmoent.dk/epomg4.htm
       - min: 0.5
         max: 1.0
         source: Lindahl 1955 (NNÅ 1955), s. 78
@@ -284939,6 +284996,8 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 34
       - value: 0.212
         source: Lindahl 1955 (NNÅ 1955), s. 79
+      - value: 0.212
+        source: danskmoent.dk (Galster 5)
       - value: 0.2378
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33
       - value: 0.2996
@@ -285035,6 +285094,11 @@ coins:
       - value: 0.41
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 33
     weight_range_g:
+      - min: 0.21
+        max: 0.37
+        approx: false
+        source: danskmoent.dk (Galster 5)
+        url: https://www.danskmoent.dk/epomg5.htm
       - min: 0.21
         max: 0.37
         source: Lindahl 1955 (NNÅ 1955), s. 79
@@ -285245,7 +285309,7 @@ coins:
     verified: false
     fineness:
       - value: 0.5
-        source: galster
+        source: danskmoent.dk (Galster 9)
       - value: 0.5202
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 22
       - value: 0.5215
@@ -285254,6 +285318,8 @@ coins:
         source: Lindahl 1955 (NNÅ 1955), s. 78
       - value: 0.54
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 20
+      - value: 0.56
+        source: danskmoent.dk (Galster 9)
       - value: 0.5788
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 19
       - value: 0.5878
@@ -285311,6 +285377,11 @@ coins:
       - value: 0.89
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 16
     weight_range_g:
+      - min: 0.5
+        max: 1.0
+        approx: false
+        source: danskmoent.dk (Galster 9)
+        url: https://www.danskmoent.dk/epomg9.htm
       - min: 0.5
         max: 1.0
         source: Lindahl 1955 (NNÅ 1955), s. 78

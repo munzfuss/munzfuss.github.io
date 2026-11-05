@@ -4945,3 +4945,10 @@ removals:
     dropped:
       - '1'
     reason: "Curator 2026-11-05 («так»): Numista prints one number, «SIEG# CHR3-2,1» = Sieg 2.1 (decimal comma); an older parse split it into 2 and 1. Sieg 1 of the Christoffer III volume is the Sterling (Galster 19), not this Hvid. The parser was fixed in 0aff094; the stale sidecar was re-parsed and the value removed from the seed."
+  - seed: dk-galster-epomg-4
+    kind: field
+    field: fineness
+    dropped:
+      - source: galster
+        value: 0.606
+    reason: 'Curator 2026-11-05 («з усім іншим згоден»): the same 0,606 is still there, now labelled «danskmoent.dk (Galster 4)» beside the upper bound 0,857 of the printed range «Finhed: 0,606-0,857», which the parser used to cut to its lower bound. Only the label changed.'

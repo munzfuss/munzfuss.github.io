@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-11-02T14:24:32Z'
+generated_at: '2026-11-05T17:55:07Z'
 entity: gotland
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) 
   and v2/seed/hede/ (existing main). §BF promotion uses all three.
@@ -79,7 +79,7 @@ coins:
     issuing_entity: gotland
     verified: false
     fineness_verified: false
-    weight_rough_verified: false
+    weight_rough_verified: true
     mint_verified: true
     sources:
       - type: literature
@@ -99,6 +99,12 @@ coins:
           source: galster
           as_printed: 1400-tallet
           value: 1400-1499
+    weight_range_g:
+      - min: 0.12
+        max: 0.17
+        approx: false
+        source: danskmoent.dk (Galster 137)
+        url: https://www.danskmoent.dk/gotlg137.htm
   - id: dk-galster-hg-136
     fuss: seed_unsorted
     phase: galster
