@@ -3128,6 +3128,7 @@ def _collect_field_list(members: list[dict], field: str,
     """
     seen: set[tuple] = set()
     out: list[dict] = []
+    shared = _shared_scalar_labels(members)
     for idx, m in enumerate(members):
         val = m.get(field)
         if val is None:
@@ -3141,7 +3142,15 @@ def _collect_field_list(members: list[dict], field: str,
                 continue
             # bare-number form — synthesise source from member id
             entry = {"value": float(val), "source": _source_label_of(m)}
-            key = (entry["value"], entry["source"])
+            # Two members of the class publish under the same label (two
+            # Numista types, two Hede sub-variants): the reading names its
+            # seed, so the render pairs it with that specimen's own other
+            # readings and never with the other specimen's (curator
+            # 2026-11-05; Galster 172: 6,45 g × .875 was a pairing no source
+            # gives).
+            if entry["source"] in shared and m.get("id"):
+                entry["specimen"] = m["id"]
+            key = (entry["value"], entry["source"], entry.get("specimen"))
             if key not in seen:
                 seen.add(key)
                 out.append(entry)
@@ -3194,13 +3203,15 @@ def _collect_field_list(members: list[dict], field: str,
                 for _mk in _CURATION_MARK_KEYS:
                     if item.get(_mk):
                         entry[_mk] = item[_mk]
-                key = (entry["value"], entry["source"])
+                if item.get("specimen"):
+                    entry["specimen"] = item["specimen"]
+                key = (entry["value"], entry["source"], entry.get("specimen"))
                 if key not in seen:
                     seen.add(key)
                     out.append(entry)
                 elif any(entry.get(_mk) for _mk in _CURATION_MARK_KEYS):
                     for prior in out:
-                        if (prior["value"], prior["source"]) == key:
+                        if (prior["value"], prior["source"], prior.get("specimen")) == key:
                             for _mk in _CURATION_MARK_KEYS:
                                 if entry.get(_mk):
                                     prior.setdefault(_mk, entry[_mk])
@@ -3254,9 +3265,35 @@ def _collect_field_list(members: list[dict], field: str,
                     nested_pruned.append(e)
         else:
             nested_pruned.extend(entries)
-    # Deterministic order: by value, then source
-    nested_pruned.sort(key=lambda e: (e["value"], e["source"]))
+    # Deterministic order: by value, then source, then specimen
+    nested_pruned.sort(key=lambda e: (e["value"], e["source"], e.get("specimen") or ""))
     return nested_pruned
+
+
+_MEASURE_FIELDS = ("weight_rough_g", "fineness", "diameter_mm")
+
+
+def _shared_scalar_labels(members: list[dict]) -> set[str]:
+    """Source labels that two or more members publish SCALAR measurements
+    under, at least one of them a fineness. Only such readings need
+    `specimen`: with one member per label the label alone already says which
+    weight goes with which fineness, and where no member of the label gives a
+    fineness there is nothing to pair (KMM / IKMK specimens) — the data stays
+    as it was."""
+    from collections import Counter
+    def _pos(x):
+        return isinstance(x, (int, float)) and not isinstance(x, bool) and x > 0
+    n: Counter = Counter()
+    with_fin: set[str] = set()
+    for m in members:
+        if not isinstance(m, dict):
+            continue
+        if any(_pos(m.get(f)) for f in _MEASURE_FIELDS):
+            lab = _source_label_of(m)
+            n[lab] += 1
+            if _pos(m.get("fineness")):
+                with_fin.add(lab)
+    return {lab for lab, k in n.items() if k > 1 and lab in with_fin}
 
 
 def _source_label_of(entry: dict | None) -> str:

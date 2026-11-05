@@ -197,6 +197,13 @@ class FieldValue(_StrictBase):
     """
     value: float = Field(..., gt=0)
     source: str = Field(..., min_length=1)
+    # The seed id of the specimen the reading belongs to, set by the merger
+    # ONLY when two members of one class publish under the same `source`
+    # label (two Numista types, two Hede sub-variants). The label then no
+    # longer says which weight belongs to which fineness; this does. The
+    # render pairs a weight with a fineness of the same label AND specimen
+    # (compute._compute_coin; curator 2026-11-05). Never shown to the reader.
+    specimen: str | None = None
     # display:false hides this reading from the rendered weight/fineness
     # column (and its derived Feingewicht) while keeping the data — the
     # §9a weight-specimen thinning (min/middle/max of an over-collected
