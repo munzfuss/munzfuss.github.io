@@ -16,8 +16,10 @@ coins:
     nominal: 1 Klipping søsling
     metal: silver
     metal_verified: true
-    mint: Hamar
-    mint_verified: true
+    mint:
+      - Christiania
+      - Hamar
+    mint_verified: false
     ruler: Christian 2
     year_first: 1531
     year_last: 1532
@@ -37,3 +39,10 @@ coins:
         ref: KMM 684215 (Inv. RP 1549.1)
     _source_note:
       da: c / oldenborgske våben
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Hamar/Oslo
+          value: Hamar, Oslo

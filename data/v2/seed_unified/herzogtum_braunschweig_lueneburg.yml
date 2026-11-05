@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `herzogtum_braunschweig_lueneburg`.
-# Generated 2026-10-31 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-05 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/herzogtum_braunschweig_lueneburg.yml across all sources.
 #
 # Input: 2905 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: herzogtum_braunschweig_lueneburg
-generated_at: '2026-10-31'
+generated_at: '2026-11-05'
 coins:
   - id: c-3ae84baf
     class_id: c-3ae84baf
@@ -55054,7 +55054,9 @@ coins:
           - 1641
     year_label: 1637-1641
     ruler: Georg af Braunschweig-Lüneburg
-    mint: Goslar
+    mint:
+      - Goslar
+      - Zellerfeld
     catalog:
       km: '19'
       welter: '1456'
@@ -55063,11 +55065,19 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 14.35
         source: kmk
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Goslar eller Zellerfeld
+          value: Goslar, Zellerfeld
+          seed: kmk-714569
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714569
@@ -55090,18 +55100,28 @@ coins:
     year_last: 1638
     year_label: '1638'
     ruler: Georg af Braunschweig-Lüneburg
-    mint: Goslar
+    mint:
+      - Goslar
+      - Zellerfeld
     catalog:
       welter: '1456'
       fiala: 7 nr. 803-04
     metal: silver
     metal_verified: true
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 14.51
         source: kmk
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Goslar eller Zellerfeld
+          value: Goslar, Zellerfeld
+          seed: kmk-714570
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714570
@@ -55120,18 +55140,28 @@ coins:
     year_last: 1637
     year_label: '1637'
     ruler: Georg af Braunschweig-Lüneburg
-    mint: Goslar
+    mint:
+      - Goslar
+      - Zellerfeld
     catalog:
       welter: '1456'
       fiala: 7 nr. 776*-77
     metal: silver
     metal_verified: true
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 14.53
         source: kmk
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Goslar eller Zellerfeld
+          value: Goslar, Zellerfeld
+          seed: kmk-714571
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/714571

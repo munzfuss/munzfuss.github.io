@@ -254,7 +254,9 @@ coins:
           as_printed: 2 Mark, Klipping
           value: silver
           seed: dk-galster-c2g-82
-    mint: Malmø
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       galster: '82'
       galster_volume: c2g
@@ -263,7 +265,7 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_range_g:
       - min: 14.0
@@ -682,6 +684,12 @@ coins:
           as_printed: Malmø eller København
           value: Malmø, København
           seed: dk-galster-c2g-90
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: kmk-156727
       metal:
         - kind: inferred
           how: from_name
@@ -747,12 +755,22 @@ coins:
     year_first: 1535
     year_last: 1535
     year_label: '1535'
-    mint: Malmø
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø/København
+          value: Malmø, København
+          seed: kmk-132277
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       galster: '91'
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     sources:
       - type: museum
@@ -928,12 +946,22 @@ coins:
       -   - 1534
           - 1536
     year_label: 1534-1536
-    mint: Malmø
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø/København
+          value: Malmø, København
+          seed: kmk-299152
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       galster: '91'
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     sources:
       - type: museum
@@ -1204,12 +1232,22 @@ coins:
     year_first: 1535
     year_last: 1535
     year_label: '1535'
-    mint: Malmø
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø/København
+          value: Malmø, København
+          seed: kmk-709729
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       galster: '91'
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     sources:
       - type: museum
@@ -1239,6 +1277,12 @@ coins:
           as_printed: Malmø eller København
           value: Malmø, København
           seed: dk-galster-c2g-83
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø eller København
+          value: Malmø, København
+          seed: kmk-156729
       metal:
         - kind: inferred
           how: from_name
@@ -1246,7 +1290,9 @@ coins:
           as_printed: 2 Mark, Klipping
           value: silver
           seed: dk-galster-c2g-83
-    mint: Malmø
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       galster: '83'
       sieg: '4'
@@ -1258,7 +1304,7 @@ coins:
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_range_g:
       - min: 14.0

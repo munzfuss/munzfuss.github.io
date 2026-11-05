@@ -476,14 +476,24 @@ coins:
       -   - 1531
           - 1532
     year_label: 1531-1532
-    mint: Hamar
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Hamar/Oslo
+          value: Hamar, Oslo
+          seed: kmk-684215
+    mint:
+      - Christiania
+      - Hamar
     catalog:
       galster: '174'
       schou: '1'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 1.63

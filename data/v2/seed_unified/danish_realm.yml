@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-11-04 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-05 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 15220 per-source seed entries.
-# Output: 5920 unified entries (one per physical coin).
+# Input: 15219 per-source seed entries.
+# Output: 5919 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-11-04'
+generated_at: '2026-11-05'
 coins:
   - id: c-da3c53ad
     class_id: c-da3c53ad
@@ -1217,9 +1217,7 @@ coins:
     mintmaster: Herman van Nassau or Hans Sever
     inscription_obv: IOhS DEI GR - REX DACIE
     inscription_rev: MONET - AVREA - REGNI - DACIE
-    mint:
-      - Kopenhagen
-      - Malmø
+    mint: Kopenhagen
     catalog:
       bruun_collection_id:
         - '3839'
@@ -112403,7 +112401,7 @@ coins:
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     year_verified: true
     fineness:
@@ -112451,6 +112449,18 @@ coins:
           as_printed: København eller Malmø
           value: København, Malmø
           seed: dk-galster-f1g-45
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København/Malmø
+          value: København, Malmø
+          seed: kmk-680125
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København/Malmø
+          value: København, Malmø
+          seed: kmk-680126
       metal:
         - kind: inferred
           how: from_name
@@ -112508,7 +112518,7 @@ coins:
     fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     year_verified: true
     fineness:
@@ -112543,6 +112553,12 @@ coins:
           as_printed: København eller Malmø
           value: København, Malmø
           seed: dk-galster-f1g-46
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø/København
+          value: Malmø, København
+          seed: kmk-575432
       metal:
         - kind: inferred
           how: from_name
@@ -112653,7 +112669,7 @@ coins:
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     year_verified: true
     weight_rough_g:
@@ -112736,7 +112752,7 @@ coins:
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     year_verified: true
     weight_rough_g:
@@ -112761,6 +112777,12 @@ coins:
           as_printed: Malmø eller København
           value: Malmø, København
           seed: dk-galster-3nobel
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø/København
+          value: Malmø, København
+          seed: kmk-697192
       metal:
         - kind: inferred
           how: from_name
@@ -114288,7 +114310,7 @@ coins:
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     year_verified: true
     weight_rough_g:
@@ -114309,6 +114331,12 @@ coins:
           as_printed: København eller Malmø
           value: København, Malmø
           seed: dk-galster-f1g-48
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø/København
+          value: Malmø, København
+          seed: kmk-575430
       metal:
         - kind: inferred
           how: from_name
@@ -114357,7 +114385,7 @@ coins:
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     year_verified: true
     weight_rough_g:
@@ -114382,6 +114410,12 @@ coins:
           as_printed: København eller Malmø
           value: København, Malmø
           seed: dk-galster-f1g-49
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København/Malmø
+          value: København, Malmø
+          seed: kmk-80395
       metal:
         - kind: inferred
           how: from_name
@@ -114446,7 +114480,7 @@ coins:
     fineness_verified: false
     weight_rough_verified: true
     diameter_mm_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     year_verified: true
     weight_rough_g:
@@ -115449,6 +115483,19 @@ coins:
           source: kmk
           value: 1534-1559
           seed: kmk-371365
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København el. Ribe
+          value: København, Ribe
+          seed: kmk-328504
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København eller Ribe
+          value: København, Ribe
+          seed: kmk-331586
       metal:
         - kind: inferred
           how: from_name
@@ -115675,6 +115722,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/314612
         ref: KMM 314612 (Inv. FP 7051.15)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/328504
+        ref: KMM 328504 (Inv. FP 6406.7)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/331586
         ref: KMM 331586 (Inv. FP 6148.13)
       - type: museum
@@ -115717,6 +115767,7 @@ coins:
       - kmk-309085
       - kmk-310745
       - kmk-314612
+      - kmk-328504
       - kmk-331586
       - kmk-371365
       - kmk-372476
@@ -210782,45 +210833,6 @@ coins:
     composed_of:
       - kmk-328348
       - kmk-372456
-  - id: c-9382ce5a
-    class_id: c-9382ce5a
-    label: unified-kmk-328504
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Skilling
-    year_first: 1536
-    year_last: 1536
-    year_label: '1536'
-    ruler: Christian III
-    mint:
-      - København el. Ribe
-      - Ribe
-    catalog:
-      galster: '106'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    uncertainty:
-      mint:
-        - kind: hedged
-          how: alternatives
-          source: kmk
-          as_printed: København el. Ribe
-          value: København, Ribe
-          seed: kmk-328504
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/328504
-        ref: KMM 328504 (Inv. FP 6406.7)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/348467
-        ref: KMM 348467 (Inv. FP 5400.4)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-328504
-      - kmk-348467
   - id: c-15c94ddb
     class_id: c-15c94ddb
     label: unified-kmk-328506
@@ -211104,10 +211116,12 @@ coins:
     year_label: 1483-1513
     _year_demoted: true
     ruler: Hans
-    mint: Malmø
+    mint:
+      - Kopenhagen
+      - Malmø
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     ruler_verified: false
     uncertainty:
@@ -211123,6 +211137,13 @@ coins:
           source: kmk
           as_printed: Hans?
           value: Hans?
+          seed: kmk-330624
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø/København
+          value: Malmø, København
           seed: kmk-330624
     sources:
       - type: museum
@@ -213015,10 +213036,12 @@ coins:
     year_label: 1483-1513
     _year_demoted: true
     ruler: Hans
-    mint: Kbh. el. Malmø
+    mint:
+      - Kopenhagen
+      - Malmø
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     uncertainty:
       year:
@@ -213369,31 +213392,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-344209
-  - id: c-a5153567
-    class_id: c-a5153567
-    label: unified-kmk-344304
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 3 Skilling
-    year_first: 1811
-    year_last: 1811
-    year_label: '1811'
-    ruler: Frederik VI
-    mint: Kopenhagen
-    catalog:
-      hede: '10'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/344304
-        ref: KMM 344304 (Inv. FP 5563.1)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-344304
   - id: c-7ad9672e
     class_id: c-7ad9672e
     label: unified-kmk-344305
@@ -214536,6 +214534,31 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-348442
+  - id: c-9382ce5a
+    class_id: c-9382ce5a
+    label: unified-kmk-348467
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 1 Skilling
+    year_first: 1536
+    year_last: 1536
+    year_label: '1536'
+    ruler: Christian III
+    mint: Ribe
+    catalog:
+      galster: '106'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    verified: false
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/348467
+        ref: KMM 348467 (Inv. FP 5400.4)
+    issuing_entity: danish_realm
+    composed_of:
+      - kmk-348467
   - id: c-63ee1020
     class_id: c-63ee1020
     label: unified-kmk-348808
@@ -216727,10 +216750,12 @@ coins:
     year_last: 1536
     year_label: '1536'
     ruler: Christian III
-    mint: København el. Ribe
+    mint:
+      - Kopenhagen
+      - Ribe
     metal_verified: false
     weight_rough_verified: false
-    mint_verified: true
+    mint_verified: false
     verified: false
     uncertainty:
       mint:
@@ -239922,17 +239947,27 @@ coins:
     year_last: 1523
     year_label: '1523'
     ruler: Frederik I
-    mint: Serridslev
+    mint:
+      - Roskilde
+      - Serridslev
     catalog:
       schou: '10'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 3.96
         source: kmk
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Serridslev/Roskilde
+          value: Serridslev, Roskilde
+          seed: kmk-46705
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/46705
@@ -243394,7 +243429,9 @@ coins:
     year_last: 1532
     year_label: '1532'
     ruler: Frederik I
-    mint: Malmø
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       schou: '7'
       galster: '45'
@@ -243403,11 +243440,19 @@ coins:
     metal: silver
     metal_verified: true
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 14.78
         source: kmk
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Malmø/København
+          value: Malmø, København
+          seed: kmk-575431
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/575431

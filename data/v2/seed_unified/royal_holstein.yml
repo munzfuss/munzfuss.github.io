@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-11-03 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-05 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1895 per-source seed entries.
-# Output: 751 unified entries (one per physical coin).
+# Input: 1896 per-source seed entries.
+# Output: 752 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-11-03'
+generated_at: '2026-11-05'
 coins:
   - id: c-553f1cb6
     class_id: c-553f1cb6
@@ -918,9 +918,7 @@ coins:
     year_label: 1787, 1796, 1799-1801
     ruler: Christian VII
     mintmaster: Michael Flor (MF)
-    mint:
-      - Altona
-      - Poppenbüttel
+    mint: Altona
     catalog:
       km: '124'
       bruun_collection_id: '7877'
@@ -1023,7 +1021,7 @@ coins:
     metal_verified: false
     fineness_verified: false
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 69.22
@@ -7675,9 +7673,7 @@ coins:
     year_label: '1788'
     ruler: Christian VII
     mintmaster: Michael Flor (MF)
-    mint:
-      - Altona
-      - Poppenbüttel
+    mint: Altona
     catalog:
       km: '645'
       hede: '25'
@@ -8400,9 +8396,7 @@ coins:
     year_label: 1787-1791, 1794-1796, 1799-1801, 1804-1805, 1807-1808
     ruler: Christian VII
     mintmaster: Michael Flor
-    mint:
-      - Altona
-      - Poppenbüttel
+    mint: Altona
     catalog:
       km:
         - '138.1'
@@ -8645,9 +8639,7 @@ coins:
     year_label: 1787, 1797, 1799, 1808
     ruler: Christian VII
     mintmaster: Michael Flor
-    mint:
-      - Altona
-      - Poppenbüttel
+    mint: Altona
     catalog:
       km: '135'
       hede:
@@ -8767,9 +8759,7 @@ coins:
     year_label: 1787-1789, 1797, 1799, 1808
     ruler: Christian VII
     mintmaster: Michael Flor
-    mint:
-      - Altona
-      - Poppenbüttel
+    mint: Altona
     catalog:
       km:
         - '130'
@@ -8921,9 +8911,7 @@ coins:
     year_label: 1787-1789, 1796
     ruler: Christian VII
     mintmaster: Michael Flor
-    mint:
-      - Altona
-      - Poppenbüttel
+    mint: Altona
     catalog:
       km: '128'
       hede: '42'
@@ -25661,6 +25649,43 @@ coins:
     issuing_entity: royal_holstein
     composed_of:
       - kmk-344204
+  - id: c-a5153567
+    class_id: c-a5153567
+    label: unified-kmk-344304
+    fuss: seed_unsorted
+    phase: kmk
+    kind: kurant
+    nominal: 3 Skilling
+    year_first: 1811
+    year_last: 1811
+    year_label: '1811'
+    ruler: Frederik VI
+    mint:
+      - Altona
+      - Kopenhagen
+    catalog:
+      hede: '10'
+    metal_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verified: false
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: København/Altona
+          value: København, Altona
+          seed: kmk-344304
+    sources:
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/344304
+        ref: KMM 344304 (Inv. FP 5563.1)
+    issuing_entity:
+      - danish_realm
+      - royal_holstein
+    composed_of:
+      - kmk-344304
   - id: c-573a3e7d
     class_id: c-573a3e7d
     label: unified-kmk-344461

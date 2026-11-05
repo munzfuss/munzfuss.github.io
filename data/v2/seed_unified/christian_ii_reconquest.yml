@@ -1,5 +1,5 @@
 # V2 seed_unified for political entity `christian_ii_reconquest`.
-# Generated 2026-10-29 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-05 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/christian_ii_reconquest.yml across all sources.
 #
 # Input: 12 per-source seed entries.
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: christian_ii_reconquest
-generated_at: '2026-10-29'
+generated_at: '2026-11-05'
 coins:
   - id: c-b6cb4ca2
     class_id: c-b6cb4ca2
@@ -420,18 +420,28 @@ coins:
           - 1532
     year_label: 1531-1532
     ruler: Christian II
-    mint: Hamar
+    mint:
+      - Christiania
+      - Hamar
     catalog:
       galster: '174'
       schou: '1'
     metal: silver
     metal_verified: true
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_rough_g:
       - value: 1.63
         source: kmk
+    uncertainty:
+      mint:
+        - kind: hedged
+          how: alternatives
+          source: kmk
+          as_printed: Hamar/Oslo
+          value: Hamar, Oslo
+          seed: kmk-684215
     sources:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/684215
