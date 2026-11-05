@@ -707,6 +707,14 @@
   3. **Weight gate** (`_weight_repr`, `_catalog_strongly_agrees`): a weight marked `suspect` does not stand for the type and is left out of type comparison (it still renders); a Schou / Sieg number inside the other side's range agrees; a same-base sub-variant (Hede 99D / 99, KM 340.1 / 340.2) is a weaker agreement — it counts toward the two, cannot carry the merge alone, and any real disagreement on another shared index still refuses it (Hede 999A = KM 999 against Hede 999B = KM 998). Before, ~116 records sat outside the class of their own number.
 - **Rejected with it**: a Schou number narrowed by the claimants' year spans (3 411 seeds moved; ten curated KMM records lost their Fuß and Galster 41 left its own class). Kept only as an experiment patch.
 - **Code**: `merge_seeds_cross_source.py` (`_REIGN_GATE`, `_reign_gate_blocks`, `_shared_value_unscoped`, step 2a, `_index_bases`, `_weight_repr`, `_catalog_strongly_agrees`), `absorb_seeds_into_final_v2.py` (`_split_parents`, `_split_parent_classification`, the `_u_carries` host guard, `carried_classifications`), `tests/test_weight_gate_curator_rules.py`.
+
+### D54 — Coin Notes have their own surface, keyed by seed id
+
+- **Decision** (curator 2026-11-05, option 3 of three): the Note column of a coin is curator prose and lives in `data/v2/notes/<entity>.yml` — `notes: [{seed, curator, note: {de, en, uk, da}}]`. Absorb sets the `note` of the final whose seeds include `seed`; the file wins over whatever the final carried. A final with no entry keeps its own Note.
+- **Why**: before, a Note had two homes and neither worked. `note` is in the seed's `CURATED_FIELDS`, but absorb carries the final's own `note` (`_SKELETON_CARRY`) and a member's Note only gap-fills — so an edited seed Note never reached a final that already had one (found 2026-11-05 on the period-0 Flensborg / Ribe Notes; the fix of the moment was a hand edit of the final, which the pipeline forbids). 1 346 of 2 473 final Notes (2026-11-05) exist only on the final, from V1.
+- **Why a seed id**: the only stable handle (§9b); a final or class id renames when a higher-authority member joins. Not a catalogue number (as attributions): a Note may describe one specific record, and a type number can span several classes.
+- **Migration**: lazy — a Note moves into the file when it is next edited (the `coin-note` skill does it); no bulk move. Two entries landing on one final stop the run (the curator chooses); an entry that reaches no final is reported (⚠).
+- **Code**: `absorb_seeds_into_final_v2.py` (`V2_NOTES`, `_load_coin_notes`, `_apply_coin_notes`, called at the end of `process_entity`), `tests/test_absorb_coin_notes.py`; skill `.claude/skills/coin-note/`.
 ---
 
 ## Deferred decisions

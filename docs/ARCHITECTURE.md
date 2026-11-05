@@ -562,6 +562,7 @@ Every script is idempotent + merge-aware per D25; every transition preserves dat
 | a class's value that rests on scholarly works, not on its specimen sources (a dating, later a mint / ruler / fineness) | `attributions/<entity>.yml` (D52) — the type named by its catalogue number(s), the works with quote and page; applied by 3.2 for fields the merger builds (year), by 4 for foundation-immutable ones (ruler, nominal — not yet implemented) | Hans' gulden 1497 (Zinck, Märcher 2018, Galster 1936); Galster 1 1373–1381 |
 | fuss, phase, kind, reader-facing nominal of a class | 4 ABSORB — `classification_decisions` | Kobbersterling «1 Sterling» (D50) |
 | a coin that must not render | 4 ABSORB — `exclusions/` (+ the builder filter so a re-harvest does not bring it back, PB-12) | — |
+| a coin's Note (the Note column) | 4 ABSORB — `notes/<entity>.yml`, keyed by seed id (D54; `coin-note` skill). Not the seed's `note`, not the final | period-0 Flensborg / Ribe Notes |
 | which entities / phases a page shows | RENDER — `data/v2/locations/` | — |
 
 Two consequences that are easy to miss:

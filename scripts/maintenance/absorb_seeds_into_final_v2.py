@@ -62,6 +62,8 @@ V2_FINAL = ROOT / "data" / "v2" / "final"
 V2_CLASSIFICATION_DECISIONS = ROOT / "data" / "v2" / "classification_decisions"
 V2_MERGE_DECISIONS = ROOT / "data" / "v2" / "merge_decisions"
 V2_EXCLUSIONS = ROOT / "data" / "v2" / "exclusions"
+# Curator coin Notes keyed by SEED id (curator 2026-11-05) — see _apply_coin_notes.
+V2_NOTES = ROOT / "data" / "v2" / "notes"
 V2_OVERMERGE_PURGE = ROOT / "data" / "v2" / "overmerge_purge_allowlist.yml"
 
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -195,6 +197,56 @@ def _ruamel_to_dict(c):
     """Delegate to lib.v2_resolver.ruamel_to_plain."""
     from lib.v2_resolver import ruamel_to_plain
     return ruamel_to_plain(c)
+
+
+NOTE_LANGS = ("de", "en", "uk", "da")
+
+
+def _load_coin_notes(entity_id: str) -> dict[str, dict]:
+    """Curator coin Notes — `data/v2/notes/<entity>.yml`, keyed by SEED id.
+
+    The Note column is curator prose, so it has one home of its own (curator
+    2026-11-05): a seed id is the only stable handle (§9b), the final is never
+    hand-edited, and a Note on a seed only gap-filled (a final that already
+    carried a Note kept it, so an edited seed Note never reached the page).
+    Returns {seed_id: note}; every note must carry de/en/uk/da."""
+    doc = _load_yaml(V2_NOTES / f"{entity_id}.yml")
+    out: dict[str, dict] = {}
+    for i, e in enumerate(doc.get("notes") or []):
+        sid, note = e.get("seed"), e.get("note")
+        if not sid or not isinstance(note, dict) or not all(note.get(l) for l in NOTE_LANGS):
+            raise SystemExit(f"notes/{entity_id}.yml::notes[{i}] needs 'seed' and a "
+                             f"'note' with {'/'.join(NOTE_LANGS)}")
+        if str(sid) in out:
+            raise SystemExit(f"notes/{entity_id}.yml: seed {sid} listed twice")
+        out[str(sid)] = dict(note)
+    return out
+
+
+def _apply_coin_notes(entity_id: str, entries: list, unified_by_id: dict) -> None:
+    """Set each final's `note` from the Notes file when one of its seeds has an
+    entry. The file wins over whatever the final carried; a final without an
+    entry keeps its own Note (the older Notes live only on finals and move to
+    the file when they are next edited). Two Notes on one final is an error —
+    the curator decides which one the coin shows."""
+    notes = _load_coin_notes(entity_id)
+    if not notes:
+        return
+    used: set[str] = set()
+    for fe in entries:
+        if not isinstance(fe, dict):
+            continue
+        hit = sorted(_entry_seed_ids(fe, unified_by_id) & notes.keys())
+        if len(hit) > 1:
+            raise SystemExit(f"notes/{entity_id}.yml: final {fe.get('id')} has Notes on "
+                             f"several seeds {hit} — keep one")
+        if hit:
+            fe["note"] = dict(notes[hit[0]])
+            used.add(hit[0])
+    orphan = sorted(notes.keys() - used)
+    if orphan:
+        print(f"  ⚠ [{entity_id}] {len(orphan)} Note(s) in notes/{entity_id}.yml "
+              f"reached no final: {orphan[:6]}")
 
 
 def _load_exclusions(entity_id: str) -> dict[str, dict]:
@@ -4571,6 +4623,8 @@ def process_entity(entity_id: str) -> dict:
             print(f"  ⚠ [{entity_id}] {len(orphan_exclusions)} exclusion id(s) matched "
                   f"nothing (orphan — check exclusions/{entity_id}.yml): "
                   f"{orphan_exclusions[:6]}")
+
+    _apply_coin_notes(entity_id, enriched_entries, unified_by_id)
 
     return {
         "entity_id": entity_id,
