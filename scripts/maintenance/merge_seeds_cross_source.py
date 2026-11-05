@@ -2204,6 +2204,180 @@ def _shared_value_unscoped(coin_a, coin_b, entity_id) -> bool:
 _REIGN_GATE = os.environ.get("REIGN_GATE", "1") != "0"
 
 
+# Hede-base rule (curator 2026-11-05, CLAUDE.md §9.4): classes of one entity
+# that share a Hede base number under the same ruler («130», «130B», «130c»)
+# are ONE coin, whatever their years — the sub-letter is a variation of the
+# base type. The pairwise matcher could not see it: a sub-letter record met
+# its base only through a stale bare «N» (dropped since 27cc049), and year /
+# weight fallbacks refused the rest, so one Hede type sat in two to five
+# classes (Hede 134 in two classes of 248 and 240 seeds; Hede 95 / 116 in five).
+# The rule joins the classes AFTER the confident pass, and only a whole group
+# whose every pair of classes is compatible — same nominal (`_nominals_equal`,
+# a class with no nominal is neutral), same metal (silver = billon; sources
+# label the same alloy either way), one Hede base, no explicit curator
+# no_merges between them. A chain through a neutral class must not carry a
+# conflict («1 Skilling» — «(?)» — «4 Skilling»), so one incompatible pair
+# refuses the whole group, which is then left to the curator. OFF by default
+# until the curator accepts its measured result: `HEDE_BASE=1` turns it on for
+# a measurement run (`HEDE_BASE_DUMP=<file>` writes every refused group with
+# its classes' members, `HEDE_BASE_EQUIV_LOG=1` prints groups joined only
+# through a nominal equivalence).
+_HEDE_BASE_RULE = os.environ.get("HEDE_BASE", "0") == "1"
+_HEDE_BASE_TOKEN = re.compile(r"^\s*(\d+)[A-Za-z]*\s*$")
+
+
+def _class_majority(values):
+    vals = [v for v in values if v]
+    if not vals:
+        return None
+    return Counter(vals).most_common(1)[0][0]
+
+
+def _hede_base_groups(uf, seeds_by_id, entity_id):
+    """Groups of class roots sharing a ruler-scoped Hede base, and per root
+    its Hede bases {scope: {base}}, majority nominal and metal."""
+    info: dict[str, dict] = {}
+    key_roots: dict[tuple, set] = defaultdict(set)
+    for root, members in uf.classes().items():
+        bases: dict[str, set] = defaultdict(set)
+        noms, metals = [], []
+        for mid in members:
+            c = seeds_by_id.get(mid)
+            if c is None:
+                continue
+            for k, v in _catalog_refs(c, entity_id).items():
+                if not k.startswith("hede/"):
+                    continue
+                for tok in str(v).split("|"):
+                    m = _HEDE_BASE_TOKEN.match(tok)
+                    if m:
+                        bases[k].add(m.group(1))
+            n = _normalise_nominal(c.get("nominal"))
+            if n and n != "(?)":
+                noms.append(n)
+            mt = c.get("metal")
+            if mt:
+                metals.append("silver" if mt in _SILVER_BILLON else mt)
+        info[root] = {"bases": bases, "nominal": _class_majority(noms),
+                      "metal": _class_majority(metals)}
+        for k, bs in bases.items():
+            for b in bs:
+                key_roots[(k, b)].add(root)
+    par: dict[str, str] = {}
+
+    def f(x):
+        par.setdefault(x, x)
+        while par[x] != x:
+            par[x] = par[par[x]]
+            x = par[x]
+        return x
+    for roots in key_roots.values():
+        rs = sorted(roots)
+        for r in rs[1:]:
+            a, b = f(rs[0]), f(r)
+            if a != b:
+                par[max(a, b)] = min(a, b)
+    groups: dict[str, list] = defaultdict(list)
+    for r in par:
+        groups[f(r)].append(r)
+    return [sorted(g) for g in groups.values() if len(g) > 1], info
+
+
+# Nominal equivalences the SOURCES declare (curator 2026-11-05: «врахування
+# еквівалентів номіналу»). A source that prints one coin under two names —
+# «16 Skilling = 1 Mark», «⅛ Speciedaler (12 Skilling)», «12 Mark = 3 Kroner»,
+# «1 Dukat (12 Mark)», «1/6 Speciedaler/10 Schilling …» — attests that the two
+# names are one value. Collected from every seed's raw nominal; used ONLY by
+# the Hede-base group check, where the shared Hede base already identifies the
+# type. Direct pairs only, no transitive chaining (a value gloss is valid for
+# its own coin and period: 1 Speciedaler is 60 S.-H. Schilling and 96 Danish
+# skilling at once). Either side may additionally match through the bare-unit
+# wildcard (`_nominal_wildcard_match`: «daler» ~ «speciedaler»).
+_NOMINAL_GLOSS_SPLIT = re.compile(r"\s*=\s*|\s*\(|\)|\s+/\s*|(?<=[^\W\d_])/(?=\s*\S)")
+_DECLARED_NOMINAL_EQUIV: dict[frozenset, str] = {}
+
+
+def _declared_nominal_pairs(raw) -> list[tuple[str, str]]:
+    """Normalised (A, B) pairs one raw nominal declares equal."""
+    if not raw or not isinstance(raw, str):
+        return []
+    parts = [p for p in (_normalise_nominal(x) for x in _NOMINAL_GLOSS_SPLIT.split(raw))
+             if p and p != "(?)"]
+    parts = list(dict.fromkeys(parts))
+    return [(a, b) for i, a in enumerate(parts) for b in parts[i + 1:]]
+
+
+def _collect_declared_nominal_equiv(seeds) -> None:
+    for c in seeds:
+        for a, b in _declared_nominal_pairs(c.get("nominal")):
+            _DECLARED_NOMINAL_EQUIV.setdefault(frozenset({a, b}), f"{c.get('id')}: {c.get('nominal')}")
+
+
+def _nominal_like(x: str, y: str) -> bool:
+    return x == y or _nominal_wildcard_match(x, y)
+
+
+# An off-strike, trial strike, forgery or lead piece is never «the same name»
+# as the circulation coin whose name it carries («Guldafslag af Skilling»).
+_NOMINAL_SPECIAL_RE = re.compile(
+    r"afslag|off-?strike|off-?metal|forfalsk|falsk|forgery|pr[oø]vem[oø]nt|\blead\b|\bbly\b")
+
+
+def _hede_base_nominal_equiv(na: str, nb: str) -> str | None:
+    """Why two class nominals count as one in the Hede-base check, or None.
+    «same» / «wildcard» / «source: <seed>: <raw>»."""
+    if _nominals_equal({"nominal": na}, {"nominal": nb}):
+        return "same"
+    if _NOMINAL_SPECIAL_RE.search(na) or _NOMINAL_SPECIAL_RE.search(nb):
+        return None
+    # A dual name kept whole by the normaliser («speciedaler / 3 mark»): either
+    # of its names stands for the coin.
+    pa = [x.strip() for x in na.split(" / ")]
+    pb = [x.strip() for x in nb.split(" / ")]
+    if len(pa) > 1 or len(pb) > 1:
+        if any(x == y for x in pa for y in pb):
+            return "dual name"
+    if _nominal_wildcard_match(na, nb):
+        return "wildcard"
+    for pair, src in _DECLARED_NOMINAL_EQUIV.items():
+        if len(pair) != 2:
+            continue
+        a, b = tuple(pair)
+        if (_nominal_like(na, a) and _nominal_like(nb, b)) or \
+                (_nominal_like(na, b) and _nominal_like(nb, a)):
+            return f"source {src}"
+    return None
+
+
+def _hede_base_conflicts(group, info, uf, equivs: list | None = None) -> list[str]:
+    """Why the group cannot be joined (empty → compatible)."""
+    why = []
+    for i, a in enumerate(group):
+        for b in group[i + 1:]:
+            ia, ib = info[a], info[b]
+            if ia["nominal"] and ib["nominal"]:
+                eq = _hede_base_nominal_equiv(ia["nominal"], ib["nominal"])
+                if eq is None:
+                    why.append(f"nominal {ia['nominal']!r} vs {ib['nominal']!r}")
+                elif eq != "same" and equivs is not None:
+                    equivs.append(f"{ia['nominal']!r} ~ {ib['nominal']!r} ({eq})")
+            if ia["metal"] and ib["metal"] and ia["metal"] != ib["metal"]:
+                why.append(f"metal {ia['metal']} vs {ib['metal']}")
+            ma, mb = uf._class_members(a), set(uf._class_members(b))
+            for x in ma:
+                for y in mb:
+                    if frozenset({x, y}) in uf.explicit_no_merge:
+                        why.append(f"curator no_merges {x} / {y}")
+    scopes: dict[str, set] = defaultdict(set)
+    for r in group:
+        for k, bs in info[r]["bases"].items():
+            scopes[k] |= bs
+    for k, bs in scopes.items():
+        if len(bs) > 1:
+            why.append(f"several bases {k} {sorted(bs, key=int)}")
+    return sorted(set(why))
+
+
 def _reign_gate_blocks(coin_a, coin_b, primary, entity_id) -> bool:
     """A side dated only by its ruler's reign says nothing about WHICH coin of
     that reign it is: without a catalogue tie the pair is not evidenced."""
@@ -6203,6 +6377,47 @@ def process_entity(entity_id: str,
                 "blocked_by_no_match": sorted(blocking),
             })
 
+    # 3b. Hede-base rule (see `_HEDE_BASE_RULE`): join whole compatible
+    #     groups of classes sharing a ruler-scoped Hede base. force_union, so
+    #     the matcher's year / weight no_match opinions between sub-variants
+    #     are cleared — only an explicit curator no_merges stops it, and the
+    #     group check refuses those before any link is made.
+    hede_base_joined: list[list[str]] = []
+    hede_base_refused: list[dict] = []
+    if _HEDE_BASE_RULE:
+        _hb_groups, _hb_info = _hede_base_groups(uf, seeds_by_id, entity_id)
+        for _g in _hb_groups:
+            _eq: list[str] = []
+            _why = _hede_base_conflicts(_g, _hb_info, uf, _eq)
+            if _eq and not _why and os.environ.get("HEDE_BASE_EQUIV_LOG"):
+                print(f"    equiv-joined {_g[:3]}{'…' if len(_g) > 3 else ''}: {'; '.join(sorted(set(_eq)))}")
+            if _why:
+                hede_base_refused.append({"classes": _g, "why": _why})
+                continue
+            for _r in _g[1:]:
+                uf.force_union(_g[0], _r)
+            hede_base_joined.append(_g)
+        if _hb_groups:
+            print(f"  HEDE_BASE: {len(hede_base_joined)} groups joined "
+                  f"({sum(len(g) for g in hede_base_joined)} classes), "
+                  f"{len(hede_base_refused)} refused")
+            _dump = os.environ.get("HEDE_BASE_DUMP")
+            if _dump:
+                import json as _json
+                with open(_dump, "a") as _fh:
+                    for _rf in hede_base_refused:
+                        _fh.write(_json.dumps({
+                            "entity": entity_id, "why": _rf["why"],
+                            "classes": {r: [
+                                {"id": m, "nominal": (seeds_by_id.get(m) or {}).get("nominal"),
+                                 "hede": {k: v for k, v in _catalog_refs(seeds_by_id.get(m) or {}, entity_id).items()
+                                          if k.startswith("hede/")}}
+                                for m in uf._class_members(r)] for r in _rf["classes"]},
+                        }, ensure_ascii=False, default=str) + "\n")
+            for _rf in hede_base_refused:
+                print(f"    refused {_rf['classes'][:3]}{'…' if len(_rf['classes']) > 3 else ''}: "
+                      f"{'; '.join(_rf['why'][:3])}")
+
     # 4. Apply explicit curator merges LAST via force_union: a curator merge
     #    outranks the heuristic matcher, so auto no_merges between the member
     #    classes are CLEARED; only an EXPLICIT curator no_merge can block it
@@ -6712,6 +6927,7 @@ def main() -> int:
     # loop (a member's exclude from its source entity must agree with its pull
     # into the target — both sides need the same map).
     all_by_id, _home = _load_all_seeds()
+    _collect_declared_nominal_equiv(all_by_id.values())
     # One index for every member-resolution path in this run: the per-entity
     # closure, the cross-entity pre-scan and the completeness guard. They are
     # three call sites of ONE resolver, and a member thinning has dropped must

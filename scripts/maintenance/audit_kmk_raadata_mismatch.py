@@ -36,7 +36,9 @@ from build_kmk_seed import (  # noqa: E402
     _RAADATA_INCOHERENT_IDS, _inv_key, _raadata_other_object,
 )
 
-CACHE = ROOT / "scripts" / "cache" / "kmk"
+from lib.paths import HARVEST_ROOT  # noqa: E402
+
+CACHE = HARVEST_ROOT / "kmk"
 
 
 def _words(s: str | None) -> list[str]:
