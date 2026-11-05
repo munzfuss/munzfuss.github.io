@@ -666,6 +666,67 @@ def _relocation_attestation_index() -> dict[str, set[str]]:
 _LOADED_FINALS: dict[tuple, dict[str, dict]] = {}
 
 
+_SCOPE_IDX: dict | None = None
+
+
+def _scope_dropped_index(base: str) -> dict:
+    """What a seed builder's SCOPE rule took out (`data/v2/_scope_dropped/<src>.yml`,
+    written by the builder on every full run — the KMM stub rule, curator
+    2026-11-05): the dropped seed ids, and every value those seeds carried at
+    `base` — their KMM object numbers (own and §9a-thinned specimens), catalogue
+    indices, measurement readings and years. A record the source layer keeps
+    out of the corpus takes exactly these values with it; they are a recorded
+    decision, not a loss. Anything the dropped seeds did not carry still blocks.
+    """
+    global _SCOPE_IDX
+    if _SCOPE_IDX is not None:
+        return _SCOPE_IDX
+    idx = {"seeds": set(), "kmm": set(), "catalog": set(), "lists": {}, "years": set(),
+           "scalars": set()}
+    d = ROOT / "data" / "v2" / "_scope_dropped"
+    for p in sorted(d.glob("*.yml")) if d.exists() else []:
+        doc = _read_yaml(p)
+        src = doc.get("source") or p.stem
+        ids = set((doc.get("dropped") or {}).keys())
+        idx["seeds"] |= ids
+        if not ids:
+            continue
+        rels = subprocess.run(["git", "ls-tree", "-r", "--name-only", base, f"data/v2/seed/{src}/"],
+                              capture_output=True, text=True, cwd=ROOT).stdout.split()
+        for rel in rels:
+            for cid, c in _coins(_git_show(base, rel)).items():
+                if cid not in ids:
+                    continue
+                for t in [cid, *(c.get("_thinned_from") or [])]:
+                    if str(t).startswith("kmk-"):
+                        idx["kmm"].add(str(t)[4:])
+                for sref in c.get("sources") or []:
+                    m = re.search(r"/KMM/object/(\d+)", str((sref or {}).get("url") or ""))
+                    if m:
+                        idx["kmm"].add(m.group(1))
+                for reg, val in (c.get("catalog") or {}).items():
+                    for x in _as_list(val):
+                        idx["catalog"].add(f"{reg}={_catalog_key(x)}")
+                for f in ("weight_rough_g", "fineness", "diameter_mm"):
+                    for e in _as_list(c.get(f)):
+                        idx["lists"].setdefault(f, set()).add(_key(e))
+                        if isinstance(e, dict) and "value" in e:
+                            idx["lists"][f].add(_key({"source": e.get("source"), "value": e.get("value")}))
+                        elif isinstance(e, (int, float)):
+                            # A scalar seed reading reaches final as {source, value}.
+                            idx["lists"][f].add(_key({"source": src, "value": e}))
+                if c.get("year_ranges"):
+                    idx["years"] |= _covered_years(c.get("year_ranges"))
+                elif c.get("year_first") is not None:
+                    lo, hi = c.get("year_first"), c.get("year_last") or c.get("year_first")
+                    idx["years"] |= _covered_years([[lo, hi]])
+                for f in ("year_label", "year_first", "year_last", "mint", "ruler", "nominal"):
+                    if c.get(f) not in (None, "", []):
+                        idx["scalars"].add(f"{f}={_key(c.get(f))}")
+    _SCOPE_IDX = idx
+    return idx
+
+
 def compare_entity(entity: str, base: str) -> dict:
     """Load both sides for `entity` and delegate to `compare_coins`."""
     rel = f"{FINAL_REL}/{entity}.yml"
@@ -674,6 +735,7 @@ def compare_entity(entity: str, base: str) -> dict:
     cur = _coins(_read_yaml(path) if path.exists() else None)
     _LOADED_FINALS[(base, entity)] = head
     _LOADED_FINALS[(None, entity)] = cur
+    _scope_dropped_index(base)
     return compare_coins(entity, head, cur, excluded=_excluded_ids(entity),
                          retracted=_retracted_refs(entity),
                          elsewhere=_relocation_attestation_index(),
@@ -1095,6 +1157,16 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
         # An empty duplicate the curator let go (`kind: empty_duplicate`, keyed
         # by FINAL id, 2026-10-23): a memberless V1 foundation whose every
         # value lives on its hosts. Excused only while every host is a final.
+        # A source's scope rule kept every seed of this coin out of the corpus
+        # (`data/v2/_scope_dropped/`): the coin goes with them, on purpose.
+        _sd = (_SCOPE_IDX or {}).get("seeds") or set()
+        _probe = [cid, *(was.get("composed_of") or [])]
+        _members = {x for m in _probe for x in (head_members or {}).get(m, [])} or (
+            set(_probe) - {cid})
+        if _sd and _members and _members <= _sd:
+            dropped.append(f"{cid} ({was.get('nominal')} {was.get('year_label')}) "
+                           f"— source scope rule (all {len(_members)} seed(s) dropped)")
+            continue
         _ed_hosts = _empty_duplicate_removals().get(cid)
         if _ed_hosts:
             _home = _coin_home_index()
@@ -1258,6 +1330,10 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                 if set(seeds_here) & field_removals.get(f, set()):
                     retractions.append(f"{cid}.{f}: {hv!r} (recorded removal)")
                     continue
+                if _SCOPE_IDX and f"{f}={_key(hv)}" in _SCOPE_IDX["scalars"] and (
+                        set(seeds_here) & _SCOPE_IDX["seeds"]):
+                    retractions.append(f"{cid}.{f}: {hv!r} (source scope rule)")
+                    continue
                 losses.append(f"FIELD EMPTIED  {cid}.{f}: {hv!r} → empty")
             elif f in ("fuss", "phase") and cv == "seed_unsorted":
                 # A curator-agreed declassify (`kind: declassify`, keyed by
@@ -1370,8 +1446,19 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                             f"{cid}.{f}: {v[:70]} (§9a envelope trim)"
                             for v in sorted(trimmed))
                         gone -= trimmed
+                if gone and _SCOPE_IDX and f in _SCOPE_IDX["lists"]:
+                    _sg = gone & _SCOPE_IDX["lists"][f]
+                    if _sg:
+                        retractions.extend(f"{cid}.{f}: {v[:70]} (source scope rule)"
+                                           for v in sorted(_sg))
+                        gone -= _sg
+                if gone and _SCOPE_IDX and f == "year_ranges":
+                    _sg = gone & _SCOPE_IDX["years"]
+                    if _sg:
+                        retractions.append(f"{cid}.{f}: {len(_sg)} year(s) (source scope rule)")
+                        gone -= _sg
                 if gone and f == "sources":
-                    _mx = _member_excluded_kmm_any()
+                    _mx = _member_excluded_kmm_any() | ((_SCOPE_IDX or {}).get("kmm") or set())
                     if _mx:
                         member_gone = {v for v in gone
                                        if any(f"/KMM/object/{n}\"" in v for n in _mx)}
@@ -1435,6 +1522,12 @@ def compare_coins(entity: str, head: dict[str, dict], cur: dict[str, dict],
                         f"{cid}.catalog.{reg}: {v} (parser retraction)"
                         for v in sorted(excused))
                     gone -= excused
+                if gone and _SCOPE_IDX:
+                    _sg = {v for v in gone if f"{reg}={v}" in _SCOPE_IDX["catalog"]}
+                    if _sg:
+                        retractions.extend(f"{cid}.catalog.{reg}: {v} (source scope rule)"
+                                           for v in sorted(_sg))
+                        gone -= _sg
                 if gone:
                     losses.append(
                         f"CATALOG SHRANK  {cid}.catalog.{reg}: lost {sorted(gone)}")

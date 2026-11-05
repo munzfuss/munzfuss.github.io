@@ -1218,6 +1218,60 @@ def _early_out_of_scope(yf: int | None, entity) -> bool:
     return not ents or not ents <= allowed
 
 
+# KMM stubs leave the corpus (curator 2026-11-05): a record KMM marks as a
+# forgery; a record with neither a weight nor an image; a record with a weight
+# but no image and no catalogue index. Such a record carries nothing that
+# identifies the coin, yet it joined classes on nominal + ruler + year and was
+# the commonest source of conflicts in the Hede-base rule. Image = the cached
+# object page (`web/<id>.json` `billeder`, else an ImageObject / «/asset/» in
+# `web/<id>.html`); with no page cached the image is unknown and the record is
+# KEPT — fetch the page first. The filter runs on every record BEFORE §9a
+# thinning, so a representative is chosen among the records that stay; a stub
+# already in the seed is purged through write_v2_seed(exclude_ids=…) — the
+# scope question belongs to this layer (ARCHITECTURE «Layers»), not to
+# per-record `exclusions/` (curator 2026-11-05).
+_STUB_IGNORED_CATALOG = frozenset({"numista", "bruun", "galster_volume", "hede_volume"})
+
+
+def _kmm_has_image(rid) -> bool | None:
+    from fetch_kmk_web import WEB_CACHE
+    j = WEB_CACHE / f"{rid}.json"
+    if j.exists():
+        try:
+            return bool(json.loads(j.read_text("utf-8")).get("billeder"))
+        except json.JSONDecodeError:
+            pass
+    h = WEB_CACHE / f"{rid}.html"
+    if h.exists():
+        t = h.read_text(errors="ignore")
+        return "ImageObject" in t or "/asset/" in t
+    return None
+
+
+# id → stub category, filled by build_entry during a run; build_seed passes the
+# ids to write_v2_seed(exclude_ids=…) so a stub already in the seed is purged,
+# and writes them to data/v2/_scope_dropped/kmk.yml for verify_reflow.
+_STUB_DROPPED: dict[str, str] = {}
+
+
+def _kmm_stub_category(entry: dict) -> str | None:
+    if entry.get("forgery_flag") or _FORGERY_RE.search(str(entry.get("nominal") or "")):
+        return "forgery"
+    img = _kmm_has_image(entry["id"].split("-", 1)[1])
+    if img is not False:
+        return None
+    if not entry.get("weight_rough_g"):
+        return "no_weight_no_image"
+    cat = entry.get("catalog") or {}
+    if not any(v for k, v in cat.items() if k not in _STUB_IGNORED_CATALOG):
+        return "weight_no_image_no_index"
+    return None
+
+
+def _kmm_stub(entry: dict) -> bool:
+    return _kmm_stub_category(entry) is not None
+
+
 def build_entry(src) -> dict | None:
     if _is_exonumia_workdesc(src.get("workDescription")):
         return None
@@ -1359,6 +1413,10 @@ def build_entry(src) -> dict | None:
     # Wiring here (the deferred follow-up) makes a re-seed reproduce it durably
     # instead of dropping the one-off population. None → filtered out below.
     entry["_source_note"] = source_note(src.get("motif"), "da")
+    _cat = _kmm_stub_category(entry)
+    if _cat:
+        _STUB_DROPPED[entry["id"]] = _cat
+        return None
     return {k: v for k, v in entry.items() if v is not None}
 
 
@@ -1424,6 +1482,22 @@ def _kmm_source_id(source: dict) -> str | None:
     return f"kmk-{m.group(1)}" if m else None
 
 
+def _write_scope_dropped() -> None:
+    """data/v2/_scope_dropped/kmk.yml — every KMM record the stub rule keeps
+    out of the seed, with its category. Machine-written on each full run;
+    verify_reflow reads it to tell a deliberate scope drop from data loss."""
+    from lib.yaml_io import dump_v2_canonical
+    out = PROJECT_ROOT / "data" / "v2" / "_scope_dropped" / "kmk.yml"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "source": "kmk",
+        "rule": ("KMM stub (curator 2026-11-05): a forgery; no weight and no "
+                 "image; or a weight with no image and no catalogue index."),
+        "dropped": {k: _STUB_DROPPED[k] for k in sorted(_STUB_DROPPED)},
+    }
+    out.write_text(dump_v2_canonical(payload))
+
+
 def build_seed(dry_run: bool, limit: int | None,
                no_thin: bool = False) -> int:
     files = sorted(p for p in KMK_CACHE.glob("[0-9]*.json"))
@@ -1473,7 +1547,10 @@ def build_seed(dry_run: bool, limit: int | None,
         scope_note=scope_note,
         dry_run=dry_run,
         post_merge=None if no_thin else _thin_post_merge,
+        exclude_ids=frozenset(_STUB_DROPPED),
     )
+    if not dry_run and limit is None:
+        _write_scope_dropped()
     # Seed-layer volume control runs INSIDE write_v2_seed (post_merge =
     # _thin_post_merge), on each entity's merged list before the file is
     # rendered. The §9a envelope itself is computed after absorb, on a merged

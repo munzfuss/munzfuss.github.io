@@ -125,7 +125,21 @@ def _cross_entity_pulls() -> dict[str, set[str]]:
     return out
 
 
-def check_member_resolution(entity_filter: set[str] | None = None) -> list[tuple]:
+def scope_dropped_ids() -> set[str]:
+    """Seed ids a builder's scope rule keeps out of the corpus
+    (`data/v2/_scope_dropped/<src>.yml`, e.g. the KMM stub rule of 2026-11-05).
+    A decision member naming one is spent, not an orphan: the record it names
+    was removed on purpose, and the decision simply has one member fewer."""
+    import yaml
+    out: set[str] = set()
+    d = ROOT / "data" / "v2" / "_scope_dropped"
+    for p in sorted(d.glob("*.yml")) if d.exists() else []:
+        out |= set(((yaml.safe_load(p.read_text()) or {}).get("dropped") or {}).keys())
+    return out
+
+
+def check_member_resolution(entity_filter: set[str] | None = None,
+                            spent: list | None = None) -> list[tuple]:
     """Every merges/no_merges member must resolve to current SEED id(s). A
     member resolves if it IS a seed id OR if it is a bare Hede code that the
     merger's `_expand_member_against` expands to sub-letter seeds («dk-hede-
@@ -148,6 +162,7 @@ def check_member_resolution(entity_filter: set[str] | None = None) -> list[tuple
     seeds_cache: dict[str, set[str]] = {}
     pulls = _cross_entity_pulls()
     thinned = _thinned_index()
+    dropped = scope_dropped_ids()
     for path in sorted(DECISIONS_DIR.glob("*.yml")):
         ent = path.stem
         if ent.startswith("_"):
@@ -164,6 +179,10 @@ def check_member_resolution(entity_filter: set[str] | None = None) -> list[tuple
             for blk in (doc.get(key) or []):
                 for m in (blk.get("members") or []):
                     if not _M._expand_member_against(m, sids, thinned):
+                        if m in dropped:
+                            if spent is not None:
+                                spent.append((ent, key, m))
+                            continue
                         orphans.append((ent, key, m))
     return orphans
 
@@ -211,6 +230,7 @@ def check_classification_resolution(entity_filter: set[str] | None = None
     write on it. Agreeing duplicates are fine. Returns (orphans, conflicts) as
     [(entity, coin_id)] and [(entity, class, [coin_ids], [values])]."""
     import yaml
+    _dropped = scope_dropped_ids()
     orphans: list[tuple] = []
     conflicts: list[tuple] = []
     pulls = _cross_entity_pulls()
@@ -231,6 +251,8 @@ def check_classification_resolution(entity_filter: set[str] | None = None
             cid = str(a["coin_id"])
             seeds = _M._expand_member_against(cid, sids, thinned)
             if not seeds and cid not in known:
+                if cid in _dropped:
+                    continue
                 orphans.append((ent, cid))
                 continue
             classes = {seed_class[s] for s in seeds if s in seed_class} or {cid}
@@ -260,7 +282,11 @@ def main() -> int:
     rc = 0
 
     if args.check_members:
-        orphans = check_member_resolution(ef)
+        _spent: list = []
+        orphans = check_member_resolution(ef, _spent)
+        if _spent and not args.quiet:
+            print(f"  {len(_spent)} member(s) name records a source scope rule dropped "
+                  "(data/v2/_scope_dropped/) — spent, not orphans.")
         if orphans:
             print(f"⚠ {len(orphans)} non-resolving merge-decision member(s) "
                   "(orphans):", file=sys.stderr)
