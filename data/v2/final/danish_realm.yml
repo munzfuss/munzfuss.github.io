@@ -68219,6 +68219,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/174304
         ref: KMM 174304 (Inv. FP 8166.88)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/174308
         ref: KMM 174308 (Inv. FP 8166.89)
@@ -69526,7 +69527,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/131169
         ref: KMM 131169 (Inv. FP 2630.12)
-        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/422296
         ref: KMM 422296 (Inv. FP 2427.31)
@@ -101821,7 +101821,6 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148357
         ref: KMM 148357 (Inv. KP 1656.1956)
-        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/148358
         ref: KMM 148358 (Inv. KP 1656.1955)
@@ -101840,6 +101839,7 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/152185
         ref: KMM 152185 (Inv. FP 3574.109)
+        display: false
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/175851
         ref: KMM 175851 (Inv. FP 2374.49)
@@ -109904,60 +109904,6 @@ coins:
           seed: dk-galster-epomg-13
   - fuss: luebischer_muenzfuss
     phase: I
-    kind: kurant
-    nominal: 1 Hvid
-    ruler: Christoffer III
-    issuing_entity: danish_realm
-    id: c-7ba89ef7
-    year_first: 1440
-    year_last: 1448
-    year_ranges:
-      -   - 1440
-          - 1448
-    year_label: 1440-1448
-    mint: Malmø
-    catalog:
-      numista: '303699'
-      sieg:
-        - '1'
-        - '2'
-    metal: silver
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.75
-        source: numista
-    diameter_mm:
-      - value: 17.2
-        source: numista
-    sources:
-      - type: literature
-        url: https://en.numista.com/303699
-        ref: Numista N#303699 — 1 Hvid - Christopher of Bavaria (Malmo) - Denmark
-    note:
-      de: 4 Pennings (Rechnungs-Äquivalent)
-      en: 4 Pennings (accounting equivalent)
-      uk: 4 Pennings (розрахунковий еквівалент)
-    composed_of:
-      - c-7ba89ef7
-    label: unified-dk-numista-303699
-    origin: promoted
-    year_is_reign_span: true
-    year_verified: false
-    nominal_equiv: 4 Penning
-    uncertainty:
-      year:
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1440-1448
-          seed: dk-numista-303699
-  - fuss: luebischer_muenzfuss
-    phase: I
     kind: scheide
     nominal: 1 Sterling
     ruler: Erik VII
@@ -113718,7 +113664,9 @@ coins:
     mint: Kopenhagen
     catalog:
       numista: '278811'
-      sieg: '15'
+      sieg:
+        - '15'
+        - '15.1'
     metal: silver
     metal_verified: true
     fineness_verified: true
@@ -283411,11 +283359,14 @@ coins:
     year_verified: false
     mint: Malmø
     catalog:
+      numista: '303699'
+      sieg:
+        - '2'
+        - '2.1'
       galster:
         - '20'
         - 20A
         - 20B
-      sieg: '2'
       galster_volume: galster1972-christoffer3
       others:
         - Jesse# 703
@@ -283598,6 +283549,8 @@ coins:
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 92
       - value: 0.75
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 96
+      - value: 0.75
+        source: numista
       - value: 0.76
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 132
       - value: 0.77
@@ -283704,6 +283657,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/bajg20.htm
         ref: Galster 20 (bajg) — danskmoent.dk bajg20.htm
+      - type: literature
+        url: https://en.numista.com/303699
+        ref: Numista N#303699 — 1 Hvid - Christopher of Bavaria (Malmo) - Denmark
       - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 86
@@ -283936,6 +283892,11 @@ coins:
           value: 1440-1448
           seed: dk-galster-bajg-20
         - kind: hedged
+          how: span
+          source: numista
+          value: 1440-1448
+          seed: dk-numista-303699
+        - kind: hedged
           how: after
           source: lindahl
           as_printed: efter 1444
@@ -283948,6 +283909,15 @@ coins:
           as_printed: Hvid
           value: billon
           seed: dk-galster-bajg-20
+    nominal_equiv: 4 Penning
+    diameter_mm_verified: true
+    diameter_mm:
+      - value: 17.2
+        source: numista
+    note:
+      de: 4 Pennings (Rechnungs-Äquivalent)
+      en: 4 Pennings (accounting equivalent)
+      uk: 4 Pennings (розрахунковий еквівалент)
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant

@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 5918 active, 125 retired.
+# 5917 active, 126 retired.
 
 id: danish_realm
 classes:
@@ -35353,13 +35353,6 @@ classes:
     legacy_id: unified-kmk-417205
     members:
       - kmk-417205
-  - id: c-7ba89ef7
-    status: active
-    created: '2026-10-22'
-    label: unified-dk-numista-303699
-    legacy_id: unified-dk-numista-303699
-    members:
-      - dk-numista-303699
   - id: c-7ba8dc33
     status: active
     created: '2026-10-22'
@@ -58955,10 +58948,11 @@ classes:
   - id: c-df58ec36
     status: active
     created: '2026-10-22'
-    label: unified-dk-galster-bajg-20
+    label: unified-dk-numista-303699
     legacy_id: unified-metallanalyser-2016-1-g20-malmo-hvid
     members:
       - dk-galster-bajg-20
+      - dk-numista-303699
       - lindahl-1955-malmoe-hvid
       - metallanalyser-2016-1-g20-malmo-hvid
   - id: c-df59cf8a
@@ -68634,6 +68628,15 @@ classes:
     retired: '2026-11-03'
     members:
       - kmk-302545
+  - id: c-7ba89ef7
+    status: retired
+    created: '2026-10-22'
+    label: unified-dk-numista-303699
+    legacy_id: unified-dk-numista-303699
+    merged_into: c-df58ec36
+    retired: '2026-11-05'
+    members:
+      - dk-numista-303699
   - id: c-7c503c16
     status: retired
     created: '2026-10-26'
