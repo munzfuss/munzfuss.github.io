@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `sweden`.
-# Generated 2026-10-29 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-11-05 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sweden.yml across all sources.
 #
-# Input: 266 per-source seed entries.
-# Output: 226 unified entries (one per physical coin).
+# Input: 259 per-source seed entries.
+# Output: 223 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sweden
-generated_at: '2026-10-29'
+generated_at: '2026-11-05'
 coins:
   - id: c-4225815c
     class_id: c-4225815c
@@ -7717,17 +7717,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c1g216.htm
         ref: Galster 216 (c1g) — danskmoent.dk chr_c1g216.htm
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150297
-        ref: KMM 150297 (Inv. KP 1656.16)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150298
-        ref: KMM 150298 (Inv. KP 1656.15)
     issuing_entity: sweden
     composed_of:
       - dk-galster-c1g-216
-      - kmk-150297
-      - kmk-150298
   - id: c-aa93bc03
     class_id: c-aa93bc03
     label: unified-dk-galster-c3g-246
@@ -7920,13 +7912,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c3g251.htm
         ref: Galster 251 (c3g) — danskmoent.dk chr_c3g251.htm
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/139713
-        ref: KMM 139713 (Inv. KP 1715.6)
     issuing_entity: sweden
     composed_of:
       - dk-galster-c3g-251
-      - kmk-139713
   - id: c-6a2730c4
     class_id: c-6a2730c4
     label: unified-dk-galster-epomg-195
@@ -8676,13 +8664,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/hansgals.htm
         ref: Galster 237 (hg) — danskmoent.dk hansgals.htm
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/150267
-        ref: KMM 150267 (Inv. KP 1656.46)
     issuing_entity: sweden
     composed_of:
       - dk-galster-hg-237
-      - kmk-150267
   - id: c-d804b89d
     class_id: c-d804b89d
     label: unified-dk-galster-hg-238
@@ -8992,76 +8976,3 @@ coins:
     issuing_entity: sweden
     composed_of:
       - ikmk-18296063
-  - id: c-e42d23a8
-    class_id: c-e42d23a8
-    label: unified-kmk-139310
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Ørtug
-    ruler: Christian 1
-    mint: Stockholm
-    catalog:
-      schou: '69'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/139310
-        ref: KMM 139310 (Inv. KP 1715.409)
-    issuing_entity: sweden
-    composed_of:
-      - kmk-139310
-  - id: c-b8e5abd6
-    class_id: c-b8e5abd6
-    label: unified-kmk-139714
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4 Skilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian 3
-    mint: Stockholm
-    catalog:
-      schou: '56'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/139714
-        ref: KMM 139714 (Inv. KP 1715.5)
-    issuing_entity: sweden
-    composed_of:
-      - kmk-139714
-  - id: c-68c4d56f
-    class_id: c-68c4d56f
-    label: unified-kmk-316367
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Ørtug
-    year_first: 1524
-    year_last: 1527
-    year_ranges:
-      -   - 1524
-          - 1527
-    year_label: 1524-1527
-    ruler: Gustav Vasa
-    mint: Stockholm
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/316367
-        ref: KMM 316367 (Inv. FP 6936.11)
-    issuing_entity: sweden
-    composed_of:
-      - kmk-316367

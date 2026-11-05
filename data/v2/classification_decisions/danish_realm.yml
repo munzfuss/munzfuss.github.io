@@ -28,7 +28,7 @@
 # preserved.
 
 entity_id: danish_realm
-generated_at: '2026-11-03'
+generated_at: '2026-11-05'
 bulk_promote_pending: all
 assignments:
   - coin_id: dk-hede-c4h143
@@ -814,12 +814,13 @@ assignments:
     reason: 'Restored 2026-10-09 (curator): the classification kronemont_chr_iv / I / kurant lived only on the final unified-dk-numista-197176 and was lost when the merger renamed the class (curator merge
       Hede 116 = KM 69, 2026-06-26); no assignment backed it. Values as on unified-dk-numista-197176 at 2026-06-15.'
     was: unified-dk-hede-c4h116a
-  - coin_id: kmk-160885
+  - coin_id: dk-hede-c4h134a
     fuss: 9_25_thaler
     phase: I
     kind: kurant
     reason: 'Restored 2026-10-09 (curator): the classification 9_25_thaler / I / kurant lived only on the final unified-dk-numista-372940 and was lost when the merger renamed the class (NGC flow, 8e0f0ad);
-      no assignment backed it. Values as on unified-dk-numista-372940 at 2026-08-01.'
+      no assignment backed it. Values as on unified-dk-numista-372940 at 2026-08-01. Re-keyed 2026-11-05 from kmk-160885 (dropped by the KMM stub rule) to dk-hede-c4h134a, a member of the same class; values
+      unchanged.'
     was: unified-kmk-160885
   - coin_id: dk-hede-c8h5
     fuss: 18_5_thaler
@@ -2738,19 +2739,67 @@ pending: []
 multi_match_warnings: []
 promoted_near_peers:
   - c-068a2f9f
+  - c-08dc2e27
+  - c-0e8da068
   - c-15b68440
+  - c-1b18ea48
+  - c-1c04af3f
   - c-1d0195c8
+  - c-1d140e02
   - c-202d275b
+  - c-21a2bf3e
+  - c-22240ccf
+  - c-29267f39
+  - c-2b13049b
+  - c-2f4d3ec9
   - c-324261b6
+  - c-328d66ca
+  - c-33f8c538
+  - c-38713ba1
+  - c-395dcb86
+  - c-39fb15b4
+  - c-4308b89c
   - c-43ceeeff-2
+  - c-45ce7de3
+  - c-4e783704
+  - c-4e8a3493
+  - c-54529f00
+  - c-548dd509
+  - c-5a48af4f
+  - c-655af32c
+  - c-68bb0e10
+  - c-6d9f00f9
+  - c-6eb7beaa
+  - c-75289b24
+  - c-7dba9bc8
+  - c-83162269
   - c-8443f8c8
+  - c-88aae70e
+  - c-8ed9eb15
   - c-93315541
+  - c-97e9d5f4
+  - c-99cc067d
+  - c-9ee16f22
   - c-a65a2415
+  - c-a6612855
+  - c-afff7a55
+  - c-b0093003
+  - c-c51e4158
   - c-c973e5b2
+  - c-ca464e52
+  - c-ca5e829f
+  - c-caa63964
+  - c-d19d1180
   - c-d5631196
+  - c-d58f0785
+  - c-dc940981
   - c-e1012e0e
+  - c-e50de5cd
+  - c-e549ad01
   - c-e7210ec7
+  - c-e86849e7
   - c-f24f5875
+  - c-f6a01032
   - unified-dk-bruun-1316
   - unified-dk-bruun-4633
   - unified-dk-bruun-5534
@@ -2884,8 +2933,33 @@ carried_classifications:
     phase: I
     from:
       - c-aaa76bba
+  - class: c-2f4d3ec9
+    fuss: kronemont_chr_iv
+    phase: I
+    from:
+      - km-81-chr-iv-1620
+  - class: c-99cc067d
+    fuss: 9_thaler
+    phase: I
+    from:
+      - c-0c0db2f9
+  - class: c-b0093003
+    fuss: 8_daler_fod
+    phase: '0'
+    from:
+      - c-31bb88e8
   - class: c-c973e5b2
     fuss: 8_daler_fod
     phase: '0'
     from:
       - c-561c542f
+  - class: c-e549ad01
+    fuss: 9_25_thaler
+    phase: I
+    from:
+      - c-d63b66c0
+  - class: c-f60f3c0a
+    fuss: kronefod
+    phase: I
+    from:
+      - c-167c1f00

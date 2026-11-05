@@ -882,10 +882,6 @@ coins:
         url: https://www.danskmoent.dk/fr/f2h30.htm
         ref: danskmoent.dk (Hede f2h30A)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156108
-        ref: KMM 156108 (Inv. FP 5339.1)
-        display: false
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/345172
         ref: KMM 345172 (Inv. FP 10156.1)
     hede_muentzfuss_yield:
@@ -955,15 +951,9 @@ coins:
           source: kmk
           value: 1559-1588
           seed: kmk-203799
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1559-1588
-          seed: kmk-348823
     mint: Flensburg
     catalog:
       hede:
-        - '31'
         - 31A
         - 31B
       hede_volume: f2h
@@ -994,23 +984,11 @@ coins:
         url: https://www.danskmoent.dk/fr/f2h31.htm
         ref: danskmoent.dk (Hede f2h31A)
       - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/155202
-        ref: KMM 155202 (Inv. FP 3115.5)
-        display: false
-      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/203799
         ref: KMM 203799 (Inv. FP 6588.2)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/279226
         ref: KMM 279226 (Inv. FP 3528.218)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/348823
-        ref: KMM 348823 (Inv. FP 5394.4)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/372297
-        ref: KMM 372297 (Inv. FP 4325.1)
-        display: false
     hede_muentzfuss_yield:
       value: 10.237
       unit: speciedaler
@@ -2169,25 +2147,21 @@ coins:
     nominal: 1 Lybsk blaffert
     ruler: Christian 3
     issuing_entity: royal_slesvig
+    year_is_reign_span: true
     id: c-66488a70
-    year_first: 1546
-    year_last: 1554
+    year_first: 1534
+    year_last: 1559
     year_ranges:
-      -   - 1546
-          - 1554
-    year_label: 1546-1554
+      -   - 1534
+          - 1559
+    year_label: 1534-1559
+    year_verified: false
     uncertainty:
       year:
-        - kind: hedged
-          how: museum
-          source: kmk
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
           value: 1534-1559
-          seed: kmk-569933
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1534-1559
-          seed: kmk-569947
     mint: Flensburg
     catalog:
       schou: '8'
@@ -2217,57 +2191,8 @@ coins:
       uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
       da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
-      - c-1ed43a85
       - c-66488a70
     label: unified-kmk-123178
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Blaffert
-    ruler: Christian 3
-    issuing_entity: royal_slesvig
-    id: c-b5d4486d
-    year_first: 1546
-    year_last: 1546
-    year_label: '1546'
-    mint: Flensburg
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/131480
-        ref: KMM 131480 (Inv. FP 2519.71)
-    verification_note: *id001
-    composed_of:
-      - c-b5d4486d
-    label: unified-kmk-131480
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Blaffert
-    ruler: Christian 3
-    issuing_entity: royal_slesvig
-    id: c-eb209756
-    year_first: 1546
-    year_last: 1546
-    year_label: '1546'
-    mint: Flensburg
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/131481
-        ref: KMM 131481 (Inv. FP 2519.72)
-    verification_note: *id001
-    composed_of:
-      - c-eb209756
-    label: unified-kmk-131481
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -2276,29 +2201,19 @@ coins:
     ruler: Christian 3
     issuing_entity: royal_slesvig
     id: c-3a9380d1
-    year_first: 1544
+    year_first: 1547
     year_last: 1556
     year_ranges:
-      -   - 1544
+      -   - 1547
           - 1556
-    year_label: 1544-1556
+    year_label: 1547-1556
     uncertainty:
       year:
         - kind: hedged
           how: museum
           source: kmk
           value: 1534-1559
-          seed: kmk-639379
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1534-1559
-          seed: kmk-646196
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1534-1559
-          seed: kmk-646197
+          seed: kmk-736277
     mint: Flensburg
     catalog:
       hede: '23'
@@ -2407,7 +2322,11 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/139673
         ref: KMM 139673 (Inv. KP 1715.46)
-    verification_note: *id001
+    verification_note: &id002
+      de: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk); die Felder sind museumsbelegt. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
+      en: Record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk); the fields are museum-attested. The coinage standard of this piece is not yet determined.
+      uk: Запис із Королівського мюнцкабінету (Nationalmuseet, Копенгаген, api.natmus.dk); поля засвідчені музеєм. Стопу цього примірника ще не визначено.
+      da: Post fra Den kgl. Mønt- og Medaillesamling (Nationalmuseet, København, api.natmus.dk); felterne er dokumenteret af museet. Møntfoden for dette stykke er endnu ikke bestemt.
     composed_of:
       - c-94c3a246
     label: unified-kmk-139673
@@ -2429,11 +2348,10 @@ coins:
     year_verified: false
     uncertainty:
       year:
-        - kind: hedged
-          how: museum
-          source: kmk
+        - kind: inferred
+          how: reign
+          source: ruler_reigns
           value: 1534-1559
-          seed: kmk-578455
     mint: Flensburg
     catalog:
       hede: '23'
@@ -2454,170 +2372,6 @@ coins:
     composed_of:
       - c-85553d44
     label: unified-kmk-152263
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Blaffert
-    ruler: Christian 3
-    issuing_entity: royal_slesvig
-    year_is_reign_span: true
-    id: c-32f5e677
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: 1534-1559
-    mint: Flensburg
-    catalog:
-      hede: '23'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/306915
-        ref: KMM 306915 (Inv. FP 7736.32)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/368091
-        ref: KMM 368091 (Inv. FP 4591.17)
-        display: false
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/391793
-        ref: KMM 391793 (Inv. FP 4087.49)
-        display: false
-    verification_note: *id001
-    composed_of:
-      - c-32f5e677
-    label: unified-kmk-306915
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Lybsk blaffert
-    ruler: Christian 3
-    issuing_entity: royal_slesvig
-    year_is_reign_span: true
-    id: c-181f6e84
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: 1534-1559
-    mint: Flensburg
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/308285
-        ref: KMM 308285 (Inv. FP 7549.11)
-    verification_note: *id001
-    composed_of:
-      - c-181f6e84
-    label: unified-kmk-308285
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Blaffert lybsk?
-    ruler: Christian 3
-    issuing_entity: royal_slesvig
-    year_is_reign_span: true
-    id: c-0729edc8
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1534-1559
-          seed: kmk-345231
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1534-1559
-          seed: kmk-345232
-    mint: Flensburg
-    catalog:
-      hede: 23-24
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/345231
-        ref: KMM 345231 (Inv. FP 5487.3)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/345232
-        ref: KMM 345232 (Inv. FP 5487.2)
-        display: false
-    verification_note: *id001
-    composed_of:
-      - c-0729edc8
-    label: unified-kmk-345231
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Lybsk blaffert
-    ruler: Christian 3
-    issuing_entity: royal_slesvig
-    year_is_reign_span: true
-    id: c-13827d81
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: 1534-1559
-    mint: Flensburg
-    catalog:
-      hede: 23-24
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/345235
-        ref: KMM 345235 (Inv. FP 5486.2)
-    verification_note: *id001
-    composed_of:
-      - c-13827d81
-    label: unified-kmk-345235
     origin: promoted
   - fuss: seed_unsorted
     phase: kmk
@@ -2644,81 +2398,10 @@ coins:
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/411793
         ref: KMM 411793 (Inv. FP 2950.2)
-    verification_note: *id001
+    verification_note: *id002
     composed_of:
       - c-555e4c57
     label: unified-kmk-411793
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Hulpenning
-    ruler: Christian 3
-    issuing_entity: royal_slesvig
-    year_is_reign_span: true
-    id: c-e02516e9
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: inferred
-          how: reign
-          source: ruler_reigns
-          value: 1534-1559
-    mint: Flensburg
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/422297
-        ref: KMM 422297 (Inv. FP 2427.30)
-    verification_note: *id001
-    composed_of:
-      - c-e02516e9
-    label: unified-kmk-422297
-    origin: promoted
-  - fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Brakteat
-    ruler: Christian 3
-    issuing_entity: royal_slesvig
-    year_is_reign_span: true
-    id: c-19a2636e
-    year_first: 1534
-    year_last: 1559
-    year_ranges:
-      -   - 1534
-          - 1559
-    year_label: 1534-1559
-    year_verified: false
-    uncertainty:
-      year:
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1534-1559
-          seed: kmk-627335
-    mint: Flensburg
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/627335
-        ref: KMM 627335 (Inv. FP 881.3)
-    verification_note: *id001
-    composed_of:
-      - c-19a2636e
-    label: unified-kmk-627335
     origin: promoted
   - fuss: luebischer_muenzfuss
     phase: II
@@ -2775,11 +2458,6 @@ coins:
           source: galster
           value: 1534-1559
           seed: dk-galster-c3g-133
-        - kind: hedged
-          how: museum
-          source: kmk
-          value: 1534-1559
-          seed: kmk-497176
       metal:
         - kind: inferred
           how: from_name
@@ -2793,7 +2471,7 @@ coins:
       schou: 8-9
       sieg: '20'
       galster_volume: c3g
-    metal: silver
+    metal: billon
     metal_verified: true
     fineness_verified: true
     weight_rough_verified: true
@@ -2816,10 +2494,6 @@ coins:
         url: https://www.danskmoent.dk/pdf2/ReinhJunge.pdf
         ref: Georg Galster (udg.), Reynold Junges Møntmesterregnskaber 1534–1540 (København 1934), S. XXI, Skema nr. 3 (1534, ½ ß l., Slesvig; Schou 8—9; tungeste Ex. 1.11 g, letteste Ex. 0.95 g, 
           gennemsnit 1.03 g; Af Exx. i MK 0); Tavle XVIII, fig. 3
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/497176
-        ref: KMM 497176 (Inv. FP 10697.11)
-        display: false
     composed_of:
       - c-cafd5473
     label: unified-dk-galster-c3g-133
@@ -3501,8 +3175,6 @@ coins:
     mint_verified: true
     verified: false
     weight_rough_g:
-      - value: 34.4
-        source: kmk
       - value: 34.61
         source: bruun
       - value: 34.88

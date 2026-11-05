@@ -3,7 +3,7 @@
 # One record per cross-source class: an opaque immutable id, the class's
 # specimens (seed ids incl. those folded by §9a thinning), its lineage
 # (merged_into / split_into) and the mutable `label` (the unified id).
-# 21 active, 0 retired.
+# 20 active, 1 retired.
 
 id: fuerstbisthum_luebeck
 classes:
@@ -106,13 +106,6 @@ classes:
     legacy_id: unified-dk-numista-271394
     members:
       - dk-numista-271394
-  - id: c-889aedaf
-    status: active
-    created: '2026-10-22'
-    label: unified-kmk-575019
-    legacy_id: unified-kmk-575019
-    members:
-      - kmk-575019
   - id: c-8ce5e131
     status: active
     created: '2026-10-22'
@@ -156,3 +149,11 @@ classes:
     legacy_id: unified-dk-numista-367502
     members:
       - dk-numista-367502
+  - id: c-889aedaf
+    status: retired
+    created: '2026-10-22'
+    label: unified-kmk-575019
+    legacy_id: unified-kmk-575019
+    retired: '2026-11-05'
+    members:
+      - kmk-575019
