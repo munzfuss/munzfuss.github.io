@@ -2010,6 +2010,20 @@ danish_realm seed_unsorted (likely duplicates of the Flensborg classes; kmk-1568
 **Timeline consequence.** Minting stripe extends to 1571 once period II's coins are classified (it follows the
 coins); status stays 1396–1514 (kingdom); circulation unchanged.
 
+### §3.16 Continuity after 1514 and the end-point question (2026-11-05, curator questions)
+
+Curator's definitions (2026-11-05): a Fuß = formula + the inertial continuity of the same denominations;
+a new denomination is tested for whether it fits the system; «Lybsk Møntfod» = the Danish standard
+oriented on Lübeck, c. 1350–1514+, often worse; the Mark was counted from the Hvid (one system); the
+Skilling's war collapse 1534–36 — open. The line tables, the post-1541 Hede series and the Danish : Lübeck
+ratio after 1541 are in `danish_small_coin_lines_1497_1660.md`; the chain of tariffs set by the acts
+1403–1625 in `denomination_ratio_chains_1403_1625.md`. Findings: the 1514 Skilling (88/M, 6 lod)
+continues Hans' 1512 formula; the Hvid stays in Hans' own spread to 1541 and ends c. 1619; the Mark piece
+= 48 Hvide in 1524 and 1541; the first integer, Daler-anchored chain is the 1537 tariff (Gylden /
+Joachimsdaler = 3 Mark). End-point candidates (a) 1514, (b) 1537–41, (d) c. 1619 — **curator decision
+pending**; with (b) the Count's Feud coins (`christian_ii_partisans_coinage_1525_1536.md`) fall inside
+this card.
+
 ## §4. Instruments
 
 | Date | Instrument | Role for the card | Register / dossier |
