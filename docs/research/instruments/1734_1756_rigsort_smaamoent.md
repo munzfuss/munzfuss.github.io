@@ -399,4 +399,4 @@ recorded on any); `trace` on the C6 / F5 seeds listed below.
 
 *Self-score (research-dossier rubric): C1 scope 2 · C2 parameters 2 · C3 instruments 2 · C4
 provenance 1,5 (F37 and Fb40 by Mordhorst's digest only; the archive acts by Wilcke only) · C5 open
-questions 1,5 · C6 recomputation 2 → **9/10**. Commit: (recorded after the commit).*
+questions 1,5 · C6 recomputation 2 → **9/10**. Commit: `e31696f`.*
