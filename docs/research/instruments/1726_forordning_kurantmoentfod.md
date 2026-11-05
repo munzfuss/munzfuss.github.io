@@ -305,7 +305,7 @@ Kontrakt sentence), `danskmoent-hede-f4h52-4-skilling-1727-30`, `danskmoent-hede
 `mordhorst-c5mord-reskript-1686-udmoentning`.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-05): C1 2.0 · C2 2.0 (every grid from
+Score (research-dossier rubric, self-assessed 2026-11-05, commit fc2c22f): C1 2.0 · C2 2.0 (every grid from
 the acts' own counts or Hede's figures, recomputed) · C3 2.0 · C4 1.5 (Wilcke III now read on
 the page; A / B only through Mordhorst) · C5 1.0 · C6 1.0 = **9.5/10**; A's and B's own text is
 the unread layer.
