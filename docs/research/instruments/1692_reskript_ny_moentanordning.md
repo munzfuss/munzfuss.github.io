@@ -132,7 +132,13 @@ mintmaster marks).
   Rdl. Kroner at 10 Rdl. 2½ Mk; skillemønt at 11⅔ Rdl.) and 26 Oct 1690 (100 000 Rdl. sletdalere
   at 10 Rdl. 2½ Mk) — the minting orders this one replaces; Reskript 11 March 1675 (2-Krone
   profit to the Kommercekollegium — Hede); Frdg. 10 Feb 1680 (export ban on Kroner).
-- **Successors:** Frdg. 25 Feb 1693 (Kongsberg specie at 6 Mk 8 ß); Frdg. 14 April 1694 and
+- **Successors:** **Frdg. 25 Feb 1693** on the Kongsberg specie (Schou I s. 665, line read on
+  the page image: «*Fr. At de ved Sølv-Værket Kongsberg myntede Specie-Rdlr skal af alle antages
+  for 6 Mk 8 ß*», the collection's p. 868; Mordhorst: refused «*til den Prjs, som den algemeene
+  Cours nu er, nemlig til Otte Skilling paa Daleren*» both in trade and at the public treasuries,
+  the Norwegian-struck Speciedaler is fixed at **6 Mk 8 ß** = 104 ß — the same 8-ß agio over the
+  96-ß Rigsdaler that the general course gave; folded here 2026-11-05 from the PLAN row
+  (`schou-1795-bd1-s665-kongsberg-specie-1693`, `mordhorst-c5mord-1693-kongsberg-specie`)); Frdg. 14 April 1694 and
   19 Feb 1695 (agio); Reglement 4 May 1695 (24 / 8 / 4 ß — Schou's note; text not in hand);
   Reglement 21 Sept 1771 and 9 July 1773 (copper ½ ß — Schou); the Kurantmøntfod Forordning
   15/31 July 1726 (register §1d, to come) which ends the Krone as principal standard; last

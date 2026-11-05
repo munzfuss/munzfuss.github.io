@@ -62,6 +62,8 @@
 | W5 | 6 Sept 1645 · 29 Nov 1645 (Flensborg) | The king: Schwieger to strike single and double Markstykker for an Overskud of **218 Rdlr. per 1 000 Rdlr.** at silver 9 Rdl. the fine mark (Köhler / Preusse's Overslag); 29 Nov: stop the Markstykker, specie and ducats only «*efter Rigens Korn og Skrot*» | Christian IV → Pentz | SH-k | R. A. l. c. (n. 26); Slesvig Statsarkiv A III 457 Nr. 12 a (n. 35) |
 | W6 | 1646 (after 21 Sept) · 26 April 1647 · 14 May 1647 | Resolution: 5 000 Rdlr. in Dütken, Schilling and Søsling «*efter tidligere Stadmønts Skrot og Korn*», not receivable at the magazines; 1647: the small coin forbidden, the limit exceeded by c. 1 000 Rdlr.; «*Mønten i Glückstadt gik ind*» | Christian IV | SH-k | Slesvig Statsarkiv A III 457 Nr. 22; R. A. l. c. (n. 43–44) |
 | (B3) | 15 July 1657 · 19 May 1659 | Schwieger's Bestalling «*paa ganske samme Vilkaar som … Timpff ved Bestallingen af 31. December 1641*», ≤ 5 000 Rdlr. Dütken a year for 3 years; 1659: Kroner / 2 Marck l. «*efter dansk Korn og Skrot*», 10½ to the 10-lod-3-quintin mark, fee 12 ß l. per fine mark | Frederik III → Schwieger | SH-k | Slesvig Statsarkiv A III 457 Nr. 13, 14 a; R. A. Glückstadter Kriegskasse 1660 (Wilcke III C.3 n. 2–4) — PLAN row 1657/59, folded here §6.3 |
+| (P1) | 18 April 1660 | Patent (after the Flensborg complaints of 15 Feb, 7 and 9 May 1660): the population «*indskærpet … at modtage de i forrige Krig 1644-45 slagne 14 og 7 ß l. Stkr. med hebraisk Skrift*» — the Hebræer 2 Mark / 1 Mark of W5 kept current | Frederik III | SH-k | R. A. Kanc. i Glückstadt, Nachrichten und Doc. das Müntzwesen in Glückstadt betr. 1634–1715; T. K. Patenten 1660–63 (Wilcke III C.3 n. 7–8) — PLAN row 1660, folded here 2026-11-05 (`wilcke-1924-kap3-3-patent-1660-18-april-flensborg`) |
+| (P2) | 20 Sept 1660 | Kgl. Patent «der Müntz halber und Absetzung der Cronen» (Frederik III with Duke Christian Albrecht): the whole, half and quarter Kroner «*welche von Anno 1649 hier geschlagen worden*» from 32 / 16 / 8 ß l. to **28 / 14 / 7 ß l.** (3 Mk 8 ß d. / 1 Mk 12 ß / 14 ß d.), after Lübeck and Hamburg had banned them (the concept struck out «27 ß 10 Pf.»); Mecklenburg-Schwerin and Rostock followed 27 Oct 1660, 18 and 22 Jan 1661; the foreign small coin's reduction postponed to end-Feb 1661 (9 Nov, 4 Dec 1660) after the soldiers' unrest | Frederik III + Christian Albrecht | SH-k + SH-d | R. A. T. Kanc. I. A. 1670, Registrerede Koncepter til Patenter 1646–69; Patenten 1660–63 fol. 67 (Wilcke III C.3 n. 9–13; kap. I A.6 n. 2) — folded here 2026-11-05 (`wilcke-1924-kap3-3-patent-1660-20-sept-cronen`); the Krone of B3 (10½ to the 10-lod-3-quintin mark) is the coin reduced |
 
 ## 2. Source chain
 
@@ -526,7 +528,7 @@ So the **1640/41 grid was the Glückstadt standard again in 1657–60**: Rdl. 8/
 Krone 10½/M at 10 lod 3 quintin (= 10¾ lod = 671,9 ‰; 22,272 g · 14,964 g fine — the 1625 Krone grid
 of the kingdom, `kronemont`) for a fee of 12 ß l. per fine mark (the 800 Rdlr. paid in 1660 → c.
 3 200 marks fine → c. 50 000 Kroner ≈ 33 000 Rdlr., Wilcke). The Krone reduced 20 Sept 1660 (32 → 28
-ß l., ½ 16 → 14, ¼ 8 → 7) — the 1660 row of the register. Timpff's grid therefore governs every
+ß l., ½ 16 → 14, ¼ 8 → 7) — P2 above (§1), the 1660 row of the register. Timpff's grid therefore governs every
 Glückstadt small coin 1640–47 and 1657–60; the 1671 Myndt-Ordning (`1671_…`) replaces it for all three
 mints.
 

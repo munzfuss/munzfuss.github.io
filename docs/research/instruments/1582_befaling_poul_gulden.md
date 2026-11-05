@@ -159,7 +159,16 @@ Matthias Urban for 1 000 Dlr (1 Sept 1582); the old mintmaster Hans Delhusen con
   (Wilcke I s. 55; Galster: «opgav Tilknytningen til det lybske Møntsystem»); the 1563-type
   Mark (9,744 g at ca. 650 ‰) whose «gamle Skrot» the Mark keeps while the fineness falls to
   614,58 ‰; Gulden's assay of the Swedish öre and skilling of 1580–81 as the argument.
-- **Successors.** Befaling for Norge 1 Aug 1589 (confirms 4 Mark = 1 daler); Metzner's
+- **Successors.** The Aabent Brev of 12 Feb 1582 (Kronborg; Secher II nr. 277, s. 239–240,
+  in German): the Sound-toll officers to take the rosenobel «*nicht höher als vor viertehalben
+  taler und einen ort*» — 3¾ daler — «*wegen der vielfältigen auf- und absetzung*», other gold
+  «*jedes in seinem geburlichen werd*» (`secher-ccd-2-277-1582-rosenobel-oeresund`; folded
+  here 2026-11-05 from the PLAN row); the Forordning of 6 June 1586 for Norway (Wilcke 7-6 s.
+  386; not in Secher II): byskat, jordskyld and landgilde, which had been demanded double
+  «*siden Møntens Forandring*» (1 Mk = 8 ß, the coin «*dobbelt beregnet*»), to be paid «*4 Mk
+  d. som før gik eller en god enkende Dlr.*» where 3 Mk had been given before, and 4 Albus for
+  each old ß — the 4-Mark daler of A applied to the Norwegian dues
+  (`wilcke-1950-kap7-6-frdg-1586-norge-byskat`); Befaling for Norge 1 Aug 1589 (confirms 4 Mark = 1 daler); Metzner's
   Bestalling 14 Sept 1593 and Møntordning 1 Aug 1594; Müntzordnung 1 Aug 1597; (the «Møntanordning 20 May 1593 — the Mark at 7,3 g of 14-lot
   silver», Wilcke I s. 48, is SIGISMUND'S SWEDISH ordinance, not a Danish act — corrected
   2026-10-14, `1593_bestalling_metzner.md` §4.3 D2); the Aabent Brev of 12 May 1602 (daler to 66 ß) and the Forordning of

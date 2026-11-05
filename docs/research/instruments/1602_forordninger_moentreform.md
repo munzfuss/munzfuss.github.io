@@ -227,8 +227,15 @@ struck at these ordinances' Portugaløser/Ungersk Gylden lines before the Klippi
   «fine» tier (s. 70); the Jüterbog (23 Apr 1602) and Halberstadt (28 May 1601) Kreis
   complaints about Gottorp's Steinbeck 2 ß (s. 62–63).
 - **Successors.** Frdg. 12 July 1603 against the export of gold, silver and copper (Secher
-  III p. 161; register §4); Frdg. 17 March 1605 «om møntens forandring» and the ducal-coin
-  tariffs of 8 July / 4 Aug 1605 (register §1b); Mandat 3 Feb 1609 (daler = 68 ß) and
+  III p. 161; register §4); **Frdg. 17 March 1605 «om møntens forandring»** (Secher III nr. 208, s. 181–182;
+  Sæll. tegn. 20, 9–10; folded here 2026-11-05): no new grid — the 12 May 1602 Aabent Brev's
+  tariff re-enacted «*endnu som tilforn med voris Danmarkis rigis raads samtycke*» against
+  subjects who «*skulle vegre at tage en rigsdaeller for forskrefne verd*»: the rigsdaler «*skal
+  gange och gieide 33 lybsk sk. eller 66 dansk sk.*», the Mark piece «*halfsøttende sk. danske*»
+  (7½ ß) and «*fire mark danske lige saa møgit som en rigsdaller*», with the penalty clause and
+  the order to the fogeder and magistrates to enforce it
+  (`secher-ccd-3-208-1605-moentens-forandring`); the ducal-coin tariffs of 8 July / 4 Aug
+  1605 (register §1b); Mandat 3 Feb 1609 (daler = 68 ß) and
   Frdg. 3 April 1610 (register §1b); the Krone acts of 1618–19.
 
 ## 7. Our data

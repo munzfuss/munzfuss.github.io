@@ -428,6 +428,7 @@ daler) = 2 ℳ l. = 32 ß l. = 64 ß d.
 | 22 / 25 Nov 1624 | the Gottorp councillors on the Dütken (`1619_…` G) | |
 | 22 Jan · 4 May 1625 | Rytterpenge 3 / 6 ß d.; 3 ß 1 hvid / 6 ß 2 hvide (`1624_…`) | |
 | 6 Aug 1625 · 7 and 16 Feb 1626 | the duchies' reduction of the king's coin; Frederik III's mandate and the joint printed Mandat against foreign 3 / 2 ß (Wilcke II kap. III) | successors — a later dossier |
+| 12 Dec 1645 · 26 Sept 1646 | Duke Frederik III's Skrivelse, confirmed by Forordning: «*ingen skulde være pligtig at modtage mere end 10 Marck i de nye Markstykker*» — the Glückstadt Hebræer Markstykker of 1644–45, after Lübeck and Hamburg had set them at 12 ß l. and Husum had complained (20 Jan 1646); the duke had the king stop the minting (Wilcke II kap. III C.2, n. 33: Slesvig Statsarkiv A XX 922) | the ducal side's answer to the king's war coin — a tariff cap, no grid; the Markstykker themselves in `1640_bestalling_timpff_glueckstadt.md` W5; folded here 2026-11-05 (`wilcke-1924-kap3-2-hertug-1645-markstykker-10-marck`) |
 
 ## 7. Our data
 
