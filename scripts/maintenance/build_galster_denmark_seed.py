@@ -1032,6 +1032,25 @@ def build_entry(data: dict) -> dict | None:
         }] if issuer_source else []),
     }
 
+    # Per-year spec columns (norge/nc2g172, Galster 172: 1531 6,72 g / 0,875;
+    # 1532 6,45 g / 0,970-0,980). One labelled reading per figure; the label
+    # names the year column so each year's weight pairs with its own
+    # fineness (a printed range → both bounds, as Lindahl 1955 is stored).
+    per_year = specs.get("per_year") or []
+    if per_year:
+        gnum = data.get("galster_number")
+        w_list, f_list = [], []
+        for row in per_year:
+            label = f"danskmoent.dk (Galster {gnum}), {row['year']}"
+            w_list += [{"value": v, "source": label} for v in row.get("bruttovaegt_g") or []]
+            f_list += [{"value": v, "source": label} for v in row.get("finhed") or []]
+        if w_list:
+            entry["weight_rough_g"] = w_list
+            entry["weight_rough_verified"] = True
+        if f_list:
+            entry["fineness"] = f_list
+            entry["fineness_verified"] = True
+
     if page_mark:
         entry["year_mark"] = {"kind": page_mark["kind"], "value": page_mark["printed"],
                               "reason": dict(page_mark["reason"])}
