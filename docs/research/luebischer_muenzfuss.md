@@ -88,6 +88,8 @@ Status marks: **A** = attested in a cited source; **C** = our computation from a
   the Søsling into III; decide the Hvid fraction; the three-stage Skilling model (§3.4b) as card text;
   KMM 331973 «Penning, Lund» — not Hans, declassified (§6d); «Christiania» → «Oslo» in the mint field of the Oslo coins
   (city name of the time).
+- To do (curator 2026-11-05): the card's founding paragraph, opening with why the restarted royal coinage took
+  the Lübeck system (Hauberg 1884 s. 267 «*det tilvante lybske Myntsystem*»; §3.13 end, §3.11).
 
 ### §0.5 Dating anchors for undated Hans Skillinger and Søslinger (curator 2026-10-20: these anchors are to be the base for dating later)
 
@@ -1797,6 +1799,25 @@ Viertelwitten matches Nöbbe's name. Still open: NNÅ 1942 s. 101 (probably Gals
 German names on the Denmark page: Witten, Dreiling (Lindahl «Dreling», Numista «Dreiling»); the Viertelwitten shows as
 1 Penning (its value). Ribe's Witten, «civitas regni» (Lindahl s. 76 n. 6), stays Hvid. Code:
 `nominal_synonyms._ENTITY_KEEP_WITTEN` / `_ENTITY_FORMS`.
+
+**Whose coinage was Flensborg's? (2026-11-05, for the period 0 text — curator: write it with the reservation.)**
+The thesis «town coinage before royal coinage» holds strictly for Ribe only: Märcher 2018 s. 368 calls it a
+«*byudmøntning*» and «*den eneste i riget før ca. 1403*». Flensborg struck in the town's name (CIVITAS FLENSBVRG) but
+on a right Nöbbe 1930 s. 2 only infers: «*Ogsaa Flensborg maa have faaet Møntret af de holstenske Grever, uden at vi
+dog har nogen Efterretning om, naar det er sket*» — the counts Klaus and Henrik, «*som dengang ogsaa havde Flensborg i
+Pantebesiddelse*», ran mints at Rendsburg, Kiel, Itzehoe, Oldesloe and Neustadt (s. 1–2); Märcher s. 368: Flensburg
+struck «*under sønderjyske hertuger og holstenske grever*». So the period 0 text says: the first Lübeck-pattern coins
+in the lands of the Danish crown are Flensborg's (with the counts' right, per Nöbbe, as a hypothesis of his); in the
+kingdom itself Ribe is first. Also: the old royal penning coinage ran until c. 1377 (Hauberg 1886 s. 136, last mint
+Lund), so «no royal coinage» is true only from c. 1377, not for the whole period 1350–1392.
+
+**Queued for the card text (curator 2026-11-05: not in the period 0 description, move to the card).** The bridge to
+period I — the restarted royal coinage was organised on the Lübeck system already in use — has a direct source:
+Hauberg 1884 s. 267 «*Senere ved Udmyntningens Gjenoptagelse ordnes Landets Myntvæsen under Erik af Pommern i
+Overensstemmelse med det tilvante lybske Myntsystem og efter Overenskomst med den store Hansestad*»; with Hauberg
+1886 s. 136 (Lübeck coin «*nærmest var at betragte som Landets egen*») and §3.11 (no act names the standard; window
+1396–1403). The card has no founding paragraph yet (its text is the units block only) — this goes in when it is
+written (plan 3.5 / 7.2). No pool key made yet.
 
 ### §3.14 Timeline layers and the end of the standard; Galster 43 (2026-11-04, curator questions, agreed)
 
