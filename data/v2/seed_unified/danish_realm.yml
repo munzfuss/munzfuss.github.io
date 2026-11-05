@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15225 per-source seed entries.
-# Output: 5920 unified entries (one per physical coin).
+# Output: 5918 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -113991,6 +113991,9 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/132053
         ref: KMM 132053 (Inv. FP 9599.11)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/132547
+        ref: KMM 132547 (Inv. FP 9652.1)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/132586
         ref: KMM 132586 (Inv. FP 9656.27)
       - type: museum
@@ -114003,21 +114006,38 @@ coins:
         url: https://samlinger.natmus.dk/KMM/object/371774
         ref: KMM 371774 (Inv. FP 9917.6)
       - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/308311
+        ref: KMM 308311 (Inv. FP 7543.1)
+      - type: museum
         url: https://samlinger.natmus.dk/KMM/object/370073
         ref: KMM 370073 (Inv. FP 9997.1)
       - type: museum
         url: https://samlinger.natmus.dk/KMM/object/371626
         ref: KMM 371626 (Inv. FP 9965.1)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/575498
+        ref: KMM 575498 (Inv. FP 11280.10)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/715342
+        ref: KMM 715342 (Inv. FP 12428.16)
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/739923
+        ref: KMM 739923 (Inv. FP 12969.13)
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-c3g-94
       - dk-numista-476671
       - kmk-132053
+      - kmk-132547
       - kmk-132586
       - kmk-156740
       - kmk-298795
+      - kmk-308311
       - kmk-370073
       - kmk-371626
+      - kmk-575498
+      - kmk-715342
+      - kmk-739923
   - id: c-b9a9fbb4
     class_id: c-b9a9fbb4
     label: unified-dk-numista-476674
@@ -128420,44 +128440,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-132461
-  - id: c-e51b3fa1
-    class_id: c-e51b3fa1
-    label: unified-kmk-132547
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 1 Firskilling
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian III
-    mint: Århus
-    catalog:
-      galster: '94'
-    metal: silver
-    metal_verified: true
-    weight_rough_verified: false
-    mint_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/132547
-        ref: KMM 132547 (Inv. FP 9652.1)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/575498
-        ref: KMM 575498 (Inv. FP 11280.10)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/715342
-        ref: KMM 715342 (Inv. FP 12428.16)
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/739923
-        ref: KMM 739923 (Inv. FP 12969.13)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-132547
-      - kmk-575498
-      - kmk-715342
-      - kmk-739923
   - id: c-dd94bab6
     class_id: c-dd94bab6
     label: unified-kmk-132553
@@ -204136,30 +204118,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - kmk-308306
-  - id: c-b5a66549
-    class_id: c-b5a66549
-    label: unified-kmk-308311
-    fuss: seed_unsorted
-    phase: kmk
-    kind: kurant
-    nominal: 4-skilling/klipping
-    year_first: 1535
-    year_last: 1535
-    year_label: '1535'
-    ruler: Christian III
-    catalog:
-      galster: '94'
-    metal_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verified: false
-    sources:
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/308311
-        ref: KMM 308311 (Inv. FP 7543.1)
-    issuing_entity: danish_realm
-    composed_of:
-      - kmk-308311
   - id: c-27d10683
     class_id: c-27d10683
     label: unified-kmk-308330
