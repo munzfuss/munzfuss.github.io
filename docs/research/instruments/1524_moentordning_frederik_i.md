@@ -130,7 +130,7 @@ Møntmesteren give til Slagskat en halv Ort Guld af hver vegen Mark Sølv …*»
 | Klipping sort 1 → 14-penning | silver | — | Kongens Brev: 3 lod 6 gren | 14 pendinge |
 | sort 2 → 6-penning | silver | — | Kongens Brev: 2 lod 3 gren | 6 pendinge |
 | sort 3 → 1 Hvid (Kongens Brev: 3 pendinge) | silver | — | — | |
-| sort 4 → 3 pendinge (Kongens Brev: small penninge) | silver | 900 | 2 lod | |
+| sort 4 → 3 pendinge (Kongens Brev: small penninge) | silver | **960** (Andersen 2015 B-text «*ixc lx stycker*»; Luxdorph 1760: 960; Wilcke prints only «ixc» = 900 — corrected 2026-11-05) | 2 lod | |
 | Fee | | | | 6 gylden of the new coin per 100 weighed marks |
 | Pyx | | | | 2 pieces per 100 weighed marks |
 | Remedium (Kongens Brev) | | | | 1 quintin |
@@ -170,7 +170,7 @@ Rough g = 233,855 / n; ‰: karat/24, lod/16 (1 lod = 18 gren; «5 lod 2 gren» 
 | Hvid 300/M 4 lod | 0,780 | 250 | **0,195** | 0,195 | 0,19 |
 | 14-penning, 3 lod 6 gren | ? | 208,3 | — | «ca. 0,20» metal value | |
 | 6-penning, 2 lod 3 gren | ? | 135,4 | — | | |
-| small penninge 900/M 2 lod | 0,260 | 125 | **0,032** | 0,259 / 0,032 (900 or 960) | |
+| small penninge 960/M 2 lod (900 in Wilcke) | 0,244 | 125 | **0,030** | 0,259 / 0,032 at 900 | |
 
 All our figures agree with Wilcke's table to the third decimal. Fine silver per unit of
 account from the Kongebrev: 2 Mark = 18,602 g, so 1 rhinsk Gylden (= 2½ Mark, Galster) =

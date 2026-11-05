@@ -4,7 +4,8 @@
 > a grid (Wilcke VII s. 196–198, table s. 198 — corrected by Wilcke against Holst): the
 > 4-Hvid-Skilling at Hamar 96 to the weighed mark at 5 lod (= the Danish 1524 Skilling), at
 > Oslo 112 at 4 lod (1525) then 3½ lod (1526), at Bergen 106 at 4½ lod (1527; Holst read
-> 126); the Hvid at Hamar 300 at 4 lod, at Bergen 320 at 3½ lod. The two later letters set no
+> 126; ⚠ Luxdorph 1760, II. Tavle, also 126 — two independent readings against Wilcke's 106, see
+> `../luxdorph_1760_mynte_anordninger.md`); the Hvid at Hamar 300 at 4 lod, at Bergen 320 at 3½ lod. The two later letters set no
 > grid but a standard by reference — «lige goed udi korn oc pagementhe medt then mynth som wy
 > lade slaa her i wort rige Danmark» (1530), «paa det samme Pavemint, Korn og Skrot som …
 > Mogens Gyldenstierne lod slaa» (1532). Wilcke: only Hamar «stemmer nogenlunde med den danske
