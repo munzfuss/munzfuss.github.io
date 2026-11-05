@@ -430,10 +430,26 @@ merges:
       final km-760-2-fr-vii-1855 is renamed to the head id unified-dk-hede-f7h8 as
       the foundation carrying that classification.
   - target_entity: christian_ii_supporters
+    issuing_entity: christian_ii_supporters   # override the mint-derived stamp — see reason
     members:
-      - dk-galster-c2g-89         # home: christian_ii_supporters (Galster 89, 1534-1536, Grevens Fejde)
+      - dk-galster-c2g-90         # home: christian_ii_supporters (Galster 90, 2 Ungersk gylden, Grevens Fejde)
       - kmk-156727                # home: danish_realm   (KMM, undated)
     reason: |
+      Re-pointed 2026-11-05 (curator «так»): KMM 156727 is the 2 Ungersk gylden,
+      Galster 90 — not Galster 89. Evidence: KMM typeNumber «Sch 1» = Schou 1,
+      which danskmoent gives for Galster 90 (Galster 89 is Schou 2); the KMM
+      inventory card (asset 67863) reads «6.98» g = two ducats, and «Chr. II,
+      39»; KMM's nominal is the bare «ungarsk gylden», place «Malmø eller
+      København». Legends on the card: CHRISTIERNVS:D:G:REX:DAC /
+      +CHRISTHOPHORWS:CO:OLDENB (Count Christoffer's coinage in Christian II's
+      name). The 2026-06-20 merge into Galster 89 rested on «1 Ungarsk gylden,
+      Malmø, Schou 1 sub-variant», which the record does not say; it put the
+      KMM specimen, B# 39 and Schou 1 on the 1 Ungersk gylden row and, through
+      the builder's first-of-«eller» mint (Malmø → danish_realm), a DK stamp.
+      issuing_entity is overridden: the coin was struck in the rebels' Malmø or
+      København in Christian II's name, not by the Danish crown, so the
+      mint-derived danish_realm must not be unioned in.
+      Superseded record of the earlier decision:
       Moved 2026-10-19 from merge_decisions/danish_realm.yml when Christian II's
       post-1523 coinage got its own issuer: Galster 89 is a «Christian 2.s
       tilhængere under Grevens Fejde» issue (1534-1536), the undated KMM member

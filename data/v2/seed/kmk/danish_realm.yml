@@ -318405,10 +318405,21 @@ coins:
     nominal: 1 Ungarsk gylden
     metal: gold
     metal_verified: true
-    mint: Malmø
-    mint_verified: true
+    mint:
+      - Kopenhagen
+      - Malmø
+    mint_verified: false
     ruler: Christian 2
-    weight_rough_verified: false
+    weight_rough_g:
+      - value: 6.98
+        source: KMM 156727
+    weight_rough_verified: true
+    _curation_holds:
+      mint: KMM gives the place as «Malmø eller København» — an alternative, not an attestation of Malmø; the builder keeps only the first name. Both towns, unverified, as Galster 90 gives them 
+        («Malmø eller København»).
+      mint_verified: An «A eller B» place attests neither town.
+      weight_rough_g: 6.98 g is written on the KMM inventory card of the object (asset 67863, top right; image read 2026-11-05); the KMM record has no measurements, so the builder emits none.
+      weight_rough_verified: The card attests the weight.
     catalog:
       schou: '1'
       others:

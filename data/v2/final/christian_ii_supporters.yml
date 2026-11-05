@@ -580,9 +580,7 @@ coins:
     kind: kurant
     nominal: 1 Ungersk gylden
     ruler: Christian II
-    issuing_entity:
-      - christian_ii_supporters
-      - danish_realm
+    issuing_entity: christian_ii_supporters
     fraction: '1'
     id: c-146a7e98
     year_first: 1534
@@ -614,21 +612,19 @@ coins:
           as_printed: 1 Ungersk gylden
           value: gold
           seed: dk-galster-c2g-89
-    mint: Malmø
+    mint:
+      - Kopenhagen
+      - Malmø
     catalog:
       galster: '89'
-      schou:
-        - '1'
-        - '2'
+      schou: '2'
       sieg: '2'
       galster_volume: c2g
-      others:
-        - B# 39
     metal: gold
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
-    mint_verified: true
+    mint_verified: false
     verified: false
     weight_range_g:
       - min: 3.48
@@ -643,9 +639,6 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g89.htm
         ref: Galster 89 (c2g) — danskmoent.dk chr_c2g89.htm
-      - type: museum
-        url: https://samlinger.natmus.dk/KMM/object/156727
-        ref: KMM 156727 (Inv. RP 367.1)
     verification_note:
       de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
         Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
@@ -704,12 +697,17 @@ coins:
       schou: '1'
       sieg: '3'
       galster_volume: c2g
+      others:
+        - B# 39
     metal: gold
     metal_verified: true
     fineness_verified: false
     weight_rough_verified: true
     mint_verified: false
     verified: false
+    weight_rough_g:
+      - value: 6.98
+        source: KMM 156727
     weight_range_g:
       - min: 6.98
         max:
@@ -723,6 +721,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c2g90.htm
         ref: Galster 90 (c2g) — danskmoent.dk chr_c2g90.htm
+      - type: museum
+        url: https://samlinger.natmus.dk/KMM/object/156727
+        ref: KMM 156727 (Inv. RP 367.1)
     verification_note:
       de: Daten aus den Galster-Seiten auf danskmoent.dk übernommen; die Katalog-Querverweise (Schou, Sieg, Jensen-Skjoldager, Schive u. a.) stammen aus der Überschrift und dem Beschreibungsblock der 
         Seite. Der Müntzfuß dieses Stücks ist noch nicht bestimmt.
