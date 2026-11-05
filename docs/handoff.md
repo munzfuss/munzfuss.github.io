@@ -30,6 +30,17 @@
 - **Open — union-find over-merge:** the merger joins classes through a third record even when two members are a
   pairwise `no_match` on distinct catalogue bases (Galster 45 vs 69). Curator chose a no_merges for now; a
   class-level guard was proposed but not measured.
+- **In progress (uncommitted in the worktree):** (1) Hede-base rule in `merge_seeds_cross_source.py` (step 3b,
+  `HEDE_BASE`; full-group check) — curator chose «exclude only the conflicting class», still to implement, plus
+  nominal-noise handling for the rule («?», «; …» tails, digit-only nominals, «sk», bare vs norsk/lybsk; forgery
+  classes stay out; Hede prints «12 Skilling (1/8 Speciedaler)» — keep Hede's parenthetical as an alternative
+  nominal). (2) KMM stub rule in `build_kmk_seed.py` (`_kmm_stub_category`, `exclude_ids`,
+  `data/v2/_scope_dropped/kmk.yml`): curator 2026-11-05 — forgery; no weight and no image; weight without image
+  and index. Must go through a FULL KMM regen (the filter has to run before §9a thinning: 916 stub
+  representatives hide 16 340 thinned specimens, 28 with a photo). Blocked on: KMM pages for ~23 000 thinned
+  specimens not cached (image unknown → kept), and the open KMM builder drift review below. verify_reflow needs
+  to excuse values carried only by scope-dropped seeds (incl. their thinned specimens). 1 682 fetched KMM pages
+  sit uncommitted in the main checkout's `scripts/cache` (PB-10).
 - `build_bruun_denmark_seed.py` reads `scripts/cache/bruun` by the worktree path, not `MUNZFUSS_HARVEST_DIR` — in a
   worktree without the submodule it reads 0 lots and writes nothing.
 
