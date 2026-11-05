@@ -329,8 +329,19 @@ data under `8_gylden_fod` (§8.3).
    the 88/M value (his printed 46,454 transposes digits). So the line splits: **88** Lüxdorph →
    Schive → Galster 1936; **78** Wilcke 1950 and Andersen 2015 (Fr. I.s registre, B 11). Kock's
    1530 report (edition note to nr. 10) names only 1 M, 2 M and 44 «otteskilling» per mark —
-   no 4 ß. Not settled; Lüxdorph's page (Vid. Selsk. Skrifter VIII, 1760, s. 8 table) is the
-   next thing to read.
+   no 4 ß.
+   **Lüxdorph read 2026-11-05** (Skrifter … Kiøbenhavnske Selskab VIII, 1760, «Anmærkninger over
+   adskillige Mynte Anordninger …»; archive.org `skriftersomudide08kiob`, page images checked):
+   fold-out «II. Tavle» (ad pag. 8), 1524 «Malmöe og Riibe»: To-Markstykker 14 lod 11, Markstykker 22,
+   Halv Markstykker 44, **Fireskillinger 14 lod 88** (fine mark 100 4/7), Fire hvide Skilling 5 1/9 lod 96,
+   Hvide 4 lod 300, Smaa-Penninge 2 lod 960; the four 14-lod sorts all give 10 2/35 Gylden per fine mark,
+   which 78 would not. Text s. 10: «*To Marker, Marker, halve Marker, og fire Skilling Stykker i Sølv 14
+   lødig og 11. 22. 44. 88. Stykker paa Marken*». His source for this letter: «*et seenere Brev som findes
+   i Register over alle Lande No. 3. fol. 297*» — the same folio as Andersen's «Fr. I.s registre, RA
+   Danske Kancelli B 11 f. 297r» (hypothesis, not checked: one and the same register volume). So the
+   disagreement is two READINGS of one register entry — Lüxdorph «88» (1760), Wilcke and Andersen
+   «lxxviii» (78). The system favours 88 (every 14-lod sort in exact proportion; Schive's and Galster's
+   figures follow Lüxdorph). Settled only by the manuscript: RA Danske Kancelli B 11 f. 297v (image).
 6. **The Ribe letter.** «Et lignende fik Møntmesteren i Riibe» — the Ribe mintmaster is
    not named in Wilcke's summary; Ernst's Ribe study (`ernst-1948-ribe-*`) should give him.
 

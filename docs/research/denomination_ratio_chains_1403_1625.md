@@ -460,8 +460,9 @@ Its value in Penninge moves accordingly: 3 Pf in 1523, 4 Pf in 1602.
    lybsk M og ß var ens*»); recorded in `instruments/1514_moentordning_malmoe.md` §4.4.
 3. **1524 4 ß, 78 vs 88 per mark:** two lines — 88 Lüxdorph 1760 → Schive 1865 s. 148 → Galster 1936;
    78 Wilcke 1950 s. 183, Andersen 2015 (register B 11). No dated 1524 4 ß type is known (Frederik I's only
-   4 ß are Galster 54 / 60 of 1532 / u.år). Next: Lüxdorph's table (Vid. Selsk. Skrifter VIII, 1760, s. 8)
-   (`1524_…` §8.5).
+   4 ß are Galster 54 / 60 of 1532 / u.år). Lüxdorph 1760 (II. Tavle; text s. 10) reads **88** from the same
+   register folio («Register over alle Lande No. 3. fol. 297») that Andersen reads as lxxviii; 88 keeps every
+   14-lod sort in proportion. Settled only by the manuscript image (`1524_…` §8.5).
 4. **Hvid : ß and Pf : Hvid in 1541:** the act (T.K. 160 folio, cached) may state them. Here they are only GRID or
    Wilcke's column.
 5. ~~Christopher's grot «for ii lybske»~~ **Settled 2026-11-05:** 2 Lübeck **Penninge**. RL 1397–1513
