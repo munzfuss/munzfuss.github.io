@@ -3162,14 +3162,26 @@ def _collect_field_list(members: list[dict], field: str,
             # contain stale entries (now-removed composed_of sources).
             if idx == 0 and skip_first_list:
                 continue
+            # A fineness RANGE whose lower bound is 0 («Finhed: 0,000-0,212»,
+            # Lindahl 1955 p. 79 «0/1000—212/1000»): the source says the
+            # specimens run from copper to billon, so the 0 is a reading, not
+            # a «not recorded» placeholder (curator 2026-11-05). It is kept
+            # only beside a positive reading of the same source in the same
+            # member; a lone 0 is still a placeholder.
+            _zero_ok: set = set()
+            if field == "fineness":
+                _zero_ok = {it.get("source") for it in val
+                            if isinstance(it, dict)
+                            and isinstance(it.get("value"), (int, float))
+                            and it["value"] > 0}
             for item in val:
                 if not isinstance(item, dict):
                     continue
                 v = item.get("value")
                 if not isinstance(v, (int, float)):
                     continue
-                if v <= 0:  # non-positive = source «not recorded» placeholder
-                    continue
+                if v < 0 or (v == 0 and item.get("source") not in _zero_ok):
+                    continue  # non-positive = source «not recorded» placeholder
                 raw_src = item.get("source", "?")
                 # Detect & fix stale synthesised labels from a prior buggy
                 # split — when the source string matches a dash-segment

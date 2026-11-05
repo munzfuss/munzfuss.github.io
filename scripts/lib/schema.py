@@ -195,7 +195,10 @@ class FieldValue(_StrictBase):
     coherent reading produces its own derived value, never mixing
     weight from one source with fineness from another.
     """
-    value: float = Field(..., gt=0)
+    # ge=0, not gt=0: a fineness range may start at 0 (copper to billon,
+    # «Finhed: 0,000-0,212»; curator 2026-11-05). Weight and diameter
+    # readings stay strictly positive — Coin._validate_positive_readings.
+    value: float = Field(..., ge=0)
     source: str = Field(..., min_length=1)
     # The seed id of the specimen the reading belongs to, set by the merger
     # ONLY when two members of one class publish under the same `source`
@@ -1310,6 +1313,18 @@ class Coin(_StrictBase):
         if isinstance(v, dict):
             return {k: (str(val) if isinstance(val, int) and not isinstance(val, bool) else val)
                     for k, val in v.items()}
+        return v
+
+    @field_validator("weight_rough_g", "diameter_mm", mode="before")
+    @classmethod
+    def _validate_positive_readings(cls, v):
+        # A weight or a diameter of 0 is never a reading (FieldValue allows
+        # 0 only for a fineness range bound).
+        if isinstance(v, list):
+            for entry in v:
+                val = entry.get("value") if isinstance(entry, dict) else getattr(entry, "value", None)
+                if val is not None and not val > 0:
+                    raise ValueError(f"reading must be > 0, got {val}")
         return v
 
     @field_validator("fineness", mode="before")

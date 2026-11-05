@@ -35,7 +35,7 @@ def _fin_authority_map() -> dict[str, int]:
         return {}
 
 
-from .weight_range import range_pairs  # noqa: E402
+from .weight_range import range_pairs, UI_KEY_MARK  # noqa: E402
 
 
 def normalise_field(v) -> list[tuple[float, str | None]]:
@@ -1409,7 +1409,9 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     # → single (value, None) reading; list form → one entry per source.
     # A catalogue's type range counts as two readings, lower + upper bound
     # (curator 2026-10-21); a single figure as one (lib/weight_range).
-    weight_pairs   = normalise_field(coin.weight_rough_g) + range_pairs(coin.weight_range_g)
+    weight_pairs   = normalise_field(coin.weight_rough_g)
+    n_specimen_w   = len(weight_pairs)   # indices from here on are range bounds
+    weight_pairs  += range_pairs(coin.weight_range_g)
     fineness_pairs = normalise_field(coin.fineness)
     # The specimen each reading belongs to (FieldValue.specimen — set by the
     # merger only where two members share a source label); a range bound
@@ -1451,8 +1453,14 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
     # This removes the spurious cross-source Feingewicht that the naive
     # weight[0]×fineness[0] primary produced when weight[0]'s source had
     # its own fineness (e.g. galster-weight wrongly × hede-fineness).
+    # A weight-range bound is labelled «<source> (\x1elower\x1e…)»
+    # (lib/weight_range.range_pairs); it is the same source's reading, so
+    # its token is the bare source label (curator 2026-11-05: Lindahl's and
+    # Galster's 0,21-0,37 g pair with their own 0-0,212 fineness, not with
+    # another source's specimen).
     def _toks(src):
-        return {t.strip() for t in (src or "").split("\n") if t.strip()}
+        return {t.split(" (" + UI_KEY_MARK, 1)[0].strip()
+                for t in (src or "").split("\n") if t.strip()}
 
     # A weight and a fineness are ONE source's coherent reading when their
     # labels share a token AND they name the same specimen (or either names
@@ -1494,6 +1502,11 @@ def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = Non
         js = _fin_idx_for(w_src, w_spec)
         if len(js) < 2:
             return []
+        # A bound of a printed weight RANGE is a statement about the type,
+        # like the source's fineness range: each bound pairs with every
+        # fineness of the source, so the fine weight spans both ranges.
+        if i_w >= n_specimen_w:
+            return js[1:]
         if any(_w_idx_for(fineness_pairs[j][1], fineness_specs[j]) != [i_w] for j in js):
             return []
         return js[1:]
