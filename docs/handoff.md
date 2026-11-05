@@ -21,28 +21,27 @@
 - **Shipped (local, unpushed):** d4dfde0 (builder keeps alternative mints as an unverified list; `seed_merge`
   lets a source-hedged fresh mint beat a stale verified one; SOURCES §13.30; test), c773198 (seeds, no_merges
   Galster 45 / kmk-156725, 31 stale final mints reset). Class membership equals a re-flow of clean HEAD.
-- **Open — KMM builder drift:** a full `build_kmk_seed.py --write` on HEAD's cache changes far more than this fix
-  (≈158 catalog collapses like `hede ['130','130B'] → '130B'`, 41 `_thinned_from` / sources changes, 26 seeds
-  removed, 2 ruler errata applied). Not applied; needs its own review before the next KMM regen.
+- **Shipped (local, unpushed), KMM stubs:** 01e2417 (absorb: a member exclusion never drops a final with live
+  members), 8161d51 (cache paths through lib.paths — worktrees see the cache via MUNZFUSS_HARVEST_DIR), 37d0626
+  (KMM stub scope rule in build_kmk_seed + `data/v2/_scope_dropped/kmk.yml`; verify_reflow / validate_decisions
+  know scope-dropped records), 2b96f63 (full KMM re-seed: 16 024 → 7 358 KMM seeds, 15 043 records dropped; Hede
+  Norge 71 group +28, Hede 119B/C merge, two classification keys re-keyed). The reviewed builder drift (stale bare
+  Hede bases etc.) landed with it.
+- **Open — cache pointer:** the data rests on KMM pages fetched 2026-11-05 that are NOT yet committed in the
+  harvest repo (main checkout `scripts/cache/kmk/web/`). Session «Докачати сторінки KMM для 23 тис. записів»
+  (local_1d10c7e6…) fetches the remaining ~21 000 pages and commits them in the cache repo; then bump the
+  `scripts/cache` pointer here, re-seed KMM once more (more stubs drop), re-flow, commit.
 - **Open — HEAD finals are not a fixed point of absorb:** a merger+absorb of clean HEAD changes 14 final files
-  (medieval year ranges 1259-1360 emptied → verify_reflow blocks; KMM citation `display: False` flags). c773198
-  took only the 43 touched coins from the re-flow.
+  (medieval year ranges 1259-1360 emptied → verify_reflow blocks; KMM citation `display: False` flags). c773198 and
+  2b96f63 took only the touched coins from the re-flow (structural transplant, never text blocks — YAML anchors).
 - **Open — union-find over-merge:** the merger joins classes through a third record even when two members are a
-  pairwise `no_match` on distinct catalogue bases (Galster 45 vs 69). Curator chose a no_merges for now; a
-  class-level guard was proposed but not measured.
-- **In progress (uncommitted in the worktree):** (1) Hede-base rule in `merge_seeds_cross_source.py` (step 3b,
-  `HEDE_BASE`; full-group check) — curator chose «exclude only the conflicting class», still to implement, plus
-  nominal-noise handling for the rule («?», «; …» tails, digit-only nominals, «sk», bare vs norsk/lybsk; forgery
-  classes stay out; Hede prints «12 Skilling (1/8 Speciedaler)» — keep Hede's parenthetical as an alternative
-  nominal). (2) KMM stub rule in `build_kmk_seed.py` (`_kmm_stub_category`, `exclude_ids`,
-  `data/v2/_scope_dropped/kmk.yml`): curator 2026-11-05 — forgery; no weight and no image; weight without image
-  and index. Must go through a FULL KMM regen (the filter has to run before §9a thinning: 916 stub
-  representatives hide 16 340 thinned specimens, 28 with a photo). Blocked on: KMM pages for ~23 000 thinned
-  specimens not cached (image unknown → kept), and the open KMM builder drift review below. verify_reflow needs
-  to excuse values carried only by scope-dropped seeds (incl. their thinned specimens). 1 682 fetched KMM pages
-  sit uncommitted in the main checkout's `scripts/cache` (PB-10).
-- `build_bruun_denmark_seed.py` reads `scripts/cache/bruun` by the worktree path, not `MUNZFUSS_HARVEST_DIR` — in a
-  worktree without the submodule it reads 0 lots and writes nothing.
+  pairwise `no_match` on distinct catalogue bases (Galster 45 vs 69). Curator chose a no_merges for now.
+- **In progress (uncommitted):** Hede-base rule in `merge_seeds_cross_source.py` (step 3b, `HEDE_BASE`, full-group
+  check). Curator chose «exclude only the conflicting class» (with care: unsure records must not migrate), plus
+  nominal-noise handling for the rule («?», «; …» tails, digit-only nominals, «sk», bare vs norsk/lybsk soft;
+  forgery classes stay out; Hede prints «12 Skilling (1/8 Speciedaler)» — keep Hede's parenthetical as an
+  alternative nominal). Re-measure refusals after the KMM stub drop. `promoted_near_peers` in
+  classification_decisions/danish_realm lists the fragments the rule should rejoin.
 
 ## 2026-11-03 — Reign gate, classification carry, weight-gate corrections (D53; branch claude/relaxed-mendeleev-72593f)
 
