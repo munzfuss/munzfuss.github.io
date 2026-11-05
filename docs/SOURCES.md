@@ -2412,3 +2412,39 @@ PDF sits under `scripts/cache/_derived/layout/` (`scripts/kb/layout_extract.py`)
   «Bruttovægt: 27,06g». A Numista weight that equals a page's fine weight is the
   fine weight, not the coin's; it is marked erroneous on the seed. Check the
   other Numista weights against danskmoent's Finvægt before trusting a light one.
+
+### 13.30 KMM — a `place` that offers alternatives («A eller B», «A/B») attests neither town (2026-11-05)
+
+KMM writes an uncertain mint as alternatives inside `place`: «Malmø eller
+København», «Malmø/København», «København eller Ribe», «Kbh./Ribe?», «Goslar
+eller Zellerfeld», «Serridslev/Roskilde», «Hamar/Oslo», «København ell. Altona»,
+«Kbh. el. Malmø». It names candidates and confirms none of them.
+
+- **Trap.** `build_kmk_seed._split_place` kept only the first segment (`re.split`
+  on «/», «eller», «or» → `[0]`), so the seed carried «Malmø» with
+  `mint_verified: true`. That single verified town won the merger's tiered
+  `_collect_mints` (CLAUDE.md §4) and dropped the other town Galster / Hede give,
+  and it could route the coin by a mint KMM itself was unsure of (kmk-156727,
+  Galster 90: a «DK» badge on the 1523 rebels' coin). There were 21 records
+  across 9 place values. The «el.» / «ell.» forms slipped past the split and
+  reached the writer whole, so they were handled correctly.
+- **Second trap: a regen does not repair a stale seed.** Under verified-wins,
+  `seed_merge.merge_one` kept an existing `true` over a fresh `false`. So a fixed
+  builder or writer left the old value in place. «København el. Ribe» had stayed
+  a verbatim verified string since the writer's 2026-10-19 fix. The same stale
+  `true` sat on 13 Bruun seeds («Altona/Poppenbüttel Mint», «Reinfeldt or
+  Sonderburg Mint») and 9 Galster seeds («Malmø eller København») that already
+  carried the source's `alternatives` uncertainty.
+- **Fix.** When at least two segments are registered mints with different
+  canonical names, `_split_place` passes the place verbatim. The writer's
+  ambiguity split then gives the list, `mint_verified: false` and the
+  `alternatives` uncertainty with KMM's words as `as_printed`. A name-variant pair
+  («Christiania / Oslo») still yields the one mint. A segment that is not a
+  registered mint («København/Schwabe», «København/Frederiksberg») keeps the old
+  first-segment reading. In `seed_merge`, a fresh `mint` that carries the
+  source's own hedge (`uncertainty.mint`, kind `hedged`) is no longer overridden
+  by an existing verified value (`_HEDGED_FRESH_WINS`).
+- **Consequence in final.** Where another source verifies one of the towns, §4
+  keeps only that town: Bruun's «Altona/Poppenbüttel» becomes Altona on the
+  9¼- and 11⅓-Thaler classes, and «Reinfeldt or Sonderburg» becomes Sønderborg.
+  Where every source says «or», the class keeps both towns, unverified.

@@ -518,6 +518,25 @@ def _same_value_but_uncertainty(existing_v, fresh_v) -> bool:
     return _norm(existing_v) == _norm(fresh_v)
 
 
+# Fields for which a SOURCE-hedged fresh value overrides a verified existing
+# one. «Malmø eller København», «Altona/Poppenbüttel Mint»: the source itself
+# names alternatives, so the fresh entry carries `uncertainty.mint` (kind
+# hedged) and `mint_verified: false`. An existing `true` from an older parse
+# that kept only one town — or kept the list but never dropped the flag — is a
+# stale claim about the same reading, not a stronger attestation; under plain
+# verified-wins it would survive every regen (25 seeds in Bruun, Galster and
+# KMM, 2026-11-05). Scoped to `mint`, where it was measured.
+_HEDGED_FRESH_WINS = frozenset({"mint"})
+
+
+def _fresh_source_hedged(fresh, field: str) -> bool:
+    """True when `fresh` records the source's own hedge on `field`."""
+    if field not in _HEDGED_FRESH_WINS:
+        return False
+    unc = (fresh.get("uncertainty") or {}).get(_UNC_KEY_OF.get(field, field)) or []
+    return any(isinstance(u, dict) and u.get("kind") == "hedged" for u in unc)
+
+
 def merge_one(
     existing: CommentedMap, fresh: CommentedMap,
     extra_curated: frozenset = frozenset(),
@@ -561,6 +580,11 @@ def merge_one(
             continue
         # Mirror the verified-wins branch decision below: existing keeps its
         # value only when it is source-attested and fresh is not.
+        if _fresh_source_hedged(fresh, _val_field) and not bool(fresh.get(_flag_field)):
+            # Source-hedged fresh value: its flag wins even when the value
+            # itself is unchanged (a list kept with a stale `true`).
+            _flag_follows_fresh.add(_flag_field)
+            continue
         _existing_wins = (
             _val_field in existing_keys
             and not _same_value_but_uncertainty(existing.get(_val_field),
@@ -653,6 +677,7 @@ def merge_one(
                 and existing_verified
                 and not fresh_verified
                 and not _same_value_but_uncertainty(existing.get(key), fresh[key])
+                and not _fresh_source_hedged(fresh, key)
             ):
                 continue
             # A curator suspect/erroneous mark lives inside the value and is

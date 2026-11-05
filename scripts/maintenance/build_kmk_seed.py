@@ -338,6 +338,35 @@ def _place_mints(text: str) -> list[str] | None:
     return [display_for_alias(p) for p in parts]
 
 
+# A KMM `place` that offers ALTERNATIVE mints — «Malmø eller København»,
+# «Malmø/København», «Kbh. el. Malmø», «Goslar eller Zellerfeld». It attests
+# neither town. The builder used to keep only the first segment, so the seed
+# carried «Malmø» with `mint_verified: true`; that single verified town won the
+# merger's tiered `_collect_mints` (CLAUDE.md §4) over the other town Galster /
+# Hede give, and routed the coin by a mint KMM itself was unsure of (kmk-156727,
+# 2026-11-05). Now, when at least two segments are registered mints with
+# DIFFERENT canonical names, the place goes to the seed writer verbatim; its
+# ambiguity split makes the list, sets `mint_verified: false` and records
+# KMM's words as the `alternatives` uncertainty (`as_printed`). A name-variant
+# pair («Christiania / Oslo» — one mint, two names) still yields the one mint.
+# A segment that is not a registered mint («København/Schwabe»,
+# «København/Frederiksberg») keeps the old first-segment reading.
+_ALT_PLACE_RE = re.compile(r"\s*/\s*|\s+(?:eller|or)\s+|\s+ell?\.\s+", re.IGNORECASE)
+
+
+def _alt_place_mints(head: str) -> list[str] | None:
+    """Canonical mint of each alternative in `head`, or None when `head` is
+    not an alternative between registered mints."""
+    parts = [p.strip() for p in _ALT_PLACE_RE.split(head) if p.strip()]
+    if len(parts) < 2:
+        return None
+    canon = [display_for_alias(re.sub(r"\s*\(?\s*\?\s*\)?\s*$", "", p).strip())
+             for p in parts]
+    if None in canon:
+        return None
+    return canon
+
+
 def _split_place(src):
     """`place` → (mint_city_or_None, mintmaster_or_None).
 
@@ -374,6 +403,9 @@ def _split_place(src):
     head, _, tail = place.partition(",")
     head, tail = head.strip(), tail.strip()
     mintmaster = tail or None
+    _alts = _alt_place_mints(head)
+    if _alts is not None and len(set(_alts)) > 1:
+        return head, mintmaster
     # A place may be a name-variant pair («Christiania / Oslo» = one mint, two
     # names) or an «A eller B» alternative — take the first mint-name segment so
     # both the mint field and the entity routing use a single canonical city.
@@ -1224,6 +1256,10 @@ def build_entry(src) -> dict | None:
     elif _is_firehvid_skilling(nominal):
         _nominal_printed, nominal = nominal, "skilling"
     # Entity routing: mint first (precise), nation fallback (coarse).
+    # An alternative place («Malmø eller København») is routed by every
+    # alternative: one entity when they agree, the list when they do not —
+    # `classify_mint_to_entity` splits the string itself.
+    _alt_place = isinstance(mint, str) and bool(_ALT_PLACE_RE.search(mint))
     entity = classify_mint_to_entity(mint, year=yf) if mint else None
     via = "mint" if entity else None
     if entity is None:
@@ -1252,7 +1288,7 @@ def build_entry(src) -> dict | None:
         "metal": metal,
         "metal_verified": metal is not None,
         "mint": mint,
-        "mint_verified": mint is not None and not (
+        "mint_verified": mint is not None and not _alt_place and not (
             isinstance(mint, list)
             and frozenset(canon_for_alias(m) for m in mint) in _KMM_DISPUTED_JOINT_MINTS),
         "ruler": _ruler(src),
