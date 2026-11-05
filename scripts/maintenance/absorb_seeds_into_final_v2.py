@@ -228,8 +228,18 @@ def _coin_exclusion_hit(entry: dict, excluded_ids: set,
     removes that record (a singleton — the merger isolates it), never the class
     whose composed_of still names it from an earlier merge."""
     own = _seed_of(str(entry.get("id") or ""))
-    seeds = {own} | {_seed_of(str(m)) for m in (entry.get("composed_of") or [])}
-    return (seeds & (excluded_ids - member_ids)) | ({own} & member_ids)
+    members = {_seed_of(str(m)) for m in (entry.get("composed_of") or [])}
+    seeds = {own} | members
+    own_hit = {own} & member_ids
+    # The final's own id can name a class that now holds only the isolated
+    # record while the final still composes other, live classes (a final's id
+    # is the class it was first built from, not a statement of its members).
+    # Removing the record must not take those with it: 146 non-stub seeds lost
+    # their final that way when the 2026-11-05 KMM stub exclusions isolated a
+    # stub whose class id a richer final carried (Hede Norge 67, Galster 37).
+    if own_hit and members - excluded_ids:
+        own_hit = set()
+    return (seeds & (excluded_ids - member_ids)) | own_hit
 
 
 def _entities_with_seed_unified() -> list[str]:
@@ -4535,8 +4545,10 @@ def process_entity(entity_id: str) -> dict:
             # reference (the class no longer contains it).
             if member_ids and isinstance(fc, dict) and fc.get("composed_of"):
                 _co = [m for m in fc["composed_of"]
-                       if _seed_of(str(m)) not in member_ids
-                       or _seed_of(str(m)) == _seed_of(str(fc.get("id") or ""))]
+                       if _seed_of(str(m)) not in member_ids]
+                if not _co:
+                    _co = [m for m in fc["composed_of"]
+                           if _seed_of(str(m)) == _seed_of(str(fc.get("id") or ""))]
                 if len(_co) != len(fc["composed_of"]):
                     fc["composed_of"] = _co
             # …and its citation: the record was removed, so the class must not keep
