@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 15225 per-source seed entries.
-# Output: 5917 unified entries (one per physical coin).
+# Output: 5914 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -12355,121 +12355,6 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-galster-c3g-132
-  - id: c-01a90515
-    class_id: c-01a90515
-    label: unified-dk-galster-epomg-10
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Sterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    mint: Lund
-    catalog:
-      galster: '10'
-      others:
-        - Fritze Lindahl# 34-41
-        - Jesse# 697
-        - Jesse# 698
-      galster_volume: galster1972-erik7
-      jesse:
-        - '697'
-        - '698'
-    metal: copper
-    metal_verified: true
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    fineness:
-      - value: 0.0042
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
-      - value: 0.0043
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
-      - value: 0.0045
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
-      - value: 0.0048
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
-      - value: 0.0052
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
-    weight_rough_g:
-      - value: 0.56
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
-      - value: 0.84
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
-      - value: 0.86
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
-      - value: 0.91
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
-      - value: 1.37
-        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    fineness_trace:
-      - source: Lindahl 1955 (NNÅ 1955), s. 80
-        as_printed: 'Finhed: spor af sølv'
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          as_printed: ca. 1422
-          value: '1422'
-          seed: dk-galster-epomg-10
-        - kind: hedged
-          how: circa
-          source: lindahl
-          as_printed: ca. 1422
-          value: '1422'
-          seed: lindahl-1955-lund-kobbersterling
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Kobbersterling
-          value: copper
-          seed: dk-galster-epomg-10
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg10.htm
-        ref: Galster 10 (epomg) — danskmoent.dk epomg10.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 34-41
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42, Appendix (XRF)
-      - type: literature
-        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
-        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44, Appendix (XRF)
-    verification_note:
-      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
-        stammen aus dem Anhang der Veröffentlichung.
-      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
-        publication's appendix.
-      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
-        публікації.
-      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
-        publikationens appendiks.
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-10
-      - lindahl-1955-lund-kobbersterling
-      - metallanalyser-2016-1-g10-lund-kopparsterling
   - id: c-29707f67
     class_id: c-29707f67
     label: unified-dk-galster-epomg-12
@@ -12616,74 +12501,6 @@ coins:
       - metallanalyser-2016-1-g12-lund-lebard
       - metallanalyser-2016-1-g8-12-nastved-lund-lebard
       - metallanalyser-2016-1-g8-nastved-lebard
-  - id: c-6f18dcfc
-    class_id: c-6f18dcfc
-    label: unified-dk-galster-epomg-15
-    fuss: seed_unsorted
-    phase: galster
-    kind: kurant
-    nominal: 1 Sterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    mint: Randers
-    catalog:
-      galster: '15'
-      others:
-        - Fritze Lindahl# 54-58
-        - Jesse# 697
-        - Jesse# 698
-      galster_volume: galster1972-erik7
-      jesse:
-        - '697'
-        - '698'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    fineness_trace:
-      - source: Lindahl 1955 (NNÅ 1955), s. 80
-        as_printed: 'Finhed: spor af sølv'
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          as_printed: ca. 1422
-          value: '1422'
-          seed: dk-galster-epomg-15
-        - kind: hedged
-          how: circa
-          source: lindahl
-          as_printed: ca. 1422
-          value: '1422'
-          seed: lindahl-1955-randers-kobbersterling
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Kobbersterling
-          value: copper
-          seed: dk-galster-epomg-15
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg15.htm
-        ref: Galster 15 (epomg) — danskmoent.dk epomg15.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 54-58
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-15
-      - lindahl-1955-randers-kobbersterling
   - id: c-e1012e0e
     class_id: c-e1012e0e
     label: unified-dk-galster-epomg-3
@@ -112053,8 +111870,8 @@ coins:
     issuing_entity: danish_realm
     composed_of:
       - dk-numista-344370
-  - id: c-ea17009c
-    class_id: c-ea17009c
+  - id: c-01a90515
+    class_id: c-01a90515
     label: unified-dk-numista-348708
     fuss: seed_unsorted
     phase: numista
@@ -112065,30 +111882,66 @@ coins:
     year_label: '1422'
     ruler: Erik VII
     nominal_equiv: 3 Penning
-    mint: Næstved
+    mint:
+      - Lund
+      - Næstved
+      - Odense
+      - Randers
     catalog:
-      numista: '348708'
+      numista:
+        - '348708'
+        - '476049'
       sieg: '9.2'
-      galster: '7'
+      galster:
+        - '7'
+        - '10'
+        - '14'
+        - '15'
       others:
+        - Fritze Lindahl# 34-41
+        - Fritze Lindahl# 54-58
         - Fritze Lindahl# 42-49
         - Jesse# 697
         - Jesse# 698
+        - Fritze Lindahl# 50-53
       galster_volume: galster1972-erik7
       jesse:
         - '697'
         - '698'
     metal: copper
     metal_verified: true
-    fineness_verified: false
+    fineness_verified: true
     weight_rough_verified: true
     diameter_mm_verified: true
     mint_verified: true
     verified: false
     year_verified: false
+    fineness:
+      - value: 0.0042
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
+      - value: 0.0043
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
+      - value: 0.0045
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
+      - value: 0.0048
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
+      - value: 0.0052
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
     weight_rough_g:
+      - value: 0.56
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
       - value: 0.8
         source: numista
+      - value: 0.84
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
+      - value: 0.86
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
+      - value: 0.91
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
+      - value: 1.05
+        source: numista
+      - value: 1.37
+        source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
     weight_range_g:
       - min: 0.75
         max: 1.33
@@ -112106,6 +111959,24 @@ coins:
           source: galster
           as_printed: ca. 1422
           value: '1422'
+          seed: dk-galster-epomg-10
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
+          seed: dk-galster-epomg-14
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
+          seed: dk-galster-epomg-15
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
           seed: dk-galster-epomg-7
         - kind: hedged
           how: span
@@ -112113,12 +111984,53 @@ coins:
           value: 1397-1439
           seed: dk-numista-348708
         - kind: hedged
+          how: span
+          source: numista
+          value: 1397-1439
+          seed: dk-numista-476049
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-lund-kobbersterling
+        - kind: hedged
           how: circa
           source: lindahl
           as_printed: ca. 1422
           value: '1422'
           seed: lindahl-1955-naestved-kobbersterling
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-odense-kobbersterling
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-randers-kobbersterling
       metal:
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-10
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-14
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-15
         - kind: inferred
           how: from_name
           source: galster
@@ -112127,23 +112039,76 @@ coins:
           seed: dk-galster-epomg-7
     sources:
       - type: literature
+        url: https://www.danskmoent.dk/epomg10.htm
+        ref: Galster 10 (epomg) — danskmoent.dk epomg10.htm
+      - type: literature
+        url: https://www.danskmoent.dk/epomg14.htm
+        ref: Galster 14 (epomg) — danskmoent.dk epomg14.htm
+      - type: literature
+        url: https://www.danskmoent.dk/epomg15.htm
+        ref: Galster 15 (epomg) — danskmoent.dk epomg15.htm
+      - type: literature
         url: https://www.danskmoent.dk/epomg7.htm
         ref: Galster 7 (epomg) — danskmoent.dk epomg7.htm
       - type: literature
         url: https://en.numista.com/348708
         ref: Numista N#348708 — Kobbersterling - Erik of Pomerania (Naestved) - Denmark
       - type: literature
+        url: https://en.numista.com/476049
+        ref: Numista N#476049 — Kobbersterling - Erik of Pomerania (Odense) - Denmark
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 34-41
+      - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 42-49
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 50-53
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 54-58
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42, Appendix (XRF)
+      - type: literature
+        url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
+        ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44, Appendix (XRF)
     note:
       de: 3 Pennings (Rechnungs-Äquivalent)
       en: 3 Pennings (accounting equivalent)
       uk: 3 Pennings (розрахунковий еквівалент)
+    verification_note:
+      de: Röntgenfluoreszenzanalyse (XRF) der Oberfläche, Stücke aus dem Königlichen Münzkabinett Stockholm; kalibriert ist nur das Silber (Fehlergrenze ±0,8 %). Gewicht und Feingehalt jedes Stücks 
+        stammen aus dem Anhang der Veröffentlichung.
+      en: Surface X-ray fluorescence (XRF) of pieces in the Royal Coin Cabinet, Stockholm; only silver is calibrated (error margin ±0.8 %). Weight and fineness of each piece come from the 
+        publication's appendix.
+      uk: Рентгенофлуоресцентний аналіз (XRF) поверхні, монети з Королівського монетного кабінету в Стокгольмі; калібровано лише срібло (похибка ±0,8 %). Вага і проба кожної монети взяті з додатка до 
+        публікації.
+      da: Røntgenfluorescensanalyse (XRF) af overfladen, stykker fra Kungliga Myntkabinettet i Stockholm; kun sølvet er kalibreret (fejlmargin ±0,8 %). Vægt og finhed for hvert stykke stammer fra 
+        publikationens appendiks.
     issuing_entity: danish_realm
     composed_of:
+      - dk-galster-epomg-10
+      - dk-galster-epomg-14
+      - dk-galster-epomg-15
       - dk-galster-epomg-7
       - dk-numista-348708
+      - dk-numista-476049
+      - lindahl-1955-lund-kobbersterling
       - lindahl-1955-naestved-kobbersterling
+      - lindahl-1955-odense-kobbersterling
+      - lindahl-1955-randers-kobbersterling
+      - metallanalyser-2016-1-g10-lund-kopparsterling
   - id: c-43b64c09
     class_id: c-43b64c09
     label: unified-dk-numista-355730
@@ -113501,90 +113466,6 @@ coins:
         fra Næstved og Lund? (efter ca. 1405, før 1424)»[/i].\n[b]Märcher 2018 (Denar til daler, kap. 6, s. 368)[/b]: Ribes mønter var de eneste i riget [i]«før ca. 1403, hvor udmøntningerne i Næstved startede»[/i].\n\
         [b]Stefke 1995[/b]: [i]«Eine Variantengruppe der seit Ende 1424 geprägten \"Lebarden\"-Hohlpfennige»[/i] (overs.: «En variantgruppe af de «lebard»-hulpenninge, der blev præget fra slutningen af
         1424»).\nHeraf kan perioden 1403–1424 udledes: begyndelsen efter Märcher, slutningen efter Lindahl."
-  - id: c-8f3b9eaf
-    class_id: c-8f3b9eaf
-    label: unified-dk-numista-476049
-    fuss: seed_unsorted
-    phase: numista
-    kind: scheide
-    nominal: 1 Sterling
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    ruler: Erik VII
-    nominal_equiv: 3 Penning
-    mint: Odense
-    catalog:
-      numista: '476049'
-      sieg: '9.2'
-      galster: '14'
-      galster_volume: galster1972-erik7
-      others:
-        - Jesse# 697
-        - Jesse# 698
-        - Fritze Lindahl# 50-53
-      jesse:
-        - '697'
-        - '698'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    year_verified: false
-    weight_rough_g:
-      - value: 1.05
-        source: numista
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    fineness_trace:
-      - source: Lindahl 1955 (NNÅ 1955), s. 80
-        as_printed: 'Finhed: spor af sølv'
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          as_printed: ca. 1422
-          value: '1422'
-          seed: dk-galster-epomg-14
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1397-1439
-          seed: dk-numista-476049
-        - kind: hedged
-          how: circa
-          source: lindahl
-          as_printed: ca. 1422
-          value: '1422'
-          seed: lindahl-1955-odense-kobbersterling
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Kobbersterling
-          value: copper
-          seed: dk-galster-epomg-14
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg14.htm
-        ref: Galster 14 (epomg) — danskmoent.dk epomg14.htm
-      - type: literature
-        url: https://en.numista.com/476049
-        ref: Numista N#476049 — Kobbersterling - Erik of Pomerania (Odense) - Denmark
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 50-53
-    issuing_entity: danish_realm
-    composed_of:
-      - dk-galster-epomg-14
-      - dk-numista-476049
-      - lindahl-1955-odense-kobbersterling
   - id: c-32d9665d
     class_id: c-32d9665d
     label: unified-dk-numista-476659

@@ -109902,95 +109902,6 @@ coins:
           as_printed: Gros (9 penning)
           value: billon
           seed: dk-galster-epomg-13
-  - fuss: luebischer_muenzfuss
-    phase: I
-    kind: scheide
-    nominal: 1 Sterling
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-ea17009c
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    mint: Næstved
-    catalog:
-      numista: '348708'
-      sieg: '9.2'
-      galster: '7'
-      others:
-        - Fritze Lindahl# 42-49
-        - Jesse# 697
-        - Jesse# 698
-      galster_volume: galster1972-erik7
-      jesse:
-        - '697'
-        - '698'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 0.8
-        source: numista
-    diameter_mm:
-      - value: 16.0
-        source: numista
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg7.htm
-        ref: Galster 7 (epomg) — danskmoent.dk epomg7.htm
-      - type: literature
-        url: https://en.numista.com/348708
-        ref: Numista N#348708 — Kobbersterling - Erik of Pomerania (Naestved) - Denmark
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 42-49
-    note:
-      de: 3 Pennings (Rechnungs-Äquivalent)
-      en: 3 Pennings (accounting equivalent)
-      uk: 3 Pennings (розрахунковий еквівалент)
-    composed_of:
-      - c-ea17009c
-    label: unified-dk-numista-348708
-    origin: promoted
-    year_verified: false
-    nominal_equiv: 3 Penning
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          as_printed: ca. 1422
-          value: '1422'
-          seed: dk-galster-epomg-7
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1397-1439
-          seed: dk-numista-348708
-        - kind: hedged
-          how: circa
-          source: lindahl
-          as_printed: ca. 1422
-          value: '1422'
-          seed: lindahl-1955-naestved-kobbersterling
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Kobbersterling
-          value: copper
-          seed: dk-galster-epomg-7
-    fineness_trace:
-      - source: Lindahl 1955 (NNÅ 1955), s. 80
-        as_printed: 'Finhed: spor af sølv'
   - fuss: nobel_fod
     phase: I
     kind: kurant
@@ -110154,88 +110065,6 @@ coins:
           as_printed: 3 Nobel
           value: gold
           seed: dk-galster-3nobel
-  - fuss: luebischer_muenzfuss
-    phase: I
-    kind: scheide
-    nominal: 1 Sterling
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-8f3b9eaf
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    mint: Odense
-    catalog:
-      numista: '476049'
-      sieg: '9.2'
-      galster: '14'
-      galster_volume: galster1972-erik7
-      others:
-        - Jesse# 697
-        - Jesse# 698
-        - Fritze Lindahl# 50-53
-      jesse:
-        - '697'
-        - '698'
-    metal: copper
-    metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: true
-    diameter_mm_verified: false
-    mint_verified: true
-    verified: false
-    weight_rough_g:
-      - value: 1.05
-        source: numista
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg14.htm
-        ref: Galster 14 (epomg) — danskmoent.dk epomg14.htm
-      - type: literature
-        url: https://en.numista.com/476049
-        ref: Numista N#476049 — Kobbersterling - Erik of Pomerania (Odense) - Denmark
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 50-53
-    composed_of:
-      - c-8f3b9eaf
-    label: unified-dk-numista-476049
-    origin: promoted
-    year_verified: false
-    nominal_equiv: 3 Penning
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          as_printed: ca. 1422
-          value: '1422'
-          seed: dk-galster-epomg-14
-        - kind: hedged
-          how: span
-          source: numista
-          value: 1397-1439
-          seed: dk-numista-476049
-        - kind: hedged
-          how: circa
-          source: lindahl
-          as_printed: ca. 1422
-          value: '1422'
-          seed: lindahl-1955-odense-kobbersterling
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Kobbersterling
-          value: copper
-          seed: dk-galster-epomg-14
-    fineness_trace:
-      - source: Lindahl 1955 (NNÅ 1955), s. 80
-        as_printed: 'Finhed: spor af sølv'
   - fuss: reichsdukatenfuss
     phase: II
     kind: kurant
@@ -282425,13 +282254,28 @@ coins:
     year_last: 1422
     year_label: '1422'
     year_verified: false
-    mint: Lund
+    mint:
+      - Lund
+      - Næstved
+      - Odense
+      - Randers
     catalog:
-      galster: '10'
+      numista:
+        - '348708'
+        - '476049'
+      sieg: '9.2'
+      galster:
+        - '7'
+        - '10'
+        - '14'
+        - '15'
       others:
         - Fritze Lindahl# 34-41
+        - Fritze Lindahl# 54-58
+        - Fritze Lindahl# 42-49
         - Jesse# 697
         - Jesse# 698
+        - Fritze Lindahl# 50-53
       galster_volume: galster1972-erik7
       jesse:
         - '697'
@@ -282443,12 +282287,16 @@ coins:
     weight_rough_g:
       - value: 0.56
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 42
+      - value: 0.8
+        source: numista
       - value: 0.84
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38
       - value: 0.86
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 41
       - value: 0.91
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 40
+      - value: 1.05
+        source: numista
       - value: 1.37
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
     sources:
@@ -282456,8 +282304,32 @@ coins:
         url: https://www.danskmoent.dk/epomg10.htm
         ref: Galster 10 (epomg) — danskmoent.dk epomg10.htm
       - type: literature
+        url: https://www.danskmoent.dk/epomg14.htm
+        ref: Galster 14 (epomg) — danskmoent.dk epomg14.htm
+      - type: literature
+        url: https://www.danskmoent.dk/epomg15.htm
+        ref: Galster 15 (epomg) — danskmoent.dk epomg15.htm
+      - type: literature
+        url: https://www.danskmoent.dk/epomg7.htm
+        ref: Galster 7 (epomg) — danskmoent.dk epomg7.htm
+      - type: literature
+        url: https://en.numista.com/348708
+        ref: Numista N#348708 — Kobbersterling - Erik of Pomerania (Naestved) - Denmark
+      - type: literature
+        url: https://en.numista.com/476049
+        ref: Numista N#476049 — Kobbersterling - Erik of Pomerania (Odense) - Denmark
+      - type: literature
         url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
         ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 34-41
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 42-49
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 50-53
+      - type: literature
+        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
+        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 54-58
       - type: literature
         url: https://www.su.se/download/18.7e388b91199a31e65d247cd/1759930032121/Metallanalyser%20av%20mynt%202016:1%20APPENDIXMetallanalyser%20av%20mynt_2016_1_APPENDIX.pdf
         ref: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 38, Appendix (XRF)
@@ -282502,10 +282374,56 @@ coins:
           seed: dk-galster-epomg-10
         - kind: hedged
           how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
+          seed: dk-galster-epomg-14
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
+          seed: dk-galster-epomg-15
+        - kind: hedged
+          how: circa
+          source: galster
+          as_printed: ca. 1422
+          value: '1422'
+          seed: dk-galster-epomg-7
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1397-1439
+          seed: dk-numista-348708
+        - kind: hedged
+          how: span
+          source: numista
+          value: 1397-1439
+          seed: dk-numista-476049
+        - kind: hedged
+          how: circa
           source: lindahl
           as_printed: ca. 1422
           value: '1422'
           seed: lindahl-1955-lund-kobbersterling
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-naestved-kobbersterling
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-odense-kobbersterling
+        - kind: hedged
+          how: circa
+          source: lindahl
+          as_printed: ca. 1422
+          value: '1422'
+          seed: lindahl-1955-randers-kobbersterling
       metal:
         - kind: inferred
           how: from_name
@@ -282513,6 +282431,24 @@ coins:
           as_printed: Kobbersterling
           value: copper
           seed: dk-galster-epomg-10
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-14
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-15
+        - kind: inferred
+          how: from_name
+          source: galster
+          as_printed: Kobbersterling
+          value: copper
+          seed: dk-galster-epomg-7
     fineness:
       - value: 0.0042
         source: Heljeback 2016 (Metallanalyser av mynt 2016:1), Nr 44
@@ -282527,6 +282463,15 @@ coins:
     fineness_trace:
       - source: Lindahl 1955 (NNÅ 1955), s. 80
         as_printed: 'Finhed: spor af sølv'
+    nominal_equiv: 3 Penning
+    diameter_mm_verified: true
+    diameter_mm:
+      - value: 16.0
+        source: numista
+    note:
+      de: 3 Pennings (Rechnungs-Äquivalent)
+      en: 3 Pennings (accounting equivalent)
+      uk: 3 Pennings (розрахунковий еквівалент)
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
@@ -284361,73 +284306,6 @@ coins:
           as_printed: Skilling
           value: billon
           seed: dk-galster-rigsraad-21
-  - fuss: luebischer_muenzfuss
-    phase: I
-    kind: scheide
-    nominal: 1 Sterling
-    ruler: Erik VII
-    issuing_entity: danish_realm
-    id: c-6f18dcfc
-    year_first: 1422
-    year_last: 1422
-    year_label: '1422'
-    year_verified: false
-    mint: Randers
-    catalog:
-      galster: '15'
-      others:
-        - Fritze Lindahl# 54-58
-        - Jesse# 697
-        - Jesse# 698
-      galster_volume: galster1972-erik7
-      jesse:
-        - '697'
-        - '698'
-    metal: copper
-    fineness_verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verified: false
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/epomg15.htm
-        ref: Galster 15 (epomg) — danskmoent.dk epomg15.htm
-      - type: literature
-        url: https://www.danskmoent.dk/pdf2/NNA_1955_Lindahl.pdf
-        ref: Lindahl 1955 (NNÅ 1955), s. 80; FL 54-58
-    composed_of:
-      - c-6f18dcfc
-    label: unified-dk-galster-epomg-15
-    origin: promoted
-    metal_verified: true
-    weight_range_g:
-      - min: 0.75
-        max: 1.33
-        source: Lindahl 1955 (NNÅ 1955), s. 80
-    uncertainty:
-      year:
-        - kind: hedged
-          how: circa
-          source: galster
-          as_printed: ca. 1422
-          value: '1422'
-          seed: dk-galster-epomg-15
-        - kind: hedged
-          how: circa
-          source: lindahl
-          as_printed: ca. 1422
-          value: '1422'
-          seed: lindahl-1955-randers-kobbersterling
-      metal:
-        - kind: inferred
-          how: from_name
-          source: galster
-          as_printed: Kobbersterling
-          value: copper
-          seed: dk-galster-epomg-15
-    fineness_trace:
-      - source: Lindahl 1955 (NNÅ 1955), s. 80
-        as_printed: 'Finhed: spor af sølv'
   - fuss: luebischer_muenzfuss
     phase: I
     kind: kurant
