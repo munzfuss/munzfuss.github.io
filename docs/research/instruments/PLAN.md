@@ -84,6 +84,15 @@
 | ☑ | 1695, 4 May | **Reglement for the 24 / 8 / 4 ß** — Schou's footnote only; the grid read off Hede 113 / 127 / F4 42 / 52 / C6 7: 8 ß 76½ and 24 ß 25½ to the 9-lot mark, 4 ß 85 to the 5-lot mark = 1 088 ß = **11⅓ Rdl. kurant per mark fine** — the Kurantmøntfod's rate on the coins from 1694/95, 31 years before the 1726 Forordning (the `11_333_thaler` card's «1726 → 1813» start) | A | `1695_reglement_24_8_4_skilling.md` (2026-11-04) | Schou I s. 80 n. (*), s. 665–667 (no entry); Mordhorst c5 (none); Hede c5h113, 114, 127, 128, f4h42, 52, 58, nf4h6, c6h6, 7; Galster type pages; 8 ⚠; R's text and the 1726 dossier (§1d) are the unread layers |
 | ✖ | 1699, 14 Feb | Told in specie (12 % agio) | C | register only | — |
 
+## §1d · 1700–1813 — opened 2026-11-05 (the rest of the tranche: §3 «1700–1914 tranche» row)
+
+| ✓ | Date | Instrument | Tier | Dossier | Notes |
+|---|---|---|---|---|---|
+| ☑ | 1726, 15 July · 31 July · 1727, 4 Jan · 25 Jan · 9 July · 7 Aug | **Forordninger om Tolv og Toe / Sexten Skilling Stykkers Reduction** (the war coin of 1711–25 to ⅚ and 15/16: 11 1/9 and 11¼ Rdl.); **Resl. 4 Jan 1727** keeps the 11⅓ foot («den gamle danske Møntfod», 1695) against 11 1/9; the Norwegian 8 ß 7½ lod; the 4 ß from the reduced 2 ß (Kontrakt 7 Aug 1727, 85 / 5 lod) | A | `1726_forordning_kurantmoentfod.md` (2026-11-05) | Mordhorst f4; **Wilcke III (1927) now in the cache as `wilcke-1927`** (PDF, printed = pdf + 3), s. 50–61, 65–68; Hede f4h43–54, 59, 62, Norge 7, 14–17; 11 ⚠; the `11_333_thaler` card's «eingeführt 1726» and «730–750 ‰» are wrong on the sources — curator |
+| ☐ | 1731 (Wineke 6 Nov 1730 · Rentek. 24 Feb 1731 · the Rigsort) | The 24 ß (Rigsort) introduced on the 11⅓ foot | A/B | `1731_rigsort.md` (to write) | Wilcke III s. 62–73 (w3b); Hede C6 6–7 |
+| ☐ | 1739, 1 June | Reglement for the 2 ß and 1 ß (Schou's 1795 footnote) | A | to locate (Wilcke III s. 73–106?) | Schou I s. 80 n. (*) |
+| ☐ | 1711–25 (the war coin's orders: 12 ß from 1710, 16 ß 14 Sept 1713, Kurantdukat 1714, Kongsberg 2 ß 1714) | The 13⅓ / 12 Rdl. grids | B | Axel Nielsen 1907 s. 96–99 (not in hand); Wilcke III Første Kapitel (gold) | found by the 1726 dossier |
+
 ## §2 · Imperial / German anchors
 
 | ✓ | Date | Instrument | Tier | Dossier | Notes |
