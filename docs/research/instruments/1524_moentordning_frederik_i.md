@@ -319,6 +319,18 @@ data under `8_gylden_fod` (§8.3).
    the register copy (B 11 is a copy of the late 1520s / early 1530s, A is lost) or the act
    indeed set an over-weight 4 ß is not decidable from the text; specimen weights of the
    1524 4 ß danske would settle it.
+   **Third witness, 2026-11-05: Schive 1865 s. 148** (page image read) gives «*Fireskillinger,
+   14lödige, 88 Stykker paa Marken; et Stykke skulde veie 46,454 Æs med 40,727 Æs fiint Sölv*»,
+   «efter Jörgen Kocks Opgave til Esge Bilde og den yngre Anordning af 1524», and follows «den
+   Pag. 8 hos Lüxdorph … vedføiede Tabel» (n. 3) — Lüxdorph 1760 compiled his tables from the
+   Kancelli registers and original accounts (Wilcke 7-3 s. 240). Schive's own figures check
+   against 88: on his 4096-Æs mark the Tomark (11/M) is 372,34 Æs, the Firehvide (96) 42⅔, the
+   Hvid (300) 13,653; 4096/88 = 46,545 Æs × 0,875 = **40,727** fine — his fine weight is exactly
+   the 88/M value (his printed 46,454 transposes digits). So the line splits: **88** Lüxdorph →
+   Schive → Galster 1936; **78** Wilcke 1950 and Andersen 2015 (Fr. I.s registre, B 11). Kock's
+   1530 report (edition note to nr. 10) names only 1 M, 2 M and 44 «otteskilling» per mark —
+   no 4 ß. Not settled; Lüxdorph's page (Vid. Selsk. Skrifter VIII, 1760, s. 8 table) is the
+   next thing to read.
 6. **The Ribe letter.** «Et lignende fik Møntmesteren i Riibe» — the Ribe mintmaster is
    not named in Wilcke's summary; Ernst's Ribe study (`ernst-1948-ribe-*`) should give him.
 
