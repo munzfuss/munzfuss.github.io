@@ -273,7 +273,7 @@ Keys added with this dossier: `wilcke-1927-s62-wineke-1730-kurant-1700-27`,
 `galster-1973-s37-nedsaettelse-1726`, `galster-1973-s48-rigsort-hovedmoent`.
 
 ---
-Score (research-dossier rubric, self-assessed 2026-11-05): C1 2.0 · C2 2.0 (R's own counts and
+Score (research-dossier rubric, self-assessed 2026-11-05, commit e987937): C1 2.0 · C2 2.0 (R's own counts and
 rates, K's, the Rejsedaler's — all recomputed) · C3 2.0 · C4 1.5 (Wilcke III the sole reading; R
 quoted by him as the act's words) · C5 1.0 · C6 1.0 = **9.5/10**; R's and K's archival text is
 the unread layer.
