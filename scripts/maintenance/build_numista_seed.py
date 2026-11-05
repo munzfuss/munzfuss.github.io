@@ -53,7 +53,9 @@ from lib.v2_entity_classify import (  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 from lib.note_extract import source_note  # noqa: E402
 
-PARSED_DIR = PROJECT_ROOT / "scripts" / "cache" / "numista" / "parsed"
+from lib.paths import NUMISTA_CACHE  # noqa: E402
+
+PARSED_DIR = NUMISTA_CACHE / "parsed"
 
 # Catalog fields the canonical sidecar emits as a flat string-keyed
 # dict (per parse_references_from_*). Pydantic CatalogRefs strict-extra

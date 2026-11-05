@@ -289,7 +289,7 @@ def _km_bases(coin: dict) -> set:
 # ---------------------------------------------------------------------------
 import json as _json  # noqa: E402
 
-_KMK_CACHE_DIR = ROOT / "scripts" / "cache" / "kmk"
+from lib.paths import KMK_CACHE as _KMK_CACHE_DIR  # noqa: E402
 _KMM_IMAGE_MEMO: dict[str, bool] = {}
 _KMM_WEIGHT_MEMO: dict[str, bool] = {}
 

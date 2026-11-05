@@ -50,7 +50,9 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 from parse_numista_api import is_api_shape, parse_api_to_canonical  # noqa: E402
 from parse_numista_chrome import is_chrome_shape, parse_chrome_to_canonical  # noqa: E402
 
-CACHE_DIR = PROJECT_ROOT / "scripts" / "cache" / "numista"
+from lib.paths import NUMISTA_CACHE  # noqa: E402
+
+CACHE_DIR = NUMISTA_CACHE
 PARSED_DIR = CACHE_DIR / "parsed"
 PRE_1541_DIR = CACHE_DIR / "denmark_pre_1541"
 

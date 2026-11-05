@@ -19,7 +19,9 @@ import re
 from functools import lru_cache
 from pathlib import Path
 
-PAGES_DIR = Path(__file__).resolve().parents[1] / "cache" / "bruun" / "pages"
+from lib.paths import BRUUN_CACHE  # noqa: E402
+
+PAGES_DIR = BRUUN_CACHE / "pages"
 ROMAN = {1: "I", 2: "II", 3: "III", 4: "IV", 5: "V"}
 PART_OF_ROMAN = {v: k for k, v in ROMAN.items()}
 OFFSET = {1: 24, 2: 26, 3: 18, 4: 16, 5: 16}

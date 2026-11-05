@@ -24,8 +24,9 @@ import re
 from functools import lru_cache
 from pathlib import Path
 
-_KONKORD = (Path(__file__).resolve().parents[1] / "cache" / "danskmoent"
-            / "konkordans" / "konkord.json")
+from lib.paths import KONKORDANS_CACHE  # noqa: E402
+
+_KONKORD = KONKORDANS_CACHE / "konkord.json"
 _ROW_RULER_RE = re.compile(r"^\s*(\d{3,4})\s*-\s*(\d{3,4})\s+(.+?)\s*$")
 _ITEM_RE = re.compile(r"(?:\d+|-)\s*/\s*(\d+)(?:\s*-\s*(\d+))?")
 

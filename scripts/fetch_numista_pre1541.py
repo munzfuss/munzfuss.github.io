@@ -27,7 +27,10 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-CACHE_DIR = Path(__file__).resolve().parent / "cache" / "numista" / "denmark_pre_1541"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.paths import NUMISTA_CACHE  # noqa: E402
+
+CACHE_DIR = NUMISTA_CACHE / "denmark_pre_1541"
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7; rv:121.0) "
     "Gecko/20100101 Firefox/121.0"

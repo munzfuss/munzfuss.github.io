@@ -57,7 +57,10 @@ import ruamel.yaml
 # Boilerplate ----------------------------------------------------------
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-CACHE_DIR = PROJECT_ROOT / "scripts" / "cache" / "bruun" / "lots"
+sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+from lib.paths import BRUUN_CACHE  # noqa: E402
+
+CACHE_DIR = BRUUN_CACHE / "lots"
 
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 sys.path.insert(0, str(PROJECT_ROOT / "scripts" / "maintenance"))

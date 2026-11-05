@@ -581,7 +581,8 @@ def _builder_overrides(coin_id: str) -> list[str]:
         if coin_id.startswith("kmk-") and coin_id[4:].isdigit():
             rid = int(coin_id[4:])
             bk = _load_builder("build_kmk_seed")
-            cache = PROJECT_ROOT / "scripts" / "cache" / "kmk" / f"{rid}.json"
+            from lib.paths import KMK_CACHE
+            cache = KMK_CACHE / f"{rid}.json"
             src = json.loads(cache.read_text()) if cache.exists() else {}
             place = (src.get("place") or "").strip()
             if place:
@@ -604,7 +605,8 @@ def _builder_overrides(coin_id: str) -> list[str]:
                                      f"{mint} kept but mint_verified false")
         elif "tid-" in coin_id:
             tid = coin_id.rsplit("-", 1)[-1]
-            cache = PROJECT_ROOT / "scripts" / "cache" / "ucoin" / f"{tid}.json"
+            from lib.paths import UCOIN_CACHE
+            cache = UCOIN_CACHE / f"{tid}.json"
             if cache.exists():
                 src = json.loads(cache.read_text())
                 if isinstance(src, dict):

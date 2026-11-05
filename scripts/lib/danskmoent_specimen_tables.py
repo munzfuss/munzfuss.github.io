@@ -20,9 +20,9 @@ from pathlib import Path
 
 import yaml
 
-from lib.paths import PROJECT_ROOT  # noqa: E402
+from lib.paths import GALSTER_CACHE  # noqa: E402
 
-TABLES_FILE = PROJECT_ROOT / "scripts/cache/danskmoent/galster/gif_specimen_tables.yml"
+TABLES_FILE = GALSTER_CACHE / "gif_specimen_tables.yml"
 
 _IMG_RE = re.compile(r"<img\b[^>]*\bsrc\s*=\s*[\"']?([^\"'\s>]+)", re.I)
 

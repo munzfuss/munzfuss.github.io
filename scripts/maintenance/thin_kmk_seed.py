@@ -48,7 +48,7 @@ from lib.seed_merge import _make_yaml_loader  # noqa: E402
 from lib.seed_thin import thin_safe  # noqa: E402
 
 KMK_SEED_DIR = ROOT / "data" / "v2" / "seed" / "kmk"
-KMK_CACHE_DIR = ROOT / "scripts" / "cache" / "kmk"
+from lib.paths import KMK_CACHE as KMK_CACHE_DIR  # noqa: E402
 
 
 _WEIGHTLESS_KEEP = 3
