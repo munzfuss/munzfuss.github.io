@@ -2323,6 +2323,97 @@ _NOMINAL_SPECIAL_RE = re.compile(
     r"afslag|off-?strike|off-?metal|forfalsk|falsk|forgery|pr[oø]vem[oø]nt|\blead\b|\bbly\b")
 
 
+# Spelling noise in the names the Hede-base check compares (curator 2026-11-05:
+# «нормалізація номіналів (toskilling = 2 skilling, krone-skilling =
+# kroneskilling, gold krone = krone, etc)»). Comparison only: the stored
+# nominals are untouched, and nothing here reaches the pair matcher or the
+# classifier (the shared table `lib.nominal_synonyms` is left alone).
+#
+# - a tail after «;» is a remark, not the name («2 skilling; samtidig
+#   forfalskning?» keeps its forgery word for `_NOMINAL_SPECIAL_RE`, which runs
+#   on the raw class nominal first);
+# - a trailing «?» is the source's own doubt: the name stays, marked uncertain;
+# - a name that is only digits («1», «1624», «0») or only «?» names nothing;
+# - Danish number words fused with «skilling» are the number («toskilling»);
+# - a mint name inside the nominal is not part of it («dukat kobenhavn»);
+# - qualifiers of the unit — lybsk, norsk, dansk(e), kurant, rigsmont,
+#   hebraeisk, rigsbank(tegn) — are kept as a set beside the core name, so word
+#   order does not matter («lybsk blaffert» = «blaffert lybsk») and a bare name
+#   matches a qualified one («sosling» ~ «sosling lybsk»; curator: not a strict
+#   red flag), while two DIFFERENT qualifiers still conflict (norsk vs lybsk).
+_SKILLING_NUMBER_WORDS = {
+    "to": "2", "tre": "3", "fire": "4", "fir": "4", "seks": "6", "otte": "8",
+    "tolv": "12", "seksten": "16", "fireogtyve": "24",
+}
+_SKILLING_WORD_RE = re.compile(
+    r"\b(" + "|".join(sorted(_SKILLING_NUMBER_WORDS, key=len, reverse=True)) + r")skilling\b")
+_NOMINAL_QUALIFIERS = {
+    "lybsk": "lybsk", "lybske": "lybsk", "norsk": "norsk", "norske": "norsk",
+    "dansk": "dansk", "danske": "dansk", "kurant": "kurant", "courant": "kurant",
+    "rigsmont": "rigsmont", "hebraeisk": "hebraeisk",
+    "rigsbanktegn": "rigsbank", "rigbanktegn": "rigsbank",
+}
+_NOMINAL_MINT_WORDS = frozenset({
+    "kobenhavn", "altona", "gluckstadt", "kongsberg", "christiania", "helsingor",
+    "ribe", "malmo", "flensborg", "rendsburg", "aarhus", "arhus",
+})
+
+
+def _hede_base_nominal_key(n: str):
+    """(core name, qualifier set, uncertain) for a NORMALISED class nominal,
+    or None when the name says nothing about the denomination."""
+    s = n.split(";")[0].strip()
+    uncertain = s.endswith("?")
+    s = s.rstrip("?").strip()
+    if not s or re.fullmatch(r"[\d\s/]+", s):
+        return None
+    s = s.replace("krone-skilling", "kroneskilling")
+    s = re.sub(r"\bgold\s*krone\b|\bgoldkrone\b", "krone", s)
+    s = re.sub(r"\bpenny\b|\bpence\b", "penning", s)
+    s = re.sub(r"(\w)\s*d'or\b", r"\1dor", s)
+    s = _SKILLING_WORD_RE.sub(lambda m: f"{_SKILLING_NUMBER_WORDS[m.group(1)]} skilling", s)
+    # «N rigsbankskilling rigsbanktegn» = «rigsbanktegn for N skilling»; a bare
+    # «rigsbankskilling» stays a name of its own (it meets «skilling» only
+    # through the bare-unit wildcard, which the curator reviews).
+    if "banktegn" in s:
+        s = re.sub(r"\brigsbank(skilling)\b", r"rigsbanktegn \1", s)
+    s = re.sub(r"\bfor\b", " ", s)
+    quals, core = set(), []
+    for w in s.split():
+        if w in _NOMINAL_QUALIFIERS:
+            quals.add(_NOMINAL_QUALIFIERS[w])
+        elif w not in _NOMINAL_MINT_WORDS:
+            core.append(w)
+    if not core:
+        return None
+    # The count stands first whatever the word order («rigsbanktegn 2 skilling»).
+    nums = [w for w in core if re.fullmatch(r"\d+(?:/\d+)?", w)]
+    rest = [w for w in core if w not in nums]
+    return " ".join(nums + rest), frozenset(quals), uncertain
+
+
+_NOMINAL_METAL_WORDS = frozenset({"gold", "guld", "solv", "silver", "kobber", "copper"})
+
+
+def _hede_base_keys_match(ka, kb) -> str | None:
+    """«spelling» when the folded names are one name, «wildcard» / «krone»
+    when they meet through the bare-unit or Krone ≡ 4 Mark rule, else None."""
+    (ca, qa, _), (cb, qb, _) = ka, kb
+    if qa and qb and qa != qb:
+        return None
+    # A metal word left in one name only marks another strike («gold 16
+    # skilling» against «16 skilling»); «gold krone» was folded to «krone».
+    if (set(ca.split()) & _NOMINAL_METAL_WORDS) != (set(cb.split()) & _NOMINAL_METAL_WORDS):
+        return None
+    if ca == cb:
+        return "spelling"
+    if _nominal_wildcard_match(ca, cb):
+        return "wildcard"
+    if _nominal_equivalent(ca, cb):
+        return "krone"
+    return None
+
+
 def _hede_base_nominal_equiv(na: str, nb: str) -> str | None:
     """Why two class nominals count as one in the Hede-base check, or None.
     «same» / «wildcard» / «source: <seed>: <raw>»."""
@@ -2330,10 +2421,21 @@ def _hede_base_nominal_equiv(na: str, nb: str) -> str | None:
         return "same"
     if _NOMINAL_SPECIAL_RE.search(na) or _NOMINAL_SPECIAL_RE.search(nb):
         return None
+    ka, kb = _hede_base_nominal_key(na), _hede_base_nominal_key(nb)
+    if ka is None or kb is None:
+        return "no name"
+    if (set(ka[0].split()) & _NOMINAL_METAL_WORDS) != (set(kb[0].split()) & _NOMINAL_METAL_WORDS):
+        return None
+    # A dual name («speciedaler / 3 mark») is left to the dual-name test below.
+    if len(_NOMINAL_GLOSS_SPLIT.split(na)) == 1 and len(_NOMINAL_GLOSS_SPLIT.split(nb)) == 1:
+        how = _hede_base_keys_match(ka, kb)
+        if how:
+            return "uncertain" if (ka[2] or kb[2]) else how
+        na, nb = ka[0], kb[0]
     # A dual name kept whole by the normaliser («speciedaler / 3 mark»): either
     # of its names stands for the coin.
-    pa = [x.strip() for x in na.split(" / ")]
-    pb = [x.strip() for x in nb.split(" / ")]
+    pa = [x.strip() for x in _NOMINAL_GLOSS_SPLIT.split(na) if x and x.strip()]
+    pb = [x.strip() for x in _NOMINAL_GLOSS_SPLIT.split(nb) if x and x.strip()]
     if len(pa) > 1 or len(pb) > 1:
         if any(x == y for x in pa for y in pb):
             return "dual name"

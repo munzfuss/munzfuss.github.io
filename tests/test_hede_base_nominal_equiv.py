@@ -63,5 +63,45 @@ class Equivalence(unittest.TestCase):
         self.assertEqual(m._hede_base_nominal_equiv("speciedaler / 3 mark", "3 mark"), "dual name")
 
 
+class Spelling(unittest.TestCase):
+    """Spelling noise folded for the comparison only (curator 2026-11-05)."""
+
+    def eq(self, a, b):
+        return m._hede_base_nominal_equiv(a, b)
+
+    def test_number_words(self):
+        self.assertEqual(self.eq("toskilling", "2 skilling"), "spelling")
+        self.assertIsNone(self.eq("toskilling", "4 skilling"))
+
+    def test_word_forms(self):
+        self.assertEqual(self.eq("gold krone", "goldkrone"), "spelling")
+        self.assertEqual(self.eq("gold krone", "krone"), "spelling")
+        self.assertEqual(self.eq("penning", "penny"), "spelling")
+        self.assertEqual(self.eq("2 christian d'or", "2 christiandor"), "spelling")
+        self.assertEqual(self.eq("dukat", "dukat kobenhavn"), "spelling")
+
+    def test_qualifiers(self):
+        self.assertEqual(self.eq("lybsk blaffert", "blaffert lybsk"), "spelling")
+        self.assertEqual(self.eq("sosling", "sosling lybsk"), "spelling")
+        self.assertIsNone(self.eq("2 skilling norsk", "2 skilling lybsk"))
+
+    def test_rigsbanktegn_forms(self):
+        self.assertEqual(self.eq("rigsbanktegn for 4 skilling", "4 rigsbankskilling rigsbanktegn"),
+                         "spelling")
+        self.assertEqual(self.eq("4 skilling rigbanktegn", "rigsbanktegn 4 skilling"), "spelling")
+
+    def test_doubt_and_empty_names(self):
+        self.assertEqual(self.eq("2 skilling?", "2 skilling"), "uncertain")
+        self.assertEqual(self.eq("2 speciedaler", "1"), "no name")
+
+    def test_other_strikes_stay_apart(self):
+        self.assertIsNone(self.eq("16 skilling", "gold 16 skilling"))
+        self.assertIsNone(self.eq("2 skilling; samtidig forfalskning?", "2 skilling"))
+
+    def test_real_differences_stay(self):
+        self.assertIsNone(self.eq("skilling", "2 skilling"))
+        self.assertIsNone(self.eq("1/2 skilling", "2 skilling"))
+
+
 if __name__ == "__main__":
     unittest.main()
