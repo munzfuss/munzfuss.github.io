@@ -7,8 +7,9 @@
 > Aar-Hundrede, og fremdeles under Kong Eric af Pommeren …», and «Indberetning om nogle gamle Danske Mynters
 > Prøvelse i Aaret 1764», *Skrifter … Kiøbenhavnske Selskab* IX (1765) s. 613–712, 713–718 — corpus
 > `luxdorph-1765` (printed page = volume pdf − 28; archive.org `skriftersomudide09kiob`).
-> **Findings applied:** `wendischer_muenzverein_c1400.md` 1424 Søsling 11¾ → 11¼ and Hohlpfennig 7½ → 7¼;
-> `luebischer_muenzfuss.md` §3.12 ⚠ on the gold off-strike (Luxdorph 23⅔, Lindahl quotes 23¾).
+> **Differences recorded (⚠, both values kept):** `wendischer_muenzverein_c1400.md` 1424 Søsling 11¾ / 11¼ and
+> Hohlpfennig 7½ / 7¼ — investigated there: every printed source gives 11¼ / 7¼, the old figures came from the
+> OCR of Jesse; `luebischer_muenzfuss.md` §3.12 gold off-strike 23⅔ (Luxdorph) / 23¾ (Lindahl's quotation of him).
 > The 1764 assays are of 12th–13th-century coins (Valdemar I to Valdemar Christoffersen, Lund, Roskilde) —
 > outside our card's scope; recorded, not used. pdf 747–748 are the volume's errata, not an assay table.
 

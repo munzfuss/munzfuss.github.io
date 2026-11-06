@@ -232,7 +232,7 @@ struck at these ordinances' Portugaløser/Ungersk Gylden lines before the Klippi
   tariff re-enacted «*endnu som tilforn med voris Danmarkis rigis raads samtycke*» against
   subjects who «*skulle vegre at tage en rigsdaeller for forskrefne verd*»: the rigsdaler «*skal
   gange och gieide 33 lybsk sk. eller 66 dansk sk.*», the Mark piece «*halfsøttende sk. danske*»
-  (16½ ß — «halfsøttende» = half-way to 17; corrected 2026-11-05 from «7½ ß», which contradicted the act's own «4 Mark = 1 rigsdaler» = 66 ß) and «*fire mark danske lige saa møgit som en rigsdaller*», with the penalty clause and
+  (⚠ 16½ ß — «halfsøttende» = half-way to 17; glossed «7½ ß» here on 2026-11-05 (commit 18f3971). Investigated 2026-11-06: no source gives 7½; the act itself has «4 Mark = 1 rigsdaler» = 66 ß, and Wilcke 1919 s. 85 the Daler at 4 Markstykker — 7½ was a mistranslation, not a reading of the source) and «*fire mark danske lige saa møgit som en rigsdaller*», with the penalty clause and
   the order to the fogeder and magistrates to enforce it
   (`secher-ccd-3-208-1605-moentens-forandring`); the ducal-coin tariffs of 8 July / 4 Aug
   1605 (register §1b); Mandat 3 Feb 1609 (daler = 68 ß) and
