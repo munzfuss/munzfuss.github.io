@@ -56,5 +56,18 @@ class StubRule(unittest.TestCase):
         self.assertIsNone(self.cat(None))
 
 
+class ImageOfAnotherObject(unittest.TestCase):
+    """The page under these ids shows the neighbouring FP 1780 object; its
+    photographs are not an image of the API record (curator 2026-11-06)."""
+
+    IDS = ("167058", "167065", "167067", "167107", "167151")
+
+    def test_neighbour_photos_do_not_count(self):
+        if not (bk.KMK_CACHE / "web" / "167058.json").exists():
+            self.skipTest("KMM web cache not available")
+        for rid in self.IDS:
+            self.assertFalse(bk._kmm_has_image(rid), rid)
+
+
 if __name__ == "__main__":
     unittest.main()

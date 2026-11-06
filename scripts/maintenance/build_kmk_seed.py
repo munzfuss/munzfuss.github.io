@@ -1034,7 +1034,10 @@ def _raadata_place(loc: str) -> str:
 # 167067 (søsling lybsk ↔ skilling Christiania Hede 18), 167107 (2 skilling
 # norsk ↔ skilling Hede 18), 167151 (skilling norsk 1643 ↔ 2 skilling
 # København Hede 122A 1648). Curator-approved 2026-10-12, SOURCES §13.19.
-_RAADATA_INCOHERENT_IDS = frozenset({"167065", "167067", "167107", "167151"})
+# 167058 (API FP 1780.148 «4 skilling, hebræisk» ↔ page FP 1780.147 «2
+# skilling», Hede 151A) added by the curator 2026-11-06 — the seed had taken
+# the nominal from the one and the Hede number from the other.
+_RAADATA_INCOHERENT_IDS = frozenset({"167058", "167065", "167067", "167107", "167151"})
 
 # Class-C records (SOURCES §13.19) whose own inventory number IS published on
 # samlinger.natmus.dk, under another object id (found via api/Objectbrowse,
@@ -1234,13 +1237,29 @@ _STUB_IGNORED_CATALOG = frozenset({"numista", "bruun", "galster_volume", "hede_v
 
 
 def _kmm_has_image(rid) -> bool | None:
+    """An image OF THIS OBJECT. A page that shows another object (class C,
+    `_RAADATA_INCOHERENT_IDS`, SOURCES §13.19) says nothing about it — then
+    only the API record's own assets count (curator 2026-11-06: five FP 1780
+    records stayed in the corpus on the neighbour's photographs)."""
     from fetch_kmk_web import WEB_CACHE
     j = WEB_CACHE / f"{rid}.json"
     if j.exists():
         try:
-            return bool(json.loads(j.read_text("utf-8")).get("billeder"))
+            rd = json.loads(j.read_text("utf-8"))
         except json.JSONDecodeError:
-            pass
+            rd = None
+        if rd is not None:
+            api = KMK_CACHE / f"{rid}.json"
+            src = {}
+            if api.exists():
+                try:
+                    src = json.loads(api.read_text("utf-8"))
+                except json.JSONDecodeError:
+                    src = {}
+            if _raadata_other_object({**src, "id": str(rid)}, rd):
+                rel = src.get("related") if isinstance(src.get("related"), dict) else {}
+                return bool(rel.get("assets"))
+            return bool(rd.get("billeder"))
     h = WEB_CACHE / f"{rid}.html"
     if h.exists():
         t = h.read_text(errors="ignore")
